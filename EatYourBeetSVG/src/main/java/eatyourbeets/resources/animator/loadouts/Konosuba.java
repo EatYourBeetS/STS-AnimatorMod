@@ -8,7 +8,7 @@ import eatyourbeets.cards.animator.series.Konosuba.Aqua;
 import eatyourbeets.cards.animator.series.Konosuba.Kazuma;
 import eatyourbeets.cards.animator.series.Konosuba.Megumin;
 import eatyourbeets.cards.animator.ultrarare.Chomusuke;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
@@ -42,19 +42,14 @@ public class Konosuba extends AnimatorLoadout
     }
 
     @Override
-    public String GetSymbolicCardID()
+    public EYBCardData GetSymbolicCard()
     {
-        return Megumin.DATA.ID;
+        return Megumin.DATA;
     }
 
     @Override
-    public AnimatorCard_UltraRare GetUltraRare()
+    public EYBCardData GetUltraRare()
     {
-        if (ultraRare == null)
-        {
-            ultraRare = new Chomusuke();
-        }
-
-        return ultraRare;
+        return Chomusuke.DATA;
     }
 }

@@ -170,7 +170,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         }
         else
         {
-            description = loadout.GetShortDescription();
+            description = loadout.GetDeckPreviewString();
             textColor = Settings.GREEN_TEXT_COLOR;
             selectScreen.confirmButton.isDisabled = false;
         }

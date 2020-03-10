@@ -8,7 +8,7 @@ import eatyourbeets.cards.animator.series.OwariNoSeraph.Mikaela;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.Shinoa;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.Yuuichirou;
 import eatyourbeets.cards.animator.ultrarare.HiiragiTenri;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
@@ -42,19 +42,14 @@ public class OwariNoSeraph extends AnimatorLoadout
     }
 
     @Override
-    public String GetSymbolicCardID()
+    public EYBCardData GetSymbolicCard()
     {
-        return Yuuichirou.DATA.ID;
+        return Yuuichirou.DATA;
     }
 
     @Override
-    public AnimatorCard_UltraRare GetUltraRare()
+    public EYBCardData GetUltraRare()
     {
-        if (ultraRare == null)
-        {
-            ultraRare = new HiiragiTenri();
-        }
-
-        return ultraRare;
+        return HiiragiTenri.DATA;
     }
 }

@@ -9,10 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -150,9 +147,12 @@ public abstract class AnimatorReward extends CustomReward
         float roll = AbstractDungeon.cardRng.random(100f);
         if (roll < chances)
         {
-            AbstractCard ultraRare = loadout.GetUltraRare();
-            cards.remove(0);
-            cards.add(ultraRare);
+            EYBCardData data = loadout.GetUltraRare();
+            if (data != null)
+            {
+                cards.remove(0);
+                cards.add(data.CreateNewInstance());
+            }
         }
     }
 

@@ -8,7 +8,7 @@ import eatyourbeets.cards.animator.series.FullmetalAlchemist.ElricAlphonse;
 import eatyourbeets.cards.animator.series.FullmetalAlchemist.ElricEdward;
 import eatyourbeets.cards.animator.series.FullmetalAlchemist.RoyMustang;
 import eatyourbeets.cards.animator.ultrarare.Truth;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
@@ -42,19 +42,14 @@ public class FullmetalAlchemist extends AnimatorLoadout
     }
 
     @Override
-    public String GetSymbolicCardID()
+    public EYBCardData GetSymbolicCard()
     {
-        return RoyMustang.DATA.ID;
+        return RoyMustang.DATA;
     }
 
     @Override
-    public AnimatorCard_UltraRare GetUltraRare()
+    public EYBCardData GetUltraRare()
     {
-        if (ultraRare == null)
-        {
-            ultraRare = new Truth();
-        }
-
-        return ultraRare;
+        return Truth.DATA;
     }
 }

@@ -8,7 +8,7 @@ import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.basic.Strike_AccelWorld;
 import eatyourbeets.cards.animator.colorless.uncommon.Kuroyukihime;
 import eatyourbeets.cards.animator.colorless.uncommon.LimeBell;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -44,13 +44,13 @@ public class AccelWorld extends AnimatorLoadout
     }
 
     @Override
-    public String GetSymbolicCardID()
+    public EYBCardData GetSymbolicCard()
     {
-        return Kuroyukihime.DATA.ID;
+        return Kuroyukihime.DATA;
     }
 
     @Override
-    public AnimatorCard_UltraRare GetUltraRare()
+    public EYBCardData GetUltraRare()
     {
         return null;
     }

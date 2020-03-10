@@ -8,7 +8,7 @@ import eatyourbeets.cards.animator.series.HitsugiNoChaika.AcuraAkari;
 import eatyourbeets.cards.animator.series.HitsugiNoChaika.ChaikaTrabant;
 import eatyourbeets.cards.animator.series.HitsugiNoChaika.Gillette;
 import eatyourbeets.cards.animator.ultrarare.NivaLada;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
@@ -42,19 +42,14 @@ public class Chaika extends AnimatorLoadout
     }
 
     @Override
-    public String GetSymbolicCardID()
+    public EYBCardData GetSymbolicCard()
     {
-        return ChaikaTrabant.DATA.ID;
+        return ChaikaTrabant.DATA;
     }
 
     @Override
-    public AnimatorCard_UltraRare GetUltraRare()
+    public EYBCardData GetUltraRare()
     {
-        if (ultraRare == null)
-        {
-            ultraRare = new NivaLada();
-        }
-
-        return ultraRare;
+        return NivaLada.DATA;
     }
 }

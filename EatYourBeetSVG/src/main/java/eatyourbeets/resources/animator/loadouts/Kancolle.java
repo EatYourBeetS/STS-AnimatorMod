@@ -8,7 +8,7 @@ import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.basic.Strike_Kancolle;
 import eatyourbeets.cards.animator.colorless.uncommon.Shimakaze;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.resources.GR;
@@ -47,13 +47,13 @@ public class Kancolle extends AnimatorLoadout
     }
 
     @Override
-    public String GetSymbolicCardID()
+    public EYBCardData GetSymbolicCard()
     {
-        return Shimakaze.DATA.ID;
+        return Shimakaze.DATA;
     }
 
     @Override
-    public AnimatorCard_UltraRare GetUltraRare()
+    public EYBCardData GetUltraRare()
     {
         return null;
     }

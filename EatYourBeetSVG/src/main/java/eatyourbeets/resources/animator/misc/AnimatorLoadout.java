@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.relics.animator.LivingPicture;
@@ -22,7 +22,6 @@ import java.util.StringJoiner;
 public abstract class AnimatorLoadout
 {
     protected ArrayList<String> startingDeck = new ArrayList<>();
-    protected AnimatorCard_UltraRare ultraRare = null;
     protected String shortDescription = null;
 
     public int ID;
@@ -52,9 +51,9 @@ public abstract class AnimatorLoadout
         this.ID = synergy.ID;
     }
 
-    public abstract AnimatorCard_UltraRare GetUltraRare();
     public abstract ArrayList<String> GetStartingDeck();
-    public abstract String GetSymbolicCardID();
+    public abstract EYBCardData GetSymbolicCard();
+    public abstract EYBCardData GetUltraRare();
 
     public CharSelectInfo GetLoadout(String name, String description, AnimatorCharacter animatorCharacter)
     {
@@ -91,7 +90,7 @@ public abstract class AnimatorLoadout
         return trophies;
     }
 
-    public String GetShortDescription()
+    public String GetDeckPreviewString()
     {
         if (shortDescription == null)
         {

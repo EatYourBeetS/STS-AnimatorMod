@@ -1,6 +1,6 @@
 package eatyourbeets.resources.animator.loadouts;
 
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 import eatyourbeets.ui.animator.characterSelection.AnimatorLoadoutRenderer;
@@ -19,19 +19,19 @@ public class _Random extends AnimatorLoadout
     }
 
     @Override
-    public AnimatorCard_UltraRare GetUltraRare()
-    {
-        return null;
-    }
-
-    @Override
     public ArrayList<String> GetStartingDeck()
     {
         return new ArrayList<>();
     }
 
     @Override
-    public String GetSymbolicCardID()
+    public EYBCardData GetUltraRare()
+    {
+        return null;
+    }
+
+    @Override
+    public EYBCardData GetSymbolicCard()
     {
         return null;
     }

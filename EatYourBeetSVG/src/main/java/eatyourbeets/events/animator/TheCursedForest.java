@@ -37,9 +37,10 @@ public class TheCursedForest extends EYBEvent
         switch (curseCount)
         {
             case  0: return null;
-            case  1: return rng.randomBoolean(0.10f) ? new TheCursedForest() : null;
-            case  2: return rng.randomBoolean(0.25f) ? new TheCursedForest() : null;
-            case  3: return rng.randomBoolean(0.33f) ? new TheCursedForest() : null;
+            case  1: return null;
+            case  2: return rng.randomBoolean(0.06f) ? new TheCursedForest() : null;
+            case  3: return rng.randomBoolean(0.24f) ? new TheCursedForest() : null;
+            case  4: return rng.randomBoolean(0.36f) ? new TheCursedForest() : null;
             default: return rng.randomBoolean(0.60f) ? new TheCursedForest() : null;
         }
     }

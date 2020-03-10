@@ -15,9 +15,11 @@ import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.AbstractScreen;
+import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.controls.*;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class AnimatorSeriesSelectScreen extends AbstractScreen
 {
@@ -34,6 +36,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     public final GUI_Toggle toggleBeta;
     public final GUI_TextBox selectionInfo;
     public final GUI_TextBox selectionAmount;
+    public final GUI_Label startingDeck;
     public final GUI_Image purgingStoneImage;
 
     public AnimatorSeriesSelectScreen()
@@ -86,6 +89,11 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
         .SetFont(FontHelper.tipBodyFont, 1);
 
+        startingDeck = new GUI_Label(null, new AdvancedHitbox(ScreenW(0.18f), ScreenH(0.05f))
+        .SetPosition(ScreenW(0.08f), ScreenH(0.97f)))
+        .SetFont(RenderHelpers.CardDescriptionFont_Normal, 0.9f)
+        .SetColor(Settings.CREAM_COLOR);
+
         confirm = CreateHexagonalButton(xPos, getY.Invoke(8f), buttonWidth, buttonHeight*1.1f)
         .SetText("Proceed")
         .SetOnClick(this::Proceed)
@@ -100,6 +108,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         {
             toggleBeta.isActive = false;
             purgingStoneImage.isActive = false;
+            startingDeck.SetText("Starting Series: NL #y" + GR.Animator.Data.SelectedLoadout.Name.replace(" ", " #y"));
             GameEffects.TopLevelList.Add(new AnimatorSeriesSelectEffect(this));
         }
     }
@@ -111,6 +120,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
         toggleBeta.TryRender(sb);
 
+        startingDeck.TryRender(sb);
         deselectAll.Render(sb);
         selectRandom75.Render(sb);
         selectRandom100.Render(sb);
@@ -136,6 +146,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
         purgingStoneImage.TryUpdate();
 
+        startingDeck.TryUpdate();
         deselectAll.Update();
         selectRandom75.Update();
         selectRandom100.Update();

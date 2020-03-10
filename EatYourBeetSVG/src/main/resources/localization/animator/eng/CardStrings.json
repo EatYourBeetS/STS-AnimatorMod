@@ -570,7 +570,7 @@
 	},
 	"animator:HinaKagiyama_Miracle":
 	{
-		"DESCRIPTION": "Gain {+[E]} [E].",
+		"DESCRIPTION": "Gain {+[E] }[E].",
 		"NAME": "Miracle"
 	},
 	"animator:Hitei":

@@ -714,6 +714,12 @@
 		"DESCRIPTION": "Trigger your first Orb ** !M! time(s), then Evoke it. || <LIM>. When Drawn: ** Discard this and add ** {Bienfu} to your hand.",
 		"NAME": "Magilou"
 	},
+	"animator:MatouSakura":
+	{
+		"DESCRIPTION": "{Channel} !M! {Dark}. Trigger your rightmost {Dark} Orb !S! times. || When you have 3 {Dark} Orbs, this card will change form.",
+		"EXTENDED_DESCRIPTION": ["Trigger all your {Dark} Orbs !S! Times. || <LIM>: Gain 1 Intangible."],
+		"NAME": "Matou Sakura"
+	},
 	"animator:MatouShinji":
 	{
 		"DESCRIPTION": "Gain{+ [I]} [I]. Lose an orb slot to ** obtain {Command Spell}. || <LIM>: ** If you have no Orb Slots, ** gain 3 Orb Slots instead.",

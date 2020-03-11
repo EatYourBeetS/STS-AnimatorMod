@@ -32,7 +32,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         super.triggerOnExhaust();
 
-        turns = AbstractDungeon.cardRandomRng.random(0, 5);
+        turns = rng.random(0, 5);
         PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
     }
 

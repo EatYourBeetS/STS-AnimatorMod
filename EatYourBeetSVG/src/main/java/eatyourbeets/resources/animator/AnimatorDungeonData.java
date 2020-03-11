@@ -163,7 +163,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
     public void InitializeCardPool(boolean startGame)
     {
-        if (AbstractDungeon.player.chosenClass != GR.Animator.PlayerClass)
+        if (EYBCard.RefreshPlayer().chosenClass != GR.Animator.PlayerClass)
         {
             AbstractDungeon.srcColorlessCardPool.group.removeIf(c -> c instanceof AnimatorCard);
             AbstractDungeon.colorlessCardPool.group.removeIf(c -> c instanceof AnimatorCard);

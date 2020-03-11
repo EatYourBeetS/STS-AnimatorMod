@@ -2,12 +2,13 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -38,14 +39,20 @@ public abstract class OrbCore extends AnimatorCard
 
     public static SelectFromPile SelectCoreAction(String sourceName, int amount)
     {
-        return new SelectFromPile(sourceName, amount, OrbCore.CreateCoresGroup(true)).SetMessage(CardRewardScreen.TEXT[1]);
+        Random rng = EYBCard.rng;
+        if (rng == null)
+        {
+            JavaUtilities.Log(OrbCore.class, "EYBCard.rng was null");
+            rng = new Random();
+        }
+
+        return new SelectFromPile(sourceName, amount, OrbCore.CreateCoresGroup(true, rng)).SetMessage(CardRewardScreen.TEXT[1]);
     }
 
-    public static CardGroup CreateCoresGroup(boolean anyCost)
+    public static CardGroup CreateCoresGroup(boolean anyCost, Random rng)
     {
         InitializeCores();
 
-        Random rng = AbstractDungeon.cardRandomRng;
         CardGroup group = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
 
         if (anyCost)

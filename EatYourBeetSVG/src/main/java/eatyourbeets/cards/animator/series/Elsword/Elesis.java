@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.special.SpendEnergy;
@@ -211,7 +210,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
     {
         if (currentForm == Form.None && GameUtilities.InBattle() && GameUtilities.GetMasterDeckInstance(this) == null)
         {
-            int roll = AbstractDungeon.cardRandomRng.random(0, 2);
+            int roll = rng.random(0, 2);
             if (roll == 0)
             {
                 return new Elesis(Form.Saber, upgraded);

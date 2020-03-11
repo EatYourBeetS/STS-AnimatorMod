@@ -52,7 +52,7 @@ public class Kaijin extends AnimatorCard implements OnAddedToDeckSubscriber
 
             if (upgradableCards.Size() > 0)
             {
-                AbstractCard card = upgradableCards.Retrieve(AbstractDungeon.cardRandomRng);
+                AbstractCard card = upgradableCards.Retrieve(AbstractDungeon.miscRng);
                 card.upgrade();
                 player.bottledCardUpgradeCheck(card);
 

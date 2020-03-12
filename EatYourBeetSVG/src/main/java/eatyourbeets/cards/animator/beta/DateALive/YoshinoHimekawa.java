@@ -7,9 +7,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 
-public class YoshinoHimekawa extends AnimatorCard {
+public class YoshinoHimekawa extends AnimatorCard implements Hidden {
     public static final EYBCardData DATA = Register(YoshinoHimekawa.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     static

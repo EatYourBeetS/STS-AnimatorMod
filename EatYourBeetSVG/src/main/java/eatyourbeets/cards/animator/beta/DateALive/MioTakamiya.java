@@ -6,9 +6,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 
-public class MioTakamiya extends AnimatorCard {
+public class MioTakamiya extends AnimatorCard implements Hidden {
     public static final EYBCardData DATA = Register(MioTakamiya.class).SetSkill(3, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     static

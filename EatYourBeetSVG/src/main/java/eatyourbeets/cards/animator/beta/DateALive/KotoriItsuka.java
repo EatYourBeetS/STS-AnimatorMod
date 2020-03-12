@@ -8,9 +8,10 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 
-public class KotoriItsuka extends AnimatorCard {
+public class KotoriItsuka extends AnimatorCard implements Hidden {
     public static final EYBCardData DATA = Register(KotoriItsuka.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Normal);
 
     public KotoriItsuka() {

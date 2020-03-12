@@ -4,9 +4,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 
-public class KurumiTokisaki extends AnimatorCard {
+public class KurumiTokisaki extends AnimatorCard implements Hidden {
     public static final EYBCardData DATA = Register(KurumiTokisaki.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Ranged, EYBCardTarget.ALL);
 
     public KurumiTokisaki() {

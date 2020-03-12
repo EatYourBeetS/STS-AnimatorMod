@@ -8,9 +8,10 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 
-public class Zadkiel extends AnimatorCard {
+public class Zadkiel extends AnimatorCard implements Hidden {
     public static final EYBCardData DATA = Register(Zadkiel.class).SetSkill(2, CardRarity.SPECIAL);
     private static final int BLOCK_MULTIPLIER = 4;
 

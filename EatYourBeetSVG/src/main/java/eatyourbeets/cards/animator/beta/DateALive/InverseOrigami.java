@@ -71,10 +71,5 @@ public class InverseOrigami extends AnimatorCard {
 
             numOrbsTriggered++;
         }
-
-        if (supportDamage != null)
-        {
-            supportDamage.amount -= Math.min(supportDamage.amount, numOrbsTriggered);
-        }
     }
 }

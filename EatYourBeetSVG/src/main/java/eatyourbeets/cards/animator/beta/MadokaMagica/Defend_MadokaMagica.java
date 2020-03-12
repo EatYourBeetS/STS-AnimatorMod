@@ -28,7 +28,7 @@ public class Defend_MadokaMagica extends Defend
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.MakeCardInDrawPile(new Curse_GriefSeed()).SetDestination(false, false);
+            GameActions.Bottom.MakeCardInDrawPile(new Curse_GriefSeed()).SetOptions(false, false);
         }
     }
 }

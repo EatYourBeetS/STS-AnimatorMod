@@ -21,19 +21,15 @@ public class OrigamiTobiichi extends AnimatorCard {
     public OrigamiTobiichi() {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 1);
+        SetUpgrade(0,0,1);
 
         SetSynergy(Synergies.DateALive);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (upgraded)
-        {
-            GameActions.Bottom.ChannelRandomOrb(true);
-        }
-
-        GameActions.Bottom.StackPower(new OrigamiTobiichiPower(p, upgraded));
+        GameActions.Bottom.StackPower(new OrigamiTobiichiPower(p, magicNumber, upgraded));
     }
 
     public static class OrigamiTobiichiPower extends AnimatorPower {
@@ -41,12 +37,19 @@ public class OrigamiTobiichi extends AnimatorCard {
         private static final int SUPPORT_DAMAGE_LIMIT = 20;
         private final boolean upgraded;
 
-        public OrigamiTobiichiPower(AbstractPlayer owner, boolean upgraded) {
+        public OrigamiTobiichiPower(AbstractPlayer owner, int amount, boolean upgraded) {
             super(owner, OrigamiTobiichi.DATA);
 
-            this.amount += 1;
+            this.amount = amount;
             this.upgraded = upgraded;
 
+            updateDescription();
+        }
+
+        @Override
+        public void stackPower(int stackAmount)
+        {
+            super.stackPower(stackAmount);
             updateDescription();
         }
 
@@ -60,17 +63,33 @@ public class OrigamiTobiichi extends AnimatorCard {
         public void atEndOfTurn(boolean isPlayer) {
             if (isPlayer)
             {
+                flash();
+
                 AbstractPlayer player = AbstractDungeon.player;
 
-                GameActions.Bottom.StackPower(new SupportDamagePower(player, player.orbs.size()*amount));
+                int stackAmount = player.filledOrbCount()*amount;
 
-                int supportDamageCount = player.getPower(SupportDamagePower.POWER_ID).amount;
-
-                if (supportDamageCount >- 25)
+                if (stackAmount > 0)
                 {
-                    GameActions.Bottom.MakeCardInDrawPile(new InverseOrigami()).SetOptions(this.upgraded, false);
-                    this.amount -= 1;
+                    GameActions.Bottom.StackPower(new SupportDamagePower(player, player.filledOrbCount() * amount))
+                    .AddCallback(__ -> {
+                        InverseOrigamiCheck();
+                    });
                 }
+            }
+            else
+            {
+                InverseOrigamiCheck();
+            }
+        }
+
+        private void InverseOrigamiCheck()
+        {
+            int supportDamageCount = player.getPower(SupportDamagePower.POWER_ID).amount;
+
+            if (supportDamageCount >= 20) {
+                GameActions.Bottom.MakeCardInDrawPile(new InverseOrigami()).SetOptions(this.upgraded, false);
+                GameActions.Bottom.RemovePower(player, player, this);
             }
         }
     }

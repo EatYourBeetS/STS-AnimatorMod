@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.cardManipulation.MakeTempCard;
 import eatyourbeets.cards.animator.series.Konosuba.Wiz;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
@@ -48,33 +49,24 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
     @Override
     public boolean atBattleStartPreDraw()
     {
-        PutOnSixthCardInDrawPile();
+        OnAddedToDrawPile(false, MakeTempCard.Destination.Random);
 
-        return true;
+        return false;
     }
 
     @Override
-    public void OnAddedToDrawPile() {
-        PutOnSixthCardInDrawPile();
+    public void OnAddedToDrawPile(boolean visualOnly, MakeTempCard.Destination destination) {
+        GameActions.Top.Callback(__ ->
+        {
+            CardGroup group = player.drawPile;
+            group.group.remove(this);
+            group.group.add(group.size() - Math.min(group.size(), 6), this);
+        });
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SMASH);
-
-        if (EffectHistory.TryActivateSemiLimited(cardID))
-        {
-            GameActions.Top.SelectFromPile(name, 1, p.exhaustPile)
-            .SetOptions(false, false)
-            .SetFilter(c -> c.cost == 0)
-            .AddCallback(cards ->
-            {
-                if (cards.size() > 0)
-                {
-                    GameActions.Bottom.MoveCard(cards.get(0), p.drawPile);
-                }
-            });
-        }
     }
 
     private void PutOnSixthCardInDrawPile()

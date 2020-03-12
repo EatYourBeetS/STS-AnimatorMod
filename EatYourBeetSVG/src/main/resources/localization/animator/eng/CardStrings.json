@@ -200,7 +200,7 @@
 		"DESCRIPTION": "Unplayable. ** When drawn: Raise ** the cost of a random ** card in your hand ** by 1 this turn.",
 		"NAME": "Greed"
 	},
-	"animator:Curse_GriefSeed": 
+	"animator:Curse_GriefSeed":
 	{
 		"DESCRIPTION": "At the end of turn: Take !M! Damage. || When Exhausted: Remove your rightmost {Debuff}.",
 		"NAME": "Grief Seed"
@@ -633,13 +633,13 @@
 	},
 	"animator:InverseOrigami":
 	{
-		"DESCRIPTION": "When this card is drawn, if you have at least 1 Energy, you lose 1 energy and Channel 1 Random Orb. || Activate your {Support Damage} and {Trigger} all your Orbs.  You lose {Support Damage} equal to the number of Orbs triggered this way.",
+		"DESCRIPTION": "When this card is drawn, if you have [E], lose [E] and Channel 1 Random Orb. || Activate your {Support Damage} and {Trigger} all your Orbs.",
 		"NAME": "Inverse Origami",
-		"UPGRADE_DESCRIPTION": "When this card is drawn, if you have at least 1 Energy, you lose 1 energy and add 1 random {Orb Core} to your hand. || Activate your {Support Damage} and {Trigger} all your Orbs.  You lose {Support Damage} equal to the number of Orbs triggered this way."
+		"UPGRADE_DESCRIPTION": "When this card is drawn, if you have [E], lose [E] and add 1 random {Orb Core} to your hand. || Activate your {Support Damage} and {Trigger} all your Orbs."
 	},
 	"animator:InverseTohka":
 	{
-		"DESCRIPTION": "When this card is drawn, if you have at least 1 Energy, you lose 1 energy and deal 10 damage to all enemies. || Reload: attack an extra time.",
+		"DESCRIPTION": "When this card is drawn, if you have [E], lose [E] and deal 10 damage to all enemies. || {Reload}: attack an extra time.",
 		"NAME": "Inverse Tohka"
 	},
 	"animator:IrohaTamaki":
@@ -695,6 +695,11 @@
 		"DESCRIPTION": "Gain !M! [F], then increase this ** number by !S! this combat. || <LIM>. If you have 10 or ** more [F], deal 40 damage ** to a random enemy.",
 		"NAME": "Konayuki"
 	},
+	"animator:KotoriItsuka":
+	{
+		"DESCRIPTION": "Discard up to 5 cards.  Boost [F][A][I] and add 1 Burn to your hand for every 2 cards discarded.  || If you discarded 5 cards, add {Burn+} and double the [F][A][I] boosted.",
+		"NAME": "Kotori Itsuka"
+	},
 	"animator:KotoriKanbe":
 	{
 		"DESCRIPTION": "Removes all Artifact on the target and apply !M! Weak and !S! Vulnerable.  Heals the target for 35 HP.",
@@ -714,6 +719,12 @@
 	{
 		"DESCRIPTION": "Discard !M! cards to add ** {Black Lotus} to your ** hand, then Exhaust.",
 		"NAME": "Kuroyukihime"
+	},
+	"animator:KurumiTokisaki":
+	{
+		"DESCRIPTION": "When drawn: if you have [E] [E] [E], play this and lose [E] [E] [E]. || Cooldown 3: Take an extra turn after this one. Shuffle 3 copies of this card into your draw pile.",
+		"NAME": "Kurumi Tokisaki",
+		"UPGRADE_DESCRIPTION": "On your next turn, gain [E] [E] [E]. || When drawn: if you have [E] [E] [E], play this and lose [E] [E] [E]. || Cooldown 3: Take an extra turn after this one. Shuffle 3 copies of this card into your draw pile."
 	},
 	"animator:KyokoSakura":
 	{
@@ -852,6 +863,12 @@
 		"DESCRIPTION": "{~Unique}. Apply !M! ** Burning and Poison. || Synergy: Draw 2 more ** cards next turn.",
 		"NAME": "Millim"
 	},
+	"animator:MioTakamiya":
+	{
+		"DESCRIPTION": "At the start of the game, add five copies of Shido Itsuka into your draw pile. || Return all copies of Shido Itsuka from your exhaust pile to your hand.",
+		"NAME": "Mio Takamiya",
+		"UPGRADE_DESCRIPTION": "At the start of the game, add five copies of Shido Itsuka+ into your draw pile. || Return all copies of Shido Itsuka from your exhaust pile to your hand."
+	},
 	"animator:MisaKurobane":
 	{
 		"DESCRIPTION": "<DRW-M>. ** Channel 1 Fire. ** Add {Yusarin} to ** your discard pile.",
@@ -875,7 +892,7 @@
 	},
 	"animator:MukuroHoshimiya":
 	{
-		"DESCRIPTION": "Gains 1 damage for each card in your draw pile. || Limited: Shuffle an exhausted 0-cost card to your draw pile.  || On start of game or discard, add to your draw pile sixth from the top.",
+		"DESCRIPTION": "Gains 1 damage for each card in your draw pile. || On start of game or upon entering you draw pile, add to your draw pile sixth from the top.",
 		"NAME": "Mukuro Hoshimiya"
 	},
 	"animator:MumenRider":
@@ -906,6 +923,12 @@
 		"DESCRIPTION": "Channel !M! Lightning. || Lightning hits ALL ** enemies this turn.",
 		"NAME": "Gamma Narberal",
 		"UPGRADE_DESCRIPTION": "Channel !M! Lightning. ** <DRW>. || Lightning hits ALL ** enemies this turn."
+	},
+	"animator:NiaHonjou":
+	{
+		"DESCRIPTION": "Whenever you play a card this turn, {Scry} 2 and gain 2 {Block}.",
+		"NAME": "Nia Honjou",
+		"UPGRADE_DESCRIPTION": "{Motivate} 2. || Whenever you play a card this turn, {Scry} 2 and gain 2 {Block}."
 	},
 	"animator:NivaLada":
 	{
@@ -959,10 +982,9 @@
 	},
 	"animator:OrigamiTobiichi":
 	{
-		"DESCRIPTION": "At the end of your turn, add 1 {Support Damage} per Orb channeled.  Then, if you have 25 or more {Support Damage}, remove 1 stack of this power and add Inverse Origami to your draw pile.",
-		"EXTENDED_DESCRIPTION": ["At the end of your turn, add #b{0} Support Damage per Orb channeled.  Then, if you have #b{1} or more Support Damage, lose this power and add Inverse Origami to your draw pile."],
-		"NAME": "Origami Tobiichi",
-		"UPGRADE_DESCRIPTION": "Channel 1 Random Orb. || At the end of your turn, add 1 {Support Damage} per Orb channeled.  Then, if you have 25 or more {Support Damage}, lose this power and add Inverse Origami to your draw pile."
+		"DESCRIPTION": "At the end of your turn, add !M! {Support Damage} per Orb. || If you have 20+ {Support Damage}, remove this power and add Inverse Origami to your draw pile.",
+		"EXTENDED_DESCRIPTION": ["At the end of your turn, add #b{0} Support Damage per Orb.  If you have #b{1}+ Support Damage, remove this power of this and add Inverse Origami to your draw pile."],
+		"NAME": "Origami Tobiichi"
 	},
 	"animator:OrikoMikuni":
 	{
@@ -1011,6 +1033,12 @@
 	{
 		"DESCRIPTION": "Draw your {Attack} with ** the lowest damage. || If the enemy is attacking: ** Apply 1 Weak. Otherwise ** Apply 1 Vulnerable.",
 		"NAME": "Raven"
+	},
+	"animator:ReineMurasame":
+	{
+		"DESCRIPTION": "Add X copies of Shido Itsuka into your discard pile. || Synergy: At the start of next turn, gain X [E].",
+		"NAME": "Reine Murasame",
+		"UPGRADE_DESCRIPTION": "Add X copies of Shido Itsuka+ into your discard pile. || Synergy: At the start of next turn, gain X [E]."
 	},
 	"animator:Rena":
 	{
@@ -1416,6 +1444,11 @@
 		"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard up to #b{0} card(s) to gain #b{1} #yBlock each. For each #yHindrance discarded, also #yGain #b{2} #yAgility and #b{3} #yIntellect"],
 		"NAME": "Yachiyo Nanami"
 	},
+	"animator:YamaiSisters":
+	{
+		"DESCRIPTION": "Upgrade all copies of Yamai Sisters in your hand.  You may upgrade this card up to 8 times.",
+		"NAME": "Yamai Sisters"
+	},
 	"animator:YaoHaDucy":
 	{
 		"DESCRIPTION": "The enemy loses ** !M! Strength this turn. || On Synergy: If you have ** any {Support Damage}, ** increase it by !S!.",
@@ -1425,6 +1458,11 @@
 	{
 		"DESCRIPTION": "Discard 1 card. ** Gain 1 {Support Damage}. || <SLM>. On ** Synergy: Activate your ** {Support Damage}.",
 		"NAME": "Yoichi"
+	},
+	"animator:YoshinoHimekawa":
+	{
+		"DESCRIPTION": "Channel 1 Frost. || Limited: Add 1 Orb Slot. || If you have 4 or more Frost Orbs, add a copy of Zadkiel to your discard pile, then Exhaust.",
+		"NAME": "Yoshino Himekawa"
 	},
 	"animator:YuiTsuruno":
 	{
@@ -1445,6 +1483,11 @@
 	{
 		"DESCRIPTION": "<DRW>. || When Exhausted: ** Add {Asuramaru} to ** your discard pile.",
 		"NAME": "Yuuichirou"
+	},
+	"animator:Zadkiel":
+	{
+		"DESCRIPTION": "When Exhausted: Evoke all Orbs you have. || If 4+ Frost Orbs were evoked this way, return 1 Yoshino Himekawa from your exhaust pile to your draw pile.",
+		"NAME": "Zadkiel"
 	},
 	"animator:ZankiKiguchi":
 	{

@@ -3,6 +3,7 @@ package eatyourbeets.resources.animator.loadouts.beta;
 import eatyourbeets.cards.animator.basic.*;
 import eatyourbeets.cards.animator.beta.MadokaMagica.*;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
@@ -38,14 +39,14 @@ public class MadokaMagica extends AnimatorLoadout
     }
 
     @Override
-    public String GetSymbolicCardID()
+    public EYBCardData GetSymbolicCard()
     {
-        return Kyubey.DATA.ID;
+        return Kyubey.DATA;
     }
 
     @Override
-    public AnimatorCard_UltraRare GetUltraRare()
+    public EYBCardData GetUltraRare()
     {
-        return new Walpurgisnacht();
+        return Walpurgisnacht.DATA;
     }
 }

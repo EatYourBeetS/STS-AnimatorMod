@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShidoItsuka extends AnimatorCard {
-    public static final EYBCardData DATA = Register(ShidoItsuka.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(ShidoItsuka.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
     private static final ArrayList<AbstractCard> dateALiveCards = new ArrayList<>();
     private static final ArrayList<AbstractCard> otherSynergicCards = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class ShidoItsuka extends AnimatorCard {
         super(DATA);
 
         Initialize(0, 0);
-        SetExhaust(true);
+        SetEthereal(true);
 
         SetSynergy(Synergies.DateALive);
     }

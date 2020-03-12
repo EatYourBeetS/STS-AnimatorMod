@@ -5,9 +5,13 @@ import eatyourbeets.actions.EYBActionWithCallback;
 
 public class SpendEnergy extends EYBActionWithCallback<Integer>
 {
-    public SpendEnergy(int amount)
+    protected boolean canSpendLess;
+
+    public SpendEnergy(int amount, boolean canSpendLess)
     {
-        super(ActionType.SPECIAL);
+        super(ActionType.ENERGY);
+
+        this.canSpendLess = canSpendLess;
 
         Initialize(amount);
     }
@@ -15,12 +19,15 @@ public class SpendEnergy extends EYBActionWithCallback<Integer>
     @Override
     protected void FirstUpdate()
     {
-        int energy = Math.min(amount, EnergyPanel.getCurrentEnergy());
-        if (energy > 0)
+        int energy = EnergyPanel.getCurrentEnergy();
+        if (energy >= amount || canSpendLess)
         {
             player.loseEnergy(energy);
+            Complete(energy);
         }
-
-        Complete(energy);
+        else
+        {
+            Complete();
+        }
     }
 }

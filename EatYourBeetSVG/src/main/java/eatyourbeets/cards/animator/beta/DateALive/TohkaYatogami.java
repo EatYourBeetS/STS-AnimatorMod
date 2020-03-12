@@ -9,17 +9,17 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
-public class TohkaYatogami extends AnimatorCard {
+public class TohkaYatogami extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(TohkaYatogami.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal);
-
     public static final int DAMAGE_AMOUNT = 10;
-
     static
     {
         DATA.AddPreview(new InverseTohka(), true);
     }
 
-    public TohkaYatogami() {
+    public TohkaYatogami()
+    {
         super(DATA);
 
         Initialize(DAMAGE_AMOUNT, 0);
@@ -28,7 +28,8 @@ public class TohkaYatogami extends AnimatorCard {
     }
 
     @Override
-    protected void OnUpgrade() {
+    protected void OnUpgrade()
+    {
         SetRetain(true);
     }
 
@@ -39,7 +40,8 @@ public class TohkaYatogami extends AnimatorCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
 
         if (p.exhaustPile.size() >= 10)
@@ -47,5 +49,4 @@ public class TohkaYatogami extends AnimatorCard {
             GameActions.Last.ReplaceCard(this.uuid, new InverseTohka()).SetUpgrade(upgraded);
         }
     }
-
 }

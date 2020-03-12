@@ -10,15 +10,16 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 
-public class YoshinoHimekawa extends AnimatorCard implements Hidden {
+public class YoshinoHimekawa extends AnimatorCard implements Hidden
+{
     public static final EYBCardData DATA = Register(YoshinoHimekawa.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
-
     static
     {
         DATA.AddPreview(new Zadkiel(), true);
     }
 
-    public YoshinoHimekawa() {
+    public YoshinoHimekawa()
+    {
         super(DATA);
 
         Initialize(0, 0);
@@ -28,7 +29,8 @@ public class YoshinoHimekawa extends AnimatorCard implements Hidden {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.ChannelOrb(new Frost(), true);
     }
 }

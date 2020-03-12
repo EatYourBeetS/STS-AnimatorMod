@@ -11,10 +11,12 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 
-public class KotoriItsuka extends AnimatorCard implements Hidden {
+public class KotoriItsuka extends AnimatorCard implements Hidden
+{
     public static final EYBCardData DATA = Register(KotoriItsuka.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Normal);
 
-    public KotoriItsuka() {
+    public KotoriItsuka()
+    {
         super(DATA);
 
         Initialize(5, 0, 3);
@@ -30,8 +32,9 @@ public class KotoriItsuka extends AnimatorCard implements Hidden {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        for (int i=0; i<magicNumber; i++)
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
+        for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         }

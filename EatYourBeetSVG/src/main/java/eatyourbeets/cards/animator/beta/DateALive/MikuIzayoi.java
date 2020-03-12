@@ -1,27 +1,27 @@
 package eatyourbeets.cards.animator.beta.DateALive;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.MetallicizePower;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import com.megacrit.cardcrawl.powers.ThornsPower;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.BlockAttribute;
-import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
-public class MikuIzayoi extends AnimatorCard {
+public class MikuIzayoi extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(MikuIzayoi.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
     public static final EYBCardTooltip CommonBuffs = new EYBCardTooltip(DATA.Strings.EXTENDED_DESCRIPTION[0], DATA.Strings.EXTENDED_DESCRIPTION[1]);
 
     public static final int BLOCK_AMOUNT = 9;
 
-    public MikuIzayoi() {
+    public MikuIzayoi()
+    {
         super(DATA);
 
         Initialize(0, BLOCK_AMOUNT);
@@ -31,7 +31,8 @@ public class MikuIzayoi extends AnimatorCard {
     }
 
     @Override
-    protected void OnUpgrade() {
+    protected void OnUpgrade()
+    {
         SetRetain(true);
     }
 
@@ -57,26 +58,34 @@ public class MikuIzayoi extends AnimatorCard {
     {
         super.triggerOnManualDiscard();
 
-        for (AbstractPower power : AbstractDungeon.player.powers) {
-            if (ForcePower.POWER_ID.equals(power.ID)) {
+        for (AbstractPower power : player.powers)
+        {
+            if (ForcePower.POWER_ID.equals(power.ID))
+            {
                 GameActions.Bottom.GainForce(1);
             }
-            else if (AgilityPower.POWER_ID.equals(power.ID)) {
+            else if (AgilityPower.POWER_ID.equals(power.ID))
+            {
                 GameActions.Bottom.GainAgility(1);
             }
-            else if (IntellectPower.POWER_ID.equals(power.ID)) {
+            else if (IntellectPower.POWER_ID.equals(power.ID))
+            {
                 GameActions.Bottom.GainIntellect(1);
             }
-            else if (ThornsPower.POWER_ID.equals(power.ID)) {
+            else if (ThornsPower.POWER_ID.equals(power.ID))
+            {
                 GameActions.Bottom.GainThorns(1);
             }
-            else if (EarthenThornsPower.POWER_ID.equals(power.ID)) {
+            else if (EarthenThornsPower.POWER_ID.equals(power.ID))
+            {
                 GameActions.Bottom.GainTemporaryThorns(1);
             }
-            else if (MetallicizePower.POWER_ID.equals(power.ID)) {
+            else if (MetallicizePower.POWER_ID.equals(power.ID))
+            {
                 GameActions.Bottom.GainMetallicize(1);
             }
-            else if (PlatedArmorPower.POWER_ID.equals(power.ID)) {
+            else if (PlatedArmorPower.POWER_ID.equals(power.ID))
+            {
                 GameActions.Bottom.GainPlatedArmor(1);
             }
         }
@@ -87,6 +96,4 @@ public class MikuIzayoi extends AnimatorCard {
     {
         GameActions.Bottom.GainBlock(block);
     }
-
-
 }

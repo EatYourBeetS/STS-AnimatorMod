@@ -87,7 +87,7 @@ public class OrigamiTobiichi extends AnimatorCard
         {
             if (GameUtilities.GetPowerAmount(SupportDamagePower.POWER_ID) >= 20)
             {
-                GameActions.Bottom.MakeCardInDrawPile(new InverseOrigami()).SetOptions(this.upgraded, false);
+                GameActions.Bottom.MakeCardInDrawPile(new InverseOrigami()).SetUpgrade(this.upgraded, false);
                 GameActions.Bottom.RemovePower(player, player, this);
             }
         }

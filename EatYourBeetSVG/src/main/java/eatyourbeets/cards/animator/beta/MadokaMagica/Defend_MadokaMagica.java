@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.beta.MadokaMagica;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.cardManipulation.MakeTempCard;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
@@ -28,7 +29,7 @@ public class Defend_MadokaMagica extends Defend
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.MakeCardInDrawPile(new Curse_GriefSeed()).SetOptions(false, false);
+            GameActions.Bottom.MakeCardInDrawPile(new Curse_GriefSeed()).SetDestination(MakeTempCard.Destination.Top);
         }
     }
 }

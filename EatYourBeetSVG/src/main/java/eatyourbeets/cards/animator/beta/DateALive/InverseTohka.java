@@ -50,7 +50,7 @@ public class InverseTohka extends AnimatorCard
         {
             for (AbstractCard card : cards)
             {
-                GameActions.Top.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL).SetOptions(true, false);
+                GameActions.Top.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL).SetVFX(true, false);
             }
         });
 

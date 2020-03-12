@@ -34,7 +34,7 @@ public class NagisaMomoe extends AnimatorCard implements Spellcaster
     {
         GameActions.Top.FetchFromPile(name, magicNumber, p.discardPile).SetOptions(true, false);
 
-        GameActions.Bottom.MakeCardInDiscardPile(new Charlotte()).SetOptions(true, false);
+        GameActions.Bottom.MakeCardInDiscardPile(new Charlotte()).SetUpgrade(upgraded, false);
         GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
     }
 }

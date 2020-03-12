@@ -5,9 +5,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -34,7 +36,14 @@ public class ThrowingKnife extends AnimatorCard
 
     public static AbstractCard GetRandomCard()
     {
-        return new ThrowingKnife(AbstractDungeon.cardRandomRng.random(1, 3));
+        Random rng = EYBCard.rng;
+        if (rng == null)
+        {
+            JavaUtilities.Log(ThrowingKnife.class, "EYBCard.rng was null");
+            rng = new Random();
+        }
+
+        return new ThrowingKnife(rng.random(1, 3));
     }
 
     public ThrowingKnife()

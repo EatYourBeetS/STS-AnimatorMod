@@ -2,11 +2,11 @@ package eatyourbeets.misc.VestaElixirEffects;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.animator.series.TenseiSlime.Vesta;
 import eatyourbeets.cards.animator.special.Vesta_Elixir;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
@@ -26,10 +26,10 @@ public class VestaElixirEffects
     {
         this.vesta = vesta;
 
-        Random rng = AbstractDungeon.cardRandomRng;
+        Random rng = EYBCard.rng;
         if (rng == null)
         {
-            JavaUtilities.GetLogger(getClass()).warn("cardRandomRNG was null");
+            JavaUtilities.Log(VestaElixirEffects.class, "EYBCard.rng was null");
             rng = new Random();
         }
 

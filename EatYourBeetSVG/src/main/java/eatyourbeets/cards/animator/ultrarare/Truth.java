@@ -33,6 +33,7 @@ public class Truth extends AnimatorCard_UltraRare
         Initialize(0, 0, 4);
         SetUpgrade(0, 0, 0);
 
+        SetExhaust(true);
         SetSynergy(Synergies.FullmetalAlchemist);
     }
 
@@ -50,7 +51,6 @@ public class Truth extends AnimatorCard_UltraRare
         GameActions.Bottom.GainForce(magicNumber);
         GameActions.Bottom.GainAgility(magicNumber);
         GameActions.Bottom.GainIntellect(magicNumber);
-        GameActions.Bottom.GainStrength(magicNumber);
         GameActions.Bottom.GainEnergy(magicNumber);
 
         int count = 0;

@@ -139,7 +139,6 @@ public class AnimatorLoadoutsContainer
         for (AbstractCard card : selectedCards)
         {
             AnimatorRuntimeLoadout loadout = Find(card);
-
             if (loadout.IsBeta)
             {
                 // Do not unlock trophies or ascension
@@ -149,7 +148,7 @@ public class AnimatorLoadoutsContainer
             GR.Animator.Dungeon.AddSeries(loadout);
         }
 
-        if (GR.Animator.Dungeon.StartingSeries.IsBeta)
+        if (GR.Animator.Data.SelectedLoadout.IsBeta)
         {
             Settings.seedSet = true;
         }

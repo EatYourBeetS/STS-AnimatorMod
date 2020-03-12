@@ -189,8 +189,7 @@ public class HigakiRinneAction extends EYBAction
         }
         else if (tryActivate(3)) // 111
         {
-            // TODO: Helper method
-            AbstractCard card = JavaUtilities.GetRandomElement(Synergies.GetNonColorlessCard(), AbstractDungeon.cardRandomRng);
+            AbstractCard card = JavaUtilities.GetRandomElement(Synergies.GetNonColorlessCard());
             if (card != null && !card.tags.contains(AbstractCard.CardTags.HEALING))
             {
                 GameActions.Bottom.MakeCardInHand(card.makeCopy());

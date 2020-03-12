@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.colorless.uncommon;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.*;
@@ -36,7 +35,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         Urushihara other = (Urushihara) makeStatEquivalentCopy();
 
-        other.lazyCounter = AbstractDungeon.cardRandomRng.random(3);
+        other.lazyCounter = rng.random(3);
 
         if (!upgraded)
         {

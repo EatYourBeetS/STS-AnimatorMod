@@ -11,10 +11,8 @@ import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.actions.animator.HigakiRinneAction;
@@ -62,7 +60,7 @@ public class HigakiRinne extends AnimatorCard
             ChangeForm(CardType.SKILL);
         }
 
-        int n = AbstractDungeon.cardRandomRng.random(100);
+        int n = rng.random(100);
         if (n < 3)
         {
             GameActions.Bottom.WaitRealtime(0.3f);
@@ -102,7 +100,7 @@ public class HigakiRinne extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        int n = AbstractDungeon.cardRandomRng.random(100);
+        int n = rng.random(100);
         if (n < 20)
         {
             GameActions.Bottom.MakeCardInHand(new Shiv());
@@ -145,8 +143,6 @@ public class HigakiRinne extends AnimatorCard
 
     private void AttackAction(AbstractPlayer p, AbstractMonster m)
     {
-        Random rng = AbstractDungeon.cardRandomRng;
-
         int n = rng.random(15);
         if (n < 5)
         {

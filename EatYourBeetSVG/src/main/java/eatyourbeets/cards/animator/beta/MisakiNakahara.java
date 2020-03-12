@@ -39,12 +39,12 @@ public class MisakiNakahara extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        CardRarity rarity = AbstractDungeon.cardRandomRng.randomBoolean(0.25f) ? CardRarity.RARE : CardRarity.UNCOMMON;
+        CardRarity rarity = rng.randomBoolean(0.25f) ? CardRarity.RARE : CardRarity.UNCOMMON;
         RandomizedList<AbstractCard> list = new RandomizedList<>(AbstractDungeon.colorlessCardPool.group);
 
         while (group.size() < magicNumber)
         {
-            AbstractCard card = list.Retrieve(AbstractDungeon.cardRandomRng);
+            AbstractCard card = list.Retrieve(rng);
             if (card.rarity == rarity && !card.hasTag(CardTags.HEALING))
             {
                 group.addToBottom(card.makeCopy());

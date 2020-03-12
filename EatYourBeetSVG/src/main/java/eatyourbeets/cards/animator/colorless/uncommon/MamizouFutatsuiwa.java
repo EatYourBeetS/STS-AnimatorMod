@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -55,7 +54,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
                 shapeshifterPool.AddAll(JavaUtilities.Filter(Synergies.GetColorlessCards(), c -> c.anySynergy));
             }
 
-            AnimatorCard shapeshifter = shapeshifterPool.Retrieve(AbstractDungeon.cardRandomRng, false);
+            AnimatorCard shapeshifter = shapeshifterPool.Retrieve(rng, false);
             if (shapeshifter != null)
             {
                 GameActions.Bottom.MakeCardInHand(shapeshifter.makeCopy());

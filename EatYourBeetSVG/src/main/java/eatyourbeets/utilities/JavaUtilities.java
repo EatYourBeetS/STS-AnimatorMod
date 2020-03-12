@@ -1,8 +1,8 @@
 package eatyourbeets.utilities;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.random.Random;
+import eatyourbeets.cards.base.EYBCard;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,7 +34,7 @@ public class JavaUtilities
 
     public static <T> T GetRandomElement(ArrayList<T> list)
     {
-        return GetRandomElement(list, AbstractDungeon.cardRandomRng);
+        return GetRandomElement(list, EYBCard.rng);
     }
 
     public static <T> T GetRandomElement(ArrayList<T> list, Random rng)

@@ -37,8 +37,8 @@ public class TsurugaMeisai extends AnimatorCard implements MartialArtist
                 AbstractCard card = cards.get(0);
                 if (card.type == CardType.ATTACK)
                 {
-                    GameActions.Bottom.MakeCardInDrawPile(card).SetOptions(upgraded, true);
-                    GameActions.Bottom.MakeCardInDrawPile(card).SetOptions(upgraded, true);
+                    GameActions.Bottom.MakeCardInDrawPile(card).SetUpgrade(upgraded, true);
+                    GameActions.Bottom.MakeCardInDrawPile(card).SetUpgrade(upgraded, true);
                 }
             }
         });

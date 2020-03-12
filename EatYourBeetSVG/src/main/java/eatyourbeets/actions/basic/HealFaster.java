@@ -20,7 +20,7 @@ public class HealFaster extends EYBAction
         Initialize(target, source, amount);
     }
 
-    public HealFaster SetOptions(boolean showEffect)
+    public HealFaster ShowEffect(boolean showEffect)
     {
         this.showEffect = showEffect;
 

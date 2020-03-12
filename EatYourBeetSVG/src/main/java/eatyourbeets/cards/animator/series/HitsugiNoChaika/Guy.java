@@ -33,7 +33,7 @@ public class Guy extends AnimatorCard
         {
             GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, secondaryValue)
             .ShowEffect(true, true)
-            .SetOptions(false, true);
+            .SetOrigin(false, true);
         }
     }
 }

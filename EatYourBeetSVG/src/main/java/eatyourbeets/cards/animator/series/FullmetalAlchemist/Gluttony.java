@@ -55,7 +55,7 @@ public class Gluttony extends AnimatorCard
         {
             GameActions.Top.MoveCards(p.drawPile, p.exhaustPile, magicNumber)
             .ShowEffect(true, true)
-            .SetOptions(false, true);
+            .SetOrigin(false, true);
 
             GameActions.Bottom.Heal(magicNumber);
             GameActions.Bottom.GainForce(magicNumber);

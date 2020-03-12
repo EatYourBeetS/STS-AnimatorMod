@@ -58,7 +58,7 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
         return this;
     }
 
-    public DealDamageToAll SetOptions(boolean superFast, boolean muteSfx)
+    public DealDamageToAll SetVFX(boolean superFast, boolean muteSfx)
     {
         this.isFast = superFast;
         this.muteSfx = muteSfx;

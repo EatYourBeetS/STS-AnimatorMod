@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.basic.MoveCards;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -33,7 +34,7 @@ public class Guy extends AnimatorCard
         {
             GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, secondaryValue)
             .ShowEffect(true, true)
-            .SetOrigin(false, true);
+            .SetOrigin(MoveCards.Origin.FromTop);
         }
     }
 }

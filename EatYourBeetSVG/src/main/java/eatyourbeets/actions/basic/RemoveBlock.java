@@ -22,7 +22,7 @@ public class RemoveBlock extends EYBAction
         Initialize(source, target, amount);
     }
 
-    public RemoveBlock SetOptions(boolean instant, boolean skipAnimation)
+    public RemoveBlock SetVFX(boolean instant, boolean skipAnimation)
     {
         this.instant = instant;
         this.skipAnimation = skipAnimation;

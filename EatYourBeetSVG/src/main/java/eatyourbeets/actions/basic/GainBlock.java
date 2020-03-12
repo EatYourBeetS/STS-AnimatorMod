@@ -25,7 +25,7 @@ public class GainBlock extends EYBActionWithCallback<AbstractCreature>
         Initialize(source, target, amount);
     }
 
-    public GainBlock SetOptions(boolean mute, boolean superFast)
+    public GainBlock SetVFX(boolean mute, boolean superFast)
     {
         this.mute = mute;
         this.startDuration = this.duration = superFast ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FAST;

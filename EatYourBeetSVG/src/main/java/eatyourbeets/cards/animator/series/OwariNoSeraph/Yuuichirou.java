@@ -40,6 +40,6 @@ public class Yuuichirou extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.MakeCardInDiscardPile(new Asuramaru()).SetOptions(upgraded, false);
+        GameActions.Bottom.MakeCardInDiscardPile(new Asuramaru()).SetUpgrade(upgraded, false);
     }
 }

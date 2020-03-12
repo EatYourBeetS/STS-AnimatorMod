@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.cards.base.UnnamedCard;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.resources.unnamed.UnnamedImages;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -19,7 +19,7 @@ import eatyourbeets.utilities.JavaUtilities;
 public class AbstractCard_RenderEnergy
 {
     private static final FieldInfo<Boolean> _darken = JavaUtilities.GetField("darken", AbstractCard.class);
-    private static final TextureAtlas.AtlasRegion Orb2A = UnnamedImages.ORB_2_ATLAS.findRegion(UnnamedImages.ORB_2A_PNG);
+    private static final TextureAtlas.AtlasRegion Orb2A = GR.Unnamed.Images.ORB_2_ATLAS.findRegion(GR.Unnamed.Images.ORB_2A_PNG);
 
     @SpirePostfixPatch
     public static void Method(AbstractCard __instance, SpriteBatch sb)

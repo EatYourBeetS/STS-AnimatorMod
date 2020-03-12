@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
+import com.megacrit.cardcrawl.events.beyond.SpireHeart;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -79,7 +80,7 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public String getSpireHeartText()
     {
-        return com.megacrit.cardcrawl.events.beyond.SpireHeart.DESCRIPTIONS[10];
+        return SpireHeart.DESCRIPTIONS[10];
     }
 
     @Override

@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
+import com.megacrit.cardcrawl.events.city.Vampires;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -22,7 +23,6 @@ import eatyourbeets.cards.unnamed.Strike;
 import eatyourbeets.relics.unnamed.InfinitePower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.unnamed.UnnamedResources;
-import eatyourbeets.resources.unnamed.UnnamedImages;
 
 import java.util.ArrayList;
 
@@ -34,11 +34,11 @@ public class UnnamedCharacter extends CustomPlayer
     public static final String[] TEXT = characterStrings.TEXT;
     public static final String NAME = NAMES[0];
 
-    public UnnamedCharacter(String name, PlayerClass playerClass)
+    public UnnamedCharacter()
     {
-        super(name, playerClass, UnnamedImages.ORB_TEXTURES, UnnamedImages.ORB_VFX_PNG, (String) null, null);
+        super(NAME, GR.Unnamed.PlayerClass, GR.Unnamed.Images.ORB_TEXTURES, GR.Unnamed.Images.ORB_VFX_PNG, (String) null, null);
 
-        initializeClass(null, UnnamedImages.SHOULDER2_PNG, UnnamedImages.SHOULDER1_PNG, UnnamedImages.CORPSE_PNG,
+        initializeClass(null, GR.Unnamed.Images.SHOULDER2_PNG, GR.Unnamed.Images.SHOULDER1_PNG, GR.Unnamed.Images.CORPSE_PNG,
                 getLoadout(), 0.0F, -20.0F, 240.0F, 260.0F, new EnergyManager(3));
 
         reloadAnimation();
@@ -52,7 +52,7 @@ public class UnnamedCharacter extends CustomPlayer
 
     public void reloadAnimation()
     {
-        this.loadAnimation(UnnamedImages.SKELETON_ATLAS, UnnamedImages.SKELETON_JSON, 1.0f);
+        this.loadAnimation(GR.Unnamed.Images.SKELETON_ATLAS, GR.Unnamed.Images.SKELETON_JSON, 1.0f);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         this.stateData.setMix("Hit", "Idle", 0.1F);
         e.setTimeScale(0.9F);
@@ -79,7 +79,7 @@ public class UnnamedCharacter extends CustomPlayer
     @Override
     public AbstractPlayer newInstance()
     {
-        return new UnnamedCharacter(this.name, GR.Enums.Characters.THE_UNNAMED);
+        return new UnnamedCharacter();
     }
 
     @Override
@@ -98,20 +98,20 @@ public class UnnamedCharacter extends CustomPlayer
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect()
     {
         return new AbstractGameAction.AttackEffect[]
-                {
-                        AbstractGameAction.AttackEffect.SLASH_HEAVY,
-                        AbstractGameAction.AttackEffect.FIRE,
-                        AbstractGameAction.AttackEffect.SLASH_DIAGONAL,
-                        AbstractGameAction.AttackEffect.SLASH_HEAVY,
-                        AbstractGameAction.AttackEffect.FIRE,
-                        AbstractGameAction.AttackEffect.SLASH_DIAGONAL
-                };
+        {
+                AbstractGameAction.AttackEffect.SLASH_HEAVY,
+                AbstractGameAction.AttackEffect.FIRE,
+                AbstractGameAction.AttackEffect.SLASH_DIAGONAL,
+                AbstractGameAction.AttackEffect.SLASH_HEAVY,
+                AbstractGameAction.AttackEffect.FIRE,
+                AbstractGameAction.AttackEffect.SLASH_DIAGONAL
+        };
     }
 
     @Override
     public String getVampireText()
     {
-        return com.megacrit.cardcrawl.events.city.Vampires.DESCRIPTIONS[5];
+        return Vampires.DESCRIPTIONS[5];
     }
 
     @Override
@@ -194,7 +194,7 @@ public class UnnamedCharacter extends CustomPlayer
     @Override
     public AbstractCard.CardColor getCardColor()
     {
-        return GR.Enums.Cards.THE_UNNAMED;
+        return GR.Unnamed.CardColor;
     }
 
     @Override

@@ -45,6 +45,15 @@ public abstract class UnnamedCard extends EYBCard
         }
     }
 
+    protected UnnamedCard(EYBCardData cardData)
+    {
+        super(cardData, cardData.ID, cardData.ImagePath, cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget());
+
+        SetMultiDamage(cardData.CardTarget == EYBCardTarget.ALL);
+        SetAttackTarget(cardData.CardTarget);
+        SetAttackType(cardData.AttackType);
+    }
+
     protected UnnamedCard(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
     {
         this(id, cost, type, GR.Enums.Cards.THE_UNNAMED, rarity, target);

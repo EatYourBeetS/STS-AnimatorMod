@@ -3,26 +3,27 @@ package eatyourbeets.cards.unnamed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.UnnamedCard;
-import eatyourbeets.utilities.GameActions;
 
-public class Defend extends UnnamedCard
+public class Ascent extends UnnamedCard
 {
-    public static final EYBCardData DATA = Register(Defend.class).SetSkill(1, CardRarity.BASIC);
+    public static final EYBCardData DATA = Register(Ascent.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
 
-    public Defend()
+    public Ascent()
     {
         super(DATA);
 
-        Initialize(0, 6);
+        Initialize(0,0, 7, 9);
 
-        this.tags.add(CardTags.STARTER_DEFEND);
+        SetVoidbound(true);
+        SetMastery(9);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
+
     }
 
     @Override
@@ -30,7 +31,7 @@ public class Defend extends UnnamedCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(3);
+            upgradeSecondaryValue(-3);
         }
     }
 }

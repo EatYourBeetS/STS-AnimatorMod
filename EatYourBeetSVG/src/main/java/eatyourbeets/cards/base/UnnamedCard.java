@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.unnamed.MoveToVoidAction;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.unnamed.UnnamedResources;
+import eatyourbeets.resources.unnamed.UnnamedImages;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -18,6 +18,7 @@ import org.apache.logging.log4j.Logger;
 
 public abstract class UnnamedCard extends EYBCard
 {
+    protected static final UnnamedImages IMAGES = GR.Unnamed.Images;
     protected static final Logger logger = LogManager.getLogger(UnnamedCard.class.getName());
 
     protected boolean isVoidbound = false;
@@ -29,44 +30,28 @@ public abstract class UnnamedCard extends EYBCard
 
     protected static EYBCardData Register(Class<? extends UnnamedCard> type)
     {
-        return RegisterCardData(type,"unnamed:" + type.getSimpleName());
-    }
+        EYBCardData data = RegisterCardData(type, GR.Unnamed.CreateID(type.getSimpleName())).SetColor(GR.Unnamed.CardColor);
+        if (!Gdx.files.internal(data.ImagePath).exists())
+        {
+            data.ImagePath = GR.GetCardImage("unnamed:Placeholder");
+        }
 
-    private static String GetCardImage(String cardID)
-    {
-        String path = UnnamedResources.GetCardImage(cardID);
-        if (Gdx.files.internal(path).exists())
-        {
-            return path;
-        }
-        else
-        {
-            return UnnamedResources.GetCardImage("unnamed:Placeholder");
-        }
+        return data;
     }
 
     protected UnnamedCard(EYBCardData cardData)
     {
-        super(cardData, cardData.ID, cardData.ImagePath, cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget());
-
-        SetMultiDamage(cardData.CardTarget == EYBCardTarget.ALL);
-        SetAttackTarget(cardData.CardTarget);
-        SetAttackType(cardData.AttackType);
-    }
-
-    protected UnnamedCard(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
-    {
-        this(id, cost, type, GR.Enums.Cards.THE_UNNAMED, rarity, target);
-    }
-
-    protected UnnamedCard(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
-    {
-        this(GetStaticData(id), id, GetCardImage(id), cost, type, color, rarity, target);
+        this(cardData, cardData.ID, cardData.ImagePath, cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget());
     }
 
     protected UnnamedCard(EYBCardData data, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
         super(data, id, imagePath, cost, type, color, rarity, target);
+
+        cropPortrait = false;
+        SetMultiDamage(data.CardTarget == EYBCardTarget.ALL);
+        SetAttackTarget(data.CardTarget);
+        SetAttackType(data.AttackType);
     }
 
     @Override
@@ -169,9 +154,10 @@ public abstract class UnnamedCard extends EYBCard
     @Override
     public ColoredString GetHeaderText()
     {
-        ColoredString result = new ColoredString();
+        ColoredString result = null;
         if (isVoidbound())
         {
+            result = new ColoredString();
             result.text = "Voidbound";
 
             if (GameUtilities.InBattle())
@@ -212,14 +198,71 @@ public abstract class UnnamedCard extends EYBCard
     }
 
     @Override
-    protected Texture GetEnergyOrb()
+    public ColoredString GetBottomText()
     {
-        throw new RuntimeException("Not implemented");
+        return null;
     }
 
     @Override
-    public ColoredString GetBottomText()
+    protected Texture GetCardBackground()
     {
+        if (color == GR.Unnamed.CardColor)
+        {
+            switch (type)
+            {
+                case ATTACK: return GR.Unnamed.Images.CARD_BACKGROUND_ATTACK.Texture();
+                case POWER: return GR.Unnamed.Images.CARD_BACKGROUND_POWER.Texture();
+                default: return GR.Unnamed.Images.CARD_BACKGROUND_SKILL.Texture();
+            }
+        }
+        else if (color == CardColor.COLORLESS)
+        {
+            switch (type)
+            {
+                case ATTACK: return GR.Animator.Images.CARD_BACKGROUND_ATTACK_UR.Texture();
+                case POWER: return GR.Animator.Images.CARD_BACKGROUND_POWER_UR.Texture();
+                default: return GR.Animator.Images.CARD_BACKGROUND_SKILL_UR.Texture();
+            }
+        }
+
+        return super.GetCardBackground();
+    }
+
+    @Override
+    protected Texture GetEnergyOrb()
+    {
+        if (color == GR.Unnamed.CardColor)
+        {
+            return IMAGES.CARD_ENERGY_ORB_A.Texture();
+        }
+
+        return null;
+    }
+
+    @Override
+    protected Texture GetCardBanner()
+    {
+        if (rarity == CardRarity.SPECIAL)
+        {
+            return IMAGES.CARD_BANNER_SPECIAL.Texture();
+        }
+
+        return null;
+    }
+
+    @Override
+    protected Texture GetPortraitFrame()
+    {
+        if (rarity == CardRarity.SPECIAL)
+        {
+            switch (type)
+            {
+                case ATTACK: return IMAGES.CARD_FRAME_ATTACK_SPECIAL.Texture();
+                case POWER: return IMAGES.CARD_FRAME_POWER_SPECIAL.Texture();
+                default: return IMAGES.CARD_FRAME_SKILL_SPECIAL.Texture();
+            }
+        }
+
         return null;
     }
 }

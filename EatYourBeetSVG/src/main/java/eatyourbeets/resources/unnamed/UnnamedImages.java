@@ -44,25 +44,21 @@ public class UnnamedImages
     public final String SHOULDER2_PNG = "images/characters/unnamed/shoulder2.png";
     public final String CORPSE_PNG = "images/characters/unnamed/corpse.png";
 
-    public final TextureCache CARD_BG_ATTACK = new TextureCache(ATTACK_PNG);
-    public final TextureCache CARD_BG_SKILL = new TextureCache(SKILL_PNG);
-    public final TextureCache CARD_BG_POWER = new TextureCache(POWER_PNG);
-    public final TextureCache CARD_BG_ATTACK_L = new TextureCache(ATTACK_P_PNG);
-    public final TextureCache CARD_BG_SKILL_L = new TextureCache(SKILL_P_PNG);
-    public final TextureCache CARD_BG_POWER_L = new TextureCache(POWER_P_PNG);
+    public final TextureCache CARD_BANNER_SPECIAL = new TextureCache("images/cardui/animator/512/banner_special.png");
+    public final TextureCache CARD_ENERGY_ORB_A = new TextureCache("images/cardui/unnamed/512/energy_orb1_a.png");
+    public final TextureCache CARD_BACKGROUND_ATTACK = new TextureCache(ATTACK_PNG);
+    public final TextureCache CARD_BACKGROUND_SKILL = new TextureCache(SKILL_PNG);
+    public final TextureCache CARD_BACKGROUND_POWER = new TextureCache(POWER_PNG);
     public final TextureCache CARD_FRAME_ATTACK_SPECIAL = new TextureCache("images/cardui/unnamed/512/frame_attack_special.png");
     public final TextureCache CARD_FRAME_SKILL_SPECIAL = new TextureCache("images/cardui/unnamed/512/frame_skill_special.png");
     public final TextureCache CARD_FRAME_POWER_SPECIAL = new TextureCache("images/cardui/unnamed/512/frame_power_special.png");
-    public final TextureCache CARD_FRAME_ATTACK_SPECIAL_L = new TextureCache("images/cardui/unnamed/1024/frame_attack_special.png");
-    public final TextureCache CARD_FRAME_SKILL_SPECIAL_L = new TextureCache("images/cardui/unnamed/1024/frame_skill_special.png");
-    public final TextureCache CARD_FRAME_POWER_SPECIAL_L = new TextureCache("images/cardui/unnamed/1024/frame_power_special.png");
     public final TextureCache ORB_2A = new TextureCache(ORB_2A_PNG);
     public final TextureCache ORB_2B = new TextureCache(ORB_2B_PNG);
     public final TextureCache ORB_2C = new TextureCache(ORB_2C_PNG);
 
     public final TextureAtlas ORB_2_ATLAS = new TextureAtlas();
 
-    public UnnamedImages()
+    public void Initialize()
     {
         ORB_2_ATLAS.addRegion(ORB_2A_PNG, ORB_2A.Texture(), 0, 0, ORB_2A.Texture().getWidth(), ORB_2A.Texture().getHeight());
         ORB_2_ATLAS.addRegion(ORB_2B_PNG, ORB_2B.Texture(), 0, 0, ORB_2B.Texture().getWidth(), ORB_2B.Texture().getHeight());

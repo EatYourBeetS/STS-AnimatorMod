@@ -65,7 +65,8 @@ public class UnnamedResources extends AbstractResources
     @Override
     protected void InitializeCards()
     {
-        //Strings.Initialize();
+        Strings.Initialize();
+        Images.Initialize();
         LoadCustomCards();
     }
 

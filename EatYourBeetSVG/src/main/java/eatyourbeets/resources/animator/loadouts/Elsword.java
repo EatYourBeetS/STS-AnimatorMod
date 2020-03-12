@@ -8,7 +8,7 @@ import eatyourbeets.cards.animator.series.Elsword.Chung;
 import eatyourbeets.cards.animator.series.Elsword.Eve;
 import eatyourbeets.cards.animator.series.Elsword.Raven;
 import eatyourbeets.cards.animator.ultrarare.Rose;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
@@ -42,19 +42,14 @@ public class Elsword extends AnimatorLoadout
     }
 
     @Override
-    public String GetSymbolicCardID()
+    public EYBCardData GetSymbolicCard()
     {
-        return Eve.DATA.ID;
+        return Eve.DATA;
     }
 
     @Override
-    public AnimatorCard_UltraRare GetUltraRare()
+    public EYBCardData GetUltraRare()
     {
-        if (ultraRare == null)
-        {
-            ultraRare = new Rose();
-        }
-
-        return ultraRare;
+        return Rose.DATA;
     }
 }

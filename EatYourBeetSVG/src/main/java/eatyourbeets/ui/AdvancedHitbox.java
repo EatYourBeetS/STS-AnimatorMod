@@ -46,6 +46,13 @@ public class AdvancedHitbox extends Hitbox
         this.canDrag = canDrag;
     }
 
+    public AdvancedHitbox SetPosition(float cX, float cY)
+    {
+        move(cX, cY);
+
+        return this;
+    }
+
     public AdvancedHitbox SetDraggable(boolean draggable)
     {
         this.canDrag = draggable;

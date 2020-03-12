@@ -86,7 +86,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
                 actions.Add(this::Lightning);
             }
 
-            actions.Retrieve(AbstractDungeon.cardRandomRng).Invoke();
+            actions.Retrieve(rng).Invoke();
             GameActions.Bottom.WaitRealtime(0.2f);
         }
     }

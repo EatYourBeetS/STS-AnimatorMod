@@ -5,13 +5,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.powers.EYBFlashPowerEffect;
 import eatyourbeets.effects.powers.EYBGainPowerEffect;
@@ -33,6 +36,7 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
 
     protected static final Logger logger = LogManager.getLogger(BasePower.class.getName());
     protected static final Color disabledColor = new Color(0.5f, 0.5f, 0.5f, 1);
+    protected static AbstractPlayer player = null;
     protected boolean enabled = true;
 
     protected final ArrayList<AbstractGameEffect> effects;
@@ -67,6 +71,17 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
 
         this.powerStrings = CardCrawlGame.languagePack.getPowerStrings(this.ID);
         this.name = powerStrings.NAME;
+    }
+
+    // In most cases you can use the 'player' field directly, you should call this in methods that can happen outside battle
+    public static AbstractPlayer GetPlayer()
+    {
+        if (player != AbstractDungeon.player || AbstractDungeon.player != EYBCard.player)
+        {
+            player = EYBCard.RefreshPlayer();
+        }
+
+        return player;
     }
 
     @Override

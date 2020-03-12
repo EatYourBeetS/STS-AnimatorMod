@@ -27,6 +27,11 @@ public abstract class EYBEvent extends AbstractImageEvent
 
     public static AbstractEvent GenerateSpecialEvent(AbstractDungeon dungeon, Random rng, boolean isAnimator)
     {
+        if (isAnimator)
+        {
+            return TheCursedForest.TryCreate(rng);
+        }
+
         return null;
     }
 

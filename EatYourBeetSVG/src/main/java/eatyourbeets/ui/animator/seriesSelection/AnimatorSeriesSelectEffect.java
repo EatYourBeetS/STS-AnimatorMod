@@ -109,7 +109,7 @@ public class AnimatorSeriesSelectEffect extends EYBEffect
                     screen.Select(c);
                 }
 
-                if (GR.Animator.Dungeon.StartingSeries.IsBeta)
+                if (GR.Animator.Data.SelectedLoadout.IsBeta)
                 {
                     screen.toggleBeta.SetInteractable(false).SetActive(true);
                 }

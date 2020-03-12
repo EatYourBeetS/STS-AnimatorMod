@@ -166,7 +166,7 @@
 	},
 	"animator:Ciel":
 	{
-		"DESCRIPTION": "The enemy takes !M! more ** damage on the next attack. || Synergy: Increase the ** damage of every copy of ** {Lu} in your deck by !S!.",
+		"DESCRIPTION": "The enemy takes !M! more ** damage on the next attack. || Synergy: Increase the ** damage of every copy of ** {Lu} by !S! this combat.",
 		"NAME": "Ciel"
 	},
 	"animator:Cirno":
@@ -197,17 +197,22 @@
 	},
 	"animator:Curse_Greed":
 	{
-		"DESCRIPTION": "Unplayable. When drawn, raise the cost of a random card in your hand by 1 this turn.",
+		"DESCRIPTION": "Unplayable. ** When drawn: Raise ** the cost of a random ** card in your hand ** by 1 this turn.",
 		"NAME": "Greed"
 	},
-	"animator:Curse_GriefSeed":
+	"animator:Curse_GriefSeed": 
 	{
 		"DESCRIPTION": "At the end of turn: Take !M! Damage. || When Exhausted: Remove your rightmost {Debuff}.",
 		"NAME": "Grief Seed"
 	},
+	"animator:Curse_Dizziness":
+	{
+		"DESCRIPTION": "Unplayable. ** When drawn: Add ** a Dazed to your ** draw pile.",
+		"NAME": "Dizziness"
+	},
 	"animator:Curse_Nutcracker":
 	{
-		"DESCRIPTION": "Unplayable. At the end of your turn, ALL enemies heal !M! HP.",
+		"DESCRIPTION": "Unplayable. ** At the end of turn: ** ALL enemies heal !M! HP.",
 		"NAME": "Nutcracker"
 	},
 	"animator:Darkness":
@@ -577,6 +582,17 @@
 	{
 		"DESCRIPTION": "Play and Exhaust ALL cards ** in your discard pile. || <LIM>. When Exhausted: ** Shuffle your Exhaust pile ** into your draw pile.",
 		"NAME": "Tenri Hiiragi"
+	},
+	"animator:HinaKagiyama":
+	{
+		"DESCRIPTION": "Once per turn, when you ** draw a Curse: Draw !M! card(s). || At the start of turn: You may ** Purge a Hindrance in Exhaust ** pile to obtain a {Miracle}.",
+		"NAME": "Hina Kagiyama",
+		"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you draw a curse this turn, draw #b{1} cards.", "Choose up to {0} card(s) to Purge."]
+	},
+	"animator:HinaKagiyama_Miracle":
+	{
+		"DESCRIPTION": "Gain {+[E] }[E].",
+		"NAME": "Miracle"
 	},
 	"animator:Hitei":
 	{
@@ -1107,7 +1123,7 @@
 	},
 	"animator:Shion":
 	{
-		"DESCRIPTION": "Discard 1 card. Next ** turn: <DRW>. || Limited. On Synergy: ** Apply !M! Vulnerable.",
+		"DESCRIPTION": "Discard 1 card. Next ** turn: <DRW>. || <LIM>. On Synergy: ** Apply !M! Vulnerable.",
 		"NAME": "Shion"
 	},
 	"animator:Shiro":

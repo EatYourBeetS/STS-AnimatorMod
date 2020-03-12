@@ -28,6 +28,7 @@ public class Metrics_Run
     private static final HashMap<Object, Object> params2 = new HashMap<>();
     private static final Gson gson = new Gson();
 
+    // TODO: Create a decent API
     @SpirePrefixPatch
     public static void Postfix(Metrics __instance)
     {
@@ -146,7 +147,6 @@ public class Metrics_Run
             }
         }
     }
-
 
     private static AbstractCard GetCard(String cardID)
     {

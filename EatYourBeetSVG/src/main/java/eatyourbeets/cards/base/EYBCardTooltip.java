@@ -102,13 +102,13 @@ public class EYBCardTooltip
         else
         {
             x = card.current_x;
-            if (card.current_x < (float) Settings.WIDTH * 0.70F)
+            if (card.current_x < (float) Settings.WIDTH * 0.7f)
             {
-                x += AbstractCard.IMG_WIDTH / 2.0F + CARD_TIP_PAD;
+                x += AbstractCard.IMG_WIDTH / 2.0f + CARD_TIP_PAD;
             }
             else
             {
-                x -= AbstractCard.IMG_WIDTH / 2.0F + CARD_TIP_PAD + BOX_W;
+                x -= AbstractCard.IMG_WIDTH / 2.0f + CARD_TIP_PAD + BOX_W;
             }
 
             y = card.current_y - BOX_EDGE_H;

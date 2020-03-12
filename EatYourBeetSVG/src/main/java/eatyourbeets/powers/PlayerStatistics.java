@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -20,7 +19,6 @@ import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.powers.common.AgilityPower;
@@ -95,7 +93,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     private static void ClearStats()
     {
         logger.info("Clearing Player Stats");
-        EYBCard.RefreshPlayer();
+        GetPlayer(); // Refresh
 
         for (OnStatsClearedSubscriber s : onStatsCleared.GetSubscribers())
         {
@@ -142,11 +140,11 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 
     public static void EnsurePowerIsApplied()
     {
-        if (!AbstractDungeon.player.powers.contains(Instance))
+        if (!GetPlayer().powers.contains(Instance))
         {
             logger.info("Applied PlayerStatistics");
 
-            AbstractDungeon.player.powers.add(Instance);
+            player.powers.add(Instance);
         }
     }
 
@@ -177,6 +175,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         {
             s.OnAfterDeath();
         }
+
         ClearStats();
     }
 
@@ -207,7 +206,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 
     public static void OnRelicObtained(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)
     {
-        for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+        for (AbstractCard c : GetPlayer().masterDeck.group)
         {
             if (c instanceof OnRelicObtainedSubscriber)
             {
@@ -215,7 +214,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
             }
         }
 
-        for (AbstractRelic r : AbstractDungeon.player.relics)
+        for (AbstractRelic r : GetPlayer().relics)
         {
             if (r instanceof OnRelicObtainedSubscriber)
             {
@@ -228,11 +227,10 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     {
         ClearStats();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        ArrayList<AbstractCard> cards = new ArrayList<>(p.drawPile.group);
-        cards.addAll(p.hand.group);
-        cards.addAll(p.discardPile.group);
-        cards.addAll(p.exhaustPile.group);
+        ArrayList<AbstractCard> cards = new ArrayList<>(player.drawPile.group);
+        cards.addAll(player.hand.group);
+        cards.addAll(player.discardPile.group);
+        cards.addAll(player.exhaustPile.group);
 
         for (AbstractCard c : cards)
         {
@@ -394,7 +392,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     {
         super.onAfterUseCard(card, action);
 
-        AbstractDungeon.player.hand.glowCheck();
+        player.hand.glowCheck();
         Synergies.SetLastCardPlayed(card);
     }
 

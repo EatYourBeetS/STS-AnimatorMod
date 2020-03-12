@@ -7,7 +7,7 @@ import eatyourbeets.cards.animator.basic.Strike_GoblinSlayer;
 import eatyourbeets.cards.animator.series.GoblinSlayer.DwarfShaman;
 import eatyourbeets.cards.animator.series.GoblinSlayer.LizardPriest;
 import eatyourbeets.cards.animator.ultrarare.Hero;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
@@ -41,19 +41,14 @@ public class GoblinSlayer extends AnimatorLoadout
     }
 
     @Override
-    public String GetSymbolicCardID()
+    public EYBCardData GetSymbolicCard()
     {
-        return eatyourbeets.cards.animator.series.GoblinSlayer.GoblinSlayer.DATA.ID;
+        return eatyourbeets.cards.animator.series.GoblinSlayer.GoblinSlayer.DATA;
     }
 
     @Override
-    public AnimatorCard_UltraRare GetUltraRare()
+    public EYBCardData GetUltraRare()
     {
-        if (ultraRare == null)
-        {
-            ultraRare = new Hero();
-        }
-
-        return ultraRare;
+        return Hero.DATA;
     }
 }

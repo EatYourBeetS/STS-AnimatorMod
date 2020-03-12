@@ -27,7 +27,7 @@ public class AnimatorRuntimeLoadout
         if (loadout != null)
         {
             AnimatorRuntimeLoadout result = new AnimatorRuntimeLoadout(loadout);
-            if (result.Cards.size() > 0)
+            if (result.Cards.size() > 0 && result.Loadout.GetSymbolicCard() != null)
             {
                 return result;
             }
@@ -59,13 +59,14 @@ public class AnimatorRuntimeLoadout
 
     public AbstractCard BuildCard()
     {
-        AbstractCard temp = CardLibrary.getCard(Loadout.GetSymbolicCardID());
-        if (temp == null)
+        EYBCardData data = Loadout.GetSymbolicCard();
+        if (data == null)
         {
-            JavaUtilities.Log(this, "Loadout.GetSymbolicCardID() failed, " + Loadout.Name);
+            JavaUtilities.Log(this, Loadout.Name + " has no symbolic card.");
             return null;
         }
 
+        AbstractCard temp = data.CreateNewInstance();
         AnimatorCardBuilder builder = new AnimatorCardBuilder(String.valueOf(Loadout.ID)).SetImage(temp.assetUrl);
 
         if (promoted)

@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
@@ -52,7 +53,9 @@ public abstract class EYBCardBase extends AbstractCard
     protected static final Color SELECTED_CARD_COLOR = new Color(0.5F, 0.9F, 0.9F, 1.0F);
     protected static final float SHADOW_OFFSET_X = 18.0F * Settings.scale;
     protected static final float SHADOW_OFFSET_Y = 14.0F * Settings.scale;
-    protected static AbstractPlayer player = null;
+
+    public static AbstractPlayer player = null;
+    public static Random rng = null;
 
     public float hoverDuration;
     public boolean renderTip;
@@ -65,9 +68,12 @@ public abstract class EYBCardBase extends AbstractCard
     public int baseSecondaryValue = 0;
     public int secondaryValue = 0;
 
-    public static void RefreshPlayer()
+    public static AbstractPlayer RefreshPlayer()
     {
+        rng = AbstractDungeon.cardRandomRng;
         player = AbstractDungeon.player;
+
+        return player;
     }
 
     public EYBCardBase(String id, String name, String imagePath, int cost, String rawDescription, CardType type, CardColor color, CardRarity rarity, CardTarget target)

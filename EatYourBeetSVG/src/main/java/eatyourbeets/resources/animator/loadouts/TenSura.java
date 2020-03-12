@@ -8,7 +8,7 @@ import eatyourbeets.cards.animator.series.TenseiSlime.Benimaru;
 import eatyourbeets.cards.animator.series.TenseiSlime.Rimuru;
 import eatyourbeets.cards.animator.series.TenseiSlime.Shuna;
 import eatyourbeets.cards.animator.ultrarare.Veldora;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
@@ -42,19 +42,14 @@ public class TenSura extends AnimatorLoadout
     }
 
     @Override
-    public String GetSymbolicCardID()
+    public EYBCardData GetSymbolicCard()
     {
-        return Rimuru.DATA.ID;
+        return Rimuru.DATA;
     }
 
     @Override
-    public AnimatorCard_UltraRare GetUltraRare()
+    public EYBCardData GetUltraRare()
     {
-        if (ultraRare == null)
-        {
-            ultraRare = new Veldora();
-        }
-
-        return ultraRare;
+        return Veldora.DATA;
     }
 }

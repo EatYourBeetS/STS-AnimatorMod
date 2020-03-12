@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class GUI_Label extends GUIElement
 {
@@ -94,16 +95,13 @@ public class GUI_Label extends GUIElement
 
     public void Render(SpriteBatch sb, Hitbox hb)
     {
-        if (fontScale != 1)
-        {
-            font.getData().setScale(fontScale);
-        }
+        font.getData().setScale(fontScale);
 
         if (smartText)
         {
             final float step = hb.width * horizontalRatio;
             FontHelper.renderSmartText(sb, font, text, hb.x + step, hb.y + (hb.height * verticalRatio),
-                    hb.width - (step * 2), font.getLineHeight(), textColor);
+            hb.width - (step * 2), font.getLineHeight(), textColor);
         }
         else if (horizontalRatio < 0.5f)
         {
@@ -120,20 +118,6 @@ public class GUI_Label extends GUIElement
             FontHelper.renderFontCentered(sb, font, text, hb.cX, hb.y + hb.height * verticalRatio, textColor);
         }
 
-//        if (horizontallyCentered)
-//        {
-//            FontHelper.renderFontCentered(sb, font, text, hb.cX, hb.y + (hb.height * verticalRatio), textColor);
-//        }
-//        else
-//        {
-//            final float step = hb.width * horizontalRatio;
-//            FontHelper.renderSmartText(sb, font, text, hb.x + step, hb.y - (hb.height * verticalRatio),
-//                    hb.width - (step * 2), font.getLineHeight(), textColor);
-//        }
-
-        if (fontScale != 1)
-        {
-            font.getData().setScale(1f);
-        }
+        RenderHelpers.ResetFont(font);
     }
 }

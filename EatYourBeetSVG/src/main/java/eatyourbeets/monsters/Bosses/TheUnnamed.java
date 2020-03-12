@@ -119,7 +119,7 @@ public class TheUnnamed extends AnimatorMonster
         }
 
         GameEffects.List.Add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY,
-                3f, data.strings.DIALOG[30], this.isPlayer));
+        3f, data.strings.DIALOG[30], this.isPlayer));
 
         //AbstractDungeon.aiRng.setCounter(AbstractDungeon.aiRng.counter + MathUtils.random(100));
 

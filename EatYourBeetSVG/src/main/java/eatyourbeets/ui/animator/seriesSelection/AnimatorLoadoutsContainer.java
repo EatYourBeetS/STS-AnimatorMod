@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -86,7 +87,15 @@ public class AnimatorLoadoutsContainer
 
         for (AnimatorRuntimeLoadout c : seriesSelectionItems)
         {
-            cardsMap.put(c.BuildCard(), c);
+            AbstractCard card = c.BuildCard();
+            if (card != null)
+            {
+                cardsMap.put(c.BuildCard(), c);
+            }
+            else
+            {
+                JavaUtilities.GetLogger(this).error("AnimatorRuntimeLoadout.BuildCard() failed, " + c.Loadout.Name);
+            }
         }
     }
 
@@ -130,7 +139,6 @@ public class AnimatorLoadoutsContainer
         for (AbstractCard card : selectedCards)
         {
             AnimatorRuntimeLoadout loadout = Find(card);
-
             if (loadout.IsBeta)
             {
                 // Do not unlock trophies or ascension
@@ -140,7 +148,7 @@ public class AnimatorLoadoutsContainer
             GR.Animator.Dungeon.AddSeries(loadout);
         }
 
-        if (GR.Animator.Dungeon.StartingSeries.IsBeta)
+        if (GR.Animator.Data.SelectedLoadout.IsBeta)
         {
             Settings.seedSet = true;
         }

@@ -8,7 +8,7 @@ import eatyourbeets.cards.animator.series.Overlord.Ainz;
 import eatyourbeets.cards.animator.series.Overlord.Cocytus;
 import eatyourbeets.cards.animator.series.Overlord.Demiurge;
 import eatyourbeets.cards.animator.ultrarare.SirTouchMe;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
@@ -42,19 +42,14 @@ public class Overlord extends AnimatorLoadout
     }
 
     @Override
-    public String GetSymbolicCardID()
+    public EYBCardData GetSymbolicCard()
     {
-        return Ainz.DATA.ID;
+        return Ainz.DATA;
     }
 
     @Override
-    public AnimatorCard_UltraRare GetUltraRare()
+    public EYBCardData GetUltraRare()
     {
-        if (ultraRare == null)
-        {
-            ultraRare = new SirTouchMe();
-        }
-
-        return ultraRare;
+        return SirTouchMe.DATA;
     }
 }

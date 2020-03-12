@@ -3,12 +3,14 @@ package eatyourbeets.cards.base;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.beta.MadokaMagica.Walpurgisnacht;
 import eatyourbeets.cards.animator.ultrarare.*;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.HashMap;
@@ -34,10 +36,18 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
         {
             for (AnimatorLoadout loadout : GR.Animator.Data.GetEveryLoadout())
             {
-                AnimatorCard_UltraRare card = loadout.GetUltraRare();
-                if (card != null)
+                EYBCardData data = loadout.GetUltraRare();
+                if (data != null)
                 {
-                    cards.put(card.cardID, card);
+                    AbstractCard card = data.CreateNewInstance();
+                    if (card instanceof AnimatorCard_UltraRare)
+                    {
+                        cards.put(card.cardID, (AnimatorCard_UltraRare) card);
+                    }
+                    else
+                    {
+                        JavaUtilities.Log(AnimatorCard_UltraRare.class, "AnimatorLoadout.GetUltraRare() should return an instance of AnimatorCard_UltraRare");
+                    }
                 }
             }
 

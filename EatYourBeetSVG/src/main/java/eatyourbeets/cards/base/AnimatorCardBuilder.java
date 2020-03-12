@@ -4,11 +4,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
-import org.apache.logging.log4j.util.TriConsumer;
-
-import java.util.function.Consumer;
 
 public class AnimatorCardBuilder extends DynamicCardBuilder
 {
@@ -19,8 +18,9 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
     public int magicNumberUpgrade;
     public int secondaryValueUpgrade;
 
-    public Consumer<AnimatorCard> onUpgrade;
-    public TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
+    public ActionT1<AnimatorCard> constructor;
+    public ActionT1<AnimatorCard> onUpgrade;
+    public ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
     public EYBAttackType attackType = EYBAttackType.Normal;
     public EYBCardTarget attackTarget = EYBCardTarget.Normal;
     public int attributeMultiplier = 1;
@@ -164,14 +164,21 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         return this;
     }
 
-    public AnimatorCardBuilder SetOnUpgrade(Consumer<AnimatorCard> onUpgrade)
+    public AnimatorCardBuilder SetConstructor(ActionT1<AnimatorCard> constructor)
+    {
+        this.constructor = constructor;
+
+        return this;
+    }
+
+    public AnimatorCardBuilder SetOnUpgrade(ActionT1<AnimatorCard> onUpgrade)
     {
         this.onUpgrade = onUpgrade;
 
         return this;
     }
 
-    public AnimatorCardBuilder SetOnUse(TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
+    public AnimatorCardBuilder SetOnUse(ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
     {
         this.onUse = onUseAction;
 

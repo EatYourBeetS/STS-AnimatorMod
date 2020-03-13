@@ -714,21 +714,20 @@
 		"DESCRIPTION": "Trigger your first Orb ** !M! time(s), then Evoke it. || <LIM>. When Drawn: ** Discard this and add ** {Bienfu} to your hand.",
 		"NAME": "Magilou"
 	},
-	"animator:MatouSakura":
+	"animator:Sakura Matou":
 	{
-		"DESCRIPTION": "{Channel} !M! {Dark}. Trigger your rightmost {Dark} Orb !S! times. || When you have 3 {Dark} Orbs, this card will change form.",
-		"EXTENDED_DESCRIPTION": ["Trigger all your {Dark} Orbs !S! Times. || <LIM>: Gain 1 Intangible."],
-		"NAME": "Matou Sakura"
+		"DESCRIPTION": "Use half of the charge ** of your rightmost {Dark} Orb. ** Apply that much {Constricted} to ** ALL enemies.",
+		"NAME": "Sakura Matou"
 	},
-	"animator:MatouShinji":
+	"animator:ShinjiMatou":
 	{
-		"DESCRIPTION": "Gain{+ [I]} [I]. Lose an orb slot to ** obtain {Command Spell}. || <LIM>: ** If you have no Orb Slots, ** gain 3 Orb Slots instead.",
-		"NAME": "Matou Shinji"
+		"DESCRIPTION": "Apply !M! Poison for each card type in hand. || On Synergy: Lose 1 Orb Slot to obtain a {Command Spell}.",
+		"NAME": "Shinji Matou"
 	},
-	"animator:MatouShinji_CommandSpell":
+	"animator:ShinjiMatou_CommandSpell":
 	{
-		"DESCRIPTION": "The next non-power ** Spellcaster you play is ** played twice.",
-		"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you play a non-power #ySpellcaster, it's played twice."],
+		"DESCRIPTION": "Play a card with Synergy to this from your discard pile.",
+		"EXTENDED_DESCRIPTION": ["Select a card to play."],
 		"NAME": "Command Spell"
 	},
 	"animator:Bienfu":

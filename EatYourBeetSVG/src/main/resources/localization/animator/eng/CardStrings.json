@@ -714,20 +714,19 @@
 		"DESCRIPTION": "Trigger your first Orb ** !M! time(s), then Evoke it. || <LIM>. When Drawn: ** Discard this and add ** {Bienfu} to your hand.",
 		"NAME": "Magilou"
 	},
-	"animator:Sakura Matou":
+	"animator:SakuraMatou":
 	{
-		"DESCRIPTION": "Use half of the charge ** of your rightmost {Dark} Orb. ** Apply that much {Constricted} to ** ALL enemies.",
+		"DESCRIPTION": "Halve the damage ** of your rightmost ** {Dark} Orb. Apply that ** much {Constricted} (!M!) ** to ALL enemies."",
 		"NAME": "Sakura Matou"
 	},
 	"animator:ShinjiMatou":
 	{
-		"DESCRIPTION": "Apply !M! Poison for each card type in hand. || On Synergy: Lose 1 Orb Slot to obtain a {Command Spell}.",
+		"DESCRIPTION": "Apply !M! Poison for each ** card type in hand. || On Synergy: Lose 1 ** Orb Slot to obtain a ** {Command Spell}.",
 		"NAME": "Shinji Matou"
 	},
 	"animator:ShinjiMatou_CommandSpell":
 	{
-		"DESCRIPTION": "Play a card with Synergy to this from your discard pile.",
-		"EXTENDED_DESCRIPTION": ["Select a card to play."],
+		"DESCRIPTION": "Play a card which ** Synergizes with ** this card from your ** discard pile.",
 		"NAME": "Command Spell"
 	},
 	"animator:Bienfu":

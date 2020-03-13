@@ -70,8 +70,8 @@
 	},
 	"animator:Assassin":
 	{
-	"DESCRIPTION": "Damage increases by !M! ** for each {Debuff} on the enemy. || This card can only be played if it has Synergy.",
-	"NAME": "Assassin"
+		"DESCRIPTION": "Can only deal damage ** if the enemy has 3 ** different {Debuffs}. || Loses Retain if you ** play an {Attack}.",
+		"NAME": "Assassin"
 	},
 	"animator:Asuramaru":
 	{
@@ -934,8 +934,8 @@
 	},
 	"animator:Rider":
 	{
-	"DESCRIPTION": "Apply !M! {Shackles}. || This card {Synergizes} with ** {Martial Artists} and {Spellcasters}",
-	"NAME": "Rider"
+		"DESCRIPTION": "Apply !M! {Shackles}. || This card {Synergizes} ** with {Martial Artists} ** and {Spellcasters}",
+		"NAME": "Rider"
 	},
 	"animator:Rimuru":
 	{

@@ -19,16 +19,22 @@ public class Rider extends AnimatorCard implements MartialArtist, Spellcaster
         super(DATA);
 
         Initialize(0, 5, 3);
-        SetUpgrade(0, 2, 1);
+        SetUpgrade(0, 1, 1);
         SetScaling(0, 1, 0);
+
         SetSynergy(Synergies.Fate);
     }
+
     @Override
-    public ColoredString GetBottomText(){ return null;}
+    public ColoredString GetBottomText()
+    {
+        return null;
+    }
+
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
-        GameActions.Bottom.ReduceStrength(m, magicNumber,true);
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.ReduceStrength(m, magicNumber, true);
     }
 }

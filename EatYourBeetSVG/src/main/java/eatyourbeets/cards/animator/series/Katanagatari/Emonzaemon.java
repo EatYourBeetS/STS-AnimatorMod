@@ -71,7 +71,7 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
                     EffectHistory.TryActivateLimited(cardID);
                     GameActions.Bottom.MakeCardInDrawPile(new EntouJyuu())
                     .SetDestination(MakeTempCard.Destination.Bottom)
-                    .SetOptions(upgraded, false);
+                    .SetUpgrade(upgraded, false);
                 }
             }
         }

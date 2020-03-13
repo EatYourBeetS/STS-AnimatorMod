@@ -12,14 +12,26 @@ import java.util.function.Predicate;
 
 public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
 {
+    public enum Origin
+    {
+        //@Formatter: Off
+        FromTop,
+        FromBottom,
+        Random;
+
+        public boolean IsRandom() { return this == Random;     }
+        public boolean IsTop()    { return this == FromTop;    }
+        public boolean IsBottom() { return this == FromBottom; }
+        //@Formatter: On
+    }
+
     protected ArrayList<AbstractCard> selectedCards = new ArrayList<>();
     protected Predicate<AbstractCard> filter;
     protected CardGroup targetPile;
     protected CardGroup sourcePile;
     protected boolean showEffect;
     protected boolean realtime;
-    protected boolean fromTop;
-    protected boolean random;
+    protected Origin origin;
 
     public MoveCards(CardGroup targetPile, CardGroup sourcePile)
     {
@@ -44,10 +56,9 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
         return this;
     }
 
-    public MoveCards SetOptions(boolean random, boolean fromTop)
+    public MoveCards SetOrigin(Origin origin)
     {
-        this.random = random;
-        this.fromTop = fromTop;
+        this.origin = origin;
 
         return this;
     }
@@ -62,7 +73,7 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
     @Override
     protected void FirstUpdate()
     {
-        if (random)
+        if (origin.IsRandom())
         {
             RandomizedList<AbstractCard> temp = new RandomizedList<>();
 
@@ -106,7 +117,7 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
 
             for (int i = 0; i < max; i++)
             {
-                if (fromTop)
+                if (origin.IsTop())
                 {
                     MoveCard(temp.get((temp.size() - max) + i));
                 }

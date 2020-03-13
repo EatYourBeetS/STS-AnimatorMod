@@ -34,7 +34,7 @@ public class Ciel extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(block).SetOptions(true, false);
+        GameActions.Bottom.GainBlock(block).SetVFX(true, false);
         GameActions.Bottom.StackPower(new MarkedPower(m, magicNumber));
 
         if (HasSynergy())

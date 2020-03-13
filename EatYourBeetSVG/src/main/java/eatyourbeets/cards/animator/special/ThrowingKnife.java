@@ -115,7 +115,7 @@ public class ThrowingKnife extends AnimatorCard
                     throw new RuntimeException("This class is only for preview. You are not supposed to use it.");
             }
 
-            GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetOptions(true, false);
+            GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetVFX(true, false);
 
             if (m.hb != null)
             {

@@ -50,12 +50,14 @@ public class SakuraMatou extends AnimatorCard implements Spellcaster
         {
             if (orb != null && Dark.ORB_ID.equals(orb.ID) && orb.evokeAmount > 0)
             {
-                constricted = (orb.evokeAmount /= 2);
+                constricted = Math.max(1, orb.evokeAmount /= 2);
 
                 if (orb.evokeAmount == 0)
                 {
                     GameActions.Top.Add(new EvokeSpecificOrbAction(orb));
                 }
+
+                break;
             }
         }
 

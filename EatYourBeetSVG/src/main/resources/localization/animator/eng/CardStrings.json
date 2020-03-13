@@ -68,6 +68,11 @@
 		"DESCRIPTION": "Gain !S! [I]. ** Gain !M! Orb Slot(s). || Limited. Synergy: ** Channel 1 Earth.",
 		"NAME": "Arpeggio"
 	},
+	"animator:Assassin":
+	{
+	"DESCRIPTION": "Damage increases by !M! ** for each {Debuff} on the enemy. || This card can only be played if it has Synergy.",
+	"NAME": "Assassin"
+	},
 	"animator:Asuramaru":
 	{
 		"DESCRIPTION": "Gain !M! [F] [A] [I]. ** Gain 2 {Demon Form}. ** Add 2 {Wounds} to ** your hand.",
@@ -926,6 +931,11 @@
 	{
 		"DESCRIPTION": "Delay certain ** doom by 1 turn.",
 		"NAME": "Respite"
+	},
+	"animator:Rider":
+	{
+	"DESCRIPTION": "Apply !M! {Shackles}. || This card {Synergizes} with ** {Martial Artists} and {Spellcasters}",
+	"NAME": "Rider"
 	},
 	"animator:Rimuru":
 	{

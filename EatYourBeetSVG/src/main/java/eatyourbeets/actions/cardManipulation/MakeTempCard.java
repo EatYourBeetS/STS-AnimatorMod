@@ -56,7 +56,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         return this;
     }
 
-    public MakeTempCard SetOptions(boolean upgrade, boolean makeCopy)
+    public MakeTempCard SetUpgrade(boolean upgrade, boolean makeCopy)
     {
         this.makeCopy = makeCopy;
         this.upgrade = upgrade;

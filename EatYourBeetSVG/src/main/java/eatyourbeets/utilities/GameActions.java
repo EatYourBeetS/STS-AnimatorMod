@@ -42,6 +42,7 @@ import eatyourbeets.actions.powers.ReduceStrength;
 import eatyourbeets.actions.special.GainGold;
 import eatyourbeets.actions.special.ReplaceCard;
 import eatyourbeets.actions.special.ReshuffleDiscardPile;
+import eatyourbeets.actions.special.SpendEnergy;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
@@ -658,6 +659,11 @@ public final class GameActions
     public SequentialAction Sequential(AbstractGameAction action, AbstractGameAction action2)
     {
         return Add(new SequentialAction(action, action2));
+    }
+
+    public SpendEnergy SpendEnergy(int amount, boolean canSpendLess)
+    {
+        return Add(new SpendEnergy(amount, canSpendLess));
     }
 
     public ApplyPower StackPower(AbstractCreature source, AbstractPower power)

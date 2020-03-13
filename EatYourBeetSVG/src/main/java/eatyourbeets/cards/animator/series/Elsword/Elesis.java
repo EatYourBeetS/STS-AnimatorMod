@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import eatyourbeets.actions.special.SpendEnergy;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardPreview;
@@ -103,7 +102,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
         {
             case Saber:
             {
-                GameActions.Bottom.Add(new SpendEnergy(999)).AddCallback(amount ->
+                GameActions.Bottom.SpendEnergy(999, true).AddCallback(amount ->
                 {
                     GameActions.Bottom.GainForce(amount);
                     GameActions.Bottom.GainAgility(amount);

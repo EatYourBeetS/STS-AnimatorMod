@@ -670,8 +670,8 @@
 	},
 	"animator:Kagari":
 	{
-		"DESCRIPTION": "Whenever you take damage, gain !M! Thorns.  The amount of Thorns gained gets increased by !S! each as this ability is triggered on the same turn.",
-		"EXTENDED_DESCRIPTION": ["Whenever you receive attack damage, gain #b{0} Thorns.  Thorns gets increased by #b{1} each as this ability is triggered on the same turn."],
+		"DESCRIPTION": "Whenever you take damage: ** Gain !M! Thorns. || When this ability is triggered: ** Increase the Thorns amount ** by !S! until end of turn.",
+		"EXTENDED_DESCRIPTION": ["Whenever you take damage: Gain #b{0} Thorns.  When this ability is triggered: Increase the amount of Thorns by #b{1} until end of turn."],
 		"NAME": "Kagari"
 	},
 	"animator:Kaijin":
@@ -702,7 +702,7 @@
 	},
 	"animator:KotoriKanbe":
 	{
-		"DESCRIPTION": "Removes all Artifact on the target and apply !M! Weak and !S! Vulnerable.  Heals the target for 35 HP.",
+		"DESCRIPTION": "At the start of combat: Put ** this card in your discard pile. || Removes all Artifact on the ** target and apply !M! Weak.  ** Heal the target for 35 HP.",
 		"NAME": "Kotori Kanbe"
 	},
 	"animator:KrulTepes":

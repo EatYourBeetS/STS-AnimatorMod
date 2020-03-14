@@ -438,6 +438,18 @@ public abstract class EYBCardBase extends AbstractCard
         this.upgradedSecondaryValue = true;
     }
 
+    protected void SetTag(CardTags tag, boolean enable)
+    {
+        if (!enable)
+        {
+            tags.remove(tag);
+        }
+        else if (!tags.contains(tag))
+        {
+            tags.add(tag);
+        }
+    }
+
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean TryRenderCentered(SpriteBatch sb, Texture texture)
     {

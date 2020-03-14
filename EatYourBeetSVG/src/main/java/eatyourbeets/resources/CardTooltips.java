@@ -31,6 +31,7 @@ public class CardTooltips
     public EYBCardTooltip Innate;
     public EYBCardTooltip Ethereal;
     public EYBCardTooltip Retain;
+    public EYBCardTooltip Haste;
     public EYBCardTooltip Exhaust;
     public EYBCardTooltip Channel;
     public EYBCardTooltip Upgrade;
@@ -78,6 +79,7 @@ public class CardTooltips
         Innate = FindByID("~Innate");
         Ethereal = FindByID("~Ethereal");
         Retain = FindByID("~Retain");
+        Haste = FindByID("~Haste");
         Exhaust = FindByID("Exhaust");
         Channel = FindByID("Channel");
         Upgrade = FindByID("Upgrade");
@@ -99,6 +101,7 @@ public class CardTooltips
         Ethereal.icon = LoadFromBadge(badges.Ethereal);
         Retain.icon = LoadFromBadge(badges.Retain);
         Innate.icon = LoadFromBadge(badges.Innate);
+        Haste.icon = LoadFromBadge(badges.Haste);
         Purge.icon = LoadFromBadge(badges.Purge);
 
         CommonImages.CardIcons icons = GR.Common.Images.Icons;

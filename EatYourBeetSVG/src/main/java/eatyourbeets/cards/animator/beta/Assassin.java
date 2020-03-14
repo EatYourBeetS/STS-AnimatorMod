@@ -56,12 +56,6 @@ public class Assassin extends AnimatorCard
     }
 
     @Override
-    public boolean cardPlayable(AbstractMonster m)
-    {
-        return HasSynergy();
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);

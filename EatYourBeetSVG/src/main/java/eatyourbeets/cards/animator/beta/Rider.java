@@ -18,11 +18,17 @@ public class Rider extends AnimatorCard implements MartialArtist, Spellcaster
     {
         super(DATA);
 
-        Initialize(0, 5, 3);
-        SetUpgrade(0, 1, 1);
+        Initialize(0, 6, 3);
+        SetUpgrade(0, 0, 1);
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Fate);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
     }
 
     @Override

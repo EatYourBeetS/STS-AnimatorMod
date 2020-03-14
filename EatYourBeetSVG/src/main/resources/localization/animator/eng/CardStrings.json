@@ -238,7 +238,7 @@
 	},
 	"animator:Defend_DateALive":
 	{
-		"DESCRIPTION": "If you have 25 or more cards in your current deck, add a copy of Shido Itsuka+ to your hand.",
+		"DESCRIPTION": "If you have 25 or more cards in your current deck, add a copy of Shido Itsuka to your hand.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Defend_Elsword":
@@ -633,13 +633,13 @@
 	},
 	"animator:InverseOrigami":
 	{
-		"DESCRIPTION": "When this card is drawn, if you have [E], lose [E] and Channel 1 Random Orb. || Activate your {Support Damage} and {Trigger} all your Orbs.",
+		"DESCRIPTION": "When Drawn, pay [E]: Channel 1 Random Orb. || Activate your {Support Damage} and {Trigger} all your Orbs.",
 		"NAME": "Inverse Origami",
-		"UPGRADE_DESCRIPTION": "When this card is drawn, if you have [E], lose [E] and add 1 random {Orb Core} to your hand. || Activate your {Support Damage} and {Trigger} all your Orbs."
+		"UPGRADE_DESCRIPTION": "When this card is drawn, lose [E]: Add 1 random {Orb Core} to your hand. || Activate your {Support Damage} and {Trigger} all your Orbs."
 	},
 	"animator:InverseTohka":
 	{
-		"DESCRIPTION": "When this card is drawn, if you have [E], lose [E] and deal 10 damage to all enemies. || {Reload}: attack an extra time.",
+		"DESCRIPTION": "When Drawn, pay [E]: Deal 10 damage to all enemies. || {Reload}: attack an extra time.",
 		"NAME": "Inverse Tohka"
 	},
 	"animator:IrohaTamaki":
@@ -722,9 +722,9 @@
 	},
 	"animator:KurumiTokisaki":
 	{
-		"DESCRIPTION": "When drawn: if you have [E] [E] [E], play this and lose [E] [E] [E]. || Cooldown 3: Take an extra turn after this one. Shuffle 3 copies of this card into your draw pile.",
+		"DESCRIPTION": "When drawn: automatically play this card. || Cooldown 3: Take an extra turn after this one. Shuffle 3 copies of this card into your draw pile.",
 		"NAME": "Kurumi Tokisaki",
-		"UPGRADE_DESCRIPTION": "On your next turn, gain [E] [E] [E]. || When drawn: if you have [E] [E] [E], play this and lose [E] [E] [E]. || Cooldown 3: Take an extra turn after this one. Shuffle 3 copies of this card into your draw pile."
+		"UPGRADE_DESCRIPTION": "Next turn: gain [E] [E] [E]. || When drawn: automatically play this card. || Cooldown 3: Take an extra turn after this one. Shuffle 3 copies of this card into your draw pile."
 	},
 	"animator:KyokoSakura":
 	{
@@ -892,7 +892,7 @@
 	},
 	"animator:MukuroHoshimiya":
 	{
-		"DESCRIPTION": "Gains 1 damage for each card in your draw pile. || On start of game or upon entering you draw pile, add to your draw pile sixth from the top.",
+		"DESCRIPTION": "Gains 1 damage for each card in your draw pile. || Whenever this enters your draw pile, add to your draw pile sixth from the top.",
 		"NAME": "Mukuro Hoshimiya"
 	},
 	"animator:MumenRider":
@@ -1125,9 +1125,9 @@
 	},
 	"animator:ShidoItsuka":
 	{
-		"DESCRIPTION": "Choose 1 of 2 synergic cards to put into your draw pile. || Synergy: Choose 1 of 3 cards instead.",
+		"DESCRIPTION": "Add 1 of 2 cards that would Synergize with this card to your draw pile. || Synergy: Add 1 of 3 cards instead.",
 		"NAME": "Shido Itsuka",
-		"UPGRADE_DESCRIPTION": "Choose 1 of 2 upgraded synergic cards to put into your draw pile. || Synergy: Choose 1 of 3 cards instead."
+		"UPGRADE_DESCRIPTION": "Add 1 of 2 upgraded cards that would Synergize with this card to your draw pile.  || Synergy: Add 1 of 3 cards instead."
 	},
 	"animator:Shigure":
 	{
@@ -1461,7 +1461,7 @@
 	},
 	"animator:YoshinoHimekawa":
 	{
-		"DESCRIPTION": "Channel 1 Frost. || Limited: Add 1 Orb Slot. || If you have 4 or more Frost Orbs, add a copy of Zadkiel to your discard pile, then Exhaust.",
+		"DESCRIPTION": "Channel 1 Frost. || Limited: Add 1 Orb Slot. || If you have 4 or more Frost Orbs, add Zadkiel to your discard pile, then Exhaust.",
 		"NAME": "Yoshino Himekawa"
 	},
 	"animator:YuiTsuruno":

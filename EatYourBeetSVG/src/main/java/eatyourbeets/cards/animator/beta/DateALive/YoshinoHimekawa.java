@@ -29,6 +29,13 @@ public class YoshinoHimekawa extends AnimatorCard implements Hidden
     }
 
     @Override
+    protected void OnUpgrade() {
+        super.OnUpgrade();
+
+        SetInnate(true);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ChannelOrb(new Frost(), true);

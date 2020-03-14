@@ -80,6 +80,10 @@
 	{
 		"cropPortrait": false
 	},
+	"animator:ShidoItsuka":
+	{
+		"cropPortrait": false
+	},
 	"animator:Sloth":
 	{
 		"cropPortrait": false
@@ -101,6 +105,10 @@
 		"cropPortrait": false
 	},
 	"animator:Vesta_Elixir":
+	{
+		"cropPortrait": false
+	},
+	"animator:Zadkiel":
 	{
 		"cropPortrait": false
 	}

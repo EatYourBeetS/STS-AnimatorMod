@@ -23,7 +23,7 @@ public class Zadkiel extends AnimatorCard implements Hidden
         super(DATA);
 
         Initialize(0, 4);
-        SetCostUpgrade(1);
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.DateALive);
     }

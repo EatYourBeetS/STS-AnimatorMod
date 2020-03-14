@@ -222,6 +222,12 @@
 		"NAMES": ["~retain"],
 		"PROPER_NAME": "Retain"
 	},
+	"~Haste":
+	{
+		"DESCRIPTION": "When drawn, lose #yHaste and draw 1 card.",
+		"NAMES": ["~haste"],
+		"PROPER_NAME": "Haste"
+	},
 	"~Ethereal":
 	{
 		"DESCRIPTION": "#yExhausted if in hand at the end of turn.",

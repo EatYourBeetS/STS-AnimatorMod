@@ -7,10 +7,12 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 
-public class KurumiTokisaki extends AnimatorCard implements Hidden {
+public class KurumiTokisaki extends AnimatorCard implements Hidden
+{
     public static final EYBCardData DATA = Register(KurumiTokisaki.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Ranged, EYBCardTarget.ALL);
 
-    public KurumiTokisaki() {
+    public KurumiTokisaki()
+    {
         super(DATA);
 
         Initialize(12, 12);
@@ -19,7 +21,8 @@ public class KurumiTokisaki extends AnimatorCard implements Hidden {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
     }
 }

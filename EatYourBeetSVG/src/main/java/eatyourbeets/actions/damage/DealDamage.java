@@ -58,7 +58,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         return this;
     }
 
-    public DealDamage SetOptions(boolean superFast, boolean muteSfx)
+    public DealDamage SetVFX(boolean superFast, boolean muteSfx)
     {
         this.skipWait = superFast;
         this.muteSfx = muteSfx;

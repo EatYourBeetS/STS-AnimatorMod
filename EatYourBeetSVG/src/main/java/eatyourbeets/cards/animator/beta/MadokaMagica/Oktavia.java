@@ -10,7 +10,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Oktavia extends AnimatorCard implements Spellcaster
 {
@@ -56,7 +55,7 @@ public class Oktavia extends AnimatorCard implements Spellcaster
                 for (int i = 0; i < magicNumber; i++)
                 {
                     GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
-                    .SetOptions(true, false);
+                    .SetVFX(true, false);
                 }
 
                 GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));

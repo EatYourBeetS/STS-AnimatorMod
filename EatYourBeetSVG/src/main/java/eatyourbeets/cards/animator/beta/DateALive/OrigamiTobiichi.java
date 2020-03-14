@@ -1,43 +1,47 @@
 package eatyourbeets.cards.animator.beta.DateALive;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.Excalibur;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
-public class OrigamiTobiichi extends AnimatorCard {
+public class OrigamiTobiichi extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(OrigamiTobiichi.class).SetPower(2, CardRarity.UNCOMMON);
     static
     {
         DATA.AddPreview(new InverseOrigami(), false);
     }
 
-    public OrigamiTobiichi() {
+    public OrigamiTobiichi()
+    {
         super(DATA);
 
         Initialize(0, 0, 1);
-        SetUpgrade(0,0,1);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.DateALive);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.StackPower(new OrigamiTobiichiPower(p, magicNumber, upgraded));
     }
 
-    public static class OrigamiTobiichiPower extends AnimatorPower {
+    public static class OrigamiTobiichiPower extends AnimatorPower
+    {
         private static final int SUPPORT_DAMAGE_AMOUNT = 1;
         private static final int SUPPORT_DAMAGE_LIMIT = 20;
         private final boolean upgraded;
 
-        public OrigamiTobiichiPower(AbstractPlayer owner, int amount, boolean upgraded) {
+        public OrigamiTobiichiPower(AbstractPlayer owner, int amount, boolean upgraded)
+        {
             super(owner, OrigamiTobiichi.DATA);
 
             this.amount = amount;
@@ -60,21 +64,17 @@ public class OrigamiTobiichi extends AnimatorCard {
         }
 
         @Override
-        public void atEndOfTurn(boolean isPlayer) {
+        public void atEndOfTurn(boolean isPlayer)
+        {
             if (isPlayer)
             {
                 flash();
 
-                AbstractPlayer player = AbstractDungeon.player;
-
-                int stackAmount = player.filledOrbCount()*amount;
-
+                int stackAmount = player.filledOrbCount() * amount;
                 if (stackAmount > 0)
                 {
-                    GameActions.Bottom.StackPower(new SupportDamagePower(player, player.filledOrbCount() * amount))
-                    .AddCallback(__ -> {
-                        InverseOrigamiCheck();
-                    });
+                    GameActions.Bottom.StackPower(new SupportDamagePower(player, stackAmount))
+                    .AddCallback(this::InverseOrigamiCheck);
                 }
             }
             else
@@ -85,10 +85,9 @@ public class OrigamiTobiichi extends AnimatorCard {
 
         private void InverseOrigamiCheck()
         {
-            int supportDamageCount = player.getPower(SupportDamagePower.POWER_ID).amount;
-
-            if (supportDamageCount >= 20) {
-                GameActions.Bottom.MakeCardInDrawPile(new InverseOrigami()).SetOptions(this.upgraded, false);
+            if (GameUtilities.GetPowerAmount(SupportDamagePower.POWER_ID) >= 20)
+            {
+                GameActions.Bottom.MakeCardInDrawPile(new InverseOrigami()).SetUpgrade(this.upgraded, false);
                 GameActions.Bottom.RemovePower(player, player, this);
             }
         }

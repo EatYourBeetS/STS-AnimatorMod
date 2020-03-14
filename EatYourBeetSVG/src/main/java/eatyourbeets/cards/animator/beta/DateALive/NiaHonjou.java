@@ -9,10 +9,12 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 
-public class NiaHonjou extends AnimatorCard implements Hidden {
+public class NiaHonjou extends AnimatorCard implements Hidden
+{
     public static final EYBCardData DATA = Register(NiaHonjou.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
 
-    public NiaHonjou() {
+    public NiaHonjou()
+    {
         super(DATA);
 
         Initialize(0, 0, 0);
@@ -21,7 +23,8 @@ public class NiaHonjou extends AnimatorCard implements Hidden {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         if (upgraded)
         {
             GameActions.Bottom.Motivate(2);

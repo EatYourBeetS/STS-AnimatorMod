@@ -24,14 +24,14 @@ public class KillCharacterAction extends EYBAction
         for (int i = 1; i <= 10; i ++)
         {
             GameActions.Bottom.DealDamage(source, target, i * i * i, DamageInfo.DamageType.HP_LOSS, AttackEffect.NONE)
-                    .SetOptions(true, false);
+                    .SetVFX(true, false);
 
             GameActions.Bottom.DealDamage(source, target, i * i * i, DamageInfo.DamageType.HP_LOSS, AttackEffect.NONE)
-                    .SetOptions(true, false);
+                    .SetVFX(true, false);
         }
 
         GameActions.Bottom.DealDamage(source, target, 99999, DamageInfo.DamageType.HP_LOSS, AttackEffect.NONE)
-                .SetOptions(true, false);
+                .SetVFX(true, false);
 
         GameActions.Bottom.Add(new DieAction(target));
     }

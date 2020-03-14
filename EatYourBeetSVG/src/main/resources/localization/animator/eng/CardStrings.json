@@ -136,7 +136,7 @@
 	},
 	"animator:Charlotte":
 	{
-		"DESCRIPTION": "Double the damage dealt for each Curse in hand. || Limited. If this card kills the enemy: Heal !M! HP.",
+		"DESCRIPTION": "Double the damage dealt ** for each Curse in hand. || Limited. If this ** card kills an enemy: ** Heal !M! HP.",
 		"NAME": "Charlotte"
 	},
 	"animator:ChlammyZell":
@@ -202,7 +202,7 @@
 	},
 	"animator:Curse_GriefSeed":
 	{
-		"DESCRIPTION": "At the end of turn: Take !M! Damage. || When Exhausted: Remove your rightmost {Debuff}.",
+		"DESCRIPTION": "At the end of turn: ** Take !M! Damage. || When Exhausted: ** Remove your ** rightmost {Debuff}.",
 		"NAME": "Grief Seed"
 	},
 	"animator:Curse_Dizziness":
@@ -288,7 +288,7 @@
 	},
 	"animator:Defend_MadokaMagica":
 	{
-		"DESCRIPTION": "Limited. Add a {Grief Seed} to the top of your draw pile.",
+		"DESCRIPTION": "Limited. Add a ** {Grief Seed} to the top of ** your draw pile.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_NoGameNoLife":
@@ -606,9 +606,9 @@
 	},
 	"animator:HomuraAkemi":
 	{
-		"DESCRIPTION": "Take an extra turn after this one. Add 3 random {Curses} to your discard pile. || End your turn.",
+		"DESCRIPTION": "Take an extra turn after ** this one. Add 3 random ** {Curses} to your discard ** pile. || End your turn.",
 		"NAME": "Homura Akemi",
-		"UPGRADE_DESCRIPTION": "Take an extra turn after this one. Add 3 random {Curses} to your discard pile. Boost [I] [I]. || End your turn."
+		"UPGRADE_DESCRIPTION": "Take an extra turn after ** this one. Add 3 random ** {Curses} to your discard pile. ** Boost [I] [I]. || End your turn."
 	},
 	"animator:HououinKyouma":
 	{
@@ -644,7 +644,7 @@
 	},
 	"animator:IrohaTamaki":
 	{
-		"DESCRIPTION": "If the top card of your draw pile is a Hindrance, Exhaust it. || Synergy: Scry !M!.",
+		"DESCRIPTION": "If the top card of your ** draw pile is a Hindrance, ** Exhaust it. || Synergy: Scry !M!.",
 		"NAME": "Iroha Tamaki"
 	},
 	"animator:ItamiYouji":
@@ -728,7 +728,7 @@
 	},
 	"animator:KyokoSakura":
 	{
-		"DESCRIPTION": "Cycle !M! card(s). || If you Cycled a Hindrance: Channel 1 Fire.",
+		"DESCRIPTION": "Cycle !M! card(s). || If you Cycled a Hindrance: ** Channel 1 Fire.",
 		"NAME": "Kyoko Sakura"
 	},
 	"animator:Kyubey":
@@ -781,14 +781,14 @@
 	},
 	"animator:MadokaKaname":
 	{
-		"DESCRIPTION": "Exhaust all {Hindrances} ** in discard pile. || Limited. Boost [I] for each 2 {Status} Exhausted and gain 1 Intangible for each 2 {Curses} Exhausted.",
+		"DESCRIPTION": "Exhaust all {Hindrances} ** in discard pile. || Limited. Boost [I] for each  ** 2 {Status} Exhausted and gain ** 1 Intangible for each 2 {Curse} ** Exhausted.",
 		"NAME": "Madoka Kaname",
-		"UPGRADE_DESCRIPTION": "Exhaust all {Hindrances} ** everywhere. || Limited. Boost [I] for each 2 {Status} Exhausted and gain 1 Intangible for each 2 {Curses} Exhausted."
+		"UPGRADE_DESCRIPTION": "Exhaust all {Hindrances} ** everywhere. || Limited. Boost [I] for each ** 2 {Status} Exhausted and gain ** 1 Intangible for each 2 {Curse} ** Exhausted."
 	},
-	"animator:MamiTomoe":
+	"animator:MaesHughes":
 	{
-		"DESCRIPTION": "Attacks 1 additional time for each Curse in draw or discard pile. || If you have no Curse in discard pile: Add 1 {Grief Seed} to your discard pile.",
-		"NAME": "Mami Tomoe"
+		"DESCRIPTION": "<DRW> for every !M! ** cards in your draw pile. ** Motivate 1. || When Exhausted: Draw {Roy} ** {Mustang} from any pile, it ** costs 1 less this turn.",
+		"NAME": "Maes Hughes"
 	},
 	"animator:Magilou":
 	{
@@ -800,10 +800,10 @@
 		"DESCRIPTION": "Unplayable. || When Drawn: Boost [I]. || When Discarded: Return ** this to your draw pile.",
 		"NAME": "Bienfu"
 	},
-	"animator:MaesHughes":
+	"animator:MamiTomoe":
 	{
-		"DESCRIPTION": "<DRW> for every !M! ** cards in your draw pile. ** Motivate 1. || When Exhausted: Draw {Roy} ** {Mustang} from any pile, it ** costs 1 less this turn.",
-		"NAME": "Maes Hughes"
+		"DESCRIPTION": "Attack an extra time for each ** Curse in draw or discard pile. || If you have no Curse in discard ** pile: Add 1 {Grief Seed} to your ** discard pile.",
+		"NAME": "Mami Tomoe"
 	},
 	"animator:MamizouFutatsuiwa":
 	{
@@ -903,7 +903,7 @@
 	},
 	"animator:NagisaMomoe":
 	{
-		"DESCRIPTION": "Fetch !M! random card(s) from your discard pile. || Add {Charlotte} and a {Grief Seed} to your discard pile.",
+		"DESCRIPTION": "Fetch !M! random card(s) from ** your discard pile. || Add {Charlotte} and a ** {Grief Seed} to your discard pile.",
 		"NAME": "Nagisa Momoe"
 	},
 	"animator:Nanami":
@@ -942,7 +942,7 @@
 	},
 	"animator:Oktavia":
 	{
-		"DESCRIPTION": "Add !S! random {Curses} to your hand, then draw cards equal to the total number of {Curses} in hand. || Attacks once for each Curse in hand.",
+		"DESCRIPTION": "Add !S! random {Curses} to your ** hand, then draw a card for ** each {Curse} in your hand. || Attacks once for each Curse ** in your hand.",
 		"NAME": "Oktavia"
 	},
 	"animator:OrbCore_Aether":
@@ -988,9 +988,9 @@
 	},
 	"animator:OrikoMikuni":
 	{
-		"DESCRIPTION": "Scry !M!. || Discard 1 card. Retain 1 card.",
+		"DESCRIPTION": "Scry !M!. ** Discard 1 card. ** Retain 1 card.",
 		"NAME": "Oriko Mikuni",
-		"UPGRADE_DESCRIPTION": "Scry !M!. || Retain 1 card."
+		"UPGRADE_DESCRIPTION": "Scry !M!. ** Retain 1 card."
 	},
 	"animator:Overheat":
 	{
@@ -1089,7 +1089,7 @@
 	},
 	"animator:SayakaMiki":
 	{
-		"DESCRIPTION": "Synergy: Channel 1 Frost. || Cooldown !S!: Add {Oktavia} and a {Grief Seed} to your discard pile, then Exhaust.",
+		"DESCRIPTION": "Synergy: Channel 1 Frost. || Cooldown !S!: ** Add {Oktavia} and a {Grief Seed} ** to your discard pile, then ** Exhaust.",
 		"NAME": "Sayaka Miki"
 	},
 	"animator:Scar":
@@ -1297,9 +1297,9 @@
 	},
 	"animator:SuzuneAmano":
 	{
-		"DESCRIPTION": "Exhaust a random card: Apply !M! burning.",
+		"DESCRIPTION": "Exhaust a random card: ** Apply !M! burning.",
 		"NAME": "Suzune Amano",
-		"UPGRADE_DESCRIPTION": "Exhaust a card: Apply !M! burning."
+		"UPGRADE_DESCRIPTION": "Exhaust a card: ** Apply !M! burning."
 	},
 	"animator:SwordMaiden":
 	{
@@ -1418,7 +1418,7 @@
 	},
 	"animator:Walpurgisnacht":
 	{
-		"DESCRIPTION": "Create and Add !M! random Spellcaster(s) to your hand.  They cost 0 this turn. || At the start of turn: Evoke your next Orb once for each Curse and Spellcaster in your hand.",
+		"DESCRIPTION": "Add !M! random Spellcaster(s) ** to your hand.  They cost 0 ** this turn. || At start of turn: Evoke your ** next Orb for each Curse and ** Spellcaster in your hand.",
 		"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next Orb once for each #yCurse plus each #ySpellcaster in your hand."],
 		"NAME": "Walpurgisnacht"
 	},
@@ -1440,7 +1440,7 @@
 	},
 	"animator:YachiyoNanami":
 	{
-		"DESCRIPTION": "At the start of turn, you may discard a card to gain !M! block. If you discard a Hindrance, also gain [A] [I].",
+		"DESCRIPTION": "At the start of turn, you may ** discard a card to gain !M! block. ** If you discard a Hindrance, ** also gain [A] [I].",
 		"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard up to #b{0} card(s) to gain #b{1} #yBlock each. For each #yHindrance discarded, also #yGain #b{2} #yAgility and #b{3} #yIntellect"],
 		"NAME": "Yachiyo Nanami"
 	},
@@ -1466,7 +1466,7 @@
 	},
 	"animator:YuiTsuruno":
 	{
-		"DESCRIPTION": "Discard the top card of your draw pile. If it was an {Attack}: Add a Curse to your Discard pile. Otherwise: Channel 1 Fire.",
+		"DESCRIPTION": "Discard the top card of your ** draw pile. If it was an {Attack}: ** Add a Curse to your Discard ** pile. Otherwise: Channel 1 Fire.",
 		"NAME": "Yui Tsuruno"
 	},
 	"animator:YunYun":

@@ -22,8 +22,8 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
     {
         super(DATA);
 
-        Initialize(0, 0);
-        SetUpgrade(0, 0);
+        Initialize(4, 0);
+        SetUpgrade(2, 0);
 
         if (upgraded)
         {

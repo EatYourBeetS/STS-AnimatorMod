@@ -12,13 +12,14 @@ import eatyourbeets.utilities.GameActions;
 
 public class InverseTohka extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(InverseTohka.class).SetAttack(1, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(InverseTohka.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.ALL);
 
     public InverseTohka()
     {
         super(DATA);
 
         Initialize(10, 0, 10);
+        SetScaling(1, 1, 1);
 
         SetSynergy(Synergies.DateALive);
     }

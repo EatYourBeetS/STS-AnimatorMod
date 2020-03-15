@@ -16,6 +16,7 @@ public class KurumiTokisaki extends AnimatorCard implements Hidden
         super(DATA);
 
         Initialize(12, 12);
+        SetScaling(0, 2, 0);
 
         SetSynergy(Synergies.DateALive);
     }

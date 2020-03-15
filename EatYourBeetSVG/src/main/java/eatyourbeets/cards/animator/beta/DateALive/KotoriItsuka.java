@@ -1,6 +1,8 @@
 package eatyourbeets.cards.animator.beta.DateALive;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -9,11 +11,14 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
-public class KotoriItsuka extends AnimatorCard implements Hidden
+public class KotoriItsuka extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KotoriItsuka.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Normal);
+    private static final int DISCARD_MAX = 5;
 
     public KotoriItsuka()
     {
@@ -21,6 +26,7 @@ public class KotoriItsuka extends AnimatorCard implements Hidden
 
         Initialize(5, 0, 3);
         SetUpgrade(0, 0, 1);
+        SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.DateALive);
     }
@@ -36,7 +42,23 @@ public class KotoriItsuka extends AnimatorCard implements Hidden
     {
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
+        }
+
+        if (EffectHistory.TryActivateLimited(this.cardID))
+        {
+            GameActions.Bottom.ExhaustFromHand(name, DISCARD_MAX, false)
+            .SetOptions(true, true, true)
+            .AddCallback(cards ->
+            {
+                for (AbstractCard card : cards)
+                {
+                    GameActions.Bottom.GainAgility(1, true);
+                    GameActions.Bottom.GainForce(1, true);
+                    GameActions.Bottom.GainIntellect(1, true);
+                    GameActions.Bottom.MakeCardInHand(new Burn());
+                }
+            });
         }
     }
 }

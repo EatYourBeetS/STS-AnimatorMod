@@ -25,12 +25,12 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
         Initialize(4, 0);
         SetUpgrade(2, 0);
 
-        if (upgraded)
-        {
-            SetScaling(1, 1, 0);
-        }
-
         SetSynergy(Synergies.DateALive);
+    }
+
+    @Override
+    protected void OnUpgrade() {
+        SetScaling(1, 1, 0);
     }
 
     @Override

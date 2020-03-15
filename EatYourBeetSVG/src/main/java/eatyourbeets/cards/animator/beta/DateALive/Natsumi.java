@@ -47,9 +47,7 @@ public class Natsumi extends AnimatorCard implements Spellcaster
         {
             if (cards.size() > 0)
             {
-                int powerCount = player.discardPile.getCardsOfType(CardType.POWER).size()
-                               + player.drawPile.getCardsOfType(CardType.POWER).size()
-                               + player.hand.getCardsOfType(CardType.POWER).size();
+                int powerCount = player.powers.size();
 
                 TransformCard(player, cards.get(0), powerCount >= 7);
             }

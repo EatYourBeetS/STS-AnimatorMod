@@ -238,7 +238,7 @@
 	},
 	"animator:Defend_DateALive":
 	{
-		"DESCRIPTION": "If you have 25 or more cards in your current deck, add a copy of Shido Itsuka to your hand.",
+		"DESCRIPTION": "Limited: If you have 25 or more cards in your current deck, gain [E][E].",
 		"NAME": "Improved Strike"
 	},
 	"animator:Defend_Elsword":
@@ -697,7 +697,7 @@
 	},
 	"animator:KotoriItsuka":
 	{
-		"DESCRIPTION": "Discard up to 5 cards.  Boost [F][A][I] and add 1 Burn to your hand for every 2 cards discarded.  || If you discarded 5 cards, add {Burn+} and double the [F][A][I] boosted.",
+		"DESCRIPTION": "Limited: You may exhaust up to 5 cards.  Boost [F][A][I] and add 1 Burn to your hand for each card discarded.",
 		"NAME": "Kotori Itsuka"
 	},
 	"animator:KotoriKanbe":
@@ -914,7 +914,7 @@
 	},
 	"animator:Natsumi":
 	{
-		"DESCRIPTION": "Transform a card in your hand into a random card with the same cost and upgrade level.  || If you have 7 or more Powers in your hand, discard pile, and draw pile, you may choose what card to transform into.",
+		"DESCRIPTION": "Transform a card in your hand into a card with the same cost and upgrade level.  || If you have 7 or more active effects, you may choose what card to transform into.",
 		"EXTENDED_DESCRIPTION": ["Choose a card to transform.", "Choose a card to transform into."],
 		"NAME": "Natsumi"
 	},
@@ -926,7 +926,8 @@
 	},
 	"animator:NiaHonjou":
 	{
-		"DESCRIPTION": "Whenever you play a card this turn, {Scry} 2 and gain 2 {Block}.",
+		"DESCRIPTION": "Whenever you play a card this turn, {Scry} !M! and gain !M! {Block}.",
+		"EXTENDED_DESCRIPTION": ["Whenever you play a card, #yScry #b{0} and gain #b{1} #yBlock."],
 		"NAME": "Nia Honjou",
 		"UPGRADE_DESCRIPTION": "{Motivate} 2. || Whenever you play a card this turn, {Scry} 2 and gain 2 {Block}."
 	},
@@ -1036,9 +1037,9 @@
 	},
 	"animator:ReineMurasame":
 	{
-		"DESCRIPTION": "Add X copies of Shido Itsuka into your discard pile. || Synergy: At the start of next turn, gain X [E].",
+		"DESCRIPTION": "Add X copies of Shido Itsuka with exhaust into your draw pile. || Synergy: At the start of next turn, gain X [E].",
 		"NAME": "Reine Murasame",
-		"UPGRADE_DESCRIPTION": "Add X copies of Shido Itsuka+ into your discard pile. || Synergy: At the start of next turn, gain X [E]."
+		"UPGRADE_DESCRIPTION": "Add X copies of Shido Itsuka+ with exhaust into your draw pile. || Synergy: At the start of next turn, gain X [E]."
 	},
 	"animator:Rena":
 	{
@@ -1217,7 +1218,7 @@
 	},
 	"animator:Strike_DateALive":
 	{
-		"DESCRIPTION": "If you have 25 or more cards in your current deck, draw a card.",
+		"DESCRIPTION": "Limited: If you have 25 or more cards in your current deck, draw a card.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_Elsword":
@@ -1461,7 +1462,7 @@
 	},
 	"animator:YoshinoHimekawa":
 	{
-		"DESCRIPTION": "Channel 1 Frost. || Limited: Add 1 Orb Slot. || If you have 4 or more Frost Orbs, add Zadkiel to your discard pile, then Exhaust.",
+		"DESCRIPTION": "Discard 1 random card.  Channel 1 Frost. || Limited: Add 1 Orb Slot. || If you have 4 or more Frost Orbs, add Zadkiel to your discard pile, then Exhaust.",
 		"NAME": "Yoshino Himekawa"
 	},
 	"animator:YuiTsuruno":

@@ -2,8 +2,8 @@ package eatyourbeets.cards.animator.beta.DateALive;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.EnergizedPower;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -19,7 +19,7 @@ public class ReineMurasame extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 0);
+        Initialize(0, 0);
         SetExhaust(true);
 
         SetSynergy(Synergies.DateALive);
@@ -33,7 +33,7 @@ public class ReineMurasame extends AnimatorCard
         {
             for (int i=0; i<stacks; i++)
             {
-                GameActions.Bottom.MakeCardInHand(new ShidoItsuka())
+                GameActions.Bottom.MakeCardInDrawPile(new ShidoItsuka())
                 .SetUpgrade(upgraded, true)
                 .AddCallback(card -> {
                     if (card != null)
@@ -41,6 +41,11 @@ public class ReineMurasame extends AnimatorCard
                         ((EYBCard)card).SetExhaust(true);
                     }
                 });
+            }
+
+            if (HasSynergy())
+            {
+                GameActions.Bottom.StackPower(new EnergizedPower(p, stacks));
             }
         }
     }

@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.beta.DateALive;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -15,7 +16,9 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class InverseOrigami extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(InverseOrigami.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(InverseOrigami.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None);
+
+    public static final int AUTO_ENERGY_COST = 1;
 
     public InverseOrigami()
     {
@@ -31,9 +34,14 @@ public class InverseOrigami extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.SpendEnergy(1, false)
+        GameActions.Bottom.SpendEnergy(AUTO_ENERGY_COST, false)
         .AddCallback(amount ->
         {
+            if (amount < AUTO_ENERGY_COST)
+            {
+                return;
+            }
+
             if (upgraded)
             {
                 GameActions.Bottom.MakeCardInHand(JavaUtilities.GetRandomElement(OrbCore.GetAllCores()).makeCopy());
@@ -53,6 +61,8 @@ public class InverseOrigami extends AnimatorCard
         {
             supportDamage.atEndOfTurn(true);
         }
+
+        GameActions.Bottom.VFX(new RainbowCardEffect());
 
         GameActions.Bottom.Add(new TriggerOrbPassiveAbility(p.maxOrbs, false, true));
     }

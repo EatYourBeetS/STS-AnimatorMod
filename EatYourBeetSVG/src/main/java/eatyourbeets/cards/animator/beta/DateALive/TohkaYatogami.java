@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class TohkaYatogami extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(TohkaYatogami.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(TohkaYatogami.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Normal);
     public static final int DAMAGE_AMOUNT = 10;
     static
     {

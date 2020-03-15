@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -50,6 +51,8 @@ public class MadokaKaname extends AnimatorCard
             GameActions.Bottom.GainIntellect(StatusCount / 2, true);
             GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, CurseCount / 2)).SkipIfZero(true);
         }
+
+        GameActions.Bottom.VFX(new RainbowCardEffect());
     }
 
     private void MoveHindranceUpdateCounts(CardGroup source, CardGroup destination)

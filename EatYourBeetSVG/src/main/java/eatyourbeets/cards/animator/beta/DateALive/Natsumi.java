@@ -11,7 +11,9 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.RandomizedList;
 
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.UUID;
@@ -20,13 +22,15 @@ public class Natsumi extends AnimatorCard implements Spellcaster
 {
     public static final EYBCardData DATA = Register(Natsumi.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
-    private static Dictionary<Integer, CardGroup> cardPool;
+    private static final int NUM_CHOICES = 7;
+    private static Dictionary<Integer, ArrayList<AbstractCard>> cardPool;
 
     public Natsumi()
     {
         super(DATA);
 
         Initialize(0, 0);
+        SetExhaust(true);
 
         SetSynergy(Synergies.DateALive);
     }
@@ -34,7 +38,7 @@ public class Natsumi extends AnimatorCard implements Spellcaster
     @Override
     protected void OnUpgrade()
     {
-        SetInnate(true);
+        SetExhaust(false);
     }
 
     @Override
@@ -47,14 +51,12 @@ public class Natsumi extends AnimatorCard implements Spellcaster
         {
             if (cards.size() > 0)
             {
-                int powerCount = player.powers.size();
-
-                TransformCard(player, cards.get(0), powerCount >= 7);
+                TransformCard(player, cards.get(0), NUM_CHOICES);
             }
         });
     }
 
-    private void TransformCard(AbstractPlayer player, AbstractCard oldCard, boolean isRandom)
+    private void TransformCard(AbstractPlayer player, AbstractCard oldCard, int numOptions)
     {
         int cost = oldCard.cost;
 
@@ -63,29 +65,34 @@ public class Natsumi extends AnimatorCard implements Spellcaster
             GenerateCardPool();
         }
 
-        CardGroup currentGroup = cardPool.get(cost);
-        if (currentGroup == null || currentGroup.isEmpty())
+        if (cardPool.get(cost) == null)
         {
             return;
         }
 
-        if (isRandom)
+        RandomizedList<AbstractCard> randomizedOptions = new RandomizedList<AbstractCard>(cardPool.get(cost));
+        CardGroup options = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+
+        for (int i=0; i<numOptions; i++)
         {
-            GameActions.Bottom.ReplaceCard(oldCard.uuid, currentGroup.getRandomCard(true).makeCopy()).SetUpgrade(upgraded);
-        }
-        else
-        {
-            GameActions.Bottom.SelectFromPile(name, 1, currentGroup)
-            .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])
-            .SetOptions(false, false)
-            .AddCallback(oldCard.uuid, (uuid, cards) ->
+            if (randomizedOptions.Size() <= 0)
             {
-                if (cards.size() > 0)
-                {
-                    GameActions.Bottom.ReplaceCard((UUID)uuid, cards.get(0).makeCopy()).SetUpgrade(upgraded);
-                }
-            });
+                break;
+            }
+
+            options.addToTop(randomizedOptions.Retrieve(rng, true));
         }
+
+        GameActions.Bottom.SelectFromPile(name, 1, options)
+        .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])
+        .SetOptions(false, false)
+        .AddCallback(oldCard.uuid, (uuid, cards) ->
+        {
+            if (cards.size() > 0)
+            {
+                GameActions.Bottom.ReplaceCard((UUID)uuid, cards.get(0).makeCopy()).SetUpgrade(upgraded);
+            }
+        });
     }
 
     private static void GenerateCardPool()
@@ -105,13 +112,13 @@ public class Natsumi extends AnimatorCard implements Spellcaster
 
     private static void AddCardToPoolByCost(AbstractCard card)
     {
-        CardGroup group = cardPool.get(card.cost);
-        if (group == null)
+        ArrayList<AbstractCard> currentCost = cardPool.get(card.cost);
+        if (currentCost == null)
         {
-            group = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-            cardPool.put(card.cost, group);
+            currentCost = new ArrayList<AbstractCard>();
+            cardPool.put(card.cost, currentCost);
         }
 
-        group.addToTop(card);
+        currentCost.add(card);
     }
 }

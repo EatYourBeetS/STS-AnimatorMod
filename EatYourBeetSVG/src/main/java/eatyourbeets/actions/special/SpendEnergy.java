@@ -22,8 +22,8 @@ public class SpendEnergy extends EYBActionWithCallback<Integer>
         int energy = EnergyPanel.getCurrentEnergy();
         if (energy >= amount || canSpendLess)
         {
-            player.loseEnergy(energy);
-            Complete(energy);
+            player.loseEnergy(amount);
+            Complete(amount);
         }
         else
         {

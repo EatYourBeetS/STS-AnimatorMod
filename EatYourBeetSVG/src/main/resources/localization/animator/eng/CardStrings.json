@@ -635,7 +635,7 @@
 	{
 		"DESCRIPTION": "When Drawn, pay [E]: Channel 1 Random Orb. || Activate your {Support Damage} and {Trigger} all your Orbs.",
 		"NAME": "Inverse Origami",
-		"UPGRADE_DESCRIPTION": "When this card is drawn, lose [E]: Add 1 random {Orb Core} to your hand. || Activate your {Support Damage} and {Trigger} all your Orbs."
+		"UPGRADE_DESCRIPTION": "When Drawn, pay [E]: Add 1 random {Orb Core} to your hand. || Activate your {Support Damage} and {Trigger} all your Orbs."
 	},
 	"animator:InverseTohka":
 	{
@@ -722,9 +722,9 @@
 	},
 	"animator:KurumiTokisaki":
 	{
-		"DESCRIPTION": "When drawn: automatically play this card. || Cooldown 3: Take an extra turn after this one. Shuffle 3 copies of this card into your draw pile.",
+		"DESCRIPTION": "When drawn: automatically play this card. || Cooldown !S!: Take an extra turn after this one. Shuffle 3 copies of this card into your draw pile.",
 		"NAME": "Kurumi Tokisaki",
-		"UPGRADE_DESCRIPTION": "Next turn: gain [E] [E] [E]. || When drawn: automatically play this card. || Cooldown 3: Take an extra turn after this one. Shuffle 3 copies of this card into your draw pile."
+		"UPGRADE_DESCRIPTION": "Next turn: gain [E] [E] [E]. || When drawn: automatically play this card. || Cooldown !S!: Take an extra turn after this one. Shuffle 3 copies of this card into your draw pile."
 	},
 	"animator:KyokoSakura":
 	{
@@ -865,9 +865,9 @@
 	},
 	"animator:MioTakamiya":
 	{
-		"DESCRIPTION": "At the start of the game, add five copies of Shido Itsuka into your draw pile. || Return all copies of Shido Itsuka from your exhaust pile to your hand.",
+		"DESCRIPTION": "At the start of combat: Shuffle three copies of Shido Itsuka into your draw pile. || Return all copies of Shido Itsuka from everywhere to your hand.  They cost 0 this turn.",
 		"NAME": "Mio Takamiya",
-		"UPGRADE_DESCRIPTION": "At the start of the game, add five copies of Shido Itsuka+ into your draw pile. || Return all copies of Shido Itsuka from your exhaust pile to your hand."
+		"UPGRADE_DESCRIPTION": "At the start of combat: Shuffle three copies of Shido Itsuka+ into your draw pile. || Return all copies of Shido Itsuka from everywhere to your hand.  They cost 0 this turn."
 	},
 	"animator:MisaKurobane":
 	{
@@ -914,7 +914,7 @@
 	},
 	"animator:Natsumi":
 	{
-		"DESCRIPTION": "Transform a card in your hand into a card with the same cost and upgrade level.  || If you have 7 or more active effects, you may choose what card to transform into.",
+		"DESCRIPTION": "Transform a card in your hand into 1 of 7 cards with the same cost and upgrade level.",
 		"EXTENDED_DESCRIPTION": ["Choose a card to transform.", "Choose a card to transform into."],
 		"NAME": "Natsumi"
 	},
@@ -1037,9 +1037,9 @@
 	},
 	"animator:ReineMurasame":
 	{
-		"DESCRIPTION": "Add X copies of Shido Itsuka with exhaust into your draw pile. || Synergy: At the start of next turn, gain X [E].",
+		"DESCRIPTION": "Add X copies of Shido Itsuka with exhaust into your draw pile. || Synergy: Next turn, gain X [E].",
 		"NAME": "Reine Murasame",
-		"UPGRADE_DESCRIPTION": "Add X copies of Shido Itsuka+ with exhaust into your draw pile. || Synergy: At the start of next turn, gain X [E]."
+		"UPGRADE_DESCRIPTION": "Add X copies of Shido Itsuka+ with exhaust into your draw pile. || Synergy: Next turn, gain X [E]."
 	},
 	"animator:Rena":
 	{
@@ -1462,8 +1462,9 @@
 	},
 	"animator:YoshinoHimekawa":
 	{
-		"DESCRIPTION": "Discard 1 random card.  Channel 1 Frost. || Limited: Add 1 Orb Slot. || If you have 4 or more Frost Orbs, add Zadkiel to your discard pile, then Exhaust.",
-		"NAME": "Yoshino Himekawa"
+		"DESCRIPTION": "Discard 1 random card.  If you have 4 or more Frost Orbs, add 1 Zadkiel to your hand.  Otherwise, Channel 1 Frost. || Limited: Add 1 Orb Slot.",
+		"NAME": "Yoshino Himekawa",
+		"UPGRADE_DESCRIPTION": "Discard 1 random card.  If you have 4 or more Frost Orbs, add 1 Zadkiel+ to your hand.  Otherwise, Channel 1 Frost. || Limited: Add 1 Orb Slot."
 	},
 	"animator:YuiTsuruno":
 	{
@@ -1487,7 +1488,7 @@
 	},
 	"animator:Zadkiel":
 	{
-		"DESCRIPTION": "When Exhausted: Evoke all Orbs you have. || If 4+ Frost Orbs were evoked this way, return 1 Yoshino Himekawa from your exhaust pile to your draw pile.",
+		"DESCRIPTION": "When Exhausted: Evoke ALL Orbs. || If 4 or more Frost Orbs were evoked this way, deal Elemental damage equal to your block to each enemy.",
 		"NAME": "Zadkiel"
 	},
 	"animator:ZankiKiguchi":

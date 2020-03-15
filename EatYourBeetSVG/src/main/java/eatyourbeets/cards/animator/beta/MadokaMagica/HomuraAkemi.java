@@ -4,16 +4,15 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.actions.watcher.SkipEnemiesTurnAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class HomuraAkemi extends AnimatorCard
 {
@@ -32,7 +31,9 @@ public class HomuraAkemi extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.VFX(new WhirlwindEffect(new Color(0.2F, 0.0F, 0.2F, 1.0F), true));
+        GameActions.Bottom.SFX("POWER_TIME_WARP", 0.05F);
+        GameActions.Bottom.VFX(new TimeWarpTurnEndEffect());
+        GameActions.Bottom.VFX(new BorderFlashEffect(Color.VIOLET, true));
         GameActions.Bottom.Add(new SkipEnemiesTurnAction());
 
         GameActions.Bottom.Add(new CreateRandomCurses(3, p.discardPile));
@@ -43,5 +44,6 @@ public class HomuraAkemi extends AnimatorCard
         }
 
         GameActions.Bottom.Add(new PressEndTurnButtonAction());
+
     }
 }

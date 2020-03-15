@@ -46,8 +46,8 @@ public class YamaiSisters extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
         for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
         {

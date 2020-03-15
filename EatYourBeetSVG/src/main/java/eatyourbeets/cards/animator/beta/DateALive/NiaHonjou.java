@@ -29,7 +29,7 @@ public class NiaHonjou extends AnimatorCard
 
     @Override
     protected void OnUpgrade() {
-        SetRetain(true);
+        SetHaste(true);
     }
 
     @Override

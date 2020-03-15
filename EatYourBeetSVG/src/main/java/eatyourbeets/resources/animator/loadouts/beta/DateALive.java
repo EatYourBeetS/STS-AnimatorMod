@@ -44,7 +44,6 @@ public class DateALive extends AnimatorLoadout {
 
     @Override
     public EYBCardData GetUltraRare() {
-        //Mio Takamiya
-        return null;
+        return MioTakamiya.DATA;
     }
 }

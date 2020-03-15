@@ -11,11 +11,13 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class KurumiTokisaki extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KurumiTokisaki.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Ranged, EYBCardTarget.ALL);
+    public static final int ATTACK_MULTIPLIER = 2;
 
     public KurumiTokisaki()
     {
@@ -29,16 +31,29 @@ public class KurumiTokisaki extends AnimatorCard
     }
 
     @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(ATTACK_MULTIPLIER);
+    }
+
+    @Override
     public void triggerWhenDrawn() {
         super.triggerWhenDrawn();
 
+        int energy = EnergyPanel.getCurrentEnergy();
+
+        if (energy < cost)
+        {
+            return;
+        }
+
         GameActions.Bottom.Callback(__ ->
         {
-            int energy = EnergyPanel.getCurrentEnergy();
+            int energyOnUse = EnergyPanel.getCurrentEnergy();
 
-            if (energy >= costForTurn)
+            if (energyOnUse >= cost)
             {
-                GameActions.Bottom.SpendEnergy(costForTurn, false);
+                GameActions.Bottom.SpendEnergy(cost, false);
                 GameActions.Bottom.PlayCard(this, null);
             }
         });
@@ -49,7 +64,11 @@ public class KurumiTokisaki extends AnimatorCard
     {
         GameActions.Bottom.SFX("ATTACK_HEAVY");
         GameActions.Bottom.VFX(new DieDieDieEffect());
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
+
+        for (int i=0; i<ATTACK_MULTIPLIER; i++)
+        {
+            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
+        }
         GameActions.Bottom.GainBlock(block);
 
         if (upgraded)

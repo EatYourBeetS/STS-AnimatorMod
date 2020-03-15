@@ -36,6 +36,7 @@ public class YoshinoHimekawa extends AnimatorCard implements Hidden
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DiscardFromHand(name, 1, true);
         GameActions.Bottom.ChannelOrb(new Frost(), true);
     }

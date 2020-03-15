@@ -25,7 +25,7 @@ public class ShidoItsuka extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 5);
         SetEthereal(true);
 
         SetSynergy(Synergies.DateALive);
@@ -34,6 +34,8 @@ public class ShidoItsuka extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(block);
+
         int numOptions = 2;
 
         if (HasSynergy())

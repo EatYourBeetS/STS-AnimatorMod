@@ -702,7 +702,7 @@
 	},
 	"animator:KotoriKanbe":
 	{
-		"DESCRIPTION": "At the start of combat: Put ** this card in your discard pile. || Removes all Artifact on the ** target and apply !M! Weak.  ** Heal the target for 35 HP.",
+		"DESCRIPTION": "At the start of combat: PuInt ** this card in your discard pile. || Removes all Artifact on the ** target and apply !M! Weak.  ** Heal the target for 35 HP.",
 		"NAME": "Kotori Kanbe"
 	},
 	"animator:KrulTepes":

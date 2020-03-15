@@ -23,7 +23,6 @@ public class NiaHonjou extends AnimatorCard
         super(DATA);
 
         Initialize(0, 2, 2);
-        SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.DateALive);
     }
@@ -31,6 +30,8 @@ public class NiaHonjou extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(block);
+
         if (upgraded)
         {
             GameActions.Bottom.Motivate(1);

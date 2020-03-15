@@ -19,7 +19,7 @@ public class InverseTohka extends AnimatorCard
         super(DATA);
 
         Initialize(10, 0, 10);
-        SetScaling(1, 1, 1);
+        SetScaling(2, 0, 2);
 
         SetSynergy(Synergies.DateALive);
     }

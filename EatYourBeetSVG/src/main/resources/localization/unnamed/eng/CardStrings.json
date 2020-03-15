@@ -82,11 +82,6 @@
 		"DESCRIPTION": "Gain !M! Temp._HP. NL Purge a card in NL your Void.",
 		"NAME": "Shine"
 	},
-	"unnamed:SoulTap":
-	{
-		"DESCRIPTION": "It does something.",
-		"NAME": "Soul Tap"
-	},
 	"unnamed:SoundWave":
 	{
 		"DESCRIPTION": "Echo. NL Deal !D! damage.",
@@ -116,5 +111,15 @@
 	{
 		"DESCRIPTION": "Draw !M! additional cards each turn. Whenever you take damage, reduce this power by 1.",
 		"NAME": "Visions"
+	},
+	"unnamed:colorless:Finesse":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL If your draw pile is not empty, draw 1 card.",
+		"NAME": "Finesse"
+	},
+	"unnamed:colorless:FlashOfSteel":
+	{
+		"DESCRIPTION": "Deal !B! Damage. NL If your draw pile is not empty, draw 1 card.",
+		"NAME": "Flash of Steel"
 	}
 }

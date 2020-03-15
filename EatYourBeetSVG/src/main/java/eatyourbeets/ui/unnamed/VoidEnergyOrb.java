@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.resources.GR;
 import eatyourbeets.resources.unnamed.UnnamedResources;
+import eatyourbeets.resources.unnamed.UnnamedStrings;
 import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +29,7 @@ public class VoidEnergyOrb
     private static final Texture Orb_FG = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_FG.png");
     private static final Texture Orb_VFX1 = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_VFX1.png");
     private static final Texture Orb_VFX2 = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_VFX2.png");
-    private static final UIStrings uiStrings = GR.Unnamed.Strings.EnergyPanel;
+    private static final UIStrings uiStrings = UnnamedStrings.EnergyPanel;
 
     private final Hitbox hb = new Hitbox(128.0F * Settings.scale, 248.0F * Settings.scale, 147.2F * Settings.scale, 147.2F * Settings.scale);
     private final Void source;

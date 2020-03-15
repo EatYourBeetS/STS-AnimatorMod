@@ -8,11 +8,11 @@ import eatyourbeets.utilities.GameActions;
 
 public class Defend extends UnnamedCard
 {
-    public static final EYBCardData DATA = Register(Defend.class).SetSkill(1, CardRarity.BASIC);
+    public static final EYBCardData DATA = Register(Defend.class);
 
     public Defend()
     {
-        super(DATA);
+        super(DATA.ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
 
         Initialize(0, 6);
 

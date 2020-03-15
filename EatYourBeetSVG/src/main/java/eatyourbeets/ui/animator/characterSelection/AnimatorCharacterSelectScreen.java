@@ -80,10 +80,10 @@ public class AnimatorCharacterSelectScreen
                         LoadoutRenderer.Refresh(selectScreen, o);
                     }
                 }
-//                else if (o.c.chosenClass == GR.Enums.Characters.THE_UNNAMED)
-//                {
-//                    selectScreen.confirmButton.isDisabled = true;
-//                }
+                else if (o.c.chosenClass == GR.Enums.Characters.THE_UNNAMED)
+                {
+                    selectScreen.confirmButton.isDisabled = true;
+                }
 
                 return;
             }

@@ -7,11 +7,11 @@ import eatyourbeets.cards.base.UnnamedCard;
 
 public class Strike extends UnnamedCard
 {
-    public static final EYBCardData DATA = Register(Strike.class).SetAttack(1, CardRarity.BASIC);
+    public static final EYBCardData DATA = Register(Strike.class);
 
     public Strike()
     {
-        super(DATA);
+        super(DATA.ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
 
         Initialize(6,0);
 

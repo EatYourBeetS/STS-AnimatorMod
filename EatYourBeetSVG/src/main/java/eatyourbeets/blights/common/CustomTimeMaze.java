@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.BlightStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.special.EndPlayerTurnAction;
+import eatyourbeets.actions.special.EndPlayerTurn;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
@@ -33,7 +33,7 @@ public class CustomTimeMaze extends AbstractBlight
             ++this.counter;
             if (this.counter >= maxCardsPerTurn)
             {
-                GameActions.Bottom.Add(new EndPlayerTurnAction());
+                GameActions.Bottom.Add(new EndPlayerTurn());
 
                 this.flash();
             }

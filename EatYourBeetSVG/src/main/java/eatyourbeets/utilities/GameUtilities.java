@@ -298,7 +298,26 @@ public class GameUtilities
                 return AbstractDungeon.uncommonCardPool;
             case RARE:
                 return AbstractDungeon.rareCardPool;
+            default:
+                return null;
+        }
+    }
 
+    public static CardGroup GetCardPoolSource(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
+    {
+        if (color == AbstractCard.CardColor.COLORLESS)
+        {
+            return AbstractDungeon.srcColorlessCardPool;
+        }
+
+        switch (rarity)
+        {
+            case COMMON:
+                return AbstractDungeon.srcCommonCardPool;
+            case UNCOMMON:
+                return AbstractDungeon.srcUncommonCardPool;
+            case RARE:
+                return AbstractDungeon.srcRareCardPool;
             default:
                 return null;
         }
@@ -659,27 +678,6 @@ public class GameUtilities
         }
 
         return 0;
-    }
-
-    public static CardGroup GetSourceCardPool(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
-    {
-        if (color == AbstractCard.CardColor.COLORLESS)
-        {
-            return AbstractDungeon.colorlessCardPool;
-        }
-
-        switch (rarity)
-        {
-            case COMMON:
-                return AbstractDungeon.srcCommonCardPool;
-            case UNCOMMON:
-                return AbstractDungeon.srcUncommonCardPool;
-            case RARE:
-                return AbstractDungeon.srcRareCardPool;
-
-            default:
-                return null;
-        }
     }
 
     public static int GetStrength()

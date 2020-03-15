@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
@@ -35,8 +36,8 @@ public abstract class EYBCard extends EYBCardBase
     public float forceScaling = 0;
     public float intellectScaling = 0;
     public float agilityScaling = 0;
+    public boolean haste;
 
-    protected boolean haste;
     protected boolean isMultiUpgrade;
     protected int upgrade_damage;
     protected int upgrade_magicNumber;
@@ -191,9 +192,7 @@ public abstract class EYBCard extends EYBCardBase
 
         if (haste)
         {
-            GameActions.Bottom.Draw(1);
-            GameActions.Bottom.Flash(this);
-            haste = false;
+            GameActions.Bottom.Add(new HasteAction(this));
         }
     }
 

@@ -18,7 +18,6 @@ import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
-import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.monsters.AbstractMonsterData;
 import eatyourbeets.monsters.AnimatorMonster;
@@ -90,8 +89,7 @@ public class TheUnnamed extends AnimatorMonster
         {
             AbstractDungeon.getCurrRoom().cannotLose = true;
 
-            GameEffects.List.Add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY,
-                    1.2f, data.strings.DIALOG[28], this.isPlayer));
+            GameEffects.List.Talk(this, data.strings.DIALOG[28], 1.2f);
 
             ChangeOverlayColor(new Color(1f, 1f, 1f, 0.3f));
 
@@ -103,7 +101,7 @@ public class TheUnnamed extends AnimatorMonster
 
             RemoveMinions();
 
-            AbstractDungeon.effectsQueue.add(new VictoryEffect());
+            GameEffects.Queue.Add(new VictoryEffect());
         }
     }
 
@@ -118,10 +116,9 @@ public class TheUnnamed extends AnimatorMonster
             return;
         }
 
-        GameEffects.List.Add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY,
-        3f, data.strings.DIALOG[30], this.isPlayer));
+        GameEffects.List.Talk(this, data.strings.DIALOG[30]);
 
-        //AbstractDungeon.aiRng.setCounter(AbstractDungeon.aiRng.counter + MathUtils.random(100));
+//      AbstractDungeon.aiRng.setCounter(AbstractDungeon.aiRng.counter + MathUtils.random(100));
 
         super.usePreBattleAction();
 
@@ -130,7 +127,7 @@ public class TheUnnamed extends AnimatorMonster
 
         if (AbstractDungeon.player.maxHealth > 400)
         {
-            GameActions.Bottom.Talk(this, data.strings.DIALOG[1], 4, 4);
+            GameActions.Bottom.Talk(this, data.strings.DIALOG[1], 3, 4);
             moveFading.fadingTurns = 3;
             moveFading.ExecuteInternal(AbstractDungeon.player);
         }
@@ -194,12 +191,6 @@ public class TheUnnamed extends AnimatorMonster
     @Override
     public void damage(DamageInfo info)
     {
-//        Now handled by InfinitePower
-//        if (info.output > 100)
-//        {
-//            info.output = 100;
-//        }
-
         super.damage(info);
 
         if (this.currentHealth <= 400)

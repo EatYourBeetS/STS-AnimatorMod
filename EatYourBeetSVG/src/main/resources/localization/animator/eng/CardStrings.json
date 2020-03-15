@@ -538,7 +538,7 @@
 	},
 	"animator:Hibiki":
 	{
-		"DESCRIPTION": "Increase this card's ** hit count by !S! ** this combat.",
+		"DESCRIPTION": "Increase this card's ** number of hits by ** !S! this combat.",
 		"NAME": "Hibiki"
 	},
 	"animator:HigakiRinne":
@@ -549,7 +549,7 @@
 	},
 	"animator:HighElfArcher":
 	{
-		"DESCRIPTION": "If you have !M! or ** less [A]: Gain [A]. || <slm>. Synergy: ** <DRW>.",
+		"DESCRIPTION": "If you have !M! or ** less [A]: Gain [A]. || On Synergy: This ** card gains {~Haste}.",
 		"NAME": "High Elf Archer"
 	},
 	"animator:HiiragiShinya":
@@ -867,12 +867,12 @@
 	},
 	"animator:PandorasActor":
 	{
-		"DESCRIPTION": "At the start of each ** combat, automatically ** play this card.",
+		"DESCRIPTION": "At the start of combat: ** Play this card and ** refund the Energy spent.",
 		"NAME": "Pandora's Actor"
 	},
 	"animator:Patchouli":
 	{
-		"DESCRIPTION": "Attack 1 additional time for each unique Orb Channeled this combat. || <LIM>. At the start of combat, add a random {Orb Core} to your discard pile.",
+		"DESCRIPTION": "Attack 1 additional time ** for each unique Orb ** Channeled this combat. || <LIM>. At the start of ** combat, add a random {Orb} ** {Core} to your discard pile.",
 		"NAME": "Patchouli"
 	},
 	"animator:PinaCoLada":

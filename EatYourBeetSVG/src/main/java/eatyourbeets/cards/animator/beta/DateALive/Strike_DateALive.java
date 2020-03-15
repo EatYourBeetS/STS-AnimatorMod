@@ -9,10 +9,12 @@ import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Strike_DateALive extends Strike {
+public class Strike_DateALive extends Strike
+{
     public static final String ID = Register(Strike_DateALive.class).ID;
 
-    public Strike_DateALive() {
+    public Strike_DateALive()
+    {
         super(ID, 1, CardTarget.ENEMY);
 
         Initialize(6, 0);
@@ -22,7 +24,8 @@ public class Strike_DateALive extends Strike {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
         if (GameUtilities.GetCurrentDeckSize(p) >= 30 && EffectHistory.TryActivateLimited(cardID))

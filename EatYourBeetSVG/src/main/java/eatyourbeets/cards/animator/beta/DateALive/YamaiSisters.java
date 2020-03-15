@@ -10,7 +10,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class YamaiSisters extends AnimatorCard
 {
@@ -49,13 +48,7 @@ public class YamaiSisters extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
-        if (this.canUpgrade())
-        {
-            this.upgrade();
-            this.flash();
-        }
-
-        for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
+        for (AbstractCard c : p.hand.group)
         {
             if (c.cardID.equals(YamaiSisters.DATA.ID) && c.canUpgrade())
             {

@@ -1,18 +1,20 @@
 package eatyourbeets.cards.animator.beta.DateALive;
 
-import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.defect.EvokeAllOrbsAction;
+import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
-import eatyourbeets.actions.animator.ZadkielAction;
+import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class Zadkiel extends AnimatorCard
 {
@@ -40,26 +42,18 @@ public class Zadkiel extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        int numFrost = 0;
+        GameActions.Bottom.Add(new EvokeAllOrbsAction());
 
-        for(int i = 0; i < AbstractDungeon.player.orbs.size(); i++)
+        int frostCount = JavaUtilities.Count(player.orbs, orb -> Frost.ORB_ID.equals(orb.ID));
+        if (frostCount >= 4)
         {
-            AbstractOrb currentOrb = AbstractDungeon.player.orbs.get(0);
-
-            if (currentOrb != null)
+            GameActions.Bottom.Callback(__ ->
             {
-                if (Frost.ORB_ID.equals(currentOrb.ID))
-                {
-                    numFrost++;
-                }
-
-                this.addToTop(new EvokeOrbAction(1));
-            }
-        }
-
-        if (numFrost >= 4)
-        {
-            GameActions.Bottom.Add(new ZadkielAction());
+                int[] damageMatrix = DamageInfo.createDamageMatrix(player.currentBlock);
+                GameActions.Bottom.VFX(new WhirlwindEffect());
+                GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+                GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
+            });
         }
     }
 }

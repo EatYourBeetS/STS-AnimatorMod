@@ -31,7 +31,8 @@ public class KotoriItsuka extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade() {
+    protected void OnUpgrade()
+    {
         SetScaling(0, 0, 2);
     }
 

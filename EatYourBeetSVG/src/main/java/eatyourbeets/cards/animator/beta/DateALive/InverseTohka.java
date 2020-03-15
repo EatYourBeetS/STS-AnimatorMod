@@ -14,7 +14,6 @@ import eatyourbeets.utilities.GameActions;
 public class InverseTohka extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(InverseTohka.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.ALL);
-
     public static final int AUTO_ENERGY_COST = 1;
 
     public InverseTohka()
@@ -41,16 +40,9 @@ public class InverseTohka extends AnimatorCard
         GameActions.Bottom.SpendEnergy(AUTO_ENERGY_COST, false)
         .AddCallback(amount ->
         {
-            if (amount < AUTO_ENERGY_COST)
-            {
-                return;
-            }
-
             int[] damageMatrix = DamageInfo.createDamageMatrix(magicNumber, true);
             GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE)
-            .SetDamageEffect((enemy, __) -> {
-                GameActions.Bottom.VFX(new DarkOrbActivateEffect(enemy.hb_x, enemy.hb_y));
-            });
+            .SetDamageEffect((enemy, __) -> GameActions.Bottom.VFX(new DarkOrbActivateEffect(enemy.hb_x, enemy.hb_y)));
 
             GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
         });

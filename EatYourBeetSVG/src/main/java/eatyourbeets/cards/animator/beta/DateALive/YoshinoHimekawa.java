@@ -1,9 +1,7 @@
 package eatyourbeets.cards.animator.beta.DateALive;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -11,6 +9,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class YoshinoHimekawa extends AnimatorCard
 {
@@ -27,11 +26,13 @@ public class YoshinoHimekawa extends AnimatorCard
         Initialize(0, 4);
         SetEthereal(true);
 
+        SetEvokeOrbCount(1);
         SetSynergy(Synergies.DateALive);
     }
 
     @Override
-    protected void OnUpgrade() {
+    protected void OnUpgrade()
+    {
         SetEthereal(false);
     }
 
@@ -41,7 +42,8 @@ public class YoshinoHimekawa extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DiscardFromHand(name, 1, true);
 
-        if (GetFrostOrbCount() >= 4)
+        int frostCount = JavaUtilities.Count(player.orbs, orb -> Frost.ORB_ID.equals(orb.ID));
+        if (frostCount >= 4)
         {
             GameActions.Bottom.MakeCardInHand(new Zadkiel()).SetUpgrade(upgraded, false);
         }
@@ -54,20 +56,5 @@ public class YoshinoHimekawa extends AnimatorCard
         {
             GameActions.Bottom.GainOrbSlots(1);
         }
-    }
-
-    private int GetFrostOrbCount()
-    {
-        int count = 0;
-
-        for (AbstractOrb orb : AbstractDungeon.player.orbs)
-        {
-            if (orb != null && Frost.ORB_ID.equals(orb.ID))
-            {
-                count++;
-            }
-        }
-
-        return count;
     }
 }

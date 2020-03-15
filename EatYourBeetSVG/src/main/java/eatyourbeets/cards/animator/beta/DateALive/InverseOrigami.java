@@ -18,8 +18,6 @@ public class InverseOrigami extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(InverseOrigami.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None);
 
-    public static final int AUTO_ENERGY_COST = 1;
-
     public InverseOrigami()
     {
         super(DATA);
@@ -34,14 +32,9 @@ public class InverseOrigami extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.SpendEnergy(AUTO_ENERGY_COST, false)
-        .AddCallback(amount ->
+        GameActions.Bottom.SpendEnergy(1, false)
+        .AddCallback(__ ->
         {
-            if (amount < AUTO_ENERGY_COST)
-            {
-                return;
-            }
-
             if (upgraded)
             {
                 GameActions.Bottom.MakeCardInHand(JavaUtilities.GetRandomElement(OrbCore.GetAllCores()).makeCopy());
@@ -50,6 +43,8 @@ public class InverseOrigami extends AnimatorCard
             {
                 GameActions.Bottom.ChannelRandomOrb(true);
             }
+
+            GameActions.Bottom.Flash(this);
         });
     }
 
@@ -63,7 +58,6 @@ public class InverseOrigami extends AnimatorCard
         }
 
         GameActions.Bottom.VFX(new RainbowCardEffect());
-
         GameActions.Bottom.Add(new TriggerOrbPassiveAbility(p.maxOrbs, false, true));
     }
 }

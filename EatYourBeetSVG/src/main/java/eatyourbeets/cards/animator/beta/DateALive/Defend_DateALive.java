@@ -8,7 +8,8 @@ import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Defend_DateALive extends Defend {
+public class Defend_DateALive extends Defend
+{
     public static final String ID = Register(Defend_DateALive.class).ID;
 
     public Defend_DateALive()

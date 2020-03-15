@@ -32,7 +32,8 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
     }
 
     @Override
-    protected void OnUpgrade() {
+    protected void OnUpgrade()
+    {
         SetScaling(2, 2, 0);
     }
 
@@ -67,9 +68,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(enemy -> AbstractDungeon.effectsQueue.add(new SmallLaser2Effect
-        (AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY,
-                enemy.hb.cX + MathUtils.random(-0.05F, 0.05F),
-                enemy.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PURPLE)));
+        .SetDamageEffect(enemy -> AbstractDungeon.effectsQueue.add(new SmallLaser2Effect(player.hb.cX, player.hb.cY,
+    enemy.hb.cX + MathUtils.random(-0.05F, 0.05F), enemy.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PURPLE)));
     }
 }

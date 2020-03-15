@@ -73,7 +73,7 @@ public class Natsumi extends AnimatorCard implements Spellcaster
         RandomizedList<AbstractCard> randomizedOptions = new RandomizedList<AbstractCard>(cardPool.get(cost));
         CardGroup options = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
 
-        for (int i=0; i<numOptions; i++)
+        for (int i = 0; i < numOptions; i++)
         {
             if (randomizedOptions.Size() <= 0)
             {
@@ -90,7 +90,7 @@ public class Natsumi extends AnimatorCard implements Spellcaster
         {
             if (cards.size() > 0)
             {
-                GameActions.Bottom.ReplaceCard((UUID)uuid, cards.get(0).makeCopy()).SetUpgrade(upgraded);
+                GameActions.Bottom.ReplaceCard((UUID) uuid, cards.get(0).makeCopy()).SetUpgrade(upgraded);
             }
         });
     }
@@ -115,7 +115,7 @@ public class Natsumi extends AnimatorCard implements Spellcaster
         ArrayList<AbstractCard> currentCost = cardPool.get(card.cost);
         if (currentCost == null)
         {
-            currentCost = new ArrayList<AbstractCard>();
+            currentCost = new ArrayList<>();
             cardPool.put(card.cost, currentCost);
         }
 

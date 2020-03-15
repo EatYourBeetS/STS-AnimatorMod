@@ -2,10 +2,12 @@ package eatyourbeets.cards.animator.beta.DateALive;
 
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard
@@ -27,41 +29,33 @@ public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard
     }
 
     @Override
-    public boolean atBattleStartPreDraw()
-    {
-        for (int i=0; i<3; i++)
-        {
-            GameActions.Bottom.MakeCardInDrawPile(new ShidoItsuka())
-            .SetUpgrade(upgraded, true);
-        }
-
-        return true;
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
 
-        MoveShidosAndSetZeroCost(p.exhaustPile, p.hand);
-        MoveShidosAndSetZeroCost(p.drawPile, p.hand);
-        MoveShidosAndSetZeroCost(p.discardPile, p.hand);
-        MoveShidosAndSetZeroCost(p.hand, p.hand);
-    }
-
-    private void MoveShidosAndSetZeroCost(CardGroup source, CardGroup destination)
-    {
-        for (AbstractCard card : source.group)
+        GameActions.Bottom.MoveCards(p.exhaustPile, p.hand).SetFilter(c -> ShidoItsuka.DATA.ID.equals(c.cardID));
+        GameActions.Bottom.MoveCards(p.discardPile, p.hand).SetFilter(c -> ShidoItsuka.DATA.ID.equals(c.cardID));
+        GameActions.Bottom.MoveCards(p.drawPile, p.hand).SetFilter(c -> ShidoItsuka.DATA.ID.equals(c.cardID));
+        GameActions.Last.Callback(__ ->
         {
-            if (card.cardID.equals(ShidoItsuka.DATA.ID))
+            for (AbstractCard card : player.hand.group)
             {
-                card.setCostForTurn(0);
-
-                if (!source.type.equals(destination.type))
+                if (card.cardID.equals(ShidoItsuka.DATA.ID))
                 {
-                    GameActions.Bottom.MoveCard(card, source, destination);
+                    card.setCostForTurn(0);
                 }
             }
+        });
+    }
+
+    @Override
+    public boolean atBattleStartPreDraw()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            GameActions.Bottom.MakeCardInDrawPile(new ShidoItsuka()).SetUpgrade(upgraded, true);
         }
+
+        return true;
     }
 }

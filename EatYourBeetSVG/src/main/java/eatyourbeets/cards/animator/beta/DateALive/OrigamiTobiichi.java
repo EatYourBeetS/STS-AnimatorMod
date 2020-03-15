@@ -73,8 +73,7 @@ public class OrigamiTobiichi extends AnimatorCard
                 int stackAmount = player.filledOrbCount() * amount;
                 if (stackAmount > 0)
                 {
-                    GameActions.Bottom.StackPower(new SupportDamagePower(player, stackAmount))
-                    .AddCallback(this::InverseOrigamiCheck);
+                    GameActions.Bottom.StackPower(new SupportDamagePower(player, stackAmount)).AddCallback(this::InverseOrigamiCheck);
                 }
             }
             else

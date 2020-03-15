@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.watcher.SkipEnemiesTurnAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
@@ -23,14 +22,15 @@ public class KurumiTokisaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(12, 12);
+        Initialize(12, 12, 3);
 
         SetCooldown(3, -1, this::OnCooldownCompleted);
         SetSynergy(Synergies.DateALive);
     }
 
     @Override
-    protected void OnUpgrade() {
+    protected void OnUpgrade()
+    {
         SetScaling(0, 2, 2);
     }
 
@@ -41,26 +41,12 @@ public class KurumiTokisaki extends AnimatorCard
     }
 
     @Override
-    public void triggerWhenDrawn() {
+    public void triggerWhenDrawn()
+    {
         super.triggerWhenDrawn();
 
-        int energy = EnergyPanel.getCurrentEnergy();
-
-        if (energy < cost)
-        {
-            return;
-        }
-
-        GameActions.Bottom.Callback(__ ->
-        {
-            int energyOnUse = EnergyPanel.getCurrentEnergy();
-
-            if (energyOnUse >= cost)
-            {
-                GameActions.Bottom.SpendEnergy(cost, false);
-                GameActions.Bottom.PlayCard(this, null);
-            }
-        });
+        GameActions.Bottom.SpendEnergy(costForTurn, false)
+        .AddCallback(__ -> GameActions.Bottom.PlayCard(this, null));
     }
 
     @Override
@@ -69,13 +55,13 @@ public class KurumiTokisaki extends AnimatorCard
         GameActions.Bottom.SFX("ATTACK_HEAVY");
         GameActions.Bottom.VFX(new DieDieDieEffect());
 
-        for (int i=0; i<ATTACK_MULTIPLIER; i++)
+        for (int i = 0; i < ATTACK_MULTIPLIER; i++)
         {
             GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
         }
-        GameActions.Bottom.GainBlock(block);
 
-        GameActions.Bottom.StackPower(new EnergizedPower(p, 3));
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.StackPower(new EnergizedPower(p, magicNumber));
 
         cooldown.ProgressCooldownAndTrigger(m);
     }
@@ -87,7 +73,7 @@ public class KurumiTokisaki extends AnimatorCard
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED, true));
         GameActions.Bottom.Add(new SkipEnemiesTurnAction());
 
-        for (int i=0; i<3; i++)
+        for (int i = 0; i < 3; i++)
         {
             GameActions.Bottom.MakeCardInDrawPile(this.makeStatEquivalentCopy());
         }

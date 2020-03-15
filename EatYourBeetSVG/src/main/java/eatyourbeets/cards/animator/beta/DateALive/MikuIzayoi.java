@@ -90,7 +90,7 @@ public class MikuIzayoi extends AnimatorCard
     {
         if (upgraded)
         {
-            GameActions.Bottom.Motivate(1);
+            GameActions.Bottom.Motivate();
         }
 
         GameActions.Bottom.GainBlock(block);

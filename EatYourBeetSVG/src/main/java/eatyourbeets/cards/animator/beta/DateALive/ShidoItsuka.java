@@ -36,13 +36,6 @@ public class ShidoItsuka extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        int numOptions = 2;
-
-        if (HasSynergy())
-        {
-            numOptions = 3;
-        }
-
         if (dateALiveCards.isEmpty() || otherSynergicCards.isEmpty())
         {
             InitializeSynergicCards();
@@ -50,8 +43,9 @@ public class ShidoItsuka extends AnimatorCard
 
         RandomizedList<AbstractCard> randomizedDALCards = new RandomizedList<>(dateALiveCards);
         RandomizedList<AbstractCard> randomizedSynergicCards = new RandomizedList<>(otherSynergicCards);
-        CardGroup options = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
 
+        final int numOptions = HasSynergy() ? 3 : 2;
+        final CardGroup options = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
         for (int i = 0; i < numOptions; i++)
         {
             AbstractCard randomCard;

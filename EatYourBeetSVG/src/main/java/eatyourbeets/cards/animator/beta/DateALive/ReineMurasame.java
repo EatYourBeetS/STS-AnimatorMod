@@ -20,9 +20,9 @@ public class ReineMurasame extends AnimatorCard
         super(DATA);
 
         Initialize(0, 3);
-        SetUpgrade(0,3);
-        SetExhaust(true);
+        SetUpgrade(0, 3);
 
+        SetExhaust(true);
         SetSynergy(Synergies.DateALive);
     }
 
@@ -32,14 +32,15 @@ public class ReineMurasame extends AnimatorCard
         int stacks = GameUtilities.UseXCostEnergy(this);
         if (stacks > 0)
         {
-            for (int i=0; i<stacks; i++)
+            for (int i = 0; i < stacks; i++)
             {
                 GameActions.Bottom.MakeCardInDrawPile(new ShidoItsuka())
                 .SetUpgrade(upgraded, true)
-                .AddCallback(card -> {
+                .AddCallback(card ->
+                {
                     if (card != null)
                     {
-                        ((EYBCard)card).SetExhaust(true);
+                        ((EYBCard) card).SetExhaust(true);
                     }
                 });
             }

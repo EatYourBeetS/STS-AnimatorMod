@@ -2,17 +2,13 @@ package eatyourbeets.cards.animator.beta.DateALive;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
 
 public class NiaHonjou extends AnimatorCard
 {
@@ -28,7 +24,8 @@ public class NiaHonjou extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade() {
+    protected void OnUpgrade()
+    {
         SetHaste(true);
     }
 
@@ -36,7 +33,6 @@ public class NiaHonjou extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-
         GameActions.Bottom.StackPower(new NiaHonjouPower(p, magicNumber));
     }
 
@@ -55,7 +51,6 @@ public class NiaHonjou extends AnimatorCard
         public void atEndOfTurn(boolean isPlayer)
         {
             super.atEndOfTurn(isPlayer);
-
             RemovePower();
         }
 

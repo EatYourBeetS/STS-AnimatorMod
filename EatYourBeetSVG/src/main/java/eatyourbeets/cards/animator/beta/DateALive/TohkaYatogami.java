@@ -28,7 +28,8 @@ public class TohkaYatogami extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade() {
+    protected void OnUpgrade()
+    {
         SetHaste(true);
     }
 

@@ -871,9 +871,8 @@
 	},
 	"animator:MisaKurobane":
 	{
-		"DESCRIPTION": "<DRW-M>. ** Channel 1 Fire. ** Add {Yusarin} to ** your discard pile.",
-		"NAME": "Misa Kurobane",
-		"UPGRADE_DESCRIPTION": "<DRW-M>. ** Channel 1 Fire. ** Add {Yusarin} to ** your draw pile."
+		"DESCRIPTION": "<DRW-M>. ** Channel 1 Fire. || Add {Yusarin} to ** your discard pile.",
+		"NAME": "Misa Kurobane"
 	},
 	"animator:MisakiNakahara":
 	{
@@ -999,7 +998,7 @@
 	},
 	"animator:PandorasActor":
 	{
-		"DESCRIPTION": "At the start of combat: ** Play this card and ** refund the Energy spent.",
+		"DESCRIPTION": "At the start of combat: ** Play this card, then ** refund its [E] cost.",
 		"NAME": "Pandora's Actor"
 	},
 	"animator:Patchouli":
@@ -1186,7 +1185,7 @@
 	},
 	"animator:Sonic":
 	{
-		"DESCRIPTION": "Gain !M! Blur. ** Gain !S! <AGI>. || Synergy: Obtain 1 ** {Throwing-Knife}.",
+		"DESCRIPTION": "Gain !S! [A]. ** Gain !M! Blur. || Synergy: Obtain 1 ** {Throwing-Knife}.",
 		"NAME": "Sonic"
 	},
 	"animator:Sora":
@@ -1477,7 +1476,7 @@
 	},
 	"animator:Yusarin":
 	{
-		"DESCRIPTION": "Motivate !S!. ** <DRW-M>.",
+		"DESCRIPTION": "Motivate !M!.",
 		"NAME": "Yusarin"
 	},
 	"animator:Yuuichirou":

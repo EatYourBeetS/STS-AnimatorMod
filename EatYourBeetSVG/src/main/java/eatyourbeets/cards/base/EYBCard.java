@@ -104,8 +104,8 @@ public abstract class EYBCard extends EYBCardBase
         copy.baseSecondaryValue = this.baseSecondaryValue;
         copy.isSecondaryValueModified = this.isSecondaryValueModified;
 
-        copy.tags.addAll(tags);
         copy.tags.clear();
+        copy.tags.addAll(tags);
 
         return copy;
     }
@@ -116,7 +116,6 @@ public abstract class EYBCard extends EYBCardBase
         copy.current_x = (float) Settings.WIDTH / 2.0F;
         copy.current_y = (float) Settings.HEIGHT / 2.0F;
         copy.drawScale = copy.targetDrawScale = 2f;
-        //copy.LoadImage("_p");
         copy.isPopup = true;
         return copy;
     }

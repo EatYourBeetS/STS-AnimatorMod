@@ -19,10 +19,15 @@ public class Asuramaru extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 3, 2);
-        SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.OwariNoSeraph);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
     }
 
     @Override

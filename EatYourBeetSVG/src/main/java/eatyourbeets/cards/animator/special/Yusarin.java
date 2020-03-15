@@ -16,8 +16,8 @@ public class Yusarin extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 1);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 1);
+        SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.Charlotte);
@@ -26,7 +26,6 @@ public class Yusarin extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Motivate();
-        GameActions.Bottom.Draw(this.magicNumber);
+        GameActions.Bottom.Motivate(magicNumber);
     }
 }

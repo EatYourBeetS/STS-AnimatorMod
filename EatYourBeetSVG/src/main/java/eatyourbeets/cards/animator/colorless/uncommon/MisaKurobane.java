@@ -23,6 +23,7 @@ public class MisaKurobane extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0,1);
+        SetUpgrade(0, 0, 1);
 
         SetEvokeOrbCount(1);
         SetExhaust(true);
@@ -34,14 +35,6 @@ public class MisaKurobane extends AnimatorCard
     {
         GameActions.Bottom.ChannelOrb(new Fire(), true);
         GameActions.Bottom.Draw(this.magicNumber);
-
-        if (upgraded)
-        {
-            GameActions.Bottom.MakeCardInDrawPile(new Yusarin());
-        }
-        else
-        {
-            GameActions.Bottom.MakeCardInDiscardPile(new Yusarin());
-        }
+        GameActions.Bottom.MakeCardInDiscardPile(new Yusarin());
     }
 }

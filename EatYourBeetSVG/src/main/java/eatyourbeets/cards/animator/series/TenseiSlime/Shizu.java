@@ -19,7 +19,8 @@ public class Shizu extends AnimatorCard
         super(DATA);
 
         Initialize(13, 0);
-        SetScaling(0, 1, 0);
+        SetUpgrade(3, 0);
+        SetScaling(0, 2, 0);
 
         SetExhaust(true);
         SetSynergy(Synergies.TenSura);
@@ -28,7 +29,7 @@ public class Shizu extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetExhaust(false);
+        SetHaste(true);
     }
 
     @Override

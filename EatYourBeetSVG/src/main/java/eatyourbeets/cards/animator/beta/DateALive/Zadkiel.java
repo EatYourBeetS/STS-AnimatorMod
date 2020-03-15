@@ -17,11 +17,6 @@ import eatyourbeets.utilities.GameActions;
 public class Zadkiel extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Zadkiel.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None);
-    private static final int BLOCK_MULTIPLIER = 4;
-    static
-    {
-        DATA.AddPreview(new YoshinoHimekawa(), true);
-    }
 
     public Zadkiel()
     {
@@ -35,18 +30,8 @@ public class Zadkiel extends AnimatorCard
     }
 
     @Override
-    public AbstractAttribute GetBlockInfo()
-    {
-        return super.GetBlockInfo().AddMultiplier(BLOCK_MULTIPLIER);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (int i = 0; i < BLOCK_MULTIPLIER; i++)
-        {
-            GameActions.Bottom.GainBlock(block);
-        }
     }
 
     @Override

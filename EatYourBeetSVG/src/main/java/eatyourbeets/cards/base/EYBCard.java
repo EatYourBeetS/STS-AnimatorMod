@@ -8,11 +8,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
@@ -34,6 +36,7 @@ public abstract class EYBCard extends EYBCardBase
     public float forceScaling = 0;
     public float intellectScaling = 0;
     public float agilityScaling = 0;
+    public boolean haste;
 
     protected boolean isMultiUpgrade;
     protected int upgrade_damage;
@@ -100,6 +103,9 @@ public abstract class EYBCard extends EYBCardBase
         copy.secondaryValue = this.secondaryValue;
         copy.baseSecondaryValue = this.baseSecondaryValue;
         copy.isSecondaryValueModified = this.isSecondaryValueModified;
+
+        copy.tags.addAll(tags);
+        copy.tags.clear();
 
         return copy;
     }
@@ -179,6 +185,17 @@ public abstract class EYBCard extends EYBCardBase
         triggerWhenDrawn();
     }
 
+    @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        if (haste)
+        {
+            GameActions.Bottom.Add(new HasteAction(this));
+        }
+    }
+
     public boolean IsAoE()
     {
         return isMultiDamage;
@@ -197,6 +214,10 @@ public abstract class EYBCard extends EYBCardBase
         if (retain || selfRetain)
         {
             dynamicTooltips.add(GR.Tooltips.Retain);
+        }
+        if (haste)
+        {
+            dynamicTooltips.add(GR.Tooltips.Haste);
         }
         if (purgeOnUse || hasTag(GR.Enums.CardTags.PURGE))
         {
@@ -290,6 +311,11 @@ public abstract class EYBCard extends EYBCardBase
         this.isMultiDamage = value;
     }
 
+    public void SetHaste(boolean value)
+    {
+        this.haste = value;
+    }
+
     public void SetRetain(boolean value)
     {
         this.selfRetain = value;
@@ -318,61 +344,20 @@ public abstract class EYBCard extends EYBCardBase
 
     public void SetLoyal(boolean value)
     {
-        if (value)
-        {
-            if (!tags.contains(GR.Enums.CardTags.LOYAL))
-            {
-                tags.add(GR.Enums.CardTags.LOYAL);
-            }
-        }
-        else
-        {
-            tags.remove(GR.Enums.CardTags.LOYAL);
-        }
-    }
-
-    public void SetPiercing(boolean value)
-    {
-        if (value)
-        {
-            if (!tags.contains(GR.Enums.CardTags.PIERCING))
-            {
-                tags.add(GR.Enums.CardTags.PIERCING);
-            }
-        }
-        else
-        {
-            tags.remove(GR.Enums.CardTags.PIERCING);
-        }
+        SetTag(GR.Enums.CardTags.LOYAL, value);
     }
 
     public void SetHealing(boolean value)
     {
-        if (value)
-        {
-            if (!tags.contains(CardTags.HEALING))
-            {
-                tags.add(CardTags.HEALING);
-            }
-        }
-        else
-        {
-            tags.remove(CardTags.HEALING);
-        }
+        SetTag(CardTags.HEALING, value);
     }
 
     public void SetPurge(boolean value)
     {
-        if (value)
+        SetTag(GR.Enums.CardTags.PURGE, value);
+
+        if (!value)
         {
-            if (!tags.contains(GR.Enums.CardTags.PURGE))
-            {
-                tags.add(GR.Enums.CardTags.PURGE);
-            }
-        }
-        else
-        {
-            tags.remove(GR.Enums.CardTags.PURGE);
             tags.remove(GR.Enums.CardTags.PURGING);
             purgeOnUse = false;
         }
@@ -380,19 +365,8 @@ public abstract class EYBCard extends EYBCardBase
 
     public void SetUnique(boolean value, boolean multiUpgrade)
     {
+        SetTag(GR.Enums.CardTags.UNIQUE, value);
         isMultiUpgrade = multiUpgrade;
-
-        if (value)
-        {
-            if (!tags.contains(GR.Enums.CardTags.UNIQUE))
-            {
-                tags.add(GR.Enums.CardTags.UNIQUE);
-            }
-        }
-        else
-        {
-            tags.remove(GR.Enums.CardTags.UNIQUE);
-        }
     }
 
     protected boolean TryUpgrade()

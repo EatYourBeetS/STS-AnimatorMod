@@ -98,7 +98,6 @@ public class EnchantedArmorPower extends AnimatorPower
         this.reactive = reactive;
 
         UpdatePercentage();
-
         updateDescription();
     }
 

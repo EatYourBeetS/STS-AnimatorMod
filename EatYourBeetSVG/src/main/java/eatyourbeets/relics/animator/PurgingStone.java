@@ -1,12 +1,8 @@
 package eatyourbeets.relics.animator;
 
-import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
@@ -17,16 +13,13 @@ import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
-import java.util.ArrayList;
-
-public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
+public class PurgingStone extends AnimatorRelic
 {
     public static final String ID = CreateFullID(PurgingStone.class.getSimpleName());
 
     private static final FieldInfo<Boolean> _isBoss = JavaUtilities.GetField("isBoss", RewardItem.class);
     private static final int MAX_BAN_COUNT = 80;
     private static final int MAX_STORED_USES = 3;
-    private final ArrayList<String> bannedCards = new ArrayList<>();
 
     public PurgingStone()
     {
@@ -37,26 +30,6 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
     public String getUpdatedDescription()
     {
         return FormatDescription(MAX_STORED_USES);
-    }
-
-    public static void UpdateBannedCards()
-    {
-        AbstractPlayer player = AbstractDungeon.player;
-        if (player != null && player.relics != null)
-        {
-            for (AbstractRelic relic : player.relics)
-            {
-                if (relic instanceof PurgingStone)
-                {
-                    ((PurgingStone)relic).UpdateBannedCardsInternal();
-                }
-            }
-        }
-    }
-
-    public int GetBannedCount()
-    {
-        return bannedCards.size();
     }
 
     @Override
@@ -87,9 +60,14 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
         }
     }
 
+    public int GetBannedCount()
+    {
+        return GR.Animator.Dungeon.BannedCards.size();
+    }
+
     private void AddUses(int uses)
     {
-        int banned = bannedCards.size();
+        int banned = GetBannedCount();
 
         counter += uses;
         if (counter + banned > MAX_BAN_COUNT)
@@ -105,7 +83,7 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
 
     public boolean IsBanned(String cardID)
     {
-        return bannedCards.contains(cardID);
+        return GR.Animator.Dungeon.BannedCards.contains(cardID);
     }
 
     public boolean IsBanned(AbstractCard card)
@@ -132,37 +110,14 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
                 return false;
             }
 
-            if (!bannedCards.contains(card.cardID))
+            if (!GR.Animator.Dungeon.BannedCards.contains(card.cardID))
             {
-                CardGroup pool;
-                switch (card.rarity)
+                CardGroup pool = GameUtilities.GetCardPoolSource(card.rarity, card.color);
+                if (pool == null)
                 {
-                    case COMMON:
-                    {
-                        pool = AbstractDungeon.srcCommonCardPool;
-                        break;
-                    }
-
-                    case UNCOMMON:
-                    {
-                        pool = AbstractDungeon.srcUncommonCardPool;
-                        break;
-                    }
-
-                    case RARE:
-                    {
-                        pool = AbstractDungeon.srcRareCardPool;
-                        break;
-                    }
-
-                    case SPECIAL:
-                    case BASIC:
-                    case CURSE:
-                    default:
-                        return false;
+                    return false;
                 }
-
-                if (card.type == AbstractCard.CardType.POWER)
+                else if (card.type == AbstractCard.CardType.POWER)
                 {
                     return card.rarity == AbstractCard.CardRarity.COMMON || pool.getPowers().size() >= 2;
                 }
@@ -182,100 +137,8 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
 
     public void Ban(AbstractCard card)
     {
-        RemoveCard(card);
-        bannedCards.add(card.cardID);
-
+        GR.Animator.Dungeon.Ban(card.cardID);
         counter -= 1;
-        this.flash();
-    }
-
-    @Override
-    public String onSave()
-    {
-        ArrayList<String> result = new ArrayList<>();
-        for (String card : bannedCards)
-        {
-            result.add(String.valueOf(card));
-        }
-
-        return String.join("\u001F", result);
-    }
-
-    @Override
-    public void onLoad(String value)
-    {
-        for (String s : value.split("\u001F"))
-        {
-            if (s != null && !s.isEmpty())
-            {
-                bannedCards.add(s);
-            }
-        }
-
-        AddUses(0);
-    }
-
-    private void RemoveCard(AbstractCard card)
-    {
-        if (card == null)
-        {
-            return;
-        }
-
-        int banCount = 0;
-        int srcBanCount = 0;
-
-        CardGroup pool;
-        CardGroup srcPool;
-
-        switch (card.rarity)
-        {
-            case COMMON:
-                pool    = AbstractDungeon.srcCommonCardPool;
-                srcPool = AbstractDungeon.commonCardPool;
-                break;
-
-            case UNCOMMON:
-                pool    = AbstractDungeon.srcUncommonCardPool;
-                srcPool = AbstractDungeon.uncommonCardPool;
-                break;
-
-            case RARE:
-                pool    = AbstractDungeon.srcRareCardPool;
-                srcPool = AbstractDungeon.rareCardPool;
-                break;
-
-            case BASIC:
-            case SPECIAL:
-            case CURSE:
-            default:
-                pool = null;
-                srcPool = null;
-                break;
-        }
-
-        if (pool != null)
-        {
-            pool.removeCard(card.cardID);
-            banCount++;
-        }
-
-        if (srcPool != null)
-        {
-            srcPool.removeCard(card.cardID);
-            srcBanCount++;
-        }
-
-        GR.Animator.Dungeon.BannedCards.add(card.cardID);
-        logger.info("Banned " + card.cardID + " " + banCount + ", " + srcBanCount);
-    }
-
-    public void UpdateBannedCardsInternal()
-    {
-        logger.info("Banned " + bannedCards.size() + " Cards:");
-        for (String card : bannedCards)
-        {
-            RemoveCard(CardLibrary.getCard(card));
-        }
+        flash();
     }
 }

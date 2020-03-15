@@ -187,6 +187,19 @@ public class JavaUtilities
         return Math.round(value * scale) / scale;
     }
 
+    public static float ParseFloat(String value, float defaultValue)
+    {
+        try
+        {
+            return Float.parseFloat(value);
+        }
+        catch (NumberFormatException ex)
+        {
+            return defaultValue;
+        }
+    }
+
+
     public static int ParseInt(String value, int defaultValue)
     {
         try

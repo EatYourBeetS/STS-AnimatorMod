@@ -24,11 +24,17 @@ public class Ciel extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 8, 4, 8);
-        SetUpgrade(0, 3, 0, 0);
+        Initialize(0, 9, 4, 9);
+        SetUpgrade(0, 0, 0, 0);
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Elsword);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
     }
 
     @Override

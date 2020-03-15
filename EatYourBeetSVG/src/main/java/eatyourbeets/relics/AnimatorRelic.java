@@ -3,8 +3,10 @@ package eatyourbeets.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.*;
+import eatyourbeets.relics.animator.AbstractMissingPiece;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorDungeonData;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
@@ -19,6 +21,34 @@ public abstract class AnimatorRelic extends CustomRelic
     public static String CreateFullID(String id)
     {
         return GR.Animator.CreateID(id);
+    }
+
+    public static void UpdateRelics(boolean isAnimator)
+    {
+        if (isAnimator)
+        {
+            final AnimatorDungeonData data = GR.Animator.Dungeon;
+
+            data.RemoveRelic(PenNib.ID);
+            data.RemoveRelic(Kunai.ID);
+            data.RemoveRelic(StrikeDummy.ID);
+            data.RemoveRelic(SneckoEye.ID);
+            data.RemoveRelic(RunicPyramid.ID);
+
+            data.AddRelic(MarkOfPain.ID, AbstractRelic.RelicTier.BOSS);
+            data.AddRelic(RunicCapacitor.ID, AbstractRelic.RelicTier.SHOP);
+            data.AddRelic(TwistedFunnel.ID, AbstractRelic.RelicTier.SHOP);
+            data.AddRelic(Brimstone.ID, AbstractRelic.RelicTier.SHOP);
+            data.AddRelic(DataDisk.ID, AbstractRelic.RelicTier.SHOP);
+            data.AddRelic(CharonsAshes.ID, AbstractRelic.RelicTier.RARE);
+            data.AddRelic(ChampionsBelt.ID, AbstractRelic.RelicTier.RARE);
+            data.AddRelic(PaperCrane.ID, AbstractRelic.RelicTier.UNCOMMON);
+            data.AddRelic(PaperFrog.ID, AbstractRelic.RelicTier.UNCOMMON);
+            data.AddRelic(CloakClasp.ID, AbstractRelic.RelicTier.UNCOMMON);
+            data.AddRelic(RedSkull.ID, AbstractRelic.RelicTier.COMMON);
+
+            AbstractMissingPiece.RefreshDescription();
+        }
     }
 
     public AnimatorRelic(String id, String imageID, RelicTier tier, LandingSound sfx)

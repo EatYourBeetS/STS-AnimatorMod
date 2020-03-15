@@ -37,5 +37,6 @@ public class CommonImages
         public final TextureCache Purge                   = new TextureCache("images/cardui/eyb/badges/Purge.png");
         public final TextureCache Innate                  = new TextureCache("images/cardui/eyb/badges/Innate.png");
         public final TextureCache Retain                  = new TextureCache("images/cardui/eyb/badges/Retain.png");
+        public final TextureCache Haste                   = new TextureCache("images/cardui/eyb/badges/Haste.png");
     }
 }

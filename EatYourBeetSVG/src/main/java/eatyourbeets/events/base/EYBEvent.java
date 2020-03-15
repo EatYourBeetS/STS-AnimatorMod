@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
+import com.megacrit.cardcrawl.events.city.Ghosts;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.events.animator.*;
@@ -37,7 +38,11 @@ public abstract class EYBEvent extends AbstractImageEvent
 
     public static void UpdateEvents(boolean isAnimator)
     {
-        if (!isAnimator)
+        if (isAnimator)
+        {
+            AbstractDungeon.eventList.remove(Ghosts.ID);
+        }
+        else
         {
             AbstractDungeon.eventList.remove(TheMaskedTraveler1.ID);
         }

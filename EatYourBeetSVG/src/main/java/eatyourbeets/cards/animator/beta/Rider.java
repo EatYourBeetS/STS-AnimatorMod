@@ -19,7 +19,6 @@ public class Rider extends AnimatorCard implements Hidden
         SetUpgrade(0, 0, 0);
         SetScaling(0, 1, 0);
 
-        SetPiercing(true);
         SetSynergy(Synergies.Fate);
     }
 

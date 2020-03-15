@@ -20,6 +20,7 @@ public class ReineMurasame extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0);
+        SetUpgrade(0,5);
         SetExhaust(true);
 
         SetSynergy(Synergies.DateALive);

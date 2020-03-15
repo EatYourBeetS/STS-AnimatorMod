@@ -31,12 +31,6 @@ public class MikuIzayoi extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetRetain(true);
-    }
-
-    @Override
     public void initializeDescription()
     {
         super.initializeDescription();
@@ -94,6 +88,11 @@ public class MikuIzayoi extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        if (upgraded)
+        {
+            GameActions.Bottom.Motivate(1);
+        }
+
         GameActions.Bottom.GainBlock(block);
     }
 }

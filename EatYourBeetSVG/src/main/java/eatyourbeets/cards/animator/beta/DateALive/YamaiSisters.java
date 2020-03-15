@@ -49,6 +49,12 @@ public class YamaiSisters extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
+        if (this.canUpgrade())
+        {
+            this.upgrade();
+            this.flash();
+        }
+
         for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
         {
             if (c.cardID.equals(YamaiSisters.DATA.ID) && c.canUpgrade())

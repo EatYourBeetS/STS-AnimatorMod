@@ -28,14 +28,14 @@ public class NiaHonjou extends AnimatorCard
     }
 
     @Override
+    protected void OnUpgrade() {
+        SetRetain(true);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-
-        if (upgraded)
-        {
-            GameActions.Bottom.Motivate(1);
-        }
 
         GameActions.Bottom.StackPower(new NiaHonjouPower(p, magicNumber));
     }

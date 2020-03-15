@@ -26,6 +26,7 @@ public class ShidoItsuka extends AnimatorCard
         super(DATA);
 
         Initialize(0, 5);
+        SetUpgrade(0, 2);
         SetEthereal(true);
 
         SetSynergy(Synergies.DateALive);
@@ -79,7 +80,7 @@ public class ShidoItsuka extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                GameActions.Bottom.MakeCard(cards.get(0), player.drawPile).SetDuration(Settings.ACTION_DUR_FASTER, true);
+                GameActions.Bottom.MakeCardInDiscardPile(cards.get(0)).SetDuration(Settings.ACTION_DUR_FASTER, true);
             }
         });
     }

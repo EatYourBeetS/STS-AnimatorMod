@@ -33,13 +33,13 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
 
     @Override
     protected void OnUpgrade() {
-        SetScaling(1, 1, 0);
+        SetScaling(2, 2, 0);
     }
 
     @Override
     protected float GetInitialDamage()
     {
-        return player.drawPile.size();
+        return baseDamage + player.drawPile.size();
     }
 
     @Override

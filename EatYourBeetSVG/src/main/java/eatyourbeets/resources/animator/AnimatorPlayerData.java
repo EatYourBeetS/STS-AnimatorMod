@@ -1,6 +1,7 @@
 package eatyourbeets.resources.animator;
 
 import com.badlogic.gdx.utils.Base64Coder;
+import eatyourbeets.resources.animator.loadouts.beta.DateALive;
 import eatyourbeets.resources.animator.loadouts.beta.MadokaMagica;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
@@ -200,6 +201,7 @@ public class AnimatorPlayerData
     {
         BetaLoadouts.clear();
         BetaLoadouts.add(new MadokaMagica());
+        BetaLoadouts.add(new DateALive());
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...

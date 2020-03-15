@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class TohkaYatogami extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(TohkaYatogami.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(TohkaYatogami.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal);
     public static final int DAMAGE_AMOUNT = 10;
     static
     {
@@ -28,12 +28,6 @@ public class TohkaYatogami extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetRetain(true);
-    }
-
-    @Override
     protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
         return DAMAGE_AMOUNT;
@@ -43,6 +37,11 @@ public class TohkaYatogami extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+
+        if (upgraded)
+        {
+            GameActions.Bottom.Motivate(1);
+        }
 
         if (p.exhaustPile.size() >= 10)
         {

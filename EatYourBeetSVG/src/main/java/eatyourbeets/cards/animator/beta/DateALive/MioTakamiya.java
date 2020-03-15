@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class MioTakamiya extends AnimatorCard implements StartupCard
 {
-    public static final EYBCardData DATA = Register(MioTakamiya.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(MioTakamiya.class).SetSkill(3, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
     static
     {
         DATA.AddPreview(new ShidoItsuka(), true);

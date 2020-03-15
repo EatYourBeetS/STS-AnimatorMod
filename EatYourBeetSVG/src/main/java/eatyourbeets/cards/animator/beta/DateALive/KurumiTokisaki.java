@@ -24,10 +24,14 @@ public class KurumiTokisaki extends AnimatorCard
         super(DATA);
 
         Initialize(12, 12);
-        SetScaling(0, 2, 0);
 
-        SetCooldown(3, 0, this::OnCooldownCompleted);
+        SetCooldown(3, -1, this::OnCooldownCompleted);
         SetSynergy(Synergies.DateALive);
+    }
+
+    @Override
+    protected void OnUpgrade() {
+        SetScaling(0, 2, 2);
     }
 
     @Override
@@ -71,10 +75,7 @@ public class KurumiTokisaki extends AnimatorCard
         }
         GameActions.Bottom.GainBlock(block);
 
-        if (upgraded)
-        {
-            GameActions.Bottom.StackPower(new EnergizedPower(p, 3));
-        }
+        GameActions.Bottom.StackPower(new EnergizedPower(p, 3));
 
         cooldown.ProgressCooldownAndTrigger(m);
     }

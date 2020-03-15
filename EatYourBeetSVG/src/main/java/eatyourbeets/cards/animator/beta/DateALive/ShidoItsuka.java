@@ -27,7 +27,6 @@ public class ShidoItsuka extends AnimatorCard
 
         Initialize(0, 5);
         SetUpgrade(0, 2);
-        SetEthereal(true);
 
         SetSynergy(Synergies.DateALive);
     }

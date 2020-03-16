@@ -144,7 +144,7 @@ public class AnimatorCardRewardBonus extends GUIElement
             {
                 if (series.promoted && series.bonus < 6)
                 {
-                    if (series.Cards.containsKey(card.cardID) && GameUtilities.GetMasterDeckInstance(card.cardID) == null)
+                    if (series.Cards.containsKey(card.cardID) && GameUtilities.GetMasterDeckCopy(card.cardID) == null)
                     {
                         if (series.bonus % 2 == 0)
                         {

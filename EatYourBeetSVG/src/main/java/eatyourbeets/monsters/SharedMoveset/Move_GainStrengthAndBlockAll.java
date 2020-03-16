@@ -28,7 +28,7 @@ public class Move_GainStrengthAndBlockAll extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        ArrayList<AbstractMonster> enemies = GameUtilities.GetCurrentEnemies(true);
+        ArrayList<AbstractMonster> enemies = GameUtilities.GetAllEnemies(true);
 
         boolean isFast = enemies.size() >= 6;
 

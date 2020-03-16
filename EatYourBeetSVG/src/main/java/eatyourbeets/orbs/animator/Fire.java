@@ -8,11 +8,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
-import eatyourbeets.orbs.AnimatorOrb;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.orbs.FireOrbEvokeAction;
 import eatyourbeets.actions.orbs.FireOrbPassiveAction;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.orbs.AnimatorOrb;
+import eatyourbeets.utilities.GameActions;
 
 public class Fire extends AnimatorOrb
 {
@@ -69,9 +68,7 @@ public class Fire extends AnimatorOrb
 
     public void applyFocus()
     {
-        int focus = GameUtilities.GetFocus(AbstractDungeon.player);
-
-        this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
+        this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
     }
 
     public void updateAnimation()

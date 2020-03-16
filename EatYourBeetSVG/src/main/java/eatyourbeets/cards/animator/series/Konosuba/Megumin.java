@@ -55,7 +55,7 @@ public class Megumin extends AnimatorCard implements Spellcaster
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
         GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.5f);
 
-        for (AbstractCreature m1 : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractCreature m1 : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.VFX(new FlameBarrierEffect(m1.hb_x, m1.hb_y));
             GameActions.Bottom.VFX(new ExplosionSmallEffect(m1.hb_x, m1.hb_y));

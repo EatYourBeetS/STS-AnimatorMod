@@ -23,7 +23,7 @@ public class Defend_Fate extends Defend
     @Override
     protected float GetInitialBlock()
     {
-        return super.GetInitialBlock() + GameUtilities.GetCurrentEnemies(true).size() * magicNumber;
+        return super.GetInitialBlock() + GameUtilities.GetAllEnemies(true).size() * magicNumber;
     }
 
     @Override

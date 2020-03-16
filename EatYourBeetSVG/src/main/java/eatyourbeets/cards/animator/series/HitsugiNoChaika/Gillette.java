@@ -30,7 +30,7 @@ public class Gillette extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.ApplyWeak(AbstractDungeon.player, m, magicNumber);
         }

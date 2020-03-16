@@ -19,9 +19,9 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
         FromBottom,
         Random;
 
-        public boolean IsRandom() { return this == Random;     }
-        public boolean IsTop()    { return this == FromTop;    }
-        public boolean IsBottom() { return this == FromBottom; }
+        public boolean IsBottom() { return FromBottom.equals(this); }
+        public boolean IsRandom() { return Random.equals(this);     }
+        public boolean IsTop()    { return FromTop.equals(this);    }
         //@Formatter: On
     }
 
@@ -44,6 +44,7 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
 
         this.sourcePile = sourcePile;
         this.targetPile = targetPile;
+        this.origin = Origin.FromTop;
 
         Initialize(amount);
     }

@@ -19,7 +19,6 @@ import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber
 {
@@ -122,7 +121,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
 
     public void applyFocus()
     {
-        int focus = GameUtilities.GetFocus(AbstractDungeon.player);
+        int focus = GetFocus();
         if (focus > 0)
         {
             this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);

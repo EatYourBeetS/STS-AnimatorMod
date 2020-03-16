@@ -35,7 +35,7 @@ public class Souei extends AnimatorCard implements MartialArtist
         GameActions.Bottom.Callback(__ ->
         {
             AbstractPlayer player = AbstractDungeon.player;
-            for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+            for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
             {
                 PoisonPower poison = (PoisonPower) enemy.getPower(PoisonPower.POWER_ID);
                 if (poison != null)

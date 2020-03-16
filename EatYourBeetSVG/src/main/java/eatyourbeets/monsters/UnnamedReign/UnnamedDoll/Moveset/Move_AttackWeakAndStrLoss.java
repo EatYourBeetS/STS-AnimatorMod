@@ -37,7 +37,7 @@ public class Move_AttackWeakAndStrLoss extends AbstractMove
 
         if (!usedOnce)
         {
-            int str = GameUtilities.GetStrength(target);
+            int str = GameUtilities.GetPowerAmount(target, StrengthPower.POWER_ID);
             LoseStrengthPower loseStr = JavaUtilities.SafeCast(target.getPower(LoseStrengthPower.POWER_ID), LoseStrengthPower.class);
             if (loseStr != null)
             {

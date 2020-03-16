@@ -6,9 +6,8 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -37,16 +36,9 @@ public abstract class OrbCore extends AnimatorCard
 
     }
 
-    public static SelectFromPile SelectCoreAction(String sourceName, int amount)
+    public static SelectFromPile SelectCoreAction(String name, int amount)
     {
-        Random rng = EYBCard.rng;
-        if (rng == null)
-        {
-            JavaUtilities.Log(OrbCore.class, "EYBCard.rng was null");
-            rng = new Random();
-        }
-
-        return new SelectFromPile(sourceName, amount, OrbCore.CreateCoresGroup(true, rng)).SetMessage(CardRewardScreen.TEXT[1]);
+        return new SelectFromPile(name, amount, OrbCore.CreateCoresGroup(true, GameUtilities.GetRNG())).SetMessage(CardRewardScreen.TEXT[1]);
     }
 
     public static CardGroup CreateCoresGroup(boolean anyCost, Random rng)

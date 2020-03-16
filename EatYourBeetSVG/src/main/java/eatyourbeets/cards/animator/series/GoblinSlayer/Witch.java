@@ -33,7 +33,7 @@ public class Witch extends AnimatorCard implements Spellcaster, StartupCard
     {
         GameActions.Bottom.GainBlock(this.block);
 
-        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.ApplyBurning(p, enemy, magicNumber);
         }

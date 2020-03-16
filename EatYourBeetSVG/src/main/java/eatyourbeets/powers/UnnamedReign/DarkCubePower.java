@@ -35,7 +35,7 @@ public class DarkCubePower extends AnimatorPower
 
         if (owner.isPlayer)
         {
-            for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
+            for (AbstractCreature m : GameUtilities.GetAllEnemies(true))
             {
                 GameActions.Bottom.ApplyConstricted(owner, m, amount);
             }

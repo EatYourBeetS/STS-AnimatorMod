@@ -19,7 +19,7 @@ public class FireOrbEvokeAction extends EYBAction
     {
         if (this.amount > 0)
         {
-            for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+            for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
             {
                 GameActions.Bottom.ApplyBurning(source, m, amount);
             }

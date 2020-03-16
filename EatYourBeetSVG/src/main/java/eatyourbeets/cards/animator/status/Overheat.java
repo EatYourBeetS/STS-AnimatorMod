@@ -30,7 +30,7 @@ public class Overheat extends AnimatorCard_Status
             GameActions.Bottom.StackPower(new SelfDamagePower(p, magicNumber));
             GameActions.Bottom.Callback(__ ->
             {
-                for (AbstractCard c : GameUtilities.GetAllCopies(this))
+                for (AbstractCard c : GameUtilities.GetAllInBattleCopies(cardID))
                 {
                     c.baseMagicNumber += 1;
                     c.applyPowers();

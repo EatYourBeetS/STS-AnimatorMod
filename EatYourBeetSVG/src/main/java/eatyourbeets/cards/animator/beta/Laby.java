@@ -33,7 +33,7 @@ public class Laby extends AnimatorCard
 
         if (player != null && player.isDraggingCard && player.hoveredCard == this)
         {
-            for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+            for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
             {
                 if (GameUtilities.IsAttacking(enemy.intent))
                 {

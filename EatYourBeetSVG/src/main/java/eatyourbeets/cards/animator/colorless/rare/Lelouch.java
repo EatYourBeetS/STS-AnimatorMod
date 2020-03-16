@@ -36,7 +36,7 @@ public class Lelouch extends AnimatorCard
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
         GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
 
-        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
         {
             if (!enemy.hasPower(GeassPower.POWER_ID))
             {

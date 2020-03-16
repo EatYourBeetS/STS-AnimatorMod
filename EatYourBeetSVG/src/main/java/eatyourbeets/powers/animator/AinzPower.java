@@ -193,7 +193,7 @@ public class AinzPower extends AnimatorPower
                 {
                     return effect.Generate((c, p, m) ->
                     {
-                        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+                        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
                         {
                             GameActions.Bottom.ApplyBurning(p, enemy, c.magicNumber);
                         }
@@ -204,7 +204,7 @@ public class AinzPower extends AnimatorPower
                 {
                     return effect.Generate((c, p, m) ->
                     {
-                        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+                        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
                         {
                             GameActions.Bottom.ApplyPoison(p, enemy, c.magicNumber);
                         }

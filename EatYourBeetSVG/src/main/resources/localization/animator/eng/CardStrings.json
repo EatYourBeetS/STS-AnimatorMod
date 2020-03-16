@@ -697,7 +697,7 @@
 	},
 	"animator:KotoriItsuka":
 	{
-		"DESCRIPTION": "Limited: You may exhaust up to 5 cards.  Boost [F][A][I] and add 1 Burn to your hand for each card discarded.",
+		"DESCRIPTION": "Limited: You may exhaust up to 5 cards.  Boost [F][A][I] and add 1 Burn to your hand for each card exhausted.",
 		"NAME": "Kotori Itsuka"
 	},
 	"animator:KotoriKanbe":

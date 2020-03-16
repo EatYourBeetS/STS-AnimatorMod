@@ -73,7 +73,7 @@ public class ShidoItsuka extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                GameActions.Bottom.MakeCardInDiscardPile(cards.get(0)).SetDuration(Settings.ACTION_DUR_FASTER, true);
+                GameActions.Bottom.MakeCardInDiscardPile(cards.get(0).makeCopy()).SetDuration(Settings.ACTION_DUR_FASTER, true);
             }
         });
     }

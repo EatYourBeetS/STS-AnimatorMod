@@ -403,7 +403,6 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
     private void FullLog(String message)
     {
-        JavaUtilities.Log(this, "================================================================================================");
         JavaUtilities.Log(this, message);
         JavaUtilities.Log(this, "[Transient  Data] Starting Series: " + StartingSeries.Name + ", Series Count: " + Series.size());
         JavaUtilities.Log(this, "[Persistent Data] Starting Series: " + startingLoadout + ", Series Count: " + loadouts.size());

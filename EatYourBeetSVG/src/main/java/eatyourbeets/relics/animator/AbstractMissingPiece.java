@@ -1,11 +1,13 @@
 package eatyourbeets.relics.animator;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
-import com.megacrit.cardcrawl.rooms.TreasureRoomBoss;
+import com.megacrit.cardcrawl.rooms.*;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
@@ -23,7 +25,7 @@ import java.util.*;
 
 public abstract class AbstractMissingPiece extends AnimatorRelic implements OnReceiveRewardsSubscriber
 {
-    private boolean skipReward;
+    protected transient AbstractRoom lastRoom = null;
 
     protected abstract int GetRewardInterval();
 
@@ -39,13 +41,83 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         {
             if (missingPiece.tips.size() > 0)
             {
-                missingPiece.tips.get(0).body = missingPiece.getFullDescription();
+                missingPiece.tips.get(0).body = missingPiece.GetFullDescription();
                 missingPiece.flash();
             }
         }
     }
 
-    public String getFullDescription()
+    @Override
+    public void renderCounter(SpriteBatch sb, boolean inTopPanel)
+    {
+        if (this.counter > -1)
+        {
+            int actualCounter = GetActualCounter();
+            if (inTopPanel)
+            {
+                FontHelper.renderFontRightTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(actualCounter),
+                _offsetX.Get(null) + this.currentX + 30.0F * Settings.scale, this.currentY - 7.0F * Settings.scale, Color.WHITE);
+            }
+            else
+            {
+                FontHelper.renderFontRightTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(actualCounter),
+                this.currentX + 30.0F * Settings.scale, this.currentY - 7.0F * Settings.scale, Color.WHITE);
+            }
+        }
+    }
+
+    @Override
+    public String getUpdatedDescription()
+    {
+        return FormatDescription(GetRewardInterval());
+    }
+
+    @Override
+    public void onEquip()
+    {
+        super.onEquip();
+        setCounter(0);
+        RefreshDescription();
+    }
+
+    @Override
+    public void onVictory()
+    {
+        super.onVictory();
+
+        if (RewardsAllowed())
+        {
+            setCounter(counter + 1);
+        }
+    }
+
+    public void OnReceiveRewards(ArrayList<RewardItem> rewards)
+    {
+        if (counter > 0 && RewardsAllowed() && GetActualCounter() == 0)
+        {
+            this.flash();
+            lastRoom = GameUtilities.GetCurrentRoom();
+
+            int startingIndex = -1;
+            for (int i = 0; i < rewards.size(); i++)
+            {
+                RewardItem reward = rewards.get(i);
+                if (reward.type == RewardItem.RewardType.CARD)
+                {
+                    startingIndex = i;
+                    rewards.remove(startingIndex);
+                    break;
+                }
+            }
+
+            if (startingIndex >= 0)
+            {
+                AddSynergyRewards(rewards, startingIndex);
+            }
+        }
+    }
+
+    public String GetFullDescription()
     {
         String base = getUpdatedDescription();
         if (GR.Animator.Dungeon.Series.isEmpty())
@@ -58,7 +130,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         {
             if (series.promoted)
             {
-                String line = "- #y" + StringUtils.replace(series.Loadout.Name," ", " #y");
+                String line = "- #y" + StringUtils.replace(series.Loadout.Name, " ", " #y");
                 if (series.bonus > 0)
                 {
                     line += " #y( " + series.bonus + "/6 #y)";
@@ -75,94 +147,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         return base + " NL  NL " + DESCRIPTIONS[1] + " NL " + joiner.toString();
     }
 
-    @Override
-    public String getUpdatedDescription()
-    {
-        return FormatDescription(GetRewardInterval());
-    }
-
-    @Override
-    public void onEquip()
-    {
-        super.onEquip();
-        this.counter = 1;
-        RefreshDescription();
-    }
-
-    @Override
-    public void atBattleStart()
-    {
-        super.atBattleStart();
-
-        if (AbstractDungeon.actNum == 1 && AbstractDungeon.getCurrMapNode().y == 0)
-        {
-            skipReward = true;
-            return;
-        }
-
-        AbstractRoom room = AbstractDungeon.getCurrRoom();
-        if (room == null || room instanceof MonsterRoomBoss || room instanceof TreasureRoomBoss)
-        {
-            skipReward = true;
-            return;
-        }
-
-        if (room.rewardAllowed)
-        {
-            this.counter += 1;
-            this.skipReward = false;
-        }
-    }
-
-    public void OnReceiveRewards(ArrayList<RewardItem> rewards)
-    {
-        AbstractRoom room = AbstractDungeon.getCurrRoom();
-        if (room == null || room instanceof MonsterRoomBoss || room instanceof TreasureRoomBoss)
-        {
-            return;
-        }
-
-        if (counter == 0)
-        {
-            if (skipReward)
-            {
-                return;
-            }
-
-            skipReward = true;
-        }
-        else if (counter < GetRewardInterval())
-        {
-            return;
-        }
-
-        counter = 0;
-        this.flash();
-
-        int startingIndex = -1;
-        for (int i = 0; i < rewards.size(); i++)
-        {
-            RewardItem reward = rewards.get(i);
-            if (reward.type == RewardItem.RewardType.CARD)
-            {
-                startingIndex = i;
-                rewards.remove(startingIndex);
-                break;
-            }
-        }
-
-        if (startingIndex >= 0)
-        {
-            addSynergyRewards(rewards, startingIndex);
-        }
-
-        if (counter == 0)
-        {
-            this.skipReward = true;
-        }
-    }
-
-    private void addSynergyRewards(ArrayList<RewardItem> rewards, int startingIndex)
+    private void AddSynergyRewards(ArrayList<RewardItem> rewards, int startingIndex)
     {
         WeightedList<Synergy> synergies = CreateWeightedList();
 
@@ -206,7 +191,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
                     }
                 }
 
-                logger.info(s.Name + " : " + weight);
+                JavaUtilities.Log(this, s.Name + " : " + weight);
                 list.Add(s, weight);
             }
         }
@@ -222,7 +207,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
     private Map<Synergy, List<AbstractCard>> GetCardsBySynergy(ArrayList<AbstractCard> cards)
     {
         Map<Synergy, List<AbstractCard>> map = new HashMap<>();
-        for(AbstractCard card : cards)
+        for (AbstractCard card : cards)
         {
             Synergy key = Synergies.ANY;
             AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
@@ -235,5 +220,18 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         }
 
         return map;
+    }
+
+    private boolean RewardsAllowed()
+    {
+        final AbstractRoom room = GameUtilities.GetCurrentRoom();
+        return room != null && lastRoom != room && room.rewardAllowed
+        && !(room instanceof MonsterRoomBoss)
+        && (room instanceof MonsterRoom || room.eliteTrigger || (room instanceof EventRoom && room.combatEvent));
+    }
+
+    private int GetActualCounter()
+    {
+        return this.counter % GetRewardInterval();
     }
 }

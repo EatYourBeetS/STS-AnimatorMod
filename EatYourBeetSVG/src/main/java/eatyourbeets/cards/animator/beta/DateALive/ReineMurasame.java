@@ -19,8 +19,8 @@ public class ReineMurasame extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3);
-        SetUpgrade(0, 3);
+        Initialize(0, 5);
+        SetUpgrade(0, 2);
 
         SetExhaust(true);
         SetSynergy(Synergies.DateALive);
@@ -29,6 +29,8 @@ public class ReineMurasame extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(block);
+
         int stacks = GameUtilities.UseXCostEnergy(this);
         if (stacks > 0)
         {

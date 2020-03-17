@@ -70,7 +70,7 @@
 	},
 	"animator:Assassin":
 	{
-		"DESCRIPTION": "Can only be played ** if the enemy has !M! ** different {Debuffs}. || Loses Retain if you ** play an {Attack}.",
+		"DESCRIPTION": "Can only be played ** if the enemy has !M! ** different {Debuffs}. || Remove Retain if ** you play an {Attack}.",
 		"NAME": "Assassin"
 	},
 	"animator:Asuramaru":

@@ -79,7 +79,7 @@ public class Father extends AnimatorCard implements OnAddedToDeckSubscriber, OnA
         //noinspection StatementWithEmptyBody
         while (p.masterDeck.removeCard(cardID));
 
-        for (AbstractCard card : GameUtilities.GetAllCopies(this))
+        for (AbstractCard card : GameUtilities.GetAllInBattleCopies(cardID))
         {
             GameActions.Bottom.Purge(card);
         }

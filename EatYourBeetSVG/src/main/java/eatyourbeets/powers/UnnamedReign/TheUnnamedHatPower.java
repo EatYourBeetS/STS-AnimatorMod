@@ -48,7 +48,7 @@ public class TheUnnamedHatPower extends AnimatorPower
         super.atEndOfTurn(isPlayer);
 
         int healAmount = 0;
-        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {
             TheUnnamedHatPower power = GameUtilities.GetPower(m, TheUnnamedHatPower.class);
             if (power != null)

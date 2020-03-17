@@ -5,13 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import eatyourbeets.orbs.AnimatorOrb;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.orbs.AetherOrbEvokeAction;
 import eatyourbeets.actions.orbs.AetherOrbPassiveAction;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.orbs.AnimatorOrb;
+import eatyourbeets.utilities.GameActions;
 
 public class Aether extends AnimatorOrb
 {
@@ -66,9 +64,7 @@ public class Aether extends AnimatorOrb
 
     public void applyFocus()
     {
-        int focus = GameUtilities.GetFocus(AbstractDungeon.player);
-
-        this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
+        this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
     }
 
     public void updateAnimation()

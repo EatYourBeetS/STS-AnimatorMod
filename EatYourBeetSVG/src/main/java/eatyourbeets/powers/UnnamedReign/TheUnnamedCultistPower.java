@@ -34,7 +34,7 @@ public class TheUnnamedCultistPower extends AnimatorPower
 
         GameActions.Bottom.RemovePower(owner, owner, EnchantedArmorPower.POWER_ID);
 
-        int count = GameUtilities.GetCurrentEnemies(true).size() - 1;
+        int count = GameUtilities.GetAllEnemies(true).size() - 1;
         if (count > 0)
         {
             GameActions.Bottom.ApplyPowerSilently(owner, owner, new EnchantedArmorPower(owner, amount * count), amount * count);

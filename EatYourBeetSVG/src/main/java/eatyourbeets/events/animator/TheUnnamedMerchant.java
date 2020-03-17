@@ -111,16 +111,16 @@ public class TheUnnamedMerchant extends EYBEvent
 
         private void Haggle()
         {
-            if ((Math.abs(sellingPrice - buyingPrice) > 20) && AbstractDungeon.miscRng.randomBoolean())
+            if ((Math.abs(sellingPrice - buyingPrice) > 20) && RNG.randomBoolean())
             {
-                sellingPrice += AbstractDungeon.miscRng.random(8, 16);
-                buyingPrice -= AbstractDungeon.miscRng.random(8, 16);
+                sellingPrice += RNG.random(8, 16);
+                buyingPrice -= RNG.random(8, 16);
                 merchantLine = text.HaggleSuccess();
             }
             else
             {
-                sellingPrice -= AbstractDungeon.miscRng.random(8, 16);
-                buyingPrice += AbstractDungeon.miscRng.random(8, 16);
+                sellingPrice -= RNG.random(8, 16);
+                buyingPrice += RNG.random(8, 16);
                 merchantLine = text.HaggleFail();
                 haggleEnabled = false;
             }

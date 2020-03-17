@@ -1,5 +1,7 @@
 package eatyourbeets.actions.special;
 
+import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.utilities.GameActions;
@@ -13,17 +15,17 @@ public class HasteAction extends EYBAction
         this.isRealtime = true;
         this.card = card;
 
-        if (!card.haste)
-        {
-            isDone = true;
-        }
-
         Initialize(1);
     }
 
     @Override
     protected void FirstUpdate()
     {
+        if (!((EYBCard)card).haste)
+        {
+            isDone = true;
+        }
+
         GameActions.Top.Draw(1);
         GameActions.Top.Flash(card);
     }
@@ -35,6 +37,7 @@ public class HasteAction extends EYBAction
 
         if (isDone)
         {
+            CardCrawlGame.sound.playA("POWER_FLIGHT",  MathUtils.random(0.3f, 0.4f));
             ((EYBCard)card).haste = false;
         }
     }

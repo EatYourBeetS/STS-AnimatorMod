@@ -1,5 +1,6 @@
 package eatyourbeets.relics.animator;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -26,7 +27,7 @@ public class ColorlessFragment extends AbstractMissingPiece
     @Override
     public int getPrice()
     {
-        return super.getPrice() + 90;
+        return MathUtils.ceil(super.getPrice() * 1.15f);
     }
 
     @Override

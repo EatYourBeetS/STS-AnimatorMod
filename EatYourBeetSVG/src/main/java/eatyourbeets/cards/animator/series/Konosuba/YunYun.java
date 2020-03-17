@@ -92,7 +92,7 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
     {
         GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE");
 
-        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m1 : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.VFX(new LightningEffect(m1.drawX, m1.drawY));
         }

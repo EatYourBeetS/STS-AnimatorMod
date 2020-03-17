@@ -30,7 +30,7 @@ public class Archer extends AnimatorCard
 
         if (HasSynergy())
         {
-            for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+            for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
             {
                 GameActions.Bottom.ApplyVulnerable(p, enemy, 1);
             }

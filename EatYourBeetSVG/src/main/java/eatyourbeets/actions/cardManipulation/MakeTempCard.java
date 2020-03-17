@@ -24,9 +24,9 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         Bottom,
         Random;
 
-        public boolean IsRandom() { return this == Random; }
-        public boolean IsTop()    { return this == Top;    }
-        public boolean IsBottom() { return this == Bottom; }
+        public boolean IsBottom() { return Bottom.equals(this); }
+        public boolean IsRandom() { return Random.equals(this); }
+        public boolean IsTop()    { return Top.equals(this);    }
         //@Formatter: On
     }
 
@@ -44,7 +44,13 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         this.card = card;
         this.cardGroup = group;
         this.destination = Destination.Random;
-        UnlockTracker.markCardAsSeen(card.cardID);
+
+        if (!UnlockTracker.isCardSeen(card.cardID))
+        {
+            UnlockTracker.markCardAsSeen(card.cardID);
+            card.isLocked = false;
+            card.isSeen = true;
+        }
 
         Initialize(1);
     }

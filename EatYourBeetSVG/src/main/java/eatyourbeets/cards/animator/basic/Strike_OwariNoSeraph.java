@@ -28,7 +28,7 @@ public class Strike_OwariNoSeraph extends Strike
         super.triggerOnExhaust();
 
         AbstractPlayer p = AbstractDungeon.player;
-        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.ApplyVulnerable(p, m, this.magicNumber);
         }

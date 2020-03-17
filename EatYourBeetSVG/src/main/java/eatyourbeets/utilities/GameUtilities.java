@@ -13,11 +13,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
-import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.relics.PenNib;
@@ -26,54 +25,25 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.powers.deprecated.TemporaryBiasPower;
-import eatyourbeets.powers.unnamed.ResonancePower;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
+import java.util.UUID;
 import java.util.function.Predicate;
+
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 public class GameUtilities
 {
     private static final OnPhaseChangedSubscriber handLayoutRefresher = new HandLayoutRefresher();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
-
-    public static void ApplyTemporaryDexterity(AbstractCreature source, AbstractCreature target, int amount)
-    {
-        if (UseArtifact(target))
-        {
-            GameActions.Top.ApplyPowerSilently(source, target, new LoseDexterityPower(target, amount), amount);
-        }
-
-        GameActions.Top.ApplyPower(source, target, new DexterityPower(target, amount), amount);
-    }
-
-    public static void ApplyTemporaryFocus(AbstractCreature source, AbstractCreature target, int amount)
-    {
-        if (UseArtifact(target))
-        {
-            GameActions.Top.ApplyPowerSilently(source, target, new TemporaryBiasPower(target, amount), amount);
-        }
-
-        GameActions.Top.ApplyPower(source, target, new FocusPower(target, amount), amount);
-    }
-
-    public static void ApplyTemporaryStrength(AbstractCreature source, AbstractCreature target, int amount)
-    {
-        if (UseArtifact(target))
-        {
-            GameActions.Top.ApplyPowerSilently(source, target, new LoseStrengthPower(target, amount), amount);
-        }
-
-        GameActions.Top.ApplyPower(source, target, new StrengthPower(target, amount), amount);
-    }
 
     public static boolean CanRemoveFromDeck(AbstractCard card)
     {
@@ -101,7 +71,6 @@ public class GameUtilities
 
     public static CardGroup FindCardGroup(AbstractCard card, boolean includeLimbo)
     {
-        AbstractPlayer player = AbstractDungeon.player;
         if (player.hand.contains(card))
         {
             return player.hand;
@@ -144,118 +113,96 @@ public class GameUtilities
 
     public static int GetActualAscensionLevel()
     {
-        if (AbstractDungeon.isAscensionMode)
-        {
-            return AbstractDungeon.ascensionLevel;
-        }
-
-        return 0;
+        return AbstractDungeon.isAscensionMode ? AbstractDungeon.ascensionLevel : 0;
     }
 
     public static ArrayList<AbstractCreature> GetAllCharacters(boolean aliveOnly)
     {
-        ArrayList<AbstractCreature> characters = new ArrayList<>();
         AbstractRoom room = GetCurrentRoom();
+        ArrayList<AbstractCreature> characters = new ArrayList<>();
         if (room != null && room.monsters != null)
         {
             for (AbstractMonster m : room.monsters.monsters)
             {
-                if (!aliveOnly || (!m.isDeadOrEscaped() && !m.isDying))
+                if (!aliveOnly || !IsDeadOrEscaped(m))
                 {
                     characters.add(m);
                 }
             }
         }
 
-        characters.add(AbstractDungeon.player);
+        if (!aliveOnly || !IsDeadOrEscaped(player))
+        {
+            characters.add(player);
+        }
 
         return characters;
     }
 
-    public static HashSet<AbstractCard> GetAllCopies(AbstractCard card)
+    public static HashSet<AbstractCard> GetAllCopies(String cardID, CardGroup group)
     {
-        String cardID = card.cardID;
-        HashSet<AbstractCard> cards = new HashSet<>();
-        AbstractCard c;
+        return GetAllCopies(new HashSet<>(), cardID, group);
+    }
 
-        c = AbstractDungeon.player.cardInUse;
-        if (c != null && c.cardID.equals(cardID))
+    public static HashSet<AbstractCard> GetAllCopies(HashSet<AbstractCard> cards, String cardID, CardGroup group)
+    {
+        for (AbstractCard card : group.group)
         {
-            cards.add(c);
-        }
-
-        Iterator var2 = AbstractDungeon.player.drawPile.group.iterator();
-        while (var2.hasNext())
-        {
-            c = (AbstractCard) var2.next();
-            if (c.cardID.equals(cardID))
+            if (cardID.equals(card.cardID))
             {
-                cards.add(c);
-            }
-        }
-
-        var2 = AbstractDungeon.player.discardPile.group.iterator();
-        while (var2.hasNext())
-        {
-            c = (AbstractCard) var2.next();
-            if (c.cardID.equals(cardID))
-            {
-                cards.add(c);
-            }
-        }
-
-        var2 = AbstractDungeon.player.exhaustPile.group.iterator();
-        while (var2.hasNext())
-        {
-            c = (AbstractCard) var2.next();
-            if (c.cardID.equals(cardID))
-            {
-                cards.add(c);
-            }
-        }
-
-        var2 = AbstractDungeon.player.limbo.group.iterator();
-        while (var2.hasNext())
-        {
-            c = (AbstractCard) var2.next();
-            if (c.cardID.equals(cardID))
-            {
-                cards.add(c);
-            }
-        }
-
-        var2 = AbstractDungeon.player.hand.group.iterator();
-        while (var2.hasNext())
-        {
-            c = (AbstractCard) var2.next();
-            if (c.cardID.equals(cardID))
-            {
-                cards.add(c);
+                cards.add(card);
             }
         }
 
         return cards;
     }
 
-    public static HashSet<AbstractCard> GetAllCopies(String cardID, CardGroup group)
+    public static ArrayList<AbstractMonster> GetAllEnemies(boolean aliveOnly)
     {
-        HashSet<AbstractCard> result = new HashSet<>();
-        for (AbstractCard card : group.group)
+        AbstractRoom room = GetCurrentRoom();
+        ArrayList<AbstractMonster> monsters = new ArrayList<>();
+        if (room != null && room.monsters != null)
         {
-            if (cardID.equals(card.cardID))
+            for (AbstractMonster m : room.monsters.monsters)
             {
-                result.add(card);
+                if (!aliveOnly || !IsDeadOrEscaped(m))
+                {
+                    monsters.add(m);
+                }
             }
         }
 
-        return result;
+        return monsters;
+    }
+
+    public static HashSet<AbstractCard> GetAllInBattleCopies(String cardID)
+    {
+        HashSet<AbstractCard> cards = new HashSet<>();
+        AbstractCard c = player.cardInUse;
+        if (c != null && c.cardID.equals(cardID))
+        {
+            cards.add(c);
+        }
+
+        GetAllCopies(cards, cardID, player.hand);
+        GetAllCopies(cards, cardID, player.drawPile);
+        GetAllCopies(cards, cardID, player.discardPile);
+        GetAllCopies(cards, cardID, player.exhaustPile);
+        GetAllCopies(cards, cardID, player.limbo);
+
+        return cards;
     }
 
     public static HashSet<AbstractCard> GetAllInBattleInstances(AbstractCard card)
     {
-        HashSet<AbstractCard> cards = GetAllInBattleInstances.get(card.uuid);
-
+        HashSet<AbstractCard> cards = new HashSet<>();
         cards.add(card);
+
+        GetAllInstances(cards, card.uuid, player.hand);
+        GetAllInstances(cards, card.uuid, player.drawPile);
+        GetAllInstances(cards, card.uuid, player.discardPile);
+        GetAllInstances(cards, card.uuid, player.exhaustPile);
+        GetAllInstances(cards, card.uuid, player.limbo);
 
         return cards;
     }
@@ -263,7 +210,6 @@ public class GameUtilities
     public static HashSet<AbstractCard> GetAllInstances(AbstractCard card)
     {
         HashSet<AbstractCard> cards = GetAllInBattleInstances(card);
-
         AbstractCard masterDeckInstance = GetMasterDeckInstance(card);
         if (masterDeckInstance != null)
         {
@@ -273,14 +219,22 @@ public class GameUtilities
         return cards;
     }
 
-    public static int GetAscensionLevel()
+    public static HashSet<AbstractCard> GetAllInstances(HashSet<AbstractCard> cards, UUID uuid, CardGroup group)
     {
-        if (AbstractDungeon.isAscensionMode)
+        for (AbstractCard card : group.group)
         {
-            return Math.max(0, Math.min(20, AbstractDungeon.ascensionLevel));
+            if (uuid.equals(card.uuid))
+            {
+                cards.add(card);
+            }
         }
 
-        return 0;
+        return cards;
+    }
+
+    public static int GetAscensionLevel()
+    {
+        return AbstractDungeon.isAscensionMode ? Math.max(0, Math.min(20, AbstractDungeon.ascensionLevel)) : 0;
     }
 
     public static CardGroup GetCardPool(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
@@ -323,50 +277,14 @@ public class GameUtilities
         }
     }
 
-    public static int GetCurrentDeckSize(AbstractPlayer player)
-    {
-        return player.drawPile.size() + player.discardPile.size() + player.hand.size() + player.exhaustPile.size() + player.limbo.size();
-    }
-
-    public static ArrayList<AbstractMonster> GetCurrentEnemies(boolean aliveOnly)
-    {
-        ArrayList<AbstractMonster> monsters = new ArrayList<>();
-        AbstractRoom room = GetCurrentRoom();
-        if (room != null && room.monsters != null)
-        {
-            for (AbstractMonster m : room.monsters.monsters)
-            {
-                if (!aliveOnly || (!m.isDeadOrEscaped() && m.currentHealth > 0))
-                {
-                    monsters.add(m);
-                }
-            }
-        }
-
-        return monsters;
-    }
-
     public static AbstractRoom GetCurrentRoom()
     {
-        MapRoomNode mapNode = AbstractDungeon.currMapNode;
-        if (mapNode == null)
-        {
-            return null;
-        }
-        else
-        {
-            return mapNode.getRoom();
-        }
+        return (AbstractDungeon.currMapNode == null) ? null : AbstractDungeon.currMapNode.getRoom();
     }
 
     public static int GetDebuffsCount(AbstractCreature creature)
     {
-        if (creature == null || creature.powers == null)
-        {
-            return 0;
-        }
-
-        return GetDebuffsCount(creature.powers);
+        return (creature == null || creature.powers == null) ? 0 : GetDebuffsCount(creature.powers);
     }
 
     public static int GetDebuffsCount(ArrayList<AbstractPower> powers)
@@ -384,59 +302,19 @@ public class GameUtilities
         return result;
     }
 
-    public static int GetDexterity()
-    {
-        return GetDexterity(AbstractDungeon.player);
-    }
-
-    public static int GetDexterity(AbstractCreature creature)
-    {
-        DexterityPower power = (DexterityPower) creature.getPower(DexterityPower.POWER_ID);
-        if (power != null)
-        {
-            return power.amount;
-        }
-
-        return 0;
-    }
-
-    public static int GetFocus()
-    {
-        return GetFocus(AbstractDungeon.player);
-    }
-
-    public static int GetFocus(AbstractCreature creature)
-    {
-        FocusPower power = (FocusPower) creature.getPower(FocusPower.POWER_ID);
-        if (power != null)
-        {
-            return power.amount;
-        }
-
-        return 0;
-    }
-
     public static float GetHealthPercentage(AbstractCreature creature)
     {
         return creature.currentHealth / (float) creature.maxHealth;
     }
 
-    public static AbstractCard GetMasterDeckInstance(String cardID)
+    public static AbstractCard GetMasterDeckCopy(String cardID)
     {
-        for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
-        {
-            if (cardID.equals(c.cardID))
-            {
-                return c;
-            }
-        }
-
-        return null;
+        return player.masterDeck.findCardById(cardID);
     }
 
     public static AbstractCard GetMasterDeckInstance(AbstractCard card)
     {
-        for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+        for (AbstractCard c : player.masterDeck.group)
         {
             if (c.uuid == card.uuid)
             {
@@ -450,7 +328,7 @@ public class GameUtilities
     public static HashSet<AbstractCard> GetOtherCardsInHand(AbstractCard card)
     {
         HashSet<AbstractCard> cards = new HashSet<>();
-        for (AbstractCard c : AbstractDungeon.player.hand.group)
+        for (AbstractCard c : player.hand.group)
         {
             if (c != card)
             {
@@ -498,7 +376,7 @@ public class GameUtilities
 
     public static int GetPowerAmount(String powerID)
     {
-        return GetPowerAmount(AbstractDungeon.player, powerID);
+        return GetPowerAmount(player, powerID);
     }
 
     public static int GetPowerAmount(AbstractCreature owner, String powerID)
@@ -514,21 +392,12 @@ public class GameUtilities
 
     public static AbstractCreature GetRandomCharacter(boolean aliveOnly)
     {
-        RandomizedList<AbstractMonster> enemies = new RandomizedList<>(GetCurrentEnemies(aliveOnly));
-
-        AbstractCreature result = enemies.Retrieve(AbstractDungeon.cardRandomRng, false);
-        if (result == null)
-        {
-            return AbstractDungeon.player;
-        }
-        else
-        {
-            return result;
-        }
+        return JavaUtilities.GetRandomElement(GetAllCharacters(aliveOnly), GetRNG());
     }
+
     public static AbstractMonster GetRandomEnemy(boolean aliveOnly)
     {
-        return JavaUtilities.GetRandomElement(GetCurrentEnemies(aliveOnly));
+        return JavaUtilities.GetRandomElement(GetAllEnemies(aliveOnly), GetRNG());
     }
 
     public static AbstractOrb GetRandomOrb()
@@ -544,13 +413,14 @@ public class GameUtilities
             orbs.Add(new Aether(), 4);
         }
 
-        return orbs.Retrieve(AbstractDungeon.cardRandomRng, false).makeCopy();
+        return orbs.Retrieve(GetRNG(), false).makeCopy();
     }
 
     public static AbstractCard GetRandomRewardCard(RewardItem rewardItem, boolean includeRares)
     {
         AbstractCard replacement = null;
         boolean searchingCard = true;
+
         while (searchingCard)
         {
             searchingCard = false;
@@ -580,7 +450,7 @@ public class GameUtilities
             }
         }
 
-        for (AbstractRelic r : AbstractDungeon.player.relics)
+        for (AbstractRelic r : player.relics)
         {
             r.onPreviewObtainCard(replacement);
         }
@@ -591,6 +461,7 @@ public class GameUtilities
     public static AbstractCard GetRandomRewardCard(boolean includeRares)
     {
         ArrayList<AbstractCard> list;
+
         int roll = AbstractDungeon.cardRng.random(100);
         if (roll <= 4 && includeRares)
         {
@@ -609,10 +480,54 @@ public class GameUtilities
         {
             return list.get(AbstractDungeon.cardRng.random(list.size() - 1));
         }
-        else
+
+        return null;
+    }
+
+    public static <T extends AbstractRelic> T GetRelic(String relicID)
+    {
+        for (AbstractRelic relic : player.relics)
         {
-            return null;
+            if (relic != null && relicID.equals(relic.relicId))
+            {
+                try
+                {
+                    return (T) relic;
+                }
+                catch (ClassCastException e)
+                {
+                    e.printStackTrace();
+
+                    return null;
+                }
+            }
         }
+
+        return null;
+    }
+
+    public static Random GetRNG()
+    {
+        if (EYBCard.rng == null)
+        {
+            JavaUtilities.Log(GameUtilities.class, "EYBCard.rng was null");
+            return new Random();
+        }
+
+        return EYBCard.rng;
+    }
+
+    public static <T> T GetRelic(Class<T> relicType)
+    {
+        for (AbstractRelic relic : player.relics)
+        {
+            if (relicType.isInstance(relic))
+            {
+                return relicType.cast(relic);
+            }
+        }
+
+        return null;
     }
 
     public static ArrayList<String> GetRelicPool(AbstractRelic.RelicTier tier)
@@ -634,86 +549,18 @@ public class GameUtilities
         }
     }
 
-    public static <T extends AbstractRelic> T GetRelic(String relicID)
-    {
-        for (AbstractRelic relic : AbstractDungeon.player.relics)
-        {
-            if (relic != null && relicID.equals(relic.relicId))
-            {
-                try
-                {
-                    return (T) relic;
-                }
-                catch (ClassCastException e)
-                {
-                    e.printStackTrace();
-
-                    return null;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    public static <T> T GetRelic(Class<T> relicType)
-    {
-        for (AbstractRelic relic : AbstractDungeon.player.relics)
-        {
-            if (relicType.isInstance(relic))
-            {
-                return relicType.cast(relic);
-            }
-        }
-
-        return null;
-    }
-
-    public static int GetResonance()
-    {
-        return GetResonance(AbstractDungeon.player);
-    }
-
-    public static int GetResonance(AbstractCreature creature)
-    {
-        ResonancePower power = (ResonancePower) creature.getPower(ResonancePower.POWER_ID);
-        if (power != null)
-        {
-            return power.amount;
-        }
-
-        return 0;
-    }
-
-    public static int GetStrength()
-    {
-        return GetStrength(AbstractDungeon.player);
-    }
-
-    public static int GetStrength(AbstractCreature creature)
-    {
-        StrengthPower power = (StrengthPower) creature.getPower(StrengthPower.POWER_ID);
-        if (power != null)
-        {
-            return power.amount;
-        }
-
-        return 0;
-    }
-
     public static int GetUniqueOrbsCount()
     {
-        ArrayList<String> orbList = new ArrayList<>();
-
-        for (AbstractOrb o : AbstractDungeon.player.orbs)
+        HashSet<String> orbs = new HashSet<>();
+        for (AbstractOrb o : player.orbs)
         {
-            if (o.ID != null && !o.ID.equals(EmptyOrbSlot.ORB_ID) && !orbList.contains(o.ID))
+            if (IsValidOrb(o))
             {
-                orbList.add(o.ID);
+                orbs.add(o.ID);
             }
         }
 
-        return orbList.size();
+        return orbs.size();
     }
 
     public static int GetXCostEnergy(AbstractCard card)
@@ -725,7 +572,7 @@ public class GameUtilities
             amount = card.energyOnUse;
         }
 
-        if (AbstractDungeon.player.hasRelic(ChemicalX.ID))
+        if (player.hasRelic(ChemicalX.ID))
         {
             amount += ChemicalX.BOOST;
         }
@@ -736,7 +583,7 @@ public class GameUtilities
     public static boolean InBattle()
     {
         AbstractRoom room = GetCurrentRoom();
-        if (room != null && !room.isBattleOver && !AbstractDungeon.player.isDead)
+        if (room != null && !room.isBattleOver && !player.isDead)
         {
             return room.phase == AbstractRoom.RoomPhase.COMBAT || (room.monsters != null && !room.monsters.areMonstersBasicallyDead());
         }
@@ -783,7 +630,7 @@ public class GameUtilities
 
     public static boolean IsPlayerClass(AbstractPlayer.PlayerClass playerClass)
     {
-        return AbstractDungeon.player != null && AbstractDungeon.player.chosenClass == playerClass;
+        return player != null && player.chosenClass == playerClass;
     }
 
     public static boolean IsValidOrb(AbstractOrb orb)
@@ -898,7 +745,7 @@ public class GameUtilities
 
     public static void UsePenNib()
     {
-        AbstractPlayer p = AbstractDungeon.player;
+        AbstractPlayer p = player;
         if (p.hasPower(PenNibPower.POWER_ID))
         {
             GameActions.Bottom.ReducePower(p, PenNibPower.POWER_ID, 1);
@@ -922,10 +769,10 @@ public class GameUtilities
             amount = card.energyOnUse;
         }
 
-        if (AbstractDungeon.player.hasRelic(ChemicalX.ID))
+        if (player.hasRelic(ChemicalX.ID))
         {
             amount += ChemicalX.BOOST;
-            AbstractDungeon.player.getRelic(ChemicalX.ID).flash();
+            player.getRelic(ChemicalX.ID).flash();
         }
 
         if (!card.freeToPlayOnce)
@@ -945,7 +792,7 @@ public class GameUtilities
         {
             if (phase == GameActionManager.Phase.WAITING_ON_USER)
             {
-                CardGroup hand = AbstractDungeon.player.hand;
+                CardGroup hand = player.hand;
                 hand.refreshHandLayout();
                 hand.applyPowers();
                 hand.glowCheck();

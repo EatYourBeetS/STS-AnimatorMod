@@ -2,7 +2,6 @@ package eatyourbeets.events.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
@@ -50,7 +49,7 @@ public class TheMaskedTraveler1 extends EYBEvent
                 }
             }
 
-            AbstractCard card = cards.Retrieve(AbstractDungeon.miscRng);
+            AbstractCard card = cards.Retrieve(RNG);
             if (card != null)
             {
                 AddOption(text.SellCardOption(card.name, SELLING_PRICE), card).AddCallback(this::SellCard);
@@ -127,13 +126,13 @@ public class TheMaskedTraveler1 extends EYBEvent
             for (AbstractCard card : strikesToReplace)
             {
                 deck.remove(card);
-                ObtainCard(strikes.Retrieve(AbstractDungeon.miscRng), card.upgraded);
+                ObtainCard(strikes.Retrieve(RNG), card.upgraded);
             }
 
             for (AbstractCard card : defendsToReplace)
             {
                 deck.remove(card);
-                ObtainCard(defends.Retrieve(AbstractDungeon.miscRng), card.upgraded);
+                ObtainCard(defends.Retrieve(RNG), card.upgraded);
             }
 
             ProgressPhase();

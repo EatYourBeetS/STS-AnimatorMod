@@ -25,7 +25,7 @@ public class Defend_OwariNoSeraph extends Defend
     public void triggerOnExhaust()
     {
         AbstractPlayer p = AbstractDungeon.player;
-        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.ApplyWeak(p, m, this.magicNumber);
         }

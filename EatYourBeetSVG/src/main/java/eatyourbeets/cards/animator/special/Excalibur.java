@@ -34,7 +34,7 @@ public class Excalibur extends AnimatorCard
         GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, 1));
         GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.GOLD));
 
-        for (AbstractCreature m1 : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractCreature m1 : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.VFX(new VerticalImpactEffect(m1.hb_x, m1.hb_y));
         }

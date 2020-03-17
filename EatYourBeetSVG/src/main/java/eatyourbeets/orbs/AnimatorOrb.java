@@ -1,8 +1,11 @@
 package eatyourbeets.orbs;
 
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -39,5 +42,10 @@ public abstract class AnimatorOrb extends AbstractOrb
         }
 
         return null;
+    }
+
+    public static int GetFocus()
+    {
+        return GameUtilities.GetPowerAmount(AbstractDungeon.player, FocusPower.POWER_ID);
     }
 }

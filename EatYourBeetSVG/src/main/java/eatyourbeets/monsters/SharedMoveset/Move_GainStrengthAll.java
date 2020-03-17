@@ -23,7 +23,7 @@ public class Move_GainStrengthAll extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.StackPower(owner, new StrengthPower(m, buffAmount));
         }

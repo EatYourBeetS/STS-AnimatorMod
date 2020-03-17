@@ -36,7 +36,7 @@ public class Giselle extends AnimatorCard_UltraRare implements StartupCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
 
-        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.ApplyBurning(p, enemy, magicNumber);
         }

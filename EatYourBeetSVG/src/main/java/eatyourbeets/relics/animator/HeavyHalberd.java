@@ -30,7 +30,7 @@ public class HeavyHalberd extends AnimatorRelic
         super.atTurnStartPostDraw();
 
         int force = 0;
-        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {
             if (m.hasPower(VulnerablePower.POWER_ID))
             {

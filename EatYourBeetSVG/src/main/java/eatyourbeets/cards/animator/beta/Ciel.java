@@ -12,12 +12,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Ciel extends AnimatorCard
 {
-    private static final Lu LU = new Lu();
-
     public static final EYBCardData DATA = Register(Ciel.class).SetSkill(2, CardRarity.COMMON);
     static
     {
-        DATA.AddPreview(LU, true);
+        DATA.AddPreview(new Lu(), true);
     }
 
     public Ciel()
@@ -45,7 +43,7 @@ public class Ciel extends AnimatorCard
 
         if (HasSynergy())
         {
-            for (AbstractCard card : GameUtilities.GetAllCopies(LU))
+            for (AbstractCard card : GameUtilities.GetAllInBattleCopies(Lu.DATA.ID))
             {
                 card.damage = (card.baseDamage += secondaryValue);
                 card.flash();

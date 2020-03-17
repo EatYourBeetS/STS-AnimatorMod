@@ -26,7 +26,7 @@ public class Move_GainStrengthAndArtifactAll extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.StackPower(owner, new StrengthPower(m, strength));
             GameActions.Bottom.StackPower(owner, new ArtifactPower(m, artifact));

@@ -1,6 +1,7 @@
 package eatyourbeets.ui.controls;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MathHelper;
@@ -114,6 +115,6 @@ public class GUI_VerticalScrollBar extends GUIElement
 
     private static float Clamp(float percent)
     {
-        return Math.max(0.0F, Math.min(percent, 1.0F));
+        return MathUtils.clamp(percent, 0f, 1f);
     }
 }

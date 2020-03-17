@@ -269,7 +269,7 @@ public class TheUnnamed extends AnimatorMonster
     private int RemoveMinions()
     {
         int removed = 0;
-        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {
             if (m.hasPower(MinionPower.POWER_ID))
             {

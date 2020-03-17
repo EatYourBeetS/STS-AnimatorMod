@@ -182,12 +182,6 @@ public abstract class EYBCard extends EYBCardBase
     {
         // this is only used by ShowCardAndAddToHandEffect
         triggerWhenDrawn();
-    }
-
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
 
         if (haste)
         {

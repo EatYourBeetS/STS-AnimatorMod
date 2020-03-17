@@ -53,7 +53,7 @@ public class SupportDamageAction extends EYBAction
 
         if (target != bestTarget || target.isDeadOrEscaped() || target.currentHealth <= 0)
         {
-            if (GameUtilities.GetCurrentEnemies(true).size() > 0)
+            if (GameUtilities.GetAllEnemies(true).size() > 0)
             {
                 GameActions.Top.Add(new SupportDamageAction(info, bestTarget));
             }
@@ -114,7 +114,7 @@ public class SupportDamageAction extends EYBAction
 
     private static AbstractMonster FindLowestHPEnemy()
     {
-        ArrayList<AbstractMonster> enemies = GameUtilities.GetCurrentEnemies(true);
+        ArrayList<AbstractMonster> enemies = GameUtilities.GetAllEnemies(true);
 
         AbstractMonster enemy = null;
         int minHealth = Integer.MAX_VALUE;

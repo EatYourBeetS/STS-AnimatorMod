@@ -6,7 +6,6 @@ import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.cardManipulation.MakeTempCard;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -17,6 +16,8 @@ import eatyourbeets.effects.attack.SmallLaser2Effect;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.interfaces.subscribers.OnAddedToDrawPileSubscriber;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellcaster, OnAddedToDrawPileSubscriber
 {
@@ -59,7 +60,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
             CardGroup group = player.drawPile;
             if (group.group.remove(this))
             {
-                group.group.add(group.size() - Math.min(group.size(), 6), this);
+                group.group.add(group.size() - Math.min(group.size(), 5), this);
             }
         });
     }
@@ -68,7 +69,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(enemy -> AbstractDungeon.effectsQueue.add(new SmallLaser2Effect(player.hb.cX, player.hb.cY,
-    enemy.hb.cX + MathUtils.random(-0.05F, 0.05F), enemy.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PURPLE)));
+        .SetDamageEffect(enemy -> GameEffects.Queue.Add(new SmallLaser2Effect(player.hb.cX, player.hb.cY,
+        enemy.hb.cX + MathUtils.random(-0.05F, 0.05F), enemy.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PURPLE)));
     }
 }

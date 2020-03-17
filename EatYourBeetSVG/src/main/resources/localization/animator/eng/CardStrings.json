@@ -239,7 +239,7 @@
 	"animator:Defend_DateALive":
 	{
 		"DESCRIPTION": "Limited: If you have 30 or more cards in your current deck, gain [E][E].",
-		"NAME": "Improved Strike"
+		"NAME": "Improved Defend"
 	},
 	"animator:Defend_Elsword":
 	{

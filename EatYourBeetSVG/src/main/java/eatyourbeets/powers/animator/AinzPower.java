@@ -94,7 +94,7 @@ public class AinzPower extends AnimatorPower
         {
             if (!cards.isEmpty())
             {
-                cards.get(0).use(AbstractDungeon.player, null);
+                cards.get(0).use(player, null);
             }
         });
     }

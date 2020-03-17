@@ -70,10 +70,9 @@ public class CerealBox extends AnimatorRelic
     {
         super.atTurnStartPostDraw();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        if (counter > 0 && GameUtilities.GetHealthPercentage(p) < 0.25f)
+        if (counter > 0 && GameUtilities.GetHealthPercentage(AbstractDungeon.player) < 0.25f)
         {
-            GameActions.Bottom.Add(new RelicAboveCreatureAction(p, this));
+            GameActions.Bottom.Add(new RelicAboveCreatureAction(AbstractDungeon.player, this));
 
             this.beginLongPulse();
         }

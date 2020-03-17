@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -34,7 +33,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     {
         super.Refresh(enemy);
 
-        if (AbstractDungeon.player.hand.contains(this))
+        if (player.hand.contains(this))
         {
             PlayerStatistics.onAttack.Subscribe(this);
         }
@@ -43,7 +42,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     @Override
     public void OnAttack(DamageInfo info, int damageAmount, AbstractCreature target)
     {
-        if (AbstractDungeon.player.hand.contains(this))
+        if (player.hand.contains(this))
         {
             if (info.type == DamageInfo.DamageType.NORMAL && target != null && !target.isPlayer)
             {

@@ -67,7 +67,7 @@ public class KrulTepes extends AnimatorCard
     public void ObtainReward()
     {
         int totalRelics = 0;
-        ArrayList<AbstractRelic> relics = AbstractDungeon.player.relics;
+        ArrayList<AbstractRelic> relics = player.relics;
         for (AbstractRelic relic : relics)
         {
             if (relic.relicId.equals(relicReward.relicId))
@@ -83,15 +83,15 @@ public class KrulTepes extends AnimatorCard
 
         if (totalRelics >= 5)
         {
-            AbstractDungeon.getCurrRoom().addRelicToRewards(new ExquisiteBloodVial());
+            GameUtilities.GetCurrentRoom(true).addRelicToRewards(new ExquisiteBloodVial());
         }
         else if (UnnamedReignRelic.IsEquipped())
         {
-            AbstractDungeon.getCurrRoom().addRelicToRewards(new AncientMedallion());
+            GameUtilities.GetCurrentRoom(true).addRelicToRewards(new AncientMedallion());
         }
         else
         {
-            AbstractDungeon.getCurrRoom().addRelicToRewards(relicReward.makeCopy());
+            GameUtilities.GetCurrentRoom(true).addRelicToRewards(relicReward.makeCopy());
         }
     }
 }

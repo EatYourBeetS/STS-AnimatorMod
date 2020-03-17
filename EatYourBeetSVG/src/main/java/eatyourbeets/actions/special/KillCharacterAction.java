@@ -21,17 +21,18 @@ public class KillCharacterAction extends EYBAction
     {
         GameActions.Bottom.Wait(0.8f);
         GameActions.Bottom.VFX(new CollectorCurseEffect(target.hb.cX, target.hb.cY), 2.0F);
+
         for (int i = 1; i <= 10; i ++)
         {
             GameActions.Bottom.DealDamage(source, target, i * i * i, DamageInfo.DamageType.HP_LOSS, AttackEffect.NONE)
-                    .SetVFX(true, false);
+            .SetVFX(true, false);
 
             GameActions.Bottom.DealDamage(source, target, i * i * i, DamageInfo.DamageType.HP_LOSS, AttackEffect.NONE)
-                    .SetVFX(true, false);
+            .SetVFX(true, false);
         }
 
         GameActions.Bottom.DealDamage(source, target, 99999, DamageInfo.DamageType.HP_LOSS, AttackEffect.NONE)
-                .SetVFX(true, false);
+        .SetVFX(true, false);
 
         GameActions.Bottom.Add(new DieAction(target));
     }

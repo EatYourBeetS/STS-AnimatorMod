@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.TenseiSlime;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.unique.PoisonLoseHpAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
@@ -34,10 +33,9 @@ public class Souei extends AnimatorCard implements MartialArtist
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
         GameActions.Bottom.Callback(__ ->
         {
-            AbstractPlayer player = AbstractDungeon.player;
             for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
             {
-                PoisonPower poison = (PoisonPower) enemy.getPower(PoisonPower.POWER_ID);
+                PoisonPower poison = GameUtilities.GetPower(enemy, PoisonPower.class);
                 if (poison != null)
                 {
                     GameActions.Top.Callback(new PoisonLoseHpAction(enemy, player, poison.amount, AbstractGameAction.AttackEffect.POISON))
@@ -47,7 +45,7 @@ public class Souei extends AnimatorCard implements MartialArtist
                         {
                             if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) == (int) intangible)
                             {
-                                GameActions.Top.StackPower(new IntangiblePlayerPower(AbstractDungeon.player, 1));
+                                GameActions.Top.StackPower(new IntangiblePlayerPower(player, 1));
                             }
                         }
                     });

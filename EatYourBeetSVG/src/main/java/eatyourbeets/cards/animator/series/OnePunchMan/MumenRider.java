@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -50,12 +49,11 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
     @Override
     public void OnStartOfTurnPostDraw()
     {
-        AbstractPlayer p = AbstractDungeon.player;
-        if (p.exhaustPile.contains(this))
+        if (player.exhaustPile.contains(this))
         {
             if (turns <= 0)
             {
-                GameActions.Bottom.MoveCard(this, p.exhaustPile, p.drawPile)
+                GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
                 .ShowEffect(false, false);
                 PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
             }

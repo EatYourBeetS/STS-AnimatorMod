@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.unique.BouncingFlaskAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -42,9 +41,7 @@ public class Layla extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                AbstractPlayer player = AbstractDungeon.player;
-                AbstractMonster enemy = GameUtilities.GetRandomEnemy(true);
-
+                final AbstractMonster enemy = GameUtilities.GetRandomEnemy(true);
                 if (enemy != null)
                 {
                     GameActions.Bottom.VFX(new PotionBounceEffect(player.hb.cY, player.hb.cX, enemy.hb.cX, enemy.hb.cY), 0.3F);

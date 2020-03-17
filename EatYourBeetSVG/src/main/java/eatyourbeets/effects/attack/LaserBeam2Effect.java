@@ -7,10 +7,10 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
+import eatyourbeets.utilities.GameEffects;
 
 public class LaserBeam2Effect extends AbstractGameEffect
 {
@@ -38,7 +38,7 @@ public class LaserBeam2Effect extends AbstractGameEffect
     {
         if (!this.playedSfx)
         {
-            AbstractDungeon.effectsQueue.add(new BorderLongFlashEffect(Color.SKY));
+            GameEffects.Queue.Add(new BorderLongFlashEffect(Color.SKY));
             this.playedSfx = true;
             CardCrawlGame.sound.play("ATTACK_MAGIC_BEAM");
             CardCrawlGame.screenShake.rumble(2.0F);

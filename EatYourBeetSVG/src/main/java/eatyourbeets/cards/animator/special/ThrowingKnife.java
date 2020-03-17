@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.special;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -73,11 +72,11 @@ public class ThrowingKnife extends AnimatorCard
 
         GameActions.Bottom.Callback(__ ->
         {
-            AbstractDungeon.player.discardPile.removeCard(this);
-            this.freeToPlayOnce = true;
-            this.purgeOnUse = true;
-            this.applyPowers();
-            this.use(AbstractDungeon.player, null);
+            player.discardPile.removeCard(this);
+            freeToPlayOnce = true;
+            purgeOnUse = true;
+            applyPowers();
+            use(player, null);
         });
     }
 

@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -51,7 +50,7 @@ public class Entoma extends AnimatorCard
         {
             if (GameUtilities.TriggerOnKill(enemy, true) && EffectHistory.TryActivateLimited(cardID))
             {
-                AbstractDungeon.player.increaseMaxHp(2, false);
+                player.increaseMaxHp(2, false);
                 for (AbstractCard c : GameUtilities.GetAllInstances(this))
                 {
                     c.upgrade();

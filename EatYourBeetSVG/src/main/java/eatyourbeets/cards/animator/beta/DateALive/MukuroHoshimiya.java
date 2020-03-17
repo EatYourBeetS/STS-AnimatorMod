@@ -15,11 +15,13 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.attack.SmallLaser2Effect;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.interfaces.subscribers.OnAddedToDrawPileSubscriber;
+import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
+import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
 
-public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellcaster, OnAddedToDrawPileSubscriber
+public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellcaster, OnBattleStartSubscriber, OnShuffleSubscriber, OnAddedToDrawPileSubscriber
 {
     public static final EYBCardData DATA = Register(MukuroHoshimiya.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Elemental);
 
@@ -30,6 +32,11 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
         Initialize(6, 0);
 
         SetSynergy(Synergies.DateALive);
+
+        if (CanSubscribeToEvents())
+        {
+            OnBattleStart();
+        }
     }
 
     @Override
@@ -45,15 +52,35 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
     }
 
     @Override
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+        .SetDamageEffect(enemy -> GameEffects.Queue.Add(new SmallLaser2Effect(player.hb.cX, player.hb.cY,
+        enemy.hb.cX + MathUtils.random(-0.05F, 0.05F), enemy.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PURPLE)));
+    }
+
+    @Override
     public boolean atBattleStartPreDraw()
     {
-        OnAddedToDrawPile(false, MakeTempCard.Destination.Random);
+        OnShuffle(false);
 
         return false;
     }
 
     @Override
+    public void OnBattleStart()
+    {
+        PlayerStatistics.onShuffle.Subscribe(this);
+    }
+
+    @Override
     public void OnAddedToDrawPile(boolean visualOnly, MakeTempCard.Destination destination)
+    {
+        OnShuffle(false);
+    }
+
+    @Override
+    public void OnShuffle(boolean triggerRelics)
     {
         GameActions.Top.Callback(__ ->
         {
@@ -63,13 +90,5 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
                 group.group.add(group.size() - Math.min(group.size(), 5), this);
             }
         });
-    }
-
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
-    {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(enemy -> GameEffects.Queue.Add(new SmallLaser2Effect(player.hb.cX, player.hb.cY,
-        enemy.hb.cX + MathUtils.random(-0.05F, 0.05F), enemy.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PURPLE)));
     }
 }

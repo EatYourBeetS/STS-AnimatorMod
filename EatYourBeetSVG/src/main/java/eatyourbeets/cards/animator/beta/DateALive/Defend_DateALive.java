@@ -27,7 +27,7 @@ public class Defend_DateALive extends Defend
         GameActions.Bottom.GainBlock(block);
 
         int totalCards = player.drawPile.size() + player.discardPile.size() + player.hand.size();
-        if (totalCards >= 30 && EffectHistory.TryActivateLimited(cardID))
+        if (totalCards >= 30 && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.GainEnergy(2);
         }

@@ -28,7 +28,7 @@ public class Strike_DateALive extends Strike
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
         int totalCards = player.drawPile.size() + player.discardPile.size() + player.hand.size();
-        if (totalCards >= 30 && EffectHistory.TryActivateLimited(cardID))
+        if (totalCards >= 30 && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.Draw(2);
         }

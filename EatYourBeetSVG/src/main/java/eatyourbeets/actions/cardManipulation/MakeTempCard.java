@@ -48,6 +48,8 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         if (!UnlockTracker.isCardSeen(card.cardID))
         {
             UnlockTracker.markCardAsSeen(card.cardID);
+            card.isLocked = false;
+            card.isSeen = true;
         }
 
         Initialize(1);

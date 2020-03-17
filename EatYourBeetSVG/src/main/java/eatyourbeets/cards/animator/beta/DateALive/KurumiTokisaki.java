@@ -16,13 +16,12 @@ import eatyourbeets.utilities.GameActions;
 public class KurumiTokisaki extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KurumiTokisaki.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Ranged, EYBCardTarget.ALL);
-    public static final int ATTACK_MULTIPLIER = 2;
 
     public KurumiTokisaki()
     {
         super(DATA);
 
-        Initialize(12, 12);
+        Initialize(12, 12, 3);
 
         SetCooldown(3, -1, this::OnCooldownCompleted);
         SetSynergy(Synergies.DateALive);
@@ -32,12 +31,6 @@ public class KurumiTokisaki extends AnimatorCard
     protected void OnUpgrade()
     {
         SetScaling(0, 2, 2);
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(ATTACK_MULTIPLIER);
     }
 
     @Override
@@ -55,12 +48,10 @@ public class KurumiTokisaki extends AnimatorCard
         GameActions.Bottom.SFX("ATTACK_HEAVY");
         GameActions.Bottom.VFX(new DieDieDieEffect());
 
-        for (int i = 0; i < ATTACK_MULTIPLIER; i++)
-        {
-            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
-        }
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
 
         GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.StackPower(new EnergizedPower(p, magicNumber));
 
         cooldown.ProgressCooldownAndTrigger(m);
     }

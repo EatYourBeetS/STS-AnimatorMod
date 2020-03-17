@@ -45,7 +45,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         this.cardGroup = group;
         this.destination = Destination.Random;
 
-        if (!UnlockTracker.isCardSeen(card.cardID))
+        if (!UnlockTracker.isCardSeen(card.cardID) || !card.isSeen)
         {
             UnlockTracker.markCardAsSeen(card.cardID);
             card.isLocked = false;

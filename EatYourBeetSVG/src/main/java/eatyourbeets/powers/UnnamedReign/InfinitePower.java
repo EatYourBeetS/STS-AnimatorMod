@@ -1,6 +1,5 @@
 package eatyourbeets.powers.UnnamedReign;
 
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -10,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
-import eatyourbeets.actions.special.EndPlayerTurnAction;
+import eatyourbeets.actions.special.EndPlayerTurn;
 import eatyourbeets.actions.special.KillCharacterAction;
 import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.blights.common.CustomTimeMaze;
@@ -25,14 +24,15 @@ import eatyourbeets.cards.animator.series.NoGameNoLife.ChlammyZell;
 import eatyourbeets.cards.animator.series.OnePunchMan.Boros;
 import eatyourbeets.cards.animator.series.Overlord.Ainz;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.Guren;
-import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.animator.EnchantedArmorPower;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.monsters.Bosses.TheUnnamed;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
@@ -56,8 +56,8 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     private boolean progressStunCounter = true;
     private int stunCounter = 0;
     private int playerIntangibleCounter = 0;
+    private int intangibleThreshold = 2;
     private int maxStrengthThisTurn = 25;
-    private boolean gainedIntangible = false;
 
     public InfinitePower(TheUnnamed owner)
     {
@@ -194,17 +194,20 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
                 {
                     playerIntangibleCounter += power.amount;
 
-                    if (playerIntangibleCounter >= 3)
+                    if (playerIntangibleCounter >= intangibleThreshold)
                     {
-                        if (!gainedIntangible)
+                        if (intangibleThreshold < 4)
                         {
                             GameActions.Bottom.Talk(owner, dialog[33], 2f, 2f);
-                            GameActions.Bottom.WaitRealtime(2.5f);
-
-                            gainedIntangible = true;
+                        }
+                        else
+                        {
+                            GameActions.Bottom.Talk(owner, dialog[6], 2f, 2f);
                         }
 
-                        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+                        intangibleThreshold *= 2;
+
+                        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
                         {
                             GameActions.Bottom.ApplyPower(owner, m, new IntangiblePlayerPower(m, 2), 2);
                         }
@@ -233,7 +236,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
         int cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
 
-        if (cardsPlayed < (maxCardsPerTurn / 2))
+        if (cardsPlayed < (maxCardsPerTurn - 3))
         {
             CardMessage(card, action);
         }
@@ -242,40 +245,17 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         {
             if (!timeMaze.isObtained)
             {
-                GameActions.Bottom.Talk(owner, dialog[3], 4, 4);
-
-                AbstractDungeon.effectsQueue.add(new PowerIconShowEffect(this));
-
                 timeMaze.counter = cardsPlayed;
-                AbstractDungeon.getCurrRoom().spawnBlightAndObtain(owner.hb.cX, owner.hb.cY, timeMaze);
+
+                GameActions.Bottom.Talk(owner, dialog[3], 3, 4);
+                GameEffects.Queue.Add(new PowerIconShowEffect(this));
+                GameUtilities.ObtainBlight(owner.hb.cX, owner.hb.cY, timeMaze);
             }
             else
             {
-                GameActions.Bottom.Talk(owner, dialog[22], 4, 4);
+                GameActions.Bottom.Talk(owner, dialog[22], 2, 2);
             }
         }
-//        else
-//        {
-//            if (!necronomicursed)
-//            {
-//                AbstractPlayer p = AbstractDungeon.player;
-//
-//                int totalSize = (p.drawPile.size() + p.discardPile.size() + p.hand.size());
-//                if (totalSize < 10 && PlayerStatistics.getCardsDrawnThisTurn() > (totalSize + 2))
-//                {
-//                    GameActions.Bottom.Talk(owner, dialog[31], 2f, 2f));
-//                    GameActions.Bottom.WaitRealtime(2.5f));
-//                    GameActions.Bottom.Talk(owner, dialog[32], 2f, 2f));
-//                    GameActions.Bottom.WaitRealtime(2.5f));
-//                    GameActionsHelper_Legacy.SFX("NECRONOMICON");
-//                    GameActionsHelper_Legacy.MakeCardInDrawPile(new Necronomicurse(), 4, false);
-//
-//                    AnimatorCard_UltraRare.MarkAsSeen(Cthulhu.ID);
-//                    AbstractDungeon.player.discardPile.addToTop(new Cthulhu());
-//                    necronomicursed = true;
-//                }
-//            }
-//        }
     }
 
     @Override
@@ -346,7 +326,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     {
         if (!linesUsed.contains(line) && owner.currentHealth > 500 && !phase2)
         {
-            GameActions.Bottom.Talk(owner, dialog[line], duration, duration);
+            GameActions.Bottom.Talk(owner, dialog[line], 1.5f, duration);
 
             linesUsed.add(line);
         }
@@ -372,32 +352,32 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
         if (stunCounter <= 0)
         {
-            GameActions.Top.Add(new TalkAction(owner, dialog[23], 4, 4));
+            GameActions.Top.Talk(owner, dialog[23], 4, 4);
             stunCounter = 1;
         }
         else if (stunCounter == 1)
         {
-            GameActions.Top.Add(new TalkAction(owner, dialog[24], 4, 4));
+            GameActions.Top.Talk(owner, dialog[24], 4, 4);
             stunCounter = 2;
         }
         else if (stunCounter == 2)
         {
-            GameActions.Top.Add(new EndPlayerTurnAction());
-            GameActions.Top.Add(new TalkAction(owner, dialog[25], 4, 4));
+            GameActions.Top.Add(new EndPlayerTurn());
+            GameActions.Top.Talk(owner, dialog[25], 4, 4);
 
             stunCounter = 3;
         }
         else if (stunCounter == 3)
         {
-            GameActions.Top.Add(new EndPlayerTurnAction());
-            GameActions.Top.Add(new TalkAction(owner, dialog[26], 3, 3));
+            GameActions.Top.Add(new EndPlayerTurn());
+            GameActions.Top.Talk(owner, dialog[26], 3, 3);
 
             stunCounter = 4;
         }
         else
         {
-            GameActions.Top.Add(new KillCharacterAction(owner, AbstractDungeon.player));
-            GameActions.Top.Add(new TalkAction(owner, dialog[27], 3, 3));
+            GameActions.Top.Add(new KillCharacterAction(owner, player));
+            GameActions.Top.Talk(owner, dialog[27], 3, 3);
         }
     }
 }

@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.special;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -39,8 +40,8 @@ public class Respite extends AnimatorCard
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
 
-        int a = (int) Math.ceil(Math.random() * 3);
-        int b = (int) Math.ceil(Math.random() * 3);
+        int a = MathUtils.random(1, 3);
+        int b = MathUtils.random(1, 3);
 
         CardCrawlGame.sound.play("SLEEP_" + a + "-" + b);
 

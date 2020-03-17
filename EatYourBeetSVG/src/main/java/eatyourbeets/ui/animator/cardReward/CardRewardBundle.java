@@ -13,7 +13,6 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.RenderHelpers;
-import eatyourbeets.utilities.Testing;
 
 public class CardRewardBundle
 {
@@ -82,7 +81,7 @@ public class CardRewardBundle
     {
         if (tooltipBody != null)
         {
-            tooltipHB.resize(card.drawScale * AbstractCard.IMG_WIDTH, (card.drawScale * AbstractCard.IMG_HEIGHT) * Testing.TryGetValue(0, 0.15f));
+            tooltipHB.resize(card.drawScale * AbstractCard.IMG_WIDTH, card.drawScale * AbstractCard.IMG_HEIGHT * 0.15f);
             tooltipHB.move(card.current_x, card.current_y + (textOffsetY * card.drawScale * Settings.scale));
             tooltipHB.update();
 

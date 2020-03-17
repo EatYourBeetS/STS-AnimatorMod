@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.Konosuba;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
@@ -92,7 +91,7 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
     {
         GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE");
 
-        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m1 : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.VFX(new LightningEffect(m1.drawX, m1.drawY));
         }
@@ -106,7 +105,7 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
         if (card == this)
         {
             int attacks = 0;
-            for (AbstractCard c : AbstractDungeon.player.hand.group)
+            for (AbstractCard c : player.hand.group)
             {
                 if (c != this && c.type == CardType.ATTACK)
                 {

@@ -26,7 +26,7 @@ public class Move_GainRitualAndArtifactAll extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.ApplyPower(owner, m, new RitualPower(m, ritual, false), ritual);
             GameActions.Bottom.ApplyPower(owner, m, new ArtifactPower(m, artifact), artifact);

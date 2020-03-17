@@ -5,14 +5,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
-import eatyourbeets.orbs.AnimatorOrb;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.orbs.FireOrbEvokeAction;
 import eatyourbeets.actions.orbs.FireOrbPassiveAction;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.orbs.AnimatorOrb;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Fire extends AnimatorOrb
 {
@@ -64,14 +63,12 @@ public class Fire extends AnimatorOrb
     public void triggerEvokeAnimation()
     {
         CardCrawlGame.sound.play("ATTACK_FIRE", 0.1F);
-        AbstractDungeon.effectsQueue.add(new DarkOrbActivateEffect(this.cX, this.cY));
+        GameEffects.Queue.Add(new DarkOrbActivateEffect(this.cX, this.cY));
     }
 
     public void applyFocus()
     {
-        int focus = GameUtilities.GetFocus(AbstractDungeon.player);
-
-        this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
+        this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
     }
 
     public void updateAnimation()

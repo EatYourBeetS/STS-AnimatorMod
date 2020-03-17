@@ -26,7 +26,7 @@ public class Move_GainTempThornsAndBlockAll extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.ApplyPower(owner, m, new EarthenThornsPower(m, thorns), thorns);
             GameActions.Bottom.Add(new GainBlockAction(m, owner, block));

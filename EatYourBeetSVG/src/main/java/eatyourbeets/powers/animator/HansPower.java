@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
-import eatyourbeets.cards.animator.beta.Hans;
+import eatyourbeets.cards.animator.series.Konosuba.Hans;
 import eatyourbeets.cards.animator.status.Hans_Slimed;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;

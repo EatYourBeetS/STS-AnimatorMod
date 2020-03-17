@@ -58,7 +58,7 @@ public abstract class EYBEffect extends AbstractGameEffect
     }
 
     @Override
-    public void render(SpriteBatch spriteBatch)
+    public void render(SpriteBatch sb)
     {
 
     }
@@ -104,18 +104,16 @@ public abstract class EYBEffect extends AbstractGameEffect
 
     protected void tickDuration()
     {
-        if (isRealtime)
-        {
-            this.duration -= Gdx.graphics.getRawDeltaTime();
-        }
-        else
-        {
-            this.duration -= Gdx.graphics.getDeltaTime();
-        }
+        this.duration -= GetDeltaTime();
 
         if (this.duration < 0.0F)
         {
             this.isDone = true;
         }
+    }
+
+    protected float GetDeltaTime()
+    {
+        return isRealtime ? Gdx.graphics.getRawDeltaTime() : Gdx.graphics.getDeltaTime();
     }
 }

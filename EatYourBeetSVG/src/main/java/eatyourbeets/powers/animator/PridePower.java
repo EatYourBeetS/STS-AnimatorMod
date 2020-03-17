@@ -3,7 +3,6 @@ package eatyourbeets.powers.animator;
 import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.powers.AnimatorPower;
@@ -30,11 +29,10 @@ public class PridePower extends AnimatorPower
     {
         damageAmount = super.onAttacked(info, damageAmount);
 
-        AbstractPlayer p = AbstractDungeon.player;
         if (damageAmount > 0)
         {
             ArrayList<Dark> darkOrbs = new ArrayList<>();
-            for (AbstractOrb orb : p.orbs)
+            for (AbstractOrb orb : player.orbs)
             {
                 Dark dark = JavaUtilities.SafeCast(orb, Dark.class);
                 if (dark != null)

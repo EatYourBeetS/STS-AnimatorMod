@@ -24,7 +24,7 @@ public class OrbCore_FirePower extends OrbCore_AbstractPower
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
-        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.ApplyBurning(p, m, value);
         }

@@ -40,7 +40,7 @@ public class Sebas extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block).AddCallback(__ ->
         {
-            for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+            for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
             {
                 if (GameUtilities.IsAttacking(enemy.intent))
                 {

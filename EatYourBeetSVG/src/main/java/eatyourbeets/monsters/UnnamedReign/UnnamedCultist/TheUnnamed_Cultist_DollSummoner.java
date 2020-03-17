@@ -47,7 +47,7 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
     {
         super.die();
 
-        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {
             if (m.hasPower(MinionPower.POWER_ID))
             {

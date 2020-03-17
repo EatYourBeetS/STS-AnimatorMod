@@ -28,7 +28,7 @@ public class Shinoa extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.ApplyWeak(player, enemy, magicNumber);
         }
@@ -39,7 +39,7 @@ public class Shinoa extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(this.block);
 
-        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.ApplyVulnerable(player, enemy, magicNumber);
 

@@ -86,7 +86,7 @@ public class Fredrika extends AnimatorCard
     {
         if (currentForm == Form.Default)
         {
-            return super.GetInitialBlock() + GameUtilities.GetCurrentEnemies(true).size() * magicNumber;
+            return super.GetInitialBlock() + GameUtilities.GetAllEnemies(true).size() * magicNumber;
         }
 
         return super.GetInitialBlock();

@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.beta;
+package eatyourbeets.cards.animator.series.Elsword;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

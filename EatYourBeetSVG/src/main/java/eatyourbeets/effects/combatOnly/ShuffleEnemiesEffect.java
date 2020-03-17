@@ -29,7 +29,7 @@ public class ShuffleEnemiesEffect extends AbstractGameEffect
     {
         if (enemy1 == null)
         {
-            RandomizedList<AbstractMonster> enemies = new RandomizedList<>(GameUtilities.GetCurrentEnemies(true));
+            RandomizedList<AbstractMonster> enemies = new RandomizedList<>(GameUtilities.GetAllEnemies(true));
             if (enemies.Size() > 1)
             {
                 enemy1 = enemies.Retrieve(AbstractDungeon.miscRng);

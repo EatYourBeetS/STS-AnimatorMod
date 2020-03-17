@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.FeridBathory;
 import eatyourbeets.effects.attack.Hemokinesis2Effect;
 import eatyourbeets.powers.AnimatorPower;
@@ -43,7 +42,7 @@ public class FeridBathoryPower extends AnimatorPower
     {
         super.atStartOfTurnPostDraw();
 
-        if (AbstractDungeon.player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD && EffectHistory.TryActivateLimited(FeridBathory.DATA.ID))
+        if (player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD && EffectHistory.TryActivateLimited(FeridBathory.DATA.ID))
         {
             GameEffects.Queue.ShowCardBriefly(new FeridBathory());
             GameActions.Bottom.GainForce(FORCE_AMOUNT);

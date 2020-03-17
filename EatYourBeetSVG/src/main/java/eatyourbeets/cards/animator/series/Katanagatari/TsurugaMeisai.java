@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.beta;
+package eatyourbeets.cards.animator.series.Katanagatari;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

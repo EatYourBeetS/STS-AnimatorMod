@@ -21,6 +21,7 @@ import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.combatOnly.ShuffleEnemiesEffect;
+import eatyourbeets.effects.combatOnly.TalkEffect;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.deprecated.MarkOfPoisonPower;
 import eatyourbeets.utilities.GameActions;
@@ -201,7 +202,7 @@ public class HigakiRinneAction extends EYBAction
         }
         else if (tryActivate(6)) // 124
         {
-            GameActions.Bottom.Talk(player, "???", 1.0F, 2.0F);
+            GameEffects.Queue.Add(new TalkEffect(player.hb.cX + player.dialogX, player.hb.cY + player.dialogY, "", true));
         }
         else if (tryActivate(2)) // 126
         {
@@ -215,21 +216,21 @@ public class HigakiRinneAction extends EYBAction
         }
         else if (tryActivate(6)) // 132
         {
-            for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
+            for (AbstractCreature m : GameUtilities.GetAllEnemies(true))
             {
                 GameActions.Bottom.DealDamage(player, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.BLUNT_HEAVY);
             }
         }
         else if (tryActivate(6)) // 138
         {
-            for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
+            for (AbstractCreature m : GameUtilities.GetAllEnemies(true))
             {
                 GameActions.Bottom.DealDamage(player, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.SLASH_HEAVY);
             }
         }
         else if (tryActivate(6)) // 144
         {
-            for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
+            for (AbstractCreature m : GameUtilities.GetAllEnemies(true))
             {
                 GameActions.Bottom.DealDamage(player, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.POISON);
             }

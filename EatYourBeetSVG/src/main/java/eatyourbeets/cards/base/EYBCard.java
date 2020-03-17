@@ -3,11 +3,13 @@ package eatyourbeets.cards.base;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
@@ -35,8 +37,8 @@ public abstract class EYBCard extends EYBCardBase
     public float forceScaling = 0;
     public float intellectScaling = 0;
     public float agilityScaling = 0;
+    public boolean haste;
 
-    protected boolean haste;
     protected boolean isMultiUpgrade;
     protected int upgrade_damage;
     protected int upgrade_magicNumber;
@@ -103,8 +105,8 @@ public abstract class EYBCard extends EYBCardBase
         copy.baseSecondaryValue = this.baseSecondaryValue;
         copy.isSecondaryValueModified = this.isSecondaryValueModified;
 
-        copy.tags.addAll(tags);
         copy.tags.clear();
+        copy.tags.addAll(tags);
 
         return copy;
     }
@@ -115,7 +117,6 @@ public abstract class EYBCard extends EYBCardBase
         copy.current_x = (float) Settings.WIDTH / 2.0F;
         copy.current_y = (float) Settings.HEIGHT / 2.0F;
         copy.drawScale = copy.targetDrawScale = 2f;
-        //copy.LoadImage("_p");
         copy.isPopup = true;
         return copy;
     }
@@ -182,18 +183,10 @@ public abstract class EYBCard extends EYBCardBase
     {
         // this is only used by ShowCardAndAddToHandEffect
         triggerWhenDrawn();
-    }
-
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
 
         if (haste)
         {
-            GameActions.Bottom.Draw(1);
-            GameActions.Bottom.Flash(this);
-            haste = false;
+            GameActions.Bottom.Add(new HasteAction(this));
         }
     }
 
@@ -368,6 +361,11 @@ public abstract class EYBCard extends EYBCardBase
     {
         SetTag(GR.Enums.CardTags.UNIQUE, value);
         isMultiUpgrade = multiUpgrade;
+    }
+
+    protected boolean CanSubscribeToEvents()
+    {
+        return GameUtilities.InBattle() && !CardCrawlGame.isPopupOpen;
     }
 
     protected boolean TryUpgrade()

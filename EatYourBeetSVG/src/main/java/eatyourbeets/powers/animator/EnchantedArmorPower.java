@@ -3,9 +3,7 @@ package eatyourbeets.powers.animator;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.blights.Spear;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.SurroundedPower;
@@ -23,7 +21,6 @@ public class EnchantedArmorPower extends AnimatorPower
 
     public static int CalculateDamageReduction(AbstractMonster monster, int additionalEnchantedArmor)
     {
-        AbstractPlayer player = AbstractDungeon.player;
         float tmp = (float) monster.getIntentBaseDmg();
         if (player.hasBlight(Spear.ID))
         {
@@ -98,7 +95,6 @@ public class EnchantedArmorPower extends AnimatorPower
         this.reactive = reactive;
 
         UpdatePercentage();
-
         updateDescription();
     }
 

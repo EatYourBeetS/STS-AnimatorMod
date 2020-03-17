@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.beta;
+package eatyourbeets.cards.animator.series.Elsword;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -33,7 +33,7 @@ public class Laby extends AnimatorCard
 
         if (player != null && player.isDraggingCard && player.hoveredCard == this)
         {
-            for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+            for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
             {
                 if (GameUtilities.IsAttacking(enemy.intent))
                 {

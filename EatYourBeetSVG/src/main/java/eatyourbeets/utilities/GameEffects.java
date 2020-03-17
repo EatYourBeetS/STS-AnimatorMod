@@ -2,11 +2,13 @@ package eatyourbeets.utilities;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
+import eatyourbeets.effects.combatOnly.TalkEffect;
 import eatyourbeets.effects.player.ObtainRelicEffect;
 import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.effects.player.SpawnRelicEffect;
@@ -127,6 +129,16 @@ public final class GameEffects
     public ShowCardBrieflyEffect ShowCardBriefly(AbstractCard card, float x, float y)
     {
         return Add(new ShowCardBrieflyEffect(card, x, y));
+    }
+
+    public TalkEffect Talk(AbstractCreature source, String message)
+    {
+        return Add(new TalkEffect(source, message));
+    }
+
+    public TalkEffect Talk(AbstractCreature source, String message, float duration)
+    {
+        return Add(new TalkEffect(source, message, duration));
     }
 
     public CallbackEffect WaitRealtime(float duration)

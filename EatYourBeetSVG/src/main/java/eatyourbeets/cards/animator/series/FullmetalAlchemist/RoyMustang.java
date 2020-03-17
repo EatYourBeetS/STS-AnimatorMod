@@ -33,7 +33,7 @@ public class RoyMustang extends AnimatorCard
         int max = p.orbs.size();
         int i = 0;
 
-        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
         {
             if (i < max)
             {

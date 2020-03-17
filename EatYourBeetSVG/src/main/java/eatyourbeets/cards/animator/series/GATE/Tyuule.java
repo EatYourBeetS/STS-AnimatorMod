@@ -37,7 +37,7 @@ public class Tyuule extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.ApplyPoison(p, enemy, magicNumber).AddCallback(enemy, (e, __) ->
             {

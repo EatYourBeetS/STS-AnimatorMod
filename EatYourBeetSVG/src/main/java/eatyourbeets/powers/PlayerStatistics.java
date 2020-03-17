@@ -18,7 +18,9 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.powers.common.AgilityPower;
@@ -27,6 +29,7 @@ import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.ui.unnamed.Void;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 import patches.CardGlowBorderPatches;
 
@@ -524,12 +527,17 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         Synergies.SetLastCardPlayed(null);
     }
 
-    public void OnAfterDraw(AbstractCard abstractCard)
+    public void OnAfterDraw(AbstractCard card)
     {
         cardsDrawnThisTurn += 1;
         for (OnAfterCardDrawnSubscriber s : onAfterCardDrawn.GetSubscribers())
         {
-            s.OnAfterCardDrawn(abstractCard);
+            s.OnAfterCardDrawn(card);
+        }
+
+        if (card instanceof EYBCard && ((EYBCard)card).haste)
+        {
+            GameActions.Bottom.Add(new HasteAction((EYBCard) card));
         }
     }
 

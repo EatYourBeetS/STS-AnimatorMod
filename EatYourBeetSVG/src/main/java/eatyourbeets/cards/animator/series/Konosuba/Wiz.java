@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
@@ -45,7 +44,7 @@ public class Wiz extends AnimatorCard
         .SetOptions(false, false, true)
         .AddCallback(__ ->
         { //
-            GameActions.Top.SelectFromPile(name, 1, AbstractDungeon.player.exhaustPile)
+            GameActions.Top.SelectFromPile(name, 1, player.exhaustPile)
             .SetOptions(false, false)
             .SetFilter(c -> !c.cardID.equals(Wiz.DATA.ID))
             .AddCallback(cards ->

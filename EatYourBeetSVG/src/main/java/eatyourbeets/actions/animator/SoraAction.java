@@ -182,7 +182,7 @@ public class SoraAction extends EYBAction
                 {
                     return effect.GenerateInternal((c, p, m) ->
                     {
-                        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+                        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
                         {
                             GameActions.Bottom.ApplyWeak(p, enemy, c.magicNumber);
                         }
@@ -193,7 +193,7 @@ public class SoraAction extends EYBAction
                 {
                     return effect.GenerateInternal((c, p, m) ->
                     {
-                        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+                        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
                         {
                             GameActions.Bottom.ApplyVulnerable(p, enemy, c.magicNumber);
                         }

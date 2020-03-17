@@ -44,7 +44,7 @@ public class OldCoffin extends AnimatorRelic
         counter += 1;
         if (counter > ACTIVATION_THRESHOLD)
         {
-            AbstractMonster m = JavaUtilities.GetRandomElement(GameUtilities.GetCurrentEnemies(true));
+            AbstractMonster m = JavaUtilities.GetRandomElement(GameUtilities.GetAllEnemies(true));
             if (m != null)
             {
                 GameActions.Top.Add(new RelicAboveCreatureAction(m, this));

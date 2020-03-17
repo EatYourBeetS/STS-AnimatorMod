@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.Konosuba;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.shrines.Transmogrifier;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -31,7 +30,7 @@ public class Vanir extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.SelectFromPile(name, 1, AbstractDungeon.player.drawPile)
+        GameActions.Bottom.SelectFromPile(name, 1, player.drawPile)
         .SetOptions(false, true)
         .SetMessage(Transmogrifier.OPTIONS[2])
         .AddCallback(cards ->

@@ -36,7 +36,7 @@ public class HealingCubePower extends AnimatorPower
         {
             GameActions.Bottom.Heal(owner, owner, amount);
         }
-        else for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
+        else for (AbstractCreature m : GameUtilities.GetAllEnemies(true))
         {
             GameActions.Bottom.Heal(null, m, amount);
         }

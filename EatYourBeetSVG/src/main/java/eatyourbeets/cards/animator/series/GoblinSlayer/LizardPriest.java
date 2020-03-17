@@ -35,7 +35,7 @@ public class LizardPriest extends AnimatorCard
 
         if (HasSynergy())
         {
-            for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+            for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
             {
                 GameActions.Bottom.Add(new RemoveAllBlockAction(enemy, p));
                 GameActions.Bottom.Add(new GainBlockAction(enemy, p, 1, true));

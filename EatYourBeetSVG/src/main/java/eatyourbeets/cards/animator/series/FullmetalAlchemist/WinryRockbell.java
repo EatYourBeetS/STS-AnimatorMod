@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.beta;
+package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
 import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;

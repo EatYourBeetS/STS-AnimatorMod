@@ -1,26 +1,25 @@
 package eatyourbeets.resources.animator;
 
 import basemod.BaseMod;
-import basemod.abstracts.CustomCard;
 import basemod.abstracts.CustomSavable;
 import basemod.interfaces.StartActSubscriber;
 import basemod.interfaces.StartGameSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.city.Ghosts;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.relics.*;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.interfaces.subscribers.OnAddedToDeckSubscriber;
 import eatyourbeets.interfaces.subscribers.OnCardPoolChangedSubscriber;
-import eatyourbeets.relics.animator.AbstractMissingPiece;
-import eatyourbeets.relics.animator.PurgingStone;
+import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts._FakeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -77,6 +76,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         FullLog("RESETTING...");
 
         Series.clear();
+        BannedCards.clear();
         StartingSeries = new _FakeLoadout();
         loadouts.clear();
         startingLoadout = -1;
@@ -163,42 +163,23 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
     public void InitializeCardPool(boolean startGame)
     {
-        if (EYBCard.RefreshPlayer().chosenClass != GR.Animator.PlayerClass)
+        final AbstractPlayer player = EYBCard.RefreshPlayer();
+        if (player.chosenClass != GR.Animator.PlayerClass)
         {
             AbstractDungeon.srcColorlessCardPool.group.removeIf(c -> c instanceof AnimatorCard);
             AbstractDungeon.colorlessCardPool.group.removeIf(c -> c instanceof AnimatorCard);
             EYBEvent.UpdateEvents(false);
+            AnimatorRelic.UpdateRelics(false);
 
             return;
         }
 
         EYBEvent.UpdateEvents(true);
-        RemoveRelic(PenNib.ID);
-        RemoveRelic(Kunai.ID);
-        RemoveRelic(StrikeDummy.ID);
-        RemoveRelic(SneckoEye.ID);
-        RemoveRelic(RunicPyramid.ID);
-
-        AddRelicToPool(MarkOfPain.ID, AbstractRelic.RelicTier.BOSS);
-        AddRelicToPool(RunicCapacitor.ID, AbstractRelic.RelicTier.SHOP);
-        AddRelicToPool(TwistedFunnel.ID, AbstractRelic.RelicTier.SHOP);
-        AddRelicToPool(Brimstone.ID, AbstractRelic.RelicTier.SHOP);
-        AddRelicToPool(DataDisk.ID, AbstractRelic.RelicTier.SHOP);
-        AddRelicToPool(CharonsAshes.ID, AbstractRelic.RelicTier.RARE);
-        AddRelicToPool(ChampionsBelt.ID, AbstractRelic.RelicTier.RARE);
-        AddRelicToPool(PaperCrane.ID, AbstractRelic.RelicTier.UNCOMMON);
-        AddRelicToPool(PaperFrog.ID, AbstractRelic.RelicTier.UNCOMMON);
-        AddRelicToPool(CloakClasp.ID, AbstractRelic.RelicTier.UNCOMMON);
-        AddRelicToPool(RedSkull.ID, AbstractRelic.RelicTier.COMMON);
+        AnimatorRelic.UpdateRelics(true);
 
         if (startGame && Settings.isStandardRun())
         {
             GR.Animator.Data.SaveTrophies(true);
-        }
-
-        if (GameUtilities.GetActualAscensionLevel() >= 17)
-        {
-            AbstractDungeon.eventList.remove(Ghosts.ID);
         }
 
         if (Series.isEmpty())
@@ -206,21 +187,19 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             return;
         }
 
-        AbstractMissingPiece.RefreshDescription();
-        PurgingStone.UpdateBannedCards();
-
         ArrayList<CardGroup> colorless = new ArrayList<>();
         colorless.add(AbstractDungeon.colorlessCardPool);
         colorless.add(AbstractDungeon.srcColorlessCardPool);
+
         for (CardGroup group : colorless)
         {
-            group.group.removeIf(card -> !(card instanceof CustomCard) && !(card instanceof EYBCard));
+            group.group.removeIf(card -> !(card instanceof EYBCard));
         }
 
         ArrayList<CardGroup> groups = new ArrayList<>();
         groups.add(AbstractDungeon.commonCardPool);
-        groups.add(AbstractDungeon.uncommonCardPool);
         groups.add(AbstractDungeon.srcCommonCardPool);
+        groups.add(AbstractDungeon.uncommonCardPool);
         groups.add(AbstractDungeon.srcUncommonCardPool);
         groups.add(AbstractDungeon.rareCardPool);
         groups.add(AbstractDungeon.srcRareCardPool);
@@ -249,17 +228,14 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             });
         }
 
-        if (AbstractDungeon.player != null && AbstractDungeon.player.masterDeck != null)
+        for (AbstractCard card : player.masterDeck.group)
         {
-            for (AbstractCard card : AbstractDungeon.player.masterDeck.group)
+            if (card instanceof OnCardPoolChangedSubscriber)
             {
-                if (card instanceof OnCardPoolChangedSubscriber)
-                {
-                    ((OnCardPoolChangedSubscriber)card).OnCardPoolChanged();
-                }
-
-                RemoveExtraCopies(card);
+                ((OnCardPoolChangedSubscriber) card).OnCardPoolChanged();
             }
+
+            RemoveExtraCopies(card);
         }
     }
 
@@ -267,7 +243,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     {
         if (card instanceof OnAddedToDeckSubscriber)
         {
-            ((OnAddedToDeckSubscriber)card).OnAddedToDeck();
+            ((OnAddedToDeckSubscriber) card).OnAddedToDeck();
         }
 
         RemoveExtraCopies(card);
@@ -308,6 +284,31 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
                 GameEffects.TopLevelQueue.ShowCardBriefly(first.makeStatEquivalentCopy(), (float) Settings.WIDTH / 4.0F, (float) Settings.HEIGHT / 2.0F);
             }
         }
+    }
+
+    public void Ban(String cardID)
+    {
+        AbstractCard card = CardLibrary.getCard(cardID);
+        if (card == null)
+        {
+            return;
+        }
+
+        CardGroup srcPool = GameUtilities.GetCardPoolSource(card.rarity, card.color);
+        if (srcPool != null)
+        {
+            srcPool.removeCard(card.cardID);
+        }
+
+        CardGroup pool = GameUtilities.GetCardPool(card.rarity, card.color);
+        if (pool != null)
+        {
+            pool.removeCard(card.cardID);
+        }
+
+        BannedCards.add(card.cardID);
+
+        Log("Banned " + card.cardID + ", Total: " + BannedCards.size());
     }
 
     private void RemoveExtraCopies(AbstractCard card)
@@ -368,7 +369,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         }
     }
 
-    private void RemoveRelic(String relicID)
+    public void RemoveRelic(String relicID)
     {
         ArrayList<String> pool = GameUtilities.GetRelicPool(RelicLibrary.getRelic(relicID).tier);
         if (pool != null)
@@ -377,7 +378,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         }
     }
 
-    private void AddRelicToPool(String relicID, AbstractRelic.RelicTier tier)
+    public void AddRelic(String relicID, AbstractRelic.RelicTier tier)
     {
         if (!AbstractDungeon.player.hasRelic(relicID))
         {
@@ -390,7 +391,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
                     rng = GR.Common.Dungeon.GetRNG();
                 }
 
-                pool.add(rng.random(pool.size()-1), relicID);
+                pool.add(rng.random(pool.size() - 1), relicID);
             }
         }
     }
@@ -402,7 +403,6 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
     private void FullLog(String message)
     {
-        JavaUtilities.Log(this, "================================================================================================");
         JavaUtilities.Log(this, message);
         JavaUtilities.Log(this, "[Transient  Data] Starting Series: " + StartingSeries.Name + ", Series Count: " + Series.size());
         JavaUtilities.Log(this, "[Persistent Data] Starting Series: " + startingLoadout + ", Series Count: " + loadouts.size());

@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.beta;
+package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -79,7 +79,7 @@ public class Father extends AnimatorCard implements OnAddedToDeckSubscriber, OnA
         //noinspection StatementWithEmptyBody
         while (p.masterDeck.removeCard(cardID));
 
-        for (AbstractCard card : GameUtilities.GetAllCopies(this))
+        for (AbstractCard card : GameUtilities.GetAllInBattleCopies(cardID))
         {
             GameActions.Bottom.Purge(card);
         }

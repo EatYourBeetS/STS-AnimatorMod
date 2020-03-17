@@ -8,13 +8,13 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.DarkSmokePuffEffect;
 import com.megacrit.cardcrawl.vfx.GenericSmokeEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmokingEmberEffect;
+import eatyourbeets.utilities.GameEffects;
 
 public class CataclysmEffect extends AbstractGameEffect
 {
@@ -48,18 +48,18 @@ public class CataclysmEffect extends AbstractGameEffect
         {
             for (int i = 0; i < 50; ++i)
             {
-                AbstractDungeon.effectsQueue.add(new GenericSmokeEffect(x + MathUtils.random(-280.0F, 250.0F) * Settings.scale, y - 80.0F * Settings.scale));
+                GameEffects.Queue.Add(new GenericSmokeEffect(x + MathUtils.random(-280.0F, 250.0F) * Settings.scale, y - 80.0F * Settings.scale));
             }
         }
 
         if (this.duration < 0.0F)
         {
             CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.HIGH, ScreenShake.ShakeDur.SHORT, false);
-            AbstractDungeon.effectsQueue.add(new DarkSmokePuffEffect(this.x, this.y));
+            GameEffects.Queue.Add(new DarkSmokePuffEffect(this.x, this.y));
 
             for (int i = 0; i < 12; ++i)
             {
-                AbstractDungeon.effectsQueue.add(new SmokingEmberEffect(this.x + MathUtils.random(-50.0F, 50.0F) * Settings.scale, this.y + MathUtils.random(-50.0F, 50.0F) * Settings.scale));
+                GameEffects.Queue.Add(new SmokingEmberEffect(this.x + MathUtils.random(-50.0F, 50.0F) * Settings.scale, this.y + MathUtils.random(-50.0F, 50.0F) * Settings.scale));
             }
 
             this.isDone = true;

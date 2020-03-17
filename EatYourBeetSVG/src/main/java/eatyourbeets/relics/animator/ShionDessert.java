@@ -35,7 +35,7 @@ public class ShionDessert extends AnimatorRelic
         int mostPoison = -1;
         AbstractMonster enemy = null;
 
-        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {
             AbstractPower poison = GameUtilities.GetPower(m, PoisonPower.POWER_ID);
             if (poison != null && poison.amount > mostPoison)

@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.beta;
+package eatyourbeets.cards.animator.series.Elsword;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,12 +12,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Ciel extends AnimatorCard
 {
-    private static final Lu LU = new Lu();
-
     public static final EYBCardData DATA = Register(Ciel.class).SetSkill(2, CardRarity.COMMON);
     static
     {
-        DATA.AddPreview(LU, true);
+        DATA.AddPreview(new Lu(), true);
     }
 
     public Ciel()
@@ -25,7 +23,7 @@ public class Ciel extends AnimatorCard
         super(DATA);
 
         Initialize(0, 9, 4, 9);
-        SetUpgrade(0, 0, 1, 0);
+        SetUpgrade(0, 0, 0, 0);
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Elsword);
@@ -45,7 +43,7 @@ public class Ciel extends AnimatorCard
 
         if (HasSynergy())
         {
-            for (AbstractCard card : GameUtilities.GetAllCopies(LU))
+            for (AbstractCard card : GameUtilities.GetAllInBattleCopies(Lu.DATA.ID))
             {
                 card.damage = (card.baseDamage += secondaryValue);
                 card.flash();

@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -34,7 +33,7 @@ public class Evileye extends AnimatorCard implements Spellcaster
         GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.Reload(name, cards ->
         {
-            ArrayList<AbstractOrb> orbs = AbstractDungeon.player.orbs;
+            ArrayList<AbstractOrb> orbs = player.orbs;
             if (orbs.size() > 0)
             {
                 for (int i = 0; i < cards.size(); i++)

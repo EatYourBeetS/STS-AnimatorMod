@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -30,9 +29,9 @@ public class Gillette extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {
-            GameActions.Bottom.ApplyWeak(AbstractDungeon.player, m, magicNumber);
+            GameActions.Bottom.ApplyWeak(player, m, magicNumber);
         }
     }
 

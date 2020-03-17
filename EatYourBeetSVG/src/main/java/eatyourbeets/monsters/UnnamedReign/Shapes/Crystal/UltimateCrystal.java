@@ -148,7 +148,7 @@ public class UltimateCrystal extends Crystal
     {
         super.die();
 
-        if (GameUtilities.GetCurrentEnemies(true).isEmpty())
+        if (GameUtilities.GetAllEnemies(true).isEmpty())
         {
             AbstractDungeon.scene.fadeInAmbiance();
             CardCrawlGame.music.fadeOutTempBGM();

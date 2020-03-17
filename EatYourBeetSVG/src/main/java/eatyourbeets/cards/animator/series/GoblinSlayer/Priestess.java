@@ -55,7 +55,7 @@ public class Priestess extends AnimatorCard
     {
         if (upgraded)
         {
-            for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+            for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
             {
                 GameActions.Bottom.ApplyWeak(p, enemy, secondaryValue);
             }

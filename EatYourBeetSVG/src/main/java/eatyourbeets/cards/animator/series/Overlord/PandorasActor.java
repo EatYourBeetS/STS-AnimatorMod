@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.Overlord;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -34,14 +33,16 @@ public class PandorasActor extends AnimatorCard implements StartupCard
     @Override
     public boolean atBattleStartPreDraw()
     {
-        GameActions.Bottom.Callback(__ ->
+        GameActions.Bottom.SpendEnergy(cost, false).AddCallback(amount ->
         {
             AbstractCard copy = this.makeStatEquivalentCopy();
             copy.applyPowers();
-            copy.use(AbstractDungeon.player, null);
+            copy.use(player, null);
             copy.purgeOnUse = true;
             copy.freeToPlayOnce = true;
             Synergies.SetLastCardPlayed(copy);
+
+            GameActions.Bottom.GainEnergy(amount);
         });
 
         return true;

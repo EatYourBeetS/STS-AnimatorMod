@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.TenseiSlime;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.RimuruAction;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -13,7 +12,6 @@ import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnAfterCardPlayedSubscriber
 {
@@ -26,15 +24,14 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
         super(DATA);
 
         Initialize(0, 0);
+        SetSynergy(Synergies.TenSura, true);
 
         this.copy = this;
 
-        if (GameUtilities.InBattle() && !CardCrawlGame.isPopupOpen)
+        if (CanSubscribeToEvents())
         {
             OnBattleStart();
         }
-
-        SetSynergy(Synergies.TenSura, true);
     }
 
     @Override

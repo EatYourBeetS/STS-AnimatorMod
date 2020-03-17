@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.Konosuba;
 import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
@@ -39,7 +38,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
         SetHealing(true);
         SetSynergy(Synergies.Konosuba);
 
-        if (revive && GameUtilities.InBattle() && !CardCrawlGame.isPopupOpen)
+        if (revive && CanSubscribeToEvents())
         {
             OnBattleStart();
         }

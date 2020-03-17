@@ -6,7 +6,6 @@ import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Defend_DateALive extends Defend
 {
@@ -27,7 +26,8 @@ public class Defend_DateALive extends Defend
     {
         GameActions.Bottom.GainBlock(block);
 
-        if (GameUtilities.GetCurrentDeckSize(p) >= 30 && EffectHistory.TryActivateLimited(cardID))
+        int totalCards = player.drawPile.size() + player.discardPile.size() + player.hand.size();
+        if (totalCards >= 30 && EffectHistory.TryActivateLimited(cardID))
         {
             GameActions.Bottom.GainEnergy(2);
         }

@@ -7,7 +7,6 @@ import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Strike_DateALive extends Strike
 {
@@ -28,7 +27,8 @@ public class Strike_DateALive extends Strike
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
-        if (GameUtilities.GetCurrentDeckSize(p) >= 30 && EffectHistory.TryActivateLimited(cardID))
+        int totalCards = player.drawPile.size() + player.discardPile.size() + player.hand.size();
+        if (totalCards >= 30 && EffectHistory.TryActivateLimited(cardID))
         {
             GameActions.Bottom.Draw(2);
         }

@@ -41,7 +41,8 @@ public class SakuraMatou extends AnimatorCard implements Spellcaster
         {
             if (orb != null && Dark.ORB_ID.equals(orb.ID))
             {
-                this.magicNumber = orb.evokeAmount / 2;
+                this.magicNumber = Math.max(1, orb.evokeAmount / 2);
+                break;
             }
         }
 
@@ -69,7 +70,7 @@ public class SakuraMatou extends AnimatorCard implements Spellcaster
 
         if (constricted > 0)
         {
-            GameActions.Bottom.ApplyConstricted(p, m, magicNumber);
+            GameActions.Bottom.ApplyConstricted(p, m, constricted);
         }
     }
 }

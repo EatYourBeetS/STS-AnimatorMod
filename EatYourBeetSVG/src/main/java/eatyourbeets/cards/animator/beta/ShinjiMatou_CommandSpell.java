@@ -9,7 +9,6 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
 
-
 public class ShinjiMatou_CommandSpell extends AnimatorCard implements Spellcaster
 {
     public static final EYBCardData DATA = Register(ShinjiMatou_CommandSpell.class).SetSkill(1, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);

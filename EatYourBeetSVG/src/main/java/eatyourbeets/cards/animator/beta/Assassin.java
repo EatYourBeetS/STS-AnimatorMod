@@ -15,13 +15,14 @@ import eatyourbeets.utilities.GameUtilities;
 public class Assassin extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Assassin.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Piercing);
+    public static final int DEBUFFS_COUNT = 3;
 
     public Assassin()
     {
         super(DATA);
 
-        Initialize(3, 0, 0);
-        SetUpgrade(2, 0, 0);
+        Initialize(3, 0, DEBUFFS_COUNT);
+        SetUpgrade(2, 0);
         SetScaling(0, 1, 0);
 
         SetRetain(true);
@@ -44,9 +45,27 @@ public class Assassin extends AnimatorCard
     }
 
     @Override
-    protected float ModifyDamage(AbstractMonster enemy, float damage)
+    public boolean cardPlayable(AbstractMonster m)
     {
-        return super.ModifyDamage(enemy, damage + (GameUtilities.GetDebuffsCount(enemy) * magicNumber));
+        if (super.cardPlayable(m))
+        {
+            if (m == null)
+            {
+                for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
+                {
+                    if (GameUtilities.GetDebuffsCount(enemy.powers) >= DEBUFFS_COUNT)
+                    {
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                return GameUtilities.GetDebuffsCount(m) >= DEBUFFS_COUNT;
+            }
+        }
+
+        return false;
     }
 
     @Override

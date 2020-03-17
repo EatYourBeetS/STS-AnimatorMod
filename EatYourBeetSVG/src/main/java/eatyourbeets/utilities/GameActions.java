@@ -33,10 +33,7 @@ import eatyourbeets.actions.handSelection.DiscardFromHand;
 import eatyourbeets.actions.handSelection.ExhaustFromHand;
 import eatyourbeets.actions.handSelection.SelectFromHand;
 import eatyourbeets.actions.monsters.TalkAction;
-import eatyourbeets.actions.pileSelection.DiscardFromPile;
-import eatyourbeets.actions.pileSelection.ExhaustFromPile;
-import eatyourbeets.actions.pileSelection.FetchFromPile;
-import eatyourbeets.actions.pileSelection.SelectFromPile;
+import eatyourbeets.actions.pileSelection.*;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.actions.powers.ReduceStrength;
 import eatyourbeets.actions.special.GainGold;
@@ -570,6 +567,11 @@ public final class GameActions
         return Add(new PlayCard(card, target, true))
         .SetCurrentPosition(card.current_x, card.current_y)
         .SetPurge(true);
+    }
+
+    public PlayFromPile PlayFromPile(String sourceName, int amount, AbstractMonster target, CardGroup... groups)
+    {
+        return Add(new PlayFromPile(sourceName, target, amount, groups));
     }
 
     public PurgeAnywhere Purge(UUID uuid)

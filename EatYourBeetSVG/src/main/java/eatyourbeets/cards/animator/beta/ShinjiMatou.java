@@ -1,12 +1,12 @@
 package eatyourbeets.cards.animator.beta;
 
-import com.megacrit.cardcrawl.actions.defect.DecreaseMaxOrbAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 import java.util.HashSet;
@@ -25,8 +25,8 @@ public class ShinjiMatou extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 1, 1);
+        SetUpgrade(0, 0, 0, 1);
 
         SetSynergy(Synergies.Fate);
     }
@@ -45,7 +45,7 @@ public class ShinjiMatou extends AnimatorCard
             }
         }
 
-        magicNumber = baseMagicNumber * cardTypes.size();
+        magicNumber = (baseMagicNumber + (secondaryValue * cardTypes.size()));
         isMagicNumberModified = (magicNumber != baseMagicNumber);
     }
 
@@ -54,17 +54,10 @@ public class ShinjiMatou extends AnimatorCard
     {
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
 
-        if (HasSynergy())
+        if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.Callback(new DecreaseMaxOrbAction(1))
-            .AddCallback(__ ->
-                {
-                    if (player.maxOrbs > 0)
-                    {
-                        GameActions.Bottom.MakeCardInHand(new ShinjiMatou_CommandSpell());
-                    }
-                }
-            );
+            GameActions.Bottom.MakeCardInHand(new ShinjiMatou_CommandSpell())
+            .AddCallback(c -> c.retain = true);
         }
     }
 }

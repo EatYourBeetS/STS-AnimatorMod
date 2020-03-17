@@ -26,7 +26,7 @@ public class Archer extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetInnate(true);
+        SetRetain(true);
     }
 
     @Override

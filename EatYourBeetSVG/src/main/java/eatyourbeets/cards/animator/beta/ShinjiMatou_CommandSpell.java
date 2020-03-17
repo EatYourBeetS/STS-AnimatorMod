@@ -1,10 +1,11 @@
 package eatyourbeets.cards.animator.beta;
 
+import com.megacrit.cardcrawl.actions.defect.DecreaseMaxOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
 
@@ -17,24 +18,28 @@ public class ShinjiMatou_CommandSpell extends AnimatorCard implements Spellcaste
     {
         super(DATA);
 
-        SetCostUpgrade(0);
-        SetRetain(true);
+        Initialize(0, 0);
+        SetCostUpgrade(-1);
+
         SetPurge(true);
+        SetSynergy(Synergies.Fate);
+    }
+
+    @Override
+    public boolean cardPlayable(AbstractMonster m)
+    {
+        return super.cardPlayable(m) && player.maxOrbs > 0;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.SelectFromPile(name, 1, p.discardPile)
-        .SetOptions(false, false)
-        .SetMessage(CardRewardScreen.TEXT[1])
-        .SetFilter(this::HasSynergy)
-        .AddCallback(m, (enemy, cards) ->
+        if (p.maxOrbs > 0)
         {
-            if (!cards.isEmpty())
-            {
-                GameActions.Top.PlayCard(cards.get(0), player.discardPile, (AbstractMonster) enemy).SetExhaust(false);
-            }
-        });
+            GameActions.Bottom.Add(new DecreaseMaxOrbAction(1));
+            GameActions.Bottom.PlayFromPile(name, 1, m, p.discardPile)
+            .SetOptions(false, false)
+            .SetFilter(this::HasSynergy);
+        }
     }
 }

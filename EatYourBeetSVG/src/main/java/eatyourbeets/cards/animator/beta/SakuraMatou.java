@@ -10,20 +10,26 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class SakuraMatou extends AnimatorCard implements Spellcaster
 {
-    public static final EYBCardData DATA = Register(SakuraMatou.class).SetSkill(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(SakuraMatou.class).SetSkill(1, CardRarity.UNCOMMON);
 
     public SakuraMatou()
     {
         super(DATA);
 
         Initialize(0, 0, 0);
-        SetUpgrade(0, 0, 0);
 
+        SetEthereal(true);
+        SetExhaust(true);
         SetSynergy(Synergies.Fate);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetExhaust(false);
     }
 
     @Override
@@ -63,10 +69,7 @@ public class SakuraMatou extends AnimatorCard implements Spellcaster
 
         if (constricted > 0)
         {
-            for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
-            {
-                GameActions.Bottom.ApplyConstricted(p, enemy, magicNumber);
-            }
+            GameActions.Bottom.ApplyConstricted(p, m, magicNumber);
         }
     }
 }

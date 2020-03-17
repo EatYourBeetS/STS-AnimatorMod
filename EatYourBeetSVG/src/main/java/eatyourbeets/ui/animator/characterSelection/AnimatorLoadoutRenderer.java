@@ -64,7 +64,6 @@ public class AnimatorLoadoutRenderer extends GUIElement
         this.characterOption = characterOption;
 
         this.loadouts.clear();
-        this.loadouts.add(RANDOM_LOADOUT);
         this.loadouts.addAll(GR.Animator.Data.BaseLoadouts);
         if (GR.Animator.Config.GetDisplayBetaSeries())
         {
@@ -77,6 +76,21 @@ public class AnimatorLoadoutRenderer extends GUIElement
             }
         }
 
+        this.loadouts.sort((a, b) ->
+        {
+            int diff = a.Name.compareTo(b.Name);
+            int level = GR.Animator.GetUnlockLevel();
+            int levelA = a.UnlockLevel - level;
+            int levelB = b.UnlockLevel - level;
+            if (levelA > 0 || levelB > 0)
+            {
+                return diff + Integer.compare(levelA, levelB) * 1313;
+            }
+
+            return diff;
+        });
+
+        this.loadouts.add(0, RANDOM_LOADOUT);
         this.loadout = GR.Animator.Data.SelectedLoadout;
         if (RANDOM_LOADOUT != loadout && (this.loadout.GetStartingDeck().isEmpty() || !loadouts.contains(this.loadout)))
         {

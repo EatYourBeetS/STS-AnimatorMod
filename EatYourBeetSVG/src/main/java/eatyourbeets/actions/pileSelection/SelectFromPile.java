@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.relics.FrozenEye;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -78,14 +79,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             {
                 if (filter == null || filter.test(card))
                 {
-                    temp.group.add(card);
-
-                    if (!card.isSeen)
-                    {
-                        UnlockTracker.markCardAsSeen(card.cardID);
-                        card.isLocked = false;
-                        card.isSeen = true;
-                    }
+                    AddCard(temp, card);
                 }
             }
 
@@ -128,7 +122,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             int max = Math.min(temp.Size(), amount);
             for (int i = 0; i < max; i++)
             {
-                selectedCards.add(temp.Retrieve(AbstractDungeon.cardRandomRng));
+                selectedCards.add(temp.Retrieve(GameUtilities.GetRNG()));
             }
 
             GridCardSelectScreenPatch.Clear();
@@ -144,6 +138,18 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             {
                 AbstractDungeon.gridSelectScreen.open(mergedGroup, this.amount, CreateMessage(), false, false, false, false);
             }
+        }
+    }
+
+    protected void AddCard(CardGroup group, AbstractCard card)
+    {
+        group.group.add(card);
+
+        if (!card.isSeen)
+        {
+            UnlockTracker.markCardAsSeen(card.cardID);
+            card.isLocked = false;
+            card.isSeen = true;
         }
     }
 

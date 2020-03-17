@@ -70,7 +70,7 @@
 	},
 	"animator:Assassin":
 	{
-		"DESCRIPTION": "Can only deal damage ** if the enemy has 3 ** different {Debuffs}. || Loses Retain if you ** play an {Attack}.",
+		"DESCRIPTION": "Can only be played ** if the enemy has !M! ** different {Debuffs}. || Loses Retain if you ** play an {Attack}.",
 		"NAME": "Assassin"
 	},
 	"animator:Asuramaru":
@@ -721,17 +721,17 @@
 	},
 	"animator:SakuraMatou":
 	{
-		"DESCRIPTION": "Halve the damage ** of your rightmost ** {Dark} Orb. Apply that ** much (!M!) {Constricted} ** to ALL enemies.",
+		"DESCRIPTION": "Halve the damage ** of your rightmost ** {Dark} Orb. Apply that ** much {Constricted} (!M!).",
 		"NAME": "Sakura Matou"
 	},
 	"animator:ShinjiMatou":
 	{
-		"DESCRIPTION": "Apply !M! Poison for each ** card type in hand. || On Synergy: Lose 1 ** Orb Slot to obtain a ** {Command Spell}.",
+		"DESCRIPTION": "Apply !M! Poison, and !S! ** additional Poison for ** each card type in hand. || <slm>. On Synergy: ** Add a {Command Spell} to ** your hand and Retain it.",
 		"NAME": "Shinji Matou"
 	},
 	"animator:ShinjiMatou_CommandSpell":
 	{
-		"DESCRIPTION": "Play a card which ** Synergizes with ** this card from your ** discard pile.",
+		"DESCRIPTION": "Lose 1 Orb Slot to play a ** card which Synergizes ** with this card from ** your discard pile.",
 		"NAME": "Command Spell"
 	},
 	"animator:Bienfu":

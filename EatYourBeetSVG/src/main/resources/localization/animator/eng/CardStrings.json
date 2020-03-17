@@ -722,7 +722,7 @@
 	},
 	"animator:KurumiTokisaki":
 	{
-		"DESCRIPTION": "When drawn: automatically play this card. || Next turn: gain [E] [E] [E]. || Cooldown !S!: Take an extra turn after this one. Shuffle 3 copies of this card into your draw pile.",
+		"DESCRIPTION": "When drawn: automatically play this card. || Cooldown !S!: Take an extra turn after this one. Shuffle 3 copies of this card into your draw pile.",
 		"NAME": "Kurumi Tokisaki"
 	},
 	"animator:KyokoSakura":

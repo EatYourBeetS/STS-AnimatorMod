@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
 import eatyourbeets.utilities.JavaUtilities;
@@ -78,6 +79,13 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
                 if (filter == null || filter.test(card))
                 {
                     temp.group.add(card);
+
+                    if (!card.isSeen)
+                    {
+                        UnlockTracker.markCardAsSeen(card.cardID);
+                        card.isLocked = false;
+                        card.isSeen = true;
+                    }
                 }
             }
 

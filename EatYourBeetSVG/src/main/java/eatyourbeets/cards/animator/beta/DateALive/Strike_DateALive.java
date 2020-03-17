@@ -16,7 +16,7 @@ public class Strike_DateALive extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(6, 0);
+        Initialize(7, 0);
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.DateALive);
@@ -28,7 +28,7 @@ public class Strike_DateALive extends Strike
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
         int totalCards = player.drawPile.size() + player.discardPile.size() + player.hand.size();
-        if (totalCards >= 30 && EffectHistory.TryActivateSemiLimited(cardID))
+        if (totalCards >= 30 && EffectHistory.TryActivateLimited(cardID))
         {
             GameActions.Bottom.Draw(2);
         }

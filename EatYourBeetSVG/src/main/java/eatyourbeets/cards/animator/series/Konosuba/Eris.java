@@ -4,7 +4,6 @@ import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
@@ -61,7 +60,6 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
             return damageAmount;
         }
 
-        AbstractPlayer player = AbstractDungeon.player;
         if (damageAmount > 0 && player.currentHealth <= damageAmount && CanRevive())
         {
             AbstractCard c = StSLib.getMasterDeckEquivalent(this);
@@ -100,12 +98,6 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
 
     private boolean CanRevive()
     {
-        if (GameUtilities.InBattle())
-        {
-            AbstractPlayer player = AbstractDungeon.player;
-            return player.hand.contains(this) || player.drawPile.contains(this) || player.discardPile.contains(this);
-        }
-
-        return false;
+        return GameUtilities.InBattle() && player.hand.contains(this) || player.drawPile.contains(this) || player.discardPile.contains(this);
     }
 }

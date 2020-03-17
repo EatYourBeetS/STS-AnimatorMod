@@ -1,9 +1,8 @@
 package eatyourbeets.powers.UnnamedReign;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class DarkCubePower extends AnimatorPower
@@ -42,7 +41,7 @@ public class DarkCubePower extends AnimatorPower
         }
         else
         {
-            GameActions.Bottom.ApplyConstricted(null, AbstractDungeon.player, amount);
+            GameActions.Bottom.ApplyConstricted(null, player, amount);
         }
 
         this.flash();

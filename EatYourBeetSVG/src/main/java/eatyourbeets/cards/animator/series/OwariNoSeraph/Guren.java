@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.GurenAction;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -55,11 +54,10 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
         {
             if (EffectHistory.TryActivateSemiLimited(this.cardID))
             {
-                AbstractPlayer p = AbstractDungeon.player;
-                int amount = p.exhaustPile.size();
+                int amount = player.exhaustPile.size();
                 if (amount > 0)
                 {
-                    GameActions.Bottom.StackPower(new SupportDamagePower(p, amount));
+                    GameActions.Bottom.StackPower(new SupportDamagePower(player, amount));
                 }
             }
 

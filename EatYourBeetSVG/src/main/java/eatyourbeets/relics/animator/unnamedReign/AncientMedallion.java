@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.interfaces.subscribers.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.AnimatorRelic;
@@ -161,7 +160,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
             AbstractCard card1 = upgradableCards.Retrieve(AbstractDungeon.cardRandomRng);
             card1.upgrade();
             AbstractDungeon.player.bottledCardUpgradeCheck(card1);
-            AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F + AbstractCard.IMG_WIDTH / 2.0F + 20.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
+            GameEffects.TopLevelList.ShowCardBriefly(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F + AbstractCard.IMG_WIDTH / 2.0F + 20.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F);
         }
 
         if (upgradableCards.Size() > 0)
@@ -170,12 +169,12 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
             AbstractCard card1 = upgradableCards.Retrieve(AbstractDungeon.cardRandomRng);
             card1.upgrade();
             AbstractDungeon.player.bottledCardUpgradeCheck(card1);
-            AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F - AbstractCard.IMG_WIDTH / 2.0F - 20.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
+            GameEffects.TopLevelList.ShowCardBriefly(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F - AbstractCard.IMG_WIDTH / 2.0F - 20.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F);
         }
 
         if (upgraded > 0)
         {
-            AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+            GameEffects.TopLevelList.Add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
         }
 
         return upgradableCards.Size() > 0;

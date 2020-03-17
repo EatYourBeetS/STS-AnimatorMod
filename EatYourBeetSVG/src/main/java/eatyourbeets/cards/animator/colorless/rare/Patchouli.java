@@ -129,7 +129,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
         CreateDamageAction().SetDamageEffect(e ->
         {
             CardCrawlGame.sound.play("ATTACK_FIRE", 0.2f);
-            GameEffects.Queue.Add(new FireballEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, e.hb.cX, e.hb.cY));
+            GameEffects.Queue.Add(new FireballEffect(player.hb.cX, player.hb.cY, e.hb.cX, e.hb.cY));
         });
     }
 

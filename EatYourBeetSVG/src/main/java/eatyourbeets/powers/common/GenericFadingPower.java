@@ -4,12 +4,12 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
 import eatyourbeets.actions.special.KillCharacterAction;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class GenericFadingPower extends AbstractPower implements CloneablePowerInterface
 {
@@ -67,7 +67,7 @@ public class GenericFadingPower extends AbstractPower implements CloneablePowerI
 
     private void TriggerEffect()
     {
-        AbstractDungeon.effectsQueue.add(new PowerIconShowEffect(this));
+        GameEffects.Queue.Add(new PowerIconShowEffect(this));
 
         if (this.amount == 1 && !this.owner.isDying)
         {

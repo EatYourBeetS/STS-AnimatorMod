@@ -32,6 +32,7 @@ import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
@@ -244,12 +245,11 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         {
             if (!timeMaze.isObtained)
             {
-                GameActions.Bottom.Talk(owner, dialog[3], 3, 4);
-
-                AbstractDungeon.effectsQueue.add(new PowerIconShowEffect(this));
-
                 timeMaze.counter = cardsPlayed;
-                AbstractDungeon.getCurrRoom().spawnBlightAndObtain(owner.hb.cX, owner.hb.cY, timeMaze);
+
+                GameActions.Bottom.Talk(owner, dialog[3], 3, 4);
+                GameEffects.Queue.Add(new PowerIconShowEffect(this));
+                GameUtilities.ObtainBlight(owner.hb.cX, owner.hb.cY, timeMaze);
             }
             else
             {
@@ -376,7 +376,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         }
         else
         {
-            GameActions.Top.Add(new KillCharacterAction(owner, AbstractDungeon.player));
+            GameActions.Top.Add(new KillCharacterAction(owner, player));
             GameActions.Top.Talk(owner, dialog[27], 3, 3);
         }
     }

@@ -5,15 +5,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
 import java.util.function.Consumer;
 
@@ -90,8 +90,6 @@ public class UltimateCubePower extends AnimatorPower
 
     private void Explode()
     {
-        AbstractPlayer p = AbstractDungeon.player;
-
         int damageStep = EXPLOSION_DAMAGE / 20;
         for (int i = 0; i < 20; i++)
         {
@@ -100,7 +98,7 @@ public class UltimateCubePower extends AnimatorPower
 
             GameActions.Bottom.Wait(0.3f);
             GameActions.Bottom.VFX(new ExplosionSmallEffect(x, y), 0F);
-            GameActions.Bottom.DealDamage(owner, p, damageStep, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.DealDamage(owner, player, damageStep, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
         }
 
         GameActions.Bottom.Add(new SuicideAction((AbstractMonster)this.owner));
@@ -161,10 +159,9 @@ public class UltimateCubePower extends AnimatorPower
     {
         super.onDeath();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        if (!AbstractDungeon.player.hasBlight(eatyourbeets.blights.animator.UltimateCube.ID))
+        if (!player.hasBlight(eatyourbeets.blights.animator.UltimateCube.ID))
         {
-            AbstractDungeon.getCurrRoom().spawnBlightAndObtain(p.hb.cX, p.hb.cY, new eatyourbeets.blights.animator.UltimateCube());
+            GameUtilities.ObtainBlight(player.hb.cX, player.hb.cY, new eatyourbeets.blights.animator.UltimateCube());
         }
     }
 }

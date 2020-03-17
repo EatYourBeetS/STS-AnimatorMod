@@ -12,7 +12,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class MaskedTravelerUpgradeSameCardEffect extends AbstractGameEffect
 {
@@ -42,9 +43,7 @@ public class MaskedTravelerUpgradeSameCardEffect extends AbstractGameEffect
         {
             AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
 
-            //AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(0), (float) Settings.WIDTH / 2.0F - 30.0F * Settings.scale - AbstractCard.IMG_WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
-            //AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(1), (float) Settings.WIDTH / 2.0F + 30.0F * Settings.scale + AbstractCard.IMG_WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
-            AbstractDungeon.effectsQueue.add(new UpgradeShineEffect((float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
+            GameEffects.Queue.Add(new UpgradeShineEffect((float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
 
             for (int i = 0; i < upgrades; i++)
             {
@@ -54,9 +53,8 @@ public class MaskedTravelerUpgradeSameCardEffect extends AbstractGameEffect
                 }
             }
 
-            AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
-
-            AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+            GameEffects.Queue.ShowCardBriefly(c.makeStatEquivalentCopy());
+            GameUtilities.GetCurrentRoom(true).phase = AbstractRoom.RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
 
             this.isDone = true;

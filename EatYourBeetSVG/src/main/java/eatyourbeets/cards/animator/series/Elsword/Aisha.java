@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
@@ -16,6 +15,7 @@ import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Aisha extends AnimatorCard implements Spellcaster
@@ -60,10 +60,8 @@ public class Aisha extends AnimatorCard implements Spellcaster
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE)
             .SetVFX(true, false)
-            .SetDamageEffect(enemy -> AbstractDungeon.effectsQueue.add(new SmallLaser2Effect
-            (AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY,
-            enemy.hb.cX + MathUtils.random(-0.05F, 0.05F),
-            enemy.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.VIOLET)));
+            .SetDamageEffect(enemy -> GameEffects.Queue.Add(new SmallLaser2Effect(player.hb.cX, player.hb.cY,
+            enemy.hb.cX + MathUtils.random(-0.05F, 0.05F),enemy.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.VIOLET)));
         }
 
         if (!EffectHistory.HasActivatedSemiLimited(cardID))

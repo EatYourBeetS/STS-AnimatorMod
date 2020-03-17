@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundFi
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
+import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -280,6 +281,17 @@ public class GameUtilities
     public static AbstractRoom GetCurrentRoom()
     {
         return (AbstractDungeon.currMapNode == null) ? null : AbstractDungeon.currMapNode.getRoom();
+    }
+
+    public static AbstractRoom GetCurrentRoom(boolean notNull)
+    {
+        AbstractRoom room = GetCurrentRoom();
+        if (room == null && notNull)
+        {
+            throw new NullPointerException("GetCurrentRoom() returned null");
+        }
+
+        return room;
     }
 
     public static int GetDebuffsCount(AbstractCreature creature)
@@ -636,6 +648,16 @@ public class GameUtilities
     public static boolean IsValidOrb(AbstractOrb orb)
     {
         return orb != null && !(orb instanceof EmptyOrbSlot);
+    }
+
+    public static void ObtainRelic(float cX, float cY, AbstractRelic relic)
+    {
+        GetCurrentRoom(true).spawnRelicAndObtain(cX, cY, relic);
+    }
+
+    public static void ObtainBlight(float cX, float cY, AbstractBlight blight)
+    {
+        GetCurrentRoom(true).spawnBlightAndObtain(cX, cY, blight);
     }
 
     public static void RefreshHandLayout()

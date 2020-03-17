@@ -1,12 +1,12 @@
 package eatyourbeets.blights.animator;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.special.KillCharacterAction;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.effects.combatOnly.BlightAboveCreatureEffect;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Doomed extends AnimatorBlight
 {
@@ -28,11 +28,10 @@ public class Doomed extends AnimatorBlight
         super.onPlayerEndTurn();
 
         flash();
-
-        AbstractPlayer p = AbstractDungeon.player;
+        
         if (counter <= 1)
         {
-            GameActions.Bottom.Add(new KillCharacterAction(p, p));
+            GameActions.Bottom.Add(new KillCharacterAction(null, AbstractDungeon.player));
         }
         else
         {
@@ -44,7 +43,7 @@ public class Doomed extends AnimatorBlight
                 this.scale = Settings.scale * 1.3f;
                 this.flash();
 
-                AbstractDungeon.effectsQueue.add(new BlightAboveCreatureEffect(Settings.WIDTH / 2f, Settings.HEIGHT / 2f, this));
+                GameEffects.Queue.Add(new BlightAboveCreatureEffect(Settings.WIDTH / 2f, Settings.HEIGHT / 2f, this));
             }
             else
             {

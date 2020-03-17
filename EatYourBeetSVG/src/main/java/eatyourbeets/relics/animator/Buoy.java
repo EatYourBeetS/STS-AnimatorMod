@@ -1,6 +1,5 @@
 package eatyourbeets.relics.animator;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
@@ -88,10 +87,8 @@ public class Buoy extends AnimatorRelic
     {
         GameActions.Bottom.Callback(__ ->
         {
-            AbstractPlayer p = AbstractDungeon.player;
-
             counter = (int) Math.ceil(AbstractDungeon.player.maxHealth * (HP_THRESHOLD / 100f));
-            if (p.currentHealth < counter)
+            if (AbstractDungeon.player.currentHealth < counter)
             {
                 this.beginLongPulse();
             }

@@ -37,8 +37,8 @@ public class Gluttony extends AnimatorCard
 
         if (playable)
         {
-            int total = player.drawPile.size() + player.discardPile.size() + player.hand.size();
-            if (total < secondaryValue)
+            int totalCards = player.drawPile.size() + player.discardPile.size() + player.hand.size();
+            if (totalCards < secondaryValue)
             {
                 cantUseMessage = cardData.Strings.EXTENDED_DESCRIPTION[0];
 

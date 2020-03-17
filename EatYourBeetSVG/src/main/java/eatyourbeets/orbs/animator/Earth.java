@@ -19,6 +19,7 @@ import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber
 {
@@ -116,7 +117,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.1F);
         //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1F);
-        AbstractDungeon.effectsQueue.add(new DarkOrbActivateEffect(this.cX, this.cY));
+        GameEffects.Queue.Add(new DarkOrbActivateEffect(this.cX, this.cY));
     }
 
     public void applyFocus()

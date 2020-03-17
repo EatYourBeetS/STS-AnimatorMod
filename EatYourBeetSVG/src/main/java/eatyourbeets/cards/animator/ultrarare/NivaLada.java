@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
@@ -31,13 +30,13 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
         Initialize(0, 0, 300);
         SetUpgrade(0, 0, 0);
 
-        if (GameUtilities.InBattle() && !CardCrawlGame.isPopupOpen)
+        SetCooldown(18, -2, this::OnCooldownCompleted);
+        SetSynergy(Synergies.Chaika);
+
+        if (CanSubscribeToEvents())
         {
             OnBattleStart();
         }
-
-        SetCooldown(18, -2, this::OnCooldownCompleted);
-        SetSynergy(Synergies.Chaika);
     }
 
     @Override

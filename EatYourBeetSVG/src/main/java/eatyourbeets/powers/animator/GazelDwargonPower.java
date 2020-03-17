@@ -1,7 +1,6 @@
 package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import com.megacrit.cardcrawl.powers.BlurPower;
 import com.megacrit.cardcrawl.relics.Calipers;
@@ -47,7 +46,7 @@ public class GazelDwargonPower extends AnimatorPower
             int temp = Math.max(0, owner.currentBlock - amount);
             if (temp > 0)
             {
-                if (AbstractDungeon.player.hasRelic(Calipers.ID))
+                if (player.hasRelic(Calipers.ID))
                 {
                     temp = Math.min(Calipers.BLOCK_LOSS, temp);
                 }

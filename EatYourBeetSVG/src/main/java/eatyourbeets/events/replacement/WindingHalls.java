@@ -15,9 +15,12 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameEffects;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 public class WindingHalls extends AbstractImageEvent
 {
@@ -49,18 +52,19 @@ public class WindingHalls extends AbstractImageEvent
     public WindingHalls()
     {
         super(NAME, INTRO_BODY1, "images/events/winding.jpg");
+
         if (AbstractDungeon.ascensionLevel >= 15)
         {
-            this.hpAmt = MathUtils.round((float) AbstractDungeon.player.maxHealth * HP_LOSS_AMOUNT_A15);
-            this.healAmt = MathUtils.round((float) AbstractDungeon.player.maxHealth * HEAL_AMOUNT_A15);
+            this.hpAmt = MathUtils.round((float) player.maxHealth * HP_LOSS_AMOUNT_A15);
+            this.healAmt = MathUtils.round((float) player.maxHealth * HEAL_AMOUNT_A15);
         }
         else
         {
-            this.hpAmt = MathUtils.round((float) AbstractDungeon.player.maxHealth * HP_LOSS_AMOUNT);
-            this.healAmt = MathUtils.round((float) AbstractDungeon.player.maxHealth * HEAL_AMOUNT);
+            this.hpAmt = MathUtils.round((float) player.maxHealth * HP_LOSS_AMOUNT);
+            this.healAmt = MathUtils.round((float) player.maxHealth * HEAL_AMOUNT);
         }
 
-        this.maxHPAmt = MathUtils.round((float) AbstractDungeon.player.maxHealth * MAX_HP_LOSS_AMOUNT);
+        this.maxHPAmt = MathUtils.round((float) player.maxHealth * MAX_HP_LOSS_AMOUNT);
         this.imageEventText.setDialogOption(OPTIONS[0]);
     }
 
@@ -88,23 +92,21 @@ public class WindingHalls extends AbstractImageEvent
                 {
                     case 0:
                         List<String> cards = new ArrayList<>();
-                        cards.add("Madness");
-                        cards.add("Madness");
+                        cards.add(HigakiRinne.DATA.ID);
                         logMetric("Winding Halls", "Embrace Madness", cards, null, null, null, null, null, null, this.hpAmt, 0, 0, 0, 0, 0);
                         this.imageEventText.updateBodyText(CHOICE_1_TEXT);
-                        AbstractDungeon.player.damage(new DamageInfo(null, this.hpAmt));
+                        player.damage(new DamageInfo(null, this.hpAmt));
                         CardCrawlGame.sound.play("ATTACK_MAGIC_SLOW_1");
-                        AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new HigakiRinne(), (float) Settings.WIDTH / 2.0F - 350.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
-                        //AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new HigakiRinne(), (float) Settings.WIDTH / 2.0F + 350.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
+                        GameEffects.List.Add(new ShowCardAndObtainEffect(new HigakiRinne(), (float) Settings.WIDTH / 2.0F - 350.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
                         this.screenNum = 2;
                         this.imageEventText.updateDialogOption(0, OPTIONS[4]);
                         this.imageEventText.clearRemainingOptions();
                         return;
                     case 1:
                         this.imageEventText.updateBodyText(CHOICE_2_TEXT);
-                        AbstractDungeon.player.heal(this.healAmt);
+                        player.heal(this.healAmt);
                         AbstractCard c = new Writhe();
-                        AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c, (float) Settings.WIDTH / 2.0F + 10.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
+                        GameEffects.List.Add(new ShowCardAndObtainEffect(c, (float) Settings.WIDTH / 2.0F + 10.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
                         logMetricObtainCardAndHeal("Winding Halls", "Writhe", c, this.healAmt);
                         this.screenNum = 2;
                         this.imageEventText.updateDialogOption(0, OPTIONS[4]);
@@ -114,7 +116,7 @@ public class WindingHalls extends AbstractImageEvent
                         this.screenNum = 2;
                         this.imageEventText.updateBodyText(DESCRIPTIONS[4]);
                         logMetricMaxHPLoss("Winding Halls", "Max HP", this.maxHPAmt);
-                        AbstractDungeon.player.decreaseMaxHealth(this.maxHPAmt);
+                        player.decreaseMaxHealth(this.maxHPAmt);
                         CardCrawlGame.screenShake.shake(ShakeIntensity.LOW, ShakeDur.SHORT, true);
                         this.imageEventText.updateDialogOption(0, OPTIONS[4]);
                         this.imageEventText.clearRemainingOptions();
@@ -125,7 +127,6 @@ public class WindingHalls extends AbstractImageEvent
             default:
                 this.openMap();
         }
-
     }
 
     static

@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.colorless.rare;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FadingPower;
@@ -13,10 +12,10 @@ import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.effects.utility.CallbackEffect;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Kira extends AnimatorCard
 {
@@ -85,8 +84,7 @@ public class Kira extends AnimatorCard
             CardCrawlGame.music.silenceTempBgmInstantly();
 
             GameActions.Bottom.SFX("ANIMATOR_KIRA_POWER");
-            AbstractDungeon.effectsQueue.add(new CallbackEffect(new WaitRealtimeAction(9f),
-            this, (state, action) -> CardCrawlGame.music.unsilenceBGM()));
+            GameEffects.Queue.Callback(new WaitRealtimeAction(9f), CardCrawlGame.music::unsilenceBGM);
         }
         else
         {

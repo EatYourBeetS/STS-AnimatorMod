@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -83,7 +82,7 @@ public class Raven extends AnimatorCard
     {
         AbstractCard selected = null;
 
-        CardGroup drawPile = AbstractDungeon.player.drawPile;
+        CardGroup drawPile = player.drawPile;
         if (drawPile.size() > 0)
         {
             int minDamage = Integer.MAX_VALUE;

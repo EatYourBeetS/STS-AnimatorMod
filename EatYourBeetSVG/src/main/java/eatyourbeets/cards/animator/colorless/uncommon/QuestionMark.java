@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.colorless.uncommon;
 
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.QuestionMarkAction;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
@@ -45,11 +44,9 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
     @Override
     public void OnStartOfTurn()
     {
-        AbstractPlayer p = AbstractDungeon.player;
-
-        if (!p.hand.contains(copy))
+        if (!player.hand.contains(copy))
         {
-            if (transformBack(p.drawPile) || transformBack(p.discardPile) || transformBack(p.exhaustPile))
+            if (transformBack(player.drawPile) || transformBack(player.discardPile) || transformBack(player.exhaustPile))
             {
                 PlayerStatistics.onStartOfTurn.Unsubscribe(this);
             }

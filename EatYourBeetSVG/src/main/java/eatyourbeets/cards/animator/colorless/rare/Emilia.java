@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.colorless.rare;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
@@ -54,7 +53,7 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     {
         GameEffects.Queue.ShowCardBriefly(this);
 
-        for (AbstractOrb orb : AbstractDungeon.player.orbs)
+        for (AbstractOrb orb : player.orbs)
         {
             if (orb != null && Frost.ORB_ID.equals(orb.ID))
             {

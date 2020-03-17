@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import eatyourbeets.utilities.GameEffects;
 
 import java.util.Iterator;
 
@@ -50,12 +50,12 @@ public class ChooseAndUpgradeEffect extends AbstractGameEffect
             while (var1.hasNext())
             {
                 AbstractCard c = (AbstractCard) var1.next();
-                AbstractDungeon.effectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+                GameEffects.Queue.Add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
                 ++CardCrawlGame.metricData.campfire_upgraded;
                 CardCrawlGame.metricData.addCampfireChoiceData("SMITH", c.getMetricID());
                 c.upgrade();
                 AbstractDungeon.player.bottledCardUpgradeCheck(c);
-                AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
+                GameEffects.Queue.ShowCardBriefly(c.makeStatEquivalentCopy());
             }
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();

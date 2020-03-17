@@ -3,9 +3,9 @@ package eatyourbeets.actions.basic;
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.HealEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.utilities.GameEffects;
 
 public class GainTemporaryHP extends EYBActionWithCallback<AbstractCreature>
 {
@@ -31,7 +31,7 @@ public class GainTemporaryHP extends EYBActionWithCallback<AbstractCreature>
             TempHPField.tempHp.set(this.target, TempHPField.tempHp.get(this.target) + this.amount);
             if (this.amount > 0)
             {
-                AbstractDungeon.effectsQueue.add(new HealEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY, this.amount));
+                GameEffects.Queue.Add(new HealEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY, this.amount));
                 this.target.healthBarUpdatedEvent();
             }
         }

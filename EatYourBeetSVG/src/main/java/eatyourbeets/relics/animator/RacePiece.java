@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.WeightedList;
 
@@ -180,7 +181,7 @@ public class RacePiece extends AnimatorRelic
 
                     //if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.TRANSFORM)
                     //{
-                        AbstractDungeon.topLevelEffectsQueue.add(new ShowCardAndObtainEffect(reward, (float) Settings.WIDTH / 3.0F + displayCount, (float)Settings.HEIGHT / 2.0F, false));
+                        GameEffects.TopLevelList.Add(new ShowCardAndObtainEffect(reward, (float) Settings.WIDTH / 3.0F + displayCount, (float)Settings.HEIGHT / 2.0F, false));
                         displayCount += (float)Settings.WIDTH / 6.0F;
                     //}
                 }

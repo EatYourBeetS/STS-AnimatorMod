@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -42,9 +41,9 @@ public class DolaStephanie extends AnimatorCard
             AnimatorCard card = JavaUtilities.SafeCast(cards.get(0), AnimatorCard.class);
             if (card != null)
             {
-                GameActions.Top.FetchFromPile(name, 1, AbstractDungeon.player.drawPile)
-                        .SetOptions(false, false)
-                        .SetFilter(card::HasSynergy);
+                GameActions.Top.FetchFromPile(name, 1, player.drawPile)
+                .SetOptions(false, false)
+                .SetFilter(card::HasSynergy);
             }
         });
     }

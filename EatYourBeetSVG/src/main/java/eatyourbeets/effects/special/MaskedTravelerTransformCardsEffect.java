@@ -41,9 +41,6 @@ public class MaskedTravelerTransformCardsEffect extends EYBEffectWithCallback<Ob
         }
         else if (cardsToRemove > 0 && AbstractDungeon.gridSelectScreen.selectedCards.size() == cardsToRemove)
         {
-            //AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(0), (float) Settings.WIDTH / 2.0F - 30.0F * Settings.scale - AbstractCard.IMG_WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
-            //AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(1), (float) Settings.WIDTH / 2.0F + 30.0F * Settings.scale + AbstractCard.IMG_WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
-
             float displayCount = 0.0F;
             for (AbstractCard card : AbstractDungeon.gridSelectScreen.selectedCards)
             {

@@ -1,7 +1,7 @@
 package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.cards.animator.beta.WinryRockbell;
+import eatyourbeets.cards.animator.series.FullmetalAlchemist.WinryRockbell;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDiscardedSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;

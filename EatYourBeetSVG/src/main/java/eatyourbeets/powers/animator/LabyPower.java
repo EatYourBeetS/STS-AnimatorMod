@@ -3,7 +3,7 @@ package eatyourbeets.powers.animator;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.cards.animator.beta.Laby;
+import eatyourbeets.cards.animator.series.Elsword.Laby;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;

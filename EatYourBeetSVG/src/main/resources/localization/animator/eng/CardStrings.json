@@ -69,6 +69,11 @@
 		"DESCRIPTION": "Gain !S! [I]. ** Gain !M! Orb Slot(s). || Limited. Synergy: ** Channel 1 Earth.",
 		"NAME": "Arpeggio"
 	},
+	"animator:Assassin":
+	{
+		"DESCRIPTION": "Can only be played ** if the enemy has !M! ** different {Debuffs}. || Loses Retain if you ** play an {Attack}.",
+		"NAME": "Assassin"
+	},
 	"animator:Asuramaru":
 	{
 		"DESCRIPTION": "Gain !M! [F] [A] [I]. ** Gain 2 {Demon Form}. ** Add 2 {Wounds} to ** your hand.",
@@ -794,6 +799,21 @@
 		"DESCRIPTION": "Trigger your first Orb ** !M! time(s), then Evoke it. || <LIM>. When Drawn: ** Discard this and add ** {Bienfu} to your hand.",
 		"NAME": "Magilou"
 	},
+	"animator:SakuraMatou":
+	{
+		"DESCRIPTION": "Halve the damage ** of your rightmost ** {Dark} Orb. Apply that ** much {Constricted} (!M!).",
+		"NAME": "Sakura Matou"
+	},
+	"animator:ShinjiMatou":
+	{
+		"DESCRIPTION": "Apply !M! Poison, and !S! ** additional Poison for ** each card type in hand. || <slm>. On Synergy: ** Add a {Command Spell} to ** your hand and Retain it.",
+		"NAME": "Shinji Matou"
+	},
+	"animator:ShinjiMatou_CommandSpell":
+	{
+		"DESCRIPTION": "Lose 1 Orb Slot to play a ** card which Synergizes ** with this card from ** your discard pile.",
+		"NAME": "Command Spell"
+	},
 	"animator:Bienfu":
 	{
 		"DESCRIPTION": "Unplayable. || When Drawn: Boost [I]. || When Discarded: Return ** this to your draw pile.",
@@ -1048,6 +1068,11 @@
 	{
 		"DESCRIPTION": "Delay certain ** doom by 1 turn.",
 		"NAME": "Respite"
+	},
+	"animator:Rider":
+	{
+		"DESCRIPTION": "Apply !M! {Shackles}. || This card {Synergizes} ** with {Martial Artists} ** and {Spellcasters}",
+		"NAME": "Rider"
 	},
 	"animator:Rimuru":
 	{

@@ -11,22 +11,33 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Archer extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Archer.class).SetPower(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Archer.class).SetPower(1, CardRarity.UNCOMMON);
 
     public Archer()
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 3);
+        SetUpgrade(0, 2, 0);
 
         SetSynergy(Synergies.Fate);
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetRetain(true);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.StackPower(new ArcherPower(p, this.magicNumber));
+        if (upgraded)
+        {
+            GameActions.Bottom.GainBlock(block);
+        }
+
+        GameActions.Bottom.StackPower(new ArcherPower(p, magicNumber));
 
         if (HasSynergy())
         {

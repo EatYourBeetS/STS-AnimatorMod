@@ -42,23 +42,11 @@ public class AnimatorCharacterSelectScreen
     public static void Update(CharacterSelectScreen selectScreen)
     {
         UpdateSelectedCharacter(selectScreen);
-
-//        if (selectedOption != null && !CardCrawlGame.mainMenuScreen.darken)
-//        {
-//            LoadoutRenderer.Update();
-//            TrophiesRenderer.Update();
-//            SpecialTrophiesRenderer.Update();
-//        }
     }
 
     public static void Render(CharacterSelectScreen selectScreen, SpriteBatch sb)
     {
-//        if (selectedOption != null && !CardCrawlGame.mainMenuScreen.darken)
-//        {
-//            LoadoutRenderer.Render(sb);
-//            TrophiesRenderer.Render(sb);
-//            SpecialTrophiesRenderer.Render(sb);
-//        }
+        // RenderOption is being called instead
     }
 
     private static void UpdateSelectedCharacter(CharacterSelectScreen selectScreen)

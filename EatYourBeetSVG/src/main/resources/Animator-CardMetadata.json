@@ -4,6 +4,10 @@
 	{
 		"cropPortrait": false
 	},
+	"animator:Assassin":
+	{
+		"cropPortrait": false
+	},
 	"animator:Boros":
 	{
 		"cropPortrait": false
@@ -73,6 +77,14 @@
 		"cropPortrait": false
 	},
 	"animator:SeriousSaitama":
+	{
+		"cropPortrait": false
+	},
+	"animator:ShinjiMatou":
+	{
+		"cropPortrait": false
+	},
+	"animator:ShinjiMatou_CommandSpell":
 	{
 		"cropPortrait": false
 	},

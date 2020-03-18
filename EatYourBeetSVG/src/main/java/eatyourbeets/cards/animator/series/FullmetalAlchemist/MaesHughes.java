@@ -31,7 +31,7 @@ public class MaesHughes extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.Callback(__ ->
+        GameActions.Bottom.Callback(() ->
         {
             AbstractPlayer p = AbstractDungeon.player;
             if (!DrawRoyMustang(p.drawPile))

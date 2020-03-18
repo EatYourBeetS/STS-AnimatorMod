@@ -32,7 +32,7 @@ public class Geryuganshoop extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Cycle(name, magicNumber)
-        .AddCallback(__ -> GameActions.Bottom.SelectFromPile(name, secondaryValue, player.exhaustPile)
+        .AddCallback(() -> GameActions.Bottom.SelectFromPile(name, secondaryValue, player.exhaustPile)
                            .SetMessage(JavaUtilities.Format(cardData.Strings.EXTENDED_DESCRIPTION[0], secondaryValue))
                            .SetOptions(false, true)
                            .AddCallback(this::OnCardChosen));

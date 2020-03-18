@@ -37,7 +37,7 @@ public class AcuraAkari extends AnimatorCard
     {
         GameActions.Bottom.DiscardFromHand(name, 2, false)
         .SetOptions(false, false, false)
-        .AddCallback(__ -> GameActions.Bottom.CreateThrowingKnives(magicNumber));
+        .AddCallback(() -> GameActions.Bottom.CreateThrowingKnives(magicNumber));
 
         if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {

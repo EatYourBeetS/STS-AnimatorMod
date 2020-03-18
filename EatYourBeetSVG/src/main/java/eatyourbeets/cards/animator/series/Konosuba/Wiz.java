@@ -42,7 +42,7 @@ public class Wiz extends AnimatorCard
     {
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
         .SetOptions(false, false, true)
-        .AddCallback(__ ->
+        .AddCallback(() ->
         { //
             GameActions.Top.SelectFromPile(name, 1, player.exhaustPile)
             .SetOptions(false, false)

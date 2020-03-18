@@ -84,7 +84,7 @@ public class Buoy extends AnimatorRelic
 
     private void UpdateThreshold()
     {
-        GameActions.Bottom.Callback(__ ->
+        GameActions.Bottom.Callback(() ->
         {
             counter = (int) Math.ceil(player.maxHealth * (HP_THRESHOLD / 100f));
             if (player.currentHealth < counter)

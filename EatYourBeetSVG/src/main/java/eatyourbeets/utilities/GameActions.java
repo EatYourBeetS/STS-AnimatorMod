@@ -44,6 +44,7 @@ import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
@@ -187,9 +188,19 @@ public final class GameActions
         return Add(new CallbackAction(action, onCompletion));
     }
 
+    public CallbackAction Callback(AbstractGameAction action, ActionT0 onCompletion)
+    {
+        return Add(new CallbackAction(action, onCompletion));
+    }
+
     public CallbackAction Callback(AbstractGameAction action)
     {
         return Add(new CallbackAction(action));
+    }
+
+    public CallbackAction Callback(ActionT0 onCompletion)
+    {
+        return Callback(new WaitAction(0.05f), onCompletion);
     }
 
     public CallbackAction Callback(ActionT1<AbstractGameAction> onCompletion)

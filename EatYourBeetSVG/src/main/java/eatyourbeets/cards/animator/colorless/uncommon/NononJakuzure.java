@@ -62,7 +62,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Cycle(name, magicNumber)
-        .AddCallback(__ ->
+        .AddCallback(() ->
         { //
             GameActions.Top.Motivate()
             .MotivateZeroCost(false)

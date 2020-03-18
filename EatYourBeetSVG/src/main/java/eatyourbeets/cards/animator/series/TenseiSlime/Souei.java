@@ -31,7 +31,7 @@ public class Souei extends AnimatorCard implements MartialArtist
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
-        GameActions.Bottom.Callback(__ ->
+        GameActions.Bottom.Callback(() ->
         {
             for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
             {

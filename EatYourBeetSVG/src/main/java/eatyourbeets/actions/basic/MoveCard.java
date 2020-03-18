@@ -165,7 +165,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             if (sourcePile != null && sourcePile.type == CardGroup.CardGroupType.EXHAUST_PILE)
             {
                 GameEffects.Queue.Add(new UnfadeOutEffect(card));
-                GameActions.Bottom.Callback(__ -> GameEffects.Queue.Add(new UnfadeOutEffect(card)));
+                GameActions.Bottom.Callback(() -> GameEffects.Queue.Add(new UnfadeOutEffect(card)));
             }
 
             if (targetPile != player.limbo && player.limbo.contains(card))

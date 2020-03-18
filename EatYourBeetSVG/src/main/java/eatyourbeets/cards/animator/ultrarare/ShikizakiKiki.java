@@ -25,7 +25,7 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Draw(magicNumber)
-        .AddCallback(__ ->
+        .AddCallback(() ->
         {
            for (AbstractCard card : player.hand.group)
            {

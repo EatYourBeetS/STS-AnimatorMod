@@ -67,7 +67,7 @@ public class Illya extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.Callback(__ ->
+        GameActions.Bottom.Callback(() ->
         {
             if (!DrawBerserker(player.drawPile))
             {

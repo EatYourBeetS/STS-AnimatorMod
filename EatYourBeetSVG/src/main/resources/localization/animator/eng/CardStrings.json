@@ -721,7 +721,7 @@
 	},
 	"animator:SakuraMatou":
 	{
-		"DESCRIPTION": "Halve the damage ** of your rightmost ** {Dark} Orb. Apply that ** much {Constricted} (!M!).",
+		"DESCRIPTION": "Apply !M! Constricted. || Halve the damage of your ** rightmost {Dark} Orb. Apply ** additional Constricted ** equal to that amount.",
 		"NAME": "Sakura Matou"
 	},
 	"animator:ShinjiMatou":

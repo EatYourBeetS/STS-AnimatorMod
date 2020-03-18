@@ -1,6 +1,5 @@
 package eatyourbeets.relics.animator;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.animator.ultrarare.HolyGrail;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.relics.AnimatorRelic;
@@ -27,7 +26,7 @@ public class HolyGrailRelic extends AnimatorRelic
     {
         super.onEquip();
 
-        AbstractDungeon.player.increaseMaxHp(MAX_HP_ON_PICKUP, true);
+        player.increaseMaxHp(MAX_HP_ON_PICKUP, true);
     }
 
     @Override

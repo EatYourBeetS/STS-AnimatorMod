@@ -5,17 +5,15 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.base.AnimatorCard;
 
 public class BattleDrones extends AnimatorRelic
 {
@@ -43,13 +41,12 @@ public class BattleDrones extends AnimatorRelic
         AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
         if (card != null && card.HasSynergy())
         {
-            AbstractPlayer p = AbstractDungeon.player;
-            GameActions.Bottom.Add(new GainBlockAction(p, p, BLOCK_AMOUNT, true));
+            GameActions.Bottom.Add(new GainBlockAction(player, player, BLOCK_AMOUNT, true));
             GameActions.Bottom.DealDamageToRandomEnemy(DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
             .SetDamageEffect(enemy ->
             {
                 CardCrawlGame.sound.play("ATTACK_MAGIC_BEAM_SHORT");
-                GameEffects.List.Add(new SmallLaserEffect(enemy.hb.cX, enemy.hb.cY, p.hb.cX, p.hb.cY));
+                GameEffects.List.Add(new SmallLaserEffect(enemy.hb.cX, enemy.hb.cY, player.hb.cX, player.hb.cY));
                 GameEffects.List.Add(new BorderFlashEffect(Color.SKY));
             });
 

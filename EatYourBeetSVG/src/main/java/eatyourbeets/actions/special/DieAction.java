@@ -42,8 +42,8 @@ public class DieAction extends EYBAction
             }
             else if (target instanceof AbstractPlayer)
             {
-                AbstractDungeon.player.isDead = true;
-                AbstractDungeon.player.currentHealth = 0;
+                player.isDead = true;
+                player.currentHealth = 0;
                 AbstractDungeon.deathScreen = new DeathScreen(AbstractDungeon.getMonsters());
             }
         }

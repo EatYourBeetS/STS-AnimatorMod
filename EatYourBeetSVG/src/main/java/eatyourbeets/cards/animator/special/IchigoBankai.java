@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.special;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
@@ -35,12 +34,12 @@ public class IchigoBankai extends AnimatorCard implements MartialArtist
     protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
         int effect = EnergyPanel.totalCount;
-        if (this.energyOnUse > 0)
+        if (energyOnUse > 0)
         {
-            effect = this.energyOnUse;
+            effect = energyOnUse;
         }
 
-        if (AbstractDungeon.player.hasRelic(ChemicalX.ID))
+        if (player.hasRelic(ChemicalX.ID))
         {
             effect += ChemicalX.BOOST;
         }

@@ -4,14 +4,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.UltimateCrystal;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class UltimateCrystalPower extends AnimatorPower
 {
@@ -78,10 +77,9 @@ public class UltimateCrystalPower extends AnimatorPower
     {
         super.onDeath();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        if (!AbstractDungeon.player.hasBlight(eatyourbeets.blights.animator.UltimateCrystal.ID))
+        if (!player.hasBlight(eatyourbeets.blights.animator.UltimateCrystal.ID))
         {
-            AbstractDungeon.getCurrRoom().spawnBlightAndObtain(p.hb.cX, p.hb.cY, new eatyourbeets.blights.animator.UltimateCrystal());
+            GameUtilities.ObtainBlight(owner.hb.cX, owner.hb.cY, new eatyourbeets.blights.animator.UltimateCrystal());
         }
     }
 }

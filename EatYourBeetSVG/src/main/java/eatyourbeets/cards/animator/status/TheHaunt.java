@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.status;
 
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.blights.animator.Haunted;
 import eatyourbeets.cards.base.AnimatorCard_Status;
@@ -20,7 +19,7 @@ public class TheHaunt extends AnimatorCard_Status implements Hidden
         super(DATA, false);
 
         int goldBonus = 0;
-        Haunted blight = GetBlight();
+        AbstractBlight blight = player.getBlight(Haunted.ID);
         if (blight != null)
         {
             int counter = blight.counter;
@@ -47,23 +46,10 @@ public class TheHaunt extends AnimatorCard_Status implements Hidden
     {
         GameActions.Bottom.GainGold(magicNumber);
 
-        Haunted blight = GetBlight();
+        AbstractBlight blight = player.getBlight(Haunted.ID);
         if (blight != null)
         {
             blight.setCounter(blight.counter + 1);
         }
-    }
-
-    private static Haunted GetBlight()
-    {
-        for (AbstractBlight blight : AbstractDungeon.player.blights)
-        {
-            if (blight instanceof Haunted)
-            {
-                return (Haunted) blight;
-            }
-        }
-
-        return null;
     }
 }

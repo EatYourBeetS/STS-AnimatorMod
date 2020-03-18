@@ -1,12 +1,10 @@
 package eatyourbeets.powers.UnnamedReign;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EntanglePower;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class TheUnnamedHatPower extends AnimatorPower
@@ -35,10 +33,9 @@ public class TheUnnamedHatPower extends AnimatorPower
     {
         super.onDeath();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        if (!p.hasPower(EntanglePower.POWER_ID))
+        if (!player.hasPower(EntanglePower.POWER_ID))
         {
-            GameActions.Bottom.ApplyPower(null, p, new EntanglePower(p), 1);
+            GameActions.Bottom.ApplyPower(null, player, new EntanglePower(player), 1);
         }
     }
 

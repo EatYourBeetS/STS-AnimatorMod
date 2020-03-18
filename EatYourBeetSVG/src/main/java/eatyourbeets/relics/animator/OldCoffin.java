@@ -1,8 +1,6 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
@@ -49,27 +47,26 @@ public class OldCoffin extends AnimatorRelic
             {
                 GameActions.Top.Add(new RelicAboveCreatureAction(m, this));
 
-                AbstractPlayer p = AbstractDungeon.player;
-                int n = AbstractDungeon.cardRandomRng.random(12);
+                int n = rng.random(12);
                 if (n < 4)
                 {
-                    GameActions.Bottom.ApplyWeak(p, m, 1);
+                    GameActions.Bottom.ApplyWeak(player, m, 1);
                 }
                 else if (n < 8)
                 {
-                    GameActions.Bottom.ApplyVulnerable(p, m, 1);
+                    GameActions.Bottom.ApplyVulnerable(player, m, 1);
                 }
                 else if (n <= 10)
                 {
-                    GameActions.Bottom.ApplyPoison(p, m, 3);
+                    GameActions.Bottom.ApplyPoison(player, m, 3);
                 }
                 else if (n <= 11)
                 {
-                    GameActions.Bottom.ApplyBurning(p, m, 3);
+                    GameActions.Bottom.ApplyBurning(player, m, 3);
                 }
                 else
                 {
-                    GameActions.Bottom.ApplyConstricted(p, m, 2);
+                    GameActions.Bottom.ApplyConstricted(player, m, 2);
                 }
             }
         }

@@ -160,13 +160,19 @@ public class GameUtilities
 
     public static ArrayList<AbstractMonster> GetAllEnemies(boolean aliveOnly)
     {
-        AbstractRoom room = GetCurrentRoom();
-        ArrayList<AbstractMonster> monsters = new ArrayList<>();
+        final AbstractRoom room = GetCurrentRoom();
+        final ArrayList<AbstractMonster> monsters = new ArrayList<>();
+
         if (room != null && room.monsters != null)
         {
+            if (!aliveOnly)
+            {
+                return room.monsters.monsters;
+            }
+
             for (AbstractMonster m : room.monsters.monsters)
             {
-                if (!aliveOnly || !IsDeadOrEscaped(m))
+                if (!IsDeadOrEscaped(m))
                 {
                     monsters.add(m);
                 }

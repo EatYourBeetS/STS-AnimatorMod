@@ -1,7 +1,6 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
@@ -55,7 +54,7 @@ public class ShionDessert extends AnimatorRelic
             this.flash();
 
             GameActions.Bottom.Add(new RelicAboveCreatureAction(enemy, this));
-            GameActions.Bottom.ApplyPoison(AbstractDungeon.player, enemy, POISON_AMOUNT);
+            GameActions.Bottom.ApplyPoison(player, enemy, POISON_AMOUNT);
         }
     }
 }

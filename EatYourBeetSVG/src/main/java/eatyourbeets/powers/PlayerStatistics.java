@@ -216,6 +216,8 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 
     public static void OnRelicObtained(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)
     {
+        RefreshPlayer();
+
         for (AbstractCard c : player.masterDeck.group)
         {
             if (c instanceof OnRelicObtainedSubscriber)

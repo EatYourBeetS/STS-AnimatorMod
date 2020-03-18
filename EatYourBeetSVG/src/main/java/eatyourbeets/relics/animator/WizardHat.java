@@ -36,8 +36,7 @@ public class WizardHat extends AnimatorRelic
     public void onEquip()
     {
         super.onEquip();
-
-        this.counter = 1;
+        SetEnabled(true);
     }
 
     @Override
@@ -45,8 +44,15 @@ public class WizardHat extends AnimatorRelic
     {
         super.atBattleStart();
 
-        this.counter = 1;
+        SetEnabled(true);
         GameActions.Bottom.GainIntellect(INTELLECT_AMOUNT);
+    }
+
+    @Override
+    public void onVictory()
+    {
+        super.onVictory();
+        SetEnabled(true);
     }
 
     @Override
@@ -54,12 +60,12 @@ public class WizardHat extends AnimatorRelic
     {
         super.onPlayerEndTurn();
 
-        if (counter > 0)
+        if (IsEnabled())
         {
             int energy = EnergyPanel.getCurrentEnergy();
             if (energy >= 4)
             {
-                setCounter(counter - 1);
+                SetEnabled(false);
 
                 GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.1F);
                 GameActions.Bottom.Wait(0.35f);

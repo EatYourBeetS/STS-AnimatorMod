@@ -1,21 +1,18 @@
 package eatyourbeets.relics.animator;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.base.AnimatorCard;
 
 import java.util.ArrayList;
 
-public class VividPicture extends AnimatorRelic
+public class VividPicture extends AnimatorRelic implements OnSynergySubscriber
 {
     public static final String ID = CreateFullID(VividPicture.class);
-
-    private Boolean active = true;
 
     public VividPicture()
     {
@@ -26,7 +23,18 @@ public class VividPicture extends AnimatorRelic
     public void atTurnStart()
     {
         super.atTurnStart();
-        active = true;
+
+        PlayerStatistics.onSynergy.SubscribeOnce(this);
+        SetEnabled(true);
+    }
+
+    @Override
+    public void OnSynergy(AnimatorCard card)
+    {
+        GameActions.Bottom.Draw(1);
+        GameActions.Bottom.GainEnergy(1);
+        SetEnabled(false);
+        this.flash();
     }
 
     @Override
@@ -46,20 +54,6 @@ public class VividPicture extends AnimatorRelic
     }
 
     @Override
-    public void onPlayCard(AbstractCard c, AbstractMonster m)
-    {
-        super.onPlayCard(c, m);
-
-        AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
-        if (active && card != null && card.HasSynergy())
-        {
-            GameActions.Bottom.Draw(1);
-            GameActions.Bottom.GainEnergy(1);
-            active = false;
-            this.flash();
-        }
-    }
-
     public boolean canSpawn()
     {
         return AbstractDungeon.player.hasRelic(LivingPicture.ID);

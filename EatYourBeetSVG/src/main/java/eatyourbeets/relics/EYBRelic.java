@@ -65,8 +65,9 @@ public abstract class EYBRelic extends CustomRelic
         return !super.grayscale;
     }
 
-    public void SetEnabled(boolean value)
+    public boolean SetEnabled(boolean value)
     {
         super.grayscale = !value;
+        return value;
     }
 }

@@ -23,6 +23,7 @@ public class OldCoffin extends AnimatorRelic
     {
         super.atBattleStart();
 
+        SetEnabled(false);
         this.counter = 0;
     }
 
@@ -31,6 +32,7 @@ public class OldCoffin extends AnimatorRelic
     {
         super.onVictory();
 
+        SetEnabled(true);
         this.counter = -1;
     }
 
@@ -39,8 +41,9 @@ public class OldCoffin extends AnimatorRelic
     {
         super.atTurnStartPostDraw();
 
-        counter += 1;
-        if (counter > ACTIVATION_THRESHOLD)
+        setCounter(counter + 1);
+
+        if (SetEnabled(counter > ACTIVATION_THRESHOLD))
         {
             AbstractMonster m = JavaUtilities.GetRandomElement(GameUtilities.GetAllEnemies(true));
             if (m != null)

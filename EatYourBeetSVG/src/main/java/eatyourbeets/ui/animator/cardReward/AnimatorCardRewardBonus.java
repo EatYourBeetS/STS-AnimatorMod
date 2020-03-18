@@ -68,6 +68,7 @@ public class AnimatorCardRewardBonus extends GUIElement
             cards.remove(c);
 
             AbstractCard card = GameUtilities.GetRandomRewardCard(rewardItem, true);
+            GameUtilities.CopyVisualProperties(card, c);
             cards.add(card);
             if (rewardItem.cards != cards)
             {

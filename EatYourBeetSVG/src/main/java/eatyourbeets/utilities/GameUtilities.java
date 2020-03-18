@@ -475,7 +475,7 @@ public class GameUtilities
         ArrayList<AbstractCard> list;
 
         int roll = AbstractDungeon.cardRng.random(100);
-        if (roll <= 4 && includeRares)
+        if (includeRares && (roll <= 4 || GetCurrentRoom() instanceof MonsterRoomBoss))
         {
             list = AbstractDungeon.srcRareCardPool.group;
         }

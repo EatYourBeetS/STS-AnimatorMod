@@ -302,7 +302,7 @@
 	},
 	"animator:Demiurge":
 	{
-		"DESCRIPTION": "Gain [E]. Take !M! damage ** at the end of turn. || Synergy: Conserve ** your [E] next turn.",
+		"DESCRIPTION": "Gain [E]. ** Take !M! damage ** at the end of turn. || Synergy: Conserve ** your [E] next turn.",
 		"NAME": "Demiurge",
 		"UPGRADE_DESCRIPTION": "Gain [E]. Discard 1 ** card or take !M! damage ** at the end of turn. || Synergy: Conserve ** your [E] next turn."
 	},

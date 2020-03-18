@@ -2,7 +2,6 @@ package eatyourbeets.utilities;
 
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.cards.base.EYBCard;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,7 +33,7 @@ public class JavaUtilities
 
     public static <T> T GetRandomElement(ArrayList<T> list)
     {
-        return GetRandomElement(list, EYBCard.rng);
+        return GetRandomElement(list, GameUtilities.GetRNG());
     }
 
     public static <T> T GetRandomElement(ArrayList<T> list, Random rng)
@@ -53,9 +52,7 @@ public class JavaUtilities
         try
         {
             Method method = type.getDeclaredMethod(methodName, parameterTypes);
-
             method.setAccessible(true);
-
             return new MethodInfo(method);
         }
         catch (NoSuchMethodException e)
@@ -69,9 +66,7 @@ public class JavaUtilities
         try
         {
             Field field = type.getDeclaredField(fieldName);
-
             field.setAccessible(true);
-
             return new FieldInfo<>(field);
         }
         catch (NoSuchFieldException e)
@@ -198,7 +193,6 @@ public class JavaUtilities
             return defaultValue;
         }
     }
-
 
     public static int ParseInt(String value, int defaultValue)
     {

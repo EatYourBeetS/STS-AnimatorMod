@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class OrbCore_LightningPower extends OrbCore_AbstractPower
 {
-    public static final String POWER_ID = CreateFullID(OrbCore_LightningPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(OrbCore_LightningPower.class);
 
     public OrbCore_LightningPower(AbstractCreature owner, int amount)
     {

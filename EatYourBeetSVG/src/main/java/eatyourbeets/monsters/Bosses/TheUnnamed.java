@@ -33,7 +33,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class TheUnnamed extends AnimatorMonster
 {
-    public static final String ID = CreateFullID(TheUnnamed.class.getSimpleName());
+    public static final String ID = CreateFullID(TheUnnamed.class);
     public static final String NAME = "The Unnamed";
 
     private final Move_Fading moveFading;

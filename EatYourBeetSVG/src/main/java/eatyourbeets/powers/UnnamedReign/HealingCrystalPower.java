@@ -5,7 +5,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class HealingCrystalPower extends AbstractCrystalPower
 {
-    public static final String POWER_ID = CreateFullID(HealingCrystalPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(HealingCrystalPower.class);
 
     public HealingCrystalPower(AbstractCreature owner, int value)
     {

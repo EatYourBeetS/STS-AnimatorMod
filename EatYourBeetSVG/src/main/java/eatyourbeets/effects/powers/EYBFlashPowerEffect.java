@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import eatyourbeets.powers.BasePower;
+import eatyourbeets.powers.EYBPower;
 
 public class EYBFlashPowerEffect extends AbstractGameEffect
 {
@@ -18,7 +18,7 @@ public class EYBFlashPowerEffect extends AbstractGameEffect
     private static final int W = 32;
     private float scale;
 
-    public EYBFlashPowerEffect(BasePower power)
+    public EYBFlashPowerEffect(EYBPower power)
     {
         this.scale = Settings.scale;
 

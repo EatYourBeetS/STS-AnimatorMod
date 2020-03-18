@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_AetherPower extends OrbCore_AbstractPower
 {
-    public static final String POWER_ID = CreateFullID(OrbCore_AetherPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(OrbCore_AetherPower.class);
 
     public OrbCore_AetherPower(AbstractCreature owner, int amount)
     {

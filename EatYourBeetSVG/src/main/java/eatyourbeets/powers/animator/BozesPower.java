@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 
 public class BozesPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(BozesPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(BozesPower.class);
 
     public BozesPower(AbstractCreature owner, int value)
     {

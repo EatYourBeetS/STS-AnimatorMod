@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class FrostWispPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(FrostWispPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(FrostWispPower.class);
 
     public FrostWispPower(AbstractCreature owner, int value)
     {

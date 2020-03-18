@@ -9,7 +9,7 @@ import eatyourbeets.powers.AnimatorPower;
 
 public class HandSizePower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(HandSizePower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(HandSizePower.class);
 
     private final int BASE_HAND_SIZE;
 

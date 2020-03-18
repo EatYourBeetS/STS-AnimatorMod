@@ -6,7 +6,7 @@ import eatyourbeets.powers.UnnamedPower;
 
 public class UnnamedDollPlayerPower extends UnnamedPower
 {
-    public static final String POWER_ID = CreateFullID(UnnamedDollPlayerPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(UnnamedDollPlayerPower.class);
 
     private int maxHPGainedThisTurn;
 

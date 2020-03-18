@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_EarthPower extends OrbCore_AbstractPower
 {
-    public static final String POWER_ID = CreateFullID(OrbCore_EarthPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(OrbCore_EarthPower.class);
 
     public OrbCore_EarthPower(AbstractCreature owner, int amount)
     {

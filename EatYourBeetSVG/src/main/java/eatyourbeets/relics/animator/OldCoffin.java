@@ -11,7 +11,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class OldCoffin extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(OldCoffin.class.getSimpleName());
+    public static final String ID = CreateFullID(OldCoffin.class);
 
     private static final int ACTIVATION_THRESHOLD = 4;
 

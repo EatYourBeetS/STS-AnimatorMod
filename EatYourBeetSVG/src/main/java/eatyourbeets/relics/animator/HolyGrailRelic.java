@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class HolyGrailRelic extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(HolyGrailRelic.class.getSimpleName());
+    public static final String ID = CreateFullID(HolyGrailRelic.class);
     public static final int MAX_HP_ON_PICKUP = 8;
 
     public HolyGrailRelic()

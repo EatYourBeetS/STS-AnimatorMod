@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ResonancePower extends UnnamedPower
 {
-    public static final String POWER_ID = CreateFullID(ResonancePower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(ResonancePower.class);
 
     public ResonancePower(AbstractCreature owner, int value)
     {

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -26,6 +27,7 @@ import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.IntellectPower;
+import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.ui.unnamed.Void;
@@ -39,7 +41,7 @@ import java.util.Map;
 
 public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 {
-    public static final String POWER_ID = CreateFullID(PlayerStatistics.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(PlayerStatistics.class);
 
     public static final PlayerStatistics Instance = new PlayerStatistics();
 
@@ -93,10 +95,16 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         return null;
     }
 
+    public static AbstractPlayer RefreshPlayer()
+    {
+        EYBCard.rng = EYBPower.rng = EYBRelic.rng = AbstractDungeon.cardRandomRng;
+        return EYBCard.player = EYBPower.player = EYBRelic.player = AbstractDungeon.player;
+    }
+
     private static void ClearStats()
     {
-        logger.info("Clearing Player Stats");
-        GetPlayer(); // Refresh
+        RefreshPlayer();
+        JavaUtilities.Log(PlayerStatistics.class, "Clearing Player Stats");
 
         for (OnStatsClearedSubscriber s : onStatsCleared.GetSubscribers())
         {
@@ -143,10 +151,9 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 
     public static void EnsurePowerIsApplied()
     {
-        if (!GetPlayer().powers.contains(Instance))
+        if (!player.powers.contains(Instance))
         {
-            logger.info("Applied PlayerStatistics");
-
+            JavaUtilities.Log(PlayerStatistics.class, "Applied PlayerStatistics");
             player.powers.add(Instance);
         }
     }
@@ -209,7 +216,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 
     public static void OnRelicObtained(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)
     {
-        for (AbstractCard c : GetPlayer().masterDeck.group)
+        for (AbstractCard c : player.masterDeck.group)
         {
             if (c instanceof OnRelicObtainedSubscriber)
             {
@@ -217,7 +224,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
             }
         }
 
-        for (AbstractRelic r : GetPlayer().relics)
+        for (AbstractRelic r : player.relics)
         {
             if (r instanceof OnRelicObtainedSubscriber)
             {

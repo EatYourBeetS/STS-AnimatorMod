@@ -11,7 +11,7 @@ public class CursedBlade extends AnimatorRelic
 {
     private static final int BUFF_AMOUNT = 3;
 
-    public static final String ID = CreateFullID(CursedBlade.class.getSimpleName());
+    public static final String ID = CreateFullID(CursedBlade.class);
 
     public CursedBlade()
     {

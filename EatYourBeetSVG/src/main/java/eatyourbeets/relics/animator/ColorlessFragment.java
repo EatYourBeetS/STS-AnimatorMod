@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ColorlessFragment extends AbstractMissingPiece
 {
-    public static final String ID = CreateFullID(ColorlessFragment.class.getSimpleName());
+    public static final String ID = CreateFullID(ColorlessFragment.class);
     public static final int COLORLESS_WEIGHT = 12;
     public static final int REWARD_INTERVAL = 3;
 

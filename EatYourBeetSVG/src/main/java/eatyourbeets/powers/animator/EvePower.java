@@ -16,7 +16,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 
 public class EvePower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(EvePower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(EvePower.class);
     public static final int GROWTH_AMOUNT = 1;
 
     public EvePower(AbstractCreature owner, int amount)

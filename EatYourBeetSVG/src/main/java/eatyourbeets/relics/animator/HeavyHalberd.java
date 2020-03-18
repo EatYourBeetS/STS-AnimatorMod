@@ -9,7 +9,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class HeavyHalberd extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(HeavyHalberd.class.getSimpleName());
+    public static final String ID = CreateFullID(HeavyHalberd.class);
 
     private static final int FORCE_AMOUNT = 1;
 

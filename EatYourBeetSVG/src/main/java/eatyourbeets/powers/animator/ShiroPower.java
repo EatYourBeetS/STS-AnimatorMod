@@ -6,7 +6,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ShiroPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(ShiroPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(ShiroPower.class);
 
     public ShiroPower(AbstractCreature owner, int amount)
     {

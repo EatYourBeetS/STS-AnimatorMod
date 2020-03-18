@@ -6,7 +6,7 @@ import eatyourbeets.powers.AnimatorPower;
 
 public class EnvyPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(EnvyPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(EnvyPower.class);
 
     public EnvyPower(AbstractPlayer owner, int amount)
     {

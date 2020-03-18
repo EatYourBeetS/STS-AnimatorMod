@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class FireCrystalPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(FireCrystalPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(FireCrystalPower.class);
 
     public FireCrystalPower(AbstractCreature owner, int value)
     {

@@ -13,7 +13,7 @@ public class Rinne extends AnimatorRelic// implements OnEquipUnnamedReignRelicSu
     public static final int RINNE_DOES = 3 + 1 + 1;
     public static final int RINNE_SAYS = 33 + 27 + 9 + RINNE_DOES;
 
-    public static final String ID = CreateFullID(Rinne.class.getSimpleName());
+    public static final String ID = CreateFullID(Rinne.class);
 
     public Rinne()
     {

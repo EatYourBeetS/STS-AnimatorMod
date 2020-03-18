@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class BorosPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(BorosPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(BorosPower.class);
 
     public BorosPower(AbstractCreature owner)
     {

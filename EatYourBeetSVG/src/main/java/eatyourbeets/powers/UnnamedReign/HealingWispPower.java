@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class HealingWispPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(HealingWispPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(HealingWispPower.class);
 
     public HealingWispPower(AbstractCreature owner, int value)
     {

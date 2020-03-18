@@ -15,7 +15,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class PurgingStone extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(PurgingStone.class.getSimpleName());
+    public static final String ID = CreateFullID(PurgingStone.class);
 
     private static final FieldInfo<Boolean> _isBoss = JavaUtilities.GetField("isBoss", RewardItem.class);
     private static final int MAX_BAN_COUNT = 80;

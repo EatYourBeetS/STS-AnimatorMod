@@ -10,7 +10,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class HallowedScabbard extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(HallowedScabbard.class.getSimpleName());
+    public static final String ID = CreateFullID(HallowedScabbard.class);
 
     private static final int DAMAGE_THRESHOLD = 12;
     private static final int REGENERATION = 4;

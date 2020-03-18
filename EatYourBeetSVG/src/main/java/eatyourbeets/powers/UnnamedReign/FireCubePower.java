@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class FireCubePower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(FireCubePower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(FireCubePower.class);
 
     public FireCubePower(AbstractCreature owner, int value)
     {

@@ -2,7 +2,7 @@ package eatyourbeets.relics.animator;
 
 public class TheMissingPiece extends AbstractMissingPiece
 {
-    public static final String ID = CreateFullID(TheMissingPiece.class.getSimpleName());
+    public static final String ID = CreateFullID(TheMissingPiece.class);
 
     private static final int REWARD_INTERVAL = 4;
 

@@ -6,7 +6,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class SonicPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(SonicPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(SonicPower.class);
 
     public SonicPower(AbstractCreature owner, int amount)
     {

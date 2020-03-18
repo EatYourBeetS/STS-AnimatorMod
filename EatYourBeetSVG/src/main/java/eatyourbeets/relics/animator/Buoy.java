@@ -7,7 +7,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class Buoy extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(Buoy.class.getSimpleName());
+    public static final String ID = CreateFullID(Buoy.class);
 
     private static final int HP_THRESHOLD = 30;
     private static final int BLOCK_AMOUNT = 4;

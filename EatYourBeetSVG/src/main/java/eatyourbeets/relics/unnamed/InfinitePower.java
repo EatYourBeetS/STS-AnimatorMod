@@ -5,7 +5,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class InfinitePower extends UnnamedRelic
 {
-    public static final String ID = CreateFullID(InfinitePower.class.getSimpleName());
+    public static final String ID = CreateFullID(InfinitePower.class);
 
     private static final int TEMP_HP_AMOUNT = 6;
     private static final int HEAL_AMOUNT = 2;

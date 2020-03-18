@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class VividPicture extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(VividPicture.class.getSimpleName());
+    public static final String ID = CreateFullID(VividPicture.class);
 
     private Boolean active = true;
 

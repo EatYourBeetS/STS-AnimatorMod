@@ -6,7 +6,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class AlchemistGlove extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(AlchemistGlove.class.getSimpleName());
+    public static final String ID = CreateFullID(AlchemistGlove.class);
 
     public AlchemistGlove()
     {

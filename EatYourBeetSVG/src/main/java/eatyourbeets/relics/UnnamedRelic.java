@@ -6,18 +6,15 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.lang.reflect.InvocationTargetException;
 
 public abstract class UnnamedRelic extends CustomRelic
 {
-    protected static final Logger logger = LogManager.getLogger(UnnamedRelic.class.getName());
-
-    public static String CreateFullID(String id)
+    public static String CreateFullID(Class<? extends UnnamedRelic> type)
     {
-        return "unnamed:" + id;
+        return GR.Unnamed.CreateID(type.getSimpleName());
     }
 
     public UnnamedRelic(String id, String imageID, RelicTier tier, LandingSound sfx)
@@ -45,7 +42,7 @@ public abstract class UnnamedRelic extends CustomRelic
         }
         catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e)
         {
-            logger.error(e.getMessage());
+            JavaUtilities.GetLogger(this).error(e.getMessage());
             return null;
         }
     }

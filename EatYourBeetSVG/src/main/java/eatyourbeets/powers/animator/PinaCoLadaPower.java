@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class PinaCoLadaPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(PinaCoLadaPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(PinaCoLadaPower.class);
 
     private int baseAmount;
 

@@ -21,9 +21,10 @@ public abstract class EYBEvent extends AbstractImageEvent
     public final EYBEventStrings strings;
     public EYBEventPhase currentPhase;
 
-    public static String CreateFullID(Class eventClass)
+    // TODO: move these to an AnimatorEvent class
+    public static String CreateFullID(Class<? extends EYBEvent> type)
     {
-        return GR.Animator.CreateID(eventClass.getSimpleName());
+        return GR.Animator.CreateID(type.getSimpleName());
     }
 
     public static AbstractEvent GenerateSpecialEvent(AbstractDungeon dungeon, Random rng, boolean isAnimator)

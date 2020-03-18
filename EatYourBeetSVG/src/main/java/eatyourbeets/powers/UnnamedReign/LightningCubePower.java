@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class LightningCubePower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(LightningCubePower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(LightningCubePower.class);
 
     public LightningCubePower(AbstractCreature owner, int value)
     {

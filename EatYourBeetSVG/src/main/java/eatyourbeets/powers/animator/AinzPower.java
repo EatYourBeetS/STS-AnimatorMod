@@ -27,7 +27,7 @@ public class AinzPower extends AnimatorPower
     private static final AnimatorStrings.Actions ACTIONS = GR.Animator.Strings.Actions;
     private final static WeightedList<AnimatorCardBuilder> effectList = new WeightedList<>();
 
-    public static final String POWER_ID = CreateFullID(AinzPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(AinzPower.class);
     public static final int CHOICES = 4;
 
     public AinzPower(AbstractPlayer owner, int amount)

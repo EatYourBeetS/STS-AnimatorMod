@@ -12,7 +12,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class ShionDessert extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(ShionDessert.class.getSimpleName());
+    public static final String ID = CreateFullID(ShionDessert.class);
 
     private static final int POISON_AMOUNT = 2;
 

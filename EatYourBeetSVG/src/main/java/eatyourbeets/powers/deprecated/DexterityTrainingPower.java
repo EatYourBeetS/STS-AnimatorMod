@@ -6,7 +6,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class DexterityTrainingPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(DexterityTrainingPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(DexterityTrainingPower.class);
 
     public DexterityTrainingPower(AbstractPlayer owner, int duration)
     {

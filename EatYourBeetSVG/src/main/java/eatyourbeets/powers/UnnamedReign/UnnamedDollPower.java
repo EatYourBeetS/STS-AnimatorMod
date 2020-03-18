@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class UnnamedDollPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(UnnamedDollPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(UnnamedDollPower.class);
 
     private static final int STRENGTH = 30;
 

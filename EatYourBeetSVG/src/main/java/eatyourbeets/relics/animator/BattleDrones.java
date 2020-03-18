@@ -19,7 +19,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 
 public class BattleDrones extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(BattleDrones.class.getSimpleName());
+    public static final String ID = CreateFullID(BattleDrones.class);
 
     private static final int DAMAGE_AMOUNT = 3;
     private static final int BLOCK_AMOUNT = 1;

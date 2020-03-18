@@ -17,7 +17,7 @@ import eatyourbeets.relics.animator.ExquisiteBloodVial;
 
 public class KrulTepes extends AnimatorMonster
 {
-    public static final String ID = CreateFullID(KrulTepes.class.getSimpleName());
+    public static final String ID = CreateFullID(KrulTepes.class);
 
     private final BobEffect bobEffect = new BobEffect(1);
 

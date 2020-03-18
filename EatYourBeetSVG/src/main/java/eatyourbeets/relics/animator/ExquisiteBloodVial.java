@@ -23,7 +23,7 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
 {
     private static final int HEAL_AMOUNT = 2;
 
-    public static final String ID = CreateFullID(ExquisiteBloodVial.class.getSimpleName());
+    public static final String ID = CreateFullID(ExquisiteBloodVial.class);
 
     public boolean truePotential;
 

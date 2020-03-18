@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class TheUnnamedHatPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(TheUnnamedHatPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(TheUnnamedHatPower.class);
 
     public TheUnnamedHatPower(AbstractCreature owner, int amount)
     {

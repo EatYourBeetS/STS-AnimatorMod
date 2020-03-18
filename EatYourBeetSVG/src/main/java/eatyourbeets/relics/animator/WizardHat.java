@@ -15,7 +15,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class WizardHat extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(WizardHat.class.getSimpleName());
+    public static final String ID = CreateFullID(WizardHat.class);
 
     private static final int INTELLECT_AMOUNT = 2;
     private static final int ENERGY_COST = 4;

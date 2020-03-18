@@ -12,7 +12,7 @@ public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRel
 {
     private static final int LOSE_MAX_HP = 4;
 
-    public static final String ID = CreateFullID(CursedGlyph.class.getSimpleName());
+    public static final String ID = CreateFullID(CursedGlyph.class);
 
     public CursedGlyph()
     {

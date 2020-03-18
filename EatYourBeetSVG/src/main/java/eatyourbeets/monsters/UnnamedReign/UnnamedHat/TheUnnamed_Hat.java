@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class TheUnnamed_Hat extends AnimatorMonster
 {
-    public static final String ID = CreateFullID(TheUnnamed_Hat.class.getSimpleName());
+    public static final String ID = CreateFullID(TheUnnamed_Hat.class);
 
     private boolean first = false;
     private final CommonMoveset commonMoveset;

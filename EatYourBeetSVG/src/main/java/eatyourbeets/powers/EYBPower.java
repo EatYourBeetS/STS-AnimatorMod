@@ -9,12 +9,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.powers.EYBFlashPowerEffect;
 import eatyourbeets.effects.powers.EYBGainPowerEffect;
@@ -23,26 +22,24 @@ import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.StringJoiner;
 
-public abstract class BasePower extends AbstractPower implements CloneablePowerInterface
+public abstract class EYBPower extends AbstractPower implements CloneablePowerInterface
 {
-    public TextureAtlas.AtlasRegion powerIcon;
-
-    protected static final Logger logger = LogManager.getLogger(BasePower.class.getName());
     protected static final Color disabledColor = new Color(0.5f, 0.5f, 0.5f, 1);
-    protected static AbstractPlayer player = null;
-    protected boolean enabled = true;
-
     protected final ArrayList<AbstractGameEffect> effects;
     protected final PowerStrings powerStrings;
 
-    public BasePower(AbstractCreature owner, EYBCardData cardData)
+    public static AbstractPlayer player = null;
+    public static Random rng = null;
+
+    public TextureAtlas.AtlasRegion powerIcon;
+    public boolean enabled = true;
+
+    public EYBPower(AbstractCreature owner, EYBCardData cardData)
     {
         this.effects = (ArrayList<AbstractGameEffect>)JavaUtilities.GetField("effect", AbstractPower.class).Get(this);
         this.owner = owner;
@@ -57,7 +54,7 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
         this.name = powerStrings.NAME;
     }
 
-    public BasePower(AbstractCreature owner, String id)
+    public EYBPower(AbstractCreature owner, String id)
     {
         this.effects = (ArrayList<AbstractGameEffect>)JavaUtilities.GetField("effect", AbstractPower.class).Get(this);
         this.owner = owner;
@@ -73,17 +70,6 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
         this.name = powerStrings.NAME;
     }
 
-    // In most cases you can use the 'player' field directly, you should call this in methods that can happen outside battle
-    public static AbstractPlayer GetPlayer()
-    {
-        if (player != AbstractDungeon.player || AbstractDungeon.player != EYBCard.player)
-        {
-            player = EYBCard.RefreshPlayer();
-        }
-
-        return player;
-    }
-
     @Override
     public void updateDescription()
     {
@@ -91,7 +77,7 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
         {
             case 0:
             {
-                logger.error("powerStrings.Description was an empty array, " + this.name);
+                JavaUtilities.GetLogger(this).error("powerStrings.Description was an empty array, " + this.name);
                 break;
             }
 

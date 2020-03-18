@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 
 public class EnchantedArmorPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(EnchantedArmorPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(EnchantedArmorPower.class);
 
     public final boolean reactive;
 

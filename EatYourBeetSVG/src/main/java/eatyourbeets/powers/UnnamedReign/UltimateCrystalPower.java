@@ -15,7 +15,7 @@ import eatyourbeets.powers.AnimatorPower;
 
 public class UltimateCrystalPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(UltimateCrystalPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(UltimateCrystalPower.class);
 
     private static final int STRENGTH_GAIN = 2;
 

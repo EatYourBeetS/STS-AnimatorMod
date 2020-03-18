@@ -6,7 +6,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ForcePower extends PlayerAttributePower
 {
-    public static final String POWER_ID = CreateFullID(ForcePower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(ForcePower.class);
 
     public ForcePower(AbstractCreature owner, int amount)
     {

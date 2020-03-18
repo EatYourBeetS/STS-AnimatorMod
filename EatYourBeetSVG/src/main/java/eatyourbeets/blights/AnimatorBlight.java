@@ -3,22 +3,17 @@ package eatyourbeets.blights;
 
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.localization.BlightStrings;
-import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class AnimatorBlight extends AbstractBlight
 {
-    protected static final Logger logger = LogManager.getLogger(AnimatorRelic.class.getName());
-
     protected final BlightStrings strings;
     protected final int initialAmount;
 
-    public static String CreateFullID(String id)
+    public static String CreateFullID(Class<? extends AnimatorBlight> type)
     {
-        return GR.Animator.CreateID(id);
+        return GR.Animator.CreateID(type.getSimpleName());
     }
 
     public AnimatorBlight(String id)

@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ArcherPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(ArcherPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(ArcherPower.class);
 
     public ArcherPower(AbstractCreature owner, int damage)
     {

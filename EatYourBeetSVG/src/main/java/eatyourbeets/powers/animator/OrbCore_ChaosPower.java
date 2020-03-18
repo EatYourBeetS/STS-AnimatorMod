@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class OrbCore_ChaosPower extends OrbCore_AbstractPower
 {
-    public static final String POWER_ID = CreateFullID(OrbCore_ChaosPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(OrbCore_ChaosPower.class);
 
     public OrbCore_ChaosPower(AbstractCreature owner, int amount)
     {

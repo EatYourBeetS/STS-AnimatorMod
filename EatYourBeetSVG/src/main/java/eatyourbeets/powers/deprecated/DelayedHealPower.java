@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class DelayedHealPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(DelayedHealPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(DelayedHealPower.class);
 
     public DelayedHealPower(AbstractCreature owner, int stacks)
     {

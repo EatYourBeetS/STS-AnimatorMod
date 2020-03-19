@@ -38,7 +38,7 @@ public class Sebas extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(block).AddCallback(__ ->
+        GameActions.Bottom.GainBlock(block).AddCallback(() ->
         {
             for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
             {

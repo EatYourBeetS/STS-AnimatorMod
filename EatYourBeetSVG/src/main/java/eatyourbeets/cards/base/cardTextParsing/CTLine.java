@@ -25,7 +25,7 @@ public class CTLine
 
     public void Add(CTToken token)
     {
-        float tokenWidth = token.GetWidth(context.font);
+        float tokenWidth = token.GetWidth(context);
         if (tokens.isEmpty())
         {
             if (token.type != CTTokenType.Whitespace)
@@ -95,7 +95,7 @@ public class CTLine
         int size = tokens.size();
         if (size > 0 && tokens.get(size - 1).type == CTTokenType.Whitespace)
         {
-            width -= tokens.remove(size - 1).GetWidth(context.font);
+            width -= tokens.remove(size - 1).GetWidth(context);
             TrimEnd();
         }
     }

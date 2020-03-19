@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class YukoShionjiPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(YukoShionjiPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(YukoShionjiPower.class);
 
     private final AbstractPlayer p;
 

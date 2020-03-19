@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class UltimateCrystal extends AnimatorBlight
 {
-    public static final String ID = CreateFullID(UltimateCrystal.class.getSimpleName());
+    public static final String ID = CreateFullID(UltimateCrystal.class);
 
     public UltimateCrystal()
     {

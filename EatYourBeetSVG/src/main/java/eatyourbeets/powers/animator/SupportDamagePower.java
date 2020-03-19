@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class SupportDamagePower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(SupportDamagePower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(SupportDamagePower.class);
 
     public SupportDamagePower(AbstractCreature owner, int stacks)
     {

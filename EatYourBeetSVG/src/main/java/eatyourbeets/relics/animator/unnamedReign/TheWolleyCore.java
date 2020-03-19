@@ -17,7 +17,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class TheWolleyCore extends UnnamedReignRelic
 {
-    public static final String ID = AnimatorRelic.CreateFullID(TheWolleyCore.class.getSimpleName());
+    public static final String ID = AnimatorRelic.CreateFullID(TheWolleyCore.class);
 
     private static final int CARD_DRAW = 2;
     private static final int DAMAGE_AMOUNT = 2;

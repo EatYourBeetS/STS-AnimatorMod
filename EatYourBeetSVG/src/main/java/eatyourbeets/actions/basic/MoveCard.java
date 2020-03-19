@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.effects.card.RenderCardEffect;
 import eatyourbeets.effects.card.UnfadeOutEffect;
@@ -166,7 +165,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             if (sourcePile != null && sourcePile.type == CardGroup.CardGroupType.EXHAUST_PILE)
             {
                 GameEffects.Queue.Add(new UnfadeOutEffect(card));
-                GameActions.Bottom.Callback(__ -> GameEffects.Queue.Add(new UnfadeOutEffect(card)));
+                GameActions.Bottom.Callback(() -> GameEffects.Queue.Add(new UnfadeOutEffect(card)));
             }
 
             if (targetPile != player.limbo && player.limbo.contains(card))
@@ -196,7 +195,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
         if (sourcePile.type != CardGroup.CardGroupType.EXHAUST_PILE)
         {
-            AbstractDungeon.player.onCardDrawOrDiscard();
+            player.onCardDrawOrDiscard();
             card.triggerOnManualDiscard();
             GameActionManager.incrementDiscard(false);
         }

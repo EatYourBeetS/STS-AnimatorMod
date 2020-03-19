@@ -12,7 +12,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class GeassPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(GeassPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(GeassPower.class);
 
     public GeassPower(AbstractCreature owner)
     {

@@ -28,7 +28,7 @@ public class Overheat extends AnimatorCard_Status
         {
             GameActions.Bottom.Draw(2);
             GameActions.Bottom.StackPower(new SelfDamagePower(p, magicNumber));
-            GameActions.Bottom.Callback(__ ->
+            GameActions.Bottom.Callback(() ->
             {
                 for (AbstractCard c : GameUtilities.GetAllInBattleCopies(cardID))
                 {

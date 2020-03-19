@@ -52,7 +52,7 @@ public class VariableToken extends CTToken
     {
         if (text == null)
         {
-            return super.GetWidth(font, ".."); //20f * Settings.scale * font.getScaleX(); // AbstractCard.MAGIC_NUM_W
+            return super.GetWidth(font, "_."); //20f * Settings.scale * font.getScaleX(); // AbstractCard.MAGIC_NUM_W
         }
         else
         {

@@ -4,11 +4,11 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.GR;
 
-public abstract class AnimatorPower extends BasePower
+public abstract class AnimatorPower extends EYBPower
 {
-    public static String CreateFullID(String id)
+    public static String CreateFullID(Class<? extends AnimatorPower> type)
     {
-        return GR.Animator.CreateID(id);
+        return GR.Animator.CreateID(type.getSimpleName());
     }
 
     public AnimatorPower(AbstractCreature owner, EYBCardData cardData)

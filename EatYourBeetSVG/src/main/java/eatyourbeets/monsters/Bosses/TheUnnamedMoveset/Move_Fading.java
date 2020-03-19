@@ -38,7 +38,7 @@ public class Move_Fading extends AbstractMove
     {
         GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
         GameActions.Bottom.VFX(new CollectorCurseEffect(target.hb.cX, target.hb.cY), 2.0F);
-        GameActions.Bottom.Callback(__ -> AbstractDungeon.getCurrRoom().spawnBlightAndObtain(owner.hb.cX, owner.hb.cY, new Doomed(fadingTurns)));
+        GameActions.Bottom.Callback(() -> AbstractDungeon.getCurrRoom().spawnBlightAndObtain(owner.hb.cX, owner.hb.cY, new Doomed(fadingTurns)));
 
 //        GenericFadingPower fading = (GenericFadingPower) target.getPower(GenericFadingPower.POWER_ID);
 //

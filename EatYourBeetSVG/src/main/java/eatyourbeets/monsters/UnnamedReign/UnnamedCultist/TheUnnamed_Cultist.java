@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public abstract class TheUnnamed_Cultist extends AnimatorMonster
 {
-    public static final String ID = CreateFullID(TheUnnamed_Cultist.class.getSimpleName());
+    public static final String ID = CreateFullID(TheUnnamed_Cultist.class);
     public static final MonsterStrings STRINGS = AnimatorResources.GetMonsterStrings(ID);
 
     public TheUnnamed_Cultist(float x, float y)

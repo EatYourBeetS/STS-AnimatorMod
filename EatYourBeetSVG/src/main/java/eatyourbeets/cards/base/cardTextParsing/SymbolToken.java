@@ -64,7 +64,7 @@ public class SymbolToken extends CTToken
     public void Render(SpriteBatch sb, CTContext context)
     {
         EYBCard card = context.card;
-        float size = GetWidth(context.font);// 24f * Settings.scale * card.drawScale * context.scaleModifier;
+        float size = GetWidth(context);// 24f * Settings.scale * card.drawScale * context.scaleModifier;
         float partial = size / 12f;
 
         sb.setColor(context.color);

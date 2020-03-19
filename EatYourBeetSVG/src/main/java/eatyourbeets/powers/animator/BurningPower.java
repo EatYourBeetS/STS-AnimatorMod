@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class BurningPower extends AnimatorPower implements HealthBarRenderPower
 {
-    public static final String POWER_ID = CreateFullID(BurningPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(BurningPower.class);
     public static final float ATTACK_MULTIPLIER = 4;
 
     private final AbstractCreature source;

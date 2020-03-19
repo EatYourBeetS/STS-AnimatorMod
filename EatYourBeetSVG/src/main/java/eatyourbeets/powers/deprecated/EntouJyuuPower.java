@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class EntouJyuuPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(EntouJyuuPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(EntouJyuuPower.class);
 
     private int stacks;
 

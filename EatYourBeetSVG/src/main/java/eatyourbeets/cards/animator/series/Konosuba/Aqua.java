@@ -70,7 +70,7 @@ public class Aqua extends AnimatorCard
         {
             GameActions.Bottom.Heal(magicNumber);
             GameActions.Bottom.Draw(1);
-            GameActions.Bottom.Callback(__ -> SetTransformed(true));
+            GameActions.Bottom.Callback(() -> SetTransformed(true));
         }
         else
         {

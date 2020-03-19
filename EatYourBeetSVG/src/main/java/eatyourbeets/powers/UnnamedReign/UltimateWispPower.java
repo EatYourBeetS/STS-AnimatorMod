@@ -18,7 +18,7 @@ import patches.CardGlowBorderPatches;
 
 public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPostDrawSubscriber, OnBattleStartSubscriber
 {
-    public static final String POWER_ID = CreateFullID(UltimateWispPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(UltimateWispPower.class);
 
     private static final Color RED = Color.RED.cpy();
 

@@ -1,6 +1,5 @@
 package eatyourbeets.cards.base.cardTextParsing;
 
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class NewLineToken extends CTToken
@@ -25,7 +24,7 @@ public class NewLineToken extends CTToken
     }
 
     @Override
-    public float GetWidth(BitmapFont font)
+    public float GetWidth(CTContext context)
     {
         return 0;
     }

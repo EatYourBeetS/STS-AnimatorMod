@@ -39,7 +39,7 @@ public class Kaijin extends AnimatorCard implements OnAddedToDeckSubscriber
     @Override
     public void OnAddedToDeck()
     {
-        GameEffects.Queue.Callback(new WaitAction(0.05f), __ ->
+        GameEffects.Queue.Callback(new WaitAction(0.05f), () ->
         {
             RandomizedList<AbstractCard> upgradableCards = new RandomizedList<>();
             for (AbstractCard c : player.masterDeck.group)

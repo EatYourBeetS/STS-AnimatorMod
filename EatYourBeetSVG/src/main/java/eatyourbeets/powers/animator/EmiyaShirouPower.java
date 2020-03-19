@@ -15,7 +15,7 @@ import eatyourbeets.interfaces.subscribers.OnBlockBrokenSubscriber;
 
 public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubscriber
 {
-    public static final String POWER_ID = CreateFullID(EmiyaShirouPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(EmiyaShirouPower.class);
 
     public EmiyaShirouPower(AbstractCreature owner)
     {

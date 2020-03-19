@@ -130,7 +130,8 @@ public final class Examples extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                GameActions.Top.MoveCard(cards.get(0), AbstractDungeon.player.drawPile)
+                // Use the static variable player instead of encapsulating local parameter 'p'
+                GameActions.Top.MoveCard(cards.get(0), player.drawPile)
                 .ShowEffect(false, false);
             }
         });

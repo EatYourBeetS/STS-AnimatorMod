@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class FrostCubePower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(FrostCubePower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(FrostCubePower.class);
 
     public FrostCubePower(AbstractCreature owner, int value)
     {

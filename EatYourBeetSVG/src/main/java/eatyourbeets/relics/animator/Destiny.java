@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Destiny extends AnimatorRelic implements OnReceiveRewardsSubscriber, Hidden
 {
-    public static final String ID = CreateFullID(Destiny.class.getSimpleName());
+    public static final String ID = CreateFullID(Destiny.class);
 
     public Destiny()
     {

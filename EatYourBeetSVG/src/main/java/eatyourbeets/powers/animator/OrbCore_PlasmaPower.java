@@ -8,7 +8,7 @@ import eatyourbeets.cards.animator.special.OrbCore_Plasma;
 
 public class OrbCore_PlasmaPower extends OrbCore_AbstractPower
 {
-    public static final String POWER_ID = CreateFullID(OrbCore_PlasmaPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(OrbCore_PlasmaPower.class);
 
     public OrbCore_PlasmaPower(AbstractCreature owner, int amount)
     {

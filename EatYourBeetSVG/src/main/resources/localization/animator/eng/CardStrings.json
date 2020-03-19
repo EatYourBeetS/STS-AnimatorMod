@@ -71,7 +71,7 @@
 	},
 	"animator:Assassin":
 	{
-		"DESCRIPTION": "Can only be played ** if the enemy has !M! ** different {Debuffs}. || Loses Retain if you ** play an {Attack}.",
+		"DESCRIPTION": "Can only be played ** if the enemy has !M! ** different {Debuffs}. || If you play an {Attack}: ** This card loses Retain.",
 		"NAME": "Assassin"
 	},
 	"animator:Asuramaru":
@@ -323,7 +323,7 @@
 	},
 	"animator:Demiurge":
 	{
-		"DESCRIPTION": "Gain [E]. Take !M! damage ** at the end of turn. || Synergy: Conserve ** your [E] next turn.",
+		"DESCRIPTION": "Gain [E]. ** Take !M! damage ** at the end of turn. || Synergy: Conserve ** your [E] next turn.",
 		"NAME": "Demiurge",
 		"UPGRADE_DESCRIPTION": "Gain [E]. Discard 1 ** card or take !M! damage ** at the end of turn. || Synergy: Conserve ** your [E] next turn."
 	},
@@ -801,7 +801,7 @@
 	},
 	"animator:SakuraMatou":
 	{
-		"DESCRIPTION": "Halve the damage ** of your rightmost ** {Dark} Orb. Apply that ** much {Constricted} (!M!).",
+		"DESCRIPTION": "Apply !M! Constricted. || Halve the damage of your ** rightmost {Dark} Orb. Apply ** additional Constricted ** equal to that amount.",
 		"NAME": "Sakura Matou"
 	},
 	"animator:ShinjiMatou":

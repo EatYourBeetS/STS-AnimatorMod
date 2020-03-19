@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.Elsword;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.EnergizedBluePower;
@@ -64,20 +63,18 @@ public class Add extends AnimatorCard
         if (cards != null && cards.size() > 0)
         {
             AbstractCard c = cards.get(0);
-            AbstractPlayer p = AbstractDungeon.player;
-
             CardGroup cardGroup = null;
-            if (p.hand.contains(c))
+            if (player.hand.contains(c))
             {
-                cardGroup = p.hand;
+                cardGroup = player.hand;
             }
-            else if (p.drawPile.contains(c))
+            else if (player.drawPile.contains(c))
             {
-                cardGroup = p.drawPile;
+                cardGroup = player.drawPile;
             }
-            else if (p.discardPile.contains(c))
+            else if (player.discardPile.contains(c))
             {
-                cardGroup = p.discardPile;
+                cardGroup = player.discardPile;
             }
 
             if (cardGroup != null)

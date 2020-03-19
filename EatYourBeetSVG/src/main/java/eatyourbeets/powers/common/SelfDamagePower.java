@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class SelfDamagePower extends CommonPower implements HealthBarRenderPower
 {
-    public static final String POWER_ID = CreateFullID(SelfDamagePower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(SelfDamagePower.class);
 
     public SelfDamagePower(AbstractCreature owner, int amount)
     {

@@ -39,7 +39,7 @@ public class Cirno extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Callback(__ ->
+        GameActions.Bottom.Callback(() ->
         {
             MonsterGroup monsters = AbstractDungeon.getMonsters();
             int frostCount = monsters.monsters.size() + 5;

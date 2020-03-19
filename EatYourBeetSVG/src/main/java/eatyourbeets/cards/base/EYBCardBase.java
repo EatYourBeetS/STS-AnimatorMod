@@ -68,14 +68,6 @@ public abstract class EYBCardBase extends AbstractCard
     public int baseSecondaryValue = 0;
     public int secondaryValue = 0;
 
-    public static AbstractPlayer RefreshPlayer()
-    {
-        rng = AbstractDungeon.cardRandomRng;
-        player = AbstractDungeon.player;
-
-        return player;
-    }
-
     public EYBCardBase(String id, String name, String imagePath, int cost, String rawDescription, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
         super(id, name, "status/beta", "status/beta", cost, rawDescription, type, color, rarity, target);

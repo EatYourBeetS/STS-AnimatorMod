@@ -4,7 +4,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.EnvenomPower;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class TemporaryEnvenomPower extends EnvenomPower implements CloneablePowerInterface
@@ -13,7 +13,7 @@ public class TemporaryEnvenomPower extends EnvenomPower implements CloneablePowe
     {
         super(owner, amount);
 
-        this.ID = AnimatorPower.CreateFullID(TemporaryEnvenomPower.class.getSimpleName());
+        this.ID = GR.Animator.CreateID(TemporaryEnvenomPower.class.getSimpleName());
     }
 
     @Override

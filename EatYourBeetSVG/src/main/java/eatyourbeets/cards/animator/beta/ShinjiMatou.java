@@ -25,8 +25,8 @@ public class ShinjiMatou extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 1);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 1, 1, 1);
+        SetUpgrade(0, 0, 2, 0);
 
         SetSynergy(Synergies.Fate);
     }
@@ -52,6 +52,7 @@ public class ShinjiMatou extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
 
         if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))

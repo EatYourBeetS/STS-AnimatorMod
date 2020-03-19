@@ -12,7 +12,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class PoisonAffinityPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(PoisonAffinityPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(PoisonAffinityPower.class);
 
     public PoisonAffinityPower(AbstractCreature owner, int stacks)
     {

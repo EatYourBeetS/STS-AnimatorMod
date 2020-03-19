@@ -10,21 +10,32 @@ import eatyourbeets.utilities.GameActions;
 
 public class GuildGirl extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(GuildGirl.class).SetPower(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(GuildGirl.class).SetPower(1, CardRarity.UNCOMMON);
 
     public GuildGirl()
     {
         super(DATA);
 
         Initialize(0, 0, GuildGirlPower.GOLD_GAIN);
-        SetCostUpgrade(-1);
+        SetUpgrade(0, 2);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetRetain(true);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        if (upgraded)
+        {
+            GameActions.Bottom.GainBlock(block);
+        }
+
         GameActions.Bottom.StackPower(new GuildGirlPower(p, 1));
     }
 }

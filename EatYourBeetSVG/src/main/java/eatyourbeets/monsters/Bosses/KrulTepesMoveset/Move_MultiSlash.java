@@ -58,15 +58,13 @@ public class Move_MultiSlash extends AbstractMove
                 Integer previousHealth = JavaUtilities.SafeCast(state, Integer.class);
                 if (previousHealth != null)
                 {
-                    AbstractPlayer p = AbstractDungeon.player;
-
-                    int difference = previousHealth - p.currentHealth;
+                    int difference = previousHealth - AbstractDungeon.player.currentHealth;
                     if (difference > 0)
                     {
                         GameActions.Bottom.Add(new HealAction(owner, owner, difference));
                     }
 
-                    Attack(p);
+                    Attack(AbstractDungeon.player);
                 }
             });
 

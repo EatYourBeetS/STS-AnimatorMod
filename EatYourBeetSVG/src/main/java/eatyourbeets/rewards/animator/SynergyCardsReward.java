@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class SynergyCardsReward extends AnimatorReward
 {
-    public static final String ID = CreateFullID(SynergyCardsReward.class.getSimpleName());
+    public static final String ID = CreateFullID(SynergyCardsReward.class);
 
     public final Synergy synergy;
     private boolean skip = false;

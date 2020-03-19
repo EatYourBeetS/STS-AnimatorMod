@@ -1,12 +1,13 @@
 package eatyourbeets.powers;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import eatyourbeets.resources.GR;
 
-public abstract class UnnamedPower extends BasePower
+public abstract class UnnamedPower extends EYBPower
 {
-    public static String CreateFullID(String id)
+    public static String CreateFullID(Class<? extends UnnamedPower> type)
     {
-        return "unnamed:" + id;
+        return GR.Unnamed.CreateID(type.getSimpleName());
     }
 
     public UnnamedPower(AbstractCreature owner, String id)

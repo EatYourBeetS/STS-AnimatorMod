@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class LightningCrystalPower extends AbstractCrystalPower
 {
-    public static final String POWER_ID = CreateFullID(LightningCrystalPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(LightningCrystalPower.class);
 
     public LightningCrystalPower(AbstractCreature owner, int value)
     {

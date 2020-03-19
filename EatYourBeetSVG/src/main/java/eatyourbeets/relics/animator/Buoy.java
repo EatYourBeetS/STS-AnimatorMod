@@ -1,13 +1,12 @@
 package eatyourbeets.relics.animator;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class Buoy extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(Buoy.class.getSimpleName());
+    public static final String ID = CreateFullID(Buoy.class);
 
     private static final int HP_THRESHOLD = 30;
     private static final int BLOCK_AMOUNT = 4;
@@ -76,7 +75,7 @@ public class Buoy extends AnimatorRelic
     {
         super.onPlayerEndTurn();
 
-        if (AbstractDungeon.player.currentHealth < counter)
+        if (player.currentHealth < counter)
         {
             GameActions.Bottom.GainBlock(BLOCK_AMOUNT);
             this.flash();
@@ -85,10 +84,10 @@ public class Buoy extends AnimatorRelic
 
     private void UpdateThreshold()
     {
-        GameActions.Bottom.Callback(__ ->
+        GameActions.Bottom.Callback(() ->
         {
-            counter = (int) Math.ceil(AbstractDungeon.player.maxHealth * (HP_THRESHOLD / 100f));
-            if (AbstractDungeon.player.currentHealth < counter)
+            counter = (int) Math.ceil(player.maxHealth * (HP_THRESHOLD / 100f));
+            if (player.currentHealth < counter)
             {
                 this.beginLongPulse();
             }

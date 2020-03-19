@@ -6,7 +6,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class AgilityPower extends PlayerAttributePower
 {
-    public static final String POWER_ID = CreateFullID(AgilityPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(AgilityPower.class);
 
     public static void PreserveOnce()
     {

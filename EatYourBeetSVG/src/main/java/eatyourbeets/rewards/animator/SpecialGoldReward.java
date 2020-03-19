@@ -12,7 +12,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class SpecialGoldReward extends AnimatorReward
 {
-    public static final String ID = CreateFullID(SpecialGoldReward.class.getSimpleName());
+    public static final String ID = CreateFullID(SpecialGoldReward.class);
 
     private static final String GOLD_STRING = CardCrawlGame.languagePack.getUIString("RewardItem").TEXT[1];
 

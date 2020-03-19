@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import eatyourbeets.powers.BasePower;
+import eatyourbeets.powers.EYBPower;
 
 public class EYBGainPowerEffect extends AbstractGameEffect
 {
@@ -17,7 +17,7 @@ public class EYBGainPowerEffect extends AbstractGameEffect
     private Texture img;
     private AtlasRegion region48;
 
-    public EYBGainPowerEffect(BasePower power, boolean playSfx)
+    public EYBGainPowerEffect(EYBPower power, boolean playSfx)
     {
         this.img = power.img;
 

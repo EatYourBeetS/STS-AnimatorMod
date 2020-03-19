@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class StolenGoldPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(StolenGoldPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(StolenGoldPower.class);
 
     private final int goldCap;
 

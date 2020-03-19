@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class PridePower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(PridePower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(PridePower.class);
 
     public PridePower(AbstractPlayer owner)
     {

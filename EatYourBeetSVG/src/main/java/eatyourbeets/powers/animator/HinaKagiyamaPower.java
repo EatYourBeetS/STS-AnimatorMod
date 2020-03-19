@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class HinaKagiyamaPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(HinaKagiyamaPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(HinaKagiyamaPower.class);
     public static final int CARD_DRAW_AMOUNT = 2;
 
     private int baseAmount;

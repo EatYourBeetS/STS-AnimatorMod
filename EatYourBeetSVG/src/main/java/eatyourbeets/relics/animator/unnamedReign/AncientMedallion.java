@@ -19,7 +19,7 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedReignRelicSubscriber, OnRelicObtainedSubscriber
 {
-    public static final String ID = CreateFullID(AncientMedallion.class.getSimpleName());
+    public static final String ID = CreateFullID(AncientMedallion.class);
 
     private static final int HEAL_AMOUNT = 4;
     private static final int MULTI_UPGRADE = 2;

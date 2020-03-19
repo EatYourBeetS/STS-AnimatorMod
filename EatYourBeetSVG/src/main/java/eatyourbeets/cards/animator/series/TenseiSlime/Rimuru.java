@@ -40,32 +40,18 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
         PlayerStatistics.onAfterCardPlayed.Subscribe(this);
     }
 
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
-    {
-
-    }
-
-    @Override
-    public boolean canUpgrade()
-    {
-        return false;
-    }
-
-    @Override
-    public void upgrade()
-    {
-
-    }
+    //@Formatter: Off
+    @Override public final boolean canUpgrade() { return false; }
+    @Override public final void use(AbstractPlayer p, AbstractMonster m) { }
+    @Override public final void upgrade() { }
+    //@Formatter: On
 
     @Override
     public void OnAfterCardPlayed(AbstractCard card)
     {
-        if (card == copy || card instanceof Rimuru || card.purgeOnUse || card.isInAutoplay)
+        if (card != copy && !(card instanceof Rimuru) && !card.purgeOnUse && !card.isInAutoplay)
         {
-            return;
+            GameActions.Top.Add(new RimuruAction(this, card));
         }
-
-        GameActions.Top.Add(new RimuruAction(this, card));
     }
 }

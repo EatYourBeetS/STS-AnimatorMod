@@ -5,7 +5,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class DarkCrystalPower extends AbstractCrystalPower
 {
-    public static final String POWER_ID = CreateFullID(DarkCrystalPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(DarkCrystalPower.class);
 
     public DarkCrystalPower(AbstractCreature owner, int value)
     {

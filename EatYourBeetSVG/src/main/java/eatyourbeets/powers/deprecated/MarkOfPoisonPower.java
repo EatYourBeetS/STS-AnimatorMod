@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class MarkOfPoisonPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(MarkOfPoisonPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(MarkOfPoisonPower.class);
 
     private final AbstractCreature source;
 

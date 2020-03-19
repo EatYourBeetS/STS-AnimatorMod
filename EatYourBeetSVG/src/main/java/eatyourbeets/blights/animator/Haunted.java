@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Haunted extends AnimatorBlight
 {
-    public static final String ID = CreateFullID(Haunted.class.getSimpleName());
+    public static final String ID = CreateFullID(Haunted.class);
 
     public Haunted()
     {

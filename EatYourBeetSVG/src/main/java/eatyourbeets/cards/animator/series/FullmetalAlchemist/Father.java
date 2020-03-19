@@ -70,7 +70,7 @@ public class Father extends AnimatorCard implements OnAddedToDeckSubscriber, OnA
         {
             p.decreaseMaxHealth((int)Math.ceil(p.maxHealth * (secondaryValue / 100f)));
             GameActions.Bottom.VFX(new OfferingEffect(), 0.5F);
-            GameActions.Bottom.Callback(__ -> GameEffects.Queue.SpawnRelic(relic.makeCopy(), current_x, current_y));
+            GameActions.Bottom.Callback(() -> GameEffects.Queue.SpawnRelic(relic.makeCopy(), current_x, current_y));
             AbstractDungeon.bossRelicPool.remove(relic.relicId);
 
             p.energy.energy += 1;

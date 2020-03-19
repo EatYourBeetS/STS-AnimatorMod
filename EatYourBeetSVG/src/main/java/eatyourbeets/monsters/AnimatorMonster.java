@@ -6,20 +6,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public abstract class AnimatorMonster extends CustomMonster
 {
-    protected static final Logger logger = LogManager.getLogger(AnimatorMonster.class.getName());
-
-    public static String CreateFullID(String id)
-    {
-        return GR.Animator.CreateID(id);
-    }
-
     public final Moveset moveset = new Moveset(this);
     public final AbstractMonsterData data;
+
+    public static String CreateFullID(Class<? extends AnimatorMonster> type)
+    {
+        return GR.Animator.CreateID(type.getSimpleName());
+    }
 
     public AnimatorMonster(AbstractMonsterData data, EnemyType type)
     {

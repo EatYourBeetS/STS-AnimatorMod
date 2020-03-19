@@ -13,7 +13,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class CerealBox extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(CerealBox.class.getSimpleName());
+    public static final String ID = CreateFullID(CerealBox.class);
 
     private static final int HEAL_AMOUNT = 2;
     private static final int BASE_CHARGES = 10;

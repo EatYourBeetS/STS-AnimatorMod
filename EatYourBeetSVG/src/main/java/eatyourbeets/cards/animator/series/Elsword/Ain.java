@@ -52,7 +52,7 @@ public class Ain extends AnimatorCard implements Spellcaster
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         //GameActions.Bottom.VFX(new BlizzardEffect(magicNumber, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.6f);
-        GameActions.Bottom.Callback(__ ->
+        GameActions.Bottom.Callback(() ->
         {
             MonsterGroup monsters = AbstractDungeon.getMonsters();
             int frostCount = monsters.monsters.size() + magicNumber + 5;

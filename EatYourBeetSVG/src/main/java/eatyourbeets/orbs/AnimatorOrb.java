@@ -17,9 +17,9 @@ public abstract class AnimatorOrb extends AbstractOrb
 
     protected final OrbStrings orbStrings;
 
-    public static String CreateFullID(String id)
+    public static String CreateFullID(Class<? extends AnimatorOrb> type)
     {
-        return GR.Animator.CreateID(id);
+        return GR.Animator.CreateID(type.getSimpleName());
     }
 
     public AnimatorOrb(String id)

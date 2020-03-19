@@ -34,16 +34,6 @@ public class RimuruAction extends EYBAction
         {
             // Rimuru has been purged or removed from the game, unsubscribe it
             PlayerStatistics.onAfterCardPlayed.Unsubscribe(rimuru);
-
-            newCopy.name = newCopy.originalName;
-            if (rimuru.timesUpgraded > 0)
-            {
-                newCopy.name += "+" + rimuru.timesUpgraded;
-            }
-            else if (rimuru.upgraded)
-            {
-                newCopy.name += "+";
-            }
         }
         else
         {
@@ -70,14 +60,10 @@ public class RimuruAction extends EYBAction
             newCopy.tags.add(GR.Enums.CardTags.TEMPORARY);
             newCopy.name = rimuru.name;
 
+            GameUtilities.CopyVisualProperties(newCopy, copy);
+
             if (group.type == CardGroup.CardGroupType.HAND)
             {
-                newCopy.current_x = copy.current_x;
-                newCopy.current_y = copy.current_y;
-                newCopy.target_x  = copy.target_x;
-                newCopy.target_y  = copy.target_y;
-                newCopy.drawScale = copy.drawScale;
-                newCopy.angle     = copy.angle;
                 newCopy.applyPowers();
             }
 

@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class FlamingWeaponPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(FlamingWeaponPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(FlamingWeaponPower.class);
 
     public FlamingWeaponPower(AbstractCreature owner, int amount)
     {

@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -68,16 +67,15 @@ public class Illya extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.Callback(__ ->
+        GameActions.Bottom.Callback(() ->
         {
-            AbstractPlayer p = AbstractDungeon.player;
-            if (!DrawBerserker(p.drawPile))
+            if (!DrawBerserker(player.drawPile))
             {
-                if (!DrawBerserker(p.discardPile))
+                if (!DrawBerserker(player.discardPile))
                 {
-                    if (!DrawBerserker(p.exhaustPile))
+                    if (!DrawBerserker(player.exhaustPile))
                     {
-                        DrawBerserker(p.hand);
+                        DrawBerserker(player.hand);
                     }
                 }
             }

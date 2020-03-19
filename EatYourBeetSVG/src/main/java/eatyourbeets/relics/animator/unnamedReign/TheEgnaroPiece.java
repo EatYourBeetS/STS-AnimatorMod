@@ -6,7 +6,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class TheEgnaroPiece extends UnnamedReignRelic
 {
-    public static final String ID = CreateFullID(TheEgnaroPiece.class.getSimpleName());
+    public static final String ID = CreateFullID(TheEgnaroPiece.class);
 
     private static final int INITIAL_TEMPORARY_HP = 1;
 

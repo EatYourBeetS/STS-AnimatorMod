@@ -5,7 +5,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class EngravedStaff extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(EngravedStaff.class.getSimpleName());
+    public static final String ID = CreateFullID(EngravedStaff.class);
     public static final int RANDOM_STAT_AMOUNT = 2;
 
     public EngravedStaff()

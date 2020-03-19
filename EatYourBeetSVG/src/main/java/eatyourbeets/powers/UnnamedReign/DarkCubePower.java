@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class DarkCubePower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(DarkCubePower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(DarkCubePower.class);
 
     public DarkCubePower(AbstractCreature owner, int value)
     {

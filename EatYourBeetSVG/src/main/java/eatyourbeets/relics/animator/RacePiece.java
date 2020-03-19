@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class RacePiece extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(RacePiece.class.getSimpleName());
+    public static final String ID = CreateFullID(RacePiece.class);
 
     private int toSelect;
     private Synergy synergy;

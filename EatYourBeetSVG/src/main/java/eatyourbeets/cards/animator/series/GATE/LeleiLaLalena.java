@@ -56,7 +56,7 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
         GameActions.Bottom.DiscardFromHand(name, 1, !upgraded)
         .ShowEffect(!upgraded, !upgraded)
         .SetOptions(false, false, false)
-        .AddCallback(__ ->
+        .AddCallback(() ->
         {
             for (int i = 0; i < magicNumber; i++)
             {

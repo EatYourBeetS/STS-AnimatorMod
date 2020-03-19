@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class NextTurnDexterityPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(NextTurnDexterityPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(NextTurnDexterityPower.class);
 
     public NextTurnDexterityPower(AbstractCreature owner, int value)
     {

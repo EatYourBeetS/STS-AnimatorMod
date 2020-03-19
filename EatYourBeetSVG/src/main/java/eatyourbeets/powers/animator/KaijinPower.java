@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class KaijinPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(KaijinPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(KaijinPower.class);
 
     public KaijinPower(AbstractPlayer owner, int amount)
     {

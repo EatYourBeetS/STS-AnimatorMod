@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class EarthenThornsPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(EarthenThornsPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(EarthenThornsPower.class);
 
     public EarthenThornsPower(AbstractCreature owner, int amount)
     {

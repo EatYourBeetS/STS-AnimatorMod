@@ -4,7 +4,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.RetainCardPower;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class TemporaryRetainPower extends RetainCardPower implements CloneablePowerInterface
@@ -13,7 +13,7 @@ public class TemporaryRetainPower extends RetainCardPower implements CloneablePo
     {
         super(owner, numCards);
 
-        this.ID = AnimatorPower.CreateFullID(TemporaryRetainPower.class.getSimpleName());
+        this.ID = GR.Animator.CreateID(TemporaryRetainPower.class.getSimpleName());
     }
 
     @Override

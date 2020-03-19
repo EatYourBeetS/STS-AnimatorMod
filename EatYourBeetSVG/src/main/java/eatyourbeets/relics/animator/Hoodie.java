@@ -7,7 +7,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class Hoodie extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(Hoodie.class.getSimpleName());
+    public static final String ID = CreateFullID(Hoodie.class);
 
     private static final int MAX_HP_BONUS = 3;
 

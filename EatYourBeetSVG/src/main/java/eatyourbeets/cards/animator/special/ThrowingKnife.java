@@ -70,7 +70,7 @@ public class ThrowingKnife extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.Callback(__ ->
+        GameActions.Bottom.Callback(() ->
         {
             player.discardPile.removeCard(this);
             freeToPlayOnce = true;

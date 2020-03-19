@@ -20,7 +20,6 @@ import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.resources.animator.loadouts._Random;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -196,15 +195,13 @@ public class AnimatorCharacter extends CustomPlayer
 
     protected AnimatorLoadout PrepareLoadout()
     {
-        int level = GR.Animator.GetUnlockLevel();
-        AnimatorLoadout current = GR.Animator.Data.SelectedLoadout;
-
-        if (current instanceof _Random || level < current.UnlockLevel)
+        int unlockLevel = GR.Animator.GetUnlockLevel();
+        if (unlockLevel < GR.Animator.Data.SelectedLoadout.UnlockLevel)
         {
             RandomizedList<AnimatorLoadout> list = new RandomizedList<>();
             for (AnimatorLoadout loadout : GR.Animator.Data.BaseLoadouts)
             {
-                if (level >= loadout.UnlockLevel)
+                if (unlockLevel >= loadout.UnlockLevel)
                 {
                     list.Add(loadout);
                 }
@@ -213,6 +210,6 @@ public class AnimatorCharacter extends CustomPlayer
             GR.Animator.Data.SelectedLoadout = list.Retrieve(new com.megacrit.cardcrawl.random.Random());
         }
 
-        return current;
+        return GR.Animator.Data.SelectedLoadout;
     }
 }

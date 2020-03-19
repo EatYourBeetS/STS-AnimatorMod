@@ -44,6 +44,7 @@ import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
@@ -58,6 +59,8 @@ import eatyourbeets.powers.common.TemporaryArtifactPower;
 
 import java.util.ArrayList;
 import java.util.UUID;
+
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 @SuppressWarnings("UnusedReturnValue")
 public final class GameActions
@@ -185,9 +188,19 @@ public final class GameActions
         return Add(new CallbackAction(action, onCompletion));
     }
 
+    public CallbackAction Callback(AbstractGameAction action, ActionT0 onCompletion)
+    {
+        return Add(new CallbackAction(action, onCompletion));
+    }
+
     public CallbackAction Callback(AbstractGameAction action)
     {
         return Add(new CallbackAction(action));
+    }
+
+    public CallbackAction Callback(ActionT0 onCompletion)
+    {
+        return Callback(new WaitAction(0.05f), onCompletion);
     }
 
     public CallbackAction Callback(ActionT1<AbstractGameAction> onCompletion)
@@ -228,24 +241,24 @@ public final class GameActions
 
     public DealDamage DealDamage(EYBCard card, AbstractCreature target, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamage(target, new DamageInfo(AbstractDungeon.player, card.damage, card.damageTypeForTurn), effect))
+        return Add(new DealDamage(target, new DamageInfo(player, card.damage, card.damageTypeForTurn), effect))
         .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock);
     }
 
     public DealDamageToAll DealDamageToAll(EYBCard card, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamageToAll(AbstractDungeon.player, card.multiDamage, card.damageTypeForTurn, effect))
+        return Add(new DealDamageToAll(player, card.multiDamage, card.damageTypeForTurn, effect))
         .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock);
     }
 
     public DealDamageToAll DealDamageToAll(int[] damageMatrix, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamageToAll(AbstractDungeon.player, damageMatrix, damageType, effect));
+        return Add(new DealDamageToAll(player, damageMatrix, damageType, effect));
     }
 
     public DealDamageToRandomEnemy DealDamageToRandomEnemy(int baseDamage, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamageToRandomEnemy(new DamageInfo(AbstractDungeon.player, baseDamage, damageType), effect));
+        return Add(new DealDamageToRandomEnemy(new DamageInfo(player, baseDamage, damageType), effect));
     }
 
     public DealDamageToRandomEnemy DealDamageToRandomEnemy(EYBCard card, AbstractGameAction.AttackEffect effect)
@@ -256,7 +269,7 @@ public final class GameActions
 
     public MoveCard Discard(AbstractCard card, CardGroup group)
     {
-        return MoveCard(card, group, AbstractDungeon.player.discardPile);
+        return MoveCard(card, group, player.discardPile);
     }
 
     public DiscardFromHand DiscardFromHand(String sourceName, int amount, boolean isRandom)
@@ -279,19 +292,19 @@ public final class GameActions
         final float cardX = CardGroup.DRAW_PILE_X * 1.5f;
         final float cardY = CardGroup.DRAW_PILE_Y * 2f;
 
-        return MoveCard(card, AbstractDungeon.player.drawPile, AbstractDungeon.player.hand)
+        return MoveCard(card, player.drawPile, player.hand)
         .SetCardPosition(cardX, cardY)
         .ShowEffect(true, false);
     }
 
     public MoveCard Exhaust(AbstractCard card)
     {
-        return MoveCard(card, AbstractDungeon.player.exhaustPile);
+        return MoveCard(card, player.exhaustPile);
     }
 
     public MoveCard Exhaust(AbstractCard card, CardGroup group)
     {
-        return MoveCard(card, group, AbstractDungeon.player.exhaustPile);
+        return MoveCard(card, group, player.exhaustPile);
     }
 
     public ExhaustFromHand ExhaustFromHand(String sourceName, int amount, boolean isRandom)
@@ -326,12 +339,12 @@ public final class GameActions
             AgilityPower.PreserveOnce();
         }
 
-        return StackPower(new AgilityPower(AbstractDungeon.player, amount));
+        return StackPower(new AgilityPower(player, amount));
     }
 
     public ApplyPower GainArtifact(int amount)
     {
-        return StackPower(new ArtifactPower(AbstractDungeon.player, amount));
+        return StackPower(new ArtifactPower(player, amount));
     }
 
     public GainBlock GainBlock(AbstractCreature target, int amount)
@@ -341,17 +354,17 @@ public final class GameActions
 
     public GainBlock GainBlock(int amount)
     {
-        return Add(new GainBlock(AbstractDungeon.player, AbstractDungeon.player, amount));
+        return Add(new GainBlock(player, player, amount));
     }
 
     public ApplyPower GainBlur(int amount)
     {
-        return StackPower(new BlurPower(AbstractDungeon.player, amount));
+        return StackPower(new BlurPower(player, amount));
     }
 
     public ApplyPower GainDexterity(int amount)
     {
-        return StackPower(new DexterityPower(AbstractDungeon.player, amount));
+        return StackPower(new DexterityPower(player, amount));
     }
 
     public GainEnergyAction GainEnergy(int amount)
@@ -361,7 +374,7 @@ public final class GameActions
 
     public ApplyPower GainFocus(int amount)
     {
-        return StackPower(new FocusPower(AbstractDungeon.player, amount));
+        return StackPower(new FocusPower(player, amount));
     }
 
     public ApplyPower GainForce(int amount)
@@ -376,7 +389,7 @@ public final class GameActions
             ForcePower.PreserveOnce();
         }
 
-        return StackPower(new ForcePower(AbstractDungeon.player, amount));
+        return StackPower(new ForcePower(player, amount));
     }
 
     public GainGold GainGold(int amount)
@@ -396,12 +409,12 @@ public final class GameActions
             IntellectPower.PreserveOnce();
         }
 
-        return StackPower(new IntellectPower(AbstractDungeon.player, amount));
+        return StackPower(new IntellectPower(player, amount));
     }
 
     public ApplyPower GainMetallicize(int amount)
     {
-        return StackPower(new MetallicizePower(AbstractDungeon.player, amount));
+        return StackPower(new MetallicizePower(player, amount));
     }
 
     public IncreaseMaxOrbAction GainOrbSlots(int slots)
@@ -411,7 +424,7 @@ public final class GameActions
 
     public ApplyPower GainPlatedArmor(int amount)
     {
-        return StackPower(new PlatedArmorPower(AbstractDungeon.player, amount));
+        return StackPower(new PlatedArmorPower(player, amount));
     }
 
     public ApplyPower GainRandomStat(int amount)
@@ -437,27 +450,27 @@ public final class GameActions
 
     public ApplyPower GainStrength(int amount)
     {
-        return StackPower(new StrengthPower(AbstractDungeon.player, amount));
+        return StackPower(new StrengthPower(player, amount));
     }
 
     public ApplyPower GainTemporaryArtifact(int amount)
     {
-        return StackPower(new TemporaryArtifactPower(AbstractDungeon.player, amount));
+        return StackPower(new TemporaryArtifactPower(player, amount));
     }
 
     public GainTemporaryHP GainTemporaryHP(int amount)
     {
-        return Add(new GainTemporaryHP(AbstractDungeon.player, AbstractDungeon.player, amount));
+        return Add(new GainTemporaryHP(player, player, amount));
     }
 
     public ApplyPower GainTemporaryThorns(int amount)
     {
-        return StackPower(new EarthenThornsPower(AbstractDungeon.player, amount));
+        return StackPower(new EarthenThornsPower(player, amount));
     }
 
     public ApplyPower GainThorns(int amount)
     {
-        return StackPower(new ThornsPower(AbstractDungeon.player, amount));
+        return StackPower(new ThornsPower(player, amount));
     }
 
     public HealFaster Heal(AbstractCreature source, AbstractCreature target, int amount)
@@ -467,12 +480,12 @@ public final class GameActions
 
     public HealFaster Heal(int amount)
     {
-        return Add(new HealFaster(AbstractDungeon.player, AbstractDungeon.player, amount));
+        return Add(new HealFaster(player, player, amount));
     }
 
     public LoseHPAction LoseHP(int amount, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, amount, effect));
+        return Add(new LoseHPAction(player, player, amount, effect));
     }
 
     public MakeTempCard MakeCard(AbstractCard card, CardGroup group)
@@ -482,17 +495,17 @@ public final class GameActions
 
     public MakeTempCard MakeCardInDiscardPile(AbstractCard card)
     {
-        return MakeCard(card, AbstractDungeon.player.discardPile);
+        return MakeCard(card, player.discardPile);
     }
 
     public MakeTempCard MakeCardInDrawPile(AbstractCard card)
     {
-        return MakeCard(card, AbstractDungeon.player.drawPile);
+        return MakeCard(card, player.drawPile);
     }
 
     public MakeTempCard MakeCardInHand(AbstractCard card)
     {
-        return MakeCard(card, AbstractDungeon.player.hand);
+        return MakeCard(card, player.hand);
     }
 
     public ModifyAllCombatInstances ModifyAllCombatInstances(UUID uuid, Object state, ActionT2<Object, AbstractCard> onCompletion)
@@ -596,7 +609,7 @@ public final class GameActions
 
     public ReduceStrength ReduceStrength(AbstractCreature target, int amount, boolean temporary)
     {
-        return Add(new ReduceStrength(AbstractDungeon.player, target, amount, temporary));
+        return Add(new ReduceStrength(player, target, amount, temporary));
     }
 
     public DiscardFromHand Reload(String sourceName, Object state, ActionT2<Object, ArrayList<AbstractCard>> onReload)

@@ -2,12 +2,20 @@ package eatyourbeets.actions.utility;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 
 public class CallbackAction extends EYBActionWithCallback<AbstractGameAction>
 {
     private final AbstractGameAction action;
+
+    public CallbackAction(AbstractGameAction action, ActionT0 onCompletion)
+    {
+        this(action);
+
+        AddCallback(onCompletion);
+    }
 
     public CallbackAction(AbstractGameAction action, ActionT1<AbstractGameAction> onCompletion)
     {

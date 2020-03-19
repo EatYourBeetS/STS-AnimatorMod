@@ -8,7 +8,7 @@ import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 
 public class HigakiRinnePower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(HigakiRinnePower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(HigakiRinnePower.class);
 
     private final HigakiRinne higakiRinne;
 

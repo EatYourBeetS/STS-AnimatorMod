@@ -1,7 +1,6 @@
 package eatyourbeets.events.animator;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventPhase;
@@ -55,8 +54,8 @@ public class TheUnnamedMerchant extends EYBEvent
 
             AddText(merchantLine);
 
-            boolean hasMedallion = AbstractDungeon.player.hasRelic(AncientMedallion.ID);
-            boolean hasEnoughGold = AbstractDungeon.player.gold >= buyingPrice;
+            boolean hasMedallion = player.hasRelic(AncientMedallion.ID);
+            boolean hasEnoughGold = (player.gold >= buyingPrice);
 
             if (hasMedallion)
             {

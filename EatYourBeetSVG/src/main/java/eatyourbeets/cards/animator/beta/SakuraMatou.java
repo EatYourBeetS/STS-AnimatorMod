@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -19,7 +18,7 @@ public class SakuraMatou extends AnimatorCard implements Spellcaster
     {
         super(DATA);
 
-        Initialize(0, 0, 0);
+        Initialize(0, 0, 2);
 
         SetEthereal(true);
         SetExhaust(true);
@@ -39,9 +38,9 @@ public class SakuraMatou extends AnimatorCard implements Spellcaster
 
         for (AbstractOrb orb : player.orbs)
         {
-            if (orb != null && Dark.ORB_ID.equals(orb.ID))
+            if (orb != null && Dark.ORB_ID.equals(orb.ID) && orb.evokeAmount > 0)
             {
-                this.magicNumber = Math.max(1, orb.evokeAmount / 2);
+                this.magicNumber += Math.max(1, orb.evokeAmount / 2);
                 break;
             }
         }
@@ -52,25 +51,29 @@ public class SakuraMatou extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        int constricted = 0;
-        for (AbstractOrb orb : player.orbs)
+        GameActions.Bottom.ApplyConstricted(p, m, magicNumber);
+        GameActions.Top.Callback(() ->
         {
-            if (orb != null && Dark.ORB_ID.equals(orb.ID) && orb.evokeAmount > 0)
+            AbstractOrb toEvoke = null;
+            for (AbstractOrb orb : player.orbs)
             {
-                constricted = Math.max(1, orb.evokeAmount /= 2);
-
-                if (orb.evokeAmount == 0)
+                if (orb != null && Dark.ORB_ID.equals(orb.ID) && orb.evokeAmount > 0)
                 {
-                    GameActions.Top.Add(new EvokeSpecificOrbAction(orb));
+                    if ((orb.evokeAmount /= 2) == 0)
+                    {
+                        toEvoke = orb;
+                    }
+
+                    break;
                 }
-
-                break;
             }
-        }
 
-        if (constricted > 0)
-        {
-            GameActions.Bottom.ApplyConstricted(p, m, constricted);
-        }
+            if (toEvoke != null)
+            {
+                player.orbs.remove(toEvoke);
+                player.orbs.add(0, toEvoke);
+                player.evokeOrb();
+            }
+        });
     }
 }

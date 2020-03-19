@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class OrbCore_FirePower extends OrbCore_AbstractPower
 {
-    public static final String POWER_ID = CreateFullID(OrbCore_FirePower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(OrbCore_FirePower.class);
 
     public OrbCore_FirePower(AbstractCreature owner, int amount)
     {

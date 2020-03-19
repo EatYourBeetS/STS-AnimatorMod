@@ -23,7 +23,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ORB_ID = CreateFullID(Earth.class.getSimpleName());
+    public static final String ORB_ID = CreateFullID(Earth.class);
 
     public static Texture imgRight;
     public static Texture imgLeft;

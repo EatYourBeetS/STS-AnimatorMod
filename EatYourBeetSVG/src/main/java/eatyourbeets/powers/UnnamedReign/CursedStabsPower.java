@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class CursedStabsPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(CursedStabsPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(CursedStabsPower.class);
     public int usesThisTurn = 99;
 
     public CursedStabsPower(AbstractCreature owner)

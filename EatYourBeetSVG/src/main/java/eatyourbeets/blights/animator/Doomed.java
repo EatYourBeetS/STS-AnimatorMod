@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Doomed extends AnimatorBlight
 {
-    public static final String ID = CreateFullID(Doomed.class.getSimpleName());
+    public static final String ID = CreateFullID(Doomed.class);
 
     public Doomed()
     {

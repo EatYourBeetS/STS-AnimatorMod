@@ -7,13 +7,15 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
-import eatyourbeets.resources.animator.loadouts._Random;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.GUIElement;
+import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -24,15 +26,19 @@ public class AnimatorLoadoutRenderer extends GUIElement
     protected static FieldInfo<String> _hp = JavaUtilities.GetField("hp", CharacterOption.class);
     protected static FieldInfo<Integer> _gold = JavaUtilities.GetField("gold", CharacterOption.class);
 
-    protected static final AnimatorLoadout RANDOM_LOADOUT = new _Random();
     protected static final AnimatorStrings.CharacterSelect charSelectStrings = GR.Animator.Strings.CharSelect;
+    protected static final Random RNG = new Random();
 
+    protected final ArrayList<AnimatorLoadout> availableLoadouts;
     protected final ArrayList<AnimatorLoadout> loadouts;
+
+    //TODO: Use GUI_Button and GUI_Label
     protected final Hitbox startingCardsLabelHb;
     protected final Hitbox startingCardsSelectedHb;
     protected final Hitbox startingCardsLeftHb;
     protected final Hitbox startingCardsRightHb;
 
+    protected GUI_Button RandomizeButton;
     protected CharacterSelectScreen selectScreen;
     protected CharacterOption characterOption;
     protected String lockedDescription;
@@ -47,6 +53,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         float POS_Y = ((float) Settings.HEIGHT / 2.0F) + (20 * Settings.scale);
 
         loadouts = new ArrayList<>();
+        availableLoadouts = new ArrayList<>();
         startingCardsLabelHb = new Hitbox(leftTextWidth, 50.0F * Settings.scale);
         startingCardsSelectedHb = new Hitbox(rightTextWidth, 50f * Settings.scale);
         startingCardsLeftHb = new Hitbox(70.0F * Settings.scale, 50.0F * Settings.scale);
@@ -56,6 +63,23 @@ public class AnimatorLoadoutRenderer extends GUIElement
         startingCardsLeftHb.move(startingCardsLabelHb.x + startingCardsLabelHb.width + (20 * Settings.scale), POS_Y - (10 * Settings.scale));
         startingCardsSelectedHb.move(startingCardsLeftHb.x + startingCardsLeftHb.width + (rightTextWidth / 2f), POS_Y);
         startingCardsRightHb.move(startingCardsSelectedHb.x + startingCardsSelectedHb.width + (10 * Settings.scale), POS_Y - (10 * Settings.scale));
+
+        RandomizeButton = new GUI_Button(GR.Common.Images.Randomize.Texture(), new AdvancedHitbox(0, 0, (50 * Settings.scale), (50 * Settings.scale), false))
+        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width + (15 * Settings.scale), POS_Y - (10 * Settings.scale)).SetText("")
+        .SetOnClick(this::RandomizeLoadout);
+    }
+
+    private void RandomizeLoadout()
+    {
+        if (availableLoadouts.size() > 1)
+        {
+            while (loadout == GR.Animator.Data.SelectedLoadout)
+            {
+                GR.Animator.Data.SelectedLoadout = JavaUtilities.GetRandomElement(loadouts, RNG);
+            }
+
+            Refresh(selectScreen, characterOption);
+        }
     }
 
     public void Refresh(CharacterSelectScreen selectScreen, CharacterOption characterOption)
@@ -64,7 +88,17 @@ public class AnimatorLoadoutRenderer extends GUIElement
         this.characterOption = characterOption;
 
         this.loadouts.clear();
-        this.loadouts.addAll(GR.Animator.Data.BaseLoadouts);
+        this.availableLoadouts.clear();
+
+        final int unlockLevel = GR.Animator.GetUnlockLevel();
+        for (AnimatorLoadout loadout : GR.Animator.Data.BaseLoadouts)
+        {
+            this.loadouts.add(loadout);
+            if (unlockLevel >= loadout.UnlockLevel)
+            {
+                this.availableLoadouts.add(loadout);
+            }
+        }
         if (GR.Animator.Config.GetDisplayBetaSeries())
         {
             for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
@@ -72,6 +106,10 @@ public class AnimatorLoadoutRenderer extends GUIElement
                 if (loadout.GetStartingDeck().size() > 0)
                 {
                     this.loadouts.add(loadout);
+                    if (unlockLevel >= loadout.UnlockLevel)
+                    {
+                        this.availableLoadouts.add(loadout);
+                    }
                 }
             }
         }
@@ -90,9 +128,8 @@ public class AnimatorLoadoutRenderer extends GUIElement
             return diff;
         });
 
-        this.loadouts.add(0, RANDOM_LOADOUT);
         this.loadout = GR.Animator.Data.SelectedLoadout;
-        if (RANDOM_LOADOUT != loadout && (this.loadout.GetStartingDeck().isEmpty() || !loadouts.contains(this.loadout)))
+        if (this.loadout.GetStartingDeck().isEmpty() || !loadouts.contains(this.loadout))
         {
             this.loadout = GR.Animator.Data.SelectedLoadout = loadouts.get(0);
         }
@@ -111,6 +148,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
             lockedDescription = GR.Animator.Strings.CharSelect.UnlocksAtLevel(loadout.UnlockLevel, currentLevel);
         }
 
+        RandomizeButton.SetActive(availableLoadouts.size() > 1);
         AnimatorCharacterSelectScreen.TrophiesRenderer.Refresh(loadout);
         AnimatorCharacterSelectScreen.SpecialTrophiesRenderer.Refresh();
     }
@@ -120,6 +158,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         startingCardsLabelHb.update();
         startingCardsRightHb.update();
         startingCardsLeftHb.update();
+        RandomizeButton.TryUpdate();
 
         if (InputHelper.justClickedLeft)
         {
@@ -205,5 +244,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         sb.setColor(startingCardsRightHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
         sb.draw(ImageMaster.CF_RIGHT_ARROW, startingCardsRightHb.cX - 24.0F, startingCardsRightHb.cY - 24.0F, 24.0F, 24.0F,
                 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+
+        RandomizeButton.TryRender(sb);
     }
 }

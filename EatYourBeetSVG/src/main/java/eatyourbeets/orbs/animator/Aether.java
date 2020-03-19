@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Aether extends AnimatorOrb
 {
-    public static final String ORB_ID = CreateFullID(Aether.class.getSimpleName());
+    public static final String ORB_ID = CreateFullID(Aether.class);
 
     public static Texture imgExt1;
     public static Texture imgExt2;

@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscriber
 {
-    public static final String POWER_ID = CreateFullID(GuildGirlPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(GuildGirlPower.class);
     public static final int GOLD_GAIN = 4;
 
     public GuildGirlPower(AbstractCreature owner, int amount)
@@ -45,7 +45,7 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
     {
         super.atStartOfTurnPostDraw();
 
-        GameActions.Bottom.Callback(__ -> GameActions.Bottom.Cycle(name, amount));
+        GameActions.Bottom.Callback(() -> GameActions.Bottom.Cycle(name, amount));
     }
 
     @Override

@@ -8,7 +8,7 @@ import eatyourbeets.cards.animator.special.OrbCore_Frost;
 
 public class OrbCore_FrostPower extends OrbCore_AbstractPower
 {
-    public static final String POWER_ID = CreateFullID(OrbCore_FrostPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(OrbCore_FrostPower.class);
 
     public OrbCore_FrostPower(AbstractCreature owner, int amount)
     {

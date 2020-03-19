@@ -13,7 +13,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscriber, OnShuffleSubscriber
 {
-    public static final String ID = CreateFullID(UltimateWisp.class.getSimpleName());
+    public static final String ID = CreateFullID(UltimateWisp.class);
 
     public UltimateWisp()
     {

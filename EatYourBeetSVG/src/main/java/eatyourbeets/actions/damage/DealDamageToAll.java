@@ -99,13 +99,13 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
 
         if (this.isDone)
         {
-            for (AbstractPower p : AbstractDungeon.player.powers)
+            for (AbstractPower p : player.powers)
             {
                 p.onDamageAllEnemies(this.damage);
             }
 
             int i = 0;
-            for (AbstractMonster enemy : AbstractDungeon.getCurrRoom().monsters.monsters)
+            for (AbstractMonster enemy : GameUtilities.GetAllEnemies(false))
             {
                 if (!GameUtilities.IsDeadOrEscaped(enemy))
                 {
@@ -126,7 +126,7 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
                 i += 1;
             }
 
-            if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
+            if (GameUtilities.GetCurrentRoom(true).monsters.areMonstersBasicallyDead())
             {
                 GameUtilities.ClearPostCombatActions();
             }

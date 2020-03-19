@@ -20,9 +20,9 @@ import java.util.ArrayList;
 
 public abstract class AnimatorReward extends CustomReward
 {
-    public static String CreateFullID(String id)
+    public static String CreateFullID(Class<? extends AnimatorReward> type)
     {
-        return GR.Animator.CreateID(id);
+        return GR.Animator.CreateID(type.getSimpleName());
     }
 
     public static float GetUltraRareChance(AnimatorLoadout loadout)

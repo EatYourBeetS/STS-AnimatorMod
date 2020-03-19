@@ -6,7 +6,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class FrostCrystalPower extends AbstractCrystalPower
 {
-    public static final String POWER_ID = CreateFullID(FrostCrystalPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(FrostCrystalPower.class);
 
     public FrostCrystalPower(AbstractCreature owner, int value)
     {

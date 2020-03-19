@@ -22,9 +22,9 @@ public abstract class CTToken
         this.text = text;
     }
 
-    public float GetWidth(BitmapFont font)
+    public float GetWidth(CTContext context)
     {
-        return GetWidth(font, text);
+        return GetWidth(context.font, text);
     }
 
     public void Render(SpriteBatch sb, CTContext context)

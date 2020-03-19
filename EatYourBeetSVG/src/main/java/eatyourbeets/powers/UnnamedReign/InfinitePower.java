@@ -39,7 +39,7 @@ import java.util.ArrayList;
 
 public class InfinitePower extends AnimatorPower implements OnBattleStartSubscriber, OnApplyPowerSubscriber, OnStartOfTurnPostDrawSubscriber
 {
-    public static final String POWER_ID = CreateFullID(InfinitePower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(InfinitePower.class);
 
     public boolean phase2 = false;
 

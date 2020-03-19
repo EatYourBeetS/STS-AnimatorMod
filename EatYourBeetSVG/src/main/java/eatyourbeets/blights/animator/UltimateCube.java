@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class UltimateCube extends AnimatorBlight
 {
-    public static final String ID = CreateFullID(UltimateCube.class.getSimpleName());
+    public static final String ID = CreateFullID(UltimateCube.class);
 
     public UltimateCube()
     {

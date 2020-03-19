@@ -35,7 +35,7 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.Callback(__ ->
+        GameActions.Bottom.Callback(() ->
         {
             ForcePower force = GameUtilities.GetPower(player, ForcePower.class);
             if (force != null && force.GetCurrentLevel() > 2)

@@ -6,7 +6,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class SoulGem extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(SoulGem.class.getSimpleName());
+    public static final String ID = CreateFullID(SoulGem.class);
 
     public SoulGem()
     {

@@ -1,25 +1,20 @@
 package eatyourbeets.relics;
 
-import basemod.abstracts.CustomRelic;
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.*;
 import eatyourbeets.relics.animator.AbstractMissingPiece;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorDungeonData;
-import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 
-import java.lang.reflect.InvocationTargetException;
-
-public abstract class AnimatorRelic extends CustomRelic
+public abstract class AnimatorRelic extends EYBRelic
 {
     protected static final FieldInfo<Float> _offsetX = JavaUtilities.GetField("offsetX", AbstractRelic.class);
 
-    public static String CreateFullID(String id)
+    public static String CreateFullID(Class<? extends AnimatorRelic> type)
     {
-        return GR.Animator.CreateID(id);
+        return GR.Animator.CreateID(type.getSimpleName());
     }
 
     public static void UpdateRelics(boolean isAnimator)
@@ -50,44 +45,14 @@ public abstract class AnimatorRelic extends CustomRelic
         }
     }
 
-    public AnimatorRelic(String id, String imageID, RelicTier tier, LandingSound sfx)
-    {
-        super(id, new Texture(AnimatorResources.GetRelicImage(imageID)), tier, sfx);
-    }
-
     public AnimatorRelic(String id, RelicTier tier, LandingSound sfx)
     {
-        this(id, id, tier, sfx);
-    }
-
-    @Override
-    public String getUpdatedDescription()
-    {
-        return DESCRIPTIONS[0];
-    }
-
-    @Override
-    public AbstractRelic makeCopy()
-    {
-        try
-        {
-            return getClass().getConstructor().newInstance();
-        }
-        catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e)
-        {
-            JavaUtilities.GetLogger(this).error(e.getMessage());
-            return null;
-        }
+        super(id, id, tier, sfx);
     }
 
     @Override
     public boolean canSpawn()
     {
-        return AbstractDungeon.player.chosenClass == GR.Enums.Characters.THE_ANIMATOR;
-    }
-
-    protected String FormatDescription(Object... args)
-    {
-        return JavaUtilities.Format(DESCRIPTIONS[0], args);
+        return AbstractDungeon.player.chosenClass == GR.Animator.PlayerClass;
     }
 }

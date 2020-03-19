@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class AzrielPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(AzrielPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(AzrielPower.class);
 
     public AzrielPower(AbstractCreature owner, int amount)
     {

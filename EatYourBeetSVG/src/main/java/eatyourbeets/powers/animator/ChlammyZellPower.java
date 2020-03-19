@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ChlammyZellPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(ChlammyZellPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(ChlammyZellPower.class);
 
     private AbstractCard.CardType lastType;
 

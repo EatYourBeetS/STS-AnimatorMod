@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class LightningWispPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(LightningWispPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(LightningWispPower.class);
 
     public LightningWispPower(AbstractCreature owner, int value)
     {

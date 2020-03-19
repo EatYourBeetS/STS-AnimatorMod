@@ -52,7 +52,7 @@ public class HolyGrail extends AnimatorCard_UltraRare implements OnBattleEndSubs
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.VFX(new OfferingEffect(), Settings.FAST_MODE ? 0.1F : 0.5f);
-        GameActions.Bottom.Callback(__ ->
+        GameActions.Bottom.Callback(() ->
         {
             AbstractDungeon.player.decreaseMaxHealth(secondaryValue);
             AbstractDungeon.player.energy.recharge();

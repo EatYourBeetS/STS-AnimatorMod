@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Fire extends AnimatorOrb
 {
-    public static final String ORB_ID = CreateFullID(Fire.class.getSimpleName());
+    public static final String ORB_ID = CreateFullID(Fire.class);
 
     public static Texture imgExt;
     public static Texture imtInt;

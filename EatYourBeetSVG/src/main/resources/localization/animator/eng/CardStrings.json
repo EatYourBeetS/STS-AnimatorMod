@@ -323,7 +323,7 @@
 	},
 	"animator:Demiurge":
 	{
-		"DESCRIPTION": "Gain [E]. Take !M! damage ** at the end of turn. || Synergy: Conserve ** your [E] next turn.",
+		"DESCRIPTION": "Gain [E]. ** Take !M! damage ** at the end of turn. || Synergy: Conserve ** your [E] next turn.",
 		"NAME": "Demiurge",
 		"UPGRADE_DESCRIPTION": "Gain [E]. Discard 1 ** card or take !M! damage ** at the end of turn. || Synergy: Conserve ** your [E] next turn."
 	},
@@ -638,13 +638,13 @@
 	},
 	"animator:InverseOrigami":
 	{
-		"DESCRIPTION": "When Drawn, pay [E]: Channel 1 Random Orb. || Activate your {Support Damage} and {Trigger} all your Orbs.",
+		"DESCRIPTION": "When Drawn: Spend [E] to Channel 1 Random Orb. || Activate your {Support Damage} and {Trigger} all your Orbs.",
 		"NAME": "Inverse Origami",
-		"UPGRADE_DESCRIPTION": "When Drawn, pay [E]: Add 1 random {Orb Core} to your hand. || Activate your {Support Damage} and {Trigger} all your Orbs."
+		"UPGRADE_DESCRIPTION": "When Drawn: Spend [E] to Add 1 random {Orb Core} to your hand. || Activate your {Support Damage} and {Trigger} all your Orbs."
 	},
 	"animator:InverseTohka":
 	{
-		"DESCRIPTION": "When Drawn, pay [E]: Deal 10 damage to all enemies. || {Reload}: attack an extra time.",
+		"DESCRIPTION": "When Drawn: Spend [E] to deal 10 damage to ALL enemies. || {Reload}: Attack an addditional time.",
 		"NAME": "Inverse Tohka"
 	},
 	"animator:IrohaTamaki":
@@ -702,12 +702,12 @@
 	},
 	"animator:KotoriItsuka":
 	{
-		"DESCRIPTION": "Limited: You may exhaust up to 5 cards.  Boost [F][A][I] and add 1 Burn to your hand for each card exhausted.",
+		"DESCRIPTION": "Limited: You may Exhaust up to 5 cards. Boost [F][A][I] and add 1 Burn to your hand for each card Exhausted.",
 		"NAME": "Kotori Itsuka"
 	},
 	"animator:KotoriKanbe":
 	{
-		"DESCRIPTION": "At the start of combat: PuInt ** this card in your discard pile. || Removes all Artifact on the ** target and apply !M! Weak.  ** Heal the target for 35 HP.",
+		"DESCRIPTION": "At the start of combat: Put ** this card in your discard pile. || Removes all Artifact on the ** target and apply !M! Weak. ** Heal the target for 35 HP.",
 		"NAME": "Kotori Kanbe"
 	},
 	"animator:KrulTepes":
@@ -727,7 +727,7 @@
 	},
 	"animator:KurumiTokisaki":
 	{
-		"DESCRIPTION": "When drawn: automatically play this card. || Next turn: gain [E] [E] [E]. || Cooldown !S!: Take an extra turn after this one. Shuffle 3 copies of this card into your draw pile.",
+		"DESCRIPTION": "When drawn: Play this card. || Next turn: Gain [E] [E] [E]. || Cooldown !S!: Take an extra turn after this one. Shuffle 3 copies of this card into your draw pile.",
 		"NAME": "Kurumi Tokisaki"
 	},
 	"animator:KyokoSakura":
@@ -801,7 +801,7 @@
 	},
 	"animator:SakuraMatou":
 	{
-		"DESCRIPTION": "Halve the damage ** of your rightmost ** {Dark} Orb. Apply that ** much {Constricted} (!M!).",
+		"DESCRIPTION": "Apply !M! Constricted. || Halve the damage of your ** rightmost {Dark} Orb. Apply ** additional Constricted ** equal to that amount.",
 		"NAME": "Sakura Matou"
 	},
 	"animator:ShinjiMatou":
@@ -873,10 +873,10 @@
 	},
 	"animator:MikuIzayoi":
 	{
-		"DESCRIPTION": "Block is always 9. || When Discarded: Increase your Common Buffs by 1.",
+		"DESCRIPTION": "Block is always 9. || When Discarded: Increase your {Common Buffs} by 1.",
 		"EXTENDED_DESCRIPTION": ["Common Buffs", "#yForce, #yAgility, #yIntellect, #yThorns, #yTemp. #yThorns, #yMetallize, #yPlated #yArmor. "],
 		"NAME": "Miku Izayoi",
-		"UPGRADE_DESCRIPTION": "Block is always 9. || Motivate 1. || When Discarded: Increase your Common Buffs by 1."
+		"UPGRADE_DESCRIPTION": "Block is always 9. || Motivate 1. || When Discarded: Increase your {Common Buffs} by 1."
 	},
 	"animator:Millim":
 	{
@@ -933,7 +933,7 @@
 	},
 	"animator:Natsumi":
 	{
-		"DESCRIPTION": "Transform a card in your hand into 1 of 7 cards with the same cost and upgrade level.",
+		"DESCRIPTION": "Transform a card in your hand into 1 of 7 cards with the same cost and Upgrade level.",
 		"EXTENDED_DESCRIPTION": ["Choose a card to transform.", "Choose a card to transform into."],
 		"NAME": "Natsumi"
 	},
@@ -945,8 +945,8 @@
 	},
 	"animator:NiaHonjou":
 	{
-		"DESCRIPTION": "Whenever you play a card this turn, {Scry} !M! and gain !M! {Block}.",
-		"EXTENDED_DESCRIPTION": ["Whenever you play a card, #yScry #b{0} and gain #b{1} #yBlock."],
+		"DESCRIPTION": "Whenever you play a card this turn: {Scry} !M! and gain !M! {Block}.",
+		"EXTENDED_DESCRIPTION": ["Whenever you play a card this turn, #yScry #b{0} and gain #b{1} #yBlock."],
 		"NAME": "Nia Honjou"
 	},
 	"animator:NivaLada":
@@ -1001,8 +1001,8 @@
 	},
 	"animator:OrigamiTobiichi":
 	{
-		"DESCRIPTION": "At the end of your turn, add !M! {Support Damage} per Orb. || If you have 20+ {Support Damage}, remove this power and add Inverse Origami to your draw pile.",
-		"EXTENDED_DESCRIPTION": ["At the end of your turn, add #b{0} Support Damage per Orb.  If you have #b{1}+ Support Damage, remove this power of this and add Inverse Origami to your draw pile."],
+		"DESCRIPTION": "At the end of your turn, gain !M! {Support Damage} per Orb. || If you have 20+ {Support Damage}, remove this power and add {Inverse Origami} to your draw pile.",
+		"EXTENDED_DESCRIPTION": ["At the end of your turn, gain #b{0} Support Damage per Orb. If you have #b{1}+ Support Damage, remove this power of this and add #yInverse #yOrigami to your draw pile."],
 		"NAME": "Origami Tobiichi"
 	},
 	"animator:OrikoMikuni":
@@ -1055,9 +1055,8 @@
 	},
 	"animator:ReineMurasame":
 	{
-		"DESCRIPTION": "Add X copies of Shido Itsuka with exhaust into your draw pile. || Synergy: Next turn, gain X [E].",
-		"NAME": "Reine Murasame",
-		"UPGRADE_DESCRIPTION": "Add X copies of Shido Itsuka+ with exhaust into your draw pile. || Synergy: Next turn, gain X [E]."
+		"DESCRIPTION": "Add X copies of {Shido Itsuka} with Exhaust to your draw pile. || Synergy: Next turn, gain X [E].",
+		"NAME": "Reine Murasame"
 	},
 	"animator:Rena":
 	{
@@ -1470,7 +1469,7 @@
 	},
 	"animator:YamaiSisters":
 	{
-		"DESCRIPTION": "Upgrade this card and all copies of Yamai Sisters in your hand.  You may upgrade this card up to 8 times.",
+		"DESCRIPTION": "Upgrade this card and every {Yamai Sisters} in your hand. You may Upgrade this card up to 8 times.",
 		"NAME": "Yamai Sisters"
 	},
 	"animator:YaoHaDucy":
@@ -1485,9 +1484,8 @@
 	},
 	"animator:YoshinoHimekawa":
 	{
-		"DESCRIPTION": "Discard 1 random card.  If you have 4 or more Frost Orbs, add 1 Zadkiel to your hand.  Otherwise, Channel 1 Frost. || Limited: Add 1 Orb Slot.",
-		"NAME": "Yoshino Himekawa",
-		"UPGRADE_DESCRIPTION": "Discard 1 random card.  If you have 4 or more Frost Orbs, add 1 Zadkiel+ to your hand.  Otherwise, Channel 1 Frost. || Limited: Add 1 Orb Slot."
+		"DESCRIPTION": "Discard 1 random card. If you have 4 or more Frost Orbs: add {Zadkiel} to your hand. Otherwise: Channel 1 Frost. || Limited. Gain 1 Orb Slot.",
+		"NAME": "Yoshino Himekawa"
 	},
 	"animator:YuiTsuruno":
 	{
@@ -1511,7 +1509,7 @@
 	},
 	"animator:Zadkiel":
 	{
-		"DESCRIPTION": "When Exhausted: Evoke ALL Orbs. || If 4 or more Frost Orbs were evoked this way, deal Elemental damage equal to your block to each enemy.",
+		"DESCRIPTION": "When Exhausted: Evoke ALL Orbs. || If 4 or more Frost Orbs were evoked this way, deal Elemental damage equal to your Block to each enemy.",
 		"NAME": "Zadkiel"
 	},
 	"animator:ZankiKiguchi":

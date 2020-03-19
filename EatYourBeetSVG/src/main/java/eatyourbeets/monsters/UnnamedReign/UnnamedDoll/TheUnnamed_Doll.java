@@ -23,7 +23,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class TheUnnamed_Doll extends AnimatorMonster
 {
-    public static final String ID = CreateFullID(TheUnnamed_Doll.class.getSimpleName());
+    public static final String ID = CreateFullID(TheUnnamed_Doll.class);
 
     private final BobEffect bobEffect = new BobEffect(1);
 

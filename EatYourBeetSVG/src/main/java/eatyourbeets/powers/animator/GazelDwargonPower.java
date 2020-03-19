@@ -8,7 +8,7 @@ import eatyourbeets.powers.AnimatorPower;
 
 public class GazelDwargonPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(GazelDwargonPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(GazelDwargonPower.class);
 
     private boolean handlePlayerBlock = false;
 

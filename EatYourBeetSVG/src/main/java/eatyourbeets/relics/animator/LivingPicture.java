@@ -8,25 +8,11 @@ import eatyourbeets.utilities.GameActions;
 
 public class LivingPicture extends AnimatorRelic implements OnSynergySubscriber
 {
-    public static final String ID = CreateFullID(LivingPicture.class.getSimpleName());
-
-    private Boolean hasShownTip1 = null;
+    public static final String ID = CreateFullID(LivingPicture.class);
 
     public LivingPicture()
     {
         super(ID, RelicTier.STARTER, LandingSound.MAGICAL);
-    }
-
-    @Override
-    public void atBattleStart()
-    {
-        super.atBattleStart();
-
-//        if (hasShownTip1 == null && AbstractDungeon.actNum == 1 && AbstractDungeon.getCurrMapNode().y == 0)
-//        {
-//            Readme.SpawnAll();
-//            hasShownTip1 = true;
-//        }
     }
 
     @Override
@@ -35,12 +21,14 @@ public class LivingPicture extends AnimatorRelic implements OnSynergySubscriber
         super.atTurnStart();
 
         PlayerStatistics.onSynergy.SubscribeOnce(this);
+        SetEnabled(true);
     }
 
     @Override
     public void OnSynergy(AnimatorCard card)
     {
         GameActions.Bottom.Draw(1);
+        SetEnabled(false);
         this.flash();
     }
 }

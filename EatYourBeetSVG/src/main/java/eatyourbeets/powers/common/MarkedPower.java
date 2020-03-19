@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class MarkedPower extends CommonPower
 {
-    public static final String POWER_ID = CreateFullID(MarkedPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(MarkedPower.class);
 
     public MarkedPower(AbstractCreature owner, int amount)
     {

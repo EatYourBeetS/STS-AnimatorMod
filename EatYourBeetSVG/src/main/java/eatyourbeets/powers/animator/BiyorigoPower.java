@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class BiyorigoPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(BiyorigoPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(BiyorigoPower.class);
 
     public BiyorigoPower(AbstractCreature owner, int amount)
     {

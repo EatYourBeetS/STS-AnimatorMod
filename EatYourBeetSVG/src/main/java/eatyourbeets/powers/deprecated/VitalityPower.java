@@ -7,7 +7,7 @@ import eatyourbeets.powers.AnimatorPower;
 
 public class VitalityPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(VitalityPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(VitalityPower.class);
 
     public VitalityPower(AbstractCreature owner, int amount)
     {

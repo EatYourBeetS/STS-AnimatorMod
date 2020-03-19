@@ -9,7 +9,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class WornHelmet extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(WornHelmet.class.getSimpleName());
+    public static final String ID = CreateFullID(WornHelmet.class);
 
     private static final int BLOCK_AMOUNT1 = 4;
     private static final int BLOCK_AMOUNT2 = 1;

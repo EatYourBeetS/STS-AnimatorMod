@@ -4,7 +4,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.JuggernautPower;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class TemporaryJuggernautPower extends JuggernautPower implements CloneablePowerInterface
@@ -13,7 +13,7 @@ public class TemporaryJuggernautPower extends JuggernautPower implements Cloneab
     {
         super(owner, amount);
 
-        this.ID = AnimatorPower.CreateFullID(TemporaryJuggernautPower.class.getSimpleName());
+        this.ID = GR.Animator.CreateID(TemporaryJuggernautPower.class.getSimpleName());
     }
 
     @Override

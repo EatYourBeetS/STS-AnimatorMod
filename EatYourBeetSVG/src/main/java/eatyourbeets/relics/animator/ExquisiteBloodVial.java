@@ -23,7 +23,7 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
 {
     private static final int HEAL_AMOUNT = 2;
 
-    public static final String ID = CreateFullID(ExquisiteBloodVial.class.getSimpleName());
+    public static final String ID = CreateFullID(ExquisiteBloodVial.class);
 
     public boolean truePotential;
 
@@ -39,7 +39,7 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
     {
         if (trigger == OnRelicObtainedSubscriber.Trigger.Equip && relic instanceof BloodVial && truePotential)
         {
-            GameEffects.Queue.RemoveRelic(relic).AddCallback(__ -> setCounter(counter + 1));
+            GameEffects.Queue.RemoveRelic(relic).AddCallback(() -> setCounter(counter + 1));
         }
     }
 
@@ -144,7 +144,7 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
             {
                 if (relic instanceof BloodVial)
                 {
-                    GameEffects.Queue.RemoveRelic(relic).AddCallback(__ -> setCounter(counter + 1));
+                    GameEffects.Queue.RemoveRelic(relic).AddCallback(() -> setCounter(counter + 1));
                 }
             }
         }

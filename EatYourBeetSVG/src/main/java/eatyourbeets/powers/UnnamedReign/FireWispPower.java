@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class FireWispPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(FireWispPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(FireWispPower.class);
 
     public FireWispPower(AbstractCreature owner, int value)
     {

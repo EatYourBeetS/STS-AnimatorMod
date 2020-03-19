@@ -45,7 +45,7 @@ public class Magilou extends AnimatorCard implements Spellcaster
         if (EffectHistory.TryActivateLimited(cardID))
         {
             GameActions.Top.Discard(this, player.hand).ShowEffect(true, true)
-            .AddCallback(__ -> GameActions.Top.MakeCardInHand(new Bienfu()))
+            .AddCallback(() -> GameActions.Top.MakeCardInHand(new Bienfu()))
             .SetDuration(0.15f, true);
         }
         else
@@ -58,6 +58,6 @@ public class Magilou extends AnimatorCard implements Spellcaster
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(magicNumber));
-        GameActions.Bottom.Callback(new WaitRealtimeAction(0.3f), __ -> GameActions.Bottom.Add(new EvokeOrbAction(1)));
+        GameActions.Bottom.Callback(new WaitRealtimeAction(0.3f), () -> GameActions.Bottom.Add(new EvokeOrbAction(1)));
     }
 }

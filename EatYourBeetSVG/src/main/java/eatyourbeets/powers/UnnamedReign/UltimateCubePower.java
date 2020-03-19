@@ -19,7 +19,7 @@ import java.util.function.Consumer;
 
 public class UltimateCubePower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(UltimateCubePower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(UltimateCubePower.class);
 
     private static final int BUFFS_AMOUNT = 1;
     private static final int EXPLOSION_DAMAGE = 140;

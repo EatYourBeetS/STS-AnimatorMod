@@ -69,7 +69,7 @@ public class TemporaryArtifactPower extends AbstractPower implements CloneablePo
             // made this much easier and cleaner... the alternative (without patching) is to change this
             // power's id when artifact would be applied, then changing it back with the next action
             this.ID = FAKE_POWER_ID;
-            GameActions.Top.Callback(__ -> this.ID = ARTIFACT_ID);
+            GameActions.Top.Callback(() -> this.ID = ARTIFACT_ID);
         }
     }
 

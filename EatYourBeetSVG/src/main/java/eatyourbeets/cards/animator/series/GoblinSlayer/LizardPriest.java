@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class LizardPriest extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(LizardPriest.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(LizardPriest.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     public LizardPriest()
     {

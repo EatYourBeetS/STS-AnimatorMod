@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class TheEruzaStone extends UnnamedReignRelic
 {
-    public static final String ID = AnimatorRelic.CreateFullID(TheEruzaStone.class.getSimpleName());
+    public static final String ID = AnimatorRelic.CreateFullID(TheEruzaStone.class);
 
     public TheEruzaStone()
     {

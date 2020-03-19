@@ -164,6 +164,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         onBattleStart.Clear();
         onBattleEnd.Clear();
 
+        DevConsole.enabled = true;
         GR.Animator.Dungeon.Reset();
         GR.Common.Dungeon.Reset();
     }

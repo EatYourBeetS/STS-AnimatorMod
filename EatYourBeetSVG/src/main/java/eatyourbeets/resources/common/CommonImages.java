@@ -12,6 +12,7 @@ public class CommonImages
     public final TextureCache Panel                       = new TextureCache("images/ui/topPanel/eyb/Panel.png");
     public final TextureCache Discord                     = new TextureCache("images/ui/topPanel/eyb/Discord.png");
     public final TextureCache Steam                       = new TextureCache("images/ui/topPanel/eyb/Steam.png");
+    public final TextureCache Randomize                   = new TextureCache("images/ui/topPanel/eyb/Randomize.png");
     public final TextureCache HexagonalButton             = new TextureCache("images/ui/topPanel/eyb/HexagonalButton.png");
     public final TextureCache HexagonalButtonBorder       = new TextureCache("images/ui/topPanel/eyb/HexagonalButtonBorder.png");
     public final TextureCache HexagonalButtonHover        = new TextureCache("images/ui/topPanel/eyb/HexagonalButtonHover.png");

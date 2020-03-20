@@ -59,7 +59,7 @@ public class CTContext
                 int actualLength = text.replace(" NL ", "").length();
                 if (actualLength > max)
                 {
-                    scaleModifier -= (0.12f * (actualLength / max));
+                    scaleModifier -= (0.1f * (actualLength / max));
                 }
             }
 

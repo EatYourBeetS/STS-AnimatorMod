@@ -1161,7 +1161,7 @@
 		},
 		"animator:KyokoSakura":
 		{
-			"DESCRIPTION": "Draw !M! card(s) and put !M! cards on your draw pile. || If you drew a Hindrance: ** Channel 1 Fire.",
+			"DESCRIPTION": "Draw !M! card(s) and put ** !M! card(s) on your draw pile. || If you drew a Hindrance: ** Channel 1 Fire.",
 			"NAME": "Kyoko Sakura"
 		},
 		"animator:MadokaKaname":
@@ -1282,6 +1282,12 @@
 			"DESCRIPTION": "Whenever you play a card this turn: {Scry} !M! and gain !M! {Block}.",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a card this turn, #yScry #b{0} and gain #b{1} #yBlock."],
 			"NAME": "Nia Honjou"
+		},
+		"animator:OrigamiTobiichi":
+		{
+			"DESCRIPTION": "At the end of your turn, gain !M! {Support Damage} for every 2 Orbs. || If you have 20+ {Support Damage}, remove this power and add {Inverse Origami} to your draw pile.",
+			"EXTENDED_DESCRIPTION": ["At the end of your turn, gain #b{0} Support Damage for every 2 Orbs. If you have #b{1}+ Support Damage, remove this power of this and add #yInverse #yOrigami to your draw pile."],
+			"NAME": "Origami Tobiichi"
 		},
 		"animator:ReineMurasame":
 		{

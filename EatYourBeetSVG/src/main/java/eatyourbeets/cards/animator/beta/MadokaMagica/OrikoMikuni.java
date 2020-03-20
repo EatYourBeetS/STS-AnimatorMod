@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.common.TemporaryRetainPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -34,19 +35,7 @@ public class OrikoMikuni extends AnimatorCard
 
         if (!p.hand.isEmpty())
         {
-            GameActions.Bottom.SelectFromHand(name, 1, false)
-            .SetOptions(true, true, true)
-            .SetMessage(RetainCardsAction.TEXT[0])
-            .SetFilter(c -> !c.isEthereal)
-            .AddCallback(cards ->
-            {
-                if (cards.size() > 0)
-                {
-                    AbstractCard card = cards.get(0);
-
-                    GameUtilities.Retain(card);
-                }
-            });
+            GameActions.Bottom.StackPower(new TemporaryRetainPower(p, 1));
         }
     }
 }

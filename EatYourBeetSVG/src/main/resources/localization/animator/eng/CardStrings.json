@@ -1187,7 +1187,7 @@
 		},
 		"animator:OrikoMikuni":
 		{
-			"DESCRIPTION": "Scry !M!. ** Retain 1 card.",
+			"DESCRIPTION": "Scry !M!. ** Retain 1 card at the end of ** this turn.",
 			"NAME": "Oriko Mikuni"
 		},
 		"animator:SayakaMiki":

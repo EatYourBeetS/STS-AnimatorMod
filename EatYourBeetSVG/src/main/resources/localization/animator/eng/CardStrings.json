@@ -643,6 +643,11 @@
 		{
 			"DESCRIPTION": "Remove your ** rightmost {Debuff}. || Boost [F] [A] [I].",
 			"NAME": "Sword Maiden"
+		},
+		"animator:Witch":
+		{
+			"DESCRIPTION": "Apply !M! Burning ** to ALL enemies. || At the start of each ** {Elite} combat, obtain ** a random Potion.",
+			"NAME": "Witch"
 		}
 	},
 	
@@ -1277,11 +1282,6 @@
 			"DESCRIPTION": "Choose and combine ** up to 3 effects.",
 			"EXTENDED_DESCRIPTION": ["Takes 1 less turn ** to complete."],
 			"NAME": "Elixir"
-		},
-		"animator:Witch":
-		{
-			"DESCRIPTION": "Apply !M! Burning ** to ALL enemies. || At the start of each ** {Elite} combat, obtain ** a random Potion.",
-			"NAME": "Witch"
 		},
 		"animator:Yusarin":
 		{

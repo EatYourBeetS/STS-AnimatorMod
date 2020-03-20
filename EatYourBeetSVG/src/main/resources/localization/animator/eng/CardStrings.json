@@ -1161,7 +1161,7 @@
 		},
 		"animator:KyokoSakura":
 		{
-			"DESCRIPTION": "Draw !M! card(s) and put ** !M! card(s) on your draw pile. || If you drew a Hindrance: ** Channel 1 Fire.",
+			"DESCRIPTION": "Draw !M! card(s) and put ** !M! card(s) on top of your ** draw pile. || If you drew a Hindrance: ** Channel 1 Fire.",
 			"NAME": "Kyoko Sakura"
 		},
 		"animator:MadokaKaname":

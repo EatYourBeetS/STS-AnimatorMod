@@ -102,6 +102,11 @@ public class GR
         return CardCrawlGame.languagePack.getCardStrings(cardID);
     }
 
+    public static StanceStrings GetStanceString(String stanceID)
+    {
+        return CardCrawlGame.languagePack.getStanceString(stanceID);
+    }
+
     public static EventStrings GetEventStrings(String eventID)
     {
         return CardCrawlGame.languagePack.getEventString(eventID);

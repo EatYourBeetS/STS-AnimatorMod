@@ -506,7 +506,7 @@
 	},
 	"animator:Guren":
 	{
-		"DESCRIPTION": "Play the top !M! cards of your ** draw pile. Exhaust every {Attack} ** and Hindrance among them. || <SLM>. Gain 1 {Support Damage} for each card in your Exhaust pile.",
+		"DESCRIPTION": "Play the top !M! cards of ** your draw pile. Exhaust ** every Hindrance and ** {Attack} among them. || <SLM>. Gain 1 ** {Support Damage} for each ** card in Exhaust pile.",
 		"NAME": "Guren"
 	},
 	"animator:Guy":
@@ -1187,7 +1187,7 @@
 	},
 	"animator:Tet":
 	{
-		"DESCRIPTION": "Discard 1 card from ** your hand or draw ** pile. Move 1 card from ** your discard pile ** to your draw pile.",
+		"DESCRIPTION": "Discard 1 card from your ** hand or draw pile. Move 1 ** card from your discard pile ** to the third spot from the ** top of your draw pile.",
 		"NAME": "Tet"
 	},
 	"animator:TheHaunt":

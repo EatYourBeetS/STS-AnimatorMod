@@ -75,6 +75,14 @@ public class JavaUtilities
         }
     }
 
+    public static <T> void ChangeIndex(T item, List<T> list, int index)
+    {
+        if (list.remove(item))
+        {
+            list.add(Math.max(0, Math.min(index, list.size() - 1)), item);
+        }
+    }
+
     public static <T> int Count(List<T> list, Predicate<T> predicate)
     {
         int count = 0;

@@ -1,6 +1,7 @@
 package eatyourbeets.relics.animator.unnamedReign;
 
 import basemod.DevConsole;
+import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
+import com.megacrit.cardcrawl.ui.FtueTip;
 import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.effects.special.UnnamedRelicEquipEffect;
 import eatyourbeets.effects.utility.CallbackEffect;
@@ -73,6 +75,13 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
         {
             InputHelper.regainInputFocus();
             DevConsole.visible = false;
+        }
+
+        if (Gdx.input.isKeyJustPressed(DevConsole.toggleKey) && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.FTUE)
+        {
+            // TODO: Localization
+            AbstractDungeon.ftue = new FtueTip(name, "The console is disabled while in this act.",
+            Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.5f, FtueTip.TipType.NO_FTUE);
         }
 
         DevConsole.infiniteEnergy = false;

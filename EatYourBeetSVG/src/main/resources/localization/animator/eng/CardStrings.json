@@ -1291,7 +1291,7 @@
 		},
 		"animator:ReineMurasame":
 		{
-			"DESCRIPTION": "Add X copies of {Shido Itsuka} with Exhaust to your draw pile. || Synergy: Next turn, gain X [E].",
+			"DESCRIPTION": "Add X copies of {Shido Itsuka} to your draw pile. || Synergy: Next turn, gain X [E].",
 			"NAME": "Reine Murasame"
 		},
 		"animator:ShidoItsuka":

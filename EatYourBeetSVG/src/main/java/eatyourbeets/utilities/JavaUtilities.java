@@ -79,7 +79,7 @@ public class JavaUtilities
     {
         if (list.remove(item))
         {
-            list.add(Math.max(0, Math.min(index, list.size() - 1)), item);
+            list.add(Math.max(0, Math.min(index, list.size())), item);
         }
     }
 

@@ -217,7 +217,7 @@ public abstract class EYBCard extends EYBCardBase
         {
             dynamicTooltips.add(GR.Tooltips.Purge);
         }
-        if (exhaust)
+        if (exhaust || exhaustOnUseOnce)
         {
             dynamicTooltips.add(GR.Tooltips.Exhaust);
         }

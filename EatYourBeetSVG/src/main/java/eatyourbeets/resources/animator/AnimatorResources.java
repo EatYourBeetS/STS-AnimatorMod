@@ -56,7 +56,7 @@ public class AnimatorResources extends AbstractResources
         LoadCustomStrings(CharacterStrings.class);
 
         String json = GetFallbackFile("CardStrings.json").readString(StandardCharsets.UTF_8.name());
-        BaseMod.loadCustomStrings(CardStrings.class, ProcessJson(json, true));
+        LoadGroupedCardStrings(ProcessJson(json, false));
 
         if (testFolder.isDirectory() || IsTranslationSupported(Settings.language))
         {
@@ -64,7 +64,7 @@ public class AnimatorResources extends AbstractResources
             if (file.exists())
             {
                 String json2 = file.readString(StandardCharsets.UTF_8.name());
-                BaseMod.loadCustomStrings(CardStrings.class, ProcessJson(json2, false));
+                LoadGroupedCardStrings(ProcessJson(json2, false));
             }
         }
 

@@ -1,6 +1,7 @@
 package eatyourbeets.resources;
 
 import basemod.BaseMod;
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
@@ -361,6 +362,36 @@ public class GR
         {
             JavaUtilities.GetLogger(this).warn("File not found: " + file.path());
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    public static void LoadGroupedCardStrings(String jsonString)
+    {
+        Map localizationStrings = (Map) ReflectionHacks.getPrivateStatic(LocalizedStrings.class, "cards");
+        Map cardStrings = new HashMap<>();
+        try
+        {
+            Type typeToken = new TypeToken<Map<String, Map<String, CardStrings>>>(){}.getType();
+            Map map = new HashMap<>((Map)new Gson().fromJson(jsonString, typeToken));
+
+            for (Object key1 : map.keySet())
+            {
+                Map map3 = ((Map<Object, CardStrings>)map.get(key1));
+                for (Object key2 : map3.keySet())
+                {
+                    cardStrings.put(key2, map3.get(key2));
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            JavaUtilities.GetLogger(AnimatorResources.class).error("Loading card strings failed. Using default method.");
+            BaseMod.loadCustomStrings(CardStrings.class, jsonString);
+            return;
+        }
+
+        localizationStrings.putAll(cardStrings);
     }
 
     public static boolean CanInstantiate(Class<?> type)

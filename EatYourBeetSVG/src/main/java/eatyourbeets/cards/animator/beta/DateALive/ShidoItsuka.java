@@ -28,19 +28,22 @@ public class ShidoItsuka extends AnimatorCard
 
         Initialize(0, 5);
         SetUpgrade(0, 2);
-        exhaustOnUseOnce = true;
+        SetExhaust(true);
 
         SetSynergy(Synergies.DateALive);
     }
 
     @Override
+    protected void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        SetExhaust(!HasSynergy() || !EffectHistory.TryActivateLimited(cardID));
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
-        {
-            exhaustOnUseOnce = false;
-        }
-
         GameActions.Bottom.GainBlock(block);
 
         InitializeSynergicCards();

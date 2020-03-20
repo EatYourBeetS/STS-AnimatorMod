@@ -1296,9 +1296,9 @@
 		},
 		"animator:ShidoItsuka":
 		{
-			"DESCRIPTION": "Add 1 of 3 cards that would Synergize with this card to your discard pile. || Limited. Synergy: This card does not Exhaust.",
+			"DESCRIPTION": "Add 1 of 3 cards that would Synergize with this card to your discard pile. || <LIM>. Synergy: This card will not Exhaust.",
 			"NAME": "Shido Itsuka",
-			"UPGRADE_DESCRIPTION": "Add 1 of 3 upgraded cards that would Synergize with this card to your discard pile.  || Limited. Synergy: This card does not Exhaust."
+			"UPGRADE_DESCRIPTION": "Add 1 of 3 upgraded cards that would Synergize with this card to your discard pile.  || <LIM>. Synergy: This card will not Exhaust."
 		},
 		"animator:Strike_DateALive":
 		{

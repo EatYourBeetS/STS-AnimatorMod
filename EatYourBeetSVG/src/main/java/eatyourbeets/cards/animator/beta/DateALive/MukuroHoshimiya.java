@@ -85,7 +85,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
     {
         GameActions.Top.Callback(__ ->
         {
-            JavaUtilities.ChangeIndex(this, player.drawPile.group, player.drawPile.size() - 5);
+            JavaUtilities.ChangeIndex(this, player.drawPile.group, player.drawPile.size() - 6);
         });
     }
 }

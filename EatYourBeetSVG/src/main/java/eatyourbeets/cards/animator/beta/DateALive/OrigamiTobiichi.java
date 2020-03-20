@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class OrigamiTobiichi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(OrigamiTobiichi.class).SetPower(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(OrigamiTobiichi.class).SetPower(3, CardRarity.UNCOMMON);
     static
     {
         DATA.AddPreview(new InverseOrigami(), false);
@@ -23,7 +23,7 @@ public class OrigamiTobiichi extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 1);
-        SetUpgrade(0, 0, 1);
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.DateALive);
     }
@@ -70,7 +70,7 @@ public class OrigamiTobiichi extends AnimatorCard
             {
                 flash();
 
-                int stackAmount = player.filledOrbCount() * amount;
+                int stackAmount = (player.filledOrbCount() * amount)/2;
                 if (stackAmount > 0)
                 {
                     GameActions.Bottom.StackPower(new SupportDamagePower(player, stackAmount)).AddCallback(this::InverseOrigamiCheck);

@@ -20,6 +20,7 @@ import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellcaster, OnBattleStartSubscriber, OnShuffleSubscriber, OnAddedToDrawPileSubscriber
 {
@@ -84,11 +85,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
     {
         GameActions.Top.Callback(__ ->
         {
-            CardGroup group = player.drawPile;
-            if (group.group.remove(this))
-            {
-                group.group.add(group.size() - Math.min(group.size(), 5), this);
-            }
+            JavaUtilities.ChangeIndex(this, player.drawPile.group, player.drawPile.size() - 5);
         });
     }
 }

@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -18,8 +19,8 @@ import java.util.ArrayList;
 public class ShidoItsuka extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ShidoItsuka.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
-    private static final ArrayList<AbstractCard> dateALiveCards = new ArrayList<>();
-    private static final ArrayList<AbstractCard> otherSynergicCards = new ArrayList<>();
+    private ArrayList<AbstractCard> dateALiveCards = new ArrayList<>();
+    private ArrayList<AbstractCard> otherSynergicCards = new ArrayList<>();
 
     public ShidoItsuka()
     {
@@ -27,6 +28,7 @@ public class ShidoItsuka extends AnimatorCard
 
         Initialize(0, 5);
         SetUpgrade(0, 2);
+        exhaustOnUseOnce = true;
 
         SetSynergy(Synergies.DateALive);
     }
@@ -34,17 +36,19 @@ public class ShidoItsuka extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
+        {
+            exhaustOnUseOnce = false;
+        }
+
         GameActions.Bottom.GainBlock(block);
 
-        if (dateALiveCards.isEmpty() || otherSynergicCards.isEmpty())
-        {
-            InitializeSynergicCards();
-        }
+        InitializeSynergicCards();
 
         RandomizedList<AbstractCard> randomizedDALCards = new RandomizedList<>(dateALiveCards);
         RandomizedList<AbstractCard> randomizedSynergicCards = new RandomizedList<>(otherSynergicCards);
 
-        final int numOptions = HasSynergy() ? 3 : 2;
+        final int numOptions = 3;
         final CardGroup options = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
         for (int i = 0; i < numOptions; i++)
         {

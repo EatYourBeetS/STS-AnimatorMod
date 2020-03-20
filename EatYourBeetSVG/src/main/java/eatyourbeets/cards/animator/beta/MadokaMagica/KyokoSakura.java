@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.beta.MadokaMagica;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -9,8 +10,10 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class KyokoSakura extends AnimatorCard
 {
@@ -31,7 +34,7 @@ public class KyokoSakura extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActions.Bottom.Cycle(name, magicNumber).AddCallback(m, (enemy, cards) ->
+        GameActions.Bottom.Draw(magicNumber).AddCallback(m, (enemy, cards) ->
         {
             if (cards.size() > 0)
             {
@@ -43,6 +46,30 @@ public class KyokoSakura extends AnimatorCard
                         return;
                     }
                 }
+            }
+
+            AddToTopOfDrawPile(magicNumber, player.hand);
+        });
+    }
+
+    private void AddToTopOfDrawPile(int amount, CardGroup source)
+    {
+        GameActions.Top.SelectFromPile(name, amount,source)
+        .SetMessage(GR.Common.Strings.GridSelection.MoveToDrawPile(1))
+        .SetOptions(false, true)
+        .AddCallback(chosenCards ->
+        {
+            for (AbstractCard chosenCard : chosenCards)
+            {
+                CardGroup drawPile = player.drawPile;
+
+                GameActions.Top.MoveCard(chosenCard, drawPile)
+                .AddCallback(movedCard -> {
+                    if (movedCard != null)
+                    {
+                        JavaUtilities.ChangeIndex(movedCard, drawPile.group, player.drawPile.size());
+                    }
+                });
             }
         });
     }

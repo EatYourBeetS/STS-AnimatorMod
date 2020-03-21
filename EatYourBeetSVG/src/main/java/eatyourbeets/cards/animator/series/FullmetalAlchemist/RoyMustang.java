@@ -45,7 +45,7 @@ public class RoyMustang extends AnimatorCard
 
         if (HasSynergy())
         {
-            GameActions.Bottom.VFX(new FlameBarrierEffect(p.hb.cX, p.hb.cY), 0.5F);
+            GameActions.Bottom.VFX(new FlameBarrierEffect(p.hb.cX, p.hb.cY), 0.5f);
             GameActions.Bottom.StackPower(new FlameBarrierPower(p, this.magicNumber));
         }
     }

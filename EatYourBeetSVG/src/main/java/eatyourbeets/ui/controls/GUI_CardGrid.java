@@ -17,11 +17,11 @@ import java.util.Collection;
 
 public class GUI_CardGrid extends GUIElement
 {
-    private static final float DRAW_START_X = (Settings.WIDTH - (5.0F * AbstractCard.IMG_WIDTH * 0.75F) - (4.0F * Settings.CARD_VIEW_PAD_X) + AbstractCard.IMG_WIDTH * 0.75F) * 0.4f; // 0.5f
-    private static final float DRAW_START_Y = (float) Settings.HEIGHT * 0.7F;
-    private static final float PAD_X = AbstractCard.IMG_WIDTH * 0.75F + Settings.CARD_VIEW_PAD_X;
-    private static final float PAD_Y = AbstractCard.IMG_HEIGHT * 0.75F + Settings.CARD_VIEW_PAD_Y;
-    private static final float SCROLL_BAR_THRESHOLD = 500.0F * Settings.scale;
+    private static final float DRAW_START_X = (Settings.WIDTH - (5f * AbstractCard.IMG_WIDTH * 0.75f) - (4f * Settings.CARD_VIEW_PAD_X) + AbstractCard.IMG_WIDTH * 0.75f) * 0.4f; // 0.5f
+    private static final float DRAW_START_Y = (float) Settings.HEIGHT * 0.7f;
+    private static final float PAD_X = AbstractCard.IMG_WIDTH * 0.75f + Settings.CARD_VIEW_PAD_X;
+    private static final float PAD_Y = AbstractCard.IMG_HEIGHT * 0.75f + Settings.CARD_VIEW_PAD_Y;
+    private static final float SCROLL_BAR_THRESHOLD = 500f * Settings.scale;
     private static final int ROW_SIZE = 5;
 
     public final GUI_VerticalScrollBar scrollBar;
@@ -57,8 +57,8 @@ public class GUI_CardGrid extends GUIElement
     {
         this.deckSizeCache = 0;
         this.hoveredCard = null;
-        this.scrollDelta = 0.0F;
-        this.scrollStart = 0.0F;
+        this.scrollDelta = 0f;
+        this.scrollStart = 0f;
         this.draggingScreen = false;
         this.message = null;
         this.cards.clear();
@@ -111,7 +111,7 @@ public class GUI_CardGrid extends GUIElement
 
         if (message != null)
         {
-            FontHelper.renderDeckViewTip(sb, message, Scale(96.0F), Settings.CREAM_COLOR);
+            FontHelper.renderDeckViewTip(sb, message, Scale(96f), Settings.CREAM_COLOR);
         }
     }
 

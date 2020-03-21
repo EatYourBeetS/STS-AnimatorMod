@@ -35,8 +35,8 @@ public class DieAction extends EYBAction
                 if (AbstractDungeon.getMonsters().areMonstersBasicallyDead())
                 {
                     AbstractDungeon.actionManager.cleanCardQueue();
-                    GameEffects.List.Add(new DeckPoofEffect(64.0F * Settings.scale, 64.0F * Settings.scale, true));
-                    GameEffects.List.Add(new DeckPoofEffect((float) Settings.WIDTH - 64.0F * Settings.scale, 64.0F * Settings.scale, false));
+                    GameEffects.List.Add(new DeckPoofEffect(64f * Settings.scale, 64f * Settings.scale, true));
+                    GameEffects.List.Add(new DeckPoofEffect((float) Settings.WIDTH - 64f * Settings.scale, 64f * Settings.scale, false));
                     AbstractDungeon.overlayMenu.hideCombatPanels();
                 }
             }

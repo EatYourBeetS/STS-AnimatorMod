@@ -31,9 +31,9 @@ public class VoidEnergyOrb
     private static final Texture Orb_VFX2 = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_VFX2.png");
     private static final UIStrings uiStrings = UnnamedStrings.EnergyPanel;
 
-    private final Hitbox hb = new Hitbox(128.0F * Settings.scale, 248.0F * Settings.scale, 147.2F * Settings.scale, 147.2F * Settings.scale);
+    private final Hitbox hb = new Hitbox(128f * Settings.scale, 248f * Settings.scale, 147.2f * Settings.scale, 147.2f * Settings.scale);
     private final Void source;
-    private float time = 0.0F;
+    private float time = 0f;
     private boolean voidScreenOpen = false;
 
     public int currentEnergy = 0;
@@ -51,10 +51,10 @@ public class VoidEnergyOrb
         {
             sb.setColor(Color.WHITE);
             sb.draw(Orb_BG, hb.x, hb.y, hb.width, hb.height);
-            sb.draw(Orb_VFX2, hb.x, hb.y, hb.width / 2.0F, hb.height / 2.0F, hb.width, hb.height, 1.2F, 1.2F, time * -7.0F % 360.0F, 0, 0, 128, 128, false, false);
-            sb.draw(Orb_VFX1, hb.x, hb.y, hb.width / 2.0F, hb.height / 2.0F, hb.width, hb.height, 1.0F, 1.0F, time * 6.0F % 360.0F, 0, 0, 128, 128, false, false);
+            sb.draw(Orb_VFX2, hb.x, hb.y, hb.width / 2f, hb.height / 2f, hb.width, hb.height, 1.2f, 1.2f, time * -7f % 360f, 0, 0, 128, 128, false, false);
+            sb.draw(Orb_VFX1, hb.x, hb.y, hb.width / 2f, hb.height / 2f, hb.width, hb.height, 1f, 1f, time * 6f % 360f, 0, 0, 128, 128, false, false);
             sb.draw(Orb_FG, hb.x, hb.y, hb.width, hb.height);
-            FontHelper.renderFontCentered(sb, FontHelper.energyNumFontBlue, currentEnergy + "/" + maxEnergy, 201.6F * Settings.scale, 321.6F * Settings.scale, Color.WHITE.cpy());
+            FontHelper.renderFontCentered(sb, FontHelper.energyNumFontBlue, currentEnergy + "/" + maxEnergy, 201.6f * Settings.scale, 321.6f * Settings.scale, Color.WHITE.cpy());
         }
     }
 
@@ -78,7 +78,7 @@ public class VoidEnergyOrb
             {
                 if (!screenUp)
                 {
-                    TipHelper.renderGenericTip(50.0F * Settings.scale, hb.y + hb.height * 2, uiStrings.TEXT[0], uiStrings.TEXT[1]);
+                    TipHelper.renderGenericTip(50f * Settings.scale, hb.y + hb.height * 2, uiStrings.TEXT[0], uiStrings.TEXT[1]);
 
                     if (InputHelper.justClickedLeft && !PlayerStatistics.Void.isEmpty())
                     {

@@ -140,7 +140,7 @@ public class GUI_Button extends GUIElement
             {
                 BitmapFont font = FontHelper.buttonLabelFont;
                 Color textColor = interactable ? this.textColor : TEXT_DISABLED_COLOR;
-                if (FontHelper.getSmartWidth(font, text, 9999.0F, 0.0F) > (hb.width * 0.7))
+                if (FontHelper.getSmartWidth(font, text, 9999f, 0f) > (hb.width * 0.7))
                 {
                     RenderHelpers.WriteCentered(sb, font, text, hb, textColor, 0.8f);
                 }

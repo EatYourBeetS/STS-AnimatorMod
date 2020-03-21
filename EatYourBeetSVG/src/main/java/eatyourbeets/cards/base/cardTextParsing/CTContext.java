@@ -14,11 +14,11 @@ import java.util.ArrayList;
 
 public class CTContext
 {
-    protected final static float IMG_HEIGHT = 420.0F * Settings.scale;
-    protected final static float IMG_WIDTH = 300.0F * Settings.scale;
-    protected final static float DESC_BOX_WIDTH = Settings.BIG_TEXT_MODE ? IMG_WIDTH * 0.95F : IMG_WIDTH * 0.79F;
-    protected final static float DESC_OFFSET_Y = Settings.BIG_TEXT_MODE ? IMG_HEIGHT * 0.24F : IMG_HEIGHT * 0.255F;
-    protected final static float CN_DESC_BOX_WIDTH = IMG_WIDTH * 0.72F;
+    protected final static float IMG_HEIGHT = 420f * Settings.scale;
+    protected final static float IMG_WIDTH = 300f * Settings.scale;
+    protected final static float DESC_BOX_WIDTH = Settings.BIG_TEXT_MODE ? IMG_WIDTH * 0.95f : IMG_WIDTH * 0.79f;
+    protected final static float DESC_OFFSET_Y = Settings.BIG_TEXT_MODE ? IMG_HEIGHT * 0.24f : IMG_HEIGHT * 0.255f;
+    protected final static float CN_DESC_BOX_WIDTH = IMG_WIDTH * 0.72f;
     protected final static Color DEFAULT_COLOR = Settings.CREAM_COLOR.cpy();
 
     public final ArrayList<CTLine> lines = new ArrayList<>();
@@ -103,7 +103,7 @@ public class CTContext
             height += line.CalculateHeight(font);
         }
 
-        this.start_y = (card.current_y - IMG_HEIGHT * card.drawScale * 0.5f + DESC_OFFSET_Y * card.drawScale) + (height * 0.775f + font.getCapHeight() * 0.375F) -6f;
+        this.start_y = (card.current_y - IMG_HEIGHT * card.drawScale * 0.5f + DESC_OFFSET_Y * card.drawScale) + (height * 0.775f + font.getCapHeight() * 0.375f) -6f;
         this.start_x = 0;
         this.lineIndex = 0;
         this.color = RenderHelpers.CopyColor(card, DEFAULT_COLOR);

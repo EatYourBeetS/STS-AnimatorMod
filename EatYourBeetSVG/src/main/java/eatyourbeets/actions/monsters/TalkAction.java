@@ -13,7 +13,7 @@ public class TalkAction extends EYBActionWithCallback<AbstractCreature>
 
     public TalkAction(AbstractCreature source, String message)
     {
-        this(source, message, 2.0F, 2.0F);
+        this(source, message, 2f, 2f);
     }
 
     public TalkAction(AbstractCreature source, String message, float duration, float effectDuration)
@@ -23,7 +23,8 @@ public class TalkAction extends EYBActionWithCallback<AbstractCreature>
         this.effectDuration = effectDuration;
         this.isRealtime = true;
         this.message = message;
-        this.source = source;
+
+        Initialize(source, 1);
     }
 
     public TalkAction SetEffect(DialogWord.AppearEffect appearEffect)

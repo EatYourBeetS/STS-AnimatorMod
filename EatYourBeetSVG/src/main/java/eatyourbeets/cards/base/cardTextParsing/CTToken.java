@@ -52,7 +52,7 @@ public abstract class CTToken
     {
         float width = GetWidth(context.font, text);
 
-        FontHelper.renderRotatedText(sb, context.font, text, context.start_x + width / 2.0F, context.start_y, 0, 0, context.card.angle, true, color);
+        FontHelper.renderRotatedText(sb, context.font, text, context.start_x + width / 2f, context.start_y, 0, 0, context.card.angle, true, color);
 
         context.start_x += width;
     }

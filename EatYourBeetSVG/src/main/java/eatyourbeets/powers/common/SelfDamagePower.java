@@ -26,7 +26,7 @@ public class SelfDamagePower extends CommonPower implements HealthBarRenderPower
 
     public void playApplyPowerSfx()
     {
-        CardCrawlGame.sound.play("BLOOD_SPLAT", 0.05F);
+        CardCrawlGame.sound.play("BLOOD_SPLAT", 0.05f);
     }
 
     @Override

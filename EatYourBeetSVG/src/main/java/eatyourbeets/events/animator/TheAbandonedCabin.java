@@ -88,7 +88,7 @@ public class TheAbandonedCabin extends EYBEvent
 
         private void AcceptTrade()
         {
-            CardCrawlGame.sound.play("EVENT_VAMP_BITE", 0.05F);
+            CardCrawlGame.sound.play("EVENT_VAMP_BITE", 0.05f);
             player.damage(new DamageInfo(null, HP_LOSS));
             event.Medallions += 1;
             ProgressPhase();
@@ -142,7 +142,7 @@ public class TheAbandonedCabin extends EYBEvent
 
         private void AcceptTrade()
         {
-            CardCrawlGame.sound.play("EVENT_VAMP_BITE", 0.05F);
+            CardCrawlGame.sound.play("EVENT_VAMP_BITE", 0.05f);
             GameEffects.List.Add(new BorderLongFlashEffect(Color.RED));
             AbstractDungeon.player.damage(new DamageInfo(null, HP_LOSS_TRADE));
             event.Medallions += 1;
@@ -157,7 +157,7 @@ public class TheAbandonedCabin extends EYBEvent
             }
             else
             {
-                CardCrawlGame.sound.play("EVENT_VAMP_BITE", 0.05F);
+                CardCrawlGame.sound.play("EVENT_VAMP_BITE", 0.05f);
                 player.damage(new DamageInfo(null, HP_LOSS_RUN));
                 ChangePhase(RanAwayDamaged.class);
             }

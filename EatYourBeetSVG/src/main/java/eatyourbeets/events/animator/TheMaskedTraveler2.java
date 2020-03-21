@@ -177,8 +177,8 @@ public class TheMaskedTraveler2 extends EYBEvent
             }
             else
             {
-                float START_X = 64.0F * Settings.scale;
-                float START_Y = (float) Settings.HEIGHT - 102.0F * Settings.scale;
+                float START_X = 64f * Settings.scale;
+                float START_Y = (float) Settings.HEIGHT - 102f * Settings.scale;
 
                 relic.playLandingSFX();
                 relic.isDone = true;

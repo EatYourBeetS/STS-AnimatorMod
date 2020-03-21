@@ -52,7 +52,7 @@ public class SynergyCardsReward extends AnimatorReward
 
         if (this.hb.hovered)
         {
-            TipHelper.renderGenericTip(360.0F * Settings.scale, (float) InputHelper.mY, synergy.Name, GR.Animator.Strings.Rewards.Description);
+            TipHelper.renderGenericTip(360f * Settings.scale, (float) InputHelper.mY, synergy.Name, GR.Animator.Strings.Rewards.Description);
         }
     }
 

@@ -31,7 +31,7 @@ public class AbstractCard_RenderEnergy
 
             if (AbstractDungeon.player != null && AbstractDungeon.player.hand.contains(card) && !PlayerStatistics.Void.CanUse(card))
             {
-                costColor = new Color(1.0F, 0.3F, 0.3F, 1.0F); //AbstractCard.ENERGY_COST_RESTRICTED_COLOR;
+                costColor = new Color(1f, 0.3f, 0.3f, 1f); //AbstractCard.ENERGY_COST_RESTRICTED_COLOR;
             }
 
             costColor.a = card.transparency;
@@ -39,7 +39,7 @@ public class AbstractCard_RenderEnergy
             FontHelper.cardEnergyFont_L.getData().setScale(card.drawScale);
             renderHelper(sb, Orb2A, card.current_x, card.current_y, card);
             FontHelper.renderRotatedText(sb, FontHelper.cardEnergyFont_L, card.getMasteryCostString(), card.current_x, card.current_y,
-                    138.0F * card.drawScale * Settings.scale, 190.0F * card.drawScale * Settings.scale,
+                    138f * card.drawScale * Settings.scale, 190f * card.drawScale * Settings.scale,
                     card.angle, false, costColor);
         }
     }
@@ -47,8 +47,8 @@ public class AbstractCard_RenderEnergy
     private static void renderHelper(SpriteBatch sb, TextureAtlas.AtlasRegion img, float drawX, float drawY, AbstractCard card)
     {
         sb.setColor(Color.WHITE);
-        sb.draw(img, drawX + img.offsetX - img.originalWidth / 2.0F, drawY + img.offsetY - img.originalHeight / 2.0F,
-                img.originalWidth / 2.0F - img.offsetX, img.originalHeight / 2.0F - img.offsetY,
+        sb.draw(img, drawX + img.offsetX - img.originalWidth / 2f, drawY + img.offsetY - img.originalHeight / 2f,
+                img.originalWidth / 2f - img.offsetX, img.originalHeight / 2f - img.offsetY,
                 img.packedWidth, img.packedHeight, card.drawScale * Settings.scale, card.drawScale * Settings.scale, card.angle);
     }
 }

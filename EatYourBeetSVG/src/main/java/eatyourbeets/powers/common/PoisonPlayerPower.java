@@ -41,7 +41,7 @@ public class PoisonPlayerPower extends AbstractPower implements HealthBarRenderP
 
     public void playApplyPowerSfx()
     {
-        CardCrawlGame.sound.play("POWER_POISON", 0.05F);
+        CardCrawlGame.sound.play("POWER_POISON", 0.05f);
     }
 
     public void updateDescription()

@@ -1,10 +1,10 @@
 package eatyourbeets.actions.monsters;
 
 import com.badlogic.gdx.math.Interpolation;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import eatyourbeets.actions.EYBAction;
 
-public class MoveMonsterAction extends AbstractGameAction
+public class MoveMonsterAction extends EYBAction
 {
     private float startX;
     private float startY;
@@ -13,22 +13,23 @@ public class MoveMonsterAction extends AbstractGameAction
 
     public MoveMonsterAction(AbstractCreature target, float targetX, float targetY, float duration)
     {
-        this.target = target;
+        super(ActionType.SPECIAL, duration);
+
         this.targetX = targetX;
         this.targetY = targetY;
         this.startX = target.drawX;
         this.startY = target.drawY;
-        this.startDuration = this.duration = duration;
+
+        Initialize(null, target, 1);
     }
 
-    public void update()
+    @Override
+    protected void UpdateInternal(float deltaTime)
     {
         target.drawX = Interpolation.linear.apply(startX, targetX, (startDuration - duration) / startDuration);
         target.drawY = Interpolation.linear.apply(startY, targetY, (startDuration - duration) / startDuration);
 
-        tickDuration();
-
-        if (this.isDone)
+        if (TickDuration(deltaTime))
         {
             target.drawX = targetX;
             target.drawY = targetY;

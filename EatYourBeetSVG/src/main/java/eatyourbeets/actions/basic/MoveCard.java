@@ -15,9 +15,9 @@ import eatyourbeets.utilities.*;
 
 public class MoveCard extends EYBActionWithCallback<AbstractCard>
 {
-    public static float DEFAULT_CARD_X_LEFT = (float) Settings.WIDTH * 0.35F;
-    public static float DEFAULT_CARD_X_RIGHT = (float) Settings.WIDTH * 0.65F;
-    public static float DEFAULT_CARD_Y = (float) Settings.HEIGHT * 0.5F;
+    public static float DEFAULT_CARD_X_LEFT = (float) Settings.WIDTH * 0.35f;
+    public static float DEFAULT_CARD_X_RIGHT = (float) Settings.WIDTH * 0.65f;
+    public static float DEFAULT_CARD_Y = (float) Settings.HEIGHT * 0.5f;
 
     protected CardGroup targetPile;
     protected CardGroup sourcePile;
@@ -144,16 +144,14 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
-        this.tickDuration();
-
         if (showEffect)
         {
             UpdateCard();
         }
 
-        if (this.isDone)
+        if (TickDuration(deltaTime))
         {
             Complete(card);
 

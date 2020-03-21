@@ -59,7 +59,7 @@ public class Kaijin extends AnimatorCard implements OnAddedToDeckSubscriber
                 final float x = Settings.WIDTH * 0.5f;
                 final float y = Settings.HEIGHT * 0.5f;
 
-                GameEffects.TopLevelList.ShowCardBriefly(card.makeStatEquivalentCopy(), x + AbstractCard.IMG_WIDTH * 0.5f + 20.0f * Settings.scale, y);
+                GameEffects.TopLevelList.ShowCardBriefly(card.makeStatEquivalentCopy(), x + AbstractCard.IMG_WIDTH * 0.5f + 20f * Settings.scale, y);
                 GameEffects.TopLevelList.Add(new UpgradeShineEffect(x, y));
             }
         });

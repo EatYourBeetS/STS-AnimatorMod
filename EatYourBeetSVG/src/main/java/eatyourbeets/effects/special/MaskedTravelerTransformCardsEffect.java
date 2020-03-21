@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class MaskedTravelerTransformCardsEffect extends EYBEffectWithCallback<Object>
 {
-    private static final float DUR = 1.5F;
+    private static final float DUR = 1.5f;
     private boolean openedPanel = false;
     private final Color screenColor;
     private final String purgeMessage;
@@ -28,8 +28,8 @@ public class MaskedTravelerTransformCardsEffect extends EYBEffectWithCallback<Ob
         this.purgeMessage = CardCrawlGame.languagePack.getRelicStrings(EmptyCage.ID).DESCRIPTIONS[1];
         this.cardsToRemove = transform;
         this.screenColor = AbstractDungeon.fadeColor.cpy();
-        this.duration = 1.5F;
-        this.screenColor.a = 0.0F;
+        this.duration = 1.5f;
+        this.screenColor.a = 0f;
         AbstractDungeon.overlayMenu.proceedButton.hide();
     }
 
@@ -41,7 +41,7 @@ public class MaskedTravelerTransformCardsEffect extends EYBEffectWithCallback<Ob
         }
         else if (cardsToRemove > 0 && AbstractDungeon.gridSelectScreen.selectedCards.size() == cardsToRemove)
         {
-            float displayCount = 0.0F;
+            float displayCount = 0f;
             for (AbstractCard card : AbstractDungeon.gridSelectScreen.selectedCards)
             {
                 AbstractDungeon.player.masterDeck.removeCard(card);
@@ -52,8 +52,8 @@ public class MaskedTravelerTransformCardsEffect extends EYBEffectWithCallback<Ob
                     reward = reward.makeCopy();
                     reward.upgrade();
 
-                    GameEffects.TopLevelQueue.Add(new ShowCardAndObtainEffect(reward, (float) Settings.WIDTH / 3.0F + displayCount, (float)Settings.HEIGHT / 2.0F, false));
-                    displayCount += (float)Settings.WIDTH / 6.0F;
+                    GameEffects.TopLevelQueue.Add(new ShowCardAndObtainEffect(reward, (float) Settings.WIDTH / 3f + displayCount, (float)Settings.HEIGHT / 2f, false));
+                    displayCount += (float)Settings.WIDTH / 6f;
                 }
             }
 
@@ -69,7 +69,7 @@ public class MaskedTravelerTransformCardsEffect extends EYBEffectWithCallback<Ob
     public void render(SpriteBatch sb)
     {
         sb.setColor(this.screenColor);
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0.0F, 0.0F, (float) Settings.WIDTH, (float) Settings.HEIGHT);
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0f, 0f, (float) Settings.WIDTH, (float) Settings.HEIGHT);
         if (AbstractDungeon.screen == CurrentScreen.GRID)
         {
             AbstractDungeon.gridSelectScreen.render(sb);

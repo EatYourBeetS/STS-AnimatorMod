@@ -40,8 +40,8 @@ public class ScarUpgradeAction extends EYBAction
 
                 toUpgrade.upgrade();
                 player.bottledCardUpgradeCheck(toUpgrade);
-                GameEffects.Queue.Add(new UpgradeShineEffect((float) Settings.WIDTH / 4.0F, (float) Settings.HEIGHT / 2.0F));
-                GameEffects.Queue.Add(new ShowCardBrieflyEffect(toUpgrade.makeStatEquivalentCopy(), (float) Settings.WIDTH / 4.0F, (float) Settings.HEIGHT / 2.0F));
+                GameEffects.Queue.Add(new UpgradeShineEffect((float) Settings.WIDTH / 4f, (float) Settings.HEIGHT / 2f));
+                GameEffects.Queue.Add(new ShowCardBrieflyEffect(toUpgrade.makeStatEquivalentCopy(), (float) Settings.WIDTH / 4f, (float) Settings.HEIGHT / 2f));
             }
         }
 

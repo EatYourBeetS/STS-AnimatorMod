@@ -91,7 +91,7 @@ public class Kira extends AnimatorCard
             GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
         }
 
-        GameActions.Bottom.VFX(new CollectorCurseEffect(m.hb.cX, m.hb.cY), 2.0F);
+        GameActions.Bottom.VFX(new CollectorCurseEffect(m.hb.cX, m.hb.cY), 2f);
 
         AbstractPower fading = m.getPower(FadingPower.POWER_ID);
         if (fading != null)

@@ -158,11 +158,11 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
         if (this.powerIcon != null)
         {
-            sb.draw(this.powerIcon, x - 12f, y - 16f, 16f, 16f, 32.0F, 32.0F, Settings.scale, Settings.scale, 0.0F);
+            sb.draw(this.powerIcon, x - 12f, y - 16f, 16f, 16f, 32f, 32f, Settings.scale, Settings.scale, 0f);
         }
         else
         {
-            sb.draw(this.img, x - 12.0F, y - 12.0F, 16.0F, 16.0F, 32.0F, 32.0F, Settings.scale * 1.5F, Settings.scale * 1.5F, 0.0F, 0, 0, 32, 32, false, false);
+            sb.draw(this.img, x - 12f, y - 12f, 16f, 16f, 32f, 32f, Settings.scale * 1.5f, Settings.scale * 1.5f, 0f, 0, 0, 32, 32, false, false);
         }
 
         for (AbstractGameEffect e : effects)
@@ -183,7 +183,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
         ColoredString amount2 = GetSecondaryAmount(c);
         if (amount2 != null)
         {
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, amount2.text, x, y + 15.0F * Settings.scale, 1, amount2.color);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, amount2.text, x, y + 15f * Settings.scale, 1, amount2.color);
         }
     }
 

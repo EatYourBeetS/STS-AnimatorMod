@@ -66,17 +66,15 @@ public class SupportDamageAction extends EYBAction
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
-        if (this.shouldCancelAction())
+        if (shouldCancelAction())
         {
             Complete();
             return;
         }
 
-        this.tickDuration();
-
-        if (this.isDone)
+        if (TickDuration(deltaTime))
         {
             if (this.attackEffect == AttackEffect.POISON)
             {

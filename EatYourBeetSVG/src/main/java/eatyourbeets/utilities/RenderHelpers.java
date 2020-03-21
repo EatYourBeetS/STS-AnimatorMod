@@ -147,8 +147,8 @@ public class RenderHelpers
     public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, TextureAtlas.AtlasRegion img, float drawX, float drawY)
     {
         sb.setColor(color);
-        sb.draw(img, drawX + img.offsetX - img.originalWidth / 2.0F, drawY + img.offsetY - img.originalHeight / 2.0F,
-                img.originalWidth / 2.0F - img.offsetX, img.originalHeight / 2.0F - img.offsetY,
+        sb.draw(img, drawX + img.offsetX - img.originalWidth / 2f, drawY + img.offsetY - img.originalHeight / 2f,
+                img.originalWidth / 2f - img.offsetX, img.originalHeight / 2f - img.offsetY,
                 img.packedWidth, img.packedHeight, card.drawScale * Settings.scale, card.drawScale * Settings.scale, card.angle);
     }
 
@@ -326,7 +326,7 @@ public class RenderHelpers
 
     private static BitmapFont GenerateFont(BitmapFont source, float size, float borderWidth, float shadowOffset)
     {
-        return GenerateFont(source, size, borderWidth, new Color(0F, 0F, 0F, 1F), shadowOffset, new Color(0.0F, 0.0F, 0.0F, 0.5F));
+        return GenerateFont(source, size, borderWidth, new Color(0f, 0f, 0f, 1f), shadowOffset, new Color(0f, 0f, 0f, 0.5f));
     }
 
     private static BitmapFont GenerateFont(BitmapFont source, float size, float borderWidth, Color borderColor, float shadowOffset, Color shadowColor)
@@ -339,8 +339,8 @@ public class RenderHelpers
         param.kerning = true;
         param.borderColor = borderColor;
         param.borderWidth = borderWidth * Settings.scale;
-        param.gamma = 0.9F;
-        param.borderGamma = 0.9F;
+        param.gamma = 0.9f;
+        param.borderGamma = 0.9f;
         param.shadowColor = shadowColor;
         param.shadowOffsetX = Math.round(shadowOffset * Settings.scale);
         param.shadowOffsetY = Math.round(shadowOffset * Settings.scale);

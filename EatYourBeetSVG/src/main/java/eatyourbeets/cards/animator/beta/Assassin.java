@@ -100,7 +100,7 @@ public class Assassin extends AnimatorCard
     private void DamageEffect(AbstractCreature e)
     {
         float x = e.hb.cX;
-        float y = e.hb.cY - 60.0F * Settings.scale;
+        float y = e.hb.cY - 60f * Settings.scale;
         float scale = 3;
         float dx;
         float dy;

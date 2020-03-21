@@ -41,13 +41,13 @@ public class Move_ShuffleDazed extends AbstractMove
         {
             if (!Settings.FAST_MODE)
             {
-                GameActions.Bottom.VFX(new ShockWaveEffect(owner.hb.cX, owner.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.5F);
-                GameActions.Bottom.Add(new FastShakeAction(AbstractDungeon.player, 0.6F, 0.2F));
+                GameActions.Bottom.VFX(new ShockWaveEffect(owner.hb.cX, owner.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.5f);
+                GameActions.Bottom.Add(new FastShakeAction(AbstractDungeon.player, 0.6f, 0.2f));
             }
             else
             {
-                GameActions.Bottom.VFX(new ShockWaveEffect(owner.hb.cX, owner.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.1F);
-                GameActions.Bottom.Add(new FastShakeAction(AbstractDungeon.player, 0.6F, 0.15F));
+                GameActions.Bottom.VFX(new ShockWaveEffect(owner.hb.cX, owner.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.1f);
+                GameActions.Bottom.Add(new FastShakeAction(AbstractDungeon.player, 0.6f, 0.15f));
             }
         }
 

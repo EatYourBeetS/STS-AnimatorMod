@@ -12,7 +12,7 @@ import eatyourbeets.powers.EYBPower;
 
 public class EYBGainPowerEffect extends AbstractGameEffect
 {
-    private static final float EFFECT_DUR = 2.0F;
+    private static final float EFFECT_DUR = 2f;
     private float scale;
     private Texture img;
     private AtlasRegion region48;
@@ -35,22 +35,22 @@ public class EYBGainPowerEffect extends AbstractGameEffect
             power.playApplyPowerSfx();
         }
 
-        this.duration = 2.0F;
-        this.startingDuration = 2.0F;
+        this.duration = 2f;
+        this.startingDuration = 2f;
         this.scale = Settings.scale;
-        this.color = new Color(1.0F, 1.0F, 1.0F, 0.5F);
+        this.color = new Color(1f, 1f, 1f, 0.5f);
     }
 
     public void update()
     {
         this.duration -= Gdx.graphics.getDeltaTime();
-        if (this.duration > 0.5F)
+        if (this.duration > 0.5f)
         {
-            this.scale = Interpolation.exp5Out.apply(3.0F * Settings.scale, Settings.scale, -(this.duration - 2.0F) / 1.5F);
+            this.scale = Interpolation.exp5Out.apply(3f * Settings.scale, Settings.scale, -(this.duration - 2f) / 1.5f);
         }
         else
         {
-            this.color.a = Interpolation.fade.apply(0.5F, 0.0F, 1.0F - this.duration);
+            this.color.a = Interpolation.fade.apply(0.5f, 0f, 1f - this.duration);
         }
 
     }
@@ -64,12 +64,12 @@ public class EYBGainPowerEffect extends AbstractGameEffect
             float half_w = region48.packedWidth / 2f;
             float half_h = region48.packedHeight / 2f;
 
-            //sb.draw(this.region48, x - 12f, y - 16f, 16f, 16f, 32.0F, 32.0F, scale, scale, 0.0F);
-            sb.draw(this.region48, x - half_w, y - half_h, half_w, half_h, region48.packedWidth , region48.packedHeight, scale * 0.1f, scale * 0.1f, 0.0F);
+            //sb.draw(this.region48, x - 12f, y - 16f, 16f, 16f, 32f, 32f, scale, scale, 0f);
+            sb.draw(this.region48, x - half_w, y - half_h, half_w, half_h, region48.packedWidth , region48.packedHeight, scale * 0.1f, scale * 0.1f, 0f);
         }
         else
         {
-            sb.draw(this.img, x - 16.0F, y - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, scale, scale, 0.0F, 0, 0, 32, 32, false, false);
+            sb.draw(this.img, x - 16f, y - 16f, 16f, 16f, 32f, 32f, scale, scale, 0f, 0, 0, 32, 32, false, false);
         }
 
         sb.setBlendFunction(770, 771);

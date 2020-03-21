@@ -34,7 +34,7 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
     public UnnamedRelicEquipEffect(int goldBonus)
     {
         this.goldBonus = goldBonus;
-        this.duration = 1.0F;
+        this.duration = 1f;
     }
 
     private void ReplaceCard(ArrayList<AbstractCard> replacement, String cardID)

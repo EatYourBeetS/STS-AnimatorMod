@@ -14,10 +14,10 @@ import eatyourbeets.utilities.GameEffects;
 
 public class TalkEffect extends EYBEffect
 {
-    private static final float SHADOW_OFFSET = 16.0F * Settings.scale;
-    private static final float WAVY_DISTANCE = 2.0F * Settings.scale;
-    private static final float ADJUST_X = 170.0F * Settings.scale;
-    private static final float ADJUST_Y = 116.0F * Settings.scale;
+    private static final float SHADOW_OFFSET = 16f * Settings.scale;
+    private static final float WAVY_DISTANCE = 2f * Settings.scale;
+    private static final float ADJUST_X = 170f * Settings.scale;
+    private static final float ADJUST_Y = 116f * Settings.scale;
 
     private DialogWord.AppearEffect appearEffect;
     private String message;
@@ -64,10 +64,10 @@ public class TalkEffect extends EYBEffect
         source_y = y + ADJUST_Y;
 
         isRealtime = true;
-        shadow_offset = 0.0F;
-        scaleTimer = 0.3F;
-        shadowColor = new Color(0.0F, 0.0F, 0.0F, 0.0F);
-        color = new Color(0.8F, 0.9F, 0.9F, 0.0F);
+        shadow_offset = 0f;
+        scaleTimer = 0.3f;
+        shadowColor = new Color(0f, 0f, 0f, 0f);
+        color = new Color(0.8f, 0.9f, 0.9f, 0f);
         facingRight = !isPlayer;
     }
 
@@ -90,45 +90,38 @@ public class TalkEffect extends EYBEffect
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
-        final float delta = GetDeltaTime();
+        super.UpdateInternal(deltaTime);
 
-        updateScale();
-        tickDuration();
+        scaleTimer -= deltaTime;
+        if (scaleTimer < 0f)
+        {
+            scaleTimer = 0f;
+        }
 
-        wavyHelper += delta * 4.0F;
-        shadow_offset = MathUtils.lerp(shadow_offset, SHADOW_OFFSET, delta * 4.0F);
+        scale = Interpolation.swingIn.apply(Settings.scale, Settings.scale / 2f, scaleTimer / 0.3f);
+        wavyHelper += deltaTime * 4f;
+        shadow_offset = MathUtils.lerp(shadow_offset, SHADOW_OFFSET, deltaTime * 4f);
         wavy_y = MathUtils.sin(wavyHelper) * WAVY_DISTANCE;
 
-        if (duration > 0.3F)
+        if (duration > 0.3f)
         {
-            color.a = MathUtils.lerp(color.a, 1.0F, delta * 12.0F);
+            color.a = MathUtils.lerp(color.a, 1f, deltaTime * 12f);
         }
         else
         {
-            color.a = MathUtils.lerp(color.a, 0.0F, delta * 12.0F);
+            color.a = MathUtils.lerp(color.a, 0f, deltaTime * 12f);
         }
     }
 
-    private void updateScale()
-    {
-        scaleTimer -= GetDeltaTime();
-
-        if (scaleTimer < 0.0F)
-        {
-            scaleTimer = 0.0F;
-        }
-
-        scale = Interpolation.swingIn.apply(Settings.scale, Settings.scale / 2.0F, scaleTimer / 0.3F);
-    }
-
+    @Override
     public void render(SpriteBatch sb)
     {
         final int size = 512;
         final int half = 256;
 
-        shadowColor.a = color.a / 4.0F;
+        shadowColor.a = color.a / 4f;
 
         sb.setColor(shadowColor);
         sb.draw(ImageMaster.SPEECH_BUBBLE_IMG, source_x - half + shadow_offset, source_y - half + wavy_y - shadow_offset, half, half,

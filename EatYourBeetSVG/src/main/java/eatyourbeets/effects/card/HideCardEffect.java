@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 public class HideCardEffect extends AbstractGameEffect
 {
     private final AbstractCard c;
-    private static final float DUR = 1.0F;
+    private static final float DUR = 1f;
 
     public HideCardEffect(AbstractCard c)
     {
-        this.duration = 1.0F;
+        this.duration = 1f;
         this.c = c;
     }
 

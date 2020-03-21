@@ -48,7 +48,7 @@ public class KrulTepes extends AnimatorCard
         if (m != null)
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-            .SetDamageEffect(e -> GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy())))
+            .SetDamageEffect(e -> GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40f * Settings.scale, Color.SCARLET.cpy())))
             .AddCallback(enemy ->
             {
                 AbstractRoom room = AbstractDungeon.getCurrRoom();

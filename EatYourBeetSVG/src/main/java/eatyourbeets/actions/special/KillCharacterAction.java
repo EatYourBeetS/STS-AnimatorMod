@@ -20,7 +20,7 @@ public class KillCharacterAction extends EYBAction
     protected void FirstUpdate()
     {
         GameActions.Bottom.Wait(0.8f);
-        GameActions.Bottom.VFX(new CollectorCurseEffect(target.hb.cX, target.hb.cY), 2.0F);
+        GameActions.Bottom.VFX(new CollectorCurseEffect(target.hb.cX, target.hb.cY), 2f);
 
         for (int i = 1; i <= 10; i ++)
         {

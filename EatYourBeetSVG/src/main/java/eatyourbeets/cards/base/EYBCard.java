@@ -114,8 +114,8 @@ public abstract class EYBCard extends EYBCardBase
     public EYBCard MakePopupCopy()
     {
         EYBCard copy = (EYBCard) makeStatEquivalentCopy();
-        copy.current_x = (float) Settings.WIDTH / 2.0F;
-        copy.current_y = (float) Settings.HEIGHT / 2.0F;
+        copy.current_x = (float) Settings.WIDTH / 2f;
+        copy.current_y = (float) Settings.HEIGHT / 2f;
         copy.drawScale = copy.targetDrawScale = 2f;
         copy.isPopup = true;
         return copy;

@@ -57,7 +57,7 @@ public class Ain extends AnimatorCard implements Spellcaster
             MonsterGroup monsters = AbstractDungeon.getMonsters();
             int frostCount = monsters.monsters.size() + magicNumber + 5;
 
-            CardCrawlGame.sound.playA("ORB_FROST_CHANNEL", -0.25F - (float)frostCount / 200.0F);
+            CardCrawlGame.sound.playA("ORB_FROST_CHANNEL", -0.25f - (float)frostCount / 200f);
             for (int i = 0; i < frostCount; i++)
             {
                 GameEffects.Queue.Add(new FallingIceEffect(frostCount, monsters.shouldFlipVfx()));

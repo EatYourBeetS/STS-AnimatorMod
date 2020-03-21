@@ -149,7 +149,7 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
         if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved)
         {
@@ -163,9 +163,7 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
             AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
         }
 
-        tickDuration();
-        
-        if (isDone)
+        if (TickDuration(deltaTime))
         {
             Complete(selectedCards);
         }

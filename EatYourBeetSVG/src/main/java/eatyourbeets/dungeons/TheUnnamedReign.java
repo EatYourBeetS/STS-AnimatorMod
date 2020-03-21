@@ -112,25 +112,25 @@ public class TheUnnamedReign extends AbstractDungeon
 
     protected void initializeLevelSpecificChances()
     {
-        shopRoomChance = 0.12F;
-        restRoomChance = 0.10F;
-        treasureRoomChance = 0.0F;
-        eventRoomChance = 0.15F;
-        eliteRoomChance = 0.12F;
+        shopRoomChance = 0.12f;
+        restRoomChance = 0.10f;
+        treasureRoomChance = 0f;
+        eventRoomChance = 0.15f;
+        eliteRoomChance = 0.12f;
         smallChestChance = 0;
         mediumChestChance = 0;
         largeChestChance = 100;
         commonRelicChance = 100;
         uncommonRelicChance = 0;
         rareRelicChance = 0;
-        colorlessRareChance = 0.3F;
+        colorlessRareChance = 0.3f;
         if (AbstractDungeon.ascensionLevel >= 12)
         {
-            cardUpgradedChance = 0.15F;
+            cardUpgradedChance = 0.15f;
         }
         else
         {
-            cardUpgradedChance = 0.3F;
+            cardUpgradedChance = 0.3f;
         }
     }
 

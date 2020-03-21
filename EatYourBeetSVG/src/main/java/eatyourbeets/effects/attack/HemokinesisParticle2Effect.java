@@ -52,11 +52,11 @@ public class HemokinesisParticle2Effect extends AbstractGameEffect
         this.rotateClockwise = MathUtils.randomBoolean();
         this.rotation = (float) MathUtils.random(0, 359);
         this.controlPoints.clear();
-        this.rotationRate = MathUtils.random(600.0F, 650.0F) * Settings.scale;
-        this.currentSpeed = 1000.0F * Settings.scale;
-        this.color = new Color(1.0F, 0.0F, 0.02F, 0.6F);
-        this.duration = 0.7F;
-        this.scale = 1.0F * Settings.scale;
+        this.rotationRate = MathUtils.random(600f, 650f) * Settings.scale;
+        this.currentSpeed = 1000f * Settings.scale;
+        this.color = new Color(1f, 0f, 0.02f, 0.6f);
+        this.duration = 0.7f;
+        this.scale = 1f * Settings.scale;
         this.renderBehind = MathUtils.randomBoolean();
     }
 
@@ -70,8 +70,8 @@ public class HemokinesisParticle2Effect extends AbstractGameEffect
         Vector2 tmp = new Vector2(this.pos.x - this.target.x, this.pos.y - this.target.y);
         tmp.nor();
         float targetAngle = tmp.angle();
-        this.rotationRate += Gdx.graphics.getDeltaTime() * 2000.0F;
-        this.scale += Gdx.graphics.getDeltaTime() * 1.0F * Settings.scale;
+        this.rotationRate += Gdx.graphics.getDeltaTime() * 2000f;
+        this.scale += Gdx.graphics.getDeltaTime() * 1f * Settings.scale;
         if (!this.stopRotating)
         {
             if (this.rotateClockwise)
@@ -81,13 +81,13 @@ public class HemokinesisParticle2Effect extends AbstractGameEffect
             else
             {
                 this.rotation -= Gdx.graphics.getDeltaTime() * this.rotationRate;
-                if (this.rotation < 0.0F)
+                if (this.rotation < 0f)
                 {
-                    this.rotation += 360.0F;
+                    this.rotation += 360f;
                 }
             }
 
-            this.rotation %= 360.0F;
+            this.rotation %= 360f;
             if (!this.stopRotating && Math.abs(this.rotation - targetAngle) < Gdx.graphics.getDeltaTime() * this.rotationRate)
             {
                 this.rotation = targetAngle;
@@ -101,11 +101,11 @@ public class HemokinesisParticle2Effect extends AbstractGameEffect
         this.pos.sub(tmp);
         if (this.stopRotating)
         {
-            this.currentSpeed += Gdx.graphics.getDeltaTime() * VELOCITY_RAMP_RATE * 3.0F;
+            this.currentSpeed += Gdx.graphics.getDeltaTime() * VELOCITY_RAMP_RATE * 3f;
         }
         else
         {
-            this.currentSpeed += Gdx.graphics.getDeltaTime() * VELOCITY_RAMP_RATE * 1.5F;
+            this.currentSpeed += Gdx.graphics.getDeltaTime() * VELOCITY_RAMP_RATE * 1.5f;
         }
 
         if (this.currentSpeed > MAX_VELOCITY)
@@ -127,7 +127,7 @@ public class HemokinesisParticle2Effect extends AbstractGameEffect
                 }
             }
 
-            //CardCrawlGame.sound.playAV("BLUNT_HEAVY", MathUtils.random(0.6F, 0.9F), 0.5F);
+            //CardCrawlGame.sound.playAV("BLUNT_HEAVY", MathUtils.random(0.6f, 0.9f), 0.5f);
             //CardCrawlGame.screenShake.shake(ShakeIntensity.MED, ShakeDur.SHORT, false);
             this.isDone = true;
         }
@@ -152,7 +152,7 @@ public class HemokinesisParticle2Effect extends AbstractGameEffect
             for (int i = 0; i < 60; ++i)
             {
                 this.points[i] = new Vector2();
-                this.crs.valueAt(this.points[i], (float) i / 59.0F);
+                this.crs.valueAt(this.points[i], (float) i / 59f);
             }
         }
 
@@ -162,7 +162,7 @@ public class HemokinesisParticle2Effect extends AbstractGameEffect
         }
 
         this.duration -= Gdx.graphics.getDeltaTime();
-        if (this.duration < 0.0F)
+        if (this.duration < 0f)
         {
             this.isDone = true;
         }
@@ -181,8 +181,8 @@ public class HemokinesisParticle2Effect extends AbstractGameEffect
             {
                 if (this.points[i] != null)
                 {
-                    sb.draw(this.img, this.points[i].x - (float) (this.img.packedWidth / 2), this.points[i].y - (float) (this.img.packedHeight / 2), (float) this.img.packedWidth / 2.0F, (float) this.img.packedHeight / 2.0F, (float) this.img.packedWidth, (float) this.img.packedHeight, scaleCpy * 1.5F, scaleCpy * 1.5F, this.rotation);
-                    scaleCpy *= 0.98F;
+                    sb.draw(this.img, this.points[i].x - (float) (this.img.packedWidth / 2), this.points[i].y - (float) (this.img.packedHeight / 2), (float) this.img.packedWidth / 2f, (float) this.img.packedHeight / 2f, (float) this.img.packedWidth, (float) this.img.packedHeight, scaleCpy * 1.5f, scaleCpy * 1.5f, this.rotation);
+                    scaleCpy *= 0.98f;
                 }
             }
 
@@ -194,8 +194,8 @@ public class HemokinesisParticle2Effect extends AbstractGameEffect
             {
                 if (this.points[i] != null)
                 {
-                    sb.draw(this.img, this.points[i].x - (float) (this.img.packedWidth / 2), this.points[i].y - (float) (this.img.packedHeight / 2), (float) this.img.packedWidth / 2.0F, (float) this.img.packedHeight / 2.0F, (float) this.img.packedWidth, (float) this.img.packedHeight, scaleCpy, scaleCpy, this.rotation);
-                    scaleCpy *= 0.98F;
+                    sb.draw(this.img, this.points[i].x - (float) (this.img.packedWidth / 2), this.points[i].y - (float) (this.img.packedHeight / 2), (float) this.img.packedWidth / 2f, (float) this.img.packedHeight / 2f, (float) this.img.packedWidth, (float) this.img.packedHeight, scaleCpy, scaleCpy, this.rotation);
+                    scaleCpy *= 0.98f;
                 }
             }
 
@@ -210,8 +210,8 @@ public class HemokinesisParticle2Effect extends AbstractGameEffect
 
     static
     {
-        MAX_VELOCITY = 4000.0F * Settings.scale;
-        VELOCITY_RAMP_RATE = 3000.0F * Settings.scale;
-        DST_THRESHOLD = 42.0F * Settings.scale;
+        MAX_VELOCITY = 4000f * Settings.scale;
+        VELOCITY_RAMP_RATE = 3000f * Settings.scale;
+        DST_THRESHOLD = 42f * Settings.scale;
     }
 }

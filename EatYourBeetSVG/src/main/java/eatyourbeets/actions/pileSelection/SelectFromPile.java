@@ -132,11 +132,11 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         {
             if (anyNumber)
             {
-                AbstractDungeon.gridSelectScreen.open(mergedGroup, this.amount, true, CreateMessage());
+                AbstractDungeon.gridSelectScreen.open(mergedGroup, amount, true, CreateMessage());
             }
             else
             {
-                AbstractDungeon.gridSelectScreen.open(mergedGroup, this.amount, CreateMessage(), false, false, false, false);
+                AbstractDungeon.gridSelectScreen.open(mergedGroup, amount, CreateMessage(), false, false, false, false);
             }
         }
     }
@@ -154,7 +154,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
         if (AbstractDungeon.gridSelectScreen.selectedCards.size() != 0)
         {
@@ -165,9 +165,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             GridCardSelectScreenPatch.Clear();
         }
 
-        tickDuration();
-
-        if (isDone)
+        if (TickDuration(deltaTime))
         {
             Complete(selectedCards);
         }

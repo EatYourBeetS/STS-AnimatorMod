@@ -139,12 +139,12 @@ public abstract class EYBAction extends AbstractGameAction
 
             if (!this.isDone)
             {
-                tickDuration();
+                TickDuration(GetDeltaTime());
             }
         }
         else
         {
-            UpdateInternal();
+            UpdateInternal(GetDeltaTime());
         }
     }
 
@@ -153,9 +153,12 @@ public abstract class EYBAction extends AbstractGameAction
 
     }
 
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
-        tickDuration();
+        if (TickDuration(deltaTime))
+        {
+            Complete();
+        }
     }
 
     protected void Complete()
@@ -163,22 +166,27 @@ public abstract class EYBAction extends AbstractGameAction
         this.isDone = true;
     }
 
-    protected void tickDuration()
+    protected float GetDeltaTime()
+    {
+        return isRealtime ? Gdx.graphics.getRawDeltaTime() : Gdx.graphics.getDeltaTime();
+    }
+
+    protected boolean TickDuration(float deltaTime)
     {
         this.ticks += 1;
+        this.duration -= deltaTime;
 
-        if (isRealtime)
-        {
-            this.duration -= Gdx.graphics.getRawDeltaTime();
-        }
-        else
-        {
-            this.duration -= Gdx.graphics.getDeltaTime();
-        }
-
-        if (this.duration < 0.0F && ticks >= 3) // ticks are necessary for SuperFastMode at 1000% speed
+        if (this.duration < 0f && ticks >= 3) // ticks are necessary for SuperFastMode at 1000% speed
         {
             this.isDone = true;
         }
+
+        return isDone;
+    }
+
+    @Override
+    protected final void tickDuration()
+    {
+        TickDuration(GetDeltaTime());
     }
 }

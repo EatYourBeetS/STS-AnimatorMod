@@ -38,7 +38,7 @@ public class Move_UltimateCrystalAttack extends AbstractMove
         {
             owner.useSlowAttackAnimation();
 
-            GameActions.Bottom.VFX(new ViceCrushEffect(target.hb.cX, target.hb.cY), 0.5F);
+            GameActions.Bottom.VFX(new ViceCrushEffect(target.hb.cX, target.hb.cY), 0.5f);
             GameActions.Bottom.Add(new DamageAction(target, this.damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
         }
 

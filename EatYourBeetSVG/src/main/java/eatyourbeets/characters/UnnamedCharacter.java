@@ -39,7 +39,7 @@ public class UnnamedCharacter extends CustomPlayer
         super(name, playerClass, UnnamedImages.ORB_TEXTURES, UnnamedImages.ORB_VFX_PNG, (String) null, null);
 
         initializeClass(null, UnnamedImages.SHOULDER2_PNG, UnnamedImages.SHOULDER1_PNG, UnnamedImages.CORPSE_PNG,
-                getLoadout(), 0.0F, -20.0F, 240.0F, 260.0F, new EnergyManager(3));
+                getLoadout(), 0f, -20f, 240f, 260f, new EnergyManager(3));
 
         reloadAnimation();
     }
@@ -52,10 +52,10 @@ public class UnnamedCharacter extends CustomPlayer
 
     public void reloadAnimation()
     {
-        this.loadAnimation(UnnamedImages.SKELETON_ATLAS, UnnamedImages.SKELETON_JSON, 1.0f);
+        this.loadAnimation(UnnamedImages.SKELETON_ATLAS, UnnamedImages.SKELETON_JSON, 1f);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
-        this.stateData.setMix("Hit", "Idle", 0.1F);
-        e.setTimeScale(0.9F);
+        this.stateData.setMix("Hit", "Idle", 0.1f);
+        e.setTimeScale(0.9f);
     }
 
     public void damage(DamageInfo info)
@@ -63,8 +63,8 @@ public class UnnamedCharacter extends CustomPlayer
         if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.output - this.currentBlock > 0)
         {
             AnimationState.TrackEntry e = this.state.setAnimation(0, "Hit", false);
-            this.state.addAnimation(0, "Idle", true, 0.0F);
-            e.setTimeScale(0.9F);
+            this.state.addAnimation(0, "Idle", true, 0f);
+            e.setTimeScale(0.9f);
         }
 
         super.damage(info);
@@ -135,7 +135,7 @@ public class UnnamedCharacter extends CustomPlayer
     @Override
     public void doCharSelectScreenSelectEffect()
     {
-        CardCrawlGame.sound.playA("ORB_DARK_CHANNEL", MathUtils.random(-0.1F, 0.2F));
+        CardCrawlGame.sound.playA("ORB_DARK_CHANNEL", MathUtils.random(-0.1f, 0.2f));
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
     }
 

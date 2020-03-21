@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -20,6 +21,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardFlashVfx;
 import eatyourbeets.actions.animator.CreateThrowingKnives;
@@ -211,6 +213,16 @@ public final class GameActions
     public CallbackAction Callback(Object state, ActionT2<Object, AbstractGameAction> onCompletion)
     {
         return Callback(new WaitAction(0.05f), state, onCompletion);
+    }
+
+    public ChangeStanceAction ChangeStance(AbstractStance stance)
+    {
+        return Add(new ChangeStanceAction(stance));
+    }
+
+    public ChangeStanceAction ChangeStance(String stanceName)
+    {
+        return Add(new ChangeStanceAction(stanceName));
     }
 
     public ChannelAction ChannelOrb(AbstractOrb orb, boolean autoEvoke)

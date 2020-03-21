@@ -147,7 +147,7 @@ public class TheMaskedTraveler1 extends EYBEvent
                 replacement.upgrade();
             }
 
-            GameEffects.List.Add(new ShowCardAndObtainEffect(replacement, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+            GameEffects.List.Add(new ShowCardAndObtainEffect(replacement, (float) Settings.WIDTH / 2f, (float) Settings.HEIGHT / 2f));
         }
     }
 

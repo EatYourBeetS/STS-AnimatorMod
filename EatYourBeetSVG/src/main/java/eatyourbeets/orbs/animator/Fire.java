@@ -39,7 +39,7 @@ public class Fire extends AnimatorOrb
         this.basePassiveAmount = this.passiveAmount = 2;
 
         this.updateDescription();
-        this.channelAnimTimer = 0.5F;
+        this.channelAnimTimer = 0.5f;
     }
 
     public void updateDescription()
@@ -62,7 +62,7 @@ public class Fire extends AnimatorOrb
 
     public void triggerEvokeAnimation()
     {
-        CardCrawlGame.sound.play("ATTACK_FIRE", 0.1F);
+        CardCrawlGame.sound.play("ATTACK_FIRE", 0.1f);
         GameEffects.Queue.Add(new DarkOrbActivateEffect(this.cX, this.cY));
     }
 
@@ -74,7 +74,7 @@ public class Fire extends AnimatorOrb
     public void updateAnimation()
     {
         super.updateAnimation();
-        this.angle += Gdx.graphics.getDeltaTime() * 18f; //180.0F;
+        this.angle += Gdx.graphics.getDeltaTime() * 18f; //180f;
     }
 
     public void render(SpriteBatch sb)
@@ -85,8 +85,8 @@ public class Fire extends AnimatorOrb
         float angleExt = this.angle / 28f;
         float angleInt = - (this.angle / 10f);
 
-        sb.draw(imgExt, this.cX - 48.0F, this.cY - 48.0F, 48.0F, 48.0F, 96.0F, 96.0F, this.scale + scaleExt, this.scale + scaleExt, angleExt, 0, 0, 96, 96, this.hFlip1, false);
-        sb.draw(imtInt, this.cX - 48.0F, this.cY - 48.0F, 48.0F, 48.0F, 96.0F, 96.0F, this.scale + scaleInt, this.scale + scaleInt, angleInt, 0, 0, 96, 96, this.hFlip1, false);
+        sb.draw(imgExt, this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt, this.scale + scaleExt, angleExt, 0, 0, 96, 96, this.hFlip1, false);
+        sb.draw(imtInt, this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleInt, this.scale + scaleInt, angleInt, 0, 0, 96, 96, this.hFlip1, false);
 
         this.renderText(sb);
         this.hb.render(sb);

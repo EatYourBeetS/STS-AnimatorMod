@@ -56,12 +56,12 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
             if (inTopPanel)
             {
                 FontHelper.renderFontRightTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(actualCounter),
-                _offsetX.Get(null) + this.currentX + 30.0F * Settings.scale, this.currentY - 7.0F * Settings.scale, Color.WHITE);
+                _offsetX.Get(null) + this.currentX + 30f * Settings.scale, this.currentY - 7f * Settings.scale, Color.WHITE);
             }
             else
             {
                 FontHelper.renderFontRightTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(actualCounter),
-                this.currentX + 30.0F * Settings.scale, this.currentY - 7.0F * Settings.scale, Color.WHITE);
+                this.currentX + 30f * Settings.scale, this.currentY - 7f * Settings.scale, Color.WHITE);
             }
         }
     }

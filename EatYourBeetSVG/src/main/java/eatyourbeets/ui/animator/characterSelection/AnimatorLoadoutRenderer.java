@@ -46,18 +46,18 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
     public AnimatorLoadoutRenderer()
     {
-        float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, charSelectStrings.LeftText, 9999.0F, 0.0F); // Ascension
-        float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, charSelectStrings.RightText, 9999.0F, 0.0F); // Level 22
+        float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, charSelectStrings.LeftText, 9999f, 0f); // Ascension
+        float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, charSelectStrings.RightText, 9999f, 0f); // Level 22
 
         float POS_X = 180f * Settings.scale;
-        float POS_Y = ((float) Settings.HEIGHT / 2.0F) + (20 * Settings.scale);
+        float POS_Y = ((float) Settings.HEIGHT / 2f) + (20 * Settings.scale);
 
         loadouts = new ArrayList<>();
         availableLoadouts = new ArrayList<>();
-        startingCardsLabelHb = new Hitbox(leftTextWidth, 50.0F * Settings.scale);
+        startingCardsLabelHb = new Hitbox(leftTextWidth, 50f * Settings.scale);
         startingCardsSelectedHb = new Hitbox(rightTextWidth, 50f * Settings.scale);
-        startingCardsLeftHb = new Hitbox(70.0F * Settings.scale, 50.0F * Settings.scale);
-        startingCardsRightHb = new Hitbox(70.0F * Settings.scale, 50.0F * Settings.scale);
+        startingCardsLeftHb = new Hitbox(70f * Settings.scale, 50f * Settings.scale);
+        startingCardsRightHb = new Hitbox(70f * Settings.scale, 50f * Settings.scale);
 
         startingCardsLabelHb.move(POS_X + (leftTextWidth / 2f), POS_Y);
         startingCardsLeftHb.move(startingCardsLabelHb.x + startingCardsLabelHb.width + (20 * Settings.scale), POS_Y - (10 * Settings.scale));
@@ -238,12 +238,12 @@ public class AnimatorLoadoutRenderer extends GUIElement
         FontHelper.renderFont(sb, FontHelper.cardTitleFont, loadout.Name, startingCardsSelectedHb.x, startingCardsSelectedHb.cY, Settings.CREAM_COLOR);//.BLUE_TEXT_COLOR);
 
         sb.setColor(startingCardsLeftHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
-        sb.draw(ImageMaster.CF_LEFT_ARROW, startingCardsLeftHb.cX - 24.0F, startingCardsLeftHb.cY - 24.0F, 24.0F, 24.0F,
-                48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+        sb.draw(ImageMaster.CF_LEFT_ARROW, startingCardsLeftHb.cX - 24f, startingCardsLeftHb.cY - 24f, 24f, 24f,
+                48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
 
         sb.setColor(startingCardsRightHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
-        sb.draw(ImageMaster.CF_RIGHT_ARROW, startingCardsRightHb.cX - 24.0F, startingCardsRightHb.cY - 24.0F, 24.0F, 24.0F,
-                48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+        sb.draw(ImageMaster.CF_RIGHT_ARROW, startingCardsRightHb.cX - 24f, startingCardsRightHb.cY - 24f, 24f, 24f,
+                48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
 
         RandomizeButton.TryRender(sb);
     }

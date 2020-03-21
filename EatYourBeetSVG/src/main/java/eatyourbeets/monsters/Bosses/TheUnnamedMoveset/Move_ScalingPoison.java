@@ -29,7 +29,7 @@ public class Move_ScalingPoison extends AbstractMove
         for (int i = 0; i < times; i++)
         {
             GameActions.Bottom.VFX(new PotionBounceEffect(target.hb.cX + MathUtils.random(-5, 5),
-                    target.hb.cY + MathUtils.random(-5, 5), target.hb.cX, target.hb.cY), 0.4F);
+                    target.hb.cY + MathUtils.random(-5, 5), target.hb.cX, target.hb.cY), 0.4f);
 
             GameActions.Bottom.ApplyPower(owner, target, new PoisonPower(target, owner, amount), amount);
             GameActions.Bottom.WaitRealtime(0.1f);

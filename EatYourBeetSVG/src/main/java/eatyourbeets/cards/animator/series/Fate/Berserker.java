@@ -32,7 +32,7 @@ public class Berserker extends AnimatorCard
     {
         if (m != null)
         {
-            GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F));
+            GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4f, m.hb.cY - m.hb.height / 4f));
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY)
             .AddCallback(m.currentBlock, (initialBlock, target) ->
             {

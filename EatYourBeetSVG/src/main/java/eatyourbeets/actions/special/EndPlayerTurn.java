@@ -22,7 +22,7 @@ public class EndPlayerTurn extends EYBAction
     {
         if (!AbstractDungeon.actionManager.turnHasEnded)
         {
-            CardCrawlGame.sound.play("POWER_TIME_WARP", 0.05F);
+            CardCrawlGame.sound.play("POWER_TIME_WARP", 0.05f);
             GameEffects.Queue.Add(new BorderFlashEffect(Color.GOLD, true));
             GameEffects.TopLevelQueue.Add(new TimeWarpTurnEndEffect());
 

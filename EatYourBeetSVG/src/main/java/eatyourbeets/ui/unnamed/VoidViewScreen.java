@@ -50,22 +50,22 @@ public class VoidViewScreen implements ScrollBarListener
         this.voidCopy = new CardGroup(CardGroupType.UNSPECIFIED);
         this.isHovered = false;
         this.grabbedScreen = false;
-        this.grabStartY = 0.0F;
-        this.currentDiffY = 0.0F;
+        this.grabStartY = 0f;
+        this.currentDiffY = 0f;
         this.scrollLowerBound = -Settings.DEFAULT_SCROLL_LIMIT;
         this.scrollUpperBound = Settings.DEFAULT_SCROLL_LIMIT;
         this.hoveredCard = null;
         this.prevDeckSize = 0;
         this.controllerCard = null;
         drawStartX = (float) Settings.WIDTH;
-        drawStartX -= 5.0F * AbstractCard.IMG_WIDTH * 0.75F;
-        drawStartX -= 4.0F * Settings.CARD_VIEW_PAD_X;
-        drawStartX /= 2.0F;
-        drawStartX += AbstractCard.IMG_WIDTH * 0.75F / 2.0F;
-        padX = AbstractCard.IMG_WIDTH * 0.75F + Settings.CARD_VIEW_PAD_X;
-        padY = AbstractCard.IMG_HEIGHT * 0.75F + Settings.CARD_VIEW_PAD_Y;
+        drawStartX -= 5f * AbstractCard.IMG_WIDTH * 0.75f;
+        drawStartX -= 4f * Settings.CARD_VIEW_PAD_X;
+        drawStartX /= 2f;
+        drawStartX += AbstractCard.IMG_WIDTH * 0.75f / 2f;
+        padX = AbstractCard.IMG_WIDTH * 0.75f + Settings.CARD_VIEW_PAD_X;
+        padY = AbstractCard.IMG_HEIGHT * 0.75f + Settings.CARD_VIEW_PAD_Y;
         this.scrollBar = new ScrollBar(this);
-        this.scrollBar.move(0.0F, -30.0F * Settings.scale);
+        this.scrollBar.move(0f, -30f * Settings.scale);
     }
 
     public void update()
@@ -88,11 +88,11 @@ public class VoidViewScreen implements ScrollBarListener
 
         if (Settings.isControllerMode && this.controllerCard != null && !CardCrawlGame.isPopupOpen && !AbstractDungeon.topPanel.selectPotionMode)
         {
-            if ((float) Gdx.input.getY() > (float) Settings.HEIGHT * 0.7F)
+            if ((float) Gdx.input.getY() > (float) Settings.HEIGHT * 0.7f)
             {
                 this.currentDiffY += Settings.SCROLL_SPEED;
             }
-            else if ((float) Gdx.input.getY() < (float) Settings.HEIGHT * 0.3F)
+            else if ((float) Gdx.input.getY() < (float) Settings.HEIGHT * 0.3f)
             {
                 this.currentDiffY -= Settings.SCROLL_SPEED;
             }
@@ -313,8 +313,8 @@ public class VoidViewScreen implements ScrollBarListener
         CardCrawlGame.sound.play("DECK_OPEN");
         AbstractDungeon.overlayMenu.showBlackScreen();
         AbstractDungeon.overlayMenu.cancelButton.show(TEXT[1]);
-        this.currentDiffY = 0.0F;
-        this.grabStartY = 0.0F;
+        this.currentDiffY = 0f;
+        this.grabStartY = 0f;
         this.grabbedScreen = false;
         AbstractDungeon.isScreenUp = true;
         AbstractDungeon.screen = CurrentScreen.NO_INTERACT;
@@ -323,9 +323,9 @@ public class VoidViewScreen implements ScrollBarListener
         for (AbstractCard c : PlayerStatistics.Void.group)
         {
             AbstractCard toAdd = c.makeStatEquivalentCopy();
-            toAdd.setAngle(0.0F, true);
-            toAdd.targetDrawScale = 0.75F;
-            toAdd.drawScale = 0.75F;
+            toAdd.setAngle(0f, true);
+            toAdd.targetDrawScale = 0.75f;
+            toAdd.drawScale = 0.75f;
             toAdd.lighten(true);
             this.voidCopy.addToBottom(toAdd);
         }
@@ -339,11 +339,11 @@ public class VoidViewScreen implements ScrollBarListener
         this.hideCards();
         if (this.voidCopy.group.size() <= 5)
         {
-            drawStartY = (float) Settings.HEIGHT * 0.5F;
+            drawStartY = (float) Settings.HEIGHT * 0.5f;
         }
         else
         {
-            drawStartY = (float) Settings.HEIGHT * 0.66F;
+            drawStartY = (float) Settings.HEIGHT * 0.66f;
         }
 
         this.calculateScrollBounds();
@@ -363,9 +363,9 @@ public class VoidViewScreen implements ScrollBarListener
             }
 
             cards.get(i).current_x = drawStartX + (float) mod * padX;
-            cards.get(i).current_y = drawStartY + this.currentDiffY - (float) lineNum * padY - MathUtils.random(100.0F * Settings.scale, 200.0F * Settings.scale);
-            cards.get(i).targetDrawScale = 0.75F;
-            cards.get(i).drawScale = 0.75F;
+            cards.get(i).current_y = drawStartY + this.currentDiffY - (float) lineNum * padY - MathUtils.random(100f * Settings.scale, 200f * Settings.scale);
+            cards.get(i).targetDrawScale = 0.75f;
+            cards.get(i).drawScale = 0.75f;
         }
 
     }
@@ -384,7 +384,7 @@ public class VoidViewScreen implements ScrollBarListener
             this.hoveredCard.renderCardTip(sb);
         }
 
-        FontHelper.renderDeckViewTip(sb, DESC, 96.0F * Settings.scale, Settings.CREAM_COLOR);
+        FontHelper.renderDeckViewTip(sb, DESC, 96f * Settings.scale, Settings.CREAM_COLOR);
         if (this.shouldShowScrollBar())
         {
             this.scrollBar.render(sb);
@@ -414,6 +414,6 @@ public class VoidViewScreen implements ScrollBarListener
         uiStrings = CardCrawlGame.languagePack.getUIString("ExhaustViewScreen");
         TEXT = uiStrings.TEXT;
         DESC = TEXT[0];
-        SCROLL_BAR_THRESHOLD = 500.0F * Settings.scale;
+        SCROLL_BAR_THRESHOLD = 500f * Settings.scale;
     }
 }

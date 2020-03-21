@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.core.Settings;
 
 public abstract class GUIElement
 {
-    public static final Color HOVER_BLEND_COLOR = new Color(1.0F, 1.0F, 1.0F, 0.3F);
-    public static final Color TEXT_DISABLED_COLOR = new Color(0.6F, 0.6F, 0.6F, 1.0F);
+    public static final Color HOVER_BLEND_COLOR = new Color(1f, 1f, 1f, 0.3f);
+    public static final Color TEXT_DISABLED_COLOR = new Color(0.6f, 0.6f, 0.6f, 1f);
 
     public boolean isActive = true;
 

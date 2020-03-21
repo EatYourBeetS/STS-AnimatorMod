@@ -22,14 +22,14 @@ public class AnimatorCardRewardInfo extends GUIElement
 
     public AnimatorCardRewardInfo()
     {
-        upgradeToggle = new GUI_Toggle(new Hitbox(Scale(256), Scale(48.0F)))
+        upgradeToggle = new GUI_Toggle(new Hitbox(Scale(256), Scale(48f)))
         .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
         .SetPosition(ScreenW(0.9f), ScreenH(0.65f))
         .SetFont(RenderHelpers.CardDescriptionFont_Large, 0.5f)
         .SetText(SingleCardViewPopup.TEXT[6])
         .SetOnToggle(this::ToggleViewUpgrades);
 
-        zoomToggle = new GUI_Toggle(new Hitbox(Scale(256), Scale(48.0F)))
+        zoomToggle = new GUI_Toggle(new Hitbox(Scale(256), Scale(48f)))
         .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
         .SetPosition(ScreenW(0.9f), ScreenH(0.65f) - (upgradeToggle.hb.height * 1.05f))
         .SetText(GR.Animator.Strings.Misc.DynamicPortraits)

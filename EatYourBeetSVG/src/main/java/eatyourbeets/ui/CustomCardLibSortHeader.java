@@ -40,8 +40,8 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     {
         if (override == null)
         {
-            final float START_X = 430.0F * Settings.scale;
-            final float SPACE_X = (226.0F * Settings.scale);
+            final float START_X = 430f * Settings.scale;
+            final float SPACE_X = (226f * Settings.scale);
             final float xPosition = START_X + (SPACE_X * buttons.length);
 
             override = new SortHeaderButton[buttons.length + 1];
@@ -59,7 +59,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
                 nameButton = buttons[3];
             }
 
-            seriesButton = new SortHeaderButton(Synergies.GetLocalizedSeriesString(), xPosition, 0.0F, this);
+            seriesButton = new SortHeaderButton(Synergies.GetLocalizedSeriesString(), xPosition, 0f, this);
 
             float offsetX = -(Settings.scale * 30f);
 

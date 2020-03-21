@@ -468,7 +468,7 @@
 		},
 		"animator:ShinjiMatou":
 		{
-			"DESCRIPTION": "Apply !M! Poison, and !S! ** additional Poison for ** each card type in hand. || <slm>. On Synergy: ** Add a {Command Spell} to ** your hand and Retain it.",
+			"DESCRIPTION": "Apply !M! Poison, and ** !S! additional Poison for ** each card type in hand. || <slm>. On Synergy: ** Add a {Command Spell} to ** your hand and Retain it.",
 			"NAME": "Shinji Matou"
 		}
 	},
@@ -859,7 +859,7 @@
 		},
 		"animator:DolaSchwi":
 		{
-			"DESCRIPTION": "Apply !M! Lock-On. ** Channel 1 Lightning. || Cooldown !S! : Deal !D! {~Ranged} damage.",
+			"DESCRIPTION": "Apply !M! Lock-On. ** Channel 1 Lightning. || Cooldown !S! : Deal ** !D! {~Ranged} damage.",
 			"NAME": "Schwi"
 		},
 		"animator:DolaStephanie":

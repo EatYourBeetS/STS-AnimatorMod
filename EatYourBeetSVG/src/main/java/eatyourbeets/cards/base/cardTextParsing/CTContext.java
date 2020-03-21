@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -38,7 +39,7 @@ public class CTContext
 
     public void Initialize(EYBCard card, String text)
     {
-        this.font = RenderHelpers.CardDescriptionFont_Normal;
+        this.font = EYBFontHelper.CardDescriptionFont_Normal;
         this.card = card;
         this.text = text;
         this.lines.clear();

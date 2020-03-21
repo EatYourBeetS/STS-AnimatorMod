@@ -16,6 +16,7 @@ import eatyourbeets.cards.base.cardTextParsing.CTContext;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class EYBCardText
@@ -190,7 +191,7 @@ public class EYBCardText
     {
         final float offset_x = -AbstractCard.RAW_W * 0.46f;
         final float offset_y = AbstractCard.RAW_H * 0.28f;
-        final BitmapFont font = RenderHelpers.CardIconFont_Large;
+        final BitmapFont font = EYBFontHelper.CardIconFont_Large;
 
         RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y), 38, 38);
 
@@ -209,7 +210,7 @@ public class EYBCardText
 
         if (text != null)
         {
-            final BitmapFont font = RenderHelpers.CardIconFont_Large;
+            final BitmapFont font = EYBFontHelper.CardIconFont_Large;
 
             offset = new Vector2(0.5f, 0.425f + offset_y);
             font.getData().setScale(0.5f * card.drawScale);

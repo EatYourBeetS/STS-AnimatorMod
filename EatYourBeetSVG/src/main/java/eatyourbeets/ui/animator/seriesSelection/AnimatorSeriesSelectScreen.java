@@ -17,9 +17,9 @@ import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.AbstractScreen;
 import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.controls.*;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.utilities.RenderHelpers;
 
 public class AnimatorSeriesSelectScreen extends AbstractScreen
 {
@@ -91,7 +91,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
         startingDeck = new GUI_Label(null, new AdvancedHitbox(ScreenW(0.18f), ScreenH(0.05f))
         .SetPosition(ScreenW(0.08f), ScreenH(0.97f)))
-        .SetFont(RenderHelpers.CardDescriptionFont_Normal, 0.9f)
+        .SetFont(EYBFontHelper.CardDescriptionFont_Normal, 0.9f)
         .SetColor(Settings.CREAM_COLOR);
 
         confirm = CreateHexagonalButton(xPos, getY.Invoke(8f), buttonWidth, buttonHeight*1.1f)

@@ -12,9 +12,9 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.ArrayList;
 
@@ -140,7 +140,7 @@ public class EYBCardTooltip
 
     public float Render(SpriteBatch sb, float x, float y)
     {
-        float h = -FontHelper.getSmartHeight(RenderHelpers.CardTooltipFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING) - 7f * Settings.scale;
+        float h = -FontHelper.getSmartHeight(EYBFontHelper.CardTooltipFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING) - 7f * Settings.scale;
 
         sb.setColor(Settings.TOP_PANEL_SHADOW_COLOR);
         sb.draw(ImageMaster.KEYWORD_TOP, x + SHADOW_DIST_X, y - SHADOW_DIST_Y, BOX_W, BOX_EDGE_H);
@@ -169,7 +169,7 @@ public class EYBCardTooltip
 //            FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
 //        }
 
-        FontHelper.renderSmartText(sb, RenderHelpers.CardTooltipFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
+        FontHelper.renderSmartText(sb, EYBFontHelper.CardTooltipFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
 
         return h;
     }

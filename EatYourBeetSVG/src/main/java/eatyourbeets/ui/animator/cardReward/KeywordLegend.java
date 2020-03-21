@@ -9,6 +9,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.controls.GUI_TextBox;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class KeywordLegend extends GUIElement
@@ -22,7 +23,7 @@ public class KeywordLegend extends GUIElement
         textBox = new GUI_TextBox(GR.Common.Images.Panel.Texture(), new Hitbox(0, 0, Scale(148), Scale(36)))
         .SetAlignment(0.5f, 0.31f) // 0.1f
         .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
-        .SetFont(RenderHelpers.CardDescriptionFont_Normal, 1)
+        .SetFont(EYBFontHelper.CardDescriptionFont_Normal, 1)
         .SetText(tooltip.title);
     }
 

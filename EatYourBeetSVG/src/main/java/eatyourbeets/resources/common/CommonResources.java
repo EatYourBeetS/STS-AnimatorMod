@@ -23,6 +23,7 @@ import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.GR;
 import eatyourbeets.stances.EYBStance;
+import eatyourbeets.utilities.EYBFontHelper;
 
 import java.lang.reflect.Field;
 
@@ -88,7 +89,6 @@ public class CommonResources extends AbstractResources
     protected void PostInitialize()
     {
         CommandsManager.RegisterCommands();
-        EYBStance.Initialize();
         GR.Tooltips.InitializeIcons();
         GR.UI.Initialize();
         GR.IsLoaded = true;
@@ -100,6 +100,9 @@ public class CommonResources extends AbstractResources
         LoadCustomStrings(PowerStrings.class);
         LoadCustomStrings(StanceStrings.class);
         LoadCustomStrings(UIStrings.class);
+
+        EYBStance.Initialize();
+        EYBFontHelper.Initialize();
     }
 
     @Override

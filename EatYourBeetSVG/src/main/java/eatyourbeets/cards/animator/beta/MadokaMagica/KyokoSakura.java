@@ -46,7 +46,6 @@ public class KyokoSakura extends AnimatorCard
                         {
                             GameActions.Bottom.ChannelOrb(new Fire(), true);
                         }
-                        return;
                     }
                 }
             }

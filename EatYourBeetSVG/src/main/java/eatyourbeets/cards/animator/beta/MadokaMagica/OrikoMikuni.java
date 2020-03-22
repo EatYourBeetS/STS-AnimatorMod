@@ -15,19 +15,20 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.powers.common.TemporaryRetainPower;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class OrikoMikuni extends AnimatorCard implements OnApplyPowerSubscriber
 {
     public static final EYBCardData DATA = Register(OrikoMikuni.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
-    private static boolean IntGainedThisTurn;
+    private boolean IntGainedThisTurn;
 
     public OrikoMikuni()
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -40,10 +41,10 @@ public class OrikoMikuni extends AnimatorCard implements OnApplyPowerSubscriber
 
         if (!p.hand.isEmpty())
         {
-            GameActions.Bottom.StackPower(new TemporaryRetainPower(p, 1));
+            GameActions.Bottom.StackPower(new TemporaryRetainPower(p, secondaryValue));
         }
 
-        if (HasSynergy() && IntGainedThisTurn)
+        if (HasSynergy() && IntGainedThisTurn && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.Draw(1);
         }

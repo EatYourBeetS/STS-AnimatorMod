@@ -20,8 +20,8 @@ public class SuzuneAmano extends AnimatorCard implements Spellcaster
     {
         super(DATA);
 
-        Initialize(8, 0, 3, 2);
-        SetUpgrade(0,0,0,1);
+        Initialize(8, 0, 3, 3);
+        SetUpgrade(0,0,0,0);
 
         SetSynergy(Synergies.MadokaMagica);
     }

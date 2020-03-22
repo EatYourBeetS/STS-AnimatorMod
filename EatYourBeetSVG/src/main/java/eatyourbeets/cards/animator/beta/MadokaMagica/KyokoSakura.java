@@ -51,15 +51,14 @@ public class KyokoSakura extends AnimatorCard
                 }
             }
 
-            AddToTopOfDrawPile(magicNumber, player.hand);
+            AddToTopOfDrawPile(magicNumber);
         });
     }
 
-    private void AddToTopOfDrawPile(int amount, CardGroup source)
+    private void AddToTopOfDrawPile(int amount)
     {
-        GameActions.Top.SelectFromPile(name, amount,source)
+        GameActions.Top.SelectFromHand(name, amount, false)
         .SetMessage(GR.Common.Strings.GridSelection.MoveToDrawPile(1))
-        .SetOptions(false, true)
         .AddCallback(chosenCards ->
         {
             for (AbstractCard chosenCard : chosenCards)

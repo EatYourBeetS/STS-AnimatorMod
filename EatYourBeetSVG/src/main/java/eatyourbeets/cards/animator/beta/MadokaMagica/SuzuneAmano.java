@@ -3,11 +3,13 @@ package eatyourbeets.cards.animator.beta.MadokaMagica;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
+import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
 public class SuzuneAmano extends AnimatorCard implements Spellcaster
@@ -18,9 +20,16 @@ public class SuzuneAmano extends AnimatorCard implements Spellcaster
     {
         super(DATA);
 
-        Initialize(8, 0, 3);
+        Initialize(8, 0, 3, 2);
+        SetUpgrade(0,0,0,1);
 
         SetSynergy(Synergies.MadokaMagica);
+    }
+
+    @Override
+    protected float GetInitialDamage()
+    {
+        return baseDamage + (GetFireOrbCount() * secondaryValue);
     }
 
     @Override
@@ -37,5 +46,20 @@ public class SuzuneAmano extends AnimatorCard implements Spellcaster
                 GameActions.Bottom.ApplyBurning(player, (AbstractMonster) enemy, magicNumber);
             }
         });
+    }
+
+    private int GetFireOrbCount()
+    {
+        int numFire = 0;
+
+        for (AbstractOrb orb : player.orbs)
+        {
+            if (orb != null && Fire.ORB_ID.equals(orb.ID))
+            {
+                numFire++;
+            }
+        }
+
+        return numFire;
     }
 }

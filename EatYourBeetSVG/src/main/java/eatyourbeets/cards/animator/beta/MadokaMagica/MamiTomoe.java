@@ -56,7 +56,7 @@ public class MamiTomoe extends AnimatorCard
         }
 
         GameActions.Bottom.SFX("ATTACK_HEAVY");
-        GameActions.Bottom.VFX(new MindblastEffect(player.dialogX, player.dialogY, player.flipHorizontal), 0.1f);
+        GameActions.Bottom.VFX(new MindblastEffect(player.dialogX, player.dialogY, player.flipHorizontal), 0.05f * magicNumber);
 
         for (int i = 0; i < magicNumber; i++)
         {

@@ -78,11 +78,9 @@ public class AnimatorSeriesSelectEffect extends EYBEffect
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
-        tickDuration();
-
-        if (isDone)
+        if (TickDuration(deltaTime))
         {
             if (toAdd.size() > 0)
             {

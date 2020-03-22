@@ -157,7 +157,7 @@ public class GUI_Toggle extends GUIElement
 
         if (hb.justHovered)
         {
-            CardCrawlGame.sound.playA("UI_HOVER", -0.3F);
+            CardCrawlGame.sound.playA("UI_HOVER", -0.3f);
         }
 
         if (hb.hovered && InputHelper.justClickedLeft)
@@ -178,7 +178,7 @@ public class GUI_Toggle extends GUIElement
         if (interactable && (hb.clicked || controllerPressed))
         {
             hb.clicked = false;
-            CardCrawlGame.sound.playA("UI_CLICK_1", -0.2F);
+            CardCrawlGame.sound.playA("UI_CLICK_1", -0.2f);
 
             Toggle();
         }
@@ -231,7 +231,7 @@ public class GUI_Toggle extends GUIElement
 
 //            sb.setColor(fontColor);
 //            sb.draw(image, hb.x + (tickSize / 6f) * Settings.scale, hb.cY - tickSize / 2f, tickSize / 2f, tickSize / 2f, tickSize, tickSize,
-//                    Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+//                    Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
         }
 
         hb.render(sb);

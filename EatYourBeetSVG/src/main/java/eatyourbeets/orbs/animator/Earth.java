@@ -53,7 +53,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         this.evokeAmount = this.baseEvokeAmount;
         this.basePassiveAmount = 2;
         this.passiveAmount = this.basePassiveAmount;
-        this.channelAnimTimer = 0.5F;
+        this.channelAnimTimer = 0.5f;
         this.turns = 3;
         this.updateDescription();
     }
@@ -115,8 +115,8 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void triggerEvokeAnimation()
     {
-        //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.1F);
-        //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1F);
+        //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.1f);
+        //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1f);
         GameEffects.Queue.Add(new DarkOrbActivateEffect(this.cX, this.cY));
     }
 
@@ -138,15 +138,15 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     public void updateAnimation()
     {
         super.updateAnimation();
-        this.angle += Gdx.graphics.getDeltaTime() * 18f; //180.0F;
+        this.angle += Gdx.graphics.getDeltaTime() * 18f; //180f;
     }
 
     public void render(SpriteBatch sb)
     {
         sb.setColor(this.c);
-        sb.draw(imgLeft, this.cX - 48.0F + this.bobEffect.y / 4.0F, this.cY - 48.0F - this.bobEffect.y / 4.0F, 48.0F, 48.0F, 96.0F, 96.0F, this.scale, this.scale, 0.0F, 0, 0, 96, 96, this.hFlip1, false);
-        sb.draw(imgMid, this.cX - 48.0F - this.bobEffect.y / 4.0F, this.cY - 48.0F + this.bobEffect.y / 2.0F, 48.0F, 48.0F, 96.0F, 96.0F, this.scale, this.scale, 0.0F, 0, 0, 96, 96, this.hFlip2, false);
-        sb.draw(imgRight, this.cX - 48.0F + this.bobEffect.y / 4.0F, this.cY - 48.0F + this.bobEffect.y / 4.0F, 48.0F, 48.0F, 96.0F, 96.0F, this.scale, this.scale, 0.0F, 0, 0, 96, 96, this.hFlip1, false);
+        sb.draw(imgLeft, this.cX - 48f + this.bobEffect.y / 4f, this.cY - 48f - this.bobEffect.y / 4f, 48f, 48f, 96f, 96f, this.scale, this.scale, 0f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.draw(imgMid, this.cX - 48f - this.bobEffect.y / 4f, this.cY - 48f + this.bobEffect.y / 2f, 48f, 48f, 96f, 96f, this.scale, this.scale, 0f, 0, 0, 96, 96, this.hFlip2, false);
+        sb.draw(imgRight, this.cX - 48f + this.bobEffect.y / 4f, this.cY - 48f + this.bobEffect.y / 4f, 48f, 48f, 96f, 96f, this.scale, this.scale, 0f, 0, 0, 96, 96, this.hFlip1, false);
         this.renderText(sb);
         this.hb.render(sb);
     }
@@ -154,9 +154,9 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     protected void renderText(SpriteBatch sb)
     {
-        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
-        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, new Color(0.8F, 0.7F, 0.2F, this.c.a), this.fontScale);
-        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.turns), this.cX - NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
+        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET - 4f * Settings.scale, new Color(0.2f, 1f, 1f, this.c.a), this.fontScale);
+        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET + 20f * Settings.scale, new Color(0.8f, 0.7f, 0.2f, this.c.a), this.fontScale);
+        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.turns), this.cX - NUM_X_OFFSET, this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET + 20f * Settings.scale, this.c, this.fontScale);
     }
 
     public void playChannelSFX()

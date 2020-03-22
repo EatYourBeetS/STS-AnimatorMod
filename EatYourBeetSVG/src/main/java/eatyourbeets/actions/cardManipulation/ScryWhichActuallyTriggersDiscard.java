@@ -38,16 +38,16 @@ public class ScryWhichActuallyTriggersDiscard extends EYBActionWithCallback<Arra
 
         if (player.drawPile.isEmpty())
         {
-            this.isDone = true;
+            Complete();
             return;
         }
 
-        CardGroup tmpGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        if (this.amount != -1)
+        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        if (amount != -1)
         {
-            for (int i = 0; i < Math.min(this.amount, player.drawPile.size()); ++i)
+            for (int i = 0; i < Math.min(amount, player.drawPile.size()); ++i)
             {
-                tmpGroup.addToTop(player.drawPile.group.get(player.drawPile.size() - i - 1));
+                group.addToTop(player.drawPile.group.get(player.drawPile.size() - i - 1));
             }
         }
         else
@@ -55,15 +55,15 @@ public class ScryWhichActuallyTriggersDiscard extends EYBActionWithCallback<Arra
 
             for (AbstractCard c : player.drawPile.group)
             {
-                tmpGroup.addToBottom(c);
+                group.addToBottom(c);
             }
         }
 
-        AbstractDungeon.gridSelectScreen.open(tmpGroup, this.amount, true, ScryAction.TEXT[0]);
+        AbstractDungeon.gridSelectScreen.open(group, amount, true, ScryAction.TEXT[0]);
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
         if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty())
         {
@@ -83,9 +83,7 @@ public class ScryWhichActuallyTriggersDiscard extends EYBActionWithCallback<Arra
             c.triggerOnScry();
         }
 
-        tickDuration();
-
-        if (isDone)
+        if (TickDuration(deltaTime))
         {
             Complete(selectedCards);
         }

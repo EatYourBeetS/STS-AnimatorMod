@@ -51,7 +51,7 @@ public class AntiArtifactSlowPower extends AbstractPower implements CloneablePow
 
     public float atDamageReceive(float damage, DamageInfo.DamageType type)
     {
-        return type == DamageInfo.DamageType.NORMAL ? damage * (1.0F + (float) this.amount * 0.1F) : damage;
+        return type == DamageInfo.DamageType.NORMAL ? damage * (1f + (float) this.amount * 0.1f) : damage;
     }
 
     static

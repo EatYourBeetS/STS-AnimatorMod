@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.Keyword;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.localization.StanceStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.EYBCardTooltip;
@@ -21,6 +22,8 @@ import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.GR;
+import eatyourbeets.stances.EYBStance;
+import eatyourbeets.utilities.EYBFontHelper;
 
 import java.lang.reflect.Field;
 
@@ -95,7 +98,11 @@ public class CommonResources extends AbstractResources
     protected void InitializeStrings()
     {
         LoadCustomStrings(PowerStrings.class);
+        LoadCustomStrings(StanceStrings.class);
         LoadCustomStrings(UIStrings.class);
+
+        EYBStance.Initialize();
+        EYBFontHelper.Initialize();
     }
 
     @Override

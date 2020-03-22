@@ -65,8 +65,8 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
                 }
             }
 
-            final float pos_x = (float) Settings.WIDTH / 4.0F;
-            final float pos_y = (float) Settings.HEIGHT / 2.0F;
+            final float pos_x = (float) Settings.WIDTH / 4f;
+            final float pos_y = (float) Settings.HEIGHT / 2f;
 
             upgrade();
 
@@ -89,12 +89,12 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
             GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.GOLD));
             GameActions.Bottom.SFX("ORB_DARK_EVOKE", 0.1f);
             GameActions.Bottom.SFX("ATTACK_WHIRLWIND");
-            GameActions.Bottom.VFX(new WhirlwindEffect(), 0.0F);
+            GameActions.Bottom.VFX(new WhirlwindEffect(), 0f);
 
             for (int i = 0; i < this.magicNumber; i++)
             {
                 GameActions.Bottom.SFX("ATTACK_HEAVY");
-                GameActions.Bottom.VFX(new IronWaveEffect(p.hb.cX, p.hb.cY, m.hb.cX), 0.1F);
+                GameActions.Bottom.VFX(new IronWaveEffect(p.hb.cX, p.hb.cY, m.hb.cX), 0.1f);
                 GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
                 GameActions.Bottom.VFX(new CleaveEffect());
             }

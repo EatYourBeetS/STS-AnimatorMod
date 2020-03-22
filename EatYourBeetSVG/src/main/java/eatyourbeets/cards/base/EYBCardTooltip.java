@@ -12,9 +12,9 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.ArrayList;
 
@@ -30,20 +30,20 @@ public class EYBCardTooltip
     private final static FieldInfo<Boolean> _renderedTipsThisFrame = JavaUtilities.GetField("renderedTipThisFrame", TipHelper.class);
 
     private static final ArrayList<EYBCardTooltip> tooltips = new ArrayList<>();
-    private static final float CARD_TIP_PAD = 12.0F * Settings.scale;
-    private static final float BOX_EDGE_H = 32.0F * Settings.scale;
-    private static final Color BASE_COLOR = new Color(1.0F, 0.9725F, 0.8745F, 1.0F);
-    private static final float SHADOW_DIST_Y = 14.0F * Settings.scale;
-    private static final float SHADOW_DIST_X = 9.0F * Settings.scale;
-    private static final float BOX_BODY_H = 64.0F * Settings.scale;
-    private static final float TEXT_OFFSET_X = 22.0F * Settings.scale;
-    private static final float HEADER_OFFSET_Y = 12.0F * Settings.scale;
-    private static final float ORB_OFFSET_Y = -8.0F * Settings.scale;
-    private static final float BODY_OFFSET_Y = -20.0F * Settings.scale;
-    private static final float BOX_W = 360.0F * Settings.scale;
-    private static final float BODY_TEXT_WIDTH = 320.0F * Settings.scale;
-    private static final float TIP_DESC_LINE_SPACING = 26.0F * Settings.scale;
-    private static final float POWER_ICON_OFFSET_X = 40.0F * Settings.scale;
+    private static final float CARD_TIP_PAD = 12f * Settings.scale;
+    private static final float BOX_EDGE_H = 32f * Settings.scale;
+    private static final Color BASE_COLOR = new Color(1f, 0.9725f, 0.8745f, 1f);
+    private static final float SHADOW_DIST_Y = 14f * Settings.scale;
+    private static final float SHADOW_DIST_X = 9f * Settings.scale;
+    private static final float BOX_BODY_H = 64f * Settings.scale;
+    private static final float TEXT_OFFSET_X = 22f * Settings.scale;
+    private static final float HEADER_OFFSET_Y = 12f * Settings.scale;
+    private static final float ORB_OFFSET_Y = -8f * Settings.scale;
+    private static final float BODY_OFFSET_Y = -20f * Settings.scale;
+    private static final float BOX_W = 360f * Settings.scale;
+    private static final float BODY_TEXT_WIDTH = 320f * Settings.scale;
+    private static final float TIP_DESC_LINE_SPACING = 26f * Settings.scale;
+    private static final float POWER_ICON_OFFSET_X = 40f * Settings.scale;
     private static EYBCard card;
 
     public TextureAtlas.AtlasRegion icon;
@@ -104,11 +104,11 @@ public class EYBCardTooltip
             x = card.current_x;
             if (card.current_x < (float) Settings.WIDTH * 0.7f)
             {
-                x += AbstractCard.IMG_WIDTH / 2.0f + CARD_TIP_PAD;
+                x += AbstractCard.IMG_WIDTH / 2f + CARD_TIP_PAD;
             }
             else
             {
-                x -= AbstractCard.IMG_WIDTH / 2.0f + CARD_TIP_PAD + BOX_W;
+                x -= AbstractCard.IMG_WIDTH / 2f + CARD_TIP_PAD + BOX_W;
             }
 
             y = card.current_y - BOX_EDGE_H;
@@ -121,13 +121,13 @@ public class EYBCardTooltip
             }
             else
             {
-                y += AbstractCard.IMG_HEIGHT * 0.5F;
+                y += AbstractCard.IMG_HEIGHT * 0.5f;
             }
         }
 
         for (EYBCardTooltip tooltip : tooltips)
         {
-            y -= tooltip.Render(sb, x, y) + BOX_EDGE_H * 3.15F;
+            y -= tooltip.Render(sb, x, y) + BOX_EDGE_H * 3.15f;
         }
 
         EYBCardPreview preview = card.GetCardPreview();
@@ -140,7 +140,7 @@ public class EYBCardTooltip
 
     public float Render(SpriteBatch sb, float x, float y)
     {
-        float h = -FontHelper.getSmartHeight(RenderHelpers.CardTooltipFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING) - 7.0F * Settings.scale;
+        float h = -FontHelper.getSmartHeight(EYBFontHelper.CardTooltipFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING) - 7f * Settings.scale;
 
         sb.setColor(Settings.TOP_PANEL_SHADOW_COLOR);
         sb.draw(ImageMaster.KEYWORD_TOP, x + SHADOW_DIST_X, y - SHADOW_DIST_Y, BOX_W, BOX_EDGE_H);
@@ -162,14 +162,14 @@ public class EYBCardTooltip
 //        {
 //            renderTipEnergy(sb, icon, x + TEXT_OFFSET_X, y + ORB_OFFSET_Y);
 //
-//            FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X * 2.5F, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
+//            FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X * 2.5f, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
 //        }
 //        else
 //        {
 //            FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
 //        }
 
-        FontHelper.renderSmartText(sb, RenderHelpers.CardTooltipFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
+        FontHelper.renderSmartText(sb, EYBFontHelper.CardTooltipFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
 
         return h;
     }
@@ -177,8 +177,8 @@ public class EYBCardTooltip
     public void renderTipEnergy(SpriteBatch sb, TextureAtlas.AtlasRegion region, float x, float y, float width, float height)
     {
         sb.setColor(Color.WHITE);
-        sb.draw(region.getTexture(), x + region.offsetX * Settings.scale, y + region.offsetY * Settings.scale, 0.0F, 0.0F,
-        width, height, Settings.scale, Settings.scale, 0.0F, region.getRegionX(), region.getRegionY(), region.getRegionWidth(), region.getRegionHeight(), false, false);
+        sb.draw(region.getTexture(), x + region.offsetX * Settings.scale, y + region.offsetY * Settings.scale, 0f, 0f,
+        width, height, Settings.scale, Settings.scale, 0f, region.getRegionX(), region.getRegionY(), region.getRegionWidth(), region.getRegionHeight(), false, false);
     }
 
     @Override

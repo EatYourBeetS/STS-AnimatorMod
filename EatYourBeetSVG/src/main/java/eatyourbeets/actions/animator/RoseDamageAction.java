@@ -71,7 +71,7 @@ public class RoseDamageAction extends EYBAction
 
     private void Explosion(Hitbox hb)
     {
-        GameActions.Top.VFX(new ExplosionSmallEffect(hb.cX + MathUtils.random(-0.05F, 0.05F),
-                                                     hb.cY + MathUtils.random(-0.05F, 0.05F)),0.1F);
+        GameActions.Top.VFX(new ExplosionSmallEffect(hb.cX + MathUtils.random(-0.05f, 0.05f),
+                                                     hb.cY + MathUtils.random(-0.05f, 0.05f)),0.1f);
     }
 }

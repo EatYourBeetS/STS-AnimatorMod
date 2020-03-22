@@ -155,7 +155,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             }
             else if (showEffect)
             {
-                target.useFastShakeAnimation(0.5F);
+                target.useFastShakeAnimation(0.5f);
             }
         }
 
@@ -178,11 +178,9 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
-        tickDuration();
-
-        if (isDone)
+        if (TickDuration(deltaTime))
         {
             Complete(callbackResult);
         }
@@ -199,30 +197,30 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             if (amount <= 0 && IsStrengthDexterityOrFocus(power))
             {
                 GameEffects.List.Add(new PowerDebuffEffect(target.hb.cX - target.animX,
-                target.hb.cY + target.hb.height / 2.0F, powerToApply.name + TEXT[3]));
+                target.hb.cY + target.hb.height / 2f, powerToApply.name + TEXT[3]));
             }
             else if (amount > 0)
             {
                 if (power.type != AbstractPower.PowerType.BUFF && !(power instanceof StrengthPower) && !(power instanceof DexterityPower))
                 {
                     GameEffects.List.Add(new PowerDebuffEffect(target.hb.cX - target.animX,
-                    target.hb.cY + target.hb.height / 2.0F, "+" + amount + " " + powerToApply.name));
+                    target.hb.cY + target.hb.height / 2f, "+" + amount + " " + powerToApply.name));
                 }
                 else
                 {
                     GameEffects.List.Add(new PowerBuffEffect(target.hb.cX - target.animX,
-                    target.hb.cY + target.hb.height / 2.0F, "+" + amount + " " + powerToApply.name));
+                    target.hb.cY + target.hb.height / 2f, "+" + amount + " " + powerToApply.name));
                 }
             }
             else if (power.type == AbstractPower.PowerType.BUFF)
             {
                 GameEffects.List.Add(new PowerBuffEffect(target.hb.cX - target.animX,
-                target.hb.cY + target.hb.height / 2.0F, powerToApply.name + TEXT[3]));
+                target.hb.cY + target.hb.height / 2f, powerToApply.name + TEXT[3]));
             }
             else
             {
                 GameEffects.List.Add(new PowerDebuffEffect(target.hb.cX - target.animX,
-                target.hb.cY + target.hb.height / 2.0F, powerToApply.name + TEXT[3]));
+                target.hb.cY + target.hb.height / 2f, powerToApply.name + TEXT[3]));
             }
         }
 
@@ -245,15 +243,15 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             if (amount <= 0 && IsStrengthDexterityOrFocus(powerToApply))
             {
                 GameEffects.List.Add(new PowerDebuffEffect(target.hb.cX - target.animX,
-                        target.hb.cY + target.hb.height / 2.0F, powerToApply.name + TEXT[3]));
+                target.hb.cY + target.hb.height / 2f, powerToApply.name + TEXT[3]));
             }
             else if (powerToApply.type == AbstractPower.PowerType.BUFF)
             {
-                GameEffects.List.Add(new PowerBuffEffect(target.hb.cX - target.animX, target.hb.cY + target.hb.height / 2.0F, powerToApply.name));
+                GameEffects.List.Add(new PowerBuffEffect(target.hb.cX - target.animX, target.hb.cY + target.hb.height / 2f, powerToApply.name));
             }
             else
             {
-                GameEffects.List.Add(new PowerDebuffEffect(target.hb.cX - target.animX, target.hb.cY + target.hb.height / 2.0F, powerToApply.name));
+                GameEffects.List.Add(new PowerDebuffEffect(target.hb.cX - target.animX, target.hb.cY + target.hb.height / 2f, powerToApply.name));
             }
         }
 

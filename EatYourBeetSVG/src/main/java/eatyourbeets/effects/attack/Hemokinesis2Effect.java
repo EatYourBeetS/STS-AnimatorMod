@@ -20,21 +20,21 @@ public class Hemokinesis2Effect extends AbstractGameEffect
         this.y = y;
         this.tX = targetX;
         this.tY = targetY;
-        this.scale = 0.12F;
-        this.duration = 0.5F;
+        this.scale = 0.12f;
+        this.duration = 0.5f;
     }
 
     public void update()
     {
         this.scale -= Gdx.graphics.getDeltaTime();
-        if (this.scale < 0.0F)
+        if (this.scale < 0f)
         {
-            GameEffects.Queue.Add(new HemokinesisParticle2Effect(this.x + MathUtils.random(60.0F, -60.0F) * Settings.scale, this.y + MathUtils.random(60.0F, -60.0F) * Settings.scale, this.tX, this.tY, this.x > this.tX));
-            this.scale = 0.04F;
+            GameEffects.Queue.Add(new HemokinesisParticle2Effect(this.x + MathUtils.random(60f, -60f) * Settings.scale, this.y + MathUtils.random(60f, -60f) * Settings.scale, this.tX, this.tY, this.x > this.tX));
+            this.scale = 0.04f;
         }
 
         this.duration -= Gdx.graphics.getDeltaTime();
-        if (this.duration < 0.0F)
+        if (this.duration < 0f)
         {
             this.isDone = true;
         }

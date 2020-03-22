@@ -49,10 +49,10 @@ public abstract class EYBCardBase extends AbstractCard
 
     protected static final FieldInfo<Boolean> _darken = JavaUtilities.GetField("darken", AbstractCard.class);
     protected static final FieldInfo<Color> _renderColor = JavaUtilities.GetField("renderColor", AbstractCard.class);
-    protected static final Color HOVER_IMG_COLOR = new Color(1.0F, 0.815F, 0.314F, 0.8F);
-    protected static final Color SELECTED_CARD_COLOR = new Color(0.5F, 0.9F, 0.9F, 1.0F);
-    protected static final float SHADOW_OFFSET_X = 18.0F * Settings.scale;
-    protected static final float SHADOW_OFFSET_Y = 14.0F * Settings.scale;
+    protected static final Color HOVER_IMG_COLOR = new Color(1f, 0.815f, 0.314f, 0.8f);
+    protected static final Color SELECTED_CARD_COLOR = new Color(0.5f, 0.9f, 0.9f, 1f);
+    protected static final float SHADOW_OFFSET_X = 18f * Settings.scale;
+    protected static final float SHADOW_OFFSET_Y = 14f * Settings.scale;
 
     public static AbstractPlayer player = null;
     public static Random rng = null;
@@ -88,7 +88,7 @@ public abstract class EYBCardBase extends AbstractCard
 
     public boolean IsOnScreen()
     {
-        return current_y >= -200.0F * Settings.scale && current_y <= Settings.HEIGHT + 200.0F * Settings.scale;
+        return current_y >= -200f * Settings.scale && current_y <= Settings.HEIGHT + 200f * Settings.scale;
     }
 
     @Override
@@ -114,7 +114,7 @@ public abstract class EYBCardBase extends AbstractCard
             hover();
 
             this.hoverDuration += Gdx.graphics.getRawDeltaTime();
-            this.renderTip = (this.hoverDuration > 0.2F && !Settings.hideCards);
+            this.renderTip = (this.hoverDuration > 0.2f && !Settings.hideCards);
         }
         else
         {
@@ -127,8 +127,8 @@ public abstract class EYBCardBase extends AbstractCard
     {
         if (hovered)
         {
-            this.hoverDuration = 0.0F;
-            this.targetDrawScale = 0.75F;
+            this.hoverDuration = 0f;
+            this.targetDrawScale = 0.75f;
         }
 
         this.hovered = false;
@@ -140,8 +140,8 @@ public abstract class EYBCardBase extends AbstractCard
     {
         if (!hovered)
         {
-            this.drawScale = 1.0F;
-            this.targetDrawScale = 1.0F;
+            this.drawScale = 1f;
+            this.targetDrawScale = 1f;
         }
 
         this.hovered = true;
@@ -150,7 +150,7 @@ public abstract class EYBCardBase extends AbstractCard
     @Override
     public void untip()
     {
-        this.hoverDuration = 0.0F;
+        this.hoverDuration = 0f;
         this.renderTip = false;
     }
 
@@ -218,7 +218,7 @@ public abstract class EYBCardBase extends AbstractCard
         {
             if (selected)
             {
-                RenderAtlas(sb, Color.SKY, getCardBgAtlas(), current_x, current_y, 1.03F);
+                RenderAtlas(sb, Color.SKY, getCardBgAtlas(), current_x, current_y, 1.03f);
             }
 
             RenderAtlas(sb, new Color(0, 0, 0, transparency * 0.25f), getCardBgAtlas(), current_x + SHADOW_OFFSET_X * drawScale, current_y - SHADOW_OFFSET_Y * drawScale);
@@ -320,7 +320,7 @@ public abstract class EYBCardBase extends AbstractCard
             if (costString != null)
             {
                 BitmapFont font = RenderHelpers.GetEnergyFont(this);
-                RenderHelpers.WriteOnCard(sb, this, font, costString.text, -132.0F, 192.0F, costString.color);
+                RenderHelpers.WriteOnCard(sb, this, font, costString.text, -132f, 192f, costString.color);
                 RenderHelpers.ResetFont(font);
             }
         }
@@ -409,11 +409,11 @@ public abstract class EYBCardBase extends AbstractCard
 
         if (player != null && player.hand.contains(this) && !this.hasEnoughEnergy())
         {
-            result.color = new Color(1.0F, 0.3F, 0.3F, transparency);
+            result.color = new Color(1f, 0.3f, 0.3f, transparency);
         }
         else if (this.isCostModified || this.isCostModifiedForTurn || this.freeToPlay())
         {
-            result.color = new Color(0.4F, 1.0F, 0.4F, transparency);
+            result.color = new Color(0.4f, 1f, 0.4f, transparency);
         }
         else
         {
@@ -458,12 +458,12 @@ public abstract class EYBCardBase extends AbstractCard
     private void RenderAtlas(SpriteBatch sb, Color color, TextureAtlas.AtlasRegion img, float drawX, float drawY)
     {
         sb.setColor(color);
-        sb.draw(img, drawX + img.offsetX - (float) img.originalWidth / 2.0F, drawY + img.offsetY - (float) img.originalHeight / 2.0F, (float) img.originalWidth / 2.0F - img.offsetX, (float) img.originalHeight / 2.0F - img.offsetY, (float) img.packedWidth, (float) img.packedHeight, this.drawScale * Settings.scale, this.drawScale * Settings.scale, this.angle);
+        sb.draw(img, drawX + img.offsetX - (float) img.originalWidth / 2f, drawY + img.offsetY - (float) img.originalHeight / 2f, (float) img.originalWidth / 2f - img.offsetX, (float) img.originalHeight / 2f - img.offsetY, (float) img.packedWidth, (float) img.packedHeight, this.drawScale * Settings.scale, this.drawScale * Settings.scale, this.angle);
     }
 
     private void RenderAtlas(SpriteBatch sb, Color color, TextureAtlas.AtlasRegion img, float drawX, float drawY, float scale)
     {
         sb.setColor(color);
-        sb.draw(img, drawX + img.offsetX - (float) img.originalWidth / 2.0F, drawY + img.offsetY - (float) img.originalHeight / 2.0F, (float) img.originalWidth / 2.0F - img.offsetX, (float) img.originalHeight / 2.0F - img.offsetY, (float) img.packedWidth, (float) img.packedHeight, this.drawScale * Settings.scale * scale, this.drawScale * Settings.scale * scale, this.angle);
+        sb.draw(img, drawX + img.offsetX - (float) img.originalWidth / 2f, drawY + img.offsetY - (float) img.originalHeight / 2f, (float) img.originalWidth / 2f - img.offsetX, (float) img.originalHeight / 2f - img.offsetY, (float) img.packedWidth, (float) img.packedHeight, this.drawScale * Settings.scale * scale, this.drawScale * Settings.scale * scale, this.angle);
     }
 }

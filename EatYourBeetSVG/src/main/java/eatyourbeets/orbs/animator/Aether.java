@@ -35,7 +35,7 @@ public class Aether extends AnimatorOrb
         this.basePassiveAmount = this.passiveAmount = 4;
 
         this.updateDescription();
-        this.channelAnimTimer = 0.5F;
+        this.channelAnimTimer = 0.5f;
     }
 
     public void updateDescription()
@@ -58,7 +58,7 @@ public class Aether extends AnimatorOrb
 
     public void triggerEvokeAnimation()
     {
-        CardCrawlGame.sound.play("POWER_FLIGHT", 0.2F);
+        CardCrawlGame.sound.play("POWER_FLIGHT", 0.2f);
         CardCrawlGame.sound.playAV("ORB_PLASMA_Evoke", 1.2f, 0.7f);
     }
 
@@ -70,7 +70,7 @@ public class Aether extends AnimatorOrb
     public void updateAnimation()
     {
         super.updateAnimation();
-        this.angle += Gdx.graphics.getDeltaTime() * 180.0F;
+        this.angle += Gdx.graphics.getDeltaTime() * 180f;
     }
 
     public void render(SpriteBatch sb)
@@ -81,8 +81,8 @@ public class Aether extends AnimatorOrb
         float scaleExt2 = this.bobEffect.y / 77f;
         float angleExt = this.angle / 12f;
 
-        sb.draw(imgExt1, this.cX - 48.0F, this.cY - 48.0F, 48.0F, 48.0F, 96.0F, 96.0F, this.scale + scaleExt1, this.scale + scaleExt1, angleExt, 0, 0, 96, 96, this.hFlip1, false);
-        sb.draw(imgExt2, this.cX - 48.0F, this.cY - 48.0F, 48.0F, 48.0F, 96.0F, 96.0F, this.scale + scaleExt2, this.scale + scaleExt2, angleExt, 0, 0, 96, 96, this.hFlip1, false);
+        sb.draw(imgExt1, this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt1, this.scale + scaleExt1, angleExt, 0, 0, 96, 96, this.hFlip1, false);
+        sb.draw(imgExt2, this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt2, this.scale + scaleExt2, angleExt, 0, 0, 96, 96, this.hFlip1, false);
 
         this.renderText(sb);
         this.hb.render(sb);
@@ -92,6 +92,6 @@ public class Aether extends AnimatorOrb
     {
         CardCrawlGame.sound.playAV("ATTACK_WHIRLWIND", 1.5f, 0.7f);
         CardCrawlGame.sound.playAV("ORB_PLASMA_CHANNEL", 1.2f, 0.7f);
-        CardCrawlGame.sound.play("POWER_FLIGHT", 0.2F);
+        CardCrawlGame.sound.play("POWER_FLIGHT", 0.2f);
     }
 }

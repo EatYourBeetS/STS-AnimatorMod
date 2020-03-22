@@ -83,7 +83,7 @@ public class JavaUtilities
         }
     }
 
-    public static <T> int Count(List<T> list, Predicate<T> predicate)
+    public static <T> int Count(Iterable<T> list, Predicate<T> predicate)
     {
         int count = 0;
         for (T t : list)
@@ -97,7 +97,7 @@ public class JavaUtilities
         return count;
     }
 
-    public static <T> ArrayList<T> Filter(ArrayList<T> list, Predicate<T> predicate)
+    public static <T> ArrayList<T> Filter(Iterable<T> list, Predicate<T> predicate)
     {
         ArrayList<T> res = new ArrayList<>();
         for (T t : list)
@@ -109,6 +109,19 @@ public class JavaUtilities
         }
 
         return res;
+    }
+
+    public static <T> T Find(Iterable<T> list, Predicate<T> predicate)
+    {
+        for (T t : list)
+        {
+            if (predicate.test(t))
+            {
+                return t;
+            }
+        }
+
+        return null;
     }
 
     public static String Format(String format, Object... args)

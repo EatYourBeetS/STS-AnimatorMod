@@ -61,7 +61,7 @@ public class Aisha extends AnimatorCard implements Spellcaster
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE)
             .SetVFX(true, false)
             .SetDamageEffect(enemy -> GameEffects.Queue.Add(new SmallLaser2Effect(player.hb.cX, player.hb.cY,
-            enemy.hb.cX + MathUtils.random(-0.05F, 0.05F),enemy.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.VIOLET)));
+            enemy.hb.cX + MathUtils.random(-0.05f, 0.05f),enemy.hb.cY + MathUtils.random(-0.05f, 0.05f), Color.VIOLET)));
         }
 
         if (!EffectHistory.HasActivatedSemiLimited(cardID))

@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class MaskedTravelerUpgradeSameCardEffect extends AbstractGameEffect
 {
-    private static final float DUR = 1.5F;
+    private static final float DUR = 1.5f;
     private final Color screenColor;
     private final String message;
     private final int upgrades;
@@ -28,8 +28,8 @@ public class MaskedTravelerUpgradeSameCardEffect extends AbstractGameEffect
         this.message = CardCrawlGame.languagePack.getUIString("CampfireSmithEffect").TEXT[0];
         this.upgrades = upgrades;
         this.screenColor = AbstractDungeon.fadeColor.cpy();
-        this.duration = 1.5F;
-        this.screenColor.a = 0.0F;
+        this.duration = 1.5f;
+        this.screenColor.a = 0f;
         AbstractDungeon.overlayMenu.proceedButton.hide();
     }
 
@@ -43,7 +43,7 @@ public class MaskedTravelerUpgradeSameCardEffect extends AbstractGameEffect
         {
             AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
 
-            GameEffects.Queue.Add(new UpgradeShineEffect((float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
+            GameEffects.Queue.Add(new UpgradeShineEffect((float)Settings.WIDTH / 2f, (float)Settings.HEIGHT / 2f));
 
             for (int i = 0; i < upgrades; i++)
             {
@@ -64,7 +64,7 @@ public class MaskedTravelerUpgradeSameCardEffect extends AbstractGameEffect
     public void render(SpriteBatch sb)
     {
         sb.setColor(this.screenColor);
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0.0F, 0.0F, (float) Settings.WIDTH, (float) Settings.HEIGHT);
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0f, 0f, (float) Settings.WIDTH, (float) Settings.HEIGHT);
         if (AbstractDungeon.screen == CurrentScreen.GRID)
         {
             AbstractDungeon.gridSelectScreen.render(sb);

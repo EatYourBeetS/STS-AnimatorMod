@@ -33,11 +33,11 @@ public class WindingHalls extends AbstractImageEvent
     private final static String MadnessMessage_1 = "[Embrace Madness] #gReceive Higaki Rinne. #rLose #r";
     private final static String MadnessMessage_2 = " #rHP.";
 
-    private static final float MAX_HP_LOSS_AMOUNT = 0.05F;
-    private static final float HP_LOSS_AMOUNT = 0.125F;
-    private static final float HP_LOSS_AMOUNT_A15 = 0.16F; // 0.18f
-    private static final float HEAL_AMOUNT = 0.25F;
-    private static final float HEAL_AMOUNT_A15 = 0.2F;
+    private static final float MAX_HP_LOSS_AMOUNT = 0.05f;
+    private static final float HP_LOSS_AMOUNT = 0.125f;
+    private static final float HP_LOSS_AMOUNT_A15 = 0.16f; // 0.18f
+    private static final float HEAL_AMOUNT = 0.25f;
+    private static final float HEAL_AMOUNT_A15 = 0.2f;
     private static final EventStrings eventStrings;
     private static final String INTRO_BODY1;
     private static final String INTRO_BODY2;
@@ -97,7 +97,7 @@ public class WindingHalls extends AbstractImageEvent
                         this.imageEventText.updateBodyText(CHOICE_1_TEXT);
                         player.damage(new DamageInfo(null, this.hpAmt));
                         CardCrawlGame.sound.play("ATTACK_MAGIC_SLOW_1");
-                        GameEffects.List.Add(new ShowCardAndObtainEffect(new HigakiRinne(), (float) Settings.WIDTH / 2.0F - 350.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
+                        GameEffects.List.Add(new ShowCardAndObtainEffect(new HigakiRinne(), (float) Settings.WIDTH / 2f - 350f * Settings.scale, (float) Settings.HEIGHT / 2f));
                         this.screenNum = 2;
                         this.imageEventText.updateDialogOption(0, OPTIONS[4]);
                         this.imageEventText.clearRemainingOptions();
@@ -106,7 +106,7 @@ public class WindingHalls extends AbstractImageEvent
                         this.imageEventText.updateBodyText(CHOICE_2_TEXT);
                         player.heal(this.healAmt);
                         AbstractCard c = new Writhe();
-                        GameEffects.List.Add(new ShowCardAndObtainEffect(c, (float) Settings.WIDTH / 2.0F + 10.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
+                        GameEffects.List.Add(new ShowCardAndObtainEffect(c, (float) Settings.WIDTH / 2f + 10f * Settings.scale, (float) Settings.HEIGHT / 2f));
                         logMetricObtainCardAndHeal("Winding Halls", "Writhe", c, this.healAmt);
                         this.screenNum = 2;
                         this.imageEventText.updateDialogOption(0, OPTIONS[4]);

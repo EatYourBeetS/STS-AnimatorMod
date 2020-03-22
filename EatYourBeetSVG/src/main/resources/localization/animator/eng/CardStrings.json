@@ -468,7 +468,7 @@
 		},
 		"animator:ShinjiMatou":
 		{
-			"DESCRIPTION": "Apply !M! Poison, and !S! ** additional Poison for ** each card type in hand. || <slm>. On Synergy: ** Add a {Command Spell} to ** your hand and Retain it.",
+			"DESCRIPTION": "Apply !M! Poison, and ** !S! additional Poison for ** each card type in hand. || <slm>. On Synergy: ** Add a {Command Spell} to ** your hand and Retain it.",
 			"NAME": "Shinji Matou"
 		}
 	},
@@ -643,6 +643,11 @@
 		{
 			"DESCRIPTION": "Remove your ** rightmost {Debuff}. || Boost [F] [A] [I].",
 			"NAME": "Sword Maiden"
+		},
+		"animator:Witch":
+		{
+			"DESCRIPTION": "Apply !M! Burning ** to ALL enemies. || At the start of each ** {Elite} combat, obtain ** a random Potion.",
+			"NAME": "Witch"
 		}
 	},
 	
@@ -854,7 +859,7 @@
 		},
 		"animator:DolaSchwi":
 		{
-			"DESCRIPTION": "Apply !M! Lock-On. ** Channel 1 Lightning. || Cooldown !S! : Deal !D! {~Ranged} damage.",
+			"DESCRIPTION": "Apply !M! Lock-On. ** Channel 1 Lightning. || Cooldown !S! : Deal ** !D! {~Ranged} damage.",
 			"NAME": "Schwi"
 		},
 		"animator:DolaStephanie":
@@ -1487,11 +1492,6 @@
 			"DESCRIPTION": "Choose and combine ** up to 3 effects.",
 			"EXTENDED_DESCRIPTION": ["Takes 1 less turn ** to complete."],
 			"NAME": "Elixir"
-		},
-		"animator:Witch":
-		{
-			"DESCRIPTION": "Apply !M! Burning ** to ALL enemies. || At the start of each ** {Elite} combat, obtain ** a random Potion.",
-			"NAME": "Witch"
 		},
 		"animator:Yusarin":
 		{

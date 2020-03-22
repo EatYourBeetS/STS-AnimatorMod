@@ -20,7 +20,7 @@ public class EarthenThornsPower extends AnimatorPower
 
     public void stackPower(int stackAmount)
     {
-        this.fontScale = 8.0F;
+        this.fontScale = 8f;
         this.amount += stackAmount;
         this.updateDescription();
     }

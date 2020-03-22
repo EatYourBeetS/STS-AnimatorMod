@@ -69,7 +69,7 @@ public class TheUnnamedReignScene extends AbstractScene
     {
         super("images/scenes/theUnnamedReign/scene.atlas");
         this.columnConfig = TheUnnamedReignScene.ColumnConfig.OPEN;
-        this.overlayColor = new Color(1.0F, 1.0F, 1.0F, 0.2F);
+        this.overlayColor = new Color(1f, 1f, 1f, 0.2f);
         this.bg1 = this.atlas.findRegion("mod/bg1");
         this.bg2 = this.atlas.findRegion("mod/bg2");
         this.floor = this.atlas.findRegion("mod/floor");
@@ -104,16 +104,16 @@ public class TheUnnamedReignScene extends AbstractScene
 
     public void randomizeScene()
     {
-        this.overlayColor.r = MathUtils.random(0.7F, 0.9F);
-        this.overlayColor.g = MathUtils.random(0.7F, 0.9F);
-        this.overlayColor.b = MathUtils.random(0.7F, 1.0F);
-        this.overlayColor.a = MathUtils.random(0.0F, 0.2F);
-        this.renderAltBg = MathUtils.randomBoolean(0.2F);
+        this.overlayColor.r = MathUtils.random(0.7f, 0.9f);
+        this.overlayColor.g = MathUtils.random(0.7f, 0.9f);
+        this.overlayColor.b = MathUtils.random(0.7f, 1f);
+        this.overlayColor.a = MathUtils.random(0f, 0.2f);
+        this.renderAltBg = MathUtils.randomBoolean(0.2f);
         this.renderM1 = false;
         this.renderM2 = false;
         this.renderM3 = false;
         this.renderM4 = false;
-        if (!this.renderAltBg && MathUtils.randomBoolean(0.8F))
+        if (!this.renderAltBg && MathUtils.randomBoolean(0.8f))
         {
             this.renderM1 = MathUtils.randomBoolean();
             this.renderM2 = MathUtils.randomBoolean();
@@ -124,7 +124,7 @@ public class TheUnnamedReignScene extends AbstractScene
             }
         }
 
-        if (MathUtils.randomBoolean(0.6F))
+        if (MathUtils.randomBoolean(0.6f))
         {
             this.columnConfig = TheUnnamedReignScene.ColumnConfig.OPEN;
         }
@@ -147,13 +147,13 @@ public class TheUnnamedReignScene extends AbstractScene
         this.renderF4 = false;
         this.renderF5 = false;
         int floaterCount = 0;
-        this.renderF1 = MathUtils.randomBoolean(0.25F);
+        this.renderF1 = MathUtils.randomBoolean(0.25f);
         if (this.renderF1)
         {
             ++floaterCount;
         }
 
-        this.renderF2 = MathUtils.randomBoolean(0.25F);
+        this.renderF2 = MathUtils.randomBoolean(0.25f);
         if (this.renderF2)
         {
             ++floaterCount;
@@ -161,7 +161,7 @@ public class TheUnnamedReignScene extends AbstractScene
 
         if (floaterCount < 2)
         {
-            this.renderF3 = MathUtils.randomBoolean(0.25F);
+            this.renderF3 = MathUtils.randomBoolean(0.25f);
             if (this.renderF3)
             {
                 ++floaterCount;
@@ -170,7 +170,7 @@ public class TheUnnamedReignScene extends AbstractScene
 
         if (floaterCount < 2)
         {
-            this.renderF4 = MathUtils.randomBoolean(0.25F);
+            this.renderF4 = MathUtils.randomBoolean(0.25f);
             if (this.renderF4)
             {
                 ++floaterCount;
@@ -179,10 +179,10 @@ public class TheUnnamedReignScene extends AbstractScene
 
         if (floaterCount < 2)
         {
-            this.renderF5 = MathUtils.randomBoolean(0.25F);
+            this.renderF5 = MathUtils.randomBoolean(0.25f);
         }
 
-        if (MathUtils.randomBoolean(0.3F) || Settings.DISABLE_EFFECTS)
+        if (MathUtils.randomBoolean(0.3f) || Settings.DISABLE_EFFECTS)
         {
             this.renderF1 = false;
             this.renderF2 = false;
@@ -243,7 +243,7 @@ public class TheUnnamedReignScene extends AbstractScene
 
     public void renderCombatRoomBg(SpriteBatch sb)
     {
-        sb.setColor(new Color(this.overlayColor.r, this.overlayColor.g, this.overlayColor.b, 1.0F));
+        sb.setColor(new Color(this.overlayColor.r, this.overlayColor.g, this.overlayColor.b, 1f));
         this.renderAtlasRegionIf(sb, this.floor, true);
         this.renderAtlasRegionIf(sb, this.ceiling, true);
         this.renderAtlasRegionIf(sb, this.bg1, true);
@@ -311,23 +311,23 @@ public class TheUnnamedReignScene extends AbstractScene
         this.renderAtlasRegionIf(sb, this.s4, this.renderS4);
         this.renderAtlasRegionIf(sb, this.s5, this.renderS5);
         sb.setBlendFunction(770, 771);
-        sb.setColor(new Color(this.overlayColor.r, this.overlayColor.g, this.overlayColor.b, 1.0F));
+        sb.setColor(new Color(this.overlayColor.r, this.overlayColor.g, this.overlayColor.b, 1f));
         this.renderAtlasRegionIf(sb, this.i1, this.renderI1);
         this.renderAtlasRegionIf(sb, this.i2, this.renderI2);
         this.renderAtlasRegionIf(sb, this.i3, this.renderI3);
         this.renderAtlasRegionIf(sb, this.i4, this.renderI4);
         this.renderAtlasRegionIf(sb, this.i5, this.renderI5);
-        sb.setColor(new Color((1.0F + this.overlayColor.r) / 2.0F, (1.0F + this.overlayColor.g) / 2.0F, (1.0F + this.overlayColor.b) / 2.0F, 1.0F));
-        this.renderAtlasRegionIf(sb, MathUtils.cosDeg((float) ((System.currentTimeMillis() + 180L) / 180L % 360L)) * 40.0F * Settings.scale, MathUtils.cosDeg((float) ((System.currentTimeMillis() + 500L) / 72L % 360L)) * 20.0F * Settings.scale, MathUtils.cosDeg((float) ((System.currentTimeMillis() + 180L) / 180L % 360L)), this.f1, this.renderF1);
-        this.renderAtlasRegionIf(sb, MathUtils.cosDeg((float) ((System.currentTimeMillis() + 91723L) / 72L % 360L)) * 20.0F, 0.0F, (float) (System.currentTimeMillis() / 120L % 360L), this.f2, this.renderF2);
-        this.renderAtlasRegionIf(sb, -80.0F * Settings.scale, MathUtils.cosDeg((float) (System.currentTimeMillis() + 73L)) * 10.0F - 90.0F * Settings.scale, (float) (System.currentTimeMillis() / 1000L % 360L) * 2.0F, this.f3, this.renderF3);
-        this.renderAtlasRegionIf(sb, 0.0F, MathUtils.cosDeg((float) ((System.currentTimeMillis() + 4442L) / 20L % 360L)) * 30.0F * Settings.scale, MathUtils.cosDeg((float) ((System.currentTimeMillis() + 4442L) / 10L % 360L)) * 20.0F, this.f4, this.renderF4);
-        this.renderAtlasRegionIf(sb, 0.0F, MathUtils.cosDeg((float) (System.currentTimeMillis() / 48L % 360L)) * 20.0F, 0.0F, this.f5, this.renderF5);
+        sb.setColor(new Color((1f + this.overlayColor.r) / 2f, (1f + this.overlayColor.g) / 2f, (1f + this.overlayColor.b) / 2f, 1f));
+        this.renderAtlasRegionIf(sb, MathUtils.cosDeg((float) ((System.currentTimeMillis() + 180L) / 180L % 360L)) * 40f * Settings.scale, MathUtils.cosDeg((float) ((System.currentTimeMillis() + 500L) / 72L % 360L)) * 20f * Settings.scale, MathUtils.cosDeg((float) ((System.currentTimeMillis() + 180L) / 180L % 360L)), this.f1, this.renderF1);
+        this.renderAtlasRegionIf(sb, MathUtils.cosDeg((float) ((System.currentTimeMillis() + 91723L) / 72L % 360L)) * 20f, 0f, (float) (System.currentTimeMillis() / 120L % 360L), this.f2, this.renderF2);
+        this.renderAtlasRegionIf(sb, -80f * Settings.scale, MathUtils.cosDeg((float) (System.currentTimeMillis() + 73L)) * 10f - 90f * Settings.scale, (float) (System.currentTimeMillis() / 1000L % 360L) * 2f, this.f3, this.renderF3);
+        this.renderAtlasRegionIf(sb, 0f, MathUtils.cosDeg((float) ((System.currentTimeMillis() + 4442L) / 20L % 360L)) * 30f * Settings.scale, MathUtils.cosDeg((float) ((System.currentTimeMillis() + 4442L) / 10L % 360L)) * 20f, this.f4, this.renderF4);
+        this.renderAtlasRegionIf(sb, 0f, MathUtils.cosDeg((float) (System.currentTimeMillis() / 48L % 360L)) * 20f, 0f, this.f5, this.renderF5);
     }
 
     public void renderCombatRoomFg(SpriteBatch sb)
     {
-        sb.setColor(new Color((1.0F + this.overlayColor.r) / 2.0F, (1.0F + this.overlayColor.g) / 2.0F, (1.0F + this.overlayColor.b) / 2.0F, 1.0F));
+        sb.setColor(new Color((1f + this.overlayColor.r) / 2f, (1f + this.overlayColor.g) / 2f, (1f + this.overlayColor.b) / 2f, 1f));
         this.renderAtlasRegionIf(sb, this.fg, true);
     }
 
@@ -336,7 +336,7 @@ public class TheUnnamedReignScene extends AbstractScene
         sb.setColor(Color.WHITE);
         this.renderAtlasRegionIf(sb, this.campfireBg, true);
         sb.setBlendFunction(770, 1);
-        sb.setColor(new Color(1.0F, 1.0F, 1.0F, MathUtils.cosDeg((float) (System.currentTimeMillis() / 3L % 360L)) / 10.0F + 0.8F));
+        sb.setColor(new Color(1f, 1f, 1f, MathUtils.cosDeg((float) (System.currentTimeMillis() / 3L % 360L)) / 10f + 0.8f));
         this.renderQuadrupleSize(sb, this.campfireGlow, !CampfireUI.hidden);
         sb.setBlendFunction(770, 771);
         sb.setColor(Color.WHITE);

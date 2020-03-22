@@ -31,17 +31,17 @@ public class Moveset
         this.owner = owner;
     }
 
-    public AbstractMove AddSpecial(AbstractMove move)
+    public <T extends AbstractMove> T AddSpecial(T move)
     {
         return AddSpecial(move, -1);
     }
 
-    public AbstractMove AddNormal(AbstractMove move)
+    public <T extends AbstractMove> T AddNormal(T move)
     {
         return AddNormal(move, -1);
     }
 
-    public AbstractMove AddSpecial(AbstractMove move, int uses)
+    public <T extends AbstractMove> T AddSpecial(T move, int uses)
     {
         move.uses = uses;
         move.Init(counter, owner);
@@ -53,7 +53,7 @@ public class Moveset
         return move;
     }
 
-    public AbstractMove AddNormal(AbstractMove move, int uses)
+    public <T extends AbstractMove> T AddNormal(T move, int uses)
     {
         move.uses = uses;
         move.Init(counter, owner);

@@ -110,7 +110,7 @@ public class DolaRikuAction extends EYBAction
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
         if (AbstractDungeon.gridSelectScreen.selectedCards.size() > 0)
         {
@@ -122,7 +122,7 @@ public class DolaRikuAction extends EYBAction
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }
 
-        tickDuration();
+        super.UpdateInternal(deltaTime);
     }
 
     @Override

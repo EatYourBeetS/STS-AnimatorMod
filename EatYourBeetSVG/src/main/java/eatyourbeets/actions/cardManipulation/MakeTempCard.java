@@ -99,8 +99,8 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
             case DRAW_PILE:
             {
                 ShowCardAndAddToDrawPileEffect effect = GameEffects.List.Add(new ShowCardAndAddToDrawPileEffect(actualCard,
-                (float) Settings.WIDTH / 2.0F - ((25.0F * Settings.scale) + AbstractCard.IMG_WIDTH),
-                (float) Settings.HEIGHT / 2.0F, destination.IsRandom(), true, destination.IsBottom()));
+                (float) Settings.WIDTH / 2f - ((25f * Settings.scale) + AbstractCard.IMG_WIDTH),
+                (float) Settings.HEIGHT / 2f, destination.IsRandom(), true, destination.IsBottom()));
 
                 // For reasons unknown ShowCardAndAddToDrawPileEffect creates a copy of the card...
                 actualCard = JavaUtilities.<AbstractCard>GetField("card", ShowCardAndAddToDrawPileEffect.class).Get(effect);
@@ -125,8 +125,8 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
                 {
                     // If you don't specify x and y it won't play the card obtain sfx
                     GameEffects.List.Add(new ShowCardAndAddToHandEffect(actualCard,
-                    (float) Settings.WIDTH / 2.0F - ((25.0F * Settings.scale) + AbstractCard.IMG_WIDTH),
-                    (float) Settings.HEIGHT / 2.0F));
+                    (float) Settings.WIDTH / 2f - ((25f * Settings.scale) + AbstractCard.IMG_WIDTH),
+                    (float) Settings.HEIGHT / 2f));
                 }
 
                 break;
@@ -164,11 +164,9 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
-        tickDuration();
-
-        if (isDone)
+        if (TickDuration(deltaTime))
         {
             Complete(actualCard);
         }

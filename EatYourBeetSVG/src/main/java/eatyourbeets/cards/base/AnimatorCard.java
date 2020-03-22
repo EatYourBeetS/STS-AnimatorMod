@@ -141,7 +141,7 @@ public abstract class AnimatorCard extends EYBCard
         }
         else if (this instanceof Spellcaster)
         {
-            return new ColoredString(GR.Tooltips.Spellcaster.title, new Color(0.9f, 0.9f, 1.0f, transparency));
+            return new ColoredString(GR.Tooltips.Spellcaster.title, new Color(0.9f, 0.9f, 1f, transparency));
         }
         else if (this instanceof MartialArtist)
         {

@@ -19,7 +19,7 @@ public class SmallLaser2Effect extends AbstractGameEffect
     private final float dX;
     private final float dY;
     private final float dst;
-    private static final float DUR = 0.5F;
+    private static final float DUR = 0.5f;
     private static AtlasRegion img;
 
     public SmallLaser2Effect(float sX, float sY, float dX, float dY, Color color)
@@ -35,26 +35,26 @@ public class SmallLaser2Effect extends AbstractGameEffect
         this.dY = dY;
         this.dst = Vector2.dst(this.sX, this.sY, this.dX, this.dY) / Settings.scale;
         this.color = color.cpy();
-        this.duration = 0.5F;
-        this.startingDuration = 0.5F;
+        this.duration = 0.5f;
+        this.startingDuration = 0.5f;
         this.rotation = MathUtils.atan2(dX - sX, dY - sY);
-        this.rotation *= 57.295776F;
-        this.rotation = -this.rotation + 90.0F;
+        this.rotation *= 57.295776f;
+        this.rotation = -this.rotation + 90f;
     }
 
     public void update()
     {
         this.duration -= Gdx.graphics.getDeltaTime();
-        if (this.duration > this.startingDuration / 2.0F)
+        if (this.duration > this.startingDuration / 2f)
         {
-            this.color.a = Interpolation.pow2In.apply(1.0F, 0.0F, (this.duration - 0.25F) * 4.0F);
+            this.color.a = Interpolation.pow2In.apply(1f, 0f, (this.duration - 0.25f) * 4f);
         }
         else
         {
-            this.color.a = Interpolation.bounceIn.apply(0.0F, 1.0F, this.duration * 4.0F);
+            this.color.a = Interpolation.bounceIn.apply(0f, 1f, this.duration * 4f);
         }
 
-        if (this.duration < 0.0F)
+        if (this.duration < 0f)
         {
             this.isDone = true;
         }
@@ -65,9 +65,9 @@ public class SmallLaser2Effect extends AbstractGameEffect
     {
         sb.setBlendFunction(770, 1);
         sb.setColor(this.color);
-        sb.draw(img, this.sX, this.sY - (float) img.packedHeight / 2.0F + 10.0F * Settings.scale, 0.0F, (float) img.packedHeight / 2.0F, this.dst, 50.0F, this.scale + MathUtils.random(-0.01F, 0.01F), this.scale, this.rotation);
-        sb.setColor(new Color(0.3F, 0.3F, 1.0F, this.color.a));
-        sb.draw(img, this.sX, this.sY - (float) img.packedHeight / 2.0F, 0.0F, (float) img.packedHeight / 2.0F, this.dst, MathUtils.random(50.0F, 90.0F), this.scale + MathUtils.random(-0.02F, 0.02F), this.scale, this.rotation);
+        sb.draw(img, this.sX, this.sY - (float) img.packedHeight / 2f + 10f * Settings.scale, 0f, (float) img.packedHeight / 2f, this.dst, 50f, this.scale + MathUtils.random(-0.01f, 0.01f), this.scale, this.rotation);
+        sb.setColor(new Color(0.3f, 0.3f, 1f, this.color.a));
+        sb.draw(img, this.sX, this.sY - (float) img.packedHeight / 2f, 0f, (float) img.packedHeight / 2f, this.dst, MathUtils.random(50f, 90f), this.scale + MathUtils.random(-0.02f, 0.02f), this.scale, this.rotation);
         sb.setBlendFunction(770, 771);
     }
 

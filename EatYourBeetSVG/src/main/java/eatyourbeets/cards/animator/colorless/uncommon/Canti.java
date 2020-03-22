@@ -44,7 +44,7 @@ public class Canti extends AnimatorCard
         if (damage >= 20)
         {
             //GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY));
-            //GameActions.Bottom.Wait(0.8F);
+            //GameActions.Bottom.Wait(0.8f);
             GameActions.Bottom.VFX(new ViolentAttackEffect(m.hb.cX, m.hb.cY, Color.SKY));
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         }

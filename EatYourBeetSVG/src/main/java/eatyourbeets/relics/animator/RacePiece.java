@@ -163,7 +163,7 @@ public class RacePiece extends AnimatorRelic
                 }
             }
 
-            float displayCount = 0.0F;
+            float displayCount = 0f;
             for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
             {
                 AbstractCard reward = rewards.Retrieve(AbstractDungeon.cardRandomRng, false);
@@ -181,8 +181,8 @@ public class RacePiece extends AnimatorRelic
 
                     //if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.TRANSFORM)
                     //{
-                        GameEffects.TopLevelList.Add(new ShowCardAndObtainEffect(reward, (float) Settings.WIDTH / 3.0F + displayCount, (float)Settings.HEIGHT / 2.0F, false));
-                        displayCount += (float)Settings.WIDTH / 6.0F;
+                        GameEffects.TopLevelList.Add(new ShowCardAndObtainEffect(reward, (float) Settings.WIDTH / 3f + displayCount, (float)Settings.HEIGHT / 2f, false));
+                        displayCount += (float)Settings.WIDTH / 6f;
                     //}
                 }
             }

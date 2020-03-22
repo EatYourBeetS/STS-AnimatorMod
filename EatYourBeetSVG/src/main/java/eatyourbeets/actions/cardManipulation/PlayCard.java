@@ -18,9 +18,9 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class PlayCard extends EYBActionWithCallback<AbstractMonster>
 {
-    public static final float DEFAULT_TARGET_X_LEFT = (Settings.WIDTH / 2.0F) - (300.0F * Settings.scale);
-    public static final float DEFAULT_TARGET_X_RIGHT = (Settings.WIDTH / 2.0F) + (200.0F * Settings.scale);
-    public static final float DEFAULT_TARGET_Y = (Settings.HEIGHT / 2.0F);
+    public static final float DEFAULT_TARGET_X_LEFT = (Settings.WIDTH / 2f) - (300f * Settings.scale);
+    public static final float DEFAULT_TARGET_X_RIGHT = (Settings.WIDTH / 2f) + (200f * Settings.scale);
+    public static final float DEFAULT_TARGET_Y = (Settings.HEIGHT / 2f);
 
     protected FuncT1<AbstractCard, CardGroup> findCard;
     protected CardGroup sourcePile;
@@ -151,11 +151,9 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
-        tickDuration();
-
-        if (isDone)
+        if (TickDuration(deltaTime))
         {
             if (GameUtilities.RequiresTarget(card) && (target == null || GameUtilities.IsDeadOrEscaped(target)))
             {
@@ -206,11 +204,11 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
 
         card.target_x = targetPosition.x;
         card.target_y = targetPosition.y;
-        card.targetAngle = 0.0F;
+        card.targetAngle = 0f;
         card.unfadeOut();
         card.lighten(true);
-        card.drawScale = 0.5F;
-        card.targetDrawScale = 0.75F;
+        card.drawScale = 0.5f;
+        card.targetDrawScale = 0.75f;
     }
 
     protected void QueueCardItem()

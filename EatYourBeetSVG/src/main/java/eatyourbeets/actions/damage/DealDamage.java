@@ -96,17 +96,15 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
-        if (this.info.type != DamageInfo.DamageType.THORNS && this.shouldCancelAction())
+        if (this.info.type != DamageInfo.DamageType.THORNS && shouldCancelAction())
         {
             Complete();
             return;
         }
 
-        tickDuration();
-
-        if (this.isDone)
+        if (TickDuration(deltaTime))
         {
             if (this.attackEffect == AttackEffect.POISON)
             {

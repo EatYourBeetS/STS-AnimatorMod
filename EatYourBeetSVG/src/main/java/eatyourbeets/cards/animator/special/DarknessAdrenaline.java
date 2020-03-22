@@ -27,7 +27,7 @@ public class DarknessAdrenaline extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.VFX(new AdrenalineEffect(), 0.15F);
+        GameActions.Bottom.VFX(new AdrenalineEffect(), 0.15f);
         GameActions.Bottom.GainEnergy(secondaryValue);
         GameActions.Bottom.Draw(magicNumber);
     }

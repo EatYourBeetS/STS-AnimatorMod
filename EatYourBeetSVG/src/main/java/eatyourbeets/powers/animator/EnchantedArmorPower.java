@@ -60,7 +60,7 @@ public class EnchantedArmorPower extends AnimatorPower
         //if (monster.applyBackAttack())
         if (player.hasPower(SurroundedPower.POWER_ID) && (player.flipHorizontal && player.drawX < monster.drawX || !player.flipHorizontal && player.drawX > monster.drawX))
         {
-            tmp = (float) ((int) (tmp * 1.5F));
+            tmp = (float) ((int) (tmp * 1.5f));
         }
 
         for (AbstractPower p : monster.powers)

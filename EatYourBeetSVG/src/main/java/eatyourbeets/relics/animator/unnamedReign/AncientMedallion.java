@@ -160,7 +160,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
             AbstractCard card1 = upgradableCards.Retrieve(AbstractDungeon.cardRandomRng);
             card1.upgrade();
             AbstractDungeon.player.bottledCardUpgradeCheck(card1);
-            GameEffects.TopLevelList.ShowCardBriefly(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F + AbstractCard.IMG_WIDTH / 2.0F + 20.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F);
+            GameEffects.TopLevelList.ShowCardBriefly(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2f + AbstractCard.IMG_WIDTH / 2f + 20f * Settings.scale, (float) Settings.HEIGHT / 2f);
         }
 
         if (upgradableCards.Size() > 0)
@@ -169,12 +169,12 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
             AbstractCard card1 = upgradableCards.Retrieve(AbstractDungeon.cardRandomRng);
             card1.upgrade();
             AbstractDungeon.player.bottledCardUpgradeCheck(card1);
-            GameEffects.TopLevelList.ShowCardBriefly(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F - AbstractCard.IMG_WIDTH / 2.0F - 20.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F);
+            GameEffects.TopLevelList.ShowCardBriefly(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2f - AbstractCard.IMG_WIDTH / 2f - 20f * Settings.scale, (float) Settings.HEIGHT / 2f);
         }
 
         if (upgraded > 0)
         {
-            GameEffects.TopLevelList.Add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+            GameEffects.TopLevelList.Add(new UpgradeShineEffect((float) Settings.WIDTH / 2f, (float) Settings.HEIGHT / 2f));
         }
 
         return upgradableCards.Size() > 0;
@@ -245,7 +245,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
             awaitingInput = false;
 
-            GameEffects.Queue.Add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+            GameEffects.Queue.Add(new UpgradeShineEffect((float) Settings.WIDTH / 2f, (float) Settings.HEIGHT / 2f));
             GameEffects.Queue.ShowCardBriefly(c.makeStatEquivalentCopy());
 
             return true;

@@ -12,6 +12,7 @@ public abstract class EYBEffect extends AbstractGameEffect
     protected boolean isRealtime;
     protected final AbstractPlayer player;
     protected int amount;
+    protected int ticks;
 
     public EYBEffect()
     {
@@ -72,12 +73,12 @@ public abstract class EYBEffect extends AbstractGameEffect
 
             if (!this.isDone)
             {
-                tickDuration();
+                TickDuration(GetDeltaTime());
             }
         }
         else
         {
-            UpdateInternal();
+            UpdateInternal(GetDeltaTime());
         }
     }
 
@@ -92,9 +93,12 @@ public abstract class EYBEffect extends AbstractGameEffect
 
     }
 
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
-        tickDuration();
+        if (TickDuration(deltaTime))
+        {
+            Complete();
+        }
     }
 
     protected void Complete()
@@ -102,14 +106,17 @@ public abstract class EYBEffect extends AbstractGameEffect
         this.isDone = true;
     }
 
-    protected void tickDuration()
+    protected boolean TickDuration(float deltaTime)
     {
-        this.duration -= GetDeltaTime();
+        this.ticks += 1;
+        this.duration -= deltaTime;
 
-        if (this.duration < 0.0F)
+        if (this.duration < 0f && ticks >= 3) // ticks are necessary for SuperFastMode at 1000% speed
         {
             this.isDone = true;
         }
+
+        return isDone;
     }
 
     protected float GetDeltaTime()

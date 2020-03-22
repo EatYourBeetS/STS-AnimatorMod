@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Toggle;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RenderHelpers;
 
 public class AnimatorCardRewardInfo extends GUIElement
 {
@@ -22,18 +22,18 @@ public class AnimatorCardRewardInfo extends GUIElement
 
     public AnimatorCardRewardInfo()
     {
-        upgradeToggle = new GUI_Toggle(new Hitbox(Scale(256), Scale(48.0F)))
+        upgradeToggle = new GUI_Toggle(new Hitbox(Scale(256), Scale(48f)))
         .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
         .SetPosition(ScreenW(0.9f), ScreenH(0.65f))
-        .SetFont(RenderHelpers.CardDescriptionFont_Large, 0.5f)
+        .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.5f)
         .SetText(SingleCardViewPopup.TEXT[6])
         .SetOnToggle(this::ToggleViewUpgrades);
 
-        zoomToggle = new GUI_Toggle(new Hitbox(Scale(256), Scale(48.0F)))
+        zoomToggle = new GUI_Toggle(new Hitbox(Scale(256), Scale(48f)))
         .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
         .SetPosition(ScreenW(0.9f), ScreenH(0.65f) - (upgradeToggle.hb.height * 1.05f))
         .SetText(GR.Animator.Strings.Misc.DynamicPortraits)
-        .SetFont(RenderHelpers.CardDescriptionFont_Large, 0.475f)
+        .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.475f)
         .SetOnToggle(this::ToggleCardZoom);
 
         exhaust = new KeywordLegend(GR.Tooltips.Exhaust);

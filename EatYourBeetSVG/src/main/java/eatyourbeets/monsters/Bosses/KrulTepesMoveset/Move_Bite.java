@@ -37,7 +37,7 @@ public class Move_Bite extends AbstractMove
     public void ExecuteInternal(AbstractPlayer target)
     {
         damageInfo.applyPowers(owner, target);
-        GameActions.Bottom.VFX(new BiteEffect(target.hb.cX, target.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F);
+        GameActions.Bottom.VFX(new BiteEffect(target.hb.cX, target.hb.cY - 40f * Settings.scale, Color.SCARLET.cpy()), 0.3f);
         GameActions.Bottom.Add(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.NONE));
         GameActions.Bottom.ApplyWeak(owner, target, WEAK_AMOUNT);
     }

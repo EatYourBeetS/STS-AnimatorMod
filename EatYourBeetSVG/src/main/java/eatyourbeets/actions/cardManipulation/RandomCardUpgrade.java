@@ -58,11 +58,9 @@ public class RandomCardUpgrade extends EYBActionWithCallback<AbstractCard>
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
-        tickDuration();
-
-        if (isDone && card != null)
+        if (TickDuration(deltaTime) && card != null)
         {
             Complete(card);
         }

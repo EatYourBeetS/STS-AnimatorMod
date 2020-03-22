@@ -66,10 +66,10 @@ public class UneriGinkaku extends AnimatorCard implements MartialArtist
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetDamageEffect(enemy ->
         {
-            GameEffects.List.Add(new AnimatedSlashEffect(enemy.hb.cX, enemy.hb.cY - 30.0F * Settings.scale,
-            500.0F, 200.0F, 290.0F, 3.0F, Color.LIGHT_GRAY.cpy(), Color.RED.cpy()));
-            GameEffects.Queue.Add(new AnimatedSlashEffect(enemy.hb.cX, enemy.hb.cY - 60.0F * Settings.scale,
-            500.0F, 200.0F, 290.0F, 5.0F, Color.DARK_GRAY.cpy(), Color.BLACK.cpy()));
+            GameEffects.List.Add(new AnimatedSlashEffect(enemy.hb.cX, enemy.hb.cY - 30f * Settings.scale,
+            500f, 200f, 290f, 3f, Color.LIGHT_GRAY.cpy(), Color.RED.cpy()));
+            GameEffects.Queue.Add(new AnimatedSlashEffect(enemy.hb.cX, enemy.hb.cY - 60f * Settings.scale,
+            500f, 200f, 290f, 5f, Color.DARK_GRAY.cpy(), Color.BLACK.cpy()));
             CardCrawlGame.sound.play("ANIMATOR_REAPER");
         });
     }

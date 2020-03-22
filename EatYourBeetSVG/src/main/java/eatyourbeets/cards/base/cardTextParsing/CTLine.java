@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 public class CTLine
 {
-    protected final static float IMG_HEIGHT = 420.0F * Settings.scale;
-    protected final static float IMG_WIDTH = 300.0F * Settings.scale;
-    protected final static float DESC_BOX_WIDTH = IMG_WIDTH * 0.81f;//0.79F;
-    protected final static float DESC_OFFSET_Y = IMG_HEIGHT * 0.255F;
+    protected final static float IMG_HEIGHT = 420f * Settings.scale;
+    protected final static float IMG_WIDTH = 300f * Settings.scale;
+    protected final static float DESC_BOX_WIDTH = IMG_WIDTH * 0.81f;//0.79f;
+    protected final static float DESC_OFFSET_Y = IMG_HEIGHT * 0.255f;
     protected final ArrayList<CTToken> tokens = new ArrayList<>();
     protected final CTContext context;
 
@@ -70,7 +70,7 @@ public class CTLine
         final EYBCard card = context.card;
 
         context.start_x = card.current_x - (width * card.drawScale * 0.5f);
-        context.start_y = context.start_y - (CalculateHeight(context.font) * 1.45F);
+        context.start_y = context.start_y - (CalculateHeight(context.font) * 1.45f);
 
         for (CTToken token : tokens)
         {

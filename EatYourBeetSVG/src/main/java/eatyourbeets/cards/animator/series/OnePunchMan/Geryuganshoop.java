@@ -55,7 +55,7 @@ public class Geryuganshoop extends AnimatorCard
                 else
                 {
                     player.exhaustPile.removeCard(card);
-                    CardCrawlGame.sound.play("CARD_EXHAUST", 0.2F);
+                    CardCrawlGame.sound.play("CARD_EXHAUST", 0.2f);
                 }
             }
 

@@ -21,7 +21,7 @@ public class ShuffleEnemiesEffect extends AbstractGameEffect
 
     public ShuffleEnemiesEffect()
     {
-        this.duration = 1.0F;
+        this.duration = 1f;
         this.isDone = false;
     }
 

@@ -85,11 +85,9 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
-        tickDuration();
-
-        if (isDone)
+        if (TickDuration(deltaTime))
         {
             Complete(card);
         }

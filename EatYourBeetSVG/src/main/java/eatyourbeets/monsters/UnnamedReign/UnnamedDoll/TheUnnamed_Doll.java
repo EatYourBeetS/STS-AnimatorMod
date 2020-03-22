@@ -26,10 +26,9 @@ public class TheUnnamed_Doll extends AnimatorMonster
     public static final String ID = CreateFullID(TheUnnamed_Doll.class);
 
     private final BobEffect bobEffect = new BobEffect(1);
-
     private final TheUnnamed theUnnamed;
     private final Move_GainRitualAndArtifactAll ritualAndArtifactAll;
-
+    private final Move_AttackMultiple antiIntangible;
 
     public TheUnnamed_Doll(TheUnnamed theUnnamed, float x, float y)
     {
@@ -39,10 +38,8 @@ public class TheUnnamed_Doll extends AnimatorMonster
 
         this.data.SetIdleAnimation(this, 1);
 
-        moveset.AddSpecial(new Move_AttackMultiple(4, 12));
-
-        ritualAndArtifactAll = (Move_GainRitualAndArtifactAll)
-                moveset.AddSpecial(new Move_GainRitualAndArtifactAll(2, 2), 1);
+        antiIntangible = moveset.AddSpecial(new Move_AttackMultiple(4, 12));
+        ritualAndArtifactAll = moveset.AddSpecial(new Move_GainRitualAndArtifactAll(2, 2), 1);
 
         boolean asc18 = GameUtilities.GetAscensionLevel() >= 18;
 
@@ -126,7 +123,7 @@ public class TheUnnamed_Doll extends AnimatorMonster
         }
         else if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) >= 2 && !AbstractDungeon.player.hasPower(WraithFormPower.POWER_ID))
         {
-            moveset.GetMove(Move_AttackMultiple.class).SetMove();
+            antiIntangible.SetMove();
         }
         else
         {

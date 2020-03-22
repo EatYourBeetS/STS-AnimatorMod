@@ -77,7 +77,7 @@ public class TheUnnamedMonsterGroup extends MonsterGroup
 
             if (this.hoveredMonster == null)
             {
-                AbstractDungeon.player.hoverEnemyWaitTimer = -1.0F;
+                AbstractDungeon.player.hoverEnemyWaitTimer = -1f;
             }
         }
         else

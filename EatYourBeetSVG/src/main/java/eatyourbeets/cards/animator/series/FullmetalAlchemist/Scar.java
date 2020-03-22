@@ -34,7 +34,7 @@ public class Scar extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
         .SetDamageEffect(enemy ->
         {
-            CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3F);
+            CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3f);
             GameActions.Bottom.ReduceStrength(enemy, magicNumber, true);
         });
     }

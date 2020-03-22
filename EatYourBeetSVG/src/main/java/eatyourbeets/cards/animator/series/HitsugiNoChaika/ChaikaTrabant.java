@@ -46,7 +46,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        m.useFastShakeAnimation(0.5F);
+        m.useFastShakeAnimation(0.5f);
 
         ChaikaTrabant other = (ChaikaTrabant) makeStatEquivalentCopy();
         other.target = m;

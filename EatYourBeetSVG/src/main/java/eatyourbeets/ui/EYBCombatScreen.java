@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BobEffect;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
@@ -52,7 +53,7 @@ public class EYBCombatScreen extends GUIElement
     {
         final boolean multiDamage = _isMultiDmg.Get(m);
         final int multiDamageAmount = _intentMultiAmt.Get(m);
-        final BitmapFont font = RenderHelpers.CardDescriptionFont_Normal;
+        final BitmapFont font = EYBFontHelper.CardDescriptionFont_Normal;
         final Color color = Settings.GREEN_TEXT_COLOR.cpy().lerp(Color.WHITE, 0.2f);
         color.a = m.intentAlpha;
 

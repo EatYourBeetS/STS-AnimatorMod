@@ -23,7 +23,7 @@ public class EarthOrbEvokeAction extends EYBAction
     {
         if (amount > 0)
         {
-            CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1F);
+            CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1f);
 
             Random rng = AbstractDungeon.cardRandomRng;
             DamageInfo.DamageType damageType = DamageInfo.DamageType.THORNS;

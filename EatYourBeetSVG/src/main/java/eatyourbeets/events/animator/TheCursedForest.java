@@ -87,8 +87,8 @@ public class TheCursedForest extends EYBEvent
 
         private void Embrace()
         {
-            GameEffects.List.Add(new ShowCardAndObtainEffect(card, (float) Settings.WIDTH * 0.45f, (float) Settings.HEIGHT / 2.0F));
-            GameEffects.List.Add(new ShowCardAndObtainEffect(curse, (float) Settings.WIDTH * 0.55f, (float) Settings.HEIGHT / 2.0F));
+            GameEffects.List.Add(new ShowCardAndObtainEffect(card, (float) Settings.WIDTH * 0.45f, (float) Settings.HEIGHT / 2f));
+            GameEffects.List.Add(new ShowCardAndObtainEffect(curse, (float) Settings.WIDTH * 0.55f, (float) Settings.HEIGHT / 2f));
             ProgressPhase();
         }
 

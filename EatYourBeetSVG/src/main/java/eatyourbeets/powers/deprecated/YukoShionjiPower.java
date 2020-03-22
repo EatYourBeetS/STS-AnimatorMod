@@ -79,15 +79,15 @@ public class YukoShionjiPower extends AnimatorPower
             if (temp != card)
             {
                 card = temp;
-                card.setAngle(0.0F, true);
+                card.setAngle(0f, true);
                 card.lighten(true);
                 card.unfadeOut();
                 card.untip();
                 card.unhover();
             }
 
-            card.current_x = 150.0F * Settings.scale;
-            card.current_y = 450.0F * Settings.scale;
+            card.current_x = 150f * Settings.scale;
+            card.current_y = 450f * Settings.scale;
             card.hb.move(card.current_x, card.current_y);
             card.hb.update();
 

@@ -35,7 +35,7 @@ public class MetalKnight extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY));
-        GameActions.Bottom.Wait(0.8F);
+        GameActions.Bottom.Wait(0.8f);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         GameActions.Bottom.ChannelOrb(new Plasma(), true);
 

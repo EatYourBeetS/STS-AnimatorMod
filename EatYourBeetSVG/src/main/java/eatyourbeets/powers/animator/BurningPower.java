@@ -54,7 +54,7 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
     @Override
     public void playApplyPowerSfx()
     {
-        CardCrawlGame.sound.play("ATTACK_FIRE", 0.05F);
+        CardCrawlGame.sound.play("ATTACK_FIRE", 0.05f);
     }
 
     @Override

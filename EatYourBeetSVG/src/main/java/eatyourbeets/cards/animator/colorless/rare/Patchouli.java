@@ -107,7 +107,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
             MonsterGroup monsters = AbstractDungeon.getMonsters();
             int frostCount = monsters.monsters.size() + 5;
 
-            CardCrawlGame.sound.playA("ORB_FROST_CHANNEL", -0.25F - (float) frostCount / 200.0F);
+            CardCrawlGame.sound.playA("ORB_FROST_CHANNEL", -0.25f - (float) frostCount / 200f);
             for (int f = 0; f < frostCount; f++)
             {
                 GameEffects.Queue.Add(new FallingIceEffect(frostCount, monsters.shouldFlipVfx()));

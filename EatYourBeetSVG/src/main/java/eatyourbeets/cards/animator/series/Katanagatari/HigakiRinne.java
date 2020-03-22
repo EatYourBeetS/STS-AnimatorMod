@@ -161,7 +161,7 @@ public class HigakiRinne extends AnimatorCard
             GameActions.Bottom.Wait(0.35f);
             GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
             GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.5f);
-            GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F));
+            GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4f, m.hb.cY - m.hb.height / 4f));
 
             GameActions.Bottom.DealDamage(p, m, 1, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
 

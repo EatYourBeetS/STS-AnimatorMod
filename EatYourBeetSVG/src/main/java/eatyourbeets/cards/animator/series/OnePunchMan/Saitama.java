@@ -137,7 +137,7 @@ public class Saitama extends AnimatorCard
                 GameActions.Bottom.RemovePower(p, m, IntangiblePlayerPower.POWER_ID);
                 GameActions.Bottom.RemovePower(p, m, InvinciblePower.POWER_ID);
 
-                GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F));
+                GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4f, m.hb.cY - m.hb.height / 4f));
                 GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetPiercing(true, true);
                 GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
 

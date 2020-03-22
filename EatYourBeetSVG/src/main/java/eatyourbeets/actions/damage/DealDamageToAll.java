@@ -93,11 +93,9 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void UpdateInternal(float deltaTime)
     {
-        tickDuration();
-
-        if (this.isDone)
+        if (TickDuration(deltaTime))
         {
             for (AbstractPower p : player.powers)
             {

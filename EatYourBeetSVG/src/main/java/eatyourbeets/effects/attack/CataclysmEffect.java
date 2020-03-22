@@ -20,26 +20,26 @@ public class CataclysmEffect extends AbstractGameEffect
 {
     private final float x;
     private final float y;
-    private static final float DUR = 0.5F;
+    private static final float DUR = 0.5f;
     private final AtlasRegion img;
     private boolean playedSound = false;
 
     public CataclysmEffect(float x, float y)
     {
         this.img = ImageMaster.VERTICAL_IMPACT;
-        this.x = x - (float) this.img.packedWidth / 2.0F;
-        this.y = y - (float) this.img.packedHeight * 0.01F;
+        this.x = x - (float) this.img.packedWidth / 2f;
+        this.y = y - (float) this.img.packedHeight * 0.01f;
         this.startingDuration = DUR;
         this.duration = DUR;
         this.scale = Settings.scale;
-        this.rotation = MathUtils.random(40.0F, 50.0F);
+        this.rotation = MathUtils.random(40f, 50f);
         this.color = Color.SCARLET.cpy();
         this.renderBehind = false;
     }
 
     private void playRandomSfX()
     {
-        CardCrawlGame.sound.playA("ORB_LIGHTNING_EVOKE", -MathUtils.random(0.3F, 0.5F));
+        CardCrawlGame.sound.playA("ORB_LIGHTNING_EVOKE", -MathUtils.random(0.3f, 0.5f));
     }
 
     public void update()
@@ -48,39 +48,39 @@ public class CataclysmEffect extends AbstractGameEffect
         {
             for (int i = 0; i < 50; ++i)
             {
-                GameEffects.Queue.Add(new GenericSmokeEffect(x + MathUtils.random(-280.0F, 250.0F) * Settings.scale, y - 80.0F * Settings.scale));
+                GameEffects.Queue.Add(new GenericSmokeEffect(x + MathUtils.random(-280f, 250f) * Settings.scale, y - 80f * Settings.scale));
             }
         }
 
-        if (this.duration < 0.0F)
+        if (this.duration < 0f)
         {
             CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.HIGH, ScreenShake.ShakeDur.SHORT, false);
             GameEffects.Queue.Add(new DarkSmokePuffEffect(this.x, this.y));
 
             for (int i = 0; i < 12; ++i)
             {
-                GameEffects.Queue.Add(new SmokingEmberEffect(this.x + MathUtils.random(-50.0F, 50.0F) * Settings.scale, this.y + MathUtils.random(-50.0F, 50.0F) * Settings.scale));
+                GameEffects.Queue.Add(new SmokingEmberEffect(this.x + MathUtils.random(-50f, 50f) * Settings.scale, this.y + MathUtils.random(-50f, 50f) * Settings.scale));
             }
 
             this.isDone = true;
         }
 
-        if (this.duration < 0.5F && !this.playedSound)
+        if (this.duration < 0.5f && !this.playedSound)
         {
             this.playRandomSfX();
             this.playedSound = true;
         }
 
-        if (this.duration > 0.2F)
+        if (this.duration > 0.2f)
         {
-            this.color.a = Interpolation.fade.apply(0.5F, 0.0F, (this.duration - 0.34F) * 5.0F);
+            this.color.a = Interpolation.fade.apply(0.5f, 0f, (this.duration - 0.34f) * 5f);
         }
         else
         {
-            this.color.a = Interpolation.fade.apply(0.0F, 0.5F, this.duration * 5.0F);
+            this.color.a = Interpolation.fade.apply(0f, 0.5f, this.duration * 5f);
         }
 
-        this.scale = Interpolation.fade.apply(Settings.scale * 1.1F, Settings.scale * 1.05F, this.duration / 0.6F);
+        this.scale = Interpolation.fade.apply(Settings.scale * 1.1f, Settings.scale * 1.05f, this.duration / 0.6f);
 
         this.duration -= Gdx.graphics.getDeltaTime();
     }
@@ -89,17 +89,17 @@ public class CataclysmEffect extends AbstractGameEffect
     {
         sb.setColor(this.color);
         sb.setBlendFunction(770, 1);
-        sb.draw(this.img, this.x + MathUtils.random(-10.0F, 10.0F) * Settings.scale, this.y, (float) this.img.packedWidth / 2.0F, 0.0F, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 0.3F, this.scale * 0.8F, this.rotation - 18.0F);
-        sb.draw(this.img, this.x + MathUtils.random(-10.0F, 10.0F) * Settings.scale, this.y, (float) this.img.packedWidth / 2.0F, 0.0F, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 0.3F, this.scale * 0.8F, this.rotation + MathUtils.random(12.0F, 18.0F));
-        sb.draw(this.img, this.x + MathUtils.random(-10.0F, 10.0F) * Settings.scale, this.y, (float) this.img.packedWidth / 2.0F, 0.0F, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 0.4F, this.scale * 0.5F, this.rotation - MathUtils.random(-10.0F, 14.0F));
-        sb.draw(this.img, this.x + MathUtils.random(-10.0F, 10.0F) * Settings.scale, this.y, (float) this.img.packedWidth / 2.0F, 0.0F, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 0.7F, this.scale * 0.9F, this.rotation + MathUtils.random(20.0F, 28.0F));
-        sb.draw(this.img, this.x + MathUtils.random(-10.0F, 10.0F) * Settings.scale, this.y, (float) this.img.packedWidth / 2.0F, 0.0F, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 1.5F, this.scale * MathUtils.random(1.4F, 1.6F), this.rotation);
+        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 0.3f, this.scale * 0.8f, this.rotation - 18f);
+        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 0.3f, this.scale * 0.8f, this.rotation + MathUtils.random(12f, 18f));
+        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 0.4f, this.scale * 0.5f, this.rotation - MathUtils.random(-10f, 14f));
+        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 0.7f, this.scale * 0.9f, this.rotation + MathUtils.random(20f, 28f));
+        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 1.5f, this.scale * MathUtils.random(1.4f, 1.6f), this.rotation);
         Color c = Color.GOLD.cpy();
         c.a = this.color.a;
         sb.setColor(c);
-        sb.draw(this.img, this.x + MathUtils.random(-10.0F, 10.0F) * Settings.scale, this.y, (float) this.img.packedWidth / 2.0F, 0.0F, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale, this.scale * MathUtils.random(0.8F, 1.2F), this.rotation);
-        sb.draw(this.img, this.x + MathUtils.random(-10.0F, 10.0F) * Settings.scale, this.y, (float) this.img.packedWidth / 2.0F, 0.0F, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale, this.scale * MathUtils.random(0.4F, 0.6F), this.rotation);
-        sb.draw(this.img, this.x + MathUtils.random(-10.0F, 10.0F) * Settings.scale, this.y, (float) this.img.packedWidth / 2.0F, 0.0F, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 0.5F, this.scale * 0.7F, this.rotation + MathUtils.random(20.0F, 28.0F));
+        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale, this.scale * MathUtils.random(0.8f, 1.2f), this.rotation);
+        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale, this.scale * MathUtils.random(0.4f, 0.6f), this.rotation);
+        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 0.5f, this.scale * 0.7f, this.rotation + MathUtils.random(20f, 28f));
         sb.setBlendFunction(770, 771);
     }
 

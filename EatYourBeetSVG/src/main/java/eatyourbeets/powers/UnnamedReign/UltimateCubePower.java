@@ -97,7 +97,7 @@ public class UltimateCubePower extends AnimatorPower
             float y = owner.hb.cY + AbstractDungeon.cardRandomRng.random(-40, 40);
 
             GameActions.Bottom.Wait(0.3f);
-            GameActions.Bottom.VFX(new ExplosionSmallEffect(x, y), 0F);
+            GameActions.Bottom.VFX(new ExplosionSmallEffect(x, y), 0f);
             GameActions.Bottom.DealDamage(owner, player, damageStep, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
         }
 

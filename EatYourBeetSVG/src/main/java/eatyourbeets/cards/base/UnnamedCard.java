@@ -129,7 +129,7 @@ public abstract class UnnamedCard extends EYBCard
     {
         if (!enteredVoid)
         {
-            GameActions.Bottom.SFX("ANIMATOR_MEGUMIN_CHARGE", 0.1F);
+            GameActions.Bottom.SFX("ANIMATOR_MEGUMIN_CHARGE", 0.1f);
             enteredVoid = true;
         }
     }
@@ -174,7 +174,7 @@ public abstract class UnnamedCard extends EYBCard
                 else
                 {
                     result.text = "Voidbound, Depleted";
-                    result.color = new Color(1.0F, 1.0F, 1.0F, 0.7F);
+                    result.color = new Color(1f, 1f, 1f, 0.7f);
                 }
             }
             else

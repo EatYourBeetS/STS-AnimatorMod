@@ -51,11 +51,11 @@ public class EYBSingleCardPopup extends GUIElement
     public EYBSingleCardPopup()
     {
         this.fadeColor = Color.BLACK.cpy();
-        this.upgradeHb = new Hitbox(250.0F * Settings.scale, 80.0F * Settings.scale);
-        this.betaArtHb = new Hitbox(250.0F * Settings.scale, 80.0F * Settings.scale);
-        this.prevHb = new Hitbox(160.0F * Settings.scale, 160.0F * Settings.scale);
-        this.nextHb = new Hitbox(160.0F * Settings.scale, 160.0F * Settings.scale);
-        this.cardHb = new Hitbox(550.0F * Settings.scale, 770.0F * Settings.scale);
+        this.upgradeHb = new Hitbox(250f * Settings.scale, 80f * Settings.scale);
+        this.betaArtHb = new Hitbox(250f * Settings.scale, 80f * Settings.scale);
+        this.prevHb = new Hitbox(160f * Settings.scale, 160f * Settings.scale);
+        this.nextHb = new Hitbox(160f * Settings.scale, 160f * Settings.scale);
+        this.cardHb = new Hitbox(550f * Settings.scale, 770f * Settings.scale);
         this.viewBetaArt = false;
         this.isActive = false;
 
@@ -106,14 +106,14 @@ public class EYBSingleCardPopup extends GUIElement
                 }
             }
 
-            this.prevHb.move((float) Settings.WIDTH / 2.0F - 400.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F);
-            this.nextHb.move((float) Settings.WIDTH / 2.0F + 400.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F);
+            this.prevHb.move((float) Settings.WIDTH / 2f - 400f * Settings.scale, (float) Settings.HEIGHT / 2f);
+            this.nextHb.move((float) Settings.WIDTH / 2f + 400f * Settings.scale, (float) Settings.HEIGHT / 2f);
         }
 
-        this.cardHb.move((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F);
+        this.cardHb.move((float) Settings.WIDTH / 2f, (float) Settings.HEIGHT / 2f);
 
-        this.fadeTimer = 0.25F;
-        this.fadeColor.a = 0.0F;
+        this.fadeTimer = 0.25f;
+        this.fadeColor.a = 0f;
 
         this.betaArtToggle.SetActive(false);// (boolean)_canToggleBetaArt.Invoke(CardCrawlGame.cardPopup));
         this.upgradeToggle.SetActive(SingleCardViewPopup.enableUpgradeToggle && card.canUpgrade());
@@ -124,17 +124,17 @@ public class EYBSingleCardPopup extends GUIElement
 
             if (upgradeToggle.isActive)
             {
-                this.betaArtHb.move((float) Settings.WIDTH / 2.0F + 270.0F * Settings.scale, 70.0F * Settings.scale);
-                this.upgradeHb.move((float) Settings.WIDTH / 2.0F - 180.0F * Settings.scale, 70.0F * Settings.scale);
+                this.betaArtHb.move((float) Settings.WIDTH / 2f + 270f * Settings.scale, 70f * Settings.scale);
+                this.upgradeHb.move((float) Settings.WIDTH / 2f - 180f * Settings.scale, 70f * Settings.scale);
             }
             else
             {
-                this.betaArtHb.move((float) Settings.WIDTH / 2.0F, 70.0F * Settings.scale);
+                this.betaArtHb.move((float) Settings.WIDTH / 2f, 70f * Settings.scale);
             }
         }
         else
         {
-            this.upgradeHb.move((float) Settings.WIDTH / 2.0F, 70.0F * Settings.scale);
+            this.upgradeHb.move((float) Settings.WIDTH / 2f, 70f * Settings.scale);
         }
     }
 
@@ -179,7 +179,7 @@ public class EYBSingleCardPopup extends GUIElement
         this.UpdateInput();
 
         this.fadeTimer = Math.max(0, fadeTimer - Gdx.graphics.getDeltaTime());
-        this.fadeColor.a = Interpolation.pow2In.apply(0.9F, 0.0F, this.fadeTimer * 4.0F);
+        this.fadeColor.a = Interpolation.pow2In.apply(0.9f, 0f, this.fadeTimer * 4f);
 
         this.upgradeToggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).TryUpdate();
         this.betaArtToggle.SetToggle(viewBetaArt).TryUpdate();
@@ -189,7 +189,7 @@ public class EYBSingleCardPopup extends GUIElement
     public void Render(SpriteBatch sb)
     {
         sb.setColor(this.fadeColor);
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0.0F, 0.0F, (float) Settings.WIDTH, (float) Settings.HEIGHT);
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0f, 0f, (float) Settings.WIDTH, (float) Settings.HEIGHT);
         sb.setColor(Color.WHITE);
 
         EYBCard card = GetCard();
@@ -216,7 +216,7 @@ public class EYBSingleCardPopup extends GUIElement
 
             if (Settings.isControllerMode)
             {
-                sb.draw(CInputActionSet.proceed.getKeyImg(), this.upgradeHb.cX - 132.0F * Settings.scale - 32.0F, -32.0F + 67.0F * Settings.scale, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 64, 64, false, false);
+                sb.draw(CInputActionSet.proceed.getKeyImg(), this.upgradeHb.cX - 132f * Settings.scale - 32f, -32f + 67f * Settings.scale, 32f, 32f, 64f, 64f, Settings.scale, Settings.scale, 0f, 0, 0, 64, 64, false, false);
             }
         }
         if (betaArtToggle.isActive)
@@ -225,7 +225,7 @@ public class EYBSingleCardPopup extends GUIElement
 
             if (Settings.isControllerMode)
             {
-                sb.draw(CInputActionSet.topPanel.getKeyImg(), this.betaArtHb.cX - 132.0F * Settings.scale - 32.0F, -32.0F + 67.0F * Settings.scale, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 64, 64, false, false);
+                sb.draw(CInputActionSet.topPanel.getKeyImg(), this.betaArtHb.cX - 132f * Settings.scale - 32f, -32f + 67f * Settings.scale, 32f, 32f, 64f, 64f, Settings.scale, Settings.scale, 0f, 0, 0, 64, 64, false, false);
             }
         }
     }
@@ -328,23 +328,23 @@ public class EYBSingleCardPopup extends GUIElement
         this.Close();
         CardCrawlGame.cardPopup.open(card, this.group);
         SingleCardViewPopup.isViewingUpgrade = tmp;
-        this.fadeTimer = 0.0F;
-        this.fadeColor.a = 0.9F;
+        this.fadeTimer = 0f;
+        this.fadeColor.a = 0.9f;
     }
 
     private void RenderArrow(SpriteBatch sb, Hitbox hb, CInputAction action, boolean flipX)
     {
-        sb.draw(ImageMaster.POPUP_ARROW, hb.cX - 128.0F, hb.cY - 128.0F, 128.0F, 128.0F, 256.0F, 256.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 256, 256, flipX, false);
+        sb.draw(ImageMaster.POPUP_ARROW, hb.cX - 128f, hb.cY - 128f, 128f, 128f, 256f, 256f, Settings.scale, Settings.scale, 0f, 0, 0, 256, 256, flipX, false);
         if (Settings.isControllerMode)
         {
-            sb.draw(action.getKeyImg(), hb.cX - 32.0F, hb.cY - 32.0F + 100.0F * Settings.scale, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 64, 64, false, false);
+            sb.draw(action.getKeyImg(), hb.cX - 32f, hb.cY - 32f + 100f * Settings.scale, 32f, 32f, 64f, 64f, Settings.scale, Settings.scale, 0f, 0, 0, 64, 64, false, false);
         }
 
         if (hb.hovered)
         {
             sb.setBlendFunction(770, 1);
-            sb.setColor(new Color(1.0F, 1.0F, 1.0F, 0.5F));
-            sb.draw(ImageMaster.POPUP_ARROW, hb.cX - 128.0F, hb.cY - 128.0F, 128.0F, 128.0F, 256.0F, 256.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 256, 256, flipX, false);
+            sb.setColor(new Color(1f, 1f, 1f, 0.5f));
+            sb.draw(ImageMaster.POPUP_ARROW, hb.cX - 128f, hb.cY - 128f, 128f, 128f, 256f, 256f, Settings.scale, Settings.scale, 0f, 0, 0, 256, 256, flipX, false);
             sb.setColor(Color.WHITE);
             sb.setBlendFunction(770, 771);
         }

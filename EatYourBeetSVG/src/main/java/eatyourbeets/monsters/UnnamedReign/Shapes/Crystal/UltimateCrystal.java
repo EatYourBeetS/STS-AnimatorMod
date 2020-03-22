@@ -13,7 +13,6 @@ import eatyourbeets.actions.monsters.MoveMonsterAction;
 import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.animator.status.Crystallize;
-import eatyourbeets.effects.utility.CallbackEffect;
 import eatyourbeets.monsters.Moveset;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndArtifact;
@@ -114,8 +113,7 @@ public class UltimateCrystal extends Crystal
             GameActions.Bottom.ApplyPower(this, this, new UltimateCrystalPower(this, 6), 6);
             GameActions.Bottom.ApplyPower(this, this, new AntiArtifactSlowPower(this, 1), 1);
 
-            GameEffects.List.Add(new CallbackEffect(new WaitRealtimeAction(15),
-                    this, (state, action)-> CardCrawlGame.music.unsilenceBGM()));
+            GameEffects.List.Callback(new WaitRealtimeAction(15), () -> CardCrawlGame.music.unsilenceBGM());
 
             CardCrawlGame.sound.play(GR.Common.Audio_TheUltimateCrystal, true);
         }

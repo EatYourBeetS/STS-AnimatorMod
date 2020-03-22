@@ -27,10 +27,10 @@ public class AnimatorSpecialTrophiesRenderer extends GUIElement
     {
         trophySpecialHb = new AdvancedHitbox(0, 0, 64 * Settings.scale, 64 * Settings.scale, false);
 
-        float baseX = 200.0F * Settings.scale;
-        float baseY = (float) Settings.HEIGHT / 2.0F;
+        float baseX = 200f * Settings.scale;
+        float baseY = (float) Settings.HEIGHT / 2f;
 
-        trophySpecialHb.move(baseX + 492.0F * Settings.scale, baseY + 154.0F * Settings.scale);
+        trophySpecialHb.move(baseX + 492f * Settings.scale, baseY + 154f * Settings.scale);
     }
 
     public void Refresh()
@@ -72,7 +72,7 @@ public class AnimatorSpecialTrophiesRenderer extends GUIElement
 
         sb.setColor(trophyHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
         sb.draw(images.PLATINUM_TROPHY_SLOT.Texture(), trophyHb.x, trophyHb.y, halfW, halfH, w, h, Settings.scale, Settings.scale,
-                0.0F, 0, 0, 64, 64, false, false);
+                0f, 0, 0, 64, 64, false, false);
 
         Texture trophyTexture;
         if (trophyLevel <= 0)
@@ -86,7 +86,7 @@ public class AnimatorSpecialTrophiesRenderer extends GUIElement
 
         sb.setColor(Color.WHITE);
         sb.draw(trophyTexture, trophyHb.x, trophyHb.y, halfW, halfH, w, h, Settings.scale, Settings.scale,
-                0.0F, 0, 0, 64, 64, false, false);
+                0f, 0, 0, 64, 64, false, false);
 
         if (trophyLevel > 0)
         {

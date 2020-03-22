@@ -126,8 +126,8 @@ public class AdvancedHitbox extends Hitbox
     {
         this.x = x;
         this.y = y;
-        this.target_cX = this.cX = x + this.width / 2.0F;
-        this.target_cY = this.cY = y + this.height / 2.0F;
+        this.target_cX = this.cX = x + this.width / 2f;
+        this.target_cY = this.cY = y + this.height / 2f;
     }
 
     @Override
@@ -135,8 +135,8 @@ public class AdvancedHitbox extends Hitbox
     {
         this.width = w;
         this.height = h;
-        this.target_cX = this.cX = x + this.width / 2.0F;
-        this.target_cY = this.cY = y + this.height / 2.0F;
+        this.target_cX = this.cX = x + this.width / 2f;
+        this.target_cY = this.cY = y + this.height / 2f;
     }
 
     @Override
@@ -144,21 +144,21 @@ public class AdvancedHitbox extends Hitbox
     {
         this.target_cX = this.cX = cX;
         this.target_cY = this.cY = cY;
-        this.x = cX - this.width / 2.0F;
-        this.y = cY - this.height / 2.0F;
+        this.x = cX - this.width / 2f;
+        this.y = cY - this.height / 2f;
     }
 
     protected void moveInternal(float cX, float cY)
     {
         this.cX = cX;
         this.cY = cY;
-        this.x = cX - this.width / 2.0F;
-        this.y = cY - this.height / 2.0F;
+        this.x = cX - this.width / 2f;
+        this.y = cY - this.height / 2f;
     }
 
     private float Lerp(float current, float target)
     {
-        float lerp = MathUtils.lerp(current, target, Gdx.graphics.getDeltaTime() * 9.0F);
+        float lerp = MathUtils.lerp(current, target, Gdx.graphics.getDeltaTime() * 9f);
         if (Math.abs(current - target) < Settings.UI_SNAP_THRESHOLD)
         {
             return target;

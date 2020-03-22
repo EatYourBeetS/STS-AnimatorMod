@@ -30,7 +30,7 @@ public class PlayerFlightPower extends AbstractPower implements CloneablePowerIn
 
     public void playApplyPowerSfx()
     {
-        CardCrawlGame.sound.play("POWER_FLIGHT", 0.05F);
+        CardCrawlGame.sound.play("POWER_FLIGHT", 0.05f);
     }
 
     public void updateDescription()
@@ -51,7 +51,7 @@ public class PlayerFlightPower extends AbstractPower implements CloneablePowerIn
 
     private float calculateDamageTakenAmount(float damage, DamageInfo.DamageType type)
     {
-        return type != DamageInfo.DamageType.HP_LOSS && type != DamageInfo.DamageType.THORNS ? damage / 2.0F : damage;
+        return type != DamageInfo.DamageType.HP_LOSS && type != DamageInfo.DamageType.THORNS ? damage / 2f : damage;
     }
 
     public int onAttacked(DamageInfo info, int damageAmount)

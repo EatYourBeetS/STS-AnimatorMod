@@ -64,7 +64,7 @@ public class Tet extends AnimatorCard
             for (AbstractCard card : cards)
             {
                 GameActions.Top.MoveCard(card, player.drawPile)
-                        .AddCallback(c -> JavaUtilities.ChangeIndex(c, player.drawPile.group, player.drawPile.size() - 3));
+                .AddCallback(c -> JavaUtilities.ChangeIndex(c, player.drawPile.group, player.drawPile.size() - 3));
             }
         });
     }

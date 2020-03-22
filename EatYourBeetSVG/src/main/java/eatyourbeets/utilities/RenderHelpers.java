@@ -19,13 +19,6 @@ import eatyourbeets.ui.controls.GUI_Image;
 
 public class RenderHelpers
 {
-    public static final BitmapFont CardDescriptionFont_Normal = GenerateFont(FontHelper.cardDescFont_L, 23, 0, 1f);
-    public static final BitmapFont CardDescriptionFont_Large = GenerateFont(FontHelper.SCP_cardDescFont, 46, 0, 2f);
-    public static final BitmapFont CardIconFont_VeryLarge = GenerateFont(FontHelper.cardDescFont_L, 76, 4.5f, 1.4f);
-    public static final BitmapFont CardIconFont_Large = GenerateFont(FontHelper.cardDescFont_L, 38, 2.25f, 0.7f);
-    public static final BitmapFont CardIconFont_Small = GenerateFont(FontHelper.cardDescFont_L, 19, 1f, 0.3f);
-    public static final BitmapFont CardTooltipFont = GenerateFont(FontHelper.tipBodyFont, 19, 0f, 2f);
-
     public static void ResetFont(BitmapFont font)
     {
         font.getData().setScale(1);
@@ -36,12 +29,12 @@ public class RenderHelpers
         BitmapFont result;
         if (card.isPopup)
         {
-            result = RenderHelpers.CardIconFont_VeryLarge;
+            result = EYBFontHelper.CardIconFont_VeryLarge;
             result.getData().setScale(card.drawScale * 0.5f);
         }
         else
         {
-            result = RenderHelpers.CardIconFont_Large;
+            result = EYBFontHelper.CardIconFont_Large;
             result.getData().setScale(card.drawScale);
         }
 
@@ -53,12 +46,12 @@ public class RenderHelpers
         BitmapFont result;
         if (card.isPopup)
         {
-            result = RenderHelpers.CardIconFont_Large;
+            result = EYBFontHelper.CardIconFont_Large;
             result.getData().setScale(card.drawScale * 0.45f);
         }
         else
         {
-            result = RenderHelpers.CardIconFont_Small;
+            result = EYBFontHelper.CardIconFont_Small;
             result.getData().setScale(card.drawScale * 0.9f);
         }
 
@@ -98,12 +91,12 @@ public class RenderHelpers
         BitmapFont result;
         if (card.isPopup)
         {
-            result = CardDescriptionFont_Large;
+            result = EYBFontHelper.CardDescriptionFont_Large;
             result.getData().setScale(card.drawScale * scaleModifier * 0.5f);
         }
         else
         {
-            result = CardDescriptionFont_Normal;
+            result = EYBFontHelper.CardDescriptionFont_Normal;
             result.getData().setScale(card.drawScale * scaleModifier);
         }
 
@@ -147,8 +140,8 @@ public class RenderHelpers
     public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, TextureAtlas.AtlasRegion img, float drawX, float drawY)
     {
         sb.setColor(color);
-        sb.draw(img, drawX + img.offsetX - img.originalWidth / 2.0F, drawY + img.offsetY - img.originalHeight / 2.0F,
-                img.originalWidth / 2.0F - img.offsetX, img.originalHeight / 2.0F - img.offsetY,
+        sb.draw(img, drawX + img.offsetX - img.originalWidth / 2f, drawY + img.offsetY - img.originalHeight / 2f,
+                img.originalWidth / 2f - img.offsetX, img.originalHeight / 2f - img.offsetY,
                 img.packedWidth, img.packedHeight, card.drawScale * Settings.scale, card.drawScale * Settings.scale, card.angle);
     }
 
@@ -326,7 +319,7 @@ public class RenderHelpers
 
     private static BitmapFont GenerateFont(BitmapFont source, float size, float borderWidth, float shadowOffset)
     {
-        return GenerateFont(source, size, borderWidth, new Color(0F, 0F, 0F, 1F), shadowOffset, new Color(0.0F, 0.0F, 0.0F, 0.5F));
+        return GenerateFont(source, size, borderWidth, new Color(0f, 0f, 0f, 1f), shadowOffset, new Color(0f, 0f, 0f, 0.5f));
     }
 
     private static BitmapFont GenerateFont(BitmapFont source, float size, float borderWidth, Color borderColor, float shadowOffset, Color shadowColor)
@@ -339,8 +332,8 @@ public class RenderHelpers
         param.kerning = true;
         param.borderColor = borderColor;
         param.borderWidth = borderWidth * Settings.scale;
-        param.gamma = 0.9F;
-        param.borderGamma = 0.9F;
+        param.gamma = 0.9f;
+        param.borderGamma = 0.9f;
         param.shadowColor = shadowColor;
         param.shadowOffsetX = Math.round(shadowOffset * Settings.scale);
         param.shadowOffsetY = Math.round(shadowOffset * Settings.scale);

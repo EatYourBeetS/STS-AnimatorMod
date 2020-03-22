@@ -67,12 +67,12 @@ public class WizardHat extends AnimatorRelic
             {
                 SetEnabled(false);
 
-                GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.1F);
+                GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.1f);
                 GameActions.Bottom.Wait(0.35f);
-                GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.2F);
+                GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.2f);
                 GameActions.Bottom.VFX(new BorderFlashEffect(Color.ORANGE));
                 GameActions.Bottom.Wait(0.35f);
-                GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.3F);
+                GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.3f);
                 GameActions.Bottom.Wait(0.35f);
                 GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
                 GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.5f);

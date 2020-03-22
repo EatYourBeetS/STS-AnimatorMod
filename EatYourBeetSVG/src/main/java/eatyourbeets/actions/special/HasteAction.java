@@ -8,6 +8,8 @@ import eatyourbeets.utilities.GameActions;
 
 public class HasteAction extends EYBAction
 {
+    protected EYBCard card;
+
     public HasteAction(EYBCard card)
     {
         super(ActionType.SPECIAL);
@@ -21,24 +23,26 @@ public class HasteAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        if (!((EYBCard)card).haste)
+        if (card.haste)
+        {
+            GameActions.Top.Draw(1);
+            GameActions.Top.Flash(card);
+        }
+        else
         {
             isDone = true;
         }
-
-        GameActions.Top.Draw(1);
-        GameActions.Top.Flash(card);
     }
 
     @Override
-    protected void UpdateInternal()
+    protected void Complete()
     {
-        super.UpdateInternal();
-
-        if (isDone)
+        if (card.haste)
         {
-            CardCrawlGame.sound.playA("POWER_FLIGHT",  MathUtils.random(0.3f, 0.4f));
-            ((EYBCard)card).haste = false;
+            CardCrawlGame.sound.playA("POWER_FLIGHT", MathUtils.random(0.3f, 0.4f));
+            card.haste = false;
         }
+
+        isDone = true;
     }
 }

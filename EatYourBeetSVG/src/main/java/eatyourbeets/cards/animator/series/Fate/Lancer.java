@@ -44,7 +44,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
         AbstractGameAction.AttackEffect attackEffect;
         if (this.damage >= 15)
         {
-            GameActions.Bottom.VFX(new ClashEffect(m.hb.cX, m.hb.cY), 0.1F);
+            GameActions.Bottom.VFX(new ClashEffect(m.hb.cX, m.hb.cY), 0.1f);
             attackEffect = AbstractGameAction.AttackEffect.NONE;
         }
         else

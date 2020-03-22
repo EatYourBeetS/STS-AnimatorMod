@@ -1,4 +1,4 @@
-package eatyourbeets.effects.attack;
+package eatyourbeets.effects.vfx;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -9,33 +9,36 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.DamageImpactLineEffect;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.GameEffects;
 
 import java.util.ArrayList;
 
-public class HemokinesisParticle2Effect extends AbstractGameEffect
+public class HemokinesisParticleEffect extends EYBEffect
 {
-    private static final int TRAIL_ACCURACY = 60;
-    private final CatmullRomSpline<Vector2> crs = new CatmullRomSpline<>();
-    private final ArrayList<Vector2> controlPoints = new ArrayList<>();
-    private final Vector2[] points = new Vector2[60];
-    private AtlasRegion img;
-    private Vector2 pos;
-    private Vector2 target;
-    private float currentSpeed;
-    private static final float MAX_VELOCITY;
-    private static final float VELOCITY_RAMP_RATE;
-    private static final float DST_THRESHOLD;
-    private float rotation;
-    private boolean rotateClockwise;
-    private boolean stopRotating;
-    private boolean facingLeft;
-    private float rotationRate;
+    protected static final float MAX_VELOCITY = 4000f * Settings.scale;
+    protected static final float VELOCITY_RAMP_RATE = 3000f * Settings.scale;
+    protected static final float DST_THRESHOLD = 42f * Settings.scale;
+    protected static final int TRAIL_ACCURACY = 60;
 
-    public HemokinesisParticle2Effect(float sX, float sY, float tX, float tY, boolean facingLeft)
+    protected final CatmullRomSpline<Vector2> crs = new CatmullRomSpline<>();
+    protected final ArrayList<Vector2> controlPoints = new ArrayList<>();
+    protected final Vector2[] points = new Vector2[60];
+    protected AtlasRegion img;
+    protected Vector2 pos;
+    protected Vector2 target;
+    protected float currentSpeed;
+    protected float rotation;
+    protected boolean rotateClockwise;
+    protected boolean stopRotating;
+    protected boolean facingLeft;
+    protected float rotationRate;
+
+    public HemokinesisParticleEffect(float sX, float sY, float tX, float tY, boolean facingLeft)
     {
+        super(0.7f);
+
         this.img = ImageMaster.GLOW_SPARK_2;
         this.pos = new Vector2(sX, sY);
         if (!facingLeft)
@@ -55,7 +58,6 @@ public class HemokinesisParticle2Effect extends AbstractGameEffect
         this.rotationRate = MathUtils.random(600f, 650f) * Settings.scale;
         this.currentSpeed = 1000f * Settings.scale;
         this.color = new Color(1f, 0f, 0.02f, 0.6f);
-        this.duration = 0.7f;
         this.scale = 1f * Settings.scale;
         this.renderBehind = MathUtils.randomBoolean();
     }
@@ -201,17 +203,5 @@ public class HemokinesisParticle2Effect extends AbstractGameEffect
 
             sb.setBlendFunction(770, 771);
         }
-
-    }
-
-    public void dispose()
-    {
-    }
-
-    static
-    {
-        MAX_VELOCITY = 4000f * Settings.scale;
-        VELOCITY_RAMP_RATE = 3000f * Settings.scale;
-        DST_THRESHOLD = 42f * Settings.scale;
     }
 }

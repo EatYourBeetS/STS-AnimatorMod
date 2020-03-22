@@ -10,7 +10,7 @@ public class RenderCardEffect extends EYBEffect
 
     public RenderCardEffect(AbstractCard card, float duration, boolean isRealtime)
     {
-        super(0, duration, isRealtime);
+        super(duration, isRealtime);
 
         this.card = card;
     }

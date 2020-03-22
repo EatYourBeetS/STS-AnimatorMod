@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.effects.attack.SmallLaser2Effect;
+import eatyourbeets.effects.vfx.SmallLaserEffect;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.ui.EffectHistory;
@@ -60,7 +60,7 @@ public class Aisha extends AnimatorCard implements Spellcaster
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE)
             .SetVFX(true, false)
-            .SetDamageEffect(enemy -> GameEffects.Queue.Add(new SmallLaser2Effect(player.hb.cX, player.hb.cY,
+            .SetDamageEffect(enemy -> GameEffects.Queue.Add(new SmallLaserEffect(player.hb.cX, player.hb.cY,
             enemy.hb.cX + MathUtils.random(-0.05f, 0.05f),enemy.hb.cY + MathUtils.random(-0.05f, 0.05f), Color.VIOLET)));
         }
 

@@ -27,8 +27,6 @@ import java.util.ArrayList;
 
  public class ParseGenericCommand extends ConsoleCommand
  {
-     private static FieldInfo<Boolean> _isDeltaMultiplied;
-     private static FieldInfo<Float> _deltaMultiplier;
      private static Object temp;
 
      public ParseGenericCommand()

@@ -213,7 +213,7 @@
 		},
 		"animator:MamiTomoe":
 		{
-			"DESCRIPTION": "Attack an extra time for each ** Curse in draw or discard pile. || If you have no Curse in discard ** pile: Add a {Grief Seed} to your ** discard pile.",
+			"DESCRIPTION": "Attack an extra time for each ** Curse in draw or discard pile. || If you have no Curses in ** discard pile: Add a {Grief Seed} ** to your discard pile.",
 			"NAME": "Mami Tomoe"
 		},
 		"animator:NagisaMomoe":
@@ -223,12 +223,12 @@
 		},
 		"animator:Oktavia":
 		{
-			"DESCRIPTION": "Add !S! random {Curses} to your ** hand, then draw a card for ** each {Curse} in your hand. || Attacks once for each Curse ** in your hand.",
+			"DESCRIPTION": "Add !S! random {Curses} to ** your hand. Draw a card for ** each {Curse} in your hand. || Attacks once for each Curse ** in your hand.",
 			"NAME": "Oktavia"
 		},
 		"animator:OrikoMikuni":
 		{
-			"DESCRIPTION": "Scry !M!. ** Retain !S! card(s) at the end ** of this turn. || Semi-Limited. Synergy: ** If you reached 3 [I] this ** combat: draw 1 card.",
+			"DESCRIPTION": "Scry !M!. ** Retain !S! card at the end ** of this turn. || Semi-Limited. Synergy: ** If you reached 3 [I] this ** combat: draw 1 card.",
 			"NAME": "Oriko Mikuni"
 		},
 		"animator:SayakaMiki":

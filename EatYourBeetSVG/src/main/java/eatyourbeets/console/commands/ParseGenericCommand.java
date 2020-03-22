@@ -77,9 +77,6 @@
                          AbstractDungeon.player.masterDeck.group.removeAll(AbstractDungeon.player.masterDeck.getPurgeableCards().group);
 
                          for (AbstractCard c : CardLibrary.getAllCards()) {
-                             if (c.type != AbstractCard.CardType.CURSE && c.type != AbstractCard.CardType.STATUS
-                                     && c instanceof AnimatorCard && !c.tags.contains(AbstractCard.CardTags.HEALING)
-                                     && c.rarity != AbstractCard.CardRarity.BASIC && c.rarity != AbstractCard.CardRarity.SPECIAL) {
                                  if ((((AnimatorCard) c).synergy == synergy)) {
                                     AbstractCard c_upgraded = c.makeCopy();
                                     c_upgraded.upgrade();
@@ -87,7 +84,6 @@
                                      AbstractDungeon.player.masterDeck.group.add(c);
                                      AbstractDungeon.player.masterDeck.group.add(c_upgraded);
                                  }
-                             }
                          }
 
                          DevConsole.log("Replaced deck with all cards from: " + loadoutName);
@@ -212,7 +208,7 @@
 
          if (tokens.length > 1 && tokens.length <= 3)
          {
-             if (tokens[1].equals("starter"))
+             if (tokens[1].equals("starter") || tokens[1].equals("get-series"))
              {
                  for (AnimatorLoadout loadout : GR.Animator.Data.GetEveryLoadout())
                  {

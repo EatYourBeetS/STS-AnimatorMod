@@ -5,16 +5,16 @@ import basemod.devcommands.ConsoleCommand;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+ import com.megacrit.cardcrawl.core.Settings;
+ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
- import com.megacrit.cardcrawl.stances.AbstractStance;
- import com.megacrit.cardcrawl.ui.DialogWord;
+import com.megacrit.cardcrawl.stances.AbstractStance;
+import com.megacrit.cardcrawl.ui.DialogWord;
 import eatyourbeets.actions.monsters.TalkAction;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.interfaces.markers.MartialArtist;
+ import eatyourbeets.cards.base.*;
+ import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -23,10 +23,13 @@ import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
+ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
+
  public class ParseGenericCommand extends ConsoleCommand
  {
      private static FieldInfo<Boolean> _isDeltaMultiplied;
      private static FieldInfo<Float> _deltaMultiplier;
+     private static Object temp;
 
      public ParseGenericCommand()
      {
@@ -46,13 +49,13 @@ import java.util.ArrayList;
                  {
                      String loadoutName = tokens[2].replace("_", " ");
                      AnimatorLoadout loadout = GR.Animator.Data.GetByName(loadoutName);
-                     if (GameUtilities.InGame() && loadout != null && AbstractDungeon.player != null && AbstractDungeon.player.masterDeck != null)
+                     if (GameUtilities.InGame() && loadout != null && player != null && player.masterDeck != null)
                      {
-                         AbstractDungeon.player.masterDeck.group.removeAll(AbstractDungeon.player.masterDeck.getPurgeableCards().group);
+                         player.masterDeck.group.removeAll(player.masterDeck.getPurgeableCards().group);
 
                          for (String cardID : loadout.GetStartingDeck())
                          {
-                             AbstractDungeon.player.masterDeck.group.add(CardLibrary.getCard(cardID).makeCopy());
+                             player.masterDeck.group.add(CardLibrary.getCard(cardID).makeCopy());
                          }
 
                          DevConsole.log("Replaced starting deck with: " + loadoutName);
@@ -127,6 +130,42 @@ import java.util.ArrayList;
                      return;
                  }
 
+                 if (tokens[1].equals("get-cards") && tokens.length > 2)
+                 {
+                     if (!GameUtilities.InGame() || player == null || player.masterDeck == null)
+                     {
+                         DevConsole.log("You need to be in game to use this command.");
+                         return;
+                     }
+
+                     temp = tokens[2].replace("_", " ");
+                     ArrayList<AnimatorCard> cards = new ArrayList<>();
+                     Synergy synergy = JavaUtilities.Find(Synergies.GetAll(), s -> s.Name.equals(temp));
+                     if (synergy != null)
+                     {
+                         Settings.seedSet = true;
+                         player.masterDeck.clear();
+                         Synergies.AddCards(synergy, CardLibrary.getAllCards(), cards);
+
+                         cards.sort(new CardRarityComparator());
+
+                         for (AnimatorCard card : cards)
+                         {
+                             AbstractCard temp = card.makeCopy();
+                             player.masterDeck.group.add(temp);
+                             if (temp.canUpgrade())
+                             {
+                                 temp = card.makeCopy();
+                                 temp.upgrade();
+                                 player.masterDeck.group.add(temp);
+                             }
+                         }
+                     }
+
+                     DevConsole.log("Found " + cards.size() + " cards.");
+                     return;
+                 }
+
                  if (tokens[1].equals("show-upgrades"))
                  {
                      SingleCardViewPopup.isViewingUpgrade ^= true;
@@ -196,7 +235,7 @@ import java.util.ArrayList;
 
          if (tokens.length > 1 && tokens.length <= 3)
          {
-             if (tokens[1].equals("starter"))
+             if (tokens[1].equals("starter") || tokens[1].equals("get-cards"))
              {
                  for (AnimatorLoadout loadout : GR.Animator.Data.GetEveryLoadout())
                  {

@@ -8,6 +8,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class Synergies
@@ -75,6 +76,11 @@ public class Synergies
     public static String GetLocalizedSeriesString()
     {
         return GR.Animator.Strings.Synergies.Series;
+    }
+
+    public static Collection<Synergy> GetAll()
+    {
+        return All.values();
     }
 
     public static Synergy GetByID(int id)

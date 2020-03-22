@@ -233,7 +233,7 @@
 		},
 		"animator:SayakaMiki":
 		{
-			"DESCRIPTION": "Synergy: Channel 1 Frost. || Cooldown !S!: ** Add {Oktavia} and a {Grief Seed} ** to your discard pile, then ** Exhaust.",
+			"DESCRIPTION": "Synergy: Channel 1 Frost. || Cooldown !S!: ** Add {Oktavia} and a ** {Grief Seed} to your discard ** pile, then Exhaust.",
 			"NAME": "Sayaka Miki"
 		},
 		"animator:Strike_MadokaMagica":
@@ -243,9 +243,9 @@
 		},
 		"animator:SuzuneAmano":
 		{
-			"DESCRIPTION": "Deals !S! additional damage ** for each Fire Orb. || Exhaust a random card: ** Apply !M! burning.",
+			"DESCRIPTION": "Deals !S! additional ** damage for each ** Fire Orb. || Exhaust a random card: ** Apply !M! burning.",
 			"NAME": "Suzune Amano",
-			"UPGRADE_DESCRIPTION": "Deals !S! additional damage ** for each Fire Orb. || Exhaust a card: ** Apply !M! burning."
+			"UPGRADE_DESCRIPTION": "Deals !S! additional ** damage for each ** Fire Orb. || Exhaust a card: ** Apply !M! burning."
 		},
 		"animator:Walpurgisnacht":
 		{

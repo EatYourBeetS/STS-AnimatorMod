@@ -43,10 +43,17 @@ public class OrikoMikuni extends AnimatorCard implements OnApplyPowerSubscriber
             GameActions.Bottom.StackPower(new TemporaryRetainPower(p, 1));
         }
 
-        if (IntGainedThisTurn)
+        if (HasSynergy() && IntGainedThisTurn)
         {
             GameActions.Bottom.Draw(1);
         }
+    }
+
+    @Override
+    public void triggerOnEndOfPlayerTurn() {
+        super.triggerOnEndOfPlayerTurn();
+
+        IntGainedThisTurn = false;
     }
 
     @Override

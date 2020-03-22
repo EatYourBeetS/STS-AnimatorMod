@@ -1,11 +1,12 @@
 package eatyourbeets.cards.animator.beta.MadokaMagica;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
+import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -54,13 +55,14 @@ public class MamiTomoe extends AnimatorCard
             GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
         }
 
-        GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb_x, m.hb_y));
+        GameActions.Bottom.SFX("ATTACK_HEAVY");
+        GameActions.Bottom.VFX(new MindblastEffect(player.dialogX, player.dialogY, player.flipHorizontal), 0.1f);
 
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         }
 
-        GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
+        GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.LONG, ScreenShake.ShakeIntensity.MED));
     }
 }

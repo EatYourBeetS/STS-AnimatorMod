@@ -1,10 +1,12 @@
 package eatyourbeets.cards.animator.beta.MadokaMagica;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -52,6 +54,7 @@ public class MadokaKaname extends AnimatorCard
             GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, CurseCount / magicNumber)).SkipIfZero(true);
         }
 
+        GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
         GameActions.Bottom.VFX(new RainbowCardEffect());
     }
 

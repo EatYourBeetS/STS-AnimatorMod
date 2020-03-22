@@ -1,10 +1,15 @@
 package eatyourbeets.cards.animator.beta.MadokaMagica;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
+import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
+import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -57,6 +62,10 @@ public class Oktavia extends AnimatorCard implements Spellcaster
                     GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
                     .SetVFX(true, false);
                 }
+
+                GameActions.Bottom.VFX(new BorderFlashEffect(Color.BLACK));
+                GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
+                GameActions.Bottom.VFX(new CollectorCurseEffect(m.hb.cX, m.hb.cY), 2f);
 
                 GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
             });

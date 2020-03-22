@@ -19,10 +19,9 @@ import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class OrikoMikuni extends AnimatorCard implements OnApplyPowerSubscriber
+public class OrikoMikuni extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(OrikoMikuni.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
-    private boolean IntGainedThisTurn;
 
     public OrikoMikuni()
     {
@@ -44,24 +43,17 @@ public class OrikoMikuni extends AnimatorCard implements OnApplyPowerSubscriber
             GameActions.Bottom.StackPower(new TemporaryRetainPower(p, secondaryValue));
         }
 
-        if (HasSynergy() && IntGainedThisTurn && EffectHistory.TryActivateSemiLimited(cardID))
+        boolean intGainedThisTurn = false;
+
+        IntellectPower intellect = GameUtilities.GetPower(player, IntellectPower.class);
+        if (intellect != null && intellect.GetCurrentLevel() > 1)
+        {
+            intGainedThisTurn = true;
+        }
+
+        if (HasSynergy() && intGainedThisTurn && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.Draw(1);
-        }
-    }
-
-    @Override
-    public void triggerOnEndOfPlayerTurn() {
-        super.triggerOnEndOfPlayerTurn();
-
-        IntGainedThisTurn = false;
-    }
-
-    @Override
-    public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-        if (power.ID.equals(IntellectPower.POWER_ID))
-        {
-            IntGainedThisTurn = true;
         }
     }
 }

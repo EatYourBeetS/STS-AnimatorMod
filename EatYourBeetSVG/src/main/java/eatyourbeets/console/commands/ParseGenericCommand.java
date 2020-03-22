@@ -76,14 +76,16 @@
 
                          AbstractDungeon.player.masterDeck.group.removeAll(AbstractDungeon.player.masterDeck.getPurgeableCards().group);
 
-                         for (AbstractCard c : CardLibrary.getAllCards()) {
-                                 if ((((AnimatorCard) c).synergy == synergy)) {
+                         for (AbstractCard c : CardLibrary.getAllCards())
+                         {
+                             if (c instanceof AnimatorCard && ((AnimatorCard) c).synergy == synergy)
+                             {
                                     AbstractCard c_upgraded = c.makeCopy();
                                     c_upgraded.upgrade();
 
                                      AbstractDungeon.player.masterDeck.group.add(c);
                                      AbstractDungeon.player.masterDeck.group.add(c_upgraded);
-                                 }
+                             }
                          }
 
                          DevConsole.log("Replaced deck with all cards from: " + loadoutName);

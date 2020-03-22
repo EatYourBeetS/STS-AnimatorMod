@@ -13,6 +13,8 @@
  import eatyourbeets.actions.monsters.TalkAction;
  import eatyourbeets.cards.base.AnimatorCard;
  import eatyourbeets.cards.base.EYBCard;
+ import eatyourbeets.cards.base.Synergies;
+ import eatyourbeets.cards.base.Synergy;
  import eatyourbeets.interfaces.markers.MartialArtist;
  import eatyourbeets.interfaces.markers.Spellcaster;
  import eatyourbeets.resources.GR;
@@ -55,6 +57,40 @@
                          }
 
                          DevConsole.log("Replaced starting deck with: " + loadoutName);
+                     }
+                     else
+                     {
+                         DevConsole.log("Error processing command.");
+                     }
+
+                     return;
+                 }
+                 if (tokens[1].equals("get-series") && tokens.length > 2)
+                 {
+                     String loadoutName = tokens[2].replace("_", " ");
+                     AnimatorLoadout loadout = GR.Animator.Data.GetByName(loadoutName);
+
+                     if (GameUtilities.InGame() && loadout != null && AbstractDungeon.player != null && AbstractDungeon.player.masterDeck != null) {
+
+                         Synergy synergy = Synergies.GetByID(loadout.ID);
+
+                         AbstractDungeon.player.masterDeck.group.removeAll(AbstractDungeon.player.masterDeck.getPurgeableCards().group);
+
+                         for (AbstractCard c : CardLibrary.getAllCards()) {
+                             if (c.type != AbstractCard.CardType.CURSE && c.type != AbstractCard.CardType.STATUS
+                                     && c instanceof AnimatorCard && !c.tags.contains(AbstractCard.CardTags.HEALING)
+                                     && c.rarity != AbstractCard.CardRarity.BASIC && c.rarity != AbstractCard.CardRarity.SPECIAL) {
+                                 if ((((AnimatorCard) c).synergy == synergy)) {
+                                    AbstractCard c_upgraded = c.makeCopy();
+                                    c_upgraded.upgrade();
+
+                                     AbstractDungeon.player.masterDeck.group.add(c);
+                                     AbstractDungeon.player.masterDeck.group.add(c_upgraded);
+                                 }
+                             }
+                         }
+
+                         DevConsole.log("Replaced deck with all cards from: " + loadoutName);
                      }
                      else
                      {

@@ -17,7 +17,6 @@ import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.delegates.ActionT0;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -26,7 +25,7 @@ import eatyourbeets.utilities.RandomizedList;
 
 import java.util.HashSet;
 
-public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
+public class Patchouli extends AnimatorCard implements StartupCard
 {
     public static final EYBCardData DATA = Register(Patchouli.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
     static
@@ -48,6 +47,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
         SetScaling(2, 0, 0);
 
         SetSynergy(Synergies.TouhouProject);
+        SetSpellcaster();
     }
 
     @Override

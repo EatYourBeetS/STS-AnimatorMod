@@ -41,7 +41,8 @@ public class Fredrika extends AnimatorCard
         SetUpgrade(2, 2, 0);
 
         SetAttackType(EYBAttackType.Normal);
-        SetSynergy(Synergies.Chaika, true);
+        SetSynergy(Synergies.Chaika);
+        SetShapeshifter();
     }
 
     @Override

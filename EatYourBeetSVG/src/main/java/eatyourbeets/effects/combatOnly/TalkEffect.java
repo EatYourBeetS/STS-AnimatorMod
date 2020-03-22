@@ -57,7 +57,7 @@ public class TalkEffect extends EYBEffect
 
     public TalkEffect(float x, float y, String text, boolean isPlayer, float duration)
     {
-        super(1, duration);
+        super(duration);
 
         message = text;
         source_x = x + (isPlayer ? ADJUST_X : -ADJUST_X);

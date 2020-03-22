@@ -8,10 +8,9 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
 
-public class Hakurou extends AnimatorCard implements MartialArtist
+public class Hakurou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Hakurou.class).SetAttack(2, CardRarity.COMMON);
 
@@ -24,6 +23,7 @@ public class Hakurou extends AnimatorCard implements MartialArtist
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.TenSura);
+        SetMartialArtist();
     }
 
     @Override

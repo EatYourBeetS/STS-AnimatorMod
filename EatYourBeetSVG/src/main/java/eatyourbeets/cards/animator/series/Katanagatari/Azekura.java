@@ -7,11 +7,10 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.utilities.GameActions;
 
-public class Azekura extends AnimatorCard implements MartialArtist
+public class Azekura extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Azekura.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
 
@@ -23,6 +22,7 @@ public class Azekura extends AnimatorCard implements MartialArtist
         SetUpgrade(0, 2, 1, 0);
 
         SetSynergy(Synergies.Katanagatari);
+        SetMartialArtist();
     }
 
     @Override

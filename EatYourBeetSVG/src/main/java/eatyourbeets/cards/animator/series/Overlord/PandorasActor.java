@@ -21,7 +21,8 @@ public class PandorasActor extends AnimatorCard implements StartupCard
         Initialize(0, 4);
         SetUpgrade(0, 2);
 
-        SetSynergy(Synergies.Overlord, true);
+        SetSynergy(Synergies.Overlord);
+        SetShapeshifter();
     }
 
     @Override

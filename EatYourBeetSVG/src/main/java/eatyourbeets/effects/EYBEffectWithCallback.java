@@ -13,17 +13,17 @@ public abstract class EYBEffectWithCallback<T> extends EYBEffect
 
     public EYBEffectWithCallback()
     {
-        super(0);
+        super();
     }
 
     public EYBEffectWithCallback(int amount)
     {
-        super(amount);
+        super();
     }
 
     public EYBEffectWithCallback(int amount, float duration)
     {
-        super(amount, duration);
+        super(duration);
     }
 
     public EYBEffectWithCallback<T> AddCallback(Object state, ActionT2<Object, T> onCompletion)

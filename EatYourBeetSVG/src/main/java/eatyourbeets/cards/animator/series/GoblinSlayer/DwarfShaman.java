@@ -8,11 +8,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
 
-public class DwarfShaman extends AnimatorCard implements Spellcaster
+public class DwarfShaman extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(DwarfShaman.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
 
@@ -26,6 +25,7 @@ public class DwarfShaman extends AnimatorCard implements Spellcaster
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.GoblinSlayer);
+        SetSpellcaster();
     }
 
     @Override

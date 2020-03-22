@@ -24,7 +24,8 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
         super(DATA);
 
         Initialize(0, 0);
-        SetSynergy(Synergies.TenSura, true);
+        SetSynergy(Synergies.TenSura);
+        SetShapeshifter();
 
         this.copy = this;
 

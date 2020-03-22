@@ -7,11 +7,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class LeleiLaLalena extends AnimatorCard implements Spellcaster
+public class LeleiLaLalena extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(LeleiLaLalena.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
 
@@ -23,6 +22,7 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.Gate);
+        SetSpellcaster();
     }
 
     @Override

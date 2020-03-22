@@ -1,7 +1,4 @@
-package eatyourbeets.effects.attack;//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
+package eatyourbeets.effects.vfx;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -13,10 +10,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.effects.EYBEffect;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class ColoredSweepingBeamEffect extends AbstractGameEffect
+public class ColoredSweepingBeamEffect extends EYBEffect
 {
     private final float sX;
     private final float sY;
@@ -89,13 +86,9 @@ public class ColoredSweepingBeamEffect extends AbstractGameEffect
     {
         sb.setBlendFunction(770, 1);
         sb.setColor(this.color);
-        sb.draw(img, this.sX, this.sY - (float) img.packedHeight / 2f + 10f * Settings.scale, 0f, (float) img.packedHeight / 2f, this.dst, 50f, this.scale + MathUtils.random(-0.01f, 0.01f), this.scale, this.rotation);
+        sb.draw(img, this.sX, this.sY - (float) img.packedHeight / 2f + 10f * Settings.scale, 0f, (float) img.packedHeight / 2f, this.dst, 50f, this.scale + Random(-0.01f, 0.01f), this.scale, this.rotation);
         sb.setColor(new Color(0.3f, 0.3f, 1f, this.color.a));
-        sb.draw(img, this.sX, this.sY - (float) img.packedHeight / 2f, 0f, (float) img.packedHeight / 2f, this.dst, MathUtils.random(50f, 90f), this.scale + MathUtils.random(-0.02f, 0.02f), this.scale, this.rotation);
+        sb.draw(img, this.sX, this.sY - (float) img.packedHeight / 2f, 0f, (float) img.packedHeight / 2f, this.dst, Random(50f, 90f), this.scale + Random(-0.02f, 0.02f), this.scale, this.rotation);
         sb.setBlendFunction(770, 771);
-    }
-
-    public void dispose()
-    {
     }
 }

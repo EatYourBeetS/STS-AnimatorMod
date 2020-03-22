@@ -5,11 +5,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
-public class Zero extends AnimatorCard implements Spellcaster
+public class Zero extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Zero.class).SetSkill(0, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS);
 
@@ -21,6 +20,7 @@ public class Zero extends AnimatorCard implements Spellcaster
 
         SetExhaust(true);
         SetSynergy(Synergies.GrimoireOfZero);
+        SetSpellcaster();
     }
 
     @Override

@@ -13,7 +13,7 @@ public class SequentialEffect extends EYBEffect
 
     public SequentialEffect()
     {
-        super(1);
+        super();
 
         effects = new ArrayDeque<>();
     }

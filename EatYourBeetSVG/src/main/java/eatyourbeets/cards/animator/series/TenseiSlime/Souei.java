@@ -9,11 +9,10 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Souei extends AnimatorCard implements MartialArtist
+public class Souei extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Souei.class).SetSkill(2, CardRarity.UNCOMMON);
 
@@ -25,6 +24,7 @@ public class Souei extends AnimatorCard implements MartialArtist
         SetUpgrade(0, 0, 2);
 
         SetSynergy(Synergies.TenSura);
+        SetMartialArtist();
     }
 
     @Override

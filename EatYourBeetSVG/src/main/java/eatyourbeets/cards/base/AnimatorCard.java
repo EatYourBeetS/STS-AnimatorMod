@@ -6,8 +6,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.ActionT1;
-import eatyourbeets.interfaces.markers.MartialArtist;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.utilities.ColoredString;
@@ -16,13 +14,15 @@ import java.util.ArrayList;
 
 public abstract class AnimatorCard extends EYBCard
 {
-    protected static final AnimatorImages IMAGES = GR.Animator.Images;
     protected static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
     protected static final Color synergyGlowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR;
     protected AnimatorCardCooldown cooldown;
 
+    public static final AnimatorImages IMAGES = GR.Animator.Images;
+    public static final CardTags SHAPESHIFTER = GR.Enums.CardTags.SHAPESHIFTER;
+    public static final CardTags MARTIAL_ARTIST = GR.Enums.CardTags.MARTIAL_ARTIST;
+    public static final CardTags SPELLCASTER = GR.Enums.CardTags.SPELLCASTER;
     public Synergy synergy;
-    public boolean anySynergy;
 
     protected static EYBCardData Register(Class<? extends AnimatorCard> type)
     {
@@ -53,15 +53,24 @@ public abstract class AnimatorCard extends EYBCard
         return Synergies.WouldSynergize(this, other);
     }
 
-    public void SetSynergy(Synergy synergy)
+    public void SetSpellcaster()
     {
-        SetSynergy(synergy, false);
+        SetTag(SPELLCASTER, true);
     }
 
-    public void SetSynergy(Synergy synergy, boolean shapeshifter)
+    public void SetMartialArtist()
+    {
+        SetTag(MARTIAL_ARTIST, true);
+    }
+
+    public void SetShapeshifter()
+    {
+        SetTag(SHAPESHIFTER, true);
+    }
+
+    public void SetSynergy(Synergy synergy)
     {
         this.synergy = synergy;
-        this.anySynergy = shapeshifter;
     }
 
     public void SetCooldown(int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted)
@@ -98,7 +107,6 @@ public abstract class AnimatorCard extends EYBCard
     {
         AnimatorCard copy = (AnimatorCard) super.makeStatEquivalentCopy();
         copy.synergy = synergy;
-        copy.anySynergy = anySynergy;
         return copy;
     }
 
@@ -107,15 +115,15 @@ public abstract class AnimatorCard extends EYBCard
     {
         super.GenerateDynamicTooltips(dynamicTooltips);
 
-        if (this.anySynergy)
+        if (hasTag(SHAPESHIFTER))
         {
             dynamicTooltips.add(GR.Tooltips.Shapeshifter);
         }
-        else if (this instanceof MartialArtist)
+        else if (hasTag(MARTIAL_ARTIST))
         {
             dynamicTooltips.add(GR.Tooltips.MartialArtist);
         }
-        else if (this instanceof Spellcaster)
+        else if (hasTag(SPELLCASTER))
         {
             dynamicTooltips.add(GR.Tooltips.Spellcaster);
         }
@@ -124,26 +132,21 @@ public abstract class AnimatorCard extends EYBCard
     @Override
     public ColoredString GetHeaderText()
     {
-        if (synergy == null)
-        {
-            return null;
-        }
-
-        return new ColoredString(synergy.Name, Settings.CREAM_COLOR);
+        return (synergy == null) ? null : new ColoredString(synergy.Name, Settings.CREAM_COLOR);
     }
 
     @Override
     public ColoredString GetBottomText()
     {
-        if (anySynergy)
+        if (hasTag(SHAPESHIFTER))
         {
             return new ColoredString(GR.Tooltips.Shapeshifter.title, new Color(1f, 1f, 0.8f, transparency));
         }
-        else if (this instanceof Spellcaster)
+        else if (hasTag(SPELLCASTER))
         {
             return new ColoredString(GR.Tooltips.Spellcaster.title, new Color(0.9f, 0.9f, 1f, transparency));
         }
-        else if (this instanceof MartialArtist)
+        else if (hasTag(MARTIAL_ARTIST))
         {
             return new ColoredString(GR.Tooltips.MartialArtist.title, new Color(0.9f, 1f, 0.9f, transparency));
         }

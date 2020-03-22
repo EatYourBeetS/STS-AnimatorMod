@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.effects.attack.LaserBeam2Effect;
+import eatyourbeets.effects.vfx.LaserBeamEffect;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDiscardedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnAfterCardExhaustedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
@@ -82,7 +82,7 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
             GameActions.Bottom.RemovePower(m, m, IntangiblePower.POWER_ID);
         }
 
-        GameActions.Bottom.VFX(new LaserBeam2Effect(player.hb.cX, player.hb.cY), 0.1f);
+        GameActions.Bottom.VFX(new LaserBeamEffect(player.hb.cX, player.hb.cY), 0.1f);
         GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05f, 0.05f), m.hb.cY + MathUtils.random(-0.05f, 0.05f)), 0.1f);
         GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05f, 0.05f), m.hb.cY + MathUtils.random(-0.05f, 0.05f)), 0.1f);
         GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05f, 0.05f), m.hb.cY + MathUtils.random(-0.05f, 0.05f)), 0.1f);

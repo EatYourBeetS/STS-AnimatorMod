@@ -22,7 +22,7 @@ public class HomuraAkemi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 3);
         SetExhaust(true);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -36,7 +36,7 @@ public class HomuraAkemi extends AnimatorCard
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.VIOLET, true));
         GameActions.Bottom.Add(new SkipEnemiesTurnAction());
 
-        GameActions.Bottom.Add(new CreateRandomCurses(3, p.discardPile));
+        GameActions.Bottom.Add(new CreateRandomCurses(magicNumber, p.discardPile));
 
         if (upgraded)
         {

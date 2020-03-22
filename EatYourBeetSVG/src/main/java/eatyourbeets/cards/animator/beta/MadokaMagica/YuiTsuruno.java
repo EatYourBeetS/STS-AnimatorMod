@@ -21,7 +21,7 @@ public class YuiTsuruno extends AnimatorCard implements Spellcaster
     {
         super(DATA);
 
-        Initialize(9, 0, 0);
+        Initialize(9, 0, 1);
         SetUpgrade(4, 0, 0);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -44,7 +44,10 @@ public class YuiTsuruno extends AnimatorCard implements Spellcaster
                 }
                 else
                 {
-                    GameActions.Bottom.ChannelOrb(new Fire(), true);
+                    for (int i=0; i<magicNumber; i++)
+                    {
+                        GameActions.Bottom.ChannelOrb(new Fire(), true);
+                    }
                 }
             }
         });

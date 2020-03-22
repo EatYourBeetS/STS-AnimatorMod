@@ -15,7 +15,7 @@ public class Strike_MadokaMagica extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(5, 0);
+        Initialize(5, 0, 2);
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -25,6 +25,6 @@ public class Strike_MadokaMagica extends Strike
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        GameActions.Bottom.Scry(2);
+        GameActions.Bottom.Scry(magicNumber);
     }
 }

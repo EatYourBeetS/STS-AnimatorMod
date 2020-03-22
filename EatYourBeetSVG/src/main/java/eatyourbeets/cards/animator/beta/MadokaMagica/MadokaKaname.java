@@ -26,7 +26,7 @@ public class MadokaKaname extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 2, 1);
         SetExhaust(true);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -48,8 +48,8 @@ public class MadokaKaname extends AnimatorCard
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.GainIntellect(StatusCount / 2, true);
-            GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, CurseCount / 2)).SkipIfZero(true);
+            GameActions.Bottom.GainIntellect(StatusCount / magicNumber, true);
+            GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, CurseCount / magicNumber)).SkipIfZero(true);
         }
 
         GameActions.Bottom.VFX(new RainbowCardEffect());

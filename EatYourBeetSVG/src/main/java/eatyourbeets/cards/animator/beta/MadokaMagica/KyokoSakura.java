@@ -23,7 +23,7 @@ public class KyokoSakura extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 1);
+        Initialize(7, 0, 1, 1);
         SetUpgrade(3, 0, 0);
         SetScaling(0, 0, 1);
 
@@ -42,7 +42,10 @@ public class KyokoSakura extends AnimatorCard
                 {
                     if (GameUtilities.IsCurseOrStatus(card))
                     {
-                        GameActions.Bottom.ChannelOrb(new Fire(), true);
+                        for (int i=0; i<secondaryValue; i++)
+                        {
+                            GameActions.Bottom.ChannelOrb(new Fire(), true);
+                        }
                         return;
                     }
                 }

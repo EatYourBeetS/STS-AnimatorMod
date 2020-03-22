@@ -34,6 +34,13 @@ public abstract class EYBEffect extends AbstractGameEffect
         this.player = AbstractDungeon.player;
     }
 
+    public EYBEffect SetRealtime(boolean isRealtime)
+    {
+        this.isRealtime = isRealtime;
+
+        return this;
+    }
+
     public EYBEffect SetDuration(float duration, boolean isRealtime)
     {
         this.isRealtime = isRealtime;

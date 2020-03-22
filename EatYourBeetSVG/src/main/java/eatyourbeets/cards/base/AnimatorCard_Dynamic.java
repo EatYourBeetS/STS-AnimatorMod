@@ -45,7 +45,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
             constructor.Invoke(this);
         }
 
-        SetSynergy(builder.synergy, builder.isShapeshifter);
+        SetSynergy(builder.synergy);
     }
 
     @Override

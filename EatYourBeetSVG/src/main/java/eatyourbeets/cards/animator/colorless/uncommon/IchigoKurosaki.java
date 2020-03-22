@@ -7,12 +7,11 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class IchigoKurosaki extends AnimatorCard implements MartialArtist
+public class IchigoKurosaki extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(IchigoKurosaki.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
     static
@@ -28,6 +27,7 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist
 
         SetExhaust(true);
         SetSynergy(Synergies.Bleach);
+        SetMartialArtist();
     }
 
     @Override

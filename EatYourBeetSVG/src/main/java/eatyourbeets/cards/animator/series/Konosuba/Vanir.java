@@ -22,7 +22,8 @@ public class Vanir extends AnimatorCard
         SetUpgrade(1, 0, -1);
         SetScaling(1, 0, 0);
 
-        SetSynergy(Synergies.Konosuba, true);
+        SetSynergy(Synergies.Konosuba);
+        SetShapeshifter();
     }
 
     @Override

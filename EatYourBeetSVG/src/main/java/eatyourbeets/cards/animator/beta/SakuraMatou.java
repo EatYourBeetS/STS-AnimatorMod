@@ -7,10 +7,9 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
 
-public class SakuraMatou extends AnimatorCard implements Spellcaster
+public class SakuraMatou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(SakuraMatou.class).SetSkill(1, CardRarity.UNCOMMON);
 
@@ -23,6 +22,7 @@ public class SakuraMatou extends AnimatorCard implements Spellcaster
         SetEthereal(true);
         SetExhaust(true);
         SetSynergy(Synergies.Fate);
+        SetSpellcaster();
     }
 
     @Override

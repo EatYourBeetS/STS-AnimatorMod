@@ -20,7 +20,7 @@ public class GhostIgniteEffect extends EYBEffect
     {
         for (int i = 0; i < 25; ++i)
         {
-            GameEffects.Queue.Add(new FireBurstParticleEffect(this.x, this.y, color));
+            GameEffects.Queue.Add(new FireBurstParticleEffect(this.x, this.y, color).SetRealtime(isRealtime));
             GameEffects.Queue.Add(new LightFlareParticleEffect(this.x, this.y, color));
         }
 

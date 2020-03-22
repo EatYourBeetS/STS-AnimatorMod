@@ -12,13 +12,12 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
 
-public class Emonzaemon extends AnimatorCard implements MartialArtist
+public class Emonzaemon extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Emonzaemon.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
     static
@@ -35,6 +34,7 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Katanagatari);
+        SetMartialArtist();
     }
 
     @Override

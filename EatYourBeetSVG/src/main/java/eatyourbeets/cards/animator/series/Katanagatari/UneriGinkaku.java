@@ -12,12 +12,11 @@ import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
-public class UneriGinkaku extends AnimatorCard implements MartialArtist
+public class UneriGinkaku extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(UneriGinkaku.class).SetAttack(1, CardRarity.COMMON);
 
@@ -29,9 +28,9 @@ public class UneriGinkaku extends AnimatorCard implements MartialArtist
         SetUpgrade(4, 0, 1);
         SetScaling(0, 3, 0);
 
-        //SetExhaust(true);
         SetEthereal(true);
         SetSynergy(Synergies.Katanagatari);
+        SetMartialArtist();
     }
 
     @Override

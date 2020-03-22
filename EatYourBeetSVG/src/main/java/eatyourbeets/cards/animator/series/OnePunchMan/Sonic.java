@@ -7,10 +7,9 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
 
-public class Sonic extends AnimatorCard implements MartialArtist
+public class Sonic extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Sonic.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
@@ -30,6 +29,7 @@ public class Sonic extends AnimatorCard implements MartialArtist
 
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan);
+        SetMartialArtist();
     }
 
     @Override

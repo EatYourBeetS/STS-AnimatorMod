@@ -14,8 +14,6 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.ui.DialogWord;
 import eatyourbeets.actions.monsters.TalkAction;
  import eatyourbeets.cards.base.*;
- import eatyourbeets.interfaces.markers.MartialArtist;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.CustomCardLibSortHeader;
@@ -90,29 +88,29 @@ import java.util.ArrayList;
                      CustomCardLibSortHeader.Instance.group.group.sort((a, b) ->
                      {
                          int aValue = 0;
-                         if (a instanceof Spellcaster)
+                         if (a.hasTag(AnimatorCard.SPELLCASTER))
                          {
                              aValue = 1;
                          }
-                         else if (a instanceof MartialArtist)
+                         else if (a.hasTag(AnimatorCard.MARTIAL_ARTIST))
                          {
                              aValue = 2;
                          }
-                         else if (a instanceof AnimatorCard && ((AnimatorCard)a).anySynergy)
+                         else if (a.hasTag(AnimatorCard.SHAPESHIFTER))
                          {
                              aValue = 3;
                          }
 
                          int bValue = 0;
-                         if (b instanceof Spellcaster)
+                         if (b.hasTag(AnimatorCard.SPELLCASTER))
                          {
                              bValue = 1;
                          }
-                         else if (b instanceof MartialArtist)
+                         else if (b.hasTag(AnimatorCard.MARTIAL_ARTIST))
                          {
                              bValue = 2;
                          }
-                         else if (b instanceof AnimatorCard && ((AnimatorCard)b).anySynergy)
+                         else if (b.hasTag(AnimatorCard.SHAPESHIFTER))
                          {
                              bValue = 3;
                          }

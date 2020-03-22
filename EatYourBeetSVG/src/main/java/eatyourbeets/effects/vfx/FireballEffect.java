@@ -52,13 +52,13 @@ public class FireballEffect extends EYBEffect
         {
             vfxTimer = 0.016f;
             GameEffects.Queue.Add(new LightFlareParticleEffect(x, y, color));
-            GameEffects.Queue.Add(new FireBurstParticleEffect(x, y, secondaryColor));
+            GameEffects.Queue.Add(new FireBurstParticleEffect(x, y, secondaryColor)).SetRealtime(isRealtime);
         }
 
         if (TickDuration(deltaTime))
         {
-            GameEffects.Queue.Add(new GhostIgniteEffect(x, y).SetColor(color));
-            GameEffects.Queue.Add(new GhostlyWeakFireEffect(x, y).SetColor(secondaryColor));
+            GameEffects.Queue.Add(new GhostIgniteEffect(x, y).SetColor(color)).SetRealtime(isRealtime);
+            GameEffects.Queue.Add(new GhostlyWeakFireEffect(x, y).SetColor(secondaryColor)).SetRealtime(isRealtime);
         }
     }
 }

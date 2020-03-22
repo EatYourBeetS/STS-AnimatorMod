@@ -9,13 +9,12 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
-public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber, Spellcaster
+public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(Emilia.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
@@ -29,6 +28,7 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
         SetEvokeOrbCount(magicNumber);
         SetExhaust(true);
         SetSynergy(Synergies.ReZero);
+        SetSpellcaster();
     }
 
     @Override

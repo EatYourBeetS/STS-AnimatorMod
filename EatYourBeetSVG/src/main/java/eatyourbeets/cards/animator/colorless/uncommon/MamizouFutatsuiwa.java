@@ -2,10 +2,7 @@ package eatyourbeets.cards.animator.colorless.uncommon;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.ui.EffectHistory;
@@ -27,7 +24,8 @@ public class MamizouFutatsuiwa extends AnimatorCard
         SetUpgrade(0, 0, 3);
 
         SetExhaust(true);
-        SetSynergy(Synergies.TouhouProject, true);
+        SetSynergy(Synergies.TouhouProject);
+        SetShapeshifter();
     }
 
     @Override
@@ -50,8 +48,8 @@ public class MamizouFutatsuiwa extends AnimatorCard
         {
             if (shapeshifterPool.Size() == 0)
             {
-                shapeshifterPool.AddAll(JavaUtilities.Filter(Synergies.GetNonColorlessCard(), c -> c.anySynergy));
-                shapeshifterPool.AddAll(JavaUtilities.Filter(Synergies.GetColorlessCards(), c -> c.anySynergy));
+                shapeshifterPool.AddAll(JavaUtilities.Filter(Synergies.GetNonColorlessCard(), c -> c.hasTag(SHAPESHIFTER)));
+                shapeshifterPool.AddAll(JavaUtilities.Filter(Synergies.GetColorlessCards(), c -> c.hasTag(SHAPESHIFTER)));
             }
 
             AnimatorCard shapeshifter = shapeshifterPool.Retrieve(rng, false);
@@ -69,13 +67,14 @@ public class MamizouFutatsuiwa extends AnimatorCard
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetOptions(false, false, false)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
-        .SetFilter(c -> c instanceof AnimatorCard && !(((AnimatorCard) c).anySynergy))
+        .SetFilter(c -> c instanceof AnimatorCard && !c.hasTag(SHAPESHIFTER))
         .AddCallback(cards ->
         {
             AnimatorCard card = JavaUtilities.SafeCast(cards.get(0), AnimatorCard.class);
             if (card != null)
             {
-                card.SetSynergy(Synergies.ANY, true);
+                card.SetSynergy(Synergies.ANY);
+                card.SetShapeshifter();
                 card.flash();
             }
         });

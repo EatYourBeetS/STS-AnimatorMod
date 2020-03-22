@@ -7,10 +7,9 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
 
-public class TsurugaMeisai extends AnimatorCard implements MartialArtist
+public class TsurugaMeisai extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(TsurugaMeisai.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
@@ -23,6 +22,7 @@ public class TsurugaMeisai extends AnimatorCard implements MartialArtist
 
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
+        SetMartialArtist();
     }
 
     @Override

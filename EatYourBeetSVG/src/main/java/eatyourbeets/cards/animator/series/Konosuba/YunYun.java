@@ -7,13 +7,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSubscriber
+public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber
 {
     public static final EYBCardData DATA = Register(YunYun.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
 
@@ -28,6 +27,7 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
         SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.Konosuba);
+        SetSpellcaster();
     }
 
     @Override

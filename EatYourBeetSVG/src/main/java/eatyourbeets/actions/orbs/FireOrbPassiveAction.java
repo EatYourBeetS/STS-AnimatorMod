@@ -51,7 +51,8 @@ public class FireOrbPassiveAction extends EYBAction
             }
 
             GameActions.Top.Wait(0.15f);
-            GameActions.Top.VFX(new FireballEffect(orb.hb.cX, orb.hb.cY, enemy.hb.cX, enemy.hb.cY).SetColor(Color.RED, Color.ORANGE));
+            GameActions.Top.VFX(new FireballEffect(orb.hb.cX, orb.hb.cY, enemy.hb.cX, enemy.hb.cY)
+            .SetColor(Color.RED, Color.ORANGE).SetRealtime(true));
         }
 
         Complete();

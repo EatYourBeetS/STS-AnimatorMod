@@ -41,7 +41,8 @@ public class QuestionMarkAction extends EYBAction
             //copy.Name = questionMark.Name;
             //copy.rarity = questionMark.rarity;
             //copy.originalName = questionMark.originalName;
-            copy.SetSynergy(Synergies.ANY, true);
+            copy.SetSynergy(Synergies.ANY);
+            copy.SetShapeshifter();
 
             if (questionMark.upgraded)
             {

@@ -1,6 +1,5 @@
 package eatyourbeets.effects.vfx;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
@@ -67,35 +66,31 @@ public class FireBurstParticleEffect extends EYBEffect
     @Override
     protected void UpdateInternal(float deltaTime)
     {
-        this.vY += GRAVITY / this.scale * deltaTime;
-        this.x += this.vX * deltaTime * MathUtils.sinDeg(deltaTime);
-        this.y += this.vY * deltaTime;
-        if (this.scale > 0.3f * Settings.scale)
+        vY += GRAVITY / scale * deltaTime;
+        x += vX * deltaTime * MathUtils.sinDeg(deltaTime);
+        y += vY * deltaTime;
+        if (scale > 0.3f * Settings.scale)
         {
-            this.scale -= Gdx.graphics.getDeltaTime() * 2f;
+            scale -= deltaTime * 2f;
         }
 
-        if (this.y < this.floor)
+        if (y < floor)
         {
-            this.vY = -this.vY * 0.75f;
-            this.y = this.floor + 0.1f;
-            this.vX *= 1.1f;
+            vY = -vY * 0.75f;
+            y = floor + 0.1f;
+            vX *= 1.1f;
         }
 
-        if (1f - this.duration < 0.1f)
+        if ((1f - duration) < 0.1f)
         {
-            this.color.a = Interpolation.fade.apply(0f, 1f, (1f - this.duration) * 10f);
+            color.a = Interpolation.fade.apply(0f, 1f, (1f - duration) * 10f);
         }
         else
         {
-            this.color.a = Interpolation.pow2Out.apply(0f, 1f, this.duration);
+            color.a = Interpolation.pow2Out.apply(0f, 1f, duration);
         }
 
-        this.duration -= Gdx.graphics.getDeltaTime();
-        if (this.duration < 0f)
-        {
-            this.isDone = true;
-        }
+        super.UpdateInternal(deltaTime);
     }
 
     public void render(SpriteBatch sb)

@@ -108,7 +108,7 @@ public class TheUnnamed_Hat extends AnimatorMonster
                 return move;
             }
 
-            int offset = PlayerStatistics.getTurnCount() + moveOffset;
+            int offset = PlayerStatistics.TurnCount() + moveOffset;
 
             return owner.moveset.rotation.get(offset % owner.moveset.rotation.size());
         }

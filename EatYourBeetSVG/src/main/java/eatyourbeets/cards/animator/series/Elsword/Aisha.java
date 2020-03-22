@@ -11,14 +11,13 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.vfx.SmallLaserEffect;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Aisha extends AnimatorCard implements Spellcaster
+public class Aisha extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Aisha.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
 
@@ -31,6 +30,7 @@ public class Aisha extends AnimatorCard implements Spellcaster
         SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.Elsword);
+        SetSpellcaster();
     }
 
     @Override

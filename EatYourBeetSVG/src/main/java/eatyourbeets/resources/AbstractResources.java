@@ -19,7 +19,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     protected AbstractResources(String prefix)
     {
         this.prefix = prefix;
-        this.testFolder = new FileHandle("c:/temp/" + prefix + "-localization/");;
+        this.testFolder = new FileHandle("c:/temp/" + prefix + "-localization/");
     }
 
     public String CreateID(String suffix)

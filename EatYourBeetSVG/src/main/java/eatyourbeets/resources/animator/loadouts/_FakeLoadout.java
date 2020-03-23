@@ -5,7 +5,6 @@ import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
-import eatyourbeets.ui.animator.characterSelection.AnimatorLoadoutRenderer;
 
 import java.util.ArrayList;
 
@@ -42,7 +41,8 @@ public class _FakeLoadout extends AnimatorLoadout
         return null;
     }
 
-    public void OnVictory(AnimatorLoadoutRenderer currentLoadout, int ascensionLevel)
+    @Override
+    public void OnVictory(AnimatorLoadout currentLoadout, int ascensionLevel)
     {
         //
     }

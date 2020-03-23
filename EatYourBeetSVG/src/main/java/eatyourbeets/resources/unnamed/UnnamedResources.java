@@ -30,9 +30,9 @@ public class UnnamedResources extends AbstractResources
         Color color = CardHelper.getColor(60, 77, 106);
 
         BaseMod.addColor(Enums.Cards.THE_UNNAMED, color, color, color, color, color, color, color,
-                UnnamedImages.ATTACK_PNG,  UnnamedImages.SKILL_PNG ,    UnnamedImages.POWER_PNG ,
-                UnnamedImages.ORB_1A_PNG,  UnnamedImages.ATTACK_P_PNG , UnnamedImages.SKILL_P_PNG ,
-                UnnamedImages.POWER_P_PNG, UnnamedImages.ORB_1B_PNG,    UnnamedImages.ORB_1C_PNG);
+        UnnamedImages.ATTACK_PNG, UnnamedImages.SKILL_PNG, UnnamedImages.POWER_PNG,
+        UnnamedImages.ORB_1A_PNG, UnnamedImages.ATTACK_PNG, UnnamedImages.SKILL_PNG,
+        UnnamedImages.POWER_PNG, UnnamedImages.ORB_1B_PNG, UnnamedImages.ORB_1C_PNG);
     }
 
     @Override

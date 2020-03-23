@@ -1,0 +1,27 @@
+
+{
+	"EYB:ForceStance":
+	{
+		"NAME": "Force Stance",
+		"DESCRIPTION": 
+		[
+			"This stance has no effect."
+		]
+	},
+	"EYB:AgilityStance":
+	{
+		"NAME": "Agility Stance",
+		"DESCRIPTION": 
+		[
+			"This stance has no effect."
+		]
+	},
+	"EYB:IntellectStance":
+	{
+		"NAME": "Intellect Stance",
+		"DESCRIPTION": 
+		[
+			"This stance has no effect."
+		]
+	}
+}

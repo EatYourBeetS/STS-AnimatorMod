@@ -13,17 +13,17 @@ public class GenericCallback<T>
 
     public static <T> GenericCallback<T> FromT0(ActionT0 onCompletion)
     {
-        return new GenericCallback<T>(onCompletion);
+        return new GenericCallback<>(onCompletion);
     }
 
     public static <T> GenericCallback<T> FromT1(ActionT1<T> onCompletion)
     {
-        return new GenericCallback<T>(onCompletion);
+        return new GenericCallback<>(onCompletion);
     }
 
     public static <T> GenericCallback<T> FromT2(ActionT2<Object, T> onCompletion, Object state)
     {
-        return new GenericCallback<T>(onCompletion, state);
+        return new GenericCallback<>(onCompletion, state);
     }
 
     private GenericCallback(ActionT2<Object, T> onCompletion, Object state)

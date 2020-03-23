@@ -24,8 +24,7 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
 
         moveset.AddSpecial(new Move_Talk());
 
-        moveSummonEnemy = (Move_SummonEnemy)
-        moveset.AddSpecial(new Move_SummonEnemy());
+        moveSummonEnemy = moveset.AddSpecial(new Move_SummonEnemy());
 
         moveset.AddNormal(new Move_AttackDefend( 12, 12));
         moveset.AddNormal(new Move_AttackMultiple(9, 2));

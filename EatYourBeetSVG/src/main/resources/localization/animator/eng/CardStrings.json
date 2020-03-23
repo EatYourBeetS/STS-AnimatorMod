@@ -176,7 +176,7 @@
 	{
 		"animator:Charlotte":
 		{
-			"DESCRIPTION": "Double the damage dealt ** for each Curse in hand. || <LIM>. If this ** card kills an enemy: ** Heal !M! HP.",
+			"DESCRIPTION": "Double the damage dealt ** for each Curse in hand. || <LIM>. If this card kills ** an enemy: Heal !M! HP.",
 			"NAME": "Charlotte"
 		},
 		"animator:Curse_GriefSeed":
@@ -197,43 +197,43 @@
 		},
 		"animator:IrohaTamaki":
 		{
-			"DESCRIPTION": "If the top card of your ** draw pile is a Hindrance: ** Exhaust it. || Synergy: Scry !M!.",
+			"DESCRIPTION": "If the top card of ** your draw pile is a ** Hindrance: Exhaust it. || Synergy: Scry !M!.",
 			"NAME": "Iroha Tamaki"
 		},
 		"animator:KyokoSakura":
 		{
-			"DESCRIPTION": "Draw !M! card(s). Put !M! card(s) on top of your draw pile. || If you drew a Hindrance: ** Channel 1 Fire.",
+			"DESCRIPTION": "Draw 1 card. Put 1 card ** on top of your draw pile. || If you drew a Hindrance: ** Channel 1 Fire.",
 			"NAME": "Kyoko Sakura"
 		},
 		"animator:MadokaKaname":
 		{
-			"DESCRIPTION": "Exhaust all {Hindrances} ** in discard pile. || <LIM>. Boost [I] for each  ** !M! {Status} Exhausted and gain ** !S! Intangible for each !M! {Curse} ** Exhausted.",
+			"DESCRIPTION": "Exhaust all {Hindrances} ** in discard pile. || <LIM>. Boost [I] for each  ** !M! {Status} Exhausted and ** gain !S! Intangible for each ** !M! {Curse} Exhausted.",
 			"NAME": "Madoka Kaname",
 			"UPGRADE_DESCRIPTION": "Exhaust all {Hindrances} ** everywhere. || <LIM>. Boost [I] for each ** !M! {Status} Exhausted and gain ** !S! Intangible for each !M! {Curse} ** Exhausted."
 		},
 		"animator:MamiTomoe":
 		{
-			"DESCRIPTION": "Attack an additional time for each Curse in draw or discard pile. || If you have no Curses in ** discard pile: Add a {Grief Seed} ** to your discard pile.",
+			"DESCRIPTION": "Attack an additional ** time for each Curse in ** draw or discard pile. || If you have no Curses in ** discard pile: Add a {Grief Seed} ** to your discard pile.",
 			"NAME": "Mami Tomoe"
 		},
 		"animator:NagisaMomoe":
 		{
-			"DESCRIPTION": "Draw !M! random card(s) ** from your discard pile. || Add {Charlotte} and a ** {Grief Seed} to your discard pile.",
+			"DESCRIPTION": "Draw !M! random card(s) ** from your discard pile. || Add {Charlotte} and a ** {Grief Seed} to your ** discard pile.",
 			"NAME": "Nagisa Momoe"
 		},
 		"animator:Oktavia":
 		{
-			"DESCRIPTION": "Add !S! random {Curses} to ** your hand. Draw a card for ** each {Curse} in your hand. || Attacks once for each Curse ** in your hand.",
+			"DESCRIPTION": "Add !S! random {Curses} to ** your hand. Draw a card for ** each {Curse} in your hand. || Attacks once for each ** Curse in your hand.",
 			"NAME": "Oktavia"
 		},
 		"animator:OrikoMikuni":
 		{
-			"DESCRIPTION": "Scry !S!. Retain !M! card(s) at the end of this turn. || <SLM>. Synergy: ** If you reached 3 [I] this ** combat: <DRW>.",
+			"DESCRIPTION": "Scry !S!. Retain !M! card(s) at ** the end of this turn. || <SLM>. Synergy: ** If you reached 3 [I] this ** combat: <DRW>.",
 			"NAME": "Oriko Mikuni"
 		},
 		"animator:SayakaMiki":
 		{
-			"DESCRIPTION": "Synergy: Channel 1 Frost. || Cooldown !S!: ** Add {Oktavia} and a ** {Grief Seed} to your discard ** pile, then Exhaust.",
+			"DESCRIPTION": "Cooldown !S!: ** Add {Oktavia} and a ** {Grief Seed} to your discard ** pile, then Exhaust. || Synergy: Channel 1 Frost.",
 			"NAME": "Sayaka Miki"
 		},
 		"animator:Strike_MadokaMagica":
@@ -243,9 +243,9 @@
 		},
 		"animator:SuzuneAmano":
 		{
-			"DESCRIPTION": "Deals !S! additional ** damage for each ** Fire Orb you have. || Exhaust 1 random card ** to apply !M! Burning.",
+			"DESCRIPTION": "Exhaust 1 random card ** to apply !M! Burning. || Deals !S! additional ** damage for each ** Fire Orb you have.",
 			"NAME": "Suzune Amano",
-			"UPGRADE_DESCRIPTION": "Deals !S! additional ** damage for each ** Fire Orb you have. || Exhaust 1 card to ** apply !M! Burning."
+			"UPGRADE_DESCRIPTION": "Exhaust 1 card to ** apply !M! Burning. || Deals !S! additional ** damage for each ** Fire Orb you have."
 		},
 		"animator:Walpurgisnacht":
 		{
@@ -255,13 +255,13 @@
 		},
 		"animator:YachiyoNanami":
 		{
-			"DESCRIPTION": "At the start of turn, you may ** discard a card to gain !M! block. ** If you discard a Hindrance, ** also gain [A] [I].",
+			"DESCRIPTION": "At the start of turn, you ** may discard a card ** to gain !M! Block. || If you discard a Hindrance: ** Also gain [A] [I].",
 			"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard up to #b{0} card(s) to gain #b{1} #yBlock each. For each #yHindrance discarded, also #yGain #b{2} #yAgility and #b{3} #yIntellect"],
 			"NAME": "Yachiyo Nanami"
 		},
 		"animator:YuiTsuruno":
 		{
-			"DESCRIPTION": "Discard the top card of your ** draw pile. If it was an {Attack}: ** Add a Curse to your Discard ** pile. Otherwise: Channel 1 Fire.",
+			"DESCRIPTION": "Discard the top card of ** your draw pile. If it was an ** {Attack}: Add a Curse to your ** Discard pile. Otherwise: ** Channel 1 Fire.",
 			"NAME": "Yui Tsuruno"
 		}
 	},
@@ -270,36 +270,36 @@
 	{
 		"animator:Defend_DateALive":
 		{
-			"DESCRIPTION": "Limited. If you have !S! or more cards in play: Gain [E] [E].",
+			"DESCRIPTION": "<LIM>. If you have !S! or more cards in play: Gain [E] [E].",
 			"NAME": "Improved Defend"
 		},
 		"animator:InverseOrigami":
 		{
-			"DESCRIPTION": "When Drawn: Spend [E] to Channel 1 Random Orb. || Activate your {Support Damage} and {Trigger} all your Orbs.",
+			"DESCRIPTION": "When Drawn: Spend [E] to ** Channel 1 Random Orb. || Activate your {Support Damage} and {Trigger} ** all your Orbs.",
 			"NAME": "Inverse Origami",
-			"UPGRADE_DESCRIPTION": "When Drawn: Spend [E] to Add 1 random {Orb Core} to your hand. || Activate your {Support Damage} and {Trigger} all your Orbs."
+			"UPGRADE_DESCRIPTION": "When Drawn: Spend [E] to ** add 1 random {Orb Core} ** to your hand. || Activate your {Support Damage} and {Trigger} ** all your Orbs."
 		},
 		"animator:InverseTohka":
 		{
-			"DESCRIPTION": "When Drawn: Spend [E] to deal !M! damage to ALL enemies. || {Reload}: Attack an additional time.",
+			"DESCRIPTION": "When Drawn: Spend [E] ** to deal !M! damage ** to ALL enemies. || {Reload}: Attack an ** additional time.",
 			"NAME": "Inverse Tohka"
 		},
 		"animator:KotoriItsuka":
 		{
-			"DESCRIPTION": "Limited: You may Exhaust up to !S! cards. Boost [F][A][I] and add 1 Burn to your hand for each card Exhausted.",
+			"DESCRIPTION": "<LIM>. You may Exhaust up ** to !S! cards. Boost [F] [A] [I] ** and add 1 Burn to your hand ** for each card Exhausted.",
 			"NAME": "Kotori Itsuka"
 		},
 		"animator:KurumiTokisaki":
 		{
-			"DESCRIPTION": "When drawn: Play this card. || Next turn: Gain [E] [E] [E]. || Cooldown !S!: Take an extra turn after this one. Shuffle 3 copies of this card into your draw pile.",
+			"DESCRIPTION": "When drawn: Play this card. || Next turn: Gain [E] [E] [E]. || Cooldown !S!: Take an extra ** turn after this one. Shuffle ** 3 copies of this card into  ** your draw pile.",
 			"NAME": "Kurumi Tokisaki"
 		},
 		"animator:MikuIzayoi":
 		{
-			"DESCRIPTION": "Unaffected by Block modifiers. || When Discarded: Increase your {Common Buffs} by 1.",
-			"EXTENDED_DESCRIPTION": ["Common Buffs", "#yForce, #yAgility, #yIntellect, #yThorns, #yTemp. #yThorns, #yMetallize, #yPlated #yArmor. "],
+			"DESCRIPTION": "Unaffected by Block modifiers. || When Discarded: Raise ** your {Common Buffs} by 1.",
+			"EXTENDED_DESCRIPTION": ["Common Buffs", "#yForce, #yAgility, #yIntellect, #yThorns, #yTemp. #yThorns, #yMetallicize, #yPlated #yArmor. "],
 			"NAME": "Miku Izayoi",
-			"UPGRADE_DESCRIPTION": "Unaffected by Block modifiers. || Motivate 1. || When Discarded: Increase your {Common Buffs} by 1."
+			"UPGRADE_DESCRIPTION": "Motivate 1. || Unaffected by Block modifiers. || When Discarded: Raise ** your {Common Buffs} by 1."
 		},
 		"animator:MioTakamiya":
 		{
@@ -309,37 +309,37 @@
 		},
 		"animator:MukuroHoshimiya":
 		{
-			"DESCRIPTION": "Gains 1 damage for each card in your draw pile. || Whenever this enters your draw pile, add to your draw pile sixth from the top.",
+			"DESCRIPTION": "Deal 1 additional damage for ** each card in draw pile. || Whenever this enters your ** draw pile, move it to the ** sixth spot from the top.",
 			"NAME": "Mukuro Hoshimiya"
 		},
 		"animator:Natsumi":
 		{
-			"DESCRIPTION": "Transform a card in your hand into 1 of !M! cards with the same cost and Upgrade level.",
+			"DESCRIPTION": "Transform a card in your ** hand into 1 of !M! cards ** with the same cost and ** Upgrade level.",
 			"EXTENDED_DESCRIPTION": ["Choose a card to transform.", "Choose a card to transform into."],
 			"NAME": "Natsumi"
 		},
 		"animator:NiaHonjou":
 		{
-			"DESCRIPTION": "Whenever you play a card this turn: {Scry} !M! and gain !M! {Block}.",
+			"DESCRIPTION": "Whenever you play a ** card this turn: {Scry} !M! ** and gain !M! {Block}.",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a card this turn, #yScry #b{0} and gain #b{1} #yBlock."],
 			"NAME": "Nia Honjou"
 		},
 		"animator:OrigamiTobiichi":
 		{
-			"DESCRIPTION": "At the end of turn: Gain !M! {Support Damage} for every 2 Orbs. || If you have 20+ {Support Damage}: Remove this power and add {Inverse Origami} to your draw pile.",
+			"DESCRIPTION": "At the end of turn: Gain ** !M! {Support Damage} ** for every 2 Orbs. || If you have 20+ {Support} ** {Damage}: Remove this power ** and add {Inverse Origami} to your draw pile.",
 			"EXTENDED_DESCRIPTION": ["At the end of your turn, gain #b{0} Support Damage for every 2 Orbs. If you have #b{1}+ Support Damage, remove this power of this and add #yInverse #yOrigami to your draw pile."],
 			"NAME": "Origami Tobiichi"
 		},
 		"animator:ReineMurasame":
 		{
-			"DESCRIPTION": "Add X copies of {Shido Itsuka} to your draw pile. || Synergy: Next turn, gain X [E].",
+			"DESCRIPTION": "Add X copies of {Shido} ** {Itsuka} to your draw pile. || Synergy: Next turn: ** Gain X [E].",
 			"NAME": "Reine Murasame"
 		},
 		"animator:ShidoItsuka":
 		{
-			"DESCRIPTION": "Add 1 of !M! cards that would Synergize with this card to your discard pile. || <LIM>. Synergy: This card will not Exhaust.",
+			"DESCRIPTION": "Add 1 of !M! cards that would ** Synergize with this card to ** your discard pile. || <LIM>. Synergy: This ** card will not Exhaust.",
 			"NAME": "Shido Itsuka",
-			"UPGRADE_DESCRIPTION": "Add 1 of !M! Upgraded cards that would Synergize with this card to your discard pile. || <LIM>. Synergy: This card will not Exhaust."
+			"UPGRADE_DESCRIPTION": "Add 1 of !M! Upgraded cards ** that would Synergize with ** this card to your discard pile. || <LIM>. Synergy: This ** card will not Exhaust."
 		},
 		"animator:Strike_DateALive":
 		{
@@ -348,22 +348,22 @@
 		},
 		"animator:TohkaYatogami":
 		{
-			"DESCRIPTION": "Unaffected by damage modifiers. || If there are !M! or more cards in Exhaust pile: Transform this card into {Inverse Tohka}.",
+			"DESCRIPTION": "Unaffected by damage ** modifiers. || If there are !M! or more cards ** in Exhaust pile: Transform ** this card into {Inverse Tohka}.",
 			"NAME": "Tohka Yatogami"
 		},
 		"animator:YamaiSisters":
 		{
-			"DESCRIPTION": "Upgrade this card and every {Yamai Sisters} in your hand. You may Upgrade this card up to !M! times.",
+			"DESCRIPTION": "Upgrade this card and ** every {Yamai Sisters} in ** your hand. You may ** Upgrade this card ** up to !M! times.",
 			"NAME": "Yamai Sisters"
 		},
 		"animator:YoshinoHimekawa":
 		{
-			"DESCRIPTION": "Discard 1 random card. If you have !M! or more Frost Orbs: Add {Zadkiel} to your hand. Otherwise: Channel 1 Frost. || <LIM>. Gain 1 Orb Slot.",
+			"DESCRIPTION": "Discard 1 random card. If you ** have !M! or more Frost Orbs: ** Add {Zadkiel} to your hand. ** Otherwise: Channel 1 Frost. || <LIM>. Gain 1 Orb Slot.",
 			"NAME": "Yoshino Himekawa"
 		},
 		"animator:Zadkiel":
 		{
-			"DESCRIPTION": "When Exhausted: Evoke ALL Orbs. || If you Evoked !M! or more Frost Orbs: Deal Elemental damage equal to your Block to each enemy.",
+			"DESCRIPTION": "When Exhausted: ** Evoke ALL Orbs. || If you Evoked !M! or more ** Frost Orbs: Deal {~Elemental} ** damage equal to your Block ** to ALL enemies.",
 			"NAME": "Zadkiel"
 		}
 	},

@@ -25,7 +25,7 @@ public class ShidoItsuka extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5);
+        Initialize(0, 5, 3);
         SetUpgrade(0, 2);
 
         SetExhaust(true);
@@ -57,9 +57,8 @@ public class ShidoItsuka extends AnimatorCard
         RandomizedList<AbstractCard> randomizedDALCards = new RandomizedList<>(dateALiveCards);
         RandomizedList<AbstractCard> randomizedSynergicCards = new RandomizedList<>(otherSynergicCards);
 
-        final int numOptions = 3;
         final CardGroup options = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-        for (int i = 0; i < numOptions; i++)
+        for (int i = 0; i < magicNumber; i++)
         {
             AbstractCard randomCard;
             if (i == 0 && rng.randomBoolean(0.4f))

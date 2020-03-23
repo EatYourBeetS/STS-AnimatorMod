@@ -8,11 +8,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class IrohaTamaki extends AnimatorCard implements Spellcaster
+public class IrohaTamaki extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(IrohaTamaki.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
 
@@ -24,6 +23,7 @@ public class IrohaTamaki extends AnimatorCard implements Spellcaster
         SetUpgrade(0, 2, 1);
 
         SetSynergy(Synergies.MadokaMagica);
+        SetSpellcaster();
     }
 
     @Override
@@ -32,9 +32,9 @@ public class IrohaTamaki extends AnimatorCard implements Spellcaster
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         GameActions.Bottom.GainBlock(block);
 
-        if (!player.drawPile.isEmpty())
+        if (p.drawPile.size() > 0)
         {
-            AbstractCard topCard = player.drawPile.getTopCard();
+            AbstractCard topCard = p.drawPile.getTopCard();
             if (GameUtilities.IsCurseOrStatus(topCard))
             {
                 GameActions.Top.Exhaust(topCard);

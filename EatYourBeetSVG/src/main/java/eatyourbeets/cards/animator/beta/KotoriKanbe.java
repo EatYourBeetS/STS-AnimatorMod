@@ -9,14 +9,15 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
-public class KotoriKanbe extends AnimatorCard implements StartupCard {
+public class KotoriKanbe extends AnimatorCard implements StartupCard
+{
     public static final EYBCardData DATA = Register(KotoriKanbe.class).SetSkill(1, CardRarity.RARE).SetColor(CardColor.COLORLESS);
-    private static final int HEAL_AMOUNT = 35;
 
-    public KotoriKanbe() {
+    public KotoriKanbe()
+    {
         super(DATA);
 
-        Initialize(0, 0, 6);
+        Initialize(0, 0, 6, 35);
         SetUpgrade(0, 0, 2);
         SetExhaust(true);
 
@@ -28,7 +29,7 @@ public class KotoriKanbe extends AnimatorCard implements StartupCard {
     {
         GameActions.Bottom.RemovePower(p, m, ArtifactPower.POWER_ID);
         GameActions.Bottom.ApplyWeak(p, m, magicNumber);
-        GameActions.Bottom.Heal(p, m, HEAL_AMOUNT);
+        GameActions.Bottom.Heal(p, m, secondaryValue);
     }
 
     @Override

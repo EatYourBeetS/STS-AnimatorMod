@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.cardManipulation.MakeTempCard;
@@ -12,8 +11,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.effects.attack.SmallLaser2Effect;
-import eatyourbeets.interfaces.markers.Spellcaster;
+import eatyourbeets.effects.vfx.SmallLaserEffect;
 import eatyourbeets.interfaces.subscribers.OnAddedToDrawPileSubscriber;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
@@ -22,7 +20,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
 
-public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellcaster, OnBattleStartSubscriber, OnShuffleSubscriber, OnAddedToDrawPileSubscriber
+public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnBattleStartSubscriber, OnShuffleSubscriber, OnAddedToDrawPileSubscriber
 {
     public static final EYBCardData DATA = Register(MukuroHoshimiya.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Elemental);
 
@@ -33,6 +31,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
         Initialize(6, 0);
 
         SetSynergy(Synergies.DateALive);
+        SetSpellcaster();
 
         if (CanSubscribeToEvents())
         {
@@ -56,8 +55,8 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(enemy -> GameEffects.Queue.Add(new SmallLaser2Effect(player.hb.cX, player.hb.cY,
-        enemy.hb.cX + MathUtils.random(-0.05F, 0.05F), enemy.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PURPLE)));
+        .SetDamageEffect(e -> GameEffects.Queue.Add(new SmallLaserEffect(player.hb.cX, player.hb.cY,
+        e.hb.cX + MathUtils.random(-0.05F, 0.05F), e.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PURPLE)));
     }
 
     @Override
@@ -83,9 +82,6 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, Spellc
     @Override
     public void OnShuffle(boolean triggerRelics)
     {
-        GameActions.Top.Callback(__ ->
-        {
-            JavaUtilities.ChangeIndex(this, player.drawPile.group, player.drawPile.size() - 6);
-        });
+        GameActions.Top.Callback(() -> JavaUtilities.ChangeIndex(this, player.drawPile.group, player.drawPile.size() - 6));
     }
 }

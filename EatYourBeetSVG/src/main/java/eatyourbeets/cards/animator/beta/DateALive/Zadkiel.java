@@ -24,10 +24,10 @@ public class Zadkiel extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4);
+        Initialize(0, 4, 4);
         SetCostUpgrade(-1);
-        SetExhaust(true);
 
+        SetExhaust(true);
         SetSynergy(Synergies.DateALive);
     }
 
@@ -45,7 +45,7 @@ public class Zadkiel extends AnimatorCard
         GameActions.Bottom.Add(new EvokeAllOrbsAction());
 
         int frostCount = JavaUtilities.Count(player.orbs, orb -> Frost.ORB_ID.equals(orb.ID));
-        if (frostCount >= 4)
+        if (frostCount >= magicNumber)
         {
             GameActions.Bottom.Callback(__ ->
             {

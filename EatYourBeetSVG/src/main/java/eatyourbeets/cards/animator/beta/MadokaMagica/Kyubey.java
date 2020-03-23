@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.beta.MadokaMagica;
 
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.CreateRandomCurses;
@@ -11,13 +10,9 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
-import java.util.ArrayList;
-
 public class Kyubey extends AnimatorCard implements StartupCard
 {
     public static final EYBCardData DATA = Register(Kyubey.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None);
-
-    private static ArrayList<AbstractCard> curses;
 
     public Kyubey()
     {

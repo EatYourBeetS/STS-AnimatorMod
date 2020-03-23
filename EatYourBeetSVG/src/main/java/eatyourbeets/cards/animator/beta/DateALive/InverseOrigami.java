@@ -33,7 +33,7 @@ public class InverseOrigami extends AnimatorCard
         super.triggerWhenDrawn();
 
         GameActions.Bottom.SpendEnergy(1, false)
-        .AddCallback(__ ->
+        .AddCallback(() ->
         {
             if (upgraded)
             {

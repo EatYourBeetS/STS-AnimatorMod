@@ -40,20 +40,17 @@ public class ReineMurasame extends AnimatorCard
     {
         int stacks = GameUtilities.UseXCostEnergy(this);
 
-        GameActions.Bottom.GainBlock(block + stacks);
+        GameActions.Bottom.GainBlock(stacks + baseBlock);
 
-        if (stacks > 0)
+        for (int i = 0; i < stacks; i++)
         {
-            for (int i = 0; i < stacks; i++)
-            {
-                GameActions.Bottom.MakeCardInDrawPile(new ShidoItsuka())
-                .SetUpgrade(upgraded, true);
-            }
+            GameActions.Bottom.MakeCardInDrawPile(new ShidoItsuka())
+            .SetUpgrade(upgraded, true);
+        }
 
-            if (HasSynergy())
-            {
-                GameActions.Bottom.StackPower(new EnergizedPower(p, stacks));
-            }
+        if (HasSynergy() && stacks > 0)
+        {
+            GameActions.Bottom.StackPower(new EnergizedPower(p, stacks));
         }
     }
 }

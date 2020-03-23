@@ -19,18 +19,17 @@ public class YamaiSisters extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0);
+        Initialize(2, 0, 8);
         SetUpgrade(1, 0);
 
-        this.isMultiUpgrade = true;
-
+        SetUnique(false, true);
         SetSynergy(Synergies.DateALive);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        if (timesUpgraded == 8)
+        if (timesUpgraded == magicNumber)
         {
             SetScaling(1, 1, 1);
         }
@@ -61,6 +60,6 @@ public class YamaiSisters extends AnimatorCard
     @Override
     public boolean canUpgrade()
     {
-        return timesUpgraded < 8;
+        return timesUpgraded < magicNumber;
     }
 }

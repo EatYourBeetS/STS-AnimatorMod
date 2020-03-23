@@ -8,11 +8,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
-public class SuzuneAmano extends AnimatorCard implements Spellcaster
+public class SuzuneAmano extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(SuzuneAmano.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
 
@@ -21,9 +20,10 @@ public class SuzuneAmano extends AnimatorCard implements Spellcaster
         super(DATA);
 
         Initialize(8, 0, 3, 3);
-        SetUpgrade(0,0,0,0);
+        SetUpgrade(0, 0, 0, 0);
 
         SetSynergy(Synergies.MadokaMagica);
+        SetSpellcaster();
     }
 
     @Override

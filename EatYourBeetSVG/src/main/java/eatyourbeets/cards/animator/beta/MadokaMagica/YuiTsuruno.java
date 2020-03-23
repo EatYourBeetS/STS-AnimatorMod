@@ -9,11 +9,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
-public class YuiTsuruno extends AnimatorCard implements Spellcaster
+public class YuiTsuruno extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(YuiTsuruno.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
 
@@ -21,10 +20,11 @@ public class YuiTsuruno extends AnimatorCard implements Spellcaster
     {
         super(DATA);
 
-        Initialize(9, 0, 1);
-        SetUpgrade(4, 0, 0);
+        Initialize(9, 0);
+        SetUpgrade(4, 0);
 
         SetSynergy(Synergies.MadokaMagica);
+        SetSpellcaster();
     }
 
     @Override
@@ -40,14 +40,11 @@ public class YuiTsuruno extends AnimatorCard implements Spellcaster
             {
                 if (cards.get(0).type == CardType.ATTACK)
                 {
-                    GameActions.Bottom.Add(new CreateRandomCurses(1, p.discardPile));
+                    GameActions.Bottom.Add(new CreateRandomCurses(1, player.discardPile));
                 }
                 else
                 {
-                    for (int i=0; i<magicNumber; i++)
-                    {
-                        GameActions.Bottom.ChannelOrb(new Fire(), true);
-                    }
+                    GameActions.Bottom.ChannelOrb(new Fire(), true);
                 }
             }
         });

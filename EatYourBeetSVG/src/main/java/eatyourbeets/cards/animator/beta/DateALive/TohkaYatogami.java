@@ -22,7 +22,7 @@ public class TohkaYatogami extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(DAMAGE_AMOUNT, 0);
+        Initialize(DAMAGE_AMOUNT, 0, 10);
 
         SetSynergy(Synergies.DateALive);
     }
@@ -44,7 +44,7 @@ public class TohkaYatogami extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
 
-        if (p.exhaustPile.size() >= 10)
+        if (p.exhaustPile.size() >= magicNumber)
         {
             GameActions.Last.ReplaceCard(this.uuid, new InverseTohka()).SetUpgrade(upgraded);
         }

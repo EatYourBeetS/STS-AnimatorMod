@@ -13,13 +13,12 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.effects.attack.Hemokinesis2Effect;
-import eatyourbeets.interfaces.markers.Spellcaster;
+import eatyourbeets.effects.vfx.HemokinesisEffect;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Charlotte extends AnimatorCard implements Spellcaster
+public class Charlotte extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Charlotte.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal);
 
@@ -29,9 +28,10 @@ public class Charlotte extends AnimatorCard implements Spellcaster
 
         Initialize(8, 0, 4);
         SetUpgrade(0, 0, 4);
-        SetScaling(1,0,1);
+        SetScaling(1, 0, 1);
 
         SetSynergy(Synergies.MadokaMagica);
+        SetSpellcaster();
     }
 
     @Override
@@ -50,7 +50,7 @@ public class Charlotte extends AnimatorCard implements Spellcaster
 
             if (damage > 30)
             {
-                GameEffects.List.Add(new Hemokinesis2Effect(e.hb.cX, e.hb.cY, player.hb.cX, player.hb.cY));
+                GameEffects.List.Add(new HemokinesisEffect(e.hb.cX, e.hb.cY, player.hb.cX, player.hb.cY));
                 GameEffects.List.Add(new BorderFlashEffect(Color.RED));
                 GameActions.Top.Add(new ShakeScreenAction(0.3f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
             }

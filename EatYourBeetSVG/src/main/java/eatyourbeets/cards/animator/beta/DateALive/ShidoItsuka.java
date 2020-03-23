@@ -7,9 +7,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.resources.GR;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -17,8 +17,9 @@ import java.util.ArrayList;
 public class ShidoItsuka extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ShidoItsuka.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
-    private ArrayList<AbstractCard> dateALiveCards = new ArrayList<>();
-    private ArrayList<AbstractCard> otherSynergicCards = new ArrayList<>();
+
+    protected final static ArrayList<AbstractCard> dateALiveCards = new ArrayList<>();
+    protected final static ArrayList<AbstractCard> otherSynergicCards = new ArrayList<>();
 
     public ShidoItsuka()
     {
@@ -26,8 +27,8 @@ public class ShidoItsuka extends AnimatorCard
 
         Initialize(0, 5);
         SetUpgrade(0, 2);
-        SetExhaust(true);
 
+        SetExhaust(true);
         SetSynergy(Synergies.DateALive);
     }
 
@@ -92,7 +93,7 @@ public class ShidoItsuka extends AnimatorCard
 
         if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
         {
-            GameActions.Last.ModifyAllCombatInstances(uuid, c -> ((EYBCard)c).SetExhaust(true));
+            GameActions.Last.ModifyAllCombatInstances(uuid, c -> ((EYBCard) c).SetExhaust(true));
         }
     }
 
@@ -100,9 +101,10 @@ public class ShidoItsuka extends AnimatorCard
     {
         for (AbstractCard c : CardLibrary.getAllCards())
         {
-            if (c.type != AbstractCard.CardType.CURSE && c.type != AbstractCard.CardType.STATUS
-            && c instanceof AnimatorCard && !c.tags.contains(AbstractCard.CardTags.HEALING)
-            && c.rarity != AbstractCard.CardRarity.BASIC && c.rarity != AbstractCard.CardRarity.SPECIAL)
+            if (c instanceof AnimatorCard && !GameUtilities.IsCurseOrStatus(c)
+            && !c.hasTag(AbstractCard.CardTags.HEALING)
+            && c.rarity != AbstractCard.CardRarity.SPECIAL
+            && c.rarity != AbstractCard.CardRarity.BASIC)
             {
                 if (Synergies.WouldSynergize(this, c))
                 {

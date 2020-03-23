@@ -192,8 +192,8 @@ public class DynamicCardData
         data.SV = new Integer[2];
         if (card instanceof EYBCard)
         {
-            data.SV[0] = ((EYBCard)card).baseSecondaryValue;
-            data.SV[1] = ((EYBCard)upgraded).baseSecondaryValue - data.SV[0];
+            data.SV[0] = ((EYBCard) card).baseSecondaryValue;
+            data.SV[1] = ((EYBCard) upgraded).baseSecondaryValue - data.SV[0];
         }
         else
         {

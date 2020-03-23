@@ -1,4 +1,4 @@
- package eatyourbeets.console.commands;
+package eatyourbeets.console.commands;
 
 import basemod.DevConsole;
 import basemod.devcommands.ConsoleCommand;
@@ -38,7 +38,7 @@ public class CreateCustomCard extends ConsoleCommand
     {
         if (AbstractDungeon.isScreenUp)
         {
-            DevConsole.log("Could not create a custom card.");
+            DevConsole.log("Failed creating custom card. Ensure you are in combat screen.");
             return;
         }
 
@@ -47,7 +47,7 @@ public class CreateCustomCard extends ConsoleCommand
         try
         {
             AnimatorCard_Dynamic card = data.GenerateCard(key, cardPool);
-            AnimatorCard_Dynamic upgraded = (AnimatorCard_Dynamic)card.makeCopy();
+            AnimatorCard_Dynamic upgraded = (AnimatorCard_Dynamic) card.makeCopy();
 
             upgraded.upgrade();
 

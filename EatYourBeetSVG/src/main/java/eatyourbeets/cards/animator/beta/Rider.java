@@ -5,12 +5,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.MartialArtist;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 
-public class Rider extends AnimatorCard implements MartialArtist, Spellcaster
+public class Rider extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Rider.class).SetSkill(2, CardRarity.COMMON);
 
@@ -23,6 +21,8 @@ public class Rider extends AnimatorCard implements MartialArtist, Spellcaster
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Fate);
+        SetMartialArtist();
+        SetSpellcaster();
     }
 
     @Override

@@ -24,7 +24,6 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
     public EYBAttackType attackType = EYBAttackType.Normal;
     public EYBCardTarget attackTarget = EYBCardTarget.Normal;
     public int attributeMultiplier = 1;
-    public boolean isShapeshifter;
     public Synergy synergy;
     public float intellectScaling;
     public float agilityScaling;
@@ -188,7 +187,11 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
     public AnimatorCardBuilder SetSynergy(Synergy synergy, boolean isShapeshifter)
     {
         this.synergy = synergy;
-        this.isShapeshifter = isShapeshifter;
+
+        if (isShapeshifter)
+        {
+            tags.add(AnimatorCard.SHAPESHIFTER);
+        }
 
         return this;
     }

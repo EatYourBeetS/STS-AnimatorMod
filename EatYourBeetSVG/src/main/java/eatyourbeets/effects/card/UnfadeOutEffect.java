@@ -10,7 +10,7 @@ public class UnfadeOutEffect extends EYBEffect
 
     public UnfadeOutEffect(AbstractCard card)
     {
-        super(0, Settings.ACTION_DUR_MED, true);
+        super(Settings.ACTION_DUR_MED, true);
 
         this.card = card;
 

@@ -7,11 +7,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Ara extends AnimatorCard implements MartialArtist
+public class Ara extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Ara.class).SetAttack(1, CardRarity.COMMON);
 
@@ -24,6 +23,7 @@ public class Ara extends AnimatorCard implements MartialArtist
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Elsword);
+        SetMartialArtist();
     }
 
     @Override

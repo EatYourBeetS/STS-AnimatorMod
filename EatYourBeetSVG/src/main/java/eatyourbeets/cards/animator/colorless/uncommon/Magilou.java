@@ -10,11 +10,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
-public class Magilou extends AnimatorCard implements Spellcaster
+public class Magilou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Magilou.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetMaxCopies(1);
     static
@@ -31,6 +30,7 @@ public class Magilou extends AnimatorCard implements Spellcaster
 
         SetExhaust(true);
         SetSynergy(Synergies.TalesOfBerseria);
+        SetSpellcaster();
     }
 
     @Override

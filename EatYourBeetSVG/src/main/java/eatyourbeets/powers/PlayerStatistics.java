@@ -322,32 +322,32 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         turnDamageMultiplier += value;
     }
 
-    public static int getCardsExhaustedThisTurn()
+    public static int CardsExhaustedThisTurn()
     {
         return cardsExhaustedThisTurn;
     }
 
-    public static int getSynergiesThisTurn()
+    public static int SynergiesThisTurn()
     {
         return synergiesThisTurn;
     }
 
-    public static int getCardsDrawnThisTurn()
+    public static int CardsDrawnThisTurn()
     {
         return cardsDrawnThisTurn;
     }
 
-    public static int getOrbsEvokedThisCombat()
+    public static int OrbsEvokedThisCombat()
     {
         return orbsEvokedThisCombat;
     }
 
-    public static int getOrbsEvokedThisTurn()
+    public static int OrbsEvokedThisTurn()
     {
         return orbsEvokedThisTurn;
     }
 
-    public static int getTurnCount()
+    public static int TurnCount()
     {
         return turnCount;
     }

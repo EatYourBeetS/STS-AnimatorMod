@@ -5,12 +5,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
-public class Arpeggio extends AnimatorCard implements Spellcaster
+public class Arpeggio extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Arpeggio.class).SetPower(1, CardRarity.UNCOMMON).SetMaxCopies(2);
 
@@ -22,6 +21,7 @@ public class Arpeggio extends AnimatorCard implements Spellcaster
         SetUpgrade(0, 0, 1, 0);
 
         SetSynergy(Synergies.Gate);
+        SetSpellcaster();
     }
 
     @Override

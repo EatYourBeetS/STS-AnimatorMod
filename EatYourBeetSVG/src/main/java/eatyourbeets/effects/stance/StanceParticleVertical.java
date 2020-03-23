@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
@@ -21,18 +20,18 @@ public class StanceParticleVertical extends EYBEffect
 
     public StanceParticleVertical(Color particleColor)
     {
-        super(1, MathUtils.random(1.3f, 1.8f), true);
+        super(Random(1.3f, 1.8f), true);
 
         final float multi = Settings.scale;
         img = ImageMaster.GLOW_SPARK;
-        scale = MathUtils.random(0.6f, 1f) * multi;
+        scale = Random(0.6f, 1f) * multi;
         color = particleColor.cpy();
-        x = player.hb.cX + MathUtils.random(-player.hb.width / 2f - 30f * multi, player.hb.width / 2f + 30f * multi);
-        y = player.hb.cY + MathUtils.random(-player.hb.height / 2f - -10f * multi, player.hb.height / 2f - 10f * multi);
+        x = player.hb.cX + Random(-player.hb.width / 2f - 30f * multi, player.hb.width / 2f + 30f * multi);
+        y = player.hb.cY + Random(-player.hb.height / 2f - -10f * multi, player.hb.height / 2f - 10f * multi);
         x -= (float) img.packedWidth / 2f;
         y -= (float) img.packedHeight / 2f;
-        renderBehind = MathUtils.randomBoolean(0.2f + (scale - 0.5f));
-        rotation = MathUtils.random(-8f, 8f);
+        renderBehind = RandomBoolean(0.2f + (scale - 0.5f));
+        rotation = Random(-8f, 8f);
     }
 
     @Override

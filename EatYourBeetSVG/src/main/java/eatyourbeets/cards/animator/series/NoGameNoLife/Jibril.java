@@ -9,11 +9,10 @@ import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import eatyourbeets.actions.orbs.ShuffleOrbs;
 import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 
-public class Jibril extends AnimatorCard implements Spellcaster
+public class Jibril extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Jibril.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
 
@@ -27,6 +26,7 @@ public class Jibril extends AnimatorCard implements Spellcaster
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.NoGameNoLife);
+        SetSpellcaster();
     }
 
     @Override

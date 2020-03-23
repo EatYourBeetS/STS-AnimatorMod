@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.effects.attack.ColoredSweepingBeamEffect;
+import eatyourbeets.effects.vfx.ColoredSweepingBeamEffect;
 import eatyourbeets.utilities.GameActions;
 
 public class BlackLotus extends AnimatorCard

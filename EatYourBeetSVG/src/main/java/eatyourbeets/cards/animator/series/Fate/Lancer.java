@@ -8,11 +8,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Lancer extends AnimatorCard implements MartialArtist
+public class Lancer extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Lancer.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing);
 
@@ -25,6 +24,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
         SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.Fate);
+        SetMartialArtist();
     }
 
     @Override

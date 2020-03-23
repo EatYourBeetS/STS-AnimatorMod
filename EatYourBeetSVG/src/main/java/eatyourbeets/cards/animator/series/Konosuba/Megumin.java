@@ -10,12 +10,11 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Megumin extends AnimatorCard implements Spellcaster
+public class Megumin extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Megumin.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
 
@@ -27,10 +26,10 @@ public class Megumin extends AnimatorCard implements Spellcaster
         SetUpgrade( 2, 0);
         SetScaling(4, 0, 0);
 
-        SetUnique(true, true);
         SetExhaust(true);
-
+        SetUnique(true, true);
         SetSynergy(Synergies.Konosuba);
+        SetSpellcaster();
     }
 
     @Override

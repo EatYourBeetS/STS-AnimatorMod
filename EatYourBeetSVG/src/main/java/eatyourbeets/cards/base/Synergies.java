@@ -2,8 +2,6 @@ package eatyourbeets.cards.base;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.interfaces.markers.MartialArtist;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -174,10 +172,10 @@ public class Synergies
         }
         else if (other != null && other.synergy != null && card.synergy != null)
         {
-            return (card instanceof Spellcaster && other instanceof Spellcaster) ||
-                    (card instanceof MartialArtist && other instanceof MartialArtist) ||
-                    (card.anySynergy || other.anySynergy) ||
-                    (card.synergy.equals(other.synergy));
+            return (card.synergy.equals(other.synergy)
+            || (card.hasTag(AnimatorCard.SHAPESHIFTER) || other.hasTag(AnimatorCard.SHAPESHIFTER))
+            || (card.hasTag(AnimatorCard.MARTIAL_ARTIST) && other.hasTag(AnimatorCard.MARTIAL_ARTIST))
+            || (card.hasTag(AnimatorCard.SPELLCASTER) && other.hasTag(AnimatorCard.SPELLCASTER)));
         }
 
         return false;

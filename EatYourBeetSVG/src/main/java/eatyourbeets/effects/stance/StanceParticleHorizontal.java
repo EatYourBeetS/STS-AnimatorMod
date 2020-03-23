@@ -21,17 +21,17 @@ public class StanceParticleHorizontal extends EYBEffect
 
     public StanceParticleHorizontal(Color particleColor)
     {
-        super(1, MathUtils.random(0.6f, 1f), true);
+        super(Random(0.6f, 1f), true);
 
         final float multi = Settings.scale;
         img = ImageMaster.FROST_ACTIVATE_VFX_1;
-        scale = MathUtils.random(0.6f, 1f) * multi;
+        scale = Random(0.6f, 1f) * multi;
         color = particleColor.cpy();
-        vX = MathUtils.random(-300f, -50f) * multi;
-        vY = MathUtils.random(-200f, -100f) * multi;
-        x = player.hb.cX + MathUtils.random(100f, 160f) * multi - 32f;
-        y = player.hb.cY + MathUtils.random(-50f, 220f) * multi - 32f;
-        renderBehind = MathUtils.randomBoolean(0.2f + (scale - 0.5f));
+        vX = Random(-300f, -50f) * multi;
+        vY = Random(-200f, -100f) * multi;
+        x = player.hb.cX + Random(100f, 160f) * multi - 32f;
+        y = player.hb.cY + Random(-50f, 220f) * multi - 32f;
+        renderBehind = RandomBoolean(0.2f + (scale - 0.5f));
         dvx = 400f * multi * scale;
         dvy = 100f * multi;
     }

@@ -57,7 +57,7 @@ public class Fire extends AnimatorOrb
 
     public void onEndOfTurn()
     {
-        GameActions.Bottom.Add(new FireOrbPassiveAction(passiveAmount));
+        GameActions.Bottom.Add(new FireOrbPassiveAction(this, passiveAmount));
     }
 
     public void triggerEvokeAnimation()

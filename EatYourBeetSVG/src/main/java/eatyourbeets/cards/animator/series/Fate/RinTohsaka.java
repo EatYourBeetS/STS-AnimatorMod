@@ -8,11 +8,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
-public class RinTohsaka extends AnimatorCard implements Spellcaster
+public class RinTohsaka extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(RinTohsaka.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
@@ -25,6 +24,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
         SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.Fate);
+        SetSpellcaster();
     }
 
     @Override

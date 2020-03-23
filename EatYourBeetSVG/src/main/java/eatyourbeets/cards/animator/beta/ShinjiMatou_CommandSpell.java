@@ -6,10 +6,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
 
-public class ShinjiMatou_CommandSpell extends AnimatorCard implements Spellcaster
+public class ShinjiMatou_CommandSpell extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ShinjiMatou_CommandSpell.class).SetSkill(1, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
@@ -22,6 +21,7 @@ public class ShinjiMatou_CommandSpell extends AnimatorCard implements Spellcaste
 
         SetPurge(true);
         SetSynergy(Synergies.Fate);
+        SetSpellcaster();
     }
 
     @Override

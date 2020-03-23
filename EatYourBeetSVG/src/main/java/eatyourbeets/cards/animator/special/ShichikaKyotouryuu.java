@@ -10,10 +10,9 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
 
-public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist
+public class ShichikaKyotouryuu extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ShichikaKyotouryuu.class).SetAttack(1, CardRarity.SPECIAL);
 
@@ -28,6 +27,7 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist
         SetEthereal(true);
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
+        SetMartialArtist();
     }
 
     @Override

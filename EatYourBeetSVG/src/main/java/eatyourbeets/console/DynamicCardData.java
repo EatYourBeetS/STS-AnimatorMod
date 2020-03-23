@@ -157,7 +157,7 @@ public class DynamicCardData
         AnimatorCard ac = JavaUtilities.SafeCast(card, AnimatorCard.class);
         if (ac != null)
         {
-            builder.SetSynergy(ac.synergy, ac.anySynergy);
+            builder.SetSynergy(ac.synergy, ac.hasTag(AnimatorCard.SHAPESHIFTER));
             data.Image = AnimatorResources.GetCardImage(card.cardID);
         }
         else

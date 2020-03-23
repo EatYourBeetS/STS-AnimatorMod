@@ -103,9 +103,9 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
         }
         else
         {
-            if (language != Settings.GameLanguage.ENG)
+            if (!IsTranslationSupported(language))
             {
-                language = Settings.GameLanguage.ENG; // TODO: Change this to accept ZHS and ZHT once the translation is ready
+                language = Settings.GameLanguage.ENG;
             }
 
             return Gdx.files.internal("localization/" + prefix + "/" + language.name().toLowerCase() + "/" + fileName);

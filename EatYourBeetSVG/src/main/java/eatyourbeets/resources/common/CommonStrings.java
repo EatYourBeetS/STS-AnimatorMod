@@ -10,33 +10,15 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class CommonStrings
 {
-    public CardBadges CardBadges;
     public TheUnnamedReign TheUnnamedReign;
     public HandSelection HandSelection;
     public GridSelection GridSelection;
 
     public void Initialize()
     {
-        CardBadges = new CardBadges();
         TheUnnamedReign = new TheUnnamedReign();
         HandSelection = new HandSelection();
         GridSelection = new GridSelection();
-    }
-
-    public class CardBadges
-    {
-        public final UIStrings Strings = GetUIStrings("CardBadges");
-        public final String Tooltip = Strings.TEXT[0];
-
-        public final String GetDescription(int id)
-        {
-            return Strings.TEXT[id + 1];
-        }
-
-        public final String GetName(int id)
-        {
-            return Strings.EXTRA_TEXT[id];
-        }
     }
 
     public class TheUnnamedReign

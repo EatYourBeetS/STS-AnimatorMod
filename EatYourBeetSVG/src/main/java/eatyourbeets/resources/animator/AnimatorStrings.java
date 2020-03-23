@@ -89,6 +89,7 @@ public class AnimatorStrings
         public final String PressControlToCycle = Strings.TEXT[7];
         public final String LocalizationHelp = Strings.TEXT[8];
         public final String DisplayBetaSeries = Strings.TEXT[9];
+        public final String LocalizationHelpHeader = Strings.TEXT[10];
 
         public final String SynergyName(int synergyID)
         {

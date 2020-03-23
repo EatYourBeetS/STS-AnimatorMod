@@ -32,13 +32,13 @@
 	},
 	"animator:ColorlessFragment":
 	{
-		"DESCRIPTIONS": ["替换 #y遗失残片 。 每 #b{0} 场战斗，提高卡牌奖励。有几率获得无色牌。"],
+		"DESCRIPTIONS": ["替换 #y遗失残片 。 每 #b{0} 场战斗，提高卡牌奖励。有几率获得无色牌。", "Current Series:"],
 		"FLAVOR": "颜色正在慢慢褪去…",
 		"NAME": "无色残片"
 	},
 	"animator:CursedBlade":
 	{
-		"DESCRIPTIONS": ["战斗开始时拥有 #b{0} 点 #y武力 。 每当你受到未被格挡的攻击伤害时, 增加 #y伤口 到你的手牌。"],
+		"DESCRIPTIONS": ["战斗开始时拥有 #b{0} 点 #y武力 并 #y机敏 。 每当你受到未被格挡的攻击伤害时, 增加 #y伤口 到你的手牌。"],
 		"FLAVOR": "力量都有代价。",
 		"NAME": "诅咒之刃"
 	},
@@ -118,12 +118,6 @@
 		"FLAVOR": "读心者先生，你读到这一步了吗？将杀！",
 		"NAME": "种族棋子"
 	},
-	"animator:Readme":
-	{
-		"DESCRIPTIONS": ["此角色有 #y重要信息 。 NL #p右键 阅读。"],
-		"FLAVOR": "只是一个说明，点击后消失。",
-		"NAME": "说明"
-	},
 	"animator:Rinne":
 	{
 		"DESCRIPTIONS": ["YmVoYXZlcw== ZXJyYXRpY2FsbHk=, 57GFD0c= NzQ="],
@@ -150,7 +144,7 @@
 	},
 	"animator:TheMissingPiece":
 	{
-		"DESCRIPTIONS": ["每 #b{0} 场战斗，获得一次同系列卡牌的奖励机会。当前牌组中数量多的系列出现几率会提高。"],
+		"DESCRIPTIONS": ["每 #b{0} 场战斗， 获得一次同系列卡牌的奖励机会。", "Current Series:"],
 		"FLAVOR": "这是什么？",
 		"NAME": "遗失残片"
 	},

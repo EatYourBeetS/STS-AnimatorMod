@@ -30,12 +30,6 @@
 		"NAMES": ["reload"],
 		"PROPER_NAME": "Reload"
 	},
-	"Resurrect":
-	{
-		"DESCRIPTION": "If you would die, and this card is anywhere in your deck, prevent all Damage and permanently lose this card. Will not work if Exhausted or Purged.",
-		"NAMES": ["resurrect"],
-		"PROPER_NAME": "Resurrect"
-	},
 	"Shapeshifter":
 	{
 		"DESCRIPTION": "#ySynergizes with any card.",

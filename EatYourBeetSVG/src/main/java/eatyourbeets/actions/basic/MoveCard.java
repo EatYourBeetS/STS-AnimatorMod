@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.effects.card.RenderCardEffect;
 import eatyourbeets.effects.card.UnfadeOutEffect;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.*;
 
 public class MoveCard extends EYBActionWithCallback<AbstractCard>
@@ -19,6 +20,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
     public static float DEFAULT_CARD_X_RIGHT = (float) Settings.WIDTH * 0.65f;
     public static float DEFAULT_CARD_Y = (float) Settings.HEIGHT * 0.5f;
 
+    protected CardSelection destination;
     protected CardGroup targetPile;
     protected CardGroup sourcePile;
     protected boolean showEffect;
@@ -36,8 +38,16 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         this.card = card;
         this.sourcePile = sourcePile;
         this.targetPile = targetPile;
+        this.destination = null;
 
         Initialize(1);
+    }
+
+    public MoveCard SetDestination(CardSelection destination)
+    {
+        this.destination = destination;
+
+        return this;
     }
 
     public MoveCard SetCardPosition(float x, float y)
@@ -170,6 +180,18 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             {
                 GameActions.Bottom.Add(new UnlimboAction(card, false));
             }
+        }
+    }
+
+    @Override
+    protected void Complete(AbstractCard result)
+    {
+        super.Complete(result);
+
+        // Change card spot based on destination
+        if (destination != null && targetPile.group.remove(card))
+        {
+            destination.AddCard(targetPile.group, card, 0);
         }
     }
 

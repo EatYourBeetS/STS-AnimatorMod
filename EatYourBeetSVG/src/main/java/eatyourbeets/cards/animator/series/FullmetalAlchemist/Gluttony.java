@@ -2,11 +2,11 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.basic.MoveCards;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
 public class Gluttony extends AnimatorCard
@@ -56,7 +56,7 @@ public class Gluttony extends AnimatorCard
         {
             GameActions.Top.MoveCards(p.drawPile, p.exhaustPile, magicNumber)
             .ShowEffect(true, true)
-            .SetOrigin(MoveCards.Origin.FromTop);
+            .SetOrigin(CardSelection.Top);
 
             GameActions.Bottom.Heal(magicNumber);
             GameActions.Bottom.GainForce(magicNumber);

@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.relics.FrozenEye;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard>>
@@ -21,7 +21,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
     protected final CardGroup[] groups;
 
     protected Predicate<AbstractCard> filter;
-    protected boolean isRandom;
+    protected CardSelection origin;
     protected boolean anyNumber;
 
     public SelectFromPile(String sourceName, int amount, CardGroup... groups)
@@ -54,7 +54,19 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
 
     public SelectFromPile SetOptions(boolean isRandom, boolean anyNumber)
     {
-        this.isRandom = isRandom;
+        this.anyNumber = anyNumber;
+
+        if (isRandom)
+        {
+            this.origin = CardSelection.Random;
+        }
+
+        return this;
+    }
+
+    public SelectFromPile SetOptions(CardSelection origin, boolean anyNumber)
+    {
+        this.origin = origin;
         this.anyNumber = anyNumber;
 
         return this;
@@ -83,7 +95,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
                 }
             }
 
-            if (temp.type == CardGroup.CardGroupType.HAND && !isRandom)
+            if (temp.type == CardGroup.CardGroupType.HAND && origin == null)
             {
                 fakeHandGroup.group.addAll(temp.group);
 
@@ -115,14 +127,19 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             return;
         }
 
-        if (isRandom)
+        if (origin != null)
         {
-            RandomizedList<AbstractCard> temp = new RandomizedList<>(mergedGroup.group);
+            List<AbstractCard> temp = new ArrayList<>(mergedGroup.group);
 
-            int max = Math.min(temp.Size(), amount);
+            boolean remove = origin.mode.IsRandom();
+            int max = Math.min(temp.size(), amount);
             for (int i = 0; i < max; i++)
             {
-                selectedCards.add(temp.Retrieve(GameUtilities.GetRNG()));
+                AbstractCard card = origin.GetCard(temp, i, remove);
+                if (card != null)
+                {
+                    selectedCards.add(card);
+                }
             }
 
             GridCardSelectScreenPatch.Clear();

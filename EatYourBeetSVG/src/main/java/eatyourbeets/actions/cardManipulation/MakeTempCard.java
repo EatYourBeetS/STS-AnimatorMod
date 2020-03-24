@@ -6,35 +6,26 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 {
-    public enum Destination
-    {
-        //@Formatter: Off
-        Top,
-        Bottom,
-        Random;
-
-        public boolean IsBottom() { return Bottom.equals(this); }
-        public boolean IsRandom() { return Random.equals(this); }
-        public boolean IsTop()    { return Top.equals(this);    }
-        //@Formatter: On
-    }
+    private transient AbstractGameEffect effect;
 
     protected final CardGroup cardGroup;
     protected boolean upgrade;
     protected boolean makeCopy;
     protected boolean cancelIfFull;
-    protected Destination destination;
+    protected CardSelection destination;
     protected AbstractCard actualCard;
 
     public MakeTempCard(AbstractCard card, CardGroup group)
@@ -43,7 +34,6 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 
         this.card = card;
         this.cardGroup = group;
-        this.destination = Destination.Random;
 
         if (!UnlockTracker.isCardSeen(card.cardID) || !card.isSeen)
         {
@@ -70,7 +60,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         return this;
     }
 
-    public MakeTempCard SetDestination(Destination destination)
+    public MakeTempCard SetDestination(CardSelection destination)
     {
         this.destination = destination;
 
@@ -98,9 +88,9 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         {
             case DRAW_PILE:
             {
-                ShowCardAndAddToDrawPileEffect effect = GameEffects.List.Add(new ShowCardAndAddToDrawPileEffect(actualCard,
+                effect = GameEffects.List.Add(new ShowCardAndAddToDrawPileEffect(actualCard,
                 (float) Settings.WIDTH / 2f - ((25f * Settings.scale) + AbstractCard.IMG_WIDTH),
-                (float) Settings.HEIGHT / 2f, destination.IsRandom(), true, destination.IsBottom()));
+                (float) Settings.HEIGHT / 2f, true, true, false));
 
                 // For reasons unknown ShowCardAndAddToDrawPileEffect creates a copy of the card...
                 actualCard = JavaUtilities.<AbstractCard>GetField("card", ShowCardAndAddToDrawPileEffect.class).Get(effect);
@@ -124,7 +114,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
                 else
                 {
                     // If you don't specify x and y it won't play the card obtain sfx
-                    GameEffects.List.Add(new ShowCardAndAddToHandEffect(actualCard,
+                    effect = GameEffects.List.Add(new ShowCardAndAddToHandEffect(actualCard,
                     (float) Settings.WIDTH / 2f - ((25f * Settings.scale) + AbstractCard.IMG_WIDTH),
                     (float) Settings.HEIGHT / 2f));
                 }
@@ -134,7 +124,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 
             case DISCARD_PILE:
             {
-                GameEffects.List.Add(new ShowCardAndAddToDiscardEffect(actualCard));
+                effect = GameEffects.List.Add(new ShowCardAndAddToDiscardEffect(actualCard));
 
                 break;
             }
@@ -149,6 +139,13 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
             case MASTER_DECK:
             {
                 GameActions.Top.Add(new AddCardToDeckAction(actualCard));
+
+                if (destination != null)
+                {
+                    JavaUtilities.GetLogger(this).warn("Destination for the master deck will be ignored.");
+                    destination = null;
+                }
+
                 break;
             }
 
@@ -161,14 +158,30 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
                 break;
             }
         }
+
+        if (destination == null)
+        {
+            effect = null;
+        }
     }
 
     @Override
     protected void UpdateInternal(float deltaTime)
     {
+        if (effect != null && !effect.isDone)
+        {
+            isDone = false;
+            return; // Destination will change position of the card after the effect is completed
+        }
+
         if (TickDuration(deltaTime))
         {
             Complete(actualCard);
+
+            if (destination != null && cardGroup.group.remove(card))
+            {
+                destination.AddCard(cardGroup.group, card, 0);
+            }
         }
     }
 }

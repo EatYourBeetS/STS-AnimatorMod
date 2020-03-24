@@ -951,7 +951,7 @@
 		},
 		"animator:Nanami":
 		{
-			"DESCRIPTION": "{Counter} the enemy intent. || This card will have a ** different text based on the ** enemy you are targeting.     ",
+			"DESCRIPTION": "{Counter} the enemy intent. || This card will have a ** different text based on the ** enemy you are targeting. <SPACE>",
 			"NAME": "Nanami",
 			"UPGRADE_DESCRIPTION": "Strongly {Counter} ** the enemy intent. || This card will have a ** different text based on the ** enemy you are targeting."
 		},
@@ -1306,7 +1306,7 @@
 		},
 		"animator:Kaijin":
 		{
-			"DESCRIPTION": "At the end of turn, Retain 1 ** card and increase its damage ** and Block by !M! this combat. || When you add this card to your ** deck, permanently Upgrade a ** random Basic card.",
+			"DESCRIPTION": "At the end of turn: Retain 1 ** card and increase its damage ** and Block by !M! this combat. || When you add this card ** to your deck: Permanently ** Upgrade a random Basic card. <SPACE>",
 			"NAME": "Kaijin"
 		},
 		"animator:Millim":

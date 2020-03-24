@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -151,5 +152,30 @@ public final class Examples extends AnimatorCard
         // If you want to Exhaust or Discard:
         GameActions.Bottom.ExhaustFromHand(name, 1, false);
         GameActions.Bottom.DiscardFromHand(name, 1, false);
+    }
+
+    private void MoveCards()
+    {
+        // Move 3 random cards from you discard pile to the top of your draw pile
+        GameActions.Bottom.MoveCards(player.discardPile, player.drawPile, 3)
+        .SetOrigin(CardSelection.Random(GameUtilities.GetRNG()))
+        .SetDestination(CardSelection.Top);
+
+        // Choose a card in hand and move it to the top of your draw pile
+        GameActions.Bottom.SelectFromHand(name, 1, false)
+        .AddCallback(cards ->
+        {
+            if (cards.size() > 0)
+            {
+                GameActions.Top.MoveCard(cards.get(0), player.drawPile)
+                .SetDestination(CardSelection.Top);
+            }
+        });
+
+        // Exhaust 4 random skills from the draw pile, showing them to the player
+        GameActions.Bottom.MoveCards(player.drawPile, player.exhaustPile, 4)
+        .SetFilter(c -> c.type == CardType.SKILL)
+        .SetOrigin(CardSelection.Random)
+        .ShowEffect(true, true);
     }
 }

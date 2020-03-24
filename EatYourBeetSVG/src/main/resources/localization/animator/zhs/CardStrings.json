@@ -1,0 +1,1408 @@
+
+{
+	"BASIC":
+	{
+		"animator:Defend":
+		{
+			"DESCRIPTION": "",
+			"NAME": "防御"
+		},
+		"animator:Defend_AccelWorld":
+		{
+			"DESCRIPTION": "丢弃: ** 获得 !M! 层 格挡 。",
+			"NAME": "改良防御"
+		},
+		"animator:Defend_Elsword":
+		{
+			"DESCRIPTION": "下一回合， ** 获得 !M! 层 格挡 。",
+			"NAME": "改良防御"
+		},
+		"animator:Defend_Fate":
+		{
+			"DESCRIPTION": "每个敌人 ** 额外获得 !M! 层 格挡 。",
+			"NAME": "改良防御"
+		},
+		"animator:Defend_FullmetalAlchemist":
+		{
+			"DESCRIPTION": "冷却 !S! : 生成 ** 1 个 冰霜 充能球。",
+			"NAME": "改良防御"
+		},
+		"animator:Defend_GATE":
+		{
+			"DESCRIPTION": "",
+			"NAME": "改良防御"
+		},
+		"animator:Defend_GoblinSlayer":
+		{
+			"DESCRIPTION": "",
+			"NAME": "改良防御"
+		},
+		"animator:Defend_HitsugiNoChaika":
+		{
+			"DESCRIPTION": "循环 1 张牌。",
+			"NAME": "改良防御"
+		},
+		"animator:Defend_Kancolle":
+		{
+			"DESCRIPTION": "{昙现} 。 ** 获得 !M! {金币} 。",
+			"NAME": "改良防御"
+		},
+		"animator:Defend_Katanagatari":
+		{
+			"DESCRIPTION": "获得 !M! 层 {临时} 荆棘。",
+			"NAME": "改良防御"
+		},
+		"animator:Defend_Konosuba":
+		{
+			"DESCRIPTION": "",
+			"NAME": "改良防御"
+		},
+		"animator:Defend_NoGameNoLife":
+		{
+			"DESCRIPTION": "保留 最左侧的 ** 可打出的牌。",
+			"NAME": "改良防御"
+		},
+		"animator:Defend_OnePunchMan":
+		{
+			"DESCRIPTION": "{昙现} 。 下一回合， ** 获得 [E] 。",
+			"NAME": "改良防御"
+		},
+		"animator:Defend_Overlord":
+		{
+			"DESCRIPTION": "本场战斗中， ** 将张牌的 格挡 ** 提高 !M! 点。",
+			"NAME": "改良防御"
+		},
+		"animator:Defend_OwariNoSeraph":
+		{
+			"DESCRIPTION": "被 消耗 : ** 给予所有敌人 ** !M! 层 虚弱 。",
+			"NAME": "改良防御"
+		},
+		"animator:Defend_TenSura":
+		{
+			"DESCRIPTION": "",
+			"NAME": "改良防御"
+		},
+		"animator:Strike":
+		{
+			"DESCRIPTION": "",
+			"NAME": "打击"
+		},
+		"animator:Strike_AccelWorld":
+		{
+			"DESCRIPTION": "丢弃， ** 对随机一名敌人 ** 造成 !M! 点伤害。",
+			"NAME": "改良打击"
+		},
+		"animator:Strike_Elsword":
+		{
+			"DESCRIPTION": "造成 !M! 层 点燃 。",
+			"NAME": "改良打击"
+		},
+		"animator:Strike_Fate":
+		{
+			"DESCRIPTION": "如果你的手牌 ** 少于 3 张， ** 获得 [E] 。",
+			"NAME": "改良打击"
+		},
+		"animator:Strike_FullmetalAlchemist":
+		{
+			"DESCRIPTION": "冷却 !S! : ** 生成 1 个 ** 闪电 充能球。",
+			"NAME": "改良打击"
+		},
+		"animator:Strike_GATE":
+		{
+			"DESCRIPTION": "下一回合， ** 抽 1 张牌。",
+			"NAME": "改良打击"
+		},
+		"animator:Strike_GoblinSlayer":
+		{
+			"DESCRIPTION": "",
+			"NAME": "改良打击"
+		},
+		"animator:Strike_HitsugiNoChaika":
+		{
+			"DESCRIPTION": "给予 !M! 层 中毒 。",
+			"NAME": "改良打击"
+		},
+		"animator:Strike_Kancolle":
+		{
+			"DESCRIPTION": "{昙现}: ** 获得 !M! {金币} 。",
+			"NAME": "改良打击"
+		},
+		"animator:Strike_Katanagatari":
+		{
+			"DESCRIPTION": "",
+			"NAME": "改良打击"
+		},
+		"animator:Strike_Konosuba":
+		{
+			"DESCRIPTION": "",
+			"NAME": "改良打击"
+		},
+		"animator:Strike_NoGameNoLife":
+		{
+			"DESCRIPTION": "保留 最右侧 ** 可打出的牌。",
+			"NAME": "改良打击"
+		},
+		"animator:Strike_OnePunchMan":
+		{
+			"DESCRIPTION": "抽 1 张 {打击}。",
+			"NAME": "改良打击"
+		},
+		"animator:Strike_Overlord":
+		{
+			"DESCRIPTION": "本场战斗中， ** 将这张卡的伤害 ** 提高 !M! 点。",
+			"NAME": "改良打击"
+		},
+		"animator:Strike_OwariNoSeraph":
+		{
+			"DESCRIPTION": "被 消耗 : ** 对所有敌人 ** 给予 !M! 层 易伤 。",
+			"NAME": "改良打击"
+		},
+		"animator:Strike_TenSura":
+		{
+			"DESCRIPTION": "",
+			"NAME": "改良打击"
+		}
+	},
+	
+	"BETA":
+	{
+		"animator:ManiwaHouou":
+		{
+			"DESCRIPTION": "",
+			"NAME": "真庭凤凰"
+		}
+	},
+	
+	"COLORLESS:RARE":
+	{
+		"animator:Emilia":
+		{
+			"DESCRIPTION": "生成 !M! 个 冰霜 充能球。 || 下一回合， ** 每有一个 冰霜 充能球， ** 生成 1 个 闪电 充能球。",
+			"NAME": "爱蜜莉雅"
+		},
+		"animator:HarukoHaruhara":
+		{
+			"DESCRIPTION": "随机丢弃 1 张牌。  ** 随机打出 1 张牌。",
+			"NAME": "春原晴子"
+		},
+		"animator:Hibiki":
+		{
+			"DESCRIPTION": "这场战斗中， ** 将这张牌的攻击 ** 次数增加 !S! 。",
+			"NAME": "响"
+		},
+		"animator:HououinKyouma":
+		{
+			"DESCRIPTION": "选择 1 张 本场 ** 战斗中 打出过的牌， ** 将它的复制品 ** 加入你的手牌并 保留 。 ",
+			"NAME": "凤凰院凶真"
+		},
+		"animator:Kira":
+		{
+			"DESCRIPTION": "敌人获得 !S! 点力量 ** 并在几回合内死去。 || 这张牌的内容 ** 会因为目标 ** 不同而改变。",
+			"EXTENDED_DESCRIPTION": ["这个敌人会 在 !M! 个回合后死亡。"],
+			"NAME": "夜神月"
+		},
+		"animator:Kyubey":
+		{
+			"DESCRIPTION": "获得 [E] [E] 。 **抽 !M! 张牌。 || 战斗开始时， ** 随机添加 1 张 ** 诅咒 牌到弃牌堆。",
+			"NAME": "QB"
+		},
+		"animator:Lelouch":
+		{
+			"DESCRIPTION": "随机消耗 !M! 张手牌。 ** 本回合，所有进行 ** 攻击的敌人 ** 会攻击自己。  ** 其他敌人会被击晕。",
+			"NAME": "鲁路修"
+		},
+		"animator:Patchouli":
+		{
+			"DESCRIPTION": "本场战斗每生成 ** 过不同的充能球， ** 多攻击一次。 || {昙现} 。 ** 在战斗开始时， ** 将一张随机 ** {充能球核心} ** 加入你的弃牌堆。",
+			"NAME": "帕秋莉"
+		},
+		"animator:TakanashiRikka":
+		{
+			"DESCRIPTION": "将手牌中所有 ** {攻击牌} 的 0 耗能 ** 复制品加入 ** 你的手牌， ** 它们造成 !M! 点伤害 ** 并在打出后 抹除 。",
+			"NAME": "小鸟游六花"
+		},
+		"animator:TanyaDegurechaff":
+		{
+			"DESCRIPTION": "丢弃所有 {技能牌} 。  ** 每丢弃一张 ** 多攻击一次。 || {昙现} 。 战斗 ** 开始时，将 1 张  ** {艾连穆姆九五式} ** 加入抽牌堆。",
+			"NAME": "谭雅·提古雷查夫"
+		}
+	},
+	
+	"COLORLESS:UNCOMMON":
+	{
+		"animator:Canti":
+		{
+			"DESCRIPTION": "造成等于 ** 敌人攻击伤害 ** 的伤害。",
+			"NAME": "健次"
+		},
+		"animator:Cirno":
+		{
+			"DESCRIPTION": "生成 1 个 ** 冰霜 充能球。 || 被 消耗 : 生成 ** 1 个 冰霜 充能球。",
+			"NAME": "琪露诺"
+		},
+		"animator:IchigoKurosaki":
+		{
+			"DESCRIPTION": "提升 [F] [A] 。 || 被 消耗 : 如果 ** 你拥有至少 5 [F] ， ** 添加 1 张 {天锁斩月} ** 到抽牌堆。",
+			"NAME": "黑崎一护",
+			"UPGRADE_DESCRIPTION": "提升 [F] [A] 。 ** 抽1张牌。 || 被 消耗 : 如果 ** 你拥有至少 5 [F] ， ** 添加 1 张 {天锁斩月} ** 到抽牌堆。"
+		},
+		"animator:Kuroyukihime":
+		{
+			"DESCRIPTION": "丢弃 !M! 张牌： ** 将一张 {黑色睡莲} ** 加入你的手牌。 ** 消耗 。",
+			"NAME": "黑雪姬"
+		},
+		"animator:LimeBell":
+		{
+			"DESCRIPTION": "重装填 : ** 获得 !M! 层 {临时生命} 。",
+			"NAME": "青柠之铃"
+		},
+		"animator:Magilou":
+		{
+			"DESCRIPTION": "触发你的第一个充能球 ** !M! 次并 激发 。 || <LIM> 。被抽到时: ** 丢弃这张牌并将 ** {Bienfu} 加入你的手牌。",
+			"NAME": "Magilou"
+		},
+		"animator:MamizouFutatsuiwa":
+		{
+			"DESCRIPTION": "使 1 张手牌获得 ** 穿越者属性。 || {昙现} 。 丢弃： ** 将一张随机 穿越者 ** 加入你的手牌。",
+			"EXTENDED_DESCRIPTION": ["变为一名穿越者"],
+			"NAME": "二岩猯藏"
+		},
+		"animator:MisaKurobane":
+		{
+			"DESCRIPTION": "抽 !M! 张牌。 ** 生成 1 个 ** 火焰 充能球。 || 添加 1 张 ** {西森柚咲} ** 到弃牌堆。",
+			"NAME": "黑羽美砂"
+		},
+		"animator:MisakiNakahara":
+		{
+			"DESCRIPTION": "从 !M! 张无色牌 ** 中选择 1 张 ** 并添加到抽牌堆。 || 第一次抽到时， ** 激励 1 。",
+			"NAME": "中原岬"
+		},
+		"animator:NononJakuzure":
+		{
+			"DESCRIPTION": "循环 !M! 张牌。  ** 激励 !S! 。 || 当在手牌时 同调 ， ** 将这张牌的 ** 激励 提高 1。",
+			"NAME": "蛇崩乃音"
+		},
+		"animator:QuestionMark":
+		{
+			"DESCRIPTION": "被抽到： 变成一张 ** 随机牌的复制品， ** 并获得 穿越者 。",
+			"NAME": "问号",
+			"UPGRADE_DESCRIPTION": "被抽到： ** 变成一张已 升级 的 ** 随机牌的复制品，并获得 穿越者 。"
+		},
+		"animator:Shimakaze":
+		{
+			"DESCRIPTION": "<DRW-M> 。 ** 将一张 晕眩 ** 加入抽牌堆。",
+			"NAME": "岛风"
+		},
+		"animator:Urushihara":
+		{
+			"DESCRIPTION": "生成 1 个 ** 黑暗 充能球。 || 若干回合后 ** 造成伤害。 ",
+			"NAME": "漆原半藏",
+			"UPGRADE_DESCRIPTION": "生成 1 个 ** 黑暗 充能球。 || 若干回合后 ** 造成伤害。 || 轻微减少 {懒惰} 。"
+		},
+		"animator:Zero":
+		{
+			"DESCRIPTION": "从你的抽牌堆 ** 中打出一张 ** 随机 {技能牌} 。",
+			"NAME": "零"
+		}
+	},
+	
+	"CURSE":
+	{
+		"animator:Curse_Greed":
+		{
+			"DESCRIPTION": "不能被打出 。 ** 被抽到： 本回合提高 ** 随机一张手牌的 ** 耗能 1 点。",
+			"NAME": "贪婪"
+		},
+		"animator:Curse_Dizziness":
+		{
+			"DESCRIPTION": "不能被打出 。 ** 抽到时，将一张 ** 晕眩加入你的抽牌堆。",
+			"NAME": "Dizziness"
+		},
+		"animator:Curse_Nutcracker":
+		{
+			"DESCRIPTION": "不能被打出 。 ** 回合结束时， ** 所有敌人回复 !M! 点生命。",
+			"NAME": "胡桃夹子"
+		}
+	},
+	
+	"SERIES:ELSWORD":
+	{
+		"animator:Add":
+		{
+			"DESCRIPTION": "将 3 张 {晶体化} 加入抽牌堆。 ** 下一回合， 抽 !M! 张牌 ** 并获得 [E] [E] 。 || 同调 ：从任何地方 ** 选择 消耗 1 张牌。 ** 将这张牌替换为 ** {充能球核心} 。",
+			"NAME": "艾迪"
+		},
+		"animator:Ain":
+		{
+			"DESCRIPTION": "生成 1 个随机的充能球。 || 同调或丢弃： ** 获得 [I] 。",
+			"NAME": "艾因"
+		},
+		"animator:Aisha":
+		{
+			"DESCRIPTION": "每有1个充能球， ** 额外攻击1次。|| {有限} 。 如果这场战斗中 ** 你抵达过3 [I] :  ** 获得 1 个充能球栏位。",
+			"NAME": "爱莎‧蓝塔"
+		},
+		"animator:Ara":
+		{
+			"DESCRIPTION": "敌人每有一种 {负面效果} ，抽1张牌。 ** 丢弃 1 张牌。 || 如果你丢弃的是 {能力牌} : ** 获得 2 [F] 和 [A] 。",
+			"NAME": "爱拉"
+		},
+		"animator:Chung":
+		{
+			"DESCRIPTION": "本场战斗中降低 ** 这张牌 的 格挡 !M! 点。 || 被 消耗 : 生成 ** 1 个 冰霜 充能球。",
+			"NAME": "澄"
+		},
+		"animator:Ciel":
+		{
+			"DESCRIPTION": "下次攻击时， ** 敌人额外受到 !M! 点伤害。 || 同调 : 你牌组中的每张 {Lu} ** 增加 !S! 点伤害。",
+			"NAME": "Ciel"
+		},
+		"animator:Elesis":
+		{
+			"DESCRIPTION": "战斗开始时， ** 从 3 种 {形态} 中选择 ** 1 种并永久替换为 ** 这张牌。",
+			"EXTENDED_DESCRIPTION": ["使用剩余的 [E] : ** 获得等量的 [F] [A] 。 || 被抽到或丢弃时， ** 直到被打出前增加 ** 这张牌的伤害 !M! 点。", "敌人每有一种 {负面效果} ** 给予 1 层 点燃 。 || {有限} 。 ** 同调或丢弃时， ** 抽1张牌。", "给予 1 层 易伤 。 || 每场战斗开始时: ** 失去 !M! 生命。"],
+			"NAME": "爱利西斯",
+			"UPGRADE_DESCRIPTION": "战斗开始时， ** 从 3 种已 升级 的 ** {形态} 中选择 1 种并永久替换为 ** 这张牌。"
+		},
+		"animator:Elsword":
+		{
+			"DESCRIPTION": "给予 !S! 层 点燃 。 ** 循环 !M! 张牌。 || 丢弃： ** 生成 1 个 火焰 充能球。",
+			"NAME": "艾索德"
+		},
+		"animator:Eve":
+		{
+			"DESCRIPTION": "打出 1 张 {充能球核心}。 || {昙现} 。 当你 同调 时： ** 对一名敌人 ** 造成 1 点伤害 ** 并提高 1 点伤害。 ** 不能叠加。",
+			"NAME": "伊芙",
+			"UPGRADE_DESCRIPTION": "打出 1 张 {充能球核心}。 ** 获得 !M! 个 充能球栏位。 || {昙现} 。 当你 同调 时： ** 对一名敌人 ** 造成 1 点伤害 ** 并提高 1 点伤害。 ** 不能叠加。"
+		},
+		"animator:Laby":
+		{
+			"DESCRIPTION": "获得 !S! 点 ** {魔法护甲} 。 || 回合开始时: ** 获得 1 层 缠绕 。",
+			"EXTENDED_DESCRIPTION": ["每回合开始时, 获得 #b{0} 层 #y缠绕 。", "每回合开始时, 获得 #b{0} #y缠绕 并对所有敌人给予 #b{1} #y缠绕 。"],
+			"NAME": "菈比",
+			"UPGRADE_DESCRIPTION": "获得 !S! 点 ** {魔法护甲} 。 || 回合开始时: ** 对所有角色 ** 给予 1 层 缠绕 。"
+		},
+		"animator:Lu":
+		{
+			"DESCRIPTION": "生成 1 个 ** 冰霜 充能球。 ** 生成 1 个 ** 黑暗 充能球。 || 被 消耗 : 激发 ** 所有的充能球。",
+			"NAME": "Lu"
+		},
+		"animator:Raven":
+		{
+			"DESCRIPTION": "将抽牌堆中 ** 伤害最低的 ** {攻击牌} 加入手牌。 || 如果目标意图是攻击， ** 给予1层 虚弱 。 ** 否则，给予1层 易伤 。",
+			"NAME": "雷文"
+		},
+		"animator:Rena":
+		{
+			"DESCRIPTION": "获得 1 张 {飞刀} 。 || {有限} 。 同调 ** 或丢弃， ** 得到 !S! 层 残影 。",
+			"NAME": "蕾娜‧艾兰黛"
+		}
+	},
+	
+	"SERIES:FATE":
+	{
+		"animator:Alexander":
+		{
+			"DESCRIPTION": "在下一回合中 ** 不会失去 [F] 。 || 消耗 : ** 打出这张牌。",
+			"NAME": "亚历山大大帝",
+			"UPGRADE_DESCRIPTION": "获得 [F] 。 || 消耗 : ** 打出这张牌。"
+		},
+		"animator:Archer":
+		{
+			"DESCRIPTION": "在你的回合结束时， ** 敌人每有一种 {负面效果} ** 就对敌人 ** 造成 !M! 点伤害。 || 同调 ：对所有敌人 ** 给予1层 易伤 。",
+			"NAME": "Archer"
+		},
+		"animator:Assassin":
+		{
+			"DESCRIPTION": "只有当敌人有 !M! 种 ** 不同的 {负面效果} 时才能被打出。 || 如果你打出了一张 {攻击牌} : ** 这张牌失去 保留 。",
+			"NAME": "Assassin"
+		},
+		"animator:Berserker":
+		{
+			"DESCRIPTION": "获得 !M! <F> 。 || 如果敌人死亡 ** 或者失去 格挡： ** 获得 !S! 点 格挡 。",
+			"NAME": "Berserker"
+		},
+		"animator:Caster":
+		{
+			"DESCRIPTION": "给予 !M! 层 {镣铐} ， ** 获得 [F] [I] 。 || <SLM>. ** {~协同} 或 消耗 时： ** 生成 1 个 {~黑暗} 充能球 。",
+			"NAME": "Caster"
+		},
+		"animator:EmiyaShirou":
+		{
+			"DESCRIPTION": "随机 升级 1 张 ** 手牌 !M! 次。 || 如果每张手牌都已 ** 升级，抽 2 张牌。",
+			"NAME": "卫宫士郎"
+		},
+		"animator:Gilgamesh":
+		{
+			"DESCRIPTION": "{~独一} 。每当你在非商店处 ** 获得 {遗物} 时， ** 升级 这张牌 ** 并获得 !S! {金币} 。",
+			"NAME": "吉尔伽美什"
+		},
+		"animator:Illya":
+		{
+			"DESCRIPTION": "打出抽牌堆中 ** 伤害最高的 攻击 牌。  ** 回合结束时 ** 受到 !M! 点 伤害。 || 被 消耗 : 从任意牌堆 ** 取出 1 张 {Berserker} ** 并 保留 。",
+			"NAME": "伊莉雅"
+		},
+		"animator:Lancer":
+		{
+			"DESCRIPTION": "给予 !M! 层 易伤 。 || 这张牌根据 ** 敌人已损失的 ** 血量百分比 ** 增加伤害。",
+			"NAME": "Lancer"
+		},
+		"animator:SakuraMatou":
+		{
+			"DESCRIPTION": "将你最右侧的 {黑暗} 充能球的伤害减半。给予等量的 **  {缠绕} ( !M! )。",
+			"NAME": "Sakura Matou"
+		},
+		"animator:ShinjiMatou":
+		{
+			"DESCRIPTION": "给予 !M! 层 中毒 ，手牌中每有一种卡牌类型，增加 !S! ** 点 中毒 。 || <SLM> 。 同调 时： ** 将 {Command Spell} 加入你的手牌并 保留 。",
+			"NAME": "Shinji Matou"
+		},
+		"animator:Rider":
+		{
+			"DESCRIPTION": "给予 !M! 层 {镣铐} 。 || 这张牌与 {武师} 和 {法师} {同调} 。",
+			"NAME": "Rider"
+		},
+		"animator:RinTohsaka":
+		{
+			"DESCRIPTION": "获得 !S! 层 {临时} ** 人工制品。 || <slm> 。 同调 ： ** {生成} 你第一个 ** 充能球的复制。。",
+			"NAME": "远坂凛"
+		},
+		"animator:Saber":
+		{
+			"DESCRIPTION": "冷却 !S!: 抹除 ， ** 并获得 {誓约胜利之剑} 。 || 如果这张牌进入 ** 你的弃牌堆， ** 将它移动到抽牌堆。 || 同调 : 额外 ** 降低这张牌的 ** 冷却 2 点。",
+			"NAME": "Saber"
+		}
+	},
+	
+	"SERIES:FULLMETALALCHEMIST":
+	{
+		"animator:ElricAlphonse":
+		{
+			"DESCRIPTION": "如果你有不超过 ** !M! 点 [I] ，提高 [I] 。 || 消耗 : 将 ** {阿尔冯斯护甲} ** 加入弃牌堆。",
+			"NAME": "阿尔冯斯"
+		},
+		"animator:ElricEdward":
+		{
+			"DESCRIPTION": "循环 1 张牌。  ** 生成 该牌对应种类 ** 的 1 个充能球。 || {攻击} -> 闪电 。 ** {能力} -> 大地 。 ** {技能} -> 冰霜 。",
+			"NAME": "爱德华·艾尔利克"
+		},
+		"animator:Envy":
+		{
+			"DESCRIPTION": "每回合打出的 ** 第一张牌 同调 。 || 获得等于 20% ** 你已损失的生命 ** 的 {临时生命} 。",
+			"NAME": "嫉妒"
+		},
+		"animator:Father":
+		{
+			"DESCRIPTION": "失去 !S!% 最大生命值。 ** 获得 {贤者之石}。 || 从卡组和未来奖励 ** 中移除这张牌。",
+			"NAME": "父亲大人"
+		},
+		"animator:Gluttony":
+		{
+			"DESCRIPTION": "消耗 抽牌堆顶部的 ** !M! 张牌并获得 !M! 点 武力 ** 同时回复 !M! 生命。 || 这张牌在牌堆小于 ** !S! 张牌时 不能被打出 。",
+			"EXTENDED_DESCRIPTION": ["牌堆太小了。"],
+			"NAME": "暴食"
+		},
+		"animator:Greed":
+		{
+			"DESCRIPTION": "获得 !M! 层  {柔韧} 和 {金属化} 。 || {昙现} 。 ** 每拥有 150 {金币}， ** 下一回合 获得 [E]。",
+			"NAME": "贪婪"
+		},
+		"animator:MaesHughes":
+		{
+			"DESCRIPTION": "抽牌堆中 ** 每有 !M! 张牌， ** 抽一张牌。  ** 激励 1。 || 被 消耗 : 取出1 张 ** {罗伊·马斯坦古}。 ** 它的耗能本回合 ** 减少 1 点。",
+			"NAME": "马斯·休斯"
+		},
+		"animator:Pride":
+		{
+			"DESCRIPTION": "{生成} !M! 个 ** 黑暗 充能球。 ** 给予 !S! 层 缠绕。 || 直到下一个 回合， ** 最右侧的 ** 黑暗 充能球 ** 将吸收你受到的 ** 未被 格挡 的伤害。",
+			"NAME": "傲慢"
+		},
+		"animator:RoyMustang":
+		{
+			"DESCRIPTION": "每有一名敌人 ** 生成 1 个 ** 火焰 充能球。 || 同调 : 获得 ** 4 层 {火焰屏障} 。",
+			"NAME": "罗伊·马斯坦"
+		},
+		"animator:Scar":
+		{
+			"DESCRIPTION": "消耗 一张 ** 随机手牌。 || 本回合敌人 ** 失去 !M! 点 力量 。",
+			"NAME": "斯卡"
+		},
+		"animator:Sloth":
+		{
+			"DESCRIPTION": "下一回合， ** 少抽 1 张牌。 || 被 消耗 : ** 获得 !S! 点 格挡 。",
+			"NAME": "懒惰"
+		},
+		"animator:WinryRockbell":
+		{
+			"DESCRIPTION": "每回合一次, ** 每当你丢弃 ** 1 张牌时， ** 获得 !M! 格挡 。 || 同调 : ** 升级 1 张手牌。",
+			"EXTENDED_DESCRIPTION": ["这回合接下来 ** #b{0} 次你弃牌时, ** 获得 #b{1} #y格挡 。"],
+			"NAME": "温莉·洛克贝尔"
+		}
+	},
+	
+	"SERIES:GATE":
+	{
+		"animator:Arpeggio":
+		{
+			"DESCRIPTION": "获得 !S! [I] 。 ** 获得 !M! 个充能球栏位。 || {昙现} 。 同调 ： ** 生成 1 个 大地 充能球。",
+			"NAME": "阿尔蓓吉欧"
+		},
+		"animator:Bozes":
+		{
+			"DESCRIPTION": "激励 !M! 。 || 本回合每次 同调 ，获得 !S! 点 {支援伤害} 。",
+			"NAME": "波赛斯"
+		},
+		"animator:ItamiYouji":
+		{
+			"DESCRIPTION": "<DRW-M> 。 ** 每抽一张 {攻击} 牌, ** 造成一次伤害 || 同调 :每有一名敌人 ** 获得 !S! 点 {支援伤害} 。",
+			"NAME": "伊丹耀司"
+		},
+		"animator:Kuribayashi":
+		{
+			"DESCRIPTION": "给予 !S! 层 勒脖  ** 和 !M! 层 易伤 。 || {有限} 。 同调 : ** 获得 1 点 {支援伤害} 。",
+			"NAME": "栗林志乃"
+		},
+		"animator:LeleiLaLalena":
+		{
+			"DESCRIPTION": "随机丢弃1张牌： ** {生成} !M! 个 ** 冰霜 充能球。 || 同调 : 给予1层 虚弱 。",
+			"NAME": "蕾莱·拉·列娜",
+			"UPGRADE_DESCRIPTION": "丢弃1张牌： ** {生成} !M! 个 ** 冰霜 充能球。 || 同调 : 给予1层 虚弱 。"
+		},
+		"animator:PinaCoLada":
+		{
+			"DESCRIPTION": "每回合打出的 ** 第一张{0能耗}牌 ** 打出两次。",
+			"NAME": "平娜·戈·兰达",
+			"UPGRADE_DESCRIPTION": "每回合打出的 ** 第一张{0能耗}牌 ** 打出两次。"
+		},
+		"animator:RoryMercury":
+		{
+			"DESCRIPTION": "对第一个攻击 ** 到的敌人 ** 给予 1 层 易伤 。 || 被抽到： ** 获得1点 [F] 。",
+			"NAME": "萝莉·麦丘利"
+		},
+		"animator:TukaLunaMarceau":
+		{
+			"DESCRIPTION": "如果你没有 格挡 ， ** 抽1张牌。 || 丢弃： ** 获得 !B! 点 格挡 。",
+			"NAME": "杜嘉·露娜·马尔席"
+		},
+		"animator:Tyuule":
+		{
+			"DESCRIPTION": "下一回合， ** 给予所有敌人 ** !M! 层 中毒 ** 并提升他们的 ** {普通负面效果} 1 点。",
+			"EXTENDED_DESCRIPTION": ["普通负面效果", "#y中毒 , #y虚弱 , #y易伤 , #y点燃 。"],
+			"NAME": "蒂尤蕾"
+		},
+		"animator:YaoHaDucy":
+		{
+			"DESCRIPTION": "本回合 目标失去 ** !M! 点 力量 。 || 同调 : 如果你有 ** 任何 {支援伤害} ， ** 增加 !S! 点。",
+			"NAME": "姚·汉·蒂修"
+		}
+	},
+	
+	"SERIES:GOBLINSLAYER":
+	{
+		"animator:CowGirl":
+		{
+			"DESCRIPTION": "从抽牌堆 取出 ** 一张 {0耗能} 的牌。 || {昙现} 。 ** 丢弃时: 激励 1。",
+			"NAME": "奶牛妹",
+			"UPGRADE_DESCRIPTION": "从抽牌堆或弃牌堆 ** 取出一张 {0耗能} 的牌。 || {昙现} 。 ** 丢弃时: 激励 1。"
+		},
+		"animator:DwarfShaman":
+		{
+			"DESCRIPTION": "生成 1 个 大地 充能球。 || 同调 : 抽 1 张牌 ** 并 升级 。",
+			"NAME": "矮人萨满"
+		},
+		"animator:GoblinSlayer":
+		{
+			"DESCRIPTION": "消耗 所有位于 ** 手牌和弃牌堆中 ** 的状态牌和诅咒牌。 || 消耗堆中每有一张牌， ** 额外造成 3 点伤害。 || {警告} ： 小心哥布林 。",
+			"NAME": "哥布林杀手"
+		},
+		"animator:GuildGirl":
+		{
+			"DESCRIPTION": "每回合开始时， ** 循环 1 张牌。 || 当非爪牙的敌人死亡时， ** 获得 !M! 金币。  ** 效果不叠加。",
+			"NAME": "柜台小姐"
+		},
+		"animator:HighElfArcher":
+		{
+			"DESCRIPTION": "如果你有不超过 ** !M! 点 机敏 ， ** 获得1点 机敏 。 || 同调 :这张牌获得 {~仓促} 。",
+			"NAME": "精灵弓手"
+		},
+		"animator:LizardPriest":
+		{
+			"DESCRIPTION": "本回合 保留 ** !M! 张牌。 || 同调 : 将每名 ** 敌人的 格挡 ** 变为 1 点。",
+			"NAME": "蜥蜴僧侣"
+		},
+		"animator:Priestess":
+		{
+			"DESCRIPTION": "给予 !S! 层 虚弱 。 || 同调 : 随机 ** 消耗 1 张 ** 状态牌或诅咒牌。",
+			"NAME": "女神官",
+			"UPGRADE_DESCRIPTION": "给予所有敌人 ** !S! 层 虚弱 。 || 同调 : 随机 ** 消耗 1 张 ** 状态牌或诅咒牌。"
+		},
+		"animator:Spearman":
+		{
+			"DESCRIPTION": "提升 [A] 。 ** 获得 1 张 {伤口} 。 || 同调 ：获得 [F] 。",
+			"NAME": "长枪手"
+		},
+		"animator:SwordMaiden":
+		{
+			"DESCRIPTION": "移除最右边 ** 的 {负面效果} 。 || 提升 [F] [A] [I] 。",
+			"NAME": "剑之圣女"
+		},
+		"animator:Witch":
+		{
+			"DESCRIPTION": "对所有敌人 ** 给予 !M! 层 点燃 。 || 每场 {精英} 战 ** 开始时，获得 ** 1 瓶随机药水。",
+			"NAME": "魔女"
+		}
+	},
+	
+	"SERIES:HITSUGINOCHAIKA":
+	{
+		"animator:AcuraAkari":
+		{
+			"DESCRIPTION": "丢弃 2 张牌 ** 获得 !M! 张 {飞刀} 。 || {有限} 。 同调 : ** 获得 !S! 点 {临时} 涂毒 。",
+			"NAME": "阿卡莉"
+		},
+		"animator:AcuraShin":
+		{
+			"DESCRIPTION": "给予 !M! 层 中毒 。 || 本场战斗每当 ** 你给予 中毒 时， ** 额外给予1层 中毒 。",
+			"NAME": "辛·亚裘拉"
+		},
+		"animator:AcuraTooru":
+		{
+			"DESCRIPTION": "获得 !S! 张 {飞刀} 。 || 同调 或丢弃： ** 获得 [A] 和 !M! 点 格挡 。",
+			"NAME": "托鲁"
+		},
+		"animator:ChaikaBohdan":
+		{
+			"DESCRIPTION": "当这张牌在手牌中时， ** 每攻击一名敌人， ** 这张牌在打出前 ** 获得 !S! 点 额外伤害 。",
+			"NAME": "嘉依卡·布芙丹"
+		},
+		"animator:ChaikaTrabant":
+		{
+			"DESCRIPTION": "下一回合开始时打出， ** 给予1层 虚弱 和 易伤 。 || 丢弃: 对所有敌人 ** 造成 !M! 点伤害。",
+			"NAME": "嘉依卡·托勒庞特"
+		},
+		"animator:Fredrika":
+		{
+			"DESCRIPTION": "每个敌人使你额外 ** 获得 !M! 层 格挡 。 || 丢弃： ** 回到手牌并在回合结束前切换形态。",
+			"EXTENDED_DESCRIPTION": ["", "获得 2 点 金属化 。", "给予 1 点 易伤 。 ** 给予 1 点 虚弱 。"],
+			"NAME": "芙蕾多妮卡"
+		},
+		"animator:Gillette":
+		{
+			"DESCRIPTION": "下一回合， ** 获得 [E] 。 || 丢弃: 给予所有敌人 ** 1层 虚弱。",
+			"NAME": "基烈特"
+		},
+		"animator:Guy":
+		{
+			"DESCRIPTION": "<DRW-M> 。 ** 丢弃 !M! 张牌。 || 同调 : 丢弃抽牌堆顶部的 ** 2 张牌。",
+			"NAME": "奇伊"
+		},
+		"animator:Layla":
+		{
+			"DESCRIPTION": "重装填 : 对 ** 随机一名敌人 ** 给予 !M! 层 中毒 。 || 该敌人每有 ** 一种{负面效果}， ** 这张牌额外 ** 造成 !S! 点伤害。",
+			"NAME": "蕾拉"
+		},
+		"animator:Viivi":
+		{
+			"DESCRIPTION": "抽1张牌。 || 丢弃： ** 获得 1 张 {飞刀} 。",
+			"NAME": "薇薇·荷罗派涅"
+		}
+	},
+	
+	"SERIES:KATANAGATARI":
+	{
+		"animator:Azekura":
+		{
+			"DESCRIPTION": "获得 !M! 层 {临时} 荆棘 。 || 消耗 ： ** 获得 !S! 层 {多层护甲} 。",
+			"NAME": "校仓必"
+		},
+		"animator:Biyorigo":
+		{
+			"DESCRIPTION": "获得1层 人工制品 。 ** 获得 !M! 层 荆棘 。 || 每回合结束时，** 消耗 1 点剩余能量 ** 来获得 2 [F] [A] 。",
+			"NAME": "微刀钗"
+		},
+		"animator:Emonzaemon":
+		{
+			"DESCRIPTION": "{昙现} : 如果这是连续打出的 ** 第三张攻击牌， ** 将 {炎刀·铳} 加入抽牌堆。",
+			"NAME": "左右田右卫门左卫门"
+		},
+		"animator:HigakiRinne":
+		{
+			"DESCRIPTION": "布朗运动爱好者。",
+			"NAME": "彼我木轮回",
+			"UPGRADE_DESCRIPTION": "真·布朗运动爱好者。"
+		},
+		"animator:Hitei":
+		{
+			"DESCRIPTION": "每回合开始时， ** 从抽牌堆或弃牌堆 ** 的随机 !S! 张牌 ** 中 消耗 1 张， ** 然后抽 1 张牌。",
+			"NAME": "否定姬"
+		},
+		"animator:Konayuki":
+		{
+			"DESCRIPTION": "获得 !M! 层 [F] ， ** 并且将此数量 ** 增加 !S!。 || {昙现} 。 若至少 ** 拥有 10 点 力量 ， ** 对一名随机敌人 ** 造成 40 点伤害。",
+			"NAME": "冻空粉雪"
+		},
+		"animator:Nanami":
+		{
+			"DESCRIPTION": "{反制} 目标 ** 敌人的意图。 || 这张牌的内容 ** 会因为目标 ** 不同而改变。",
+			"NAME": "鑢七实",
+			"UPGRADE_DESCRIPTION": "强力 {反制} 目标 ** 敌人的意图。 || 这张牌的内容 ** 会因为目标 ** 不同而改变。"
+		},
+		"animator:Shichika":
+		{
+			"DESCRIPTION": "获得或提升 [F] [A] 。 ** 获得 1 张 {虚刀流} 。",
+			"NAME": "鑢七花"
+		},
+		"animator:Togame":
+		{
+			"DESCRIPTION": "<DRW-M>。  ** 可以 消耗 一张手牌， ** 额外抽一张牌。 || {有限} 。 如果 ** 消耗 1 张 ** 状态牌或诅咒牌， ** 激励 1。",
+			"NAME": "咎儿"
+		},
+		"animator:TsurugaMeisai":
+		{
+			"DESCRIPTION": "消耗 1 张手牌。 ** 如果是 {攻击牌} : ** 增加 !M! 张 ** 复制到抽牌堆。",
+			"NAME": "敦贺迷彩",
+			"UPGRADE_DESCRIPTION": "消耗 1 张手牌。 ** 如果是 {攻击牌} : ** 增加 !M! 张 ** 已 升级 的复制 ** 到抽牌堆。"
+		},
+		"animator:UneriGinkaku":
+		{
+			"DESCRIPTION": "本回合如果你被 {攻击} 则 不能被打出 。 || 抽到时：获得 ** !M! 点 {临时} 荆棘 。",
+			"NAME": "宇练银阁"
+		},
+		"animator:ZankiKiguchi":
+		{
+			"DESCRIPTION": "{昙现} 。 被 消耗 : ** 回到手牌并 ** 提升 [A] [A] 。",
+			"NAME": "汽口惭愧"
+		}
+	},
+	
+	"SERIES:KONOSUBA":
+	{
+		"animator:Aqua":
+		{
+			"DESCRIPTION": "回复 !M! 点生命。抽1张牌。 ** 在本场战斗中变成 ** 废物。",
+			"EXTENDED_DESCRIPTION": ["", "消耗或丢弃: ** 获得 !S! 点 {临时生命} 。"],
+			"NAME": "阿库娅",
+			"UPGRADE_DESCRIPTION": "回复 !M! 点生命。抽1张牌。 ** 在本场战斗中变成 ** 咸鱼。"
+		},
+		"animator:Chris":
+		{
+			"DESCRIPTION": "{~偷窃} !M! 个 {金币} 。 || 丢弃： ** 抽 1 张 {0耗能} 的牌。",
+			"NAME": "克里斯"
+		},
+		"animator:Darkness":
+		{
+			"DESCRIPTION": "获得 !M! 层 {多层护甲} 。 || 下次受到伤害时， ** 在抽牌堆中加入 ** 1张 {肾上腺素}。",
+			"NAME": "达克妮丝"
+		},
+		"animator:Eris":
+		{
+			"DESCRIPTION": "回复 !M! 生命。 || {昙现} 。  ** 如果你有这张牌 ** 在手牌、抽牌堆 ** 或弃牌堆时死亡， ** 免疫所有伤害并从 ** 牌组中移除这张牌。",
+			"NAME": "厄里斯"
+		},
+		"animator:Hans":
+		{
+			"DESCRIPTION": "每当你给予 中毒 时， ** 获得 !S! 点 {临时生命} 。 || 回合开始时: 对所有敌人 ** 给予 !M! 层 中毒 ** 并获得 1 张 {黏液} 到手牌。",
+			"EXTENDED_DESCRIPTION": ["每当你给予 #y中毒 时， 获得 #b{0} 点 #y临时生命 。"],
+			"NAME": "Hans"
+		},
+		"animator:Kazuma":
+		{
+			"DESCRIPTION": "循环 1 张牌。 || 同调 : 获得 ** !M! 点额外 格挡 。",
+			"NAME": "和真"
+		},
+		"animator:Megumin":
+		{
+			"DESCRIPTION": "{~独一}。 || {昙现} 。 同调 : ** 永久 升级 。",
+			"NAME": "惠惠"
+		},
+		"animator:Mitsurugi":
+		{
+			"DESCRIPTION": "获得或提升 [F] 。 ** 只有当敌人的 ** 意图是攻击时， ** 才能造成伤害。 || 被 消耗 : ** 获得 !S! 点 格挡 。",
+			"NAME": "御剑响夜"
+		},
+		"animator:Vanir":
+		{
+			"DESCRIPTION": "本场战斗中 ** 降低这张牌 ** 的 伤害 !M! 点。 || 被 消耗 :  ** 选择抽牌堆 ** 的 1 张牌变为 ** 本牌的复制。",
+			"NAME": "巴尼尔"
+		},
+		"animator:Verdia":
+		{
+			"DESCRIPTION": "<DRW-M> 。 ** 给予 !S! 层 易伤 。 || 丢弃: ** 获得 1 {多层护甲} 。",
+			"NAME": "贝尔迪亚"
+		},
+		"animator:Wiz":
+		{
+			"DESCRIPTION": "消耗 1 张牌， ** 从消耗堆中 ** 选择一张牌并 ** 获得它的复制。 || {昙现} 。 同调 : ** 这张牌不会被 ** 抹除 。",
+			"NAME": "维兹"
+		},
+		"animator:YunYun":
+		{
+			"DESCRIPTION": "对所有敌人 ** 手中每有 1 张 ** 其他的 {攻击牌} ， ** 增加 1 点耗能。 || {昙现} 。 被抽到时: ** {生成} 1 个 ** 闪电 充能球。",
+			"NAME": "芸芸"
+		}
+	},
+	
+	"SERIES:NOGAMENOLIFE":
+	{
+		"animator:ChlammyZell":
+		{
+			"DESCRIPTION": "抽 2 张牌。 ** 下一回合， **抽 !M! 张牌。 || {昙现} 。 如果本场战斗中 ** 你达到过3 [I] :  ** 获得 1 张 {克拉米计划} 。",
+			"NAME": "克拉米·杰尔"
+		},
+		"animator:DolaCouronne":
+		{
+			"DESCRIPTION": "丢弃 1 张牌。 || {昙现} 。 被 消耗 : ** 获得 !M! 层 格挡 和 ** 1 层 人工制品 。",
+			"NAME": "克洛妮"
+		},
+		"animator:DolaRiku":
+		{
+			"DESCRIPTION": "消耗 一张手牌， **从 !M! 张牌中选择 **并获得相同 **稀有度的 1 张牌， **它的耗能减少 1 点。 || {有限} 。 同调 : **抽 1 张 {0耗能} 牌。",
+			"NAME": "里克"
+		},
+		"animator:DolaSchwi":
+		{
+			"DESCRIPTION": "给予 !M! 层 跟踪锁定。 ** 生成 1 个 闪电 充能球。 || 冷却 !S! : ** 造成 !D! 点 {~远程} 伤害。",
+			"NAME": "休比"
+		},
+		"animator:DolaStephanie":
+		{
+			"DESCRIPTION": "选择一张手牌， ** 从抽牌堆 取出 1 张 ** 可以与它 同调 的牌。",
+			"EXTENDED_DESCRIPTION": ["取出同系列的牌。"],
+			"NAME": "史蒂芬妮·多拉"
+		},
+		"animator:FielNirvalen":
+		{
+			"DESCRIPTION": "选择 !S! : 提升 [A] , ** 提升 [I] 或者提升 [F] 。 || 每回合一次， ** 当你重洗抽牌堆时: ** 预见 !S! 。",
+			"EXTENDED_DESCRIPTION": ["每回合一次，当你重洗抽牌堆时: #y预见 #b{0} 。", "提升 [A] 。", "提升 [I] 。", "提升 [F] 。"],
+			"NAME": "菲尔·尼尔巴连"
+		},
+		"animator:IzunaHatsuse":
+		{
+			"DESCRIPTION": "给予1层 虚弱 。 || 自身生命低于25％时， ** 这张牌将切换形态。",
+			"EXTENDED_DESCRIPTION": ["回复 !M! 点生命。"],
+			"NAME": "初濑伊纲"
+		},
+		"animator:Jibril":
+		{
+			"DESCRIPTION": "生成 1 个 ** 黑暗充能球。 ** 下个回合 ** 不会失去[I]。 || 同调 ：打乱 ** 你的充能球 ** 并触发你的 ** 前 !M! 个充能球。",
+			"NAME": "吉普莉尔"
+		},
+		"animator:Shiro":
+		{
+			"DESCRIPTION": "本回合每 ** 同调 1 次， ** 耗能 ** 减少 1 点。 ** 回合开始时， ** 获得 [E] 。 || 从抽牌堆 ** 取出 1 张 {空} 。",
+			"NAME": "白"
+		},
+		"animator:Sora":
+		{
+			"DESCRIPTION": "从 3 种随机效果 ** 中选择使用 ** 1 种 !M! 次。 || 从抽牌堆 ** 取出 1 张 {白} 。",
+			"EXTENDED_DESCRIPTION": ["Attack", "Defend", "Prepare"],
+			"NAME": "空"
+		},
+		"animator:Tet":
+		{
+			"DESCRIPTION": "丢弃手中或者 ** 抽牌堆中的 1 张牌。  ** 将弃牌堆中的 ** 1 张牌 移入抽牌堆。 ",
+			"NAME": "特图"
+		}
+	},
+	
+	"SERIES:ONEPUNCHMAN":
+	{
+		"animator:Boros":
+		{
+			"DESCRIPTION": "所有 {能力牌} ** 会被打出两次。 || {昙现} 。 消耗： ** 获得 !M! 层 再生 。",
+			"NAME": "波罗斯"
+		},
+		"animator:Genos":
+		{
+			"DESCRIPTION": "回合结束时受到 ** !S! 点伤害。 || 同调 : ** 给予 !M! 层 点燃。",
+			"NAME": "杰诺斯"
+		},
+		"animator:Geryuganshoop":
+		{
+			"DESCRIPTION": "循环 !M! 张牌。 ** 抹除 最多 !S! 张 ** 已 消耗 的牌， ** 获得等量 [E] 。 || {昙现} 。 ** 如果你 抹除 了 ** {梅鲁扎嘎鲁多} ** 或者 {波罗斯} ， ** 将他们返回手牌。",
+			"EXTENDED_DESCRIPTION": ["选择 {0} 张牌抹除，获得等量能量。"],
+			"NAME": "戈留干修普"
+		},
+		"animator:Melzalgald":
+		{
+			"DESCRIPTION": "增加 3 张 ** {攻击牌} 到手牌 ** 并 保留 。",
+			"NAME": "梅鲁扎嘎鲁多",
+			"UPGRADE_DESCRIPTION": "增加 3 张已 升级 ** 的 {攻击牌} 到手牌 ** 并 保留 。"
+		},
+		"animator:MetalKnight":
+		{
+			"DESCRIPTION": "生成 1 个 ** 等离子 充能球。 ** 获得 !M! 点 金属化 , ** 并且将此数量本场战斗减少 1。",
+			"NAME": "金属骑士"
+		},
+		"animator:MumenRider":
+		{
+			"DESCRIPTION": "被 消耗 后， ** 这张牌会在 ** 随机回合后 ** 回到你的抽牌堆。",
+			"NAME": "无证骑士",
+			"UPGRADE_DESCRIPTION": "抽1张牌。 || 被 消耗 后， ** 这张牌会在 ** 随机回合后 ** 回到你的抽牌堆。"
+		},
+		"animator:Saitama":
+		{
+			"DESCRIPTION": "每当打出 这张牌时， ** 本场战斗增加 ** 其耗能并 ** 改变效果。",
+			"EXTENDED_DESCRIPTION": ["<DRW-M> 。 ** 获得 !S! 点 机敏 。", "阻止下一次 ** 你受到的 ** 生命损伤。", "获得 !M! 点 <FOR> 。", "", "移除 无实体。 ** 眩晕敌人。"],
+			"NAME": "埼玉",
+			"UPGRADE_DESCRIPTION": "激励 1。 || 每当打出这张牌时， ** 本场战斗增加其 ** 耗能并改变效果。"
+		},
+		"animator:SilverFang":
+		{
+			"DESCRIPTION": "获得或提升 [A] 。 || 同调 : 给手中 ** 随机 1 张 攻击牌 ** 提升 1 [A] 。",
+			"NAME": "银色獠牙"
+		},
+		"animator:Sonic":
+		{
+			"DESCRIPTION": "获得 !S! 点 [A] 。 ** 获得 !M! 层 残影 。 || 同调 : ** 获得 1 张 {飞刀} 。",
+			"NAME": "音速索尼克"
+		},
+		"animator:Tatsumaki":
+		{
+			"DESCRIPTION": "获得或提升 [I] 。 ** 生成 1 个 ** 凌风 充能球。   || {有限} 。 被抽到时， ** 如果你有 3 个 ** 以上不同的充能球， ** 抽1张牌。",
+			"NAME": "龙卷"
+		}
+	},
+	
+	"SERIES:OVERLORD":
+	{
+		"animator:Ainz":
+		{
+			"DESCRIPTION": "你的回合开始时， ** 从四种随机 {效果} 中选择一种触发。 || 抽到： 减少 ** 这张牌的耗能 1 点， ** 然后随机获得 **  [I] ， [F] 或者 [A] 。",
+			"NAME": "安兹·乌尔·恭"
+		},
+		"animator:Albedo":
+		{
+			"DESCRIPTION": "获得等于伤害值 ** 的 {魔法盔甲} 。 || 同调 ：获得1层 ** {临时} 人工制品 。",
+			"NAME": "雅儿贝德"
+		},
+		"animator:Cocytus":
+		{
+			"DESCRIPTION": "如果你有不超过 ** !M! [F] : 提高 [F] 。 || {有限} 。 同调 :  ** 获得 !S! 层 {多层护甲} 。",
+			"NAME": "科赛特斯"
+		},
+		"animator:Demiurge":
+		{
+			"DESCRIPTION": "获得 [E] 。  ** 在本回合结束时， ** 受到 !M! 点伤害。 || 同调 : 下个回合保留你的 [E]。",
+			"NAME": "迪米乌哥斯",
+			"UPGRADE_DESCRIPTION": "获得 [E] 。 ** 丢弃 1 张牌或 ** 在本回合结束时， ** 受到 !M! 点伤害。 || 同调 : 下个回合保留你的 [E]。"
+		},
+		"animator:Entoma":
+		{
+			"DESCRIPTION": "{~独一} 。 ** 给予 !M! 层 中毒 。 ** 每回合失去 1 点伤害。 || {昙现} :如果 ** 这张牌消灭了敌人： ** 获得 2 点最大生命 ** 并永久 升级。",
+			"NAME": "艾多玛"
+		},
+		"animator:Evileye":
+		{
+			"DESCRIPTION": "<DRW-M>。 ** 重装填: 触发 ** 最右边充能球 ** 的被动效果。 || {昙现} 。 同调 : ** 获得 2 点 智力 ** 和 1 个充能球栏位。",
+			"NAME": "邪眼"
+		},
+		"animator:NarberalGamma":
+		{
+			"DESCRIPTION": "生成 !M! 个 ** 闪电 充能球。 || 闪电 充能球 ** 将攻击所有敌人。",
+			"NAME": "娜贝拉尔·伽玛",
+			"UPGRADE_DESCRIPTION": "生成 !M! 个 ** 闪电 充能球。 ** 抽 1 张牌。 || 闪电 充能球 ** 将攻击所有敌人。"
+		},
+		"animator:PandorasActor":
+		{
+			"DESCRIPTION": "本场战斗开始时， ** 自动打出这张牌并 返还 费用。",
+			"NAME": "潘多拉·亚克特"
+		},
+		"animator:Sebas":
+		{
+			"DESCRIPTION": "对每个意图 ** 攻击的敌人， ** 造成等于你的 ** 格挡 的伤害。 || 被弃牌时， ** 获得 !M! 点 ** {临时生命} 。",
+			"NAME": "塞巴斯"
+		},
+		"animator:Shalltear":
+		{
+			"DESCRIPTION": "对所有敌人 ** 给予 1 层 虚弱 。 || 同调 : 从 ** 每个敌人偷取 ** 1 点 [F] 。",
+			"NAME": "夏提雅"
+		}
+	},
+	
+	"SERIES:OWARINOSERAPH":
+	{
+		"animator:CrowleyEusford":
+		{
+			"DESCRIPTION": "提高 [F] [A] 。 || 本回合， ** 如果你 消耗 过牌， ** 激励 1。",
+			"NAME": "克劳利·尤斯福德"
+		},
+		"animator:FeridBathory":
+		{
+			"DESCRIPTION": "每 消耗 1 张牌， ** 随机一名敌人 ** 失去 !M! 生命， ** 获得 !M! {临时生命}。 || {昙现} 。 回合开始时， ** 如果消耗堆中 ** 有至少 20 张牌， ** 获得 !S! 点 武力。",
+			"NAME": "费里德·巴特利"
+		},
+		"animator:Guren":
+		{
+			"DESCRIPTION": "打出抽牌堆 ** 顶部的 !M! 张牌， ** 消耗 其中所有 ** {攻击} ，状态 或 诅咒 牌。 || {有限} 。 消耗堆 ** 中每有一张牌， ** 获得1点 {支援伤害}。",
+			"NAME": "红莲"
+		},
+		"animator:HiiragiShinya":
+		{
+			"DESCRIPTION": "获得 !B! 格挡 。 ** 从弃牌堆 取出 1 张牌 ** 并 保留 ，本回合耗能加 1。 || 同调 : 获得 ** !M! 点 {支援伤害} 。",
+			"NAME": "柊深夜"
+		},
+		"animator:KrulTepes":
+		{
+			"DESCRIPTION": "给予 !M! 层 虚弱。 || {昙现} 。 ** 若这张牌击杀了 ** 一个精英或 boss， ** 获得 {小血瓶} 。",
+			"NAME": "克鲁鲁·采佩西"
+		},
+		"animator:Mikaela":
+		{
+			"DESCRIPTION": "从弃牌堆中 ** 消耗 1 张牌。 || 如果你消耗了 ** 状态牌 或 诅咒牌 ： ** 获得 !S! [F] 。",
+			"NAME": "百夜米迦尔"
+		},
+		"animator:Mitsuba":
+		{
+			"DESCRIPTION": "如果目标生命值 ** 比你多，获得 !B! 格挡。 || 被 消耗 : ** 抽 !M! 张牌。",
+			"NAME": "三宫三叶"
+		},
+		"animator:Shigure":
+		{
+			"DESCRIPTION": "造成 !M! 层 中毒。 || {昙现} 。 被 消耗 ： ** 获得 !S! 点 ** {支援伤害}。",
+			"NAME": "时雨"
+		},
+		"animator:Shinoa":
+		{
+			"DESCRIPTION": "对所有敌人 ** 给予 !M! 层 易伤 。 || 同调 或被 消耗 : ** 对所有敌人 ** 给予 !M! 层 虚弱 。",
+			"NAME": "柊筱娅"
+		},
+		"animator:Yoichi":
+		{
+			"DESCRIPTION": "丢弃 1 张牌。 ** 获得 1 {支援伤害} 。 || {有限} 。 同调 : ** 触发你的 {支援伤害 }。",
+			"NAME": "乌丸与一"
+		},
+		"animator:Yuuichirou":
+		{
+			"DESCRIPTION": "抽1张牌。 || 被 消耗 : ** 将 1 张 {阿修罗丸} ** 到弃牌堆。",
+			"NAME": "百夜优一郎"
+		}
+	},
+	
+	"SERIES:TENSEISLIME":
+	{
+		"animator:Benimaru":
+		{
+			"DESCRIPTION": "给予 !M! 层 点燃 。 || {有限} 。 抽到: ** {生成} 1 个 火焰 充能球。",
+			"NAME": "红丸"
+		},
+		"animator:GazelDwargon":
+		{
+			"DESCRIPTION": "获得 X 层 {多层护甲} 。 ** 在每回合开始时， ** 至多保留 !M! 点 格挡 并乘 X 倍。",
+			"NAME": "矮人王"
+		},
+		"animator:Hakurou":
+		{
+			"DESCRIPTION": "被抽到或 同调 : ** 获得 1 机敏 。",
+			"NAME": "白老"
+		},
+		"animator:Kaijin":
+		{
+			"DESCRIPTION": "每回合结束时， ** 保留 1 张牌并 ** 将其伤害与 格挡 ** 在本场战斗中 ** 提高 !M! 点。 || 当你把这张牌 ** 加入牌组时， **  随机永久升级 ** 一张基础牌。 ",
+			"NAME": "凯·金"
+		},
+		"animator:Millim":
+		{
+			"DESCRIPTION": "{~独一}。 给予 !M! 层 ** 点燃 和 中毒 。 || 同调 : 下一回合， ** 多抽 2 张牌。",
+			"NAME": "米莉姆"
+		},
+		"animator:Rimuru":
+		{
+			"DESCRIPTION": "当你打出一张牌时， ** 将这张牌变成 ** 那张牌的复制。",
+			"NAME": "利姆鲁"
+		},
+		"animator:Shion":
+		{
+			"DESCRIPTION": "丢弃 1 张牌。 ** 下个回合: 抽1张牌。 || {昙现} 。 同调 : ** 给予 !M! 层 易伤 。",
+			"NAME": "紫苑"
+		},
+		"animator:Shizu":
+		{
+			"DESCRIPTION": "这场战斗 每当 ** 1 张 攻击牌 ** 造成未被 ** 格挡的伤害， ** 给予1层 点燃 。 || 增加 1 张 ** 灼伤 到弃牌堆。",
+			"NAME": "静"
+		},
+		"animator:Shuna":
+		{
+			"DESCRIPTION": "<DRW-M> 。 || 被抽到: ** 获得 !S! ** {临时生命} 。",
+			"NAME": "朱菜"
+		},
+		"animator:Souei":
+		{
+			"DESCRIPTION": "给予 !M! 层 中毒 。 ** 触发所有敌人的 ** 中毒 效果。 || 如果杀死了敌人， ** 获得1层 无实体 。",
+			"NAME": "苍影"
+		},
+		"animator:Vesta":
+		{
+			"DESCRIPTION": "研究 1 瓶 灵药， ** 在 !M! 回合后 ** 完成。",
+			"NAME": "培斯塔"
+		}
+	},
+	
+	"SPECIAL":
+	{
+		"animator:Asuramaru":
+		{
+			"DESCRIPTION": "获得 !M! [F] [A] [I] 。 ** 获得 2 层 {恶魔形态}。 ** 获得 2 张 {伤口} 。",
+			"NAME": "阿朱罗丸"
+		},
+		"animator:BlackLotus":
+		{
+			"DESCRIPTION": "获得 !M! 层 残影 。",
+			"NAME": "黑色睡莲"
+		},
+		"animator:ChlammyZellScheme":
+		{
+			"DESCRIPTION": "本回合当你交替打出 ** 不同类型的牌时， ** 循环 1 张牌 ** 并对所有敌人 ** 造成 !M! 点伤害。",
+			"NAME": "克拉米计划"
+		},
+		"animator:DarknessAdrenaline":
+		{
+			"DESCRIPTION": "获得 [E]。抽 !M! 张牌。",
+			"NAME": "肾上腺素",
+			"UPGRADE_DESCRIPTION": "获得 [E] [E]。 **抽 !M! 张牌。"
+		},
+		"animator:ElricAlphonseAlt":
+		{
+			"DESCRIPTION": "生成 !S! 个 闪电 充能球。 ** 获得 !M! 层 {多层护甲} 。 || 同调 : 获得 ** 1 个 充能球栏位。",
+			"NAME": "阿尔冯斯护甲"
+		},
+		"animator:EntouJyuu":
+		{
+			"DESCRIPTION": "获得 !M! 层 机敏 。 || 当你造成未被 ** 格挡的伤害时， ** 给予1层 点燃 。",
+			"NAME": "炎刀·铳"
+		},
+		"animator:Excalibur":
+		{
+			"DESCRIPTION": "获得1层 无实体。",
+			"NAME": "誓约胜利之剑"
+		},
+		"animator:Giselle":
+		{
+			"DESCRIPTION": "给予所有敌人 !M! 层 点燃 。 || 每场战斗开始时， ** 生成 1 个 火焰 充能球。",
+			"NAME": "吉赛尔"
+		},
+		"animator:HinaKagiyama":
+		{
+			"DESCRIPTION": "每回合一次，每当你抽到一张诅咒拍时，抽 !M! 张牌。 || 每回合开始时，你可以抹除一张消耗堆中的状态或诅咒牌来获得一张 {奇迹} 。",
+			"NAME": "键山雏",
+			"EXTENDED_DESCRIPTION": ["本回合下 #b{0} 次你抽到诅咒牌时，抽 #b{1} 张牌。", "最多选择 {0} 张牌抹除。"]
+		},
+		"animator:HinaKagiyama_Miracle":
+		{
+			"DESCRIPTION": "获得 {+[E] } [E] 。",
+			"NAME": "奇迹"
+		},
+		"animator:IchigoBankai":
+		{
+			"DESCRIPTION": "这张牌的伤害 ** 是 X 倍。",
+			"NAME": "天锁斩月"
+		},
+		"animator:ShinjiMatou_CommandSpell":
+		{
+			"DESCRIPTION": "失去 1 个充能球栏位来打出弃牌堆中与这张牌 协同 的牌。",
+			"NAME": "Command Spell"
+		},
+		"animator:Bienfu":
+		{
+			"DESCRIPTION": "不能被打出 。 || 抽到时：提升 [I] 。 || 被丢弃时：返回抽牌堆。",
+			"NAME": "Bienfu"
+		},
+		"animator:MelzalgaldAlt_1":
+		{
+			"DESCRIPTION": "获得 !M! 点 [F] 。",
+			"NAME": "梅鲁扎嘎鲁多之一"
+		},
+		"animator:MelzalgaldAlt_2":
+		{
+			"DESCRIPTION": "获得 !M! 点 [I]。",
+			"NAME": "梅鲁扎嘎鲁多之二"
+		},
+		"animator:MelzalgaldAlt_3":
+		{
+			"DESCRIPTION": "获得 !M! 点 [A]。",
+			"NAME": "梅鲁扎嘎鲁多之三"
+		},
+		"animator:OrbCore_Aether":
+		{
+			"DESCRIPTION": "生成 !S! 个 ** 凌风 充能球。 || 每回合第二次 ** 同调 时， * *抽 !M! 张牌，然后 ** 丢弃 1 张牌。",
+			"NAME": "凌风核心"
+		},
+		"animator:OrbCore_Chaos":
+		{
+			"DESCRIPTION": "生成 !S! 个  ** 随机充能球。 || 每回合第二次 ** 同调 时， ** 发现 1 张牌。",
+			"NAME": "混沌核心"
+		},
+		"animator:OrbCore_Dark":
+		{
+			"DESCRIPTION": "生成 !S! 个 ** 暗黑 充能球。 || 每回合第二次 ** 同调 时， ** 对 1 个随机敌人 ** 造成 !M! 层 ** 虚弱 和 易伤。",
+			"NAME": "暗黑核心"
+		},
+		"animator:OrbCore_Fire":
+		{
+			"DESCRIPTION": "生成 !S! 个 ** 火焰 充能球。 || 每回合第二次 ** 同调 时， ** 对所有敌人 ** 给予 !M! 层 点燃。",
+			"NAME": "火焰核心"
+		},
+		"animator:OrbCore_Frost":
+		{
+			"DESCRIPTION": "生成 !S! 个 ** 冰霜 充能球。 || 每回合第二次 ** 同调 时， ** 获得 !M! 层  ** {多层护甲}。",
+			"NAME": "冰霜核心"
+		},
+		"animator:OrbCore_Lightning":
+		{
+			"DESCRIPTION": "生成 !S! 个 ** 闪电 充能球。 || 每回合第二次 ** 同调 时， ** 对所有敌人 ** 造成 !M! 点伤害。",
+			"NAME": "闪电核心"
+		},
+		"animator:OrbCore_Plasma":
+		{
+			"DESCRIPTION": "生成 !S! 个 ** 等离子 充能球。 || 每回合第二次 ** 同调 时， ** 获得 !M! 临时生命。",
+			"NAME": "等离子核心"
+		},
+		"animator:Respite":
+		{
+			"DESCRIPTION": "推迟 湮灭 1 回合。",
+			"NAME": "喘息"
+		},
+		"animator:ShichikaKyotouryuu":
+		{
+			"DESCRIPTION": "移除敌人的 格挡 。",
+			"NAME": "虚刀流"
+		},
+		"animator:TanyaDegurechaff_Type95":
+		{
+			"DESCRIPTION": "生成 1 个 ** 等离子 充能球。 || 被抽到或丢弃： ** 此牌在打出前 ** 减少 1 点耗能。",
+			"NAME": "艾连穆姆九五式"
+		},
+		"animator:ThrowingKnife":
+		{
+			"DESCRIPTION": "{0} || 丢弃时， ** 对随机敌人 ** 打出这张牌。",
+			"EXTENDED_DESCRIPTION": ["给予 1 层负面效果。", "给予 !M! 层 虚弱 。", "给予 !M! 层 易伤 。", "给予 !S! 层 中毒 。"],
+			"NAME": "飞刀"
+		},
+		"animator:Vesta_Elixir":
+		{
+			"DESCRIPTION": "选择并组合 ** 出三种效果。",
+			"EXTENDED_DESCRIPTION": ["完成时间 ** 减少 1 轮。"],
+			"NAME": "灵药"
+		},
+		"animator:Yusarin":
+		{
+			"DESCRIPTION": "激励 !M! 。",
+			"NAME": "西森柚咲"
+		}
+	},
+	
+	"STATUS":
+	{
+		"animator:Crystallize":
+		{
+			"DESCRIPTION": "失去 !S! 生命 两次。 ** 获得 !M! 层 金属化。",
+			"NAME": "晶体化"
+		},
+		"animator:GoblinChampion":
+		{
+			"DESCRIPTION": "在你的回合结束时， ** 将 1 张随机哥布林牌 ** 加入你的抽牌堆。",
+			"NAME": "哥布林勇士"
+		},
+		"animator:GoblinKing":
+		{
+			"DESCRIPTION": "在你的回合结束时， ** 将 3 张随机哥布林牌 ** 加入你的抽牌堆。",
+			"NAME": "哥布林王"
+		},
+		"animator:GoblinShaman":
+		{
+			"DESCRIPTION": "抽到这张牌时， ** 额外抽一张牌。 ** 在你的回合结束时， ** 获得1 层 脆弱。",
+			"NAME": "哥布林萨满"
+		},
+		"animator:GoblinSoldier":
+		{
+			"DESCRIPTION": "抽到这张牌时， ** 额外抽一张牌。 ** 回合结束时， ** 受到 2 点伤害。",
+			"NAME": "哥布林战士"
+		},
+		"animator:Hans_Slimed":
+		{
+			"DESCRIPTION": "",
+			"NAME": "黏液",
+			"UPGRADE_DESCRIPTION": "抽1张牌"
+		},
+		"animator:Overheat":
+		{
+			"DESCRIPTION": "抽 2 张牌。 ** 受到 !M! 点 伤害。  ** 本场战斗， ** 这张牌的 ** 所有同名卡均 ** 增加 1 点伤害。",
+			"NAME": "过热"
+		},
+		"animator:TheHaunt":
+		{
+			"DESCRIPTION": "获得 !M! {金币}。 ** 鬼更加作祟。 ",
+			"NAME": "闹鬼"
+		}
+	},
+	
+	"ULTRARARE":
+	{
+		"animator:Azriel":
+		{
+			"DESCRIPTION": "获得 2 层 飞行 。 || 每当给予敌人 ** {负面效果} 时，获得 !M! 点 力量 。",
+			"NAME": "阿兹列尔"
+		},
+		"animator:Chomusuke":
+		{
+			"DESCRIPTION": "抽1张牌。 || {有限} 。 被 消耗 时： ** 将这张牌返回手牌 ** 同时获得 [E] [E]。",
+			"NAME": "豆之助"
+		},
+		"animator:Hero":
+		{
+			"DESCRIPTION": "<DRW-M> 。 || {昙现} 。 如果这张牌 ** 杀死了敌人， ** 战斗结束时， ** 40% 的机会 ** 得到1个 {遗物} 。",
+			"NAME": "“英雄”"
+		},
+		"animator:HiiragiTenri":
+		{
+			"DESCRIPTION": "打出并 消耗 ** 弃牌堆中所有牌。 || {昙现} 。被 消耗 : ** 将消耗堆 ** 洗入抽牌堆。",
+			"NAME": "柊天利"
+		},
+		"animator:HolyGrail":
+		{
+			"DESCRIPTION": "抽 !M! 张牌。 ** 重新充满能量。 ** 失去 !S! 点最大生命。 || 如果战斗结束时 ** 此牌在手牌里， ** 获得 2 点最大生命。",
+			"NAME": "圣杯"
+		},
+		"animator:JeanneDArc":
+		{
+			"DESCRIPTION": "随机消耗一张 ** 状态牌或诅咒牌。 || 战斗开始时， ** 获得 !M! 层 {临时生命} 和 1 层 人工制品 。",
+			"NAME": "圣女贞德"
+		},
+		"animator:NivaLada":
+		{
+			"DESCRIPTION": "冷却 !S! : ** 造成 300 点伤害。 || 每当你丢弃 ** 或 消耗 牌时， ** 减少这张牌 ** 1 层 冷却。",
+			"NAME": "妮娃·莱妲"
+		},
+		"animator:Rose":
+		{
+			"DESCRIPTION": "<DRW-M>。 ** 重装填 : ** 多攻击 1 次。|| 若目标死亡， ** 对所有敌人 ** 造成 !S! 点伤害。",
+			"NAME": "萝丝"
+		},
+		"animator:SeriousSaitama":
+		{
+			"DESCRIPTION": "击晕 所有敌人。 ** 给予所有敌人 X 层 易伤 。 ** 获得 X [F] 。",
+			"NAME": "认真的埼玉",
+			"UPGRADE_DESCRIPTION": "击晕 所有敌人。 ** 给予所有敌人 X+ !M! 层 易伤 。 ** 获得 X+ !M! [F] 。"
+		},
+		"animator:ShikizakiKiki":
+		{
+			"DESCRIPTION": "<DRW-M> 。 ** 增加 [F] 和 [A] 。 ** 手中所有的攻击牌 ** 数值乘以 !S! 。 ",
+			"NAME": "四季崎 记纪"
+		},
+		"animator:SirTouchMe":
+		{
+			"DESCRIPTION": "获得 !M! 层 ** 势不可挡 。 || 每场战斗开始时， ** 获得 !S! 层 ** {多层护甲} 。",
+			"NAME": "塔其·米"
+		},
+		"animator:Truth":
+		{
+			"DESCRIPTION": "获得 !M! [F] , ** [A] , [I] 和 [E] 。 || 如果你有 至少 3 个 ** 不同的充能球， ** 移除所有充能球， ** 否则从牌组 ** 选择1张牌， ** 用1张 伤口 ** 永久替代它。",
+			"NAME": "真理"
+		},
+		"animator:Veldora":
+		{
+			"DESCRIPTION": "获得 !S! 点 <INT> 。 ** 激发 所有 ** 充能球 !M! 次。 || 被抽到： ** 生成 2 个 ** 随机充能球。",
+			"NAME": "暴风龙"
+		}
+	}
+}

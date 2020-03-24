@@ -56,9 +56,9 @@
 	},
 	"animator:ExquisiteBloodVial":
 	{
-		"DESCRIPTIONS": 
+		"DESCRIPTIONS":
 		[
-			"At the start of each combat, heal #b{0} HP. NL NL #y[Special #yRelic] NL #pRight #pClick at a rest site to start a special fight, winning it will activate this relic's true effect. NL NL You can click this after using a rest site option, Act 3 deck level suggested.", 
+			"At the start of each combat, heal #b{0} HP. NL NL #y[Special #yRelic] NL #pRight #pClick at a rest site to start a special fight, winning it will activate this relic's true effect. NL NL You can click this after using a rest site option, Act 3 deck level suggested.",
 			"At the start of each combat, gain #b{0} #yRegeneration and #b{1} Max HP. NL NL Lose all #yBlood #yVials, whenever you would obtain a #yBlood #yVial, improve this relic's effect instead."
 		],
 		"FLAVOR": "A vial containing the blood of a pure and elder vampire.",
@@ -117,12 +117,6 @@
 		"DESCRIPTIONS": ["Upon pickup, select #b1 card, then choose and #yTransform #b3 cards in your deck into #b3 cards of the selected card's #ySeries."],
 		"FLAVOR": "Did you see that coming Mr. Mind Reader? Checkmate.",
 		"NAME": "Race Piece"
-	},
-	"animator:Readme":
-	{
-		"DESCRIPTIONS": ["Contains #yImportant #yInfo to play this character. NL #pRight #pClick to read."],
-		"FLAVOR": "Just a note, it disappears when clicked.",
-		"NAME": "Readme"
 	},
 	"animator:Rinne":
 	{

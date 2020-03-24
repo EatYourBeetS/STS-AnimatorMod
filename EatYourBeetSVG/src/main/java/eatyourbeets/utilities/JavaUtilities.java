@@ -31,12 +31,12 @@ public class JavaUtilities
         return type.isInstance(o) ? type.cast(o) : null;
     }
 
-    public static <T> T GetRandomElement(ArrayList<T> list)
+    public static <T> T GetRandomElement(List<T> list)
     {
         return GetRandomElement(list, GameUtilities.GetRNG());
     }
 
-    public static <T> T GetRandomElement(ArrayList<T> list, Random rng)
+    public static <T> T GetRandomElement(List<T> list, Random rng)
     {
         int size = list.size();
         if (size > 0)

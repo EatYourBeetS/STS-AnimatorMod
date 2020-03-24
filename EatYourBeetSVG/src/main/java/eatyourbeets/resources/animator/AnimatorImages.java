@@ -12,9 +12,6 @@ public class AnimatorImages
     public final String ORB_A_PNG = "images/cardui/animator/512/card_a_orb_canvas.png";
     public final String ORB_C_PNG = "images/cardui/animator/512/card_c_orb_canvas.png";
     public final String ORB_B_PNG = "images/cardui/animator/512/card_b_orb_canvas.png";
-    public final String ATTACK_P_PNG = "images/cardui/animator/1024/bg_attack_canvas.png";
-    public final String SKILL_P_PNG = "images/cardui/animator/1024/bg_skill_canvas.png";
-    public final String POWER_P_PNG = "images/cardui/animator/1024/bg_power_canvas.png";
     public final String CHAR_BUTTON_PNG = "images/ui/charselect/animator_button.png";
     public final String CHAR_PORTRAIT_JPG = "images/ui/charselect/animator_portrait.jpg";
 

@@ -54,7 +54,7 @@ public class CTContext
         {
             this.card.tooltips.clear();
 
-            final float max = text.contains("。") ? 60f : 100f; // There is a 99.99% chance that a card text in zhs/zht will contain '。'
+            final float max = text.contains("。") ? 33f : 100f; // There is a 99.99% chance that a card text in zhs/zht will contain '。'
             if (text.length() > max)
             {
                 int actualLength = text.replace(" NL ", "").length();

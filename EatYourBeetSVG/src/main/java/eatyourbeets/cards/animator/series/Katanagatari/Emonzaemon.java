@@ -5,13 +5,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.cardManipulation.MakeTempCard;
 import eatyourbeets.cards.animator.special.EntouJyuu;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
@@ -70,7 +70,7 @@ public class Emonzaemon extends AnimatorCard
                 {
                     EffectHistory.TryActivateLimited(cardID);
                     GameActions.Bottom.MakeCardInDrawPile(new EntouJyuu())
-                    .SetDestination(MakeTempCard.Destination.Bottom)
+                    .SetDestination(CardSelection.Bottom)
                     .SetUpgrade(upgraded, false);
                 }
             }

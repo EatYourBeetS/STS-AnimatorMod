@@ -30,12 +30,6 @@
 		"NAMES": ["重装填"],
 		"PROPER_NAME": "重装填"
 	},
-	"Resurrect":
-	{
-		"DESCRIPTION": "若此牌没有被消耗或抹除，抵消致命伤害并永久失去此牌。",
-		"NAMES": ["重生"],
-		"PROPER_NAME": "重生"
-	},
 	"Shapeshifter":
 	{
 		"DESCRIPTION": "与所有系列同调。",

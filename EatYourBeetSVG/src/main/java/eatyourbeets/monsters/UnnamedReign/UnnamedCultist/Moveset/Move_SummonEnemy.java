@@ -9,6 +9,7 @@ import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class Move_SummonEnemy extends AbstractMove
 {
@@ -62,7 +63,7 @@ public class Move_SummonEnemy extends AbstractMove
         }
         else
         {
-            GameActions.Bottom.Talk(owner, cultist.data.strings.DIALOG[2].replace("@", summon.name), 3f, 3f);
+            GameActions.Bottom.Talk(owner, JavaUtilities.Format(cultist.data.strings.DIALOG[2], summon.name), 3f, 3f);
         }
 
         GameActions.Bottom.Add(new SummonMonsterAction(summon, false));

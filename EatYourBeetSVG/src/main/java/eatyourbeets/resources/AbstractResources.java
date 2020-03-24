@@ -19,7 +19,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     protected AbstractResources(String prefix)
     {
         this.prefix = prefix;
-        this.testFolder = new FileHandle("c:/temp/" + prefix + "-localization/");;
+        this.testFolder = new FileHandle("c:/temp/" + prefix + "-localization/");
     }
 
     public String CreateID(String suffix)
@@ -103,9 +103,9 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
         }
         else
         {
-            if (language != Settings.GameLanguage.ENG)
+            if (!IsTranslationSupported(language))
             {
-                language = Settings.GameLanguage.ENG; // TODO: Change this to accept ZHS and ZHT once the translation is ready
+                language = Settings.GameLanguage.ENG;
             }
 
             return Gdx.files.internal("localization/" + prefix + "/" + language.name().toLowerCase() + "/" + fileName);

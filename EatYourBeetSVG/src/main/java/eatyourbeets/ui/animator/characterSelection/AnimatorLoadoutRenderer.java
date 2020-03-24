@@ -23,8 +23,8 @@ import java.util.ArrayList;
 
 public class AnimatorLoadoutRenderer extends GUIElement
 {
-    protected static FieldInfo<String> _hp = JavaUtilities.GetField("hp", CharacterOption.class);
-    protected static FieldInfo<Integer> _gold = JavaUtilities.GetField("gold", CharacterOption.class);
+    protected static final FieldInfo<String> _hp = JavaUtilities.GetField("hp", CharacterOption.class);
+    protected static final FieldInfo<Integer> _gold = JavaUtilities.GetField("gold", CharacterOption.class);
 
     protected static final AnimatorStrings.CharacterSelect charSelectStrings = GR.Animator.Strings.CharSelect;
     protected static final Random RNG = new Random();

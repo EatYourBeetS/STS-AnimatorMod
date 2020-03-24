@@ -67,11 +67,8 @@ public class TheUnnamed extends AnimatorMonster
             multiAttackDamage = 6;
         }
 
-        moveFading = (Move_Fading)
-                moveset.AddSpecial(new Move_Fading(4));
-
-        movePoison = (Move_ScalingPoison)
-                moveset.AddSpecial(new Move_ScalingPoison(1, poisonScaling));
+        moveFading = moveset.AddSpecial(new Move_Fading(4));
+        movePoison = moveset.AddSpecial(new Move_ScalingPoison(1, poisonScaling));
 
         moveset.AddSpecial(new Move_SummonDoll());
 

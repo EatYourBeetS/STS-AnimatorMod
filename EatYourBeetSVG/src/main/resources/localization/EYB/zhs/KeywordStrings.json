@@ -8,7 +8,7 @@
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "获得或失去 #y机敏 时， 获得或失去等量的 #y敏捷 。 每回合开始时失去 #b1 点 #y机敏 。",
+		"DESCRIPTION": "回合开始时， 失去 #b1 点 #y机敏。 如果您达到 #b3, #b5, #b7, #b9 点 #y机敏， 则获得 #b1 点 #y敏捷。",
 		"NAMES": ["机敏"],
 		"PROPER_NAME": "机敏"
 	},
@@ -17,6 +17,12 @@
 		"DESCRIPTION": "你的下回合开始时 #y格挡 不会消失。",
 		"NAMES": ["残影"],
 		"PROPER_NAME": "残影"
+	},
+	"Boost":
+	{
+		"DESCRIPTION": "获得特定的能力且不会在下一回合开始时减少。",
+		"NAMES": ["激励"],
+		"PROPER_NAME": "激励"
 	},
 	"Burning":
 	{
@@ -47,12 +53,6 @@
 		"DESCRIPTION": "每回合开始时获得 #y力量 。",
 		"NAMES": ["恶魔形态", "恶魔形态"],
 		"PROPER_NAME": "恶魔形态"
-	},
-	"Discover":
-	{
-		"DESCRIPTION": "随机牌三选一加入手牌。 本回合0耗能。",
-		"NAMES": ["发现"],
-		"PROPER_NAME": "发现"
 	},
 	"Earth":
 	{
@@ -92,13 +92,19 @@
 	},
 	"Force":
 	{
-		"DESCRIPTION": "获得或失去 #y武力 时， 获得或失去等量的 #y力量 。 每回合开始时失去 #b1 点 #y武力 。",
+		"DESCRIPTION": "回合开始时， 失去 #b1 点 #y武力。 如果您达到 #b3, #b5, #b7, #b9 点 #y武力， 则获得 #b1 点 #y力量。",
 		"NAMES": ["武力"],
 		"PROPER_NAME": "武力"
 	},
+	"Hindrance":
+	{
+		"DESCRIPTION": "状态牌或诅咒牌。",
+		"NAMES": ["梗阻"],
+		"PROPER_NAME": "梗阻"
+	},
 	"Intellect":
 	{
-		"DESCRIPTION": "获得或失去 #y智力 时， 获得或失去等量的 #y集中 。 每回合开始时失去 #b1 点 #y智力 。",
+		"DESCRIPTION": "回合开始时， 失去 #b1 点 #y智力。 如果您达到 #b3, #b5, #b7, #b9 点 #y智力， 则获得 #b1 点 #y集中。",
 		"NAMES": ["智力"],
 		"PROPER_NAME": "智力"
 	},
@@ -116,7 +122,7 @@
 	},
 	"Malleable":
 	{
-		"DESCRIPTION": "受到伤害时得到 #y格挡 。每次触发会得到更多 #y格挡 。回合开始时重置。",
+		"DESCRIPTION": "受到伤害时得到 #y格挡 。 每次触发会得到更多 #y格挡 。 回合开始时重置。",
 		"NAMES": ["柔韧"],
 		"PROPER_NAME": "柔韧"
 	},
@@ -129,7 +135,7 @@
 	"Plated Armor":
 	{
 		"DESCRIPTION": "回合结束时获得 #y格挡 。每次受伤减少 #b1 层。",
-		"NAMES": ["多层护甲", "多层护甲"],
+		"NAMES": ["多层护甲"],
 		"PROPER_NAME": "多层护甲"
 	},
 	"Purge":
@@ -150,6 +156,12 @@
 		"NAMES": ["有限"],
 		"PROPER_NAME": "有限"
 	},
+	"Shackles":
+	{
+		"DESCRIPTION": "#yStrength reduction until end of turn.",
+		"NAMES": ["shackles"],
+		"PROPER_NAME": "Shackles"
+	},
 	"Slow":
 	{
 		"DESCRIPTION": "回合内每打出一张牌， 敌人受到的 #y攻击 伤害增加 #b10% 。",
@@ -168,24 +180,36 @@
 		"NAMES": ["临时生命"],
 		"PROPER_NAME": "临时生命"
 	},
-	"Boost":
-	{
-		"DESCRIPTION": "获得特定的能力且不会在下一回合开始时减少。",
-		"NAMES": ["激励"],
-		"PROPER_NAME": "激励"
-	},	
 	"~Damage":
 	{
 		"DESCRIPTION": "-",
 		"NAMES": ["~伤害"],
 		"PROPER_NAME": "普通伤害"
-	},	
+	},
 	"~Elemental":
 	{
-		"DESCRIPTION": "无视 #y格挡 和 #y荆棘 。",
+		"DESCRIPTION": "无视 #y荆棘 。 Deal 30% more damage if the enemy has #yBlock.",
 		"NAMES": ["~魔法"],
 		"PROPER_NAME": "魔法伤害"
-	},	
+	},
+	"~Ethereal":
+	{
+		"DESCRIPTION": "如果这张牌在回合结束时仍然在 NL 你的手中，它将被 #y消耗 。",
+		"NAMES": ["~虚无"],
+		"PROPER_NAME": "虚无"
+	},
+	"~Haste":
+	{
+		"DESCRIPTION": "When drawn, lose #yHaste and draw 1 card.",
+		"NAMES": ["~haste"],
+		"PROPER_NAME": "Haste"
+	},
+	"~Innate":
+	{
+		"DESCRIPTION": "在每场战斗开始时，这张牌会出现在你的手牌中。",
+		"NAMES": ["~固有"],
+		"PROPER_NAME": "固有"
+	},
 	"~Piercing":
 	{
 		"DESCRIPTION": "无视 #y格挡 和 #y荆棘 。",
@@ -198,23 +222,11 @@
 		"NAMES": ["~远程"],
 		"PROPER_NAME": "远程伤害"
 	},
-	"~Innate":
-	{
-		"DESCRIPTION": "在每场战斗开始时，这张牌会出现在你的手牌中。",
-		"NAMES": ["~固有"],
-		"PROPER_NAME": "固有"
-	},
 	"~Retain":
 	{
 		"DESCRIPTION": "保留的牌不会在回合结束时被放入弃牌堆。",
 		"NAMES": ["~保留"],
 		"PROPER_NAME": "保留"
-	},
-	"~Ethereal":
-	{
-		"DESCRIPTION": "如果这张牌在回合结束时仍然在你的手中，它将被 #y消耗 。",
-		"NAMES": ["~虚无"],
-		"PROPER_NAME": "虚无"
 	},
 	"~Steal":
 	{

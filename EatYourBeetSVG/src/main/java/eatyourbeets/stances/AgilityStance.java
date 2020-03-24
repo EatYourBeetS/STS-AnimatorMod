@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class AgilityStance extends EYBStance
 {
-    public static String STANCE_ID = CreateFullID(AgilityStance.class);
+    public static final String STANCE_ID = CreateFullID(AgilityStance.class);
 
     public AgilityStance()
     {

@@ -42,7 +42,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     public AnimatorSeriesSelectScreen()
     {
         final Texture panelTexture = GR.Common.Images.Panel.Texture();
-        final FuncT1<Float,Float> getY = (delta) -> ScreenH(0.78f) - ScreenH(0.08f * delta);
+        final FuncT1<Float, Float> getY = (delta) -> ScreenH(0.78f) - ScreenH(0.08f * delta);
         final float buttonHeight = ScreenH(0.07f);
         final float buttonWidth = ScreenW(0.18f);
         final float xPos = ScreenW(0.82f);
@@ -75,7 +75,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         .SetOnClick(this::SelectAll)
         .SetColor(Color.ROYAL);
 
-        selectionAmount = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(4.8f), buttonWidth, buttonHeight*0.8f))
+        selectionAmount = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(4.8f), buttonWidth, buttonHeight * 0.8f))
         .SetColors(Color.DARK_GRAY, Settings.GOLD_COLOR)
         .SetAlignment(0.5f, 0.5f)
         .SetFont(FontHelper.charDescFont, 1); //FontHelper.textAboveEnemyFont);
@@ -84,7 +84,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         purgingStoneImage = new GUI_Relic(new PurgingStone(), new Hitbox(selectionAmount.hb.x + (selectionAmountSize * 0.25f),
         selectionAmount.hb.y, selectionAmountSize, selectionAmountSize));
 
-        selectionInfo = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(7f), buttonWidth, buttonHeight*2.5f))
+        selectionInfo = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(7f), buttonWidth, buttonHeight * 2.5f))
         .SetText(GR.Animator.Strings.SeriesSelection.PurgingStoneRequirement)
         .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
         .SetFont(FontHelper.tipBodyFont, 1);
@@ -94,7 +94,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         .SetFont(EYBFontHelper.CardDescriptionFont_Normal, 0.9f)
         .SetColor(Settings.CREAM_COLOR);
 
-        confirm = CreateHexagonalButton(xPos, getY.Invoke(8f), buttonWidth, buttonHeight*1.1f)
+        confirm = CreateHexagonalButton(xPos, getY.Invoke(8f), buttonWidth, buttonHeight * 1.1f)
         .SetText("Proceed")
         .SetOnClick(this::Proceed)
         .SetColor(Color.FOREST);

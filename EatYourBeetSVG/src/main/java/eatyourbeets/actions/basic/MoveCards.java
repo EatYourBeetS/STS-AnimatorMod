@@ -2,36 +2,23 @@ package eatyourbeets.actions.basic;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
 public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
 {
-    public enum Origin
-    {
-        //@Formatter: Off
-        FromTop,
-        FromBottom,
-        Random;
-
-        public boolean IsBottom() { return FromBottom.equals(this); }
-        public boolean IsRandom() { return Random.equals(this);     }
-        public boolean IsTop()    { return FromTop.equals(this);    }
-        //@Formatter: On
-    }
-
     protected ArrayList<AbstractCard> selectedCards = new ArrayList<>();
     protected Predicate<AbstractCard> filter;
+    protected CardSelection destination;
+    protected CardSelection origin;
     protected CardGroup targetPile;
     protected CardGroup sourcePile;
     protected boolean showEffect;
     protected boolean realtime;
-    protected Origin origin;
 
     public MoveCards(CardGroup targetPile, CardGroup sourcePile)
     {
@@ -42,9 +29,10 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
     {
         super(ActionType.CARD_MANIPULATION);
 
-        this.sourcePile = sourcePile;
+        this.destination = null;
+        this.origin = CardSelection.Top;
         this.targetPile = targetPile;
-        this.origin = Origin.FromTop;
+        this.sourcePile = sourcePile;
 
         Initialize(amount);
     }
@@ -57,9 +45,16 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
         return this;
     }
 
-    public MoveCards SetOrigin(Origin origin)
+    public MoveCards SetOrigin(CardSelection origin)
     {
-        this.origin = origin;
+        this.origin = (origin != null ? origin : CardSelection.Top);
+
+        return this;
+    }
+
+    public MoveCards SetDestination(CardSelection destination)
+    {
+        this.destination = destination;
 
         return this;
     }
@@ -74,68 +69,39 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
     @Override
     protected void FirstUpdate()
     {
-        if (origin.IsRandom())
+        ArrayList<AbstractCard> temp = new ArrayList<>();
+        for (AbstractCard card : sourcePile.group)
         {
-            RandomizedList<AbstractCard> temp = new RandomizedList<>();
-
-            for (AbstractCard card : sourcePile.group)
+            if (filter == null || filter.test(card))
             {
-                if (filter == null || filter.test(card))
-                {
-                    temp.Add(card);
-                }
+                temp.add(card);
             }
-
-            int max = amount;
-            if (amount == -1 || temp.Size() < amount)
-            {
-                max = temp.Size();
-            }
-
-            for (int i = 0; i < max; i++)
-            {
-                MoveCard(temp.Retrieve(AbstractDungeon.cardRandomRng));
-            }
-
-            Complete(selectedCards);
         }
-        else
+
+        int max = amount;
+        if (amount == -1 || temp.size() < amount)
         {
-            ArrayList<AbstractCard> temp = new ArrayList<>();
-            for (AbstractCard card : sourcePile.group)
-            {
-                if (filter == null || filter.test(card))
-                {
-                    temp.add(card);
-                }
-            }
-
-            int max = amount;
-            if (amount == -1 || temp.size() < amount)
-            {
-                max = temp.size();
-            }
-
-            for (int i = 0; i < max; i++)
-            {
-                if (origin.IsTop())
-                {
-                    MoveCard(temp.get((temp.size() - max) + i));
-                }
-                else
-                {
-                    MoveCard(temp.get(i));
-                }
-            }
-
-            Complete(selectedCards);
+            max = temp.size();
         }
+
+        boolean remove = origin.mode.IsRandom();
+        for (int i = 0; i < max; i++)
+        {
+            AbstractCard card = origin.GetCard(temp, i, remove);
+            if (card != null)
+            {
+                MoveCard(card);
+            }
+        }
+
+        Complete(selectedCards);
     }
 
     private void MoveCard(AbstractCard card)
     {
         selectedCards.add(card);
         GameActions.Top.MoveCard(card, sourcePile, targetPile)
-        .ShowEffect(showEffect, realtime);
+        .ShowEffect(showEffect, realtime)
+        .SetDestination(destination);
     }
 }

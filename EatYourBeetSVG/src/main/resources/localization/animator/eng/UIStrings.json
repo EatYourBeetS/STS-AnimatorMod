@@ -54,17 +54,6 @@
 		]
 	},
 
-	"animator:Tips":
-	{
-		"TEXT":
-		[
-			"General", "Each of these Notes disappears permanently once clicked. The mod is updated often, so you might see them again whenever there is an important change.",
-			"Synergies", "Certain cards have effects that trigger on #ySynergy. A card #ySynergizes if the previous card played this turn was from the same series, or if they both have a #ySpellcaster or #yMartial #yArtist keyword.",
-			"Badges", "Cards in this mod have a secondary effect which is #ynever affected by #yUpgrades and is represented by a badge on the card. Hold #bRight #bClick at any moment and anywhere on the screen to check them, or press #bControl to toggle them.",
-			"Controller", "While playing with a controller, you can press #bRight #bStick in situations where #bRight #bClick would be required."
-		]
-	},
-
 	"animator:Actions":
 	{
 		"TEXT":
@@ -159,7 +148,8 @@
 			"Dynamic cards portraits.",
 			"'CTRL' to cycle",
 			"Have you found a missing or incorrect translation? If you'd like to help, you can join the mod Discord and write your translation in the Localization channel.",
-			"Display Beta Series"
+			"Display Beta Series",
+			"Translation"
 		]
 	}
 }

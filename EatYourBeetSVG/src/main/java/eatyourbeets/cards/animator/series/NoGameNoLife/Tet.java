@@ -8,8 +8,8 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
 
 public class Tet extends AnimatorCard
 {
@@ -64,7 +64,7 @@ public class Tet extends AnimatorCard
             for (AbstractCard card : cards)
             {
                 GameActions.Top.MoveCard(card, player.drawPile)
-                .AddCallback(c -> JavaUtilities.ChangeIndex(c, player.drawPile.group, player.drawPile.size() - 3));
+                .SetDestination(CardSelection.Top(2));
             }
         });
     }

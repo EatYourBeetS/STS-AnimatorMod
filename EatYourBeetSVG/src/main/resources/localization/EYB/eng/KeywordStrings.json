@@ -18,6 +18,12 @@
 		"NAMES": ["blur"],
 		"PROPER_NAME": "Blur"
 	},
+	"Boost":
+	{
+		"DESCRIPTION": "Gain the specified power, it does not decrease at the start of next turn.",
+		"NAMES": ["boost"],
+		"PROPER_NAME": "Boost"
+	},
 	"Burning":
 	{
 		"DESCRIPTION": "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack. Reduced by 1 each turn.",
@@ -47,12 +53,6 @@
 		"DESCRIPTION": "Gain #yStrength at the start of each turn.",
 		"NAMES": ["demon form", "demon_form"],
 		"PROPER_NAME": "Demon Form"
-	},
-	"Discover":
-	{
-		"DESCRIPTION": "Choose 1 of 3 random cards to add to your hand. It costs 0 this turn.",
-		"NAMES": ["discover"],
-		"PROPER_NAME": "Discover"
 	},
 	"Earth":
 	{
@@ -135,7 +135,7 @@
 	"Plated Armor":
 	{
 		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving damage.",
-		"NAMES": ["plated armor", "plated_armor", "plat. armor", "plat._armor"],
+		"NAMES": ["plated armor", "plat. armor"],
 		"PROPER_NAME": "Plated Armor"
 	},
 	"Purge":
@@ -156,17 +156,17 @@
 		"NAMES": ["semi-limited", "semi-lim"],
 		"PROPER_NAME": "Semi-Limited"
 	},
-	"Slow":
-	{
-		"DESCRIPTION": "For every card you have played this turn, enemy takes #b10% more damage from #yAttacks.",
-		"NAMES": ["slow"],
-		"PROPER_NAME": "Slow"
-	},
 	"Shackles":
 	{
 		"DESCRIPTION": "#yStrength reduction until end of turn.",
 		"NAMES": ["shackles"],
 		"PROPER_NAME": "Shackles"
+	},
+	"Slow":
+	{
+		"DESCRIPTION": "For every card you have played this turn, enemy takes #b10% more damage from #yAttacks.",
+		"NAMES": ["slow"],
+		"PROPER_NAME": "Slow"
 	},
 	"Stun":
 	{
@@ -180,12 +180,6 @@
 		"NAMES": ["temporary hp", "temp. hp"],
 		"PROPER_NAME": "Temporary HP"
 	},
-	"Boost":
-	{
-		"DESCRIPTION": "Gain the specified power, it does not decrease at the start of next turn.",
-		"NAMES": ["boost"],
-		"PROPER_NAME": "Boost"
-	},
 	"~Damage":
 	{
 		"DESCRIPTION": "-",
@@ -197,6 +191,24 @@
 		"DESCRIPTION": "Ignores #yThorns. Deal 30% more damage if the enemy has #yBlock.",
 		"NAMES": ["~elemental"],
 		"PROPER_NAME": "Elemental Damage"
+	},
+	"~Ethereal":
+	{
+		"DESCRIPTION": "#yExhausted if in hand at the end of turn.",
+		"NAMES": ["~ethereal"],
+		"PROPER_NAME": "Ethereal"
+	},
+	"~Haste":
+	{
+		"DESCRIPTION": "When drawn, lose #yHaste and draw 1 card.",
+		"NAMES": ["~haste"],
+		"PROPER_NAME": "Haste"
+	},
+	"~Innate":
+	{
+		"DESCRIPTION": "Start each combat with this card in hand.",
+		"NAMES": ["~innate"],
+		"PROPER_NAME": "Innate"
 	},
 	"~Piercing":
 	{
@@ -210,29 +222,11 @@
 		"NAMES": ["~ranged"],
 		"PROPER_NAME": "Ranged Damage"
 	},
-	"~Innate":
-	{
-		"DESCRIPTION": "Start each combat with this card in hand.",
-		"NAMES": ["~innate"],
-		"PROPER_NAME": "Innate"
-	},
 	"~Retain":
 	{
 		"DESCRIPTION": "Not discarded at the end of turn.",
 		"NAMES": ["~retain"],
 		"PROPER_NAME": "Retain"
-	},
-	"~Haste":
-	{
-		"DESCRIPTION": "When drawn, lose #yHaste and draw 1 card.",
-		"NAMES": ["~haste"],
-		"PROPER_NAME": "Haste"
-	},
-	"~Ethereal":
-	{
-		"DESCRIPTION": "#yExhausted if in hand at the end of turn.",
-		"NAMES": ["~ethereal"],
-		"PROPER_NAME": "Ethereal"
 	},
 	"~Steal":
 	{

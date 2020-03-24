@@ -321,7 +321,7 @@
 	{
 		"MOVES": [],
 		"NAME": "H4T",
-		"DIALOG": 
+		"DIALOG":
 		[
 			"Intruder!"
 		]
@@ -335,7 +335,7 @@
 		[
 			"BEHOLD! The Ultimate Crystal!",
 			"BEHOLD! The Ultimate Weapon!",
-			"BEHOLD! The Ultimate @!",
+			"BEHOLD! The Ultimate {0}!",
 			"BEHOLD! The Ultimate Gremlin!",
 			"BEHOLD! The Ultimate... Thingy!",
 			"I have a surprise, just give me some time to prepare...",

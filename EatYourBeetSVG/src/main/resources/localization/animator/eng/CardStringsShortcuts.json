@@ -10,6 +10,7 @@
 
 	"<DRW>": "Draw 1 card",
 	"<DRW-M>": "Draw !M! card(s)",
+	"<SPACE>": "    ",
 
 	" ** ": " NL ",
 	" || ": " NL  NL "

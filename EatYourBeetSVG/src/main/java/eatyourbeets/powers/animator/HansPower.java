@@ -1,63 +1,65 @@
 package eatyourbeets.powers.animator;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.animator.series.Konosuba.Hans;
-import eatyourbeets.cards.animator.status.Hans_Slimed;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class HansPower extends AnimatorPower
 {
-    protected int upgradedAmount = 0;
+    protected int tempHP;
 
-    public HansPower(AbstractCreature owner, int amount, boolean upgraded)
+    public HansPower(AbstractCreature owner, int poison, int tempHP)
     {
         super(owner, Hans.DATA);
 
-        this.amount = amount;
-
-        if (upgraded)
-        {
-            this.upgradedAmount = amount;
-        }
+        this.amount = poison;
+        this.tempHP = tempHP;
 
         updateDescription();
     }
 
     @Override
-    public void atStartOfTurnPostDraw()
+    public void updateDescription()
     {
-        for (int i = 0; i < amount; i++)
-        {
-            AbstractCard slimed = new Hans_Slimed();
-            if (i < upgradedAmount)
-            {
-                slimed.upgrade();
-            }
-            GameActions.Bottom.MakeCardInHand(slimed);
-        }
+        description = FormatDescription(0, amount, tempHP);
     }
 
     @Override
     public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
     {
-        if (target == null || power == null)
-        {
-            throw new RuntimeException("Do NOT apply a null power and/or do NOT apply it to a null target.");
-        }
+        super.onApplyPower(power, target, source);
 
-        if (ID.equals(power.ID) && target == owner)
+        if (target == owner && power instanceof HansPower)
         {
-            this.upgradedAmount += ((HansPower)power).upgradedAmount;
+            this.tempHP += ((HansPower)power).tempHP;
         }
-        else if (source == owner && PoisonPower.POWER_ID.equals(power.ID) && !target.hasPower(ArtifactPower.POWER_ID))
+    }
+
+    @Override
+    public void atStartOfTurnPostDraw()
+    {
+        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {
-            GameActions.Bottom.GainTemporaryHP(amount);
-            flash();
+            GameActions.Bottom.ApplyPoison(owner, m, amount)
+            .AddCallback(poison ->
+            {
+                if (poison != null)
+                {
+                    GameActions.Bottom.GainTemporaryHP(tempHP);
+                }
+            });
         }
+    }
+
+    @Override
+    protected ColoredString GetSecondaryAmount(Color c)
+    {
+        return new ColoredString(tempHP, Color.GREEN, c.a);
     }
 }

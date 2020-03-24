@@ -16,8 +16,8 @@ public class ElricAlphonseAlt extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 3, 2);
-        SetUpgrade(0, 2, 1, 0);
+        Initialize(0, 3, 3, 2);
+        SetUpgrade(0, 3, 0, 0);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }

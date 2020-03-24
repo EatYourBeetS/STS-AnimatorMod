@@ -13,6 +13,11 @@ public class RenderCardEffect extends EYBEffect
         super(duration, isRealtime);
 
         this.card = card;
+
+        card.untip();
+        card.unhover();
+        card.unfadeOut();
+        card.lighten(true);
     }
 
     public void render(SpriteBatch sb)

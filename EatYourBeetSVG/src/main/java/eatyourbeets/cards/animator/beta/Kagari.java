@@ -9,10 +9,12 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
-public class Kagari extends AnimatorCard {
+public class Kagari extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(Kagari.class).SetPower(1, CardRarity.RARE).SetColor(CardColor.COLORLESS);
 
-    public Kagari() {
+    public Kagari()
+    {
         super(DATA);
 
         Initialize(0, 0, 2, 1);
@@ -22,15 +24,18 @@ public class Kagari extends AnimatorCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.StackPower(new KagariPower(p, magicNumber, secondaryValue));
     }
 
-    public static class KagariPower extends AnimatorPower {
+    public static class KagariPower extends AnimatorPower
+    {
         private int thornsBase;
         private int thornsIncrease;
 
-        public KagariPower(AbstractPlayer owner, int thornsBase, int thornsIncrease) {
+        public KagariPower(AbstractPlayer owner, int thornsBase, int thornsIncrease)
+        {
             super(owner, Kagari.DATA);
 
             this.thornsBase = thornsBase;
@@ -64,8 +69,7 @@ public class Kagari extends AnimatorCard {
         @Override
         public int onAttacked(DamageInfo info, int damageAmount)
         {
-            if (damageAmount > 0 && damageAmount < this.owner.currentHealth &&
-                    info.owner != null && info.type == DamageInfo.DamageType.NORMAL && info.type != DamageInfo.DamageType.HP_LOSS)
+            if (damageAmount > 0 && damageAmount < owner.currentHealth && info.owner != null && info.type == DamageInfo.DamageType.NORMAL)
             {
                 GameActions.Top.GainThorns(amount);
                 amount += thornsIncrease;

@@ -25,7 +25,6 @@ public class MikuIzayoi extends AnimatorCard
         super(DATA);
 
         Initialize(0, BLOCK_AMOUNT);
-        SetUpgrade(0, 0);
 
         SetSynergy(Synergies.DateALive);
     }

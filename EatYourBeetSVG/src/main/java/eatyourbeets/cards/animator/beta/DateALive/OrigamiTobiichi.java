@@ -70,7 +70,7 @@ public class OrigamiTobiichi extends AnimatorCard
             {
                 flash();
 
-                int stackAmount = (player.filledOrbCount() * amount)/2;
+                int stackAmount = (player.filledOrbCount() * amount) / 2;
                 if (stackAmount > 0)
                 {
                     GameActions.Bottom.StackPower(new SupportDamagePower(player, stackAmount)).AddCallback(this::InverseOrigamiCheck);

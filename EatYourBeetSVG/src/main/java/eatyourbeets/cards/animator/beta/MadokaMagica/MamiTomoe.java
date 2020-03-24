@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.beta.MadokaMagica;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -28,7 +27,7 @@ public class MamiTomoe extends AnimatorCard
 
         Initialize(7, 0, 1);
         SetUpgrade(3, 0, 0);
-        SetScaling(1,0,0);
+        SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.MadokaMagica);
     }
@@ -50,13 +49,13 @@ public class MamiTomoe extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (player.discardPile.getCardsOfType(CardType.CURSE).isEmpty())
+        if (p.discardPile.getCardsOfType(CardType.CURSE).isEmpty())
         {
             GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
         }
 
         GameActions.Bottom.SFX("ATTACK_HEAVY");
-        GameActions.Bottom.VFX(new MindblastEffect(player.dialogX, player.dialogY, player.flipHorizontal), 0.05f * magicNumber);
+        GameActions.Bottom.VFX(new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.05f * magicNumber);
 
         for (int i = 0; i < magicNumber; i++)
         {

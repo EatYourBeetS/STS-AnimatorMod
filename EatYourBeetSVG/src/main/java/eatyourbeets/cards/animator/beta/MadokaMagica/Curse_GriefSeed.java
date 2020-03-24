@@ -27,7 +27,7 @@ public class Curse_GriefSeed extends AnimatorCard_Curse
     @Override
     public void triggerOnExhaust()
     {
-        GameActions.Bottom.Callback(__ ->
+        GameActions.Bottom.Callback(() ->
         {
             for (int i = player.powers.size() - 1; i >= 0; i--)
             {

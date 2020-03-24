@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class KurumiTokisaki extends AnimatorCard
@@ -39,18 +38,16 @@ public class KurumiTokisaki extends AnimatorCard
         super.triggerWhenDrawn();
 
         GameActions.Bottom.SpendEnergy(costForTurn, false)
-        .AddCallback(__ -> GameActions.Bottom.PlayCard(this, null));
+        .AddCallback(() -> GameActions.Bottom.PlayCard(this, null));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.SFX("ATTACK_HEAVY");
         GameActions.Bottom.VFX(new DieDieDieEffect());
-
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
-
-        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new EnergizedPower(p, magicNumber));
 
         cooldown.ProgressCooldownAndTrigger(m);

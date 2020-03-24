@@ -32,11 +32,10 @@ public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-
         GameActions.Bottom.MoveCards(p.exhaustPile, p.hand).SetFilter(c -> ShidoItsuka.DATA.ID.equals(c.cardID));
         GameActions.Bottom.MoveCards(p.discardPile, p.hand).SetFilter(c -> ShidoItsuka.DATA.ID.equals(c.cardID));
         GameActions.Bottom.MoveCards(p.drawPile, p.hand).SetFilter(c -> ShidoItsuka.DATA.ID.equals(c.cardID));
-        GameActions.Last.Callback(__ ->
+        GameActions.Last.Callback(() ->
         {
             for (AbstractCard card : player.hand.group)
             {
@@ -51,9 +50,11 @@ public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard
     @Override
     public boolean atBattleStartPreDraw()
     {
+        final ShidoItsuka shido = new ShidoItsuka();
         for (int i = 0; i < 3; i++)
         {
-            GameActions.Bottom.MakeCardInDrawPile(new ShidoItsuka()).SetUpgrade(upgraded, true);
+            GameActions.Bottom.MakeCardInDrawPile(shido)
+            .SetUpgrade(upgraded, true);
         }
 
         return true;

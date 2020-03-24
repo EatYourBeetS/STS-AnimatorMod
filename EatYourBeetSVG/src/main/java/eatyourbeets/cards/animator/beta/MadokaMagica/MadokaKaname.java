@@ -15,14 +15,13 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class MadokaKaname extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MadokaKaname.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.None);
 
-    private int CurseCount;
-    private int StatusCount;
+    private int curseCount;
+    private int statusCount;
 
     public MadokaKaname()
     {
@@ -37,8 +36,8 @@ public class MadokaKaname extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        CurseCount = 0;
-        StatusCount = 0;
+        curseCount = 0;
+        statusCount = 0;
 
         MoveHindranceUpdateCounts(p.discardPile, p.exhaustPile);
 
@@ -50,8 +49,8 @@ public class MadokaKaname extends AnimatorCard
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.GainIntellect(StatusCount / magicNumber, true);
-            GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, CurseCount / magicNumber)).SkipIfZero(true);
+            GameActions.Bottom.GainIntellect(statusCount / magicNumber, true).SkipIfZero(true);
+            GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, curseCount / magicNumber)).SkipIfZero(true);
         }
 
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
@@ -60,19 +59,22 @@ public class MadokaKaname extends AnimatorCard
 
     private void MoveHindranceUpdateCounts(CardGroup source, CardGroup destination)
     {
+        boolean move;
         float duration = 0.3f;
 
         for (AbstractCard card : source.group)
         {
-            if (GameUtilities.IsCurseOrStatus(card))
+            if (move = (card.type == CardType.CURSE))
             {
-                if (card.type == CardType.CURSE) {
-                    CurseCount++;
-                }
-                else if (card.type == CardType.STATUS) {
-                    StatusCount++;
-                }
+                curseCount++;
+            }
+            else if (move = (card.type == CardType.STATUS))
+            {
+                statusCount++;
+            }
 
+            if (move)
+            {
                 GameActions.Top.MoveCard(card, source, destination)
                 .ShowEffect(true, true, duration = Math.max(0.1f, duration * 0.8f))
                 .SetCardPosition(MoveCard.DEFAULT_CARD_X_RIGHT, MoveCard.DEFAULT_CARD_Y);

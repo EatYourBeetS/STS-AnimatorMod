@@ -1,6 +1,7 @@
 package eatyourbeets.actions.animator;
 
 import basemod.BaseMod;
+import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.utilities.GameActions;
@@ -30,8 +31,8 @@ public class CreateThrowingKnives extends EYBAction
         for (int i = 0; i < max; i++)
         {
             GameActions.Top.MakeCard(ThrowingKnife.GetRandomCard(), player.hand)
-            .SetUpgrade(upgraded, false)
-            .CancelIfFull(true);
+            .SetUpgrade(upgraded, false).CancelIfFull(true)
+            .SetDuration(Settings.ACTION_DUR_FASTER, false);
         }
 
         Complete();

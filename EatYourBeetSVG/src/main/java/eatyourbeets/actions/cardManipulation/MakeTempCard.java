@@ -34,7 +34,6 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 
         this.card = card;
         this.cardGroup = group;
-        this.destination = CardSelection.Random;
 
         if (!UnlockTracker.isCardSeen(card.cardID) || !card.isSeen)
         {
@@ -140,6 +139,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
             case MASTER_DECK:
             {
                 GameActions.Top.Add(new AddCardToDeckAction(actualCard));
+
                 if (destination != null)
                 {
                     JavaUtilities.GetLogger(this).warn("Destination for the master deck will be ignored.");
@@ -158,15 +158,20 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
                 break;
             }
         }
+
+        if (destination == null)
+        {
+            effect = null;
+        }
     }
 
     @Override
     protected void UpdateInternal(float deltaTime)
     {
-        if (destination != null && effect != null && !effect.isDone)
+        if (effect != null && !effect.isDone)
         {
-            // Destination will change position of the card after the effect is completed
-            return;
+            isDone = false;
+            return; // Destination will change position of the card after the effect is completed
         }
 
         if (TickDuration(deltaTime))

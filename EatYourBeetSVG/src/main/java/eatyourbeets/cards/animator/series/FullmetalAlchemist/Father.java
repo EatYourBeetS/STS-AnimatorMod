@@ -50,17 +50,16 @@ public class Father extends AnimatorCard implements OnAddedToDeckSubscriber, OnA
     @Override
     public void OnAddedToDeck()
     {
-        GR.Animator.Dungeon.BannedCards.add(cardData.ID);
-        AbstractDungeon.rareCardPool.removeCard(cardID);
-        AbstractDungeon.srcRareCardPool.removeCard(cardID);
+        GR.Animator.Dungeon.Ban(cardData.ID);
+        AbstractDungeon.bossRelicPool.remove(relic.relicId);
     }
 
     @Override
     public boolean ShouldCancel(RewardItem rewardItem)
     {
-        OnAddedToDeck();
+        GR.Animator.Dungeon.Ban(cardData.ID);
 
-        return AbstractDungeon.actNum < 4 && AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(PhilosopherStone.ID);
+        return AbstractDungeon.actNum >= 4 || player == null || player.hasRelic(PhilosopherStone.ID);
     }
 
     @Override

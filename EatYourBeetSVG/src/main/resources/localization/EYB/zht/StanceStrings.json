@@ -2,26 +2,26 @@
 {
 	"EYB:ForceStance":
 	{
-		"NAME": "Force Stance",
+		"NAME": "武力姿態",
 		"DESCRIPTION": 
 		[
-			"This stance has no effect."
+			"這個姿態暫時還沒寫效果。"
 		]
 	},
 	"EYB:AgilityStance":
 	{
-		"NAME": "Agility Stance",
+		"NAME": "機敏姿態",
 		"DESCRIPTION": 
 		[
-			"This stance has no effect."
+			"這個姿態暫時還沒寫效果。"
 		]
 	},
 	"EYB:IntellectStance":
 	{
-		"NAME": "Intellect Stance",
+		"NAME": "智力姿態",
 		"DESCRIPTION": 
 		[
-			"This stance has no effect."
+			"這個姿態暫時還沒寫效果。"
 		]
 	}
 }

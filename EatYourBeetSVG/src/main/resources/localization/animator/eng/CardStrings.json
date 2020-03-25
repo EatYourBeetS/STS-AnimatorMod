@@ -291,7 +291,7 @@
 		},
 		"animator:KurumiTokisaki":
 		{
-			"DESCRIPTION": "When drawn: Play this card. || Next turn: Gain [E] [E] [E]. || <slm>. Cooldown !S!: Take an extra ** turn after this one. Shuffle ** 3 copies of this card into  ** your draw pile.",
+			"DESCRIPTION": "When drawn: Play this card. || Next turn: Gain [E] [E] [E]. || Cooldown !S!: Skip the enemy's ** next turn. Shuffle 3 copies of this ** card into your draw pile.",
 			"NAME": "Kurumi Tokisaki"
 		},
 		"animator:MikuIzayoi":

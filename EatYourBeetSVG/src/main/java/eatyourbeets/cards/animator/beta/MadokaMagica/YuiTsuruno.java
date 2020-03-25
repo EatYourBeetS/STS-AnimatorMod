@@ -4,12 +4,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.CreateRandomCurses;
-import eatyourbeets.actions.basic.MoveCards;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
 public class YuiTsuruno extends AnimatorCard
@@ -33,7 +33,7 @@ public class YuiTsuruno extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
         GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, 1)
         .ShowEffect(true, true)
-        .SetOrigin(MoveCards.Origin.FromTop)
+        .SetOrigin(CardSelection.Top)
         .AddCallback(cards ->
         {
             if (cards.size() > 0)

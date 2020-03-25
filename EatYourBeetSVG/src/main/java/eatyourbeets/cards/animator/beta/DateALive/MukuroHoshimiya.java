@@ -6,7 +6,6 @@ import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.cardManipulation.MakeTempCard;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -16,6 +15,7 @@ import eatyourbeets.interfaces.subscribers.OnAddedToDrawPileSubscriber;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
@@ -74,7 +74,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnBatt
     }
 
     @Override
-    public void OnAddedToDrawPile(boolean visualOnly, MakeTempCard.Destination destination)
+    public void OnAddedToDrawPile(boolean visualOnly, CardSelection.Mode destination)
     {
         OnShuffle(false);
     }

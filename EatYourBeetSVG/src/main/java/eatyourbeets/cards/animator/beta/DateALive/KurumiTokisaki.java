@@ -56,11 +56,6 @@ public class KurumiTokisaki extends AnimatorCard
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        if (!EffectHistory.TryActivateSemiLimited(cardID))
-        {
-            return;
-        }
-
         GameActions.Bottom.SFX("POWER_TIME_WARP", 0.05F);
         GameActions.Bottom.VFX(new TimeWarpTurnEndEffect());
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED, true));

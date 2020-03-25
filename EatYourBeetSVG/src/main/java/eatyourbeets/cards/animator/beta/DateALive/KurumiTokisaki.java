@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class KurumiTokisaki extends AnimatorCard
@@ -55,6 +56,11 @@ public class KurumiTokisaki extends AnimatorCard
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
+        if (!EffectHistory.TryActivateSemiLimited(cardID))
+        {
+            return;
+        }
+
         GameActions.Bottom.SFX("POWER_TIME_WARP", 0.05F);
         GameActions.Bottom.VFX(new TimeWarpTurnEndEffect());
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED, true));

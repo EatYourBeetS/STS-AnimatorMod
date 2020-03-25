@@ -1010,8 +1010,8 @@
 		},
 		"animator:Hans":
 		{
-			"DESCRIPTION": "Whenever you apply ** Poison: Gain !S! {Temp. HP}. || At the start of turn: Apply !M! ** Poison to ALL enemies and ** add a {Slimed} to your hand.",
-			"EXTENDED_DESCRIPTION": ["Whenever you apply #yPoison, gain #b{0} #yTemporary #yHP."],
+			"DESCRIPTION": "At the start of turn: ** Apply !M! Poison to ALL ** enemies, then gain !S! ** {Temporary HP} for each ** enemy with Poison.",
+			"EXTENDED_DESCRIPTION": ["At the start of turn, apply #b{0} #yPoison to ALL enemies, then gain #b{1} #yTemporary #yHP for each enemy with #yPoison."],
 			"NAME": "Hans"
 		},
 		"animator:Kazuma":

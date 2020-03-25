@@ -141,7 +141,18 @@ public abstract class CardSelection
 
         protected int GetRandomIndex(int size)
         {
-            return rng != null ? rng.random(size) : GameUtilities.GetRNG().random(size);
+            if (size <= 0)
+            {
+                return 0;
+            }
+            else if (rng == null)
+            {
+                return GameUtilities.GetRNG().random(size);
+            }
+            else
+            {
+                return rng.random(size);
+            }
         }
 
         @Override

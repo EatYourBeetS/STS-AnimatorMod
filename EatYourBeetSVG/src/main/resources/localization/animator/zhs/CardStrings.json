@@ -895,6 +895,7 @@
 		"animator:Sora":
 		{
 			"DESCRIPTION": "从 3 种随机效果 ** 中选择使用 1 种 !M! 次。 ** 从抽牌堆取出 1 张 {白} 。",
+			"EXTENDED_DESCRIPTION": ["Attack", "Defend", "Prepare"],
 			"NAME": "空"
 		},
 		"animator:Tet":

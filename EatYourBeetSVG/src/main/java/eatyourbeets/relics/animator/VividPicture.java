@@ -20,6 +20,14 @@ public class VividPicture extends AnimatorRelic implements OnSynergySubscriber
     }
 
     @Override
+    public void onVictory()
+    {
+        super.onVictory();
+
+        SetEnabled(true);
+    }
+
+    @Override
     public void atTurnStart()
     {
         super.atTurnStart();

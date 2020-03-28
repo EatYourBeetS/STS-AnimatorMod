@@ -39,10 +39,7 @@ public class ShinjiMatou extends AnimatorCard
         cardTypes.clear();
         for (AbstractCard card : player.hand.group)
         {
-            if (card != this)
-            {
-                cardTypes.add(card.type);
-            }
+            cardTypes.add(card.type);
         }
 
         magicNumber = (baseMagicNumber + (secondaryValue * cardTypes.size()));

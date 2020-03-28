@@ -1086,7 +1086,7 @@
 		},
 		"animator:GazelDwargon":
 		{
-			"DESCRIPTION": "Gain X {Plat. Armor}. At ** the start of each turn, ** maintain up to !M! Block, multiplied by X.",
+			"DESCRIPTION": "Gain X {Plat. Armor}. At ** the start of each turn: ** Maintain up to !M! Block, multiplied by X.",
 			"NAME": "Gazel Dwargon"
 		},
 		"animator:Hakurou":
@@ -1116,7 +1116,7 @@
 		},
 		"animator:Shizu":
 		{
-			"DESCRIPTION": "Whenever an {Attack} deals ** unblocked damage this ** combat, apply 1 Burning. || Add a Burn to your ** discard pile.",
+			"DESCRIPTION": "Whenever an {Attack} deals ** unblocked damage this ** combat: Apply 1 Burning. || Add a Burn to your ** discard pile.",
 			"NAME": "Shizu"
 		},
 		"animator:Shuna":

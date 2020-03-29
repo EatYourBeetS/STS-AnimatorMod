@@ -36,20 +36,22 @@ public class TakanashiRikka extends AnimatorCard
     {
         for (AbstractCard c : p.hand.getAttacks().group)
         {
-            AbstractCard copy = c.makeStatEquivalentCopy();
-
-            if (copy.cost > 0 || copy.costForTurn > 0)
+            GameActions.Top.MakeCardInHand(c)
+            .SetUpgrade(false, true)
+            .AddCallback(card ->
             {
-                copy.cost = 0;
-                copy.costForTurn = 0;
-                copy.isCostModified = true;
-                copy.freeToPlayOnce = true;
-            }
+                if (card.cost > 0 || card.costForTurn > 0)
+                {
+                    card.cost = 0;
+                    card.costForTurn = 0;
+                    card.isCostModified = true;
+                }
 
-            copy.baseDamage = 0;
-            copy.tags.add(GR.Enums.CardTags.PURGE);
-
-            GameActions.Top.MakeCardInHand(copy);
+                card.freeToPlayOnce = true;
+                card.baseDamage = 0;
+                card.tags.add(GR.Enums.CardTags.PURGE);
+                card.applyPowers();
+            });
         }
     }
 }

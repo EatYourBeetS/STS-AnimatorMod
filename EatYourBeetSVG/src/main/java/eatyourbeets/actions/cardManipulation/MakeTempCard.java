@@ -161,7 +161,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 
         if (destination == null)
         {
-            effect = null;
+            effect = null; // no need to wait for effect
         }
     }
 

@@ -178,9 +178,9 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         {
             Complete(actualCard);
 
-            if (destination != null && cardGroup.group.remove(card))
+            if (destination != null && cardGroup.group.remove(actualCard))
             {
-                destination.AddCard(cardGroup.group, card, 0);
+                destination.AddCard(cardGroup.group, actualCard, 0);
             }
         }
     }

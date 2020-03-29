@@ -38,10 +38,7 @@ import eatyourbeets.actions.monsters.TalkAction;
 import eatyourbeets.actions.pileSelection.*;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.actions.powers.ReduceStrength;
-import eatyourbeets.actions.special.GainGold;
-import eatyourbeets.actions.special.ReplaceCard;
-import eatyourbeets.actions.special.ReshuffleDiscardPile;
-import eatyourbeets.actions.special.SpendEnergy;
+import eatyourbeets.actions.special.*;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
@@ -713,14 +710,19 @@ public final class GameActions
         return Add(new TalkAction(source, text, duration, bubbleDuration));
     }
 
-    public VFXAction VFX(AbstractGameEffect effect)
+    public VFX VFX(AbstractGameEffect effect)
     {
-        return Add(new VFXAction(effect));
+        return Add(new VFX(effect, false));
     }
 
-    public VFXAction VFX(AbstractGameEffect effect, float duration)
+    public VFX VFX(AbstractGameEffect effect, boolean wait)
     {
-        return Add(new VFXAction(effect, duration));
+        return Add(new VFX(effect, wait));
+    }
+
+    public VFX VFX(AbstractGameEffect effect, float duration)
+    {
+        return Add(new VFX(effect, duration));
     }
 
     public WaitAction Wait(float duration)

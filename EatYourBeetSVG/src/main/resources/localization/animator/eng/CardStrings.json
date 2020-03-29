@@ -468,7 +468,7 @@
 		},
 		"animator:ShinjiMatou":
 		{
-			"DESCRIPTION": "Apply !M! Poison, and ** !S! additional Poison for ** each card type in hand. || <slm>. On Synergy: ** Add a {Command Spell} to ** your hand and Retain it.",
+			"DESCRIPTION": "Apply !M! Poison to ** a random enemy. || <slm>. On Synergy: ** Add a {Command Spell} to ** your hand and Retain it.",
 			"NAME": "Shinji Matou"
 		}
 	},
@@ -736,7 +736,7 @@
 		},
 		"animator:Konayuki":
 		{
-			"DESCRIPTION": "Gain !M! [F], then increase this ** number by !S! this combat. || <LIM>. If you have 10 or ** more [F], deal 40 damage ** to a random enemy.",
+			"DESCRIPTION": "Gain !M! [F]. || <LIM>. If you ** have 10 or more [F]: ** Deal 40 damage to ** a random enemy.",
 			"NAME": "Konayuki"
 		},
 		"animator:Nanami":
@@ -898,7 +898,7 @@
 		},
 		"animator:Tet":
 		{
-			"DESCRIPTION": "Discard 1 card from your ** hand or draw pile. Move 1 ** card from your discard pile ** to the third spot from the ** top of your draw pile.",
+			"DESCRIPTION": "Discard 1 card from ** your hand or draw pile. || Move 1 card from your ** discard pile to the top half ** of your draw pile.",
 			"NAME": "Tet"
 		}
 	},

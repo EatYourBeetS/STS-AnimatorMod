@@ -23,9 +23,14 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
         super(DATA);
 
         Initialize(6, 0, 3, 2);
-        SetUpgrade(3, 0, 0, 0);
 
         SetSynergy(Synergies.Chaika);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
     }
 
     @Override

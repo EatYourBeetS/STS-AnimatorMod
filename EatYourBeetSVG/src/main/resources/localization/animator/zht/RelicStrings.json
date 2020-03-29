@@ -32,7 +32,7 @@
 	},
 	"animator:ColorlessFragment":
 	{
-		"DESCRIPTIONS": ["替換 #y遺失殘片 。 每 #b{0} 場戰鬥，提高卡牌獎勵。有幾率獲得無色牌。"],
+		"DESCRIPTIONS": ["替換 #y遺失殘片 。 每 #b{0} 場戰鬥，提高卡牌獎勵。有幾率獲得無色牌。概率獲得特定的無色牌。","當前系列："],
 		"FLAVOR": "顏色正在慢慢褪去…",
 		"NAME": "無色殘片"
 	},
@@ -50,7 +50,7 @@
 	},
 	"animator:EngravedStaff":
 	{
-		"DESCRIPTIONS": ["回合開始時， 隨機 NL 獲得 #b{0} 點 智力 、 NL 武力 或者 機敏 。"],
+		"DESCRIPTIONS": ["回合開始時， 隨機 獲得 #b{0} 點 智力 、 NL 武力 或者 機敏 。"],
 		"FLAVOR": "公會最寶貴的財產之一。",
 		"NAME": "銘文法杖"
 	},
@@ -78,7 +78,7 @@
 	},
 	"animator:HolyGrailRelic":
 	{
-		"DESCRIPTIONS": ["拾起時， 獲得 #b{0} 點最大生命。每場戰鬥開始時， 增加 #y聖杯 到你的手牌中。"],
+		"DESCRIPTIONS": ["拾起時，獲得 #b{0} 點最大生命。 每場戰鬥開始時， 增加 #y聖杯 到你的手牌中。"],
 		"FLAVOR": "'抵達根源'， 是遠坂家唯一的悲願。",
 		"NAME": "原初聖杯"
 	},
@@ -96,7 +96,7 @@
 	},
 	"animator:LivingPicture":
 	{
-		"DESCRIPTIONS": ["每回合一次，#y同調 時，抽 #b1 張牌。"],
+		"DESCRIPTIONS": ["每回合一次， #y同調 時，抽 #b1 張牌。"],
 		"FLAVOR": "他...他在看著。",
 		"NAME": "活著的油畫"
 	},
@@ -150,7 +150,7 @@
 	},
 	"animator:TheMissingPiece":
 	{
-		"DESCRIPTIONS": ["每 #b{0} 場戰鬥，獲得一次同系列卡牌的獎勵機會。當前牌組中數量多的系列出現幾率會提高。"],
+		"DESCRIPTIONS": ["每 #b{0} 場戰鬥，獲得一次較好的卡牌的獎勵機會。當前牌組中數量多的系列出現幾率會提高。","當前系列："],
 		"FLAVOR": "這是什麼？",
 		"NAME": "遺失殘片"
 	},

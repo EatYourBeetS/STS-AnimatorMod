@@ -1,19 +1,18 @@
-
 {
-	"animator:FalseLifePotion":
-	{
-		"NAME": "虚命药剂",
-		"DESCRIPTIONS":
-		[
-			"获得 #b{0} 点 #y临时生命 。"
-		]
-	},
-	"animator:GrowthPotion":
-	{
-		"NAME": "经验药水",
-		"DESCRIPTIONS":
-		[
-			"获得 #b{0} 点 #y武力 ， #y智力 和 #y机敏 。"
-		]
-	}
+  "animator:FalseLifePotion":
+  {
+    "NAME": "虚命药剂",
+    "DESCRIPTIONS":
+	[
+      "获得 #b{0} 点 #y临时生命 。"
+    ]
+  },
+  "animator:GrowthPotion": 
+  {
+    "NAME": "经验药水",
+    "DESCRIPTIONS": 
+	[ 
+      "获得 #b{0} 点 #y武力 ， #y智力 和 #y机敏 。"
+    ]
+  }
 }

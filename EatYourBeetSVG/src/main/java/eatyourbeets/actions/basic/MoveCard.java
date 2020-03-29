@@ -11,8 +11,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.effects.card.RenderCardEffect;
 import eatyourbeets.effects.card.UnfadeOutEffect;
+import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.*;
+
+import java.util.List;
 
 public class MoveCard extends EYBActionWithCallback<AbstractCard>
 {
@@ -41,6 +44,13 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         this.destination = null;
 
         Initialize(1);
+    }
+
+    public MoveCard SetDestination(ActionT3<List<AbstractCard>, AbstractCard, Integer> addCard)
+    {
+        this.destination = CardSelection.Special(addCard, null);
+
+        return this;
     }
 
     public MoveCard SetDestination(CardSelection destination)

@@ -8,7 +8,7 @@
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "回合开始时， 失去 #b1 点 #y机敏。 如果您达到 #b3, #b5, #b7, #b9 点 #y机敏， 则获得 #b1 点 #y敏捷。",
+		"DESCRIPTION": "回合开始时， 失去 #b1 点 #y机敏。 如果您达到 #b3, #b5, #b7, #b9 点 #y机敏， 则获得 #b1 点 #y机敏。",
 		"NAMES": ["机敏"],
 		"PROPER_NAME": "机敏"
 	},
@@ -20,19 +20,19 @@
 	},
 	"Boost":
 	{
-		"DESCRIPTION": "获得特定的能力且不会在下一回合开始时减少。",
-		"NAMES": ["激励"],
-		"PROPER_NAME": "激励"
+		"DESCRIPTION": "获得特定的效果，但是不会在每回合开始时失去。",
+		"NAMES": ["提升"],
+		"PROPER_NAME": "提升"
 	},
 	"Burning":
 	{
-		"DESCRIPTION": "每回合开始时受到伤害并受到每层 #b4% 的额外 #y攻击 伤害。 每回合减少1层。",
+		"DESCRIPTION": "每回合开始时受到伤害并受到每层 #b4% 的 NL 额外 #y攻击 伤害。每回合减少1层。",
 		"NAMES": ["点燃"],
 		"PROPER_NAME": "点燃"
 	},
 	"Choked":
 	{
-		"DESCRIPTION": "回合内每打出一张牌，目标敌人失去1点生命。",
+		"DESCRIPTION": "回合内每打出一张牌，目标失去1生命。",
 		"NAMES": ["勒脖"],
 		"PROPER_NAME": "勒脖"
 	},
@@ -98,9 +98,9 @@
 	},
 	"Hindrance":
 	{
-		"DESCRIPTION": "状态牌或诅咒牌。",
-		"NAMES": ["梗阻"],
-		"PROPER_NAME": "梗阻"
+		"DESCRIPTION": "#y状态 或 #y诅咒 牌。",
+		"NAMES": ["阻扰"],
+		"PROPER_NAME": "阻扰"
 	},
 	"Intellect":
 	{
@@ -116,13 +116,13 @@
 	},
 	"Limited":
 	{
-		"DESCRIPTION": "一场战斗中，本效果仅能触发一次。包括所有同名牌。",
+		"DESCRIPTION": "只能在一场战斗触发一次。包括所有同名牌。",
 		"NAMES": ["昙现"],
 		"PROPER_NAME": "昙现"
 	},
 	"Malleable":
 	{
-		"DESCRIPTION": "受到伤害时得到 #y格挡 。 每次触发会得到更多 #y格挡 。 回合开始时重置。",
+		"DESCRIPTION": "受到伤害时得到 #y格挡 。每次触发会得到更多 #y格挡 。 回合开始时重置。",
 		"NAMES": ["柔韧"],
 		"PROPER_NAME": "柔韧"
 	},
@@ -135,7 +135,7 @@
 	"Plated Armor":
 	{
 		"DESCRIPTION": "回合结束时获得 #y格挡 。每次受伤减少 #b1 层。",
-		"NAMES": ["多层护甲"],
+		"NAMES": ["多层护甲", "多层护甲"],
 		"PROPER_NAME": "多层护甲"
 	},
 	"Purge":
@@ -158,9 +158,9 @@
 	},
 	"Shackles":
 	{
-		"DESCRIPTION": "#yStrength reduction until end of turn.",
-		"NAMES": ["shackles"],
-		"PROPER_NAME": "Shackles"
+		"DESCRIPTION": "直到回合结束前失去 #y力量 。",
+		"NAMES": ["镣铐"],
+		"PROPER_NAME": "镣铐"
 	},
 	"Slow":
 	{
@@ -185,10 +185,10 @@
 		"DESCRIPTION": "-",
 		"NAMES": ["~伤害"],
 		"PROPER_NAME": "普通伤害"
-	},
+	},	
 	"~Elemental":
 	{
-		"DESCRIPTION": "无视 #y荆棘 。 Deal 30% more damage if the enemy has #yBlock.",
+		"DESCRIPTION": "无视 #y格挡 。 Deal 30% more damage if the enemy has #yBlock.",
 		"NAMES": ["~魔法"],
 		"PROPER_NAME": "魔法伤害"
 	},
@@ -200,9 +200,9 @@
 	},
 	"~Haste":
 	{
-		"DESCRIPTION": "When drawn, lose #yHaste and draw 1 card.",
-		"NAMES": ["~haste"],
-		"PROPER_NAME": "Haste"
+		"DESCRIPTION": "抽到时，失去一层 #y仓促 并抽一张牌。",
+		"NAMES": ["~仓促"],
+		"PROPER_NAME": "仓促"
 	},
 	"~Innate":
 	{
@@ -224,7 +224,7 @@
 	},
 	"~Retain":
 	{
-		"DESCRIPTION": "保留的牌不会在回合结束时被放入弃牌堆。",
+		"DESCRIPTION": "不会在回合结束时被进弃牌堆。",
 		"NAMES": ["~保留"],
 		"PROPER_NAME": "保留"
 	},

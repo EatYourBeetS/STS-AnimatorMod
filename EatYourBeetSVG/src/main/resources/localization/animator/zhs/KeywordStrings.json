@@ -2,7 +2,7 @@
 {
 	"Cooldown":
 	{
-		"DESCRIPTION": "每打出或丢弃时，减少1层 #y冷却 层数，当 #y冷却 层数为0时，触发效果。",
+		"DESCRIPTION": "每打出或丢弃时减少层数，为 #b0 时，触发效果。",
 		"NAMES": ["冷却"],
 		"PROPER_NAME": "冷却"
 	},
@@ -44,7 +44,7 @@
 	},
 	"Support Damage":
 	{
-		"DESCRIPTION": "每回合结束时，对血量最低的敌人造成伤害。受伤害调节影响。",
+		"DESCRIPTION": "回合结束时对血量最低的敌人造成伤害。受伤害加成。",
 		"NAMES": ["支援伤害"],
 		"PROPER_NAME": "支援伤害"
 	},

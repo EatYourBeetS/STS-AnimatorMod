@@ -43,7 +43,7 @@ public class ColoredSweepingBeamEffect extends EYBEffect
             this.sY = sY + 50f * Settings.scale;
         }
 
-        this.color = color;
+        this.color = color.cpy();
         this.duration = DUR;
         this.startingDuration = DUR;
     }

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
+import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -47,7 +48,7 @@ public class Oktavia extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Callback(new CreateRandomCurses(secondaryValue, p.hand), m, (m1, __) ->
-        { //
+        {
             GameActions.Bottom.Draw(player.hand.getCardsOfType(CardType.CURSE).size())
             .AddCallback(m1, (enemy, cards) ->
             {
@@ -59,7 +60,7 @@ public class Oktavia extends AnimatorCard
 
                 GameActions.Bottom.VFX(new BorderFlashEffect(Color.BLACK));
                 GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
-                GameActions.Bottom.VFX(new CollectorCurseEffect(((AbstractMonster) enemy).hb.cX, ((AbstractMonster) enemy).hb.cY), 2f);
+                GameActions.Bottom.VFX(new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.2f);
                 GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
             });
         });

@@ -1126,7 +1126,7 @@
 		},
 		"animator:Souei":
 		{
-			"DESCRIPTION": "Apply !M! Poison. Trigger the ** Poison of ALL enemies. || If this card kills 1 or more ** enemies, gain 1 Intangible.",
+			"DESCRIPTION": "Apply !M! Poison. || <slm>. Trigger the ** Poison of ALL enemies. ** If this kills an enemy: ** Gain 1 Intangible.",
 			"NAME": "Souei"
 		},
 		"animator:Vesta":

@@ -1123,12 +1123,12 @@
 		},
 		"animator:Shuna":
 		{
-			"DESCRIPTION": "<DRW-M> 。 ** 被抽到: 获得 !S! ** {临时生命} 。",
+			"DESCRIPTION": "<DRW-M>。 ** 被抽到: 获得 !S! ** {临时生命} 。",
 			"NAME": "朱菜"
 		},
 		"animator:Souei":
 		{
-			"DESCRIPTION": "给予 !M! 层 中毒 。 ** 触发所有敌人的 ** 中毒 效果。 ** 如果杀死了敌人， ** 获得1层 无实体 。",
+			"DESCRIPTION": "给予 !M! 层 中毒 。 ** <SLM>。 触发所有敌 ** 人的 中毒 效果。 ** 如果杀死了敌人， ** 获得1层 无实体 。",
 			"NAME": "苍影"
 		},
 		"animator:Vesta":

@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -11,7 +10,6 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Konayuki extends AnimatorCard
 {
@@ -21,7 +19,7 @@ public class Konayuki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3, 3, 1);
+        Initialize(0, 5, 3, 1);
         SetUpgrade(0, 3, 0, 0);
 
         SetSynergy(Synergies.Katanagatari);
@@ -42,10 +40,5 @@ public class Konayuki extends AnimatorCard
                 .SetPiercing(true, false);
             }
         });
-
-        for (AbstractCard card : GameUtilities.GetAllInBattleInstances(this))
-        {
-            card.baseMagicNumber = card.magicNumber += secondaryValue;
-        }
     }
 }

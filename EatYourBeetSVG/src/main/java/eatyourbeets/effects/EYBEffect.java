@@ -13,9 +13,9 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 public abstract class EYBEffect extends AbstractGameEffect
 {
-    protected boolean isRealtime;
-    protected final AbstractPlayer player;
-    protected int ticks;
+    public final AbstractPlayer player;
+    public boolean isRealtime;
+    public int ticks;
 
     public EYBEffect()
     {

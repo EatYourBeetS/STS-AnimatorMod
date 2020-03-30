@@ -454,7 +454,7 @@
 		},
 		"animator:ShinjiMatou":
 		{
-			"DESCRIPTION": "給予 !M! 層 中毒 ，手牌中每有一種卡牌類型，增加 !S! ** 點 中毒 。 ** <SLM> 。 同調 時：** 將 {Command Spell} 加入你的手牌並 {~保留} 。",
+			"DESCRIPTION": "對 隨機一名敵人 ** 給予 !M! 層 中毒。 ** <SLM> 。 同調 時：** 將 {Command Spell} 加入你的手牌並 {~保留} 。",
 			"NAME": "間桐慎二"
 		},
 		"animator:Rider":
@@ -738,7 +738,7 @@
 		},
 		"animator:Konayuki":
 		{
-			"DESCRIPTION": "獲得 !M! 層 [F] ， ** 並且將此數量增加 !S! 。 ** {曇現} 。 若至少 ** 擁有 10 點 力量 ， ** 對一名隨機敵人 ** 造成 40 點傷害。",
+			"DESCRIPTION": "獲得 !M! 層 [F]。 ** {曇現} 。 若至少 ** 擁有 10 點 力量 ， ** 對一名隨機敵人 ** 造成 40 點傷害。",
 			"NAME": "凍空粉雪"
 		},
 		"animator:Nanami":
@@ -895,11 +895,12 @@
 		"animator:Sora":
 		{
 			"DESCRIPTION": "從 3 種隨機效果 ** 中選擇使用 1 種 !M! 次。 ** 從抽牌堆取出 1 張 {白} 。",
+			"EXTENDED_DESCRIPTION": ["Attack", "Defend", "Prepare"],
 			"NAME": "空"
 		},
 		"animator:Tet":
 		{
-			"DESCRIPTION": "丟棄手中或者 ** 抽牌堆中的 1 張牌。  ** 將棄牌堆中的 ** 1 張牌 移入抽牌堆。 ",
+			"DESCRIPTION": "丟棄手中或者 ** 抽牌堆中的 1 張牌。  ** 將棄牌堆中的 ** 1 張牌 移入抽牌堆 ** 上半部分。",
 			"NAME": "特圖"
 		}
 	},

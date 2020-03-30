@@ -35,8 +35,8 @@ public class FireballEffect extends EYBEffect
 
     public FireballEffect SetColor(Color mainColor, Color secondaryColor)
     {
-        this.color = mainColor;
-        this.secondaryColor = secondaryColor;
+        this.color = mainColor.cpy();
+        this.secondaryColor = secondaryColor.cpy();
 
         return this;
     }

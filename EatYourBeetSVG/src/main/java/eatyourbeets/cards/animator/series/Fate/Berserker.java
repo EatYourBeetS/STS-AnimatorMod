@@ -21,7 +21,7 @@ public class Berserker extends AnimatorCard
         super(DATA);
 
         Initialize(23, 0, 2, 12);
-        SetUpgrade(0, 0, 1);
+        SetUpgrade(0, 0, 1, 2);
         SetScaling(0, 0, 3);
 
         SetSynergy(Synergies.Fate);

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -31,26 +32,31 @@ public class Souei extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
-        GameActions.Bottom.Callback(() ->
+
+        if (EffectHistory.TryActivateSemiLimited(cardID))
         {
-            for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
+            GameActions.Bottom.Callback(() ->
             {
-                PoisonPower poison = GameUtilities.GetPower(enemy, PoisonPower.class);
-                if (poison != null)
+                final int intangible = GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID);
+                for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
                 {
-                    GameActions.Top.Callback(new PoisonLoseHpAction(enemy, player, poison.amount, AbstractGameAction.AttackEffect.POISON))
-                    .AddCallback(GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID), (intangible, action) ->
+                    PoisonPower poison = GameUtilities.GetPower(enemy, PoisonPower.class);
+                    if (poison != null)
                     {
-                        if (GameUtilities.TriggerOnKill(action.target, true))
+                        GameActions.Top.Callback(new PoisonLoseHpAction(enemy, player, poison.amount, AbstractGameAction.AttackEffect.POISON))
+                        .AddCallback(intangible, (baseIntangible, action) ->
                         {
-                            if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) == (int) intangible)
+                            if (GameUtilities.TriggerOnKill(action.target, true))
                             {
-                                GameActions.Top.StackPower(new IntangiblePlayerPower(player, 1));
+                                if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) == (int) baseIntangible)
+                                {
+                                    GameActions.Top.StackPower(new IntangiblePlayerPower(player, 1));
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 }

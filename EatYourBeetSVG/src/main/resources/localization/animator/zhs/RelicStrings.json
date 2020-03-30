@@ -32,13 +32,13 @@
 	},
 	"animator:ColorlessFragment":
 	{
-		"DESCRIPTIONS": ["替换 #y遗失残片 。 每 #b{0} 场战斗，提高卡牌奖励。有几率获得无色牌。", "Current Series:"],
+		"DESCRIPTIONS": ["替换 #y遗失残片 。 每 #b{0} 场战斗，提高卡牌奖励。有几率获得无色牌。概率获得特定的无色牌。","当前系列："],
 		"FLAVOR": "颜色正在慢慢褪去…",
 		"NAME": "无色残片"
 	},
 	"animator:CursedBlade":
 	{
-		"DESCRIPTIONS": ["战斗开始时拥有 #b{0} 点 #y武力 并 #y机敏 。 每当你受到未被格挡的攻击伤害时, 增加 #y伤口 到你的手牌。"],
+		"DESCRIPTIONS": ["战斗开始时拥有 #b{0} 点 #y武力 。 每当你受到未被格挡的攻击伤害时, 增加 #y伤口 到你的手牌。"],
 		"FLAVOR": "力量都有代价。",
 		"NAME": "诅咒之刃"
 	},
@@ -96,7 +96,7 @@
 	},
 	"animator:LivingPicture":
 	{
-		"DESCRIPTIONS": ["每回合一次，#y同调 时，抽 #b1 张牌。"],
+		"DESCRIPTIONS": ["每回合一次， #y同调 时，抽 #b1 张牌。"],
 		"FLAVOR": "他...他在看着。",
 		"NAME": "活着的油画"
 	},
@@ -117,6 +117,12 @@
 		"DESCRIPTIONS": ["拾起时，选择 #b1 张牌并选择你的牌库中的 #b3 张牌转化为与选中牌同 #y系列 的 #b3 张随机牌。"],
 		"FLAVOR": "读心者先生，你读到这一步了吗？将杀！",
 		"NAME": "种族棋子"
+	},
+	"animator:Readme":
+	{
+		"DESCRIPTIONS": ["此角色有 #y重要信息 。 NL #p右键 阅读。"],
+		"FLAVOR": "只是一个说明，点击后消失。",
+		"NAME": "说明"
 	},
 	"animator:Rinne":
 	{
@@ -144,7 +150,7 @@
 	},
 	"animator:TheMissingPiece":
 	{
-		"DESCRIPTIONS": ["每 #b{0} 场战斗， 获得一次同系列卡牌的奖励机会。", "Current Series:"],
+		"DESCRIPTIONS": ["每 #b{0} 场战斗，获得一次较好的卡牌的奖励机会。当前牌组中数量多的系列出现几率会提高。","当前系列："],
 		"FLAVOR": "这是什么？",
 		"NAME": "遗失残片"
 	},

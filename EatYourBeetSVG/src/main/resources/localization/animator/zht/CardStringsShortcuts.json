@@ -1,18 +1,22 @@
 
 {
-	"<LIM>": "Limited",
-	"<SLM>": "{Semi-Limited}",
-	"<slm>": "{Semi-Lim}",
+	"<LIM>": "{曇現}",
+	"<SLM>": "{有限}",
 	
-	"<AGI>": "Agility",
-	"<FOR>": "Force",
-	"<INT>": "Intellect",
-	"<MAR>": "{Martial Artist}",
-	"<SPE>": "Spellcaster",
+	"<AGI>": "{機敏}",
+	"<FOR>": "{武力}",
+	"<INT>": "{智力}",
 
-	"<DRW>": "Draw 1 card",
-	"<DRW-M>": "Draw !M! card(s)",
+	"<DRW>": "抽1張牌",
+	"<DRW-M>": "抽 !M! 張牌",
+	
+	"<GET>": "獲得1層",
+	"<GET-M>": "獲得 !M! 層",
+	
+	"<APP>": "給予1層",
+	"<APP-M>": "給予 !M! 層",
 
+	"."   : "。",
 	" ** ": " NL ",
 	" || ": " NL  NL "
 }

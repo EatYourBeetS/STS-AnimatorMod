@@ -8,7 +8,7 @@
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "獲得或失去 #y機敏 時， 獲得或失去等量的 #y敏捷 。 每回合開始時失去 #b1 點 #y機敏 。",
+		"DESCRIPTION": "回合開始時， 失去 #b1 點 #y機敏。如果您達到 #b3, #b5, #b7, #b9 點 #y機敏， 則獲得 #b1 點 #y敏捷 。",
 		"NAMES": ["機敏"],
 		"PROPER_NAME": "機敏"
 	},
@@ -18,15 +18,21 @@
 		"NAMES": ["殘影"],
 		"PROPER_NAME": "殘影"
 	},
+	"Boost":
+	{
+		"DESCRIPTION": "獲得特定的效果，但是不會在每回合開始時失去。",
+		"NAMES": ["提升"],
+		"PROPER_NAME": "提升"
+	},
 	"Burning":
 	{
-		"DESCRIPTION": "每回合開始時受到傷害並受到每層 #b4% 的額外 #y攻擊 傷害。 每回合減少1層。",
+		"DESCRIPTION": "每回合開始時受到傷害並受到每層 #b4% 的 NL 額外 #y攻擊 傷害。每回合減少1層。",
 		"NAMES": ["點燃"],
 		"PROPER_NAME": "點燃"
 	},
 	"Choked":
 	{
-		"DESCRIPTION": "回合內每打出一張牌，目標敵人失去1點生命。",
+		"DESCRIPTION": "回合內每打出一張牌，目標失去1生命。",
 		"NAMES": ["勒脖"],
 		"PROPER_NAME": "勒脖"
 	},
@@ -47,12 +53,6 @@
 		"DESCRIPTION": "每回合開始時獲得 #y力量 。",
 		"NAMES": ["惡魔形態", "惡魔形態"],
 		"PROPER_NAME": "惡魔形態"
-	},
-	"Discover":
-	{
-		"DESCRIPTION": "隨機牌三選一加入手牌。 本回合0耗能。",
-		"NAMES": ["發現"],
-		"PROPER_NAME": "發現"
 	},
 	"Earth":
 	{
@@ -92,13 +92,19 @@
 	},
 	"Force":
 	{
-		"DESCRIPTION": "獲得或失去 #y武力 時， 獲得或失去等量的 #y力量 。 每回合開始時失去 #b1 點 #y武力 。",
+		"DESCRIPTION": "回合開始時， 失去 #b1 點 #y武力。如果您達到 #b3, #b5, #b7, #b9 點 #y武力， 則獲得 #b1 點 #y力量 。",
 		"NAMES": ["武力"],
 		"PROPER_NAME": "武力"
 	},
+	"Hindrance":
+	{
+		"DESCRIPTION": "#y狀態 或 #y詛咒 牌。",
+		"NAMES": ["阻擾"],
+		"PROPER_NAME": "阻擾"
+	},
 	"Intellect":
 	{
-		"DESCRIPTION": "獲得或失去 #y智力 時， 獲得或失去等量的 #y集中 。 每回合開始時失去 #b1 點 #y智力 。",
+		"DESCRIPTION": "回合開始時， 失去 #b1 點 #y智力。如果您達到 #b3, #b5, #b7, #b9 點 #y智力， 則獲得 #b1 點 #y集中 。",
 		"NAMES": ["智力"],
 		"PROPER_NAME": "智力"
 	},
@@ -110,7 +116,7 @@
 	},
 	"Limited":
 	{
-		"DESCRIPTION": "一場戰鬥中，本效果僅能觸發一次。包括所有同名牌。",
+		"DESCRIPTION": "只能在一場戰鬥觸發一次。包括所有同名牌。",
 		"NAMES": ["曇現"],
 		"PROPER_NAME": "曇現"
 	},
@@ -126,17 +132,17 @@
 		"NAMES": ["金屬化"],
 		"PROPER_NAME": "金屬化"
 	},
-	"Piercing":
-	{
-		"DESCRIPTION": "無視目標的 #y格擋 和 #y荊棘 。",
-		"NAMES": ["穿刺"],
-		"PROPER_NAME": "穿刺"
-	},
 	"Plated Armor":
 	{
 		"DESCRIPTION": "回合結束時獲得 #y格擋 。每次受傷減少 #b1 層。",
 		"NAMES": ["多層護甲", "多層護甲"],
 		"PROPER_NAME": "多層護甲"
+	},
+	"Purge":
+	{
+		"DESCRIPTION": "移出本場戰鬥。",
+		"NAMES": ["抹除"],
+		"PROPER_NAME": "抹除"
 	},
 	"Rebound":
 	{
@@ -149,6 +155,12 @@
 		"DESCRIPTION": "一個回合內， 此效果僅能觸發一次。 包含所有同名牌。",
 		"NAMES": ["有限"],
 		"PROPER_NAME": "有限"
+	},
+	"Shackles":
+	{
+		"DESCRIPTION": "直到回合結束前失去 #y力量 。",
+		"NAMES": ["鐐銬"],
+		"PROPER_NAME": "鐐銬"
 	},
 	"Slow":
 	{
@@ -168,11 +180,59 @@
 		"NAMES": ["臨時生命"],
 		"PROPER_NAME": "臨時生命"
 	},
-	"~Preview":
+	"~Damage":
 	{
-		"DESCRIPTION": "按 #pSHIFT 瀏覽相關卡牌。",
-		"NAMES": ["~"],
-		"PROPER_NAME": "卡牌預覽"
+		"DESCRIPTION": "-",
+		"NAMES": ["~傷害"],
+		"PROPER_NAME": "普通傷害"
+	},	
+	"~Elemental":
+	{
+		"DESCRIPTION": "無視 #y格擋 。 Deal 30% more damage if the enemy has #yBlock.",
+		"NAMES": ["~魔法"],
+		"PROPER_NAME": "魔法傷害"
+	},
+	"~Ethereal":
+	{
+		"DESCRIPTION": "如果這張牌在回合結束時仍然在 NL 你的手中，它將被 #y消耗 。",
+		"NAMES": ["~虛無"],
+		"PROPER_NAME": "虛無"
+	},
+	"~Haste":
+	{
+		"DESCRIPTION": "抽到時，失去一層 #y倉促 並抽一張牌。",
+		"NAMES": ["~倉促"],
+		"PROPER_NAME": "倉促"
+	},
+	"~Innate":
+	{
+		"DESCRIPTION": "在每場戰鬥開始時，這張牌會出現在你的手牌中。",
+		"NAMES": ["~固有"],
+		"PROPER_NAME": "固有"
+	},
+	"~Piercing":
+	{
+		"DESCRIPTION": "無視 #y格擋 和 #y荊棘 。",
+		"NAMES": ["~穿刺"],
+		"PROPER_NAME": "穿刺傷害"
+	},
+	"~Ranged":
+	{
+		"DESCRIPTION": "無視 #y荊棘 。",
+		"NAMES": ["~遠程"],
+		"PROPER_NAME": "遠程傷害"
+	},
+	"~Retain":
+	{
+		"DESCRIPTION": "不會在回合結束時被進棄牌堆。",
+		"NAMES": ["~保留"],
+		"PROPER_NAME": "保留"
+	},
+	"~Steal":
+	{
+		"DESCRIPTION": "你最多能從BOSS上搶走 #b50 #y金幣 ，精英 #b25 #y金幣 ，非爪牙敵人 #b10 #y金幣 。",
+		"NAMES": ["~偷竊"],
+		"PROPER_NAME": "偷竊"
 	},
 	"~Unique":
 	{

@@ -18,7 +18,7 @@ public class Kagari extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 1, 1);
-        SetUpgrade(0, 0, 0, 1);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Rewrite);
     }
@@ -26,8 +26,8 @@ public class Kagari extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Draw(secondaryValue);
-        GameActions.Bottom.StackPower(new KagariPower(p, magicNumber));
+        GameActions.Bottom.Draw(magicNumber);
+        GameActions.Bottom.StackPower(new KagariPower(p, secondaryValue));
     }
 
     public static class KagariPower extends AnimatorPower

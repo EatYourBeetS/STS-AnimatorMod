@@ -8,17 +8,18 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Kagari extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Kagari.class).SetPower(1, CardRarity.RARE).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Kagari.class).SetPower(2, CardRarity.RARE).SetColor(CardColor.COLORLESS);
 
     public Kagari()
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 1);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 3, 1);
+        SetUpgrade(0, 0, 2);
 
         SetSynergy(Synergies.Rewrite);
     }
@@ -26,7 +27,12 @@ public class Kagari extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Draw(magicNumber);
+        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
+        {
+            GameActions.Bottom.ReduceStrength(enemy, magicNumber, true);
+        }
+
+
         GameActions.Bottom.StackPower(new KagariPower(p, secondaryValue));
     }
 

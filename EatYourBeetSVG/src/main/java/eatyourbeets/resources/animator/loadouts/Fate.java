@@ -5,7 +5,7 @@ import eatyourbeets.cards.animator.basic.Defend_Fate;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.basic.Strike_Fate;
 import eatyourbeets.cards.animator.series.Fate.Alexander;
-import eatyourbeets.cards.animator.series.Fate.Caster;
+import eatyourbeets.cards.animator.series.Fate.Rider;
 import eatyourbeets.cards.animator.series.Fate.Saber;
 import eatyourbeets.cards.animator.ultrarare.JeanneDArc;
 import eatyourbeets.cards.base.EYBCardData;
@@ -34,8 +34,8 @@ public class Fate extends AnimatorLoadout
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
-            startingDeck.add(Caster.DATA.ID);
             startingDeck.add(Alexander.DATA.ID);
+            startingDeck.add(Rider.DATA.ID);
         }
 
         return startingDeck;

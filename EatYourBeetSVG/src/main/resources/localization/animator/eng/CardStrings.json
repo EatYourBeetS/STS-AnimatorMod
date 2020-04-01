@@ -523,7 +523,7 @@
 		},
 		"animator:Scar":
 		{
-			"DESCRIPTION": "Exhaust a random ** card in hand. || The enemy loses !M! ** Strength this turn.",
+			"DESCRIPTION": "Exhaust a random card ** to Channel 1 Earth. || Synergy: Purge, then ** draw a random card ** from your Exhaust pile.",
 			"NAME": "Scar"
 		},
 		"animator:Sloth":
@@ -584,13 +584,13 @@
 		},
 		"animator:Tyuule":
 		{
-			"DESCRIPTION": "Apply !M! Poison to ** ALL enemies and ** increase each of their ** {Common Debuffs} by 1.",
-			"EXTENDED_DESCRIPTION": ["Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning."],
+			"DESCRIPTION": "Apply !M! Poison to ** ALL enemies, then ** increase each of their ** {Common Debuffs} by 1.",
+			"EXTENDED_DESCRIPTION": ["Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
 			"NAME": "Tyuule"
 		},
 		"animator:YaoHaDucy":
 		{
-			"DESCRIPTION": "The enemy loses ** !M! Strength this turn. || On Synergy: If you have ** any {Support Damage}, ** increase it by !S!.",
+			"DESCRIPTION": "Apply !M! Shackles. || Synergy: If you have ** any {Support Damage}, ** increase it by !S!.",
 			"NAME": "Yao Ha Ducy"
 		}
 	},

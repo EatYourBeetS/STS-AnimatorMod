@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animator.basic;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
@@ -45,11 +45,14 @@ public class Defend extends AnimatorCard
     }
 
     @Override
-    public void SetSynergy(Synergy synergy)
+    public AbstractCard makeCopy()
     {
-        if (GameUtilities.GetActualAscensionLevel() >= 9)
+        AnimatorCard copy = (AnimatorCard) super.makeCopy();
+        if (GameUtilities.GetActualAscensionLevel() < 9)
         {
-            super.SetSynergy(synergy);
+            copy.SetSynergy(null);
         }
+
+        return copy;
     }
 }

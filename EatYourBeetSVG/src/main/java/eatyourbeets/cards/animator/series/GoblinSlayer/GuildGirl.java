@@ -31,11 +31,7 @@ public class GuildGirl extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (upgraded)
-        {
-            GameActions.Bottom.GainBlock(block);
-        }
-
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new GuildGirlPower(p, 1));
     }
 }

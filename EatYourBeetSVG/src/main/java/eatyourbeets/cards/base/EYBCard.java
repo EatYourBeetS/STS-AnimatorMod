@@ -9,14 +9,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +26,7 @@ public abstract class EYBCard extends EYBCardBase
     private static final Map<String, EYBCardData> staticCardData = new HashMap<>();
 
     public abstract ColoredString GetBottomText();
+
     public abstract ColoredString GetHeaderText();
 
     public final EYBCardText cardText;
@@ -188,6 +188,21 @@ public abstract class EYBCard extends EYBCardBase
         {
             GameActions.Bottom.Add(new HasteAction(this));
         }
+    }
+
+    public void PurgeOnUseOnce()
+    {
+        if (player.cardInUse != this)
+        {
+            JavaUtilities.GetLogger(this).error("You should only call PurgeOnUseOnce() within use(p, m)");
+        }
+
+        unhover();
+        untip();
+        stopGlowing();
+
+        SetTag(GR.Enums.CardTags.PURGING, true);
+        GameEffects.List.Add(new ExhaustCardEffect(this));
     }
 
     public boolean IsAoE()
@@ -435,12 +450,30 @@ public abstract class EYBCard extends EYBCardBase
 
             if (upgrade_secondaryValue != 0)
             {
-                upgradeSecondaryValue(upgrade_secondaryValue);
+                if (isSecondaryValueModified)
+                {
+                    int temp = secondaryValue;
+                    upgradeSecondaryValue(upgrade_secondaryValue);
+                    secondaryValue = Math.max(0, temp + upgrade_secondaryValue);
+                }
+                else
+                {
+                    upgradeSecondaryValue(upgrade_secondaryValue);
+                }
             }
 
             if (upgrade_magicNumber != 0)
             {
-                upgradeMagicNumber(upgrade_magicNumber);
+                if (isMagicNumberModified)
+                {
+                    int temp = magicNumber;
+                    upgradeMagicNumber(upgrade_magicNumber);
+                    magicNumber = Math.max(0, temp + upgrade_magicNumber);
+                }
+                else
+                {
+                    upgradeMagicNumber(upgrade_magicNumber);
+                }
             }
 
             if (upgrade_cost != 0)
@@ -460,12 +493,17 @@ public abstract class EYBCard extends EYBCardBase
     @Override
     public void displayUpgrades()
     {
-        super.displayUpgrades();
+        isCostModified = upgradedCost;
+        isMagicNumberModified = upgradedMagicNumber;
+        isSecondaryValueModified = upgradedSecondaryValue;
 
-        if (this.upgradedSecondaryValue)
+        if (isDamageModified = upgradedDamage)
         {
-            this.secondaryValue = this.baseSecondaryValue;
-            this.isSecondaryValueModified = true;
+            damage = baseDamage;
+        }
+        if (isBlockModified = upgradedBlock)
+        {
+            block = baseBlock;
         }
     }
 

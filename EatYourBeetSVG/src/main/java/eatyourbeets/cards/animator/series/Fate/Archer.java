@@ -32,11 +32,7 @@ public class Archer extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (upgraded)
-        {
-            GameActions.Bottom.GainBlock(block);
-        }
-
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new ArcherPower(p, magicNumber));
 
         if (HasSynergy())

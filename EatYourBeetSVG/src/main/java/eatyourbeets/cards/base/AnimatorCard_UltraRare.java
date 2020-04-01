@@ -5,11 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.cards.animator.ultrarare.*;
+import eatyourbeets.cards.animator.ultrarare.HolyGrail;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.HashMap;
@@ -19,8 +18,6 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
 {
     private static final Map<String, AnimatorCard_UltraRare> cards = new HashMap<>();
     private static final Color RENDER_COLOR = new Color(0.4f, 0.4f, 0.4f, 1);
-    private static final byte[] whatever = {0x61, 0x6e, 0x69, 0x6d, 0x61, 0x74, 0x6f, 0x72, 0x3a, 0x75, 0x72};
-    private static final String idPrefix = new String(whatever);
 
     protected AnimatorCard_UltraRare(EYBCardData data)
     {
@@ -45,7 +42,7 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
                     }
                     else
                     {
-                        JavaUtilities.Log(AnimatorCard_UltraRare.class, "AnimatorLoadout.GetUltraRare() should return an instance of AnimatorCard_UltraRare");
+                        throw new RuntimeException("AnimatorLoadout.GetUltraRare() should return an instance of AnimatorCard_UltraRare");
                     }
                 }
             }

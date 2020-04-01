@@ -17,11 +17,16 @@ public class KotoriKanbe extends AnimatorCard implements StartupCard
     {
         super(DATA);
 
-        Initialize(0, 0, 6, 35);
-        SetUpgrade(0, 0, 2);
+        Initialize(0, 0, 10, 35);
         SetExhaust(true);
 
         SetSynergy(Synergies.Rewrite);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
     }
 
     @Override

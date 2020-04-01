@@ -17,8 +17,8 @@ public class Kagari extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
-        SetUpgrade(0, 0, 1, 1);
+        Initialize(0, 0, 1, 1);
+        SetUpgrade(0, 0, 0, 1);
 
         SetSynergy(Synergies.Rewrite);
     }
@@ -26,20 +26,19 @@ public class Kagari extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.StackPower(new KagariPower(p, magicNumber, secondaryValue));
+        GameActions.Bottom.Draw(secondaryValue);
+        GameActions.Bottom.StackPower(new KagariPower(p, magicNumber));
     }
 
     public static class KagariPower extends AnimatorPower
     {
         private int thornsBase;
-        private int thornsIncrease;
 
-        public KagariPower(AbstractPlayer owner, int thornsBase, int thornsIncrease)
+        public KagariPower(AbstractPlayer owner, int thornsBase)
         {
             super(owner, Kagari.DATA);
 
             this.thornsBase = thornsBase;
-            this.thornsIncrease = thornsIncrease;
             this.amount = thornsBase;
 
             updateDescription();
@@ -72,7 +71,6 @@ public class Kagari extends AnimatorCard
             if (damageAmount > 0 && damageAmount < owner.currentHealth && info.owner != null && info.type == DamageInfo.DamageType.NORMAL)
             {
                 GameActions.Top.GainThorns(amount);
-                amount += thornsIncrease;
                 updateDescription();
             }
 
@@ -82,7 +80,7 @@ public class Kagari extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount, thornsIncrease);
+            description = FormatDescription(0, amount);
         }
     }
 }

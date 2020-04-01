@@ -372,13 +372,13 @@
 	{
 		"animator:Kagari":
 		{
-			"DESCRIPTION": "Whenever you take damage: ** Gain !M! Thorns and increase the Thorns amount by !S! until end of turn.",
-			"EXTENDED_DESCRIPTION": ["Whenever you take damage: Gain #b{0} Thorns.  When this ability is triggered: Increase the amount of Thorns by #b{1} until end of turn."],
+			"DESCRIPTION": "Draw !S! card(s). || Whenever you take ** damage: Gain !M! Thorns.",
+			"EXTENDED_DESCRIPTION": ["Whenever you take damage: Gain #b{0} Thorns."],
 			"NAME": "Kagari"
 		},
 		"animator:KotoriKanbe":
 		{
-			"DESCRIPTION": "Heal the enemy for !S! HP, remove its Artifact and apply !M! Weak. || At the start of combat: Put ** this card in your discard pile.",
+			"DESCRIPTION": "Heal the enemy for !S! HP, ** remove its Artifact and apply ** !M! Weak. || At the start of combat: Put ** this card in your discard pile.",
 			"NAME": "Kotori Kanbe"
 		}
 	},

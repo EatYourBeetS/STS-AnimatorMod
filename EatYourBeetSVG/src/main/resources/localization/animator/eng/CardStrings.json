@@ -378,7 +378,7 @@
 		},
 		"animator:KotoriKanbe":
 		{
-			"DESCRIPTION": "Heal 20% of the target's ** HP, remove its Artifact and ** apply !M! Weak. || At the start of combat: Discard ** this card if you have less than !S! cards.",
+			"DESCRIPTION": "Heal 20% of the target's ** HP, remove its Artifact and ** apply !M! Weak. || At the start of combat: ** Discard this card if you have ** less than !S! cards.",
 			"NAME": "Kotori Kanbe"
 		}
 	},

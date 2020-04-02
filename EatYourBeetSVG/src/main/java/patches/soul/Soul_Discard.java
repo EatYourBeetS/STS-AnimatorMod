@@ -15,12 +15,12 @@ public class Soul_Discard
     {
         if (card != null)
         {
-            if (card.tags.contains(GR.Enums.CardTags.LOYAL)) // It also needs to work when visualOnly...
+            if (card.hasTag(GR.Enums.CardTags.LOYAL)) // For reasons, this also needs to work when visualOnly...
             {
                 soul.isReadyForReuse = true;
                 AbstractDungeon.player.discardPile.moveToDeck(card, true);
             }
-            else if (card.tags.contains(GR.Enums.CardTags.PURGING) && !visualOnly)
+            else if (card.hasTag(GR.Enums.CardTags.PURGING) && !visualOnly)
             {
                 soul.isReadyForReuse = true;
                 AbstractDungeon.player.discardPile.removeCard(card);

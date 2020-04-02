@@ -13,9 +13,7 @@ public class GainBlock extends EYBActionWithCallback<AbstractCreature>
 
     public GainBlock(AbstractCreature target, AbstractCreature source, int amount)
     {
-        super(ActionType.BLOCK, Settings.ACTION_DUR_FAST);
-
-        Initialize(source, target, amount);
+        this(target, source, amount, false);
     }
 
     public GainBlock(AbstractCreature target, AbstractCreature source, int amount, boolean superFast)
@@ -23,6 +21,11 @@ public class GainBlock extends EYBActionWithCallback<AbstractCreature>
         super(ActionType.BLOCK, superFast ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FAST);
 
         Initialize(source, target, amount);
+
+        if (amount <= 0)
+        {
+            Complete();
+        }
     }
 
     public GainBlock SetVFX(boolean mute, boolean superFast)
@@ -36,11 +39,11 @@ public class GainBlock extends EYBActionWithCallback<AbstractCreature>
     @Override
     protected void FirstUpdate()
     {
-        if (!this.target.isDying && !this.target.isDead)
+        if (!this.target.isDying && !this.target.isDead && amount > 0)
         {
             GameEffects.List.Add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AttackEffect.SHIELD, mute));
 
-            this.target.addBlock(this.amount);
+            this.target.addBlock(amount);
 
             for (AbstractCard c : player.hand.group)
             {

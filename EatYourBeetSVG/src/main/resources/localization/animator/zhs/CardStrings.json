@@ -524,7 +524,7 @@
 		},
 		"animator:Scar":
 		{
-			"DESCRIPTION": "消耗 一张随机手牌。 ** 本回合敌人失去 !M! 点 力量 。",
+			"DESCRIPTION": "消耗 一張隨機手牌: ** {生成} 1 個大地 充能球。 ** 同調 : 抹除， 並从消费 ** 堆中抽出一张随机卡。。",
 			"NAME": "斯卡"
 		},
 		"animator:Sloth":
@@ -587,12 +587,12 @@
 		"animator:Tyuule":
 		{
 			"DESCRIPTION": "下一回合， ** 给予所有敌人 ** !M! 层 中毒 ** 并提升他们的 ** {普通负面效果} 1 点。",
-			"EXTENDED_DESCRIPTION": ["普通负面效果", "#y中毒 , #y虚弱 , #y易伤 , #y点燃 。"],
+			"EXTENDED_DESCRIPTION": ["普通负面效果", "#y中毒 , #y虚弱 , #y易伤 , #y点燃 , #y镣铐 。"],
 			"NAME": "蒂尤蕾"
 		},
 		"animator:YaoHaDucy":
 		{
-			"DESCRIPTION": "本回合 目标失去 ** !M! 点 力量 。 ** 同调 : 如果你有 ** {支援伤害} ，增加 !S! 点。",
+			"DESCRIPTION": "给予 !M! 层 {镣铐}。 ** 同调 : 如果你有 ** {支援伤害} ，增加 !S! 点。",
 			"NAME": "姚·汉·蒂修"
 		}
 	},
@@ -749,7 +749,7 @@
 		},
 		"animator:Shichika":
 		{
-			"DESCRIPTION": "获得或 提升 [F] [A] 。 ** 获得 1 张 {虚刀流} 。",
+			"DESCRIPTION": "获得/提升 [F] [A] 。 ** 获得 1 张 {虚刀流} 。",
 			"NAME": "鑢七花"
 		},
 		"animator:Togame":
@@ -949,7 +949,7 @@
 		},
 		"animator:SilverFang":
 		{
-			"DESCRIPTION": "获得或 提升 [A] 。 ** 同调 : 给手中 ** 随机 1 张 攻击牌 ** 提升 1 [A] 。",
+			"DESCRIPTION": "获得/提升 [A] 。 ** 同调 : 给手中 ** 随机 1 张 攻击牌 ** 提升 1 [A] 。",
 			"NAME": "银色獠牙"
 		},
 		"animator:Sonic":
@@ -959,7 +959,7 @@
 		},
 		"animator:Tatsumaki":
 		{
-			"DESCRIPTION": "获得或 提升 [I] 。 ** 生成 1 个 ** 凌风 充能球。   ** {有限} 。 被抽到时， ** 如果你有 3 个 ** 以上不同的充能球， ** 抽1张牌。",
+			"DESCRIPTION": "获得/提升 [I] 。 ** 生成 1 个 ** 凌风 充能球。 ** {有限} 。 被抽到时， ** 如果你有 3 个 ** 以上不同的充能球， ** 抽1张牌。",
 			"NAME": "龙卷"
 		}
 	},

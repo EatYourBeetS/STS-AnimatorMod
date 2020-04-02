@@ -33,11 +33,7 @@ public class WinryRockbell extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (upgraded)
-        {
-            GameActions.Bottom.GainBlock(block);
-        }
-
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new WinryRockbellPower(p, 1));
 
         if (HasSynergy())

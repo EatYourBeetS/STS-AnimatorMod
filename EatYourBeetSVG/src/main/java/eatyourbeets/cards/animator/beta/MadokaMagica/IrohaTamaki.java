@@ -43,7 +43,7 @@ public class IrohaTamaki extends AnimatorCard
 
         if (HasSynergy())
         {
-            GameActions.Bottom.Scry(magicNumber);
+            GameActions.Top.Scry(magicNumber);
         }
     }
 }

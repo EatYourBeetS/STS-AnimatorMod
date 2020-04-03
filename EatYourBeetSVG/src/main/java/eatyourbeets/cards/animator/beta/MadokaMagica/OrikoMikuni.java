@@ -29,7 +29,7 @@ public class OrikoMikuni extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Scry(secondaryValue);
+        GameActions.Top.Scry(secondaryValue);
         GameActions.Bottom.StackPower(new TemporaryRetainPower(p, magicNumber));
 
         if (HasSynergy() && !EffectHistory.HasActivatedSemiLimited(cardID))

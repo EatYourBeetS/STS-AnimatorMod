@@ -72,7 +72,7 @@ public class NiaHonjou extends AnimatorCard
         {
             super.onAfterCardPlayed(usedCard);
 
-            GameActions.Bottom.Scry(amount);
+            GameActions.Top.Scry(amount);
             GameActions.Bottom.GainBlock(amount);
         }
     }

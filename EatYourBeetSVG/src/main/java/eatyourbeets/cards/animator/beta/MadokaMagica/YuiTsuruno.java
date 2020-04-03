@@ -30,8 +30,7 @@ public class YuiTsuruno extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
-        GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, 1)
+        GameActions.Top.MoveCards(p.drawPile, p.discardPile, 1)
         .ShowEffect(true, true)
         .SetOrigin(CardSelection.Top)
         .AddCallback(cards ->
@@ -48,5 +47,8 @@ public class YuiTsuruno extends AnimatorCard
                 }
             }
         });
+
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
+
     }
 }

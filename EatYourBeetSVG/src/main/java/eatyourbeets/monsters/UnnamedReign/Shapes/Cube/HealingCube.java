@@ -2,6 +2,7 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.HealingCubePower;
 import eatyourbeets.utilities.GameActions;
 
@@ -11,8 +12,7 @@ public class HealingCube extends Cube
     {
         super(MonsterElement.Healing, tier, x, y);
 
-        moveset.Normal.AttackFrail(tier.Add(1, 1), 1)
-        .SetDamageMultiplier(6);
+        moveset.Normal.AttackDebuff(tier.Add(1, 1), 6, PowerHelper.Frail, 1);
 
         moveset.Normal.Attack(tier.Add(6, 2))
         .SetDamageScaling(0.2f);

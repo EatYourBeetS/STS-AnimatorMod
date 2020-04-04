@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.vfx.BobEffect;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
+import eatyourbeets.monsters.SharedMoveset.EYBMove_Attack;
 import eatyourbeets.monsters.SharedMoveset_Old.Move_ShieldAll;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackFrailAndDexLoss;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackWeakAndStrLoss;
@@ -26,7 +26,7 @@ public class TheUnnamed_Doll extends EYBMonster
     private final BobEffect bobEffect = new BobEffect(1);
     private final TheUnnamed theUnnamed;
     private final Move_GainRitualAndArtifactAll ritualAndArtifactAll;
-    private final Move_AttackMultiple antiIntangible;
+    private final EYBMove_Attack antiIntangible;
 
     public TheUnnamed_Doll(TheUnnamed theUnnamed, float x, float y)
     {
@@ -36,7 +36,7 @@ public class TheUnnamed_Doll extends EYBMonster
 
         this.data.SetIdleAnimation(this, 1);
 
-        antiIntangible = moveset.AddSpecial(new Move_AttackMultiple(4, 12));
+        antiIntangible = moveset.Special.Attack(4, 12);
         ritualAndArtifactAll = moveset.AddSpecial(new Move_GainRitualAndArtifactAll(2, 2), 1);
 
         boolean asc18 = GameUtilities.GetAscensionLevel() >= 18;

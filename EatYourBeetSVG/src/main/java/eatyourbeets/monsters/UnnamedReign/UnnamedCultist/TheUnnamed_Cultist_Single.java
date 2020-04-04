@@ -7,16 +7,15 @@ import com.megacrit.cardcrawl.monsters.city.Byrd;
 import com.megacrit.cardcrawl.monsters.city.ShelledParasite;
 import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
 import com.megacrit.cardcrawl.monsters.exordium.Sentry;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_GainPlatedArmorAll;
 import eatyourbeets.monsters.SharedMoveset_Old.Move_GainStrengthAndBlockAll;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Cube.DarkCube;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.Moveset.Move_SummonEnemy;
+import eatyourbeets.powers.monsters.TheUnnamedCultistPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackDefend;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_GainPlatedArmorAll;
-import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.Moveset.Move_SummonEnemy;
-import eatyourbeets.powers.monsters.TheUnnamedCultistPower;
 
 public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
 {
@@ -40,7 +39,10 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
 
         moveset.AddNormal(new Move_GainPlatedArmorAll(platedArmor));
         moveset.AddNormal(new Move_GainStrengthAndBlockAll(strengthGain, 8));
-        moveset.AddNormal(new Move_AttackDefend(12, 12));
+
+        moveset.Normal.AttackDefend(12, 12)
+        .SetDamageScaling(0.25f)
+        .SetBlockScaling(0.25f);
     }
 
     @Override

@@ -9,24 +9,44 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.utilities.PowerTarget;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
+import java.util.ArrayList;
+
 public abstract class EYBAbstractMove
 {
-    public final int ascensionLevel;
+    public static class PowerTemplate
+    {
+        public final PowerHelper power;
+        public final PowerTarget target;
+        public final Integer amount;
+
+        public PowerTemplate(PowerHelper power, PowerTarget target, Integer amount)
+        {
+            this.power = power;
+            this.target = target;
+            this.amount = amount;
+        }
+    }
 
     public byte id;
     public String name;
 
+    public final int ascensionLevel;
+    public final ArrayList<PowerTemplate> powerTemplates = new ArrayList<>();
     public AbstractGameAction.AttackEffect attackEffect;
     public AbstractCreature.CreatureAnimation attackAnimation;
     public ActionT2<EYBAbstractMove, AbstractCreature> onUse;
     public FuncT1<Boolean, EYBAbstractMove> canUse;
     public AbstractMonster.Intent intent;
+    public PowerTarget powerTarget = PowerTarget.Source;
     public AbstractMonster owner;
     public DamageInfo damageInfo;
     public boolean disabled;
+    public boolean isAoE;
     public int damageMultiplier;
     public int uses = -1;
 
@@ -106,6 +126,13 @@ public abstract class EYBAbstractMove
                 GameActions.Bottom.Add(new DamageAction(target, damageInfo, attackEffect));
             }
         }
+
+        for (PowerTemplate template : powerTemplates)
+        {
+            int amount = template.amount != null ? template.amount : misc.Calculate();
+            PowerTarget powerTarget = template.target != null ? template.target : this.powerTarget;
+            powerTarget.ApplyPowers(template.power, owner, target, amount);
+        }
     }
 
     public void Select()
@@ -124,6 +151,34 @@ public abstract class EYBAbstractMove
     public EYBAbstractMove SetCanUse(FuncT1<Boolean, EYBAbstractMove> canUse)
     {
         this.canUse = canUse;
+
+        return this;
+    }
+
+    public EYBAbstractMove SetPowerTarget(PowerTarget target)
+    {
+        this.powerTarget = target;
+
+        return this;
+    }
+
+    public EYBAbstractMove AddPower(PowerHelper power)
+    {
+        this.powerTemplates.add(new PowerTemplate(power, null, null));
+
+        return this;
+    }
+
+    public EYBAbstractMove AddPower(PowerHelper power, int amount)
+    {
+        this.powerTemplates.add(new PowerTemplate(power, null, amount));
+
+        return this;
+    }
+
+    public EYBAbstractMove AddPower(PowerHelper power, PowerTarget powerTarget, int amount)
+    {
+        this.powerTemplates.add(new PowerTemplate(power, powerTarget, amount));
 
         return this;
     }

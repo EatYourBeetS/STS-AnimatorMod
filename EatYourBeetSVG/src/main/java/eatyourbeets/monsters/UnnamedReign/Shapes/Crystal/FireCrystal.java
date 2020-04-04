@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.FireCrystalPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -20,7 +21,7 @@ public class FireCrystal extends Crystal
         moveset.Normal.Attack(tier.Add(10, 4))
         .SetDamageScaling(0.2f);
 
-        moveset.Normal.AttackWeak(tier.Add(6, 3), 1)
+        moveset.Normal.AttackDebuff(tier.Add(6, 3), PowerHelper.Weak, 1)
         .SetMiscBonus(4, 1)
         .SetDamageScaling(0.2f);
     }

@@ -43,6 +43,6 @@ public class Benimaru extends AnimatorCard
         .SetColor(Color.RED, Color.ORANGE).SetRealtime(true), true);
 
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(e -> GameActions.Top.StackPower(player, new BurningPower(player, e, magicNumber)));
+        .SetDamageEffect(e -> GameActions.Top.StackPower(player, new BurningPower(e, player, magicNumber)));
     }
 }

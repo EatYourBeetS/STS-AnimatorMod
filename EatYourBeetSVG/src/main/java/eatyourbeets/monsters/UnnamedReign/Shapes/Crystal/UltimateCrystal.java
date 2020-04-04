@@ -15,11 +15,11 @@ import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.monsters.EYBMoveset;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Attack;
-import eatyourbeets.monsters.SharedMoveset.special.EYBMove_Buff_StrengthAndArtifact;
 import eatyourbeets.monsters.SharedMoveset.special.EYBMove_AttackDefend_ViceCrush;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.common.AntiArtifactSlowPower;
 import eatyourbeets.powers.monsters.UltimateCrystalPower;
 import eatyourbeets.resources.GR;
@@ -67,15 +67,25 @@ public class UltimateCrystal extends Crystal
 
         if (original == null)
         {
-            moveset.Normal.Add(new EYBMove_Buff_StrengthAndArtifact(3, 2));
-            moveset.Normal.Add(new EYBMove_AttackDefend_ViceCrush(1, 11)).SetBlockScaling(0.5f);
-            moveset.Normal.ShuffleCard(new Crystallize(), 2).SetMiscBonus(4, 1);
+            moveset.Normal.Buff(PowerHelper.Strength, 3)
+            .AddPower(PowerHelper.Artifact, 2);
+
+            moveset.Normal.Add(new EYBMove_AttackDefend_ViceCrush(1, 11))
+            .SetBlockScaling(0.5f);
+
+            moveset.Normal.ShuffleCard(new Crystallize(), 2)
+            .SetMiscBonus(4, 1);
         }
         else
         {
-            moveset.Normal.ShuffleCard(new Crystallize(), 2).SetMiscBonus(4, 1);
-            moveset.Normal.Add(new EYBMove_Buff_StrengthAndArtifact(3, 2));
-            moveset.Normal.Add(new EYBMove_AttackDefend_ViceCrush(1, 11)).SetBlockScaling(0.5f);
+            moveset.Normal.ShuffleCard(new Crystallize(), 2)
+            .SetMiscBonus(4, 1);
+
+            moveset.Normal.Buff(PowerHelper.Strength, 3)
+            .AddPower(PowerHelper.Artifact, 2);
+
+            moveset.Normal.Add(new EYBMove_AttackDefend_ViceCrush(1, 11))
+            .SetBlockScaling(0.5f);
         }
     }
 

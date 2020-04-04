@@ -10,6 +10,7 @@ import eatyourbeets.monsters.SharedMoveset.EYBMove_Attack;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.UltimateCubePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -28,7 +29,7 @@ public class UltimateCube extends Cube
 
         antiIntangible = moveset.Special.Attack(6, 30);
 
-        firstAttack = moveset.Special.AttackVulnerable(24, 2)
+        firstAttack = moveset.Special.AttackDebuff(24, PowerHelper.Vulnerable, 2)
         .SetDamageScaling(0.2f)
         .SetUses(1);
 
@@ -51,17 +52,17 @@ public class UltimateCube extends Cube
         // Rotation:
         moveset.mode = EYBMoveset.Mode.Sequential;
 
-        moveset.Normal.AttackWeak(4, 2)
+        moveset.Normal.AttackDebuff(4, PowerHelper.Weak, 2)
         .SetDamageMultiplier(2)
         .SetDamageBonus(4, 3)
         .SetMiscBonus(18, 1);
 
-        moveset.Normal.AttackFrail(4, 2)
+        moveset.Normal.AttackDebuff(4, PowerHelper.Frail, 2)
         .SetDamageMultiplier(2)
         .SetDamageBonus(4, 3)
         .SetMiscBonus(18, 1);
 
-        moveset.Normal.AttackVulnerable(4, 2)
+        moveset.Normal.AttackDebuff(4, PowerHelper.Vulnerable, 2)
         .SetDamageMultiplier(2)
         .SetDamageBonus(4, 3)
         .SetMiscBonus(18, 1);

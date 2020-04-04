@@ -2,6 +2,7 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.HealingCrystalPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -15,10 +16,10 @@ public class HealingCrystal extends Crystal
         .SetDamageScaling(0.25f)
         .SetBlockScaling(0.25f);
 
-        moveset.Normal.DefendThorns(7, tier.Add(2, 1))
+        moveset.Normal.DefendBuff(7, PowerHelper.Thorns, tier.Add(2, 1))
         .SetBlockScaling(0.25f);
 
-        moveset.Normal.GainStrength(tier.Add(1, 2));
+        moveset.Normal.Buff(PowerHelper.Strength, tier.Add(1, 2));
     }
 
     @Override

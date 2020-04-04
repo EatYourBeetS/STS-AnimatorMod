@@ -2,6 +2,7 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.FrostCubePower;
 import eatyourbeets.utilities.GameActions;
 
@@ -11,7 +12,7 @@ public class FrostCube extends Cube
     {
         super(MonsterElement.Frost, tier, x, y);
 
-        moveset.Normal.GainStrength(tier.Add(2, 1));
+        moveset.Normal.Buff(PowerHelper.Strength, tier.Add(2, 1));
 
         moveset.Normal.Attack(tier.Add(12, 4))
         .SetDamageScaling(0.2f);

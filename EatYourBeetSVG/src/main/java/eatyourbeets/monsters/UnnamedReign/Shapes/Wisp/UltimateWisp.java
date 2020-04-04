@@ -2,10 +2,10 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
 import com.megacrit.cardcrawl.powers.HexPower;
 import eatyourbeets.monsters.EYBMoveset;
-import eatyourbeets.monsters.SharedMoveset.special.EYBMove_Buff_StrengthAndArtifact;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.UltimateWispPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -24,12 +24,13 @@ public class UltimateWisp extends Wisp
         moveset.Normal.Attack(8, 3)
         .SetDamageScaling(0.2f);
 
-        moveset.Normal.Add(new EYBMove_Buff_StrengthAndArtifact(3, 1));
+        moveset.Normal.Buff(PowerHelper.Strength, 3)
+        .AddPower(PowerHelper.Artifact, 1);
 
-        moveset.Normal.AttackFrail(2, 2)
-        .SetDamageMultiplier(8);
+        moveset.Normal.AttackDebuff(2, 8, PowerHelper.Frail, 2);
 
-        moveset.Normal.AttackDebuff(6, 4)
+        moveset.Normal.Attack(6, 4)
+        .SetIntent(Intent.ATTACK_DEBUFF)
         .SetDamageScaling(0.2f)
         .SetOnUse((m, t) ->
         {

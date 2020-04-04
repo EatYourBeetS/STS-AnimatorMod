@@ -3,6 +3,7 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.DarkCrystalPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -17,7 +18,7 @@ public class DarkCrystal extends Crystal
         moveset.Normal.Attack(tier.Add(4, 1), 2)
         .SetDamageScaling(0.25f);
 
-        moveset.Normal.AttackWeak(tier.Add(5, 2), 1)
+        moveset.Normal.AttackDebuff(tier.Add(5, 2), PowerHelper.Weak, 1)
         .SetMiscBonus(4, 1)
         .SetDamageScaling(0.25f);
     }

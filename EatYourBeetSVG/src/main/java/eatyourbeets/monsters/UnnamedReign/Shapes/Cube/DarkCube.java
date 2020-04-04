@@ -2,6 +2,7 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.DarkCubePower;
 import eatyourbeets.utilities.GameActions;
 
@@ -11,7 +12,7 @@ public class DarkCube extends Cube
     {
         super(MonsterElement.Dark, tier, x, y);
 
-        moveset.Normal.GainTemporaryThorns(tier.Add(3, 3));
+        moveset.Normal.Buff(PowerHelper.TemporaryThorns, tier.Add(3, 3));
 
         moveset.Normal.Defend(tier.Add(3, 5))
         .SetBlockScaling(0.2f);

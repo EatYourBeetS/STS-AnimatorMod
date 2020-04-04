@@ -2,7 +2,6 @@ package eatyourbeets.monsters.Bosses;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -10,7 +9,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AngryPower;
-import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -20,11 +18,11 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.actions.special.SendMinionsAway;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
-import eatyourbeets.monsters.EYBMonsterData;
-import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamedMoveset.*;
-import eatyourbeets.powers.monsters.InfinitePower;
+import eatyourbeets.monsters.EYBMonster;
+import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.powers.animator.EarthenThornsPower;
+import eatyourbeets.powers.monsters.InfinitePower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.scenes.TheUnnamedReignScene;
 import eatyourbeets.utilities.GameActions;
@@ -96,8 +94,6 @@ public class TheUnnamed extends EYBMonster
             this.onFinalBossVictoryLogic();
 
             CardCrawlGame.stopClock = true;
-
-            RemoveMinions();
 
             GameEffects.Queue.Add(new VictoryEffect());
         }
@@ -264,36 +260,15 @@ public class TheUnnamed extends EYBMonster
         }
     }
 
-    private int RemoveMinions()
-    {
-        int removed = 0;
-        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
-        {
-            if (m.hasPower(MinionPower.POWER_ID))
-            {
-                GameActions.Bottom.Add(new EscapeAction(m));
-                removed += 1;
-            }
-        }
-
-        return removed;
-    }
-
     public static class Data extends EYBMonsterData
     {
         public Data(String id)
         {
             super(id);
 
-            maxHealth = 1000;
+            maxHealth = 1000 + (GameUtilities.GetAscensionLevel() * 5);
             atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamed.atlas";
             jsonUrl = "images/monsters/animator/TheUnnamed/TheUnnamed.json";
-
-            int level = GameUtilities.GetActualAscensionLevel();
-            if (level > 0)
-            {
-                maxHealth += level * 5;
-            }
 
             SetHB(0, -20, 200, 260, 0, 80);
         }

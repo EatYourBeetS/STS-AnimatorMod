@@ -8,6 +8,7 @@ import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.SharedMoveset.special.EYBMove_SummonEnemy;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.TheUnnamedHatPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -43,14 +44,14 @@ public class TheUnnamed_Hat extends EYBMonster
         moveset.Special.Add(new EYBMove_SummonEnemy());
 
         //Rotation:
-        moveset.Normal.DefendStrength(9, 3)
+        moveset.Normal.DefendBuff(9, PowerHelper.Strength, 3)
         .SetBlockBonus(7, 2)
         .SetMiscBonus(7, 1);
 
         moveset.Normal.ShuffleCard(new Dazed(), 1)
         .SkipAnimation(true);
 
-        moveset.Normal.AttackFrail(4, 1)
+        moveset.Normal.AttackDebuff(4, PowerHelper.Frail, 1)
         .SetDamageBonus(17, 1);
     }
 

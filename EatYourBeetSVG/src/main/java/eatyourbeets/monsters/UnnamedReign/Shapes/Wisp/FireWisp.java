@@ -1,9 +1,9 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import eatyourbeets.monsters.SharedMoveset.special.EYBMove_Buff_StrengthAndArtifact;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.FireWispPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -21,7 +21,8 @@ public class FireWisp extends Wisp
         moveset.Normal.Attack(tier.Add(3, 1), 2)
         .SetDamageScaling(0.25f);
 
-        moveset.Normal.Add(new EYBMove_Buff_StrengthAndArtifact(tier.Add(1,3), 1));
+        moveset.Normal.Buff(PowerHelper.Strength, tier.Add(1, 3))
+        .AddPower(PowerHelper.Artifact, 1);
     }
 
     @Override

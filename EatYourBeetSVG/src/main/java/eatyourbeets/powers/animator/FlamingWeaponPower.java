@@ -31,7 +31,7 @@ public class FlamingWeaponPower extends AnimatorPower
         {
             this.flash();
 
-            GameActions.Bottom.Add(new ApplyPowerAction(target, owner, new BurningPower(owner, target, amount), this.amount, true));
+            GameActions.Bottom.Add(new ApplyPowerAction(target, owner, new BurningPower(target, owner, amount), this.amount, true));
         }
     }
 }

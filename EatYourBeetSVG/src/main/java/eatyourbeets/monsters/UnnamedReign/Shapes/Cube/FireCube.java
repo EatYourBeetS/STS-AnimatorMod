@@ -3,6 +3,7 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.FireCubePower;
 import eatyourbeets.utilities.GameActions;
 
@@ -20,7 +21,7 @@ public class FireCube extends Cube
         moveset.Normal.Defend(tier.Add(4, 3))
         .SetBlockScaling(0.2f);
 
-        moveset.Normal.GainRegen(tier.Add(3, 2));
+        moveset.Normal.Buff(PowerHelper.Regen, tier.Add(3, 2));
     }
 
     @Override

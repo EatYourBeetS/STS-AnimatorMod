@@ -3,6 +3,7 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.FrostCrystalPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -14,7 +15,7 @@ public class FrostCrystal extends Crystal
 
         moveset.Normal.ShuffleCard(new Crystallize(), 3);
 
-        moveset.Normal.GainStrength(tier.Add(1, 1));
+        moveset.Normal.Buff(PowerHelper.Strength, tier.Add(1, 1));
 
         moveset.Normal.Attack(tier.Add(7, 3), 2)
         .SetDamageScaling(0.2f);

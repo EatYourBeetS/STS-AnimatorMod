@@ -1,8 +1,8 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
-import eatyourbeets.monsters.SharedMoveset.special.EYBMove_Buff_StrengthAndArtifact;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.HealingWispPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -14,7 +14,8 @@ public class HealingWisp extends Wisp
 
         moveset.Normal.Attack(3, tier.Add(2, 1));
 
-        moveset.Normal.Add(new EYBMove_Buff_StrengthAndArtifact(tier.Add(0,2), 1));
+        moveset.Normal.Buff(PowerHelper.Strength, tier.Add(0, 2))
+        .AddPower(PowerHelper.Artifact, 1);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class HornedBat_P extends HornedBat
 
         moveset.AddSpecial(new Move_TemporaryConfusion());
         moveset.AddSpecial(new Move_StrengthLoss(1, false));
-
+        
         if (GameUtilities.GetAscensionLevel() >= 7)
         {
             moveset.AddNormal(new Move_GainStrengthAndBlock(4, 11));

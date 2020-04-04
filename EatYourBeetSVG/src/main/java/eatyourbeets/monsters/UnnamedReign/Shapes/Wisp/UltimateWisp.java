@@ -1,12 +1,13 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
+import com.megacrit.cardcrawl.powers.HexPower;
 import eatyourbeets.monsters.EYBMoveset;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset_Old.*;
+import eatyourbeets.monsters.SharedMoveset.special.EYBMove_Buff_StrengthAndArtifact;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.monsters.UltimateWispPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class UltimateWisp extends Wisp
@@ -18,13 +19,25 @@ public class UltimateWisp extends Wisp
     {
         super(MonsterElement.Ultimate, MonsterTier.Ultimate, 0, 0);
 
-        boolean asc4 = GameUtilities.GetActualAscensionLevel() >= 4;
-
         moveset.mode = EYBMoveset.Mode.Sequential;
-        moveset.AddNormal(new Move_AttackMultiple( 8,3));
-        moveset.AddNormal(new Move_GainStrengthAndArtifactAll( 3, 1));
-        moveset.AddNormal(new Move_AttackMultipleFrail(2,8, 2));
-        moveset.AddNormal(new Move_AttackMultipleHex( 6,4, 1));
+
+        moveset.Normal.Attack(8, 3)
+        .SetDamageScaling(0.2f);
+
+        moveset.Normal.Add(new EYBMove_Buff_StrengthAndArtifact(3, 1));
+
+        moveset.Normal.AttackFrail(2, 2)
+        .SetDamageMultiplier(8);
+
+        moveset.Normal.AttackDebuff(6, 4)
+        .SetDamageScaling(0.2f)
+        .SetOnUse((m, t) ->
+        {
+            if (GameUtilities.GetAscensionLevel() >= 18 || !t.hasPower(HexPower.POWER_ID))
+            {
+                GameActions.Bottom.StackPower(this, new HexPower(t, 1));
+            }
+        });
     }
 
     @Override

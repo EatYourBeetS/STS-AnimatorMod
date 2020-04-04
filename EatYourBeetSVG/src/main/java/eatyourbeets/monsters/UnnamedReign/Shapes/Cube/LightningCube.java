@@ -1,12 +1,10 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackDefend;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackFrail;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackWeak;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.monsters.LightningCubePower;
+import eatyourbeets.utilities.GameActions;
 
 public class LightningCube extends Cube
 {
@@ -14,9 +12,17 @@ public class LightningCube extends Cube
     {
         super(MonsterElement.Lightning, tier, x, y);
 
-        moveset.AddNormal(new Move_AttackWeak(tier.Add(2,4),1));
-        moveset.AddNormal(new Move_AttackDefend(tier.Add(2,4),tier.Add(2, 4)));
-        moveset.AddNormal(new Move_AttackFrail(tier.Add(2,4),1));
+        moveset.SetAttackEffect(AbstractGameAction.AttackEffect.LIGHTNING);
+
+        moveset.Normal.AttackWeak(tier.Add(2, 4), 1)
+        .SetDamageScaling(0.2f);
+
+        moveset.Normal.AttackDefend(tier.Add(2, 4), tier.Add(2, 4))
+        .SetDamageScaling(0.25f)
+        .SetBlockScaling(0.25f);
+
+        moveset.Normal.AttackFrail(tier.Add(2, 4), 1)
+        .SetDamageScaling(0.2f);
     }
 
     @Override

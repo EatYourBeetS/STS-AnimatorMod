@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
+import eatyourbeets.actions.special.SendMinionsAway;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.EYBMonster;
@@ -223,19 +224,19 @@ public class TheUnnamed extends EYBMonster
 
         if (!this.isDeadOrEscaped())
         {
-            int minions = RemoveMinions();
-            int regen = (minions >= 1) ? 110 : 80;
-            int plated = (minions >= 2) ? 24 : 18;
-            int angry = (minions >= 3) ? 6 : 4;
-
             GameActions.Bottom.Talk(this, data.strings.DIALOG[0], 3, 3);
-            GameActions.Bottom.StackPower(new RegenPower(this, regen));
-            GameActions.Bottom.StackPower(new AngryPower(this, angry));
-            GameActions.Bottom.StackPower(new PlatedArmorPower(this, plated));
-            GameActions.Bottom.StackPower(new EarthenThornsPower(this, 6));
+            GameActions.Bottom.Add(new SendMinionsAway())
+            .AddCallback(minions ->
+            {
+                int regen  = (minions.size() >= 1) ? 110 : 80;
+                int plated = (minions.size() >= 2) ? 24 : 18;
+                int angry  = (minions.size() >= 3) ? 6 : 4;
 
-//            moveFading.SetMove();
-//            this.createIntent();
+                GameActions.Bottom.StackPower(new RegenPower(this, regen));
+                GameActions.Bottom.StackPower(new AngryPower(this, angry));
+                GameActions.Bottom.StackPower(new PlatedArmorPower(this, plated));
+                GameActions.Bottom.StackPower(new EarthenThornsPower(this, 6));
+            });
 
             moveset.GetMove(Move_Taunt.class).disabled = true;
             moveset.AddNormal(movePoison);

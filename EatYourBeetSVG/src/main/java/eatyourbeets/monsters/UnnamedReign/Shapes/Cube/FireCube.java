@@ -1,12 +1,10 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_Defend;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_GainRegeneration;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.monsters.FireCubePower;
+import eatyourbeets.utilities.GameActions;
 
 public class FireCube extends Cube
 {
@@ -14,9 +12,15 @@ public class FireCube extends Cube
     {
         super(MonsterElement.Fire, tier, x, y);
 
-        moveset.AddNormal(new Move_AttackMultiple(tier.Add(2, 2), 2));
-        moveset.AddNormal(new Move_Defend(tier.Add(4, 3)));
-        moveset.AddNormal(new Move_GainRegeneration(tier.Add(3, 2)));
+        moveset.SetAttackEffect(AbstractGameAction.AttackEffect.FIRE);
+
+        moveset.Normal.Attack(tier.Add(2, 2), 2)
+        .SetDamageScaling(0.2f);
+
+        moveset.Normal.Defend(tier.Add(4, 3))
+        .SetBlockScaling(0.2f);
+
+        moveset.Normal.GainRegen(tier.Add(3, 2));
     }
 
     @Override

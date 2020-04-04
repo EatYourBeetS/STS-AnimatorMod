@@ -4,7 +4,9 @@ import basemod.BaseMod;
 import basemod.abstracts.CustomMonster;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.dungeons.TheCity;
 import eatyourbeets.monsters.Bosses.KrulTepes;
+import eatyourbeets.monsters.Elites.HornedBat;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
@@ -24,6 +26,15 @@ public abstract class EYBMonster extends CustomMonster
         return GR.Animator.CreateID(type.getSimpleName());
     }
 
+    public static void RegisterMonsters()
+    {
+        UnnamedEnemyGroup.RegisterMonsterGroups();
+        BaseMod.addMonster(KrulTepes.ID, KrulTepes::new);
+        BaseMod.addMonster(HornedBat.ID, HornedBat::CreateMonsterGroup);
+
+        Encounters.add(new EYBMonsterInfo(TheCity.ID, EnemyType.ELITE, HornedBat.ID, 0.8f));
+    }
+
     public EYBMonster(EYBMonsterData data, EnemyType type)
     {
         this(data, type, 0, 0);
@@ -32,45 +43,32 @@ public abstract class EYBMonster extends CustomMonster
     public EYBMonster(EYBMonsterData data, EnemyType type, float x, float y)
     {
         super(data.strings.NAME, data.id, data.maxHealth, data.hb_x, data.hb_y, data.hb_w, data.hb_h,
-                data.imgUrl, data.offsetX + x, data.offsetY + y);
+              data.imgUrl, data.offsetX + x, data.offsetY + y);
 
         this.data = data;
         this.type = type;
     }
 
-    public static void RegisterMonsters()
+    @Override // This changes protected to public
+    public void loadAnimation(String atlasUrl, String skeletonUrl, float scale)
     {
-        UnnamedEnemyGroup.RegisterMonsterGroups();
-        BaseMod.addMonster(KrulTepes.ID, KrulTepes::new);
-        //BaseMod.addMonster(HornedBat.ID, HornedBat::CreateMonsterGroup);
-
-        //Encounters.add(new EYBMonsterInfo(TheCity.ID, EnemyType.ELITE, HornedBat.ID, 0.8f));
-    }
-
-    protected void ExecuteNextMove()
-    {
-        EYBAbstractMove move = moveset.GetMove(nextMove);
-        if (move != null)
-        {
-            moveset.GetMove(nextMove).Execute(AbstractDungeon.player);
-        }
-        else
-        {
-            JavaUtilities.GetLogger(getClass()).warn("The move was not present in the moveset: " + nextMove);
-        }
+        super.loadAnimation(atlasUrl, skeletonUrl, scale);
     }
 
     @Override
     public void takeTurn()
     {
-        ExecuteNextMove();
+        EYBAbstractMove move = moveset.GetMove(nextMove);
+        if (move != null)
+        {
+            move.Execute(AbstractDungeon.player);
+        }
+        else
+        {
+            JavaUtilities.GetLogger(this).warn("The move was not present in the moveset: " + nextMove);
+        }
 
-        GameActions.Bottom.Add(new RollMoveAction(this));
-    }
-
-    protected void SetNextMove(int roll, int historySize, Byte previousMove)
-    {
-        moveset.FindNextMove(roll, previousMove).Select();
+        GameActions.Bottom.Add(new RollMoveAction(this)); // This calls getMove(rng(0, 99))
     }
 
     @Override
@@ -86,9 +84,13 @@ public abstract class EYBMonster extends CustomMonster
         SetNextMove(i, size, previousMove);
     }
 
-    @Override
-    public void loadAnimation(String atlasUrl, String skeletonUrl, float scale)
+    protected void SetNextMove(int roll, int historySize, Byte previousMove)
     {
-        super.loadAnimation(atlasUrl, skeletonUrl, scale);
+        moveset.FindNextMove(roll, previousMove).Select();
+    }
+
+    protected ArrayList<EYBAbstractMove> GetRotation()
+    {
+        return moveset.Normal.rotation;
     }
 }

@@ -5,10 +5,10 @@ import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.monsters.SummonMonsterAction;
+import eatyourbeets.monsters.SharedMoveset.EYBMove_Special;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.UltimateCrystal;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_Talk;
+import eatyourbeets.utilities.GameActions;
 
 public class TheUnnamed_Cultist_BEHOLD extends TheUnnamed_Cultist
 {
@@ -16,8 +16,8 @@ public class TheUnnamed_Cultist_BEHOLD extends TheUnnamed_Cultist
     {
         super(x, y);
 
-        moveset.AddNormal(new Move_Talk());
-        moveset.AddNormal(new Move_Talk());
+        moveset.Normal.Add(new EYBMove_Special());
+        moveset.Normal.Add(new EYBMove_Special());
     }
 
     @Override

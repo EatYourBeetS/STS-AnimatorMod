@@ -9,7 +9,6 @@ import eatyourbeets.utilities.GameActions;
 public class CursedStabsPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(CursedStabsPower.class);
-    public int usesThisTurn = 99;
 
     public CursedStabsPower(AbstractCreature owner)
     {
@@ -25,19 +24,16 @@ public class CursedStabsPower extends AnimatorPower
     {
         super.atEndOfTurn(isPlayer);
 
-        usesThisTurn = 99;
+        enabled = true;
     }
 
     public void onInflictDamage(DamageInfo info, int damageAmount, AbstractCreature target)
     {
-        if (damageAmount > 0 && info.type != DamageInfo.DamageType.THORNS)
+        if (damageAmount > 0 && info.type != DamageInfo.DamageType.THORNS && enabled)
         {
-            if (usesThisTurn > 0)
-            {
-                GameActions.Bottom.MakeCardInDrawPile(new Pain());
-
-                usesThisTurn -= 1;
-            }
+            GameActions.Bottom.MakeCardInDrawPile(new Pain());
+            flashWithoutSound();
+            enabled = false;
         }
     }
 }

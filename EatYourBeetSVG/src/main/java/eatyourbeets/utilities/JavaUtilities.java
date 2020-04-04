@@ -28,7 +28,7 @@ public class JavaUtilities
 
     public static <T> T SafeCast(Object o, Class<T> type)
     {
-        return type.isInstance(o) ? type.cast(o) : null;
+        return type.isInstance(o) ? (T)o : null;
     }
 
     public static <T> T GetRandomElement(List<T> list)

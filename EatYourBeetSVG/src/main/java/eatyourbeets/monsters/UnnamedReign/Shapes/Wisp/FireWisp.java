@@ -1,12 +1,11 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_Attack;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_GainStrengthAndArtifact;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.monsters.SharedMoveset.special.EYBMove_Buff_StrengthAndArtifact;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.monsters.FireWispPower;
+import eatyourbeets.utilities.GameActions;
 
 public class FireWisp extends Wisp
 {
@@ -14,9 +13,15 @@ public class FireWisp extends Wisp
     {
         super(MonsterElement.Fire, tier, x, y);
 
-        moveset.AddNormal(new Move_Attack(tier.Add(8,4)));
-        moveset.AddNormal(new Move_GainStrengthAndArtifact(tier.Add(1,3), 1));
-        moveset.AddNormal(new Move_AttackMultiple(tier.Add(3,1), 2));
+        moveset.SetAttackEffect(AbstractGameAction.AttackEffect.FIRE);
+
+        moveset.Normal.Attack(tier.Add(8, 4))
+        .SetDamageScaling(0.2f);
+
+        moveset.Normal.Attack(tier.Add(3, 1), 2)
+        .SetDamageScaling(0.25f);
+
+        moveset.Normal.Add(new EYBMove_Buff_StrengthAndArtifact(tier.Add(1,3), 1));
     }
 
     @Override

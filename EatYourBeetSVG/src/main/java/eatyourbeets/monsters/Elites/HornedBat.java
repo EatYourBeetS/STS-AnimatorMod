@@ -83,7 +83,7 @@ public abstract class HornedBat extends EYBMonster
         {
             int offset = PlayerStatistics.TurnCount() + moveOffset;
 
-            return owner.moveset.rotation.get(offset % owner.moveset.rotation.size());
+            return owner.moveset.Normal.rotation.get(offset % owner.moveset.Normal.rotation.size());
         }
     }
 }

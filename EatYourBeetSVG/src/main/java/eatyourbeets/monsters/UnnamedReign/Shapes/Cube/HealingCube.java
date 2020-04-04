@@ -1,12 +1,9 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_Attack;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultipleFrail;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_Defend;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.monsters.HealingCubePower;
+import eatyourbeets.utilities.GameActions;
 
 public class HealingCube extends Cube
 {
@@ -14,9 +11,14 @@ public class HealingCube extends Cube
     {
         super(MonsterElement.Healing, tier, x, y);
 
-        moveset.AddNormal(new Move_AttackMultipleFrail(tier.Add(1,1), 6, 1));
-        moveset.AddNormal(new Move_Attack(tier.Add(6,2)));
-        moveset.AddNormal(new Move_Defend(tier.Add(6,3)));
+        moveset.Normal.AttackFrail(tier.Add(1, 1), 1)
+        .SetDamageMultiplier(6);
+
+        moveset.Normal.Attack(tier.Add(6, 2))
+        .SetDamageScaling(0.2f);
+
+        moveset.Normal.Defend(tier.Add(6, 3))
+        .SetBlockScaling(0.2f);
     }
 
     @Override

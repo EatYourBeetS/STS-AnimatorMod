@@ -2,23 +2,21 @@ package eatyourbeets.monsters.UnnamedReign.UnnamedDoll;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.WraithFormPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
-import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainTempThornsAndBlockAll;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.EYBAbstractMove;
-import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
+import eatyourbeets.monsters.EYBMonster;
+import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset_Old.Move_ShieldAll;
-import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackFrailAndDexLoss;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackWeakAndStrLoss;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainRitualAndArtifactAll;
+import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainTempThornsAndBlockAll;
 import eatyourbeets.powers.monsters.CursedStabsPower;
 import eatyourbeets.powers.monsters.UnnamedDollPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class TheUnnamed_Doll extends EYBMonster
@@ -96,22 +94,6 @@ public class TheUnnamed_Doll extends EYBMonster
         {
             theUnnamed.OnDollDeath();
         }
-    }
-
-    @Override
-    protected void ExecuteNextMove()
-    {
-        EYBAbstractMove move = moveset.GetMove(nextMove);
-        if (move instanceof Move_AttackMultiple)
-        {
-            AbstractPower cs = getPower(CursedStabsPower.POWER_ID);
-            if (cs != null)
-            {
-                ((CursedStabsPower)cs).usesThisTurn = 1;
-            }
-        }
-
-        move.Execute(AbstractDungeon.player);
     }
 
     @Override

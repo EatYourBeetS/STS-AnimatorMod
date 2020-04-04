@@ -1,31 +1,25 @@
-package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset;
+package eatyourbeets.monsters.SharedMoveset.special;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ViceCrushEffect;
-import eatyourbeets.monsters.EYBAbstractMove;
+import eatyourbeets.monsters.SharedMoveset.EYBMove_AttackDefend;
 import eatyourbeets.utilities.GameActions;
 
-public class Move_UltimateCrystalAttack extends EYBAbstractMove
+public class EYBMove_AttackDefend_ViceCrush extends EYBMove_AttackDefend
 {
-    private final int blockAmount;
-
-    public Move_UltimateCrystalAttack(int damage, int block)
+    public EYBMove_AttackDefend_ViceCrush(int damage, int block)
     {
-        this.blockAmount = block + CalculateAscensionBonus(block, 0.25f);
-        this.damageInfo = new DamageInfo(owner, damage + CalculateAscensionBonus(damage, 0.25f));
+        super(damage, block);
     }
 
-    public void Select()
-    {
-        owner.setMove(id, AbstractMonster.Intent.ATTACK, damageInfo.base);
-    }
-
+    @Override
     public void QueueActions(AbstractCreature target)
     {
+        GameActions.Bottom.GainBlock(owner, block.Calculate());
+
+        damageInfo.base = damage.Calculate();
         damageInfo.applyPowers(owner, target);
 
         if (this.damageInfo.output < 30)
@@ -41,7 +35,5 @@ public class Move_UltimateCrystalAttack extends EYBAbstractMove
             GameActions.Bottom.VFX(new ViceCrushEffect(target.hb.cX, target.hb.cY), 0.5f);
             GameActions.Bottom.Add(new DamageAction(target, this.damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
         }
-
-        GameActions.Bottom.GainBlock(owner, blockAmount);
     }
 }

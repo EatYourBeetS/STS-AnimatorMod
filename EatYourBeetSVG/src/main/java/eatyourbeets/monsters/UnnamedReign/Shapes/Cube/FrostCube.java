@@ -1,10 +1,9 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset_Old.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.monsters.FrostCubePower;
+import eatyourbeets.utilities.GameActions;
 
 public class FrostCube extends Cube
 {
@@ -12,9 +11,14 @@ public class FrostCube extends Cube
     {
         super(MonsterElement.Frost, tier, x, y);
 
-        moveset.AddNormal(new Move_GainStrength(tier.Add(2,1)));
-        moveset.AddNormal(new Move_Attack(tier.Add(12,4)));
-        moveset.AddNormal(new Move_AttackDefend(tier.Add(7,3), tier.Add(4,2)));
+        moveset.Normal.GainStrength(tier.Add(2, 1));
+
+        moveset.Normal.Attack(tier.Add(12, 4))
+        .SetDamageScaling(0.2f);
+
+        moveset.Normal.AttackDefend(tier.Add(7, 3), tier.Add(4, 2))
+        .SetDamageScaling(0.25f)
+        .SetBlockScaling(0.25f);
     }
 
     @Override

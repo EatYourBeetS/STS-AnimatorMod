@@ -1,34 +1,33 @@
 package eatyourbeets.monsters.UnnamedReign.UnnamedCultist;
 
-import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.MinionPower;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackDefend;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_ShuffleCard;
+import eatyourbeets.actions.special.SendMinionsAway;
 import eatyourbeets.monsters.SharedMoveset_Old.Move_Talk;
 import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.Moveset.Move_SummonEnemy;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
 import eatyourbeets.powers.monsters.TheUnnamedCultistPower;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GameActions;
 
 public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
 {
     private final Move_SummonEnemy moveSummonEnemy;
+    private final Move_Talk moveTalk;
 
     public TheUnnamed_Cultist_DollSummoner(float x, float y)
     {
         super(x, y);
 
-        moveset.AddSpecial(new Move_Talk());
-
+        moveTalk = moveset.AddSpecial(new Move_Talk());
         moveSummonEnemy = moveset.AddSpecial(new Move_SummonEnemy());
 
-        moveset.AddNormal(new Move_AttackDefend( 12, 12));
-        moveset.AddNormal(new Move_AttackMultiple(9, 2));
-        moveset.AddNormal(new Move_ShuffleCard(new VoidCard(), 3));
+        moveset.Normal.AttackDefend(12, 12)
+        .SetDamageScaling(0.25f)
+        .SetBlockScaling(0.25f);
+
+        moveset.Normal.Attack(9, 2)
+        .SetDamageScaling(0.2f);
+
+        moveset.Normal.ShuffleCard(new VoidCard(), 3);
     }
 
     @Override
@@ -46,13 +45,7 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
     {
         super.die();
 
-        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
-        {
-            if (m.hasPower(MinionPower.POWER_ID))
-            {
-                GameActions.Bottom.Add(new EscapeAction(m));
-            }
-        }
+        GameActions.Bottom.Add(new SendMinionsAway());
     }
 
     @Override
@@ -60,7 +53,6 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
     {
         if (moveSummonEnemy.CanUse(previousMove))
         {
-            Move_Talk moveTalk = moveset.GetMove(Move_Talk.class);
             if (historySize == 0)
             {
                 moveTalk.SetLine(data.strings.DIALOG[6]);

@@ -1,9 +1,9 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes;
 
-import eatyourbeets.monsters.AnimatorMonster;
+import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.resources.GR;
 
-public abstract class UnnamedShape extends AnimatorMonster
+public abstract class UnnamedShape extends EYBMonster
 {
     protected final MonsterData_Shape data;
 

@@ -1,14 +1,14 @@
 package eatyourbeets.monsters.Bosses.TheUnnamedMoveset;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.monsters.EYBAbstractMove;
 
-public class Move_ScalingPoison extends AbstractMove
+public class Move_ScalingPoison extends EYBAbstractMove
 {
     public int times;
     public int amount;
@@ -19,12 +19,12 @@ public class Move_ScalingPoison extends AbstractMove
         this.times = times;
     }
 
-    public void SetMove()
+    public void Select()
     {
         owner.setMove(id, AbstractMonster.Intent.STRONG_DEBUFF);
     }
 
-    public void ExecuteInternal(AbstractPlayer target)
+    public void QueueActions(AbstractCreature target)
     {
         for (int i = 0; i < times; i++)
         {

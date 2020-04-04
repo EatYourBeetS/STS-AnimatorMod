@@ -8,20 +8,20 @@ import com.megacrit.cardcrawl.powers.WraithFormPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainTempThornsAndBlockAll;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.monsters.AnimatorMonster;
+import eatyourbeets.monsters.EYBAbstractMove;
+import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset.Move_ShieldAll;
-import eatyourbeets.monsters.AbstractMonsterData;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_ShieldAll;
+import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackFrailAndDexLoss;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackWeakAndStrLoss;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainRitualAndArtifactAll;
-import eatyourbeets.powers.UnnamedReign.CursedStabsPower;
-import eatyourbeets.powers.UnnamedReign.UnnamedDollPower;
+import eatyourbeets.powers.monsters.CursedStabsPower;
+import eatyourbeets.powers.monsters.UnnamedDollPower;
 import eatyourbeets.utilities.GameUtilities;
 
-public class TheUnnamed_Doll extends AnimatorMonster
+public class TheUnnamed_Doll extends EYBMonster
 {
     public static final String ID = CreateFullID(TheUnnamed_Doll.class);
 
@@ -101,7 +101,7 @@ public class TheUnnamed_Doll extends AnimatorMonster
     @Override
     protected void ExecuteNextMove()
     {
-        AbstractMove move = moveset.GetMove(nextMove);
+        EYBAbstractMove move = moveset.GetMove(nextMove);
         if (move instanceof Move_AttackMultiple)
         {
             AbstractPower cs = getPower(CursedStabsPower.POWER_ID);
@@ -119,11 +119,11 @@ public class TheUnnamed_Doll extends AnimatorMonster
     {
         if (historySize >= 2 && ritualAndArtifactAll.CanUse(previousMove))
         {
-            ritualAndArtifactAll.SetMove();
+            ritualAndArtifactAll.Select();
         }
         else if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) >= 2 && !AbstractDungeon.player.hasPower(WraithFormPower.POWER_ID))
         {
-            antiIntangible.SetMove();
+            antiIntangible.Select();
         }
         else
         {
@@ -131,7 +131,7 @@ public class TheUnnamed_Doll extends AnimatorMonster
         }
     }
 
-    protected static class Data extends AbstractMonsterData
+    protected static class Data extends EYBMonsterData
     {
         public Data(String id)
         {

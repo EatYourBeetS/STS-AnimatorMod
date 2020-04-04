@@ -2,12 +2,12 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.status.Crystallize;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset.Move_GainStrength;
-import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_GainStrength;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_ShuffleCard;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
-import eatyourbeets.powers.UnnamedReign.FrostCrystalPower;
+import eatyourbeets.powers.monsters.FrostCrystalPower;
 
 public class FrostCrystal extends Crystal
 {

@@ -152,6 +152,11 @@ public final class GameActions
         return StackPower(source, new PoisonPower(target, source, amount));
     }
 
+    public ApplyPower ApplyPower(AbstractPower power)
+    {
+        return Add(new ApplyPower(power.owner, power.owner, power));
+    }
+
     public ApplyPower ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power)
     {
         return Add(new ApplyPower(source, target, power));

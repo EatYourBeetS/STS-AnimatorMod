@@ -1,13 +1,13 @@
 package eatyourbeets.monsters.Bosses.KrulTepesMoveset;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Move_Regenerate extends AbstractMove
+public class Move_Regenerate extends EYBAbstractMove
 {
     private final int REGEN_AMOUNT;
     private final int BLOCK_AMOUNT;
@@ -35,12 +35,12 @@ public class Move_Regenerate extends AbstractMove
         return super.CanUse(previousMove) && GameUtilities.GetPowerAmount(owner, RegenPower.POWER_ID) < 20;
     }
 
-    public void SetMove()
+    public void Select()
     {
         owner.setMove(id, AbstractMonster.Intent.DEFEND_BUFF);
     }
 
-    public void ExecuteInternal(AbstractPlayer target)
+    public void QueueActions(AbstractCreature target)
     {
         GameActions.Bottom.GainBlock(owner, BLOCK_AMOUNT);
         GameActions.Bottom.StackPower(new RegenPower(owner, REGEN_AMOUNT));

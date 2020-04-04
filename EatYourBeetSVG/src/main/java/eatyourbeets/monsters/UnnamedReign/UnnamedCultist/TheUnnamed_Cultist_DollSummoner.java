@@ -5,13 +5,13 @@ import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;
-import eatyourbeets.monsters.SharedMoveset.Move_Talk;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackDefend;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_ShuffleCard;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_Talk;
 import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.Moveset.Move_SummonEnemy;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
-import eatyourbeets.powers.UnnamedReign.TheUnnamedCultistPower;
+import eatyourbeets.powers.monsters.TheUnnamedCultistPower;
 import eatyourbeets.utilities.GameUtilities;
 
 public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
@@ -64,17 +64,17 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
             if (historySize == 0)
             {
                 moveTalk.SetLine(data.strings.DIALOG[6]);
-                moveTalk.SetMove();
+                moveTalk.Select();
             }
             else if (historySize == 1)
             {
                 moveTalk.SetLine(data.strings.DIALOG[8]);
-                moveTalk.SetMove();
+                moveTalk.Select();
             }
             else
             {
                 moveSummonEnemy.SetSummon(new TheUnnamed_Doll(null, -40, 135));
-                moveSummonEnemy.SetMove();
+                moveSummonEnemy.Select();
             }
 
             return;

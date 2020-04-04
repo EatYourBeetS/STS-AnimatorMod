@@ -1,12 +1,12 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset.Move_Attack;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleFrail;
-import eatyourbeets.monsters.SharedMoveset.Move_Defend;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_Attack;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultipleFrail;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_Defend;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
-import eatyourbeets.powers.UnnamedReign.HealingCubePower;
+import eatyourbeets.powers.monsters.HealingCubePower;
 
 public class HealingCube extends Cube
 {

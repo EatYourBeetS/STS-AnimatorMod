@@ -304,6 +304,18 @@
 		"DIALOG": [""]
 	},
 
+	"animator:HornedBat_P":
+	{
+		"MOVES": [],
+		"NAME": "Horned Bat",
+		"DIALOG": [""]
+	},
+	"animator:HornedBat_R":
+	{
+		"MOVES": [],
+		"NAME": "Horned Bat",
+		"DIALOG": [""]
+	},
 	"animator:KrulTepes":
 	{
 		"MOVES": [],

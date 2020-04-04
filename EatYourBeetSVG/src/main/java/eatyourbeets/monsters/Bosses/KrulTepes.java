@@ -7,15 +7,15 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
-import eatyourbeets.monsters.Moveset;
+import eatyourbeets.monsters.EYBMoveset;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.AnimatorMonster;
+import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.Bosses.KrulTepesMoveset.*;
-import eatyourbeets.monsters.AbstractMonsterData;
+import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.relics.animator.ExquisiteBloodVial;
 
-public class KrulTepes extends AnimatorMonster
+public class KrulTepes extends EYBMonster
 {
     public static final String ID = CreateFullID(KrulTepes.class);
 
@@ -25,7 +25,7 @@ public class KrulTepes extends AnimatorMonster
     {
         super(new Data(ID), EnemyType.BOSS);
 
-        moveset.mode = Moveset.Mode.Sequential;
+        moveset.mode = EYBMoveset.Mode.Sequential;
 
         moveset.AddNormal(new Move_Regenerate());
         moveset.AddNormal(new Move_Bite());
@@ -81,7 +81,7 @@ public class KrulTepes extends AnimatorMonster
         AbstractDungeon.getCurrMapNode().room.playBGM("BOSS_BOTTOM");
     }
 
-    protected static class Data extends AbstractMonsterData
+    protected static class Data extends EYBMonsterData
     {
         public Data(String id)
         {

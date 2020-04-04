@@ -1,26 +1,26 @@
 package eatyourbeets.monsters.UnnamedReign.UnnamedCultist.Moveset;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.city.ShelledParasite;
 import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.monsters.SummonMonsterAction;
-import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
 import eatyourbeets.utilities.JavaUtilities;
 
-public class Move_SummonEnemy extends AbstractMove
+public class Move_SummonEnemy extends EYBAbstractMove
 {
     private int summonCount = 0;
     private TheUnnamed_Cultist cultist;
     private AbstractMonster summon;
 
     @Override
-    public void Init(byte id, AbstractMonster owner)
+    public void Initialize(byte id, AbstractMonster owner)
     {
-        super.Init(id, owner);
+        super.Initialize(id, owner);
 
         cultist = (TheUnnamed_Cultist)owner;
     }
@@ -36,12 +36,12 @@ public class Move_SummonEnemy extends AbstractMove
         summon = monster;
     }
 
-    public void SetMove()
+    public void Select()
     {
         owner.setMove(id, AbstractMonster.Intent.UNKNOWN);
     }
 
-    public void ExecuteInternal(AbstractPlayer target)
+    public void QueueActions(AbstractCreature target)
     {
         summonCount += 1;
 

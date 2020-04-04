@@ -29,6 +29,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnTryApplyPowerSubscriber;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
@@ -45,6 +46,32 @@ public class GameUtilities
 {
     private static final OnPhaseChangedSubscriber handLayoutRefresher = new HandLayoutRefresher();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
+
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    public static boolean CanApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower powerToApply)
+    {
+        boolean canApply = true;
+        for (AbstractPower power : target.powers)
+        {
+            if (power instanceof OnTryApplyPowerSubscriber)
+            {
+                canApply &= ((OnTryApplyPowerSubscriber) power).TryApplyPower(powerToApply, target, source);
+            }
+        }
+
+        if (canApply && target != source && source != null)
+        {
+            for (AbstractPower power : source.powers)
+            {
+                if (power instanceof OnTryApplyPowerSubscriber)
+                {
+                    canApply &= ((OnTryApplyPowerSubscriber) power).TryApplyPower(powerToApply, target, source);
+                }
+            }
+        }
+
+        return canApply;
+    }
 
     public static boolean CanRemoveFromDeck(AbstractCard card)
     {
@@ -408,6 +435,17 @@ public class GameUtilities
         return 0;
     }
 
+    public static Random GetRNG()
+    {
+        if (EYBCard.rng == null)
+        {
+            JavaUtilities.Log(GameUtilities.class, "EYBCard.rng was null");
+            return new Random();
+        }
+
+        return EYBCard.rng;
+    }
+
     public static AbstractCreature GetRandomCharacter(boolean aliveOnly)
     {
         return JavaUtilities.GetRandomElement(GetAllCharacters(aliveOnly), GetRNG());
@@ -522,17 +560,6 @@ public class GameUtilities
         }
 
         return null;
-    }
-
-    public static Random GetRNG()
-    {
-        if (EYBCard.rng == null)
-        {
-            JavaUtilities.Log(GameUtilities.class, "EYBCard.rng was null");
-            return new Random();
-        }
-
-        return EYBCard.rng;
     }
 
     public static <T> T GetRelic(Class<T> relicType)
@@ -656,14 +683,14 @@ public class GameUtilities
         return orb != null && !(orb instanceof EmptyOrbSlot);
     }
 
-    public static void ObtainRelic(float cX, float cY, AbstractRelic relic)
-    {
-        GetCurrentRoom(true).spawnRelicAndObtain(cX, cY, relic);
-    }
-
     public static void ObtainBlight(float cX, float cY, AbstractBlight blight)
     {
         GetCurrentRoom(true).spawnBlightAndObtain(cX, cY, blight);
+    }
+
+    public static void ObtainRelic(float cX, float cY, AbstractRelic relic)
+    {
+        GetCurrentRoom(true).spawnRelicAndObtain(cX, cY, relic);
     }
 
     public static void RefreshHandLayout()

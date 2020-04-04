@@ -1,12 +1,12 @@
 package eatyourbeets.monsters.UnnamedReign.UnnamedCultist;
 
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import eatyourbeets.monsters.AnimatorMonster;
-import eatyourbeets.monsters.AbstractMonsterData;
+import eatyourbeets.monsters.EYBMonster;
+import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameUtilities;
 
-public abstract class TheUnnamed_Cultist extends AnimatorMonster
+public abstract class TheUnnamed_Cultist extends EYBMonster
 {
     public static final String ID = CreateFullID(TheUnnamed_Cultist.class);
     public static final MonsterStrings STRINGS = AnimatorResources.GetMonsterStrings(ID);
@@ -18,7 +18,7 @@ public abstract class TheUnnamed_Cultist extends AnimatorMonster
         data.SetIdleAnimation(this, 1);
     }
 
-    protected static class Data extends AbstractMonsterData
+    protected static class Data extends EYBMonsterData
     {
         public Data(String id)
         {

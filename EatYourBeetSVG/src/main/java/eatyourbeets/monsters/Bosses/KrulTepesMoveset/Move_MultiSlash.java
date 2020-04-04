@@ -4,16 +4,16 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.monsters.AbstractMove;
 
-public class Move_MultiSlash extends AbstractMove
+public class Move_MultiSlash extends EYBAbstractMove
 {
     private final int TIMES;
 
@@ -36,19 +36,19 @@ public class Move_MultiSlash extends AbstractMove
         return false;
     }
 
-    public void SetMove()
+    public void Select()
     {
         owner.setMove(id, AbstractMonster.Intent.ATTACK, damageInfo.base, TIMES, true);
     }
 
-    public void ExecuteInternal(AbstractPlayer target)
+    public void QueueActions(AbstractCreature target)
     {
         damageInfo.applyPowers(owner, target);
         timesCounter = TIMES;
         Attack(target);
     }
 
-    private void Attack(AbstractPlayer target)
+    private void Attack(AbstractCreature target)
     {
         if (timesCounter > 0)
         {

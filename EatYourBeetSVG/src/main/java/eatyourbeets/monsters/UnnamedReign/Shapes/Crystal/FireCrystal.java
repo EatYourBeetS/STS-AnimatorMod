@@ -2,10 +2,10 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset.*;
+import eatyourbeets.monsters.SharedMoveset_Old.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
-import eatyourbeets.powers.UnnamedReign.FireCrystalPower;
+import eatyourbeets.powers.monsters.FireCrystalPower;
 import eatyourbeets.utilities.GameUtilities;
 
 public class FireCrystal extends Crystal

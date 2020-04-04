@@ -14,8 +14,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.console.CommandsManager;
 import eatyourbeets.events.base.EYBEvent;
-import eatyourbeets.monsters.Bosses.KrulTepes;
-import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
+import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.GenericFadingPower;
@@ -68,8 +67,7 @@ public class CommonResources extends AbstractResources
     @Override
     protected void InitializeMonsters()
     {
-        BaseMod.addMonster(KrulTepes.ID, KrulTepes::new);
-        UnnamedEnemyGroup.RegisterMonsterGroups();
+        EYBMonster.RegisterMonsters();
     }
 
     @Override

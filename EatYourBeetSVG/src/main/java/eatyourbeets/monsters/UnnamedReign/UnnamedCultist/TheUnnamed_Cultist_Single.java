@@ -7,16 +7,16 @@ import com.megacrit.cardcrawl.monsters.city.Byrd;
 import com.megacrit.cardcrawl.monsters.city.ShelledParasite;
 import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
 import com.megacrit.cardcrawl.monsters.exordium.Sentry;
-import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndBlockAll;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_GainStrengthAndBlockAll;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Cube.DarkCube;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
-import eatyourbeets.monsters.SharedMoveset.Move_GainPlatedArmorAll;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackDefend;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_GainPlatedArmorAll;
 import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.Moveset.Move_SummonEnemy;
-import eatyourbeets.powers.UnnamedReign.TheUnnamedCultistPower;
+import eatyourbeets.powers.monsters.TheUnnamedCultistPower;
 
 public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
 {
@@ -72,7 +72,7 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
             {
                 Move_SummonEnemy moveSummonEnemy = moveset.GetMove(Move_SummonEnemy.class);
                 moveSummonEnemy.SetSummon(firstSummon);
-                moveSummonEnemy.SetMove();
+                moveSummonEnemy.Select();
                 return true;
             }
         }
@@ -84,7 +84,7 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
             {
                 Move_SummonEnemy moveSummonEnemy = moveset.GetMove(Move_SummonEnemy.class);
                 moveSummonEnemy.SetSummon(secondSummon);
-                moveSummonEnemy.SetMove();
+                moveSummonEnemy.Select();
                 return true;
             }
         }

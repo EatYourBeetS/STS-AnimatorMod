@@ -19,10 +19,10 @@ import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
-import eatyourbeets.monsters.AbstractMonsterData;
-import eatyourbeets.monsters.AnimatorMonster;
+import eatyourbeets.monsters.EYBMonsterData;
+import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamedMoveset.*;
-import eatyourbeets.powers.UnnamedReign.InfinitePower;
+import eatyourbeets.powers.monsters.InfinitePower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.scenes.TheUnnamedReignScene;
@@ -31,7 +31,7 @@ import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
-public class TheUnnamed extends AnimatorMonster
+public class TheUnnamed extends EYBMonster
 {
     public static final String ID = CreateFullID(TheUnnamed.class);
     public static final String NAME = "The Unnamed";
@@ -126,7 +126,7 @@ public class TheUnnamed extends AnimatorMonster
         {
             GameActions.Bottom.Talk(this, data.strings.DIALOG[1], 3, 4);
             moveFading.fadingTurns = 3;
-            moveFading.ExecuteInternal(AbstractDungeon.player);
+            moveFading.QueueActions(AbstractDungeon.player);
         }
         else
         {
@@ -160,7 +160,7 @@ public class TheUnnamed extends AnimatorMonster
 
         if (infinitePower.phase2 && moveFading.CanUse(previousMove))
         {
-            moveFading.SetMove();
+            moveFading.Select();
 
             return;
         }
@@ -170,14 +170,14 @@ public class TheUnnamed extends AnimatorMonster
             Move_SummonDoll summonDoll = moveset.GetMove(Move_SummonDoll.class);
             if (summonDoll.CanUse(previousMove))
             {
-                summonDoll.SetMove();
+                summonDoll.Select();
                 return;
             }
         }
 
         if (moveset.GetMove(previousMove) instanceof Move_Taunt)
         {
-            movePoison.SetMove();
+            movePoison.Select();
 
             return;
         }
@@ -278,7 +278,7 @@ public class TheUnnamed extends AnimatorMonster
         return removed;
     }
 
-    public static class Data extends AbstractMonsterData
+    public static class Data extends EYBMonsterData
     {
         public Data(String id)
         {

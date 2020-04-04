@@ -185,6 +185,16 @@
 		"DESCRIPTIONS": ["At the start of your turn, choose and Exhaust #b", " card(s) in your deck."],
 		"NAME": "Princess Hitei"
 	},
+	"animator:HornedBat_PurplePower":
+	{
+		"DESCRIPTIONS": ["Immune to #yPoison. NL Dies upon losing #yFlight."],
+		"NAME": "Horned Bat (P)"
+	},
+	"animator:HornedBat_RedPower":
+	{
+		"DESCRIPTIONS": ["Immune to #yBurning. NL Dies upon losing #yFlight."],
+		"NAME": "Horned Bat (R)"
+	},
 	"animator:InfinitePower":
 	{
 		"DESCRIPTIONS": ["Before taking unblocked damage: Gains that much #yEnchanted #yArmor. NL When receiving a debuff: Gains that much #yRegeneration. NL When the enemy receives a buff: Gains that much #yStrength. NL Loses half of these stats at the end of each turn."],

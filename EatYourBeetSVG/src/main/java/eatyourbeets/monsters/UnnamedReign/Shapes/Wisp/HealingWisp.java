@@ -1,11 +1,11 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndArtifact;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_GainStrengthAndArtifact;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
-import eatyourbeets.powers.UnnamedReign.HealingWispPower;
+import eatyourbeets.powers.monsters.HealingWispPower;
 
 public class HealingWisp extends Wisp
 {

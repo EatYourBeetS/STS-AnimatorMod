@@ -3,12 +3,12 @@ package eatyourbeets.monsters.Bosses.TheUnnamedMoveset;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.monsters.EYBAbstractMove;
 
-public class Move_MultiAttack extends AbstractMove
+public class Move_MultiAttack extends EYBAbstractMove
 {
     private final int TIMES;
 
@@ -18,12 +18,12 @@ public class Move_MultiAttack extends AbstractMove
         TIMES = times;
     }
 
-    public void SetMove()
+    public void Select()
     {
         owner.setMove(id, AbstractMonster.Intent.ATTACK, damageInfo.base, TIMES, true);
     }
 
-    public void ExecuteInternal(AbstractPlayer target)
+    public void QueueActions(AbstractCreature target)
     {
         boolean superFast = TIMES > 6;
 

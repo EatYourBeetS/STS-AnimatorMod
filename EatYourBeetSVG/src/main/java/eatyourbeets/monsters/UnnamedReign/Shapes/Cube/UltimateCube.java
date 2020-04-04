@@ -4,13 +4,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.WraithFormPower;
-import eatyourbeets.monsters.Moveset;
-import eatyourbeets.monsters.SharedMoveset.*;
+import eatyourbeets.monsters.EYBMoveset;
+import eatyourbeets.monsters.SharedMoveset_Old.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
-import eatyourbeets.powers.UnnamedReign.UltimateCubePower;
+import eatyourbeets.powers.monsters.UltimateCubePower;
 import eatyourbeets.utilities.GameUtilities;
 
 public class UltimateCube extends Cube
@@ -22,7 +22,7 @@ public class UltimateCube extends Cube
     {
         super(MonsterElement.Ultimate, MonsterTier.Ultimate, 0, 0);
 
-        moveset.mode = Moveset.Mode.Sequential;
+        moveset.mode = EYBMoveset.Mode.Sequential;
 
         boolean asc4 = GameUtilities.GetActualAscensionLevel() >= 4;
         boolean asc18 = GameUtilities.GetActualAscensionLevel() >= 18;
@@ -43,13 +43,13 @@ public class UltimateCube extends Cube
     {
         if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) >= 2 && !AbstractDungeon.player.hasPower(WraithFormPower.POWER_ID))
         {
-            moveset.GetMove(Move_AttackMultiple.class).SetMove();
+            moveset.GetMove(Move_AttackMultiple.class).Select();
         }
         else
         {
             if (historySize == 0)
             {
-                moveset.GetMove(Move_AttackVulnerable.class).SetMove();
+                moveset.GetMove(Move_AttackVulnerable.class).Select();
                 return;
             }
 

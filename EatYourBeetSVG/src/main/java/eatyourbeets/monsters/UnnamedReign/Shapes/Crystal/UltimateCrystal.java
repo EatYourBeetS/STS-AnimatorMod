@@ -13,15 +13,15 @@ import eatyourbeets.actions.monsters.MoveMonsterAction;
 import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.animator.status.Crystallize;
-import eatyourbeets.monsters.Moveset;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndArtifact;
-import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;
+import eatyourbeets.monsters.EYBMoveset;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_GainStrengthAndArtifact;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_ShuffleCard;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_UltimateCrystalAttack;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
-import eatyourbeets.powers.UnnamedReign.UltimateCrystalPower;
+import eatyourbeets.powers.monsters.UltimateCrystalPower;
 import eatyourbeets.powers.common.AntiArtifactSlowPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
@@ -45,7 +45,7 @@ public class UltimateCrystal extends Crystal
     {
         super(MonsterElement.Ultimate, MonsterTier.Ultimate, x, y);
 
-        moveset.mode = Moveset.Mode.Sequential;
+        moveset.mode = EYBMoveset.Mode.Sequential;
 
         boolean asc4 = GameUtilities.GetActualAscensionLevel() >= 4;
 
@@ -95,7 +95,7 @@ public class UltimateCrystal extends Crystal
     {
         if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) >= 2 && !AbstractDungeon.player.hasPower(WraithFormPower.POWER_ID))
         {
-            moveset.GetMove(Move_AttackMultiple.class).SetMove();
+            moveset.GetMove(Move_AttackMultiple.class).Select();
         }
         else
         {

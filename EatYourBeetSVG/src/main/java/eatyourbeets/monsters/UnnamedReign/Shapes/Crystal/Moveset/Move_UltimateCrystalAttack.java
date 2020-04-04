@@ -3,13 +3,13 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ViceCrushEffect;
-import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.utilities.GameActions;
 
-public class Move_UltimateCrystalAttack extends AbstractMove
+public class Move_UltimateCrystalAttack extends EYBAbstractMove
 {
     private final int blockAmount;
 
@@ -19,12 +19,12 @@ public class Move_UltimateCrystalAttack extends AbstractMove
         this.damageInfo = new DamageInfo(owner, damage + CalculateAscensionBonus(damage, 0.25f));
     }
 
-    public void SetMove()
+    public void Select()
     {
         owner.setMove(id, AbstractMonster.Intent.ATTACK, damageInfo.base);
     }
 
-    public void ExecuteInternal(AbstractPlayer target)
+    public void QueueActions(AbstractCreature target)
     {
         damageInfo.applyPowers(owner, target);
 

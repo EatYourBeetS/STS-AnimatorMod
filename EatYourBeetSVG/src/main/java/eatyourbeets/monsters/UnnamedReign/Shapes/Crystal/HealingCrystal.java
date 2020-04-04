@@ -1,12 +1,12 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
-import eatyourbeets.monsters.SharedMoveset.Move_GainStrength;
-import eatyourbeets.monsters.SharedMoveset.Move_GainThorns;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackDefend;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_GainStrength;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_GainThorns;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
-import eatyourbeets.powers.UnnamedReign.HealingCrystalPower;
+import eatyourbeets.powers.monsters.HealingCrystalPower;
 
 public class HealingCrystal extends Crystal
 {

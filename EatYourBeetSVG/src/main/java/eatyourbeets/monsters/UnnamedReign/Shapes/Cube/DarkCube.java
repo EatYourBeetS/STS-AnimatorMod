@@ -1,12 +1,12 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
-import eatyourbeets.monsters.SharedMoveset.Move_GainTempThorns;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_GainTempThorns;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
-import eatyourbeets.monsters.SharedMoveset.Move_Defend;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackDefend;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_Defend;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
-import eatyourbeets.powers.UnnamedReign.DarkCubePower;
+import eatyourbeets.powers.monsters.DarkCubePower;
 
 public class DarkCube extends Cube
 {

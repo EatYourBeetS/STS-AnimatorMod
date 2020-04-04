@@ -130,6 +130,12 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             return;
         }
 
+        if (!GameUtilities.CanApplyPower(source, target, powerToApply))
+        {
+            Complete();
+            return;
+        }
+
         if (source != null)
         {
             for (AbstractPower power : source.powers)

@@ -1,10 +1,10 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset.*;
+import eatyourbeets.monsters.SharedMoveset_Old.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
-import eatyourbeets.powers.UnnamedReign.LightningCrystalPower;
+import eatyourbeets.powers.monsters.LightningCrystalPower;
 
 public class LightningCrystal extends Crystal
 {

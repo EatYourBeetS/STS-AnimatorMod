@@ -1,10 +1,10 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.monsters.AbstractMonsterData;
+import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.utilities.GameUtilities;
 
-public class MonsterData_Shape extends AbstractMonsterData
+public class MonsterData_Shape extends EYBMonsterData
 {
     public final MonsterShape shape;
     public final MonsterElement element;

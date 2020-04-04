@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.helpers.SaveHelper;
 import eatyourbeets.characters.AnimatorCharacter;
-import eatyourbeets.powers.UnnamedReign.DarkCubePower;
+import eatyourbeets.powers.monsters.DarkCubePower;
 import eatyourbeets.resources.GR;
 
 import java.io.IOException;

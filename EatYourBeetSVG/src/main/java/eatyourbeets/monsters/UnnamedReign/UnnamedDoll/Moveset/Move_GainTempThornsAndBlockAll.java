@@ -1,14 +1,14 @@
 package eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset;
 
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Move_GainTempThornsAndBlockAll extends AbstractMove
+public class Move_GainTempThornsAndBlockAll extends EYBAbstractMove
 {
     private final int thorns;
     private final int block;
@@ -19,12 +19,12 @@ public class Move_GainTempThornsAndBlockAll extends AbstractMove
         this.block = block;
     }
 
-    public void SetMove()
+    public void Select()
     {
         owner.setMove(id, AbstractMonster.Intent.DEFEND_BUFF);
     }
 
-    public void ExecuteInternal(AbstractPlayer target)
+    public void QueueActions(AbstractCreature target)
     {
         for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
         {

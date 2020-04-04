@@ -1,20 +1,20 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.monsters.SummonMonsterAction;
-import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.monsters.EYBAbstractMove;
 
-public class Move_SummonEnemy extends AbstractMove
+public class Move_SummonEnemy extends EYBAbstractMove
 {
     private int summonCount = 0;
     private AbstractMonster summon;
 
     @Override
-    public void Init(byte id, AbstractMonster owner)
+    public void Initialize(byte id, AbstractMonster owner)
     {
-        super.Init(id, owner);
+        super.Initialize(id, owner);
     }
 
     @Override
@@ -28,12 +28,12 @@ public class Move_SummonEnemy extends AbstractMove
         summon = monster;
     }
 
-    public void SetMove()
+    public void Select()
     {
         owner.setMove(id, AbstractMonster.Intent.UNKNOWN);
     }
 
-    public void ExecuteInternal(AbstractPlayer target)
+    public void QueueActions(AbstractCreature target)
     {
         summonCount += 1;
 

@@ -1,31 +1,31 @@
 package eatyourbeets.monsters.Bosses.TheUnnamedMoveset;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 
-public class Move_Taunt extends AbstractMove
+public class Move_Taunt extends EYBAbstractMove
 {
     private String[] dialog;
 
     @Override
-    public void Init(byte id, AbstractMonster owner)
+    public void Initialize(byte id, AbstractMonster owner)
     {
-        super.Init(id, owner);
+        super.Initialize(id, owner);
 
         dialog = ((TheUnnamed)owner).data.strings.DIALOG;
     }
 
-    public void SetMove()
+    public void Select()
     {
         owner.setMove(id, AbstractMonster.Intent.UNKNOWN);
     }
 
-    public void ExecuteInternal(AbstractPlayer target)
+    public void QueueActions(AbstractCreature target)
     {
         GameActions.Bottom.Talk(owner, GetLine());
     }

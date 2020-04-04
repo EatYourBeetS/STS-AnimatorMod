@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.UltimateCrystal;
-import eatyourbeets.monsters.SharedMoveset.Move_Talk;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_Talk;
 
 public class TheUnnamed_Cultist_BEHOLD extends TheUnnamed_Cultist
 {

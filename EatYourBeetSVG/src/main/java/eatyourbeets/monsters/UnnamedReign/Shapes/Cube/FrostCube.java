@@ -1,10 +1,10 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset.*;
+import eatyourbeets.monsters.SharedMoveset_Old.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
-import eatyourbeets.powers.UnnamedReign.FrostCubePower;
+import eatyourbeets.powers.monsters.FrostCubePower;
 
 public class FrostCube extends Cube
 {

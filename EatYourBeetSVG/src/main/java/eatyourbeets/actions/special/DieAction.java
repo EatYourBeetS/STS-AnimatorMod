@@ -31,6 +31,7 @@ public class DieAction extends EYBAction
             {
                 m.currentHealth = 0;
                 m.die();
+                m.hideHealthBar();
 
                 if (AbstractDungeon.getMonsters().areMonstersBasicallyDead())
                 {

@@ -1,11 +1,11 @@
 package eatyourbeets.monsters.Bosses.KrulTepesMoveset;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.monsters.EYBAbstractMove;
 
-public class Move_Cripple extends AbstractMove
+public class Move_Cripple extends EYBAbstractMove
 {
     private final int FRAIL_AMOUNT;
     private final int WEAK_AMOUNT;
@@ -30,12 +30,12 @@ public class Move_Cripple extends AbstractMove
         }
     }
 
-    public void SetMove()
+    public void Select()
     {
         owner.setMove(id, AbstractMonster.Intent.DEFEND_DEBUFF);
     }
 
-    public void ExecuteInternal(AbstractPlayer target)
+    public void QueueActions(AbstractCreature target)
     {
         GameActions.Bottom.GainBlock(owner, BLOCK_AMOUNT);
         GameActions.Bottom.ApplyWeak(owner, target, WEAK_AMOUNT);

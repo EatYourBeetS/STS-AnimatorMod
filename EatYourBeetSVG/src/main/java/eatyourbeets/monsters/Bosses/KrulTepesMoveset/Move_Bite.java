@@ -4,14 +4,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.monsters.EYBAbstractMove;
 
-public class Move_Bite extends AbstractMove
+public class Move_Bite extends EYBAbstractMove
 {
     private final int WEAK_AMOUNT;
 
@@ -29,12 +29,12 @@ public class Move_Bite extends AbstractMove
         }
     }
 
-    public void SetMove()
+    public void Select()
     {
         owner.setMove(id, AbstractMonster.Intent.ATTACK_DEBUFF, damageInfo.base);
     }
 
-    public void ExecuteInternal(AbstractPlayer target)
+    public void QueueActions(AbstractCreature target)
     {
         damageInfo.applyPowers(owner, target);
         GameActions.Bottom.VFX(new BiteEffect(target.hb.cX, target.hb.cY - 40f * Settings.scale, Color.SCARLET.cpy()), 0.3f);

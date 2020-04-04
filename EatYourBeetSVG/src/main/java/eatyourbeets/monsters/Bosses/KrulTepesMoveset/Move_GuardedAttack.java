@@ -3,12 +3,12 @@ package eatyourbeets.monsters.Bosses.KrulTepesMoveset;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.monsters.EYBAbstractMove;
 
-public class Move_GuardedAttack extends AbstractMove
+public class Move_GuardedAttack extends EYBAbstractMove
 {
     private final int BLOCK_AMOUNT;
 
@@ -26,12 +26,12 @@ public class Move_GuardedAttack extends AbstractMove
         }
     }
 
-    public void SetMove()
+    public void Select()
     {
         owner.setMove(id, AbstractMonster.Intent.ATTACK_DEFEND, damageInfo.base);
     }
 
-    public void ExecuteInternal(AbstractPlayer target)
+    public void QueueActions(AbstractCreature target)
     {
         damageInfo.applyPowers(owner, target);
         GameActions.Bottom.Add(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));

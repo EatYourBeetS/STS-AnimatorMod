@@ -3,18 +3,18 @@ package eatyourbeets.monsters.UnnamedReign.UnnamedHat;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.monsters.AnimatorMonster;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackFrail;
-import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndBlock;
-import eatyourbeets.monsters.SharedMoveset.Move_ShuffleDazed;
-import eatyourbeets.monsters.AbstractMonsterData;
+import eatyourbeets.monsters.EYBAbstractMove;
+import eatyourbeets.monsters.EYBMonster;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackFrail;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_GainStrengthAndBlock;
+import eatyourbeets.monsters.SharedMoveset_Old.Move_ShuffleDazed;
+import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_SummonEnemy;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.powers.UnnamedReign.TheUnnamedHatPower;
+import eatyourbeets.powers.monsters.TheUnnamedHatPower;
 import eatyourbeets.utilities.GameUtilities;
 
-public class TheUnnamed_Hat extends AnimatorMonster
+public class TheUnnamed_Hat extends EYBMonster
 {
     public static final String ID = CreateFullID(TheUnnamed_Hat.class);
 
@@ -79,7 +79,7 @@ public class TheUnnamed_Hat extends AnimatorMonster
     @Override
     protected void SetNextMove(int roll, int historySize, Byte previousMove)
     {
-        commonMoveset.GetNextMove(this).SetMove();
+        commonMoveset.GetNextMove(this).Select();
     }
 
     protected static class CommonMoveset
@@ -95,7 +95,7 @@ public class TheUnnamed_Hat extends AnimatorMonster
             moveOffset = AbstractDungeon.aiRng.random(100);
         }
 
-        public AbstractMove GetNextMove(TheUnnamed_Hat owner)
+        public EYBAbstractMove GetNextMove(TheUnnamed_Hat owner)
         {
             if (index < xPos.length)
             {
@@ -123,7 +123,7 @@ public class TheUnnamed_Hat extends AnimatorMonster
         }
     }
 
-    protected static class Data extends AbstractMonsterData
+    protected static class Data extends EYBMonsterData
     {
         public Data(String id)
         {

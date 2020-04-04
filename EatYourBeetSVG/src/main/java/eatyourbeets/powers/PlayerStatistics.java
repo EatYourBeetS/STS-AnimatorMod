@@ -72,6 +72,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     public static boolean LoadingPlayerSave;
 
     private static final Map<String, Object> combatData = new HashMap<>();
+    private static final Map<String, Object> turnData = new HashMap<>();
     private static final EffectHistory effectHistory = new EffectHistory();
     private static GameActionManager.Phase currentPhase;
     private static int turnDamageMultiplier = 0;
@@ -114,6 +115,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         CardGlowBorderPatches.overrideColor = null;
         Synergies.SetLastCardPlayed(null);
         combatData.clear();
+        turnData.clear();
         turnDamageMultiplier = 0;
         turnCount = 0;
         cardsDrawnThisTurn = 0;
@@ -296,6 +298,24 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         for (OnBeforeLoseBlockSubscriber s : onBeforeLoseBlock.GetSubscribers())
         {
             s.OnBeforeLoseBlock(creature, amount, noAnimation);
+        }
+    }
+
+    public static <T> T SetTurnData(String key, T data)
+    {
+        turnData.put(key, data);
+        return data;
+    }
+
+    public static <T> T GetTurnData(String key, T defaultData)
+    {
+        if (turnData.containsKey(key))
+        {
+            return (T)turnData.get(key);
+        }
+        else
+        {
+            return SetCombatData(key, defaultData);
         }
     }
 
@@ -503,17 +523,6 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         super.renderIcons(sb, x, y, c);
     }
 
-    //    @Override
-//    public void atEndOfRound()
-//    {
-//        super.atEndOfRound();
-//
-//        turnDamageMultiplier = 0;
-//        cardsExhaustedThisTurn = 0;
-//        synergiesThisTurn = 0;
-//        cardsDrawnThisTurn = 0;
-//    }
-
     @Override
     public void atEndOfTurn(boolean isPlayer)
     {
@@ -526,6 +535,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 
         EffectHistory.semiLimitedEffects.clear();
 
+        turnData.clear();
         turnDamageMultiplier = 0;
         cardsExhaustedThisTurn = 0;
         synergiesThisTurn = 0;

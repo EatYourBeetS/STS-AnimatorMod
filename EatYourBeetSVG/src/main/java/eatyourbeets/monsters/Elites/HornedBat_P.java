@@ -1,6 +1,9 @@
 package eatyourbeets.monsters.Elites;
 
 import com.megacrit.cardcrawl.cards.status.Dazed;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.common.TemporaryConfusionPower;
@@ -12,20 +15,45 @@ public class HornedBat_P extends HornedBat
 {
     public static final String ID = CreateFullID(HornedBat_P.class);
 
-    public HornedBat_P(CommonMoveset commonMoveset, float x, float y)
+    protected final EYBAbstractMove confusionMove;
+    protected final EYBAbstractMove strengthLossMove;
+
+    public HornedBat_P(float x, float y)
     {
         super(new Data(ID), x, y);
 
-        moveset.Special.ShuffleCard(new Dazed(), 1)
+        confusionMove = moveset.Special.ShuffleCard(new Dazed(), 1)
+        .SetOnSelect((m) -> TurnData.Get().UsedConfusion = true)
+        .SetCanUse((m, b) -> m.CanUseFallback(b) && !TurnData.Get().UsedConfusion)
         .SetOnUse((m, t) -> GameActions.Bottom.StackPower(new TemporaryConfusionPower(t)));
 
-        moveset.Special.StrongDebuff(PowerHelper.Strength, -1);
+        strengthLossMove = moveset.Special.StrongDebuff(PowerHelper.Strength, -1)
+        .SetOnSelect((m) -> TurnData.Get().UsedStrengthLoss = true)
+        .SetCanUse((m, b) -> m.CanUseFallback(b) && (!TurnData.Get().UsedStrengthLoss &&
+        GameUtilities.GetPowerAmount(AbstractDungeon.player, StrengthPower.POWER_ID) >= 0));
 
+        moveset.SetFindSpecialMove((roll) ->
+        {
+            if (moveHistory.size() >= 1 && strengthLossMove.CanUse(previousMove))
+            {
+                return strengthLossMove;
+            }
+            else if (roll < 25 && confusionMove.CanUse(previousMove))
+            {
+                return confusionMove;
+            }
+
+            return null;
+        });
+
+        //Rotation:
         moveset.Normal.ShuffleCard(new Dazed(), 1)
-        .SkipAnimation(true);
+        .SkipAnimation(true)
+        .SetIntent(Intent.DEFEND_DEBUFF)
+        .SetBlock(3);
 
-        moveset.Normal.AttackDebuff(4, PowerHelper.Frail, 1)
-        .SetDamageBonus(3, 2);
+        moveset.Normal.AttackDebuff(3, PowerHelper.Frail, 1)
+        .SetDamageBonus(3, 1);
     }
 
     @Override

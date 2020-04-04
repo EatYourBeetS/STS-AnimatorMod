@@ -60,7 +60,7 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
     }
 
     @Override
-    protected void SetNextMove(int roll, int historySize, Byte previousMove)
+    protected void SetNextMove(int roll, int historySize)
     {
         if (moveSummonEnemy.CanUse(previousMove))
         {
@@ -78,10 +78,10 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
             {
                 moveSummonEnemy.Select();
             }
-
-            return;
         }
-
-        super.SetNextMove(roll, historySize, previousMove);
+        else
+        {
+            super.SetNextMove(roll, historySize);
+        }
     }
 }

@@ -1,9 +1,10 @@
 package eatyourbeets.monsters.Elites;
 
-import com.megacrit.cardcrawl.cards.status.Dazed;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.powers.AngryPower;
 import eatyourbeets.monsters.EYBMonsterData;
+import eatyourbeets.monsters.SharedMoveset.EYBMove_Buff;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.common.TemporaryConfusionPower;
 import eatyourbeets.powers.monsters.HornedBat_RedPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -12,20 +13,20 @@ public class HornedBat_R extends HornedBat
 {
     public static final String ID = CreateFullID(HornedBat_R.class);
 
-    public HornedBat_R(CommonMoveset commonMoveset, float x, float y)
+    public HornedBat_R(float x, float y)
     {
         super(new Data(ID), x, y);
 
-        moveset.Special.ShuffleCard(new Dazed(), 1)
-        .SetOnUse((m, t) -> GameActions.Bottom.StackPower(new TemporaryConfusionPower(t)));
+        moveset.Normal.Attack(2, 3)
+        .SetAttackEffect(AbstractGameAction.AttackEffect.SLASH_DIAGONAL, null)
+        .SetDamageBonus(3, 1);
 
-        moveset.Special.StrongDebuff(PowerHelper.Strength, -1);
+        moveset.Normal.Add(new EYBMove_Buff(1))
+        .SetOnUse((m, t) -> GameActions.Bottom.StackPower(new AngryPower(this, 1)));
 
-        moveset.Normal.ShuffleCard(new Dazed(), 1)
-        .SkipAnimation(true);
-
-        moveset.Normal.AttackDebuff(4, PowerHelper.Frail, 1)
-        .SetDamageBonus(3, 2);
+        moveset.Normal.AttackBuff(1, 2, PowerHelper.Strength, 1)
+        .SetAttackEffect(AbstractGameAction.AttackEffect.SLASH_DIAGONAL, null)
+        .SetDamageBonus(3, 1);
     }
 
     @Override

@@ -78,41 +78,34 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
     }
 
     @Override
-    protected void SetNextMove(int roll, int historySize, Byte previousMove)
+    protected void SetNextMove(int roll, int historySize)
     {
-        if (historySize % 3 == 0 && TrySummon())
+        if (historySize % 3 == 0)
         {
-            return;
-        }
-
-        super.SetNextMove(roll, historySize, previousMove);
-    }
-
-    private boolean TrySummon()
-    {
-        if (firstSummon == null || firstSummon.isDeadOrEscaped())
-        {
-            firstSummon = pool1.Retrieve(AbstractDungeon.aiRng);
-            if (firstSummon != null)
+            if (firstSummon == null || firstSummon.isDeadOrEscaped())
             {
-                moveSummonEnemy.SetData(firstSummon);
-                moveSummonEnemy.Select();
-                return true;
+                firstSummon = pool1.Retrieve(AbstractDungeon.aiRng);
+                if (firstSummon != null)
+                {
+                    moveSummonEnemy.SetData(firstSummon);
+                    moveSummonEnemy.Select();
+                    return;
+                }
+            }
+
+            if (secondSummon == null || secondSummon.isDeadOrEscaped())
+            {
+                secondSummon = pool2.Retrieve(AbstractDungeon.aiRng);
+                if (secondSummon != null)
+                {
+                    moveSummonEnemy.SetData(secondSummon);
+                    moveSummonEnemy.Select();
+                    return;
+                }
             }
         }
 
-        if (secondSummon == null || secondSummon.isDeadOrEscaped())
-        {
-            secondSummon = pool2.Retrieve(AbstractDungeon.aiRng);
-            if (secondSummon != null)
-            {
-                moveSummonEnemy.SetData(secondSummon);
-                moveSummonEnemy.Select();
-                return true;
-            }
-        }
-
-        return false;
+        super.SetNextMove(roll, historySize);
     }
 
     private void PreparePool(int level)

@@ -88,9 +88,9 @@ public class EYBMovesCollection
         return Add(new EYBMove_DefendBuff(block, power, buff));
     }
 
-    public EYBMove_DefendBuff DefendDebuff(int block, PowerHelper power, int debuff)
+    public EYBMove_DefendDebuff DefendDebuff(int block, PowerHelper power, int debuff)
     {
-        return Add(new EYBMove_DefendBuff(block, power, debuff));
+        return Add(new EYBMove_DefendDebuff(block, power, debuff));
     }
 
     public EYBMove_Buff Buff(PowerHelper power, int amount)

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
@@ -35,6 +36,7 @@ public class KrulTepes extends EYBMonster
 
         moveset.Normal.DefendBuff(18, PowerHelper.Regen, 5)
         .AddPower(PowerHelper.Thorns, 1)
+        .SetCanUse((m, __) -> GameUtilities.GetPowerAmount(this, RegenPower.POWER_ID) <= 18)
         .SetMiscBonus(8, 1)
         .SetBlockScaling(0.2f);
 
@@ -52,9 +54,9 @@ public class KrulTepes extends EYBMonster
         .AddPower(PowerHelper.Frail, 2)
         .SetBlockScaling(0.15f);
 
-        moveset.Normal.Attack(3, 4)
+        moveset.Normal.Attack(3, 4).SetMisc(12)
         .SetIntent(Intent.ATTACK_BUFF)
-        .SetOnUse((m, t) -> GameActions.Bottom.Heal(this, this, t.lastDamageTaken));
+        .SetOnUse((m, t) -> GameActions.Bottom.Heal(this, this, m.misc.Calculate()));
 
         moveset.Normal.AttackDefend(18, 18)
         .SetDamageBonus(6, 3)

@@ -2,6 +2,7 @@ package eatyourbeets.monsters.Bosses;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -10,81 +11,112 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AngryPower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
+import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
+import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
+import eatyourbeets.actions.monsters.TheUnnamed_SummonDollAction;
+import eatyourbeets.actions.special.PlayTempBgmAction;
 import eatyourbeets.actions.special.SendMinionsAway;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
-import eatyourbeets.monsters.Bosses.TheUnnamedMoveset.*;
+import eatyourbeets.blights.animator.Doomed;
+import eatyourbeets.cards.animator.special.Respite;
+import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
+import eatyourbeets.monsters.SharedMoveset.EYBMove_Special;
+import eatyourbeets.monsters.SharedMoveset.EYBMove_Unknown;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.monsters.InfinitePower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.scenes.TheUnnamedReignScene;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.*;
 
 public class TheUnnamed extends EYBMonster
 {
     public static final String ID = CreateFullID(TheUnnamed.class);
     public static final String NAME = "The Unnamed";
 
-    private final Move_Fading moveFading;
-    private final Move_ScalingPoison movePoison;
-
-    private final InfinitePower infinitePower;
-
+    public final AbstractMonster[] minions = new AbstractMonster[3];
     public boolean appliedFading = false;
     public int minionsCount = 3;
-    public final AbstractMonster[] minions = new AbstractMonster[3];
+
+    private final RandomizedList<String> taunt = new RandomizedList<>();
+    private final EYBAbstractMove moveFading;
+    private final EYBAbstractMove movePoison;
+    private final EYBAbstractMove moveSummon;
+    private final EYBAbstractMove moveTaunt;
+    private final InfinitePower infinitePower;
+    private boolean triedUsingDeathNote;
 
     public TheUnnamed()
     {
         super(new Data(ID), EnemyType.BOSS);
 
         data.SetIdleAnimation(this, 1);
-
-        int poisonScaling;
-        int singleAttackDamage;
-        int multiAttackDamage;
-        if (GameUtilities.GetAscensionLevel() >= 4)
-        {
-            poisonScaling = 4;
-            singleAttackDamage = 34;
-            multiAttackDamage = 6;
-        }
-        else
-        {
-            poisonScaling = 3;
-            singleAttackDamage = 26;
-            multiAttackDamage = 6;
-        }
-
-        moveFading = moveset.AddSpecial(new Move_Fading(4));
-        movePoison = moveset.AddSpecial(new Move_ScalingPoison(1, poisonScaling));
-
-        moveset.AddSpecial(new Move_SummonDoll());
-
-        moveset.AddNormal(new Move_Taunt());
-        moveset.AddNormal(new Move_SingleAttack(singleAttackDamage));
-        moveset.AddNormal(new Move_MultiAttack(multiAttackDamage, 3));
-
         infinitePower = new InfinitePower(this);
+
+        moveFading = moveset.Special.Add(new EYBMove_Special()).SetMisc(4)
+        .SetCanUse((m, __) -> !AbstractDungeon.player.hasBlight(Doomed.ID))
+        .SetOnUse((m, t) ->
+        {
+            final int turns = m.misc.Calculate();
+            GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
+            GameActions.Bottom.VFX(new CollectorCurseEffect(t.hb.cX, t.hb.cY), 2f);
+            GameActions.Bottom.Callback(turns, (i, __) ->GameUtilities.ObtainBlight(hb.cX, hb.cY, new Doomed((int)i)));
+            GameActions.Bottom.Add(new PlayTempBgmAction("MINDBLOOM", 1));
+            AbstractDungeon.player.drawPile.addToTop(new Respite());
+        });
+
+        movePoison = moveset.Special.Add(new EYBMove_Unknown())
+        .SetMisc(3).SetData(1)
+        .SetMiscBonus(4, 1)
+        .SetIntent(Intent.STRONG_DEBUFF)
+        .SetOnUse((m, t) ->
+        {
+            final int poisonAmount = (int)m.data;
+            final int times = m.misc.Calculate();
+            for (int i = 0; i < times; i++)
+            {
+                GameActions.Bottom.VFX(new PotionBounceEffect(t.hb.cX + MathUtils.random(-5, 5),
+                t.hb.cY + MathUtils.random(-5, 5), t.hb.cX, t.hb.cY), 0.4f);
+                GameActions.Bottom.StackPower(this, new PoisonPower(t, this, poisonAmount));
+                GameActions.Bottom.WaitRealtime(0.1f);
+            }
+
+            m.data = (poisonAmount + 1);
+        });
+
+        moveSummon = moveset.Special.Add(new EYBMove_Unknown())
+        .SetOnUse((m, t) -> GameActions.Bottom.Add(new TheUnnamed_SummonDollAction(this)))
+        .SetCanUse((m, b) -> m.uses > 0)
+        .SetUses(3);
+
+        //Rotation:
+        moveset.Normal.Attack(26)
+        .SetDamageScaling(0.25f);
+
+        moveset.Normal.Attack(6, 3);
+
+        moveTaunt = moveset.Normal.Add(new EYBMove_Unknown())
+        .SetOnUse((m, t) -> RandomTaunt());
     }
 
     @Override
     public void die()
     {
-        if (!AbstractDungeon.getCurrRoom().cannotLose)
+        if (!infinitePower.phase2)
+        {
+            CardCrawlGame.startOver();
+        }
+        else if (!AbstractDungeon.getCurrRoom().cannotLose)
         {
             AbstractDungeon.getCurrRoom().cannotLose = true;
-
             GameEffects.List.Talk(this, data.strings.DIALOG[28], 1.2f);
 
             ChangeOverlayColor(new Color(1f, 1f, 1f, 0.3f));
@@ -110,11 +142,9 @@ public class TheUnnamed extends EYBMonster
             return;
         }
 
-        GameEffects.List.Talk(this, data.strings.DIALOG[30]);
-
-//      AbstractDungeon.aiRng.setCounter(AbstractDungeon.aiRng.counter + MathUtils.random(100));
-
         super.usePreBattleAction();
+
+        GameEffects.List.Talk(this, data.strings.DIALOG[30]);
 
         AbstractDungeon.getCurrRoom().rewardAllowed = false;
         AbstractDungeon.getCurrRoom().rewards.clear();
@@ -122,11 +152,12 @@ public class TheUnnamed extends EYBMonster
         if (AbstractDungeon.player.maxHealth > 400)
         {
             GameActions.Bottom.Talk(this, data.strings.DIALOG[1], 3, 4);
-            moveFading.fadingTurns = 3;
+            moveFading.SetMisc(3);
             moveFading.QueueActions(AbstractDungeon.player);
         }
         else
         {
+            CardCrawlGame.music.silenceTempBgmInstantly();
             CardCrawlGame.music.silenceBGM();
             AbstractDungeon.scene.fadeOutAmbiance();
             CardCrawlGame.music.playTempBgmInstantly("BOSS_ENDING", true);
@@ -148,7 +179,7 @@ public class TheUnnamed extends EYBMonster
     }
 
     @Override
-    protected void SetNextMove(int roll, int historySize, Byte previousMove)
+    protected void SetNextMove(int roll, int historySize)
     {
         if (!hasPower(InfinitePower.POWER_ID))
         {
@@ -164,22 +195,21 @@ public class TheUnnamed extends EYBMonster
 
         if (!infinitePower.phase2)
         {
-            Move_SummonDoll summonDoll = moveset.GetMove(Move_SummonDoll.class);
-            if (summonDoll.CanUse(previousMove))
+            if (moveSummon.CanUse(previousMove))
             {
-                summonDoll.Select();
+                moveSummon.Select();
                 return;
             }
         }
 
-        if (moveset.GetMove(previousMove) instanceof Move_Taunt)
+        if (moveTaunt.id == previousMove)
         {
             movePoison.Select();
 
             return;
         }
 
-        super.SetNextMove(roll, historySize, previousMove);
+        super.SetNextMove(roll, historySize);
     }
 
     @Override
@@ -220,7 +250,6 @@ public class TheUnnamed extends EYBMonster
 
         if (!this.isDeadOrEscaped())
         {
-            GameActions.Bottom.Talk(this, data.strings.DIALOG[0], 3, 3);
             GameActions.Bottom.Add(new SendMinionsAway())
             .AddCallback(minions ->
             {
@@ -228,14 +257,16 @@ public class TheUnnamed extends EYBMonster
                 int plated = (minions.size() >= 2) ? 24 : 18;
                 int angry  = (minions.size() >= 3) ? 6 : 4;
 
+                GameActions.Bottom.Talk(this, data.strings.DIALOG[0], 1.5f, 3);
                 GameActions.Bottom.StackPower(new RegenPower(this, regen));
                 GameActions.Bottom.StackPower(new AngryPower(this, angry));
                 GameActions.Bottom.StackPower(new PlatedArmorPower(this, plated));
                 GameActions.Bottom.StackPower(new EarthenThornsPower(this, 6));
             });
 
-            moveset.GetMove(Move_Taunt.class).disabled = true;
-            moveset.AddNormal(movePoison);
+            moveTaunt.disabled = true;
+            moveset.Normal.Add(movePoison);
+
             rollMove();
             createIntent();
         }
@@ -250,14 +281,29 @@ public class TheUnnamed extends EYBMonster
         }
     }
 
-    private boolean deathNoteMessage = false;
     public void TriedUsingDeathNote()
     {
-        if (!deathNoteMessage)
+        if (!triedUsingDeathNote)
         {
-            deathNoteMessage = true;
-            GameActions.Bottom.Talk(this, data.strings.DIALOG[2], 3, 3);
+            triedUsingDeathNote = true;
+            GameActions.Bottom.Talk(this, data.strings.DIALOG[2], 2, 3);
         }
+    }
+
+    private void RandomTaunt()
+    {
+        if (taunt.Size() == 0)
+        {
+            taunt.Add(data.strings.DIALOG[4]);
+            taunt.Add(data.strings.DIALOG[5]);
+            taunt.Add(data.strings.DIALOG[6]);
+            taunt.Add(data.strings.DIALOG[7]);
+            taunt.Add(data.strings.DIALOG[8]);
+            taunt.Add(data.strings.DIALOG[9]);
+            taunt.Add(data.strings.DIALOG[10]);
+        }
+
+        GameActions.Bottom.Talk(this, taunt.Retrieve(AbstractDungeon.aiRng), 0.8f, 2f);
     }
 
     public static class Data extends EYBMonsterData

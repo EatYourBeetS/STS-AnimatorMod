@@ -119,7 +119,7 @@ public class TheUnnamed_Doll extends EYBMonster
     }
 
     @Override
-    protected void SetNextMove(int roll, int historySize, Byte previousMove)
+    protected void SetNextMove(int roll, int historySize)
     {
         if (historySize >= 2 && ritualAndArtifactAll.CanUse(previousMove))
         {
@@ -131,7 +131,7 @@ public class TheUnnamed_Doll extends EYBMonster
         }
         else
         {
-            super.SetNextMove(roll, historySize, previousMove);
+            super.SetNextMove(roll, historySize);
         }
     }
 

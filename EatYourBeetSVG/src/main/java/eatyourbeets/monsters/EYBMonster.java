@@ -21,6 +21,8 @@ public abstract class EYBMonster extends CustomMonster
     public final EYBMoveset moveset = new EYBMoveset(this);
     public final EYBMonsterData data;
 
+    protected Byte previousMove = -1;
+
     public static String CreateFullID(Class<? extends EYBMonster> type)
     {
         return GR.Animator.CreateID(type.getSimpleName());
@@ -74,17 +76,16 @@ public abstract class EYBMonster extends CustomMonster
     @Override
     protected void getMove(int i)
     {
-        Byte previousMove = -1;
         int size = moveHistory.size();
         if (size > 0)
         {
             previousMove = moveHistory.get(size - 1);
         }
 
-        SetNextMove(i, size, previousMove);
+        SetNextMove(i, size);
     }
 
-    protected void SetNextMove(int roll, int historySize, Byte previousMove)
+    protected void SetNextMove(int roll, int historySize)
     {
         moveset.FindNextMove(roll, previousMove).Select();
     }

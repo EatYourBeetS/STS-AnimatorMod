@@ -75,7 +75,7 @@ public class TheUnnamed_Hat extends EYBMonster
     }
 
     @Override
-    protected void SetNextMove(int roll, int historySize, Byte previousMove)
+    protected void SetNextMove(int roll, int historySize)
     {
         commonMoveset.GetNextMove(this).Select();
     }

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.powers.PowerHelper;
@@ -42,6 +43,7 @@ public abstract class EYBAbstractMove
     public AbstractCreature.CreatureAnimation attackAnimation;
     public ActionT2<EYBAbstractMove, AbstractCreature> onUse;
     public FuncT2<Boolean, EYBAbstractMove, Byte> canUse;
+    public ActionT1<EYBAbstractMove> onSelect;
     public AbstractMonster.Intent intent;
     public PowerTarget powerTarget = PowerTarget.Source;
     public AbstractMonster owner;
@@ -66,9 +68,14 @@ public abstract class EYBAbstractMove
         return Math.round(base * percentage * (ascensionLevel / 20f));
     }
 
+    public boolean CanUseFallback(Byte previousMove)
+    {
+        return !disabled && previousMove != id && uses != 0;
+    }
+
     public boolean CanUse(Byte previousMove)
     {
-        return canUse != null ? canUse.Invoke(this, previousMove) : (!disabled && previousMove != id && uses != 0);
+        return canUse != null ? canUse.Invoke(this, previousMove) : CanUseFallback(previousMove);
     }
 
     public void Execute(AbstractPlayer target)
@@ -159,6 +166,11 @@ public abstract class EYBAbstractMove
         else
         {
             owner.setMove(name, id, intent);
+        }
+
+        if (onSelect != null)
+        {
+            onSelect.Invoke(this);
         }
     }
 
@@ -255,6 +267,14 @@ public abstract class EYBAbstractMove
         return this;
     }
 
+    public EYBAbstractMove SetAttackEffect(AbstractGameAction.AttackEffect attackEffect, AbstractCreature.CreatureAnimation attackAnimation)
+    {
+        this.attackEffect = attackEffect;
+        this.attackAnimation = attackAnimation;
+
+        return this;
+    }
+
     public EYBAbstractMove SetDamage(int damage, int multiplier)
     {
         this.damage = new MoveAttribute(damage);
@@ -286,14 +306,6 @@ public abstract class EYBAbstractMove
         return this;
     }
 
-    public EYBAbstractMove SetDamageEffect(AbstractGameAction.AttackEffect attackEffect, AbstractCreature.CreatureAnimation attackAnimation)
-    {
-        this.attackEffect = attackEffect;
-        this.attackAnimation = attackAnimation;
-
-        return this;
-    }
-
     public EYBAbstractMove SetDisabled(boolean disabled)
     {
         this.disabled = disabled;
@@ -304,6 +316,13 @@ public abstract class EYBAbstractMove
     public EYBAbstractMove SetIntent(AbstractMonster.Intent intent)
     {
         this.intent = intent;
+
+        return this;
+    }
+
+    public EYBAbstractMove SetOnSelect(ActionT1<EYBAbstractMove> onSelect)
+    {
+        this.onSelect = onSelect;
 
         return this;
     }

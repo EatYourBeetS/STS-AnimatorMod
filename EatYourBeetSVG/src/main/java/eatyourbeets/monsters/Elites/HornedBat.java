@@ -1,12 +1,10 @@
 package eatyourbeets.monsters.Elites;
 
 import com.badlogic.gdx.math.Vector2;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import eatyourbeets.monsters.EYBMonsterData;
-import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMonster;
+import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.PlayerFlightPower;
 import eatyourbeets.utilities.GameActions;
@@ -16,9 +14,9 @@ import java.util.List;
 
 public abstract class HornedBat extends EYBMonster
 {
-    protected final static List<Vector2> positions = new ArrayList<>();
-
     public static final String ID = CreateFullID(HornedBat.class);
+
+    protected final static List<Vector2> positions = new ArrayList<>();
 
     public static MonsterGroup CreateMonsterGroup()
     {
@@ -32,25 +30,12 @@ public abstract class HornedBat extends EYBMonster
             positions.add(new Vector2(x-=170, 3));
         }
 
-        final CommonMoveset commonMoveset = new CommonMoveset();
         final AbstractMonster[] m = new AbstractMonster[positions.size()];
-        if (AbstractDungeon.miscRng == null || AbstractDungeon.miscRng.random.nextBoolean())
-        {
-            m[0] = new HornedBat_P(commonMoveset, positions.get(0).x, positions.get(0).y);
-            m[1] = new HornedBat_R(commonMoveset, positions.get(1).x, positions.get(1).y);
-            m[2] = new HornedBat_P(commonMoveset, positions.get(2).x, positions.get(2).y);
-            m[3] = new HornedBat_R(commonMoveset, positions.get(3).x, positions.get(3).y);
-            m[4] = new HornedBat_P(commonMoveset, positions.get(4).x, positions.get(4).y);
-        }
-        else
-        {
-            m[0] = new HornedBat_R(commonMoveset, positions.get(0).x, positions.get(0).y);
-            m[1] = new HornedBat_P(commonMoveset, positions.get(1).x, positions.get(1).y);
-            m[2] = new HornedBat_R(commonMoveset, positions.get(2).x, positions.get(2).y);
-            m[3] = new HornedBat_P(commonMoveset, positions.get(3).x, positions.get(3).y);
-            m[4] = new HornedBat_R(commonMoveset, positions.get(4).x, positions.get(4).y);
-        }
-
+        m[0] = new HornedBat_R(positions.get(0).x, positions.get(0).y);
+        m[1] = new HornedBat_P(positions.get(1).x, positions.get(1).y);
+        m[2] = new HornedBat_R(positions.get(2).x, positions.get(2).y);
+        m[3] = new HornedBat_P(positions.get(3).x, positions.get(3).y);
+        m[4] = new HornedBat_R(positions.get(4).x, positions.get(4).y);
         return new MonsterGroup(m);
     }
 
@@ -69,21 +54,21 @@ public abstract class HornedBat extends EYBMonster
         GameActions.Bottom.StackPower(new PlayerFlightPower(this, 5));
     }
 
-    protected static class CommonMoveset
+    protected static class TurnData
     {
-        protected int moveOffset;
-        protected int index = 0;
+        public boolean UsedStrengthLoss;
+        public boolean UsedConfusion;
+        public int TotalAttacks;
 
-        public CommonMoveset()
+        public static TurnData Get()
         {
-            moveOffset = AbstractDungeon.aiRng.random(100);
-        }
+            TurnData data = PlayerStatistics.GetTurnData(HornedBat.ID, null);
+            if (data == null)
+            {
+                return PlayerStatistics.SetTurnData(HornedBat.ID, new TurnData());
+            }
 
-        public EYBAbstractMove GetNextMove(HornedBat owner)
-        {
-            int offset = PlayerStatistics.TurnCount() + moveOffset;
-
-            return owner.moveset.Normal.rotation.get(offset % owner.moveset.Normal.rotation.size());
+            return data;
         }
     }
 }

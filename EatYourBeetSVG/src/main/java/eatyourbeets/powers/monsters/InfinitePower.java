@@ -105,8 +105,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         if (doomed != null && doomed.counter <= 1 && !linesUsed.contains(34))
         {
             linesUsed.add(34);
-            GameActions.Bottom.Talk(owner, dialog[34], 2f, 2f);
-            GameActions.Bottom.WaitRealtime(1f);
+            GameActions.Bottom.Talk(owner, dialog[34], 1.5f, 2f);
         }
 
         if (enchantedArmorPower.amount > 0)
@@ -247,7 +246,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
             {
                 timeMaze.counter = cardsPlayed;
 
-                GameActions.Bottom.Talk(owner, dialog[3], 3, 4);
+                GameActions.Bottom.Talk(owner, dialog[3], 2.5f, 4);
                 GameEffects.Queue.Add(new PowerIconShowEffect(this));
                 GameUtilities.ObtainBlight(owner.hb.cX, owner.hb.cY, timeMaze);
             }

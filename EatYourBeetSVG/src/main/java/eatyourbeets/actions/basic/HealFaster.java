@@ -30,6 +30,12 @@ public class HealFaster extends EYBAction
     @Override
     protected void FirstUpdate()
     {
+        if (amount <= 0)
+        {
+            Complete();
+            return;
+        }
+
         this.target.heal(this.amount, false);
 
         if (showEffect)

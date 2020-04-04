@@ -7,22 +7,22 @@ import com.megacrit.cardcrawl.monsters.city.Byrd;
 import com.megacrit.cardcrawl.monsters.city.ShelledParasite;
 import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
 import com.megacrit.cardcrawl.monsters.exordium.Sentry;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_GainPlatedArmorAll;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_GainStrengthAndBlockAll;
+import eatyourbeets.actions.monsters.SummonMonsterAction;
+import eatyourbeets.monsters.EYBAbstractMove;
+import eatyourbeets.monsters.SharedMoveset.EYBMove_Unknown;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Cube.DarkCube;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
-import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.Moveset.Move_SummonEnemy;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.TheUnnamedCultistPower;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.*;
 
 public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
 {
-    public final RandomizedList<AbstractMonster> pool1 = new RandomizedList<>();
-    public final RandomizedList<AbstractMonster> pool2 = new RandomizedList<>();
-    public AbstractMonster firstSummon;
-    public AbstractMonster secondSummon;
+    protected final RandomizedList<AbstractMonster> pool1 = new RandomizedList<>();
+    protected final RandomizedList<AbstractMonster> pool2 = new RandomizedList<>();
+    protected final EYBAbstractMove moveSummonEnemy;
+    protected AbstractMonster firstSummon;
+    protected AbstractMonster secondSummon;
 
     public TheUnnamed_Cultist_Single(float x, float y)
     {
@@ -30,15 +30,38 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
 
         PreparePool(GameUtilities.GetAscensionLevel());
 
-        moveset.AddSpecial(new Move_SummonEnemy());
+        moveSummonEnemy = moveset.Special.Add(new EYBMove_Unknown()
+        .SetOnUse((m, t) ->
+        {
+            AbstractMonster summon = JavaUtilities.SafeCast(m.data, AbstractMonster.class);
+            if (summon != null)
+            {
+                if (summon.id.equals(ShelledParasite.ID))
+                {
+                    GameActions.Bottom.Talk(this, STRINGS.DIALOG[4], 2f, 3f);
+                }
+                else if (summon.id.equals(GremlinWarrior.ID))
+                {
+                    GameActions.Bottom.Talk(this, STRINGS.DIALOG[3], 2f, 3f);
+                }
+                else
+                {
+                    GameActions.Bottom.Talk(this, JavaUtilities.Format(STRINGS.DIALOG[2], summon.name), 2f, 3f);
+                }
 
-        boolean asc4 = GameUtilities.GetAscensionLevel() >= 4;
+                GameActions.Bottom.Add(new SummonMonsterAction(summon, false));
+            }
+        }));
 
-        int strengthGain = asc4 ? 4 : 3;
-        int platedArmor = asc4 ? 5 : 4;
+        //Rotation:
+        moveset.Normal.Buff(PowerHelper.PlatedArmor, 4)
+        .SetPowerTarget(PowerTarget.Enemies)
+        .SetMiscBonus(4, 1);
 
-        moveset.AddNormal(new Move_GainPlatedArmorAll(platedArmor));
-        moveset.AddNormal(new Move_GainStrengthAndBlockAll(strengthGain, 8));
+        moveset.Normal.DefendBuff(8, PowerHelper.Strength, 3)
+        .SetPowerTarget(PowerTarget.Enemies)
+        .SetMiscBonus(4, 1)
+        .SetBlockAoE(true);
 
         moveset.Normal.AttackDefend(12, 12)
         .SetDamageScaling(0.25f)
@@ -51,7 +74,7 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
         super.usePreBattleAction();
 
         GameActions.Bottom.StackPower(new TheUnnamedCultistPower(this, 15));
-        GameActions.Bottom.Talk(this, data.strings.DIALOG[10], 1f, 3f);
+        GameActions.Bottom.Talk(this, STRINGS.DIALOG[10], 1f, 3f);
     }
 
     @Override
@@ -72,8 +95,7 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
             firstSummon = pool1.Retrieve(AbstractDungeon.aiRng);
             if (firstSummon != null)
             {
-                Move_SummonEnemy moveSummonEnemy = moveset.GetMove(Move_SummonEnemy.class);
-                moveSummonEnemy.SetSummon(firstSummon);
+                moveSummonEnemy.SetData(firstSummon);
                 moveSummonEnemy.Select();
                 return true;
             }
@@ -84,8 +106,7 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
             secondSummon = pool2.Retrieve(AbstractDungeon.aiRng);
             if (secondSummon != null)
             {
-                Move_SummonEnemy moveSummonEnemy = moveset.GetMove(Move_SummonEnemy.class);
-                moveSummonEnemy.SetSummon(secondSummon);
+                moveSummonEnemy.SetData(secondSummon);
                 moveSummonEnemy.Select();
                 return true;
             }
@@ -117,7 +138,7 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
         m.currentHealth = m.maxHealth += 20 + level / 2;
         pool2.Add(m);
 
-        if (GameUtilities.GetActualAscensionLevel() >= 20)
+        if (level >= 20)
         {
             m = new DarkCube(MonsterTier.Normal, -330, 2);
             m.currentHealth = m.maxHealth += -30 + level / 2;

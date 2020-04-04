@@ -1,19 +1,25 @@
 package eatyourbeets.monsters.Bosses;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
+import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
+import eatyourbeets.monsters.EYBMonster;
+import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.EYBMoveset;
+import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.relics.animator.ExquisiteBloodVial;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.EYBMonster;
-import eatyourbeets.monsters.Bosses.KrulTepesMoveset.*;
-import eatyourbeets.monsters.EYBMonsterData;
-import eatyourbeets.relics.animator.ExquisiteBloodVial;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class KrulTepes extends EYBMonster
 {
@@ -27,12 +33,32 @@ public class KrulTepes extends EYBMonster
 
         moveset.mode = EYBMoveset.Mode.Sequential;
 
-        moveset.AddNormal(new Move_Regenerate());
-        moveset.AddNormal(new Move_Bite());
-        moveset.AddNormal(new Move_PowerUp());
-        moveset.AddNormal(new Move_Cripple());
-        moveset.AddNormal(new Move_MultiSlash());
-        moveset.AddNormal(new Move_GuardedAttack());
+        moveset.Normal.DefendBuff(18, PowerHelper.Regen, 5)
+        .AddPower(PowerHelper.Thorns, 1)
+        .SetMiscBonus(8, 1)
+        .SetBlockScaling(0.2f);
+
+        moveset.Normal.AttackDebuff(24, PowerHelper.Weak, 2)
+        .SetOnUse((m, t) -> GameEffects.List.Add(new BiteEffect(t.hb.cX, t.hb.cY - 40f * Settings.scale, Color.SCARLET.cpy())))
+        .SetDamageScaling(0.15f);
+
+        moveset.Normal.Buff(PowerHelper.Strength, 3)
+        .SetCanUse((m, __) -> GameUtilities.GetPowerAmount(this, StrengthPower.POWER_ID) <= 9)
+        .AddPower(PowerHelper.Artifact, 1);
+
+        moveset.Normal.DefendDebuff(16, PowerHelper.Weak, 2)
+        .SetMiscBonus(8, 1)
+        .AddPower(PowerHelper.Vulnerable, 2)
+        .AddPower(PowerHelper.Frail, 2)
+        .SetBlockScaling(0.15f);
+
+        moveset.Normal.Attack(3, 4)
+        .SetIntent(Intent.ATTACK_BUFF)
+        .SetOnUse((m, t) -> GameActions.Bottom.Heal(this, this, t.lastDamageTaken));
+
+        moveset.Normal.AttackDefend(18, 18)
+        .SetDamageBonus(6, 3)
+        .SetBlockBonus(6, 3);
     }
 
     @Override

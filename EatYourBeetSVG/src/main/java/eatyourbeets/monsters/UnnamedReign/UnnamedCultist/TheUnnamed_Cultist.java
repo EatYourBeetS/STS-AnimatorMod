@@ -3,13 +3,13 @@ package eatyourbeets.monsters.UnnamedReign.UnnamedCultist;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
-import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 
 public abstract class TheUnnamed_Cultist extends EYBMonster
 {
     public static final String ID = CreateFullID(TheUnnamed_Cultist.class);
-    public static final MonsterStrings STRINGS = AnimatorResources.GetMonsterStrings(ID);
+    public static final MonsterStrings STRINGS = GR.GetMonsterStrings(ID);
 
     public TheUnnamed_Cultist(float x, float y)
     {
@@ -29,7 +29,7 @@ public abstract class TheUnnamed_Cultist extends EYBMonster
             atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamedCultist.atlas";
             imgUrl = null;
 
-            if (GameUtilities.GetAscensionLevel() > 7)
+            if (GameUtilities.GetAscensionLevel() >= 8)
             {
                 maxHealth = 222;
             }

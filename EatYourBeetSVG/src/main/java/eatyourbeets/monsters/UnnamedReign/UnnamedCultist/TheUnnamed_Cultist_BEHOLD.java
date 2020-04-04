@@ -29,7 +29,7 @@ public class TheUnnamed_Cultist_BEHOLD extends TheUnnamed_Cultist
         CardCrawlGame.music.silenceBGM();
 
         GameActions.Bottom.WaitRealtime(1f);
-        GameActions.Bottom.Talk(this, data.strings.DIALOG[0], 0.5f, 2f);
+        GameActions.Bottom.Talk(this, STRINGS.DIALOG[0], 0.5f, 2f);
         GameActions.Bottom.WaitRealtime(2f);
         GameActions.Bottom.Add(new EscapeAction(this));
         GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.1f);

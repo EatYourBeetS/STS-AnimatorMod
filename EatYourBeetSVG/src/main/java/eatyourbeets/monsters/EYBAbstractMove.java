@@ -2,17 +2,18 @@ package eatyourbeets.monsters;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.ActionT2;
-import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.utilities.PowerTarget;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.PowerTarget;
 
 import java.util.ArrayList;
 
@@ -40,15 +41,16 @@ public abstract class EYBAbstractMove
     public AbstractGameAction.AttackEffect attackEffect;
     public AbstractCreature.CreatureAnimation attackAnimation;
     public ActionT2<EYBAbstractMove, AbstractCreature> onUse;
-    public FuncT1<Boolean, EYBAbstractMove> canUse;
+    public FuncT2<Boolean, EYBAbstractMove, Byte> canUse;
     public AbstractMonster.Intent intent;
     public PowerTarget powerTarget = PowerTarget.Source;
     public AbstractMonster owner;
     public DamageInfo damageInfo;
     public boolean disabled;
-    public boolean isAoE;
     public int damageMultiplier;
+    public boolean shieldAll;
     public int uses = -1;
+    public Object data;
 
     public MoveAttribute damage;
     public MoveAttribute block;
@@ -66,7 +68,7 @@ public abstract class EYBAbstractMove
 
     public boolean CanUse(Byte previousMove)
     {
-        return canUse != null ? canUse.Invoke(this) : (!disabled && previousMove != id && uses != 0);
+        return canUse != null ? canUse.Invoke(this, previousMove) : (!disabled && previousMove != id && uses != 0);
     }
 
     public void Execute(AbstractPlayer target)
@@ -99,7 +101,19 @@ public abstract class EYBAbstractMove
     {
         if (block != null)
         {
-            GameActions.Bottom.GainBlock(owner, block.Calculate());
+            block.Calculate();
+
+            if (shieldAll)
+            {
+                for (AbstractMonster e : GameUtilities.GetAllEnemies(true))
+                {
+                    GameActions.Bottom.Add(new GainBlockAction(e, owner, block.amount, true));
+                }
+            }
+            else
+            {
+                GameActions.Bottom.GainBlock(owner, block.amount);
+            }
         }
 
         if (damageInfo != null)
@@ -148,9 +162,16 @@ public abstract class EYBAbstractMove
         }
     }
 
-    public EYBAbstractMove SetCanUse(FuncT1<Boolean, EYBAbstractMove> canUse)
+    public EYBAbstractMove SetCanUse(FuncT2<Boolean, EYBAbstractMove, Byte> canUse)
     {
         this.canUse = canUse;
+
+        return this;
+    }
+
+    public EYBAbstractMove SetData(Object data)
+    {
+        this.data = data;
 
         return this;
     }
@@ -179,6 +200,13 @@ public abstract class EYBAbstractMove
     public EYBAbstractMove AddPower(PowerHelper power, PowerTarget powerTarget, int amount)
     {
         this.powerTemplates.add(new PowerTemplate(power, powerTarget, amount));
+
+        return this;
+    }
+
+    public EYBAbstractMove SetBlockAoE(boolean shieldAll)
+    {
+        this.shieldAll = shieldAll;
 
         return this;
     }

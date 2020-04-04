@@ -44,7 +44,7 @@ public abstract class EYBMonster extends CustomMonster
     {
         UnnamedEnemyGroup.RegisterMonsterGroups();
         BaseMod.addMonster(KrulTepes.ID, KrulTepes::new);
-        BaseMod.addMonster(HornedBat.ID, HornedBat::CreateMonsterGroup);
+        //BaseMod.addMonster(HornedBat.ID, HornedBat::CreateMonsterGroup);
 
         Encounters.add(new EYBMonsterInfo(TheCity.ID, EnemyType.ELITE, HornedBat.ID, 0.8f));
     }

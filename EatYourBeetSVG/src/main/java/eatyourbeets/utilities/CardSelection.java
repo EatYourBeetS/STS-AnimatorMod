@@ -80,7 +80,7 @@ public abstract class CardSelection
         {
             AbstractCard card = null;
             int position = index + shift;
-            if (position > 0 && position < list.size())
+            if (position >= 0 && position < list.size())
             {
                 card = list.get(position);
                 if (remove)
@@ -115,7 +115,7 @@ public abstract class CardSelection
         {
             AbstractCard card = null;
             int position = list.size() - 1 - index - shift;
-            if (position > 0 && position < list.size())
+            if (position >= 0 && position < list.size())
             {
                 card = list.get(position);
                 if (remove)

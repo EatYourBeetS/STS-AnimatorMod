@@ -747,7 +747,7 @@
 		},
 		"animator:Shichika":
 		{
-			"DESCRIPTION": "Gain/Boost [F] [A]. ** Add {Kyotouryuu} ** to your hand.",
+			"DESCRIPTION": "Gain/Boost [F] [A]. || Add {Kyotouryuu} ** to your hand.",
 			"NAME": "Shichika"
 		},
 		"animator:Togame":
@@ -1027,7 +1027,7 @@
 		},
 		"animator:FeridBathory":
 		{
-			"DESCRIPTION": "Whenever a card is Exhausted, ** steal !M! HP from a random ** enemy as {Temp. HP}. || <LIM>. At the start of turn, if ** you have 20 or more cards in ** Exhaust pile, gain !S! <FOR>.",
+			"DESCRIPTION": "Whenever a card is Exhausted: ** Steal !M! HP from a random ** enemy as {Temp. HP}. || <LIM>. At the start of turn, ** if you have 20 or more cards ** in Exhaust pile: Gain !S! [F].",
 			"NAME": "Ferid Bathory"
 		},
 		"animator:Guren":

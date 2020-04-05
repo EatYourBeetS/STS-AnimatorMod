@@ -50,6 +50,7 @@ public class HornedBat_P extends HornedBat
         moveset.Normal.ShuffleCard(new Dazed(), 1)
         .SkipAnimation(true)
         .SetIntent(Intent.DEFEND_DEBUFF)
+        .SetMiscBonus(8, 1)
         .SetBlock(3);
 
         moveset.Normal.AttackDebuff(3, PowerHelper.Frail, 1)

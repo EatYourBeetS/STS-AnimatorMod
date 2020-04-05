@@ -8,7 +8,7 @@
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "回合开始时， 失去 #b1 点 #y机敏。 如果您达到 #b3, #b5, #b7, #b9 点 #y机敏， 则获得 #b1 点 #y机敏。",
+		"DESCRIPTION": "回合开始时， 失去 #b1 点 #y机敏。 如果您达到 #b2, #b4, #b6, #b8 点 #y机敏， 则获得 #b1 点 #y机敏。",
 		"NAMES": ["机敏"],
 		"PROPER_NAME": "机敏"
 	},
@@ -92,7 +92,7 @@
 	},
 	"Force":
 	{
-		"DESCRIPTION": "回合开始时， 失去 #b1 点 #y武力。 如果您达到 #b3, #b5, #b7, #b9 点 #y武力， 则获得 #b1 点 #y力量。",
+		"DESCRIPTION": "回合开始时， 失去 #b1 点 #y武力。 如果您达到 #b2, #b4, #b6, #b8 点 #y武力， 则获得 #b1 点 #y力量。",
 		"NAMES": ["武力"],
 		"PROPER_NAME": "武力"
 	},
@@ -104,7 +104,7 @@
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "回合开始时， 失去 #b1 点 #y智力。 如果您达到 #b3, #b5, #b7, #b9 点 #y智力， 则获得 #b1 点 #y集中。",
+		"DESCRIPTION": "回合开始时， 失去 #b1 点 #y智力。 如果您达到 #b2, #b4, #b6, #b8 点 #y智力， 则获得 #b1 点 #y集中。",
 		"NAMES": ["智力"],
 		"PROPER_NAME": "智力"
 	},
@@ -218,7 +218,7 @@
 	},
 	"~Ranged":
 	{
-		"DESCRIPTION": "无视 #y荆棘 。",
+		"DESCRIPTION": "无视 #y荆棘 和 #y飞行。",
 		"NAMES": ["~远程"],
 		"PROPER_NAME": "远程伤害"
 	},

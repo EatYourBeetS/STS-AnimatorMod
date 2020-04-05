@@ -844,7 +844,7 @@
 	{
 		"animator:ChlammyZell":
 		{
-			"DESCRIPTION": "Draw 2 cards. Next turn, ** draw !M! additional card(s). || <LIM>. If you reached ** 3 [I] this combat: Add a ** {Scheme} to your hand.",
+			"DESCRIPTION": "Draw 2 cards. Next turn, ** draw !M! additional card(s). || <LIM>. If you reached ** !S! [I] this combat: Add a ** {Scheme} to your hand.",
 			"NAME": "Kurami"
 		},
 		"animator:DolaCouronne":

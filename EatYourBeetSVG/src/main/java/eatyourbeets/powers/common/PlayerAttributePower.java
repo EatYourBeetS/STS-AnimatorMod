@@ -26,7 +26,7 @@ public abstract class PlayerAttributePower extends CommonPower
         super(owner, powerID);
 
         this.amount = amount;
-        this.threshold = 3;
+        this.threshold = 2;
 
         updateDescription();
     }
@@ -104,10 +104,10 @@ public abstract class PlayerAttributePower extends CommonPower
         switch (threshold)
         {
             case 0: return 0;
-            case 3: return 1;
-            case 5: return 2;
-            case 7: return 3;
-            case 9: return 4;
+            case 2: return 1;
+            case 4: return 2;
+            case 6: return 3;
+            case 8: return 4;
             default: return 5;
         }
     }
@@ -115,22 +115,22 @@ public abstract class PlayerAttributePower extends CommonPower
     protected void UpdateThreshold()
     {
         int powerGain = 0;
-        if (threshold == 3 && amount >= threshold)
+        if (threshold == 2 && amount >= threshold)
         {
             OnThresholdReached();
-            threshold = 5;
+            threshold = 4;
         }
-        if (threshold == 5 && amount >= threshold)
+        if (threshold == 4 && amount >= threshold)
         {
             OnThresholdReached();
-            threshold = 7;
+            threshold = 6;
         }
-        if (threshold == 7 && amount >= threshold)
+        if (threshold == 6 && amount >= threshold)
         {
             OnThresholdReached();
-            threshold = 9;
+            threshold = 8;
         }
-        if (threshold == 9 && amount >= threshold)
+        if (threshold == 8 && amount >= threshold)
         {
             OnThresholdReached();
             threshold = -1;

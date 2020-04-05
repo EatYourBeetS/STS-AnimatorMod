@@ -8,12 +8,14 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.FlightPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
+import eatyourbeets.powers.common.PlayerFlightPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 
@@ -636,6 +638,20 @@ public abstract class EYBCard extends EYBCardBase
             {
                 tempDamage *= 1.3f;
             }
+            else if (attackType == EYBAttackType.Ranged && (enemy.hasPower(FlightPower.POWER_ID) || enemy.hasPower(PlayerFlightPower.POWER_ID)))
+            {
+                for (AbstractPower power : enemy.powers)
+                {
+                    if (FlightPower.POWER_ID.equals(power.ID) || PlayerFlightPower.POWER_ID.equals(power.ID))
+                    {
+                        tempDamage *= 2f;
+                    }
+//                  else if (LockOnPower.POWER_ID.equals(power.ID))
+//                  {
+//                      tempDamage *= 1.3f;
+//                  }
+                }
+            }
 
             for (AbstractPower p : enemy.powers)
             {
@@ -643,7 +659,7 @@ public abstract class EYBCard extends EYBCardBase
             }
         }
 
-        tempDamage = player.stance.atDamageGive(tempDamage, this.damageTypeForTurn, this);
+        tempDamage = player.stance.atDamageGive(tempDamage, damageTypeForTurn, this);
 
         for (AbstractPower p : player.powers)
         {

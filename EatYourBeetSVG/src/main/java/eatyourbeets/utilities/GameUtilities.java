@@ -51,21 +51,24 @@ public class GameUtilities
     public static boolean CanApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower powerToApply)
     {
         boolean canApply = true;
-        for (AbstractPower power : target.powers)
+        if (target != null)
         {
-            if (power instanceof OnTryApplyPowerSubscriber)
-            {
-                canApply &= ((OnTryApplyPowerSubscriber) power).TryApplyPower(powerToApply, target, source);
-            }
-        }
-
-        if (canApply && target != source && source != null)
-        {
-            for (AbstractPower power : source.powers)
+            for (AbstractPower power : target.powers)
             {
                 if (power instanceof OnTryApplyPowerSubscriber)
                 {
                     canApply &= ((OnTryApplyPowerSubscriber) power).TryApplyPower(powerToApply, target, source);
+                }
+            }
+
+            if (canApply && target != source && source != null)
+            {
+                for (AbstractPower power : source.powers)
+                {
+                    if (power instanceof OnTryApplyPowerSubscriber)
+                    {
+                        canApply &= ((OnTryApplyPowerSubscriber) power).TryApplyPower(powerToApply, target, source);
+                    }
                 }
             }
         }

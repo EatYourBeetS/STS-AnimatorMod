@@ -17,7 +17,7 @@ public class HornedBat_R extends HornedBat
     {
         super(new Data(ID), x, y);
 
-        moveset.Normal.Attack(2, 3)
+        moveset.Normal.Attack(1, 3)
         .SetAttackEffect(AbstractGameAction.AttackEffect.SLASH_DIAGONAL, null)
         .SetDamageBonus(3, 1);
 
@@ -25,8 +25,7 @@ public class HornedBat_R extends HornedBat
         .SetOnUse((m, t) -> GameActions.Bottom.StackPower(new AngryPower(this, 1)));
 
         moveset.Normal.AttackBuff(1, 2, PowerHelper.Strength, 1)
-        .SetAttackEffect(AbstractGameAction.AttackEffect.SLASH_DIAGONAL, null)
-        .SetDamageBonus(3, 1);
+        .SetAttackEffect(AbstractGameAction.AttackEffect.SLASH_VERTICAL, null);
     }
 
     @Override

@@ -40,6 +40,8 @@ public class EYBMove_ShuffleCard extends EYBMove_Debuff
 
     public void QueueActions(AbstractCreature target)
     {
+        super.QueueActions(target);
+
         GameActions.Bottom.SFX("THUNDERCLAP");
 
         if (!skipAnimation)

@@ -23,19 +23,19 @@ public abstract class HornedBat extends EYBMonster
         if (positions.isEmpty())
         {
             int x;
-            positions.add(new Vector2(x =170, 2));
-            positions.add(new Vector2(x-=170, -49));
-            positions.add(new Vector2(x-=170, 4));
-            positions.add(new Vector2(x-=170, -51));
-            positions.add(new Vector2(x-=170, 3));
+            positions.add(new Vector2(x =215, 2));
+            positions.add(new Vector2(x-=185, -49));
+            positions.add(new Vector2(x-=185, 4));
+            positions.add(new Vector2(x-=185, -51));
+            positions.add(new Vector2(x-=185, 3));
         }
 
         final AbstractMonster[] m = new AbstractMonster[positions.size()];
-        m[0] = new HornedBat_R(positions.get(0).x, positions.get(0).y);
-        m[1] = new HornedBat_P(positions.get(1).x, positions.get(1).y);
+        m[0] = new HornedBat_R(positions.get(4).x, positions.get(4).y);
+        m[1] = new HornedBat_P(positions.get(3).x, positions.get(3).y);
         m[2] = new HornedBat_R(positions.get(2).x, positions.get(2).y);
-        m[3] = new HornedBat_P(positions.get(3).x, positions.get(3).y);
-        m[4] = new HornedBat_R(positions.get(4).x, positions.get(4).y);
+        m[3] = new HornedBat_P(positions.get(1).x, positions.get(1).y);
+        m[4] = new HornedBat_R(positions.get(0).x, positions.get(0).y);
         return new MonsterGroup(m);
     }
 

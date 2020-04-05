@@ -8,7 +8,7 @@
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "回合開始時， 失去 #b1 點 #y機敏。如果您達到 #b3, #b5, #b7, #b9 點 #y機敏， 則獲得 #b1 點 #y敏捷 。",
+		"DESCRIPTION": "回合開始時， 失去 #b1 點 #y機敏。如果您達到 #b2, #b4, #b6, #b8 點 #y機敏， 則獲得 #b1 點 #y敏捷 。",
 		"NAMES": ["機敏"],
 		"PROPER_NAME": "機敏"
 	},
@@ -92,7 +92,7 @@
 	},
 	"Force":
 	{
-		"DESCRIPTION": "回合開始時， 失去 #b1 點 #y武力。如果您達到 #b3, #b5, #b7, #b9 點 #y武力， 則獲得 #b1 點 #y力量 。",
+		"DESCRIPTION": "回合開始時， 失去 #b1 點 #y武力。如果您達到 #b2, #b4, #b6, #b8 點 #y武力， 則獲得 #b1 點 #y力量 。",
 		"NAMES": ["武力"],
 		"PROPER_NAME": "武力"
 	},
@@ -104,7 +104,7 @@
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "回合開始時， 失去 #b1 點 #y智力。如果您達到 #b3, #b5, #b7, #b9 點 #y智力， 則獲得 #b1 點 #y集中 。",
+		"DESCRIPTION": "回合開始時， 失去 #b1 點 #y智力。如果您達到 #b2, #b4, #b6, #b8 點 #y智力， 則獲得 #b1 點 #y集中 。",
 		"NAMES": ["智力"],
 		"PROPER_NAME": "智力"
 	},
@@ -218,7 +218,7 @@
 	},
 	"~Ranged":
 	{
-		"DESCRIPTION": "無視 #y荊棘 。",
+		"DESCRIPTION": "無視 #y荊棘 和 #y飛行。",
 		"NAMES": ["~遠程"],
 		"PROPER_NAME": "遠程傷害"
 	},

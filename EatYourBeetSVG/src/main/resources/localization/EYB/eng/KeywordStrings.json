@@ -8,7 +8,7 @@
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b5, #b7, and #b9 #yAgility, gain #yDexterity.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yAgility, gain #yDexterity.",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
@@ -92,7 +92,7 @@
 	},
 	"Force":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b5, #b7, and #b9 #yForce, gain #yStrength.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yForce, gain #yStrength.",
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
@@ -104,7 +104,7 @@
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b5, #b7, and #b9 #yIntellect, gain #yFocus.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yIntellect, gain #yFocus.",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},
@@ -218,7 +218,7 @@
 	},
 	"~Ranged":
 	{
-		"DESCRIPTION": "Ignores #yThorns.",
+		"DESCRIPTION": "Ignores #yThorns and #yFlight.",
 		"NAMES": ["~ranged"],
 		"PROPER_NAME": "Ranged Damage"
 	},

@@ -228,7 +228,7 @@
 		},
 		"animator:OrikoMikuni":
 		{
-			"DESCRIPTION": "Scry !S!. Retain !M! card(s) at ** the end of this turn. || <SLM>. Synergy: ** If you reached 3 [I] this ** combat: <DRW>.",
+			"DESCRIPTION": "Scry !S!. Retain !M! card(s) at ** the end of this turn. || <SLM>. Synergy: ** If you reached 2 [I] this ** combat: <DRW>.",
 			"NAME": "Oriko Mikuni"
 		},
 		"animator:SayakaMiki":
@@ -1055,7 +1055,7 @@
 	{
 		"animator:ChlammyZell":
 		{
-			"DESCRIPTION": "Draw 2 cards. Next turn, ** draw !M! additional card(s). || <LIM>. If you reached ** 3 [I] this combat: Add a ** {Scheme} to your hand.",
+			"DESCRIPTION": "Draw 2 cards. Next turn, ** draw !M! additional card(s). || <LIM>. If you reached ** 2 [I] this combat: Add a ** {Scheme} to your hand.",
 			"NAME": "Kurami"
 		},
 		"animator:DolaCouronne":

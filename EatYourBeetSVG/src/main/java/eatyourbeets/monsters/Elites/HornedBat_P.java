@@ -50,11 +50,12 @@ public class HornedBat_P extends HornedBat
         moveset.Normal.ShuffleCard(new Dazed(), 1)
         .SkipAnimation(true)
         .SetIntent(Intent.DEFEND_DEBUFF)
-        .SetMiscBonus(8, 1)
+        .SetMiscBonus(17, 1)
         .SetBlock(3);
 
         moveset.Normal.AttackDebuff(3, PowerHelper.Frail, 1)
-        .SetDamageBonus(3, 1);
+        .SetDamageBonus(3, 1)
+        .SetMiscBonus(8, 1);
     }
 
     @Override
@@ -84,7 +85,7 @@ public class HornedBat_P extends HornedBat
             jsonUrl = "images/monsters/animator/HornedBat/HornedBat.json";
             scale = 1f;
 
-            SetHB(0,0,100,140, 0, 50);
+            SetHB(0, 0, 120, 150, 0, 50);
         }
     }
 }

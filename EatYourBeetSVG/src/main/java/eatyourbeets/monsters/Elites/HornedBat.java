@@ -3,6 +3,7 @@ package eatyourbeets.monsters.Elites;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import eatyourbeets.interfaces.subscribers.OnReceiveEmeraldBonus;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.powers.PlayerStatistics;
@@ -12,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class HornedBat extends EYBMonster
+public abstract class HornedBat extends EYBMonster implements OnReceiveEmeraldBonus
 {
     public static final String ID = CreateFullID(HornedBat.class);
 
@@ -23,11 +24,11 @@ public abstract class HornedBat extends EYBMonster
         if (positions.isEmpty())
         {
             int x;
-            positions.add(new Vector2(x =215, 2));
-            positions.add(new Vector2(x-=185, -49));
-            positions.add(new Vector2(x-=185, 4));
-            positions.add(new Vector2(x-=185, -51));
-            positions.add(new Vector2(x-=185, 3));
+            positions.add(new Vector2(x =215, 8));
+            positions.add(new Vector2(x-=185, -55));
+            positions.add(new Vector2(x-=185, 7));
+            positions.add(new Vector2(x-=185, -56));
+            positions.add(new Vector2(x-=185, 8));
         }
 
         final AbstractMonster[] m = new AbstractMonster[positions.size()];
@@ -70,5 +71,29 @@ public abstract class HornedBat extends EYBMonster
 
             return data;
         }
+    }
+
+    @Override
+    public float GetEmeraldMaxHPBonus(float bonus)
+    {
+        return bonus * 0.8f;
+    }
+
+    @Override
+    public int GetEmeraldMetallicizeBonus(int bonus)
+    {
+        return bonus - 2;
+    }
+
+    @Override
+    public int GetEmeraldRegenBonus(int bonus)
+    {
+        return bonus - 1;
+    }
+
+    @Override
+    public int GetEmeraldStrengthBonus(int bonus)
+    {
+        return bonus - 1;
     }
 }

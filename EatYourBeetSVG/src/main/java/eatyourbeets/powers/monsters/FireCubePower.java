@@ -36,12 +36,12 @@ public class FireCubePower extends AnimatorPower
 
         if (owner.isPlayer)
         {
-            GameActions.Bottom.ApplyPowerSilently(null, owner, new BurningPower(null, owner, amount), amount);
+            GameActions.Bottom.ApplyPowerSilently(null, owner, new BurningPower(owner, null, amount), amount);
             GameActions.Bottom.GainStrength(amount);
         }
         else for (AbstractCreature m : GameUtilities.GetAllEnemies(true))
         {
-            GameActions.Bottom.ApplyPowerSilently(null, m, new BurningPower(null, m, amount), amount);
+            GameActions.Bottom.ApplyPowerSilently(null, m, new BurningPower(m, null, amount), amount);
             GameActions.Bottom.StackPower(null, new StrengthPower(m, amount));
         }
     }

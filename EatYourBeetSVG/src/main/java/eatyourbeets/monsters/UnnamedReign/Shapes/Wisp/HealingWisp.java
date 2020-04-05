@@ -1,11 +1,10 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_GainStrengthAndArtifact;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.HealingWispPower;
+import eatyourbeets.utilities.GameActions;
 
 public class HealingWisp extends Wisp
 {
@@ -13,8 +12,10 @@ public class HealingWisp extends Wisp
     {
         super(MonsterElement.Healing, tier, x, y);
 
-        moveset.AddNormal(new Move_GainStrengthAndArtifact(tier.Add(0, 2), 1));
-        moveset.AddNormal(new Move_AttackMultiple(3, tier.Add(2, 1)));
+        moveset.Normal.Attack(3, tier.Add(2, 1));
+
+        moveset.Normal.Buff(PowerHelper.Strength, tier.Add(0, 2))
+        .AddPower(PowerHelper.Artifact, 1);
     }
 
     @Override

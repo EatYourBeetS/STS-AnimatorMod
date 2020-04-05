@@ -1,11 +1,12 @@
 package eatyourbeets.monsters.Elites;
 
+import com.megacrit.cardcrawl.cards.status.Dazed;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMonsterData;
-import eatyourbeets.monsters.Elites.Moveset.Move_TemporaryConfusion;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackFrail;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_GainStrengthAndBlock;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_ShuffleDazed;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_StrengthLoss;
+import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.common.TemporaryConfusionPower;
 import eatyourbeets.powers.monsters.HornedBat_PurplePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -14,24 +15,45 @@ public class HornedBat_P extends HornedBat
 {
     public static final String ID = CreateFullID(HornedBat_P.class);
 
-    public HornedBat_P(CommonMoveset commonMoveset, float x, float y)
+    protected final EYBAbstractMove confusionMove;
+    protected final EYBAbstractMove strengthLossMove;
+
+    public HornedBat_P(float x, float y)
     {
         super(new Data(ID), x, y);
 
-        moveset.AddSpecial(new Move_TemporaryConfusion());
-        moveset.AddSpecial(new Move_StrengthLoss(1, false));
+        confusionMove = moveset.Special.ShuffleCard(new Dazed(), 1)
+        .SetOnSelect((m) -> TurnData.Get().UsedConfusion = true)
+        .SetCanUse((m, b) -> m.CanUseFallback(b) && !TurnData.Get().UsedConfusion)
+        .SetOnUse((m, t) -> GameActions.Bottom.StackPower(new TemporaryConfusionPower(t)));
 
-        if (GameUtilities.GetAscensionLevel() >= 7)
-        {
-            moveset.AddNormal(new Move_GainStrengthAndBlock(4, 11));
-        }
-        else
-        {
-            moveset.AddNormal(new Move_GainStrengthAndBlock(3, 9));
-        }
+        strengthLossMove = moveset.Special.StrongDebuff(PowerHelper.Strength, -1)
+        .SetOnSelect((m) -> TurnData.Get().UsedStrengthLoss = true)
+        .SetCanUse((m, b) -> m.CanUseFallback(b) && (!TurnData.Get().UsedStrengthLoss &&
+        GameUtilities.GetPowerAmount(AbstractDungeon.player, StrengthPower.POWER_ID) >= 0));
 
-        moveset.AddNormal(new Move_ShuffleDazed(1, true));
-        moveset.AddNormal(new Move_AttackFrail(4, 1));
+        moveset.SetFindSpecialMove((roll) ->
+        {
+            if (moveHistory.size() >= 1 && strengthLossMove.CanUse(previousMove))
+            {
+                return strengthLossMove;
+            }
+            else if (roll < 25 && confusionMove.CanUse(previousMove))
+            {
+                return confusionMove;
+            }
+
+            return null;
+        });
+
+        //Rotation:
+        moveset.Normal.ShuffleCard(new Dazed(), 1)
+        .SkipAnimation(true)
+        .SetIntent(Intent.DEFEND_DEBUFF)
+        .SetBlock(3);
+
+        moveset.Normal.AttackDebuff(3, PowerHelper.Frail, 1)
+        .SetDamageBonus(3, 1);
     }
 
     @Override

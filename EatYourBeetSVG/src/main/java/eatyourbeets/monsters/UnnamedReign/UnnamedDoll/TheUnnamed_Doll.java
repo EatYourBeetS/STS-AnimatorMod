@@ -2,24 +2,19 @@ package eatyourbeets.monsters.UnnamedReign.UnnamedDoll;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.WraithFormPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
-import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainTempThornsAndBlockAll;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMonster;
-import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_ShieldAll;
 import eatyourbeets.monsters.EYBMonsterData;
-import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackFrailAndDexLoss;
-import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackWeakAndStrLoss;
-import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainRitualAndArtifactAll;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.CursedStabsPower;
 import eatyourbeets.powers.monsters.UnnamedDollPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.PowerTarget;
 
 public class TheUnnamed_Doll extends EYBMonster
 {
@@ -27,29 +22,54 @@ public class TheUnnamed_Doll extends EYBMonster
 
     private final BobEffect bobEffect = new BobEffect(1);
     private final TheUnnamed theUnnamed;
-    private final Move_GainRitualAndArtifactAll ritualAndArtifactAll;
-    private final Move_AttackMultiple antiIntangible;
+    private final EYBAbstractMove ritualAndArtifactAll;
+    private final EYBAbstractMove antiIntangible;
 
     public TheUnnamed_Doll(TheUnnamed theUnnamed, float x, float y)
     {
         super(new Data(ID), EnemyType.NORMAL, x, y);
 
         this.theUnnamed = theUnnamed;
-
         this.data.SetIdleAnimation(this, 1);
 
-        antiIntangible = moveset.AddSpecial(new Move_AttackMultiple(4, 12));
-        ritualAndArtifactAll = moveset.AddSpecial(new Move_GainRitualAndArtifactAll(2, 2), 1);
+        antiIntangible = moveset.Special.Attack(4, 12);
 
-        boolean asc18 = GameUtilities.GetAscensionLevel() >= 18;
+        ritualAndArtifactAll = moveset.Special.Buff(PowerHelper.Ritual, 2)
+        .SetPowerTarget(PowerTarget.Enemies)
+        .AddPower(PowerHelper.Artifact)
+        .SetUses(1);
 
-        int debuffAmount = asc18 ? 2 : 1;
-        int tempThorns = asc18 ? 3 : 2;
+        //Rotation:
+        moveset.Normal.Defend(16)
+        .SetBlockScaling(0.12f)
+        .SetBlockAoE(true);
 
-        moveset.AddNormal(new Move_ShieldAll(16));
-        moveset.AddNormal(new Move_GainTempThornsAndBlockAll(tempThorns, 9));
-        moveset.AddNormal(new Move_AttackFrailAndDexLoss(1, debuffAmount));
-        moveset.AddNormal(new Move_AttackWeakAndStrLoss(1, debuffAmount));
+        moveset.Normal.DefendBuff(9, PowerHelper.TemporaryThorns, 2)
+        .SetPowerTarget(PowerTarget.Enemies)
+        .SetMiscBonus(18, 1)
+        .SetBlockAoE(true);
+
+        moveset.Normal.Attack(1).SetMisc(1)
+        .SetMiscBonus(18, 1)
+        .SetIntent(Intent.ATTACK_DEBUFF)
+        .SetOnUse((m, t) ->
+        {
+            final float roll = AbstractDungeon.aiRng.random();
+            final int amount = m.misc.Calculate();
+
+            if (roll < 0.33f)
+            {
+                GameActions.Bottom.ReduceStrength(t,2, true);
+            }
+            else if (roll < 0.66f)
+            {
+                GameActions.Bottom.ApplyFrail(this, t, amount);
+            }
+            else
+            {
+                GameActions.Bottom.ApplyWeak(this, t, amount);
+            }
+        });
     }
 
     @Override
@@ -59,7 +79,7 @@ public class TheUnnamed_Doll extends EYBMonster
 
         GameActions.Bottom.ApplyPower(this, this, new CursedStabsPower(this));
         GameActions.Bottom.ApplyPower(this, this, new UnnamedDollPower(this));
-        GameActions.Bottom.GainBlock(this, 26 + (int)(GameUtilities.GetActualAscensionLevel() * 0.66f));
+        GameActions.Bottom.GainBlock(this, 26 + (int)(GameUtilities.GetAscensionLevel() * 0.66f));
     }
 
     @Override
@@ -99,23 +119,7 @@ public class TheUnnamed_Doll extends EYBMonster
     }
 
     @Override
-    protected void ExecuteNextMove()
-    {
-        EYBAbstractMove move = moveset.GetMove(nextMove);
-        if (move instanceof Move_AttackMultiple)
-        {
-            AbstractPower cs = getPower(CursedStabsPower.POWER_ID);
-            if (cs != null)
-            {
-                ((CursedStabsPower)cs).usesThisTurn = 1;
-            }
-        }
-
-        move.Execute(AbstractDungeon.player);
-    }
-
-    @Override
-    protected void SetNextMove(int roll, int historySize, Byte previousMove)
+    protected void SetNextMove(int roll, int historySize)
     {
         if (historySize >= 2 && ritualAndArtifactAll.CanUse(previousMove))
         {
@@ -127,7 +131,7 @@ public class TheUnnamed_Doll extends EYBMonster
         }
         else
         {
-            super.SetNextMove(roll, historySize, previousMove);
+            super.SetNextMove(roll, historySize);
         }
     }
 

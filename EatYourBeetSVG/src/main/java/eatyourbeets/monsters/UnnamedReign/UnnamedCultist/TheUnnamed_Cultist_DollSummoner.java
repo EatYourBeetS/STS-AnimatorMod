@@ -1,34 +1,44 @@
 package eatyourbeets.monsters.UnnamedReign.UnnamedCultist;
 
-import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.MinionPower;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackDefend;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_ShuffleCard;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_Talk;
-import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.Moveset.Move_SummonEnemy;
+import eatyourbeets.actions.monsters.SummonMonsterAction;
+import eatyourbeets.actions.special.SendMinionsAway;
+import eatyourbeets.monsters.EYBAbstractMove;
+import eatyourbeets.monsters.SharedMoveset.EYBMove_Unknown;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
 import eatyourbeets.powers.monsters.TheUnnamedCultistPower;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GameActions;
 
 public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
 {
-    private final Move_SummonEnemy moveSummonEnemy;
+    private final EYBAbstractMove moveSummonEnemy;
+    private final EYBAbstractMove moveTalk;
 
     public TheUnnamed_Cultist_DollSummoner(float x, float y)
     {
         super(x, y);
 
-        moveset.AddSpecial(new Move_Talk());
+        moveTalk = moveset.AddSpecial(new EYBMove_Unknown())
+        .SetOnUse((m, t) -> GameActions.Bottom.Talk(this, STRINGS.DIALOG[m.misc.Calculate()]));
 
-        moveSummonEnemy = moveset.AddSpecial(new Move_SummonEnemy());
+        moveSummonEnemy = moveset.Special.Add(new EYBMove_Unknown())
+        .SetUses(1)
+        .SetOnUse((m, t) ->
+        {
+            GameActions.Bottom.Talk(this, STRINGS.DIALOG[1], 0.5f, 2f);
+            GameActions.Bottom.WaitRealtime(2f);
+            GameActions.Bottom.Add(new SummonMonsterAction(new TheUnnamed_Doll(null, -40, 135), true));
+        });
 
-        moveset.AddNormal(new Move_AttackDefend( 12, 12));
-        moveset.AddNormal(new Move_AttackMultiple(9, 2));
-        moveset.AddNormal(new Move_ShuffleCard(new VoidCard(), 3));
+        //Rotation:
+        moveset.Normal.AttackDefend(12, 12)
+        .SetDamageScaling(0.25f)
+        .SetBlockScaling(0.25f);
+
+        moveset.Normal.Attack(9, 2)
+        .SetDamageScaling(0.2f);
+
+        moveset.Normal.ShuffleCard(new VoidCard(), 3);
     }
 
     @Override
@@ -38,7 +48,7 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
 
         GameActions.Bottom.ApplyPower(this, this, new TheUnnamedCultistPower(this, 12), 12);
         GameActions.Bottom.WaitRealtime(0.2f);
-        GameActions.Bottom.Talk(this, data.strings.DIALOG[5], 1f, 2.5f);
+        GameActions.Bottom.Talk(this, STRINGS.DIALOG[5], 1f, 2.5f);
     }
 
     @Override
@@ -46,40 +56,32 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
     {
         super.die();
 
-        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
-        {
-            if (m.hasPower(MinionPower.POWER_ID))
-            {
-                GameActions.Bottom.Add(new EscapeAction(m));
-            }
-        }
+        GameActions.Bottom.Add(new SendMinionsAway());
     }
 
     @Override
-    protected void SetNextMove(int roll, int historySize, Byte previousMove)
+    protected void SetNextMove(int roll, int historySize)
     {
         if (moveSummonEnemy.CanUse(previousMove))
         {
-            Move_Talk moveTalk = moveset.GetMove(Move_Talk.class);
             if (historySize == 0)
             {
-                moveTalk.SetLine(data.strings.DIALOG[6]);
+                moveTalk.SetMisc(6);
                 moveTalk.Select();
             }
             else if (historySize == 1)
             {
-                moveTalk.SetLine(data.strings.DIALOG[8]);
+                moveTalk.SetMisc(8);
                 moveTalk.Select();
             }
             else
             {
-                moveSummonEnemy.SetSummon(new TheUnnamed_Doll(null, -40, 135));
                 moveSummonEnemy.Select();
             }
-
-            return;
         }
-
-        super.SetNextMove(roll, historySize, previousMove);
+        else
+        {
+            super.SetNextMove(roll, historySize);
+        }
     }
 }

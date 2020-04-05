@@ -1,5 +1,7 @@
 package eatyourbeets.monsters;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.JavaUtilities;
@@ -17,16 +19,18 @@ public class EYBMoveset
         Sequential
     }
 
-    public final ArrayList<EYBAbstractMove> special = new ArrayList<>();
-    public final ArrayList<EYBAbstractMove> rotation = new ArrayList<>();
+    public final AbstractMonster owner;
+    public final HashMap<Byte, EYBAbstractMove> moves = new HashMap<>();
     public final ArrayList<EYBAbstractMove> sequence = new ArrayList<>();
+    public final EYBMovesCollection Normal = new EYBMovesCollection(this, false);
+    public final EYBMovesCollection Special = new EYBMovesCollection(this, true);
+
     public FuncT1<EYBAbstractMove, Integer> findSpecialMove;
     public Mode mode = Mode.Random;
-    public int currentIndex;
+    public AbstractGameAction.AttackEffect attackEffect;
+    public AbstractCreature.CreatureAnimation attackAnimation;
 
-    private final AbstractMonster owner;
-    private final HashMap<Byte, EYBAbstractMove> moves = new HashMap<>();
-    private transient byte counter;
+    protected transient byte counter;
 
     public EYBMoveset(AbstractMonster owner)
     {
@@ -40,26 +44,12 @@ public class EYBMoveset
 
     public <T extends EYBAbstractMove> T AddNormal(T move, int uses)
     {
-        move.uses = uses;
-        move.Initialize(counter, owner);
-        moves.put(counter, move);
-
-        rotation.add(move);
-        counter += 1;
-
-        return move;
+        return (T)Normal.Add(move).SetUses(uses);
     }
 
     public <T extends EYBAbstractMove> T AddSpecial(T move, int uses)
     {
-        move.uses = uses;
-        move.Initialize(counter, owner);
-        moves.put(counter, move);
-
-        special.add(move);
-        counter += 1;
-
-        return move;
+        return (T)Special.Add(move).SetUses(uses);
     }
 
     public <T extends EYBAbstractMove> T AddSpecial(T move)
@@ -71,7 +61,7 @@ public class EYBMoveset
     {
         if (sequence.isEmpty())
         {
-            sequence.addAll(rotation);
+            sequence.addAll(Normal.rotation);
 
             if (mode == Mode.Random)
             {
@@ -89,11 +79,11 @@ public class EYBMoveset
         if (move == null)
         {
             move = sequence.remove(0);
-        }
 
-        if (!move.CanUse(previousMove))
-        {
-            return FindNextMove(roll, previousMove);
+            if (!move.CanUse(previousMove))
+            {
+                return FindNextMove(roll, previousMove);
+            }
         }
 
         return move;
@@ -121,6 +111,20 @@ public class EYBMoveset
     public EYBMoveset SetFindSpecialMove(FuncT1<EYBAbstractMove, Integer> findSpecialMove)
     {
         this.findSpecialMove = findSpecialMove;
+
+        return this;
+    }
+
+    public EYBMoveset SetAttackEffect(AbstractGameAction.AttackEffect effect)
+    {
+        this.attackEffect = effect;
+
+        return this;
+    }
+
+    public EYBMoveset SetAttackAnimation(AbstractCreature.CreatureAnimation animation)
+    {
+        this.attackAnimation = animation;
 
         return this;
     }

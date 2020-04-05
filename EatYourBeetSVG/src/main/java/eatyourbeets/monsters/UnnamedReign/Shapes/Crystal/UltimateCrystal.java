@@ -14,15 +14,14 @@ import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.monsters.EYBMoveset;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_GainStrengthAndArtifact;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_ShuffleCard;
-import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_UltimateCrystalAttack;
+import eatyourbeets.monsters.SharedMoveset.EYBMove_Attack;
+import eatyourbeets.monsters.SharedMoveset.special.EYBMove_AttackDefend_ViceCrush;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
-import eatyourbeets.powers.monsters.UltimateCrystalPower;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.common.AntiArtifactSlowPower;
+import eatyourbeets.powers.monsters.UltimateCrystalPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -34,7 +33,9 @@ public class UltimateCrystal extends Crystal
     public static final String ID = CreateFullID(MonsterShape.Crystal, MonsterElement.Ultimate, MonsterTier.Ultimate);
     public static final String NAME = "Ultimate Crystal";
 
-    public final UltimateCrystal original;
+    private final UltimateCrystal original;
+    private final EYBMove_Attack antiIntangible;
+    private int currentStrength = -1;
 
     public UltimateCrystal()
     {
@@ -45,31 +46,48 @@ public class UltimateCrystal extends Crystal
     {
         super(MonsterElement.Ultimate, MonsterTier.Ultimate, x, y);
 
+        this.original = original;
+
+        antiIntangible = moveset.Special.Attack(6, 30);
+
+        moveset.SetFindSpecialMove(roll ->
+        {
+            if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) >= 2 && !AbstractDungeon.player.hasPower(WraithFormPower.POWER_ID))
+            {
+                return antiIntangible;
+            }
+            else
+            {
+                return null;
+            }
+        });
+
+        // Rotation:
         moveset.mode = EYBMoveset.Mode.Sequential;
 
-        boolean asc4 = GameUtilities.GetActualAscensionLevel() >= 4;
-
-        moveset.AddSpecial(new Move_AttackMultiple(6, asc4 ? 32 : 24));
-
-        int crystallize = asc4 ? 3 : 2;
-        int block = asc4 ? 18 : 11;
-
-        this.original = original;
         if (original == null)
         {
-            moveset.AddNormal(new Move_GainStrengthAndArtifact(3, 2));
-            moveset.AddNormal(new Move_UltimateCrystalAttack(1, block));
-            moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), crystallize));
+            moveset.Normal.Buff(PowerHelper.Strength, 3)
+            .AddPower(PowerHelper.Artifact, 2);
+
+            moveset.Normal.Add(new EYBMove_AttackDefend_ViceCrush(1, 11))
+            .SetBlockScaling(0.5f);
+
+            moveset.Normal.ShuffleCard(new Crystallize(), 2)
+            .SetMiscBonus(4, 1);
         }
         else
         {
-            moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), crystallize));
-            moveset.AddNormal(new Move_GainStrengthAndArtifact(3, 2));
-            moveset.AddNormal(new Move_UltimateCrystalAttack(1, block));
+            moveset.Normal.ShuffleCard(new Crystallize(), 2)
+            .SetMiscBonus(4, 1);
+
+            moveset.Normal.Buff(PowerHelper.Strength, 3)
+            .AddPower(PowerHelper.Artifact, 2);
+
+            moveset.Normal.Add(new EYBMove_AttackDefend_ViceCrush(1, 11))
+            .SetBlockScaling(0.5f);
         }
     }
-
-    private int currentStrength = -1;
 
     @Override
     public void applyPowers()
@@ -87,19 +105,6 @@ public class UltimateCrystal extends Crystal
             AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
             e.setTimeScale(0.5f);
             e.setTime(e.getEndTime() * MathUtils.random());
-        }
-    }
-
-    @Override
-    protected void SetNextMove(int roll, int historySize, Byte previousMove)
-    {
-        if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) >= 2 && !AbstractDungeon.player.hasPower(WraithFormPower.POWER_ID))
-        {
-            moveset.GetMove(Move_AttackMultiple.class).Select();
-        }
-        else
-        {
-            super.SetNextMove(roll, historySize, previousMove);
         }
     }
 

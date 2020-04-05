@@ -1,11 +1,11 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset_Old.*;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.LightningWispPower;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GameActions;
 
 public class LightningWisp extends Wisp
 {
@@ -13,13 +13,18 @@ public class LightningWisp extends Wisp
     {
         super(MonsterElement.Lightning, tier, x, y);
 
-        boolean asc4 = GameUtilities.GetAscensionLevel() >= 4;
+        moveset.SetAttackEffect(AbstractGameAction.AttackEffect.LIGHTNING);
 
-        int debuffAmount = asc4 ? 2 : 1;
+        moveset.Normal.AttackDebuff(tier.Add(6, 3), PowerHelper.Weak, 1)
+        .SetMiscBonus(4, 1)
+        .SetDamageScaling(0.2f);
 
-        moveset.AddNormal(new Move_AttackWeak(tier.Add(6,3), debuffAmount));
-        moveset.AddNormal(new Move_AttackFrail(tier.Add(6,3), debuffAmount));
-        moveset.AddNormal(new Move_GainStrengthAndArtifact(tier.Add(2,3), 1));
+        moveset.Normal.AttackDebuff(tier.Add(6, 3), PowerHelper.Frail, 1)
+        .SetMiscBonus(4, 1)
+        .SetDamageScaling(0.2f);
+
+        moveset.Normal.Buff(PowerHelper.Strength, tier.Add(2, 3))
+        .AddPower(PowerHelper.Artifact, 1);
     }
 
     @Override

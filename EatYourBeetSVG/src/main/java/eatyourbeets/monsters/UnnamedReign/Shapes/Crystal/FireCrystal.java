@@ -1,12 +1,12 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.cards.animator.status.Crystallize;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset_Old.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.FireCrystalPower;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GameActions;
 
 public class FireCrystal extends Crystal
 {
@@ -14,13 +14,16 @@ public class FireCrystal extends Crystal
     {
         super(MonsterElement.Fire, tier, x, y);
 
-        boolean asc4 = GameUtilities.GetAscensionLevel() >= 4;
+        moveset.SetAttackEffect(AbstractGameAction.AttackEffect.FIRE);
 
-        int debuffAmount = asc4 ? 2 : 1;
+        moveset.Normal.ShuffleCard(new Crystallize(), 3);
 
-        moveset.AddNormal(new Move_Attack( tier.Add(10,4)));
-        moveset.AddNormal(new Move_AttackWeak( tier.Add(6,3), debuffAmount));
-        moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), 3));
+        moveset.Normal.Attack(tier.Add(10, 4))
+        .SetDamageScaling(0.2f);
+
+        moveset.Normal.AttackDebuff(tier.Add(6, 3), PowerHelper.Weak, 1)
+        .SetMiscBonus(4, 1)
+        .SetDamageScaling(0.2f);
     }
 
     @Override

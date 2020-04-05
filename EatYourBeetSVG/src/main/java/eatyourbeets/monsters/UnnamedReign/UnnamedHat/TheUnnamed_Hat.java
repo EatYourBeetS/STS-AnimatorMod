@@ -1,17 +1,16 @@
 package eatyourbeets.monsters.UnnamedReign.UnnamedHat;
 
+import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMonster;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackFrail;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_GainStrengthAndBlock;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_ShuffleDazed;
 import eatyourbeets.monsters.EYBMonsterData;
-import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_SummonEnemy;
+import eatyourbeets.monsters.SharedMoveset.special.EYBMove_SummonEnemy;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.TheUnnamedHatPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class TheUnnamed_Hat extends EYBMonster
@@ -42,19 +41,18 @@ public class TheUnnamed_Hat extends EYBMonster
             this.commonMoveset = commonMoveset;
         }
 
-        moveset.AddSpecial(new Move_SummonEnemy());
+        moveset.Special.Add(new EYBMove_SummonEnemy());
 
-        if (GameUtilities.GetAscensionLevel() >= 7)
-        {
-            moveset.AddNormal(new Move_GainStrengthAndBlock(4, 11));
-        }
-        else
-        {
-            moveset.AddNormal(new Move_GainStrengthAndBlock(3, 9));
-        }
+        //Rotation:
+        moveset.Normal.DefendBuff(9, PowerHelper.Strength, 3)
+        .SetBlockBonus(7, 2)
+        .SetMiscBonus(7, 1);
 
-        moveset.AddNormal(new Move_ShuffleDazed(1, true));
-        moveset.AddNormal(new Move_AttackFrail(4, 1));
+        moveset.Normal.ShuffleCard(new Dazed(), 1)
+        .SkipAnimation(true);
+
+        moveset.Normal.AttackDebuff(4, PowerHelper.Frail, 1)
+        .SetDamageBonus(17, 1);
     }
 
     @Override
@@ -77,7 +75,7 @@ public class TheUnnamed_Hat extends EYBMonster
     }
 
     @Override
-    protected void SetNextMove(int roll, int historySize, Byte previousMove)
+    protected void SetNextMove(int roll, int historySize)
     {
         commonMoveset.GetNextMove(this).Select();
     }
@@ -99,7 +97,7 @@ public class TheUnnamed_Hat extends EYBMonster
         {
             if (index < xPos.length)
             {
-                Move_SummonEnemy move = owner.moveset.GetMove(Move_SummonEnemy.class);
+                EYBMove_SummonEnemy move = owner.moveset.GetMove(EYBMove_SummonEnemy.class);
 
                 move.SetSummon(new TheUnnamed_Hat(this, xPos[index], yPos[index]));
 
@@ -108,9 +106,7 @@ public class TheUnnamed_Hat extends EYBMonster
                 return move;
             }
 
-            int offset = PlayerStatistics.TurnCount() + moveOffset;
-
-            return owner.moveset.rotation.get(offset % owner.moveset.rotation.size());
+            return owner.GetRotation().get((PlayerStatistics.TurnCount() + moveOffset) % owner.GetRotation().size());
         }
 
         static

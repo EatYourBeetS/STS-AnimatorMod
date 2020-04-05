@@ -13,7 +13,7 @@ public class TalkAction extends EYBActionWithCallback<AbstractCreature>
 
     public TalkAction(AbstractCreature source, String message)
     {
-        this(source, message, 2f, 2f);
+        this(source, message, 1.5f, 2f);
     }
 
     public TalkAction(AbstractCreature source, String message, float duration, float effectDuration)

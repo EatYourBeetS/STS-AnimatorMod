@@ -2,36 +2,61 @@ package eatyourbeets.monsters;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
-import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.interfaces.delegates.FuncT2;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.PowerTarget;
+
+import java.util.ArrayList;
 
 public abstract class EYBAbstractMove
 {
-    public final int ascensionLevel;
+    public static class PowerTemplate
+    {
+        public final PowerHelper power;
+        public final PowerTarget target;
+        public final Integer amount;
 
+        public PowerTemplate(PowerHelper power, PowerTarget target, Integer amount)
+        {
+            this.power = power;
+            this.target = target;
+            this.amount = amount;
+        }
+    }
+
+    public byte id;
+    public String name;
+
+    public final int ascensionLevel;
+    public final ArrayList<PowerTemplate> powerTemplates = new ArrayList<>();
     public AbstractGameAction.AttackEffect attackEffect;
     public AbstractCreature.CreatureAnimation attackAnimation;
     public ActionT2<EYBAbstractMove, AbstractCreature> onUse;
-    public FuncT1<Boolean, EYBAbstractMove> canUse;
+    public FuncT2<Boolean, EYBAbstractMove, Byte> canUse;
+    public ActionT1<EYBAbstractMove> onSelect;
     public AbstractMonster.Intent intent;
-    public DamageInfo damageInfo;
+    public PowerTarget powerTarget = PowerTarget.Source;
     public AbstractMonster owner;
-    public String name;
-    public float ascensionBonus;
+    public DamageInfo damageInfo;
     public boolean disabled;
-    public int amount;
-    public int damageAmount;
-    public int blockAmount;
     public int damageMultiplier;
+    public boolean shieldAll;
     public int uses = -1;
-    public byte id;
+    public Object data;
+
+    public MoveAttribute damage;
+    public MoveAttribute block;
+    public MoveAttribute misc;
 
     public EYBAbstractMove()
     {
@@ -43,9 +68,14 @@ public abstract class EYBAbstractMove
         return Math.round(base * percentage * (ascensionLevel / 20f));
     }
 
+    public boolean CanUseFallback(Byte previousMove)
+    {
+        return !disabled && previousMove != id && uses != 0;
+    }
+
     public boolean CanUse(Byte previousMove)
     {
-        return canUse != null ? canUse.Invoke(this) : (!disabled && previousMove != id && uses != 0);
+        return canUse != null ? canUse.Invoke(this, previousMove) : CanUseFallback(previousMove);
     }
 
     public void Execute(AbstractPlayer target)
@@ -55,13 +85,11 @@ public abstract class EYBAbstractMove
             uses -= 1;
         }
 
+        QueueActions(target);
+
         if (onUse != null)
         {
             onUse.Invoke(this, target);
-        }
-        else
-        {
-            QueueActions(target);
         }
     }
 
@@ -78,6 +106,23 @@ public abstract class EYBAbstractMove
 
     public void QueueActions(AbstractCreature target)
     {
+        if (block != null)
+        {
+            block.Calculate();
+
+            if (shieldAll)
+            {
+                for (AbstractMonster e : GameUtilities.GetAllEnemies(true))
+                {
+                    GameActions.Bottom.Add(new GainBlockAction(e, owner, block.amount, true));
+                }
+            }
+            else
+            {
+                GameActions.Bottom.GainBlock(owner, block.amount);
+            }
+        }
+
         if (damageInfo != null)
         {
             if (attackAnimation == null)
@@ -88,10 +133,26 @@ public abstract class EYBAbstractMove
             {
                 attackEffect = AbstractGameAction.AttackEffect.BLUNT_HEAVY;
             }
+            if (damageMultiplier < 1)
+            {
+                damageMultiplier = 1;
+            }
 
             UseAnimation(attackAnimation);
+            damageInfo.base = damage.Calculate();
             damageInfo.applyPowers(owner, target);
-            GameActions.Bottom.Add(new DamageAction(target, damageInfo, attackEffect));
+
+            for (int i = 0; i < damageMultiplier; i++)
+            {
+                GameActions.Bottom.Add(new DamageAction(target, damageInfo, attackEffect));
+            }
+        }
+
+        for (PowerTemplate template : powerTemplates)
+        {
+            int amount = template.amount != null ? template.amount : misc.Calculate();
+            PowerTarget powerTarget = template.target != null ? template.target : this.powerTarget;
+            powerTarget.ApplyPowers(template.power, owner, target, amount);
         }
     }
 
@@ -99,48 +160,148 @@ public abstract class EYBAbstractMove
     {
         if (damageInfo != null)
         {
+            damageInfo.base = damage.Calculate();
             owner.setMove(name, id, intent, damageInfo.base, damageMultiplier, damageMultiplier > 1);
         }
         else
         {
             owner.setMove(name, id, intent);
         }
+
+        if (onSelect != null)
+        {
+            onSelect.Invoke(this);
+        }
     }
 
-    public EYBAbstractMove SetAscensionBonus(float ascensionBonus)
-    {
-        this.ascensionBonus = ascensionBonus;
-
-        return this;
-    }
-
-    public EYBAbstractMove SetCanUse(FuncT1<Boolean, EYBAbstractMove> canUse)
+    public EYBAbstractMove SetCanUse(FuncT2<Boolean, EYBAbstractMove, Byte> canUse)
     {
         this.canUse = canUse;
 
         return this;
     }
 
-    public EYBAbstractMove SetDamage(int damage)
+    public EYBAbstractMove SetData(Object data)
     {
-        this.damageInfo = new DamageInfo(owner, damage);
-        this.damageMultiplier = 1;
+        this.data = data;
+
+        return this;
+    }
+
+    public EYBAbstractMove SetPowerTarget(PowerTarget target)
+    {
+        this.powerTarget = target;
+
+        return this;
+    }
+
+    public EYBAbstractMove AddPower(PowerHelper power)
+    {
+        this.powerTemplates.add(new PowerTemplate(power, null, null));
+
+        return this;
+    }
+
+    public EYBAbstractMove AddPower(PowerHelper power, int amount)
+    {
+        this.powerTemplates.add(new PowerTemplate(power, null, amount));
+
+        return this;
+    }
+
+    public EYBAbstractMove AddPower(PowerHelper power, PowerTarget powerTarget, int amount)
+    {
+        this.powerTemplates.add(new PowerTemplate(power, powerTarget, amount));
+
+        return this;
+    }
+
+    public EYBAbstractMove SetBlockAoE(boolean shieldAll)
+    {
+        this.shieldAll = shieldAll;
+
+        return this;
+    }
+
+    public EYBAbstractMove SetMisc(int amount)
+    {
+        this.misc = new MoveAttribute(amount);
+
+        return this;
+    }
+
+    public EYBAbstractMove SetMiscBonus(int minAscension, int bonus)
+    {
+        this.misc.ascensionThreshold = minAscension;
+        this.misc.ascensionThresholdBonus = bonus;
+
+        return this;
+    }
+
+    public EYBAbstractMove SetMiscScaling(float scaling)
+    {
+        this.misc.ascensionScaling = scaling;
+
+        return this;
+    }
+
+    public EYBAbstractMove SetBlock(int block)
+    {
+        this.block = new MoveAttribute(block);
+
+        return this;
+    }
+
+    public EYBAbstractMove SetBlockBonus(int minAscension, int bonus)
+    {
+        this.block.ascensionThreshold = minAscension;
+        this.block.ascensionThresholdBonus = bonus;
+
+        return this;
+    }
+
+    public EYBAbstractMove SetBlockScaling(float scaling)
+    {
+        this.block.ascensionScaling = scaling;
+
+        return this;
+    }
+
+    public EYBAbstractMove SetAttackEffect(AbstractGameAction.AttackEffect attackEffect, AbstractCreature.CreatureAnimation attackAnimation)
+    {
+        this.attackEffect = attackEffect;
+        this.attackAnimation = attackAnimation;
 
         return this;
     }
 
     public EYBAbstractMove SetDamage(int damage, int multiplier)
     {
+        this.damage = new MoveAttribute(damage);
         this.damageInfo = new DamageInfo(owner, damage);
         this.damageMultiplier = multiplier;
 
         return this;
     }
 
-    public EYBAbstractMove SetDamageEffect(AbstractGameAction.AttackEffect attackEffect, AbstractCreature.CreatureAnimation attackAnimation)
+    public EYBAbstractMove SetDamageMultiplier(int multiplier)
     {
-        this.attackEffect = attackEffect;
-        this.attackAnimation = attackAnimation;
+        this.damageMultiplier = multiplier;
+
+        return this;
+    }
+
+    public EYBAbstractMove SetDamageBonus(int minAscension, int bonus)
+    {
+        this.damage.ascensionThreshold = minAscension;
+        this.damage.ascensionThresholdBonus = bonus;
+
+        return this;
+    }
+
+    public EYBAbstractMove SetDamageScaling(float scaling)
+    {
+        this.damage.ascensionScaling = scaling;
 
         return this;
     }
@@ -155,6 +316,13 @@ public abstract class EYBAbstractMove
     public EYBAbstractMove SetIntent(AbstractMonster.Intent intent)
     {
         this.intent = intent;
+
+        return this;
+    }
+
+    public EYBAbstractMove SetOnSelect(ActionT1<EYBAbstractMove> onSelect)
+    {
+        this.onSelect = onSelect;
 
         return this;
     }

@@ -1,13 +1,11 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.status.Crystallize;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_GainStrength;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_ShuffleCard;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.FrostCrystalPower;
+import eatyourbeets.utilities.GameActions;
 
 public class FrostCrystal extends Crystal
 {
@@ -15,9 +13,12 @@ public class FrostCrystal extends Crystal
     {
         super(MonsterElement.Frost, tier, x, y);
 
-        moveset.AddNormal(new Move_GainStrength(tier.Add(1,1)));
-        moveset.AddNormal(new Move_AttackMultiple(tier.Add(7, 3),2));
-        moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), 3));
+        moveset.Normal.ShuffleCard(new Crystallize(), 3);
+
+        moveset.Normal.Buff(PowerHelper.Strength, tier.Add(1, 1));
+
+        moveset.Normal.Attack(tier.Add(7, 3), 2)
+        .SetDamageScaling(0.2f);
     }
 
     @Override

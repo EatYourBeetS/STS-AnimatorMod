@@ -1,12 +1,10 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_Attack;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset_Old.Move_GainStrengthAndArtifact;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.DarkWispPower;
+import eatyourbeets.utilities.GameActions;
 
 public class DarkWisp extends Wisp
 {
@@ -14,9 +12,14 @@ public class DarkWisp extends Wisp
     {
         super(MonsterElement.Dark, tier, x, y);
 
-        moveset.AddNormal(new Move_Attack(tier.Add(8,4)));
-        moveset.AddNormal(new Move_GainStrengthAndArtifact(tier.Add(1,3), 1));
-        moveset.AddNormal(new Move_AttackMultiple(tier.Add(3,1), 2));
+        moveset.Normal.Attack(tier.Add(8, 4))
+        .SetDamageScaling(0.2f);
+
+        moveset.Normal.Attack(tier.Add(3, 1), 2)
+        .SetDamageScaling(0.25f);
+
+        moveset.Normal.Buff(PowerHelper.Strength, tier.Add(1, 3))
+        .AddPower(PowerHelper.Artifact, 1);
     }
 
     @Override

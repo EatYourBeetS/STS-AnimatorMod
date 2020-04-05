@@ -134,7 +134,7 @@ public final class GameActions
 
     public ApplyPower ApplyBurning(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new BurningPower(source, target, amount));
+        return StackPower(source, new BurningPower(target, source, amount));
     }
 
     public ApplyPower ApplyConstricted(AbstractCreature source, AbstractCreature target, int amount)

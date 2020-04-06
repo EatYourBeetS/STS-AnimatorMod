@@ -85,7 +85,7 @@ public class OrigamiTobiichi extends AnimatorCard
 
         private void InverseOrigamiCheck()
         {
-            if (GameUtilities.GetPowerAmount(SupportDamagePower.POWER_ID) >= 20)
+            if (GameUtilities.GetPowerAmount(SupportDamagePower.POWER_ID) > 20)
             {
                 GameActions.Bottom.MakeCardInDrawPile(new InverseOrigami()).SetUpgrade(this.upgraded, false);
                 GameActions.Bottom.RemovePower(player, player, this);

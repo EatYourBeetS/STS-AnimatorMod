@@ -74,7 +74,7 @@ public class Kagari extends AnimatorCard
         @Override
         public int onAttacked(DamageInfo info, int damageAmount)
         {
-            if (damageAmount > 0 && damageAmount < owner.currentHealth && info.owner != null && info.type == DamageInfo.DamageType.NORMAL)
+            if (info.owner != null && info.type == DamageInfo.DamageType.NORMAL)
             {
                 GameActions.Top.GainThorns(amount);
                 updateDescription();

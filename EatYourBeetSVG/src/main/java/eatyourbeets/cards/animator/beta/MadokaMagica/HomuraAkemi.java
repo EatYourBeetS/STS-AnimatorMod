@@ -23,6 +23,7 @@ public class HomuraAkemi extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 3);
+        SetCostUpgrade(-1);
 
         SetExhaust(true);
         SetSynergy(Synergies.MadokaMagica);
@@ -34,13 +35,9 @@ public class HomuraAkemi extends AnimatorCard
         GameActions.Bottom.SFX("POWER_TIME_WARP", 0.05F);
         GameActions.Bottom.VFX(new TimeWarpTurnEndEffect());
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.VIOLET, true));
+
         GameActions.Bottom.Add(new SkipEnemiesTurnAction());
         GameActions.Bottom.Add(new CreateRandomCurses(magicNumber, p.discardPile));
-
-        if (upgraded)
-        {
-            GameActions.Bottom.GainIntellect(2, true);
-        }
 
         GameActions.Bottom.Add(new PressEndTurnButtonAction());
     }

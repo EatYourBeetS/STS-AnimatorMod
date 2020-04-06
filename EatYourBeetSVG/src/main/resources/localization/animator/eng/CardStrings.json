@@ -191,9 +191,8 @@
 		},
 		"animator:HomuraAkemi":
 		{
-			"DESCRIPTION": "Take an extra turn after ** this one. Add !M! random ** {Curses} to your discard ** pile. || End your turn.",
-			"NAME": "Homura Akemi",
-			"UPGRADE_DESCRIPTION": "Take an extra turn after ** this one. Add !M! random ** {Curses} to your discard pile. ** Boost [I] [I]. || End your turn."
+			"DESCRIPTION": "Skip the next enemy ** turn. End your turn. || Add !M! random ** {Curses} to your discard ** pile.",
+			"NAME": "Homura Akemi"
 		},
 		"animator:IrohaTamaki":
 		{
@@ -372,7 +371,7 @@
 	{
 		"animator:Kagari":
 		{
-			"DESCRIPTION": "Apply !M! {Shackles} ** to ALL enemies. || Whenever you are ** attacked: Gain !S! Thorns if ** you have less than 10 Thorns.",
+			"DESCRIPTION": "Apply !M! {Shackles} to ** ALL enemies. || Whenever you take combat ** damage: Gain !S! Thorns if ** you have less than 10 Thorns.",
 			"EXTENDED_DESCRIPTION": ["Whenever you are attacked: Gain #b{0} Thorns if you have less than #b{1} Thorns."],
 			"NAME": "Kagari"
 		},

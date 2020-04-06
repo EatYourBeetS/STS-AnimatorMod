@@ -77,7 +77,7 @@ public class Kagari extends AnimatorCard
         @Override
         public int onAttacked(DamageInfo info, int damageAmount)
         {
-            if (GameUtilities.GetPowerAmount(ThornsPower.POWER_ID) <= MAX_THORNS &&
+            if (GameUtilities.GetPowerAmount(ThornsPower.POWER_ID) < MAX_THORNS &&
                     info.owner != null && info.type == DamageInfo.DamageType.NORMAL)
             {
                 GameActions.Top.GainThorns(amount);

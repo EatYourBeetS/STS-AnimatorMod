@@ -47,6 +47,6 @@ public class HealingCrystal extends Crystal
                 break;
         }
 
-        GameActions.Bottom.ApplyPower(this, this, new HealingCrystalPower(this, amount), amount);
+        GameActions.Bottom.StackPower(new HealingCrystalPower(this, amount));
     }
 }

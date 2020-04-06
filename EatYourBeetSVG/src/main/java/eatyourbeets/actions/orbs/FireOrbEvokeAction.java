@@ -1,9 +1,8 @@
 package eatyourbeets.actions.orbs;
 
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class FireOrbEvokeAction extends EYBAction
 {
@@ -19,10 +18,7 @@ public class FireOrbEvokeAction extends EYBAction
     {
         if (this.amount > 0)
         {
-            for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
-            {
-                GameActions.Bottom.ApplyBurning(source, m, amount);
-            }
+            GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(null), amount);
         }
 
         Complete();

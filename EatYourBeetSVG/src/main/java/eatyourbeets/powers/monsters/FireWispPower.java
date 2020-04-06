@@ -35,8 +35,10 @@ public class FireWispPower extends AnimatorPower
 
         for (AbstractCreature c : GameUtilities.GetAllCharacters(true))
         {
-            GameActions.Bottom.ApplyPowerSilently(null, c, new BurningPower(c, null, amount), amount);
             GameActions.Bottom.StackPower(null, new StrengthPower(c, amount));
+            GameActions.Bottom.StackPower(null, new BurningPower(c, null, amount))
+            .ShowEffect(false, true)
+            .IgnoreArtifact(true);
         }
     }
 }

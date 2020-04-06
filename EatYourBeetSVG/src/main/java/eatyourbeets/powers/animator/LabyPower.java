@@ -1,12 +1,11 @@
 package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.animator.series.Elsword.Laby;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class LabyPower extends AnimatorPower
 {
@@ -59,11 +58,8 @@ public class LabyPower extends AnimatorPower
 
         if (upgradedAmount > 0)
         {
-            for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
-            {
-                GameActions.Top.ApplyConstricted(owner, enemy, upgradedAmount)
-                .ShowEffect(false, true);
-            }
+            GameActions.Top.ApplyConstricted(TargetHelper.Enemies(), upgradedAmount)
+            .ShowEffect(false, true);
         }
     }
 }

@@ -17,6 +17,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
@@ -193,10 +194,7 @@ public class AinzPower extends AnimatorPower
                 {
                     return effect.Generate((c, p, m) ->
                     {
-                        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
-                        {
-                            GameActions.Bottom.ApplyBurning(p, enemy, c.magicNumber);
-                        }
+                        GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), c.magicNumber);
                     });
                 }
 
@@ -204,10 +202,7 @@ public class AinzPower extends AnimatorPower
                 {
                     return effect.Generate((c, p, m) ->
                     {
-                        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
-                        {
-                            GameActions.Bottom.ApplyPoison(p, enemy, c.magicNumber);
-                        }
+                        GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(), c.magicNumber);
                     });
                 }
 

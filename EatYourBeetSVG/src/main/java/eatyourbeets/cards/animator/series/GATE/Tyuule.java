@@ -1,12 +1,13 @@
 package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Tyuule extends AnimatorCard
 {
@@ -37,35 +38,32 @@ public class Tyuule extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
+        GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(), magicNumber).AddCallback(poison ->
         {
-            GameActions.Bottom.ApplyPoison(p, enemy, magicNumber).AddCallback(enemy, (e, __) ->
+            AbstractCreature target = poison.owner;
+            for (AbstractPower power : target.powers)
             {
-                AbstractMonster target = (AbstractMonster)e;
-                for (AbstractPower power : target.powers)
+                if (WeakPower.POWER_ID.equals(power.ID))
                 {
-                    if (WeakPower.POWER_ID.equals(power.ID))
-                    {
-                        GameActions.Bottom.ApplyWeak(player, target, 1);
-                    }
-                    else if (VulnerablePower.POWER_ID.equals(power.ID))
-                    {
-                        GameActions.Bottom.ApplyVulnerable(player, target, 1);
-                    }
-                    else if (PoisonPower.POWER_ID.equals(power.ID))
-                    {
-                        GameActions.Bottom.ApplyPoison(player, target, 1);
-                    }
-                    else if (BurningPower.POWER_ID.equals(power.ID))
-                    {
-                        GameActions.Bottom.ApplyBurning(player, target, 1);
-                    }
-                    else if (GainStrengthPower.POWER_ID.equals(power.ID))
-                    {
-                        GameActions.Bottom.ReduceStrength(target, 1, true);
-                    }
+                    GameActions.Bottom.ApplyWeak(player, target, 1);
                 }
-            });
-        }
+                else if (VulnerablePower.POWER_ID.equals(power.ID))
+                {
+                    GameActions.Bottom.ApplyVulnerable(player, target, 1);
+                }
+                else if (PoisonPower.POWER_ID.equals(power.ID))
+                {
+                    GameActions.Bottom.ApplyPoison(player, target, 1);
+                }
+                else if (BurningPower.POWER_ID.equals(power.ID))
+                {
+                    GameActions.Bottom.ApplyBurning(player, target, 1);
+                }
+                else if (GainStrengthPower.POWER_ID.equals(power.ID))
+                {
+                    GameActions.Bottom.ReduceStrength(target, 1, true);
+                }
+            }
+        });
     }
 }

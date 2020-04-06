@@ -279,7 +279,7 @@ public class HigakiRinneAction extends EYBAction
             AbstractMonster m = GameUtilities.GetRandomEnemy(true);
             if (m != null)
             {
-                GameActions.Bottom.ApplyPower(player, m, new MarkOfPoisonPower(m, player, 2), 2);
+                GameActions.Bottom.StackPower(player, new MarkOfPoisonPower(m, player, 2));
             }
         }
         else if (tryActivate(3)) // 178

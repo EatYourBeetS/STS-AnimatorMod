@@ -2,11 +2,10 @@ package eatyourbeets.cards.animator.basic;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Strike_OwariNoSeraph extends Strike
 {
@@ -27,11 +26,7 @@ public class Strike_OwariNoSeraph extends Strike
     {
         super.triggerOnExhaust();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
-        {
-            GameActions.Bottom.ApplyVulnerable(p, m, this.magicNumber);
-        }
+        GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
     }
 
     @Override

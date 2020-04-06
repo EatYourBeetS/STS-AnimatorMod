@@ -7,7 +7,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Shinoa extends AnimatorCard
 {
@@ -28,10 +28,7 @@ public class Shinoa extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
-        {
-            GameActions.Bottom.ApplyWeak(player, enemy, magicNumber);
-        }
+        GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), magicNumber);
     }
 
     @Override
@@ -39,14 +36,14 @@ public class Shinoa extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(this.block);
 
-        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
+        if (HasSynergy())
         {
-            GameActions.Bottom.ApplyVulnerable(player, enemy, magicNumber);
-
-            if (HasSynergy())
-            {
-                GameActions.Bottom.ApplyWeak(player, enemy, magicNumber);
-            }
+            GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber)
+            .AddCallback(power -> GameActions.Top.ApplyWeak(player, power.owner, magicNumber));
+        }
+        else
+        {
+            GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
         }
     }
 }

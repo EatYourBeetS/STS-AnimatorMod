@@ -681,6 +681,16 @@ public class GameUtilities
         return player != null && player.chosenClass == playerClass;
     }
 
+    public static boolean IsMonster(AbstractCreature c)
+    {
+        return c != null && !c.isPlayer;
+    }
+
+    public static boolean IsPlayer(AbstractCreature c)
+    {
+        return c != null && c.isPlayer;
+    }
+
     public static boolean IsValidOrb(AbstractOrb orb)
     {
         return orb != null && !(orb instanceof EmptyOrbSlot);

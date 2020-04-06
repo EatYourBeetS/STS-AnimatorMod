@@ -4,15 +4,11 @@ import basemod.DevConsole;
 import basemod.devcommands.ConsoleCommand;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.stances.AbstractStance;
-import com.megacrit.cardcrawl.ui.DialogWord;
-import eatyourbeets.actions.monsters.TalkAction;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -171,29 +167,6 @@ public class ParseGenericCommand extends ConsoleCommand
                 if (tokens[1].equals("crop"))
                 {
                     DevConsole.log("This command is currently not available.");
-                    return;
-                }
-
-                if (tokens[1].equals("talk"))
-                {
-                    float duration = 2;
-                    if (tokens.length > 2)
-                    {
-                        duration = JavaUtilities.ParseFloat(tokens[2], duration);
-                    }
-
-                    RandomizedList<DialogWord.AppearEffect> effects = new RandomizedList<>();
-                    effects.Add(DialogWord.AppearEffect.BUMP_IN);
-                    effects.Add(DialogWord.AppearEffect.FADE_IN);
-                    effects.Add(DialogWord.AppearEffect.GROW_IN);
-                    effects.Add(DialogWord.AppearEffect.NONE);
-
-                    for (AbstractCreature creature : GameUtilities.GetAllCharacters(true))
-                    {
-                        GameActions.Bottom.Add(new TalkAction(creature, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", duration, duration))
-                                .SetEffect(effects.Retrieve(AbstractDungeon.miscRng));
-                    }
-
                     return;
                 }
 

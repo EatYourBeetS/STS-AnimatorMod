@@ -55,7 +55,7 @@ public class HornedBat_R extends HornedBat
             jsonUrl = "images/monsters/animator/HornedBat/HornedBat.json";
             scale = 1f;
 
-            SetHB(0,0,100,140, 0, 50);
+            SetHB(0, 0, 120, 150, 0, 50);
         }
     }
 }

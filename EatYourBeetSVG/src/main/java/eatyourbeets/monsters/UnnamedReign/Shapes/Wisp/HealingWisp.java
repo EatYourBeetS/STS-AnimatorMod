@@ -43,6 +43,6 @@ public class HealingWisp extends Wisp
                 break;
         }
 
-        GameActions.Bottom.ApplyPower(this, this, new HealingWispPower(this, amount), amount);
+        GameActions.Bottom.StackPower(new HealingWispPower(this, amount));
     }
 }

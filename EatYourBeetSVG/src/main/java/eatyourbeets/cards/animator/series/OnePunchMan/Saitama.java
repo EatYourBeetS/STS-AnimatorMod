@@ -141,7 +141,7 @@ public class Saitama extends AnimatorCard
                 GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetPiercing(true, true);
                 GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
 
-                GameActions.Bottom.ApplyPowerSilently(p, m, new StunMonsterPower(m, 1), 1);
+                GameActions.Bottom.ApplyPower(p, m, new StunMonsterPower(m, 1));
 
                 break;
             }

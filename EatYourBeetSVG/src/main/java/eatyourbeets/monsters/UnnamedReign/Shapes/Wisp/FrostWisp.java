@@ -47,6 +47,6 @@ public class FrostWisp extends Wisp
                 break;
         }
 
-        GameActions.Bottom.ApplyPower(this, this, new FrostWispPower(this, amount), amount);
+        GameActions.Bottom.StackPower(new FrostWispPower(this, amount));
     }
 }

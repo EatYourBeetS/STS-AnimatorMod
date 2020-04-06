@@ -1,5 +1,6 @@
 package eatyourbeets.powers.animator;
 
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.cards.animator.special.DarknessAdrenaline;
 import eatyourbeets.powers.AnimatorPower;
@@ -19,11 +20,15 @@ public class DarknessPower extends AnimatorPower
     }
 
     @Override
-    public int onLoseHp(int damageAmount)
+    public void wasHPLost(DamageInfo info, int damageAmount)
     {
-        GameActions.Top.ReducePower(this, 1);
-        GameActions.Bottom.MakeCardInDrawPile(new DarknessAdrenaline());
+        super.wasHPLost(info, damageAmount);
 
-        return super.onLoseHp(damageAmount);
+        if (info.type != DamageInfo.DamageType.HP_LOSS && damageAmount > 0)
+        {
+            flash();
+            GameActions.Top.ReducePower(this, 1);
+            GameActions.Bottom.MakeCardInDrawPile(new DarknessAdrenaline());
+        }
     }
 }

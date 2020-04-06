@@ -21,7 +21,7 @@ public class NanamiEffect_Escape extends NanamiEffect
             GameUtilities.UsePenNib();
         }
 
-        GameActions.Bottom.ApplyPower(p, m, new StunMonsterPower(m, 1), 1);
+        GameActions.Bottom.ApplyPower(p, new StunMonsterPower(m, 1));
     }
 
     @Override

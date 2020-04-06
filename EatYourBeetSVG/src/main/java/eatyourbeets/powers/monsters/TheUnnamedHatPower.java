@@ -33,10 +33,7 @@ public class TheUnnamedHatPower extends AnimatorPower
     {
         super.onDeath();
 
-        if (!player.hasPower(EntanglePower.POWER_ID))
-        {
-            GameActions.Bottom.ApplyPower(null, player, new EntanglePower(player), 1);
-        }
+        GameActions.Bottom.ApplyPower(null, new EntanglePower(player));
     }
 
     @Override

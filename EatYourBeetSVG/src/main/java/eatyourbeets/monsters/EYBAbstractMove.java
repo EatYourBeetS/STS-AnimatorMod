@@ -8,13 +8,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.autoTarget.ApplyPowerAuto;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.PowerTarget;
+import eatyourbeets.utilities.TargetHelper;
 
 import java.util.ArrayList;
 
@@ -23,10 +24,10 @@ public abstract class EYBAbstractMove
     public static class PowerTemplate
     {
         public final PowerHelper power;
-        public final PowerTarget target;
+        public final TargetHelper target;
         public final Integer amount;
 
-        public PowerTemplate(PowerHelper power, PowerTarget target, Integer amount)
+        public PowerTemplate(PowerHelper power, TargetHelper target, Integer amount)
         {
             this.power = power;
             this.target = target;
@@ -45,7 +46,7 @@ public abstract class EYBAbstractMove
     public FuncT2<Boolean, EYBAbstractMove, Byte> canUse;
     public ActionT1<EYBAbstractMove> onSelect;
     public AbstractMonster.Intent intent;
-    public PowerTarget powerTarget = PowerTarget.Source;
+    public TargetHelper targetHelper;
     public AbstractMonster owner;
     public DamageInfo damageInfo;
     public boolean disabled;
@@ -102,6 +103,15 @@ public abstract class EYBAbstractMove
         {
             this.damageInfo.owner = owner;
         }
+
+        if (this.targetHelper == null)
+        {
+            this.targetHelper = TargetHelper.Source(owner);
+        }
+        else
+        {
+            this.targetHelper.SetSource(owner);
+        }
     }
 
     public void QueueActions(AbstractCreature target)
@@ -151,8 +161,9 @@ public abstract class EYBAbstractMove
         for (PowerTemplate template : powerTemplates)
         {
             int amount = template.amount != null ? template.amount : misc.Calculate();
-            PowerTarget powerTarget = template.target != null ? template.target : this.powerTarget;
-            powerTarget.ApplyPowers(template.power, owner, target, amount);
+            TargetHelper helper = template.target != null ? template.target : targetHelper;
+
+            GameActions.Bottom.Add(new ApplyPowerAuto(helper, template.power, amount));
         }
     }
 
@@ -188,9 +199,9 @@ public abstract class EYBAbstractMove
         return this;
     }
 
-    public EYBAbstractMove SetPowerTarget(PowerTarget target)
+    public EYBAbstractMove SetPowerTarget(TargetHelper helper)
     {
-        this.powerTarget = target;
+        this.targetHelper = helper;
 
         return this;
     }
@@ -209,9 +220,9 @@ public abstract class EYBAbstractMove
         return this;
     }
 
-    public EYBAbstractMove AddPower(PowerHelper power, PowerTarget powerTarget, int amount)
+    public EYBAbstractMove AddPower(PowerHelper power, TargetHelper helper, int amount)
     {
-        this.powerTemplates.add(new PowerTemplate(power, powerTarget, amount));
+        this.powerTemplates.add(new PowerTemplate(power, helper, amount));
 
         return this;
     }

@@ -89,11 +89,11 @@ public class AnimatorSeriesSelectEffect extends EYBEffect
                 if (grid.cards.size() <= 3)
                 {
                     CardCrawlGame.sound.playA("CARD_SELECT", grid.cards.size() * 0.1f);
-                    duration = 0.2f;
+                    duration = 0.15f;
                 }
                 else
                 {
-                    duration = 0.05f;
+                    duration = 0.02f;
                 }
 
                 isDone = false;

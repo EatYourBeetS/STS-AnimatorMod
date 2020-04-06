@@ -3,7 +3,7 @@ package eatyourbeets.monsters.SharedMoveset;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.utilities.PowerTarget;
+import eatyourbeets.utilities.TargetHelper;
 
 public class EYBMove_Debuff extends EYBAbstractMove
 {
@@ -16,9 +16,8 @@ public class EYBMove_Debuff extends EYBAbstractMove
 
     public EYBMove_Debuff(int debuff)
     {
+        SetIntent(AbstractMonster.Intent.DEBUFF);
+        SetPowerTarget(TargetHelper.Player());
         SetMisc(debuff);
-
-        intent = AbstractMonster.Intent.DEBUFF;
-        powerTarget = PowerTarget.Player;
     }
 }

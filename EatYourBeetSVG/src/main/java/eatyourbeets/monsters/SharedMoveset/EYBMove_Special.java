@@ -7,6 +7,6 @@ public class EYBMove_Special extends EYBAbstractMove
 {
     public EYBMove_Special()
     {
-        intent = AbstractMonster.Intent.MAGIC;
+        SetIntent(AbstractMonster.Intent.MAGIC);
     }
 }

@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
 {
@@ -49,7 +50,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     {
         if (player.hand.contains(this))
         {
-            if (info.type == DamageInfo.DamageType.NORMAL && target != null && !target.isPlayer)
+            if (info.type == DamageInfo.DamageType.NORMAL && GameUtilities.IsMonster(target))
             {
                 this.AddDamageBonus(this.secondaryValue);
                 this.flash();

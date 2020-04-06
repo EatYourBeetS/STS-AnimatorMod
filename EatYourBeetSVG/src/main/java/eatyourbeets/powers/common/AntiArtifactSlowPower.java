@@ -46,7 +46,9 @@ public class AntiArtifactSlowPower extends AbstractPower implements CloneablePow
 
     public void onAfterUseCard(AbstractCard card, UseCardAction action)
     {
-        GameActions.Bottom.ApplyPowerSilently(owner, owner, new AntiArtifactSlowPower(owner, 1), 1);
+        GameActions.Bottom.StackPower(new AntiArtifactSlowPower(owner, 1))
+        .ShowEffect(false, true)
+        .IgnoreArtifact(true);
     }
 
     public float atDamageReceive(float damage, DamageInfo.DamageType type)

@@ -36,7 +36,7 @@ public class Kuribayashi extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
-        GameActions.Bottom.ApplyPower(p, m, new ChokePower(m, secondaryValue), secondaryValue);
+        GameActions.Bottom.StackPower(p, new ChokePower(m, secondaryValue));
 
         if (HasSynergy())
         {

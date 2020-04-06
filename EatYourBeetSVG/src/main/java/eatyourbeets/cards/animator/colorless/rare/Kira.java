@@ -74,7 +74,7 @@ public class Kira extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ApplyPower(p, m, new StrengthPower(m, secondaryValue), secondaryValue);
+        GameActions.Bottom.StackPower(p, new StrengthPower(m, secondaryValue));
 
         updateCountdown(m);
 

@@ -31,6 +31,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
     protected boolean ignoreArtifact;
     protected boolean showEffect = true;
     protected boolean skipIfZero;
+    protected boolean canStack = true;
     protected boolean faster;
 
     public ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power)
@@ -78,6 +79,13 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             HardCodedStuff_Corruption(player.discardPile);
             HardCodedStuff_Corruption(player.exhaustPile);
         }
+    }
+
+    public ApplyPower CanStack(boolean canStack)
+    {
+        this.canStack = canStack;
+
+        return this;
     }
 
     public ApplyPower SkipIfZero(boolean skipIfZero)
@@ -152,6 +160,24 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             return;
         }
 
+        AbstractPower existingPower = null;
+        for (AbstractPower power : target.powers)
+        {
+            // ApplyPowerActions also uses 'while(p.ID.equals(NightmarePower.POWER_ID));', no idea what that's supposed to do
+            if (power.ID.equals(powerToApply.ID))
+            {
+                if (canStack)
+                {
+                    existingPower = power;
+                    break;
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+
         if (powerToApply.type == AbstractPower.PowerType.DEBUFF)
         {
             if (HardCodedStuff_Artifact())
@@ -170,17 +196,14 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             GameEffects.List.Add(new FlashAtkImgEffect(target.hb.cX, target.hb.cY, attackEffect));
         }
 
-        for (AbstractPower power : target.powers)
+        if (existingPower != null)
         {
-            // ApplyPowerActions also uses 'while(p.ID.equals(NightmarePower.POWER_ID));', no idea what that's supposed to do
-            if (power.ID.equals(powerToApply.ID))
-            {
-                StackPower(power);
-                return;
-            }
+            StackPower(existingPower);
         }
-
-        AddPower();
+        else
+        {
+            AddPower();
+        }
     }
 
     @Override

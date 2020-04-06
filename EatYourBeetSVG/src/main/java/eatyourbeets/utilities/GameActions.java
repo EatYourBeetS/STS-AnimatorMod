@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardFlashVfx;
 import eatyourbeets.actions.animator.CreateThrowingKnives;
+import eatyourbeets.actions.autoTarget.ApplyPowerAuto;
 import eatyourbeets.actions.basic.*;
 import eatyourbeets.actions.cardManipulation.*;
 import eatyourbeets.actions.damage.DealDamage;
@@ -49,6 +50,7 @@ import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.common.AgilityPower;
@@ -137,14 +139,24 @@ public final class GameActions
         return StackPower(source, new BurningPower(target, source, amount));
     }
 
+    public ApplyPowerAuto ApplyBurning(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.Burning, amount);
+    }
+
     public ApplyPower ApplyConstricted(AbstractCreature source, AbstractCreature target, int amount)
     {
         return StackPower(source, new ConstrictedPower(target, source, amount));
     }
 
+    public ApplyPowerAuto ApplyConstricted(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.Constricted, amount);
+    }
+
     public ApplyPower ApplyFrail(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new FrailPower(target, amount, !source.isPlayer));
+        return StackPower(source, new FrailPower(target, amount, GameUtilities.IsMonster(source)));
     }
 
     public ApplyPower ApplyPoison(AbstractCreature source, AbstractCreature target, int amount)
@@ -152,34 +164,49 @@ public final class GameActions
         return StackPower(source, new PoisonPower(target, source, amount));
     }
 
+    public ApplyPowerAuto ApplyPoison(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.Poison, amount);
+    }
+
     public ApplyPower ApplyPower(AbstractPower power)
     {
-        return Add(new ApplyPower(power.owner, power.owner, power));
+        return ApplyPower(power.owner, power.owner, power);
+    }
+
+    public ApplyPowerAuto ApplyPower(TargetHelper target, PowerHelper power)
+    {
+        return Add(new ApplyPowerAuto(target, power, 1)).CanStack(false);
+    }
+
+    public ApplyPower ApplyPower(AbstractCreature source, AbstractPower power)
+    {
+        return ApplyPower(source, power.owner, power);
     }
 
     public ApplyPower ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power)
     {
-        return Add(new ApplyPower(source, target, power));
-    }
-
-    public ApplyPower ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power, int stacks)
-    {
-        return Add(new ApplyPower(source, target, power, stacks));
-    }
-
-    public ApplyPower ApplyPowerSilently(AbstractCreature source, AbstractCreature target, AbstractPower power, int stacks)
-    {
-        return Add(new ApplyPower(source, target, power, stacks)).IgnoreArtifact(true).ShowEffect(false, true);
+        return Add(new ApplyPower(source, target, power)).CanStack(false);
     }
 
     public ApplyPower ApplyVulnerable(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new VulnerablePower(target, amount, !source.isPlayer));
+        return StackPower(source, new VulnerablePower(target, amount, GameUtilities.IsMonster(source)));
+    }
+
+    public ApplyPowerAuto ApplyVulnerable(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.Vulnerable, amount);
     }
 
     public ApplyPower ApplyWeak(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new WeakPower(target, amount, !source.isPlayer));
+        return StackPower(source, new WeakPower(target, amount, GameUtilities.IsMonster(source)));
+    }
+
+    public ApplyPowerAuto ApplyWeak(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.Weak, amount);
     }
 
     public CallbackAction Callback(AbstractGameAction action, Object state, ActionT2<Object, AbstractGameAction> onCompletion)
@@ -693,6 +720,11 @@ public final class GameActions
     public SpendEnergy SpendEnergy(int amount, boolean canSpendLess)
     {
         return Add(new SpendEnergy(amount, canSpendLess));
+    }
+
+    public ApplyPowerAuto StackPower(TargetHelper target, PowerHelper power, int stacks)
+    {
+        return Add(new ApplyPowerAuto(target, power, stacks));
     }
 
     public ApplyPower StackPower(AbstractCreature source, AbstractPower power)

@@ -47,6 +47,6 @@ public class FrostCube extends Cube
                 break;
         }
 
-        GameActions.Bottom.ApplyPower(this, this, new FrostCubePower(this, amount), amount);
+        GameActions.Bottom.StackPower(new FrostCubePower(this, amount));
     }
 }

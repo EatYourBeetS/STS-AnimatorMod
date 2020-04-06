@@ -50,6 +50,6 @@ public class FireWisp extends Wisp
                 break;
         }
 
-        GameActions.Bottom.ApplyPower(this, this, new FireWispPower(this, amount), amount);
+        GameActions.Bottom.StackPower(new FireWispPower(this, amount));
     }
 }

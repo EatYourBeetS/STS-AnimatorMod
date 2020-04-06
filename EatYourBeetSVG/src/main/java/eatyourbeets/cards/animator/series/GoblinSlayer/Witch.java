@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Witch extends AnimatorCard implements StartupCard
 {
@@ -32,11 +33,7 @@ public class Witch extends AnimatorCard implements StartupCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
-
-        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
-        {
-            GameActions.Bottom.ApplyBurning(p, enemy, magicNumber);
-        }
+        GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), magicNumber);
     }
 
     @Override

@@ -55,11 +55,11 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
 
         //Rotation:
         moveset.Normal.Buff(PowerHelper.PlatedArmor, 4)
-        .SetPowerTarget(PowerTarget.Enemies)
+        .SetPowerTarget(TargetHelper.Enemies(this))
         .SetMiscBonus(4, 1);
 
         moveset.Normal.DefendBuff(8, PowerHelper.Strength, 3)
-        .SetPowerTarget(PowerTarget.Enemies)
+        .SetPowerTarget(TargetHelper.Enemies(this))
         .SetMiscBonus(4, 1)
         .SetBlockAoE(true);
 

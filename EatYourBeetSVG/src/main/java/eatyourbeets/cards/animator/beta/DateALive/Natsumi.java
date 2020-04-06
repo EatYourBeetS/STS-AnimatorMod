@@ -29,6 +29,7 @@ public class Natsumi extends AnimatorCard
 
         Initialize(0, 0, 7);
         SetExhaust(true);
+        SetSpellcaster();
 
         SetSynergy(Synergies.DateALive);
         SetSpellcaster();

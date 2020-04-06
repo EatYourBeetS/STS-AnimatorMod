@@ -24,7 +24,7 @@ public class MikuIzayoi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, BLOCK_AMOUNT);
+        Initialize(0, BLOCK_AMOUNT, 1);
 
         SetSynergy(Synergies.DateALive);
     }
@@ -55,31 +55,31 @@ public class MikuIzayoi extends AnimatorCard
         {
             if (ForcePower.POWER_ID.equals(power.ID))
             {
-                GameActions.Bottom.GainForce(1);
+                GameActions.Bottom.GainForce(magicNumber);
             }
             else if (AgilityPower.POWER_ID.equals(power.ID))
             {
-                GameActions.Bottom.GainAgility(1);
+                GameActions.Bottom.GainAgility(magicNumber);
             }
             else if (IntellectPower.POWER_ID.equals(power.ID))
             {
-                GameActions.Bottom.GainIntellect(1);
+                GameActions.Bottom.GainIntellect(magicNumber);
             }
             else if (ThornsPower.POWER_ID.equals(power.ID))
             {
-                GameActions.Bottom.GainThorns(1);
+                GameActions.Bottom.GainThorns(magicNumber);
             }
             else if (EarthenThornsPower.POWER_ID.equals(power.ID))
             {
-                GameActions.Bottom.GainTemporaryThorns(1);
+                GameActions.Bottom.GainTemporaryThorns(magicNumber);
             }
             else if (MetallicizePower.POWER_ID.equals(power.ID))
             {
-                GameActions.Bottom.GainMetallicize(1);
+                GameActions.Bottom.GainMetallicize(magicNumber);
             }
             else if (PlatedArmorPower.POWER_ID.equals(power.ID))
             {
-                GameActions.Bottom.GainPlatedArmor(1);
+                GameActions.Bottom.GainPlatedArmor(magicNumber);
             }
         }
     }

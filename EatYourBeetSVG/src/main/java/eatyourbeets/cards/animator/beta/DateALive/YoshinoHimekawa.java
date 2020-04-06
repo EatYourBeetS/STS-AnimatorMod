@@ -23,7 +23,7 @@ public class YoshinoHimekawa extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 4);
+        Initialize(0, 4, 1,4);
         SetEthereal(true);
 
         SetEvokeOrbCount(1);
@@ -40,10 +40,10 @@ public class YoshinoHimekawa extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DiscardFromHand(name, 1, true);
+        GameActions.Bottom.DiscardFromHand(name, magicNumber, true);
 
         int frostCount = JavaUtilities.Count(player.orbs, orb -> Frost.ORB_ID.equals(orb.ID));
-        if (frostCount >= magicNumber)
+        if (frostCount >= secondaryValue)
         {
             GameActions.Bottom.MakeCardInHand(new Zadkiel()).SetUpgrade(upgraded, false);
         }

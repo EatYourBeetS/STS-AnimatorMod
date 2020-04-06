@@ -296,10 +296,10 @@
 		},
 		"animator:MikuIzayoi":
 		{
-			"DESCRIPTION": "Unaffected by Block modifiers. || When Discarded: Raise ** your {Common Buffs} by 1.",
+			"DESCRIPTION": "Unaffected by Block modifiers. || When Discarded: Raise ** your {Common Buffs} by !M!.",
 			"EXTENDED_DESCRIPTION": ["Common Buffs", "#yForce, #yAgility, #yIntellect, #yThorns, #yTemp. #yThorns, #yMetallicize, #yPlated #yArmor. "],
 			"NAME": "Miku Izayoi",
-			"UPGRADE_DESCRIPTION": "Motivate 1. || Unaffected by Block modifiers. || When Discarded: Raise ** your {Common Buffs} by 1."
+			"UPGRADE_DESCRIPTION": "Motivate 1. || Unaffected by Block modifiers. || When Discarded: Raise ** your {Common Buffs} by !M!."
 		},
 		"animator:MioTakamiya":
 		{
@@ -309,7 +309,7 @@
 		},
 		"animator:MukuroHoshimiya":
 		{
-			"DESCRIPTION": "Deal 1 additional damage for ** each card in draw pile. || Whenever this enters your ** draw pile, move it to the ** sixth spot from the top.",
+			"DESCRIPTION": "Deal !M! additional damage for ** each card in draw pile. || Whenever this enters your ** draw pile, move it to the ** sixth spot from the top.",
 			"NAME": "Mukuro Hoshimiya"
 		},
 		"animator:Natsumi":
@@ -358,7 +358,7 @@
 		},
 		"animator:YoshinoHimekawa":
 		{
-			"DESCRIPTION": "Discard 1 random card. If you ** have !M! or more Frost Orbs: ** Add {Zadkiel} to your hand. ** Otherwise: Channel 1 Frost. || <LIM>. Gain 1 Orb Slot.",
+			"DESCRIPTION": "Discard !M! random card(s). If you ** have !S! or more Frost Orbs: ** Add {Zadkiel} to your hand. ** Otherwise: Channel 1 Frost. || <LIM>. Gain 1 Orb Slot.",
 			"NAME": "Yoshino Himekawa"
 		},
 		"animator:Zadkiel":

@@ -28,7 +28,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnBatt
     {
         super(DATA);
 
-        Initialize(6, 0);
+        Initialize(6, 0, 1);
 
         SetSynergy(Synergies.DateALive);
         SetSpellcaster();
@@ -42,13 +42,13 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnBatt
     @Override
     protected void OnUpgrade()
     {
-        SetScaling(2, 2, 0);
+        SetScaling(2, 0, 0);
     }
 
     @Override
     protected float GetInitialDamage()
     {
-        return baseDamage + player.drawPile.size();
+        return baseDamage + (player.drawPile.size() * magicNumber);
     }
 
     @Override

@@ -15,13 +15,13 @@ import eatyourbeets.utilities.GameUtilities;
 public class Kagari extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Kagari.class).SetPower(2, CardRarity.RARE).SetColor(CardColor.COLORLESS);
-    private static final int MAX_THORNS = 10;
+    private static final int THORNS_BASE = 1;
 
     public Kagari()
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 1);
+        Initialize(0, 0, 3, 10);
         SetUpgrade(0, 0, 2);
 
         SetSynergy(Synergies.Rewrite);
@@ -43,12 +43,12 @@ public class Kagari extends AnimatorCard
     {
         private int thornsBase;
 
-        public KagariPower(AbstractPlayer owner, int thornsBase)
+        public KagariPower(AbstractPlayer owner, int maxThorns)
         {
             super(owner, Kagari.DATA);
 
-            this.thornsBase = thornsBase;
-            this.amount = thornsBase;
+            this.thornsBase = THORNS_BASE;
+            this.amount = maxThorns;
 
             updateDescription();
         }
@@ -61,26 +61,12 @@ public class Kagari extends AnimatorCard
         }
 
         @Override
-        public void atEndOfTurn(boolean isPlayer)
-        {
-            this.amount = thornsBase;
-            updateDescription();
-        }
-
-        @Override
-        public void atEndOfRound()
-        {
-            this.amount = thornsBase;
-            updateDescription();
-        }
-
-        @Override
         public int onAttacked(DamageInfo info, int damageAmount)
         {
-            if (GameUtilities.GetPowerAmount(ThornsPower.POWER_ID) < MAX_THORNS &&
+            if (GameUtilities.GetPowerAmount(ThornsPower.POWER_ID) < amount &&
                     info.owner != null && info.type == DamageInfo.DamageType.NORMAL)
             {
-                GameActions.Top.GainThorns(amount);
+                GameActions.Top.GainThorns(thornsBase);
                 updateDescription();
             }
 
@@ -90,7 +76,7 @@ public class Kagari extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount, MAX_THORNS);
+            description = FormatDescription(0, thornsBase, amount);
         }
     }
 }

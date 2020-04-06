@@ -371,7 +371,7 @@
 	{
 		"animator:Kagari":
 		{
-			"DESCRIPTION": "Apply !M! {Shackles} to ** ALL enemies. || Whenever you take combat ** damage: Gain !S! Thorns if ** you have less than 10 Thorns.",
+			"DESCRIPTION": "Apply !M! {Shackles} to ** ALL enemies. || Whenever you take combat ** damage: Gain 1 Thorns if ** you have less than !S! Thorns.",
 			"EXTENDED_DESCRIPTION": ["Whenever you are attacked: Gain #b{0} Thorns if you have less than #b{1} Thorns."],
 			"NAME": "Kagari"
 		},

@@ -6,6 +6,7 @@ import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.interfaces.delegates.FuncT3;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,11 +19,11 @@ public class PowerHelper
     public static final PowerHelper Burning = new PowerHelper(BurningPower.POWER_ID, BurningPower::new);
     public static final PowerHelper Constricted = new PowerHelper(ConstrictedPower.POWER_ID, ConstrictedPower::new);
 
-    public static final PowerHelper Weak = new PowerHelper(WeakPower.POWER_ID, (o, s, a) -> new WeakPower(o, a, !s.isPlayer));
-    public static final PowerHelper Vulnerable = new PowerHelper(VulnerablePower.POWER_ID, (o, s, a) -> new VulnerablePower(o, a, !s.isPlayer));
-    public static final PowerHelper Frail = new PowerHelper(FrailPower.POWER_ID, (o, s, a) -> new FrailPower(o, a, !s.isPlayer));
+    public static final PowerHelper Weak = new PowerHelper(WeakPower.POWER_ID, (o, s, a) -> new WeakPower(o, a, GameUtilities.IsMonster(s)));
+    public static final PowerHelper Vulnerable = new PowerHelper(VulnerablePower.POWER_ID, (o, s, a) -> new VulnerablePower(o, a, GameUtilities.IsMonster(s)));
+    public static final PowerHelper Frail = new PowerHelper(FrailPower.POWER_ID, (o, s, a) -> new FrailPower(o, a, GameUtilities.IsMonster(s)));
 
-    public static final PowerHelper Ritual = new PowerHelper(RitualPower.POWER_ID, (o, s, a) -> new RitualPower(o, a, s.isPlayer));
+    public static final PowerHelper Ritual = new PowerHelper(RitualPower.POWER_ID, (o, s, a) -> new RitualPower(o, a, GameUtilities.IsPlayer(o)));
 
     public static final PowerHelper Strength = new PowerHelper(StrengthPower.POWER_ID, StrengthPower::new);
     public static final PowerHelper Dexterity = new PowerHelper(DexterityPower.POWER_ID, DexterityPower::new);

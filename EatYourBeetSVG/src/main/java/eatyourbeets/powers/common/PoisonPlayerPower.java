@@ -54,7 +54,6 @@ public class PoisonPlayerPower extends AbstractPower implements HealthBarRenderP
         {
             this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
         }
-
     }
 
     public void atStartOfTurn()

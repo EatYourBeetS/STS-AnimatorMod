@@ -206,9 +206,9 @@
 		},
 		"animator:MadokaKaname":
 		{
-			"DESCRIPTION": "Exhaust all {Hindrances} ** in discard pile. || <LIM>. Boost [I] for each  ** !M! {Status} Exhausted and ** gain !S! Intangible for each ** !M! {Curse} Exhausted.",
+			"DESCRIPTION": "Gain !S! [I]. ||  <LIM>. Exhaust all {Hindrances} ** everywhere. Gain 1 Intangible ** for each !M! {Hindrance(s)} Exhausted.",
 			"NAME": "Madoka Kaname",
-			"UPGRADE_DESCRIPTION": "Exhaust all {Hindrances} ** everywhere. || <LIM>. Boost [I] for each ** !M! {Status} Exhausted and gain ** !S! Intangible for each !M! {Curse} ** Exhausted."
+			"UPGRADE_DESCRIPTION": "Boost !S! [I]. || <LIM>. Exhaust all {Hindrances} ** everywhere. Gain 1 Intangible ** for each !M! {Hindrance(s)} Exhausted."
 		},
 		"animator:MamiTomoe":
 		{

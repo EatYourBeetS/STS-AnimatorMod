@@ -15,19 +15,18 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class MadokaKaname extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MadokaKaname.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.None);
 
-    private int curseCount;
-    private int statusCount;
-
     public MadokaKaname()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 5, 3);
+        Initialize(0, 0, -1, 0);
         SetExhaust(true);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -36,49 +35,44 @@ public class MadokaKaname extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        curseCount = 0;
-        statusCount = 0;
+        GameActions.Bottom.GainIntellect(secondaryValue, upgraded);
 
-        MoveHindranceUpdateCounts(p.discardPile, p.exhaustPile);
-
-        if (upgraded)
+        if (!EffectHistory.TryActivateLimited(cardID))
         {
-            MoveHindranceUpdateCounts(p.hand, p.exhaustPile);
-            MoveHindranceUpdateCounts(p.drawPile, p.exhaustPile);
+            return;
         }
 
-        if (EffectHistory.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.GainIntellect(statusCount / magicNumber, true).SkipIfZero(true);
-            GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, curseCount / magicNumber)).SkipIfZero(true);
-        }
+        int hindranceCount = 0;
+
+        hindranceCount += MoveHindranceUpdateCounts(p.discardPile, p.exhaustPile);
+        hindranceCount += MoveHindranceUpdateCounts(p.hand, p.exhaustPile);
+        hindranceCount += MoveHindranceUpdateCounts(p.drawPile, p.exhaustPile);
+
+        GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, hindranceCount / magicNumber)).SkipIfZero(true);
 
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
         GameActions.Bottom.VFX(new RainbowCardEffect());
     }
 
-    private void MoveHindranceUpdateCounts(CardGroup source, CardGroup destination)
+    private int MoveHindranceUpdateCounts(CardGroup source, CardGroup destination)
     {
         boolean move;
         float duration = 0.3f;
 
+        int hindranceCount = 0;
+
         for (AbstractCard card : source.group)
         {
-            if (move = (card.type == CardType.CURSE))
+            if (GameUtilities.IsCurseOrStatus(card))
             {
-                curseCount++;
-            }
-            else if (move = (card.type == CardType.STATUS))
-            {
-                statusCount++;
-            }
+                hindranceCount++;
 
-            if (move)
-            {
                 GameActions.Top.MoveCard(card, source, destination)
                 .ShowEffect(true, true, duration = Math.max(0.1f, duration * 0.8f))
                 .SetCardPosition(MoveCard.DEFAULT_CARD_X_RIGHT, MoveCard.DEFAULT_CARD_Y);
             }
         }
+
+        return hindranceCount;
     }
 }

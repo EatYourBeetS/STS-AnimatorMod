@@ -373,7 +373,7 @@
 		"animator:Kagari":
 		{
 			"DESCRIPTION": "Apply !M! {Shackles} ** to ALL enemies. || Whenever you are ** attacked: Gain !S! Thorns.",
-			"EXTENDED_DESCRIPTION": ["Whenever you take damage: Gain #b{0} Thorns."],
+			"EXTENDED_DESCRIPTION": ["Whenever you are attacked: Gain #b{0} Thorns."],
 			"NAME": "Kagari"
 		},
 		"animator:KotoriKanbe":

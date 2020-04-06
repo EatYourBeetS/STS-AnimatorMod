@@ -3,16 +3,19 @@ package eatyourbeets.cards.animator.beta;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ThornsPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Kagari extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Kagari.class).SetPower(2, CardRarity.RARE).SetColor(CardColor.COLORLESS);
+    private static final int MAX_THORNS = 10;
 
     public Kagari()
     {
@@ -74,7 +77,8 @@ public class Kagari extends AnimatorCard
         @Override
         public int onAttacked(DamageInfo info, int damageAmount)
         {
-            if (info.owner != null && info.type == DamageInfo.DamageType.NORMAL)
+            if (GameUtilities.GetPowerAmount(ThornsPower.POWER_ID) <= MAX_THORNS &&
+                    info.owner != null && info.type == DamageInfo.DamageType.NORMAL)
             {
                 GameActions.Top.GainThorns(amount);
                 updateDescription();
@@ -86,7 +90,7 @@ public class Kagari extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount);
+            description = FormatDescription(0, amount, MAX_THORNS);
         }
     }
 }

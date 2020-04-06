@@ -74,7 +74,7 @@ public class TargetHelper
 
     public static TargetHelper Random()
     {
-        return Source(AbstractDungeon.player);
+        return Random(AbstractDungeon.player);
     }
 
     public static TargetHelper Random(AbstractCreature source)
@@ -84,7 +84,7 @@ public class TargetHelper
 
     public static TargetHelper RandomEnemy()
     {
-        return Source(AbstractDungeon.player);
+        return RandomEnemy(AbstractDungeon.player);
     }
 
     public static TargetHelper RandomEnemy(AbstractCreature source)
@@ -94,7 +94,7 @@ public class TargetHelper
 
     public static TargetHelper All()
     {
-        return Source(AbstractDungeon.player);
+        return All(AbstractDungeon.player);
     }
 
     public static TargetHelper All(AbstractCreature source)

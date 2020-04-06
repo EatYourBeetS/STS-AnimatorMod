@@ -326,7 +326,7 @@
 		},
 		"animator:OrigamiTobiichi":
 		{
-			"DESCRIPTION": "At end of turn: Gain !M! ** {Support Damage} for every ** 2 Orbs. If you have over 20 ** {Support Damage}: Remove this power. Add ** {Inverse Origami} to your draw pile.",
+			"DESCRIPTION": "At end of turn: Gain !M! ** {Support Damage} for every ** 2 Orbs. If you have over 20 ** {Support Damage}: Remove this ** power. Add {Inverse Origami} to ** your draw pile.",
 			"EXTENDED_DESCRIPTION": ["At the end of your turn, gain #b{0} Support Damage for every 2 Orbs. If you have #b{1}+ Support Damage, remove this power of this and add #yInverse #yOrigami to your draw pile."],
 			"NAME": "Origami Tobiichi"
 		},
@@ -358,7 +358,7 @@
 		},
 		"animator:YoshinoHimekawa":
 		{
-			"DESCRIPTION": "Discard !M! random card(s). If ** you have !S! or more Frost Orbs: ** Add {Zadkiel} to your hand. ** Otherwise: Channel 1 Frost. || <LIM>. Gain 1 Orb Slot.",
+			"DESCRIPTION": "Discard !M! random card(s). If ** you have !S! or more Frost ** Orbs: Add {Zadkiel} to your ** hand. Otherwise: Channel 1 Frost. || <LIM>. Gain 1 Orb Slot.",
 			"NAME": "Yoshino Himekawa"
 		},
 		"animator:Zadkiel":

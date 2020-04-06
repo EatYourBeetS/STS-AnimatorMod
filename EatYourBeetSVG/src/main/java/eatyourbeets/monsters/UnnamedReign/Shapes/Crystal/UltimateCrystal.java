@@ -115,8 +115,8 @@ public class UltimateCrystal extends Crystal
 
         if (original == null)
         {
-            GameActions.Bottom.ApplyPower(this, this, new UltimateCrystalPower(this, 6), 6);
-            GameActions.Bottom.ApplyPower(this, this, new AntiArtifactSlowPower(this, 1), 1);
+            GameActions.Bottom.StackPower(new UltimateCrystalPower(this, 6));
+            GameActions.Bottom.StackPower(new AntiArtifactSlowPower(this, 1));
 
             GameEffects.List.Callback(new WaitRealtimeAction(15), () -> CardCrawlGame.music.unsilenceBGM());
 

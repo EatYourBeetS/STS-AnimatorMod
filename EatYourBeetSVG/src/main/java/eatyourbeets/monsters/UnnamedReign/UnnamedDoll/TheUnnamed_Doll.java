@@ -14,7 +14,7 @@ import eatyourbeets.powers.monsters.CursedStabsPower;
 import eatyourbeets.powers.monsters.UnnamedDollPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.PowerTarget;
+import eatyourbeets.utilities.TargetHelper;
 
 public class TheUnnamed_Doll extends EYBMonster
 {
@@ -35,7 +35,7 @@ public class TheUnnamed_Doll extends EYBMonster
         antiIntangible = moveset.Special.Attack(4, 12);
 
         ritualAndArtifactAll = moveset.Special.Buff(PowerHelper.Ritual, 2)
-        .SetPowerTarget(PowerTarget.Enemies)
+        .SetPowerTarget(TargetHelper.Enemies(this))
         .AddPower(PowerHelper.Artifact)
         .SetUses(1);
 
@@ -45,7 +45,7 @@ public class TheUnnamed_Doll extends EYBMonster
         .SetBlockAoE(true);
 
         moveset.Normal.DefendBuff(9, PowerHelper.TemporaryThorns, 2)
-        .SetPowerTarget(PowerTarget.Enemies)
+        .SetPowerTarget(TargetHelper.Enemies(this))
         .SetMiscBonus(18, 1)
         .SetBlockAoE(true);
 

@@ -10,12 +10,6 @@ public class EYBMove_SummonEnemy extends EYBMove_Unknown
 {
     private AbstractMonster summon;
 
-    @Override
-    public void Initialize(byte id, AbstractMonster owner)
-    {
-        super.Initialize(id, owner);
-    }
-
     public EYBMove_SummonEnemy SetSummon(AbstractMonster monster)
     {
         summon = monster;

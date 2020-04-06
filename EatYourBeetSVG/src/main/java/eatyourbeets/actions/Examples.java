@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ConfusionPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -50,11 +51,12 @@ public final class Examples extends AnimatorCard
         // With GameActions:
         GameActions.Bottom.StackPower(new StrengthPower(p, magicNumber));
         // or:
-        GameActions.Bottom.ApplyPower(p, p, new StrengthPower(p, magicNumber), magicNumber);
-        // or:
         GameActions.Bottom.Add(new ApplyPowerAction(p, p, new StrengthPower(p, magicNumber), magicNumber));
         // or (this one always targets the player):
         GameActions.Bottom.GainStrength(magicNumber); // there are some more power shortcuts, like GainDexterity, GainAgility, GainForce, GainPlatedArmor etc...
+
+        // Only use ApplyPower when the power does not stack
+        GameActions.Bottom.ApplyPower(new ConfusionPower(p));
     }
 
     private void DealDamage(AbstractPlayer p, AbstractMonster m)

@@ -7,8 +7,7 @@ public class EYBMove_Defend extends EYBAbstractMove
 {
     public EYBMove_Defend(int block)
     {
+        SetIntent(AbstractMonster.Intent.DEFEND);
         SetBlock(block);
-
-        intent = AbstractMonster.Intent.DEFEND;
     }
 }

@@ -31,6 +31,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
     protected boolean ignoreArtifact;
     protected boolean showEffect = true;
     protected boolean skipIfZero;
+    protected boolean canStack;
     protected boolean faster;
 
     public ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power)
@@ -78,6 +79,13 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             HardCodedStuff_Corruption(player.discardPile);
             HardCodedStuff_Corruption(player.exhaustPile);
         }
+    }
+
+    public ApplyPower CanStack(boolean canStack)
+    {
+        this.canStack = canStack;
+
+        return this;
     }
 
     public ApplyPower SkipIfZero(boolean skipIfZero)
@@ -175,7 +183,15 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             // ApplyPowerActions also uses 'while(p.ID.equals(NightmarePower.POWER_ID));', no idea what that's supposed to do
             if (power.ID.equals(powerToApply.ID))
             {
-                StackPower(power);
+                if (canStack)
+                {
+                    StackPower(power);
+                }
+                else
+                {
+                    Complete();
+                }
+
                 return;
             }
         }

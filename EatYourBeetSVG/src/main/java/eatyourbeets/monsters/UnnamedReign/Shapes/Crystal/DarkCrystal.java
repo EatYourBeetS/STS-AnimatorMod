@@ -48,6 +48,6 @@ public class DarkCrystal extends Crystal
                 break;
         }
 
-        GameActions.Bottom.ApplyPower(this, this, new DarkCrystalPower(this, amount), amount);
+        GameActions.Bottom.StackPower(new DarkCrystalPower(this, amount));
     }
 }

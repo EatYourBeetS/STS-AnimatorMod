@@ -32,6 +32,8 @@ public class Shinoa extends AnimatorCard
         {
             GameActions.Bottom.ApplyWeak(player, enemy, magicNumber);
         }
+
+
     }
 
     @Override

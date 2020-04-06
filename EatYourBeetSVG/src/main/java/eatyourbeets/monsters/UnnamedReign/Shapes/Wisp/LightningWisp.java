@@ -52,6 +52,6 @@ public class LightningWisp extends Wisp
                 break;
         }
 
-        GameActions.Bottom.ApplyPower(this, this, new LightningWispPower(this, amount), amount);
+        GameActions.Bottom.StackPower(new LightningWispPower(this, amount));
     }
 }

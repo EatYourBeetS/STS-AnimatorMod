@@ -51,6 +51,6 @@ public class FireCrystal extends Crystal
                 break;
         }
 
-        GameActions.Bottom.ApplyPower(this, this, new FireCrystalPower(this, amount), amount);
+        GameActions.Bottom.StackPower(new FireCrystalPower(this, amount));
     }
 }

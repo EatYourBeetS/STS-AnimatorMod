@@ -46,7 +46,7 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
     {
         super.usePreBattleAction();
 
-        GameActions.Bottom.ApplyPower(this, this, new TheUnnamedCultistPower(this, 12), 12);
+        GameActions.Bottom.StackPower(new TheUnnamedCultistPower(this, 12));
         GameActions.Bottom.WaitRealtime(0.2f);
         GameActions.Bottom.Talk(this, STRINGS.DIALOG[5], 1f, 2.5f);
     }

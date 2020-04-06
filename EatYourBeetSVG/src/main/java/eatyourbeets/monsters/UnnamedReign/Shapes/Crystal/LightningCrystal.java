@@ -50,6 +50,6 @@ public class LightningCrystal extends Crystal
                 break;
         }
 
-        GameActions.Bottom.ApplyPower(this, this, new LightningCrystalPower(this, amount), amount);
+        GameActions.Bottom.StackPower(new LightningCrystalPower(this, amount));
     }
 }

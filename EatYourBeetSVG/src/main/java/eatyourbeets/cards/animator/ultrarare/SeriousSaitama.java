@@ -36,10 +36,7 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
 
         for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
         {
-            if (!enemy.hasPower(StunMonsterPower.POWER_ID))
-            {
-                GameActions.Bottom.ApplyPower(p, enemy, new StunMonsterPower(enemy, 1), 1);
-            }
+            GameActions.Bottom.ApplyPower(p, new StunMonsterPower(enemy, 1));
 
             GameActions.Bottom.ApplyVulnerable(p, enemy, amount).SkipIfZero(true);
         }

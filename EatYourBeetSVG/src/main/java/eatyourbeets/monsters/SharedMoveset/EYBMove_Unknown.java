@@ -7,6 +7,6 @@ public class EYBMove_Unknown extends EYBAbstractMove
 {
     public EYBMove_Unknown()
     {
-        intent = AbstractMonster.Intent.UNKNOWN;
+        SetIntent(AbstractMonster.Intent.UNKNOWN);
     }
 }

@@ -183,7 +183,8 @@ public class TheUnnamed extends EYBMonster
     {
         if (!hasPower(InfinitePower.POWER_ID))
         {
-            GameActions.Bottom.ApplyPowerSilently(this, this, infinitePower, 0);
+            GameActions.Bottom.ApplyPower(this, infinitePower)
+            .ShowEffect(false, true);
         }
 
         if (infinitePower.phase2 && moveFading.CanUse(previousMove))

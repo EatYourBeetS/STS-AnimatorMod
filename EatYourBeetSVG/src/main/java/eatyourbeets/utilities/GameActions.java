@@ -154,22 +154,17 @@ public final class GameActions
 
     public ApplyPower ApplyPower(AbstractPower power)
     {
-        return Add(new ApplyPower(power.owner, power.owner, power));
+        return ApplyPower(power.owner, power.owner, power);
+    }
+
+    public ApplyPower ApplyPower(AbstractCreature source, AbstractPower power)
+    {
+        return ApplyPower(source, power.owner, power);
     }
 
     public ApplyPower ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power)
     {
-        return Add(new ApplyPower(source, target, power));
-    }
-
-    public ApplyPower ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power, int stacks)
-    {
-        return Add(new ApplyPower(source, target, power, stacks));
-    }
-
-    public ApplyPower ApplyPowerSilently(AbstractCreature source, AbstractCreature target, AbstractPower power, int stacks)
-    {
-        return Add(new ApplyPower(source, target, power, stacks)).IgnoreArtifact(true).ShowEffect(false, true);
+        return Add(new ApplyPower(source, target, power)).CanStack(false);
     }
 
     public ApplyPower ApplyVulnerable(AbstractCreature source, AbstractCreature target, int amount)

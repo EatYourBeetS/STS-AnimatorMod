@@ -46,6 +46,6 @@ public class HealingCube extends Cube
                 break;
         }
 
-        GameActions.Bottom.ApplyPower(this, this, new HealingCubePower(this, amount), amount);
+        GameActions.Bottom.StackPower(new HealingCubePower(this, amount));
     }
 }

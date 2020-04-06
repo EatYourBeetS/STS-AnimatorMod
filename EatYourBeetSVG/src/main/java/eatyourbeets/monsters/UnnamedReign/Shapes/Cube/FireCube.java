@@ -49,6 +49,6 @@ public class FireCube extends Cube
                 break;
         }
 
-        GameActions.Bottom.ApplyPower(this, this, new FireCubePower(this, amount), amount);
+        GameActions.Bottom.StackPower(new FireCubePower(this, amount));
     }
 }

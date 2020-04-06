@@ -47,6 +47,6 @@ public class DarkCube extends Cube
                 break;
         }
 
-        GameActions.Bottom.ApplyPower(this, this, new DarkCubePower(this, amount), amount);
+        GameActions.Bottom.StackPower(new DarkCubePower(this, amount));
     }
 }

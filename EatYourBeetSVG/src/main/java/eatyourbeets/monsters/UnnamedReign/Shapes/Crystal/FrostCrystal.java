@@ -46,6 +46,6 @@ public class FrostCrystal extends Crystal
                 break;
         }
 
-        GameActions.Bottom.ApplyPower(this, this, new FrostCrystalPower(this, amount), amount);
+        GameActions.Bottom.StackPower(new FrostCrystalPower(this, amount));
     }
 }

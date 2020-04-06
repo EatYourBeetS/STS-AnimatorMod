@@ -61,7 +61,7 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
         AbstractPlayer p = AbstractDungeon.player;
         if (truePotential)
         {
-            GameActions.Bottom.ApplyPower(p, p, new RegenPower(p, regenAmount), regenAmount);
+            GameActions.Bottom.StackPower(new RegenPower(p, regenAmount));
             p.increaseMaxHp(maxHPAmount, true);
         }
         else

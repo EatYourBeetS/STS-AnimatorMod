@@ -34,18 +34,18 @@ public class ReduceStrength extends EYBActionWithCallback<Boolean>
     {
         super.FirstUpdate();
 
-        GameActions.Top.ApplyPower(source, target, new StrengthPower(target, -amount), -amount);
+        GameActions.Top.StackPower(source, new StrengthPower(target, -amount));
 
         if (!target.hasPower(ArtifactPower.POWER_ID))
         {
             if (temporary)
             {
-                GameActions.Top.ApplyPower(source, target, new GainStrengthPower(target, amount), amount);
+                GameActions.Top.StackPower(source, new GainStrengthPower(target, amount));
             }
 
             if (giveForceToSource)
             {
-                GameActions.Top.StackPower(new ForcePower(source, amount));
+                GameActions.Top.StackPower(source, new ForcePower(source, amount));
             }
 
             Complete(true);

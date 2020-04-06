@@ -47,6 +47,6 @@ public class DarkWisp extends Wisp
                 break;
         }
 
-        GameActions.Bottom.ApplyPower(this, this, new DarkWispPower(this, amount), amount);
+        GameActions.Bottom.StackPower(new DarkWispPower(this, amount));
     }
 }

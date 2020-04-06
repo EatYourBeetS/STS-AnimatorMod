@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
-import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
@@ -41,11 +40,7 @@ public class Pride extends AnimatorCard
             GameActions.Bottom.ChannelOrb(new Dark(), true);
         }
 
-        GameActions.Bottom.ApplyPower(p, m, new ConstrictedPower(m, p, this.secondaryValue), this.secondaryValue);
-
-        if (!p.hasPower(PridePower.POWER_ID))
-        {
-            GameActions.Bottom.ApplyPower(p, p, new PridePower(p));
-        }
+        GameActions.Bottom.ApplyConstricted(p, m, this.secondaryValue);
+        GameActions.Bottom.ApplyPower(new PridePower(p));
     }
 }

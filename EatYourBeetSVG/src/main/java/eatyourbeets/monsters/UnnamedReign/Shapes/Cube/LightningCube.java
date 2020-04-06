@@ -51,6 +51,6 @@ public class LightningCube extends Cube
                 break;
         }
 
-        GameActions.Bottom.ApplyPower(this, this, new LightningCubePower(this, amount), amount);
+        GameActions.Bottom.StackPower(new LightningCubePower(this, amount));
     }
 }

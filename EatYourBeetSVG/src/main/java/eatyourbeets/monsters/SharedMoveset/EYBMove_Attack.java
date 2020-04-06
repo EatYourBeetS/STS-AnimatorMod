@@ -12,8 +12,7 @@ public class EYBMove_Attack extends EYBAbstractMove
 
     public EYBMove_Attack(int damage, int times)
     {
+        SetIntent(AbstractMonster.Intent.ATTACK);
         SetDamage(damage, times);
-
-        intent = AbstractMonster.Intent.ATTACK;
     }
 }

@@ -82,13 +82,15 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
         OnBattleStart();
 
-        GameActions.Bottom.ApplyPowerSilently(owner, owner, enchantedArmorPower, enchantedArmorPower.amount);
+        GameActions.Bottom.ApplyPower(owner, enchantedArmorPower)
+        .ShowEffect(false, true);
     }
 
     @Override
     public void onRemove()
     {
-        GameActions.Bottom.ApplyPowerSilently(owner, owner, this, this.amount);
+        GameActions.Bottom.ApplyPower(owner, this)
+        .ShowEffect(false, true);
     }
 
     @Override
@@ -126,7 +128,9 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
         if (!found)
         {
-            GameActions.Bottom.ApplyPowerSilently(owner, owner, enchantedArmorPower, enchantedArmorPower.amount);
+            GameActions.Bottom.RemovePower(owner, owner, EnchantedArmorPower.POWER_ID);
+            GameActions.Bottom.StackPower(owner, enchantedArmorPower)
+            .ShowEffect(false, true);
         }
 
         AbstractPower strengthPower = owner.getPower(StrengthPower.POWER_ID);
@@ -181,7 +185,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
                         if (amount > 0)
                         {
                             maxStrengthThisTurn -= amount;
-                            GameActions.Bottom.ApplyPowerSilently(owner, owner, new GainStrengthPower(owner, amount), amount);
+                            GameActions.Bottom.StackPower(new GainStrengthPower(owner, amount));
                         }
                     }
                 }
@@ -208,7 +212,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
                         for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
                         {
-                            GameActions.Bottom.ApplyPower(owner, m, new IntangiblePlayerPower(m, 2), 2);
+                            GameActions.Bottom.StackPower(owner, new IntangiblePlayerPower(m, 2));
                         }
 
                         playerIntangibleCounter = 0;

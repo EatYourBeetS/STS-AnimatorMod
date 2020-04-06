@@ -1,16 +1,18 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.TargetHelper;
+import eatyourbeets.utilities.WeightedList;
+import javafx.util.Pair;
 
 public class OldCoffin extends AnimatorRelic
 {
     public static final String ID = CreateFullID(OldCoffin.class);
 
+    private static final WeightedList<Pair<PowerHelper, Integer>> Debuffs = new WeightedList<>();
     private static final int ACTIVATION_THRESHOLD = 4;
 
     public OldCoffin()
@@ -43,35 +45,20 @@ public class OldCoffin extends AnimatorRelic
 
         setCounter(counter + 1);
 
+        if (Debuffs.Size() == 0)
+        {
+            Debuffs.Add(new Pair<>(PowerHelper.Vulnerable, 1), 5);
+            Debuffs.Add(new Pair<>(PowerHelper.Weak, 1), 5);
+            Debuffs.Add(new Pair<>(PowerHelper.Poison, 3), 3);
+            Debuffs.Add(new Pair<>(PowerHelper.Burning, 3), 3);
+            Debuffs.Add(new Pair<>(PowerHelper.Constricted, 2), 2);
+        }
+
         if (SetEnabled(counter > ACTIVATION_THRESHOLD))
         {
-            AbstractMonster m = JavaUtilities.GetRandomElement(GameUtilities.GetAllEnemies(true));
-            if (m != null)
-            {
-                GameActions.Top.Add(new RelicAboveCreatureAction(m, this));
-
-                int n = rng.random(12);
-                if (n < 4)
-                {
-                    GameActions.Bottom.ApplyWeak(player, m, 1);
-                }
-                else if (n < 8)
-                {
-                    GameActions.Bottom.ApplyVulnerable(player, m, 1);
-                }
-                else if (n <= 10)
-                {
-                    GameActions.Bottom.ApplyPoison(player, m, 3);
-                }
-                else if (n <= 11)
-                {
-                    GameActions.Bottom.ApplyBurning(player, m, 3);
-                }
-                else
-                {
-                    GameActions.Bottom.ApplyConstricted(player, m, 2);
-                }
-            }
+            Pair<PowerHelper, Integer> pair = Debuffs.Retrieve(rng, false);
+            GameActions.Bottom.StackPower(TargetHelper.Random(null), pair.getKey(), pair.getValue())
+            .AddCallback(power -> GameActions.Top.Add(new RelicAboveCreatureAction(power.owner, this)));
         }
     }
 }

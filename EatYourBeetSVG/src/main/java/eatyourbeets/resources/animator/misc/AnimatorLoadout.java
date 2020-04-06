@@ -84,7 +84,7 @@ public abstract class AnimatorLoadout
         {
             return null;
         }
-        
+
         AnimatorTrophies trophies = GR.Animator.Data.GetTrophies(ID);
         if (trophies == null)
         {

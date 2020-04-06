@@ -8,13 +8,15 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.animator.GeassPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Lelouch extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Lelouch.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
+    public static final PowerHelper GEASS = new PowerHelper(GeassPower.POWER_ID, (o, s, a) -> new GeassPower(o));
 
     public Lelouch()
     {
@@ -35,13 +37,6 @@ public class Lelouch extends AnimatorCard
 
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
         GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
-
-        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
-        {
-            if (!enemy.hasPower(GeassPower.POWER_ID))
-            {
-                GameActions.Bottom.ApplyPower(p, enemy, new GeassPower(enemy));
-            }
-        }
+        GameActions.Bottom.ApplyPower(TargetHelper.Enemies(), GEASS);
     }
 }

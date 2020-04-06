@@ -23,7 +23,8 @@ public class EYBActionAutoTarget<T> extends EYBActionWithCallback<T>
     protected void Initialize(TargetHelper targetHelper, int amount)
     {
         this.targetHelper = targetHelper;
-        this.source = targetHelper.GetSource();
+
+        Initialize(targetHelper.GetSource(), null, amount);
     }
 
     protected List<AbstractCreature> FindTargets()

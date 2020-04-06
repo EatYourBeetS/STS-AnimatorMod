@@ -8,10 +8,13 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Giselle extends AnimatorCard_UltraRare implements StartupCard
 {
@@ -35,11 +38,7 @@ public class Giselle extends AnimatorCard_UltraRare implements StartupCard
         GameActions.Bottom.VFX(new FlameBarrierEffect(m.hb.cX, m.hb.cY), 0.5f);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
-
-        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
-        {
-            GameActions.Bottom.ApplyBurning(p, enemy, magicNumber);
-        }
+        GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), magicNumber);
     }
 
     @Override

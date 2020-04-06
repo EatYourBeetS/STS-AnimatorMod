@@ -1,11 +1,10 @@
 package eatyourbeets.cards.animator.basic;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Defend_OwariNoSeraph extends Defend
 {
@@ -24,11 +23,9 @@ public class Defend_OwariNoSeraph extends Defend
     @Override
     public void triggerOnExhaust()
     {
-        AbstractPlayer p = AbstractDungeon.player;
-        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
-        {
-            GameActions.Bottom.ApplyWeak(p, m, this.magicNumber);
-        }
+        super.triggerOnExhaust();
+
+        GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), magicNumber);
     }
 
     @Override

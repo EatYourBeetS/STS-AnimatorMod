@@ -7,10 +7,16 @@ import eatyourbeets.interfaces.delegates.FuncT3;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class PowerHelper
 {
+    public static final Map<String, PowerHelper> ALL = new HashMap<>();
+
     public static final PowerHelper Poison = new PowerHelper(PoisonPower.POWER_ID, PoisonPower::new);
     public static final PowerHelper Burning = new PowerHelper(BurningPower.POWER_ID, BurningPower::new);
+    public static final PowerHelper Constricted = new PowerHelper(ConstrictedPower.POWER_ID, ConstrictedPower::new);
 
     public static final PowerHelper Weak = new PowerHelper(WeakPower.POWER_ID, (o, s, a) -> new WeakPower(o, a, !s.isPlayer));
     public static final PowerHelper Vulnerable = new PowerHelper(VulnerablePower.POWER_ID, (o, s, a) -> new VulnerablePower(o, a, !s.isPlayer));
@@ -36,6 +42,8 @@ public class PowerHelper
 
     public PowerHelper(String powerID, FuncT2<AbstractPower, AbstractCreature, Integer> constructor)
     {
+        ALL.putIfAbsent(powerID, this);
+
         this.ID = powerID;
         this.constructorT2 = constructor;
         this.constructorT3 = null;
@@ -43,6 +51,8 @@ public class PowerHelper
 
     public PowerHelper(String powerID, FuncT3<AbstractPower, AbstractCreature, AbstractCreature, Integer> constructor)
     {
+        ALL.putIfAbsent(powerID, this);
+
         this.ID = powerID;
         this.constructorT2 = null;
         this.constructorT3 = constructor;

@@ -2,13 +2,12 @@ package eatyourbeets.powers.animator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.animator.series.Konosuba.Hans;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class HansPower extends AnimatorPower
 {
@@ -44,17 +43,8 @@ public class HansPower extends AnimatorPower
     @Override
     public void atStartOfTurnPostDraw()
     {
-        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
-        {
-            GameActions.Bottom.ApplyPoison(owner, m, amount)
-            .AddCallback(poison ->
-            {
-                if (poison != null)
-                {
-                    GameActions.Bottom.GainTemporaryHP(tempHP);
-                }
-            });
-        }
+        GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(owner), amount)
+        .AddCallback(poison -> GameActions.Bottom.GainTemporaryHP(tempHP));
     }
 
     @Override

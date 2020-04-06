@@ -1,9 +1,9 @@
 package eatyourbeets.powers.monsters;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.TargetHelper;
 
 public class DarkWispPower extends AnimatorPower
 {
@@ -31,9 +31,6 @@ public class DarkWispPower extends AnimatorPower
     {
         super.onDeath();
 
-        for (AbstractCreature c : GameUtilities.GetAllCharacters(true))
-        {
-            GameActions.Bottom.ApplyConstricted(null, c, amount);
-        }
+        GameActions.Bottom.ApplyConstricted(TargetHelper.All(null), amount);
     }
 }

@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Gillette extends AnimatorCard
 {
@@ -29,10 +29,7 @@ public class Gillette extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
-        {
-            GameActions.Bottom.ApplyWeak(player, m, magicNumber);
-        }
+        GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), magicNumber);
     }
 
     @Override

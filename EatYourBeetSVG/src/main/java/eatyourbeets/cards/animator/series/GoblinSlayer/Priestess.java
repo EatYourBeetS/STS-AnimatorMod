@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Priestess extends AnimatorCard
 {
@@ -55,10 +56,7 @@ public class Priestess extends AnimatorCard
     {
         if (upgraded)
         {
-            for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
-            {
-                GameActions.Bottom.ApplyWeak(p, enemy, secondaryValue);
-            }
+            GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), secondaryValue);
         }
         else if (m != null)
         {

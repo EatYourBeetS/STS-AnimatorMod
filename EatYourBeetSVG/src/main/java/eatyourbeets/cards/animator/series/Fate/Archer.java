@@ -7,7 +7,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.ArcherPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Archer extends AnimatorCard
 {
@@ -37,10 +37,7 @@ public class Archer extends AnimatorCard
 
         if (HasSynergy())
         {
-            for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
-            {
-                GameActions.Bottom.ApplyVulnerable(p, enemy, 1);
-            }
+            GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), 1);
         }
     }
 }

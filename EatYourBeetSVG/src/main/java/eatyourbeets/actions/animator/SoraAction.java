@@ -21,6 +21,7 @@ import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.TargetHelper;
 
 import java.util.ArrayList;
 
@@ -182,10 +183,7 @@ public class SoraAction extends EYBAction
                 {
                     return effect.GenerateInternal((c, p, m) ->
                     {
-                        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
-                        {
-                            GameActions.Bottom.ApplyWeak(p, enemy, c.magicNumber);
-                        }
+                        GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), c.magicNumber);
                     });
                 }
 
@@ -193,10 +191,7 @@ public class SoraAction extends EYBAction
                 {
                     return effect.GenerateInternal((c, p, m) ->
                     {
-                        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
-                        {
-                            GameActions.Bottom.ApplyVulnerable(p, enemy, c.magicNumber);
-                        }
+                        GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), c.magicNumber);
                     });
                 }
 

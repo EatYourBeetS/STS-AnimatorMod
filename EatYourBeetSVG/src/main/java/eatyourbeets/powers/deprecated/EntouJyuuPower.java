@@ -5,10 +5,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class EntouJyuuPower extends AnimatorPower
 {
@@ -72,11 +71,7 @@ public class EntouJyuuPower extends AnimatorPower
             if (usedCard.type == AbstractCard.CardType.ATTACK)
             {
                 GameActions.Bottom.Draw(1);
-
-                for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
-                {
-                    GameActions.Bottom.ApplyBurning(owner, enemy, 1);
-                }
+                GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), 1);
 
                 this.flash();
 

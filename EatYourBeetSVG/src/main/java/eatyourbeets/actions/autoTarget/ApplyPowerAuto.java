@@ -20,7 +20,7 @@ public class ApplyPowerAuto extends EYBActionAutoTarget<AbstractPower>
     protected boolean ignoreArtifact;
     protected boolean showEffect = true;
     protected boolean skipIfZero;
-    protected boolean canStack;
+    protected boolean canStack = true;
     protected boolean faster;
 
     public ApplyPowerAuto(TargetHelper targetHelper, PowerHelper powerHelper, int amount)
@@ -71,7 +71,7 @@ public class ApplyPowerAuto extends EYBActionAutoTarget<AbstractPower>
     {
         for (AbstractCreature target : FindTargets())
         {
-            ApplyPower action = new ApplyPower(source, target, powerHelper.Create(target, source, amount));
+            ApplyPower action = new ApplyPower(source, target, powerHelper.Create(target, source, amount), amount);
             action.IgnoreArtifact(ignoreArtifact);
             action.SetRealtime(isRealtime);
             action.ShowEffect(showEffect, faster);

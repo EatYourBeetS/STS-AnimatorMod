@@ -104,23 +104,20 @@ public class TargetHelper
 
     protected TargetHelper(Mode mode, AbstractCreature source, AbstractCreature target)
     {
-        this(mode, source, target, null);
+        this.mode = mode;
+        this.source = source;
+        this.target = target;
     }
 
     protected TargetHelper(Mode mode, AbstractCreature source, AbstractCreature target, List<AbstractCreature> targets)
     {
-        this.mode = mode;
-        this.source = source;
+        this(mode, source, target);
+
         this.targets = targets;
 
-        if (target != null)
+        if (target != null && targets.size() > 0)
         {
-            if (targets == null)
-            {
-                targets = new ArrayList<>();
-            }
-
-            targets.add(target);
+            this.target = targets.get(0);
         }
     }
 
@@ -143,8 +140,18 @@ public class TargetHelper
             switch (mode)
             {
                 case Normal:
+                {
+                    if (target == null)
+                    {
+                        throw new RuntimeException("TargetSelection.Mode." + mode.name() + " requires a fixed target.");
+                    }
+                    targets.add(target);
+                    break;
+                }
+
                 case Source:
-                    throw new RuntimeException("TargetSelection.Mode." + mode.name() + " requires a fixed target.");
+                    targets.add(GetSource());
+                    break;
 
                 case Enemies:
                     targets.addAll(GameUtilities.GetAllEnemies(true));

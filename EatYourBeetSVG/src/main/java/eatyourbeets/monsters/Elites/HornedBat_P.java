@@ -25,7 +25,7 @@ public class HornedBat_P extends HornedBat
         confusionMove = moveset.Special.ShuffleCard(new Dazed(), 1)
         .SetOnSelect((m) -> TurnData.Get().UsedConfusion = true)
         .SetCanUse((m, b) -> m.CanUseFallback(b) && !TurnData.Get().UsedConfusion)
-        .SetOnUse((m, t) -> GameActions.Bottom.StackPower(new TemporaryConfusionPower(t)));
+        .SetOnUse((m, t) -> GameActions.Bottom.StackPower(this, new TemporaryConfusionPower(t)));
 
         strengthLossMove = moveset.Special.StrongDebuff(PowerHelper.Strength, -1)
         .SetOnSelect((m) -> TurnData.Get().UsedStrengthLoss = true)

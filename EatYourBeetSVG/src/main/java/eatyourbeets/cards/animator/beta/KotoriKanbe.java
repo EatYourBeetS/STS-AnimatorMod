@@ -23,7 +23,7 @@ public class KotoriKanbe extends AnimatorCard implements StartupCard
     {
         super(DATA);
 
-        Initialize(0, 0, 99);
+        Initialize(0, 0, 2);
         SetExhaust(true);
 
         SetSynergy(Synergies.Rewrite);
@@ -38,12 +38,13 @@ public class KotoriKanbe extends AnimatorCard implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        int twoFifthTargetHP = 2 * Math.floorDiv(m.maxHealth, 5);
+        int targetMissingHP = m.maxHealth - m.currentHealth;
+        int debuffAmount = Math.floorDiv(targetMissingHP, magicNumber);
 
-        GameActions.Bottom.ApplyWeak(p, m, magicNumber);
-        GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
+        GameActions.Bottom.ApplyWeak(p, m, debuffAmount);
+        GameActions.Bottom.ApplyVulnerable(p, m, debuffAmount);
 
-        GameActions.Bottom.Heal(p, m, twoFifthTargetHP);
+        GameActions.Bottom.Heal(p, m, targetMissingHP);
     }
 
     @Override

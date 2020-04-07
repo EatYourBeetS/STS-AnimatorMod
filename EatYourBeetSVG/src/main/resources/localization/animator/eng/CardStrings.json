@@ -377,7 +377,7 @@
 		},
 		"animator:KotoriKanbe":
 		{
-			"DESCRIPTION": "Heal 40% of the target's ** HP and apply !M! Weak ** and !M! Vulnerable.  || At the start of combat: ** Discard this card and add ** {Chibimoth} into your hand.",
+			"DESCRIPTION": "Fully heal the enemy. ** Apply 1 Weak and Vulnerable ** for every !M! HP healed.  || At the start of combat: ** Discard this card and add ** {Chibimoth} into your hand.",
 			"NAME": "Kotori Kanbe"
 		},
 		"animator:Chibimoth":

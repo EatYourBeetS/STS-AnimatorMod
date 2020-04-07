@@ -22,7 +22,7 @@ public class OrigamiTobiichi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 2, 10);
         SetCostUpgrade(-1);
         SetSpellcaster();
 
@@ -32,21 +32,22 @@ public class OrigamiTobiichi extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.StackPower(new OrigamiTobiichiPower(p, magicNumber, upgraded));
+        GameActions.Bottom.StackPower(new OrigamiTobiichiPower(p, magicNumber, secondaryValue, upgraded));
     }
 
     public static class OrigamiTobiichiPower extends AnimatorPower
     {
         private static final int SUPPORT_DAMAGE_AMOUNT = 1;
-        private static final int SUPPORT_DAMAGE_LIMIT = 20;
+        private final int supportDamageLimit;
         private final boolean upgraded;
 
-        public OrigamiTobiichiPower(AbstractPlayer owner, int amount, boolean upgraded)
+        public OrigamiTobiichiPower(AbstractPlayer owner, int amount, int limit, boolean upgraded)
         {
             super(owner, OrigamiTobiichi.DATA);
 
             this.amount = amount;
             this.upgraded = upgraded;
+            this.supportDamageLimit = limit;
 
             updateDescription();
         }
@@ -61,7 +62,7 @@ public class OrigamiTobiichi extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, SUPPORT_DAMAGE_AMOUNT * amount, SUPPORT_DAMAGE_LIMIT);
+            description = FormatDescription(0, SUPPORT_DAMAGE_AMOUNT * amount, supportDamageLimit);
         }
 
         @Override
@@ -71,11 +72,7 @@ public class OrigamiTobiichi extends AnimatorCard
             {
                 flash();
 
-                int stackAmount = (player.filledOrbCount() * amount) / 2;
-                if (stackAmount > 0)
-                {
-                    GameActions.Bottom.StackPower(new SupportDamagePower(player, stackAmount)).AddCallback(this::InverseOrigamiCheck);
-                }
+                GameActions.Bottom.StackPower(new SupportDamagePower(player, amount)).AddCallback(this::InverseOrigamiCheck);
             }
             else
             {
@@ -85,7 +82,7 @@ public class OrigamiTobiichi extends AnimatorCard
 
         private void InverseOrigamiCheck()
         {
-            if (GameUtilities.GetPowerAmount(SupportDamagePower.POWER_ID) > 20)
+            if (GameUtilities.GetPowerAmount(SupportDamagePower.POWER_ID) > supportDamageLimit)
             {
                 GameActions.Bottom.MakeCardInDrawPile(new InverseOrigami()).SetUpgrade(this.upgraded, false);
                 GameActions.Bottom.RemovePower(player, player, this);

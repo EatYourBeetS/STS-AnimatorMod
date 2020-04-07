@@ -319,14 +319,14 @@
 		},
 		"animator:NiaHonjou":
 		{
-			"DESCRIPTION": "Whenever you play a ** card this turn: {Scry} !M! ** and gain !M! {Block}.",
+			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** {Block}. || Synergy: Scry !M!.  Draw ** !S! card.",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a card this turn, #yScry #b{0} and gain #b{1} #yBlock."],
 			"NAME": "Nia Honjou"
 		},
 		"animator:OrigamiTobiichi":
 		{
-			"DESCRIPTION": "At end of turn: Gain !M! ** {Support Damage} for every ** 2 Orbs. If you have over 20 ** {Support Damage}: Remove this ** power. Add {Inverse Origami} to ** your draw pile.",
-			"EXTENDED_DESCRIPTION": ["At the end of your turn, gain #b{0} Support Damage for every 2 Orbs. If you have #b{1}+ Support Damage, remove this power of this and add #yInverse #yOrigami to your draw pile."],
+			"DESCRIPTION": "At end of turn: Gain !M! ** {Support Damage}. || If you have over !S! ** {Support Damage}: Remove this ** power. Add {Inverse Origami} to ** your draw pile.",
+			"EXTENDED_DESCRIPTION": ["At end of turn,: gain #b{0} Support Damage. If you have over #b{1} Support Damage, remove this power.  Add #yInverse #yOrigami to your draw pile."],
 			"NAME": "Origami Tobiichi"
 		},
 		"animator:ReineMurasame":

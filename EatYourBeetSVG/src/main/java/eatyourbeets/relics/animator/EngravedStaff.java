@@ -13,11 +13,14 @@ public class EngravedStaff extends AnimatorRelic
     }
 
     @Override
-    public void atTurnStart()
+    public void atTurnStartPostDraw()
     {
-        super.atTurnStart();
+        super.atTurnStartPostDraw();
 
-        GameActions.Bottom.GainRandomStat(1, true);
-        flash();
+        GameActions.Bottom.Callback(() ->
+        {
+            GameActions.Bottom.GainRandomStat(1, true);
+            flash();
+        });
     }
 }

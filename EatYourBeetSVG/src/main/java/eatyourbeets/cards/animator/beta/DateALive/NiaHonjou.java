@@ -32,13 +32,13 @@ public class NiaHonjou extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(block);
+
         if (HasSynergy())
         {
-            GameActions.Top.Scry(magicNumber);
-            GameActions.Top.Draw(secondaryValue);
+            GameActions.Bottom.Draw(secondaryValue);
         }
 
-        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new NiaHonjouPower(p, magicNumber));
     }
 

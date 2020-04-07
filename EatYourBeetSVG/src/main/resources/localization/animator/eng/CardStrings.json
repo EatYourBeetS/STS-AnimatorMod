@@ -290,7 +290,7 @@
 		},
 		"animator:KurumiTokisaki":
 		{
-			"DESCRIPTION": "When drawn: Play this card. || Next turn: Gain [E] [E] [E]. || Cooldown !S!: Skip the enemy's ** next turn. Shuffle 3 copies of this ** card into your draw pile.",
+			"DESCRIPTION": "When drawn: Play this card. || Next turn: Gain [E] [E] [E]. || Cooldown !S!: Skip the enemy's ** next turn. Shuffle 3 copies of ** this card into your draw pile.",
 			"NAME": "Kurumi Tokisaki"
 		},
 		"animator:MikuIzayoi":
@@ -319,13 +319,13 @@
 		},
 		"animator:NiaHonjou":
 		{
-			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** {Block}. || Synergy: Scry !M!.  Draw ** !S! card.",
+			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** {Block}. || Synergy: Draw a card.",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a card this turn, #yScry #b{0} and gain #b{1} #yBlock."],
 			"NAME": "Nia Honjou"
 		},
 		"animator:OrigamiTobiichi":
 		{
-			"DESCRIPTION": "At end of turn: Gain !M! ** {Support Damage}. || If you have over !S! ** {Support Damage}: Remove this ** power. Add {Inverse Origami} to ** your draw pile.",
+			"DESCRIPTION": "At end of turn: Gain !M! ** {Support Damage}. || If you have over !S! ** {Support Damage}: Remove this ** power. Add {Inverse Origami} ** to your draw pile.",
 			"EXTENDED_DESCRIPTION": ["At end of turn,: gain #b{0} Support Damage. If you have over #b{1} Support Damage, remove this power.  Add #yInverse #yOrigami to your draw pile."],
 			"NAME": "Origami Tobiichi"
 		},

@@ -377,8 +377,14 @@
 		},
 		"animator:KotoriKanbe":
 		{
-			"DESCRIPTION": "Heal 20% of the target's ** HP, remove its Artifact and ** apply !M! Weak. || At the start of combat: ** Discard this card if you have ** less than !S! cards.",
+			"DESCRIPTION": "Heal 40% of the target's ** HP and apply !M! Weak ** and !M! Vulnerable.  || At the start of combat: ** Discard this card and add ** {Chibimoth} into your hand."
 			"NAME": "Kotori Kanbe"
+		},
+		"animator:Chibimoth":
+		{
+			"DESCRIPTION": "Choose !M! : Gain [A], ** Gain [I] or Gain [F].",
+			"EXTENDED_DESCRIPTION": ["Gain [A].", "Gain [I].", "Gain [F]."],
+			"NAME": "Chibimoth"
 		}
 	},
 	

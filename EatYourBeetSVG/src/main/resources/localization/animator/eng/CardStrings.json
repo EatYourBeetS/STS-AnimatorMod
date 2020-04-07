@@ -326,7 +326,7 @@
 		"animator:OrigamiTobiichi":
 		{
 			"DESCRIPTION": "At end of turn: Gain !M! ** {Support Damage}. || If you have over !S! ** {Support Damage}: Remove this ** power. Add {Inverse Origami} ** to your draw pile.",
-			"EXTENDED_DESCRIPTION": ["At end of turn,: gain #b{0} Support Damage. If you have over #b{1} Support Damage, remove this power.  Add #yInverse #yOrigami to your draw pile."],
+			"EXTENDED_DESCRIPTION": ["At end of turn: gain #b{0} Support Damage. If you have over #b{1} Support Damage, remove this power.  Add #yInverse #yOrigami to your draw pile."],
 			"NAME": "Origami Tobiichi"
 		},
 		"animator:ReineMurasame":

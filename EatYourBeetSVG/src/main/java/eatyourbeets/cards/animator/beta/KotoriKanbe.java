@@ -23,7 +23,7 @@ public class KotoriKanbe extends AnimatorCard implements StartupCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 3);
         SetExhaust(true);
 
         SetSynergy(Synergies.Rewrite);

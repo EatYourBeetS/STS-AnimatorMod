@@ -319,7 +319,7 @@
 		},
 		"animator:NiaHonjou":
 		{
-			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** {Block}. || Synergy: Draw a card.",
+			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** {Block}. || When Discarded: Draw ** a card.",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a card this turn, #yScry #b{0} and gain #b{1} #yBlock."],
 			"NAME": "Nia Honjou"
 		},

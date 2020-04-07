@@ -26,7 +26,7 @@ public class MadokaKaname extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 5, 3);
-        Initialize(0, 0, -1, 0);
+        SetUpgrade(0, 0, -1, 0);
         SetExhaust(true);
 
         SetSynergy(Synergies.MadokaMagica);

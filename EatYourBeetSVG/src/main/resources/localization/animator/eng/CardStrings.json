@@ -206,9 +206,9 @@
 		},
 		"animator:MadokaKaname":
 		{
-			"DESCRIPTION": "Gain !S! [I]. ||  <LIM>. Exhaust all {Hindrances} ** everywhere. Gain 1 Intangible ** for each !M! {Hindrance(s)} Exhausted.",
+			"DESCRIPTION": "Gain !S! [I]. ||  <LIM>. Exhaust all ** {Hindrances} everywhere. ** Gain 1 Intangible for ** every !M! {Hindrance(s)} ** Exhausted.",
 			"NAME": "Madoka Kaname",
-			"UPGRADE_DESCRIPTION": "Boost !S! [I]. || <LIM>. Exhaust all {Hindrances} ** everywhere. Gain 1 Intangible ** for each !M! {Hindrance(s)} Exhausted."
+			"UPGRADE_DESCRIPTION": "Boost !S! [I]. || <LIM>. Exhaust all ** {Hindrances} everywhere. ** Gain 1 Intangible for ** every !M! {Hindrance(s)} ** Exhausted."
 		},
 		"animator:MamiTomoe":
 		{
@@ -232,7 +232,7 @@
 		},
 		"animator:SayakaMiki":
 		{
-			"DESCRIPTION": "Cooldown !S!: ** Add {Oktavia} and a ** {Grief Seed} to your discard ** pile, then Exhaust. || Synergy: Channel 1 Frost.",
+			"DESCRIPTION": "Cooldown !S!: Add ** {Oktavia} and a {Grief Seed} ** to your discard pile, then ** Exhaust. || Synergy: Channel 1 Frost.",
 			"NAME": "Sayaka Miki"
 		},
 		"animator:Strike_MadokaMagica":

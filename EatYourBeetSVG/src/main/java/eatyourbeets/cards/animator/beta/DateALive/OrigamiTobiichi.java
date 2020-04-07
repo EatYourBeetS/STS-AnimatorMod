@@ -22,8 +22,8 @@ public class OrigamiTobiichi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 10);
-        SetUpgrade(0,0,1);
+        Initialize(0, 4, 1, 10);
+        SetUpgrade(0,6,0);
         SetSpellcaster();
 
         SetSynergy(Synergies.DateALive);

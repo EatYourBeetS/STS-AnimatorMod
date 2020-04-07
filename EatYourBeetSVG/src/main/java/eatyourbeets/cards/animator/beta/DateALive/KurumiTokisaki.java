@@ -30,7 +30,7 @@ public class KurumiTokisaki extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetScaling(0, 2, 2);
+        SetScaling(2, 2, 2);
     }
 
     @Override

@@ -1,14 +1,12 @@
 package eatyourbeets.cards.animator.beta.DateALive;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
@@ -19,7 +17,7 @@ import java.util.Hashtable;
 
 public class Natsumi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Natsumi.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Natsumi.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.Random);
 
     private static Dictionary<Integer, ArrayList<AbstractCard>> cardPool;
 
@@ -27,9 +25,9 @@ public class Natsumi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 7);
+        Initialize(2, 0, 7);
+        SetScaling(1,0,0);
         SetExhaust(true);
-        SetSpellcaster();
 
         SetSynergy(Synergies.DateALive);
         SetSpellcaster();
@@ -44,6 +42,9 @@ public class Natsumi extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.FIRE)
+                .SetOptions(true, false);
+
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetOptions(false, false, false)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])

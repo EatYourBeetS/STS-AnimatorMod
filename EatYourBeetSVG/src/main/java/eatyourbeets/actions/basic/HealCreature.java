@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.vfx.combat.HealEffect;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.utilities.GameEffects;
 
-public class HealFaster extends EYBAction
+public class HealCreature extends EYBAction
 {
     protected boolean showEffect = true;
 
-    public HealFaster(AbstractCreature source, AbstractCreature target, int amount)
+    public HealCreature(AbstractCreature source, AbstractCreature target, int amount)
     {
         super(ActionType.HEAL, Settings.ACTION_DUR_FAST);
 
@@ -20,7 +20,7 @@ public class HealFaster extends EYBAction
         Initialize(target, source, amount);
     }
 
-    public HealFaster ShowEffect(boolean showEffect)
+    public HealCreature ShowEffect(boolean showEffect)
     {
         this.showEffect = showEffect;
 
@@ -36,7 +36,7 @@ public class HealFaster extends EYBAction
             return;
         }
 
-        this.target.heal(this.amount, false);
+        target.heal(amount, false);
 
         if (showEffect)
         {

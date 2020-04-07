@@ -36,6 +36,6 @@ public class Hibiki extends AnimatorCard
             .SetOptions(true, false);
         }
 
-        GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseMagicNumber += secondaryValue);
+        GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseMagicNumber += secondaryValue);
     }
 }

@@ -38,7 +38,8 @@ public class Entoma extends AnimatorCard
         {
             upgradeMagicNumber(1);
         }
-        this.upgradedMagicNumber = true;
+
+        upgradedMagicNumber = true;
     }
 
     @Override
@@ -51,10 +52,10 @@ public class Entoma extends AnimatorCard
             if (GameUtilities.TriggerOnKill(enemy, true) && EffectHistory.TryActivateLimited(cardID))
             {
                 player.increaseMaxHp(2, false);
-                for (AbstractCard c : GameUtilities.GetAllInstances(this))
-                {
-                    c.upgrade();
-                }
+
+                GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
+                .IncludeMasterDeck(true)
+                .IsCancellable(false);
             }
         });
 
@@ -66,9 +67,9 @@ public class Entoma extends AnimatorCard
     {
         super.atTurnStart();
 
-        if (PlayerStatistics.TurnCount() > 0 && this.baseDamage > 0)
+        if (PlayerStatistics.TurnCount() > 0 && baseDamage > 0)
         {
-            GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseDamage = Math.max(0, c.baseDamage - 1));
+            GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseDamage = Math.max(0, c.baseDamage - 1));
         }
     }
 }

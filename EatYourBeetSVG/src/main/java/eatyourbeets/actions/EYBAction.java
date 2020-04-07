@@ -47,7 +47,7 @@ public abstract class EYBAction extends AbstractGameAction
         return this;
     }
 
-    public EYBAction SetCancellable(boolean canCancel)
+    public EYBAction IsCancellable(boolean canCancel)
     {
         this.canCancel = canCancel;
 

@@ -111,7 +111,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     {
         if (AbstractDungeon.player.hand.contains(card) && firstTimePerTurn)
         {
-            GameActions.Bottom.ModifyAllCombatInstances(card.uuid, c -> c.setCostForTurn(c.costForTurn - amount));
+            GameActions.Bottom.ModifyAllInstances(card.uuid, c -> c.setCostForTurn(c.costForTurn - amount));
         }
 
         firstTimePerTurn = false;
@@ -124,7 +124,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
 
         if (AbstractDungeon.player.hand.contains(card))
         {
-            GameActions.Bottom.ModifyAllCombatInstances(card.uuid, c -> c.setCostForTurn(c.costForTurn - amount));
+            GameActions.Bottom.ModifyAllInstances(card.uuid, c -> c.setCostForTurn(c.costForTurn - amount));
 
             firstTimePerTurn = false;
         }

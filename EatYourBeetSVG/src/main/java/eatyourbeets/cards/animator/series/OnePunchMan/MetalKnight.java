@@ -42,7 +42,7 @@ public class MetalKnight extends AnimatorCard
         if (magicNumber > 0)
         {
             GameActions.Bottom.GainMetallicize(magicNumber);
-            GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseMagicNumber = Math.max(0, c.baseMagicNumber - 1));
+            GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseMagicNumber = Math.max(0, c.baseMagicNumber - 1));
         }
     }
 }

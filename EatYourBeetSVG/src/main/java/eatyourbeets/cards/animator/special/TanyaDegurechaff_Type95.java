@@ -29,7 +29,7 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
 
         if (cost > 0)
         {
-            GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.modifyCostForCombat(-1));
+            GameActions.Bottom.ModifyAllInstances(uuid, c -> c.modifyCostForCombat(-1));
             GameActions.Bottom.Flash(this);
         }
     }
@@ -41,7 +41,7 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
 
         if (cost > 0)
         {
-            GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.modifyCostForCombat(-1));
+            GameActions.Bottom.ModifyAllInstances(uuid, c -> c.modifyCostForCombat(-1));
         }
     }
 
@@ -49,7 +49,7 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ChannelOrb(new Plasma(), true);
-        GameActions.Bottom.ModifyAllCombatInstances(uuid, c ->
+        GameActions.Bottom.ModifyAllInstances(uuid, c ->
         {
             c.isCostModified = c.isCostModifiedForTurn = false;
             c.cost = c.costForTurn = 4;

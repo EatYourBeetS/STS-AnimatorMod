@@ -39,6 +39,6 @@ public class Chung extends AnimatorCard
             GameActions.Bottom.GainBlock(this.block);
         }
 
-        GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseBlock = Math.max(0, c.baseBlock - c.magicNumber));
+        GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseBlock = Math.max(0, c.baseBlock - c.magicNumber));
     }
 }

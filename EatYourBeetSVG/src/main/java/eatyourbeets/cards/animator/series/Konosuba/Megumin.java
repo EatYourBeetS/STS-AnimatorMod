@@ -64,10 +64,9 @@ public class Megumin extends AnimatorCard
 
         if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
         {
-            for (AbstractCard c : GameUtilities.GetAllInstances(this))
-            {
-                c.upgrade();
-            }
+            GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
+            .IncludeMasterDeck(true)
+            .IsCancellable(false);
         }
     }
 }

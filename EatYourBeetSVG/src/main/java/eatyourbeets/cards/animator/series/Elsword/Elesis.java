@@ -69,7 +69,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
 
         if (currentForm == Form.Saber)
         {
-            GameActions.Bottom.ModifyAllCombatInstances(uuid, c ->
+            GameActions.Bottom.ModifyAllInstances(uuid, c ->
             {
                 ((Elesis)c).AddDamageBonus(magicNumber);
                 c.applyPowers();
@@ -85,7 +85,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
 
         if (currentForm == Form.Saber)
         {
-            GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> ((Elesis)c).AddDamageBonus(magicNumber));
+            GameActions.Bottom.ModifyAllInstances(uuid, c -> ((Elesis)c).AddDamageBonus(magicNumber));
         }
         else if (currentForm == Form.Pyro && EffectHistory.TryActivateSemiLimited(cardID))
         {
@@ -207,7 +207,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
     @Override
     public AbstractCard makeCopy()
     {
-        if (currentForm == Form.None && GameUtilities.InBattle() && GameUtilities.GetMasterDeckInstance(this) == null)
+        if (currentForm == Form.None && GameUtilities.InBattle() && GameUtilities.GetMasterDeckInstance(uuid) == null)
         {
             int roll = rng.random(0, 2);
             if (roll == 0)
@@ -266,7 +266,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
 
                     ChangeForm(card.currentForm);
 
-                    AbstractCard inDeck = GameUtilities.GetMasterDeckInstance(this);
+                    AbstractCard inDeck = GameUtilities.GetMasterDeckInstance(uuid);
                     if (inDeck != null)
                     {
                         ((Elesis) inDeck).ChangeForm(currentForm);

@@ -35,7 +35,7 @@ public class HighElfArcher extends AnimatorCard
 
         if (HasSynergy())
         {
-            GameActions.Bottom.ModifyAllCombatInstances(uuid).AddCallback(c -> ((EYBCard)c).haste = true);
+            GameActions.Bottom.ModifyAllInstances(uuid).AddCallback(c -> ((EYBCard)c).haste = true);
         }
     }
 }

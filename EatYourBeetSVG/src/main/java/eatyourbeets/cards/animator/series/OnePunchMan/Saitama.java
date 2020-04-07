@@ -147,7 +147,7 @@ public class Saitama extends AnimatorCard
             }
         }
 
-        GameActions.Bottom.ModifyAllCombatInstances(uuid, c ->
+        GameActions.Bottom.ModifyAllInstances(uuid, c ->
         {
             if (c.misc < 5)
             {

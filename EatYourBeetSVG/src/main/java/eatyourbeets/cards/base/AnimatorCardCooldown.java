@@ -86,7 +86,7 @@ public class AnimatorCardCooldown
             activate = false;
         }
 
-        for (AbstractCard c : GameUtilities.GetAllInBattleInstances(card))
+        for (AbstractCard c : GameUtilities.GetAllInBattleInstances(card.uuid))
         {
             AnimatorCard card = (AnimatorCard) c;
             card.secondaryValue = newValue;

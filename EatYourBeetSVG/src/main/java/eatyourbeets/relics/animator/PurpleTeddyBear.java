@@ -15,6 +15,8 @@ public class PurpleTeddyBear extends AnimatorRelic {
     {
         super.atBattleStart();
 
+        this.flash();
+
         SetEnabled(true);
         GameActions.Bottom.MakeCardInDrawPile(new ShidoItsuka())
                 .SetUpgrade(false, true)

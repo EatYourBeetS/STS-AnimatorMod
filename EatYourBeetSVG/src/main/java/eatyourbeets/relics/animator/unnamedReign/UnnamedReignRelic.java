@@ -143,7 +143,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
             effect.Enqueue(new CallbackEffect(GameActions.Bottom.Wait(0.1f), null, UnnamedReignRelic::RemoveSpecialRelics));
 
             AbstractRelic.relicPage = 0;
-            AbstractDungeon.player.reorganizeRelics();
+            player.reorganizeRelics();
 
             ((UnnamedReignRelic) relic).OnManualEquip();
 
@@ -153,8 +153,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
         }
         else if (!(relic instanceof OnEquipUnnamedReignRelicSubscriber) && relic.tier != RelicTier.STARTER)
         {
-            AbstractPlayer p = AbstractDungeon.player;
-            for (AbstractRelic r : p.relics)
+            for (AbstractRelic r : player.relics)
             {
                 if ((r instanceof UnnamedReignRelic) && r != relic)
                 {

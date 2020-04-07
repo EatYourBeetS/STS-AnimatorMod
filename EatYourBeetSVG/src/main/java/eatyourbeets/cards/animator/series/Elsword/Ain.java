@@ -66,7 +66,7 @@ public class Ain extends AnimatorCard
 
         for (int i = 0; i < this.magicNumber; i++)
         {
-            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE).SetVFX(true, false);
+            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE).SetVFX(false, true);
         }
 
         GameActions.Bottom.ChannelRandomOrb(true);

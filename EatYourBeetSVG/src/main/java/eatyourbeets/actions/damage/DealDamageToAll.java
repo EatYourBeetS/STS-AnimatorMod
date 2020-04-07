@@ -58,10 +58,10 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
         return this;
     }
 
-    public DealDamageToAll SetVFX(boolean superFast, boolean muteSfx)
+    public DealDamageToAll SetVFX(boolean mute, boolean superFast)
     {
         this.isFast = superFast;
-        this.muteSfx = muteSfx;
+        this.muteSfx = mute;
 
         return this;
     }
@@ -103,7 +103,7 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
             }
 
             int i = 0;
-            for (AbstractMonster enemy : GameUtilities.GetAllEnemies(false))
+            for (AbstractMonster enemy : GameUtilities.GetEnemies(false))
             {
                 if (!GameUtilities.IsDeadOrEscaped(enemy))
                 {

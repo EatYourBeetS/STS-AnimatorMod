@@ -154,7 +154,7 @@ public class TargetHelper
                     break;
 
                 case Enemies:
-                    targets.addAll(GameUtilities.GetAllEnemies(true));
+                    targets.addAll(GameUtilities.GetEnemies(true));
                     break;
 
                 case Player:

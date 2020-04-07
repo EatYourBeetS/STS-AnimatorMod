@@ -6,7 +6,6 @@ import eatyourbeets.utilities.GameActions;
 public class EngravedStaff extends AnimatorRelic
 {
     public static final String ID = CreateFullID(EngravedStaff.class);
-    public static final int RANDOM_STAT_AMOUNT = 2;
 
     public EngravedStaff()
     {
@@ -14,18 +13,11 @@ public class EngravedStaff extends AnimatorRelic
     }
 
     @Override
-    public String getUpdatedDescription()
-    {
-        return FormatDescription(RANDOM_STAT_AMOUNT);
-    }
-
-    @Override
     public void atTurnStart()
     {
         super.atTurnStart();
 
-        GameActions.Bottom.GainRandomStat(RANDOM_STAT_AMOUNT);
-
-        this.flash();
+        GameActions.Bottom.GainRandomStat(1, true);
+        flash();
     }
 }

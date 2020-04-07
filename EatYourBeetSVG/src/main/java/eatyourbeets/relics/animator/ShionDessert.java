@@ -2,18 +2,15 @@ package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
 
 public class ShionDessert extends AnimatorRelic
 {
     public static final String ID = CreateFullID(ShionDessert.class);
-
-    private static final int POISON_AMOUNT = 2;
+    public static final int POISON_AMOUNT = 2;
 
     public ShionDessert()
     {
@@ -23,7 +20,7 @@ public class ShionDessert extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return JavaUtilities.Format(DESCRIPTIONS[0], POISON_AMOUNT);
+        return FormatDescription(POISON_AMOUNT);
     }
 
     @Override
@@ -34,12 +31,12 @@ public class ShionDessert extends AnimatorRelic
         int mostPoison = -1;
         AbstractMonster enemy = null;
 
-        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetEnemies(true))
         {
-            AbstractPower poison = GameUtilities.GetPower(m, PoisonPower.POWER_ID);
-            if (poison != null && poison.amount > mostPoison)
+            int poison = GameUtilities.GetPowerAmount(m, PoisonPower.POWER_ID);
+            if (poison > mostPoison)
             {
-                mostPoison = poison.amount;
+                mostPoison = poison;
                 enemy = m;
             }
         }
@@ -51,10 +48,9 @@ public class ShionDessert extends AnimatorRelic
 
         if (enemy != null)
         {
-            this.flash();
-
             GameActions.Bottom.Add(new RelicAboveCreatureAction(enemy, this));
             GameActions.Bottom.ApplyPoison(player, enemy, POISON_AMOUNT);
+            flash();
         }
     }
 }

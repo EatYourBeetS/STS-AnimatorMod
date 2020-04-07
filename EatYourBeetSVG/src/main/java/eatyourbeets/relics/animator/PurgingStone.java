@@ -2,7 +2,6 @@ package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
@@ -15,11 +14,11 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class PurgingStone extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(PurgingStone.class);
-
     private static final FieldInfo<Boolean> _isBoss = JavaUtilities.GetField("isBoss", RewardItem.class);
-    private static final int MAX_BAN_COUNT = 80;
-    private static final int MAX_STORED_USES = 3;
+
+    public static final String ID = CreateFullID(PurgingStone.class);
+    public static final int MAX_BAN_COUNT = 80;
+    public static final int MAX_STORED_USES = 3;
 
     public PurgingStone()
     {
@@ -37,8 +36,7 @@ public class PurgingStone extends AnimatorRelic
     {
         super.onEquip();
 
-        counter = 0;
-
+        SetCounter(0);
         AddUses(0);
     }
 
@@ -47,9 +45,7 @@ public class PurgingStone extends AnimatorRelic
     {
         super.onVictory();
 
-        this.flash();
-
-        AbstractRoom room = AbstractDungeon.getCurrRoom();
+        AbstractRoom room = GameUtilities.GetCurrentRoom();
         if (room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
         {
             AddUses(2);
@@ -58,6 +54,7 @@ public class PurgingStone extends AnimatorRelic
         {
             AddUses(1);
         }
+        flash();
     }
 
     public int GetBannedCount()
@@ -68,16 +65,13 @@ public class PurgingStone extends AnimatorRelic
     private void AddUses(int uses)
     {
         int banned = GetBannedCount();
-
-        counter += uses;
-        if (counter + banned > MAX_BAN_COUNT)
+        if (AddCounter(uses) + banned > MAX_BAN_COUNT)
         {
-            counter = MAX_BAN_COUNT - banned;
+            SetCounter(MAX_BAN_COUNT - banned);
         }
-
         if (counter > MAX_STORED_USES)
         {
-            counter = MAX_STORED_USES;
+            SetCounter(MAX_STORED_USES);
         }
     }
 
@@ -138,7 +132,7 @@ public class PurgingStone extends AnimatorRelic
     public void Ban(AbstractCard card)
     {
         GR.Animator.Dungeon.Ban(card.cardID);
-        counter -= 1;
+        AddCounter(-1);
         flash();
     }
 }

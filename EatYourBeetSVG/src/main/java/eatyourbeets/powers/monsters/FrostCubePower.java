@@ -37,7 +37,7 @@ public class FrostCubePower extends AnimatorPower
         {
             GameActions.Bottom.GainPlatedArmor(amount);
         }
-        else for (AbstractCreature m : GameUtilities.GetAllEnemies(true))
+        else for (AbstractCreature m : GameUtilities.GetEnemies(true))
         {
             GameActions.Bottom.StackPower(null, new PlatedArmorPower(m, amount));
         }

@@ -5,19 +5,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.*;
 
 public class Synergies
 {
     private final static HashMap<Integer, Synergy> All = new HashMap<>();
-
-    @SuppressWarnings("FieldCanBeLocal")
-    private static AnimatorCard previousCard = null;
-    private static AnimatorCard lastCardPlayed = null;
-    private static int preemptiveSynergies;
-
     public final static Synergy ANY = CreateSynergy(0);
     public final static Synergy Elsword = CreateSynergy(1);
     public final static Synergy Kancolle = CreateSynergy(2);
@@ -59,6 +51,27 @@ public class Synergies
     public final static Synergy TouhouProject = CreateSynergy(38);
     public final static Synergy WelcomeToNHK = CreateSynergy(39);
     public final static Synergy TalesOfBerseria = CreateSynergy(40);
+    @SuppressWarnings("FieldCanBeLocal")
+    private static AnimatorCard previousCard = null;
+    private static AnimatorCard lastCardPlayed = null;
+    private static int preemptiveSynergies;
+
+    public static void AddCards(Synergy synergy, ArrayList<AbstractCard> source, ArrayList<AnimatorCard> destination)
+    {
+        for (AbstractCard c : source)
+        {
+            AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
+            if (card != null && (synergy == null || synergy.Equals(card.synergy) || synergy.Equals(Synergies.ANY)))
+            {
+                destination.add(card);
+            }
+        }
+    }
+
+    public static int AddPreemptiveSynergies(int amount)
+    {
+        return preemptiveSynergies += amount;
+    }
 
     private static Synergy CreateSynergy(int id)
     {
@@ -71,11 +84,6 @@ public class Synergies
         return s;
     }
 
-    public static String GetLocalizedSeriesString()
-    {
-        return GR.Animator.Strings.Synergies.Series;
-    }
-
     public static Collection<Synergy> GetAll()
     {
         return All.values();
@@ -84,6 +92,24 @@ public class Synergies
     public static Synergy GetByID(int id)
     {
         return All.get(id);
+    }
+
+    public static Map<Synergy, List<AbstractCard>> GetCardsBySynergy(ArrayList<AbstractCard> cards)
+    {
+        Map<Synergy, List<AbstractCard>> map = new HashMap<>();
+        for (AbstractCard card : cards)
+        {
+            Synergy key = ANY;
+            AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
+            if (c != null && c.synergy != null)
+            {
+                key = c.synergy;
+            }
+
+            map.computeIfAbsent(key, k -> new ArrayList<>()).add(card);
+        }
+
+        return map;
     }
 
     public static ArrayList<AnimatorCard> GetColorlessCards()
@@ -98,6 +124,11 @@ public class Synergies
         }
 
         return result;
+    }
+
+    public static String GetLocalizedSeriesString()
+    {
+        return GR.Animator.Strings.Synergies.Series;
     }
 
     public static ArrayList<AnimatorCard> GetNonColorlessCard()
@@ -120,16 +151,19 @@ public class Synergies
         return result;
     }
 
-    public static void AddCards(Synergy synergy, ArrayList<AbstractCard> source, ArrayList<AnimatorCard> destination)
+    public static HashSet<Synergy> GetSynergies(ArrayList<AbstractCard> cards)
     {
-        for (AbstractCard c : source)
+        HashSet<Synergy> result = new HashSet<>();
+        for (AbstractCard card : cards)
         {
-            AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
-            if (card != null && (synergy == null || synergy.Equals(card.synergy) || synergy.Equals(Synergies.ANY)))
+            AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
+            if (c != null && c.synergy != null)
             {
-                destination.add(card);
+                result.add(c.synergy);
             }
         }
+
+        return result;
     }
 
     public static void SetLastCardPlayed(AbstractCard card)
@@ -177,10 +211,5 @@ public class Synergies
         }
 
         return false;
-    }
-
-    public static int AddPreemptiveSynergies(int amount)
-    {
-        return preemptiveSynergies += amount;
     }
 }

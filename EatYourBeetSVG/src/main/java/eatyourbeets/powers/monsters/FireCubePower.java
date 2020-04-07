@@ -41,7 +41,7 @@ public class FireCubePower extends AnimatorPower
             .ShowEffect(false, true)
             .IgnoreArtifact(true);
         }
-        else for (AbstractCreature m : GameUtilities.GetAllEnemies(true))
+        else for (AbstractCreature m : GameUtilities.GetEnemies(true))
         {
             GameActions.Bottom.StackPower(null, new StrengthPower(m, amount));
             GameActions.Bottom.StackPower(null, new BurningPower(m, null, amount))

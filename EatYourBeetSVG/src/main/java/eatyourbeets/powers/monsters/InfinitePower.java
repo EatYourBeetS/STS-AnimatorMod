@@ -210,7 +210,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
                         intangibleThreshold *= 2;
 
-                        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
+                        for (AbstractMonster m : GameUtilities.GetEnemies(true))
                         {
                             GameActions.Bottom.StackPower(owner, new IntangiblePlayerPower(m, 2));
                         }

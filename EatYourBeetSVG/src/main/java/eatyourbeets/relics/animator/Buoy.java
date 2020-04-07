@@ -7,9 +7,8 @@ import eatyourbeets.utilities.JavaUtilities;
 public class Buoy extends AnimatorRelic
 {
     public static final String ID = CreateFullID(Buoy.class);
-
-    private static final int HP_THRESHOLD = 30;
-    private static final int BLOCK_AMOUNT = 4;
+    public static final int HP_THRESHOLD = 30;
+    public static final int BLOCK_AMOUNT = 4;
 
     public Buoy()
     {
@@ -27,7 +26,7 @@ public class Buoy extends AnimatorRelic
     {
         super.onEquip();
 
-        counter = -1;
+        SetCounter(-1);
     }
 
     @Override
@@ -35,7 +34,7 @@ public class Buoy extends AnimatorRelic
     {
         super.atBattleStart();
 
-        counter = -1;
+        SetCounter(-1);
     }
 
     @Override
@@ -78,7 +77,7 @@ public class Buoy extends AnimatorRelic
         if (player.currentHealth < counter)
         {
             GameActions.Bottom.GainBlock(BLOCK_AMOUNT);
-            this.flash();
+            flash();
         }
     }
 
@@ -86,14 +85,13 @@ public class Buoy extends AnimatorRelic
     {
         GameActions.Bottom.Callback(() ->
         {
-            counter = (int) Math.ceil(player.maxHealth * (HP_THRESHOLD / 100f));
-            if (player.currentHealth < counter)
+            if (SetCounter((int) Math.ceil(player.maxHealth * (HP_THRESHOLD / 100f))) > player.currentHealth)
             {
-                this.beginLongPulse();
+                beginLongPulse();
             }
             else
             {
-                this.stopPulse();
+                stopPulse();
             }
         });
     }

@@ -24,7 +24,7 @@ public class SendMinionsAway extends EYBActionWithCallback<List<AbstractMonster>
     @Override
     protected void FirstUpdate()
     {
-        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetEnemies(true))
         {
             if (m.hasPower(MinionPower.POWER_ID))
             {

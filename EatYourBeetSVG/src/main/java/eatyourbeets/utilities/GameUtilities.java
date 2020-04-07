@@ -188,7 +188,7 @@ public class GameUtilities
         return cards;
     }
 
-    public static ArrayList<AbstractMonster> GetAllEnemies(boolean aliveOnly)
+    public static ArrayList<AbstractMonster> GetEnemies(boolean aliveOnly)
     {
         final AbstractRoom room = GetCurrentRoom();
         final ArrayList<AbstractMonster> monsters = new ArrayList<>();
@@ -456,7 +456,7 @@ public class GameUtilities
 
     public static AbstractMonster GetRandomEnemy(boolean aliveOnly)
     {
-        return JavaUtilities.GetRandomElement(GetAllEnemies(aliveOnly), GetRNG());
+        return JavaUtilities.GetRandomElement(GetEnemies(aliveOnly), GetRNG());
     }
 
     public static AbstractOrb GetRandomOrb()

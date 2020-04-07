@@ -3,13 +3,11 @@ package eatyourbeets.relics.animator;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.JavaUtilities;
 
 public class Hoodie extends AnimatorRelic
 {
     public static final String ID = CreateFullID(Hoodie.class);
-
-    private static final int MAX_HP_BONUS = 3;
+    public static final int MAX_HP_BONUS = 3;
 
     public Hoodie()
     {
@@ -19,7 +17,7 @@ public class Hoodie extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return JavaUtilities.Format(DESCRIPTIONS[0], MAX_HP_BONUS);
+        return FormatDescription(MAX_HP_BONUS);
     }
 
     @Override
@@ -28,14 +26,14 @@ public class Hoodie extends AnimatorRelic
         super.onVictory();
         if (GameActionManager.damageReceivedThisCombat == 0)
         {
-            AbstractDungeon.player.increaseMaxHp(MAX_HP_BONUS, true);
-            this.flash();
+            player.increaseMaxHp(MAX_HP_BONUS, true);
+            flash();
         }
     }
 
     @Override
     public boolean canSpawn()
     {
-        return AbstractDungeon.floorNum < 24 && super.canSpawn();
+        return super.canSpawn() && AbstractDungeon.floorNum < 24;
     }
 }

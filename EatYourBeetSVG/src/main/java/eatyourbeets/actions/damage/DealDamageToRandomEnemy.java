@@ -115,7 +115,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 
         if (GameUtilities.IsDeadOrEscaped(target))
         {
-            if (GameUtilities.GetAllEnemies(true).size() > 0)
+            if (GameUtilities.GetEnemies(true).size() > 0)
             {
                 GameActions.Top.Add(new DealDamageToRandomEnemy(this));
             }

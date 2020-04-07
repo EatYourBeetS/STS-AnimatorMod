@@ -14,11 +14,10 @@ import eatyourbeets.utilities.JavaUtilities;
 public class CerealBox extends AnimatorRelic
 {
     public static final String ID = CreateFullID(CerealBox.class);
-
-    private static final int HEAL_AMOUNT = 2;
-    private static final int BASE_CHARGES = 10;
-    private static final int SHOP_CHARGES = 4;
-    private static final int MAX_CHARGES = 20;
+    public static final int HEAL_AMOUNT = 2;
+    public static final int BASE_CHARGES = 10;
+    public static final int SHOP_CHARGES = 4;
+    public static final int MAX_CHARGES = 20;
 
     public CerealBox()
     {
@@ -42,7 +41,7 @@ public class CerealBox extends AnimatorRelic
     {
         super.onEquip();
 
-        this.counter = BASE_CHARGES;
+        SetCounter(BASE_CHARGES);
     }
 
     @Override
@@ -62,7 +61,7 @@ public class CerealBox extends AnimatorRelic
     {
         super.onVictory();
 
-        this.stopPulse();
+        stopPulse();
     }
 
     @Override
@@ -70,33 +69,32 @@ public class CerealBox extends AnimatorRelic
     {
         super.atTurnStartPostDraw();
 
-        if (counter > 0 && GameUtilities.GetHealthPercentage(AbstractDungeon.player) < 0.25f)
+        if (counter > 0 && GameUtilities.GetHealthPercentage(player) < 0.25f)
         {
-            GameActions.Bottom.Add(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            GameActions.Bottom.Add(new RelicAboveCreatureAction(player, this));
 
-            this.beginLongPulse();
+            beginLongPulse();
         }
         else
         {
-            this.stopPulse();
+            stopPulse();
         }
     }
 
     @Override
     public void justEnteredRoom(AbstractRoom room)
     {
+        super.justEnteredRoom(room);
+
         if (room instanceof ShopRoom)
         {
-            counter += SHOP_CHARGES;
-            if (counter > MAX_CHARGES)
+            if (AddCounter(SHOP_CHARGES) > MAX_CHARGES)
             {
-                counter = MAX_CHARGES;
+                SetCounter(MAX_CHARGES);
             }
 
-            this.flash();
+            flash();
         }
-
-        super.justEnteredRoom(room);
     }
 
     public void Use()
@@ -108,7 +106,7 @@ public class CerealBox extends AnimatorRelic
             {
                 p.heal(HEAL_AMOUNT);
 
-                counter -= 1;
+                AddCounter(-1);
             }
         }
     }

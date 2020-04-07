@@ -23,7 +23,7 @@ public class AetherOrbPassiveAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        ArrayList<AbstractMonster> enemies = GameUtilities.GetAllEnemies(true);
+        ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
 
         Collections.reverse(enemies);
         for (AbstractMonster m : enemies)

@@ -2,7 +2,6 @@ package eatyourbeets.relics.animator;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.HitboxRightClick;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.map.MapRoomNode;
@@ -21,12 +20,10 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtainedSubscriber
 {
-    private static final int HEAL_AMOUNT = 2;
-
     public static final String ID = CreateFullID(ExquisiteBloodVial.class);
+    public static final int HEAL_AMOUNT = 2;
 
-    public boolean truePotential;
-
+    private boolean empowered;
     private int regenAmount;
     private int maxHPAmount;
 
@@ -37,9 +34,9 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
 
     public void OnRelicObtained(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)
     {
-        if (trigger == OnRelicObtainedSubscriber.Trigger.Equip && relic instanceof BloodVial && truePotential)
+        if (trigger == OnRelicObtainedSubscriber.Trigger.Equip && relic instanceof BloodVial && empowered)
         {
-            GameEffects.Queue.RemoveRelic(relic).AddCallback(() -> setCounter(counter + 1));
+            GameEffects.Queue.RemoveRelic(relic).AddCallback(() -> AddCounter(1));
         }
     }
 
@@ -58,19 +55,20 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
     @Override
     public void atBattleStart()
     {
-        AbstractPlayer p = AbstractDungeon.player;
-        if (truePotential)
+        super.atBattleStart();
+
+        if (empowered)
         {
-            GameActions.Bottom.StackPower(new RegenPower(p, regenAmount));
-            p.increaseMaxHp(maxHPAmount, true);
+            GameActions.Bottom.StackPower(new RegenPower(player, regenAmount));
+            player.increaseMaxHp(maxHPAmount, true);
         }
         else
         {
-            GameActions.Top.Add(new RelicAboveCreatureAction(p, this));
+            GameActions.Top.Add(new RelicAboveCreatureAction(player, this));
             GameActions.Top.Heal(HEAL_AMOUNT);
         }
 
-        this.flash();
+        flash();
     }
 
     @Override
@@ -78,7 +76,7 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
     {
         super.update();
 
-        if (truePotential || AbstractDungeon.currMapNode == null)
+        if (empowered || AbstractDungeon.currMapNode == null)
         {
             return;
         }
@@ -120,59 +118,33 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
 
     public void Refresh()
     {
-        this.regenAmount = this.counter;
-        this.maxHPAmount = 1 + (this.counter / 3);
+        regenAmount = counter;
+        maxHPAmount = 1 + (counter / 3);
 
-        this.description = getUpdatedDescription();
-        this.tips.clear();
-        this.tips.add(new PowerTip(this.name, this.description));
-        this.initializeTips();
+        description = getUpdatedDescription();
+        tips.clear();
+        tips.add(new PowerTip(name, description));
+        initializeTips();
     }
 
     public void UnlockPotential()
     {
-        if (!truePotential)
+        if (!empowered)
         {
-            this.truePotential = true;
+            empowered = true;
+
             if (counter < 0)
             {
-                this.counter = 0;
+                counter = 0;
             }
 
-            AbstractPlayer p = AbstractDungeon.player;
-            for (AbstractRelic relic : p.relics)
+            for (AbstractRelic relic : player.relics)
             {
                 if (relic instanceof BloodVial)
                 {
-                    GameEffects.Queue.RemoveRelic(relic).AddCallback(() -> setCounter(counter + 1));
+                    GameEffects.Queue.RemoveRelic(relic).AddCallback(() -> AddCounter(1));
                 }
             }
         }
     }
-
-//    @Override
-//    public Integer onSave()
-//    {
-//        return counter;
-//    }
-//
-//    @Override
-//    public void onLoad(Integer value)
-//    {
-//        logger.info("ONLOAD: " + value);
-//        if (value == null || value < 0)
-//        {
-//            savedCounter = -1;
-//            counter = savedCounter;
-//            logger.info("ONLOAD 1: " + counter);
-//        }
-//        else
-//        {
-//            savedCounter = value;
-//            counter = savedCounter;
-//            logger.info("ONLOAD 2: " + counter);
-//            UnlockPotential();
-//            Refresh();
-//        }
-//    }
 }

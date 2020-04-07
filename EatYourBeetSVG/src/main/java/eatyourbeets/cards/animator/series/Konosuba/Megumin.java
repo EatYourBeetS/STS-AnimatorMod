@@ -54,7 +54,7 @@ public class Megumin extends AnimatorCard
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
         GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.5f);
 
-        for (AbstractCreature m1 : GameUtilities.GetAllEnemies(true))
+        for (AbstractCreature m1 : GameUtilities.GetEnemies(true))
         {
             GameActions.Bottom.VFX(new FlameBarrierEffect(m1.hb_x, m1.hb_y));
             GameActions.Bottom.VFX(new ExplosionSmallEffect(m1.hb_x, m1.hb_y));

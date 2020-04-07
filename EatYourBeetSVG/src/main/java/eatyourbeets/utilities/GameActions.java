@@ -470,21 +470,26 @@ public final class GameActions
 
     public ApplyPower GainRandomStat(int amount)
     {
+        return GainRandomStat(amount, false);
+    }
+
+    public ApplyPower GainRandomStat(int amount, boolean preserveOnce)
+    {
         int roll = AbstractDungeon.cardRandomRng.random(2);
         switch (roll)
         {
             case 0:
             {
-                return GainIntellect(amount);
+                return GainIntellect(amount, preserveOnce);
             }
             case 1:
             {
-                return GainAgility(amount);
+                return GainAgility(amount, preserveOnce);
             }
             case 2:
             default:
             {
-                return GainForce(amount);
+                return GainForce(amount, preserveOnce);
             }
         }
     }

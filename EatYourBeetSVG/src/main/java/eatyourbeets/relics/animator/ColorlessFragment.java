@@ -13,6 +13,8 @@ public class ColorlessFragment extends AbstractMissingPiece
     public static final int COLORLESS_WEIGHT = 12;
     public static final int REWARD_INTERVAL = 3;
 
+    private boolean whyAreThere300ObtainMethods = false;
+
     public ColorlessFragment()
     {
         super(ID, RelicTier.SHOP, LandingSound.FLAT);
@@ -21,7 +23,7 @@ public class ColorlessFragment extends AbstractMissingPiece
     @Override
     public boolean canSpawn()
     {
-        return super.canSpawn() && AbstractDungeon.floorNum <= 33 && AbstractDungeon.player.hasRelic(TheMissingPiece.ID);
+        return super.canSpawn() && AbstractDungeon.floorNum <= 33 && player.hasRelic(TheMissingPiece.ID);
     }
 
     @Override
@@ -36,18 +38,16 @@ public class ColorlessFragment extends AbstractMissingPiece
         return REWARD_INTERVAL;
     }
 
-    private boolean whyAreThere300ObtainMethods = false;
-
     @Override
     public void obtain()
     {
-        ArrayList<AbstractRelic> relics = AbstractDungeon.player.relics;
+        ArrayList<AbstractRelic> relics = player.relics;
         for (int i = 0; i < relics.size(); i++)
         {
             if (relics.get(i).relicId.equals(TheMissingPiece.ID))
             {
                 whyAreThere300ObtainMethods = true;
-                instantObtain(AbstractDungeon.player, i, true);
+                instantObtain(player, i, true);
                 return;
             }
         }
@@ -58,13 +58,13 @@ public class ColorlessFragment extends AbstractMissingPiece
     @Override
     public void instantObtain()
     {
-        ArrayList<AbstractRelic> relics = AbstractDungeon.player.relics;
+        ArrayList<AbstractRelic> relics = player.relics;
         for (int i = 0; i < relics.size(); i++)
         {
             if (relics.get(i).relicId.equals(TheMissingPiece.ID))
             {
                 whyAreThere300ObtainMethods = true;
-                instantObtain(AbstractDungeon.player, i, true);
+                instantObtain(player, i, true);
                 return;
             }
         }
@@ -77,13 +77,13 @@ public class ColorlessFragment extends AbstractMissingPiece
     {
         if (!whyAreThere300ObtainMethods)
         {
-            ArrayList<AbstractRelic> relics = AbstractDungeon.player.relics;
+            ArrayList<AbstractRelic> relics = p.relics;
             for (int i = 0; i < relics.size(); i++)
             {
                 if (relics.get(i).relicId.equals(TheMissingPiece.ID))
                 {
                     whyAreThere300ObtainMethods = true;
-                    instantObtain(AbstractDungeon.player, i, true);
+                    instantObtain(p, i, true);
                     return;
                 }
             }

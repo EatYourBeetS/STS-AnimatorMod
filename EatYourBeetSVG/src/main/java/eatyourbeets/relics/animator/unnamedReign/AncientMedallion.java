@@ -2,27 +2,24 @@ package eatyourbeets.relics.animator.unnamedReign;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
+import com.megacrit.cardcrawl.vfx.campfire.CampfireSmithEffect;
 import eatyourbeets.interfaces.subscribers.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedReignRelicSubscriber, OnRelicObtainedSubscriber
 {
     public static final String ID = CreateFullID(AncientMedallion.class);
-
-    private static final int HEAL_AMOUNT = 4;
-    private static final int MULTI_UPGRADE = 2;
+    public static final int HEAL_AMOUNT = 4;
+    public static final int MULTI_UPGRADE = 2;
 
     private int equipCounter;
     private boolean event;
@@ -56,14 +53,14 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
     @Override
     public String getUpdatedDescription()
     {
-        return JavaUtilities.Format(DESCRIPTIONS[0], HEAL_AMOUNT * Math.max(1, counter));
+        return FormatDescription(HEAL_AMOUNT * Math.max(1, counter));
     }
 
     public void onManualEquip()
     {
         if (counter <= 0)
         {
-            setCounter(equipCounter);
+            SetCounter(equipCounter);
         }
 
         if (UpgradeRandomCards())
@@ -106,14 +103,14 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
 
         if (counter <= 0)
         {
-            AbstractDungeon.player.relics.remove(this);
+            player.relics.remove(this);
         }
         else
         {
-            this.description = getUpdatedDescription();
-            this.tips.clear();
-            this.tips.add(new PowerTip(this.name, this.description));
-            this.initializeTips();
+            description = getUpdatedDescription();
+            tips.clear();
+            tips.add(new PowerTip(name, description));
+            initializeTips();
         }
     }
 
@@ -122,8 +119,8 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
     {
         super.atBattleStart();
 
-        AbstractDungeon.player.heal(HEAL_AMOUNT * counter, true);
-        this.flash();
+        player.heal(HEAL_AMOUNT * counter, true);
+        flash();
     }
 
     public void OnRelicObtained(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)
@@ -132,20 +129,20 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
         {
             if (this != relic)
             {
-                this.equipCounter = ((AncientMedallion) relic).equipCounter;
-                this.flash();
+                equipCounter = ((AncientMedallion) relic).equipCounter;
+                flash();
 
-                GameEffects.Queue.RemoveRelic(relic).AddCallback(equipCounter, (c, r) -> setCounter(counter + (int)c));
+                GameEffects.Queue.RemoveRelic(relic).AddCallback(equipCounter, (c, r) -> AddCounter((int)c));
             }
 
-            this.onManualEquip();
+            onManualEquip();
         }
     }
 
     private boolean UpgradeRandomCards()
     {
         RandomizedList<AbstractCard> upgradableCards = new RandomizedList<>();
-        for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+        for (AbstractCard c : player.masterDeck.group)
         {
             if (c.canUpgrade())
             {
@@ -157,18 +154,18 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
         if (upgradableCards.Size() > 0)
         {
             upgraded += 1;
-            AbstractCard card1 = upgradableCards.Retrieve(AbstractDungeon.cardRandomRng);
+            AbstractCard card1 = upgradableCards.Retrieve(rng);
             card1.upgrade();
-            AbstractDungeon.player.bottledCardUpgradeCheck(card1);
+            player.bottledCardUpgradeCheck(card1);
             GameEffects.TopLevelList.ShowCardBriefly(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2f + AbstractCard.IMG_WIDTH / 2f + 20f * Settings.scale, (float) Settings.HEIGHT / 2f);
         }
 
         if (upgradableCards.Size() > 0)
         {
             upgraded += 1;
-            AbstractCard card1 = upgradableCards.Retrieve(AbstractDungeon.cardRandomRng);
+            AbstractCard card1 = upgradableCards.Retrieve(rng);
             card1.upgrade();
-            AbstractDungeon.player.bottledCardUpgradeCheck(card1);
+            player.bottledCardUpgradeCheck(card1);
             GameEffects.TopLevelList.ShowCardBriefly(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2f - AbstractCard.IMG_WIDTH / 2f - 20f * Settings.scale, (float) Settings.HEIGHT / 2f);
         }
 
@@ -182,14 +179,13 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
 
     private String GetGridSelectMessage()
     {
-        return CardCrawlGame.languagePack.getUIString("CampfireSmithEffect").TEXT[0];
+        return CampfireSmithEffect.TEXT[0];
     }
 
     private void OpenUpgradeSelection()
     {
-        AbstractPlayer p = AbstractDungeon.player;
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        for (AbstractCard c : p.masterDeck.group)
+        for (AbstractCard c : player.masterDeck.group)
         {
             if (c.canUpgrade())
             {
@@ -241,7 +237,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
                 }
             }
 
-            AbstractDungeon.player.bottledCardUpgradeCheck(c);
+            player.bottledCardUpgradeCheck(c);
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
             awaitingInput = false;
 

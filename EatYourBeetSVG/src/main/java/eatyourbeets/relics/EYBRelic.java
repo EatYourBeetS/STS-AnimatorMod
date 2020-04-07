@@ -70,4 +70,18 @@ public abstract class EYBRelic extends CustomRelic
         super.grayscale = !value;
         return value;
     }
+
+    public int SetCounter(int amount)
+    {
+        setCounter(amount);
+
+        return counter;
+    }
+
+    public int AddCounter(int amount)
+    {
+        setCounter(counter + amount);
+
+        return counter;
+    }
 }

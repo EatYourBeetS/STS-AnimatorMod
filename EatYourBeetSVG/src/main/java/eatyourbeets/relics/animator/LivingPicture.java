@@ -37,6 +37,6 @@ public class LivingPicture extends AnimatorRelic implements OnSynergySubscriber
     {
         GameActions.Bottom.Draw(1);
         SetEnabled(false);
-        this.flash();
+        flash();
     }
 }

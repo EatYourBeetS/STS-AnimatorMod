@@ -112,6 +112,12 @@
 		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
 		"NAME": "Purging Stone"
 	},
+	"animator:PurpleTeddyBear":
+	{
+		"DESCRIPTIONS": ["At the start of each combat, shuffle a 0-Cost Shido Itsuka into your deck."],
+		"FLAVOR": "...Shin?",
+		"NAME": "Purple Teddy Bear"
+	},
 	"animator:RacePiece":
 	{
 		"DESCRIPTIONS": ["Upon pickup, select #b1 card, then choose and #yTransform #b3 cards in your deck into #b3 cards of the selected card's #ySeries."],

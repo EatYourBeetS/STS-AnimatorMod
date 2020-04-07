@@ -32,6 +32,7 @@ public class OrigamiTobiichi extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new OrigamiTobiichiPower(p, magicNumber, secondaryValue, upgraded));
     }
 

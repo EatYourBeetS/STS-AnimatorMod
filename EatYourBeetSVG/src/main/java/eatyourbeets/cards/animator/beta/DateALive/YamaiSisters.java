@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.beta.DateALive;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -47,7 +48,20 @@ public class YamaiSisters extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
-        for (AbstractCard c : p.hand.group)
+        upgradeYamais(p.hand);
+        upgradeYamais(p.discardPile);
+        upgradeYamais(p.drawPile);
+    }
+
+    @Override
+    public boolean canUpgrade()
+    {
+        return timesUpgraded < magicNumber;
+    }
+
+    private void upgradeYamais(CardGroup group)
+    {
+        for (AbstractCard c : group.group)
         {
             if (c.cardID.equals(YamaiSisters.DATA.ID) && c.canUpgrade())
             {
@@ -55,11 +69,5 @@ public class YamaiSisters extends AnimatorCard
                 c.flash();
             }
         }
-    }
-
-    @Override
-    public boolean canUpgrade()
-    {
-        return timesUpgraded < magicNumber;
     }
 }

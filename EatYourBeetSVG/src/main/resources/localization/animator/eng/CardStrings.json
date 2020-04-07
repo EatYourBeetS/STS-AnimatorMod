@@ -352,7 +352,7 @@
 		},
 		"animator:YamaiSisters":
 		{
-			"DESCRIPTION": "Upgrade this card and ** every {Yamai Sisters} in ** your hand. You may ** Upgrade this card ** up to !M! times.",
+			"DESCRIPTION": "Upgrade all copies of ** {Yamai Sisters} everywhere. || You may ** Upgrade this card ** up to !M! times.",
 			"NAME": "Yamai Sisters"
 		},
 		"animator:YoshinoHimekawa":

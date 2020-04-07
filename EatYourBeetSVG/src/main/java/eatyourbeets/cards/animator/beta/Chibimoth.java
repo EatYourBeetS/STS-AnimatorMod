@@ -31,7 +31,7 @@ public class Chibimoth extends AnimatorCard {
         group.addToBottom(CreateChoice(text[1], (c1, p1, m1) -> GameActions.Bottom.GainIntellect(1, false)));
         group.addToBottom(CreateChoice(text[2], (c1, p1, m1) -> GameActions.Bottom.GainForce(1, false)));
 
-        GameActions.Bottom.SelectFromPile(name, secondaryValue, group)
+        GameActions.Bottom.SelectFromPile(name, magicNumber, group)
                 .SetOptions(false, false)
                 .SetMessage(CardRewardScreen.TEXT[1])
                 .AddCallback(cards ->

@@ -185,7 +185,9 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
                         if (amount > 0)
                         {
                             maxStrengthThisTurn -= amount;
-                            GameActions.Bottom.StackPower(new GainStrengthPower(owner, amount));
+                            GameActions.Bottom.StackPower(new GainStrengthPower(owner, amount))
+                            .ShowEffect(false, true)
+                            .IgnoreArtifact(true);
                         }
                     }
                 }

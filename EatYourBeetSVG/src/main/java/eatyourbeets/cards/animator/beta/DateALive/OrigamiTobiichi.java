@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class OrigamiTobiichi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(OrigamiTobiichi.class).SetPower(3, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(OrigamiTobiichi.class).SetPower(2, CardRarity.UNCOMMON);
     static
     {
         DATA.AddPreview(new InverseOrigami(), false);
@@ -22,8 +22,8 @@ public class OrigamiTobiichi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 10);
-        SetCostUpgrade(-1);
+        Initialize(0, 0, 1, 10);
+        SetUpgrade(0,0,1);
         SetSpellcaster();
 
         SetSynergy(Synergies.DateALive);

@@ -13,18 +13,14 @@ import eatyourbeets.utilities.GameActions;
 public class KotoriKanbe extends AnimatorCard implements StartupCard
 {
     public static final EYBCardData DATA = Register(KotoriKanbe.class).SetSkill(1, CardRarity.RARE).SetColor(CardColor.COLORLESS);
-
-    static
-    {
-        DATA.AddPreview(new Chibimoth(), false);
-    }
+    public static final int HP_HEAL_THRESHOLD = 100;
 
     public KotoriKanbe()
     {
         super(DATA);
 
-        Initialize(0, 0, 12, 1);
-        SetUpgrade(0,0,-3);
+        Initialize(0, 0, 3, 5);
+        SetUpgrade(0,0,-1, 1);
         SetEthereal(true);
         SetExhaust(true);
 
@@ -35,13 +31,17 @@ public class KotoriKanbe extends AnimatorCard implements StartupCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         int targetMissingHP = m.maxHealth - m.currentHealth;
-        int loseStrengthAmount = Math.floorDiv(targetMissingHP, magicNumber);
+        int applyAmount = Math.floorDiv(targetMissingHP, magicNumber);
 
-        GameActions.Bottom.ReduceStrength(m, loseStrengthAmount, false);
+        GameActions.Bottom.ApplyWeak(m, applyAmount);
+        GameActions.Bottom.ApplyVulnerable(m, applyAmount);
+
+        if (targetMissingHP > HP_HEAL_THRESHOLD)
+        {
+            GameActions.Bottom.ReduceStrength(m, secondaryValue, false);
+        }
 
         GameActions.Bottom.Heal(p, m, targetMissingHP);
-
-        GameActions.Bottom.Draw(secondaryValue);
     }
 
     @Override

@@ -8,15 +8,21 @@ import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.animator.series.NoGameNoLife.FielNirvalen;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT3;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 
-public class Chibimoth extends AnimatorCard {
+public class Chibimoth extends AnimatorCard implements Hidden {
     public static final EYBCardData DATA = Register(Chibimoth.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+
+    static
+    {
+        DATA.AddPreview(new Chibimoth(), false);
+    }
 
     public Chibimoth() {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 1, 1);
         SetExhaust(true);
         SetRetain(true);
 
@@ -41,6 +47,8 @@ public class Chibimoth extends AnimatorCard {
                         card.use(player, null);
                     }
                 });
+
+        GameActions.Bottom.Draw(secondaryValue);
     }
 
     private AnimatorCard_Dynamic CreateChoice(String text, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onSelect)

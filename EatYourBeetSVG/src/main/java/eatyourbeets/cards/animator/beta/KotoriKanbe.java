@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
-public class KotoriKanbe extends AnimatorCard implements StartupCard
+public class KotoriKanbe extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KotoriKanbe.class).SetSkill(1, CardRarity.RARE).SetColor(CardColor.COLORLESS);
     public static final int HP_HEAL_THRESHOLD = 100;
@@ -42,13 +42,5 @@ public class KotoriKanbe extends AnimatorCard implements StartupCard
         }
 
         GameActions.Bottom.Heal(p, m, targetMissingHP);
-    }
-
-    @Override
-    public boolean atBattleStartPreDraw()
-    {
-        GameActions.Bottom.MakeCardInDrawPile(new Chibimoth());
-
-        return true;
     }
 }

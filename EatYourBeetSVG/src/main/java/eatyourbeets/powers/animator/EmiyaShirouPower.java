@@ -3,15 +3,13 @@ package eatyourbeets.powers.animator;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import eatyourbeets.interfaces.subscribers.OnBlockBrokenSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.interfaces.subscribers.OnBlockBrokenSubscriber;
 
 public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubscriber
 {
@@ -41,15 +39,14 @@ public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubs
     {
         if (!creature.isPlayer)
         {
-            AbstractPlayer p = AbstractDungeon.player;
-            CardGroup attacks = p.drawPile.getAttacks();
+            CardGroup attacks = player.drawPile.getAttacks();
             if (attacks != null && attacks.size() > 0)
             {
                 RandomizedList<AbstractCard> randomAttacks = new RandomizedList<>(attacks.group);
 
                 for (int i = 0; i < amount; i++)
                 {
-                    AbstractCard card = randomAttacks.Retrieve(AbstractDungeon.cardRandomRng);
+                    AbstractCard card = randomAttacks.Retrieve(rng);
                     if (card != null)
                     {
                         GameActions.Bottom.Draw(1).ShuffleIfEmpty(true)

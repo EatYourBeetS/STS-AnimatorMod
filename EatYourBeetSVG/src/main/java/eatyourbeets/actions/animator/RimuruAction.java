@@ -29,8 +29,8 @@ public class RimuruAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        if (!transform(player.hand, card) && !transform(player.drawPile, card) && !transform(player.discardPile, card) &&
-            !transform(player.exhaustPile, card) && !transform(player.limbo, card))
+        if (!transform(player.hand, card) && !transform(player.drawPile, card) && !transform(player.discardPile, card)
+        && !transform(player.exhaustPile, card) && !transform(player.limbo, card))
         {
             // Rimuru has been purged or removed from the game, unsubscribe it
             PlayerStatistics.onAfterCardPlayed.Unsubscribe(rimuru);

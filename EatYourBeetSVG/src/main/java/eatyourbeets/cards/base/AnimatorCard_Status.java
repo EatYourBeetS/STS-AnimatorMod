@@ -1,7 +1,5 @@
 package eatyourbeets.cards.base;
 
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.SetDontTriggerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -20,22 +18,12 @@ public abstract class AnimatorCard_Status extends AnimatorCard
     }
 
     @Override
-    public void triggerWhenDrawn()
-    {
-        AbstractDungeon.actionManager.addToBottom(new SetDontTriggerAction(this, false));
-        if (AbstractDungeon.player.hasPower("Evolve") && !AbstractDungeon.player.hasPower("No Draw"))
-        {
-            AbstractDungeon.player.getPower("Evolve").flash();
-            AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, AbstractDungeon.player.getPower("Evolve").amount));
-        }
-    }
-
-    @Override
     public void triggerOnEndOfTurnForPlayingCard()
     {
         if (playAtEndOfTurn)
         {
-            this.dontTriggerOnUseCard = true;
+            dontTriggerOnUseCard = true;
+
             AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
         }
     }

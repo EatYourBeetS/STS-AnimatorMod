@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.random.Random;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ public abstract class EYBAction extends AbstractGameAction
 
     protected final ArrayList<Object> tags = new ArrayList<>(1);
     protected final AbstractPlayer player;
+    protected final Random rng;
     protected AbstractCard card;
     protected String message;
     protected String name;
@@ -29,6 +31,7 @@ public abstract class EYBAction extends AbstractGameAction
 
     public EYBAction(ActionType type, float duration)
     {
+        this.rng = AbstractDungeon.cardRandomRng;
         this.player = AbstractDungeon.player;
         this.duration = this.startDuration = duration;
         this.actionType = type;

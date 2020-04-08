@@ -2,8 +2,6 @@ package eatyourbeets.actions.cardManipulation;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.GR;
@@ -42,26 +40,24 @@ public class PurgeAnywhere extends EYBAction
 
     public void update()
     {
-        AbstractPlayer p = AbstractDungeon.player;
-
         if (card != null)
         {
-            p.hand.removeCard(card);
-            p.limbo.removeCard(card);
-            p.drawPile.removeCard(card);
-            p.discardPile.removeCard(card);
-            p.exhaustPile.removeCard(card);
+            player.hand.removeCard(card);
+            player.limbo.removeCard(card);
+            player.drawPile.removeCard(card);
+            player.discardPile.removeCard(card);
+            player.exhaustPile.removeCard(card);
 
             PlayerStatistics.Void.removeCard(card);
         }
 
         if (uuid != null)
         {
-            RemoveAll(p.hand);
-            RemoveAll(p.limbo);
-            RemoveAll(p.drawPile);
-            RemoveAll(p.discardPile);
-            RemoveAll(p.exhaustPile);
+            RemoveAll(player.hand);
+            RemoveAll(player.limbo);
+            RemoveAll(player.drawPile);
+            RemoveAll(player.discardPile);
+            RemoveAll(player.exhaustPile);
 
             RemoveAll(PlayerStatistics.Void);
         }

@@ -3,7 +3,6 @@ package eatyourbeets.actions.cardManipulation;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -34,7 +33,7 @@ public class RandomCostIncrease extends EYBActionWithCallback<AbstractCard>
 
         if (possible.Size() > 0)
         {
-            card = possible.Retrieve(AbstractDungeon.cardRandomRng);
+            card = possible.Retrieve(rng);
         }
         else
         {

@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.EYBAction;
@@ -57,9 +56,9 @@ public class SoraAction extends EYBAction
         super.FirstUpdate();
 
         currentEffects.clear();
-        currentEffects.add(attackList.Retrieve(AbstractDungeon.cardRandomRng));
-        currentEffects.add(defendList.Retrieve(AbstractDungeon.cardRandomRng));
-        currentEffects.add(prepareList.Retrieve(AbstractDungeon.cardRandomRng));
+        currentEffects.add(attackList.Retrieve(rng));
+        currentEffects.add(defendList.Retrieve(rng));
+        currentEffects.add(prepareList.Retrieve(rng));
 
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AnimatorCardBuilder e : currentEffects)
@@ -78,7 +77,7 @@ public class SoraAction extends EYBAction
             AbstractCard card = cards.get(0);
             card.applyPowers();
             card.calculateCardDamage(null);
-            card.use(AbstractDungeon.player, null);
+            card.use(player, null);
 
             if (amount > 1)
             {

@@ -1,6 +1,5 @@
 package eatyourbeets.actions.animator;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.status.GoblinChampion;
@@ -24,7 +23,7 @@ public class CreateRandomGoblins extends EYBAction
     {
         for (int i = 0; i < amount; i++)
         {
-            GameActions.Bottom.MakeCardInDrawPile(GetRandomGoblin(AbstractDungeon.cardRandomRng));
+            GameActions.Bottom.MakeCardInDrawPile(GetRandomGoblin(rng));
         }
 
         Complete();

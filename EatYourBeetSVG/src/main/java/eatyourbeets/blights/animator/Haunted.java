@@ -37,7 +37,7 @@ public class Haunted extends AnimatorBlight
 
         if (activated)
         {
-            this.flash();
+            flash();
         }
     }
 
@@ -46,8 +46,8 @@ public class Haunted extends AnimatorBlight
         AbstractPlayer p = AbstractDungeon.player;
         if (counter >= 10)
         {
-            this.flash();
             GameActions.Bottom.ApplyVulnerable(p, p, 1);
+            flash();
         }
         if (counter >= 20)
         {

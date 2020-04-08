@@ -77,7 +77,7 @@ public class TheMaskedTraveler2 extends EYBEvent
 
         private void ObtainRelic(EYBEventOption option)
         {
-            for (AbstractRelic relic : AbstractDungeon.player.relics)
+            for (AbstractRelic relic : player.relics)
             {
                 if (relic.tier == AbstractRelic.RelicTier.STARTER)
                 {

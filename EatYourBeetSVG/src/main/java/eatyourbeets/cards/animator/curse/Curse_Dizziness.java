@@ -18,7 +18,7 @@ public class Curse_Dizziness extends AnimatorCard_Curse
 
     public Curse_Dizziness()
     {
-        super(DATA);
+        super(DATA, false);
 
         SetSynergy(Synergies.TouhouProject);
     }

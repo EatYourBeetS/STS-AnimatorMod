@@ -62,7 +62,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
     public MoveCard SetCardPosition(float x, float y)
     {
-        targetPosition = new Vector2(x, y);
+        this.targetPosition = new Vector2(x, y);
 
         return this;
     }

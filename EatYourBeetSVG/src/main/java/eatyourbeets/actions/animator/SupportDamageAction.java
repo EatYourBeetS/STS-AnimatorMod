@@ -12,16 +12,20 @@ import eatyourbeets.actions.EYBAction;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-
-import java.util.ArrayList;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class SupportDamageAction extends EYBAction
 {
     private final DamageInfo info;
 
+    public static AbstractMonster FindBestTarget()
+    {
+        return JavaUtilities.FindMin(GameUtilities.GetEnemies(true), m -> m.currentHealth);
+    }
+
     public SupportDamageAction(DamageInfo info)
     {
-        this(info, FindLowestHPEnemy());
+        this(info, FindBestTarget());
     }
 
     public SupportDamageAction(DamageInfo info, AbstractCreature target)
@@ -37,19 +41,19 @@ public class SupportDamageAction extends EYBAction
     @Override
     protected boolean shouldCancelAction()
     {
-        return this.target == null || (this.source != null && this.source.isDying);
+        return target == null || (source != null && source.isDying);
     }
 
     @Override
     protected void FirstUpdate()
     {
-        if (this.shouldCancelAction())
+        if (shouldCancelAction())
         {
             Complete();
             return;
         }
 
-        AbstractCreature bestTarget = FindLowestHPEnemy();
+        AbstractCreature bestTarget = FindBestTarget();
 
         if (target != bestTarget || target.isDeadOrEscaped() || target.currentHealth <= 0)
         {
@@ -62,7 +66,7 @@ public class SupportDamageAction extends EYBAction
             return;
         }
 
-        GameEffects.List.Add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
+        GameEffects.List.Add(new FlashAtkImgEffect(target.hb.cX, target.hb.cY, attackEffect));
     }
 
     @Override
@@ -76,22 +80,22 @@ public class SupportDamageAction extends EYBAction
 
         if (TickDuration(deltaTime))
         {
-            if (this.attackEffect == AttackEffect.POISON)
+            if (attackEffect == AttackEffect.POISON)
             {
-                this.target.tint.color = Color.CHARTREUSE.cpy();
-                this.target.tint.changeColor(Color.WHITE.cpy());
+                target.tint.color = Color.CHARTREUSE.cpy();
+                target.tint.changeColor(Color.WHITE.cpy());
             }
-            else if (this.attackEffect == AttackEffect.FIRE)
+            else if (attackEffect == AttackEffect.FIRE)
             {
-                this.target.tint.color = Color.RED.cpy();
-                this.target.tint.changeColor(Color.WHITE.cpy());
+                target.tint.color = Color.RED.cpy();
+                target.tint.changeColor(Color.WHITE.cpy());
             }
 
-            this.info.type = DamageInfo.DamageType.NORMAL;
-            this.info.applyPowers(this.info.owner, target);
+            info.type = DamageInfo.DamageType.NORMAL;
+            info.applyPowers(info.owner, target);
             GameUtilities.UsePenNib();
 
-            if (this.info.output < 10)
+            if (info.output < 10)
             {
                 GameEffects.List.Add(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()));
             }
@@ -100,31 +104,13 @@ public class SupportDamageAction extends EYBAction
                 GameEffects.List.Add(new DieDieDieEffect());
             }
 
-            this.info.owner = null;
-            this.target.damage(this.info);
+            info.owner = null;
+            target.damage(info);
 
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
             {
                 GameUtilities.ClearPostCombatActions();
             }
         }
-    }
-
-    private static AbstractMonster FindLowestHPEnemy()
-    {
-        ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
-
-        AbstractMonster enemy = null;
-        int minHealth = Integer.MAX_VALUE;
-        for (AbstractMonster m : enemies)
-        {
-            if (m.currentHealth < minHealth)
-            {
-                minHealth = m.currentHealth;
-                enemy = m;
-            }
-        }
-
-        return enemy;
     }
 }

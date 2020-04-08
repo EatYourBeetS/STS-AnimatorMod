@@ -26,13 +26,13 @@ public class GainTemporaryHP extends EYBActionWithCallback<AbstractCreature>
     @Override
     protected void FirstUpdate()
     {
-        if (!this.target.isDying && !this.target.isDead)
+        if (!target.isDying && !target.isDead)
         {
-            TempHPField.tempHp.set(this.target, TempHPField.tempHp.get(this.target) + this.amount);
-            if (this.amount > 0)
+            TempHPField.tempHp.set(target, TempHPField.tempHp.get(target) + amount);
+            if (amount > 0)
             {
-                GameEffects.Queue.Add(new HealEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY, this.amount));
-                this.target.healthBarUpdatedEvent();
+                GameEffects.Queue.Add(new HealEffect(target.hb.cX - target.animX, target.hb.cY, amount));
+                target.healthBarUpdatedEvent();
             }
         }
     }

@@ -1,6 +1,5 @@
 package eatyourbeets.actions.orbs;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.utilities.GameActions;
@@ -36,8 +35,8 @@ public class ShuffleOrbs extends EYBAction
 
         while (randomOrbs.Size() >= 2)
         {
-            AbstractOrb orb1 = randomOrbs.Retrieve(AbstractDungeon.cardRandomRng);
-            AbstractOrb orb2 = randomOrbs.Retrieve(AbstractDungeon.cardRandomRng);
+            AbstractOrb orb1 = randomOrbs.Retrieve(rng);
+            AbstractOrb orb2 = randomOrbs.Retrieve(rng);
 
             int index1 = player.orbs.indexOf(orb1);
             int index2 = player.orbs.indexOf(orb2);

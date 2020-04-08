@@ -1,7 +1,6 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
@@ -101,10 +100,9 @@ public class CerealBox extends AnimatorRelic
     {
         if (counter > 0)
         {
-            AbstractPlayer p = AbstractDungeon.player;
-            if (p.currentHealth < p.maxHealth)
+            if (player.currentHealth < player.maxHealth)
             {
-                p.heal(HEAL_AMOUNT);
+                player.heal(HEAL_AMOUNT);
 
                 AddCounter(-1);
             }

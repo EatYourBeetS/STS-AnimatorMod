@@ -3,7 +3,6 @@ package eatyourbeets.events.animator;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.events.base.EYBEvent;
@@ -144,7 +143,7 @@ public class TheAbandonedCabin extends EYBEvent
         {
             CardCrawlGame.sound.play("EVENT_VAMP_BITE", 0.05f);
             GameEffects.List.Add(new BorderLongFlashEffect(Color.RED));
-            AbstractDungeon.player.damage(new DamageInfo(null, HP_LOSS_TRADE));
+            player.damage(new DamageInfo(null, HP_LOSS_TRADE));
             event.Medallions += 1;
             ProgressPhase();
         }

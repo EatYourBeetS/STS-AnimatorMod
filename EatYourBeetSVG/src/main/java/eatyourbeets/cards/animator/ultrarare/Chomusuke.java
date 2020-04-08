@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.ultrarare;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
@@ -36,9 +35,8 @@ public class Chomusuke extends AnimatorCard_UltraRare
 
         if (EffectHistory.TryActivateSemiLimited(cardID))
         {
-            AbstractPlayer p = AbstractDungeon.player;
             GameActions.Bottom.GainEnergy(2);
-            GameActions.Bottom.MoveCard(this, p.exhaustPile, p.hand)
+            GameActions.Bottom.MoveCard(this, player.exhaustPile, player.hand)
             .ShowEffect(true, true);
         }
     }

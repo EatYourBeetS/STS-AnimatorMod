@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.colorless.uncommon;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -37,7 +36,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
     {
         super.Refresh(enemy);
 
-        if (AbstractDungeon.player.hand.contains(this))
+        if (player.hand.contains(this))
         {
             PlayerStatistics.onSynergy.Subscribe(this);
         }
@@ -46,7 +45,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
     @Override
     public void OnSynergy(AnimatorCard card)
     {
-        if (!AbstractDungeon.player.hand.contains(this))
+        if (!player.hand.contains(this))
         {
             PlayerStatistics.onSynergy.Unsubscribe(this);
         }

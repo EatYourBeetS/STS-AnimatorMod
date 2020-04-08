@@ -1,12 +1,11 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.animator.HigakiRinneAction;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
+import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.utilities.GameActions;
 
 public class Rinne extends AnimatorRelic
 {
@@ -52,7 +51,7 @@ public class Rinne extends AnimatorRelic
 
         if (player.currentHealth == 1)
         {
-            player.heal(AbstractDungeon.cardRandomRng.random(5, 20));
+            player.heal(rng.random(5, 20));
             flash();
         }
     }

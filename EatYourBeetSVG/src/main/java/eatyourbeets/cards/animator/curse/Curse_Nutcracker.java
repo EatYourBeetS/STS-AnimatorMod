@@ -1,9 +1,7 @@
 package eatyourbeets.cards.animator.curse;
 
 import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_Curse;
 import eatyourbeets.cards.base.EYBCardData;
@@ -18,7 +16,7 @@ public class Curse_Nutcracker extends AnimatorCard_Curse
 
     public Curse_Nutcracker()
     {
-        super(DATA);
+        super(DATA, true);
 
         Initialize(0, 0, 3);
 
@@ -27,18 +25,12 @@ public class Curse_Nutcracker extends AnimatorCard_Curse
 
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (this.dontTriggerOnUseCard)
+        if (dontTriggerOnUseCard)
         {
             for (AbstractMonster m1 : GameUtilities.GetEnemies(true))
             {
                 GameActions.Bottom.Add(new HealAction(m1, null, magicNumber));
             }
         }
-    }
-
-    public void triggerOnEndOfTurnForPlayingCard()
-    {
-        this.dontTriggerOnUseCard = true;
-        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
     }
 }

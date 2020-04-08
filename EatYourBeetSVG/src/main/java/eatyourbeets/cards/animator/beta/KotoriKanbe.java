@@ -33,8 +33,8 @@ public class KotoriKanbe extends AnimatorCard implements StartupCard
         int targetMissingHP = m.maxHealth - m.currentHealth;
         int applyAmount = Math.floorDiv(targetMissingHP, magicNumber);
 
-        GameActions.Bottom.ApplyWeak(m, applyAmount);
-        GameActions.Bottom.ApplyVulnerable(m, applyAmount);
+        GameActions.Bottom.ApplyWeak(p, m, applyAmount);
+        GameActions.Bottom.ApplyVulnerable(p, m, applyAmount);
 
         if (targetMissingHP > HP_HEAL_THRESHOLD)
         {

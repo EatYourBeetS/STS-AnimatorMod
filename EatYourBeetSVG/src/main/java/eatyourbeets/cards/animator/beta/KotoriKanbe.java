@@ -23,8 +23,8 @@ public class KotoriKanbe extends AnimatorCard implements StartupCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 1);
-        SetUpgrade(0,0,-1);
+        Initialize(0, 0, 12, 1);
+        SetUpgrade(0,0,-3);
         SetEthereal(true);
         SetExhaust(true);
 
@@ -35,10 +35,9 @@ public class KotoriKanbe extends AnimatorCard implements StartupCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         int targetMissingHP = m.maxHealth - m.currentHealth;
-        int debuffAmount = Math.floorDiv(targetMissingHP, magicNumber);
+        int loseStrengthAmount = Math.floorDiv(targetMissingHP, magicNumber);
 
-        GameActions.Bottom.ApplyWeak(p, m, debuffAmount);
-        GameActions.Bottom.ApplyVulnerable(p, m, debuffAmount);
+        GameActions.Bottom.ReduceStrength(m, loseStrengthAmount, false);
 
         GameActions.Bottom.Heal(p, m, targetMissingHP);
 

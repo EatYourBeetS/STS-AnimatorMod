@@ -377,7 +377,7 @@
 		},
 		"animator:KotoriKanbe":
 		{
-			"DESCRIPTION": "Fully heal the enemy. ** Apply 1 Weak and Vulnerable ** for every !M! HP healed. ** Draw !S! card. || At the start of combat: Add ** {Chibimoth} into your draw pile.",
+			"DESCRIPTION": "Fully heal the enemy. ** The enemy loses 1 Strength ** for every !M! HP healed. Draw ** !S! card. || At the start of combat: Add ** {Chibimoth} into your draw pile.",
 			"NAME": "Kotori Kanbe"
 		},
 		"animator:Chibimoth":

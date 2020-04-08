@@ -52,6 +52,8 @@ public class Synergies
     public final static Synergy WelcomeToNHK = CreateSynergy(39);
     public final static Synergy TalesOfBerseria = CreateSynergy(40);
     public final static Synergy Rewrite = CreateSynergy(41);
+    public final static Synergy DateALive = CreateSynergy(42);
+
     @SuppressWarnings("FieldCanBeLocal")
     private static AnimatorCard previousCard = null;
     private static AnimatorCard lastCardPlayed = null;

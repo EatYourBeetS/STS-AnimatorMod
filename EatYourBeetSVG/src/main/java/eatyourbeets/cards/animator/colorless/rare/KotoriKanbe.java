@@ -1,10 +1,7 @@
 package eatyourbeets.cards.animator.colorless.rare;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
-import eatyourbeets.cards.animator.special.Bienfu;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
@@ -20,27 +17,29 @@ public class KotoriKanbe extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 3, 4);
-        SetUpgrade(0,0,-1);
+        SetUpgrade(0, 0, -1);
+
         SetEthereal(true);
         SetExhaust(true);
-
         SetSynergy(Synergies.Rewrite);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        int targetMissingHP = m.maxHealth - m.currentHealth;
-        int applyAmount = Math.floorDiv(targetMissingHP, magicNumber);
-
-        GameActions.Bottom.ApplyWeak(p, m, applyAmount);
-        GameActions.Bottom.ApplyVulnerable(p, m, applyAmount);
-
-        if (targetMissingHP > HP_HEAL_THRESHOLD)
+        int missingHP = m.maxHealth - m.currentHealth;
+        int amount = Math.floorDiv(missingHP, magicNumber);
+        if (amount > 0)
         {
-            GameActions.Bottom.ReduceStrength(m, secondaryValue, false);
-        }
+            GameActions.Bottom.ApplyWeak(p, m, amount);
+            GameActions.Bottom.ApplyVulnerable(p, m, amount);
 
-        GameActions.Bottom.Heal(p, m, targetMissingHP);
+            if (missingHP > HP_HEAL_THRESHOLD)
+            {
+                GameActions.Bottom.ReduceStrength(m, secondaryValue, false);
+            }
+
+            GameActions.Bottom.Heal(p, m, missingHP);
+        }
     }
 }

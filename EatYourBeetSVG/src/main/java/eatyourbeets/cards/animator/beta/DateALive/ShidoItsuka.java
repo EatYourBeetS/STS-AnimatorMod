@@ -92,7 +92,7 @@ public class ShidoItsuka extends AnimatorCard
 
         if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
         {
-            GameActions.Last.ModifyAllCombatInstances(uuid, c -> ((EYBCard) c).SetExhaust(true));
+            GameActions.Last.ModifyAllInstances(uuid, c -> ((EYBCard) c).SetExhaust(true));
         }
     }
 

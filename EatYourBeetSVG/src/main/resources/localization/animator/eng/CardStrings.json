@@ -371,8 +371,8 @@
 	{
 		"animator:Kagari":
 		{
-			"DESCRIPTION": "Apply !M! {Shackles} to ** ALL enemies. || Whenever you take combat ** damage: Gain 1 Thorns if ** you have less than !S! Thorns.",
-			"EXTENDED_DESCRIPTION": ["Whenever you are attacked: Gain #b{0} Thorns if you have less than #b{1} Thorns."],
+			"DESCRIPTION": "Apply !M! {Shackles} to ** ALL enemies. || The next time you take ** damage: Channel !S! ** Earth.",
+			"EXTENDED_DESCRIPTION": ["The next time you take damage: Channel #b{0} Earth."],
 			"NAME": "Kagari"
 		},
 		"animator:KotoriKanbe":

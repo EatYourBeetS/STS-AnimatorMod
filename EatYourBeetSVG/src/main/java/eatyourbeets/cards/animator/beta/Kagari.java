@@ -4,9 +4,11 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ThornsPower;
+import eatyourbeets.cards.animator.special.DarknessAdrenaline;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
@@ -15,14 +17,13 @@ import eatyourbeets.utilities.GameUtilities;
 public class Kagari extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Kagari.class).SetPower(2, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS);
-    private static final int THORNS_BASE = 1;
 
     public Kagari()
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 10);
-        SetUpgrade(0, 0, 2);
+        Initialize(0, 0, 3, 2);
+        SetUpgrade(0, 0, 3);
 
         SetSynergy(Synergies.Rewrite);
     }
@@ -43,12 +44,11 @@ public class Kagari extends AnimatorCard
     {
         private int thornsBase;
 
-        public KagariPower(AbstractPlayer owner, int maxThorns)
+        public KagariPower(AbstractPlayer owner, int numEarth)
         {
             super(owner, Kagari.DATA);
 
-            this.thornsBase = THORNS_BASE;
-            this.amount = maxThorns;
+            this.amount = numEarth;
 
             updateDescription();
         }
@@ -61,22 +61,26 @@ public class Kagari extends AnimatorCard
         }
 
         @Override
-        public int onAttacked(DamageInfo info, int damageAmount)
+        public void wasHPLost(DamageInfo info, int damageAmount)
         {
-            if (GameUtilities.GetPowerAmount(ThornsPower.POWER_ID) < amount &&
-                    info.owner != null && info.type == DamageInfo.DamageType.NORMAL)
-            {
-                GameActions.Top.GainThorns(thornsBase);
-                updateDescription();
-            }
+            super.wasHPLost(info, damageAmount);
 
-            return damageAmount;
+            if (info.type != DamageInfo.DamageType.HP_LOSS && damageAmount > 0)
+            {
+                flash();
+                GameActions.Top.ReducePower(this, 1);
+
+                for(int i=0; i<amount; i++)
+                {
+                    GameActions.Bottom.ChannelOrb(new Earth(), true);
+                }
+            }
         }
 
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, thornsBase, amount);
+            description = FormatDescription(0, amount);
         }
     }
 }

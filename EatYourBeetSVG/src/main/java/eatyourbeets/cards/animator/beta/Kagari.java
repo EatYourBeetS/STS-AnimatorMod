@@ -37,18 +37,19 @@ public class Kagari extends AnimatorCard
         }
 
 
-        GameActions.Bottom.StackPower(new KagariPower(p, secondaryValue));
+        GameActions.Bottom.StackPower(new KagariPower(p, 1, secondaryValue));
     }
 
     public static class KagariPower extends AnimatorPower
     {
-        private int thornsBase;
+        private final int numEarth;
 
-        public KagariPower(AbstractPlayer owner, int numEarth)
+        public KagariPower(AbstractPlayer owner, int amount, int numEarth)
         {
             super(owner, Kagari.DATA);
 
-            this.amount = numEarth;
+            this.amount = amount;
+            this.numEarth = numEarth;
 
             updateDescription();
         }
@@ -80,7 +81,7 @@ public class Kagari extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount);
+            description = FormatDescription(0, amount, numEarth);
         }
     }
 }

@@ -216,21 +216,21 @@ public class HigakiRinneAction extends EYBAction
         }
         else if (tryActivate(6)) // 132
         {
-            for (AbstractCreature m : GameUtilities.GetAllEnemies(true))
+            for (AbstractCreature m : GameUtilities.GetEnemies(true))
             {
                 GameActions.Bottom.DealDamage(player, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.BLUNT_HEAVY);
             }
         }
         else if (tryActivate(6)) // 138
         {
-            for (AbstractCreature m : GameUtilities.GetAllEnemies(true))
+            for (AbstractCreature m : GameUtilities.GetEnemies(true))
             {
                 GameActions.Bottom.DealDamage(player, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.SLASH_HEAVY);
             }
         }
         else if (tryActivate(6)) // 144
         {
-            for (AbstractCreature m : GameUtilities.GetAllEnemies(true))
+            for (AbstractCreature m : GameUtilities.GetEnemies(true))
             {
                 GameActions.Bottom.DealDamage(player, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.POISON);
             }

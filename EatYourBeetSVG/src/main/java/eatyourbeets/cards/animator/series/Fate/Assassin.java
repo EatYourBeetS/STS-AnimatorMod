@@ -58,7 +58,7 @@ public class Assassin extends AnimatorCard
         {
             if (m == null)
             {
-                for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
+                for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
                 {
                     if (GameUtilities.GetDebuffsCount(enemy.powers) >= DEBUFFS_COUNT)
                     {

@@ -11,15 +11,13 @@ import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
 
 public class WizardHat extends AnimatorRelic
 {
     public static final String ID = CreateFullID(WizardHat.class);
-
-    private static final int INTELLECT_AMOUNT = 2;
-    private static final int ENERGY_COST = 4;
-    private static final int DAMAGE_AMOUNT = 32;
+    public static final int INTELLECT_AMOUNT = 2;
+    public static final int DAMAGE_AMOUNT = 32;
+    public static final int ENERGY_COST = 4;
 
     public WizardHat()
     {
@@ -29,13 +27,14 @@ public class WizardHat extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return JavaUtilities.Format(DESCRIPTIONS[0], INTELLECT_AMOUNT, ENERGY_COST, DAMAGE_AMOUNT);
+        return FormatDescription(INTELLECT_AMOUNT, ENERGY_COST, DAMAGE_AMOUNT);
     }
 
     @Override
     public void onEquip()
     {
         super.onEquip();
+
         SetEnabled(true);
     }
 
@@ -52,6 +51,7 @@ public class WizardHat extends AnimatorRelic
     public void onVictory()
     {
         super.onVictory();
+
         SetEnabled(true);
     }
 
@@ -77,10 +77,10 @@ public class WizardHat extends AnimatorRelic
                 GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
                 GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.5f);
 
-                for (AbstractCreature m1 : GameUtilities.GetAllEnemies(true))
+                for (AbstractCreature m : GameUtilities.GetEnemies(true))
                 {
-                    GameActions.Bottom.VFX((new FlameBarrierEffect(m1.hb_x, m1.hb_y)));
-                    GameActions.Bottom.VFX((new ExplosionSmallEffect(m1.hb_x, m1.hb_y)));
+                    GameActions.Bottom.VFX((new FlameBarrierEffect(m.hb_x, m.hb_y)));
+                    GameActions.Bottom.VFX((new ExplosionSmallEffect(m.hb_x, m.hb_y)));
                 }
 
                 int[] multiDamage = DamageInfo.createDamageMatrix(DAMAGE_AMOUNT, true);

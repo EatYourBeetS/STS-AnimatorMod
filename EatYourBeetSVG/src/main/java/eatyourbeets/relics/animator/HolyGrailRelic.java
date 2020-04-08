@@ -36,7 +36,6 @@ public class HolyGrailRelic extends AnimatorRelic
 
         GameActions.Bottom.MakeCardInHand(new HolyGrail());
         AnimatorCard_UltraRare.MarkAsSeen(HolyGrail.DATA.ID);
-
-        this.flash();
+        flash();
     }
 }

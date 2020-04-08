@@ -28,6 +28,7 @@ public abstract class AnimatorRelic extends EYBRelic
             data.RemoveRelic(StrikeDummy.ID);
             data.RemoveRelic(SneckoEye.ID);
             data.RemoveRelic(RunicPyramid.ID);
+            data.RemoveRelic(CeramicFish.ID);
 
             data.AddRelic(MarkOfPain.ID, AbstractRelic.RelicTier.BOSS);
             data.AddRelic(RunicCapacitor.ID, AbstractRelic.RelicTier.SHOP);

@@ -39,7 +39,7 @@ public class LagavulinPatches
             int lagavulinCount = 0;
             int aliveLagavulinCount = 0;
 
-            ArrayList<AbstractMonster> monsters = GameUtilities.GetAllEnemies(false);
+            ArrayList<AbstractMonster> monsters = GameUtilities.GetEnemies(false);
             for (AbstractMonster m : monsters)
             {
                 if (m instanceof Lagavulin)

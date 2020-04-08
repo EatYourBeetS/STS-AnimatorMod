@@ -2,7 +2,6 @@ package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
@@ -11,19 +10,22 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class RacePiece extends AnimatorRelic
 {
     public static final String ID = CreateFullID(RacePiece.class);
 
-    private int toSelect;
-    private Synergy synergy;
     private boolean awaitingInput;
+    private Synergy synergy;
+    private int toSelect;
 
     public RacePiece()
     {
@@ -37,6 +39,24 @@ public class RacePiece extends AnimatorRelic
 
         toSelect = 0;
         OpenSynergySelection();
+    }
+
+    @Override
+    public boolean canSpawn()
+    {
+        if (super.canSpawn())
+        {
+            HashSet<Synergy> synergies = Synergies.GetSynergies(player.masterDeck.group);
+            for (AnimatorRuntimeLoadout loadout : GR.Animator.Dungeon.Series)
+            {
+                if (synergies.contains(Synergies.GetByID(loadout.ID)))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -71,8 +91,7 @@ public class RacePiece extends AnimatorRelic
 
     private void OpenTransformSelection()
     {
-        AbstractPlayer p = AbstractDungeon.player;
-        CardGroup group = p.masterDeck.getPurgeableCards();
+        CardGroup group = player.masterDeck.getPurgeableCards();
 
         if (group.size() > 0)
         {
@@ -99,9 +118,8 @@ public class RacePiece extends AnimatorRelic
 
     private void OpenSynergySelection()
     {
-        AbstractPlayer p = AbstractDungeon.player;
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        for (AbstractCard c : p.masterDeck.group)
+        for (AbstractCard c : player.masterDeck.group)
         {
             AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
             if (card != null && card.synergy != null && card.color != AbstractCard.CardColor.COLORLESS)
@@ -166,7 +184,7 @@ public class RacePiece extends AnimatorRelic
             float displayCount = 0f;
             for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
             {
-                AbstractCard reward = rewards.Retrieve(AbstractDungeon.cardRandomRng, false);
+                AbstractCard reward = rewards.Retrieve(rng, false);
                 if (reward != null)
                 {
                     reward = reward.makeCopy();
@@ -177,13 +195,10 @@ public class RacePiece extends AnimatorRelic
 
                     c.untip();
                     c.unhover();
-                    AbstractDungeon.player.masterDeck.removeCard(c);
+                    player.masterDeck.removeCard(c);
 
-                    //if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.TRANSFORM)
-                    //{
-                        GameEffects.TopLevelList.Add(new ShowCardAndObtainEffect(reward, (float) Settings.WIDTH / 3f + displayCount, (float)Settings.HEIGHT / 2f, false));
-                        displayCount += (float)Settings.WIDTH / 6f;
-                    //}
+                    GameEffects.TopLevelList.Add(new ShowCardAndObtainEffect(reward, (float) Settings.WIDTH / 3f + displayCount, (float)Settings.HEIGHT / 2f, false));
+                    displayCount += (float)Settings.WIDTH / 6f;
                 }
             }
 

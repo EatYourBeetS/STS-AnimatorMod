@@ -45,7 +45,7 @@ public class RoseDamageAction extends EYBAction
                 {
                     int[] damageMatrix = DamageInfo.createDamageMatrix(rose.secondaryValue, true);
 
-                    for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
+                    for (AbstractMonster m : GameUtilities.GetEnemies(true))
                     {
                         Explosion(m.hb);
                     }

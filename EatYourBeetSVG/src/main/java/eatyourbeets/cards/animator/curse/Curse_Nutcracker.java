@@ -29,7 +29,7 @@ public class Curse_Nutcracker extends AnimatorCard_Curse
     {
         if (this.dontTriggerOnUseCard)
         {
-            for (AbstractMonster m1 : GameUtilities.GetAllEnemies(true))
+            for (AbstractMonster m1 : GameUtilities.GetEnemies(true))
             {
                 GameActions.Bottom.Add(new HealAction(m1, null, magicNumber));
             }

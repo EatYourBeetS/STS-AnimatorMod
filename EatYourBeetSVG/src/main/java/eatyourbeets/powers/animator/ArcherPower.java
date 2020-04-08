@@ -30,7 +30,7 @@ public class ArcherPower extends AnimatorPower
 
         if (isPlayer)
         {
-            for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
+            for (AbstractMonster m : GameUtilities.GetEnemies(true))
             {
                 for (int i = 0; i < GameUtilities.GetDebuffsCount(m.powers); i++)
                 {

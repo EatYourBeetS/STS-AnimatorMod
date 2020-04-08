@@ -470,21 +470,26 @@ public final class GameActions
 
     public ApplyPower GainRandomStat(int amount)
     {
+        return GainRandomStat(amount, false);
+    }
+
+    public ApplyPower GainRandomStat(int amount, boolean preserveOnce)
+    {
         int roll = AbstractDungeon.cardRandomRng.random(2);
         switch (roll)
         {
             case 0:
             {
-                return GainIntellect(amount);
+                return GainIntellect(amount, preserveOnce);
             }
             case 1:
             {
-                return GainAgility(amount);
+                return GainAgility(amount, preserveOnce);
             }
             case 2:
             default:
             {
-                return GainForce(amount);
+                return GainForce(amount, preserveOnce);
             }
         }
     }
@@ -514,14 +519,14 @@ public final class GameActions
         return StackPower(new ThornsPower(player, amount));
     }
 
-    public HealFaster Heal(AbstractCreature source, AbstractCreature target, int amount)
+    public HealCreature Heal(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return Add(new HealFaster(target, source, amount));
+        return Add(new HealCreature(target, source, amount));
     }
 
-    public HealFaster Heal(int amount)
+    public HealCreature Heal(int amount)
     {
-        return Add(new HealFaster(player, player, amount));
+        return Add(new HealCreature(player, player, amount));
     }
 
     public LoseHPAction LoseHP(int amount, AbstractGameAction.AttackEffect effect)
@@ -549,19 +554,34 @@ public final class GameActions
         return MakeCard(card, player.hand);
     }
 
-    public ModifyAllCombatInstances ModifyAllCombatInstances(UUID uuid, Object state, ActionT2<Object, AbstractCard> onCompletion)
+    public ModifyAllInstances ModifyAllInstances(UUID uuid, Object state, ActionT2<Object, AbstractCard> onCompletion)
     {
-        return Add(new ModifyAllCombatInstances(uuid, state, onCompletion));
+        return Add(new ModifyAllInstances(uuid, state, onCompletion));
     }
 
-    public ModifyAllCombatInstances ModifyAllCombatInstances(UUID uuid, ActionT1<AbstractCard> onCompletion)
+    public ModifyAllInstances ModifyAllInstances(UUID uuid, ActionT1<AbstractCard> onCompletion)
     {
-        return Add(new ModifyAllCombatInstances(uuid, onCompletion));
+        return Add(new ModifyAllInstances(uuid, onCompletion));
     }
 
-    public ModifyAllCombatInstances ModifyAllCombatInstances(UUID uuid)
+    public ModifyAllInstances ModifyAllInstances(UUID uuid)
     {
-        return Add(new ModifyAllCombatInstances(uuid));
+        return Add(new ModifyAllInstances(uuid));
+    }
+
+    public ModifyAllCopies ModifyAllCopies(String cardID, Object state, ActionT2<Object, AbstractCard> onCompletion)
+    {
+        return Add(new ModifyAllCopies(cardID, state, onCompletion));
+    }
+
+    public ModifyAllCopies ModifyAllCopies(String cardID, ActionT1<AbstractCard> onCompletion)
+    {
+        return Add(new ModifyAllCopies(cardID, onCompletion));
+    }
+
+    public ModifyAllCopies ModifyAllCopies(String cardID)
+    {
+        return Add(new ModifyAllCopies(cardID));
     }
 
     public MotivateAction Motivate()

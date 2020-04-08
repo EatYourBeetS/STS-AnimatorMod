@@ -1,7 +1,5 @@
 package eatyourbeets.relics.animator;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
@@ -11,12 +9,9 @@ import eatyourbeets.utilities.JavaUtilities;
 public class HallowedScabbard extends AnimatorRelic
 {
     public static final String ID = CreateFullID(HallowedScabbard.class);
-
-    private static final int DAMAGE_THRESHOLD = 12;
-    private static final int REGENERATION = 4;
-    private static final int FORCE = 3;
-
-    private boolean used = false;
+    public static final int DAMAGE_THRESHOLD = 12;
+    public static final int REGENERATION = 4;
+    public static final int FORCE = 2;
 
     public HallowedScabbard()
     {
@@ -34,8 +29,8 @@ public class HallowedScabbard extends AnimatorRelic
     {
         super.atBattleStart();
 
-        counter = 0;
-        used = false;
+        SetEnabled(true);
+        SetCounter(0);
     }
 
     @Override
@@ -43,7 +38,8 @@ public class HallowedScabbard extends AnimatorRelic
     {
         super.onVictory();
 
-        counter = -1;
+        SetEnabled(true);
+        SetCounter(-1);
     }
 
     @Override
@@ -53,14 +49,12 @@ public class HallowedScabbard extends AnimatorRelic
 
         if (GameUtilities.InBattle())
         {
-            counter += damageAmount;
-            if (!used && counter >= DAMAGE_THRESHOLD)
+            if (AddCounter(damageAmount) >= DAMAGE_THRESHOLD && IsEnabled())
             {
-                AbstractPlayer p = AbstractDungeon.player;
-                GameActions.Bottom.StackPower(new RegenPower(p, REGENERATION));
+                GameActions.Bottom.StackPower(new RegenPower(player, REGENERATION));
                 GameActions.Bottom.GainForce(FORCE);
-                used = true;
-                this.flash();
+                SetEnabled(false);
+                flash();
             }
         }
     }

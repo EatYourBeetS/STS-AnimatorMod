@@ -91,7 +91,7 @@ public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber
     {
         GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE");
 
-        for (AbstractMonster m1 : GameUtilities.GetAllEnemies(true))
+        for (AbstractMonster m1 : GameUtilities.GetEnemies(true))
         {
             GameActions.Bottom.VFX(new LightningEffect(m1.drawX, m1.drawY));
         }

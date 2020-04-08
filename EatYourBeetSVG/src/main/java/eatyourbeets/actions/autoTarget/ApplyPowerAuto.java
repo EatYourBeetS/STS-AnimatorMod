@@ -77,7 +77,7 @@ public class ApplyPowerAuto extends EYBActionAutoTarget<AbstractPower>
             action.ShowEffect(showEffect, faster);
             action.SkipIfZero(skipIfZero);
             action.CanStack(canStack);
-            action.SetCancellable(canCancel);
+            action.IsCancellable(canCancel);
             for (Object tag : tags)
             {
                 action.AddTag(tag);

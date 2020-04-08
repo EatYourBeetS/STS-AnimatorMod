@@ -18,32 +18,6 @@ public class OldCoffin extends AnimatorRelic
     public OldCoffin()
     {
         super(ID, RelicTier.UNCOMMON, LandingSound.HEAVY);
-    }
-
-    @Override
-    public void atBattleStart()
-    {
-        super.atBattleStart();
-
-        SetEnabled(false);
-        this.counter = 0;
-    }
-
-    @Override
-    public void onVictory()
-    {
-        super.onVictory();
-
-        SetEnabled(true);
-        this.counter = -1;
-    }
-
-    @Override
-    public void atTurnStartPostDraw()
-    {
-        super.atTurnStartPostDraw();
-
-        setCounter(counter + 1);
 
         if (Debuffs.Size() == 0)
         {
@@ -53,8 +27,32 @@ public class OldCoffin extends AnimatorRelic
             Debuffs.Add(new Pair<>(PowerHelper.Burning, 3), 3);
             Debuffs.Add(new Pair<>(PowerHelper.Constricted, 2), 2);
         }
+    }
 
-        if (SetEnabled(counter > ACTIVATION_THRESHOLD))
+    @Override
+    public void atBattleStart()
+    {
+        super.atBattleStart();
+
+        SetEnabled(false);
+        SetCounter(0);
+    }
+
+    @Override
+    public void onVictory()
+    {
+        super.onVictory();
+
+        SetEnabled(true);
+        SetCounter(-1);
+    }
+
+    @Override
+    public void atTurnStartPostDraw()
+    {
+        super.atTurnStartPostDraw();
+
+        if (SetEnabled(AddCounter(1) > ACTIVATION_THRESHOLD))
         {
             Pair<PowerHelper, Integer> pair = Debuffs.Retrieve(rng, false);
             GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(null), pair.getKey(), pair.getValue())

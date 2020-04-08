@@ -122,7 +122,7 @@ public abstract class EYBAbstractMove
 
             if (shieldAll)
             {
-                for (AbstractMonster e : GameUtilities.GetAllEnemies(true))
+                for (AbstractMonster e : GameUtilities.GetEnemies(true))
                 {
                     GameActions.Bottom.Add(new GainBlockAction(e, owner, block.amount, true));
                 }

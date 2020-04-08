@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.*;
-import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.interfaces.subscribers.OnReceiveRewardsSubscriber;
@@ -76,7 +75,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
     public void onEquip()
     {
         super.onEquip();
-        setCounter(0);
+        SetCounter(0);
         RefreshDescription();
     }
 
@@ -87,7 +86,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
 
         if (RewardsAllowed())
         {
-            setCounter(counter + 1);
+            AddCounter(1);
         }
     }
 
@@ -164,7 +163,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
     private WeightedList<Synergy> CreateWeightedList()
     {
         WeightedList<Synergy> list = new WeightedList<>();
-        Map<Synergy, List<AbstractCard>> synergyListMap = GetCardsBySynergy(AbstractDungeon.player.masterDeck.group);
+        Map<Synergy, List<AbstractCard>> synergyListMap = Synergies.GetCardsBySynergy(AbstractDungeon.player.masterDeck.group);
 
         if (GR.Animator.Dungeon.Series.isEmpty())
         {
@@ -202,24 +201,6 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         }
 
         return list;
-    }
-
-    private Map<Synergy, List<AbstractCard>> GetCardsBySynergy(ArrayList<AbstractCard> cards)
-    {
-        Map<Synergy, List<AbstractCard>> map = new HashMap<>();
-        for (AbstractCard card : cards)
-        {
-            Synergy key = Synergies.ANY;
-            AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
-            if (c != null && c.synergy != null)
-            {
-                key = c.synergy;
-            }
-
-            map.computeIfAbsent(key, k -> new ArrayList<>()).add(card);
-        }
-
-        return map;
     }
 
     private boolean RewardsAllowed()

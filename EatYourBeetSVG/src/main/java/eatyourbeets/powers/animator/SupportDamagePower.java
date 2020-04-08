@@ -35,7 +35,7 @@ public class SupportDamagePower extends AnimatorPower
 
     private static AbstractMonster FindLowestHPEnemy()
     {
-        ArrayList<AbstractMonster> enemies = GameUtilities.GetAllEnemies(true);
+        ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
 
         AbstractMonster enemy = null;
         int minHealth = Integer.MAX_VALUE;

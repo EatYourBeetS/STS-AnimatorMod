@@ -188,37 +188,21 @@ public class GameUtilities
         return cards;
     }
 
-    public static ArrayList<AbstractMonster> GetAllEnemies(boolean aliveOnly)
+    public static HashSet<AbstractCard> GetAllCopies(String cardID)
     {
-        final AbstractRoom room = GetCurrentRoom();
-        final ArrayList<AbstractMonster> monsters = new ArrayList<>();
+        HashSet<AbstractCard> cards = GetAllInBattleCopies(cardID);
+        cards.addAll(GetMasterDeckCopies(cardID));
 
-        if (room != null && room.monsters != null)
-        {
-            if (!aliveOnly)
-            {
-                return room.monsters.monsters;
-            }
-
-            for (AbstractMonster m : room.monsters.monsters)
-            {
-                if (!IsDeadOrEscaped(m))
-                {
-                    monsters.add(m);
-                }
-            }
-        }
-
-        return monsters;
+        return cards;
     }
 
     public static HashSet<AbstractCard> GetAllInBattleCopies(String cardID)
     {
         HashSet<AbstractCard> cards = new HashSet<>();
-        AbstractCard c = player.cardInUse;
-        if (c != null && c.cardID.equals(cardID))
+
+        if (player.cardInUse != null && player.cardInUse.cardID.equals(cardID))
         {
-            cards.add(c);
+            cards.add(player.cardInUse);
         }
 
         GetAllCopies(cards, cardID, player.hand);
@@ -230,24 +214,28 @@ public class GameUtilities
         return cards;
     }
 
-    public static HashSet<AbstractCard> GetAllInBattleInstances(AbstractCard card)
+    public static HashSet<AbstractCard> GetAllInBattleInstances(UUID uuid)
     {
         HashSet<AbstractCard> cards = new HashSet<>();
-        cards.add(card);
 
-        GetAllInstances(cards, card.uuid, player.hand);
-        GetAllInstances(cards, card.uuid, player.drawPile);
-        GetAllInstances(cards, card.uuid, player.discardPile);
-        GetAllInstances(cards, card.uuid, player.exhaustPile);
-        GetAllInstances(cards, card.uuid, player.limbo);
+        if (player.cardInUse != null && player.cardInUse.uuid.equals(uuid))
+        {
+            cards.add(player.cardInUse);
+        }
+
+        GetAllInstances(cards, uuid, player.hand);
+        GetAllInstances(cards, uuid, player.drawPile);
+        GetAllInstances(cards, uuid, player.discardPile);
+        GetAllInstances(cards, uuid, player.exhaustPile);
+        GetAllInstances(cards, uuid, player.limbo);
 
         return cards;
     }
 
-    public static HashSet<AbstractCard> GetAllInstances(AbstractCard card)
+    public static HashSet<AbstractCard> GetAllInstances(UUID uuid)
     {
-        HashSet<AbstractCard> cards = GetAllInBattleInstances(card);
-        AbstractCard masterDeckInstance = GetMasterDeckInstance(card);
+        HashSet<AbstractCard> cards = GetAllInBattleInstances(uuid);
+        AbstractCard masterDeckInstance = GetMasterDeckInstance(uuid);
         if (masterDeckInstance != null)
         {
             cards.add(masterDeckInstance);
@@ -350,21 +338,54 @@ public class GameUtilities
         return result;
     }
 
+    public static ArrayList<AbstractMonster> GetEnemies(boolean aliveOnly)
+    {
+        final AbstractRoom room = GetCurrentRoom();
+        final ArrayList<AbstractMonster> monsters = new ArrayList<>();
+
+        if (room != null && room.monsters != null)
+        {
+            if (!aliveOnly)
+            {
+                return room.monsters.monsters;
+            }
+
+            for (AbstractMonster m : room.monsters.monsters)
+            {
+                if (!IsDeadOrEscaped(m))
+                {
+                    monsters.add(m);
+                }
+            }
+        }
+
+        return monsters;
+    }
+
     public static float GetHealthPercentage(AbstractCreature creature)
     {
         return creature.currentHealth / (float) creature.maxHealth;
     }
 
-    public static AbstractCard GetMasterDeckCopy(String cardID)
+    public static HashSet<AbstractCard> GetMasterDeckCopies(String cardID)
     {
-        return player.masterDeck.findCardById(cardID);
+        HashSet<AbstractCard> cards = new HashSet<>();
+        for (AbstractCard c : player.masterDeck.group)
+        {
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
+        }
+
+        return cards;
     }
 
-    public static AbstractCard GetMasterDeckInstance(AbstractCard card)
+    public static AbstractCard GetMasterDeckInstance(UUID uuid)
     {
         for (AbstractCard c : player.masterDeck.group)
         {
-            if (c.uuid == card.uuid)
+            if (c.uuid == uuid)
             {
                 return c;
             }
@@ -456,7 +477,7 @@ public class GameUtilities
 
     public static AbstractMonster GetRandomEnemy(boolean aliveOnly)
     {
-        return JavaUtilities.GetRandomElement(GetAllEnemies(aliveOnly), GetRNG());
+        return JavaUtilities.GetRandomElement(GetEnemies(aliveOnly), GetRNG());
     }
 
     public static AbstractOrb GetRandomOrb()
@@ -676,11 +697,6 @@ public class GameUtilities
         return target.isDeadOrEscaped() || target.currentHealth <= 0;
     }
 
-    public static boolean IsPlayerClass(AbstractPlayer.PlayerClass playerClass)
-    {
-        return player != null && player.chosenClass == playerClass;
-    }
-
     public static boolean IsMonster(AbstractCreature c)
     {
         return c != null && !c.isPlayer;
@@ -689,6 +705,11 @@ public class GameUtilities
     public static boolean IsPlayer(AbstractCreature c)
     {
         return c != null && c.isPlayer;
+    }
+
+    public static boolean IsPlayerClass(AbstractPlayer.PlayerClass playerClass)
+    {
+        return player != null && player.chosenClass == playerClass;
     }
 
     public static boolean IsValidOrb(AbstractOrb orb)

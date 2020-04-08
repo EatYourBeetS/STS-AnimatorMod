@@ -1,14 +1,11 @@
 package eatyourbeets.relics.animator.unnamedReign;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
 
 public class TheEgnaroPiece extends UnnamedReignRelic
 {
     public static final String ID = CreateFullID(TheEgnaroPiece.class);
-
-    private static final int INITIAL_TEMPORARY_HP = 1;
+    public static final int INITIAL_TEMPORARY_HP = 1;
 
     public TheEgnaroPiece()
     {
@@ -18,7 +15,7 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     @Override
     public String getUpdatedDescription()
     {
-        return JavaUtilities.Format(DESCRIPTIONS[0], INITIAL_TEMPORARY_HP);
+        return FormatDescription(INITIAL_TEMPORARY_HP);
     }
 
     @Override
@@ -26,7 +23,7 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     {
         super.atBattleStart();
 
-        this.counter = INITIAL_TEMPORARY_HP;
+        SetCounter(INITIAL_TEMPORARY_HP);
     }
 
     @Override
@@ -34,7 +31,7 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     {
         super.onVictory();
 
-        this.counter = -1;
+        SetCounter(-1);
     }
 
     @Override
@@ -51,14 +48,14 @@ public class TheEgnaroPiece extends UnnamedReignRelic
         super.onPlayerEndTurn();
 
         GameActions.Bottom.GainTemporaryHP(this.counter);
-        this.counter += 1;
-        this.flash();
+        AddCounter(1);
+        flash();
     }
 
     @Override
     public void OnManualEquip()
     {
-        AbstractDungeon.player.energy.energyMaster += 1;
+        player.energy.energyMaster += 1;
     }
 
     @Override
@@ -66,6 +63,6 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     {
         super.onUnequip();
 
-        AbstractDungeon.player.energy.energyMaster -= 1;
+        player.energy.energyMaster -= 1;
     }
 }

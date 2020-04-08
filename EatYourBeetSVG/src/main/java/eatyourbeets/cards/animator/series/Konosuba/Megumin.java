@@ -54,7 +54,7 @@ public class Megumin extends AnimatorCard
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
         GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.5f);
 
-        for (AbstractCreature m1 : GameUtilities.GetAllEnemies(true))
+        for (AbstractCreature m1 : GameUtilities.GetEnemies(true))
         {
             GameActions.Bottom.VFX(new FlameBarrierEffect(m1.hb_x, m1.hb_y));
             GameActions.Bottom.VFX(new ExplosionSmallEffect(m1.hb_x, m1.hb_y));
@@ -64,10 +64,9 @@ public class Megumin extends AnimatorCard
 
         if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
         {
-            for (AbstractCard c : GameUtilities.GetAllInstances(this))
-            {
-                c.upgrade();
-            }
+            GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
+            .IncludeMasterDeck(true)
+            .IsCancellable(false);
         }
     }
 }

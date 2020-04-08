@@ -38,7 +38,7 @@ public class Souei extends AnimatorCard
             GameActions.Bottom.Callback(() ->
             {
                 final int intangible = GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID);
-                for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
+                for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
                 {
                     PoisonPower poison = GameUtilities.GetPower(enemy, PoisonPower.class);
                     if (poison != null)

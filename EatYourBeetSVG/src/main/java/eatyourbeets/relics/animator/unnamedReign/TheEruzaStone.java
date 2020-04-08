@@ -1,7 +1,6 @@
 package eatyourbeets.relics.animator.unnamedReign;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.relics.AnimatorRelic;
@@ -17,12 +16,6 @@ public class TheEruzaStone extends UnnamedReignRelic
     }
 
     @Override
-    public String getUpdatedDescription()
-    {
-        return DESCRIPTIONS[0];
-    }
-
-    @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m)
     {
         super.onPlayCard(c, m);
@@ -30,14 +23,14 @@ public class TheEruzaStone extends UnnamedReignRelic
         if (c.type == AbstractCard.CardType.POWER)
         {
             GameActions.Bottom.Draw(1);
-            this.flash();
+            flash();
         }
     }
 
     @Override
     public void OnManualEquip()
     {
-        AbstractDungeon.player.energy.energyMaster += 2;
+        player.energy.energyMaster += 2;
     }
 
     @Override
@@ -45,6 +38,6 @@ public class TheEruzaStone extends UnnamedReignRelic
     {
         super.onUnequip();
 
-        AbstractDungeon.player.energy.energyMaster -= 2;
+        player.energy.energyMaster -= 2;
     }
 }

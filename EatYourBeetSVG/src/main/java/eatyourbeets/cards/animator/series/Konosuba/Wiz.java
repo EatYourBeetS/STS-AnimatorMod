@@ -58,7 +58,7 @@ public class Wiz extends AnimatorCard
 
         if (!hasTag(GR.Enums.CardTags.PURGE) && EffectHistory.TryActivateLimited(cardID))
         {
-            GameActions.Last.ModifyAllCombatInstances(uuid, c -> ((EYBCard)c).SetPurge(true));
+            GameActions.Last.ModifyAllInstances(uuid, c -> ((EYBCard)c).SetPurge(true));
         }
     }
 }

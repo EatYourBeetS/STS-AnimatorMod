@@ -31,7 +31,7 @@ public class Albedo extends AnimatorCard
     {
         super.calculateCardDamage(mo);
 
-        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
+        for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
         {
             if (GameUtilities.IsAttacking(enemy.intent))
             {

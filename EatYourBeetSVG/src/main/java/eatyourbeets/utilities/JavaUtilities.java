@@ -12,6 +12,7 @@ import java.lang.reflect.Method;
 import java.net.URISyntaxException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.function.Predicate;
@@ -195,6 +196,34 @@ public class JavaUtilities
     public static void Log(Object source, String format, Object... values)
     {
         GetLogger(source).info(Format(format, values));
+    }
+
+    public static <T> T FindMax(Iterable<T> list, Comparator<T> comparator)
+    {
+        T best = null;
+        for (T t : list)
+        {
+            if (best == null || comparator.compare(t, best) > 0)
+            {
+                best = t;
+            }
+        }
+
+        return best;
+    }
+
+    public static <T> T FindMin(Iterable<T> list, Comparator<T> comparator)
+    {
+        T best = null;
+        for (T t : list)
+        {
+            if (best == null || comparator.compare(t, best) < 0)
+            {
+                best = t;
+            }
+        }
+
+        return best;
     }
 
     public static float Round(float value, int precision)

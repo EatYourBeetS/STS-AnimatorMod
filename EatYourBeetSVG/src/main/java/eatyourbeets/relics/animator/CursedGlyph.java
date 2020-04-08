@@ -10,9 +10,8 @@ import eatyourbeets.utilities.GameActions;
 
 public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRelicSubscriber
 {
-    private static final int LOSE_MAX_HP = 4;
-
     public static final String ID = CreateFullID(CursedGlyph.class);
+    public static final int MAX_HP_LOSS = 4;
 
     public CursedGlyph()
     {
@@ -22,7 +21,7 @@ public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRel
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(LOSE_MAX_HP);
+        return FormatDescription(MAX_HP_LOSS);
     }
 
     @Override
@@ -49,13 +48,13 @@ public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRel
     {
         super.onEquip();
 
-        player.decreaseMaxHealth(LOSE_MAX_HP);
+        player.decreaseMaxHealth(MAX_HP_LOSS);
     }
 
     @Override
     public void OnEquipUnnamedReignRelic()
     {
-        player.decreaseMaxHealth(LOSE_MAX_HP);
+        player.decreaseMaxHealth(MAX_HP_LOSS);
     }
 
     protected void IncreaseMaxHP(AbstractMonster monster)

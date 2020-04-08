@@ -50,7 +50,7 @@
 	},
 	"animator:EngravedStaff":
 	{
-		"DESCRIPTIONS": ["回合開始時， 隨機 獲得 #b{0} 點 智力 、 NL 武力 或者 機敏 。"],
+		"DESCRIPTIONS": ["回合開始時， 隨機 #y提升 #b1 點 智力 、 NL 武力 或者 機敏 。"],
 		"FLAVOR": "公會最寶貴的財產之一。",
 		"NAME": "銘文法杖"
 	},

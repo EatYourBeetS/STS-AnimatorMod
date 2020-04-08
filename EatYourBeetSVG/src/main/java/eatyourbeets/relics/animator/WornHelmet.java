@@ -1,18 +1,16 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class WornHelmet extends AnimatorRelic
 {
     public static final String ID = CreateFullID(WornHelmet.class);
-
-    private static final int BLOCK_AMOUNT1 = 4;
-    private static final int BLOCK_AMOUNT2 = 1;
+    public static final int BLOCK_AMOUNT1 = 4;
+    public static final int BLOCK_AMOUNT2 = 1;
 
     public WornHelmet()
     {
@@ -22,17 +20,17 @@ public class WornHelmet extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return JavaUtilities.Format(DESCRIPTIONS[0], BLOCK_AMOUNT1, BLOCK_AMOUNT2);
+        return FormatDescription(BLOCK_AMOUNT1, BLOCK_AMOUNT2);
     }
 
     @Override
     public void atBattleStart()
     {
-        this.flash();
-
-        GameActions.Bottom.Add(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+        GameActions.Bottom.Add(new RelicAboveCreatureAction(player, this));
         GameActions.Bottom.GainBlock(BLOCK_AMOUNT1);
-        this.counter = 0;
+
+        SetCounter(0);
+        flash();
     }
 
     @Override
@@ -40,14 +38,7 @@ public class WornHelmet extends AnimatorRelic
     {
         super.onRefreshHand();
 
-        this.counter = 0;
-        for (AbstractCard card : AbstractDungeon.player.hand.group)
-        {
-            if (card.type == AbstractCard.CardType.CURSE || card.type == AbstractCard.CardType.STATUS)
-            {
-                this.counter += 1;
-            }
-        }
+        SetCounter(JavaUtilities.Count(player.hand.group, GameUtilities::IsCurseOrStatus));
     }
 
     @Override
@@ -55,20 +46,11 @@ public class WornHelmet extends AnimatorRelic
     {
         super.onPlayerEndTurn();
 
-        int block = 0;
-        for (AbstractCard card : AbstractDungeon.player.hand.group)
-        {
-            if (card.type == AbstractCard.CardType.CURSE || card.type == AbstractCard.CardType.STATUS)
-            {
-                block += BLOCK_AMOUNT2;
-
-                this.flash();
-            }
-        }
-
+        int block = JavaUtilities.Count(player.hand.group, GameUtilities::IsCurseOrStatus) * BLOCK_AMOUNT2;
         if (block > 0)
         {
             GameActions.Bottom.GainBlock(block);
+            flash();
         }
     }
 }

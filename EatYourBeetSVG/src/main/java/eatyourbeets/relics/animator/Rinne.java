@@ -8,12 +8,13 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.animator.HigakiRinneAction;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 
-public class Rinne extends AnimatorRelic// implements OnEquipUnnamedReignRelicSubscriber
+public class Rinne extends AnimatorRelic
 {
-    public static final int RINNE_DOES = 3 + 1 + 1;
-    public static final int RINNE_SAYS = 33 + 27 + 9 + RINNE_DOES;
-
     public static final String ID = CreateFullID(Rinne.class);
+
+    protected transient static final HigakiRinne RINNE_ITSELF = new HigakiRinne();
+    protected transient static final int RINNE_DOES = 3 + 1 + 1;
+    protected transient static final int RINNE_SAYS = 33 + 27 + 9 + RINNE_DOES;
 
     public Rinne()
     {
@@ -31,7 +32,7 @@ public class Rinne extends AnimatorRelic// implements OnEquipUnnamedReignRelicSu
     {
         super.onEquip();
 
-        this.counter = 0;
+        SetCounter(0);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class Rinne extends AnimatorRelic// implements OnEquipUnnamedReignRelicSu
     {
         super.atBattleStart();
 
-        this.counter = 0;
+        SetCounter(0);
     }
 
     @Override
@@ -47,12 +48,12 @@ public class Rinne extends AnimatorRelic// implements OnEquipUnnamedReignRelicSu
     {
         super.onVictory();
 
-        this.counter = 0;
+        SetCounter(0);
 
-        if (AbstractDungeon.player.currentHealth == 1)
+        if (player.currentHealth == 1)
         {
-            this.flash();
-            AbstractDungeon.player.heal(AbstractDungeon.cardRandomRng.random(5, 20));
+            player.heal(AbstractDungeon.cardRandomRng.random(5, 20));
+            flash();
         }
     }
 
@@ -72,13 +73,9 @@ public class Rinne extends AnimatorRelic// implements OnEquipUnnamedReignRelicSu
         return super.onPlayerGainBlock(blockAmount);
     }
 
-    private static final HigakiRinne RINNE_ITSELF = new HigakiRinne();
-
     private void DoSomething(int value)
     {
-        counter += 1 + (value % 7);
-
-        if (counter % 21 == RINNE_DOES)
+        if (AddCounter(1 + (value % 7)) % 21 == RINNE_DOES)
         {
             GameActions.Bottom.Add(new HigakiRinneAction(RINNE_ITSELF));
         }

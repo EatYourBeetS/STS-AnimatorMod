@@ -30,7 +30,7 @@ public class FireOrbPassiveAction extends EYBAction
         int maxHealth = Integer.MIN_VALUE;
         AbstractMonster enemy = null;
 
-        for (AbstractMonster m : GameUtilities.GetAllEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetEnemies(true))
         {
             if (m.currentHealth > maxHealth)
             {

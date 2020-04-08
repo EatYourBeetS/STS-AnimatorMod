@@ -272,7 +272,7 @@ public final class GameActions
     public CycleCards Cycle(String sourceName, int amount)
     {
         return (CycleCards) Add(new CycleCards(sourceName, amount, false)
-                .SetOptions(true, true, true));
+        .SetOptions(true, true, true));
     }
 
     public DealDamage DealDamage(AbstractCreature source, AbstractCreature target, int amount, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
@@ -676,15 +676,15 @@ public final class GameActions
     public DiscardFromHand Reload(String sourceName, Object state, ActionT2<Object, ArrayList<AbstractCard>> onReload)
     {
         return (DiscardFromHand) Add(new DiscardFromHand(sourceName, 999, false)
-                .SetOptions(true, true, true)
-                .AddCallback(state, onReload));
+        .SetOptions(true, true, true)
+        .AddCallback(state, onReload));
     }
 
     public DiscardFromHand Reload(String sourceName, ActionT1<ArrayList<AbstractCard>> onReload)
     {
         return (DiscardFromHand) Add(new DiscardFromHand(sourceName, 999, false)
-                .SetOptions(true, true, true)
-                .AddCallback(onReload));
+        .SetOptions(true, true, true)
+        .AddCallback(onReload));
     }
 
     public RemoveSpecificPowerAction RemovePower(AbstractCreature source, AbstractCreature target, AbstractPower power)

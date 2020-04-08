@@ -45,8 +45,6 @@ public class KotoriKanbe extends AnimatorCard implements StartupCard
     @Override
     public boolean atBattleStartPreDraw()
     {
-        GameActions.Bottom.MoveCard(this, player.discardPile)
-                    .ShowEffect(true, true);
         GameActions.Bottom.MakeCardInHand(new Chibimoth());
 
         return true;

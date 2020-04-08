@@ -29,6 +29,9 @@ public class KotoriKanbe extends AnimatorCard
     {
         int missingHP = m.maxHealth - m.currentHealth;
         int amount = Math.floorDiv(missingHP, magicNumber);
+
+        GameActions.Bottom.Heal(p, m, missingHP);
+
         if (amount > 0)
         {
             GameActions.Bottom.ApplyWeak(p, m, amount);
@@ -38,8 +41,6 @@ public class KotoriKanbe extends AnimatorCard
             {
                 GameActions.Bottom.ReduceStrength(m, secondaryValue, false);
             }
-
-            GameActions.Bottom.Heal(p, m, missingHP);
         }
     }
 }

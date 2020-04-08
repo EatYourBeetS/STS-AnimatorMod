@@ -255,7 +255,7 @@
 		"animator:YachiyoNanami":
 		{
 			"DESCRIPTION": "At the start of turn, you ** may discard a card ** to gain !M! Block. || If you discard a Hindrance: ** Also gain [A] [I].",
-			"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard up to #b{0} card(s) to gain #b{1} #yBlock each. For each #yHindrance discarded, also #yGain #b{2} #yAgility and #b{3} #yIntellect"],
+			"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard up to #b{0} card(s) to gain #b{1} #yBlock each. For each #yHindrance discarded, also #yGain #b{2} #yAgility and #b{3} #yIntellect."],
 			"NAME": "Yachiyo Nanami"
 		},
 		"animator:YuiTsuruno":

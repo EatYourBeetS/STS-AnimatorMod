@@ -23,7 +23,7 @@ public class KotoriKanbe extends AnimatorCard implements StartupCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 3, 1);
         SetUpgrade(0,0,-1);
         SetExhaust(true);
 
@@ -40,12 +40,14 @@ public class KotoriKanbe extends AnimatorCard implements StartupCard
         GameActions.Bottom.ApplyVulnerable(p, m, debuffAmount);
 
         GameActions.Bottom.Heal(p, m, targetMissingHP);
+
+        GameActions.Bottom.Draw(secondaryValue);
     }
 
     @Override
     public boolean atBattleStartPreDraw()
     {
-        GameActions.Bottom.MakeCardInHand(new Chibimoth());
+        GameActions.Bottom.MakeCardInDrawPile(new Chibimoth());
 
         return true;
     }

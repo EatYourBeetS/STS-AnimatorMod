@@ -30,7 +30,7 @@ public class Kagari extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (AbstractMonster enemy : GameUtilities.GetAllEnemies(true))
+        for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
         {
             GameActions.Bottom.ReduceStrength(enemy, magicNumber, true);
         }

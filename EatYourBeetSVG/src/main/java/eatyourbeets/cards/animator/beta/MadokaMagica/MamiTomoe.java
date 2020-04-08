@@ -59,6 +59,7 @@ public class MamiTomoe extends AnimatorCard
 
         for (int i = 0; i < magicNumber; i++)
         {
+            GameActions.Bottom.SFX("ATTACK_FIRE");
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         }
 

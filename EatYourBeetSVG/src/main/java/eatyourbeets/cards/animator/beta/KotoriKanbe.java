@@ -19,7 +19,7 @@ public class KotoriKanbe extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 5);
+        Initialize(0, 0, 3, 4);
         SetUpgrade(0,0,-1, 1);
         SetEthereal(true);
         SetExhaust(true);

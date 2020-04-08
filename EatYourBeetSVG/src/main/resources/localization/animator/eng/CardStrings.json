@@ -200,6 +200,11 @@
 			"EXTENDED_DESCRIPTION": ["The enemy will die in !M! turn(s)."],
 			"NAME": "Light Yagami"
 		},
+		"animator:KotoriKanbe":
+		{
+			"DESCRIPTION": "Fully heal the enemy, apply ** 1 Weak and Vulnerable for ** every !M! HP Healed. || If you healed 40 HP ** or more, the enemy also ** loses !S! Strength.",
+			"NAME": "Kotori Kanbe"
+		},
 		"animator:Kyubey":
 		{
 			"DESCRIPTION": "Gain [E] [E]. ** <DRW-M>. || At the start of combat: ** Add 1 random Curse ** to your discard pile.",
@@ -244,6 +249,12 @@
 			"DESCRIPTION": "Boost [F] [A]. || When Exhausted: If you ** reached 5 [F] this combat, ** add {Ichigo Bankai} to ** your draw pile.",
 			"NAME": "Ichigo Kurosaki",
 			"UPGRADE_DESCRIPTION": "Boost [F] [A]. <DRW>. || When Exhausted: If you ** reached 5 [F] this combat, ** add {Ichigo Bankai} to ** your draw pile."
+		},
+		"animator:Kagari":
+		{
+			"DESCRIPTION": "Apply !M! {Shackles} to ** ALL enemies. || The next time you take ** damage: Channel !S! ** Earth.",
+			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you take damage: Channel #b{1} Earth."],
+			"NAME": "Kagari"
 		},
 		"animator:Kuroyukihime":
 		{

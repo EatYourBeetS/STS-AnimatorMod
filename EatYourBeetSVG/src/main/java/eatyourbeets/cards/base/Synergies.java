@@ -51,6 +51,7 @@ public class Synergies
     public final static Synergy TouhouProject = CreateSynergy(38);
     public final static Synergy WelcomeToNHK = CreateSynergy(39);
     public final static Synergy TalesOfBerseria = CreateSynergy(40);
+    public final static Synergy Rewrite = CreateSynergy(41);
     @SuppressWarnings("FieldCanBeLocal")
     private static AnimatorCard previousCard = null;
     private static AnimatorCard lastCardPlayed = null;

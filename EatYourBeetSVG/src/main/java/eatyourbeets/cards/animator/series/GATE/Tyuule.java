@@ -40,6 +40,11 @@ public class Tyuule extends AnimatorCard
     {
         GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(), magicNumber).AddCallback(poison ->
         {
+            if (poison == null || poison.owner == null)
+            {
+                return;
+            }
+
             AbstractCreature target = poison.owner;
             for (AbstractPower power : target.powers)
             {

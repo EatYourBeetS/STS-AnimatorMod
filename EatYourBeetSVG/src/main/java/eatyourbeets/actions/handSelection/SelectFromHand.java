@@ -131,7 +131,7 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
             int max = Math.min(amount, list.Size());
             for (int i = 0; i < max; i++)
             {
-                selectedCards.add(list.Retrieve(AbstractDungeon.cardRandomRng));
+                selectedCards.add(list.Retrieve(rng));
             }
 
             Complete(selectedCards);

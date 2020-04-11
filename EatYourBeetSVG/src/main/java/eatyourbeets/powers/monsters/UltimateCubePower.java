@@ -2,20 +2,19 @@ package eatyourbeets.powers.monsters;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
-
-import java.util.function.Consumer;
 
 public class UltimateCubePower extends AnimatorPower
 {
@@ -24,8 +23,8 @@ public class UltimateCubePower extends AnimatorPower
     private static final int BUFFS_AMOUNT = 1;
     private static final int EXPLOSION_DAMAGE = 140;
 
-    private final RandomizedList<Consumer<AbstractCreature>> buffs1 = new RandomizedList<>();
-    private final RandomizedList<Consumer<AbstractCreature>> buffs2 = new RandomizedList<>();
+    private final RandomizedList<ActionT1<AbstractCreature>> buffs1 = new RandomizedList<>();
+    private final RandomizedList<ActionT1<AbstractCreature>> buffs2 = new RandomizedList<>();
     private boolean buffSwitch = false;
 
     public UltimateCubePower(AbstractCreature owner, int countDown)
@@ -93,8 +92,8 @@ public class UltimateCubePower extends AnimatorPower
         int damageStep = EXPLOSION_DAMAGE / 20;
         for (int i = 0; i < 20; i++)
         {
-            float x = owner.hb.cX + AbstractDungeon.cardRandomRng.random(-40, 40);
-            float y = owner.hb.cY + AbstractDungeon.cardRandomRng.random(-40, 40);
+            final float x = owner.hb.cX + MathUtils.random(-40, 40);
+            final float y = owner.hb.cY + MathUtils.random(-40, 40);
 
             GameActions.Bottom.Wait(0.3f);
             GameActions.Bottom.VFX(new ExplosionSmallEffect(x, y), 0f);
@@ -121,11 +120,11 @@ public class UltimateCubePower extends AnimatorPower
 
         if (buffSwitch = !buffSwitch)
         {
-            buffs2.Retrieve(AbstractDungeon.cardRandomRng).accept(c);
+            buffs2.Retrieve(rng).Invoke(c);
         }
         else
         {
-            buffs1.Retrieve(AbstractDungeon.cardRandomRng).accept(c);
+            buffs1.Retrieve(rng).Invoke(c);
         }
     }
 

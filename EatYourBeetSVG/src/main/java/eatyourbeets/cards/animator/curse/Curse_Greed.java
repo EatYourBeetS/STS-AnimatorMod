@@ -15,7 +15,7 @@ public class Curse_Greed extends AnimatorCard_Curse
 
     public Curse_Greed()
     {
-        super(DATA);
+        super(DATA, false);
 
         Initialize(0, 0, 2);
 

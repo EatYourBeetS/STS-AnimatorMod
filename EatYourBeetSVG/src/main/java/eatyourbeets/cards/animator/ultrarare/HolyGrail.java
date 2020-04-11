@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.ultrarare;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
@@ -54,8 +53,8 @@ public class HolyGrail extends AnimatorCard_UltraRare implements OnBattleEndSubs
         GameActions.Bottom.VFX(new OfferingEffect(), Settings.FAST_MODE ? 0.1f : 0.5f);
         GameActions.Bottom.Callback(() ->
         {
-            AbstractDungeon.player.decreaseMaxHealth(secondaryValue);
-            AbstractDungeon.player.energy.recharge();
+            player.decreaseMaxHealth(secondaryValue);
+            player.energy.recharge();
         });
         GameActions.Bottom.Draw(magicNumber);
     }
@@ -63,13 +62,11 @@ public class HolyGrail extends AnimatorCard_UltraRare implements OnBattleEndSubs
     @Override
     public void OnBattleEnd()
     {
-        AbstractPlayer p = AbstractDungeon.player;
-
-        if (p.hand.contains(this))
+        if (player.hand.contains(this))
         {
-            p.increaseMaxHp(2, true);
+            player.increaseMaxHp(2, true);
 
-            AbstractRelic relic = p.getRelic(HolyGrailRelic.ID);
+            AbstractRelic relic = player.getRelic(HolyGrailRelic.ID);
             if (relic != null)
             {
                 relic.flash();

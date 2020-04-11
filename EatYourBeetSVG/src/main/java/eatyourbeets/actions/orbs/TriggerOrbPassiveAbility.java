@@ -1,6 +1,5 @@
 package eatyourbeets.actions.orbs;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.utilities.GameUtilities;
@@ -63,7 +62,7 @@ public class TriggerOrbPassiveAbility extends EYBAction
 
             for (int i = 0; i < amount; i++)
             {
-                orb = randomOrbs.Retrieve(AbstractDungeon.cardRandomRng);
+                orb = randomOrbs.Retrieve(rng);
                 orb.onStartOfTurn();
                 orb.onEndOfTurn();
             }
@@ -73,7 +72,7 @@ public class TriggerOrbPassiveAbility extends EYBAction
             int max = Math.min(player.orbs.size(), amount);
             for (int i = 1; i <= max; i++)
             {
-                orb = player.orbs.get(i-1);
+                orb = player.orbs.get(i - 1);
                 if (GameUtilities.IsValidOrb(orb))
                 {
                     orb.onStartOfTurn();

@@ -1,14 +1,12 @@
 package eatyourbeets.actions.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -31,16 +29,12 @@ public class QuestionMarkAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        AbstractPlayer p = AbstractDungeon.player;
-        int index = p.hand.group.indexOf(questionMark);
+        int index = player.hand.group.indexOf(questionMark);
         questionMark.copy = GetRandomCard();
         AnimatorCard copy = questionMark.copy;
 
         if (copy != null && index >= 0)
         {
-            //copy.Name = questionMark.Name;
-            //copy.rarity = questionMark.rarity;
-            //copy.originalName = questionMark.originalName;
             copy.SetSynergy(Synergies.ANY);
             copy.SetShapeshifter();
 
@@ -54,9 +48,9 @@ public class QuestionMarkAction extends EYBAction
             copy.target_x = questionMark.target_x;
             copy.target_y = questionMark.target_y;
 
-            p.hand.group.remove(index);
-            p.hand.group.add(index, copy);
-            p.hand.glowCheck();
+            player.hand.group.remove(index);
+            player.hand.group.add(index, copy);
+            player.hand.glowCheck();
 
             PlayerStatistics.onStartOfTurn.Subscribe(questionMark);
         }

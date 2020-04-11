@@ -37,11 +37,11 @@ public class RemoveBlock extends EYBAction
         {
             if (amount > 0)
             {
-                this.target.loseBlock(amount, skipAnimation);
+                target.loseBlock(amount, skipAnimation);
             }
             else
             {
-                this.target.loseBlock(skipAnimation);
+                target.loseBlock(skipAnimation);
             }
         }
 

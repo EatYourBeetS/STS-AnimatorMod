@@ -33,8 +33,29 @@ import java.util.ArrayList;
 
 public class HigakiRinneAction extends EYBAction
 {
+    private static final ArrayList<String> sounds = new ArrayList<>();
     private final HigakiRinne higakiRinne;
     private int roll;
+
+    static
+    {
+        sounds.add("VO_AWAKENEDONE_3");
+        sounds.add("VO_GIANTHEAD_1B");
+        sounds.add("VO_GREMLINANGRY_1A");
+        sounds.add("VO_GREMLINCALM_2A");
+        sounds.add("VO_GREMLINFAT_2A");
+        sounds.add("VO_GREMLINNOB_1B");
+        sounds.add("VO_HEALER_1A");
+        sounds.add("VO_MERCENARY_1B");
+        sounds.add("VO_MERCHANT_MB");
+        sounds.add("VO_SLAVERBLUE_2A");
+        sounds.add("THUNDERCLAP");
+        sounds.add("BELL");
+        sounds.add("BELL");
+        sounds.add("BELL");
+        sounds.add("NECRONOMICON");
+        sounds.add("INTIMIDATE");
+    }
 
     public HigakiRinneAction(HigakiRinne higakiRinne)
     {
@@ -45,17 +66,15 @@ public class HigakiRinneAction extends EYBAction
         Initialize(1);
     }
 
-    private boolean tryActivate(int chances)
+    protected boolean tryActivate(int chances)
     {
-        roll -= chances;
-
-        return roll <= 0;
+        return (roll -= chances) <= 0;
     }
 
     @Override
     protected void FirstUpdate()
     {
-        roll = AbstractDungeon.cardRandomRng.random(188);
+        roll = rng.random(188);
 
         if (tryActivate(3))
         {
@@ -73,14 +92,14 @@ public class HigakiRinneAction extends EYBAction
                         case ATTACK:
                             if (m != null)
                             {
-                                GameActions.Bottom.ApplyVulnerable(this.player, m, 1);
+                                GameActions.Bottom.ApplyVulnerable(player, m, 1);
                             }
                             break;
 
                         case SKILL:
                             if (m != null)
                             {
-                                GameActions.Bottom.ApplyWeak(this.player, m, 1);
+                                GameActions.Bottom.ApplyWeak(player, m, 1);
                             }
                             break;
 
@@ -91,14 +110,14 @@ public class HigakiRinneAction extends EYBAction
                         case STATUS:
                             if (m != null)
                             {
-                                GameActions.Bottom.ApplyBurning(this.player, m, 3);
+                                GameActions.Bottom.ApplyBurning(player, m, 3);
                             }
                             break;
 
                         case CURSE:
                             if (m != null)
                             {
-                                GameActions.Bottom.ApplyConstricted(this.player, m, 3);
+                                GameActions.Bottom.ApplyConstricted(player, m, 3);
                             }
                             break;
                     }
@@ -316,32 +335,5 @@ public class HigakiRinneAction extends EYBAction
 
             GameEffects.Queue.Add(new ShuffleEnemiesEffect());
         }
-    }
-
-    public static void PlayRandomSound()
-    {
-        GameActions.Bottom.SFX(JavaUtilities.GetRandomElement(sounds));
-    }
-
-    private static final ArrayList<String> sounds = new ArrayList<>();
-
-    static
-    {
-        sounds.add("VO_AWAKENEDONE_3");
-        sounds.add("VO_GIANTHEAD_1B");
-        sounds.add("VO_GREMLINANGRY_1A");
-        sounds.add("VO_GREMLINCALM_2A");
-        sounds.add("VO_GREMLINFAT_2A");
-        sounds.add("VO_GREMLINNOB_1B");
-        sounds.add("VO_HEALER_1A");
-        sounds.add("VO_MERCENARY_1B");
-        sounds.add("VO_MERCHANT_MB");
-        sounds.add("VO_SLAVERBLUE_2A");
-        sounds.add("THUNDERCLAP");
-        sounds.add("BELL");
-        sounds.add("BELL");
-        sounds.add("BELL");
-        sounds.add("NECRONOMICON");
-        sounds.add("INTIMIDATE");
     }
 }

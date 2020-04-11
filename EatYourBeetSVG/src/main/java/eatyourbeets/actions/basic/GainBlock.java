@@ -39,11 +39,11 @@ public class GainBlock extends EYBActionWithCallback<AbstractCreature>
     @Override
     protected void FirstUpdate()
     {
-        if (!this.target.isDying && !this.target.isDead && amount > 0)
+        if (!target.isDying && !target.isDead && amount > 0)
         {
-            GameEffects.List.Add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AttackEffect.SHIELD, mute));
+            GameEffects.List.Add(new FlashAtkImgEffect(target.hb.cX, target.hb.cY, AttackEffect.SHIELD, mute));
 
-            this.target.addBlock(amount);
+            target.addBlock(amount);
 
             for (AbstractCard c : player.hand.group)
             {

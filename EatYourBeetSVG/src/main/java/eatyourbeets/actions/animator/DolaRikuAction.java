@@ -83,7 +83,7 @@ public class DolaRikuAction extends EYBAction
         int max = Math.min(amount, sameRarity.Size());
         for (int i = 0; i < max; i++)
         {
-            AbstractCard toAdd = sameRarity.Retrieve(AbstractDungeon.cardRandomRng).makeCopy();
+            AbstractCard toAdd = sameRarity.Retrieve(rng).makeCopy();
             if (card.upgraded && toAdd.canUpgrade())
             {
                 toAdd.upgrade();
@@ -95,14 +95,15 @@ public class DolaRikuAction extends EYBAction
             cardGroup.group.add(toAdd);
         }
 
-        if (!addedRinne && cardGroup.size() > 2 && AbstractDungeon.cardRandomRng.randomBoolean(0.05f))
+        if (!addedRinne && cardGroup.size() > 2 && rng.randomBoolean(0.05f))
         {
-            cardGroup.group.remove(0);
             HigakiRinne rinne = new HigakiRinne();
             if (card.upgraded)
             {
                 rinne.upgrade();
             }
+
+            cardGroup.group.remove(0);
             cardGroup.group.add(rinne);
         }
 

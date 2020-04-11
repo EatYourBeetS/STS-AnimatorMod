@@ -2,6 +2,7 @@ package eatyourbeets.utilities;
 
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.random.Random;
+import eatyourbeets.interfaces.delegates.FuncT1;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,7 +13,6 @@ import java.lang.reflect.Method;
 import java.net.URISyntaxException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.function.Predicate;
@@ -198,32 +198,38 @@ public class JavaUtilities
         GetLogger(source).info(Format(format, values));
     }
 
-    public static <T> T FindMax(Iterable<T> list, Comparator<T> comparator)
+    public static <T, N extends Comparable<N>> T FindMax(Iterable<T> list, FuncT1<N, T> getProperty)
     {
-        T best = null;
+        N best = null;
+        T result = null;
         for (T t : list)
         {
-            if (best == null || comparator.compare(t, best) > 0)
+            N prop = getProperty.Invoke(t);
+            if (best == null || prop.compareTo(best) > 0)
             {
-                best = t;
+                best = prop;
+                result = t;
             }
         }
 
-        return best;
+        return result;
     }
 
-    public static <T> T FindMin(Iterable<T> list, Comparator<T> comparator)
+    public static <T, N extends Comparable<N>> T FindMin(Iterable<T> list, FuncT1<N, T> getProperty)
     {
-        T best = null;
+        N best = null;
+        T result = null;
         for (T t : list)
         {
-            if (best == null || comparator.compare(t, best) < 0)
+            N prop = getProperty.Invoke(t);
+            if (best == null || prop.compareTo(best) < 0)
             {
-                best = t;
+                best = prop;
+                result = t;
             }
         }
 
-        return best;
+        return result;
     }
 
     public static float Round(float value, int precision)

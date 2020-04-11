@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
@@ -55,7 +54,7 @@ public class Truth extends AnimatorCard_UltraRare
 
         int count = 0;
         ArrayList<String> orbs = new ArrayList<>();
-        for (AbstractOrb orb : AbstractDungeon.player.orbs)
+        for (AbstractOrb orb : p.orbs)
         {
             if (!(orb instanceof EmptyOrbSlot) && !orbs.contains(orb.ID))
             {
@@ -79,7 +78,7 @@ public class Truth extends AnimatorCard_UltraRare
         CardGroup temp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : p.masterDeck.group)
         {
-            if (!c.cardID.equals(wound.cardID) && !c.cardID.equals(this.cardID) && GameUtilities.CanRemoveFromDeck(c))
+            if (!c.cardID.equals(wound.cardID) && !c.uuid.equals(uuid) && GameUtilities.CanRemoveFromDeck(c))
             {
                 temp.group.add(c);
             }
@@ -92,9 +91,11 @@ public class Truth extends AnimatorCard_UltraRare
             .SetMessage(GR.Common.Strings.GridSelection.TransformInto(wound.name))
             .AddCallback(cards ->
             {
-                AbstractCard card = cards.get(0);
-                AbstractDungeon.player.masterDeck.removeCard(card);
-                AbstractDungeon.player.masterDeck.addToTop(wound.makeCopy());
+                if (cards.size() > 0)
+                {
+                    player.masterDeck.removeCard(cards.get(0));
+                    player.masterDeck.addToTop(wound.makeCopy());
+                }
             });
         }
     }

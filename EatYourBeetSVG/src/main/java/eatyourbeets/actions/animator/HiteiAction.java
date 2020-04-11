@@ -3,7 +3,6 @@ package eatyourbeets.actions.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.series.Katanagatari.Hitei;
 import eatyourbeets.utilities.GameActions;
@@ -30,7 +29,7 @@ public class HiteiAction extends EYBAction
         {
             if (randomizedList.Size() > 0)
             {
-                group.addToTop(randomizedList.Retrieve(AbstractDungeon.cardRandomRng));
+                group.addToTop(randomizedList.Retrieve(rng));
             }
         }
 

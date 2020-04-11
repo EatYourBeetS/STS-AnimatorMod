@@ -9,16 +9,24 @@ import eatyourbeets.utilities.RenderHelpers;
 
 public abstract class AnimatorCard_Curse extends AnimatorCard
 {
-    protected AnimatorCard_Curse(EYBCardData data)
+    protected boolean playAtEndOfTurn;
+
+    protected AnimatorCard_Curse(EYBCardData data, boolean playAtEndOfTurn)
     {
         super(data);
+
+        this.playAtEndOfTurn = playAtEndOfTurn;
     }
 
     @Override
     public void triggerOnEndOfTurnForPlayingCard()
     {
-        this.dontTriggerOnUseCard = true;
-        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
+        if (playAtEndOfTurn)
+        {
+            dontTriggerOnUseCard = true;
+
+            AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
+        }
     }
 
     @Override

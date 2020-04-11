@@ -45,7 +45,7 @@ public class HealCreature extends EYBAction
                 AbstractDungeon.topPanel.panelHealEffect();
             }
 
-            GameEffects.Queue.Add(new HealEffect(target.hb.cX - target.animX, target.hb.cY, this.amount));
+            GameEffects.Queue.Add(new HealEffect(target.hb.cX - target.animX, target.hb.cY, amount));
         }
     }
 }

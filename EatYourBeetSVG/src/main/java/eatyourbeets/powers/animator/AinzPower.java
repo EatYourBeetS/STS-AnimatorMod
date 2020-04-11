@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
@@ -75,7 +74,7 @@ public class AinzPower extends AnimatorPower
 
         for (int i = 0; i < CHOICES; i++)
         {
-            currentEffects.add(temp.Retrieve(AbstractDungeon.cardRandomRng).Build());
+            currentEffects.add(temp.Retrieve(rng).Build());
         }
 
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);

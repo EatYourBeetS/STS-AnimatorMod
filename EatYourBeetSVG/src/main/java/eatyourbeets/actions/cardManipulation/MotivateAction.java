@@ -3,7 +3,6 @@ package eatyourbeets.actions.cardManipulation;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.powers.PlayerStatistics;
@@ -38,7 +37,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
         RandomizedList<AbstractCard> betterPossible = new RandomizedList<>();
         RandomizedList<AbstractCard> possible = new RandomizedList<>();
 
-        for (AbstractCard c : AbstractDungeon.player.hand.group)
+        for (AbstractCard c : player.hand.group)
         {
             if (c.costForTurn > 0)
             {
@@ -52,11 +51,11 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
 
         if (betterPossible.Size() > 0)
         {
-            this.card = betterPossible.Retrieve(AbstractDungeon.cardRandomRng);
+            card = betterPossible.Retrieve(rng);
         }
         else if (motivateZeroCost && possible.Size() > 0)
         {
-            this.card = possible.Retrieve(AbstractDungeon.cardRandomRng);
+            card = possible.Retrieve(rng);
         }
 
         if (card != null)
@@ -70,7 +69,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
                 Complete(card);
             }
 
-            this.card.setCostForTurn(this.card.costForTurn - amount);
+            card.setCostForTurn(card.costForTurn - amount);
 
             PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
             PlayerStatistics.onEndOfTurn.Subscribe(this);
@@ -94,9 +93,9 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     }
 
     @Override
-    public void OnAfterCardPlayed(AbstractCard card)
+    public void OnAfterCardPlayed(AbstractCard other)
     {
-        if (this.card.uuid.equals(card.uuid))
+        if (card.uuid.equals(other.uuid))
         {
             PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
             PlayerStatistics.onEndOfTurn.Unsubscribe(this);
@@ -109,7 +108,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     @Override
     public void OnStartOfTurnPostDraw()
     {
-        if (AbstractDungeon.player.hand.contains(card) && firstTimePerTurn)
+        if (player.hand.contains(card) && firstTimePerTurn)
         {
             GameActions.Bottom.ModifyAllInstances(card.uuid, c -> c.setCostForTurn(c.costForTurn - amount));
         }
@@ -122,7 +121,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     {
         firstTimePerTurn = true;
 
-        if (AbstractDungeon.player.hand.contains(card))
+        if (player.hand.contains(card))
         {
             GameActions.Bottom.ModifyAllInstances(card.uuid, c -> c.setCostForTurn(c.costForTurn - amount));
 
@@ -131,25 +130,25 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     }
 
     @Override
-    public void OnAfterCardDrawn(AbstractCard card)
+    public void OnAfterCardDrawn(AbstractCard other)
     {
         if (firstTimePerTurn)
         {
             return;
         }
 
-        if (this.card.uuid.equals(card.uuid))
+        if (card.uuid.equals(other.uuid))
         {
-            this.card.setCostForTurn(this.card.costForTurn - amount);
+            card.setCostForTurn(card.costForTurn - amount);
         }
     }
 
     @Override
-    public void OnCostRefresh(AbstractCard card)
+    public void OnCostRefresh(AbstractCard other)
     {
-        if (this.card.uuid.equals(card.uuid))
+        if (card.uuid.equals(other.uuid))
         {
-            this.card.setCostForTurn(this.card.costForTurn - amount);
+            card.setCostForTurn(card.costForTurn - amount);
         }
     }
 }

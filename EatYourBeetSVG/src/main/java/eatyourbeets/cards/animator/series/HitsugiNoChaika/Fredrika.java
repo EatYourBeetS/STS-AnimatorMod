@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.special.RefreshHandLayout;
@@ -15,10 +14,18 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Fredrika extends AnimatorCard
 {
-    private enum Form { Default, Cat, Dominica, Dragoon }
+    private enum Form
+    {
+        Default,
+        Cat,
+        Dominica,
+        Dragoon
+    }
+
     private Form currentForm = Form.Default;
 
     public static final EYBCardData DATA = Register(Fredrika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+
     static
     {
         DATA.AddPreview(new Fredrika(Form.Cat), true);
@@ -130,10 +137,10 @@ public class Fredrika extends AnimatorCard
             .SetMessage(CardRewardScreen.TEXT[1])
             .AddCallback(cards ->
             {
-                this.ChangeForm(((Fredrika) cards.get(0)).currentForm);
+                ChangeForm(((Fredrika) cards.get(0)).currentForm);
 
                 GameActions.Bottom.Add(new RefreshHandLayout());
-                GameActions.Top.MoveCard(this, AbstractDungeon.player.hand);
+                GameActions.Top.MoveCard(this, player.hand);
             });
         }
     }
@@ -146,14 +153,12 @@ public class Fredrika extends AnimatorCard
             case Default:
             {
                 GameActions.Bottom.GainBlock(block);
-
                 break;
             }
 
             case Cat:
             {
                 GameActions.Bottom.GainBlock(block);
-
                 break;
             }
 
@@ -162,7 +167,6 @@ public class Fredrika extends AnimatorCard
                 GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
                 GameActions.Bottom.ApplyVulnerable(p, m, 1);
                 GameActions.Bottom.ApplyWeak(p, m, 1);
-
                 break;
             }
 
@@ -171,7 +175,6 @@ public class Fredrika extends AnimatorCard
                 GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
                 GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
                 GameActions.Bottom.GainMetallicize(2);
-
                 break;
             }
         }
@@ -197,10 +200,10 @@ public class Fredrika extends AnimatorCard
         switch (currentForm)
         {
             case Dominica:
-                SetScaling(intellectScaling, agilityScaling-1, forceScaling);
+                SetScaling(intellectScaling, agilityScaling - 1, forceScaling);
                 break;
             case Dragoon:
-                SetScaling(intellectScaling, agilityScaling, forceScaling-1);
+                SetScaling(intellectScaling, agilityScaling, forceScaling - 1);
                 break;
         }
 
@@ -241,7 +244,7 @@ public class Fredrika extends AnimatorCard
                 this.target = CardTarget.SELF_AND_ENEMY;
                 this.cost = 2;
 
-                SetScaling(intellectScaling, agilityScaling, forceScaling+1);
+                SetScaling(intellectScaling, agilityScaling, forceScaling + 1);
 
                 break;
             }
@@ -255,7 +258,7 @@ public class Fredrika extends AnimatorCard
                 this.target = CardTarget.ENEMY;
                 this.cost = 1;
 
-                SetScaling(intellectScaling, agilityScaling+1, forceScaling);
+                SetScaling(intellectScaling, agilityScaling + 1, forceScaling);
 
                 break;
             }

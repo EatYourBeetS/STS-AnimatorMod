@@ -56,7 +56,17 @@ public class OldCoffin extends AnimatorRelic
         {
             Pair<PowerHelper, Integer> pair = Debuffs.Retrieve(rng, false);
             GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(null), pair.getKey(), pair.getValue())
-            .AddCallback(power -> GameActions.Top.Add(new RelicAboveCreatureAction(power.owner, this)));
+            .AddCallback(power ->
+            {
+                if (power != null && power.owner != null)
+                {
+                    GameActions.Top.Add(new RelicAboveCreatureAction(power.owner, this));
+                }
+                else
+                {
+                    flash();
+                }
+            });
         }
     }
 }

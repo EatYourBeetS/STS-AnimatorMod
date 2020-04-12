@@ -48,22 +48,22 @@ public class Oktavia extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Add(new CreateRandomCurses(secondaryValue, p.hand));
-        GameActions.Bottom.Callback(p, (p1, __) ->
+        GameActions.Bottom.Callback(() ->
         {
             GameActions.Bottom.Draw(player.hand.getCardsOfType(CardType.CURSE).size())
-            .AddCallback(cards ->
-            {
-                GameActions.Bottom.VFX(new BorderFlashEffect(Color.BLACK));
-                GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
-                GameActions.Bottom.VFX(new MindblastEffect(player.dialogX, player.dialogY, player.flipHorizontal), 0.2f);
-                GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
+                    .AddCallback(cards ->
+                    {
+                        GameActions.Bottom.VFX(new BorderFlashEffect(Color.BLACK));
+                        GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
+                        GameActions.Bottom.VFX(new MindblastEffect(player.dialogX, player.dialogY, player.flipHorizontal), 0.2f);
+                        GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
 
-                for (int i = 0; i < player.hand.getCardsOfType(CardType.CURSE).size(); i++)
-                {
-                    GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
-                            .SetVFX(false, true);
-                }
-            });
+                        for (int i = 0; i < player.hand.getCardsOfType(CardType.CURSE).size(); i++)
+                        {
+                            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
+                                    .SetVFX(false, true);
+                        }
+                    });
         });
     }
 }

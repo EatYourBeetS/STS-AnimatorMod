@@ -44,7 +44,13 @@ public class HansPower extends AnimatorPower
     public void atStartOfTurnPostDraw()
     {
         GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(owner), amount)
-        .AddCallback(poison -> GameActions.Bottom.GainTemporaryHP(tempHP));
+        .AddCallback(poison ->
+        {
+            if (poison != null && poison.owner != null)
+            {
+                GameActions.Bottom.GainTemporaryHP(tempHP);
+            }
+        });
     }
 
     @Override

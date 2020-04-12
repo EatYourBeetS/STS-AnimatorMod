@@ -47,21 +47,22 @@ public class Oktavia extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Callback(new CreateRandomCurses(secondaryValue, p.hand), m, (m1, __) ->
+        GameActions.Bottom.Add(new CreateRandomCurses(secondaryValue, p.hand));
+        GameActions.Bottom.Callback(p, (p1, __) ->
         {
             GameActions.Bottom.Draw(player.hand.getCardsOfType(CardType.CURSE).size())
-            .AddCallback(m1, (enemy, cards) ->
+            .AddCallback(p1, (enemy, cards) ->
             {
-                for (int i = 0; i < player.hand.getCardsOfType(CardType.CURSE).size(); i++)
-                {
-                    GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
-                            .SetVFX(true, false);
-                }
-
                 GameActions.Bottom.VFX(new BorderFlashEffect(Color.BLACK));
                 GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
                 GameActions.Bottom.VFX(new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.2f);
                 GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
+
+                for (int i = 0; i < player.hand.getCardsOfType(CardType.CURSE).size(); i++)
+                {
+                    GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
+                            .SetVFX(false, true);
+                }
             });
         });
     }

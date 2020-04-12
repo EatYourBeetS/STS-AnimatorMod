@@ -17,7 +17,7 @@ public class Curse_GriefSeed extends AnimatorCard_Curse
 
     public Curse_GriefSeed()
     {
-        super(DATA);
+        super(DATA, false);
 
         Initialize(0, 0, 2);
 

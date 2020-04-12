@@ -51,11 +51,11 @@ public class Oktavia extends AnimatorCard
         GameActions.Bottom.Callback(p, (p1, __) ->
         {
             GameActions.Bottom.Draw(player.hand.getCardsOfType(CardType.CURSE).size())
-            .AddCallback(p1, (enemy, cards) ->
+            .AddCallback(cards ->
             {
                 GameActions.Bottom.VFX(new BorderFlashEffect(Color.BLACK));
                 GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
-                GameActions.Bottom.VFX(new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.2f);
+                GameActions.Bottom.VFX(new MindblastEffect(player.dialogX, player.dialogY, player.flipHorizontal), 0.2f);
                 GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
 
                 for (int i = 0; i < player.hand.getCardsOfType(CardType.CURSE).size(); i++)

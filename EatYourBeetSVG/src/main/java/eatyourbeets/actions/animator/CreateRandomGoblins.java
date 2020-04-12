@@ -12,12 +12,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.utilities.GameActions;
 
-import java.util.ArrayList;
-
 public class CreateRandomGoblins extends EYBActionWithCallback<AbstractCard>
 {
-    protected final ArrayList<AbstractCard> cards = new ArrayList<>();
-
     public CreateRandomGoblins(int amount)
     {
         super(ActionType.CARD_MANIPULATION);

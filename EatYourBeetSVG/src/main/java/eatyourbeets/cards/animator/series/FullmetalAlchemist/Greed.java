@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.powers.MalleablePower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Greed extends AnimatorCard
@@ -31,7 +31,7 @@ public class Greed extends AnimatorCard
         GameActions.Bottom.StackPower(new MalleablePower(p, secondaryValue));
         GameActions.Bottom.GainMetallicize(magicNumber);
 
-        if (EffectHistory.TryActivateLimited(cardID))
+        if (CombatStats.TryActivateLimited(cardID))
         {
             int energy = Math.floorDiv(player.gold, GOLD_DIVISOR);
             if (energy > 0)

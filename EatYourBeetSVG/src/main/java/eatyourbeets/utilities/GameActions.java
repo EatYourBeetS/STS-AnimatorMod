@@ -49,7 +49,7 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
@@ -813,7 +813,7 @@ public final class GameActions
 
         public static void Add(AbstractGameAction action)
         {
-            PlayerStatistics.onPhaseChanged.Subscribe(new DelayedAction(action));
+            CombatStats.onPhaseChanged.Subscribe(new DelayedAction(action));
         }
 
         @Override
@@ -823,7 +823,7 @@ public final class GameActions
             {
                 GameActions.Bottom.Add(action);
 
-                PlayerStatistics.onPhaseChanged.Unsubscribe(this);
+                CombatStats.onPhaseChanged.Unsubscribe(this);
             }
         }
     }

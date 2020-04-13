@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.powers.RegrowPower;
 import eatyourbeets.actions.special.GainGold;
 import eatyourbeets.interfaces.subscribers.OnEnemyDyingSubscriber;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscriber
@@ -29,7 +29,7 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
     {
         super.onInitialApplication();
 
-        PlayerStatistics.onEnemyDying.Subscribe(this);
+        CombatStats.onEnemyDying.Subscribe(this);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
     {
         super.onRemove();
 
-        PlayerStatistics.onEnemyDying.Unsubscribe(this);
+        CombatStats.onEnemyDying.Unsubscribe(this);
     }
 
     @Override

@@ -7,7 +7,7 @@ import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public class QuestionMarkAction extends EYBAction
             player.hand.group.add(index, copy);
             player.hand.glowCheck();
 
-            PlayerStatistics.onStartOfTurn.Subscribe(questionMark);
+            CombatStats.onStartOfTurn.Subscribe(questionMark);
         }
 
         Complete();

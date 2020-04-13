@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnAfterCardPlayedSubscriber
@@ -38,7 +38,7 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
     @Override
     public void OnBattleStart()
     {
-        PlayerStatistics.onAfterCardPlayed.Subscribe(this);
+        CombatStats.onAfterCardPlayed.Subscribe(this);
     }
 
     //@Formatter: Off

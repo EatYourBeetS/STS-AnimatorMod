@@ -11,7 +11,7 @@ import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStatsClearedSubscriber;
 import eatyourbeets.powers.CommonPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.HashSet;
@@ -170,8 +170,8 @@ public abstract class PlayerAttributePower extends CommonPower
         {
             clear();
 
-            PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
-            PlayerStatistics.onStatsCleared.Unsubscribe(this);
+            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+            CombatStats.onStatsCleared.Unsubscribe(this);
         }
 
         @Override
@@ -179,16 +179,16 @@ public abstract class PlayerAttributePower extends CommonPower
         {
             clear();
 
-            PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
-            PlayerStatistics.onStatsCleared.Unsubscribe(this);
+            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+            CombatStats.onStatsCleared.Unsubscribe(this);
         }
 
         public void Subscribe(String powerID)
         {
             add(powerID);
 
-            PlayerStatistics.onStatsCleared.Subscribe(this);
-            PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
+            CombatStats.onStatsCleared.Subscribe(this);
+            CombatStats.onStartOfTurnPostDraw.Subscribe(this);
         }
     }
 }

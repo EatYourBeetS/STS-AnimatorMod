@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -36,7 +36,7 @@ public class Togame extends AnimatorCard
             {
                 GameActions.Bottom.Draw(1);
 
-                if (GameUtilities.IsCurseOrStatus(cards.get(0)) && EffectHistory.TryActivateSemiLimited(cardID))
+                if (GameUtilities.IsCurseOrStatus(cards.get(0)) && CombatStats.TryActivateSemiLimited(cardID))
                 {
                     GameActions.Bottom.Motivate();
                 }

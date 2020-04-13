@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -41,7 +41,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
 
         if (player.hand.contains(this))
         {
-            PlayerStatistics.onAttack.Subscribe(this);
+            CombatStats.onAttack.Subscribe(this);
         }
     }
 
@@ -58,7 +58,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
         }
         else
         {
-            PlayerStatistics.onAttack.Unsubscribe(this);
+            CombatStats.onAttack.Unsubscribe(this);
         }
     }
 

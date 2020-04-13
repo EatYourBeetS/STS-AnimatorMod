@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class CrowleyEusford extends AnimatorCard
@@ -35,7 +35,7 @@ public class CrowleyEusford extends AnimatorCard
         GameActions.Bottom.GainAgility(1, true);
         GameActions.Bottom.GainForce(1, true);
 
-        if (PlayerStatistics.CardsExhaustedThisTurn() > 0)
+        if (CombatStats.CardsExhaustedThisTurn() > 0)
         {
             GameActions.Bottom.Motivate();
         }

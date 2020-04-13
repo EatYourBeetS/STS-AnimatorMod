@@ -15,10 +15,10 @@ import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.animator.ExquisiteBloodVial;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -54,7 +54,7 @@ public class KrulTepes extends AnimatorCard
                 AbstractRoom room = AbstractDungeon.getCurrRoom();
                 if ((room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
                     && GameUtilities.TriggerOnKill(enemy, false)
-                    && EffectHistory.TryActivateLimited(cardID))
+                    && CombatStats.TryActivateLimited(cardID))
                 {
                     ObtainReward();
                 }

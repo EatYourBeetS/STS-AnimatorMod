@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class RinTohsaka extends AnimatorCard
@@ -33,7 +33,7 @@ public class RinTohsaka extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryArtifact(secondaryValue);
 
-        if (HasSynergy() && p.filledOrbCount() > 0 && EffectHistory.TryActivateSemiLimited(cardID))
+        if (HasSynergy() && p.filledOrbCount() > 0 && CombatStats.TryActivateSemiLimited(cardID))
         {
             AbstractOrb orb = p.orbs.get(0);
             if (!(orb instanceof EmptyOrbSlot))

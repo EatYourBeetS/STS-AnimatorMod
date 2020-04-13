@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Caster extends AnimatorCard
@@ -28,7 +28,7 @@ public class Caster extends AnimatorCard
     @Override
     public void triggerOnExhaust()
     {
-        if (EffectHistory.TryActivateSemiLimited(cardID))
+        if (CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.ChannelOrb(new Dark(), true);
         }
@@ -41,7 +41,7 @@ public class Caster extends AnimatorCard
         GameActions.Bottom.GainForce(1, false);
         GameActions.Bottom.GainIntellect(1, false);
 
-        if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
+        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.ChannelOrb(new Dark(), true);
         }

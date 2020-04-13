@@ -12,7 +12,7 @@ import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class FielNirvalen extends AnimatorCard
@@ -84,13 +84,13 @@ public class FielNirvalen extends AnimatorCard
         @Override
         public void onInitialApplication()
         {
-            PlayerStatistics.onShuffle.Subscribe(this);
+            CombatStats.onShuffle.Subscribe(this);
         }
 
         @Override
         public void onRemove()
         {
-            PlayerStatistics.onShuffle.Unsubscribe(this);
+            CombatStats.onShuffle.Unsubscribe(this);
         }
 
         @Override
@@ -104,7 +104,7 @@ public class FielNirvalen extends AnimatorCard
         {
             if (!owner.powers.contains(this))
             {
-                PlayerStatistics.onShuffle.Unsubscribe(this);
+                CombatStats.onShuffle.Unsubscribe(this);
                 return;
             }
 

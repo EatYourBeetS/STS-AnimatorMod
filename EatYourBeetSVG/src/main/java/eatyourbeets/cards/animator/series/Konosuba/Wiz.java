@@ -3,8 +3,8 @@ package eatyourbeets.cards.animator.series.Konosuba;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Wiz extends AnimatorCard
@@ -27,7 +27,7 @@ public class Wiz extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        if (HasSynergy() && !EffectHistory.HasActivatedLimited(cardID))
+        if (HasSynergy() && !CombatStats.HasActivatedLimited(cardID))
         {
             SetPurge(false);
         }
@@ -56,7 +56,7 @@ public class Wiz extends AnimatorCard
             });
         });
 
-        if (!hasTag(GR.Enums.CardTags.PURGE) && EffectHistory.TryActivateLimited(cardID))
+        if (!hasTag(GR.Enums.CardTags.PURGE) && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Last.ModifyAllInstances(uuid, c -> ((EYBCard)c).SetPurge(true));
         }

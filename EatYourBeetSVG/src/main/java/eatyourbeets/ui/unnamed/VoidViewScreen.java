@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.mainMenu.ScrollBar;
 import com.megacrit.cardcrawl.screens.mainMenu.ScrollBarListener;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -305,7 +305,7 @@ public class VoidViewScreen implements ScrollBarListener
 
     public void open()
     {
-        if (PlayerStatistics.Void.isEmpty())
+        if (CombatStats.Void.isEmpty())
         {
             return;
         }
@@ -320,7 +320,7 @@ public class VoidViewScreen implements ScrollBarListener
         AbstractDungeon.screen = CurrentScreen.NO_INTERACT;
         this.voidCopy.clear();
 
-        for (AbstractCard c : PlayerStatistics.Void.group)
+        for (AbstractCard c : CombatStats.Void.group)
         {
             AbstractCard toAdd = c.makeStatEquivalentCopy();
             toAdd.setAngle(0f, true);

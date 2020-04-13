@@ -25,14 +25,14 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
 {
     public static final String[] TEXT = ApplyPowerAction.TEXT;
 
-    protected AbstractPower callbackResult;
-    protected AbstractPower powerToApply;
-    protected boolean chooseRandomTarget;
-    protected boolean ignoreArtifact;
-    protected boolean showEffect = true;
-    protected boolean skipIfZero;
-    protected boolean canStack = true;
-    protected boolean faster;
+    public AbstractPower callbackResult;
+    public AbstractPower powerToApply;
+    public boolean chooseRandomTarget;
+    public boolean ignoreArtifact;
+    public boolean showEffect = true;
+    public boolean skipIfZero;
+    public boolean canStack = true;
+    public boolean faster;
 
     public ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power)
     {

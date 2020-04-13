@@ -7,8 +7,8 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Aether;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.IntellectPower;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -31,7 +31,7 @@ public class Tatsumaki extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        if (GameUtilities.GetUniqueOrbsCount() >= 3 && EffectHistory.TryActivateSemiLimited(this.cardID))
+        if (GameUtilities.GetUniqueOrbsCount() >= 3 && CombatStats.TryActivateSemiLimited(this.cardID))
         {
             GameActions.Bottom.Draw(1);
             GameActions.Bottom.Flash(this);

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.interfaces.subscribers.*;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -71,11 +71,11 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
 
             card.setCostForTurn(card.costForTurn - amount);
 
-            PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
-            PlayerStatistics.onEndOfTurn.Subscribe(this);
-            PlayerStatistics.onAfterCardPlayed.Subscribe(this);
-            PlayerStatistics.onAfterCardDrawn.Subscribe(this);
-            PlayerStatistics.onCostRefresh.Subscribe(this);
+            CombatStats.onStartOfTurnPostDraw.Subscribe(this);
+            CombatStats.onEndOfTurn.Subscribe(this);
+            CombatStats.onAfterCardPlayed.Subscribe(this);
+            CombatStats.onAfterCardDrawn.Subscribe(this);
+            CombatStats.onCostRefresh.Subscribe(this);
         }
         else
         {
@@ -97,11 +97,11 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     {
         if (card.uuid.equals(other.uuid))
         {
-            PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
-            PlayerStatistics.onEndOfTurn.Unsubscribe(this);
-            PlayerStatistics.onAfterCardPlayed.Unsubscribe(this);
-            PlayerStatistics.onAfterCardDrawn.Unsubscribe(this);
-            PlayerStatistics.onCostRefresh.Unsubscribe(this);
+            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+            CombatStats.onEndOfTurn.Unsubscribe(this);
+            CombatStats.onAfterCardPlayed.Unsubscribe(this);
+            CombatStats.onAfterCardDrawn.Unsubscribe(this);
+            CombatStats.onCostRefresh.Unsubscribe(this);
         }
     }
 

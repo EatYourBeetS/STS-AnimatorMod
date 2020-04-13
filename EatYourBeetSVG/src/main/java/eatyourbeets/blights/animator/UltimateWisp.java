@@ -7,7 +7,7 @@ import eatyourbeets.actions.cardManipulation.MakeTempCard;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -50,7 +50,7 @@ public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscri
     @Override
     public void OnBattleStart()
     {
-        PlayerStatistics.onBattleStart.Subscribe(this);
-        PlayerStatistics.onShuffle.Subscribe(this);
+        CombatStats.onBattleStart.Subscribe(this);
+        CombatStats.onShuffle.Subscribe(this);
     }
 }

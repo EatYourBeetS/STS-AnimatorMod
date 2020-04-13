@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -40,7 +40,7 @@ public class Geryuganshoop extends AnimatorCard
 
     private void OnCardChosen(ArrayList<AbstractCard> cards)
     {
-        boolean limited = EffectHistory.HasActivatedLimited(this.cardID);
+        boolean limited = CombatStats.HasActivatedLimited(this.cardID);
 
         if (cards != null && cards.size() > 0)
         {
@@ -48,7 +48,7 @@ public class Geryuganshoop extends AnimatorCard
             {
                 if (!limited && (card.cardID.equals(Boros.DATA.ID) || card.cardID.startsWith(Melzalgald.DATA.ID)))
                 {
-                    EffectHistory.TryActivateLimited(this.cardID);
+                    CombatStats.TryActivateLimited(this.cardID);
                     GameActions.Bottom.MoveCard(card, player.exhaustPile, player.hand)
                             .ShowEffect(true, false);
                 }

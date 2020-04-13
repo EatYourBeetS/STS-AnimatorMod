@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -33,7 +33,7 @@ public class Souei extends AnimatorCard
     {
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
 
-        if (EffectHistory.TryActivateSemiLimited(cardID))
+        if (CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.Callback(() ->
             {

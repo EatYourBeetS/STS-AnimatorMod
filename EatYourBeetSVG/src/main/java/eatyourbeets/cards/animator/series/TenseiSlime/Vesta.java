@@ -11,7 +11,7 @@ import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect_CompleteFaster;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffects;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -65,7 +65,7 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
 
         this.elixir.ApplyEffects(effects);
 
-        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
+        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
             GameEffects.Queue.ShowCardBriefly(this);
             GameActions.Bottom.MakeCardInHand(elixir);
 
-            PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         }
     }
 }

@@ -3,7 +3,7 @@ package patches.abstractMonster;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 
 @SpirePatch(clz= AbstractMonster.class, method = "die", paramtypez = {boolean.class})
 public class AbstractMonster_Die
@@ -13,7 +13,7 @@ public class AbstractMonster_Die
     {
         if (!__instance.isDying) // to avoid triggering this more than once
         {
-            PlayerStatistics.Instance.OnEnemyDying(__instance, triggerRelics);
+            CombatStats.Instance.OnEnemyDying(__instance, triggerRelics);
         }
     }
 }

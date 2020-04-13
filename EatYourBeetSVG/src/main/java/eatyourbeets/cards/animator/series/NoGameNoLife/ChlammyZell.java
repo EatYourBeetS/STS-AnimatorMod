@@ -8,8 +8,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.IntellectPower;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -37,13 +37,13 @@ public class ChlammyZell extends AnimatorCard
         GameActions.Bottom.Draw(2);
         GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
 
-        if (!EffectHistory.HasActivatedLimited(cardID))
+        if (!CombatStats.HasActivatedLimited(cardID))
         {
             IntellectPower intellect = GameUtilities.GetPower(player, IntellectPower.class);
             if (intellect != null && intellect.GetCurrentLevel() > 1)
             {
                 GameActions.Bottom.MakeCardInHand(new ChlammyZellScheme());
-                EffectHistory.TryActivateLimited(cardID);
+                CombatStats.TryActivateLimited(cardID);
             }
         }
     }

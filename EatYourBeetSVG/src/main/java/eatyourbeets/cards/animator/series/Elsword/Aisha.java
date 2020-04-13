@@ -11,8 +11,8 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.vfx.SmallLaserEffect;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.IntellectPower;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -64,13 +64,13 @@ public class Aisha extends AnimatorCard
             enemy.hb.cX + MathUtils.random(-0.05f, 0.05f),enemy.hb.cY + MathUtils.random(-0.05f, 0.05f), Color.VIOLET)));
         }
 
-        if (!EffectHistory.HasActivatedSemiLimited(cardID))
+        if (!CombatStats.HasActivatedSemiLimited(cardID))
         {
             IntellectPower intellect = GameUtilities.GetPower(player, IntellectPower.class);
             if (intellect != null && intellect.GetCurrentLevel() > 1)
             {
                 GameActions.Bottom.GainOrbSlots(1);
-                EffectHistory.TryActivateSemiLimited(cardID);
+                CombatStats.TryActivateSemiLimited(cardID);
             }
         }
     }

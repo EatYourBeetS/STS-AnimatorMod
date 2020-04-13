@@ -275,11 +275,6 @@
 		"DESCRIPTIONS": ["Your next #b", " #y0-Cost card(s) are played twice."],
 		"NAME": "Piña Co Lada"
 	},
-	"animator:PlayerStatistics":
-	{
-		"DESCRIPTIONS": ["Hidden Player Statistics power."],
-		"NAME": "Player Statistics"
-	},
 	"animator:PoisonAffinityPower":
 	{
 		"DESCRIPTIONS": ["Whenever you apply #yPoison, apply #b", " additional #yPoison."],

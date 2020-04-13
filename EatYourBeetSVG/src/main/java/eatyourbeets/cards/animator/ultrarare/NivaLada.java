@@ -15,7 +15,7 @@ import eatyourbeets.effects.vfx.LaserBeamEffect;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDiscardedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnAfterCardExhaustedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -42,8 +42,8 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
     @Override
     public void OnBattleStart()
     {
-        PlayerStatistics.onAfterCardDiscarded.Subscribe(this);
-        PlayerStatistics.onAfterCardExhausted.Subscribe(this);
+        CombatStats.onAfterCardDiscarded.Subscribe(this);
+        CombatStats.onAfterCardExhausted.Subscribe(this);
     }
 
     @Override

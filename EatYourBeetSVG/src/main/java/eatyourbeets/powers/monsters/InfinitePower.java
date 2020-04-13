@@ -29,7 +29,7 @@ import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -229,9 +229,9 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     @Override
     public void OnBattleStart()
     {
-        PlayerStatistics.onBattleStart.Subscribe(this);
-        PlayerStatistics.onApplyPower.Subscribe(this);
-        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
+        CombatStats.onBattleStart.Subscribe(this);
+        CombatStats.onApplyPower.Subscribe(this);
+        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override

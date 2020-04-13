@@ -10,8 +10,7 @@ import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -49,7 +48,7 @@ public class Entoma extends AnimatorCard
         .SetDamageEffect(e -> GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40f * Settings.scale, Color.SCARLET.cpy())))
         .AddCallback(enemy ->
         {
-            if (GameUtilities.TriggerOnKill(enemy, true) && EffectHistory.TryActivateLimited(cardID))
+            if (GameUtilities.TriggerOnKill(enemy, true) && CombatStats.TryActivateLimited(cardID))
             {
                 player.increaseMaxHp(2, false);
 
@@ -67,7 +66,7 @@ public class Entoma extends AnimatorCard
     {
         super.atTurnStart();
 
-        if (PlayerStatistics.TurnCount() > 0 && baseDamage > 0)
+        if (CombatStats.TurnCount() > 0 && baseDamage > 0)
         {
             GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseDamage = Math.max(0, c.baseDamage - 1));
         }

@@ -260,11 +260,6 @@
 		"DESCRIPTIONS": ["接下来的 #b", " 张 #y0耗能 牌打出两次。"],
 		"NAME": "平娜·戈·兰达"
 	},
-	"animator:PlayerStatistics":
-	{
-		"DESCRIPTIONS": ["后台玩家统计能力。"],
-		"NAME": "玩家统计"
-	},
 	"animator:PoisonAffinityPower":
 	{
 		"DESCRIPTIONS": ["每当你给予 #y中毒 时, 额外给予一层 #b", " #y中毒 。"],

@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -51,7 +51,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         ChaikaTrabant other = (ChaikaTrabant) makeStatEquivalentCopy();
         other.target = m;
         other.tags.remove(GR.Enums.CardTags.IGNORE_PEN_NIB);
-        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(other);
+        CombatStats.onStartOfTurnPostDraw.Subscribe(other);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         }
 
         GameEffects.Queue.ShowCardBriefly(makeStatEquivalentCopy());
-        PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+        CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
 
         this.applyPowers();
         this.calculateCardDamage(target);

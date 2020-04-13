@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscriber
@@ -48,7 +48,7 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
         {
             if (transformBack(player.drawPile) || transformBack(player.discardPile) || transformBack(player.exhaustPile))
             {
-                PlayerStatistics.onStartOfTurn.Unsubscribe(this);
+                CombatStats.onStartOfTurn.Unsubscribe(this);
             }
         }
     }

@@ -12,7 +12,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardPreview;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -87,7 +87,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
         {
             GameActions.Bottom.ModifyAllInstances(uuid, c -> ((Elesis)c).AddDamageBonus(magicNumber));
         }
-        else if (currentForm == Form.Pyro && EffectHistory.TryActivateSemiLimited(cardID))
+        else if (currentForm == Form.Pyro && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.Draw(1);
         }
@@ -114,7 +114,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
             case Pyro:
             {
                 GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetDebuffsCount(m.powers)).SkipIfZero(true);
-                if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
+                if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
                 {
                     GameActions.Bottom.Draw(1);
                 }

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -32,7 +32,7 @@ public class Shion extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY)
         .SetDamageEffect(enemy ->
         {
-            if (!GameUtilities.IsDeadOrEscaped(enemy) && HasSynergy() && EffectHistory.TryActivateLimited(cardID))
+            if (!GameUtilities.IsDeadOrEscaped(enemy) && HasSynergy() && CombatStats.TryActivateLimited(cardID))
             {
                 GameActions.Bottom.ApplyVulnerable(player, enemy, magicNumber);
             }

@@ -3,12 +3,13 @@ package eatyourbeets.actions;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.utilities.TargetHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EYBActionAutoTarget<T> extends EYBActionWithCallback<T>
 {
+    protected final List<AbstractCreature> targets = new ArrayList<>();
     protected TargetHelper targetHelper;
-    protected List<AbstractCreature> targets;
 
     public EYBActionAutoTarget(ActionType type)
     {
@@ -27,9 +28,21 @@ public class EYBActionAutoTarget<T> extends EYBActionWithCallback<T>
         Initialize(targetHelper.GetSource(), null, amount);
     }
 
-    protected List<AbstractCreature> FindTargets()
+    protected List<AbstractCreature> FindTargets(boolean reverse)
     {
-        targets = targetHelper.GetTargets();
+        targets.clear();
+
+        for (AbstractCreature c : targetHelper.GetTargets())
+        {
+            if (reverse)
+            {
+                targets.add(0, c);
+            }
+            else
+            {
+                targets.add(c);
+            }
+        }
 
         if (targets.size() > 0)
         {

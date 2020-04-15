@@ -35,15 +35,11 @@ public class Shinoa extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
 
         if (HasSynergy())
         {
-            GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber)
-            .AddCallback(power -> GameActions.Top.ApplyWeak(player, power.owner, magicNumber));
-        }
-        else
-        {
-            GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
+            GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), magicNumber);
         }
     }
 }

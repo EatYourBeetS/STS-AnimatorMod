@@ -30,7 +30,8 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
     public boolean chooseRandomTarget;
     public boolean ignoreArtifact;
     public boolean showEffect = true;
-    public boolean skipIfZero;
+    public boolean skipIfZero = false;
+    public boolean skipIfNull = true;
     public boolean canStack = true;
     public boolean faster;
 
@@ -95,6 +96,13 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         return this;
     }
 
+    public ApplyPower SkipIfNull(boolean skipIfNull)
+    {
+        this.skipIfNull = skipIfNull;
+
+        return this;
+    }
+
     public ApplyPower IgnoreArtifact(boolean ignoreArtifact)
     {
         this.ignoreArtifact = ignoreArtifact;
@@ -132,15 +140,9 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             return;
         }
 
-        if (shouldCancelAction() || HardCodedStuff_NoDraw())
+        if (shouldCancelAction() || HardCodedStuff_NoDraw() || !GameUtilities.CanApplyPower(source, target, powerToApply))
         {
-            Complete();
-            return;
-        }
-
-        if (!GameUtilities.CanApplyPower(source, target, powerToApply))
-        {
-            Complete();
+            Complete(callbackResult);
             return;
         }
 
@@ -163,7 +165,6 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         AbstractPower existingPower = null;
         for (AbstractPower power : target.powers)
         {
-            // ApplyPowerActions also uses 'while(p.ID.equals(NightmarePower.POWER_ID));', no idea what that's supposed to do
             if (power.ID.equals(powerToApply.ID))
             {
                 if (canStack)
@@ -301,6 +302,15 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             {
                 UnlockTracker.unlockAchievement("POWERFUL");
             }
+        }
+    }
+
+    @Override
+    protected void Complete(AbstractPower result)
+    {
+        if (!skipIfNull || (result != null && result.owner != null))
+        {
+            super.Complete(result);
         }
     }
 

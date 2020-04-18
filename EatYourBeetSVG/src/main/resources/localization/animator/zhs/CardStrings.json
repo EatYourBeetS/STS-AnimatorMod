@@ -802,7 +802,7 @@
 		"animator:Hans":
 		{
 			"DESCRIPTION": "回合开始时: 对所有敌人 ** 给予 !M! 层 中毒， ** 获得 !S! 点 {临时生命} ** 对于每个中毒的敌人。",
-			"EXTENDED_DESCRIPTION": ["回合开始时: 对所有敌人 给予 #b{0} 层 中毒， 获得 #b{1} 点 临时生命 对于每个中毒的敌人。"],
+			"EXTENDED_DESCRIPTION": ["回合开始时: 对所有敌人 给予 #b{0} 层 中毒， 获得 #b{1} 点 #y临时生命 对于每个中毒的敌人。"],
 			"NAME": "Hans"
 		},
 		"animator:Kazuma":

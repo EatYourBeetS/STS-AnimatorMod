@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class HiiragiTenri extends AnimatorCard_UltraRare
@@ -36,7 +36,7 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
     {
         super.triggerOnExhaust();
 
-        if (EffectHistory.TryActivateLimited(cardID))
+        if (CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.MoveCards(player.exhaustPile, player.drawPile).ShowEffect(false, false);
         }

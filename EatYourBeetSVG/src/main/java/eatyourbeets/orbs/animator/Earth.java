@@ -17,7 +17,7 @@ import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
 import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -74,7 +74,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         }
 
         turns = 0;
-        PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+        CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         evoked = true;
     }
 
@@ -83,7 +83,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         if (!AbstractDungeon.player.orbs.contains(this))
         {
-            PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
             return;
         }
 
@@ -164,7 +164,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.2f);
         turns = 3;
         evoked = false;
-        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
+        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override

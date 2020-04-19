@@ -7,7 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class Evileye extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (HasSynergy() && EffectHistory.TryActivateLimited(this.cardID))
+        if (HasSynergy() && CombatStats.TryActivateLimited(this.cardID))
         {
             GameActions.Bottom.GainIntellect(2);
             GameActions.Bottom.GainOrbSlots(1);

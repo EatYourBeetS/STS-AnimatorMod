@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.base.UnnamedCard;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -38,8 +38,8 @@ public class MoveToVoidAction extends EYBAction
         }
         else
         {
-            PlayerStatistics.Void.Initialize(false);
-            PlayerStatistics.Void.addToBottom(card);
+            CombatStats.Void.Initialize(false);
+            CombatStats.Void.addToBottom(card);
 
             UnnamedCard c = JavaUtilities.SafeCast(card, UnnamedCard.class);
             if (c != null)

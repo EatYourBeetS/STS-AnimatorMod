@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.controls.GUI_TextBox;
@@ -32,32 +32,32 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom)
     {
-        PlayerStatistics.EnsurePowerIsApplied();
-        PlayerStatistics.Instance.OnBattleStart();
+        CombatStats.EnsurePowerIsApplied();
+        CombatStats.Instance.OnBattleStart();
     }
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom)
     {
-        PlayerStatistics.Instance.OnBattleEnd();
+        CombatStats.Instance.OnBattleEnd();
     }
 
     @Override
     public void receivePostDraw(AbstractCard abstractCard)
     {
-        PlayerStatistics.Instance.OnAfterDraw(abstractCard);
+        CombatStats.Instance.OnAfterDraw(abstractCard);
     }
 
     @Override
     public void receivePostEnergyRecharge()
     {
-        PlayerStatistics.EnsurePowerIsApplied(); // Ensure PlayerStatistics is always active at turn start
+        CombatStats.EnsurePowerIsApplied(); // Ensure PlayerStatistics is always active at turn start
     }
 
     @Override // false = skips monster turn
     public boolean receivePreMonsterTurn(AbstractMonster abstractMonster)
     {
-        PlayerStatistics.EnsurePowerIsApplied();
+        CombatStats.EnsurePowerIsApplied();
 
         return true;
     }
@@ -65,13 +65,13 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     @Override
     public void receivePreStartGame()
     {
-        PlayerStatistics.OnGameStart();
+        CombatStats.OnGameStart();
     }
 
     @Override
     public void receivePostDeath()
     {
-        PlayerStatistics.OnAfterDeath();
+        CombatStats.OnAfterDeath();
     }
 
     @Override

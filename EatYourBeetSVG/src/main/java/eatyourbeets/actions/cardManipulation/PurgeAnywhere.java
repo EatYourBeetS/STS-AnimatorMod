@@ -3,7 +3,7 @@ package eatyourbeets.actions.cardManipulation;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
@@ -48,7 +48,7 @@ public class PurgeAnywhere extends EYBAction
             player.discardPile.removeCard(card);
             player.exhaustPile.removeCard(card);
 
-            PlayerStatistics.Void.removeCard(card);
+            CombatStats.Void.removeCard(card);
         }
 
         if (uuid != null)
@@ -59,7 +59,7 @@ public class PurgeAnywhere extends EYBAction
             RemoveAll(player.discardPile);
             RemoveAll(player.exhaustPile);
 
-            RemoveAll(PlayerStatistics.Void);
+            RemoveAll(CombatStats.Void);
         }
 
         if (amount > 0)

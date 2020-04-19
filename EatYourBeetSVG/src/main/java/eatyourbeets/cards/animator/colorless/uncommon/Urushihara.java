@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -44,7 +44,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
 
         GameActions.Bottom.ChannelOrb(new Dark(), true);
 
-        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(other);
+        CombatStats.onStartOfTurnPostDraw.Subscribe(other);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
             GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
             GameUtilities.UsePenNib();
 
-            PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         }
     }
 }

@@ -7,7 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -32,7 +32,7 @@ public class DolaRiku extends AnimatorCard
         .SetOptions(false, false, false)
         .AddCallback(cards -> GameActions.Bottom.Add(new DolaRikuAction(cards.get(0), magicNumber)));
 
-        if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
+        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Top.Draw(1)
             .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsCurseOrStatus(c), false);

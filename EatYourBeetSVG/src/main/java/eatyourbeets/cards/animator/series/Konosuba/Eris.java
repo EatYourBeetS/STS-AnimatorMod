@@ -12,8 +12,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnLoseHpSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -47,15 +46,15 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
     @Override
     public void OnBattleStart()
     {
-        PlayerStatistics.onLoseHp.Subscribe(this);
+        CombatStats.onLoseHp.Subscribe(this);
     }
 
     @Override
     public int OnLoseHp(int damageAmount)
     {
-        if (EffectHistory.HasActivatedLimited(cardID))
+        if (CombatStats.HasActivatedLimited(cardID))
         {
-            PlayerStatistics.onLoseHp.Unsubscribe(this);
+            CombatStats.onLoseHp.Unsubscribe(this);
             return damageAmount;
         }
 
@@ -81,8 +80,8 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
             }
 
             GameEffects.List.Add(new ShowCardBrieflyEffect(temp));
-            PlayerStatistics.onLoseHp.Unsubscribe(this);
-            EffectHistory.TryActivateLimited(cardID);
+            CombatStats.onLoseHp.Unsubscribe(this);
+            CombatStats.TryActivateLimited(cardID);
             return 0;
         }
 

@@ -3,12 +3,13 @@ package eatyourbeets.actions.autoTarget;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.EYBActionAutoTarget;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.TargetHelper;
 
 public class ApplyPowerAuto extends EYBActionAutoTarget<AbstractPower>
 {
@@ -19,7 +20,8 @@ public class ApplyPowerAuto extends EYBActionAutoTarget<AbstractPower>
     protected boolean chooseRandomTarget;
     protected boolean ignoreArtifact;
     protected boolean showEffect = true;
-    protected boolean skipIfZero;
+    protected boolean skipIfZero = false;
+    protected boolean skipIfNull = true;
     protected boolean canStack = true;
     protected boolean faster;
 
@@ -51,6 +53,13 @@ public class ApplyPowerAuto extends EYBActionAutoTarget<AbstractPower>
         return this;
     }
 
+    public ApplyPowerAuto SkipIfNull(boolean skipIfNull)
+    {
+        this.skipIfNull = skipIfNull;
+
+        return this;
+    }
+
     public ApplyPowerAuto IgnoreArtifact(boolean ignoreArtifact)
     {
         this.ignoreArtifact = ignoreArtifact;
@@ -69,13 +78,14 @@ public class ApplyPowerAuto extends EYBActionAutoTarget<AbstractPower>
     @Override
     protected void FirstUpdate()
     {
-        for (AbstractCreature target : FindTargets())
+        for (AbstractCreature target : FindTargets(true)) // Reverse because of GameActions.Top
         {
             ApplyPower action = new ApplyPower(source, target, powerHelper.Create(target, source, amount), amount);
             action.IgnoreArtifact(ignoreArtifact);
             action.SetRealtime(isRealtime);
             action.ShowEffect(showEffect, faster);
             action.SkipIfZero(skipIfZero);
+            action.SkipIfNull(skipIfNull);
             action.CanStack(canStack);
             action.IsCancellable(canCancel);
             for (Object tag : tags)

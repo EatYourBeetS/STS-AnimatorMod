@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnBattleEndSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.animator.HolyGrailRelic;
 import eatyourbeets.utilities.GameActions;
 
@@ -36,7 +36,7 @@ public class HolyGrail extends AnimatorCard_UltraRare implements OnBattleEndSubs
     {
         super.triggerWhenDrawn();
 
-        PlayerStatistics.onBattleEnd.Subscribe(this);
+        CombatStats.onBattleEnd.Subscribe(this);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class HolyGrail extends AnimatorCard_UltraRare implements OnBattleEndSubs
     {
         super.triggerOnEndOfTurnForPlayingCard();
 
-        PlayerStatistics.onBattleEnd.Subscribe(this);
+        CombatStats.onBattleEnd.Subscribe(this);
     }
 
     @Override

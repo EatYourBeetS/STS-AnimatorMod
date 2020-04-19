@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import eatyourbeets.interfaces.subscribers.OnReceiveEmeraldBonus;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.PlayerFlightPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -63,10 +63,10 @@ public abstract class HornedBat extends EYBMonster implements OnReceiveEmeraldBo
 
         public static TurnData Get()
         {
-            TurnData data = PlayerStatistics.GetTurnData(HornedBat.ID, null);
+            TurnData data = CombatStats.GetTurnData(HornedBat.ID, null);
             if (data == null)
             {
-                return PlayerStatistics.SetTurnData(HornedBat.ID, new TurnData());
+                return CombatStats.SetTurnData(HornedBat.ID, new TurnData());
             }
 
             return data;

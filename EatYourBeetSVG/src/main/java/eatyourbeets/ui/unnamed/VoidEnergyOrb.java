@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.unnamed.UnnamedResources;
 import eatyourbeets.resources.unnamed.UnnamedStrings;
 import eatyourbeets.utilities.GameUtilities;
@@ -80,9 +80,9 @@ public class VoidEnergyOrb
                 {
                     TipHelper.renderGenericTip(50f * Settings.scale, hb.y + hb.height * 2, uiStrings.TEXT[0], uiStrings.TEXT[1]);
 
-                    if (InputHelper.justClickedLeft && !PlayerStatistics.Void.isEmpty())
+                    if (InputHelper.justClickedLeft && !CombatStats.Void.isEmpty())
                     {
-                        AbstractDungeon.gridSelectScreen.open(new CardGroup(PlayerStatistics.Void, CardGroup.CardGroupType.UNSPECIFIED),
+                        AbstractDungeon.gridSelectScreen.open(new CardGroup(CombatStats.Void, CardGroup.CardGroupType.UNSPECIFIED),
                                 0, uiStrings.TEXT[2], false, false, true, false);
 
                         voidScreenOpen = true;

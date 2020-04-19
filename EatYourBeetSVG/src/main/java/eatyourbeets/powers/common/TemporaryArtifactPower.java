@@ -5,23 +5,25 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
+import eatyourbeets.actions.powers.ApplyPower;
+import eatyourbeets.interfaces.subscribers.OnTryApplyPowerSubscriber;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JavaUtilities;
 
-public class TemporaryArtifactPower extends AbstractPower implements CloneablePowerInterface
+public class TemporaryArtifactPower extends AbstractPower implements CloneablePowerInterface, OnTryApplyPowerSubscriber
 {
-    public static final String FAKE_POWER_ID = "Thanks for hardcoding everything (temp. artifact)";
-    public static final String ARTIFACT_ID = ArtifactPower.POWER_ID;
-    private static final PowerStrings powerStrings;
-    public static final String NAME;
-    public static final String[] DESCRIPTIONS;
+    public static final String POWER_ID = GR.Common.CreateID(TemporaryArtifactPower.class.getSimpleName());
+    public static final PowerStrings STRINGS = CardCrawlGame.languagePack.getPowerStrings(ArtifactPower.POWER_ID);
 
     public TemporaryArtifactPower(AbstractCreature owner, int amount)
     {
-        this.name = "Temporary " + NAME;
-        this.ID = FAKE_POWER_ID;
+        this.name = "Temporary " + STRINGS.NAME;
+        this.ID = POWER_ID;
         this.owner = owner;
         this.amount = amount;
         this.updateDescription();
@@ -31,22 +33,33 @@ public class TemporaryArtifactPower extends AbstractPower implements CloneablePo
     }
 
     @Override
-    public void onInitialApplication()
+    public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
     {
-        super.onInitialApplication();
+        if (target == owner && power.type == PowerType.DEBUFF)
+        {
+            ApplyPower action = JavaUtilities.SafeCast(AbstractDungeon.actionManager.currentAction, ApplyPower.class);
+            if (action == null || !action.ignoreArtifact)
+            {
+                GameActions.Top.SFX("NULLIFY_SFX");
+                flashWithoutSound();
+                onSpecificTrigger();
+                return false;
+            }
+        }
 
-        this.ID = ARTIFACT_ID;
+        return true;
     }
 
     public void updateDescription()
     {
+        String[] TEXT = STRINGS.DESCRIPTIONS;
         if (this.amount == 1)
         {
-            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+            this.description = TEXT[0] + amount + TEXT[1];
         }
         else
         {
-            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2];
+            this.description = TEXT[0] + amount + TEXT[2];
         }
     }
 
@@ -56,21 +69,6 @@ public class TemporaryArtifactPower extends AbstractPower implements CloneablePo
         super.onSpecificTrigger();
 
         GameActions.Top.ReducePower(this, 1);
-    }
-
-    @Override
-    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
-    {
-        super.onApplyPower(power, target, source);
-
-        if (ArtifactPower.POWER_ID.equals(power.ID))
-        {
-            // There is no trigger for when the enemy is applying a power to you, which would have
-            // made this much easier and cleaner... the alternative (without patching) is to change this
-            // power's id when artifact would be applied, then changing it back with the next action
-            this.ID = FAKE_POWER_ID;
-            GameActions.Top.Callback(() -> this.ID = ARTIFACT_ID);
-        }
     }
 
     @Override
@@ -93,13 +91,6 @@ public class TemporaryArtifactPower extends AbstractPower implements CloneablePo
     public AbstractPower makeCopy()
     {
         return new TemporaryArtifactPower(owner, amount);
-    }
-
-    static
-    {
-        powerStrings = CardCrawlGame.languagePack.getPowerStrings(ARTIFACT_ID);
-        NAME = powerStrings.NAME;
-        DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     }
 }
 

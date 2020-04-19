@@ -29,7 +29,6 @@ import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.ui.unnamed.Void;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
@@ -39,11 +38,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlayerStatistics extends AnimatorPower implements InvisiblePower
+public class CombatStats extends EYBPower implements InvisiblePower
 {
-    public static final String POWER_ID = CreateFullID(PlayerStatistics.class);
+    public static final String POWER_ID = GR.Common.CreateID(CombatStats.class.getSimpleName());
 
-    public static final PlayerStatistics Instance = new PlayerStatistics();
+    public static final CombatStats Instance = new CombatStats();
 
     public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying  = new GameEvent<>();
     public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = new GameEvent<>();
@@ -73,9 +72,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 
     private static final Map<String, Object> combatData = new HashMap<>();
     private static final Map<String, Object> turnData = new HashMap<>();
-    private static final EffectHistory effectHistory = new EffectHistory();
     private static GameActionManager.Phase currentPhase;
-    private static int turnDamageMultiplier = 0;
     private static int turnCount = 0;
     private static int cardsDrawnThisTurn = 0;
     private static int cardsExhaustedThisTurn = 0;
@@ -83,7 +80,14 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     private static int orbsEvokedThisTurn = 0;
     private static int synergiesThisTurn = 0;
 
-    protected PlayerStatistics()
+    //@Formatter: Off
+    public static boolean HasActivatedLimited(String id) { return combatData.containsKey(id); }
+    public static boolean HasActivatedSemiLimited(String id) { return turnData.containsKey(id); }
+    public static boolean TryActivateLimited(String id) { return combatData.put(id, 1) == null; }
+    public static boolean TryActivateSemiLimited(String id) { return turnData.put(id, 1) == null; }
+    //@Formatter: On
+
+    protected CombatStats()
     {
         super(null, POWER_ID);
 
@@ -93,6 +97,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     @Override
     public AbstractPower makeCopy()
     {
+        JavaUtilities.GetLogger(this).error("Do not clone powers which implement InvisiblePower");
         return null;
     }
 
@@ -105,7 +110,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     private static void ClearStats()
     {
         RefreshPlayer();
-        JavaUtilities.Log(PlayerStatistics.class, "Clearing Player Stats");
+        JavaUtilities.Log(CombatStats.class, "Clearing Player Stats");
 
         for (OnStatsClearedSubscriber s : onStatsCleared.GetSubscribers())
         {
@@ -114,9 +119,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 
         CardGlowBorderPatches.overrideColor = null;
         Synergies.SetLastCardPlayed(null);
-        combatData.clear();
-        turnData.clear();
-        turnDamageMultiplier = 0;
+
         turnCount = 0;
         cardsDrawnThisTurn = 0;
         cardsExhaustedThisTurn = 0;
@@ -124,9 +127,8 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         orbsEvokedThisTurn = 0;
         synergiesThisTurn = 0;
         currentPhase = null;
-
-        EffectHistory.limitedEffects.clear();
-        EffectHistory.semiLimitedEffects.clear();
+        combatData.clear();
+        turnData.clear();
 
         onSynergy.Clear();
         onEnemyDying.Clear();
@@ -155,7 +157,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     {
         if (!player.powers.contains(Instance))
         {
-            JavaUtilities.Log(PlayerStatistics.class, "Applied PlayerStatistics");
+            JavaUtilities.Log(CombatStats.class, "Applied PlayerStatistics");
             player.powers.add(Instance);
         }
     }
@@ -335,11 +337,6 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         {
             return SetCombatData(key, defaultData);
         }
-    }
-
-    public static void AddTurnDamageMultiplier(int value)
-    {
-        turnDamageMultiplier += value;
     }
 
     public static int CardsExhaustedThisTurn()
@@ -533,15 +530,11 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
             s.OnEndOfTurn(isPlayer);
         }
 
-        EffectHistory.semiLimitedEffects.clear();
-
         turnData.clear();
-        turnDamageMultiplier = 0;
         cardsExhaustedThisTurn = 0;
         synergiesThisTurn = 0;
         cardsDrawnThisTurn = 0;
         orbsEvokedThisTurn = 0;
-
         turnCount += 1;
 
         Synergies.SetLastCardPlayed(null);
@@ -558,19 +551,6 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         if (card instanceof EYBCard && ((EYBCard)card).haste)
         {
             GameActions.Bottom.Add(new HasteAction((EYBCard) card));
-        }
-    }
-
-    @Override
-    public float atDamageGive(float damage, DamageInfo.DamageType type)
-    {
-        if (turnDamageMultiplier != 0 && type == DamageInfo.DamageType.NORMAL)
-        {
-            return Math.round(damage * (1 + turnDamageMultiplier / 100f));
-        }
-        else
-        {
-            return damage;
         }
     }
 

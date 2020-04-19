@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Magilou extends AnimatorCard
@@ -42,7 +42,7 @@ public class Magilou extends AnimatorCard
     @Override
     public void triggerWhenDrawn()
     {
-        if (EffectHistory.TryActivateLimited(cardID))
+        if (CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Top.Discard(this, player.hand).ShowEffect(true, true)
             .AddCallback(() -> GameActions.Top.MakeCardInHand(new Bienfu()))

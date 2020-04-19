@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.powers.RegenPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.BorosPower;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Boros extends AnimatorCard
@@ -30,7 +30,7 @@ public class Boros extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        if (EffectHistory.TryActivateLimited(cardID))
+        if (CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.StackPower(new RegenPower(player, magicNumber));
         }

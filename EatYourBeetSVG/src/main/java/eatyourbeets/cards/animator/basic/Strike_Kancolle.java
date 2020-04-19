@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Strike_Kancolle extends Strike
@@ -27,7 +27,7 @@ public class Strike_Kancolle extends Strike
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
-        if (EffectHistory.TryActivateLimited(cardID))
+        if (CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.GainGold(magicNumber);
         }

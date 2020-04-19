@@ -1,12 +1,14 @@
 package eatyourbeets.actions.animator;
 
 import basemod.BaseMod;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import eatyourbeets.actions.EYBAction;
+import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.utilities.GameActions;
 
-public class CreateThrowingKnives extends EYBAction
+public class CreateThrowingKnives extends EYBActionWithCallback<AbstractCard>
 {
     protected boolean upgraded;
 
@@ -27,11 +29,12 @@ public class CreateThrowingKnives extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        int max = Math.min(amount, BaseMod.MAX_HAND_SIZE - player.hand.size());
+        final int max = Math.min(amount, BaseMod.MAX_HAND_SIZE - player.hand.size());
         for (int i = 0; i < max; i++)
         {
             GameActions.Top.MakeCard(ThrowingKnife.GetRandomCard(), player.hand)
             .SetUpgrade(upgraded, false).CancelIfFull(true)
+            .AddCallback((ActionT1<AbstractCard>) this::Complete)
             .SetDuration(Settings.ACTION_DUR_FASTER, false);
         }
 

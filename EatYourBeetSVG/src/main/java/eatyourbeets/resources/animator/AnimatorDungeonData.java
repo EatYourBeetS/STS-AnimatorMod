@@ -19,7 +19,7 @@ import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.interfaces.subscribers.OnAddedToDeckSubscriber;
 import eatyourbeets.interfaces.subscribers.OnCardPoolChangedSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts._FakeLoadout;
@@ -164,7 +164,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
     public void InitializeCardPool(boolean startGame)
     {
-        final AbstractPlayer player = PlayerStatistics.RefreshPlayer();
+        final AbstractPlayer player = CombatStats.RefreshPlayer();
         if (player.chosenClass != GR.Animator.PlayerClass)
         {
             AbstractDungeon.srcColorlessCardPool.group.removeIf(c -> c instanceof AnimatorCard);

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.cards.base.UnnamedCard;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.unnamed.UnnamedImages;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
@@ -29,7 +29,7 @@ public class AbstractCard_RenderEnergy
         {
             Color costColor = Color.WHITE.cpy();
 
-            if (AbstractDungeon.player != null && AbstractDungeon.player.hand.contains(card) && !PlayerStatistics.Void.CanUse(card))
+            if (AbstractDungeon.player != null && AbstractDungeon.player.hand.contains(card) && !CombatStats.Void.CanUse(card))
             {
                 costColor = new Color(1f, 0.3f, 0.3f, 1f); //AbstractCard.ENERGY_COST_RESTRICTED_COLOR;
             }

@@ -3,7 +3,7 @@ package patches.actions;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -17,7 +17,7 @@ public class EmptyDeckShuffleAction_Update
     {
         if (!__instance.isDone && !_shuffled.Get(__instance))
         {
-            PlayerStatistics.OnShuffle(true);
+            CombatStats.OnShuffle(true);
         }
     }
 }

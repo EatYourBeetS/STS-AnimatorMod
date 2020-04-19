@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -34,7 +34,7 @@ public class Hero extends AnimatorCard_UltraRare
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY)
         .AddCallback(c ->
         {
-            if (GameUtilities.TriggerOnKill(c, true) && EffectHistory.TryActivateLimited(cardID))
+            if (GameUtilities.TriggerOnKill(c, true) && CombatStats.TryActivateLimited(cardID))
             {
                 Random rng = new Random(Settings.seed + (AbstractDungeon.actNum * 17) + (AbstractDungeon.floorNum * 23));
                 if (rng.randomBoolean(0.4f))

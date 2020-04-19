@@ -2,7 +2,7 @@ package eatyourbeets.relics.animator;
 
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 
@@ -28,7 +28,7 @@ public class LivingPicture extends AnimatorRelic implements OnSynergySubscriber
     {
         super.atTurnStart();
 
-        PlayerStatistics.onSynergy.SubscribeOnce(this);
+        CombatStats.onSynergy.SubscribeOnce(this);
         SetEnabled(true);
     }
 

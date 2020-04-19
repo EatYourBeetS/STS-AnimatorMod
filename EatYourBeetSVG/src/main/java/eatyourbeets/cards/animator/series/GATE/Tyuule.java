@@ -38,33 +38,28 @@ public class Tyuule extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(), magicNumber).AddCallback(poison ->
+        GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(), magicNumber).AddCallback(power ->
         {
-            if (poison == null || poison.owner == null)
+            final AbstractCreature target = power.owner;
+            for (AbstractPower debuff : target.powers)
             {
-                return;
-            }
-
-            AbstractCreature target = poison.owner;
-            for (AbstractPower power : target.powers)
-            {
-                if (WeakPower.POWER_ID.equals(power.ID))
+                if (WeakPower.POWER_ID.equals(debuff.ID))
                 {
                     GameActions.Bottom.ApplyWeak(player, target, 1);
                 }
-                else if (VulnerablePower.POWER_ID.equals(power.ID))
+                else if (VulnerablePower.POWER_ID.equals(debuff.ID))
                 {
                     GameActions.Bottom.ApplyVulnerable(player, target, 1);
                 }
-                else if (PoisonPower.POWER_ID.equals(power.ID))
+                else if (PoisonPower.POWER_ID.equals(debuff.ID))
                 {
                     GameActions.Bottom.ApplyPoison(player, target, 1);
                 }
-                else if (BurningPower.POWER_ID.equals(power.ID))
+                else if (BurningPower.POWER_ID.equals(debuff.ID))
                 {
                     GameActions.Bottom.ApplyBurning(player, target, 1);
                 }
-                else if (GainStrengthPower.POWER_ID.equals(power.ID))
+                else if (GainStrengthPower.POWER_ID.equals(debuff.ID))
                 {
                     GameActions.Bottom.ReduceStrength(target, 1, true);
                 }

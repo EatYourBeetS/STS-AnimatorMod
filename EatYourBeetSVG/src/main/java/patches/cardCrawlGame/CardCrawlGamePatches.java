@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import eatyourbeets.dungeons.TheUnnamedReign;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -117,13 +117,13 @@ public class CardCrawlGamePatches
         @SpirePrefixPatch
         public static void Prefix(CardCrawlGame instance, AbstractPlayer p)
         {
-            PlayerStatistics.LoadingPlayerSave = true;
+            CombatStats.LoadingPlayerSave = true;
         }
 
         @SpirePostfixPatch
         public static void Postfix(CardCrawlGame instance, AbstractPlayer p)
         {
-            PlayerStatistics.LoadingPlayerSave = false;
+            CombatStats.LoadingPlayerSave = false;
         }
     }
 
@@ -133,7 +133,7 @@ public class CardCrawlGamePatches
         @SpirePrefixPatch
         public static void Prefix()
         {
-            PlayerStatistics.OnStartOver();
+            CombatStats.OnStartOver();
         }
     }
 }

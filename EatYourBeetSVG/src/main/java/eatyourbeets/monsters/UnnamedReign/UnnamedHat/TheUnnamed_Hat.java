@@ -7,7 +7,7 @@ import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.SharedMoveset.special.EYBMove_SummonEnemy;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.TheUnnamedHatPower;
 import eatyourbeets.utilities.GameActions;
@@ -106,7 +106,7 @@ public class TheUnnamed_Hat extends EYBMonster
                 return move;
             }
 
-            return owner.GetRotation().get((PlayerStatistics.TurnCount() + moveOffset) % owner.GetRotation().size());
+            return owner.GetRotation().get((CombatStats.TurnCount() + moveOffset) % owner.GetRotation().size());
         }
 
         static

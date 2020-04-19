@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.interfaces.subscribers.OnBlockBrokenSubscriber;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -31,7 +31,7 @@ public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubs
 
         GameActions.Top.VFX(new BorderFlashEffect(Color.ORANGE));
 
-        PlayerStatistics.onBlockBroken.Subscribe(this);
+        CombatStats.onBlockBroken.Subscribe(this);
     }
 
     @Override
@@ -74,6 +74,6 @@ public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubs
     {
         super.onRemove();
 
-        PlayerStatistics.onBlockBroken.Unsubscribe(this);
+        CombatStats.onBlockBroken.Unsubscribe(this);
     }
 }

@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
@@ -38,7 +38,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
 
         if (player.hand.contains(this))
         {
-            PlayerStatistics.onSynergy.Subscribe(this);
+            CombatStats.onSynergy.Subscribe(this);
         }
     }
 
@@ -47,7 +47,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
     {
         if (!player.hand.contains(this))
         {
-            PlayerStatistics.onSynergy.Unsubscribe(this);
+            CombatStats.onSynergy.Unsubscribe(this);
         }
         else
         {

@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Arpeggio extends AnimatorCard
@@ -34,7 +34,7 @@ public class Arpeggio extends AnimatorCard
 
         GameActions.Bottom.GainIntellect(secondaryValue, false);
 
-        if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
+        if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ChannelOrb(new Earth(), true);
         }

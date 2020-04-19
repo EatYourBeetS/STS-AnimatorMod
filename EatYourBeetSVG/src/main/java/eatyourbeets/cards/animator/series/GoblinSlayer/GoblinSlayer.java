@@ -10,7 +10,7 @@ import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -26,7 +26,6 @@ public class GoblinSlayer extends AnimatorCard
         SetUpgrade(3, 3);
         SetScaling(1, 0, 1);
 
-        this.cropPortrait = false;
         SetRetain(true);
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -36,7 +35,7 @@ public class GoblinSlayer extends AnimatorCard
     {
         super.atTurnStart();
 
-        int turnCount = PlayerStatistics.TurnCount();
+        int turnCount = CombatStats.TurnCount();
         if (turnCount % 2 == 1)
         {
             int goblins = 1;

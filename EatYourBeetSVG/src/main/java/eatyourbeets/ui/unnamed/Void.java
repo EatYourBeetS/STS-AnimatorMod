@@ -7,7 +7,7 @@ import eatyourbeets.cards.base.UnnamedCard;
 import eatyourbeets.characters.UnnamedCharacter;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.interfaces.subscribers.OnVoidTurnStartSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class Void extends CardGroup implements OnStartOfTurnPostDrawSubscriber
@@ -24,7 +24,7 @@ public class Void extends CardGroup implements OnStartOfTurnPostDrawSubscriber
         if (!firstTime || AbstractDungeon.player instanceof UnnamedCharacter)
         {
 //          VoidEnergyPatches.SetOrb(energyOrb);
-            PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
+            CombatStats.onStartOfTurnPostDraw.Subscribe(this);
         }
 //        else
 //        {

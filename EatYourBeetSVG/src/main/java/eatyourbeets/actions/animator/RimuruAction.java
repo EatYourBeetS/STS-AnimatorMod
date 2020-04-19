@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.series.TenseiSlime.Rimuru;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -33,7 +33,7 @@ public class RimuruAction extends EYBAction
         && !transform(player.exhaustPile, card) && !transform(player.limbo, card))
         {
             // Rimuru has been purged or removed from the game, unsubscribe it
-            PlayerStatistics.onAfterCardPlayed.Unsubscribe(rimuru);
+            CombatStats.onAfterCardPlayed.Unsubscribe(rimuru);
         }
         else
         {

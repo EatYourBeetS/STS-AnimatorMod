@@ -11,8 +11,8 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class Emonzaemon extends AnimatorCard
         GameActions.Bottom.SFX("ATTACK_FIRE");
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
 
-        if (!EffectHistory.HasActivatedLimited(cardID))
+        if (!CombatStats.HasActivatedLimited(cardID))
         {
             ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn;
             int size = cardsPlayed.size();
@@ -68,7 +68,7 @@ public class Emonzaemon extends AnimatorCard
 
                 if (threeInARow)
                 {
-                    EffectHistory.TryActivateLimited(cardID);
+                    CombatStats.TryActivateLimited(cardID);
                     GameActions.Bottom.MakeCardInDrawPile(new EntouJyuu())
                     .SetDestination(CardSelection.Bottom)
                     .SetUpgrade(upgraded, false);

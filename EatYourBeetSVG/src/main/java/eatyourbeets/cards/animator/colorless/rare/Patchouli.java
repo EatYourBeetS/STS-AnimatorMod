@@ -17,7 +17,7 @@ import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.delegates.ActionT0;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
@@ -141,7 +141,7 @@ public class Patchouli extends AnimatorCard implements StartupCard
     @Override
     public boolean atBattleStartPreDraw()
     {
-        if (EffectHistory.TryActivateLimited(cardID))
+        if (CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.Wait(0.3f);
             GameActions.Bottom.MakeCardInDiscardPile(JavaUtilities.GetRandomElement(OrbCore.GetAllCores()).makeCopy());

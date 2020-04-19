@@ -33,7 +33,7 @@ import eatyourbeets.interfaces.subscribers.OnTryApplyPowerSubscriber;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -729,7 +729,7 @@ public class GameUtilities
 
     public static void RefreshHandLayout()
     {
-        PlayerStatistics.onPhaseChanged.Subscribe(handLayoutRefresher);
+        CombatStats.onPhaseChanged.Subscribe(handLayoutRefresher);
     }
 
     public static boolean RequiresTarget(AbstractCard card)
@@ -886,7 +886,7 @@ public class GameUtilities
                 hand.applyPowers();
                 hand.glowCheck();
 
-                PlayerStatistics.onPhaseChanged.Unsubscribe(handLayoutRefresher);
+                CombatStats.onPhaseChanged.Unsubscribe(handLayoutRefresher);
             }
         }
     }

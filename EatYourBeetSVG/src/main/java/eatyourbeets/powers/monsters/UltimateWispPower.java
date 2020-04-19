@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import patches.CardGlowBorderPatches;
@@ -87,8 +87,8 @@ public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPos
     @Override
     public void OnBattleStart()
     {
-        PlayerStatistics.onBattleStart.Subscribe(this);
-        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
+        CombatStats.onBattleStart.Subscribe(this);
+        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
         CardGlowBorderPatches.overrideColor = RED;
     }
 
@@ -96,7 +96,7 @@ public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPos
     public void onRemove()
     {
         super.onRemove();
-        PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+        CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
     }
 
     @Override

@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.vfx.FireballEffect;
 import eatyourbeets.orbs.animator.Fire;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Benimaru extends AnimatorCard
@@ -30,7 +30,7 @@ public class Benimaru extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        if (EffectHistory.TryActivateSemiLimited(cardID))
+        if (CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.ChannelOrb(new Fire(), true);
         }

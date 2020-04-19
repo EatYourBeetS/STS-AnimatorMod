@@ -11,7 +11,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDrawnSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -69,7 +69,7 @@ public class MisakiNakahara extends AnimatorCard
 
         private static void Register(AbstractCard card)
         {
-            PlayerStatistics.onAfterCardDrawn.Subscribe(new MotivateOnDraw(card));
+            CombatStats.onAfterCardDrawn.Subscribe(new MotivateOnDraw(card));
         }
 
         private MotivateOnDraw(AbstractCard card)
@@ -84,7 +84,7 @@ public class MisakiNakahara extends AnimatorCard
             {
                 GameActions.Bottom.Flash(other);
                 GameActions.Bottom.Motivate(1);
-                PlayerStatistics.onAfterCardDrawn.Unsubscribe(this);
+                CombatStats.onAfterCardDrawn.Unsubscribe(this);
             }
         }
     }

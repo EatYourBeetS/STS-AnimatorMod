@@ -8,9 +8,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.SupportDamagePower;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
@@ -44,7 +43,7 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
         }
 
         alreadyPlayed = true;
-        PlayerStatistics.onPhaseChanged.Subscribe(this);
+        CombatStats.onPhaseChanged.Subscribe(this);
     }
 
     @Override
@@ -52,7 +51,7 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
     {
         if (phase == GameActionManager.Phase.WAITING_ON_USER)
         {
-            if (EffectHistory.TryActivateSemiLimited(this.cardID))
+            if (CombatStats.TryActivateSemiLimited(this.cardID))
             {
                 int amount = player.exhaustPile.size();
                 if (amount > 0)
@@ -62,7 +61,7 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
             }
 
             alreadyPlayed = false;
-            PlayerStatistics.onPhaseChanged.Unsubscribe(this);
+            CombatStats.onPhaseChanged.Unsubscribe(this);
         }
     }
 

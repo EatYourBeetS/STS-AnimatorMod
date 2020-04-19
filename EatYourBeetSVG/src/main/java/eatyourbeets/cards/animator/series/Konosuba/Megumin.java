@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -62,7 +62,7 @@ public class Megumin extends AnimatorCard
 
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
 
-        if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
+        if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
             .IncludeMasterDeck(true)

@@ -1,15 +1,18 @@
 package eatyourbeets.actions.animator;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.actions.EYBAction;
+import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.animator.status.GoblinChampion;
 import eatyourbeets.cards.animator.status.GoblinKing;
 import eatyourbeets.cards.animator.status.GoblinShaman;
 import eatyourbeets.cards.animator.status.GoblinSoldier;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.utilities.GameActions;
 
-public class CreateRandomGoblins extends EYBAction
+public class CreateRandomGoblins extends EYBActionWithCallback<AbstractCard>
 {
     public CreateRandomGoblins(int amount)
     {
@@ -21,9 +24,12 @@ public class CreateRandomGoblins extends EYBAction
     @Override
     protected void FirstUpdate()
     {
+        final float speed = amount < 2 ? Settings.ACTION_DUR_FAST : amount < 3 ? Settings.ACTION_DUR_FASTER : Settings.ACTION_DUR_XFAST;
         for (int i = 0; i < amount; i++)
         {
-            GameActions.Bottom.MakeCardInDrawPile(GetRandomGoblin(rng));
+            GameActions.Top.MakeCardInDrawPile(GetRandomGoblin(rng))
+            .AddCallback((ActionT1<AbstractCard>) this::Complete)
+            .SetDuration(speed, true);
         }
 
         Complete();

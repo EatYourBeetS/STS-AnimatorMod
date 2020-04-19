@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Chomusuke extends AnimatorCard_UltraRare
@@ -33,7 +33,7 @@ public class Chomusuke extends AnimatorCard_UltraRare
     {
         super.triggerOnExhaust();
 
-        if (EffectHistory.TryActivateSemiLimited(cardID))
+        if (CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.GainEnergy(2);
             GameActions.Bottom.MoveCard(this, player.exhaustPile, player.hand)

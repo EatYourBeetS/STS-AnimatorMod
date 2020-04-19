@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -43,7 +43,7 @@ public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber
     {
         super.triggerWhenDrawn();
 
-        if (EffectHistory.TryActivateLimited(cardID))
+        if (CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ChannelOrb(new Lightning(), true);
             GameActions.Bottom.Flash(this);

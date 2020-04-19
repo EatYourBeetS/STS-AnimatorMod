@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.ForcePower;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -36,7 +36,7 @@ public class Cocytus extends AnimatorCard
             GameActions.Bottom.GainForce(1, true);
         }
 
-        if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
+        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.GainPlatedArmor(secondaryValue);
         }

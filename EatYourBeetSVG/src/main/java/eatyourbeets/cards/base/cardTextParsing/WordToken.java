@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.EffectHistory;
 
 public class WordToken extends CTToken
 {
@@ -142,8 +142,8 @@ public class WordToken extends CTToken
 
         if (overrideColor != null)
         {
-            if (tooltip == GR.Tooltips.SemiLimited && EffectHistory.HasActivatedSemiLimited(context.card.cardID)
-            || (tooltip == GR.Tooltips.Limited && EffectHistory.HasActivatedLimited(context.card.cardID)))
+            if (tooltip == GR.Tooltips.SemiLimited && CombatStats.HasActivatedSemiLimited(context.card.cardID)
+            || (tooltip == GR.Tooltips.Limited && CombatStats.HasActivatedLimited(context.card.cardID)))
             {
                 overrideColor.a = context.card.transparency * 0.6f;// new Color(1f, 0.4f, 0.1f, context.card.transparency));
             }

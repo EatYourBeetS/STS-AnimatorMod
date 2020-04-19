@@ -6,8 +6,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.SupportDamagePower;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -37,7 +37,7 @@ public class Yoichi extends AnimatorCard
         GameActions.Bottom.StackPower(new SupportDamagePower(p, 1))
         .AddCallback(power ->
         {
-            if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
+            if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
             {
                 SupportDamagePower supportDamage = JavaUtilities.SafeCast(power, SupportDamagePower.class);
                 if (supportDamage != null)

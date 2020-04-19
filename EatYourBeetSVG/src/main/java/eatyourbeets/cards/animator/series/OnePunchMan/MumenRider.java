@@ -7,7 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
@@ -32,7 +32,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
         super.triggerOnExhaust();
 
         turns = rng.random(0, 5);
-        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
+        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
             {
                 GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
                 .ShowEffect(false, false);
-                PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+                CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
             }
             else
             {
@@ -64,7 +64,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
         }
         else
         {
-            PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         }
     }
 }

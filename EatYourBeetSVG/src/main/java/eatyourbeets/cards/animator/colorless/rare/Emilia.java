@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -45,7 +45,7 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
             GameActions.Bottom.ChannelOrb(new Frost(), true);
         }
 
-        PlayerStatistics.onStartOfTurnPostDraw.Subscribe((Emilia) makeStatEquivalentCopy());
+        CombatStats.onStartOfTurnPostDraw.Subscribe((Emilia) makeStatEquivalentCopy());
     }
 
     @Override
@@ -61,6 +61,6 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
             }
         }
 
-        PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+        CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
     }
 }

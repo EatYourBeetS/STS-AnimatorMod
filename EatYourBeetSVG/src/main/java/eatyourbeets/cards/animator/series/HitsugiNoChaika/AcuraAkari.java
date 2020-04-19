@@ -7,8 +7,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.TemporaryEnvenomPower;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class AcuraAkari extends AnimatorCard
@@ -39,7 +39,7 @@ public class AcuraAkari extends AnimatorCard
         .SetOptions(false, false, false)
         .AddCallback(() -> GameActions.Bottom.CreateThrowingKnives(magicNumber));
 
-        if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
+        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.StackPower(new TemporaryEnvenomPower(p, secondaryValue));
         }

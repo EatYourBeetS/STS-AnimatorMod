@@ -7,7 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.ShiroPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -105,7 +105,7 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
         {
             int currentCost = (costForTurn + costModifier);
 
-            costModifier = PlayerStatistics.SynergiesThisTurn();
+            costModifier = CombatStats.SynergiesThisTurn();
 
             if (!this.freeToPlayOnce)
             {

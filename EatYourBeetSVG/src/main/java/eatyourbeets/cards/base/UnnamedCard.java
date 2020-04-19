@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.unnamed.MoveToVoidAction;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.unnamed.UnnamedResources;
 import eatyourbeets.utilities.ColoredString;
@@ -148,7 +148,7 @@ public abstract class UnnamedCard extends EYBCard
     @Override
     public boolean cardPlayable(AbstractMonster m)
     {
-        if (!PlayerStatistics.Void.CanUse(this))
+        if (!CombatStats.Void.CanUse(this))
         {
             this.cantUseMessage = TEXT[11];
             return false;

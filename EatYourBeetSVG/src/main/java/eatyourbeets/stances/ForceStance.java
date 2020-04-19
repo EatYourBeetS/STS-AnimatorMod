@@ -49,7 +49,7 @@ public class ForceStance extends EYBStance
         if (damageType == DamageInfo.DamageType.NORMAL) {
             float enemyDamageBonus = ENEMY_DAMAGE_BONUS_PERCENTAGE / 100.00F;
 
-            return damage * (1.00F + ENEMY_DAMAGE_BONUS_PERCENTAGE);
+            return damage * (1.00F + enemyDamageBonus);
         }
 
         return damage;

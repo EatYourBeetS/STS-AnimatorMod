@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.powers.common.TemporaryRetainPower;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -32,13 +32,13 @@ public class OrikoMikuni extends AnimatorCard
         GameActions.Top.Scry(secondaryValue);
         GameActions.Bottom.StackPower(new TemporaryRetainPower(p, magicNumber));
 
-        if (HasSynergy() && !EffectHistory.HasActivatedSemiLimited(cardID))
+        if (HasSynergy() && !CombatStats.HasActivatedSemiLimited(cardID))
         {
             IntellectPower intellect = GameUtilities.GetPower(p, IntellectPower.class);
             if (intellect != null && intellect.GetCurrentLevel() > 1)
             {
                 GameActions.Bottom.Draw(1);
-                EffectHistory.TryActivateSemiLimited(cardID);
+                CombatStats.TryActivateSemiLimited(cardID);
             }
         }
     }

@@ -13,7 +13,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -37,7 +37,7 @@ public class MadokaKaname extends AnimatorCard
     {
         GameActions.Bottom.GainIntellect(secondaryValue, upgraded);
 
-        if (!EffectHistory.TryActivateLimited(cardID))
+        if (!CombatStats.TryActivateLimited(cardID))
         {
             return;
         }

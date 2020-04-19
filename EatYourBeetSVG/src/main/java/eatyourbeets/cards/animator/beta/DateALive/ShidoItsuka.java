@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
@@ -37,7 +37,7 @@ public class ShidoItsuka extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        if (HasSynergy() && !EffectHistory.HasActivatedLimited(cardID))
+        if (HasSynergy() && !CombatStats.HasActivatedLimited(cardID))
         {
             SetExhaust(false);
         }
@@ -90,7 +90,7 @@ public class ShidoItsuka extends AnimatorCard
             }
         });
 
-        if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
+        if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Last.ModifyAllInstances(uuid, c -> ((EYBCard) c).SetExhaust(true));
         }

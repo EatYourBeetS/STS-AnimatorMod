@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Defend_DateALive extends Defend
@@ -27,7 +27,7 @@ public class Defend_DateALive extends Defend
         GameActions.Bottom.GainBlock(block);
 
         int totalCards = player.drawPile.size() + player.discardPile.size() + player.hand.size();
-        if (totalCards >= secondaryValue && EffectHistory.TryActivateLimited(cardID))
+        if (totalCards >= secondaryValue && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.GainEnergy(magicNumber);
         }

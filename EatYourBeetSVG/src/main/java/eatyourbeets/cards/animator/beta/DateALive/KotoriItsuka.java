@@ -12,7 +12,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class KotoriItsuka extends AnimatorCard
@@ -51,7 +51,7 @@ public class KotoriItsuka extends AnimatorCard
 
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
 
-        if (EffectHistory.TryActivateLimited(this.cardID))
+        if (CombatStats.TryActivateLimited(this.cardID))
         {
             GameActions.Bottom.ExhaustFromHand(name, secondaryValue, false)
             .SetOptions(true, true, true)

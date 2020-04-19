@@ -14,7 +14,7 @@ import eatyourbeets.effects.vfx.SmallLaserEffect;
 import eatyourbeets.interfaces.subscribers.OnAddedToDrawPileSubscriber;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -70,7 +70,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnBatt
     @Override
     public void OnBattleStart()
     {
-        PlayerStatistics.onShuffle.Subscribe(this);
+        CombatStats.onShuffle.Subscribe(this);
     }
 
     @Override

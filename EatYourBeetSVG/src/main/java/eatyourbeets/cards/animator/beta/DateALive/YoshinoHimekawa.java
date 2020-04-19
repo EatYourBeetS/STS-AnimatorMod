@@ -7,7 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -52,7 +52,7 @@ public class YoshinoHimekawa extends AnimatorCard
             GameActions.Bottom.ChannelOrb(new Frost(), true);
         }
 
-        if (EffectHistory.TryActivateLimited(this.cardID))
+        if (CombatStats.TryActivateLimited(this.cardID))
         {
             GameActions.Bottom.GainOrbSlots(1);
         }

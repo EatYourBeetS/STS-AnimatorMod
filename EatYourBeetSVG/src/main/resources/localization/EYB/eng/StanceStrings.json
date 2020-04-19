@@ -5,7 +5,7 @@
 		"NAME": "Force Stance",
 		"DESCRIPTION": 
 		[
-			"Gain [F] upon entering or exiting this stance.  While in this stance, you gain #b{0} Strength and enemies deal #b{1}% more damage."
+			"Gain #yForce upon entering or exiting this stance.  While in this stance, you gain #b{0} Strength and enemies deal #b{1}% more damage."
 		]
 	},
 	"EYB:AgilityStance":
@@ -13,7 +13,7 @@
 		"NAME": "Agility Stance",
 		"DESCRIPTION": 
 		[
-			"Gain [A] upon entering or exiting this stance. While in this stance, you gain #b{0} Dexterity and if you take any unblocked damage this turn, lose #b{1} next turn."
+			"Gain #yAgility upon entering or exiting this stance. While in this stance, you gain #b{0} Dexterity and if you take any unblocked damage this turn, lose #b{1} next turn."
 		]
 	},
 	"EYB:IntellectStance":
@@ -21,7 +21,7 @@
 		"NAME": "Intellect Stance",
 		"DESCRIPTION": 
 		[
-			"Gain [I] upon entering or exiting this stance. While in this stance, you gain #b{0} Force."
+			"Gain #yIntellect upon entering or exiting this stance. While in this stance, you gain #b{0} Force."
 		]
 	}
 }

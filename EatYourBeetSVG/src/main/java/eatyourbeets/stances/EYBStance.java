@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.StanceStrings;
@@ -115,9 +116,6 @@ public abstract class EYBStance extends AbstractStance
             CardCrawlGame.sound.stop("STANCE_LOOP_CALM", sfxId);
             sfxId = -1L;
         }
-    }
-
-    public void wasHPLost(DamageInfo info, int damageAmount) {
     }
 
     protected String FormatDescription(Object... args)

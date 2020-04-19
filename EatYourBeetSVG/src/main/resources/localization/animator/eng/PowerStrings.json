@@ -65,11 +65,6 @@
 		"DESCRIPTIONS": ["The next #b", " time(s) you take damage, add 1 #yAdrenaline to your draw pile."],
 		"NAME": "Dustiness Ford Lalatina"
 	},
-	"animator:DeenergizedPower":
-	{
-		"DESCRIPTIONS": ["Lose #b", " energy at the start of your next turn."],
-		"NAME": "Deenergized"
-	},
 	"animator:DelayedHealPower":
 	{
 		"DESCRIPTIONS": ["Heal #g", " HP at the start of your next turn."],

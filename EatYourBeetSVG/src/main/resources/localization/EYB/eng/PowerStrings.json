@@ -24,5 +24,10 @@
 	{
 		"DESCRIPTIONS": ["Lose #b1 #yIntellect at the start of each turn.", " If you reach #b{0} #yIntellect, gain #b{1} #yFocus."],
 		"NAME": "Intellect"
+	},
+	"EYB:DeenergizedPower":
+	{
+		"DESCRIPTIONS": ["Lose #b{0} energy at the start of your next turn."],
+		"NAME": "Deenergized"
 	}
 }

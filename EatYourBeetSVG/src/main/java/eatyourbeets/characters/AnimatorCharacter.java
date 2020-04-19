@@ -23,6 +23,7 @@ import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.stances.EYBStance;
 import eatyourbeets.utilities.RandomizedList;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.ArrayList;
 
@@ -59,11 +60,6 @@ public class AnimatorCharacter extends CustomPlayer
             AnimationState.TrackEntry e = this.state.setAnimation(0, "Hit", false);
             this.state.addAnimation(0, "Idle", true, 0f);
             e.setTimeScale(0.9f);
-        }
-
-        if (this.stance instanceof EYBStance)
-        {
-           ((EYBStance) this.stance).wasHPLost(info, info.output);
         }
 
         super.damage(info);

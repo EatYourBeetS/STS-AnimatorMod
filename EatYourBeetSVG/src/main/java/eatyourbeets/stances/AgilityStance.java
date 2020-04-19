@@ -3,14 +3,18 @@ package eatyourbeets.stances;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.EnergizedPower;
 import eatyourbeets.effects.stance.StanceParticleHorizontal;
 import eatyourbeets.effects.stance.StanceParticleVertical;
+import eatyourbeets.interfaces.subscribers.OnLoseHpSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.DeenergizedPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
-public class AgilityStance extends EYBStance implements OnStartOfTurnSubscriber
+public class AgilityStance extends EYBStance implements OnStartOfTurnSubscriber, OnLoseHpSubscriber
 {
     public static boolean DeenergizeTriggered = false;
     public static final String STANCE_ID = CreateFullID(AgilityStance.class);
@@ -38,6 +42,8 @@ public class AgilityStance extends EYBStance implements OnStartOfTurnSubscriber
 
         GameActions.Bottom.GainAgility(1);
         GameActions.Bottom.GainDexterity(STAT_GAIN_AMOUNT);
+        CombatStats.onLoseHp.Subscribe(this);
+        CombatStats.onStartOfTurn.Subscribe(this);
     }
 
     @Override
@@ -46,27 +52,8 @@ public class AgilityStance extends EYBStance implements OnStartOfTurnSubscriber
 
         GameActions.Bottom.GainAgility(1);
         GameActions.Bottom.GainDexterity(-STAT_GAIN_AMOUNT);
-    }
-
-    @Override
-    public void wasHPLost(DamageInfo info, int damageAmount) {
-        if (info.owner == null || !(info.owner instanceof AbstractPlayer))
-        {
-            return;
-        }
-
-        AbstractPlayer player = (AbstractPlayer)info.owner;
-
-        if (!DeenergizeTriggered && info.type != DamageInfo.DamageType.THORNS && damageAmount - player.currentBlock > 0)
-        {
-            DeenergizeTriggered = true;
-            GameActions.Bottom.ApplyPower(new DeenergizedPower(player, ENERGY_LOSE_AMOUNT));
-        }
-    }
-
-    @Override
-    public void OnStartOfTurn() {
-        DeenergizeTriggered = false;
+        CombatStats.onLoseHp.Unsubscribe(this);
+        CombatStats.onStartOfTurn.Unsubscribe(this);
     }
 
     @Override
@@ -92,5 +79,23 @@ public class AgilityStance extends EYBStance implements OnStartOfTurnSubscriber
     public void updateDescription()
     {
         description = FormatDescription(STAT_GAIN_AMOUNT, ENERGY_LOSE_AMOUNT);
+    }
+
+    @Override
+    public int OnLoseHp(int damageAmount) {
+        AbstractPlayer player = AbstractDungeon.player;
+
+        if (!DeenergizeTriggered)
+        {
+            DeenergizeTriggered = true;
+            GameActions.Bottom.ApplyPower(new DeenergizedPower(player, ENERGY_LOSE_AMOUNT));
+        }
+
+        return damageAmount;
+    }
+
+    @Override
+    public void OnStartOfTurn() {
+        DeenergizeTriggered = false;
     }
 }

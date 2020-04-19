@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.IntellectPower;
+import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -20,7 +21,7 @@ public class Tatsumaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0);
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.OnePunchMan);
@@ -33,6 +34,7 @@ public class Tatsumaki extends AnimatorCard
 
         if (GameUtilities.GetUniqueOrbsCount() >= 3 && CombatStats.TryActivateSemiLimited(this.cardID))
         {
+            GameActions.Bottom.ChangeStance(new IntellectStance());
             GameActions.Bottom.Draw(1);
             GameActions.Bottom.Flash(this);
         }
@@ -41,7 +43,6 @@ public class Tatsumaki extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainIntellect(magicNumber);
         GameActions.Bottom.ChannelOrb(new Aether(), true);
 
         if (upgraded)

@@ -1,13 +1,17 @@
 package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class ForceStance extends EYBStance
 {
     public static String STANCE_ID = CreateFullID(ForceStance.class);
+    public static int STAT_GAIN_AMOUNT = 2;
+    public static int ENEMY_DAMAGE_BONUS_PERCENTAGE = 25;
 
     public ForceStance()
     {
@@ -22,6 +26,33 @@ public class ForceStance extends EYBStance
     protected Color GetAuraColor()
     {
         return CreateColor(0.8f, 0.9f, 0.3f, 0.4f, 0.2f, 0.3f);
+    }
+
+    @Override
+    public void onEnterStance() {
+        super.onEnterStance();
+
+        GameActions.Bottom.GainForce(1);
+        GameActions.Bottom.GainStrength(STAT_GAIN_AMOUNT);
+    }
+
+    @Override
+    public void onExitStance() {
+        super.onExitStance();
+
+        GameActions.Bottom.GainForce(1);
+        GameActions.Bottom.GainStrength(-STAT_GAIN_AMOUNT);
+    }
+
+    @Override
+    public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
+        if (damageType == DamageInfo.DamageType.NORMAL) {
+            int enemyDamageBonus = ENEMY_DAMAGE_BONUS_PERCENTAGE / 100;
+
+            return damage * (1 + ENEMY_DAMAGE_BONUS_PERCENTAGE);
+        }
+
+        return damage;
     }
 
     @Override
@@ -40,5 +71,11 @@ public class ForceStance extends EYBStance
     protected Color GetMainColor()
     {
         return new Color(1f, 0.3f, 0.2f, 1f);
+    }
+
+    @Override
+    public void updateDescription()
+    {
+        description = FormatDescription(STAT_GAIN_AMOUNT, ENEMY_DAMAGE_BONUS_PERCENTAGE);
     }
 }

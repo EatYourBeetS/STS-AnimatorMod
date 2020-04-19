@@ -47,7 +47,7 @@ public class ForceStance extends EYBStance
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
         if (damageType == DamageInfo.DamageType.NORMAL) {
-            float enemyDamageBonus = ENEMY_DAMAGE_BONUS_PERCENTAGE / 100.00F;
+            float enemyDamageBonus = (float)ENEMY_DAMAGE_BONUS_PERCENTAGE / 100.00F;
 
             return damage * (1.00F + enemyDamageBonus);
         }

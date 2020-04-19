@@ -3,8 +3,7 @@ package eatyourbeets.stances;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.StanceStrings;
@@ -21,6 +20,7 @@ public abstract class EYBStance extends AbstractStance
 {
     protected static final HashMap<String, FuncT0<AbstractStance>> stances = new HashMap<>();
     protected static long sfxId = -1L;
+    protected final AbstractCreature owner;
     protected final StanceStrings strings;
 
     public static void Initialize()
@@ -50,11 +50,13 @@ public abstract class EYBStance extends AbstractStance
     protected abstract void QueueAura();
     protected abstract Color GetMainColor();
 
-    protected EYBStance(String id)
+    protected EYBStance(String id, AbstractCreature owner)
     {
-        ID = id;
-        strings = GR.GetStanceString(id);
-        name = strings.NAME;
+        this.ID = id;
+        this.strings = GR.GetStanceString(id);
+        this.name = strings.NAME;
+        this.owner = owner;
+
         updateDescription();
     }
 

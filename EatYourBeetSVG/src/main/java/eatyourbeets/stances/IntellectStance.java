@@ -1,6 +1,7 @@
 package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.utilities.GameActions;
@@ -13,7 +14,7 @@ public class IntellectStance extends EYBStance
 
     public IntellectStance()
     {
-        super(STANCE_ID);
+        super(STANCE_ID, AbstractDungeon.player);
     }
 
     protected Color GetParticleColor()
@@ -27,7 +28,8 @@ public class IntellectStance extends EYBStance
     }
 
     @Override
-    public void onEnterStance() {
+    public void onEnterStance()
+    {
         super.onEnterStance();
 
         GameActions.Bottom.GainIntellect(1);
@@ -35,11 +37,14 @@ public class IntellectStance extends EYBStance
     }
 
     @Override
-    public void onExitStance() {
+    public void onExitStance()
+    {
         super.onExitStance();
 
         GameActions.Bottom.GainIntellect(1);
-        GameActions.Bottom.GainFocus(-STAT_GAIN_AMOUNT);
+        GameActions.Bottom.GainFocus(-STAT_GAIN_AMOUNT)
+        .ShowEffect(false, true)
+        .IgnoreArtifact(true);
     }
 
     @Override

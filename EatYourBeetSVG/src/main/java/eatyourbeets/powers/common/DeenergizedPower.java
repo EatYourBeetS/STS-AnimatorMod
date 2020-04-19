@@ -1,38 +1,37 @@
 package eatyourbeets.powers.common;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.AnimatorPower;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 
-public class DeenergizedPower extends CommonPower {
-        public static final String POWER_ID = CreateFullID(DeenergizedPower.class);
+public class DeenergizedPower extends CommonPower
+{
+    public static final String POWER_ID = CreateFullID(DeenergizedPower.class);
 
-        public DeenergizedPower(AbstractPlayer owner, int amount) {
-            super(owner, POWER_ID);
+    public DeenergizedPower(AbstractCreature owner, int amount)
+    {
+        super(owner, POWER_ID);
 
-            this.amount = amount;
-            this.type = PowerType.DEBUFF;
+        this.amount = amount;
+        this.type = PowerType.DEBUFF;
 
-            updateDescription();
-        }
+        updateDescription();
+    }
 
-        public void onEnergyRecharge()
+    public void onEnergyRecharge()
+    {
+        if (owner.isPlayer)
         {
-            this.flash();
             GameActions.Bottom.SpendEnergy(amount, true);
-            GameActions.Bottom.RemovePower(player, player, this);
+            flash();
         }
 
-        @Override
-        public void updateDescription() {
-            description = FormatDescription(0, amount);
-        }
+        GameActions.Bottom.RemovePower(owner, owner, this);
+    }
+
+    @Override
+    public void updateDescription()
+    {
+        description = FormatDescription(0, amount);
+    }
 }

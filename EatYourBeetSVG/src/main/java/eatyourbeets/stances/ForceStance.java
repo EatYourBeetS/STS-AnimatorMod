@@ -2,6 +2,7 @@ package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.utilities.GameActions;
@@ -15,7 +16,7 @@ public class ForceStance extends EYBStance
 
     public ForceStance()
     {
-        super(STANCE_ID);
+        super(STANCE_ID, AbstractDungeon.player);
     }
 
     protected Color GetParticleColor()
@@ -29,27 +30,33 @@ public class ForceStance extends EYBStance
     }
 
     @Override
-    public void onEnterStance() {
+    public void onEnterStance()
+    {
         super.onEnterStance();
 
-        GameActions.Bottom.GainForce(1);
+        GameActions.Bottom.GainAgility(1);
         GameActions.Bottom.GainStrength(STAT_GAIN_AMOUNT);
     }
 
     @Override
-    public void onExitStance() {
+    public void onExitStance()
+    {
         super.onExitStance();
 
-        GameActions.Bottom.GainForce(1);
-        GameActions.Bottom.GainStrength(-STAT_GAIN_AMOUNT);
+        GameActions.Bottom.GainAgility(1);
+        GameActions.Bottom.GainStrength(-STAT_GAIN_AMOUNT)
+        .ShowEffect(false, true)
+        .IgnoreArtifact(true);
     }
 
     @Override
-    public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
-        if (damageType == DamageInfo.DamageType.NORMAL) {
-            float enemyDamageBonus = (float)ENEMY_DAMAGE_BONUS_PERCENTAGE / 100.00F;
+    public float atDamageReceive(float damage, DamageInfo.DamageType damageType)
+    {
+        if (damageType == DamageInfo.DamageType.NORMAL)
+        {
+            float enemyDamageBonus = (float) ENEMY_DAMAGE_BONUS_PERCENTAGE / 100f;
 
-            return damage * (1.00F + enemyDamageBonus);
+            return damage * (1f + enemyDamageBonus);
         }
 
         return damage;

@@ -7,6 +7,8 @@ import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class ForceStance extends EYBStance
 {
@@ -34,9 +36,9 @@ public class ForceStance extends EYBStance
 
         GameActions.Bottom.GainForce(1, true);
 
-        ApplyPowerInstantly(PowerHelper.Focus    , -1);
-        ApplyPowerInstantly(PowerHelper.Dexterity, -1);
-        ApplyPowerInstantly(PowerHelper.Strength , +2);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , -1);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -1);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , +2);
     }
 
     @Override
@@ -44,9 +46,9 @@ public class ForceStance extends EYBStance
     {
         super.onExitStance();
 
-        ApplyPowerInstantly(PowerHelper.Focus    , +1);
-        ApplyPowerInstantly(PowerHelper.Dexterity, +1);
-        ApplyPowerInstantly(PowerHelper.Strength , -2);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +1);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +1);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , -2);
     }
 
     @Override

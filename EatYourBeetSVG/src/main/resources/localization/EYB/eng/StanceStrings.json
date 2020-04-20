@@ -21,7 +21,7 @@
 		"NAME": "Intellect Stance",
 		"DESCRIPTION": 
 		[
-			"Gain #yIntellect upon entering or exiting this stance. While in this stance, you gain #b{0} Focus and lose no Force, Agility, nor Intellect."
+			"Gain #yIntellect upon entering or exiting this stance. While in this stance, you gain #b{0} Focus.  Force, Agility, nor Intellect do not decrease."
 		]
 	}
 }

@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.utilities.GameActions;
 
 public class SilverFang extends AnimatorCard
@@ -26,12 +25,7 @@ public class SilverFang extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainAgility(magicNumber);
-
-        if (upgraded)
-        {
-            AgilityPower.PreserveOnce();
-        }
+        GameActions.Bottom.GainAgility(magicNumber, upgraded);
 
         if (HasSynergy())
         {

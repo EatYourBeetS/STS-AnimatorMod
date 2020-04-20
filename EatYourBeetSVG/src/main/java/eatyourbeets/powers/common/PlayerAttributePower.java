@@ -12,6 +12,7 @@ import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStatsClearedSubscriber;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.HashSet;
@@ -74,7 +75,7 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         super.update(slot);
 
-        this.enabled = (!preservedPowers.contains(ID));
+        this.enabled = (!(player.stance.ID != IntellectStance.STANCE_ID) && !preservedPowers.contains(ID));
     }
 
     @Override

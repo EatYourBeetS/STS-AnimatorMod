@@ -34,9 +34,9 @@ public class ForceStance extends EYBStance
 
         GameActions.Bottom.GainForce(1, true);
 
-        ApplyPowerSilently(PowerHelper.Focus    , -1);
-        ApplyPowerSilently(PowerHelper.Dexterity, -1);
-        ApplyPowerSilently(PowerHelper.Strength ,  2);
+        ApplyPowerInstantly(PowerHelper.Focus    , -1);
+        ApplyPowerInstantly(PowerHelper.Dexterity, -1);
+        ApplyPowerInstantly(PowerHelper.Strength , +2);
     }
 
     @Override
@@ -44,9 +44,9 @@ public class ForceStance extends EYBStance
     {
         super.onExitStance();
 
-        ApplyPowerSilently(PowerHelper.Focus    ,  1);
-        ApplyPowerSilently(PowerHelper.Dexterity,  1);
-        ApplyPowerSilently(PowerHelper.Strength , -2);
+        ApplyPowerInstantly(PowerHelper.Focus    , +1);
+        ApplyPowerInstantly(PowerHelper.Dexterity, +1);
+        ApplyPowerInstantly(PowerHelper.Strength , -2);
     }
 
     @Override

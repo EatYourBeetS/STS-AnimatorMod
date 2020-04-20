@@ -34,9 +34,9 @@ public class AgilityStance extends EYBStance
 
         GameActions.Bottom.GainAgility(1, true);
 
-        ApplyPowerSilently(PowerHelper.Focus    , -1);
-        ApplyPowerSilently(PowerHelper.Dexterity,  2);
-        ApplyPowerSilently(PowerHelper.Strength , -1);
+        ApplyPowerInstantly(PowerHelper.Focus    , -1);
+        ApplyPowerInstantly(PowerHelper.Dexterity, +2);
+        ApplyPowerInstantly(PowerHelper.Strength , -1);
     }
 
     @Override
@@ -44,9 +44,9 @@ public class AgilityStance extends EYBStance
     {
         super.onExitStance();
 
-        ApplyPowerSilently(PowerHelper.Focus    ,  1);
-        ApplyPowerSilently(PowerHelper.Dexterity, -2);
-        ApplyPowerSilently(PowerHelper.Strength ,  1);
+        ApplyPowerInstantly(PowerHelper.Focus    , +1);
+        ApplyPowerInstantly(PowerHelper.Dexterity, -2);
+        ApplyPowerInstantly(PowerHelper.Strength , +1);
     }
 
     @Override

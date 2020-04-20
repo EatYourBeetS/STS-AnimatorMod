@@ -7,16 +7,15 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.StanceStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.utilities.TargetHelper;
+import eatyourbeets.utilities.*;
 
+import java.util.Collections;
 import java.util.HashMap;
 
 public abstract class EYBStance extends AbstractStance
@@ -128,10 +127,20 @@ public abstract class EYBStance extends AbstractStance
         return JavaUtilities.Format(strings.DESCRIPTION[0], args);
     }
 
-    protected void ApplyPowerSilently(PowerHelper power, int stacks)
+    protected void ApplyPowerInstantly(PowerHelper helper, int stacks)
     {
-        GameActions.Bottom.StackPower(TargetHelper.Source(owner), power, stacks)
-        .ShowEffect(false, true)
-        .IgnoreArtifact(true);
+        AbstractPower power = GameUtilities.GetPower(owner, helper.ID);
+        if (power != null)
+        {
+            if ((power.amount += stacks) == 0)
+            {
+                owner.powers.remove(power);
+            }
+        }
+        else
+        {
+            owner.addPower(helper.Create(owner, owner, stacks));
+            Collections.sort(owner.powers);
+        }
     }
 }

@@ -34,9 +34,9 @@ public class IntellectStance extends EYBStance
 
         GameActions.Bottom.GainIntellect(1, true);
 
-        ApplyPowerSilently(PowerHelper.Focus    , -2);
-        ApplyPowerSilently(PowerHelper.Dexterity,  1);
-        ApplyPowerSilently(PowerHelper.Strength ,  1);
+        ApplyPowerInstantly(PowerHelper.Focus    , +2);
+        ApplyPowerInstantly(PowerHelper.Dexterity, -1);
+        ApplyPowerInstantly(PowerHelper.Strength , -1);
     }
 
     @Override
@@ -44,9 +44,9 @@ public class IntellectStance extends EYBStance
     {
         super.onExitStance();
 
-        ApplyPowerSilently(PowerHelper.Focus    ,  2);
-        ApplyPowerSilently(PowerHelper.Dexterity, -1);
-        ApplyPowerSilently(PowerHelper.Strength , -1);
+        ApplyPowerInstantly(PowerHelper.Focus    , -2);
+        ApplyPowerInstantly(PowerHelper.Dexterity, +1);
+        ApplyPowerInstantly(PowerHelper.Strength , +1);
     }
 
     @Override

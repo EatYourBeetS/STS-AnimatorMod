@@ -5,7 +5,7 @@
 		"NAME": "Force Stance",
 		"DESCRIPTION": 
 		[
-			"#g+2 #yStrength, #r-1 #yFocus, #r-1 #yDexterity. NL On Enter: #yBoost #yForce. NL On Exit: <TODO>."
+			"#g+2 #gStrength, NL #r-1 #rFocus, NL #r-1 #rDexterity. NL On Enter: #yBoost #yForce. NL On Exit: <TODO>."
 		]
 	},
 	"EYB:AgilityStance":
@@ -13,7 +13,7 @@
 		"NAME": "Agility Stance",
 		"DESCRIPTION": 
 		[
-			"#g+2 #yDexterity, #r-1 #yStrength, #r-1 #yFocus. NL On Enter: #yBoost #yAgility. NL On Exit: <TODO>."
+			"#g+2 #gDexterity, NL #r-1 #rStrength, NL #r-1 #rFocus. NL On Enter: #yBoost #yAgility. NL On Exit: <TODO>."
 		]
 	},
 	"EYB:IntellectStance":
@@ -21,7 +21,7 @@
 		"NAME": "Intellect Stance",
 		"DESCRIPTION": 
 		[
-			"#g+2 #yFocus, #g-1 #yStrength, #r-1 #yDexterity. NL On Enter: #yBoost #yIntellect. NL On Exit: <TODO>."
+			"#g+2 #gFocus, NL #r-1 #rStrength, NL #r-1 #rDexterity. NL On Enter: #yBoost #yIntellect. NL On Exit: <TODO>."
 		]
 	}
 }

@@ -34,7 +34,6 @@ public class Tatsumaki extends AnimatorCard
 
         if (GameUtilities.GetUniqueOrbsCount() >= 3 && CombatStats.TryActivateSemiLimited(this.cardID))
         {
-            GameActions.Bottom.ChangeStance(new IntellectStance());
             GameActions.Bottom.Draw(1);
             GameActions.Bottom.Flash(this);
         }
@@ -44,10 +43,6 @@ public class Tatsumaki extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ChannelOrb(new Aether(), true);
-
-        if (upgraded)
-        {
-            IntellectPower.PreserveOnce();
-        }
+        GameActions.Bottom.ChangeStance(new IntellectStance());
     }
 }

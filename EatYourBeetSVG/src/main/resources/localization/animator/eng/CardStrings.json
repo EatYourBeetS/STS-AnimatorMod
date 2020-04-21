@@ -183,6 +183,12 @@
 		{
 			"DESCRIPTION": "Motivate !S!. || Gain !M! {Plated Armor}. ** [F] Stance: Gain extra ** {Plated Armor} equal to ** your [F].",
 			"NAME": "Naotsugu"
+		},
+		"animator:Henrietta":
+		{
+			"DESCRIPTION": "Enter any Stance. ** Motivate !M!. || At the end of each turn, ** spend !S! of your remaining ** Energy to enter any Stance.",
+			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend #b{0} of your remaining Energy to enter any Stance.","Enter [A] Stance.", "Enter [I] Stance.", "Enter [F] Stance."],
+			"NAME": "Henrietta"
 		}
 	},
 	

@@ -174,9 +174,14 @@
 
 	"BETA:LOGHORIZON":
 	{
+		"animator:Minori":
+		{
+			"DESCRIPTION": "Cycle !S! card(s). || Synergy: Motivate !S!.",
+			"NAME": "Minori"
+		},
 		"animator:Naotsugu":
 		{
-			"DESCRIPTION": "Motivate !S!. || Gain !M! {Plated Armor}. ** [F] Stance: Gain additional ** {Plated Armor} equal to your [F].",
+			"DESCRIPTION": "Motivate !S!. || Gain !M! {Plated Armor}. ** [F] Stance: Gain extra ** {Plated Armor} equal to ** your [F].",
 			"NAME": "Naotsugu"
 		}
 	},

@@ -6,6 +6,7 @@ import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts.*;
+import eatyourbeets.resources.animator.loadouts.beta.LogHorizon;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 import eatyourbeets.utilities.JavaUtilities;
@@ -198,6 +199,7 @@ public class AnimatorPlayerData
     private void AddBetaLoadouts()
     {
         BetaLoadouts.clear();
+        BetaLoadouts.add(new LogHorizon());
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...

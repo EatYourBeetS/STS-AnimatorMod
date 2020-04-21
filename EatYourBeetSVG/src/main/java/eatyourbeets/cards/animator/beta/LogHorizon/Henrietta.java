@@ -28,6 +28,12 @@ public class Henrietta extends AnimatorCard {
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetInnate(true);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         ChooseStance();
         GameActions.Bottom.Motivate(magicNumber);

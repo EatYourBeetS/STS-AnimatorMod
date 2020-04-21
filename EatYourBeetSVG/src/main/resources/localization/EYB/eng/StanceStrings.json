@@ -5,7 +5,7 @@
 		"NAME": "Force Stance",
 		"DESCRIPTION": 
 		[
-			"Gain #yForce upon entering this stance.  While in this stance, you gain #b{0} Strength and lose #b{1} Dexterity and #b{1} Focus.  Upon exiting this stance: Deal #b(2) piercing damage to ALL enemies next turn."
+			"Gain #yForce upon entering this stance.  While in this stance, you gain #b{0} Strength and lose #b{1} Dexterity and #b{1} Focus.  Upon exiting this stance: Gain #b(2) Temp HP next turn."
 		]
 	},
 	"EYB:AgilityStance":
@@ -21,7 +21,7 @@
 		"NAME": "Intellect Stance",
 		"DESCRIPTION": 
 		[
-			"Gain #yIntellect upon entering this stance. While in this stance, you gain #b{0} Focus and lose #b{1} Strength and #b{1} Dexterity.  Upon exiting this stance: Gain #b(2) Energy next turn."
+			"Gain #yIntellect upon entering this stance. While in this stance, you gain #b{0} Focus and lose #b{1} Strength and #b{1} Dexterity.  Upon exiting this stance: Deal #b(2) Elemental damage to ALL enemies next turn."
 		]
 	}
 }

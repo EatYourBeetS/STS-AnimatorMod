@@ -3,18 +3,13 @@ package eatyourbeets.powers.common;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
-public class PiercingNextTurnPower extends AnimatorPower {
-        public static final String POWER_ID = CreateFullID(PiercingNextTurnPower.class);
+public class DamageNextTurnPower extends AnimatorPower {
+        public static final String POWER_ID = CreateFullID(DamageNextTurnPower.class);
 
-        public PiercingNextTurnPower(AbstractPlayer owner, int amount) {
+        public DamageNextTurnPower(AbstractPlayer owner, int amount) {
             super(owner, POWER_ID);
 
             this.amount = amount;
@@ -32,8 +27,8 @@ public class PiercingNextTurnPower extends AnimatorPower {
             flash();
             int[] damage = DamageInfo.createDamageMatrix(amount, true);
 
-            GameActions.Bottom.DealDamageToAll(damage, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)
-                    .SetPiercing(true, true);
+            GameActions.Bottom.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.LIGHTNING);
+
             GameActions.Bottom.RemovePower(owner, owner, this);
         }
 }

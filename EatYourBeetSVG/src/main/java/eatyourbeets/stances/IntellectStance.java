@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
+import eatyourbeets.powers.common.DamageNextTurnPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -14,7 +15,7 @@ public class IntellectStance extends EYBStance
     public static String STANCE_ID = CreateFullID(IntellectStance.class);
     public static int STAT_GAIN_AMOUNT = 2;
     public static int STAT_LOSE_AMOUNT = 1;
-    public static int ENERGY_AMOUNT = 1;
+    public static int DAMAGE_AMOUNT = 4;
 
     public IntellectStance()
     {
@@ -51,7 +52,7 @@ public class IntellectStance extends EYBStance
     {
         super.onExitStance();
 
-        GameActions.Bottom.ApplyPower(new EnergizedPower(AbstractDungeon.player, ENERGY_AMOUNT));
+        GameActions.Bottom.ApplyPower(new DamageNextTurnPower(AbstractDungeon.player, DAMAGE_AMOUNT));
         GameActions.Bottom.GainFocus(-STAT_GAIN_AMOUNT)
         .ShowEffect(false, true)
         .IgnoreArtifact(true);
@@ -80,6 +81,6 @@ public class IntellectStance extends EYBStance
     @Override
     public void updateDescription()
     {
-        description = FormatDescription(STAT_GAIN_AMOUNT, STAT_LOSE_AMOUNT, ENERGY_AMOUNT);
+        description = FormatDescription(STAT_GAIN_AMOUNT, STAT_LOSE_AMOUNT, DAMAGE_AMOUNT);
     }
 }

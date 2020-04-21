@@ -36,7 +36,8 @@ public class ForceStance extends EYBStance
         super.onEnterStance();
 
         GameActions.Bottom.GainStrength(1);
-        GameActions.Bottom.GainStrength(STAT_GAIN_AMOUNT);
+        GameActions.Bottom.GainStrength(STAT_GAIN_AMOUNT)
+        .ShowEffect(false, true);
         GameActions.Bottom.GainDexterity(-STAT_LOSE_AMOUNT)
         .ShowEffect(false, true)
         .IgnoreArtifact(true);
@@ -50,12 +51,14 @@ public class ForceStance extends EYBStance
     {
         super.onExitStance();
 
-        GameActions.Bottom.ApplyPower(new TempHPNextTurnPower(AbstractDungeon.player, TEMP_HP_AMOUNT));
+        GameActions.Bottom.StackPower(new TempHPNextTurnPower(AbstractDungeon.player, TEMP_HP_AMOUNT));
         GameActions.Bottom.GainStrength(-STAT_GAIN_AMOUNT)
         .ShowEffect(false, true)
         .IgnoreArtifact(true);
-        GameActions.Bottom.GainDexterity(STAT_LOSE_AMOUNT);
-        GameActions.Bottom.GainFocus(STAT_LOSE_AMOUNT);
+        GameActions.Bottom.GainDexterity(STAT_LOSE_AMOUNT)
+        .ShowEffect(false, true);
+        GameActions.Bottom.GainFocus(STAT_LOSE_AMOUNT)
+        .ShowEffect(false, true);
     }
 
     @Override

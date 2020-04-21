@@ -38,7 +38,8 @@ public class IntellectStance extends EYBStance
         super.onEnterStance();
 
         GameActions.Bottom.GainIntellect(1);
-        GameActions.Bottom.GainFocus(STAT_GAIN_AMOUNT);
+        GameActions.Bottom.GainFocus(STAT_GAIN_AMOUNT)
+        .ShowEffect(false, true);
         GameActions.Bottom.GainStrength(-STAT_LOSE_AMOUNT)
         .ShowEffect(false, true)
         .IgnoreArtifact(true);
@@ -52,12 +53,14 @@ public class IntellectStance extends EYBStance
     {
         super.onExitStance();
 
-        GameActions.Bottom.ApplyPower(new DamageNextTurnPower(AbstractDungeon.player, DAMAGE_AMOUNT));
+        GameActions.Bottom.StackPower(new DamageNextTurnPower(AbstractDungeon.player, DAMAGE_AMOUNT));
         GameActions.Bottom.GainFocus(-STAT_GAIN_AMOUNT)
         .ShowEffect(false, true)
         .IgnoreArtifact(true);
-        GameActions.Bottom.GainStrength(STAT_LOSE_AMOUNT);
-        GameActions.Bottom.GainDexterity(STAT_LOSE_AMOUNT);
+        GameActions.Bottom.GainStrength(STAT_LOSE_AMOUNT)
+        .ShowEffect(false, true);
+        GameActions.Bottom.GainDexterity(STAT_LOSE_AMOUNT)
+        .ShowEffect(false, true);
     }
 
     @Override

@@ -37,7 +37,8 @@ public class AgilityStance extends EYBStance
         super.onEnterStance();
 
         GameActions.Bottom.GainAgility(1);
-        GameActions.Bottom.GainDexterity(STAT_GAIN_AMOUNT);
+        GameActions.Bottom.GainDexterity(STAT_GAIN_AMOUNT)
+       .ShowEffect(false, true);
         GameActions.Bottom.GainStrength(-STAT_LOSE_AMOUNT)
         .ShowEffect(false, true)
         .IgnoreArtifact(true);
@@ -51,12 +52,14 @@ public class AgilityStance extends EYBStance
     {
         super.onExitStance();
 
-        GameActions.Bottom.ApplyPower(new DrawCardNextTurnPower(AbstractDungeon.player, DRAW_AMOUNT));
+        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(AbstractDungeon.player, DRAW_AMOUNT));
         GameActions.Bottom.GainDexterity(-STAT_GAIN_AMOUNT)
         .ShowEffect(false, true)
         .IgnoreArtifact(true);
-        GameActions.Bottom.GainStrength(STAT_LOSE_AMOUNT);
-        GameActions.Bottom.GainFocus(STAT_LOSE_AMOUNT);
+        GameActions.Bottom.GainStrength(STAT_LOSE_AMOUNT)
+        .ShowEffect(false, true);
+        GameActions.Bottom.GainFocus(STAT_LOSE_AMOUNT)
+        .ShowEffect(false, true);
     }
 
     @Override

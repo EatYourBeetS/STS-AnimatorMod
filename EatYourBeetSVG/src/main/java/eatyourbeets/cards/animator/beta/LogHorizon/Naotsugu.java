@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Naotsugu extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Naotsugu.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(Naotsugu.class).SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Normal);
     public static int basePlatedArmor;
 
     public Naotsugu() {

@@ -36,7 +36,7 @@ public class ForceStance extends EYBStance
     {
         super.onEnterStance();
 
-        GameActions.Bottom.GainAgility(1);
+        GameActions.Bottom.GainStrength(1);
         GameActions.Bottom.GainStrength(STAT_GAIN_AMOUNT);
         GameActions.Bottom.GainDexterity(-STAT_LOSE_AMOUNT)
         .ShowEffect(false, true)

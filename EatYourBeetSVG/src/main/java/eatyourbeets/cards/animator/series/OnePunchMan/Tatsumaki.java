@@ -43,6 +43,6 @@ public class Tatsumaki extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ChannelOrb(new Aether(), true);
-        GameActions.Bottom.ChangeStance(new IntellectStance());
+        GameActions.Bottom.GainIntellect(1);
     }
 }

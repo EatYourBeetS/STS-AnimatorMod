@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.relics.PenNib;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.EYBCard;
@@ -407,6 +408,12 @@ public class GameUtilities
 
         return cards;
     }
+
+    public static boolean IsInStance(String stanceID)
+    {
+        return player.stance.ID.equals(stanceID);
+    }
+
 
     public static AbstractCard GetMasterDeckInstance(UUID uuid)
     {

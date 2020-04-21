@@ -846,9 +846,9 @@
 		},
 		"animator:Priestess":
 		{
-			"DESCRIPTION": "Apply !S! Weak. || Synergy: Exhaust a ** random Hindrance.",
+			"DESCRIPTION": "Apply !S! Weak. || Synergy: Exhaust a ** random Hindrance ** from anywhere.",
 			"NAME": "Priestess",
-			"UPGRADE_DESCRIPTION": "Apply !S! Weak ** to ALL enemies. || Synergy: Exhaust a ** random Hindrance."
+			"UPGRADE_DESCRIPTION": "Apply !S! Weak ** to ALL enemies. || Synergy: Exhaust a ** random Hindrance ** from anywhere."
 		},
 		"animator:Spearman":
 		{

@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -41,12 +40,7 @@ public class Tatsumaki extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainIntellect(magicNumber);
+        GameActions.Bottom.GainIntellect(magicNumber, upgraded);
         GameActions.Bottom.ChannelOrb(new Aether(), true);
-
-        if (upgraded)
-        {
-            IntellectPower.PreserveOnce();
-        }
     }
 }

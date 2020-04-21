@@ -1,9 +1,14 @@
 package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
+import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class ForceStance extends EYBStance
 {
@@ -11,7 +16,7 @@ public class ForceStance extends EYBStance
 
     public ForceStance()
     {
-        super(STANCE_ID);
+        super(STANCE_ID, AbstractDungeon.player);
     }
 
     protected Color GetParticleColor()
@@ -22,6 +27,28 @@ public class ForceStance extends EYBStance
     protected Color GetAuraColor()
     {
         return CreateColor(0.8f, 0.9f, 0.3f, 0.4f, 0.2f, 0.3f);
+    }
+
+    @Override
+    public void onEnterStance()
+    {
+        super.onEnterStance();
+
+        GameActions.Bottom.GainForce(1, true);
+
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , -1);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -1);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , +2);
+    }
+
+    @Override
+    public void onExitStance()
+    {
+        super.onExitStance();
+
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +1);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +1);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , -2);
     }
 
     @Override

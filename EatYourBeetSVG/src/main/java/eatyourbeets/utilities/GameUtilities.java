@@ -34,8 +34,10 @@ import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerHelper;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.UUID;
 import java.util.function.Predicate;
@@ -46,6 +48,31 @@ public class GameUtilities
 {
     private static final OnPhaseChangedSubscriber handLayoutRefresher = new HandLayoutRefresher();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
+
+    public static void ApplyPowerInstantly(AbstractCreature target, PowerHelper powerHelper, int stacks)
+    {
+        ApplyPowerInstantly(TargetHelper.Source(target), powerHelper, stacks);
+    }
+
+    public static void ApplyPowerInstantly(TargetHelper targetHelper, PowerHelper powerHelper, int stacks)
+    {
+        for (AbstractCreature target : targetHelper.GetTargets())
+        {
+            AbstractPower power = GetPower(target, powerHelper.ID);
+            if (power != null)
+            {
+                if ((power.amount += stacks) == 0)
+                {
+                    target.powers.remove(power);
+                }
+            }
+            else
+            {
+                target.addPower(powerHelper.Create(target, target, stacks));
+                Collections.sort(target.powers);
+            }
+        }
+    }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean CanApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower powerToApply)

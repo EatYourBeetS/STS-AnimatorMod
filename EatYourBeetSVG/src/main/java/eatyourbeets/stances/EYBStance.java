@@ -3,6 +3,7 @@ package eatyourbeets.stances;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.StanceStrings;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.HashMap;
 
@@ -18,6 +20,7 @@ public abstract class EYBStance extends AbstractStance
 {
     protected static final HashMap<String, FuncT0<AbstractStance>> stances = new HashMap<>();
     protected static long sfxId = -1L;
+    protected final AbstractCreature owner;
     protected final StanceStrings strings;
 
     public static void Initialize()
@@ -47,11 +50,13 @@ public abstract class EYBStance extends AbstractStance
     protected abstract void QueueAura();
     protected abstract Color GetMainColor();
 
-    protected EYBStance(String id)
+    protected EYBStance(String id, AbstractCreature owner)
     {
-        ID = id;
-        strings = GR.GetStanceString(id);
-        name = strings.NAME;
+        this.ID = id;
+        this.strings = GR.GetStanceString(id);
+        this.name = strings.NAME;
+        this.owner = owner;
+
         updateDescription();
     }
 
@@ -113,5 +118,10 @@ public abstract class EYBStance extends AbstractStance
             CardCrawlGame.sound.stop("STANCE_LOOP_CALM", sfxId);
             sfxId = -1L;
         }
+    }
+
+    protected String FormatDescription(Object... args)
+    {
+        return JavaUtilities.Format(strings.DESCRIPTION[0], args);
     }
 }

@@ -37,7 +37,8 @@ public class PowerHelper
     public static final PowerHelper Thorns = new PowerHelper(ThornsPower.POWER_ID, ThornsPower::new);
     public static final PowerHelper TemporaryThorns = new PowerHelper(EarthenThornsPower.POWER_ID, EarthenThornsPower::new);
 
-    protected final String ID;
+    public final String ID;
+
     protected final FuncT2<AbstractPower, AbstractCreature, Integer> constructorT2;
     protected final FuncT3<AbstractPower, AbstractCreature, AbstractCreature, Integer> constructorT3;
 

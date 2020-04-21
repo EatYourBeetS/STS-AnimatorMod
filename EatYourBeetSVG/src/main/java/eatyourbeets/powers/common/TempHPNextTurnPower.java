@@ -8,9 +8,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 
-public class TempHPNextTurnPower extends AnimatorPower {
+public class TempHPNextTurnPower extends CommonPower {
     public static final String POWER_ID = CreateFullID(TempHPNextTurnPower.class);
 
     public TempHPNextTurnPower(AbstractPlayer owner, int amount) {

@@ -4,9 +4,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 
-public class DamageNextTurnPower extends AnimatorPower {
+public class DamageNextTurnPower extends CommonPower {
         public static final String POWER_ID = CreateFullID(DamageNextTurnPower.class);
 
         public DamageNextTurnPower(AbstractPlayer owner, int amount) {

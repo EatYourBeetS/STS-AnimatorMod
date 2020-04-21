@@ -7,7 +7,9 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -19,8 +21,8 @@ public class Naotsugu extends AnimatorCard {
     public Naotsugu() {
         super(DATA);
 
-        Initialize(2, 8, 2, 1);
-        SetUpgrade(0, 4, 0);
+        Initialize(6, 0, 3, 1);
+        SetUpgrade(2, 0, 0);
         SetScaling(0,0,2);
 
         basePlatedArmor = magicNumber;
@@ -31,25 +33,11 @@ public class Naotsugu extends AnimatorCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActions.Bottom.GainBlock(block);
-
-        GameActions.Bottom.Motivate(secondaryValue);
-
-        GameActions.Bottom.GainPlatedArmor(magicNumber);
-    }
-
-    @Override
-    protected void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
+        GameActions.Bottom.GainBlock(damage);
 
         if (GameUtilities.IsInStance(ForceStance.STANCE_ID))
         {
-            magicNumber = basePlatedArmor + GameUtilities.GetPowerAmount(player, ForcePower.POWER_ID);
-        }
-        else
-        {
-            magicNumber = basePlatedArmor;
+            GameActions.Bottom.GainPlatedArmor(magicNumber);
         }
     }
 }

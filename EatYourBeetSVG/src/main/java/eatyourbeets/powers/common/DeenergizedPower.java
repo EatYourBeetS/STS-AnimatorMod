@@ -24,9 +24,8 @@ public class DeenergizedPower extends CommonPower
         {
             GameActions.Bottom.SpendEnergy(amount, true);
             flash();
+            GameActions.Bottom.RemovePower(owner, owner, this);
         }
-
-        GameActions.Bottom.RemovePower(owner, owner, this);
     }
 
     @Override

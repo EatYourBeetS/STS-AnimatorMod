@@ -2,19 +2,22 @@ package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.effects.stance.StanceParticleHorizontal;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.interfaces.subscribers.OnLoseHpSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.DeenergizedPower;
+import eatyourbeets.powers.common.PiercingNextTurnPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
-public class AgilityStance extends EYBStance implements OnLoseHpSubscriber
+public class AgilityStance extends EYBStance
 {
     public static final String STANCE_ID = CreateFullID(AgilityStance.class);
     public static int STAT_GAIN_AMOUNT = 2;
-    public static int ENERGY_LOSE_AMOUNT = 1;
+    public static int STAT_LOSE_AMOUNT = 1;
+    public static int DRAW_CARD_AMOUNT = 1;
 
     public AgilityStance()
     {
@@ -38,7 +41,12 @@ public class AgilityStance extends EYBStance implements OnLoseHpSubscriber
 
         GameActions.Bottom.GainAgility(1);
         GameActions.Bottom.GainDexterity(STAT_GAIN_AMOUNT);
-        CombatStats.onLoseHp.SubscribeOnce(this);
+        GameActions.Bottom.GainStrength(-STAT_LOSE_AMOUNT)
+        .ShowEffect(false, true)
+        .IgnoreArtifact(true);
+        GameActions.Bottom.GainFocus(-STAT_LOSE_AMOUNT)
+        .ShowEffect(false, true)
+        .IgnoreArtifact(true);
     }
 
     @Override
@@ -46,18 +54,12 @@ public class AgilityStance extends EYBStance implements OnLoseHpSubscriber
     {
         super.onExitStance();
 
-        GameActions.Bottom.GainAgility(1);
+        GameActions.Bottom.ApplyPower(new DrawCardNextTurnPower(AbstractDungeon.player, DRAW_CARD_AMOUNT));
         GameActions.Bottom.GainDexterity(-STAT_GAIN_AMOUNT)
         .ShowEffect(false, true)
         .IgnoreArtifact(true);
-    }
-
-    @Override
-    public void atStartOfTurn()
-    {
-        super.atStartOfTurn();
-
-        CombatStats.onLoseHp.SubscribeOnce(this);
+        GameActions.Bottom.GainStrength(STAT_LOSE_AMOUNT);
+        GameActions.Bottom.GainFocus(STAT_LOSE_AMOUNT);
     }
 
     @Override
@@ -82,14 +84,6 @@ public class AgilityStance extends EYBStance implements OnLoseHpSubscriber
     @Override
     public void updateDescription()
     {
-        description = FormatDescription(STAT_GAIN_AMOUNT, ENERGY_LOSE_AMOUNT);
-    }
-
-    @Override
-    public int OnLoseHp(int damageAmount)
-    {
-        GameActions.Bottom.StackPower(new DeenergizedPower(owner, ENERGY_LOSE_AMOUNT));
-
-        return damageAmount;
+        description = FormatDescription(STAT_GAIN_AMOUNT, STAT_LOSE_AMOUNT, DRAW_CARD_AMOUNT);
     }
 }

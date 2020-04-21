@@ -75,7 +75,7 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         super.update(slot);
 
-        this.enabled = (!(player.stance.ID != IntellectStance.STANCE_ID) && !preservedPowers.contains(ID));
+        this.enabled = (!preservedPowers.contains(ID));
     }
 
     @Override

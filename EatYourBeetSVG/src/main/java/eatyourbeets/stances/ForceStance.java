@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
+import eatyourbeets.powers.common.PiercingNextTurnPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -12,7 +13,8 @@ public class ForceStance extends EYBStance
 {
     public static String STANCE_ID = CreateFullID(ForceStance.class);
     public static int STAT_GAIN_AMOUNT = 2;
-    public static int ENEMY_DAMAGE_BONUS_PERCENTAGE = 25;
+    public static int STAT_LOSE_AMOUNT = 1;
+    public static int PIERCING_AMOUNT = 4;
 
     public ForceStance()
     {
@@ -36,6 +38,12 @@ public class ForceStance extends EYBStance
 
         GameActions.Bottom.GainAgility(1);
         GameActions.Bottom.GainStrength(STAT_GAIN_AMOUNT);
+        GameActions.Bottom.GainDexterity(-STAT_LOSE_AMOUNT)
+        .ShowEffect(false, true)
+        .IgnoreArtifact(true);
+        GameActions.Bottom.GainFocus(-STAT_LOSE_AMOUNT)
+        .ShowEffect(false, true)
+        .IgnoreArtifact(true);
     }
 
     @Override
@@ -43,23 +51,12 @@ public class ForceStance extends EYBStance
     {
         super.onExitStance();
 
-        GameActions.Bottom.GainAgility(1);
+        GameActions.Bottom.ApplyPower(new PiercingNextTurnPower(AbstractDungeon.player, PIERCING_AMOUNT));
         GameActions.Bottom.GainStrength(-STAT_GAIN_AMOUNT)
         .ShowEffect(false, true)
         .IgnoreArtifact(true);
-    }
-
-    @Override
-    public float atDamageReceive(float damage, DamageInfo.DamageType damageType)
-    {
-        if (damageType == DamageInfo.DamageType.NORMAL)
-        {
-            float enemyDamageBonus = (float) ENEMY_DAMAGE_BONUS_PERCENTAGE / 100f;
-
-            return damage * (1f + enemyDamageBonus);
-        }
-
-        return damage;
+        GameActions.Bottom.GainDexterity(STAT_LOSE_AMOUNT);
+        GameActions.Bottom.GainFocus(STAT_LOSE_AMOUNT);
     }
 
     @Override
@@ -83,6 +80,6 @@ public class ForceStance extends EYBStance
     @Override
     public void updateDescription()
     {
-        description = FormatDescription(STAT_GAIN_AMOUNT, ENEMY_DAMAGE_BONUS_PERCENTAGE);
+        description = FormatDescription(STAT_GAIN_AMOUNT, STAT_LOSE_AMOUNT, PIERCING_AMOUNT);
     }
 }

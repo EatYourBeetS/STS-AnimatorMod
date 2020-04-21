@@ -50,7 +50,7 @@ public class ForceStance extends EYBStance
     {
         super.onExitStance();
 
-        GameActions.Bottom.StackPower(new TempHPNextTurnPower(AbstractDungeon.player, TEMP_HP_AMOUNT));
+        GameActions.Bottom.GainTemporaryHP(TEMP_HP_AMOUNT);
 
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +STAT_LOSE_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);

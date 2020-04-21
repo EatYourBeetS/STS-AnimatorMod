@@ -32,7 +32,7 @@
 	},
 	"EYB:DamageNextTurnPower":
 	{
-		"DESCRIPTIONS": ["Deal #b{0} damage to ALL enemies at the start of your next turn."],
+		"DESCRIPTIONS": ["Deal #b{0} damage to a random enemy at the start of your next turn."],
 		"NAME": "Damage Next Turn"
 	},
 	"EYB:TempHPTurnPower":

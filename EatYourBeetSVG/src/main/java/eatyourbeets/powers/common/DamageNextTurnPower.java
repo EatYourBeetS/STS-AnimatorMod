@@ -25,9 +25,8 @@ public class DamageNextTurnPower extends AnimatorPower {
         public void atStartOfTurn()
         {
             flash();
-            int[] damage = DamageInfo.createDamageMatrix(amount, true);
 
-            GameActions.Bottom.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.LIGHTNING);
+            GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.LIGHTNING);
 
             GameActions.Bottom.RemovePower(owner, owner, this);
         }

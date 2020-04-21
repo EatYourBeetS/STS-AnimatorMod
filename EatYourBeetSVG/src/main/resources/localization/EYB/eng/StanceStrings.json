@@ -21,7 +21,7 @@
 		"NAME": "Intellect Stance",
 		"DESCRIPTION": 
 		[
-			"Gain #yIntellect upon entering this stance. While in this stance, you gain #b{0} Focus and lose #b{1} Strength and #b{1} Dexterity.  Upon exiting this stance: Deal #b(2) Elemental damage to ALL enemies next turn."
+			"Gain #yIntellect upon entering this stance. While in this stance, you gain #b{0} Focus and lose #b{1} Strength and #b{1} Dexterity.  Upon exiting this stance: Deal #b(2) damage to a random enemy next turn."
 		]
 	}
 }

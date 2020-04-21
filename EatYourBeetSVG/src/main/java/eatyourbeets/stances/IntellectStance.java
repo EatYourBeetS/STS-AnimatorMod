@@ -15,7 +15,7 @@ public class IntellectStance extends EYBStance
     public static String STANCE_ID = CreateFullID(IntellectStance.class);
     public static int STAT_GAIN_AMOUNT = 2;
     public static int STAT_LOSE_AMOUNT = 1;
-    public static int DAMAGE_AMOUNT = 4;
+    public static int DAMAGE_AMOUNT = 7;
 
     public IntellectStance()
     {

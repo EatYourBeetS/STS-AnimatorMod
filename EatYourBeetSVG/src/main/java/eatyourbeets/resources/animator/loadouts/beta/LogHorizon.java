@@ -4,9 +4,9 @@ import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Defend_GATE;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.basic.Strike_GATE;
-import eatyourbeets.cards.animator.series.GATE.Kuribayashi;
+import eatyourbeets.cards.animator.beta.LogHorizon.Minori;
+import eatyourbeets.cards.animator.beta.LogHorizon.Tohya;
 import eatyourbeets.cards.animator.series.GATE.RoryMercury;
-import eatyourbeets.cards.animator.series.GATE.TukaLunaMarceau;
 import eatyourbeets.cards.animator.ultrarare.Giselle;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
@@ -34,8 +34,8 @@ public class LogHorizon extends AnimatorLoadout
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
-            startingDeck.add(TukaLunaMarceau.DATA.ID);
-            startingDeck.add(Kuribayashi.DATA.ID);
+            startingDeck.add(Tohya.DATA.ID);
+            startingDeck.add(Minori.DATA.ID);
         }
 
         return startingDeck;

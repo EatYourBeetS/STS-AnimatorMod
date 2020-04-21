@@ -20,8 +20,9 @@ public class Tohya extends AnimatorCard {
     public Tohya() {
         super(DATA);
 
-        Initialize(2, 6, 2,4);
-        SetUpgrade(0, 4, 0);
+        Initialize(1, 5, 2,4);
+        SetUpgrade(0, 3, 0);
+        SetScaling(0,0,1);
 
         SetCooldown(magicNumber, 0, this::OnCooldownCompleted);
         SetSynergy(Synergies.LogHorizon);

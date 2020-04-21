@@ -21,7 +21,7 @@ public class Naotsugu extends AnimatorCard {
     public Naotsugu() {
         super(DATA);
 
-        Initialize(6, 0, 3, 1);
+        Initialize(8, 0, 1);
         SetUpgrade(2, 0, 0);
         SetScaling(0,0,2);
 
@@ -35,9 +35,21 @@ public class Naotsugu extends AnimatorCard {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         GameActions.Bottom.GainBlock(damage);
 
+        GameActions.Bottom.GainPlatedArmor(magicNumber);
+    }
+
+    @Override
+    protected void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
         if (GameUtilities.IsInStance(ForceStance.STANCE_ID))
         {
-            GameActions.Bottom.GainPlatedArmor(magicNumber);
+            magicNumber = basePlatedArmor + GameUtilities.GetPowerAmount(player, ForcePower.POWER_ID);
+        }
+        else
+        {
+            magicNumber = basePlatedArmor;
         }
     }
 }

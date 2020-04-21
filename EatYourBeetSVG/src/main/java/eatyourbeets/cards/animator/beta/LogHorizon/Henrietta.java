@@ -52,7 +52,7 @@ public class Henrietta extends AnimatorCard {
 
         @Override
         public void updateDescription() {
-            description = FormatDescription(0, amount);
+            description = FormatDescription(0);
         }
 
         @Override
@@ -61,7 +61,7 @@ public class Henrietta extends AnimatorCard {
             super.atEndOfTurn(isPlayer);
 
             int energy = EnergyPanel.getCurrentEnergy();
-            if (energy > amount)
+            if (energy > 1)
             {
                 EnergyPanel.useEnergy(energy);
                 flash();

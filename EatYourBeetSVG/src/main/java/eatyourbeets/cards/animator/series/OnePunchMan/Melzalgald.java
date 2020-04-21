@@ -9,6 +9,7 @@ import eatyourbeets.cards.animator.special.MelzalgaldAlt_3;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -39,6 +40,7 @@ public class Melzalgald extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
 
+        GameActions.Bottom.ChangeStance(new ForceStance());
         GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_1()).SetUpgrade(upgraded, false).AddCallback(GameUtilities::Retain);
         GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_2()).SetUpgrade(upgraded, false).AddCallback(GameUtilities::Retain);
         GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_3()).SetUpgrade(upgraded, false).AddCallback(GameUtilities::Retain);

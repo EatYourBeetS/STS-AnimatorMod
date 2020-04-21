@@ -2,6 +2,7 @@ package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.effects.stance.StanceParticleHorizontal;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
@@ -12,6 +13,9 @@ import eatyourbeets.utilities.GameUtilities;
 public class AgilityStance extends EYBStance
 {
     public static final String STANCE_ID = CreateFullID(AgilityStance.class);
+    public static int STAT_GAIN_AMOUNT = 2;
+    public static int STAT_LOSE_AMOUNT = 1;
+    public static int DRAW_AMOUNT = 1;
 
     public AgilityStance()
     {
@@ -35,9 +39,9 @@ public class AgilityStance extends EYBStance
 
         GameActions.Bottom.GainAgility(1, true);
 
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , -1);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +2);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , -1);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , -STAT_LOSE_AMOUNT);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_GAIN_AMOUNT);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , -STAT_LOSE_AMOUNT);
     }
 
     @Override
@@ -45,9 +49,10 @@ public class AgilityStance extends EYBStance
     {
         super.onExitStance();
 
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +1);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -2);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , +1);
+        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(AbstractDungeon.player, DRAW_AMOUNT));
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +STAT_LOSE_AMOUNT);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_GAIN_AMOUNT);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , +STAT_LOSE_AMOUNT);
     }
 
     @Override
@@ -67,5 +72,11 @@ public class AgilityStance extends EYBStance
     protected Color GetMainColor()
     {
         return new Color(0.2f, 1f, 0.2f, 1f);
+    }
+
+    @Override
+    public void updateDescription()
+    {
+        description = FormatDescription(STAT_GAIN_AMOUNT, STAT_LOSE_AMOUNT, DRAW_AMOUNT);
     }
 }

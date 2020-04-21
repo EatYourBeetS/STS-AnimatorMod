@@ -12,6 +12,7 @@ import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStatsClearedSubscriber;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.HashSet;

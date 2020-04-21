@@ -5,7 +5,7 @@
 		"NAME": "Force Stance",
 		"DESCRIPTION": 
 		[
-			"#g+2 #gStrength, NL #r-1 #rFocus, NL #r-1 #rDexterity. NL On Enter: #yBoost #yForce. NL On Exit: <TODO>."
+			"Gain #yForce upon entering this stance.  While in this stance, you gain #b{0} Strength and lose #b{1} Dexterity and #b{1} Focus.  Upon exiting this stance: Gain #b{2} Temp HP next turn."
 		]
 	},
 	"EYB:AgilityStance":
@@ -13,7 +13,7 @@
 		"NAME": "Agility Stance",
 		"DESCRIPTION": 
 		[
-			"#g+2 #gDexterity, NL #r-1 #rStrength, NL #r-1 #rFocus. NL On Enter: #yBoost #yAgility. NL On Exit: <TODO>."
+			"Gain #yAgility upon entering this stance. While in this stance, you gain #b{0} Dexterity and lose #b{1} Strength and #b{1} Focus.  Upon exiting this stance: Draw #b{2} card next turn."
 		]
 	},
 	"EYB:IntellectStance":
@@ -21,7 +21,7 @@
 		"NAME": "Intellect Stance",
 		"DESCRIPTION": 
 		[
-			"#g+2 #gFocus, NL #r-1 #rStrength, NL #r-1 #rDexterity. NL On Enter: #yBoost #yIntellect. NL On Exit: <TODO>."
+			"Gain #yIntellect upon entering this stance. While in this stance, you gain #b{0} Focus and lose #b{1} Strength and #b{1} Dexterity.  Upon exiting this stance: Deal #b{2} damage to a random enemy next turn."
 		]
 	}
 }

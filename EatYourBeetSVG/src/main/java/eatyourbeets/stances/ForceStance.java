@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.common.TempHPNextTurnPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -13,6 +14,9 @@ import eatyourbeets.utilities.TargetHelper;
 public class ForceStance extends EYBStance
 {
     public static String STANCE_ID = CreateFullID(ForceStance.class);
+    public static int STAT_GAIN_AMOUNT = 2;
+    public static int STAT_LOSE_AMOUNT = 1;
+    public static int TEMP_HP_AMOUNT = 3;
 
     public ForceStance()
     {
@@ -36,9 +40,9 @@ public class ForceStance extends EYBStance
 
         GameActions.Bottom.GainForce(1, true);
 
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , -1);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -1);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , +2);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , -STAT_LOSE_AMOUNT);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_LOSE_AMOUNT);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , +STAT_GAIN_AMOUNT);
     }
 
     @Override
@@ -46,9 +50,11 @@ public class ForceStance extends EYBStance
     {
         super.onExitStance();
 
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +1);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +1);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , -2);
+        GameActions.Bottom.StackPower(new TempHPNextTurnPower(AbstractDungeon.player, TEMP_HP_AMOUNT));
+
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +STAT_LOSE_AMOUNT);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , -STAT_GAIN_AMOUNT);
     }
 
     @Override
@@ -67,5 +73,11 @@ public class ForceStance extends EYBStance
     protected Color GetMainColor()
     {
         return new Color(1f, 0.3f, 0.2f, 1f);
+    }
+
+    @Override
+    public void updateDescription()
+    {
+        description = FormatDescription(STAT_GAIN_AMOUNT, STAT_LOSE_AMOUNT, TEMP_HP_AMOUNT);
     }
 }

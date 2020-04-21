@@ -42,6 +42,12 @@
 		"NAMES": ["spellcaster"],
 		"PROPER_NAME": "Spellcaster"
 	},
+	"Synergy Bonus":
+	{
+		"DESCRIPTION": "The number of times you Synergized this turn.",
+		"NAMES": ["synergy bonus"],
+		"PROPER_NAME": "Synergy Bonus"
+	},
 	"Support Damage":
 	{
 		"DESCRIPTION": "Deal damage to the enemy with the lowest HP at the end of each turn. Affected by damage modifiers.",

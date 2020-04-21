@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.resources.GR;
@@ -21,7 +22,7 @@ public class Naotsugu extends AnimatorCard {
     public Naotsugu() {
         super(DATA);
 
-        Initialize(8, 0, 1);
+        Initialize(8, 0, 2);
         SetUpgrade(2, 0, 0);
         SetScaling(0,0,2);
 
@@ -45,7 +46,7 @@ public class Naotsugu extends AnimatorCard {
 
         if (GameUtilities.IsInStance(ForceStance.STANCE_ID))
         {
-            magicNumber = basePlatedArmor + GameUtilities.GetPowerAmount(player, ForcePower.POWER_ID);
+            magicNumber = CombatStats.SynergiesThisTurn();
         }
         else
         {

@@ -187,7 +187,7 @@
 		},
 		"animator:Naotsugu":
 		{
-			"DESCRIPTION": "Gain Block equal to ** damage dealt. || [F] Stance: Gain ** !M! {Plated Armor}.",
+			"DESCRIPTION": "Gain Block equal to ** damage dealt. || Gain !M! {Plated ** Armor}. [F] Stance: Instead Gain ** {Plated Armor} equal to your ** {Synergy Bonus}.",
 			"NAME": "Naotsugu"
 		},
 		"animator:Tohya":

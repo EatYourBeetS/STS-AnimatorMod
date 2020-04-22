@@ -176,7 +176,7 @@
 	{
 		"animator:Akatsuki":
 		{
-			"DESCRIPTION": "Semi-Limited: When Drawn: ** Create !M! 0-Cost copies of ** this card with Exhaust. They ** deal 0 damage. || [A] Stance: Increase damage ** equal to your {Synergy Bonus}.",
+			"DESCRIPTION": "Semi-Limited: When Drawn: ** Create !M! 0-Cost copies of ** this card with Exhaust. They ** deal 0 damage. || [A] Stance: Increases damage ** equal to your {Synergy Bonus}.",
 			"NAME": "Akatsuki"
 		},
 		"animator:Henrietta":
@@ -194,6 +194,11 @@
 		{
 			"DESCRIPTION": "Gain Block equal to ** damage dealt. || Gain !M! {Plated Armor}. ** [F] Stance: Instead Gain ** {Plated Armor} equal to your ** {Synergy Bonus}.",
 			"NAME": "Naotsugu"
+		},
+		"animator:Nyanta":
+		{
+			"DESCRIPTION": "Costs !S! less for each time you ** Synergized until played. || Deals additional damage equal to ** your Synergy Bonus.",
+			"NAME": "Nyanta"
 		},
 		"animator:Shiroe":
 		{

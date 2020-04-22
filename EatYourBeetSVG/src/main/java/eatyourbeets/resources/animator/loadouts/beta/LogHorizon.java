@@ -18,7 +18,7 @@ public class LogHorizon extends AnimatorLoadout
 {
     public LogHorizon()
     {
-        super(Synergies.Gate);
+        super(Synergies.LogHorizon);
     }
 
     @Override

@@ -174,6 +174,11 @@
 
 	"BETA:LOGHORIZON":
 	{
+		"animator:Akatsuki":
+		{
+			"DESCRIPTION": "Semi-Limited: When Drawn: ** Create !M! 0-Cost copies of this ** card. They deal 0 damage, ** and Purge on use. || [A] Stance: Increase damage ** by !S! times your {Synergy Bonus}.",
+			"NAME": "Akatsuki"
+		},
 		"animator:Henrietta":
 		{
 			"DESCRIPTION": "Enter any Stance. ** Motivate !M!. || At the end of each turn, ** spend !S! of your remaining ** Energy to enter any Stance.",
@@ -189,6 +194,11 @@
 		{
 			"DESCRIPTION": "Gain Block equal to ** damage dealt. || Gain !M! {Plated Armor}. ** [F] Stance: Instead Gain ** {Plated Armor} equal to your ** {Synergy Bonus}.",
 			"NAME": "Naotsugu"
+		},
+		"animator:Shiroe":
+		{
+			"DESCRIPTION": "Apply !M! Choked to ** ALL enemies. || Increase your {Synergy Bonus} ** by !S!. || Limited. If your {Synergy ** Bonus} is 4 or higher: ** permanently Upgrade this card.",
+			"NAME": "Shiroe"
 		},
 		"animator:Tohya":
 		{

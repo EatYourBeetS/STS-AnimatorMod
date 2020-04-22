@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class Shiroe extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Shiroe.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Shiroe.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.Normal);
 
     public Shiroe() {
         super(DATA);
@@ -25,7 +25,6 @@ public class Shiroe extends AnimatorCard {
         Initialize(0, 0, 2,2);
         SetUpgrade(0, 0, 1);
 
-        SetEthereal(true);
         SetUnique(true, true);
         SetShapeshifter();
         SetSynergy(Synergies.LogHorizon);
@@ -33,9 +32,7 @@ public class Shiroe extends AnimatorCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for (AbstractMonster enemy : GameUtilities.GetEnemies(true)) {
-            GameActions.Bottom.ApplyConstricted(p, enemy, magicNumber);
-        }
+        GameActions.Bottom.ApplyConstricted(p, m, magicNumber);
 
         if (CombatStats.SynergiesThisTurn() >= secondaryValue && CombatStats.TryActivateLimited(cardID))
         {

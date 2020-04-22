@@ -5,75 +5,58 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.series.NoGameNoLife.Shiro;
+import eatyourbeets.cards.animator.special.Excalibur;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
+import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Nyanta extends AnimatorCard implements OnCostRefreshSubscriber {
-    public static final EYBCardData DATA = Register(Nyanta.class).SetAttack(6, CardRarity.UNCOMMON, EYBAttackType.Piercing);
-
-    private int costModifier = 0;
+public class Nyanta extends AnimatorCard implements OnSynergySubscriber {
+    public static final EYBCardData DATA = Register(Nyanta.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing);
 
     public Nyanta() {
         super(DATA);
 
-        Initialize(3, 0, 3,1);
-        SetUpgrade(1, 0, 0);
+        Initialize(3, 0, 3);
+        SetUpgrade(1,0);
+        SetScaling(0,1,0);
         SetRetain(true);
+
+        SetCooldown(7, -1, this::OnCooldownCompleted);
 
         SetSynergy(Synergies.LogHorizon);
     }
 
     @Override
-    public void resetAttributes()
+    public void Refresh(AbstractMonster enemy)
     {
-        super.resetAttributes();
+        super.Refresh(enemy);
 
-        costModifier = 0;
-    }
-
-    @Override
-    public void OnCostRefresh(AbstractCard card)
-    {
-        if (card == this && !player.limbo.contains(this))
+        if (player.hand.contains(this))
         {
-            int currentCost = (costForTurn + costModifier);
-
-            costModifier = CombatStats.SynergiesThisTurn();
-
-            if (!this.freeToPlayOnce)
-            {
-                setCostForTurn(currentCost - costModifier);
-            }
+            CombatStats.onSynergy.Subscribe(this);
         }
     }
 
     @Override
-    public AbstractCard makeStatEquivalentCopy()
+    public void OnSynergy(AnimatorCard card)
     {
-        Nyanta copy = (Nyanta) super.makeStatEquivalentCopy();
-
-        copy.costModifier = this.costModifier;
-
-        return copy;
-    }
-
-    @Override
-    protected float ModifyDamage(AbstractMonster enemy, float damage)
-    {
-        if (GameUtilities.IsInStance(AgilityStance.STANCE_ID))
+        if (!player.hand.contains(this))
         {
-            damage = baseDamage + CombatStats.SynergiesThisTurn();
+            CombatStats.onSynergy.Unsubscribe(this);
         }
-
-        return super.ModifyDamage(enemy, damage);
+        else
+        {
+            cooldown.ProgressCooldownAndTrigger(1, null);
+            flash();
+        }
     }
 
     @Override
@@ -89,5 +72,12 @@ public class Nyanta extends AnimatorCard implements OnCostRefreshSubscriber {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL)
             .SetVFX(true, false);
         }
+
+        cooldown.ProgressCooldownAndTrigger(1, m);
+    }
+
+    protected void OnCooldownCompleted(AbstractMonster m)
+    {
+       GameActions.Bottom.GainAgility(CombatStats.SynergiesThisTurn());
     }
 }

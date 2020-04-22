@@ -197,12 +197,17 @@
 		},
 		"animator:Nyanta":
 		{
-			"DESCRIPTION": "Costs !S! less for each time you ** Synergized until played. || Deals additional damage equal to ** your Synergy Bonus.",
+			"DESCRIPTION": "Cooldown !S!: Gain [A] ** equal to your {Synergy Bonus}. || Whenever you Synergize ** while this is in your hand: ** Reduce this card's Cooldown ** by 1.",
 			"NAME": "Nyanta"
+		},
+		"animator:Serara":
+		{
+			"DESCRIPTION": "If you have !S! or ** less {Temp. HP}, Gain !M! ** {Temp. HP}. || When Discarded: Draw ** {Nyanta} from any pile. ",
+			"NAME": "Serara"
 		},
 		"animator:Shiroe":
 		{
-			"DESCRIPTION": "Apply !M! Constricted to ** ALL enemies. || Limited. If your {Synergy ** Bonus} is !S! or higher: ** permanently Upgrade this ** card.",
+			"DESCRIPTION": "{~Unique}. Apply !M! ** Constricted. || Limited. If your {Synergy ** Bonus} is !S! or higher: ** Permanently Upgrade this ** card.",
 			"NAME": "Shiroe"
 		},
 		"animator:Tohya":

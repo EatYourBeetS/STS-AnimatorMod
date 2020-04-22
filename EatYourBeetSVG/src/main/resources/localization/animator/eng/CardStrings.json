@@ -192,7 +192,7 @@
 		},
 		"animator:Tohya":
 		{
-			"DESCRIPTION": "Cooldown !M!: Gain !S! ** Block, then deal damage ** equal to your Block to ** a random target.",
+			"DESCRIPTION": "Cooldown !S!: Gain !M! ** Block, then deal damage ** equal to your Block to ** a random target.",
 			"NAME": "Tohya"
 		}
 	},

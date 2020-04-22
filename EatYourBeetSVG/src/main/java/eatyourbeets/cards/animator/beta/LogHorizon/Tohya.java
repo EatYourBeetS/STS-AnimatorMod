@@ -16,11 +16,11 @@ public class Tohya extends AnimatorCard {
     public Tohya() {
         super(DATA);
 
-        Initialize(1, 5, 2,4);
+        Initialize(1, 5, 4);
         SetUpgrade(0, 3, 0);
         SetScaling(0,0,1);
 
-        SetCooldown(magicNumber, 0, this::OnCooldownCompleted);
+        SetCooldown(2, 0, this::OnCooldownCompleted);
         SetSynergy(Synergies.LogHorizon);
     }
 
@@ -34,7 +34,7 @@ public class Tohya extends AnimatorCard {
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-         GameActions.Bottom.GainBlock(secondaryValue).AddCallback(__ -> {
+         GameActions.Bottom.GainBlock(magicNumber).AddCallback(__ -> {
              GameActions.Bottom.DealDamageToRandomEnemy(player.currentBlock, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HEAVY);
          });
     }

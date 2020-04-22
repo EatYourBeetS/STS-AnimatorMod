@@ -176,7 +176,7 @@
 	{
 		"animator:Akatsuki":
 		{
-			"DESCRIPTION": "Semi-Limited: When Drawn: ** Create !M! 0-Cost copies of this ** card. They deal 0 damage, ** and Purge on use. || [A] Stance: Increase damage ** by !S! times your {Synergy Bonus}.",
+			"DESCRIPTION": "Semi-Limited: When Drawn: ** Create !M! 0-Cost copies of ** this card with Exhaust. They ** deal 0 damage. || [A] Stance: Increase damage ** equal to your {Synergy Bonus}.",
 			"NAME": "Akatsuki"
 		},
 		"animator:Henrietta":
@@ -197,7 +197,7 @@
 		},
 		"animator:Shiroe":
 		{
-			"DESCRIPTION": "Apply !M! Choked to ** ALL enemies. || Increase your {Synergy Bonus} ** by !S!. || Limited. If your {Synergy ** Bonus} is 4 or higher: ** permanently Upgrade this card.",
+			"DESCRIPTION": "Apply !M! Constricted to ** ALL enemies. || Limited. If your {Synergy ** Bonus} is !S! or higher: ** permanently Upgrade this ** card.",
 			"NAME": "Shiroe"
 		},
 		"animator:Tohya":

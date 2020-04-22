@@ -20,8 +20,8 @@ public class Akatsuki extends AnimatorCard {
     public Akatsuki() {
         super(DATA);
 
-        Initialize(9, 0, 2,3);
-        SetUpgrade(0, 0, 1,2);
+        Initialize(10, 0, 2);
+        SetUpgrade(2, 0, 1);
         SetScaling(0,2,0);
 
         SetEthereal(true);
@@ -72,7 +72,8 @@ public class Akatsuki extends AnimatorCard {
 
                     card.freeToPlayOnce = true;
                     card.baseDamage = 0;
-                    card.tags.add(GR.Enums.CardTags.PURGE);
+                    card.exhaust = true;
+                    card.exhaustOnUseOnce = true;
                     card.applyPowers();
                 });
             }

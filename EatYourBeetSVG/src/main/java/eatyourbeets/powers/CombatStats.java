@@ -155,7 +155,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static void EnsurePowerIsApplied()
     {
-        if (!player.powers.contains(Instance))
+        if (RefreshPlayer() != null && !player.powers.contains(Instance))
         {
             JavaUtilities.Log(CombatStats.class, "Applied PlayerStatistics");
             player.powers.add(Instance);

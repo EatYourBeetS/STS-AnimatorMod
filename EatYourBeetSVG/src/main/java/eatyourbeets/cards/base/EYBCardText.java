@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.cardTextParsing.CTContext;
 import eatyourbeets.resources.GR;
@@ -27,16 +26,12 @@ public class EYBCardText
     private float badgeAlphaOffset = -0.2f;
 
     protected final CTContext context = new CTContext();
-    protected final String description;
-    protected final String upgradedDescription;
     protected final EYBCard card;
     protected String overrideDescription;
 
-    public EYBCardText(EYBCard card, CardStrings cardStrings)
+    public EYBCardText(EYBCard card)
     {
         this.card = card;
-        this.description = cardStrings.DESCRIPTION;
-        this.upgradedDescription = cardStrings.UPGRADE_DESCRIPTION;
     }
 
     public void ForceRefresh()
@@ -45,13 +40,9 @@ public class EYBCardText
         {
             card.rawDescription = overrideDescription;
         }
-        else if (card.upgraded && upgradedDescription != null)
-        {
-            card.rawDescription = upgradedDescription;
-        }
         else
         {
-            card.rawDescription = description;
+            card.rawDescription = card.GetRawDescription();
         }
 
         context.Initialize(card, card.rawDescription);

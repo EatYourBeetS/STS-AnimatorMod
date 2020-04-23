@@ -50,6 +50,6 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
             GameActions.Top.PlayCard(c, p.discardPile, m).SetExhaust(true);
         }
 
-        GameActions.Top.GainTemporaryHP(this.magicNumber);
+        GameActions.Top.GainTemporaryHP(magicNumber);
     }
 }

@@ -19,6 +19,7 @@ public class KotoriKanbe extends AnimatorCard
 
         Initialize(0, 0, 3, 4);
 
+        SetEthereal(true);
         SetExhaust(true);
         SetSynergy(Synergies.Rewrite);
     }

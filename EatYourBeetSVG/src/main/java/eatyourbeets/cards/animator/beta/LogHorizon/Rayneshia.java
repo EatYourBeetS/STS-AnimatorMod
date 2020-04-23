@@ -60,7 +60,7 @@ public class Rayneshia extends AnimatorCard {
 
         for (int i=0; i<magicNumber; i++)
         {
-            if (i >= randomizedSynergicCards.Size())
+            if (i > randomizedSynergicCards.Size())
             {
                 break;
             }

@@ -187,7 +187,7 @@
 		},
 		"animator:Minori":
 		{
-			"DESCRIPTION": "Cycle !S! card(s). || Synergy: Motivate !S!.",
+			"DESCRIPTION": "Cycle !S! card. || Synergy: Motivate !S!.",
 			"NAME": "Minori"
 		},
 		"animator:Naotsugu":
@@ -199,6 +199,11 @@
 		{
 			"DESCRIPTION": "Cooldown !S!: Gain [A] ** equal to your {Synergy Bonus}. || Whenever you Synergize ** while this is in your hand: ** Reduce this card's Cooldown ** by 1.",
 			"NAME": "Nyanta"
+		},
+		"animator:Rayneshia":
+		{
+			"DESCRIPTION": "Draw !M! cards that ** {Synergize} with this card from ** your discard pile. || This card {Synergizes} ** with {Martial Artists} ** and {Spellcasters}.",
+			"NAME": "Rayneshia"
 		},
 		"animator:Serara":
 		{
@@ -504,7 +509,7 @@
 		},
 		"animator:Rider":
 		{
-			"DESCRIPTION": "Apply !M! {Shackles}. || This card {Synergizes} ** with {Martial Artists} ** and {Spellcasters}",
+			"DESCRIPTION": "Apply !M! {Shackles}. || This card {Synergizes} ** with {Martial Artists} ** and {Spellcasters}.",
 			"NAME": "Rider"
 		},
 		"animator:RinTohsaka":

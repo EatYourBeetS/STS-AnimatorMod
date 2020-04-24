@@ -40,7 +40,7 @@ public class ChihayaOhtori extends AnimatorCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         GameActions.Top.FetchFromPile(name, 1, player.discardPile)
         .SetOptions(false, false)
-        .SetFilter(this::CardIsMartialArtist)
+        .SetFilter(c -> c.hasTag(MARTIAL_ARTIST))
         .AddCallback(cards -> {
             if (cards.size() > 0)
             {
@@ -49,10 +49,5 @@ public class ChihayaOhtori extends AnimatorCard {
                 GameActions.Bottom.Add(new RefreshHandLayout());
             }
         });
-    }
-
-    private boolean CardIsMartialArtist(AbstractCard card)
-    {
-        return card.hasTag(MARTIAL_ARTIST);
     }
 }

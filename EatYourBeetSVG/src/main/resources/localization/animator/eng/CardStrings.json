@@ -190,6 +190,11 @@
 			"DESCRIPTION": "Draw a {Martial Artist} from ** your Discard pile.  It ** costs !M! less this turn. || When drawn: If this ** has Haste: Gain !S! ** {Temp. Artifact}.",
 			"NAME": "Chihaya Ohtori"
 		},
+		"animator:Defend_Rewrite":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Improved Defend"
+		},
 		"animator:Kagari":
 		{
 			"DESCRIPTION": "Apply !M! {Shackles} ** to ALL enemies. || The next time ** you take damage: ** Channel !S! Earth.",
@@ -235,14 +240,19 @@
 		},
 		"animator:ShizuruNakatsu":
 		{
-			"DESCRIPTION": "Discard !M! random card(s) ** to Enter [A] Stance. || <LIM>. If you end the ** combat in [A] Stance: Obtain ** a random Common Potion.",
-			"UPGRADE_DESCRIPTION": "Discard !M! card(s) ** to Enter [A] Stance. || <LIM>. If you end the ** combat in [A] Stance: Obtain ** a random Common Potion.",
+			"DESCRIPTION": "Discard !M! random Skill(s) ** to Enter [A] Stance. || <LIM>. If you end the ** combat in [A] Stance: Obtain ** a random Common Potion.",
+			"UPGRADE_DESCRIPTION": "Discard !M! Skill(s) ** to Enter [A] Stance. || <LIM>. If you end the ** combat in [A] Stance: Obtain ** a random Common Potion.",
 			"NAME": "Shizuru Nakatsu"
 		},
 		"animator:SougenEsaka":
 		{
 			"DESCRIPTION": "Gain Block equal to ** your [A]. || Synergy: Upgrade a random ** card in your hand.",
 			"NAME": "Sougen Esaka"
+		},
+		"animator:Strike_Rewrite":
+		{
+			"DESCRIPTION": "Gain [I].",
+			"NAME": "Improved Strike"
 		},
 		"animator:ToukaNishikujou":
 		{

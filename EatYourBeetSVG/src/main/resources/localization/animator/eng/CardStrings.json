@@ -252,7 +252,7 @@
 		},
 		"animator:KotoriKanbe":
 		{
-			"DESCRIPTION": "Fully heal the enemy. Apply ** 1 Weak and Vulnerable for every !M! HP healed. || If you healed 40 or ** more HP: The enemy ** also loses !S! Strength.",
+			"DESCRIPTION": "Fully heal the enemy. Apply ** 1 Weak and Vulnerable for every !M! HP healed. || <LIM>. If you healed {0} ** or more HP: The enemy ** also loses !S! Strength.",
 			"NAME": "Kotori Kanbe"
 		},
 		"animator:Kyubey":

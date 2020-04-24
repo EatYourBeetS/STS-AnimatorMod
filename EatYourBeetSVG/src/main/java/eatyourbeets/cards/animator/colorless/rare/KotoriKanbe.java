@@ -5,19 +5,19 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class KotoriKanbe extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KotoriKanbe.class).SetSkill(1, CardRarity.RARE).SetColor(CardColor.COLORLESS);
-    public static final int HP_HEAL_THRESHOLD = 40;
+    public static final int HP_HEAL_THRESHOLD = 30;
 
     public KotoriKanbe()
     {
         super(DATA);
 
         Initialize(0, 0, 3, 4);
-        SetUpgrade(0, 0, -1);
 
         SetEthereal(true);
         SetExhaust(true);
@@ -25,19 +25,31 @@ public class KotoriKanbe extends AnimatorCard
     }
 
     @Override
+    public String GetRawDescription()
+    {
+        return super.GetRawDescription(HP_HEAL_THRESHOLD);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetEthereal(false);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        int missingHP = m.maxHealth - m.currentHealth;
-        int amount = Math.floorDiv(missingHP, magicNumber);
+        int heal = m.maxHealth - m.currentHealth;
+        int stacks = Math.floorDiv(heal, magicNumber);
 
-        GameActions.Bottom.Heal(p, m, missingHP);
+        GameActions.Bottom.Heal(p, m, heal);
 
-        if (amount > 0)
+        if (stacks > 0)
         {
-            GameActions.Bottom.ApplyWeak(p, m, amount);
-            GameActions.Bottom.ApplyVulnerable(p, m, amount);
+            GameActions.Bottom.ApplyWeak(p, m, stacks);
+            GameActions.Bottom.ApplyVulnerable(p, m, stacks);
 
-            if (missingHP > HP_HEAL_THRESHOLD)
+            if (heal >= HP_HEAL_THRESHOLD && CombatStats.TryActivateLimited(cardID))
             {
                 GameActions.Bottom.ReduceStrength(m, secondaryValue, false);
             }

@@ -81,7 +81,7 @@ public abstract class EYBCard extends EYBCardBase
 
         this.cardData = cardData;
         this.tooltips = new ArrayList<>();
-        this.cardText = new EYBCardText(this, cardData.Strings);
+        this.cardText = new EYBCardText(this);
         initializeDescription();
     }
 
@@ -126,6 +126,30 @@ public abstract class EYBCard extends EYBCardBase
     public EYBCardPreview GetCardPreview()
     {
         return cardData.GetCardPreview();
+    }
+
+    protected String GetRawDescription()
+    {
+        if (upgraded && cardData.Strings.UPGRADE_DESCRIPTION != null)
+        {
+            return cardData.Strings.UPGRADE_DESCRIPTION;
+        }
+        else
+        {
+            return cardData.Strings.DESCRIPTION;
+        }
+    }
+
+    protected String GetRawDescription(Object... args)
+    {
+        if (upgraded && cardData.Strings.UPGRADE_DESCRIPTION != null)
+        {
+            return JavaUtilities.Format(cardData.Strings.UPGRADE_DESCRIPTION, args);
+        }
+        else
+        {
+            return JavaUtilities.Format(cardData.Strings.DESCRIPTION, args);
+        }
     }
 
     @Override

@@ -198,7 +198,7 @@
 		},
 		"animator:KotarouTennouji":
 		{
-			"DESCRIPTION": "Enter a random {Stance}. || Limited: Whenever you change ** {Stances} while this card is ** in your hand, Permanently ** Upgrade this card.",
+			"DESCRIPTION": "Enter a random {Stance}. || <LIM>. Whenever you change ** {Stances} while this card is ** in your hand, Permanently ** Upgrade this card.",
 			"NAME": "Kotarou Tennouji"
 		},
 		"animator:KotoriKanbe":
@@ -216,6 +216,11 @@
 		{
 			"DESCRIPTION": "Apply !M! Burning. **  Exit your current stance. || <LIM>: If you exited ** [I] Stance: Channel !S! Fire.",
 			"NAME": "Midou"
+		},
+		"animator:SakuraKashima":
+		{
+			"DESCRIPTION": "<LIM>. When Drawn: Add ** a {Miracle} to your hand. || Gain !M! [F], [A], and ** [I], then Evoke ALL Orbs. **  Die next turn.",
+			"NAME": "Sakura Kashima"
 		},
 		"animator:SakuyaOhtori":
 		{

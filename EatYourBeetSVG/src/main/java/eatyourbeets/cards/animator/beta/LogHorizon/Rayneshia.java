@@ -32,11 +32,6 @@ public class Rayneshia extends AnimatorCard {
     }
 
     @Override
-    protected void OnUpgrade() {
-        SetRetain(true);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         AddCardsFromGroupToSynergy(player.discardPile);

@@ -7,11 +7,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.vfx.combat.EmptyStanceEffect;
-import eatyourbeets.cards.animator.series.FullmetalAlchemist.RoyMustang;
-import eatyourbeets.cards.animator.series.NoGameNoLife.FielNirvalen;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT3;
-import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -20,7 +17,7 @@ public class Chibimoth extends AnimatorCard {
 
     static
     {
-        DATA.AddPreview(new Chibimoth(), false);
+        DATA.AddPreview(new KotoriKanbe(), false);
     }
 
     public Chibimoth() {

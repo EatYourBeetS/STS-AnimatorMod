@@ -1,23 +1,22 @@
 package eatyourbeets.cards.animator.beta.Rewrite;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class SougenEsaka extends AnimatorCard {
-    public static final EYBCardData DATA = Register(SougenEsaka.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(SougenEsaka.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.None);
 
     public SougenEsaka() {
         super(DATA);
 
-        Initialize(0, 5, 1);
-        SetUpgrade(0, 1, 2);
-        SetScaling(0,1,0);
+        Initialize(6, 0, 1);
+        SetUpgrade(3, 0, 2);
 
         SetMartialArtist();
 
@@ -26,13 +25,13 @@ public class SougenEsaka extends AnimatorCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
-        GameActions.Bottom.Add(new RandomCardUpgrade());
+        GameActions.Bottom.GainBlock(GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID));
 
         if (HasSynergy())
         {
-            GameActions.Bottom.GainBlur(magicNumber);
+            GameActions.Bottom.Add(new RandomCardUpgrade());
         }
     }
 }

@@ -190,9 +190,14 @@
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you take damage: Channel #b{1} Earth."],
 			"NAME": "Kagari"
 		},
+		"animator:Shimako":
+		{
+			"DESCRIPTION": "Channel 1 Orb based ** on your current stance: || Neutral -> Lightning. ** [F] -> Fire. ** [A] -> Frost ** [I] -> Dark.",
+			"NAME": "Shimako"
+		},
 		"animator:SougenEsaka":
 		{
-			"DESCRIPTION": "Upgrade a random card ** in your hand. || Synergy: Gain !M! Blur.",
+			"DESCRIPTION": "Gain Block equal to ** your [A]. || Synergy: Upgrade a random ** card in your hand.",
 			"NAME": "Sougen Esaka"
 		},
 		"animator:ToukaNishikujou":

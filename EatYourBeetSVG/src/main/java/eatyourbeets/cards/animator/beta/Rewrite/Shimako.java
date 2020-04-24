@@ -24,14 +24,14 @@ public class Shimako extends AnimatorCard {
 
         Initialize(0, 0, 0);
         SetUpgrade(0, 0, 0);
-        SetInnate(true);
+        SetRetain(true);
 
         SetSynergy(Synergies.Rewrite);
     }
 
     @Override
     protected void OnUpgrade() {
-        SetRetain(true);
+        SetInnate(true);
     }
 
     @Override

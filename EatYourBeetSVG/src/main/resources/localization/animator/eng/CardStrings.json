@@ -192,8 +192,14 @@
 		},
 		"animator:Midou":
 		{
-			"DESCRIPTION": "Apply !M! Burning. **  Exit your current stance. || If you exited [IS]: ** Channel !S! Fire.",
+			"DESCRIPTION": "Apply !M! Burning. **  Exit your current stance. || <LIM>: If you exited ** [I] Stance: Channel !S! Fire.",
 			"NAME": "Midou"
+		},
+		"animator:SakuyaOhtori":
+		{
+			"DESCRIPTION": "<LIM>. When drawn: Discard this ** card and Gain [F]. || Enter [I] Stance. ** Convert half of your [F] ** into [I].",
+			"UPGRADE_DESCRIPTION": "<LIM>. When drawn: Discard this ** card and Boost [F]. || Enter [I] Stance. ** Convert half of your [F] ** into [I].",
+			"NAME": "Sakuya Ohtori"
 		},
 		"animator:Shimako":
 		{

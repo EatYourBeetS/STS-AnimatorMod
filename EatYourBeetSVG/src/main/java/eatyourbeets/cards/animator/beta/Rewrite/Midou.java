@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 
@@ -33,7 +34,7 @@ public class Midou extends AnimatorCard {
         boolean exitIntellect = (player.stance.ID.equals(IntellectStance.STANCE_ID));
         GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
 
-        if (exitIntellect)
+        if (exitIntellect && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ChannelOrb(new Fire(), true);
         }

@@ -1,12 +1,11 @@
 package eatyourbeets.resources.animator.loadouts.beta;
 
 import eatyourbeets.cards.animator.basic.Defend;
-import eatyourbeets.cards.animator.basic.Defend_HitsugiNoChaika;
 import eatyourbeets.cards.animator.basic.Strike;
-import eatyourbeets.cards.animator.basic.Strike_HitsugiNoChaika;
-import eatyourbeets.cards.animator.series.HitsugiNoChaika.AcuraAkari;
+import eatyourbeets.cards.animator.beta.Rewrite.Chibimoth;
+import eatyourbeets.cards.animator.beta.Rewrite.Strike_Rewrite;
+import eatyourbeets.cards.animator.beta.Rewrite.YoshinoHaruhiko;
 import eatyourbeets.cards.animator.series.HitsugiNoChaika.ChaikaTrabant;
-import eatyourbeets.cards.animator.series.HitsugiNoChaika.Gillette;
 import eatyourbeets.cards.animator.ultrarare.NivaLada;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
@@ -26,16 +25,16 @@ public class Rewrite extends AnimatorLoadout
     {
         if (startingDeck.isEmpty())
         {
-            startingDeck.add(Strike_HitsugiNoChaika.ID);
-            startingDeck.add(Defend_HitsugiNoChaika.ID);
+            startingDeck.add(Strike_Rewrite.ID);
+            startingDeck.add(Strike_Rewrite.ID);
             startingDeck.add(Strike.DATA.ID);
             startingDeck.add(Strike.DATA.ID);
             startingDeck.add(Strike.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
-            startingDeck.add(AcuraAkari.DATA.ID);
-            startingDeck.add(Gillette.DATA.ID);
+            startingDeck.add(YoshinoHaruhiko.DATA.ID);
+            startingDeck.add(Chibimoth.DATA.ID);
         }
 
         return startingDeck;

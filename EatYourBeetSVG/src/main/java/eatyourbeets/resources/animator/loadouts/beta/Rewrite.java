@@ -2,11 +2,7 @@ package eatyourbeets.resources.animator.loadouts.beta;
 
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
-import eatyourbeets.cards.animator.beta.Rewrite.Chibimoth;
-import eatyourbeets.cards.animator.beta.Rewrite.Strike_Rewrite;
-import eatyourbeets.cards.animator.beta.Rewrite.YoshinoHaruhiko;
-import eatyourbeets.cards.animator.series.HitsugiNoChaika.ChaikaTrabant;
-import eatyourbeets.cards.animator.ultrarare.NivaLada;
+import eatyourbeets.cards.animator.beta.Rewrite.*;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -26,7 +22,7 @@ public class Rewrite extends AnimatorLoadout
         if (startingDeck.isEmpty())
         {
             startingDeck.add(Strike_Rewrite.ID);
-            startingDeck.add(Strike_Rewrite.ID);
+            startingDeck.add(Defend_Rewrite.ID);
             startingDeck.add(Strike.DATA.ID);
             startingDeck.add(Strike.DATA.ID);
             startingDeck.add(Strike.DATA.ID);
@@ -43,12 +39,12 @@ public class Rewrite extends AnimatorLoadout
     @Override
     public EYBCardData GetSymbolicCard()
     {
-        return ChaikaTrabant.DATA;
+        return Kagari.DATA;
     }
 
     @Override
     public EYBCardData GetUltraRare()
     {
-        return NivaLada.DATA;
+        return SakuraKashima.DATA;
     }
 }

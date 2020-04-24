@@ -212,6 +212,12 @@
 			"DESCRIPTION": "Channel 1 Orb based ** on your current stance: || Neutral -> Lightning. ** [F] -> Fire. ** [A] -> Frost ** [I] -> Dark.",
 			"NAME": "Shimako"
 		},
+		"animator:ShizuruNakatsu":
+		{
+			"DESCRIPTION": "Discard 1 random card ** to Enter [A] Stance. || <LIM>. If you end the ** combat in [A] Stance: Obtain ** a random Common Potion.",
+			"UPGRADE_DESCRIPTION": "Discard 1 card ** to Enter [A] Stance. || <LIM>. If you end the ** combat in [A] Stance: Obtain ** a random Common Potion.",
+			"NAME": "Shizuru Nakatsu"
+		},
 		"animator:SougenEsaka":
 		{
 			"DESCRIPTION": "Gain Block equal to ** your [A]. || Synergy: Upgrade a random ** card in your hand.",

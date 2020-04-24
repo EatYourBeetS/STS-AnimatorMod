@@ -60,6 +60,12 @@ public class LuciaKonohana extends AnimatorCard {
         }
 
         @Override
+        public void updateDescription()
+        {
+            description = FormatDescription(0);
+        }
+
+        @Override
         public void onDeath()
         {
             final AbstractCreature corpse = this.owner;

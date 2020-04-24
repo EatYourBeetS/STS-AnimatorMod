@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.colorless.rare;
+package eatyourbeets.cards.animator.beta.Rewrite;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class KotoriKanbe extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(KotoriKanbe.class).SetSkill(1, CardRarity.RARE).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(KotoriKanbe.class).SetSkill(1, CardRarity.RARE);
     public static final int HP_HEAL_THRESHOLD = 30;
 
     public KotoriKanbe()
@@ -49,7 +49,7 @@ public class KotoriKanbe extends AnimatorCard
             GameActions.Bottom.ApplyWeak(p, m, stacks);
             GameActions.Bottom.ApplyVulnerable(p, m, stacks);
 
-            if (heal >= HP_HEAL_THRESHOLD && CombatStats.TryActivateLimited(cardID))
+            if (heal >= HP_HEAL_THRESHOLD && HasSynergy() && CombatStats.TryActivateLimited(cardID))
             {
                 GameActions.Bottom.ReduceStrength(m, secondaryValue, false);
             }

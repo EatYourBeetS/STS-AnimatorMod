@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.colorless.uncommon;
+package eatyourbeets.cards.animator.beta.Rewrite;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Kagari extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Kagari.class).SetPower(2, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Kagari.class).SetPower(2, CardRarity.UNCOMMON);
 
     public Kagari()
     {

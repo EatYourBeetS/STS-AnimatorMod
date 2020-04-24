@@ -49,7 +49,7 @@ public class KotoriKanbe extends AnimatorCard
             GameActions.Bottom.ApplyWeak(p, m, stacks);
             GameActions.Bottom.ApplyVulnerable(p, m, stacks);
 
-            if (heal >= HP_HEAL_THRESHOLD && HasSynergy() && CombatStats.TryActivateLimited(cardID))
+            if (heal >= HP_HEAL_THRESHOLD && CombatStats.TryActivateLimited(cardID))
             {
                 GameActions.Bottom.ReduceStrength(m, secondaryValue, false);
             }

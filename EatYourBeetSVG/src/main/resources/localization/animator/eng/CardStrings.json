@@ -176,7 +176,7 @@
 	{
 		"animator:KotoriKanbe":
 		{
-			"DESCRIPTION": "Fully heal the enemy. Apply ** 1 Weak and Vulnerable for every !M! HP healed. || <LIM>. Synergy: If you healed ** {0} or more HP: The ** enemy also loses !S! ** Strength.",
+			"DESCRIPTION": "Fully heal the enemy. Apply ** 1 Weak and Vulnerable for every !M! HP healed. || <LIM>. If you healed {0} ** or more HP: The enemy ** also loses !S! Strength.",
 			"NAME": "Kotori Kanbe"
 		},
 		"animator:Kagari":

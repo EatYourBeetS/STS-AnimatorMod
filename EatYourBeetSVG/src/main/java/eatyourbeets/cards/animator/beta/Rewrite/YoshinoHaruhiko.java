@@ -15,7 +15,7 @@ public class YoshinoHaruhiko extends AnimatorCard {
     public YoshinoHaruhiko() {
         super(DATA);
 
-        Initialize(11, 0, 2);
+        Initialize(11, 0, 1);
         SetUpgrade(2, 0, 0);
 
         SetMartialArtist();

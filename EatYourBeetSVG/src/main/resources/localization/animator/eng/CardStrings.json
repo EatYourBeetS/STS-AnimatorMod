@@ -219,8 +219,8 @@
 		},
 		"animator:ShizuruNakatsu":
 		{
-			"DESCRIPTION": "Discard 1 random card ** to Enter [A] Stance. || <LIM>. If you end the ** combat in [A] Stance: Obtain ** a random Common Potion.",
-			"UPGRADE_DESCRIPTION": "Discard 1 card ** to Enter [A] Stance. || <LIM>. If you end the ** combat in [A] Stance: Obtain ** a random Common Potion.",
+			"DESCRIPTION": "Discard !M! random card(s) ** to Enter [A] Stance. || <LIM>. If you end the ** combat in [A] Stance: Obtain ** a random Common Potion.",
+			"UPGRADE_DESCRIPTION": "Discard !M! card(s) ** to Enter [A] Stance. || <LIM>. If you end the ** combat in [A] Stance: Obtain ** a random Common Potion.",
 			"NAME": "Shizuru Nakatsu"
 		},
 		"animator:SougenEsaka":

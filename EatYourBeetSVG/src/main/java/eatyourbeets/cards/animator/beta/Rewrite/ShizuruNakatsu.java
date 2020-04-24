@@ -24,7 +24,7 @@ public class ShizuruNakatsu extends AnimatorCard implements OnBattleStartSubscri
     public ShizuruNakatsu() {
         super(DATA);
 
-        Initialize(6, 0, 1);
+        Initialize(6, 0, 2);
 
         SetSynergy(Synergies.Rewrite);
     }
@@ -38,7 +38,7 @@ public class ShizuruNakatsu extends AnimatorCard implements OnBattleStartSubscri
         GameActions.Bottom.VFX(new ThrowDaggerEffect(x, y));
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
 
-        GameActions.Bottom.DiscardFromHand(name, 1, !upgraded)
+        GameActions.Bottom.DiscardFromHand(name, magicNumber, !upgraded)
         .ShowEffect(!upgraded, !upgraded)
         .SetOptions(false, false, false)
         .AddCallback(() ->

@@ -190,6 +190,12 @@
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you take damage: Channel #b{1} Earth."],
 			"NAME": "Kagari"
 		},
+		"animator:LuciaKonohana":
+		{
+			"DESCRIPTION": "Apply !M! Poison to ** a random enemy. || [A] Stance: When the enemy ** dies, transfer its {Common Debuffs} to ** ALL enemies.",
+			"EXTENDED_DESCRIPTION": ["When this creature dies, transfer its #yCommon #yDebuffs to ALL enemies.","Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
+			"NAME": "Lucia Konohana"
+		},
 		"animator:Midou":
 		{
 			"DESCRIPTION": "Apply !M! Burning. **  Exit your current stance. || <LIM>: If you exited ** [I] Stance: Channel !S! Fire.",

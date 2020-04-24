@@ -53,8 +53,10 @@ public class SakuyaOhtori extends AnimatorCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainBlock(block);
+        for (int i=0; i<magicNumber; i++)
+        {
+            GameActions.Bottom.GainBlock(block);
+        }
 
         GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
 

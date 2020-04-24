@@ -179,6 +179,11 @@
 			"DESCRIPTION": "Gain [F], [A], or [I]. ** Exit your current stance. || Synergy: Draw Kotori Kanbe ** from any pile.",
 			"NAME": "Chibimoth"
 		},
+		"animator:ChihayaOhtori":
+		{
+			"DESCRIPTION": "Draw a {Martial Artist} from ** your Discard pile.  It ** costs !M! less this turn. || When drawn: If this ** has Haste: Gain !S! ** {Temp. Artifact}.",
+			"NAME": "Chihaya Ohtori"
+		},
 		"animator:KotoriKanbe":
 		{
 			"DESCRIPTION": "Fully heal the enemy. Apply ** 1 Weak and Vulnerable for every !M! HP healed. || <LIM>. If you healed {0} ** or more HP: The enemy ** also loses !S! Strength.",

@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class SakuyaOhtori extends AnimatorCard {
-    public static final EYBCardData DATA = Register(SakuyaOhtori.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(SakuyaOhtori.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public SakuyaOhtori() {
         super(DATA);

@@ -189,6 +189,11 @@
 			"DESCRIPTION": "Apply !M! {Shackles} ** to ALL enemies. || The next time ** you take damage: ** Channel !S! Earth.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you take damage: Channel #b{1} Earth."],
 			"NAME": "Kagari"
+		},
+		"animator:YoshinoHaruhiko":
+		{
+			"DESCRIPTION": "[F] Stance: Give ALL ** {Attacks} in your hand ** +!M! [F] Scaling. ** Otherwise: Enter [F] Stance.",
+			"NAME": "Yoshino Haruhiko"
 		}
 	},
 	

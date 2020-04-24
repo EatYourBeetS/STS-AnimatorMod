@@ -195,6 +195,12 @@
 			"DESCRIPTION": "Upgrade a random card ** in your hand. || Synergy: Gain !M! Blur.",
 			"NAME": "Sougen Esaka"
 		},
+		"animator:ToukaNishikujou":
+		{
+			"DESCRIPTION": "Synergy: Add a {Throwing ** Knife} to your hand for every ** !M! block you have. || When Discarded: Gain [A].",
+			"UPGRADE_DESCRIPTION": "Synergy: Add a {Throwing ** Knife} to your hand for every ** !M! block you have. || When Discarded: Boost [A].",
+			"NAME": "Touka Nishikujou"
+		},
 		"animator:YoshinoHaruhiko":
 		{
 			"DESCRIPTION": "[F] Stance: Give ALL ** {Attacks} in your hand ** +!M! [F] Scaling. ** Otherwise: Enter [F] Stance.",

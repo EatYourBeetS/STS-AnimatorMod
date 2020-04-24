@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.EmptyStanceEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
@@ -41,6 +42,7 @@ public class YoshinoHaruhiko extends AnimatorCard {
         else
         {
             GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+            GameActions.Bottom.VFX(new EmptyStanceEffect(p.hb.cX, p.hb.cY));
         }
     }
 }

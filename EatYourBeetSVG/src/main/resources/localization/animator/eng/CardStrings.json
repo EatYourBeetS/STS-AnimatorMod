@@ -181,18 +181,19 @@
 	{
 		"animator:AkaneSenri":
 		{
-			"DESCRIPTION": "Enter [I] Stance. All cards ** in your hand gain {Haste}. || Every !M! turn(s), if in [I] ** Stance: Channel 1 Dark at ** end of turn. Trigger it once ** for each card in hand.",
-			"EXTENDED_DESCRIPTION": ["After turn(s), if in [I] Stance: Channel 1 Dark at end of turn. Trigger it #b{1} times for each card in your hand."],
+			"DESCRIPTION": "Enter [I] Stance. All cards ** in your hand gain {Haste}. || Every !M! turn(s): Channel ** 1 Dark at end of turn. Trigger ** it once for each card in hand.",
+			"EXTENDED_DESCRIPTION": ["After #b{0} turn: Channel 1 Dark at end of turn. Trigger it #b{1} times for each card in your hand."],
 			"NAME": "Akane Senri"
 		},
 		"animator:Chibimoth":
 		{
 			"DESCRIPTION": "Gain [F], [A], or [I]. ** Exit your current stance. || Synergy: Draw Kotori ** Kanbe from any pile.",
+			"EXTENDED_DESCRIPTION": ["Gain [F].", "Gain [A].", "Gain [I]."],
 			"NAME": "Chibimoth"
 		},
 		"animator:ChihayaOhtori":
 		{
-			"DESCRIPTION": "Draw a {Martial Artist} from ** your Discard pile.  It ** costs !M! less this turn. || When drawn: If this has ** Haste: Gain !S! {Temp. Artifact}.",
+			"DESCRIPTION": "Draw a {Martial Artist} from ** your Discard pile.  It ** costs !M! less this turn. || When drawn with Haste: ** Gain !S! {Temp. Artifact}.",
 			"NAME": "Chihaya Ohtori"
 		},
 		"animator:Defend_Rewrite":
@@ -234,7 +235,7 @@
 		},
 		"animator:SakuyaOhtori":
 		{
-			"DESCRIPTION": "<LIM>. When drawn: ** Discard this card and ** Gain [F]. || Enter [I] Stance.  Convert ** half your [F] into [I].",
+			"DESCRIPTION": "When drawn with Haste: ** Discard this card and ** Gain [F]. || Enter [I] Stance.  Convert ** half your [F] into [I].",
 			"UPGRADE_DESCRIPTION": "<LIM>. When drawn: ** Discard this card and ** Boost [F]. || Enter [I] Stance.  Convert **  half your [F] ** into [I].",
 			"NAME": "Sakuya Ohtori"
 		},
@@ -245,7 +246,7 @@
 		},
 		"animator:ShizuruNakatsu":
 		{
-			"DESCRIPTION": "Discard !M! random Skill(s) ** to Enter [A] Stance. || If you reached 6 [A] this ** combat: Deal !S! damage to a ** random enemy for each Skill ** in your discard pile.",
+			"DESCRIPTION": "Discard !M! random {Skill}(s) ** to Enter [A] Stance. || If you reached 6 [A] this ** combat: Deal !S! damage to a ** random enemy for each {Skill} ** in your discard pile.",
 			"NAME": "Shizuru Nakatsu"
 		},
 		"animator:SougenEsaka":
@@ -261,7 +262,7 @@
 		"animator:ToukaNishikujou":
 		{
 			"DESCRIPTION": "Synergy: Add a {Throwing ** Knife} to your hand for ** every !M! block you have. || When Discarded: Gain [A].",
-			"UPGRADE_DESCRIPTION": "Synergy: Add a {Throwing ** Knife} to your hand for every ** !M! block you have. || When Discarded: Boost [A].",
+			"UPGRADE_DESCRIPTION": "Synergy: Add a {Throwing ** Knife} to your hand for ** every !M! block you have. || When Discarded: Boost [A].",
 			"NAME": "Touka Nishikujou"
 		},
 		"animator:YoshinoHaruhiko":

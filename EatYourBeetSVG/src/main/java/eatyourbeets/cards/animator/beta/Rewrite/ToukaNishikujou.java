@@ -31,16 +31,16 @@ public class ToukaNishikujou extends AnimatorCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(block);
-
-        if (HasSynergy())
-        {
-            int numThrowingKnives = player.currentBlock / magicNumber;
-
-            if (numThrowingKnives > 0)
+        GameActions.Bottom.GainBlock(block).AddCallback(__ -> {
+            if (HasSynergy())
             {
-                GameActions.Bottom.CreateThrowingKnives(numThrowingKnives);
+                int numThrowingKnives = player.currentBlock / magicNumber;
+
+                if (numThrowingKnives > 0)
+                {
+                    GameActions.Bottom.CreateThrowingKnives(numThrowingKnives);
+                }
             }
-        }
+        });
     }
 }

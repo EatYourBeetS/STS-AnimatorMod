@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.beta.Rewrite;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -38,6 +39,8 @@ public class ChihayaOhtori extends AnimatorCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SMASH);
+
         GameActions.Top.FetchFromPile(name, 1, player.discardPile)
         .SetOptions(false, false)
         .SetFilter(c -> c.hasTag(MARTIAL_ARTIST))

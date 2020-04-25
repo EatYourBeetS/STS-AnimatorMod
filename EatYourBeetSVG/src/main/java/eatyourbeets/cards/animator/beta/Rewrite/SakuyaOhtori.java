@@ -7,7 +7,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
@@ -20,17 +19,13 @@ public class SakuyaOhtori extends AnimatorCard {
         super(DATA);
 
         Initialize(0, 3, 2,1);
-        SetUpgrade(0, 0, 0);
+        SetUpgrade(0, 0, 1);
         SetScaling(1,0,1);
+        SetHaste(true);
 
         SetMartialArtist();
 
         SetSynergy(Synergies.Rewrite);
-    }
-
-    @Override
-    protected void OnUpgrade() {
-        SetHaste(true);
     }
 
     @Override
@@ -42,7 +37,7 @@ public class SakuyaOhtori extends AnimatorCard {
     @Override
     public void triggerWhenDrawn()
     {
-        if (CombatStats.TryActivateLimited(cardID))
+        if (this.haste)
         {
             GameActions.Top.Discard(this, player.hand).ShowEffect(true, true)
             .AddCallback(() -> GameActions.Top.GainForce(secondaryValue, upgraded))

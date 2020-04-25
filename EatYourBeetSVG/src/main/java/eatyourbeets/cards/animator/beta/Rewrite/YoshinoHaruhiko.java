@@ -11,7 +11,7 @@ import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class YoshinoHaruhiko extends AnimatorCard {
-    public static final EYBCardData DATA = Register(YoshinoHaruhiko.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.None);
+    public static final EYBCardData DATA = Register(YoshinoHaruhiko.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.None);
 
     public YoshinoHaruhiko() {
         super(DATA);

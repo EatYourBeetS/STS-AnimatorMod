@@ -5,12 +5,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class SougenEsaka extends AnimatorCard {
-    public static final EYBCardData DATA = Register(SougenEsaka.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.None);
+    public static final EYBCardData DATA = Register(SougenEsaka.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL);
 
     public SougenEsaka() {
         super(DATA);
@@ -27,7 +27,12 @@ public class SougenEsaka extends AnimatorCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
-        GameActions.Bottom.GainBlock(GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID));
+        int agility = GameUtilities.GetPowerAmount(p, AgilityPower.POWER_ID);
+
+        if (agility > 0)
+        {
+            GameActions.Bottom.GainBlock(agility);
+        }
 
         if (HasSynergy())
         {

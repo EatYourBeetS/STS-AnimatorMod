@@ -68,18 +68,15 @@ public class AkaneSenri extends AnimatorCard {
             {
                 countdown = defaultCountdown;
 
-                if (player.stance.ID.equals(IntellectStance.STANCE_ID))
-                {
-                    AbstractOrb darkOrb = new Dark();
-                    GameActions.Bottom.ChannelOrb(darkOrb, true);
+                AbstractOrb darkOrb = new Dark();
+                GameActions.Bottom.ChannelOrb(darkOrb, true);
 
-                    for (int i=0; i<player.hand.size(); i++)
+                for (int i=0; i<player.hand.size(); i++)
+                {
+                    for (int j=0; j<amount; j++)
                     {
-                        for (int j=0; j<amount; j++)
-                        {
-                            darkOrb.onStartOfTurn();
-                            darkOrb.onEndOfTurn();
-                        }
+                        darkOrb.onStartOfTurn();
+                        darkOrb.onEndOfTurn();
                     }
                 }
 
@@ -88,7 +85,11 @@ public class AkaneSenri extends AnimatorCard {
             {
                 countdown--;
             }
+
+            updateDescription();
         }
+
+
 
         @Override
         public void updateDescription() {

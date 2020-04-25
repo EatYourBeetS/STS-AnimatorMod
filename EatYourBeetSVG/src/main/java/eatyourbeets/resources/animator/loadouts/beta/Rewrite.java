@@ -45,6 +45,6 @@ public class Rewrite extends AnimatorLoadout
     @Override
     public EYBCardData GetUltraRare()
     {
-        return null;
+        return SakuraKashima.DATA;
     }
 }

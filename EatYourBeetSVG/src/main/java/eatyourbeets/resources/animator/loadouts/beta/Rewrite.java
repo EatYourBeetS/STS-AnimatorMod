@@ -14,6 +14,8 @@ public class Rewrite extends AnimatorLoadout
     public Rewrite()
     {
         super(Synergies.Rewrite);
+
+        IsBeta = true;
     }
 
     @Override

@@ -12,6 +12,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
@@ -19,14 +20,26 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ShizuruNakatsu extends AnimatorCard {
     public static final EYBCardData DATA = Register(ShizuruNakatsu.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    private boolean canAttack;
 
     public ShizuruNakatsu() {
         super(DATA);
 
-        Initialize(0, 5, 2,1);
+        Initialize(1, 5, 2,1);
         SetUpgrade(0,3,0);
 
         SetSynergy(Synergies.Rewrite);
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        if (canAttack)
+        {
+            return super.GetDamageInfo().AddMultiplier(GetNumberOfSkills(player.discardPile));
+        }
+
+        return null;
     }
 
     @Override
@@ -45,11 +58,16 @@ public class ShizuruNakatsu extends AnimatorCard {
         AgilityPower agility = GameUtilities.GetPower(player, AgilityPower.class);
         if (agility != null && agility.GetCurrentLevel() > 2)
         {
+            canAttack = true;
+        }
+
+        if (canAttack)
+        {
             for (int i=0; i<GetNumberOfSkills(p.discardPile); i++)
             {
                 AbstractMonster target = GameUtilities.GetRandomEnemy(true);
-                final float x = m.hb.cX + (target.hb.width * MathUtils.random(-0.1f, 0.1f));
-                final float y = m.hb.cY + (target.hb.height * MathUtils.random(-0.2f, 0.2f));
+                final float x = target.hb.cX + (target.hb.width * MathUtils.random(-0.1f, 0.1f));
+                final float y = target.hb.cY + (target.hb.height * MathUtils.random(-0.2f, 0.2f));
 
                 GameActions.Bottom.VFX(new ThrowDaggerEffect(x, y), 0.25f);
                 GameActions.Bottom.DealDamage(p, target, secondaryValue, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE)

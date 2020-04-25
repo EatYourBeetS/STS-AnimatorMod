@@ -236,7 +236,7 @@
 		"animator:SakuyaOhtori":
 		{
 			"DESCRIPTION": "When drawn with Haste: ** Discard this card and ** Gain [F]. || Enter [I] Stance.  Convert ** half your [F] into [I].",
-			"UPGRADE_DESCRIPTION": "<LIM>. When drawn: ** Discard this card and ** Boost [F]. || Enter [I] Stance.  Convert **  half your [F] ** into [I].",
+			"UPGRADE_DESCRIPTION": "When drawn with Haste: ** Discard this card and ** Boost [F]. || Enter [I] Stance.  Convert **  half your [F] into [I].",
 			"NAME": "Sakuya Ohtori"
 		},
 		"animator:Shimako":

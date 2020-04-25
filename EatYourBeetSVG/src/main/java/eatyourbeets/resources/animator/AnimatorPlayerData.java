@@ -194,6 +194,7 @@ public class AnimatorPlayerData
         add.Invoke(new OnePunchMan(), 4);
         add.Invoke(new Kancolle(), 4);
         add.Invoke(new AccelWorld(), 4);
+        add.Invoke(new Rewrite(), 4);
     }
 
     private void AddBetaLoadouts()

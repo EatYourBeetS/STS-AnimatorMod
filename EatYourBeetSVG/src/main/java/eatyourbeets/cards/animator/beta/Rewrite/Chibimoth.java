@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class Chibimoth extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Chibimoth.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Chibimoth.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     static
     {

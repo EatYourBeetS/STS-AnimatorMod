@@ -57,19 +57,19 @@
 	"Force Stance":
 	{
 		"DESCRIPTION": "Boost 1 #yForce on entering.  While in this stance, you have +2 #yStrength, -1 #yDexterity, and -1 #yFocus.  Gain 3 #yTemp. #yHP on exiting.",
-		"NAMES": ["[F] stance", "force stance"],
+		"NAMES": ["[f] stance", "force stance"],
 		"PROPER_NAME": "Force Stance"
 	},
 	"Agility Stance":
 	{
 		"DESCRIPTION": "Boost 1 #yAgility on entering.  While in this stance, you have +2 #yDexterity, -1 #yStrength, and -1 #yFocus.  Draw 1 card next turn on exiting.",
-		"NAMES": ["[A] stance", "agility stance"],
+		"NAMES": ["[a] stance", "agility stance"],
 		"PROPER_NAME": "Agility Stance"
 	},
 	"Intellect Stance":
 	{
 		"DESCRIPTION": "Boost 1 #yIntellect on entering.  While in this stance, you have +2 #yFocus, -1 #yStrength, and -1 #yDexterity.  Deal 7 damage to a random enemy on exiting.",
-		"NAMES": ["[I] stance", "intellect stance"],
+		"NAMES": ["[i] stance", "intellect stance"],
 		"PROPER_NAME": "Intellect Stance"
 	}
 }

@@ -39,8 +39,6 @@ public class LuciaKonohana extends AnimatorCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-
         GameActions.Top.DiscardFromHand(name, secondaryValue, true)
         .ShowEffect(true, true)
         .SetOptions(true, true, true)

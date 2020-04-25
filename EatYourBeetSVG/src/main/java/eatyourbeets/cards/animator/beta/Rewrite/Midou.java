@@ -19,8 +19,9 @@ public class Midou extends AnimatorCard {
     public Midou() {
         super(DATA);
 
-        Initialize(3, 0, 1, 1);
+        Initialize(4, 0, 1, 1);
         SetUpgrade(0, 0, 1);
+        SetExhaust(true);
 
         SetSynergy(Synergies.Rewrite);
     }

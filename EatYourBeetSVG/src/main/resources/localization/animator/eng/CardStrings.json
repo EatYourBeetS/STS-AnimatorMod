@@ -262,7 +262,7 @@
 		"animator:ToukaNishikujou":
 		{
 			"DESCRIPTION": "Synergy: Add a {Throwing ** Knife} to your hand for ** every !M! block you have. || When Discarded: Gain [A].",
-			"UPGRADE_DESCRIPTION": "Synergy: Add a {Throwing ** Knife} to your hand for ** every !M! block you have. || When Discarded: Boost [A].",
+			"UPGRADE_DESCRIPTION": "Synergy: Add a {Throwing ** Knife} to your hand for ** every !M! block you have. || When Discarded: ** Boost [A].",
 			"NAME": "Touka Nishikujou"
 		},
 		"animator:YoshinoHaruhiko":

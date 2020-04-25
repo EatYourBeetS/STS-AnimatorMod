@@ -14,8 +14,8 @@ public class ToukaNishikujou extends AnimatorCard {
     public ToukaNishikujou() {
         super(DATA);
 
-        Initialize(0, 9, 10,1);
-        SetUpgrade(0, 2, -2);
+        Initialize(0, 10, 10,1);
+        SetUpgrade(0, 0, -2);
 
         SetSynergy(Synergies.Rewrite);
     }

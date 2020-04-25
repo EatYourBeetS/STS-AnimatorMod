@@ -181,8 +181,8 @@
 	{
 		"animator:AkaneSenri":
 		{
-			"DESCRIPTION": "Enter {[I] Stance}. All cards ** in your hand gain {Haste}. || At the end of every !M! turn(s): ** Spend 1 of your remaining [E] ** to Channel 1 Dark. Trigger it ** once for each card in hand.",
-			"EXTENDED_DESCRIPTION": ["After #b{0} turn: Spend 1 remaining Energy at end of turn to Channel 1 Dark at end of turn. Trigger it #b{1} times for each card in your hand."],
+			"DESCRIPTION": "Enter {[I] Stance}. All cards ** in your hand gain {Haste}. || At the end of each turn, ** spend 1 of your remaining [E] ** to Channel 1 Dark. Trigger it ** once for each card in hand.",
+			"EXTENDED_DESCRIPTION": ["At end of turn: Spend 1 remaining Energy at end of turn to Channel 1 Dark at end of turn. Trigger it #b{1} times for each card in your hand."],
 			"NAME": "Akane Senri"
 		},
 		"animator:Chibimoth":

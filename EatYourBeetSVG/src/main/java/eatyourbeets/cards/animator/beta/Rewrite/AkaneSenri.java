@@ -44,18 +44,9 @@ public class AkaneSenri extends AnimatorCard {
     }
 
     public static class AkaneSenriPower extends AnimatorPower {
-        private final int defaultCountdown;
-        private int countdown;
 
         public AkaneSenriPower(AbstractPlayer owner, int defaultCountdown, int amount) {
             super(owner, AkaneSenri.DATA);
-
-            this.defaultCountdown = defaultCountdown;
-
-            if (countdown == 0)
-            {
-                countdown = defaultCountdown;
-            }
 
             this.amount = amount;
 
@@ -65,28 +56,20 @@ public class AkaneSenri extends AnimatorCard {
         @Override
         public void atEndOfTurn(boolean isPlayer)
         {
-            if (countdown == 1)
+
+            int energy = Math.min(amount, EnergyPanel.getCurrentEnergy());
+            if (energy > 0)
             {
-                countdown = defaultCountdown;
+                EnergyPanel.useEnergy(energy);
+                AbstractOrb darkOrb = new Dark();
+                GameActions.Bottom.ChannelOrb(darkOrb, true);
 
-                int energy = Math.min(amount, EnergyPanel.getCurrentEnergy());
-                if (energy > 0)
-                {
-                    EnergyPanel.useEnergy(energy);
-                    AbstractOrb darkOrb = new Dark();
-                    GameActions.Bottom.ChannelOrb(darkOrb, true);
-
-                    for (int i = 0; i < player.hand.size(); i++) {
-                        for (int j = 0; j < amount; j++) {
-                            darkOrb.onStartOfTurn();
-                            darkOrb.onEndOfTurn();
-                        }
+                for (int i = 0; i < player.hand.size(); i++) {
+                    for (int j = 0; j < amount; j++) {
+                        darkOrb.onStartOfTurn();
+                        darkOrb.onEndOfTurn();
                     }
                 }
-            }
-            else
-            {
-                countdown--;
             }
 
             updateDescription();
@@ -96,7 +79,7 @@ public class AkaneSenri extends AnimatorCard {
 
         @Override
         public void updateDescription() {
-            description = FormatDescription(0, countdown-1, amount);
+            description = FormatDescription(0, amount);
         }
     }
 }

@@ -23,6 +23,7 @@ public class Chibimoth extends AnimatorCard {
 
         Initialize(0, 0, 2, 1);
         SetExhaust(true);
+        SetRetain(true);
 
         SetSynergy(Synergies.Rewrite);
     }

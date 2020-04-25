@@ -21,9 +21,14 @@ public class LuciaKonohana extends AnimatorCard {
         super(DATA);
 
         Initialize(0, 0, 8,1);
-        SetUpgrade(0, 0, 3);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Rewrite);
+    }
+
+    @Override
+    protected void OnUpgrade() {
+        SetInnate(true);
     }
 
     @Override

@@ -188,7 +188,7 @@
 		"animator:Chibimoth":
 		{
 			"DESCRIPTION": "Gain [F], [A], or [I]. ** Exit your current stance. || Synergy: Draw Kotori ** Kanbe from any pile.",
-			"EXTENDED_DESCRIPTION": ["Gain [F].", "Gain [I].", "Gain [A]."],
+			"EXTENDED_DESCRIPTION": ["Gain [A].", "Gain [I].", "Gain [F]."],
 			"NAME": "Chibimoth"
 		},
 		"animator:ChihayaOhtori":

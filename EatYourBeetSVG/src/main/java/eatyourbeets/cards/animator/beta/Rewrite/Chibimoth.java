@@ -38,6 +38,8 @@ public class Chibimoth extends AnimatorCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        GameActions.Bottom.GainBlock(block);
+
         String[] text = DATA.Strings.EXTENDED_DESCRIPTION;
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         group.addToBottom(CreateChoice(text[0], (c1, p1, m1) -> GameActions.Bottom.GainForce(1, false)));

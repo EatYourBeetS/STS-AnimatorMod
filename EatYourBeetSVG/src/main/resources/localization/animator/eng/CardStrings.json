@@ -240,7 +240,7 @@
 		},
 		"animator:ShizuruNakatsu":
 		{
-			"DESCRIPTION": "Discard !M! random Skill(s) ** to Enter [A] Stance. || <LIM>. If you end the ** combat in [A] Stance: Obtain ** a random Common Potion.",
+			"DESCRIPTION": "Discard !M! random Skill(s) ** to Enter [A] Stance. || If you reached 6 [A] this ** combat: Deal !S! damage to a random ** enemy for each Skill in ** your discard pile.",
 			"NAME": "Shizuru Nakatsu"
 		},
 		"animator:SougenEsaka":

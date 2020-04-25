@@ -22,20 +22,18 @@ public class Shimako extends AnimatorCard {
     public Shimako() {
         super(DATA);
 
-        Initialize(0, 0, 0);
-        SetUpgrade(0, 0, 0);
-        SetRetain(true);
+        Initialize(0, 3, 0);
+        SetUpgrade(0, 3, 0);
+        SetScaling(1,0,0);
 
         SetSynergy(Synergies.Rewrite);
     }
 
     @Override
-    protected void OnUpgrade() {
-        SetInnate(true);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+
+        GameActions.Bottom.GainBlock(block);
+
         String curStance = player.stance.ID;
         AbstractOrb orb;
 

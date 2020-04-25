@@ -2,41 +2,35 @@ package eatyourbeets.cards.animator.beta.Rewrite;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.subscribers.OnBattleEndSubscriber;
-import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
-public class ShizuruNakatsu extends AnimatorCard implements OnBattleStartSubscriber, OnBattleEndSubscriber {
-    public static final EYBCardData DATA = Register(ShizuruNakatsu.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Ranged);
+public class ShizuruNakatsu extends AnimatorCard {
+    public static final EYBCardData DATA = Register(ShizuruNakatsu.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public ShizuruNakatsu() {
         super(DATA);
 
-        Initialize(3, 3, 2);
-        SetUpgrade(1,2,0);
+        Initialize(0, 5, 2,1);
+        SetUpgrade(0,3,0);
 
         SetSynergy(Synergies.Rewrite);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        final float x = m.hb.cX + (m.hb.width * MathUtils.random(-0.1f, 0.1f));
-        final float y = m.hb.cY + (m.hb.height * MathUtils.random(-0.2f, 0.2f));
-
-        GameActions.Bottom.VFX(new ThrowDaggerEffect(x, y));
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.DiscardFromHand(name, magicNumber, true)
@@ -47,18 +41,35 @@ public class ShizuruNakatsu extends AnimatorCard implements OnBattleStartSubscri
         {
             GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
         });
-    }
 
-    @Override
-    public void OnBattleStart() {
-        CombatStats.onBattleEnd.Subscribe(this);
-    }
-
-    @Override
-    public void OnBattleEnd() {
-        if (player.stance.ID.equals(AgilityStance.STANCE_ID))
+        AgilityPower agility = GameUtilities.GetPower(player, AgilityPower.class);
+        if (agility != null && agility.GetCurrentLevel() > 2)
         {
-            GameActions.Bottom.Add(new ObtainPotionAction(AbstractDungeon.returnRandomPotion(AbstractPotion.PotionRarity.COMMON, false)));
+            for (int i=0; i<GetNumberOfSkills(p.discardPile); i++)
+            {
+                AbstractMonster target = GameUtilities.GetRandomEnemy(true);
+                final float x = m.hb.cX + (target.hb.width * MathUtils.random(-0.1f, 0.1f));
+                final float y = m.hb.cY + (target.hb.height * MathUtils.random(-0.2f, 0.2f));
+
+                GameActions.Bottom.VFX(new ThrowDaggerEffect(x, y), 0.25f);
+                GameActions.Bottom.DealDamage(p, target, secondaryValue, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE)
+                .SetVFX(true, true);
+            }
         }
+    }
+
+    private int GetNumberOfSkills(CardGroup group)
+    {
+        int count = 0;
+
+        for (AbstractCard card : group.group)
+        {
+            if (card.type == CardType.SKILL)
+            {
+                count++;
+            }
+        }
+
+        return count;
     }
 }

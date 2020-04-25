@@ -45,7 +45,7 @@ public class LuciaKonohana extends AnimatorCard {
 
         if (player.stance.ID.equals(AgilityStance.STANCE_ID))
         {
-            GameActions.Bottom.ApplyPower(p, randomEnemy, new LuciaKonohanaPower(p, 1));
+            GameActions.Bottom.ApplyPower(p, randomEnemy, new LuciaKonohanaPower(randomEnemy, 1));
         }
     }
 
@@ -69,36 +69,36 @@ public class LuciaKonohana extends AnimatorCard {
         public void onDeath()
         {
             final AbstractCreature corpse = this.owner;
-            int amount;
+            int powAmount;
 
             for (AbstractPower debuff : corpse.powers)
             {
                 if (WeakPower.POWER_ID.equals(debuff.ID))
                 {
-                    amount = GameUtilities.GetPowerAmount(corpse, WeakPower.POWER_ID);
-                    GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), amount);
+                    powAmount = GameUtilities.GetPowerAmount(corpse, WeakPower.POWER_ID);
+                    GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), powAmount);
                 }
                 else if (VulnerablePower.POWER_ID.equals(debuff.ID))
                 {
-                    amount = GameUtilities.GetPowerAmount(corpse, VulnerablePower.POWER_ID);
-                    GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), amount);
+                    powAmount = GameUtilities.GetPowerAmount(corpse, VulnerablePower.POWER_ID);
+                    GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), powAmount);
                 }
                 else if (PoisonPower.POWER_ID.equals(debuff.ID))
                 {
-                    amount = GameUtilities.GetPowerAmount(corpse, PoisonPower.POWER_ID);
-                    GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(), amount);
+                    powAmount = GameUtilities.GetPowerAmount(corpse, PoisonPower.POWER_ID);
+                    GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(), powAmount);
                 }
                 else if (BurningPower.POWER_ID.equals(debuff.ID))
                 {
-                    amount = GameUtilities.GetPowerAmount(corpse, BurningPower.POWER_ID);
-                    GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), amount);
+                    powAmount = GameUtilities.GetPowerAmount(corpse, BurningPower.POWER_ID);
+                    GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), powAmount);
                 }
                 else if (GainStrengthPower.POWER_ID.equals(debuff.ID))
                 {
-                    amount = GameUtilities.GetPowerAmount(corpse, GainStrengthPower.POWER_ID);
+                    powAmount = GameUtilities.GetPowerAmount(corpse, GainStrengthPower.POWER_ID);
                     for (AbstractCreature enemy : GameUtilities.GetEnemies(true))
                     {
-                        GameActions.Bottom.ReduceStrength(enemy, amount, true);
+                        GameActions.Bottom.ReduceStrength(enemy, powAmount, true);
                     }
                 }
             }

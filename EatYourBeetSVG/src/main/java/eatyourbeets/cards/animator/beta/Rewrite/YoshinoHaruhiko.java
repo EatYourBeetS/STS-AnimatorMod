@@ -32,7 +32,7 @@ public class YoshinoHaruhiko extends AnimatorCard {
         {
             for (AbstractCard card : player.hand.group)
             {
-                if (card instanceof EYBCard)
+                if (card instanceof EYBCard && card.type == CardType.ATTACK)
                 {
                     ((EYBCard) card).forceScaling += magicNumber;
                     card.flash();

@@ -460,7 +460,7 @@
 		},
 		"animator:ToukaNishikujou":
 		{
-			"DESCRIPTION": "Synergy: Add a {Throwing ** Knife} to your hand for ** every !M! block you have. || When Discarded: Exhaust ** this card.  Deal 9 damage ** to a random enemy.",
+			"DESCRIPTION": "Add a {Throwing ** Knife} to your hand for ** every !M! block you have. || On Synergy or Discard: ** Exhaust this card.  Deal 9 ** damage to a random enemy.",
 			"NAME": "Touka Nishikujou"
 		},
 		"animator:YoshinoHaruhiko":

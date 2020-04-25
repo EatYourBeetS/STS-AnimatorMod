@@ -17,7 +17,7 @@ public class ToukaNishikujou extends AnimatorCard {
     public ToukaNishikujou() {
         super(DATA);
 
-        Initialize(0, 10, 10,9);
+        Initialize(0, 10, 8,9);
         SetUpgrade(0, 0, -2);
 
         SetSynergy(Synergies.Rewrite);
@@ -28,23 +28,30 @@ public class ToukaNishikujou extends AnimatorCard {
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.VFX(new MindblastEffect(player.dialogX, player.dialogY, player.flipHorizontal), 0.1f);
-        GameActions.Bottom.DealDamageToRandomEnemy(secondaryValue, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+        ExhaustAndDamage();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block).AddCallback(__ -> {
-            if (HasSynergy())
-            {
-                int numThrowingKnives = player.currentBlock / magicNumber;
+            int numThrowingKnives = player.currentBlock / magicNumber;
 
-                if (numThrowingKnives > 0)
-                {
-                    GameActions.Bottom.CreateThrowingKnives(numThrowingKnives);
-                }
+            if (numThrowingKnives > 0) {
+                GameActions.Bottom.CreateThrowingKnives(numThrowingKnives);
             }
+
+            if (HasSynergy()) {
+                ExhaustAndDamage();
+            }
+
         });
+    }
+
+    private void ExhaustAndDamage()
+    {
+        GameActions.Bottom.Exhaust(this);
+        GameActions.Bottom.VFX(new MindblastEffect(player.dialogX, player.dialogY, player.flipHorizontal), 0.1f);
+        GameActions.Bottom.DealDamageToRandomEnemy(secondaryValue, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
     }
 }

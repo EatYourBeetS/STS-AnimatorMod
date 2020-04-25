@@ -1,7 +1,10 @@
 package eatyourbeets.cards.animator.beta.Rewrite;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -14,7 +17,7 @@ public class ToukaNishikujou extends AnimatorCard {
     public ToukaNishikujou() {
         super(DATA);
 
-        Initialize(0, 10, 10,1);
+        Initialize(0, 10, 10,9);
         SetUpgrade(0, 0, -2);
 
         SetSynergy(Synergies.Rewrite);
@@ -25,7 +28,8 @@ public class ToukaNishikujou extends AnimatorCard {
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.GainAgility(secondaryValue,upgraded);
+        GameActions.Bottom.VFX(new MindblastEffect(player.dialogX, player.dialogY, player.flipHorizontal), 0.1f);
+        GameActions.Bottom.DealDamageToRandomEnemy(secondaryValue, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
     }
 
     @Override

@@ -1,43 +1,45 @@
 package eatyourbeets.cards.animator.beta.Rewrite;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.NeutralStance;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import com.megacrit.cardcrawl.powers.LockOnPower;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Fire;
-import eatyourbeets.powers.CombatStats;
-import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Midou extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Midou.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(Midou.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.Random);
 
     public Midou() {
         super(DATA);
 
-        Initialize(4, 0, 1, 1);
-        SetUpgrade(0, 0, 1);
-        SetExhaust(true);
+        Initialize(2, 0, 1, 2);
+        SetUpgrade(1, 0, 1);
+        SetEthereal(true);
 
         SetSynergy(Synergies.Rewrite);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
+    public void triggerOnExhaust() {
+        super.triggerOnExhaust();
 
-        GameActions.Bottom.ApplyBurning(p,m,magicNumber);
-
-        boolean exitIntellect = (player.stance.ID.equals(IntellectStance.STANCE_ID));
-        GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
-
-        if (exitIntellect && CombatStats.TryActivateLimited(cardID))
+        for (int i=0; i<secondaryValue; i++)
         {
             GameActions.Bottom.ChannelOrb(new Fire(), true);
+        }
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        GameActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.FIRE);
+
+        for (AbstractMonster monster : GameUtilities.GetEnemies(true))
+        {
+            GameActions.Bottom.StackPower(p, new LockOnPower(m, this.magicNumber));
         }
     }
 }

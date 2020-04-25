@@ -1,6 +1,8 @@
 package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
@@ -8,7 +10,6 @@ import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class IntellectStance extends EYBStance
 {
@@ -45,6 +46,8 @@ public class IntellectStance extends EYBStance
     public void onExitStance()
     {
         super.onExitStance();
+
+        GameActions.Bottom.DealDamageToRandomEnemy(7, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.LIGHTNING);
 
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , -2);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +1);

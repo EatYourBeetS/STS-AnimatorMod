@@ -39,11 +39,12 @@ public class LuciaKonohana extends AnimatorCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
 
-        GameActions.Top.ExhaustFromHand(name, secondaryValue, true)
+
+        GameActions.Top.DiscardFromHand(name, secondaryValue, true)
         .ShowEffect(true, true)
-        .SetOptions(true, true, true);
+        .SetOptions(true, true, true)
+        .AddCallback(__ -> GameActions.Bottom.ApplyPoison(p, m, magicNumber));
 
         if (player.stance.ID.equals(AgilityStance.STANCE_ID))
         {

@@ -2,6 +2,7 @@ package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.effects.stance.StanceParticleHorizontal;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
@@ -44,6 +45,8 @@ public class AgilityStance extends EYBStance
     public void onExitStance()
     {
         super.onExitStance();
+
+        GameActions.Bottom.ApplyPower(new DrawCardNextTurnPower(AbstractDungeon.player, 1));
 
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +1);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -2);

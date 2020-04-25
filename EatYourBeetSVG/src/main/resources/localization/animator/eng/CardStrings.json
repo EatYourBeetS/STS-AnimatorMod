@@ -181,7 +181,7 @@
 	{
 		"animator:AkaneSenri":
 		{
-			"DESCRIPTION": "Enter [I] Stance. All cards ** in your hand gain {Haste}. || Every !M! turn(s): Channel ** 1 Dark at end of turn. Trigger ** it once for each card in hand.",
+			"DESCRIPTION": "Enter {[I] Stance}. All cards ** in your hand gain {Haste}. || Every !M! turn(s): Channel ** 1 Dark at end of turn. Trigger ** it once for each card in hand.",
 			"EXTENDED_DESCRIPTION": ["After #b{0} turn: Channel 1 Dark at end of turn. Trigger it #b{1} times for each card in your hand."],
 			"NAME": "Akane Senri"
 		},
@@ -219,13 +219,13 @@
 		},
 		"animator:LuciaKonohana":
 		{
-			"DESCRIPTION": "Apply !M! Poison.  Exhaust !S! ** random card in your hand. || [A] Stance: When the enemy ** dies, transfer its {Common ** Debuffs} to ALL enemies.",
+			"DESCRIPTION": "Discard !S! ** random card in your hand to Apply !M! Poison. || When the enemy ** dies, transfer its {Common ** Debuffs} to ALL enemies.",
 			"EXTENDED_DESCRIPTION": ["When this creature dies, transfer its #yCommon #yDebuffs to ALL enemies.","Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
 			"NAME": "Lucia Konohana"
 		},
 		"animator:Midou":
 		{
-			"DESCRIPTION": "Apply !M! Burning. **  Exit your current stance. || <LIM>: If you exited ** [I] Stance: Channel !S! ** Fire.",
+			"DESCRIPTION": "Apply !M! {Lock-On} to ** ALL enemies. || When Exhausted: Channel ** !S! Fire.",
 			"NAME": "Midou"
 		},
 		"animator:SakuraKashima":
@@ -235,18 +235,18 @@
 		},
 		"animator:SakuyaOhtori":
 		{
-			"DESCRIPTION": "When drawn with Haste: ** Discard this card and ** Gain [F]. || Enter [I] Stance.  Convert ** half your [F] into [I].",
+			"DESCRIPTION": "When drawn with Haste: ** Discard this card and ** Gain [F]. || Enter {[I] Stance}.  Convert ** half your [F] into [I].",
 			"UPGRADE_DESCRIPTION": "When drawn with Haste: ** Discard this card and ** Boost [F]. || Enter [I] Stance.  Convert **  half your [F] into [I].",
 			"NAME": "Sakuya Ohtori"
 		},
 		"animator:Shimako":
 		{
-			"DESCRIPTION": "Channel 1 Orb based ** on your current stance: ** None -> Lightning. ** [F] -> Fire. ** [A] -> Frost ** [I] -> Dark.",
+			"DESCRIPTION": "Channel 1 Orb based ** on your current {Stance}: ** None -> Lightning. ** [F] -> Fire. ** [A] -> Frost ** [I] -> Dark.",
 			"NAME": "Shimako"
 		},
 		"animator:ShizuruNakatsu":
 		{
-			"DESCRIPTION": "Discard !M! random {Skills} ** to Enter [A] Stance. || If you reached 6 [A] this ** combat: Deal !S! damage to a ** random enemy for each {Skill} ** in your discard pile.",
+			"DESCRIPTION": "Discard !M! random {Skills} ** to Enter {[A] Stance}. || If you reached 6 [A] this ** combat: Deal !S! damage to a ** random enemy for each {Skill} ** in your discard pile.",
 			"NAME": "Shizuru Nakatsu"
 		},
 		"animator:SougenEsaka":
@@ -261,13 +261,12 @@
 		},
 		"animator:ToukaNishikujou":
 		{
-			"DESCRIPTION": "Synergy: Add a {Throwing ** Knife} to your hand for ** every !M! block you have. || When Discarded: Gain [A].",
-			"UPGRADE_DESCRIPTION": "Synergy: Add a {Throwing ** Knife} to your hand for ** every !M! block you have. || When Discarded: ** Boost [A].",
+			"DESCRIPTION": "Synergy: Add a {Throwing ** Knife} to your hand for ** every !M! block you have. || When Discarded: Exhaust ** this card.  Deal 9 damage ** to a random enemy.",
 			"NAME": "Touka Nishikujou"
 		},
 		"animator:YoshinoHaruhiko":
 		{
-			"DESCRIPTION": "[F] Stance: Give ALL ** {Attacks} in your hand ** +!M! [F] Scaling. Otherwise: ** Enter [F] Stance.",
+			"DESCRIPTION": "[F] Stance: Give ALL ** {Attacks} in your hand ** +!M! [F] Scaling. Otherwise: ** Enter {[F] Stance}.",
 			"NAME": "Yoshino Haruhiko"
 		}
 	},

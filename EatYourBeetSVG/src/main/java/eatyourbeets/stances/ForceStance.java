@@ -8,7 +8,6 @@ import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class ForceStance extends EYBStance
 {
@@ -45,6 +44,8 @@ public class ForceStance extends EYBStance
     public void onExitStance()
     {
         super.onExitStance();
+
+        GameActions.Bottom.GainTemporaryHP(3);
 
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +1);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +1);

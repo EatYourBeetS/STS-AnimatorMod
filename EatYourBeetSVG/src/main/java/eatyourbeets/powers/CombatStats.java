@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
@@ -66,6 +67,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnCostRefreshSubscriber> onCostRefresh = new GameEvent<>();
     public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = new GameEvent<>();
     public static final GameEvent<OnStatsClearedSubscriber> onStatsCleared = new GameEvent<>();
+    public static final GameEvent<OnStanceChangedSubscriber> onStanceChanged = new GameEvent<>();
 
     public static final Void Void = new Void();
     public static boolean LoadingPlayerSave;
@@ -149,13 +151,14 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onStartOfTurnPostDraw.Clear();
         onPhaseChanged.Clear();
         onStatsCleared.Clear();
+        onStanceChanged.Clear();
 
         //Void.Initialize(true);
     }
 
     public static void EnsurePowerIsApplied()
     {
-        if (!player.powers.contains(Instance))
+        if (RefreshPlayer() != null && !player.powers.contains(Instance))
         {
             JavaUtilities.Log(CombatStats.class, "Applied PlayerStatistics");
             player.powers.add(Instance);
@@ -538,6 +541,16 @@ public class CombatStats extends EYBPower implements InvisiblePower
         turnCount += 1;
 
         Synergies.SetLastCardPlayed(null);
+    }
+
+    @Override
+    public void onChangeStance(AbstractStance oldStance, AbstractStance newStance) {
+        super.onChangeStance(oldStance, newStance);
+
+        for (OnStanceChangedSubscriber s : onStanceChanged.GetSubscribers())
+        {
+            s.OnStanceChanged(oldStance, newStance);
+        }
     }
 
     public void OnAfterDraw(AbstractCard card)

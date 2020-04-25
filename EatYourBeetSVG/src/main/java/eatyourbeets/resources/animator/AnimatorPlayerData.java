@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts.*;
+import eatyourbeets.resources.animator.loadouts.beta.Rewrite;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 import eatyourbeets.utilities.JavaUtilities;
@@ -195,6 +196,7 @@ public class AnimatorPlayerData
         add.Invoke(new OnePunchMan(), 4);
         add.Invoke(new Kancolle(), 4);
         add.Invoke(new AccelWorld(), 4);
+        add.Invoke(new Rewrite(), 4);
     }
 
     private void AddBetaLoadouts()
@@ -202,6 +204,7 @@ public class AnimatorPlayerData
         BetaLoadouts.clear();
         BetaLoadouts.add(new MadokaMagica());
         BetaLoadouts.add(new DateALive());
+        BetaLoadouts.add(new Rewrite());
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...

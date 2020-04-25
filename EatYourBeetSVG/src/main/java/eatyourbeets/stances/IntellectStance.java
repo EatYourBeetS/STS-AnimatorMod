@@ -11,7 +11,6 @@ import eatyourbeets.powers.common.DamageNextTurnPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class IntellectStance extends EYBStance
 {

@@ -11,21 +11,26 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.controls.GUI_TextBox;
 import eatyourbeets.utilities.InputManager;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import eatyourbeets.utilities.JavaUtilities;
+
+import java.util.ArrayList;
 
 @SpireInitializer
 public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber,
                                           PostEnergyRechargeSubscriber, PostDrawSubscriber, PostDeathSubscriber,
                                           PreStartGameSubscriber, PostUpdateSubscriber, PostRenderSubscriber
 {
-    private static final Logger logger = LogManager.getLogger(EYBModInitializer.class.getName());
     private static GUI_TextBox testModeLabel;
 
     public static void initialize()
     {
-        logger.info("EYBModInitializer()");
-        BaseMod.subscribe(new EYBModInitializer());
+        ArrayList<OnStartBattleSubscriber> battleStart = JavaUtilities.<ArrayList<OnStartBattleSubscriber>>
+        GetField("startBattleSubscribers", BaseMod.class).Get(null);
+
+        EYBModInitializer instance = new EYBModInitializer();
+        BaseMod.subscribe(instance);
+        battleStart.remove(instance);
+        battleStart.add(0, instance);
         GR.Initialize();
     }
 

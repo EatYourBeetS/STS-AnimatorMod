@@ -100,6 +100,12 @@
 		"FLAVOR": "It's always watching.",
 		"NAME": "Living Picture"
 	},
+	"animator:Mistletoe":
+	{
+		"DESCRIPTIONS": ["Whenever you change #yStances, #yScry #b{0} and draw #b{1} card."],
+		"FLAVOR": "A hundred year old plant familiar, holding the knowledge of Druids passed down by generations.",
+		"NAME": "Mistletoe"
+	},
 	"animator:OldCoffin":
 	{
 		"DESCRIPTIONS": ["Starting from your #b4th turn, apply a random #yDebuff to a random enemy at the start of each turn."],

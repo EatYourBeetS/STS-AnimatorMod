@@ -16,7 +16,7 @@ public class Strike_Rewrite extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(6, 0, 1);
+        Initialize(7, 0, 1);
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Rewrite);

@@ -187,8 +187,8 @@
 		},
 		"animator:Chibimoth":
 		{
-			"DESCRIPTION": "Gain [F] and !M! {Temp. HP} ** or [A] and !S! {Blur}. Exit your ** current stance. || Synergy: Draw Kotori ** Kanbe from any pile.",
-			"EXTENDED_DESCRIPTION": ["Gain [A] and !S! Blur.", "Gain [F] and !M! Temp. HP"],
+			"DESCRIPTION": "Gain [F] and !M! {Temp. HP} ** or [A] and !S! {Blur}. || Synergy: Draw Kotori ** Kanbe from any pile.",
+			"EXTENDED_DESCRIPTION": ["Gain [A] and 1 Blur.", "Gain [F] and 2 Temp. HP"],
 			"NAME": "Chibimoth"
 		},
 		"animator:ChihayaOhtori":

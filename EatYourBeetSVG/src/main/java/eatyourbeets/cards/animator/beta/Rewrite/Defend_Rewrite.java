@@ -15,7 +15,7 @@ public class Defend_Rewrite extends Defend
     {
         super(ID, 1, CardTarget.SELF);
 
-        Initialize(0, 5);
+        Initialize(0, 6);
         SetUpgrade(0, 3);
 
         SetSynergy(Synergies.Rewrite);

@@ -19,7 +19,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class ShizuruNakatsu extends AnimatorCard {
-    public static final EYBCardData DATA = Register(ShizuruNakatsu.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(ShizuruNakatsu.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
     private boolean canAttack;
 
     public ShizuruNakatsu() {

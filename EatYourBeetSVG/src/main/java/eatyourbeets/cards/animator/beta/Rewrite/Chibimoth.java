@@ -5,8 +5,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import com.megacrit.cardcrawl.stances.NeutralStance;
-import com.megacrit.cardcrawl.vfx.combat.EmptyStanceEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.utilities.GameActions;
@@ -49,18 +47,15 @@ public class Chibimoth extends AnimatorCard {
         }));
 
         GameActions.Bottom.SelectFromPile(name, 1, group)
-                .SetOptions(false, false)
-                .SetMessage(CardRewardScreen.TEXT[1])
-                .AddCallback(cards ->
-                {
-                    for (AbstractCard card : cards)
-                    {
-                        card.use(player, null);
-                    }
-                });
-
-        GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
-        GameActions.Bottom.VFX(new EmptyStanceEffect(p.hb.cX, p.hb.cY));
+        .SetOptions(false, false)
+        .SetMessage(CardRewardScreen.TEXT[1])
+        .AddCallback(cards ->
+        {
+            for (AbstractCard card : cards)
+            {
+                card.use(player, null);
+            }
+        });
 
         if (HasSynergy())
         {

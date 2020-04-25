@@ -597,7 +597,7 @@
 		},
 		"animator:Gluttony":
 		{
-			"DESCRIPTION": "Exhaust the top !M! cards ** of your draw pile to gain ** !M! <FOR> and Heal !M! HP. || Unplayable if you have less than !S! cards in play.",
+			"DESCRIPTION": "Exhaust the top !M! cards ** of your draw pile to gain ** !M! [F] and Heal !M! HP. || Unplayable if you have less than !S! cards in play.",
 			"EXTENDED_DESCRIPTION": ["Not enough cards in play."],
 			"NAME": "Gluttony"
 		},
@@ -1041,7 +1041,7 @@
 		"animator:Saitama":
 		{
 			"DESCRIPTION": "Whenever this card is ** played, increase its cost ** and change its effect ** for this combat.",
-			"EXTENDED_DESCRIPTION": ["<DRW-M>. ** Gain !S! <AGI>.", "Prevent the next time ** you would lose HP.", "Gain !M! <FOR>.", "", "Remove Intangible. ** Stun the enemy."],
+			"EXTENDED_DESCRIPTION": ["<DRW-M>. ** Gain !S! [A].", "Prevent the next time ** you would lose HP.", "Gain !M! [F].", "", "Remove Intangible. ** Stun the enemy."],
 			"NAME": "Saitama",
 			"UPGRADE_DESCRIPTION": "Motivate 1. || Whenever this card is ** played, increase its cost ** and change its effect ** for this combat."
 		},
@@ -1271,7 +1271,7 @@
 		},
 		"animator:EntouJyuu":
 		{
-			"DESCRIPTION": "Gain !M! <AGI>. || Whenever you deal ** unblocked damage: ** Apply 1 Burning.",
+			"DESCRIPTION": "Gain !M! [A]. || Whenever you deal ** unblocked damage: ** Apply 1 Burning.",
 			"NAME": "Entou Jyuu"
 		},
 		"animator:Excalibur":
@@ -1500,7 +1500,7 @@
 		},
 		"animator:Veldora":
 		{
-			"DESCRIPTION": "Gain !S! <INT>. Evoke ** ALL orbs !M! times. || When Drawn: Channel ** 2 random Orbs.",
+			"DESCRIPTION": "Gain !S! [I]. Evoke ** ALL orbs !M! times. || When Drawn: Channel ** 2 random Orbs.",
 			"NAME": "Veldora"
 		}
 	}

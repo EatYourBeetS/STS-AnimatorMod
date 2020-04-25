@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -68,18 +69,20 @@ public class AkaneSenri extends AnimatorCard {
             {
                 countdown = defaultCountdown;
 
-                AbstractOrb darkOrb = new Dark();
-                GameActions.Bottom.ChannelOrb(darkOrb, true);
-
-                for (int i=0; i<player.hand.size(); i++)
+                int energy = Math.min(amount, EnergyPanel.getCurrentEnergy());
+                if (energy > 0)
                 {
-                    for (int j=0; j<amount; j++)
-                    {
-                        darkOrb.onStartOfTurn();
-                        darkOrb.onEndOfTurn();
+                    EnergyPanel.useEnergy(energy);
+                    AbstractOrb darkOrb = new Dark();
+                    GameActions.Bottom.ChannelOrb(darkOrb, true);
+
+                    for (int i = 0; i < player.hand.size(); i++) {
+                        for (int j = 0; j < amount; j++) {
+                            darkOrb.onStartOfTurn();
+                            darkOrb.onEndOfTurn();
+                        }
                     }
                 }
-
             }
             else
             {

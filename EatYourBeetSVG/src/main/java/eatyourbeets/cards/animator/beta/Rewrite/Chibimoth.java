@@ -64,10 +64,7 @@ public class Chibimoth extends AnimatorCard {
             {
                 if (!DrawKotoriKanbe(player.drawPile))
                 {
-                    if (!DrawKotoriKanbe(player.discardPile))
-                    {
-                        DrawKotoriKanbe(player.exhaustPile);
-                    }
+                    DrawKotoriKanbe(player.discardPile)
                 }
             });
         }

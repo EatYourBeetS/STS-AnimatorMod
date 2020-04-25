@@ -75,8 +75,6 @@ public class AkaneSenri extends AnimatorCard {
             updateDescription();
         }
 
-
-
         @Override
         public void updateDescription() {
             description = FormatDescription(0, amount);

@@ -24,7 +24,7 @@ public class ShizuruNakatsu extends AnimatorCard implements OnBattleStartSubscri
     public ShizuruNakatsu() {
         super(DATA);
 
-        Initialize(3, 4, 2);
+        Initialize(3, 3, 2);
         SetUpgrade(1,2,0);
 
         SetSynergy(Synergies.Rewrite);

@@ -10,6 +10,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
+import eatyourbeets.interfaces.subscribers.OnStanceChangedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
@@ -17,7 +19,7 @@ import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
-public class KotarouTennouji extends AnimatorCard {
+public class KotarouTennouji extends AnimatorCard implements OnBattleStartSubscriber, OnStanceChangedSubscriber {
     public static final EYBCardData DATA = Register(KotarouTennouji.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Normal);
 
     public KotarouTennouji() {
@@ -31,6 +33,11 @@ public class KotarouTennouji extends AnimatorCard {
         SetUnique(true,true);
 
         SetSynergy(Synergies.Rewrite);
+
+        if (CanSubscribeToEvents())
+        {
+            OnBattleStart();
+        }
     }
 
     @Override
@@ -41,12 +48,18 @@ public class KotarouTennouji extends AnimatorCard {
     }
 
     @Override
-    public void triggerExhaustedCardsOnStanceChange(AbstractStance newStance) {
+    public void OnBattleStart() {
+        CombatStats.onStanceChanged.Subscribe(this);
+    }
+
+    @Override
+    public void OnStanceChanged(AbstractStance oldStance, AbstractStance newStance)
+    {
         if (player.hand.contains(this) && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
-                .IncludeMasterDeck(true)
-                .IsCancellable(false);
+                    .IncludeMasterDeck(true)
+                    .IsCancellable(false);
             flash();
         }
     }

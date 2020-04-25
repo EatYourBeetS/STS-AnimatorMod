@@ -69,7 +69,7 @@ public class ShizuruNakatsu extends AnimatorCard {
                 final float x = target.hb.cX + (target.hb.width * MathUtils.random(-0.1f, 0.1f));
                 final float y = target.hb.cY + (target.hb.height * MathUtils.random(-0.2f, 0.2f));
 
-                GameActions.Bottom.VFX(new ThrowDaggerEffect(x, y), 0.25f);
+                GameActions.Bottom.VFX(new ThrowDaggerEffect(x, y), 0.01f);
                 GameActions.Bottom.DealDamage(p, target, secondaryValue, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE)
                 .SetVFX(true, true);
             }

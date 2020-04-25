@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.EmptyStanceEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
@@ -16,7 +17,7 @@ public class YoshinoHaruhiko extends AnimatorCard {
     public YoshinoHaruhiko() {
         super(DATA);
 
-        Initialize(11, 0, 1);
+        Initialize(5, 0, 1,2);
         SetUpgrade(2, 0, 0);
 
         SetMartialArtist();
@@ -25,8 +26,17 @@ public class YoshinoHaruhiko extends AnimatorCard {
     }
 
     @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(secondaryValue);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        GameActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        for (int i=0;i<secondaryValue;i++)
+        {
+            GameActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        }
 
         if (player.stance.ID.equals(ForceStance.STANCE_ID))
         {

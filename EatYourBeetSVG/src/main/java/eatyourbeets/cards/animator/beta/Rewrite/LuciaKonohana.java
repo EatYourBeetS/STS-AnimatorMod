@@ -20,7 +20,7 @@ public class LuciaKonohana extends AnimatorCard {
     public LuciaKonohana() {
         super(DATA);
 
-        Initialize(0, 0, 7,1);
+        Initialize(0, 0, 8,1);
         SetUpgrade(0, 0, 3);
 
         SetSynergy(Synergies.Rewrite);

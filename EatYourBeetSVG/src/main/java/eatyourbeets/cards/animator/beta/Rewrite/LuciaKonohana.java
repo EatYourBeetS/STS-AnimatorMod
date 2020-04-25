@@ -13,14 +13,14 @@ import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class LuciaKonohana extends AnimatorCard {
-    public static final EYBCardData DATA = Register(LuciaKonohana.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(LuciaKonohana.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Normal);
 
     public static final EYBCardTooltip CommonDebuffs = new EYBCardTooltip(DATA.Strings.EXTENDED_DESCRIPTION[1], DATA.Strings.EXTENDED_DESCRIPTION[2]);
 
     public LuciaKonohana() {
         super(DATA);
 
-        Initialize(0, 0, 7);
+        Initialize(0, 0, 7,1);
         SetUpgrade(0, 0, 3);
 
         SetSynergy(Synergies.Rewrite);
@@ -39,13 +39,15 @@ public class LuciaKonohana extends AnimatorCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractMonster randomEnemy = GameUtilities.GetRandomEnemy(true);
+        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
 
-        GameActions.Bottom.ApplyPoison(p, randomEnemy, magicNumber);
+        GameActions.Top.ExhaustFromHand(name, secondaryValue, true)
+        .ShowEffect(true, true)
+        .SetOptions(true, true, true);
 
         if (player.stance.ID.equals(AgilityStance.STANCE_ID))
         {
-            GameActions.Bottom.ApplyPower(p, randomEnemy, new LuciaKonohanaPower(randomEnemy, 1));
+            GameActions.Bottom.ApplyPower(p, m, new LuciaKonohanaPower(m, 1));
         }
     }
 

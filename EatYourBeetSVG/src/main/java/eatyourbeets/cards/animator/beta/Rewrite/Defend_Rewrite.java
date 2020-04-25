@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Defend_Rewrite extends Defend
@@ -18,12 +19,12 @@ public class Defend_Rewrite extends Defend
         SetUpgrade(0, 3);
 
         SetSynergy(Synergies.Rewrite);
-        SetScaling(0,2,0);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
+        AgilityPower.PreserveOnce();
     }
 }

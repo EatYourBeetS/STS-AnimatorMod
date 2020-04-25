@@ -187,8 +187,8 @@
 		},
 		"animator:Chibimoth":
 		{
-			"DESCRIPTION": "Gain [F], [A], or [I]. ** Exit your current stance. || Synergy: Draw Kotori ** Kanbe from any pile.",
-			"EXTENDED_DESCRIPTION": ["Gain [A].", "Gain [I].", "Gain [F]."],
+			"DESCRIPTION": "Gain [F] and !M! {Temp. HP} ** or [A] and {Blur}. Exit your current stance. || Synergy: Draw Kotori ** Kanbe from any pile.",
+			"EXTENDED_DESCRIPTION": ["Gain [A] and Blur.", "Gain [F] and !M! Temp. HP"],
 			"NAME": "Chibimoth"
 		},
 		"animator:ChihayaOhtori":
@@ -198,7 +198,7 @@
 		},
 		"animator:Defend_Rewrite":
 		{
-			"DESCRIPTION": "",
+			"DESCRIPTION": "Lose no [A] next turn.",
 			"NAME": "Improved Defend"
 		},
 		"animator:Kagari":
@@ -256,7 +256,7 @@
 		},
 		"animator:Strike_Rewrite":
 		{
-			"DESCRIPTION": "Gain [I].",
+			"DESCRIPTION": "Lose no [F] next turn.",
 			"NAME": "Improved Strike"
 		},
 		"animator:ToukaNishikujou":

@@ -23,9 +23,8 @@ public class Chibimoth extends AnimatorCard {
     public Chibimoth() {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 2, 1);
         SetExhaust(true);
-        SetRetain(true);
 
         SetSynergy(Synergies.Rewrite);
     }
@@ -40,11 +39,16 @@ public class Chibimoth extends AnimatorCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         String[] text = DATA.Strings.EXTENDED_DESCRIPTION;
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        group.addToBottom(CreateChoice(text[0], (c1, p1, m1) -> GameActions.Bottom.GainAgility(1, false)));
-        group.addToBottom(CreateChoice(text[1], (c1, p1, m1) -> GameActions.Bottom.GainIntellect(1, false)));
-        group.addToBottom(CreateChoice(text[2], (c1, p1, m1) -> GameActions.Bottom.GainForce(1, false)));
+        group.addToBottom(CreateChoice(text[0], (c1, p1, m1) -> {
+            GameActions.Bottom.GainAgility(1, false);
+            GameActions.Bottom.GainBlur(secondaryValue);
+        }));
+        group.addToBottom(CreateChoice(text[1], (c1, p1, m1) -> {
+            GameActions.Bottom.GainForce(1, false);
+            GameActions.Bottom.GainTemporaryHP(magicNumber);
+        }));
 
-        GameActions.Bottom.SelectFromPile(name, magicNumber, group)
+        GameActions.Bottom.SelectFromPile(name, 1, group)
                 .SetOptions(false, false)
                 .SetMessage(CardRewardScreen.TEXT[1])
                 .AddCallback(cards ->

@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
@@ -25,7 +24,7 @@ public class ShizuruNakatsu extends AnimatorCard {
     public ShizuruNakatsu() {
         super(DATA);
 
-        Initialize(1, 5, 2,1);
+        Initialize(8, 5, 2,1);
         SetUpgrade(0,3,0);
 
         SetSynergy(Synergies.Rewrite);
@@ -63,16 +62,15 @@ public class ShizuruNakatsu extends AnimatorCard {
 
         if (canAttack)
         {
-            for (int i=0; i<GetNumberOfSkills(p.discardPile); i++)
+            for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
             {
-                AbstractMonster target = GameUtilities.GetRandomEnemy(true);
-                final float x = target.hb.cX + (target.hb.width * MathUtils.random(-0.1f, 0.1f));
-                final float y = target.hb.cY + (target.hb.height * MathUtils.random(-0.2f, 0.2f));
+                final float x = enemy.hb.cX + (enemy.hb.width * MathUtils.random(-0.1f, 0.1f));
+                final float y = enemy.hb.cY + (enemy.hb.height * MathUtils.random(-0.2f, 0.2f));
 
                 GameActions.Bottom.VFX(new ThrowDaggerEffect(x, y), 0.01f);
-                GameActions.Bottom.DealDamage(p, target, secondaryValue, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE)
-                .SetVFX(true, true);
             }
+
+            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
         }
     }
 

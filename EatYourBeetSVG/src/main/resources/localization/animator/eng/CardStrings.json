@@ -418,7 +418,7 @@
 		},
 		"animator:LuciaKonohana":
 		{
-			"DESCRIPTION": "Apply X * !M! Poison. || <LIM>. If X is ** greater than 0: When the enemy ** dies, transfer its {Common Debuffs} ** to ALL enemies.",
+			"DESCRIPTION": "Apply X * !M! Poison. || <LIM>. If X is ** greater than 0: When the ** enemy dies, transfer its {Common-} ** {Debuffs} to ALL enemies.",
 			"EXTENDED_DESCRIPTION": ["When this creature dies, transfer its #yCommon #yDebuffs to ALL enemies.","Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
 			"NAME": "Lucia Konohana"
 		},
@@ -465,7 +465,7 @@
 		},
 		"animator:YoshinoHaruhiko":
 		{
-			"DESCRIPTION": "[F] Stance: Give ALL ** {Attacks} in your hand ** +1 [F] Scaling. Otherwise: ** Enter {[F] Stance} and take !M! damage ** at the end of turn.",
+			"DESCRIPTION": "[F] Stance: Give ALL ** {Attacks} in your hand ** +1 [F] Scaling. Otherwise: ** Enter {[F] Stance} and take !M! ** damage at end of turn.",
 			"NAME": "Yoshino Haruhiko"
 		}
 	},

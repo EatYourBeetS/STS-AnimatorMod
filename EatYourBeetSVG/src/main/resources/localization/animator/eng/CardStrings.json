@@ -1375,7 +1375,7 @@
 		},
 		"animator:JeanneDArc":
 		{
-			"DESCRIPTION": "Exhaust a random ** Hindrance. || At the start of combat: ** Gain !M! {Temporary HP} ** and 1 Artifact.",
+			"DESCRIPTION": "Exhaust a random ** Hindrance from anywhere. || At the start of combat: ** Gain !M! {Temporary HP} ** and 1 Artifact.",
 			"NAME": "Jeanne D'Arc"
 		},
 		"animator:NivaLada":

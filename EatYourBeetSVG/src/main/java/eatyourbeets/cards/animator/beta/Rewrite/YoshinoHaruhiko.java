@@ -5,20 +5,20 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.EmptyStanceEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class YoshinoHaruhiko extends AnimatorCard {
-    public static final EYBCardData DATA = Register(YoshinoHaruhiko.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.Random);
+    public static final EYBCardData DATA = Register(YoshinoHaruhiko.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.Random);
 
     public YoshinoHaruhiko() {
         super(DATA);
 
-        Initialize(6, 0, 1,2);
-        SetUpgrade(2, 0, 0);
+        Initialize(3, 0, 6,2);
+        SetUpgrade(1, 0, -2);
 
         SetMartialArtist();
 
@@ -44,7 +44,7 @@ public class YoshinoHaruhiko extends AnimatorCard {
             {
                 if (card instanceof EYBCard && card.type == CardType.ATTACK)
                 {
-                    ((EYBCard) card).forceScaling += magicNumber;
+                    ((EYBCard) card).forceScaling += 1;
                     card.flash();
                 }
             }
@@ -52,7 +52,7 @@ public class YoshinoHaruhiko extends AnimatorCard {
         else
         {
             GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
-            GameActions.Bottom.VFX(new EmptyStanceEffect(p.hb.cX, p.hb.cY));
+            GameActions.Bottom.StackPower(new SelfDamagePower(p, magicNumber));
         }
     }
 }

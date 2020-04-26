@@ -6,22 +6,21 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class LuciaKonohana extends AnimatorCard {
-    public static final EYBCardData DATA = Register(LuciaKonohana.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Normal);
+    public static final EYBCardData DATA = Register(LuciaKonohana.class).SetSkill(-1, CardRarity.UNCOMMON, EYBCardTarget.Normal);
 
     public static final EYBCardTooltip CommonDebuffs = new EYBCardTooltip(DATA.Strings.EXTENDED_DESCRIPTION[1], DATA.Strings.EXTENDED_DESCRIPTION[2]);
 
     public LuciaKonohana() {
         super(DATA);
 
-        Initialize(0, 0, 8,1);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 4,1);
 
         SetSynergy(Synergies.Rewrite);
     }
@@ -44,14 +43,15 @@ public class LuciaKonohana extends AnimatorCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        GameActions.Top.DiscardFromHand(name, secondaryValue, true)
-        .ShowEffect(true, true)
-        .SetOptions(true, true, true)
-        .AddCallback(__ -> GameActions.Bottom.ApplyPoison(p, m, magicNumber));
-
-        if (player.stance.ID.equals(AgilityStance.STANCE_ID))
+        int stacks = GameUtilities.UseXCostEnergy(this);
+        if (stacks > 0)
         {
-            GameActions.Bottom.ApplyPower(p, m, new LuciaKonohanaPower(m, 1));
+            GameActions.Bottom.ApplyPoison(p, m, magicNumber * stacks);
+
+            if (CombatStats.TryActivateLimited(cardID))
+            {
+                GameActions.Bottom.ApplyPower(p, m, new LuciaKonohanaPower(m, 1));
+            }
         }
     }
 

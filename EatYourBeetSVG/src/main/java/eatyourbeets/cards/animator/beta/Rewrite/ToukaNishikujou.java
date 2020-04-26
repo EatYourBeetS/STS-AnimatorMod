@@ -1,10 +1,8 @@
 package eatyourbeets.cards.animator.beta.Rewrite;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
+import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -24,11 +22,11 @@ public class ToukaNishikujou extends AnimatorCard {
     }
 
     @Override
-    public void triggerOnManualDiscard()
-    {
+    public void triggerOnManualDiscard() {
         super.triggerOnManualDiscard();
 
-        ExhaustAndDamage();
+        GameActions.Bottom.Cycle(name, 1)
+        .SetFilter(c -> c.cardID.equals(ThrowingKnife.DATA.ID));
     }
 
     @Override
@@ -41,17 +39,11 @@ public class ToukaNishikujou extends AnimatorCard {
                 GameActions.Bottom.CreateThrowingKnives(numThrowingKnives);
             }
 
-            if (HasSynergy()) {
-                ExhaustAndDamage();
+            if (HasSynergy())
+            {
+                GameActions.Bottom.Cycle(name, 1)
+                .SetFilter(c -> c.cardID.equals(ThrowingKnife.DATA.ID));
             }
-
         });
-    }
-
-    private void ExhaustAndDamage()
-    {
-        GameActions.Bottom.Exhaust(this);
-        GameActions.Bottom.VFX(new MindblastEffect(player.dialogX, player.dialogY, player.flipHorizontal), 0.1f);
-        GameActions.Bottom.DealDamageToRandomEnemy(secondaryValue, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
     }
 }

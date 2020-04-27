@@ -465,7 +465,7 @@
 		},
 		"animator:YoshinoHaruhiko":
 		{
-			"DESCRIPTION": "[F] Stance: Give ALL {Attacks} ** in your hand +1 [F] ** Scaling. Otherwise: Enter {[F] Stance}. ** Take !M! damage at end of turn.",
+			"DESCRIPTION": "[F] Stance: Give ALL {Attacks} ** in your hand +1 [F] Scaling. **  Otherwise: Enter {[F] Stance}. ** Take !M! damage at end of ** turn.",
 			"NAME": "Yoshino Haruhiko"
 		}
 	},

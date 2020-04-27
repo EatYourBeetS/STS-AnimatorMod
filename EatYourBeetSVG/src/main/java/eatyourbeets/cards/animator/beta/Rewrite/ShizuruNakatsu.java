@@ -1,12 +1,11 @@
 package eatyourbeets.cards.animator.beta.Rewrite;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
+import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -62,14 +61,8 @@ public class ShizuruNakatsu extends AnimatorCard {
 
         if (canAttack)
         {
-            for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
-            {
-                final float x = enemy.hb.cX + (enemy.hb.width * MathUtils.random(-0.1f, 0.1f));
-                final float y = enemy.hb.cY + (enemy.hb.height * MathUtils.random(-0.2f, 0.2f));
-
-                GameActions.Bottom.VFX(new ThrowDaggerEffect(x, y), 0.01f);
-            }
-
+            GameActions.Bottom.SFX("ATTACK_HEAVY");
+            GameActions.Bottom.VFX(new DieDieDieEffect());
             GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
         }
     }

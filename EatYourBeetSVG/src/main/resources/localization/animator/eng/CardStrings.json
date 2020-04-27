@@ -445,7 +445,7 @@
 		},
 		"animator:ShizuruNakatsu":
 		{
-			"DESCRIPTION": "Discard !M! random {Skills} ** to Enter {[A] Stance}. || If you reached 6 [A] this ** combat: Deal !S! damage to ** ALL enemies.",
+			"DESCRIPTION": "Discard !M! random {Skills} ** to Enter {[A] Stance}. || If you reached 6 [A] this ** combat: Deal 8 damage to ** ALL enemies.",
 			"NAME": "Shizuru Nakatsu"
 		},
 		"animator:SougenEsaka":

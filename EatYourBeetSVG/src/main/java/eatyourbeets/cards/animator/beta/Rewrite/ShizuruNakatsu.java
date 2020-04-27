@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.Rewrite;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
@@ -63,7 +64,10 @@ public class ShizuruNakatsu extends AnimatorCard {
         {
             GameActions.Bottom.SFX("ATTACK_HEAVY");
             GameActions.Bottom.VFX(new DieDieDieEffect());
-            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
+
+            int[] damageMatrix = DamageInfo.createDamageMatrix(damage, true);
+
+            GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE);
         }
     }
 

@@ -14,6 +14,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.TargetHelper;
 
 public class KotoriItsuka extends AnimatorCard
 {
@@ -69,7 +70,7 @@ public class KotoriItsuka extends AnimatorCard
         }
         else
         {
-            GameActions.Bottom.ApplyBurning(m, secondaryValue);
+            GameActions.Bottom.ApplyBurning(TargetHelper.Normal(m), secondaryValue);
         }
     }
 }

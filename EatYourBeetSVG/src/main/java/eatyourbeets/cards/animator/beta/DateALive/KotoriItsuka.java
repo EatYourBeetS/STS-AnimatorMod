@@ -17,7 +17,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class KotoriItsuka extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(KotoriItsuka.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(KotoriItsuka.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Normal);
+
+    private static final int MAX_STAT_GAIN = 5;
 
     public KotoriItsuka()
     {
@@ -53,7 +55,7 @@ public class KotoriItsuka extends AnimatorCard
 
         if (CombatStats.TryActivateLimited(this.cardID))
         {
-            GameActions.Bottom.ExhaustFromHand(name, secondaryValue, false)
+            GameActions.Bottom.ExhaustFromHand(name, MAX_STAT_GAIN, false)
             .SetOptions(true, true, true)
             .AddCallback(cards ->
             {
@@ -61,10 +63,13 @@ public class KotoriItsuka extends AnimatorCard
                 {
                     GameActions.Bottom.GainAgility(1, true);
                     GameActions.Bottom.GainForce(1, true);
-                    GameActions.Bottom.GainIntellect(1, true);
                     GameActions.Bottom.MakeCardInHand(new Burn());
                 }
             });
+        }
+        else
+        {
+            GameActions.Bottom.ApplyBurning(m, secondaryValue);
         }
     }
 }

@@ -290,7 +290,7 @@
 		},
 		"animator:KotoriItsuka":
 		{
-			"DESCRIPTION": "<LIM>. You may Exhaust up ** to !S! cards. Boost [F] [A] [I] ** and add 1 Burn to your hand ** for each card Exhausted.",
+			"DESCRIPTION": "Apply !S! {Burning} if ** Limited was triggered. || <LIM>. You may Exhaust up ** to 5 cards. Boost [F][A] and ** add 1 Burn to your hand ** for each card Exhausted.",
 			"NAME": "Kotori Itsuka"
 		},
 		"animator:KurumiTokisaki":

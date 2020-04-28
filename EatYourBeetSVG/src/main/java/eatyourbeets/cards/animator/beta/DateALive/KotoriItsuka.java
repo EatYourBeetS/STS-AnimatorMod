@@ -27,15 +27,10 @@ public class KotoriItsuka extends AnimatorCard
         super(DATA);
 
         Initialize(5, 0, 3, 5);
-        SetScaling(0, 0, 0);
+        SetUpgrade(0,0,1);
+        SetScaling(0, 0, 2);
 
         SetSynergy(Synergies.DateALive);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetScaling(0, 0, 2);
     }
 
     @Override

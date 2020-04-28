@@ -22,7 +22,7 @@ public class OrigamiTobiichi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 2, 10);
+        Initialize(0, 5, 1, 10);
         SetUpgrade(0,2,0);
         SetSpellcaster();
 

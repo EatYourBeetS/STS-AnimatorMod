@@ -20,7 +20,7 @@ public class LuciaKonohana extends AnimatorCard {
     public LuciaKonohana() {
         super(DATA);
 
-        Initialize(0, 0, 4,1);
+        Initialize(0, 0, 5,3);
 
         SetSynergy(Synergies.Rewrite);
     }
@@ -44,7 +44,7 @@ public class LuciaKonohana extends AnimatorCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         int stacks = GameUtilities.UseXCostEnergy(this);
-        if (stacks > 0)
+        if (stacks >= secondaryValue)
         {
             GameActions.Bottom.ApplyPoison(p, m, magicNumber * stacks);
 

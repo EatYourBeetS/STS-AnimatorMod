@@ -52,7 +52,6 @@ public class LuciaKonohana extends AnimatorCard {
 
             if (CombatStats.TryActivateLimited(cardID))
             {
-                GameActions.Bottom.VFX(new )
                 GameActions.Bottom.ApplyPower(p, m, new LuciaKonohanaPower(m, 1));
             }
         }

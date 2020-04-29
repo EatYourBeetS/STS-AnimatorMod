@@ -98,6 +98,9 @@ public class ShidoItsuka extends AnimatorCard
 
     private void InitializeSynergicCards()
     {
+        dateALiveCards.clear();
+        otherSynergicCards.clear();
+
         for (AbstractCard c : CardLibrary.getAllCards())
         {
             if (c instanceof AnimatorCard && !GameUtilities.IsCurseOrStatus(c)

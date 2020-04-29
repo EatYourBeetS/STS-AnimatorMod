@@ -63,6 +63,7 @@ public class LuciaKonohana extends AnimatorCard {
             super(owner, LuciaKonohana.DATA);
 
             this.amount = amount;
+            this.type = PowerType.DEBUFF;
 
             updateDescription();
         }

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
@@ -46,10 +47,12 @@ public class LuciaKonohana extends AnimatorCard {
         int stacks = GameUtilities.UseXCostEnergy(this);
         if (stacks >= secondaryValue)
         {
+            GameActions.Bottom.VFX(new PotionBounceEffect(player.hb.cY, player.hb.cX, m.hb.cX, m.hb.cY), 0.3f);
             GameActions.Bottom.ApplyPoison(p, m, magicNumber * stacks);
 
             if (CombatStats.TryActivateLimited(cardID))
             {
+                GameActions.Bottom.VFX(new )
                 GameActions.Bottom.ApplyPower(p, m, new LuciaKonohanaPower(m, 1));
             }
         }

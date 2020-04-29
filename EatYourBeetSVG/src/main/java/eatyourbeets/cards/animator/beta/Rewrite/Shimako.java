@@ -22,9 +22,8 @@ public class Shimako extends AnimatorCard {
     public Shimako() {
         super(DATA);
 
-        Initialize(0, 3, 0);
+        Initialize(0, 4, 0);
         SetUpgrade(0, 3, 0);
-        SetScaling(1,0,0);
 
         SetSynergy(Synergies.Rewrite);
     }

@@ -5,11 +5,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.common.TempHPNextTurnPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class ForceStance extends EYBStance
 {

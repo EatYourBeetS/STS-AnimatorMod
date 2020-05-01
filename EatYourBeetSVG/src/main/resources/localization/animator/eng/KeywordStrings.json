@@ -53,7 +53,7 @@
 		"DESCRIPTION": "A card #ySynergizes if the previous card played this turn was of the same series.",
 		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized"],
 		"PROPER_NAME": "Synergy"
-	}
+	},
 	"Force Stance":
 	{
 		"DESCRIPTION": "#g+2 #gStrength, NL #r-1 #rFocus, NL #r-1 #rDexterity. NL On Enter: #yBoost #yForce. NL On Exit: Gain 3 #yTemp. #yHP.",

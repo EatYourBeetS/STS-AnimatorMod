@@ -1,4 +1,4 @@
-package eatyourbeets.powers.common;
+package eatyourbeets.powers.deprecated;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.CommonPower;

@@ -1,13 +1,6 @@
-package eatyourbeets.powers.common;
+package eatyourbeets.powers.deprecated;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 

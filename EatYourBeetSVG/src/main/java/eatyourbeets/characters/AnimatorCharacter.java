@@ -21,9 +21,7 @@ import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.stances.EYBStance;
 import eatyourbeets.utilities.RandomizedList;
-import org.apache.logging.log4j.LogManager;
 
 import java.util.ArrayList;
 

@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
@@ -44,7 +45,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static final CombatStats Instance = new CombatStats();
 
-    public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying  = new GameEvent<>();
+    public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = new GameEvent<>();
     public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = new GameEvent<>();
     public static final GameEvent<OnBeforeLoseBlockSubscriber> onBeforeLoseBlock = new GameEvent<>();
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
@@ -66,6 +67,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnCostRefreshSubscriber> onCostRefresh = new GameEvent<>();
     public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = new GameEvent<>();
     public static final GameEvent<OnStatsClearedSubscriber> onStatsCleared = new GameEvent<>();
+    public static final GameEvent<OnStanceChangedSubscriber> onStanceChanged = new GameEvent<>();
 
     public static final Void Void = new Void();
     public static boolean LoadingPlayerSave;
@@ -149,6 +151,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onStartOfTurnPostDraw.Clear();
         onPhaseChanged.Clear();
         onStatsCleared.Clear();
+        onStanceChanged.Clear();
 
         //Void.Initialize(true);
     }
@@ -227,7 +230,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             if (c instanceof OnRelicObtainedSubscriber)
             {
-                ((OnRelicObtainedSubscriber)c).OnRelicObtained(relic, trigger);
+                ((OnRelicObtainedSubscriber) c).OnRelicObtained(relic, trigger);
             }
         }
 
@@ -235,7 +238,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             if (r instanceof OnRelicObtainedSubscriber)
             {
-                ((OnRelicObtainedSubscriber)r).OnRelicObtained(relic, trigger);
+                ((OnRelicObtainedSubscriber) r).OnRelicObtained(relic, trigger);
             }
         }
     }
@@ -313,7 +316,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         if (turnData.containsKey(key))
         {
-            return (T)turnData.get(key);
+            return (T) turnData.get(key);
         }
         else
         {
@@ -331,7 +334,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         if (combatData.containsKey(key))
         {
-            return (T)combatData.get(key);
+            return (T) combatData.get(key);
         }
         else
         {
@@ -540,6 +543,17 @@ public class CombatStats extends EYBPower implements InvisiblePower
         Synergies.SetLastCardPlayed(null);
     }
 
+    @Override
+    public void onChangeStance(AbstractStance oldStance, AbstractStance newStance)
+    {
+        super.onChangeStance(oldStance, newStance);
+
+        for (OnStanceChangedSubscriber s : onStanceChanged.GetSubscribers())
+        {
+            s.OnStanceChanged(oldStance, newStance);
+        }
+    }
+
     public void OnAfterDraw(AbstractCard card)
     {
         cardsDrawnThisTurn += 1;
@@ -548,7 +562,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
             s.OnAfterCardDrawn(card);
         }
 
-        if (card instanceof EYBCard && ((EYBCard)card).haste)
+        if (card instanceof EYBCard && ((EYBCard) card).haste)
         {
             GameActions.Bottom.Add(new HasteAction((EYBCard) card));
         }

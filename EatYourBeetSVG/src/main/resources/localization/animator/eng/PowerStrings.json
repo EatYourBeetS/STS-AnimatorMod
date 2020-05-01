@@ -297,7 +297,7 @@
 	},
 	"animator:ShiroPower":
 	{
-		"DESCRIPTIONS": ["At the start of you turn gain #b", " energy."],
+		"DESCRIPTIONS": ["At the start of your turn, gain #b", " energy."],
 		"NAME": "Shiro"
 	},
 	"animator:SonicPower":

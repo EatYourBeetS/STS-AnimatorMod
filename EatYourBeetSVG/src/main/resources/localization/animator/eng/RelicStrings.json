@@ -126,7 +126,7 @@
 	},
 	"animator:ShionDessert":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, apply #b{0} #yPoison to the enemy with the most #yPoison"],
+		"DESCRIPTIONS": ["At the start of each turn, apply #b{0} #yPoison to the enemy with the most #yPoison."],
 		"FLAVOR": "Here, have a taste, how bad can it be?",
 		"NAME": "Shion's Dessert"
 	},

@@ -39,7 +39,7 @@ public class Midou extends AnimatorCard {
 
         for (AbstractMonster monster : GameUtilities.GetEnemies(true))
         {
-            GameActions.Bottom.StackPower(p, new LockOnPower(m, this.magicNumber));
+            GameActions.Bottom.StackPower(p, new LockOnPower(monster, this.magicNumber));
         }
     }
 }

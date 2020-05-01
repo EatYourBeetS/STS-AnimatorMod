@@ -4,11 +4,11 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 
-public class DeenergizedPower extends CommonPower
+public class LoseEnergyNextTurnPower extends CommonPower
 {
-    public static final String POWER_ID = CreateFullID(DeenergizedPower.class);
+    public static final String POWER_ID = CreateFullID(LoseEnergyNextTurnPower.class);
 
-    public DeenergizedPower(AbstractCreature owner, int amount)
+    public LoseEnergyNextTurnPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
@@ -23,8 +23,8 @@ public class DeenergizedPower extends CommonPower
         if (owner.isPlayer)
         {
             GameActions.Bottom.SpendEnergy(amount, true);
-            flash();
             GameActions.Bottom.RemovePower(owner, owner, this);
+            flash();
         }
     }
 

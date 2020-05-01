@@ -6,28 +6,30 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 
-public class DamageNextTurnPower extends CommonPower {
-        public static final String POWER_ID = CreateFullID(DamageNextTurnPower.class);
+public class DamageNextTurnPower extends CommonPower
+{
+    public static final String POWER_ID = CreateFullID(DamageNextTurnPower.class);
 
-        public DamageNextTurnPower(AbstractPlayer owner, int amount) {
-            super(owner, POWER_ID);
+    public DamageNextTurnPower(AbstractPlayer owner, int amount)
+    {
+        super(owner, POWER_ID);
 
-            this.amount = amount;
+        this.amount = amount;
 
-            updateDescription();
-        }
+        updateDescription();
+    }
 
-        @Override
-        public void updateDescription() {
-            description = FormatDescription(0, amount);
-        }
+    @Override
+    public void updateDescription()
+    {
+        description = FormatDescription(0, amount);
+    }
 
-        public void atStartOfTurn()
-        {
-            flash();
+    public void atStartOfTurn()
+    {
+        flash();
 
-            GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.LIGHTNING);
-
-            GameActions.Bottom.RemovePower(owner, owner, this);
-        }
+        GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.LIGHTNING);
+        GameActions.Bottom.RemovePower(owner, owner, this);
+    }
 }

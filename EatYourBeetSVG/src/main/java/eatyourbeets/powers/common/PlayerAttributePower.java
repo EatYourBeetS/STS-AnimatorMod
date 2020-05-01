@@ -21,6 +21,9 @@ public abstract class PlayerAttributePower extends CommonPower
     protected static final PreservedPowers preservedPowers = new PreservedPowers();
     protected int threshold;
 
+    protected abstract float GetScaling(EYBCard card);
+    protected abstract void OnThresholdReached();
+
     public PlayerAttributePower(String powerID, AbstractCreature owner, int amount)
     {
         super(owner, powerID);
@@ -99,6 +102,27 @@ public abstract class PlayerAttributePower extends CommonPower
         return damage;
     }
 
+    @Override
+    public void renderAmount(SpriteBatch sb, float x, float y, Color c)
+    {
+        if (threshold > 0)
+        {
+            final float offset_x = -24 * Settings.scale;
+            final float offset_y = -5 * Settings.scale;
+            final float offset_x2 = 0 * Settings.scale;
+            final float offset_y2 = -5 * Settings.scale;
+            final Color c1 = Color.GREEN.cpy();
+            final Color c2 = Settings.CREAM_COLOR.cpy();
+            c1.a = c2.a = c.a;
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x + offset_x, y + offset_y, fontScale, c1);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + this.threshold, x + offset_x2, y + offset_y2, 1, c2);
+        }
+        else
+        {
+            super.renderAmount(sb, x, y, c);
+        }
+    }
+
     public int GetCurrentLevel()
     {
         switch (threshold)
@@ -139,37 +163,12 @@ public abstract class PlayerAttributePower extends CommonPower
         updateDescription();
     }
 
-    @Override
-    public void renderAmount(SpriteBatch sb, float x, float y, Color c)
-    {
-        if (threshold > 0)
-        {
-            final float offset_x  = -24 * Settings.scale;
-            final float offset_y  = -5 * Settings.scale;
-            final float offset_x2 = 0 * Settings.scale;
-            final float offset_y2 = -5 * Settings.scale;
-            final Color c1 = Color.GREEN.cpy();
-            final Color c2 = Settings.CREAM_COLOR.cpy();
-            c1.a = c2.a = c.a;
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x + offset_x, y + offset_y, fontScale, c1);
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + this.threshold, x + offset_x2, y + offset_y2, 1, c2);
-        }
-        else
-        {
-            super.renderAmount(sb, x, y, c);
-        }
-    }
-
-    protected abstract float GetScaling(EYBCard card);
-    protected abstract void OnThresholdReached();
-
     public static class PreservedPowers extends HashSet<String> implements OnStatsClearedSubscriber, OnStartOfTurnPostDrawSubscriber
     {
         @Override
         public void OnStatsCleared()
         {
             clear();
-
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
             CombatStats.onStatsCleared.Unsubscribe(this);
         }
@@ -178,7 +177,6 @@ public abstract class PlayerAttributePower extends CommonPower
         public void OnStartOfTurnPostDraw()
         {
             clear();
-
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
             CombatStats.onStatsCleared.Unsubscribe(this);
         }
@@ -186,7 +184,6 @@ public abstract class PlayerAttributePower extends CommonPower
         public void Subscribe(String powerID)
         {
             add(powerID);
-
             CombatStats.onStatsCleared.Subscribe(this);
             CombatStats.onStartOfTurnPostDraw.Subscribe(this);
         }

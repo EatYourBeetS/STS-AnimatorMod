@@ -18,12 +18,6 @@
 		"NAMES": ["motivate"],
 		"PROPER_NAME": "Motivate"
 	},
-	"~Orb Core":
-	{
-		"DESCRIPTION": "Channel 1 orb. NL  NL Gain a bonus effect on your second Synergy each turn.",
-		"NAMES": ["~orb core", "~orb cores"],
-		"PROPER_NAME": "Orb Core"
-	},
 	"Reload":
 	{
 		"DESCRIPTION": "Discard any number of cards, activate this effect that many times.",
@@ -54,22 +48,10 @@
 		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized"],
 		"PROPER_NAME": "Synergy"
 	},
-	"Force Stance":
+	"~Orb Core":
 	{
-		"DESCRIPTION": "#g+2 #gStrength, NL #r-1 #rFocus, NL #r-1 #rDexterity. NL On Enter: #yBoost #yForce. NL On Exit: Gain 3 #yTemp. #yHP.",
-		"NAMES": ["[f] stance", "force stance"],
-		"PROPER_NAME": "Force Stance"
-	},
-	"Agility Stance":
-	{
-		"DESCRIPTION": "#g+2 #gDexterity, NL #r-1 #rStrength, NL #r-1 #rFocus. NL On Enter: #yBoost #yAgility. NL On Exit: Draw 1 card next turn.",
-		"NAMES": ["[a] stance", "agility stance"],
-		"PROPER_NAME": "Agility Stance"
-	},
-	"Intellect Stance":
-	{
-		"DESCRIPTION": "#g+2 #gFocus, NL #r-1 #rStrength, NL #r-1 #rDexterity. NL On Enter: #yBoost #yIntellect. NL On Exit: Deal 7 damage to a random enemy.",
-		"NAMES": ["[i] stance", "intellect stance"],
-		"PROPER_NAME": "Intellect Stance"
+		"DESCRIPTION": "Channel 1 orb. NL  NL Gain a bonus effect on your second Synergy each turn.",
+		"NAMES": ["~orb core", "~orb cores"],
+		"PROPER_NAME": "Orb Core"
 	}
 }

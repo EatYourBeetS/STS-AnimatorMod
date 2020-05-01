@@ -963,7 +963,7 @@
 		},
 		"animator:Sonic":
 		{
-			"DESCRIPTION": "Enter [A] Stance. ** Gain !M! Blur. || Synergy: Obtain 1 ** {Throwing-Knife}.",
+			"DESCRIPTION": "Gain !S! [A]. ** Gain !M! Blur. || Synergy: Obtain 1 ** {Throwing-Knife}.",
 			"NAME": "Sonic"
 		},
 		"animator:Tatsumaki":

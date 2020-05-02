@@ -41,7 +41,7 @@ public class NiaHonjou extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.Scry(secondaryValue);
+        GameActions.Top.Scry(secondaryValue);
     }
 
     public static class NiaHonjouPower extends AnimatorPower

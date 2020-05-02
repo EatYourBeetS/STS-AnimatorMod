@@ -324,7 +324,7 @@
 		},
 		"animator:NiaHonjou":
 		{
-			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** {Block}. || When Discarded: Scry 2.",
+			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** {Block}. || When Discarded: Scry !S!.",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a card this turn, #yScry #b{0} and gain #b{1} #yBlock."],
 			"NAME": "Nia Honjou"
 		},

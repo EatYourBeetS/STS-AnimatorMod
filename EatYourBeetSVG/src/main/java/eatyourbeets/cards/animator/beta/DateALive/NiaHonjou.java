@@ -18,7 +18,7 @@ public class NiaHonjou extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 2, 1);
+        Initialize(0, 2, 2, 2);
 
         SetSynergy(Synergies.DateALive);
     }

@@ -45,7 +45,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static final CombatStats Instance = new CombatStats();
 
-    public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying  = new GameEvent<>();
+    public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = new GameEvent<>();
     public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = new GameEvent<>();
     public static final GameEvent<OnBeforeLoseBlockSubscriber> onBeforeLoseBlock = new GameEvent<>();
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
@@ -230,7 +230,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             if (c instanceof OnRelicObtainedSubscriber)
             {
-                ((OnRelicObtainedSubscriber)c).OnRelicObtained(relic, trigger);
+                ((OnRelicObtainedSubscriber) c).OnRelicObtained(relic, trigger);
             }
         }
 
@@ -238,7 +238,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             if (r instanceof OnRelicObtainedSubscriber)
             {
-                ((OnRelicObtainedSubscriber)r).OnRelicObtained(relic, trigger);
+                ((OnRelicObtainedSubscriber) r).OnRelicObtained(relic, trigger);
             }
         }
     }
@@ -316,7 +316,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         if (turnData.containsKey(key))
         {
-            return (T)turnData.get(key);
+            return (T) turnData.get(key);
         }
         else
         {
@@ -334,7 +334,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         if (combatData.containsKey(key))
         {
-            return (T)combatData.get(key);
+            return (T) combatData.get(key);
         }
         else
         {
@@ -544,7 +544,8 @@ public class CombatStats extends EYBPower implements InvisiblePower
     }
 
     @Override
-    public void onChangeStance(AbstractStance oldStance, AbstractStance newStance) {
+    public void onChangeStance(AbstractStance oldStance, AbstractStance newStance)
+    {
         super.onChangeStance(oldStance, newStance);
 
         for (OnStanceChangedSubscriber s : onStanceChanged.GetSubscribers())
@@ -561,7 +562,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
             s.OnAfterCardDrawn(card);
         }
 
-        if (card instanceof EYBCard && ((EYBCard)card).haste)
+        if (card instanceof EYBCard && ((EYBCard) card).haste)
         {
             GameActions.Bottom.Add(new HasteAction((EYBCard) card));
         }

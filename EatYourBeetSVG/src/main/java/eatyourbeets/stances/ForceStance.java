@@ -5,17 +5,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.common.TempHPNextTurnPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class ForceStance extends EYBStance
 {
-    public static String STANCE_ID = CreateFullID(ForceStance.class);
-    public static int STAT_GAIN_AMOUNT = 2;
-    public static int STAT_LOSE_AMOUNT = 1;
-    public static int TEMP_HP_AMOUNT = 3;
+    public static final String STANCE_ID = CreateFullID(ForceStance.class);
+    public static final int STAT_GAIN_AMOUNT = 2;
+    public static final int STAT_LOSE_AMOUNT = 1;
+    public static final int TEMP_HP_AMOUNT = 3;
 
     public ForceStance()
     {
@@ -38,7 +37,6 @@ public class ForceStance extends EYBStance
         super.onEnterStance();
 
         GameActions.Bottom.GainForce(1, true);
-
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , -STAT_LOSE_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_LOSE_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , +STAT_GAIN_AMOUNT);
@@ -50,7 +48,6 @@ public class ForceStance extends EYBStance
         super.onExitStance();
 
         GameActions.Bottom.GainTemporaryHP(TEMP_HP_AMOUNT);
-
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +STAT_LOSE_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , -STAT_GAIN_AMOUNT);

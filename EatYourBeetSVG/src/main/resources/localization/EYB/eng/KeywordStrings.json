@@ -12,6 +12,12 @@
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
+	"Agility Stance":
+	{
+		"DESCRIPTION": "#g+2 #gDexterity, NL #r-1 #rStrength, NL #r-1 #rFocus. NL On Enter: #yBoost #yAgility. NL On Exit: Draw 1 card next turn.",
+		"NAMES": ["[a] stance", "agility stance"],
+		"PROPER_NAME": "Agility Stance"
+	},
 	"Blur":
 	{
 		"DESCRIPTION": "Your #yBlock will not be removed at the start of your next turn.",
@@ -96,6 +102,12 @@
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
+	"Force Stance":
+	{
+		"DESCRIPTION": "#g+2 #gStrength, NL #r-1 #rFocus, NL #r-1 #rDexterity. NL On Enter: #yBoost #yForce. NL On Exit: Gain 3 #yTemp. #yHP.",
+		"NAMES": ["[f] stance", "force stance"],
+		"PROPER_NAME": "Force Stance"
+	},
 	"Hindrance":
 	{
 		"DESCRIPTION": "A #yStatus or #yCurse card.",
@@ -107,6 +119,12 @@
 		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yIntellect, gain #yFocus.",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
+	},
+	"Intellect Stance":
+	{
+		"DESCRIPTION": "#g+2 #gFocus, NL #r-1 #rStrength, NL #r-1 #rDexterity. NL On Enter: #yBoost #yIntellect. NL On Exit: Deal 7 damage to a random enemy.",
+		"NAMES": ["[i] stance", "intellect stance"],
+		"PROPER_NAME": "Intellect Stance"
 	},
 	"Juggernaut":
 	{

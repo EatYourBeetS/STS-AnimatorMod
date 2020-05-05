@@ -7,17 +7,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.common.DamageNextTurnPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class IntellectStance extends EYBStance
 {
-    public static String STANCE_ID = CreateFullID(IntellectStance.class);
-    public static int STAT_GAIN_AMOUNT = 2;
-    public static int STAT_LOSE_AMOUNT = 1;
-    public static int DAMAGE_AMOUNT = 7;
+    public static final String STANCE_ID = CreateFullID(IntellectStance.class);
+    public static final int STAT_GAIN_AMOUNT = 2;
+    public static final int STAT_LOSE_AMOUNT = 1;
+    public static final int DAMAGE_AMOUNT = 7;
 
     public IntellectStance()
     {
@@ -38,8 +37,8 @@ public class IntellectStance extends EYBStance
     public void onEnterStance()
     {
         super.onEnterStance();
-        GameActions.Bottom.GainIntellect(1, true);
 
+        GameActions.Bottom.GainIntellect(1, true);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +STAT_GAIN_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_LOSE_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , -STAT_LOSE_AMOUNT);

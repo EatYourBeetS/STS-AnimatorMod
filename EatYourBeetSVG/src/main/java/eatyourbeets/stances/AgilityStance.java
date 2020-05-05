@@ -13,9 +13,9 @@ import eatyourbeets.utilities.GameUtilities;
 public class AgilityStance extends EYBStance
 {
     public static final String STANCE_ID = CreateFullID(AgilityStance.class);
-    public static int STAT_GAIN_AMOUNT = 2;
-    public static int STAT_LOSE_AMOUNT = 1;
-    public static int DRAW_AMOUNT = 1;
+    public static final int STAT_GAIN_AMOUNT = 2;
+    public static final int STAT_LOSE_AMOUNT = 1;
+    public static final int DRAW_AMOUNT = 1;
 
     public AgilityStance()
     {
@@ -37,11 +37,10 @@ public class AgilityStance extends EYBStance
     {
         super.onEnterStance();
 
-        GameActions.Bottom.GainAgility(1, true);
-
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , -STAT_LOSE_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_GAIN_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , -STAT_LOSE_AMOUNT);
+        GameActions.Bottom.GainAgility(1, true);
     }
 
     @Override
@@ -49,10 +48,10 @@ public class AgilityStance extends EYBStance
     {
         super.onExitStance();
 
-        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(AbstractDungeon.player, DRAW_AMOUNT));
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +STAT_LOSE_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_GAIN_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , +STAT_LOSE_AMOUNT);
+        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(owner, DRAW_AMOUNT));
     }
 
     @Override

@@ -7,7 +7,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Sonic extends AnimatorCard
@@ -25,8 +24,8 @@ public class Sonic extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
-        SetUpgrade(0, 0, 0);
+        Initialize(0, 0, 2,2);
+        SetUpgrade(0, 0, 0,1);
 
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan);
@@ -36,8 +35,8 @@ public class Sonic extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainAgility(secondaryValue);
         GameActions.Bottom.GainBlur(magicNumber);
-        GameActions.Bottom.ChangeStance(new AgilityStance());
 
         if (HasSynergy())
         {

@@ -1221,7 +1221,7 @@
 		},
 		"animator:Melzalgald":
 		{
-			"DESCRIPTION": "Enter [F] Stance. ** Add 3 {Attacks} to ** your hand and ** Retain them.",
+			"DESCRIPTION": "Add 3 {Attacks} to ** your hand and ** Retain them.",
 			"NAME": "Melzalgald",
 			"UPGRADE_DESCRIPTION": "Add 3 Upgraded ** {Attacks} to your hand ** and Retain them."
 		},
@@ -1250,12 +1250,12 @@
 		},
 		"animator:Sonic":
 		{
-			"DESCRIPTION": "Enter [A] Stance. ** Gain !M! Blur. || Synergy: Obtain 1 ** {Throwing-Knife}.",
+			"DESCRIPTION": "Gain !S! [A]. ** Gain !M! Blur. || Synergy: Obtain 1 ** {Throwing-Knife}.",
 			"NAME": "Sonic"
 		},
 		"animator:Tatsumaki":
 		{
-			"DESCRIPTION": "Enter [I] Stance. ** Channel 1 Aether. || <slm>. When Drawn, if ** you have 3 or more unique ** Orbs: and <DRW>.",
+			"DESCRIPTION": "Gain [I]. ** Channel 1 Aether. || <slm>. When Drawn, if ** you have 3 or more unique ** Orbs: <DRW>.",
 			"NAME": "Tatsumaki"
 		}
 	},

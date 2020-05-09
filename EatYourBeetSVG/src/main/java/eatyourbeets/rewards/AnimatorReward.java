@@ -123,7 +123,7 @@ public abstract class AnimatorReward extends CustomReward
             {
                 AbstractMissingPiece missingPiece = (AbstractMissingPiece) relic;
 
-                return missingPiece.GetActualCounter() == 0 && missingPiece.RewardsAllowed() ;
+                return missingPiece.GetActualCounter() == 0;
             }
         }
 

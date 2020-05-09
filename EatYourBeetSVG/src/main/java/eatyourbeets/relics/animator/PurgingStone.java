@@ -99,6 +99,11 @@ public class PurgingStone extends AnimatorRelic
     {
         if (counter > 0)
         {
+            if (card.color == AbstractCard.CardColor.COLORLESS)
+            {
+                return false;
+            }
+
             if (!GR.Animator.Dungeon.BannedCards.contains(card.cardID))
             {
                 CardGroup pool = GameUtilities.GetCardPoolSource(card.rarity, card.color);

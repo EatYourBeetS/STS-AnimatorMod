@@ -23,6 +23,15 @@ public class Saitama extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Saitama.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
 
+    static
+    {
+        DATA.AddPreview(new Saitama(1), true);
+        DATA.AddPreview(new Saitama(2), true);
+        DATA.AddPreview(new Saitama(3), true);
+        DATA.AddPreview(new Saitama(4), true);
+        DATA.AddPreview(new Saitama(5), true);
+    }
+
     private int stage;
 
     public Saitama()
@@ -35,6 +44,14 @@ public class Saitama extends AnimatorCard
 
         SetAttackType(EYBAttackType.Normal);
         SetSynergy(Synergies.OnePunchMan);
+    }
+
+    public Saitama(int stage)
+    {
+        this();
+
+        this.stage = stage;
+        SetEffect(stage);
     }
 
     @Override

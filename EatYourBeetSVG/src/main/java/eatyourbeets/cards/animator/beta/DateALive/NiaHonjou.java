@@ -72,7 +72,7 @@ public class NiaHonjou extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount, amount);
+            description = FormatDescription(0, amount);
         }
 
         @Override

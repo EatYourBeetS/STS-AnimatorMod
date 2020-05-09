@@ -146,6 +146,19 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         return base + " NL  NL " + DESCRIPTIONS[1] + " NL " + joiner.toString();
     }
 
+    public boolean RewardsAllowed()
+    {
+        final AbstractRoom room = GameUtilities.GetCurrentRoom();
+        return room != null && lastRoom != room && room.rewardAllowed
+                && !(room instanceof MonsterRoomBoss)
+                && (room instanceof MonsterRoom || room.eliteTrigger || (room instanceof EventRoom && room.combatEvent));
+    }
+
+    public int GetActualCounter()
+    {
+        return this.counter % GetRewardInterval();
+    }
+
     private void AddSynergyRewards(ArrayList<RewardItem> rewards, int startingIndex)
     {
         WeightedList<Synergy> synergies = CreateWeightedList();
@@ -201,18 +214,5 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         }
 
         return list;
-    }
-
-    private boolean RewardsAllowed()
-    {
-        final AbstractRoom room = GameUtilities.GetCurrentRoom();
-        return room != null && lastRoom != room && room.rewardAllowed
-        && !(room instanceof MonsterRoomBoss)
-        && (room instanceof MonsterRoom || room.eliteTrigger || (room instanceof EventRoom && room.combatEvent));
-    }
-
-    private int GetActualCounter()
-    {
-        return this.counter % GetRewardInterval();
     }
 }

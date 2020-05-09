@@ -4,13 +4,16 @@ import basemod.abstracts.CustomReward;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.daily.mods.Binary;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.daily.mods.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
+import eatyourbeets.relics.animator.AbstractMissingPiece;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.JavaUtilities;
@@ -63,10 +66,33 @@ public abstract class AnimatorReward extends CustomReward
             AddCards(AbstractDungeon.srcCommonCardPool, randomPool, context);
             AddCards(AbstractDungeon.srcUncommonCardPool, randomPool, context);
             AddCards(AbstractDungeon.srcRareCardPool, randomPool, context);
+
+            if (!ReceiveImprovedCardRewards())
+            {
+                if (ModHelper.isModEnabled(ColorlessCards.ID) || ModHelper.isModEnabled(Diverse.ID)) {
+                    AddCards(AbstractDungeon.srcColorlessCardPool, randomPool, context);
+                }
+            }
         }
         else
         {
             AddCards(AbstractDungeon.srcColorlessCardPool, randomPool, context);
+        }
+
+        //Add cards from daily mods
+        if (!ReceiveImprovedCardRewards()) {
+            if (ModHelper.isModEnabled(RedCards.ID) || ModHelper.isModEnabled(Diverse.ID)) {
+                AddCardsFromAnotherClass(randomPool, context, AbstractPlayer.PlayerClass.IRONCLAD);
+            }
+            if (ModHelper.isModEnabled(GreenCards.ID) || ModHelper.isModEnabled(Diverse.ID)) {
+                AddCardsFromAnotherClass(randomPool, context, AbstractPlayer.PlayerClass.THE_SILENT);
+            }
+            if (ModHelper.isModEnabled(BlueCards.ID) || ModHelper.isModEnabled(Diverse.ID)) {
+                AddCardsFromAnotherClass(randomPool, context, AbstractPlayer.PlayerClass.DEFECT);
+            }
+            if (ModHelper.isModEnabled(PurpleCards.ID) || ModHelper.isModEnabled(Diverse.ID)) {
+                AddCardsFromAnotherClass(randomPool, context, AbstractPlayer.PlayerClass.WATCHER);
+            }
         }
 
         ArrayList<AbstractCard> result = new ArrayList<>();
@@ -87,6 +113,21 @@ public abstract class AnimatorReward extends CustomReward
         }
 
         return result;
+    }
+
+    private boolean ReceiveImprovedCardRewards()
+    {
+        for (AbstractRelic relic : AbstractDungeon.player.relics)
+        {
+            if (relic instanceof AbstractMissingPiece)
+            {
+                AbstractMissingPiece missingPiece = (AbstractMissingPiece) relic;
+
+                return missingPiece.GetActualCounter() == 0 && missingPiece.RewardsAllowed() ;
+            }
+        }
+
+        return false;
     }
 
     private void AddCards(CardGroup pool, WeightedList<AbstractCard> cards, RewardContext context)
@@ -110,6 +151,38 @@ public abstract class AnimatorReward extends CustomReward
                         cards.Add(card, weight);
                     }
                 }
+            }
+        }
+    }
+
+    private void AddCardsFromAnotherClass(WeightedList<AbstractCard> cards, RewardContext context, AbstractPlayer.PlayerClass playerClass)
+    {
+        ArrayList<AbstractCard> classCards = new ArrayList<>();
+
+        switch (playerClass)
+        {
+            case IRONCLAD:
+                CardLibrary.addRedCards(classCards);
+                break;
+            case THE_SILENT:
+                CardLibrary.addGreenCards(classCards);
+                break;
+            case DEFECT:
+                CardLibrary.addBlueCards(classCards);
+                break;
+            case WATCHER:
+                CardLibrary.addPurpleCards(classCards);
+                break;
+            default:
+                return;
+        }
+
+        for (AbstractCard card : classCards)
+        {
+            int weight = context.GetRarityWeight(card.rarity);
+            if (weight > 0)
+            {
+                cards.Add(card, weight);
             }
         }
     }

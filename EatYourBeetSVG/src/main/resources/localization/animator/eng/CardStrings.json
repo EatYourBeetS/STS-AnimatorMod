@@ -279,9 +279,8 @@
 		},
 		"animator:InverseOrigami":
 		{
-			"DESCRIPTION": "When Drawn: Spend [E] to ** Channel 1 Random Orb. || Activate your {Support Damage} and {Trigger} ** all your Orbs.",
-			"NAME": "Inverse Origami",
-			"UPGRADE_DESCRIPTION": "When Drawn: Spend [E] to ** add 1 random {Orb Core} ** to your hand. || Activate your {Support Damage} and {Trigger} ** all your Orbs."
+			"DESCRIPTION": "When Drawn: Spend [E] to ** add 1 random {Orb Core} ** to your hand. || Activate your {Support Damage} and {Trigger} ** all your Orbs.",
+			"NAME": "Inverse Origami"
 		},
 		"animator:InverseTohka":
 		{

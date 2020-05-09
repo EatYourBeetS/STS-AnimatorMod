@@ -40,7 +40,6 @@ public class OrigamiTobiichi extends AnimatorCard
     {
         private static final int SUPPORT_DAMAGE_AMOUNT = 1;
         private final int supportDamageLimit;
-        private final boolean upgraded;
 
         public OrigamiTobiichiPower(AbstractPlayer owner, int amount, int limit)
         {

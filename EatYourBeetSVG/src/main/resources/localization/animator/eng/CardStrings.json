@@ -459,7 +459,7 @@
 		},
 		"animator:Rider":
 		{
-			"DESCRIPTION": "Apply !M! {Shackles}. || This card {Synergizes} ** with {Martial Artists} ** and {Spellcasters}",
+			"DESCRIPTION": "Apply !M! {Shackles}. || This card {Synergizes} ** with {Martial Artists} ** and {Spellcasters}.",
 			"NAME": "Rider"
 		},
 		"animator:RinTohsaka":

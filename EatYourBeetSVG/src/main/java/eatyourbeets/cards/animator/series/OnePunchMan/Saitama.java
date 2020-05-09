@@ -22,19 +22,32 @@ import eatyourbeets.utilities.JavaUtilities;
 public class Saitama extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Saitama.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
+    static
+    {
+        DATA.AddPreview(new Saitama(1), false);
+        DATA.AddPreview(new Saitama(2), false);
+        DATA.AddPreview(new Saitama(3), false);
+        DATA.AddPreview(new Saitama(4), false);
+        DATA.AddPreview(new Saitama(5), false);
+    }
 
     private int stage;
 
     public Saitama()
     {
+        this(0);
+    }
+
+    public Saitama(int stage)
+    {
         super(DATA);
 
         Initialize(0, 0);
 
-        this.misc = 0;
-
         SetAttackType(EYBAttackType.Normal);
         SetSynergy(Synergies.OnePunchMan);
+        this.stage = this.misc = stage;
+        SetEffect(stage);
     }
 
     @Override

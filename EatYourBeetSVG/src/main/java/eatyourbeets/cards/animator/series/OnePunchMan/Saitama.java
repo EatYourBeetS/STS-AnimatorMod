@@ -33,12 +33,7 @@ public class Saitama extends AnimatorCard
 
     private int stage;
 
-    public Saitama()
-    {
-        this(0);
-    }
-
-    public Saitama(int stage)
+    private Saitama(int stage)
     {
         super(DATA);
 
@@ -48,6 +43,11 @@ public class Saitama extends AnimatorCard
         SetSynergy(Synergies.OnePunchMan);
         this.stage = this.misc = stage;
         SetEffect(stage);
+    }
+
+    public Saitama()
+    {
+        this(0);
     }
 
     @Override

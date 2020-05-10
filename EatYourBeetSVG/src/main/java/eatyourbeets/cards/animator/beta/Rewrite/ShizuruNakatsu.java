@@ -11,7 +11,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
@@ -24,21 +23,10 @@ public class ShizuruNakatsu extends AnimatorCard {
     public ShizuruNakatsu() {
         super(DATA);
 
-        Initialize(8, 5, 2,1);
+        Initialize(0, 5, 2,1);
         SetUpgrade(0,3,0);
 
         SetSynergy(Synergies.Rewrite);
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        if (canAttack)
-        {
-            return super.GetDamageInfo().AddMultiplier(GetNumberOfSkills(player.discardPile));
-        }
-
-        return null;
     }
 
     @Override
@@ -65,7 +53,7 @@ public class ShizuruNakatsu extends AnimatorCard {
             GameActions.Bottom.SFX("ATTACK_HEAVY");
             GameActions.Bottom.VFX(new DieDieDieEffect());
 
-            int[] damageMatrix = DamageInfo.createDamageMatrix(damage, true);
+            int[] damageMatrix = DamageInfo.createDamageMatrix(8, true);
 
             GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE);
         }

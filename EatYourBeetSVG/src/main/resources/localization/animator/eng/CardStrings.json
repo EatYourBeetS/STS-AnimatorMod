@@ -344,12 +344,12 @@
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "Channel 1 random Orb. || On Synergy or when ** Discarded: Gain [I].",
+			"DESCRIPTION": "<ST>: Enter <IS>. || On Synergy: Give a ** random {Attack} in your ** hand +1 [I] scaling.",
 			"NAME": "Ain"
 		},
 		"animator:Aisha":
 		{
-			"DESCRIPTION": "Attack 1 additional time ** for each Orb you have. || <SLM>. If you ** reached 2 [I] this combat: Gain 1 Orb Slot.",
+			"DESCRIPTION": "Attack 1 additional time ** for each Orb you have. || <ST>: Lose 1 [I] to ** gain 1 Orb Slot.",
 			"NAME": "Aisha"
 		},
 		"animator:Ara":
@@ -394,7 +394,7 @@
 		},
 		"animator:Lu":
 		{
-			"DESCRIPTION": "Channel 1 Frost. ** Channel 1 Dark. || When Exhausted: ** Evoke ALL Orbs.",
+			"DESCRIPTION": "Channel 1 Frost. ** Channel 1 Dark. || When Exhausted: ** Enter <FS>.",
 			"NAME": "Lu"
 		},
 		"animator:Raven":
@@ -424,12 +424,12 @@
 		},
 		"animator:Assassin":
 		{
-			"DESCRIPTION": "Can only be played ** if the enemy has !M! ** different {Debuffs}. || If you play an {Attack}: ** This card loses Retain.",
+			"DESCRIPTION": "Can only be played ** if the enemy has !M! ** or more {Debuffs}. || This card has Retain ** while in <AS>.",
 			"NAME": "Assassin"
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "Gain !M! [F]. || If the enemy dies ** or loses its Block: ** Gain !S! Block.",
+			"DESCRIPTION": "Enter [F] Stance. || If the enemy dies ** or loses its Block: ** Gain !S! Block.",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
@@ -544,7 +544,7 @@
 		},
 		"animator:WinryRockbell":
 		{
-			"DESCRIPTION": "Once per turn, when ** you discard a card: ** Gain !M! Block. || Synergy: Upgrade a ** card in your hand.",
+			"DESCRIPTION": "Once per turn, when ** you discard a card: ** Gain !M! Block. || Synergy: Choose and ** Upgrade a card.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you discard a card this turn, gain #b{1} #yBlock."],
 			"NAME": "Winry Rockbell"
 		}
@@ -676,7 +676,7 @@
 		},
 		"animator:AcuraTooru":
 		{
-			"DESCRIPTION": "Add !S! {Throwing-} ** {Knives} to your hand. || Synergy or Discard: ** Gain [A] and !M! Block.",
+			"DESCRIPTION": "Add !S! {Throwing-} ** {Knives} to your hand. || Starter or Synergy: ** Enter <AS>.",
 			"NAME": "Tooru"
 		},
 		"animator:ChaikaBohdan":
@@ -958,7 +958,7 @@
 		},
 		"animator:SilverFang":
 		{
-			"DESCRIPTION": "Gain/Boost [A]. || On Synergy: Give a ** random {Attack} in your ** hand +1 [A] scaling.",
+			"DESCRIPTION": "Starter: Enter <AS>. || On Synergy: Give a ** random {Attack} in your ** hand +1 [A] scaling.",
 			"NAME": "Silver Fang"
 		},
 		"animator:Sonic":
@@ -987,7 +987,7 @@
 		},
 		"animator:Cocytus":
 		{
-			"DESCRIPTION": "If you have !M! or ** less [F]: Boost [F]. || <slm>. Synergy: ** Gain !S! {Plat. Armor}.",
+			"DESCRIPTION": "Starter: Boost [F]. || If in <FS>: ** Gain !B! Block.",
 			"NAME": "Cocytus"
 		},
 		"animator:Demiurge":
@@ -1182,7 +1182,7 @@
 		},
 		"animator:EntouJyuu":
 		{
-			"DESCRIPTION": "Gain !M! <AGI>. || Whenever you deal ** unblocked damage: ** Apply 1 Burning.",
+			"DESCRIPTION": "Enter <AS>. || Whenever you deal ** unblocked damage: ** Apply 1 Burning.",
 			"NAME": "Entou Jyuu"
 		},
 		"animator:Excalibur":

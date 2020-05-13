@@ -21,7 +21,7 @@
 		"NAME": "Intellect Stance",
 		"DESCRIPTION": 
 		[
-			"#g+2 #gFocus, NL #r-1 #rStrength, NL #r-1 #rDexterity. NL On Enter: #yBoost #yIntellect. NL On Exit: Deal 7 damage to a random enemy."
+			"#g+2 #gFocus, NL #r-1 #rStrength, NL #r-1 #rDexterity. NL On Enter: #yBoost #yIntellect. NL On Exit: Randomly gain [F], [A] or [I]."
 		]
 	}
 }

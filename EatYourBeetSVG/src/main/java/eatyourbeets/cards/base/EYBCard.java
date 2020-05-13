@@ -231,6 +231,17 @@ public abstract class EYBCard extends EYBCardBase
         GameEffects.List.Add(new ExhaustCardEffect(this));
     }
 
+    public boolean IsStarter()
+    {
+        ArrayList<AbstractCard> played = AbstractDungeon.actionManager.cardsPlayedThisTurn;
+        if (played == null || played.isEmpty())
+        {
+            return true;
+        }
+
+        return played.get(0) == this;
+    }
+
     public boolean IsAoE()
     {
         return isMultiDamage;

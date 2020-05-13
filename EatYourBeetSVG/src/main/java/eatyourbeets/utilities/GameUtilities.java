@@ -703,6 +703,11 @@ public class GameUtilities
         return false;
     }
 
+    public static boolean InStance(String stanceID)
+    {
+        return player != null && player.stance != null && player.stance.ID.equals(stanceID);
+    }
+
     public static boolean InGame()
     {
         return CardCrawlGame.GameMode.GAMEPLAY.equals(CardCrawlGame.mode);

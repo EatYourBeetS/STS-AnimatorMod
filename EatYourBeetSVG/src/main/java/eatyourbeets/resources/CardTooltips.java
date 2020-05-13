@@ -13,6 +13,7 @@ public class CardTooltips
     protected final HashMap<String, EYBCardTooltip> tooltipIDs = new HashMap<>();
     protected final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
 
+    public EYBCardTooltip Starter;
     public EYBCardTooltip Limited;
     public EYBCardTooltip SemiLimited;
     public EYBCardTooltip Unique;
@@ -24,6 +25,9 @@ public class CardTooltips
     public EYBCardTooltip Intellect;
     public EYBCardTooltip Force;
     public EYBCardTooltip Agility;
+    public EYBCardTooltip IntellectStance;
+    public EYBCardTooltip ForceStance;
+    public EYBCardTooltip AgilityStance;
     public EYBCardTooltip Spellcaster;
     public EYBCardTooltip MartialArtist;
     public EYBCardTooltip Shapeshifter;
@@ -34,6 +38,7 @@ public class CardTooltips
     public EYBCardTooltip Haste;
     public EYBCardTooltip Exhaust;
     public EYBCardTooltip Channel;
+    public EYBCardTooltip Block;
     public EYBCardTooltip Upgrade;
     public EYBCardTooltip Energy;
     public EYBCardTooltip Metallicize;
@@ -46,7 +51,7 @@ public class CardTooltips
 
     public boolean CanAdd(EYBCardTooltip tooltip)
     {
-        return tooltip != Channel && tooltip != Upgrade && tooltip != Exhaust && tooltip != Retain && tooltip != Energy;
+        return tooltip != Block && tooltip != Channel && tooltip != Upgrade && tooltip != Exhaust && tooltip != Retain && tooltip != Energy;
     }
 
     public void RegisterID(String id, EYBCardTooltip tooltip)
@@ -68,6 +73,9 @@ public class CardTooltips
         Agility = FindByID("Agility");
         Force = FindByID("Force");
         Intellect = FindByID("Intellect");
+        AgilityStance = FindByID("Agility Stance");
+        ForceStance = FindByID("Force Stance");
+        IntellectStance = FindByID("Intellect Stance");
         Purge = FindByID("Purge");
         Damage = FindByID("~Damage");
         Ranged = FindByID("~Ranged");
@@ -76,12 +84,14 @@ public class CardTooltips
         Unique = FindByID("~Unique");
         SemiLimited = FindByID("Semi-Limited");
         Limited = FindByID("Limited");
+        Starter = FindByID("Starter");
         Innate = FindByID("~Innate");
         Ethereal = FindByID("~Ethereal");
         Retain = FindByID("~Retain");
         Haste = FindByID("~Haste");
         Exhaust = FindByID("Exhaust");
         Channel = FindByID("Channel");
+        Block = FindByID("Block");
         Upgrade = FindByID("Upgrade");
         Metallicize = FindByID("Metallicize");
         TempHP = FindByID("Temporary HP");

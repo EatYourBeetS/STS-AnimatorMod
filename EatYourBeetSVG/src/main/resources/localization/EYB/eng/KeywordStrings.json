@@ -1,0 +1,261 @@
+
+{
+	"Aether":
+	{
+		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies.",
+		"NAMES": ["aether", "aether+"],
+		"PROPER_NAME": "Aether"
+	},
+	"Agility":
+	{
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yAgility, gain #yDexterity.",
+		"NAMES": ["agility"],
+		"PROPER_NAME": "Agility"
+	},
+	"Agility Stance":
+	{
+		"DESCRIPTION": "#g+2 #gDexterity, NL #r-1 #rStrength, NL #r-1 #rFocus. NL On Enter: #yBoost #yAgility. NL On Exit: Draw 1 card next turn.",
+		"NAMES": ["[a] stance", "agility stance"],
+		"PROPER_NAME": "Agility Stance"
+	},
+	"Blur":
+	{
+		"DESCRIPTION": "Your #yBlock will not be removed at the start of your next turn.",
+		"NAMES": ["blur"],
+		"PROPER_NAME": "Blur"
+	},
+	"Boost":
+	{
+		"DESCRIPTION": "Gain the specified power, it does not decrease at the start of next turn.",
+		"NAMES": ["boost"],
+		"PROPER_NAME": "Boost"
+	},
+	"Burning":
+	{
+		"DESCRIPTION": "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack. Reduced by 1 each turn.",
+		"NAMES": ["burning"],
+		"PROPER_NAME": "Burning"
+	},
+	"Choked":
+	{
+		"DESCRIPTION": "Whenever you play a card this turn, the target loses 1 HP.",
+		"NAMES": ["choked"],
+		"PROPER_NAME": "Choked"
+	},
+	"Constricted":
+	{
+		"DESCRIPTION": "Take damage at the end of each turn.",
+		"NAMES": ["constricted"],
+		"PROPER_NAME": "Constricted"
+	},
+	"Cycle":
+	{
+		"DESCRIPTION": "Discard a certain number of cards then draw that many cards.",
+		"NAMES": ["cycle"],
+		"PROPER_NAME": "Cycle"
+	},
+	"Demon Form":
+	{
+		"DESCRIPTION": "Gain #yStrength at the start of each turn.",
+		"NAMES": ["demon form", "demon_form"],
+		"PROPER_NAME": "Demon Form"
+	},
+	"Earth":
+	{
+		"DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. It is automatically #yEvoked after 3 turns and deals damage split randomly amongst ALL enemies.",
+		"NAMES": ["earth", "earth+"],
+		"PROPER_NAME": "Earth"
+	},
+	"Enchanted Armor":
+	{
+		"DESCRIPTION": "Take less damage from Attacks. Further stacks are less effective.",
+		"NAMES": ["enchanted armor", "ench. armor"],
+		"PROPER_NAME": "Enchanted Armor"
+	},
+	"Envenom":
+	{
+		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yPoison.",
+		"NAMES": ["envenom"],
+		"PROPER_NAME": "Envenom"
+	},
+	"Fire":
+	{
+		"DESCRIPTION": "Orb: Apply #yBurning and damage the highest health enemy.",
+		"NAMES": ["fire", "fire+"],
+		"PROPER_NAME": "Fire"
+	},
+	"Flame Barrier":
+	{
+		"DESCRIPTION": "Whenever you are attacked this turn, deal #b1 damage back.",
+		"NAMES": ["flame barrier", "flame_barrier"],
+		"PROPER_NAME": "Flame Barrier"
+	},
+	"Flight":
+	{
+		"DESCRIPTION": "Take 50% less #yAttack damage. Lose 1 stack until end of turn when taking damage, the power is cancelled at 0 stacks.",
+		"NAMES": ["flight"],
+		"PROPER_NAME": "Flight"
+	},
+	"Force":
+	{
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yForce, gain #yStrength.",
+		"NAMES": ["force"],
+		"PROPER_NAME": "Force"
+	},
+	"Force Stance":
+	{
+		"DESCRIPTION": "#g+2 #gStrength, NL #r-1 #rFocus, NL #r-1 #rDexterity. NL On Enter: #yBoost #yForce. NL On Exit: Gain 3 #yTemp. #yHP.",
+		"NAMES": ["[f] stance", "force stance"],
+		"PROPER_NAME": "Force Stance"
+	},
+	"Hindrance":
+	{
+		"DESCRIPTION": "A #yStatus or #yCurse card.",
+		"NAMES": ["hindrance", "hindrances"],
+		"PROPER_NAME": "Hindrance"
+	},
+	"Intellect":
+	{
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yIntellect, gain #yFocus.",
+		"NAMES": ["intellect"],
+		"PROPER_NAME": "Intellect"
+	},
+	"Intellect Stance":
+	{
+		"DESCRIPTION": "#g+2 #gFocus, NL #r-1 #rStrength, NL #r-1 #rDexterity. NL On Enter: #yBoost #yIntellect. NL On Exit: Deal 7 damage to a random enemy.",
+		"NAMES": ["[i] stance", "intellect stance"],
+		"PROPER_NAME": "Intellect Stance"
+	},
+	"Juggernaut":
+	{
+		"DESCRIPTION": "Whenever you gain #yBlock, deal damage to a random enemy.",
+		"NAMES": ["juggernaut"],
+		"PROPER_NAME": "Juggernaut"
+	},
+	"Limited":
+	{
+		"DESCRIPTION": "This effect can only trigger once per combat, across all copies of this card.",
+		"NAMES": ["limited"],
+		"PROPER_NAME": "Limited"
+	},
+	"Malleable":
+	{
+		"DESCRIPTION": "Upon receiving damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of turn.",
+		"NAMES": ["malleable"],
+		"PROPER_NAME": "Malleable"
+	},
+	"Metallicize":
+	{
+		"DESCRIPTION": "Gain #yBlock at the start of your turn.",
+		"NAMES": ["metallicize"],
+		"PROPER_NAME": "Metallicize"
+	},
+	"Plated Armor":
+	{
+		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving damage.",
+		"NAMES": ["plated armor", "plat. armor"],
+		"PROPER_NAME": "Plated Armor"
+	},
+	"Purge":
+	{
+		"DESCRIPTION": "Removed from combat.",
+		"NAMES": ["purge", "purged", "purges"],
+		"PROPER_NAME": "Purge"
+	},
+	"Rebound":
+	{
+		"DESCRIPTION": "Put the next card you play this turn on top of your draw pile.",
+		"NAMES": ["rebound"],
+		"PROPER_NAME": "Rebound"
+	},
+	"Semi-Limited":
+	{
+		"DESCRIPTION": "This effect can only trigger once per turn, across all copies of this card.",
+		"NAMES": ["semi-limited", "semi-lim"],
+		"PROPER_NAME": "Semi-Limited"
+	},
+	"Shackles":
+	{
+		"DESCRIPTION": "#yStrength reduction until end of turn.",
+		"NAMES": ["shackles"],
+		"PROPER_NAME": "Shackles"
+	},
+	"Slow":
+	{
+		"DESCRIPTION": "For every card you have played this turn, enemy takes #b10% more damage from #yAttacks.",
+		"NAMES": ["slow"],
+		"PROPER_NAME": "Slow"
+	},
+	"Stun":
+	{
+		"DESCRIPTION": "Cannot act for #b1 turn.",
+		"NAMES": ["stun", "stunned", "stslib:stunned"],
+		"PROPER_NAME": "Stun"
+	},
+	"Temporary HP":
+	{
+		"DESCRIPTION": "Temporary HP last until end of combat.",
+		"NAMES": ["temporary hp", "temp. hp"],
+		"PROPER_NAME": "Temporary HP"
+	},
+	"~Damage":
+	{
+		"DESCRIPTION": "-",
+		"NAMES": ["~damage"],
+		"PROPER_NAME": "Normal Damage"
+	},
+	"~Elemental":
+	{
+		"DESCRIPTION": "Ignores #yThorns. Deal 30% more damage if the enemy has #yBlock.",
+		"NAMES": ["~elemental"],
+		"PROPER_NAME": "Elemental Damage"
+	},
+	"~Ethereal":
+	{
+		"DESCRIPTION": "#yExhausted if in hand at the end of turn.",
+		"NAMES": ["~ethereal"],
+		"PROPER_NAME": "Ethereal"
+	},
+	"~Haste":
+	{
+		"DESCRIPTION": "When drawn, lose #yHaste and draw 1 card.",
+		"NAMES": ["~haste"],
+		"PROPER_NAME": "Haste"
+	},
+	"~Innate":
+	{
+		"DESCRIPTION": "Start each combat with this card in hand.",
+		"NAMES": ["~innate"],
+		"PROPER_NAME": "Innate"
+	},
+	"~Piercing":
+	{
+		"DESCRIPTION": "Ignores #yBlock and #yThorns.",
+		"NAMES": ["~piercing"],
+		"PROPER_NAME": "Piercing Damage"
+	},
+	"~Ranged":
+	{
+		"DESCRIPTION": "Ignores #yThorns and #yFlight.",
+		"NAMES": ["~ranged"],
+		"PROPER_NAME": "Ranged Damage"
+	},
+	"~Retain":
+	{
+		"DESCRIPTION": "Not discarded at the end of turn.",
+		"NAMES": ["~retain"],
+		"PROPER_NAME": "Retain"
+	},
+	"~Steal":
+	{
+		"DESCRIPTION": "You can steal up to #b50 #yGold from a boss, #b25 #yGold from an elite, or #b10 #yGold from other non-minion enemies.",
+		"NAMES": ["~steal"],
+		"PROPER_NAME": "Steal"
+	},
+	"~Unique":
+	{
+		"DESCRIPTION": "Can be #yUpgraded any number of times. You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead.",
+		"NAMES": ["~unique"],
+		"PROPER_NAME": "Unique"
+	}
+}

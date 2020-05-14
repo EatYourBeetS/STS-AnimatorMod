@@ -1,0 +1,28 @@
+
+{
+  "animator:Doomed":
+  {
+    "NAME": "湮滅",
+    "DESCRIPTION": [ "你的第 #b{0} 個回合結束時死亡。此效果不可阻擋。" ]
+  },
+  "animator:Haunted":
+  {
+    "NAME": "見鬼",
+    "DESCRIPTION": [ "這是個壞主意。" ]
+  },
+  "animator:UltimateCrystal":
+  {
+    "NAME": "終極之晶",
+    "DESCRIPTION": [ "戰鬥開始時，將 #b{0} 張手牌牌放入抽牌堆。" ]
+  },
+  "animator:UltimateCube":
+  {
+    "NAME": "終極之方",
+    "DESCRIPTION": [ "第一個回合結束時，受到 #b{0} 傷害。" ]
+  },
+  "animator:UltimateWisp":
+  {
+    "NAME": "終極之縷",
+    "DESCRIPTION": [ "每當你洗牌時，將 #b{0} 張 #y虛空 加入抽牌堆。" ]
+  }
+}

@@ -1,0 +1,28 @@
+
+{
+	"EYB:HandSelection":
+	{
+		"TEXT":
+		[
+			"移動到你的抽牌堆。"
+		]
+	},
+	
+	"EYB:GridSelection":
+	{
+		"TEXT":
+		[
+			"丟棄 {0} 張牌到你的棄牌堆。",
+			"加入 {0} 張牌到你的抽牌堆。",
+			"變化為 {0}。"
+		]
+	},
+
+	"EYB:TheUnnamedReign":
+	{
+		"TEXT":
+		[
+			"無名領域"
+		]
+	}
+}

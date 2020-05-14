@@ -1,0 +1,363 @@
+
+{
+	"animator:AinzPower":
+	{
+		"DESCRIPTIONS": ["At the start of your turn activate 1 of 4 random effects #b", " time(s)."],
+		"NAME": "Ainz Ooal Gown"
+	},
+	"animator:ArcherPower":
+	{
+		"DESCRIPTIONS": ["At the end of your turn, deal #b", " damage to all enemies for each Debuff they have."],
+		"NAME": "Archer"
+	},
+	"animator:AzrielPower":
+	{
+		"DESCRIPTIONS": ["Whenever you apply a debuff, gain #b", " Strength."],
+		"NAME": "Azriel"
+	},
+	"animator:BiyorigoPower":
+	{
+		"DESCRIPTIONS": ["At the end of each turn, spend #b{0} of your remaining energy to gain #b{1} #yAgility and #yForce."],
+		"NAME": "Bito Kanzashi"
+	},
+	"animator:BorosPower":
+	{
+		"DESCRIPTIONS": ["All #yPowers are played twice."],
+		"NAME": "Boros"
+	},
+	"animator:BozesPower":
+	{
+		"DESCRIPTIONS": ["When a card #ySynergizes, gain #b", " #ySupport #yDamage."],
+		"NAME": "Bozes Co Palesti"
+	},
+	"animator:BurningPower":
+	{
+		"DESCRIPTIONS": ["At the start of your turn, lose #b", " HP. Receive #b", "% more #yAttack damage."],
+		"NAME": "Burning"
+	},
+	"animator:ChlammyZellPower":
+	{
+		"DESCRIPTIONS": ["Whenever you play alternating card types this turn, deal #b", " damage to ALL enemies and #yCycle #b1 card. NL NL Last Type played: #y"],
+		"NAME": "Kurami"
+	},
+	"animator:CursedStabsPower":
+	{
+		"DESCRIPTIONS": ["Whenever it deals unblocked damage, add 1 #yPain to your draw pile."],
+		"NAME": "Cursed Stabs"
+	},
+	"animator:DarkCrystalPower":
+	{
+		"DESCRIPTIONS": ["When targeted by a card, apply #b", " #yConstricted to ALL other characters."],
+		"NAME": "Dark Crystal"
+	},
+	"animator:DarkCubePower":
+	{
+		"DESCRIPTIONS": ["At the end of each turn, apply #b", " #yConstricted to the enemy."],
+		"NAME": "Dark Cube"
+	},
+	"animator:DarkWispPower":
+	{
+		"DESCRIPTIONS": ["On death, apply #b", " #yConstricted to ALL characters."],
+		"NAME": "Dark Wisp"
+	},
+	"animator:DarknessPower":
+	{
+		"DESCRIPTIONS": ["The next #b", " time(s) you take damage, add 1 #yAdrenaline to your draw pile."],
+		"NAME": "Dustiness Ford Lalatina"
+	},
+	"animator:DelayedHealPower":
+	{
+		"DESCRIPTIONS": ["Heal #g", " HP at the start of your next turn."],
+		"NAME": "Delayed Heal"
+	},
+	"animator:EarthenThornsPower":
+	{
+		"DESCRIPTIONS": ["When attacked, deal #b", " damage back."],
+		"NAME": "Earthen Thorns"
+	},
+	"animator:EmiyaShirouPower":
+	{
+		"DESCRIPTIONS": ["Whenever an enemy loses its block this turn, gain #b1 energy and draw #b1 random #yAttack."],
+		"NAME": "Unlimited Blade Works"
+	},
+	"animator:EnchantedArmorPower":
+	{
+		"DESCRIPTIONS": ["Take #b", "% less damage."],
+		"NAME": "Enchanted Armor"
+	},
+	"animator:EntouJyuuPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #yAttack(s) this turn, draw #b1 card and apply #b1 #yBurning to ALL enemies."],
+		"NAME": "Entou Jyuu"
+	},
+	"animator:EnvyPower":
+	{
+		"DESCRIPTIONS": ["The first #b", " card(s) you play each turn will Synergize."],
+		"NAME": "Envy"
+	},
+	"animator:EvePower":
+	{
+		"DESCRIPTIONS": ["Whenever a card #ySynergizes, deal #b", " damage to a random enemy, then increase this damage by 1."],
+		"NAME": "Eve"
+	},
+	"animator:FeridBathoryPower":
+	{
+		"DESCRIPTIONS": ["Whenever a card is Exhausted, a random enemy loses #b", " HP and you gain #b", " #yTemporary #yHp."],
+		"NAME": "Ferid Bathory"
+	},
+	"animator:FireCrystalPower":
+	{
+		"DESCRIPTIONS": ["When targeted by a card, ALL other characters gain #b", " #yStrength and #yBurning."],
+		"NAME": "Fire Crystal"
+	},
+	"animator:FireCubePower":
+	{
+		"DESCRIPTIONS": ["At the end of each turn, ALL allies gain #b", " #yStrength and #yBurning."],
+		"NAME": "Fire Cube"
+	},
+	"animator:FireWispPower":
+	{
+		"DESCRIPTIONS": ["On death, ALL characters gain #b", " #yStrength and #yBurning."],
+		"NAME": "Fire Wisp"
+	},
+	"animator:FlamingWeaponPower":
+	{
+		"DESCRIPTIONS": ["Whenever you deal unblocked damage to an enemy, apply #b", " #yBurning."],
+		"NAME": "Flaming Weapon"
+	},
+	"animator:FrostCrystalPower":
+	{
+		"DESCRIPTIONS": ["When targeted by a card, All other characters gain #b", " #yPlated #yArmor."],
+		"NAME": "Frost Crystal"
+	},
+	"animator:FrostCubePower":
+	{
+		"DESCRIPTIONS": ["At the end of each turn, All allies gain #b", " #yPlated #yArmor."],
+		"NAME": "Frost Cube"
+	},
+	"animator:FrostWispPower":
+	{
+		"DESCRIPTIONS": ["On death, All characters gain #b", " #yPlated #yArmor."],
+		"NAME": "Frost Wisp"
+	},
+	"animator:GazelDwargonPower":
+	{
+		"DESCRIPTIONS": ["Maintain up to #b", " #yBlock at the start of each turn."],
+		"NAME": "Gazel Dwargon"
+	},
+	"animator:GeassPower":
+	{
+		"DESCRIPTIONS": ["Will attack itself this turn."],
+		"NAME": "Geass"
+	},
+	"animator:GuildGirlPower":
+	{
+		"DESCRIPTIONS": ["At the start of your turn Cycle #b", " cards."],
+		"NAME": "Guild Girl"
+	},
+	"animator:HandSizePower":
+	{
+		"DESCRIPTIONS": ["Your current maximum hand size is #b", "."],
+		"NAME": "Hand Size"
+	},
+	"animator:HealingCrystalPower":
+	{
+		"DESCRIPTIONS": ["When targeted by a card, ALL other characters heal #b", " HP."],
+		"NAME": "Healing Crystal"
+	},
+	"animator:HealingCubePower":
+	{
+		"DESCRIPTIONS": ["At the end of each turn, ALL allies heal #b", " HP."],
+		"NAME": "Healing Cube"
+	},
+	"animator:HealingWispPower":
+	{
+		"DESCRIPTIONS": ["On death, ALL characters heal #b", " HP."],
+		"NAME": "Healing Wisp"
+	},
+	"animator:HigakiRinnePower":
+	{
+		"DESCRIPTIONS": ["???"],
+		"NAME": "???"
+	},
+	"animator:HiteiPower":
+	{
+		"DESCRIPTIONS": ["At the start of your turn, choose and Exhaust #b", " card(s) in your deck."],
+		"NAME": "Princess Hitei"
+	},
+	"animator:HornedBat_PurplePower":
+	{
+		"DESCRIPTIONS": ["Immune to #yPoison. NL Dies upon losing #yFlight."],
+		"NAME": "Horned Bat (P)"
+	},
+	"animator:HornedBat_RedPower":
+	{
+		"DESCRIPTIONS": ["Immune to #yBurning. NL Dies upon losing #yFlight."],
+		"NAME": "Horned Bat (R)"
+	},
+	"animator:InfinitePower":
+	{
+		"DESCRIPTIONS": ["Before taking unblocked damage: Gains that much #yEnchanted #yArmor. NL When receiving a debuff: Gains that much #yRegeneration. NL When the enemy receives a buff: Gains that much #yStrength. NL Loses half of these stats at the end of each turn."],
+		"NAME": "Infinite Power"
+	},
+	"animator:KaijinPower":
+	{
+		"DESCRIPTIONS": ["At the end of each turn, #yRetain a card and increase its damage and #yBlock by #b", " this combat."],
+		"NAME": "Kaijin"
+	},
+	"animator:LightningCrystalPower":
+	{
+		"DESCRIPTIONS": ["When targeted by a card, ALL other characters take #b", " #yPiercing damage."],
+		"NAME": "Lightning Crystal"
+	},
+	"animator:LightningCubePower":
+	{
+		"DESCRIPTIONS": ["At the end of each turn, deal #b", " #yPiercing damage to the enemy."],
+		"NAME": "Lightning Cube"
+	},
+	"animator:LightningWispPower":
+	{
+		"DESCRIPTIONS": ["On death, ALL characters take #b", " #yPiercing damage."],
+		"NAME": "Lightning Wisp"
+	},
+	"animator:MarkOfPoisonPower":
+	{
+		"DESCRIPTIONS": ["Whenever you receive damage also receive #b", " #yPoison."],
+		"NAME": "Mark of Poison"
+	},
+	"animator:NextTurnDexterityPower":
+	{
+		"DESCRIPTIONS": ["Next turn, gain #b", " Temporary #yDexterity."],
+		"NAME": "Next Turn Dexterity"
+	},
+	"animator:OrbCore_AetherPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, draw #b", " cards, then discard 1 card."],
+		"NAME": "Aether Core"
+	},
+	"animator:OrbCore_ChaosPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, #yDiscover #b", " card(s)."],
+		"NAME": "Chaos Core"
+	},
+	"animator:OrbCore_DarkPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, apply #b", " #yWeak and #yVulnerable to a random enemy."],
+		"NAME": "Dark Core"
+	},
+	"animator:OrbCore_EarthPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " Temporary #yThorns."],
+		"NAME": "Earth Core"
+	},
+	"animator:OrbCore_FirePower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, apply #b", " #yBurning to ALL enemies."],
+		"NAME": "Fire Core"
+	},
+	"animator:OrbCore_FrostPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " #yPlated #yArmor."],
+		"NAME": "Frost Core"
+	},
+	"animator:OrbCore_LightningPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, deal #b", " damage to ALL enemies."],
+		"NAME": "Lightning Core"
+	},
+	"animator:OrbCore_PlasmaPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " #yTemporary #yHP."],
+		"NAME": "Plasma Core"
+	},
+	"animator:PinaCoLadaPower":
+	{
+		"DESCRIPTIONS": ["Your next #b", " #y0-Cost card(s) are played twice."],
+		"NAME": "Piña Co Lada"
+	},
+	"animator:PoisonAffinityPower":
+	{
+		"DESCRIPTIONS": ["Whenever you apply #yPoison, apply #b", " additional #yPoison."],
+		"NAME": "Poison Affinity"
+	},
+	"animator:PridePower":
+	{
+		"DESCRIPTIONS": ["Until your next turn, when you would take unblocked damage, your rightmost #yDark Orb loses that much damage instead."],
+		"NAME": "Pride"
+	},
+	"animator:RoryMercuryPower":
+	{
+		"DESCRIPTIONS": ["Your #yAttacks this turn deal #b", "% more damage."],
+		"NAME": "Rory Mercury"
+	},
+	"animator:ShikizakiKikiPower":
+	{
+		"DESCRIPTIONS": ["At the start of your turn, choose and Obtain #b", " #yAttack(s). Gain #yForce equal to their cost."],
+		"NAME": "Shikizaki Kiki"
+	},
+	"animator:ShiroPower":
+	{
+		"DESCRIPTIONS": ["At the start of your turn, gain #b", " energy."],
+		"NAME": "Shiro"
+	},
+	"animator:SonicPower":
+	{
+		"DESCRIPTIONS": ["At the start of your next #b", " turns, gain #b1 #yDexterity and add #b1 #yThrowing-Knives to your hand."],
+		"NAME": "Speed-o'-Sound Sonic"
+	},
+	"animator:StolenGoldPower":
+	{
+		"DESCRIPTIONS": ["You stole #b", " Gold. You can steal #b", " more Gold."],
+		"NAME": "Stolen Gold"
+	},
+	"animator:StrategicInformationPower":
+	{
+		"DESCRIPTIONS": ["The next #b", " time(s) you discard a card, gain #b", " #yBlock and deal #b", " damage to the lowest health enemy."],
+		"NAME": "Strategic Information"
+	},
+	"animator:SupportDamagePower":
+	{
+		"DESCRIPTIONS": ["Deal #b", " damage to the enemy with lowest HP at the end of your turn."],
+		"NAME": "Support Damage"
+	},
+	"animator:TheUnnamedCultistPower":
+	{
+		"DESCRIPTIONS": ["While there are other allies alive, gains #b", " Enchanted Armor for each."],
+		"NAME": "Unnamed Cultist"
+	},
+	"animator:TheUnnamedHatPower":
+	{
+		"DESCRIPTIONS": ["At the end of each turn, all allies heal #b", " HP. NL NL On death, apply #yEntangle to the opponent."],
+		"NAME": "H4T"
+	},
+	"animator:UltimateCrystalPower":
+	{
+		"DESCRIPTIONS": ["Whenever a card is played, gains #b", " #yStrength. NL NL After #b", " turn(s), summons a copy of itself."],
+		"NAME": "Ultimate Crystal"
+	},
+	"animator:UltimateCubePower":
+	{
+		"DESCRIPTIONS": ["At the end of each turn, gains #b", " random Buff. NL NL Explodes after #b", " turns, dealing #b", " damage. NL (hits multiple times)"],
+		"NAME": "Ultimate Cube"
+	},
+	"animator:UltimateWispPower":
+	{
+		"DESCRIPTIONS": ["Whenever it deals unblocked damage, add #b1 #yBurn to your discard pile. NL NL The first card played each turn is #yExhausted."],
+		"NAME": "Ultimate Wisp"
+	},
+	"animator:UnnamedDollPower":
+	{
+		"DESCRIPTIONS": ["For the next #b", " turns, when playing a card which does not target this character, gains #b", " #yMax #yHP. NL NL ", "On death, ALL characters gain #b", " #yStrength."],
+		"NAME": "Unnamed Doll"
+	},
+	"animator:VitalityPower":
+	{
+		"DESCRIPTIONS": ["Whenever you are attacked this turn, gain #b", " #yTemporary #HP."],
+		"NAME": "Vitality"
+	},
+	"animator:YukoShionjiPower":
+	{
+		"DESCRIPTIONS": ["Reveal the top card of your draw pile, NL you may #pLeft-Click to draw it ( #b", " use(s) ), or #pRight-Click to discard it ( #b", " use(s))."],
+		"NAME": "Yuko Shionji"
+	}
+}

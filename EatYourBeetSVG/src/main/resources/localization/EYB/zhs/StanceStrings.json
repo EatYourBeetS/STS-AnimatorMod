@@ -1,0 +1,27 @@
+
+{
+	"EYB:ForceStance":
+	{
+		"NAME": "武力姿态",
+		"DESCRIPTION": 
+		[
+			"这个姿态暂时还没写效果。"
+		]
+	},
+	"EYB:AgilityStance":
+	{
+		"NAME": "机敏姿态",
+		"DESCRIPTION": 
+		[
+			"这个姿态暂时还没写效果。"
+		]
+	},
+	"EYB:IntellectStance":
+	{
+		"NAME": "智力姿态",
+		"DESCRIPTION": 
+		[
+			"这个姿态暂时还没写效果。"
+		]
+	}
+}

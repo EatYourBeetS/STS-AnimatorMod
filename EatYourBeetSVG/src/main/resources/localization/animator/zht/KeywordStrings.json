@@ -1,0 +1,57 @@
+
+{
+	"Cooldown":
+	{
+		"DESCRIPTION": "每打出或丟棄時減少層數，為 #b0 時，觸發效果。",
+		"NAMES": ["冷卻"],
+		"PROPER_NAME": "冷卻"
+	},
+	"Martial Artist":
+	{
+		"DESCRIPTION": "#y同調 其他 #y武師 。",
+		"NAMES": ["武師", "武師"],
+		"PROPER_NAME": "武師"
+	},
+	"Motivate":
+	{
+		"DESCRIPTION": "隨機減少手中1張牌直到被打出的1點耗能，重複 N 次。",
+		"NAMES": ["激勵"],
+		"PROPER_NAME": "激勵"
+	},
+	"~Orb Core":
+	{
+		"DESCRIPTION": "生成 1 個充能球。 NL NL 每回合第二次協同是獲得一個額外效果。",
+		"NAMES": ["~充能球核心", "~充能球核心"],
+		"PROPER_NAME": "充能球核心"
+	},
+	"Reload":
+	{
+		"DESCRIPTION": "棄置若干牌，觸發若干次。",
+		"NAMES": ["重裝填"],
+		"PROPER_NAME": "重裝填"
+	},
+	"Shapeshifter":
+	{
+		"DESCRIPTION": "與所有系列同調。",
+		"NAMES": ["穿越者", "穿越"],
+		"PROPER_NAME": "穿越者"
+	},
+	"Spellcaster":
+	{
+		"DESCRIPTION": "#y同調 其他 #y法師 。",
+		"NAMES": ["法師"],
+		"PROPER_NAME": "法師"
+	},
+	"Support Damage":
+	{
+		"DESCRIPTION": "回合結束時對血量最低的敵人造成傷害。受傷害加成。",
+		"NAMES": ["支援傷害"],
+		"PROPER_NAME": "支援傷害"
+	},
+	"Synergy":
+	{
+		"DESCRIPTION": "連續使用同一系列的牌或者 #y法師 或者 #y武師 時觸發 #y同調 。",
+		"NAMES": ["同調"],
+		"PROPER_NAME": "同調"
+	}
+}

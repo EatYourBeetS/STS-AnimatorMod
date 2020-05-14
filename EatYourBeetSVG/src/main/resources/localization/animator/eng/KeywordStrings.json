@@ -1,0 +1,57 @@
+
+{
+	"Cooldown":
+	{
+		"DESCRIPTION": "Whenever you play or discard this card, reduce its #yCooldown by #b1. If it is at #b0, activate this effect instead.",
+		"NAMES": ["cooldown"],
+		"PROPER_NAME": "Cooldown"
+	},
+	"Martial Artist":
+	{
+		"DESCRIPTION": "#ySynergizes with other #yMartial #yArtists.",
+		"NAMES": ["martial artist"],
+		"PROPER_NAME": "Martial Artist"
+	},
+	"Motivate":
+	{
+		"DESCRIPTION": "Reduce the cost of a random card in hand by 1 until played. Repeated N times.",
+		"NAMES": ["motivate"],
+		"PROPER_NAME": "Motivate"
+	},
+	"Reload":
+	{
+		"DESCRIPTION": "Discard any number of cards, activate this effect that many times.",
+		"NAMES": ["reload"],
+		"PROPER_NAME": "Reload"
+	},
+	"Shapeshifter":
+	{
+		"DESCRIPTION": "#ySynergizes with any card.",
+		"NAMES": ["shapeshifter", "shapeshift"],
+		"PROPER_NAME": "Shapeshifter"
+	},
+	"Spellcaster":
+	{
+		"DESCRIPTION": "#ySynergizes with other #ySpellcasters.",
+		"NAMES": ["spellcaster"],
+		"PROPER_NAME": "Spellcaster"
+	},
+	"Support Damage":
+	{
+		"DESCRIPTION": "Deal damage to the enemy with the lowest HP at the end of each turn. Affected by damage modifiers.",
+		"NAMES": ["support damage", "supp. damage"],
+		"PROPER_NAME": "Support Damage"
+	},
+	"Synergy":
+	{
+		"DESCRIPTION": "A card #ySynergizes if the previous card played this turn was of the same series.",
+		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized"],
+		"PROPER_NAME": "Synergy"
+	},
+	"~Orb Core":
+	{
+		"DESCRIPTION": "Channel 1 orb. NL  NL Gain a bonus effect on your second Synergy each turn.",
+		"NAMES": ["~orb core", "~orb cores"],
+		"PROPER_NAME": "Orb Core"
+	}
+}

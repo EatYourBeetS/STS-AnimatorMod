@@ -152,7 +152,7 @@
 	},
 	"Starter":
 	{
-		"DESCRIPTION": "Activates if played first, once per turn.",
+		"DESCRIPTION": "Activates if played at the start of turn.",
 		"NAMES": ["starter"],
 		"PROPER_NAME": "Starter"
 	},

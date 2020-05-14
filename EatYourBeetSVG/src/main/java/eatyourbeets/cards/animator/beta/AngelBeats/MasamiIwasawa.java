@@ -19,7 +19,7 @@ public class MasamiIwasawa extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 17, 2, 2);
+        Initialize(0, 15, 2, 2);
         SetUpgrade(0, 5, 0, 0);
 
         SetSynergy(Synergies.AngelBeats);

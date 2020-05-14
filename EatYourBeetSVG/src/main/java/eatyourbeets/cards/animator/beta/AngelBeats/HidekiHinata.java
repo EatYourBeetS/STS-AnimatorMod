@@ -14,13 +14,13 @@ import eatyourbeets.utilities.GameActions;
 
 public class HidekiHinata extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HidekiHinata.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(HidekiHinata.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Ranged, EYBCardTarget.ALL);
 
     public HidekiHinata()
     {
         super(DATA);
 
-        Initialize(6, 0, 2, 1);
+        Initialize(8, 0, 2, 2);
         SetUpgrade(3, 0, 0, 0);
 
         SetSynergy(Synergies.AngelBeats);

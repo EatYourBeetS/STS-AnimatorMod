@@ -1,6 +1,7 @@
 package eatyourbeets.misc.CardMods;
 
 import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import basemod.interfaces.AlternateCardCostModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -62,6 +63,7 @@ public class AfterLifeMod extends AbstractCardModifier implements AlternateCardC
             GameActions.Bottom.CreateThrowingKnives(mostRecentEnergySpentByAfterlife);
         }
         mostRecentEnergySpentByAfterlife = 0;
+        System.out.println(CardModifierManager.getModifiers(card, ID));
         return costToSpend;
     }
 

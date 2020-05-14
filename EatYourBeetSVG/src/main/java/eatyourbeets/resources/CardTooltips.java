@@ -56,6 +56,7 @@ public class CardTooltips
     public EYBCardTooltip Burning;
     public EYBCardTooltip Thorns;
     public EYBCardTooltip Artifact;
+    public EYBCardTooltip Shackles;
 
     public boolean CanAdd(EYBCardTooltip tooltip)
     {
@@ -110,6 +111,7 @@ public class CardTooltips
         Burning = FindByID("Burning");
         Thorns = FindByID("Thorns");
         Artifact = FindByID("Artifact");
+        Shackles = FindByID("Shackles");
 
         Energy = FindByName("[E]");
     }
@@ -128,6 +130,7 @@ public class CardTooltips
         Ranged.icon = LoadFromLargeIcon(icons.Ranged);
         Elemental.icon = LoadFromLargeIcon(icons.Elemental);
         Piercing.icon = LoadFromLargeIcon(icons.Piercing);
+        TempHP.icon = LoadFromLargeIcon(icons.TempHP);
 
         Burning.icon = LoadFromPower(new BurningPower(FakeCharacter.Instance, null, 0));
         Poison.icon = LoadFromPower(new PoisonPower(FakeCharacter.Instance, null, 0));
@@ -135,6 +138,11 @@ public class CardTooltips
         PlatedArmor.icon = LoadFromPower(new PlatedArmorPower(FakeCharacter.Instance, 0));
         Thorns.icon = LoadFromPower(new ThornsPower(FakeCharacter.Instance, 0));
         Artifact.icon = LoadFromPower(new ArtifactPower(FakeCharacter.Instance, 0));
+        Shackles.icon = LoadFromPower(new GainStrengthPower(FakeCharacter.Instance, 0));
+
+        //These 2 use AbstractDungeon.player
+        Weak.icon = LoadFromPower(new WeakPower(null, 0, false));
+        Vulnerable.icon = LoadFromPower(new VulnerablePower(null, 0, false));
     }
 
     public EYBCardTooltip FindByName(String name)

@@ -317,7 +317,7 @@
 		},
 		"animator:Natsumi":
 		{
-			"DESCRIPTION": "Transform a Non-{Hindrance} ** card in your hand into 1 ** of !M! cards with the ** same cost and Upgrade ** level.",
+			"DESCRIPTION": "Transform a Non- ** {Hindrance} card in your ** hand into 1 of !M! cards ** with the same cost and ** Upgrade level.",
 			"EXTENDED_DESCRIPTION": ["Choose a card to transform.", "Choose a card to transform into."],
 			"NAME": "Natsumi"
 		},

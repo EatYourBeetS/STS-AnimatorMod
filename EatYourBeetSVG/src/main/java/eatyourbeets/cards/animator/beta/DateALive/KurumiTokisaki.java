@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.watcher.SkipEnemiesTurnAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
@@ -38,13 +37,14 @@ public class KurumiTokisaki extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        int energy = EnergyPanel.getCurrentEnergy();
-        if (energy >= costForTurn)
+        GameActions.Bottom.Callback(() ->
         {
-            GameActions.Top.PlayCard(this, player.hand, null);
-            GameActions.Top.SpendEnergy(costForTurn, false);
-            GameActions.Top.WaitRealtime(0.3f);
-        }
+            if (player.hand.contains(this))
+            {
+                GameActions.Bottom.SpendEnergy(costForTurn, false)
+                        .AddCallback(() -> GameActions.Top.PlayCard(this, player.hand, null));
+            }
+        });
     }
 
     @Override

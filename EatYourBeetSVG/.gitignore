@@ -2,7 +2,6 @@ target/
 temp/
 bin/
 .settings/
-src/main/resources/
 .idea/
 .project
 pom.xml

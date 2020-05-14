@@ -74,11 +74,11 @@ public class HornedBat_P extends HornedBat
 
             if (GameUtilities.GetAscensionLevel() >= 8)
             {
-                SetMaxHP(32, 36);
+                SetMaxHP(28, 32);
             }
             else
             {
-                SetMaxHP(28, 32);
+                SetMaxHP(24, 28);
             }
 
             atlasUrl = "images/monsters/animator/HornedBat/HornedBat_P.atlas";

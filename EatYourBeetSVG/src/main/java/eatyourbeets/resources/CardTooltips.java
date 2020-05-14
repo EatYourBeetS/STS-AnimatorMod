@@ -2,9 +2,15 @@ package eatyourbeets.resources;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.characters.FakeCharacter;
+import eatyourbeets.powers.EYBPower;
+import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.TextureCache;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.HashMap;
 
@@ -42,12 +48,14 @@ public class CardTooltips
     public EYBCardTooltip Upgrade;
     public EYBCardTooltip Energy;
     public EYBCardTooltip Metallicize;
+    public EYBCardTooltip PlatedArmor;
     public EYBCardTooltip TempHP;
     public EYBCardTooltip Weak;
     public EYBCardTooltip Vulnerable;
     public EYBCardTooltip Poison;
     public EYBCardTooltip Burning;
     public EYBCardTooltip Thorns;
+    public EYBCardTooltip Artifact;
 
     public boolean CanAdd(EYBCardTooltip tooltip)
     {
@@ -94,12 +102,14 @@ public class CardTooltips
         Block = FindByID("Block");
         Upgrade = FindByID("Upgrade");
         Metallicize = FindByID("Metallicize");
+        PlatedArmor = FindByID("Plated Armor");
         TempHP = FindByID("Temporary HP");
         Weak = FindByID("Weak");
         Vulnerable = FindByID("Vulnerable");
         Poison = FindByID("Poison");
         Burning = FindByID("Burning");
         Thorns = FindByID("Thorns");
+        Artifact = FindByID("Artifact");
 
         Energy = FindByName("[E]");
     }
@@ -118,6 +128,13 @@ public class CardTooltips
         Ranged.icon = LoadFromLargeIcon(icons.Ranged);
         Elemental.icon = LoadFromLargeIcon(icons.Elemental);
         Piercing.icon = LoadFromLargeIcon(icons.Piercing);
+
+        Burning.icon = LoadFromPower(new BurningPower(FakeCharacter.Instance, null, 0));
+        Poison.icon = LoadFromPower(new PoisonPower(FakeCharacter.Instance, null, 0));
+        Metallicize.icon = LoadFromPower(new MetallicizePower(FakeCharacter.Instance, 0));
+        PlatedArmor.icon = LoadFromPower(new PlatedArmorPower(FakeCharacter.Instance, 0));
+        Thorns.icon = LoadFromPower(new ThornsPower(FakeCharacter.Instance, 0));
+        Artifact.icon = LoadFromPower(new ArtifactPower(FakeCharacter.Instance, 0));
     }
 
     public EYBCardTooltip FindByName(String name)
@@ -130,7 +147,24 @@ public class CardTooltips
         return tooltipIDs.get(id);
     }
 
-    private TextureAtlas.AtlasRegion LoadFromBadge(TextureCache textureCache)
+    private TextureRegion LoadFromPower(AbstractPower power)
+    {
+        EYBPower p = JavaUtilities.SafeCast(power, EYBPower.class);
+        if (p == null)
+        {
+            return power.region48;
+        }
+        if (p.powerIcon != null)
+        {
+            return p.powerIcon;
+        }
+
+        int w = p.img.getWidth();
+        int h = p.img.getHeight();
+        return new TextureAtlas.AtlasRegion(p.img, w / 6, h / 6, w - (w / 3), h - (h / 3));
+    }
+
+    private TextureRegion LoadFromBadge(TextureCache textureCache)
     {
         Texture texture = textureCache.Texture();
         int w = texture.getWidth();
@@ -138,7 +172,7 @@ public class CardTooltips
         return new TextureAtlas.AtlasRegion(texture, w / 6, h / 6, w - (w / 3), h - (h / 3));
     }
 
-    private TextureAtlas.AtlasRegion LoadFromLargeIcon(TextureCache textureCache)
+    private TextureRegion LoadFromLargeIcon(TextureCache textureCache)
     {
         Texture texture = textureCache.Texture();
         int w = texture.getWidth();

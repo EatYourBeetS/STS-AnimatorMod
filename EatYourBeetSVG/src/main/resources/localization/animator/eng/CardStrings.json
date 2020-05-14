@@ -429,7 +429,7 @@
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "Enter [F] Stance. || If the enemy dies ** or loses its Block: ** Gain !S! Block.",
+			"DESCRIPTION": "Enter <FS>. || If the enemy dies ** or loses its Block: ** Gain !S! Block.",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
@@ -721,7 +721,7 @@
 	{
 		"animator:Azekura":
 		{
-			"DESCRIPTION": "Gain !M! {Temp.} Thorns. || When Exhausted: Gain ** !S! {Plated Armor}.",
+			"DESCRIPTION": "Gain !M! {Temp.} Thorns. || When Exhausted: Gain ** !S! [Plated Armor].",
 			"NAME": "Azekura"
 		},
 		"animator:Biyorigo":

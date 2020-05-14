@@ -479,7 +479,7 @@ public class RenderHelpers
         }
     }
 
-    public static TextureAtlas.AtlasRegion GetSmallIcon(String id)
+    public static TextureRegion GetSmallIcon(String id)
     {
         switch (id)
         {

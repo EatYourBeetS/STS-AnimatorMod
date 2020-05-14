@@ -2,7 +2,7 @@ package eatyourbeets.cards.base;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
@@ -47,7 +47,7 @@ public class EYBCardTooltip
     private static final float POWER_ICON_OFFSET_X = 40f * Settings.scale;
     private static EYBCard card;
 
-    public TextureAtlas.AtlasRegion icon;
+    public TextureRegion icon;
     public String title;
     public String description;
 
@@ -189,10 +189,10 @@ public class EYBCardTooltip
         return h;
     }
 
-    public void renderTipEnergy(SpriteBatch sb, TextureAtlas.AtlasRegion region, float x, float y, float width, float height)
+    public void renderTipEnergy(SpriteBatch sb, TextureRegion region, float x, float y, float width, float height)
     {
         sb.setColor(Color.WHITE);
-        sb.draw(region.getTexture(), x + region.offsetX * Settings.scale, y + region.offsetY * Settings.scale, 0f, 0f,
+        sb.draw(region.getTexture(), x, y, 0f, 0f,
         width, height, Settings.scale, Settings.scale, 0f, region.getRegionX(), region.getRegionY(), region.getRegionWidth(), region.getRegionHeight(), false, false);
     }
 

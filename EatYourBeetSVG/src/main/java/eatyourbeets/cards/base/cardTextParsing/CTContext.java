@@ -40,7 +40,10 @@ public class CTContext
 
     public void Initialize(EYBCard card, String text)
     {
-        text = CardModifierManager.onCreateDescription(card, text);
+        if (card != null)
+        {
+            text = CardModifierManager.onCreateDescription(card, text);
+        }
 
         this.font = EYBFontHelper.CardDescriptionFont_Normal;
         this.card = card;

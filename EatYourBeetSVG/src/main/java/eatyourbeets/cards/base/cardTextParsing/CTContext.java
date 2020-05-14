@@ -1,5 +1,6 @@
 package eatyourbeets.cards.base.cardTextParsing;
 
+import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -39,6 +40,8 @@ public class CTContext
 
     public void Initialize(EYBCard card, String text)
     {
+        text = CardModifierManager.onCreateDescription(card, text);
+
         this.font = EYBFontHelper.CardDescriptionFont_Normal;
         this.card = card;
         this.text = text;

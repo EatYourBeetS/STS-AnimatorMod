@@ -27,10 +27,15 @@ public abstract class EYBCard extends EYBCardBase
 {
     private static final Map<String, EYBCardData> staticCardData = new HashMap<>();
 
-    public abstract ColoredString GetBottomText();
+    protected boolean isMultiUpgrade;
+    protected int upgrade_damage;
+    protected int upgrade_magicNumber;
+    protected int upgrade_secondaryValue;
+    protected int upgrade_block;
+    protected int upgrade_cost;
 
-    public abstract ColoredString GetHeaderText();
-
+    public static final CardTags HASTE = GR.Enums.CardTags.HASTE;
+    public static final CardTags PURGE = GR.Enums.CardTags.PURGE;
     public final EYBCardText cardText;
     public final EYBCardData cardData;
     public final ArrayList<EYBCardTooltip> tooltips;
@@ -39,14 +44,9 @@ public abstract class EYBCard extends EYBCardBase
     public float forceScaling = 0;
     public float intellectScaling = 0;
     public float agilityScaling = 0;
-    public boolean haste;
 
-    protected boolean isMultiUpgrade;
-    protected int upgrade_damage;
-    protected int upgrade_magicNumber;
-    protected int upgrade_secondaryValue;
-    protected int upgrade_block;
-    protected int upgrade_cost;
+    public abstract ColoredString GetBottomText();
+    public abstract ColoredString GetHeaderText();
 
     public static EYBCardData GetStaticData(String cardID)
     {
@@ -96,16 +96,23 @@ public abstract class EYBCard extends EYBCardBase
     {
         EYBCard copy = (EYBCard) super.makeStatEquivalentCopy();
 
-        copy.forceScaling = this.forceScaling;
-        copy.agilityScaling = this.agilityScaling;
-        copy.intellectScaling = this.intellectScaling;
+        copy.retain = retain;
+        copy.exhaust = exhaust;
+        copy.exhaustOnUseOnce = exhaustOnUseOnce;
+        copy.selfRetain = selfRetain;
+        copy.isEthereal = isEthereal;
+        copy.isInnate = isInnate;
 
-        copy.magicNumber = this.magicNumber;
-        copy.isMagicNumberModified = this.isMagicNumberModified;
+        copy.forceScaling = forceScaling;
+        copy.agilityScaling = agilityScaling;
+        copy.intellectScaling = intellectScaling;
 
-        copy.secondaryValue = this.secondaryValue;
-        copy.baseSecondaryValue = this.baseSecondaryValue;
-        copy.isSecondaryValueModified = this.isSecondaryValueModified;
+        copy.magicNumber = magicNumber;
+        copy.isMagicNumberModified = isMagicNumberModified;
+
+        copy.secondaryValue = secondaryValue;
+        copy.baseSecondaryValue = baseSecondaryValue;
+        copy.isSecondaryValueModified = isSecondaryValueModified;
 
         copy.tags.clear();
         copy.tags.addAll(tags);
@@ -210,7 +217,7 @@ public abstract class EYBCard extends EYBCardBase
         // this is only used by ShowCardAndAddToHandEffect
         triggerWhenDrawn();
 
-        if (haste)
+        if (hasTag(HASTE))
         {
             GameActions.Bottom.Add(new HasteAction(this));
         }
@@ -261,11 +268,11 @@ public abstract class EYBCard extends EYBCardBase
         {
             dynamicTooltips.add(GR.Tooltips.Retain);
         }
-        if (haste)
+        if (hasTag(HASTE))
         {
             dynamicTooltips.add(GR.Tooltips.Haste);
         }
-        if (purgeOnUse || hasTag(GR.Enums.CardTags.PURGE))
+        if (purgeOnUse || hasTag(PURGE))
         {
             dynamicTooltips.add(GR.Tooltips.Purge);
         }
@@ -359,7 +366,7 @@ public abstract class EYBCard extends EYBCardBase
 
     public void SetHaste(boolean value)
     {
-        this.haste = value;
+        SetTag(HASTE, value);
     }
 
     public void SetRetain(boolean value)
@@ -400,7 +407,7 @@ public abstract class EYBCard extends EYBCardBase
 
     public void SetPurge(boolean value)
     {
-        SetTag(GR.Enums.CardTags.PURGE, value);
+        SetTag(PURGE, value);
 
         if (!value)
         {

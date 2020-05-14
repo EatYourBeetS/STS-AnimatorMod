@@ -468,6 +468,78 @@
 			"NAME": "Yoshino Haruhiko"
 		}
 	},
+
+	"BETA:ANGELBEATS":
+	{
+		"animator:YuriNakamura":
+		{
+			"DESCRIPTION": "{Afterlife.} ** Give a card in your hand {Retain}. ** {Synergy}: Give it {Afterlife} as well.",
+			"EXTENDED_DESCRIPTION": ["give Retain.", "give Retain and Afterlife."],
+			"NAME": "Yuri Nakamura"
+		},
+		"animator:KanadeTachibana":
+		{
+			"DESCRIPTION": "Put any number of cards from your discard pile into your hand. ** Exhaust any number of cards.",
+			"EXTENDED_DESCRIPTION": ["Choose any number of cards to put into your hand."],
+			"NAME": "Kanade Tachibana"
+		},
+		"animator:EriShiina":
+		{
+			"DESCRIPTION": "{Afterlife}. ** Add a {Throwing-Knife} to your hand for every [E] paid for by {Afterlife}.",
+			"NAME": "Eri Shiina"
+		},
+		"animator:MasamiIwasawa":
+		{
+			"DESCRIPTION": "Put !S! {Dazed} on top of your draw pile. ** {Limited}. {Synergy}: Draw !M! card(s).",
+			"NAME": "Masami Iwasawa"
+		},
+		"animator:Chaa":
+		{
+			"DESCRIPTION": "At the start of your turn, exhaust a card, then add a random card of the next rarity to your hand. ** {Synergy}: This card costs 0.",
+			"EXTENDED_DESCRIPTION": ["At the start of your turn, #yexhaust #b{0} card(s), then add a random card of the next rarity to your hand for each card #yexhausted."],
+			"NAME": "Chaa"
+		},
+		"animator:YuzuruOtonashi":
+		{
+			"DESCRIPTION": "Exhaust up to !M! cards. For each card exhausted, gain an effect based on its type: || {~Attack} -> Boost [F] . ** {~Skill} -> Gain !S! {Temporary HP}. ** {~Power} -> Gain [E] . ** Hindrance -> Draw a card.",
+			"NAME": "Yuzuru Otonashi"
+		},
+		"animator:Noda":
+		{
+			"DESCRIPTION": "{Afterlife}. ** Draw !M! card(s) next turn. ** {Semi-Limited}. {Synergy}. Gain/Boost [F] .",
+			"NAME": "Noda"
+		},
+		"animator:HidekiHinata":
+		{
+			"DESCRIPTION": "{Afterlife}. ** {Reload}: Gain !S! Block. ** {Synergy}. Deal !M! additional damage.",
+			"NAME": "Hideki Hinata"
+		},
+		"animator:Yusa":
+		{
+			"DESCRIPTION": "{Scry} !S!. ** Exhaust !M! card(s). ** Limited: When this card is discarded, add a {Madness} to your discard pile.",
+			"NAME": "Yusa"
+		},
+		"animator:Yui":
+		{
+			"DESCRIPTION": "{Afterlife}. ** Motivate !S!. ** Semi-Limited. Synergy: Gain [E].",
+			"NAME": "Yui"
+		},
+		"animator:AngelAlter":
+		{
+			"DESCRIPTION": "{Afterlife}. ** {Boost} [F] and [A] . ** Shuffle a copy of this card into your draw and discard piles.",
+			"NAME": "Angel Alter"
+		},
+		"animator:Strike_AngelBeats":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Improved Strike"
+		},
+		"animator:Defend_AngelBeats":
+		{
+			"DESCRIPTION": "Exhaust !M! card(s).",
+			"NAME": "Improved Defend"
+		}
+	},
 	
 	"COLORLESS:RARE":
 	{

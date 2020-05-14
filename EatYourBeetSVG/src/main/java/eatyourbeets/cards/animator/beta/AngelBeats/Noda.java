@@ -4,6 +4,7 @@ import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -21,7 +22,7 @@ public class Noda extends AnimatorCard
         super(DATA);
 
         Initialize(7, 0, 1, 1);
-        SetUpgrade(3, 0, 0, 0);
+        SetUpgrade(1, 0, 0, 0);
 
         SetSynergy(Synergies.AngelBeats);
 
@@ -32,9 +33,9 @@ public class Noda extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActions.Bottom.Cycle(name, magicNumber);
+        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
         if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Bottom.GainForce(secondaryValue, true);
+            GameActions.Bottom.GainForce(secondaryValue, upgraded);
         }
     }
 }

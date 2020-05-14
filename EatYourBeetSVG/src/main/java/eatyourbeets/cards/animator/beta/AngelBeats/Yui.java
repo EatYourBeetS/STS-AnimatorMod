@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Yui extends AnimatorCard
@@ -18,8 +19,8 @@ public class Yui extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 1, 2);
+        SetUpgrade(0, 0, 0, 1);
 
         SetSynergy(Synergies.AngelBeats);
         CardModifierManager.addModifier(this, new AfterLifeMod());
@@ -28,7 +29,9 @@ public class Yui extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainEnergy(secondaryValue);
-        GameActions.Bottom.Draw(magicNumber);
+        GameActions.Bottom.Motivate(secondaryValue);
+        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID)) {
+            GameActions.Bottom.GainEnergy(magicNumber);
+        }
     }
 }

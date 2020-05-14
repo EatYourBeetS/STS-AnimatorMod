@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class AngelAlter extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(AngelAlter.class).SetAttack(5, CardRarity.SPECIAL, EYBAttackType.Piercing).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(AngelAlter.class).SetAttack(4, CardRarity.SPECIAL, EYBAttackType.Piercing).SetColor(CardColor.COLORLESS);
 
     public AngelAlter()
     {
@@ -23,6 +23,7 @@ public class AngelAlter extends AnimatorCard_UltraRare
         SetUpgrade(15, 0, 0, 0);
         SetScaling(0, 3, 3);
 
+        SetExhaust(true);
         SetSynergy(Synergies.AngelBeats);
         CardModifierManager.addModifier(this, new AfterLifeMod());
     }

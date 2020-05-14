@@ -479,7 +479,7 @@
 		},
 		"animator:KanadeTachibana":
 		{
-			"DESCRIPTION": "Put any number of cards from your discard pile into your hand. ** Exhaust your discard pile.",
+			"DESCRIPTION": "Put any number of cards from your discard pile into your hand. ** Exhaust any number of cards.",
 			"EXTENDED_DESCRIPTION": ["Choose any number of cards to put into your hand."],
 			"NAME": "Kanade Tachibana"
 		},
@@ -501,12 +501,12 @@
 		},
 		"animator:YuzuruOtonashi":
 		{
-			"DESCRIPTION": "Exhaust any number of cards. Gain !M! {Temporary HP} for every card exhausted. ** When this card is exhausted, add a copy of it to your hand.",
+			"DESCRIPTION": "Exhaust up to !M! cards. For each card exhausted, gain an effect based on its type: || {~Attack} -> Boost [F] . ** {~Skill} -> Gain !S! {Temporary HP}. ** {~Power} -> Gain [E] . ** Hindrance -> Draw a card.",
 			"NAME": "Yuzuru Otonashi"
 		},
 		"animator:Noda":
 		{
-			"DESCRIPTION": "{Afterlife}. ** {Cycle} !M! card(s). ** {Semi-Limited}. {Synergy}. {Boost} [F] .",
+			"DESCRIPTION": "{Afterlife}. ** Draw !M! card(s) next turn. ** {Semi-Limited}. {Synergy}. Gain/Boost [F] .",
 			"NAME": "Noda"
 		},
 		"animator:HidekiHinata":
@@ -516,18 +516,28 @@
 		},
 		"animator:Yusa":
 		{
-			"DESCRIPTION": "{Scry} !S!. ** Draw !M! card(s). ** Exhaust !M! card(s). ** When this card is discarded, add a {Madness} to your discard pile.",
+			"DESCRIPTION": "{Scry} !S!. ** Exhaust !M! card(s). ** Limited: When this card is discarded, add a {Madness} to your discard pile.",
 			"NAME": "Yusa"
 		},
 		"animator:Yui":
 		{
-			"DESCRIPTION": "{Afterlife}. ** Gain !S! [E] . ** Draw !M! card(s).",
+			"DESCRIPTION": "{Afterlife}. ** Motivate !S!. ** Semi-Limited. Synergy: Gain [E].",
 			"NAME": "Yui"
 		},
 		"animator:AngelAlter":
 		{
 			"DESCRIPTION": "{Afterlife}. ** {Boost} [F] and [A] . ** Shuffle a copy of this card into your draw and discard piles.",
 			"NAME": "Angel Alter"
+		},
+		"animator:Strike_AngelBeats":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Improved Strike"
+		},
+		"animator:Defend_AngelBeats":
+		{
+			"DESCRIPTION": "Exhaust !M! card(s).",
+			"NAME": "Improved Defend"
 		}
 	},
 	

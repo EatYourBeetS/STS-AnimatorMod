@@ -20,7 +20,7 @@ public class HidekiHinata extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 3, 2);
+        Initialize(6, 0, 2, 1);
         SetUpgrade(3, 0, 0, 0);
 
         SetSynergy(Synergies.AngelBeats);

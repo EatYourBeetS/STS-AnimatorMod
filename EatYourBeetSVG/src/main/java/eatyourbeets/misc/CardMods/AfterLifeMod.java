@@ -3,7 +3,9 @@ package eatyourbeets.misc.CardMods;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.interfaces.AlternateCardCostModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import eatyourbeets.cards.animator.beta.AngelBeats.EriShiina;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.resources.GR;
@@ -12,6 +14,8 @@ import eatyourbeets.utilities.GameActions;
 public class AfterLifeMod extends AbstractCardModifier implements AlternateCardCostModifier {
 
     public static final String ID = GR.Animator.CreateID("Afterlife");
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(GR.Animator.CreateID("CardMods"));
+    public static final String[] TEXT = uiStrings.TEXT;
 
     //This variable currently exists solely for Shiina
     public static int mostRecentEnergySpentByAfterlife = 0;
@@ -63,14 +67,9 @@ public class AfterLifeMod extends AbstractCardModifier implements AlternateCardC
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        //Doesn't currently work on animator cards - probably because of how the framework is set up
-        //Actually, it seems like this method simply isn't being called for animator cards
         if (card instanceof AnimatorCard) {
-            AnimatorCard animatorCard = (AnimatorCard)card;
-            animatorCard.cardText.OverrideDescription("{Afterlife.} ** " + rawDescription, true);
-            System.out.println("Raw: " + rawDescription);
+           return TEXT[0] + rawDescription;
         }
-
-        return "*Afterlife. NL " + rawDescription;
+        return TEXT[1] + rawDescription;
     }
 }

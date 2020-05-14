@@ -1,11 +1,8 @@
 package eatyourbeets.cards.animator.beta.AngelBeats;
 
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
-import eatyourbeets.cards.animator.ultrarare.AngelAlter;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -23,6 +20,7 @@ public class KanadeTachibana extends AnimatorCard
         Initialize(0, 0, 0, 0);
         SetUpgrade(0, 0, 0, 0);
 
+        SetExhaust(true);
         SetSynergy(Synergies.AngelBeats);
     }
 
@@ -44,9 +42,8 @@ public class KanadeTachibana extends AnimatorCard
                     {
                         GameActions.Bottom.Add(new RefreshHandLayout());
                     }
-                    for (AbstractCard card : p.discardPile.group) {
-                        addToBot(new ExhaustSpecificCardAction(card, p.discardPile));
-                    }
+                    GameActions.Bottom.ExhaustFromHand(name, p.hand.size(), false)
+                            .SetOptions(true, true, true);
                 });
 
     }

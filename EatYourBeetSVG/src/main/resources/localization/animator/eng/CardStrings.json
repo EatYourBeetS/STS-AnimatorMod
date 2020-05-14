@@ -317,7 +317,7 @@
 		},
 		"animator:Natsumi":
 		{
-			"DESCRIPTION": "Transform a card in your ** hand into 1 of !M! cards ** with the same cost and ** Upgrade level.",
+			"DESCRIPTION": "Transform a Non-{Hindrance} ** card in your hand into 1 ** of !M! cards with the ** same cost and Upgrade ** level.",
 			"EXTENDED_DESCRIPTION": ["Choose a card to transform.", "Choose a card to transform into."],
 			"NAME": "Natsumi"
 		},
@@ -340,9 +340,9 @@
 		},
 		"animator:ShidoItsuka":
 		{
-			"DESCRIPTION": "Add 1 of !M! cards that would ** Synergize with this card to ** your discard pile. || <LIM>. Synergy: This ** card will not Exhaust.",
+			"DESCRIPTION": "Add 1 of !M! cards that would ** Synergize with this card to ** your discard pile. || Synergy: Add it to your ** draw pile instead.",
 			"NAME": "Shido Itsuka",
-			"UPGRADE_DESCRIPTION": "Add 1 of !M! Upgraded cards ** that would Synergize with ** this card to your discard pile. || <LIM>. Synergy: This ** card will not Exhaust."
+			"UPGRADE_DESCRIPTION": "Add 1 of !M! Upgraded cards ** that would Synergize with ** this card to your discard pile. || Synergy: Add it to your ** draw pile instead."
 		},
 		"animator:Strike_DateALive":
 		{

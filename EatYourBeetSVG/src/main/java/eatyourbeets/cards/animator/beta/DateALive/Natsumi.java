@@ -47,6 +47,7 @@ public class Natsumi extends AnimatorCard
 
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetOptions(false, false, false)
+        .SetFilter(card -> !GameUtilities.IsCurseOrStatus(card))
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
         .AddCallback(cards ->
         {

@@ -60,13 +60,25 @@ public class CTContext
         {
             this.card.tooltips.clear();
 
-            final float max = text.contains("。") ? 33f : 100f; // There is a 99.99% chance that a card text in zhs/zht will contain '。'
-            if (text.length() > max)
+            if (text.length() > 2 && Character.isDigit(text.charAt(0)))
             {
-                int actualLength = text.replace(" NL ", "").length();
-                if (actualLength > max)
+                int i = text.indexOf('%');
+                if (i > 0)
                 {
-                    scaleModifier -= (0.1f * (actualLength / max));
+                    this.scaleModifier = JavaUtilities.ParseInt(text.substring(0, i), 100) / 100f;
+                    this.text = text.substring(i+1);
+                }
+            }
+            else
+            {
+                final float max = text.contains("。") ? 33f : 100f; // There is a 99.99% chance that a card text in zhs/zht will contain '。'
+                if (text.length() > max)
+                {
+                    int actualLength = text.replace(" NL ", "").length();
+                    if (actualLength > max)
+                    {
+                        scaleModifier -= (0.1f * (actualLength / max));
+                    }
                 }
             }
 

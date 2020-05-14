@@ -20,6 +20,7 @@ import eatyourbeets.ui.controls.GUI_Image;
 
 public class RenderHelpers
 {
+    private static final StringBuilder builder = new StringBuilder();
     private static final GlyphLayout layout = new GlyphLayout();
     private static final float CARD_ENERGY_IMG_WIDTH = 26.0F * Settings.scale;
 
@@ -367,6 +368,7 @@ public class RenderHelpers
     {
         if (text != null)
         {
+            builder.setLength(0);
             layout.setText(font, " ");
 
             float curWidth = 0.0F;
@@ -383,7 +385,6 @@ public class RenderHelpers
 
             Color overrideColor = null;
             boolean foundIcon = false;
-            StringBuilder builder = new StringBuilder();
 
             for (int i = 0; i < text.length(); i++)
             {
@@ -434,10 +435,15 @@ public class RenderHelpers
                         i += 1;
                     }
                 }
-                else if (' ' == c)
+                else if (' ' == c || text.length() == (i+1))
                 {
+                    if (c != ' ')
+                    {
+                        builder.append(c);
+                    }
+
                     String word = build.Invoke(builder);
-                    if (word != null)
+                    if (word != null && word.length() > 0)
                     {
                         if (overrideColor != null)
                         {

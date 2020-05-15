@@ -14,6 +14,11 @@ public class RetainMod extends AbstractCardModifier {
 
     private boolean alreadyRetaining = false;
 
+    @Override
+    public String identifier(AbstractCard card) {
+        return ""; //because jobby defaulted to null for some reason REEEEEEEE
+    }
+
     public AbstractCardModifier makeCopy() {
         return new RetainMod();
     }

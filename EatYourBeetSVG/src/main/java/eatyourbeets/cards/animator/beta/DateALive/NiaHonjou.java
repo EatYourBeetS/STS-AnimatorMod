@@ -18,7 +18,7 @@ public class NiaHonjou extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 2, 2);
+        Initialize(0, 0, 2, 2);
 
         SetSynergy(Synergies.DateALive);
     }
@@ -32,7 +32,6 @@ public class NiaHonjou extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new NiaHonjouPower(p, magicNumber));
     }
 

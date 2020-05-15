@@ -13,7 +13,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class YoshinoHimekawa extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YoshinoHimekawa.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(YoshinoHimekawa.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
         DATA.AddPreview(new Zadkiel(), true);
@@ -23,7 +23,7 @@ public class YoshinoHimekawa extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 1,4);
+        Initialize(0, 6, 1,4);
         SetEthereal(true);
 
         SetEvokeOrbCount(1);

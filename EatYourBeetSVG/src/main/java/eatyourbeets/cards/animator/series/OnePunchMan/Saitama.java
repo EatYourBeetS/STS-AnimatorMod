@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class Saitama extends AnimatorCard
@@ -41,6 +42,8 @@ public class Saitama extends AnimatorCard
 
         SetAttackType(EYBAttackType.Normal);
         SetSynergy(Synergies.OnePunchMan);
+
+        GameUtilities.ModifyCostForCombat(this, stage, false);
         this.stage = this.misc = stage;
         SetEffect(stage);
     }
@@ -164,6 +167,7 @@ public class Saitama extends AnimatorCard
         {
             if (c.misc < 5)
             {
+                GameUtilities.ModifyCostForCombat(c, 1, true);
                 c.misc += 1;
                 c.applyPowers();
             }
@@ -268,7 +272,5 @@ public class Saitama extends AnimatorCard
                 break;
             }
         }
-
-        this.upgradeBaseCost(stage);
     }
 }

@@ -152,5 +152,14 @@
 			"Display Beta Series",
 			"Translation"
 		]
+	},
+	"animator:CardMods":
+	{
+		"TEXT":
+		[
+			"Afterlife. ** ",
+			"*Afterlife. NL ",
+			"Retain. NL "
+		]
 	}
 }

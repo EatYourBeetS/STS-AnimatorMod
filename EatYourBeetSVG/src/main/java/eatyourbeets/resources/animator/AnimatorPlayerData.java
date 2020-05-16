@@ -1,11 +1,15 @@
 package eatyourbeets.resources.animator;
 
 import com.badlogic.gdx.utils.Base64Coder;
+import eatyourbeets.resources.animator.loadouts.beta.AngelBeats;
+import eatyourbeets.resources.animator.loadouts.beta.DateALive;
+import eatyourbeets.resources.animator.loadouts.beta.MadokaMagica;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts.*;
+import eatyourbeets.resources.animator.loadouts.beta.Rewrite;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 import eatyourbeets.utilities.JavaUtilities;
@@ -198,7 +202,10 @@ public class AnimatorPlayerData
     private void AddBetaLoadouts()
     {
         BetaLoadouts.clear();
-        //BetaLoadouts.add(new <YourLoadoutHere>);
+        BetaLoadouts.add(new MadokaMagica());
+        BetaLoadouts.add(new DateALive());
+        BetaLoadouts.add(new Rewrite());
+        BetaLoadouts.add(new AngelBeats());
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...

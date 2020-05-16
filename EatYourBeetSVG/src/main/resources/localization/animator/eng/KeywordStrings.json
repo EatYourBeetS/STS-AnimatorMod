@@ -53,5 +53,11 @@
 		"DESCRIPTION": "Channel 1 orb. NL  NL Gain a bonus effect on your second Synergy each turn.",
 		"NAMES": ["~orb core", "~orb cores"],
 		"PROPER_NAME": "Orb Core"
+	},
+	"Afterlife":
+	{
+		"DESCRIPTION": "If your current [E] is less than this card's cost: For every [E] in this card's cost, you may #yPurge a random card from your #yExhaust pile instead of paying that [E].",
+		"NAMES": ["afterlife"],
+		"PROPER_NAME": "Afterlife"
 	}
 }

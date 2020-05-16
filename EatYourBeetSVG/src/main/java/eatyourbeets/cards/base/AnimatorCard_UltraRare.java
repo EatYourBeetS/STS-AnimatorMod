@@ -5,6 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.animator.beta.AngelBeats.AngelAlter;
+import eatyourbeets.cards.animator.beta.DateALive.MioTakamiya;
+import eatyourbeets.cards.animator.beta.MadokaMagica.Walpurgisnacht;
+import eatyourbeets.cards.animator.beta.Rewrite.SakuraKashima;
 import eatyourbeets.cards.animator.ultrarare.HolyGrail;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.GR;
@@ -48,6 +52,12 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
             }
 
             cards.put(HolyGrail.DATA.ID, new HolyGrail());
+            cards.put(Walpurgisnacht.DATA.ID, new Walpurgisnacht());
+            cards.put(MioTakamiya.DATA.ID, new MioTakamiya());
+            cards.put(SakuraKashima.DATA.ID, new SakuraKashima());
+            cards.put(SakuraKashima.DATA.ID, new AngelAlter());
+            //Cards.put(Cthulhu.ID, new Cthulhu());
+            //Cards.put(InfinitePower.ID, new InfinitePower());
         }
 
         return cards;

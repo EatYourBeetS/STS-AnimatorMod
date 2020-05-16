@@ -100,6 +100,12 @@
 		"FLAVOR": "It's always watching.",
 		"NAME": "Living Picture"
 	},
+	"animator:Mistletoe":
+	{
+		"DESCRIPTIONS": ["Whenever you change #yStances, #yScry #b{0} and draw #b{1} card."],
+		"FLAVOR": "A hundred year old plant familiar, holding the knowledge of Druids passed down by generations.",
+		"NAME": "Mistletoe"
+	},
 	"animator:OldCoffin":
 	{
 		"DESCRIPTIONS": ["Starting from your #b4th turn, apply a random #yDebuff to a random enemy at the start of each turn."],
@@ -111,6 +117,12 @@
 		"DESCRIPTIONS": ["You may banish cards from appearing in future #yNormal rewards and shops. Gain #b1 use at the end of each combat, and #b2 uses against Elites or Bosses. Can store up to #b{0} uses."],
 		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
 		"NAME": "Purging Stone"
+	},
+	"animator:PurpleTeddyBear":
+	{
+		"DESCRIPTIONS": ["At the start of each combat, shuffle a 0-Cost Shido Itsuka into your deck."],
+		"FLAVOR": "...Shin?",
+		"NAME": "Purple Teddy Bear"
 	},
 	"animator:RacePiece":
 	{
@@ -129,6 +141,12 @@
 		"DESCRIPTIONS": ["At the start of each turn, apply #b{0} #yPoison to the enemy with the most #yPoison."],
 		"FLAVOR": "Here, have a taste, how bad can it be?",
 		"NAME": "Shion's Dessert"
+	},
+	"animator:SoulGem":
+	{
+		"DESCRIPTIONS": ["At the start of your turn, you may exhaust a #yHindrance from your hand."],
+		"FLAVOR": "Would you like to make a contract?",
+		"NAME": "Soul Gem"
 	},
 	"animator:TheEgnaroPiece":
 	{

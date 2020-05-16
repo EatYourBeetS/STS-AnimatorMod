@@ -24,8 +24,8 @@ public class Sonic extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, 2,2);
+        SetUpgrade(0, 0, 0,1);
 
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan);
@@ -35,8 +35,8 @@ public class Sonic extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlur(magicNumber);
         GameActions.Bottom.GainAgility(secondaryValue);
+        GameActions.Bottom.GainBlur(magicNumber);
 
         if (HasSynergy())
         {

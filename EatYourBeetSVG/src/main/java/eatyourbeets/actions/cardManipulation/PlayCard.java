@@ -141,7 +141,6 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
             if (sourcePile.contains(card))
             {
                 sourcePile.removeCard(card);
-                player.limbo.addToBottom(card);
             }
             else
             {
@@ -172,6 +171,11 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
             if (!spendEnergy)
             {
                 card.freeToPlayOnce = true;
+            }
+
+            if (!player.limbo.contains(card))
+            {
+                player.limbo.addToBottom(card);
             }
 
             if (CanUse())
@@ -206,7 +210,6 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
     {
         GameUtilities.RefreshHandLayout();
         AbstractDungeon.getCurrRoom().souls.remove(card);
-        player.limbo.group.add(card);
 
         if (currentPosition != null)
         {
@@ -236,7 +239,15 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
         card.purgeOnUse = purge;
         card.calculateCardDamage(enemy);
 
-        AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(card, enemy, card.energyOnUse, !spendEnergy, true), true);
+        if (enemy == null)
+        {
+            AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(card, true, card.energyOnUse, !spendEnergy, !spendEnergy), true);
+        }
+        else
+        {
+            AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(card, enemy, card.energyOnUse, !spendEnergy, !spendEnergy), true);
+        }
+        
         GameActions.Top.Add(new UnlimboAction(card));
         if (Settings.FAST_MODE)
         {

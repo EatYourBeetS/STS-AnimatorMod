@@ -737,6 +737,11 @@ public final class GameActions
         return Add(new SequentialAction(action, action2));
     }
 
+    public SpendEnergy SpendEnergy(AbstractCard card)
+    {
+        return Add(new SpendEnergy(card.freeToPlay() ? 0 : card.energyOnUse, false));
+    }
+
     public SpendEnergy SpendEnergy(int amount, boolean canSpendLess)
     {
         return Add(new SpendEnergy(amount, canSpendLess));

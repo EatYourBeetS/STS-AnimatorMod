@@ -1,9 +1,9 @@
 package eatyourbeets.actions.special;
 
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.actions.EYBActionWithCallbackAdvanced;
 
-public class SpendEnergy extends EYBActionWithCallback<Integer>
+public class SpendEnergy extends EYBActionWithCallbackAdvanced<Integer>
 {
     protected boolean canSpendLess;
 
@@ -23,12 +23,14 @@ public class SpendEnergy extends EYBActionWithCallback<Integer>
         if (energy >= amount || canSpendLess)
         {
             energy = Math.min(energy, amount);
-            player.loseEnergy(energy);
-            Complete(energy);
+            if (Check(energy))
+            {
+                player.loseEnergy(energy);
+                Complete(energy);
+                return;
+            }
         }
-        else
-        {
-            Complete();
-        }
+
+        Complete();
     }
 }

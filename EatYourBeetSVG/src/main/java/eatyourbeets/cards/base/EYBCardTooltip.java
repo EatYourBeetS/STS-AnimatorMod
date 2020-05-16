@@ -18,6 +18,7 @@ import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 
@@ -150,8 +151,8 @@ public class EYBCardTooltip
 
     public float Render(SpriteBatch sb, float x, float y)
     {
-        float textHeight = FontHelper.getSmartHeight(EYBFontHelper.CardTooltipFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING);
-        float h = (textHeight == 0) ? (- 36f * Settings.scale) : (- textHeight - 7f * Settings.scale);
+        final float textHeight = FontHelper.getSmartHeight(EYBFontHelper.CardTooltipFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING);
+        final float h = StringUtils.isEmpty(description) ? (- 36f * Settings.scale) : (- textHeight - 7f * Settings.scale);
 
         sb.setColor(Settings.TOP_PANEL_SHADOW_COLOR);
         sb.draw(ImageMaster.KEYWORD_TOP, x + SHADOW_DIST_X, y - SHADOW_DIST_Y, BOX_W, BOX_EDGE_H);

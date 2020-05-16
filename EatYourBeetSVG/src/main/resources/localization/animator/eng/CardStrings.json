@@ -337,7 +337,6 @@
 		"animator:ReineMurasame":
 		{
 			"DESCRIPTION": "Add X copies of {Shido} ** {Itsuka} to your draw pile. || Synergy: Next turn: ** Gain X [E].",
-			"UPGRADE_DESCRIPTION": "Add X copies of {Shido} ** {Itsuka+} to your draw pile. || Synergy: Next turn: ** Gain X [E].",
 			"NAME": "Reine Murasame"
 		},
 		"animator:ShidoItsuka":

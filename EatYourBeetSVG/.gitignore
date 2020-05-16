@@ -16,6 +16,7 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 STS-AnimatorMod.iml
+eatyourbeetsvg.iml
 **/images/cards/temp/
 **/java/eatyourbeets/hidden/
 *.psd

@@ -17,6 +17,11 @@ public class AgilityStance extends EYBStance
     public static final int STAT_LOSE_AMOUNT = 1;
     public static final int DRAW_AMOUNT = 1;
 
+    public static boolean IsActive()
+    {
+        return GameUtilities.InStance(STANCE_ID);
+    }
+
     public AgilityStance()
     {
         super(STANCE_ID, AbstractDungeon.player);

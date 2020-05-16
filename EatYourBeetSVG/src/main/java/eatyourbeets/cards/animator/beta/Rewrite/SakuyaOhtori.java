@@ -37,7 +37,7 @@ public class SakuyaOhtori extends AnimatorCard {
     @Override
     public void triggerWhenDrawn()
     {
-        if (this.haste)
+        if (this.hasTag(HASTE))
         {
             GameActions.Top.Discard(this, player.hand).ShowEffect(true, true)
             .AddCallback(() -> GameActions.Top.GainForce(secondaryValue, upgraded))

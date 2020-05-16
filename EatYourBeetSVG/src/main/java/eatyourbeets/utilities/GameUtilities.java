@@ -703,6 +703,11 @@ public class GameUtilities
         return false;
     }
 
+    public static boolean InStance(String stanceID)
+    {
+        return player != null && player.stance != null && player.stance.ID.equals(stanceID);
+    }
+
     public static boolean InGame()
     {
         return CardCrawlGame.GameMode.GAMEPLAY.equals(CardCrawlGame.mode);
@@ -742,6 +747,32 @@ public class GameUtilities
     public static boolean IsValidOrb(AbstractOrb orb)
     {
         return orb != null && !(orb instanceof EmptyOrbSlot);
+    }
+
+    public static void ModifyCostForCombat(AbstractCard card, int amount, boolean relative)
+    {
+        int previousCost = card.cost;
+        if (relative)
+        {
+            card.costForTurn += amount;
+            card.cost += amount;
+        }
+        else
+        {
+            card.costForTurn = amount + (card.costForTurn - card.cost);
+            card.cost = amount;
+        }
+
+        if (card.cost != previousCost)
+        {
+            card.isCostModified = true;
+        }
+    }
+
+    public static void ModifyCostForTurn(AbstractCard card, int amount, boolean relative)
+    {
+        card.costForTurn = relative ? (card.costForTurn + amount) : amount;
+        card.isCostModifiedForTurn = (card.cost != card.costForTurn);
     }
 
     public static void ObtainBlight(float cX, float cY, AbstractBlight blight)

@@ -26,6 +26,7 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
     protected CardGroup sourcePile;
     protected boolean purge;
     protected boolean exhaust;
+    protected boolean spendEnergy;
     protected Vector2 currentPosition;
     protected Vector2 targetPosition;
 
@@ -57,6 +58,13 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
         }
 
         Initialize(target, 1);
+    }
+
+    public PlayCard SpendEnergy(boolean spendEnergy)
+    {
+        this.spendEnergy = spendEnergy;
+
+        return this;
     }
 
     public PlayCard SetSourcePile(CardGroup sourcePile)
@@ -133,6 +141,7 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
             if (sourcePile.contains(card))
             {
                 sourcePile.removeCard(card);
+                player.limbo.addToBottom(card);
             }
             else
             {
@@ -160,7 +169,10 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
                 target = GameUtilities.GetRandomEnemy(true);
             }
 
-            card.freeToPlayOnce = true;
+            if (!spendEnergy)
+            {
+                card.freeToPlayOnce = true;
+            }
 
             if (CanUse())
             {
@@ -215,12 +227,17 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
     {
         AbstractMonster enemy = (AbstractMonster) target;
 
-        card.freeToPlayOnce = true;
+        if (!spendEnergy)
+        {
+            card.freeToPlayOnce = true;
+        }
+
         card.exhaustOnUseOnce = exhaust;
         card.purgeOnUse = purge;
         card.calculateCardDamage(enemy);
 
-        AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(card, enemy, card.energyOnUse, true, true), true);
+        AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(card, enemy, card.energyOnUse, !spendEnergy, true), true);
+
         GameActions.Top.Add(new UnlimboAction(card));
         if (Settings.FAST_MODE)
         {

@@ -22,8 +22,8 @@ public class OrigamiTobiichi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 1, 10);
-        SetUpgrade(0,2,0);
+        Initialize(0, 0, 1, 10);
+        SetUpgrade(0,5,0);
         SetSpellcaster();
 
         SetSynergy(Synergies.DateALive);
@@ -62,7 +62,7 @@ public class OrigamiTobiichi extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, SUPPORT_DAMAGE_AMOUNT * amount, amount * supportDamageLimit);
+            description = FormatDescription(0, SUPPORT_DAMAGE_AMOUNT * amount, supportDamageLimit);
         }
 
         @Override
@@ -82,9 +82,13 @@ public class OrigamiTobiichi extends AnimatorCard
 
         private void InverseOrigamiCheck()
         {
-            if (GameUtilities.GetPowerAmount(SupportDamagePower.POWER_ID) > (supportDamageLimit * amount))
+            if (GameUtilities.GetPowerAmount(SupportDamagePower.POWER_ID) > (supportDamageLimit))
             {
-                GameActions.Bottom.MakeCardInDrawPile(new InverseOrigami()).SetUpgrade(false, false);
+                for (int i=0; i<amount; i++)
+                {
+                    GameActions.Bottom.MakeCardInDrawPile(new InverseOrigami()).SetUpgrade(false, false);
+                }
+
                 GameActions.Bottom.RemovePower(player, player, this);
             }
         }

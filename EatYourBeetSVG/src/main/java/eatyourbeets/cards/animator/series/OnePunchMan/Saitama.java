@@ -17,12 +17,12 @@ import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class Saitama extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Saitama.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
-
     static
     {
         DATA.AddPreview(new Saitama(1), true);
@@ -34,24 +34,23 @@ public class Saitama extends AnimatorCard
 
     private int stage;
 
-    public Saitama()
+    private Saitama(int stage)
     {
         super(DATA);
 
         Initialize(0, 0);
 
-        this.misc = 0;
-
         SetAttackType(EYBAttackType.Normal);
         SetSynergy(Synergies.OnePunchMan);
+
+        GameUtilities.ModifyCostForCombat(this, stage, false);
+        this.stage = this.misc = stage;
+        SetEffect(stage);
     }
 
-    public Saitama(int stage)
+    public Saitama()
     {
-        this();
-
-        this.stage = stage;
-        SetEffect(stage);
+        this(0);
     }
 
     @Override
@@ -168,6 +167,7 @@ public class Saitama extends AnimatorCard
         {
             if (c.misc < 5)
             {
+                GameUtilities.ModifyCostForCombat(c, 1, true);
                 c.misc += 1;
                 c.applyPowers();
             }
@@ -272,7 +272,5 @@ public class Saitama extends AnimatorCard
                 break;
             }
         }
-
-        this.upgradeBaseCost(stage);
     }
 }

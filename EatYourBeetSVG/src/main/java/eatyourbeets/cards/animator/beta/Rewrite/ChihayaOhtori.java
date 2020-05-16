@@ -31,7 +31,7 @@ public class ChihayaOhtori extends AnimatorCard {
     {
         super.triggerWhenDrawn();
 
-        if (this.haste)
+        if (this.hasTag(HASTE))
         {
             GameActions.Bottom.GainTemporaryArtifact(secondaryValue);
         }

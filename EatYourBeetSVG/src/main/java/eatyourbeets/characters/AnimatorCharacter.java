@@ -40,7 +40,7 @@ public class AnimatorCharacter extends CustomPlayer
         super(NAME, GR.Animator.PlayerClass, GR.Animator.Images.ORB_TEXTURES, GR.Animator.Images.ORB_VFX_PNG, (String) null, null);
 
         initializeClass(null, GR.Animator.Images.SHOULDER2_PNG, GR.Animator.Images.SHOULDER1_PNG, GR.Animator.Images.CORPSE_PNG,
-                getLoadout(), 0f, -5f, 240f, 244f, new EnergyManager(3));
+        getLoadout(), 0f, -5f, 240f, 244f, new EnergyManager(3));
 
         reloadAnimation();
     }

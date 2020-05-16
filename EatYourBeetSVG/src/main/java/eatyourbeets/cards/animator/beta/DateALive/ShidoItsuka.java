@@ -33,21 +33,6 @@ public class ShidoItsuka extends AnimatorCard
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        if (HasSynergy() && !CombatStats.HasActivatedLimited(cardID))
-        {
-            SetExhaust(false);
-        }
-        else
-        {
-            SetExhaust(true);
-        }
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
@@ -85,8 +70,16 @@ public class ShidoItsuka extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                GameActions.Bottom.MakeCardInDiscardPile(cards.get(0))
-                .SetDuration(Settings.ACTION_DUR_FASTER, true);
+                if (HasSynergy())
+                {
+                    GameActions.Bottom.MakeCardInDrawPile(cards.get(0))
+                            .SetDuration(Settings.ACTION_DUR_FASTER, true);
+                }
+                else
+                    {
+                    GameActions.Bottom.MakeCardInDiscardPile(cards.get(0))
+                            .SetDuration(Settings.ACTION_DUR_FASTER, true);
+                }
             }
         });
 

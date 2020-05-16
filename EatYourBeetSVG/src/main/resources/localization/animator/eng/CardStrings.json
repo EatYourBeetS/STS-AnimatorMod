@@ -1,3 +1,4 @@
+
 {
 	"BASIC":
 	{
@@ -162,7 +163,7 @@
 			"NAME": "Improved Strike"
 		}
 	},
-	
+
 	"BETA":
 	{
 		"animator:EYBMiracle":
@@ -317,7 +318,7 @@
 		},
 		"animator:Natsumi":
 		{
-			"DESCRIPTION": "Transform a card in your ** hand into 1 of !M! cards ** with the same cost and ** Upgrade level.",
+			"DESCRIPTION": "Transform a Non- ** {Hindrance} card in your ** hand into 1 of !M! cards ** with the same cost and ** Upgrade level.",
 			"EXTENDED_DESCRIPTION": ["Choose a card to transform.", "Choose a card to transform into."],
 			"NAME": "Natsumi"
 		},
@@ -330,7 +331,7 @@
 		"animator:OrigamiTobiichi":
 		{
 			"DESCRIPTION": "At end of turn: Gain !M! ** {Support Damage}. || If you have over !S! ** {Support Damage}: Remove this ** power. Add {Inverse Origami} ** to your draw pile.",
-			"EXTENDED_DESCRIPTION": ["At end of turn: gain #b{0} Support Damage. If you have over #b{1} Support Damage, remove this power.  Add #yInverse #yOrigami to your draw pile."],
+			"EXTENDED_DESCRIPTION": ["At end of turn: gain #b{0} Support Damage. If you have over #b{1} Support Damage, remove this power.  Add #b{0} #yInverse #yOrigami to your draw pile."],
 			"NAME": "Origami Tobiichi"
 		},
 		"animator:ReineMurasame":
@@ -340,9 +341,9 @@
 		},
 		"animator:ShidoItsuka":
 		{
-			"DESCRIPTION": "Add 1 of !M! cards that would ** Synergize with this card to ** your discard pile. || <LIM>. Synergy: This ** card will not Exhaust.",
+			"DESCRIPTION": "Add 1 of !M! cards that would ** Synergize with this card to ** your discard pile. || Synergy: Add it to your ** draw pile instead.",
 			"NAME": "Shido Itsuka",
-			"UPGRADE_DESCRIPTION": "Add 1 of !M! Upgraded cards ** that would Synergize with ** this card to your discard pile. || <LIM>. Synergy: This ** card will not Exhaust."
+			"UPGRADE_DESCRIPTION": "Add 1 of !M! Upgraded cards ** that would Synergize with ** this card to your discard pile. || Synergy: Add it to your ** draw pile instead."
 		},
 		"animator:Strike_DateALive":
 		{
@@ -540,7 +541,7 @@
 			"NAME": "Improved Defend"
 		}
 	},
-	
+
 	"COLORLESS:RARE":
 	{
 		"animator:Emilia":
@@ -595,7 +596,7 @@
 			"NAME": "Tanya Degurechaff"
 		}
 	},
-	
+
 	"COLORLESS:UNCOMMON":
 	{
 		"animator:Canti":
@@ -673,7 +674,7 @@
 			"NAME": "Zero"
 		}
 	},
-	
+
 	"CURSE":
 	{
 		"animator:Curse_Dizziness":
@@ -692,7 +693,7 @@
 			"NAME": "Nutcracker"
 		}
 	},
-	
+
 	"SERIES:ELSWORD":
 	{
 		"animator:Add":
@@ -766,7 +767,7 @@
 			"NAME": "Rena"
 		}
 	},
-	
+
 	"SERIES:FATE":
 	{
 		"animator:Alexander":
@@ -817,7 +818,7 @@
 		},
 		"animator:Rider":
 		{
-			"DESCRIPTION": "Apply !M! {Shackles}. || This card {Synergizes} ** with {Martial Artists} ** and {Spellcasters}",
+			"DESCRIPTION": "Apply !M! {Shackles}. || This card {Synergizes} ** with {Martial Artists} ** and {Spellcasters}.",
 			"NAME": "Rider"
 		},
 		"animator:RinTohsaka":
@@ -841,7 +842,7 @@
 			"NAME": "Shinji Matou"
 		}
 	},
-	
+
 	"SERIES:FULLMETALALCHEMIST":
 	{
 		"animator:ElricAlphonse":
@@ -907,7 +908,7 @@
 			"NAME": "Winry Rockbell"
 		}
 	},
-	
+
 	"SERIES:GATE":
 	{
 		"animator:Arpeggio":
@@ -963,7 +964,7 @@
 			"NAME": "Yao Ha Ducy"
 		}
 	},
-	
+
 	"SERIES:GOBLINSLAYER":
 	{
 		"animator:CowGirl":
@@ -1019,7 +1020,7 @@
 			"NAME": "Witch"
 		}
 	},
-	
+
 	"SERIES:HITSUGINOCHAIKA":
 	{
 		"animator:AcuraAkari":
@@ -1074,7 +1075,7 @@
 			"NAME": "Viivi"
 		}
 	},
-	
+
 	"SERIES:KATANAGATARI":
 	{
 		"animator:Azekura":
@@ -1141,7 +1142,7 @@
 			"NAME": "Zanki Kiguchi"
 		}
 	},
-	
+
 	"SERIES:KONOSUBA":
 	{
 		"animator:Aqua":
@@ -1208,7 +1209,7 @@
 			"NAME": "YunYun"
 		}
 	},
-	
+
 	"SERIES:NOGAMENOLIFE":
 	{
 		"animator:ChlammyZell":
@@ -1271,7 +1272,7 @@
 			"NAME": "Tet"
 		}
 	},
-	
+
 	"SERIES:ONEPUNCHMAN":
 	{
 		"animator:Boros":
@@ -1330,7 +1331,7 @@
 			"NAME": "Tatsumaki"
 		}
 	},
-	
+
 	"SERIES:OVERLORD":
 	{
 		"animator:Ainz":
@@ -1386,7 +1387,7 @@
 			"NAME": "Shalltear"
 		}
 	},
-	
+
 	"SERIES:OWARINOSERAPH":
 	{
 		"animator:CrowleyEusford":
@@ -1445,7 +1446,7 @@
 			"NAME": "Yuuichirou"
 		}
 	},
-	
+
 	"SERIES:TENSEISLIME":
 	{
 		"animator:Benimaru":
@@ -1504,7 +1505,7 @@
 			"NAME": "Vesta"
 		}
 	},
-	
+
 	"SPECIAL":
 	{
 		"animator:Asuramaru":
@@ -1658,7 +1659,7 @@
 			"NAME": "Yusarin"
 		}
 	},
-	
+
 	"STATUS":
 	{
 		"animator:Crystallize":
@@ -1703,7 +1704,7 @@
 			"NAME": "The Haunt"
 		}
 	},
-	
+
 	"ULTRARARE":
 	{
 		"animator:Azriel":

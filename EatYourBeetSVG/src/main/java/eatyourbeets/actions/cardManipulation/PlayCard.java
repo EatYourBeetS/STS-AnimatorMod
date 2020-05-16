@@ -133,6 +133,7 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
             if (sourcePile.contains(card))
             {
                 sourcePile.removeCard(card);
+                player.limbo.group.add(card);
             }
             else
             {
@@ -221,6 +222,7 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
         card.calculateCardDamage(enemy);
 
         AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(card, enemy, card.energyOnUse, true, true), true);
+
         GameActions.Top.Add(new UnlimboAction(card));
         if (Settings.FAST_MODE)
         {

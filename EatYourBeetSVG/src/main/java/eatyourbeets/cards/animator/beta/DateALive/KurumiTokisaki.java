@@ -37,14 +37,9 @@ public class KurumiTokisaki extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.Callback(() ->
-        {
-            if (player.hand.contains(this))
-            {
-                GameActions.Bottom.SpendEnergy(costForTurn, false)
-                        .AddCallback(() -> GameActions.Top.PlayCard(this, player.hand, null));
-            }
-        });
+        GameActions.Bottom.SpendEnergy(this)
+        .AddCondition(() -> player.hand.contains(this))
+        .AddCallback(() -> GameActions.Top.PlayCard(this, null));
     }
 
     @Override

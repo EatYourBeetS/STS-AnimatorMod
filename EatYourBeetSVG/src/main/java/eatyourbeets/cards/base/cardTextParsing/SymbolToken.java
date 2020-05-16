@@ -1,7 +1,12 @@
 package eatyourbeets.cards.base.cardTextParsing;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
+import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.GR;
@@ -25,6 +30,14 @@ public class SymbolToken extends CTToken
         tokenCache.put("F", new SymbolToken("[F]")); // Force
         tokenCache.put("A", new SymbolToken("[A]")); // Agility
         tokenCache.put("I", new SymbolToken("[I]")); // Intellect
+
+        tokenCache.put("T-Knife", new SymbolToken(GR.Common.Images.Tooltips.ThrowingKnife.Texture(), ThrowingKnife.DATA.Strings.NAME));
+        tokenCache.put("Gold", new SymbolToken(ImageMaster.UI_GOLD, "Gold"));
+        tokenCache.put("GoldPouch", new SymbolToken(ImageMaster.TP_GOLD, "Gold"));
+        tokenCache.put("CARD", new SymbolToken(AbstractCard.orb_card, "Card"));
+        tokenCache.put("RELIC", new SymbolToken(AbstractCard.orb_relic, "Relic"));
+        tokenCache.put("POTION", new SymbolToken(AbstractCard.orb_potion, "Potion"));
+        tokenCache.put("SPECIAL", new SymbolToken(AbstractCard.orb_special, null));
     }
 
     private SymbolToken(String text)
@@ -37,6 +50,20 @@ public class SymbolToken extends CTToken
     {
         super(CTTokenType.Symbol, tooltip.title);
         this.tooltip = tooltip;
+    }
+
+    private SymbolToken(Texture texture, String title)
+    {
+        super(CTTokenType.Symbol, "");
+        this.tooltip = new EYBCardTooltip(title, null);
+        this.tooltip.SetIcon(texture, 6);
+    }
+
+    private SymbolToken(TextureRegion icon, String title)
+    {
+        super(CTTokenType.Symbol, "");
+        this.tooltip = new EYBCardTooltip(title, null);
+        this.tooltip.icon = icon;
     }
 
     @Override

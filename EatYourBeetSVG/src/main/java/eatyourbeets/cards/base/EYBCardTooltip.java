@@ -1,7 +1,9 @@
 package eatyourbeets.cards.base;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -148,7 +150,8 @@ public class EYBCardTooltip
 
     public float Render(SpriteBatch sb, float x, float y)
     {
-        float h = -FontHelper.getSmartHeight(EYBFontHelper.CardTooltipFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING) - 7f * Settings.scale;
+        float textHeight = FontHelper.getSmartHeight(EYBFontHelper.CardTooltipFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING);
+        float h = (textHeight == 0) ? (- 36f * Settings.scale) : (- textHeight - 7f * Settings.scale);
 
         sb.setColor(Settings.TOP_PANEL_SHADOW_COLOR);
         sb.draw(ImageMaster.KEYWORD_TOP, x + SHADOW_DIST_X, y - SHADOW_DIST_Y, BOX_W, BOX_EDGE_H);
@@ -187,6 +190,14 @@ public class EYBCardTooltip
         RenderHelpers.WriteSmartText(sb, EYBFontHelper.CardTooltipFont, text, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
 
         return h;
+    }
+
+    public void SetIcon(Texture texture, int div)
+    {
+        int w = texture.getWidth();
+        int h = texture.getHeight();
+        int half_div = div / 2;
+        this.icon = new TextureAtlas.AtlasRegion(texture, w / div, h / div, w - (w / half_div), h - (h / half_div));
     }
 
     public void renderTipEnergy(SpriteBatch sb, TextureRegion region, float x, float y, float width, float height)

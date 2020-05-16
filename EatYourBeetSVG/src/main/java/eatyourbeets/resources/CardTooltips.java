@@ -60,7 +60,9 @@ public class CardTooltips
 
     public boolean CanAdd(EYBCardTooltip tooltip)
     {
-        return tooltip != Block && tooltip != Channel && tooltip != Upgrade && tooltip != Exhaust && tooltip != Retain && tooltip != Energy;
+        return tooltip != null && tooltip.title != null && tooltip != Block
+            && tooltip != Channel && tooltip != Upgrade && tooltip != Exhaust
+            && tooltip != Retain && tooltip != Energy;
     }
 
     public void RegisterID(String id, EYBCardTooltip tooltip)

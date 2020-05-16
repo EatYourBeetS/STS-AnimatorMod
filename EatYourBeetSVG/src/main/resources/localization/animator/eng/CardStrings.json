@@ -330,12 +330,13 @@
 		"animator:OrigamiTobiichi":
 		{
 			"DESCRIPTION": "At end of turn: Gain !M! ** {Support Damage}. || If you have over !S! ** {Support Damage}: Remove this ** power. Add {Inverse Origami} ** to your draw pile.",
-			"EXTENDED_DESCRIPTION": ["At end of turn: gain #b{0} Support Damage. If you have over #b{1} Support Damage, remove this power.  Add #yInverse #yOrigami to your draw pile."],
+			"EXTENDED_DESCRIPTION": ["At end of turn: gain #b{0} Support Damage. If you have over #b{1} Support Damage, remove this power.  Add #b{0} #yInverse #yOrigami to your draw pile."],
 			"NAME": "Origami Tobiichi"
 		},
 		"animator:ReineMurasame":
 		{
 			"DESCRIPTION": "Add X copies of {Shido} ** {Itsuka} to your draw pile. || Synergy: Next turn: ** Gain X [E].",
+			"UPGRADE_DESCRIPTION": "Add X copies of {Shido} ** {Itsuka+} to your draw pile. || Synergy: Next turn: ** Gain X [E].",
 			"NAME": "Reine Murasame"
 		},
 		"animator:ShidoItsuka":

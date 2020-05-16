@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardBase;
+import eatyourbeets.cards.base.cardTextParsing.SymbolToken;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.delegates.FuncT3;
 import eatyourbeets.resources.GR;
@@ -502,7 +503,7 @@ public class RenderHelpers
                 return AbstractCard.orb_special;
 
             default:
-                return null;
+                return SymbolToken.GetIcon(id);
         }
     }
 

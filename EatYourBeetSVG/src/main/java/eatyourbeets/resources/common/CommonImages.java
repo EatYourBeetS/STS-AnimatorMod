@@ -6,6 +6,7 @@ public class CommonImages
 {
     public final Badges Badges = new Badges();
     public final CardIcons Icons = new CardIcons();
+    public final Tooltips Tooltips = new Tooltips();
 
     public final TextureCache UnnamedReignEntrance        = new TextureCache("images/ui/map/act5Entrance.png");
     public final TextureCache UnnamedReignEntranceOutline = new TextureCache("images/ui/map/act5EntranceOutline.png");
@@ -39,5 +40,10 @@ public class CommonImages
         public final TextureCache Innate                  = new TextureCache("images/cardui/eyb/badges/Innate.png");
         public final TextureCache Retain                  = new TextureCache("images/cardui/eyb/badges/Retain.png");
         public final TextureCache Haste                   = new TextureCache("images/cardui/eyb/badges/Haste.png");
+    }
+
+    public static class Tooltips
+    {
+        public final TextureCache ThrowingKnife    = new TextureCache("images/cardui/eyb/tooltips/ThrowingKnife.png");
     }
 }

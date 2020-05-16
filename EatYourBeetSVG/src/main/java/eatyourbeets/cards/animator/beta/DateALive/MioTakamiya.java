@@ -22,8 +22,7 @@ public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard
     {
         super(DATA);
 
-        Initialize(0, 18, 0);
-        SetUpgrade(0, 3, 0);
+        Initialize(0, 0, 0);
 
         SetSynergy(Synergies.DateALive);
     }
@@ -31,7 +30,6 @@ public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.MoveCards(p.exhaustPile, p.hand).SetFilter(c -> ShidoItsuka.DATA.ID.equals(c.cardID));
         GameActions.Bottom.MoveCards(p.discardPile, p.hand).SetFilter(c -> ShidoItsuka.DATA.ID.equals(c.cardID));
         GameActions.Bottom.MoveCards(p.drawPile, p.hand).SetFilter(c -> ShidoItsuka.DATA.ID.equals(c.cardID));

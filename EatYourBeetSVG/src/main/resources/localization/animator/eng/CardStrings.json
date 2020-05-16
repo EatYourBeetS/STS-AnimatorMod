@@ -307,9 +307,8 @@
 		},
 		"animator:MioTakamiya":
 		{
-			"DESCRIPTION": "At the start of combat: Shuffle three copies of Shido Itsuka into your draw pile. || Return all copies of Shido Itsuka from everywhere to your hand.  They cost 0 this turn.",
-			"NAME": "Mio Takamiya",
-			"UPGRADE_DESCRIPTION": "At the start of combat: Shuffle three copies of Shido Itsuka+ into your draw pile. || Return all copies of Shido Itsuka from everywhere to your hand.  They cost 0 this turn."
+			"DESCRIPTION": "At the start of combat: Shuffle ** three copies of {Shido Itsuka} ** into your draw pile. || Draw all copies of {Shido} ** {Itsuka} from everywhere. ** They cost 0 this turn.",
+			"NAME": "Mio Takamiya"
 		},
 		"animator:MukuroHoshimiya":
 		{

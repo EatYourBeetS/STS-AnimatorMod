@@ -23,7 +23,7 @@ public class YoshinoHimekawa extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6, 1,4);
+        Initialize(0, 4, 1,4);
         SetEthereal(true);
 
         SetEvokeOrbCount(1);

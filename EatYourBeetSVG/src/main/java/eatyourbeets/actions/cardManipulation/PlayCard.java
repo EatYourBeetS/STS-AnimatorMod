@@ -141,6 +141,7 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
             if (sourcePile.contains(card))
             {
                 sourcePile.removeCard(card);
+                player.limbo.addToBottom(card);
             }
             else
             {

@@ -16,6 +16,11 @@ public class ForceStance extends EYBStance
     public static final int STAT_LOSE_AMOUNT = 1;
     public static final int TEMP_HP_AMOUNT = 3;
 
+    public static boolean IsActive()
+    {
+        return GameUtilities.InStance(STANCE_ID);
+    }
+
     public ForceStance()
     {
         super(STANCE_ID, AbstractDungeon.player);

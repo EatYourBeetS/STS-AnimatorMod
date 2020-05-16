@@ -2,7 +2,7 @@ package eatyourbeets.cards.base;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
@@ -47,7 +47,7 @@ public class EYBCardTooltip
     private static final float POWER_ICON_OFFSET_X = 40f * Settings.scale;
     private static EYBCard card;
 
-    public TextureAtlas.AtlasRegion icon;
+    public TextureRegion icon;
     public String title;
     public String description;
 
@@ -141,8 +141,7 @@ public class EYBCardTooltip
         if (GR.IsTranslationSupported(Settings.language) && card.isPopup)
         {
             EYBFontHelper.CardTooltipFont.getData().setScale(0.9f);
-            RenderTip(sb,Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.9f,
-            GR.Animator.Strings.Misc.LocalizationHelpHeader, GR.Animator.Strings.Misc.LocalizationHelp);
+            RenderTip(sb, Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.9f, GR.Animator.Strings.Misc.LocalizationHelpHeader, GR.Animator.Strings.Misc.LocalizationHelp);
             RenderHelpers.ResetFont(EYBFontHelper.CardTooltipFont);
         }
     }
@@ -166,8 +165,7 @@ public class EYBCardTooltip
         }
 
         FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
-
-        FontHelper.renderSmartText(sb, EYBFontHelper.CardTooltipFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
+        RenderHelpers.WriteSmartText(sb, EYBFontHelper.CardTooltipFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
 
         return h;
     }
@@ -186,15 +184,15 @@ public class EYBCardTooltip
         sb.draw(ImageMaster.KEYWORD_BOT, x, y - h - BOX_BODY_H, BOX_W, BOX_EDGE_H);
 
         FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(header), x + TEXT_OFFSET_X, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
-        FontHelper.renderSmartText(sb, EYBFontHelper.CardTooltipFont, text, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
+        RenderHelpers.WriteSmartText(sb, EYBFontHelper.CardTooltipFont, text, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
 
         return h;
     }
 
-    public void renderTipEnergy(SpriteBatch sb, TextureAtlas.AtlasRegion region, float x, float y, float width, float height)
+    public void renderTipEnergy(SpriteBatch sb, TextureRegion region, float x, float y, float width, float height)
     {
         sb.setColor(Color.WHITE);
-        sb.draw(region.getTexture(), x + region.offsetX * Settings.scale, y + region.offsetY * Settings.scale, 0f, 0f,
+        sb.draw(region.getTexture(), x, y, 0f, 0f,
         width, height, Settings.scale, Settings.scale, 0f, region.getRegionX(), region.getRegionY(), region.getRegionWidth(), region.getRegionHeight(), false, false);
     }
 

@@ -14,7 +14,7 @@
 	},
 	"Agility Stance":
 	{
-		"DESCRIPTION": "#g+2 #gDexterity, NL #r-1 #rStrength, NL #r-1 #rFocus. NL On Enter: #yBoost #yAgility. NL On Exit: Draw 1 card next turn.",
+		"DESCRIPTION": "#g+2 #gDexterity, #r-1 #rStrength, #r-1 #rFocus. NL On Enter: #yBoost #yAgility. NL On Exit: Draw 1 card next turn.",
 		"NAMES": ["[a] stance", "agility stance"],
 		"PROPER_NAME": "Agility Stance"
 	},
@@ -104,7 +104,7 @@
 	},
 	"Force Stance":
 	{
-		"DESCRIPTION": "#g+2 #gStrength, NL #r-1 #rFocus, NL #r-1 #rDexterity. NL On Enter: #yBoost #yForce. NL On Exit: Gain 3 #yTemp. #yHP.",
+		"DESCRIPTION": "#g+2 #gStrength, #r-1 #rFocus, #r-1 #rDexterity. NL On Enter: #yBoost #yForce. NL On Exit: Gain 3 #yTemp. #yHP.",
 		"NAMES": ["[f] stance", "force stance"],
 		"PROPER_NAME": "Force Stance"
 	},
@@ -122,7 +122,7 @@
 	},
 	"Intellect Stance":
 	{
-		"DESCRIPTION": "#g+2 #gFocus, NL #r-1 #rStrength, NL #r-1 #rDexterity. NL On Enter: #yBoost #yIntellect. NL On Exit: Deal 7 damage to a random enemy.",
+		"DESCRIPTION": "#g+2 #gFocus, #r-1 #rStrength, #r-1 #rDexterity. NL On Enter: #yBoost #yIntellect. NL On Exit: Randomly gain [I], [F] or [A].",
 		"NAMES": ["[i] stance", "intellect stance"],
 		"PROPER_NAME": "Intellect Stance"
 	},
@@ -149,6 +149,12 @@
 		"DESCRIPTION": "Gain #yBlock at the start of your turn.",
 		"NAMES": ["metallicize"],
 		"PROPER_NAME": "Metallicize"
+	},
+	"Starter":
+	{
+		"DESCRIPTION": "Activates if played at the start of turn.",
+		"NAMES": ["starter"],
+		"PROPER_NAME": "Starter"
 	},
 	"Plated Armor":
 	{

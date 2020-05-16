@@ -18,6 +18,11 @@ public class IntellectStance extends EYBStance
     public static final int STAT_LOSE_AMOUNT = 1;
     public static final int DAMAGE_AMOUNT = 7;
 
+    public static boolean IsActive()
+    {
+        return GameUtilities.InStance(STANCE_ID);
+    }
+
     public IntellectStance()
     {
         super(STANCE_ID, AbstractDungeon.player);

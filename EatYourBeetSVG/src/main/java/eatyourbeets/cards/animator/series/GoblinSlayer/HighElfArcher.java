@@ -3,7 +3,10 @@ package eatyourbeets.cards.animator.series.GoblinSlayer;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -35,7 +38,14 @@ public class HighElfArcher extends AnimatorCard
 
         if (HasSynergy())
         {
-            GameActions.Bottom.ModifyAllInstances(uuid).AddCallback(c -> ((EYBCard)c).haste = true);
+            GameActions.Bottom.ModifyAllInstances(uuid)
+            .AddCallback(c ->
+            {
+                if (!c.hasTag(HASTE))
+                {
+                    c.tags.add(HASTE);
+                }
+            });
         }
     }
 }

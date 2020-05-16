@@ -40,6 +40,30 @@ public class SymbolToken extends CTToken
         tokenCache.put("SPECIAL", new SymbolToken(AbstractCard.orb_special, null));
     }
 
+    // TODO: Move the key to icon relation somewhere else
+    public static TextureRegion GetIcon(String key)
+    {
+        SymbolToken token = TryGetToken(key);
+        if (token.tooltip != null)
+        {
+            return token.tooltip.icon;
+        }
+
+        return null;
+    }
+
+    protected static SymbolToken TryGetToken(String key)
+    {
+        SymbolToken token = tokenCache.get(key);
+        if (token == null)
+        {
+            token = new SymbolToken(GR.Tooltips.FindByID(key));
+            tokenCache.put(key, token);
+        }
+
+        return token;
+    }
+
     private SymbolToken(String text)
     {
         super(CTTokenType.Symbol, text);

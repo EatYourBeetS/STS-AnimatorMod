@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.stances.ForceStance;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -19,32 +19,26 @@ public class Cocytus extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 4);
-        SetUpgrade(3, 0);
+        Initialize(6, 0, 2, 2);
+        SetUpgrade(1, 0, 1, 0);
         SetScaling(0, 0, 2);
 
         SetSynergy(Synergies.Overlord);
     }
 
     @Override
-    public AbstractAttribute GetBlockInfo()
-    {
-        return GameUtilities.InStance(ForceStance.STANCE_ID) ? super.GetBlockInfo() : null;
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (ForceStance.IsActive())
-        {
-            GameActions.Bottom.GainBlock(block);
-        }
-
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
 
-        if (IsStarter())
+        if (GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID) <= magicNumber)
         {
             GameActions.Bottom.GainForce(1, true);
+        }
+
+        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.GainPlatedArmor(secondaryValue);
         }
     }
 }

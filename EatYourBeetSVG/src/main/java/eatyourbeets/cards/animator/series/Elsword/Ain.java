@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -42,8 +41,17 @@ public class Ain extends AnimatorCard
     }
 
     @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        GameActions.Bottom.GainIntellect(secondaryValue);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        //GameActions.Bottom.VFX(new BlizzardEffect(magicNumber, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.6f);
         GameActions.Bottom.Callback(() ->
         {
             MonsterGroup monsters = AbstractDungeon.getMonsters();
@@ -61,24 +69,11 @@ public class Ain extends AnimatorCard
             GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE).SetVFX(false, true);
         }
 
-        if (IsStarter())
-        {
-            GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
-        }
+        GameActions.Bottom.ChannelRandomOrb(true);
 
         if (HasSynergy())
         {
-            GameActions.Bottom.SelectFromHand(name, 1, true)
-            .SetFilter(c -> c instanceof EYBCard && c.type == CardType.ATTACK)
-            .AddCallback(cards ->
-            {
-                if (cards.size() > 0)
-                {
-                    EYBCard card = (EYBCard)cards.get(0);
-                    card.intellectScaling += 1;
-                    card.flash();
-                }
-            });
+            GameActions.Bottom.GainIntellect(secondaryValue);
         }
     }
 }

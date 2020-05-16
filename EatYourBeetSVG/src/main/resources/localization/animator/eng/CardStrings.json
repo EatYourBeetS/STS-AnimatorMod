@@ -1,3 +1,4 @@
+
 {
 	"BASIC":
 	{
@@ -162,7 +163,7 @@
 			"NAME": "Improved Strike"
 		}
 	},
-	
+
 	"BETA":
 	{
 		"animator:ManiwaHouou":
@@ -171,7 +172,7 @@
 			"NAME": "Maniwa Houou"
 		}
 	},
-	
+
 	"COLORLESS:RARE":
 	{
 		"animator:Emilia":
@@ -231,7 +232,7 @@
 			"NAME": "Tanya Degurechaff"
 		}
 	},
-	
+
 	"COLORLESS:UNCOMMON":
 	{
 		"animator:Canti":
@@ -315,7 +316,7 @@
 			"NAME": "Zero"
 		}
 	},
-	
+
 	"CURSE":
 	{
 		"animator:Curse_Dizziness":
@@ -334,7 +335,7 @@
 			"NAME": "Nutcracker"
 		}
 	},
-	
+
 	"SERIES:ELSWORD":
 	{
 		"animator:Add":
@@ -344,12 +345,12 @@
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "<ST>: Enter <IS>. || On Synergy: Give a ** random {Attack} in your ** hand +1 [I] scaling.",
+			"DESCRIPTION": "Channel 1 random Orb. || On Synergy or when ** Discarded: Gain [I].",
 			"NAME": "Ain"
 		},
 		"animator:Aisha":
 		{
-			"DESCRIPTION": "Attack 1 additional time ** for each Orb you have. || <ST>: Lose 1 [I] to ** gain 1 Orb Slot.",
+			"DESCRIPTION": "Attack 1 additional time ** for each Orb you have. || <SLM>. If you ** reached 2 [I] this combat: Gain 1 Orb Slot.",
 			"NAME": "Aisha"
 		},
 		"animator:Ara":
@@ -394,7 +395,7 @@
 		},
 		"animator:Lu":
 		{
-			"DESCRIPTION": "Channel 1 Frost. ** Channel 1 Dark. || When Exhausted: ** Enter <FS>.",
+			"DESCRIPTION": "Channel 1 Frost. ** Channel 1 Dark. || When Exhausted: ** Evoke ALL Orbs.",
 			"NAME": "Lu"
 		},
 		"animator:Raven":
@@ -408,7 +409,7 @@
 			"NAME": "Rena"
 		}
 	},
-	
+
 	"SERIES:FATE":
 	{
 		"animator:Alexander":
@@ -424,12 +425,12 @@
 		},
 		"animator:Assassin":
 		{
-			"DESCRIPTION": "Can only be played ** if the enemy has !M! ** or more {Debuffs}. || This card has Retain ** while in <AS>.",
+			"DESCRIPTION": "Can only be played ** if the enemy has !M! ** different {Debuffs}. || If you play an {Attack}: ** This card loses Retain.",
 			"NAME": "Assassin"
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "Enter <FS>. || If the enemy dies ** or loses its Block: ** Gain !S! Block.",
+			"DESCRIPTION": "Gain !M! [F]. || If the enemy dies ** or loses its Block: ** Gain !S! Block.",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
@@ -483,7 +484,7 @@
 			"NAME": "Shinji Matou"
 		}
 	},
-	
+
 	"SERIES:FULLMETALALCHEMIST":
 	{
 		"animator:ElricAlphonse":
@@ -544,12 +545,12 @@
 		},
 		"animator:WinryRockbell":
 		{
-			"DESCRIPTION": "Once per turn, when ** you discard a card: ** Gain !M! Block. || Synergy: Choose and ** Upgrade a card.",
+			"DESCRIPTION": "Once per turn, when ** you discard a card: ** Gain !M! Block. || Synergy: Upgrade a ** card in your hand.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you discard a card this turn, gain #b{1} #yBlock."],
 			"NAME": "Winry Rockbell"
 		}
 	},
-	
+
 	"SERIES:GATE":
 	{
 		"animator:Arpeggio":
@@ -605,7 +606,7 @@
 			"NAME": "Yao Ha Ducy"
 		}
 	},
-	
+
 	"SERIES:GOBLINSLAYER":
 	{
 		"animator:CowGirl":
@@ -661,7 +662,7 @@
 			"NAME": "Witch"
 		}
 	},
-	
+
 	"SERIES:HITSUGINOCHAIKA":
 	{
 		"animator:AcuraAkari":
@@ -676,7 +677,7 @@
 		},
 		"animator:AcuraTooru":
 		{
-			"DESCRIPTION": "Add !S! {Throwing-} ** {Knives} to your hand. || Starter or Synergy: ** Enter <AS>.",
+			"DESCRIPTION": "Add !S! {Throwing-} ** {Knives} to your hand. || Synergy or Discard: ** Gain [A] and !M! Block.",
 			"NAME": "Tooru"
 		},
 		"animator:ChaikaBohdan":
@@ -716,12 +717,12 @@
 			"NAME": "Viivi"
 		}
 	},
-	
+
 	"SERIES:KATANAGATARI":
 	{
 		"animator:Azekura":
 		{
-			"DESCRIPTION": "Gain !M! {Temp.} Thorns. || When Exhausted: Gain ** !S! [Plated Armor].",
+			"DESCRIPTION": "Gain !M! {Temp.} Thorns. || When Exhausted: Gain ** !S! {Plated Armor}.",
 			"NAME": "Azekura"
 		},
 		"animator:Biyorigo":
@@ -783,7 +784,7 @@
 			"NAME": "Zanki Kiguchi"
 		}
 	},
-	
+
 	"SERIES:KONOSUBA":
 	{
 		"animator:Aqua":
@@ -850,7 +851,7 @@
 			"NAME": "YunYun"
 		}
 	},
-	
+
 	"SERIES:NOGAMENOLIFE":
 	{
 		"animator:ChlammyZell":
@@ -913,7 +914,7 @@
 			"NAME": "Tet"
 		}
 	},
-	
+
 	"SERIES:ONEPUNCHMAN":
 	{
 		"animator:Boros":
@@ -958,7 +959,7 @@
 		},
 		"animator:SilverFang":
 		{
-			"DESCRIPTION": "Starter: Enter <AS>. || On Synergy: Give a ** random {Attack} in your ** hand +1 [A] scaling.",
+			"DESCRIPTION": "Gain/Boost [A]. || On Synergy: Give a ** random {Attack} in your ** hand +1 [A] scaling.",
 			"NAME": "Silver Fang"
 		},
 		"animator:Sonic":
@@ -972,7 +973,7 @@
 			"NAME": "Tatsumaki"
 		}
 	},
-	
+
 	"SERIES:OVERLORD":
 	{
 		"animator:Ainz":
@@ -987,7 +988,7 @@
 		},
 		"animator:Cocytus":
 		{
-			"DESCRIPTION": "Starter: Boost [F]. || If in <FS>: ** Gain !B! Block.",
+			"DESCRIPTION": "If you have !M! or ** less [F]: Boost [F]. || <slm>. Synergy: ** Gain !S! {Plat. Armor}.",
 			"NAME": "Cocytus"
 		},
 		"animator:Demiurge":
@@ -1028,7 +1029,7 @@
 			"NAME": "Shalltear"
 		}
 	},
-	
+
 	"SERIES:OWARINOSERAPH":
 	{
 		"animator:CrowleyEusford":
@@ -1087,7 +1088,7 @@
 			"NAME": "Yuuichirou"
 		}
 	},
-	
+
 	"SERIES:TENSEISLIME":
 	{
 		"animator:Benimaru":
@@ -1146,7 +1147,7 @@
 			"NAME": "Vesta"
 		}
 	},
-	
+
 	"SPECIAL":
 	{
 		"animator:Asuramaru":
@@ -1182,7 +1183,7 @@
 		},
 		"animator:EntouJyuu":
 		{
-			"DESCRIPTION": "Enter <AS>. || Whenever you deal ** unblocked damage: ** Apply 1 Burning.",
+			"DESCRIPTION": "Gain !M! <AGI>. || Whenever you deal ** unblocked damage: ** Apply 1 Burning.",
 			"NAME": "Entou Jyuu"
 		},
 		"animator:Excalibur":
@@ -1300,7 +1301,7 @@
 			"NAME": "Yusarin"
 		}
 	},
-	
+
 	"STATUS":
 	{
 		"animator:Crystallize":
@@ -1345,7 +1346,7 @@
 			"NAME": "The Haunt"
 		}
 	},
-	
+
 	"ULTRARARE":
 	{
 		"animator:Azriel":

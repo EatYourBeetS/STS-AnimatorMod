@@ -56,7 +56,7 @@
 	},
 	"Afterlife":
 	{
-		"DESCRIPTION": "When you have insufficient [E] to play this card, you may #ypurge a random card from your #yexhaust pile for every missing [E] .",
+		"DESCRIPTION": "If your current [E] is less than this card's cost: For every [E] in this card's cost, you may #yPurge a random card from your #yExhaust pile instead of paying that [E].",
 		"NAMES": ["afterlife"],
 		"PROPER_NAME": "Afterlife"
 	}

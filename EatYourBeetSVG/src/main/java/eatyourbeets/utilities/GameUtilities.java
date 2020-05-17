@@ -27,6 +27,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnTryApplyPowerSubscriber;
@@ -289,6 +290,28 @@ public class GameUtilities
         return AbstractDungeon.isAscensionMode ? Math.max(0, Math.min(20, AbstractDungeon.ascensionLevel)) : 0;
     }
 
+    public static ArrayList<AbstractCard> GetAvailableCards()
+    {
+        return GetAvailableCards(null);
+    }
+
+    public static ArrayList<AbstractCard> GetAvailableCards(FuncT1<Boolean, AbstractCard> filter)
+    {
+        ArrayList<AbstractCard> result = new ArrayList<>();
+        for (CardGroup pool : GetCardPools())
+        {
+            for (AbstractCard card : pool.group)
+            {
+                if (filter == null || filter.Invoke(card))
+                {
+                    result.add(card);
+                }
+            }
+        }
+
+        return result;
+    }
+
     public static CardGroup GetCardPool(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
     {
         if (color == AbstractCard.CardColor.COLORLESS)
@@ -327,6 +350,17 @@ public class GameUtilities
             default:
                 return null;
         }
+    }
+
+    public static ArrayList<CardGroup> GetCardPools()
+    {
+        ArrayList<CardGroup> result = new ArrayList<>();
+        result.add(AbstractDungeon.colorlessCardPool);
+        result.add(AbstractDungeon.commonCardPool);
+        result.add(AbstractDungeon.uncommonCardPool);
+        result.add(AbstractDungeon.rareCardPool);
+        result.add(AbstractDungeon.curseCardPool);
+        return result;
     }
 
     public static AbstractRoom GetCurrentRoom()
@@ -703,14 +737,14 @@ public class GameUtilities
         return false;
     }
 
-    public static boolean InStance(String stanceID)
-    {
-        return player != null && player.stance != null && player.stance.ID.equals(stanceID);
-    }
-
     public static boolean InGame()
     {
         return CardCrawlGame.GameMode.GAMEPLAY.equals(CardCrawlGame.mode);
+    }
+
+    public static boolean InStance(String stanceID)
+    {
+        return player != null && player.stance != null && player.stance.ID.equals(stanceID);
     }
 
     public static boolean IsAttacking(AbstractMonster.Intent intent)

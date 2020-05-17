@@ -27,14 +27,7 @@ public class Wiz extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        if (HasSynergy() && !CombatStats.HasActivatedLimited(cardID))
-        {
-            SetPurge(false);
-        }
-        else
-        {
-            SetPurge(true);
-        }
+        SetPurge(!(HasSynergy() && CombatStats.HasActivatedLimited(cardID)));
     }
 
     @Override

@@ -24,7 +24,7 @@ public class Fredrika extends AnimatorCard
 
     private Form currentForm = Form.Default;
 
-    public static final EYBCardData DATA = Register(Fredrika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Fredrika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetMaxCopies(2);
 
     static
     {

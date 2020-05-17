@@ -3,7 +3,9 @@ package eatyourbeets.resources;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.ui.panels.TopPanel;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
@@ -16,47 +18,59 @@ import java.util.HashMap;
 
 public class CardTooltips
 {
-    protected final HashMap<String, EYBCardTooltip> tooltipIDs = new HashMap<>();
-    protected final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
+    protected static final HashMap<String, EYBCardTooltip> tooltipIDs = new HashMap<>();
+    protected static final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
 
-    public EYBCardTooltip Starter;
-    public EYBCardTooltip Limited;
-    public EYBCardTooltip SemiLimited;
-    public EYBCardTooltip Unique;
-    public EYBCardTooltip Elemental;
-    public EYBCardTooltip Piercing;
-    public EYBCardTooltip Ranged;
-    public EYBCardTooltip Damage;
-    public EYBCardTooltip Purge;
-    public EYBCardTooltip Intellect;
-    public EYBCardTooltip Force;
-    public EYBCardTooltip Agility;
-    public EYBCardTooltip IntellectStance;
-    public EYBCardTooltip ForceStance;
-    public EYBCardTooltip AgilityStance;
-    public EYBCardTooltip Spellcaster;
-    public EYBCardTooltip MartialArtist;
-    public EYBCardTooltip Shapeshifter;
-    public EYBCardTooltip OrbCore;
-    public EYBCardTooltip Innate;
-    public EYBCardTooltip Ethereal;
-    public EYBCardTooltip Retain;
-    public EYBCardTooltip Haste;
-    public EYBCardTooltip Exhaust;
-    public EYBCardTooltip Channel;
-    public EYBCardTooltip Block;
-    public EYBCardTooltip Upgrade;
-    public EYBCardTooltip Energy;
-    public EYBCardTooltip Metallicize;
-    public EYBCardTooltip PlatedArmor;
-    public EYBCardTooltip TempHP;
-    public EYBCardTooltip Weak;
-    public EYBCardTooltip Vulnerable;
-    public EYBCardTooltip Poison;
-    public EYBCardTooltip Burning;
-    public EYBCardTooltip Thorns;
-    public EYBCardTooltip Artifact;
-    public EYBCardTooltip Shackles;
+    public EYBCardTooltip Energy = FindByName("[E]");
+    public EYBCardTooltip Starter = FindByID("Starter");
+    public EYBCardTooltip Limited = FindByID("Limited");
+    public EYBCardTooltip SemiLimited = FindByID("Semi-Limited");
+    public EYBCardTooltip Unique = FindByID("~Unique");
+    public EYBCardTooltip Elemental = FindByID("~Elemental");
+    public EYBCardTooltip Piercing = FindByID("~Piercing");
+    public EYBCardTooltip Ranged = FindByID("~Ranged");
+    public EYBCardTooltip Damage = FindByID("~Damage");
+    public EYBCardTooltip Purge = FindByID("Purge");
+    public EYBCardTooltip Intellect = FindByID("Intellect");;
+    public EYBCardTooltip Force = FindByID("Force");;
+    public EYBCardTooltip Agility = FindByID("Agility");;
+    public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
+    public EYBCardTooltip ForceStance = FindByID("Force Stance");
+    public EYBCardTooltip AgilityStance = FindByID("Agility Stance");;
+    public EYBCardTooltip Spellcaster = FindByID("Spellcaster");;
+    public EYBCardTooltip MartialArtist = FindByID("Martial Artist");;
+    public EYBCardTooltip Shapeshifter = FindByID("Shapeshifter");;
+    public EYBCardTooltip OrbCore = FindByID("~Orb Core");
+    public EYBCardTooltip Innate = FindByID("~Innate");
+    public EYBCardTooltip Ethereal = FindByID("~Ethereal");
+    public EYBCardTooltip Retain = FindByID("~Retain");
+    public EYBCardTooltip Haste = FindByID("~Haste");
+    public EYBCardTooltip Exhaust = FindByID("Exhaust");
+    public EYBCardTooltip Channel = FindByID("Channel");
+    public EYBCardTooltip Block = FindByID("Block");
+    public EYBCardTooltip Upgrade = FindByID("Upgrade");
+    public EYBCardTooltip Metallicize = FindByID("Metallicize");
+    public EYBCardTooltip PlatedArmor = FindByID("Plated Armor");
+    public EYBCardTooltip TempHP = FindByID("Temporary HP");
+    public EYBCardTooltip Weak = FindByID("Weak");
+    public EYBCardTooltip Vulnerable = FindByID("Vulnerable");
+    public EYBCardTooltip Poison = FindByID("Poison");
+    public EYBCardTooltip Burning = FindByID("Burning");
+    public EYBCardTooltip Thorns = FindByID("Thorns");
+    public EYBCardTooltip Artifact = FindByID("Artifact");
+    public EYBCardTooltip Shackles = FindByID("Shackles");
+    public EYBCardTooltip Lightning = FindByID("Lightning");
+    public EYBCardTooltip Plasma = FindByID("Plasma");
+    public EYBCardTooltip Frost = FindByID("Frost");
+    public EYBCardTooltip Fire = FindByID("Fire");
+    public EYBCardTooltip Earth = FindByID("Earth");
+    public EYBCardTooltip Aether = FindByID("Aether");
+    public EYBCardTooltip Dark = FindByID("Dark");
+
+    // No Description
+    public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
+    public EYBCardTooltip ThrowingKnife = new EYBCardTooltip(eatyourbeets.cards.animator.special.ThrowingKnife.DATA.Strings.NAME, null);;
+    public EYBCardTooltip Gold = new EYBCardTooltip(TopPanel.LABEL[4], null);
 
     public boolean CanAdd(EYBCardTooltip tooltip)
     {
@@ -65,113 +79,82 @@ public class CardTooltips
             && tooltip != Retain && tooltip != Energy;
     }
 
-    public void RegisterID(String id, EYBCardTooltip tooltip)
+    public static void RegisterID(String id, EYBCardTooltip tooltip)
     {
         tooltipIDs.put(id, tooltip);
     }
 
-    public void RegisterName(String name, EYBCardTooltip tooltip)
+    public static void RegisterName(String name, EYBCardTooltip tooltip)
     {
         tooltips.put(name, tooltip);
     }
 
-    public void Initialize()
-    {
-        OrbCore = FindByID("~Orb Core");
-        Shapeshifter = FindByID("Shapeshifter");
-        MartialArtist = FindByID("Martial Artist");
-        Spellcaster = FindByID("Spellcaster");
-        Agility = FindByID("Agility");
-        Force = FindByID("Force");
-        Intellect = FindByID("Intellect");
-        AgilityStance = FindByID("Agility Stance");
-        ForceStance = FindByID("Force Stance");
-        IntellectStance = FindByID("Intellect Stance");
-        Purge = FindByID("Purge");
-        Damage = FindByID("~Damage");
-        Ranged = FindByID("~Ranged");
-        Piercing = FindByID("~Piercing");
-        Elemental = FindByID("~Elemental");
-        Unique = FindByID("~Unique");
-        SemiLimited = FindByID("Semi-Limited");
-        Limited = FindByID("Limited");
-        Starter = FindByID("Starter");
-        Innate = FindByID("~Innate");
-        Ethereal = FindByID("~Ethereal");
-        Retain = FindByID("~Retain");
-        Haste = FindByID("~Haste");
-        Exhaust = FindByID("Exhaust");
-        Channel = FindByID("Channel");
-        Block = FindByID("Block");
-        Upgrade = FindByID("Upgrade");
-        Metallicize = FindByID("Metallicize");
-        PlatedArmor = FindByID("Plated Armor");
-        TempHP = FindByID("Temporary HP");
-        Weak = FindByID("Weak");
-        Vulnerable = FindByID("Vulnerable");
-        Poison = FindByID("Poison");
-        Burning = FindByID("Burning");
-        Thorns = FindByID("Thorns");
-        Artifact = FindByID("Artifact");
-        Shackles = FindByID("Shackles");
-
-        Energy = FindByName("[E]");
-    }
-
-    public void InitializeIcons()
-    {
-        CommonImages.Badges badges = GR.Common.Images.Badges;
-        Exhaust.icon = LoadFromBadge(badges.Exhaust);
-        Ethereal.icon = LoadFromBadge(badges.Ethereal);
-        Retain.icon = LoadFromBadge(badges.Retain);
-        Innate.icon = LoadFromBadge(badges.Innate);
-        Haste.icon = LoadFromBadge(badges.Haste);
-        Purge.icon = LoadFromBadge(badges.Purge);
-
-        CommonImages.CardIcons icons = GR.Common.Images.Icons;
-        Ranged.icon = LoadFromLargeIcon(icons.Ranged);
-        Elemental.icon = LoadFromLargeIcon(icons.Elemental);
-        Piercing.icon = LoadFromLargeIcon(icons.Piercing);
-        TempHP.icon = LoadFromLargeIcon(icons.TempHP);
-
-        Burning.icon = LoadFromPower(new BurningPower(FakeCharacter.Instance, null, 0));
-        Poison.icon = LoadFromPower(new PoisonPower(FakeCharacter.Instance, null, 0));
-        Metallicize.icon = LoadFromPower(new MetallicizePower(FakeCharacter.Instance, 0));
-        PlatedArmor.icon = LoadFromPower(new PlatedArmorPower(FakeCharacter.Instance, 0));
-        Thorns.icon = LoadFromPower(new ThornsPower(FakeCharacter.Instance, 0));
-        Artifact.icon = LoadFromPower(new ArtifactPower(FakeCharacter.Instance, 0));
-        Shackles.icon = LoadFromPower(new GainStrengthPower(FakeCharacter.Instance, 0));
-
-        //These 2 use AbstractDungeon.player
-        Weak.icon = LoadFromPower(new WeakPower(null, 0, false));
-        Vulnerable.icon = LoadFromPower(new VulnerablePower(null, 0, false));
-    }
-
-    public EYBCardTooltip FindByName(String name)
+    public static EYBCardTooltip FindByName(String name)
     {
         return tooltips.get(name);
     }
 
-    public EYBCardTooltip FindByID(String id)
+    public static EYBCardTooltip FindByID(String id)
     {
         return tooltipIDs.get(id);
     }
 
-    private TextureRegion LoadFromPower(AbstractPower power)
+    public void InitializeIcons()
+    {
+        //Register fake tooltips
+        RegisterID("Random Orb", RandomOrb);
+        RegisterID("T-Knife", ThrowingKnife);
+        RegisterID("Gold", Gold);
+
+        CommonImages.Badges badges = GR.Common.Images.Badges;
+        Exhaust.SetIcon(badges.Exhaust.Texture(), 6);
+        Ethereal.SetIcon(badges.Ethereal.Texture(), 6);
+        Retain.SetIcon(badges.Retain.Texture(), 6);
+        Innate.SetIcon(badges.Innate.Texture(), 6);
+        Haste.SetIcon(badges.Haste.Texture(), 6);
+        Purge.SetIcon(badges.Purge.Texture(), 6);
+
+        CommonImages.CardIcons icons = GR.Common.Images.Icons;
+        Ranged.SetIcon(icons.Ranged.Texture(), 6);
+        Elemental.SetIcon(icons.Elemental.Texture(), 6);
+        Piercing.SetIcon(icons.Piercing.Texture(), 6);
+        TempHP.SetIcon(icons.TempHP.Texture(), 6);
+
+        CommonImages.Tooltips tooltips = GR.Common.Images.Tooltips;
+        ThrowingKnife.SetIcon(tooltips.ThrowingKnife.Texture(), 6);
+        Lightning.SetIcon(tooltips.Lightning.Texture(), 6);
+        Plasma.SetIcon(tooltips.Plasma.Texture(), 6);
+        RandomOrb.SetIcon(tooltips.RandomOrb.Texture(), 6);
+        Gold.SetIcon(ImageMaster.UI_GOLD, 6);
+
+        LoadFromPower(Burning, new BurningPower(FakeCharacter.Instance, null, 0));
+        LoadFromPower(Poison, new PoisonPower(FakeCharacter.Instance, null, 0));
+        LoadFromPower(Metallicize, new MetallicizePower(FakeCharacter.Instance, 0));
+        LoadFromPower(PlatedArmor, new PlatedArmorPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Thorns, new ThornsPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Artifact, new ArtifactPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Shackles, new GainStrengthPower(FakeCharacter.Instance, 0));
+
+        //These 2 use AbstractDungeon.player
+        LoadFromPower(Weak, new WeakPower(null, 0, false));
+        LoadFromPower(Vulnerable, new VulnerablePower(null, 0, false));
+    }
+
+    private void LoadFromPower(EYBCardTooltip tooltip, AbstractPower power)
     {
         EYBPower p = JavaUtilities.SafeCast(power, EYBPower.class);
         if (p == null)
         {
-            return power.region48;
+            tooltip.SetIcon(power.region48);
         }
-        if (p.powerIcon != null)
+        else if (p.powerIcon != null)
         {
-            return p.powerIcon;
+            tooltip.SetIcon(p.powerIcon);
         }
-
-        int w = p.img.getWidth();
-        int h = p.img.getHeight();
-        return new TextureAtlas.AtlasRegion(p.img, w / 6, h / 6, w - (w / 3), h - (h / 3));
+        else
+        {
+            tooltip.SetIcon(p.img, 6);
+        }
     }
 
     private TextureRegion LoadFromBadge(TextureCache textureCache)

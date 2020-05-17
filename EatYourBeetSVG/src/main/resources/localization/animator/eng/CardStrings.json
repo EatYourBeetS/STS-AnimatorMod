@@ -473,7 +473,7 @@
 	{
 		"animator:YuriNakamura":
 		{
-			"DESCRIPTION": "{Afterlife.} ** Give a card in your hand {Retain}. ** {Synergy}: Give it {Afterlife} as well.",
+			"DESCRIPTION": "Give a card in your hand {Retain}. ** {Synergy}: Give it {Afterlife} as well.",
 			"EXTENDED_DESCRIPTION": ["give Retain.", "give Retain and Afterlife."],
 			"NAME": "Yuri Nakamura"
 		},
@@ -485,7 +485,7 @@
 		},
 		"animator:EriShiina":
 		{
-			"DESCRIPTION": "{Afterlife}. ** Add a {Throwing-Knife} to your hand for every [E] paid for by {Afterlife}.",
+			"DESCRIPTION": "Add a {Throwing-Knife} to your hand for every [E] paid for by {Afterlife}.",
 			"NAME": "Eri Shiina"
 		},
 		"animator:MasamiIwasawa":
@@ -506,12 +506,12 @@
 		},
 		"animator:Noda":
 		{
-			"DESCRIPTION": "{Afterlife}. ** Draw !M! card(s) next turn. ** {Semi-Limited}. {Synergy}. Gain/Boost [F] .",
+			"DESCRIPTION": "Draw !M! card(s) next turn. ** {Semi-Limited}. {Synergy}. Gain/Boost [F] .",
 			"NAME": "Noda"
 		},
 		"animator:HidekiHinata":
 		{
-			"DESCRIPTION": "{Afterlife}. ** {Reload}: Gain !S! Block. ** {Synergy}. Deal !M! additional damage.",
+			"DESCRIPTION": "{Reload}: Gain !S! Block. ** {Synergy}. Deal !M! additional damage.",
 			"NAME": "Hideki Hinata"
 		},
 		"animator:Yusa":
@@ -521,12 +521,12 @@
 		},
 		"animator:Yui":
 		{
-			"DESCRIPTION": "{Afterlife}. ** Motivate !S!. ** Semi-Limited. Synergy: Gain [E].",
+			"DESCRIPTION": "Motivate !S!. ** Semi-Limited. Synergy: Gain [E].",
 			"NAME": "Yui"
 		},
 		"animator:AngelAlter":
 		{
-			"DESCRIPTION": "{Afterlife}. ** {Boost} [F] and [A] . ** Shuffle a copy of this card into your draw and discard piles.",
+			"DESCRIPTION": "{Boost} [F] and [A] . ** Shuffle a copy of this card into your draw and discard piles.",
 			"NAME": "Angel Alter"
 		},
 		"animator:Strike_AngelBeats":

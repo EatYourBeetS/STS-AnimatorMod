@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Chaa extends AnimatorCard
 {
@@ -67,7 +68,9 @@ public class Chaa extends AnimatorCard
                         for (AbstractCard card : cards)
                         {
                             AbstractCard c;
-                            if (card.rarity == AbstractCard.CardRarity.RARE || card.rarity == AbstractCard.CardRarity.UNCOMMON || card.rarity == AbstractCard.CardRarity.SPECIAL) {
+                            if (GameUtilities.IsCurseOrStatus(card)) {
+                                c =  AbstractDungeon.getCard(AbstractCard.CardRarity.COMMON).makeCopy();
+                            } else if (card.rarity == AbstractCard.CardRarity.RARE || card.rarity == AbstractCard.CardRarity.UNCOMMON || card.rarity == AbstractCard.CardRarity.SPECIAL) {
                                 c =  AbstractDungeon.getCard(AbstractCard.CardRarity.RARE).makeCopy();
                             } else if (card.rarity == AbstractCard.CardRarity.COMMON) {
                                 c =  AbstractDungeon.getCard(AbstractCard.CardRarity.UNCOMMON).makeCopy();

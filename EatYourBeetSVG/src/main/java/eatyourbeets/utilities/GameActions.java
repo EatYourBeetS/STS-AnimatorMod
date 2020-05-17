@@ -739,7 +739,7 @@ public final class GameActions
 
     public SpendEnergy SpendEnergy(AbstractCard card)
     {
-        return Add(new SpendEnergy(card.freeToPlay() ? 0 : card.energyOnUse, false));
+        return Add(new SpendEnergy(card.freeToPlay() ? 0 : card.costForTurn, false));
     }
 
     public SpendEnergy SpendEnergy(int amount, boolean canSpendLess)

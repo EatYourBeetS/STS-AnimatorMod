@@ -31,15 +31,15 @@ public class CardTooltips
     public EYBCardTooltip Ranged = FindByID("~Ranged");
     public EYBCardTooltip Damage = FindByID("~Damage");
     public EYBCardTooltip Purge = FindByID("Purge");
-    public EYBCardTooltip Intellect = FindByID("Intellect");;
-    public EYBCardTooltip Force = FindByID("Force");;
-    public EYBCardTooltip Agility = FindByID("Agility");;
+    public EYBCardTooltip Intellect = FindByID("Intellect");
+    public EYBCardTooltip Force = FindByID("Force");
+    public EYBCardTooltip Agility = FindByID("Agility");
     public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
     public EYBCardTooltip ForceStance = FindByID("Force Stance");
-    public EYBCardTooltip AgilityStance = FindByID("Agility Stance");;
-    public EYBCardTooltip Spellcaster = FindByID("Spellcaster");;
-    public EYBCardTooltip MartialArtist = FindByID("Martial Artist");;
-    public EYBCardTooltip Shapeshifter = FindByID("Shapeshifter");;
+    public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
+    public EYBCardTooltip Spellcaster = FindByID("Spellcaster");
+    public EYBCardTooltip MartialArtist = FindByID("Martial Artist");
+    public EYBCardTooltip Shapeshifter = FindByID("Shapeshifter");
     public EYBCardTooltip OrbCore = FindByID("~Orb Core");
     public EYBCardTooltip Innate = FindByID("~Innate");
     public EYBCardTooltip Ethereal = FindByID("~Ethereal");
@@ -69,7 +69,7 @@ public class CardTooltips
 
     // No Description
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
-    public EYBCardTooltip ThrowingKnife = new EYBCardTooltip(eatyourbeets.cards.animator.special.ThrowingKnife.DATA.Strings.NAME, null);;
+    public EYBCardTooltip ThrowingKnife = new EYBCardTooltip(eatyourbeets.cards.animator.special.ThrowingKnife.DATA.Strings.NAME, null);
     public EYBCardTooltip Gold = new EYBCardTooltip(TopPanel.LABEL[4], null);
 
     public boolean CanAdd(EYBCardTooltip tooltip)

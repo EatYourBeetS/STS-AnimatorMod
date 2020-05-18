@@ -55,7 +55,7 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
             cards.put(Walpurgisnacht.DATA.ID, new Walpurgisnacht());
             cards.put(MioTakamiya.DATA.ID, new MioTakamiya());
             cards.put(SakuraKashima.DATA.ID, new SakuraKashima());
-            cards.put(SakuraKashima.DATA.ID, new AngelAlter());
+            cards.put(AngelAlter.DATA.ID, new AngelAlter());
             //Cards.put(Cthulhu.ID, new Cthulhu());
             //Cards.put(InfinitePower.ID, new InfinitePower());
         }

@@ -19,7 +19,7 @@ public class Tatsumaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0,1);
+        Initialize(0, 0, 1);
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.OnePunchMan);
@@ -40,7 +40,7 @@ public class Tatsumaki extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainIntellect(magicNumber);
+        GameActions.Bottom.GainIntellect(magicNumber, upgraded);
         GameActions.Bottom.ChannelOrb(new Aether(), true);
     }
 }

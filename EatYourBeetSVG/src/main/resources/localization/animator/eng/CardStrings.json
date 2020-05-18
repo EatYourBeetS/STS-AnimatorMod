@@ -1326,7 +1326,7 @@
 		},
 		"animator:Tatsumaki":
 		{
-			"DESCRIPTION": "Gain [I]. Channel ** 1 Aether. || <slm>. When Drawn, ** if you have 3 or more ** unique Orbs: <DRW>.",
+			"DESCRIPTION": "Gain/Boost [I]. Channel ** 1 Aether. || <slm>. When Drawn, ** if you have 3 or more ** unique Orbs: <DRW>.",
 			"NAME": "Tatsumaki"
 		}
 	},

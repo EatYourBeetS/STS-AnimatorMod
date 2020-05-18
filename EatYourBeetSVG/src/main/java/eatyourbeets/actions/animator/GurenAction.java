@@ -32,16 +32,9 @@ public class GurenAction extends PlayCard
             return;
         }
 
+        sourcePile = player.drawPile;
         card = player.drawPile.getTopCard();
-        SetSourcePile(player.drawPile);
-        sourcePile.removeCard(card);
-
-        if (targetPosition == null)
-        {
-            SetTargetPosition(DEFAULT_TARGET_X_RIGHT, DEFAULT_TARGET_Y);
-        }
-
-        ShowCard();
+        super.FirstUpdate();
     }
 
     @Override

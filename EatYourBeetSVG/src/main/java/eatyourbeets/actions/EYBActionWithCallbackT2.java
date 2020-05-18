@@ -7,44 +7,44 @@ import eatyourbeets.utilities.GenericCondition;
 
 import java.util.ArrayList;
 
-public abstract class EYBActionWithCallbackAdvanced<T> extends EYBActionWithCallback<T>
+public abstract class EYBActionWithCallbackT2<T, C> extends EYBActionWithCallback<T>
 {
-    protected ArrayList<GenericCondition<T>> conditions = new ArrayList<>();
+    protected ArrayList<GenericCondition<C>> conditions = new ArrayList<>();
 
-    public EYBActionWithCallbackAdvanced(ActionType type)
+    public EYBActionWithCallbackT2(ActionType type)
     {
         super(type);
     }
 
-    public EYBActionWithCallbackAdvanced(ActionType type, float duration)
+    public EYBActionWithCallbackT2(ActionType type, float duration)
     {
         super(type, duration);
     }
 
-    public EYBActionWithCallbackAdvanced<T> AddCondition(Object state, FuncT2<Boolean, Object, T> condition)
+    public EYBActionWithCallbackT2<T, C> AddCondition(Object state, FuncT2<Boolean, Object, C> condition)
     {
         conditions.add(GenericCondition.FromT2(condition, state));
 
         return this;
     }
 
-    public EYBActionWithCallbackAdvanced<T> AddCondition(FuncT1<Boolean, T> condition)
+    public EYBActionWithCallbackT2<T, C> AddCondition(FuncT1<Boolean, C> condition)
     {
         conditions.add(GenericCondition.FromT1(condition));
 
         return this;
     }
 
-    public EYBActionWithCallbackAdvanced<T> AddCondition(FuncT0<Boolean> condition)
+    public EYBActionWithCallbackT2<T, C> AddCondition(FuncT0<Boolean> condition)
     {
         conditions.add(GenericCondition.FromT0(condition));
 
         return this;
     }
 
-    protected boolean Check(T result)
+    protected boolean CheckConditions(C result)
     {
-        for (GenericCondition<T> callback : conditions)
+        for (GenericCondition<C> callback : conditions)
         {
             if (!callback.Check(result))
             {

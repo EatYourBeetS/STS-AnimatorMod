@@ -20,6 +20,7 @@ import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.resources.AbstractResources;
+import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 import eatyourbeets.stances.EYBStance;
 import eatyourbeets.utilities.EYBFontHelper;
@@ -74,7 +75,7 @@ public class CommonResources extends AbstractResources
     protected void InitializeCards()
     {
         Strings.Initialize();
-        GR.Tooltips.Initialize();
+        GR.Tooltips = new CardTooltips();
     }
 
     @Override
@@ -126,11 +127,11 @@ public class CommonResources extends AbstractResources
                     Keyword k = (Keyword) field.get(null);
                     EYBCardTooltip tooltip = new EYBCardTooltip(TipHelper.capitalize(k.NAMES[0]), k.DESCRIPTION);
 
-                    Tooltips.RegisterID(TipHelper.capitalize(field.getName()), tooltip);
+                    CardTooltips.RegisterID(TipHelper.capitalize(field.getName()), tooltip);
 
                     for (String name : k.NAMES)
                     {
-                        Tooltips.RegisterName(name, tooltip);
+                        CardTooltips.RegisterName(name, tooltip);
                     }
                 }
                 catch (IllegalAccessException ex)
@@ -152,22 +153,22 @@ public class CommonResources extends AbstractResources
 
         EYBCardTooltip tooltip = new EYBCardTooltip(TipHelper.TEXT[0], GameDictionary.TEXT[0]);
         tooltip.icon = region;
-        Tooltips.RegisterName(symbol, tooltip);
+        CardTooltips.RegisterName(symbol, tooltip);
     }
 
     private static void AddPowerTooltip(String symbol, AbstractPower power)
     {
         int size = power.img.getWidth(); // width should always be equal to height
 
-        EYBCardTooltip tooltip = Tooltips.FindByName(power.name.toLowerCase());
+        EYBCardTooltip tooltip = CardTooltips.FindByName(power.name.toLowerCase());
         tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 2, 4, size-4, size-4);
 
-        EYBCardTooltip stance = Tooltips.FindByID(power.name + " Stance");
+        EYBCardTooltip stance = CardTooltips.FindByID(power.name + " Stance");
         if (stance != null)
         {
             stance.icon = tooltip.icon;
         }
 
-        Tooltips.RegisterName(symbol, tooltip);
+        CardTooltips.RegisterName(symbol, tooltip);
     }
 }

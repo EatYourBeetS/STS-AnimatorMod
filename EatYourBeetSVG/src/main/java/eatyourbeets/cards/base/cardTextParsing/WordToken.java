@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 
 public class WordToken extends CTToken
@@ -112,7 +113,7 @@ public class WordToken extends CTToken
 
             if (parser.card != null)
             {
-                EYBCardTooltip tooltip = GR.Tooltips.FindByName(word.toLowerCase());
+                EYBCardTooltip tooltip = CardTooltips.FindByName(word.toLowerCase());
                 if (tooltip != null)
                 {
                     parser.AddTooltip(tooltip);

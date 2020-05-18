@@ -37,9 +37,11 @@ public class KurumiTokisaki extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.SpendEnergy(this)
-        .AddCondition(() -> player.hand.contains(this))
-        .AddCallback(() -> GameActions.Top.PlayCard(this, null));
+        GameActions.Bottom.PlayCard(this, player.hand, null)
+        .SpendEnergy(true)
+        // Uncomment this condition if you want the action to stop early,
+        // without attempting to play the card and showing 'Not enough energy' message
+        /*.AddCondition(AbstractCard::hasEnoughEnergy)*/;
     }
 
     @Override

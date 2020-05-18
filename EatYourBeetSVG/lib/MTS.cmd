@@ -1,1 +1,0 @@
-start .\jre\bin\javaw.exe -Xmx256m -jar .\ModTheSpire.jar

@@ -47,7 +47,7 @@ public class GR
     protected static final ArrayList<String> powerClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.powers.");
     protected static final HashMap<String, Texture> textures = new HashMap<>();
 
-    public static CardTooltips Tooltips = new CardTooltips();
+    public static CardTooltips Tooltips = null; // Created by CommonResources
     public static UIManager UI = new UIManager();
     public static AnimatorResources Animator;
     public static UnnamedResources Unnamed;
@@ -343,11 +343,11 @@ public class GR
             Keyword keyword = pair.getValue();
             EYBCardTooltip tooltip = new EYBCardTooltip(keyword);
 
-            Tooltips.RegisterID(id, tooltip);
+            CardTooltips.RegisterID(id, tooltip);
 
             for (String name : keyword.NAMES)
             {
-                Tooltips.RegisterName(name, tooltip);
+                CardTooltips.RegisterName(name, tooltip);
             }
         }
     }

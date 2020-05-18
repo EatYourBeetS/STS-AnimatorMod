@@ -31,9 +31,9 @@ public class BorosPower extends AnimatorPower
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action)
     {
-        if ((card.type == AbstractCard.CardType.POWER) && !card.purgeOnUse)
+        if ((card.type == AbstractCard.CardType.POWER) && !card.isInAutoplay)
         {
-            this.flash();
+            flash();
 
             AbstractMonster m = null;
             if (action.target != null)

@@ -25,13 +25,15 @@ public class OrbCore_AetherPower extends OrbCore_AbstractPower
     {
         if (p.hand.size() < BaseMod.MAX_HAND_SIZE)
         {
-            GameActions.Bottom.Draw(value);
-
-            if ((p.drawPile.size() + p.discardPile.size()) > 0)
+            GameActions.Bottom.Draw(value)
+            .AddCallback(cards ->
             {
-                GameActions.Bottom.DiscardFromHand(name, 1, false)
-                .SetOptions(false, false, false);
-            }
+                if (cards.size() > 0)
+                {
+                    GameActions.Top.DiscardFromHand(name, 1, false)
+                    .SetOptions(false, false, false);
+                }
+            });
         }
     }
 }

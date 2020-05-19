@@ -10,7 +10,6 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
-import eatyourbeets.misc.CardMods.RetainMod;
 import eatyourbeets.utilities.GameActions;
 
 public class YuriNakamura extends AnimatorCard
@@ -33,29 +32,24 @@ public class YuriNakamura extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        String message = cardData.Strings.EXTENDED_DESCRIPTION[0];
-        if (HasSynergy())
-        {
-            message = cardData.Strings.EXTENDED_DESCRIPTION[1];
-        }
         GameActions.Bottom.SelectFromHand(name, magicNumber, false)
-                .SetOptions(false, false, false)
-                .SetMessage(message)
-                .AddCallback(cards ->
+        .SetOptions(false, false, false)
+        .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[HasSynergy() ? 1 : 0])
+        .AddCallback(cards ->
+        {
+            if (cards.size() > 0)
+            {
+                AbstractCard card = cards.get(0);
+                if (HasSynergy())
                 {
-                    AbstractCard card = cards.get(0);
-                    if (card != null)
+                    if (!CardModifierManager.hasModifier(card, AfterLifeMod.ID))
                     {
-                        if (HasSynergy()) {
-                            if (!CardModifierManager.hasModifier(card, AfterLifeMod.ID)) {
-                                CardModifierManager.addModifier(card, new AfterLifeMod());
-                            }
-                        }
-                        if (!card.selfRetain) {
-                            CardModifierManager.addModifier(card, new RetainMod());
-                        }
-                        card.flash();
+                        CardModifierManager.addModifier(card, new AfterLifeMod());
                     }
-                });
+                }
+                card.selfRetain = true;
+                card.flash();
+            }
+        });
     }
 }

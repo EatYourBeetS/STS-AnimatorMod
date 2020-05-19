@@ -9,10 +9,12 @@ import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class SougenEsaka extends AnimatorCard {
+public class SougenEsaka extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(SougenEsaka.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL);
 
-    public SougenEsaka() {
+    public SougenEsaka()
+    {
         super(DATA);
 
         Initialize(6, 0, 1);
@@ -24,11 +26,11 @@ public class SougenEsaka extends AnimatorCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
         int agility = GameUtilities.GetPowerAmount(p, AgilityPower.POWER_ID);
-
         if (agility > 0)
         {
             GameActions.Bottom.GainBlock(agility);

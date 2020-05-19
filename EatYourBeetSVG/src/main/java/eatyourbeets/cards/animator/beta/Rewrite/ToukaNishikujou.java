@@ -9,20 +9,23 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
-public class ToukaNishikujou extends AnimatorCard {
+public class ToukaNishikujou extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(ToukaNishikujou.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
 
-    public ToukaNishikujou() {
+    public ToukaNishikujou()
+    {
         super(DATA);
 
-        Initialize(0, 10, 8,9);
+        Initialize(0, 10, 8, 9);
         SetUpgrade(0, 0, -2);
 
         SetSynergy(Synergies.Rewrite);
     }
 
     @Override
-    public void triggerOnManualDiscard() {
+    public void triggerOnManualDiscard()
+    {
         super.triggerOnManualDiscard();
 
         GameActions.Bottom.Cycle(name, 1)
@@ -32,11 +35,12 @@ public class ToukaNishikujou extends AnimatorCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(block).AddCallback(__ -> {
-            int numThrowingKnives = player.currentBlock / magicNumber;
-
-            if (numThrowingKnives > 0) {
-                GameActions.Bottom.CreateThrowingKnives(numThrowingKnives);
+        GameActions.Bottom.GainBlock(block).AddCallback(() ->
+        {
+            int throwingKnives = player.currentBlock / magicNumber;
+            if (throwingKnives > 0)
+            {
+                GameActions.Bottom.CreateThrowingKnives(throwingKnives);
             }
 
             if (HasSynergy())

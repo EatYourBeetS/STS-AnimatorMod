@@ -16,31 +16,32 @@ import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class ShizuruNakatsu extends AnimatorCard {
+public class ShizuruNakatsu extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(ShizuruNakatsu.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+
     private boolean canAttack;
 
-    public ShizuruNakatsu() {
+    public ShizuruNakatsu()
+    {
         super(DATA);
 
-        Initialize(0, 5, 2,1);
-        SetUpgrade(0,3,0);
+        Initialize(0, 5, 2, 1);
+        SetUpgrade(0, 3, 0);
 
         SetSynergy(Synergies.Rewrite);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.DiscardFromHand(name, magicNumber, true)
         .ShowEffect(true, true)
         .SetFilter(c -> c.type == CardType.SKILL)
         .SetOptions(false, false, false)
-        .AddCallback(() ->
-        {
-            GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
-        });
+        .AddCallback(() -> GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID));
 
         AgilityPower agility = GameUtilities.GetPower(player, AgilityPower.class);
         if (agility != null && agility.GetCurrentLevel() > 2)
@@ -54,7 +55,6 @@ public class ShizuruNakatsu extends AnimatorCard {
             GameActions.Bottom.VFX(new DieDieDieEffect());
 
             int[] damageMatrix = DamageInfo.createDamageMatrix(8, true);
-
             GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE);
         }
     }

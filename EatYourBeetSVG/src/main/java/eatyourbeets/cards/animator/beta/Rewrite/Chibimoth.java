@@ -10,15 +10,16 @@ import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
-public class Chibimoth extends AnimatorCard {
+public class Chibimoth extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(Chibimoth.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
-
     static
     {
         DATA.AddPreview(new KotoriKanbe(), false);
     }
 
-    public Chibimoth() {
+    public Chibimoth()
+    {
         super(DATA);
 
         Initialize(0, 0, 2, 1);
@@ -35,14 +36,17 @@ public class Chibimoth extends AnimatorCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         String[] text = DATA.Strings.EXTENDED_DESCRIPTION;
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        group.addToBottom(CreateChoice(text[0], (c1, p1, m1) -> {
+        group.addToBottom(CreateChoice(text[0], (c1, p1, m1) ->
+        {
             GameActions.Bottom.GainAgility(1, false);
             GameActions.Bottom.GainBlur(secondaryValue);
         }));
-        group.addToBottom(CreateChoice(text[1], (c1, p1, m1) -> {
+        group.addToBottom(CreateChoice(text[1], (c1, p1, m1) ->
+        {
             GameActions.Bottom.GainForce(1, false);
             GameActions.Bottom.GainTemporaryHP(magicNumber);
         }));
@@ -73,12 +77,12 @@ public class Chibimoth extends AnimatorCard {
     private AnimatorCard_Dynamic CreateChoice(String text, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onSelect)
     {
         return new AnimatorCardBuilder(cardID)
-                .SetImage(assetUrl)
-                .SetProperties(CardType.SKILL, rarity, CardTarget.NONE)
-                .SetCost(-2, 0)
-                .SetOnUse(onSelect)
-                .SetText(name, text, text)
-                .SetSynergy(synergy, false).Build();
+        .SetImage(assetUrl)
+        .SetProperties(CardType.SKILL, rarity, CardTarget.NONE)
+        .SetCost(-2, 0)
+        .SetOnUse(onSelect)
+        .SetText(name, text, text)
+        .SetSynergy(synergy, false).Build();
     }
 
     private boolean DrawKotoriKanbe(CardGroup group)
@@ -91,7 +95,7 @@ public class Chibimoth extends AnimatorCard {
                 {
                     GameEffects.List.ShowCardBriefly(makeStatEquivalentCopy());
                     GameActions.Top.MoveCard(c, group, player.hand)
-                            .ShowEffect(true, true);
+                    .ShowEffect(true, true);
                 }
 
                 return true;

@@ -25,7 +25,6 @@ public class Noda extends AnimatorCard
         SetUpgrade(1, 0, 0, 0);
 
         SetSynergy(Synergies.AngelBeats);
-
         CardModifierManager.addModifier(this, new AfterLifeMod());
     }
 
@@ -34,7 +33,9 @@ public class Noda extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
-        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID)) {
+
+        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
+        {
             GameActions.Bottom.GainForce(secondaryValue, upgraded);
         }
     }

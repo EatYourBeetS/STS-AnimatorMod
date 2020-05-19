@@ -37,12 +37,11 @@ public class InverseTohka extends AnimatorCard
         super.triggerWhenDrawn();
 
         GameActions.Bottom.SpendEnergy(1, false)
-        .AddCallback(amount ->
+        .AddCallback(() ->
         {
             int[] damageMatrix = DamageInfo.createDamageMatrix(magicNumber, true);
             GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE)
             .SetDamageEffect((e, __) -> GameActions.Bottom.VFX(new DarkOrbActivateEffect(e.hb_x, e.hb_y)));
-
             GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
             GameActions.Bottom.Flash(this);
         });

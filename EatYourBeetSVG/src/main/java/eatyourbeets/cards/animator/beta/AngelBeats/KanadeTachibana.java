@@ -28,24 +28,24 @@ public class KanadeTachibana extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        this.selfRetain = true;
+        SetRetain(true);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.FetchFromPile(name, p.discardPile.size(), p.discardPile)
-                .SetOptions(false, true)
-                .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
-                .AddCallback(cards ->
-                {
-                    if (cards.size() > 0)
-                    {
-                        GameActions.Bottom.Add(new RefreshHandLayout());
-                    }
-                });
-        GameActions.Bottom.ExhaustFromHand(name, BaseMod.MAX_HAND_SIZE, false)
-                .SetOptions(true, true, true);
+        .SetOptions(false, true)
+        .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
+        .AddCallback(cards ->
+        {
+            if (cards.size() > 0)
+            {
+                GameActions.Bottom.Add(new RefreshHandLayout());
+            }
+        });
 
+        GameActions.Bottom.ExhaustFromHand(name, BaseMod.MAX_HAND_SIZE, false)
+        .SetOptions(true, true, true);
     }
 }

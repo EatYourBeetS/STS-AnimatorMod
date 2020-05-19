@@ -30,7 +30,9 @@ public class Yui extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Motivate(secondaryValue);
-        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID)) {
+
+        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
+        {
             GameActions.Bottom.GainEnergy(magicNumber);
         }
     }

@@ -19,20 +19,21 @@ import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
-public class KotarouTennouji extends AnimatorCard implements OnBattleStartSubscriber, OnStanceChangedSubscriber {
+public class KotarouTennouji extends AnimatorCard implements OnBattleStartSubscriber, OnStanceChangedSubscriber
+{
     public static final EYBCardData DATA = Register(KotarouTennouji.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Normal);
 
-    public KotarouTennouji() {
+    public KotarouTennouji()
+    {
         super(DATA);
 
         Initialize(14, 0, 0);
         SetUpgrade(3, 0, 0);
-        SetScaling(1,1,1);
+        SetScaling(1, 1, 1);
 
-        SetShapeshifter();
-        SetUnique(true,true);
-
+        SetUnique(true, true);
         SetSynergy(Synergies.Rewrite);
+        SetShapeshifter();
 
         if (CanSubscribeToEvents())
         {
@@ -41,14 +42,16 @@ public class KotarouTennouji extends AnimatorCard implements OnBattleStartSubscr
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
 
         EnterRandomStanceNotCurrent();
     }
 
     @Override
-    public void OnBattleStart() {
+    public void OnBattleStart()
+    {
         CombatStats.onStanceChanged.Subscribe(this);
     }
 
@@ -58,29 +61,33 @@ public class KotarouTennouji extends AnimatorCard implements OnBattleStartSubscr
         if (player.hand.contains(this) && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
-                    .IncludeMasterDeck(true)
-                    .IsCancellable(false);
+            .IncludeMasterDeck(true)
+            .IsCancellable(false);
             flash();
         }
     }
 
     private void EnterRandomStanceNotCurrent()
     {
-        RandomizedList<String> stances = new RandomizedList();
+        RandomizedList<String> stances = new RandomizedList<>();
 
-        if (!player.stance.ID.equals(ForceStance.STANCE_ID)) {
+        if (!player.stance.ID.equals(ForceStance.STANCE_ID))
+        {
             stances.Add(ForceStance.STANCE_ID);
         }
 
-        if (!player.stance.ID.equals(AgilityStance.STANCE_ID)) {
+        if (!player.stance.ID.equals(AgilityStance.STANCE_ID))
+        {
             stances.Add(AgilityStance.STANCE_ID);
         }
 
-        if (!player.stance.ID.equals(IntellectStance.STANCE_ID)) {
+        if (!player.stance.ID.equals(IntellectStance.STANCE_ID))
+        {
             stances.Add(IntellectStance.STANCE_ID);
         }
 
-        if (!player.stance.ID.equals(NeutralStance.STANCE_ID)) {
+        if (!player.stance.ID.equals(NeutralStance.STANCE_ID))
+        {
             stances.Add(NeutralStance.STANCE_ID);
         }
 

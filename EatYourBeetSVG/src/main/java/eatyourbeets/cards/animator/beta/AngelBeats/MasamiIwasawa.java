@@ -1,8 +1,8 @@
 package eatyourbeets.cards.animator.beta.AngelBeats;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -29,8 +29,15 @@ public class MasamiIwasawa extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-        addToBot(new MakeTempCardInDrawPileAction(new Dazed(), secondaryValue, false, true));
-        if (HasSynergy() && CombatStats.TryActivateLimited(cardID)) {
+
+        for (int i = 0; i < secondaryValue; i++)
+        {
+            GameActions.Bottom.MakeCardInDrawPile(new Dazed())
+            .SetDuration(Settings.ACTION_DUR_FASTER, false);
+        }
+
+        if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
+        {
             GameActions.Bottom.Draw(magicNumber);
         }
     }

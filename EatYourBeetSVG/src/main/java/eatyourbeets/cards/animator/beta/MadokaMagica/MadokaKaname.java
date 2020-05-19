@@ -58,7 +58,6 @@ public class MadokaKaname extends AnimatorCard
     {
         boolean move;
         float duration = 0.3f;
-
         int hindranceCount = 0;
 
         for (AbstractCard card : source.group)

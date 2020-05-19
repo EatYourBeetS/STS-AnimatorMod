@@ -34,9 +34,9 @@ public class TohkaYatogami extends AnimatorCard
     }
 
     @Override
-    protected float ModifyDamage(AbstractMonster enemy, float amount)
+    protected void UpdateDamage(float amount)
     {
-        return DAMAGE_AMOUNT;
+        super.UpdateDamage(baseDamage);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class TohkaYatogami extends AnimatorCard
 
         if (p.exhaustPile.size() >= magicNumber)
         {
-            GameActions.Last.ReplaceCard(this.uuid, new InverseTohka()).SetUpgrade(upgraded);
+            GameActions.Last.ReplaceCard(uuid, new InverseTohka()).SetUpgrade(upgraded);
         }
     }
 }

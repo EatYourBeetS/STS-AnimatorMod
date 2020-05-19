@@ -16,10 +16,12 @@ import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 
-public class Shimako extends AnimatorCard {
+public class Shimako extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(Shimako.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
-    public Shimako() {
+    public Shimako()
+    {
         super(DATA);
 
         Initialize(0, 4, 0);
@@ -29,13 +31,12 @@ public class Shimako extends AnimatorCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.GainBlock(block);
 
-        String curStance = player.stance.ID;
         AbstractOrb orb;
-
+        String curStance = player.stance.ID;
         if (curStance.equals(ForceStance.STANCE_ID))
         {
             orb = new Fire();

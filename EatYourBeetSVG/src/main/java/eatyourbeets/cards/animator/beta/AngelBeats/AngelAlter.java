@@ -36,7 +36,7 @@ public class AngelAlter extends AnimatorCard_UltraRare
         GameActions.Bottom.GainForce(magicNumber, true);
         GameActions.Bottom.GainAgility(magicNumber, true);
 
-        GameActions.Bottom.MakeCardInDrawPile(this.makeStatEquivalentCopy());
-        GameActions.Bottom.MakeCardInDiscardPile(this.makeStatEquivalentCopy());
+        GameActions.Bottom.MakeCardInDrawPile(this).SetUpgrade(false, true);
+        GameActions.Bottom.MakeCardInDiscardPile(this).SetUpgrade(false, true);
     }
 }

@@ -23,11 +23,11 @@ public class YoshinoHimekawa extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 1,4);
-        SetEthereal(true);
+        Initialize(0, 4, 1, 4);
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.DateALive);
+        SetEthereal(true);
     }
 
     @Override

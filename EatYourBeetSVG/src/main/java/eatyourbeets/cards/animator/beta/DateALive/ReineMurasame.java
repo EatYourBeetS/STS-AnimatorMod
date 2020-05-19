@@ -48,7 +48,7 @@ public class ReineMurasame extends AnimatorCard
             .SetUpgrade(upgraded, true);
         }
 
-        if (HasSynergy() && stacks > 0)
+        if (stacks > 0 && HasSynergy())
         {
             GameActions.Bottom.StackPower(new EnergizedPower(p, stacks));
         }

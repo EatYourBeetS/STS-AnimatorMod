@@ -19,6 +19,7 @@ public class YuzuruOtonashi extends AnimatorCard
 
         Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 1, 0);
+
         SetSynergy(Synergies.AngelBeats);
     }
 
@@ -26,19 +27,24 @@ public class YuzuruOtonashi extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ExhaustFromHand(name, magicNumber, false)
-                .SetOptions(true, true, true)
-                .AddCallback(cards ->
+        .SetOptions(true, true, true)
+        .AddCallback(cards ->
+        {
+            for (AbstractCard card : cards)
+            {
+                if (card.type == CardType.ATTACK)
                 {
-                    for (AbstractCard card : cards)
-                    {
-                        if (card.type == CardType.ATTACK) {
-                            GameActions.Bottom.GainForce(1, true);
-                        } else if (card.type == CardType.SKILL) {
-                            GameActions.Bottom.GainTemporaryHP(secondaryValue);
-                        } else if (card.type == CardType.CURSE || card.type == CardType.STATUS) {
-                            GameActions.Bottom.Draw(1);
-                        }
-                    }
-                });
+                    GameActions.Bottom.GainForce(1, true);
+                }
+                else if (card.type == CardType.SKILL)
+                {
+                    GameActions.Bottom.GainTemporaryHP(secondaryValue);
+                }
+                else if (card.type == CardType.CURSE || card.type == CardType.STATUS)
+                {
+                    GameActions.Bottom.Draw(1);
+                }
+            }
+        });
     }
 }

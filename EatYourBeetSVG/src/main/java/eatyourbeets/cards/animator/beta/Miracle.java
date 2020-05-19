@@ -8,11 +8,11 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
-public class EYBMiracle extends AnimatorCard
+public class Miracle extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(EYBMiracle.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Miracle.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
-    public EYBMiracle()
+    public Miracle()
     {
         super(DATA);
 

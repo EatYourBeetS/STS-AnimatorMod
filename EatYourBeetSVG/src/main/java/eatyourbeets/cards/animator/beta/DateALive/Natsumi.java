@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
@@ -26,7 +25,7 @@ public class Natsumi extends AnimatorCard
         super(DATA);
 
         Initialize(2, 0, 7);
-        SetScaling(1,0,0);
+        SetScaling(1, 0, 0);
         SetExhaust(true);
 
         SetSynergy(Synergies.DateALive);
@@ -43,7 +42,7 @@ public class Natsumi extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.FIRE)
-                .SetOptions(true, false);
+        .SetOptions(true, false);
 
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetOptions(false, false, false)
@@ -86,8 +85,8 @@ public class Natsumi extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                GameActions.Bottom.ReplaceCard(((AbstractCard)card).uuid, cards.get(0))
-                .SetUpgrade(((AbstractCard)card).upgraded);
+                GameActions.Bottom.ReplaceCard(((AbstractCard) card).uuid, cards.get(0))
+                        .SetUpgrade(((AbstractCard) card).upgraded);
             }
         });
     }
@@ -96,7 +95,7 @@ public class Natsumi extends AnimatorCard
     {
         cardPool = new Hashtable<>();
 
-        for (AbstractCard c : CardLibrary.getAllCards())
+        for (AbstractCard c : GameUtilities.GetAvailableCards())
         {
             if (c instanceof AnimatorCard && !GameUtilities.IsCurseOrStatus(c)
             && !c.hasTag(AbstractCard.CardTags.HEALING)

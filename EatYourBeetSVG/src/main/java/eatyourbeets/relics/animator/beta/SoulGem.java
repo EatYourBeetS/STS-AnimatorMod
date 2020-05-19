@@ -1,4 +1,4 @@
-package eatyourbeets.relics.animator;
+package eatyourbeets.relics.animator.beta;
 
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
@@ -16,10 +16,10 @@ public class SoulGem extends AnimatorRelic
     @Override
     public void atTurnStartPostDraw()
     {
-        this.flash();
-
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
         .SetOptions(false, true, true)
         .SetFilter(GameUtilities::IsCurseOrStatus);
+
+        flash();
     }
 }

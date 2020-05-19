@@ -12,20 +12,21 @@ import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class SakuyaOhtori extends AnimatorCard {
+public class SakuyaOhtori extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(SakuyaOhtori.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
 
-    public SakuyaOhtori() {
+    public SakuyaOhtori()
+    {
         super(DATA);
 
-        Initialize(0, 3, 2,1);
+        Initialize(0, 3, 2, 1);
         SetUpgrade(0, 0, 1);
-        SetScaling(1,0,1);
+        SetScaling(1, 0, 1);
+
         SetHaste(true);
-
-        SetMartialArtist();
-
         SetSynergy(Synergies.Rewrite);
+        SetMartialArtist();
     }
 
     @Override
@@ -40,22 +41,22 @@ public class SakuyaOhtori extends AnimatorCard {
         if (this.hasTag(HASTE))
         {
             GameActions.Top.Discard(this, player.hand).ShowEffect(true, true)
-            .AddCallback(() -> GameActions.Top.GainForce(secondaryValue, upgraded))
-            .SetDuration(0.15f, true);
+                    .AddCallback(() -> GameActions.Top.GainForce(secondaryValue, upgraded))
+                    .SetDuration(0.15f, true);
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (int i=0; i<magicNumber; i++)
+        for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.GainBlock(block);
         }
 
         GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
 
-        int forceToConvert = (GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID))/2;
+        int forceToConvert = (GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID)) / 2;
 
         if (forceToConvert > 0)
         {

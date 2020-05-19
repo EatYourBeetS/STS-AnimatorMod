@@ -13,16 +13,17 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
-public class LuciaKonohana extends AnimatorCard {
+public class LuciaKonohana extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(LuciaKonohana.class).SetSkill(-1, CardRarity.UNCOMMON, EYBCardTarget.Normal);
-
     public static final EYBCardTooltip CommonDebuffs = new EYBCardTooltip(DATA.Strings.EXTENDED_DESCRIPTION[1], DATA.Strings.EXTENDED_DESCRIPTION[2]);
 
-    public LuciaKonohana() {
+    public LuciaKonohana()
+    {
         super(DATA);
 
-        Initialize(0, 0, 4,2);
-        SetUpgrade(0,0,1);
+        Initialize(0, 0, 4, 2);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Rewrite);
     }
@@ -39,11 +40,13 @@ public class LuciaKonohana extends AnimatorCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         int stacks = GameUtilities.UseXCostEnergy(this);
         if (stacks >= secondaryValue)
         {
-            GameActions.Bottom.VFX(new PotionBounceEffect(player.hb.cY, player.hb.cX, m.hb.cX, m.hb.cY), 0.3f);
+            //noinspection SuspiciousNameCombination
+            GameActions.Bottom.VFX(new PotionBounceEffect(p.hb.cY, p.hb.cX, m.hb.cX, m.hb.cY), 0.3f);
             GameActions.Bottom.ApplyPoison(p, m, magicNumber * stacks);
 
             if (CombatStats.TryActivateLimited(cardID))
@@ -55,7 +58,8 @@ public class LuciaKonohana extends AnimatorCard {
 
     public static class LuciaKonohanaPower extends AnimatorPower
     {
-        public LuciaKonohanaPower(AbstractCreature owner, int amount) {
+        public LuciaKonohanaPower(AbstractCreature owner, int amount)
+        {
             super(owner, LuciaKonohana.DATA);
 
             this.amount = amount;

@@ -47,7 +47,7 @@ public class Zadkiel extends AnimatorCard
         int frostCount = JavaUtilities.Count(player.orbs, orb -> Frost.ORB_ID.equals(orb.ID));
         if (frostCount >= magicNumber)
         {
-            GameActions.Bottom.Callback(__ ->
+            GameActions.Bottom.Callback(() ->
             {
                 int[] damageMatrix = DamageInfo.createDamageMatrix(player.currentBlock);
                 GameActions.Bottom.VFX(new WhirlwindEffect());

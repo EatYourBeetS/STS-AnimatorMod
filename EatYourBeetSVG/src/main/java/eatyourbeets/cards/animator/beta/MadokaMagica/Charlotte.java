@@ -47,14 +47,14 @@ public class Charlotte extends AnimatorCard
         .SetDamageEffect(e ->
         {
             GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40.0F * Settings.scale, Color.WHITE.cpy()));
-
             if (damage > 30)
             {
                 GameEffects.List.Add(new HemokinesisEffect(e.hb.cX, e.hb.cY, player.hb.cX, player.hb.cY));
                 GameEffects.List.Add(new BorderFlashEffect(Color.RED));
                 GameActions.Top.Add(new ShakeScreenAction(0.3f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
             }
-        }).AddCallback(c ->
+        })
+        .AddCallback(c ->
         {
             if (GameUtilities.TriggerOnKill(c, true))
             {

@@ -23,6 +23,7 @@ public class EriShiina extends AnimatorCard
             DATA.AddPreview(knife, false);
         }
     }
+
     public EriShiina()
     {
         super(DATA);

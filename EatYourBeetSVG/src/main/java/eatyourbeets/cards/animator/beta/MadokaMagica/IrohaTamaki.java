@@ -32,6 +32,11 @@ public class IrohaTamaki extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         GameActions.Bottom.GainBlock(block);
 
+        if (HasSynergy())
+        {
+            GameActions.Top.Scry(magicNumber);
+        }
+
         if (p.drawPile.size() > 0)
         {
             AbstractCard topCard = p.drawPile.getTopCard();
@@ -39,11 +44,6 @@ public class IrohaTamaki extends AnimatorCard
             {
                 GameActions.Top.Exhaust(topCard);
             }
-        }
-
-        if (HasSynergy())
-        {
-            GameActions.Top.Scry(magicNumber);
         }
     }
 }

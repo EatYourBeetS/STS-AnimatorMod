@@ -24,7 +24,6 @@ public class HidekiHinata extends AnimatorCard
         SetUpgrade(3, 0, 0, 0);
 
         SetSynergy(Synergies.AngelBeats);
-
         CardModifierManager.addModifier(this, new AfterLifeMod());
     }
 
@@ -40,7 +39,8 @@ public class HidekiHinata extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
         GameActions.Bottom.Reload(name, cards ->
         {
-            for (int i = 0; i < cards.size(); i++) {
+            for (int i = 0; i < cards.size(); i++)
+            {
                 GameActions.Bottom.GainBlock(secondaryValue);
             }
         });

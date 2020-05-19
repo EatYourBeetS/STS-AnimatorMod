@@ -32,7 +32,8 @@ public class SayakaMiki extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade() {
+    protected void OnUpgrade()
+    {
         SetInnate(true);
     }
 

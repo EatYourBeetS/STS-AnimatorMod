@@ -473,13 +473,13 @@
 	{
 		"animator:YuriNakamura":
 		{
-			"DESCRIPTION": "Give a card in your hand {Retain}. ** {Synergy}: Give it {Afterlife} as well.",
+			"DESCRIPTION": "Give a card in your hand {Retain}. || {Synergy}: Give it {Afterlife} as well.",
 			"EXTENDED_DESCRIPTION": ["give Retain.", "give Retain and Afterlife."],
 			"NAME": "Yuri Nakamura"
 		},
 		"animator:KanadeTachibana":
 		{
-			"DESCRIPTION": "Put any number of cards from your discard pile into your hand. ** Exhaust any number of cards.",
+			"DESCRIPTION": "Put any number of cards from your discard pile into your hand. || Exhaust any number of cards.",
 			"EXTENDED_DESCRIPTION": ["Choose any number of cards to put into your hand."],
 			"NAME": "Kanade Tachibana"
 		},
@@ -490,7 +490,7 @@
 		},
 		"animator:MasamiIwasawa":
 		{
-			"DESCRIPTION": "Put !S! {Dazed} on top of your draw pile. ** {Limited}. {Synergy}: Draw !M! card(s).",
+			"DESCRIPTION": "Put !S! {Dazed} on top of your draw pile. || <LIM>. {Synergy}: Draw !M! card(s).",
 			"NAME": "Masami Iwasawa"
 		},
 		"animator:Chaa":
@@ -506,27 +506,27 @@
 		},
 		"animator:Noda":
 		{
-			"DESCRIPTION": "Draw !M! card(s) next turn. ** {Semi-Limited}. {Synergy}. Gain/Boost [F] .",
+			"DESCRIPTION": "Draw !M! card(s) next turn. || <SLM>. {Synergy}. Gain/Boost [F] .",
 			"NAME": "Noda"
 		},
 		"animator:HidekiHinata":
 		{
-			"DESCRIPTION": "{Reload}: Gain !S! Block. ** {Synergy}. Deal !M! additional damage.",
+			"DESCRIPTION": "{Reload}: Gain !S! Block. || {Synergy}. Deal !M! additional damage.",
 			"NAME": "Hideki Hinata"
 		},
 		"animator:Yusa":
 		{
-			"DESCRIPTION": "{Scry} !S!. ** Exhaust !M! card(s). ** Limited: When this card is discarded, add an {Insight} to your discard pile.",
+			"DESCRIPTION": "{Scry} !S!. Exhaust !M! card(s). || <LIM>: When this card is discarded, add an {Insight} to your discard pile.",
 			"NAME": "Yusa"
 		},
 		"animator:Yui":
 		{
-			"DESCRIPTION": "Motivate !S!. ** Semi-Limited. Synergy: Gain [E].",
+			"DESCRIPTION": "Motivate !S!. || <SLM>. Synergy: Gain [E].",
 			"NAME": "Yui"
 		},
 		"animator:AngelAlter":
 		{
-			"DESCRIPTION": "{Boost} [F] and [A] . ** Shuffle a copy of this card into your draw and discard piles.",
+			"DESCRIPTION": "{Boost} [F] and [A] . || Shuffle a copy of this card into both your draw and discard piles.",
 			"NAME": "Angel Alter"
 		},
 		"animator:Strike_AngelBeats":

@@ -16,7 +16,6 @@ import eatyourbeets.utilities.GameUtilities;
 public class Chaa extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Chaa.class).SetPower(2, CardRarity.UNCOMMON);
-    private boolean fromSynergy = false;
 
     public Chaa()
     {
@@ -32,21 +31,6 @@ public class Chaa extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.StackPower(new ChaaPower(p, magicNumber));
-    }
-
-    @Override
-    public void Refresh(AbstractMonster enemy) {
-        super.Refresh(enemy);
-        if (HasSynergy()) {
-            setCostForTurn(0);
-            fromSynergy = true;
-        } else {
-            if (fromSynergy) {
-                setCostForTurn(this.cost);
-                this.isCostModifiedForTurn = false;
-                fromSynergy = false;
-            }
-        }
     }
 
     public static class ChaaPower extends AnimatorPower

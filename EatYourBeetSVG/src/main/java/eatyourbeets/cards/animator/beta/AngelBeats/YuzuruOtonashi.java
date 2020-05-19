@@ -35,8 +35,6 @@ public class YuzuruOtonashi extends AnimatorCard
                             GameActions.Bottom.GainForce(1, true);
                         } else if (card.type == CardType.SKILL) {
                             GameActions.Bottom.GainTemporaryHP(secondaryValue);
-                        } else if (card.type == CardType.POWER) {
-                            GameActions.Bottom.GainEnergy(1);
                         } else if (card.type == CardType.CURSE || card.type == CardType.STATUS) {
                             GameActions.Bottom.Draw(1);
                         }

@@ -495,13 +495,13 @@
 		},
 		"animator:Chaa":
 		{
-			"DESCRIPTION": "At the start of your turn, exhaust a card, then add a random card of the next rarity to your hand. ** {Synergy}: This card costs 0.",
+			"DESCRIPTION": "At the start of your turn, exhaust a card, then add a random card of the next rarity to your hand.",
 			"EXTENDED_DESCRIPTION": ["At the start of your turn, #yexhaust #b{0} card(s), then add a random card of the next rarity to your hand for each card #yexhausted."],
 			"NAME": "Chaa"
 		},
 		"animator:YuzuruOtonashi":
 		{
-			"DESCRIPTION": "Exhaust up to !M! cards. For each card exhausted, gain an effect based on its type: || {~Attack} -> Boost [F] . ** {~Skill} -> Gain !S! {Temporary HP}. ** {~Power} -> Gain [E] . ** Hindrance -> Draw a card.",
+			"DESCRIPTION": "Exhaust up to !M! cards. For each card exhausted, gain an effect based on its type: || {~Attack} -> Boost [F] . ** {~Skill} -> Gain !S! {Temporary HP}. ** Hindrance -> Draw a card.",
 			"NAME": "Yuzuru Otonashi"
 		},
 		"animator:Noda":
@@ -516,7 +516,7 @@
 		},
 		"animator:Yusa":
 		{
-			"DESCRIPTION": "{Scry} !S!. ** Exhaust !M! card(s). ** Limited: When this card is discarded, add a {Madness} to your discard pile.",
+			"DESCRIPTION": "{Scry} !S!. ** Exhaust !M! card(s). ** Limited: When this card is discarded, add an {Insight} to your discard pile.",
 			"NAME": "Yusa"
 		},
 		"animator:Yui":

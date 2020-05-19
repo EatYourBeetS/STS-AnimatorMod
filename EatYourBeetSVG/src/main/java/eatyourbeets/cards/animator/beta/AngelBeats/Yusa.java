@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.beta.AngelBeats;
 
 import com.megacrit.cardcrawl.cards.colorless.Madness;
+import com.megacrit.cardcrawl.cards.tempCards.Insight;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -36,7 +37,7 @@ public class Yusa extends AnimatorCard
     {
         super.triggerOnManualDiscard();
         if (CombatStats.TryActivateLimited(cardID)) {
-            GameActions.Bottom.MakeCardInDiscardPile(new Madness());
+            GameActions.Bottom.MakeCardInDiscardPile(new Insight());
         }
     }
 }

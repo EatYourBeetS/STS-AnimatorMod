@@ -28,6 +28,8 @@ public class AngelBeats extends AnimatorLoadout
             startingDeck.add(Strike.DATA.ID);
             startingDeck.add(Strike.DATA.ID);
             startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);

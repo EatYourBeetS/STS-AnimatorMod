@@ -48,26 +48,26 @@ public class FielNirvalen extends AnimatorCard
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.StackPower(new FielNirvalenPower(p, SCRY_AMOUNT));
         GameActions.Bottom.SelectFromPile(name, secondaryValue, group)
-        .SetOptions(false, false)
-        .SetMessage(CardRewardScreen.TEXT[1])
-        .AddCallback(cards ->
-        {
-            for (AbstractCard card : cards)
-            {
-                card.use(player, null);
-            }
-        });
+                .SetOptions(false, false)
+                .SetMessage(CardRewardScreen.TEXT[1])
+                .AddCallback(cards ->
+                {
+                    for (AbstractCard card : cards)
+                    {
+                        card.use(player, null);
+                    }
+                });
     }
 
     private AnimatorCard_Dynamic CreateChoice(String text, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onSelect)
     {
         return new AnimatorCardBuilder(cardID)
-        .SetImage(assetUrl)
-        .SetProperties(CardType.SKILL, rarity, CardTarget.NONE)
-        .SetCost(-2, 0)
-        .SetOnUse(onSelect)
-        .SetText(name, text, text)
-        .SetSynergy(synergy, false).Build();
+                .SetImage(assetUrl)
+                .SetProperties(CardType.SKILL, rarity, CardTarget.NONE)
+                .SetCost(-2, 0)
+                .SetOnUse(onSelect)
+                .SetText(name, text, text)
+                .SetSynergy(synergy, false).Build();
     }
 
     public static class FielNirvalenPower extends AnimatorPower implements OnShuffleSubscriber
@@ -111,7 +111,7 @@ public class FielNirvalen extends AnimatorCard
             if (enabled)
             {
                 this.flash();
-                GameActions.Top.Scry(amount);
+                GameActions.Bottom.Scry(amount);
                 enabled = false;
             }
         }

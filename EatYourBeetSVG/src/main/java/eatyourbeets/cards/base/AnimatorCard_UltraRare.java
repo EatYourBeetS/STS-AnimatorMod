@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.animator.ultrarare.HolyGrail;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -45,9 +46,8 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
                     }
                 }
             }
-            
-            //Cards.put(Cthulhu.ID, new Cthulhu());
-            //Cards.put(InfinitePower.ID, new InfinitePower());
+
+            cards.put(HolyGrail.DATA.ID, new HolyGrail());
         }
 
         return cards;

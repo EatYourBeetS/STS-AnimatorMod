@@ -57,6 +57,8 @@ public class CardTooltips
     public EYBCardTooltip Poison = FindByID("Poison");
     public EYBCardTooltip Burning = FindByID("Burning");
     public EYBCardTooltip Thorns = FindByID("Thorns");
+    public EYBCardTooltip FlameBarrier = FindByID("Flame Barrier");
+    public EYBCardTooltip Blur = FindByID("Blur");
     public EYBCardTooltip Artifact = FindByID("Artifact");
     public EYBCardTooltip Shackles = FindByID("Shackles");
     public EYBCardTooltip Lightning = FindByID("Lightning");
@@ -123,7 +125,12 @@ public class CardTooltips
         CommonImages.Tooltips tooltips = GR.Common.Images.Tooltips;
         ThrowingKnife.SetIcon(tooltips.ThrowingKnife.Texture(), 6);
         Lightning.SetIcon(tooltips.Lightning.Texture(), 6);
+        Fire.SetIcon(tooltips.Fire.Texture(), 6);
         Plasma.SetIcon(tooltips.Plasma.Texture(), 6);
+        Dark.SetIcon(tooltips.Dark.Texture(), 6);
+        Frost.SetIcon(tooltips.Frost.Texture(), 6);
+        Aether.SetIcon(tooltips.Aether.Texture(), 6);
+        Earth.SetIcon(tooltips.Earth.Texture(), 6);
         RandomOrb.SetIcon(tooltips.RandomOrb.Texture(), 6);
         Gold.SetIcon(ImageMaster.UI_GOLD, 6);
 
@@ -132,6 +139,8 @@ public class CardTooltips
         LoadFromPower(Metallicize, new MetallicizePower(FakeCharacter.Instance, 0));
         LoadFromPower(PlatedArmor, new PlatedArmorPower(FakeCharacter.Instance, 0));
         LoadFromPower(Thorns, new ThornsPower(FakeCharacter.Instance, 0));
+        LoadFromPower(FlameBarrier, new FlameBarrierPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Blur, new BlurPower(FakeCharacter.Instance, 0));
         LoadFromPower(Artifact, new ArtifactPower(FakeCharacter.Instance, 0));
         LoadFromPower(Shackles, new GainStrengthPower(FakeCharacter.Instance, 0));
 

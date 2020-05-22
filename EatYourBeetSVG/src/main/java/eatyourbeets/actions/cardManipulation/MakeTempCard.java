@@ -19,8 +19,6 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 {
-    private transient AbstractGameEffect effect;
-
     protected final CardGroup cardGroup;
     protected boolean upgrade;
     protected boolean makeCopy;
@@ -43,6 +41,15 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         }
 
         Initialize(1);
+    }
+
+    public MakeTempCard Repeat(int times)
+    {
+        this.amount = times;
+
+        SetDuration(times < 2 ? Settings.ACTION_DUR_FAST : times < 3 ? Settings.ACTION_DUR_FASTER : Settings.ACTION_DUR_XFAST, isRealtime);
+
+        return this;
     }
 
     public MakeTempCard CancelIfFull(boolean cancelIfFull)
@@ -88,7 +95,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         {
             case DRAW_PILE:
             {
-                effect = GameEffects.List.Add(new ShowCardAndAddToDrawPileEffect(actualCard,
+                AbstractGameEffect effect = GameEffects.List.Add(new ShowCardAndAddToDrawPileEffect(actualCard,
                 (float) Settings.WIDTH / 2f - ((25f * Settings.scale) + AbstractCard.IMG_WIDTH),
                 (float) Settings.HEIGHT / 2f, true, true, false));
 
@@ -114,7 +121,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
                 else
                 {
                     // If you don't specify x and y it won't play the card obtain sfx
-                    effect = GameEffects.List.Add(new ShowCardAndAddToHandEffect(actualCard,
+                    GameEffects.List.Add(new ShowCardAndAddToHandEffect(actualCard,
                     (float) Settings.WIDTH / 2f - ((25f * Settings.scale) + AbstractCard.IMG_WIDTH),
                     (float) Settings.HEIGHT / 2f));
                 }
@@ -124,7 +131,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 
             case DISCARD_PILE:
             {
-                effect = GameEffects.List.Add(new ShowCardAndAddToDiscardEffect(actualCard));
+                GameEffects.List.Add(new ShowCardAndAddToDiscardEffect(actualCard));
 
                 break;
             }
@@ -158,24 +165,24 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
                 break;
             }
         }
-
-        if (destination == null)
-        {
-            effect = null; // no need to wait for effect
-        }
     }
 
     @Override
     protected void UpdateInternal(float deltaTime)
     {
-        if (effect != null && !effect.isDone)
-        {
-            isDone = false;
-            return; // Destination will change position of the card after the effect is completed
-        }
-
         if (TickDuration(deltaTime))
         {
+            if (amount > 1)
+            {
+                MakeTempCard copy = new MakeTempCard(actualCard, cardGroup);
+                copy.Import(this);
+                copy.destination = destination;
+                copy.makeCopy = copy.upgrade = false;
+                copy.cancelIfFull = cancelIfFull;
+                copy.amount = amount - 1;
+                GameActions.Top.Add(copy);
+            }
+
             Complete(actualCard);
 
             if (destination != null && cardGroup.group.remove(actualCard))

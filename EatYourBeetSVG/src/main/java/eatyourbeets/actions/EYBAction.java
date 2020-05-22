@@ -192,4 +192,13 @@ public abstract class EYBAction extends AbstractGameAction
     {
         TickDuration(GetDeltaTime());
     }
+
+    protected void Import(EYBAction other)
+    {
+        SetDuration(other.startDuration, other.isRealtime);
+        IsCancellable(other.canCancel);
+        tags.addAll(other.tags);
+        name = other.name;
+        message = other.message;
+    }
 }

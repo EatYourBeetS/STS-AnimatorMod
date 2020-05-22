@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import eatyourbeets.actions.EYBActionWithCallbackT2;
+import eatyourbeets.actions.special.DelayAllActions;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -220,18 +221,18 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
 
     protected boolean CanUse()
     {
-        return card.canUse(player, (AbstractMonster)target);
+        return card.canUse(player, (AbstractMonster)target) || card.dontTriggerOnUseCard;
     }
 
     protected void ShowCard()
     {
+        GameUtilities.RefreshHandLayout();
+        AbstractDungeon.getCurrRoom().souls.remove(card);
+
         if (!player.limbo.contains(card))
         {
             player.limbo.addToBottom(card);
         }
-
-        GameUtilities.RefreshHandLayout();
-        AbstractDungeon.getCurrRoom().souls.remove(card);
 
         if (currentPosition != null)
         {
@@ -252,6 +253,11 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
     {
         final AbstractMonster enemy = (AbstractMonster) target;
 
+        if (!player.limbo.contains(card))
+        {
+            player.limbo.addToBottom(card);
+        }
+
         if (!spendEnergy)
         {
             card.freeToPlayOnce = true;
@@ -261,10 +267,13 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
         card.purgeOnUse = purge;
         card.calculateCardDamage(enemy);
 
-        AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(card, enemy, EnergyPanel.getCurrentEnergy(), false, !spendEnergy), false);
-
         GameActions.Top.Add(new UnlimboAction(card));
-        GameActions.Top.Add(new WaitAction(Settings.FAST_MODE ? Settings.ACTION_DUR_FASTER : Settings.ACTION_DUR_MED));
+        GameActions.Top.Wait(Settings.FAST_MODE ? Settings.ACTION_DUR_FASTER : Settings.ACTION_DUR_MED);
+
+        GameActions.Top.Add(new DelayAllActions()) // So the result of canUse() does not randomly change after queueing the card
+        .Except(a -> a instanceof PlayCard || a instanceof UnlimboAction || a instanceof WaitAction);
+
+        AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(card, enemy, EnergyPanel.getCurrentEnergy(), false, !spendEnergy), true);
 
         Complete(enemy);
     }

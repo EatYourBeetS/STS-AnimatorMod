@@ -212,7 +212,7 @@
 	},
 	"~Elemental":
 	{
-		"DESCRIPTION": "Ignores #yThorns. Deal 30% more damage if the enemy has #yBlock.",
+		"DESCRIPTION": "Ignores #yThorns. Deal #b30% additional damage if the enemy has #yBlock.",
 		"NAMES": ["~elemental"],
 		"PROPER_NAME": "Elemental Damage"
 	},

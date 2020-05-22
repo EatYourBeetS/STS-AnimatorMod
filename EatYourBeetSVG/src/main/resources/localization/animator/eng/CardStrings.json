@@ -290,20 +290,19 @@
 		},
 		"animator:KotoriItsuka":
 		{
-			"DESCRIPTION": "Apply !S! {Burning} if ** Limited was triggered. || <LIM>. You may Exhaust up ** to 5 cards. Boost [F][A] and ** add 1 Burn to your hand ** for each card Exhausted.",
+			"DESCRIPTION": "You may {Exhaust} up ** to !M! cards. Boost [F][A] and ** add 1 {Burn} to your hand ** for each card Exhausted.",
 			"NAME": "Kotori Itsuka"
 		},
 		"animator:KurumiTokisaki":
 		{
-			"DESCRIPTION": "When drawn: Play this card. || Next turn: Gain [E] [E] [E]. || Cooldown !S!: Skip the enemy's ** next turn. Shuffle 3 copies of ** this card into your draw pile.",
+			"DESCRIPTION": "When drawn: Play this card. || Next turn: Gain [E] [E]. || Cooldown !S!: Skip the enemy's ** next turn. Shuffle 3 copies of ** this card into your draw pile.",
 			"NAME": "Kurumi Tokisaki"
 		},
 		"animator:MikuIzayoi":
 		{
 			"DESCRIPTION": "Unaffected by Block modifiers. || When Discarded: Raise ** your {Common Buffs} by !M!.",
 			"EXTENDED_DESCRIPTION": ["Common Buffs", "#yForce, #yAgility, #yIntellect, #yThorns, #yTemp. #yThorns, #yMetallicize, #yPlated #yArmor. "],
-			"NAME": "Miku Izayoi",
-			"UPGRADE_DESCRIPTION": "Motivate 1. || Unaffected by Block modifiers. || When Discarded: Raise ** your {Common Buffs} by !M!."
+			"NAME": "Miku Izayoi"
 		},
 		"animator:MioTakamiya":
 		{
@@ -423,7 +422,7 @@
 		},
 		"animator:Midou":
 		{
-			"DESCRIPTION": "Apply !M! {Lock-On} to ** ALL enemies. || When Exhausted: ** Channel !S! Fire.",
+			"DESCRIPTION": "Add !M! {Burn} to your hand. || When Exhausted: ** Channel !S! Fire.",
 			"NAME": "Midou"
 		},
 		"animator:SakuraKashima":

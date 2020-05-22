@@ -18,15 +18,19 @@ public class MikuIzayoi extends AnimatorCard
     public static final EYBCardData DATA = Register(MikuIzayoi.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
     public static final EYBCardTooltip CommonBuffs = new EYBCardTooltip(DATA.Strings.EXTENDED_DESCRIPTION[0], DATA.Strings.EXTENDED_DESCRIPTION[1]);
 
-    public static final int BLOCK_AMOUNT = 9;
-
     public MikuIzayoi()
     {
         super(DATA);
 
-        Initialize(0, BLOCK_AMOUNT, 1);
+        Initialize(0, 9, 1);
+        SetEthereal(true);
 
         SetSynergy(Synergies.DateALive);
+    }
+
+    @Override
+    public void upgrade() {
+        SetEthereal(false);
     }
 
     @Override
@@ -41,9 +45,9 @@ public class MikuIzayoi extends AnimatorCard
     }
 
     @Override
-    protected float ModifyBlock(AbstractMonster enemy, float amount)
+    protected void UpdateBlock(float amount)
     {
-        return BLOCK_AMOUNT;
+        super.UpdateBlock(baseBlock);
     }
 
     @Override
@@ -87,11 +91,6 @@ public class MikuIzayoi extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (upgraded)
-        {
-            GameActions.Bottom.Motivate();
-        }
-
         GameActions.Bottom.GainBlock(block);
     }
 }

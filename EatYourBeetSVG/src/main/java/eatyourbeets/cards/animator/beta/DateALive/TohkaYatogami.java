@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 public class TohkaYatogami extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(TohkaYatogami.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal);
-    public static final int DAMAGE_AMOUNT = 10;
+
     static
     {
         DATA.AddPreview(new InverseTohka(), true);
@@ -22,7 +22,7 @@ public class TohkaYatogami extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(DAMAGE_AMOUNT, 0, 10);
+        Initialize(10, 0, 10);
 
         SetSynergy(Synergies.DateALive);
     }

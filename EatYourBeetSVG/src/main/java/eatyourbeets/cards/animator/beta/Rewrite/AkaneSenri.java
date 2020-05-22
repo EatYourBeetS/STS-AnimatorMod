@@ -31,6 +31,7 @@ public class AkaneSenri extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
         GameActions.Bottom.StackPower(new AkaneSenriPower(p, magicNumber, secondaryValue));
 

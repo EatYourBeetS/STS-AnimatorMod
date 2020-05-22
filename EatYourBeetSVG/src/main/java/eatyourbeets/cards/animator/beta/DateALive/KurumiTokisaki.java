@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.DateALive;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.watcher.SkipEnemiesTurnAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
@@ -20,7 +21,9 @@ public class KurumiTokisaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(12, 12, 3);
+        Initialize(12, 12, 2);
+
+        SetEthereal(true);
 
         SetCooldown(3, -1, this::OnCooldownCompleted);
         SetSynergy(Synergies.DateALive);
@@ -39,9 +42,7 @@ public class KurumiTokisaki extends AnimatorCard
 
         GameActions.Bottom.PlayCard(this, player.hand, null)
         .SpendEnergy(true)
-        // Uncomment this condition if you want the action to stop early,
-        // without attempting to play the card and showing 'Not enough energy' message
-        /*.AddCondition(AbstractCard::hasEnoughEnergy)*/;
+        .AddCondition(AbstractCard::hasEnoughEnergy);
     }
 
     @Override

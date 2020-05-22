@@ -32,7 +32,7 @@ public class KurumiTokisaki extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetScaling(2, 2, 2);
+        SetEthereal(false);
     }
 
     @Override

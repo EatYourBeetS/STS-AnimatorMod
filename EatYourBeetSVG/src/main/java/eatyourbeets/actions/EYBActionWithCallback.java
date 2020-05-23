@@ -51,4 +51,12 @@ public abstract class EYBActionWithCallback<T> extends EYBAction
 
         Complete();
     }
+
+    @Override
+    protected void Import(EYBAction other)
+    {
+        super.Import(other);
+
+        callbacks.addAll(((EYBActionWithCallback<T>)other).callbacks);
+    }
 }

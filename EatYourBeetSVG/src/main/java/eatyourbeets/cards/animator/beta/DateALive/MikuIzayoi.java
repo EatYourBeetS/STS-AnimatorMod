@@ -29,7 +29,7 @@ public class MikuIzayoi extends AnimatorCard
     }
 
     @Override
-    public void upgrade() {
+    public void OnUpgrade() {
         SetEthereal(false);
     }
 

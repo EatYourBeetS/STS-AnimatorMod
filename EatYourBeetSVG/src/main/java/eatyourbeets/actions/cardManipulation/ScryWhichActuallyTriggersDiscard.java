@@ -52,7 +52,6 @@ public class ScryWhichActuallyTriggersDiscard extends EYBActionWithCallback<Arra
         }
         else
         {
-
             for (AbstractCard c : player.drawPile.group)
             {
                 group.addToBottom(c);

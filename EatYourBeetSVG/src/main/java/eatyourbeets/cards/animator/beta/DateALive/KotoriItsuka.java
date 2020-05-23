@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class KotoriItsuka extends AnimatorCard
@@ -21,7 +22,7 @@ public class KotoriItsuka extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0, 5);
+        Initialize(8, 0, 2, 5);
         SetUpgrade(4, 0, 0);
         SetExhaust(true);
 
@@ -29,13 +30,22 @@ public class KotoriItsuka extends AnimatorCard
     }
 
     @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
+        for (int i=0; i<magicNumber; i++)
+        {
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
+        }
 
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
 
-        GameActions.Bottom.ExhaustFromHand(name, magicNumber, false)
+        GameActions.Bottom.ExhaustFromHand(name, secondaryValue, false)
                 .SetOptions(true, true, true)
         .AddCallback(cards ->
         {

@@ -34,22 +34,33 @@ public class YuriNakamura extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActions.Bottom.SelectFromHand(name, magicNumber, false)
         .SetOptions(false, false, false)
-        .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[HasSynergy() ? 1 : 0])
+        .SetFilter(c -> !c.isEthereal)
+        .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
         .AddCallback(cards ->
         {
             if (cards.size() > 0)
             {
                 AbstractCard card = cards.get(0);
-                if (HasSynergy())
-                {
-                    if (!CardModifierManager.hasModifier(card, AfterLifeMod.ID))
-                    {
-                        CardModifierManager.addModifier(card, new AfterLifeMod());
-                    }
-                }
                 card.selfRetain = true;
                 card.flash();
             }
         });
+
+        if (HasSynergy()) {
+            GameActions.Bottom.SelectFromHand(name, magicNumber, false)
+            .SetOptions(false, false, false)
+            .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])
+            .AddCallback(cards ->
+            {
+                if (cards.size() > 0)
+                {
+                    AbstractCard card = cards.get(0);
+                    if (!CardModifierManager.hasModifier(card, AfterLifeMod.ID)) {
+                        CardModifierManager.addModifier(card, new AfterLifeMod());
+                    }
+                    card.flash();
+                }
+            });
+        }
     }
 }

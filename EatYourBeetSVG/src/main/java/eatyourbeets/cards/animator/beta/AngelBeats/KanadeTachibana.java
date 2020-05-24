@@ -45,7 +45,9 @@ public class KanadeTachibana extends AnimatorCard
             }
         });
 
-        GameActions.Bottom.ExhaustFromHand(name, BaseMod.MAX_HAND_SIZE, false)
-        .SetOptions(true, true, true);
+        if (HasSynergy()) {
+            GameActions.Bottom.ExhaustFromHand(name, BaseMod.MAX_HAND_SIZE, false)
+            .SetOptions(true, true, true);
+        }
     }
 }

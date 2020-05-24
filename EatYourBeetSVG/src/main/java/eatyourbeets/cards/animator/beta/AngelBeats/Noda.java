@@ -21,7 +21,7 @@ public class Noda extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 1, 1);
+        Initialize(6, 0, 1, 1);
         SetUpgrade(1, 0, 0, 0);
 
         SetSynergy(Synergies.AngelBeats);

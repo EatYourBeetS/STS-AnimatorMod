@@ -472,13 +472,13 @@
 	{
 		"animator:YuriNakamura":
 		{
-			"DESCRIPTION": "Give a card in your hand {Retain}. || {Synergy}: Give it {Afterlife} as well.",
-			"EXTENDED_DESCRIPTION": ["give Retain.", "give Retain and Afterlife."],
+			"DESCRIPTION": "Give a non-{Ethereal} card in your hand {Retain}. || {Synergy}: Give a card in your hand {Afterlife}.",
+			"EXTENDED_DESCRIPTION": ["give Retain.", "give Afterlife."],
 			"NAME": "Yuri Nakamura"
 		},
 		"animator:KanadeTachibana":
 		{
-			"DESCRIPTION": "Put any number of cards from your discard pile into your hand. || Exhaust any number of cards.",
+			"DESCRIPTION": "Put any number of cards from your discard pile into your hand. || Synergy: Exhaust any number of cards.",
 			"EXTENDED_DESCRIPTION": ["Choose any number of cards to put into your hand."],
 			"NAME": "Kanade Tachibana"
 		},

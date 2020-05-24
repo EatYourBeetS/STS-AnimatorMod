@@ -290,7 +290,7 @@
 		},
 		"animator:KotoriItsuka":
 		{
-			"DESCRIPTION": "You may {Exhaust} up ** to !M! cards. Boost [F][A] and ** add 1 {Burn} to your hand ** for each card Exhausted.",
+			"DESCRIPTION": "You may {Exhaust} up to ** !M! cards. Boost [F][A] and ** add 1 {Burn} to your hand ** for each card Exhausted.",
 			"NAME": "Kotori Itsuka"
 		},
 		"animator:KurumiTokisaki":

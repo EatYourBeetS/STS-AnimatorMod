@@ -8,6 +8,11 @@ public class ForcePower extends PlayerAttributePower
 {
     public static final String POWER_ID = CreateFullID(ForcePower.class);
 
+    public static int GetCurrentLevel()
+    {
+        return GetLevel(ForcePower.class);
+    }
+
     public ForcePower(AbstractCreature owner, int amount)
     {
         super(POWER_ID, owner, amount);

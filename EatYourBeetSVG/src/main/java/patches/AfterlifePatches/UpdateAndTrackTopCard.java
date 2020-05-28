@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 
 public class UpdateAndTrackTopCard {
-    private static final float RENDER_X = 120 * Settings.scale;
+    private static final float RENDER_X = 1800 * Settings.scale;
     private static final float RENDER_Y = 400 * Settings.scale;
 
     @SpirePatch(
@@ -61,6 +61,8 @@ public class UpdateAndTrackTopCard {
                         last.shrink();
                     }
                     Fields.originalCurrentCard.set(AbstractDungeon.player.exhaustPile, top);
+                    //We make a clone and render it to the player so we don't get the
+                    //"card is in two places at once visual glitch"
                     AbstractCard clone = top.makeStatEquivalentCopy();
                     Fields.currentCard.set(AbstractDungeon.player.exhaustPile, clone);
                     glowCheck(clone);

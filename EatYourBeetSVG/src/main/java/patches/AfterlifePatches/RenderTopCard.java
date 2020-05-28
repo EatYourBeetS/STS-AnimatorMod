@@ -33,6 +33,7 @@ public class RenderTopCard {
                     AbstractCard c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
                     if (!c.equals(AbstractDungeon.player.hoveredCard))
                     {
+                        c.drawScale = 0.25f;
                         c.render(sb);
                     }
                 }

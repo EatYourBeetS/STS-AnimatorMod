@@ -17,7 +17,7 @@ import java.util.ArrayList;
         method = "updateInput"
 )
 public class HoverTopCard {
-    private static final float HOVERED_X_POSITION = 180 * Settings.scale;
+    private static final float HOVERED_X_POSITION = 1740 * Settings.scale;
     private static final float HOVERED_Y_POSITION = 470 * Settings.scale;
 
     @SpireInsertPatch(

@@ -23,6 +23,7 @@ public class ControllableCard
     public ControllableCard(AbstractCard card)
     {
         this.card = card;
+        this.state = State.Enabled;
     }
 
     public ControllableCard OnUpdate(Object state, ActionT2<Object, ControllableCard> onCompletion)

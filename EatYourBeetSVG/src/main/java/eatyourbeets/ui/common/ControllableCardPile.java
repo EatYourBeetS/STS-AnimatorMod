@@ -14,6 +14,8 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.unnamed.UnnamedResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -23,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 // TODO: Move to a different folder
-public class ControllableCardPile
+public class ControllableCardPile implements OnPhaseChangedSubscriber
 {
     // Temporary Textures
     private static final Texture Orb_BG = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_BG.png");
@@ -41,6 +43,7 @@ public class ControllableCardPile
 
     public void Clear()
     {
+        CombatStats.onPhaseChanged.Subscribe(this);
         EnergyPanelPatches.Pile = this;
         controllers.clear();
     }
@@ -56,18 +59,12 @@ public class ControllableCardPile
         return Add(new ControllableCard(card));
     }
 
-    public void Update(EnergyPanel panel)
+    @Override
+    public void OnPhaseChanged(GameActionManager.Phase phase)
     {
-        time += Gdx.graphics.getRawDeltaTime();
-        isHidden = controllers.isEmpty();
-        if (isHidden)
-        {
-            return;
-        }
-
         group.clear();
         Iterator<ControllableCard> i = controllers.iterator();
-        while(i.hasNext())
+        while (i.hasNext())
         {
             ControllableCard c = i.next();
             c.Update();
@@ -79,6 +76,16 @@ public class ControllableCardPile
             {
                 group.group.add(c.card);
             }
+        }
+    }
+
+    public void Update(EnergyPanel panel)
+    {
+        time += Gdx.graphics.getRawDeltaTime();
+        isHidden = group.isEmpty();
+        if (isHidden)
+        {
+            return;
         }
 
         hb.update();
@@ -94,11 +101,12 @@ public class ControllableCardPile
                 .SetOptions(false, true)
                 .AddCallback(cards ->
                 {
-                    if (cards.size() > 0)
+                    AbstractCard card = cards.size() > 0 ? cards.get(0) : null;
+                    if (card != null)
                     {
                         for (ControllableCard c : controllers)
                         {
-                            if (c.card == cards.get(0))
+                            if (c.card == card)
                             {
                                 c.Select();
                                 return;
@@ -112,14 +120,16 @@ public class ControllableCardPile
 
     public void Render(EnergyPanel panel, SpriteBatch sb)
     {
-        if (!isHidden)
+        if (isHidden)
         {
-            sb.setColor(Color.WHITE);
-            sb.draw(Orb_BG, hb.x, hb.y, hb.width, hb.height);
-            sb.draw(Orb_VFX2, hb.x, hb.y, hb.width / 2f, hb.height / 2f, hb.width, hb.height, 1.2f, 1.2f, time * -7f % 360f, 0, 0, 128, 128, false, false);
-            sb.draw(Orb_VFX1, hb.x, hb.y, hb.width / 2f, hb.height / 2f, hb.width, hb.height, 1f, 1f, time * 6f % 360f, 0, 0, 128, 128, false, false);
-            sb.draw(Orb_FG, hb.x, hb.y, hb.width, hb.height);
-            FontHelper.renderFontCentered(sb, FontHelper.energyNumFontBlue, String.valueOf(group.size()), 201.6f * Settings.scale, 321.6f * Settings.scale, Color.WHITE.cpy());
+            return;
         }
+
+        sb.setColor(Color.WHITE);
+        sb.draw(Orb_BG, hb.x, hb.y, hb.width, hb.height);
+        sb.draw(Orb_VFX2, hb.x, hb.y, hb.width / 2f, hb.height / 2f, hb.width, hb.height, 1.2f, 1.2f, time * -7f % 360f, 0, 0, 128, 128, false, false);
+        sb.draw(Orb_VFX1, hb.x, hb.y, hb.width / 2f, hb.height / 2f, hb.width, hb.height, 1f, 1f, time * 6f % 360f, 0, 0, 128, 128, false, false);
+        sb.draw(Orb_FG, hb.x, hb.y, hb.width, hb.height);
+        FontHelper.renderFontCentered(sb, FontHelper.energyNumFontBlue, String.valueOf(group.size()), 201.6f * Settings.scale, 321.6f * Settings.scale, Color.WHITE.cpy());
     }
 }

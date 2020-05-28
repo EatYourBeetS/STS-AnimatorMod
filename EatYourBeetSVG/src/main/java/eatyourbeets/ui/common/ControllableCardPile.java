@@ -88,12 +88,12 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
             return;
         }
 
-        //Uncomment this to render card previews
-        //GR.UI.AddPostRender(this::PostRender);
-
         hb.update();
         if (hb.hovered && GameUtilities.InBattle() && !AbstractDungeon.isScreenUp)
         {
+            //Uncomment this to render card previews
+            //GR.UI.AddPostRender(this::PostRender);
+            
             // TODO: Localization
             TipHelper.renderGenericTip(50f * Settings.scale, hb.y + hb.height * 2, "Command Pile",
             "You may activate cards' effects from this pile by selecting them during your turn.");

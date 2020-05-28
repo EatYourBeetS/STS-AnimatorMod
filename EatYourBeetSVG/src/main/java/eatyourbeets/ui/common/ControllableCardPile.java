@@ -88,6 +88,9 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
             return;
         }
 
+        //Uncomment this to render card previews
+        //GR.UI.AddPostRender(this::PostRender);
+
         hb.update();
         if (hb.hovered && GameUtilities.InBattle() && !AbstractDungeon.isScreenUp)
         {
@@ -131,5 +134,10 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         sb.draw(Orb_VFX1, hb.x, hb.y, hb.width / 2f, hb.height / 2f, hb.width, hb.height, 1f, 1f, time * 6f % 360f, 0, 0, 128, 128, false, false);
         sb.draw(Orb_FG, hb.x, hb.y, hb.width, hb.height);
         FontHelper.renderFontCentered(sb, FontHelper.energyNumFontBlue, String.valueOf(group.size()), 201.6f * Settings.scale, 321.6f * Settings.scale, Color.WHITE.cpy());
+    }
+
+    public void PostRender(SpriteBatch sb)
+    {
+        // Render card previews
     }
 }

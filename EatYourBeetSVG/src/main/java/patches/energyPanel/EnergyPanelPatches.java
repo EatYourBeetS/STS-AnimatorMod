@@ -4,11 +4,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import eatyourbeets.ui.common.CommandPile;
+import eatyourbeets.ui.common.ControllableCardPile;
 
 public class EnergyPanelPatches
 {
-    public static CommandPile Pile;
+    public static ControllableCardPile Pile;
 
     @SpirePatch(clz = EnergyPanel.class, method = "update")
     public static class EnergyPanelPatches_Update

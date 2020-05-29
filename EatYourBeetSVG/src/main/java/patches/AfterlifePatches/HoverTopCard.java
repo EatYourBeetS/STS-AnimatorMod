@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.ui.common.ControllableCard;
 import javassist.CtBehavior;
 
 import java.util.ArrayList;
@@ -27,20 +29,18 @@ public class HoverTopCard {
     {
         if (__instance.hoveredCard == null)
         {
-            ArrayList<AbstractCard> c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
-            if (c != null) {
-                for (AbstractCard card : c) {
-                    card.hb.update();
-                    if (card.hb.hovered) {
-                        for (CardQueueItem q : AbstractDungeon.actionManager.cardQueue)
-                        {
-                            if (q.card == card)
-                                return;
-                        }
-                        System.out.println(__instance.hoveredCard);
-                        System.out.println(card);
-                        __instance.hoveredCard = card;
+            for (ControllableCard c : CombatStats.ControlPile.controllers) {
+                AbstractCard card = c.card;
+                card.hb.update();
+                if (card.hb.hovered) {
+                    for (CardQueueItem q : AbstractDungeon.actionManager.cardQueue)
+                    {
+                        if (q.card == card)
+                            return;
                     }
+                    System.out.println(__instance.hoveredCard);
+                    System.out.println(card);
+                    __instance.hoveredCard = card;
                 }
             }
         }
@@ -51,16 +51,14 @@ public class HoverTopCard {
     )
     public static void reposition(AbstractPlayer __instance)
     {
-        ArrayList<AbstractCard> c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
-        if (c != null) {
-            for (AbstractCard card : c) {
-                if (__instance.hoveredCard.equals(card)) {
-                    __instance.hoveredCard.current_x = __instance.hoveredCard.target_x + (60.0F * Settings.scale);
-                    System.out.println(__instance.hoveredCard.current_x);
-                    __instance.hoveredCard.target_x = HOVERED_X_POSITION;
-                    __instance.hoveredCard.current_y = HOVERED_Y_POSITION;
-                    __instance.hoveredCard.target_y = HOVERED_Y_POSITION;
-                }
+        for (ControllableCard c : CombatStats.ControlPile.controllers) {
+            AbstractCard card = c.card;
+            if (__instance.hoveredCard.equals(card)) {
+                __instance.hoveredCard.current_x = __instance.hoveredCard.target_x + (60.0F * Settings.scale);
+                System.out.println(__instance.hoveredCard.current_x);
+                __instance.hoveredCard.target_x = HOVERED_X_POSITION;
+                __instance.hoveredCard.current_y = HOVERED_Y_POSITION;
+                __instance.hoveredCard.target_y = HOVERED_Y_POSITION;
             }
         }
     }
@@ -74,12 +72,10 @@ public class HoverTopCard {
         @SpirePrefixPatch
         public static SpireReturn no(CardGroup __instance, AbstractCard cardToCheck)
         {
-            ArrayList<AbstractCard> c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
-            if (c != null) {
-                for (AbstractCard card : c) {
-                    if (cardToCheck.equals(card)) {
-                        return SpireReturn.Return(null);
-                    }
+            for (ControllableCard c : CombatStats.ControlPile.controllers) {
+                AbstractCard card = c.card;
+                if (cardToCheck.equals(card)) {
+                    return SpireReturn.Return(null);
                 }
             }
             return SpireReturn.Continue();

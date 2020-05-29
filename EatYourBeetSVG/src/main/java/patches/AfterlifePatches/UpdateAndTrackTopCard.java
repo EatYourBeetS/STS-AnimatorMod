@@ -13,6 +13,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.ui.panels.ExhaustPanel;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.ui.common.ControllableCard;
 import javassist.CtBehavior;
 
 import java.util.ArrayList;
@@ -45,53 +47,46 @@ public class UpdateAndTrackTopCard {
         public static SpireField<ArrayList<AbstractCard>> currentCard = new SpireField<>(()->null);
     }
 
-    @SpirePatch(
-            clz = ExhaustPanel.class,
-            method = "updatePositions"
-    )
-    public static class Update
-    {
-        @SpirePostfixPatch
-        public static void doTheUpdateThing(ExhaustPanel __instance) {
-            if (!AbstractDungeon.player.exhaustPile.isEmpty()) {
-                int top = AbstractDungeon.player.exhaustPile.group.size();
-                Integer last = Fields.oldSize.get(AbstractDungeon.player.exhaustPile);
-                //checks to see if the card has changed
-                if (top != last) {
-                    System.out.println("stuff changed, updating");
-                    System.out.println(top);
-                    System.out.println(last);
-//                    ArrayList<AbstractCard> oldCards = Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
-//                    if (oldCards != null) {
-//                        for (AbstractCard card : oldCards) {
-//                            partialReset(card);
-//                            card.shrink();
-//                        }
+//    @SpirePatch(
+//            clz = ExhaustPanel.class,
+//            method = "updatePositions"
+//    )
+//    public static class Update
+//    {
+//        @SpirePostfixPatch
+//        public static void doTheUpdateThing(ExhaustPanel __instance) {
+//            if (!AbstractDungeon.player.exhaustPile.isEmpty()) {
+//                int top = AbstractDungeon.player.exhaustPile.group.size();
+//                Integer last = Fields.oldSize.get(AbstractDungeon.player.exhaustPile);
+//                //checks to see if the card has changed
+//                if (top != last) {
+//                    System.out.println("stuff changed, updating");
+//                    System.out.println(top);
+//                    System.out.println(last);
+//                    Fields.oldSize.set(AbstractDungeon.player.exhaustPile, top);
+//                    //We make a clone and render it to the player so we don't get the
+//                    //"card is in two places at once visual glitch"
+//                    ArrayList<AbstractCard> clone = new ArrayList<>();
+//                    for (AbstractCard card : AbstractDungeon.player.exhaustPile.group) {
+//                        AbstractCard clonedCard = card.makeStatEquivalentCopy();
+//                        clonedCard.uuid = card.uuid;
+//                        clone.add(clonedCard);
 //                    }
-                    Fields.oldSize.set(AbstractDungeon.player.exhaustPile, top);
-                    //We make a clone and render it to the player so we don't get the
-                    //"card is in two places at once visual glitch"
-                    ArrayList<AbstractCard> clone = new ArrayList<>();
-                    for (AbstractCard card : AbstractDungeon.player.exhaustPile.group) {
-                        AbstractCard clonedCard = card.makeStatEquivalentCopy();
-                        clonedCard.uuid = card.uuid;
-                        clone.add(clonedCard);
-                    }
-                    Fields.currentCard.set(AbstractDungeon.player.exhaustPile, clone);
-                    setPosition(clone);
-                    for (AbstractCard card : clone) {
-                        glowCheck(card);
-                    }
-                }
-                for (AbstractCard card : Fields.currentCard.get(AbstractDungeon.player.exhaustPile)) {
-                    card.update();
-                }
-            } else {
-                Fields.oldSize.set(AbstractDungeon.player.exhaustPile, -1);
-                Fields.currentCard.set(AbstractDungeon.player.exhaustPile, null);
-            }
-        }
-    }
+//                    Fields.currentCard.set(AbstractDungeon.player.exhaustPile, clone);
+//                    setPosition(clone);
+//                    for (AbstractCard card : clone) {
+//                        glowCheck(card);
+//                    }
+//                }
+//                for (AbstractCard card : Fields.currentCard.get(AbstractDungeon.player.exhaustPile)) {
+//                    card.update();
+//                }
+//            } else {
+//                Fields.oldSize.set(AbstractDungeon.player.exhaustPile, -1);
+//                Fields.currentCard.set(AbstractDungeon.player.exhaustPile, null);
+//            }
+//        }
+//    }
 
     @SpirePatch(
             clz = CardGroup.class,
@@ -102,12 +97,10 @@ public class UpdateAndTrackTopCard {
         @SpirePostfixPatch
         public static void apply(CardGroup __instance)
         {
-           ArrayList<AbstractCard> c = Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
-           if (c != null) {
-               for (AbstractCard card : c) {
-                   card.applyPowers();
-               }
-           }
+            for (ControllableCard c : CombatStats.ControlPile.controllers) {
+                AbstractCard card = c.card;
+                card.applyPowers();
+            }
         }
     }
     @SpirePatch(
@@ -119,12 +112,10 @@ public class UpdateAndTrackTopCard {
         @SpirePostfixPatch
         public static void apply(CardGroup __instance)
         {
-            ArrayList<AbstractCard> c = Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
-            if (c != null) {
-                for (AbstractCard card : c) {
-                    glowCheck(card);
-                    card.triggerOnGlowCheck();
-                }
+            for (ControllableCard c : CombatStats.ControlPile.controllers) {
+                AbstractCard card = c.card;
+                glowCheck(card);
+                card.triggerOnGlowCheck();
             }
         }
     }
@@ -138,11 +129,9 @@ public class UpdateAndTrackTopCard {
         @SpirePostfixPatch
         public static void update(CardGroup __instance)
         {
-            ArrayList<AbstractCard> c = Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
-            if (c != null) {
-                for (AbstractCard card : c) {
-                    card.updateHoverLogic();
-                }
+            for (ControllableCard c : CombatStats.ControlPile.controllers) {
+                AbstractCard card = c.card;
+                card.updateHoverLogic();
             }
         }
     }
@@ -158,10 +147,7 @@ public class UpdateAndTrackTopCard {
         )
         public static void onRefreshLayout(CardGroup __instance)
         {
-            ArrayList<AbstractCard> c = Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
-            if (c != null) {
-                setPosition(c);
-            }
+            CombatStats.ControlPile.setCardPositions();
         }
 
         private static class HoverLocator extends SpireInsertLocator
@@ -186,12 +172,10 @@ public class UpdateAndTrackTopCard {
         public static boolean maybe(boolean __result, CardGroup __instance)
         {
             boolean hasEnoughEnergy = false;
-            ArrayList<AbstractCard> c = Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
-            if (c != null) {
-                for (AbstractCard card : c) {
-                    if (card.hasEnoughEnergy()) {
-                        hasEnoughEnergy = true;
-                    }
+            for (ControllableCard c : CombatStats.ControlPile.controllers) {
+                AbstractCard card = c.card;
+                if (card.hasEnoughEnergy()) {
+                    hasEnoughEnergy = true;
                 }
             }
             return __result || (!AbstractDungeon.player.exhaustPile.isEmpty() && hasEnoughEnergy);
@@ -207,28 +191,28 @@ public class UpdateAndTrackTopCard {
             c.stopGlowing();
         }
     }
-    public static void partialReset(AbstractCard c)
-    {
-        c.block = c.baseBlock;
-        c.isBlockModified = false;
-        c.damage = c.baseDamage;
-        c.isDamageModified = false;
-        c.magicNumber = c.baseMagicNumber;
-        c.isMagicNumberModified = false;
-
-        c.stopGlowing();
-    }
-    public static void setPosition(ArrayList<AbstractCard> c)
-    {
-        System.out.println("setting positions");
-        int count = 0;
-        for (AbstractCard card : c) {
-            card.targetDrawScale = 0.5f;
-            card.targetAngle = 0;
-            card.target_x = RENDER_X + RENDER_X_OFFSET * count;
-            card.target_y = RENDER_Y;
-            count++;
-        }
-
-    }
+//    public static void partialReset(AbstractCard c)
+//    {
+//        c.block = c.baseBlock;
+//        c.isBlockModified = false;
+//        c.damage = c.baseDamage;
+//        c.isDamageModified = false;
+//        c.magicNumber = c.baseMagicNumber;
+//        c.isMagicNumberModified = false;
+//
+//        c.stopGlowing();
+//    }
+//    public static void setPosition(ArrayList<AbstractCard> c)
+//    {
+//        System.out.println("setting positions");
+//        int count = 0;
+//        for (AbstractCard card : c) {
+//            card.targetDrawScale = 0.5f;
+//            card.targetAngle = 0;
+//            card.target_x = RENDER_X + RENDER_X_OFFSET * count;
+//            card.target_y = RENDER_Y;
+//            count++;
+//        }
+//
+//    }
 }

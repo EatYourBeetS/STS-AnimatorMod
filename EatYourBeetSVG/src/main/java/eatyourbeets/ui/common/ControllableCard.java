@@ -22,7 +22,10 @@ public class ControllableCard
 
     public ControllableCard(AbstractCard card)
     {
-        this.card = card;
+        //We save a statequivalentcopy of the card and set the uuids to be equal so we can find one based on the other
+        //We save a copy instead of the original so we don't render one card in two different locations and cause visual glitch
+        this.card = card.makeStatEquivalentCopy();
+        this.card.uuid = card.uuid;
         this.state = State.Enabled;
     }
 

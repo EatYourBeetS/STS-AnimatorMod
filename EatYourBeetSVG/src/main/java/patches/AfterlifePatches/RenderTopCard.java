@@ -12,6 +12,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.ui.panels.ExhaustPanel;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.ui.common.ControllableCard;
 import javassist.CtBehavior;
 
 import java.util.ArrayList;
@@ -19,31 +21,31 @@ import java.util.ArrayList;
 public class RenderTopCard {
     //patch refresh hand layout to also refresh position of top card
 
-    @SpirePatch(
-            clz = ExhaustPanel.class,
-            method = "render"
-    )
-    public static class Render
-    {
-        @SpirePostfixPatch
-        public static void doTheRenderThing(ExhaustPanel __instance, SpriteBatch sb)
-        {
-            if (!AbstractDungeon.isScreenUp)
-            {
-                if (!AbstractDungeon.player.exhaustPile.isEmpty())
-                {
-                    ArrayList<AbstractCard> c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
-                    if (c != null) {
-                        for (AbstractCard card : c) {
-                            if (!card.equals(AbstractDungeon.player.hoveredCard)) {
-                                card.render(sb);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+//    @SpirePatch(
+//            clz = ExhaustPanel.class,
+//            method = "render"
+//    )
+//    public static class Render
+//    {
+//        @SpirePostfixPatch
+//        public static void doTheRenderThing(ExhaustPanel __instance, SpriteBatch sb)
+//        {
+//            if (!AbstractDungeon.isScreenUp)
+//            {
+//                if (!AbstractDungeon.player.exhaustPile.isEmpty())
+//                {
+//                    ArrayList<AbstractCard> c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
+//                    if (c != null) {
+//                        for (AbstractCard card : c) {
+//                            if (!card.equals(AbstractDungeon.player.hoveredCard)) {
+//                                card.render(sb);
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     @SpirePatch(
             clz = AbstractCard.class,
@@ -61,13 +63,11 @@ public class RenderTopCard {
         {
             if (AbstractDungeon.player != null)
             {
-                ArrayList<AbstractCard> c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
-                if (c != null) {
-                    for (AbstractCard card : c) {
-                        if (__instance.equals(card)) {
-                            if (!__instance.hasEnoughEnergy()) {
-                                costColor[0] = RED;
-                            }
+                for (ControllableCard c : CombatStats.ControlPile.controllers) {
+                    AbstractCard card = c.card;
+                    if (__instance.equals(card)) {
+                        if (!__instance.hasEnoughEnergy()) {
+                            costColor[0] = RED;
                         }
                     }
                 }

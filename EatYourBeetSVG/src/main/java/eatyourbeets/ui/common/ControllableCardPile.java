@@ -26,6 +26,8 @@ import patches.energyPanel.EnergyPanelPatches;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import static patches.AfterlifePatches.UpdateAndTrackTopCard.glowCheck;
+
 // TODO: Move to a different folder
 public class ControllableCardPile implements OnPhaseChangedSubscriber
 {
@@ -53,6 +55,7 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
     public ControllableCard Add(ControllableCard controller)
     {
         controllers.add(controller);
+        setCardPositions();
         return controller;
     }
 
@@ -91,6 +94,10 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         }
 
         hb.update();
+        for (ControllableCard c : controllers) {
+            AbstractCard card = c.card;
+            card.update();
+        }
         if (hb.hovered && GameUtilities.InBattle() && !AbstractDungeon.isScreenUp)
         {
             //Uncomment this to render card previews
@@ -100,26 +107,26 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
             TipHelper.renderGenericTip(50f * Settings.scale, hb.y + hb.height * 2, "Command Pile",
             "You may activate cards' effects from this pile by selecting them during your turn.");
 
-            if (InputHelper.justClickedLeft && AbstractDungeon.actionManager.phase == GameActionManager.Phase.WAITING_ON_USER)
-            {
-                GameActions.Top.SelectFromPile("Command Pile", 1, group)
-                .SetOptions(false, true)
-                .AddCallback(cards ->
-                {
-                    AbstractCard card = cards.size() > 0 ? cards.get(0) : null;
-                    if (card != null)
-                    {
-                        for (ControllableCard c : controllers)
-                        {
-                            if (c.card == card)
-                            {
-                                c.Select();
-                                return;
-                            }
-                        }
-                    }
-                });
-            }
+//            if (InputHelper.justClickedLeft && AbstractDungeon.actionManager.phase == GameActionManager.Phase.WAITING_ON_USER)
+//            {
+//                GameActions.Top.SelectFromPile("Command Pile", 1, group)
+//                .SetOptions(false, true)
+//                .AddCallback(cards ->
+//                {
+//                    AbstractCard card = cards.size() > 0 ? cards.get(0) : null;
+//                    if (card != null)
+//                    {
+//                        for (ControllableCard c : controllers)
+//                        {
+//                            if (c.card == card)
+//                            {
+//                                c.Select();
+//                                return;
+//                            }
+//                        }
+//                    }
+//                });
+//            }
         }
     }
 
@@ -140,15 +147,34 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
 
     public void PostRender(SpriteBatch sb)
     {
-        // Render card previews
-//        if (!AbstractDungeon.isScreenUp) {
-//            for (ControllableCard c : controllers)
-//            {
-//                AbstractCard card = c.card;
-//                if (!card.equals(AbstractDungeon.player.hoveredCard)) {
-//                    card.render(sb);
-//                }
-//            }
-//        }
+        if (!AbstractDungeon.isScreenUp)
+        {
+            if (!isHidden) {
+                for (ControllableCard c : controllers) {
+                    AbstractCard card = c.card;
+                    if (!card.equals(AbstractDungeon.player.hoveredCard)) {
+                        card.render(sb);
+                    }
+                }
+            }
+        }
+    }
+
+    public void setCardPositions()
+    {
+        float RENDER_X_OFFSET = 200.0F * Settings.scale;
+        float RENDER_X = 120 * Settings.scale;
+        float RENDER_Y = 400 * Settings.scale;
+        System.out.println("setting positions");
+        int count = 0;
+        for (ControllableCard controllableCard : controllers) {
+            AbstractCard card = controllableCard.card;
+            card.targetDrawScale = 0.5f;
+            card.targetAngle = 0;
+            card.target_x = RENDER_X + RENDER_X_OFFSET * count;
+            card.target_y = RENDER_Y;
+            glowCheck(card);
+            count++;
+        }
     }
 }

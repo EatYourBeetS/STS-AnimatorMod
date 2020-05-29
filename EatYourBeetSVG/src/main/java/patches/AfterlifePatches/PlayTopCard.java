@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.ui.common.ControllableCard;
 import javassist.CtBehavior;
 
 import java.util.ArrayList;
@@ -26,14 +28,12 @@ public class PlayTopCard {
         )
         public static void modify(AbstractPlayer __instance)
         {
-            ArrayList<AbstractCard> c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
-            if (c != null) {
-                for (AbstractCard card : c) {
-                    if (__instance.hoveredCard != null && __instance.hoveredCard.equals(card)) {
-                        if (InputHelper.mX < MIN_DROP_X)
-                        {
-                            __instance.isHoveringDropZone = false;
-                        }
+            for (ControllableCard c : CombatStats.ControlPile.controllers) {
+                AbstractCard card = c.card;
+                if (__instance.hoveredCard != null && __instance.hoveredCard.equals(card)) {
+                    if (InputHelper.mX < MIN_DROP_X)
+                    {
+                        __instance.isHoveringDropZone = false;
                     }
                 }
             }
@@ -61,17 +61,15 @@ public class PlayTopCard {
         public static void remove(AbstractPlayer __instance, AbstractCard cardPlayed, AbstractMonster m, int e)
         {
             AbstractCard cardToRemove = null;
-            ArrayList<AbstractCard> c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
-            if (c != null) {
-                for (AbstractCard card : c) {
-                    if (cardPlayed.equals(card)) {
-                        for (AbstractCard cardToCheck : AbstractDungeon.player.exhaustPile.group) {
-                            if (cardToCheck.uuid == card.uuid) {
-                                cardToRemove = cardToCheck;
-                            }
+            for (ControllableCard c : CombatStats.ControlPile.controllers) {
+                AbstractCard card = c.card;
+                if (cardPlayed.equals(card)) {
+                    for (AbstractCard cardToCheck : AbstractDungeon.player.exhaustPile.group) {
+                        if (cardToCheck.uuid == card.uuid) {
+                            cardToRemove = cardToCheck;
                         }
-                        __instance.exhaustPile.removeCard(cardToRemove);
                     }
+                    __instance.exhaustPile.removeCard(cardToRemove);
                 }
             }
         }

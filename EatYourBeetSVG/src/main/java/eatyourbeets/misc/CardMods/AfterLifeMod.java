@@ -35,9 +35,9 @@ public class AfterLifeMod extends AbstractCardModifier
 
     @Override
     public void onExhausted(AbstractCard card) {
-        AbstractCard clone = card.makeStatEquivalentCopy();
-        clone.uuid = card.uuid;
-        CombatStats.ControlPile.Add(clone)
+       // AbstractCard clone = card.makeStatEquivalentCopy();
+        //clone.uuid = card.uuid;
+        CombatStats.ControlPile.Add(card)
                 .OnUpdate(c ->
                 {
                     boolean originalExists = false;

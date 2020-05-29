@@ -4,9 +4,12 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import javassist.CtBehavior;
+
+import java.util.ArrayList;
 
 
 public class PlayTopCard {
@@ -23,11 +26,15 @@ public class PlayTopCard {
         )
         public static void modify(AbstractPlayer __instance)
         {
-            if (__instance.hoveredCard != null && __instance.hoveredCard.equals(UpdateAndTrackTopCard.Fields.currentCard.get(__instance.exhaustPile)))
-            {
-                if (InputHelper.mX < MIN_DROP_X)
-                {
-                    __instance.isHoveringDropZone = false;
+            ArrayList<AbstractCard> c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
+            if (c != null) {
+                for (AbstractCard card : c) {
+                    if (__instance.hoveredCard != null && __instance.hoveredCard.equals(card)) {
+                        if (InputHelper.mX < MIN_DROP_X)
+                        {
+                            __instance.isHoveringDropZone = false;
+                        }
+                    }
                 }
             }
         }
@@ -51,11 +58,22 @@ public class PlayTopCard {
     public static class RemoveCard
     {
         @SpirePostfixPatch
-        public static void remove(AbstractPlayer __instance, AbstractCard c, AbstractMonster m, int e)
+        public static void remove(AbstractPlayer __instance, AbstractCard cardPlayed, AbstractMonster m, int e)
         {
-            if (c.equals(UpdateAndTrackTopCard.Fields.currentCard.get(__instance.exhaustPile)))
-            {
-                __instance.exhaustPile.removeCard(UpdateAndTrackTopCard.Fields.originalCurrentCard.get(__instance.exhaustPile));
+            AbstractCard cardToRemove = null;
+            ArrayList<AbstractCard> c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
+            if (c != null) {
+                for (AbstractCard card : c) {
+                    if (cardPlayed.equals(card)) {
+                        ArrayList<AbstractCard> cardsToCheck = UpdateAndTrackTopCard.Fields.originalCurrentCard.get(AbstractDungeon.player.exhaustPile);
+                        for (AbstractCard cardToCheck : cardsToCheck) {
+                            if (cardToCheck.uuid == card.uuid) {
+                                cardToRemove = cardToCheck;
+                            }
+                        }
+                        __instance.exhaustPile.removeCard(cardToRemove);
+                    }
+                }
             }
         }
     }

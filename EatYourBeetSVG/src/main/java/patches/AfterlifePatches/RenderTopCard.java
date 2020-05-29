@@ -14,6 +14,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.ui.panels.ExhaustPanel;
 import javassist.CtBehavior;
 
+import java.util.ArrayList;
+
 public class RenderTopCard {
     //patch refresh hand layout to also refresh position of top card
 
@@ -30,11 +32,13 @@ public class RenderTopCard {
             {
                 if (!AbstractDungeon.player.exhaustPile.isEmpty())
                 {
-                    AbstractCard c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
-                    if (!c.equals(AbstractDungeon.player.hoveredCard))
-                    {
-                        c.drawScale = 0.25f;
-                        c.render(sb);
+                    ArrayList<AbstractCard> c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
+                    if (c != null) {
+                        for (AbstractCard card : c) {
+                            if (!card.equals(AbstractDungeon.player.hoveredCard)) {
+                                card.render(sb);
+                            }
+                        }
                     }
                 }
             }
@@ -57,10 +61,14 @@ public class RenderTopCard {
         {
             if (AbstractDungeon.player != null)
             {
-                if (__instance.equals(UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile)))
-                {
-                    if (!__instance.hasEnoughEnergy()) {
-                        costColor[0] = RED;
+                ArrayList<AbstractCard> c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
+                if (c != null) {
+                    for (AbstractCard card : c) {
+                        if (__instance.equals(card)) {
+                            if (!__instance.hasEnoughEnergy()) {
+                                costColor[0] = RED;
+                            }
+                        }
                     }
                 }
             }

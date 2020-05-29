@@ -16,9 +16,11 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.resources.GR;
 import eatyourbeets.resources.unnamed.UnnamedResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import patches.AfterlifePatches.UpdateAndTrackTopCard;
 import patches.energyPanel.EnergyPanelPatches;
 
 import java.util.ArrayList;
@@ -38,8 +40,8 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
 
     public boolean isHidden = false;
 
-    private final ArrayList<ControllableCard> controllers = new ArrayList<>();
-    private final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+    public final ArrayList<ControllableCard> controllers = new ArrayList<>();
+    public final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
     public void Clear()
     {
@@ -92,7 +94,7 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         if (hb.hovered && GameUtilities.InBattle() && !AbstractDungeon.isScreenUp)
         {
             //Uncomment this to render card previews
-            //GR.UI.AddPostRender(this::PostRender);
+            GR.UI.AddPostRender(this::PostRender);
             
             // TODO: Localization
             TipHelper.renderGenericTip(50f * Settings.scale, hb.y + hb.height * 2, "Command Pile",
@@ -139,5 +141,14 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
     public void PostRender(SpriteBatch sb)
     {
         // Render card previews
+//        if (!AbstractDungeon.isScreenUp) {
+//            for (ControllableCard c : controllers)
+//            {
+//                AbstractCard card = c.card;
+//                if (!card.equals(AbstractDungeon.player.hoveredCard)) {
+//                    card.render(sb);
+//                }
+//            }
+//        }
     }
 }

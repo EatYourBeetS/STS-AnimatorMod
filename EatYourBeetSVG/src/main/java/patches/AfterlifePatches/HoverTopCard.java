@@ -17,7 +17,7 @@ import java.util.ArrayList;
         method = "updateInput"
 )
 public class HoverTopCard {
-    private static final float HOVERED_X_POSITION = 1740 * Settings.scale;
+    private static final float HOVERED_X_POSITION = 180 * Settings.scale;
     private static final float HOVERED_Y_POSITION = 470 * Settings.scale;
 
     @SpireInsertPatch(
@@ -27,18 +27,20 @@ public class HoverTopCard {
     {
         if (__instance.hoveredCard == null)
         {
-            AbstractCard top = UpdateAndTrackTopCard.Fields.currentCard.get(__instance.exhaustPile);
-            if (top != null)
-            {
-                top.hb.update();
-                if (top.hb.hovered)
-                {
-                    for (CardQueueItem q : AbstractDungeon.actionManager.cardQueue)
-                    {
-                        if (q.card == top)
-                            return;
+            ArrayList<AbstractCard> c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
+            if (c != null) {
+                for (AbstractCard card : c) {
+                    card.hb.update();
+                    if (card.hb.hovered) {
+                        for (CardQueueItem q : AbstractDungeon.actionManager.cardQueue)
+                        {
+                            if (q.card == card)
+                                return;
+                        }
+                        System.out.println(__instance.hoveredCard);
+                        System.out.println(card);
+                        __instance.hoveredCard = card;
                     }
-                    __instance.hoveredCard = top;
                 }
             }
         }
@@ -49,12 +51,16 @@ public class HoverTopCard {
     )
     public static void reposition(AbstractPlayer __instance)
     {
-        if (__instance.hoveredCard.equals(UpdateAndTrackTopCard.Fields.currentCard.get(__instance.exhaustPile)))
-        {
-            __instance.hoveredCard.current_x = HOVERED_X_POSITION;
-            __instance.hoveredCard.target_x = HOVERED_X_POSITION;
-            __instance.hoveredCard.current_y = HOVERED_Y_POSITION;
-            __instance.hoveredCard.target_y = HOVERED_Y_POSITION;
+        ArrayList<AbstractCard> c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
+        if (c != null) {
+            for (AbstractCard card : c) {
+                if (__instance.hoveredCard.equals(card)) {
+                    __instance.hoveredCard.current_x = HOVERED_X_POSITION;
+                    __instance.hoveredCard.target_x = HOVERED_X_POSITION;
+                    __instance.hoveredCard.current_y = HOVERED_Y_POSITION;
+                    __instance.hoveredCard.target_y = HOVERED_Y_POSITION;
+                }
+            }
         }
     }
 
@@ -65,34 +71,19 @@ public class HoverTopCard {
     public static class NoPush
     {
         @SpirePrefixPatch
-        public static SpireReturn no(CardGroup __instance, AbstractCard c)
+        public static SpireReturn no(CardGroup __instance, AbstractCard cardToCheck)
         {
-            if (c.equals(UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile)))
-            {
-                return SpireReturn.Return(null);
+            ArrayList<AbstractCard> c = UpdateAndTrackTopCard.Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
+            if (c != null) {
+                for (AbstractCard card : c) {
+                    if (cardToCheck.equals(card)) {
+                        return SpireReturn.Return(null);
+                    }
+                }
             }
             return SpireReturn.Continue();
         }
     }
-
-    /*@SpireInsertPatch(
-            locator = Locator.class
-    )
-    public static void TestHoverOtherHand(AbstractPlayer __instance)
-    {
-        if (__instance.hasRelic(dunno.ID))
-        {
-            if (__instance.toHover == null)
-            {
-                AbstractCard top = RenderAndClickableTopCard.Fields.currentCard.get(__instance.exhaustPile);
-                if (top != null)
-                {
-                    if (top == __instance.hoveredCard) {
-                        __instance.toHover = top;
-                    }
-            }
-        }
-    }*/
 
     private static class FirstLocator extends SpireInsertLocator
     {

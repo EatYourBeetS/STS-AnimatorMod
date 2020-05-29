@@ -9,18 +9,18 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import eatyourbeets.cards.animator.beta.AngelBeats.EriShiina;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
-public class AfterLifeMod extends AbstractCardModifier implements AlternateCardCostModifier
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
+
+public class AfterLifeMod extends AbstractCardModifier
 {
 
     public static final String ID = GR.Animator.CreateID("Afterlife");
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(GR.Animator.CreateID("CardMods"));
     public static final String[] TEXT = uiStrings.TEXT;
-
-    //This variable currently exists solely for Shiina
-    public static int mostRecentEnergySpentByAfterlife = 0;
 
     public AbstractCardModifier makeCopy()
     {
@@ -34,50 +34,25 @@ public class AfterLifeMod extends AbstractCardModifier implements AlternateCardC
     }
 
     @Override
-    public int getAlternateResource(AbstractCard card)
-    {
-        return AbstractDungeon.player.exhaustPile.size();
-    }
-
-    @Override
-    public boolean canSplitCost(AbstractCard card)
-    {
-        return true;
-    }
-
-    @Override
-    public int spendAlternateCost(AbstractCard card, int costToSpend)
-    {
-        int resource = -1;
-        if (AbstractDungeon.player.exhaustPile.size() > 0)
-        {
-            resource = AbstractDungeon.player.exhaustPile.size();
-        }
-        if (resource > costToSpend)
-        {
-            for (int i = 0; i < costToSpend; i++)
-            {
-                AbstractDungeon.player.exhaustPile.group.remove(AbstractDungeon.cardRandomRng.random(AbstractDungeon.player.exhaustPile.size() - 1));
-            }
-            mostRecentEnergySpentByAfterlife = costToSpend;
-            costToSpend = 0;
-        }
-        else if (resource > 0)
-        {
-            for (int i = 0; i < resource; i++)
-            {
-                AbstractDungeon.player.exhaustPile.group.remove(AbstractDungeon.cardRandomRng.random(AbstractDungeon.player.exhaustPile.size() - 1));
-            }
-            mostRecentEnergySpentByAfterlife = resource;
-            costToSpend -= resource;
-        }
-        if (card.cardID.equals(EriShiina.DATA.ID))
-        {
-            GameActions.Bottom.CreateThrowingKnives(mostRecentEnergySpentByAfterlife);
-        }
-        mostRecentEnergySpentByAfterlife = 0;
-        System.out.println(CardModifierManager.getModifiers(card, ID));
-        return costToSpend;
+    public void onExhausted(AbstractCard card) {
+        AbstractCard clone = card.makeStatEquivalentCopy();
+        clone.uuid = card.uuid;
+        CombatStats.ControlPile.Add(clone)
+                .OnUpdate(c ->
+                {
+                    boolean originalExists = false;
+                    for (AbstractCard cardToCheck : player.exhaustPile.group) {
+                        if (cardToCheck.uuid == c.card.uuid) {
+                            originalExists = true;
+                        }
+                    }
+                    //System.out.println(originalExists);
+                    if (!originalExists) {
+                        c.Delete();
+                    } else {
+                        c.SetEnabled(!CombatStats.HasActivatedSemiLimited("<AFTERLIFE>"));
+                    }
+                });
     }
 
     @Override

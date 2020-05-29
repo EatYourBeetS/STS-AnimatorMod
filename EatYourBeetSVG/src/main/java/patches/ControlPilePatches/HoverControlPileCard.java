@@ -1,4 +1,4 @@
-package patches.AfterlifePatches;
+package patches.ControlPilePatches;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
         clz = AbstractPlayer.class,
         method = "updateInput"
 )
-public class HoverTopCard {
+public class HoverControlPileCard {
 
     @SpireInsertPatch(
             locator = FirstLocator.class

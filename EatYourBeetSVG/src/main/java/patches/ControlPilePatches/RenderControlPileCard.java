@@ -1,4 +1,4 @@
-package patches.AfterlifePatches;
+package patches.ControlPilePatches;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,7 +14,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.ui.common.ControllableCard;
 import javassist.CtBehavior;
 
-public class RenderTopCard {
+public class RenderControlPileCard {
 
     @SpirePatch(
             clz = AbstractCard.class,

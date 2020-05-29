@@ -12,21 +12,18 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.unnamed.UnnamedResources;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import patches.AfterlifePatches.UpdateAndTrackTopCard;
 import patches.energyPanel.EnergyPanelPatches;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import static patches.AfterlifePatches.UpdateAndTrackTopCard.glowCheck;
+import static patches.ControlPilePatches.UpdateControlPileCard.glowCheck;
 
 // TODO: Move to a different folder
 public class ControllableCardPile implements OnPhaseChangedSubscriber
@@ -59,9 +56,9 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         return controller;
     }
 
-    public ControllableCard Add(AbstractCard card)
+    public ControllableCard Add(AbstractCard card, CardGroup group)
     {
-        return Add(new ControllableCard(card));
+        return Add(new ControllableCard(card, group));
     }
 
     @Override
@@ -97,6 +94,9 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         for (ControllableCard c : controllers) {
             AbstractCard card = c.card;
             card.update();
+            if (card.hb.hovered) {
+                resetTime();
+            }
         }
         if (isHovering()) {
             //Uncomment this to render card previews
@@ -104,7 +104,7 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         }
         if (hb.hovered && GameUtilities.InBattle() && !AbstractDungeon.isScreenUp)
         {
-            time = HOVER_TIME_OUT;
+            resetTime();
             // TODO: Localization
             TipHelper.renderGenericTip(50f * Settings.scale, hb.y + hb.height * 2, "Command Pile",
             "You may activate cards' effects from this pile by selecting them during your turn.");

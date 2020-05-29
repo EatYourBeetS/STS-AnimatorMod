@@ -1,4 +1,4 @@
-package patches.AfterlifePatches;
+package patches.ControlPilePatches;
 
 import com.evacipated.cardcrawl.modthespire.lib.LineFinder;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher;
@@ -15,7 +15,7 @@ import eatyourbeets.ui.common.ControllableCard;
 import javassist.CtBehavior;
 
 
-public class UpdateAndTrackTopCard {
+public class UpdateControlPileCard {
 
     @SpirePatch(
             clz = CardGroup.class,
@@ -69,41 +69,6 @@ public class UpdateAndTrackTopCard {
             }
         }
     }
-
-//    @SpirePatch(
-//            clz = AbstractCard.class,
-//            method = "updateHoverLogic"
-//    )
-//    public static class checkForCardHoverForTimer
-//    {
-//        @SpireInsertPatch(
-//                locator = checkForCardHover.class
-//        )
-//        public static void check(AbstractCard __instance)
-//        {
-//            //resets the hover duration as long as the player is hovering one
-//            //of the control pile cards
-//            System.out.println("running");
-//            for (ControllableCard c : CombatStats.ControlPile.controllers) {
-//                AbstractCard card = c.card;
-//                if (__instance.equals(card)) {
-//                    System.out.println("matched");
-//                    CombatStats.ControlPile.resetTime();
-//                }
-//            }
-//        }
-//
-//        private static class checkForCardHover extends SpireInsertLocator
-//        {
-//            @Override
-//            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception
-//            {
-//                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractCard.class, "hover");
-//
-//                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
-//            }
-//        }
-//    }
 
     @SpirePatch(
             clz = CardGroup.class,

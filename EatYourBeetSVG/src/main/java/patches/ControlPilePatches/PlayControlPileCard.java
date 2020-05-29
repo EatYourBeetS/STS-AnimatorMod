@@ -1,4 +1,4 @@
-package patches.AfterlifePatches;
+package patches.ControlPilePatches;
 
 import com.evacipated.cardcrawl.modthespire.lib.LineFinder;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher;
@@ -17,7 +17,7 @@ import eatyourbeets.ui.common.ControllableCard;
 import javassist.CtBehavior;
 
 
-public class PlayTopCard {
+public class PlayControlPileCard {
     private static final float MIN_DROP_X = 300 * Settings.scale;
 
     @SpirePatch(
@@ -64,6 +64,7 @@ public class PlayTopCard {
         public static void remove(AbstractPlayer __instance, AbstractCard cardPlayed, AbstractMonster m, int e)
         {
             AbstractCard cardToRemove = null;
+            ControllableCard controllableCardToRemove = null;
             for (ControllableCard c : CombatStats.ControlPile.controllers) {
                 AbstractCard card = c.card;
                 if (cardPlayed.equals(card)) {
@@ -72,9 +73,11 @@ public class PlayTopCard {
                             cardToRemove = cardToCheck;
                         }
                     }
-                    __instance.exhaustPile.removeCard(cardToRemove);
+                    c.originGroup.removeCard(cardToRemove);
+                    controllableCardToRemove = c;
                 }
             }
+            CombatStats.ControlPile.controllers.remove(controllableCardToRemove);
         }
     }
 }

@@ -722,6 +722,11 @@ public final class GameActions
         return Add(new SFXAction(key, pitchVar));
     }
 
+    public SelectCreature SelectCreature(boolean includePlayer)
+    {
+        return Add(new SelectCreature(includePlayer));
+    }
+
     public SelectFromHand SelectFromHand(String sourceName, int amount, boolean isRandom)
     {
         return Add(new SelectFromHand(sourceName, amount, isRandom));

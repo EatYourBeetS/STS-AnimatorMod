@@ -151,7 +151,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
         if (sourcePile != null)
         {
             sourcePileIndex = sourcePile.group.indexOf(card);
-            if (sourcePileIndex > 0)
+            if (sourcePileIndex >= 0)
             {
                 sourcePile.group.remove(sourcePileIndex);
             }

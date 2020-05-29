@@ -65,8 +65,7 @@ public class PlayTopCard {
             if (c != null) {
                 for (AbstractCard card : c) {
                     if (cardPlayed.equals(card)) {
-                        ArrayList<AbstractCard> cardsToCheck = UpdateAndTrackTopCard.Fields.originalCurrentCard.get(AbstractDungeon.player.exhaustPile);
-                        for (AbstractCard cardToCheck : cardsToCheck) {
+                        for (AbstractCard cardToCheck : AbstractDungeon.player.exhaustPile.group) {
                             if (cardToCheck.uuid == card.uuid) {
                                 cardToRemove = cardToCheck;
                             }

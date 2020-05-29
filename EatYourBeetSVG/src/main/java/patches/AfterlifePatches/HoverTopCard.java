@@ -55,7 +55,8 @@ public class HoverTopCard {
         if (c != null) {
             for (AbstractCard card : c) {
                 if (__instance.hoveredCard.equals(card)) {
-                    __instance.hoveredCard.current_x = HOVERED_X_POSITION;
+                    __instance.hoveredCard.current_x = __instance.hoveredCard.target_x + (60.0F * Settings.scale);
+                    System.out.println(__instance.hoveredCard.current_x);
                     __instance.hoveredCard.target_x = HOVERED_X_POSITION;
                     __instance.hoveredCard.current_y = HOVERED_Y_POSITION;
                     __instance.hoveredCard.target_y = HOVERED_Y_POSITION;

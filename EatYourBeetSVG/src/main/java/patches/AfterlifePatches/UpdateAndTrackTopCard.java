@@ -30,6 +30,7 @@ import java.util.ArrayList;
 
 
 public class UpdateAndTrackTopCard {
+    public static final float RENDER_X_OFFSET = 200.0F * Settings.scale;
     private static final float RENDER_X = 120 * Settings.scale;
     private static final float RENDER_Y = 400 * Settings.scale;
 
@@ -39,7 +40,8 @@ public class UpdateAndTrackTopCard {
     )
     public static class Fields
     {
-        public static SpireField<ArrayList<AbstractCard>> originalCurrentCard = new SpireField<>(()->null);
+        //public static SpireField<ArrayList<AbstractCard>> originalCurrentCard = new SpireField<>(()->null);
+        public static SpireField<Integer> oldSize = new SpireField<>(()->null);
         public static SpireField<ArrayList<AbstractCard>> currentCard = new SpireField<>(()->null);
     }
 
@@ -52,24 +54,25 @@ public class UpdateAndTrackTopCard {
         @SpirePostfixPatch
         public static void doTheUpdateThing(ExhaustPanel __instance) {
             if (!AbstractDungeon.player.exhaustPile.isEmpty()) {
-                ArrayList<AbstractCard> top = AbstractDungeon.player.exhaustPile.group;
-                ArrayList<AbstractCard> last = Fields.originalCurrentCard.get(AbstractDungeon.player.exhaustPile);
+                int top = AbstractDungeon.player.exhaustPile.group.size();
+                Integer last = Fields.oldSize.get(AbstractDungeon.player.exhaustPile);
                 //checks to see if the card has changed
-                System.out.println(top);
-                System.out.println(last);
-                System.out.println();
-                if (!top.equals(last)) {
-                    if (last != null) {
-                        for (AbstractCard card : last) {
-                            partialReset(card);
-                            card.shrink();
-                        }
-                    }
-                    Fields.originalCurrentCard.set(AbstractDungeon.player.exhaustPile, top);
+                if (top != last) {
+                    System.out.println("stuff changed, updating");
+                    System.out.println(top);
+                    System.out.println(last);
+//                    ArrayList<AbstractCard> oldCards = Fields.currentCard.get(AbstractDungeon.player.exhaustPile);
+//                    if (oldCards != null) {
+//                        for (AbstractCard card : oldCards) {
+//                            partialReset(card);
+//                            card.shrink();
+//                        }
+//                    }
+                    Fields.oldSize.set(AbstractDungeon.player.exhaustPile, top);
                     //We make a clone and render it to the player so we don't get the
                     //"card is in two places at once visual glitch"
                     ArrayList<AbstractCard> clone = new ArrayList<>();
-                    for (AbstractCard card : top) {
+                    for (AbstractCard card : AbstractDungeon.player.exhaustPile.group) {
                         AbstractCard clonedCard = card.makeStatEquivalentCopy();
                         clonedCard.uuid = card.uuid;
                         clone.add(clonedCard);
@@ -84,7 +87,7 @@ public class UpdateAndTrackTopCard {
                     card.update();
                 }
             } else {
-                Fields.originalCurrentCard.set(AbstractDungeon.player.exhaustPile, null);
+                Fields.oldSize.set(AbstractDungeon.player.exhaustPile, -1);
                 Fields.currentCard.set(AbstractDungeon.player.exhaustPile, null);
             }
         }
@@ -217,7 +220,7 @@ public class UpdateAndTrackTopCard {
     }
     public static void setPosition(ArrayList<AbstractCard> c)
     {
-        float RENDER_X_OFFSET = 100.0F * Settings.scale;
+        System.out.println("setting positions");
         int count = 0;
         for (AbstractCard card : c) {
             card.targetDrawScale = 0.5f;

@@ -38,8 +38,8 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
     private static final Texture Orb_VFX2 = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_VFX2.png");
 
     private final Hitbox hb = new Hitbox(128f * Settings.scale, 248f * Settings.scale, 147.2f * Settings.scale, 147.2f * Settings.scale);
-    private float time = 0f;
-
+    public float time = 0f;
+    public static final float HOVER_TIME_OUT = 1.0F;
     public boolean isHidden = false;
 
     public final ArrayList<ControllableCard> controllers = new ArrayList<>();
@@ -86,7 +86,7 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
 
     public void Update(EnergyPanel panel)
     {
-        time += Gdx.graphics.getRawDeltaTime();
+        time -= Gdx.graphics.getRawDeltaTime();
         isHidden = group.isEmpty();
         if (isHidden)
         {
@@ -98,11 +98,13 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
             AbstractCard card = c.card;
             card.update();
         }
-        if (hb.hovered && GameUtilities.InBattle() && !AbstractDungeon.isScreenUp)
-        {
+        if (isHovering()) {
             //Uncomment this to render card previews
             GR.UI.AddPostRender(this::PostRender);
-            
+        }
+        if (hb.hovered && GameUtilities.InBattle() && !AbstractDungeon.isScreenUp)
+        {
+            time = HOVER_TIME_OUT;
             // TODO: Localization
             TipHelper.renderGenericTip(50f * Settings.scale, hb.y + hb.height * 2, "Command Pile",
             "You may activate cards' effects from this pile by selecting them during your turn.");
@@ -163,7 +165,7 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
     public void setCardPositions()
     {
         float RENDER_X_OFFSET = 200.0F * Settings.scale;
-        float RENDER_X = 120 * Settings.scale;
+        float RENDER_X = 370 * Settings.scale;
         float RENDER_Y = 400 * Settings.scale;
         System.out.println("setting positions");
         int count = 0;
@@ -176,5 +178,13 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
             glowCheck(card);
             count++;
         }
+    }
+
+    public void resetTime() {
+        time = HOVER_TIME_OUT;
+    }
+
+    public boolean isHovering() {
+        return time > 0;
     }
 }

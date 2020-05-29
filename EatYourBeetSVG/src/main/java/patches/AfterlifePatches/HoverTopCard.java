@@ -19,15 +19,13 @@ import java.util.ArrayList;
         method = "updateInput"
 )
 public class HoverTopCard {
-    private static final float HOVERED_X_POSITION = 180 * Settings.scale;
-    private static final float HOVERED_Y_POSITION = 470 * Settings.scale;
 
     @SpireInsertPatch(
             locator = FirstLocator.class
     )
     public static void GetHoverOtherHand(AbstractPlayer __instance)
     {
-        if (__instance.hoveredCard == null)
+        if (__instance.hoveredCard == null && CombatStats.ControlPile.isHovering())
         {
             for (ControllableCard c : CombatStats.ControlPile.controllers) {
                 AbstractCard card = c.card;
@@ -38,8 +36,6 @@ public class HoverTopCard {
                         if (q.card == card)
                             return;
                     }
-                    System.out.println(__instance.hoveredCard);
-                    System.out.println(card);
                     __instance.hoveredCard = card;
                 }
             }
@@ -55,10 +51,9 @@ public class HoverTopCard {
             AbstractCard card = c.card;
             if (__instance.hoveredCard.equals(card)) {
                 __instance.hoveredCard.current_x = __instance.hoveredCard.target_x + (60.0F * Settings.scale);
-                System.out.println(__instance.hoveredCard.current_x);
-                __instance.hoveredCard.target_x = HOVERED_X_POSITION;
-                __instance.hoveredCard.current_y = HOVERED_Y_POSITION;
-                __instance.hoveredCard.target_y = HOVERED_Y_POSITION;
+                __instance.hoveredCard.target_x = __instance.hoveredCard.target_x + (60.0F * Settings.scale);
+                __instance.hoveredCard.current_y = __instance.hoveredCard.target_y + (70.0F * Settings.scale);
+                __instance.hoveredCard.target_y = __instance.hoveredCard.target_y + (70.0F * Settings.scale);
             }
         }
     }

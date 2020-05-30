@@ -10,13 +10,16 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.unnamed.UnnamedResources;
 import eatyourbeets.ui.controls.GUI_DynamicCardGrid;
+import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RenderHelpers;
 import patches.energyPanel.EnergyPanelPatches;
 
 import java.util.ArrayList;
@@ -31,18 +34,23 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
     private static final Texture Orb_VFX1 = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_VFX1.png");
     private static final Texture Orb_VFX2 = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_VFX2.png");
 
-    public static final float HOVER_TIME_OUT = 1.0F;
+    public static final float HOVER_TIME_OUT = 0.4F;
     private final Hitbox hb = new Hitbox(128f * Settings.scale, 248f * Settings.scale, 147.2f * Settings.scale, 147.2f * Settings.scale);
     private float timer = 0f;
 
     public boolean isHidden = false;
 
     private final ArrayList<ControllableCard> controllers = new ArrayList<>();
-    private final GUI_DynamicCardGrid cardGrid = new GUI_DynamicCardGrid();
+    private final GUI_DynamicCardGrid cardGrid;
+    private final GUI_Image background;
 
     public ControllableCardPile()
     {
-        cardGrid.SetScale(0.5f)
+        background = RenderHelpers.ForTexture(ImageMaster.WHITE_SQUARE_IMG)
+        .SetHitbox(new Hitbox(0, 0))
+        .SetColor(0, 0, 0, 0.8f);
+
+        cardGrid = new GUI_DynamicCardGrid().SetScale(0.5f)
         .SetDrawStart(Settings.WIDTH * 0.2f, Settings.HEIGHT * 0.5f)
         .SetOnCardHover(__ -> RefreshTimer())
         .SetOnCardClick(card ->
@@ -101,16 +109,21 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         int size = cardGrid.cards.size();
         if (size <= 10)
         {
+            background.Resize(30 + 120 * Math.min(size, 5), - 200 * (1 + Math.floorDiv(size, 5)), Settings.scale);
             cardGrid.SetRowSize(5).SetScale(0.5f);
         }
         else if (size <= 16)
         {
+            background.Resize(30 + 120 * Math.min(size, 5), - 200 * (1 + Math.floorDiv(size, 5)), Settings.scale);
             cardGrid.SetRowSize(8).SetScale(0.4f);
         }
         else
         {
+            background.Resize(30 + 120 * Math.min(size, 5), - 200 * (1 + Math.floorDiv(size, 5)), Settings.scale);
             cardGrid.SetRowSize(10).SetScale(0.3f);
         }
+
+        background.Translate(cardGrid.drawStart_x - (Settings.scale * 80), cardGrid.drawStart_y + (Settings.scale * 100));
     }
 
     public void Update(EnergyPanel panel)
@@ -124,6 +137,7 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         }
 
         cardGrid.Update();
+        background.Update();
 
         for (ControllableCard c : controllers)
         {
@@ -168,6 +182,7 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
             return;
         }
 
+        background.Render(sb);
         cardGrid.Render(sb);
     }
 

@@ -37,6 +37,7 @@ public class PinaCoLadaPower extends AnimatorPower
         baseAmount += stackAmount;
     }
 
+    @Override
     public void onUseCard(AbstractCard card, UseCardAction action)
     {
         if ((card.costForTurn == 0 || card.freeToPlayOnce) && amount > 0 && !card.isInAutoplay)

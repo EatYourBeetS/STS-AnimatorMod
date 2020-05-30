@@ -21,6 +21,8 @@ import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
+// If this action needs 1 more refactoring due to queueing a card not counting
+// as an action, completely override AbstractDungeon.actionManager instead.
 public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractCard>
 {
     public static final float DEFAULT_TARGET_X_LEFT = (Settings.WIDTH / 2f) - (300f * Settings.scale);
@@ -270,8 +272,11 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
         GameActions.Top.Add(new UnlimboAction(card));
         GameActions.Top.Wait(Settings.FAST_MODE ? Settings.ACTION_DUR_FASTER : Settings.ACTION_DUR_MED);
 
-        GameActions.Top.Add(new DelayAllActions()) // So the result of canUse() does not randomly change after queueing the card
-        .Except(a -> a instanceof PlayCard || a instanceof UnlimboAction || a instanceof WaitAction);
+        if (spendEnergy)
+        {
+            GameActions.Top.Add(new DelayAllActions()) // So the result of canUse() does not randomly change after queueing the card
+            .Except(a -> a instanceof PlayCard || a instanceof UnlimboAction || a instanceof WaitAction);
+        }
 
         AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(card, enemy, EnergyPanel.getCurrentEnergy(), false, !spendEnergy), true);
 

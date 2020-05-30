@@ -1,12 +1,19 @@
 package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class IntellectPower extends PlayerAttributePower
 {
     public static final String POWER_ID = CreateFullID(IntellectPower.class);
+
+    public static int GetCurrentLevel()
+    {
+        return GetLevel(IntellectPower.class);
+    }
 
     public static void PreserveOnce()
     {

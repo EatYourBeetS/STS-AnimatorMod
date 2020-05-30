@@ -6,12 +6,14 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStatsClearedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.HashSet;
@@ -20,6 +22,40 @@ public abstract class PlayerAttributePower extends CommonPower
 {
     protected static final PreservedPowers preservedPowers = new PreservedPowers();
     protected int threshold;
+
+    public static int GetThreshold(int level)
+    {
+        switch (level)
+        {
+            case  1: return 2;
+            case  2: return 4;
+            case  3: return 6;
+            case  4: return 8;
+            default: return 0;
+        }
+    }
+
+    public static int GetLevel(Class<? extends PlayerAttributePower> type)
+    {
+        if (AbstractDungeon.player != null)
+        {
+            PlayerAttributePower power = GameUtilities.GetPower(AbstractDungeon.player, type);
+            if (power != null)
+            {
+                switch (power.threshold)
+                {
+                    case 0: return 0;
+                    case 2: return 1;
+                    case 4: return 2;
+                    case 6: return 3;
+                    case 8: return 4;
+                    default: return 5;
+                }
+            }
+        }
+
+        return 0;
+    }
 
     protected abstract float GetScaling(EYBCard card);
     protected abstract void OnThresholdReached();
@@ -120,19 +156,6 @@ public abstract class PlayerAttributePower extends CommonPower
         else
         {
             super.renderAmount(sb, x, y, c);
-        }
-    }
-
-    public int GetCurrentLevel()
-    {
-        switch (threshold)
-        {
-            case 0: return 0;
-            case 2: return 1;
-            case 4: return 2;
-            case 6: return 3;
-            case 8: return 4;
-            default: return 5;
         }
     }
 

@@ -722,6 +722,16 @@ public final class GameActions
         return Add(new SFXAction(key, pitchVar));
     }
 
+    public SelectCreature SelectCreature(SelectCreature.Targeting target)
+    {
+        return Add(new SelectCreature(target));
+    }
+
+    public SelectCreature SelectCreature(AbstractCard card)
+    {
+        return Add(new SelectCreature(card));
+    }
+
     public SelectFromHand SelectFromHand(String sourceName, int amount, boolean isRandom)
     {
         return Add(new SelectFromHand(sourceName, amount, isRandom));

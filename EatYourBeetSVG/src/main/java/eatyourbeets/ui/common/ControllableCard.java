@@ -1,5 +1,6 @@
 package eatyourbeets.ui.common;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
@@ -91,5 +92,20 @@ public class ControllableCard
         {
             onSelect.Complete(this);
         }
+    }
+
+    public void Update(ControllableCardPile pile)
+    {
+        card.update();
+
+        if (card.hb.hovered)
+        {
+            pile.RefreshTimer();
+        }
+    }
+
+    public void Render(SpriteBatch sb, ControllableCardPile pile)
+    {
+        card.render(sb);
     }
 }

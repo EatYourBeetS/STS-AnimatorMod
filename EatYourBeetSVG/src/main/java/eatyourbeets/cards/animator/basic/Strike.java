@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
@@ -44,6 +45,23 @@ public class Strike extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+
+        // TODO: Important. Remove this after ControllableCardPile is complete.
+        if (GR.TEST_MODE)
+        {
+            CombatStats.ControlPile.Add(this)
+            .OnUpdate(c -> c.SetEnabled(c.card.canUse(player, null) && !player.hand.contains(c.card)))
+            .OnSelect(c ->
+            {
+                GameActions.Top.SelectCreature(c.card)
+                .AddCallback(enemy ->
+                {
+                    GameActions.Top.PlayCard(c.card, GameUtilities.FindCardGroup(c.card, false), (AbstractMonster) enemy)
+                    .SpendEnergy(true);
+                    c.Delete();
+                });
+            });
+        }
     }
 
     @Override

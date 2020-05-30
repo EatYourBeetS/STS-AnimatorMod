@@ -99,7 +99,6 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
             }
         }
         if (isHovering()) {
-            //Uncomment this to render card previews
             GR.UI.AddPostRender(this::PostRender);
         }
         if (hb.hovered && GameUtilities.InBattle() && !AbstractDungeon.isScreenUp)

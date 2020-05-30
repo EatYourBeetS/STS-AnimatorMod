@@ -15,9 +15,9 @@ public class ControllableCard
         Disabled
     }
 
-    public final AbstractCard card; //the card this represents
-    public CardGroup originGroup; //where the original card is supposed to reside
-    public boolean alterPlay; //If true, calls the Select method when played. If false, plays normally.
+    public final AbstractCard card; //the card this represents. This is just a copy of the original card.
+    public CardGroup originGroup; //where the original card is supposed to reside. Will attempt to remove the original card from this group when the card is played from the control pile
+    public boolean alterPlay; //If true, calls the Select method instead of the use method when played. If false, plays normally.
     public State state;
 
     protected GenericCallback<ControllableCard> onUpdate;

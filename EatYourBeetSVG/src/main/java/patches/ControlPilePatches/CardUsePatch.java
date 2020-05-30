@@ -52,6 +52,9 @@ public class CardUsePatch {
         )
         public static void checkCard(AbstractPlayer __instance, AbstractCard c, AbstractMonster monster, int energyOnUse)
         {
+            //Checks to see if the card being played is a controllable card and
+            //does the appropriate stuff if it is
+            //If the card is not a controllable card, calls card.use normally
             boolean triggered = false;
             for (ControllableCard controllableCard : CombatStats.ControlPile.controllers) {
                 if (controllableCard.card.equals(c)) {

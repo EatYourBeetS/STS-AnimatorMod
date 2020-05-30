@@ -64,20 +64,19 @@ public class PlayControlPileCard {
         public static void remove(AbstractPlayer __instance, AbstractCard cardPlayed, AbstractMonster m, int e)
         {
             AbstractCard cardToRemove = null;
-            ControllableCard controllableCardToRemove = null;
             for (ControllableCard c : CombatStats.ControlPile.controllers) {
                 AbstractCard card = c.card;
                 if (cardPlayed.equals(card)) {
-                    for (AbstractCard cardToCheck : AbstractDungeon.player.exhaustPile.group) {
-                        if (cardToCheck.uuid == card.uuid) {
-                            cardToRemove = cardToCheck;
+                    if (c.originGroup != null) {
+                        for (AbstractCard cardToCheck : c.originGroup.group) {
+                            if (cardToCheck.uuid == card.uuid) {
+                                cardToRemove = cardToCheck;
+                            }
                         }
+                        c.originGroup.removeCard(cardToRemove);
                     }
-                    c.originGroup.removeCard(cardToRemove);
-                    controllableCardToRemove = c;
                 }
             }
-            CombatStats.ControlPile.controllers.remove(controllableCardToRemove);
         }
     }
 }

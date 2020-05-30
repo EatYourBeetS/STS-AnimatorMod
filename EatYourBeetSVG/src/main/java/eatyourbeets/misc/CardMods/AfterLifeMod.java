@@ -30,7 +30,21 @@ public class AfterLifeMod extends AbstractCardModifier
 
     @Override
     public void onExhausted(AbstractCard card) {
-        CombatStats.ControlPile.Add(card, player.exhaustPile);
+        CombatStats.ControlPile.Add(card, player.exhaustPile)
+                .OnUpdate(c ->
+                {
+                    boolean originalExists = false;
+                    for (AbstractCard cardToCheck : player.exhaustPile.group) {
+                        if (cardToCheck.uuid == c.card.uuid) {
+                            originalExists = true;
+                        }
+                    }
+                    if (!originalExists) {
+                        c.Delete();
+                    } else {
+                        c.SetEnabled(!CombatStats.HasActivatedSemiLimited("<AFTERLIFE>"));
+                    }
+                });
     }
 
     @Override

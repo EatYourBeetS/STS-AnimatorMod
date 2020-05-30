@@ -40,7 +40,7 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
 
     public boolean isHidden = false;
 
-    private final ArrayList<ControllableCard> controllers = new ArrayList<>();
+    public final ArrayList<ControllableCard> controllers = new ArrayList<>();
     private final GUI_DynamicCardGrid cardGrid;
     private final GUI_Image background;
 

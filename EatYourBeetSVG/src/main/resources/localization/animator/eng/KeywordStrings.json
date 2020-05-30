@@ -56,7 +56,7 @@
 	},
 	"Afterlife":
 	{
-		"DESCRIPTION": "If your current [E] is less than this card's cost: For every [E] in this card's cost, you may #yPurge a random card from your #yExhaust pile instead of paying that [E].",
+		"DESCRIPTION": "You may play cards with #yAfterlife from your #yexhaust pile by #ypurging #b1 random #ynon-Afterlife card from your #yexhaust pile.",
 		"NAMES": ["afterlife"],
 		"PROPER_NAME": "Afterlife"
 	}

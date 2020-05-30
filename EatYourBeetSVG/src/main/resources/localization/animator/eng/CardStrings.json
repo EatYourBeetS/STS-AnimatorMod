@@ -525,7 +525,7 @@
 		},
 		"animator:AngelAlter":
 		{
-			"DESCRIPTION": "{Boost} [F] and [A] . || Shuffle a copy of this card into both your draw and discard piles.",
+			"DESCRIPTION": "This card can only be played from Afterlife. ** {Boost} [F] and [A] . ** Shuffle a copy of this card into both your draw and discard piles.",
 			"NAME": "Angel Alter"
 		},
 		"animator:Strike_AngelBeats":

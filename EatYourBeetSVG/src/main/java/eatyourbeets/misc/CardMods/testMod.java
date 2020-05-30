@@ -2,15 +2,17 @@ package eatyourbeets.misc.CardMods;
 
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.red.TrueGrit;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameActions;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
-public class AfterLifeMod extends AbstractCardModifier
+public class testMod extends AbstractCardModifier
 {
 
     public static final String ID = GR.Animator.CreateID("Afterlife");
@@ -19,7 +21,7 @@ public class AfterLifeMod extends AbstractCardModifier
 
     public AbstractCardModifier makeCopy()
     {
-        return new AfterLifeMod();
+        return new testMod();
     }
 
     @Override
@@ -30,7 +32,7 @@ public class AfterLifeMod extends AbstractCardModifier
 
     @Override
     public void onExhausted(AbstractCard card) {
-        CombatStats.ControlPile.Add(card, player.exhaustPile, false)
+        CombatStats.ControlPile.Add(card, player.exhaustPile, true)
                 .OnUpdate(c ->
                 {
                     boolean originalExists = false;
@@ -44,6 +46,13 @@ public class AfterLifeMod extends AbstractCardModifier
                     } else {
                         c.SetEnabled(!CombatStats.HasActivatedSemiLimited("<AFTERLIFE>"));
                     }
+                })
+                .OnSelect(c ->
+                {
+                    CombatStats.TryActivateSemiLimited("<AFTERLIFE>");
+                    System.out.println("use altered");
+                    GameActions.Top.MakeCardInHand(new TrueGrit());
+                    c.Delete();
                 });
     }
 

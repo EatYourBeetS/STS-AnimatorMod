@@ -56,9 +56,9 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         return controller;
     }
 
-    public ControllableCard Add(AbstractCard card, CardGroup group)
+    public ControllableCard Add(AbstractCard card, CardGroup group, boolean alterPlay)
     {
-        return Add(new ControllableCard(card, group));
+        return Add(new ControllableCard(card, group, alterPlay));
     }
 
     @Override
@@ -108,27 +108,6 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
             // TODO: Localization
             TipHelper.renderGenericTip(50f * Settings.scale, hb.y + hb.height * 2, "Command Pile",
             "You may activate cards' effects from this pile by selecting them during your turn.");
-
-//            if (InputHelper.justClickedLeft && AbstractDungeon.actionManager.phase == GameActionManager.Phase.WAITING_ON_USER)
-//            {
-//                GameActions.Top.SelectFromPile("Command Pile", 1, group)
-//                .SetOptions(false, true)
-//                .AddCallback(cards ->
-//                {
-//                    AbstractCard card = cards.size() > 0 ? cards.get(0) : null;
-//                    if (card != null)
-//                    {
-//                        for (ControllableCard c : controllers)
-//                        {
-//                            if (c.card == card)
-//                            {
-//                                c.Select();
-//                                return;
-//                            }
-//                        }
-//                    }
-//                });
-//            }
         }
     }
 

@@ -15,14 +15,15 @@ public class ControllableCard
         Disabled
     }
 
-    public final AbstractCard card;
-    public CardGroup originGroup;
+    public final AbstractCard card; //the card this represents
+    public CardGroup originGroup; //where the original card is supposed to reside
+    public boolean alterPlay; //If true, calls the Select method when played. If false, plays normally.
     public State state;
 
     protected GenericCallback<ControllableCard> onUpdate;
     protected GenericCallback<ControllableCard> onSelect;
 
-    public ControllableCard(AbstractCard card, CardGroup group)
+    public ControllableCard(AbstractCard card, CardGroup group, boolean alterPlay)
     {
         //We save a statequivalentcopy of the card and set the uuids to be equal so we can find one based on the other
         //We save a copy instead of the original so we don't render one card in two different locations and cause visual glitch
@@ -30,6 +31,7 @@ public class ControllableCard
         this.card.uuid = card.uuid;
         this.state = State.Enabled;
         this.originGroup = group;
+        this.alterPlay = alterPlay;
     }
 
     public ControllableCard OnUpdate(Object state, ActionT2<Object, ControllableCard> onCompletion)

@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
+import eatyourbeets.misc.CardMods.testMod;
 import eatyourbeets.utilities.GameActions;
 
 public class HidekiHinata extends AnimatorCard
@@ -24,7 +25,7 @@ public class HidekiHinata extends AnimatorCard
         SetUpgrade(3, 0, 0, 0);
 
         SetSynergy(Synergies.AngelBeats);
-        CardModifierManager.addModifier(this, new AfterLifeMod());
+        CardModifierManager.addModifier(this, new testMod());
     }
 
     @Override

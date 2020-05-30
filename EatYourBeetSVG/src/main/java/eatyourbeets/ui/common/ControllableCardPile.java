@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -39,15 +38,14 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
     public boolean isHidden = false;
 
     private final ArrayList<ControllableCard> controllers = new ArrayList<>();
-//    private final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     private final GUI_DynamicCardGrid cardGrid = new GUI_DynamicCardGrid();
 
     public ControllableCardPile()
     {
-        cardGrid.SetScale(0.5f);
-
-        cardGrid.SetOnCardHover(__ -> RefreshTimer());
-        cardGrid.SetOnCardClick(card ->
+        cardGrid.SetScale(0.5f)
+        .SetDrawStart(Settings.WIDTH * 0.2f, Settings.HEIGHT * 0.5f)
+        .SetOnCardHover(__ -> RefreshTimer())
+        .SetOnCardClick(card ->
         {
             for (ControllableCard c : controllers)
             {
@@ -99,6 +97,20 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
                 cardGrid.AddCard(c.card);
             }
         }
+
+        int size = cardGrid.cards.size();
+        if (size <= 10)
+        {
+            cardGrid.SetRowSize(5).SetScale(0.5f);
+        }
+        else if (size <= 16)
+        {
+            cardGrid.SetRowSize(8).SetScale(0.4f);
+        }
+        else
+        {
+            cardGrid.SetRowSize(10).SetScale(0.3f);
+        }
     }
 
     public void Update(EnergyPanel panel)
@@ -124,8 +136,8 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
             RefreshTimer();
 
             // TODO: Localization
-            TipHelper.renderGenericTip(50f * Settings.scale, hb.y + hb.height * 2, "Command Pile",
-            "You may activate cards' effects from this pile by selecting them during your turn.");
+            //TipHelper.renderGenericTip(50f * Settings.scale, hb.y + hb.height * 2, "Command Pile",
+            //"You may activate cards' effects from this pile by selecting them during your turn.");
         }
 
         if (timer > 0)

@@ -16,7 +16,6 @@ public class GUI_DynamicCardGrid extends GUIElement
 {
     private static final float PAD_X = AbstractCard.IMG_WIDTH * 0.75f + Settings.CARD_VIEW_PAD_X;
     private static final float PAD_Y = AbstractCard.IMG_HEIGHT * 0.75f + Settings.CARD_VIEW_PAD_Y;
-    private static final int ROW_SIZE = 5;
 
     public final ArrayList<AbstractCard> cards;
     public boolean autoShowScrollbar = true;
@@ -24,6 +23,7 @@ public class GUI_DynamicCardGrid extends GUIElement
     public String message = null;
     public float scale = 1;
 
+    public int rowSize = 5;
     public float drawStart_x;
     public float drawStart_y;
     public float pad_x;
@@ -60,6 +60,19 @@ public class GUI_DynamicCardGrid extends GUIElement
 
         return this;
     }
+
+    public GUI_DynamicCardGrid SetRowSize(int size)
+    {
+        if (size < 1)
+        {
+            throw new IllegalArgumentException("Row size must be greater than 0");
+        }
+
+        this.rowSize = size;
+
+        return this;
+    }
+
 
     public GUI_DynamicCardGrid SetDrawStart(float x, float y)
     {
@@ -180,7 +193,7 @@ public class GUI_DynamicCardGrid extends GUIElement
             }
 
             column += 1;
-            if (column >= ROW_SIZE)
+            if (column >= rowSize)
             {
                 column = 0;
                 row += 1;

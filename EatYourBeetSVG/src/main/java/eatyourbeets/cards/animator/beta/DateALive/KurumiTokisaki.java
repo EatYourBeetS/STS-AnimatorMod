@@ -22,10 +22,11 @@ public class KurumiTokisaki extends AnimatorCard
         super(DATA);
 
         Initialize(12, 12, 2);
+        SetUpgrade(0,0,1);
 
         SetEthereal(true);
 
-        SetCooldown(3, -1, this::OnCooldownCompleted);
+        SetCooldown(3, 0, this::OnCooldownCompleted);
         SetSynergy(Synergies.DateALive);
     }
 

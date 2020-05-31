@@ -56,7 +56,7 @@
 	},
 	"Afterlife":
 	{
-		"DESCRIPTION": "You may play cards with #yAfterlife from your #yexhaust pile by #ypurging #b1 random #ynon-Afterlife card from your #yexhaust pile.",
+		"DESCRIPTION": "You may play cards with #yAfterlife from your #yexhaust pile by #ypurging #b1 random #ynon-Afterlife card from your #yexhaust pile. Cards played from #yAfterlife do not #yexhaust.",
 		"NAMES": ["afterlife"],
 		"PROPER_NAME": "Afterlife"
 	}

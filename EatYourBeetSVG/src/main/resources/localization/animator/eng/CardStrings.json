@@ -505,7 +505,7 @@
 		},
 		"animator:Noda":
 		{
-			"DESCRIPTION": "Draw !M! card(s) next turn. || <SLM>. {Synergy}. Gain/Boost [F] .",
+			"DESCRIPTION": "<SLM>. {Synergy}. Gain/Boost [F] .",
 			"NAME": "Noda"
 		},
 		"animator:HidekiHinata":

@@ -223,7 +223,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
 
     protected boolean CanUse()
     {
-        return card.canUse(player, (AbstractMonster)target) || card.dontTriggerOnUseCard;
+        return card.canUse(player, (AbstractMonster) target) || card.dontTriggerOnUseCard;
     }
 
     protected void ShowCard()
@@ -233,7 +233,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
 
         if (!player.limbo.contains(card))
         {
-            player.limbo.addToBottom(card);
+            player.limbo.addToTop(card);
         }
 
         if (currentPosition != null)
@@ -257,7 +257,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
 
         if (!player.limbo.contains(card))
         {
-            player.limbo.addToBottom(card);
+            player.limbo.addToTop(card);
         }
 
         if (!spendEnergy)
@@ -269,16 +269,16 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
         card.purgeOnUse = purge;
         card.calculateCardDamage(enemy);
 
-        GameActions.Top.Add(new UnlimboAction(card));
+        //GameActions.Top.Add(new UnlimboAction(card));
         GameActions.Top.Wait(Settings.FAST_MODE ? Settings.ACTION_DUR_FASTER : Settings.ACTION_DUR_MED);
 
         if (spendEnergy)
         {
             GameActions.Top.Add(new DelayAllActions()) // So the result of canUse() does not randomly change after queueing the card
-            .Except(a -> a instanceof PlayCard || a instanceof UnlimboAction || a instanceof WaitAction);
+            .Except(a -> a instanceof UnlimboAction || a instanceof WaitAction);
         }
 
-        AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(card, enemy, EnergyPanel.getCurrentEnergy(), false, !spendEnergy), true);
+        AbstractDungeon.actionManager.cardQueue.add(0, new CardQueueItem(card, enemy, EnergyPanel.getCurrentEnergy(), true, !spendEnergy));
 
         Complete(enemy);
     }

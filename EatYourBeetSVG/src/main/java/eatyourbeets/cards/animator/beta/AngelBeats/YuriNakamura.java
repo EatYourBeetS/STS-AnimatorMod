@@ -24,10 +24,7 @@ public class YuriNakamura extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 1, 0);
-
         SetSynergy(Synergies.AngelBeats);
-        SetExhaust(true);
-        CardModifierManager.addModifier(this, new AfterLifeMod());
     }
 
     @Override

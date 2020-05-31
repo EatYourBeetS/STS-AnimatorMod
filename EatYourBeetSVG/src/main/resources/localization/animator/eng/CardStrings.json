@@ -472,7 +472,7 @@
 	{
 		"animator:YuriNakamura":
 		{
-			"DESCRIPTION": "Give a non-{Ethereal} card in your hand {Retain}. || <LIM> {Synergy}: Give a card in your exhaust pile {Afterlife}. It {purges} when played.",
+			"DESCRIPTION": "Give a non-{Ethereal} card in your hand {Retain}. || <LIM> {Synergy}: Give a non-{Hindrance}, non-{Afterlife} card in your exhaust pile {Afterlife}. It {purges} when played.",
 			"EXTENDED_DESCRIPTION": ["give Retain.", "Choose a card to give Afterlife. It purges when played."],
 			"NAME": "Yuri Nakamura"
 		},
@@ -481,6 +481,16 @@
 			"DESCRIPTION": "Put any number of cards from your discard pile into your hand. || Synergy: Exhaust any number of cards.",
 			"EXTENDED_DESCRIPTION": ["Choose any number of cards to put into your hand."],
 			"NAME": "Kanade Tachibana"
+		},
+		"animator:AyatoNaoi":
+		{
+			"DESCRIPTION": "Enter {[I] Stance}. ** Channel !M! Dark. ** When this card is played from Afterlife, ALL enemies lose HP equal to the total amount of damage they intend to deal.",
+			"NAME": "Ayato Naoi"
+		},
+		"animator:Godan":
+		{
+			"DESCRIPTION": "Cooldown !S! : Gain !M! [F] and add a {Wound} to your hand.",
+			"NAME": "Matsushita Godan"
 		},
 		"animator:EriShiina":
 		{

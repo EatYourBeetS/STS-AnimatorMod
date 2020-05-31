@@ -489,7 +489,7 @@
 		},
 		"animator:MasamiIwasawa":
 		{
-			"DESCRIPTION": "Put !S! {Dazed} on top of your draw pile. || <LIM>. {Synergy}: Draw !M! card(s).",
+			"DESCRIPTION": "Put !S! {Dazed} on top of your draw pile. || Starter: Draw !M! card(s).",
 			"NAME": "Masami Iwasawa"
 		},
 		"animator:Chaa":
@@ -510,12 +510,12 @@
 		},
 		"animator:HidekiHinata":
 		{
-			"DESCRIPTION": "{Reload}: Gain !S! Block. || {Synergy}. Deal !M! additional damage.",
+			"DESCRIPTION": "If the enemy intends to attack, deal damage again.",
 			"NAME": "Hideki Hinata"
 		},
 		"animator:Yusa":
 		{
-			"DESCRIPTION": "{Scry} !S!. Exhaust !M! card(s). || <LIM>: When this card is discarded, add an {Insight} to your discard pile.",
+			"DESCRIPTION": "{Scry} !S!. Exhaust !M! card(s) from your discard pile. || <LIM>: When this card is discarded, add an {Insight} to your discard pile.",
 			"NAME": "Yusa"
 		},
 		"animator:Yui":

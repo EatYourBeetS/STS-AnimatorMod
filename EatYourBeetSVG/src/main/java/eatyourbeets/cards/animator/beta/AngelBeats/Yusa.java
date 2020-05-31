@@ -20,7 +20,7 @@ public class Yusa extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 1, 2);
-        SetUpgrade(0, 0, 0, 2);
+        SetUpgrade(0, 0, 0, 1);
 
         SetSynergy(Synergies.AngelBeats);
     }
@@ -29,7 +29,7 @@ public class Yusa extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Scry(secondaryValue);
-        GameActions.Bottom.ExhaustFromHand(name, magicNumber, false);
+        GameActions.Bottom.ExhaustFromPile(name, magicNumber, p.discardPile);
     }
 
     @Override

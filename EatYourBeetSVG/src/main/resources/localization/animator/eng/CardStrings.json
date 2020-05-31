@@ -484,7 +484,7 @@
 		},
 		"animator:EriShiina":
 		{
-			"DESCRIPTION": "Add a {Throwing-Knife} to your hand for every [E] paid for by {Afterlife}.",
+			"DESCRIPTION": "When this card is played from Afterlife, add !M! {Throwing-Knives} to your hand.",
 			"NAME": "Eri Shiina"
 		},
 		"animator:MasamiIwasawa":
@@ -520,7 +520,7 @@
 		},
 		"animator:Yui":
 		{
-			"DESCRIPTION": "Motivate !S!. || <SLM>. Synergy: Gain [E].",
+			"DESCRIPTION": "Motivate !S!. || <SLM>. When this card is played from {Afterlife}, gain [E].",
 			"NAME": "Yui"
 		},
 		"animator:AngelAlter":

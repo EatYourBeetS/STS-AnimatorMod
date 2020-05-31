@@ -24,7 +24,7 @@ public abstract class AnimatorCard extends EYBCard
     public static final CardTags SPELLCASTER = GR.Enums.CardTags.SPELLCASTER;
     public Synergy synergy;
 
-    protected static EYBCardData Register(Class<? extends AnimatorCard> type)
+    public static EYBCardData Register(Class<? extends AnimatorCard> type)
     {
         return RegisterCardData(type, GR.Animator.CreateID(type.getSimpleName())).SetColor(GR.Animator.CardColor);
     }

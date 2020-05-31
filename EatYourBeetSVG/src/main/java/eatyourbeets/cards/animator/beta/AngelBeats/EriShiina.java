@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCard_OnSpecialPlay;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
@@ -13,9 +14,9 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.utilities.GameActions;
 
-public class EriShiina extends AnimatorCard
+public class EriShiina extends AnimatorCard_OnSpecialPlay
 {
-    public static final EYBCardData DATA = Register(EriShiina.class).SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = AnimatorCard.Register(EriShiina.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal);
     static
     {
         for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
@@ -28,12 +29,13 @@ public class EriShiina extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0, 0, 0);
+        Initialize(7, 0, 2, 0);
         SetUpgrade(3, 0, 0, 0);
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.AngelBeats);
         SetMartialArtist();
+        SetExhaust(true);
         CardModifierManager.addModifier(this, new AfterLifeMod());
     }
 
@@ -48,6 +50,10 @@ public class EriShiina extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        //The Throwing Knife stuff is hardcoded into AfterlifeMod >_>
+    }
+
+    @Override
+    public void OnSpecialPlay() {
+        GameActions.Bottom.CreateThrowingKnives(magicNumber);
     }
 }

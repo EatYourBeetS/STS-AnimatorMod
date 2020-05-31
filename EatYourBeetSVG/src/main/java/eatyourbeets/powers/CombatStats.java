@@ -30,7 +30,7 @@ import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.unnamed.Void;
+import eatyourbeets.ui.common.ControllableCardPile;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 import patches.CardGlowBorderPatches;
@@ -69,7 +69,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnStatsClearedSubscriber> onStatsCleared = new GameEvent<>();
     public static final GameEvent<OnStanceChangedSubscriber> onStanceChanged = new GameEvent<>();
 
-    public static final Void Void = new Void();
+    public static final ControllableCardPile ControlPile = new ControllableCardPile();
     public static boolean LoadingPlayerSave;
 
     private static final Map<String, Object> combatData = new HashMap<>();
@@ -153,7 +153,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onStatsCleared.Clear();
         onStanceChanged.Clear();
 
-        //Void.Initialize(true);
+        ControlPile.Clear();
     }
 
     public static void EnsurePowerIsApplied()

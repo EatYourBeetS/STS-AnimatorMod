@@ -15,7 +15,6 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Aisha extends AnimatorCard
 {
@@ -25,8 +24,8 @@ public class Aisha extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 0);
-        SetUpgrade(0, 0, 1);
+        Initialize(2, 0, 0, IntellectPower.GetThreshold(1));
+        SetUpgrade(0, 0, 1, 0);
         SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.Elsword);
@@ -66,8 +65,7 @@ public class Aisha extends AnimatorCard
 
         if (!CombatStats.HasActivatedSemiLimited(cardID))
         {
-            IntellectPower intellect = GameUtilities.GetPower(player, IntellectPower.class);
-            if (intellect != null && intellect.GetCurrentLevel() > 1)
+            if (IntellectPower.GetCurrentLevel() > 1)
             {
                 GameActions.Bottom.GainOrbSlots(1);
                 CombatStats.TryActivateSemiLimited(cardID);

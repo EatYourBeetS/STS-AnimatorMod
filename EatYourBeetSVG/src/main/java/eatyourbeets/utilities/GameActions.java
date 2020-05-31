@@ -68,11 +68,13 @@ public final class GameActions
 {
     @Deprecated
     public static final GameActions NextCombat = new GameActions(ActionOrder.NextCombat);
+    @Deprecated
+    public static final GameActions TurnStart = new GameActions(ActionOrder.TurnStart);
 
+    public static final GameActions Instant = new GameActions(ActionOrder.Instant);
     public static final GameActions Top = new GameActions(ActionOrder.Top);
     public static final GameActions Bottom = new GameActions(ActionOrder.Bottom);
-    public static final GameActions TurnStart = new GameActions(ActionOrder.TurnStart);
-    public static final GameActions Instant = new GameActions(ActionOrder.Instant);
+    public static final GameActions Delayed = new GameActions(ActionOrder.Delayed);
     public static final GameActions Last = new GameActions(ActionOrder.Last);
 
     protected final ActionOrder actionOrder;
@@ -124,9 +126,14 @@ public final class GameActions
                 break;
             }
 
+            case Delayed:
+            {
+                Bottom.Callback(action, Bottom::Add);
+            }
+
             case Last:
             {
-                DelayedAction.Add(action);
+                ExecuteLast.Add(action);
                 break;
             }
         }
@@ -722,6 +729,16 @@ public final class GameActions
         return Add(new SFXAction(key, pitchVar));
     }
 
+    public SelectCreature SelectCreature(SelectCreature.Targeting target)
+    {
+        return Add(new SelectCreature(target));
+    }
+
+    public SelectCreature SelectCreature(AbstractCard card)
+    {
+        return Add(new SelectCreature(card));
+    }
+
     public SelectFromHand SelectFromHand(String sourceName, int amount, boolean isRandom)
     {
         return Add(new SelectFromHand(sourceName, amount, isRandom));
@@ -799,26 +816,28 @@ public final class GameActions
 
     public enum ActionOrder
     {
-        Top,
-        Bottom,
         TurnStart,
         NextCombat,
+
         Instant,
+        Top,
+        Bottom,
+        Delayed,
         Last
     }
 
-    protected static class DelayedAction implements OnPhaseChangedSubscriber
+    protected static class ExecuteLast implements OnPhaseChangedSubscriber
     {
         private final AbstractGameAction action;
 
-        private DelayedAction(AbstractGameAction action)
+        private ExecuteLast(AbstractGameAction action)
         {
             this.action = action;
         }
 
         public static void Add(AbstractGameAction action)
         {
-            CombatStats.onPhaseChanged.Subscribe(new DelayedAction(action));
+            CombatStats.onPhaseChanged.Subscribe(new ExecuteLast(action));
         }
 
         @Override
@@ -827,7 +846,6 @@ public final class GameActions
             if (phase == GameActionManager.Phase.WAITING_ON_USER)
             {
                 GameActions.Bottom.Add(action);
-
                 CombatStats.onPhaseChanged.Unsubscribe(this);
             }
         }

@@ -472,8 +472,8 @@
 	{
 		"animator:YuriNakamura":
 		{
-			"DESCRIPTION": "Give a non-{Ethereal} card in your hand {Retain}. || {Synergy}: Give a card in your hand {Afterlife}.",
-			"EXTENDED_DESCRIPTION": ["give Retain.", "give Afterlife."],
+			"DESCRIPTION": "Give a non-{Ethereal} card in your hand {Retain}. || <LIM> {Synergy}: Give a card in your exhaust pile {Afterlife}. It {purges} when played.",
+			"EXTENDED_DESCRIPTION": ["give Retain.", "Choose a card to give Afterlife. It purges when played."],
 			"NAME": "Yuri Nakamura"
 		},
 		"animator:KanadeTachibana":

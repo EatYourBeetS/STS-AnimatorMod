@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
-import eatyourbeets.cards.animator.beta.AngelBeats.EriShiina;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCard_OnSpecialPlay;
 import eatyourbeets.powers.CombatStats;
@@ -38,6 +37,10 @@ public class AfterLifeMod extends AbstractCardModifier
 
     @Override
     public void onExhausted(AbstractCard card) {
+        AfterlifeAddToControlPile(card);
+    }
+
+    public static void AfterlifeAddToControlPile(AbstractCard card) {
         CombatStats.ControlPile.Add(card)
                 .OnUpdate(c ->
                 {
@@ -122,7 +125,7 @@ public class AfterLifeMod extends AbstractCardModifier
                 });
     }
 
-    private AbstractCard getRandomCardToPurge() {
+    private static AbstractCard getRandomCardToPurge() {
         ArrayList<AbstractCard> validCards = new ArrayList<>();
         for (AbstractCard card : AbstractDungeon.player.exhaustPile.group) {
             if (!CardModifierManager.hasModifier(card, AfterLifeMod.ID)) {

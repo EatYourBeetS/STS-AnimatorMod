@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -417,6 +418,11 @@ public class CombatStats extends EYBPower implements InvisiblePower
         for (OnAfterCardPlayedSubscriber p : onAfterCardPlayed.GetSubscribers())
         {
             p.OnAfterCardPlayed(card);
+        }
+
+        if (player.limbo.contains(card))
+        {
+            GameActions.Top.Add(new UnlimboAction(card));
         }
     }
 

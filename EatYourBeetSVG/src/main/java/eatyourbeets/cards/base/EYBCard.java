@@ -241,12 +241,7 @@ public abstract class EYBCard extends EYBCardBase
     public boolean IsStarter()
     {
         ArrayList<AbstractCard> played = AbstractDungeon.actionManager.cardsPlayedThisTurn;
-        if (played == null || played.isEmpty())
-        {
-            return true;
-        }
-
-        return played.get(0) == this;
+        return played == null || played.isEmpty() || (played.size() == 1 && played.get(0) == this);
     }
 
     public boolean IsAoE()

@@ -108,7 +108,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         {
             toggleBeta.isActive = false;
             purgingStoneImage.isActive = false;
-            startingDeck.SetText("Starting Series: NL #y" + GR.Animator.Data.SelectedLoadout.Name.replace(" ", " #y"));
+            UpdateStartingDeckText();
             GameEffects.TopLevelList.Add(new AnimatorSeriesSelectEffect(this));
         }
     }
@@ -225,8 +225,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
     public void ToggleBetaSeries(boolean value)
     {
-        GR.Animator.Config.SetDisplayBetaSeries(value, true);
-
         if (value)
         {
             for (AbstractCard card : container.betaCards)
@@ -245,6 +243,9 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
                 container.allCards.remove(card);
             }
         }
+
+        GR.Animator.Config.SetDisplayBetaSeries(value, true);
+        UpdateStartingDeckText();
     }
 
     public void Proceed()
@@ -275,5 +276,15 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
             confirm.SetInteractable(false);
             selectionAmount.SetFontColor(Color.GRAY);
         }
+    }
+
+    protected void UpdateStartingDeckText()
+    {
+        String text = "Starting Series: NL #y" + GR.Animator.Data.SelectedLoadout.Name.replace(" ", " #y");
+        if (GR.Animator.Config.GetDisplayBetaSeries() && GR.Animator.Data.BetaLoadouts.size() > 0)
+        {
+            text += " NL Beta: Ascension and NL Trophies disabled.";
+        }
+        startingDeck.SetText(text);
     }
 }

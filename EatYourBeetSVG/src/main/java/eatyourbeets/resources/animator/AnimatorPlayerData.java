@@ -21,8 +21,8 @@ import java.util.regex.Pattern;
 
 public class AnimatorPlayerData
 {
-    public final ArrayList<AnimatorLoadout> BaseLoadouts = new ArrayList<>(); // Contains starting series
-    public final ArrayList<AnimatorLoadout> BetaLoadouts = new ArrayList<>(); // Contains series which cannot be chosen from Character select
+    public final ArrayList<AnimatorLoadout> BaseLoadouts = new ArrayList<>();
+    public final ArrayList<AnimatorLoadout> BetaLoadouts = new ArrayList<>();
     public final ArrayList<AnimatorTrophies> Trophies = new ArrayList<>();
     public AnimatorTrophies SpecialTrophies = new AnimatorTrophies(-1);
     public AnimatorLoadout SelectedLoadout = new _FakeLoadout();

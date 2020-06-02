@@ -74,6 +74,12 @@ public class AnimatorLoadoutsContainer
             AnimatorRuntimeLoadout card = AnimatorRuntimeLoadout.TryCreate(loadout);
             if (card != null)
             {
+                if (loadout == GR.Animator.Data.SelectedLoadout)
+                {
+                    card.Promote();
+                    promotedCount += 1;
+                }
+
                 seriesSelectionItems.add(card);
             }
         }

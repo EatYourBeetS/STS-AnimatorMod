@@ -134,22 +134,29 @@ public class AnimatorConfig
             {
                 CropCardImages = config.getBool(CROP_CARD_PORTRAIT_KEY);
             }
-
-            ModPanel settingsPanel = new ModPanel();
-            AnimatorStrings.Misc misc = GR.Animator.Strings.Misc;
-            AddToggle(settingsPanel, misc.UseCardHoveringAnimation, 400, 700, GetCropCardImages(), c -> SetCropCardImages(c.enabled, true));
-
-            if (GR.Animator.Data.BetaLoadouts.size() > 0)
-            {
-                AddToggle(settingsPanel, misc.DisplayBetaSeries, 400, 650, GetDisplayBetaSeries(), c -> SetDisplayBetaSeries(c.enabled, true));
-            }
-
-            BaseMod.registerModBadge(GR.GetTexture(GR.GetPowerImage(DarkCubePower.POWER_ID)), AnimatorCharacter.NAME, "EatYourBeetS", "", settingsPanel);
         }
         catch (IOException e)
         {
             throw new RuntimeException(e);
         }
+    }
+
+    public void InitializeOptions()
+    {
+        ModPanel settingsPanel = new ModPanel();
+        AnimatorStrings.Misc misc = GR.Animator.Strings.Misc;
+        AddToggle(settingsPanel, misc.UseCardHoveringAnimation, 400, 700, GetCropCardImages(), c -> SetCropCardImages(c.enabled, true));
+
+        if (GR.Animator.Data.BetaLoadouts.size() > 0)
+        {
+            AddToggle(settingsPanel, misc.DisplayBetaSeries, 400, 650, GetDisplayBetaSeries(), c -> SetDisplayBetaSeries(c.enabled, true));
+        }
+        else
+        {
+            SetDisplayBetaSeries(false, false);
+        }
+
+        BaseMod.registerModBadge(GR.GetTexture(GR.GetPowerImage(DarkCubePower.POWER_ID)), AnimatorCharacter.NAME, "EatYourBeetS", "", settingsPanel);
     }
 
     public boolean Save()

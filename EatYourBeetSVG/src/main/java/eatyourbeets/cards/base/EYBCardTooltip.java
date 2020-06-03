@@ -53,6 +53,8 @@ public class EYBCardTooltip
     public TextureRegion icon;
     public String title;
     public String description;
+    public float iconMulti_W = 1;
+    public float iconMulti_H = 1;
 
     public EYBCardTooltip(String title, String description)
     {
@@ -184,12 +186,22 @@ public class EYBCardTooltip
         return h;
     }
 
-    public void SetIcon(TextureRegion region)
+    public EYBCardTooltip SetIconSizeMulti(float w, float h)
     {
-        this.icon = region;
+        this.iconMulti_W = w;
+        this.iconMulti_H = h;
+
+        return this;
     }
 
-    public void SetIcon(TextureRegion region, int div)
+    public EYBCardTooltip SetIcon(TextureRegion region)
+    {
+        this.icon = region;
+
+        return this;
+    }
+
+    public EYBCardTooltip SetIcon(TextureRegion region, int div)
     {
         int w = region.getRegionWidth();
         int h = region.getRegionHeight();
@@ -197,14 +209,18 @@ public class EYBCardTooltip
         int y = region.getRegionY();
         int half_div = div / 2;
         this.icon = new TextureRegion(region.getTexture(), x + (w / div), y + (h / div), w - (w / half_div), h - (h / half_div));
+
+        return this;
     }
 
-    public void SetIcon(Texture texture, int div)
+    public EYBCardTooltip SetIcon(Texture texture, int div)
     {
         int w = texture.getWidth();
         int h = texture.getHeight();
         int half_div = div / 2;
         this.icon = new TextureRegion(texture, w / div, h / div, w - (w / half_div), h - (h / half_div));
+
+        return this;
     }
 
     public void renderTipEnergy(SpriteBatch sb, TextureRegion region, float x, float y, float width, float height)

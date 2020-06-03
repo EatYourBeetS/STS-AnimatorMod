@@ -48,11 +48,11 @@ public class LuciaKonohana extends AnimatorCard
         {
             if (i == 0)
             {
-                GameActions.Bottom.VFX(new PotionBounceEffect(p.hb.cY, p.hb.cX, m.hb.cX, m.hb.cY), 0.3f);
+                GameActions.Bottom.VFX(new PotionBounceEffect(p.hb.cX, p.hb.cY, m.hb.cX, m.hb.cY), 0.3f);
             }
             else
             {
-                GameActions.Bottom.VFX(new PotionBounceEffect(m.hb.cY, m.hb.cX, m.hb.cX, m.hb.cY), 0.3f);
+                GameActions.Bottom.VFX(new PotionBounceEffect(m.hb.cX, m.hb.cY, m.hb.cX, m.hb.cY), 0.4f);
             }
             GameActions.Bottom.ApplyPoison(p, m, magicNumber);
         }

@@ -43,12 +43,22 @@ public class LuciaKonohana extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         int stacks = GameUtilities.UseXCostEnergy(this);
+
+        for (int i=0; i<stacks; i++)
+        {
+            if (i == 0)
+            {
+                GameActions.Bottom.VFX(new PotionBounceEffect(p.hb.cY, p.hb.cX, m.hb.cX, m.hb.cY), 0.3f);
+            }
+            else
+            {
+                GameActions.Bottom.VFX(new PotionBounceEffect(m.hb.cY, m.hb.cX, m.hb.cX, m.hb.cY), 0.3f);
+            }
+            GameActions.Bottom.ApplyPoison(p, m, magicNumber);
+        }
+
         if (stacks >= secondaryValue)
         {
-            //noinspection SuspiciousNameCombination
-            GameActions.Bottom.VFX(new PotionBounceEffect(p.hb.cY, p.hb.cX, m.hb.cX, m.hb.cY), 0.3f);
-            GameActions.Bottom.ApplyPoison(p, m, magicNumber * stacks);
-
             if (CombatStats.TryActivateLimited(cardID))
             {
                 GameActions.Bottom.ApplyPower(p, m, new LuciaKonohanaPower(m, 1));

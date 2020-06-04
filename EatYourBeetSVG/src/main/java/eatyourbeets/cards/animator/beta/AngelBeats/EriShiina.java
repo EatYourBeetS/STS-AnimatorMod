@@ -6,17 +6,17 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCard_OnSpecialPlay;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class EriShiina extends AnimatorCard_OnSpecialPlay
+public class EriShiina extends AnimatorCard
 {
-    public static final EYBCardData DATA = AnimatorCard.Register(EriShiina.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(EriShiina.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal);
     static
     {
         for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
@@ -50,10 +50,8 @@ public class EriShiina extends AnimatorCard_OnSpecialPlay
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-    }
-
-    @Override
-    public void OnSpecialPlay() {
-        GameActions.Bottom.CreateThrowingKnives(magicNumber);
+        if (CombatStats.ControlPile.Contains(this)) {
+            GameActions.Bottom.CreateThrowingKnives(magicNumber);
+        }
     }
 }

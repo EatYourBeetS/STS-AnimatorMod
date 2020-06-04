@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCard_OnSpecialPlay;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
@@ -68,28 +67,18 @@ public class AfterLifeMod extends AbstractCardModifier
                             if (creature instanceof AbstractMonster) {
                                 monster = (AbstractMonster) creature;
                             }
-                            GameActions.Bottom.PlayCard(c.card, monster).SpendEnergy(true).AddCallback(something ->
+                            GameActions.Bottom.PlayCard(c.card, monster).SpendEnergy(true).AddCallback(c.card, (state, __) ->
                             {
-                                //Triggers the "When this card is played from Afterlife effects"
-                                if (c.card instanceof AnimatorCard_OnSpecialPlay) {
-                                    ((AnimatorCard_OnSpecialPlay) c.card).OnSpecialPlay();
-                                }
-
+                                AbstractDungeon.player.exhaustPile.removeCard(c.card);
+                                AbstractDungeon.player.exhaustPile.removeCard(cardToPurge);
+                                c.Delete();
                             });
                             if (wasExhaust) {
                                 System.out.println("turning on exhaust");
                                 //Put this in action to make sure it runs after card is played
-                                GameActions.Bottom.Add(new AbstractGameAction() {
-                                    @Override
-                                    public void update() {
-                                        c.card.exhaust = true;
-                                        isDone = true;
-                                    }
-                                });
+                                GameActions.Bottom.ModifyAllInstances(c.card.uuid, playedCard -> playedCard.exhaust = true);
                             }
-                            AbstractDungeon.player.exhaustPile.removeCard(c.card);
-                            AbstractDungeon.player.exhaustPile.removeCard(cardToPurge);
-                            c.Delete();
+
                         });
                     }
                 });

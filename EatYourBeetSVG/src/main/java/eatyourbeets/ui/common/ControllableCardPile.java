@@ -86,6 +86,15 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         return Add(new ControllableCard(card));
     }
 
+    public boolean Contains(AbstractCard card) {
+        for (ControllableCard controllableCard : controllers) {
+            if (controllableCard.card == card) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public void OnPhaseChanged(GameActionManager.Phase phase)
     {

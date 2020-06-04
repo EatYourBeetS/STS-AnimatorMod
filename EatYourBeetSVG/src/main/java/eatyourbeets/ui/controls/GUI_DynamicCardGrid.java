@@ -155,10 +155,6 @@ public class GUI_DynamicCardGrid extends GUIElement
 
         if (hoveredCard != null)
         {
-//            if (InputHelper.justClickedLeft)
-//            {
-//                hoveredCard.hb.clickStarted = true;
-//            }
 
             if (InputHelper.justClickedLeft || CInputActionSet.select.isJustPressed())
             {

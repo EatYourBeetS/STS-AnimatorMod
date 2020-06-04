@@ -139,8 +139,7 @@ public class GUI_DynamicCardGrid extends GUIElement
         {
             hoveredCard.renderHoverShadow(sb);
             hoveredCard.render(sb);
-            //System.out.println(hoveredCard);
-            //hoveredCard.renderCardTip(sb);
+            //hoveredCard.renderCardTip(sb); //Crashes if enabled for some reason
         }
 
         if (message != null)

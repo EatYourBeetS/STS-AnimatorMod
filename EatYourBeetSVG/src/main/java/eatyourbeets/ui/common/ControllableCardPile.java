@@ -120,22 +120,24 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         }
 
         int size = cardGrid.cards.size();
+        int rowSize;
         if (size <= 10)
         {
-            background.Resize(30 + 120 * Math.min(size, 5), - 200 * (1 + Math.floorDiv(size, 5)), Settings.scale);
-            cardGrid.SetRowSize(5).SetScale(0.5f);
+            rowSize = 5;
+
         }
         else if (size <= 16)
         {
-            background.Resize(30 + 120 * Math.min(size, 5), - 200 * (1 + Math.floorDiv(size, 5)), Settings.scale);
-            cardGrid.SetRowSize(8).SetScale(0.4f);
+            rowSize = 8;
         }
         else
         {
-            background.Resize(30 + 120 * Math.min(size, 5), - 200 * (1 + Math.floorDiv(size, 5)), Settings.scale);
-            cardGrid.SetRowSize(10).SetScale(0.3f);
+            rowSize = 10;
         }
-
+        background.Resize(30 + 135 * Math.min(size, rowSize), - 200 * (1 + Math.floorDiv(size, rowSize)), Settings.scale);
+        //We set scale to be a constant 0.5f because any smaller and the enlarged cards on hover begin to
+        //cover up their neighbors, making it difficult for the player to hover some cards
+        cardGrid.SetRowSize(rowSize).SetScale(0.5f);
         background.Translate(cardGrid.drawStart_x - (Settings.scale * 80), cardGrid.drawStart_y + (Settings.scale * 100));
     }
 

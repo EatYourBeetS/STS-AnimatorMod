@@ -13,6 +13,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
+import patches.UpdateControlPileCard;
 
 import java.util.ArrayList;
 
@@ -50,6 +51,9 @@ public class AfterLifeMod extends AbstractCardModifier
                 })
                 .OnSelect(c ->
                 {
+                    if (!CombatStats.ControlPile.IsHovering()) {
+                        return;
+                    }
                     AbstractCard cardToPurge = getRandomCardToPurge();
                     if (cardToPurge == null) {
                         AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[2], true));

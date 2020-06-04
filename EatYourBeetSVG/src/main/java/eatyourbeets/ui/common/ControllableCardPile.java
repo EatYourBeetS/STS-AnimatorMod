@@ -95,7 +95,9 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
             ControllableCard c = i.next();
 
             c.Update();
-
+            c.card.applyPowers();
+            glowCheck(c.card);
+            c.card.triggerOnGlowCheck();
             if (c.IsDeleted())
             {
                 i.remove();
@@ -136,25 +138,25 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
             return;
         }
 
-        cardGrid.Update();
-        background.Update();
-
-        for (ControllableCard c : controllers)
-        {
-            c.Update(this);
+        for (ControllableCard c : controllers) {
+            AbstractCard card = c.card;
+            if (IsHovering() && card.hb.hovered) {
+                RefreshTimer();
+            }
         }
 
         hb.update();
+        cardGrid.Update();
+        background.Update();
         if (hb.hovered && GameUtilities.InBattle() && !AbstractDungeon.isScreenUp)
         {
             RefreshTimer();
-
             // TODO: Localization
             //TipHelper.renderGenericTip(50f * Settings.scale, hb.y + hb.height * 2, "Command Pile",
             //"You may activate cards' effects from this pile by selecting them during your turn.");
         }
 
-        if (timer > 0)
+        if (IsHovering())
         {
             GR.UI.AddPostRender(this::PostRender);
         }
@@ -181,7 +183,6 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         {
             return;
         }
-
         background.Render(sb);
         cardGrid.Render(sb);
     }
@@ -194,5 +195,14 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
     public boolean IsHovering()
     {
         return timer > 0;
+    }
+
+    public static void glowCheck(AbstractCard c)
+    {
+        if (c.canUse(AbstractDungeon.player, null) && !AbstractDungeon.isScreenUp) {
+            c.beginGlowing();
+        } else {
+            c.stopGlowing();
+        }
     }
 }

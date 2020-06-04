@@ -139,6 +139,7 @@ public class GUI_DynamicCardGrid extends GUIElement
         {
             hoveredCard.renderHoverShadow(sb);
             hoveredCard.render(sb);
+            //System.out.println(hoveredCard);
             //hoveredCard.renderCardTip(sb);
         }
 
@@ -186,12 +187,13 @@ public class GUI_DynamicCardGrid extends GUIElement
             //Ensures that only one card is hovered at a time
             if (hoveredCard == null || hoveredCard == card) {
                 card.updateHoverLogic();
+                if (card.hb.hovered)
+                {
+                    hoveredCard = card;
+                }
             }
 
-            if (card.hb.hovered)
-            {
-                hoveredCard = card;
-            }
+
 
             column += 1;
             if (column >= rowSize)

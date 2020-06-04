@@ -55,43 +55,8 @@ public class AfterLifeMod extends AbstractCardModifier
                     if (cardToPurge == null) {
                         AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[2], true));
                     } else if (c.card.hasEnoughEnergy() && c.card.cardPlayable(null)) {
-                        if (c.card.target == AbstractCard.CardTarget.ENEMY || c.card.target == AbstractCard.CardTarget.SELF_AND_ENEMY) {
-                            GameActions.Bottom.SelectCreature(c.card).AddCallback(creature ->
-                            {
-                                //Cards played from Afterlife do not exhaust
-                                boolean wasExhaust = false;
-                                if (c.card.exhaust) {
-                                    System.out.println("turning off exhaust");
-                                    wasExhaust = true;
-                                    c.card.exhaust = false;
-                                }
-                                if (creature instanceof AbstractMonster) {
-                                    AbstractMonster monster = (AbstractMonster)creature;
-                                    GameActions.Bottom.PlayCard(c.card, monster).SpendEnergy(true).AddCallback(something ->
-                                    {
-                                        //Triggers the "When this card is played from Afterlife effects"
-                                        if (c.card instanceof AnimatorCard_OnSpecialPlay) {
-                                            ((AnimatorCard_OnSpecialPlay) c.card).OnSpecialPlay();
-                                        }
-
-                                    });
-                                }
-                                if (wasExhaust) {
-                                    System.out.println("turning on exhaust");
-                                    //Put this in action to make sure it runs after card is played
-                                    GameActions.Bottom.Add(new AbstractGameAction() {
-                                        @Override
-                                        public void update() {
-                                            c.card.exhaust = true;
-                                            isDone = true;
-                                        }
-                                    });
-                                }
-                                AbstractDungeon.player.exhaustPile.removeCard(c.card);
-                                AbstractDungeon.player.exhaustPile.removeCard(cardToPurge);
-                                c.Delete();
-                            });
-                        } else {
+                        GameActions.Bottom.SelectCreature(c.card).AddCallback(creature ->
+                        {
                             //Cards played from Afterlife do not exhaust
                             boolean wasExhaust = false;
                             if (c.card.exhaust) {
@@ -99,12 +64,17 @@ public class AfterLifeMod extends AbstractCardModifier
                                 wasExhaust = true;
                                 c.card.exhaust = false;
                             }
-                            GameActions.Bottom.PlayCard(c.card, null).SpendEnergy(true).AddCallback(something ->
+                            AbstractMonster monster = null;
+                            if (creature instanceof AbstractMonster) {
+                                monster = (AbstractMonster) creature;
+                            }
+                            GameActions.Bottom.PlayCard(c.card, monster).SpendEnergy(true).AddCallback(something ->
                             {
                                 //Triggers the "When this card is played from Afterlife effects"
                                 if (c.card instanceof AnimatorCard_OnSpecialPlay) {
                                     ((AnimatorCard_OnSpecialPlay) c.card).OnSpecialPlay();
                                 }
+
                             });
                             if (wasExhaust) {
                                 System.out.println("turning on exhaust");
@@ -120,7 +90,7 @@ public class AfterLifeMod extends AbstractCardModifier
                             AbstractDungeon.player.exhaustPile.removeCard(c.card);
                             AbstractDungeon.player.exhaustPile.removeCard(cardToPurge);
                             c.Delete();
-                        }
+                        });
                     }
                 });
     }

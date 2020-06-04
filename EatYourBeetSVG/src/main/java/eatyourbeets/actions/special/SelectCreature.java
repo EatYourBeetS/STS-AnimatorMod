@@ -157,9 +157,10 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
                 break;
         }
 
-        if (InputHelper.justClickedLeft)
+        if (InputHelper.justClickedLeft || InputHelper.justReleasedClickLeft)
         {
             InputHelper.justClickedLeft = false;
+            InputHelper.justReleasedClickLeft = false;
             switch (targeting)
             {
                 case Random:

@@ -489,7 +489,7 @@
 		},
 		"animator:Godan":
 		{
-			"DESCRIPTION": "Cooldown !S! : Gain !M! [F] and add a {Wound} to your hand.",
+			"DESCRIPTION": "Enter {[F] Stance}. || Cooldown !S! : Gain !M! [F] and add a {Wound} to your hand.",
 			"NAME": "Matsushita Godan"
 		},
 		"animator:EriShiina":
@@ -499,7 +499,7 @@
 		},
 		"animator:MasamiIwasawa":
 		{
-			"DESCRIPTION": "Put !S! {Dazed} on top of your draw pile. || Starter: Draw !M! card(s).",
+			"DESCRIPTION": "Put !S! {Dazed} on top of your draw pile. || Starter: Apply !M! Vulnerable.",
 			"NAME": "Masami Iwasawa"
 		},
 		"animator:Chaa":
@@ -525,7 +525,7 @@
 		},
 		"animator:Yusa":
 		{
-			"DESCRIPTION": "{Scry} !S!. Exhaust !M! card(s) from your discard pile. || <LIM>: When this card is discarded, add an {Insight} to your discard pile.",
+			"DESCRIPTION": "{Scry} !S!. ** Exhaust !M! card(s) from your discard pile.",
 			"NAME": "Yusa"
 		},
 		"animator:Yui":
@@ -545,7 +545,7 @@
 		},
 		"animator:Defend_AngelBeats":
 		{
-			"DESCRIPTION": "Exhaust !M! card(s).",
+			"DESCRIPTION": "<LIM>. Exhaust !M! card(s).",
 			"NAME": "Improved Defend"
 		}
 	},

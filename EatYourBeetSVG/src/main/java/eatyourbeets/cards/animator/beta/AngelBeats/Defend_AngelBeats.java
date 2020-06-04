@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Defend_AngelBeats extends Defend
@@ -14,7 +15,7 @@ public class Defend_AngelBeats extends Defend
     {
         super(ID, 1, CardTarget.SELF);
 
-        Initialize(0, 4, 1);
+        Initialize(0, 5, 1);
         SetUpgrade(0, 3);
 
         SetSynergy(Synergies.AngelBeats);
@@ -24,6 +25,9 @@ public class Defend_AngelBeats extends Defend
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.ExhaustFromHand(name, magicNumber, false);
+        if (CombatStats.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.ExhaustFromHand(name, magicNumber, false);
+        }
     }
 }

@@ -31,7 +31,8 @@ public class HidekiHinata extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
-        if (m != null && m.getIntentBaseDmg() >= 0) {
+        if (m != null && m.getIntentBaseDmg() >= 0)
+        {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
         }
     }

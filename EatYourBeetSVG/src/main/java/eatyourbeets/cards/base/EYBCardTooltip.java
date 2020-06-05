@@ -173,7 +173,7 @@ public class EYBCardTooltip
         if (icon != null)
         {
             // To render it on the right: x + BOX_W - TEXT_OFFSET_X - 28 * Settings.scale
-            renderTipEnergy(sb, icon, x + TEXT_OFFSET_X, y + ORB_OFFSET_Y, 28, 28);
+            renderTipEnergy(sb, icon, x + TEXT_OFFSET_X, y + ORB_OFFSET_Y, 28 * iconMulti_W, 28 * iconMulti_H);
             FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X * 2.5f, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
         }
         else

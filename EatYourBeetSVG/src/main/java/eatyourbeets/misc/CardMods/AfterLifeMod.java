@@ -63,7 +63,6 @@ public class AfterLifeMod extends AbstractCardModifier
                             //Cards played from Afterlife do not exhaust
                             boolean wasExhaust = false;
                             if (c.card.exhaust) {
-                                System.out.println("turning off exhaust");
                                 wasExhaust = true;
                                 c.card.exhaust = false;
                             }
@@ -78,10 +77,11 @@ public class AfterLifeMod extends AbstractCardModifier
                                 c.Delete();
                             });
                             if (wasExhaust) {
-                                System.out.println("turning on exhaust");
                                 //Put this in action to make sure it runs after card is played
                                 GameActions.Bottom.ModifyAllInstances(c.card.uuid, playedCard -> playedCard.exhaust = true);
                             }
+                            //Because otherwise the card continues to glow in the discard pile REEEEEEEEEE
+                            GameActions.Bottom.ModifyAllInstances(c.card.uuid, AbstractCard::stopGlowing);
 
                         });
                     }

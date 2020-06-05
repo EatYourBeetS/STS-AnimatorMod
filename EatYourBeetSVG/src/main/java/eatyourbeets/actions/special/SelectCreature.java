@@ -17,7 +17,9 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -182,7 +184,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
                     }
             }
         }
-
+        CombatStats.ControlPile.RefreshTimer();
         GR.UI.AddPostRender(this::Render);
     }
 
@@ -331,6 +333,9 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
     @Override
     protected void Complete()
     {
+        //Need this to fix stuff like hovering over vulnerable creature and cancelling
+        card.calculateCardDamage(null);
+        card.applyPowers();
         GameCursor.hidden = false;
         super.Complete();
     }

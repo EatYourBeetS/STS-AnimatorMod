@@ -42,9 +42,6 @@ public class AyatoNaoi extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
-        for (int i = 0; i < magicNumber; i++) {
-            GameActions.Bottom.ChannelOrb(new Dark(), true);
-        }
         if (CombatStats.ControlPile.Contains(this)) {
             GameActions.Bottom.Add(new AbstractGameAction() {
                 @Override
@@ -76,6 +73,11 @@ public class AyatoNaoi extends AnimatorCard
                     isDone = true;
                 }
             });
+        }
+        //Put this last to be more player-friendly aka dark orbs won't kill an enemy that might have contributed
+        //to the above effect's damage
+        for (int i = 0; i < magicNumber; i++) {
+            GameActions.Bottom.ChannelOrb(new Dark(), true);
         }
     }
 }

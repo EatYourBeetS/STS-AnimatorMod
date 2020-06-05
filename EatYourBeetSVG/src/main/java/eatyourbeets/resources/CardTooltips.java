@@ -151,7 +151,7 @@ public class CardTooltips
         LoadFromPower(Constricted, new ConstrictedPower(null, FakeCharacter.Instance, 0));
 
         //These 2 use AbstractDungeon.player
-        LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);;
+        LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);
         LoadFromPower(Vulnerable, new VulnerablePower(null, 0, false));
     }
 

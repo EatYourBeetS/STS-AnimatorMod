@@ -58,7 +58,7 @@ public class EYBEventOption
         return this;
     }
 
-    public EYBEventOption AddCallback(Object state, ActionT2<Object, EYBEventOption> onCompletion)
+    public <S> EYBEventOption AddCallback(S state, ActionT2<S, EYBEventOption> onCompletion)
     {
         callbacks.add(GenericCallback.FromT2(onCompletion, state));
 

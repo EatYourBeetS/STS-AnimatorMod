@@ -48,7 +48,7 @@ public class Souei extends AnimatorCard
                         {
                             if (GameUtilities.TriggerOnKill(action.target, true))
                             {
-                                if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) == (int) baseIntangible)
+                                if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) == baseIntangible)
                                 {
                                     GameActions.Top.StackPower(new IntangiblePlayerPower(player, 1));
                                 }

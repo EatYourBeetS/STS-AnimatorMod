@@ -12,7 +12,6 @@ import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.effects.card.RenderCardEffect;
 import eatyourbeets.effects.card.UnfadeOutEffect;
 import eatyourbeets.interfaces.delegates.ActionT3;
-import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.*;
 
 import java.util.List;

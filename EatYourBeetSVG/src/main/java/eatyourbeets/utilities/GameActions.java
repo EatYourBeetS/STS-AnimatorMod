@@ -680,7 +680,7 @@ public final class GameActions
         return Add(new ReduceStrength(player, target, amount, temporary));
     }
 
-    public DiscardFromHand Reload(String sourceName, Object state, ActionT2<Object, ArrayList<AbstractCard>> onReload)
+    public <S> DiscardFromHand Reload(String sourceName, S state, ActionT2<S, ArrayList<AbstractCard>> onReload)
     {
         return (DiscardFromHand) Add(new DiscardFromHand(sourceName, 999, false)
         .SetOptions(true, true, true)

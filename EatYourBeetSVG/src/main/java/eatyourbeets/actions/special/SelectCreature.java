@@ -11,12 +11,15 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -156,9 +159,10 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
                 break;
         }
 
-        if (InputHelper.justClickedLeft)
+        if (InputHelper.justClickedLeft || InputHelper.justReleasedClickLeft)
         {
             InputHelper.justClickedLeft = false;
+            InputHelper.justReleasedClickLeft = false;
             switch (targeting)
             {
                 case Random:
@@ -180,7 +184,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
                     }
             }
         }
-
+        CombatStats.ControlPile.RefreshTimer();
         GR.UI.AddPostRender(this::Render);
     }
 
@@ -245,6 +249,11 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
 
             case None:
                 break;
+        }
+
+        if (CreateMessage().length() > 0)
+        {
+            FontHelper.renderDeckViewTip(sb, message, Settings.scale * 96f, Settings.CREAM_COLOR);
         }
     }
 
@@ -324,6 +333,9 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
     @Override
     protected void Complete()
     {
+        //Need this to fix stuff like hovering over vulnerable creature and cancelling
+        card.calculateCardDamage(null);
+        card.applyPowers();
         GameCursor.hidden = false;
         super.Complete();
     }

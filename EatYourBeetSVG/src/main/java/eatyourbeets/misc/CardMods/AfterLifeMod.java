@@ -2,25 +2,25 @@ package eatyourbeets.misc.CardMods;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
-import basemod.interfaces.AlternateCardCostModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import eatyourbeets.cards.animator.beta.AngelBeats.EriShiina;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
-public class AfterLifeMod extends AbstractCardModifier implements AlternateCardCostModifier
+import java.util.ArrayList;
+
+public class AfterLifeMod extends AbstractCardModifier
 {
 
     public static final String ID = GR.Animator.CreateID("Afterlife");
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(GR.Animator.CreateID("CardMods"));
     public static final String[] TEXT = uiStrings.TEXT;
-
-    //This variable currently exists solely for Shiina
-    public static int mostRecentEnergySpentByAfterlife = 0;
 
     public AbstractCardModifier makeCopy()
     {
@@ -34,50 +34,69 @@ public class AfterLifeMod extends AbstractCardModifier implements AlternateCardC
     }
 
     @Override
-    public int getAlternateResource(AbstractCard card)
-    {
-        return AbstractDungeon.player.exhaustPile.size();
+    public void onExhausted(AbstractCard card) {
+        AfterlifeAddToControlPile(card);
     }
 
-    @Override
-    public boolean canSplitCost(AbstractCard card)
-    {
-        return true;
+    public static void AfterlifeAddToControlPile(AbstractCard card) {
+        CombatStats.ControlPile.Add(card)
+                .OnUpdate(c ->
+                {
+                    if (!AbstractDungeon.player.exhaustPile.contains(c.card))
+                    {
+                        c.Delete();
+                    }
+                })
+                .OnSelect(c ->
+                {
+                    if (!CombatStats.ControlPile.IsHovering()) {
+                        return;
+                    }
+                    AbstractCard cardToPurge = getRandomCardToPurge();
+                    if (cardToPurge == null) {
+                        AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[2], true));
+                    } else if (c.card.hasEnoughEnergy() && c.card.cardPlayable(null)) {
+                        GameActions.Bottom.SelectCreature(c.card).AddCallback(creature ->
+                        {
+                            //Cards played from Afterlife do not exhaust
+                            boolean wasExhaust = false;
+                            if (c.card.exhaust) {
+                                wasExhaust = true;
+                                c.card.exhaust = false;
+                            }
+                            AbstractMonster monster = null;
+                            if (creature instanceof AbstractMonster) {
+                                monster = (AbstractMonster) creature;
+                            }
+                            GameActions.Bottom.PlayCard(c.card, monster).SpendEnergy(true).AddCallback(c.card, (state, __) ->
+                            {
+                                AbstractDungeon.player.exhaustPile.removeCard(c.card);
+                                AbstractDungeon.player.exhaustPile.removeCard(cardToPurge);
+                                c.Delete();
+                            });
+                            if (wasExhaust) {
+                                //Put this in action to make sure it runs after card is played
+                                GameActions.Bottom.ModifyAllInstances(c.card.uuid, playedCard -> playedCard.exhaust = true);
+                            }
+                            //Because otherwise the card continues to glow in the discard pile REEEEEEEEEE
+                            GameActions.Bottom.ModifyAllInstances(c.card.uuid, AbstractCard::stopGlowing);
+
+                        });
+                    }
+                });
     }
 
-    @Override
-    public int spendAlternateCost(AbstractCard card, int costToSpend)
-    {
-        int resource = -1;
-        if (AbstractDungeon.player.exhaustPile.size() > 0)
-        {
-            resource = AbstractDungeon.player.exhaustPile.size();
-        }
-        if (resource > costToSpend)
-        {
-            for (int i = 0; i < costToSpend; i++)
-            {
-                AbstractDungeon.player.exhaustPile.group.remove(AbstractDungeon.cardRandomRng.random(AbstractDungeon.player.exhaustPile.size() - 1));
+    private static AbstractCard getRandomCardToPurge() {
+        ArrayList<AbstractCard> validCards = new ArrayList<>();
+        for (AbstractCard card : AbstractDungeon.player.exhaustPile.group) {
+            if (!CardModifierManager.hasModifier(card, AfterLifeMod.ID)) {
+                validCards.add(card);
             }
-            mostRecentEnergySpentByAfterlife = costToSpend;
-            costToSpend = 0;
         }
-        else if (resource > 0)
-        {
-            for (int i = 0; i < resource; i++)
-            {
-                AbstractDungeon.player.exhaustPile.group.remove(AbstractDungeon.cardRandomRng.random(AbstractDungeon.player.exhaustPile.size() - 1));
-            }
-            mostRecentEnergySpentByAfterlife = resource;
-            costToSpend -= resource;
+        if (validCards.isEmpty()) {
+            return null;
         }
-        if (card.cardID.equals(EriShiina.DATA.ID))
-        {
-            GameActions.Bottom.CreateThrowingKnives(mostRecentEnergySpentByAfterlife);
-        }
-        mostRecentEnergySpentByAfterlife = 0;
-        System.out.println(CardModifierManager.getModifiers(card, ID));
-        return costToSpend;
+        return validCards.get(AbstractDungeon.cardRandomRng.random(validCards.size() - 1));
     }
 
     @Override

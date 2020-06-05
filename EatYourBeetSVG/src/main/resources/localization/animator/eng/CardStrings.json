@@ -472,8 +472,8 @@
 	{
 		"animator:YuriNakamura":
 		{
-			"DESCRIPTION": "Give a non-{Ethereal} card in your hand {Retain}. || {Synergy}: Give a card in your hand {Afterlife}.",
-			"EXTENDED_DESCRIPTION": ["give Retain.", "give Afterlife."],
+			"DESCRIPTION": "Give a non-{Ethereal} card in your hand {Retain}. || <LIM> {Synergy}: Give a non-{Hindrance}, non-{Afterlife} card in your exhaust pile {Afterlife}. It {purges} when played.",
+			"EXTENDED_DESCRIPTION": ["give Retain.", "Choose a card to give Afterlife. It purges when played."],
 			"NAME": "Yuri Nakamura"
 		},
 		"animator:KanadeTachibana":
@@ -482,14 +482,24 @@
 			"EXTENDED_DESCRIPTION": ["Choose any number of cards to put into your hand."],
 			"NAME": "Kanade Tachibana"
 		},
+		"animator:AyatoNaoi":
+		{
+			"DESCRIPTION": "Enter {[I] Stance}. ** Channel !M! Dark. ** When this card is played from Afterlife, ALL enemies lose HP equal to the total amount of damage they intend to deal.",
+			"NAME": "Ayato Naoi"
+		},
+		"animator:Godan":
+		{
+			"DESCRIPTION": "Enter {[F] Stance}. || Cooldown !S! : Gain !M! [F] and add a {Wound} to your hand.",
+			"NAME": "Matsushita Godan"
+		},
 		"animator:EriShiina":
 		{
-			"DESCRIPTION": "Add a {Throwing-Knife} to your hand for every [E] paid for by {Afterlife}.",
+			"DESCRIPTION": "When this card is played from Afterlife, add !M! {Throwing-Knives} to your hand.",
 			"NAME": "Eri Shiina"
 		},
 		"animator:MasamiIwasawa":
 		{
-			"DESCRIPTION": "Put !S! {Dazed} on top of your draw pile. || <LIM>. {Synergy}: Draw !M! card(s).",
+			"DESCRIPTION": "Put !S! {Dazed} on top of your draw pile. || Starter: Apply !M! Vulnerable.",
 			"NAME": "Masami Iwasawa"
 		},
 		"animator:Chaa":
@@ -505,27 +515,27 @@
 		},
 		"animator:Noda":
 		{
-			"DESCRIPTION": "Draw !M! card(s) next turn. || <SLM>. {Synergy}. Gain/Boost [F] .",
+			"DESCRIPTION": "<SLM>. {Synergy}. Gain/Boost [F] .",
 			"NAME": "Noda"
 		},
 		"animator:HidekiHinata":
 		{
-			"DESCRIPTION": "{Reload}: Gain !S! Block. || {Synergy}. Deal !M! additional damage.",
+			"DESCRIPTION": "If the enemy intends to attack, deal damage again.",
 			"NAME": "Hideki Hinata"
 		},
 		"animator:Yusa":
 		{
-			"DESCRIPTION": "{Scry} !S!. Exhaust !M! card(s). || <LIM>: When this card is discarded, add an {Insight} to your discard pile.",
+			"DESCRIPTION": "{Scry} !S!. ** Exhaust !M! card(s) from your discard pile.",
 			"NAME": "Yusa"
 		},
 		"animator:Yui":
 		{
-			"DESCRIPTION": "Motivate !S!. || <SLM>. Synergy: Gain [E].",
+			"DESCRIPTION": "Motivate !S!. || <SLM>. When this card is played from {Afterlife}, gain [E].",
 			"NAME": "Yui"
 		},
 		"animator:AngelAlter":
 		{
-			"DESCRIPTION": "{Boost} [F] and [A] . || Shuffle a copy of this card into both your draw and discard piles.",
+			"DESCRIPTION": "This card can only be played from Afterlife. ** {Boost} [F] and [A] . ** Shuffle a copy of this card into both your draw and discard piles.",
 			"NAME": "Angel Alter"
 		},
 		"animator:Strike_AngelBeats":
@@ -535,7 +545,7 @@
 		},
 		"animator:Defend_AngelBeats":
 		{
-			"DESCRIPTION": "Exhaust !M! card(s).",
+			"DESCRIPTION": "<LIM>. Exhaust !M! card(s).",
 			"NAME": "Improved Defend"
 		}
 	},

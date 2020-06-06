@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -139,6 +140,11 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
 
         if (InputHelper.justClickedRight && canCancel)
         {
+            if (card != null)
+            {
+                card.applyPowers();
+            }
+
             Complete();
             return;
         }
@@ -156,13 +162,14 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
                 break;
         }
 
-        if (InputHelper.justClickedLeft)
+        if (InputHelper.justClickedLeft || InputHelper.justReleasedClickLeft)
         {
             InputHelper.justClickedLeft = false;
+            InputHelper.justReleasedClickLeft = false;
             switch (targeting)
             {
                 case Random:
-                    Complete(GameUtilities.GetRandomEnemy(true));
+                    Complete(target = GameUtilities.GetRandomEnemy(true));
                     return;
 
                 case AoE:
@@ -182,6 +189,13 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         }
 
         GR.UI.AddPostRender(this::Render);
+    }
+
+    @Override
+    protected void Complete()
+    {
+        GameCursor.hidden = false;
+        super.Complete();
     }
 
     protected void UpdateTarget(boolean targetPlayer, boolean targetEnemy)
@@ -212,7 +226,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         {
             if (target instanceof AbstractMonster)
             {
-                card.calculateCardDamage((AbstractMonster)target);
+                card.calculateCardDamage((AbstractMonster) target);
             }
             else
             {
@@ -221,7 +235,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         }
     }
 
-    public void Render(SpriteBatch sb)
+    protected void Render(SpriteBatch sb)
     {
         switch (targeting)
         {
@@ -245,6 +259,11 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
 
             case None:
                 break;
+        }
+
+        if (CreateMessage().length() > 0)
+        {
+            FontHelper.renderDeckViewTip(sb, message, Settings.scale * 96f, Settings.CREAM_COLOR);
         }
     }
 
@@ -319,12 +338,5 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
 
             sb.draw(ImageMaster.TARGET_UI_CIRCLE, points[i].x - 64f, points[i].y - 64f, 64f, 64f, 128f, 128f, radius / 18f, radius / 18f, angle, 0, 0, 128, 128, false, false);
         }
-    }
-
-    @Override
-    protected void Complete()
-    {
-        GameCursor.hidden = false;
-        super.Complete();
     }
 }

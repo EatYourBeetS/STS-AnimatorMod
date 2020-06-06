@@ -14,7 +14,8 @@ import eatyourbeets.utilities.GameActions;
 
 public class YuyukoSaigyouji extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(YuyukoSaigyouji.class).SetPower(4, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);;
+    public static final EYBCardData DATA = Register(YuyukoSaigyouji.class).SetPower(4, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    ;
 
     public YuyukoSaigyouji()
     {
@@ -47,11 +48,15 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare
             updateDescription();
         }
 
-        public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-            if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
-                if (target instanceof AbstractMonster) {
-                    AbstractMonster mo = (AbstractMonster)target;
-                    if (mo.type != AbstractMonster.EnemyType.BOSS) {
+        public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target)
+        {
+            if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL)
+            {
+                if (target instanceof AbstractMonster)
+                {
+                    AbstractMonster mo = (AbstractMonster) target;
+                    if (mo.type != AbstractMonster.EnemyType.BOSS)
+                    {
                         this.flash();
                         GameActions.Bottom.Add(new KillCharacterAction(mo, mo));
                     }

@@ -27,12 +27,13 @@ public class ReimuHakurei extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-       GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-       GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
-       GameActions.Bottom.ApplyWeak(p, m, magicNumber);
-       if (IsStarter()) {
-           GameActions.Bottom.Scry(secondaryValue);
-       }
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
+        GameActions.Bottom.ApplyWeak(p, m, magicNumber);
+        if (IsStarter())
+        {
+            GameActions.Bottom.Scry(secondaryValue);
+        }
     }
 }
 

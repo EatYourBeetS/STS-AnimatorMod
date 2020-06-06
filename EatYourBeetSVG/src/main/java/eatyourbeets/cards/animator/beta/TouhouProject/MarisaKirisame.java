@@ -35,8 +35,8 @@ public class MarisaKirisame extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-       GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
-       GameActions.Bottom.Add(new PutOnDeckAction(p, p, 1, false));
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.Add(new PutOnDeckAction(p, p, 1, false));
     }
 }
 

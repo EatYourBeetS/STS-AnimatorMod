@@ -52,10 +52,12 @@ public class KoishiKomeiji extends AnimatorCard
         }
 
         @Override
-        public void onCardDraw(AbstractCard card) {
+        public void onCardDraw(AbstractCard card)
+        {
             super.onCardDraw(card);
 
-            if (autoPlayCounter < amount) {
+            if (autoPlayCounter < amount)
+            {
                 autoPlayCounter++;
                 this.flash();
                 GameActions.Bottom.PlayCard(card, player.hand, null)

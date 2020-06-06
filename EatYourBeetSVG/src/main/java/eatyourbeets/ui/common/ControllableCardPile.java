@@ -18,6 +18,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.unnamed.UnnamedResources;
 import eatyourbeets.ui.controls.GUI_DynamicCardGrid;
 import eatyourbeets.ui.controls.GUI_Image;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 import patches.energyPanel.EnergyPanelPatches;
@@ -104,9 +105,10 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
             ControllableCard c = i.next();
 
             c.Update();
-            //c.card.applyPowers();
-            //glowCheck(c.card);
-            //c.card.triggerOnGlowCheck();
+            c.card.applyPowers();
+            glowCheck(c.card);
+            c.card.triggerOnGlowCheck();
+
             if (c.IsDeleted())
             {
                 i.remove();

@@ -61,8 +61,8 @@ public class KoishiKomeiji extends AnimatorCard
                 autoPlayCounter++;
                 this.flash();
                 GameActions.Bottom.PlayCard(card, player.hand, null)
-                        .SpendEnergy(true)
-                        .AddCondition(AbstractCard::hasEnoughEnergy);
+                .SpendEnergy(true)
+                .AddCondition(AbstractCard::hasEnoughEnergy);
             }
         }
 

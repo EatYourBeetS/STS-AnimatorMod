@@ -567,6 +567,12 @@
 			"DESCRIPTION": "Shuffle ALL your cards into your draw pile. || Scry your draw pile.",
 			"NAME": "Hieda no Akyuu"
 		},
+		"animator:SanaeKochiya":
+		{
+		  "DESCRIPTION": "Scry !M!. For each card discarded, add a {Miracle} to your hand next turn.",
+		  "EXTENDED_DESCRIPTION": ["At the start of your next turn, add #b{0} #yMiracle(s) to your hand."],
+		  "NAME": "Sanae Kochiya"
+		},
 		"animator:KoishiKomeiji":
 		{
 			"DESCRIPTION": "At the start of your turn, gain [E] . || The first card you draw each turn is {Autoplayed}.",

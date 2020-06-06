@@ -1,13 +1,17 @@
 package eatyourbeets.cards.animator.beta.TouhouProject;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.PutOnDeckAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
 public class MarisaKirisame extends AnimatorCard
@@ -36,7 +40,17 @@ public class MarisaKirisame extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
-        GameActions.Bottom.Add(new PutOnDeckAction(p, p, 1, false));
+        GameActions.Bottom.SelectFromHand(name, 1, false)
+        .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
+        .AddCallback(cards ->
+        {
+            for (AbstractCard c : cards)
+            {
+                GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, AbstractDungeon.player.drawPile).SetDestination(CardSelection.Top);
+            }
+
+            GameActions.Bottom.Add(new RefreshHandLayout());
+        });
     }
 }
 

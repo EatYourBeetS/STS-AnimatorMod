@@ -33,8 +33,8 @@ public class HiedaNoAkyuu extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Top.Scry(999);
-        GameActions.Top.Add(new ShuffleAction(AbstractDungeon.player.drawPile, false));
-        GameActions.Top.Add(new ShuffleAllAction());
+        GameActions.Top.MoveCards(player.hand, player.drawPile);
+        GameActions.Top.MoveCards(player.discardPile, player.drawPile);
 
     }
 }

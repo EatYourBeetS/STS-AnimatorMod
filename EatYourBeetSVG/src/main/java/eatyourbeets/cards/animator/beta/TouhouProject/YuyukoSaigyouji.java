@@ -1,16 +1,23 @@
 package eatyourbeets.cards.animator.beta.TouhouProject;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.PetalEffect;
 import eatyourbeets.actions.special.KillCharacterAction;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class YuyukoSaigyouji extends AnimatorCard_UltraRare
 {
@@ -36,6 +43,7 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.Add(new VFXAction(new CherryBlossomEffect(), 0.7F));
         GameActions.Bottom.ApplyPower(new DeathTouch(p));
     }
 
@@ -53,7 +61,7 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare
             {
                 if (target instanceof AbstractMonster)
                 {
-                    AbstractMonster mo = (AbstractMonster) target;
+                    AbstractMonster mo = JavaUtilities.SafeCast(target, AbstractMonster.class);
                     if (mo.type != AbstractMonster.EnemyType.BOSS)
                     {
                         this.flash();
@@ -61,6 +69,42 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare
                     }
                 }
             }
+        }
+    }
+
+    public static class CherryBlossomEffect extends AbstractGameEffect
+    {
+        private float timer = 0.1F;
+
+        public CherryBlossomEffect()
+        {
+            this.duration = 2.0F;
+        }
+
+        @Override
+        public void update()
+        {
+            this.duration -= Gdx.graphics.getDeltaTime();
+            this.timer -= Gdx.graphics.getDeltaTime();
+            if (this.timer < 0.0F)
+            {
+                this.timer += 0.1F;
+                AbstractDungeon.effectsQueue.add(new PetalEffect());
+                AbstractDungeon.effectsQueue.add(new PetalEffect());
+            }
+
+            if (this.duration < 0.0F)
+            {
+                this.isDone = true;
+            }
+        }
+
+        public void render(SpriteBatch sb)
+        {
+        }
+
+        public void dispose()
+        {
         }
     }
 }

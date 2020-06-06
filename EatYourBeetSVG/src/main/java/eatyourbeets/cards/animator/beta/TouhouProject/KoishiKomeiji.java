@@ -40,6 +40,7 @@ public class KoishiKomeiji extends AnimatorCard
         {
             super(owner, KoishiKomeiji.DATA);
             this.amount = amount;
+            autoPlayCounter = amount; //Don't autoplay cards the turn you play this card
             updateDescription();
         }
 
@@ -60,7 +61,7 @@ public class KoishiKomeiji extends AnimatorCard
             {
                 autoPlayCounter++;
                 this.flash();
-                GameActions.Bottom.PlayCard(card, player.hand, null)
+                GameActions.Top.PlayCard(card, player.hand, null)
                 .SpendEnergy(true)
                 .AddCondition(AbstractCard::hasEnoughEnergy);
             }

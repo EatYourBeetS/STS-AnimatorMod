@@ -184,7 +184,9 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
                     }
             }
         }
-        CombatStats.ControlPile.RefreshTimer();
+        if (CombatStats.ControlPile.Contains(card)) {
+            CombatStats.ControlPile.RefreshTimer();
+        }
         GR.UI.AddPostRender(this::Render);
     }
 

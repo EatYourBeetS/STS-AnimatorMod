@@ -19,6 +19,7 @@ import eatyourbeets.resources.unnamed.UnnamedResources;
 import eatyourbeets.ui.controls.GUI_DynamicCardGrid;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 import patches.energyPanel.EnergyPanelPatches;
@@ -77,6 +78,14 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
     public ControllableCard Add(ControllableCard controller)
     {
         controllers.add(controller);
+        //Race condition to fix applyPowers not applying when card is first added AHHHHHHHHHHHH
+        GameEffects.List.WaitRealtime(1.0f)
+                .AddCallback(() ->
+                {
+                    controller.card.applyPowers();
+                    glowCheck(controller.card);
+                    controller.card.triggerOnGlowCheck();
+                });
         return controller;
     }
 
@@ -105,6 +114,7 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
             ControllableCard c = i.next();
 
             c.Update();
+
             c.card.applyPowers();
             glowCheck(c.card);
             c.card.triggerOnGlowCheck();

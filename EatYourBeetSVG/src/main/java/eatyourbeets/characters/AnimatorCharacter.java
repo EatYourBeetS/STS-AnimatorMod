@@ -11,9 +11,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
-import com.megacrit.cardcrawl.helpers.CardHelper;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ScreenShake;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
@@ -136,6 +134,28 @@ public class AnimatorCharacter extends CustomPlayer
     public String getCustomModeCharacterButtonSoundKey()
     {
         return "TINGSHA";
+    }
+
+    @Override
+    public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> arrayList)
+    {
+        arrayList = super.getCardPool(arrayList);
+
+        if (ModHelper.isModEnabled("Red Cards")) {
+            CardLibrary.addRedCards(arrayList);
+        }
+
+        if (ModHelper.isModEnabled("Green Cards")) {
+            CardLibrary.addGreenCards(arrayList);
+        }
+        if (ModHelper.isModEnabled("Blue Cards")) {
+            CardLibrary.addBlueCards(arrayList);
+        }
+        if (ModHelper.isModEnabled("Purple Cards")) {
+            CardLibrary.addPurpleCards(arrayList);
+        }
+
+        return arrayList;
     }
 
     @Override

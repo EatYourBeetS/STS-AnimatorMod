@@ -335,7 +335,6 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
     {
         //Need this to fix stuff like hovering over vulnerable creature and cancelling
         card.calculateCardDamage(null);
-        card.applyPowers();
         GameCursor.hidden = false;
         super.Complete();
     }

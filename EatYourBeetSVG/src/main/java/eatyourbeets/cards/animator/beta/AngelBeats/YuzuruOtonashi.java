@@ -20,7 +20,7 @@ public class YuzuruOtonashi extends AnimatorCard
         Initialize(0, 0, 2, 2);
         SetUpgrade(0, 0, 1, 0);
 
-        SetInnate(true);
+        SetHaste(true);
         SetSynergy(Synergies.AngelBeats);
     }
 

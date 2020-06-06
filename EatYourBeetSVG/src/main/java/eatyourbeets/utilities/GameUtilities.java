@@ -31,6 +31,7 @@ import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnTryApplyPowerSubscriber;
+import eatyourbeets.monsters.EnemyMoveDetails;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
@@ -453,6 +454,11 @@ public class GameUtilities
         }
 
         return null;
+    }
+
+    public static EnemyMoveDetails GetEnemyMove(AbstractMonster enemy)
+    {
+        return new EnemyMoveDetails(enemy);
     }
 
     public static HashSet<AbstractCard> GetOtherCardsInHand(AbstractCard card)

@@ -138,14 +138,13 @@ public class AnimatorCardRewardBonus extends GUIElement
         {
             return GetCursedRelicBundle(card);
         }
-
-        if (card instanceof AnimatorCard)
+        else if (card instanceof AnimatorCard)
         {
             for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Series)
             {
                 if (series.promoted && series.bonus < 6)
                 {
-                    if (series.Cards.containsKey(card.cardID) && GameUtilities.GetMasterDeckCopies(card.cardID) == null)
+                    if (series.Cards.containsKey(card.cardID) && GameUtilities.GetMasterDeckCopies(card.cardID).isEmpty())
                     {
                         if (series.bonus % 2 == 0)
                         {

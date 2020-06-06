@@ -132,7 +132,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
                 equipCounter = ((AncientMedallion) relic).equipCounter;
                 flash();
 
-                GameEffects.Queue.RemoveRelic(relic).AddCallback(equipCounter, (c, r) -> AddCounter((int)c));
+                GameEffects.Queue.RemoveRelic(relic).AddCallback(equipCounter, (c, r) -> AddCounter(c));
             }
 
             onManualEquip();

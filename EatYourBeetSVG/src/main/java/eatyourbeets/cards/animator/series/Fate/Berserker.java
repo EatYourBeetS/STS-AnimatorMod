@@ -36,7 +36,7 @@ public class Berserker extends AnimatorCard
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY)
             .AddCallback(m.currentBlock, (initialBlock, target) ->
             {
-                if (GameUtilities.IsDeadOrEscaped(target) || ((int) initialBlock > 0 && target.currentBlock <= 0))
+                if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0))
                 {
                     GameActions.Bottom.GainBlock(this.secondaryValue);
                 }

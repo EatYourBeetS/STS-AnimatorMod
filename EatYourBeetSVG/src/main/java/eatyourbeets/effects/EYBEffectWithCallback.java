@@ -26,7 +26,7 @@ public abstract class EYBEffectWithCallback<T> extends EYBEffect
         super(duration);
     }
 
-    public EYBEffectWithCallback<T> AddCallback(Object state, ActionT2<Object, T> onCompletion)
+    public <S> EYBEffectWithCallback<T> AddCallback(S state, ActionT2<S, T> onCompletion)
     {
         callbacks.add(GenericCallback.FromT2(onCompletion, state));
 

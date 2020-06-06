@@ -9,7 +9,7 @@ public class GenericCallback<T>
     protected Object state;
     protected ActionT0 actionT0;
     protected ActionT1<T> actionT1;
-    protected ActionT2<Object, T> actionT2;
+    protected ActionT2<?, T> actionT2;
 
     public static <T> GenericCallback<T> FromT0(ActionT0 onCompletion)
     {
@@ -21,12 +21,12 @@ public class GenericCallback<T>
         return new GenericCallback<>(onCompletion);
     }
 
-    public static <T> GenericCallback<T> FromT2(ActionT2<Object, T> onCompletion, Object state)
+    public static <S, T> GenericCallback<T> FromT2(ActionT2<S, T> onCompletion, S state)
     {
         return new GenericCallback<>(onCompletion, state);
     }
 
-    private GenericCallback(ActionT2<Object, T> onCompletion, Object state)
+    private <S> GenericCallback(ActionT2<S, T> onCompletion, S state)
     {
         this.state = state;
         this.actionT2 = onCompletion;
@@ -46,7 +46,7 @@ public class GenericCallback<T>
     {
         if (actionT2 != null)
         {
-            actionT2.Invoke(state, result);
+            actionT2.CastAndInvoke(state, result);
         }
 
         if (actionT1 != null)

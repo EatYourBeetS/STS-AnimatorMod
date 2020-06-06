@@ -21,7 +21,7 @@ public abstract class EYBActionWithCallbackT2<T, C> extends EYBActionWithCallbac
         super(type, duration);
     }
 
-    public EYBActionWithCallbackT2<T, C> AddCondition(Object state, FuncT2<Boolean, Object, C> condition)
+    public <S> EYBActionWithCallbackT2<T, C> AddCondition(S state, FuncT2<Boolean, S, C> condition)
     {
         conditions.add(GenericCondition.FromT2(condition, state));
 

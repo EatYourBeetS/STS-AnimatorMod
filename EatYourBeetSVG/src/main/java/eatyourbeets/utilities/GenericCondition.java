@@ -7,7 +7,7 @@ public class GenericCondition<T>
     protected Object state;
     protected FuncT0<Boolean> conditionT0;
     protected FuncT1<Boolean, T> conditionT1;
-    protected FuncT2<Boolean, Object, T> conditionT2;
+    protected FuncT2<Boolean, ?, T> conditionT2;
 
     public static <T> GenericCondition<T> FromT0(FuncT0<Boolean> condition)
     {
@@ -19,12 +19,12 @@ public class GenericCondition<T>
         return new GenericCondition<>(condition);
     }
 
-    public static <T> GenericCondition<T> FromT2(FuncT2<Boolean, Object, T> condition, Object state)
+    public static <T, S> GenericCondition<T> FromT2(FuncT2<Boolean, S, T> condition, S state)
     {
         return new GenericCondition<>(condition, state);
     }
 
-    private GenericCondition(FuncT2<Boolean, Object, T> condition, Object state)
+    private <S> GenericCondition(FuncT2<Boolean, S, T> condition, S state)
     {
         this.state = state;
         this.conditionT2 = condition;
@@ -44,7 +44,7 @@ public class GenericCondition<T>
     {
         if (conditionT2 != null)
         {
-            return conditionT2.Invoke(state, result);
+            return conditionT2.CastAndInvoke(state, result);
         }
         if (conditionT1 != null)
         {

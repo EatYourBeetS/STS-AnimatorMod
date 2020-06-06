@@ -3,10 +3,12 @@ package eatyourbeets.cards.animator.ultrarare;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.RoseDamageAction;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
 
 public class Rose extends AnimatorCard_UltraRare
 {
@@ -28,10 +30,9 @@ public class Rose extends AnimatorCard_UltraRare
         GameActions.Bottom.Draw(this.magicNumber);
         GameActions.Bottom.Reload(name, m, (enemy, cards) ->
         {
-            AbstractMonster monster = JavaUtilities.SafeCast(enemy, AbstractMonster.class);
-            if (cards.size() > 0 && monster != null && !GameUtilities.IsDeadOrEscaped(monster))
+            if (cards.size() > 0 && enemy != null && !GameUtilities.IsDeadOrEscaped(enemy))
             {
-                GameActions.Bottom.Add(new RoseDamageAction(monster, this, cards.size(), damage));
+                GameActions.Bottom.Add(new RoseDamageAction(enemy, this, cards.size(), damage));
             }
         });
     }

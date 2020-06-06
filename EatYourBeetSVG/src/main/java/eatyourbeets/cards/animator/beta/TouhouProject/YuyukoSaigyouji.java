@@ -15,7 +15,6 @@ import eatyourbeets.utilities.GameActions;
 public class YuyukoSaigyouji extends AnimatorCard_UltraRare
 {
     public static final EYBCardData DATA = Register(YuyukoSaigyouji.class).SetPower(4, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
-    ;
 
     public YuyukoSaigyouji()
     {

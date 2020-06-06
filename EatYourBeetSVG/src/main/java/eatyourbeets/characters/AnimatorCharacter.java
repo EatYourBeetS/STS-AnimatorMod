@@ -167,28 +167,6 @@ public class AnimatorCharacter extends CustomPlayer
     }
 
     @Override
-    public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> arrayList)
-    {
-        arrayList = super.getCardPool(arrayList);
-
-        if (ModHelper.isModEnabled("Red Cards")) {
-            CardLibrary.addRedCards(arrayList);
-        }
-
-        if (ModHelper.isModEnabled("Green Cards")) {
-            CardLibrary.addGreenCards(arrayList);
-        }
-        if (ModHelper.isModEnabled("Blue Cards")) {
-            CardLibrary.addBlueCards(arrayList);
-        }
-        if (ModHelper.isModEnabled("Purple Cards")) {
-            CardLibrary.addPurpleCards(arrayList);
-        }
-
-        return arrayList;
-    }
-
-    @Override
     public String getPortraitImageName()
     {
         return null; // Updated in AnimatorCharacterSelectScreen

@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.beta.AngelBeats;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -14,6 +13,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class YuriNakamura extends AnimatorCard
 {
@@ -31,22 +31,22 @@ public class YuriNakamura extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.SelectFromHand(name, magicNumber, false)
-        .SetOptions(false, false, false)
-        .SetFilter(c -> !c.isEthereal)
-        .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
-        .AddCallback(cards ->
-        {
-            if (cards.size() > 0)
-            {
-                AbstractCard card = cards.get(0);
-                card.selfRetain = true;
-                card.flash();
-            }
-        });
-        if (hasValidTargets()) {
+                .SetOptions(false, false, false)
+                .SetFilter(c -> !c.isEthereal)
+                .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
+                .AddCallback(cards ->
+                {
+                    if (cards.size() > 0)
+                    {
+                        AbstractCard card = cards.get(0);
+                        card.selfRetain = true;
+                        card.flash();
+                    }
+                });
+        if (JavaUtilities.Find(player.exhaustPile.group, this::isValidTarget) != null){
             if (HasSynergy() && CombatStats.TryActivateLimited(cardID)) {
                 GameActions.Bottom.SelectFromPile(name, magicNumber, p.exhaustPile)
-                        .SetFilter(c -> !GameUtilities.IsCurseOrStatus(c) && !CardModifierManager.hasModifier(c, AfterLifeMod.ID))
+                        .SetFilter(this::isValidTarget)
                         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])
                         .AddCallback(cards ->
                         {
@@ -71,12 +71,8 @@ public class YuriNakamura extends AnimatorCard
         SetRetain(true);
     }
 
-    public boolean hasValidTargets() {
-        for (AbstractCard card : AbstractDungeon.player.exhaustPile.group) {
-            if (!GameUtilities.IsCurseOrStatus(card) && !CardModifierManager.hasModifier(card, AfterLifeMod.ID)) {
-                return true;
-            }
-        }
-        return false;
+
+    private boolean isValidTarget(AbstractCard card) {
+        return !GameUtilities.IsCurseOrStatus(card) && !CardModifierManager.hasModifier(card, AfterLifeMod.ID);
     }
 }

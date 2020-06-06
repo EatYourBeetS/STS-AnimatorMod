@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.powers.CombatStats;
 import javassist.CtBehavior;
 
+// Todo: Make ControlPile a screen, remove these patches
 public class UpdateControlPileCard {
 
     @SpirePatch(

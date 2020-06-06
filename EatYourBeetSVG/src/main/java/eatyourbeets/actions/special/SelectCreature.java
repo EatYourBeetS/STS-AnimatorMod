@@ -19,7 +19,6 @@ import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -142,6 +141,11 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
 
         if (InputHelper.justClickedRight && canCancel)
         {
+            if (card != null)
+            {
+                card.applyPowers();
+            }
+
             Complete();
             return;
         }
@@ -166,7 +170,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
             switch (targeting)
             {
                 case Random:
-                    Complete(GameUtilities.GetRandomEnemy(true));
+                    Complete(target = GameUtilities.GetRandomEnemy(true));
                     return;
 
                 case AoE:
@@ -184,10 +188,21 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
                     }
             }
         }
-        if (CombatStats.ControlPile.Contains(card)) {
+
+        // TODO: Remove this from here
+        if (CombatStats.ControlPile.Contains(card))
+        {
             CombatStats.ControlPile.RefreshTimer();
         }
+
         GR.UI.AddPostRender(this::Render);
+    }
+
+    @Override
+    protected void Complete()
+    {
+        GameCursor.hidden = false;
+        super.Complete();
     }
 
     protected void UpdateTarget(boolean targetPlayer, boolean targetEnemy)
@@ -218,7 +233,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         {
             if (target instanceof AbstractMonster)
             {
-                card.calculateCardDamage((AbstractMonster)target);
+                card.calculateCardDamage((AbstractMonster) target);
             }
             else
             {
@@ -227,7 +242,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         }
     }
 
-    public void Render(SpriteBatch sb)
+    protected void Render(SpriteBatch sb)
     {
         switch (targeting)
         {
@@ -330,14 +345,5 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
 
             sb.draw(ImageMaster.TARGET_UI_CIRCLE, points[i].x - 64f, points[i].y - 64f, 64f, 64f, 128f, 128f, radius / 18f, radius / 18f, angle, 0, 0, 128, 128, false, false);
         }
-    }
-
-    @Override
-    protected void Complete()
-    {
-        //Need this to fix stuff like hovering over vulnerable creature and cancelling
-        card.calculateCardDamage(null);
-        GameCursor.hidden = false;
-        super.Complete();
     }
 }

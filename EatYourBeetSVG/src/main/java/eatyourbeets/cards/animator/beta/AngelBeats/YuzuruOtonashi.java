@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class YuzuruOtonashi extends AnimatorCard
 {
@@ -41,7 +42,7 @@ public class YuzuruOtonashi extends AnimatorCard
                 {
                     GameActions.Bottom.GainTemporaryHP(secondaryValue);
                 }
-                else if (card.type == CardType.CURSE || card.type == CardType.STATUS)
+                else if (GameUtilities.IsCurseOrStatus(card))
                 {
                     GameActions.Bottom.Draw(1);
                 }

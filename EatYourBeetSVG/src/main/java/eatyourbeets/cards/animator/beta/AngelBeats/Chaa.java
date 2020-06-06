@@ -22,6 +22,7 @@ public class Chaa extends AnimatorCard
 
         Initialize(0, 0, 1, 0);
         SetUpgrade(0, 0, 0, 0);
+
         SetCostUpgrade(-1);
         SetSynergy(Synergies.AngelBeats);
     }

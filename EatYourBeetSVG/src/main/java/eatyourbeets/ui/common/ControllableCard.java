@@ -20,6 +20,7 @@ public class ControllableCard
 
     protected GenericCallback<ControllableCard> onUpdate;
     protected GenericCallback<ControllableCard> onSelect;
+    protected GenericCallback<ControllableCard> onDelete;
 
     public ControllableCard(AbstractCard card)
     {
@@ -27,7 +28,7 @@ public class ControllableCard
         this.state = State.Enabled;
     }
 
-    public ControllableCard OnUpdate(Object state, ActionT2<Object, ControllableCard> onCompletion)
+    public <S> ControllableCard OnUpdate(S state, ActionT2<S, ControllableCard> onCompletion)
     {
         onUpdate = GenericCallback.FromT2(onCompletion, state);
 
@@ -41,7 +42,7 @@ public class ControllableCard
         return this;
     }
 
-    public ControllableCard OnSelect(Object state, ActionT2<Object, ControllableCard> onCompletion)
+    public <S> ControllableCard OnSelect(S state, ActionT2<S, ControllableCard> onCompletion)
     {
         onSelect = GenericCallback.FromT2(onCompletion, state);
 
@@ -51,6 +52,20 @@ public class ControllableCard
     public ControllableCard OnSelect(ActionT1<ControllableCard> onCompletion)
     {
         onSelect = GenericCallback.FromT1(onCompletion);
+
+        return this;
+    }
+
+    public <S> ControllableCard OnDelete(S state, ActionT2<S, ControllableCard> onCompletion)
+    {
+        onDelete = GenericCallback.FromT2(onCompletion, state);
+
+        return this;
+    }
+
+    public ControllableCard OnDelete(ActionT1<ControllableCard> onCompletion)
+    {
+        onDelete = GenericCallback.FromT1(onCompletion);
 
         return this;
     }
@@ -76,6 +91,11 @@ public class ControllableCard
     public void Delete()
     {
         state = State.Deleted;
+
+        if (onDelete != null)
+        {
+            onDelete.Complete(this);
+        }
     }
 
     public void Update()

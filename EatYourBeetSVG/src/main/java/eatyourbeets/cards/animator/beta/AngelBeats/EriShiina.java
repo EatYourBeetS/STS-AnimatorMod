@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.AngelBeats;
 
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -36,7 +35,7 @@ public class EriShiina extends AnimatorCard
         SetSynergy(Synergies.AngelBeats);
         SetMartialArtist();
         SetExhaust(true);
-        CardModifierManager.addModifier(this, new AfterLifeMod());
+        AfterLifeMod.Add(this);
     }
 
     @Override
@@ -50,7 +49,9 @@ public class EriShiina extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        if (CombatStats.ControlPile.Contains(this)) {
+
+        if (CombatStats.ControlPile.Contains(this))
+        {
             GameActions.Bottom.CreateThrowingKnives(magicNumber);
         }
     }

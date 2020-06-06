@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.AngelBeats;
 
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,6 +9,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class HidekiHinata extends AnimatorCard
 {
@@ -24,14 +24,15 @@ public class HidekiHinata extends AnimatorCard
 
         SetSynergy(Synergies.AngelBeats);
         SetExhaust(true);
-        CardModifierManager.addModifier(this, new AfterLifeMod());
+        AfterLifeMod.Add(this);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
-        if (m != null && m.getIntentBaseDmg() >= 0)
+
+        if (GameUtilities.IsAttacking(m.intent))
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
         }

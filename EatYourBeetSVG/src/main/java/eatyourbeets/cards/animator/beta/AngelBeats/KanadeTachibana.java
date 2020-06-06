@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.beta.AngelBeats;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -34,14 +33,14 @@ public class KanadeTachibana extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (HasSynergy())
-        {
-            GameActions.Top.ExhaustFromHand(name, BaseMod.MAX_HAND_SIZE, false)
-                    .SetOptions(true, true, true);
-        }
-
         GameActions.Top.FetchFromPile(name, p.discardPile.size(), p.discardPile)
         .SetOptions(false, true)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0]);
+
+        if (HasSynergy())
+        {
+            GameActions.Bottom.ExhaustFromHand(name, BaseMod.MAX_HAND_SIZE, false)
+            .SetOptions(true, true, true);
+        }
     }
 }

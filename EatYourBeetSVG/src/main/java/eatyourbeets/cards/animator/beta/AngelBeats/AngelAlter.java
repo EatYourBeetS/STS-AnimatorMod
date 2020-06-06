@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.AngelBeats;
 
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -24,7 +23,13 @@ public class AngelAlter extends AnimatorCard_UltraRare
         SetScaling(0, 2, 2);
 
         SetSynergy(Synergies.AngelBeats);
-        CardModifierManager.addModifier(this, new AfterLifeMod());
+        AfterLifeMod.Add(this);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetScaling(0, 3, 3);
     }
 
     @Override
@@ -35,25 +40,13 @@ public class AngelAlter extends AnimatorCard_UltraRare
         GameActions.Bottom.GainForce(magicNumber, true);
         GameActions.Bottom.GainAgility(magicNumber, true);
 
-        GameActions.Bottom.MakeCardInDrawPile(this).SetUpgrade(false, true);
-        GameActions.Bottom.MakeCardInDiscardPile(this).SetUpgrade(false, true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetScaling(0, 3, 3);
+        GameActions.Bottom.MakeCardInDrawPile(makeStatEquivalentCopy());
+        GameActions.Bottom.MakeCardInDiscardPile(makeStatEquivalentCopy());
     }
 
     @Override
     public boolean cardPlayable(AbstractMonster m)
     {
-        boolean playable = super.cardPlayable(m);
-        if (playable && !isInAutoplay)
-        {
-            return (CombatStats.ControlPile.Contains(this) && CardModifierManager.hasModifier(this, AfterLifeMod.ID));
-        }
-
-        return playable;
+        return super.cardPlayable(m) && !isInAutoplay && CombatStats.ControlPile.Contains(this) && AfterLifeMod.IsAdded(this);
     }
 }

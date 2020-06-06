@@ -25,6 +25,7 @@ public class Defend_AngelBeats extends Defend
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
+
         if (CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ExhaustFromHand(name, magicNumber, false);

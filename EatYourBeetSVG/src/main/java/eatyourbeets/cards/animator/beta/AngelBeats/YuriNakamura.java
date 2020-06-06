@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.AngelBeats;
 
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -13,7 +12,6 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
 
 public class YuriNakamura extends AnimatorCard
 {
@@ -28,51 +26,44 @@ public class YuriNakamura extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
-    {
-        GameActions.Bottom.SelectFromHand(name, magicNumber, false)
-                .SetOptions(false, false, false)
-                .SetFilter(c -> !c.isEthereal)
-                .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
-                .AddCallback(cards ->
-                {
-                    if (cards.size() > 0)
-                    {
-                        AbstractCard card = cards.get(0);
-                        card.selfRetain = true;
-                        card.flash();
-                    }
-                });
-        if (JavaUtilities.Find(player.exhaustPile.group, this::isValidTarget) != null){
-            if (HasSynergy() && CombatStats.TryActivateLimited(cardID)) {
-                GameActions.Bottom.SelectFromPile(name, magicNumber, p.exhaustPile)
-                        .SetFilter(this::isValidTarget)
-                        .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])
-                        .AddCallback(cards ->
-                        {
-                            if (cards.size() > 0)
-                            {
-                                AbstractCard card = cards.get(0);
-                                CardModifierManager.addModifier(card, new AfterLifeMod());
-                                card.exhaust = false;
-                                card.purgeOnUse = true;
-                                card.tags.add(GR.Enums.CardTags.PURGING);
-                                AfterLifeMod.AfterlifeAddToControlPile(card);
-
-                            }
-                        });
-            }
-        }
-    }
-
-    @Override
     protected void OnUpgrade()
     {
         SetRetain(true);
     }
 
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
+        GameActions.Bottom.SelectFromHand(name, magicNumber, false)
+        .SetOptions(false, false, false)
+        .SetFilter(c -> !c.isEthereal)
+        .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
+        .AddCallback(cards ->
+        {
+            if (cards.size() > 0)
+            {
+                AbstractCard card = cards.get(0);
+                card.selfRetain = true;
+                card.flash();
+            }
+        });
 
-    private boolean isValidTarget(AbstractCard card) {
-        return !GameUtilities.IsCurseOrStatus(card) && !CardModifierManager.hasModifier(card, AfterLifeMod.ID);
+        if (HasSynergy() && !CombatStats.HasActivatedLimited(cardID))
+        {
+            GameActions.Bottom.SelectFromPile(name, magicNumber, p.exhaustPile)
+            .SetFilter(c -> !GameUtilities.IsCurseOrStatus(c) && !AfterLifeMod.IsAdded(c))
+            .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])
+            .AddCallback(cards ->
+            {
+                if (cards.size() > 0 && CombatStats.TryActivateSemiLimited(cardID))
+                {
+                    AbstractCard card = cards.get(0);
+                    AfterLifeMod.Add(card);
+                    card.exhaust = false;
+                    card.tags.add(GR.Enums.CardTags.PURGE);
+                    AfterLifeMod.AfterlifeAddToControlPile(card);
+                }
+            });
+        }
     }
 }

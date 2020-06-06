@@ -78,13 +78,17 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
     public ControllableCard Add(ControllableCard controller)
     {
         controllers.add(controller);
-        RefreshCard(controller.card);
 
         AnimatorCard c = JavaUtilities.SafeCast(controller.card, AnimatorCard.class);
         if (c != null && c.cropPortrait)
         {
             c.cropPortrait = false;
             controller.OnDelete(temp -> ((AnimatorCard)temp.card).cropPortrait = true);
+        }
+
+        if (RefreshCard(controller))
+        {
+            cardGrid.AddCard(controller.card);
         }
 
         return controller;
@@ -171,16 +175,13 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         {
             ControllableCard c = i.next();
 
-            c.Update();
-
-            if (c.IsDeleted())
+            if (RefreshCard(c))
+            {
+                cardGrid.AddCard(c.card);
+            }
+            else if (c.IsDeleted())
             {
                 i.remove();
-            }
-            else if (c.IsEnabled())
-            {
-                RefreshCard(c.card);
-                cardGrid.AddCard(c.card);
             }
         }
 
@@ -221,18 +222,28 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         return timer > 0;
     }
 
-    protected void RefreshCard(AbstractCard card)
+    protected boolean RefreshCard(ControllableCard c)
     {
-        if (card.canUse(AbstractDungeon.player, null) && !AbstractDungeon.isScreenUp)
+        final AbstractCard card = c.card;
+
+        c.Update();
+
+        if (c.IsEnabled())
         {
-            card.beginGlowing();
-        }
-        else
-        {
-            card.stopGlowing();
+            if (card.canUse(AbstractDungeon.player, null) && !AbstractDungeon.isScreenUp)
+            {
+                card.beginGlowing();
+            }
+            else
+            {
+                card.stopGlowing();
+            }
+
+            card.triggerOnGlowCheck();
+            card.applyPowers();
+            return true;
         }
 
-        card.triggerOnGlowCheck();
-        card.applyPowers();
+        return false;
     }
 }

@@ -3,8 +3,6 @@ package eatyourbeets.misc.CardMods;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
@@ -15,6 +13,8 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
+
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 public class AfterLifeMod extends AbstractCardModifier
 {
@@ -54,29 +54,35 @@ public class AfterLifeMod extends AbstractCardModifier
         CombatStats.ControlPile.Add(card)
         .OnUpdate(control ->
         {
-            if (!AbstractDungeon.player.exhaustPile.contains(control.card))
+            if (!player.exhaustPile.contains(control.card))
             {
                 control.Delete();
             }
         })
         .OnSelect(control ->
         {
-            AbstractCard cardToPurge = FindCardToPurge();
-            if (CombatStats.ControlPile.IsHovering() && control.card.canUse(AbstractDungeon.player, null) && cardToPurge != null)
+            if (CombatStats.ControlPile.IsHovering() && control.card.canUse(player, null))
             {
+                if (JavaUtilities.Find(player.exhaustPile.group, AfterLifeMod::CanPurge) == null)
+                {
+                    GameEffects.List.Add(new ThoughtBubble(player.dialogX, player.dialogY, 3.0F, TEXT[2], true));
+                    return;
+                }
+
                 GameActions.Bottom.SelectCreature(control.card).AddCallback(control, (state, creature) ->
                 {
                     //Put this here so the cost is only paid upon successful completion of the selectCreature action
+                    AbstractCard cardToPurge = JavaUtilities.GetRandomElement(JavaUtilities.Filter(player.exhaustPile.group, AfterLifeMod::CanPurge));
                     AbstractCard copy = cardToPurge.makeStatEquivalentCopy();
                     GameEffects.List.ShowCardBriefly(copy);
                     GameEffects.List.Add(new ExhaustCardEffect(copy));
-                    AbstractDungeon.player.exhaustPile.removeCard(cardToPurge);
+                    player.exhaustPile.removeCard(cardToPurge);
 
-                    GameActions.Bottom.PlayCard(state.card, AbstractDungeon.player.exhaustPile, JavaUtilities.SafeCast(creature, AbstractMonster.class))
-                    .SpendEnergy(true)
-                    .AddCallback(state, (temp, __) -> temp.Delete());
+                    GameActions.Bottom.PlayCard(state.card, player.exhaustPile, JavaUtilities.SafeCast(creature, AbstractMonster.class))
+                    .SpendEnergy(true);
 
                     ModifyAllInstances action = GameActions.Bottom.ModifyAllInstances(state.card.uuid, AbstractCard::stopGlowing);
+                    action.AddCallback(state, (temp, __) -> temp.Delete());
                     if (state.card.exhaust)
                     {
                         state.card.exhaust = false;
@@ -87,16 +93,9 @@ public class AfterLifeMod extends AbstractCardModifier
         });
     }
 
-    private static AbstractCard FindCardToPurge()
+    private static boolean CanPurge(AbstractCard card)
     {
-        final AbstractPlayer player = AbstractDungeon.player;
-        final AbstractCard card = JavaUtilities.GetRandomElement(JavaUtilities.Filter(player.exhaustPile.group, c -> !AfterLifeMod.IsAdded(c)));
-        if (card == null)
-        {
-            GameEffects.List.Add(new ThoughtBubble(player.dialogX, player.dialogY, 3.0F, TEXT[2], true));
-        }
-
-        return card;
+        return !AfterLifeMod.IsAdded(card);
     }
 
     @Override

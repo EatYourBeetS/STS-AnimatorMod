@@ -557,6 +557,22 @@
 			"DESCRIPTION": "Put a card from your hand on top of your draw pile. || Synergy: Deals !M! additional damage.",
 			"NAME": "Marisa Kirisame"
 		},
+		"animator:ReimuHakurei":
+		{
+			"DESCRIPTION": "Apply !M! Vulnerable. ** Apply !M! Weak. || Starter: Scry !S!.",
+			"NAME": "Reimu Hakurei"
+		},
+		"animator:HiedaNoAkyuu":
+		{
+			"DESCRIPTION": "Shuffle ALL your cards into your draw pile. || Scry your draw pile.",
+			"NAME": "Hieda no Akyuu"
+		},
+		"animator:KoishiKomeiji":
+		{
+			"DESCRIPTION": "At the start of your turn, gain [E] . || The first card you draw each turn is {Autoplayed}.",
+			"EXTENDED_DESCRIPTION": ["At the start of your turn, gain #b{0} [E] . The first #b{0} card(s) you draw each turn is #yAutoplayed."],
+			"NAME": "Koishi Komeiji"
+		},
 		"animator:YuyukoSaigyouji":
 		{
 			"DESCRIPTION": "Unblocked attack damage you deal kills non-boss enemies. || This card starts in your discard pile.",

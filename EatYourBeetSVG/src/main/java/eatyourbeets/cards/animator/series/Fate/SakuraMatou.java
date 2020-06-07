@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class SakuraMatou extends AnimatorCard
 {
@@ -34,18 +35,17 @@ public class SakuraMatou extends AnimatorCard
     @Override
     public void Refresh(AbstractMonster enemy)
     {
-        this.magicNumber = this.baseMagicNumber;
-
+        int bonus = 0;
         for (AbstractOrb orb : player.orbs)
         {
             if (orb != null && Dark.ORB_ID.equals(orb.ID) && orb.evokeAmount > 0)
             {
-                this.magicNumber += Math.max(1, orb.evokeAmount / 2);
+                bonus += Math.max(1, orb.evokeAmount / 2);
                 break;
             }
         }
 
-        this.isMagicNumberModified = (this.magicNumber != this.baseMagicNumber);
+        GameUtilities.IncreaseMagicNumber(this, bonus, true);
     }
 
     @Override

@@ -255,12 +255,14 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
         for (AbstractCard c : cards)
         {
-            OnBattleStartSubscriber s = JavaUtilities.SafeCast(c, OnBattleStartSubscriber.class);
-            if (s != null)
+            EYBCard temp = JavaUtilities.SafeCast(c, EYBCard.class);
+            if (temp != null)
             {
-                s.OnBattleStart();
+                temp.triggerWhenCreated();
             }
         }
+
+        onBattleEnd.Clear();
 
         for (OnBattleStartSubscriber s : onBattleStart.GetSubscribers())
         {
@@ -268,7 +270,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
 
         onBattleStart.Clear();
-        onBattleEnd.Clear();
     }
 
     public void OnBattleEnd()

@@ -23,7 +23,7 @@ public class Defend_TouhouProject extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.Scry(magicNumber);
+        GameActions.Top.Scry(magicNumber);
+        GameActions.Top.GainBlock(block);
     }
 }

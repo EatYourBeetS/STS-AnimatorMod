@@ -622,6 +622,11 @@
 		  "EXTENDED_DESCRIPTION": ["You can see the enemies' next intents. Your draw pile is viewed in order."],
 		  "NAME": "Satori Komeiji"
 		},
+		"animator:YukariYakumo":
+		{
+		  "DESCRIPTION": "Enter {[I] Stance}. || Choose 1 of !M! random Orbs. Evoke ALL your Orbs and Channel the chosen Orb for each evoked Orb.",
+		  "NAME": "Yukari Yakumo"
+		},
 		"animator:YuyukoSaigyouji":
 		{
 			"DESCRIPTION": "Unblocked attack damage you deal kills non-boss enemies. || This card starts in your discard pile.",

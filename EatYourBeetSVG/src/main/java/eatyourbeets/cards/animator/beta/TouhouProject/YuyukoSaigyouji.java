@@ -59,15 +59,13 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare
         {
             if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL)
             {
-                if (target instanceof AbstractMonster)
+                AbstractMonster mo = JavaUtilities.SafeCast(target, AbstractMonster.class);
+                if (mo != null && mo.type != AbstractMonster.EnemyType.BOSS)
                 {
-                    AbstractMonster mo = JavaUtilities.SafeCast(target, AbstractMonster.class);
-                    if (mo.type != AbstractMonster.EnemyType.BOSS)
-                    {
-                        this.flash();
-                        GameActions.Bottom.Add(new KillCharacterAction(mo, mo));
-                    }
+                    this.flash();
+                    GameActions.Bottom.Add(new KillCharacterAction(mo, mo));
                 }
+
             }
         }
     }

@@ -554,7 +554,7 @@
 	{
 		"animator:MarisaKirisame":
 		{
-			"DESCRIPTION": "Put a card from your hand on top of your draw pile. || Synergy: Deals !M! additional damage.",
+			"DESCRIPTION": "Put a card from your hand on top of your draw pile. || <SLM>. Synergy: Channel !M! Fire.",
 			"NAME": "Marisa Kirisame"
 		},
 		"animator:ReimuHakurei":
@@ -566,6 +566,12 @@
 		{
 		  "DESCRIPTION": "Apply !M! Vulnerable. || <LIM>. If this card ** kills an Elite or Boss: ** Obtain {Shinigami's Ferry}.",
 		  "NAME": "Komachi Onozuka"
+		},
+		"animator:YuukaKazami":
+		{
+		  "DESCRIPTION": "This card can only be played on even-numbered turns. || Synergy: Channel !M! Earth.",
+		  "EXTENDED_DESCRIPTION": ["This card can only be played on even-numbered turns. (Current turn: ", "). || Synergy: Channel !M! Earth."],
+		  "NAME": "Yuuka Kazami"
 		},
 		"animator:SanaeKochiya":
 		{

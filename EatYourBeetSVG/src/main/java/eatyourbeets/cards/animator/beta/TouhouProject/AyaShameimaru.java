@@ -6,7 +6,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class AyaShameimaru extends AnimatorCard
@@ -17,17 +16,11 @@ public class AyaShameimaru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 0);
-        SetUpgrade(0, 1, 0, 0);
-        SetScaling(0, 0, 0);
+        Initialize(0, 1, 2, 0);
+        SetUpgrade(0, 2, 0, 0);
+        SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.TouhouProject);
-    }
-
-    @Override
-    public AbstractAttribute GetBlockInfo()
-    {
-        return super.GetBlockInfo().AddMultiplier(2);
     }
 
     @Override
@@ -41,7 +34,6 @@ public class AyaShameimaru extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainBlock(block);
     }
 }

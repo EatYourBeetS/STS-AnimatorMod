@@ -635,7 +635,7 @@
 		},
 		"animator:Defend_TouhouProject":
 		{
-			"DESCRIPTION": "<LIM>. Exhaust !M! card(s).",
+			"DESCRIPTION": "Scry !M!.",
 			"NAME": "Improved Defend"
 		}
 	},

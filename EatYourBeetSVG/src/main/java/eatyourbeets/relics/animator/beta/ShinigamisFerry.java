@@ -1,7 +1,9 @@
 package eatyourbeets.relics.animator.beta;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -13,6 +15,7 @@ public class ShinigamisFerry extends AnimatorRelic
     {
         super(ID, RelicTier.SPECIAL, LandingSound.MAGICAL);
         this.counter = 1;
+        fixDescription();
     }
 
     @Override
@@ -22,7 +25,7 @@ public class ShinigamisFerry extends AnimatorRelic
 
         this.counter--;
         this.flash();
-        updateDescription(null);
+        fixDescription();
     }
 
     @Override
@@ -75,13 +78,24 @@ public class ShinigamisFerry extends AnimatorRelic
         {
             ferry.counter++;
             ferry.flash();
-            ferry.description = ferry.getUpdatedDescription();
+            ferry.fixDescription();
         }
+    }
+
+    private void fixDescription() {
+        this.description = getUpdatedDescription();
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        this.initializeTips();
     }
 
     @Override
     public String getUpdatedDescription()
     {
-        return JavaUtilities.Format(DESCRIPTIONS[0], counter);
+        if (CardCrawlGame.isInARun()) {
+            return JavaUtilities.Format(DESCRIPTIONS[0], counter);
+        } else {
+            return JavaUtilities.Format(DESCRIPTIONS[0], 1);
+        }
     }
 }

@@ -562,6 +562,16 @@
 			"DESCRIPTION": "Apply !M! Vulnerable. ** Apply !M! Weak. || Starter: Scry !S!.",
 			"NAME": "Reimu Hakurei"
 		},
+		"animator:SuikaIbuki":
+		{
+		  "DESCRIPTION": "Enter {[F] Stance}. || Draw !M! less card next turn.",
+		  "NAME": "Suika Ibuki"
+		},
+		"animator:AyaShameimaru":
+		{
+		  "DESCRIPTION": "When this card is drawn, increase its {~Block} by !M! this combat.",
+		  "NAME": "Aya Shameimaru"
+		},
 		"animator:KomachiOnozuka":
 		{
 		  "DESCRIPTION": "Apply !M! Vulnerable. || <LIM>. If this card ** kills an Elite or Boss: ** Obtain {Shinigami's Ferry}.",

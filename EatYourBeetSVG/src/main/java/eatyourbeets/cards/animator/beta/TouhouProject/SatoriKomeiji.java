@@ -34,8 +34,6 @@ public class SatoriKomeiji extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        SatoriPower power = new SatoriPower(p);
-        System.out.println(power.ID);
         GameActions.Bottom.ApplyPower(new SatoriPower(p));
     }
 

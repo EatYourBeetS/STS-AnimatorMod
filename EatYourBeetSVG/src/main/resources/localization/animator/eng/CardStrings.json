@@ -554,7 +554,7 @@
 	{
 		"animator:MarisaKirisame":
 		{
-			"DESCRIPTION": "Put a card from your hand on top of your draw pile. || <SLM>. Synergy: Channel !M! Fire.",
+			"DESCRIPTION": "Channel !M! Lightning. ** Put a card from your hand on top of your draw pile. || Cooldown !S! : Deal ** !D! {~Elemental} damage to ALL enemies.",
 			"NAME": "Marisa Kirisame"
 		},
 		"animator:ReimuHakurei":

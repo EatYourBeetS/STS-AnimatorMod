@@ -31,7 +31,7 @@ public class TouhouProject extends AnimatorLoadout
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(MarisaKirisame.DATA.ID);
-            startingDeck.add(SuikaIbuki.DATA.ID);
+            startingDeck.add(AyaShameimaru.DATA.ID);
         }
 
         return startingDeck;

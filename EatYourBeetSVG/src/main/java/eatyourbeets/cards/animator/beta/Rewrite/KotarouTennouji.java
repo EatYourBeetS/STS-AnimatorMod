@@ -19,7 +19,7 @@ import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
-public class KotarouTennouji extends AnimatorCard implements OnBattleStartSubscriber, OnStanceChangedSubscriber
+public class KotarouTennouji extends AnimatorCard implements OnStanceChangedSubscriber
 {
     public static final EYBCardData DATA = Register(KotarouTennouji.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Normal);
 
@@ -34,11 +34,6 @@ public class KotarouTennouji extends AnimatorCard implements OnBattleStartSubscr
         SetUnique(true, true);
         SetSynergy(Synergies.Rewrite);
         SetShapeshifter();
-
-        if (CanSubscribeToEvents())
-        {
-            OnBattleStart();
-        }
     }
 
     @Override
@@ -47,12 +42,6 @@ public class KotarouTennouji extends AnimatorCard implements OnBattleStartSubscr
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
 
         EnterRandomStanceNotCurrent();
-    }
-
-    @Override
-    public void OnBattleStart()
-    {
-        CombatStats.onStanceChanged.Subscribe(this);
     }
 
     @Override
@@ -92,5 +81,11 @@ public class KotarouTennouji extends AnimatorCard implements OnBattleStartSubscr
         }
 
         GameActions.Bottom.ChangeStance(stances.Retrieve(rng));
+    }
+
+    @Override
+    public void triggerWhenCreated()
+    {
+        CombatStats.onStanceChanged.Subscribe(this);
     }
 }

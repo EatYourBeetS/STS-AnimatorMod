@@ -12,7 +12,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.vfx.SmallLaserEffect;
 import eatyourbeets.interfaces.subscribers.OnAddedToDrawPileSubscriber;
-import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
@@ -20,7 +19,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
 
-public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnBattleStartSubscriber, OnShuffleSubscriber, OnAddedToDrawPileSubscriber
+public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuffleSubscriber, OnAddedToDrawPileSubscriber
 {
     public static final EYBCardData DATA = Register(MukuroHoshimiya.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Elemental);
 
@@ -32,11 +31,6 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnBatt
 
         SetSynergy(Synergies.DateALive);
         SetSpellcaster();
-
-        if (CanSubscribeToEvents())
-        {
-            OnBattleStart();
-        }
     }
 
     @Override
@@ -68,7 +62,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnBatt
     }
 
     @Override
-    public void OnBattleStart()
+    public void triggerWhenCreated()
     {
         CombatStats.onShuffle.Subscribe(this);
     }

@@ -9,10 +9,12 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.animator.Earth;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class YuukaKazami extends AnimatorCard
+public class YuukaKazami extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(YuukaKazami.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
 
@@ -49,6 +51,12 @@ public class YuukaKazami extends AnimatorCard
     }
 
     @Override
+    public void OnStartOfTurnPostDraw()
+    {
+        this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0] + GameActionManager.turn + cardData.Strings.EXTENDED_DESCRIPTION[1], true);
+    }
+
+    @Override
     protected void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
@@ -60,6 +68,12 @@ public class YuukaKazami extends AnimatorCard
     public boolean cardPlayable(AbstractMonster m)
     {
         return super.cardPlayable(m) && !isInAutoplay && (GameActionManager.turn % 2 == 0);
+    }
+
+    @Override
+    public void triggerWhenCreated()
+    {
+        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
 }
 

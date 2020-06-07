@@ -37,16 +37,16 @@ public class MarisaKirisame extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
         GameActions.Bottom.SelectFromHand(name, 1, false)
-                .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
-                .AddCallback(cards ->
-                {
-                    for (AbstractCard c : cards)
-                    {
-                        GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, AbstractDungeon.player.drawPile).SetDestination(CardSelection.Top);
-                    }
+        .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
+        .AddCallback(cards ->
+        {
+            for (AbstractCard c : cards)
+            {
+                GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, AbstractDungeon.player.drawPile).SetDestination(CardSelection.Top);
+            }
 
-                    GameActions.Bottom.Add(new RefreshHandLayout());
-                });
+            GameActions.Bottom.Add(new RefreshHandLayout());
+        });
         if (HasSynergy())
         {
             if (CombatStats.TryActivateSemiLimited(cardID))

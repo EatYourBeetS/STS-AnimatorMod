@@ -579,6 +579,22 @@
 		  "EXTENDED_DESCRIPTION": ["At the start of your next turn, add #b{0} #yMiracle(s) to your hand."],
 		  "NAME": "Sanae Kochiya"
 		},
+		"animator:Clownpiece":
+		{
+		  "DESCRIPTION": "Play the top card of your draw pile. || <LIM>. Motivate !M!.",
+		  "NAME": "Clownpiece"
+		},
+		"animator:KaguyaHouraisan":
+		{
+		  "DESCRIPTION": "Draw 1 card. Gain an effect based on its type. || {~Attack} -> ALL enemies lose !M! HP. ** {~Skill} -> Gain !S! {Temporary HP}. ** {~Power} -> Gain/Boost 3 [I].",
+		  "NAME": "Kaguya Houraisan"
+		},
+		"animator:AliceMargatroid":
+		{
+		  "DESCRIPTION": "At the start of your turn, draw !M! card(s), then put !M! card(s) on top of your draw pile. || Synergy: Gain !S! Temporary HP.",
+		  "EXTENDED_DESCRIPTION": ["At the start of your turn, draw #b{0} card(s), then put #b{0} card(s) on top of your draw pile."],
+		  "NAME": "Alice Margatroid"
+		},
 		"animator:HiedaNoAkyuu":
 		{
 			"DESCRIPTION": "Shuffle ALL your cards into your draw pile. || Scry your draw pile.",

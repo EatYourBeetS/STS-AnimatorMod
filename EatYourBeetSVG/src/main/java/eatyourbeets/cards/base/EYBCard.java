@@ -205,10 +205,9 @@ public abstract class EYBCard extends EYBCardBase
         }
     }
 
-    @Override
-    public final void triggerOnScry()
+    public void triggerWhenCreated()
     {
-
+        // TODO: Called at the start of a fight, or when a card is created by MakeTempCard.
     }
 
     @Override

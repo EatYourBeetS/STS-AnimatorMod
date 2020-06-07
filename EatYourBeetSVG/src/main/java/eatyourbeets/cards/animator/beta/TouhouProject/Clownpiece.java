@@ -34,7 +34,8 @@ public class Clownpiece extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (CombatStats.TryActivateLimited(cardID)) {
+        if (CombatStats.TryActivateLimited(cardID))
+        {
             GameActions.Top.Motivate(magicNumber);
         }
 
@@ -42,7 +43,7 @@ public class Clownpiece extends AnimatorCard
         {
             AbstractCard card = player.drawPile.getTopCard();
             GameActions.Top.PlayCard(card, player.drawPile, null)
-            .SpendEnergy(false);
+                    .SpendEnergy(false);
         });
 
     }

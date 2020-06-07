@@ -606,6 +606,12 @@
 			"EXTENDED_DESCRIPTION": ["At the start of your turn, gain #b{0} [E] . The first #b{0} card(s) you draw each turn is #yAutoplayed."],
 			"NAME": "Koishi Komeiji"
 		},
+		"animator:SatoriKomeiji":
+		{
+		  "DESCRIPTION": "You can see the enemies' next intents. || Your draw pile is viewed in order.",
+		  "EXTENDED_DESCRIPTION": ["You can see the enemies' next intents. Your draw pile is viewed in order."],
+		  "NAME": "Satori Komeiji"
+		},
 		"animator:YuyukoSaigyouji":
 		{
 			"DESCRIPTION": "Unblocked attack damage you deal kills non-boss enemies. || This card starts in your discard pile.",

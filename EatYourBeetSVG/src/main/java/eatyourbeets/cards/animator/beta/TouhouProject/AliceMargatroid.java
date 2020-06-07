@@ -35,7 +35,8 @@ public class AliceMargatroid extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.StackPower(new AlicePower(p, magicNumber));
-        if (HasSynergy()) {
+        if (HasSynergy())
+        {
             GameActions.Bottom.GainTemporaryHP(secondaryValue);
         }
     }
@@ -56,16 +57,16 @@ public class AliceMargatroid extends AnimatorCard
             super.atStartOfTurn();
             GameActions.Bottom.Draw(amount);
             GameActions.Bottom.SelectFromHand(name, amount, false)
-            .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
-            .AddCallback(cards ->
-            {
-                for (AbstractCard c : cards)
-                {
-                    GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, AbstractDungeon.player.drawPile).SetDestination(CardSelection.Top);
-                }
+                    .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
+                    .AddCallback(cards ->
+                    {
+                        for (AbstractCard c : cards)
+                        {
+                            GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, AbstractDungeon.player.drawPile).SetDestination(CardSelection.Top);
+                        }
 
-                GameActions.Bottom.Add(new RefreshHandLayout());
-            });
+                        GameActions.Bottom.Add(new RefreshHandLayout());
+                    });
         }
 
         @Override

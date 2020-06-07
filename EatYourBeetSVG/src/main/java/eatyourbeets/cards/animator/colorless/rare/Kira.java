@@ -16,6 +16,7 @@ import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Kira extends AnimatorCard
 {
@@ -63,8 +64,7 @@ public class Kira extends AnimatorCard
 
         if (lastTargetEnemy != targetEnemy)
         {
-            updateCurrentEffect(targetEnemy);
-
+            UpdateCurrentEffect(targetEnemy);
             lastTargetEnemy = targetEnemy;
         }
 
@@ -76,7 +76,7 @@ public class Kira extends AnimatorCard
     {
         GameActions.Bottom.StackPower(p, new StrengthPower(m, secondaryValue));
 
-        updateCountdown(m);
+        UpdateCountdown(m);
 
         if (m.type == AbstractMonster.EnemyType.BOSS)
         {
@@ -112,7 +112,7 @@ public class Kira extends AnimatorCard
         }
     }
 
-    private void updateCurrentEffect(AbstractMonster monster)
+    private void UpdateCurrentEffect(AbstractMonster monster)
     {
         if (monster == null)
         {
@@ -125,13 +125,13 @@ public class Kira extends AnimatorCard
         }
         else
         {
-            updateCountdown(monster);
-            baseMagicNumber = magicNumber = countdown;
+            UpdateCountdown(monster);
+            GameUtilities.ModifyMagicNumber(this, countdown, true);
             cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
         }
     }
 
-    private void updateCountdown(AbstractMonster m)
+    private void UpdateCountdown(AbstractMonster m)
     {
         if (m == null)
         {

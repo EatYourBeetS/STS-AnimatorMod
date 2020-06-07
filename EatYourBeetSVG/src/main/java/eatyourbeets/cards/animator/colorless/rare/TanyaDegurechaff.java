@@ -12,6 +12,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class TanyaDegurechaff extends AnimatorCard implements StartupCard
 {
@@ -33,17 +34,17 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
     }
 
     @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
+    }
+
+    @Override
     protected void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
 
-        magicNumber = (baseMagicNumber + player.hand.getSkills().size());
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
+        GameUtilities.IncreaseMagicNumber(this, player.hand.getSkills().size(), true);
     }
 
     @Override

@@ -562,16 +562,21 @@
 			"DESCRIPTION": "Apply !M! Vulnerable. ** Apply !M! Weak. || Starter: Scry !S!.",
 			"NAME": "Reimu Hakurei"
 		},
-		"animator:HiedaNoAkyuu":
+		"animator:KomachiOnozuka":
 		{
-			"DESCRIPTION": "Shuffle ALL your cards into your draw pile. || Scry your draw pile.",
-			"NAME": "Hieda no Akyuu"
+		  "DESCRIPTION": "Apply !M! Vulnerable. || <LIM>. If this card ** kills an Elite or Boss: ** Obtain {Shinigami's Ferry}.",
+		  "NAME": "Komachi Onozuka"
 		},
 		"animator:SanaeKochiya":
 		{
 		  "DESCRIPTION": "Scry !M!. For each card discarded, add a {Miracle} to your hand next turn.",
 		  "EXTENDED_DESCRIPTION": ["At the start of your next turn, add #b{0} #yMiracle(s) to your hand."],
 		  "NAME": "Sanae Kochiya"
+		},
+		"animator:HiedaNoAkyuu":
+		{
+			"DESCRIPTION": "Shuffle ALL your cards into your draw pile. || Scry your draw pile.",
+			"NAME": "Hieda no Akyuu"
 		},
 		"animator:KoishiKomeiji":
 		{

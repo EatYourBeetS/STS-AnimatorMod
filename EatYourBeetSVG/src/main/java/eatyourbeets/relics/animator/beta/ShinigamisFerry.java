@@ -31,7 +31,7 @@ public class ShinigamisFerry extends AnimatorRelic
     @Override
     public void instantObtain()
     {
-        if (AbstractDungeon.player.hasRelic(ID))
+        if (player.hasRelic(ID))
         {
             increment();
         }
@@ -44,7 +44,7 @@ public class ShinigamisFerry extends AnimatorRelic
     @Override
     public void instantObtain(AbstractPlayer p, int slot, boolean callOnEquip)
     {
-        if (AbstractDungeon.player.hasRelic(ID))
+        if (player.hasRelic(ID))
         {
             increment();
 
@@ -61,7 +61,7 @@ public class ShinigamisFerry extends AnimatorRelic
     @Override
     public void obtain()
     {
-        if (AbstractDungeon.player.hasRelic(ID))
+        if (player.hasRelic(ID))
         {
             increment();
         }

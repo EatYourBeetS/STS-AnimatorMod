@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.actions.watcher.SkipEnemiesTurnAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
+import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import eatyourbeets.actions.animator.CreateRandomCurses;
@@ -22,11 +24,17 @@ public class HomuraAkemi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
-        SetCostUpgrade(-1);
+        Initialize(0, 0, 1, 3);
 
         SetExhaust(true);
+        SetEthereal(true);
         SetSynergy(Synergies.MadokaMagica);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetEthereal(false);
     }
 
     @Override
@@ -36,7 +44,9 @@ public class HomuraAkemi extends AnimatorCard
         GameActions.Bottom.VFX(new TimeWarpTurnEndEffect());
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.VIOLET, true));
         GameActions.Bottom.Add(new SkipEnemiesTurnAction());
-        GameActions.Bottom.Add(new CreateRandomCurses(magicNumber, p.discardPile));
+        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
+        GameActions.Bottom.StackPower(new EnergizedPower(p, magicNumber));
+        GameActions.Bottom.Add(new CreateRandomCurses(secondaryValue, p.discardPile));
         GameActions.Bottom.Add(new PressEndTurnButtonAction());
     }
 }

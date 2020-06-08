@@ -197,7 +197,7 @@
 		},
 		"animator:HomuraAkemi":
 		{
-			"DESCRIPTION": "Skip the next enemy ** turn. End your turn. || Add !M! random ** {Curses} to your discard ** pile.",
+			"DESCRIPTION": "Skip the next enemy turn. ** Draw !M! card(s) and gain [E] ** next turn. End your turn. || Add !S! random {Curses} to ** your discard pile.",
 			"NAME": "Homura Akemi"
 		},
 		"animator:IrohaTamaki":

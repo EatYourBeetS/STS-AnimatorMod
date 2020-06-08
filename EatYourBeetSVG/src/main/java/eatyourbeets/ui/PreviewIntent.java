@@ -28,7 +28,8 @@ public class PreviewIntent {
     public boolean multihit;
     public int numHits;
 
-    private AbstractMonster source;
+    public AbstractMonster source;
+    public EnemyMoveInfo moveInfo;
     private BobEffect bobEffect;
     private float intentParticleTimer;
     private float intentAngle;
@@ -44,6 +45,7 @@ public class PreviewIntent {
 
     public PreviewIntent(AbstractMonster source, EnemyMoveInfo move) {
         this.source = source;
+        this.moveInfo = move;
         intentColor = Color.WHITE.cpy();
 
         intent = move.intent;

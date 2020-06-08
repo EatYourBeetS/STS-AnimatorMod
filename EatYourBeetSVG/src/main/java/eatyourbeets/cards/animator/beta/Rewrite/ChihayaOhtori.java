@@ -19,7 +19,7 @@ public class ChihayaOhtori extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0, 1, 3);
+        Initialize(8, 0, 1, 1);
         SetUpgrade(3, 0, 0);
         SetScaling(1, 0, 1);
 

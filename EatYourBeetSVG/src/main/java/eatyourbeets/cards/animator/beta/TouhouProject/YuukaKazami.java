@@ -41,12 +41,18 @@ public class YuukaKazami extends AnimatorCard implements OnStartOfTurnPostDrawSu
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.POISON);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.POISON);
-        if (HasSynergy())
+        for (int i = 0; i < magicNumber; i++)
         {
-            for (int i = 0; i < magicNumber; i++)
-            {
-                GameActions.Bottom.ChannelOrb(new Earth(), true);
-            }
+            GameActions.Bottom.ChannelOrb(new Earth(), true);
+        }
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        for (int i = 0; i < magicNumber; i++)
+        {
+            GameActions.Bottom.ChannelOrb(new Earth(), true);
         }
     }
 

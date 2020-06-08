@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class KaguyaHouraisan extends AnimatorCard
@@ -20,11 +21,17 @@ public class KaguyaHouraisan extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 14, 12);
-        SetUpgrade(0, 0, 4, 4);
+        Initialize(0, 16, 14, 3);
+        SetUpgrade(0, 4, 4, 0);
         SetScaling(0, 0, 0);
 
         SetSynergy(Synergies.TouhouProject);
+    }
+
+    @Override
+    public AbstractAttribute GetBlockInfo()
+    {
+        return null;
     }
 
     @Override
@@ -42,11 +49,11 @@ public class KaguyaHouraisan extends AnimatorCard
                 }
                 else if (card.type == CardType.SKILL)
                 {
-                    GameActions.Bottom.GainTemporaryHP(secondaryValue);
+                    GameActions.Bottom.GainBlock(block);
                 }
                 else if (card.type == CardType.POWER)
                 {
-                    GameActions.Bottom.GainIntellect(3, upgraded);
+                    GameActions.Bottom.GainIntellect(secondaryValue, upgraded);
                 }
             }
         });

@@ -579,8 +579,8 @@
 		},
 		"animator:YuukaKazami":
 		{
-		  "DESCRIPTION": "This card can only be played on even-numbered turns. || Synergy: Channel !M! Earth.",
-		  "EXTENDED_DESCRIPTION": ["This card can only be played on even-numbered turns. (Current turn: ", "). || Synergy: Channel !M! Earth."],
+		  "DESCRIPTION": "This card can only be played on even-numbered turns. ** When played or discarded: Channel !M! Earth.",
+		  "EXTENDED_DESCRIPTION": ["This card can only be played on even-numbered turns. ** (Current turn: ", "). ** When played or discarded: Channel !M! Earth."],
 		  "NAME": "Yuuka Kazami"
 		},
 		"animator:SanaeKochiya":
@@ -596,7 +596,7 @@
 		},
 		"animator:KaguyaHouraisan":
 		{
-		  "DESCRIPTION": "Draw 1 card. Gain an effect based on its type. || {~Attack} -> ALL enemies lose !M! HP. ** {~Skill} -> Gain !S! {Temporary HP}. ** {~Power} -> Gain/Boost 3 [I].",
+		  "DESCRIPTION": "Draw 1 card. Gain an effect based on its type. || {~Attack} -> ALL enemies lose !M! HP. ** {~Skill} -> Gain !B! Block. ** {~Power} -> Gain/Boost !S! [I].",
 		  "NAME": "Kaguya Houraisan"
 		},
 		"animator:AliceMargatroid":

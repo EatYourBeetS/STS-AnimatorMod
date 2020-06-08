@@ -144,7 +144,7 @@
 	},
 	"animator:SoulGem":
 	{
-		"DESCRIPTIONS": ["At the start of your turn, you may exhaust a #yHindrance from your hand."],
+		"DESCRIPTIONS": ["At the start of your turn, Exhaust a #yHindrance from your hand."],
 		"FLAVOR": "Would you like to make a contract?",
 		"NAME": "Soul Gem"
 	},

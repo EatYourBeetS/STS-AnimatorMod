@@ -97,13 +97,14 @@ public class SatoriKomeiji extends AnimatorCard
         private void updatePreviews()
         {
             previewIntents.clear();
+            int counter = AbstractDungeon.aiRng.counter;
+            long seed0 = (Long) ReflectionHacks.getPrivate(AbstractDungeon.aiRng.random, com.badlogic.gdx.math.RandomXS128.class, "seed0");
+            long seed1 = (Long) ReflectionHacks.getPrivate(AbstractDungeon.aiRng.random, com.badlogic.gdx.math.RandomXS128.class, "seed1");
+
             for (AbstractMonster mo : GameUtilities.GetEnemies(true))
             {
                 FieldInfo<EnemyMoveInfo> _move = JavaUtilities.GetField("move", AbstractMonster.class);
                 EnemyMoveInfo originalMove = _move.Get(mo);
-                int counter = AbstractDungeon.aiRng.counter;
-                long seed0 = (Long) ReflectionHacks.getPrivate(AbstractDungeon.aiRng.random, com.badlogic.gdx.math.RandomXS128.class, "seed0");
-                long seed1 = (Long) ReflectionHacks.getPrivate(AbstractDungeon.aiRng.random, com.badlogic.gdx.math.RandomXS128.class, "seed1");
 
                 previewNextIntent(mo);
                 mo.rollMove();
@@ -116,12 +117,11 @@ public class SatoriKomeiji extends AnimatorCard
                 //removes the move added by the above setMove from move history
                 mo.moveHistory.remove(mo.moveHistory.size() - 1);
 
-                AbstractDungeon.aiRng.counter = counter;
-                AbstractDungeon.aiRng.random.setState(seed0, seed1);
-
                 PreviewIntent previewIntent = applyPreviewPowers(mo, nextMove);
                 previewIntents.add(previewIntent);
             }
+            AbstractDungeon.aiRng.counter = counter;
+            AbstractDungeon.aiRng.random.setState(seed0, seed1);
         }
 
         private PreviewIntent applyPreviewPowers(AbstractMonster source, EnemyMoveInfo move)

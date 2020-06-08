@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.beta.TouhouProject;
 
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -18,6 +19,7 @@ import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.ui.PreviewIntent;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
@@ -78,9 +80,22 @@ public class SatoriKomeiji extends AnimatorCard
 
         private void updatePreviews() {
             previewIntents.clear();
-            for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
+            for (AbstractMonster mo : GameUtilities.GetEnemies(true)) {
                 FieldInfo<EnemyMoveInfo> _move = JavaUtilities.GetField("move", AbstractMonster.class);
-                PreviewIntent previewIntent = applyPreviewPowers(mo, _move.Get(mo));
+                EnemyMoveInfo originalMove = _move.Get(mo);
+                int counter = AbstractDungeon.aiRng.counter;
+                long seed0 = (Long) ReflectionHacks.getPrivate(AbstractDungeon.aiRng.random, com.badlogic.gdx.math.RandomXS128.class, "seed0");
+                long seed1 = (Long) ReflectionHacks.getPrivate(AbstractDungeon.aiRng.random, com.badlogic.gdx.math.RandomXS128.class, "seed1");
+
+                mo.rollMove();
+                EnemyMoveInfo nextMove = _move.Get(mo);
+
+                mo.setMove(originalMove.nextMove, originalMove.intent, originalMove.baseDamage, originalMove.multiplier, originalMove.isMultiDamage);
+
+                AbstractDungeon.aiRng.counter = counter;
+                AbstractDungeon.aiRng.random.setState(seed0, seed1);
+
+                PreviewIntent previewIntent = applyPreviewPowers(mo, nextMove);
                 previewIntents.add(previewIntent);
             }
         }

@@ -136,6 +136,12 @@
 		"FLAVOR": "???",
 		"NAME": "???"
 	},
+	"animator:ShinigamisFerry":
+	{
+	  "DESCRIPTIONS": ["You may ignore paths when choosing the next room to travel to #b{0} time(s)."],
+	  "FLAVOR": "When the candlestick burns short, the Shinigami come to collect their dues.",
+	  "NAME": "Shinigami's Ferry"
+	},
 	"animator:ShionDessert":
 	{
 		"DESCRIPTIONS": ["At the start of each turn, apply #b{0} #yPoison to the enemy with the most #yPoison."],

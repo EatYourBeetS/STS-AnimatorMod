@@ -3,7 +3,6 @@ package eatyourbeets.cards.base;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -205,10 +204,9 @@ public abstract class EYBCard extends EYBCardBase
         }
     }
 
-    @Override
-    public final void triggerOnScry()
+    public void triggerWhenCreated()
     {
-
+        // Called at the start of a fight, or when a card is created by MakeTempCard.
     }
 
     @Override
@@ -415,11 +413,6 @@ public abstract class EYBCard extends EYBCardBase
     {
         SetTag(GR.Enums.CardTags.UNIQUE, value);
         isMultiUpgrade = multiUpgrade;
-    }
-
-    protected boolean CanSubscribeToEvents()
-    {
-        return GameUtilities.InBattle() && !CardCrawlGame.isPopupOpen;
     }
 
     protected boolean TryUpgrade()

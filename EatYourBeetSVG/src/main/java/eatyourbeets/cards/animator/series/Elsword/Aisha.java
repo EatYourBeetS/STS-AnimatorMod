@@ -15,6 +15,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Aisha extends AnimatorCard
 {
@@ -49,7 +50,7 @@ public class Aisha extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        magicNumber = baseMagicNumber + player.filledOrbCount();
+        GameUtilities.IncreaseMagicNumber(this, player.filledOrbCount(), true);
     }
 
     @Override

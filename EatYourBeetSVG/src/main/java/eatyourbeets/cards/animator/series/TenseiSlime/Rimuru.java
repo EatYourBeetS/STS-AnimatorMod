@@ -9,11 +9,10 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
-import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnAfterCardPlayedSubscriber
+public class Rimuru extends AnimatorCard implements OnAfterCardPlayedSubscriber
 {
     public static final EYBCardData DATA = Register(Rimuru.class).SetSkill(-2, CardRarity.RARE, EYBCardTarget.ALL).SetMaxCopies(2);
 
@@ -28,16 +27,13 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
         SetShapeshifter();
 
         this.copy = this;
-
-        if (CanSubscribeToEvents())
-        {
-            OnBattleStart();
-        }
     }
 
     @Override
-    public void OnBattleStart()
+    public void triggerWhenCreated()
     {
+        super.triggerWhenCreated();
+
         CombatStats.onAfterCardPlayed.Subscribe(this);
     }
 

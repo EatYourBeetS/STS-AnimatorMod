@@ -129,6 +129,19 @@ public class GameUtilities
         copy.targetAngle = original.targetAngle;
     }
 
+    public static void DeceaseSecondaryValue(AbstractCard card, int amount, boolean temporary)
+    {
+        if (card instanceof EYBCard)
+        {
+            ModifySecondaryValue(card, Math.max(0, ((EYBCard)card).baseSecondaryValue - amount), temporary);
+        }
+    }
+
+    public static void DecreaseMagicNumber(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyMagicNumber(card, Math.max(0, card.baseMagicNumber - amount), temporary);
+    }
+
     public static CardGroup FindCardGroup(AbstractCard card, boolean includeLimbo)
     {
         if (player.hand.contains(card))
@@ -424,6 +437,11 @@ public class GameUtilities
         return monsters;
     }
 
+    public static EnemyMoveDetails GetEnemyMove(AbstractMonster enemy)
+    {
+        return new EnemyMoveDetails(enemy);
+    }
+
     public static float GetHealthPercentage(AbstractCreature creature)
     {
         return creature.currentHealth / (float) creature.maxHealth;
@@ -454,11 +472,6 @@ public class GameUtilities
         }
 
         return null;
-    }
-
-    public static EnemyMoveDetails GetEnemyMove(AbstractMonster enemy)
-    {
-        return new EnemyMoveDetails(enemy);
     }
 
     public static HashSet<AbstractCard> GetOtherCardsInHand(AbstractCard card)
@@ -753,6 +766,19 @@ public class GameUtilities
         return player != null && player.stance != null && player.stance.ID.equals(stanceID);
     }
 
+    public static void IncreaseMagicNumber(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyMagicNumber(card, card.baseMagicNumber + amount, temporary);
+    }
+
+    public static void IncreaseSecondaryValue(AbstractCard card, int amount, boolean temporary)
+    {
+        if (card instanceof EYBCard)
+        {
+            ModifySecondaryValue(card, ((EYBCard)card).baseSecondaryValue + amount, temporary);
+        }
+    }
+
     public static boolean IsAttacking(AbstractMonster.Intent intent)
     {
         return (intent == AbstractMonster.Intent.ATTACK_DEBUFF || intent == AbstractMonster.Intent.ATTACK_BUFF ||
@@ -813,6 +839,30 @@ public class GameUtilities
     {
         card.costForTurn = relative ? (card.costForTurn + amount) : amount;
         card.isCostModifiedForTurn = (card.cost != card.costForTurn);
+    }
+
+    public static void ModifyMagicNumber(AbstractCard card, int amount, boolean temporary)
+    {
+        if (!temporary)
+        {
+            card.baseMagicNumber = amount;
+        }
+        card.magicNumber = amount;
+        card.isMagicNumberModified = (card.magicNumber != card.baseMagicNumber);
+    }
+
+    public static void ModifySecondaryValue(AbstractCard card, int amount, boolean temporary)
+    {
+        EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
+        if (c != null)
+        {
+            if (!temporary)
+            {
+                c.baseSecondaryValue = amount;
+            }
+            c.secondaryValue = amount;
+            c.isSecondaryValueModified = (c.secondaryValue != c.baseSecondaryValue);
+        }
     }
 
     public static void ObtainBlight(float cX, float cY, AbstractBlight blight)

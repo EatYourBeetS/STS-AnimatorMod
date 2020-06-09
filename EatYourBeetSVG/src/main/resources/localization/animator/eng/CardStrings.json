@@ -550,6 +550,101 @@
 		}
 	},
 
+	"BETA:TOUHOUPROJECT":
+	{
+		"animator:MarisaKirisame":
+		{
+			"DESCRIPTION": "Channel !M! [Lightning]. ** Put up to 1 card from your hand on top of your draw pile. || Cooldown !S! : Deal ** !D! {~Elemental} damage to ALL enemies.",
+			"NAME": "Marisa Kirisame"
+		},
+		"animator:ReimuHakurei":
+		{
+			"DESCRIPTION": "Apply !M! [Vulnerable]. ** Apply !M! [Weak]. || Starter: Scry !S!.",
+			"NAME": "Reimu Hakurei"
+		},
+		"animator:SuikaIbuki":
+		{
+		  "DESCRIPTION": "Gain/Boost [F]. || Draw !M! less card next turn.",
+		  "NAME": "Suika Ibuki"
+		},
+		"animator:AyaShameimaru":
+		{
+		  "DESCRIPTION": "When this card is drawn, increase its {~Block} by !M! this combat.",
+		  "NAME": "Aya Shameimaru"
+		},
+		"animator:KomachiOnozuka":
+		{
+		  "DESCRIPTION": "Apply !M! [Vulnerable]. || <LIM>. If this card ** kills an Elite or Boss: ** Obtain {Shinigami's Ferry}.",
+		  "NAME": "Komachi Onozuka"
+		},
+		"animator:YuukaKazami":
+		{
+		  "DESCRIPTION": "This card can only be played on even-numbered turns. ** When played or discarded: Channel !M! [Earth].",
+		  "EXTENDED_DESCRIPTION": ["This card can only be played on even-numbered turns. ** (Current turn: ", "). ** When played or discarded: Channel !M! [Earth]."],
+		  "NAME": "Yuuka Kazami"
+		},
+		"animator:SanaeKochiya":
+		{
+		  "DESCRIPTION": "Scry !M!. For each card discarded, add a {Miracle} to your hand next turn.",
+		  "EXTENDED_DESCRIPTION": ["At the start of your next turn, add #b{0} #yMiracle(s) to your hand."],
+		  "NAME": "Sanae Kochiya"
+		},
+		"animator:Clownpiece":
+		{
+		  "DESCRIPTION": "Play the top card of your draw pile. || Synergy: Channel !M! [Dark].",
+		  "NAME": "Clownpiece"
+		},
+		"animator:KaguyaHouraisan":
+		{
+		  "DESCRIPTION": "Draw 1 card. Gain an effect based on its type. || {~Attack} -> ALL enemies lose !M! HP. ** {~Skill} -> Gain !B! Block. ** {~Power} -> Gain/Boost !S! [I].",
+		  "NAME": "Kaguya Houraisan"
+		},
+		"animator:AliceMargatroid":
+		{
+		  "DESCRIPTION": "At the start of your turn, draw !M! card(s), then put !M! card(s) on top of your draw pile. || Synergy: Gain !S! Temporary HP.",
+		  "EXTENDED_DESCRIPTION": ["At the start of your turn, draw #b{0} card(s), then put #b{0} card(s) on top of your draw pile."],
+		  "NAME": "Alice Margatroid"
+		},
+		"animator:HiedaNoAkyuu":
+		{
+			"DESCRIPTION": "Shuffle ALL your cards into your draw pile. || Scry your draw pile.",
+			"NAME": "Hieda no Akyuu"
+		},
+		"animator:KoishiKomeiji":
+		{
+			"DESCRIPTION": "At the start of your turn, gain [E] . || The first card you draw each turn is {Autoplayed}.",
+			"EXTENDED_DESCRIPTION": ["At the start of your turn, gain #b{0} [E] . The first #b{0} card(s) you draw each turn is #yAutoplayed."],
+			"NAME": "Koishi Komeiji"
+		},
+		"animator:SatoriKomeiji":
+		{
+		  "DESCRIPTION": "At the start of your turn, move !M! card(s) in your draw pile to the top. || Your draw pile is viewed in order.",
+		  "EXTENDED_DESCRIPTION": ["At the start of your turn, move #b{0} card(s) in your draw pile to the top. Your draw pile is viewed in order."],
+		  "NAME": "Satori Komeiji"
+		},
+		"animator:YukariYakumo":
+		{
+		  "DESCRIPTION": "Enter {[I] Stance}. || Choose 1 of !M! random Orbs. Evoke ALL your Orbs and Channel the chosen Orb for each evoked Orb.",
+		  "NAME": "Yukari Yakumo"
+		},
+		"animator:YuyukoSaigyouji":
+		{
+			"DESCRIPTION": "Unblocked attack damage you deal kills non-boss enemies. || This card starts in your discard pile.",
+			"EXTENDED_DESCRIPTION": ["Unblocked attack damage you deal kills non-boss enemies."],
+			"NAME": "Yuyuko Saigyouji"
+		},
+		"animator:Strike_TouhouProject":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Improved Strike"
+		},
+		"animator:Defend_TouhouProject":
+		{
+			"DESCRIPTION": "Scry !M!.",
+			"NAME": "Improved Defend"
+		}
+	},
+
 	"COLORLESS:RARE":
 	{
 		"animator:Emilia":

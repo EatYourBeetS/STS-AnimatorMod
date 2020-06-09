@@ -18,10 +18,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.*;
 
 import java.util.HashSet;
 
@@ -68,8 +65,7 @@ public class Patchouli extends AnimatorCard implements StartupCard
             uniqueOrbs.add(orb.ID);
         }
 
-        magicNumber = baseMagicNumber + uniqueOrbs.size();
-        isMagicNumberModified = (magicNumber != baseMagicNumber);
+        GameUtilities.IncreaseMagicNumber(this, uniqueOrbs.size(), true);
     }
 
     @Override

@@ -41,6 +41,7 @@ public abstract class EYBCardBase extends AbstractCard
     @Override public final void renderCardPreviewInSingleView(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
     @Override public final void renderCardPreview(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
     @Override public final void initializeDescriptionCN() { initializeDescription(); }
+    @Override public final void triggerOnScry() { /* Useless */ }
     @Override public void calculateDamageDisplay(AbstractMonster mo) { calculateCardDamage(mo); }
     @Override public abstract void renderUpgradePreview(SpriteBatch sb);
     @Override public abstract void initializeDescription();

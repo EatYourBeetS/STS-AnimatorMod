@@ -1,4 +1,4 @@
-package patches;
+//package patches;
 
 //TODO: Implement this
 //@SpirePatch(clz= StoreRelic.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {AbstractRelic.class, int.class, ShopScreen.class})

@@ -65,6 +65,8 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
             this.card = card;
         }
 
+        AddToLimbo();
+
         Initialize(target, 1);
     }
 
@@ -228,13 +230,10 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
 
     protected void ShowCard()
     {
+        AddToLimbo();
+
         GameUtilities.RefreshHandLayout();
         AbstractDungeon.getCurrRoom().souls.remove(card);
-
-        if (!player.limbo.contains(card))
-        {
-            player.limbo.addToTop(card);
-        }
 
         if (currentPosition != null)
         {
@@ -253,12 +252,9 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
 
     protected void QueueCardItem()
     {
-        final AbstractMonster enemy = (AbstractMonster) target;
+        AddToLimbo();
 
-        if (!player.limbo.contains(card))
-        {
-            player.limbo.addToTop(card);
-        }
+        final AbstractMonster enemy = (AbstractMonster) target;
 
         if (!spendEnergy)
         {
@@ -281,5 +277,13 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
         AbstractDungeon.actionManager.cardQueue.add(0, new CardQueueItem(card, enemy, EnergyPanel.getCurrentEnergy(), true, !spendEnergy));
 
         Complete(enemy);
+    }
+
+    protected void AddToLimbo()
+    {
+        if (card != null && !player.limbo.contains(card))
+        {
+            player.limbo.addToTop(card);
+        }
     }
 }

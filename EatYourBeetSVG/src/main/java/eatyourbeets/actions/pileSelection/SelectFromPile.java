@@ -11,6 +11,7 @@ import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -108,10 +109,14 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             }
             else
             {
-                if (temp.type == CardGroup.CardGroupType.DRAW_PILE && !player.hasRelic(FrozenEye.ID))
+                if (temp.type == CardGroup.CardGroupType.DRAW_PILE)
                 {
-                    temp.sortAlphabetically(true);
-                    temp.sortByRarityPlusStatusCardType(true);
+                    if (!player.hasRelic(FrozenEye.ID) && !player.hasPower("animator:SatoriKomeijiPower")){
+                        temp.sortAlphabetically(true);
+                        temp.sortByRarityPlusStatusCardType(true);
+                    } else {
+                        Collections.reverse(temp.group); //The top of the deck is at the end of the arraylist
+                    }
                 }
 
                 GridCardSelectScreenPatch.AddGroup(temp);

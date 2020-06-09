@@ -25,19 +25,22 @@ public class MarisaKirisame extends AnimatorCard
         super(DATA);
 
         Initialize(10, 0, 1, 0);
-        SetUpgrade(4, 0, 0, 0);
+        SetUpgrade(0, 0, 0, 0);
         SetScaling(0, 0, 0);
 
         SetSpellcaster();
-        SetCooldown(2, 0, this::OnCooldownCompleted);
+        SetCooldown(2, -1, this::OnCooldownCompleted);
         SetSynergy(Synergies.TouhouProject);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Lightning(), true);
+        for (int i = 0; i < magicNumber; i++) {
+            GameActions.Bottom.ChannelOrb(new Lightning(), true);
+        }
         GameActions.Bottom.SelectFromHand(name, 1, false)
+        .SetOptions(true, true, true)
         .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
         .AddCallback(cards ->
         {

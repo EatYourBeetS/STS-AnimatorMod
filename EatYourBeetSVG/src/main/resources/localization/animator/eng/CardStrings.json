@@ -554,7 +554,7 @@
 	{
 		"animator:MarisaKirisame":
 		{
-			"DESCRIPTION": "Channel !M! [Lightning]. ** Put a card from your hand on top of your draw pile. || Cooldown !S! : Deal ** !D! {~Elemental} damage to ALL enemies.",
+			"DESCRIPTION": "Channel !M! [Lightning]. ** Put up to 1 card from your hand on top of your draw pile. || Cooldown !S! : Deal ** !D! {~Elemental} damage to ALL enemies.",
 			"NAME": "Marisa Kirisame"
 		},
 		"animator:ReimuHakurei":
@@ -564,7 +564,7 @@
 		},
 		"animator:SuikaIbuki":
 		{
-		  "DESCRIPTION": "Enter {[F] Stance}. || Draw !M! less card next turn.",
+		  "DESCRIPTION": "Gain/Boost [F]. || Draw !M! less card next turn.",
 		  "NAME": "Suika Ibuki"
 		},
 		"animator:AyaShameimaru":

@@ -17,7 +17,7 @@ public class AyaShameimaru extends AnimatorCard
         super(DATA);
 
         Initialize(0, 1, 2, 0);
-        SetUpgrade(0, 2, 0, 0);
+        SetUpgrade(0, 3, 0, 0);
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.TouhouProject);

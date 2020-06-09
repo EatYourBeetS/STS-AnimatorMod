@@ -7,7 +7,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.TemporaryDrawReductionPower;
-import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class SuikaIbuki extends AnimatorCard
@@ -18,8 +17,8 @@ public class SuikaIbuki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 12, 1, 0);
-        SetUpgrade(0, 4, 0, 0);
+        Initialize(0, 15, 1, 1);
+        SetUpgrade(0, 3, 0, 0);
         SetScaling(0, 0, 0);
 
         SetSynergy(Synergies.TouhouProject);
@@ -29,7 +28,7 @@ public class SuikaIbuki extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+        GameActions.Bottom.GainForce(secondaryValue, upgraded);
         GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, magicNumber));
     }
 }

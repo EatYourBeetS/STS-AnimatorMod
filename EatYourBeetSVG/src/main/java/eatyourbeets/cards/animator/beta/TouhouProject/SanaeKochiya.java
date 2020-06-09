@@ -25,10 +25,16 @@ public class SanaeKochiya extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2, 0);
-        SetUpgrade(0, 0, 1, 0);
+        SetUpgrade(0, 0, 0, 0);
         SetScaling(0, 0, 0);
 
         SetSynergy(Synergies.TouhouProject);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetRetain(true);
     }
 
     @Override

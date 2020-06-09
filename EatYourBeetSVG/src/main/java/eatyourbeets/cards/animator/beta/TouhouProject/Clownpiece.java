@@ -1,13 +1,14 @@
 package eatyourbeets.cards.animator.beta.TouhouProject;
 
+import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Clownpiece extends AnimatorCard
@@ -34,17 +35,27 @@ public class Clownpiece extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (CombatStats.TryActivateLimited(cardID))
+        if (HasSynergy())
         {
-            GameActions.Top.Motivate(magicNumber);
+            GameActions.Top.ChannelOrb(new Dark(), true);
         }
 
         GameActions.Top.Callback(() ->
         {
-            AbstractCard card = player.drawPile.getTopCard();
-            GameActions.Top.PlayCard(card, player.drawPile, null)
-                    .SpendEnergy(false);
+            if (player.drawPile.size() > 0) {
+                AbstractCard card = player.drawPile.getTopCard();
+                GameActions.Top.PlayCard(card, player.drawPile, null)
+                .SpendEnergy(false);
+            }
         });
+
+        if (player.drawPile.isEmpty())
+        {
+            if (player.discardPile.size() > 0)
+            {
+                GameActions.Top.Add(new EmptyDeckShuffleAction());
+            }
+        }
 
     }
 }

@@ -554,12 +554,12 @@
 	{
 		"animator:MarisaKirisame":
 		{
-			"DESCRIPTION": "Channel !M! Lightning. ** Put a card from your hand on top of your draw pile. || Cooldown !S! : Deal ** !D! {~Elemental} damage to ALL enemies.",
+			"DESCRIPTION": "Channel !M! [Lightning]. ** Put a card from your hand on top of your draw pile. || Cooldown !S! : Deal ** !D! {~Elemental} damage to ALL enemies.",
 			"NAME": "Marisa Kirisame"
 		},
 		"animator:ReimuHakurei":
 		{
-			"DESCRIPTION": "Apply !M! Vulnerable. ** Apply !M! Weak. || Starter: Scry !S!.",
+			"DESCRIPTION": "Apply !M! [Vulnerable]. ** Apply !M! [Weak]. || Starter: Scry !S!.",
 			"NAME": "Reimu Hakurei"
 		},
 		"animator:SuikaIbuki":
@@ -574,13 +574,13 @@
 		},
 		"animator:KomachiOnozuka":
 		{
-		  "DESCRIPTION": "Apply !M! Vulnerable. || <LIM>. If this card ** kills an Elite or Boss: ** Obtain {Shinigami's Ferry}.",
+		  "DESCRIPTION": "Apply !M! [Vulnerable]. || <LIM>. If this card ** kills an Elite or Boss: ** Obtain {Shinigami's Ferry}.",
 		  "NAME": "Komachi Onozuka"
 		},
 		"animator:YuukaKazami":
 		{
-		  "DESCRIPTION": "This card can only be played on even-numbered turns. ** When played or discarded: Channel !M! Earth.",
-		  "EXTENDED_DESCRIPTION": ["This card can only be played on even-numbered turns. ** (Current turn: ", "). ** When played or discarded: Channel !M! Earth."],
+		  "DESCRIPTION": "This card can only be played on even-numbered turns. ** When played or discarded: Channel !M! [Earth].",
+		  "EXTENDED_DESCRIPTION": ["This card can only be played on even-numbered turns. ** (Current turn: ", "). ** When played or discarded: Channel !M! [Earth]."],
 		  "NAME": "Yuuka Kazami"
 		},
 		"animator:SanaeKochiya":
@@ -618,8 +618,8 @@
 		},
 		"animator:SatoriKomeiji":
 		{
-		  "DESCRIPTION": "You can see the enemies' next intents. || Your draw pile is viewed in order.",
-		  "EXTENDED_DESCRIPTION": ["You can see the enemies' next intents. Your draw pile is viewed in order."],
+		  "DESCRIPTION": "At the start of your turn, move !M! card(s) in your draw pile to the top. || Your draw pile is viewed in order.",
+		  "EXTENDED_DESCRIPTION": ["At the start of your turn, move #b{0} card(s) in your draw pile to the top. Your draw pile is viewed in order."],
 		  "NAME": "Satori Komeiji"
 		},
 		"animator:YukariYakumo":

@@ -73,7 +73,7 @@ public class ShinigamisFerry extends AnimatorRelic
 
     private void increment()
     {
-        ShinigamisFerry ferry = JUtils.SafeCast(AbstractDungeon.player.getRelic(ID), ShinigamisFerry.class);
+        ShinigamisFerry ferry = JUtils.SafeCast(player.getRelic(ID), ShinigamisFerry.class);
         if (ferry != null)
         {
             ferry.counter++;
@@ -82,7 +82,8 @@ public class ShinigamisFerry extends AnimatorRelic
         }
     }
 
-    private void fixDescription() {
+    private void fixDescription()
+    {
         this.description = getUpdatedDescription();
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));

@@ -554,7 +554,7 @@
 	{
 		"animator:MarisaKirisame":
 		{
-			"DESCRIPTION": "Channel !M! [Lightning]. ** Put up to 1 card from your hand on top of your draw pile. || Cooldown !S! : Deal ** !D! {~Elemental} damage to ALL enemies.",
+			"DESCRIPTION": "Channel [Lightning]. ** Put up to 1 card from your hand on top of your draw pile. || Cooldown !S! : Evoke your next Orb !M! times.",
 			"NAME": "Marisa Kirisame"
 		},
 		"animator:ReimuHakurei":
@@ -569,7 +569,7 @@
 		},
 		"animator:AyaShameimaru":
 		{
-		  "DESCRIPTION": "When this card is drawn, increase its {~Block} by !M! this combat.",
+		  "DESCRIPTION": "When this card is drawn, increase its {~Block} by !S! this combat. || Synergy: Draw !M! card(s).",
 		  "NAME": "Aya Shameimaru"
 		},
 		"animator:KomachiOnozuka":
@@ -579,8 +579,8 @@
 		},
 		"animator:YuukaKazami":
 		{
-		  "DESCRIPTION": "This card can only be played on even-numbered turns. ** When played or discarded: Channel !M! [Earth].",
-		  "EXTENDED_DESCRIPTION": ["This card can only be played on even-numbered turns. ** (Current turn: ", "). ** When played or discarded: Channel !M! [Earth]."],
+		  "DESCRIPTION": "This card can only be played on even-numbered turns. ** On Synergy or when discarded: Channel !M! [Earth].",
+		  "EXTENDED_DESCRIPTION": ["This card can only be played on even-numbered turns. ** (Current turn: ", "). ** On Synergy or when discarded: Channel !M! [Earth]."],
 		  "NAME": "Yuuka Kazami"
 		},
 		"animator:SanaeKochiya":
@@ -601,7 +601,7 @@
 		},
 		"animator:AliceMargatroid":
 		{
-		  "DESCRIPTION": "At the start of your turn, draw !M! card(s), then put !M! card(s) on top of your draw pile. || Synergy: Gain !S! Temporary HP.",
+		  "DESCRIPTION": "At the start of your turn, draw !M! card(s), then put !M! card(s) on top of your draw pile. || Synergy: Gain !S! {Temporary HP}.",
 		  "EXTENDED_DESCRIPTION": ["At the start of your turn, draw #b{0} card(s), then put #b{0} card(s) on top of your draw pile."],
 		  "NAME": "Alice Margatroid"
 		},

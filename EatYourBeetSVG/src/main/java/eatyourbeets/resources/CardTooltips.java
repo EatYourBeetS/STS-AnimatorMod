@@ -11,6 +11,7 @@ import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.JUtils;
@@ -37,6 +38,7 @@ public class CardTooltips
     public EYBCardTooltip Agility = FindByID("Agility");
     public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
     public EYBCardTooltip ForceStance = FindByID("Force Stance");
+    public EYBCardTooltip SupportDamage = FindByID("Support Damage");
     public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
     public EYBCardTooltip Spellcaster = FindByID("Spellcaster");
     public EYBCardTooltip MartialArtist = FindByID("Martial Artist");
@@ -149,6 +151,7 @@ public class CardTooltips
         LoadFromPower(Artifact, new ArtifactPower(FakeCharacter.Instance, 0));
         LoadFromPower(Shackles, new GainStrengthPower(FakeCharacter.Instance, 0));
         LoadFromPower(Constricted, new ConstrictedPower(null, FakeCharacter.Instance, 0));
+        LoadFromPower(SupportDamage, new SupportDamagePower(FakeCharacter.Instance, 0));
 
         //These 2 use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);

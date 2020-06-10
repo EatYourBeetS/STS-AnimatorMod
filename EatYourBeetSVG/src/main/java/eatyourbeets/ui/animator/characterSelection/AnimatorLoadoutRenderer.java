@@ -17,14 +17,14 @@ import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
 public class AnimatorLoadoutRenderer extends GUIElement
 {
-    protected static final FieldInfo<String> _hp = JavaUtilities.GetField("hp", CharacterOption.class);
-    protected static final FieldInfo<Integer> _gold = JavaUtilities.GetField("gold", CharacterOption.class);
+    protected static final FieldInfo<String> _hp = JUtils.GetField("hp", CharacterOption.class);
+    protected static final FieldInfo<Integer> _gold = JUtils.GetField("gold", CharacterOption.class);
 
     protected static final AnimatorStrings.CharacterSelect charSelectStrings = GR.Animator.Strings.CharSelect;
     protected static final Random RNG = new Random();
@@ -75,7 +75,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         {
             while (loadout == GR.Animator.Data.SelectedLoadout)
             {
-                GR.Animator.Data.SelectedLoadout = JavaUtilities.GetRandomElement(loadouts, RNG);
+                GR.Animator.Data.SelectedLoadout = JUtils.GetRandomElement(loadouts, RNG);
             }
 
             Refresh(selectScreen, characterOption);

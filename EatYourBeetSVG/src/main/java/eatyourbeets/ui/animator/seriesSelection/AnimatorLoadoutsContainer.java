@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -100,7 +100,7 @@ public class AnimatorLoadoutsContainer
             }
             else
             {
-                JavaUtilities.GetLogger(this).error("AnimatorRuntimeLoadout.BuildCard() failed, " + c.Loadout.Name);
+                JUtils.LogError(this, "AnimatorRuntimeLoadout.BuildCard() failed, " + c.Loadout.Name);
             }
         }
     }

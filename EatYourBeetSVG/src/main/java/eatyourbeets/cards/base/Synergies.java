@@ -3,7 +3,7 @@ package eatyourbeets.cards.base;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.*;
 
@@ -64,7 +64,7 @@ public class Synergies
     {
         for (AbstractCard c : source)
         {
-            AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
+            AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
             if (card != null && (synergy == null || synergy.Equals(card.synergy) || synergy.Equals(Synergies.ANY)))
             {
                 destination.add(card);
@@ -104,7 +104,7 @@ public class Synergies
         for (AbstractCard card : cards)
         {
             Synergy key = ANY;
-            AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
+            AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
             if (c != null && c.synergy != null)
             {
                 key = c.synergy;
@@ -160,7 +160,7 @@ public class Synergies
         HashSet<Synergy> result = new HashSet<>();
         for (AbstractCard card : cards)
         {
-            AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
+            AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
             if (c != null && c.synergy != null)
             {
                 result.add(c.synergy);
@@ -186,7 +186,7 @@ public class Synergies
             }
 
             previousCard = lastCardPlayed;
-            lastCardPlayed = JavaUtilities.SafeCast(card, AnimatorCard.class);
+            lastCardPlayed = JUtils.SafeCast(card, AnimatorCard.class);
         }
     }
 
@@ -197,7 +197,7 @@ public class Synergies
 
     public static boolean WouldSynergize(AnimatorCard card, AbstractCard abstractCard)
     {
-        return WouldSynergize(card, JavaUtilities.SafeCast(abstractCard, AnimatorCard.class));
+        return WouldSynergize(card, JUtils.SafeCast(abstractCard, AnimatorCard.class));
     }
 
     public static boolean WouldSynergize(AnimatorCard card, AnimatorCard other)

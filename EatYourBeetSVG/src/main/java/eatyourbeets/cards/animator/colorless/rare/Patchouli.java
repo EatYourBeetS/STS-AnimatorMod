@@ -140,7 +140,7 @@ public class Patchouli extends AnimatorCard implements StartupCard
         if (CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.Wait(0.3f);
-            GameActions.Bottom.MakeCardInDiscardPile(JavaUtilities.GetRandomElement(OrbCore.GetAllCores()).makeCopy());
+            GameActions.Bottom.MakeCardInDiscardPile(JUtils.GetRandomElement(OrbCore.GetAllCores()).makeCopy());
 
             return true;
         }

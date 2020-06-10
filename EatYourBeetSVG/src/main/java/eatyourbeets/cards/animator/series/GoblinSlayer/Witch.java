@@ -32,7 +32,7 @@ public class Witch extends AnimatorCard implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), magicNumber);
     }
 

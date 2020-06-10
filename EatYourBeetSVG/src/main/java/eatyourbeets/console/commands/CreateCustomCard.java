@@ -11,7 +11,7 @@ import eatyourbeets.cards.base.AnimatorCard_Dynamic;
 import eatyourbeets.console.DynamicCardData;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.lang.reflect.Type;
 import java.nio.file.Files;
@@ -89,7 +89,7 @@ public class CreateCustomCard extends ConsoleCommand
 
         if (depth == 1 && tokens[1].equals(""))
         {
-            JavaUtilities.GetLogger(getClass()).info("Generating Card Pool");
+            JUtils.LogInfo(this, "Generating Card Pool");
 
             GenerateCardPool();
         }

@@ -24,13 +24,13 @@ import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
 public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
 {
-    private static final FieldInfo<ArrayList<StoreRelic>> _relics = JavaUtilities.GetField("relics", ShopScreen.class);
+    private static final FieldInfo<ArrayList<StoreRelic>> _relics = JUtils.GetField("relics", ShopScreen.class);
     private static AbstractRelic lastRelicObtained = null;
 
     public static final EYBCardData DATA = Register(Gilgamesh.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged);
@@ -97,7 +97,7 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
             GameActions.Bottom.SFX("ATTACK_WHIRLWIND");
             GameActions.Bottom.VFX(new WhirlwindEffect(), 0f);
 
-            for (int i = 0; i < this.magicNumber; i++)
+            for (int i = 0; i < magicNumber; i++)
             {
                 GameActions.Bottom.SFX("ATTACK_HEAVY");
                 GameActions.Bottom.VFX(new IronWaveEffect(p.hb.cX, p.hb.cY, m.hb.cX), 0.1f);
@@ -107,7 +107,7 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
         }
         else
         {
-            for (int i = 0; i < this.magicNumber; i++)
+            for (int i = 0; i < magicNumber; i++)
             {
                 GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
             }

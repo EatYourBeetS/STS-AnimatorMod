@@ -20,7 +20,7 @@ import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
 {
@@ -60,7 +60,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
 
         this.card = card;
 
-        EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
+        EYBCard c = JUtils.SafeCast(card, EYBCard.class);
         if (c != null && c.attackTarget != null)
         {
             switch (c.attackTarget)

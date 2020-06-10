@@ -13,7 +13,7 @@ import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.TextureCache;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
 
@@ -157,7 +157,7 @@ public class CardTooltips
 
     private EYBCardTooltip LoadFromPower(EYBCardTooltip tooltip, AbstractPower power)
     {
-        EYBPower p = JavaUtilities.SafeCast(power, EYBPower.class);
+        EYBPower p = JUtils.SafeCast(power, EYBPower.class);
         if (p == null)
         {
             tooltip.SetIcon(power.region48).SetIconSizeMulti(0.9f, 0.9f);

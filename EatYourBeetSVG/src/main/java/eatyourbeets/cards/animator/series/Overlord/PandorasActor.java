@@ -28,7 +28,7 @@ public class PandorasActor extends AnimatorCard implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
     }
 
     @Override

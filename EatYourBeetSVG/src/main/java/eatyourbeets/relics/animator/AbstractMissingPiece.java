@@ -18,7 +18,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.rewards.animator.SynergyCardsReward;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.WeightedList;
 import org.apache.commons.lang3.StringUtils;
 
@@ -195,7 +195,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
                     }
                 }
 
-                JavaUtilities.Log(this, s.Name + " : " + weight);
+                JUtils.LogInfo(this, s.Name + " : " + weight);
                 list.Add(s, weight);
             }
         }

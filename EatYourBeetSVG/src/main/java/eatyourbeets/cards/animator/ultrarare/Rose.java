@@ -27,7 +27,7 @@ public class Rose extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Draw(this.magicNumber);
+        GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.Reload(name, m, (enemy, cards) ->
         {
             if (cards.size() > 0 && enemy != null && !GameUtilities.IsDeadOrEscaped(enemy))

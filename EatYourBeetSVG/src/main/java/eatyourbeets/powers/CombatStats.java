@@ -33,7 +33,7 @@ import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.common.ControllableCardPile;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import patches.CardGlowBorderPatches;
 
 import java.util.ArrayList;
@@ -100,7 +100,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     @Override
     public AbstractPower makeCopy()
     {
-        JavaUtilities.GetLogger(this).error("Do not clone powers which implement InvisiblePower");
+        JUtils.LogError(this, "Do not clone powers which implement InvisiblePower");
         return null;
     }
 
@@ -113,7 +113,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     private static void ClearStats()
     {
         RefreshPlayer();
-        JavaUtilities.Log(CombatStats.class, "Clearing Player Stats");
+        JUtils.LogInfo(CombatStats.class, "Clearing Player Stats");
 
         for (OnStatsClearedSubscriber s : onStatsCleared.GetSubscribers())
         {
@@ -161,7 +161,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         if (RefreshPlayer() != null && !player.powers.contains(Instance))
         {
-            JavaUtilities.Log(CombatStats.class, "Applied PlayerStatistics");
+            JUtils.LogInfo(CombatStats.class, "Applied PlayerStatistics");
             player.powers.add(Instance);
         }
     }
@@ -200,7 +200,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static void OnCostRefresh(AbstractCard card)
     {
-        OnCostRefreshSubscriber c = JavaUtilities.SafeCast(card, OnCostRefreshSubscriber.class);
+        OnCostRefreshSubscriber c = JUtils.SafeCast(card, OnCostRefreshSubscriber.class);
         if (c != null)
         {
             c.OnCostRefresh(card);
@@ -255,10 +255,10 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
         for (AbstractCard c : cards)
         {
-            EYBCard temp = JavaUtilities.SafeCast(c, EYBCard.class);
+            EYBCard temp = JUtils.SafeCast(c, EYBCard.class);
             if (temp != null)
             {
-                temp.triggerWhenCreated();
+                temp.triggerWhenCreated(true);
             }
         }
 
@@ -395,7 +395,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         super.onPlayCard(card, m);
 
-        AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
+        AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
         if (c != null && c.HasSynergy())
         {
             for (OnSynergySubscriber s : onSynergy.GetSubscribers())
@@ -410,7 +410,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         super.onAfterCardPlayed(card);
 
-        AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
+        AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
         if (c != null && c.HasSynergy())
         {
             synergiesThisTurn += 1;

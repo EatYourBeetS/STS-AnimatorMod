@@ -30,9 +30,9 @@ public class Rimuru extends AnimatorCard implements OnAfterCardPlayedSubscriber
     }
 
     @Override
-    public void triggerWhenCreated()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-        super.triggerWhenCreated();
+        super.triggerWhenCreated(startOfBattle);
 
         CombatStats.onAfterCardPlayed.Subscribe(this);
     }

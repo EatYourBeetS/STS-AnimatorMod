@@ -60,6 +60,6 @@ public class Hero extends AnimatorCard_UltraRare
                 }
             }
         });
-        GameActions.Bottom.Draw(this.magicNumber);
+        GameActions.Bottom.Draw(magicNumber);
     }
 }

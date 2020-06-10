@@ -64,7 +64,7 @@ public class Ain extends AnimatorCard
             }
         });
 
-        for (int i = 0; i < this.magicNumber; i++)
+        for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE).SetVFX(false, true);
         }

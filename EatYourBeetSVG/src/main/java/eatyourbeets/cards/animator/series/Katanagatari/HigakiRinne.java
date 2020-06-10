@@ -19,7 +19,7 @@ import eatyourbeets.actions.animator.HigakiRinneAction;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.animator.HigakiRinnePower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -42,7 +42,7 @@ public class HigakiRinne extends AnimatorCard
     @Override
     public AbstractCard makeStatEquivalentCopy()
     {
-        HigakiRinne c = JavaUtilities.SafeCast(super.makeStatEquivalentCopy(), HigakiRinne.class);
+        HigakiRinne c = JUtils.SafeCast(super.makeStatEquivalentCopy(), HigakiRinne.class);
         if (c != null)
         {
             c.ChangeForm(type);
@@ -80,7 +80,7 @@ public class HigakiRinne extends AnimatorCard
         }
         else if (n < 45)
         {
-            GameActions.Bottom.SFX(JavaUtilities.GetRandomElement(sounds));
+            GameActions.Bottom.SFX(JUtils.GetRandomElement(sounds));
         }
         else if (n < 55)
         {
@@ -134,7 +134,7 @@ public class HigakiRinne extends AnimatorCard
         }
         else
         {
-            for (int i = 0; i < this.magicNumber; i++)
+            for (int i = 0; i < magicNumber; i++)
             {
                 GameActions.Bottom.Wait(0.2f);
                 GameActions.Bottom.Add(new HigakiRinneAction(this));
@@ -178,7 +178,7 @@ public class HigakiRinne extends AnimatorCard
             GameActions.Bottom.DealDamage(p, m, rng.random(2, d), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
             GameActions.Bottom.DealDamage(p, m, rng.random(2, d), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
 
-            GameActions.Bottom.SFX(JavaUtilities.GetRandomElement(sounds));
+            GameActions.Bottom.SFX(JUtils.GetRandomElement(sounds));
         }
     }
 

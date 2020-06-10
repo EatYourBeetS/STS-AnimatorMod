@@ -13,7 +13,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
@@ -95,7 +95,7 @@ public abstract class AnimatorReward extends CustomReward
 
         for (AbstractCard c : pool.group)
         {
-            AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
+            AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
             if (card != null && (synergy.Equals(card.synergy) || Synergies.ANY.equals(synergy)))
             {
                 if (Synergies.ANY.equals(synergy)) // colorless

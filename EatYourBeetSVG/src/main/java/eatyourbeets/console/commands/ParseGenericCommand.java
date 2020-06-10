@@ -132,7 +132,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                     temp = tokens[2].replace("_", " ");
                     ArrayList<AnimatorCard> cards = new ArrayList<>();
-                    Synergy synergy = JavaUtilities.Find(Synergies.GetAll(), s -> s.Name.equals(temp));
+                    Synergy synergy = JUtils.Find(Synergies.GetAll(), s -> s.Name.equals(temp));
                     if (synergy != null)
                     {
                         Settings.seedSet = true;
@@ -178,7 +178,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                 if (tokens[1].equals("remove-colorless"))
                 {
-                    final FieldInfo<CardGroup> _colorless = JavaUtilities.GetField("colorlessCards", CardLibraryScreen.class);
+                    final FieldInfo<CardGroup> _colorless = JUtils.GetField("colorlessCards", CardLibraryScreen.class);
                     if (CustomCardLibSortHeader.Screen != null)
                     {
                         _colorless.Get(CustomCardLibSortHeader.Screen).group.removeIf(card -> card.rarity == AbstractCard.CardRarity.BASIC || !(card instanceof EYBCard));

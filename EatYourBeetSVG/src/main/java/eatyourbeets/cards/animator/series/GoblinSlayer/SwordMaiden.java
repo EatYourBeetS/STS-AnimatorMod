@@ -43,7 +43,7 @@ public class SwordMaiden extends AnimatorCard
         GameActions.Bottom.GainForce(1, true);
         GameActions.Bottom.GainAgility(1, true);
         GameActions.Bottom.GainIntellect(1, true);
-        GameActions.Bottom.GainTemporaryHP(this.magicNumber);
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.Callback(() ->
         {
             for (int i = player.powers.size() - 1; i >= 0; i--)

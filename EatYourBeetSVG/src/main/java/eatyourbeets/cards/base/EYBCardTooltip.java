@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 import org.apache.commons.lang3.StringUtils;
 
@@ -25,12 +25,12 @@ public class EYBCardTooltip
 {
     private final static ArrayList EMPTY_LIST = new ArrayList();
 
-    private final static FieldInfo<String> _body = JavaUtilities.GetField("BODY", TipHelper.class);
-    private final static FieldInfo<String> _header = JavaUtilities.GetField("HEADER", TipHelper.class);
-    private final static FieldInfo<ArrayList> _card = JavaUtilities.GetField("card", TipHelper.class);
-    private final static FieldInfo<ArrayList> _keywords = JavaUtilities.GetField("KEYWORDS", TipHelper.class);
-    private final static FieldInfo<ArrayList> _powerTips = JavaUtilities.GetField("POWER_TIPS", TipHelper.class);
-    private final static FieldInfo<Boolean> _renderedTipsThisFrame = JavaUtilities.GetField("renderedTipThisFrame", TipHelper.class);
+    private final static FieldInfo<String> _body = JUtils.GetField("BODY", TipHelper.class);
+    private final static FieldInfo<String> _header = JUtils.GetField("HEADER", TipHelper.class);
+    private final static FieldInfo<ArrayList> _card = JUtils.GetField("card", TipHelper.class);
+    private final static FieldInfo<ArrayList> _keywords = JUtils.GetField("KEYWORDS", TipHelper.class);
+    private final static FieldInfo<ArrayList> _powerTips = JUtils.GetField("POWER_TIPS", TipHelper.class);
+    private final static FieldInfo<Boolean> _renderedTipsThisFrame = JUtils.GetField("renderedTipThisFrame", TipHelper.class);
 
     private static final ArrayList<EYBCardTooltip> tooltips = new ArrayList<>();
     private static final float CARD_TIP_PAD = 12f * Settings.scale;
@@ -123,7 +123,7 @@ public class EYBCardTooltip
                 float steps = (tooltips.size() - 3) * 0.4f;
                 float multi = 1f - (card.current_y / (Settings.HEIGHT * 0.5f));
 
-                y += AbstractCard.IMG_HEIGHT * (0.5f + JavaUtilities.Round(multi * steps, 3));
+                y += AbstractCard.IMG_HEIGHT * (0.5f + JUtils.Round(multi * steps, 3));
             }
             else
             {

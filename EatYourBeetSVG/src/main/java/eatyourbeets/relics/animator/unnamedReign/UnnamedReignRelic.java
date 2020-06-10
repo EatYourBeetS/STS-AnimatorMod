@@ -26,7 +26,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -206,7 +206,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
         try
         {
             Class<?> c = Class.forName("riskOfSpire.patches.ForUsableRelics.UsableRelicSlot");
-            FieldInfo<SpireField> field = JavaUtilities.GetField("usableRelic", c);
+            FieldInfo<SpireField> field = JUtils.GetField("usableRelic", c);
             SpireField<?> f = field.Get(null);
             if (f != null)
             {

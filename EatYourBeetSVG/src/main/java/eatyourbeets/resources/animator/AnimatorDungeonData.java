@@ -27,7 +27,7 @@ import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -314,7 +314,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
     private void RemoveExtraCopies(AbstractCard card)
     {
-        EYBCard eybCard = JavaUtilities.SafeCast(card, EYBCard.class);
+        EYBCard eybCard = JUtils.SafeCast(card, EYBCard.class);
         if (eybCard != null)
         {
             if (eybCard.cardData.MaxCopies > 0)
@@ -343,7 +343,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             case SPECIAL:
             case CURSE:
             {
-                JavaUtilities.GetLogger(this).warn("Wrong card rarity for RemoveCardFromPools(), " + card.cardID);
+                JUtils.LogWarning(this, "Wrong card rarity for RemoveCardFromPools(), " + card.cardID);
                 break;
             }
 
@@ -399,14 +399,14 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
     private void Log(String message)
     {
-        JavaUtilities.Log(this, message);
+        JUtils.LogInfo(this, message);
     }
 
     private void FullLog(String message)
     {
-        JavaUtilities.Log(this, message);
-        JavaUtilities.Log(this, "[Transient  Data] Starting Series: " + StartingSeries.Name + ", Series Count: " + Series.size());
-        JavaUtilities.Log(this, "[Persistent Data] Starting Series: " + startingLoadout + ", Series Count: " + loadouts.size());
+        JUtils.LogInfo(this, message);
+        JUtils.LogInfo(this, "[Transient  Data] Starting Series: " + StartingSeries.Name + ", Series Count: " + Series.size());
+        JUtils.LogInfo(this, "[Persistent Data] Starting Series: " + startingLoadout + ", Series Count: " + loadouts.size());
     }
 
     protected static class AnimatorLoadoutProxy

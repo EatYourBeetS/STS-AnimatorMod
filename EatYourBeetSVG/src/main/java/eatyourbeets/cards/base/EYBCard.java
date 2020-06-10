@@ -150,11 +150,11 @@ public abstract class EYBCard extends EYBCardBase
     {
         if (upgraded && cardData.Strings.UPGRADE_DESCRIPTION != null)
         {
-            return JavaUtilities.Format(cardData.Strings.UPGRADE_DESCRIPTION, args);
+            return JUtils.Format(cardData.Strings.UPGRADE_DESCRIPTION, args);
         }
         else
         {
-            return JavaUtilities.Format(cardData.Strings.DESCRIPTION, args);
+            return JUtils.Format(cardData.Strings.DESCRIPTION, args);
         }
     }
 
@@ -204,7 +204,7 @@ public abstract class EYBCard extends EYBCardBase
         }
     }
 
-    public void triggerWhenCreated()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
         // Called at the start of a fight, or when a card is created by MakeTempCard.
     }
@@ -225,7 +225,7 @@ public abstract class EYBCard extends EYBCardBase
     {
         if (player.cardInUse != this)
         {
-            JavaUtilities.GetLogger(this).error("You should only call PurgeOnUseOnce() within use(p, m)");
+            JUtils.LogError(this, "Only call PurgeOnUseOnce() from AbstractCard.use()");
         }
 
         unhover();

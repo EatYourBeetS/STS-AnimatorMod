@@ -3,7 +3,7 @@ package eatyourbeets.resources.animator;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class AnimatorStrings
 {
@@ -54,12 +54,12 @@ public class AnimatorStrings
 
         public final String MaxHPBonus(int amount)
         {
-            return JavaUtilities.Format(Strings.TEXT[4], amount);
+            return JUtils.Format(Strings.TEXT[4], amount);
         }
 
         public final String GoldBonus(int amount)
         {
-            return JavaUtilities.Format(Strings.TEXT[5], amount);
+            return JUtils.Format(Strings.TEXT[5], amount);
         }
     }
 
@@ -106,7 +106,7 @@ public class AnimatorStrings
 
         public final String UnlocksAtLevel(int unlockLevel, int currentLevel)
         {
-            return JavaUtilities.Format(Strings.TEXT[2], unlockLevel, currentLevel);
+            return JUtils.Format(Strings.TEXT[2], unlockLevel, currentLevel);
         }
     }
 
@@ -120,7 +120,7 @@ public class AnimatorStrings
 
         public final String ContainsNCards(int cardCount)
         {
-            return JavaUtilities.Format(Strings.TEXT[0], cardCount);
+            return JUtils.Format(Strings.TEXT[0], cardCount);
         }
 
         public final String ContainsNCards_Promoted(int cardCount)
@@ -238,7 +238,7 @@ public class AnimatorStrings
                 }
             }
 
-            return JavaUtilities.Format(text, amount, extra) + (addPeriod ? LocalizedStrings.PERIOD : "");
+            return JUtils.Format(text, amount, extra) + (addPeriod ? LocalizedStrings.PERIOD : "");
         }
 
         public final String Get(int index)

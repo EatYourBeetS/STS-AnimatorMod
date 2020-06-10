@@ -27,7 +27,7 @@ public class Togame extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Draw(this.magicNumber);
+        GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
         .SetOptions(true, true, true)
         .AddCallback(cards ->

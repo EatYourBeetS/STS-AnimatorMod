@@ -19,7 +19,7 @@ import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 // If this action needs 1 more refactoring due to queueing a card not counting
 // as an action, completely override AbstractDungeon.actionManager instead.
@@ -161,7 +161,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
             }
             else
             {
-                JavaUtilities.GetLogger(getClass()).warn("Could not find " + card.cardID + " in " + sourcePile.type.name().toLowerCase());
+                JUtils.LogWarning(this, "Could not find " + card.cardID + " in " + sourcePile.type.name().toLowerCase());
                 Complete();
                 return;
             }

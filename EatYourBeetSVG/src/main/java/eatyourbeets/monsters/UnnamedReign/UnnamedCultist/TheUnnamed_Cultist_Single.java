@@ -33,7 +33,7 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
         moveSummonEnemy = moveset.Special.Add(new EYBMove_Unknown()
         .SetOnUse((m, t) ->
         {
-            AbstractMonster summon = JavaUtilities.SafeCast(m.data, AbstractMonster.class);
+            AbstractMonster summon = JUtils.SafeCast(m.data, AbstractMonster.class);
             if (summon != null)
             {
                 if (summon.id.equals(ShelledParasite.ID))
@@ -46,7 +46,7 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
                 }
                 else
                 {
-                    GameActions.Bottom.Talk(this, JavaUtilities.Format(STRINGS.DIALOG[2], summon.name), 2f, 3f);
+                    GameActions.Bottom.Talk(this, JUtils.Format(STRINGS.DIALOG[2], summon.name), 2f, 3f);
                 }
 
                 GameActions.Bottom.Add(new SummonMonsterAction(summon, false));

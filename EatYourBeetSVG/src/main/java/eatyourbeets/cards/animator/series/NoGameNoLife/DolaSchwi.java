@@ -17,14 +17,14 @@ import eatyourbeets.utilities.GameActions;
 
 public class DolaSchwi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(DolaSchwi.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(DolaSchwi.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
 
     public DolaSchwi()
     {
         super(DATA);
 
-        Initialize(12, 0, 1);
-        SetUpgrade(4, 0, 1);
+        Initialize(16, 0, 2);
+        SetCostUpgrade(-1);
 
         SetCooldown(2, 0, this::OnCooldownCompleted);
         SetSynergy(Synergies.NoGameNoLife);

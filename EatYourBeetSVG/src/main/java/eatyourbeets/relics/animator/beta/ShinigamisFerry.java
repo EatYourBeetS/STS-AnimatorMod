@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class ShinigamisFerry extends AnimatorRelic
 {
@@ -73,7 +73,7 @@ public class ShinigamisFerry extends AnimatorRelic
 
     private void increment()
     {
-        ShinigamisFerry ferry = JavaUtilities.SafeCast(AbstractDungeon.player.getRelic(ID), ShinigamisFerry.class);
+        ShinigamisFerry ferry = JUtils.SafeCast(AbstractDungeon.player.getRelic(ID), ShinigamisFerry.class);
         if (ferry != null)
         {
             ferry.counter++;
@@ -93,9 +93,9 @@ public class ShinigamisFerry extends AnimatorRelic
     public String getUpdatedDescription()
     {
         if (CardCrawlGame.isInARun()) {
-            return JavaUtilities.Format(DESCRIPTIONS[0], counter);
+            return JUtils.Format(DESCRIPTIONS[0], counter);
         } else {
-            return JavaUtilities.Format(DESCRIPTIONS[0], 1);
+            return JUtils.Format(DESCRIPTIONS[0], 1);
         }
     }
 }

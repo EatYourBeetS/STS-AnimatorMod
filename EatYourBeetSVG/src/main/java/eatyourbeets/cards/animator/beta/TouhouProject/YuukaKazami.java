@@ -77,8 +77,10 @@ public class YuukaKazami extends AnimatorCard implements OnStartOfTurnPostDrawSu
     }
 
     @Override
-    public void triggerWhenCreated()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
+        super.triggerWhenCreated(startOfBattle);
+
         CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
 }

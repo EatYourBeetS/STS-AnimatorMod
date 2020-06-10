@@ -10,7 +10,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStanceChangedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.AgilityStance;
@@ -84,8 +83,10 @@ public class KotarouTennouji extends AnimatorCard implements OnStanceChangedSubs
     }
 
     @Override
-    public void triggerWhenCreated()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
+        super.triggerWhenCreated(startOfBattle);
+
         CombatStats.onStanceChanged.Subscribe(this);
     }
 }

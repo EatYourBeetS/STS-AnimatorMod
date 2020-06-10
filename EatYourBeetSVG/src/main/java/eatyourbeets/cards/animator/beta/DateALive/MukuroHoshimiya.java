@@ -17,7 +17,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuffleSubscriber, OnAddedToDrawPileSubscriber
 {
@@ -62,8 +62,10 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
     }
 
     @Override
-    public void triggerWhenCreated()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
+        super.triggerWhenCreated(startOfBattle);
+
         CombatStats.onShuffle.Subscribe(this);
     }
 
@@ -76,6 +78,6 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
     @Override
     public void OnShuffle(boolean triggerRelics)
     {
-        GameActions.Top.Callback(() -> JavaUtilities.ChangeIndex(this, player.drawPile.group, player.drawPile.size() - 6));
+        GameActions.Top.Callback(() -> JUtils.ChangeIndex(this, player.drawPile.group, player.drawPile.size() - 6));
     }
 }

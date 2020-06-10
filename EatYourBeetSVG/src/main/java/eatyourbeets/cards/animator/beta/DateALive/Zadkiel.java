@@ -14,7 +14,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class Zadkiel extends AnimatorCard
 {
@@ -44,7 +44,7 @@ public class Zadkiel extends AnimatorCard
 
         GameActions.Bottom.Add(new EvokeAllOrbsAction());
 
-        int frostCount = JavaUtilities.Count(player.orbs, orb -> Frost.ORB_ID.equals(orb.ID));
+        int frostCount = JUtils.Count(player.orbs, orb -> Frost.ORB_ID.equals(orb.ID));
         if (frostCount >= magicNumber)
         {
             GameActions.Bottom.Callback(() ->

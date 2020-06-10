@@ -20,7 +20,7 @@ import eatyourbeets.resources.unnamed.UnnamedResources;
 import eatyourbeets.ui.controls.GUI_DynamicCardGrid;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 import patches.energyPanel.EnergyPanelPatches;
 
@@ -79,7 +79,7 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
     {
         controllers.add(controller);
 
-        AnimatorCard c = JavaUtilities.SafeCast(controller.card, AnimatorCard.class);
+        AnimatorCard c = JUtils.SafeCast(controller.card, AnimatorCard.class);
         if (c != null && c.cropPortrait)
         {
             c.cropPortrait = false;

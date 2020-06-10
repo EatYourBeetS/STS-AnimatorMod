@@ -30,7 +30,7 @@
 //
 //    public static boolean CanUse(AbstractCard c)
 //    {
-//        UnnamedCard card = JavaUtilities.SafeCast(c, UnnamedCard.class);
+//        UnnamedCard card = JUtils.SafeCast(c, UnnamedCard.class);
 //
 //        return card == null || !card.isVoidbound() || card.enteredVoid;
 //    }

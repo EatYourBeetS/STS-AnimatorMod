@@ -3,7 +3,7 @@ package eatyourbeets.relics.animator.beta;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class Mistletoe extends AnimatorRelic
 {
@@ -29,6 +29,6 @@ public class Mistletoe extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return JavaUtilities.Format(DESCRIPTIONS[0], SCRY_AMOUNT, DRAW_AMOUNT);
+        return JUtils.Format(DESCRIPTIONS[0], SCRY_AMOUNT, DRAW_AMOUNT);
     }
 }

@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class YoshinoHimekawa extends AnimatorCard
 {
@@ -42,7 +42,7 @@ public class YoshinoHimekawa extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DiscardFromHand(name, magicNumber, true);
 
-        int frostCount = JavaUtilities.Count(player.orbs, orb -> Frost.ORB_ID.equals(orb.ID));
+        int frostCount = JUtils.Count(player.orbs, orb -> Frost.ORB_ID.equals(orb.ID));
         if (frostCount >= secondaryValue)
         {
             GameActions.Bottom.MakeCardInHand(new Zadkiel()).SetUpgrade(upgraded, false);

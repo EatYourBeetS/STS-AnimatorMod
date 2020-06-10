@@ -12,7 +12,7 @@ import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class KyokoSakura extends AnimatorCard
 {
@@ -52,7 +52,7 @@ public class KyokoSakura extends AnimatorCard
             for (AbstractCard card : cards)
             {
                 GameActions.Top.MoveCard(card, player.hand, player.drawPile)
-                .AddCallback(c -> JavaUtilities.ChangeIndex(c, player.drawPile.group, player.drawPile.size()));
+                .AddCallback(c -> JUtils.ChangeIndex(c, player.drawPile.group, player.drawPile.size()));
             }
         });
     }

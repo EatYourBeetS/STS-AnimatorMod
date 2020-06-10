@@ -12,7 +12,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
@@ -63,7 +63,7 @@ public class AfterLifeMod extends AbstractCardModifier
         {
             if (CombatStats.ControlPile.IsHovering() && control.card.canUse(player, null))
             {
-                if (JavaUtilities.Find(player.exhaustPile.group, AfterLifeMod::CanPurge) == null)
+                if (JUtils.Find(player.exhaustPile.group, AfterLifeMod::CanPurge) == null)
                 {
                     GameEffects.List.Add(new ThoughtBubble(player.dialogX, player.dialogY, 3.0F, TEXT[2], true));
                     return;
@@ -72,13 +72,13 @@ public class AfterLifeMod extends AbstractCardModifier
                 GameActions.Bottom.SelectCreature(control.card).AddCallback(control, (state, creature) ->
                 {
                     //Put this here so the cost is only paid upon successful completion of the selectCreature action
-                    AbstractCard cardToPurge = JavaUtilities.GetRandomElement(JavaUtilities.Filter(player.exhaustPile.group, AfterLifeMod::CanPurge));
+                    AbstractCard cardToPurge = JUtils.GetRandomElement(JUtils.Filter(player.exhaustPile.group, AfterLifeMod::CanPurge));
                     AbstractCard copy = cardToPurge.makeStatEquivalentCopy();
                     GameEffects.List.ShowCardBriefly(copy);
                     GameEffects.List.Add(new ExhaustCardEffect(copy));
                     player.exhaustPile.removeCard(cardToPurge);
 
-                    GameActions.Bottom.PlayCard(state.card, player.exhaustPile, JavaUtilities.SafeCast(creature, AbstractMonster.class))
+                    GameActions.Bottom.PlayCard(state.card, player.exhaustPile, JUtils.SafeCast(creature, AbstractMonster.class))
                     .SpendEnergy(true);
 
                     ModifyAllInstances action = GameActions.Bottom.ModifyAllInstances(state.card.uuid, AbstractCard::stopGlowing);

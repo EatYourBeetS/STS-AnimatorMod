@@ -19,7 +19,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -134,7 +134,7 @@ public class Metrics_Run
             }
 
             AbstractCard temp = GetCard(cardID);
-            AnimatorCard card = JavaUtilities.SafeCast(temp, AnimatorCard.class);
+            AnimatorCard card = JUtils.SafeCast(temp, AnimatorCard.class);
             if (card != null)
             {
                 for (HashMap<Object, Object> data : cardsData)

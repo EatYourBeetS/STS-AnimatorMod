@@ -12,7 +12,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
 public class Walpurgisnacht extends AnimatorCard_UltraRare
@@ -37,8 +37,8 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
     {
         if (spellcasterPool.Size() == 0)
         {
-            spellcasterPool.AddAll(JavaUtilities.Filter(Synergies.GetNonColorlessCard(), c -> c.hasTag(SPELLCASTER)));
-            spellcasterPool.AddAll(JavaUtilities.Filter(Synergies.GetColorlessCards(), c -> c.hasTag(SPELLCASTER)));
+            spellcasterPool.AddAll(JUtils.Filter(Synergies.GetNonColorlessCard(), c -> c.hasTag(SPELLCASTER)));
+            spellcasterPool.AddAll(JUtils.Filter(Synergies.GetColorlessCards(), c -> c.hasTag(SPELLCASTER)));
         }
 
         for (int i = 0; i < magicNumber; i++)
@@ -77,7 +77,7 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
         {
             GameActions.Bottom.Callback(() ->
             {
-                int count = JavaUtilities.Count(player.hand.group, c -> GameUtilities.IsCurseOrStatus(c) || c.hasTag(AnimatorCard.SPELLCASTER));
+                int count = JUtils.Count(player.hand.group, c -> GameUtilities.IsCurseOrStatus(c) || c.hasTag(AnimatorCard.SPELLCASTER));
                 if (count > 0)
                 {
                     for (int i = 1; i < count; i++)

@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class SuzuneAmano extends AnimatorCard
 {
@@ -29,7 +29,7 @@ public class SuzuneAmano extends AnimatorCard
     @Override
     protected float GetInitialDamage()
     {
-        return baseDamage + (JavaUtilities.Count(player.orbs, orb -> Fire.ORB_ID.equals(orb.ID)) * secondaryValue);
+        return baseDamage + (JUtils.Count(player.orbs, orb -> Fire.ORB_ID.equals(orb.ID)) * secondaryValue);
     }
 
     @Override

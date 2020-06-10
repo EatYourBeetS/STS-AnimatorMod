@@ -12,7 +12,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class InverseOrigami extends AnimatorCard
 {
@@ -35,7 +35,7 @@ public class InverseOrigami extends AnimatorCard
         GameActions.Bottom.SpendEnergy(1, false)
         .AddCallback(() ->
         {
-            GameActions.Bottom.MakeCardInHand(JavaUtilities.GetRandomElement(OrbCore.GetAllCores()).makeCopy());
+            GameActions.Bottom.MakeCardInHand(JUtils.GetRandomElement(OrbCore.GetAllCores()).makeCopy());
             GameActions.Bottom.Flash(this);
         });
     }

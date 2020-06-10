@@ -17,7 +17,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class YuyukoSaigyouji extends AnimatorCard_UltraRare
 {
@@ -59,7 +59,7 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare
         {
             if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL)
             {
-                AbstractMonster mo = JavaUtilities.SafeCast(target, AbstractMonster.class);
+                AbstractMonster mo = JUtils.SafeCast(target, AbstractMonster.class);
                 if (mo != null && mo.type != AbstractMonster.EnemyType.BOSS)
                 {
                     this.flash();

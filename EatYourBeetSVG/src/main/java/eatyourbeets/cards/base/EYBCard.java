@@ -204,7 +204,7 @@ public abstract class EYBCard extends EYBCardBase
         }
     }
 
-    public void triggerWhenCreated()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
         // Called at the start of a fight, or when a card is created by MakeTempCard.
     }

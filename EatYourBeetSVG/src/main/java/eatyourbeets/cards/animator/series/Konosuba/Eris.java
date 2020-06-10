@@ -31,9 +31,9 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
     }
 
     @Override
-    public void triggerWhenCreated()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-        super.triggerWhenCreated();
+        super.triggerWhenCreated(startOfBattle);
 
         CombatStats.onLoseHp.Subscribe(this);
     }

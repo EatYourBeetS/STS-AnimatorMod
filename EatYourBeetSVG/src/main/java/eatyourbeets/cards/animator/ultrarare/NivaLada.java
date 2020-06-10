@@ -34,9 +34,9 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardExhau
     }
 
     @Override
-    public void triggerWhenCreated()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-        super.triggerWhenCreated();
+        super.triggerWhenCreated(startOfBattle);
 
         CombatStats.onAfterCardDiscarded.Subscribe(this);
         CombatStats.onAfterCardExhausted.Subscribe(this);

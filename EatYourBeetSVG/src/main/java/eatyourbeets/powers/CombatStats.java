@@ -254,7 +254,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
             EYBCard temp = JUtils.SafeCast(c, EYBCard.class);
             if (temp != null)
             {
-                temp.triggerWhenCreated();
+                temp.triggerWhenCreated(true);
             }
         }
 

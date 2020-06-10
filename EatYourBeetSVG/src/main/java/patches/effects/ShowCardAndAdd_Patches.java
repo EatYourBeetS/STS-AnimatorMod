@@ -16,7 +16,7 @@ public class ShowCardAndAdd_Patches
     {
         if (card instanceof EYBCard)
         {
-            ((EYBCard)card).triggerWhenCreated();
+            ((EYBCard)card).triggerWhenCreated(false);
         }
     }
 

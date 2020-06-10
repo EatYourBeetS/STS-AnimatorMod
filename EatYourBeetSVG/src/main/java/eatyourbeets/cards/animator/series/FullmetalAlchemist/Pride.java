@@ -35,7 +35,7 @@ public class Pride extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        for (int i = 0; i < this.magicNumber; i++)
+        for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.ChannelOrb(new Dark(), true);
         }

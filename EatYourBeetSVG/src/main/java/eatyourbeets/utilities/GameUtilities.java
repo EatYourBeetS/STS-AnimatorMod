@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.relics.PenNib;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.screens.stats.AchievementGrid;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.EYBCard;
@@ -129,7 +130,7 @@ public class GameUtilities
         copy.targetAngle = original.targetAngle;
     }
 
-    public static void DeceaseSecondaryValue(AbstractCard card, int amount, boolean temporary)
+    public static void DecreaseSecondaryValue(AbstractCard card, int amount, boolean temporary)
     {
         if (card instanceof EYBCard)
         {
@@ -401,7 +402,6 @@ public class GameUtilities
     public static int GetDebuffsCount(ArrayList<AbstractPower> powers)
     {
         int result = 0;
-
         for (AbstractPower power : powers)
         {
             if (power.type == AbstractPower.PowerType.DEBUFF)
@@ -449,7 +449,7 @@ public class GameUtilities
 
     public static HashSet<AbstractCard> GetMasterDeckCopies(String cardID)
     {
-        HashSet<AbstractCard> cards = new HashSet<>();
+        final HashSet<AbstractCard> cards = new HashSet<>();
         for (AbstractCard c : player.masterDeck.group)
         {
             if (c.cardID.equals(cardID))
@@ -476,7 +476,7 @@ public class GameUtilities
 
     public static HashSet<AbstractCard> GetOtherCardsInHand(AbstractCard card)
     {
-        HashSet<AbstractCard> cards = new HashSet<>();
+        final HashSet<AbstractCard> cards = new HashSet<>();
         for (AbstractCard c : player.hand.group)
         {
             if (c != card)
@@ -514,7 +514,6 @@ public class GameUtilities
                 catch (ClassCastException e)
                 {
                     e.printStackTrace();
-
                     return null;
                 }
             }
@@ -531,19 +530,14 @@ public class GameUtilities
     public static int GetPowerAmount(AbstractCreature owner, String powerID)
     {
         AbstractPower power = GetPower(owner, powerID);
-        if (power != null)
-        {
-            return power.amount;
-        }
-
-        return 0;
+        return (power != null) ? power.amount : 0;
     }
 
     public static Random GetRNG()
     {
         if (EYBCard.rng == null)
         {
-            JavaUtilities.Log(GameUtilities.class, "EYBCard.rng was null");
+            JUtils.LogInfo(GameUtilities.class, "EYBCard.rng was null");
             return new Random();
         }
 
@@ -552,12 +546,12 @@ public class GameUtilities
 
     public static AbstractCreature GetRandomCharacter(boolean aliveOnly)
     {
-        return JavaUtilities.GetRandomElement(GetAllCharacters(aliveOnly), GetRNG());
+        return JUtils.GetRandomElement(GetAllCharacters(aliveOnly), GetRNG());
     }
 
     public static AbstractMonster GetRandomEnemy(boolean aliveOnly)
     {
-        return JavaUtilities.GetRandomElement(GetEnemies(aliveOnly), GetRNG());
+        return JUtils.GetRandomElement(GetEnemies(aliveOnly), GetRNG());
     }
 
     public static AbstractOrb GetRandomOrb()
@@ -657,7 +651,6 @@ public class GameUtilities
                 catch (ClassCastException e)
                 {
                     e.printStackTrace();
-
                     return null;
                 }
             }
@@ -700,12 +693,12 @@ public class GameUtilities
 
     public static int GetUniqueOrbsCount()
     {
-        HashSet<String> orbs = new HashSet<>();
-        for (AbstractOrb o : player.orbs)
+        final HashSet<String> orbs = new HashSet<>();
+        for (AbstractOrb orb : player.orbs)
         {
-            if (IsValidOrb(o))
+            if (IsValidOrb(orb))
             {
-                orbs.add(o.ID);
+                orbs.add(orb.ID);
             }
         }
 
@@ -748,12 +741,7 @@ public class GameUtilities
     public static boolean InEliteRoom()
     {
         AbstractRoom room = GetCurrentRoom();
-        if (room != null)
-        {
-            return room.eliteTrigger;
-        }
-
-        return false;
+        return (room != null) && room.eliteTrigger;
     }
 
     public static boolean InGame()
@@ -853,7 +841,7 @@ public class GameUtilities
 
     public static void ModifySecondaryValue(AbstractCard card, int amount, boolean temporary)
     {
-        EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
+        EYBCard c = JUtils.SafeCast(card, EYBCard.class);
         if (c != null)
         {
             if (!temporary)
@@ -945,29 +933,27 @@ public class GameUtilities
             CardCrawlGame.playerPref.putBoolean(AbstractPlayer.PlayerClass.THE_SILENT.name() + "_WIN", true);
             CardCrawlGame.playerPref.putBoolean(AbstractPlayer.PlayerClass.DEFECT.name() + "_WIN", true);
 
-            if (UnlockTracker.isAchievementUnlocked("RUBY_PLUS"))
+            if (UnlockTracker.isAchievementUnlocked(AchievementGrid.RUBY_PLUS_KEY))
             {
-                UnlockTracker.unlockAchievement("RUBY_PLUS");
+                UnlockTracker.unlockAchievement(AchievementGrid.RUBY_PLUS_KEY);
             }
-
-            if (UnlockTracker.isAchievementUnlocked("EMERALD_PLUS"))
+            if (UnlockTracker.isAchievementUnlocked(AchievementGrid.EMERALD_PLUS_KEY))
             {
-                UnlockTracker.unlockAchievement("EMERALD_PLUS");
+                UnlockTracker.unlockAchievement(AchievementGrid.EMERALD_PLUS_KEY);
             }
-
-            if (UnlockTracker.isAchievementUnlocked("SAPPHIRE_PLUS"))
+            if (UnlockTracker.isAchievementUnlocked(AchievementGrid.SAPPHIRE_PLUS_KEY))
             {
-                UnlockTracker.unlockAchievement("SAPPHIRE_PLUS");
+                UnlockTracker.unlockAchievement(AchievementGrid.SAPPHIRE_PLUS_KEY);
             }
         }
     }
 
     public static boolean UseArtifact(AbstractCreature target)
     {
-        ArtifactPower artifact = JavaUtilities.SafeCast(target.getPower(ArtifactPower.POWER_ID), ArtifactPower.class);
+        ArtifactPower artifact = JUtils.SafeCast(target.getPower(ArtifactPower.POWER_ID), ArtifactPower.class);
         if (artifact != null)
         {
-            AbstractDungeon.actionManager.addToTop(new TextAboveCreatureAction(target, ApplyPowerAction.TEXT[0]));
+            GameActions.Top.Add(new TextAboveCreatureAction(target, ApplyPowerAction.TEXT[0]));
             CardCrawlGame.sound.play("NULLIFY_SFX");
             artifact.flashWithoutSound();
             artifact.onSpecificTrigger();

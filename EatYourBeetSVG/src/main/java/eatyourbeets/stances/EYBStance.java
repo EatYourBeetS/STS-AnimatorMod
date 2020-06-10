@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
 
@@ -122,6 +122,6 @@ public abstract class EYBStance extends AbstractStance
 
     protected String FormatDescription(Object... args)
     {
-        return JavaUtilities.Format(strings.DESCRIPTION[0], args);
+        return JUtils.Format(strings.DESCRIPTION[0], args);
     }
 }

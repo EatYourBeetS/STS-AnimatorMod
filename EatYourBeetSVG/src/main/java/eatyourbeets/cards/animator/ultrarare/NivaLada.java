@@ -82,6 +82,6 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardExhau
         GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05f, 0.05f), m.hb.cY + MathUtils.random(-0.05f, 0.05f)), 0.1f);
         GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05f, 0.05f), m.hb.cY + MathUtils.random(-0.05f, 0.05f)), 0.1f);
         GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05f, 0.05f), m.hb.cY + MathUtils.random(-0.05f, 0.05f)), 0.1f);
-        GameActions.Bottom.DealDamage(player, m, this.magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamage(player, m, magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
     }
 }

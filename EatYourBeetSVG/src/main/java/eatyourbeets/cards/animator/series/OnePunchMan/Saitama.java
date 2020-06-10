@@ -18,7 +18,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class Saitama extends AnimatorCard
 {
@@ -82,7 +82,7 @@ public class Saitama extends AnimatorCard
     {
         AbstractCard card = super.makeStatEquivalentCopy();
 
-        Saitama other = JavaUtilities.SafeCast(card, Saitama.class);
+        Saitama other = JUtils.SafeCast(card, Saitama.class);
         if (other != null)
         {
             other.misc = other.stage = this.misc;
@@ -137,7 +137,7 @@ public class Saitama extends AnimatorCard
             case 4:
             {
                 // Deal !D! damage !M! times.
-                for (int i = 1; i < this.magicNumber; i++)
+                for (int i = 1; i < magicNumber; i++)
                 {
                     GameActions.Bottom.Add(new PummelDamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn)));
                 }

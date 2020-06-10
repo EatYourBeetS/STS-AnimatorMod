@@ -9,7 +9,7 @@ import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscriber, OnShuffleSubscriber
 {
@@ -35,7 +35,7 @@ public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscri
     {
         for (AbstractGameAction action : AbstractDungeon.actionManager.actions)
         {
-            MakeTempCard temp = JavaUtilities.SafeCast(action, MakeTempCard.class);
+            MakeTempCard temp = JUtils.SafeCast(action, MakeTempCard.class);
             if (temp != null && temp.HasTag(this))
             {
                 return;

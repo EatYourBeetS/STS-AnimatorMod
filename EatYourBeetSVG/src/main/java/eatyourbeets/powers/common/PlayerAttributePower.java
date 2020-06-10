@@ -14,7 +14,7 @@ import eatyourbeets.interfaces.subscribers.OnStatsClearedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.HashSet;
 
@@ -77,7 +77,7 @@ public abstract class PlayerAttributePower extends CommonPower
 
         if (threshold > 0)
         {
-            this.description += JavaUtilities.Format(powerStrings.DESCRIPTIONS[1], threshold, 1);
+            this.description += JUtils.Format(powerStrings.DESCRIPTIONS[1], threshold, 1);
         }
     }
 

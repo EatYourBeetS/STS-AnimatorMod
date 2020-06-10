@@ -10,11 +10,11 @@ import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class PurgingStone extends AnimatorRelic
 {
-    private static final FieldInfo<Boolean> _isBoss = JavaUtilities.GetField("isBoss", RewardItem.class);
+    private static final FieldInfo<Boolean> _isBoss = JUtils.GetField("isBoss", RewardItem.class);
 
     public static final String ID = CreateFullID(PurgingStone.class);
     public static final int MAX_BAN_COUNT = 80;

@@ -3,11 +3,11 @@ package eatyourbeets.monsters;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class EnemyMoveDetails
 {
-    private static FieldInfo<EnemyMoveInfo> _move = JavaUtilities.GetField("move", AbstractMonster.class);
+    private static FieldInfo<EnemyMoveInfo> _move = JUtils.GetField("move", AbstractMonster.class);
 
     public final AbstractMonster enemy;
     public final AbstractMonster.Intent intent;

@@ -30,7 +30,7 @@ public class DolaCouronne extends AnimatorCard
 
         if (CombatStats.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.GainBlock(this.magicNumber);
+            GameActions.Bottom.GainBlock(magicNumber);
             GameActions.Bottom.GainArtifact(1);
         }
     }
@@ -38,7 +38,7 @@ public class DolaCouronne extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DiscardFromHand(name, 1, false)
         .SetOptions(false, false, false);
     }

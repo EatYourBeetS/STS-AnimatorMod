@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.actions.unique.GamblingChipAction;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class CommonStrings
 {
@@ -46,17 +46,17 @@ public class CommonStrings
 
         public final String DiscardUpTo(int amount)
         {
-            return JavaUtilities.Format(Strings.TEXT[0], amount);
+            return JUtils.Format(Strings.TEXT[0], amount);
         }
 
         public final String MoveToDrawPile(int amount)
         {
-            return JavaUtilities.Format(Strings.TEXT[1], amount);
+            return JUtils.Format(Strings.TEXT[1], amount);
         }
 
         public final String TransformInto(String name)
         {
-            return JavaUtilities.Format(Strings.TEXT[2], name);
+            return JUtils.Format(Strings.TEXT[2], name);
         }
     }
 

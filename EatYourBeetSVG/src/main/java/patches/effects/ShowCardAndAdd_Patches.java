@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class ShowCardAndAdd_Patches
 {
@@ -23,7 +23,7 @@ public class ShowCardAndAdd_Patches
     @SpirePatch(clz = ShowCardAndAddToDrawPileEffect.class, method = "update")
     public static class ShowCardAndAddToDrawPileEffect_Update
     {
-        private static final FieldInfo<AbstractCard> _card = JavaUtilities.GetField("card", ShowCardAndAddToDrawPileEffect.class);
+        private static final FieldInfo<AbstractCard> _card = JUtils.GetField("card", ShowCardAndAddToDrawPileEffect.class);
 
         @SpirePostfixPatch
         public static void Postfix(ShowCardAndAddToDrawPileEffect __instance)
@@ -38,7 +38,7 @@ public class ShowCardAndAdd_Patches
     @SpirePatch(clz = ShowCardAndAddToDiscardEffect.class, method = "update")
     public static class ShowCardAndAddToDiscardPileEffect_Update
     {
-        private static final FieldInfo<AbstractCard> _card = JavaUtilities.GetField("card", ShowCardAndAddToDiscardEffect.class);
+        private static final FieldInfo<AbstractCard> _card = JUtils.GetField("card", ShowCardAndAddToDiscardEffect.class);
 
         @SpirePostfixPatch
         public static void Postfix(ShowCardAndAddToDiscardEffect __instance)
@@ -53,7 +53,7 @@ public class ShowCardAndAdd_Patches
     @SpirePatch(clz = ShowCardAndAddToHandEffect.class, method = "update")
     public static class ShowCardAndAddToHandEffect_Update
     {
-        private static final FieldInfo<AbstractCard> _card = JavaUtilities.GetField("card", ShowCardAndAddToHandEffect.class);
+        private static final FieldInfo<AbstractCard> _card = JUtils.GetField("card", ShowCardAndAddToHandEffect.class);
 
         @SpirePostfixPatch
         public static void Postfix(ShowCardAndAddToHandEffect __instance)

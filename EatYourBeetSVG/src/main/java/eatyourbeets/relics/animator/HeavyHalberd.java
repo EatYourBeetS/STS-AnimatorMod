@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class HeavyHalberd extends AnimatorRelic
 {
@@ -27,7 +27,7 @@ public class HeavyHalberd extends AnimatorRelic
     {
         super.atTurnStartPostDraw();
 
-        int force = JavaUtilities.Count(GameUtilities.GetEnemies(true), m -> m.hasPower(VulnerablePower.POWER_ID)) * FORCE_AMOUNT;
+        int force = JUtils.Count(GameUtilities.GetEnemies(true), m -> m.hasPower(VulnerablePower.POWER_ID)) * FORCE_AMOUNT;
         if (force > 0)
         {
             GameActions.Bottom.GainForce(force);

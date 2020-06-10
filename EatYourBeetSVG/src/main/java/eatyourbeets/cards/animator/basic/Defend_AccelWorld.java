@@ -22,12 +22,12 @@ public class Defend_AccelWorld extends Defend
     @Override
     public void triggerOnManualDiscard()
     {
-        GameActions.Bottom.GainBlock(this.magicNumber);
+        GameActions.Bottom.GainBlock(magicNumber);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
     }
 }

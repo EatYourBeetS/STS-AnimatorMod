@@ -55,7 +55,7 @@ public class GenericCondition<T>
             return conditionT0.Invoke();
         }
 
-        JavaUtilities.GetLogger(this).warn("No Condition found: " + getClass().getName());
+        JUtils.LogWarning(this, "No Condition found: " + getClass().getName());
         return true;
     }
 }

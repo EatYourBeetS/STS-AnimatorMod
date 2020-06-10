@@ -2,7 +2,7 @@ package eatyourbeets.relics.animator;
 
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class Buoy extends AnimatorRelic
 {
@@ -18,7 +18,7 @@ public class Buoy extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return JavaUtilities.Format(DESCRIPTIONS[0], HP_THRESHOLD, BLOCK_AMOUNT);
+        return JUtils.Format(DESCRIPTIONS[0], HP_THRESHOLD, BLOCK_AMOUNT);
     }
 
     @Override

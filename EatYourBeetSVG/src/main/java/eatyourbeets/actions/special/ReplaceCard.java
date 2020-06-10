@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import java.util.UUID;
 
 public class ReplaceCard extends EYBActionWithCallback<Map<AbstractCard, AbstractCard>>
 {
-    protected final static FieldInfo<AbstractCard> _targetCard = JavaUtilities.GetField("targetCard", UseCardAction.class);
+    protected final static FieldInfo<AbstractCard> _targetCard = JUtils.GetField("targetCard", UseCardAction.class);
     protected final Map<AbstractCard, AbstractCard> newCards = new HashMap<>();
     protected boolean upgrade;
     protected UUID cardUUID;

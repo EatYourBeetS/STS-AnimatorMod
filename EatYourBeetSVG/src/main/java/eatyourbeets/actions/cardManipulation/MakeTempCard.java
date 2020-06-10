@@ -15,7 +15,7 @@ import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 {
@@ -105,7 +105,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
                 (float) Settings.HEIGHT / 2f, true, true, false));
 
                 // For reasons unknown ShowCardAndAddToDrawPileEffect creates a copy of the card...
-                actualCard = JavaUtilities.<AbstractCard>GetField("card", ShowCardAndAddToDrawPileEffect.class).Get(effect);
+                actualCard = JUtils.<AbstractCard>GetField("card", ShowCardAndAddToDrawPileEffect.class).Get(effect);
 
                 break;
             }
@@ -154,7 +154,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 
                 if (destination != null)
                 {
-                    JavaUtilities.GetLogger(this).warn("Destination for the master deck will be ignored.");
+                    JUtils.LogWarning(this, "Destination for the master deck will be ignored.");
                     destination = null;
                 }
 
@@ -165,7 +165,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
             case UNSPECIFIED:
             default:
             {
-                JavaUtilities.GetLogger(this).warn("Can't make temp card in " + cardGroup.type.name());
+                JUtils.LogWarning(this, "Can't make temp card in " + cardGroup.type.name());
                 Complete();
                 break;
             }

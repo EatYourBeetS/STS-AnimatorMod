@@ -11,12 +11,7 @@ public class NanamiEffect_Attack_Debuff extends NanamiEffect
     @Override
     public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
     {
-        int block = GetBlock(nanami);
-        if (block > 0)
-        {
-            GameActions.Bottom.GainBlock(block);
-        }
-
+        GameActions.Bottom.GainBlock(GetBlock(nanami));
         GameActions.Bottom.ApplyWeak(p, m, GetWeak(nanami));
     }
 

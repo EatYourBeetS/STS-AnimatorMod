@@ -19,62 +19,11 @@ import java.util.function.Predicate;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
-public class JavaUtilities
+public class JUtils
 {
-    public static final Logger Logger = LogManager.getLogger(JavaUtilities.class.getName());
-
     private static final MessageFormat formatter = new MessageFormat("");
     private static final ArrayList<String> classNames = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
-
-    public static <T> T SafeCast(Object o, Class<T> type)
-    {
-        return type.isInstance(o) ? (T)o : null;
-    }
-
-    public static <T> T GetRandomElement(List<T> list)
-    {
-        return GetRandomElement(list, GameUtilities.GetRNG());
-    }
-
-    public static <T> T GetRandomElement(List<T> list, Random rng)
-    {
-        int size = list.size();
-        if (size > 0)
-        {
-            return list.get(rng.random(list.size() - 1));
-        }
-
-        return null;
-    }
-
-    public static MethodInfo GetMethod(String methodName, Class<?> type, Class<?>... parameterTypes) throws RuntimeException
-    {
-        try
-        {
-            Method method = type.getDeclaredMethod(methodName, parameterTypes);
-            method.setAccessible(true);
-            return new MethodInfo(method);
-        }
-        catch (NoSuchMethodException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static <T> FieldInfo<T> GetField(String fieldName, Class<?> type) throws RuntimeException
-    {
-        try
-        {
-            Field field = type.getDeclaredField(fieldName);
-            field.setAccessible(true);
-            return new FieldInfo<>(field);
-        }
-        catch (NoSuchFieldException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
 
     public static <T> void ChangeIndex(T item, List<T> list, int index)
     {
@@ -125,6 +74,40 @@ public class JavaUtilities
         return null;
     }
 
+    public static <T, N extends Comparable<N>> T FindMax(Iterable<T> list, FuncT1<N, T> getProperty)
+    {
+        N best = null;
+        T result = null;
+        for (T t : list)
+        {
+            N prop = getProperty.Invoke(t);
+            if (best == null || prop.compareTo(best) > 0)
+            {
+                best = prop;
+                result = t;
+            }
+        }
+
+        return result;
+    }
+
+    public static <T, N extends Comparable<N>> T FindMin(Iterable<T> list, FuncT1<N, T> getProperty)
+    {
+        N best = null;
+        T result = null;
+        for (T t : list)
+        {
+            N prop = getProperty.Invoke(t);
+            if (best == null || prop.compareTo(best) < 0)
+            {
+                best = prop;
+                result = t;
+            }
+        }
+
+        return result;
+    }
+
     public static String Format(String format, Object... args)
     {
         formatter.applyPattern(format);
@@ -137,7 +120,7 @@ public class JavaUtilities
         {
             try
             {
-                String path = JavaUtilities.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+                String path = JUtils.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
                 JarInputStream jarFile = new JarInputStream(new FileInputStream(path));
 
                 while (true)
@@ -173,69 +156,94 @@ public class JavaUtilities
         return result;
     }
 
-    public static Logger GetLogger(Class c)
+    public static <T> FieldInfo<T> GetField(String fieldName, Class<?> type) throws RuntimeException
     {
-        return LogManager.getLogger(c.getName());
+        try
+        {
+            Field field = type.getDeclaredField(fieldName);
+            field.setAccessible(true);
+            return new FieldInfo<>(field);
+        }
+        catch (NoSuchFieldException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 
-    public static Logger GetLogger(Object instance)
+    public static Logger GetLogger(Object source)
     {
-        return GetLogger(instance.getClass());
+        if (source == null)
+        {
+            return LogManager.getLogger();
+        }
+
+        return LogManager.getLogger((source instanceof Class) ? ((Class)source).getName() : source.getClass().getName());
     }
 
-    public static void Log(Class source, Object message)
+    public static MethodInfo GetMethod(String methodName, Class<?> type, Class<?>... parameterTypes) throws RuntimeException
+    {
+        try
+        {
+            Method method = type.getDeclaredMethod(methodName, parameterTypes);
+            method.setAccessible(true);
+            return new MethodInfo(method);
+        }
+        catch (NoSuchMethodException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static <T> T GetRandomElement(List<T> list)
+    {
+        return GetRandomElement(list, GameUtilities.GetRNG());
+    }
+
+    public static <T> T GetRandomElement(List<T> list, Random rng)
+    {
+        int size = list.size();
+        return (size > 0) ? list.get(rng.random(list.size() - 1)) : null;
+    }
+
+    public static <T> String JoinStrings(String delimiter, T[] values)
+    {
+        StringJoiner sj = new StringJoiner(delimiter);
+        for (T value : values)
+        {
+            sj.add(value.toString());
+        }
+
+        return sj.toString();
+    }
+
+    public static void LogError(Object source, Object message)
+    {
+        GetLogger(source).error(message);
+    }
+
+    public static void LogError(Object source, String format, Object... values)
+    {
+        GetLogger(source).error(Format(format, values));
+    }
+
+    public static void LogInfo(Object source, Object message)
     {
         GetLogger(source).info(message);
     }
 
-    public static void Log(Object source, Object message)
-    {
-        GetLogger(source).info(message);
-    }
-
-    public static void Log(Object source, String format, Object... values)
+    public static void LogInfo(Object source, String format, Object... values)
     {
         GetLogger(source).info(Format(format, values));
     }
 
-    public static <T, N extends Comparable<N>> T FindMax(Iterable<T> list, FuncT1<N, T> getProperty)
+    public static void LogWarning(Object source, Object message)
     {
-        N best = null;
-        T result = null;
-        for (T t : list)
-        {
-            N prop = getProperty.Invoke(t);
-            if (best == null || prop.compareTo(best) > 0)
-            {
-                best = prop;
-                result = t;
-            }
-        }
-
-        return result;
+        GetLogger(source).warn(message);
     }
 
-    public static <T, N extends Comparable<N>> T FindMin(Iterable<T> list, FuncT1<N, T> getProperty)
+    public static void LogWarning(Object source, String format, Object... values)
     {
-        N best = null;
-        T result = null;
-        for (T t : list)
-        {
-            N prop = getProperty.Invoke(t);
-            if (best == null || prop.compareTo(best) < 0)
-            {
-                best = prop;
-                result = t;
-            }
-        }
-
-        return result;
-    }
-
-    public static float Round(float value, int precision)
-    {
-        final float scale = (float) Math.pow(10, precision);
-        return Math.round(value * scale) / scale;
+        GetLogger(source).warn(Format(format, values));
     }
 
     public static float ParseFloat(String value, float defaultValue)
@@ -262,14 +270,14 @@ public class JavaUtilities
         }
     }
 
-    public static <T> String JoinStrings(String delimiter, T[] values)
+    public static float Round(float value, int precision)
     {
-        StringJoiner sj = new StringJoiner(delimiter);
-        for (T value : values)
-        {
-            sj.add(value.toString());
-        }
+        final float scale = (float) Math.pow(10, precision);
+        return Math.round(value * scale) / scale;
+    }
 
-        return sj.toString();
+    public static <T> T SafeCast(Object o, Class<T> type)
+    {
+        return type.isInstance(o) ? (T)o : null;
     }
 }

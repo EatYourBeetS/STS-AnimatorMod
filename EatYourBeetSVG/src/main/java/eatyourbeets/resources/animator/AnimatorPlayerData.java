@@ -8,7 +8,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts.*;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -163,7 +163,7 @@ public class AnimatorPlayerData
 
     public void SaveTrophies(boolean flush)
     {
-        JavaUtilities.GetLogger(AnimatorPlayerData.class).info("Saving Trophies");
+        JUtils.LogInfo(AnimatorPlayerData.class, "Saving Trophies");
 
         GR.Animator.Config.SetTrophyString(SerializeTrophies(), flush);
     }
@@ -228,7 +228,7 @@ public class AnimatorPlayerData
 
             if (items.length > 0)
             {
-                int loadoutID = JavaUtilities.ParseInt(items[0], -1);
+                int loadoutID = JUtils.ParseInt(items[0], -1);
                 if (loadoutID > 0)
                 {
                     SelectedLoadout = GetBaseLoadout(loadoutID);

@@ -48,8 +48,8 @@ public abstract class EYBCardBase extends AbstractCard
     @Override public abstract void calculateCardDamage(AbstractMonster mo);
     //@Formatter: On
 
-    protected static final FieldInfo<Boolean> _darken = JavaUtilities.GetField("darken", AbstractCard.class);
-    protected static final FieldInfo<Color> _renderColor = JavaUtilities.GetField("renderColor", AbstractCard.class);
+    protected static final FieldInfo<Boolean> _darken = JUtils.GetField("darken", AbstractCard.class);
+    protected static final FieldInfo<Color> _renderColor = JUtils.GetField("renderColor", AbstractCard.class);
     protected static final Color HOVER_IMG_COLOR = new Color(1f, 0.815f, 0.314f, 0.8f);
     protected static final Color SELECTED_CARD_COLOR = new Color(0.5f, 0.9f, 0.9f, 1f);
     protected static final float SHADOW_OFFSET_X = 18f * Settings.scale;

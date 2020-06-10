@@ -50,7 +50,7 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DiscardFromHand(name, 999, true)
         .SetOptions(false, true, true)
         .SetFilter(c -> c.type == CardType.SKILL)

@@ -8,9 +8,10 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
 import eatyourbeets.utilities.CardSelection;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -47,7 +48,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
 
     public SelectFromPile SetMessage(String format, Object... args)
     {
-        this.message = JavaUtilities.Format(format, args);
+        this.message = JUtils.Format(format, args);
 
         return this;
     }
@@ -108,10 +109,17 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             }
             else
             {
-                if (temp.type == CardGroup.CardGroupType.DRAW_PILE && !player.hasRelic(FrozenEye.ID))
+                if (temp.type == CardGroup.CardGroupType.DRAW_PILE)
                 {
-                    temp.sortAlphabetically(true);
-                    temp.sortByRarityPlusStatusCardType(true);
+                    if (player.hasRelic(FrozenEye.ID))
+                    {
+                        Collections.reverse(temp.group);
+                    }
+                    else
+                    {
+                        temp.sortAlphabetically(true);
+                        temp.sortByRarityPlusStatusCardType(true);
+                    }
                 }
 
                 GridCardSelectScreenPatch.AddGroup(temp);

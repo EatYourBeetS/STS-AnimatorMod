@@ -28,11 +28,11 @@ public class DolaRikuAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        boolean status = card.type == AbstractCard.CardType.STATUS;
-        boolean curse = card.type == AbstractCard.CardType.CURSE;
-        boolean special = !curse && card.rarity == AbstractCard.CardRarity.SPECIAL;
-        boolean colorless = card.color == AbstractCard.CardColor.COLORLESS;
-        boolean basic = card.rarity == AbstractCard.CardRarity.BASIC;
+        final boolean status = card.type == AbstractCard.CardType.STATUS;
+        final boolean curse = card.type == AbstractCard.CardType.CURSE;
+        final boolean special = !curse && card.rarity == AbstractCard.CardRarity.SPECIAL;
+        final boolean colorless = card.color == AbstractCard.CardColor.COLORLESS;
+        final boolean basic = card.rarity == AbstractCard.CardRarity.BASIC;
 
         AbstractCard.CardColor mainColor;
         if (colorless)

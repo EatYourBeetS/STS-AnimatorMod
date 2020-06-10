@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.CardTooltips;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -111,7 +111,7 @@ public class SymbolToken extends CTToken
         }
         else
         {
-            JavaUtilities.GetLogger(this).error("tooltip.icon was null, " + tooltip.title);
+            JUtils.LogError(this, "tooltip.icon was null, " + tooltip.title);
         }
 
         context.start_x += (size - partial);

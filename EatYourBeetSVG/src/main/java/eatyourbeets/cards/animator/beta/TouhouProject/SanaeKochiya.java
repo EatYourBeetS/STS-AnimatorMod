@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.beta.TouhouProject;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.Miracle;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -40,7 +39,7 @@ public class SanaeKochiya extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Scry(magicNumber)
+        GameActions.Top.Scry(magicNumber)
         .AddCallback(cards ->
         GameActions.Bottom.StackPower(new NextTurnMiracle(player, cards.size())));
     }

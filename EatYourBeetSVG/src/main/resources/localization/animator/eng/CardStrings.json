@@ -624,7 +624,8 @@
 		},
 		"animator:YukariYakumo":
 		{
-		  "DESCRIPTION": "Enter {[I] Stance}. || Choose 1 of !M! random Orbs. Evoke ALL your Orbs and Channel the chosen Orb for each evoked Orb.",
+		  "DESCRIPTION": "Gain !M! Weak, Vulnerable, and Frail. ** The effects of these powers on you are {Inverted} for !S! turns. || Synergy: This card costs 0.",
+		  "EXTENDED_DESCRIPTION": ["The effects of #yWeak, #yVulnerable, and #yFrail on you are #yInverted for #b{0} turn(s)."],
 		  "NAME": "Yukari Yakumo"
 		},
 		"animator:YuyukoSaigyouji":

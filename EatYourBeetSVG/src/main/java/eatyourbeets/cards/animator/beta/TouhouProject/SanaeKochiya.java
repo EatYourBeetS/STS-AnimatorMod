@@ -42,7 +42,7 @@ public class SanaeKochiya extends AnimatorCard
     {
         GameActions.Bottom.Scry(magicNumber)
         .AddCallback(cards ->
-        GameActions.Bottom.StackPower(new NextTurnMiracle(AbstractDungeon.player, cards.size())));
+        GameActions.Bottom.StackPower(new NextTurnMiracle(player, cards.size())));
     }
 
     public static class NextTurnMiracle extends AnimatorPower

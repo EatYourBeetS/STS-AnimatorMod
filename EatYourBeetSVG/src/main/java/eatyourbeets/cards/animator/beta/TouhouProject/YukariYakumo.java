@@ -1,32 +1,30 @@
 package eatyourbeets.cards.animator.beta.TouhouProject;
 
-import com.megacrit.cardcrawl.actions.defect.EvokeAllOrbsAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import com.megacrit.cardcrawl.orbs.Plasma;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.delegates.ActionT3;
-import eatyourbeets.stances.IntellectStance;
+import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-
-import java.util.ArrayList;
 
 public class YukariYakumo extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YukariYakumo.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(YukariYakumo.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.Self);
+
+    private boolean fromSynergy = false;
 
     public YukariYakumo()
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 0);
-        SetUpgrade(0, 0, 0, 0);
+        Initialize(0, 0, 5, 3);
+        SetUpgrade(0, 0, 1, 1);
         SetScaling(0, 0, 0);
 
         SetExhaust(true);
@@ -35,94 +33,57 @@ public class YukariYakumo extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetExhaust(false);
+    public void Refresh(AbstractMonster mo) {
+        super.Refresh(mo);
+        if (HasSynergy()) {
+            setCostForTurn(0);
+            fromSynergy = true;
+        } else {
+            if (fromSynergy) {
+                setCostForTurn(this.cost);
+                this.isCostModifiedForTurn = false;
+                fromSynergy = false;
+            }
+        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
+        GameActions.Bottom.StackPower(new WeakPower(player, magicNumber, false));
+        GameActions.Bottom.StackPower(new FrailPower(player, magicNumber, false));
+        GameActions.Bottom.StackPower(new VulnerablePower(player, magicNumber, false));
+        GameActions.Bottom.StackPower(new InvertPower(player, secondaryValue));
+    }
 
-        ArrayList<AbstractOrb> randomOrbs = new ArrayList<>();
-        while (randomOrbs.size() < magicNumber)
+    public static class InvertPower extends AnimatorPower
+    {
+        public static final String ID = "animator:YukariYakumoPower";
+
+        public InvertPower(AbstractCreature owner, int amount)
         {
-            AbstractOrb orb = GameUtilities.GetRandomOrb();
-            while (orb instanceof Plasma)
-            {
-                orb = GameUtilities.GetRandomOrb(); //Don't let Plasma get picked
-            }
-            boolean dupe = false;
-            for (AbstractOrb alreadyChosenOrbs : randomOrbs)
-            {
-                if (orb.ID.equals(alreadyChosenOrbs.ID))
-                {
-                    dupe = true;
-                    break;
-                }
-            }
-            if (!dupe)
-            {
-                randomOrbs.add(orb);
-            }
+            super(owner, YukariYakumo.DATA);
+            this.amount = amount;
+            this.isTurnBased = true;
+            updateDescription();
         }
 
-        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        group.addToBottom(CreateChoice(randomOrbs.get(0).name, (c1, p1, m1) ->
+        @Override
+        public void atEndOfRound()
         {
-            EvokeAndReplaceOrbs(randomOrbs.get(0));
-        }));
-        group.addToBottom(CreateChoice(randomOrbs.get(1).name, (c1, p1, m1) ->
-        {
-            EvokeAndReplaceOrbs(randomOrbs.get(1));
-        }));
-        group.addToBottom(CreateChoice(randomOrbs.get(2).name, (c1, p1, m1) ->
-        {
-            EvokeAndReplaceOrbs(randomOrbs.get(2));
-        }));
+            super.atEndOfRound();
 
-        GameActions.Bottom.SelectFromPile(name, 1, group)
-        .SetOptions(false, false)
-        .SetMessage(CardRewardScreen.TEXT[1])
-        .AddCallback(cards ->
+            GameActions.Bottom.ReducePower(this, 1);
+        }
+
+        @Override
+        public void updateDescription()
         {
-            for (AbstractCard card : cards)
-            {
-                card.use(player, null);
-            }
-        });
+            this.description = FormatDescription(0, amount);
+            this.enabled = (amount > 0);
+        }
     }
 
-    private void EvokeAndReplaceOrbs(AbstractOrb chosenOrb)
-    {
-        GameActions.Bottom.Callback(() ->
-        {
-            int orbCount = 0;
-            for (AbstractOrb orb : player.orbs)
-            {
-                if (!(orb instanceof EmptyOrbSlot))
-                {
-                    orbCount++;
-                }
-            }
-            GameActions.Bottom.Add(new EvokeAllOrbsAction());
-            for (int i = 0; i < orbCount; i++)
-            {
-                GameActions.Bottom.ChannelOrb(chosenOrb.makeCopy(), true);
-            }
-        });
-    }
 
-    private AnimatorCard_Dynamic CreateChoice(String text, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onSelect)
-    {
-        return new AnimatorCardBuilder(cardID)
-                .SetImage(assetUrl)
-                .SetProperties(CardType.SKILL, rarity, CardTarget.NONE)
-                .SetCost(-2, 0)
-                .SetOnUse(onSelect)
-                .SetText(name, text, text)
-                .SetSynergy(synergy, false).Build();
-    }
 }
 

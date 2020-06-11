@@ -28,7 +28,7 @@ public class AyaShameimaru extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseBlock += secondaryValue);
+        baseBlock += secondaryValue;
     }
 
     @Override

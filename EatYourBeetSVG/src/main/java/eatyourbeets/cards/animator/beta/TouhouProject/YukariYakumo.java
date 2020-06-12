@@ -1,8 +1,10 @@
 package eatyourbeets.cards.animator.beta.TouhouProject;
 
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -12,12 +14,11 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class YukariYakumo extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YukariYakumo.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.Self);
-
-    private boolean fromSynergy = false;
+    public static final EYBCardData DATA = Register(YukariYakumo.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.Self);
 
     public YukariYakumo()
     {
@@ -33,21 +34,6 @@ public class YukariYakumo extends AnimatorCard
     }
 
     @Override
-    public void Refresh(AbstractMonster mo) {
-        super.Refresh(mo);
-        if (HasSynergy()) {
-            setCostForTurn(0);
-            fromSynergy = true;
-        } else {
-            if (fromSynergy) {
-                setCostForTurn(this.cost);
-                this.isCostModifiedForTurn = false;
-                fromSynergy = false;
-            }
-        }
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.StackPower(new WeakPower(player, magicNumber, false));
@@ -58,14 +44,46 @@ public class YukariYakumo extends AnimatorCard
 
     public static class InvertPower extends AnimatorPower
     {
-        public static final String ID = "animator:YukariYakumoPower";
 
         public InvertPower(AbstractCreature owner, int amount)
         {
             super(owner, YukariYakumo.DATA);
             this.amount = amount;
             this.isTurnBased = true;
+            this.priority = 99;
             updateDescription();
+        }
+
+        @Override
+        public float atDamageReceive(float damage, DamageInfo.DamageType damageType)
+        {
+            AbstractPower power = GameUtilities.GetPower(owner, VulnerablePower.POWER_ID);
+            if (power != null && damage > 0)
+            {
+                damage /= (float)Math.pow(power.atDamageReceive(1, damageType), 2);
+            }
+
+            return damage;
+        }
+
+        @Override
+        public float atDamageGive(float damage, DamageInfo.DamageType damageType) {
+            AbstractPower power = GameUtilities.GetPower(owner, WeakPower.POWER_ID);
+            if (power != null && damage > 0)
+            {
+                damage /= (float)Math.pow(power.atDamageGive(1, damageType), 2);
+            }
+            return damage;
+        }
+
+        @Override
+        public float modifyBlock(float blockAmount) {
+            AbstractPower power = GameUtilities.GetPower(owner, FrailPower.POWER_ID);
+            if (power != null && blockAmount > 0)
+            {
+                blockAmount /= (float)Math.pow(power.modifyBlock(1), 2);
+            }
+            return blockAmount;
         }
 
         @Override

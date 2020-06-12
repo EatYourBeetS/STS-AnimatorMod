@@ -554,7 +554,7 @@
 	{
 		"animator:MarisaKirisame":
 		{
-			"DESCRIPTION": "Channel [Lightning]. ** Put up to 1 card from your hand on top of your draw pile. || Cooldown !S! : Evoke your next Orb !M! times.",
+			"DESCRIPTION": "Channel [Lightning]. ** Put up to 1 card from your hand on top of your draw pile. || Cooldown !S! : Evoke your next [Lightning] !M! times.",
 			"NAME": "Marisa Kirisame"
 		},
 		"animator:ReimuHakurei":

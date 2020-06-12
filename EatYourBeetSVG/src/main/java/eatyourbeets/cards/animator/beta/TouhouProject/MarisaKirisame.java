@@ -1,13 +1,11 @@
 package eatyourbeets.cards.animator.beta.TouhouProject;
 
-import com.megacrit.cardcrawl.actions.defect.AnimateOrbAction;
-import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
-import com.megacrit.cardcrawl.actions.defect.EvokeWithoutRemovingOrbAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
+import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -38,23 +36,22 @@ public class MarisaKirisame extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        cooldown.ProgressCooldownAndTrigger(m); //Put this first to be more player friendly
-
         GameActions.Bottom.ChannelOrb(new Lightning(), true);
 
         GameActions.Bottom.SelectFromHand(name, 1, false)
-                .SetOptions(true, true, true)
-                .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
-                .AddCallback(cards ->
-                {
-                    for (AbstractCard c : cards)
-                    {
-                        GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, AbstractDungeon.player.drawPile).SetDestination(CardSelection.Top);
-                    }
+        .SetOptions(true, true, true)
+        .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
+        .AddCallback(cards ->
+        {
+            for (AbstractCard c : cards)
+            {
+                GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, AbstractDungeon.player.drawPile).SetDestination(CardSelection.Top);
+            }
 
-                    GameActions.Bottom.Add(new RefreshHandLayout());
-                });
+            GameActions.Bottom.Add(new RefreshHandLayout());
+        });
 
+        cooldown.ProgressCooldownAndTrigger(m);
     }
 
     @Override
@@ -74,12 +71,8 @@ public class MarisaKirisame extends AnimatorCard
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        for (int i = 0; i < magicNumber - 1; ++i)
-        {
-            GameActions.Bottom.Add(new EvokeWithoutRemovingOrbAction(1));
-        }
-        GameActions.Bottom.Add(new AnimateOrbAction(1));
-        GameActions.Bottom.Add(new EvokeOrbAction(1));
+        GameActions.Bottom.EvokeOrb(magicNumber, EvokeOrb.Mode.SameOrb)
+                .SetFilter(o -> Lightning.ORB_ID.equals(o.ID));
     }
 }
 

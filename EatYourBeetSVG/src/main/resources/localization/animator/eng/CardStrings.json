@@ -624,7 +624,7 @@
 		},
 		"animator:YukariYakumo":
 		{
-		  "DESCRIPTION": "Gain !M! Weak, Vulnerable, and Frail. ** The effects of these powers on you are {Inverted} for !S! turns. || Synergy: This card costs 0.",
+		  "DESCRIPTION": "Gain !M! Weak, Vulnerable, and Frail. ** The effects of these powers on you are {Inverted} for !S! turns.",
 		  "EXTENDED_DESCRIPTION": ["The effects of #yWeak, #yVulnerable, and #yFrail on you are #yInverted for #b{0} turn(s)."],
 		  "NAME": "Yukari Yakumo"
 		},

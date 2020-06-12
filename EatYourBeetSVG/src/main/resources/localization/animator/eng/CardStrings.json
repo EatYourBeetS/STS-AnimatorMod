@@ -564,7 +564,7 @@
 		},
 		"animator:SuikaIbuki":
 		{
-		  "DESCRIPTION": "Gain/Boost [F]. || Draw !M! less card next turn.",
+		  "DESCRIPTION": "Draw !M! less card next turn. || On Synergy or when discarded: Gain/Boost [F].",
 		  "NAME": "Suika Ibuki"
 		},
 		"animator:AyaShameimaru":
@@ -591,7 +591,7 @@
 		},
 		"animator:Clownpiece":
 		{
-		  "DESCRIPTION": "Play the top card of your draw pile. || Synergy: Channel !M! [Dark].",
+		  "DESCRIPTION": "Play the top card of your draw pile. || On Synergy or when discarded: Channel !M! [Dark].",
 		  "NAME": "Clownpiece"
 		},
 		"animator:KaguyaHouraisan":

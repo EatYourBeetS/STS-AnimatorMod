@@ -3,7 +3,10 @@ package eatyourbeets.cards.animator.beta.TouhouProject;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.TemporaryDrawReductionPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -27,8 +30,17 @@ public class SuikaIbuki extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        GameActions.Bottom.GainForce(secondaryValue, upgraded);
         GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, magicNumber));
+        if (HasSynergy())
+        {
+            GameActions.Bottom.GainForce(secondaryValue, upgraded);
+        }
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        GameActions.Bottom.GainForce(secondaryValue, upgraded);
     }
 }
 

@@ -33,6 +33,12 @@ public class Clownpiece extends AnimatorCard
     }
 
     @Override
+    public void triggerOnManualDiscard()
+    {
+        GameActions.Bottom.ChannelOrb(new Dark(), true);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (HasSynergy())
@@ -42,10 +48,11 @@ public class Clownpiece extends AnimatorCard
 
         GameActions.Top.Callback(() ->
         {
-            if (player.drawPile.size() > 0) {
+            if (player.drawPile.size() > 0)
+            {
                 AbstractCard card = player.drawPile.getTopCard();
                 GameActions.Top.PlayCard(card, player.drawPile, null)
-                .SpendEnergy(false);
+                        .SpendEnergy(false);
             }
         });
 

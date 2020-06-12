@@ -36,6 +36,7 @@ import eatyourbeets.actions.handSelection.DiscardFromHand;
 import eatyourbeets.actions.handSelection.ExhaustFromHand;
 import eatyourbeets.actions.handSelection.SelectFromHand;
 import eatyourbeets.actions.monsters.TalkAction;
+import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.actions.pileSelection.*;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.actions.powers.ReduceStrength;
@@ -368,6 +369,21 @@ public final class GameActions
     public FetchFromPile FetchFromPile(String sourceName, int amount, CardGroup... groups)
     {
         return Add(new FetchFromPile(sourceName, amount, groups));
+    }
+
+    public EvokeOrb EvokeOrb(int times)
+    {
+        return Add(new EvokeOrb(times, EvokeOrb.Mode.SameOrb));
+    }
+
+    public EvokeOrb EvokeOrb(int times, AbstractOrb orb)
+    {
+        return Add(new EvokeOrb(times, orb));
+    }
+
+    public EvokeOrb EvokeOrb(int times, EvokeOrb.Mode mode)
+    {
+        return Add(new EvokeOrb(times, mode));
     }
 
     public VFXAction Flash(AbstractCard card)

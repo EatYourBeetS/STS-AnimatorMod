@@ -7,8 +7,10 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.vfx.HemokinesisEffect;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Shalltear extends AnimatorCard
 {
@@ -18,12 +20,26 @@ public class Shalltear extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 3);
+        Initialize(3, 0, 3, 1);
         SetUpgrade(0, 0, 0);
         SetScaling(1, 1, 1);
 
         SetEthereal(true);
         SetSynergy(Synergies.Overlord);
+    }
+
+    @Override
+    protected void OnBeingDragged()
+    {
+        List<ModifyIntent> modifyintentList = new ArrayList<>();
+        modifyintentList.add(new ModifyIntent(ModifyIntent.ModifyIntentType.Weak, 1));
+
+        if (HasSynergy())
+        {
+            modifyintentList.add(new ModifyIntent(ModifyIntent.ModifyIntentType.Shackles, secondaryValue));
+        }
+
+        GameUtilities.ModifyIntentsPreview(TargetHelper.All(), modifyintentList);
     }
 
     @Override
@@ -50,7 +66,7 @@ public class Shalltear extends AnimatorCard
 
             if (HasSynergy())
             {
-                GameActions.Bottom.ReduceStrength(enemy, 1, true).SetForceGain(true);
+                GameActions.Bottom.ReduceStrength(enemy, secondaryValue, true).SetForceGain(true);
             }
         });
     }

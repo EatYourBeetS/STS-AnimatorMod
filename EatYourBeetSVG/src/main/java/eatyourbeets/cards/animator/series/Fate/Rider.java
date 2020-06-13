@@ -7,6 +7,8 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Rider extends AnimatorCard
 {
@@ -23,6 +25,12 @@ public class Rider extends AnimatorCard
         SetSynergy(Synergies.Fate);
         SetMartialArtist();
         SetSpellcaster();
+    }
+
+    @Override
+    protected void OnHoveringTarget(AbstractMonster mo)
+    {
+        GameUtilities.ModifyIntentsPreviewShackles(TargetHelper.Normal(mo), magicNumber);
     }
 
     @Override

@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Fredrika extends AnimatorCard
 {
@@ -50,6 +51,15 @@ public class Fredrika extends AnimatorCard
         SetAttackType(EYBAttackType.Normal);
         SetSynergy(Synergies.Chaika);
         SetShapeshifter();
+    }
+
+    @Override
+    protected void OnHoveringTarget(AbstractMonster mo)
+    {
+        if (currentForm == Form.Dominica)
+        {
+            GameUtilities.ModifyIntentsPreviewWeak(TargetHelper.Normal(mo));
+        }
     }
 
     @Override

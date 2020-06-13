@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class IzunaHatsuse extends AnimatorCard
 {
@@ -35,6 +36,12 @@ public class IzunaHatsuse extends AnimatorCard
 
         SetTransformed(false);
         SetSynergy(Synergies.NoGameNoLife);
+    }
+
+    @Override
+    protected void OnHoveringTarget(AbstractMonster mo)
+    {
+        GameUtilities.ModifyIntentsPreviewWeak(TargetHelper.Normal(mo));
     }
 
     @Override

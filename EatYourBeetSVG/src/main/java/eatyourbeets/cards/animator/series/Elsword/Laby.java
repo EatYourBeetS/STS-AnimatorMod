@@ -9,9 +9,9 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.animator.LabyPower;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Laby extends AnimatorCard
 {
@@ -27,20 +27,15 @@ public class Laby extends AnimatorCard
     }
 
     @Override
+    protected void OnBeingDragged()
+    {
+        GameUtilities.ModifyIntentsPreviewEnchantedArmor(TargetHelper.All(), secondaryValue);
+    }
+
+    @Override
     public void update()
     {
         super.update();
-
-        if (player != null && player.isDraggingCard && player.hoveredCard == this)
-        {
-            for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
-            {
-                if (GameUtilities.IsAttacking(enemy.intent))
-                {
-                    GR.UI.CombatScreen.AddSubIntent(enemy, EnchantedArmorPower.CalculateDamageReduction(enemy, secondaryValue));
-                }
-            }
-        }
     }
 
     @Override

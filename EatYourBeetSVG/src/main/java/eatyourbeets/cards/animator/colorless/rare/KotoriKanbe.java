@@ -7,6 +7,12 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.ModifyIntent;
+import eatyourbeets.utilities.TargetHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class KotoriKanbe extends AnimatorCard
 {
@@ -34,6 +40,26 @@ public class KotoriKanbe extends AnimatorCard
     protected void OnUpgrade()
     {
         SetEthereal(false);
+    }
+
+    @Override
+    public void OnHoveringTarget(AbstractMonster mo)
+    {
+        int healAmt = mo.maxHealth - mo.currentHealth;
+        int stacks = Math.floorDiv(healAmt, magicNumber);
+
+        if (stacks > 0)
+        {
+            List<ModifyIntent> modifyintentList = new ArrayList<>();
+            modifyintentList.add(new ModifyIntent(ModifyIntent.ModifyIntentType.Weak, 1));
+
+            if (healAmt >= HP_HEAL_THRESHOLD && !CombatStats.HasActivatedLimited(cardID))
+            {
+                modifyintentList.add(new ModifyIntent(ModifyIntent.ModifyIntentType.Shackles, secondaryValue));
+            }
+
+            GameUtilities.ModifyIntentsPreview(TargetHelper.All(), modifyintentList);
+        }
     }
 
     @Override

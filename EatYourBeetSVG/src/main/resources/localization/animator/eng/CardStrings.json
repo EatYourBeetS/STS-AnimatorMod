@@ -1025,7 +1025,7 @@
 		},
 		"animator:Shalltear":
 		{
-			"DESCRIPTION": "Apply 1 Weak ** to ALL enemies. || Synergy: Steal 1 [F] ** from each enemy.",
+			"DESCRIPTION": "Apply 1 Weak ** to ALL enemies. || Synergy: Steal !S! [F] ** from each enemy.",
 			"NAME": "Shalltear"
 		}
 	},

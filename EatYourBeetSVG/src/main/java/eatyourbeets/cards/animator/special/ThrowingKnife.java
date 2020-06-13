@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.TargetHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +79,15 @@ public class ThrowingKnife extends AnimatorCard
             applyPowers();
             use(player, null);
         });
+    }
+
+    @Override
+    protected void OnHoveringTarget(AbstractMonster mo)
+    {
+        if (index == 1)
+        {
+            GameUtilities.ModifyIntentsPreviewWeak(TargetHelper.Normal(mo));
+        }
     }
 
     @Override

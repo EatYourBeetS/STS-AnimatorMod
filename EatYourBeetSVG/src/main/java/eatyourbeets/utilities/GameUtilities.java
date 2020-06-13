@@ -1,13 +1,16 @@
 package eatyourbeets.utilities;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
+import com.megacrit.cardcrawl.blights.Spear;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -38,11 +41,10 @@ import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.resources.GR;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Predicate;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
@@ -75,6 +77,161 @@ public class GameUtilities
                 Collections.sort(target.powers);
             }
         }
+    }
+
+    public static void ModifyIntentsPreviewWeak(TargetHelper targetHelper)
+    {
+        List<ModifyIntent> modifiedIntents = new ArrayList<>();
+        modifiedIntents.add(new ModifyIntent(ModifyIntent.ModifyIntentType.Weak, 1));
+
+        ModifyIntentsPreview(targetHelper, modifiedIntents);
+    }
+
+    public static void ModifyIntentsPreviewShackles(TargetHelper targetHelper, int amountToReduce)
+    {
+        List<ModifyIntent> modifiedIntents = new ArrayList<>();
+        modifiedIntents.add(new ModifyIntent(ModifyIntent.ModifyIntentType.Shackles, amountToReduce));
+
+        ModifyIntentsPreview(targetHelper, modifiedIntents);
+    }
+
+    public static void ModifyIntentsPreviewEnchantedArmor(TargetHelper targetHelper, int amountArmorGained)
+    {
+        List<ModifyIntent> modifiedIntents = new ArrayList<>();
+        modifiedIntents.add(new ModifyIntent(ModifyIntent.ModifyIntentType.EnchantedArmor, amountArmorGained));
+
+        ModifyIntentsPreview(targetHelper, modifiedIntents);
+    }
+
+    public static void ModifyIntentsPreview(TargetHelper targetHelper, List<ModifyIntent> modifiers)
+    {
+        for (AbstractCreature target : targetHelper.GetTargets())
+        {
+            if (target instanceof AbstractMonster)
+            {
+                AbstractMonster monster = (AbstractMonster) target;
+
+                if (GameUtilities.IsAttacking(monster.intent))
+                {
+                    GR.UI.CombatScreen.AddSubIntent(monster, GameUtilities.CalculateIntentDamageChange(monster, modifiers));
+                }
+            }
+        }
+    }
+
+    public static int CalculateIntentDamageChange(AbstractMonster monster, List<ModifyIntent> modifiers)
+    {
+        ModifyIntent weak = null;
+        ModifyIntent shackles = null;
+        ModifyIntent enchantedArmor = null;
+
+        for (ModifyIntent modifier : modifiers)
+        {
+            switch (modifier.type)
+            {
+                case Weak:
+                    weak = modifier;
+                    break;
+                case Shackles:
+                    shackles = modifier;
+                    break;
+                case EnchantedArmor:
+                    enchantedArmor = modifier;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        float tmp = (float) monster.getIntentBaseDmg();
+
+        if (player.hasBlight(Spear.ID))
+        {
+            tmp *= player.getBlight(Spear.ID).effectFloat();
+        }
+
+        boolean existingWeak = false;
+        boolean existingShackles = false;
+
+        for (AbstractPower p : monster.powers)
+        {
+            boolean tmpModified = false;
+
+            if (weak != null && p.ID.equals(WeakPower.POWER_ID))
+            {
+                tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
+                existingWeak = true;
+                tmpModified = true;
+            }
+            if (shackles != null && p.ID.equals(StrengthPower.POWER_ID))
+            {
+                StrengthPower tempPower = new StrengthPower(player, p.amount-shackles.amount);
+                tmp = tempPower.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
+                existingShackles = true;
+                tmpModified = true;
+            }
+            if (!tmpModified)
+            {
+                tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
+            }
+        }
+
+        if (!existingWeak && weak != null)
+        {
+            tmp = new WeakPower(player, weak.amount, false).atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
+        }
+        if (!existingShackles && shackles != null)
+        {
+            tmp = new StrengthPower(player, -shackles.amount).atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
+        }
+
+        boolean existingArmor = false;
+
+        for (AbstractPower p : player.powers)
+        {
+            if (enchantedArmor != null && p.ID.equals(EnchantedArmorPower.POWER_ID))
+            {
+                EnchantedArmorPower armor = (EnchantedArmorPower)p;
+                tmp *= EnchantedArmorPower.CalculatePercentage(armor.amount+enchantedArmor.amount);
+                existingArmor = true;
+            }
+            else
+            {
+                tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
+            }
+        }
+
+
+        if (!existingArmor && enchantedArmor != null)
+        {
+            tmp *= EnchantedArmorPower.CalculatePercentage(enchantedArmor.amount);
+        }
+
+        tmp = player.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
+
+        //if (monster.applyBackAttack())
+        if (player.hasPower(SurroundedPower.POWER_ID) && (player.flipHorizontal && player.drawX < monster.drawX || !player.flipHorizontal && player.drawX > monster.drawX))
+        {
+            tmp = (float) ((int) (tmp * 1.5f));
+        }
+
+        for (AbstractPower p : monster.powers)
+        {
+            tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL);
+        }
+
+        for (AbstractPower p : player.powers)
+        {
+            tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL);
+        }
+
+        int dmg = MathUtils.floor(tmp);
+        if (dmg < 0)
+        {
+            dmg = 0;
+        }
+
+        return dmg;
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")

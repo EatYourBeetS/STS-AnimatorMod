@@ -3,11 +3,18 @@ package eatyourbeets.cards.animator.series.Katanagatari;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.misc.NanamiEffects.NanamiEffect;
+import eatyourbeets.misc.NanamiEffects.NanamiEffect_Attack_Debuff;
+import eatyourbeets.misc.NanamiEffects.NanamiEffect_Debuff;
+import eatyourbeets.misc.NanamiEffects.NanamiEffect_Strong_Debuff;
 import eatyourbeets.ui.cards.TargetEffectPreview;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Nanami extends AnimatorCard
 {
@@ -26,6 +33,18 @@ public class Nanami extends AnimatorCard
         SetAttackType(EYBAttackType.Normal);
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
+    }
+
+    @Override
+    public void OnHoveringTarget(AbstractMonster mo)
+    {
+        if (currentEffect != null)
+        {
+            if (currentEffect instanceof NanamiEffect_Attack_Debuff || currentEffect instanceof NanamiEffect_Strong_Debuff || currentEffect instanceof NanamiEffect_Debuff)
+            {
+                GameUtilities.ModifyIntentsPreviewWeak(TargetHelper.Normal(mo));
+            }
+        }
     }
 
     @Override

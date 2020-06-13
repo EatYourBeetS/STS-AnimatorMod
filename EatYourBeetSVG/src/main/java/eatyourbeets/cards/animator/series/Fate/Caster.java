@@ -8,6 +8,8 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Caster extends AnimatorCard
 {
@@ -23,6 +25,12 @@ public class Caster extends AnimatorCard
         SetEthereal(true);
         SetSynergy(Synergies.Fate);
         SetSpellcaster();
+    }
+
+    @Override
+    protected void OnHoveringTarget(AbstractMonster mo)
+    {
+        GameUtilities.ModifyIntentsPreviewShackles(TargetHelper.Normal(mo), magicNumber);
     }
 
     @Override

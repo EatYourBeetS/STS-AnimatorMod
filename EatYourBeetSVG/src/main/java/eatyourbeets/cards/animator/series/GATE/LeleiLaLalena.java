@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class LeleiLaLalena extends AnimatorCard
 {
@@ -23,6 +24,12 @@ public class LeleiLaLalena extends AnimatorCard
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.Gate);
         SetSpellcaster();
+    }
+
+    @Override
+    protected void OnHoveringTarget(AbstractMonster mo)
+    {
+        GameUtilities.ModifyIntentsPreviewWeak(TargetHelper.Normal(mo));
     }
 
     @Override

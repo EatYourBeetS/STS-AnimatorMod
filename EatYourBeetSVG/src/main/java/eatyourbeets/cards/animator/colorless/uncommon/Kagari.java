@@ -10,6 +10,7 @@ import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Kagari extends AnimatorCard
 {
@@ -23,6 +24,12 @@ public class Kagari extends AnimatorCard
         SetUpgrade(0, 0, 3);
 
         SetSynergy(Synergies.Rewrite);
+    }
+
+    @Override
+    protected void OnBeingDragged()
+    {
+        GameUtilities.ModifyIntentsPreviewShackles(TargetHelper.All(), magicNumber);
     }
 
     @Override

@@ -25,6 +25,24 @@ public class Priestess extends AnimatorCard
     }
 
     @Override
+    protected void OnBeingDragged()
+    {
+        if (upgraded)
+        {
+            GameUtilities.ModifyIntentsPreviewWeak(TargetHelper.All());
+        }
+    }
+
+    @Override
+    protected void OnHoveringTarget(AbstractMonster mo)
+    {
+        if (!upgraded)
+        {
+            GameUtilities.ModifyIntentsPreviewWeak(TargetHelper.Normal(mo));
+        }
+    }
+
+    @Override
     public AbstractAttribute GetSpecialInfo()
     {
         return TempHPAttribute.Instance.SetCard(this, true);

@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Clownpiece extends AnimatorCard
@@ -32,18 +33,16 @@ public class Clownpiece extends AnimatorCard
         SetHaste(true);
     }
 
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        GameActions.Bottom.ChannelOrb(new Dark(), true);
-    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (HasSynergy())
         {
-            GameActions.Top.ChannelOrb(new Dark(), true);
+            if (CombatStats.TryActivateSemiLimited(cardID))
+            {
+                GameActions.Top.ChannelOrb(new Dark(), true);
+            }
         }
 
         GameActions.Top.Callback(() ->

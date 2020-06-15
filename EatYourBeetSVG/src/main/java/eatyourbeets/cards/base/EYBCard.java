@@ -456,17 +456,6 @@ public abstract class EYBCard extends EYBCardBase
     }
 
     @Override
-    public void update()
-    {
-        super.update();
-
-        if (player != null && player.isDraggingCard && player.hoveredCard == this)
-        {
-            OnBeingDragged();
-        }
-    }
-
-    @Override
     public void upgrade()
     {
         if (TryUpgrade())
@@ -598,25 +587,14 @@ public abstract class EYBCard extends EYBCardBase
         this.upgrade_cost = value;
     }
 
+    public void OnDrag(AbstractMonster m)
+    {
+
+    }
+
     protected void OnUpgrade()
     {
 
-    }
-
-    protected void OnBeingDragged()
-    {
-
-    }
-
-    protected void OnHoveringTarget(AbstractMonster m)
-    {
-
-    }
-
-    @Override
-    protected final void applyPowersToBlock()
-    {
-        throw new RuntimeException("This method must not be called");
     }
 
     @Override
@@ -635,8 +613,6 @@ public abstract class EYBCard extends EYBCardBase
     @Override
     public void calculateCardDamage(AbstractMonster mo)
     {
-        OnHoveringTarget(mo);
-
         if (isMultiDamage)
         {
             ArrayList<AbstractMonster> m = AbstractDungeon.getCurrRoom().monsters.monsters;

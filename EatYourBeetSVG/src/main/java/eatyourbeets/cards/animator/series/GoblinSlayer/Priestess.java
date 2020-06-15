@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -25,20 +26,18 @@ public class Priestess extends AnimatorCard
     }
 
     @Override
-    protected void OnBeingDragged()
+    public void OnDrag(AbstractMonster m)
     {
         if (upgraded)
         {
-            GameUtilities.ModifyIntentsPreviewWeak(TargetHelper.All());
+            for (EnemyIntent intent : GameUtilities.GetIntents())
+            {
+                intent.AddWeak();
+            }
         }
-    }
-
-    @Override
-    protected void OnHoveringTarget(AbstractMonster mo)
-    {
-        if (!upgraded)
+        else if (m != null)
         {
-            GameUtilities.ModifyIntentsPreviewWeak(TargetHelper.Normal(mo));
+            GameUtilities.GetIntent(m).AddWeak();
         }
     }
 

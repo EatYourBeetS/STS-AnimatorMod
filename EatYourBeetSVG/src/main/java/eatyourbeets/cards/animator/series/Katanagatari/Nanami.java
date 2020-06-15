@@ -9,12 +9,8 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.misc.NanamiEffects.NanamiEffect;
-import eatyourbeets.misc.NanamiEffects.NanamiEffect_Attack_Debuff;
-import eatyourbeets.misc.NanamiEffects.NanamiEffect_Debuff;
-import eatyourbeets.misc.NanamiEffects.NanamiEffect_Strong_Debuff;
 import eatyourbeets.ui.cards.TargetEffectPreview;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class Nanami extends AnimatorCard
 {
@@ -36,14 +32,11 @@ public class Nanami extends AnimatorCard
     }
 
     @Override
-    public void OnHoveringTarget(AbstractMonster mo)
+    public void OnDrag(AbstractMonster m)
     {
         if (currentEffect != null)
         {
-            if (currentEffect instanceof NanamiEffect_Attack_Debuff || currentEffect instanceof NanamiEffect_Strong_Debuff || currentEffect instanceof NanamiEffect_Debuff)
-            {
-                GameUtilities.ModifyIntentsPreviewWeak(TargetHelper.Normal(mo));
-            }
+            currentEffect.OnDrag(m);
         }
     }
 

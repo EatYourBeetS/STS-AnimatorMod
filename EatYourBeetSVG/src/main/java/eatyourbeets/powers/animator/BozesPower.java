@@ -2,10 +2,10 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
-import eatyourbeets.cards.base.AnimatorCard;
 
 public class BozesPower extends AnimatorPower
 {
@@ -44,12 +44,9 @@ public class BozesPower extends AnimatorPower
         AnimatorCard card = JUtils.SafeCast(usedCard, AnimatorCard.class);
         if (card != null && card.HasSynergy())
         {
-            if (amount > 0)
-            {
-                GameActions.Bottom.StackPower(new SupportDamagePower(owner, amount));
+            GameActions.Bottom.StackPower(new SupportDamagePower(owner, amount));
 
-                this.flash();
-            }
+            this.flash();
         }
     }
 }

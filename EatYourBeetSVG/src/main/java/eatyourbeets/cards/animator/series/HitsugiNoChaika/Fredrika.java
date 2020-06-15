@@ -11,7 +11,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class Fredrika extends AnimatorCard
 {
@@ -26,7 +25,6 @@ public class Fredrika extends AnimatorCard
     private Form currentForm = Form.Default;
 
     public static final EYBCardData DATA = Register(Fredrika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetMaxCopies(2);
-
     static
     {
         DATA.AddPreview(new Fredrika(Form.Cat), true);
@@ -54,11 +52,11 @@ public class Fredrika extends AnimatorCard
     }
 
     @Override
-    protected void OnHoveringTarget(AbstractMonster mo)
+    public void OnDrag(AbstractMonster m)
     {
-        if (currentForm == Form.Dominica)
+        if (currentForm == Form.Dominica && m != null)
         {
-            GameUtilities.ModifyIntentsPreviewWeak(TargetHelper.Normal(mo));
+            GameUtilities.GetIntent(m).AddWeak();
         }
     }
 

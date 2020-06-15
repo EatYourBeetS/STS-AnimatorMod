@@ -22,7 +22,6 @@ import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 import java.util.ArrayList;
 
@@ -44,9 +43,12 @@ public class KrulTepes extends AnimatorCard
     }
 
     @Override
-    protected void OnHoveringTarget(AbstractMonster mo)
+    public void OnDrag(AbstractMonster m)
     {
-        GameUtilities.ModifyIntentsPreviewWeak(TargetHelper.Normal(mo));
+        if (m != null)
+        {
+            GameUtilities.GetIntent(m).AddWeak();
+        }
     }
 
     @Override

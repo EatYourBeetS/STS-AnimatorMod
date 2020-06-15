@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class Albedo extends AnimatorCard
 {
@@ -27,15 +27,12 @@ public class Albedo extends AnimatorCard
     }
 
     @Override
-    public void OnHoveringTarget(AbstractMonster mo)
+    public void OnDrag(AbstractMonster m)
     {
-        GameUtilities.ModifyIntentsPreviewEnchantedArmor(TargetHelper.All(), damage);
-    }
-
-    @Override
-    public void calculateCardDamage(AbstractMonster mo)
-    {
-        super.calculateCardDamage(mo);
+        for (EnemyIntent intent : GameUtilities.GetIntents())
+        {
+            intent.AddEnchantedArmor(damage);
+        }
     }
 
     @Override

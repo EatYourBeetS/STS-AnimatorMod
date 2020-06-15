@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class Rider extends AnimatorCard
 {
@@ -28,9 +27,12 @@ public class Rider extends AnimatorCard
     }
 
     @Override
-    protected void OnHoveringTarget(AbstractMonster mo)
+    public void OnDrag(AbstractMonster m)
     {
-        GameUtilities.ModifyIntentsPreviewShackles(TargetHelper.Normal(mo), magicNumber);
+        if (m != null)
+        {
+            GameUtilities.GetIntent(m).AddStrength(-magicNumber);
+        }
     }
 
     @Override

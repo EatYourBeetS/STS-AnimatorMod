@@ -9,7 +9,6 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class Caster extends AnimatorCard
 {
@@ -28,9 +27,9 @@ public class Caster extends AnimatorCard
     }
 
     @Override
-    protected void OnHoveringTarget(AbstractMonster mo)
+    public void OnDrag(AbstractMonster m)
     {
-        GameUtilities.ModifyIntentsPreviewShackles(TargetHelper.Normal(mo), magicNumber);
+        GameUtilities.GetIntent(m).AddStrength(-magicNumber);
     }
 
     @Override

@@ -7,10 +7,10 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.vfx.HemokinesisEffect;
-import eatyourbeets.utilities.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import eatyourbeets.monsters.EnemyIntent;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Shalltear extends AnimatorCard
 {
@@ -29,17 +29,17 @@ public class Shalltear extends AnimatorCard
     }
 
     @Override
-    protected void OnBeingDragged()
+    public void OnDrag(AbstractMonster m)
     {
-        List<ModifyIntent> modifyintentList = new ArrayList<>();
-        modifyintentList.add(new ModifyIntent(ModifyIntent.ModifyIntentType.Weak, 1));
-
-        if (HasSynergy())
+        boolean stealStrength = HasSynergy();
+        for (EnemyIntent intent : GameUtilities.GetIntents())
         {
-            modifyintentList.add(new ModifyIntent(ModifyIntent.ModifyIntentType.Shackles, secondaryValue));
+            intent.AddWeak();
+            if (stealStrength)
+            {
+                intent.AddStrength(-secondaryValue);
+            }
         }
-
-        GameUtilities.ModifyIntentsPreview(TargetHelper.All(), modifyintentList);
     }
 
     @Override

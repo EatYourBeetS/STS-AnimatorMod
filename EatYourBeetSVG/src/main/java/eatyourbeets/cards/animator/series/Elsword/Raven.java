@@ -12,7 +12,6 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.cards.DrawPileCardPreview;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class Raven extends AnimatorCard
 {
@@ -32,9 +31,12 @@ public class Raven extends AnimatorCard
     }
 
     @Override
-    public void OnHoveringTarget(AbstractMonster mo)
+    public void OnDrag(AbstractMonster m)
     {
-        GameUtilities.ModifyIntentsPreviewWeak(TargetHelper.Normal(mo));
+        if (m != null)
+        {
+            GameUtilities.GetIntent(m).AddWeak();
+        }
     }
 
     @Override

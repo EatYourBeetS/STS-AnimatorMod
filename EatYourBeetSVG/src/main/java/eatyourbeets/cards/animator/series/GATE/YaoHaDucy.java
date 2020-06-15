@@ -9,7 +9,6 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class YaoHaDucy extends AnimatorCard
 {
@@ -26,9 +25,12 @@ public class YaoHaDucy extends AnimatorCard
     }
 
     @Override
-    protected void OnHoveringTarget(AbstractMonster mo)
+    public void OnDrag(AbstractMonster m)
     {
-        GameUtilities.ModifyIntentsPreviewShackles(TargetHelper.Normal(mo), magicNumber);
+        if (m != null)
+        {
+            GameUtilities.GetIntent(m).AddStrength(-magicNumber);
+        }
     }
 
     @Override

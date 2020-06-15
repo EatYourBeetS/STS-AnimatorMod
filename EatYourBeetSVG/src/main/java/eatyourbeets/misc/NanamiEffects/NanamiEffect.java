@@ -119,6 +119,11 @@ public abstract class NanamiEffect
         return null;
     }
 
+    public void OnDrag(AbstractMonster m)
+    {
+
+    }
+
     protected int GetDamage(Nanami nanami)
     {
         return 0;

@@ -30,7 +30,7 @@ public class Canti extends AnimatorCard
     {
         if (enemy != null)
         {
-            amount += GameUtilities.GetEnemyMove(enemy).GetDamage(false);
+            amount += GameUtilities.GetIntent(enemy).GetDamage(false);
         }
 
         return super.ModifyDamage(enemy, amount);

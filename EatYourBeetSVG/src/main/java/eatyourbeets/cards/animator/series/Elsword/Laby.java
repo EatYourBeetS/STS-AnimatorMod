@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.animator.LabyPower;
 import eatyourbeets.utilities.GameActions;
@@ -27,9 +28,12 @@ public class Laby extends AnimatorCard
     }
 
     @Override
-    protected void OnBeingDragged()
+    public void OnDrag(AbstractMonster m)
     {
-        GameUtilities.ModifyIntentsPreviewEnchantedArmor(TargetHelper.All(), secondaryValue);
+        for (EnemyIntent intent : GameUtilities.GetIntents())
+        {
+            intent.AddEnchantedArmor(secondaryValue);
+        }
     }
 
     @Override

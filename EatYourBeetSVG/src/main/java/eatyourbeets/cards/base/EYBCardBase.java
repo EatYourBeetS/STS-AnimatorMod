@@ -46,6 +46,7 @@ public abstract class EYBCardBase extends AbstractCard
     @Override public abstract void renderUpgradePreview(SpriteBatch sb);
     @Override public abstract void initializeDescription();
     @Override public abstract void calculateCardDamage(AbstractMonster mo);
+    @Override protected final void applyPowersToBlock() { throw new RuntimeException("Not Implemented"); }
     //@Formatter: On
 
     protected static final FieldInfo<Boolean> _darken = JUtils.GetField("darken", AbstractCard.class);

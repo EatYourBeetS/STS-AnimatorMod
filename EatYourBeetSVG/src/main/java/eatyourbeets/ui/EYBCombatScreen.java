@@ -3,14 +3,11 @@ package eatyourbeets.ui;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BobEffect;
-import eatyourbeets.utilities.EYBFontHelper;
-import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RenderHelpers;
+import eatyourbeets.interfaces.delegates.FuncT0;
+import eatyourbeets.utilities.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,11 +18,11 @@ public class EYBCombatScreen extends GUIElement
     protected final static FieldInfo<Boolean> _isMultiDmg = JUtils.GetField("isMultiDmg", AbstractMonster.class);
     protected final static FieldInfo<Integer> _intentMultiAmt = JUtils.GetField("intentMultiAmt", AbstractMonster.class);
 
-    protected final Map<AbstractMonster, Integer> intents = new HashMap<>();
+    protected final Map<AbstractMonster, FuncT0<ColoredString>> intents = new HashMap<>();
 
-    public void AddSubIntent(AbstractMonster monster, int damage)
+    public void AddSubIntent(AbstractMonster monster, FuncT0<ColoredString> calculateIntent)
     {
-        intents.put(monster, damage);
+        intents.put(monster, calculateIntent);
     }
 
     @Override
@@ -44,17 +41,17 @@ public class EYBCombatScreen extends GUIElement
     {
         if (intents.containsKey(m))
         {
-            RenderSubIntent(sb, m, m.intent, intents.get(m));
+            RenderSubIntent(sb, m, m.intent, intents.get(m).Invoke());
             intents.remove(m);
         }
     }
 
-    private void RenderSubIntent(SpriteBatch sb, AbstractMonster m, AbstractMonster.Intent intent, int damage)
+    private void RenderSubIntent(SpriteBatch sb, AbstractMonster m, AbstractMonster.Intent intent, ColoredString damage)
     {
         final boolean multiDamage = _isMultiDmg.Get(m);
         final int multiDamageAmount = _intentMultiAmt.Get(m);
         final BitmapFont font = EYBFontHelper.CardDescriptionFont_Normal;
-        final Color color = Settings.GREEN_TEXT_COLOR.cpy().lerp(Color.WHITE, 0.2f);
+        final Color color = damage.color.cpy();
         color.a = m.intentAlpha;
 
         if (multiDamage)
@@ -64,7 +61,7 @@ public class EYBCombatScreen extends GUIElement
         }
         else
         {
-            FontHelper.renderFontLeftTopAligned(sb, font, Integer.toString(damage),
+            FontHelper.renderFontLeftTopAligned(sb, font, damage.text,
             m.intentHb.x + Scale(5), m.intentHb.cY + _bobEffect.Get(m).y - m.intentHb.height * 0.6f, color);
         }
 

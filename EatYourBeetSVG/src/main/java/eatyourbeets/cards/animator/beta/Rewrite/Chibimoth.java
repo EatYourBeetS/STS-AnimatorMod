@@ -30,24 +30,18 @@ public class Chibimoth extends AnimatorCard
     }
 
     @Override
-    public void OnUpgrade()
-    {
-        SetExhaust(false);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         String[] text = DATA.Strings.EXTENDED_DESCRIPTION;
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         group.addToBottom(CreateChoice(text[0], (c1, p1, m1) ->
         {
-            GameActions.Bottom.GainAgility(1, false);
+            GameActions.Bottom.GainAgility(1, upgraded);
             GameActions.Bottom.GainBlur(secondaryValue);
         }));
         group.addToBottom(CreateChoice(text[1], (c1, p1, m1) ->
         {
-            GameActions.Bottom.GainForce(1, false);
+            GameActions.Bottom.GainForce(1, upgraded);
             GameActions.Bottom.GainTemporaryHP(magicNumber);
         }));
 

@@ -384,7 +384,7 @@
 		},
 		"animator:Chibimoth":
 		{
-			"DESCRIPTION": "Gain/Boost [F] and !M! {Temp. HP} ** or [A] and !S! {Blur}. || Synergy: Draw Kotori ** Kanbe from any pile.",
+			"DESCRIPTION": "Gain/Boost [F] and !M! {Temp. ** HP} or [A] and !S! {Blur}. || Synergy: Draw Kotori ** Kanbe from any pile.",
 			"EXTENDED_DESCRIPTION": ["Gain [A] and 1 Blur.", "Gain [F] and 2 Temp. HP"],
 			"NAME": "Chibimoth"
 		},

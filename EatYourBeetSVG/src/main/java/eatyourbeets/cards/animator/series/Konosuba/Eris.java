@@ -18,7 +18,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
 {
     public static final EYBCardData DATA = Register(Eris.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
 
-    private Eris()
+    public Eris()
     {
         super(DATA);
 

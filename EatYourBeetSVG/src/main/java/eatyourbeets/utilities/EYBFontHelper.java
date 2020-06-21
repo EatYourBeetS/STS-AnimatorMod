@@ -8,8 +8,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
+import eatyourbeets.resources.GR;
 
 import java.util.HashMap;
+import java.util.function.Predicate;
 
 public class EYBFontHelper
 {
@@ -34,17 +36,23 @@ public class EYBFontHelper
         data.xChars = new char[]{'动'};
         data.capChars = new char[]{'动'};
 
-        switch (Settings.language)
+        Predicate<Settings.GameLanguage> checkLanguage = (lang) -> Settings.language == lang && GR.IsTranslationSupported(lang);
+
+        if (checkLanguage.test(Settings.GameLanguage.ZHS))
         {
-            case ZHS:
-                fontFile = Gdx.files.internal("font/zhs/NotoSansMonoCJKsc-Regular.otf");
-                break;
-            case ZHT:
-                fontFile = Gdx.files.internal("font/zht/NotoSansCJKtc-Regular.otf");
-                break;
-            default:
-                fontFile = Gdx.files.internal("font/Kreon-Regular.ttf");
-                break;
+            fontFile = Gdx.files.internal("font/zhs/NotoSansMonoCJKsc-Regular.otf");
+        }
+        else if (checkLanguage.test(Settings.GameLanguage.ZHT))
+        {
+            fontFile = Gdx.files.internal("font/zht/NotoSansCJKtc-Regular.otf");
+        }
+        else if (checkLanguage.test(Settings.GameLanguage.KOR))
+        {
+            fontFile = Gdx.files.internal("font/kor/GyeonggiCheonnyeonBatangBold.ttf");
+        }
+        else
+        {
+            fontFile = Gdx.files.internal("font/Kreon-Regular.ttf");
         }
 
         param.hinting = FreeTypeFontGenerator.Hinting.Slight;

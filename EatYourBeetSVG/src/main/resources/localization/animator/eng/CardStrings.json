@@ -345,7 +345,7 @@
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "Channel 1 random Orb. || On Synergy or when ** Discarded: Gain [I].",
+			"DESCRIPTION": "Channel 1 [Random Orb]. || On Synergy or when ** Discarded: Gain [I].",
 			"NAME": "Ain"
 		},
 		"animator:Aisha":
@@ -391,16 +391,16 @@
 			"DESCRIPTION": "Gain !S! [Enchanted Armor]. || At the start of turn: ** Gain 1 [Constricted].",
 			"EXTENDED_DESCRIPTION": ["At the start of each turn, gain #b{0} #yConstricted.", "At the start of each turn, gain #b{0} #yConstricted and apply #b{1} #yConstricted to ALL enemies."],
 			"NAME": "Laby",
-			"UPGRADE_DESCRIPTION": "Gain !S! [Enchanted Armor]. || At the start of turn: ** Apply 1 [Constricted] ** to ALL characters."
+			"UPGRADE_DESCRIPTION": "Gain !S! [Enchanted Armor]. || At the start of turn: ** Apply 1 [Constricted] to ** ALL characters."
 		},
 		"animator:Lu":
 		{
-			"DESCRIPTION": "Channel 1 [Frost]. ** Channel 1 [Dark]. || When Exhausted: ** Evoke ALL Orbs.",
+			"DESCRIPTION": "Channel 1 [Frost] [Dark]. || When Exhausted: ** Evoke ALL Orbs.",
 			"NAME": "Lu"
 		},
 		"animator:Raven":
 		{
-			"DESCRIPTION": "Draw your {Attack} with ** the lowest damage. || If the enemy is attacking: ** Apply 1 [Weak]. Otherwise ** Apply 1 [Vulnerable].",
+			"DESCRIPTION": "Draw your {Attack} with ** the lowest damage. || If the enemy is ** attacking: Apply 1 [Weak]. ** Otherwise: Apply 1 [Vulnerable].",
 			"NAME": "Raven"
 		},
 		"animator:Rena":
@@ -420,12 +420,12 @@
 		},
 		"animator:Archer":
 		{
-			"DESCRIPTION": "At the end of turn: Deal !M! ** damage to every enemy for ** each {Debuff} they have. || On Synergy: Apply 1 ** [Vulnerable] to ALL enemies.",
+			"DESCRIPTION": "At the end of turn: Deal !M! ** damage to every enemy for ** each {Debuff} they have. || Synergy: Apply 1 [Vulnerable] ** to ALL enemies.",
 			"NAME": "Archer"
 		},
 		"animator:Assassin":
 		{
-			"DESCRIPTION": "Can only be played ** if the enemy has !M! ** different {Debuffs}. || If you play an {Attack}: ** This card loses Retain.",
+			"DESCRIPTION": "Can only be played ** if the enemy has !M! ** different {Debuffs}. || If you play an {Attack}: ** Cycle this card.",
 			"NAME": "Assassin"
 		},
 		"animator:Berserker":
@@ -475,7 +475,7 @@
 		},
 		"animator:SakuraMatou":
 		{
-			"DESCRIPTION": "Apply !M! [Constricted]. || Halve the damage of your ** rightmost [Dark] Orb. Apply ** additional [Constricted] ** equal to that amount.",
+			"DESCRIPTION": "Apply !M! [Constricted]. || Halve the damage of ** your rightmost [Dark]. ** Apply additional [Constricted] ** equal to that amount.",
 			"NAME": "Sakura Matou"
 		},
 		"animator:ShinjiMatou":
@@ -499,7 +499,7 @@
 		},
 		"animator:Envy":
 		{
-			"DESCRIPTION": "The first card played ** each turn will Synergize. || Gain 20% of missing ** HP as [Temporary HP].",
+			"DESCRIPTION": "The first card played ** each turn will Synergize. || Gain 20% of your ** missing HP as [Temporary HP].",
 			"NAME": "Envy"
 		},
 		"animator:Father":
@@ -509,13 +509,13 @@
 		},
 		"animator:Gluttony":
 		{
-			"DESCRIPTION": "Exhaust the top !M! cards ** of your draw pile to gain ** !M! <FOR> and Heal !M! HP. || Unplayable if you have less than !S! cards in play.",
+			"DESCRIPTION": "Unplayable if you have less ** than !S! cards in play. || Exhaust the top !M! ** cards of your draw pile ** to gain !M! [F] and Heal !M! HP.",
 			"EXTENDED_DESCRIPTION": ["Not enough cards in play."],
 			"NAME": "Gluttony"
 		},
 		"animator:Greed":
 		{
-			"DESCRIPTION": "Gain !S! [Malleable]. ** Gain !M! [Metallicize]. || <LIM>. For every ** 150 [Gold] you have: ** Gain [E] next turn.",
+			"DESCRIPTION": "Gain !M! [Metallicize]. Gain !S! [Malleable]. || <LIM>. For every ** 150 [Gold] you have: ** Gain [E] next turn.",
 			"NAME": "Greed"
 		},
 		"animator:MaesHughes":
@@ -525,17 +525,17 @@
 		},
 		"animator:Pride":
 		{
-			"DESCRIPTION": "{Channel} !M! [Dark]. ** Apply !S! [Constricted]. || Until next turn, Dark Orbs ** will absorb all unblocked ** damage you would take.",
+			"DESCRIPTION": "Apply !S! [Constricted]. ** {Channel} !M! [Dark]. || Until next turn, your [Dark] ** will absorb all unblocked ** damage you would take.",
 			"NAME": "Pride"
 		},
 		"animator:RoyMustang":
 		{
-			"DESCRIPTION": "Channel 1 Fire ** for each enemy. || On Synergy: Gain ** 4 [Flame Barrier].",
+			"DESCRIPTION": "Channel 1 [Fire] ** for each enemy. || Synergy: Gain 4 [Flame Barrier].",
 			"NAME": "Roy Mustang"
 		},
 		"animator:Scar":
 		{
-			"DESCRIPTION": "Exhaust a random card ** to Channel 1 [Earth]. || Synergy: Purge, then ** draw a random card ** from your Exhaust pile.",
+			"DESCRIPTION": "Exhaust a random ** card to Channel 1 [Earth]. || Synergy: Purge, then ** draw a random card ** from your Exhaust pile.",
 			"NAME": "Scar"
 		},
 		"animator:Sloth":
@@ -565,12 +565,12 @@
 		},
 		"animator:ItamiYouji":
 		{
-			"DESCRIPTION": "<DRW-M>. ** Deal damage for ** each {Attack} drawn. || On Synergy: Gain !S! ** [Support Damage].",
+			"DESCRIPTION": "<DRW-M>. ** Deal damage for ** each {Attack} drawn. || Synergy: Gain !S! [Support Damage].",
 			"NAME": "Itami Youji"
 		},
 		"animator:Kuribayashi":
 		{
-			"DESCRIPTION": "Apply !S! Choked. ** Apply !M! [Vulnerable]. || On Synergy: Gain 1 ** [Support Damage].",
+			"DESCRIPTION": "Apply !M! [Shackles] [Vulnerable]. || Synergy: Gain 1 [Support Damage].",
 			"NAME": "Kuribayashi"
 		},
 		"animator:LeleiLaLalena":
@@ -586,7 +586,7 @@
 		},
 		"animator:RoryMercury":
 		{
-			"DESCRIPTION": "Apply 1 [Vulnerable] to ** the first enemy hit. || When Drawn: Gain [F].",
+			"DESCRIPTION": "Apply 1 [Vulnerable] to ** the first enemy hit. || When Drawn: Randomly gain [F] or [A].",
 			"NAME": "Rory Mercury"
 		},
 		"animator:TukaLunaMarceau":
@@ -597,7 +597,7 @@
 		"animator:Tyuule":
 		{
 			"DESCRIPTION": "Apply !M! [Poison] to ** ALL enemies, then ** increase each of their ** {Common Debuffs} by 1.",
-			"EXTENDED_DESCRIPTION": ["Common Debuffs", "#y[Poison], #y[Weak], #y[Vulnerable], #y[Burning], #y[Shackles]."],
+			"EXTENDED_DESCRIPTION": ["Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
 			"NAME": "Tyuule"
 		},
 		"animator:YaoHaDucy":
@@ -627,7 +627,7 @@
 		},
 		"animator:GuildGirl":
 		{
-			"DESCRIPTION": "At the start of turn: ** Cycle 1 card. || Whenever a non-minion ** enemy dies: Gain !M! {Gold}. ** Does not stack.",
+			"DESCRIPTION": "At the start of turn: ** Cycle 1 card. || Whenever a non-minion ** enemy dies: Gain !M! [Gold]. ** Does not stack.",
 			"NAME": "Guild Girl"
 		},
 		"animator:HighElfArcher":
@@ -796,7 +796,7 @@
 		},
 		"animator:Chris":
 		{
-			"DESCRIPTION": "{~Steal} !M! {Gold}. || When Discarded: ** Draw a {0-Cost} card.",
+			"DESCRIPTION": "{~Steal} !M! [Gold]. || When Discarded: ** Draw a {0-Cost} card.",
 			"NAME": "Chris"
 		},
 		"animator:Darkness":
@@ -1178,7 +1178,7 @@
 		},
 		"animator:ElricAlphonseAlt":
 		{
-			"DESCRIPTION": "Channel !S! [Lightning]. ** Gain !M! [Plated Armor]. || Synergy: Gain 1 Orb Slot.",
+			"DESCRIPTION": "Gain 1 Orb Slot. ** Channel !S! [Lightning]. ** Synergy: Gain !M! [Plated Armor].",
 			"NAME": "Armored Alphonse"
 		},
 		"animator:EntouJyuu":
@@ -1342,7 +1342,7 @@
 		},
 		"animator:TheHaunt":
 		{
-			"DESCRIPTION": "Gain !M! {Gold}. ** Become more haunted.",
+			"DESCRIPTION": "Gain !M! [Gold]. ** Become more haunted.",
 			"NAME": "The Haunt"
 		}
 	},

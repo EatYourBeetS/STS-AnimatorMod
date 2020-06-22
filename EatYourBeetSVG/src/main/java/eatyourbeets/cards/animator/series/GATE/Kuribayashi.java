@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.GATE;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ChokePower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -21,8 +20,8 @@ public class Kuribayashi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 2, 2, 2);
-        SetUpgrade(2, 0, 0, 2);
+        Initialize(6, 0, 2);
+        SetUpgrade(4, 0, 0);
         SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.Gate);
@@ -33,10 +32,8 @@ public class Kuribayashi extends AnimatorCard
     {
         GameActions.Bottom.SFX("ATTACK_FIRE");
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
-        GameActions.Bottom.GainBlock(block);
-
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
-        GameActions.Bottom.StackPower(p, new ChokePower(m, secondaryValue));
+        GameActions.Bottom.ReduceStrength(m, magicNumber, true);
 
         if (HasSynergy())
         {

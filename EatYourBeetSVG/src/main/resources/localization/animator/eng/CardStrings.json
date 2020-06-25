@@ -483,7 +483,7 @@
 		},
 		"animator:AyatoNaoi":
 		{
-			"DESCRIPTION": "Enter {[I] Stance}. ** Channel !M! Dark. ** When this card is played from Afterlife, ALL enemies lose HP equal to the total amount of damage they intend to deal.",
+			"DESCRIPTION": "Enter {[I] Stance}. Channel ** !M! Dark. ** When played from Afterlife: ALL enemies lose HP equal to their Attack damage.",
 			"NAME": "Ayato Naoi"
 		},
 		"animator:Godan":
@@ -1564,7 +1564,7 @@
 		},
 		"animator:Hakurou":
 		{
-			"DESCRIPTION": "On Synergy or when ** Drawn: Gain 1 Agility.",
+			"DESCRIPTION": "On Synergy or when ** Drawn: Gain 1 [A].",
 			"NAME": "Hakurou"
 		},
 		"animator:Kaijin":

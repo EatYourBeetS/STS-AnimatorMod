@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.beta.Rewrite;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
 import eatyourbeets.cards.base.*;
@@ -26,6 +27,14 @@ public class SougenEsaka extends AnimatorCard
     }
 
     @Override
+    protected float ModifyBlock(AbstractMonster enemy, float amount)
+    {
+        int agility = GameUtilities.GetPowerAmount(AbstractDungeon.player, AgilityPower.POWER_ID);
+        return super.ModifyBlock(enemy, amount + (agility * secondaryValue));
+    }
+
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
@@ -33,7 +42,7 @@ public class SougenEsaka extends AnimatorCard
         int agility = GameUtilities.GetPowerAmount(p, AgilityPower.POWER_ID);
         if (agility > 0)
         {
-            GameActions.Bottom.GainBlock(agility * secondaryValue);
+            GameActions.Bottom.GainBlock(block);
         }
 
         if (HasSynergy())

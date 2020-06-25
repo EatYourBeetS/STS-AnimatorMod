@@ -447,7 +447,7 @@
 		},
 		"animator:SougenEsaka":
 		{
-			"DESCRIPTION": "Gain Block equal to ** your [A]. || Synergy: Upgrade a ** random card in your ** hand.",
+			"DESCRIPTION": "Gain Block equal to ** twice your [A]. || Synergy: Upgrade a ** random card in your ** hand.",
 			"NAME": "Sougen Esaka"
 		},
 		"animator:Strike_Rewrite":

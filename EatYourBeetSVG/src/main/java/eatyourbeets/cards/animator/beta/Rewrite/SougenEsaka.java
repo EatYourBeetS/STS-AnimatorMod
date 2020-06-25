@@ -17,7 +17,7 @@ public class SougenEsaka extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 1);
+        Initialize(5, 0, 1, 2);
         SetUpgrade(3, 0, 2);
 
         SetMartialArtist();
@@ -33,7 +33,7 @@ public class SougenEsaka extends AnimatorCard
         int agility = GameUtilities.GetPowerAmount(p, AgilityPower.POWER_ID);
         if (agility > 0)
         {
-            GameActions.Bottom.GainBlock(agility);
+            GameActions.Bottom.GainBlock(agility * secondaryValue);
         }
 
         if (HasSynergy())

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FlightPower;
+import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.actions.special.HasteAction;
@@ -676,10 +677,10 @@ public abstract class EYBCard extends EYBCardBase
                     {
                         tempDamage *= 2f;
                     }
-//                  else if (LockOnPower.POWER_ID.equals(power.ID))
-//                  {
-//                      tempDamage *= 1.3f;
-//                  }
+                    else if (LockOnPower.POWER_ID.equals(power.ID))
+                    {
+                        tempDamage *= 1.3f;
+                    }
                 }
             }
 

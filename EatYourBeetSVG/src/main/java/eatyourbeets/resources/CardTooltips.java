@@ -3,9 +3,8 @@ package eatyourbeets.resources;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.ui.panels.TopPanel;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
@@ -63,10 +62,12 @@ public class CardTooltips
     public EYBCardTooltip Burning = FindByID("Burning");
     public EYBCardTooltip Thorns = FindByID("Thorns");
     public EYBCardTooltip Constricted = FindByID("Constricted");
+    public EYBCardTooltip Malleable = FindByID("Malleable");
     public EYBCardTooltip FlameBarrier = FindByID("Flame Barrier");
     public EYBCardTooltip Blur = FindByID("Blur");
     public EYBCardTooltip Artifact = FindByID("Artifact");
     public EYBCardTooltip Shackles = FindByID("Shackles");
+    public EYBCardTooltip LockOn = FindByID("~Lock-On");
     public EYBCardTooltip Lightning = FindByID("Lightning");
     public EYBCardTooltip Plasma = FindByID("Plasma");
     public EYBCardTooltip Frost = FindByID("Frost");
@@ -78,14 +79,7 @@ public class CardTooltips
     // No Description
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
     public EYBCardTooltip ThrowingKnife = new EYBCardTooltip(eatyourbeets.cards.animator.special.ThrowingKnife.DATA.Strings.NAME, null);
-    public EYBCardTooltip Gold = new EYBCardTooltip(TopPanel.LABEL[4], null);
-
-    public boolean CanAdd(EYBCardTooltip tooltip)
-    {
-        return tooltip != null && tooltip.title != null && tooltip != Block
-            && tooltip != Channel && tooltip != Upgrade && tooltip != Exhaust
-            && tooltip != Retain && tooltip != Energy;
-    }
+    public EYBCardTooltip Gold = new EYBCardTooltip(RewardItem.TEXT[1].trim(), null);
 
     public static void RegisterID(String id, EYBCardTooltip tooltip)
     {
@@ -107,13 +101,22 @@ public class CardTooltips
         return tooltipIDs.get(id);
     }
 
-    public void InitializeIcons()
+    public CardTooltips()
     {
-        //Register fake tooltips
         RegisterID("Random Orb", RandomOrb);
         RegisterID("T-Knife", ThrowingKnife);
         RegisterID("Gold", Gold);
+    }
 
+    public boolean CanAdd(EYBCardTooltip tooltip)
+    {
+        return tooltip != null && tooltip.title != null && tooltip != Block
+            && tooltip != Channel && tooltip != Upgrade && tooltip != Exhaust
+            && tooltip != Retain && tooltip != Energy;
+    }
+
+    public void InitializeIcons()
+    {
         CommonImages.Badges badges = GR.Common.Images.Badges;
         Exhaust.SetIcon(badges.Exhaust.Texture(), 6);
         Ethereal.SetIcon(badges.Ethereal.Texture(), 6);
@@ -138,7 +141,7 @@ public class CardTooltips
         Aether.SetIcon(tooltips.Aether.Texture(), 6);
         Earth.SetIcon(tooltips.Earth.Texture(), 6);
         RandomOrb.SetIcon(tooltips.RandomOrb.Texture(), 6);
-        Gold.SetIcon(ImageMaster.UI_GOLD, 6);
+        Gold.SetIcon(tooltips.Gold.Texture(), 6);
 
         LoadFromPower(Burning, new BurningPower(FakeCharacter.Instance, null, 0)).SetIconSizeMulti(0.95f, 0.95f);
         LoadFromPower(Poison, new PoisonPower(FakeCharacter.Instance, null, 0)).SetIconSizeMulti(1.05f, 1f);
@@ -149,9 +152,11 @@ public class CardTooltips
         LoadFromPower(FlameBarrier, new FlameBarrierPower(FakeCharacter.Instance, 0));
         LoadFromPower(Blur, new BlurPower(FakeCharacter.Instance, 0));
         LoadFromPower(Artifact, new ArtifactPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Malleable, new MalleablePower(FakeCharacter.Instance, 0));
         LoadFromPower(Shackles, new GainStrengthPower(FakeCharacter.Instance, 0));
         LoadFromPower(Constricted, new ConstrictedPower(null, FakeCharacter.Instance, 0));
         LoadFromPower(SupportDamage, new SupportDamagePower(FakeCharacter.Instance, 0));
+        LoadFromPower(LockOn, new LockOnPower(FakeCharacter.Instance, 0));
 
         //These 2 use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);

@@ -483,7 +483,7 @@
 		},
 		"animator:AyatoNaoi":
 		{
-			"DESCRIPTION": "Enter {[I] Stance}. Channel ** !M! Dark. ** When played from Afterlife: ALL enemies lose HP equal to their Attack damage.",
+			"DESCRIPTION": "Enter {[I] Stance}. Channel ** !M! Dark. || When played from Afterlife: ** ALL enemies lose HP equal to ** their Attack damage.",
 			"NAME": "Ayato Naoi"
 		},
 		"animator:Godan":

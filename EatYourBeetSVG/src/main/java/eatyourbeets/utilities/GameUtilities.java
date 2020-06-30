@@ -808,13 +808,13 @@ public class GameUtilities
         int previousCost = card.cost;
         if (relative)
         {
-            card.costForTurn += amount;
-            card.cost += amount;
+            card.costForTurn += Math.max(0, amount);
+            card.cost += Math.max(0, amount);
         }
         else
         {
-            card.costForTurn = amount + (card.costForTurn - card.cost);
-            card.cost = amount;
+            card.costForTurn = Math.max(0, amount + (card.costForTurn - card.cost));
+            card.cost = Math.max(0, amount);
         }
 
         if (card.cost != previousCost)
@@ -825,7 +825,7 @@ public class GameUtilities
 
     public static void ModifyCostForTurn(AbstractCard card, int amount, boolean relative)
     {
-        card.costForTurn = relative ? (card.costForTurn + amount) : amount;
+        card.costForTurn = Math.max(0, relative ? (card.costForTurn + amount) : amount);
         card.isCostModifiedForTurn = (card.cost != card.costForTurn);
     }
 

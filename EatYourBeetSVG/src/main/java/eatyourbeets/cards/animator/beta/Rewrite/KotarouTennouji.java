@@ -20,13 +20,13 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class KotarouTennouji extends AnimatorCard implements OnStanceChangedSubscriber
 {
-    public static final EYBCardData DATA = Register(KotarouTennouji.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(KotarouTennouji.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Normal);
 
     public KotarouTennouji()
     {
         super(DATA);
 
-        Initialize(14, 0, 0);
+        Initialize(8, 0, 0);
         SetUpgrade(3, 0, 0);
         SetScaling(1, 1, 1);
 

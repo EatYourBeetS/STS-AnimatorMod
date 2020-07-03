@@ -54,6 +54,7 @@ public class Synergies
     public final static Synergy Rewrite = CreateSynergy(41);
     public final static Synergy DateALive = CreateSynergy(42);
     public final static Synergy AngelBeats = CreateSynergy(43);
+    public final static Synergy RozenMaiden = CreateSynergy(44);
 
     @SuppressWarnings("FieldCanBeLocal")
     private static AnimatorCard previousCard = null;

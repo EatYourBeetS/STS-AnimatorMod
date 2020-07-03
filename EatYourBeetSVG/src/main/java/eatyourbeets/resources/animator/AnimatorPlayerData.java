@@ -204,6 +204,7 @@ public class AnimatorPlayerData
         BetaLoadouts.add(new Rewrite());
         BetaLoadouts.add(new AngelBeats());
         BetaLoadouts.add(new TouhouProject());
+        BetaLoadouts.add(new RozenMaiden());
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...

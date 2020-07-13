@@ -58,7 +58,7 @@ public class AkaneSenri extends AnimatorCard
         @Override
         public void atEndOfTurn(boolean isPlayer)
         {
-            GameActions.Bottom.SpendEnergy(amount, false)
+            GameActions.Bottom.SpendEnergy(1, false)
             .AddCallback(() ->
             {
                 AbstractOrb darkOrb = new Dark();

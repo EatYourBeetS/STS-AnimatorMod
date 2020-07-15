@@ -72,6 +72,7 @@ public class AkaneSenri extends AnimatorCard
                         darkOrb.onEndOfTurn();
                     }
                 }
+                flash();
             });
 
             updateDescription();

@@ -160,7 +160,7 @@ public class CommonResources extends AbstractResources
     private static void AddPowerTooltip(String symbol, String id, AbstractPower power)
     {
         int size = power.img.getWidth(); // width should always be equal to height
-
+        
         EYBCardTooltip tooltip = CardTooltips.FindByID(id);
         if (tooltip == null)
         {

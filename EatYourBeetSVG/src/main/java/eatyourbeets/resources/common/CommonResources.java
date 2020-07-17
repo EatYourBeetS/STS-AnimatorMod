@@ -24,6 +24,7 @@ import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 import eatyourbeets.stances.EYBStance;
 import eatyourbeets.utilities.EYBFontHelper;
+import eatyourbeets.utilities.JUtils;
 
 import java.lang.reflect.Field;
 
@@ -161,6 +162,12 @@ public class CommonResources extends AbstractResources
         int size = power.img.getWidth(); // width should always be equal to height
 
         EYBCardTooltip tooltip = CardTooltips.FindByName(power.name.toLowerCase());
+        if (tooltip == null)
+        {
+            JUtils.LogError(CommonResources.class, "Could not find tooltip: " + power.name + "," + power.ID + ", " + symbol);
+            return;
+        }
+
         tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 2, 4, size-4, size-4);
 
         EYBCardTooltip stance = CardTooltips.FindByID(power.name + " Stance");

@@ -35,6 +35,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         super(type);
 
         this.groups = groups;
+        this.canCancel = false;
 
         Initialize(amount, sourceName);
     }
@@ -158,7 +159,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             }
             else
             {
-                AbstractDungeon.gridSelectScreen.open(mergedGroup, amount, CreateMessage(), false, false, false, false);
+                AbstractDungeon.gridSelectScreen.open(mergedGroup, Math.min(mergedGroup.size(), amount), CreateMessage(), false, false, canCancel, false);
             }
         }
     }

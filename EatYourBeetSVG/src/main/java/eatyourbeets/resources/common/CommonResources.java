@@ -24,6 +24,7 @@ import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 import eatyourbeets.stances.EYBStance;
 import eatyourbeets.utilities.EYBFontHelper;
+import eatyourbeets.utilities.JUtils;
 
 import java.lang.reflect.Field;
 
@@ -109,9 +110,9 @@ public class CommonResources extends AbstractResources
     {
         LoadKeywords();
 
-        AddPowerTooltip("[F]", new ForcePower(null, 0));
-        AddPowerTooltip("[A]", new AgilityPower(null, 0));
-        AddPowerTooltip("[I]", new IntellectPower(null, 0));
+        AddPowerTooltip("[F]", "Force", new ForcePower(null, 0));
+        AddPowerTooltip("[A]", "Agility", new AgilityPower(null, 0));
+        AddPowerTooltip("[I]", "Intellect", new IntellectPower(null, 0));
         AddEnergyTooltip("[R]", AbstractCard.orb_red);
         AddEnergyTooltip("[G]", AbstractCard.orb_green);
         AddEnergyTooltip("[B]", AbstractCard.orb_blue);
@@ -156,14 +157,21 @@ public class CommonResources extends AbstractResources
         CardTooltips.RegisterName(symbol, tooltip);
     }
 
-    private static void AddPowerTooltip(String symbol, AbstractPower power)
+    private static void AddPowerTooltip(String symbol, String id, AbstractPower power)
     {
         int size = power.img.getWidth(); // width should always be equal to height
 
-        EYBCardTooltip tooltip = CardTooltips.FindByName(power.name.toLowerCase());
+        EYBCardTooltip tooltip = CardTooltips.FindByID(id);
+        if (tooltip == null)
+        {
+            JUtils.LogError(CommonResources.class, "Could not find tooltip: Symbol: {0}, ID: {1}, Power: {2} ",
+                    symbol, id, power.name);
+            return;
+        }
+
         tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 2, 4, size-4, size-4);
 
-        EYBCardTooltip stance = CardTooltips.FindByID(power.name + " Stance");
+        EYBCardTooltip stance = CardTooltips.FindByID(id + " Stance");
         if (stance != null)
         {
             stance.icon = tooltip.icon;

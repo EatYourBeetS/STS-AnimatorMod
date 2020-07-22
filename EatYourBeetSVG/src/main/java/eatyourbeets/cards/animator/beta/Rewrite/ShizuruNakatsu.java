@@ -37,11 +37,14 @@ public class ShizuruNakatsu extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        GameActions.Bottom.DiscardFromHand(name, magicNumber, true)
-        .ShowEffect(true, true)
-        .SetFilter(c -> c.type == CardType.SKILL)
-        .SetOptions(false, false, false)
-        .AddCallback(() -> GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID));
+        if (!player.stance.ID.equals(AgilityStance.STANCE_ID))
+        {
+            GameActions.Bottom.DiscardFromHand(name, magicNumber, true)
+                    .ShowEffect(true, true)
+                    .SetFilter(c -> c.type == CardType.SKILL)
+                    .SetOptions(false, false, false)
+                    .AddCallback(() -> GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID));
+        }
 
         AgilityPower agility = GameUtilities.GetPower(player, AgilityPower.class);
         if (agility != null && agility.GetCurrentLevel() > 2)

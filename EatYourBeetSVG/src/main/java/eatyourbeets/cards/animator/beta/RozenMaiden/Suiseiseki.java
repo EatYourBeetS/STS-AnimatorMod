@@ -24,11 +24,6 @@ public class Suiseiseki extends AnimatorCard
 
     public static final EYBCardData DATA = Register(Suiseiseki.class)
     		.SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
-    static
-    {
-        DATA.AddPreview(new FakeAbstractCard(insight), false);
-        DATA.AddPreview(new FakeAbstractCard(slimed), false);
-    }
 
     public Suiseiseki()
     {

@@ -87,6 +87,7 @@ public class MeguKakizaki extends AnimatorCard
                     {
                         CombatStats.TryActivateLimited(cardID);
                         GameActions.Bottom.StackPower(new RepairPower(player, magicNumber));
+                        GameActions.Bottom.Exhaust(this);
                     });
         }
     }

@@ -711,10 +711,10 @@
 		},
 		"animator:MeguKakizaki":
 		{
-			"DESCRIPTION": "<LIM>. Exhaust a Curse to Heal !M! HP after combat. || When Discarded: Draw {Suigintou} from anywhere.",
+			"DESCRIPTION": "<LIM>. Exhaust a Curse to Heal !M! HP after combat, then Exhaust. || When Discarded: Draw {Suigintou} from anywhere.",
 			"NAME": "Megu Kakizaki",
 			"EXTENDED_DESCRIPTION": ["Exhaust a curse to heal."],
-			"UPGRADE_DESCRIPTION": "<LIM>. Exhaust a Curse to Heal !M! HP after combat. || When Discarded: Draw {Suigintou} from anywhere and Retain it."
+			"UPGRADE_DESCRIPTION": "<LIM>. Exhaust a Curse to Heal !M! HP after combat, then Exhaust. || When Discarded: Draw {Suigintou} from anywhere and Retain it."
 		},
 		"animator:NoriSakurada":
 		{

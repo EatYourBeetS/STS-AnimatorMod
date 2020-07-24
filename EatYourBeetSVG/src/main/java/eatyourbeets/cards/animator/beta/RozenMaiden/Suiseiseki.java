@@ -125,7 +125,7 @@ public class Suiseiseki extends AnimatorCard
             currentcolor = player.getCardColor();
         }
 
-        if (OptionSet == null)
+        if (OptionSet.Size() == 0)
         {
             ArrayList<AbstractCard> AllCard = CardLibrary.getAllCards();
             for (AbstractCard c : AllCard)

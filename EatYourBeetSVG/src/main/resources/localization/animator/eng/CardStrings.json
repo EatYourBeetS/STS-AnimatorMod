@@ -471,7 +471,7 @@
 	{
 		"animator:YuriNakamura":
 		{
-			"DESCRIPTION": "Give a Non-{Ethereal} card in your hand {Retain}. || <LIM>. Give a Non-{Hindrance}, Non-{Afterlife} card in your Exhaust pile {Afterlife}. It {Purges} when played.",
+			"DESCRIPTION": "<LIM>. Give a Non-{Hindrance}, Non-{Afterlife} card in your Exhaust pile {Afterlife}. It {Purges} when played.",
 			"EXTENDED_DESCRIPTION": ["Give a card Retain.", "Choose a card to give Afterlife. It purges when played."],
 			"NAME": "Yuri Nakamura"
 		},
@@ -606,7 +606,7 @@
 		},
 		"animator:HiedaNoAkyuu":
 		{
-			"DESCRIPTION": "Shuffle your draw pile into your discard pile, then choose !M! cards in your discard pile.  Place them into your draw pile.",
+			"DESCRIPTION": "Shuffle your draw pile into your discard pile, then choose !M! cards in your discard pile.  Move them into your draw pile.",
 			"NAME": "Hieda no Akyuu"
 		},
 		"animator:KoishiKomeiji":

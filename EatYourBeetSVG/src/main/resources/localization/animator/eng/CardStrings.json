@@ -606,7 +606,7 @@
 		},
 		"animator:HiedaNoAkyuu":
 		{
-			"DESCRIPTION": "Shuffle ALL your cards into your draw pile. || Scry your draw pile.",
+			"DESCRIPTION": "Shuffle your draw pile into your discard pile, then choose !M! cards in your discard pile.  Place them into your draw pile.",
 			"NAME": "Hieda no Akyuu"
 		},
 		"animator:KoishiKomeiji":

@@ -36,33 +36,12 @@ public class Souseiseki extends AnimatorCard
     }
 
     @Override
-    public boolean cardPlayable(AbstractMonster m)  //copied from Assassin.java
-    {
-        if (super.cardPlayable(m))
-        {
-            if (m == null)
-            {
-                for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
-                {
-                    if (GameUtilities.IsAttacking(enemy.intent))
-                    {
-                        return true;
-                    }
-                }
-            }
-            else
-            {
-                return GameUtilities.IsAttacking(m.intent);
-            }
-        }
-
-        return false;
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        if (GameUtilities.IsAttacking(m.intent))
+        {
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        }
 
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
                 .SetOptions(false, false, false)

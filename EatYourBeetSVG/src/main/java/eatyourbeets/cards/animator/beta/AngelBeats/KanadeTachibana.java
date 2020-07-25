@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.AngelBeats;
 
-import basemod.BaseMod;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -17,29 +16,23 @@ public class KanadeTachibana extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 0, 0);
-        SetUpgrade(0, 0, 0, 0);
+        Initialize(0, 0, 3, 4);
+        SetUpgrade(0, 0, 1, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.AngelBeats);
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetRetain(true);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Top.FetchFromPile(name, p.discardPile.size(), p.discardPile)
+        GameActions.Top.FetchFromPile(name, magicNumber, p.discardPile)
         .SetOptions(false, true)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0]);
 
         if (HasSynergy())
         {
-            GameActions.Bottom.ExhaustFromHand(name, BaseMod.MAX_HAND_SIZE, false)
+            GameActions.Bottom.ExhaustFromHand(name, secondaryValue, false)
             .SetOptions(true, true, true);
         }
     }

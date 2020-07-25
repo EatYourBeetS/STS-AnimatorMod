@@ -472,13 +472,13 @@
 		"animator:YuriNakamura":
 		{
 			"DESCRIPTION": "Give a Non-{Ethereal} card in your hand {Retain}. || <LIM>. {Synergy}: Give a Non-{Hindrance}, Non-{Afterlife} card in your Exhaust pile {Afterlife}. It {Purges} when played.",
-			"EXTENDED_DESCRIPTION": ["give Retain.", "Choose a card to give Afterlife. It purges when played."],
+			"EXTENDED_DESCRIPTION": ["Give a card Retain.", "Choose a card to give Afterlife. It purges when played."],
 			"NAME": "Yuri Nakamura"
 		},
 		"animator:KanadeTachibana":
 		{
-			"DESCRIPTION": "Put any number of cards from your discard pile into your hand. || Synergy: Exhaust any number of cards.",
-			"EXTENDED_DESCRIPTION": ["Choose any number of cards to put into your hand."],
+			"DESCRIPTION": "Put up to !M! cards from your discard pile into your hand. || Synergy: Exhaust up to !S! cards.",
+			"EXTENDED_DESCRIPTION": ["Choose cards to put into your hand."],
 			"NAME": "Kanade Tachibana"
 		},
 		"animator:AyatoNaoi":
@@ -514,7 +514,7 @@
 		},
 		"animator:Noda":
 		{
-			"DESCRIPTION": "<SLM>. {Synergy}. Gain/Boost [F] .",
+			"DESCRIPTION": "<SLM>. {Synergy}. Gain/Boost [F].",
 			"NAME": "Noda"
 		},
 		"animator:HidekiHinata":
@@ -741,7 +741,7 @@
 		},
 		"animator:Souseiseki":
 		{
-			"DESCRIPTION": "Exhaust a card in your hand. || If it was a Hindrance: Enter <AS>. || Can only be played if the enemy intends to attack.",
+			"DESCRIPTION": "Exhaust a card in your hand.  Can only deal damage if the enemy is attacking. || If a Hindrance was Exhausted: Enter <AS>.",
 			"NAME": "Souseiseki"
 		},
 		"animator:Strike_RozenMaiden":

@@ -50,7 +50,7 @@ public class YuriNakamura extends AnimatorCard
             .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])
             .AddCallback(cards ->
             {
-                if (cards.size() > 0 && CombatStats.TryActivateSemiLimited(cardID))
+                if (cards.size() > 0 && CombatStats.TryActivateLimited(cardID))
                 {
                     AbstractCard card = cards.get(0);
                     AfterLifeMod.Add(card);

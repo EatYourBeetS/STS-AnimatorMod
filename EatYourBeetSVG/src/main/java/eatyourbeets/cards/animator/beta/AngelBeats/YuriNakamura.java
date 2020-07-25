@@ -45,8 +45,6 @@ public class YuriNakamura extends AnimatorCard
 
         if (!CombatStats.HasActivatedLimited(cardID))
         {
-            CombatStats.TryActivateLimited(cardID);
-
             GameActions.Bottom.SelectFromPile(name, magicNumber, p.exhaustPile)
             .SetFilter(c -> !GameUtilities.IsCurseOrStatus(c) && !AfterLifeMod.IsAdded(c))
             .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])

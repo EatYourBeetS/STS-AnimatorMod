@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.beta.TouhouProject;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -17,9 +18,10 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-public class YuyukoSaigyouji extends AnimatorCard_UltraRare
+public class YuyukoSaigyouji extends AnimatorCard_UltraRare implements StartupCard
 {
     public static final EYBCardData DATA = Register(YuyukoSaigyouji.class).SetPower(4, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
@@ -45,6 +47,19 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare
     {
         GameActions.Bottom.Add(new VFXAction(new CherryBlossomEffect(), 0.7F));
         GameActions.Bottom.ApplyPower(new DeathTouch(p));
+    }
+
+    @Override
+    public boolean atBattleStartPreDraw()
+    {
+        if (GameUtilities.InBossRoom())
+        {
+            GameActions.Bottom.Purge(this);
+
+            return true;
+        }
+
+        return false;
     }
 
     public static class DeathTouch extends AnimatorPower

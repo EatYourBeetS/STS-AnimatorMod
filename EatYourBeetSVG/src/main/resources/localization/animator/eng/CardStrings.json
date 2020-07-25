@@ -629,8 +629,8 @@
 		},
 		"animator:YuyukoSaigyouji":
 		{
-			"DESCRIPTION": "Unblocked attack damage you deal kills non-boss enemies. || This card starts in your discard pile.",
-			"EXTENDED_DESCRIPTION": ["Unblocked attack damage you deal kills non-boss enemies."],
+			"DESCRIPTION": "Starts in your Discard pile. || Unblocked attack damage kills non-boss enemies. || Purge at the start of boss battles.",
+			"EXTENDED_DESCRIPTION": ["Unblocked attack damage kills non-boss enemies."],
 			"NAME": "Yuyuko Saigyouji"
 		},
 		"animator:Strike_TouhouProject":

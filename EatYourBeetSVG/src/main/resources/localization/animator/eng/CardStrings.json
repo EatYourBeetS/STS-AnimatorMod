@@ -514,7 +514,7 @@
 		},
 		"animator:Noda":
 		{
-			"DESCRIPTION": "<SLM>. {Synergy}. Gain/Boost [F].",
+			"DESCRIPTION": "{Synergy}: Gain/Boost [F]. || When Discarded: Exhaust.",
 			"NAME": "Noda"
 		},
 		"animator:HidekiHinata":

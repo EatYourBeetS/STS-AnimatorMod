@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Noda extends AnimatorCard
@@ -25,11 +24,19 @@ public class Noda extends AnimatorCard
     }
 
     @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        GameActions.Bottom.Exhaust(this);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
 
-        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
+        if (HasSynergy())
         {
             GameActions.Bottom.GainForce(secondaryValue, upgraded);
         }

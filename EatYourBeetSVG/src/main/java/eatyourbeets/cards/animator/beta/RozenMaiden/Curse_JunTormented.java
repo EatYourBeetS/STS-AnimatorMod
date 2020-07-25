@@ -28,7 +28,7 @@ public class Curse_JunTormented extends AnimatorCard_Curse
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.MoveCard(this, player.exhaustPile);
+        GameActions.Bottom.Exhaust(this);
     }
 
     @Override

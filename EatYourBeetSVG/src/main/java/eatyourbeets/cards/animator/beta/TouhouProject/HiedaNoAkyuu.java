@@ -30,7 +30,6 @@ public class HiedaNoAkyuu extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.MoveCards(player.drawPile, player.discardPile);
-        GameActions.Bottom.MoveCards(player.hand, player.discardPile);
 
         GameActions.Bottom.SelectFromPile(name, magicNumber, player.discardPile)
                 .SetMessage(GR.Common.Strings.GridSelection.MoveToDrawPile(magicNumber))

@@ -27,24 +27,7 @@ public class AnimatorConfig
     private Boolean CropCardImages = null;
     private Boolean DisplayBetaSeries = null;
 
-    public boolean GetDisplayBetaSeries()
-    {
-        if (DisplayBetaSeries == null)
-        {
-            if (config.has(DISPLAY_BETA_SERIES))
-            {
-                DisplayBetaSeries = config.getBool(DISPLAY_BETA_SERIES);
-            }
-            else
-            {
-                DisplayBetaSeries = false; // Default value
-            }
-        }
-
-        return DisplayBetaSeries;
-    }
-
-    public boolean GetCropCardImages()
+    public boolean CropCardImages()
     {
         if (CropCardImages == null)
         {
@@ -61,17 +44,7 @@ public class AnimatorConfig
         return CropCardImages;
     }
 
-    public void SetDisplayBetaSeries(boolean value, boolean flush)
-    {
-        config.setBool(DISPLAY_BETA_SERIES, DisplayBetaSeries = value);
-
-        if (flush)
-        {
-            Save();
-        }
-    }
-
-    public void SetCropCardImages(boolean value, boolean flush)
+    public void CropCardImages(boolean value, boolean flush)
     {
         config.setBool(CROP_CARD_PORTRAIT_KEY, CropCardImages = value);
 
@@ -81,7 +54,34 @@ public class AnimatorConfig
         }
     }
 
-    public void SetTrophyString(String value, boolean flush)
+    public boolean DisplayBetaSeries()
+    {
+        if (DisplayBetaSeries == null)
+        {
+            if (config.has(DISPLAY_BETA_SERIES))
+            {
+                DisplayBetaSeries = config.getBool(DISPLAY_BETA_SERIES);
+            }
+            else
+            {
+                DisplayBetaSeries = false; // Default value
+            }
+        }
+
+        return DisplayBetaSeries;
+    }
+
+    public void DisplayBetaSeries(boolean value, boolean flush)
+    {
+        config.setBool(DISPLAY_BETA_SERIES, DisplayBetaSeries = value);
+
+        if (flush)
+        {
+            Save();
+        }
+    }
+
+    public void TrophyString(String value, boolean flush)
     {
         config.setString(TROPHY_DATA_KEY, value);
 
@@ -110,7 +110,7 @@ public class AnimatorConfig
         }
     }
 
-    public String GetTrophyString()
+    public String TrophyString()
     {
         String data = config.getString(TROPHY_DATA_KEY);
         if (data == null)
@@ -124,7 +124,21 @@ public class AnimatorConfig
         return data;
     }
 
-    public void Initialize()
+    public boolean Save()
+    {
+        try
+        {
+            config.save();
+            return true;
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    protected void Initialize()
     {
         try
         {
@@ -141,36 +155,22 @@ public class AnimatorConfig
         }
     }
 
-    public void InitializeOptions()
+    protected void InitializeOptions()
     {
         ModPanel settingsPanel = new ModPanel();
         AnimatorStrings.Misc misc = GR.Animator.Strings.Misc;
-        AddToggle(settingsPanel, misc.UseCardHoveringAnimation, 400, 700, GetCropCardImages(), c -> SetCropCardImages(c.enabled, true));
+        AddToggle(settingsPanel, misc.UseCardHoveringAnimation, 400, 700, CropCardImages(), c -> CropCardImages(c.enabled, true));
 
         if (GR.Animator.Data.BetaLoadouts.size() > 0)
         {
-            AddToggle(settingsPanel, misc.DisplayBetaSeries, 400, 650, GetDisplayBetaSeries(), c -> SetDisplayBetaSeries(c.enabled, true));
+            AddToggle(settingsPanel, misc.DisplayBetaSeries, 400, 650, DisplayBetaSeries(), c -> DisplayBetaSeries(c.enabled, true));
         }
         else
         {
-            SetDisplayBetaSeries(false, false);
+            DisplayBetaSeries(false, false);
         }
 
         BaseMod.registerModBadge(GR.GetTexture(GR.GetPowerImage(DarkCubePower.POWER_ID)), AnimatorCharacter.NAME, "EatYourBeetS", "", settingsPanel);
-    }
-
-    public boolean Save()
-    {
-        try
-        {
-            config.save();
-            return true;
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-            return false;
-        }
     }
 
     protected void AddToggle(ModPanel settingsPanel, String label, float x, float y, boolean initialValue, Consumer<ModToggleButton> onToggle)

@@ -242,7 +242,7 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride
     protected void renderPortrait(SpriteBatch sb)
     {
-        if (cropPortrait && drawScale > 0.6f && drawScale < 1 && GR.Animator.Config.GetCropCardImages())
+        if (cropPortrait && drawScale > 0.6f && drawScale < 1 && GR.Animator.Config.CropCardImages())
         {
             int width = portraitImg.getWidth();
             int height = portraitImg.getHeight();

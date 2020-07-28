@@ -238,6 +238,11 @@ public class AnimatorPlayerData
                 if (loadoutID > 0)
                 {
                     SelectedLoadout = GetBaseLoadout(loadoutID);
+
+                    if (SelectedLoadout == null)
+                    {
+                        SelectedLoadout = GetBetaLoadout(loadoutID);
+                    }
                 }
 
                 for (int i = 1; i < items.length; i++)

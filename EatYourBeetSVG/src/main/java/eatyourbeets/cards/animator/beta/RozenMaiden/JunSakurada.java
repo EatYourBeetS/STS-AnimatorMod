@@ -11,10 +11,12 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.subscribers.OnCardCreatedSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class JunSakurada extends AnimatorCard
@@ -61,7 +63,7 @@ public class JunSakurada extends AnimatorCard
         GameActions.Bottom.StackPower(new JunSakuradaPower(p, magicNumber, this));
     }
 
-    public static class JunSakuradaPower extends AnimatorPower
+    public static class JunSakuradaPower extends AnimatorPower implements OnCardCreatedSubscriber
     {
         private AbstractCard JunToUpgrade = null;
         //upgrade this card when chance of temp card upgrades run out
@@ -76,6 +78,8 @@ public class JunSakurada extends AnimatorCard
                 this.JunToUpgrade = JunToUpgrade;
 
             updateDescription();
+
+            CombatStats.onCardCreated.Subscribe(this);
         }
 
         @Override
@@ -88,6 +92,25 @@ public class JunSakurada extends AnimatorCard
             else
             {
                 description = FormatDescription(0, amount);
+            }
+        }
+
+        @Override
+        public void OnCardCreated(AbstractCard card, boolean startOfBattle)
+        {
+            if (!GameUtilities.IsCurseOrStatus(card) && card.canUpgrade())
+            {
+                if (this.TryActivate())
+                {
+                    card.upgrade();
+                    card.flash();
+                    card.update();
+
+                    if (this.amount == 0)
+                    {
+                        this.CheckAndRemove();
+                    }
+                }
             }
         }
 
@@ -123,11 +146,6 @@ public class JunSakurada extends AnimatorCard
             if (this.amount >= 1)
             {
                 this.amount --;
-
-                if (this.amount == 0)
-                    GameActions.Last.Callback(this::CheckAndRemove);
-    //            else
-    //                this.flash();
 
                 return true;
             }

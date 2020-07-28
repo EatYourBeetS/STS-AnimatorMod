@@ -65,6 +65,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnStartOfTurnSubscriber> onStartOfTurn = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
     public static final GameEvent<OnCostRefreshSubscriber> onCostRefresh = new GameEvent<>();
+    public static final GameEvent<OnCardCreatedSubscriber> onCardCreated  = new GameEvent<>();
     public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = new GameEvent<>();
     public static final GameEvent<OnStatsClearedSubscriber> onStatsCleared = new GameEvent<>();
     public static final GameEvent<OnStanceChangedSubscriber> onStanceChanged = new GameEvent<>();
@@ -146,6 +147,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onApplyPower.Clear();
         onAfterDeath.Clear();
         onCostRefresh.Clear();
+        onCardCreated.Clear();
         onStartOfTurn.Clear();
         onStartOfTurnPostDraw.Clear();
         onPhaseChanged.Clear();
@@ -211,6 +213,20 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
     }
 
+    public static void OnCardCreated(AbstractCard card, boolean startOfBattle)
+    {
+        EYBCard c = JUtils.SafeCast(card, EYBCard.class);
+        if (c != null)
+        {
+            c.triggerWhenCreated(startOfBattle);
+        }
+
+        for (OnCardCreatedSubscriber s : onCardCreated.GetSubscribers())
+        {
+            s.OnCardCreated(card, startOfBattle);
+        }
+    }
+
     public static void OnShuffle(boolean triggerRelics)
     {
         for (OnShuffleSubscriber s : onShuffle.GetSubscribers())
@@ -244,6 +260,13 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         ClearStats();
 
+        onBattleEnd.Clear();
+        for (OnBattleStartSubscriber s : onBattleStart.GetSubscribers())
+        {
+            s.OnBattleStart();
+        }
+        onBattleStart.Clear();
+
         ArrayList<AbstractCard> cards = new ArrayList<>(player.drawPile.group);
         cards.addAll(player.hand.group);
         cards.addAll(player.discardPile.group);
@@ -251,21 +274,8 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
         for (AbstractCard c : cards)
         {
-            EYBCard temp = JUtils.SafeCast(c, EYBCard.class);
-            if (temp != null)
-            {
-                temp.triggerWhenCreated(true);
-            }
+            OnCardCreated(c, true);
         }
-
-        onBattleEnd.Clear();
-
-        for (OnBattleStartSubscriber s : onBattleStart.GetSubscribers())
-        {
-            s.OnBattleStart();
-        }
-
-        onBattleStart.Clear();
     }
 
     public void OnBattleEnd()

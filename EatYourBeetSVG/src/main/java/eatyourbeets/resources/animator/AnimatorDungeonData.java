@@ -123,6 +123,11 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             BannedCards.addAll(data.BannedCards);
             StartingSeries = GR.Animator.Data.GetBaseLoadout(data.startingLoadout);
 
+            if (StartingSeries == null && GR.Animator.Config.GetDisplayBetaSeries())
+            {
+                StartingSeries = GR.Animator.Data.GetBetaLoadout(data.startingLoadout);
+            }
+
             for (AnimatorLoadoutProxy proxy : data.loadouts)
             {
                 AnimatorRuntimeLoadout loadout = AnimatorRuntimeLoadout.TryCreate(GR.Animator.Data.GetLoadout(proxy.id, proxy.isBeta));
@@ -167,8 +172,8 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         final AbstractPlayer player = CombatStats.RefreshPlayer();
         if (player.chosenClass != GR.Animator.PlayerClass)
         {
-            AbstractDungeon.srcColorlessCardPool.group.removeIf(c -> c instanceof AnimatorCard);
-            AbstractDungeon.colorlessCardPool.group.removeIf(c -> c instanceof AnimatorCard);
+            AbstractDungeon.srcColorlessCardPool.group.removeIf(AnimatorCard.class::isInstance);
+            AbstractDungeon.colorlessCardPool.group.removeIf(AnimatorCard.class::isInstance);
             EYBEvent.UpdateEvents(false);
             AnimatorRelic.UpdateRelics(false);
 

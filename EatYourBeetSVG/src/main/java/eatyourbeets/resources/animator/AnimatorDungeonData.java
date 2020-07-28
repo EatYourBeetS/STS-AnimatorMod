@@ -123,7 +123,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             BannedCards.addAll(data.BannedCards);
             StartingSeries = GR.Animator.Data.GetBaseLoadout(data.startingLoadout);
 
-            if (StartingSeries == null && GR.Animator.Config.DisplayBetaSeries())
+            if (StartingSeries == null && GR.Animator.Config.GetDisplayBetaSeries())
             {
                 StartingSeries = GR.Animator.Data.GetBetaLoadout(data.startingLoadout);
             }

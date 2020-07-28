@@ -6,21 +6,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JUtils;
 
 public class ShowCardAndAdd_Patches
 {
-    public static void TriggerWhenCreated(AbstractCard card)
-    {
-        if (card instanceof EYBCard)
-        {
-            ((EYBCard)card).triggerWhenCreated(false);
-        }
-    }
-	
     @SpirePatch(clz = ShowCardAndAddToDrawPileEffect.class, method = "update")
     public static class ShowCardAndAddToDrawPileEffect_Update
     {

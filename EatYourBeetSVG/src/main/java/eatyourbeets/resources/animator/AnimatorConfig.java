@@ -24,29 +24,29 @@ public class AnimatorConfig
     private static final String DISPLAY_BETA_SERIES =  "TheAnimator-DisplayBetaSeries";
 
     private SpireConfig config;
-    private Boolean CropCardImages = null;
-    private Boolean DisplayBetaSeries = null;
+    private Boolean cropCardImages = null;
+    private Boolean displayBetaSeries = null;
 
     public boolean CropCardImages()
     {
-        if (CropCardImages == null)
+        if (cropCardImages == null)
         {
             if (config.has(CROP_CARD_PORTRAIT_KEY))
             {
-                CropCardImages = config.getBool(CROP_CARD_PORTRAIT_KEY);
+                cropCardImages = config.getBool(CROP_CARD_PORTRAIT_KEY);
             }
             else
             {
-                CropCardImages = true; // Default value
+                cropCardImages = true; // Default value
             }
         }
 
-        return CropCardImages;
+        return cropCardImages;
     }
 
     public void CropCardImages(boolean value, boolean flush)
     {
-        config.setBool(CROP_CARD_PORTRAIT_KEY, CropCardImages = value);
+        config.setBool(CROP_CARD_PORTRAIT_KEY, cropCardImages = value);
 
         if (flush)
         {
@@ -56,29 +56,43 @@ public class AnimatorConfig
 
     public boolean DisplayBetaSeries()
     {
-        if (DisplayBetaSeries == null)
+        if (displayBetaSeries == null)
         {
             if (config.has(DISPLAY_BETA_SERIES))
             {
-                DisplayBetaSeries = config.getBool(DISPLAY_BETA_SERIES);
+                displayBetaSeries = config.getBool(DISPLAY_BETA_SERIES);
             }
             else
             {
-                DisplayBetaSeries = false; // Default value
+                displayBetaSeries = false; // Default value
             }
         }
 
-        return DisplayBetaSeries;
+        return displayBetaSeries;
     }
 
     public void DisplayBetaSeries(boolean value, boolean flush)
     {
-        config.setBool(DISPLAY_BETA_SERIES, DisplayBetaSeries = value);
+        config.setBool(DISPLAY_BETA_SERIES, displayBetaSeries = value);
 
         if (flush)
         {
             Save();
         }
+    }
+
+    public String TrophyString()
+    {
+        String data = config.getString(TROPHY_DATA_KEY);
+        if (data == null)
+        {
+            Prefs prefs = SaveHelper.getPrefs(GR.Animator.PlayerClass.name());
+            data = prefs.getString(TROPHY_DATA_KEY);
+            config.setString(TROPHY_DATA_KEY, data);
+            Save();
+        }
+
+        return data;
     }
 
     public void TrophyString(String value, boolean flush)
@@ -110,20 +124,6 @@ public class AnimatorConfig
         }
     }
 
-    public String TrophyString()
-    {
-        String data = config.getString(TROPHY_DATA_KEY);
-        if (data == null)
-        {
-            Prefs prefs = SaveHelper.getPrefs(GR.Animator.PlayerClass.name());
-            data = prefs.getString(TROPHY_DATA_KEY);
-            config.setString(TROPHY_DATA_KEY, data);
-            Save();
-        }
-
-        return data;
-    }
-
     public boolean Save()
     {
         try
@@ -146,7 +146,7 @@ public class AnimatorConfig
 
             if (config.has(CROP_CARD_PORTRAIT_KEY))
             {
-                CropCardImages = config.getBool(CROP_CARD_PORTRAIT_KEY);
+                cropCardImages = config.getBool(CROP_CARD_PORTRAIT_KEY);
             }
         }
         catch (IOException e)

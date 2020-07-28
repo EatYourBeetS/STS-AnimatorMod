@@ -99,7 +99,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
                 this.availableLoadouts.add(loadout);
             }
         }
-        if (GR.Animator.Config.GetDisplayBetaSeries())
+        if (GR.Animator.Config.DisplayBetaSeries())
         {
             for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
             {

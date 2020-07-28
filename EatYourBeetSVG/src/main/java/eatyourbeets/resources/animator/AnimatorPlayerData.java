@@ -28,7 +28,7 @@ public class AnimatorPlayerData
     {
         AddBaseLoadouts();
         AddBetaLoadouts();
-        DeserializeTrophies(GR.Animator.Config.GetTrophyString());
+        DeserializeTrophies(GR.Animator.Config.TrophyString());
 
         if (SelectedLoadout == null || SelectedLoadout.ID < 0)
         {
@@ -166,7 +166,7 @@ public class AnimatorPlayerData
     {
         JUtils.LogInfo(AnimatorPlayerData.class, "Saving Trophies");
 
-        GR.Animator.Config.SetTrophyString(SerializeTrophies(), flush);
+        GR.Animator.Config.TrophyString(SerializeTrophies(), flush);
     }
 
     private void AddBaseLoadouts()

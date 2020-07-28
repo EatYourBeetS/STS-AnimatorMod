@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import eatyourbeets.cards.animator.beta.RozenMaiden.JunSakurada;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -37,7 +38,7 @@ public class ShowCardAndAdd_Patches
             ((EYBCard)card).triggerWhenCreated(false);
         }
     }
-
+	
     @SpirePatch(clz = ShowCardAndAddToDrawPileEffect.class, method = "update")
     public static class ShowCardAndAddToDrawPileEffect_Update
     {
@@ -48,7 +49,7 @@ public class ShowCardAndAdd_Patches
         {
             if (__instance.isDone)
             {
-                TriggerWhenCreated(_card.Get(__instance));
+                CombatStats.OnCardCreated(_card.Get(__instance), false);
             }
         }
     }
@@ -63,7 +64,7 @@ public class ShowCardAndAdd_Patches
         {
             if (__instance.isDone)
             {
-                TriggerWhenCreated(_card.Get(__instance));
+                CombatStats.OnCardCreated(_card.Get(__instance), false);
             }
         }
     }
@@ -78,7 +79,7 @@ public class ShowCardAndAdd_Patches
         {
             if (__instance.isDone)
             {
-                TriggerWhenCreated(_card.Get(__instance));
+                CombatStats.OnCardCreated(_card.Get(__instance), false);
             }
         }
     }

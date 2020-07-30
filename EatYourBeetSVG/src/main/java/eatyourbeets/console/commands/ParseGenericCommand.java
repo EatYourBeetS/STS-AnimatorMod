@@ -118,7 +118,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                 if (tokens[1].equals("set-zoom"))
                 {
-                    GR.Animator.Config.SetCropCardImages(tokens.length > 2 && tokens[2].equals("true"), true);
+                    GR.Animator.Config.CropCardImages(tokens.length > 2 && tokens[2].equals("true"), true);
                     return;
                 }
 

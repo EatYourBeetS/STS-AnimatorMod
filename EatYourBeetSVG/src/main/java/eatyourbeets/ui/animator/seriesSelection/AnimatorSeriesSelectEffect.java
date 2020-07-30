@@ -69,7 +69,7 @@ public class AnimatorSeriesSelectEffect extends EYBEffect
             container.allCards.add(0, c);
         }
 
-        if (GR.Animator.Config.GetDisplayBetaSeries())
+        if (GR.Animator.Config.DisplayBetaSeries())
         {
             container.allCards.addAll(container.betaCards);
         }

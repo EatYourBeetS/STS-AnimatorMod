@@ -41,12 +41,7 @@ public class WordToken extends CTToken
         }
         else if (modifier.equals("s"))
         {
-            if (context.card != null && context.card.magicNumber == 1)
-            {
-                return GetWidth(context.font, text);
-            }
-
-            return GetWidth(context.font, text + "s");
+            return GetWidth(context.font, text + "_");
         }
         else
         {
@@ -169,38 +164,43 @@ public class WordToken extends CTToken
         {
             overrideColor.a = context.card.transparency;
 
-            if (tooltip == GR.Tooltips.Starter && !AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty())
+            if (tooltip == GR.Tooltips.Limited)
             {
-                overrideColor.a = context.card.transparency * 0.6f;
-            }
-            else
-            {
-                Integer t = null;
-                if (tooltip == GR.Tooltips.Limited)
+                int t = CombatStats.GetCombatData(context.card.cardID, 0);
+                if (!modifier.isEmpty())
                 {
-                    t = CombatStats.GetCombatData(context.card.cardID, null);
-                }
-                else if (tooltip == GR.Tooltips.SemiLimited)
-                {
-                    t = CombatStats.GetTurnData(context.card.cardID, null);
-                }
-
-                if (t != null)
-                {
-                    if (!modifier.isEmpty())
-                    {
-                        int n = JUtils.ParseInt(modifier, 0);
-                        text += "(" + Math.max(0, n - t) + ")";
-                        if (t >= n)
-                        {
-                            overrideColor.a = context.card.transparency * 0.6f;
-                        }
-                    }
-                    else if (t > 0)
+                    int n = JUtils.ParseInt(modifier, 0);
+                    text += "(" + (n - t) + ")";
+                    if (t >= n)
                     {
                         overrideColor.a = context.card.transparency * 0.6f;
                     }
                 }
+                else if (t > 0)
+                {
+                    overrideColor.a = context.card.transparency * 0.6f;
+                }
+            }
+            else if (tooltip == GR.Tooltips.SemiLimited)
+            {
+                int t = CombatStats.GetTurnData(context.card.cardID, 0);
+                if (!modifier.isEmpty())
+                {
+                    int n = JUtils.ParseInt(modifier, 0);
+                    text += "(" + (n - t) + ")";
+                    if (t >= n)
+                    {
+                        overrideColor.a = context.card.transparency * 0.6f;
+                    }
+                }
+                else if (t > 0)
+                {
+                    overrideColor.a = context.card.transparency * 0.6f;
+                }
+            }
+            else if (tooltip == GR.Tooltips.Starter && !AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty())
+            {
+                overrideColor.a = context.card.transparency * 0.6f;
             }
 
             Render(sb, context, text, overrideColor);

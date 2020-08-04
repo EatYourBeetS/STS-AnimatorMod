@@ -89,6 +89,15 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static boolean HasActivatedSemiLimited(String id) { return turnData.containsKey(id); }
     public static boolean TryActivateLimited(String id) { return combatData.put(id, 1) == null; }
     public static boolean TryActivateSemiLimited(String id) { return turnData.put(id, 1) == null; }
+
+    public static boolean HasActivatedLimited(String id, int cap)
+    { return combatData.containsKey(id) && (int)combatData.get(id) >= cap; }
+    public static boolean HasActivatedSemiLimited(String id, int cap)
+    { return turnData.containsKey(id) && (int)turnData.get(id) >= cap; }
+    public static boolean TryActivateLimited(String id, int cap)
+    { int t = GetCombatData(id, 0); return t < cap && SetCombatData(id,t + 1) <= cap; }
+    public static boolean TryActivateSemiLimited(String id, int cap)
+    { int t = GetTurnData(id, 0); return t < cap && SetTurnData(id,t + 1) <= cap; }
     //@Formatter: On
 
     protected CombatStats()

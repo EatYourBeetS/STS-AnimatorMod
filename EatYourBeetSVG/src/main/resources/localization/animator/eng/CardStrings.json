@@ -369,7 +369,7 @@
 			"NAME": "Zadkiel"
 		}
 	},
-	
+
 	"BETA:COLORLESS":
 	{
 	},
@@ -776,7 +776,7 @@
 			"UPGRADE_DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! [Block]. || When Drawn: Gain [F]."
 		}
 	},
-	
+
 	"COLORLESS:RARE":
 	{
 		"animator:Emilia":
@@ -938,17 +938,17 @@
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "Channel 1 [Random Orb]. || On Synergy or when ** Discarded: Gain [I].",
+			"DESCRIPTION": "If you discarded ** a card this turn: ** Enter <IS>. || Synergy: Gain [I].",
 			"NAME": "Ain"
 		},
 		"animator:Aisha":
 		{
-			"DESCRIPTION": "Attack 1 additional time ** for each Orb you have. || <LIM>. At the start of ** combat: Gain 1 Orb Slot.",
+			"DESCRIPTION": "Attack 1 additional time ** for each Orb you have. || <LIM>(2). At the start of ** combat: Gain 1 Orb Slot.",
 			"NAME": "Aisha"
 		},
 		"animator:Ara":
 		{
-			"DESCRIPTION": "<DRW> for every ** {Debuff} on the enemy. ** Discard 1 card. || If you discarded a ** {Power}: Gain 2 [F][A].",
+			"DESCRIPTION": "<DRW> for every ** {Debuff} on the enemy. ** Discard 1 card. || If you discarded a ** {Power}: Enter <AS>",
 			"NAME": "Ara"
 		},
 		"animator:Chung":
@@ -958,7 +958,7 @@
 		},
 		"animator:Ciel":
 		{
-			"DESCRIPTION": "The enemy takes !M! more ** damage on the next attack. || Synergy: Increase the ** damage of every copy of ** {Lu} by !S! this combat.",
+			"DESCRIPTION": "Starter: Apply !M! [Vulnerable] [~Lock-On]. || Increase the damage ** of every copy of {Lu} ** by !S! this combat.",
 			"NAME": "Ciel"
 		},
 		"animator:Elesis":
@@ -970,14 +970,14 @@
 		},
 		"animator:Elsword":
 		{
-			"DESCRIPTION": "Apply !S! [Burning]. ** Cycle !M! card(s). || When Discarded: ** Channel 1 [Fire].",
+			"DESCRIPTION": "Cycle !M! card(s). || If the enemy ** has [Burning]: Motivate 1. ** Otherwise: Channel 1 [Fire].",
 			"NAME": "Elsword"
 		},
 		"animator:Eve":
 		{
-			"DESCRIPTION": "Play 1 {Orb Core}. || When you Synergize, deal 1 ** damage to an enemy and ** increase this damage by 1. ** Does not Stack.",
+			"DESCRIPTION": "Play 1 {Orb Core}. || When you Synergize: Deal ** 1 damage to an enemy and ** increase this damage by 1. ** Does not Stack.",
 			"NAME": "Eve",
-			"UPGRADE_DESCRIPTION": "Play 1 {Orb Core}. ** Gain !M! Orb Slot. || When you Synergize, deal 1 ** damage to an enemy and ** increase this damage by 1. ** Does not Stack."
+			"UPGRADE_DESCRIPTION": "Play 1 {Orb Core}. ** Gain !M! Orb Slot. || When you Synergize: Deal ** 1 damage to an enemy and ** increase this damage by 1. ** Does not Stack."
 		},
 		"animator:Laby":
 		{
@@ -988,7 +988,7 @@
 		},
 		"animator:Lu":
 		{
-			"DESCRIPTION": "Channel 1 [Frost] [Dark]. || When Exhausted: ** Evoke ALL Orbs.",
+			"DESCRIPTION": "Channel 1 [Frost] [Dark]. || When Drawn: If ** you have no Stance, ** enter <FS>.",
 			"NAME": "Lu"
 		},
 		"animator:Raven":
@@ -1770,7 +1770,7 @@
 		},
 		"animator:ElricAlphonseAlt":
 		{
-			"DESCRIPTION": "Gain 1 Orb Slot. ** Channel !S! [Lightning]. ** Synergy: Gain !M! [Plated Armor].",
+			"DESCRIPTION": "Gain 1 Orb Slot. ** Channel !S! [Lightning]. || Synergy: Gain !M! [Plated Armor].",
 			"NAME": "Armored Alphonse"
 		},
 		"animator:EntouJyuu":

@@ -40,6 +40,6 @@ public class DolaCouronne extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
-        .SetOptions(false, false, false);
+        .SetOptions(false, false, true);
     }
 }

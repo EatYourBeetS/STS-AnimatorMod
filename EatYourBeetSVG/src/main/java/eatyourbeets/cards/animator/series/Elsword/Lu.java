@@ -2,15 +2,16 @@ package eatyourbeets.cards.animator.series.Elsword;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.defect.EvokeAllOrbsAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Frost;
+import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.vfx.combat.ClawEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -38,9 +39,14 @@ public class Lu extends AnimatorCard
     }
 
     @Override
-    public void triggerOnExhaust()
+    public void triggerWhenDrawn()
     {
-        GameActions.Bottom.Add(new EvokeAllOrbsAction());
+        super.triggerWhenDrawn();
+
+        if (player.stance == null || player.stance.ID.equals(NeutralStance.STANCE_ID))
+        {
+            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+        }
     }
 
     @Override

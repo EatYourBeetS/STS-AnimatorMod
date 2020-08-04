@@ -3,10 +3,12 @@ package eatyourbeets.cards.base.cardTextParsing;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.JUtils;
 
 public class WordToken extends CTToken
 {
@@ -27,6 +29,23 @@ public class WordToken extends CTToken
         else
         {
             return Character.isLetterOrDigit(character) || ("_*+-".indexOf(character) >= 0);
+        }
+    }
+
+    @Override // TODO: improve modifier logic
+    public float GetWidth(CTContext context)
+    {
+        if (modifier.isEmpty())
+        {
+            return GetWidth(context.font, text);
+        }
+        else if (modifier.equals("s"))
+        {
+            return GetWidth(context.font, text + "_");
+        }
+        else
+        {
+            return GetWidth(context.font, text + "(0)");
         }
     }
 
@@ -108,9 +127,6 @@ public class WordToken extends CTToken
                 token = new WordToken(word);
             }
 
-            parser.AddToken(token);
-            token.modifier = tempBuilder.toString();
-
             if (parser.card != null)
             {
                 EYBCardTooltip tooltip = CardTooltips.FindByName(word.toLowerCase());
@@ -121,6 +137,9 @@ public class WordToken extends CTToken
                     token.tooltip = tooltip;
                 }
             }
+
+            token.modifier = tempBuilder.toString();
+            parser.AddToken(token);
 
             return i;
         }
@@ -143,14 +162,45 @@ public class WordToken extends CTToken
 
         if (overrideColor != null)
         {
-            if (tooltip == GR.Tooltips.SemiLimited && CombatStats.HasActivatedSemiLimited(context.card.cardID)
-            || (tooltip == GR.Tooltips.Limited && CombatStats.HasActivatedLimited(context.card.cardID)))
+            overrideColor.a = context.card.transparency;
+
+            if (tooltip == GR.Tooltips.Limited)
             {
-                overrideColor.a = context.card.transparency * 0.6f;// new Color(1f, 0.4f, 0.1f, context.card.transparency));
+                int t = CombatStats.GetCombatData(context.card.cardID, 0);
+                if (!modifier.isEmpty())
+                {
+                    int n = JUtils.ParseInt(modifier, 0);
+                    text += "(" + (n - t) + ")";
+                    if (t >= n)
+                    {
+                        overrideColor.a = context.card.transparency * 0.6f;
+                    }
+                }
+                else if (t > 0)
+                {
+                    overrideColor.a = context.card.transparency * 0.6f;
+                }
             }
-            else
+            else if (tooltip == GR.Tooltips.SemiLimited)
             {
-                overrideColor.a = context.card.transparency;
+                int t = CombatStats.GetTurnData(context.card.cardID, 0);
+                if (!modifier.isEmpty())
+                {
+                    int n = JUtils.ParseInt(modifier, 0);
+                    text += "(" + (n - t) + ")";
+                    if (t >= n)
+                    {
+                        overrideColor.a = context.card.transparency * 0.6f;
+                    }
+                }
+                else if (t > 0)
+                {
+                    overrideColor.a = context.card.transparency * 0.6f;
+                }
+            }
+            else if (tooltip == GR.Tooltips.Starter && !AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty())
+            {
+                overrideColor.a = context.card.transparency * 0.6f;
             }
 
             Render(sb, context, text, overrideColor);

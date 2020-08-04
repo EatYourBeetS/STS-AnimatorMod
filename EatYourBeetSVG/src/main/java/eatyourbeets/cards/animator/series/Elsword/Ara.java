@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -42,10 +43,9 @@ public class Ara extends AnimatorCard
         .SetOptions(false, false, false)
         .AddCallback(cards ->
         {
-            if (cards.get(0).type.equals(CardType.POWER))
+            if (cards.size() > 0 && cards.get(0).type.equals(CardType.POWER))
             {
-                GameActions.Bottom.GainAgility(2);
-                GameActions.Bottom.GainForce(2);
+                GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
             }
         });
     }

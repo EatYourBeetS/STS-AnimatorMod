@@ -71,7 +71,7 @@ public class Aisha extends AnimatorCard
 
         if (startOfBattle && CombatStats.TryActivateLimited(cardID, 2))
         {
-            GameEffects.Queue.ShowCopy(this);
+            GameEffects.List.ShowCopy(this);
             GameActions.Bottom.GainOrbSlots(1);
         }
     }

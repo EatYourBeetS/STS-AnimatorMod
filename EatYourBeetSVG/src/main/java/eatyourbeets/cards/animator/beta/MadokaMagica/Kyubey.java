@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.beta.MadokaMagica;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.CreateRandomCurses;
@@ -9,8 +9,9 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
-public class Kyubey extends AnimatorCard implements StartupCard
+public class Kyubey extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Kyubey.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None);
 
@@ -33,10 +34,14 @@ public class Kyubey extends AnimatorCard implements StartupCard
     }
 
     @Override
-    public boolean atBattleStartPreDraw()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-        GameActions.Bottom.Add(new CreateRandomCurses(1, player.discardPile));
+        super.triggerWhenCreated(startOfBattle);
 
-        return true;
+        if (startOfBattle)
+        {
+            GameEffects.List.ShowCopy(this);
+            GameActions.Bottom.Add(new CreateRandomCurses(1, player.discardPile));
+        }
     }
 }

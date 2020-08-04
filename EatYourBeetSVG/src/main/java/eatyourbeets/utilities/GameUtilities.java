@@ -130,27 +130,22 @@ public class GameUtilities
         copy.targetAngle = original.targetAngle;
     }
 
-    public static void DecreaseBlock(AbstractCard card, int amount, boolean temporary)
-    {
-        ModifyBlock(card, Math.max(0, card.baseBlock - amount), temporary);
-    }
-
     public static void DecreaseDamage(AbstractCard card, int amount, boolean temporary)
     {
         ModifyDamage(card, Math.max(0, card.baseDamage - amount), temporary);
     }
-	
+
+    public static void DecreaseMagicNumber(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyMagicNumber(card, Math.max(0, card.baseMagicNumber - amount), temporary);
+    }
+
     public static void DecreaseSecondaryValue(AbstractCard card, int amount, boolean temporary)
     {
         if (card instanceof EYBCard)
         {
             ModifySecondaryValue(card, Math.max(0, ((EYBCard)card).baseSecondaryValue - amount), temporary);
         }
-    }
-
-    public static void DecreaseMagicNumber(AbstractCard card, int amount, boolean temporary)
-    {
-        ModifyMagicNumber(card, Math.max(0, card.baseMagicNumber - amount), temporary);
     }
 
     public static CardGroup FindCardGroup(AbstractCard card, boolean includeLimbo)
@@ -764,16 +759,11 @@ public class GameUtilities
         return player != null && player.stance != null && player.stance.ID.equals(stanceID);
     }
 
-    public static void IncreaseBlock(AbstractCard card, int amount, boolean temporary)
-    {
-        ModifyBlock(card, card.baseBlock + amount, temporary);
-    }
-
     public static void IncreaseDamage(AbstractCard card, int amount, boolean temporary)
     {
         ModifyDamage(card, card.baseDamage + amount, temporary);
     }
-	
+
     public static void IncreaseMagicNumber(AbstractCard card, int amount, boolean temporary)
     {
         ModifyMagicNumber(card, card.baseMagicNumber + amount, temporary);
@@ -849,16 +839,6 @@ public class GameUtilities
         card.isCostModifiedForTurn = (card.cost != card.costForTurn);
     }
 
-    public static void ModifyBlock(AbstractCard card, int amount, boolean temporary)
-    {
-        if (!temporary)
-        {
-            card.baseBlock = amount;
-        }
-        card.block = amount;
-        card.isBlockModified = (card.block != card.baseBlock);
-    }
-
     public static void ModifyDamage(AbstractCard card, int amount, boolean temporary)
     {
         if (!temporary)
@@ -868,7 +848,7 @@ public class GameUtilities
         card.damage = amount;
         card.isDamageModified = (card.damage != card.baseDamage);
     }
-	
+
     public static void ModifyMagicNumber(AbstractCard card, int amount, boolean temporary)
     {
         if (!temporary)

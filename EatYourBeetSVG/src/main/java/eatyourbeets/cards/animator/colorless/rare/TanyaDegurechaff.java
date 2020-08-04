@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.colorless.rare;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,9 +11,10 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class TanyaDegurechaff extends AnimatorCard implements StartupCard
+public class TanyaDegurechaff extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(TanyaDegurechaff.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS);
     static
@@ -65,15 +65,14 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
     }
 
     @Override
-    public boolean atBattleStartPreDraw()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-        if (CombatStats.TryActivateLimited(cardID))
+        super.triggerWhenCreated(startOfBattle);
+
+        if (startOfBattle && CombatStats.TryActivateLimited(cardID))
         {
+            GameEffects.List.ShowCopy(this);
             GameActions.Bottom.MakeCardInDrawPile(new TanyaDegurechaff_Type95());
-
-            return true;
         }
-
-        return false;
     }
 }

@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.colorless.rare;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -22,7 +21,7 @@ import eatyourbeets.utilities.*;
 
 import java.util.HashSet;
 
-public class Patchouli extends AnimatorCard implements StartupCard
+public class Patchouli extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Patchouli.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
     static
@@ -135,16 +134,15 @@ public class Patchouli extends AnimatorCard implements StartupCard
     }
 
     @Override
-    public boolean atBattleStartPreDraw()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-        if (CombatStats.TryActivateLimited(cardID))
+        super.triggerWhenCreated(startOfBattle);
+
+        if (startOfBattle && CombatStats.TryActivateLimited(cardID))
         {
+            GameEffects.List.ShowCopy(this);
             GameActions.Bottom.Wait(0.3f);
             GameActions.Bottom.MakeCardInDiscardPile(JUtils.GetRandomElement(OrbCore.GetAllCores()).makeCopy());
-
-            return true;
         }
-
-        return false;
     }
 }

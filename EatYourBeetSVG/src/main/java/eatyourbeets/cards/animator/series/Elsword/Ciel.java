@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.LockOnPower;
@@ -54,10 +53,11 @@ public class Ciel extends AnimatorCard
             GameActions.Bottom.StackPower(new LockOnPower(m, magicNumber));
         }
 
-        for (AbstractCard card : GameUtilities.GetAllInBattleCopies(Lu.DATA.ID))
+        GameActions.Bottom.ModifyAllCopies(Lu.DATA.ID)
+        .AddCallback(c ->
         {
-            card.damage = (card.baseDamage += secondaryValue);
-            card.flash();
-        }
+            GameUtilities.IncreaseDamage(c, secondaryValue, false);
+            c.flash();
+        });
     }
 }

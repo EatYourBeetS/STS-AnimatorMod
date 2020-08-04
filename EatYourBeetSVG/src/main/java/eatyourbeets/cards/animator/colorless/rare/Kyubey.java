@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.colorless.rare;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,10 +9,11 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 import java.util.ArrayList;
 
-public class Kyubey extends AnimatorCard implements StartupCard
+public class Kyubey extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Kyubey.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
@@ -38,10 +38,14 @@ public class Kyubey extends AnimatorCard implements StartupCard
     }
 
     @Override
-    public boolean atBattleStartPreDraw()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-        GameActions.Bottom.Add(new CreateRandomCurses(1, player.discardPile));
+        super.triggerWhenCreated(startOfBattle);
 
-        return true;
+        if (startOfBattle)
+        {
+            GameEffects.List.ShowCopy(this);
+            GameActions.Bottom.Add(new CreateRandomCurses(1, player.discardPile));
+        }
     }
 }

@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
 import basemod.abstracts.CustomSavable;
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -14,9 +13,10 @@ import eatyourbeets.cards.base.EYBCardPreview;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, StartupCard
+public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
 {
     public enum Form
     {
@@ -240,13 +240,14 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
     }
 
     @Override
-    public boolean atBattleStartPreDraw()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-        if (currentForm == Form.Dark)
-        {
-            GameActions.Bottom.LoseHP(magicNumber, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        super.triggerWhenCreated(startOfBattle);
 
-            return true;
+        if (currentForm == Form.Dark && startOfBattle)
+        {
+            GameEffects.List.ShowCopy(this);
+            GameActions.Bottom.LoseHP(magicNumber, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         }
         else if (currentForm == Form.None)
         {
@@ -273,11 +274,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
                     }
                 }
             });
-
-            return true;
         }
-
-        return false;
     }
 
     private void AddDamageBonus(int amount)

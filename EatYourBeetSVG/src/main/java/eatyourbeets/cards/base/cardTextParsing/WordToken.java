@@ -170,7 +170,7 @@ public class WordToken extends CTToken
                 if (!modifier.isEmpty())
                 {
                     int n = JUtils.ParseInt(modifier, 0);
-                    text += "(" + (n - t) + ")";
+                    text += "(" + Math.max(0, n - t) + ")";
                     if (t >= n)
                     {
                         overrideColor.a = context.card.transparency * 0.6f;
@@ -187,7 +187,7 @@ public class WordToken extends CTToken
                 if (!modifier.isEmpty())
                 {
                     int n = JUtils.ParseInt(modifier, 0);
-                    text += "(" + (n - t) + ")";
+                    text += "(" + Math.max(0, n - t) + ")";
                     if (t >= n)
                     {
                         overrideColor.a = context.card.transparency * 0.6f;

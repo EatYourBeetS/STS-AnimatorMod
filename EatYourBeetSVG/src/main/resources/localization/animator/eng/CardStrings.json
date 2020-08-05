@@ -988,7 +988,7 @@
 		},
 		"animator:Lu":
 		{
-			"DESCRIPTION": "Channel 1 [Frost] [Dark]. || When Drawn: If ** you have no Stance, ** enter <FS>.",
+			"DESCRIPTION": "Channel 1 [Frost] [Dark]. || When Drawn: If ** in Neutral Stance, ** enter <FS>.",
 			"NAME": "Lu"
 		},
 		"animator:Raven":
@@ -1007,9 +1007,9 @@
 	{
 		"animator:Alexander":
 		{
-			"DESCRIPTION": "Lose no [F] next turn. || When Exhausted: ** Play this card.",
+			"DESCRIPTION": "Lose no [F] next turn. || [F] Stance: Gain 1 [Plated Armor]. || When Exhausted: ** Play this card.",
 			"NAME": "Alexander",
-			"UPGRADE_DESCRIPTION": "Gain [F]. || When Exhausted: ** Play this card."
+			"UPGRADE_DESCRIPTION": "Gain [F]. || [F] Stance: Gain 1 [Plated Armor]. || When Exhausted: ** Play this card."
 		},
 		"animator:Archer":
 		{
@@ -1023,12 +1023,13 @@
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "<FS>: Gain !M! [F]. Otherwise: Enter <FS>. || If the enemy dies or ** loses its [Block]: Gain !S! [Block].",
+			"DESCRIPTION": "[F] Stance: Gain !M! [F]. Otherwise: Enter [F] Stance. || If the enemy dies or loses ** its Block: Gain !S! Block.",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
 		{
-			"DESCRIPTION": "Apply !M! [Shackles], ** then gain [F] [I]. || <SLM>. ** {~Synergy} or Exhaust: ** Channel 1 [Dark].",
+			"DESCRIPTION": "Channel 1 [Dark]. || Synergy or Exhaust, ** Choose !S!: Evoke your ** first Orb, Apply !M! [Shackles], ** or Gain [F] [I].",
+			"EXTENDED_DESCRIPTION": ["Evoke your first Orb.", "Apply {0} [Shackles].", "Gain [F] [I]."],
 			"NAME": "Caster"
 		},
 		"animator:EmiyaShirou":
@@ -1038,7 +1039,7 @@
 		},
 		"animator:Gilgamesh":
 		{
-			"DESCRIPTION": "{~Unique}. Whenever you ** obtain a {Relic}, except by ** purchasing it: Gain !S! ** [Gold] and permanently ** Upgrade this card.",
+			"DESCRIPTION": "{~Unique}. Whenever you ** obtain a {Relic}, except ** by purchasing it: Gain ** !S! [Gold] and permanently ** Upgrade this card.",
 			"NAME": "Gilgamesh"
 		},
 		"animator:Illya":
@@ -1053,7 +1054,7 @@
 		},
 		"animator:Rider":
 		{
-			"DESCRIPTION": "Apply !M! [Shackles]. || This card {Synergizes} ** with {Martial Artists} ** and {Spellcasters}.",
+			"DESCRIPTION": "Apply !M! [Shackles]. || If you have a {Martial ** Artist} and a Spellcaster ** in hand: Gain [A] [I].",
 			"NAME": "Rider"
 		},
 		"animator:RinTohsaka":
@@ -1068,7 +1069,7 @@
 		},
 		"animator:SakuraMatou":
 		{
-			"DESCRIPTION": "Apply !M! [Constricted]. || Halve the damage of ** your rightmost [Dark]. ** Apply additional [Constricted] ** equal to that amount.",
+			"DESCRIPTION": "Apply !M! [Constricted] to ALL ** enemies. Apply !S! ** additional [Constricted] for ** each [Dark] you have.",
 			"NAME": "Sakura Matou"
 		},
 		"animator:ShinjiMatou":

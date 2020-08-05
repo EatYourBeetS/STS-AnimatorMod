@@ -813,6 +813,11 @@ public class GameUtilities
         return orb != null && !(orb instanceof EmptyOrbSlot);
     }
 
+    public static boolean IsValidTarget(AbstractMonster enemy)
+    {
+        return enemy != null && !IsDeadOrEscaped(enemy);
+    }
+
     public static void ModifyCostForCombat(AbstractCard card, int amount, boolean relative)
     {
         int previousCost = card.cost;

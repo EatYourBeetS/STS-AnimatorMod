@@ -44,14 +44,14 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
     private final Vector2 origin = new Vector2();
     private float arrowScaleTimer;
 
-    public SelectCreature(Targeting targeting)
+    public SelectCreature(Targeting targeting, String sourceName)
     {
         super(ActionType.SPECIAL);
 
         this.card = null;
         this.targeting = targeting;
 
-        Initialize(amount);
+        Initialize(amount, sourceName);
     }
 
     public SelectCreature(AbstractCard card)
@@ -103,8 +103,23 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
             }
         }
 
-        Initialize(amount);
+        Initialize(amount, card.name);
     }
+
+    public SelectCreature SetMessage(String message)
+    {
+        this.message = message;
+
+        return this;
+    }
+
+    public SelectCreature SetMessage(String format, Object... args)
+    {
+        this.message = JUtils.Format(format, args);
+
+        return this;
+    }
+
 
     @Override
     protected void FirstUpdate()

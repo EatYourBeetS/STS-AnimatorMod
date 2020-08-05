@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.JUtils;
@@ -36,6 +37,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
 
         this.groups = groups;
         this.canCancel = false;
+        this.message = GR.Common.Strings.GridSelection.ChooseCards;
 
         Initialize(amount, sourceName);
     }

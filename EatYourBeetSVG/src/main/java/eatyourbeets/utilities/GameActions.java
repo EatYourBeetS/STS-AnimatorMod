@@ -39,6 +39,9 @@ import eatyourbeets.actions.handSelection.SelectFromHand;
 import eatyourbeets.actions.monsters.TalkAction;
 import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.actions.pileSelection.*;
+import eatyourbeets.actions.player.ChangeStance;
+import eatyourbeets.actions.player.GainGold;
+import eatyourbeets.actions.player.SpendEnergy;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.actions.powers.ReduceStrength;
 import eatyourbeets.actions.special.*;
@@ -258,9 +261,9 @@ public final class GameActions
         return Add(new ChangeStanceAction(stance));
     }
 
-    public ChangeStanceAction ChangeStance(String stanceName)
+    public ChangeStance ChangeStance(String stanceName)
     {
-        return Add(new ChangeStanceAction(stanceName));
+        return Add(new ChangeStance(stanceName));
     }
 
     public ChannelAction ChannelOrb(AbstractOrb orb, boolean autoEvoke)
@@ -746,9 +749,9 @@ public final class GameActions
         return Add(new SFXAction(key, pitchVar));
     }
 
-    public SelectCreature SelectCreature(SelectCreature.Targeting target)
+    public SelectCreature SelectCreature(SelectCreature.Targeting target, String source)
     {
-        return Add(new SelectCreature(target));
+        return Add(new SelectCreature(target, source));
     }
 
     public SelectCreature SelectCreature(AbstractCard card)

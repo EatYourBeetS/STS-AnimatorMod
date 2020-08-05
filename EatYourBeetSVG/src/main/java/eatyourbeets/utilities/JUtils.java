@@ -14,6 +14,7 @@ import java.net.URISyntaxException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
@@ -203,6 +204,12 @@ public class JUtils
     {
         int size = list.size();
         return (size > 0) ? list.get(rng.random(list.size() - 1)) : null;
+    }
+
+    public static int IncrementMapElement(Map map, Object key)
+    {
+        //noinspection unchecked
+        return (int)map.compute(key, (k, v) -> v == null ? 1 : (int)v + 1);
     }
 
     public static <T> String JoinStrings(String delimiter, T[] values)

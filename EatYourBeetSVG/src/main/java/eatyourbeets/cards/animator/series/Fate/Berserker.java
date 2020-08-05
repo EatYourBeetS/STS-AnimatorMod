@@ -21,8 +21,8 @@ public class Berserker extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(23, 0, 2, 12);
-        SetUpgrade(0, 0, 1, 2);
+        Initialize(18, 0, 2, 12);
+        SetUpgrade(6, 0, 0, 0);
         SetScaling(0, 0, 3);
 
         SetSynergy(Synergies.Fate);
@@ -45,7 +45,7 @@ public class Berserker extends AnimatorCard
             GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
         }
 
-        if (GameUtilities.InStance(ForceStance.STANCE_ID))
+        if (ForceStance.IsActive())
         {
             GameActions.Bottom.GainForce(magicNumber);
         }

@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -134,7 +133,6 @@ public class Fredrika extends AnimatorCard
 
             GameActions.Bottom.SelectFromPile(name, 1, cardGroup)
             .SetOptions(false, false)
-            .SetMessage(CardRewardScreen.TEXT[1])
             .AddCallback(cards ->
             {
                 ChangeForm(((Fredrika) cards.get(0)).currentForm);

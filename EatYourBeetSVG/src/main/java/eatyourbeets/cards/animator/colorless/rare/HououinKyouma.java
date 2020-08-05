@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -57,7 +56,6 @@ public class HououinKyouma extends AnimatorCard
         {
             GameActions.Bottom.SelectFromPile(name, 1, choices)
             .SetOptions(false, false)
-            .SetMessage(CardRewardScreen.TEXT[1])
             .AddCallback(cards -> GameActions.Bottom.MakeCardInHand(cards.get(0)).AddCallback(GameUtilities::Retain));
         }
     }

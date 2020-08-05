@@ -1,4 +1,4 @@
-package eatyourbeets.actions.special;
+package eatyourbeets.actions.cardManipulation;
 
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import eatyourbeets.actions.EYBAction;

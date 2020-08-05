@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Frost;
-import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.vfx.combat.ClawEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.stances.ForceStance;
@@ -43,10 +42,7 @@ public class Lu extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        if (player.stance == null || player.stance.ID.equals(NeutralStance.STANCE_ID))
-        {
-            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
-        }
+        GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID).RequireNeutralStance(true);
     }
 
     @Override

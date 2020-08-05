@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardPreview;
@@ -258,7 +257,6 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
 
             GameActions.Bottom.SelectFromPile(name, 1, group)
             .SetOptions(false, false)
-            .SetMessage(CardRewardScreen.TEXT[1])
             .AddCallback(cards ->
             {
                 if (cards != null && cards.size() > 0)

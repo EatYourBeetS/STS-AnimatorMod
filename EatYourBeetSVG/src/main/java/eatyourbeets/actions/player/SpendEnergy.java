@@ -1,4 +1,4 @@
-package eatyourbeets.actions.special;
+package eatyourbeets.actions.player;
 
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.actions.EYBActionWithCallbackT2;

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -122,10 +123,12 @@ public abstract class EYBAction extends AbstractGameAction
 
         if (name != null && !name.equals(""))
         {
-            return message + " [" + name + "]";
+            return JUtils.Format(message, amount) + " [" + name + "]";
         }
-
-        return message;
+        else
+        {
+            return JUtils.Format(message, amount);
+        }
     }
 
     public String CreateMessage()

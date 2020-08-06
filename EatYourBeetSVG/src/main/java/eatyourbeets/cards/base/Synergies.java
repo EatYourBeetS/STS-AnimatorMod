@@ -187,30 +187,41 @@ public class Synergies
         }
     }
 
-    public static boolean WouldSynergize(AnimatorCard card)
+    public static boolean WouldSynergize(AbstractCard card)
     {
         return WouldSynergize(card, lastCardPlayed);
     }
 
-    public static boolean WouldSynergize(AnimatorCard card, AbstractCard abstractCard)
-    {
-        return WouldSynergize(card, JUtils.SafeCast(abstractCard, AnimatorCard.class));
-    }
-
-    public static boolean WouldSynergize(AnimatorCard card, AnimatorCard other)
+    public static boolean WouldSynergize(AbstractCard card, AbstractCard other)
     {
         if (preemptiveSynergies > 0)
         {
             return true;
         }
-        else if (other != null && other.synergy != null && card.synergy != null)
+
+        AnimatorCard a = JUtils.SafeCast(card, AnimatorCard.class);
+        AnimatorCard b = JUtils.SafeCast(other, AnimatorCard.class);
+        if (a == null && b != null)
         {
-            return (card.synergy.equals(other.synergy)
-            || (card.hasTag(AnimatorCard.SHAPESHIFTER) || other.hasTag(AnimatorCard.SHAPESHIFTER))
-            || (card.hasTag(AnimatorCard.MARTIAL_ARTIST) && other.hasTag(AnimatorCard.MARTIAL_ARTIST))
-            || (card.hasTag(AnimatorCard.SPELLCASTER) && other.hasTag(AnimatorCard.SPELLCASTER)));
+            return b.HasSynergy(a);
+        }
+        if (b == null && a != null)
+        {
+            return a.HasSynergy(b);
+        }
+        if (a != null)
+        {
+            return a.HasSynergy(b) || b.HasSynergy(a);
         }
 
-        return false;
+        return HasTagSynergy(card, other);
+    }
+
+    public static boolean HasTagSynergy(AbstractCard a, AbstractCard b)
+    {
+        return a != null && b != null
+            && ((a.hasTag(AnimatorCard.SHAPESHIFTER) || b.hasTag(AnimatorCard.SHAPESHIFTER))
+            || (a.hasTag(AnimatorCard.MARTIAL_ARTIST) && b.hasTag(AnimatorCard.MARTIAL_ARTIST))
+            || (a.hasTag(AnimatorCard.SPELLCASTER) && b.hasTag(AnimatorCard.SPELLCASTER)));
     }
 }

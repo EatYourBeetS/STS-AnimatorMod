@@ -223,11 +223,6 @@ public class AnimatorStrings
             return Format(addPeriod, 16, stance);
         }
 
-        public final String Boost(Object power, boolean addPeriod)
-        {
-            return Format(addPeriod, 17, power);
-        }
-
         private String Format(boolean addPeriod, int index, Object amount)
         {
             return Format(addPeriod, index, amount, null);

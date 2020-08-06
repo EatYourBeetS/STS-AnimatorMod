@@ -12,13 +12,7 @@ import eatyourbeets.utilities.TargetHelper;
 public class GenericEffect_StackPower extends GenericEffect
 {
     protected final PowerHelper power;
-
-    public GenericEffect_StackPower(PowerHelper power, int amount)
-    {
-        this.power = power;
-        this.tooltip = power.Tooltip;
-        this.amount = amount;
-    }
+    protected final EYBCardTooltip tooltip;
 
     public GenericEffect_StackPower(PowerHelper power, EYBCardTooltip tooltip, int amount)
     {

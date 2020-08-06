@@ -2,20 +2,29 @@ package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.resources.GR;
+import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class RoryMercury extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(RoryMercury.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Random);
 
+    private static final CardEffectChoice choices = new CardEffectChoice();
+
     public RoryMercury()
     {
         super(DATA);
 
-        Initialize(3, 0, 0);
+        Initialize(5, 0, 0);
         SetUpgrade(2, 0, 0);
         SetScaling(0, 0, 1);
 
@@ -29,18 +38,32 @@ public class RoryMercury extends AnimatorCard
     }
 
     @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        GameActions.Bottom.GainForce(1);
-        GameActions.Bottom.Flash(this);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_HEAVY).AddCallback(e -> GameActions.Bottom.ApplyVulnerable(player, e, 1));
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_HEAVY).AddCallback(this::OnEnemyHit);
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_HEAVY).AddCallback(this::OnEnemyHit);
+
+        GameActions.Bottom.ModifyAllInstances(uuid)
+        .AddCallback(c ->
+        {
+            if (!c.hasTag(HASTE))
+            {
+                c.tags.add(HASTE);
+            }
+        });
+    }
+
+    private void OnEnemyHit(AbstractCreature c)
+    {
+        if (c.hasPower(VulnerablePower.POWER_ID) && CombatStats.TryActivateSemiLimited(cardID))
+        {
+            if (choices.TryInitialize(this))
+            {
+                choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID, GR.Tooltips.AgilityStance));
+                choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID, GR.Tooltips.ForceStance));
+            }
+
+            choices.Select(1, (AbstractMonster)c).IsCancellable(true);
+        }
     }
 }

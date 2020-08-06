@@ -47,7 +47,8 @@
 			"Tales of Berseria",
 			"Rewrite",
 			"Date-a-Live",
-			"Angel Beats"
+			"Angel Beats",
+			"Rozen Maiden"
 		],
 		"EXTRA_TEXT":
 		[
@@ -76,7 +77,8 @@
 			"Gain !M! Intangible. NL Lose this Power",
 			"Remove all of NL your debuffs",
 			"Play the top card NL of your draw pile",
-			"Stun the enemy"
+			"Stun the enemy",
+			"Enter {0}"
 		]
 	},
 

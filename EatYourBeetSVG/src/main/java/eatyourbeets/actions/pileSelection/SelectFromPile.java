@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
+import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.resources.GR;
@@ -164,6 +165,12 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             }
             else
             {
+                if (canCancel)
+                {
+                    // Setting canCancel to true does not ensure the cancel button will be shown...
+                    AbstractDungeon.overlayMenu.cancelButton.show(GridCardSelectScreen.TEXT[1]);
+                }
+
                 AbstractDungeon.gridSelectScreen.open(mergedGroup, Math.min(mergedGroup.size(), amount), CreateMessage(), false, false, canCancel, false);
             }
         }

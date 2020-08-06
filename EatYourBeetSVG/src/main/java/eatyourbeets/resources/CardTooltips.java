@@ -58,6 +58,7 @@ public class CardTooltips
     public EYBCardTooltip TempHP = FindByID("Temporary HP");
     public EYBCardTooltip Weak = FindByID("Weak");
     public EYBCardTooltip Vulnerable = FindByID("Vulnerable");
+    public EYBCardTooltip Frail = FindByID("Frail");
     public EYBCardTooltip Poison = FindByID("Poison");
     public EYBCardTooltip Burning = FindByID("Burning");
     public EYBCardTooltip Thorns = FindByID("Thorns");
@@ -159,9 +160,10 @@ public class CardTooltips
         LoadFromPower(SupportDamage, new SupportDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(LockOn, new LockOnPower(FakeCharacter.Instance, 0));
 
-        //These 2 use AbstractDungeon.player
+        //These use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);
         LoadFromPower(Vulnerable, new VulnerablePower(null, 0, false));
+        LoadFromPower(Frail, new FrailPower(null, 0, false));
     }
 
     private EYBCardTooltip LoadFromPower(EYBCardTooltip tooltip, AbstractPower power)

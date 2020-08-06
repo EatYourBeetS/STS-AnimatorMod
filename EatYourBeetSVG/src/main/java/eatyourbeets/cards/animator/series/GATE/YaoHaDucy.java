@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -22,6 +23,12 @@ public class YaoHaDucy extends AnimatorCard
         SetUpgrade(3, 0, 0, 0);
 
         SetSynergy(Synergies.Gate);
+    }
+
+    @Override
+    public boolean HasSynergy(AbstractCard other)
+    {
+        return other.costForTurn == 0 || super.HasSynergy(other);
     }
 
     @Override

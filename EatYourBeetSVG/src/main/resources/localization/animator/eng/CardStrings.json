@@ -414,9 +414,9 @@
 	{
 		"animator:Alexander":
 		{
-			"DESCRIPTION": "Lose no [F] next turn. || [F] Stance: Gain 1 [Plated Armor]. || When Exhausted: ** Play this card.",
+			"DESCRIPTION": "Lose no [F] next turn. || <FS>: Gain 1 [Plated Armor]. || When Exhausted: ** Play this card.",
 			"NAME": "Alexander",
-			"UPGRADE_DESCRIPTION": "Gain [F]. || [F] Stance: Gain 1 [Plated Armor]. || When Exhausted: ** Play this card."
+			"UPGRADE_DESCRIPTION": "Gain [F]. || <FS>: Gain 1 [Plated Armor]. || When Exhausted: ** Play this card."
 		},
 		"animator:Archer":
 		{
@@ -430,7 +430,7 @@
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "[F] Stance: Gain !M! [F]. Otherwise: Enter [F] Stance. || If the enemy dies or loses ** its Block: Gain !S! Block.",
+			"DESCRIPTION": "<FS>: Gain !M! [F]. Otherwise: Enter <FS>. || If the enemy dies or loses ** its Block: Gain !S! Block.",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
@@ -566,12 +566,12 @@
 		},
 		"animator:ItamiYouji":
 		{
-			"DESCRIPTION": "<DRW-M>. ** Deal damage for ** each {Attack} drawn. || Synergy: Gain !S! [Support Damage].",
+			"DESCRIPTION": "<DRW-M>. ** Deal damage for each ** {Attack} in hand. || Synergy: Gain !S! [Support Damage].",
 			"NAME": "Itami Youji"
 		},
 		"animator:Kuribayashi":
 		{
-			"DESCRIPTION": "Apply !M! [Shackles] [Vulnerable]. || Synergy: Gain 1 [Support Damage].",
+			"DESCRIPTION": "Apply !M! [Vulnerable]. || <AS>: Attack twice. || <FS>: Apply !S! [Shackles].",
 			"NAME": "Kuribayashi"
 		},
 		"animator:LeleiLaLalena":
@@ -587,7 +587,7 @@
 		},
 		"animator:RoryMercury":
 		{
-			"DESCRIPTION": "Apply 1 [Vulnerable] to ** the first enemy hit. || When Drawn: Randomly gain [F] or [A].",
+			"DESCRIPTION": "This card gains {~Haste}. || <slm>. If this hits an ** enemy with Vulnerable: ** Choose: Enter <FS>, ** or Enter <AS>.",
 			"NAME": "Rory Mercury"
 		},
 		"animator:TukaLunaMarceau":
@@ -603,7 +603,7 @@
 		},
 		"animator:YaoHaDucy":
 		{
-			"DESCRIPTION": "Apply !M! [Shackles]. || Synergy: If you have ** any [Support Damage], ** increase it by !S!.",
+			"DESCRIPTION": "If the enemy intends ** to Attack: Apply !M! [Shackles]. || This card Synergizes ** with {0-Cost} cards.",
 			"NAME": "Yao Ha Ducy"
 		}
 	},

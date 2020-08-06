@@ -218,6 +218,11 @@ public class AnimatorStrings
             return Get(15) + (addPeriod ? LocalizedStrings.PERIOD : "");
         }
 
+        public final String EnterStance(Object stance, boolean addPeriod)
+        {
+            return Format(addPeriod, 16, stance);
+        }
+
         private String Format(boolean addPeriod, int index, Object amount)
         {
             return Format(addPeriod, index, amount, null);

@@ -19,8 +19,8 @@ public class ItamiYouji extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 4, 2);
-        SetUpgrade(2, 0);
+        Initialize(3, 0, 3, 2);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Gate);
     }
@@ -29,9 +29,9 @@ public class ItamiYouji extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Top.Draw(magicNumber)
-        .AddCallback(m, (enemy, cards) ->
+        .AddCallback(m, (enemy, __) ->
         {
-            for (AbstractCard card : cards)
+            for (AbstractCard card : player.hand.group)
             {
                 if (card.type == CardType.ATTACK)
                 {

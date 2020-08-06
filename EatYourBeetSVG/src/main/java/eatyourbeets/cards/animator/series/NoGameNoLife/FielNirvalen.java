@@ -43,9 +43,9 @@ public class FielNirvalen extends AnimatorCard
         if (choices.isEmpty())
         {
             String[] text = DATA.Strings.EXTENDED_DESCRIPTION;
-            choices.addToBottom(CreateChoice(text[1], (c1, p1, m1) -> GameActions.Bottom.GainAgility(1, true)));
-            choices.addToBottom(CreateChoice(text[2], (c1, p1, m1) -> GameActions.Bottom.GainIntellect(1, true)));
-            choices.addToBottom(CreateChoice(text[3], (c1, p1, m1) -> GameActions.Bottom.GainForce(1, true)));
+            choices.addToTop(CreateChoice(text[1], (c1, p1, m1) -> GameActions.Bottom.GainAgility(1, true)));
+            choices.addToTop(CreateChoice(text[2], (c1, p1, m1) -> GameActions.Bottom.GainIntellect(1, true)));
+            choices.addToTop(CreateChoice(text[3], (c1, p1, m1) -> GameActions.Bottom.GainForce(1, true)));
         }
 
         GameActions.Bottom.GainTemporaryHP(magicNumber);

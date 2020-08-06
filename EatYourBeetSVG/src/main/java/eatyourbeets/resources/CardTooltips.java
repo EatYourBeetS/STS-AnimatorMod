@@ -16,15 +16,13 @@ import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class CardTooltips
 {
     protected static final HashMap<String, EYBCardTooltip> tooltipIDs = new HashMap<>();
     protected static final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
-    protected static final HashSet<EYBCardTooltip> ignored = new HashSet<>();
 
-    public EYBCardTooltip Energy = FindByName("[E]").ShowText(false);
+    public EYBCardTooltip Energy = FindByName("[E]");
     public EYBCardTooltip Starter = FindByID("Starter");
     public EYBCardTooltip Limited = FindByID("Limited");
     public EYBCardTooltip SemiLimited = FindByID("Semi-Limited");
@@ -37,31 +35,29 @@ public class CardTooltips
     public EYBCardTooltip Intellect = FindByID("Intellect");
     public EYBCardTooltip Force = FindByID("Force");
     public EYBCardTooltip Agility = FindByID("Agility");
-    public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
-    public EYBCardTooltip ForceStance = FindByID("Force Stance");
     public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
-    public EYBCardTooltip NeutralStance = FindByID("Neutral Stance");
+    public EYBCardTooltip ForceStance = FindByID("Force Stance");
     public EYBCardTooltip SupportDamage = FindByID("Support Damage");
+    public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
     public EYBCardTooltip Spellcaster = FindByID("Spellcaster");
     public EYBCardTooltip MartialArtist = FindByID("Martial Artist");
     public EYBCardTooltip Shapeshifter = FindByID("Shapeshifter");
     public EYBCardTooltip OrbCore = FindByID("~Orb Core");
     public EYBCardTooltip Innate = FindByID("~Innate");
     public EYBCardTooltip Ethereal = FindByID("~Ethereal");
+    public EYBCardTooltip Retain = FindByID("~Retain");
     public EYBCardTooltip Haste = FindByID("~Haste");
-    public EYBCardTooltip Retain = FindByID("~Retain").ShowText(false);
-    public EYBCardTooltip Exhaust = FindByID("Exhaust").ShowText(false);
-    public EYBCardTooltip Channel = FindByID("Channel").ShowText(false);
-    public EYBCardTooltip Block = FindByID("Block").ShowText(false);
-    public EYBCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
-    public EYBCardTooltip Stance = FindByID("Stance").ShowText(false);
+    public EYBCardTooltip Exhaust = FindByID("Exhaust");
+    public EYBCardTooltip Channel = FindByID("Channel");
+    public EYBCardTooltip Block = FindByID("Block");
+
+    public EYBCardTooltip Upgrade = FindByID("Upgrade");
     public EYBCardTooltip Metallicize = FindByID("Metallicize");
     public EYBCardTooltip PlatedArmor = FindByID("Plated Armor");
     public EYBCardTooltip EnchantedArmor = FindByID("Enchanted Armor");
     public EYBCardTooltip TempHP = FindByID("Temporary HP");
     public EYBCardTooltip Weak = FindByID("Weak");
     public EYBCardTooltip Vulnerable = FindByID("Vulnerable");
-    public EYBCardTooltip Frail = FindByID("Frail");
     public EYBCardTooltip Poison = FindByID("Poison");
     public EYBCardTooltip Burning = FindByID("Burning");
     public EYBCardTooltip Thorns = FindByID("Thorns");
@@ -105,24 +101,18 @@ public class CardTooltips
         return tooltipIDs.get(id);
     }
 
-    public static String FindName(EYBCardTooltip tooltip)
-    {
-        for (String key : tooltips.keySet())
-        {
-            if (tooltips.get(key) == tooltip)
-            {
-                return key;
-            }
-        }
-
-        return null;
-    }
-
     public CardTooltips()
     {
         RegisterID("Random Orb", RandomOrb);
         RegisterID("T-Knife", ThrowingKnife);
         RegisterID("Gold", Gold);
+    }
+
+    public boolean CanAdd(EYBCardTooltip tooltip)
+    {
+        return tooltip != null && tooltip.title != null && tooltip != Block
+            && tooltip != Channel && tooltip != Upgrade && tooltip != Exhaust
+            && tooltip != Retain && tooltip != Energy;
     }
 
     public void InitializeIcons()
@@ -140,7 +130,7 @@ public class CardTooltips
         Elemental.SetIcon(icons.Elemental.Texture(), 6);
         Piercing.SetIcon(icons.Piercing.Texture(), 6);
         TempHP.SetIcon(icons.TempHP.Texture(), 6);
-        Block.SetIcon(icons.Block.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
+        Block.SetIcon(icons.Block.Texture(), 6);
 
         CommonImages.Tooltips tooltips = GR.Common.Images.Tooltips;
         ThrowingKnife.SetIcon(tooltips.ThrowingKnife.Texture(), 6);
@@ -169,10 +159,9 @@ public class CardTooltips
         LoadFromPower(SupportDamage, new SupportDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(LockOn, new LockOnPower(FakeCharacter.Instance, 0));
 
-        //These use AbstractDungeon.player
+        //These 2 use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);
         LoadFromPower(Vulnerable, new VulnerablePower(null, 0, false));
-        LoadFromPower(Frail, new FrailPower(null, 0, false));
     }
 
     private EYBCardTooltip LoadFromPower(EYBCardTooltip tooltip, AbstractPower power)

@@ -41,7 +41,12 @@ public class WordToken extends CTToken
         }
         else if (modifier.equals("s"))
         {
-            return GetWidth(context.font, text + "_");
+            if (context.card != null && context.card.magicNumber == 1)
+            {
+                return GetWidth(context.font, text);
+            }
+
+            return GetWidth(context.font, text + "s");
         }
         else
         {

@@ -480,6 +480,11 @@ public final class GameActions
         return StackPower(new IntellectPower(player, amount));
     }
 
+    public ApplyPower GainMalleable(int amount)
+    {
+        return StackPower(new MalleablePower(player, amount));
+    }
+
     public ApplyPower GainMetallicize(int amount)
     {
         return StackPower(new MetallicizePower(player, amount));

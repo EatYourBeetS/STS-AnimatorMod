@@ -1028,7 +1028,7 @@
 		},
 		"animator:Caster":
 		{
-			"DESCRIPTION": "Channel 1 [Dark]. || Synergy or Exhaust, ** Choose !S!: Evoke your ** first Orb, Apply !M! [Shackles], ** or Gain [F] [I].",
+			"DESCRIPTION": "Channel 1 [Dark]. || Synergy or Exhaust: ** Choose !S!: Evoke your ** first Orb, Apply !M! [Shackles], ** or Gain [F] [I].",
 			"EXTENDED_DESCRIPTION": ["Evoke your first Orb.", "Apply {0} [Shackles].", "Gain [F] [I]."],
 			"NAME": "Caster"
 		},
@@ -1103,28 +1103,28 @@
 		},
 		"animator:Gluttony":
 		{
-			"DESCRIPTION": "Unplayable if you have less ** than !S! cards in play. || Exhaust the top !M! ** cards of your draw pile ** to gain !M! [F] and Heal !M! HP.",
+			"DESCRIPTION": "Exhaust the top !M! cards ** of your draw pile to gain ** !M! [F] and Heal !M! HP. || Unplayable if you have less ** than !S! cards in play.",
 			"EXTENDED_DESCRIPTION": ["Not enough cards in play."],
 			"NAME": "Gluttony"
 		},
 		"animator:Greed":
 		{
-			"DESCRIPTION": "Choose !S!: Gain {0} [Block], ** Gain {1} [Temporary HP], Gain {2} [Malleable], ** Gain {3} [Plated Armor], or Gain {4} [Metallicize]. || For every !M! [Gold] you have: Choose 1 additional effect.",
+			"DESCRIPTION": "Choose !S!: Gain {0} Block, ** Gain {1} [Temporary HP], Gain {2} [Metallicize], ** Gain {3} [Plated Armor], or Gain {4} [Malleable]. || For every !M! [Gold] you have: Choose 1 additional effect.",
 			"NAME": "Greed"
 		},
 		"animator:MaesHughes":
 		{
-			"DESCRIPTION": "<DRW> for every !M! ** cards in your draw pile. ** Motivate 1. || When Exhausted: Draw {Roy} ** {Mustang} from any pile, it ** costs 1 less this turn.",
+			"DESCRIPTION": "<DRW> for every !M! ** cards in your draw pile. ** Motivate 1. || When Exhausted: Draw {Roy ** Mustang} from any pile, it ** costs 1 less this turn.",
 			"NAME": "Maes Hughes"
 		},
 		"animator:Pride":
 		{
-			"DESCRIPTION": "Apply !S! [Constricted]. ** {Channel} !M! [Dark]. || Until next turn, your [Dark] ** will absorb all unblocked ** damage you would take.",
+			"DESCRIPTION": "Apply !S! [Constricted]. ** Channel !M! [Dark]. || Until next turn, your [Dark] ** will absorb all unblocked ** damage you would take.",
 			"NAME": "Pride"
 		},
 		"animator:RoyMustang":
 		{
-			"DESCRIPTION": "Channel 1 [Fire] ** for each enemy. || Synergy: Gain 4 [Flame Barrier].",
+			"DESCRIPTION": "Channel 1 [Fire] ** for each enemy. || Deal !M! additional ** damage for each card ** Exhausted this turn.",
 			"NAME": "Roy Mustang"
 		},
 		"animator:Scar":

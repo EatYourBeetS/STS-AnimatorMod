@@ -26,6 +26,12 @@ public class JUtils
     private static final ArrayList<String> classNames = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
+    public static void Breakpoint()
+    {
+        // Place a permanent breakpoint here
+        JUtils.LogInfo(JUtils.class, "Breakpoint Reached");
+    }
+
     public static <T> void ChangeIndex(T item, List<T> list, int index)
     {
         if (list.remove(item))

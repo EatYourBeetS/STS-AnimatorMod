@@ -42,7 +42,15 @@ public class Lu extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID).RequireNeutralStance(true);
+        GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID)
+        .RequireNeutralStance(true)
+        .AddCallback(changed ->
+        {
+            if (changed)
+            {
+                GameActions.Bottom.Flash(this);
+            }
+        });
     }
 
     @Override

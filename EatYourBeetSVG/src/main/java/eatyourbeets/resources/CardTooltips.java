@@ -130,6 +130,7 @@ public class CardTooltips
         Elemental.SetIcon(icons.Elemental.Texture(), 6);
         Piercing.SetIcon(icons.Piercing.Texture(), 6);
         TempHP.SetIcon(icons.TempHP.Texture(), 6);
+        Block.SetIcon(icons.Block.Texture(), 6);
 
         CommonImages.Tooltips tooltips = GR.Common.Images.Tooltips;
         ThrowingKnife.SetIcon(tooltips.ThrowingKnife.Texture(), 6);

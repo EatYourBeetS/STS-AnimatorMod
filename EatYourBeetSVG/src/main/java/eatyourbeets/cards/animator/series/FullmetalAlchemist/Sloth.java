@@ -1,8 +1,8 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -19,8 +19,8 @@ public class Sloth extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(12, 12, 0, 9);
-        SetUpgrade(3, 3);
+        Initialize(16, 13, 2, 9);
+        SetUpgrade(0, 0, -1, 0);
         SetScaling(0, 0, 2);
 
         SetSynergy(Synergies.FullmetalAlchemist);
@@ -38,8 +38,8 @@ public class Sloth extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
-        GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, 1));
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY)
+        .SetDamageEffect(__ -> CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.MED,false));
+        GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, magicNumber));
     }
 }

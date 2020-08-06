@@ -62,9 +62,9 @@ public class Caster extends AnimatorCard
         if (choices.isEmpty())
         {
             String[] text = DATA.Strings.EXTENDED_DESCRIPTION;
-            choices.addToBottom(CreateChoice(text[0], this::Effect1));
-            choices.addToBottom(CreateChoice(JUtils.Format(text[1], magicNumber), this::Effect2));
-            choices.addToBottom(CreateChoice(text[2], this::Effect3));
+            choices.addToTop(CreateChoice(text[0], this::Effect1));
+            choices.addToTop(CreateChoice(JUtils.Format(text[1], magicNumber), this::Effect2));
+            choices.addToTop(CreateChoice(text[2], this::Effect3));
         }
 
         GameActions.Bottom.SelectFromPile(name, secondaryValue, choices)

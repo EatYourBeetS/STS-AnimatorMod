@@ -633,7 +633,7 @@
 		},
 		"animator:HighElfArcher":
 		{
-			"DESCRIPTION": "If you have !M! or ** less [A]: Gain [A]. || On Synergy: This ** card gains {~Haste}.",
+			"DESCRIPTION": "If you have !M! or ** less [A]: Gain [A]. || On Synergy: Give ** this card {~Haste}.",
 			"NAME": "High Elf Archer"
 		},
 		"animator:LizardPriest":

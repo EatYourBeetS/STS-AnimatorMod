@@ -203,6 +203,11 @@ public class Synergies
             return true;
         }
 
+        if (card == null || other == null)
+        {
+            return false;
+        }
+
         AnimatorCard a = JUtils.SafeCast(card, AnimatorCard.class);
         AnimatorCard b = JUtils.SafeCast(other, AnimatorCard.class);
         if (a == null && b != null)
@@ -223,8 +228,7 @@ public class Synergies
 
     public static boolean HasTagSynergy(AbstractCard a, AbstractCard b)
     {
-        return a != null && b != null
-            && ((a.hasTag(AnimatorCard.SHAPESHIFTER) || b.hasTag(AnimatorCard.SHAPESHIFTER))
+        return ((a.hasTag(AnimatorCard.SHAPESHIFTER) || b.hasTag(AnimatorCard.SHAPESHIFTER))
             || (a.hasTag(AnimatorCard.MARTIAL_ARTIST) && b.hasTag(AnimatorCard.MARTIAL_ARTIST))
             || (a.hasTag(AnimatorCard.SPELLCASTER) && b.hasTag(AnimatorCard.SPELLCASTER)));
     }

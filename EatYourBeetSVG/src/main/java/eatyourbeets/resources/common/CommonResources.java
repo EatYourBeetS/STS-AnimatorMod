@@ -77,6 +77,7 @@ public class CommonResources extends AbstractResources
     {
         Strings.Initialize();
         GR.Tooltips = new CardTooltips();
+        EYBStance.Initialize();
     }
 
     @Override
@@ -101,7 +102,6 @@ public class CommonResources extends AbstractResources
         LoadCustomStrings(StanceStrings.class);
         LoadCustomStrings(UIStrings.class);
 
-        EYBStance.Initialize();
         EYBFontHelper.Initialize();
     }
 

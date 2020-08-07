@@ -516,7 +516,7 @@
 		},
 		"animator:Greed":
 		{
-			"DESCRIPTION": "Choose !S!: Gain {0} Block, ** Gain {1} [Temporary HP], Gain {2} [Metallicize], ** Gain {3} [Plated Armor], or Gain {4} [Malleable]. || For every !M! [Gold] you have: Choose 1 additional effect.",
+			"DESCRIPTION": "Choose !S!: Gain {0} Block, ** Gain {1} [Temporary HP], Gain {2} [Malleable], ** Gain {3} [Plated Armor], or Gain {4} [Metallicize]. || For every !M! [Gold] you have: Choose 1 additional effect.",
 			"NAME": "Greed"
 		},
 		"animator:MaesHughes":
@@ -587,7 +587,7 @@
 		},
 		"animator:RoryMercury":
 		{
-			"DESCRIPTION": "This card gains {~Haste}. || <slm>. If this hits an ** enemy with Vulnerable: ** Choose: Enter <FS>, ** or Enter <AS>.",
+			"DESCRIPTION": "Give this card {~Haste}. || <slm>. If this hits an ** enemy with Vulnerable: ** Choose: Enter <FS>, ** or Enter <AS>.",
 			"NAME": "Rory Mercury"
 		},
 		"animator:TukaLunaMarceau":

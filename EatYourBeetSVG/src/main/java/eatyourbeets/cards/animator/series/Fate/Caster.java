@@ -1,13 +1,14 @@
 package eatyourbeets.cards.animator.series.Fate;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.actions.special.SelectCreature;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.delegates.ActionT3;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardEffectChoice;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -18,7 +19,7 @@ public class Caster extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Caster.class).SetSkill(1, CardRarity.UNCOMMON);
 
-    private static final CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public Caster()
     {
@@ -35,15 +36,7 @@ public class Caster extends AnimatorCard
     @Override
     public void triggerOnExhaust()
     {
-        ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
-        if (enemies.size() == 1)
-        {
-            ChooseAction(enemies.get(0));
-        }
-        else
-        {
-            ChooseAction(null);
-        }
+        ChooseAction(null);
     }
 
     @Override
@@ -59,23 +52,15 @@ public class Caster extends AnimatorCard
 
     public void ChooseAction(AbstractMonster m)
     {
-        if (choices.isEmpty())
+        if (choices.TryInitialize(this))
         {
             String[] text = DATA.Strings.EXTENDED_DESCRIPTION;
-            choices.addToTop(CreateChoice(text[0], this::Effect1));
-            choices.addToTop(CreateChoice(JUtils.Format(text[1], magicNumber), this::Effect2));
-            choices.addToTop(CreateChoice(text[2], this::Effect3));
+            choices.AddEffect(text[0], this::Effect1);
+            choices.AddEffect(JUtils.Format(text[1], magicNumber), this::Effect2);
+            choices.AddEffect(text[2], this::Effect3);
         }
 
-        GameActions.Bottom.SelectFromPile(name, secondaryValue, choices)
-        .SetOptions(false, false)
-        .AddCallback(m, (target, cards) ->
-        {
-            for (AbstractCard card : cards)
-            {
-                card.use(player, target);
-            }
-        });
+        choices.Select(secondaryValue, m);
     }
 
     private void Effect1(AbstractCard card, AbstractPlayer p, AbstractMonster m)
@@ -85,26 +70,27 @@ public class Caster extends AnimatorCard
 
     private void Effect2(AbstractCard card, AbstractPlayer p, AbstractMonster m)
     {
-        if (GameUtilities.IsValidTarget(m))
+        if (!GameUtilities.IsValidTarget(m))
         {
-            GameActions.Bottom.ReduceStrength(m, magicNumber, true);
+            ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
+            if (enemies.size() == 1)
+            {
+                m = enemies.get(0);
+            }
+            else
+            {
+                GameActions.Bottom.SelectCreature(SelectCreature.Targeting.Enemy, card.name)
+                .SetMessage(card.rawDescription)
+                .AddCallback(m1 -> GameActions.Top.ReduceStrength(m1, magicNumber, true));
+            }
         }
-        else
-        {
-            GameActions.Bottom.SelectCreature(SelectCreature.Targeting.Enemy, card.name)
-            .SetMessage(card.rawDescription)
-            .AddCallback(m1 -> GameActions.Top.ReduceStrength(m1, magicNumber, true));
-        }
+
+        GameActions.Bottom.ReduceStrength(m, magicNumber, true);
     }
 
     private void Effect3(AbstractCard card, AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainForce(1);
         GameActions.Bottom.GainIntellect(1);
-    }
-
-    private AnimatorCard_Dynamic CreateChoice(String text, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onSelect)
-    {
-        return new AnimatorCardBuilder(this, text, false).SetOnUse(onSelect).Build();
     }
 }

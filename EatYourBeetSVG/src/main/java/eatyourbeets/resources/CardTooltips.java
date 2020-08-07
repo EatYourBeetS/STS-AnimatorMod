@@ -102,6 +102,19 @@ public class CardTooltips
         return tooltipIDs.get(id);
     }
 
+    public static String FindName(EYBCardTooltip tooltip)
+    {
+        for (String key : tooltips.keySet())
+        {
+            if (tooltips.get(key) == tooltip)
+            {
+                return key;
+            }
+        }
+
+        return null;
+    }
+
     public CardTooltips()
     {
         RegisterID("Random Orb", RandomOrb);

@@ -1,25 +1,27 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.delegates.ActionT3;
-import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardEffectChoice;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.misc.GenericEffects.GenericEffect_GainBlock;
+import eatyourbeets.misc.GenericEffects.GenericEffect_GainTempHP;
+import eatyourbeets.misc.GenericEffects.GenericEffect_StackPower;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Greed extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Greed.class).SetPower(2, CardRarity.RARE).SetMaxCopies(1);
+    public static final int BLOCK = 7;
+    public static final int TEMP_HP = 6;
+    public static final int MALLEABLE = 5;
+    public static final int PLATED_ARMOR = 4;
+    public static final int METALLICIZE = 3;
 
-    private static final CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-    private static final int BLOCK = 7;
-    private static final int TEMP_HP = 6;
-    private static final int METALLICIZE = 3;
-    private static final int PLATED_ARMOR = 4;
-    private static final int MALLEABLE = 6;
+    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public Greed()
     {
@@ -34,7 +36,7 @@ public class Greed extends AnimatorCard
     @Override
     public String GetRawDescription()
     {
-        return super.GetRawDescription(BLOCK, TEMP_HP, METALLICIZE, PLATED_ARMOR, MALLEABLE);
+        return super.GetRawDescription(BLOCK, TEMP_HP, MALLEABLE, PLATED_ARMOR, METALLICIZE);
     }
 
     @Override
@@ -48,63 +50,15 @@ public class Greed extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (choices.isEmpty())
+        if (choices.TryInitialize(this))
         {
-            choices.addToTop(CreateChoice(BLOCK, GR.Tooltips.Block, this::Effect1));
-            choices.addToTop(CreateChoice(TEMP_HP, GR.Tooltips.TempHP, this::Effect2));
-            choices.addToTop(CreateChoice(METALLICIZE, GR.Tooltips.Metallicize, this::Effect3));
-            choices.addToTop(CreateChoice(PLATED_ARMOR, GR.Tooltips.PlatedArmor, this::Effect4));
-            choices.addToTop(CreateChoice(MALLEABLE, GR.Tooltips.Malleable, this::Effect5));
+            choices.AddEffect(new GenericEffect_GainBlock(BLOCK));
+            choices.AddEffect(new GenericEffect_GainTempHP(TEMP_HP));
+            choices.AddEffect(new GenericEffect_StackPower(PowerHelper.Malleable, MALLEABLE));
+            choices.AddEffect(new GenericEffect_StackPower(PowerHelper.PlatedArmor, PLATED_ARMOR));
+            choices.AddEffect(new GenericEffect_StackPower(PowerHelper.Metallicize, METALLICIZE));
         }
 
-        if (secondaryValue >= choices.size())
-        {
-            for (AbstractCard card : choices.group)
-            {
-                card.use(player, m);
-            }
-        }
-        else
-        {
-            GameActions.Bottom.SelectFromPile(name, secondaryValue, choices)
-            .SetOptions(false, false)
-            .AddCallback(m, (target, cards) ->
-            {
-                for (AbstractCard card : cards)
-                {
-                    card.use(player, target);
-                }
-            });
-        }
-    }
-
-    private void Effect1(AbstractCard card, AbstractPlayer p, AbstractMonster m)
-    {
-        GameActions.Bottom.GainBlock(BLOCK);
-    }
-
-    private void Effect2(AbstractCard card, AbstractPlayer p, AbstractMonster m)
-    {
-        GameActions.Bottom.GainTemporaryHP(TEMP_HP);
-    }
-
-    private void Effect3(AbstractCard card, AbstractPlayer p, AbstractMonster m)
-    {
-        GameActions.Bottom.GainMetallicize(METALLICIZE);
-    }
-
-    private void Effect4(AbstractCard card, AbstractPlayer p, AbstractMonster m)
-    {
-        GameActions.Bottom.GainPlatedArmor(PLATED_ARMOR);
-    }
-
-    private void Effect5(AbstractCard card, AbstractPlayer p, AbstractMonster m)
-    {
-        GameActions.Bottom.GainMalleable(MALLEABLE);
-    }
-
-    private AnimatorCard_Dynamic CreateChoice(int amount, EYBCardTooltip buff, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onSelect)
-    {
-        return new AnimatorCardBuilder(this, GR.Animator.Strings.Actions.GainAmount(amount, "["+buff+"]", true), false).SetOnUse(onSelect).Build();
+        choices.Select(secondaryValue, m);
     }
 }

@@ -167,6 +167,11 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
                     // Setting canCancel to true does not ensure the cancel button will be shown...
                     AbstractDungeon.overlayMenu.cancelButton.show(GridCardSelectScreen.TEXT[1]);
                 }
+                else if (amount > 1 && amount > mergedGroup.size())
+                {
+                    AbstractDungeon.gridSelectScreen.selectedCards.addAll(mergedGroup.group);
+                    return;
+                }
 
                 AbstractDungeon.gridSelectScreen.open(mergedGroup, Math.min(mergedGroup.size(), amount), CreateMessage(), false, false, canCancel, false);
             }

@@ -9,7 +9,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.resources.GR;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
@@ -24,7 +23,7 @@ public class RoryMercury extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 0);
+        Initialize(4, 0, 0);
         SetUpgrade(2, 0, 0);
         SetScaling(0, 0, 1);
 
@@ -59,8 +58,8 @@ public class RoryMercury extends AnimatorCard
         {
             if (choices.TryInitialize(this))
             {
-                choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID, GR.Tooltips.AgilityStance));
-                choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID, GR.Tooltips.ForceStance));
+                choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
             }
 
             choices.Select(1, (AbstractMonster)c).IsCancellable(true);

@@ -43,14 +43,14 @@ public class YuriNakamura extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.GainBlock(block);
 
-        if (!CombatStats.HasActivatedLimited(cardID))
+        if (!CombatStats.HasActivatedSemiLimited(cardID))
         {
             GameActions.Bottom.SelectFromPile(name, magicNumber, p.exhaustPile)
             .SetFilter(c -> !GameUtilities.IsCurseOrStatus(c) && !AfterLifeMod.IsAdded(c))
             .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])
             .AddCallback(cards ->
             {
-                if (cards.size() > 0 && CombatStats.TryActivateLimited(cardID))
+                if (cards.size() > 0 && CombatStats.TryActivateSemiLimited(cardID))
                 {
                     AbstractCard card = cards.get(0);
                     AfterLifeMod.Add(card);

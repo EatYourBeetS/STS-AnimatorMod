@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.beta.DateALive;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
@@ -34,6 +35,17 @@ public class TohkaYatogami extends AnimatorCard
     }
 
     @Override
+    public void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        if (AbstractDungeon.player.exhaustPile.size() >= magicNumber)
+        {
+            GameActions.Last.ReplaceCard(uuid, new InverseTohka()).SetUpgrade(upgraded);
+        }
+    }
+
+    @Override
     protected void UpdateDamage(float amount)
     {
         super.UpdateDamage(baseDamage);
@@ -43,10 +55,5 @@ public class TohkaYatogami extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-
-        if (p.exhaustPile.size() >= magicNumber)
-        {
-            GameActions.Last.ReplaceCard(uuid, new InverseTohka()).SetUpgrade(upgraded);
-        }
     }
 }

@@ -471,8 +471,8 @@
 	{
 		"animator:YuriNakamura":
 		{
-			"DESCRIPTION": "<SLM>. Give a Non-{Hindrance}, Non-{Afterlife} card in your Exhaust pile {Afterlife}. It {Purges} when played.",
-			"EXTENDED_DESCRIPTION": ["Give a card Retain.", "Choose a card to give Afterlife. It purges when played."],
+			"DESCRIPTION": "<LIM>. Give a Non-{Hindrance}, Non-{Afterlife} card in your Exhaust pile {Afterlife}.",
+			"EXTENDED_DESCRIPTION": ["Give a card Retain.", "Choose a card to give Afterlife."],
 			"NAME": "Yuri Nakamura"
 		},
 		"animator:KanadeTachibana":

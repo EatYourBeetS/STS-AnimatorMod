@@ -11,7 +11,6 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -43,19 +42,18 @@ public class YuriNakamura extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.GainBlock(block);
 
-        if (!CombatStats.HasActivatedSemiLimited(cardID))
+        if (!CombatStats.HasActivatedLimited(cardID))
         {
             GameActions.Bottom.SelectFromPile(name, magicNumber, p.exhaustPile)
             .SetFilter(c -> !GameUtilities.IsCurseOrStatus(c) && !AfterLifeMod.IsAdded(c))
             .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])
             .AddCallback(cards ->
             {
-                if (cards.size() > 0 && CombatStats.TryActivateSemiLimited(cardID))
+                if (cards.size() > 0 && CombatStats.TryActivateLimited(cardID))
                 {
                     AbstractCard card = cards.get(0);
                     AfterLifeMod.Add(card);
                     card.exhaust = false;
-                    card.tags.add(GR.Enums.CardTags.PURGE);
                     AfterLifeMod.AfterlifeAddToControlPile(card);
                 }
             });

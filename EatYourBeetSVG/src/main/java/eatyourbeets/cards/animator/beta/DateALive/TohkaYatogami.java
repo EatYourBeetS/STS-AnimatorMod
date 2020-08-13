@@ -14,6 +14,8 @@ public class TohkaYatogami extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(TohkaYatogami.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal);
 
+    private boolean transformed;
+
     static
     {
         DATA.AddPreview(new InverseTohka(), true);
@@ -35,12 +37,13 @@ public class TohkaYatogami extends AnimatorCard
     }
 
     @Override
-    public void Refresh(AbstractMonster enemy)
+    public void update()
     {
-        super.Refresh(enemy);
+        super.update();
 
-        if (AbstractDungeon.player.exhaustPile.size() >= magicNumber)
+        if (!transformed && AbstractDungeon.player.exhaustPile.size() >= magicNumber)
         {
+            transformed = true;
             GameActions.Last.ReplaceCard(uuid, new InverseTohka()).SetUpgrade(upgraded);
         }
     }

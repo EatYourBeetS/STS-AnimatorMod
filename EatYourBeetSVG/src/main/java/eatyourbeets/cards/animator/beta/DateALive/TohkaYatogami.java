@@ -41,7 +41,7 @@ public class TohkaYatogami extends AnimatorCard
     {
         super.update();
 
-        if (!transformed && AbstractDungeon.player.exhaustPile.size() >= magicNumber)
+        if (AbstractDungeon.player != null && !transformed && AbstractDungeon.player.exhaustPile.size() >= magicNumber)
         {
             transformed = true;
             GameActions.Last.ReplaceCard(uuid, new InverseTohka()).SetUpgrade(upgraded);

@@ -676,7 +676,7 @@
 		},
 		"animator:Hinaichigo":
 		{
-			"DESCRIPTION": "Apply !M! [Weak] [Vulnerable]. || <FS>: Apply !S! [Poison]. ** Otherwise: Put a random card back on top of your draw pile to enter <FS>.",
+			"DESCRIPTION": "Apply !M! [Weak] [Vulnerable]. || <FS>: Apply !S! [Poison]. ** Otherwise: Enter <FS>.",
 			"NAME": "Hinaichigo"
 		},
 		"animator:JunSakurada":

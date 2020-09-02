@@ -1,13 +1,11 @@
 package eatyourbeets.cards.animator.beta.RozenMaiden;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.stances.ForceStance;
-import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
 public class Hinaichigo extends AnimatorCard
@@ -37,18 +35,7 @@ public class Hinaichigo extends AnimatorCard
         }
         else
         {
-            GameActions.Bottom.SelectFromHand(name, 1, true)
-                    .SetOptions(false, false, false)
-                    .AddCallback(cards ->
-                    {
-                        for (AbstractCard card : cards)
-                        {
-                            GameActions.Bottom.MoveCard(card, p.hand, p.drawPile)
-                                    .ShowEffect(true,true)
-                                    .SetDestination(CardSelection.Top);
-                        }
-                        GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
-                    });
+            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
         }
     }
 }

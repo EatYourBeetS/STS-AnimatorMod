@@ -23,8 +23,8 @@ public class MeguKakizaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 6);
-        SetUpgrade(0, 0, 0);
+        Initialize(0, 5, 6);
+        SetUpgrade(0, 3, 0);
 
         SetHealing(true);
         SetSynergy(Synergies.RozenMaiden);
@@ -77,12 +77,14 @@ public class MeguKakizaki extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(block);
+
         if (!CombatStats.HasActivatedLimited(cardID))
         {
-            GameActions.Bottom.ExhaustFromHand(name, 1, false)
+            GameActions.Bottom.ExhaustFromPile(name, 1, p.drawPile, p.discardPile, p.hand)
                     .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
                     .SetFilter(c -> c.type == CardType.CURSE)
-                    .SetOptions(false, false, false)
+                    .SetOptions(false, false)
                     .AddCallback(() ->
                     {
                         CombatStats.TryActivateLimited(cardID);
@@ -93,6 +95,6 @@ public class MeguKakizaki extends AnimatorCard
     }
 }
 
-// <LIM>. Exhaust a Curse to Heal !M! HP at the end of combat.
+// <LIM>. Exhaust a Curse anywhere to Heal !M! HP at the end of combat.
 // <SLM>. When Discarded: Draw the bottom card of your draw pile.
 

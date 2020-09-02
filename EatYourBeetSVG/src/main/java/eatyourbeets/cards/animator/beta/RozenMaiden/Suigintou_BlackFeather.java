@@ -1,5 +1,7 @@
 package eatyourbeets.cards.animator.beta.RozenMaiden;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
@@ -9,12 +11,18 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Suigintou_BlackFeather extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Suigintou_BlackFeather.class)
     		.SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.Random);
+
+    static
+    {
+        DATA.AddPreview(new Suigintou(), false);
+    }
 
     public Suigintou_BlackFeather()
     {
@@ -49,13 +57,43 @@ public class Suigintou_BlackFeather extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DiscardFromHand(name, 1, false)
-                .SetOptions(false, false, false)
-                .AddCallback(cards ->
+        GameActions.Bottom.Callback(() ->
+        {
+            if (!DrawSuigintou(player.drawPile))
+            {
+                DrawSuigintou(player.discardPile);
+            }
+        });
+
+         GameActions.Bottom.Add(new CreateRandomCurses(1, p.hand));
+    }
+
+    private boolean DrawSuigintou(CardGroup group) // Copied from Chibimoth.java
+    {
+        for (AbstractCard c : group.group)
+        {
+            if (Suigintou.DATA.ID.equals(c.cardID))
+            {
+                if (group.type != CardGroup.CardGroupType.HAND)
                 {
-                    if (cards != null && cards.size() > 0)
-                        GameActions.Bottom.Add(new CreateRandomCurses(1, p.hand));
-                });
+                    GameEffects.List.ShowCardBriefly(makeStatEquivalentCopy());
+
+                    if (upgraded) {
+                        GameActions.Top.MoveCard(c, group, player.hand)
+                                .ShowEffect(true, true)
+                                .AddCallback(GameUtilities::Retain);
+                    }
+                    else {
+                        GameActions.Top.MoveCard(c, group, player.hand)
+                                .ShowEffect(true, true);
+                    }
+                }
+
+                return true;
+            }
+        }
+
+        return false;
     }
         /*
         AbstractMonster enemy1 = GameUtilities.GetRandomEnemy(true);

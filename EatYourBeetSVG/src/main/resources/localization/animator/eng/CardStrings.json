@@ -711,15 +711,14 @@
 		},
 		"animator:MeguKakizaki":
 		{
-			"DESCRIPTION": "<LIM>. Exhaust a Curse to Heal !M! HP after combat, then Exhaust. || When Discarded: Draw {Suigintou} from anywhere.",
+			"DESCRIPTION": "<LIM>. Exhaust a Curse anywhere to Heal !M! HP after combat, then Exhaust. || When Discarded: Draw {Suigintou} from anywhere.",
 			"NAME": "Megu Kakizaki",
 			"EXTENDED_DESCRIPTION": ["Exhaust a curse to heal."],
-			"UPGRADE_DESCRIPTION": "<LIM>. Exhaust a Curse to Heal !M! HP after combat, then Exhaust. || When Discarded: Draw {Suigintou} from anywhere and Retain it."
+			"UPGRADE_DESCRIPTION": "<LIM>. Exhaust a Curse anywhere to Heal !M! HP after combat, then Exhaust. || When Discarded: Draw {Suigintou} from anywhere and Retain it."
 		},
 		"animator:NoriSakurada":
 		{
-			"DESCRIPTION": "<DRW-M>, put a card on top of your draw pile.",
-			"UPGRADE_DESCRIPTION": "<DRW-M>, put a card on top of your draw pile. || At the end of turn: Reload.",
+			"DESCRIPTION": "Draw !M! cards. Put 1 card on top of your draw pile. || At the end of turn: Reload.",
 			"NAME": "Nori Sakurada",
 			"EXTENDED_DESCRIPTION": ["At end of this turn, discard any number of cards in your hand."]
 		},
@@ -751,7 +750,7 @@
 		},
 		"animator:Suigintou_BlackFeather":
 		{
-			"DESCRIPTION": "Discard a card to add a random {Curse} to your hand. ** When Discarded: Purge, then apply !M! [Shackles] to a random enemy.",
+			"DESCRIPTION": "Draw Suigintou from anywhere and add a random {Curse} to your hand. || When Discarded: Purge, then apply !M! [Shackles] to a random enemy.",
 			"NAME": "Black Feather"
 		},
 		"animator:Suigintou":

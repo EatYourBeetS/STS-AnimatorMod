@@ -23,8 +23,8 @@ public class NoriSakurada extends AnimatorCard
 	{
 		super(DATA);
 		
-		Initialize(0 ,0 ,2 ,0);
-		SetUpgrade(0 ,0 ,0 ,0);
+		Initialize(0 ,0 ,1 ,0);
+		SetUpgrade(0 ,0 ,1 ,0);
 
 		SetExhaust(true);
 		SetSynergy(Synergies.RozenMaiden);

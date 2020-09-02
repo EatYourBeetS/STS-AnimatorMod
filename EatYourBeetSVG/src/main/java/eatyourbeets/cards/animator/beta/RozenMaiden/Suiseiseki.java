@@ -23,7 +23,7 @@ public class Suiseiseki extends AnimatorCard
     private static final AbstractCard slimed = new Slimed();
 
     public static final EYBCardData DATA = Register(Suiseiseki.class)
-    		.SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    		.SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     public Suiseiseki()
     {

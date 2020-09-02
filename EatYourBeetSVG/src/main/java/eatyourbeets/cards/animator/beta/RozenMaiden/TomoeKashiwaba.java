@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animator.beta.RozenMaiden;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
@@ -18,14 +18,14 @@ public class TomoeKashiwaba extends AnimatorCard
 {
 	public static final EYBCardData DATA =
 			Register(TomoeKashiwaba.class)
-			.SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+			.SetAttack(0, CardRarity.COMMON);
 	
 	public TomoeKashiwaba()
 	{
 		super(DATA);
 
-        Initialize(0, 3, 0);
-		SetUpgrade(0, 2, 0);
+        Initialize(6, 3, 0);
+		SetUpgrade(2, 2, 0);
 
 		SetMartialArtist();
         SetSynergy(Synergies.RozenMaiden);
@@ -49,6 +49,8 @@ public class TomoeKashiwaba extends AnimatorCard
 	@Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+		GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+
 		if (p.drawPile.size() > 0)
 		{
 			AbstractCard topCard = p.drawPile.getTopCard();

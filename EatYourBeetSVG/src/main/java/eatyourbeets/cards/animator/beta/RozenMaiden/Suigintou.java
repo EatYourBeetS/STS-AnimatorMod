@@ -16,7 +16,7 @@ public class Suigintou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Suigintou.class)
     		.SetAttack(1, 
-    				CardRarity.COMMON, 
+    				CardRarity.UNCOMMON,
     				EYBAttackType.Elemental);
     static
     {

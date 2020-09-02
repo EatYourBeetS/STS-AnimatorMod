@@ -718,7 +718,7 @@
 		},
 		"animator:NoriSakurada":
 		{
-			"DESCRIPTION": "Draw !M! cards. Put 1 card on top of your draw pile. || At the end of turn: Reload.",
+			"DESCRIPTION": "Draw !M! card(s). Put 1 card on top of your draw pile. || At the end of turn: Reload.",
 			"NAME": "Nori Sakurada",
 			"EXTENDED_DESCRIPTION": ["At end of this turn, discard any number of cards in your hand."]
 		},

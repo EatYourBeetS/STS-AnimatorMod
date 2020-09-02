@@ -18,19 +18,23 @@ public class PurpleTeddyBear extends AnimatorRelic
     {
         super.atBattleStart();
 
-        GameActions.Bottom.MakeCardInDrawPile(new ShidoItsuka())
-        .AddCallback(card ->
+        for (int i=0; i<3; i++)
         {
-            if (card.cost > 0 || card.costForTurn > 0)
+            GameActions.Bottom.MakeCardInDrawPile(new ShidoItsuka())
+            .AddCallback(card ->
             {
-                card.cost = 0;
-                card.costForTurn = 0;
-                card.isCostModified = true;
-            }
+                if (card.cost > 0 || card.costForTurn > 0)
+                {
+                    card.cost = 0;
+                    card.costForTurn = 0;
+                    card.isCostModified = true;
+                }
 
-            card.freeToPlayOnce = true;
-            card.applyPowers();
-        });
+                card.freeToPlayOnce = true;
+                card.upgrade();
+                card.applyPowers();
+            });
+        }
 
         flash();
     }

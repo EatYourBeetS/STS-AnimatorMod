@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.TouhouProject;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.NoDrawPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -20,7 +21,6 @@ public class HiedaNoAkyuu extends AnimatorCard
 
         Initialize(0, 0, 5, 0);
 
-        SetEthereal(true);
         SetExhaust(true);
         SetCostUpgrade(-1);
         SetSynergy(Synergies.TouhouProject);
@@ -29,18 +29,22 @@ public class HiedaNoAkyuu extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.MoveCards(player.drawPile, player.discardPile);
+        GameActions.Bottom.MoveCards(player.drawPile, player.discardPile)
+        .SetDuration(0.01f, false);
 
         GameActions.Bottom.SelectFromPile(name, magicNumber, player.discardPile)
-                .SetMessage(GR.Common.Strings.GridSelection.MoveToDrawPile(magicNumber))
-                .SetOptions(false, true)
-                .AddCallback(cards ->
-                {
-                    for (AbstractCard card : cards)
-                    {
-                        GameActions.Top.MoveCard(card, player.drawPile);
-                    }
-                });
+        .SetMessage(GR.Common.Strings.GridSelection.MoveToDrawPile(magicNumber))
+        .SetOptions(false, true)
+        .AddCallback(cards ->
+        {
+            for (AbstractCard card : cards)
+            {
+                GameActions.Top.MoveCard(card, player.drawPile)
+                .ShowEffect(true, true);
+            }
+        });
+
+        GameActions.Bottom.StackPower(new NoDrawPower(p));
     }
 }
 

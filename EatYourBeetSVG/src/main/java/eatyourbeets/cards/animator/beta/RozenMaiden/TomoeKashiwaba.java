@@ -44,6 +44,10 @@ public class TomoeKashiwaba extends AnimatorCard
 		{
 			GameActions.Bottom.GainForce(1);
 		}
+		else
+		{
+			ForcePower.PreserveOnce();
+		}
 	}
 
 	@Override
@@ -59,11 +63,6 @@ public class TomoeKashiwaba extends AnimatorCard
 				GameActions.Top.GainBlock(block);
 				GameActions.Top.Draw(topCard);
 			}
-		}
-
-		if (!upgraded)
-		{
-			ForcePower.PreserveOnce();
 		}
     }
 }

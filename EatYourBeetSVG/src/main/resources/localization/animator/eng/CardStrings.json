@@ -606,7 +606,7 @@
 		},
 		"animator:HiedaNoAkyuu":
 		{
-			"DESCRIPTION": "Shuffle your draw pile into your discard pile, then choose !M! cards in your discard pile.  Move them into your draw pile.",
+			"DESCRIPTION": "Shuffle your draw pile into your discard pile, then choose !M! cards in your discard pile.  Move them into your draw pile. || You cannot draw additional cards this turn.",
 			"NAME": "Hieda no Akyuu"
 		},
 		"animator:KoishiKomeiji":
@@ -771,7 +771,7 @@
 		},
 		"animator:TomoeKashiwaba":
 		{
-			"DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! Block. || Lose no [F] next turn.",
+			"DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! Block. || When Drawn: Lose no [F] next turn.",
 			"NAME": "Tomoe Kashiwaba",
 			"UPGRADE_DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! Block. || When Drawn: Gain [F]."
 		}

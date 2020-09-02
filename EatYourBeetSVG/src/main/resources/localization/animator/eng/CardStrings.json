@@ -659,7 +659,7 @@
 		},
 		"animator:Defend_RozenMaiden":
 		{
-			"DESCRIPTION": "Add a {Clumsy} to your discard pile. || <LIM>. Upgrade next upgradable card created.",
+			"DESCRIPTION": "<LIM>. Upgrade next upgradable card created.",
 			"NAME": "Improved Defend"
 		},
 		"animator:Enju_Barasuishou":

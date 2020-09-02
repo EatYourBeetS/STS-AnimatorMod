@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.beta.RozenMaiden;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.cards.curses.Clumsy;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.base.Synergies;
@@ -26,7 +25,6 @@ public class Defend_RozenMaiden extends Defend
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
-        GameActions.Bottom.MakeCardInDiscardPile(new Clumsy());
 
         if (CombatStats.TryActivateLimited(cardID))
         {

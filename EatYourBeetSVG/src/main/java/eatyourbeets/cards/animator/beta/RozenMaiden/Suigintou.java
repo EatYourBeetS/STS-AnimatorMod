@@ -9,7 +9,6 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Suigintou extends AnimatorCard
@@ -40,8 +39,7 @@ public class Suigintou extends AnimatorCard
     @Override
     public void triggerOnManualDiscard()
     {
-        if (CombatStats.TryActivateSemiLimited(cardID))
-            GameActions.Top.MakeCardInHand(new Suigintou_BlackFeather());
+        GameActions.Top.MakeCardInHand(new Suigintou_BlackFeather());
 
         super.triggerOnManualDiscard();
     }

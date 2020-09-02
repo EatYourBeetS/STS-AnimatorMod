@@ -18,7 +18,7 @@ public class TomoeKashiwaba extends AnimatorCard
 {
 	public static final EYBCardData DATA =
 			Register(TomoeKashiwaba.class)
-			.SetAttack(0, CardRarity.COMMON);
+			.SetAttack(1, CardRarity.COMMON);
 	
 	public TomoeKashiwaba()
 	{

@@ -22,7 +22,6 @@ public class Hinaichigo extends AnimatorCard
         Initialize(0, 0, 2, 4);
         SetUpgrade(0, 0, 1, 1);
 
-        SetEthereal(true);
         SetSynergy(Synergies.RozenMaiden);
     }
 

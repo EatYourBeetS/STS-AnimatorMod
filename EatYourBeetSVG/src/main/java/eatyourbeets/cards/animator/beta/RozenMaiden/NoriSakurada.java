@@ -48,8 +48,7 @@ public class NoriSakurada extends AnimatorCard
 					}
         		});
 
-        if (upgraded)
-        	GameActions.Bottom.StackPower(new NoriSakuradaPower(p));
+        GameActions.Bottom.StackPower(new NoriSakuradaPower(p));
     }
 
     public static class NoriSakuradaPower extends AnimatorPower

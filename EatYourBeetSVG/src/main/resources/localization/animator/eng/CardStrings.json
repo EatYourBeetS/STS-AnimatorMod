@@ -56,6 +56,11 @@
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
+		"animator:Defend_LogHorizon":
+		{
+		  "DESCRIPTION": "",
+		  "NAME": "Improved Defend"
+		},
 		"animator:Defend_NoGameNoLife":
 		{
 			"DESCRIPTION": "Retain your leftmost ** playable card.",
@@ -136,6 +141,11 @@
 			"DESCRIPTION": "",
 			"NAME": "Improved Strike"
 		},
+		"animator:Strike_LogHorizon":
+		{
+		  "DESCRIPTION": "",
+		  "NAME": "Improved Strike"
+		},
 		"animator:Strike_NoGameNoLife":
 		{
 			"DESCRIPTION": "Retain your rightmost ** playable card.",
@@ -181,9 +191,14 @@
 		},
 		"animator:Henrietta":
 		{
-			"DESCRIPTION": "Enter any Stance. ** Motivate !M!. || At the end of each turn, ** spend !S! of your remaining ** Energy to enter any Stance.",
+			"DESCRIPTION": "Enter a random Stance. ** Motivate !M!. || At the end of each turn, ** spend !S! of your remaining ** Energy to enter any Stance.",
 			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend 2 of your remaining Energy to enter any Stance.","Enter [A] Stance.", "Enter [I] Stance.", "Enter [F] Stance."],
 			"NAME": "Henrietta"
+		},
+		"animator:Isuzu":
+		{
+		  "DESCRIPTION": "Enter any Stance.  Boost !M! [F], [A], or [I], depending on the stance you chose..",
+		  "NAME": "Isuzu"
 		},
 		"animator:Minori":
 		{

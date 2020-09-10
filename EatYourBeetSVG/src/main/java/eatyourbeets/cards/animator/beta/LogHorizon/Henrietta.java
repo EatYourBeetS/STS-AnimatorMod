@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
+import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.animator.series.Overlord.Ainz;
 import eatyourbeets.cards.base.*;
@@ -14,6 +15,7 @@ import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.RandomizedList;
 
 public class Henrietta extends AnimatorCard {
     public static final EYBCardData DATA = Register(Henrietta.class).SetPower(2, CardRarity.RARE);
@@ -35,10 +37,37 @@ public class Henrietta extends AnimatorCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        ChooseStance();
+        EnterRandomStanceNotCurrent();
         GameActions.Bottom.Motivate(magicNumber);
 
         GameActions.Bottom.StackPower(new HenriettaPower(p, secondaryValue));
+    }
+
+    private void EnterRandomStanceNotCurrent()
+    {
+        RandomizedList<String> stances = new RandomizedList<>();
+
+        if (!player.stance.ID.equals(ForceStance.STANCE_ID))
+        {
+            stances.Add(ForceStance.STANCE_ID);
+        }
+
+        if (!player.stance.ID.equals(AgilityStance.STANCE_ID))
+        {
+            stances.Add(AgilityStance.STANCE_ID);
+        }
+
+        if (!player.stance.ID.equals(IntellectStance.STANCE_ID))
+        {
+            stances.Add(IntellectStance.STANCE_ID);
+        }
+
+        if (!player.stance.ID.equals(NeutralStance.STANCE_ID))
+        {
+            stances.Add(NeutralStance.STANCE_ID);
+        }
+
+        GameActions.Bottom.ChangeStance(stances.Retrieve(rng));
     }
 
     public static class HenriettaPower extends AnimatorPower {

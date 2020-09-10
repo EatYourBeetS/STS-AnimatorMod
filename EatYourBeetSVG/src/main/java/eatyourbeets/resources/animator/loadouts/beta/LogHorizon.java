@@ -1,12 +1,8 @@
 package eatyourbeets.resources.animator.loadouts.beta;
 
 import eatyourbeets.cards.animator.basic.Defend;
-import eatyourbeets.cards.animator.basic.Defend_GATE;
 import eatyourbeets.cards.animator.basic.Strike;
-import eatyourbeets.cards.animator.basic.Strike_GATE;
-import eatyourbeets.cards.animator.beta.LogHorizon.Minori;
-import eatyourbeets.cards.animator.beta.LogHorizon.Tohya;
-import eatyourbeets.cards.animator.series.GATE.RoryMercury;
+import eatyourbeets.cards.animator.beta.LogHorizon.*;
 import eatyourbeets.cards.animator.ultrarare.Giselle;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
@@ -26,8 +22,8 @@ public class LogHorizon extends AnimatorLoadout
     {
         if (startingDeck.isEmpty())
         {
-            startingDeck.add(Strike_GATE.ID);
-            startingDeck.add(Defend_GATE.ID);
+            startingDeck.add(Strike_LogHorizon.ID);
+            startingDeck.add(Defend_LogHorizon.ID);
             startingDeck.add(Strike.DATA.ID);
             startingDeck.add(Strike.DATA.ID);
             startingDeck.add(Strike.DATA.ID);
@@ -44,7 +40,7 @@ public class LogHorizon extends AnimatorLoadout
     @Override
     public EYBCardData GetSymbolicCard()
     {
-        return RoryMercury.DATA;
+        return Akatsuki.DATA;
     }
 
     @Override

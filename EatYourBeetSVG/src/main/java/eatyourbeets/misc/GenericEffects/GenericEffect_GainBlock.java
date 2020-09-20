@@ -11,12 +11,13 @@ public class GenericEffect_GainBlock extends GenericEffect
     public GenericEffect_GainBlock(int amount)
     {
         this.amount = amount;
+        this.tooltip = GR.Tooltips.Block;
     }
 
     @Override
     public String GetText()
     {
-        return GR.Animator.Strings.Actions.GainAmount(amount, GR.Tooltips.Block, true);
+        return GR.Animator.Strings.Actions.GainAmount(amount, tooltip, true);
     }
 
     @Override

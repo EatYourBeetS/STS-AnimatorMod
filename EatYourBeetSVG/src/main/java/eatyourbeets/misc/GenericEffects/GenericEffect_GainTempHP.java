@@ -11,12 +11,13 @@ public class GenericEffect_GainTempHP extends GenericEffect
     public GenericEffect_GainTempHP(int amount)
     {
         this.amount = amount;
+        this.tooltip = GR.Tooltips.TempHP;
     }
 
     @Override
     public String GetText()
     {
-        return GR.Animator.Strings.Actions.GainAmount(amount, "["+GR.Tooltips.TempHP+"]", true);
+        return GR.Animator.Strings.Actions.GainAmount(amount, "["+tooltip+"]", true);
     }
 
     @Override

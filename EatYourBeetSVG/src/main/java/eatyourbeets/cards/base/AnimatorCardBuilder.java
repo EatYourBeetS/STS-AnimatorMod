@@ -93,6 +93,14 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         return this;
     }
 
+    public AnimatorCardBuilder SetID(String id)
+    {
+        this.id = id;
+
+        return this;
+    }
+
+
     public AnimatorCardBuilder SetCost(int baseCost, int costUpgrade)
     {
         this.cost = baseCost;

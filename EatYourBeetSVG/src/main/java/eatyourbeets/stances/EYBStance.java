@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.StanceStrings;
 import com.megacrit.cardcrawl.stances.AbstractStance;
+import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.delegates.FuncT0;
@@ -34,8 +35,9 @@ public abstract class EYBStance extends AbstractStance
 
         tooltips.clear();
         tooltips.put(ForceStance.STANCE_ID, GR.Tooltips.ForceStance);
-        tooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.IntellectStance);
         tooltips.put(AgilityStance.STANCE_ID, GR.Tooltips.AgilityStance);
+        tooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.IntellectStance);
+        tooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);
     }
 
     public static EYBCardTooltip GetStanceTooltip(String stance)

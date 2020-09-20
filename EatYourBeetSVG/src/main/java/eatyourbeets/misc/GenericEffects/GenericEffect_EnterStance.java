@@ -10,18 +10,15 @@ import eatyourbeets.utilities.GameActions;
 
 public class GenericEffect_EnterStance extends GenericEffect
 {
-    protected String stanceID;
-    protected EYBCardTooltip tooltip;
-
     public GenericEffect_EnterStance(String stance)
     {
-        this.stanceID = stance;
+        this.id = stance;
         this.tooltip = EYBStance.GetStanceTooltip(stance);
     }
 
     public GenericEffect_EnterStance(String stance, EYBCardTooltip tooltip)
     {
-        this.stanceID = stance;
+        this.id = stance;
         this.tooltip = tooltip;
     }
 
@@ -40,6 +37,6 @@ public class GenericEffect_EnterStance extends GenericEffect
     @Override
     public void Use(AnimatorCard card, AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ChangeStance(stanceID);
+        GameActions.Bottom.ChangeStance(id);
     }
 }

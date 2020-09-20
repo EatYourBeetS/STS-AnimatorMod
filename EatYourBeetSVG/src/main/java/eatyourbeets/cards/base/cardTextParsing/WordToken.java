@@ -169,35 +169,38 @@ public class WordToken extends CTToken
         {
             overrideColor.a = context.card.transparency;
 
-            Integer t = null;
-            if (tooltip == GR.Tooltips.Limited)
+            if (tooltip == GR.Tooltips.Starter && !AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty())
             {
-                t = CombatStats.GetCombatData(context.card.cardID, null);
+                overrideColor.a = context.card.transparency * 0.6f;
             }
-            else if (tooltip == GR.Tooltips.SemiLimited)
+            else
             {
-                t = CombatStats.GetTurnData(context.card.cardID, null);
-            }
-
-            if (t != null)
-            {
-                if (!modifier.isEmpty())
+                Integer t = null;
+                if (tooltip == GR.Tooltips.Limited)
                 {
-                    int n = JUtils.ParseInt(modifier, 0);
-                    text += "(" + Math.max(0, n - t) + ")";
-                    if (t >= n)
+                    t = CombatStats.GetCombatData(context.card.cardID, null);
+                }
+                else if (tooltip == GR.Tooltips.SemiLimited)
+                {
+                    t = CombatStats.GetTurnData(context.card.cardID, null);
+                }
+
+                if (t != null)
+                {
+                    if (!modifier.isEmpty())
+                    {
+                        int n = JUtils.ParseInt(modifier, 0);
+                        text += "(" + Math.max(0, n - t) + ")";
+                        if (t >= n)
+                        {
+                            overrideColor.a = context.card.transparency * 0.6f;
+                        }
+                    }
+                    else if (t > 0)
                     {
                         overrideColor.a = context.card.transparency * 0.6f;
                     }
                 }
-                else if (t > 0)
-                {
-                    overrideColor.a = context.card.transparency * 0.6f;
-                }
-            }
-            else if (tooltip == GR.Tooltips.Starter && !AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty())
-            {
-                overrideColor.a = context.card.transparency * 0.6f;
             }
 
             Render(sb, context, text, overrideColor);

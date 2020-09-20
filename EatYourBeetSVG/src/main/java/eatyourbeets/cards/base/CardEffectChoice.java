@@ -14,9 +14,9 @@ import java.util.ArrayList;
 
 public class CardEffectChoice
 {
-    private final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-    private final ArrayList<AnimatorCardBuilder> effects = new ArrayList<>();
-    private AnimatorCard source;
+    protected final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+    protected final ArrayList<AnimatorCardBuilder> effects = new ArrayList<>();
+    protected AnimatorCard source;
 
     public void Initialize(AnimatorCard source)
     {
@@ -59,13 +59,22 @@ public class CardEffectChoice
     public AnimatorCardBuilder AddEffect(GenericEffect effect)
     {
         AnimatorCardBuilder builder = new AnimatorCardBuilder(source, effect.GetText(), false).SetOnUse(effect::Use);
+        if (effect.id != null)
+        {
+            builder.SetID(effect.id);
+        }
         effects.add(builder);
         return builder;
     }
 
     public SelectFromPile Select(int amount, AbstractMonster m)
     {
-        return (SelectFromPile) GameActions.Bottom.SelectFromPile(source.name, amount, Build(false))
+        return Select(Build(false), amount, m);
+    }
+
+    public SelectFromPile Select(CardGroup group, int amount, AbstractMonster m)
+    {
+        return (SelectFromPile) GameActions.Bottom.SelectFromPile(source.name, amount, group)
         .SetOptions(false, false)
         .AddCallback(m, (target, cards) ->
         {

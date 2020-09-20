@@ -16,13 +16,15 @@ import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class CardTooltips
 {
     protected static final HashMap<String, EYBCardTooltip> tooltipIDs = new HashMap<>();
     protected static final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
+    protected static final HashSet<EYBCardTooltip> ignored = new HashSet<>();
 
-    public EYBCardTooltip Energy = FindByName("[E]");
+    public EYBCardTooltip Energy = FindByName("[E]").ShowText(false);
     public EYBCardTooltip Starter = FindByID("Starter");
     public EYBCardTooltip Limited = FindByID("Limited");
     public EYBCardTooltip SemiLimited = FindByID("Semi-Limited");
@@ -35,23 +37,24 @@ public class CardTooltips
     public EYBCardTooltip Intellect = FindByID("Intellect");
     public EYBCardTooltip Force = FindByID("Force");
     public EYBCardTooltip Agility = FindByID("Agility");
-    public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
-    public EYBCardTooltip ForceStance = FindByID("Force Stance");
-    public EYBCardTooltip SupportDamage = FindByID("Support Damage");
     public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
+    public EYBCardTooltip ForceStance = FindByID("Force Stance");
+    public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
+    public EYBCardTooltip NeutralStance = FindByID("Neutral Stance");
+    public EYBCardTooltip SupportDamage = FindByID("Support Damage");
     public EYBCardTooltip Spellcaster = FindByID("Spellcaster");
     public EYBCardTooltip MartialArtist = FindByID("Martial Artist");
     public EYBCardTooltip Shapeshifter = FindByID("Shapeshifter");
     public EYBCardTooltip OrbCore = FindByID("~Orb Core");
     public EYBCardTooltip Innate = FindByID("~Innate");
     public EYBCardTooltip Ethereal = FindByID("~Ethereal");
-    public EYBCardTooltip Retain = FindByID("~Retain");
     public EYBCardTooltip Haste = FindByID("~Haste");
-    public EYBCardTooltip Exhaust = FindByID("Exhaust");
-    public EYBCardTooltip Channel = FindByID("Channel");
-    public EYBCardTooltip Block = FindByID("Block");
-
-    public EYBCardTooltip Upgrade = FindByID("Upgrade");
+    public EYBCardTooltip Retain = FindByID("~Retain").ShowText(false);
+    public EYBCardTooltip Exhaust = FindByID("Exhaust").ShowText(false);
+    public EYBCardTooltip Channel = FindByID("Channel").ShowText(false);
+    public EYBCardTooltip Block = FindByID("Block").ShowText(false);
+    public EYBCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
+    public EYBCardTooltip Stance = FindByID("Stance").ShowText(false);
     public EYBCardTooltip Metallicize = FindByID("Metallicize");
     public EYBCardTooltip PlatedArmor = FindByID("Plated Armor");
     public EYBCardTooltip EnchantedArmor = FindByID("Enchanted Armor");
@@ -120,13 +123,6 @@ public class CardTooltips
         RegisterID("Random Orb", RandomOrb);
         RegisterID("T-Knife", ThrowingKnife);
         RegisterID("Gold", Gold);
-    }
-
-    public boolean CanAdd(EYBCardTooltip tooltip)
-    {
-        return tooltip != null && tooltip.title != null && tooltip != Block
-            && tooltip != Channel && tooltip != Upgrade && tooltip != Exhaust
-            && tooltip != Retain && tooltip != Energy;
     }
 
     public void InitializeIcons()

@@ -1307,7 +1307,7 @@
 		},
 		"animator:Viivi":
 		{
-			"DESCRIPTION": "Starter. Gain [A] ** and <DRW>. || When Discarded: Add ** 1 [T-Knife] to your hand.",
+			"DESCRIPTION": "Starter. <DRW> ** and gain [A]. || When Discarded: Add ** 1 [T-Knife] to your hand.",
 			"NAME": "Viivi"
 		}
 	},
@@ -1316,7 +1316,7 @@
 	{
 		"animator:Azekura":
 		{
-			"DESCRIPTION": "Gain !S! [Plated Armor]. Reduce ** the [Block] of all cards ** in your hand by !M!. || <FS> or when ** Exhausted: Gain !S! [Thorns].",
+			"DESCRIPTION": "Gain 2 [Plated Armor], then ** reduce the Block of all ** cards in hand by !S! [Plated Armor]. Reduce ** the [Block] of all cards ** in your hand by !M!. || <FS> or when ** Exhausted: Gain !S! [Thorns].",
 			"NAME": "Azekura"
 		},
 		"animator:Biyorigo":

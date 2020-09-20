@@ -13,7 +13,6 @@ public class GenericEffect_Apply extends GenericEffect
 {
     protected final TargetHelper target;
     protected final PowerHelper power;
-    protected final EYBCardTooltip tooltip;
 
     public GenericEffect_Apply(TargetHelper target, PowerHelper power, int amount)
     {

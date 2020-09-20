@@ -169,26 +169,18 @@ public class WordToken extends CTToken
         {
             overrideColor.a = context.card.transparency;
 
+            Integer t = null;
             if (tooltip == GR.Tooltips.Limited)
             {
-                int t = CombatStats.GetCombatData(context.card.cardID, 0);
-                if (!modifier.isEmpty())
-                {
-                    int n = JUtils.ParseInt(modifier, 0);
-                    text += "(" + Math.max(0, n - t) + ")";
-                    if (t >= n)
-                    {
-                        overrideColor.a = context.card.transparency * 0.6f;
-                    }
-                }
-                else if (t > 0)
-                {
-                    overrideColor.a = context.card.transparency * 0.6f;
-                }
+                t = CombatStats.GetCombatData(context.card.cardID, null);
             }
             else if (tooltip == GR.Tooltips.SemiLimited)
             {
-                int t = CombatStats.GetTurnData(context.card.cardID, 0);
+                t = CombatStats.GetTurnData(context.card.cardID, null);
+            }
+
+            if (t != null)
+            {
                 if (!modifier.isEmpty())
                 {
                     int n = JUtils.ParseInt(modifier, 0);

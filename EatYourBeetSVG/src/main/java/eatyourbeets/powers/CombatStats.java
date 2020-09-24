@@ -330,12 +330,10 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             return (T) turnData.get(key);
         }
-        else if (defaultData != null)
+        else
         {
             return SetCombatData(key, defaultData);
         }
-
-        return defaultData;
     }
 
     public static <T> T SetCombatData(String key, T data)
@@ -350,12 +348,10 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             return (T) combatData.get(key);
         }
-        else if (defaultData != null)
+        else
         {
             return SetCombatData(key, defaultData);
         }
-
-        return defaultData;
     }
 
     public static int CardsExhaustedThisTurn()

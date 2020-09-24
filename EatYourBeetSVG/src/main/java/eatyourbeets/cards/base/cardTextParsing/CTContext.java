@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
@@ -192,7 +193,7 @@ public class CTContext
 
     protected void AddTooltip(EYBCardTooltip tooltip)
     {
-        if (card != null && tooltip != null && tooltip.title != null && !card.tooltips.contains(tooltip))
+        if (card != null && !card.tooltips.contains(tooltip) && GR.Tooltips.CanAdd(tooltip))
         {
             card.tooltips.add(tooltip);
         }

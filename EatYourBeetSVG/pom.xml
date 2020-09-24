@@ -24,7 +24,7 @@
         <dependency>
             <groupId>basemod</groupId>
             <artifactId>basemod</artifactId>
-            <version>5.23.3</version>
+            <version>5.23.2</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/BaseMod.jar</systemPath>
         </dependency>
@@ -38,7 +38,7 @@
         <dependency>
             <groupId>com.evacipated.cardcrawl</groupId>
             <artifactId>stslib</artifactId>
-            <version>1.20.4</version>
+            <version>1.20.3</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/STSLib.jar</systemPath>
         </dependency>

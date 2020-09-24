@@ -38,7 +38,7 @@ public class Rider extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ReduceStrength(m, magicNumber, true);
-        GameActions.Bottom.Callback(__ ->
+        GameActions.Bottom.Callback(() ->
         {
             tagCache.clear();
             for(AbstractCard c : player.hand.group)

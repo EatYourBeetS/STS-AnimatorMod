@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
+import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
@@ -811,6 +812,25 @@ public final class GameActions
     public TalkAction Talk(AbstractCreature source, String text, float duration, float bubbleDuration)
     {
         return Add(new TalkAction(source, text, duration, bubbleDuration));
+    }
+
+    public SelectFromHand UpgradeFromHand(String sourceName, int amount, boolean isRandom)
+    {
+        return (SelectFromHand) SelectFromHand(sourceName, amount, isRandom)
+        .SetOptions(true, true, true, false, true, false)
+        .SetMessage(ArmamentsAction.TEXT[0])
+        .SetFilter(AbstractCard::canUpgrade)
+        .AddCallback(cards ->
+        {
+            for (AbstractCard c : cards)
+            {
+                if (c.canUpgrade())
+                {
+                    c.upgrade();
+                    c.flash();
+                }
+            }
+        });
     }
 
     public VFX VFX(AbstractGameEffect effect)

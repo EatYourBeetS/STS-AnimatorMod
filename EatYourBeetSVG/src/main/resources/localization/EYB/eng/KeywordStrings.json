@@ -18,6 +18,12 @@
 		"NAMES": ["[a] stance", "agility stance"],
 		"PROPER_NAME": "Agility Stance"
 	},
+	"Autoplay":
+	{
+		"DESCRIPTION": "Played by itself by spending energy.",
+		"NAMES": ["autoplay", "autoplayed"],
+		"PROPER_NAME": "Autoplay"
+	},
 	"Blur":
 	{
 		"DESCRIPTION": "Your #yBlock will not be removed at the start of your next turn.",

@@ -69,7 +69,7 @@ public class Aisha extends AnimatorCard
     {
         super.triggerWhenCreated(startOfBattle);
 
-        if (startOfBattle && CombatStats.TryActivateLimited(cardID, 2))
+        if (startOfBattle && CombatStats.TryActivateLimited(cardID))
         {
             GameEffects.List.ShowCopy(this);
             GameActions.Bottom.GainOrbSlots(1);

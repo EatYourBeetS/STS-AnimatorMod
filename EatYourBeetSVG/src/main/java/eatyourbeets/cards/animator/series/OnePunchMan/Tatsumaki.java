@@ -2,14 +2,14 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Aether;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Tatsumaki extends AnimatorCard
 {
@@ -26,21 +26,17 @@ public class Tatsumaki extends AnimatorCard
     }
 
     @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        if (GameUtilities.GetUniqueOrbsCount() >= 3 && CombatStats.TryActivateSemiLimited(this.cardID))
-        {
-            GameActions.Bottom.Draw(1);
-            GameActions.Bottom.Flash(this);
-        }
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainIntellect(magicNumber, upgraded);
         GameActions.Bottom.ChannelOrb(new Aether(), true);
+
+        if (player.stance.ID.equals(NeutralStance.STANCE_ID))
+        {
+            GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
+        }
+        else
+        {
+            GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
+        }
     }
 }

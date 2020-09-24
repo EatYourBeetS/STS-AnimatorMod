@@ -19,7 +19,7 @@ public class DwarfShaman extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 0);
+        Initialize(2, 0, 3);
         SetUpgrade(4, 0, 0);
         SetScaling(1, 0, 1);
 

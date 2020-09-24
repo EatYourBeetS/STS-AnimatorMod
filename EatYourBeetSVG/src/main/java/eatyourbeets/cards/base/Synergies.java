@@ -56,8 +56,6 @@ public class Synergies
     public final static Synergy AngelBeats = CreateSynergy(43);
     public final static Synergy RozenMaiden = CreateSynergy(44);
 
-    @SuppressWarnings("FieldCanBeLocal")
-    private static AnimatorCard previousCard = null;
     private static AnimatorCard lastCardPlayed = null;
     private static int preemptiveSynergies;
 
@@ -175,7 +173,6 @@ public class Synergies
     {
         if (card == null)
         {
-            previousCard = null;
             lastCardPlayed = null;
             preemptiveSynergies = 0;
         }
@@ -186,7 +183,6 @@ public class Synergies
                 preemptiveSynergies -= 1;
             }
 
-            previousCard = lastCardPlayed;
             lastCardPlayed = JUtils.SafeCast(card, AnimatorCard.class);
         }
     }

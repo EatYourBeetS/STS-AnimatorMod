@@ -156,6 +156,12 @@
 		"NAMES": ["metallicize"],
 		"PROPER_NAME": "Metallicize"
 	},
+	"Neutral Stance":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["neutral stance"],
+		"PROPER_NAME": "Neutral Stance"
+	},
 	"Starter":
 	{
 		"DESCRIPTION": "Activates if played at the start of turn.",

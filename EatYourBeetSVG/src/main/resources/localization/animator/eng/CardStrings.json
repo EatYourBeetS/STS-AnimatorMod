@@ -74,7 +74,7 @@
 		},
 		"animator:Defend_OwariNoSeraph":
 		{
-			"DESCRIPTION": "When Exhausted: ** Apply !M! [Weak] ** to ALL enemies.",
+			"DESCRIPTION": "When Exhausted: ** Apply !M! [Weak] to ** ALL enemies.",
 			"NAME": "Improved Defend"
 		},
 		"animator:Defend_TenSura":
@@ -154,7 +154,7 @@
 		},
 		"animator:Strike_OwariNoSeraph":
 		{
-			"DESCRIPTION": "When Exhausted: ** Apply !M! [Vulnerable] ** to ALL enemies.",
+			"DESCRIPTION": "When Exhausted: ** Apply !M! [Vulnerable] to ** ALL enemies.",
 			"NAME": "Improved Strike"
 		},
 		"animator:Strike_TenSura":
@@ -1210,7 +1210,7 @@
 		},
 		"animator:DwarfShaman":
 		{
-			"DESCRIPTION": "Channel 1 [Earth]. || Synergy: <DRW> ** and Upgrade it.",
+			"DESCRIPTION": "Channel 1 [Earth]. || <FS> or <IS>: ** <DRW>, then Upgrade 1 card.",
 			"NAME": "Dwarf Shaman"
 		},
 		"animator:GoblinSlayer":
@@ -1241,7 +1241,7 @@
 		},
 		"animator:Spearman":
 		{
-			"DESCRIPTION": "Boost [A]. Add a ** {~Wound} to your hand. || Synergy: Gain [F].",
+			"DESCRIPTION": "Boost [A] [F]. Add a ** {~Wound} to your draw pile. || <slm>. If you have ** {Witch} in hand: You may ** enter any Stance.",
 			"NAME": "Spearman"
 		},
 		"animator:SwordMaiden":
@@ -1306,7 +1306,7 @@
 		},
 		"animator:Viivi":
 		{
-			"DESCRIPTION": "<DRW>. || When Discarded: Add ** 1 [T-Knife] ** to your hand.",
+			"DESCRIPTION": "Starter. <DRW> ** and gain [A]. || When Discarded: Add ** 1 [T-Knife] to your hand.",
 			"NAME": "Viivi"
 		}
 	},
@@ -1315,7 +1315,7 @@
 	{
 		"animator:Azekura":
 		{
-			"DESCRIPTION": "Gain !M! {Temp.} [Thorns]. || When Exhausted: Gain ** !S! [Plated Armor].",
+			"DESCRIPTION": "Gain 2 [Plated Armor], then ** reduce the Block of all ** cards in hand by !M!. || <FS> or when ** Exhausted: Gain !S! [Thorns].",
 			"NAME": "Azekura"
 		},
 		"animator:Biyorigo":
@@ -1373,7 +1373,7 @@
 		},
 		"animator:ZankiKiguchi":
 		{
-			"DESCRIPTION": "<LIM>. When ** Exhausted: Move this ** card to your hand ** and Boost [A] [A].",
+			"DESCRIPTION": "<slm>. Re-Enter ** your current Stance. || When Exhausted: Move ** this card to your hand ** and give it Purge.",
 			"NAME": "Zanki Kiguchi"
 		}
 	},
@@ -1776,7 +1776,7 @@
 		},
 		"animator:EntouJyuu":
 		{
-			"DESCRIPTION": "Gain !M! <AGI>. || Whenever you deal ** unblocked damage: ** Apply 1 [Burning].",
+			"DESCRIPTION": "Gain !M! [A]. || Whenever you deal ** unblocked damage: ** Apply 1 [Burning].",
 			"NAME": "Entou Jyuu"
 		},
 		"animator:Excalibur":

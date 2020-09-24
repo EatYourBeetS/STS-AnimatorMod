@@ -130,6 +130,11 @@ public class GameUtilities
         copy.targetAngle = original.targetAngle;
     }
 
+    public static void DecreaseBlock(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyBlock(card, Math.max(0, card.baseBlock - amount), temporary);
+    }
+
     public static void DecreaseDamage(AbstractCard card, int amount, boolean temporary)
     {
         ModifyDamage(card, Math.max(0, card.baseDamage - amount), temporary);
@@ -759,6 +764,11 @@ public class GameUtilities
         return player != null && player.stance != null && player.stance.ID.equals(stanceID);
     }
 
+    public static void IncreaseBlock(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyBlock(card, card.baseBlock + amount, temporary);
+    }
+
     public static void IncreaseDamage(AbstractCard card, int amount, boolean temporary)
     {
         ModifyDamage(card, card.baseDamage + amount, temporary);
@@ -842,6 +852,16 @@ public class GameUtilities
     {
         card.costForTurn = relative ? Math.max(0, card.costForTurn + amount) : amount;
         card.isCostModifiedForTurn = (card.cost != card.costForTurn);
+    }
+
+    public static void ModifyBlock(AbstractCard card, int amount, boolean temporary)
+    {
+        if (!temporary)
+        {
+            card.baseBlock = amount;
+        }
+        card.block = amount;
+        card.isBlockModified = (card.block != card.baseBlock);
     }
 
     public static void ModifyDamage(AbstractCard card, int amount, boolean temporary)

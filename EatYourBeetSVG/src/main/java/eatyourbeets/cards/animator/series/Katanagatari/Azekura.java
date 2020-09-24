@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.animator.EarthenThornsPower;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 

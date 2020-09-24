@@ -943,7 +943,7 @@
 		},
 		"animator:Aisha":
 		{
-			"DESCRIPTION": "Attack 1 additional time ** for each Orb you have. || <LIM>(2). At the start of ** combat: Gain 1 Orb Slot.",
+			"DESCRIPTION": "Attack 1 additional time ** for each Orb you have. || <LIM>. At the start of ** combat: Gain 1 Orb Slot.",
 			"NAME": "Aisha"
 		},
 		"animator:Ara":
@@ -1023,7 +1023,7 @@
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "<FS>: Gain !M! [F]. Otherwise: Enter <FS>. || If the enemy dies or loses ** its Block: Gain !S! Block.",
+			"DESCRIPTION": "<FS>: Gain !M! [F]. Otherwise: Enter <FS>. || If the enemy dies or ** loses its [Block]: Gain !S! [Block].",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
@@ -1109,7 +1109,7 @@
 		},
 		"animator:Greed":
 		{
-			"DESCRIPTION": "Choose !S!: Gain {0} Block, ** Gain {1} [Temporary HP], Gain {2} [Malleable], ** Gain {3} [Plated Armor], or Gain {4} [Metallicize]. || For every !M! [Gold] you have: Choose 1 additional effect.",
+			"DESCRIPTION": "Choose !S!: Gain {0} [Block], ** Gain {1} [Temporary HP], Gain {2} [Malleable], ** Gain {3} [Plated Armor], or Gain {4} [Metallicize]. || For every !M! [Gold] you have: Choose 1 additional effect.",
 			"NAME": "Greed"
 		},
 		"animator:MaesHughes":
@@ -1307,7 +1307,7 @@
 		},
 		"animator:Viivi":
 		{
-			"DESCRIPTION": "Starter. <DRW> ** and gain [A]. || When Discarded: Add ** 1 [T-Knife] to your hand.",
+			"DESCRIPTION": "Starter. Gain [A] ** and <DRW>. || When Discarded: Add ** 1 [T-Knife] to your hand.",
 			"NAME": "Viivi"
 		}
 	},
@@ -1316,7 +1316,7 @@
 	{
 		"animator:Azekura":
 		{
-			"DESCRIPTION": "Gain 2 [Plated Armor], then ** reduce the Block of all ** cards in hand by !S! [Plated Armor]. Reduce ** the [Block] of all cards ** in your hand by !M!. || <FS> or when ** Exhausted: Gain !S! [Thorns].",
+			"DESCRIPTION": "Gain !S! [Plated Armor]. Reduce ** the [Block] of all cards ** in your hand by !S! [Plated Armor]. Reduce ** the [Block] of all cards ** in your hand by !M!. || <FS> or when ** Exhausted: Gain !S! [Thorns].",
 			"NAME": "Azekura"
 		},
 		"animator:Biyorigo":

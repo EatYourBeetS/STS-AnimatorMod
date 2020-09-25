@@ -31,7 +31,7 @@ public class DateALive extends AnimatorLoadout {
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(ShidoItsuka.DATA.ID);
-            startingDeck.add(ReineMurasame.DATA.ID);
+            startingDeck.add(YamaiSisters.DATA.ID);
         }
 
         return startingDeck;

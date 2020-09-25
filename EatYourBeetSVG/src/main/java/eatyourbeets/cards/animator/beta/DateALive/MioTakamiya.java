@@ -1,14 +1,16 @@
 package eatyourbeets.cards.animator.beta.DateALive;
 
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard
 {
@@ -22,7 +24,8 @@ public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard
     {
         super(DATA);
 
-        Initialize(0, 0, 0);
+        Initialize(0, 15, 6);
+        SetUpgrade(0, 0, -1);
 
         SetSynergy(Synergies.DateALive);
     }
@@ -30,24 +33,18 @@ public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.MoveCards(p.exhaustPile, p.hand).SetFilter(c -> ShidoItsuka.DATA.ID.equals(c.cardID));
-        GameActions.Bottom.MoveCards(p.discardPile, p.hand).SetFilter(c -> ShidoItsuka.DATA.ID.equals(c.cardID));
-        GameActions.Bottom.MoveCards(p.drawPile, p.hand).SetFilter(c -> ShidoItsuka.DATA.ID.equals(c.cardID));
-        GameActions.Last.Callback(() ->
+        if (GameUtilities.InStance(AgilityStance.STANCE_ID))
         {
-            for (AbstractCard card : player.hand.group)
-            {
-                if (card.cardID.equals(ShidoItsuka.DATA.ID))
-                {
-                    card.setCostForTurn(0);
-                }
-            }
-        });
+            GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
+            GameActions.Bottom.GainAgility(p.currentBlock / magicNumber);
+        }
     }
 
     @Override
     public boolean atBattleStartPreDraw()
     {
+        GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
+
         final ShidoItsuka shido = new ShidoItsuka();
         for (int i = 0; i < 3; i++)
         {

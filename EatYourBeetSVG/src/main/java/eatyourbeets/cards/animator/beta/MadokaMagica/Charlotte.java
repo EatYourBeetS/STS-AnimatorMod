@@ -14,6 +14,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.vfx.HemokinesisEffect;
+import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -37,7 +38,16 @@ public class Charlotte extends AnimatorCard
     @Override
     protected float GetInitialDamage()
     {
-        return baseDamage * (float) Math.pow(2, player.hand.getCardsOfType(CardType.CURSE).size());
+        int damage = baseDamage;
+
+        damage *= (float) Math.pow(2, player.hand.getCardsOfType(CardType.CURSE).size());
+
+        if (GameUtilities.InStance(IntellectStance.STANCE_ID))
+        {
+            damage *= 2;
+        }
+
+        return damage;
     }
 
     @Override

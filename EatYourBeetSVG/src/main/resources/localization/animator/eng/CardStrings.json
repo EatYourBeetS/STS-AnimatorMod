@@ -182,7 +182,7 @@
 	{
 		"animator:Charlotte":
 		{
-			"DESCRIPTION": "Double the damage dealt ** for each {Curse} in hand. || <LIM>. If this card kills ** an enemy: Heal !M! HP.",
+			"DESCRIPTION": "Double the damage dealt ** for each {Curse} in hand and in <IS>. || <LIM>. If this card kills ** an enemy: Heal !M! HP.",
 			"NAME": "Charlotte"
 		},
 		"animator:Curse_GriefSeed":
@@ -223,7 +223,7 @@
 		},
 		"animator:NagisaMomoe":
 		{
-			"DESCRIPTION": "Draw !M! random card(s) ** from your discard pile. || Add {Charlotte} and a ** {Grief Seed} to your ** discard pile.",
+			"DESCRIPTION": "Enter <IS>. || Add {Charlotte} and a ** {Grief Seed} to your ** discard pile.",
 			"NAME": "Nagisa Momoe"
 		},
 		"animator:Oktavia":
@@ -233,7 +233,7 @@
 		},
 		"animator:OrikoMikuni":
 		{
-			"DESCRIPTION": "Scry !S!. Retain !M! card(s) at ** the end of this turn. || <SLM>. Synergy: ** If you reached 2 [I] this ** combat: <DRW>.",
+			"DESCRIPTION": "Scry !S!. Retain !M! card(s) at ** the end of this turn. || <SLM>. If in <IS>: <DRW>.",
 			"NAME": "Oriko Mikuni"
 		},
 		"animator:SayakaMiki":
@@ -248,9 +248,9 @@
 		},
 		"animator:SuzuneAmano":
 		{
-			"DESCRIPTION": "Exhaust 1 random card ** to apply !M! [Burning]. || Deals !S! additional ** damage for each ** [Fire] you have.",
+			"DESCRIPTION": "Exhaust 1 random card ** to apply !M! [Burning]. || Synergy: Deals !S! additional damage for each [Fire] you have.",
 			"NAME": "Suzune Amano",
-			"UPGRADE_DESCRIPTION": "Exhaust 1 card to ** apply !M! [Burning]. || Deals !S! additional ** damage for each ** [Fire] you have."
+			"UPGRADE_DESCRIPTION": "Exhaust 1 card to ** apply !M! [Burning]. || Synergy: Deals !S! additional damage for each [Fire] you have."
 		},
 		"animator:Walpurgisnacht":
 		{
@@ -260,7 +260,7 @@
 		},
 		"animator:YachiyoNanami":
 		{
-			"DESCRIPTION": "At the start of turn, you ** may discard a card ** to gain !M! Block. || If you discard a Hindrance: ** Also gain [A] [I].",
+			"DESCRIPTION": "At the start of turn, you ** may discard a card ** to gain !M! Block. || If you discard a Hindrance: ** gain [F]. [A], or [I] depending on your stance.",
 			"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard up to #b{0} card(s) to gain #b{1} #yBlock each. For each #yHindrance discarded, also #yGain #b{2} #yAgility and #b{3} #yIntellect."],
 			"NAME": "Yachiyo Nanami"
 		},
@@ -290,7 +290,7 @@
 		},
 		"animator:KotoriItsuka":
 		{
-			"DESCRIPTION": "You may {Exhaust} up to ** !S! cards. Boost [F][A] and ** add 1 {Burn} to your hand ** for each card Exhausted.",
+			"DESCRIPTION": "You may {Exhaust} up to ** !S! cards. Boost [F][A] and ** add 1 {Burn} to your hand ** for each card Exhausted. || If !S! cards were exhausted: Enter <FS>.",
 			"NAME": "Kotori Itsuka"
 		},
 		"animator:KurumiTokisaki":
@@ -300,13 +300,13 @@
 		},
 		"animator:MikuIzayoi":
 		{
-			"DESCRIPTION": "Unaffected by Block modifiers. || When Discarded: Raise ** your {Common Buffs} by !M!.",
+			"DESCRIPTION": "Unaffected by Block modifiers. || When Discarded: Raise ** your {Common Buffs} by !M! if not in a stance.  Otherwise, exit your stance.",
 			"EXTENDED_DESCRIPTION": ["Common Buffs", "#yForce, #yAgility, #yIntellect, #yThorns, #yTemp. #yThorns, #yMetallicize, #yPlated #yArmor. "],
 			"NAME": "Miku Izayoi"
 		},
 		"animator:MioTakamiya":
 		{
-			"DESCRIPTION": "At the start of combat: Shuffle ** three copies of {Shido Itsuka} ** into your draw pile. || Draw all copies of {Shido} ** {Itsuka} from everywhere. ** They cost 0 this turn.",
+			"DESCRIPTION": "At the start of combat: Enter <AS> and Shuffle three copies of {Shido Itsuka} into your draw pile. || If in <AS>: Exit your stance and gain [A] for every !M! [Block].",
 			"NAME": "Mio Takamiya"
 		},
 		"animator:MukuroHoshimiya":
@@ -322,7 +322,7 @@
 		},
 		"animator:NiaHonjou":
 		{
-			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** {Block}. || When Discarded: Scry !S!.",
+			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** {Block}.  Gain double block ** in <AS>. || When Discarded: Scry !S!.",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a card this turn, gain #b{0} #yBlock."],
 			"NAME": "Nia Honjou"
 		},
@@ -334,7 +334,7 @@
 		},
 		"animator:ReineMurasame":
 		{
-			"DESCRIPTION": "Add X copies of {Shido} ** {Itsuka} to your draw pile. || Synergy: Next turn: ** Gain X [E].",
+			"DESCRIPTION": "Add X copies of {Shido} ** {Itsuka} to your draw pile. || Synergy: If X is greater than 1: Gain !M! [E].",
 			"NAME": "Reine Murasame"
 		},
 		"animator:ShidoItsuka":
@@ -378,7 +378,7 @@
 	{
 		"animator:AkaneSenri":
 		{
-			"DESCRIPTION": "Enter {[I] Stance}. All cards ** in your hand gain {Haste}. || At the end of each turn, ** spend 1 of your remaining [E] ** to Channel 1 [Dark]. Trigger it ** once for each card in hand.",
+			"DESCRIPTION": "Enter <IS>. All cards ** in your hand gain {Haste}. || At the end of each turn, ** spend 1 of your remaining [E] ** to Channel 1 [Dark]. Trigger it ** once for each card in hand.",
 			"EXTENDED_DESCRIPTION": ["At end of turn: Spend 1 remaining Energy at end of turn to Channel 1 Dark at end of turn. Trigger it #b{0} times for each card in your hand."],
 			"NAME": "Akane Senri"
 		},
@@ -432,7 +432,7 @@
 		},
 		"animator:SakuyaOhtori":
 		{
-			"DESCRIPTION": "When drawn with Haste: ** Discard this card and ** Gain/Boost [F]. || Enter {[I] Stance}.  Convert ** half your [F] into [I].",
+			"DESCRIPTION": "When drawn with Haste: ** Discard this card and ** Gain/Boost [F]. || Enter <IS>.  Convert ** half your [F] into [I].",
 			"NAME": "Sakuya Ohtori"
 		},
 		"animator:Shimako":
@@ -442,12 +442,12 @@
 		},
 		"animator:ShizuruNakatsu":
 		{
-			"DESCRIPTION": "Discard !M! random {Skills} ** to Enter {[A] Stance}. || If you reached 4 [A] this ** combat: Deal 8 damage to ** ALL enemies.",
+			"DESCRIPTION": "Discard !M! random {Skills} ** to Enter <AS>. || If you reached 4 [A] this ** combat: Deal 8 damage to ** ALL enemies.",
 			"NAME": "Shizuru Nakatsu"
 		},
 		"animator:SougenEsaka":
 		{
-			"DESCRIPTION": "Gain Block equal to ** twice your [A]. || Synergy: Upgrade a ** random card in your ** hand.",
+			"DESCRIPTION": "Gain [Block] equal to ** twice your [A]. || Synergy: Upgrade a ** random card in your ** hand.",
 			"NAME": "Sougen Esaka"
 		},
 		"animator:Strike_Rewrite":
@@ -457,12 +457,12 @@
 		},
 		"animator:ToukaNishikujou":
 		{
-			"DESCRIPTION": "Add a [T-Knife] ** to your hand for ** every !M! Block you have. || On Synergy or Discard: ** Cycle a [T-Knife].",
+			"DESCRIPTION": "Add a [T-Knife] ** to your hand for ** every !M! [Block] you have. || On Synergy or Discard: ** Cycle a [T-Knife].",
 			"NAME": "Touka Nishikujou"
 		},
 		"animator:YoshinoHaruhiko":
 		{
-			"DESCRIPTION": "Enter {[F] Stance}. || {Starter}: Give ALL {Attacks} ** in your hand +1 [F] Scaling.",
+			"DESCRIPTION": "Enter <FS>. || {Starter}: Give ALL {Attacks} ** in your hand +1 [F] Scaling.",
 			"NAME": "Yoshino Haruhiko"
 		}
 	},
@@ -483,12 +483,12 @@
 		},
 		"animator:AyatoNaoi":
 		{
-			"DESCRIPTION": "Enter {[I] Stance}. Channel ** !M! Dark. || When played from Afterlife: ** ALL enemies lose HP equal to ** their Attack damage.",
+			"DESCRIPTION": "Enter <IS>. Channel ** !M! Dark. || When played from Afterlife: ** ALL enemies lose HP equal to ** their Attack damage.",
 			"NAME": "Ayato Naoi"
 		},
 		"animator:Godan":
 		{
-			"DESCRIPTION": "Enter {[F] Stance}. || Cooldown !S! : Gain !M! [F] and add a {Wound} to your hand.",
+			"DESCRIPTION": "Enter <FS>. || Cooldown !S! : Gain !M! [F] and add a {Wound} to your hand.",
 			"NAME": "Matsushita Godan"
 		},
 		"animator:EriShiina":
@@ -563,12 +563,12 @@
 		},
 		"animator:SuikaIbuki":
 		{
-		  "DESCRIPTION": "Draw !M! less card next turn. || On Synergy or when discarded: Gain/Boost [F].",
+		  "DESCRIPTION": "If not in <FS>: Enter <FS> and Draw !M! less card next turn. || On Synergy or when discarded: Gain/Boost [F].",
 		  "NAME": "Suika Ibuki"
 		},
 		"animator:AyaShameimaru":
 		{
-		  "DESCRIPTION": "When this card is drawn, increase its {~Block} by !S! this combat. || Synergy: Draw !M! card(s).",
+		  "DESCRIPTION": "When this card is drawn, increase its [Block] by !S! this combat. || Synergy: If not in a stance, enter <AS>.",
 		  "NAME": "Aya Shameimaru"
 		},
 		"animator:KomachiOnozuka":
@@ -595,7 +595,7 @@
 		},
 		"animator:KaguyaHouraisan":
 		{
-		  "DESCRIPTION": "Draw 1 card. Gain an effect based on its type. || {~Attack} -> ALL enemies lose !M! HP. ** {~Skill} -> Gain !B! Block. ** {~Power} -> Gain/Boost !S! [I].",
+		  "DESCRIPTION": "Draw 1 card. Gain an effect based on its type. || {~Attack} -> ALL enemies lose !M! HP. ** {~Skill} -> Gain !B! [Block]. ** {~Power} -> Gain/Boost !S! [I].",
 		  "NAME": "Kaguya Houraisan"
 		},
 		"animator:AliceMargatroid":
@@ -695,9 +695,9 @@
 		},
 		"animator:Kanaria":
 		{
-			"DESCRIPTION": "Whenever you apply a Debuff: Gain 2 Block. || <LIM>. On Synergy: Add {Pizzicato} to your hand and Retain it.",
+			"DESCRIPTION": "Whenever you apply a Debuff: Gain 2 [Block]. || <LIM>. On Synergy: Add {Pizzicato} to your hand and Retain it.",
 			"NAME": "Kanaria",
-			"EXTENDED_DESCRIPTION": ["Whenever you apply a Debuff, gain #b{0} Block."]
+			"EXTENDED_DESCRIPTION": ["Whenever you apply a Debuff, gain #b{0} [Block]."]
 		},
 		"animator:Kirakishou":
 		{
@@ -771,9 +771,9 @@
 		},
 		"animator:TomoeKashiwaba":
 		{
-			"DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! Block. || When Drawn: Lose no [F] next turn.",
+			"DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! [Block]. || When Drawn: Lose no [F] next turn.",
 			"NAME": "Tomoe Kashiwaba",
-			"UPGRADE_DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! Block. || When Drawn: Gain [F]."
+			"UPGRADE_DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! [Block]. || When Drawn: Gain [F]."
 		}
 	},
 	

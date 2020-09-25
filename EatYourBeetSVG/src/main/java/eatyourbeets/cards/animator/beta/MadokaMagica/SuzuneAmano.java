@@ -19,7 +19,7 @@ public class SuzuneAmano extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0, 3, 3);
+        Initialize(8, 0, 3, 5);
         SetUpgrade(0, 0, 0, 0);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -29,7 +29,14 @@ public class SuzuneAmano extends AnimatorCard
     @Override
     protected float GetInitialDamage()
     {
-        return baseDamage + (JUtils.Count(player.orbs, orb -> Fire.ORB_ID.equals(orb.ID)) * secondaryValue);
+        int extraAmount = 0;
+
+        if (HasSynergy())
+        {
+            extraAmount = (JUtils.Count(player.orbs, orb -> Fire.ORB_ID.equals(orb.ID)) * secondaryValue);
+        }
+
+        return baseDamage + extraAmount;
     }
 
     @Override

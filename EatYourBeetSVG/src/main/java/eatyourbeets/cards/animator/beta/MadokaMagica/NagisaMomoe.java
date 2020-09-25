@@ -6,11 +6,12 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 
 public class NagisaMomoe extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(NagisaMomoe.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(NagisaMomoe.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
         DATA.AddPreview(new Charlotte(), true);
@@ -21,8 +22,8 @@ public class NagisaMomoe extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0);
+        SetCostUpgrade(-1);
 
         SetExhaust(true);
         SetSynergy(Synergies.MadokaMagica);
@@ -32,7 +33,7 @@ public class NagisaMomoe extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Top.FetchFromPile(name, magicNumber, p.discardPile).SetOptions(true, false);
+        GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
         GameActions.Bottom.MakeCardInDiscardPile(new Charlotte()).SetUpgrade(upgraded, false);
         GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
     }

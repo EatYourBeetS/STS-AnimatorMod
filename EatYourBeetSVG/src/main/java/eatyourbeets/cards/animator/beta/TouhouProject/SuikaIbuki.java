@@ -8,7 +8,9 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.TemporaryDrawReductionPower;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class SuikaIbuki extends AnimatorCard
 {
@@ -30,7 +32,13 @@ public class SuikaIbuki extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, magicNumber));
+
+        if (!GameUtilities.InStance(ForceStance.STANCE_ID))
+        {
+            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+            GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, magicNumber));
+        }
+
         if (HasSynergy())
         {
             GameActions.Bottom.GainForce(secondaryValue, upgraded);

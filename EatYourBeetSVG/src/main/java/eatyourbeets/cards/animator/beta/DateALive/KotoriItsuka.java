@@ -12,6 +12,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class KotoriItsuka extends AnimatorCard
@@ -49,11 +50,20 @@ public class KotoriItsuka extends AnimatorCard
                 .SetOptions(true, true, true)
         .AddCallback(cards ->
         {
+            int amountExhausted = 0;
+
             for (AbstractCard card : cards)
             {
+                amountExhausted++;
+
                 GameActions.Bottom.GainAgility(1, true);
                 GameActions.Bottom.GainForce(1, true);
                 GameActions.Bottom.MakeCardInHand(new Burn());
+            }
+
+            if (amountExhausted == secondaryValue)
+            {
+                GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
             }
         });
     }

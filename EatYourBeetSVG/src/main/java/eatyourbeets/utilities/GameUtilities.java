@@ -139,11 +139,6 @@ public class GameUtilities
     {
         ModifyDamage(card, Math.max(0, card.baseDamage - amount), temporary);
     }
-
-    public static void DecreaseMagicNumber(AbstractCard card, int amount, boolean temporary)
-    {
-        ModifyMagicNumber(card, Math.max(0, card.baseMagicNumber - amount), temporary);
-    }
 	
     public static void DecreaseSecondaryValue(AbstractCard card, int amount, boolean temporary)
     {

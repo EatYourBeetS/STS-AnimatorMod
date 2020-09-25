@@ -63,6 +63,12 @@ public class Aisha extends AnimatorCard
             .SetDamageEffect(enemy -> GameEffects.Queue.Add(new SmallLaserEffect(player.hb.cX, player.hb.cY,
             enemy.hb.cX + MathUtils.random(-0.05f, 0.05f),enemy.hb.cY + MathUtils.random(-0.05f, 0.05f), Color.VIOLET)));
         }
+    }
+
+    @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        super.triggerWhenCreated(startOfBattle);
 
         if (startOfBattle && CombatStats.TryActivateLimited(cardID))
         {

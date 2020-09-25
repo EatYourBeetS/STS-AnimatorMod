@@ -64,7 +64,7 @@ public class Aisha extends AnimatorCard
             enemy.hb.cX + MathUtils.random(-0.05f, 0.05f),enemy.hb.cY + MathUtils.random(-0.05f, 0.05f), Color.VIOLET)));
         }
 
-        if (!CombatStats.HasActivatedSemiLimited(cardID))
+        if (startOfBattle && CombatStats.TryActivateLimited(cardID))
         {
             if (IntellectPower.GetCurrentLevel() > 1)
             {

@@ -42,5 +42,18 @@ public class Rider extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ReduceStrength(m, magicNumber, true);
+        GameActions.Bottom.Callback(() ->
+        {
+            tagCache.clear();
+            for(AbstractCard c : player.hand.group)
+            {
+                tagCache.addAll(c.tags);
+            }
+            if (tagCache.contains(MARTIAL_ARTIST) && tagCache.contains(SPELLCASTER))
+            {
+                GameActions.Bottom.GainAgility(1);
+                GameActions.Bottom.GainIntellect(1);
+            }
+        });
     }
 }

@@ -57,47 +57,44 @@ public class MikuIzayoi extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.Callback(() ->
+        if (GameUtilities.InStance(NeutralStance.STANCE_ID))
         {
-            if (GameUtilities.InStance(NeutralStance.STANCE_ID))
+            for (AbstractPower power : player.powers)
             {
-                for (AbstractPower power : player.powers)
+                if (ForcePower.POWER_ID.equals(power.ID))
                 {
-                    if (ForcePower.POWER_ID.equals(power.ID))
-                    {
-                        GameActions.Bottom.GainForce(magicNumber);
-                    }
-                    else if (AgilityPower.POWER_ID.equals(power.ID))
-                    {
-                        GameActions.Bottom.GainAgility(magicNumber);
-                    }
-                    else if (IntellectPower.POWER_ID.equals(power.ID))
-                    {
-                        GameActions.Bottom.GainIntellect(magicNumber);
-                    }
-                    else if (ThornsPower.POWER_ID.equals(power.ID))
-                    {
-                        GameActions.Bottom.GainThorns(magicNumber);
-                    }
-                    else if (EarthenThornsPower.POWER_ID.equals(power.ID))
-                    {
-                        GameActions.Bottom.GainTemporaryThorns(magicNumber);
-                    }
-                    else if (MetallicizePower.POWER_ID.equals(power.ID))
-                    {
-                        GameActions.Bottom.GainMetallicize(magicNumber);
-                    }
-                    else if (PlatedArmorPower.POWER_ID.equals(power.ID))
-                    {
-                        GameActions.Bottom.GainPlatedArmor(magicNumber);
-                    }
+                    GameActions.Bottom.GainForce(magicNumber);
+                }
+                else if (AgilityPower.POWER_ID.equals(power.ID))
+                {
+                    GameActions.Bottom.GainAgility(magicNumber);
+                }
+                else if (IntellectPower.POWER_ID.equals(power.ID))
+                {
+                    GameActions.Bottom.GainIntellect(magicNumber);
+                }
+                else if (ThornsPower.POWER_ID.equals(power.ID))
+                {
+                    GameActions.Bottom.GainThorns(magicNumber);
+                }
+                else if (EarthenThornsPower.POWER_ID.equals(power.ID))
+                {
+                    GameActions.Bottom.GainTemporaryThorns(magicNumber);
+                }
+                else if (MetallicizePower.POWER_ID.equals(power.ID))
+                {
+                    GameActions.Bottom.GainMetallicize(magicNumber);
+                }
+                else if (PlatedArmorPower.POWER_ID.equals(power.ID))
+                {
+                    GameActions.Bottom.GainPlatedArmor(magicNumber);
                 }
             }
-            else
-            {
-                GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
-            }
-        });
+        }
+        else
+        {
+            GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
+        }
 
 
     }

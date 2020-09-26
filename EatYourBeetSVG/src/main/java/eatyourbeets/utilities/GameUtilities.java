@@ -838,8 +838,8 @@ public class GameUtilities
         }
         else
         {
-            card.costForTurn = Math.max(0, amount + (card.costForTurn - card.cost));
-            card.cost = Math.max(0, amount);
+            card.costForTurn = amount + (card.costForTurn - card.cost);
+            card.cost = amount;
         }
 
         if (card.cost != previousCost)

@@ -42,7 +42,7 @@ public class Azekura extends AnimatorCard
 
         for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
         {
-            GameUtilities.DecreaseBlock(c, magicNumber, false);
+            GameUtilities.DecreaseBlock(c, magicNumber, false); 
             c.superFlash(Color.RED.cpy());
         }
 

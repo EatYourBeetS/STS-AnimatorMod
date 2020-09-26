@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class AyaShameimaru extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(AyaShameimaru.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.Self);
+    public static final EYBCardData DATA = Register(AyaShameimaru.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.Self);
 
     public AyaShameimaru()
     {

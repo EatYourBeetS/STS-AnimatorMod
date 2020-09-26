@@ -568,7 +568,7 @@
 		},
 		"animator:AyaShameimaru":
 		{
-		  "DESCRIPTION": "Increase its [Block] by !M!.  Gain !S! Blur. || When Drawn: If in Neutral Stance: Enter <AS>.",
+		  "DESCRIPTION": "Increase its [Block] by !M!.  Gain !S! [Blur]. || When Drawn: If in Neutral Stance: Enter <AS>.",
 		  "NAME": "Aya Shameimaru"
 		},
 		"animator:KomachiOnozuka":

@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class YuukaKazami extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(YuukaKazami.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(YuukaKazami.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
 
     public YuukaKazami()
     {

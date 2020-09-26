@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class AyaShameimaru extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(AyaShameimaru.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.Self);
+    public static final EYBCardData DATA = Register(AyaShameimaru.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.Self);
 
     private int bonusBlock = 0;
 
@@ -19,8 +19,8 @@ public class AyaShameimaru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6, 3, 13);
-        SetUpgrade(0, 2, 1);
+        Initialize(0, 2, 7, 13);
+        SetUpgrade(0, 1, 2);
 
         SetSynergy(Synergies.TouhouProject);
     }

@@ -1316,7 +1316,7 @@
 	{
 		"animator:Azekura":
 		{
-			"DESCRIPTION": "Gain !S! [Plated Armor]. Reduce ** the [Block] of all cards ** in your hand by !S! [Plated Armor]. Reduce ** the [Block] of all cards ** in your hand by !M!. || <FS> or when ** Exhausted: Gain !S! [Thorns].",
+			"DESCRIPTION": "Gain !S! [Plated Armor]. Reduce ** the [Block] of all cards ** in your hand by !M!. || <FS> or when ** Exhausted: Gain !S! [Thorns].",
 			"NAME": "Azekura"
 		},
 		"animator:Biyorigo":

@@ -69,12 +69,17 @@ public class CardEffectChoice
 
     public SelectFromPile Select(int amount, AbstractMonster m)
     {
-        return Select(Build(false), amount, m);
+        return Select(GameActions.Bottom, Build(false), amount, m);
     }
 
-    public SelectFromPile Select(CardGroup group, int amount, AbstractMonster m)
+    public SelectFromPile Select(GameActions gameActions, int amount, AbstractMonster m)
     {
-        return (SelectFromPile) GameActions.Bottom.SelectFromPile(source.name, amount, group)
+        return Select(gameActions, Build(false), amount, m);
+    }
+
+    public SelectFromPile Select(GameActions gameActions, CardGroup group, int amount, AbstractMonster m)
+    {
+        return (SelectFromPile) gameActions.SelectFromPile(source.name, amount, group)
         .SetOptions(false, false)
         .AddCallback(m, (target, cards) ->
         {

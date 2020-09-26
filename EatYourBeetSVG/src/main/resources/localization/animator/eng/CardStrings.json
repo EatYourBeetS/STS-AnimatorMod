@@ -883,7 +883,7 @@
 		"animator:FielNirvalen":
 		{
 			"DESCRIPTION": "Choose !S! : Boost [A], ** Boost [I] or Boost [F]. || Once per turn, when ** you shuffle your ** draw pile: Scry 2.",
-			"EXTENDED_DESCRIPTION": ["Once per turn, when you shuffle your draw pile: #yScry #b{0}.", "Boost [A].", "Boost [I].", "Boost [F]."],
+			"EXTENDED_DESCRIPTION": ["Once per turn, when you shuffle your draw pile: #yScry #b{0}."],
 			"NAME": "Fiel Nirvalen"
 		},
 		"animator:IzunaHatsuse":

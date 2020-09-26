@@ -563,7 +563,7 @@
 		},
 		"animator:SuikaIbuki":
 		{
-		  "DESCRIPTION": "If not in <FS>: Enter <FS> and Draw !M! less card next turn. || On Synergy or when discarded: Gain/Boost [F].",
+		  "DESCRIPTION": "If not in <FS>: Enter <FS> and draw !M! less card next turn. || On Synergy or when discarded: Gain/Boost [F].",
 		  "NAME": "Suika Ibuki"
 		},
 		"animator:AyaShameimaru":

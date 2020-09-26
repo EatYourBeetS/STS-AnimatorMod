@@ -7,9 +7,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.stances.ForceStance;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -21,17 +20,11 @@ public class Azekura extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6, 3, 3);
-        SetUpgrade(0, 2, 1, 0);
+        Initialize(0, 11, 3, 2);
+        SetUpgrade(0, 0, -1, 0);
 
         SetSynergy(Synergies.Katanagatari);
         SetMartialArtist();
-    }
-
-    @Override
-    public AbstractAttribute GetBlockInfo()
-    {
-        return super.GetBlockInfo().AddMultiplier(2);
     }
 
     @Override

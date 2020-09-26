@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.StanceStrings;
 import com.megacrit.cardcrawl.stances.AbstractStance;
+import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
@@ -19,6 +21,7 @@ import java.util.HashMap;
 public abstract class EYBStance extends AbstractStance
 {
     protected static final HashMap<String, FuncT0<AbstractStance>> stances = new HashMap<>();
+    protected static final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
     protected static long sfxId = -1L;
     protected final AbstractCreature owner;
     protected final StanceStrings strings;
@@ -29,6 +32,17 @@ public abstract class EYBStance extends AbstractStance
         stances.put(ForceStance.STANCE_ID, ForceStance::new);
         stances.put(IntellectStance.STANCE_ID, IntellectStance::new);
         stances.put(AgilityStance.STANCE_ID, AgilityStance::new);
+
+        tooltips.clear();
+        tooltips.put(ForceStance.STANCE_ID, GR.Tooltips.ForceStance);
+        tooltips.put(AgilityStance.STANCE_ID, GR.Tooltips.AgilityStance);
+        tooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.IntellectStance);
+        tooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);
+    }
+
+    public static EYBCardTooltip GetStanceTooltip(String stance)
+    {
+        return tooltips.getOrDefault(stance, null);
     }
 
     public static AbstractStance GetStanceFromName(String name)

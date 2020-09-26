@@ -13,13 +13,14 @@ public class AyaShameimaru extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(AyaShameimaru.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.Self);
 
+    private int bonusBlock = 0;
+
     public AyaShameimaru()
     {
         super(DATA);
 
-        Initialize(0, 6, 3);
-        SetUpgrade(0, 2, 1);
-        SetScaling(0, 1, 0);
+        Initialize(0, 2, 7, 17);
+        SetUpgrade(0, 1, 2);
 
         SetSynergy(Synergies.TouhouProject);
     }
@@ -29,11 +30,7 @@ public class AyaShameimaru extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.ModifyAllInstances(uuid, c ->
-        {
-            c.baseBlock += magicNumber;
-            c.applyPowers();
-        });
+        this.AddBlockBonus(magicNumber);
         GameActions.Bottom.Flash(this);
     }
 
@@ -41,10 +38,19 @@ public class AyaShameimaru extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-        if (HasSynergy())
+
+        if (HasSynergy() && this.block >= secondaryValue)
         {
             GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
         }
+
+        this.AddBlockBonus(-bonusBlock);
+    }
+
+    private void AddBlockBonus(int amount)
+    {
+        bonusBlock += amount;
+        baseBlock += amount;
     }
 }
 

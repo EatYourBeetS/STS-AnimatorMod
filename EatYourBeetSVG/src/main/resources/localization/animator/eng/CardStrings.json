@@ -168,7 +168,7 @@
 	{
 		"animator:Miracle":
 		{
-			"DESCRIPTION": "Gain [E].",
+			"DESCRIPTION": "Gain !M! [E].",
 			"NAME": "Miracle"
 		},
 		"animator:ManiwaHouou":
@@ -568,7 +568,7 @@
 		},
 		"animator:AyaShameimaru":
 		{
-		  "DESCRIPTION": "When this card is drawn, increase its [Block] by !M! this combat. || Synergy: Enter <AS>.",
+		  "DESCRIPTION": "When this card is drawn, increase its [Block] by !M! until played. || Synergy: If this card has !S! or more [Block]: Enter <AS>.",
 		  "NAME": "Aya Shameimaru"
 		},
 		"animator:KomachiOnozuka":

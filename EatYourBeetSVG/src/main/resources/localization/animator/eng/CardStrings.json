@@ -260,8 +260,8 @@
 		},
 		"animator:YachiyoNanami":
 		{
-			"DESCRIPTION": "At the start of turn, you ** may discard a card ** to gain !M! Block. || If you discard a Hindrance: ** gain [F]. [A], or [I] depending on your stance.",
-			"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard up to #b{0} card(s) to gain #b{1} #yBlock each. For each #yHindrance discarded, also #yGain #b{2} #yAgility and #b{3} #yIntellect."],
+			"DESCRIPTION": "At the start of turn, you ** may discard a card ** to gain !M! Block. || If you discard a Hindrance: ** Gain [F]. [A], or [I] depending on your Current Stance.",
+			"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard up to #b{0} card(s) to gain #b{1} #yBlock each. For each #yHindrance discarded, also #yGain #b{2} #yForce, #yAgility, or #Intellect depending on your current Stance."],
 			"NAME": "Yachiyo Nanami"
 		},
 		"animator:YuiTsuruno":
@@ -300,7 +300,7 @@
 		},
 		"animator:MikuIzayoi":
 		{
-			"DESCRIPTION": "Unaffected by Block modifiers. || When Discarded: Raise ** your {Common Buffs} by !M! if not in a stance.  Otherwise, exit your stance.",
+			"DESCRIPTION": "Unaffected by Block modifiers. || When Discarded: Raise ** your {Common Buffs} by !M! if not in a Stance.  Otherwise: Exit your Stance.",
 			"EXTENDED_DESCRIPTION": ["Common Buffs", "#yForce, #yAgility, #yIntellect, #yThorns, #yTemp. #yThorns, #yMetallicize, #yPlated #yArmor. "],
 			"NAME": "Miku Izayoi"
 		},
@@ -322,7 +322,7 @@
 		},
 		"animator:NiaHonjou":
 		{
-			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** {Block}.  Gain double block ** in <AS>. || When Discarded: Scry !S!.",
+			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** [Block].  Gain double [Block] ** in <AS>. || When Discarded: Scry !S!.",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a card this turn, gain #b{0} #yBlock."],
 			"NAME": "Nia Honjou"
 		},
@@ -568,7 +568,7 @@
 		},
 		"animator:AyaShameimaru":
 		{
-		  "DESCRIPTION": "When this card is drawn, increase its [Block] by !S! this combat. || Synergy: If not in a stance, enter <AS>.",
+		  "DESCRIPTION": "When this card is drawn, increase its [Block] by !S! this combat. || Synergy: If not in a Stance, enter <AS>.",
 		  "NAME": "Aya Shameimaru"
 		},
 		"animator:KomachiOnozuka":

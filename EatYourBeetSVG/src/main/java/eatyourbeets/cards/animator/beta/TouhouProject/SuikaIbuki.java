@@ -20,9 +20,10 @@ public class SuikaIbuki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(10, 6, 1, 1);
+        Initialize(9, 6, 1, 1);
         SetUpgrade(2, 1, 0, 0);
         SetScaling(0, 0, 0);
+        SetEthereal(true);
 
         SetSynergy(Synergies.TouhouProject);
     }

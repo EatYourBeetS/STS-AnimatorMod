@@ -6,7 +6,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 
@@ -20,8 +19,8 @@ public class AyaShameimaru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 7, 13);
-        SetUpgrade(0, 1, 2);
+        Initialize(0, 7, 3, 1);
+        SetUpgrade(0, 1, 0, 1);
 
         SetSynergy(Synergies.TouhouProject);
     }
@@ -31,8 +30,15 @@ public class AyaShameimaru extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        this.AddBlockBonus(magicNumber);
-        GameActions.Bottom.Flash(this);
+        GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID)
+        .RequireNeutralStance(true)
+        .AddCallback(changed ->
+        {
+            if (changed)
+            {
+                GameActions.Bottom.Flash(this);
+            }
+        });
     }
 
     @Override
@@ -40,18 +46,9 @@ public class AyaShameimaru extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        if (this.block >= secondaryValue && CombatStats.TryActivateLimited(cardID, 2))
-        {
-            GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
-        }
+        baseBlock += magicNumber;
 
-        this.AddBlockBonus(-bonusBlock);
-    }
-
-    private void AddBlockBonus(int amount)
-    {
-        bonusBlock += amount;
-        baseBlock += amount;
+        GameActions.Bottom.GainBlur(secondaryValue);
     }
 }
 

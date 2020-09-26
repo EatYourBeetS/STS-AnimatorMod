@@ -300,7 +300,7 @@
 		},
 		"animator:MikuIzayoi":
 		{
-			"DESCRIPTION": "Unaffected by Block modifiers. || When Discarded: Raise ** your {Common Buffs} by !M! if not in a Stance.  Otherwise: Exit your Stance.",
+			"DESCRIPTION": "Unaffected by Block modifiers. || When Discarded: Raise ** your {Common Buffs} by !M! if in Neutral Stance,.  Otherwise: Exit your Stance.",
 			"EXTENDED_DESCRIPTION": ["Common Buffs", "#yForce, #yAgility, #yIntellect, #yThorns, #yTemp. #yThorns, #yMetallicize, #yPlated #yArmor. "],
 			"NAME": "Miku Izayoi"
 		},
@@ -568,7 +568,7 @@
 		},
 		"animator:AyaShameimaru":
 		{
-		  "DESCRIPTION": "When this card is drawn, increase its [Block] by !M! until played. || <LIM>: If this card has !S! or more [Block]: Enter <AS>.",
+		  "DESCRIPTION": "Increase its [Block] by !M!.  Gain !S! Blur. || When Drawn: If in Neutral Stance: Enter <AS>.",
 		  "NAME": "Aya Shameimaru"
 		},
 		"animator:KomachiOnozuka":

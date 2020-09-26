@@ -23,6 +23,7 @@ public class Clownpiece extends AnimatorCard
         Initialize(0, 0, 1, 0);
         SetUpgrade(0, 0, 0, 0);
         SetScaling(0, 0, 0);
+        SetExhaust(true);
 
         SetSynergy(Synergies.TouhouProject);
     }
@@ -30,7 +31,7 @@ public class Clownpiece extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetRetain(true);
+        SetExhaust(false);
     }
 
 

@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -39,11 +38,6 @@ public class YaoHaDucy extends AnimatorCard
         if (GameUtilities.IsAttacking(m.intent))
         {
             GameActions.Bottom.ReduceStrength(m, magicNumber, true);
-        }
-
-        if (HasSynergy() && GameUtilities.GetPowerAmount(p, SupportDamagePower.POWER_ID) > 0)
-        {
-            GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
         }
     }
 }

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -44,6 +45,13 @@ public class Berserker extends AnimatorCard
             GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
         }
 
-        GameActions.Bottom.GainForce(magicNumber);
+        if (GameUtilities.InStance(ForceStance.STANCE_ID))
+        {
+            GameActions.Bottom.GainForce(magicNumber);
+        }
+        else
+        {
+            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+        }
     }
 }

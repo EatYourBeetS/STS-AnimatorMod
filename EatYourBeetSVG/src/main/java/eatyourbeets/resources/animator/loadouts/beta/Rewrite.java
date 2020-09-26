@@ -32,7 +32,7 @@ public class Rewrite extends AnimatorLoadout
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(YoshinoHaruhiko.DATA.ID);
-            startingDeck.add(Chibimoth.DATA.ID);
+            startingDeck.add(ShizuruNakatsu.DATA.ID);
         }
 
         return startingDeck;

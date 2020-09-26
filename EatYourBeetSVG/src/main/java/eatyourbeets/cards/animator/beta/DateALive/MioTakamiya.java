@@ -33,6 +33,8 @@ public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(block);
+
         if (GameUtilities.InStance(AgilityStance.STANCE_ID))
         {
             GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);

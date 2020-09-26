@@ -30,7 +30,7 @@ public class Clownpiece extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetHaste(true);
+        SetRetain(true);
     }
 
 

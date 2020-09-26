@@ -6,6 +6,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 
@@ -39,7 +40,7 @@ public class AyaShameimaru extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        if (HasSynergy() && this.block >= secondaryValue)
+        if (this.block >= secondaryValue && CombatStats.TryActivateLimited(cardID, 2))
         {
             GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
         }

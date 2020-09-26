@@ -568,7 +568,7 @@
 		},
 		"animator:AyaShameimaru":
 		{
-		  "DESCRIPTION": "When this card is drawn, increase its [Block] by !S! this combat. || Synergy: If not in a Stance, enter <AS>.",
+		  "DESCRIPTION": "When this card is drawn, increase its [Block] by !M! this combat. || Synergy: Enter <AS>.",
 		  "NAME": "Aya Shameimaru"
 		},
 		"animator:KomachiOnozuka":
@@ -1794,11 +1794,6 @@
 			"DESCRIPTION": "Once per turn, when you ** draw a Curse: <DRW-M>. || At the start of turn: You may ** Purge a Hindrance in Exhaust ** pile to obtain a {Miracle}.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you draw a curse this turn, draw #b{1} cards.", "Choose up to {0} card(s) to Purge."],
 			"NAME": "Hina Kagiyama"
-		},
-		"animator:HinaKagiyama_Miracle":
-		{
-			"DESCRIPTION": "Gain {+[E] }[E].",
-			"NAME": "Miracle"
 		},
 		"animator:IchigoBankai":
 		{

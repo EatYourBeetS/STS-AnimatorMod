@@ -2,14 +2,12 @@ package eatyourbeets.cards.animator.beta.TouhouProject;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class AyaShameimaru extends AnimatorCard
 {
@@ -19,8 +17,8 @@ public class AyaShameimaru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 1, 2);
-        SetUpgrade(0, 3, 0, 0);
+        Initialize(0, 6, 3);
+        SetUpgrade(0, 2, 1);
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.TouhouProject);
@@ -33,7 +31,7 @@ public class AyaShameimaru extends AnimatorCard
 
         GameActions.Bottom.ModifyAllInstances(uuid, c ->
         {
-            c.baseBlock += secondaryValue;
+            c.baseBlock += magicNumber;
             c.applyPowers();
         });
         GameActions.Bottom.Flash(this);
@@ -45,10 +43,7 @@ public class AyaShameimaru extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         if (HasSynergy())
         {
-            if (GameUtilities.InStance(NeutralStance.STANCE_ID))
-            {
-                GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
-            }
+            GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
         }
     }
 }

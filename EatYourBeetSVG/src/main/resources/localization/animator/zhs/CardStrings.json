@@ -1187,11 +1187,6 @@
 			"NAME": "键山雏",
 			"EXTENDED_DESCRIPTION": ["本回合下 #b{0} 次你抽到诅咒牌时，抽 #b{1} 张牌。", "最多选择 {0} 张牌抹除。"]
 		},
-		"animator:HinaKagiyama_Miracle":
-		{
-			"DESCRIPTION": "获得 {+[E] } [E] 。",
-			"NAME": "奇迹"
-		},
 		"animator:IchigoBankai":
 		{
 			"DESCRIPTION": "这张牌的伤害 ** 是 X 倍。",

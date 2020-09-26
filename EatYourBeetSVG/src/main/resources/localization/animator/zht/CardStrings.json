@@ -1187,11 +1187,6 @@
 			"NAME": "鍵山雛",
 			"EXTENDED_DESCRIPTION": ["本回合下 #b{0} 次你抽到詛咒牌時，抽 #b{1} 張牌。", "最多選擇 {0} 張牌抹除。"]
 		},
-		"animator:HinaKagiyama_Miracle":
-		{
-			"DESCRIPTION": "獲得 {+[E] } [E] 。",
-			"NAME": "奇蹟"
-		},
 		"animator:IchigoBankai":
 		{
 			"DESCRIPTION": "這張牌的傷害 ** 是 X 倍。",

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -58,6 +59,12 @@ public class IntellectStance extends EYBStance
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , -STAT_GAIN_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , +STAT_LOSE_AMOUNT);
+    }
+
+    @Override
+    public void onRefreshStance()
+    {
+        IntellectPower.PreserveOnce();
     }
 
     @Override

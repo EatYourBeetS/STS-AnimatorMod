@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.GoblinSlayer;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -61,9 +60,7 @@ public class Spearman extends AnimatorCard
             {
                 if (c.cardID.equals(Witch.DATA.ID) && CombatStats.TryActivateSemiLimited(cardID))
                 {
-                    CardGroup group = choices.Build(true);
-                    group.removeCard(player.stance != null ? player.stance.ID : NeutralStance.STANCE_ID);
-                    choices.Select(GameActions.Bottom, group,1, m).IsCancellable(true);
+                    choices.Select(1, m).IsCancellable(true);
                     break;
                 }
             }

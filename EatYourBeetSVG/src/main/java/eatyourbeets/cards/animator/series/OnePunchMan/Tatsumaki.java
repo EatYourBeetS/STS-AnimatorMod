@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Aether;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 
@@ -30,13 +31,16 @@ public class Tatsumaki extends AnimatorCard
     {
         GameActions.Bottom.ChannelOrb(new Aether(), true);
 
-        if (player.stance.ID.equals(NeutralStance.STANCE_ID))
+        if (CombatStats.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
-        }
-        else
-        {
-            GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
+            if (player.stance.ID.equals(NeutralStance.STANCE_ID))
+            {
+                GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
+            }
+            else
+            {
+                GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
+            }
         }
     }
 }

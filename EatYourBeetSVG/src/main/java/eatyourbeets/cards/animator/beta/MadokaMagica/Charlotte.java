@@ -13,6 +13,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.vfx.HemokinesisEffect;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
@@ -43,6 +44,19 @@ public class Charlotte extends AnimatorCard
         damage *= (float) Math.pow(2, player.hand.getCardsOfType(CardType.CURSE).size());
 
         return damage;
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        if (IntellectStance.IsActive())
+        {
+            return super.GetDamageInfo().AddMultiplier(2);
+        }
+        else
+        {
+            return super.GetDamageInfo();
+        }
     }
 
     @Override

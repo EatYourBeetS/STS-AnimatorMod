@@ -300,7 +300,7 @@
 		},
 		"animator:MikuIzayoi":
 		{
-			"DESCRIPTION": "Unaffected by Block modifiers. || When Discarded: Raise ** your {Common Buffs} by !M! if in Neutral Stance,.  Otherwise: Exit your Stance.",
+			"DESCRIPTION": "Unaffected by Block modifiers. || When Discarded: Exit your ** Stance to increase your ** {Common Buffs} by !M!.",
 			"EXTENDED_DESCRIPTION": ["Common Buffs", "#yForce, #yAgility, #yIntellect, #yThorns, #yTemp. #yThorns, #yMetallicize, #yPlated #yArmor. "],
 			"NAME": "Miku Izayoi"
 		},

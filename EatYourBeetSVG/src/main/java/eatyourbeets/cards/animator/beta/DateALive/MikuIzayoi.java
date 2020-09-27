@@ -57,8 +57,10 @@ public class MikuIzayoi extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        if (GameUtilities.InStance(NeutralStance.STANCE_ID))
+        if (!GameUtilities.InStance(NeutralStance.STANCE_ID))
         {
+            GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
+
             for (AbstractPower power : player.powers)
             {
                 if (ForcePower.POWER_ID.equals(power.ID))
@@ -90,10 +92,6 @@ public class MikuIzayoi extends AnimatorCard
                     GameActions.Bottom.GainPlatedArmor(magicNumber);
                 }
             }
-        }
-        else
-        {
-            GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
         }
 
 

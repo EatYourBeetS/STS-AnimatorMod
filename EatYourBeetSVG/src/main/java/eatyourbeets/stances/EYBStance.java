@@ -74,6 +74,7 @@ public abstract class EYBStance extends AbstractStance
         updateDescription();
     }
 
+
     @Override
     public void updateDescription()
     {
@@ -122,6 +123,11 @@ public abstract class EYBStance extends AbstractStance
         super.onExitStance();
 
         this.stopIdleSfx();
+    }
+
+    public void onRefreshStance()
+    {
+
     }
 
     @Override

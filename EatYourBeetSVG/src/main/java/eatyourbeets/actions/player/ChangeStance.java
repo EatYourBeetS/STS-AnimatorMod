@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.stances.EYBStance;
 import eatyourbeets.utilities.JUtils;
 
 public class ChangeStance extends EYBActionWithCallback<Boolean>
@@ -64,6 +65,11 @@ public class ChangeStance extends EYBActionWithCallback<Boolean>
         AbstractStance oldStance = player.stance;
         if (oldStance.ID.equals(id))
         {
+            if (oldStance instanceof EYBStance)
+            {
+                ((EYBStance)oldStance).onRefreshStance();
+            }
+
             Complete(triggerOnSameStance);
             return;
         }

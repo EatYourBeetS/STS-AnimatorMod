@@ -63,7 +63,7 @@ public class Spearman extends AnimatorCard
                 {
                     CardGroup group = choices.Build(true);
                     group.removeCard(player.stance != null ? player.stance.ID : NeutralStance.STANCE_ID);
-                    choices.Select(group,1, m).IsCancellable(true);
+                    choices.Select(GameActions.Bottom, group,1, m).IsCancellable(true);
                     break;
                 }
             }

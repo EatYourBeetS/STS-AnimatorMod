@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.effects.stance.StanceParticleHorizontal;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -57,6 +58,12 @@ public class AgilityStance extends EYBStance
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_GAIN_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , +STAT_LOSE_AMOUNT);
         GameActions.Bottom.StackPower(new DrawCardNextTurnPower(owner, DRAW_AMOUNT));
+    }
+
+    @Override
+    public void onRefreshStance()
+    {
+        AgilityPower.PreserveOnce();
     }
 
     @Override

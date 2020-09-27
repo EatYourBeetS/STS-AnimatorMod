@@ -78,7 +78,8 @@
 			"Remove all of NL your debuffs",
 			"Play the top card NL of your draw pile",
 			"Stun the enemy",
-			"Enter {0}"
+			"Enter {0}",
+			"Boost {0}"
 		]
 	},
 

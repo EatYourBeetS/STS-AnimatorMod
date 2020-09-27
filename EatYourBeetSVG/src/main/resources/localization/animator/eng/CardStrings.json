@@ -578,13 +578,13 @@
 		},
 		"animator:YuukaKazami":
 		{
-		  "DESCRIPTION": "This card can only be played on even-numbered turns. ** On Synergy or when discarded: Channel !M! [Earth].",
+		  "DESCRIPTION": "This card can only be played on even-numbered turns. || On Synergy or when discarded: Channel !M! [Earth].",
 		  "EXTENDED_DESCRIPTION": ["This card can only be played on even-numbered turns. ** (Current turn: ", "). ** On Synergy or when discarded: Channel !M! [Earth]."],
 		  "NAME": "Yuuka Kazami"
 		},
 		"animator:SanaeKochiya":
 		{
-		  "DESCRIPTION": "Scry !M!. For each card discarded, add a {Miracle} to your hand next turn.",
+		  "DESCRIPTION": "Scry !M!. || For each card discarded, add a {Miracle} to your hand next turn.",
 		  "EXTENDED_DESCRIPTION": ["At the start of your next turn, add #b{0} #yMiracle(s) to your hand."],
 		  "NAME": "Sanae Kochiya"
 		},

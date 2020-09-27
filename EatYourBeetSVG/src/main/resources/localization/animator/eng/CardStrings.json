@@ -182,7 +182,7 @@
 	{
 		"animator:Charlotte":
 		{
-			"DESCRIPTION": "Double the damage dealt ** for each {Curse} in hand and in <IS>. || <LIM>. If this card kills ** an enemy: Heal !M! HP.",
+			"DESCRIPTION": "<IS>: Attack twice. || Double the damage dealt ** for each {Curse} in hand. || <LIM>. If this card kills ** an enemy: Heal !M! HP.",
 			"NAME": "Charlotte"
 		},
 		"animator:Curse_GriefSeed":

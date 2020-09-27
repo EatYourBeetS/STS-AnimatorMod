@@ -42,34 +42,39 @@ public class Charlotte extends AnimatorCard
 
         damage *= (float) Math.pow(2, player.hand.getCardsOfType(CardType.CURSE).size());
 
-        if (GameUtilities.InStance(IntellectStance.STANCE_ID))
-        {
-            damage *= 2;
-        }
-
         return damage;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(e ->
+        int numberAttacks = 1;
+
+        if (GameUtilities.InStance(IntellectStance.STANCE_ID))
         {
-            GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40.0F * Settings.scale, Color.WHITE.cpy()));
-            if (damage > 30)
-            {
-                GameEffects.List.Add(new HemokinesisEffect(e.hb.cX, e.hb.cY, player.hb.cX, player.hb.cY));
-                GameEffects.List.Add(new BorderFlashEffect(Color.RED));
-                GameActions.Top.Add(new ShakeScreenAction(0.3f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
-            }
-        })
-        .AddCallback(c ->
+            numberAttacks = 2;
+        }
+
+        for (int i=0; i<numberAttacks; i++)
         {
-            if (GameUtilities.TriggerOnKill(c, true))
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+            .SetDamageEffect(e ->
             {
-                GameActions.Bottom.Heal(magicNumber);
-            }
-        });
+                GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40.0F * Settings.scale, Color.WHITE.cpy()));
+                if (damage > 30)
+                {
+                    GameEffects.List.Add(new HemokinesisEffect(e.hb.cX, e.hb.cY, player.hb.cX, player.hb.cY));
+                    GameEffects.List.Add(new BorderFlashEffect(Color.RED));
+                    GameActions.Top.Add(new ShakeScreenAction(0.3f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
+                }
+            })
+            .AddCallback(c ->
+            {
+                if (GameUtilities.TriggerOnKill(c, true))
+                {
+                    GameActions.Bottom.Heal(magicNumber);
+                }
+            });
+        }
     }
 }

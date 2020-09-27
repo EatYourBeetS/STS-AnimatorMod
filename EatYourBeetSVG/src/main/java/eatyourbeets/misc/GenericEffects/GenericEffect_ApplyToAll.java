@@ -9,17 +9,17 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
-public class GenericEffect_Apply extends GenericEffect
+public class GenericEffect_ApplyToAll extends GenericEffect
 {
     protected final TargetHelper target;
     protected final PowerHelper power;
 
-    public GenericEffect_Apply(TargetHelper target, PowerHelper power, int amount)
+    public GenericEffect_ApplyToAll(TargetHelper target, PowerHelper power, int amount)
     {
         this(target, power, power.Tooltip, amount);
     }
 
-    public GenericEffect_Apply(TargetHelper target, PowerHelper power, EYBCardTooltip tooltip, int amount)
+    public GenericEffect_ApplyToAll(TargetHelper target, PowerHelper power, EYBCardTooltip tooltip, int amount)
     {
         this.target = target;
         this.power = power;
@@ -30,12 +30,12 @@ public class GenericEffect_Apply extends GenericEffect
     @Override
     public String GetText()
     {
-        return GR.Animator.Strings.Actions.Apply(amount, "["+tooltip.title+"]", true);
+        return GR.Animator.Strings.Actions.ApplyToALL(amount, "["+tooltip.title+"]", true);
     }
 
     @Override
     public void Use(AnimatorCard card, AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.StackPower(m, power.Create(m, p, amount));
+        GameActions.Bottom.StackPower(TargetHelper.Enemies(p), power, amount);
     }
 }

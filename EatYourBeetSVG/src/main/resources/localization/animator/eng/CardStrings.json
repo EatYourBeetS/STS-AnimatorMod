@@ -218,7 +218,7 @@
 		},
 		"animator:MamiTomoe":
 		{
-			"DESCRIPTION": "If there is a {Grief Seed} in your Exhaust pile, attack !S! more times. || Starter: Add a {Grief Seed} to ** your discard pile.",
+			"DESCRIPTION": "If there is a {Grief Seed} in your Exhaust pile, attack !S! more time(s). || Starter: Add a {Grief Seed} to ** your discard pile.",
 			"NAME": "Mami Tomoe"
 		},
 		"animator:NagisaMomoe":

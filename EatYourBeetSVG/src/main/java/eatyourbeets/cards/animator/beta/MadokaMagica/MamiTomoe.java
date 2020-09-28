@@ -29,8 +29,8 @@ public class MamiTomoe extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 2, 3);
-        SetUpgrade(2, 0, 0, 1);
+        Initialize(6, 0, 2, 1);
+        SetUpgrade(3, 0, 0, 0);
         SetScaling(1, 0, 0);
 
         baseMagicNumber = magicNumber;

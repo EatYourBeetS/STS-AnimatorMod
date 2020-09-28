@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.beta.MadokaMagica;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -16,18 +15,14 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.vfx.HemokinesisEffect;
-import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Charlotte extends AnimatorCard implements OnAfterCardPlayedSubscriber
+public class Charlotte extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Charlotte.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal);
-
-    boolean lastCardWasGriefSeed = false;
 
     public Charlotte()
     {
@@ -42,18 +37,13 @@ public class Charlotte extends AnimatorCard implements OnAfterCardPlayedSubscrib
     }
 
     @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
-        super.triggerWhenCreated(startOfBattle);
-
-        CombatStats.onAfterCardPlayed.Subscribe(this);
-    }
-
-
-    @Override
     protected float GetInitialDamage()
     {
-        return lastCardWasGriefSeed ? baseDamage * 4 : baseDamage;
+        int damage = baseDamage;
+
+        damage *= (float) Math.pow(2, player.hand.getCardsOfType(CardType.CURSE).size());
+
+        return damage;
     }
 
     @Override
@@ -66,19 +56,6 @@ public class Charlotte extends AnimatorCard implements OnAfterCardPlayedSubscrib
         else
         {
             return super.GetDamageInfo();
-        }
-    }
-
-    @Override
-    public void OnAfterCardPlayed(AbstractCard card)
-    {
-        if (card.cardID.equals(Curse_GriefSeed.DATA.ID))
-        {
-            lastCardWasGriefSeed = true;
-        }
-        else
-        {
-            lastCardWasGriefSeed = false;
         }
     }
 

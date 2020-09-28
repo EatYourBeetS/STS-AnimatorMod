@@ -182,7 +182,7 @@
 	{
 		"animator:Charlotte":
 		{
-			"DESCRIPTION": "<IS>: Attack twice. || If you last played a {Grief Seed}: Quadruple the damage dealt. || <LIM>. If this card kills ** an enemy: Heal !M! HP.",
+			"DESCRIPTION": "<IS>: Attack twice. || Double the damage dealt ** for each {Grief Seed} anywhere. || <LIM>. If this card kills ** an enemy: Heal !M! HP.",
 			"NAME": "Charlotte"
 		},
 		"animator:Curse_GriefSeed":

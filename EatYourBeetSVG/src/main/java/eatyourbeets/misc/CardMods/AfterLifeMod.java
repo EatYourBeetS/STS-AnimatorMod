@@ -76,7 +76,6 @@ public class AfterLifeMod extends AbstractCardModifier
                     AbstractCard copy = cardToPurge.makeStatEquivalentCopy();
                     GameEffects.List.ShowCardBriefly(copy);
                     GameEffects.List.Add(new ExhaustCardEffect(copy));
-                    player.exhaustPile.removeCard(cardToPurge);
 
                     GameActions.Bottom.PlayCard(state.card, player.exhaustPile, JUtils.SafeCast(creature, AbstractMonster.class))
                     .SpendEnergy(true);
@@ -88,6 +87,10 @@ public class AfterLifeMod extends AbstractCardModifier
                         state.card.exhaust = false;
                         action.AddCallback(playedCard -> playedCard.exhaust = true);
                     }
+
+                    action.AddCallback(() -> {
+                        player.exhaustPile.removeCard(cardToPurge);
+                    });
                 });
             }
         });

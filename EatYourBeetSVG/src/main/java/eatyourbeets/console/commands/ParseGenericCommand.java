@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.stances.AbstractStance;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -173,6 +174,16 @@ public class ParseGenericCommand extends ConsoleCommand
                 if (tokens[1].equals("show-special"))
                 {
                     CustomCardLibSortHeader.ShowSpecial = tokens.length > 2 && tokens[2].equals("true");
+                    return;
+                }
+
+                if (tokens[1].equals("unlock-all-cards"))
+                {
+                    for (AbstractCard c : CardLibrary.getAllCards())
+                    {
+                        UnlockTracker.unlockCard(c.cardID);
+                        UnlockTracker.markCardAsSeen(c.cardID);
+                    }
                     return;
                 }
 

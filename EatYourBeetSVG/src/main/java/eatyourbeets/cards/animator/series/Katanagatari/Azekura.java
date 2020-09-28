@@ -32,6 +32,7 @@ public class Azekura extends AnimatorCard
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
+
         GameActions.Bottom.GainThorns(secondaryValue);
     }
 
@@ -46,7 +47,7 @@ public class Azekura extends AnimatorCard
             if (c.baseBlock > 0)
             {
                 GameUtilities.DecreaseBlock(c, magicNumber, false);
-                c.superFlash(Color.RED.cpy());
+                c.flash(Color.RED.cpy());
             }
         }
 

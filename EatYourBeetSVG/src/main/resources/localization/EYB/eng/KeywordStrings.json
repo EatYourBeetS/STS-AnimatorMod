@@ -20,7 +20,7 @@
 	},
 	"Autoplay":
 	{
-		"DESCRIPTION": "Played by itself by spending energy.",
+		"DESCRIPTION": "Automatically played. Requires [E].",
 		"NAMES": ["autoplay", "autoplayed"],
 		"PROPER_NAME": "Autoplay"
 	},

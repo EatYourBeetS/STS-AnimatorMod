@@ -182,7 +182,7 @@
 	{
 		"animator:Charlotte":
 		{
-			"DESCRIPTION": "<IS>: Attack twice. || Double the damage dealt ** for each {Curse} in hand. || <LIM>. If this card kills ** an enemy: Heal !M! HP.",
+			"DESCRIPTION": "<IS>: Attack twice. || If you last played a {Grief Seed}: Quadruple the damage dealt. || <LIM>. If this card kills ** an enemy: Heal !M! HP.",
 			"NAME": "Charlotte"
 		},
 		"animator:Curse_GriefSeed":
@@ -218,7 +218,7 @@
 		},
 		"animator:MamiTomoe":
 		{
-			"DESCRIPTION": "Attack an additional ** time for each {Curse} in ** draw or discard pile. || If you have no {Curses} in ** discard pile: Add a {Grief Seed} ** to your discard pile.",
+			"DESCRIPTION": "If there is a {Grief Seed} in your Exhaust pile, attack !S! more times. || Starter: Add a {Grief Seed} to ** your discard pile.",
 			"NAME": "Mami Tomoe"
 		},
 		"animator:NagisaMomoe":
@@ -266,7 +266,7 @@
 		},
 		"animator:YuiTsuruno":
 		{
-			"DESCRIPTION": "Discard the top card of ** your draw pile. If it was an ** {Attack}: Add a Curse to your ** Discard pile. Otherwise: ** Channel 1 [Fire].",
+			"DESCRIPTION": "Discard the top card of ** your draw pile. If it was an ** {Attack}: Add a {Grief Seed} to ** your Discard pile. Otherwise: ** Channel 1 [Fire].",
 			"NAME": "Yui Tsuruno"
 		}
 	},

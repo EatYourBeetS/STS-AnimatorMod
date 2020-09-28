@@ -2,7 +2,9 @@ package eatyourbeets.cards.animator.beta.MadokaMagica;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
@@ -21,13 +23,17 @@ public class MamiTomoe extends AnimatorCard
         DATA.AddPreview(new Curse_GriefSeed(), false);
     }
 
+    int baseMagicNumber;
+
     public MamiTomoe()
     {
         super(DATA);
 
-        Initialize(7, 0, 1);
-        SetUpgrade(3, 0, 0);
+        Initialize(6, 0, 2, 3);
+        SetUpgrade(2, 0, 0, 1);
         SetScaling(1, 0, 0);
+
+        baseMagicNumber = magicNumber;
 
         SetSynergy(Synergies.MadokaMagica);
     }
@@ -37,7 +43,14 @@ public class MamiTomoe extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        magicNumber = player.discardPile.getCardsOfType(CardType.CURSE).size() + player.drawPile.getCardsOfType(CardType.CURSE).size() + 1;
+        if (HasGriefSeedInExhaust())
+        {
+            magicNumber = baseMagicNumber + secondaryValue;
+        }
+        else
+        {
+            magicNumber = baseMagicNumber;
+        }
     }
 
     @Override
@@ -49,7 +62,7 @@ public class MamiTomoe extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (p.discardPile.getCardsOfType(CardType.CURSE).isEmpty())
+        if (IsStarter())
         {
             GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
         }
@@ -64,5 +77,18 @@ public class MamiTomoe extends AnimatorCard
         }
 
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.LONG, ScreenShake.ShakeIntensity.MED));
+    }
+
+    private boolean HasGriefSeedInExhaust()
+    {
+        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
+        {
+            if (c.cardID.equals(Curse_GriefSeed.DATA.ID))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -20,7 +20,6 @@ public class InverseTohka extends AnimatorCard
         super(DATA);
 
         Initialize(10, 0, 10);
-        SetScaling(2, 0, 2);
 
         SetSynergy(Synergies.DateALive);
     }
@@ -28,7 +27,7 @@ public class InverseTohka extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetRetain(true);
+        SetHaste(true);
     }
 
     @Override

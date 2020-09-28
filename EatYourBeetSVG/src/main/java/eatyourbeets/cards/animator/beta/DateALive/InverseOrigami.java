@@ -28,6 +28,12 @@ public class InverseOrigami extends AnimatorCard
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
+    }
+
+    @Override
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();

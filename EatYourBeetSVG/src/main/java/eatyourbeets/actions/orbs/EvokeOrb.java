@@ -129,6 +129,6 @@ public class EvokeOrb extends EYBAction
 
     protected boolean CheckOrb(AbstractOrb orb)
     {
-        return GameUtilities.IsValidOrb(orb) && filter != null && filter.test(orb);
+        return GameUtilities.IsValidOrb(orb) && (filter == null || filter.test(orb));
     }
 }

@@ -2,6 +2,7 @@ package eatyourbeets.actions.basic;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
@@ -19,6 +20,7 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
     protected CardGroup sourcePile;
     protected boolean showEffect;
     protected boolean realtime;
+    protected float effectDuration;
 
     public MoveCards(CardGroup targetPile, CardGroup sourcePile)
     {
@@ -39,8 +41,21 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
 
     public MoveCards ShowEffect(boolean showEffect, boolean isRealtime)
     {
+        float duration = showEffect ? Settings.ACTION_DUR_MED : Settings.ACTION_DUR_FAST;
+
+        if (Settings.FAST_MODE)
+        {
+            duration *= 0.7f;
+        }
+
+        return ShowEffect(showEffect, isRealtime, duration);
+    }
+
+    public MoveCards ShowEffect(boolean showEffect, boolean isRealtime, float effectDuration)
+    {
         this.showEffect = showEffect;
         this.realtime = isRealtime;
+        this.effectDuration = effectDuration;
 
         return this;
     }
@@ -101,7 +116,7 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
     {
         selectedCards.add(card);
         GameActions.Top.MoveCard(card, sourcePile, targetPile)
-        .ShowEffect(showEffect, realtime)
+        .ShowEffect(showEffect, realtime, effectDuration)
         .SetDestination(destination);
     }
 }

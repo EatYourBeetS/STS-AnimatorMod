@@ -25,6 +25,8 @@ public class LuciaKonohana extends AnimatorCard
         Initialize(0, 0, 4, 2);
         SetUpgrade(0, 0, 1);
 
+        SetExhaust(true);
+
         SetSynergy(Synergies.Rewrite);
     }
 

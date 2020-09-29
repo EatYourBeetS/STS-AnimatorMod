@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.actions.cardManipulation.ModifyAllInstances;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
@@ -77,6 +78,7 @@ public class AfterLifeMod extends AbstractCardModifier
                     GameEffects.List.ShowCardBriefly(copy);
                     GameEffects.List.Add(new ExhaustCardEffect(copy));
 
+                    GameActions.Bottom.ModifyAllInstances(state.card.uuid, c -> ((EYBCard)c).SetPurge(true));
                     GameActions.Bottom.PlayCard(state.card, player.exhaustPile, JUtils.SafeCast(creature, AbstractMonster.class))
                     .SpendEnergy(true);
 
@@ -88,9 +90,7 @@ public class AfterLifeMod extends AbstractCardModifier
                         action.AddCallback(playedCard -> playedCard.exhaust = true);
                     }
 
-                    action.AddCallback(() -> {
-                        player.exhaustPile.removeCard(cardToPurge);
-                    });
+
                 });
             }
         });

@@ -56,7 +56,7 @@
 	},
 	"Afterlife":
 	{
-		"DESCRIPTION": "You may play cards with #yAfterlife from your #yExhaust pile by #yPurging #b1 random #yNon-Afterlife card from your #yExhaust pile. Cards played from #yAfterlife do not #yExhaust.",
+		"DESCRIPTION": "You may play cards with #yAfterlife from your #yExhaust pile by #yPurging #b1 random #yNon-Afterlife card from your #yExhaust pile.",
 		"NAMES": ["afterlife"],
 		"PROPER_NAME": "Afterlife"
 	}

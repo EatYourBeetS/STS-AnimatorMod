@@ -73,16 +73,19 @@ public class Caster extends AnimatorCard
         if (!GameUtilities.IsValidTarget(m))
         {
             ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
-            if (enemies.size() == 1)
+            if (enemies.isEmpty())
             {
-                m = enemies.get(0);
+                return;
             }
-            else
+            else if (enemies.size() > 1)
             {
                 GameActions.Bottom.SelectCreature(SelectCreature.Targeting.Enemy, card.name)
                 .SetMessage(card.rawDescription)
                 .AddCallback(m1 -> GameActions.Top.ReduceStrength(m1, magicNumber, true));
+                return;
             }
+
+            m = enemies.get(0);
         }
 
         GameActions.Bottom.ReduceStrength(m, magicNumber, true);

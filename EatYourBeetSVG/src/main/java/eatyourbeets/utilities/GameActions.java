@@ -89,6 +89,11 @@ public final class GameActions
         this.actionOrder = actionOrder;
     }
 
+    public static DelayAllActions DelayCurrentActions()
+    {
+        return Top.Add(new DelayAllActions(true));
+    }
+
     public <T extends AbstractGameAction> T Add(T action)
     {
         switch (actionOrder)

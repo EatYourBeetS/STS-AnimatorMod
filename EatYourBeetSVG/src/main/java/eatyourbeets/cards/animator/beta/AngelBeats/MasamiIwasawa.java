@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
@@ -17,7 +18,7 @@ public class MasamiIwasawa extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 10, 3, 1);
+        Initialize(0, 14, 2, 1);
         SetUpgrade(0, 4, 0, 0);
 
         SetSynergy(Synergies.AngelBeats);
@@ -27,9 +28,13 @@ public class MasamiIwasawa extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.MakeCardInDrawPile(new Dazed())
-        .SetDestination(CardSelection.Top)
-        .Repeat(secondaryValue);
+
+        if (CombatStats.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.MakeCardInDrawPile(new Dazed())
+            .SetDestination(CardSelection.Top)
+            .Repeat(secondaryValue);
+        }
 
         if (IsStarter())
         {

@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.beta.AngelBeats;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -45,7 +46,7 @@ public class GirlDeMo extends AnimatorCard
 
         if (highestPower.contains(StrengthPower.POWER_ID))
         {
-            powerValue = p.getPower(StrengthPower.POWER_ID).amount;
+            powerValue = GetPowerAmount(p, StrengthPower.POWER_ID);
 
             if (powerValue > 0)
             {
@@ -54,7 +55,7 @@ public class GirlDeMo extends AnimatorCard
         }
         if (highestPower.contains(AgilityPower.POWER_ID))
         {
-            powerValue = p.getPower(AgilityPower.POWER_ID).amount;
+            powerValue = GetPowerAmount(p, AgilityPower.POWER_ID);
 
             if (powerValue > 0)
             {
@@ -63,7 +64,7 @@ public class GirlDeMo extends AnimatorCard
         }
         if (highestPower.contains(IntellectPower.POWER_ID))
         {
-            powerValue = p.getPower(IntellectPower.POWER_ID).amount;
+            powerValue = GetPowerAmount(p, IntellectPower.POWER_ID);
 
             if (powerValue > 0)
             {
@@ -74,9 +75,9 @@ public class GirlDeMo extends AnimatorCard
 
     private List<String> getHighestPowers(AbstractPlayer p)
     {
-        int strengthAmount = p.getPower(StrengthPower.POWER_ID).amount;
-        int agilityAmount = p.getPower(AgilityPower.POWER_ID).amount;
-        int intellectAmount = p.getPower(IntellectPower.POWER_ID).amount;
+        int strengthAmount = GetPowerAmount(p, StrengthPower.POWER_ID);
+        int agilityAmount = GetPowerAmount(p, AgilityPower.POWER_ID);
+        int intellectAmount = GetPowerAmount(p, IntellectPower.POWER_ID);
 
         List<String> highestPowers = new ArrayList<>();
 
@@ -115,5 +116,17 @@ public class GirlDeMo extends AnimatorCard
         }
 
         return highestPowers;
+    }
+
+    private int GetPowerAmount(AbstractPlayer p, String powerID)
+    {
+        AbstractPower power = p.getPower(powerID);
+
+        if (power == null)
+        {
+            return 0;
+        }
+
+        return power.amount;
     }
 }

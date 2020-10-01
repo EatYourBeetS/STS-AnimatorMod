@@ -8,23 +8,30 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class Yui extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Yui.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
+    static
+    {
+        DATA.AddPreview(new GirlDeMo(), true);
+    }
 
     public Yui()
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
-        SetUpgrade(0, 0, 0, 1);
-
+        Initialize(0, 0, 1, 3);
         SetSynergy(Synergies.AngelBeats);
         SetExhaust(true);
         AfterLifeMod.Add(this);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetRetain(true);
     }
 
     @Override
@@ -32,9 +39,9 @@ public class Yui extends AnimatorCard
     {
         GameActions.Bottom.Motivate(secondaryValue);
 
-        if (CombatStats.ControlPile.Contains(this) && CombatStats.TryActivateSemiLimited(cardID))
+        if (CombatStats.ControlPile.Contains(this))
         {
-            GameActions.Bottom.GainEnergy(magicNumber);
+            GameActions.Bottom.MakeCardInDrawPile(new GirlDeMo());
         }
     }
 }

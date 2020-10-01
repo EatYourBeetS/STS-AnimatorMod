@@ -493,7 +493,7 @@
 		},
 		"animator:EriShiina":
 		{
-			"DESCRIPTION": "When this card is played from Afterlife, add !M! {Throwing-Knives} to your hand.",
+			"DESCRIPTION": "When played from Afterlife, add !M! {Throwing-Knives} to your hand.",
 			"NAME": "Eri Shiina"
 		},
 		"animator:MasamiIwasawa":
@@ -529,8 +529,13 @@
 		},
 		"animator:Yui":
 		{
-			"DESCRIPTION": "Motivate !S!. || <SLM>. When this card is played from {Afterlife}, gain [E].",
+			"DESCRIPTION": "Motivate !S!. || When played from {Afterlife}: Add a {Girls Dead Monster} to your draw pile.",
 			"NAME": "Yui"
+		},
+		"animator:GirlDeMo":
+		{
+		  "DESCRIPTION": "Double your [F], [A], and [I] if it is the highest or tied for the highest stat.",
+		  "NAME": "Girls Dead Monster"
 		},
 		"animator:AngelAlter":
 		{
@@ -729,7 +734,7 @@
 		},
 		"animator:Shirosaki_Laplace":
 		{
-			"DESCRIPTION": "If played from {Afterlife}: Draw a card in your discard pile. Otherwise: Discard a {Curse} to Enter a random {Stance}, then Exhaust.",
+			"DESCRIPTION": "When played from {Afterlife}: Draw a card in your discard pile. Otherwise: Discard a {Curse} to Enter a random {Stance}, then Exhaust.",
 			"NAME": "Laplace no Ma",
 			"EXTENDED_DESCRIPTION": ["Discard a curse to enter a random Stance."]
 		},

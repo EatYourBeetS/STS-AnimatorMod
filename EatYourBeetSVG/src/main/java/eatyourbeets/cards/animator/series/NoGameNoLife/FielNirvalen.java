@@ -52,7 +52,7 @@ public class FielNirvalen extends AnimatorCard
             choices.AddEffect(new GenericEffect_Boost(GR.Tooltips.Force, 1));
         }
 
-        choices.Select(1, m);
+        choices.Select(secondaryValue, m);
     }
 
     public static class FielNirvalenPower extends AnimatorPower implements OnShuffleSubscriber

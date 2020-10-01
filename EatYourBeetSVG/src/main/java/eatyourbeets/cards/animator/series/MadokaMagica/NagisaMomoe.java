@@ -22,8 +22,7 @@ public class NagisaMomoe extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0);
-        SetCostUpgrade(-1);
+        Initialize(0, 0, 3);
 
         SetExhaust(true);
         SetSynergy(Synergies.MadokaMagica);

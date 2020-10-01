@@ -856,7 +856,7 @@
 	{
 		"animator:Charlotte":
 		{
-			"DESCRIPTION": "<IS>: Attack twice. || Double the damage dealt ** for each {Grief Seed} anywhere. || <LIM>. If this card kills ** an enemy: Heal !M! HP.",
+			"DESCRIPTION": "<IS>: Attack twice. || Double the damage dealt ** for each [Grief Seed] anywhere. || <LIM>. If this card kills ** an enemy: Heal !M! HP.",
 			"NAME": "Charlotte"
 		},
 		"animator:Curse_GriefSeed":
@@ -866,7 +866,7 @@
 		},
 		"animator:Defend_MadokaMagica":
 		{
-			"DESCRIPTION": "<LIM>. Add a ** {Grief Seed} to the top of ** your draw pile.",
+			"DESCRIPTION": "<LIM>. Add a ** [Grief Seed] to the top of ** your draw pile.",
 			"NAME": "Improved Defend"
 		},
 		"animator:HomuraAkemi":
@@ -881,7 +881,7 @@
 		},
 		"animator:KyokoSakura":
 		{
-			"DESCRIPTION": "Draw 1 card. Put 1 card ** on top of your draw pile. || If you drew a Hindrance: ** Channel 1 [Fire].",
+			"DESCRIPTION": "Starter: Gain [F] ** and Channel 1 [Fire]. || <DRW-M>. ** Put 1 card on top ** of your draw pile.",
 			"NAME": "Kyoko Sakura"
 		},
 		"animator:MadokaKaname":
@@ -892,12 +892,12 @@
 		},
 		"animator:MamiTomoe":
 		{
-			"DESCRIPTION": "If there is a {Grief Seed} in your Exhaust pile, attack !S! more time. || Starter: Add a {Grief Seed} to ** your discard pile.",
+			"DESCRIPTION": "Attack 1 additional ** time for each card pile ** which contains a [Grief Seed]. || When Drawn: Add a [Grief Seed] ** to your discard pile.",
 			"NAME": "Mami Tomoe"
 		},
 		"animator:NagisaMomoe":
 		{
-			"DESCRIPTION": "Enter <IS>. || Add {Charlotte} and a ** {Grief Seed} to your ** discard pile.",
+			"DESCRIPTION": "Randomly Gain/Boost ** [A], [F] or [I] !M! times. || When Exhausted: Add ** {Charlotte} and a [Grief Seed] to ** your discard pile.",
 			"NAME": "Nagisa Momoe"
 		},
 		"animator:Oktavia":
@@ -912,7 +912,7 @@
 		},
 		"animator:SayakaMiki":
 		{
-			"DESCRIPTION": "Cooldown !S!: Add ** {Oktavia} and a {Grief Seed} ** to your discard pile, then ** Exhaust. || Synergy: Channel 1 [Frost].",
+			"DESCRIPTION": "Channel 1 [Frost]. || Lose no [I] next turn. || Synergy with [Grief Seed]: Add ** {Oktavia} to your discard ** pile, then Exhaust.",
 			"NAME": "Sayaka Miki"
 		},
 		"animator:Strike_MadokaMagica":
@@ -922,9 +922,9 @@
 		},
 		"animator:SuzuneAmano":
 		{
-			"DESCRIPTION": "Exhaust 1 random card ** to apply !M! [Burning]. || Synergy: Deals !S! additional damage for each [Fire] you have.",
+			"DESCRIPTION": "Starter: <DRW> and ** deal !S! additional damage ** for each [Fire] you have. || Exhaust 1 random ** card to apply !M! [Burning].",
 			"NAME": "Suzune Amano",
-			"UPGRADE_DESCRIPTION": "Exhaust 1 card to ** apply !M! [Burning]. || Synergy: Deals !S! additional damage for each [Fire] you have."
+			"UPGRADE_DESCRIPTION": "Starter: <DRW> and ** deal !S! additional damage ** for each [Fire] you have. || Exhaust 1 card ** to apply !M! [Burning]."
 		},
 		"animator:Walpurgisnacht":
 		{
@@ -934,13 +934,13 @@
 		},
 		"animator:YachiyoNanami":
 		{
-			"DESCRIPTION": "At the start of turn, you ** may discard a card ** to gain !M! Block. || If you discard a Hindrance: ** Gain [F]. [A], or [I] depending on your Current Stance.",
-			"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard up to #b{0} card(s) to gain #b{1} #yBlock each. For each #yHindrance discarded, also #yGain #b{2} #yForce, #yAgility, or #Intellect depending on your current Stance."],
+			"DESCRIPTION": "At the start of turn: ** you may discard a ** card to gain !M! Block. || Synergy: You may enter ** <AS> or <IS>.",
+			"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard up to #b{0} card(s) to gain #b{1} #yBlock each."],
 			"NAME": "Yachiyo Nanami"
 		},
 		"animator:YuiTsuruno":
 		{
-			"DESCRIPTION": "Discard the top card of ** your draw pile. If it was an ** {Attack}: Add a {Grief Seed} to ** your Discard pile. Otherwise: ** Channel 1 [Fire].",
+			"DESCRIPTION": "Discard the bottom card ** of your draw pile. || When Exhausted or ** Discarded: Channel 1 [Fire] ** and add a [Grief Seed] to your hand.",
 			"NAME": "Yui Tsuruno"
 		}
 	},

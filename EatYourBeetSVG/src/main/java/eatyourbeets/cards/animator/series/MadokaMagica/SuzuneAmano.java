@@ -13,13 +13,13 @@ import eatyourbeets.utilities.JUtils;
 
 public class SuzuneAmano extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SuzuneAmano.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(SuzuneAmano.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
 
     public SuzuneAmano()
     {
         super(DATA);
 
-        Initialize(8, 0, 3, 5);
+        Initialize(7, 0, 3, 6);
         SetUpgrade(0, 0, 0, 0);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -29,14 +29,13 @@ public class SuzuneAmano extends AnimatorCard
     @Override
     protected float GetInitialDamage()
     {
-        int extraAmount = 0;
-
-        if (HasSynergy())
+        float damage = super.GetInitialDamage();
+        if (IsStarter())
         {
-            extraAmount = (JUtils.Count(player.orbs, orb -> Fire.ORB_ID.equals(orb.ID)) * secondaryValue);
+            damage += (JUtils.Count(player.orbs, Fire.class::isInstance) * secondaryValue);
         }
 
-        return baseDamage + extraAmount;
+        return damage;
     }
 
     @Override
@@ -50,8 +49,9 @@ public class SuzuneAmano extends AnimatorCard
         {
             if (cards != null && cards.size() > 0)
             {
-                GameActions.Bottom.ApplyBurning(player, (AbstractMonster) enemy, magicNumber);
+                GameActions.Bottom.ApplyBurning(player, enemy, magicNumber);
             }
         });
+        GameActions.Bottom.Draw(JUtils.Count(player.orbs, Fire.class::isInstance));
     }
 }

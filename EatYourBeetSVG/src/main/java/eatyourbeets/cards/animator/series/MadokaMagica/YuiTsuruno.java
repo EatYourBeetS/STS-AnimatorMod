@@ -13,14 +13,18 @@ import eatyourbeets.utilities.GameActions;
 
 public class YuiTsuruno extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YuiTsuruno.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(YuiTsuruno.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Elemental);
+    static
+    {
+        DATA.AddPreview(new Curse_GriefSeed(), false);
+    }
 
     public YuiTsuruno()
     {
         super(DATA);
 
-        Initialize(9, 0);
-        SetUpgrade(4, 0);
+        Initialize(5, 0);
+        SetUpgrade(3, 0);
 
         SetSynergy(Synergies.MadokaMagica);
         SetSpellcaster();

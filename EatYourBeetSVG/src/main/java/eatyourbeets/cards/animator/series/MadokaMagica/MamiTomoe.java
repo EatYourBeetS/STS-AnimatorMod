@@ -29,11 +29,9 @@ public class MamiTomoe extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 2, 1);
-        SetUpgrade(3, 0, 0, 0);
+        Initialize(9, 0, 1, 1);
+        SetUpgrade(2, 0, 0, 0);
         SetScaling(1, 0, 0);
-
-        baseMagicNumber = magicNumber;
 
         SetSynergy(Synergies.MadokaMagica);
     }

@@ -24,17 +24,11 @@ public class SayakaMiki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4);
-        SetUpgrade(0, 0, 0);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
         SetCooldown(2, 0, this::OnCooldownCompleted);
         SetSynergy(Synergies.MadokaMagica);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetInnate(true);
     }
 
     @Override

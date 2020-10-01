@@ -21,7 +21,7 @@ public class YachiyoNanami extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, YachiyoNanamiPower.BLOCK_AMOUNT);
+        Initialize(0, 0, YachiyoNanamiPower.BLOCK_AMOUNT);
         SetEthereal(true);
 
         SetSynergy(Synergies.MadokaMagica);

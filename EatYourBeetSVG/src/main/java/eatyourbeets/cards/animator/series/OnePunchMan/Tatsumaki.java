@@ -24,12 +24,24 @@ public class Tatsumaki extends AnimatorCard
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.OnePunchMan);
+        SetEthereal(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetEthereal(false);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ChannelOrb(new Aether(), true);
+
+        if (IntellectStance.IsActive())
+        {
+            GameActions.Bottom.GainOrbSlots(1);
+        }
 
         if (CombatStats.TryActivateSemiLimited(cardID))
         {

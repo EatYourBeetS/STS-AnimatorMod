@@ -969,7 +969,7 @@
 		},
 		"animator:Tatsumaki":
 		{
-			"DESCRIPTION": "Channel 1 [Aether]. || <slm>. If in Neutral Stance: Enter <IS>. Otherwise: Exit your Stance.",
+			"DESCRIPTION": "Channel 1 [Aether]. || <IS>: Gain 1 Orb Slot. || <slm>. If in Neutral ** Stance: Enter <IS>. ** Otherwise: Exit your Stance.",
 			"NAME": "Tatsumaki"
 		}
 	},

@@ -44,6 +44,7 @@ public class CommonImages
 
     public static class Tooltips
     {
+        public final TextureCache GriefSeed        = new TextureCache("images/cardui/eyb/tooltips/GriefSeed.png");
         public final TextureCache ThrowingKnife    = new TextureCache("images/cardui/eyb/tooltips/ThrowingKnife.png");
         public final TextureCache Lightning        = new TextureCache("images/cardui/eyb/tooltips/Lightning.png");
         public final TextureCache Plasma           = new TextureCache("images/cardui/eyb/tooltips/Plasma.png");

@@ -190,6 +190,7 @@ public class AnimatorPlayerData
         add.Invoke(new Overlord(), 3);
         add.Invoke(new Chaika(), 3);
         add.Invoke(new TenSura(), 3);
+        add.Invoke(new MadokaMagica(), 4);
         add.Invoke(new OnePunchMan(), 4);
         add.Invoke(new Kancolle(), 4);
         add.Invoke(new AccelWorld(), 4);

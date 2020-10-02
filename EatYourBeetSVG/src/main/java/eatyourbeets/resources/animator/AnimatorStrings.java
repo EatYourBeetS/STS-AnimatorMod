@@ -228,6 +228,26 @@ public class AnimatorStrings
             return Format(addPeriod, 17, power);
         }
 
+        public final String Scry(int amount, boolean addPeriod)
+        {
+            return Format(addPeriod, 18, amount);
+        }
+
+        public final String NextTurnBlock(int amount, boolean addPeriod)
+        {
+            return Format(addPeriod, 19, amount);
+        }
+
+        public final String NextTurnDraw(int amount, boolean addPeriod)
+        {
+            return Format(addPeriod, 20, amount);
+        }
+
+        public final String NextTurnEnergy(int amount, boolean addPeriod)
+        {
+            return Format(addPeriod, 21, amount);
+        }
+
         private String Format(boolean addPeriod, int index, Object amount)
         {
             return Format(addPeriod, index, amount, null);

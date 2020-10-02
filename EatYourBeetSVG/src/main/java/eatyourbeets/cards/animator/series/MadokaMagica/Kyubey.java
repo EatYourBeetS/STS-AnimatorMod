@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.colorless.rare;
+package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Kyubey extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Kyubey.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Kyubey.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None);
 
     public Kyubey()
     {

@@ -200,7 +200,6 @@ public class AnimatorPlayerData
     private void AddBetaLoadouts()
     {
         BetaLoadouts.clear();
-        BetaLoadouts.add(new MadokaMagica());
         BetaLoadouts.add(new DateALive());
         BetaLoadouts.add(new Rewrite());
         BetaLoadouts.add(new AngelBeats());

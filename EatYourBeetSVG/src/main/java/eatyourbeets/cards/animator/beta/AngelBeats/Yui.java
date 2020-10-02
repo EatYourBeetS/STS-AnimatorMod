@@ -22,7 +22,7 @@ public class Yui extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 3);
+        Initialize(0, 0, 1, 2);
         SetSynergy(Synergies.AngelBeats);
         SetExhaust(true);
         AfterLifeMod.Add(this);

@@ -856,7 +856,7 @@
 	{
 		"animator:Charlotte":
 		{
-			"DESCRIPTION": "<IS>: Attack twice. || Double the damage dealt ** for each [Grief Seed] anywhere. || <LIM>. If this card kills ** an enemy: Heal !M! HP.",
+			"DESCRIPTION": "Apply 3 [Vulnerable] to ** ALL characters. || Unplayable unless you ** played a [Grief Seed] this turn.",
 			"NAME": "Charlotte"
 		},
 		"animator:Curse_GriefSeed":
@@ -886,9 +886,8 @@
 		},
 		"animator:MadokaKaname":
 		{
-			"DESCRIPTION": "Gain !S! [I]. ||  <LIM>. Exhaust all ** {Hindrances} everywhere. ** Gain 1 Intangible for ** every !M! {Hindrance(s)} ** Exhausted.",
-			"NAME": "Madoka Kaname",
-			"UPGRADE_DESCRIPTION": "Boost !S! [I]. || <LIM>. Exhaust all ** {Hindrances} everywhere. ** Gain 1 Intangible for ** every !M! {Hindrance(s)} ** Exhausted."
+			"DESCRIPTION": "Exhaust !M! random {Curses} ** from anywhere. Heal ** !S! HP for each. || When Drawn: Gain 1 ** {Temporary} [Artifact].",
+			"NAME": "Madoka Kaname"
 		},
 		"animator:MamiTomoe":
 		{
@@ -907,12 +906,12 @@
 		},
 		"animator:OrikoMikuni":
 		{
-			"DESCRIPTION": "Scry !S!. Retain !M! card(s) at ** the end of this turn. || <SLM>. If in <IS>: <DRW>.",
+			"DESCRIPTION": "Choose 1: Scry !M!, ** draw 1 card next turn, ** or gain !S! [Block] next turn. || <LIM>. <IS>: ** Choose all effects.",
 			"NAME": "Oriko Mikuni"
 		},
 		"animator:SayakaMiki":
 		{
-			"DESCRIPTION": "Channel 1 [Frost]. || Lose no [I] next turn. || Synergy with [Grief Seed]: Add ** {Oktavia} to your discard ** pile, then Exhaust.",
+			"DESCRIPTION": "Channel 1 [Frost]. || Lose no [I] next turn. || Synergy with [Grief Seed]: Add ** {Oktavia} and a [Grief Seed] to your ** discard pile, then Exhaust.",
 			"NAME": "Sayaka Miki"
 		},
 		"animator:Strike_MadokaMagica":

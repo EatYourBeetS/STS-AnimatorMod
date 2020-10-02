@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 
 public class NagisaMomoe extends AnimatorCard
@@ -34,7 +33,7 @@ public class NagisaMomoe extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
+        GameActions.Bottom.GainRandomStat(magicNumber, upgraded);
         GameActions.Bottom.MakeCardInDiscardPile(new Charlotte()).SetUpgrade(upgraded, false);
         GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
     }

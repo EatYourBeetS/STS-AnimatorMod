@@ -19,15 +19,16 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class MadokaKaname extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MadokaKaname.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(MadokaKaname.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
 
     public MadokaKaname()
     {
         super(DATA);
 
-        Initialize(0, 0, 5, 3);
-        SetUpgrade(0, 0, -1, 0);
-        SetExhaust(true);
+        Initialize(0, 0, 3, 2);
+        SetUpgrade(0, 0, 1, 0);
+        SetHealing(true);
+        SetPurge(true);
 
         SetSynergy(Synergies.MadokaMagica);
     }

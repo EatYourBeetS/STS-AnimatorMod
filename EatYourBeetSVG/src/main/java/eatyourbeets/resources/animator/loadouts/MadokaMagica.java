@@ -42,7 +42,7 @@ public class MadokaMagica extends AnimatorLoadout
     @Override
     public EYBCardData GetSymbolicCard()
     {
-        return Kyubey.DATA;
+        return MadokaKaname.DATA;
     }
 
     @Override

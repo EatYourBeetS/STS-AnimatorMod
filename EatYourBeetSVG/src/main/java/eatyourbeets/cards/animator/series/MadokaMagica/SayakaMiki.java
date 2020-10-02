@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
@@ -11,7 +12,9 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class SayakaMiki extends AnimatorCard
 {
@@ -29,7 +32,6 @@ public class SayakaMiki extends AnimatorCard
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetCooldown(2, 0, this::OnCooldownCompleted);
         SetSynergy(Synergies.MadokaMagica);
     }
 
@@ -43,19 +45,16 @@ public class SayakaMiki extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.ChannelOrb(new Frost(), true);
 
-        if (HasSynergy())
+        IntellectPower.PreserveOnce();
+
+        AbstractCard last = GameUtilities.GetLastCardPlayed(true);
+        if (HasSynergy() && last != null && last.cardID.equals(Curse_GriefSeed.DATA.ID))
         {
-            GameActions.Bottom.ChannelOrb(new Frost(), true);
+            GameActions.Bottom.MakeCardInDiscardPile(new Oktavia()).SetUpgrade(upgraded, false);
+            GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
+            GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
         }
-
-        cooldown.ProgressCooldownAndTrigger(m);
-    }
-
-    protected void OnCooldownCompleted(AbstractMonster m)
-    {
-        GameActions.Bottom.MakeCardInDiscardPile(new Oktavia()).SetUpgrade(upgraded, false);
-        GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
-        GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
     }
 }

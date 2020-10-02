@@ -2,9 +2,7 @@ package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
@@ -24,8 +22,6 @@ public class MamiTomoe extends AnimatorCard
         DATA.AddPreview(new Curse_GriefSeed(), false);
     }
 
-    int baseMagicNumber;
-
     public MamiTomoe()
     {
         super(DATA);
@@ -38,18 +34,34 @@ public class MamiTomoe extends AnimatorCard
     }
 
     @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
+    }
+
+    @Override
     protected void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
 
-        if (HasGriefSeedInExhaust())
+        int count = 0;
+        String id = Curse_GriefSeed.DATA.ID;
+        if (player.drawPile.findCardById(id) != null)
         {
-            magicNumber = baseMagicNumber + secondaryValue;
+            count += 1;
         }
-        else
+        if (player.discardPile.findCardById(id) != null)
         {
-            magicNumber = baseMagicNumber;
+            count += 1;
         }
+        if (player.exhaustPile.findCardById(id) != null)
+        {
+            count += 1;
+        }
+
+        magicNumber = baseMagicNumber + count;
     }
 
     @Override
@@ -61,11 +73,6 @@ public class MamiTomoe extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (IsStarter())
-        {
-            GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
-        }
-
         GameActions.Bottom.SFX("ATTACK_HEAVY");
         GameActions.Bottom.VFX(new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.05f * magicNumber);
 
@@ -76,18 +83,5 @@ public class MamiTomoe extends AnimatorCard
         }
 
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.LONG, ScreenShake.ShakeIntensity.MED));
-    }
-
-    private boolean HasGriefSeedInExhaust()
-    {
-        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
-        {
-            if (c.cardID.equals(Curse_GriefSeed.DATA.ID))
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 }

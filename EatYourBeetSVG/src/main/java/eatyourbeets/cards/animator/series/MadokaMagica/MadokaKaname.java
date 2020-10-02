@@ -1,21 +1,15 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
-import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class MadokaKaname extends AnimatorCard
 {
@@ -36,43 +30,18 @@ public class MadokaKaname extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainIntellect(secondaryValue, upgraded);
-
-        if (!CombatStats.TryActivateLimited(cardID))
+        GameActions.Top.ExhaustFromPile(name, magicNumber, p.drawPile, p.hand, p.discardPile)
+        .ShowEffect(true, true)
+        .SetOptions(true, true)
+        .SetFilter(c -> c.type == CardType.CURSE)
+        .AddCallback(cards ->
         {
-            return;
-        }
-
-        int hindranceCount = 0;
-
-        hindranceCount += MoveHindranceUpdateCounts(p.discardPile, p.exhaustPile);
-        hindranceCount += MoveHindranceUpdateCounts(p.hand, p.exhaustPile);
-        hindranceCount += MoveHindranceUpdateCounts(p.drawPile, p.exhaustPile);
-
-        GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, hindranceCount / magicNumber)).SkipIfZero(true);
-
-        GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
-        GameActions.Bottom.VFX(new RainbowCardEffect());
-    }
-
-    private int MoveHindranceUpdateCounts(CardGroup source, CardGroup destination)
-    {
-        boolean move;
-        float duration = 0.3f;
-        int hindranceCount = 0;
-
-        for (AbstractCard card : source.group)
-        {
-            if (GameUtilities.IsCurseOrStatus(card))
+            if (cards.size() > 0)
             {
-                hindranceCount++;
-
-                GameActions.Top.MoveCard(card, source, destination)
-                .ShowEffect(true, true, duration = Math.max(0.1f, duration * 0.8f))
-                .SetCardPosition(MoveCard.DEFAULT_CARD_X_RIGHT, MoveCard.DEFAULT_CARD_Y);
+                GameActions.Bottom.Heal(cards.size() * secondaryValue);
+                GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
+                GameActions.Bottom.VFX(new RainbowCardEffect());
             }
-        }
-
-        return hindranceCount;
+        });
     }
 }

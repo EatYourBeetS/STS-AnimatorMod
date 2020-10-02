@@ -52,6 +52,10 @@ public class SuzuneAmano extends AnimatorCard
                 GameActions.Bottom.ApplyBurning(player, enemy, magicNumber);
             }
         });
-        GameActions.Bottom.Draw(JUtils.Count(player.orbs, Fire.class::isInstance));
+
+        if (IsStarter())
+        {
+            GameActions.Bottom.Draw(JUtils.Count(player.orbs, Fire.class::isInstance));
+        }
     }
 }

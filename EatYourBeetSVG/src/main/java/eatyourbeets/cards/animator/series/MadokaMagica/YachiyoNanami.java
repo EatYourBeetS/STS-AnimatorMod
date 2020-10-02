@@ -4,18 +4,20 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.stances.AgilityStance;
-import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class YachiyoNanami extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(YachiyoNanami.class).SetPower(2, CardRarity.UNCOMMON);
+
+    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public YachiyoNanami()
     {
@@ -37,13 +39,22 @@ public class YachiyoNanami extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new YachiyoNanamiPower(p, 1));
+
+        if (HasSynergy())
+        {
+            if (choices.TryInitialize(this))
+            {
+                choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));
+            }
+
+            choices.Select(1, m);
+        }
     }
 
     public static class YachiyoNanamiPower extends AnimatorPower
     {
-        public static final int GAIN_AMOUNT = 1;
         public static final int BLOCK_AMOUNT = 5;
 
         public YachiyoNanamiPower(AbstractPlayer owner, int amount)
@@ -56,16 +67,9 @@ public class YachiyoNanami extends AnimatorCard
         }
 
         @Override
-        public void stackPower(int stackAmount)
-        {
-            super.stackPower(stackAmount);
-            updateDescription();
-        }
-
-        @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount, BLOCK_AMOUNT, GAIN_AMOUNT);
+            description = FormatDescription(0, amount, BLOCK_AMOUNT);
         }
 
         @Override
@@ -79,22 +83,6 @@ public class YachiyoNanami extends AnimatorCard
             {
                 for (AbstractCard card : cards)
                 {
-                    if (GameUtilities.IsCurseOrStatus(card))
-                    {
-                        if (GameUtilities.InStance(ForceStance.STANCE_ID))
-                        {
-                            GameActions.Bottom.GainForce(GAIN_AMOUNT);
-                        }
-                        else if (GameUtilities.InStance(AgilityStance.STANCE_ID))
-                        {
-                            GameActions.Bottom.GainAgility(GAIN_AMOUNT);
-                        }
-                        else if (GameUtilities.InStance(IntellectStance.STANCE_ID))
-                        {
-                            GameActions.Bottom.GainIntellect(GAIN_AMOUNT);
-                        }
-                    }
-
                     GameActions.Bottom.GainBlock(BLOCK_AMOUNT);
                 }
             });

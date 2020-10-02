@@ -5,20 +5,20 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
+import eatyourbeets.cards.animator.status.Curse_GriefSeed;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.vfx.HemokinesisEffect;
-import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class Charlotte extends AnimatorCard
 {
@@ -30,65 +30,39 @@ public class Charlotte extends AnimatorCard
 
         Initialize(60, 0, 4);
         SetUpgrade(20, 0, 4);
-        SetScaling(1, 0, 1);
+        SetScaling(3, 0, 6);
 
         SetSynergy(Synergies.MadokaMagica);
-        SetSpellcaster();
     }
 
     @Override
-    protected float GetInitialDamage()
+    public boolean cardPlayable(AbstractMonster m)
     {
-        int damage = baseDamage;
+        boolean playable = super.cardPlayable(m);
 
-        damage *= (float) Math.pow(2, player.hand.getCardsOfType(CardType.CURSE).size());
-
-        return damage;
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        if (IntellectStance.IsActive())
+        if (playable)
         {
-            return super.GetDamageInfo().AddMultiplier(2);
-        }
-        else
-        {
-            return super.GetDamageInfo();
-        }
-    }
+            if (JUtils.Find(AbstractDungeon.actionManager.cardsPlayedThisTurn, Curse_GriefSeed.class::isInstance) == null)
+            {
+                cantUseMessage = cardData.Strings.EXTENDED_DESCRIPTION[0];
 
+                return false;
+            }
+        }
+
+        return playable;
+    }
+    
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        int numberAttacks = 1;
-
-        if (GameUtilities.InStance(IntellectStance.STANCE_ID))
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+        .SetDamageEffect(e ->
         {
-            numberAttacks = 2;
-        }
-
-        for (int i=0; i<numberAttacks; i++)
-        {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-            .SetDamageEffect(e ->
-            {
-                GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40.0F * Settings.scale, Color.WHITE.cpy()));
-                if (damage > 30)
-                {
-                    GameEffects.List.Add(new HemokinesisEffect(e.hb.cX, e.hb.cY, player.hb.cX, player.hb.cY));
-                    GameEffects.List.Add(new BorderFlashEffect(Color.RED));
-                    GameActions.Top.Add(new ShakeScreenAction(0.3f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
-                }
-            })
-            .AddCallback(c ->
-            {
-                if (GameUtilities.TriggerOnKill(c, true))
-                {
-                    GameActions.Bottom.Heal(magicNumber);
-                }
-            });
-        }
+            GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40.0F * Settings.scale, Color.WHITE.cpy()));
+            GameEffects.List.Add(new HemokinesisEffect(e.hb.cX, e.hb.cY, player.hb.cX, player.hb.cY));
+            GameEffects.List.Add(new BorderFlashEffect(Color.RED));
+            GameActions.Top.Add(new ShakeScreenAction(0.3f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
+        });
     }
 }

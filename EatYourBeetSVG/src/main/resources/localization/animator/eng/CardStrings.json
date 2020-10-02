@@ -857,6 +857,7 @@
 		"animator:Charlotte":
 		{
 			"DESCRIPTION": "Apply 3 [Vulnerable] to ** ALL characters. || Unplayable unless you ** played a [Grief Seed] this turn.",
+			"EXTENDED_DESCRIPTION": ["You have not played a Grief Seed."],
 			"NAME": "Charlotte"
 		},
 		"animator:Curse_GriefSeed":

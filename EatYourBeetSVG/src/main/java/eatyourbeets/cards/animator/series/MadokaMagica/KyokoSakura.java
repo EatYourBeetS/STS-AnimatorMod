@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class KyokoSakura extends AnimatorCard
@@ -29,19 +28,15 @@ public class KyokoSakura extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActions.Bottom.Draw(magicNumber).AddCallback(cards ->
-        {
-            for (AbstractCard card : cards)
-            {
-                if (GameUtilities.IsCurseOrStatus(card))
-                {
-                    GameActions.Bottom.ChannelOrb(new Fire(), true);
-                    return;
-                }
-            }
-        });
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
 
+        if (IsStarter())
+        {
+            GameActions.Bottom.GainForce(1);
+            GameActions.Bottom.ChannelOrb(new Fire(), true);
+        }
+
+        GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.SelectFromHand(name, magicNumber, false)
         .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
         .AddCallback(cards ->

@@ -2,19 +2,19 @@ package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnBlock;
+import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnDraw;
+import eatyourbeets.misc.GenericEffects.GenericEffect_Scry;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.TemporaryRetainPower;
 import eatyourbeets.stances.IntellectStance;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class OrikoMikuni extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(OrikoMikuni.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
+
+    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public OrikoMikuni()
     {
@@ -29,13 +29,20 @@ public class OrikoMikuni extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Top.Scry(secondaryValue);
-        GameActions.Bottom.StackPower(new TemporaryRetainPower(p, magicNumber));
-
-        if (GameUtilities.InStance(IntellectStance.STANCE_ID) && !CombatStats.HasActivatedSemiLimited(cardID))
+        if (choices.TryInitialize(this))
         {
-            GameActions.Bottom.Draw(1);
-            CombatStats.TryActivateSemiLimited(cardID);
+            choices.AddEffect(new GenericEffect_Scry(3));
+            choices.AddEffect(new GenericEffect_NextTurnDraw(1));
+            choices.AddEffect(new GenericEffect_NextTurnBlock(1));
+        }
+
+        if (GameUtilities.InStance(IntellectStance.STANCE_ID) && CombatStats.TryActivateLimited(cardID))
+        {
+            choices.Select(3, m);
+        }
+        else
+        {
+            choices.Select(1, m);
         }
     }
 }

@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.series.MadokaMagica;
+package eatyourbeets.cards.animator.status;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;

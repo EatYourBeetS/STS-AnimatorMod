@@ -1,8 +1,8 @@
-package eatyourbeets.cards.animator.series.MadokaMagica;
+package eatyourbeets.cards.animator.basic;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.basic.Defend;
+import eatyourbeets.cards.animator.status.Curse_GriefSeed;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;

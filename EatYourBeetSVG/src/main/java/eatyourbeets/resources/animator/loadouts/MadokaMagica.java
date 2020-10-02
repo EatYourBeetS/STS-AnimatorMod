@@ -1,8 +1,11 @@
 package eatyourbeets.resources.animator.loadouts;
 
 import eatyourbeets.cards.animator.basic.Defend;
+import eatyourbeets.cards.animator.basic.Defend_MadokaMagica;
 import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.cards.animator.basic.Strike_MadokaMagica;
 import eatyourbeets.cards.animator.series.MadokaMagica.*;
+import eatyourbeets.cards.animator.ultrarare.Walpurgisnacht;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;

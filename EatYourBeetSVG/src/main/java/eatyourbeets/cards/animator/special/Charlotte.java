@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.series.MadokaMagica;
+package eatyourbeets.cards.animator.special;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

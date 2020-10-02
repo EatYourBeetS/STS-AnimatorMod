@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.series.MadokaMagica;
+package eatyourbeets.cards.animator.ultrarare;
 
 import com.megacrit.cardcrawl.actions.defect.AnimateOrbAction;
 import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;

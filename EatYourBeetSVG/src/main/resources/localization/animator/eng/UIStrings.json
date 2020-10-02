@@ -79,7 +79,11 @@
 			"Play the top card NL of your draw pile",
 			"Stun the enemy",
 			"Enter {0}",
-			"Boost {0}"
+			"Boost {0}",
+			"Scry {0}",
+			"Next turn: Gain {0} [Block]",
+			"Next turn: Draw {0} card(s)",
+			"Next turn: Gain {0} [E]"
 		]
 	},
 

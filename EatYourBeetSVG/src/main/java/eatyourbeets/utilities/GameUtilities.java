@@ -457,6 +457,21 @@ public class GameUtilities
         return creature.currentHealth / (float) creature.maxHealth;
     }
 
+    public static AbstractCard GetLastCardPlayed(boolean currentTurn)
+    {
+        ArrayList<AbstractCard> cards;
+        if (currentTurn)
+        {
+            cards = AbstractDungeon.actionManager.cardsPlayedThisTurn;
+        }
+        else
+        {
+            cards = AbstractDungeon.actionManager.cardsPlayedThisCombat;
+        }
+
+        return cards.size() > 0 ? cards.get(cards.size() - 1) : null;
+    }
+
     public static HashSet<AbstractCard> GetMasterDeckCopies(String cardID)
     {
         final HashSet<AbstractCard> cards = new HashSet<>();

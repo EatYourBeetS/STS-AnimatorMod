@@ -1450,6 +1450,99 @@
 		}
 	},
 
+	"SERIES:MADOKAMAGICA":
+	{
+		"animator:Charlotte":
+		{
+			"DESCRIPTION": "Apply 3 [Vulnerable] to ** ALL characters. || Unplayable unless you ** played a [Grief Seed] this turn.",
+			"EXTENDED_DESCRIPTION": ["You have not played a Grief Seed."],
+			"NAME": "Charlotte"
+		},
+		"animator:Curse_GriefSeed":
+		{
+			"DESCRIPTION": "At the end of turn: ** Take !M! Damage. || When Exhausted: ** Remove your ** rightmost {Debuff}.",
+			"NAME": "Grief Seed"
+		},
+		"animator:Defend_MadokaMagica":
+		{
+			"DESCRIPTION": "<LIM>. Add a ** [Grief Seed] to the top of ** your draw pile.",
+			"NAME": "Improved Defend"
+		},
+		"animator:HomuraAkemi":
+		{
+			"DESCRIPTION": "Skip the next enemy turn. ** Draw !M! card(s) and gain [E] ** next turn. End your turn. || Add !S! random {Curses} to ** your discard pile.",
+			"NAME": "Homura Akemi"
+		},
+		"animator:IrohaTamaki":
+		{
+			"DESCRIPTION": "If the top card of ** your draw pile is a ** Hindrance: Exhaust it. || Synergy: Scry !M!.",
+			"NAME": "Iroha Tamaki"
+		},
+		"animator:KyokoSakura":
+		{
+			"DESCRIPTION": "Starter: Gain [F] ** and Channel 1 [Fire]. || <DRW-M>. ** Put 1 card on top ** of your draw pile.",
+			"NAME": "Kyoko Sakura"
+		},
+		"animator:MadokaKaname":
+		{
+			"DESCRIPTION": "Exhaust !M! random {Curses} ** from anywhere. Heal ** !S! HP for each. || When Drawn: Gain 1 ** {Temporary} [Artifact].",
+			"NAME": "Madoka Kaname"
+		},
+		"animator:MamiTomoe":
+		{
+			"DESCRIPTION": "Attack 1 additional ** time for each card pile ** which contains a [Grief Seed]. || When Drawn: Add a [Grief Seed] ** to your discard pile.",
+			"NAME": "Mami Tomoe"
+		},
+		"animator:NagisaMomoe":
+		{
+			"DESCRIPTION": "Randomly Gain/Boost ** [A], [F] or [I] !M! times. || When Exhausted: Add ** {Charlotte} and a [Grief Seed] to ** your discard pile.",
+			"NAME": "Nagisa Momoe"
+		},
+		"animator:Oktavia":
+		{
+			"DESCRIPTION": "Add !S! random {Curses} to ** your hand. Draw a card for ** each {Curse} in your hand. || Attacks once for each ** {Curse} in your hand.",
+			"NAME": "Oktavia"
+		},
+		"animator:OrikoMikuni":
+		{
+			"DESCRIPTION": "Choose 1: Scry !M!, ** draw 1 card next turn, ** or gain !S! [Block] next turn. || <LIM>. <IS>: ** Choose all effects.",
+			"NAME": "Oriko Mikuni"
+		},
+		"animator:SayakaMiki":
+		{
+			"DESCRIPTION": "Channel 1 [Frost]. || Lose no [I] next turn. || Synergy with [Grief Seed]: Add ** {Oktavia} and a [Grief Seed] to your ** discard pile, then Exhaust.",
+			"NAME": "Sayaka Miki"
+		},
+		"animator:Strike_MadokaMagica":
+		{
+			"DESCRIPTION": "Scry !M!.",
+			"NAME": "Improved Strike"
+		},
+		"animator:SuzuneAmano":
+		{
+			"DESCRIPTION": "Starter: <DRW> and ** deal !S! additional damage ** for each [Fire] you have. || Exhaust 1 random ** card to apply !M! [Burning].",
+			"NAME": "Suzune Amano",
+			"UPGRADE_DESCRIPTION": "Starter: <DRW> and ** deal !S! additional damage ** for each [Fire] you have. || Exhaust 1 card ** to apply !M! [Burning]."
+		},
+		"animator:Walpurgisnacht":
+		{
+			"DESCRIPTION": "Add !M! random Spellcaster(s) ** to your hand. They cost 0 ** this turn. || At start of turn: Evoke your ** next Orb for each Curse and ** Spellcaster in your hand.",
+			"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next Orb once for each #yCurse plus each #ySpellcaster in your hand."],
+			"NAME": "Walpurgisnacht"
+		},
+		"animator:YachiyoNanami":
+		{
+			"DESCRIPTION": "At the start of turn: ** you may discard a ** card to gain !M! Block. || Synergy: You may enter ** <AS> or <IS>.",
+			"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard up to #b{0} card(s) to gain #b{1} #yBlock each."],
+			"NAME": "Yachiyo Nanami"
+		},
+		"animator:YuiTsuruno":
+		{
+			"DESCRIPTION": "Discard the bottom card ** of your draw pile. || When Exhausted or ** Discarded: Channel 1 [Fire] ** and add a [Grief Seed] to your hand.",
+			"NAME": "Yui Tsuruno"
+		}
+	},
+
 	"SERIES:NOGAMENOLIFE":
 	{
 		"animator:ChlammyZell":

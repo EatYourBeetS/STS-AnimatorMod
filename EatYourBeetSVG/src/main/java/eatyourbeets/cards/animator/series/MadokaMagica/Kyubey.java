@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.beta.MadokaMagica;
+package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;

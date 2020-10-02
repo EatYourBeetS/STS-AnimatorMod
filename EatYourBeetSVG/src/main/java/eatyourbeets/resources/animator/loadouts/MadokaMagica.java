@@ -1,8 +1,11 @@
-package eatyourbeets.resources.animator.loadouts.beta;
+package eatyourbeets.resources.animator.loadouts;
 
-import eatyourbeets.cards.animator.basic.*;
-import eatyourbeets.cards.animator.beta.MadokaMagica.*;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.animator.basic.Defend;
+import eatyourbeets.cards.animator.basic.Defend_MadokaMagica;
+import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.cards.animator.basic.Strike_MadokaMagica;
+import eatyourbeets.cards.animator.series.MadokaMagica.*;
+import eatyourbeets.cards.animator.ultrarare.Walpurgisnacht;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -14,8 +17,6 @@ public class MadokaMagica extends AnimatorLoadout
     public MadokaMagica()
     {
         super(Synergies.MadokaMagica);
-
-        IsBeta = true;
     }
 
     @Override
@@ -41,7 +42,7 @@ public class MadokaMagica extends AnimatorLoadout
     @Override
     public EYBCardData GetSymbolicCard()
     {
-        return Kyubey.DATA;
+        return MadokaKaname.DATA;
     }
 
     @Override

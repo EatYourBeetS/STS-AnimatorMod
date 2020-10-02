@@ -1,10 +1,7 @@
 package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
@@ -56,8 +53,8 @@ public class IntellectStance extends EYBStance
     {
         super.onExitStance();
 
-        GameActions.Bottom.DealDamageToRandomEnemy(DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(m -> GameEffects.List.Add(new LightningEffect(m.drawX, m.drawY)));
+//        GameActions.Bottom.DealDamageToRandomEnemy(DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
+//        .SetDamageEffect(m -> GameEffects.List.Add(new LightningEffect(m.drawX, m.drawY)));
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , -STAT_GAIN_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , +STAT_LOSE_AMOUNT);

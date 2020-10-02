@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import eatyourbeets.cards.animator.status.Curse_GriefSeed;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
@@ -83,6 +84,7 @@ public class CardTooltips
     // No Description
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
     public EYBCardTooltip ThrowingKnife = new EYBCardTooltip(eatyourbeets.cards.animator.special.ThrowingKnife.DATA.Strings.NAME, null);
+    public EYBCardTooltip GriefSeed = new EYBCardTooltip(Curse_GriefSeed.DATA.Strings.NAME, null);
     public EYBCardTooltip Gold = new EYBCardTooltip(RewardItem.TEXT[1].trim(), null);
 
     public static void RegisterID(String id, EYBCardTooltip tooltip)
@@ -121,6 +123,7 @@ public class CardTooltips
     public CardTooltips()
     {
         RegisterID("Random Orb", RandomOrb);
+        RegisterID("Grief Seed", GriefSeed);
         RegisterID("T-Knife", ThrowingKnife);
         RegisterID("Gold", Gold);
     }
@@ -144,6 +147,7 @@ public class CardTooltips
 
         CommonImages.Tooltips tooltips = GR.Common.Images.Tooltips;
         ThrowingKnife.SetIcon(tooltips.ThrowingKnife.Texture(), 6);
+        GriefSeed.SetIcon(tooltips.GriefSeed.Texture(), 6);
         Lightning.SetIcon(tooltips.Lightning.Texture(), 6);
         Fire.SetIcon(tooltips.Fire.Texture(), 6);
         Plasma.SetIcon(tooltips.Plasma.Texture(), 6);

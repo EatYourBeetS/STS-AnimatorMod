@@ -14,7 +14,7 @@
 	},
 	"Agility Stance":
 	{
-		"DESCRIPTION": "#g+2 #gDexterity, #r-1 #rStrength, #r-1 #rFocus. NL On Enter: #yBoost #yAgility. NL On Exit: Draw 1 card next turn.",
+		"DESCRIPTION": "#g+2 #gDexterity, #r-1 #rStrength, #r-1 #rFocus. NL On Enter: #yBoost #yAgility.",
 		"NAMES": ["[a] stance", "agility stance"],
 		"PROPER_NAME": "Agility Stance"
 	},
@@ -110,7 +110,7 @@
 	},
 	"Force Stance":
 	{
-		"DESCRIPTION": "#g+2 #gStrength, #r-1 #rFocus, #r-1 #rDexterity. NL On Enter: #yBoost #yForce. NL On Exit: Gain 3 #yTemp. #yHP.",
+		"DESCRIPTION": "#g+2 #gStrength, #r-1 #rFocus, #r-1 #rDexterity. NL On Enter: #yBoost #yForce.",
 		"NAMES": ["[f] stance", "force stance"],
 		"PROPER_NAME": "Force Stance"
 	},
@@ -128,7 +128,7 @@
 	},
 	"Intellect Stance":
 	{
-		"DESCRIPTION": "#g+2 #gFocus, #r-1 #rStrength, #r-1 #rDexterity. NL On Enter: #yBoost #yIntellect. NL On Exit: Deal #b7 damage.",
+		"DESCRIPTION": "#g+2 #gFocus, #r-1 #rStrength, #r-1 #rDexterity. NL On Enter: #yBoost #yIntellect.",
 		"NAMES": ["[i] stance", "intellect stance"],
 		"PROPER_NAME": "Intellect Stance"
 	},

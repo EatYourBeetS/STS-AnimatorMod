@@ -40,6 +40,10 @@ public class Sloth extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY)
         .SetDamageEffect(__ -> CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.MED,false));
-        GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, magicNumber));
+
+        for (int i = 0; i < magicNumber; i++)
+        {
+            GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, 1, i > 0));
+        }
     }
 }

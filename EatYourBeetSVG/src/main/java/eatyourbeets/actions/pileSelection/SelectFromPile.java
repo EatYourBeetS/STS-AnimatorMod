@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
@@ -25,6 +26,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
 
     protected Predicate<AbstractCard> filter;
     protected CardSelection origin;
+    protected boolean canPlayerCancel;
     protected boolean anyNumber;
 
     public SelectFromPile(String sourceName, int amount, CardGroup... groups)
@@ -37,10 +39,17 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         super(type);
 
         this.groups = groups;
-        this.canCancel = false;
+        this.canPlayerCancel = false;
         this.message = GR.Common.Strings.GridSelection.ChooseCards;
 
         Initialize(amount, sourceName);
+    }
+
+    public EYBAction CancellableFromPlayer(boolean value)
+    {
+        this.canPlayerCancel = value;
+
+        return this;
     }
 
     public SelectFromPile SetMessage(String message)
@@ -162,7 +171,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             }
             else
             {
-                if (canCancel)
+                if (canPlayerCancel)
                 {
                     // Setting canCancel to true does not ensure the cancel button will be shown...
                     AbstractDungeon.overlayMenu.cancelButton.show(GridCardSelectScreen.TEXT[1]);
@@ -173,7 +182,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
                     return;
                 }
 
-                AbstractDungeon.gridSelectScreen.open(mergedGroup, Math.min(mergedGroup.size(), amount), CreateMessage(), false, false, canCancel, false);
+                AbstractDungeon.gridSelectScreen.open(mergedGroup, Math.min(mergedGroup.size(), amount), CreateMessage(), false, false, canPlayerCancel, false);
             }
         }
     }

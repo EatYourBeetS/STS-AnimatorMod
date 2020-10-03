@@ -29,9 +29,6 @@ public class IrohaTamaki extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActions.Bottom.GainBlock(block);
-
         if (HasSynergy())
         {
             GameActions.Top.Scry(magicNumber);
@@ -45,5 +42,8 @@ public class IrohaTamaki extends AnimatorCard
                 GameActions.Top.Exhaust(topCard);
             }
         }
+
+        GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActions.Top.GainBlock(block);
     }
 }

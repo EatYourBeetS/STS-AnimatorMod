@@ -62,7 +62,8 @@ public class RoryMercury extends AnimatorCard
                 choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
             }
 
-            choices.Select(GameActions.Top, 1, (AbstractMonster)c).IsCancellable(true);
+            choices.Select(GameActions.Top, 1, (AbstractMonster)c)
+            .CancellableFromPlayer(true);
         }
     }
 }

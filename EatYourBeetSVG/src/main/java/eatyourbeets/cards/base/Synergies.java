@@ -2,6 +2,8 @@ package eatyourbeets.cards.base;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 
@@ -57,7 +59,6 @@ public class Synergies
     public final static Synergy RozenMaiden = CreateSynergy(44);
 
     private static AnimatorCard lastCardPlayed = null;
-    private static int preemptiveSynergies;
 
     public static void AddCards(Synergy synergy, ArrayList<AbstractCard> source, ArrayList<AnimatorCard> destination)
     {
@@ -69,11 +70,6 @@ public class Synergies
                 destination.add(card);
             }
         }
-    }
-
-    public static int AddPreemptiveSynergies(int amount)
-    {
-        return preemptiveSynergies += amount;
     }
 
     private static Synergy CreateSynergy(int id)
@@ -171,20 +167,7 @@ public class Synergies
 
     public static void SetLastCardPlayed(AbstractCard card)
     {
-        if (card == null)
-        {
-            lastCardPlayed = null;
-            preemptiveSynergies = 0;
-        }
-        else
-        {
-            if (preemptiveSynergies > 0)
-            {
-                preemptiveSynergies -= 1;
-            }
-
-            lastCardPlayed = JUtils.SafeCast(card, AnimatorCard.class);
-        }
+        lastCardPlayed = JUtils.SafeCast(card, AnimatorCard.class);
     }
 
     public static boolean WouldSynergize(AbstractCard card)
@@ -194,9 +177,12 @@ public class Synergies
 
     public static boolean WouldSynergize(AbstractCard card, AbstractCard other)
     {
-        if (preemptiveSynergies > 0)
+        for (OnSynergyCheckSubscriber s : CombatStats.onSynergyCheck.GetSubscribers())
         {
-            return true;
+            if (s.OnSynergyCheck(card, other))
+            {
+                return true;
+            }
         }
 
         if (card == null || other == null)

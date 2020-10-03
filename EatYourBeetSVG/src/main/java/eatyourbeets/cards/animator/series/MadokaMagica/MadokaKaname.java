@@ -1,10 +1,10 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -28,11 +28,15 @@ public class MadokaKaname extends AnimatorCard
     }
 
     @Override
-    public void triggerWhenDrawn()
+    public void triggerOnOtherCardPlayed(AbstractCard c)
     {
-        super.triggerWhenDrawn();
-        GameActions.Bottom.GainTemporaryArtifact(1);
-        GameActions.Bottom.Flash(this);
+        super.triggerOnOtherCardPlayed(c);
+
+        if (player.hand.contains(this) && c.hasTag(SPELLCASTER))
+        {
+            GameActions.Bottom.GainTemporaryHP(1);
+            GameActions.Bottom.Flash(this);
+        }
     }
 
     @Override
@@ -48,7 +52,6 @@ public class MadokaKaname extends AnimatorCard
             {
                 GameActions.Bottom.Heal(cards.size() * secondaryValue);
                 GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
-                GameActions.Bottom.VFX(new RainbowCardEffect());
             }
         });
     }

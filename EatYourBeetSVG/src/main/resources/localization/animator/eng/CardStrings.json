@@ -1392,7 +1392,7 @@
 		},
 		"animator:MadokaKaname":
 		{
-		  "DESCRIPTION": "Exhaust !M! random {Curses} ** from anywhere. Heal ** !S! HP for each. || When Drawn: Gain 1 ** {Temporary} [Artifact].",
+			"DESCRIPTION": "Exhaust !M! random {Curses} ** from anywhere. Heal ** !S! HP for each. || While in hand: Gain 1 [Temporary HP] ** when playing a Spellcaster.",
 			"NAME": "Madoka Kaname"
 		},
 		"animator:MamiTomoe":

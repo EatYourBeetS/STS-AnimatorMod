@@ -60,7 +60,7 @@ public class Spearman extends AnimatorCard
             {
                 if (c.cardID.equals(Witch.DATA.ID) && CombatStats.TryActivateSemiLimited(cardID))
                 {
-                    choices.Select(1, m).IsCancellable(true);
+                    choices.Select(1, m);
                     break;
                 }
             }

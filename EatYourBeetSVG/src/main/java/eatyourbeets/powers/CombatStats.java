@@ -70,6 +70,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = new GameEvent<>();
     public static final GameEvent<OnStatsClearedSubscriber> onStatsCleared = new GameEvent<>();
     public static final GameEvent<OnStanceChangedSubscriber> onStanceChanged = new GameEvent<>();
+    public static final GameEvent<OnSynergyCheckSubscriber> onSynergyCheck = new GameEvent<>();
 
     public static final ControllableCardPile ControlPile = new ControllableCardPile();
     public static boolean LoadingPlayerSave;
@@ -160,8 +161,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onPhaseChanged.Clear();
         onStatsCleared.Clear();
         onStanceChanged.Clear();
-
-        ControlPile.Clear();
+        onSynergyCheck.Clear();
     }
 
     public static void EnsurePowerIsApplied()

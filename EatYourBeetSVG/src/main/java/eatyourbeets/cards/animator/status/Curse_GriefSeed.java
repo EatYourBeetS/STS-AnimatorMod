@@ -19,7 +19,7 @@ public class Curse_GriefSeed extends AnimatorCard_Curse
     {
         super(DATA, false);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 1);
 
         SetSynergy(Synergies.MadokaMagica);
     }

@@ -28,7 +28,6 @@ import com.megacrit.cardcrawl.screens.stats.AchievementGrid;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
@@ -460,7 +459,17 @@ public class GameUtilities
 
     public static AbstractCard GetLastCardPlayed(boolean currentTurn)
     {
-        return Synergies.GetLastCardPlayed();
+        ArrayList<AbstractCard> cards;
+        if (currentTurn)
+        {
+            cards = AbstractDungeon.actionManager.cardsPlayedThisTurn;
+        }
+        else
+        {
+            cards = AbstractDungeon.actionManager.cardsPlayedThisCombat;
+        }
+
+        return cards.size() > 0 ? cards.get(cards.size() - 2) : null;
     }
 
     public static HashSet<AbstractCard> GetMasterDeckCopies(String cardID)

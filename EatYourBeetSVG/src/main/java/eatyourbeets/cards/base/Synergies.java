@@ -92,11 +92,6 @@ public class Synergies
         return All.values();
     }
 
-    public static AnimatorCard GetLastCardPlayed()
-    {
-        return lastCardPlayed;
-    }
-
     public static Synergy GetByID(int id)
     {
         return All.get(id);

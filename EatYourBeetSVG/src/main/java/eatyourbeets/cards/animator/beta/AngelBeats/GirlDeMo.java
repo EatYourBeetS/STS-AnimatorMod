@@ -6,14 +6,16 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Comparator;
 
 public class GirlDeMo extends AnimatorCard
 {
@@ -40,83 +42,26 @@ public class GirlDeMo extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Callback(() -> {
-            List<String> highestPower = getHighestPowers(p);
+        ArrayList<Pair<ActionT1<Integer>, Integer>> pairs = new ArrayList<>();
+        pairs.add(new Pair<>(GameActions.Bottom::GainForce, GameUtilities.GetPowerAmount(ForcePower.POWER_ID)));
+        pairs.add(new Pair<>(GameActions.Bottom::GainAgility, GameUtilities.GetPowerAmount(AgilityPower.POWER_ID)));
+        pairs.add(new Pair<>(GameActions.Bottom::GainIntellect, GameUtilities.GetPowerAmount(IntellectPower.POWER_ID)));
+        pairs.sort(Comparator.comparingInt(Pair::getValue));
 
-            int powerValue;
+        int amount = pairs.get(2).getValue();
+        if (amount > 0)
+        {
+            pairs.get(2).getKey().Invoke(amount);
 
-            if (highestPower.contains(ForcePower.POWER_ID))
+            if (pairs.get(1).getValue().equals(amount))
             {
-                powerValue = GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID);
-
-                if (powerValue > 0)
-                {
-                    GameActions.Bottom.GainForce(powerValue);
-                }
+                pairs.get(1).getKey().Invoke(amount);
             }
-            if (highestPower.contains(AgilityPower.POWER_ID))
+
+            if (pairs.get(0).getValue().equals(amount))
             {
-                powerValue = GameUtilities.GetPowerAmount(p, AgilityPower.POWER_ID);
-
-                if (powerValue > 0)
-                {
-                    GameActions.Bottom.GainAgility(powerValue);
-                }
+                pairs.get(0).getKey().Invoke(amount);
             }
-            if (highestPower.contains(IntellectPower.POWER_ID))
-            {
-                powerValue = GameUtilities.GetPowerAmount(p, IntellectPower.POWER_ID);
-
-                if (powerValue > 0)
-                {
-                    GameActions.Bottom.GainIntellect(powerValue);
-                }
-            }
-        });
-    }
-
-    private List<String> getHighestPowers(AbstractPlayer p)
-    {
-        int forceAmount = GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID);
-        int agilityAmount = GameUtilities.GetPowerAmount(p, AgilityPower.POWER_ID);
-        int intellectAmount = GameUtilities.GetPowerAmount(p, IntellectPower.POWER_ID);
-
-        List<String> highestPowers = new ArrayList<>();
-
-        if (forceAmount == agilityAmount && agilityAmount == intellectAmount)
-        {
-            highestPowers.add(ForcePower.POWER_ID);
-            highestPowers.add(AgilityPower.POWER_ID);
-            highestPowers.add(IntellectPower.POWER_ID);
         }
-        else if (forceAmount == agilityAmount && forceAmount > intellectAmount)
-        {
-            highestPowers.add(ForcePower.POWER_ID);
-            highestPowers.add(AgilityPower.POWER_ID);
-        }
-        else if (forceAmount == intellectAmount && forceAmount > agilityAmount)
-        {
-            highestPowers.add(ForcePower.POWER_ID);
-            highestPowers.add(IntellectPower.POWER_ID);
-        }
-        else if (agilityAmount == intellectAmount && agilityAmount > forceAmount)
-        {
-            highestPowers.add(AgilityPower.POWER_ID);
-            highestPowers.add(IntellectPower.POWER_ID);
-        }
-        else if (forceAmount > agilityAmount && forceAmount > intellectAmount)
-        {
-            highestPowers.add(ForcePower.POWER_ID);
-        }
-        else if (agilityAmount > forceAmount && agilityAmount > intellectAmount)
-        {
-            highestPowers.add(AgilityPower.POWER_ID);
-        }
-        else if (intellectAmount > agilityAmount && intellectAmount > forceAmount)
-        {
-            highestPowers.add(IntellectPower.POWER_ID);
-        }
-
-        return highestPowers;
     }
 }

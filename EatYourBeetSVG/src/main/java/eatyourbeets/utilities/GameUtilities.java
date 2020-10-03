@@ -478,12 +478,12 @@ public class GameUtilities
 
         if (cardsIndex < 0)
         {
-            cardsIndex = 0;
+            return null;
         }
 
         if (cardsIndex >= cards.size())
         {
-            cardsIndex = cards.size() - 1;
+            return null;
         }
 
         return cards.size() > 0 ? cards.get(cardsIndex) : null;

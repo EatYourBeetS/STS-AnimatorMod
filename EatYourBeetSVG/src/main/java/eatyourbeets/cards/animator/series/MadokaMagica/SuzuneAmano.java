@@ -21,9 +21,9 @@ public class SuzuneAmano extends AnimatorCard
 
         Initialize(7, 0, 3, 6);
         SetUpgrade(0, 0, 0, 0);
+        SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.MadokaMagica);
-        SetSpellcaster();
     }
 
     @Override

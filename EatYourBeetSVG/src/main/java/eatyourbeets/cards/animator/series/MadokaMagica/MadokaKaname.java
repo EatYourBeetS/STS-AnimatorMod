@@ -19,12 +19,20 @@ public class MadokaKaname extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 2);
+        Initialize(0, 0, 3, 1);
         SetUpgrade(0, 0, 1, 0);
         SetHealing(true);
         SetPurge(true);
 
         SetSynergy(Synergies.MadokaMagica);
+    }
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        GameActions.Bottom.GainIntellect(secondaryValue);
     }
 
     @Override

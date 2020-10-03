@@ -19,6 +19,7 @@ import eatyourbeets.effects.vfx.HemokinesisEffect;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Charlotte extends AnimatorCard
 {
@@ -28,7 +29,7 @@ public class Charlotte extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(60, 0, 4);
+        Initialize(60, 0, 4, 3);
         SetUpgrade(20, 0, 4);
         SetScaling(3, 0, 6);
 
@@ -56,6 +57,8 @@ public class Charlotte extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.ApplyVulnerable(TargetHelper.All(), secondaryValue);
+
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
         .SetDamageEffect(e ->
         {

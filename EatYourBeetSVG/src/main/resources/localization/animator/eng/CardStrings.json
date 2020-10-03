@@ -178,99 +178,6 @@
 		}
 	},
 
-	"BETA:MADOKAMAGICA":
-	{
-		"animator:Charlotte":
-		{
-			"DESCRIPTION": "<IS>: Attack twice. || Double the damage dealt ** for each {Grief Seed} anywhere. || <LIM>. If this card kills ** an enemy: Heal !M! HP.",
-			"NAME": "Charlotte"
-		},
-		"animator:Curse_GriefSeed":
-		{
-			"DESCRIPTION": "At the end of turn: ** Take !M! Damage. || When Exhausted: ** Remove your ** rightmost {Debuff}.",
-			"NAME": "Grief Seed"
-		},
-		"animator:Defend_MadokaMagica":
-		{
-			"DESCRIPTION": "<LIM>. Add a ** {Grief Seed} to the top of ** your draw pile.",
-			"NAME": "Improved Defend"
-		},
-		"animator:HomuraAkemi":
-		{
-			"DESCRIPTION": "Skip the next enemy turn. ** Draw !M! card(s) and gain [E] ** next turn. End your turn. || Add !S! random {Curses} to ** your discard pile.",
-			"NAME": "Homura Akemi"
-		},
-		"animator:IrohaTamaki":
-		{
-			"DESCRIPTION": "If the top card of ** your draw pile is a ** Hindrance: Exhaust it. || Synergy: Scry !M!.",
-			"NAME": "Iroha Tamaki"
-		},
-		"animator:KyokoSakura":
-		{
-			"DESCRIPTION": "Draw 1 card. Put 1 card ** on top of your draw pile. || If you drew a Hindrance: ** Channel 1 [Fire].",
-			"NAME": "Kyoko Sakura"
-		},
-		"animator:MadokaKaname":
-		{
-			"DESCRIPTION": "Gain !S! [I]. ||  <LIM>. Exhaust all ** {Hindrances} everywhere. ** Gain 1 Intangible for ** every !M! {Hindrance(s)} ** Exhausted.",
-			"NAME": "Madoka Kaname",
-			"UPGRADE_DESCRIPTION": "Boost !S! [I]. || <LIM>. Exhaust all ** {Hindrances} everywhere. ** Gain 1 Intangible for ** every !M! {Hindrance(s)} ** Exhausted."
-		},
-		"animator:MamiTomoe":
-		{
-			"DESCRIPTION": "If there is a {Grief Seed} in your Exhaust pile, attack !S! more time. || Starter: Add a {Grief Seed} to ** your discard pile.",
-			"NAME": "Mami Tomoe"
-		},
-		"animator:NagisaMomoe":
-		{
-			"DESCRIPTION": "Enter <IS>. || Add {Charlotte} and a ** {Grief Seed} to your ** discard pile.",
-			"NAME": "Nagisa Momoe"
-		},
-		"animator:Oktavia":
-		{
-			"DESCRIPTION": "Add !S! random {Curses} to ** your hand. Draw a card for ** each {Curse} in your hand. || Attacks once for each ** {Curse} in your hand.",
-			"NAME": "Oktavia"
-		},
-		"animator:OrikoMikuni":
-		{
-			"DESCRIPTION": "Scry !S!. Retain !M! card(s) at ** the end of this turn. || <SLM>. If in <IS>: <DRW>.",
-			"NAME": "Oriko Mikuni"
-		},
-		"animator:SayakaMiki":
-		{
-			"DESCRIPTION": "Cooldown !S!: Add ** {Oktavia} and a {Grief Seed} ** to your discard pile, then ** Exhaust. || Synergy: Channel 1 [Frost].",
-			"NAME": "Sayaka Miki"
-		},
-		"animator:Strike_MadokaMagica":
-		{
-			"DESCRIPTION": "Scry !M!.",
-			"NAME": "Improved Strike"
-		},
-		"animator:SuzuneAmano":
-		{
-			"DESCRIPTION": "Exhaust 1 random card ** to apply !M! [Burning]. || Synergy: Deals !S! additional damage for each [Fire] you have.",
-			"NAME": "Suzune Amano",
-			"UPGRADE_DESCRIPTION": "Exhaust 1 card to ** apply !M! [Burning]. || Synergy: Deals !S! additional damage for each [Fire] you have."
-		},
-		"animator:Walpurgisnacht":
-		{
-			"DESCRIPTION": "Add !M! random Spellcaster(s) ** to your hand. They cost 0 ** this turn. || At start of turn: Evoke your ** next Orb for each Curse and ** Spellcaster in your hand.",
-			"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next Orb once for each #yCurse plus each #ySpellcaster in your hand."],
-			"NAME": "Walpurgisnacht"
-		},
-		"animator:YachiyoNanami":
-		{
-			"DESCRIPTION": "At the start of turn, you ** may discard a card ** to gain !M! Block. || If you discard a Hindrance: ** Gain [F]. [A], or [I] depending on your Current Stance.",
-			"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard up to #b{0} card(s) to gain #b{1} #yBlock each. For each #yHindrance discarded, also #yGain #b{2} #yForce, #yAgility, or #Intellect depending on your current Stance."],
-			"NAME": "Yachiyo Nanami"
-		},
-		"animator:YuiTsuruno":
-		{
-			"DESCRIPTION": "Discard the top card of ** your draw pile. If it was an ** {Attack}: Add a {Grief Seed} to ** your Discard pile. Otherwise: ** Channel 1 [Fire].",
-			"NAME": "Yui Tsuruno"
-		}
-	},
-
 	"BETA:DATEALIVE":
 	{
 		"animator:Defend_DateALive":
@@ -1485,7 +1392,7 @@
 		},
 		"animator:MadokaKaname":
 		{
-			"DESCRIPTION": "Exhaust !M! random {Curses} ** from anywhere. Heal ** !S! HP for each. || When Drawn: Gain 1 ** {Temporary} [Artifact].",
+			"DESCRIPTION": "Exhaust !M! random {Curses} ** from anywhere. Heal ** !S! HP for each. || When Drawn: Boost [I].",
 			"NAME": "Madoka Kaname"
 		},
 		"animator:MamiTomoe":

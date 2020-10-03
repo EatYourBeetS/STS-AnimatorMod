@@ -30,8 +30,8 @@ public class Charlotte extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(60, 0, 4, 3);
-        SetUpgrade(20, 0, 4);
+        Initialize(60, 0, 3);
+        SetUpgrade(20, 0, 0);
         SetScaling(3, 0, 6);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -57,8 +57,6 @@ public class Charlotte extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ApplyVulnerable(TargetHelper.All(), secondaryValue);
-
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
         .SetDamageEffect(e ->
         {
@@ -67,6 +65,7 @@ public class Charlotte extends AnimatorCard
             GameEffects.List.Add(new BorderFlashEffect(Color.RED));
             GameActions.Top.Add(new ShakeScreenAction(0.3f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
         });
-        GameActions.Bottom.ApplyPower(TargetHelper.All(), PowerHelper.Vulnerable);
+
+        GameActions.Bottom.StackPower(TargetHelper.All(), PowerHelper.Vulnerable, magicNumber);
     }
 }

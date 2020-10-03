@@ -42,6 +42,12 @@ public class SuzuneAmano extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
+
+        if (IsStarter())
+        {
+            GameActions.Bottom.Draw(JUtils.Count(player.orbs, Fire.class::isInstance));
+        }
+
         GameActions.Bottom.ExhaustFromHand(name, 1, !upgraded)
         .ShowEffect(true, true)
         .SetOptions(false, false, false)
@@ -52,10 +58,5 @@ public class SuzuneAmano extends AnimatorCard
                 GameActions.Bottom.ApplyBurning(player, enemy, magicNumber);
             }
         });
-
-        if (IsStarter())
-        {
-            GameActions.Bottom.Draw(JUtils.Count(player.orbs, Fire.class::isInstance));
-        }
     }
 }

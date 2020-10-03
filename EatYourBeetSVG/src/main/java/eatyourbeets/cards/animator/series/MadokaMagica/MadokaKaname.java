@@ -19,7 +19,7 @@ public class MadokaKaname extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 2);
+        Initialize(0, 0, 3, 3);
         SetUpgrade(0, 0, 1, 0);
         SetHealing(true);
         SetPurge(true);
@@ -50,7 +50,10 @@ public class MadokaKaname extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                GameActions.Bottom.Heal(cards.size() * secondaryValue);
+                for (int i = 0; i < cards.size(); i++)
+                {
+                    GameActions.Bottom.Heal(cards.size());
+                }
                 GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
             }
         });

@@ -49,7 +49,7 @@ public class YachiyoNanami extends AnimatorCard
                 choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));
             }
 
-            choices.Select(1, m);
+            choices.Select(1, m).CancellableFromPlayer(true);
         }
     }
 

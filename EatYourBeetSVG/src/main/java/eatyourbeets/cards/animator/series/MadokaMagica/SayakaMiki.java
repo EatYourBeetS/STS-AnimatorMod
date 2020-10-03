@@ -49,7 +49,7 @@ public class SayakaMiki extends AnimatorCard
 
         IntellectPower.PreserveOnce();
 
-        AbstractCard last = GameUtilities.GetLastCardPlayed(true);
+        AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
         if (HasSynergy() && last != null && last.cardID.equals(Curse_GriefSeed.DATA.ID))
         {
             GameActions.Bottom.MakeCardInDiscardPile(new Oktavia()).SetUpgrade(upgraded, false);

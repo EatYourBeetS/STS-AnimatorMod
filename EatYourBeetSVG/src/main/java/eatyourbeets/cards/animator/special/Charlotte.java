@@ -16,6 +16,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.vfx.HemokinesisEffect;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
@@ -46,7 +47,6 @@ public class Charlotte extends AnimatorCard
             if (JUtils.Find(AbstractDungeon.actionManager.cardsPlayedThisTurn, Curse_GriefSeed.class::isInstance) == null)
             {
                 cantUseMessage = cardData.Strings.EXTENDED_DESCRIPTION[0];
-
                 return false;
             }
         }
@@ -67,5 +67,6 @@ public class Charlotte extends AnimatorCard
             GameEffects.List.Add(new BorderFlashEffect(Color.RED));
             GameActions.Top.Add(new ShakeScreenAction(0.3f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
         });
+        GameActions.Bottom.ApplyPower(TargetHelper.All(), PowerHelper.Vulnerable);
     }
 }

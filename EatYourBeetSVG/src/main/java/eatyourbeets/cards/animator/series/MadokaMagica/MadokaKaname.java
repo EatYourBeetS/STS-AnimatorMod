@@ -31,8 +31,8 @@ public class MadokaKaname extends AnimatorCard
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();
-
-        GameActions.Bottom.GainIntellect(secondaryValue);
+        GameActions.Bottom.GainTemporaryArtifact(1);
+        GameActions.Bottom.Flash(this);
     }
 
     @Override

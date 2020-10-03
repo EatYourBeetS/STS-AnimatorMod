@@ -39,6 +39,7 @@ public class MamiTomoe extends AnimatorCard
         super.triggerWhenDrawn();
 
         GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
+        GameActions.Bottom.Flash(this);
     }
 
     @Override

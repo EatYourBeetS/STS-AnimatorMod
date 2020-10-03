@@ -28,6 +28,15 @@ public class MadokaKaname extends AnimatorCard
     }
 
     @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        GameActions.Bottom.GainTemporaryArtifact(1);
+        GameActions.Bottom.Flash(this);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Top.ExhaustFromPile(name, magicNumber, p.drawPile, p.hand, p.discardPile)

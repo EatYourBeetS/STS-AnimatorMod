@@ -459,6 +459,11 @@ public class GameUtilities
 
     public static AbstractCard GetLastCardPlayed(boolean currentTurn)
     {
+        return GetLastCardPlayed(currentTurn, 0);
+    }
+
+    public static AbstractCard GetLastCardPlayed(boolean currentTurn, int offset)
+    {
         ArrayList<AbstractCard> cards;
         if (currentTurn)
         {
@@ -469,7 +474,7 @@ public class GameUtilities
             cards = AbstractDungeon.actionManager.cardsPlayedThisCombat;
         }
 
-        return cards.size() > 0 ? cards.get(cards.size() - 1) : null;
+        return cards.size() > offset ? cards.get(cards.size() - 1 - offset) : null;
     }
 
     public static HashSet<AbstractCard> GetMasterDeckCopies(String cardID)

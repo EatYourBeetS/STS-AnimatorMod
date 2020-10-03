@@ -5,17 +5,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
-public class MadokaKaname extends AnimatorCard implements OnSynergyCheckSubscriber
+public class MadokaKaname extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MadokaKaname.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
 
@@ -32,22 +28,15 @@ public class MadokaKaname extends AnimatorCard implements OnSynergyCheckSubscrib
     }
 
     @Override
-    public void triggerWhenCreated(boolean startOfBattle)
+    public void triggerOnOtherCardPlayed(AbstractCard c)
     {
-        super.triggerWhenCreated(startOfBattle);
+        super.triggerOnOtherCardPlayed(c);
 
-        CombatStats.onSynergyCheck.Subscribe(this);
-
-         if (player.hand.contains(this))
-         {
-             GameUtilities.RefreshHandLayout(true);
-         }
-    }
-
-    @Override
-    public boolean OnSynergyCheck(AbstractCard a, AbstractCard b)
-    {
-        return player.hand.contains(this);
+        if (player.hand.contains(this) && c.hasTag(SPELLCASTER))
+        {
+            GameActions.Bottom.GainTemporaryHP(1);
+            GameActions.Bottom.Flash(this);
+        }
     }
 
     @Override
@@ -63,7 +52,6 @@ public class MadokaKaname extends AnimatorCard implements OnSynergyCheckSubscrib
             {
                 GameActions.Bottom.Heal(cards.size() * secondaryValue);
                 GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
-                GameActions.Bottom.VFX(new RainbowCardEffect());
             }
         });
     }

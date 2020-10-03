@@ -49,7 +49,7 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 public class GameUtilities
 {
-    private static final OnPhaseChangedSubscriber handLayoutRefresher = new HandLayoutRefresher();
+    private static final HandLayoutRefresher handLayoutRefresher = new HandLayoutRefresher();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
     public static void ApplyPowerInstantly(AbstractCreature target, PowerHelper powerHelper, int stacks)
@@ -930,7 +930,19 @@ public class GameUtilities
 
     public static void RefreshHandLayout()
     {
-        CombatStats.onPhaseChanged.Subscribe(handLayoutRefresher);
+        RefreshHandLayout(false);
+    }
+
+    public static void RefreshHandLayout(boolean refreshInstantly)
+    {
+        if (refreshInstantly)
+        {
+            handLayoutRefresher.Refresh();
+        }
+        else
+        {
+            CombatStats.onPhaseChanged.Subscribe(handLayoutRefresher);
+        }
     }
 
     public static boolean RequiresTarget(AbstractCard card)
@@ -1080,13 +1092,18 @@ public class GameUtilities
         {
             if (phase == GameActionManager.Phase.WAITING_ON_USER)
             {
-                CardGroup hand = player.hand;
-                hand.refreshHandLayout();
-                hand.applyPowers();
-                hand.glowCheck();
+                Refresh();
 
                 CombatStats.onPhaseChanged.Unsubscribe(handLayoutRefresher);
             }
+        }
+
+        public void Refresh()
+        {
+            CardGroup hand = player.hand;
+            hand.refreshHandLayout();
+            hand.applyPowers();
+            hand.glowCheck();
         }
     }
 }

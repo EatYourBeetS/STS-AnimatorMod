@@ -23,7 +23,7 @@ public class Strike_MadokaMagica extends Strike
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Top.Scry(magicNumber);
+        GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
     }
 }

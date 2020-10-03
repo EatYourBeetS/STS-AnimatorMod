@@ -887,7 +887,7 @@
 		},
 		"animator:MadokaKaname":
 		{
-			"DESCRIPTION": "Exhaust !M! random {Curses} ** from anywhere. Heal ** !S! HP for each. || When Drawn: Gain 1 ** {Temporary} [Artifact].",
+			"DESCRIPTION": "Exhaust !M! random {Curses} ** from anywhere. Heal ** !S! HP for each. || While in hand: Every ** card will Synergize.",
 			"NAME": "Madoka Kaname"
 		},
 		"animator:MamiTomoe":

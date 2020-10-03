@@ -51,6 +51,7 @@ public abstract class EYBAction extends AbstractGameAction
         return this;
     }
 
+    // Set this to false if an action needs to be executed even if all enemies are dead (e.g. Gain Gold or Heal)
     public EYBAction IsCancellable(boolean canCancel)
     {
         this.canCancel = canCancel;

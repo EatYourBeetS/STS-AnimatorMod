@@ -34,7 +34,7 @@ public class Curse_GriefSeed extends AnimatorCard_Curse
                 AbstractPower power = player.powers.get(i);
                 if (power.type == AbstractPower.PowerType.DEBUFF)
                 {
-                    GameActions.Bottom.RemovePower(player, player, power);
+                    GameActions.Top.RemovePower(player, player, power);
                     return;
                 }
             }

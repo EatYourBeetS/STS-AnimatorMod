@@ -161,6 +161,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onPhaseChanged.Clear();
         onStatsCleared.Clear();
         onStanceChanged.Clear();
+        ControlPile.Clear();
         onSynergyCheck.Clear();
     }
 

@@ -31,9 +31,9 @@ public class OrikoMikuni extends AnimatorCard
     {
         if (choices.TryInitialize(this))
         {
-            choices.AddEffect(new GenericEffect_Scry(3));
+            choices.AddEffect(new GenericEffect_Scry(magicNumber));
             choices.AddEffect(new GenericEffect_NextTurnDraw(1));
-            choices.AddEffect(new GenericEffect_NextTurnBlock(1));
+            choices.AddEffect(new GenericEffect_NextTurnBlock(secondaryValue));
         }
 
         if (GameUtilities.InStance(IntellectStance.STANCE_ID) && CombatStats.TryActivateLimited(cardID))

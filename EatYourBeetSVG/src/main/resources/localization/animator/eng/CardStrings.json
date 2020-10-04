@@ -882,7 +882,7 @@
 		},
 		"animator:KyokoSakura":
 		{
-			"DESCRIPTION": "Starter: Gain [F] ** and Channel 1 [Fire]. || <DRW-M>. ** Put 1 card on top ** of your draw pile.",
+			"DESCRIPTION": "Starter: Gain [F] ** and Channel 1 [Fire]. || <DRW-M>. ** Put !M! card(s) on top ** of your draw pile.",
 			"NAME": "Kyoko Sakura"
 		},
 		"animator:MadokaKaname":

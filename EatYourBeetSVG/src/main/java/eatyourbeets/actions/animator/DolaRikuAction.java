@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.cards.animator.series.NoGameNoLife.DolaRiku;
@@ -22,17 +21,18 @@ public class DolaRikuAction extends EYBAction
 
         Initialize(choices, DolaRiku.DATA.Strings.NAME);
 
+        message = GR.Common.Strings.GridSelection.ChooseCards;
         card = exhausted;
     }
 
     @Override
     protected void FirstUpdate()
     {
-        boolean status = card.type == AbstractCard.CardType.STATUS;
-        boolean curse = card.type == AbstractCard.CardType.CURSE;
-        boolean special = !curse && card.rarity == AbstractCard.CardRarity.SPECIAL;
-        boolean colorless = card.color == AbstractCard.CardColor.COLORLESS;
-        boolean basic = card.rarity == AbstractCard.CardRarity.BASIC;
+        final boolean status = card.type == AbstractCard.CardType.STATUS;
+        final boolean curse = card.type == AbstractCard.CardType.CURSE;
+        final boolean special = !curse && card.rarity == AbstractCard.CardRarity.SPECIAL;
+        final boolean colorless = card.color == AbstractCard.CardColor.COLORLESS;
+        final boolean basic = card.rarity == AbstractCard.CardRarity.BASIC;
 
         AbstractCard.CardColor mainColor;
         if (colorless)
@@ -124,11 +124,5 @@ public class DolaRikuAction extends EYBAction
         }
 
         super.UpdateInternal(deltaTime);
-    }
-
-    @Override
-    public String CreateMessage()
-    {
-        return super.CreateMessageInternal(CardRewardScreen.TEXT[1]);
     }
 }

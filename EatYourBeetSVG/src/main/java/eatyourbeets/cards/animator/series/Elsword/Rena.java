@@ -42,7 +42,7 @@ public class Rena extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.CreateThrowingKnives(1);
 
         if (HasSynergy())

@@ -37,6 +37,6 @@ public class Azriel extends AnimatorCard_UltraRare
             GameActions.Bottom.StackPower(new PlayerFlightPower(p, 2));
         }
 
-        GameActions.Bottom.StackPower(new AzrielPower(p, this.magicNumber));
+        GameActions.Bottom.StackPower(new AzrielPower(p, magicNumber));
     }
 }

@@ -2,7 +2,7 @@ package eatyourbeets.cards.base.cardTextParsing;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.HashMap;
@@ -38,7 +38,7 @@ public class VariableToken extends CTToken
             }
             else
             {
-                JavaUtilities.Log(VariableToken.class, "Unknown variable type: " + parser.text);
+                JUtils.LogInfo(VariableToken.class, "Unknown variable type: " + parser.text);
             }
 
             return 3;

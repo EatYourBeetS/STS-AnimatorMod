@@ -9,13 +9,13 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.lang.reflect.InvocationTargetException;
 
 public abstract class EYBRelic extends CustomRelic
 {
-    protected static final FieldInfo<Float> _offsetX = JavaUtilities.GetField("offsetX", AbstractRelic.class);
+    protected static final FieldInfo<Float> _offsetX = JUtils.GetField("offsetX", AbstractRelic.class);
 
     public static AbstractPlayer player;
     public static Random rng;
@@ -45,14 +45,14 @@ public abstract class EYBRelic extends CustomRelic
         }
         catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e)
         {
-            JavaUtilities.GetLogger(this).error(e.getMessage());
+            JUtils.LogError(this, e.getMessage());
             return null;
         }
     }
 
     protected String FormatDescription(Object... args)
     {
-        return JavaUtilities.Format(DESCRIPTIONS[0], args);
+        return JUtils.Format(DESCRIPTIONS[0], args);
     }
 
     protected void DisplayAboveCreature(AbstractCreature creature)

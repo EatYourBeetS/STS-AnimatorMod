@@ -275,7 +275,7 @@ public class TheUnnamed extends EYBMonster
 
     private static void ChangeOverlayColor(Color color)
     {
-        TheUnnamedReignScene scene = JavaUtilities.SafeCast(AbstractDungeon.scene, TheUnnamedReignScene.class);
+        TheUnnamedReignScene scene = JUtils.SafeCast(AbstractDungeon.scene, TheUnnamedReignScene.class);
         if (scene != null)
         {
             scene.overlayColor = color;

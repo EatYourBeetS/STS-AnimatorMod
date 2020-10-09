@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.SupportDamagePower;
+import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -43,5 +44,10 @@ public class Shigure extends AnimatorCard
             GameEffects.List.Add(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()));
             GameActions.Top.ApplyPoison(player, enemy, magicNumber);
         });
+
+        if (AgilityStance.IsActive())
+        {
+            GameActions.Bottom.Cycle(name, 1);
+        }
     }
 }

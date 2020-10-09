@@ -24,7 +24,8 @@ public class HornedBat_R extends HornedBat
         moveset.Normal.Add(new EYBMove_Buff(1))
         .SetOnUse((m, t) -> GameActions.Bottom.StackPower(new AngryPower(this, 1)));
 
-        moveset.Normal.AttackBuff(1, 2, PowerHelper.Strength, 1)
+        moveset.Normal.AttackBuff(4, 1, PowerHelper.Strength, 1)
+        .SetDamageBonus(3, 2)
         .SetAttackEffect(AbstractGameAction.AttackEffect.SLASH_VERTICAL, null);
     }
 

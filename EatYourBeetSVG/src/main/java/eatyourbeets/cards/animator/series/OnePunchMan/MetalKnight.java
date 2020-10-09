@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class MetalKnight extends AnimatorCard
 {
@@ -42,7 +43,7 @@ public class MetalKnight extends AnimatorCard
         if (magicNumber > 0)
         {
             GameActions.Bottom.GainMetallicize(magicNumber);
-            GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseMagicNumber = Math.max(0, c.baseMagicNumber - 1));
+            GameActions.Bottom.ModifyAllInstances(uuid, c -> GameUtilities.DecreaseMagicNumber(c, 1, false));
         }
     }
 }

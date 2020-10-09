@@ -16,7 +16,7 @@ import eatyourbeets.monsters.Bosses.KrulTepes;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtainedSubscriber
 {
@@ -44,11 +44,11 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
     {
         if (counter < 0)
         {
-            return JavaUtilities.Format(this.DESCRIPTIONS[0], HEAL_AMOUNT);
+            return JUtils.Format(this.DESCRIPTIONS[0], HEAL_AMOUNT);
         }
         else
         {
-            return JavaUtilities.Format(this.DESCRIPTIONS[1], regenAmount, maxHPAmount);
+            return JUtils.Format(this.DESCRIPTIONS[1], regenAmount, maxHPAmount);
         }
     }
 
@@ -88,7 +88,7 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
         }
         else if (HitboxRightClick.rightClicked.get(this.hb))
         {
-            RestRoom room = JavaUtilities.SafeCast(AbstractDungeon.getCurrRoom(), RestRoom.class);
+            RestRoom room = JUtils.SafeCast(AbstractDungeon.getCurrRoom(), RestRoom.class);
             if (room != null && room.event == null)
             {
                 MapRoomNode cur = AbstractDungeon.currMapNode;

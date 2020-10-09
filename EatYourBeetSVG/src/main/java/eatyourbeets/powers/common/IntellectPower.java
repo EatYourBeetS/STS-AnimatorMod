@@ -8,6 +8,11 @@ public class IntellectPower extends PlayerAttributePower
 {
     public static final String POWER_ID = CreateFullID(IntellectPower.class);
 
+    public static int GetCurrentLevel()
+    {
+        return GetLevel(IntellectPower.class);
+    }
+
     public static void PreserveOnce()
     {
         preservedPowers.Subscribe(POWER_ID);

@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -9,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -41,14 +43,6 @@ public class Ain extends AnimatorCard
     }
 
     @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        GameActions.Bottom.GainIntellect(secondaryValue);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         //GameActions.Bottom.VFX(new BlizzardEffect(magicNumber, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.6f);
@@ -64,12 +58,15 @@ public class Ain extends AnimatorCard
             }
         });
 
-        for (int i = 0; i < this.magicNumber; i++)
+        for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE).SetVFX(false, true);
         }
 
-        GameActions.Bottom.ChannelRandomOrb(true);
+        if (GameActionManager.totalDiscardedThisTurn > 0)
+        {
+            GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
+        }
 
         if (HasSynergy())
         {

@@ -25,7 +25,7 @@ public class AzrielPower extends AnimatorPower
         {
             this.flash();
 
-            GameActions.Bottom.StackPower(new StrengthPower(owner, amount));
+            GameActions.Bottom.GainRandomStat(1, true);
         }
     }
 }

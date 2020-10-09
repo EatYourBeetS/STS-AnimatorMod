@@ -25,10 +25,10 @@ public class BlackLotus extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.SFX("ATTACK_DEFECT_BEAM");
         GameActions.Bottom.VFX(new ColoredSweepingBeamEffect(p.hb.cX, p.hb.cY, p.flipHorizontal, Color.valueOf("3d0066")), 0.3f);
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
-        GameActions.Bottom.GainBlur(this.magicNumber);
+        GameActions.Bottom.GainBlur(magicNumber);
     }
 }

@@ -41,15 +41,14 @@ public class RoseDamageAction extends EYBAction
 
             if (action.isDone)
             {
-                if (GameUtilities.IsDeadOrEscaped(target))
+                if (GameUtilities.TriggerOnKill(target, true))
                 {
-                    int[] damageMatrix = DamageInfo.createDamageMatrix(rose.secondaryValue, true);
-
                     for (AbstractMonster m : GameUtilities.GetEnemies(true))
                     {
                         Explosion(m.hb);
                     }
 
+                    int[] damageMatrix = DamageInfo.createDamageMatrix(rose.secondaryValue, true);
                     GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AttackEffect.NONE);
                 }
                 else if (times > 1)

@@ -7,7 +7,7 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
 public class MamizouFutatsuiwa extends AnimatorCard
@@ -48,8 +48,8 @@ public class MamizouFutatsuiwa extends AnimatorCard
         {
             if (shapeshifterPool.Size() == 0)
             {
-                shapeshifterPool.AddAll(JavaUtilities.Filter(Synergies.GetNonColorlessCard(), c -> c.hasTag(SHAPESHIFTER)));
-                shapeshifterPool.AddAll(JavaUtilities.Filter(Synergies.GetColorlessCards(), c -> c.hasTag(SHAPESHIFTER)));
+                shapeshifterPool.AddAll(JUtils.Filter(Synergies.GetNonColorlessCard(), c -> c.hasTag(SHAPESHIFTER)));
+                shapeshifterPool.AddAll(JUtils.Filter(Synergies.GetColorlessCards(), c -> c.hasTag(SHAPESHIFTER)));
             }
 
             AnimatorCard shapeshifter = shapeshifterPool.Retrieve(rng, false);
@@ -70,7 +70,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
         .SetFilter(c -> c instanceof AnimatorCard && !c.hasTag(SHAPESHIFTER))
         .AddCallback(cards ->
         {
-            AnimatorCard card = JavaUtilities.SafeCast(cards.get(0), AnimatorCard.class);
+            AnimatorCard card = JUtils.SafeCast(cards.get(0), AnimatorCard.class);
             if (card != null)
             {
                 card.SetSynergy(Synergies.ANY);

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.HashMap;
@@ -17,9 +17,9 @@ import java.util.Map;
 
 public class EYBCombatScreen extends GUIElement
 {
-    protected final static FieldInfo<BobEffect> _bobEffect = JavaUtilities.GetField("bobEffect", AbstractMonster.class);
-    protected final static FieldInfo<Boolean> _isMultiDmg = JavaUtilities.GetField("isMultiDmg", AbstractMonster.class);
-    protected final static FieldInfo<Integer> _intentMultiAmt = JavaUtilities.GetField("intentMultiAmt", AbstractMonster.class);
+    protected final static FieldInfo<BobEffect> _bobEffect = JUtils.GetField("bobEffect", AbstractMonster.class);
+    protected final static FieldInfo<Boolean> _isMultiDmg = JUtils.GetField("isMultiDmg", AbstractMonster.class);
+    protected final static FieldInfo<Integer> _intentMultiAmt = JUtils.GetField("intentMultiAmt", AbstractMonster.class);
 
     protected final Map<AbstractMonster, Integer> intents = new HashMap<>();
 

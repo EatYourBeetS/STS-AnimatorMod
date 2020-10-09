@@ -817,7 +817,7 @@
 		},
 		"animator:Mitsurugi":
 		{
-			"DESCRIPTION": "获得或 {提升} [F] 。 ** 只有当敌人的 ** 意图是攻击时， ** 才能造成伤害。 ** 被 消耗 : 获得 !S! 点 格挡 。",
+			"DESCRIPTION": "获得/提升 [F] 。 ** 只有当敌人的 ** 意图是攻击时， ** 才能造成伤害。 ** 被 消耗 : 获得 !S! 点 格挡 。",
 			"NAME": "御剑响夜"
 		},
 		"animator:Vanir":
@@ -1186,11 +1186,6 @@
 			"DESCRIPTION": "每回合一次，每当你抽到一张诅咒拍时，抽 !M! 张牌。 ** 每回合开始时，你可以抹除一张消耗堆中的状态或诅咒牌来获得一张 {奇迹} 。",
 			"NAME": "键山雏",
 			"EXTENDED_DESCRIPTION": ["本回合下 #b{0} 次你抽到诅咒牌时，抽 #b{1} 张牌。", "最多选择 {0} 张牌抹除。"]
-		},
-		"animator:HinaKagiyama_Miracle":
-		{
-			"DESCRIPTION": "获得 {+[E] } [E] 。",
-			"NAME": "奇迹"
 		},
 		"animator:IchigoBankai":
 		{

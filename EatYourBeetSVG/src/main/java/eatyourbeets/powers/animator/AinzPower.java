@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.cards.animator.series.Overlord.Ainz;
 import eatyourbeets.cards.base.*;
@@ -89,7 +88,6 @@ public class AinzPower extends AnimatorPower
 
         GameActions.Bottom.SelectFromPile(name, 1, group)
         .SetOptions(false, false)
-        .SetMessage(CardRewardScreen.TEXT[1])
         .AddCallback(cards ->
         {
             if (!cards.isEmpty())

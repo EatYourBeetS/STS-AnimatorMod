@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.animator.special.OrbCore_Chaos;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -42,7 +41,6 @@ public class OrbCore_ChaosPower extends OrbCore_AbstractPower
 
             GameActions.Bottom.SelectFromPile(name, 1, group)
             .SetOptions(false, false)
-            .SetMessage(CardRewardScreen.TEXT[1])
             .AddCallback(cards ->
             {
                 if (cards.size() > 0)

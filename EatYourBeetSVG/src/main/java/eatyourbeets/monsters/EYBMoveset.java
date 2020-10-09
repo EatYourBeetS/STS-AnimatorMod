@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.FuncT1;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -93,7 +93,7 @@ public class EYBMoveset
     {
         for (EYBAbstractMove m : moves.values())
         {
-            T res = JavaUtilities.SafeCast(m, type);
+            T res = JUtils.SafeCast(m, type);
             if (res != null)
             {
                 return res;

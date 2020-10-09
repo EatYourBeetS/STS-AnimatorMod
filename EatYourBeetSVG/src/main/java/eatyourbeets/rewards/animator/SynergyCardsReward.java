@@ -14,7 +14,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.resources.GR;
 import eatyourbeets.rewards.AnimatorReward;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -68,7 +68,7 @@ public class SynergyCardsReward extends AnimatorReward
         int i = 0;
         while (i < rewards.size())
         {
-            SynergyCardsReward other = JavaUtilities.SafeCast(rewards.get(i), SynergyCardsReward.class);
+            SynergyCardsReward other = JUtils.SafeCast(rewards.get(i), SynergyCardsReward.class);
             if (other != null && other != this)
             {
                 other.isDone = true;
@@ -109,7 +109,7 @@ public class SynergyCardsReward extends AnimatorReward
         @Override
         public RewardSave onSave(CustomReward customReward)
         {
-            SynergyCardsReward reward = JavaUtilities.SafeCast(customReward, SynergyCardsReward.class);
+            SynergyCardsReward reward = JUtils.SafeCast(customReward, SynergyCardsReward.class);
             if (reward != null)
             {
                 return new RewardSave(reward.type.toString(), null, reward.synergy.ID, 0);

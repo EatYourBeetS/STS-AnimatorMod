@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 public class ShuffleEnemiesEffect extends AbstractGameEffect
@@ -81,8 +80,6 @@ public class ShuffleEnemiesEffect extends AbstractGameEffect
             enemy2.drawX = translate(enemy2.drawX, drawX1, delta);
             targetReached = false;
         }
-
-        JavaUtilities.Logger.info("TARGET REACHED " + targetReached);
 
         if (targetReached)
         {

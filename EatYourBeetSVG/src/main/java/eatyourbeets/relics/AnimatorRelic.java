@@ -6,11 +6,11 @@ import eatyourbeets.relics.animator.AbstractMissingPiece;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorDungeonData;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public abstract class AnimatorRelic extends EYBRelic
 {
-    protected static final FieldInfo<Float> _offsetX = JavaUtilities.GetField("offsetX", AbstractRelic.class);
+    protected static final FieldInfo<Float> _offsetX = JUtils.GetField("offsetX", AbstractRelic.class);
 
     public static String CreateFullID(Class<? extends AnimatorRelic> type)
     {

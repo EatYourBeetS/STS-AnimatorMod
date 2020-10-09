@@ -14,12 +14,11 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.vfx.LaserBeamEffect;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDiscardedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnAfterCardExhaustedSubscriber;
-import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSubscriber, OnAfterCardExhaustedSubscriber, OnAfterCardDiscardedSubscriber
+public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardExhaustedSubscriber, OnAfterCardDiscardedSubscriber
 {
     public static final EYBCardData DATA = Register(NivaLada.class).SetSkill(0, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
@@ -32,16 +31,13 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
 
         SetCooldown(18, -2, this::OnCooldownCompleted);
         SetSynergy(Synergies.Chaika);
-
-        if (CanSubscribeToEvents())
-        {
-            OnBattleStart();
-        }
     }
 
     @Override
-    public void OnBattleStart()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
+        super.triggerWhenCreated(startOfBattle);
+
         CombatStats.onAfterCardDiscarded.Subscribe(this);
         CombatStats.onAfterCardExhausted.Subscribe(this);
     }
@@ -86,6 +82,6 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
         GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05f, 0.05f), m.hb.cY + MathUtils.random(-0.05f, 0.05f)), 0.1f);
         GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05f, 0.05f), m.hb.cY + MathUtils.random(-0.05f, 0.05f)), 0.1f);
         GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05f, 0.05f), m.hb.cY + MathUtils.random(-0.05f, 0.05f)), 0.1f);
-        GameActions.Bottom.DealDamage(player, m, this.magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamage(player, m, magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
     }
 }

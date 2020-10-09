@@ -13,7 +13,7 @@ import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
@@ -121,7 +121,7 @@ public class RacePiece extends AnimatorRelic
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : player.masterDeck.group)
         {
-            AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
+            AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
             if (card != null && card.synergy != null && card.color != AbstractCard.CardColor.COLORLESS)
             {
                 group.addToTop(card);
@@ -214,7 +214,7 @@ public class RacePiece extends AnimatorRelic
             synergy = null;
 
             AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
-            AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
+            AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
             if (card != null)
             {
                 synergy = card.synergy;

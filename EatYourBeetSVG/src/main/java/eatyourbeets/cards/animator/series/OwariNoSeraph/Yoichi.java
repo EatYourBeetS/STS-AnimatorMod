@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class Yoichi extends AnimatorCard
 {
@@ -28,18 +28,14 @@ public class Yoichi extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (block > 0)
-        {
-            GameActions.Bottom.GainBlock(block);
-        }
-
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DiscardFromHand(name, 1, false);
         GameActions.Bottom.StackPower(new SupportDamagePower(p, 1))
         .AddCallback(power ->
         {
             if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
             {
-                SupportDamagePower supportDamage = JavaUtilities.SafeCast(power, SupportDamagePower.class);
+                SupportDamagePower supportDamage = JUtils.SafeCast(power, SupportDamagePower.class);
                 if (supportDamage != null)
                 {
                     supportDamage.atEndOfTurn(true);

@@ -1,3 +1,6 @@
+/*
+TODO: Replace this. Disabled Because of changes with Firebase.
+
 package patches.metrics;
 
 import com.badlogic.gdx.Gdx;
@@ -15,7 +18,8 @@ import com.megacrit.cardcrawl.metrics.Metrics;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,13 +32,12 @@ public class Metrics_Run
     private static final HashMap<Object, Object> params2 = new HashMap<>();
     private static final Gson gson = new Gson();
 
-    // TODO: Create a decent API
     @SpirePrefixPatch
     public static void Postfix(Metrics __instance)
     {
         if (Settings.UPLOAD_DATA && __instance.type == Metrics.MetricRequestType.UPLOAD_METRICS)
         {
-            if (AbstractDungeon.player.chosenClass == GR.Enums.Characters.THE_ANIMATOR && !Settings.isDebug && Settings.isStandardRun())
+            if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && !Settings.isDebug && Settings.isStandardRun())
             {
                 cardsData.clear();
 
@@ -67,11 +70,17 @@ public class Metrics_Run
                 String data = gson.toJson(params);
                 String url = "https://us-central1-sts-theanimator-api.cloudfunctions.net/addMetrics";
 
-                //JavaUtilities.Logger.info(data);
-
                 HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
-                Net.HttpRequest httpRequest = requestBuilder.newRequest().method("POST").url(url).header("Content-Type", "text/plain").header("Accept", "text/plain").header("User-Agent", "curl/7.43.0").build();
-                httpRequest.setContent(data);
+                Net.HttpRequest httpRequest = requestBuilder
+                .newRequest()
+                .method("POST")
+                .header("Content-Type", "text/plain")
+                .header("Accept", "text/plain")
+                .header("User-Agent", "curl/7.43.0")
+                .content(data)
+                .url(url)
+                .build();
+
                 Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener()
                 {
                     public void handleHttpResponse(Net.HttpResponse httpResponse) { }
@@ -91,8 +100,16 @@ public class Metrics_Run
                 String url = "https://us-central1-sts-theanimator-api.cloudfunctions.net/addAlternativeMetrics";
 
                 HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
-                Net.HttpRequest httpRequest = requestBuilder.newRequest().method("POST").url(url).header("Content-Type", "text/plain").header("Accept", "text/plain").header("User-Agent", "curl/7.43.0").build();
-                httpRequest.setContent(data);
+                Net.HttpRequest httpRequest = requestBuilder
+                .newRequest()
+                .method("POST")
+                .header("Content-Type", "text/plain")
+                .header("Accept", "text/plain")
+                .header("User-Agent", "curl/7.43.0")
+                .content(data)
+                .url(url)
+                .build();
+
                 Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener()
                 {
                     public void handleHttpResponse(Net.HttpResponse httpResponse) { }
@@ -117,7 +134,7 @@ public class Metrics_Run
             }
 
             AbstractCard temp = GetCard(cardID);
-            AnimatorCard card = JavaUtilities.SafeCast(temp, AnimatorCard.class);
+            AnimatorCard card = JUtils.SafeCast(temp, AnimatorCard.class);
             if (card != null)
             {
                 for (HashMap<Object, Object> data : cardsData)
@@ -159,3 +176,4 @@ public class Metrics_Run
         return card;
     }
 }
+*/

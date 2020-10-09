@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class FalseLifePotion extends AbstractPotion
 {
@@ -24,7 +24,7 @@ public class FalseLifePotion extends AbstractPotion
     public void initializeData()
     {
         this.potency = this.getPotency();
-        this.description = JavaUtilities.Format(DESCRIPTIONS[0], this.potency);
+        this.description = JUtils.Format(DESCRIPTIONS[0], this.potency);
         this.isThrown = false;
         this.tips.add(new PowerTip(this.name, this.description));
     }

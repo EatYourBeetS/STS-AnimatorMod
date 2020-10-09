@@ -131,6 +131,11 @@ public final class GameEffects
         return Add(new ShowCardBrieflyEffect(card, x, y));
     }
 
+    public ShowCardBrieflyEffect ShowCopy(AbstractCard card)
+    {
+        return ShowCardBriefly(card.makeStatEquivalentCopy());
+    }
+
     public TalkEffect Talk(AbstractCreature source, String message)
     {
         return Add(new TalkEffect(source, message));

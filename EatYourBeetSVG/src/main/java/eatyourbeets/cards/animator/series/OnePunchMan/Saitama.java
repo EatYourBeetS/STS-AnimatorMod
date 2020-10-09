@@ -17,24 +17,40 @@ import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class Saitama extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Saitama.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
+    static
+    {
+        DATA.AddPreview(new Saitama(1), false);
+        DATA.AddPreview(new Saitama(2), false);
+        DATA.AddPreview(new Saitama(3), false);
+        DATA.AddPreview(new Saitama(4), false);
+        DATA.AddPreview(new Saitama(5), false);
+    }
 
     private int stage;
 
-    public Saitama()
+    private Saitama(int stage)
     {
         super(DATA);
 
         Initialize(0, 0);
 
-        this.misc = 0;
-
         SetAttackType(EYBAttackType.Normal);
         SetSynergy(Synergies.OnePunchMan);
+
+        GameUtilities.ModifyCostForCombat(this, stage, false);
+        this.stage = this.misc = stage;
+        SetEffect(stage);
+    }
+
+    public Saitama()
+    {
+        this(0);
     }
 
     @Override
@@ -66,7 +82,7 @@ public class Saitama extends AnimatorCard
     {
         AbstractCard card = super.makeStatEquivalentCopy();
 
-        Saitama other = JavaUtilities.SafeCast(card, Saitama.class);
+        Saitama other = JUtils.SafeCast(card, Saitama.class);
         if (other != null)
         {
             other.misc = other.stage = this.misc;
@@ -121,7 +137,7 @@ public class Saitama extends AnimatorCard
             case 4:
             {
                 // Deal !D! damage !M! times.
-                for (int i = 1; i < this.magicNumber; i++)
+                for (int i = 1; i < magicNumber; i++)
                 {
                     GameActions.Bottom.Add(new PummelDamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn)));
                 }
@@ -151,6 +167,7 @@ public class Saitama extends AnimatorCard
         {
             if (c.misc < 5)
             {
+                GameUtilities.ModifyCostForCombat(c, 1, true);
                 c.misc += 1;
                 c.applyPowers();
             }
@@ -255,7 +272,5 @@ public class Saitama extends AnimatorCard
                 break;
             }
         }
-
-        this.upgradeBaseCost(stage);
     }
 }

@@ -74,6 +74,20 @@ public class GUI_Image extends GUIElement
                 Settings.scale * scaleY, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
     }
 
+    public GUI_Image Translate(float x, float y)
+    {
+        this.hb.translate(x, y);
+
+        return this;
+    }
+
+    public GUI_Image Resize(float width, float height, float scale)
+    {
+        hb.resize(width * scale, height * scale);
+
+        return this;
+    }
+
     public GUI_Image SetTexture(Texture texture)
     {
         this.texture = texture;

@@ -62,7 +62,7 @@ public class HarukoHaruhara extends AnimatorCard
 
             if (card != null)
             {
-                GameActions.Bottom.PlayCard(card, player.hand, (AbstractMonster) target);
+                GameActions.Bottom.PlayCard(card, player.hand, target);
             }
         });
     }

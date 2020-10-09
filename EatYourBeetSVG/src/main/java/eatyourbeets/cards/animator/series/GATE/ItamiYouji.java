@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.GATE;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
@@ -20,8 +19,8 @@ public class ItamiYouji extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 4, 2);
-        SetUpgrade(2, 0);
+        Initialize(3, 0, 3, 2);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Gate);
     }
@@ -30,14 +29,14 @@ public class ItamiYouji extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Top.Draw(magicNumber)
-        .AddCallback(m, (enemy, cards) ->
+        .AddCallback(m, (enemy, __) ->
         {
-            for (AbstractCard card : cards)
+            for (AbstractCard card : player.hand.group)
             {
                 if (card.type == CardType.ATTACK)
                 {
                     GameActions.Bottom.SFX("ATTACK_FIRE");
-                    GameActions.Bottom.DealDamage(this, (AbstractCreature) enemy, AbstractGameAction.AttackEffect.NONE);
+                    GameActions.Bottom.DealDamage(this, enemy, AbstractGameAction.AttackEffect.NONE);
                 }
             }
         });

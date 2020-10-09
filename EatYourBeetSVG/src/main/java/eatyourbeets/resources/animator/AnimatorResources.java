@@ -153,6 +153,7 @@ public class AnimatorResources extends AbstractResources
     {
         Config.Initialize();
         Data.Initialize();
+        Config.InitializeOptions();
         AnimatorLoadoutsContainer.PreloadResources();
     }
 

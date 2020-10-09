@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -15,6 +16,11 @@ public class ForceStance extends EYBStance
     public static final int STAT_GAIN_AMOUNT = 2;
     public static final int STAT_LOSE_AMOUNT = 1;
     public static final int TEMP_HP_AMOUNT = 3;
+
+    public static boolean IsActive()
+    {
+        return GameUtilities.InStance(STANCE_ID);
+    }
 
     public ForceStance()
     {
@@ -47,10 +53,16 @@ public class ForceStance extends EYBStance
     {
         super.onExitStance();
 
-        GameActions.Bottom.GainTemporaryHP(TEMP_HP_AMOUNT);
+//        GameActions.Bottom.GainTemporaryHP(TEMP_HP_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +STAT_LOSE_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , -STAT_GAIN_AMOUNT);
+    }
+
+    @Override
+    public void onRefreshStance()
+    {
+        ForcePower.PreserveOnce();
     }
 
     @Override

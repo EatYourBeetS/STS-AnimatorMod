@@ -165,7 +165,7 @@ public abstract class EYBEventPhase<Event extends EYBEvent, Text extends EYBEven
 
     protected EYBEventOption AddPhaseChangeOption(String text, Class<? extends EYBEventPhase> phase)
     {
-        return AddOption(text).AddCallback(phase, (t, __) -> this.ChangePhase((Class<? extends EYBEventPhase>) t));
+        return AddOption(text).AddCallback(phase, (newPhase, __) -> this.ChangePhase(newPhase));
     }
 
     protected void RemoveCard(AbstractCard card, boolean playSound)

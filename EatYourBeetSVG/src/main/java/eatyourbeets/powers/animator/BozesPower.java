@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.cards.base.AnimatorCard;
 
 public class BozesPower extends AnimatorPower
@@ -41,7 +41,7 @@ public class BozesPower extends AnimatorPower
     {
         super.onAfterCardPlayed(usedCard);
 
-        AnimatorCard card = JavaUtilities.SafeCast(usedCard, AnimatorCard.class);
+        AnimatorCard card = JUtils.SafeCast(usedCard, AnimatorCard.class);
         if (card != null && card.HasSynergy())
         {
             if (amount > 0)

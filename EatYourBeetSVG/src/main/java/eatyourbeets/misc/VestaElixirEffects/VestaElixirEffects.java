@@ -3,12 +3,11 @@ package eatyourbeets.misc.VestaElixirEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.animator.series.TenseiSlime.Vesta;
 import eatyourbeets.cards.animator.special.Vesta_Elixir;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public class VestaElixirEffects
         Random rng = EYBCard.rng;
         if (rng == null)
         {
-            JavaUtilities.Log(VestaElixirEffects.class, "EYBCard.rng was null");
+            JUtils.LogInfo(VestaElixirEffects.class, "EYBCard.rng was null");
             rng = new Random();
         }
 
@@ -60,7 +59,7 @@ public class VestaElixirEffects
 
     private void ChooseNextEffect(ArrayList<AbstractCard> cards)
     {
-        currentElixir = JavaUtilities.SafeCast(cards.get(0), Vesta_Elixir.class);
+        currentElixir = JUtils.SafeCast(cards.get(0), Vesta_Elixir.class);
         if (currentElixir == null)
         {
             currentElixir = new Vesta_Elixir();
@@ -106,7 +105,6 @@ public class VestaElixirEffects
         }
 
         GameActions.Top.SelectFromPile(vesta.name, 1, group)
-        .SetMessage(CardRewardScreen.TEXT[1])
         .SetOptions(false, false)
         .AddCallback(this::ChooseNextEffect);
     }

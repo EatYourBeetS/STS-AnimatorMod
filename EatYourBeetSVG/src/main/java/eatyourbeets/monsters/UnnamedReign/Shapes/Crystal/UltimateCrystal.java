@@ -26,7 +26,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class UltimateCrystal extends Crystal
 {
@@ -126,7 +126,7 @@ public class UltimateCrystal extends Crystal
         {
             for (AbstractPower p : original.powers)
             {
-                CloneablePowerInterface cloneablePower = JavaUtilities.SafeCast(p, CloneablePowerInterface.class);
+                CloneablePowerInterface cloneablePower = JUtils.SafeCast(p, CloneablePowerInterface.class);
                 if (cloneablePower != null)
                 {
                     AbstractPower power = cloneablePower.makeCopy();

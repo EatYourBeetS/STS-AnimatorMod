@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class Zero extends AnimatorCard
 {
@@ -32,6 +32,6 @@ public class Zero extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Top.PlayCard(p.drawPile, m, g -> JavaUtilities.GetRandomElement(g.getSkills().group));
+        GameActions.Top.PlayCard(p.drawPile, m, g -> JUtils.GetRandomElement(g.getSkills().group));
     }
 }

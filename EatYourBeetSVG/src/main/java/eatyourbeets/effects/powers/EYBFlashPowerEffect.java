@@ -22,7 +22,7 @@ public class EYBFlashPowerEffect extends AbstractGameEffect
     {
         this.scale = Settings.scale;
 
-        if (!power.owner.isDeadOrEscaped())
+        if (power.owner != null && !power.owner.isDeadOrEscaped())
         {
             this.x = power.owner.hb.cX;
             this.y = power.owner.hb.cY;

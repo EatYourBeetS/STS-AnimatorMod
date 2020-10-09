@@ -10,7 +10,7 @@ import eatyourbeets.monsters.Elites.HornedBat;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +67,7 @@ public abstract class EYBMonster extends CustomMonster
         }
         else
         {
-            JavaUtilities.GetLogger(this).warn("The move was not present in the moveset: " + nextMove);
+            JUtils.LogWarning(this, "The move was not present in the moveset: " + nextMove);
         }
 
         GameActions.Bottom.Add(new RollMoveAction(this)); // This calls getMove(rng(0, 99))

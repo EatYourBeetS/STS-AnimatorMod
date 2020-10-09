@@ -34,15 +34,16 @@ public class PinaCoLadaPower extends AnimatorPower
     {
         super.stackPower(stackAmount);
 
-        this.baseAmount += stackAmount;
+        baseAmount += stackAmount;
     }
 
+    @Override
     public void onUseCard(AbstractCard card, UseCardAction action)
     {
-        if ((card.costForTurn == 0 || card.freeToPlayOnce) && this.amount > 0 && !card.purgeOnUse)
+        if ((card.costForTurn == 0 || card.freeToPlayOnce) && amount > 0 && !card.isInAutoplay)
         {
-            this.amount -= 1;
-            this.flash();
+            amount -= 1;
+            flash();
             updateDescription();
 
             AbstractMonster m = null;

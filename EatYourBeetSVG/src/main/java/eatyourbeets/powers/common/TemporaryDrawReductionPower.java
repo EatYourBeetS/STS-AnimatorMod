@@ -9,11 +9,23 @@ import eatyourbeets.utilities.GameActions;
 
 public class TemporaryDrawReductionPower extends DrawReductionPower implements CloneablePowerInterface
 {
-    public TemporaryDrawReductionPower(AbstractCreature owner, int amount)
+    private static int counter = 0;
+
+    public TemporaryDrawReductionPower(AbstractCreature owner, int turns)
     {
-        super(owner, amount);
+        this(owner, turns, false);
+    }
+
+    public TemporaryDrawReductionPower(AbstractCreature owner, int turns, boolean unique)
+    {
+        super(owner, turns);
 
         this.ID = GR.Animator.CreateID(TemporaryDrawReductionPower.class.getSimpleName());
+
+        if (unique)
+        {
+            this.ID += "_" + counter++;
+        }
     }
 
     @Override
@@ -27,6 +39,6 @@ public class TemporaryDrawReductionPower extends DrawReductionPower implements C
     @Override
     public AbstractPower makeCopy()
     {
-        return new TemporaryDrawReductionPower(owner, amount);
+        return new TemporaryDrawReductionPower(owner, amount, false);
     }
 }

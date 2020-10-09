@@ -2,8 +2,8 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import eatyourbeets.cards.animator.beta.Miracle;
 import eatyourbeets.cards.animator.special.HinaKagiyama;
-import eatyourbeets.cards.animator.special.HinaKagiyama_Miracle;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -52,7 +52,7 @@ public class HinaKagiyamaPower extends AnimatorPower
             {
                 if (player.exhaustPile.group.remove(card))
                 {
-                    GameActions.Bottom.MakeCardInHand(new HinaKagiyama_Miracle());
+                    GameActions.Bottom.MakeCardInHand(new Miracle());
                 }
             }
         });

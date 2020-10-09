@@ -12,6 +12,11 @@
 	"<DRW-M>": "Draw !M! card(s)",
 	"<SPACE>": "    ",
 
+	"<ST>": "Starter",
+	"<FS>": "{[F] Stance}",
+	"<IS>": "{[I] Stance}",
+	"<AS>": "{[A] Stance}",
+
 	" ** ": " NL ",
 	" || ": " NL  NL "
 }

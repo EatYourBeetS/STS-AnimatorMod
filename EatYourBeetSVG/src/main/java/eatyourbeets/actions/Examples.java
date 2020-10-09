@@ -105,7 +105,7 @@ public final class Examples extends AnimatorCard
            {
                if (card.type == CardType.ATTACK)
                {
-                   GameActions.Bottom.DealDamage(this, (AbstractMonster)enemy, AbstractGameAction.AttackEffect.FIRE);
+                   GameActions.Bottom.DealDamage(this, enemy, AbstractGameAction.AttackEffect.FIRE);
                }
                else
                {

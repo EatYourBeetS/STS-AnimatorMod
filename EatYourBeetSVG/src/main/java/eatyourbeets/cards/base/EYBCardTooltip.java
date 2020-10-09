@@ -1,8 +1,9 @@
 package eatyourbeets.cards.base;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
@@ -14,8 +15,9 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 
@@ -23,12 +25,12 @@ public class EYBCardTooltip
 {
     private final static ArrayList EMPTY_LIST = new ArrayList();
 
-    private final static FieldInfo<String> _body = JavaUtilities.GetField("BODY", TipHelper.class);
-    private final static FieldInfo<String> _header = JavaUtilities.GetField("HEADER", TipHelper.class);
-    private final static FieldInfo<ArrayList> _card = JavaUtilities.GetField("card", TipHelper.class);
-    private final static FieldInfo<ArrayList> _keywords = JavaUtilities.GetField("KEYWORDS", TipHelper.class);
-    private final static FieldInfo<ArrayList> _powerTips = JavaUtilities.GetField("POWER_TIPS", TipHelper.class);
-    private final static FieldInfo<Boolean> _renderedTipsThisFrame = JavaUtilities.GetField("renderedTipThisFrame", TipHelper.class);
+    private final static FieldInfo<String> _body = JUtils.GetField("BODY", TipHelper.class);
+    private final static FieldInfo<String> _header = JUtils.GetField("HEADER", TipHelper.class);
+    private final static FieldInfo<ArrayList> _card = JUtils.GetField("card", TipHelper.class);
+    private final static FieldInfo<ArrayList> _keywords = JUtils.GetField("KEYWORDS", TipHelper.class);
+    private final static FieldInfo<ArrayList> _powerTips = JUtils.GetField("POWER_TIPS", TipHelper.class);
+    private final static FieldInfo<Boolean> _renderedTipsThisFrame = JUtils.GetField("renderedTipThisFrame", TipHelper.class);
 
     private static final ArrayList<EYBCardTooltip> tooltips = new ArrayList<>();
     private static final float CARD_TIP_PAD = 12f * Settings.scale;
@@ -45,11 +47,15 @@ public class EYBCardTooltip
     private static final float BODY_TEXT_WIDTH = 320f * Settings.scale;
     private static final float TIP_DESC_LINE_SPACING = 26f * Settings.scale;
     private static final float POWER_ICON_OFFSET_X = 40f * Settings.scale;
+    private static EYBCardTooltip translationTooltip;
     private static EYBCard card;
 
-    public TextureAtlas.AtlasRegion icon;
+    public TextureRegion icon;
     public String title;
     public String description;
+    public float iconMulti_W = 1;
+    public float iconMulti_H = 1;
+    public boolean canRender = true;
 
     public EYBCardTooltip(String title, String description)
     {
@@ -87,7 +93,7 @@ public class EYBCardTooltip
         card.GenerateDynamicTooltips(tooltips);
         for (EYBCardTooltip tooltip : card.tooltips)
         {
-            if (!tooltips.contains(tooltip))
+            if (tooltip.canRender && !tooltips.contains(tooltip))
             {
                 tooltips.add(tooltip);
             }
@@ -118,7 +124,7 @@ public class EYBCardTooltip
                 float steps = (tooltips.size() - 3) * 0.4f;
                 float multi = 1f - (card.current_y / (Settings.HEIGHT * 0.5f));
 
-                y += AbstractCard.IMG_HEIGHT * (0.5f + JavaUtilities.Round(multi * steps, 3));
+                y += AbstractCard.IMG_HEIGHT * (0.5f + JUtils.Round(multi * steps, 3));
             }
             else
             {
@@ -140,16 +146,21 @@ public class EYBCardTooltip
 
         if (GR.IsTranslationSupported(Settings.language) && card.isPopup)
         {
+            if (translationTooltip == null)
+            {
+                translationTooltip = new EYBCardTooltip(GR.Animator.Strings.Misc.LocalizationHelpHeader, GR.Animator.Strings.Misc.LocalizationHelp);
+            }
+
             EYBFontHelper.CardTooltipFont.getData().setScale(0.9f);
-            RenderTip(sb,Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.9f,
-            GR.Animator.Strings.Misc.LocalizationHelpHeader, GR.Animator.Strings.Misc.LocalizationHelp);
+            translationTooltip.Render(sb,Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.9f);
             RenderHelpers.ResetFont(EYBFontHelper.CardTooltipFont);
         }
     }
 
     public float Render(SpriteBatch sb, float x, float y)
     {
-        float h = -FontHelper.getSmartHeight(EYBFontHelper.CardTooltipFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING) - 7f * Settings.scale;
+        final float textHeight = FontHelper.getSmartHeight(EYBFontHelper.CardTooltipFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING);
+        final float h = StringUtils.isEmpty(description) ? (- 40f * Settings.scale) : (- textHeight - 7f * Settings.scale);
 
         sb.setColor(Settings.TOP_PANEL_SHADOW_COLOR);
         sb.draw(ImageMaster.KEYWORD_TOP, x + SHADOW_DIST_X, y - SHADOW_DIST_Y, BOX_W, BOX_EDGE_H);
@@ -162,40 +173,71 @@ public class EYBCardTooltip
 
         if (icon != null)
         {
-            renderTipEnergy(sb, icon, x + BOX_W - TEXT_OFFSET_X - 28 * Settings.scale, y + ORB_OFFSET_Y, 28, 28);
+            // To render it on the right: x + BOX_W - TEXT_OFFSET_X - 28 * Settings.scale
+            renderTipEnergy(sb, icon, x + TEXT_OFFSET_X, y + ORB_OFFSET_Y, 28 * iconMulti_W, 28 * iconMulti_H);
+            FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X * 2.5f, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
+        }
+        else
+        {
+            FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
         }
 
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
-
-        FontHelper.renderSmartText(sb, EYBFontHelper.CardTooltipFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
+        RenderHelpers.WriteSmartText(sb, EYBFontHelper.CardTooltipFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
 
         return h;
     }
 
-    public static float RenderTip(SpriteBatch sb, float x, float y, String header, String text)
+    public EYBCardTooltip SetIconSizeMulti(float w, float h)
     {
-        float h = -FontHelper.getSmartHeight(EYBFontHelper.CardTooltipFont, text, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING) - 7f * Settings.scale;
+        this.iconMulti_W = w;
+        this.iconMulti_H = h;
 
-        sb.setColor(Settings.TOP_PANEL_SHADOW_COLOR);
-        sb.draw(ImageMaster.KEYWORD_TOP, x + SHADOW_DIST_X, y - SHADOW_DIST_Y, BOX_W, BOX_EDGE_H);
-        sb.draw(ImageMaster.KEYWORD_BODY, x + SHADOW_DIST_X, y - h - BOX_EDGE_H - SHADOW_DIST_Y, BOX_W, h + BOX_EDGE_H);
-        sb.draw(ImageMaster.KEYWORD_BOT, x + SHADOW_DIST_X, y - h - BOX_BODY_H - SHADOW_DIST_Y, BOX_W, BOX_EDGE_H);
-        sb.setColor(Color.WHITE);
-        sb.draw(ImageMaster.KEYWORD_TOP, x, y, BOX_W, BOX_EDGE_H);
-        sb.draw(ImageMaster.KEYWORD_BODY, x, y - h - BOX_EDGE_H, BOX_W, h + BOX_EDGE_H);
-        sb.draw(ImageMaster.KEYWORD_BOT, x, y - h - BOX_BODY_H, BOX_W, BOX_EDGE_H);
-
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(header), x + TEXT_OFFSET_X, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
-        FontHelper.renderSmartText(sb, EYBFontHelper.CardTooltipFont, text, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
-
-        return h;
+        return this;
     }
 
-    public void renderTipEnergy(SpriteBatch sb, TextureAtlas.AtlasRegion region, float x, float y, float width, float height)
+    public EYBCardTooltip SetIcon(TextureRegion region)
+    {
+        this.icon = region;
+
+        return this;
+    }
+
+    public EYBCardTooltip SetIcon(TextureRegion region, int div)
+    {
+        int w = region.getRegionWidth();
+        int h = region.getRegionHeight();
+        int x = region.getRegionX();
+        int y = region.getRegionY();
+        int half_div = div / 2;
+        this.icon = new TextureRegion(region.getTexture(), x + (w / div), y + (h / div), w - (w / half_div), h - (h / half_div));
+
+        return this;
+    }
+
+    public EYBCardTooltip SetIcon(Texture texture, int div)
+    {
+        int w = texture.getWidth();
+        int h = texture.getHeight();
+        int half_div = div / 2;
+        this.icon = new TextureRegion(texture, w / div, h / div, w - (w / half_div), h - (h / half_div));
+
+        return this;
+    }
+
+    public EYBCardTooltip ShowText(boolean value)
+    {
+        this.canRender = value;
+
+        return this;
+    }
+
+    public void renderTipEnergy(SpriteBatch sb, TextureRegion region, float x, float y, float width, float height)
     {
         sb.setColor(Color.WHITE);
-        sb.draw(region.getTexture(), x + region.offsetX * Settings.scale, y + region.offsetY * Settings.scale, 0f, 0f,
-        width, height, Settings.scale, Settings.scale, 0f, region.getRegionX(), region.getRegionY(), region.getRegionWidth(), region.getRegionHeight(), false, false);
+        sb.draw(region.getTexture(), x, y, 0f, 0f,
+        width, height, Settings.scale, Settings.scale, 0f,
+        region.getRegionX(), region.getRegionY(), region.getRegionWidth(),
+        region.getRegionHeight(), false, false);
     }
 
     @Override

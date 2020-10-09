@@ -21,13 +21,13 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Toggle;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class EYBSingleCardPopup extends GUIElement
 {
     // TODO: This method cannot be found in certain unknown circumstances
-    //private static final MethodInfo _canToggleBetaArt = JavaUtilities.GetMethod("canToggleBetaArt", SingleCardViewPopup.class);
+    //private static final MethodInfo _canToggleBetaArt = JUtils.GetMethod("canToggleBetaArt", SingleCardViewPopup.class);
     private static final String[] TEXT = SingleCardViewPopup.TEXT;
 
     private final GUI_Toggle upgradeToggle;
@@ -300,7 +300,7 @@ public class EYBSingleCardPopup extends GUIElement
         {
             if (!this.cardHb.hovered && !this.upgradeHb.hovered && (this.betaArtHb == null || !this.betaArtHb.hovered))
             {
-                JavaUtilities.Log(this, "Closing");
+                JUtils.LogInfo(this, "Closing");
                 Close();
                 InputHelper.justClickedLeft = false;
             }

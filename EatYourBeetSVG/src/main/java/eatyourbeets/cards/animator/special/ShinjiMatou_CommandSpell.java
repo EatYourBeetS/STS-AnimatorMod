@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ShinjiMatou_CommandSpell extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ShinjiMatou_CommandSpell.class).SetSkill(1, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(ShinjiMatou_CommandSpell.class).SetSkill(1, CardRarity.SPECIAL);
 
     public ShinjiMatou_CommandSpell()
     {

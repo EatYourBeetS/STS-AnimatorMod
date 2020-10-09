@@ -1,12 +1,13 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.LockOnPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.common.MarkedPower;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -22,9 +23,8 @@ public class Ciel extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 9, 4, 9);
-        SetUpgrade(0, 0, 0, 0);
-        SetScaling(0, 1, 0);
+        Initialize(0, 4, 2, 6);
+        SetUpgrade(0, 0, 0, 2);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -36,18 +36,28 @@ public class Ciel extends AnimatorCard
     }
 
     @Override
+    public AbstractAttribute GetBlockInfo()
+    {
+        return super.GetBlockInfo().AddMultiplier(2);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(block).SetVFX(true, false);
-        GameActions.Bottom.StackPower(new MarkedPower(m, magicNumber));
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainBlock(block);
 
-        if (HasSynergy())
+        if (IsStarter())
         {
-            for (AbstractCard card : GameUtilities.GetAllInBattleCopies(Lu.DATA.ID))
-            {
-                card.damage = (card.baseDamage += secondaryValue);
-                card.flash();
-            }
+            GameActions.Bottom.StackPower(new VulnerablePower(m, magicNumber, false));
+            GameActions.Bottom.StackPower(new LockOnPower(m, magicNumber));
         }
+
+        GameActions.Bottom.ModifyAllCopies(Lu.DATA.ID)
+        .AddCallback(c ->
+        {
+            GameUtilities.IncreaseDamage(c, secondaryValue, false);
+            c.flash();
+        });
     }
 }

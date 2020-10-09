@@ -25,7 +25,7 @@ public class Defend_OnePunchMan extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
 
         if (CombatStats.TryActivateLimited(cardID))
         {

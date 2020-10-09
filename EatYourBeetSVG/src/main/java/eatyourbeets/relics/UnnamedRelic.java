@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -42,7 +42,7 @@ public abstract class UnnamedRelic extends CustomRelic
         }
         catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e)
         {
-            JavaUtilities.GetLogger(this).error(e.getMessage());
+            JUtils.LogError(this, e.getMessage());
             return null;
         }
     }

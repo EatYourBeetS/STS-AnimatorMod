@@ -82,14 +82,14 @@ public class IzunaHatsuse extends AnimatorCard
     {
         if (transformed)
         {
-            GameActions.Bottom.Heal(this.magicNumber);
+            GameActions.Bottom.Heal(magicNumber);
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         }
         else
         {
             GameActions.Bottom.ApplyWeak(p, m, 1);
-            GameActions.Bottom.GainBlock(this.block);
+            GameActions.Bottom.GainBlock(block);
         }
     }
 

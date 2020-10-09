@@ -15,11 +15,11 @@ import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 {
-    private transient AbstractGameEffect effect;
+    private transient AbstractGameEffect effect = null;
 
     protected final CardGroup cardGroup;
     protected boolean upgrade;
@@ -43,6 +43,18 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         }
 
         Initialize(1);
+    }
+
+    public MakeTempCard Repeat(int times)
+    {
+        this.amount = times;
+
+        if (times > 2)
+        {
+            SetDuration(times > 3 ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FASTER, isRealtime);
+        }
+
+        return this;
     }
 
     public MakeTempCard CancelIfFull(boolean cancelIfFull)
@@ -93,7 +105,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
                 (float) Settings.HEIGHT / 2f, true, true, false));
 
                 // For reasons unknown ShowCardAndAddToDrawPileEffect creates a copy of the card...
-                actualCard = JavaUtilities.<AbstractCard>GetField("card", ShowCardAndAddToDrawPileEffect.class).Get(effect);
+                actualCard = JUtils.<AbstractCard>GetField("card", ShowCardAndAddToDrawPileEffect.class).Get(effect);
 
                 break;
             }
@@ -109,7 +121,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
                     }
 
                     player.createHandIsFullDialog();
-                    GameEffects.List.Add(new ShowCardAndAddToDiscardEffect(actualCard));
+                    effect = GameEffects.List.Add(new ShowCardAndAddToDiscardEffect(actualCard));
                 }
                 else
                 {
@@ -131,7 +143,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 
             case EXHAUST_PILE:
             {
-                GameEffects.List.Add(new ExhaustCardEffect(actualCard));
+                effect = GameEffects.List.Add(new ExhaustCardEffect(actualCard));
                 player.exhaustPile.addToTop(actualCard);
                 break;
             }
@@ -142,7 +154,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 
                 if (destination != null)
                 {
-                    JavaUtilities.GetLogger(this).warn("Destination for the master deck will be ignored.");
+                    JUtils.LogWarning(this, "Destination for the master deck will be ignored.");
                     destination = null;
                 }
 
@@ -153,15 +165,10 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
             case UNSPECIFIED:
             default:
             {
-                JavaUtilities.GetLogger(this).warn("Can't make temp card in " + cardGroup.type.name());
+                JUtils.LogWarning(this, "Can't make temp card in " + cardGroup.type.name());
                 Complete();
                 break;
             }
-        }
-
-        if (destination == null)
-        {
-            effect = null; // no need to wait for effect
         }
     }
 
@@ -170,12 +177,22 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
     {
         if (effect != null && !effect.isDone)
         {
-            isDone = false;
-            return; // Destination will change position of the card after the effect is completed
+            effect.update();
         }
 
         if (TickDuration(deltaTime))
         {
+            if (amount > 1)
+            {
+                MakeTempCard copy = new MakeTempCard(actualCard, cardGroup);
+                copy.Import(this);
+                copy.destination = destination;
+                copy.makeCopy = copy.upgrade = false;
+                copy.cancelIfFull = cancelIfFull;
+                copy.amount = amount - 1;
+                GameActions.Top.Add(copy);
+            }
+
             Complete(actualCard);
 
             if (destination != null && cardGroup.group.remove(actualCard))

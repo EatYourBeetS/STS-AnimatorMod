@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class GeassPower extends AnimatorPower
 {
@@ -48,7 +48,7 @@ public class GeassPower extends AnimatorPower
     {
         super.onInitialApplication();
 
-        AbstractMonster monster = JavaUtilities.SafeCast(owner, AbstractMonster.class);
+        AbstractMonster monster = JUtils.SafeCast(owner, AbstractMonster.class);
         if (monster != null && !GameUtilities.IsAttacking(monster.intent))
         {
             if (!monster.hasPower(StunMonsterPower.POWER_ID))

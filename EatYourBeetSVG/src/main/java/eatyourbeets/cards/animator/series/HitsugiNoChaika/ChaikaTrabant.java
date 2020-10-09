@@ -39,7 +39,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.DealDamageToAll(DamageInfo.createDamageMatrix(this.magicNumber, false),
+        GameActions.Bottom.DealDamageToAll(DamageInfo.createDamageMatrix(magicNumber, false),
         damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE).SetPiercing(true, false);
     }
 

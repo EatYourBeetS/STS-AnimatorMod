@@ -41,14 +41,15 @@ public abstract class EYBCardBase extends AbstractCard
     @Override public final void renderCardPreviewInSingleView(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
     @Override public final void renderCardPreview(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
     @Override public final void initializeDescriptionCN() { initializeDescription(); }
+    @Override public final void triggerOnScry() { /* Useless */ }
     @Override public void calculateDamageDisplay(AbstractMonster mo) { calculateCardDamage(mo); }
     @Override public abstract void renderUpgradePreview(SpriteBatch sb);
     @Override public abstract void initializeDescription();
     @Override public abstract void calculateCardDamage(AbstractMonster mo);
     //@Formatter: On
 
-    protected static final FieldInfo<Boolean> _darken = JavaUtilities.GetField("darken", AbstractCard.class);
-    protected static final FieldInfo<Color> _renderColor = JavaUtilities.GetField("renderColor", AbstractCard.class);
+    protected static final FieldInfo<Boolean> _darken = JUtils.GetField("darken", AbstractCard.class);
+    protected static final FieldInfo<Color> _renderColor = JUtils.GetField("renderColor", AbstractCard.class);
     protected static final Color HOVER_IMG_COLOR = new Color(1f, 0.815f, 0.314f, 0.8f);
     protected static final Color SELECTED_CARD_COLOR = new Color(0.5f, 0.9f, 0.9f, 1f);
     protected static final float SHADOW_OFFSET_X = 18f * Settings.scale;
@@ -241,7 +242,7 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride
     protected void renderPortrait(SpriteBatch sb)
     {
-        if (cropPortrait && drawScale > 0.6f && drawScale < 1 && GR.Animator.Config.GetCropCardImages())
+        if (cropPortrait && drawScale > 0.6f && drawScale < 1 && GR.Animator.Config.CropCardImages())
         {
             int width = portraitImg.getWidth();
             int height = portraitImg.getHeight();

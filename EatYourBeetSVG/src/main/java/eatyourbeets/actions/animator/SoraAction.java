@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.animator.series.NoGameNoLife.Sora;
@@ -71,7 +70,6 @@ public class SoraAction extends EYBAction
 
         GameActions.Top.SelectFromPile(name, 1, group)
         .SetOptions(false, false)
-        .SetMessage(CardRewardScreen.TEXT[1])
         .AddCallback(cards ->
         {
             AbstractCard card = cards.get(0);

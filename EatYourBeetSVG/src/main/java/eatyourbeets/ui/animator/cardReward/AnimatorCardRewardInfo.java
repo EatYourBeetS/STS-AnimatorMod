@@ -59,7 +59,7 @@ public class AnimatorCardRewardInfo extends GUIElement
     public void Update()
     {
         upgradeToggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
-        zoomToggle.SetToggle(GR.Animator.Config.GetCropCardImages()).Update();
+        zoomToggle.SetToggle(GR.Animator.Config.CropCardImages()).Update();
 
         float x = zoomToggle.hb.x + (zoomToggle.hb.width - (exhaust.textBox.hb.width * 0.5f));
         float step = exhaust.textBox.hb.height;
@@ -91,6 +91,6 @@ public class AnimatorCardRewardInfo extends GUIElement
 
     private void ToggleCardZoom(boolean value)
     {
-        GR.Animator.Config.SetCropCardImages(value, true);
+        GR.Animator.Config.CropCardImages(value, true);
     }
 }

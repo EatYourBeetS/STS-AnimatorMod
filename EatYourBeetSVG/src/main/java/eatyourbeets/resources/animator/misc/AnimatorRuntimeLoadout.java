@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -62,7 +62,7 @@ public class AnimatorRuntimeLoadout
         EYBCardData data = Loadout.GetSymbolicCard();
         if (data == null)
         {
-            JavaUtilities.Log(this, Loadout.Name + " has no symbolic card.");
+            JUtils.LogInfo(this, Loadout.Name + " has no symbolic card.");
             return null;
         }
 
@@ -100,7 +100,7 @@ public class AnimatorRuntimeLoadout
         {
             for (AbstractCard card : CardLibrary.getAllCards())
             {
-                AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
+                AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
                 if (c != null && card.color == GR.Animator.CardColor && synergy.equals(c.synergy)
                     && card.rarity != AbstractCard.CardRarity.SPECIAL
                     && card.rarity != AbstractCard.CardRarity.BASIC)

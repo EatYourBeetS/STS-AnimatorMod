@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class WornHelmet extends AnimatorRelic
 {
@@ -38,7 +38,7 @@ public class WornHelmet extends AnimatorRelic
     {
         super.onRefreshHand();
 
-        SetCounter(JavaUtilities.Count(player.hand.group, GameUtilities::IsCurseOrStatus));
+        SetCounter(JUtils.Count(player.hand.group, GameUtilities::IsCurseOrStatus));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class WornHelmet extends AnimatorRelic
     {
         super.onPlayerEndTurn();
 
-        int block = JavaUtilities.Count(player.hand.group, GameUtilities::IsCurseOrStatus) * BLOCK_AMOUNT2;
+        int block = JUtils.Count(player.hand.group, GameUtilities::IsCurseOrStatus) * BLOCK_AMOUNT2;
         if (block > 0)
         {
             GameActions.Bottom.GainBlock(block);

@@ -18,7 +18,7 @@ public class ModifyAllCopies extends EYBActionWithCallback<AbstractCard>
         AddCallback(onCompletion);
     }
 
-    public ModifyAllCopies(String cardID, Object state, ActionT2<Object, AbstractCard> onCompletion)
+    public <S> ModifyAllCopies(String cardID, S state, ActionT2<S, AbstractCard> onCompletion)
     {
         this(cardID);
 

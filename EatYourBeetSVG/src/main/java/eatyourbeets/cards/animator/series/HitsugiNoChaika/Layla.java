@@ -47,7 +47,7 @@ public class Layla extends AnimatorCard
                     GameActions.Bottom.VFX(new PotionBounceEffect(player.hb.cY, player.hb.cX, enemy.hb.cX, enemy.hb.cY), 0.3f);
                 }
 
-                GameActions.Bottom.Add(new BouncingFlaskAction(enemy, this.magicNumber, cards.size()));
+                GameActions.Bottom.Add(new BouncingFlaskAction(enemy, magicNumber, cards.size()));
             }
         });
     }

@@ -1,9 +1,7 @@
 package eatyourbeets.cards.animator.colorless.rare;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.TanyaDegurechaff_Type95;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -13,8 +11,10 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
-public class TanyaDegurechaff extends AnimatorCard implements StartupCard
+public class TanyaDegurechaff extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(TanyaDegurechaff.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS);
     static
@@ -34,23 +34,23 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        magicNumber = (baseMagicNumber + player.hand.getSkills().size());
-    }
-
-    @Override
     public AbstractAttribute GetDamageInfo()
     {
         return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     @Override
+    protected void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        GameUtilities.IncreaseMagicNumber(this, player.hand.getSkills().size(), true);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DiscardFromHand(name, 999, true)
         .SetOptions(false, true, true)
         .SetFilter(c -> c.type == CardType.SKILL)
@@ -59,21 +59,20 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
             for (int i = 0; i < (cards.size() + baseMagicNumber); i++)
             {
                 GameActions.Bottom.SFX("ATTACK_FIRE");
-                GameActions.Bottom.DealDamage(this, (AbstractCreature) enemy, AbstractGameAction.AttackEffect.NONE);
+                GameActions.Bottom.DealDamage(this, enemy, AbstractGameAction.AttackEffect.NONE);
             }
         });
     }
 
     @Override
-    public boolean atBattleStartPreDraw()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-        if (CombatStats.TryActivateLimited(cardID))
+        super.triggerWhenCreated(startOfBattle);
+
+        if (startOfBattle && CombatStats.TryActivateLimited(cardID))
         {
+            GameEffects.List.ShowCopy(this);
             GameActions.Bottom.MakeCardInDrawPile(new TanyaDegurechaff_Type95());
-
-            return true;
         }
-
-        return false;
     }
 }

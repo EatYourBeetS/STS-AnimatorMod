@@ -23,7 +23,7 @@ public class Testing
 
     public static void SetValues(Float[] newValues)
     {
-        JavaUtilities.Log(Testing.class, "Setting Values: " + JavaUtilities.JoinStrings(", ", newValues));
+        JUtils.LogInfo(Testing.class, "Setting Values: " + JUtils.JoinStrings(", ", newValues));
 
         values = newValues;
     }
@@ -71,7 +71,7 @@ public class Testing
         Field field = fonts.get(fontIndex++);
         try
         {
-            JavaUtilities.Log(Testing.class, field.getName());
+            JUtils.LogInfo(Testing.class, field.getName());
 
             return (BitmapFont) field.get(null);
         }
@@ -112,7 +112,7 @@ public class Testing
         Field field = colors.get(colorIndex++);
         try
         {
-            JavaUtilities.Log(Testing.class, field.getName());
+            JUtils.LogInfo(Testing.class, field.getName());
 
             return (Color) field.get(null);
         }

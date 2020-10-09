@@ -13,7 +13,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
@@ -85,9 +84,8 @@ public class Add extends AnimatorCard
         }
     }
 
-    private void OrbChosen(Object state, ArrayList<AbstractCard> chosen)
+    private void OrbChosen(CardGroup cardGroup, ArrayList<AbstractCard> chosen)
     {
-        CardGroup cardGroup = JavaUtilities.SafeCast(state, CardGroup.class);
         if (cardGroup != null && chosen != null && chosen.size() == 1)
         {
             switch (cardGroup.type)

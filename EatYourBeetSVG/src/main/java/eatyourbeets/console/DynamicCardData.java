@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.Map;
 
@@ -154,7 +154,7 @@ public class DynamicCardData
 
         data.Name = card.originalName;
 
-        AnimatorCard ac = JavaUtilities.SafeCast(card, AnimatorCard.class);
+        AnimatorCard ac = JUtils.SafeCast(card, AnimatorCard.class);
         if (ac != null)
         {
             builder.SetSynergy(ac.synergy, ac.hasTag(AnimatorCard.SHAPESHIFTER));

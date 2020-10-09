@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -30,9 +31,9 @@ import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.unnamed.Void;
+import eatyourbeets.ui.common.ControllableCardPile;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import patches.CardGlowBorderPatches;
 
 import java.util.ArrayList;
@@ -65,11 +66,13 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnStartOfTurnSubscriber> onStartOfTurn = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
     public static final GameEvent<OnCostRefreshSubscriber> onCostRefresh = new GameEvent<>();
+    public static final GameEvent<OnCardCreatedSubscriber> onCardCreated  = new GameEvent<>();
     public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = new GameEvent<>();
     public static final GameEvent<OnStatsClearedSubscriber> onStatsCleared = new GameEvent<>();
     public static final GameEvent<OnStanceChangedSubscriber> onStanceChanged = new GameEvent<>();
+    public static final GameEvent<OnSynergyCheckSubscriber> onSynergyCheck = new GameEvent<>();
 
-    public static final Void Void = new Void();
+    public static final ControllableCardPile ControlPile = new ControllableCardPile();
     public static boolean LoadingPlayerSave;
 
     private static final Map<String, Object> combatData = new HashMap<>();
@@ -87,6 +90,11 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static boolean HasActivatedSemiLimited(String id) { return turnData.containsKey(id); }
     public static boolean TryActivateLimited(String id) { return combatData.put(id, 1) == null; }
     public static boolean TryActivateSemiLimited(String id) { return turnData.put(id, 1) == null; }
+
+    public static boolean HasActivatedLimited(String id, int cap) { return combatData.containsKey(id) && (int)combatData.get(id) >= cap; }
+    public static boolean HasActivatedSemiLimited(String id, int cap) { return turnData.containsKey(id) && (int)turnData.get(id) >= cap; }
+    public static boolean TryActivateLimited(String id, int cap) { return JUtils.IncrementMapElement(combatData, id) <= cap; }
+    public static boolean TryActivateSemiLimited(String id, int cap) { return JUtils.IncrementMapElement(turnData, id) <= cap; }
     //@Formatter: On
 
     protected CombatStats()
@@ -99,7 +107,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     @Override
     public AbstractPower makeCopy()
     {
-        JavaUtilities.GetLogger(this).error("Do not clone powers which implement InvisiblePower");
+        JUtils.LogError(this, "Do not clone powers which implement InvisiblePower");
         return null;
     }
 
@@ -112,7 +120,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     private static void ClearStats()
     {
         RefreshPlayer();
-        JavaUtilities.Log(CombatStats.class, "Clearing Player Stats");
+        JUtils.LogInfo(CombatStats.class, "Clearing Player Stats");
 
         for (OnStatsClearedSubscriber s : onStatsCleared.GetSubscribers())
         {
@@ -147,20 +155,21 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onApplyPower.Clear();
         onAfterDeath.Clear();
         onCostRefresh.Clear();
+        onCardCreated.Clear();
         onStartOfTurn.Clear();
         onStartOfTurnPostDraw.Clear();
         onPhaseChanged.Clear();
         onStatsCleared.Clear();
         onStanceChanged.Clear();
-
-        //Void.Initialize(true);
+        ControlPile.Clear();
+        onSynergyCheck.Clear();
     }
 
     public static void EnsurePowerIsApplied()
     {
         if (RefreshPlayer() != null && !player.powers.contains(Instance))
         {
-            JavaUtilities.Log(CombatStats.class, "Applied PlayerStatistics");
+            JUtils.LogInfo(CombatStats.class, "Applied PlayerStatistics");
             player.powers.add(Instance);
         }
     }
@@ -199,7 +208,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static void OnCostRefresh(AbstractCard card)
     {
-        OnCostRefreshSubscriber c = JavaUtilities.SafeCast(card, OnCostRefreshSubscriber.class);
+        OnCostRefreshSubscriber c = JUtils.SafeCast(card, OnCostRefreshSubscriber.class);
         if (c != null)
         {
             c.OnCostRefresh(card);
@@ -211,6 +220,20 @@ public class CombatStats extends EYBPower implements InvisiblePower
             {
                 s.OnCostRefresh(card);
             }
+        }
+    }
+
+    public static void OnCardCreated(AbstractCard card, boolean startOfBattle)
+    {
+        EYBCard c = JUtils.SafeCast(card, EYBCard.class);
+        if (c != null)
+        {
+            c.triggerWhenCreated(startOfBattle);
+        }
+
+        for (OnCardCreatedSubscriber s : onCardCreated.GetSubscribers())
+        {
+            s.OnCardCreated(card, startOfBattle);
         }
     }
 
@@ -247,6 +270,13 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         ClearStats();
 
+        onBattleEnd.Clear();
+        for (OnBattleStartSubscriber s : onBattleStart.GetSubscribers())
+        {
+            s.OnBattleStart();
+        }
+        onBattleStart.Clear();
+
         ArrayList<AbstractCard> cards = new ArrayList<>(player.drawPile.group);
         cards.addAll(player.hand.group);
         cards.addAll(player.discardPile.group);
@@ -254,20 +284,8 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
         for (AbstractCard c : cards)
         {
-            OnBattleStartSubscriber s = JavaUtilities.SafeCast(c, OnBattleStartSubscriber.class);
-            if (s != null)
-            {
-                s.OnBattleStart();
-            }
+            OnCardCreated(c, true);
         }
-
-        for (OnBattleStartSubscriber s : onBattleStart.GetSubscribers())
-        {
-            s.OnBattleStart();
-        }
-
-        onBattleStart.Clear();
-        onBattleEnd.Clear();
     }
 
     public void OnBattleEnd()
@@ -318,10 +336,12 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             return (T) turnData.get(key);
         }
-        else
+        else if (defaultData != null)
         {
             return SetCombatData(key, defaultData);
         }
+
+        return defaultData;
     }
 
     public static <T> T SetCombatData(String key, T data)
@@ -336,10 +356,12 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             return (T) combatData.get(key);
         }
-        else
+        else if (defaultData != null)
         {
             return SetCombatData(key, defaultData);
         }
+
+        return defaultData;
     }
 
     public static int CardsExhaustedThisTurn()
@@ -393,7 +415,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         super.onPlayCard(card, m);
 
-        AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
+        AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
         if (c != null && c.HasSynergy())
         {
             for (OnSynergySubscriber s : onSynergy.GetSubscribers())
@@ -408,7 +430,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         super.onAfterCardPlayed(card);
 
-        AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
+        AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
         if (c != null && c.HasSynergy())
         {
             synergiesThisTurn += 1;
@@ -417,6 +439,11 @@ public class CombatStats extends EYBPower implements InvisiblePower
         for (OnAfterCardPlayedSubscriber p : onAfterCardPlayed.GetSubscribers())
         {
             p.OnAfterCardPlayed(card);
+        }
+
+        if (player.limbo.contains(card))
+        {
+            GameActions.Top.Add(new UnlimboAction(card));
         }
     }
 
@@ -562,9 +589,9 @@ public class CombatStats extends EYBPower implements InvisiblePower
             s.OnAfterCardDrawn(card);
         }
 
-        if (card instanceof EYBCard && ((EYBCard) card).haste)
+        if (card.hasTag(GR.Enums.CardTags.HASTE))
         {
-            GameActions.Bottom.Add(new HasteAction((EYBCard) card));
+            GameActions.Bottom.Add(new HasteAction(card));
         }
     }
 

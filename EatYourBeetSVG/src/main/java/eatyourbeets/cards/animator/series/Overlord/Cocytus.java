@@ -19,7 +19,7 @@ public class Cocytus extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 2, 2);
+        Initialize(6, 0, 2, 1);
         SetUpgrade(1, 0, 1, 0);
         SetScaling(0, 0, 2);
 
@@ -39,6 +39,7 @@ public class Cocytus extends AnimatorCard
         if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.GainPlatedArmor(secondaryValue);
+            GameActions.Bottom.GainThorns(secondaryValue);
         }
     }
 }

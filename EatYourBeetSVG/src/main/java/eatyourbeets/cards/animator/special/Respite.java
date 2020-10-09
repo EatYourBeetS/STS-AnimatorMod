@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -46,8 +47,10 @@ public class Respite extends AnimatorCard
         CardCrawlGame.sound.play("SLEEP_" + a + "-" + b);
 
         AbstractBlight doomed = p.getBlight(Doomed.ID);
-        if (doomed != null)
+        int timesUsed = CombatStats.GetCombatData(cardID, 0);
+        if (doomed != null && timesUsed < 4)
         {
+            CombatStats.SetCombatData(cardID, timesUsed + 1);
             doomed.setCounter(doomed.counter + 1);
             doomed.updateDescription();
             doomed.flash();

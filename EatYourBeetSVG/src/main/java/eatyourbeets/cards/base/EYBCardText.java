@@ -150,7 +150,7 @@ public class EYBCardText
         {
             offset_y -= RenderBadge(sb, BADGES.Retain.Texture(), offset_y, alpha, null);
         }
-        if (card.haste)
+        if (card.hasTag(GR.Enums.CardTags.HASTE))
         {
             offset_y -= RenderBadge(sb, BADGES.Haste.Texture(), offset_y, alpha, null);
         }

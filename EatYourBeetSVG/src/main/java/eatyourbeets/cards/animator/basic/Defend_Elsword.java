@@ -23,7 +23,7 @@ public class Defend_Elsword extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
-        GameActions.Bottom.StackPower(new NextTurnBlockPower(p, this.magicNumber));
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.StackPower(new NextTurnBlockPower(p, magicNumber));
     }
 }

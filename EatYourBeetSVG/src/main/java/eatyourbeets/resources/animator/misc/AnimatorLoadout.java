@@ -14,7 +14,7 @@ import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.relics.animator.LivingPicture;
 import eatyourbeets.relics.animator.TheMissingPiece;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 import java.util.StringJoiner;
@@ -148,7 +148,7 @@ public abstract class AnimatorLoadout
         ArrayList<AbstractCard> cards = AbstractDungeon.player.masterDeck.group;
         for (AbstractCard c : cards)
         {
-            AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
+            AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
             if (card != null)
             {
                 Synergy synergy = card.synergy;

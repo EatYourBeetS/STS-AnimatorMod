@@ -1,16 +1,15 @@
 package eatyourbeets.actions.special;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class HasteAction extends EYBAction
 {
-    protected EYBCard card;
-
-    public HasteAction(EYBCard card)
+    public HasteAction(AbstractCard card)
     {
         super(ActionType.SPECIAL);
 
@@ -23,7 +22,7 @@ public class HasteAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        if (card.haste)
+        if (card.hasTag(GR.Enums.CardTags.HASTE))
         {
             GameActions.Top.Draw(1);
             GameActions.Top.Flash(card);
@@ -37,10 +36,10 @@ public class HasteAction extends EYBAction
     @Override
     protected void Complete()
     {
-        if (card.haste)
+        if (card.hasTag(GR.Enums.CardTags.HASTE))
         {
             CardCrawlGame.sound.playA("POWER_FLIGHT", MathUtils.random(0.3f, 0.4f));
-            card.haste = false;
+            card.tags.remove(GR.Enums.CardTags.HASTE);
         }
 
         isDone = true;

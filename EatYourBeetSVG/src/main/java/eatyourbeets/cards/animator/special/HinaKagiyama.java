@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.beta.Miracle;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
@@ -13,7 +14,7 @@ public class HinaKagiyama extends AnimatorCard
     public static final EYBCardData DATA = Register(HinaKagiyama.class).SetPower(1, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
     static
     {
-        DATA.AddPreview(new HinaKagiyama_Miracle(), false);
+        DATA.AddPreview(new Miracle(), false);
     }
 
     public HinaKagiyama()

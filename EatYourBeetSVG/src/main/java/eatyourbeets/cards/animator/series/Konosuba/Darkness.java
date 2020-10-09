@@ -32,7 +32,7 @@ public class Darkness extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.StackPower(new PlatedArmorPower(p, this.magicNumber));
+        GameActions.Bottom.StackPower(new PlatedArmorPower(p, magicNumber));
         GameActions.Bottom.StackPower(new DarknessPower(p, 1));
     }
 }

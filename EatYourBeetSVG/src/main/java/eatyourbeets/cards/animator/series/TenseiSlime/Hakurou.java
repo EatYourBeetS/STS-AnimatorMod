@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Hakurou extends AnimatorCard
@@ -18,8 +19,8 @@ public class Hakurou extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(1, 0, 3);
-        SetUpgrade(0, 0, 1);
+        Initialize(1, 0, 3, 4);
+        SetUpgrade(0, 0, 1, 0);
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.TenSura);
@@ -50,6 +51,12 @@ public class Hakurou extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        if (ForceStance.IsActive())
+        {
+            GameActions.Bottom.GainBlock(secondaryValue)
+            .SetVFX(true, true);
+        }
+
         GameActions.Bottom.VFX(new DieDieDieEffect());
 
         for (int i = 0; i < magicNumber; i++)

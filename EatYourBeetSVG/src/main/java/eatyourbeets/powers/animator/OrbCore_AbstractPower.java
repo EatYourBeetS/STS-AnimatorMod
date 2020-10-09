@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public abstract class OrbCore_AbstractPower extends AnimatorPower
 {
@@ -59,7 +59,7 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
     {
         super.onAfterCardPlayed(usedCard);
 
-        AnimatorCard card = JavaUtilities.SafeCast(usedCard, AnimatorCard.class);
+        AnimatorCard card = JUtils.SafeCast(usedCard, AnimatorCard.class);
         if (card != null && card.HasSynergy())
         {
             if (!enabled)

@@ -31,7 +31,7 @@ public class CallbackEffect2 extends EYBEffectWithCallback<AbstractGameEffect>
         AddCallback(onCompletion);
     }
 
-    public CallbackEffect2(AbstractGameEffect effect, Object state, ActionT2<Object, AbstractGameEffect> onCompletion)
+    public <S> CallbackEffect2(AbstractGameEffect effect, S state, ActionT2<S, AbstractGameEffect> onCompletion)
     {
         this(effect);
 

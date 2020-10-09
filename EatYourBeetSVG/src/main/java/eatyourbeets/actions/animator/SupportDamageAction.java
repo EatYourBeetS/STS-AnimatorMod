@@ -12,7 +12,7 @@ import eatyourbeets.actions.EYBAction;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class SupportDamageAction extends EYBAction
 {
@@ -20,7 +20,7 @@ public class SupportDamageAction extends EYBAction
 
     public static AbstractMonster FindBestTarget()
     {
-        return JavaUtilities.FindMin(GameUtilities.GetEnemies(true), m -> m.currentHealth);
+        return JUtils.FindMin(GameUtilities.GetEnemies(true), m -> m.currentHealth);
     }
 
     public SupportDamageAction(DamageInfo info)

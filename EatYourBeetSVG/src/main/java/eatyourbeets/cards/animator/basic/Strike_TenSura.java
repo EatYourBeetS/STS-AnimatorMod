@@ -32,6 +32,6 @@ public class Strike_TenSura extends Strike
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        GameActions.Bottom.GainTemporaryHP(this.magicNumber);
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
     }
 }

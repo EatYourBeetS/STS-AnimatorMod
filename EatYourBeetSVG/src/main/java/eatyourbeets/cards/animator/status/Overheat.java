@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.status;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_Status;
@@ -28,14 +27,7 @@ public class Overheat extends AnimatorCard_Status
         {
             GameActions.Bottom.Draw(2);
             GameActions.Bottom.StackPower(new SelfDamagePower(p, magicNumber));
-            GameActions.Bottom.Callback(() ->
-            {
-                for (AbstractCard c : GameUtilities.GetAllInBattleCopies(cardID))
-                {
-                    c.baseMagicNumber += 1;
-                    c.applyPowers();
-                }
-            });
+            GameActions.Bottom.ModifyAllCopies(cardID, c -> GameUtilities.IncreaseMagicNumber(c, 1, false));
         }
     }
 }

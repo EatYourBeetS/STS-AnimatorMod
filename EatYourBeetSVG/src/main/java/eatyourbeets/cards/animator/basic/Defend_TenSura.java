@@ -29,7 +29,7 @@ public class Defend_TenSura extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainBlock(block);
     }
 }

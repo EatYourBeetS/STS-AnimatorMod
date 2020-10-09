@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.stances.AbstractStance;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -118,7 +119,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                 if (tokens[1].equals("set-zoom"))
                 {
-                    GR.Animator.Config.SetCropCardImages(tokens.length > 2 && tokens[2].equals("true"), true);
+                    GR.Animator.Config.CropCardImages(tokens.length > 2 && tokens[2].equals("true"), true);
                     return;
                 }
 
@@ -132,7 +133,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                     temp = tokens[2].replace("_", " ");
                     ArrayList<AnimatorCard> cards = new ArrayList<>();
-                    Synergy synergy = JavaUtilities.Find(Synergies.GetAll(), s -> s.Name.equals(temp));
+                    Synergy synergy = JUtils.Find(Synergies.GetAll(), s -> s.Name.equals(temp));
                     if (synergy != null)
                     {
                         Settings.seedSet = true;
@@ -176,9 +177,19 @@ public class ParseGenericCommand extends ConsoleCommand
                     return;
                 }
 
+                if (tokens[1].equals("unlock-all-cards"))
+                {
+                    for (AbstractCard c : CardLibrary.getAllCards())
+                    {
+                        UnlockTracker.unlockCard(c.cardID);
+                        UnlockTracker.markCardAsSeen(c.cardID);
+                    }
+                    return;
+                }
+
                 if (tokens[1].equals("remove-colorless"))
                 {
-                    final FieldInfo<CardGroup> _colorless = JavaUtilities.GetField("colorlessCards", CardLibraryScreen.class);
+                    final FieldInfo<CardGroup> _colorless = JUtils.GetField("colorlessCards", CardLibraryScreen.class);
                     if (CustomCardLibSortHeader.Screen != null)
                     {
                         _colorless.Get(CustomCardLibSortHeader.Screen).group.removeIf(card -> card.rarity == AbstractCard.CardRarity.BASIC || !(card instanceof EYBCard));

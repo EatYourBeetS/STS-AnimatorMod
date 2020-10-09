@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.colorless.rare;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -18,14 +17,11 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.*;
 
 import java.util.HashSet;
 
-public class Patchouli extends AnimatorCard implements StartupCard
+public class Patchouli extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Patchouli.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
     static
@@ -68,8 +64,7 @@ public class Patchouli extends AnimatorCard implements StartupCard
             uniqueOrbs.add(orb.ID);
         }
 
-        magicNumber = baseMagicNumber + uniqueOrbs.size();
-        isMagicNumberModified = (magicNumber != baseMagicNumber);
+        GameUtilities.IncreaseMagicNumber(this, uniqueOrbs.size(), true);
     }
 
     @Override
@@ -139,16 +134,15 @@ public class Patchouli extends AnimatorCard implements StartupCard
     }
 
     @Override
-    public boolean atBattleStartPreDraw()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-        if (CombatStats.TryActivateLimited(cardID))
+        super.triggerWhenCreated(startOfBattle);
+
+        if (startOfBattle && CombatStats.TryActivateLimited(cardID))
         {
+            GameEffects.List.ShowCopy(this);
             GameActions.Bottom.Wait(0.3f);
-            GameActions.Bottom.MakeCardInDiscardPile(JavaUtilities.GetRandomElement(OrbCore.GetAllCores()).makeCopy());
-
-            return true;
+            GameActions.Bottom.MakeCardInDiscardPile(JUtils.GetRandomElement(OrbCore.GetAllCores()).makeCopy());
         }
-
-        return false;
     }
 }

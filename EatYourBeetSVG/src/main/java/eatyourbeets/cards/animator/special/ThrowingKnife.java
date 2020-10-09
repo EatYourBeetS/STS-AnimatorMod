@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,6 +117,6 @@ public class ThrowingKnife extends AnimatorCard
     private void ChangeIndex(int index)
     {
         this.index = index;
-        this.cardText.OverrideDescription(JavaUtilities.Format(rawDescription, cardData.Strings.EXTENDED_DESCRIPTION[index]), true);
+        this.cardText.OverrideDescription(JUtils.Format(rawDescription, cardData.Strings.EXTENDED_DESCRIPTION[index]), true);
     }
 }

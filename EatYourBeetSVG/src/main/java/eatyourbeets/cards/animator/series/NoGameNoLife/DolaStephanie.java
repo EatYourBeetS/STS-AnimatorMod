@@ -7,7 +7,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class DolaStephanie extends AnimatorCard
 {
@@ -38,7 +38,7 @@ public class DolaStephanie extends AnimatorCard
         .SetFilter(c -> c instanceof AnimatorCard)
         .AddCallback(cards ->
         {
-            AnimatorCard card = JavaUtilities.SafeCast(cards.get(0), AnimatorCard.class);
+            AnimatorCard card = JUtils.SafeCast(cards.get(0), AnimatorCard.class);
             if (card != null)
             {
                 GameActions.Top.FetchFromPile(name, 1, player.drawPile)

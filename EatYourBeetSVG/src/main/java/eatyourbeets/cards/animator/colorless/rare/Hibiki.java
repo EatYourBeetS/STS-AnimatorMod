@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Hibiki extends AnimatorCard
 {
@@ -30,12 +31,12 @@ public class Hibiki extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (int i = 0; i < this.magicNumber; i++)
+        for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.BLUNT_LIGHT)
             .SetOptions(true, false);
         }
 
-        GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseMagicNumber += secondaryValue);
+        GameActions.Bottom.ModifyAllInstances(uuid, c -> GameUtilities.IncreaseMagicNumber(c, secondaryValue, false));
     }
 }

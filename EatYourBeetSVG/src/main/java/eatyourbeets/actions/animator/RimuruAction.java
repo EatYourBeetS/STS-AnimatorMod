@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.series.TenseiSlime.Rimuru;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
@@ -65,6 +66,11 @@ public class RimuruAction extends EYBAction
             if (group.type == CardGroup.CardGroupType.HAND)
             {
                 newCopy.applyPowers();
+            }
+
+            if (newCopy instanceof EYBCard)
+            {
+                ((EYBCard)newCopy).triggerWhenCreated(false);
             }
 
             rimuru.copy = newCopy;

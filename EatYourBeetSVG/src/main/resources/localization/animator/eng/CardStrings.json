@@ -1387,12 +1387,12 @@
 		},
 		"animator:KyokoSakura":
 		{
-			"DESCRIPTION": "Starter: Gain [F] ** and Channel 1 [Fire]. || <DRW-M>. ** Put 1 card on top ** of your draw pile.",
+			"DESCRIPTION": "Starter: Gain [F] ** and Channel 1 [Fire]. || <DRW-M>. ** Put !M! card(s) on top ** of your draw pile.",
 			"NAME": "Kyoko Sakura"
 		},
 		"animator:MadokaKaname":
 		{
-			"DESCRIPTION": "Exhaust !M! random {Curses} ** from anywhere. Heal ** !S! HP for each. || While in hand: Gain 1 [Temporary HP] ** when playing a Spellcaster.",
+			"DESCRIPTION": "Exhaust up to !M! random ** {Curses} from anywhere. ** Heal 3 HP for each (!S!). || While in hand: Gain 1 [Temporary HP] ** when playing a Spellcaster.",
 			"NAME": "Madoka Kaname"
 		},
 		"animator:MamiTomoe":

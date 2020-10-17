@@ -36,12 +36,12 @@ public class Tatsumaki extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Aether(), true);
-
         if (IntellectStance.IsActive())
         {
             GameActions.Bottom.GainOrbSlots(1);
         }
+
+        GameActions.Bottom.ChannelOrb(new Aether(), true);
 
         if (CombatStats.TryActivateSemiLimited(cardID))
         {

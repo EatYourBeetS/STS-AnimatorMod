@@ -344,7 +344,7 @@
 		},
 		"animator:Shimako":
 		{
-			"DESCRIPTION": "Channel 1 Orb based ** on your current {Stance}: ** None -> [Lightning]. ** [F] -> [Fire]. ** [A] -> [Frost]. ** [I] -> [Dark].",
+			"DESCRIPTION": "Channel 1 Orb based ** on your current {Stance}: ** None -> [Lightning]. ** [F] -> [Fire]. ** [A] -> [Earth]. ** [I] -> [Dark].",
 			"NAME": "Shimako"
 		},
 		"animator:ShizuruNakatsu":
@@ -410,7 +410,7 @@
 		},
 		"animator:Chaa":
 		{
-			"DESCRIPTION": "At the start of your turn, Exhaust a card, then add a random card of the next rarity to your hand.",
+			"DESCRIPTION": "At the start of your turn, Exhaust a card, then add a random card of the next rarity to your hand.  ",
 			"EXTENDED_DESCRIPTION": ["At the start of your turn, #yExhaust #b{0} card(s), then add a random card of the next rarity to your hand for each card #yExhausted."],
 			"NAME": "Chaa"
 		},

@@ -14,22 +14,23 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Chaa extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Chaa.class).SetPower(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Chaa.class).SetPower(3, CardRarity.UNCOMMON);
 
     public Chaa()
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 0);
-        SetUpgrade(0, 0, 0, 0);
+        Initialize(0, 6, 1, 0);
+        SetUpgrade(0, 4, 0, 0);
 
-        SetCostUpgrade(-1);
         SetSynergy(Synergies.AngelBeats);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(block);
+
         GameActions.Bottom.StackPower(new ChaaPower(p, magicNumber));
     }
 

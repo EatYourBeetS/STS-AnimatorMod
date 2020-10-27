@@ -20,7 +20,17 @@ public class CardEffectChoice
 
     public void Initialize(AnimatorCard source)
     {
+        Initialize(source, false);
+    }
+
+    public void Initialize(AnimatorCard source, boolean clearEffects)
+    {
         this.source = source;
+
+        if (clearEffects)
+        {
+            effects.clear();
+        }
     }
 
     public boolean TryInitialize(AnimatorCard source)

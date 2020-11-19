@@ -20,8 +20,8 @@ public class Kuribayashi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(11, 0, 1, 3);
-        SetUpgrade(0, 0, 1);
+        Initialize(7, 0, 2, 3);
+        SetUpgrade(4, 0, 0);
         SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.Gate);

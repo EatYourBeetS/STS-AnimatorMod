@@ -344,7 +344,7 @@
 		},
 		"animator:Shimako":
 		{
-			"DESCRIPTION": "Channel 1 Orb based ** on your current {Stance}: ** None -> [Lightning]. ** [F] -> [Fire]. ** [A] -> [Frost]. ** [I] -> [Dark].",
+			"DESCRIPTION": "Channel 1 Orb based ** on your current {Stance}: ** None -> [Lightning]. ** [F] -> [Fire]. ** [A] -> [Earth]. ** [I] -> [Dark].",
 			"NAME": "Shimako"
 		},
 		"animator:ShizuruNakatsu":
@@ -410,7 +410,7 @@
 		},
 		"animator:Chaa":
 		{
-			"DESCRIPTION": "At the start of your turn, Exhaust a card, then add a random card of the next rarity to your hand.",
+			"DESCRIPTION": "At the start of your turn, Exhaust a card, then add a random card of the next rarity to your hand.  ",
 			"EXTENDED_DESCRIPTION": ["At the start of your turn, #yExhaust #b{0} card(s), then add a random card of the next rarity to your hand for each card #yExhausted."],
 			"NAME": "Chaa"
 		},
@@ -1387,12 +1387,12 @@
 		},
 		"animator:KyokoSakura":
 		{
-			"DESCRIPTION": "Starter: Gain [F] ** and Channel 1 [Fire]. || <DRW-M>. ** Put 1 card on top ** of your draw pile.",
+			"DESCRIPTION": "Starter: Gain [F] ** and Channel 1 [Fire]. || <DRW-M>. ** Put !M! card(s) on top ** of your draw pile.",
 			"NAME": "Kyoko Sakura"
 		},
 		"animator:MadokaKaname":
 		{
-			"DESCRIPTION": "Exhaust !M! random {Curses} ** from anywhere. Heal ** !S! HP for each. || While in hand: Gain 1 [Temporary HP] ** when playing a Spellcaster.",
+			"DESCRIPTION": "Exhaust up to !M! random ** {Curses} from anywhere. ** Heal 3 HP for each (!S!). || While in hand: Gain 1 [Temporary HP] ** when playing a Spellcaster.",
 			"NAME": "Madoka Kaname"
 		},
 		"animator:MamiTomoe":

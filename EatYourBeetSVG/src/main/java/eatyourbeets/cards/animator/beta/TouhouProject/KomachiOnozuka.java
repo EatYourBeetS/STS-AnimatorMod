@@ -8,10 +8,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.animator.beta.ShinigamisFerry;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
@@ -24,6 +21,7 @@ public class KomachiOnozuka extends AnimatorCard
     public static final EYBCardData DATA = Register(KomachiOnozuka.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing);
 
     private static final AbstractRelic relicReward = new ShinigamisFerry();
+    private static final EYBCardTooltip tooltip = new EYBCardTooltip(relicReward.name, relicReward.description);
 
     public KomachiOnozuka()
     {
@@ -34,6 +32,17 @@ public class KomachiOnozuka extends AnimatorCard
         SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.TouhouProject);
+    }
+
+    @Override
+    public void initializeDescription()
+    {
+        super.initializeDescription();
+
+        if (cardText != null)
+        {
+            tooltips.add(tooltip);
+        }
     }
 
     @Override

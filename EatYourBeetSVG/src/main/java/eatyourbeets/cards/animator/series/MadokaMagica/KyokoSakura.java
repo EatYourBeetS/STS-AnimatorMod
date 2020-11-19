@@ -1,14 +1,13 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
 
 public class KyokoSakura extends AnimatorCard
 {
@@ -19,7 +18,7 @@ public class KyokoSakura extends AnimatorCard
         super(DATA);
 
         Initialize(9, 0, 1);
-        SetUpgrade(0, 0, 1);
+        SetUpgrade(2, 0, 1);
         SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -41,10 +40,10 @@ public class KyokoSakura extends AnimatorCard
         .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
         .AddCallback(cards ->
         {
-            for (AbstractCard card : cards)
+            for (int i = cards.size() - 1; i >= 0; i--)
             {
-                GameActions.Top.MoveCard(card, player.hand, player.drawPile)
-                .AddCallback(c -> JUtils.ChangeIndex(c, player.drawPile.group, player.drawPile.size()));
+                GameActions.Top.MoveCard(cards.get(i), player.hand, player.drawPile)
+                .SetDestination(CardSelection.Top);
             }
         });
     }

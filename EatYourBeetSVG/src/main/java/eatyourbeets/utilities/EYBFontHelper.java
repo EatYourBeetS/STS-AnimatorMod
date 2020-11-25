@@ -36,7 +36,7 @@ public class EYBFontHelper
         data.xChars = new char[]{'动'};
         data.capChars = new char[]{'动'};
 
-        Predicate<Settings.GameLanguage> checkLanguage = (lang) -> Settings.language == lang && GR.IsTranslationSupported(lang);
+        Predicate<Settings.GameLanguage> checkLanguage = (lang) -> Settings.language == lang && (GR.IsTranslationSupported(lang) || GR.Common.IsBetaTranslation());
 
         if (checkLanguage.test(Settings.GameLanguage.ZHS))
         {
@@ -49,6 +49,10 @@ public class EYBFontHelper
         else if (checkLanguage.test(Settings.GameLanguage.KOR))
         {
             fontFile = Gdx.files.internal("font/kor/GyeonggiCheonnyeonBatangBold.ttf");
+        }
+        else if (checkLanguage.test(Settings.GameLanguage.RUS))
+        {
+            fontFile = Gdx.files.internal("font/rus/FiraSansExtraCondensed-Regular.ttf");
         }
         else
         {

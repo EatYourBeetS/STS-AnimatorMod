@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
@@ -31,7 +32,12 @@ public class Godan extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+
+        if (CombatStats.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+        }
+
         cooldown.ProgressCooldownAndTrigger(m);
     }
 

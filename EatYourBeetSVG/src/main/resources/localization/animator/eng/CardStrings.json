@@ -395,7 +395,7 @@
 		},
 		"animator:Godan":
 		{
-			"DESCRIPTION": "Enter <FS>. || Cooldown !S! : Gain !M! [F] and add a {Wound} to your hand.",
+			"DESCRIPTION": "<LIM>. Enter <FS>. || Cooldown !S! : Gain !M! [F] and add a {Wound} to your hand.",
 			"NAME": "Matsushita Godan"
 		},
 		"animator:EriShiina":

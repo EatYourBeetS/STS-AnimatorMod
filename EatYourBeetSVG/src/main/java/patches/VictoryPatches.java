@@ -58,17 +58,4 @@ public class VictoryPatches
             }
         }
     }
-
-    @SpirePatch(clz = VictoryScreen.class, method = "checkScoreBonus", paramtypez = {boolean.class})
-    public static class VictoryScreenPatches_checkScoreBonus
-    {
-        @SpireInsertPatch(rloc = 1, localvars = {"points"})
-        public static void Method(boolean isVictory, @ByRef int[] points)
-        {
-            if (GR.Common.Dungeon.IsUnnamedReign())
-            {
-                points[0] += GetUnnamedScoreBonus();
-            }
-        }
-    }
 }

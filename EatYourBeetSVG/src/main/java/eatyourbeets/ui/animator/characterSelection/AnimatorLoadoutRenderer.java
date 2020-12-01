@@ -1,6 +1,7 @@
 package eatyourbeets.ui.animator.characterSelection;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -16,6 +17,7 @@ import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JUtils;
 
@@ -228,11 +230,13 @@ public class AnimatorLoadoutRenderer extends GUIElement
             selectScreen.confirmButton.isDisabled = false;
         }
 
-        float originalScale = FontHelper.cardTitleFont_small.getData().scaleX;
-        FontHelper.cardTitleFont_small.getData().setScale(Settings.scale * 0.8f);
+        // NOTE: this was FontHelper.cardTitleFont_small;
+        BitmapFont font = EYBFontHelper.CardTitleFont_Small;
+        float originalScale = font.getData().scaleX;
+        font.getData().setScale(Settings.scale * 0.8f);
 
-        FontHelper.renderFont(sb, FontHelper.cardTitleFont_small, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), textColor);
-        FontHelper.cardTitleFont_small.getData().setScale(Settings.scale * originalScale);
+        FontHelper.renderFont(sb, font, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), textColor);
+        font.getData().setScale(Settings.scale * originalScale);
 
         FontHelper.renderFont(sb, FontHelper.cardTitleFont, charSelectStrings.LeftText, startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
         FontHelper.renderFont(sb, FontHelper.cardTitleFont, loadout.Name, startingCardsSelectedHb.x, startingCardsSelectedHb.cY, Settings.CREAM_COLOR);//.BLUE_TEXT_COLOR);

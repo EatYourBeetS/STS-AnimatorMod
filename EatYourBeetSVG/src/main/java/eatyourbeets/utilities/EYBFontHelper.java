@@ -97,8 +97,8 @@ public class EYBFontHelper
 
         Color bc = new Color(0.35F, 0.35F, 0.35F, 1.0F);
         Color sc = new Color(0.0F, 0.0F, 0.0F, 0.25F);
-        EYBFontHelper.CardTitleFont_Small = PrepFont(cardDescFont, 25, 2f, bc, 3f, sc);
-        EYBFontHelper.CardTitleFont_Normal = PrepFont(cardDescFont, 27, 2f, bc, 3f, sc);
+        EYBFontHelper.CardTitleFont_Small = PrepFont(cardTitleFont, 25, 2f, bc, 3f, sc);
+        EYBFontHelper.CardTitleFont_Normal = PrepFont(cardTitleFont, 27, 2f, bc, 3f, sc);
         EYBFontHelper.CardDescriptionFont_Normal = PrepFont(cardDescFont, 23, 0, 1f);
         EYBFontHelper.CardDescriptionFont_Large = PrepFont(cardDescFont_L, 46, 0, 2f);
         EYBFontHelper.CardIconFont_VeryLarge = PrepFont(cardDescFont, 76, 4.5f, 1.4f);

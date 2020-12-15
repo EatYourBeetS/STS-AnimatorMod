@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.VictoryRoom;
+import com.megacrit.cardcrawl.screens.GameOverScreen;
 import com.megacrit.cardcrawl.screens.GameOverStat;
 import com.megacrit.cardcrawl.screens.VictoryScreen;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
@@ -17,8 +18,8 @@ import java.util.ArrayList;
 // Act 5 and Act 3 victory logic
 public class VictoryPatches
 {
-    private static final FieldInfo<ArrayList<GameOverStat>> _stats = JUtils.GetField("stats", VictoryScreen.class);
-    private static final FieldInfo<Float> _bossPoints = JUtils.GetField("bossPoints", VictoryScreen.class);
+    private static final FieldInfo<ArrayList<GameOverStat>> _stats = JUtils.GetField("stats", GameOverScreen.class);
+    private static final FieldInfo<Float> _bossPoints = JUtils.GetField("bossPoints", GameOverScreen.class);
     private static final TheUnnamed.Data data = new TheUnnamed.Data(TheUnnamed.ID);
 
     private static GameOverStat GetUnnamedGameOverStats()

@@ -14,8 +14,6 @@ public class OrikoMikuni extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(OrikoMikuni.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
 
-    private static final CardEffectChoice choices = new CardEffectChoice();
-
     public OrikoMikuni()
     {
         super(DATA);
@@ -30,6 +28,8 @@ public class OrikoMikuni extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        CardEffectChoice choices = new CardEffectChoice();
+
         choices.Initialize(this, true);
         choices.AddEffect(new GenericEffect_Scry(magicNumber));
         choices.AddEffect(new GenericEffect_NextTurnDraw(1));

@@ -30,6 +30,7 @@ public class CardEffectChoice
         if (clearEffects)
         {
             effects.clear();
+            group.clear();
         }
     }
 

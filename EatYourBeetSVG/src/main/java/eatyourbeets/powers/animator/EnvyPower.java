@@ -1,6 +1,5 @@
 package eatyourbeets.powers.animator;
 
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -42,11 +41,7 @@ public class EnvyPower extends AnimatorPower implements OnSynergyCheckSubscriber
     public boolean OnSynergyCheck(AbstractCard a, AbstractCard b)
     {
         int cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
-        if (AbstractDungeon.actionManager.phase != GameActionManager.Phase.WAITING_ON_USER && cardsPlayed == amount)
-        {
-            return GameUtilities.GetLastCardPlayed(true) == a;
-        }
-
-        return cardsPlayed < amount;
+        AbstractCard lastCard = GameUtilities.GetLastCardPlayed(true);
+        return (lastCard == a) ? cardsPlayed <= amount : cardsPlayed < amount;
     }
 }

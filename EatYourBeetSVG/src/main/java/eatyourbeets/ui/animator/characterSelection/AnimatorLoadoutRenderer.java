@@ -45,11 +45,21 @@ public class AnimatorLoadoutRenderer extends GUIElement
     protected CharacterOption characterOption;
     protected String lockedDescription;
     protected AnimatorLoadout loadout;
+    
+    protected float textScale;
 
     public AnimatorLoadoutRenderer()
     {
         float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, charSelectStrings.LeftText, 9999f, 0f); // Ascension
         float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, charSelectStrings.RightText, 9999f, 0f); // Level 22
+
+        textScale = Settings.scale;
+
+        //Need to prevent text from disappearing from scaling too big on 4K resolutions
+        if (textScale > 1)
+        {
+            textScale = 1;
+        }
 
         float POS_X = 180f * Settings.scale;
         float POS_Y = ((float) Settings.HEIGHT / 2f) + (20 * Settings.scale);
@@ -233,21 +243,21 @@ public class AnimatorLoadoutRenderer extends GUIElement
         // NOTE: this was FontHelper.cardTitleFont_small;
         BitmapFont font = EYBFontHelper.CardTitleFont_Small;
         float originalScale = font.getData().scaleX;
-        font.getData().setScale(Settings.scale * 0.8f);
+        font.getData().setScale(textScale * 0.8f);
 
         FontHelper.renderFont(sb, font, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), textColor);
-        font.getData().setScale(Settings.scale * originalScale);
+        font.getData().setScale(textScale * originalScale);
 
         FontHelper.renderFont(sb, FontHelper.cardTitleFont, charSelectStrings.LeftText, startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
         FontHelper.renderFont(sb, FontHelper.cardTitleFont, loadout.Name, startingCardsSelectedHb.x, startingCardsSelectedHb.cY, Settings.CREAM_COLOR);//.BLUE_TEXT_COLOR);
 
         sb.setColor(startingCardsLeftHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
         sb.draw(ImageMaster.CF_LEFT_ARROW, startingCardsLeftHb.cX - 24f, startingCardsLeftHb.cY - 24f, 24f, 24f,
-                48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
+                48f, 48f, textScale, textScale, 0f, 0, 0, 48, 48, false, false);
 
         sb.setColor(startingCardsRightHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
         sb.draw(ImageMaster.CF_RIGHT_ARROW, startingCardsRightHb.cX - 24f, startingCardsRightHb.cY - 24f, 24f, 24f,
-                48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
+                48f, 48f, textScale, textScale, 0f, 0, 0, 48, 48, false, false);
 
         RandomizeButton.TryRender(sb);
     }

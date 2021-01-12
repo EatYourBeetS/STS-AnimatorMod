@@ -8,8 +8,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
+import eatyourbeets.resources.GR;
 
 import java.util.HashMap;
+import java.util.function.Predicate;
 
 public class EYBFontHelper
 {
@@ -20,7 +22,10 @@ public class EYBFontHelper
     protected static BitmapFont cardDescFont;
     protected static BitmapFont cardDescFont_L;
     protected static BitmapFont cardTipFont;
+    protected static BitmapFont cardTitleFont;
 
+    public static BitmapFont CardTitleFont_Small;
+    public static BitmapFont CardTitleFont_Normal;
     public static BitmapFont CardTooltipFont;
     public static BitmapFont CardDescriptionFont_Normal;
     public static BitmapFont CardDescriptionFont_Large;
@@ -34,17 +39,27 @@ public class EYBFontHelper
         data.xChars = new char[]{'动'};
         data.capChars = new char[]{'动'};
 
-        switch (Settings.language)
+        Predicate<Settings.GameLanguage> checkLanguage = (lang) -> Settings.language == lang && (GR.IsTranslationSupported(lang) || GR.Common.IsBetaTranslation());
+
+        if (checkLanguage.test(Settings.GameLanguage.ZHS))
         {
-            case ZHS:
-                fontFile = Gdx.files.internal("font/zhs/NotoSansMonoCJKsc-Regular.otf");
-                break;
-            case ZHT:
-                fontFile = Gdx.files.internal("font/zht/NotoSansCJKtc-Regular.otf");
-                break;
-            default:
-                fontFile = Gdx.files.internal("font/Kreon-Regular.ttf");
-                break;
+            fontFile = Gdx.files.internal("font/zhs/NotoSansMonoCJKsc-Regular.otf");
+        }
+        else if (checkLanguage.test(Settings.GameLanguage.ZHT))
+        {
+            fontFile = Gdx.files.internal("font/zht/NotoSansCJKtc-Regular.otf");
+        }
+        else if (checkLanguage.test(Settings.GameLanguage.KOR))
+        {
+            fontFile = Gdx.files.internal("font/kor/GyeonggiCheonnyeonBatangBold.ttf");
+        }
+        else if (checkLanguage.test(Settings.GameLanguage.RUS))
+        {
+            fontFile = Gdx.files.internal("font/rus/FiraSansExtraCondensed-Regular.ttf");
+        }
+        else
+        {
+            fontFile = Gdx.files.internal("font/Kreon-Regular.ttf");
         }
 
         param.hinting = FreeTypeFontGenerator.Hinting.Slight;
@@ -60,6 +75,12 @@ public class EYBFontHelper
         param.spaceX = 0;
         EYBFontHelper.cardDescFont = PrepFont(24.0F, true);
 
+        param.shadowOffsetX = Math.round(3.0F * Settings.scale);
+        param.shadowOffsetY = Math.round(3.0F * Settings.scale);
+        param.borderWidth = 2.0F * Settings.scale;
+        EYBFontHelper.cardTitleFont = PrepFont(27.0F, true);
+
+        param.borderWidth = 0.0F;
         param.shadowColor = Settings.QUARTER_TRANSPARENT_BLACK_COLOR.cpy();
         param.shadowOffsetX = Math.round(4.0F * Settings.scale);
         param.shadowOffsetY = Math.round(3.0F * Settings.scale);
@@ -74,6 +95,10 @@ public class EYBFontHelper
         param.borderWidth = 0.0F;
         EYBFontHelper.cardTipFont = PrepFont(22.0F, true);
 
+        Color bc = new Color(0.35F, 0.35F, 0.35F, 1.0F);
+        Color sc = new Color(0.0F, 0.0F, 0.0F, 0.25F);
+        EYBFontHelper.CardTitleFont_Small = PrepFont(cardTitleFont, 25, 2f, bc, 3f, sc);
+        EYBFontHelper.CardTitleFont_Normal = PrepFont(cardTitleFont, 27, 2f, bc, 3f, sc);
         EYBFontHelper.CardDescriptionFont_Normal = PrepFont(cardDescFont, 23, 0, 1f);
         EYBFontHelper.CardDescriptionFont_Large = PrepFont(cardDescFont_L, 46, 0, 2f);
         EYBFontHelper.CardIconFont_VeryLarge = PrepFont(cardDescFont, 76, 4.5f, 1.4f);

@@ -8,7 +8,7 @@ import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -37,6 +37,7 @@ public class QuestionMarkAction extends EYBAction
         {
             copy.SetSynergy(Synergies.ANY);
             copy.SetShapeshifter();
+            copy.triggerWhenCreated(false);
 
             if (questionMark.upgraded)
             {
@@ -78,6 +79,6 @@ public class QuestionMarkAction extends EYBAction
             }
         }
 
-        return (AnimatorCard) JavaUtilities.GetRandomElement(cardPool).makeCopy();
+        return (AnimatorCard) JUtils.GetRandomElement(cardPool).makeCopy();
     }
 }

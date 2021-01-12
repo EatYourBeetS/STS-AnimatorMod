@@ -11,11 +11,11 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.ui.common.EYBSingleCardPopup;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class SingleCardViewPopupPatches
 {
-    private static final FieldInfo<AbstractCard> _card = JavaUtilities.GetField("card", SingleCardViewPopup.class);
+    private static final FieldInfo<AbstractCard> _card = JUtils.GetField("card", SingleCardViewPopup.class);
     private static final AnimatorImages Images = GR.Animator.Images;
     private static final EYBSingleCardPopup betterPopup = new EYBSingleCardPopup();
 
@@ -25,7 +25,7 @@ public class SingleCardViewPopupPatches
         @SpireInsertPatch(rloc = 0)
         public static SpireReturn Insert(SingleCardViewPopup __instance, AbstractCard card)
         {
-            EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
+            EYBCard c = JUtils.SafeCast(card, EYBCard.class);
             if (c != null && !c.isFlipped)
             {
                 GR.UI.CardPopup.Open(c, null);
@@ -43,7 +43,7 @@ public class SingleCardViewPopupPatches
         @SpireInsertPatch(rloc = 0)
         public static SpireReturn Insert(SingleCardViewPopup __instance, AbstractCard card, CardGroup group)
         {
-            EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
+            EYBCard c = JUtils.SafeCast(card, EYBCard.class);
             if (c != null && !c.isFlipped)
             {
                 GR.UI.CardPopup.Open(c, group);

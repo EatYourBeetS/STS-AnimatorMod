@@ -18,12 +18,6 @@
 		"NAMES": ["motivate"],
 		"PROPER_NAME": "Motivate"
 	},
-	"~Orb Core":
-	{
-		"DESCRIPTION": "Channel 1 orb. NL  NL Gain a bonus effect on your second Synergy each turn.",
-		"NAMES": ["~orb core", "~orb cores"],
-		"PROPER_NAME": "Orb Core"
-	},
 	"Reload":
 	{
 		"DESCRIPTION": "Discard any number of cards, activate this effect that many times.",
@@ -59,5 +53,17 @@
 		"DESCRIPTION": "A card #ySynergizes if the previous card played this turn was of the same series.",
 		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized"],
 		"PROPER_NAME": "Synergy"
+	},
+	"~Orb Core":
+	{
+		"DESCRIPTION": "Channel 1 orb. NL  NL Gain a bonus effect on your second Synergy each turn.",
+		"NAMES": ["~orb core", "~orb cores"],
+		"PROPER_NAME": "Orb Core"
+	},
+	"Afterlife":
+	{
+		"DESCRIPTION": "You may play cards with #yAfterlife from your #yExhaust pile by #yPurging #b1 random #yNon-Afterlife card from your #yExhaust pile.",
+		"NAMES": ["afterlife"],
+		"PROPER_NAME": "Afterlife"
 	}
 }

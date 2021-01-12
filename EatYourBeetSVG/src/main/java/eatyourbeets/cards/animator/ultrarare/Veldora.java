@@ -44,7 +44,7 @@ public class Veldora extends AnimatorCard_UltraRare
         GameActions.Bottom.GainIntellect(secondaryValue);
 
         int orbCount = p.filledOrbCount();
-        for (int i = 0; i < this.magicNumber - 1; i++)
+        for (int i = 0; i < magicNumber - 1; i++)
         {
             for (AbstractOrb orb : p.orbs)
             {

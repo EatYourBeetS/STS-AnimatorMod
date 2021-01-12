@@ -2,23 +2,30 @@ package eatyourbeets.utilities;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardBase;
+import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.interfaces.delegates.FuncT3;
+import eatyourbeets.resources.CardTooltips;
+import eatyourbeets.resources.GR;
 import eatyourbeets.ui.controls.GUI_Image;
 
 public class RenderHelpers
 {
+    private static final StringBuilder builder = new StringBuilder();
+    private static final GlyphLayout layout = new GlyphLayout();
+    private static final float CARD_ENERGY_IMG_WIDTH = 26.0F * Settings.scale;
+
     public static void ResetFont(BitmapFont font)
     {
         font.getData().setScale(1);
@@ -79,7 +86,8 @@ public class RenderHelpers
         }
         else
         {
-            result = FontHelper.cardTitleFont_small;
+            // NOTE: this was FontHelper.cardTitleFont_small
+            result = EYBFontHelper.CardTitleFont_Small;
             result.getData().setScale(card.drawScale * scaleModifier);
         }
 
@@ -113,7 +121,8 @@ public class RenderHelpers
         }
         else
         {
-            result = (card.name.length() > 14) ? FontHelper.cardTitleFont_small : FontHelper.cardTitleFont;
+            // NOTE: this was FontHelper.cardTitleFont_small
+            result = (card.name.length() > 14) ? EYBFontHelper.CardTitleFont_Small : FontHelper.cardTitleFont;
             result.getData().setScale(card.drawScale);
         }
 
@@ -274,7 +283,7 @@ public class RenderHelpers
 
         offset.scl(Settings.scale * card.drawScale);
         color.a = card.transparency;
-        
+
         FontHelper.renderRotatedText(sb, font, text, card.current_x, card.current_y, offset.x, offset.y, card.angle, roundY, color);
     }
 
@@ -309,11 +318,16 @@ public class RenderHelpers
     {
         switch (attributeID)
         {
-            case 'D': return card.GetDamageString();
-            case 'B': return card.GetBlockString();
-            case 'M': return card.GetMagicNumberString();
-            case 'S': return card.GetSecondaryValueString();
-            default: return new ColoredString("?", Settings.RED_TEXT_COLOR);
+            case 'D':
+                return card.GetDamageString();
+            case 'B':
+                return card.GetBlockString();
+            case 'M':
+                return card.GetMagicNumberString();
+            case 'S':
+                return card.GetSecondaryValueString();
+            default:
+                return new ColoredString("?", Settings.RED_TEXT_COLOR);
         }
     }
 
@@ -352,5 +366,167 @@ public class RenderHelpers
         }
 
         return font;
+    }
+
+    public static void WriteSmartText(SpriteBatch sb, BitmapFont font, String text, float x, float y, float lineWidth, float lineSpacing, Color baseColor)
+    {
+        if (text != null)
+        {
+            builder.setLength(0);
+            layout.setText(font, " ");
+
+            float curWidth = 0.0F;
+            float curHeight = 0.0F;
+            float spaceWidth = layout.width;
+
+            final FuncT3<Boolean, String, Integer, Character> compare = (s, i, c) -> c == ((i < s.length()) ? s.charAt(i) : null);
+            final FuncT1<String, StringBuilder> build = (stringBuilder) ->
+            {
+                String result = stringBuilder.toString();
+                stringBuilder.setLength(0);
+                return result;
+            };
+
+            Color overrideColor = null;
+            boolean foundIcon = false;
+
+            for (int i = 0; i < text.length(); i++)
+            {
+                char c = text.charAt(i);
+                if ('N' == c && compare.Invoke(text, i + 1, 'L'))
+                {
+                    curWidth = 0.0F;
+                    curHeight -= lineSpacing;
+                    i += 1;
+                }
+                else if ('T' == c && compare.Invoke(text, i+1, 'A') && compare.Invoke(text, i+2, 'B'))
+                {
+                    curWidth += spaceWidth * 5.0F;
+                    i += 2;
+                }
+                else if ('[' == c)
+                {
+                    foundIcon = true;
+                }
+                else if (foundIcon && ']' == c)
+                {
+                    foundIcon = false;
+                    TextureRegion icon = GetSmallIcon(build.Invoke(builder));
+                    if (icon != null)
+                    {
+                        final float orbWidth = icon.getRegionWidth();
+                        final float orbHeight = icon.getRegionHeight();
+
+                        sb.setColor(new Color(1f, 1f, 1f, baseColor.a));
+                        if (curWidth + CARD_ENERGY_IMG_WIDTH > lineWidth)
+                        {
+                            curHeight -= lineSpacing;
+                            sb.draw(icon, x - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, Settings.scale, Settings.scale, 0f);
+                            curWidth = CARD_ENERGY_IMG_WIDTH + spaceWidth;
+                        }
+                        else
+                        {
+                            sb.draw(icon, x + curWidth - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, Settings.scale, Settings.scale, 0f);
+                            curWidth += CARD_ENERGY_IMG_WIDTH + spaceWidth;
+                        }
+                    }
+                }
+                else if ('#' == c)
+                {
+                    if (text.length() > i + 1)
+                    {
+                        overrideColor = GetColor(text.charAt(i+1));
+                        i += 1;
+                    }
+                }
+                else if (' ' == c || text.length() == (i+1))
+                {
+                    if (c != ' ')
+                    {
+                        builder.append(c);
+                    }
+
+                    String word = build.Invoke(builder);
+                    if (word != null && word.length() > 0)
+                    {
+                        if (overrideColor != null)
+                        {
+                            font.setColor(overrideColor.cpy());
+                            overrideColor = null;
+                        }
+                        else
+                        {
+                            font.setColor(Color.WHITE.cpy());
+                        }
+
+                        layout.setText(font, word);
+                        if (curWidth + layout.width > lineWidth)
+                        {
+                            curHeight -= lineSpacing;
+                            font.draw(sb, word, x, y + curHeight);
+                            curWidth = layout.width + spaceWidth;
+                        }
+                        else
+                        {
+                            font.draw(sb, word, x + curWidth, y + curHeight);
+                            curWidth += layout.width + spaceWidth;
+                        }
+                    }
+                }
+                else
+                {
+                    builder.append(c);
+                }
+            }
+
+            layout.setText(font, text);
+        }
+    }
+
+    public static TextureRegion GetSmallIcon(String id)
+    {
+        switch (id)
+        {
+            case "F":
+                return GR.Tooltips.Force.icon;
+            case "A":
+                return GR.Tooltips.Agility.icon;
+            case "I":
+                return GR.Tooltips.Intellect.icon;
+
+            case "E":
+                return AbstractDungeon.player != null ? AbstractDungeon.player.getOrb() : GR.Tooltips.Energy.icon;
+            case "CARD":
+                return AbstractCard.orb_card;
+            case "POTION":
+                return AbstractCard.orb_potion;
+            case "RELIC":
+                return AbstractCard.orb_relic;
+            case "SPECIAL":
+                return AbstractCard.orb_special;
+
+            default:
+                EYBCardTooltip tooltip = CardTooltips.FindByID(id);
+                return (tooltip != null) ? tooltip.icon : null;
+        }
+    }
+
+    private static Color GetColor(Character c)
+    {
+        switch (c)
+        {
+            case 'b':
+                return Settings.BLUE_TEXT_COLOR;
+            case 'g':
+                return Settings.GREEN_TEXT_COLOR;
+            case 'p':
+                return Settings.PURPLE_COLOR;
+            case 'r':
+                return Settings.RED_TEXT_COLOR;
+            case 'y':
+                return Settings.GOLD_COLOR;
+            default:
+                return Color.WHITE;
+        }
     }
 }

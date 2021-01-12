@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class PoisonAffinityPower extends AnimatorPower
 {
@@ -40,7 +40,7 @@ public class PoisonAffinityPower extends AnimatorPower
             }
             else
             {
-                JavaUtilities.GetLogger(this).warn("Unknown action type: " + action.getClass().getName());
+                JUtils.LogWarning(this, "Unknown action type: " + action.getClass().getName());
             }
         }
     }

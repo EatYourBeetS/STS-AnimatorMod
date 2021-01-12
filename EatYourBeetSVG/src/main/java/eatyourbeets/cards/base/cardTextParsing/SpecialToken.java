@@ -2,7 +2,7 @@ package eatyourbeets.cards.base.cardTextParsing;
 
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCardTooltip;
-import eatyourbeets.resources.GR;
+import eatyourbeets.resources.CardTooltips;
 
 public abstract class SpecialToken extends CTToken
 {
@@ -38,7 +38,11 @@ public abstract class SpecialToken extends CTToken
                 {
                     String word = builder.toString();
 
-                    EYBCardTooltip tooltip = GR.Tooltips.FindByName(word.toLowerCase());
+                    EYBCardTooltip tooltip = CardTooltips.FindByName(word
+                    .replace(" NL ", " ")
+                    .split("\\(")[0] // Ignore modifiers
+                    .toLowerCase());
+
                     if (tooltip != null)
                     {
                         parser.AddTooltip(tooltip);

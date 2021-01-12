@@ -13,7 +13,7 @@ import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.interfaces.subscribers.OnTryApplyPowerSubscriber;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class TemporaryArtifactPower extends AbstractPower implements CloneablePowerInterface, OnTryApplyPowerSubscriber
 {
@@ -37,7 +37,7 @@ public class TemporaryArtifactPower extends AbstractPower implements CloneablePo
     {
         if (target == owner && power.type == PowerType.DEBUFF)
         {
-            ApplyPower action = JavaUtilities.SafeCast(AbstractDungeon.actionManager.currentAction, ApplyPower.class);
+            ApplyPower action = JUtils.SafeCast(AbstractDungeon.actionManager.currentAction, ApplyPower.class);
             if (action == null || !action.ignoreArtifact)
             {
                 GameActions.Top.SFX("NULLIFY_SFX");

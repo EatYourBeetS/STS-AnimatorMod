@@ -3,12 +3,12 @@ package eatyourbeets.cards.base;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FlightPower;
+import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.actions.special.HasteAction;
@@ -27,10 +27,15 @@ public abstract class EYBCard extends EYBCardBase
 {
     private static final Map<String, EYBCardData> staticCardData = new HashMap<>();
 
-    public abstract ColoredString GetBottomText();
+    protected boolean isMultiUpgrade;
+    protected int upgrade_damage;
+    protected int upgrade_magicNumber;
+    protected int upgrade_secondaryValue;
+    protected int upgrade_block;
+    protected int upgrade_cost;
 
-    public abstract ColoredString GetHeaderText();
-
+    public static final CardTags HASTE = GR.Enums.CardTags.HASTE;
+    public static final CardTags PURGE = GR.Enums.CardTags.PURGE;
     public final EYBCardText cardText;
     public final EYBCardData cardData;
     public final ArrayList<EYBCardTooltip> tooltips;
@@ -39,14 +44,9 @@ public abstract class EYBCard extends EYBCardBase
     public float forceScaling = 0;
     public float intellectScaling = 0;
     public float agilityScaling = 0;
-    public boolean haste;
 
-    protected boolean isMultiUpgrade;
-    protected int upgrade_damage;
-    protected int upgrade_magicNumber;
-    protected int upgrade_secondaryValue;
-    protected int upgrade_block;
-    protected int upgrade_cost;
+    public abstract ColoredString GetBottomText();
+    public abstract ColoredString GetHeaderText();
 
     public static EYBCardData GetStaticData(String cardID)
     {
@@ -96,16 +96,23 @@ public abstract class EYBCard extends EYBCardBase
     {
         EYBCard copy = (EYBCard) super.makeStatEquivalentCopy();
 
-        copy.forceScaling = this.forceScaling;
-        copy.agilityScaling = this.agilityScaling;
-        copy.intellectScaling = this.intellectScaling;
+        copy.retain = retain;
+        copy.exhaust = exhaust;
+        copy.exhaustOnUseOnce = exhaustOnUseOnce;
+        copy.selfRetain = selfRetain;
+        copy.isEthereal = isEthereal;
+        copy.isInnate = isInnate;
 
-        copy.magicNumber = this.magicNumber;
-        copy.isMagicNumberModified = this.isMagicNumberModified;
+        copy.forceScaling = forceScaling;
+        copy.agilityScaling = agilityScaling;
+        copy.intellectScaling = intellectScaling;
 
-        copy.secondaryValue = this.secondaryValue;
-        copy.baseSecondaryValue = this.baseSecondaryValue;
-        copy.isSecondaryValueModified = this.isSecondaryValueModified;
+        copy.magicNumber = magicNumber;
+        copy.isMagicNumberModified = isMagicNumberModified;
+
+        copy.secondaryValue = secondaryValue;
+        copy.baseSecondaryValue = baseSecondaryValue;
+        copy.isSecondaryValueModified = isSecondaryValueModified;
 
         copy.tags.clear();
         copy.tags.addAll(tags);
@@ -144,11 +151,11 @@ public abstract class EYBCard extends EYBCardBase
     {
         if (upgraded && cardData.Strings.UPGRADE_DESCRIPTION != null)
         {
-            return JavaUtilities.Format(cardData.Strings.UPGRADE_DESCRIPTION, args);
+            return JUtils.Format(cardData.Strings.UPGRADE_DESCRIPTION, args);
         }
         else
         {
-            return JavaUtilities.Format(cardData.Strings.DESCRIPTION, args);
+            return JUtils.Format(cardData.Strings.DESCRIPTION, args);
         }
     }
 
@@ -198,10 +205,9 @@ public abstract class EYBCard extends EYBCardBase
         }
     }
 
-    @Override
-    public final void triggerOnScry()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-
+        // Called at the start of a fight, or when a card is created by MakeTempCard.
     }
 
     @Override
@@ -210,7 +216,7 @@ public abstract class EYBCard extends EYBCardBase
         // this is only used by ShowCardAndAddToHandEffect
         triggerWhenDrawn();
 
-        if (haste)
+        if (hasTag(HASTE))
         {
             GameActions.Bottom.Add(new HasteAction(this));
         }
@@ -220,7 +226,7 @@ public abstract class EYBCard extends EYBCardBase
     {
         if (player.cardInUse != this)
         {
-            JavaUtilities.GetLogger(this).error("You should only call PurgeOnUseOnce() within use(p, m)");
+            JUtils.LogError(this, "Only call PurgeOnUseOnce() from AbstractCard.use()");
         }
 
         unhover();
@@ -229,6 +235,12 @@ public abstract class EYBCard extends EYBCardBase
 
         SetTag(GR.Enums.CardTags.PURGING, true);
         GameEffects.List.Add(new ExhaustCardEffect(this));
+    }
+
+    public boolean IsStarter()
+    {
+        ArrayList<AbstractCard> played = AbstractDungeon.actionManager.cardsPlayedThisTurn;
+        return played == null || played.isEmpty() || (played.size() == 1 && played.get(0) == this);
     }
 
     public boolean IsAoE()
@@ -250,11 +262,11 @@ public abstract class EYBCard extends EYBCardBase
         {
             dynamicTooltips.add(GR.Tooltips.Retain);
         }
-        if (haste)
+        if (hasTag(HASTE))
         {
             dynamicTooltips.add(GR.Tooltips.Haste);
         }
-        if (purgeOnUse || hasTag(GR.Enums.CardTags.PURGE))
+        if (purgeOnUse || hasTag(PURGE))
         {
             dynamicTooltips.add(GR.Tooltips.Purge);
         }
@@ -348,7 +360,7 @@ public abstract class EYBCard extends EYBCardBase
 
     public void SetHaste(boolean value)
     {
-        this.haste = value;
+        SetTag(HASTE, value);
     }
 
     public void SetRetain(boolean value)
@@ -389,7 +401,7 @@ public abstract class EYBCard extends EYBCardBase
 
     public void SetPurge(boolean value)
     {
-        SetTag(GR.Enums.CardTags.PURGE, value);
+        SetTag(PURGE, value);
 
         if (!value)
         {
@@ -402,11 +414,6 @@ public abstract class EYBCard extends EYBCardBase
     {
         SetTag(GR.Enums.CardTags.UNIQUE, value);
         isMultiUpgrade = multiUpgrade;
-    }
-
-    protected boolean CanSubscribeToEvents()
-    {
-        return GameUtilities.InBattle() && !CardCrawlGame.isPopupOpen;
     }
 
     protected boolean TryUpgrade()
@@ -670,10 +677,10 @@ public abstract class EYBCard extends EYBCardBase
                     {
                         tempDamage *= 2f;
                     }
-//                  else if (LockOnPower.POWER_ID.equals(power.ID))
-//                  {
-//                      tempDamage *= 1.3f;
-//                  }
+                    else if (LockOnPower.POWER_ID.equals(power.ID))
+                    {
+                        tempDamage *= 1.3f;
+                    }
                 }
             }
 

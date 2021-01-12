@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class TakanashiRikka extends AnimatorCard
 {
@@ -40,13 +41,7 @@ public class TakanashiRikka extends AnimatorCard
             .SetUpgrade(false, true)
             .AddCallback(card ->
             {
-                if (card.cost > 0 || card.costForTurn > 0)
-                {
-                    card.cost = 0;
-                    card.costForTurn = 0;
-                    card.isCostModified = true;
-                }
-
+                GameUtilities.ModifyCostForCombat(card, 0, false);
                 card.freeToPlayOnce = true;
                 card.baseDamage = 0;
                 card.tags.add(GR.Enums.CardTags.PURGE);

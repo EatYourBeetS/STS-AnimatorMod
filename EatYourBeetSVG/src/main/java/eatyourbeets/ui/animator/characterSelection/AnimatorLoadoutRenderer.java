@@ -1,6 +1,7 @@
 package eatyourbeets.ui.animator.characterSelection;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -16,15 +17,16 @@ import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
 public class AnimatorLoadoutRenderer extends GUIElement
 {
-    protected static final FieldInfo<String> _hp = JavaUtilities.GetField("hp", CharacterOption.class);
-    protected static final FieldInfo<Integer> _gold = JavaUtilities.GetField("gold", CharacterOption.class);
+    protected static final FieldInfo<String> _hp = JUtils.GetField("hp", CharacterOption.class);
+    protected static final FieldInfo<Integer> _gold = JUtils.GetField("gold", CharacterOption.class);
 
     protected static final AnimatorStrings.CharacterSelect charSelectStrings = GR.Animator.Strings.CharSelect;
     protected static final Random RNG = new Random();
@@ -43,11 +45,21 @@ public class AnimatorLoadoutRenderer extends GUIElement
     protected CharacterOption characterOption;
     protected String lockedDescription;
     protected AnimatorLoadout loadout;
+    
+    protected float textScale;
 
     public AnimatorLoadoutRenderer()
     {
         float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, charSelectStrings.LeftText, 9999f, 0f); // Ascension
         float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, charSelectStrings.RightText, 9999f, 0f); // Level 22
+
+        textScale = Settings.scale;
+
+        //Need to prevent text from disappearing from scaling too big on 4K resolutions
+        if (textScale > 1)
+        {
+            textScale = 1;
+        }
 
         float POS_X = 180f * Settings.scale;
         float POS_Y = ((float) Settings.HEIGHT / 2f) + (20 * Settings.scale);
@@ -75,7 +87,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         {
             while (loadout == GR.Animator.Data.SelectedLoadout)
             {
-                GR.Animator.Data.SelectedLoadout = JavaUtilities.GetRandomElement(loadouts, RNG);
+                GR.Animator.Data.SelectedLoadout = JUtils.GetRandomElement(loadouts, RNG);
             }
 
             Refresh(selectScreen, characterOption);
@@ -99,7 +111,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
                 this.availableLoadouts.add(loadout);
             }
         }
-        if (GR.Animator.Config.GetDisplayBetaSeries())
+        if (GR.Animator.Config.DisplayBetaSeries())
         {
             for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
             {
@@ -228,22 +240,24 @@ public class AnimatorLoadoutRenderer extends GUIElement
             selectScreen.confirmButton.isDisabled = false;
         }
 
-        float originalScale = FontHelper.cardTitleFont_small.getData().scaleX;
-        FontHelper.cardTitleFont_small.getData().setScale(Settings.scale * 0.8f);
+        // NOTE: this was FontHelper.cardTitleFont_small;
+        BitmapFont font = EYBFontHelper.CardTitleFont_Small;
+        float originalScale = font.getData().scaleX;
+        font.getData().setScale(textScale * 0.8f);
 
-        FontHelper.renderFont(sb, FontHelper.cardTitleFont_small, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), textColor);
-        FontHelper.cardTitleFont_small.getData().setScale(Settings.scale * originalScale);
+        FontHelper.renderFont(sb, font, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), textColor);
+        font.getData().setScale(textScale * originalScale);
 
         FontHelper.renderFont(sb, FontHelper.cardTitleFont, charSelectStrings.LeftText, startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
         FontHelper.renderFont(sb, FontHelper.cardTitleFont, loadout.Name, startingCardsSelectedHb.x, startingCardsSelectedHb.cY, Settings.CREAM_COLOR);//.BLUE_TEXT_COLOR);
 
         sb.setColor(startingCardsLeftHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
         sb.draw(ImageMaster.CF_LEFT_ARROW, startingCardsLeftHb.cX - 24f, startingCardsLeftHb.cY - 24f, 24f, 24f,
-                48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
+                48f, 48f, textScale, textScale, 0f, 0, 0, 48, 48, false, false);
 
         sb.setColor(startingCardsRightHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
         sb.draw(ImageMaster.CF_RIGHT_ARROW, startingCardsRightHb.cX - 24f, startingCardsRightHb.cY - 24f, 24f, 24f,
-                48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
+                48f, 48f, textScale, textScale, 0f, 0, 0, 48, 48, false, false);
 
         RandomizeButton.TryRender(sb);
     }

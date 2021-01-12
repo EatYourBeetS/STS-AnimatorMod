@@ -7,6 +7,7 @@ import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 public class MotivateAction extends EYBActionWithCallback<AbstractCard>
@@ -69,7 +70,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
                 Complete(card);
             }
 
-            card.setCostForTurn(card.costForTurn - amount);
+            ReduceCost(card);
 
             CombatStats.onStartOfTurnPostDraw.Subscribe(this);
             CombatStats.onEndOfTurn.Subscribe(this);
@@ -110,7 +111,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     {
         if (player.hand.contains(card) && firstTimePerTurn)
         {
-            GameActions.Bottom.ModifyAllInstances(card.uuid, c -> c.setCostForTurn(c.costForTurn - amount));
+            GameActions.Bottom.ModifyAllInstances(card.uuid, this::ReduceCost);
         }
 
         firstTimePerTurn = false;
@@ -123,7 +124,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
 
         if (player.hand.contains(card))
         {
-            GameActions.Bottom.ModifyAllInstances(card.uuid, c -> c.setCostForTurn(c.costForTurn - amount));
+            GameActions.Bottom.ModifyAllInstances(card.uuid, this::ReduceCost);
 
             firstTimePerTurn = false;
         }
@@ -139,7 +140,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
 
         if (card.uuid.equals(other.uuid))
         {
-            card.setCostForTurn(card.costForTurn - amount);
+            ReduceCost(card);
         }
     }
 
@@ -148,7 +149,12 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     {
         if (card.uuid.equals(other.uuid))
         {
-            card.setCostForTurn(card.costForTurn - amount);
+            ReduceCost(card);
         }
+    }
+
+    private void ReduceCost(AbstractCard card)
+    {
+        GameUtilities.ModifyCostForTurn(card, -amount, true);
     }
 }

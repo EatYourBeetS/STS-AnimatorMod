@@ -11,14 +11,14 @@ import com.megacrit.cardcrawl.screens.mainMenu.ColorTabBar;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.CustomCardLibSortHeader;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class CardLibraryScreenPatches
 {
     @SpirePatch(clz = CardLibraryScreen.class, method = "didChangeTab", paramtypez = {ColorTabBar.class, ColorTabBar.CurrentTab.class})
     public static class CardLibraryScreen_DidChangeTab
     {
-        private static final FieldInfo<CardLibSortHeader> _sortHeader = JavaUtilities.GetField("sortHeader", CardLibraryScreen.class);
+        private static final FieldInfo<CardLibSortHeader> _sortHeader = JUtils.GetField("sortHeader", CardLibraryScreen.class);
         private static final CustomCardLibSortHeader customHeader = new CustomCardLibSortHeader(null);
         private static CardLibSortHeader defaultHeader;
 

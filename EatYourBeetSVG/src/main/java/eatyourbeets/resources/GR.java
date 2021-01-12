@@ -25,7 +25,7 @@ import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.common.CommonResources;
 import eatyourbeets.resources.unnamed.UnnamedResources;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
@@ -41,13 +41,13 @@ public class GR
     // TODO: Set to false
     public static final boolean TEST_MODE = false;
 
-    protected static final Logger logger = JavaUtilities.GetLogger(GR.class);
-    protected static final ArrayList<String> cardClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.cards.");
-    protected static final ArrayList<String> relicClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.relics.");
-    protected static final ArrayList<String> powerClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.powers.");
+    protected static final Logger logger = JUtils.GetLogger(GR.class);
+    protected static final ArrayList<String> cardClassNames = JUtils.GetClassNamesFromJarFile("eatyourbeets.cards.");
+    protected static final ArrayList<String> relicClassNames = JUtils.GetClassNamesFromJarFile("eatyourbeets.relics.");
+    protected static final ArrayList<String> powerClassNames = JUtils.GetClassNamesFromJarFile("eatyourbeets.powers.");
     protected static final HashMap<String, Texture> textures = new HashMap<>();
 
-    public static CardTooltips Tooltips = new CardTooltips();
+    public static CardTooltips Tooltips = null; // Created by CommonResources
     public static UIManager UI = new UIManager();
     public static AnimatorResources Animator;
     public static UnnamedResources Unnamed;
@@ -160,7 +160,7 @@ public class GR
 
     public static boolean IsTranslationSupported(Settings.GameLanguage language)
     {
-        return language == Settings.GameLanguage.ZHS || language == Settings.GameLanguage.ZHT;
+        return false; // language == Settings.GameLanguage.ZHS || language == Settings.GameLanguage.ZHT;
     }
 
     public static Texture GetTexture(String path)
@@ -188,7 +188,7 @@ public class GR
             }
             else
             {
-                JavaUtilities.GetLogger(GR.class).error("Texture does not exist: " + path);
+                JUtils.GetLogger(GR.class).error("Texture does not exist: " + path);
                 texture = null;
             }
 
@@ -328,7 +328,7 @@ public class GR
     {
         if (!file.exists())
         {
-            JavaUtilities.GetLogger(this).warn("File not found: " + file.path());
+            JUtils.LogWarning(this, "File not found: " + file.path());
             return;
         }
 
@@ -343,11 +343,11 @@ public class GR
             Keyword keyword = pair.getValue();
             EYBCardTooltip tooltip = new EYBCardTooltip(keyword);
 
-            Tooltips.RegisterID(id, tooltip);
+            CardTooltips.RegisterID(id, tooltip);
 
             for (String name : keyword.NAMES)
             {
-                Tooltips.RegisterName(name, tooltip);
+                CardTooltips.RegisterName(name, tooltip);
             }
         }
     }
@@ -360,7 +360,7 @@ public class GR
         }
         else
         {
-            JavaUtilities.GetLogger(this).warn("File not found: " + file.path());
+            JUtils.LogWarning(this, "File not found: " + file.path());
         }
     }
 
@@ -386,7 +386,7 @@ public class GR
         catch (Exception ex)
         {
             ex.printStackTrace();
-            JavaUtilities.GetLogger(AnimatorResources.class).error("Loading card strings failed. Using default method.");
+            JUtils.GetLogger(AnimatorResources.class).error("Loading card strings failed. Using default method.");
             BaseMod.loadCustomStrings(CardStrings.class, jsonString);
             return;
         }
@@ -471,6 +471,9 @@ public class GR
 
             @SpireEnum
             public static AbstractCard.CardTags PURGE;
+
+            @SpireEnum
+            public static AbstractCard.CardTags HASTE;
 
             @SpireEnum
             public static AbstractCard.CardTags PURGING;

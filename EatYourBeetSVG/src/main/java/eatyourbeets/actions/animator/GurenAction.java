@@ -24,7 +24,7 @@ public class GurenAction extends PlayCard
         {
             if (player.discardPile.size() > 0)
             {
-                GameActions.Top.Add(new GurenAction(this.target));
+                GameActions.Top.Add(new GurenAction(target));
                 GameActions.Top.Add(new EmptyDeckShuffleAction());
             }
 
@@ -32,16 +32,9 @@ public class GurenAction extends PlayCard
             return;
         }
 
+        sourcePile = player.drawPile;
         card = player.drawPile.getTopCard();
-        SetSourcePile(player.drawPile);
-        sourcePile.removeCard(card);
-
-        if (targetPosition == null)
-        {
-            SetTargetPosition(DEFAULT_TARGET_X_RIGHT, DEFAULT_TARGET_Y);
-        }
-
-        ShowCard();
+        super.FirstUpdate();
     }
 
     @Override

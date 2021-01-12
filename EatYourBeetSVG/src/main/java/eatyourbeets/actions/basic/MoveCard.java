@@ -12,7 +12,6 @@ import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.effects.card.RenderCardEffect;
 import eatyourbeets.effects.card.UnfadeOutEffect;
 import eatyourbeets.interfaces.delegates.ActionT3;
-import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.*;
 
 import java.util.List;
@@ -97,7 +96,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
             if (sourcePile == null)
             {
-                JavaUtilities.GetLogger(getClass()).warn("Could not find card source pile.");
+                JUtils.LogWarning(this, "Could not find card source pile.");
                 Complete();
                 return;
             }
@@ -111,7 +110,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
         if (!sourcePile.contains(card))
         {
-            JavaUtilities.GetLogger(getClass()).warn("Could not find " + card.cardID + " in " + sourcePile.type.name().toLowerCase());
+            JUtils.LogWarning(this, "Could not find " + card.cardID + " in " + sourcePile.type.name().toLowerCase());
             Complete();
             return;
         }

@@ -12,7 +12,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class BattleDrones extends AnimatorRelic
 {
@@ -28,7 +28,7 @@ public class BattleDrones extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return JavaUtilities.Format(DESCRIPTIONS[0], DAMAGE_AMOUNT, BLOCK_AMOUNT);
+        return JUtils.Format(DESCRIPTIONS[0], DAMAGE_AMOUNT, BLOCK_AMOUNT);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class BattleDrones extends AnimatorRelic
     {
         super.onPlayCard(c, m);
 
-        AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
+        AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
         if (card != null && card.HasSynergy())
         {
             GameActions.Bottom.Callback(this::DealDamage);

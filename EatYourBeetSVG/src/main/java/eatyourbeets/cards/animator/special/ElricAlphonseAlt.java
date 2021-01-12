@@ -16,7 +16,7 @@ public class ElricAlphonseAlt extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3, 3, 2);
+        Initialize(0, 2, 3, 2);
         SetUpgrade(0, 3, 0, 0);
 
         SetSynergy(Synergies.FullmetalAlchemist);
@@ -31,11 +31,11 @@ public class ElricAlphonseAlt extends AnimatorCard
         }
 
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainPlatedArmor(magicNumber);
+        GameActions.Bottom.GainOrbSlots(1);
 
         if (HasSynergy())
         {
-            GameActions.Bottom.GainOrbSlots(1);
+            GameActions.Bottom.GainPlatedArmor(magicNumber);
         }
     }
 }

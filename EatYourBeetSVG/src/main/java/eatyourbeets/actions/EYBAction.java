@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -50,6 +51,7 @@ public abstract class EYBAction extends AbstractGameAction
         return this;
     }
 
+    // Set this to false if an action needs to be executed even if all enemies are dead (e.g. Gain Gold or Heal)
     public EYBAction IsCancellable(boolean canCancel)
     {
         this.canCancel = canCancel;
@@ -122,10 +124,12 @@ public abstract class EYBAction extends AbstractGameAction
 
         if (name != null && !name.equals(""))
         {
-            return message + " [" + name + "]";
+            return JUtils.Format(message, amount) + " [" + name + "]";
         }
-
-        return message;
+        else
+        {
+            return JUtils.Format(message, amount);
+        }
     }
 
     public String CreateMessage()
@@ -191,5 +195,14 @@ public abstract class EYBAction extends AbstractGameAction
     protected final void tickDuration()
     {
         TickDuration(GetDeltaTime());
+    }
+
+    protected void Import(EYBAction other)
+    {
+        SetDuration(other.startDuration, other.isRealtime);
+        IsCancellable(other.canCancel);
+        tags.addAll(other.tags);
+        name = other.name;
+        message = other.message;
     }
 }

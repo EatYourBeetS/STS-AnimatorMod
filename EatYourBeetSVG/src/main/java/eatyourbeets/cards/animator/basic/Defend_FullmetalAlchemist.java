@@ -24,7 +24,7 @@ public class Defend_FullmetalAlchemist extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
 
         cooldown.ProgressCooldownAndTrigger(m);
     }

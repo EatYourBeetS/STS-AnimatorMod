@@ -12,6 +12,18 @@
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
+	"Agility Stance":
+	{
+		"DESCRIPTION": "#g+2 #gDexterity, #r-1 #rStrength, #r-1 #rFocus. NL On Enter: #yBoost #yAgility.",
+		"NAMES": ["[a] stance", "agility stance"],
+		"PROPER_NAME": "Agility Stance"
+	},
+	"Autoplay":
+	{
+		"DESCRIPTION": "Automatically played. Requires [E].",
+		"NAMES": ["autoplay", "autoplayed"],
+		"PROPER_NAME": "Autoplay"
+	},
 	"Blur":
 	{
 		"DESCRIPTION": "Your #yBlock will not be removed at the start of your next turn.",
@@ -96,6 +108,12 @@
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
+	"Force Stance":
+	{
+		"DESCRIPTION": "#g+2 #gStrength, #r-1 #rFocus, #r-1 #rDexterity. NL On Enter: #yBoost #yForce.",
+		"NAMES": ["[f] stance", "force stance"],
+		"PROPER_NAME": "Force Stance"
+	},
 	"Hindrance":
 	{
 		"DESCRIPTION": "A #yStatus or #yCurse card.",
@@ -107,6 +125,12 @@
 		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yIntellect, gain #yFocus.",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
+	},
+	"Intellect Stance":
+	{
+		"DESCRIPTION": "#g+2 #gFocus, #r-1 #rStrength, #r-1 #rDexterity. NL On Enter: #yBoost #yIntellect.",
+		"NAMES": ["[i] stance", "intellect stance"],
+		"PROPER_NAME": "Intellect Stance"
 	},
 	"Juggernaut":
 	{
@@ -120,6 +144,12 @@
 		"NAMES": ["limited"],
 		"PROPER_NAME": "Limited"
 	},
+	"~Lock-On":
+	{
+		"DESCRIPTION": "Receive #b50% more damage from Orbs, and #b30% more damage from #yRanged attacks.",
+		"NAMES": ["~lock-on"],
+		"PROPER_NAME": "Lock-On"
+	},
 	"Malleable":
 	{
 		"DESCRIPTION": "Upon receiving damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of turn.",
@@ -131,6 +161,18 @@
 		"DESCRIPTION": "Gain #yBlock at the start of your turn.",
 		"NAMES": ["metallicize"],
 		"PROPER_NAME": "Metallicize"
+	},
+	"Neutral Stance":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["neutral stance"],
+		"PROPER_NAME": "Neutral Stance"
+	},
+	"Starter":
+	{
+		"DESCRIPTION": "Activates if played at the start of turn.",
+		"NAMES": ["starter"],
+		"PROPER_NAME": "Starter"
 	},
 	"Plated Armor":
 	{
@@ -188,7 +230,7 @@
 	},
 	"~Elemental":
 	{
-		"DESCRIPTION": "Ignores #yThorns. Deal 30% more damage if the enemy has #yBlock.",
+		"DESCRIPTION": "Ignores #yThorns. Deal #b30% additional damage if the enemy has #yBlock.",
 		"NAMES": ["~elemental"],
 		"PROPER_NAME": "Elemental Damage"
 	},

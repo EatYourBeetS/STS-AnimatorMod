@@ -24,46 +24,29 @@ public class AnimatorConfig
     private static final String DISPLAY_BETA_SERIES =  "TheAnimator-DisplayBetaSeries";
 
     private SpireConfig config;
-    private Boolean CropCardImages = null;
-    private Boolean DisplayBetaSeries = null;
+    private Boolean cropCardImages = null;
+    private Boolean displayBetaSeries = null;
 
-    public boolean GetDisplayBetaSeries()
+    public boolean CropCardImages()
     {
-        if (DisplayBetaSeries == null)
-        {
-            if (config.has(DISPLAY_BETA_SERIES))
-            {
-                DisplayBetaSeries = config.getBool(DISPLAY_BETA_SERIES);
-            }
-            else
-            {
-                DisplayBetaSeries = false; // Default value
-            }
-        }
-
-        return DisplayBetaSeries;
-    }
-
-    public boolean GetCropCardImages()
-    {
-        if (CropCardImages == null)
+        if (cropCardImages == null)
         {
             if (config.has(CROP_CARD_PORTRAIT_KEY))
             {
-                CropCardImages = config.getBool(CROP_CARD_PORTRAIT_KEY);
+                cropCardImages = config.getBool(CROP_CARD_PORTRAIT_KEY);
             }
             else
             {
-                CropCardImages = true; // Default value
+                cropCardImages = true; // Default value
             }
         }
 
-        return CropCardImages;
+        return cropCardImages;
     }
 
-    public void SetDisplayBetaSeries(boolean value, boolean flush)
+    public void CropCardImages(boolean value, boolean flush)
     {
-        config.setBool(DISPLAY_BETA_SERIES, DisplayBetaSeries = value);
+        config.setBool(CROP_CARD_PORTRAIT_KEY, cropCardImages = value);
 
         if (flush)
         {
@@ -71,9 +54,26 @@ public class AnimatorConfig
         }
     }
 
-    public void SetCropCardImages(boolean value, boolean flush)
+    public boolean DisplayBetaSeries()
     {
-        config.setBool(CROP_CARD_PORTRAIT_KEY, CropCardImages = value);
+        if (displayBetaSeries == null)
+        {
+            if (config.has(DISPLAY_BETA_SERIES))
+            {
+                displayBetaSeries = config.getBool(DISPLAY_BETA_SERIES);
+            }
+            else
+            {
+                displayBetaSeries = false; // Default value
+            }
+        }
+
+        return displayBetaSeries;
+    }
+
+    public void DisplayBetaSeries(boolean value, boolean flush)
+    {
+        config.setBool(DISPLAY_BETA_SERIES, displayBetaSeries = value);
 
         if (flush)
         {
@@ -81,7 +81,21 @@ public class AnimatorConfig
         }
     }
 
-    public void SetTrophyString(String value, boolean flush)
+    public String TrophyString()
+    {
+        String data = config.getString(TROPHY_DATA_KEY);
+        if (data == null)
+        {
+            Prefs prefs = SaveHelper.getPrefs(GR.Animator.PlayerClass.name());
+            data = prefs.getString(TROPHY_DATA_KEY);
+            config.setString(TROPHY_DATA_KEY, data);
+            Save();
+        }
+
+        return data;
+    }
+
+    public void TrophyString(String value, boolean flush)
     {
         config.setString(TROPHY_DATA_KEY, value);
 
@@ -110,48 +124,6 @@ public class AnimatorConfig
         }
     }
 
-    public String GetTrophyString()
-    {
-        String data = config.getString(TROPHY_DATA_KEY);
-        if (data == null)
-        {
-            Prefs prefs = SaveHelper.getPrefs(GR.Animator.PlayerClass.name());
-            data = prefs.getString(TROPHY_DATA_KEY);
-            config.setString(TROPHY_DATA_KEY, data);
-            Save();
-        }
-
-        return data;
-    }
-
-    public void Initialize()
-    {
-        try
-        {
-            config = new SpireConfig("TheAnimator", "TheAnimatorConfig");
-
-            if (config.has(CROP_CARD_PORTRAIT_KEY))
-            {
-                CropCardImages = config.getBool(CROP_CARD_PORTRAIT_KEY);
-            }
-
-            ModPanel settingsPanel = new ModPanel();
-            AnimatorStrings.Misc misc = GR.Animator.Strings.Misc;
-            AddToggle(settingsPanel, misc.UseCardHoveringAnimation, 400, 700, GetCropCardImages(), c -> SetCropCardImages(c.enabled, true));
-
-            if (GR.Animator.Data.BetaLoadouts.size() > 0)
-            {
-                AddToggle(settingsPanel, misc.DisplayBetaSeries, 400, 650, GetDisplayBetaSeries(), c -> SetDisplayBetaSeries(c.enabled, true));
-            }
-
-            BaseMod.registerModBadge(GR.GetTexture(GR.GetPowerImage(DarkCubePower.POWER_ID)), AnimatorCharacter.NAME, "EatYourBeetS", "", settingsPanel);
-        }
-        catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
-
     public boolean Save()
     {
         try
@@ -164,6 +136,41 @@ public class AnimatorConfig
             e.printStackTrace();
             return false;
         }
+    }
+
+    protected void Initialize()
+    {
+        try
+        {
+            config = new SpireConfig("TheAnimator", "TheAnimatorConfig");
+
+            if (config.has(CROP_CARD_PORTRAIT_KEY))
+            {
+                cropCardImages = config.getBool(CROP_CARD_PORTRAIT_KEY);
+            }
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected void InitializeOptions()
+    {
+        ModPanel settingsPanel = new ModPanel();
+        AnimatorStrings.Misc misc = GR.Animator.Strings.Misc;
+        AddToggle(settingsPanel, misc.UseCardHoveringAnimation, 400, 700, CropCardImages(), c -> CropCardImages(c.enabled, true));
+
+        if (GR.Animator.Data.BetaLoadouts.size() > 0)
+        {
+            AddToggle(settingsPanel, misc.DisplayBetaSeries, 400, 650, DisplayBetaSeries(), c -> DisplayBetaSeries(c.enabled, true));
+        }
+        else
+        {
+            DisplayBetaSeries(false, false);
+        }
+
+        BaseMod.registerModBadge(GR.GetTexture(GR.GetPowerImage(DarkCubePower.POWER_ID)), AnimatorCharacter.NAME, "EatYourBeetS", "", settingsPanel);
     }
 
     protected void AddToggle(ModPanel settingsPanel, String label, float x, float y, boolean initialValue, Consumer<ModToggleButton> onToggle)

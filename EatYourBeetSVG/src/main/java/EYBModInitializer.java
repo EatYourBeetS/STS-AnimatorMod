@@ -11,7 +11,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.controls.GUI_TextBox;
 import eatyourbeets.utilities.InputManager;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
 
     public static void initialize()
     {
-        ArrayList<OnStartBattleSubscriber> battleStart = JavaUtilities.<ArrayList<OnStartBattleSubscriber>>
+        ArrayList<OnStartBattleSubscriber> battleStart = JUtils.<ArrayList<OnStartBattleSubscriber>>
         GetField("startBattleSubscribers", BaseMod.class).Get(null);
 
         EYBModInitializer instance = new EYBModInitializer();

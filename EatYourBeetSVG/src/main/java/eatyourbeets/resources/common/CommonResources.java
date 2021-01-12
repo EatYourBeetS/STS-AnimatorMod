@@ -20,9 +20,11 @@ import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.resources.AbstractResources;
+import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 import eatyourbeets.stances.EYBStance;
 import eatyourbeets.utilities.EYBFontHelper;
+import eatyourbeets.utilities.JUtils;
 
 import java.lang.reflect.Field;
 
@@ -74,7 +76,8 @@ public class CommonResources extends AbstractResources
     protected void InitializeCards()
     {
         Strings.Initialize();
-        GR.Tooltips.Initialize();
+        GR.Tooltips = new CardTooltips();
+        EYBStance.Initialize();
     }
 
     @Override
@@ -99,7 +102,6 @@ public class CommonResources extends AbstractResources
         LoadCustomStrings(StanceStrings.class);
         LoadCustomStrings(UIStrings.class);
 
-        EYBStance.Initialize();
         EYBFontHelper.Initialize();
     }
 
@@ -108,9 +110,9 @@ public class CommonResources extends AbstractResources
     {
         LoadKeywords();
 
-        AddPowerTooltip("[F]", new ForcePower(null, 0));
-        AddPowerTooltip("[A]", new AgilityPower(null, 0));
-        AddPowerTooltip("[I]", new IntellectPower(null, 0));
+        AddPowerTooltip("[F]", "Force", new ForcePower(null, 0));
+        AddPowerTooltip("[A]", "Agility", new AgilityPower(null, 0));
+        AddPowerTooltip("[I]", "Intellect", new IntellectPower(null, 0));
         AddEnergyTooltip("[R]", AbstractCard.orb_red);
         AddEnergyTooltip("[G]", AbstractCard.orb_green);
         AddEnergyTooltip("[B]", AbstractCard.orb_blue);
@@ -126,11 +128,11 @@ public class CommonResources extends AbstractResources
                     Keyword k = (Keyword) field.get(null);
                     EYBCardTooltip tooltip = new EYBCardTooltip(TipHelper.capitalize(k.NAMES[0]), k.DESCRIPTION);
 
-                    Tooltips.RegisterID(TipHelper.capitalize(field.getName()), tooltip);
+                    CardTooltips.RegisterID(TipHelper.capitalize(field.getName()), tooltip);
 
                     for (String name : k.NAMES)
                     {
-                        Tooltips.RegisterName(name, tooltip);
+                        CardTooltips.RegisterName(name, tooltip);
                     }
                 }
                 catch (IllegalAccessException ex)
@@ -152,15 +154,29 @@ public class CommonResources extends AbstractResources
 
         EYBCardTooltip tooltip = new EYBCardTooltip(TipHelper.TEXT[0], GameDictionary.TEXT[0]);
         tooltip.icon = region;
-        Tooltips.RegisterName(symbol, tooltip);
+        CardTooltips.RegisterName(symbol, tooltip);
     }
 
-    private static void AddPowerTooltip(String symbol, AbstractPower power)
+    private static void AddPowerTooltip(String symbol, String id, AbstractPower power)
     {
         int size = power.img.getWidth(); // width should always be equal to height
+        
+        EYBCardTooltip tooltip = CardTooltips.FindByID(id);
+        if (tooltip == null)
+        {
+            JUtils.LogError(CommonResources.class, "Could not find tooltip: Symbol: {0}, ID: {1}, Power: {2} ",
+                    symbol, id, power.name);
+            return;
+        }
 
-        EYBCardTooltip tooltip = Tooltips.FindByName(power.name.toLowerCase());
         tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 2, 4, size-4, size-4);
-        Tooltips.RegisterName(symbol, tooltip);
+
+        EYBCardTooltip stance = CardTooltips.FindByID(id + " Stance");
+        if (stance != null)
+        {
+            stance.icon = tooltip.icon;
+        }
+
+        CardTooltips.RegisterName(symbol, tooltip);
     }
 }

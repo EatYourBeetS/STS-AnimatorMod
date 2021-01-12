@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
 {
@@ -51,8 +52,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
         }
         else
         {
-            baseSecondaryValue = (secondaryValue += 1);
-
+            GameUtilities.IncreaseSecondaryValue(this, 1, false);
             flash();
         }
     }
@@ -69,16 +69,15 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
         });
     }
 
-    private void OnMotivate(Object state, AbstractCard card)
+    private void OnMotivate(Integer remaining, AbstractCard card)
     {
-        int remaining = (Integer) state;
         if (remaining > 1)
         {
             if (card != null)
             {
                 GameActions.Top.Motivate()
                 .MotivateZeroCost(false)
-                .AddCallback(remaining-1, this::OnMotivate);
+                .AddCallback(remaining - 1, this::OnMotivate);
             }
             else
             {

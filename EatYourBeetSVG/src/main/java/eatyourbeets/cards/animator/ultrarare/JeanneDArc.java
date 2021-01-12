@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -8,9 +7,10 @@ import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class JeanneDArc extends AnimatorCard_UltraRare implements StartupCard
+public class JeanneDArc extends AnimatorCard_UltraRare
 {
     public static final EYBCardData DATA = Register(JeanneDArc.class).SetAttack(1, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
@@ -18,33 +18,39 @@ public class JeanneDArc extends AnimatorCard_UltraRare implements StartupCard
     {
         super(DATA);
 
-        Initialize(12, 4, 8);
-        SetUpgrade(4, 0, 0);
+        Initialize(11, 0, 8);
+        SetUpgrade(2, 0, 0);
+        SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.Fate);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    protected void OnUpgrade()
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActions.Bottom.GainBlock(block);
-
-        if (HasSynergy())
-        {
-            GameActions.Top.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
-            .ShowEffect(true, true)
-            .SetOptions(true, true)
-            .SetFilter(GameUtilities::IsCurseOrStatus);
-        }
+        SetHaste(true);
     }
 
     @Override
-    public boolean atBattleStartPreDraw()
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainTemporaryHP(magicNumber);
-        GameActions.Bottom.GainArtifact(1);
+        GameActions.Top.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
+        .ShowEffect(true, true)
+        .SetOptions(true, true)
+        .SetFilter(GameUtilities::IsCurseOrStatus);
+        GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+    }
 
-        return true;
+    @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        super.triggerWhenCreated(startOfBattle);
+
+        if (startOfBattle)
+        {
+            GameEffects.List.ShowCopy(this);
+            GameActions.Bottom.GainTemporaryHP(magicNumber);
+            GameActions.Bottom.GainArtifact(1);
+        }
     }
 }

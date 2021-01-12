@@ -11,9 +11,11 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
-import com.megacrit.cardcrawl.helpers.CardHelper;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ScreenShake;
+import com.megacrit.cardcrawl.daily.mods.BlueCards;
+import com.megacrit.cardcrawl.daily.mods.GreenCards;
+import com.megacrit.cardcrawl.daily.mods.PurpleCards;
+import com.megacrit.cardcrawl.daily.mods.RedCards;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
@@ -40,7 +42,7 @@ public class AnimatorCharacter extends CustomPlayer
         super(NAME, GR.Animator.PlayerClass, GR.Animator.Images.ORB_TEXTURES, GR.Animator.Images.ORB_VFX_PNG, (String) null, null);
 
         initializeClass(null, GR.Animator.Images.SHOULDER2_PNG, GR.Animator.Images.SHOULDER1_PNG, GR.Animator.Images.CORPSE_PNG,
-                getLoadout(), 0f, -5f, 240f, 244f, new EnergyManager(3));
+        getLoadout(), 0f, -5f, 240f, 244f, new EnergyManager(3));
 
         reloadAnimation();
     }
@@ -53,6 +55,7 @@ public class AnimatorCharacter extends CustomPlayer
         e.setTimeScale(0.9f);
     }
 
+    @Override
     public void damage(DamageInfo info)
     {
         if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.output - this.currentBlock > 0)
@@ -78,6 +81,31 @@ public class AnimatorCharacter extends CustomPlayer
     }
 
     @Override
+    public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> arrayList)
+    {
+        arrayList = super.getCardPool(arrayList);
+
+        if (ModHelper.isModEnabled(RedCards.ID))
+        {
+            CardLibrary.addRedCards(arrayList);
+        }
+        if (ModHelper.isModEnabled(GreenCards.ID))
+        {
+            CardLibrary.addGreenCards(arrayList);
+        }
+        if (ModHelper.isModEnabled(BlueCards.ID))
+        {
+            CardLibrary.addBlueCards(arrayList);
+        }
+        if (ModHelper.isModEnabled(PurpleCards.ID))
+        {
+            CardLibrary.addPurpleCards(arrayList);
+        }
+
+        return arrayList;
+    }
+
+    @Override
     public String getSpireHeartText()
     {
         return com.megacrit.cardcrawl.events.beyond.SpireHeart.DESCRIPTIONS[10];
@@ -94,12 +122,12 @@ public class AnimatorCharacter extends CustomPlayer
     {
         return new AbstractGameAction.AttackEffect[]
         {
-                AbstractGameAction.AttackEffect.SLASH_HEAVY,
-                AbstractGameAction.AttackEffect.FIRE,
-                AbstractGameAction.AttackEffect.SLASH_DIAGONAL,
-                AbstractGameAction.AttackEffect.SLASH_HEAVY,
-                AbstractGameAction.AttackEffect.FIRE,
-                AbstractGameAction.AttackEffect.SLASH_DIAGONAL
+            AbstractGameAction.AttackEffect.SLASH_HEAVY,
+            AbstractGameAction.AttackEffect.FIRE,
+            AbstractGameAction.AttackEffect.SLASH_DIAGONAL,
+            AbstractGameAction.AttackEffect.SLASH_HEAVY,
+            AbstractGameAction.AttackEffect.FIRE,
+            AbstractGameAction.AttackEffect.SLASH_DIAGONAL
         };
     }
 

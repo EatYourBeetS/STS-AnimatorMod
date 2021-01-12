@@ -47,7 +47,8 @@
 			"Tales of Berseria",
 			"Rewrite",
 			"Date-a-Live",
-			"Log Horizon"
+			"Angel Beats",
+			"Rozen Maiden"
 		],
 		"EXTRA_TEXT":
 		[
@@ -76,7 +77,13 @@
 			"Gain !M! Intangible. NL Lose this Power",
 			"Remove all of NL your debuffs",
 			"Play the top card NL of your draw pile",
-			"Stun the enemy"
+			"Stun the enemy",
+			"Enter {0}",
+			"Boost {0}",
+			"Scry {0}",
+			"Next turn: Gain {0} [Block]",
+			"Next turn: Draw {0} card(s)",
+			"Next turn: Gain {0} [E]"
 		]
 	},
 
@@ -151,6 +158,15 @@
 			"Have you found a missing or incorrect translation? If you'd like to help, you can join the mod Discord and write your translation in the Localization channel.",
 			"Display Beta Series",
 			"Translation"
+		]
+	},
+	"animator:CardMods":
+	{
+		"TEXT":
+		[
+			"Afterlife. NL ",
+			"*Afterlife. NL ",
+			"I do not have a non-Afterlife card in my exhaust pile to purge."
 		]
 	}
 }

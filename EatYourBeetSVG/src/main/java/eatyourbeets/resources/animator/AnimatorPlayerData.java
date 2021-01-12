@@ -1,15 +1,15 @@
 package eatyourbeets.resources.animator;
 
 import com.badlogic.gdx.utils.Base64Coder;
+import eatyourbeets.resources.animator.loadouts.beta.*;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts.*;
-import eatyourbeets.resources.animator.loadouts.beta.LogHorizon;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +18,8 @@ import java.util.regex.Pattern;
 
 public class AnimatorPlayerData
 {
-    public final ArrayList<AnimatorLoadout> BaseLoadouts = new ArrayList<>(); // Contains starting series
-    public final ArrayList<AnimatorLoadout> BetaLoadouts = new ArrayList<>(); // Contains series which cannot be chosen from Character select
+    public final ArrayList<AnimatorLoadout> BaseLoadouts = new ArrayList<>();
+    public final ArrayList<AnimatorLoadout> BetaLoadouts = new ArrayList<>();
     public final ArrayList<AnimatorTrophies> Trophies = new ArrayList<>();
     public AnimatorTrophies SpecialTrophies = new AnimatorTrophies(-1);
     public AnimatorLoadout SelectedLoadout = new _FakeLoadout();
@@ -28,7 +28,7 @@ public class AnimatorPlayerData
     {
         AddBaseLoadouts();
         AddBetaLoadouts();
-        DeserializeTrophies(GR.Animator.Config.GetTrophyString());
+        DeserializeTrophies(GR.Animator.Config.TrophyString());
 
         if (SelectedLoadout == null || SelectedLoadout.ID < 0)
         {
@@ -164,9 +164,9 @@ public class AnimatorPlayerData
 
     public void SaveTrophies(boolean flush)
     {
-        JavaUtilities.GetLogger(AnimatorPlayerData.class).info("Saving Trophies");
+        JUtils.LogInfo(AnimatorPlayerData.class, "Saving Trophies");
 
-        GR.Animator.Config.SetTrophyString(SerializeTrophies(), flush);
+        GR.Animator.Config.TrophyString(SerializeTrophies(), flush);
     }
 
     private void AddBaseLoadouts()
@@ -191,6 +191,7 @@ public class AnimatorPlayerData
         add.Invoke(new Overlord(), 3);
         add.Invoke(new Chaika(), 3);
         add.Invoke(new TenSura(), 3);
+        add.Invoke(new MadokaMagica(), 4);
         add.Invoke(new OnePunchMan(), 4);
         add.Invoke(new Kancolle(), 4);
         add.Invoke(new AccelWorld(), 4);
@@ -199,7 +200,11 @@ public class AnimatorPlayerData
     private void AddBetaLoadouts()
     {
         BetaLoadouts.clear();
-        BetaLoadouts.add(new LogHorizon());
+        BetaLoadouts.add(new DateALive());
+        BetaLoadouts.add(new Rewrite());
+        BetaLoadouts.add(new AngelBeats());
+        BetaLoadouts.add(new TouhouProject());
+        BetaLoadouts.add(new RozenMaiden());
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...
@@ -229,10 +234,15 @@ public class AnimatorPlayerData
 
             if (items.length > 0)
             {
-                int loadoutID = JavaUtilities.ParseInt(items[0], -1);
+                int loadoutID = JUtils.ParseInt(items[0], -1);
                 if (loadoutID > 0)
                 {
                     SelectedLoadout = GetBaseLoadout(loadoutID);
+
+                    if (SelectedLoadout == null)
+                    {
+                        SelectedLoadout = GetBetaLoadout(loadoutID);
+                    }
                 }
 
                 for (int i = 1; i < items.length; i++)

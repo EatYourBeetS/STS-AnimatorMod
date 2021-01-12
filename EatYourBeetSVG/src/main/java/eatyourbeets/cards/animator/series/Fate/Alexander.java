@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Alexander extends AnimatorCard
@@ -15,8 +16,8 @@ public class Alexander extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0);
-        SetUpgrade(0, 0);
+        Initialize(6, 0);
+        SetUpgrade(1, 0);
         SetScaling(0, 0, 1);
 
         SetMultiDamage(true);
@@ -35,6 +36,11 @@ public class Alexander extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+
+        if (ForceStance.IsActive())
+        {
+            GameActions.Bottom.GainPlatedArmor(1);
+        }
 
         if (upgraded)
         {

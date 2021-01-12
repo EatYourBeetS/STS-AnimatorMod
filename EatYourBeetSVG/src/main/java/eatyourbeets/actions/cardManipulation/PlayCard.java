@@ -1,5 +1,6 @@
 package eatyourbeets.actions.cardManipulation;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
@@ -10,13 +11,19 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.EYBActionWithCallback;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
+import eatyourbeets.actions.EYBActionWithCallbackT2;
+import eatyourbeets.actions.special.DelayAllActions;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
-public class PlayCard extends EYBActionWithCallback<AbstractMonster>
+// If this action needs 1 more refactoring due to queueing a card not counting
+// as an action, completely override AbstractDungeon.actionManager instead.
+public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractCard>
 {
     public static final float DEFAULT_TARGET_X_LEFT = (Settings.WIDTH / 2f) - (300f * Settings.scale);
     public static final float DEFAULT_TARGET_X_RIGHT = (Settings.WIDTH / 2f) + (200f * Settings.scale);
@@ -24,8 +31,10 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
 
     protected FuncT1<AbstractCard, CardGroup> findCard;
     protected CardGroup sourcePile;
+    protected int sourcePileIndex;
     protected boolean purge;
     protected boolean exhaust;
+    protected boolean spendEnergy;
     protected Vector2 currentPosition;
     protected Vector2 targetPosition;
 
@@ -56,7 +65,16 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
             this.card = card;
         }
 
+        AddToLimbo();
+
         Initialize(target, 1);
+    }
+
+    public PlayCard SpendEnergy(boolean spendEnergy)
+    {
+        this.spendEnergy = spendEnergy;
+
+        return this;
     }
 
     public PlayCard SetSourcePile(CardGroup sourcePile)
@@ -128,15 +146,22 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
             }
         }
 
+        if (!CheckConditions(card))
+        {
+            Complete();
+            return;
+        }
+
         if (sourcePile != null)
         {
-            if (sourcePile.contains(card))
+            sourcePileIndex = sourcePile.group.indexOf(card);
+            if (sourcePileIndex >= 0)
             {
-                sourcePile.removeCard(card);
+                sourcePile.group.remove(sourcePileIndex);
             }
             else
             {
-                JavaUtilities.GetLogger(getClass()).warn("Could not find " + card.cardID + " in " + sourcePile.type.name().toLowerCase());
+                JUtils.LogWarning(this, "Could not find " + card.cardID + " in " + sourcePile.type.name().toLowerCase());
                 Complete();
                 return;
             }
@@ -160,7 +185,10 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
                 target = GameUtilities.GetRandomEnemy(true);
             }
 
-            card.freeToPlayOnce = true;
+            if (!spendEnergy)
+            {
+                card.freeToPlayOnce = true;
+            }
 
             if (CanUse())
             {
@@ -175,10 +203,20 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
             {
                 GameActions.Top.Exhaust(card, player.limbo).SetRealtime(true);
             }
+            else if (spendEnergy && sourcePile == player.hand)
+            {
+                player.limbo.removeCard(card);
+                sourcePile.group.add(MathUtils.clamp(sourcePileIndex, 0, sourcePile.size()), card);
+            }
             else
             {
                 GameActions.Top.Discard(card, player.limbo).SetRealtime(true);
                 GameActions.Top.Add(new WaitAction(Settings.ACTION_DUR_FAST));
+            }
+
+            if (card.cantUseMessage != null)
+            {
+                GameEffects.List.Add(new ThoughtBubble(player.dialogX, player.dialogY, 3, card.cantUseMessage, true));
             }
 
             card.freeToPlayOnce = false;
@@ -187,14 +225,15 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
 
     protected boolean CanUse()
     {
-        return card.canUse(player, (AbstractMonster)target);
+        return card.canUse(player, (AbstractMonster) target) || card.dontTriggerOnUseCard;
     }
 
     protected void ShowCard()
     {
+        AddToLimbo();
+
         GameUtilities.RefreshHandLayout();
         AbstractDungeon.getCurrRoom().souls.remove(card);
-        player.limbo.group.add(card);
 
         if (currentPosition != null)
         {
@@ -213,24 +252,38 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
 
     protected void QueueCardItem()
     {
-        AbstractMonster enemy = (AbstractMonster) target;
+        AddToLimbo();
 
-        card.freeToPlayOnce = true;
+        final AbstractMonster enemy = (AbstractMonster) target;
+
+        if (!spendEnergy)
+        {
+            card.freeToPlayOnce = true;
+        }
+
         card.exhaustOnUseOnce = exhaust;
         card.purgeOnUse = purge;
         card.calculateCardDamage(enemy);
 
-        AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(card, enemy, card.energyOnUse, true, true), true);
-        GameActions.Top.Add(new UnlimboAction(card));
-        if (Settings.FAST_MODE)
+        //GameActions.Top.Add(new UnlimboAction(card));
+        GameActions.Top.Wait(Settings.FAST_MODE ? Settings.ACTION_DUR_FASTER : Settings.ACTION_DUR_MED);
+
+        if (spendEnergy)
         {
-            GameActions.Top.Add(new WaitAction(Settings.ACTION_DUR_FASTER));
-        }
-        else
-        {
-            GameActions.Top.Add(new WaitAction(Settings.ACTION_DUR_MED));
+            GameActions.Top.Add(new DelayAllActions()) // So the result of canUse() does not randomly change after queueing the card
+            .Except(a -> a instanceof UnlimboAction || a instanceof WaitAction);
         }
 
+        AbstractDungeon.actionManager.cardQueue.add(0, new CardQueueItem(card, enemy, EnergyPanel.getCurrentEnergy(), true, !spendEnergy));
+
         Complete(enemy);
+    }
+
+    protected void AddToLimbo()
+    {
+        if (card != null && !player.limbo.contains(card))
+        {
+            player.limbo.addToTop(card);
+        }
     }
 }

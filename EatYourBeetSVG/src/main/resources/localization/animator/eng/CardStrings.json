@@ -197,7 +197,7 @@
 		},
 		"animator:Isuzu":
 		{
-		  "DESCRIPTION": "Enter any Stance.  Boost !M! [F], [A], or [I], depending on the stance you chose..",
+		  "DESCRIPTION": "Enter any Stance.  Boost !M! [F], [A], or [I], depending on the stance you chose.",
 		  "NAME": "Isuzu"
 		},
 		"animator:Minori":
@@ -207,7 +207,7 @@
 		},
 		"animator:Naotsugu":
 		{
-			"DESCRIPTION": "Gain Block equal to ** damage dealt. || Gain !M! {Plated Armor}. ** [F] Stance: Instead Gain ** {Plated Armor} equal to your ** {Synergy Bonus}.",
+			"DESCRIPTION": "Gain Block equal to ** damage dealt. || [F] Stance: Draw and retain a random Martial Artist from your draw pile.",
 			"NAME": "Naotsugu"
 		},
 		"animator:Nyanta":

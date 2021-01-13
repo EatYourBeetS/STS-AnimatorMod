@@ -57,6 +57,11 @@
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
+		"animator:Defend_LogHorizon":
+		{
+		  "DESCRIPTION": "",
+		  "NAME": "Improved Defend"
+		},
 		"animator:Defend_NoGameNoLife":
 		{
 			"DESCRIPTION": "Retain your leftmost ** playable card.",
@@ -137,6 +142,11 @@
 			"DESCRIPTION": "",
 			"NAME": "Improved Strike"
 		},
+		"animator:Strike_LogHorizon":
+		{
+		  "DESCRIPTION": "",
+		  "NAME": "Improved Strike"
+		},
 		"animator:Strike_NoGameNoLife":
 		{
 			"DESCRIPTION": "Retain your rightmost ** playable card.",
@@ -175,6 +185,77 @@
 		{
 			"DESCRIPTION": "",
 			"NAME": "Maniwa Houou"
+		}
+	},
+
+	"BETA:LOGHORIZON":
+	{
+		"animator:Akatsuki":
+		{
+			"DESCRIPTION": "Semi-Limited: When Drawn: ** Create !M! 0-Cost copies of ** this card with Exhaust. They ** deal 0 damage. || This card Synergizes with Uncommon cards.",
+			"NAME": "Akatsuki"
+		},
+		"animator:Henrietta":
+		{
+			"DESCRIPTION": "Enter a random Stance. || At the end of each turn, ** spend !S! of your remaining ** [E] to enter any Stance or exit your stance.",
+			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend 2 of your remaining Energy to enter any Stance.","Enter [A] Stance.", "Enter [I] Stance.", "Enter [F] Stance.", "Exit your Stance."],
+			"NAME": "Henrietta"
+		},
+		"animator:Isuzu":
+		{
+		  "DESCRIPTION": "Choose 1: Next turn: Gain !M! [E] or draw !S! cards. || On Synergy: you can choose to gain 1 Artifact this turn.",
+		  "NAME": "Isuzu Tonan"
+		},
+		"animator:Marielle":
+		{
+		  "DESCRIPTION": "Reduce the cost of all cards in hand by 1 this combat. || On Synergy: Channel 1 [Aether]. ",
+		  "NAME": "Marielle"
+		},
+		"animator:Minori":
+		{
+		 	"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%, rounded down. ||  On Synergy or Discard: Put this card on top of your draw pile.",
+		  	"NAME": "Minori Housaki"
+		},
+		"animator:Naotsugu":
+		{
+			"DESCRIPTION": "Gain [Block] equal to ** damage dealt. || [F] Stance: Draw and retain a random Martial Artist from your draw pile.",
+			"NAME": "Naotsugu"
+		},
+		"animator:Nyanta":
+		{
+			"DESCRIPTION": "Gain [A] equal to the number of times you Synergized this turn, up to !S!. || End your turn.",
+			"NAME": "Nyanta"
+		},
+		"animator:Rayneshia":
+		{
+			"DESCRIPTION": "Draw !M! random cards that {Synergize} with this card from your discard pile. || This card {Synergizes} ** with {2-Cost} Cards ** and {Spellcasters}.",
+			"NAME": "Rayneshia"
+		},
+		"animator:RundelhausCode":
+		{
+		  "DESCRIPTION": "Starter: Increase the damage of all {Elemental}-type {Attacks} in your hand by !M! this combat. || Synergy: Channel !S! Lightning.",
+		  "NAME": "Rundelhaus Code"
+		},
+		"animator:Serara":
+		{
+			"DESCRIPTION": "If you have over !S! {Temp. HP}, do not gain {Temp. HP}. || All copies of {Nyanta} cost 1 less this combat. ",
+			"NAME": "Serara"
+		},
+		"animator:Shiroe":
+		{
+			"DESCRIPTION": "{~Unique}. Apply !M! ** Constricted. || <LIM>. If your made !S! or more Synergies this turn: ** Permanently Upgrade this ** card.",
+			"NAME": "Shiroe"
+		},
+		"animator:Tetora":
+		{
+		  "DESCRIPTION": "Discard !S! card(s) to activate this power. || On your second Synergy each turn: Gain !M! [Block].",
+		  "EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.#b{2}"],
+		  "NAME": "Tetora"
+		},
+		"animator:Tohya":
+		{
+		    "DESCRIPTION": "Draw {Minori Housaki} from your draw or discard pile. || If you have !S! or more [Block]: Attack !M! additional times.",
+			"NAME": "Tohya Housaki"
 		}
 	},
 

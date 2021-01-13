@@ -25,9 +25,6 @@ public class Rayneshia extends AnimatorCard {
         SetUpgrade(0, 0, 1);
         SetExhaust(true);
 
-        SetMartialArtist();
-        SetSpellcaster();
-
         SetSynergy(Synergies.LogHorizon);
     }
 
@@ -36,6 +33,12 @@ public class Rayneshia extends AnimatorCard {
     {
         AddCardsFromGroupToSynergy(player.discardPile);
         DrawSynergicCards();
+    }
+
+    @Override
+    public boolean HasSynergy(AbstractCard other)
+    {
+        return (other.cost == 2) || other.hasTag(SPELLCASTER) || super.HasSynergy(other);
     }
 
     private void AddCardsFromGroupToSynergy(CardGroup group)

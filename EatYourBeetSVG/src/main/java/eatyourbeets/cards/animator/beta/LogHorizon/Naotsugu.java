@@ -34,10 +34,11 @@ public class Naotsugu extends AnimatorCard {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         GameActions.Bottom.GainBlock(damage);
 
-        if (GameUtilities.IsInStance(ForceStance.STANCE_ID))
+        if (ForceStance.IsActive())
         {
             GameActions.Bottom.FetchFromPile(name, 1, p.drawPile)
             .SetOptions(true, false)
+            .SetFilter(c -> c.hasTag(MARTIAL_ARTIST))
             .AddCallback(cards ->
             {
                 if (cards.size() > 0)

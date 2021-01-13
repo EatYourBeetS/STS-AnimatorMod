@@ -23,7 +23,7 @@ public class Henrietta extends AnimatorCard {
     public Henrietta() {
         super(DATA);
 
-        Initialize(0, 2, 1, 2);
+        Initialize(0, 2, 0, 2);
         SetUpgrade(0, 2, 0);
 
         SetSynergy(Synergies.LogHorizon);
@@ -38,7 +38,6 @@ public class Henrietta extends AnimatorCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         EnterRandomStanceNotCurrent();
-        GameActions.Bottom.Motivate(magicNumber);
 
         GameActions.Bottom.StackPower(new HenriettaPower(p, secondaryValue));
     }
@@ -106,6 +105,7 @@ public class Henrietta extends AnimatorCard {
         group.addToBottom(CreateChoice(text[1], (c1, p1, m1) -> GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID)));
         group.addToBottom(CreateChoice(text[2], (c1, p1, m1) -> GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID)));
         group.addToBottom(CreateChoice(text[3], (c1, p1, m1) -> GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID)));
+        group.addToBottom(CreateChoice(text[4], (c1, p1, m1) -> GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID)));
 
         GameActions.Top.SelectFromPile(Ainz.DATA.Strings.NAME, 1, group)
         .SetOptions(false, false)

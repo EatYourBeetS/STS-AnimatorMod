@@ -1,37 +1,44 @@
 package eatyourbeets.cards.animator.beta.LogHorizon;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ChokePower;
-import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class Shiroe extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Shiroe.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.Normal);
+    public static final EYBCardData DATA = Register(Shiroe.class).SetAttack(0, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Normal);
 
     public Shiroe() {
         super(DATA);
 
-        Initialize(0, 0, 2,2);
-        SetUpgrade(0, 0, 1);
+        Initialize(1, 0, 0,4);
+        SetUpgrade(1, 0, 0);
 
         SetUnique(true, true);
+        SetExhaust(true);
         SetShapeshifter();
         SetSynergy(Synergies.LogHorizon);
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        if (timesUpgraded % 3 == 0)
+        {
+            upgradeMagicNumber(1);
+        }
+
+        upgradedMagicNumber = true;
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.FIRE);
         GameActions.Bottom.ApplyConstricted(p, m, magicNumber);
 
         if (CombatStats.SynergiesThisTurn() >= secondaryValue && CombatStats.TryActivateLimited(cardID))

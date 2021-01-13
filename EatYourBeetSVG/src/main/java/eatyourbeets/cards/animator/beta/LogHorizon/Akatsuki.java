@@ -1,18 +1,15 @@
 package eatyourbeets.cards.animator.beta.LogHorizon;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.resources.GR;
-import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Akatsuki extends AnimatorCard {
     public static final EYBCardData DATA = Register(Akatsuki.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing);
@@ -22,10 +19,7 @@ public class Akatsuki extends AnimatorCard {
 
         Initialize(10, 0, 2);
         SetUpgrade(2, 0, 1);
-        SetScaling(0,2,0);
-
-        SetEthereal(true);
-        SetMartialArtist();
+        SetScaling(0,1,0);
 
         SetSynergy(Synergies.LogHorizon);
     }
@@ -36,14 +30,9 @@ public class Akatsuki extends AnimatorCard {
     }
 
     @Override
-    protected float ModifyDamage(AbstractMonster enemy, float damage)
+    public boolean HasSynergy(AbstractCard other)
     {
-        if (GameUtilities.IsInStance(AgilityStance.STANCE_ID))
-        {
-            damage += CombatStats.SynergiesThisTurn() * secondaryValue;
-        }
-
-        return super.ModifyDamage(enemy, damage);
+        return (other.rarity.equals(CardRarity.UNCOMMON)) || super.HasSynergy(other);
     }
 
     @Override

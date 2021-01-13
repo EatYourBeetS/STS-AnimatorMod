@@ -6,37 +6,59 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
 public class Minori extends AnimatorCard {
     public static final EYBCardData DATA = Register(Minori.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
+    static
+    {
+        DATA.AddPreview(new Tohya(), false);
+    }
+
     public Minori() {
         super(DATA);
 
-        Initialize(0, 0, 3, 1);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 6, 50);
+        SetUpgrade(0, 0, 25);
 
+        SetSpellcaster();
+        SetCooldown(4, 0, this::OnCooldownCompleted);
         SetSynergy(Synergies.LogHorizon);
     }
 
     @Override
-    public AbstractAttribute GetSpecialInfo()
-    {
-        return TempHPAttribute.Instance.SetCard(this, true);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.GainBlock(block);
 
-        GameActions.Bottom.Cycle(name, secondaryValue);
+        cooldown.ProgressCooldownAndTrigger(m);
 
         if (HasSynergy())
         {
-            GameActions.Bottom.Motivate(secondaryValue);
+            ShuffleToTopOfDeck();
         }
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        ShuffleToTopOfDeck();
+    }
+
+    protected void OnCooldownCompleted(AbstractMonster m)
+    {
+        int blockToGain = block * (magicNumber / 100);
+
+        GameActions.Bottom.GainBlock(blockToGain);
+    }
+
+    private void ShuffleToTopOfDeck()
+    {
+        flash();
+        GameActions.Top.MoveCard(this, player.hand, player.drawPile)
+                .SetDestination(CardSelection.Top);
     }
 }

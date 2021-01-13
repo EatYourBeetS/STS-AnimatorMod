@@ -57,6 +57,7 @@ public class Synergies
     public final static Synergy DateALive = CreateSynergy(42);
     public final static Synergy AngelBeats = CreateSynergy(43);
     public final static Synergy RozenMaiden = CreateSynergy(44);
+    public final static Synergy LogHorizon = CreateSynergy(45);
 
     private static AnimatorCard lastCardPlayed = null;
 

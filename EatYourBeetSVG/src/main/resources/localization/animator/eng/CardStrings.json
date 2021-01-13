@@ -206,6 +206,11 @@
 		  "DESCRIPTION": "Choose 1: Next turn: Gain !M! [E] or draw !S! cards. || On Synergy: you can choose to gain 1 Artifact this turn.",
 		  "NAME": "Isuzu Tonan"
 		},
+		"animator:Krusty":
+		{
+		  "DESCRIPTION": "[Autoplay}. || Double this card's damage this combat.",
+		  "NAME": "Krusty"
+		},
 		"animator:Marielle":
 		{
 		  "DESCRIPTION": "Reduce the cost of all cards in hand by 1 this combat. || On Synergy: Channel 1 [Aether]. ",
@@ -238,7 +243,7 @@
 		},
 		"animator:Serara":
 		{
-			"DESCRIPTION": "If you have over !S! {Temp. HP}, do not gain {Temp. HP}. || All copies of {Nyanta} cost 1 less this combat. ",
+			"DESCRIPTION": "If you have over !S! [Temporary HP], do not gain [Temporary HP]. || All copies of {Nyanta} cost 1 less this combat. ",
 			"NAME": "Serara"
 		},
 		"animator:Shiroe":

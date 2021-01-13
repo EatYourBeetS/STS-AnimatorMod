@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class Tetora extends AnimatorCard
@@ -21,18 +22,31 @@ public class Tetora extends AnimatorCard
         Initialize(0, 0, 4, 1);
         SetUpgrade(0, 0, 1, 0);
 
+        SetSpellcaster();
         SetSynergy(Synergies.LogHorizon);
+    }
+
+    @Override
+    public boolean cardPlayable(AbstractMonster m)
+    {
+        if (super.cardPlayable(m))
+        {
+            for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
+            {
+                if (super.HasSynergy(c))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DiscardFromHand(name, secondaryValue, false)
-        .SetOptions(false, false, true)
-        .AddCallback(() ->
-        {
-            GameActions.Bottom.StackPower(new TetoraPower(p, magicNumber));
-        });
+        GameActions.Bottom.StackPower(new TetoraPower(p, magicNumber));
     }
 
     public static class TetoraPower extends AnimatorPower

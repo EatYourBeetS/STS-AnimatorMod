@@ -20,8 +20,9 @@ public class Tohya extends AnimatorCard {
     public Tohya() {
         super(DATA);
 
-        Initialize(6, 2, 2, 50);
-        SetUpgrade(2, 1, 0, 0);
+        Initialize(6, 0, 3, 50);
+        SetUpgrade(3, 0, 0, 0);
+        SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.LogHorizon);
     }
@@ -42,14 +43,10 @@ public class Tohya extends AnimatorCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.Callback(() ->
         {
-            if (!DrawMinori(player.drawPile))
-            {
-                DrawMinori(player.discardPile);
-            }
+            DrawMinori(player.drawPile);
         });
 
         if (player.currentBlock >= secondaryValue)

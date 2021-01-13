@@ -12,11 +12,6 @@ import eatyourbeets.utilities.GameActions;
 public class Minori extends AnimatorCard {
     public static final EYBCardData DATA = Register(Minori.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
-    static
-    {
-        DATA.AddPreview(new Tohya(), false);
-    }
-
     public Minori() {
         super(DATA);
 

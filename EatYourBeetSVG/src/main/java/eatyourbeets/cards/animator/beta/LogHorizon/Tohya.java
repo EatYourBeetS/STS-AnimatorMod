@@ -17,6 +17,11 @@ import eatyourbeets.utilities.GameUtilities;
 public class Tohya extends AnimatorCard {
     public static final EYBCardData DATA = Register(Tohya.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal);
 
+    static
+    {
+        DATA.AddPreview(new Minori(), false);
+    }
+
     public Tohya() {
         super(DATA);
 

@@ -69,6 +69,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = new GameEvent<>();
     public static final GameEvent<OnStatsClearedSubscriber> onStatsCleared = new GameEvent<>();
     public static final GameEvent<OnStanceChangedSubscriber> onStanceChanged = new GameEvent<>();
+    public static final GameEvent<OnSynergyCheckSubscriber> onSynergyCheck = new GameEvent<>();
 
     public static boolean LoadingPlayerSave;
 
@@ -87,6 +88,11 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static boolean HasActivatedSemiLimited(String id) { return turnData.containsKey(id); }
     public static boolean TryActivateLimited(String id) { return combatData.put(id, 1) == null; }
     public static boolean TryActivateSemiLimited(String id) { return turnData.put(id, 1) == null; }
+
+    public static boolean HasActivatedLimited(String id, int cap) { return combatData.containsKey(id) && (int)combatData.get(id) >= cap; }
+    public static boolean HasActivatedSemiLimited(String id, int cap) { return turnData.containsKey(id) && (int)turnData.get(id) >= cap; }
+    public static boolean TryActivateLimited(String id, int cap) { return JUtils.IncrementMapElement(combatData, id) <= cap; }
+    public static boolean TryActivateSemiLimited(String id, int cap) { return JUtils.IncrementMapElement(turnData, id) <= cap; }
     //@Formatter: On
 
     protected CombatStats()
@@ -153,6 +159,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onPhaseChanged.Clear();
         onStatsCleared.Clear();
         onStanceChanged.Clear();
+        onSynergyCheck.Clear();
     }
 
     public static void EnsurePowerIsApplied()
@@ -326,10 +333,12 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             return (T) turnData.get(key);
         }
-        else
+        else if (defaultData != null)
         {
             return SetCombatData(key, defaultData);
         }
+
+        return defaultData;
     }
 
     public static <T> T SetCombatData(String key, T data)
@@ -344,10 +353,12 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             return (T) combatData.get(key);
         }
-        else
+        else if (defaultData != null)
         {
             return SetCombatData(key, defaultData);
         }
+
+        return defaultData;
     }
 
     public static int CardsExhaustedThisTurn()

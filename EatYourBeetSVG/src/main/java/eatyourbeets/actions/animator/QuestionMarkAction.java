@@ -37,6 +37,7 @@ public class QuestionMarkAction extends EYBAction
         {
             copy.SetSynergy(Synergies.ANY);
             copy.SetShapeshifter();
+            copy.triggerWhenCreated(false);
 
             if (questionMark.upgraded)
             {

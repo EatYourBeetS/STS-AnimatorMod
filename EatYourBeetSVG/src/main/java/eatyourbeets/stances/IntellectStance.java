@@ -1,12 +1,11 @@
 package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -54,10 +53,17 @@ public class IntellectStance extends EYBStance
     {
         super.onExitStance();
 
-        GameActions.Bottom.DealDamageToRandomEnemy(DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.LIGHTNING);
+//        GameActions.Bottom.DealDamageToRandomEnemy(DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
+//        .SetDamageEffect(m -> GameEffects.List.Add(new LightningEffect(m.drawX, m.drawY)));
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , -STAT_GAIN_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);
         GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , +STAT_LOSE_AMOUNT);
+    }
+
+    @Override
+    public void onRefreshStance()
+    {
+        IntellectPower.PreserveOnce();
     }
 
     @Override

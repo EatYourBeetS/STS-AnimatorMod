@@ -14,6 +14,7 @@ import java.net.URISyntaxException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
@@ -24,6 +25,12 @@ public class JUtils
     private static final MessageFormat formatter = new MessageFormat("");
     private static final ArrayList<String> classNames = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
+
+    public static void Breakpoint()
+    {
+        // Place a permanent breakpoint here
+        JUtils.LogInfo(JUtils.class, "Breakpoint Reached");
+    }
 
     public static <T> void ChangeIndex(T item, List<T> list, int index)
     {
@@ -203,6 +210,12 @@ public class JUtils
     {
         int size = list.size();
         return (size > 0) ? list.get(rng.random(list.size() - 1)) : null;
+    }
+
+    public static int IncrementMapElement(Map map, Object key)
+    {
+        //noinspection unchecked
+        return (int)map.compute(key, (k, v) -> v == null ? 1 : (int)v + 1);
     }
 
     public static <T> String JoinStrings(String delimiter, T[] values)

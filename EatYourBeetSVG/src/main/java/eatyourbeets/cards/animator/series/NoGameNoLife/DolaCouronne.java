@@ -17,8 +17,8 @@ public class DolaCouronne extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 9, 10);
-        SetUpgrade(0, 3, 0);
+        Initialize(0, 9, 2, 7);
+        SetUpgrade(0, 1, -1);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
@@ -30,7 +30,7 @@ public class DolaCouronne extends AnimatorCard
 
         if (CombatStats.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.GainBlock(magicNumber);
+            GameActions.Bottom.GainBlock(secondaryValue);
             GameActions.Bottom.GainArtifact(1);
         }
     }
@@ -39,7 +39,7 @@ public class DolaCouronne extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DiscardFromHand(name, 1, false)
-        .SetOptions(false, false, false);
+        GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
+        .SetOptions(false, false, true);
     }
 }

@@ -1,4 +1,4 @@
-package eatyourbeets.actions.special;
+package eatyourbeets.actions.player;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.core.CardCrawlGame;

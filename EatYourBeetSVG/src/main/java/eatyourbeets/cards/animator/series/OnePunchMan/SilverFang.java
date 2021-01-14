@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 
 public class SilverFang extends AnimatorCard
@@ -13,9 +14,8 @@ public class SilverFang extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 7, 1);
-        SetUpgrade(0, 1, 0);
-        SetScaling(0, 1, 0);
+        Initialize(0, 9, 1);
+        SetUpgrade(0, 3, 0);
 
         SetSynergy(Synergies.OnePunchMan);
         SetMartialArtist();
@@ -25,9 +25,8 @@ public class SilverFang extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainAgility(magicNumber, upgraded);
 
-        if (HasSynergy())
+        if (AgilityStance.IsActive())
         {
             GameActions.Bottom.SelectFromHand(name, 1, true)
             .SetFilter(c -> c instanceof EYBCard && c.type == CardType.ATTACK)
@@ -40,6 +39,11 @@ public class SilverFang extends AnimatorCard
                     card.flash();
                 }
             });
+        }
+
+        if (HasSynergy())
+        {
+            GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
         }
     }
 }

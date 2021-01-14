@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
+import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
@@ -38,6 +39,9 @@ import eatyourbeets.actions.handSelection.SelectFromHand;
 import eatyourbeets.actions.monsters.TalkAction;
 import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.actions.pileSelection.*;
+import eatyourbeets.actions.player.ChangeStance;
+import eatyourbeets.actions.player.GainGold;
+import eatyourbeets.actions.player.SpendEnergy;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.actions.powers.ReduceStrength;
 import eatyourbeets.actions.special.*;
@@ -83,6 +87,11 @@ public final class GameActions
     protected GameActions(ActionOrder actionOrder)
     {
         this.actionOrder = actionOrder;
+    }
+
+    public static DelayAllActions DelayCurrentActions()
+    {
+        return Top.Add(new DelayAllActions(true));
     }
 
     public <T extends AbstractGameAction> T Add(T action)
@@ -257,9 +266,9 @@ public final class GameActions
         return Add(new ChangeStanceAction(stance));
     }
 
-    public ChangeStanceAction ChangeStance(String stanceName)
+    public ChangeStance ChangeStance(String stanceName)
     {
-        return Add(new ChangeStanceAction(stanceName));
+        return Add(new ChangeStance(stanceName));
     }
 
     public ChannelAction ChannelOrb(AbstractOrb orb, boolean autoEvoke)
@@ -474,6 +483,11 @@ public final class GameActions
         }
 
         return StackPower(new IntellectPower(player, amount));
+    }
+
+    public ApplyPower GainMalleable(int amount)
+    {
+        return StackPower(new MalleablePower(player, amount));
     }
 
     public ApplyPower GainMetallicize(int amount)
@@ -745,9 +759,9 @@ public final class GameActions
         return Add(new SFXAction(key, pitchVar));
     }
 
-    public SelectCreature SelectCreature(SelectCreature.Targeting target)
+    public SelectCreature SelectCreature(SelectCreature.Targeting target, String source)
     {
-        return Add(new SelectCreature(target));
+        return Add(new SelectCreature(target, source));
     }
 
     public SelectCreature SelectCreature(AbstractCard card)
@@ -803,6 +817,25 @@ public final class GameActions
     public TalkAction Talk(AbstractCreature source, String text, float duration, float bubbleDuration)
     {
         return Add(new TalkAction(source, text, duration, bubbleDuration));
+    }
+
+    public SelectFromHand UpgradeFromHand(String sourceName, int amount, boolean isRandom)
+    {
+        return (SelectFromHand) SelectFromHand(sourceName, amount, isRandom)
+        .SetOptions(true, true, true, false, true, false)
+        .SetMessage(ArmamentsAction.TEXT[0])
+        .SetFilter(AbstractCard::canUpgrade)
+        .AddCallback(cards ->
+        {
+            for (AbstractCard c : cards)
+            {
+                if (c.canUpgrade())
+                {
+                    c.upgrade();
+                    c.flash();
+                }
+            }
+        });
     }
 
     public VFX VFX(AbstractGameEffect effect)

@@ -39,6 +39,10 @@ public class CommonStrings
     public class GridSelection
     {
         public final UIStrings Strings = GetUIStrings("GridSelection");
+        public final String DiscardUpTo = Strings.TEXT[0];
+        public final String MoveToDrawPile = Strings.TEXT[1];
+        public final String TransformInto = Strings.TEXT[2];
+        public final String ChooseCards = Strings.TEXT[3];
         public final String Discard = DiscardAction.TEXT[0];
         public final String Exhaust = ExhaustAction.TEXT[0];
         public final String Cycle = GamblingChipAction.TEXT[1];
@@ -46,17 +50,22 @@ public class CommonStrings
 
         public final String DiscardUpTo(int amount)
         {
-            return JUtils.Format(Strings.TEXT[0], amount);
+            return JUtils.Format(DiscardUpTo, amount);
         }
 
         public final String MoveToDrawPile(int amount)
         {
-            return JUtils.Format(Strings.TEXT[1], amount);
+            return JUtils.Format(MoveToDrawPile, amount);
         }
 
         public final String TransformInto(String name)
         {
-            return JUtils.Format(Strings.TEXT[2], name);
+            return JUtils.Format(TransformInto, name);
+        }
+
+        public final String ChooseCards(int amount)
+        {
+            return JUtils.Format(ChooseCards, amount);
         }
     }
 

@@ -2,6 +2,8 @@ package eatyourbeets.cards.base;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 
@@ -54,11 +56,9 @@ public class Synergies
     public final static Synergy Rewrite = CreateSynergy(41);
     public final static Synergy DateALive = CreateSynergy(42);
     public final static Synergy AngelBeats = CreateSynergy(43);
+    public final static Synergy RozenMaiden = CreateSynergy(44);
 
-    @SuppressWarnings("FieldCanBeLocal")
-    private static AnimatorCard previousCard = null;
     private static AnimatorCard lastCardPlayed = null;
-    private static int preemptiveSynergies;
 
     public static void AddCards(Synergy synergy, ArrayList<AbstractCard> source, ArrayList<AnimatorCard> destination)
     {
@@ -70,11 +70,6 @@ public class Synergies
                 destination.add(card);
             }
         }
-    }
-
-    public static int AddPreemptiveSynergies(int amount)
-    {
-        return preemptiveSynergies += amount;
     }
 
     private static Synergy CreateSynergy(int id)
@@ -172,48 +167,51 @@ public class Synergies
 
     public static void SetLastCardPlayed(AbstractCard card)
     {
-        if (card == null)
-        {
-            previousCard = null;
-            lastCardPlayed = null;
-            preemptiveSynergies = 0;
-        }
-        else
-        {
-            if (preemptiveSynergies > 0)
-            {
-                preemptiveSynergies -= 1;
-            }
-
-            previousCard = lastCardPlayed;
-            lastCardPlayed = JUtils.SafeCast(card, AnimatorCard.class);
-        }
+        lastCardPlayed = JUtils.SafeCast(card, AnimatorCard.class);
     }
 
-    public static boolean WouldSynergize(AnimatorCard card)
+    public static boolean WouldSynergize(AbstractCard card)
     {
         return WouldSynergize(card, lastCardPlayed);
     }
 
-    public static boolean WouldSynergize(AnimatorCard card, AbstractCard abstractCard)
+    public static boolean WouldSynergize(AbstractCard card, AbstractCard other)
     {
-        return WouldSynergize(card, JUtils.SafeCast(abstractCard, AnimatorCard.class));
+        for (OnSynergyCheckSubscriber s : CombatStats.onSynergyCheck.GetSubscribers())
+        {
+            if (s.OnSynergyCheck(card, other))
+            {
+                return true;
+            }
+        }
+
+        if (card == null || other == null)
+        {
+            return false;
+        }
+
+        AnimatorCard a = JUtils.SafeCast(card, AnimatorCard.class);
+        AnimatorCard b = JUtils.SafeCast(other, AnimatorCard.class);
+        if (a == null && b != null)
+        {
+            return b.HasSynergy(a);
+        }
+        if (b == null && a != null)
+        {
+            return a.HasSynergy(b);
+        }
+        if (a != null)
+        {
+            return a.HasSynergy(b) || b.HasSynergy(a);
+        }
+
+        return HasTagSynergy(card, other);
     }
 
-    public static boolean WouldSynergize(AnimatorCard card, AnimatorCard other)
+    public static boolean HasTagSynergy(AbstractCard a, AbstractCard b)
     {
-        if (preemptiveSynergies > 0)
-        {
-            return true;
-        }
-        else if (other != null && other.synergy != null && card.synergy != null)
-        {
-            return (card.synergy.equals(other.synergy)
-            || (card.hasTag(AnimatorCard.SHAPESHIFTER) || other.hasTag(AnimatorCard.SHAPESHIFTER))
-            || (card.hasTag(AnimatorCard.MARTIAL_ARTIST) && other.hasTag(AnimatorCard.MARTIAL_ARTIST))
-            || (card.hasTag(AnimatorCard.SPELLCASTER) && other.hasTag(AnimatorCard.SPELLCASTER)));
-        }
-
-        return false;
+        return ((a.hasTag(AnimatorCard.SHAPESHIFTER) || b.hasTag(AnimatorCard.SHAPESHIFTER))
+            || (a.hasTag(AnimatorCard.MARTIAL_ARTIST) && b.hasTag(AnimatorCard.MARTIAL_ARTIST))
+            || (a.hasTag(AnimatorCard.SPELLCASTER) && b.hasTag(AnimatorCard.SPELLCASTER)));
     }
 }

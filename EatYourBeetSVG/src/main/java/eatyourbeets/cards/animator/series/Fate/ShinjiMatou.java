@@ -43,8 +43,11 @@ public class ShinjiMatou extends AnimatorCard
         GameActions.Bottom.Callback(() ->
         {
             AbstractMonster enemy = GameUtilities.GetRandomEnemy(true);
-            GameActions.Top.ApplyPoison(player, enemy, magicNumber);
-            GameActions.Top.VFX(new PotionBounceEffect(player.hb.cX, player.hb.cY, enemy.hb.cX, enemy.hb.cY), 0.3f);
+            if (GameUtilities.IsValidTarget(enemy))
+            {
+                GameActions.Top.ApplyPoison(player, enemy, magicNumber);
+                GameActions.Top.VFX(new PotionBounceEffect(player.hb.cX, player.hb.cY, enemy.hb.cX, enemy.hb.cY), 0.3f);
+            }
         });
 
         if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))

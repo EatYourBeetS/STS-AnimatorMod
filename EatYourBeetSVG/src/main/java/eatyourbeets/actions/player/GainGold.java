@@ -1,4 +1,4 @@
-package eatyourbeets.actions.special;
+package eatyourbeets.actions.player;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;

@@ -49,7 +49,7 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 public class GameUtilities
 {
-    private static final OnPhaseChangedSubscriber handLayoutRefresher = new HandLayoutRefresher();
+    private static final HandLayoutRefresher handLayoutRefresher = new HandLayoutRefresher();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
     public static void ApplyPowerInstantly(AbstractCreature target, PowerHelper powerHelper, int stacks)
@@ -130,17 +130,27 @@ public class GameUtilities
         copy.targetAngle = original.targetAngle;
     }
 
+    public static void DecreaseBlock(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyBlock(card, Math.max(0, card.baseBlock - amount), temporary);
+    }
+
+    public static void DecreaseDamage(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyDamage(card, Math.max(0, card.baseDamage - amount), temporary);
+    }
+
+    public static void DecreaseMagicNumber(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyMagicNumber(card, Math.max(0, card.baseMagicNumber - amount), temporary);
+    }
+
     public static void DecreaseSecondaryValue(AbstractCard card, int amount, boolean temporary)
     {
         if (card instanceof EYBCard)
         {
             ModifySecondaryValue(card, Math.max(0, ((EYBCard)card).baseSecondaryValue - amount), temporary);
         }
-    }
-
-    public static void DecreaseMagicNumber(AbstractCard card, int amount, boolean temporary)
-    {
-        ModifyMagicNumber(card, Math.max(0, card.baseMagicNumber - amount), temporary);
     }
 
     public static CardGroup FindCardGroup(AbstractCard card, boolean includeLimbo)
@@ -445,6 +455,26 @@ public class GameUtilities
     public static float GetHealthPercentage(AbstractCreature creature)
     {
         return creature.currentHealth / (float) creature.maxHealth;
+    }
+
+    public static AbstractCard GetLastCardPlayed(boolean currentTurn)
+    {
+        return GetLastCardPlayed(currentTurn, 0);
+    }
+
+    public static AbstractCard GetLastCardPlayed(boolean currentTurn, int offset)
+    {
+        ArrayList<AbstractCard> cards;
+        if (currentTurn)
+        {
+            cards = AbstractDungeon.actionManager.cardsPlayedThisTurn;
+        }
+        else
+        {
+            cards = AbstractDungeon.actionManager.cardsPlayedThisCombat;
+        }
+
+        return cards.size() > offset ? cards.get(cards.size() - 1 - offset) : null;
     }
 
     public static HashSet<AbstractCard> GetMasterDeckCopies(String cardID)
@@ -754,6 +784,16 @@ public class GameUtilities
         return player != null && player.stance != null && player.stance.ID.equals(stanceID);
     }
 
+    public static void IncreaseBlock(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyBlock(card, card.baseBlock + amount, temporary);
+    }
+
+    public static void IncreaseDamage(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyDamage(card, card.baseDamage + amount, temporary);
+    }
+
     public static void IncreaseMagicNumber(AbstractCard card, int amount, boolean temporary)
     {
         ModifyMagicNumber(card, card.baseMagicNumber + amount, temporary);
@@ -803,6 +843,11 @@ public class GameUtilities
         return orb != null && !(orb instanceof EmptyOrbSlot);
     }
 
+    public static boolean IsValidTarget(AbstractMonster enemy)
+    {
+        return enemy != null && !IsDeadOrEscaped(enemy);
+    }
+
     public static void ModifyCostForCombat(AbstractCard card, int amount, boolean relative)
     {
         int previousCost = card.cost;
@@ -827,6 +872,26 @@ public class GameUtilities
     {
         card.costForTurn = relative ? Math.max(0, card.costForTurn + amount) : amount;
         card.isCostModifiedForTurn = (card.cost != card.costForTurn);
+    }
+
+    public static void ModifyBlock(AbstractCard card, int amount, boolean temporary)
+    {
+        if (!temporary)
+        {
+            card.baseBlock = amount;
+        }
+        card.block = amount;
+        card.isBlockModified = (card.block != card.baseBlock);
+    }
+
+    public static void ModifyDamage(AbstractCard card, int amount, boolean temporary)
+    {
+        if (!temporary)
+        {
+            card.baseDamage = amount;
+        }
+        card.damage = amount;
+        card.isDamageModified = (card.damage != card.baseDamage);
     }
 
     public static void ModifyMagicNumber(AbstractCard card, int amount, boolean temporary)
@@ -865,7 +930,19 @@ public class GameUtilities
 
     public static void RefreshHandLayout()
     {
-        CombatStats.onPhaseChanged.Subscribe(handLayoutRefresher);
+        RefreshHandLayout(false);
+    }
+
+    public static void RefreshHandLayout(boolean refreshInstantly)
+    {
+        if (refreshInstantly)
+        {
+            handLayoutRefresher.Refresh();
+        }
+        else
+        {
+            CombatStats.onPhaseChanged.Subscribe(handLayoutRefresher);
+        }
     }
 
     public static boolean RequiresTarget(AbstractCard card)
@@ -1015,13 +1092,18 @@ public class GameUtilities
         {
             if (phase == GameActionManager.Phase.WAITING_ON_USER)
             {
-                CardGroup hand = player.hand;
-                hand.refreshHandLayout();
-                hand.applyPowers();
-                hand.glowCheck();
+                Refresh();
 
                 CombatStats.onPhaseChanged.Unsubscribe(handLayoutRefresher);
             }
+        }
+
+        public void Refresh()
+        {
+            CardGroup hand = player.hand;
+            hand.refreshHandLayout();
+            hand.applyPowers();
+            hand.glowCheck();
         }
     }
 }

@@ -1,10 +1,14 @@
 package eatyourbeets.powers.animator;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.cards.base.Synergies;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.GameUtilities;
 
-public class EnvyPower extends AnimatorPower
+public class EnvyPower extends AnimatorPower implements OnSynergyCheckSubscriber
 {
     public static final String POWER_ID = CreateFullID(EnvyPower.class);
 
@@ -18,10 +22,26 @@ public class EnvyPower extends AnimatorPower
     }
 
     @Override
-    public void atStartOfTurn()
+    public void onInitialApplication()
     {
-        super.atStartOfTurn();
+        super.onInitialApplication();
 
-        Synergies.AddPreemptiveSynergies(amount);
+        CombatStats.onSynergyCheck.Subscribe(this);
+    }
+
+    @Override
+    public void onRemove()
+    {
+        super.onRemove();
+
+        CombatStats.onSynergyCheck.Unsubscribe(this);
+    }
+
+    @Override
+    public boolean OnSynergyCheck(AbstractCard a, AbstractCard b)
+    {
+        int cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
+        AbstractCard lastCard = GameUtilities.GetLastCardPlayed(true);
+        return (lastCard == a) ? cardsPlayed <= amount : cardsPlayed < amount;
     }
 }

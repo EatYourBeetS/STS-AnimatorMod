@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class Rayneshia extends AnimatorCard {
     @Override
     public boolean HasSynergy(AbstractCard other)
     {
-        return (other.cost == 2) || (other.isEthereal) || super.HasSynergy(other);
+        return (GameUtilities.IsCurseOrStatus(other)) || (other.isEthereal) || super.HasSynergy(other);
     }
 
     private void AddCardsFromGroupToSynergy(CardGroup group)

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Rayneshia extends AnimatorCard {
     public static final EYBCardData DATA = Register(Rayneshia.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
 
-    protected static final ArrayList<AbstractCard> synergicCards = new ArrayList();
+    private ArrayList<AbstractCard> synergicCards = new ArrayList();
 
     public Rayneshia() {
         super(DATA);
@@ -37,6 +37,7 @@ public class Rayneshia extends AnimatorCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        synergicCards = new ArrayList();
         AddCardsFromGroupToSynergy(player.drawPile);
         DrawSynergicCards(player.drawPile);
     }

@@ -28,11 +28,6 @@ public class Minori extends AnimatorCard {
         GameActions.Bottom.GainBlock(block);
 
         cooldown.ProgressCooldownAndTrigger(m);
-
-        if (HasSynergy())
-        {
-            ShuffleToTopOfDeck();
-        }
     }
 
     @Override

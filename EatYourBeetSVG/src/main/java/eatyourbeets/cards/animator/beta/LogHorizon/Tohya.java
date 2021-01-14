@@ -24,8 +24,10 @@ public class Tohya extends AnimatorCard {
     public Tohya() {
         super(DATA);
 
-        Initialize(6, 0, 1, 0);
+        Initialize(5, 0, 1, 0);
         SetUpgrade(3, 0, 0, 0);
+
+        SetMartialArtist();
 
         SetSynergy(Synergies.LogHorizon);
     }

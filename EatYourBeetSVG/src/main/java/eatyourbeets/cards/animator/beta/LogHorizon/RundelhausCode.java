@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class RundelhausCode extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(RundelhausCode.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(RundelhausCode.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
 
     public RundelhausCode()
     {

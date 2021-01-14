@@ -13,7 +13,7 @@ import eatyourbeets.utilities.JUtils;
 
 public class Tetora extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Tetora.class).SetPower(0, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Tetora.class).SetPower(0, CardRarity.COMMON);
 
     public Tetora()
     {

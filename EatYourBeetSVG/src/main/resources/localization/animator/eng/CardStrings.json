@@ -233,7 +233,7 @@
 		},
 		"animator:Rayneshia":
 		{
-			"DESCRIPTION": "Draw !M! cards that {Synergize} with this card. || This card {Synergizes} ** with {2-Cost} and {Ethereal} ** cards.",
+			"DESCRIPTION": "Draw !M! cards that {Synergize} with this card. || This card {Synergizes} ** with {2-Cost} cards and ** {Hindrances}.",
 			"NAME": "Rayneshia"
 		},
 		"animator:RundelhausCode":
@@ -258,17 +258,17 @@
 		},
 		"animator:Soujiro_Isami":
 		{
-		  "DESCRIPTION": "Apply !M! [Weak]. || At end of turn: shuffle this card into the same pile as a random {Soujiro}.",
+		  "DESCRIPTION": "Apply !M! [Weak].",
 		  "NAME": "Isami"
 		},
 		"animator:Soujiro_Kawara":
 		{
-		  "DESCRIPTION": "At end of turn: shuffle this card into the same pile as a random {Soujiro}.",
+		  "DESCRIPTION": "",
 		  "NAME": "Kawara"
 		},
 		"animator:Soujiro_Kyouko":
 		{
-		  "DESCRIPTION": "At end of turn: shuffle this card into the same pile as a random {Soujiro}.",
+		  "DESCRIPTION": "",
 		  "NAME": "Kyouko"
 		},
 		"animator:Tetora":

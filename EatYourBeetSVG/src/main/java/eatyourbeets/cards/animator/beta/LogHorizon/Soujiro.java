@@ -31,7 +31,6 @@ public class Soujiro extends AnimatorCard
         Initialize(10, 0, 5);
         SetUpgrade(2, 0, 2);
         SetScaling(0,1, 1);
-        SetRetain(true);
 
         SetSynergy(Synergies.LogHorizon);
     }

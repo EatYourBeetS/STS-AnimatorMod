@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class VictoryPatches
 {
     private static final FieldInfo<ArrayList<GameOverStat>> _stats = JUtils.GetField("stats", GameOverScreen.class);
-    private static final FieldInfo<Float> _bossPoints = JUtils.GetField("bossPoints", GameOverScreen.class);
+    private static final FieldInfo<Integer> _bossPoints = JUtils.GetField("bossPoints", GameOverScreen.class);
     private static final TheUnnamed.Data data = new TheUnnamed.Data(TheUnnamed.ID);
 
     private static GameOverStat GetUnnamedGameOverStats()

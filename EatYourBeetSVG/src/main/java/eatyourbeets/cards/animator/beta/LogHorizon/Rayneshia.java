@@ -51,7 +51,7 @@ public class Rayneshia extends AnimatorCard {
     {
         for (AbstractCard c : group.group)
         {
-            if (Synergies.WouldSynergize(this, c))
+            if (HasSynergy(c))
             {
                 synergicCards.add(c);
             }

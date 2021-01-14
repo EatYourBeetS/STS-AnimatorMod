@@ -203,17 +203,17 @@
 		},
 		"animator:Isuzu":
 		{
-		  "DESCRIPTION": "Choose 1: Next turn: Gain !M! [E] or draw !S! cards. || On Synergy: you can choose to gain 1 Artifact this turn.",
+		  "DESCRIPTION": "Choose 1: Next turn, gain !M! [E] or draw !S! cards. || On Synergy: you can choose to gain 1 Artifact this turn.",
 		  "NAME": "Isuzu Tonan"
 		},
 		"animator:Krusty":
 		{
-		  "DESCRIPTION": "[Autoplay}. || Double this card's damage this combat.",
+		  "DESCRIPTION": "{Autoplay}. || Double this card's damage this combat.",
 		  "NAME": "Krusty"
 		},
 		"animator:Marielle":
 		{
-		  "DESCRIPTION": "Reduce the cost of all cards in hand by 1 this combat. || On Synergy: Channel 1 [Aether]. ",
+		  "DESCRIPTION": "Reduce the cost of all cards in hand by 1 this combat. || <LIM>. On Synergy: Channel 1 [Aether]. ",
 		  "NAME": "Marielle"
 		},
 		"animator:Minori":
@@ -258,7 +258,7 @@
 		},
 		"animator:Soujiro_Isami":
 		{
-		  "DESCRIPTION": "At end of turn: shuffle this card into the same pile as a random {Soujiro}.",
+		  "DESCRIPTION": "Apply !M! [Weak]. || At end of turn: shuffle this card into the same pile as a random {Soujiro}.",
 		  "NAME": "Isami"
 		},
 		"animator:Soujiro_Kawara":
@@ -274,7 +274,7 @@
 		"animator:Tetora":
 		{
 		  "DESCRIPTION": "Can only played with another Synergic card in hand. || On your second Synergy each turn: Gain !M! [Block].",
-		  "EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.#b{2}"],
+		  "EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.{2}"],
 		  "NAME": "Tetora"
 		},
 		"animator:Tohya":

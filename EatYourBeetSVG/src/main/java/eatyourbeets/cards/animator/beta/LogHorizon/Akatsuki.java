@@ -12,7 +12,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Akatsuki extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Akatsuki.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(Akatsuki.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing);
 
     public Akatsuki() {
         super(DATA);

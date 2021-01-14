@@ -18,13 +18,14 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
 public class Henrietta extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Henrietta.class).SetPower(2, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Henrietta.class).SetPower(3, CardRarity.RARE);
 
     public Henrietta() {
         super(DATA);
 
         Initialize(0, 2, 0, 2);
         SetUpgrade(0, 2, 0);
+        SetEthereal(true);
 
         SetSynergy(Synergies.LogHorizon);
     }
@@ -32,7 +33,7 @@ public class Henrietta extends AnimatorCard {
     @Override
     protected void OnUpgrade()
     {
-        SetInnate(true);
+        SetEthereal(false);
     }
 
     @Override
@@ -89,7 +90,7 @@ public class Henrietta extends AnimatorCard {
             super.atEndOfTurn(isPlayer);
 
             int energy = EnergyPanel.getCurrentEnergy();
-            if (energy > 1)
+            if (energy > 0)
             {
                 EnergyPanel.useEnergy(energy);
                 flash();
@@ -107,7 +108,7 @@ public class Henrietta extends AnimatorCard {
         group.addToBottom(CreateChoice(text[3], (c1, p1, m1) -> GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID)));
         group.addToBottom(CreateChoice(text[4], (c1, p1, m1) -> GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID)));
 
-        GameActions.Top.SelectFromPile(Ainz.DATA.Strings.NAME, 1, group)
+        GameActions.Top.SelectFromPile(Henrietta.DATA.Strings.NAME, 1, group)
         .SetOptions(false, false)
         .SetMessage(CardRewardScreen.TEXT[1])
         .AddCallback(cards ->
@@ -123,7 +124,7 @@ public class Henrietta extends AnimatorCard {
     {
         return new AnimatorCardBuilder(Henrietta.DATA.ID)
         .SetProperties(CardType.SKILL, Henrietta.DATA.CardRarity, CardTarget.NONE)
-        .SetCost(-2, 0)
+        .SetCost(-1, 0)
         .SetOnUse(onSelect)
         .SetText(Ainz.DATA.Strings.NAME, text, text).Build();
     }

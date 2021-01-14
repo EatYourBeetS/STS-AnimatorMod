@@ -45,6 +45,6 @@ public class LogHorizon extends AnimatorLoadout
     @Override
     public EYBCardData GetUltraRare()
     {
-        return null;
+        return Krusty.DATA;
     }
 }

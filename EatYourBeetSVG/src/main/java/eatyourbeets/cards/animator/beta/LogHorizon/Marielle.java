@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Aether;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -43,7 +44,7 @@ public class Marielle extends AnimatorCard
             c.modifyCostForCombat(-1);
         }
 
-        if (HasSynergy())
+        if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ChannelOrb(new Aether(), false);
         }

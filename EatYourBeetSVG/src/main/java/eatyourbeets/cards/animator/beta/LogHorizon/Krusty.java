@@ -9,9 +9,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 
-public class Krusty extends AnimatorCard
+public class Krusty extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(Krusty.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.Random);
+    public static final EYBCardData DATA = Register(Krusty.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
 
     public Krusty()
     {
@@ -27,10 +27,12 @@ public class Krusty extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SMASH);
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SMASH);
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
+        GameActions.Bottom.Callback(a -> {
+            baseDamage *= 2;
+        });
 
-        baseDamage *= 2;
     }
 
     @Override

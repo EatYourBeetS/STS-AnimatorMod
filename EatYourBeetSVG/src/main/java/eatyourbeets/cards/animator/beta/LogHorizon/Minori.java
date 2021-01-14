@@ -46,7 +46,7 @@ public class Minori extends AnimatorCard {
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        int blockToGain = player.currentBlock * (magicNumber / 100);
+        int blockToGain = (int)(player.currentBlock * ((double)magicNumber/(double)100));
 
         GameActions.Bottom.GainBlock(blockToGain);
         GameActions.Bottom.VFX(new RainbowCardEffect());
@@ -56,7 +56,7 @@ public class Minori extends AnimatorCard {
     private void ShuffleToTopOfDeck()
     {
         flash();
-        GameActions.Top.MoveCard(this, player.discardPile, player.drawPile)
+        GameActions.Last.MoveCard(this, player.drawPile)
                 .SetDestination(CardSelection.Top);
     }
 }

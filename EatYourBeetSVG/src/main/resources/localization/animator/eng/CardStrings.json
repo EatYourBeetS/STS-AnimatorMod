@@ -197,7 +197,7 @@
 		},
 		"animator:Henrietta":
 		{
-			"DESCRIPTION": "Enter a random Stance. || At the end of each turn, ** spend !S! of your remaining ** [E] to enter any Stance or exit your stance.",
+			"DESCRIPTION": "Costs !M! less if you are NOT in Neutral Stance. || At the end of each turn, ** spend !S! of your remaining ** [E] to enter any Stance.",
 			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend 2 of your remaining Energy to enter any Stance.","Enter [A] Stance.", "Enter [I] Stance.", "Enter [F] Stance.", "Exit your Stance."],
 			"NAME": "Henrietta"
 		},
@@ -213,7 +213,7 @@
 		},
 		"animator:Marielle":
 		{
-		  "DESCRIPTION": "Reduce the cost of all cards in hand by 1 this combat. || <LIM>. On Synergy: Channel 1 [Aether]. ",
+		  "DESCRIPTION": "Reduce the cost of ALL cards in hand by 1 this combat. || <LIM>. On Synergy: Channel 1 [Aether]. ",
 		  "NAME": "Marielle"
 		},
 		"animator:Minori":
@@ -233,7 +233,7 @@
 		},
 		"animator:Rayneshia":
 		{
-			"DESCRIPTION": "Draw !M! cards that {Synergize} with this card. || This card {Synergizes} ** with {2-Cost} cards and ** {Hindrances}.",
+			"DESCRIPTION": "Draw !M! cards that {Synergize} with this card. || This card {Synergizes} ** with {Ethereal} cards and ** {Hindrances}.",
 			"NAME": "Rayneshia"
 		},
 		"animator:RundelhausCode":

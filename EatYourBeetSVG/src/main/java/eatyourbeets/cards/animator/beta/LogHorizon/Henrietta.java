@@ -5,26 +5,30 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
+import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.animator.series.Overlord.Ainz;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT3;
+import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
+import eatyourbeets.interfaces.subscribers.OnStanceChangedSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.RandomizedList;
 
-public class Henrietta extends AnimatorCard {
+public class Henrietta extends AnimatorCard implements OnCostRefreshSubscriber, OnStanceChangedSubscriber
+{
     public static final EYBCardData DATA = Register(Henrietta.class).SetPower(3, CardRarity.RARE);
+
+    private int costModifier = 0;
 
     public Henrietta() {
         super(DATA);
 
-        Initialize(0, 2, 0, 2);
-        SetUpgrade(0, 2, 0);
+        Initialize(0, 2, 1, 2);
         SetEthereal(true);
 
         SetSynergy(Synergies.LogHorizon);
@@ -38,37 +42,64 @@ public class Henrietta extends AnimatorCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        EnterRandomStanceNotCurrent();
-
         GameActions.Bottom.StackPower(new HenriettaPower(p, secondaryValue));
     }
 
-    private void EnterRandomStanceNotCurrent()
+    @Override
+    public void resetAttributes()
     {
-        RandomizedList<String> stances = new RandomizedList<>();
+        super.resetAttributes();
 
-        if (!player.stance.ID.equals(ForceStance.STANCE_ID))
-        {
-            stances.Add(ForceStance.STANCE_ID);
-        }
-
-        if (!player.stance.ID.equals(AgilityStance.STANCE_ID))
-        {
-            stances.Add(AgilityStance.STANCE_ID);
-        }
-
-        if (!player.stance.ID.equals(IntellectStance.STANCE_ID))
-        {
-            stances.Add(IntellectStance.STANCE_ID);
-        }
-
-        if (!player.stance.ID.equals(NeutralStance.STANCE_ID))
-        {
-            stances.Add(NeutralStance.STANCE_ID);
-        }
-
-        GameActions.Bottom.ChangeStance(stances.Retrieve(rng));
+        costModifier = 0;
     }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy()
+    {
+        Henrietta copy = (Henrietta) super.makeStatEquivalentCopy();
+
+        copy.costModifier = this.costModifier;
+
+        return copy;
+    }
+
+    @Override
+    public void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        OnCostRefresh(this);
+    }
+
+    @Override
+    public void OnStanceChanged(AbstractStance oldStance, AbstractStance newStance)
+    {
+        OnCostRefresh(this);
+    }
+
+    @Override
+    public void OnCostRefresh(AbstractCard card)
+    {
+        if (card == this)
+        {
+            int currentCost = (costForTurn - costModifier);
+
+            if (!player.stance.ID.equals(NeutralStance.STANCE_ID))
+            {
+                costModifier = -1;
+            }
+            else
+            {
+                costModifier = 0;
+            }
+
+            if (!this.freeToPlayOnce)
+            {
+                this.setCostForTurn(currentCost + costModifier);
+            }
+        }
+    }
+
 
     public static class HenriettaPower extends AnimatorPower {
         public HenriettaPower(AbstractPlayer owner, int amount) {

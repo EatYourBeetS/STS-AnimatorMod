@@ -48,7 +48,7 @@ public class Nyanta extends AnimatorCard {
             agilityToGain = secondaryValue;
         }
 
-        GameActions.Bottom.GainAgility(agilityToGain);
+        GameActions.Bottom.GainAgility(agilityToGain, true);
         GameActions.Bottom.Add(new PressEndTurnButtonAction());
     }
 }

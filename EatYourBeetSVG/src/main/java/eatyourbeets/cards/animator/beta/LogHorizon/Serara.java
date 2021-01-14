@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.beta.LogHorizon;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -41,11 +42,12 @@ public class Serara extends AnimatorCard {
             GameActions.Bottom.GainTemporaryHP(magicNumber);
         }
 
-        GameActions.Bottom.ModifyAllCopies(Nyanta.DATA.ID)
-            .AddCallback(c ->
+        for (AbstractCard c : player.drawPile.group)
+        {
+            if (c.cardID.equals(Nyanta.DATA.ID))
             {
                 c.modifyCostForCombat(-1);
-                c.flash();
-            });
+            }
+        }
     }
 }

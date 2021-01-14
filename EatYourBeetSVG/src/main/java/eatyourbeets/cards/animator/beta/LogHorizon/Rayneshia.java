@@ -14,16 +14,17 @@ import eatyourbeets.utilities.RandomizedList;
 import java.util.ArrayList;
 
 public class Rayneshia extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Rayneshia.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Rayneshia.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
 
     protected static final ArrayList<AbstractCard> synergicCards = new ArrayList();
 
     public Rayneshia() {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
         SetExhaust(true);
+        SetSpellcaster();
 
         SetSynergy(Synergies.LogHorizon);
     }
@@ -31,14 +32,14 @@ public class Rayneshia extends AnimatorCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        AddCardsFromGroupToSynergy(player.discardPile);
-        DrawSynergicCards();
+        AddCardsFromGroupToSynergy(player.drawPile);
+        DrawSynergicCards(player.drawPile);
     }
 
     @Override
     public boolean HasSynergy(AbstractCard other)
     {
-        return (other.cost == 2) || other.hasTag(SPELLCASTER) || super.HasSynergy(other);
+        return (other.cost == 2) || (other.isEthereal) || super.HasSynergy(other);
     }
 
     private void AddCardsFromGroupToSynergy(CardGroup group)
@@ -52,7 +53,7 @@ public class Rayneshia extends AnimatorCard {
         }
     }
 
-    private void DrawSynergicCards()
+    private void DrawSynergicCards(CardGroup group)
     {
         RandomizedList<AbstractCard> randomizedSynergicCards = new RandomizedList<>(synergicCards);
 
@@ -67,7 +68,7 @@ public class Rayneshia extends AnimatorCard {
 
             if (randomCard != null)
             {
-                GameActions.Top.MoveCard(randomCard, player.discardPile, player.hand)
+                GameActions.Top.MoveCard(randomCard, group, player.hand)
                         .ShowEffect(true, true);
             }
         }

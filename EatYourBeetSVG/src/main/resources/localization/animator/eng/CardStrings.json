@@ -192,7 +192,7 @@
 	{
 		"animator:Akatsuki":
 		{
-			"DESCRIPTION": "Semi-Limited: When Drawn: ** Create !M! 0-Cost copies of ** this card with Exhaust. They ** deal 0 damage. || This card Synergizes with Uncommon cards.",
+			"DESCRIPTION": "<SLM>. When drawn: ** Create !M! 0-Cost copies of ** this card with Exhaust. They ** deal 0 damage. || This card {Synergizes} with {Uncommon} cards.",
 			"NAME": "Akatsuki"
 		},
 		"animator:Henrietta":
@@ -228,12 +228,12 @@
 		},
 		"animator:Nyanta":
 		{
-			"DESCRIPTION": "Gain [A] equal to the number of times you Synergized this turn, up to !S!. || End your turn.",
+			"DESCRIPTION": "Boost [A] equal to the number of times you Synergized this turn, up to !S!. || End your turn.",
 			"NAME": "Nyanta"
 		},
 		"animator:Rayneshia":
 		{
-			"DESCRIPTION": "Draw !M! random cards that {Synergize} with this card from your discard pile. || This card {Synergizes} ** with {2-Cost} Cards ** and {Spellcasters}.",
+			"DESCRIPTION": "Draw !M! cards that {Synergize} with this card. || This card {Synergizes} ** with {2-Cost} and {Ethereal} ** cards.",
 			"NAME": "Rayneshia"
 		},
 		"animator:RundelhausCode":
@@ -243,13 +243,33 @@
 		},
 		"animator:Serara":
 		{
-			"DESCRIPTION": "If you have over !S! [Temporary HP], do not gain [Temporary HP]. || All copies of {Nyanta} cost 1 less this combat. ",
+			"DESCRIPTION": "If you have over !S! [Temporary HP], do not gain [Temporary HP]. || Copies of {Nyanta} in your draw pile cost 1 less this combat. ",
 			"NAME": "Serara"
 		},
 		"animator:Shiroe":
 		{
 			"DESCRIPTION": "{~Unique}. Apply !M! ** Constricted. || <LIM>. If your made !S! or more Synergies this turn: ** Permanently Upgrade this ** card.",
 			"NAME": "Shiroe"
+		},
+		"animator:Soujiro":
+		{
+		  "DESCRIPTION": "<LIM>. At start of combat: Shuffle {Kyouko}, {Kawara}, and {Isami} into your draw pile. || Increase damage by !M! for each {Synergic} card in your hand.",
+		  "NAME": "Soujiro"
+		},
+		"animator:Soujiro_Isami":
+		{
+		  "DESCRIPTION": "At end of turn: shuffle this card into the same pile as a random {Soujiro}.",
+		  "NAME": "Isami"
+		},
+		"animator:Soujiro_Kawara":
+		{
+		  "DESCRIPTION": "At end of turn: shuffle this card into the same pile as a random {Soujiro}.",
+		  "NAME": "Kawara"
+		},
+		"animator:Soujiro_Kyouko":
+		{
+		  "DESCRIPTION": "At end of turn: shuffle this card into the same pile as a random {Soujiro}.",
+		  "NAME": "Kyouko"
 		},
 		"animator:Tetora":
 		{
@@ -259,7 +279,7 @@
 		},
 		"animator:Tohya":
 		{
-		    "DESCRIPTION": "Draw {Minori Housaki} from your draw pile. || If you have !S! or more [Block]: Attack !M! additional times.",
+		    "DESCRIPTION": "Draw {Minori Housaki} from your draw pile. || {Starter}: Gain !M! [Blur].",
 			"NAME": "Tohya Housaki"
 		}
 	},

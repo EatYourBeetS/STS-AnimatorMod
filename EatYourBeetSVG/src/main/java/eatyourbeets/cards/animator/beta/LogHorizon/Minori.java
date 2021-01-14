@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.beta.LogHorizon;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -19,7 +20,7 @@ public class Minori extends AnimatorCard {
         SetUpgrade(0, 0, 25);
 
         SetSpellcaster();
-        SetCooldown(4, 0, this::OnCooldownCompleted);
+        SetCooldown(2, 0, this::OnCooldownCompleted);
         SetSynergy(Synergies.LogHorizon);
     }
 
@@ -45,9 +46,11 @@ public class Minori extends AnimatorCard {
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        int blockToGain = block * (magicNumber / 100);
+        int blockToGain = player.currentBlock * (magicNumber / 100);
 
         GameActions.Bottom.GainBlock(blockToGain);
+        GameActions.Bottom.VFX(new RainbowCardEffect());
+
     }
 
     private void ShuffleToTopOfDeck()

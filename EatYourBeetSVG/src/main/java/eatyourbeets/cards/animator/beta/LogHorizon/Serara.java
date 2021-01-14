@@ -28,7 +28,7 @@ public class Serara extends AnimatorCard {
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        if (!GameUtilities.InBattle() || TempHPField.tempHp.get(        player) <= secondaryValue) {
+        if (!GameUtilities.InBattle() || TempHPField.tempHp.get(player) <= secondaryValue) {
             return TempHPAttribute.Instance.SetCard(this, true);
         }
 

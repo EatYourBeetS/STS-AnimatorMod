@@ -100,6 +100,12 @@
 		"FLAVOR": "It's always watching.",
 		"NAME": "Living Picture"
 	},
+	"animator:MantleOfTheStrategist":
+	{
+	  "DESCRIPTIONS": ["The second card you play in your turn will #ySynergize."],
+	  "FLAVOR": "A robe made from cloth woven from the tracks of falling stars.",
+	  "NAME": "Mantle of the Strategist"
+	},
 	"animator:Mistletoe":
 	{
 		"DESCRIPTIONS": ["Whenever you change #yStances, #yScry #b{0} and draw #b{1} card."],

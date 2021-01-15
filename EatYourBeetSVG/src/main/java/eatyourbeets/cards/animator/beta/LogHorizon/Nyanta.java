@@ -11,14 +11,18 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
-public class Nyanta extends AnimatorCard {
+public class Nyanta extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(Nyanta.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing);
+
+    private static final int gainLimit = 3;
 
     public Nyanta() {
         super(DATA);
 
-        Initialize(3, 0, 2, 3);
+        Initialize(3, 0, 2, 0);
         SetUpgrade(1,0);
         SetScaling(0,1,0);
         SetExhaust(true);
@@ -34,6 +38,22 @@ public class Nyanta extends AnimatorCard {
     }
 
     @Override
+    public void Refresh(AbstractMonster enemy)
+    {
+        if (GameUtilities.InBattle())
+        {
+            int agilityToGain = CombatStats.SynergiesThisTurn();
+
+            if (agilityToGain > gainLimit)
+            {
+                agilityToGain = gainLimit;
+            }
+
+            GameUtilities.IncreaseSecondaryValue(this, agilityToGain, true);
+        }
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         for (int i=0; i<magicNumber; i++)
         {
@@ -41,14 +61,7 @@ public class Nyanta extends AnimatorCard {
             .SetVFX(true, false);
         }
 
-        int agilityToGain = CombatStats.SynergiesThisTurn();
-
-        if (agilityToGain > secondaryValue)
-        {
-            agilityToGain = secondaryValue;
-        }
-
-        GameActions.Bottom.GainAgility(agilityToGain, true);
+        GameActions.Bottom.GainAgility(secondaryValue, true);
         GameActions.Bottom.Add(new PressEndTurnButtonAction());
     }
 }

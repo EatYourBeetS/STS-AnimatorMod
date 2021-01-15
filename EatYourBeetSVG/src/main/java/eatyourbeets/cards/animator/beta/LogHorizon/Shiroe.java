@@ -1,6 +1,8 @@
 package eatyourbeets.cards.animator.beta.LogHorizon;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,6 +14,8 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Shiroe extends AnimatorCard {
     public static final EYBCardData DATA = Register(Shiroe.class).SetAttack(0, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Normal);
+
+    protected static final Color upgradeGlowColor = AbstractCard.GREEN_BORDER_GLOW_COLOR;
 
     public Shiroe() {
         super(DATA);
@@ -34,6 +38,17 @@ public class Shiroe extends AnimatorCard {
         }
 
         upgradedMagicNumber = true;
+    }
+
+    @Override
+    public void triggerOnGlowCheck()
+    {
+        super.triggerOnGlowCheck();
+
+        if (CombatStats.SynergiesThisTurn() >= secondaryValue && !CombatStats.HasActivatedLimited(cardID))
+        {
+            this.glowColor = upgradeGlowColor;
+        }
     }
 
     @Override

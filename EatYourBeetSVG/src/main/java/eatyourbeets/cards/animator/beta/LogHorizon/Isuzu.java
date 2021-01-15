@@ -5,8 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnDraw;
 import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnEnergy;
-import eatyourbeets.misc.GenericEffects.GenericEffect_StackPower;
-import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.utilities.GameActions;
 
 public class Isuzu extends AnimatorCard
 {
@@ -32,11 +31,11 @@ public class Isuzu extends AnimatorCard
         choices.AddEffect(new GenericEffect_NextTurnEnergy(magicNumber));
         choices.AddEffect(new GenericEffect_NextTurnDraw(secondaryValue));
 
+        choices.Select(1, m);
+
         if (HasSynergy())
         {
-            choices.AddEffect(new GenericEffect_StackPower(PowerHelper.Artifact, 1));
+            GameActions.Bottom.GainTemporaryArtifact(secondaryValue);
         }
-
-        choices.Select(1, m);
     }
 }

@@ -203,7 +203,7 @@
 		},
 		"animator:Isuzu":
 		{
-		  "DESCRIPTION": "Choose 1: Next turn, gain !M! [E] or draw !S! cards. || On Synergy: you can choose to gain 1 Artifact this turn.",
+		  "DESCRIPTION": "Choose 1: Next turn, gain !M! [E] or draw !S! cards. || On Synergy: Gain 1 {Temp}. [Artifact].",
 		  "NAME": "Isuzu Tonan"
 		},
 		"animator:Krusty":

@@ -19,8 +19,8 @@ public class Tetora extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 1);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 3, 1);
+        SetUpgrade(0, 0, 2, 0);
 
         SetSpellcaster();
         SetSynergy(Synergies.LogHorizon);

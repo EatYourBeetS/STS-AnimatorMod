@@ -273,7 +273,7 @@
 		},
 		"animator:Tetora":
 		{
-		  "DESCRIPTION": "Can only played with another Synergic card in hand. || On your second Synergy each turn: Gain !M! [Block].",
+		  "DESCRIPTION": "Can only be played ** with another Synergic card in hand. || On your second Synergy each turn: Gain !M! [Block].",
 		  "EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.{2}"],
 		  "NAME": "Tetora"
 		},

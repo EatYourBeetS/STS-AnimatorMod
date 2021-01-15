@@ -84,19 +84,21 @@ public class Tetora extends AnimatorCard
                 {
                     enabled = true;
                 }
-                else if (synCount > 0)
-                {
+                else {
                     synCount -= 1;
 
-                    this.flash();
-                }
-                else if (synCount == 0)
-                {
-                    GameActions.Top.GainBlock(amount);
+                    if (synCount > 0)
+                    {
+                        this.flash();
+                    }
+                    else if (synCount == 0)
+                    {
+                        GameActions.Top.GainBlock(amount);
 
-                    this.flash();
+                        this.flash();
+                    }
                 }
-
+                
                 updateDescription();
             }
         }

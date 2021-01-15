@@ -4,13 +4,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.interfaces.subscribers.*;
+import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class TempReduceBlockAction extends EYBActionWithCallback<AbstractCard>
-        implements OnEndOfTurnSubscriber
+        implements OnAfterCardPlayedSubscriber
 {
     protected boolean firstTimePerTurn = false;
     protected AbstractCard card;
@@ -40,7 +39,7 @@ public class TempReduceBlockAction extends EYBActionWithCallback<AbstractCard>
 
             ReduceBlock(card);
 
-            CombatStats.onEndOfTurn.Subscribe(this);
+            CombatStats.onAfterCardPlayed.Subscribe(this);
         }
         else
         {
@@ -58,20 +57,16 @@ public class TempReduceBlockAction extends EYBActionWithCallback<AbstractCard>
     }
 
     @Override
-    public void OnEndOfTurn(boolean isPlayer)
+    public void OnAfterCardPlayed(AbstractCard other)
     {
-        firstTimePerTurn = true;
-
-        if (player.hand.contains(card))
+        if (card.uuid.equals(other.uuid))
         {
-            GameActions.Bottom.ModifyAllInstances(card.uuid, this::ReduceBlock);
-
-            firstTimePerTurn = false;
+            GameUtilities.IncreaseBlock(card, amount, false);
         }
     }
 
     private void ReduceBlock(AbstractCard card)
     {
-        GameUtilities.DecreaseBlock(card, amount, true);
+        GameUtilities.DecreaseBlock(card, amount, false);
     }
 }

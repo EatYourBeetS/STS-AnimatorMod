@@ -21,9 +21,12 @@ public class MantleOfTheStrategist extends AnimatorRelic implements OnSynergyChe
     {
         super.atTurnStart();
 
+        CombatStats.onSynergyCheck.Unsubscribe(this);
         CombatStats.onSynergyCheck.SubscribeOnce(this);
         SetEnabled(true);
     }
+
+
 
     @Override
     public boolean OnSynergyCheck(AbstractCard a, AbstractCard b)

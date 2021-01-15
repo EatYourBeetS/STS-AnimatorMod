@@ -51,5 +51,13 @@ public class Serara extends AnimatorCard {
                 GameActions.Bottom.Add(new MotivateTargetAction(c));
             }
         }
+
+        for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
+        {
+            if (c.cardID.equals(Nyanta.DATA.ID))
+            {
+                GameActions.Bottom.Add(new MotivateTargetAction(c));
+            }
+        }
     }
 }

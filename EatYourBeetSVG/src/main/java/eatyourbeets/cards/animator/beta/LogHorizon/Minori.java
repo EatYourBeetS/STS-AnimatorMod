@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
@@ -20,7 +21,7 @@ public class Minori extends AnimatorCard {
         SetUpgrade(0, 0, 25);
 
         SetSpellcaster();
-        SetCooldown(2, 0, this::OnCooldownCompleted);
+        SetCooldown(4, 0, this::OnCooldownCompleted);
         SetSynergy(Synergies.LogHorizon);
     }
 
@@ -30,7 +31,7 @@ public class Minori extends AnimatorCard {
 
         cooldown.ProgressCooldownAndTrigger(m);
 
-        if (HasSynergy())
+        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
         {
             ShuffleToTopOfDeck();
         }

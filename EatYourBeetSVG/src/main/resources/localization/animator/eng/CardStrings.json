@@ -213,12 +213,12 @@
 		},
 		"animator:Marielle":
 		{
-		  "DESCRIPTION": "{Motivate} ALL cards in your hand.  Reduce their damage and [Block] by !M!. || <LIM>. On Synergy: Channel 1 [Aether]. ",
+		  "DESCRIPTION": "{Motivate} ALL cards in your hand.  Reduce their damage and [Block] by !M! until played. || <LIM>. On Synergy: Channel 1 [Aether]. ",
 		  "NAME": "Marielle"
 		},
 		"animator:Minori":
 		{
-		 	"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%, rounded down. ||  On Synergy or Discard: Put this card on top of your draw pile.",
+		 	"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%, rounded down. ||  <SLM>. On Synergy or Discard: Put this card on top of your draw pile.",
 		  	"NAME": "Minori Housaki"
 		},
 		"animator:Naotsugu":
@@ -243,7 +243,7 @@
 		},
 		"animator:Serara":
 		{
-			"DESCRIPTION": "If you have over !S! [Temporary HP], do not gain [Temporary HP]. || {Motivate} all copies of {Nyanta} in your draw pile ",
+			"DESCRIPTION": "If you have over !S! [Temporary HP], do not gain [Temporary HP]. || {Motivate} all copies of {Nyanta} in your draw pile or hand. ",
 			"NAME": "Serara"
 		},
 		"animator:Shiroe":

@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.cardManipulation.MotivateTargetAction;
+import eatyourbeets.actions.cardManipulation.TempReduceBlockAction;
+import eatyourbeets.actions.cardManipulation.TempReduceDamageAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -40,12 +42,12 @@ public class Marielle extends AnimatorCard
             GameActions.Bottom.Add(new MotivateTargetAction(c));
             if (c.baseBlock > 0)
             {
-                GameUtilities.DecreaseBlock(c, magicNumber, true);
+                GameActions.Bottom.Add(new TempReduceBlockAction(c, magicNumber));
             }
 
             if (c.baseDamage > 0)
             {
-                GameUtilities.DecreaseDamage(c, magicNumber, true);
+                GameActions.Bottom.Add(new TempReduceDamageAction(c, magicNumber));
             }
 
             c.flash(Color.RED.cpy());

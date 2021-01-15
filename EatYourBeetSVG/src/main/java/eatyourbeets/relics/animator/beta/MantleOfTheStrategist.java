@@ -22,7 +22,7 @@ public class MantleOfTheStrategist extends AnimatorRelic implements OnSynergyChe
         super.atTurnStart();
 
         CombatStats.onSynergyCheck.Unsubscribe(this);
-        CombatStats.onSynergyCheck.SubscribeOnce(this);
+        CombatStats.onSynergyCheck.Subscribe(this);
         SetEnabled(true);
     }
 

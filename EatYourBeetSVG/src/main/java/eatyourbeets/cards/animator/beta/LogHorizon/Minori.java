@@ -18,7 +18,7 @@ public class Minori extends AnimatorCard {
         super(DATA);
 
         Initialize(0, 6, 50);
-        SetUpgrade(0, 0, 25);
+        SetUpgrade(0, 1, 25);
 
         SetSpellcaster();
         SetCooldown(4, 0, this::OnCooldownCompleted);

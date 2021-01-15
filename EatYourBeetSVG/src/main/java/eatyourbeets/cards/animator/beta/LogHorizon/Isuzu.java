@@ -35,7 +35,7 @@ public class Isuzu extends AnimatorCard
 
         if (HasSynergy())
         {
-            GameActions.Bottom.GainTemporaryArtifact(secondaryValue);
+            GameActions.Bottom.GainTemporaryArtifact(1);
         }
     }
 }

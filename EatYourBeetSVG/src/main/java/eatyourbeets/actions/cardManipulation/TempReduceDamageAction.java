@@ -10,8 +10,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class TempReduceDamageAction extends EYBActionWithCallback<AbstractCard>
-        implements OnAfterCardPlayedSubscriber, OnStartOfTurnPostDrawSubscriber,
-                   OnEndOfTurnSubscriber, OnAfterCardDrawnSubscriber, OnCostRefreshSubscriber
+        implements OnEndOfTurnSubscriber
 {
     protected boolean firstTimePerTurn = false;
     protected AbstractCard card;
@@ -41,11 +40,7 @@ public class TempReduceDamageAction extends EYBActionWithCallback<AbstractCard>
 
             ReduceDamage(card);
 
-            CombatStats.onStartOfTurnPostDraw.Subscribe(this);
             CombatStats.onEndOfTurn.Subscribe(this);
-            CombatStats.onAfterCardPlayed.Subscribe(this);
-            CombatStats.onAfterCardDrawn.Subscribe(this);
-            CombatStats.onCostRefresh.Subscribe(this);
         }
         else
         {
@@ -63,30 +58,6 @@ public class TempReduceDamageAction extends EYBActionWithCallback<AbstractCard>
     }
 
     @Override
-    public void OnAfterCardPlayed(AbstractCard other)
-    {
-        if (card.uuid.equals(other.uuid))
-        {
-            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
-            CombatStats.onEndOfTurn.Unsubscribe(this);
-            CombatStats.onAfterCardPlayed.Unsubscribe(this);
-            CombatStats.onAfterCardDrawn.Unsubscribe(this);
-            CombatStats.onCostRefresh.Unsubscribe(this);
-        }
-    }
-
-    @Override
-    public void OnStartOfTurnPostDraw()
-    {
-        if (player.hand.contains(card) && firstTimePerTurn)
-        {
-            GameActions.Bottom.ModifyAllInstances(card.uuid, this::ReduceDamage);
-        }
-
-        firstTimePerTurn = false;
-    }
-
-    @Override
     public void OnEndOfTurn(boolean isPlayer)
     {
         firstTimePerTurn = true;
@@ -96,29 +67,6 @@ public class TempReduceDamageAction extends EYBActionWithCallback<AbstractCard>
             GameActions.Bottom.ModifyAllInstances(card.uuid, this::ReduceDamage);
 
             firstTimePerTurn = false;
-        }
-    }
-
-    @Override
-    public void OnAfterCardDrawn(AbstractCard other)
-    {
-        if (firstTimePerTurn)
-        {
-            return;
-        }
-
-        if (card.uuid.equals(other.uuid))
-        {
-            ReduceDamage(card);
-        }
-    }
-
-    @Override
-    public void OnCostRefresh(AbstractCard other)
-    {
-        if (card.uuid.equals(other.uuid))
-        {
-            ReduceDamage(card);
         }
     }
 

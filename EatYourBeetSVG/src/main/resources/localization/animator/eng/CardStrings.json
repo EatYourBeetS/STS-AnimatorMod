@@ -213,7 +213,7 @@
 		},
 		"animator:Marielle":
 		{
-		  "DESCRIPTION": "Reduce the cost of ALL cards in hand by 1 this combat. || <LIM>. On Synergy: Channel 1 [Aether]. ",
+		  "DESCRIPTION": "{Motivate} ALL cards in your hand.  Reduce their damage and [Block] by !M!. || <LIM>. On Synergy: Channel 1 [Aether]. ",
 		  "NAME": "Marielle"
 		},
 		"animator:Minori":
@@ -233,7 +233,7 @@
 		},
 		"animator:Rayneshia":
 		{
-			"DESCRIPTION": "Draw !M! cards that {Synergize} with this card. || This card {Synergizes} ** with {Ethereal} cards and ** {Hindrances}.",
+			"DESCRIPTION": "Draw !M! card(s) that {Synergize} with this card. || This card {Synergizes} ** with {Ethereal} cards and ** {Hindrances}.",
 			"NAME": "Rayneshia"
 		},
 		"animator:RundelhausCode":
@@ -243,7 +243,7 @@
 		},
 		"animator:Serara":
 		{
-			"DESCRIPTION": "If you have over !S! [Temporary HP], do not gain [Temporary HP]. || Copies of {Nyanta} in your draw pile cost 1 less this combat. ",
+			"DESCRIPTION": "If you have over !S! [Temporary HP], do not gain [Temporary HP]. || {Motivate} all copies of {Nyanta} in your draw pile ",
 			"NAME": "Serara"
 		},
 		"animator:Shiroe":
@@ -273,7 +273,7 @@
 		},
 		"animator:Tetora":
 		{
-		  "DESCRIPTION": "Can only be played ** with another Synergic card in hand. || On your second Synergy each turn: Gain !M! [Block].",
+		  "DESCRIPTION": "Can only be played ** with at least !M! other Synergic cards in hand. || On your second Synergy each turn: Gain !S! [Block].",
 		  "EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.{2}"],
 		  "NAME": "Tetora"
 		},

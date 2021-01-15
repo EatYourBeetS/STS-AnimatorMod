@@ -28,7 +28,7 @@ public class Henrietta extends AnimatorCard implements OnCostRefreshSubscriber, 
     public Henrietta() {
         super(DATA);
 
-        Initialize(0, 2, 1, 2);
+        Initialize(0, 2, 1, 1);
         SetEthereal(true);
 
         SetSynergy(Synergies.LogHorizon);

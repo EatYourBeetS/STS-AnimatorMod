@@ -22,19 +22,12 @@ public class Rayneshia extends AnimatorCard {
     public Rayneshia() {
         super(DATA);
 
-        Initialize(0, 0, 2);
-        SetUpgrade(0, 0, 0);
+        Initialize(0, 0, 1);
+        SetUpgrade(0, 0, 1);
         SetExhaust(true);
 
         SetSynergy(Synergies.LogHorizon);
     }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetExhaust(false);
-    }
-
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {

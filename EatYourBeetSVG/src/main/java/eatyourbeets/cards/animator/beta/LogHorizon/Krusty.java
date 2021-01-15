@@ -18,8 +18,7 @@ public class Krusty extends AnimatorCard_UltraRare
         super(DATA);
 
         Initialize(25, 0, 0);
-        SetUpgrade(0, 0, 0);
-        SetScaling(0,1,2);
+        SetUpgrade(10, 0, 0);
 
         SetSynergy(Synergies.LogHorizon);
     }

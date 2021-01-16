@@ -61,7 +61,7 @@ public class Rorona extends AnimatorCard
         {
             GameEffects.Queue.Add(new ChooseAndUpgradeEffect(c -> {
                 return c.rarity.equals(AbstractCard.CardRarity.BASIC) || c.rarity.equals(AbstractCard.CardRarity.COMMON);
-            }));
+            }, false));
         }
 
         @Override

@@ -26,11 +26,17 @@ public class ChooseAndUpgradeEffect extends AbstractGameEffect
     public static final String[] TEXT;
     private static final float DUR = 1.5f;
     private boolean openedScreen = false;
+    private boolean canCancel;
     private Color screenColor;
 
     Predicate<AbstractCard> filter;
 
     public ChooseAndUpgradeEffect(Predicate<AbstractCard> filter)
+    {
+        this(filter, true);
+    }
+
+    public ChooseAndUpgradeEffect(Predicate<AbstractCard> filter, boolean canCancel)
     {
         this.screenColor = AbstractDungeon.fadeColor.cpy();
         this.duration = 1.5f;
@@ -38,18 +44,16 @@ public class ChooseAndUpgradeEffect extends AbstractGameEffect
         AbstractDungeon.overlayMenu.proceedButton.hide();
 
         this.filter = filter;
+        this.canCancel = canCancel;
     }
 
     public void update()
     {
-        if (!AbstractDungeon.isScreenUp)
-        {
-            this.duration -= Gdx.graphics.getDeltaTime();
-            this.updateBlackScreenColor();
-        }
+        this.duration -= Gdx.graphics.getDeltaTime();
+        this.updateBlackScreenColor();
 
         Iterator var1;
-        if (!AbstractDungeon.isScreenUp && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty() && AbstractDungeon.gridSelectScreen.forUpgrade)
+        if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty() && AbstractDungeon.gridSelectScreen.forUpgrade)
         {
             var1 = AbstractDungeon.gridSelectScreen.selectedCards.iterator();
 
@@ -65,6 +69,8 @@ public class ChooseAndUpgradeEffect extends AbstractGameEffect
             }
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
+
+            this.isDone = true;
             //((RestRoom) AbstractDungeon.getCurrRoom()).fadeIn();
         }
 
@@ -84,7 +90,14 @@ public class ChooseAndUpgradeEffect extends AbstractGameEffect
                 }
             }
 
-            AbstractDungeon.gridSelectScreen.open(filteredUpgradeable, 1, TEXT[0], true, false, true, false);
+            if (filteredUpgradeable.isEmpty())
+            {
+                isDone = true;
+                return;
+            }
+
+            AbstractDungeon.gridSelectScreen.open(filteredUpgradeable, 1, TEXT[0], true, false, canCancel
+                    , false);
             var1 = AbstractDungeon.player.relics.iterator();
 
             while (var1.hasNext())
@@ -96,7 +109,6 @@ public class ChooseAndUpgradeEffect extends AbstractGameEffect
 
         if (this.duration < 0f)
         {
-            this.isDone = true;
 //            if (CampfireUI.hidden)
 //            {
 //                AbstractRoom.waitTimer = 0f;

@@ -38,7 +38,7 @@ public class UpgradeCommonReward extends AnimatorReward
     {
         GameEffects.Queue.Add(new ChooseAndUpgradeEffect(c -> {
             return c.rarity.equals(AbstractCard.CardRarity.BASIC) || c.rarity.equals(AbstractCard.CardRarity.COMMON);
-        }));
+        }, false));
 
         this.isDone = true;
 

@@ -5,12 +5,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.rewards.animator.UpgradeCommonReward;
 
 public class Rorona extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Rorona.class).SetSkill(2, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Rorona.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public Rorona()
     {

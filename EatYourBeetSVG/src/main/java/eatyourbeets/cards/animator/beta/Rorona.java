@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.card.ChooseAndUpgradeEffect;
 import eatyourbeets.interfaces.subscribers.OnBattleEndSubscriber;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -41,6 +42,18 @@ public class Rorona extends AnimatorCard
             this.amount = amount;
 
             updateDescription();
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            CombatStats.onBattleEnd.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            CombatStats.onBattleEnd.Unsubscribe(this);
         }
 
         @Override

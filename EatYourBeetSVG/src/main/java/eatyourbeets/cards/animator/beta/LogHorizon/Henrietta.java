@@ -102,6 +102,7 @@ public class Henrietta extends AnimatorCard implements OnCostRefreshSubscriber, 
 
 
     public static class HenriettaPower extends AnimatorPower {
+
         public HenriettaPower(AbstractPlayer owner, int amount) {
             super(owner, Henrietta.DATA);
 

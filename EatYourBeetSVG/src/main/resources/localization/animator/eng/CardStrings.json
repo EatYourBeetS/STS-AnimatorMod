@@ -198,7 +198,7 @@
 		"animator:Henrietta":
 		{
 			"DESCRIPTION": "Costs !M! less if you are NOT in Neutral Stance. || At the end of each turn, ** spend !S! of your remaining ** [E] to enter any Stance.",
-			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend 2 of your remaining Energy to enter any Stance.","Enter [A] Stance.", "Enter [I] Stance.", "Enter [F] Stance.", "Exit your Stance."],
+			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend 1 of your remaining Energy to enter any Stance.","Enter [A] Stance.", "Enter [I] Stance.", "Enter [F] Stance.", "Exit your Stance."],
 			"NAME": "Henrietta"
 		},
 		"animator:Isuzu":

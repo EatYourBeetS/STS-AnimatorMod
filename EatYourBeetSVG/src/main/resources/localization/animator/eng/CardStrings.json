@@ -387,7 +387,8 @@
 	{
 	   "animator:Rorona":
 	   {
-		  "DESCRIPTION": "<LIM>. At end of combat: You may upgrade a Basic or Common card.",
+		  "DESCRIPTION": "<LIM>. At end of combat: Upgrade a Basic or Common card.",
+		  "EXTENDED_DESCRIPTION": ["Limited. At end of combat: Upgrade a Basic or Common card."],
 		  "NAME": "Rorona"
 	   }
 	},

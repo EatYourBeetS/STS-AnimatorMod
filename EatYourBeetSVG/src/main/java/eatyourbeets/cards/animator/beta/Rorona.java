@@ -1,38 +1,60 @@
 package eatyourbeets.cards.animator.beta;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.rewards.animator.UpgradeCommonReward;
+import eatyourbeets.effects.card.ChooseAndUpgradeEffect;
+import eatyourbeets.interfaces.subscribers.OnBattleEndSubscriber;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Rorona extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Rorona.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Rorona.class).SetPower(3, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS);
 
     public Rorona()
     {
         super(DATA);
 
         Initialize(0, 0, 0);
-        SetEthereal(true);
-        SetPurge(true);
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.Atelier);
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetEthereal(false);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        AbstractDungeon.getCurrRoom().rewards.add(new UpgradeCommonReward());
+        GameActions.Bottom.StackPower(new RoronaPower(p, this.magicNumber));
+    }
+
+    public static class RoronaPower extends AnimatorPower implements OnBattleEndSubscriber
+    {
+        public RoronaPower(AbstractPlayer owner, int amount)
+        {
+            super(owner, Rorona.DATA);
+
+            this.amount = amount;
+
+            updateDescription();
+        }
+
+        @Override
+        public void OnBattleEnd()
+        {
+            GameEffects.Queue.Add(new ChooseAndUpgradeEffect(c -> {
+                return c.rarity.equals(AbstractCard.CardRarity.BASIC) || c.rarity.equals(AbstractCard.CardRarity.COMMON);
+            }));
+        }
+
+        @Override
+        public void updateDescription()
+        {
+            description = FormatDescription(0, amount);
+        }
     }
 }

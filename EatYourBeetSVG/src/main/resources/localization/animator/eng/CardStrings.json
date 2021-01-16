@@ -385,6 +385,11 @@
 
 	"BETA:COLORLESS":
 	{
+	   "animator:Rorona":
+	   {
+		  "DESCRIPTION": "<LIM>. At end of combat: You may upgrade a Basic or Common card.",
+		  "NAME": "Rorona"
+	   }
 	},
 
 	"BETA:REWRITE":

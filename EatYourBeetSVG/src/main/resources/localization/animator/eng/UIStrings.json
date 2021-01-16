@@ -49,7 +49,11 @@
 			"Date-a-Live",
 			"Angel Beats",
 			"Rozen Maiden",
-		  	"Log Horizon"
+		  	"Log Horizon",
+		    "Vocaloid",
+		  	"Atelier",
+		  	"Cardcaptor Sakura",
+		  	"Guilty Gear"
 		],
 		"EXTRA_TEXT":
 		[
@@ -117,7 +121,9 @@
 			"Cursed Relic",
 			"Banish",
 			"+{0} Max HP",
-			"+{0} Gold"
+			"+{0} Gold",
+		    "Upgrade a Card",
+		  	"Allows you to upgrade a card in your deck permanently."
 		]
 	},
 

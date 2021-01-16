@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -17,6 +18,7 @@ import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.utilities.GameEffects;
 
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 public class ChooseAndUpgradeEffect extends AbstractGameEffect
 {
@@ -26,12 +28,16 @@ public class ChooseAndUpgradeEffect extends AbstractGameEffect
     private boolean openedScreen = false;
     private Color screenColor;
 
-    public ChooseAndUpgradeEffect()
+    Predicate<AbstractCard> filter;
+
+    public ChooseAndUpgradeEffect(Predicate<AbstractCard> filter)
     {
         this.screenColor = AbstractDungeon.fadeColor.cpy();
         this.duration = 1.5f;
         this.screenColor.a = 0f;
         AbstractDungeon.overlayMenu.proceedButton.hide();
+
+        this.filter = filter;
     }
 
     public void update()
@@ -65,7 +71,20 @@ public class ChooseAndUpgradeEffect extends AbstractGameEffect
         if (this.duration < 1f && !this.openedScreen)
         {
             this.openedScreen = true;
-            AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck.getUpgradableCards(), 1, TEXT[0], true, false, true, false);
+
+            CardGroup upgradeable = AbstractDungeon.player.masterDeck.getUpgradableCards();
+
+            CardGroup filteredUpgradeable = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+
+            for (AbstractCard card : upgradeable.group)
+            {
+                if (filter == null || filter.test(card))
+                {
+                    filteredUpgradeable.addToBottom(card);
+                }
+            }
+
+            AbstractDungeon.gridSelectScreen.open(filteredUpgradeable, 1, TEXT[0], true, false, true, false);
             var1 = AbstractDungeon.player.relics.iterator();
 
             while (var1.hasNext())

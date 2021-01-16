@@ -58,6 +58,10 @@ public class Synergies
     public final static Synergy AngelBeats = CreateSynergy(43);
     public final static Synergy RozenMaiden = CreateSynergy(44);
     public final static Synergy LogHorizon = CreateSynergy(45);
+    public final static Synergy Vocaloid = CreateSynergy(46);
+    public final static Synergy Atelier = CreateSynergy(47);
+    public final static Synergy CardcaptorSakura = CreateSynergy(48);
+    public final static Synergy GuiltyGear = CreateSynergy(49);
 
     private static AnimatorCard lastCardPlayed = null;
 

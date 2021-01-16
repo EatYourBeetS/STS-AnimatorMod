@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import eatyourbeets.cards.animator.series.Overlord.Ainz;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
@@ -158,6 +157,6 @@ public class Henrietta extends AnimatorCard implements OnCostRefreshSubscriber, 
         .SetProperties(CardType.SKILL, Henrietta.DATA.CardRarity, CardTarget.NONE)
         .SetCost(-1, 0)
         .SetOnUse(onSelect)
-        .SetText(Ainz.DATA.Strings.NAME, text, text).Build();
+        .SetText(Henrietta.DATA.Strings.NAME, text, text).Build();
     }
 }

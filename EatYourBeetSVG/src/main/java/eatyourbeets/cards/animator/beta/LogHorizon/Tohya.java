@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.LogHorizon;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,13 +8,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.cards.DrawPileCardPreview;
 import eatyourbeets.utilities.GameActions;
 
 public class Tohya extends AnimatorCard {
     public static final EYBCardData DATA = Register(Tohya.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal);
-
-    private final DrawPileCardPreview drawPileCardPreview = new DrawPileCardPreview(Tohya::FindMinori);
 
     static
     {
@@ -43,33 +39,6 @@ public class Tohya extends AnimatorCard {
         if (IsStarter())
         {
             GameActions.Bottom.GainBlur(magicNumber);
-        }
-    }
-
-    @Override
-    public void calculateCardDamage(AbstractMonster mo)
-    {
-        super.calculateCardDamage(mo);
-
-        drawPileCardPreview.SetCurrentTarget(mo);
-    }
-
-    @Override
-    public void update()
-    {
-        super.update();
-
-        drawPileCardPreview.Update();
-    }
-
-    @Override
-    public void Render(SpriteBatch sb, boolean hovered, boolean selected, boolean library)
-    {
-        super.Render(sb, hovered, selected, library);
-
-        if (!library)
-        {
-            drawPileCardPreview.Render(sb);
         }
     }
 

@@ -50,7 +50,7 @@ public class Megunee extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        GameActions.Bottom.Exhaust(this);
+        GameActions.Last.Exhaust(this);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Megunee extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
         {
             if (turns <= 0)
             {
-                GameActions.Bottom.MoveCard(this, player.exhaustPile, player.discardPile)
+                GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
                         .ShowEffect(false, false);
                 GameActions.Last.ReplaceCard(uuid, new Megunee_Zombie()).SetUpgrade(upgraded);
                 CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);

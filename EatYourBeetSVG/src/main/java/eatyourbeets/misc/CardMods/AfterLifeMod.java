@@ -4,12 +4,12 @@ import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.actions.cardManipulation.ModifyAllInstances;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.common.ControllableCard;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
@@ -59,29 +59,36 @@ public class AfterLifeMod extends AbstractCardModifier
                 control.Delete();
             }
         })
-        .OnSelect(AfterLifeMod::PlayFromAfterlife);
-    }
-
-    public static void PlayFromAfterlife(ControllableCard control)
-    {
-        GameActions.Bottom.SelectCreature(control.card).AddCallback(control, (state, creature) ->
+        .OnSelect(control ->
         {
-            //Put this here so the cost is only paid upon successful completion of the selectCreature action
-            AbstractCard cardToPurge = JUtils.GetRandomElement(JUtils.Filter(player.exhaustPile.group, AfterLifeMod::CanPurge));
-            AbstractCard copy = cardToPurge.makeStatEquivalentCopy();
-            GameEffects.List.ShowCardBriefly(copy);
-            GameEffects.List.Add(new ExhaustCardEffect(copy));
+            if (CombatStats.ControlPile.IsHovering() && control.card.canUse(player, null))
+            {
+                if (JUtils.Find(player.exhaustPile.group, AfterLifeMod::CanPurge) == null)
+                {
+                    GameEffects.List.Add(new ThoughtBubble(player.dialogX, player.dialogY, 3.0F, TEXT[2], true));
+                    return;
+                }
 
-            GameActions.Bottom.ModifyAllInstances(state.card.uuid, c -> ((EYBCard)c).SetPurge(true));
-            GameActions.Bottom.PlayCard(state.card, player.exhaustPile, JUtils.SafeCast(creature, AbstractMonster.class))
+                GameActions.Bottom.SelectCreature(control.card).AddCallback(control, (state, creature) ->
+                {
+                    //Put this here so the cost is only paid upon successful completion of the selectCreature action
+                    AbstractCard cardToPurge = JUtils.GetRandomElement(JUtils.Filter(player.exhaustPile.group, AfterLifeMod::CanPurge));
+                    AbstractCard copy = cardToPurge.makeStatEquivalentCopy();
+                    GameEffects.List.ShowCardBriefly(copy);
+                    GameEffects.List.Add(new ExhaustCardEffect(copy));
+
+                    GameActions.Bottom.ModifyAllInstances(state.card.uuid, c -> ((EYBCard)c).SetPurge(true));
+                    GameActions.Bottom.PlayCard(state.card, player.exhaustPile, JUtils.SafeCast(creature, AbstractMonster.class))
                     .SpendEnergy(true);
 
-            ModifyAllInstances action = GameActions.Bottom.ModifyAllInstances(state.card.uuid, AbstractCard::stopGlowing);
-            action.AddCallback(state, (temp, __) -> temp.Delete());
-            if (state.card.exhaust)
-            {
-                state.card.exhaust = false;
-                action.AddCallback(playedCard -> playedCard.exhaust = true);
+                    ModifyAllInstances action = GameActions.Bottom.ModifyAllInstances(state.card.uuid, AbstractCard::stopGlowing);
+                    action.AddCallback(state, (temp, __) -> temp.Delete());
+                    if (state.card.exhaust)
+                    {
+                        state.card.exhaust = false;
+                        action.AddCallback(playedCard -> playedCard.exhaust = true);
+                    }
+                });
             }
         });
     }

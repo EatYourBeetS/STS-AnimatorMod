@@ -5,27 +5,26 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
-import eatyourbeets.misc.CardMods.AfterLifeMod;
-import eatyourbeets.ui.common.ControllableCard;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(Megunee_Zombie.class).SetAttack(-1, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
 
+    private int turns;
+
     public Megunee_Zombie()
     {
         super(DATA);
 
-        Initialize(15, 0, 2, 10);
+        Initialize(13, 0, 2, 10);
         SetUpgrade(3, 0, 0);
         SetScaling(0, 0, 3);
 
@@ -33,25 +32,7 @@ public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDra
         SetExhaust(true);
         SetMultiDamage(true);
 
-        AfterLifeMod.Add(this);
-
         SetSynergy(Synergies.Gakkougurashi);
-    }
-
-    @Override
-    public boolean cardPlayable(AbstractMonster m)
-    {
-        boolean playable = super.cardPlayable(m);
-
-        if (playable)
-        {
-            if (JUtils.Find(AbstractDungeon.actionManager.cardsPlayedThisTurn, Megunee_Zombie.class::isInstance) != null)
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     @Override
@@ -87,14 +68,33 @@ public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDra
     }
 
     @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        turns = rng.random(0, 3);
+        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
+    }
+
+    @Override
     public void OnStartOfTurnPostDraw()
     {
-        if (player.exhaustPile.contains(this) && cardPlayable(null))
+        if (player.exhaustPile.contains(this))
         {
-            GameActions.Bottom.Callback(() ->
+            if (turns <= 0)
             {
-                AfterLifeMod.PlayFromAfterlife(new ControllableCard(this));
-            });
+                GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
+                        .ShowEffect(false, false);
+                CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+            }
+            else
+            {
+                turns -= 1;
+            }
+        }
+        else
+        {
+            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         }
     }
 }

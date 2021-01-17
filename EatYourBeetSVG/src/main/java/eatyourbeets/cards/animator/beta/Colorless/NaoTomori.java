@@ -39,7 +39,7 @@ public class NaoTomori extends AnimatorCard
 
         if (player.hand.size() < BaseMod.MAX_HAND_SIZE)
         {
-            while (group.size() < 3)
+            while (group.size() < magicNumber)
             {
                 AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat();
                 if (!card.hasTag(AbstractCard.CardTags.HEALING) && group.findCardById(card.cardID) == null)

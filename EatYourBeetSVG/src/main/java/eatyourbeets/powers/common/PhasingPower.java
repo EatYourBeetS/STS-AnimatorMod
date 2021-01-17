@@ -39,6 +39,17 @@ public class PhasingPower extends CommonPower
     }
 
     @Override
+    public void atStartOfTurn()
+    {
+        super.atStartOfTurn();
+
+        if (enabled && amount > 0)
+        {
+            reducePower(1);
+        }
+    }
+
+    @Override
     public int onAttacked(DamageInfo info, int damageAmount)
     {
         if (info.type == DamageInfo.DamageType.NORMAL)

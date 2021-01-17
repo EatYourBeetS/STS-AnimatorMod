@@ -67,6 +67,6 @@ public class PhasingPower extends CommonPower
     {
         String[] desc = powerStrings.DESCRIPTIONS;
 
-        description = desc[0] + amount + desc[1];
+        description = desc[0] + evadePercent + desc[1];
     }
 }

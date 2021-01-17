@@ -8,10 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.BufferPower;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -88,6 +85,7 @@ public class NaoTomori extends AnimatorCard
         if (!AbstractDungeon.id.equals(TheUnnamedReign.ID) && AbstractDungeon.actNum <= secondaryValue)
         {
             GameActions.Bottom.ExhaustFromHand(name, 1, false)
+                    .SetFilter(c -> c.type.equals(CardType.POWER) || c instanceof AnimatorCard_UltraRare)
                     .SetOptions(false, false, false)
                     .AddCallback(cards ->
                     {

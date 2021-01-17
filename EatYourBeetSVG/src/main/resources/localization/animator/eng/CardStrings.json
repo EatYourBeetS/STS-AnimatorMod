@@ -385,12 +385,24 @@
 
 	"BETA:COLORLESS":
 	{
+		"animator:HatsuneMiku":
+		{
+		  "DESCRIPTION": "Can only be played if there are at least !S! cards in your discard pile. || At the start of turn: draw !M! card(s). They cost 0 this turn.",
+		  "EXTENDED_DESCRIPTION": ["At the start of each turn, draw #b{0} cards.  They cost 0 this turn."],
+		  "NAME": "Hatsune Miku"
+		},
 	   "animator:Rorona":
 	   {
 		  "DESCRIPTION": "<LIM>. At end of combat: Upgrade a Basic or Common card.",
 		  "EXTENDED_DESCRIPTION": ["Limited. At end of combat: Upgrade a Basic or Common card."],
 		  "NAME": "Rorona"
-	   }
+	   },
+	  "animator:ShuuOuma":
+	  {
+		"DESCRIPTION": "Draw a random {Power} from your draw or discard pile. || This turn, whenever you play a {Power}: draw a random {Power} from your draw or discard pile.",
+		"EXTENDED_DESCRIPTION": ["This turn, whenever you play a #yPower: draw #b{0} random #yPowers from your draw or discard pile."],
+		"NAME": "Shuu Ouma"
+	  }
 	},
 
 	"BETA:REWRITE":

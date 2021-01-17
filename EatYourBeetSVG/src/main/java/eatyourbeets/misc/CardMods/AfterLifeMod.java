@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.actions.cardManipulation.ModifyAllInstances;
-import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
@@ -99,11 +98,5 @@ public class AfterLifeMod extends AbstractCardModifier
     private static boolean CanPurge(AbstractCard card)
     {
         return !AfterLifeMod.IsAdded(card);
-    }
-
-    @Override
-    public String modifyDescription(String rawDescription, AbstractCard card)
-    {
-        return ((card instanceof AnimatorCard) ? TEXT[0] : TEXT[1]) + rawDescription;
     }
 }

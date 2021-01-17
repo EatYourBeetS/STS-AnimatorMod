@@ -51,6 +51,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
         .SetDamageEffect(e -> GameEffects.Queue.Add(new SmallLaserEffect(player.hb.cX, player.hb.cY,
         e.hb.cX + MathUtils.random(-0.05F, 0.05F), e.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PURPLE)));
+        GameActions.Bottom.SFX("ATTACK_FIRE");
     }
 
     @Override

@@ -44,7 +44,7 @@ public class ShuuOuma extends AnimatorCard
 
         public ShuuOumaPower(AbstractPlayer owner, int amount, String name)
         {
-            super(owner, Rorona.DATA);
+            super(owner, ShuuOuma.DATA);
 
             this.amount = amount;
             this.name = name;
@@ -69,7 +69,7 @@ public class ShuuOuma extends AnimatorCard
                 FetchFromPile fetchAction = new FetchFromPile(name, amount, player.drawPile, player.discardPile);
 
                 GameActions.Top.Add(fetchAction
-                        .SetOptions(false, false)
+                        .SetOptions(true, false)
                         .SetFilter(c -> c.type.equals(CardType.POWER)));
             }
         }

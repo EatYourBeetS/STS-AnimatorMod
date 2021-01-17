@@ -387,9 +387,14 @@
 	{
 		"animator:HatsuneMiku":
 		{
-		  "DESCRIPTION": "Can only be played if there are at least !S! cards in your discard pile. || At the start of turn: draw !M! card(s). They cost 0 this turn.",
+		  "DESCRIPTION": "Can only be played if there are at least !S! cards in your Discard and {Exhaust} piles combined. || At the start of turn: Draw !M! card(s). They cost 0 this turn.",
 		  "EXTENDED_DESCRIPTION": ["At the start of each turn, draw #b{0} cards.  They cost 0 this turn."],
 		  "NAME": "Hatsune Miku"
+		},
+		"animator:NaoTomori":
+		{
+		  "DESCRIPTION": "Exhaust a {Power} or {Ultra Rare} in your hand to gain 1 {Buffer}.  Does not work beyond Act !S!. || On Exhaust: Choose 1 of !M! cards to obtain.",
+		  "NAME": "Nao Tomori"
 		},
 	   "animator:Rorona":
 	   {
@@ -399,7 +404,7 @@
 	   },
 	  "animator:ShuuOuma":
 	  {
-		"DESCRIPTION": "Draw a random {Power} from your draw or discard pile. || This turn, whenever you play a {Power}: draw a random {Power} from your draw or discard pile.",
+		"DESCRIPTION": "Fetch a {Power} from your draw or discard pile. || This turn, whenever you play a {Power}: draw a random {Power} from your draw or discard pile.",
 		"EXTENDED_DESCRIPTION": ["This turn, whenever you play a #yPower: draw #b{0} random #yPowers from your draw or discard pile."],
 		"NAME": "Shuu Ouma"
 	  }

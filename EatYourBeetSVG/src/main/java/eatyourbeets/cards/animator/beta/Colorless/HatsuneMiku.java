@@ -26,7 +26,7 @@ public class HatsuneMiku extends AnimatorCard
     @Override
     public boolean cardPlayable(AbstractMonster m)
     {
-        return player.discardPile.size() >= secondaryValue;
+        return (player.discardPile.size() + player.exhaustPile.size()) >= secondaryValue;
     }
 
     @Override

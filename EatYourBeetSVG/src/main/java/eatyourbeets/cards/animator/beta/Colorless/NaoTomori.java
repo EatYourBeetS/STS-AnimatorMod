@@ -85,7 +85,7 @@ public class NaoTomori extends AnimatorCard
                     {
                         if (cards.size() > 0)
                         {
-                            GameActions.Bottom.StackPower(new BufferPower(p, secondaryValue));
+                            GameActions.Bottom.StackPower(new BufferPower(p, 1));
                         }
                     });
         }

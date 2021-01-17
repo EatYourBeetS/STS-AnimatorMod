@@ -31,12 +31,6 @@ public class NaoTomori extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetHaste(true);
-    }
-
-    @Override
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();

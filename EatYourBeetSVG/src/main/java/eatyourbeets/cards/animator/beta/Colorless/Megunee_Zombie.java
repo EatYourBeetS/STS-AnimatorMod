@@ -57,11 +57,17 @@ public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDra
             {
                 GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE)
                         .SetDamageEffect(e -> GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40f * Settings.scale, Color.BROWN.cpy())));
+            }
 
-                if (totalHeal <= secondaryValue)
+            if (CombatStats.TryActivateLimited(cardID))
+            {
+                for (int i=0; i<stacks; i++)
                 {
-                    GameActions.Bottom.Heal(magicNumber);
-                    totalHeal += 2;
+                    if (totalHeal <= secondaryValue)
+                    {
+                        GameActions.Bottom.Heal(magicNumber);
+                        totalHeal += 2;
+                    }
                 }
             }
         }
@@ -83,7 +89,7 @@ public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDra
         {
             if (turns <= 0)
             {
-                GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
+                GameActions.Bottom.MoveCard(this, player.exhaustPile, player.hand)
                         .ShowEffect(false, false);
                 CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
             }

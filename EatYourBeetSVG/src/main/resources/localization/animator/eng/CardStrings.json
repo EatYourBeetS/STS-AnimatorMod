@@ -398,7 +398,7 @@
 		},
 		"animator:Megunee_Zombie":
 		{
-		  "DESCRIPTION": "Autoplay. || Heal !M! * X HP, to a max of !S!. || When Exhausted: Put this card in your draw pile after a random number of turns.",
+		  "DESCRIPTION": "Autoplay. || <LIM>. Heal !M! x X HP, to a max of !S!. || When Exhausted: Put this card in your hand after a random number of turns.",
 		  "NAME": "Zombie Megu-nee"
 		},
 		"animator:NaoTomori":

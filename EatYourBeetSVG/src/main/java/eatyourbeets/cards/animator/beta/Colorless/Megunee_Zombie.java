@@ -9,13 +9,15 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
+import eatyourbeets.ui.common.ControllableCard;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-public class Megunee_Zombie extends AnimatorCard
+public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(Megunee_Zombie.class).SetAttack(-1, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
 
@@ -72,7 +74,7 @@ public class Megunee_Zombie extends AnimatorCard
         {
             for (int i=0; i<stacks; i++)
             {
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+                GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE)
                         .SetDamageEffect(e -> GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40f * Settings.scale, Color.BROWN.cpy())));
 
                 if (totalHeal <= secondaryValue)
@@ -81,6 +83,18 @@ public class Megunee_Zombie extends AnimatorCard
                     totalHeal += 2;
                 }
             }
+        }
+    }
+
+    @Override
+    public void OnStartOfTurnPostDraw()
+    {
+        if (player.exhaustPile.contains(this) && cardPlayable(null))
+        {
+            GameActions.Bottom.Callback(() ->
+            {
+                AfterLifeMod.PlayFromAfterlife(new ControllableCard(this));
+            });
         }
     }
 }

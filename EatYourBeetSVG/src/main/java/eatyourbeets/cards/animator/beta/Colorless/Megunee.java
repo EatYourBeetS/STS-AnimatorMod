@@ -26,7 +26,7 @@ public class Megunee extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
     {
         super(DATA);
 
-        Initialize(0, 7, 4, 1);
+        Initialize(0, 7, 4);
         SetUpgrade(0, 2, 1);
         SetCooldown(secondaryValue, 0, this::OnCooldownCompleted);
 

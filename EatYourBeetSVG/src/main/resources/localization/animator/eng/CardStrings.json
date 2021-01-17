@@ -398,7 +398,7 @@
 		},
 		"animator:Megunee_Zombie":
 		{
-		  "DESCRIPTION": "Afterlife. Autoplay. || Heal !M! * X HP, to a max of !S!. || Can only play if you have not played a {Zombie Megu-nee} this turn.",
+		  "DESCRIPTION": "Afterlife. Autoplay (even from {Afterlife}). || Heal !M! * X HP, to a max of !S!. || Can only play if you have not played a {Zombie Megu-nee} this turn.",
 		  "NAME": "Zombie Megu-nee"
 		},
 		"animator:NaoTomori":

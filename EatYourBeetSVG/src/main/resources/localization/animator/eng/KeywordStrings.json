@@ -1,5 +1,17 @@
 
 {
+	"Afterlife":
+	{
+	  "DESCRIPTION": "You may play cards with #yAfterlife from your #yExhaust pile by #yPurging #b1 random #yNon-Afterlife card from your #yExhaust pile.",
+	  "NAMES": ["afterlife"],
+	  "PROPER_NAME": "Afterlife"
+	},
+	"Buffer":
+	{
+	  "DESCRIPTION": "Prevents the next time you would lose HP.",
+	  "NAMES": ["buffer"],
+	  "PROPER_NAME": "Buffer"
+	},
 	"Cooldown":
 	{
 		"DESCRIPTION": "Whenever you play or discard this card, reduce its #yCooldown by #b1. If it is at #b0, activate this effect instead.",
@@ -54,16 +66,16 @@
 		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized"],
 		"PROPER_NAME": "Synergy"
 	},
+	"Ultra Rare":
+	{
+	  "DESCRIPTION": "There may be cards in this world even more powerful than Rare cards.  There will be a price.",
+	  "NAMES": ["ultra rare"],
+	  "PROPER_NAME": "Ultra Rare"
+	},
 	"~Orb Core":
 	{
 		"DESCRIPTION": "Channel 1 orb. NL  NL Gain a bonus effect on your second Synergy each turn.",
 		"NAMES": ["~orb core", "~orb cores"],
 		"PROPER_NAME": "Orb Core"
-	},
-	"Afterlife":
-	{
-		"DESCRIPTION": "You may play cards with #yAfterlife from your #yExhaust pile by #yPurging #b1 random #yNon-Afterlife card from your #yExhaust pile.",
-		"NAMES": ["afterlife"],
-		"PROPER_NAME": "Afterlife"
 	}
 }

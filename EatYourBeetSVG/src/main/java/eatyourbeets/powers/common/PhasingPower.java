@@ -46,6 +46,11 @@ public class PhasingPower extends CommonPower
         if (enabled && amount > 0)
         {
             reducePower(1);
+
+            if (amount <= 0)
+            {
+                GameActions.Bottom.RemovePower(owner, owner, this);
+            }
         }
     }
 

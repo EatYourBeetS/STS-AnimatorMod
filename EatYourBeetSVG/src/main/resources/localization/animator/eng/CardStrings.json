@@ -391,6 +391,16 @@
 		  "EXTENDED_DESCRIPTION": ["At the start of each turn, draw #b{0} cards.  They cost 0 this turn."],
 		  "NAME": "Hatsune Miku"
 		},
+		"animator:Megunee":
+		{
+		  "DESCRIPTION": "Cooldown !S!: Exhaust this card. || When Exhausted: Put this card in your discard pile zombified after a random number of turns.",
+		  "NAME": "Megu-nee"
+		},
+		"animator:Megunee_Zombie":
+		{
+		  "DESCRIPTION": "Afterlife. Autoplay. || Heal !M! * X HP, to a max of !S!. || Can only play if you have not played a {Zombie Megu-nee} this turn.",
+		  "NAME": "Zombie Megu-nee"
+		},
 		"animator:NaoTomori":
 		{
 		  "DESCRIPTION": "Exhaust a {Power} or {Ultra Rare} in your hand to gain 1 {Buffer}.  Does not work beyond Act !S!. || On Exhaust: Choose 1 of !M! cards to obtain.",

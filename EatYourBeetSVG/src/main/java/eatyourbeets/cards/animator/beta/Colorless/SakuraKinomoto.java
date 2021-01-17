@@ -22,7 +22,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class SakuraKinomoto extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SakuraKinomoto.class).SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(SakuraKinomoto.class).SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Elemental).SetColor(CardColor.COLORLESS);
 
     public SakuraKinomoto()
     {

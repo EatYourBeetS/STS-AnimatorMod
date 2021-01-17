@@ -398,12 +398,12 @@
 		},
 		"animator:Megunee_Zombie":
 		{
-		  "DESCRIPTION": "Autoplay. || <LIM>. Heal !M! x X HP, to a max of !S!. || When Exhausted: Put this card in your hand after a random number of turns.",
+		  "DESCRIPTION": "Autoplay. || <LIM>. If Fatal: Heal !M! HP. || When Exhausted: Put this card in your hand after a random number of turns.",
 		  "NAME": "Zombie Megu-nee"
 		},
 		"animator:NaoTomori":
 		{
-		  "DESCRIPTION": "Exhaust a {Power} or {Ultra Rare} in your hand to gain 1 {Buffer}.  Does not work beyond Act !S!. || On Exhaust: Choose 1 of !M! cards to obtain.",
+		  "DESCRIPTION": "Exhaust a {Power} in your hand to gain 1 {Phasing}.  || On Exhaust: Choose 1 of !M! cards to obtain.",
 		  "NAME": "Nao Tomori"
 		},
 	   "animator:Rorona":

@@ -7,9 +7,11 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.BufferPower;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.dungeons.TheUnnamedReign;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.common.PhasingPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -23,11 +25,17 @@ public class NaoTomori extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
-        SetUpgrade(0, 0, 1, 1);
+        Initialize(0, 0, 3, 3);
+        SetUpgrade(0, 0, 0, 1);
         SetRetain(true);
 
         SetSynergy(Synergies.Charlotte);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
     }
 
     @Override
@@ -62,32 +70,17 @@ public class NaoTomori extends AnimatorCard
     }
 
     @Override
-    public void triggerOnGlowCheck()
-    {
-        super.triggerOnGlowCheck();
-
-        if (AbstractDungeon.id.equals(TheUnnamedReign.ID) || AbstractDungeon.actNum > secondaryValue)
-        {
-            this.glowColor = weakenedGlowColor;
-        }
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        //UnnamedReign has an Act number of 4, despite being Act 5.
-        if (!AbstractDungeon.id.equals(TheUnnamedReign.ID) && AbstractDungeon.actNum <= secondaryValue)
-        {
-            GameActions.Bottom.ExhaustFromHand(name, 1, false)
-                    .SetFilter(c -> c.type.equals(CardType.POWER) || c instanceof AnimatorCard_UltraRare)
-                    .SetOptions(false, false, false)
-                    .AddCallback(cards ->
+        GameActions.Bottom.ExhaustFromHand(name, 1, false)
+                .SetFilter(c -> c.type.equals(CardType.POWER))
+                .SetOptions(false, false, false)
+                .AddCallback(cards ->
+                {
+                    if (cards.size() > 0)
                     {
-                        if (cards.size() > 0)
-                        {
-                            GameActions.Bottom.StackPower(new BufferPower(p, 1));
-                        }
-                    });
-        }
+                        GameActions.Bottom.StackPower(new PhasingPower(p, 1));
+                    }
+                });
     }
 }

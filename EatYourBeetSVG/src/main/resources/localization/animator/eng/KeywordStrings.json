@@ -6,12 +6,6 @@
 	  "NAMES": ["afterlife"],
 	  "PROPER_NAME": "Afterlife"
 	},
-	"Buffer":
-	{
-	  "DESCRIPTION": "Prevents the next time you would lose HP.",
-	  "NAMES": ["buffer"],
-	  "PROPER_NAME": "Buffer"
-	},
 	"Cooldown":
 	{
 		"DESCRIPTION": "Whenever you play or discard this card, reduce its #yCooldown by #b1. If it is at #b0, activate this effect instead.",
@@ -29,6 +23,12 @@
 		"DESCRIPTION": "Reduce the cost of a random card in hand by 1 until played. Repeated N times.",
 		"NAMES": ["motivate"],
 		"PROPER_NAME": "Motivate"
+	},
+	"Phasing":
+	{
+	  "DESCRIPTION": "Whenever you are attacked, gain a 35% chance to negate the damage.  Increased by 5% per stack up to a max of 50%.",
+	  "NAMES": ["phasing"],
+	  "PROPER_NAME": "Phasing"
 	},
 	"Reload":
 	{
@@ -65,12 +65,6 @@
 		"DESCRIPTION": "A card #ySynergizes if the previous card played this turn was of the same series.",
 		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized"],
 		"PROPER_NAME": "Synergy"
-	},
-	"Ultra Rare":
-	{
-	  "DESCRIPTION": "There may be cards in this world even more powerful than Rare cards.  Power always comes at a price.",
-	  "NAMES": ["ultra rare"],
-	  "PROPER_NAME": "Ultra Rare"
 	},
 	"~Orb Core":
 	{

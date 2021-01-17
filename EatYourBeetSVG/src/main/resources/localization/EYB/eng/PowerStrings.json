@@ -39,5 +39,10 @@
 	{
 		"DESCRIPTIONS": ["Gain #b{0} Temp HP at the start of your next turn."],
 		"NAME": "Temp HP Next Turn"
+	},
+	"EYB:PhasingPower":
+	{
+	  "DESCRIPTIONS": ["Whenever you are attack this turn, ","% chance the attack will deal 0 damage."],
+	  "NAME": "Phasing"
 	}
 }

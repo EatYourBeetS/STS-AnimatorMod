@@ -54,6 +54,8 @@ public class PhasingPower extends CommonPower
                 GameActions.Bottom.RemovePower(owner, owner, this);
             }
         }
+
+        this.updateDescription();
     }
 
     @Override
@@ -66,7 +68,7 @@ public class PhasingPower extends CommonPower
             if (phaseRNG.random(100) < amount)
             {
                 //Phased!
-                GameActions.Bottom.SFX("ORB_FROST_Evoke", 1.5f);
+                GameActions.Bottom.SFX("ORB_PLASMA_CHANNEL", 1.5f);
 
                 return 0;
             }

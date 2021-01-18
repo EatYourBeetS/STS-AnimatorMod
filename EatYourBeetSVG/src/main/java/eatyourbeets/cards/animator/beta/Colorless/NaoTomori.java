@@ -27,15 +27,10 @@ public class NaoTomori extends AnimatorCard
 
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 0);
+        SetCostUpgrade(-1);
         SetRetain(true);
 
         SetSynergy(Synergies.Charlotte);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetHaste(true);
     }
 
     @Override

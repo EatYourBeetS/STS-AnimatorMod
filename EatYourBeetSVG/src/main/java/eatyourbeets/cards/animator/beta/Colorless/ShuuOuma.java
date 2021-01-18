@@ -23,7 +23,7 @@ public class ShuuOuma extends AnimatorCard
         SetExhaust(true);
         SetCostUpgrade(-1);
 
-        SetSynergy(Synergies.GuiltyGear);
+        SetSynergy(Synergies.GuiltyCrown);
     }
 
     @Override

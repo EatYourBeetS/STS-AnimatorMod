@@ -61,7 +61,7 @@ public class Synergies
     public final static Synergy Vocaloid = CreateSynergy(46);
     public final static Synergy Atelier = CreateSynergy(47);
     public final static Synergy CardcaptorSakura = CreateSynergy(48);
-    public final static Synergy GuiltyGear = CreateSynergy(49);
+    public final static Synergy GuiltyCrown = CreateSynergy(49);
     public final static Synergy Gakkougurashi = CreateSynergy(50);
 
     private static AnimatorCard lastCardPlayed = null;

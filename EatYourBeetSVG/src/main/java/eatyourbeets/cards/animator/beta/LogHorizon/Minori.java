@@ -58,7 +58,6 @@ public class Minori extends AnimatorCard {
     private void ShuffleToTopOfDeck()
     {
         flash();
-        GameActions.Last.MoveCard(this, player.drawPile)
-                .SetDestination(CardSelection.Top);
+        GameActions.Last.MoveCard(this, player.drawPile);
     }
 }

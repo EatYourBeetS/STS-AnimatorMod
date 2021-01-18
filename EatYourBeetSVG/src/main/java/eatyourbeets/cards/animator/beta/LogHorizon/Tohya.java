@@ -46,7 +46,7 @@ public class Tohya extends AnimatorCard {
     {
         AbstractCard minori = null;
         int maxDamage = Integer.MIN_VALUE;
-        for (AbstractCard c : player.discardPile.group)
+        for (AbstractCard c : player.drawPile.group)
         {
             if (Minori.DATA.ID.equals(c.cardID))
             {

@@ -218,7 +218,7 @@
 		},
 		"animator:Minori":
 		{
-		 	"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%, rounded down. ||  <SLM>. On Synergy or Discard: Put this card on top of your draw pile.",
+		 	"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%, rounded down. ||  <SLM>. On Synergy or Discard: Put this card into your draw pile.",
 		  	"NAME": "Minori Housaki"
 		},
 		"animator:Naotsugu":
@@ -279,7 +279,7 @@
 		},
 		"animator:Tohya":
 		{
-		    "DESCRIPTION": "Draw {Minori Housaki} from your discard pile. || {Starter}: Gain !M! [Blur].",
+		    "DESCRIPTION": "Draw {Minori Housaki} from your draw pile. || {Starter}: Gain !M! [Blur].",
 			"NAME": "Tohya Housaki"
 		}
 	},

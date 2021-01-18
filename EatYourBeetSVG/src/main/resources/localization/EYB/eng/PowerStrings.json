@@ -42,7 +42,7 @@
 	},
 	"EYB:PhasingPower":
 	{
-	  "DESCRIPTIONS": ["Whenever you are attacked this turn, ","% chance the attack will deal 0 damage.  Lose #b1 #yPhasing at the start of each turn."],
+	  "DESCRIPTIONS": ["You have a ","% chance to dodge each attack. Reduce this number by 5% each turn. Stacking this power resets this to "," and increases the amount by 5% (up to 50%)."],
 	  "NAME": "Phasing"
 	}
 }

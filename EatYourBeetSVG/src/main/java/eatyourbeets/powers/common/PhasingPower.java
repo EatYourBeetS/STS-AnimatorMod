@@ -12,24 +12,26 @@ public class PhasingPower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(PhasingPower.class);
 
-    int evadePercent = 0;
+    private int baseEvadePercent = 35;
+    private int decayPerTurn = 5;
+    private int maxEvadePercent = 50;
 
-    public PhasingPower(AbstractCreature owner, int amount)
+    public PhasingPower(AbstractCreature owner, int timesToStack)
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
+        this.amount = baseEvadePercent;
         this.type = PowerType.BUFF;
 
-        updateEvadePercent();
         updateDescription();
     }
 
     @Override
     public void stackPower(int stackAmount)
     {
-        super.stackPower(stackAmount);
-        updateEvadePercent();
+        baseEvadePercent = Math.min(maxEvadePercent, baseEvadePercent + 5);
+        this.amount = baseEvadePercent;
+        this.fontScale = 8f;
         this.updateDescription();
     }
 
@@ -45,7 +47,7 @@ public class PhasingPower extends CommonPower
 
         if (enabled && amount > 0)
         {
-            reducePower(1);
+            reducePower(decayPerTurn);
 
             if (amount <= 0)
             {
@@ -61,7 +63,7 @@ public class PhasingPower extends CommonPower
         {
             Random phaseRNG = AbstractDungeon.miscRng;
 
-            if (phaseRNG.random(100) < evadePercent)
+            if (phaseRNG.random(100) < amount)
             {
                 //Phased!
                 GameActions.Bottom.SFX("ORB_FROST_Evoke", 1.5f);
@@ -73,16 +75,11 @@ public class PhasingPower extends CommonPower
         return damageAmount;
     }
 
-    private void updateEvadePercent()
-    {
-        evadePercent = Math.min(30 + (amount * 5), 50);
-    }
-
     @Override
     public void updateDescription()
     {
         String[] desc = powerStrings.DESCRIPTIONS;
 
-        description = desc[0] + evadePercent + desc[1];
+        description = desc[0] + amount + desc[1] + baseEvadePercent + desc[2];
     }
 }

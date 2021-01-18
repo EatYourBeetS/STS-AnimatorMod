@@ -26,7 +26,7 @@
 	},
 	"Phasing":
 	{
-	  "DESCRIPTION": "Whenever you are attacked, gain a 35% chance to negate the damage.  Increased by 5% per stack up to a max of 50%.  Reduced by 1 each turn.",
+	  "DESCRIPTION": "You have a 35% chance to dodge each attack. Reduce this number by 5% each turn. Stacking this power resets the chance to dodge and increases it by 5% (up to 50%).",
 	  "NAMES": ["phasing"],
 	  "PROPER_NAME": "Phasing"
 	},

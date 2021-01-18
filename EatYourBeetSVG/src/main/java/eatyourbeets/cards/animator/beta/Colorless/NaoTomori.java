@@ -25,8 +25,8 @@ public class NaoTomori extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 3);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, 3);
+        SetUpgrade(0, 0, 0);
         SetRetain(true);
 
         SetSynergy(Synergies.Charlotte);
@@ -79,7 +79,7 @@ public class NaoTomori extends AnimatorCard
                 {
                     if (cards.size() > 0)
                     {
-                        GameActions.Bottom.StackPower(new PhasingPower(p, 1));
+                        GameActions.Bottom.StackPower(new PhasingPower(p, secondaryValue));
                     }
                 });
     }

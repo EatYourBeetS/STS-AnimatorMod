@@ -218,7 +218,7 @@
 		},
 		"animator:Minori":
 		{
-		 	"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%, rounded down. ||  <SLM>. On Synergy or Discard: Put this card into your draw pile.",
+		 	"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%, rounded down. ||  <SLM>. On Synergy or Discard: Shuffle this card into your draw pile.",
 		  	"NAME": "Minori Housaki"
 		},
 		"animator:Naotsugu":

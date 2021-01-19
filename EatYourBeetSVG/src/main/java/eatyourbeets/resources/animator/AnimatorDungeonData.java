@@ -69,16 +69,6 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             }
         }
 
-        //Remember to ignore/remove this when moving series out of beta!
-        for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
-        {
-            AnimatorRuntimeLoadout r = AnimatorRuntimeLoadout.TryCreate(loadout);
-            if (r != null)
-            {
-                Series.add(r);
-            }
-        }
-
         FullLog("ADD ALL SERIES");
     }
 

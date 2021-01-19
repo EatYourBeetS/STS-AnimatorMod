@@ -25,9 +25,9 @@ public class YaoHaDucy extends AnimatorCard
     }
 
     @Override
-    public boolean HasSynergy(AbstractCard other)
+    public boolean HasDirectSynergy(AbstractCard other)
     {
-        return (other.freeToPlay() || other.costForTurn == 0) || super.HasSynergy(other);
+        return (other.freeToPlay() || other.costForTurn == 0) || super.HasDirectSynergy(other);
     }
 
     @Override

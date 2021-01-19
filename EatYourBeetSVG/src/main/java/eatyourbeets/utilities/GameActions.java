@@ -677,6 +677,7 @@ public final class GameActions
     {
         return Add(new PlayCard(card, target, true))
         .SetCurrentPosition(card.current_x, card.current_y)
+        .SpendEnergy(false)
         .SetPurge(true);
     }
 

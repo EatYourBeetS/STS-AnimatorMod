@@ -194,15 +194,15 @@ public class Synergies
         AnimatorCard b = JUtils.SafeCast(other, AnimatorCard.class);
         if (a == null && b != null)
         {
-            return b.HasSynergy(a);
+            return b.HasDirectSynergy(a);
         }
         if (b == null && a != null)
         {
-            return a.HasSynergy(b);
+            return a.HasDirectSynergy(b);
         }
         if (a != null)
         {
-            return a.HasSynergy(b) || b.HasSynergy(a);
+            return a.HasDirectSynergy(b) || b.HasDirectSynergy(a);
         }
 
         return HasTagSynergy(card, other);

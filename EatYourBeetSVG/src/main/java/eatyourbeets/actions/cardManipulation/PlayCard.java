@@ -188,6 +188,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
             if (!spendEnergy)
             {
                 card.freeToPlayOnce = true;
+                card.ignoreEnergyOnUse = false;
             }
 
             if (CanUse())
@@ -268,13 +269,19 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
         //GameActions.Top.Add(new UnlimboAction(card));
         GameActions.Top.Wait(Settings.FAST_MODE ? Settings.ACTION_DUR_FASTER : Settings.ACTION_DUR_MED);
 
+        int energyOnUse = EnergyPanel.getCurrentEnergy();
+
         if (spendEnergy)
         {
             GameActions.Top.Add(new DelayAllActions()) // So the result of canUse() does not randomly change after queueing the card
             .Except(a -> a instanceof UnlimboAction || a instanceof WaitAction);
         }
+        else if (card.energyOnUse != -1)
+        {
+            energyOnUse = card.energyOnUse;
+        }
 
-        AbstractDungeon.actionManager.cardQueue.add(0, new CardQueueItem(card, enemy, EnergyPanel.getCurrentEnergy(), true, !spendEnergy));
+        AbstractDungeon.actionManager.cardQueue.add(0, new CardQueueItem(card, enemy, energyOnUse, true, !spendEnergy));
 
         Complete(enemy);
     }

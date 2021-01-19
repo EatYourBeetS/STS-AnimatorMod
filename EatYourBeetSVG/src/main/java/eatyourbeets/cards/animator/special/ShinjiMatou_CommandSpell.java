@@ -38,7 +38,7 @@ public class ShinjiMatou_CommandSpell extends AnimatorCard
             GameActions.Bottom.Add(new DecreaseMaxOrbAction(1));
             GameActions.Bottom.PlayFromPile(name, 1, m, p.discardPile)
             .SetOptions(false, false)
-            .SetFilter(this::HasSynergy);
+            .SetFilter(c -> Synergies.WouldSynergize(this, c));
         }
     }
 }

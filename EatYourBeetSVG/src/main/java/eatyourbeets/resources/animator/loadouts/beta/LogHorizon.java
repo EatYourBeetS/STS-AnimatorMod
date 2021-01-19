@@ -14,6 +14,8 @@ public class LogHorizon extends AnimatorLoadout
     public LogHorizon()
     {
         super(Synergies.LogHorizon);
+
+        IsBeta = true;
     }
 
     @Override

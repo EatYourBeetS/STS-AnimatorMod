@@ -12,10 +12,6 @@ import eatyourbeets.utilities.GameActions;
 public class Soujiro_Kawara extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Soujiro_Kawara.class).SetAttack(0, CardRarity.SPECIAL, EYBAttackType.Normal);
-    static
-    {
-        DATA.AddPreview(new Soujiro(), false);
-    }
 
     public Soujiro_Kawara()
     {

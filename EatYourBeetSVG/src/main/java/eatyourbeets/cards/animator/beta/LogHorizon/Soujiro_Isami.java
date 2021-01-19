@@ -11,10 +11,6 @@ import eatyourbeets.utilities.GameActions;
 public class Soujiro_Isami extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Soujiro_Isami.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.Normal);
-    static
-    {
-        DATA.AddPreview(new Soujiro(), false);
-    }
 
     public Soujiro_Isami()
     {

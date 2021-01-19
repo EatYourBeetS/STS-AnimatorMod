@@ -238,7 +238,7 @@
 		},
 		"animator:RundelhausCode":
 		{
-		  "DESCRIPTION": "Starter: Increase the damage of all {Elemental}-type {Attacks} in your hand by !M! this combat. || Synergy: Channel !S! Lightning.",
+		  "DESCRIPTION": "Starter: Increase the damage of all {Elemental}-type {Attacks} in your hand by !M! this combat. || Synergy: Channel !S! [Lightning].",
 		  "NAME": "Rundelhaus Code"
 		},
 		"animator:Serara":

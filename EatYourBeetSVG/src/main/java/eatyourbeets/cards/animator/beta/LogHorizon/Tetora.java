@@ -35,7 +35,7 @@ public class Tetora extends AnimatorCard
         {
             for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
             {
-                if (super.HasSynergy(c))
+                if (super.HasSynergy(c) || (c instanceof AnimatorCard && ((AnimatorCard)c).HasSynergy(this)))
                 {
                     synCount++;
                 }

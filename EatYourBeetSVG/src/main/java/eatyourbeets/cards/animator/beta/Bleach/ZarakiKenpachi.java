@@ -60,6 +60,7 @@ public class ZarakiKenpachi extends AnimatorCard
         public void OnStartOfTurnPostDraw()
         {
             activated = false;
+            updateDescription();
         }
 
         @Override

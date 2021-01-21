@@ -44,7 +44,7 @@ public class Soujiro extends AnimatorCard
 
         for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
         {
-            if (super.HasSynergy(c))
+            if (super.HasDirectSynergy(c))
             {
                 synergyCount++;
             }

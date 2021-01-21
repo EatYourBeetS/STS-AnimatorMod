@@ -101,7 +101,7 @@ public class ShidoItsuka extends AnimatorCard
             && c.rarity != AbstractCard.CardRarity.SPECIAL
             && c.rarity != AbstractCard.CardRarity.BASIC)
             {
-                if (HasSynergy(c))
+                if (HasDirectSynergy(c))
                 {
                     if (((AnimatorCard) c).synergy == Synergies.DateALive)
                     {

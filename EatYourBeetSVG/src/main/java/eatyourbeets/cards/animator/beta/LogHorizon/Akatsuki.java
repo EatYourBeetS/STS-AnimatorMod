@@ -30,9 +30,9 @@ public class Akatsuki extends AnimatorCard {
     }
 
     @Override
-    public boolean HasSynergy(AbstractCard other)
+    public boolean HasDirectSynergy(AbstractCard other)
     {
-        return (other.rarity.equals(CardRarity.UNCOMMON)) || super.HasSynergy(other);
+        return (other.rarity.equals(CardRarity.UNCOMMON)) || super.HasDirectSynergy(other);
     }
 
     @Override

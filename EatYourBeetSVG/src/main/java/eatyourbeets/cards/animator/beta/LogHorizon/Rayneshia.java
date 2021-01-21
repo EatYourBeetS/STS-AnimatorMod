@@ -37,16 +37,16 @@ public class Rayneshia extends AnimatorCard {
     }
 
     @Override
-    public boolean HasSynergy(AbstractCard other)
+    public boolean HasDirectSynergy(AbstractCard other)
     {
-        return (GameUtilities.IsCurseOrStatus(other)) || (other.exhaust) || super.HasSynergy(other);
+        return (GameUtilities.IsCurseOrStatus(other)) || (other.exhaust) || super.HasDirectSynergy(other);
     }
 
     private void AddCardsFromGroupToSynergy(CardGroup group)
     {
         for (AbstractCard c : group.group)
         {
-            if (HasSynergy(c))
+            if (HasDirectSynergy(c))
             {
                 synergicCards.add(c);
             }

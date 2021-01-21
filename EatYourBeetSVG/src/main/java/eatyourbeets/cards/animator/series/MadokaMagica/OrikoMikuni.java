@@ -14,6 +14,8 @@ public class OrikoMikuni extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(OrikoMikuni.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
 
+    private static final CardEffectChoice choices = new CardEffectChoice();
+
     public OrikoMikuni()
     {
         super(DATA);

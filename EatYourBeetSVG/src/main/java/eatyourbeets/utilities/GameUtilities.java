@@ -1068,6 +1068,10 @@ public class GameUtilities
         {
             amount = card.energyOnUse;
         }
+        else
+        {
+            card.energyOnUse = amount;
+        }
 
         if (player.hasRelic(ChemicalX.ID))
         {
@@ -1077,7 +1081,7 @@ public class GameUtilities
 
         if (!card.freeToPlayOnce)
         {
-            EnergyPanel.useEnergy(card.energyOnUse);
+            player.energy.use(card.energyOnUse);
         }
 
         RefreshHandLayout();

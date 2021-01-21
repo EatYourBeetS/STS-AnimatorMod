@@ -32,21 +32,18 @@ public class ZarakiKenpachi extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.StackPower(new ZarakiKenpachiPower(p, this.magicNumber, cardID));
+        GameActions.Bottom.StackPower(new ZarakiKenpachiPower(p, magicNumber));
     }
 
     public static class ZarakiKenpachiPower extends AnimatorPower implements OnBlockBrokenSubscriber, OnStartOfTurnPostDrawSubscriber
     {
-        private String cardID;
-
         boolean activated;
 
-        public ZarakiKenpachiPower(AbstractPlayer owner, int amount, String cardID)
+        public ZarakiKenpachiPower(AbstractPlayer owner, int amount)
         {
             super(owner, ZarakiKenpachi.DATA);
 
             this.amount = amount;
-            this.cardID = cardID;
 
             ForcePower.StartAlwaysPreserve();
             AgilityPower.StartDisable();

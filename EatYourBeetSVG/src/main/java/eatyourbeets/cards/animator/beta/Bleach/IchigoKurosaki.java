@@ -1,18 +1,16 @@
 package eatyourbeets.cards.animator.beta.Bleach;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.IchigoBankai;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActions;
 
 public class IchigoKurosaki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(IchigoKurosaki.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(IchigoKurosaki.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Random);
     static
     {
         DATA.AddPreview(new IchigoBankai(), false);
@@ -22,36 +20,26 @@ public class IchigoKurosaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 0, ForcePower.GetThreshold(4));
+        Initialize(2, 0, 0, ForcePower.GetThreshold(4));
+        SetUpgrade(3, 0, 0, 0);
+        SetScaling(0,1,1);
 
-        SetExhaust(true);
         SetSynergy(Synergies.Bleach);
         SetMartialArtist();
     }
 
     @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        GameActions.Bottom.Callback(() ->
-        {
-            if (ForcePower.GetCurrentLevel() > 4)
-            {
-                GameActions.Bottom.MakeCardInDrawPile(new IchigoBankai());
-            }
-        });
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+
         GameActions.Bottom.GainForce(1, true);
         GameActions.Bottom.GainAgility(1, true);
 
-        if (upgraded)
+        if (ForcePower.GetCurrentLevel() > 4)
         {
-            GameActions.Bottom.Draw(1);
+            GameActions.Bottom.MakeCardInDrawPile(new IchigoBankai());
+            GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
         }
     }
 }

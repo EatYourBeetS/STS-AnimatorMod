@@ -50,7 +50,7 @@ public class Megunee extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        GameActions.Last.Exhaust(this);
+        GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
     }
 
     @Override

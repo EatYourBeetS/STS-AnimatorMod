@@ -1,0 +1,19 @@
+
+{
+	"animator:FalseLifePotion":
+	{
+		"NAME": "Фальшивое Зелье Лечения",
+		"DESCRIPTIONS":
+		[
+			"Даёт #b{0} #yВременного #yHP."
+		]
+	},
+	"animator:GrowthPotion":
+	{
+		"NAME": "Зелье Опыта",
+		"DESCRIPTIONS":
+		[
+			"Даёт #b{0} #yУсилия, #yИнтеллекта и #yПроворства."
+		]
+	}
+}

@@ -117,6 +117,11 @@ public class JUtils
 
     public static String Format(String format, Object... args)
     {
+        if (args.length > 0)
+        {
+            format = format.replaceAll("(?<!\\\\)'", "''").replaceAll("\\\\'", "'");
+        }
+
         formatter.applyPattern(format);
         return formatter.format(args);
     }

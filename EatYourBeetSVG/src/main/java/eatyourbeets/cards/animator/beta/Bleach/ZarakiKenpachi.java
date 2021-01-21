@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnBlockBrokenSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.IntellectPower;
@@ -49,6 +50,9 @@ public class ZarakiKenpachi extends AnimatorCard
             AgilityPower.StartDisable();
             IntellectPower.StartDisable();
 
+            CombatStats.onBlockBroken.Subscribe(this);
+            CombatStats.onStartOfTurnPostDraw.Subscribe(this);
+
             updateDescription();
         }
 
@@ -66,6 +70,9 @@ public class ZarakiKenpachi extends AnimatorCard
             ForcePower.StopAlwaysPreserve();
             AgilityPower.StopDisable();
             IntellectPower.StopDisable();
+
+            CombatStats.onBlockBroken.Unsubscribe(this);
+            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         }
 
         @Override

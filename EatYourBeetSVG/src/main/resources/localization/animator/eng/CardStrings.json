@@ -198,7 +198,7 @@
 		"animator:ZarakiKenpachi":
 		{
 		  "DESCRIPTION": "Your [F] no longer decreases. You cannot gain [A][I]. || Once per turn, if you break an enemy's [Block]: Gain !M! {Temp. Strength}.",
-		  "EXTENDED_DESCRIPTION": ["Your #yForce no longer decreases. You cannot gain #yAgility nor #yIntellect. Once per turn, if you break an enemy's #yBlock, gain #b{0} #yTemp. #yStrength."],
+		  "EXTENDED_DESCRIPTION": ["Once per turn, if you break an enemy's #yBlock, gain #b{0} #yTemp. #yStrength. Your #yForce no longer decreases. You cannot gain #yAgility nor #yIntellect."],
 		  "NAME": "Zaraki Kenpachi"
 		}
 	},

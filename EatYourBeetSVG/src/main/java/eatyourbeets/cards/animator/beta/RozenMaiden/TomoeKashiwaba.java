@@ -59,7 +59,7 @@ public class TomoeKashiwaba extends AnimatorCard
 		if (p.drawPile.size() > 0)
 		{
 			AbstractCard topCard = p.drawPile.getTopCard();
-			if (HasSynergy(topCard) && CombatStats.TryActivateSemiLimited(cardID))
+			if (HasDirectSynergy(topCard) && CombatStats.TryActivateSemiLimited(cardID))
 			{
 				GameActions.Top.GainBlock(block);
 				GameActions.Top.Draw(topCard);

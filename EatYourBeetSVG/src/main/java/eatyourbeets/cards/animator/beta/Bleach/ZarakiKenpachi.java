@@ -8,8 +8,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnBlockBrokenSubscriber;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.IntellectPower;
@@ -35,9 +35,11 @@ public class ZarakiKenpachi extends AnimatorCard
         GameActions.Bottom.StackPower(new ZarakiKenpachiPower(p, this.magicNumber, cardID));
     }
 
-    public static class ZarakiKenpachiPower extends AnimatorPower implements OnBlockBrokenSubscriber
+    public static class ZarakiKenpachiPower extends AnimatorPower implements OnBlockBrokenSubscriber, OnStartOfTurnPostDrawSubscriber
     {
         private String cardID;
+
+        boolean activated;
 
         public ZarakiKenpachiPower(AbstractPlayer owner, int amount, String cardID)
         {
@@ -54,6 +56,12 @@ public class ZarakiKenpachi extends AnimatorCard
         }
 
         @Override
+        public void OnStartOfTurnPostDraw()
+        {
+            activated = false;
+        }
+
+        @Override
         public void onRemove()
         {
             super.onRemove();
@@ -66,8 +74,9 @@ public class ZarakiKenpachi extends AnimatorCard
         @Override
         public void OnBlockBroken(AbstractCreature creature)
         {
-            if (!creature.isPlayer && CombatStats.TryActivateSemiLimited(cardID))
+            if (!creature.isPlayer && !activated)
             {
+                activated = true;
                 GameActions.Bottom.GainStrength(amount);
                 GameActions.Bottom.ApplyPower(new LoseStrengthPower(player, amount));
             }

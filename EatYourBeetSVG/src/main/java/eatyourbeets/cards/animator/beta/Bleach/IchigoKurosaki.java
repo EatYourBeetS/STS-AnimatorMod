@@ -36,10 +36,12 @@ public class IchigoKurosaki extends AnimatorCard
         GameActions.Bottom.GainForce(1, true);
         GameActions.Bottom.GainAgility(1, true);
 
-        if (ForcePower.GetCurrentLevel() > 4)
-        {
-            GameActions.Bottom.MakeCardInDrawPile(new IchigoBankai());
-            GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
-        }
+        GameActions.Bottom.Callback(card -> {
+            if (ForcePower.GetCurrentLevel() > 4)
+            {
+                GameActions.Bottom.MakeCardInDrawPile(new IchigoBankai());
+                GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
+            }
+        });
     }
 }

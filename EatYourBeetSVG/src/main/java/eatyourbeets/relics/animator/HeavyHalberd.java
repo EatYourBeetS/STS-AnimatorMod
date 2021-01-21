@@ -27,7 +27,7 @@ public class HeavyHalberd extends AnimatorRelic
     {
         super.atTurnStartPostDraw();
 
-        int force = JUtils.Count(GameUtilities.GetEnemies(true), m -> m.hasPower(VulnerablePower.POWER_ID)) * FORCE_AMOUNT;
+        int force = JUtils.Count(GameUtilities.GetAllCharacters(true), c -> c.hasPower(VulnerablePower.POWER_ID)) * FORCE_AMOUNT;
         if (force > 0)
         {
             GameActions.Bottom.GainForce(force);

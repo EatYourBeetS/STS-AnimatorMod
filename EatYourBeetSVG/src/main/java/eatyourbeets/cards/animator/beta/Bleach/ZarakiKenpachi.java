@@ -63,6 +63,13 @@ public class ZarakiKenpachi extends AnimatorCard
         }
 
         @Override
+        public void stackPower(int stackAmount)
+        {
+            super.stackPower(stackAmount);
+            updateDescription();
+        }
+
+        @Override
         public void onRemove()
         {
             super.onRemove();

@@ -1,0 +1,404 @@
+
+{
+	"animator:Dark_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "Куб Тьмы",
+		"DIALOG": [""]
+	},
+	"animator:Dark_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "Куб Тьмы",
+		"DIALOG": [""]
+	},
+	"animator:Dark_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "Куб Тьмы",
+		"DIALOG": [""]
+	},
+
+	"animator:Lightning_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "Куб Молнии",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "Куб Молнии",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "Куб Молнии",
+		"DIALOG": [""]
+	},
+
+	"animator:Frost_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "Куб Мороза",
+		"DIALOG": [""]
+	},
+	"animator:Frost_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "Куб Мороза",
+		"DIALOG": [""]
+	},
+	"animator:Frost_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "Куб Мороза",
+		"DIALOG": [""]
+	},
+
+	"animator:Fire_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "Куб Огня",
+		"DIALOG": [""]
+	},
+	"animator:Fire_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "Куб Огня",
+		"DIALOG": [""]
+	},
+	"animator:Fire_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "Куб Огня",
+		"DIALOG": [""]
+	},
+
+	"animator:Healing_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "Куб Лечения",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "Куб Лечения",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "Куб Лечения",
+		"DIALOG": [""]
+	},
+
+	"animator:Dark_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "Кристалл Тьмы",
+		"DIALOG": [""]
+	},
+	"animator:Dark_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "Кристалл Тьмы",
+		"DIALOG": [""]
+	},
+	"animator:Dark_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "Кристалл Тьмы",
+		"DIALOG": [""]
+	},
+
+	"animator:Lightning_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "Кристалл Молнии",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "Кристалл Молнии",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "Кристалл Молнии",
+		"DIALOG": [""]
+	},
+
+	"animator:Frost_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "Кристалл Мороза",
+		"DIALOG": [""]
+	},
+	"animator:Frost_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "Кристалл Мороза",
+		"DIALOG": [""]
+	},
+	"animator:Frost_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "Кристалл Мороза",
+		"DIALOG": [""]
+	},
+
+	"animator:Fire_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "Кристалл Огня",
+		"DIALOG": [""]
+	},
+	"animator:Fire_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "Кристалл Огня",
+		"DIALOG": [""]
+	},
+	"animator:Fire_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "Кристалл Огня",
+		"DIALOG": [""]
+	},
+
+	"animator:Healing_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "Кристалл Лечения",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "Кристалл Лечения",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "Кристалл Лечения",
+		"DIALOG": [""]
+	},
+
+	"animator:Dark_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "Огонёк Тьмы",
+		"DIALOG": [""]
+	},
+	"animator:Dark_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "Огонёк Тьмы",
+		"DIALOG": [""]
+	},
+	"animator:Dark_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "Огонёк Тьмы",
+		"DIALOG": [""]
+	},
+
+	"animator:Lightning_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "Огонёк Молнии",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "Огонёк Молнии",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "Огонёк Молнии",
+		"DIALOG": [""]
+	},
+
+	"animator:Frost_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "Огонёк Мороза",
+		"DIALOG": [""]
+	},
+	"animator:Frost_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "Огонёк Мороза",
+		"DIALOG": [""]
+	},
+	"animator:Frost_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "Огонёк Мороза",
+		"DIALOG": [""]
+	},
+
+	"animator:Fire_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "Огонёк Пламени",
+		"DIALOG": [""]
+	},
+	"animator:Fire_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "Огонёк Пламени",
+		"DIALOG": [""]
+	},
+	"animator:Fire_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "Огонёк Пламени",
+		"DIALOG": [""]
+	},
+
+	"animator:Healing_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "Огонёк Лечения",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "Огонёк Лечения",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "Огонёк Лечения",
+		"DIALOG": [""]
+	},
+
+	"animator:Ultimate_Cube_3":
+	{
+		"MOVES": [],
+		"NAME": "Ультимативный Куб",
+		"DIALOG": [""]
+	},
+	"animator:Ultimate_Wisp_3":
+	{
+		"MOVES": [],
+		"NAME": "Ультимативный Огонёк",
+		"DIALOG": [""]
+	},
+	"animator:Ultimate_Crystal_3":
+	{
+		"MOVES": [],
+		"NAME": "Ультимативный Кристалл",
+		"DIALOG": [""]
+	},
+
+	"animator:HornedBat_P":
+	{
+		"MOVES": [],
+		"NAME": "Рогатая Летучая Мышь",
+		"DIALOG": [""]
+	},
+	"animator:HornedBat_R":
+	{
+		"MOVES": [],
+		"NAME": "Рогатая Летучая Мышь",
+		"DIALOG": [""]
+	},
+	"animator:KrulTepes":
+	{
+		"MOVES": [],
+		"NAME": "Крул Цепеш",
+		"DIALOG": [""]
+	},
+	"animator:TheUnnamed_Doll":
+	{
+		"MOVES": [],
+		"NAME": "",
+		"DIALOG": [""]
+	},
+
+	"animator:TheUnnamed_Hat":
+	{
+		"MOVES": [],
+		"NAME": "Ш4ПК4",
+		"DIALOG":
+		[
+			"Пришелец!"
+		]
+	},
+
+	"animator:TheUnnamed_Cultist":
+	{
+		"MOVES": [],
+		"NAME": "Культист",
+		"DIALOG":
+		[
+			"УЗРИ! Ультимативный Кристалл!",
+			"УЗРИ! Ультимативное Оружие!",
+			"УЗРИ! Ультимативный {0}!",
+			"УЗРИ! Ультимативный Приспешник!",
+			"УЗРИ! Ультимативная... Хрень!",
+			"У меня есть сюрприз, просто дай мне время подготовится...",
+			"Пока что не готово!",
+			"Подожди немного дольше!",
+			"Почти Готово!",
+			"Вот оно!",
+			"УЗРИ! Прищельца."
+		]
+	},
+	"animator:TheUnnamed":
+	{
+		"MOVES": [],
+		"NAME": "Безымянный",
+		"DIALOG":
+		[
+			"Достаточно! Всё кончится здесь...",
+			"Что это? Лишь я обладаю безграничной силой!",
+			"Тетрадь Смерти не работает на меня! У меня ведь нет имени, помнишь?",
+			"Ты меня раздраюаешь... Вот тебе подарочек.",
+			"Я хозяин этой вселенной или что-то в этом роде..",
+			"Разве ты не счастлив, что я не атакую?",
+			"...",
+			"Ты не готов.",
+			"Всё скоро закончится...",
+			"Моя сила не сравнима с чем либо!",
+			"Я непобедим!",
+			"Почему Гильгамеш помогает тебе?",
+			"Тебе понадобится БОЛШОООЙ взрыв для этого.",
+			"Ты читеришь, Аинза сюда не пускают.",
+			"Борос, ты выбрал не ту сторону.",
+			"Оу, посмотрите, one punch man не убил меня, какая неудача.",
+			"Как насчет того, что бы снова заснуть еще на пару столетий?",
+			"Гурен? Опять переделываешься?",
+			"Я почти боюсь Нанами. Почти.",
+			"Гоблины... Как тебе идея замешать немного гоблинов в твою колоду?",
+			"Курами? Осторожно, ты можешь сыграть лишь 16 карт.",
+			"Хочешь увидеть что-то РЕАЛЬНО странное? А... забудь.",
+			"Часики тикают...",
+			"Неплохая попытка. Давай ты больше не будешь так делать.",
+			"Я предупреждал тебя...",
+			"Останови этот шум",
+			"ПОСЛЕДНЕЕ ПРЕДУПРЕЖДЕНИЕ.",
+			"Тебя предупреждали... Спокойной ночи.",
+			"Я... ещё вернусь...",
+			"Гхм... Будь здоров?",
+			"Ты смеешь приближаться ко мне?",
+			"<НЕИСПОЛЬЗУЕТСЯ>",
+			"<НЕИСПОЛЬЗУЕТСЯ>",
+			"Неосязаемость? Ты не один кто может использовать это.",
+			"Оу! Видимо твое время на исходе. Прощай!"
+		]
+	}
+}

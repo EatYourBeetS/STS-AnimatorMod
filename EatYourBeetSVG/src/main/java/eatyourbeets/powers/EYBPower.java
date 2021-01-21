@@ -38,6 +38,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
     public TextureAtlas.AtlasRegion powerIcon;
     public boolean enabled = true;
+    public boolean disabled = false;
 
     public EYBPower(AbstractCreature owner, EYBCardData cardData)
     {

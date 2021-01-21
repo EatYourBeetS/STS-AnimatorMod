@@ -188,6 +188,21 @@
 		}
 	},
 
+	"BETA:BLEACH":
+	{
+		"animator:IchigoKurosaki":
+		{
+		  "DESCRIPTION": "Boost [F] [A]. || When Exhausted: If you ** reached !S! [F] this combat, ** add {Ichigo Bankai} to ** your draw pile.",
+		  "NAME": "Ichigo Kurosaki",
+		  "UPGRADE_DESCRIPTION": "Boost [F] [A]. <DRW>. || When Exhausted: If you ** reached !S! [F] this combat, ** add {Ichigo Bankai} to ** your draw pile."
+		},
+		"animator:ZarakiKenpachi":
+		{
+		  "DESCRIPTION": "Your [F] no longer decreases. You cannot gain [A][I]. || <SLM>. If you break an enemy's [Block]: Gain !M! {Temp. Strength}.",
+		  "NAME": "Zaraki Kenpachi",
+		}
+	},
+
 	"BETA:LOGHORIZON":
 	{
 		"animator:Akatsuki":
@@ -899,12 +914,6 @@
 		{
 			"DESCRIPTION": "Channel 1 [Frost]. || When Exhausted, ** Channel 1 [Frost].",
 			"NAME": "Cirno"
-		},
-		"animator:IchigoKurosaki":
-		{
-			"DESCRIPTION": "Boost [F] [A]. || When Exhausted: If you ** reached !S! [F] this combat, ** add {Ichigo Bankai} to ** your draw pile.",
-			"NAME": "Ichigo Kurosaki",
-			"UPGRADE_DESCRIPTION": "Boost [F] [A]. <DRW>. || When Exhausted: If you ** reached !S! [F] this combat, ** add {Ichigo Bankai} to ** your draw pile."
 		},
 		"animator:Kuroyukihime":
 		{
@@ -2153,4 +2162,4 @@
 			"NAME": "Veldora"
 		}
 	}
-}
+},

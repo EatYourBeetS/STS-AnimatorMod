@@ -18,6 +18,27 @@ public class AgilityPower extends PlayerAttributePower
         preservedPowers.Subscribe(POWER_ID);
     }
 
+    public static void StartAlwaysPreserve()
+    {
+        permanentlyPreservedPowers.Subscribe(POWER_ID);
+    }
+
+    public static void StopAlwaysPreserve()
+    {
+        permanentlyPreservedPowers.Subscribe(POWER_ID);
+    }
+
+    public static void StartDisable()
+    {
+        permanentlyDisabledPowers.Subscribe(POWER_ID);
+    }
+
+    public static void StopDisable()
+    {
+        permanentlyDisabledPowers.Unsubscribe(POWER_ID);
+    }
+
+
     public AgilityPower(AbstractCreature owner, int amount)
     {
         super(POWER_ID, owner, amount);

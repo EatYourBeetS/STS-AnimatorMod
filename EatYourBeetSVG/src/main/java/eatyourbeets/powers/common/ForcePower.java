@@ -23,6 +23,27 @@ public class ForcePower extends PlayerAttributePower
         preservedPowers.Subscribe(POWER_ID);
     }
 
+    public static void StartAlwaysPreserve()
+    {
+        permanentlyPreservedPowers.Subscribe(POWER_ID);
+    }
+
+    public static void StopAlwaysPreserve()
+    {
+        permanentlyPreservedPowers.Subscribe(POWER_ID);
+    }
+
+    public static void StartDisable()
+    {
+        permanentlyDisabledPowers.Subscribe(POWER_ID);
+    }
+
+    public static void StopDisable()
+    {
+        permanentlyDisabledPowers.Unsubscribe(POWER_ID);
+    }
+
+
     @Override
     public float GetScaling(EYBCard card)
     {

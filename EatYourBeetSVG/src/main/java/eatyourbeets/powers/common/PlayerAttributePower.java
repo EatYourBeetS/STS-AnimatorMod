@@ -20,7 +20,9 @@ import java.util.HashSet;
 
 public abstract class PlayerAttributePower extends CommonPower
 {
+    protected static final PermanentlyPreservedPowers permanentlyPreservedPowers = new PermanentlyPreservedPowers();
     protected static final PreservedPowers preservedPowers = new PreservedPowers();
+    protected static final PermanentlyDisabledPowers permanentlyDisabledPowers = new PermanentlyDisabledPowers();
     protected int threshold;
 
     public static int GetThreshold(int level)
@@ -64,7 +66,14 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         super(owner, powerID);
 
-        this.amount = amount;
+        if (!disabled)
+        {
+            this.amount = amount;
+        }
+        else
+        {
+            this.amount = 0;
+        }
         this.threshold = 2;
 
         updateDescription();
@@ -84,17 +93,23 @@ public abstract class PlayerAttributePower extends CommonPower
     @Override
     public void onInitialApplication()
     {
-        super.onInitialApplication();
+        if (!disabled)
+        {
+            super.onInitialApplication();
 
-        UpdateThreshold();
+            UpdateThreshold();
+        }
     }
 
     @Override
     public void stackPower(int stackAmount)
     {
-        super.stackPower(stackAmount);
+        if (!disabled)
+        {
+            super.stackPower(stackAmount);
 
-        UpdateThreshold();
+            UpdateThreshold();
+        }
     }
 
     @Override
@@ -113,7 +128,8 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         super.update(slot);
 
-        this.enabled = (!preservedPowers.contains(ID));
+        this.enabled = (!preservedPowers.contains(ID) || !permanentlyPreservedPowers.contains(ID) );
+        this.disabled = (permanentlyDisabledPowers.contains(ID));
     }
 
     @Override
@@ -184,6 +200,50 @@ public abstract class PlayerAttributePower extends CommonPower
         }
 
         updateDescription();
+    }
+
+    public static class PermanentlyPreservedPowers extends HashSet<String> implements OnStatsClearedSubscriber
+    {
+        @Override
+        public void OnStatsCleared()
+        {
+            clear();
+            CombatStats.onStatsCleared.Unsubscribe(this);
+        }
+
+        public void Subscribe(String powerID)
+        {
+            add(powerID);
+            CombatStats.onStatsCleared.Subscribe(this);
+        }
+
+        public void Unsubscribe(String powerID)
+        {
+            add(powerID);
+            CombatStats.onStatsCleared.Unsubscribe(this);
+        }
+    }
+
+    public static class PermanentlyDisabledPowers extends HashSet<String> implements OnStatsClearedSubscriber
+    {
+        @Override
+        public void OnStatsCleared()
+        {
+            clear();
+            CombatStats.onStatsCleared.Unsubscribe(this);
+        }
+
+        public void Subscribe(String powerID)
+        {
+            add(powerID);
+            CombatStats.onStatsCleared.Subscribe(this);
+        }
+
+        public void Unsubscribe(String powerID)
+        {
+            add(powerID);
+            CombatStats.onStatsCleared.Unsubscribe(this);
+        }
     }
 
     public static class PreservedPowers extends HashSet<String> implements OnStatsClearedSubscriber, OnStartOfTurnPostDrawSubscriber

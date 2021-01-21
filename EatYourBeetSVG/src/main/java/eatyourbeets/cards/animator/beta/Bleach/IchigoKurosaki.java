@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.colorless.uncommon;
+package eatyourbeets.cards.animator.beta.Bleach;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class IchigoKurosaki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(IchigoKurosaki.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(IchigoKurosaki.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
         DATA.AddPreview(new IchigoBankai(), false);
@@ -22,7 +22,7 @@ public class IchigoKurosaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 0, ForcePower.GetThreshold(2));
+        Initialize(0, 0, 0, ForcePower.GetThreshold(4));
 
         SetExhaust(true);
         SetSynergy(Synergies.Bleach);
@@ -36,7 +36,7 @@ public class IchigoKurosaki extends AnimatorCard
 
         GameActions.Bottom.Callback(() ->
         {
-            if (ForcePower.GetCurrentLevel() > 2)
+            if (ForcePower.GetCurrentLevel() > 4)
             {
                 GameActions.Bottom.MakeCardInDrawPile(new IchigoBankai());
             }

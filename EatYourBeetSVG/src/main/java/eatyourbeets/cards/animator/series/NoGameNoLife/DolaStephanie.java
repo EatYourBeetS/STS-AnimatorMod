@@ -42,7 +42,7 @@ public class DolaStephanie extends AnimatorCard
                 AbstractCard selected = cards.get(0);
                 GameActions.Top.FetchFromPile(name, 1, player.drawPile)
                 .SetOptions(false, false)
-                .SetFilter(c -> Synergies.WouldSynergize(selected, c));
+                .SetFilter(c -> Synergies.WouldSynergize(selected, c)); //
             }
         });
     }

@@ -162,6 +162,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onStatsCleared.Clear();
         onStanceChanged.Clear();
         onSynergyCheck.Clear();
+        ControlPile.Clear();
     }
 
     public static void EnsurePowerIsApplied()
@@ -391,11 +392,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static int TurnCount()
     {
         return turnCount;
-    }
-
-    public static void IncreaseSynergyBonus(int amount)
-    {
-        synergiesThisTurn += amount;
     }
 
     @Override

@@ -52,45 +52,47 @@ public class AfterLifeMod extends AbstractCardModifier
     public static void AfterlifeAddToControlPile(AbstractCard card)
     {
         CombatStats.ControlPile.Add(card)
-        .OnUpdate(control ->
-        {
-            if (!player.exhaustPile.contains(control.card))
-            {
-                control.Delete();
-            }
-        })
-        .OnSelect(control ->
-        {
-            if (CombatStats.ControlPile.IsHovering() && control.card.canUse(player, null))
-            {
-                if (JUtils.Find(player.exhaustPile.group, AfterLifeMod::CanPurge) == null)
+                .OnUpdate(control ->
                 {
-                    GameEffects.List.Add(new ThoughtBubble(player.dialogX, player.dialogY, 3.0F, TEXT[2], true));
-                    return;
-                }
-
-                GameActions.Bottom.SelectCreature(control.card).AddCallback(control, (state, creature) ->
-                {
-                    //Put this here so the cost is only paid upon successful completion of the selectCreature action
-                    AbstractCard cardToPurge = JUtils.GetRandomElement(JUtils.Filter(player.exhaustPile.group, AfterLifeMod::CanPurge));
-                    AbstractCard copy = cardToPurge.makeStatEquivalentCopy();
-                    GameEffects.List.ShowCardBriefly(copy);
-                    GameEffects.List.Add(new ExhaustCardEffect(copy));
-
-                    GameActions.Bottom.ModifyAllInstances(state.card.uuid, c -> ((EYBCard)c).SetPurge(true));
-                    GameActions.Bottom.PlayCard(state.card, player.exhaustPile, JUtils.SafeCast(creature, AbstractMonster.class))
-                    .SpendEnergy(true);
-
-                    ModifyAllInstances action = GameActions.Bottom.ModifyAllInstances(state.card.uuid, AbstractCard::stopGlowing);
-                    action.AddCallback(state, (temp, __) -> temp.Delete());
-                    if (state.card.exhaust)
+                    if (!player.exhaustPile.contains(control.card))
                     {
-                        state.card.exhaust = false;
-                        action.AddCallback(playedCard -> playedCard.exhaust = true);
+                        control.Delete();
+                    }
+                })
+                .OnSelect(control ->
+                {
+                    if (CombatStats.ControlPile.IsHovering() && control.card.canUse(player, null))
+                    {
+                        if (JUtils.Find(player.exhaustPile.group, AfterLifeMod::CanPurge) == null)
+                        {
+                            GameEffects.List.Add(new ThoughtBubble(player.dialogX, player.dialogY, 3.0F, TEXT[2], true));
+                            return;
+                        }
+
+                        GameActions.Bottom.SelectCreature(control.card).AddCallback(control, (state, creature) ->
+                        {
+                            //Put this here so the cost is only paid upon successful completion of the selectCreature action
+                            AbstractCard cardToPurge = JUtils.GetRandomElement(JUtils.Filter(player.exhaustPile.group, AfterLifeMod::CanPurge));
+                            AbstractCard copy = cardToPurge.makeStatEquivalentCopy();
+                            GameEffects.List.ShowCardBriefly(copy);
+                            GameEffects.List.Add(new ExhaustCardEffect(copy));
+
+                            GameActions.Bottom.ModifyAllInstances(state.card.uuid, c -> ((EYBCard)c).SetPurge(true));
+                            GameActions.Bottom.PlayCard(state.card, player.exhaustPile, JUtils.SafeCast(creature, AbstractMonster.class))
+                                    .SpendEnergy(true);
+
+                            ModifyAllInstances action = GameActions.Bottom.ModifyAllInstances(state.card.uuid, AbstractCard::stopGlowing);
+                            action.AddCallback(state, (temp, __) -> temp.Delete());
+                            if (state.card.exhaust)
+                            {
+                                state.card.exhaust = false;
+                                action.AddCallback(playedCard -> playedCard.exhaust = true);
+                            }
+
+
+                        });
                     }
                 });
-            }
-        });
     }
 
     private static boolean CanPurge(AbstractCard card)
@@ -98,3 +100,4 @@ public class AfterLifeMod extends AbstractCardModifier
         return !AfterLifeMod.IsAdded(card);
     }
 }
+

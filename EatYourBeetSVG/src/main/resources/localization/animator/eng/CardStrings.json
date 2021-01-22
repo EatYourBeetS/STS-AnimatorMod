@@ -537,7 +537,7 @@
 	{
 		"animator:YuriNakamura":
 		{
-			"DESCRIPTION": "Afterlife || <LIM>. Give a Non-{Hindrance}, Non-{Afterlife} card in your Exhaust pile {Afterlife}.",
+			"DESCRIPTION": "Afterlife. || <LIM>. Give a Non-{Hindrance}, Non-{Afterlife} card in your Exhaust pile {Afterlife}.",
 			"EXTENDED_DESCRIPTION": ["Give a card Retain.", "Choose a card to give Afterlife."],
 			"NAME": "Yuri Nakamura"
 		},
@@ -549,7 +549,7 @@
 		},
 		"animator:AyatoNaoi":
 		{
-			"DESCRIPTION": "Afterlife || Enter <IS>. Channel ** !M! Dark. || When played from Afterlife: ** ALL enemies lose HP equal to ** their Attack damage.",
+			"DESCRIPTION": "Afterlife. Enter <IS>. Channel ** !M! Dark. || When played from Afterlife: ** ALL enemies lose HP equal to ** their Attack damage.",
 			"NAME": "Ayato Naoi"
 		},
 		"animator:Godan":
@@ -559,7 +559,7 @@
 		},
 		"animator:EriShiina":
 		{
-			"DESCRIPTION": "Afterlife || When played from Afterlife, add !M! {Throwing-Knives} to your hand.",
+			"DESCRIPTION": "Afterlife. || When played from Afterlife, add !M! {Throwing-Knives} to your hand.",
 			"NAME": "Eri Shiina"
 		},
 		"animator:MasamiIwasawa":
@@ -580,12 +580,12 @@
 		},
 		"animator:Noda":
 		{
-			"DESCRIPTION": "Afterlife || {Synergy}: Gain/Boost [F]. || When Discarded: Exhaust.",
+			"DESCRIPTION": "Afterlife. || {Synergy}: Gain/Boost [F]. || When Discarded: Exhaust.",
 			"NAME": "Noda"
 		},
 		"animator:HidekiHinata":
 		{
-			"DESCRIPTION": "Afterlife || If the enemy intends to attack, deal damage again.",
+			"DESCRIPTION": "Afterlife. || If the enemy intends to attack, deal damage again.",
 			"NAME": "Hideki Hinata"
 		},
 		"animator:Yusa":
@@ -595,7 +595,7 @@
 		},
 		"animator:Yui":
 		{
-			"DESCRIPTION": "Afterlife || Motivate !S!. || When played from {Afterlife}: Add a {Girls Dead Monster} to your draw pile.",
+			"DESCRIPTION": "Afterlife. Motivate !S!. || When played from {Afterlife}: Add a {Girls Dead Monster} to your draw pile.",
 			"NAME": "Yui"
 		},
 		"animator:GirlDeMo":
@@ -605,7 +605,7 @@
 		},
 		"animator:AngelAlter":
 		{
-			"DESCRIPTION": "Afterlife || This card can only be played from Afterlife. ** {Boost} [F] and [A] . ** Shuffle a copy of this card into both your draw and discard piles.",
+			"DESCRIPTION": "Afterlife. || This card can only be played from Afterlife. ** {Boost} [F] and [A] . ** Shuffle a copy of this card into both your draw and discard piles.",
 			"NAME": "Angel Alter"
 		},
 		"animator:Strike_AngelBeats":
@@ -800,7 +800,7 @@
 		},
 		"animator:Shirosaki_Laplace":
 		{
-			"DESCRIPTION": "Afterlife || When played from {Afterlife}: Draw a card in your discard pile. Otherwise: Discard a {Curse} to Enter a random {Stance}, then Exhaust.",
+			"DESCRIPTION": "Afterlife. || When played from {Afterlife}: Draw a card in your discard pile. Otherwise: Discard a {Curse} to Enter a random {Stance}, then Exhaust.",
 			"NAME": "Laplace no Ma",
 			"EXTENDED_DESCRIPTION": ["Discard a curse to enter a random Stance."]
 		},

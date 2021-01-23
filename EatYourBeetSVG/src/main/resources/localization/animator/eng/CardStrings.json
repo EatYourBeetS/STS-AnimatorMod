@@ -213,8 +213,14 @@
 		"animator:IkkakuMadarame":
 		{
 		  "DESCRIPTION": "If {Zaraki Kenpachi} is active: You may gain [A] this turn.  Gain/Boost !M! [A]. || If you reached !S! [F] or [A] this combat: Exhaust and add {Ikkaku Bankai} to your draw pile.",
-		  "EXTENDED_DESCRIPTION": ["You may gain [A] this turn. This overrides other effects that prevent [A] gain."],
+		  "EXTENDED_DESCRIPTION": ["You may gain #yAgility this turn. This overrides other effects that prevent #yAgility gain."],
 		  "NAME": "Ikkaku Madarame"
+		},
+		"animator:IsshinKurosaki":
+		{
+		  "DESCRIPTION": "Choose 1: Channel 1 [Fire] or Gain !S! [F]. || Increase the amount of ALL your CURRENT [Fire] by !M! until your next turn.",
+		  "EXTENDED_DESCRIPTION": ["Next turn, reduce your [Fire] amount by #b{0}."],
+		  "NAME": "Isshin Kurosaki"
 		},
 		"animator:MayuriKurotsuchi":
 		{
@@ -222,10 +228,20 @@
 		  "EXTENDED_DESCRIPTION": ["Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
 		  "NAME": "Mayuri Kurotsuchi"
 		},
+		"animator:RenjiArakai":
+		{
+		  "DESCRIPTION": "Not in [A] Stance: Decrease this card's damage by !M! this combat. || Synergy: This card deals Piercing Damage.",
+		  "NAME": "Renji Arakai"
+		},
 		"animator:SajinKomamura":
 		{
 		  "DESCRIPTION": "Gain/Boost !M! [F], [A], or [I], depending on your Stance.  Otherwise, Draw !M! cards. || <SLM>. Synergy: Gain !S! [Metallize].",
 		  "NAME": "Sajin Komamura"
+		},
+		"animator:UryuuIshida":
+		{
+		  "DESCRIPTION": "When Discarded: Gain !M! [Support Damage]. || Cooldown !S!: Transfer !M! Weak and !M! Vulnerable to a random enemy.",
+		  "NAME": "Uryuu Ishida"
 		},
 		"animator:YasutoraSado":
 		{

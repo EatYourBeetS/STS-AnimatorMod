@@ -55,7 +55,7 @@ public class Marielle extends AnimatorCard
 
         if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.ChannelOrb(new Aether(), false);
+            GameActions.Bottom.ChannelOrb(new Aether(), true);
         }
     }
 }

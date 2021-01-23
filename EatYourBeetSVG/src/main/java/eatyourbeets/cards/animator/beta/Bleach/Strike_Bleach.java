@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.beta.Bleach;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.basic.Strike;
@@ -25,6 +26,8 @@ public class Strike_Bleach extends Strike
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+
         if (GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID) <= magicNumber)
         {
             GameActions.Bottom.GainForce(1, false);

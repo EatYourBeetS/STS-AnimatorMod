@@ -9,8 +9,11 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class OrihimeInoue extends AnimatorCard
 {
@@ -20,7 +23,7 @@ public class OrihimeInoue extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 8, 2);
+        Initialize(0, 0, 5, 8);
         SetUpgrade(0, 0, 0);
         SetExhaust(true);
 
@@ -34,13 +37,39 @@ public class OrihimeInoue extends AnimatorCard
     }
 
     @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        if (GameUtilities.InBattle()) {
+
+            AbstractCard topCard = null;
+
+            if (player.discardPile.size() > 0)
+            {
+                topCard = player.discardPile.getBottomCard();
+            }
+
+            if (topCard != null)
+            {
+                int cost = topCard.costForTurn;
+
+                if (cost == 2)
+                {
+                    return TempHPAttribute.Instance.SetCard(this, true);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    @Override
     protected float ModifyBlock(AbstractMonster enemy, float amount)
     {
         AbstractCard topCard = null;
 
         if (player.discardPile.size() > 0)
         {
-            topCard = player.discardPile.getTopCard();
+            topCard = player.discardPile.getBottomCard();
         }
 
         if (topCard != null)
@@ -49,7 +78,7 @@ public class OrihimeInoue extends AnimatorCard
 
             if (cost < 2)
             {
-                super.ModifyBlock(enemy, amount + magicNumber);
+                super.ModifyBlock(enemy, amount + secondaryValue);
             }
         }
 
@@ -63,7 +92,7 @@ public class OrihimeInoue extends AnimatorCard
 
         if (p.discardPile.size() > 0)
         {
-            topCard = p.discardPile.getTopCard();
+            topCard = p.discardPile.getBottomCard();
         }
 
         if (topCard != null)
@@ -89,24 +118,11 @@ public class OrihimeInoue extends AnimatorCard
             }
             else if (costForTurn == 2)
             {
-                for (int i=0; i<secondaryValue; i++)
-                {
-                    AbstractCard cardToDraw = null;
-
-                    if (p.discardPile.size() > 0)
-                    {
-                        cardToDraw = p.discardPile.getTopCard();
-                    }
-
-                    if (cardToDraw != null)
-                    {
-                        GameActions.Bottom.Draw(cardToDraw);
-                    }
-                }
+                GameActions.Bottom.GainTemporaryHP(magicNumber);
             }
             else
             {
-                GameActions.Bottom.GainBlock(magicNumber);
+                GameActions.Bottom.GainBlock(secondaryValue);
             }
         }
     }

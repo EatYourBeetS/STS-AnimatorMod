@@ -33,6 +33,8 @@ public class UryuuIshida extends AnimatorCard
     public void triggerOnManualDiscard()
     {
         GameActions.Bottom.StackPower(new SupportDamagePower(player, magicNumber));
+
+        cooldown.ProgressCooldownAndTrigger(null);
     }
 
     @Override

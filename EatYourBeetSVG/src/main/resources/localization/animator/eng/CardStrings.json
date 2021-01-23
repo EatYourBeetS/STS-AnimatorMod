@@ -207,7 +207,7 @@
 		},
 		"animator:IkkakuMadarame":
 		{
-		  "DESCRIPTION": "If {Zaraki Kenpachi} is active: You may gain [A] this turn.  Gain/Boost !M! [A]. || If you reached !S! [F] or [A] this combat: Exhaust and add {Ikkaku Bankai} to your draw pile.",
+		  "DESCRIPTION": "If {Zaraki Kenpachi} is active: You may gain [A] this turn. || If you reached !S! [F] or [A] this combat: Exhaust and add {Ikkaku Bankai} to your draw pile.",
 		  "EXTENDED_DESCRIPTION": ["You may gain #yAgility this turn. This overrides other effects that prevent #yAgility gain."],
 		  "NAME": "Ikkaku Madarame"
 		},
@@ -216,16 +216,16 @@
 		  "DESCRIPTION": "Choose 1: Channel 1 [Fire] or Gain !S! [F]. || <SLM>. Increase the amount of ALL your current [Fire] by !M!.",
 		  "NAME": "Isshin Kurosaki"
 		},
-		"animator:OrihimeInoue":
-		{
-		  "DESCRIPTION": "Effect based on cost of the top card in your discard pile: || 1- -> Gain !M! [Block]. ** 2 -> Draw the top !S! cards from your discard pile. ** 3+ -> Fill your empty Orb Slots with [Fire].",
-		  "NAME": "Orihime Inoue"
-		},
 		"animator:MayuriKurotsuchi":
 		{
 		  "DESCRIPTION": "Apply !M! [Poison].  Apply additional [Poison] for each point of [F] and [A]. || If the target has at least 30 [Poison]: Apply !S! of a random {Common Debuff}.",
 		  "EXTENDED_DESCRIPTION": ["Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
 		  "NAME": "Mayuri Kurotsuchi"
+		},
+		"animator:OrihimeInoue":
+		{
+		  "DESCRIPTION": "Effect based on cost of the bottom card in your discard pile: || 1- -> Gain !S! [Block]. ** 2 -> Gain !M! [Temporary HP]. ** 3+ -> Fill your empty Orb Slots with [Fire].",
+		  "NAME": "Orihime Inoue"
 		},
 		"animator:RenjiArakai":
 		{
@@ -254,12 +254,12 @@
 		},
 		"animator:UryuuIshida":
 		{
-		  "DESCRIPTION": "When Discarded: Gain !M! [Support Damage]. || Cooldown !S!: Transfer !M! Weak and !M! Vulnerable to a random enemy.",
+		  "DESCRIPTION": "When Discarded: Gain !M! [Support Damage]. || Cooldown !S!: Transfer !M! [Weak] and !M! [Vulnerable] to a random enemy.",
 		  "NAME": "Uryuu Ishida"
 		},
 		"animator:YasutoraSado":
 		{
-		  "DESCRIPTION": "Can only attack an enemy with [Block] or is intending to inflict a Negative Effect.|| Cooldown !S!: Gain !M! {Temp. Strength}.",
+		  "DESCRIPTION": "Can only attack an enemy with [Block] or is intending to inflict a Negative Effect. || Cooldown !S!: Gain !M! {Temp. Strength}.",
 		  "NAME": "Yasutora Sado"
 		},
 		"animator:ZarakiKenpachi":
@@ -771,7 +771,7 @@
 		},
 		"animator:YukariYakumo":
 		{
-		  "DESCRIPTION": "Gain !M! Weak, Vulnerable, and Frail. || The effects of these powers on you are {Inverted} for !S! turns.",
+		  "DESCRIPTION": "Gain !M! [Weak], [Vulnerable], and [Frail]. || The effects of these powers on you are {Inverted} for !S! turns.",
 		  "EXTENDED_DESCRIPTION": ["The effects of #yWeak, #yVulnerable, and #yFrail on you are #yInverted for #b{0} turn(s)."],
 		  "NAME": "Yukari Yakumo"
 		},

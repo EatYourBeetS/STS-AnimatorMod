@@ -29,6 +29,7 @@ public class IkkakuBankai extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
 
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
+        .SetOptions(true, true, true)
         .AddCallback(cards ->
         {
             for (AbstractCard card : cards)

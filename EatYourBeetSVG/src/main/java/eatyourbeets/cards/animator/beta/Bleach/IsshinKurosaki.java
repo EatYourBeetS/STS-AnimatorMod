@@ -39,7 +39,7 @@ public class IsshinKurosaki extends AnimatorCard
             choices.AddEffect(new GenericEffect_GainStat(secondaryValue, PlayerAttribute.Force));
         }
 
-        choices.Select(secondaryValue, m);
+        choices.Select(1, m);
 
         if (CombatStats.TryActivateSemiLimited(cardID)){
             GameActions.Bottom.Callback(cards -> {
@@ -55,7 +55,7 @@ public class IsshinKurosaki extends AnimatorCard
             if (Fire.ORB_ID.equals(orb.ID))
             {
                 orb.passiveAmount = orb.passiveAmount + magicNumber;
-                orb.evokeAmount = magicNumber;
+                orb.evokeAmount = orb.evokeAmount + magicNumber;
             }
         }
     }

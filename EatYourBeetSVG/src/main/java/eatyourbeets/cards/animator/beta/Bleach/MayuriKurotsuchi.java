@@ -30,11 +30,18 @@ public class MayuriKurotsuchi extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void Refresh(AbstractMonster enemy)
     {
         int force = GameUtilities.GetPowerAmount(AbstractDungeon.player, ForcePower.POWER_ID);
         int agility = GameUtilities.GetPowerAmount(AbstractDungeon.player, AgilityPower.POWER_ID);
-        GameActions.Bottom.ApplyPoison(TargetHelper.Normal(m), magicNumber + force + agility);
+
+        GameUtilities.IncreaseMagicNumber(this,  force + agility, true);
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
+        GameActions.Bottom.ApplyPoison(TargetHelper.Normal(m), magicNumber);
 
         int poisonThreshold = 30;
 

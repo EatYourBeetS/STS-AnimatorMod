@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class YasutoraSado extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YasutoraSado.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(YasutoraSado.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Normal);
 
     public YasutoraSado()
     {

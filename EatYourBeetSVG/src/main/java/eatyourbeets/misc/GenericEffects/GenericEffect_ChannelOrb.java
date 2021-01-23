@@ -20,7 +20,7 @@ public class GenericEffect_ChannelOrb extends GenericEffect
     @Override
     public String GetText()
     {
-        return GR.Animator.Strings.Actions.Channel(amount, orb, true);
+        return GR.Animator.Strings.Actions.Channel(amount, orb.name, true);
     }
 
     @Override

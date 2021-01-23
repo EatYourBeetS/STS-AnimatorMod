@@ -57,11 +57,6 @@
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
-		"animator:Defend_LogHorizon":
-		{
-		  "DESCRIPTION": "",
-		  "NAME": "Improved Defend"
-		},
 		"animator:Defend_NoGameNoLife":
 		{
 			"DESCRIPTION": "Retain your leftmost ** playable card.",
@@ -142,11 +137,6 @@
 			"DESCRIPTION": "",
 			"NAME": "Improved Strike"
 		},
-		"animator:Strike_LogHorizon":
-		{
-		  "DESCRIPTION": "",
-		  "NAME": "Improved Strike"
-		},
 		"animator:Strike_NoGameNoLife":
 		{
 			"DESCRIPTION": "Retain your rightmost ** playable card.",
@@ -200,6 +190,11 @@
 		  "DESCRIPTION": "Choose whether to Attack or Block. || [F] or [A] Stance: Exit your Stance to Exhaust and add {Byakuya Bankai} to your draw pile.",
 		  "NAME": "Byakuya Kuchiki"
 		},
+		"animator:Defend_Bleach":
+		{
+		  "DESCRIPTION": "<LIM>. Channel 1 [Fire].",
+		  "NAME": "Improved Defend"
+		},
 		"animator:IchigoKurosaki":
 		{
 		  "DESCRIPTION": "Boost [F] [A]. || If you reached !S! [F] this combat: Exhaust and add {Ichigo Bankai} to your draw pile.",
@@ -218,7 +213,7 @@
 		},
 		"animator:IsshinKurosaki":
 		{
-		  "DESCRIPTION": "Choose 1: Channel 1 [Fire] or Gain !S! [F]. || Increase the amount of ALL your current [Fire] by !M!.",
+		  "DESCRIPTION": "Choose 1: Channel 1 [Fire] or Gain !S! [F]. || <SLM>. Increase the amount of ALL your current [Fire] by !M!.",
 		  "NAME": "Isshin Kurosaki"
 		},
 		"animator:OrihimeInoue":
@@ -252,6 +247,11 @@
 		  "DESCRIPTION": "Gain/Boost !M! [F], [A], or [I], depending on your Stance.  Otherwise, Draw !M! cards. || <SLM>. Synergy: Gain !S! [Metallize].",
 		  "NAME": "Sajin Komamura"
 		},
+		"animator:Strike_Bleach":
+		{
+		  "DESCRIPTION": "If you have !M! or less [F]: Gain [F].",
+		  "NAME": "Improved Strike"
+		},
 		"animator:UryuuIshida":
 		{
 		  "DESCRIPTION": "When Discarded: Gain !M! [Support Damage]. || Cooldown !S!: Transfer !M! Weak and !M! Vulnerable to a random enemy.",
@@ -276,6 +276,11 @@
 		{
 			"DESCRIPTION": "<SLM>. When drawn: ** Create !M! 0-Cost copies of ** this card with Exhaust. They ** deal 0 damage. || This card {Synergizes} with {Uncommon} cards.",
 			"NAME": "Akatsuki"
+		},
+		"animator:Defend_LogHorizon":
+		{
+		  "DESCRIPTION": "",
+		  "NAME": "Improved Defend"
 		},
 		"animator:Henrietta":
 		{
@@ -352,6 +357,11 @@
 		{
 		  "DESCRIPTION": "",
 		  "NAME": "Kyouko"
+		},
+		"animator:Strike_LogHorizon":
+		{
+		  "DESCRIPTION": "",
+		  "NAME": "Improved Strike"
 		},
 		"animator:Tetora":
 		{

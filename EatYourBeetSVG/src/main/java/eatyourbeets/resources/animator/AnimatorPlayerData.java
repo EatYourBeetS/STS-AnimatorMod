@@ -205,6 +205,7 @@ public class AnimatorPlayerData
         BetaLoadouts.add(new AngelBeats());
         BetaLoadouts.add(new TouhouProject());
         BetaLoadouts.add(new RozenMaiden());
+        BetaLoadouts.add(new Bleach());
         BetaLoadouts.add(new LogHorizon());
     }
 

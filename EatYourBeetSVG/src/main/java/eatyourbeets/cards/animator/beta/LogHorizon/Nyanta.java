@@ -42,7 +42,7 @@ public class Nyanta extends AnimatorCard
     {
         if (GameUtilities.InBattle())
         {
-            int agilityToGain = CombatStats.SynergiesThisTurn();
+            int agilityToGain = CombatStats.SynergiesThisTurn().size();
 
             if (agilityToGain > gainLimit)
             {

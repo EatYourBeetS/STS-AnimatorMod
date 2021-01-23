@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.GenericEffects.GenericEffect_ChannelOrb;
 import eatyourbeets.misc.GenericEffects.GenericEffect_GainStat;
 import eatyourbeets.orbs.animator.Fire;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.PlayerAttribute;
 
@@ -40,9 +41,11 @@ public class IsshinKurosaki extends AnimatorCard
 
         choices.Select(secondaryValue, m);
 
-        GameActions.Bottom.Callback(cards -> {
-           BoostAllFireOrbs();
-        });
+        if (CombatStats.TryActivateSemiLimited(cardID)){
+            GameActions.Bottom.Callback(cards -> {
+                BoostAllFireOrbs();
+            });
+        }
     }
 
     private void BoostAllFireOrbs()

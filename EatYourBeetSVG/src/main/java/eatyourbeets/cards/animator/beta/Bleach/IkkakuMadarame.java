@@ -16,6 +16,7 @@ public class IkkakuMadarame extends AnimatorCard
     static
     {
         DATA.AddPreview(new ZarakiKenpachi(), false);
+        DATA.AddPreview(new IkkakuBankai(), false);
     }
 
     public IkkakuMadarame()

@@ -218,9 +218,13 @@
 		},
 		"animator:IsshinKurosaki":
 		{
-		  "DESCRIPTION": "Choose 1: Channel 1 [Fire] or Gain !S! [F]. || Increase the amount of ALL your CURRENT [Fire] by !M! until your next turn.",
-		  "EXTENDED_DESCRIPTION": ["Next turn, reduce your [Fire] amount by #b{0}."],
+		  "DESCRIPTION": "Choose 1: Channel 1 [Fire] or Gain !S! [F]. || Increase the amount of ALL your current [Fire] by !M!.",
 		  "NAME": "Isshin Kurosaki"
+		},
+		"animator:OrihimeInoue":
+		{
+		  "DESCRIPTION": "Effect based on cost of the top card in your discard pile: || 1- -> Gain !M! [Block]. ** 2 -> Draw the top !S! cards from your discard pile. ** 3+ -> Fill your empty Orb Slots with [Fire].",
+		  "NAME": "Orihime Inoue"
 		},
 		"animator:MayuriKurotsuchi":
 		{
@@ -232,6 +236,16 @@
 		{
 		  "DESCRIPTION": "Not in [A] Stance: Decrease this card's damage by !M! this combat. || Synergy: This card deals Piercing Damage.",
 		  "NAME": "Renji Arakai"
+		},
+		"animator:RukiaBankai":
+		{
+		  "DESCRIPTION": "Evoke your rightmost [Frost] !M! times.  Do this X times.",
+		  "NAME": "Rukia Bankai"
+		},
+		"animator:RukiaKuchiki":
+		{
+		  "DESCRIPTION": "{Starter}: Channel !M! [Frost]. || Synergy: Gain !S! [Block]. If you have no empty Orb Slots, Exhaust this card, add {Rukia Bankai} to your draw pile.",
+		  "NAME": "Rukia Kuchiki"
 		},
 		"animator:SajinKomamura":
 		{

@@ -46,12 +46,12 @@ public abstract class AnimatorCard extends EYBCard
 
     public boolean HasSynergy()
     {
-        return Synergies.WouldSynergize(this);
+        return Synergies.IsSynergizing(this) || Synergies.WouldSynergize(this);
     }
 
     public boolean HasSynergy(AbstractCard other)
     {
-        return Synergies.WouldSynergize(this, other);
+        return Synergies.IsSynergizing(this) || Synergies.WouldSynergize(this, other);
     }
 
     public boolean HasDirectSynergy(AbstractCard other)

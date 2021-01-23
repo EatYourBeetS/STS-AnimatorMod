@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class IchigoBankai extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(IchigoBankai.class).SetAttack(-1, CardRarity.SPECIAL, EYBAttackType.Ranged, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(IchigoBankai.class).SetAttack(-1, CardRarity.SPECIAL, EYBAttackType.Ranged, EYBCardTarget.ALL);
 
     public IchigoBankai()
     {

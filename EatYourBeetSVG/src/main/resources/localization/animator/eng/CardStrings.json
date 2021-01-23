@@ -190,10 +190,47 @@
 
 	"BETA:BLEACH":
 	{
+		"animator:ByakuyaBankai":
+		{
+		  "DESCRIPTION": "Choose whether to Attack or Block unless upgraded at least !M! times. || When Exhausted: Shuffle this card into your discard pile and upgrade it. ",
+		  "NAME": "Byakuya Bankai"
+		},
+		"animator:ByakuyaKuchiki":
+		{
+		  "DESCRIPTION": "Choose whether to Attack or Block. || [F] or [A] Stance: Exit your Stance to Exhaust and add {Byakuya Bankai} to your draw pile.",
+		  "NAME": "Byakuya Kuchiki"
+		},
 		"animator:IchigoKurosaki":
 		{
 		  "DESCRIPTION": "Boost [F] [A]. || If you reached !S! [F] this combat: Exhaust and add {Ichigo Bankai} to your draw pile.",
 		  "NAME": "Ichigo Kurosaki"
+		},
+		"animator:IkkakuBankai":
+		{
+		  "DESCRIPTION": "Discard up to !M! cards.  Attack an extra time for each card discarded this way.",
+		  "NAME": "Ikkaku Bankai"
+		},
+		"animator:IkkakuMadarame":
+		{
+		  "DESCRIPTION": "If {Zaraki Kenpachi} is active: You may gain [A] this turn.  Gain/Boost !M! [A]. || If you reached !S! [F] or [A] this combat: Exhaust and add {Ikkaku Bankai} to your draw pile.",
+		  "EXTENDED_DESCRIPTION": ["You may gain [A] this turn. This overrides other effects that prevent [A] gain."],
+		  "NAME": "Ikkaku Madarame"
+		},
+		"animator:MayuriKurotsuchi":
+		{
+		  "DESCRIPTION": "Apply !M! [Poison].  Apply additional [Poison] for each point of [F] and [A]. || If the target has at least 30 [Poison]: Apply !S! of a random {Common Debuff}.",
+		  "EXTENDED_DESCRIPTION": ["Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
+		  "NAME": "Mayuri Kurotsuchi"
+		},
+		"animator:SajinKomamura":
+		{
+		  "DESCRIPTION": "Gain/Boost !M! [F], [A], or [I], depending on your Stance.  Otherwise, Draw !M! cards. || <SLM>. Synergy: Gain !S! [Metallize].",
+		  "NAME": "Sajin Komamura"
+		},
+		"animator:YasutoraSado":
+		{
+		  "DESCRIPTION": "Can only attack an enemy with [Block] or is intending to inflict a Negative Effect.|| Cooldown !S!: Gain !M! {Temp. Strength}.",
+		  "NAME": "Yasutora Sado"
 		},
 		"animator:ZarakiKenpachi":
 		{

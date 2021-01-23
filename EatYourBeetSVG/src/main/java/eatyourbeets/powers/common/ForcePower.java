@@ -33,6 +33,16 @@ public class ForcePower extends PlayerAttributePower
         permanentlyPreservedPowers.Subscribe(POWER_ID);
     }
 
+    public static void StartOverridePreserve()
+    {
+        overridePreservedPowers.Subscribe(POWER_ID);
+    }
+
+    public static void StopOverridePreserve()
+    {
+        overridePreservedPowers.Subscribe(POWER_ID);
+    }
+
     public static void StartDisable()
     {
         permanentlyDisabledPowers.Subscribe(POWER_ID);

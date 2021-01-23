@@ -22,6 +22,7 @@ public abstract class PlayerAttributePower extends CommonPower
 {
     protected static final PermanentlyPreservedPowers permanentlyPreservedPowers = new PermanentlyPreservedPowers();
     protected static final PreservedPowers preservedPowers = new PreservedPowers();
+    protected static final OverridePreservedPowers overridePreservedPowers = new OverridePreservedPowers();
     protected static final PermanentlyDisabledPowers permanentlyDisabledPowers = new PermanentlyDisabledPowers();
     protected int threshold;
 
@@ -128,7 +129,13 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         super.update(slot);
 
-        this.enabled = (!preservedPowers.contains(ID) || !permanentlyPreservedPowers.contains(ID) );
+        this.enabled = (!preservedPowers.contains(ID) || !permanentlyPreservedPowers.contains(ID));
+
+        if (!this.enabled && overridePreservedPowers.contains(ID))
+        {
+            this.enabled = true;
+        }
+
         this.disabled = (permanentlyDisabledPowers.contains(ID));
     }
 
@@ -200,6 +207,28 @@ public abstract class PlayerAttributePower extends CommonPower
         }
 
         updateDescription();
+    }
+
+    public static class OverridePreservedPowers extends HashSet<String> implements OnStatsClearedSubscriber
+    {
+        @Override
+        public void OnStatsCleared()
+        {
+            clear();
+            CombatStats.onStatsCleared.Unsubscribe(this);
+        }
+
+        public void Subscribe(String powerID)
+        {
+            add(powerID);
+            CombatStats.onStatsCleared.Subscribe(this);
+        }
+
+        public void Unsubscribe(String powerID)
+        {
+            add(powerID);
+            CombatStats.onStatsCleared.Unsubscribe(this);
+        }
     }
 
     public static class PermanentlyPreservedPowers extends HashSet<String> implements OnStatsClearedSubscriber

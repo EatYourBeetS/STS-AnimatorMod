@@ -46,8 +46,8 @@ public class PandorasActor extends AnimatorCard
                 copy.use(player, null);
                 copy.purgeOnUse = true;
                 copy.freeToPlayOnce = true;
-                Synergies.SetLastCardPlayed(copy);
 
+                Synergies.SetLastCardPlayed(copy);
                 GameActions.Bottom.GainEnergy(amount);
             });
         }

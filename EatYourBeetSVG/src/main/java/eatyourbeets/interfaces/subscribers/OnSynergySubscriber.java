@@ -1,8 +1,8 @@
 package eatyourbeets.interfaces.subscribers;
 
-import eatyourbeets.cards.base.AnimatorCard;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public interface OnSynergySubscriber
 {
-    void OnSynergy(AnimatorCard card);
+    void OnSynergy(AbstractCard card);
 }

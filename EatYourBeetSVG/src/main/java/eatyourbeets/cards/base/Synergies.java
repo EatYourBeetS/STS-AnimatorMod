@@ -64,7 +64,18 @@ public class Synergies
     public final static Synergy GuiltyCrown = CreateSynergy(49);
     public final static Synergy Gakkougurashi = CreateSynergy(50);
 
+    private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;
+
+    public static boolean IsSynergizing(AbstractCard card)
+    {
+        if (card == null || currentSynergy == null)
+        {
+            return false;
+        }
+
+        return currentSynergy.uuid == card.uuid;
+    }
 
     public static void AddCards(Synergy synergy, ArrayList<AbstractCard> source, ArrayList<AnimatorCard> destination)
     {
@@ -171,9 +182,23 @@ public class Synergies
         return result;
     }
 
+    public static void TrySynergize(AbstractCard card)
+    {
+        if (WouldSynergize(card))
+        {
+            currentSynergy = card;
+            CombatStats.Instance.OnSynergy(card);
+        }
+        else
+        {
+            currentSynergy = null;
+        }
+    }
+
     public static void SetLastCardPlayed(AbstractCard card)
     {
         lastCardPlayed = JUtils.SafeCast(card, AnimatorCard.class);
+        currentSynergy = null;
     }
 
     public static boolean WouldSynergize(AbstractCard card)

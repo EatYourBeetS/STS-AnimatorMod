@@ -105,7 +105,7 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
         {
             int currentCost = (costForTurn + costModifier);
 
-            costModifier = CombatStats.SynergiesThisTurn();
+            costModifier = CombatStats.SynergiesThisTurn().size();
 
             if (!this.freeToPlayOnce)
             {

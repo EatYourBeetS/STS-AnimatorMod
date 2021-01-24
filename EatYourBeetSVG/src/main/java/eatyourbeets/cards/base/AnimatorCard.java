@@ -59,7 +59,7 @@ public abstract class AnimatorCard extends EYBCard
         if (synergy != null)
         {
             AnimatorCard card = JUtils.SafeCast(other, AnimatorCard.class);
-            if (other instanceof AnimatorCard && synergy.equals(((AnimatorCard) other).synergy))
+            if (card != null && synergy.equals(card.synergy))
             {
                 return true;
             }

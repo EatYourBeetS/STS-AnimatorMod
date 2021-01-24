@@ -65,7 +65,7 @@ public class IkkakuMadarame extends AnimatorCard
         {
             super.onInitialApplication();
 
-            ForcePower.StartOverridePreserve();
+            AgilityPower.StartOverridePreserve();
         }
 
         @Override
@@ -73,7 +73,7 @@ public class IkkakuMadarame extends AnimatorCard
         {
             super.onRemove();
 
-            ForcePower.StopOverridePreserve();
+            AgilityPower.StopOverridePreserve();
         }
 
         @Override

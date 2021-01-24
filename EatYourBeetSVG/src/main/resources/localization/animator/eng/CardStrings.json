@@ -247,6 +247,12 @@
 		  "DESCRIPTION": "Gain/Boost !M! [F], [A], or [I], depending on your Stance.  Otherwise, Draw !M! cards. || <SLM>. Synergy: Gain !S! [Metallicize].",
 		  "NAME": "Sajin Komamura"
 		},
+		"animator:SosukeAizen":
+		{
+		  "DESCRIPTION": "Gain {Phasing} X times. || Whenever you take 0 attack damage this turn, deal !M! damage to the attacking enemy.",
+		  "EXTENDED_DESCRIPTION": ["Whenever you take 0 attack damage this turn, deal #b{0} damage to the attacking enemy."],
+		  "NAME": "Sosuke Aizen"
+		},
 		"animator:Strike_Bleach":
 		{
 		  "DESCRIPTION": "If you have !M! or less [F]: Gain [F].",

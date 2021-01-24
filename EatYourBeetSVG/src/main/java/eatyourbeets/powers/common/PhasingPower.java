@@ -23,6 +23,11 @@ public class PhasingPower extends CommonPower
         this.amount = baseEvadePercent;
         this.type = PowerType.BUFF;
 
+        for (int i=0; i<timesToStack-1; i++)
+        {
+            stackPower(1);
+        }
+
         updateDescription();
     }
 
@@ -59,7 +64,7 @@ public class PhasingPower extends CommonPower
     }
 
     @Override
-    public int onAttacked(DamageInfo info, int damageAmount)
+    public int onAttackedToChangeDamage(DamageInfo info, int damageAmount)
     {
         if (info.type == DamageInfo.DamageType.NORMAL)
         {

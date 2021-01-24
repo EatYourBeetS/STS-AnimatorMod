@@ -100,7 +100,7 @@ public class ByakuyaBankai extends AnimatorCard
             effect += ChemicalX.BOOST;
         }
 
-        return super.GetDamageInfo().AddMultiplier(effect);
+        return super.GetBlockInfo().AddMultiplier(effect);
     }
 
 
@@ -125,6 +125,11 @@ public class ByakuyaBankai extends AnimatorCard
             GameActions.Bottom.Callback(card -> {
                 ChooseAction(m);
             });
+        }
+        else
+        {
+            DamageEffect(this, p, m);
+            BlockEffect(this, p, m);
         }
     }
 

@@ -70,7 +70,7 @@ public class RukiaKuchiki extends AnimatorCard
                 }
             }
 
-            if (hasEmptyOrbs)
+            if (!hasEmptyOrbs)
             {
                 GameActions.Bottom.MakeCardInDrawPile(new RukiaBankai());
                 GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);

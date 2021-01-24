@@ -224,7 +224,7 @@
 		},
 		"animator:OrihimeInoue":
 		{
-		  "DESCRIPTION": "Effect based on cost of the bottom card in your discard pile: || 1- -> Gain !S! [Block]. ** 2 -> Gain !M! [Temporary HP]. ** 3+ -> Fill your empty Orb Slots with [Fire].",
+		  "DESCRIPTION": "Effect based on cost of the bottom card in discard pile: || 1- -> Gain !S! [Block]. ** 2 -> Gain !M! [Temporary HP]. ** 3+ -> Fill your empty Orb Slots with [Fire].",
 		  "NAME": "Orihime Inoue"
 		},
 		"animator:RenjiArakai":

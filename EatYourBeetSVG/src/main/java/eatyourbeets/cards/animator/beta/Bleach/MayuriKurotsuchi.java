@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActions;
@@ -17,6 +14,7 @@ import eatyourbeets.utilities.TargetHelper;
 public class MayuriKurotsuchi extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MayuriKurotsuchi.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Normal);
+    public static final EYBCardTooltip CommonDebuffs = new EYBCardTooltip(DATA.Strings.EXTENDED_DESCRIPTION[1], DATA.Strings.EXTENDED_DESCRIPTION[2]);
 
     public MayuriKurotsuchi()
     {
@@ -48,6 +46,17 @@ public class MayuriKurotsuchi extends AnimatorCard
         if (GameUtilities.GetPowerAmount(m, PoisonPower.POWER_ID) >= poisonThreshold)
         {
             ApplyRandomCommonDebuff(m);
+        }
+    }
+
+    @Override
+    public void initializeDescription()
+    {
+        super.initializeDescription();
+
+        if (cardText != null)
+        {
+            tooltips.add(CommonDebuffs);
         }
     }
 

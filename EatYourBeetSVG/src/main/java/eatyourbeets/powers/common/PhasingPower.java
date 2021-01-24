@@ -22,6 +22,7 @@ public class PhasingPower extends CommonPower
 
         this.amount = baseEvadePercent;
         this.type = PowerType.BUFF;
+        this.priority = 99;
 
         for (int i=0; i<timesToStack-1; i++)
         {
@@ -74,12 +75,12 @@ public class PhasingPower extends CommonPower
             {
                 //Phased!
                 GameActions.Bottom.SFX("ORB_PLASMA_CHANNEL", 1.5f);
-
-                return 0;
+                flashWithoutSound();
+                info.output = damageAmount = 0;
             }
         }
 
-        return damageAmount;
+        return super.onAttackedToChangeDamage(info, damageAmount);
     }
 
     @Override

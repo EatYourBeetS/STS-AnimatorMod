@@ -34,7 +34,11 @@ public class SosukeAizen extends AnimatorCard
     {
         int energy = GameUtilities.UseXCostEnergy(this);
 
-        GameActions.Bottom.StackPower(new PhasingPower(p, energy));
+        if (energy > 0)
+        {
+            GameActions.Bottom.StackPower(new PhasingPower(p, energy));
+        }
+
         GameActions.Bottom.StackPower(new SosukeAizenPower(p, magicNumber));
     }
 
@@ -45,19 +49,20 @@ public class SosukeAizen extends AnimatorCard
             super(owner, SosukeAizen.DATA);
 
             this.amount = amount;
+            this.priority = 100; //This should be higher (as in later) than PhasingPower's priority.
 
             updateDescription();
         }
 
         @Override
-        public int onAttacked(DamageInfo info, int damageAmount)
+        public int onAttackedToChangeDamage(DamageInfo info, int damageAmount)
         {
-            if (damageAmount == 0 && info.owner instanceof AbstractMonster)
+            if (info.output == 0 && info.owner instanceof AbstractMonster)
             {
                 GameActions.Bottom.DealDamage(player, info.owner, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HEAVY);
             }
 
-            return super.onAttacked(info, damageAmount);
+            return super.onAttackedToChangeDamage(info, damageAmount);
         }
 
         @Override
@@ -67,9 +72,9 @@ public class SosukeAizen extends AnimatorCard
         }
 
         @Override
-        public void atEndOfTurn(boolean isPlayer)
+        public void atStartOfTurnPostDraw()
         {
-            super.atEndOfTurn(isPlayer);
+            super.atStartOfTurnPostDraw();
             RemovePower();
         }
     }

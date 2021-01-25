@@ -197,7 +197,7 @@
 		},
 		"animator:IchigoKurosaki":
 		{
-		  "DESCRIPTION": "Boost [F] [A]. || If you reached !S! [F] this combat: Exhaust and add {Ichigo Bankai} to your draw pile.",
+		  "DESCRIPTION": "Gain [F] [A]. || If you reached !S! [F] this combat: Exhaust and add {Ichigo Bankai} to your draw pile.",
 		  "NAME": "Ichigo Kurosaki"
 		},
 		"animator:IkkakuBankai":

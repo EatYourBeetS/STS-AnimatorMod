@@ -25,7 +25,7 @@ public class ByakuyaKuchiki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(24, 21, 0);
+        Initialize(23, 14, 0);
         SetUpgrade(3, 3, 0);
         SetMartialArtist();
 

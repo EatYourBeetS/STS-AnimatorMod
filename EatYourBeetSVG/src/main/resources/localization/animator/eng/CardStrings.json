@@ -192,7 +192,7 @@
 		},
 		"animator:Defend_Bleach":
 		{
-		  "DESCRIPTION": "Cooldown !S!: Channel 1 [Fire].",
+		  "DESCRIPTION": "<LIM>. Discard !M! card(s) to Channel !S! [Fire].",
 		  "NAME": "Improved Defend"
 		},
 		"animator:IchigoKurosaki":
@@ -260,7 +260,7 @@
 		},
 		"animator:UryuuIshida":
 		{
-		  "DESCRIPTION": "When Discarded: Gain !M! [Support Damage]. || Cooldown !S!: Transfer !M! [Weak] and !M! [Vulnerable] to a random enemy.",
+		  "DESCRIPTION": "When Discarded: Gain !M! [Support Damage]. || Cooldown !S!: Transfer !M! [Weak] and !M! [Vulnerable] from you to a random enemy.",
 		  "NAME": "Uryuu Ishida"
 		},
 		"animator:YasutoraSado":

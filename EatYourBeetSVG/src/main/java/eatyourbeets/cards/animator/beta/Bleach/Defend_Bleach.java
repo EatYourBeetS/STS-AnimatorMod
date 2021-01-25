@@ -15,7 +15,7 @@ public class Defend_Bleach extends Defend
     {
         super(ID, 1, CardTarget.SELF);
 
-        Initialize(0, 5);
+        Initialize(0, 5, 2, 1);
         SetUpgrade(0, 3);
         SetCooldown(1, 0, this::OnCooldownCompleted);
 
@@ -27,11 +27,20 @@ public class Defend_Bleach extends Defend
     {
         GameActions.Bottom.GainBlock(block);
 
-        cooldown.ProgressCooldownAndTrigger(m);
+        GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
+        .ShowEffect(false, false)
+        .SetOptions(false, false, false)
+        .AddCallback(() ->
+        {
+            for (int i = 0; i < secondaryValue; i++)
+            {
+                GameActions.Bottom.ChannelOrb(new Fire(), true);
+            }
+        });
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Fire(), true);
+
     }
 }

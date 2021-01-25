@@ -192,7 +192,7 @@
 		},
 		"animator:Defend_Bleach":
 		{
-		  "DESCRIPTION": "<LIM>. Channel 1 [Fire].",
+		  "DESCRIPTION": "Cooldown !S!: Channel 1 [Fire].",
 		  "NAME": "Improved Defend"
 		},
 		"animator:IchigoKurosaki":

@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Defend_Bleach extends Defend
@@ -16,8 +15,9 @@ public class Defend_Bleach extends Defend
     {
         super(ID, 1, CardTarget.SELF);
 
-        Initialize(0, 6);
+        Initialize(0, 5);
         SetUpgrade(0, 3);
+        SetCooldown(1, 0, this::OnCooldownCompleted);
 
         SetSynergy(Synergies.Bleach);
     }
@@ -27,9 +27,11 @@ public class Defend_Bleach extends Defend
     {
         GameActions.Bottom.GainBlock(block);
 
-        if (CombatStats.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.ChannelOrb(new Fire(), true);
-        }
+        cooldown.ProgressCooldownAndTrigger(m);
+    }
+
+    protected void OnCooldownCompleted(AbstractMonster m)
+    {
+        GameActions.Bottom.ChannelOrb(new Fire(), true);
     }
 }

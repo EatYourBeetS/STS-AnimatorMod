@@ -16,6 +16,7 @@ import eatyourbeets.interfaces.subscribers.OnReceiveRewardsSubscriber;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
+import eatyourbeets.rewards.animator.SakuraCardReward;
 import eatyourbeets.rewards.animator.SynergyCardsReward;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -106,7 +107,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
             for (int i = 0; i < rewards.size(); i++)
             {
                 RewardItem reward = rewards.get(i);
-                if (reward.type == RewardItem.RewardType.CARD)
+                if (reward.type == RewardItem.RewardType.CARD && !(reward instanceof SakuraCardReward))
                 {
                     startingIndex = i;
                     rewards.remove(startingIndex);

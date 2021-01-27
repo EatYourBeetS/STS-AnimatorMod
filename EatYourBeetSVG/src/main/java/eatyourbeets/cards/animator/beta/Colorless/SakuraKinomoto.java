@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -16,6 +15,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.vfx.SmallLaserEffect;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.rewards.animator.SakuraCardReward;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -47,14 +47,14 @@ public class SakuraKinomoto extends AnimatorCard
                     e.hb.cX + MathUtils.random(-0.05F, 0.05F), e.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PINK)))
                     .AddCallback(enemy ->
                     {
-                        AbstractRoom room = AbstractDungeon.getCurrRoom();
+                        AbstractRoom room = GameUtilities.GetCurrentRoom();
                         if ((room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
                                 && GameUtilities.TriggerOnKill(enemy, false)
                                 && CombatStats.TryActivateLimited(cardID))
                         {
                             if (room.rewardAllowed)
                             {
-                                RewardItem rewardItem = new RewardItem();
+                                RewardItem rewardItem = new SakuraCardReward();
                                 int size = rewardItem.cards.size();
                                 if (size > 0)
                                 {

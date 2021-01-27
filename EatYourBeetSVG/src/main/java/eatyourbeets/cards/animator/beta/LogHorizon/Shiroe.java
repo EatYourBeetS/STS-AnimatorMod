@@ -45,7 +45,7 @@ public class Shiroe extends AnimatorCard {
     {
         super.triggerOnGlowCheck();
 
-        if (CombatStats.SynergiesThisTurn() >= secondaryValue && !CombatStats.HasActivatedLimited(cardID))
+        if (CombatStats.SynergiesThisTurn().size() >= secondaryValue && !CombatStats.HasActivatedLimited(cardID))
         {
             this.glowColor = upgradeGlowColor;
         }
@@ -56,7 +56,7 @@ public class Shiroe extends AnimatorCard {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.FIRE);
         GameActions.Bottom.ApplyConstricted(p, m, magicNumber);
 
-        if (CombatStats.SynergiesThisTurn() >= secondaryValue && CombatStats.TryActivateLimited(cardID))
+        if (CombatStats.SynergiesThisTurn().size() >= secondaryValue && CombatStats.TryActivateLimited(cardID))
         {
             final float pos_x = (float) Settings.WIDTH / 4f;
             final float pos_y = (float) Settings.HEIGHT / 2f;

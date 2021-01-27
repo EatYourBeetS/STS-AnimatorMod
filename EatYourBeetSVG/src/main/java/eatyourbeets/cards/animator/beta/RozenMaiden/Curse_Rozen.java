@@ -1,8 +1,12 @@
 package eatyourbeets.cards.animator.beta.RozenMaiden;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard_Curse;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
@@ -40,7 +44,7 @@ public class Curse_Rozen extends AnimatorCard_Curse implements OnSynergySubscrib
     }
 
     @Override
-    public void OnSynergy(AnimatorCard card)
+    public void OnSynergy(AbstractCard card)
     {
         if (player.hand.contains(this))
         {

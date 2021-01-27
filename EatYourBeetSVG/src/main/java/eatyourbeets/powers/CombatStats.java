@@ -408,11 +408,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
         return turnCount;
     }
 
-    public static void IncreaseSynergyBonus(int amount)
-    {
-        synergiesThisTurn += amount;
-    }
-
     @Override
     public void onChannel(AbstractOrb orb)
     {

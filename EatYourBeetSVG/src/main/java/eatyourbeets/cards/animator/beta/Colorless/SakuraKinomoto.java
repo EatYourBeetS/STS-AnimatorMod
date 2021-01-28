@@ -4,7 +4,6 @@ import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.unique.AddCardToDeckAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -84,9 +83,10 @@ public class SakuraKinomoto extends AnimatorCard
                 if (cards.size() > 0)
                 {
                     AbstractCard cardToAdd = cards.get(0).makeCopy();
-                    GameActions.Bottom.Add(new AddCardToDeckAction(cardToAdd));
+                    GameActions.Top.MakeCard(cardToAdd, player.masterDeck);
                 }
-            });
+            })
+            .IsCancellable(false);
         }
     }
 

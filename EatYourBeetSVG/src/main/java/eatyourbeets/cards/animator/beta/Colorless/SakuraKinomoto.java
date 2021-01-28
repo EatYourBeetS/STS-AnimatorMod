@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.Colorless;
 
-import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -65,29 +64,26 @@ public class SakuraKinomoto extends AnimatorCard
     {
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
-        if (player.hand.size() < BaseMod.MAX_HAND_SIZE)
+        while (group.size() < magicNumber)
         {
-            while (group.size() < magicNumber)
+            AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat();
+            if (!card.hasTag(AbstractCard.CardTags.HEALING) && group.findCardById(card.cardID) == null)
             {
-                AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat();
-                if (!card.hasTag(AbstractCard.CardTags.HEALING) && group.findCardById(card.cardID) == null)
-                {
-                    group.addToBottom(card.makeCopy());
-                }
+                group.addToBottom(card.makeCopy());
             }
-
-            GameActions.Bottom.SelectFromPile(name, 1, group)
-            .SetOptions(false, true)
-            .AddCallback(cards ->
-            {
-                if (cards.size() > 0)
-                {
-                    AbstractCard cardToAdd = cards.get(0).makeCopy();
-                    GameActions.Top.MakeCard(cardToAdd, player.masterDeck);
-                }
-            })
-            .IsCancellable(false);
         }
+
+        GameActions.Bottom.SelectFromPile(name, 1, group)
+        .SetOptions(false, true)
+        .AddCallback(cards ->
+        {
+            if (cards.size() > 0)
+            {
+                AbstractCard cardToAdd = cards.get(0).makeCopy();
+                GameActions.Top.MakeCard(cardToAdd, player.masterDeck);
+            }
+        })
+        .IsCancellable(false);
     }
 
 }

@@ -4,23 +4,23 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
-import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.vfx.SmallLaserEffect;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.rewards.animator.SakuraCardReward;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class SakuraKinomoto extends AnimatorCard
+import java.util.ArrayList;
+
+public class SakuraKinomoto extends AnimatorCard //implements CustomSavable<SakuraCardReward>
 {
     public static final EYBCardData DATA = Register(SakuraKinomoto.class).SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Elemental).SetColor(CardColor.COLORLESS);
 
@@ -31,6 +31,9 @@ public class SakuraKinomoto extends AnimatorCard
         Initialize(17, 0, 0);
         SetUpgrade(3, 0, 0);
         SetScaling(1,0,0);
+
+        //So she can't be created due to a bug with CustomSavable
+        SetHealing(true);
 
         SetExhaust(true);
         SetSpellcaster();
@@ -48,23 +51,60 @@ public class SakuraKinomoto extends AnimatorCard
                     .AddCallback(enemy ->
                     {
                         AbstractRoom room = GameUtilities.GetCurrentRoom();
-                        if ((room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
+                        if (true/*LZLZLZ(room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
                                 && GameUtilities.TriggerOnKill(enemy, false)
-                                && CombatStats.TryActivateLimited(cardID))
+                                && CombatStats.TryActivateLimited(cardID)*/)
                         {
-                            if (room.rewardAllowed)
-                            {
-                                RewardItem rewardItem = new SakuraCardReward();
-                                int size = rewardItem.cards.size();
-                                if (size > 0)
-                                {
-                                    rewardItem.cards.remove(size-1);
-                                }
-                                room.addCardReward(rewardItem);
-                            }
+                            createSakuraReward();
                         }
                     });
             GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE");
         }
     }
+
+    private SakuraCardReward findSakuraReward()
+    {
+        ArrayList<RewardItem> rewards = AbstractDungeon.combatRewardScreen.rewards;
+
+        for (RewardItem item : rewards)
+        {
+            if (item instanceof SakuraCardReward)
+            {
+                return (SakuraCardReward) item;
+            }
+        }
+
+        return null;
+    }
+
+    private void createSakuraReward()
+    {
+        AbstractRoom room = GameUtilities.GetCurrentRoom();
+        if (room.rewardAllowed)
+        {
+            RewardItem cardReward = new SakuraCardReward();
+            int size = cardReward.cards.size();
+            if (size > 0)
+            {
+                cardReward.cards.remove(size-1);
+            }
+            room.addCardReward(cardReward);
+        }
+    }
+
+    /*@Override
+    public SakuraCardReward onSave()
+    {
+        return findSakuraReward();
+    }
+
+    @Override
+    public void onLoad(SakuraCardReward reward)
+    {
+        if (reward != null && !reward.cards.isEmpty())
+        {
+            AbstractDungeon.combatRewardScreen.rewards.add(reward);
+        }
+    }*/
+
 }

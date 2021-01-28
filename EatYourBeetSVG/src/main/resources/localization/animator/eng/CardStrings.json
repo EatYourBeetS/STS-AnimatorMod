@@ -182,7 +182,7 @@
 	{
 		"animator:ByakuyaBankai":
 		{
-		  "DESCRIPTION": "Choose whether to Attack or Block unless upgraded at least !M! times. || When Exhausted: Shuffle this card into your discard pile and upgrade it. ",
+		  "DESCRIPTION": "Choose whether to Attack or Block X times. || When Exhausted: Shuffle this card into your discard pile and upgrade it. ",
 		  "NAME": "Byakuya Bankai"
 		},
 		"animator:ByakuyaKuchiki":

@@ -6,12 +6,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.ChemicalX;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
@@ -25,8 +22,8 @@ public class ByakuyaBankai extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 5, 3);
-        SetUpgrade(2, 2, 0);
+        Initialize(7, 5);
+        SetUpgrade(2, 2);
 
         SetUnique(true, true);
         SetSynergy(Synergies.Bleach);
@@ -34,75 +31,6 @@ public class ByakuyaBankai extends AnimatorCard
         SetMultiDamage(true);
         SetMartialArtist();
     }
-
-    @Override
-    protected float ModifyDamage(AbstractMonster enemy, float amount)
-    {
-        int effect = EnergyPanel.totalCount;
-        if (energyOnUse > 0)
-        {
-            effect = energyOnUse;
-        }
-
-        if (player.hasRelic(ChemicalX.ID))
-        {
-            effect += ChemicalX.BOOST;
-        }
-
-        return effect * amount;
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        int effect = EnergyPanel.totalCount;
-        if (energyOnUse > 0)
-        {
-            effect = energyOnUse;
-        }
-
-        if (player.hasRelic(ChemicalX.ID))
-        {
-            effect += ChemicalX.BOOST;
-        }
-
-        return super.GetDamageInfo().AddMultiplier(effect);
-    }
-
-    @Override
-    protected float ModifyBlock(AbstractMonster enemy, float amount)
-    {
-        int effect = EnergyPanel.totalCount;
-        if (energyOnUse > 0)
-        {
-            effect = energyOnUse;
-        }
-
-        if (player.hasRelic(ChemicalX.ID))
-        {
-            effect += ChemicalX.BOOST;
-        }
-
-        return effect * amount;
-    }
-
-    @Override
-    public AbstractAttribute GetBlockInfo()
-    {
-        int effect = EnergyPanel.totalCount;
-        if (energyOnUse > 0)
-        {
-            effect = energyOnUse;
-        }
-
-        if (player.hasRelic(ChemicalX.ID))
-        {
-            effect += ChemicalX.BOOST;
-        }
-
-        return super.GetBlockInfo().AddMultiplier(effect);
-    }
-
 
     @Override
     public void triggerOnExhaust()
@@ -120,16 +48,11 @@ public class ByakuyaBankai extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (timesUpgraded < magicNumber)
+        for (int i=0; i< GameUtilities.GetXCostEnergy(this); i++)
         {
             GameActions.Bottom.Callback(card -> {
                 ChooseAction(m);
             });
-        }
-        else
-        {
-            DamageEffect(this, p, m);
-            BlockEffect(this, p, m);
         }
     }
 
@@ -154,12 +77,11 @@ public class ByakuyaBankai extends AnimatorCard
 
         if (type.equals(CardType.ATTACK))
         {
-            builder.SetAttackType(EYBAttackType.Ranged, EYBCardTarget.ALL, GameUtilities.UseXCostEnergy(this));
+            builder.SetAttackType(EYBAttackType.Ranged, EYBCardTarget.ALL);
             builder.SetNumbers(damage, 0, 0, 0);
         }
         else
         {
-            builder.attributeMultiplier = GameUtilities.UseXCostEnergy(this);
             builder.SetNumbers(0, block, 0, 0);
         }
 
@@ -192,17 +114,11 @@ public class ByakuyaBankai extends AnimatorCard
         GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.WHITE));
         GameActions.Bottom.VFX(new ShockWaveEffect(p.hb.cX, p.hb.cY, Color.WHITE, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.75f);
 
-        for (int i=0; i<GameUtilities.UseXCostEnergy(this); i++)
-        {
-            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        }
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
     }
 
     private void BlockEffect(AbstractCard card, AbstractPlayer p, AbstractMonster m)
     {
-        for (int i=0; i<GameUtilities.UseXCostEnergy(this); i++)
-        {
-            GameActions.Bottom.GainBlock(block);
-        }
+        GameActions.Bottom.GainBlock(block);
     }
 }

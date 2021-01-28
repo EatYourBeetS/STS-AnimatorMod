@@ -11,7 +11,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -77,7 +76,7 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
         {
             GameActions.Bottom.Callback(() ->
             {
-                int count = JUtils.Count(player.hand.group, c -> GameUtilities.IsCurseOrStatus(c) || c.hasTag(AnimatorCard.SPELLCASTER));
+                int count = JUtils.Count(player.hand.group, c -> c.type == CardType.CURSE || c.hasTag(AnimatorCard.SPELLCASTER));
                 if (count > 0)
                 {
                     for (int i = 1; i < count; i++)

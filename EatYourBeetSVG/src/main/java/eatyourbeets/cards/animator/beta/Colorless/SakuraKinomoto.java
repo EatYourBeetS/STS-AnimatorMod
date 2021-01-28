@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
@@ -44,47 +45,39 @@ public class SakuraKinomoto extends AnimatorCard
     {
         if (m != null)
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetDamageEffect(e -> GameEffects.Queue.Add(new SmallLaserEffect(player.hb.cX, player.hb.cY,
-                    e.hb.cX + MathUtils.random(-0.05F, 0.05F), e.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PINK)))
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+                    .SetDamageEffect(e -> GameEffects.Queue.Add(new SmallLaserEffect(player.hb.cX, player.hb.cY,
+                            e.hb.cX + MathUtils.random(-0.05F, 0.05F), e.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PINK)))
                     .AddCallback(enemy ->
                     {
-                        AbstractRoom room = GameUtilities.GetCurrentRoom();
+                        AbstractRoom room = AbstractDungeon.getCurrRoom();
                         if ((room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
                                 && GameUtilities.TriggerOnKill(enemy, false)
                                 && CombatStats.TryActivateLimited(cardID))
                         {
-                            createSakuraReward();
+                            RewardItem reward = new RewardItem();
+                            CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                            for (int i = 0; i < magicNumber; i++)
+                            {
+                                AbstractCard card = GameUtilities.GetRandomRewardCard(reward, false);
+                                reward.cards.add(card);
+                                choices.addToBottom(card);
+                            }
+
+                            GameActions.Bottom.SelectFromPile(name, 1, choices)
+                                    .SetOptions(false, true)
+                                    .AddCallback(cards ->
+                                    {
+                                        if (cards.size() > 0)
+                                        {
+                                            AbstractCard card = cards.get(0).makeCopy();
+                                            GameActions.Top.MakeCard(card, player.masterDeck);
+                                        }
+                                    });
                         }
                     });
             GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE");
         }
-    }
-
-    private void createSakuraReward()
-    {
-        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-
-        while (group.size() < magicNumber)
-        {
-            AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat();
-            if (!card.hasTag(AbstractCard.CardTags.HEALING) && group.findCardById(card.cardID) == null)
-            {
-                group.addToBottom(card.makeCopy());
-            }
-        }
-
-        GameActions.Bottom.SelectFromPile(name, 1, group)
-        .SetOptions(false, true)
-        .AddCallback(cards ->
-        {
-            if (cards.size() > 0)
-            {
-                AbstractCard cardToAdd = cards.get(0).makeCopy();
-                GameActions.Top.MakeCard(cardToAdd, player.masterDeck)
-                        .IsCancellable(false);
-            }
-        })
-        .IsCancellable(false);
     }
 
 }

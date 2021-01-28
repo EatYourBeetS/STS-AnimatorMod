@@ -21,6 +21,8 @@ public abstract class AbstractAttribute
     protected final static float DESC_OFFSET_Y = (AbstractCard.IMG_HEIGHT * 0.10f);
     protected static final GlyphLayout layout = new GlyphLayout();
 
+    public static boolean leftAlign;
+
     public Texture icon;
     public ColoredString mainText;
     public String iconTag;
@@ -58,7 +60,7 @@ public abstract class AbstractAttribute
 
     public AbstractAttribute AddMultiplier(int times)
     {
-        this.suffix = "x" + times;
+        this.suffix = leftAlign ? ("x" + times) : (times + "x");
 
         return this;
     }
@@ -80,7 +82,7 @@ public abstract class AbstractAttribute
         return this;
     }
 
-    public void Render(SpriteBatch sb, EYBCard card, boolean leftAlign)
+    public void Render(SpriteBatch sb, EYBCard card)
     {
         final BitmapFont largeFont = RenderHelpers.GetLargeAttributeFont(card);
         final float scale = Settings.scale * card.drawScale;

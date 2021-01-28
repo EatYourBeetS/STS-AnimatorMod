@@ -160,7 +160,8 @@ public class GR
 
     public static boolean IsTranslationSupported(Settings.GameLanguage language)
     {
-        return language == Settings.GameLanguage.RUS; // language == Settings.GameLanguage.ZHS || language == Settings.GameLanguage.ZHT;
+        //This should be set only for beta branches.  Do not merge this into master.
+        return false;//language == Settings.GameLanguage.RUS; // language == Settings.GameLanguage.ZHS || language == Settings.GameLanguage.ZHT;
     }
 
     public static Texture GetTexture(String path)

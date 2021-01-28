@@ -90,6 +90,7 @@ public class CardTooltips
     public static void RegisterID(String id, EYBCardTooltip tooltip)
     {
         tooltipIDs.put(id, tooltip);
+        tooltip.id = id;
     }
 
     public static void RegisterName(String name, EYBCardTooltip tooltip)

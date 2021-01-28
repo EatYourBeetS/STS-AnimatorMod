@@ -15,7 +15,7 @@ public class VestaElixirEffect_Agility extends VestaElixirEffect
     @Override
     public String GetDescription()
     {
-        return ACTIONS.GainAmount(amount, GR.Tooltips.Agility.title, true);
+        return ACTIONS.GainAmount(amount, GR.Tooltips.Agility, true);
     }
 
     @Override

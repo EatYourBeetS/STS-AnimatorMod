@@ -30,7 +30,7 @@ public class GenericEffect_StackPower extends GenericEffect
     @Override
     public String GetText()
     {
-        return GR.Animator.Strings.Actions.GainAmount(amount, "["+tooltip.title+"]", true);
+        return GR.Animator.Strings.Actions.GainAmount(amount, tooltip, true);
     }
 
     @Override

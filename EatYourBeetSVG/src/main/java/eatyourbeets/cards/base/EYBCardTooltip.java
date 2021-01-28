@@ -51,6 +51,7 @@ public class EYBCardTooltip
     private static EYBCard card;
 
     public TextureRegion icon;
+    public String id;
     public String title;
     public String description;
     public float iconMulti_W = 1;
@@ -240,9 +241,14 @@ public class EYBCardTooltip
         region.getRegionHeight(), false, false);
     }
 
+    public String GetTitleOrIcon()
+    {
+        return (id != null) ? "["+id+"]" : title;
+    }
+
     @Override
     public String toString()
     {
-        return title;
+        return GetTitleOrIcon();
     }
 }

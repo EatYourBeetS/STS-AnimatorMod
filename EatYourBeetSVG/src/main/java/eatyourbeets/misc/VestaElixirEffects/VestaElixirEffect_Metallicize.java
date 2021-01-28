@@ -15,7 +15,7 @@ public class VestaElixirEffect_Metallicize extends VestaElixirEffect
     @Override
     public String GetDescription()
     {
-        return ACTIONS.GainAmount(amount, GR.Tooltips.Metallicize.title, true);
+        return ACTIONS.GainAmount(amount, GR.Tooltips.Metallicize, true);
     }
 
     @Override

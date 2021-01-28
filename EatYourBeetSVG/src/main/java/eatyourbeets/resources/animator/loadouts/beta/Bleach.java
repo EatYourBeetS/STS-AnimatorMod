@@ -47,6 +47,6 @@ public class Bleach extends AnimatorLoadout
     @Override
     public EYBCardData GetUltraRare()
     {
-        return null;
+        return SosukeAizen.DATA;
     }
 }

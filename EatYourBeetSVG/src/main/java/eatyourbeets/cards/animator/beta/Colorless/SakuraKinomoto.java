@@ -78,7 +78,7 @@ public class SakuraKinomoto extends AnimatorCard
             }
 
             GameActions.Bottom.SelectFromPile(name, 1, group)
-            .SetOptions(false, false)
+            .SetOptions(false, true)
             .AddCallback(cards ->
             {
                 if (cards.size() > 0)

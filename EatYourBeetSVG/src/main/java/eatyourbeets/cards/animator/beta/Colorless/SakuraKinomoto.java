@@ -80,7 +80,8 @@ public class SakuraKinomoto extends AnimatorCard
             if (cards.size() > 0)
             {
                 AbstractCard cardToAdd = cards.get(0).makeCopy();
-                GameActions.Top.MakeCard(cardToAdd, player.masterDeck);
+                GameActions.Top.MakeCard(cardToAdd, player.masterDeck)
+                        .IsCancellable(false);
             }
         })
         .IsCancellable(false);

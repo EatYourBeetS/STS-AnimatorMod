@@ -1,26 +1,29 @@
 package eatyourbeets.cards.animator.beta.Colorless;
 
+import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.unique.AddCardToDeckAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.vfx.SmallLaserEffect;
-import eatyourbeets.rewards.animator.SakuraCardReward;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-import java.util.ArrayList;
-
-public class SakuraKinomoto extends AnimatorCard //implements CustomSavable<SakuraCardReward>
+public class SakuraKinomoto extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(SakuraKinomoto.class).SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Elemental).SetColor(CardColor.COLORLESS);
 
@@ -28,12 +31,9 @@ public class SakuraKinomoto extends AnimatorCard //implements CustomSavable<Saku
     {
         super(DATA);
 
-        Initialize(17, 0, 0);
-        SetUpgrade(3, 0, 0);
+        Initialize(17, 0, 2);
+        SetUpgrade(0, 0, 1);
         SetScaling(1,0,0);
-
-        //So she can't be created due to a bug with CustomSavable
-        SetHealing(true);
 
         SetExhaust(true);
         SetSpellcaster();
@@ -51,9 +51,9 @@ public class SakuraKinomoto extends AnimatorCard //implements CustomSavable<Saku
                     .AddCallback(enemy ->
                     {
                         AbstractRoom room = GameUtilities.GetCurrentRoom();
-                        if (true/*LZLZLZ(room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
+                        if ((room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
                                 && GameUtilities.TriggerOnKill(enemy, false)
-                                && CombatStats.TryActivateLimited(cardID)*/)
+                                && CombatStats.TryActivateLimited(cardID))
                         {
                             createSakuraReward();
                         }
@@ -62,49 +62,32 @@ public class SakuraKinomoto extends AnimatorCard //implements CustomSavable<Saku
         }
     }
 
-    private SakuraCardReward findSakuraReward()
-    {
-        ArrayList<RewardItem> rewards = AbstractDungeon.combatRewardScreen.rewards;
-
-        for (RewardItem item : rewards)
-        {
-            if (item instanceof SakuraCardReward)
-            {
-                return (SakuraCardReward) item;
-            }
-        }
-
-        return null;
-    }
-
     private void createSakuraReward()
     {
-        AbstractRoom room = GameUtilities.GetCurrentRoom();
-        if (room.rewardAllowed)
+        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+
+        if (player.hand.size() < BaseMod.MAX_HAND_SIZE)
         {
-            RewardItem cardReward = new SakuraCardReward();
-            int size = cardReward.cards.size();
-            if (size > 0)
+            while (group.size() < magicNumber)
             {
-                cardReward.cards.remove(size-1);
+                AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat();
+                if (!card.hasTag(AbstractCard.CardTags.HEALING) && group.findCardById(card.cardID) == null)
+                {
+                    group.addToBottom(card.makeCopy());
+                }
             }
-            room.addCardReward(cardReward);
+
+            GameActions.Bottom.SelectFromPile(name, 1, group)
+            .SetOptions(false, false)
+            .AddCallback(cards ->
+            {
+                if (cards.size() > 0)
+                {
+                    AbstractCard cardToAdd = cards.get(0).makeCopy();
+                    GameActions.Bottom.Add(new AddCardToDeckAction(cardToAdd));
+                }
+            });
         }
     }
-
-    /*@Override
-    public SakuraCardReward onSave()
-    {
-        return findSakuraReward();
-    }
-
-    @Override
-    public void onLoad(SakuraCardReward reward)
-    {
-        if (reward != null && !reward.cards.isEmpty())
-        {
-            AbstractDungeon.combatRewardScreen.rewards.add(reward);
-        }
-    }*/
 
 }

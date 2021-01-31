@@ -3,17 +3,18 @@ package eatyourbeets.cards.animator.beta.Bleach;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.LoseStrengthPower;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
+import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class YasutoraSado extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(YasutoraSado.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Normal);
+
+    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public YasutoraSado()
     {
@@ -62,8 +63,16 @@ public class YasutoraSado extends AnimatorCard
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        GameActions.Bottom.GainStrength(magicNumber);
-        GameActions.Bottom.ApplyPower(new LoseStrengthPower(player, magicNumber));
+        if (choices.TryInitialize(this))
+        {
+            choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
+            choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
+        }
+
+        choices.Select(GameActions.Top, 1, m)
+                .CancellableFromPlayer(true);
+
+        GameActions.Last.Exhaust(this);
     }
 
     private boolean IsInflictingNegativeEffect(AbstractMonster.Intent intent)

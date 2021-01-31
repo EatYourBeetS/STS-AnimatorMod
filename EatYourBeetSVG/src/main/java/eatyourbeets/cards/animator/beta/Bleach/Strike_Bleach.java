@@ -17,7 +17,7 @@ public class Strike_Bleach extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(6, 0, 2);
+        Initialize(5, 0, 2);
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Bleach);

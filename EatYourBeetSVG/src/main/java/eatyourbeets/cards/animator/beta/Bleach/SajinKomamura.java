@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.beta.Bleach;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -11,6 +12,7 @@ import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.RandomizedList;
 
 public class SajinKomamura extends AnimatorCard
 {
@@ -48,12 +50,39 @@ public class SajinKomamura extends AnimatorCard
         }
         else
         {
-            GameActions.Bottom.Draw(magicNumber);
+            EnterRandomStanceNotCurrent();
         }
 
         if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.GainMetallicize(secondaryValue);
         }
+    }
+
+    private void EnterRandomStanceNotCurrent()
+    {
+        RandomizedList<String> stances = new RandomizedList<>();
+
+        if (!player.stance.ID.equals(ForceStance.STANCE_ID))
+        {
+            stances.Add(ForceStance.STANCE_ID);
+        }
+
+        if (!player.stance.ID.equals(AgilityStance.STANCE_ID))
+        {
+            stances.Add(AgilityStance.STANCE_ID);
+        }
+
+        if (!player.stance.ID.equals(IntellectStance.STANCE_ID))
+        {
+            stances.Add(IntellectStance.STANCE_ID);
+        }
+
+        if (!player.stance.ID.equals(NeutralStance.STANCE_ID))
+        {
+            stances.Add(NeutralStance.STANCE_ID);
+        }
+
+        GameActions.Bottom.ChangeStance(stances.Retrieve(rng));
     }
 }

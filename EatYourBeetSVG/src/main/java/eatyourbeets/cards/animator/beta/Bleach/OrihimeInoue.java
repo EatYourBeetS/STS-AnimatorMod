@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.Bleach;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -9,11 +8,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class OrihimeInoue extends AnimatorCard
 {
@@ -37,93 +33,41 @@ public class OrihimeInoue extends AnimatorCard
     }
 
     @Override
-    public AbstractAttribute GetSpecialInfo()
-    {
-        if (GameUtilities.InBattle()) {
-
-            AbstractCard topCard = null;
-
-            if (player.discardPile.size() > 0)
-            {
-                topCard = player.discardPile.getBottomCard();
-            }
-
-            if (topCard != null)
-            {
-                int cost = topCard.costForTurn;
-
-                if (cost == 2)
-                {
-                    return TempHPAttribute.Instance.SetCard(this, true);
-                }
-            }
-        }
-
-        return null;
-    }
-
-    @Override
-    protected float ModifyBlock(AbstractMonster enemy, float amount)
-    {
-        AbstractCard topCard = null;
-
-        if (player.discardPile.size() > 0)
-        {
-            topCard = player.discardPile.getBottomCard();
-        }
-
-        if (topCard != null)
-        {
-            int cost = topCard.costForTurn;
-
-            if (cost < 2)
-            {
-                super.ModifyBlock(enemy, amount + secondaryValue);
-            }
-        }
-
-        return super.ModifyBlock(enemy, amount);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        AbstractCard topCard = null;
-
-        if (p.discardPile.size() > 0)
+        GameActions.Bottom.SelectFromHand(name, 1, false)
+        .AddCallback(cards ->
         {
-            topCard = p.discardPile.getBottomCard();
-        }
-
-        if (topCard != null)
-        {
-            int cost = topCard.costForTurn;
-
-            if (costForTurn >= 3)
+            if (cards.size() > 0)
             {
-                int numEmptyOrbs = 0;
+                int cost = cards.get(0).costForTurn;
 
-                for (AbstractOrb orb : player.orbs)
+                if (cost >= 3)
                 {
-                    if (orb instanceof EmptyOrbSlot)
+                    int numEmptyOrbs = 0;
+
+                    for (AbstractOrb orb : player.orbs)
                     {
-                        numEmptyOrbs++;
+                        if (orb instanceof EmptyOrbSlot)
+                        {
+                            numEmptyOrbs++;
+                        }
+                    }
+
+                    for (int i = 0; i < numEmptyOrbs; i++)
+                    {
+                        GameActions.Bottom.ChannelOrb(new Fire(), true);
                     }
                 }
-
-                for (int i=0; i<numEmptyOrbs; i++)
+                else if (cost == 2)
                 {
-                    GameActions.Bottom.ChannelOrb(new Fire(), true);
+                    GameActions.Bottom.GainTemporaryHP(magicNumber);
+                }
+                else
+                {
+                    GameActions.Bottom.GainBlock(secondaryValue);
                 }
             }
-            else if (costForTurn == 2)
-            {
-                GameActions.Bottom.GainTemporaryHP(magicNumber);
-            }
-            else
-            {
-                GameActions.Bottom.GainBlock(secondaryValue);
-            }
-        }
+        });
     }
 }

@@ -17,7 +17,6 @@ public class Defend_Bleach extends Defend
 
         Initialize(0, 5, 2, 1);
         SetUpgrade(0, 3);
-        SetCooldown(1, 0, this::OnCooldownCompleted);
 
         SetSynergy(Synergies.Bleach);
     }
@@ -37,10 +36,5 @@ public class Defend_Bleach extends Defend
                 GameActions.Bottom.ChannelOrb(new Fire(), true);
             }
         });
-    }
-
-    protected void OnCooldownCompleted(AbstractMonster m)
-    {
-
     }
 }

@@ -224,7 +224,7 @@
 		},
 		"animator:OrihimeInoue":
 		{
-		  "DESCRIPTION": "Choose a card in your hand: || Cost 1- -> Gain !S! [Block]. ** Cost 2 -> Gain !M! [Temporary HP]. ** Cost 3+ -> Fill your empty Orb Slots with [Fire].",
+		  "DESCRIPTION": "Choose a card in your hand: || Cost 0-1 -> Gain !S! [Block]. ** Cost 2+ -> Gain !M! [Temporary HP]. ** Other -> Fill your empty Orb Slots with [Fire].",
 		  "NAME": "Orihime Inoue"
 		},
 		"animator:RenjiArakai":

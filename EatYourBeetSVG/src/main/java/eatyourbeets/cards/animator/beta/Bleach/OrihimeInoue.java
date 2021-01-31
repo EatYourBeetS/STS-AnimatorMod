@@ -42,7 +42,15 @@ public class OrihimeInoue extends AnimatorCard
             {
                 int cost = cards.get(0).costForTurn;
 
-                if (cost >= 3)
+                if (cost >= 0 && cost <= 1)
+                {
+                    GameActions.Bottom.GainBlock(secondaryValue);
+                }
+                else if (cost >= 2)
+                {
+                    GameActions.Bottom.GainTemporaryHP(magicNumber);
+                }
+                else
                 {
                     int numEmptyOrbs = 0;
 
@@ -58,14 +66,6 @@ public class OrihimeInoue extends AnimatorCard
                     {
                         GameActions.Bottom.ChannelOrb(new Fire(), true);
                     }
-                }
-                else if (cost == 2)
-                {
-                    GameActions.Bottom.GainTemporaryHP(magicNumber);
-                }
-                else
-                {
-                    GameActions.Bottom.GainBlock(secondaryValue);
                 }
             }
         });

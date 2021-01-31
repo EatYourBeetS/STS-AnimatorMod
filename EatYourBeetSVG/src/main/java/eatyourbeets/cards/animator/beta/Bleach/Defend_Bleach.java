@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Defend_Bleach extends Defend
@@ -26,15 +27,18 @@ public class Defend_Bleach extends Defend
     {
         GameActions.Bottom.GainBlock(block);
 
-        GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
-        .ShowEffect(false, false)
-        .SetOptions(false, false, false)
-        .AddCallback(() ->
+        if (CombatStats.TryActivateLimited(cardID))
         {
-            for (int i = 0; i < secondaryValue; i++)
-            {
-                GameActions.Bottom.ChannelOrb(new Fire(), true);
-            }
-        });
+            GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
+                    .ShowEffect(false, false)
+                    .SetOptions(false, false, false)
+                    .AddCallback(() ->
+                    {
+                        for (int i = 0; i < secondaryValue; i++)
+                        {
+                            GameActions.Bottom.ChannelOrb(new Fire(), true);
+                        }
+                    });
+        }
     }
 }

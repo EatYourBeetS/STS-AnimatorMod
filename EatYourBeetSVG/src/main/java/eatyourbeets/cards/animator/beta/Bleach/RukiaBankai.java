@@ -11,6 +11,8 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
+import java.util.ArrayList;
+
 public class RukiaBankai extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(RukiaBankai.class).SetSkill(-1, CardRarity.SPECIAL, EYBCardTarget.None);
@@ -32,27 +34,26 @@ public class RukiaBankai extends AnimatorCard
     {
         int stacks = GameUtilities.UseXCostEnergy(this);
 
-        for (int i=0; i<stacks; i++)
-        {
-            AbstractOrb frost = null;
+        int frostExhaustCount = 0;
+        ArrayList<AbstractOrb> frostsToExhaust = new ArrayList<>();
 
-            for (AbstractOrb orb : player.orbs)
+        for (AbstractOrb orb : player.orbs)
+        {
+            if (Frost.ORB_ID.equals(orb.ID))
             {
-                if (Frost.ORB_ID.equals(orb.ID))
+                frostsToExhaust.add(orb);
+                frostExhaustCount++;
+
+                if (frostExhaustCount >= stacks)
                 {
-                    frost = orb;
                     break;
                 }
             }
+        }
 
-            if (frost != null)
-            {
-                GameActions.Bottom.EvokeOrb(magicNumber);
-            }
-            else
-            {
-                break;
-            }
+        for (AbstractOrb orb : frostsToExhaust)
+        {
+            GameActions.Bottom.EvokeOrb(magicNumber, orb);
         }
     }
 }

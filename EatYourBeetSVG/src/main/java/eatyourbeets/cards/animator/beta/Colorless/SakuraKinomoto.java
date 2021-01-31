@@ -3,6 +3,8 @@ package eatyourbeets.cards.animator.beta.Colorless;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -28,8 +30,8 @@ public class SakuraKinomoto extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(17, 0, 0);
-        SetUpgrade(3, 0, 0);
+        Initialize(17, 0, 2);
+        SetUpgrade(0, 0, 1);
         SetScaling(1,0,0);
 
         SetExhaust(true);
@@ -43,8 +45,9 @@ public class SakuraKinomoto extends AnimatorCard
     {
         if (m != null)
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetDamageEffect(e -> GameEffects.Queue.Add(new SmallLaserEffect(player.hb.cX, player.hb.cY,
-                    e.hb.cX + MathUtils.random(-0.05F, 0.05F), e.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PINK)))
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+                    .SetDamageEffect(e -> GameEffects.Queue.Add(new SmallLaserEffect(player.hb.cX, player.hb.cY,
+                            e.hb.cX + MathUtils.random(-0.05F, 0.05F), e.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PINK)))
                     .AddCallback(enemy ->
                     {
                         AbstractRoom room = AbstractDungeon.getCurrRoom();
@@ -52,19 +55,29 @@ public class SakuraKinomoto extends AnimatorCard
                                 && GameUtilities.TriggerOnKill(enemy, false)
                                 && CombatStats.TryActivateLimited(cardID))
                         {
-                            if (room.rewardAllowed)
+                            RewardItem reward = new RewardItem();
+                            CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                            for (int i = 0; i < magicNumber; i++)
                             {
-                                RewardItem rewardItem = new RewardItem();
-                                int size = rewardItem.cards.size();
-                                if (size > 0)
-                                {
-                                    rewardItem.cards.remove(size-1);
-                                }
-                                room.addCardReward(rewardItem);
+                                AbstractCard card = GameUtilities.GetRandomRewardCard(reward, false);
+                                reward.cards.add(card);
+                                choices.addToBottom(card);
                             }
+
+                            GameActions.Bottom.SelectFromPile(name, 1, choices)
+                                    .SetOptions(false, true)
+                                    .AddCallback(cards ->
+                                    {
+                                        if (cards.size() > 0)
+                                        {
+                                            AbstractCard card = cards.get(0).makeCopy();
+                                            GameActions.Top.MakeCard(card, player.masterDeck);
+                                        }
+                                    });
                         }
                     });
             GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE");
         }
     }
+
 }

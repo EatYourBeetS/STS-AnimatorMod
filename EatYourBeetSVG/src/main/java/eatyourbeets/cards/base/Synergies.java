@@ -223,7 +223,6 @@ public class Synergies
 
         AnimatorCard a = JUtils.SafeCast(card, AnimatorCard.class);
         AnimatorCard b = JUtils.SafeCast(other, AnimatorCard.class);
-
         if (a != null)
         {
             if (b != null)

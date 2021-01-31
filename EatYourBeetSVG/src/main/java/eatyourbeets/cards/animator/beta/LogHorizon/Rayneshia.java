@@ -14,12 +14,14 @@ import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
-public class Rayneshia extends AnimatorCard {
+public class Rayneshia extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(Rayneshia.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
 
-    private ArrayList<AbstractCard> synergicCards = new ArrayList();
+    private final ArrayList<AbstractCard> synergicCards = new ArrayList<>();
 
-    public Rayneshia() {
+    public Rayneshia()
+    {
         super(DATA);
 
         Initialize(0, 0, 1);
@@ -28,10 +30,11 @@ public class Rayneshia extends AnimatorCard {
 
         SetSynergy(Synergies.LogHorizon);
     }
+
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        synergicCards = new ArrayList();
+        synergicCards.clear();
         AddCardsFromGroupToSynergy(player.drawPile);
         DrawSynergicCards(player.drawPile);
     }
@@ -46,7 +49,7 @@ public class Rayneshia extends AnimatorCard {
     {
         for (AbstractCard c : group.group)
         {
-            if (HasDirectSynergy(c))
+            if (HasSynergy(c))
             {
                 synergicCards.add(c);
             }
@@ -57,7 +60,7 @@ public class Rayneshia extends AnimatorCard {
     {
         RandomizedList<AbstractCard> randomizedSynergicCards = new RandomizedList<>(synergicCards);
 
-        for (int i=0; i<magicNumber; i++)
+        for (int i = 0; i < magicNumber; i++)
         {
             if (i > randomizedSynergicCards.Size())
             {

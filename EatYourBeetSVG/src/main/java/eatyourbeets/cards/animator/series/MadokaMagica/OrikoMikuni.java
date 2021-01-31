@@ -30,8 +30,6 @@ public class OrikoMikuni extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        CardEffectChoice choices = new CardEffectChoice();
-
         choices.Initialize(this, true);
         choices.AddEffect(new GenericEffect_Scry(magicNumber));
         choices.AddEffect(new GenericEffect_NextTurnDraw(1));

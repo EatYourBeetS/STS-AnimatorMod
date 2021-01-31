@@ -59,6 +59,8 @@ public class YasutoraSado extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+
+        cooldown.ProgressCooldownAndTrigger(m);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)

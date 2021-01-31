@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class SosukeAizen extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(SosukeAizen.class).SetSkill(-1, CardRarity.SPECIAL, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(SosukeAizen.class).SetSkill(-1, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public SosukeAizen()
     {

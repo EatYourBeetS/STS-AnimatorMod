@@ -87,6 +87,8 @@ public class CombatStats extends EYBPower implements InvisiblePower
     private static ArrayList<AbstractOrb> orbsEvokedThisTurn = new ArrayList<>();
     private static ArrayList<AbstractCard> synergiesThisTurn = new ArrayList<>();
 
+    private static HashMap<String, Integer> amountIncreasedOnOrbs = new HashMap<>();
+
     //@Formatter: Off
     public static boolean HasActivatedLimited(String id) { return combatData.containsKey(id); }
     public static boolean HasActivatedSemiLimited(String id) { return turnData.containsKey(id); }
@@ -137,6 +139,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         cardsExhaustedThisTurn = 0;
         orbsEvokedThisCombat.clear();
         orbsEvokedThisTurn.clear();
+        amountIncreasedOnOrbs.clear();
         synergiesThisTurn.clear();
         currentPhase = null;
         combatData.clear();
@@ -404,9 +407,41 @@ public class CombatStats extends EYBPower implements InvisiblePower
         return orbsEvokedThisTurn;
     }
 
+    public static HashMap<String, Integer> AmountIncreasedOnOrbs()
+    {
+        return amountIncreasedOnOrbs;
+    }
+
     public static int TurnCount()
     {
         return turnCount;
+    }
+
+    public static void AddAmountIncreasedOnOrbs(String orbType, int amount)
+    {
+        if (amountIncreasedOnOrbs.containsKey(orbType))
+        {
+            int currentAmount = amountIncreasedOnOrbs.get(orbType);
+
+            amountIncreasedOnOrbs.put(orbType, currentAmount + amount);
+        }
+        else
+        {
+            amountIncreasedOnOrbs.put(orbType, amount);
+        }
+    }
+
+    public static int GetAmountIncreasedOnOrb(String orbType)
+    {
+        for (String orbID : amountIncreasedOnOrbs.keySet())
+        {
+            if (orbID.equals(orbType))
+            {
+                return amountIncreasedOnOrbs.get(orbID);
+            }
+        }
+
+        return 0;
     }
 
     @Override

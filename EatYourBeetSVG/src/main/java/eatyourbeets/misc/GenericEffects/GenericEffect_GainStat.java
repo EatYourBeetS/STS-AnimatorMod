@@ -9,7 +9,7 @@ import eatyourbeets.utilities.PlayerAttribute;
 
 public class GenericEffect_GainStat extends GenericEffect
 {
-    PlayerAttribute attribute;
+    protected final PlayerAttribute attribute;
 
     public GenericEffect_GainStat(int amount, PlayerAttribute attribute)
     {

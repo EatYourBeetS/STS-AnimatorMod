@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class GenericEffect_ChannelOrb extends GenericEffect
 {
-    AbstractOrb orb;
+    protected final AbstractOrb orb;
 
     public GenericEffect_ChannelOrb(int amount, AbstractOrb orb)
     {
@@ -28,7 +28,7 @@ public class GenericEffect_ChannelOrb extends GenericEffect
     {
         for (int i=0; i<amount; i++)
         {
-            GameActions.Bottom.ChannelOrb(orb, true);
+            GameActions.Bottom.ChannelOrb(orb.makeCopy(), true);
         }
     }
 }

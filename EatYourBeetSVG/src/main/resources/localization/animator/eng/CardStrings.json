@@ -213,7 +213,7 @@
 		},
 		"animator:IsshinKurosaki":
 		{
-		  "DESCRIPTION": "Choose 1: Channel 1 [Fire] or Gain !S! [F]. || <SLM>. Increase the amount of ALL your current [Fire] by !M!.",
+		  "DESCRIPTION": "Choose 1: Channel 1 [Fire] or Gain !S! [F]. || <SLM>. Increase the amount of your [Fire] by !M! this combat.",
 		  "NAME": "Isshin Kurosaki"
 		},
 		"animator:MayuriKurotsuchi":

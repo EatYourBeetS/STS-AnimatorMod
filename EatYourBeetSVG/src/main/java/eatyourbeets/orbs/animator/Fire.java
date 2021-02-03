@@ -12,6 +12,7 @@ import eatyourbeets.actions.orbs.FireOrbPassiveAction;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import patches.orbs.AbstractOrbPatches;
 
 public class Fire extends AnimatorOrb
 {
@@ -69,6 +70,8 @@ public class Fire extends AnimatorOrb
     public void applyFocus()
     {
         this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
+
+        AbstractOrbPatches.ApplyAmountChangeToOrb(this);
     }
 
     public void updateAnimation()

@@ -11,14 +11,13 @@ import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Hashtable;
+import java.util.HashMap;
 
 public class Natsumi extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Natsumi.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.Random);
 
-    private static Dictionary<Integer, ArrayList<AbstractCard>> cardPool;
+    private static HashMap<Integer, ArrayList<AbstractCard>> cardPool;
 
     public Natsumi()
     {
@@ -93,7 +92,7 @@ public class Natsumi extends AnimatorCard
 
     private static void GenerateCardPool()
     {
-        cardPool = new Hashtable<>();
+        cardPool = new HashMap<>();
 
         for (AbstractCard c : GameUtilities.GetAvailableCards())
         {

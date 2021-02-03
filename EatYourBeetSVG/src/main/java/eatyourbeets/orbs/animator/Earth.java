@@ -20,6 +20,7 @@ import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import patches.orbs.AbstractOrbPatches;
 
 public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber
 {
@@ -133,6 +134,8 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
             this.evokeAmount = this.baseEvokeAmount;
             this.passiveAmount = this.basePassiveAmount;
         }
+
+        AbstractOrbPatches.ApplyAmountChangeToOrb(this);
     }
 
     public void updateAnimation()

@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator.beta.Bleach;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import eatyourbeets.actions.animator.ApplyAmountToOrbs;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.GenericEffects.GenericEffect_ChannelOrb;
 import eatyourbeets.misc.GenericEffects.GenericEffect_GainStat;
@@ -39,26 +39,12 @@ public class IsshinKurosaki extends AnimatorCard
             choices.AddEffect(new GenericEffect_GainStat(secondaryValue, PlayerAttribute.Force));
         }
 
-        choices.Select(1, m)
-        .AddCallback(card -> {
-            if (CombatStats.TryActivateSemiLimited(cardID)){
-                GameActions.Bottom.Callback(cards -> {
-                    BoostAllFireOrbs();
-                });
-            }
-        });
-    }
+        choices.Select(1, m);
 
-    private void BoostAllFireOrbs()
-    {
-        for (AbstractOrb orb : player.orbs)
-        {
-            if (Fire.ORB_ID.equals(orb.ID))
-            {
-                orb.passiveAmount = orb.passiveAmount + magicNumber;
-                orb.evokeAmount = orb.evokeAmount + magicNumber;
-                orb.updateDescription();
-            }
+        if (CombatStats.TryActivateSemiLimited(cardID)){
+            GameActions.Last.Callback(cards -> {
+                GameActions.Bottom.Add(new ApplyAmountToOrbs(Fire.ORB_ID, 1));
+            });
         }
     }
 }

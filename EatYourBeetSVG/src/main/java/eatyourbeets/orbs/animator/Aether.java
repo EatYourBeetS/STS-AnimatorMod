@@ -10,6 +10,7 @@ import eatyourbeets.actions.orbs.AetherOrbEvokeAction;
 import eatyourbeets.actions.orbs.AetherOrbPassiveAction;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.utilities.GameActions;
+import patches.orbs.AbstractOrbPatches;
 
 public class Aether extends AnimatorOrb
 {
@@ -65,6 +66,8 @@ public class Aether extends AnimatorOrb
     public void applyFocus()
     {
         this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
+
+        AbstractOrbPatches.ApplyAmountChangeToOrb(this);
     }
 
     public void updateAnimation()

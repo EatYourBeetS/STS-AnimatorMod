@@ -41,7 +41,7 @@ public class IsshinKurosaki extends AnimatorCard
 
         choices.Select(1, m);
 
-        if (CombatStats.TryActivateSemiLimited(cardID)){
+        if (CombatStats.TryActivateLimited(cardID)){
             GameActions.Last.Callback(cards -> {
                 GameActions.Bottom.Add(new ApplyAmountToOrbs(Fire.ORB_ID, 1));
             });

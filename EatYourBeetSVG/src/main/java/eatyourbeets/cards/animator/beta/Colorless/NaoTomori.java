@@ -68,7 +68,7 @@ public class NaoTomori extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
-                .SetFilter(c -> c.type.equals(CardType.POWER))
+                .SetFilter(c -> c.type.equals(CardType.POWER) || c.type.equals(CardType.CURSE))
                 .SetOptions(false, false, false)
                 .AddCallback(cards ->
                 {

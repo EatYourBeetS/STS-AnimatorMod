@@ -501,7 +501,7 @@
 		},
 		"animator:NaoTomori":
 		{
-		  "DESCRIPTION": "Exhaust a {Power} in your hand to gain {Phasing}.  || When Exhausted: Choose 1 of !M! cards to obtain.",
+		  "DESCRIPTION": "Exhaust a {Power} or {Curse} in your hand to gain {Phasing}.  || When Exhausted: Choose 1 of !M! cards to obtain.",
 		  "NAME": "Nao Tomori"
 		},
 	   "animator:Rorona":

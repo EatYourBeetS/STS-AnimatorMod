@@ -129,7 +129,7 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         super.update(slot);
 
-        this.enabled = (!preservedPowers.contains(ID) || !permanentlyPreservedPowers.contains(ID));
+        this.enabled = (!preservedPowers.contains(ID) && !permanentlyPreservedPowers.contains(ID));
 
         if (!this.enabled && overridePreservedPowers.contains(ID))
         {

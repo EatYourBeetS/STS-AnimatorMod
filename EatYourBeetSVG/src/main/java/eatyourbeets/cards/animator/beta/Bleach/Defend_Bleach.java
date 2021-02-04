@@ -27,18 +27,19 @@ public class Defend_Bleach extends Defend
     {
         GameActions.Bottom.GainBlock(block);
 
-        if (CombatStats.TryActivateLimited(cardID))
-        {
+
             GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
                     .ShowEffect(false, false)
                     .SetOptions(false, false, false)
                     .AddCallback(() ->
                     {
-                        for (int i = 0; i < secondaryValue; i++)
+                        if (CombatStats.TryActivateLimited(cardID))
                         {
-                            GameActions.Bottom.ChannelOrb(new Fire(), true);
+                            for (int i = 0; i < secondaryValue; i++)
+                            {
+                                GameActions.Bottom.ChannelOrb(new Fire(), true);
+                            }
                         }
                     });
-        }
     }
 }

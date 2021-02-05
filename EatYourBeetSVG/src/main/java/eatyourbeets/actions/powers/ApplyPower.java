@@ -157,7 +157,13 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             HardCodedStuff_ChampionBelt();
         }
 
-        if (target.isPlayer && HardCodedStuff_TurnipAndGingerCheck() && PowerDisabledCheck())
+        if (target.isPlayer && HardCodedStuff_TurnipAndGingerCheck())
+        {
+            tickDuration();
+            return;
+        }
+
+        if (PowerDisabledCheck())
         {
             tickDuration();
             return;

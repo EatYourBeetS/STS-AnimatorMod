@@ -25,7 +25,7 @@ public class IntellectPower extends PlayerAttributePower
 
     public static void StopAlwaysPreserve()
     {
-        permanentlyPreservedPowers.Subscribe(POWER_ID);
+        permanentlyPreservedPowers.Unsubscribe(POWER_ID);
     }
 
     public static void StartOverridePreserve()
@@ -35,7 +35,7 @@ public class IntellectPower extends PlayerAttributePower
 
     public static void StopOverridePreserve()
     {
-        overrideDisabledPowers.Subscribe(POWER_ID);
+        overrideDisabledPowers.Unsubscribe(POWER_ID);
     }
 
     public static void StartDisable()

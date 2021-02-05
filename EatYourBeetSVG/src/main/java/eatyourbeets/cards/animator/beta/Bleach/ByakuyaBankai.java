@@ -44,7 +44,7 @@ public class ByakuyaBankai extends AnimatorCard
             this.flash();
         }
     }
-G
+
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {

@@ -22,7 +22,7 @@ public abstract class PlayerAttributePower extends CommonPower
 {
     protected static final PermanentlyPreservedPowers permanentlyPreservedPowers = new PermanentlyPreservedPowers();
     protected static final PreservedPowers preservedPowers = new PreservedPowers();
-    protected static final OverridePreservedPowers overridePreservedPowers = new OverridePreservedPowers();
+    protected static final OverridePreservedPowers overrideDisabledPowers = new OverridePreservedPowers();
     protected static final PermanentlyDisabledPowers permanentlyDisabledPowers = new PermanentlyDisabledPowers();
     protected int threshold;
 
@@ -94,7 +94,9 @@ public abstract class PlayerAttributePower extends CommonPower
     @Override
     public void onInitialApplication()
     {
-        if (!disabled)
+        updatePowerStatus();
+
+        if (!isPowerGainDisabled())
         {
             super.onInitialApplication();
 
@@ -105,7 +107,7 @@ public abstract class PlayerAttributePower extends CommonPower
     @Override
     public void stackPower(int stackAmount)
     {
-        if (!disabled)
+        if (!isPowerGainDisabled())
         {
             super.stackPower(stackAmount);
 
@@ -129,14 +131,7 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         super.update(slot);
 
-        this.enabled = (!preservedPowers.contains(ID) && !permanentlyPreservedPowers.contains(ID));
-
-        if (!this.enabled && overridePreservedPowers.contains(ID))
-        {
-            this.enabled = true;
-        }
-
-        this.disabled = (permanentlyDisabledPowers.contains(ID));
+        updatePowerStatus();
     }
 
     @Override
@@ -159,6 +154,32 @@ public abstract class PlayerAttributePower extends CommonPower
         }
 
         return damage;
+    }
+
+    public void updatePowerStatus()
+    {
+        this.enabled = (!preservedPowers.contains(ID) && !permanentlyPreservedPowers.contains(ID));
+
+        isPowerGainDisabled();
+    }
+
+    public boolean isPowerGainDisabled()
+    {
+        this.disabled = (permanentlyDisabledPowers.contains(ID));
+
+        if (this.disabled)
+        {
+            if (overrideDisabledPowers.contains(ID))
+            {
+                this.overrideDisabled = true;
+            }
+            else
+            {
+                this.overrideDisabled = false;
+            }
+        }
+
+        return disabled && !overrideDisabled;
     }
 
     @Override

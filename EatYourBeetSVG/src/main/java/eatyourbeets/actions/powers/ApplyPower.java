@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerDebuffEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.powers.EYBPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -158,12 +157,6 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         }
 
         if (target.isPlayer && HardCodedStuff_TurnipAndGingerCheck())
-        {
-            tickDuration();
-            return;
-        }
-
-        if (PowerDisabledCheck())
         {
             tickDuration();
             return;
@@ -404,16 +397,6 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
 
                 return true;
             }
-        }
-
-        return false;
-    }
-
-    private boolean PowerDisabledCheck()
-    {
-        if (powerToApply instanceof EYBPower && ((EYBPower)powerToApply).disabled)
-        {
-            return true;
         }
 
         return false;

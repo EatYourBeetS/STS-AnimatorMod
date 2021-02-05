@@ -28,14 +28,14 @@ public class AgilityPower extends PlayerAttributePower
         permanentlyPreservedPowers.Subscribe(POWER_ID);
     }
 
-    public static void StartOverridePreserve()
+    public static void StartOverrideDisable()
     {
-        overridePreservedPowers.Subscribe(POWER_ID);
+        overrideDisabledPowers.Subscribe(POWER_ID);
     }
 
-    public static void StopOverridePreserve()
+    public static void StopOverrideDisable()
     {
-        overridePreservedPowers.Subscribe(POWER_ID);
+        overrideDisabledPowers.Subscribe(POWER_ID);
     }
 
     public static void StartDisable()

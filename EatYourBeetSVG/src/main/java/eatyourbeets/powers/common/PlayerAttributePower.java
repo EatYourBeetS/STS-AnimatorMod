@@ -247,7 +247,7 @@ public abstract class PlayerAttributePower extends CommonPower
 
         public void Unsubscribe(String powerID)
         {
-            add(powerID);
+            remove(powerID);
             CombatStats.onStatsCleared.Unsubscribe(this);
         }
     }
@@ -269,7 +269,7 @@ public abstract class PlayerAttributePower extends CommonPower
 
         public void Unsubscribe(String powerID)
         {
-            add(powerID);
+            remove(powerID);
             CombatStats.onStatsCleared.Unsubscribe(this);
         }
     }
@@ -291,7 +291,7 @@ public abstract class PlayerAttributePower extends CommonPower
 
         public void Unsubscribe(String powerID)
         {
-            add(powerID);
+            remove(powerID);
             CombatStats.onStatsCleared.Unsubscribe(this);
         }
     }

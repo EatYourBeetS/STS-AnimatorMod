@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerDebuffEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.powers.common.PlayerAttributePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -160,6 +161,19 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         {
             tickDuration();
             return;
+        }
+
+        if (powerToApply instanceof PlayerAttributePower)
+        {
+            PlayerAttributePower attributePower = (PlayerAttributePower) powerToApply;
+
+            attributePower.updatePowerStatus();
+
+            if (attributePower.isPowerGainDisabled())
+            {
+                tickDuration();
+                return;
+            }
         }
 
         AbstractPower existingPower = null;

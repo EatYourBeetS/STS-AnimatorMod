@@ -44,11 +44,13 @@ public class ByakuyaBankai extends AnimatorCard
             this.flash();
         }
     }
-
+G
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (int i=0; i< GameUtilities.GetXCostEnergy(this); i++)
+        int stacks = GameUtilities.UseXCostEnergy(this);
+
+        for (int i=0; i< stacks; i++)
         {
             GameActions.Bottom.Callback(card -> {
                 ChooseAction(m);

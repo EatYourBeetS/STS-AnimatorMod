@@ -223,7 +223,7 @@
 		  "NAME": "Mayuri Kurotsuchi"
 		},
 		"animator:OrihimeInoue":
-		{NaoT
+		{
 		  "DESCRIPTION": "Choose a card in your hand: || Cost 0-1 -> Gain !S! [Block]. ** Cost 2+ -> Gain !M! [Temporary HP]. ** Other -> Fill your empty Orb Slots with [Fire].",
 		  "EXTENDED_DESCRIPTION": ["Other", "X-Cost cards and cards without energy costs."],
 		  "NAME": "Orihime Inoue"

@@ -45,6 +45,7 @@ public class OrihimeInoue extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.SelectFromHand(name, 1, false)
+        .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[2])
         .AddCallback(cards ->
         {
             if (cards.size() > 0)

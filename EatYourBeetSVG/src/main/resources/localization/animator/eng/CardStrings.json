@@ -225,7 +225,7 @@
 		"animator:OrihimeInoue":
 		{
 		  "DESCRIPTION": "Choose a card in your hand: || Cost 0-1 -> Gain !S! [Block]. ** Cost 2+ -> Gain !M! [Temporary HP]. ** Other -> Fill your empty Orb Slots with [Fire].",
-		  "EXTENDED_DESCRIPTION": ["Other", "X-Cost cards and cards without energy costs."],
+		  "EXTENDED_DESCRIPTION": ["Other", "X-Cost cards and cards without energy costs.","Choose a card in your hand for an effect."],
 		  "NAME": "Orihime Inoue"
 		},
 		"animator:RenjiArakai":
@@ -502,7 +502,8 @@
 		},
 		"animator:NaoTomori":
 		{
-		  "DESCRIPTION": "Transform a {Power} or {Curse} in your hand into a {Normality} to gain {Phasing}.  || When Exhausted: Choose 1 of !M! cards to obtain.",
+		  "DESCRIPTION": "Transform a {Power} or {Status} in your hand into a {Normality} to gain {Phasing}.  || When Exhausted: Choose 1 of !M! cards to obtain.",
+		  "EXTENDED_DESCRIPTION": ["Choose a card in your hand to transform into a Normality."],
 		  "NAME": "Nao Tomori"
 		},
 	   "animator:Rorona":

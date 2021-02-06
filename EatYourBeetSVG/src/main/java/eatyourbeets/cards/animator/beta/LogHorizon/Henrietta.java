@@ -41,6 +41,8 @@ public class Henrietta extends AnimatorCard implements OnCostRefreshSubscriber, 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        GameActions.Bottom.GainBlock(block);
+
         GameActions.Bottom.StackPower(new HenriettaPower(p, secondaryValue));
     }
 

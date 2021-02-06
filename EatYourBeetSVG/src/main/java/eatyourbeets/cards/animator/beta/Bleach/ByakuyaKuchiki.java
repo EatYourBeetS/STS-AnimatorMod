@@ -54,7 +54,7 @@ public class ByakuyaKuchiki extends AnimatorCard
 
         CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         choices.addToTop(damage);
-        choices.addToBottom(block);
+        choices.addToTop(block);
 
         Execute(choices, m);
     }

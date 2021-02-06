@@ -4,13 +4,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 
 public class Shiroe extends AnimatorCard {
     public static final EYBCardData DATA = Register(Shiroe.class).SetAttack(0, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Normal);
@@ -58,18 +55,10 @@ public class Shiroe extends AnimatorCard {
 
         if (CombatStats.SynergiesThisTurn().size() >= secondaryValue && CombatStats.TryActivateLimited(cardID))
         {
-            final float pos_x = (float) Settings.WIDTH / 4f;
-            final float pos_y = (float) Settings.HEIGHT / 2f;
-
-            upgrade();
-
-            player.bottledCardUpgradeCheck(this);
-
-            if (GameEffects.TopLevelQueue.Count() < 5)
-            {
-                GameEffects.TopLevelQueue.Add(new UpgradeShineEffect(pos_x, pos_y));
-                GameEffects.TopLevelQueue.ShowCardBriefly(makeStatEquivalentCopy(), pos_x, pos_y);
-            }
+            GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
+                    .IncludeMasterDeck(true)
+                    .IsCancellable(false);
+            flash();
         }
     }
 }

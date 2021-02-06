@@ -27,7 +27,8 @@ public class Defend_Bleach extends Defend
     {
         GameActions.Bottom.GainBlock(block);
 
-
+        if (!CombatStats.HasActivatedLimited(cardID))
+        {
             GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
                     .ShowEffect(false, false)
                     .SetOptions(false, false, false)
@@ -41,5 +42,6 @@ public class Defend_Bleach extends Defend
                             }
                         }
                     });
+        }
     }
 }

@@ -18,7 +18,7 @@ public class NanamiEffect_Attack_Debuff extends NanamiEffect
     @Override
     public String GetDescription(Nanami nanami)
     {
-        return ACTIONS.Apply(GetWeak(nanami), GR.Tooltips.Weak.title, true);
+        return ACTIONS.Apply(GetWeak(nanami), GR.Tooltips.Weak, true);
     }
 
     @Override

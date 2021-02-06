@@ -17,7 +17,7 @@ public class GenericEffect_GainTempHP extends GenericEffect
     @Override
     public String GetText()
     {
-        return GR.Animator.Strings.Actions.GainAmount(amount, "["+tooltip+"]", true);
+        return GR.Animator.Strings.Actions.GainAmount(amount, tooltip, true);
     }
 
     @Override

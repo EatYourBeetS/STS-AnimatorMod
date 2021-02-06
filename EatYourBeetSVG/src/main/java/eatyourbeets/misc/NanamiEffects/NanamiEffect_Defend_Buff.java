@@ -27,7 +27,7 @@ public class NanamiEffect_Defend_Buff extends NanamiEffect
     @Override
     public String GetDescription(Nanami nanami)
     {
-        return ACTIONS.GainAmount(GetForce(nanami), GR.Tooltips.Force.title, true);
+        return ACTIONS.GainAmount(GetForce(nanami), GR.Tooltips.Force, true);
     }
 
     @Override

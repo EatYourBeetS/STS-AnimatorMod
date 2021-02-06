@@ -15,7 +15,7 @@ public class VestaElixirEffect_Force extends VestaElixirEffect
     @Override
     public String GetDescription()
     {
-        return ACTIONS.GainAmount(amount, GR.Tooltips.Force.title, true);
+        return ACTIONS.GainAmount(amount, GR.Tooltips.Force, true);
     }
 
     @Override

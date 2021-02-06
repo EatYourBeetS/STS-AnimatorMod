@@ -17,7 +17,7 @@ public class Shiroe extends AnimatorCard {
     public Shiroe() {
         super(DATA);
 
-        Initialize(1, 0, 0,4);
+        Initialize(1, 0, 1,4);
         SetUpgrade(1, 0, 0);
 
         SetUnique(true, true);

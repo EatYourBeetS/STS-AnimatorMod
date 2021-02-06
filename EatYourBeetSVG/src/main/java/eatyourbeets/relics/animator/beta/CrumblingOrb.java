@@ -1,6 +1,7 @@
 package eatyourbeets.relics.animator.beta;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -15,6 +16,7 @@ import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class CrumblingOrb extends AnimatorRelic
 {
@@ -22,7 +24,7 @@ public class CrumblingOrb extends AnimatorRelic
 
     public CrumblingOrb()
     {
-        super(ID, RelicTier.RARE, LandingSound.MAGICAL);
+        super(ID, RelicTier.BOSS, LandingSound.MAGICAL);
     }
 
     @Override
@@ -68,6 +70,8 @@ public class CrumblingOrb extends AnimatorRelic
                     {
                         boolean upgraded = currentCard.upgraded;
 
+                        UUID uuid = currentCard.uuid;
+
                         AbstractDungeon.player.masterDeck.removeCard(currentCard);
 
                         AbstractCard reward = AbstractDungeon.returnTrulyRandomCard();
@@ -84,11 +88,44 @@ public class CrumblingOrb extends AnimatorRelic
                             GameEffects.TopLevelQueue.Add(new ShowCardAndObtainEffect(reward, (float) Settings.WIDTH / 3f + displayCount, (float) Settings.HEIGHT / 2f, false));
                             displayCount += (float) Settings.WIDTH / 6f;
                         }
+
+                        ReplaceCardWithIDInCurrentGame(uuid, reward.makeCopy());
                     }
                 }
             }
         }
 
         flash();
+    }
+
+    private void ReplaceCardWithIDInCurrentGame(UUID uuid, AbstractCard newCard)
+    {
+        if (ReplaceCardWithID(player.drawPile, uuid, newCard) == null)
+        {
+            if (ReplaceCardWithID(player.discardPile, uuid, newCard) == null)
+            {
+                if (ReplaceCardWithID(player.exhaustPile, uuid, newCard) == null)
+                {
+                    ReplaceCardWithID(player.hand, uuid, newCard);
+                }
+            }
+        }
+    }
+
+    private AbstractCard ReplaceCardWithID(CardGroup group, UUID uuid, AbstractCard newCard)
+    {
+        for (AbstractCard c : group.group)
+        {
+            if (uuid.equals(c.uuid))
+            {
+                GameEffects.List.ShowCardBriefly(c.makeStatEquivalentCopy());
+                GameActions.Bottom.ReplaceCard(c.uuid, newCard)
+                        .SetUpgrade(c.upgraded);
+
+                return c;
+            }
+        }
+
+        return null;
     }
 }

@@ -4,16 +4,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
 public class OrihimeInoue extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(OrihimeInoue.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardTooltip Other = new EYBCardTooltip(DATA.Strings.EXTENDED_DESCRIPTION[0], DATA.Strings.EXTENDED_DESCRIPTION[1]);
 
     public OrihimeInoue()
     {
@@ -24,6 +22,17 @@ public class OrihimeInoue extends AnimatorCard
         SetExhaust(true);
 
         SetSynergy(Synergies.Bleach);
+    }
+
+    @Override
+    public void initializeDescription()
+    {
+        super.initializeDescription();
+
+        if (cardText != null)
+        {
+            tooltips.add(Other);
+        }
     }
 
     @Override

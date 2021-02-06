@@ -39,14 +39,15 @@ public class MayuriKurotsuchi extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ApplyPoison(TargetHelper.Normal(m), magicNumber);
+        GameActions.Bottom.ApplyPoison(TargetHelper.Normal(m), magicNumber)
+            .AddCallback(cards -> {
+                int poisonThreshold = 30;
 
-        int poisonThreshold = 30;
-
-        if (GameUtilities.GetPowerAmount(m, PoisonPower.POWER_ID) >= poisonThreshold)
-        {
-            ApplyRandomCommonDebuff(m);
-        }
+                if (GameUtilities.GetPowerAmount(m, PoisonPower.POWER_ID) >= poisonThreshold)
+                {
+                    ApplyRandomCommonDebuff(m);
+                }
+            });
     }
 
     @Override

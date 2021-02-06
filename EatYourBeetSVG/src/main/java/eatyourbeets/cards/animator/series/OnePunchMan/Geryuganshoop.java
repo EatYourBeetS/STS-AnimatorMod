@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -33,7 +33,7 @@ public class Geryuganshoop extends AnimatorCard
     {
         GameActions.Bottom.Cycle(name, magicNumber)
         .AddCallback(() -> GameActions.Bottom.SelectFromPile(name, secondaryValue, player.exhaustPile)
-                           .SetMessage(JavaUtilities.Format(cardData.Strings.EXTENDED_DESCRIPTION[0], secondaryValue))
+                           .SetMessage(JUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[0], secondaryValue))
                            .SetOptions(false, true)
                            .AddCallback(this::OnCardChosen));
     }

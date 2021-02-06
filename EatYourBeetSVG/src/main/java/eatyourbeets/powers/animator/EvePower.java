@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.cards.base.AnimatorCard;
 
 public class EvePower extends AnimatorPower
@@ -33,7 +33,7 @@ public class EvePower extends AnimatorPower
     {
         super.onAfterCardPlayed(usedCard);
 
-        AnimatorCard card = JavaUtilities.SafeCast(usedCard, AnimatorCard.class);
+        AnimatorCard card = JUtils.SafeCast(usedCard, AnimatorCard.class);
         if (card != null && card.HasSynergy())
         {
             GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)

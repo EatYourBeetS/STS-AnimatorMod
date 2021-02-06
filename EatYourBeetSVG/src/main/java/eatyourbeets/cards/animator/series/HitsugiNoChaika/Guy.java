@@ -26,7 +26,7 @@ public class Guy extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Draw(this.magicNumber);
+        GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
         .SetOptions(false, false, true);
 

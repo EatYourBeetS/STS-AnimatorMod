@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.utilities.GameActions;
@@ -40,8 +39,8 @@ public class ScarUpgradeAction extends EYBAction
 
                 toUpgrade.upgrade();
                 player.bottledCardUpgradeCheck(toUpgrade);
-                GameEffects.Queue.Add(new UpgradeShineEffect((float) Settings.WIDTH / 4f, (float) Settings.HEIGHT / 2f));
-                GameEffects.Queue.Add(new ShowCardBrieflyEffect(toUpgrade.makeStatEquivalentCopy(), (float) Settings.WIDTH / 4f, (float) Settings.HEIGHT / 2f));
+                GameEffects.Queue.Add(new UpgradeShineEffect(Settings.WIDTH / 4f, Settings.HEIGHT / 2f));
+                GameEffects.Queue.ShowCardBriefly(toUpgrade.makeStatEquivalentCopy(), Settings.WIDTH / 4f, Settings.HEIGHT / 2f);
             }
         }
 

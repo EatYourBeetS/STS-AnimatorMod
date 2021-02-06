@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.events.animator.*;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -112,7 +112,7 @@ public abstract class EYBEvent extends AbstractImageEvent
             }
         }
 
-        JavaUtilities.Log(this, "Event phase not found: " + newPhase.getSimpleName());
+        JUtils.LogInfo(this, "Event phase not found: " + newPhase.getSimpleName());
         OpenMap();
     }
 
@@ -130,7 +130,7 @@ public abstract class EYBEvent extends AbstractImageEvent
             }
         }
 
-        JavaUtilities.Log(this, "Event phase not found: " + newPhase);
+        JUtils.LogInfo(this, "Event phase not found: " + newPhase);
         OpenMap();
     }
 

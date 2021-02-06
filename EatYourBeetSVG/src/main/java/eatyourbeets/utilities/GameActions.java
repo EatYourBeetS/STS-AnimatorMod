@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
+import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
@@ -36,7 +37,11 @@ import eatyourbeets.actions.handSelection.DiscardFromHand;
 import eatyourbeets.actions.handSelection.ExhaustFromHand;
 import eatyourbeets.actions.handSelection.SelectFromHand;
 import eatyourbeets.actions.monsters.TalkAction;
+import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.actions.pileSelection.*;
+import eatyourbeets.actions.player.ChangeStance;
+import eatyourbeets.actions.player.GainGold;
+import eatyourbeets.actions.player.SpendEnergy;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.actions.powers.ReduceStrength;
 import eatyourbeets.actions.special.*;
@@ -68,11 +73,13 @@ public final class GameActions
 {
     @Deprecated
     public static final GameActions NextCombat = new GameActions(ActionOrder.NextCombat);
+    @Deprecated
+    public static final GameActions TurnStart = new GameActions(ActionOrder.TurnStart);
 
+    public static final GameActions Instant = new GameActions(ActionOrder.Instant);
     public static final GameActions Top = new GameActions(ActionOrder.Top);
     public static final GameActions Bottom = new GameActions(ActionOrder.Bottom);
-    public static final GameActions TurnStart = new GameActions(ActionOrder.TurnStart);
-    public static final GameActions Instant = new GameActions(ActionOrder.Instant);
+    public static final GameActions Delayed = new GameActions(ActionOrder.Delayed);
     public static final GameActions Last = new GameActions(ActionOrder.Last);
 
     protected final ActionOrder actionOrder;
@@ -80,6 +87,11 @@ public final class GameActions
     protected GameActions(ActionOrder actionOrder)
     {
         this.actionOrder = actionOrder;
+    }
+
+    public static DelayAllActions DelayCurrentActions()
+    {
+        return Top.Add(new DelayAllActions(true));
     }
 
     public <T extends AbstractGameAction> T Add(T action)
@@ -124,9 +136,14 @@ public final class GameActions
                 break;
             }
 
+            case Delayed:
+            {
+                Bottom.Callback(action, Bottom::Add);
+            }
+
             case Last:
             {
-                DelayedAction.Add(action);
+                ExecuteLast.Add(action);
                 break;
             }
         }
@@ -249,9 +266,9 @@ public final class GameActions
         return Add(new ChangeStanceAction(stance));
     }
 
-    public ChangeStanceAction ChangeStance(String stanceName)
+    public ChangeStance ChangeStance(String stanceName)
     {
-        return Add(new ChangeStanceAction(stanceName));
+        return Add(new ChangeStance(stanceName));
     }
 
     public ChannelAction ChannelOrb(AbstractOrb orb, boolean autoEvoke)
@@ -363,6 +380,21 @@ public final class GameActions
         return Add(new FetchFromPile(sourceName, amount, groups));
     }
 
+    public EvokeOrb EvokeOrb(int times)
+    {
+        return Add(new EvokeOrb(times, EvokeOrb.Mode.SameOrb));
+    }
+
+    public EvokeOrb EvokeOrb(int times, AbstractOrb orb)
+    {
+        return Add(new EvokeOrb(times, orb));
+    }
+
+    public EvokeOrb EvokeOrb(int times, EvokeOrb.Mode mode)
+    {
+        return Add(new EvokeOrb(times, mode));
+    }
+
     public VFXAction Flash(AbstractCard card)
     {
         return Add(new VFXAction(new CardFlashVfx(card, Color.ORANGE.cpy())));
@@ -451,6 +483,11 @@ public final class GameActions
         }
 
         return StackPower(new IntellectPower(player, amount));
+    }
+
+    public ApplyPower GainMalleable(int amount)
+    {
+        return StackPower(new MalleablePower(player, amount));
     }
 
     public ApplyPower GainMetallicize(int amount)
@@ -640,6 +677,7 @@ public final class GameActions
     {
         return Add(new PlayCard(card, target, true))
         .SetCurrentPosition(card.current_x, card.current_y)
+        .SpendEnergy(false)
         .SetPurge(true);
     }
 
@@ -673,7 +711,7 @@ public final class GameActions
         return Add(new ReduceStrength(player, target, amount, temporary));
     }
 
-    public DiscardFromHand Reload(String sourceName, Object state, ActionT2<Object, ArrayList<AbstractCard>> onReload)
+    public <S> DiscardFromHand Reload(String sourceName, S state, ActionT2<S, ArrayList<AbstractCard>> onReload)
     {
         return (DiscardFromHand) Add(new DiscardFromHand(sourceName, 999, false)
         .SetOptions(true, true, true)
@@ -722,9 +760,9 @@ public final class GameActions
         return Add(new SFXAction(key, pitchVar));
     }
 
-    public SelectCreature SelectCreature(SelectCreature.Targeting target)
+    public SelectCreature SelectCreature(SelectCreature.Targeting target, String source)
     {
-        return Add(new SelectCreature(target));
+        return Add(new SelectCreature(target, source));
     }
 
     public SelectCreature SelectCreature(AbstractCard card)
@@ -782,6 +820,25 @@ public final class GameActions
         return Add(new TalkAction(source, text, duration, bubbleDuration));
     }
 
+    public SelectFromHand UpgradeFromHand(String sourceName, int amount, boolean isRandom)
+    {
+        return (SelectFromHand) SelectFromHand(sourceName, amount, isRandom)
+        .SetOptions(true, true, true, false, true, false)
+        .SetMessage(ArmamentsAction.TEXT[0])
+        .SetFilter(AbstractCard::canUpgrade)
+        .AddCallback(cards ->
+        {
+            for (AbstractCard c : cards)
+            {
+                if (c.canUpgrade())
+                {
+                    c.upgrade();
+                    c.flash();
+                }
+            }
+        });
+    }
+
     public VFX VFX(AbstractGameEffect effect)
     {
         return Add(new VFX(effect, false));
@@ -809,26 +866,28 @@ public final class GameActions
 
     public enum ActionOrder
     {
-        Top,
-        Bottom,
         TurnStart,
         NextCombat,
+
         Instant,
+        Top,
+        Bottom,
+        Delayed,
         Last
     }
 
-    protected static class DelayedAction implements OnPhaseChangedSubscriber
+    protected static class ExecuteLast implements OnPhaseChangedSubscriber
     {
         private final AbstractGameAction action;
 
-        private DelayedAction(AbstractGameAction action)
+        private ExecuteLast(AbstractGameAction action)
         {
             this.action = action;
         }
 
         public static void Add(AbstractGameAction action)
         {
-            CombatStats.onPhaseChanged.Subscribe(new DelayedAction(action));
+            CombatStats.onPhaseChanged.Subscribe(new ExecuteLast(action));
         }
 
         @Override
@@ -837,7 +896,6 @@ public final class GameActions
             if (phase == GameActionManager.Phase.WAITING_ON_USER)
             {
                 GameActions.Bottom.Add(action);
-
                 CombatStats.onPhaseChanged.Unsubscribe(this);
             }
         }

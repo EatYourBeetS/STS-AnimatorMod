@@ -72,7 +72,7 @@
 	},
 	"animator:HeavyHalberd":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yForce for each enemy with #yVulnerable."],
+		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yForce for each character with #yVulnerable."],
 		"FLAVOR": "Ruling over death means ruling over life. Death is the climax of life. To have the best death, you must honor life.",
 		"NAME": "Heavy Halberd"
 	},

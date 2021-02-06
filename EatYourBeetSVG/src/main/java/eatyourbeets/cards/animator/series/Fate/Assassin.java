@@ -28,7 +28,7 @@ public class Assassin extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, DEBUFFS_COUNT);
+        Initialize(2, 0, DEBUFFS_COUNT);
         SetUpgrade(2, 0);
         SetScaling(0, 1, 0);
 
@@ -37,17 +37,12 @@ public class Assassin extends AnimatorCard
     }
 
     @Override
-    public void triggerWhenDrawn()
-    {
-        SetRetain(true);
-    }
-
-    @Override
     public void triggerOnOtherCardPlayed(AbstractCard c)
     {
-        if (c.type == CardType.ATTACK)
+        if (c.type == CardType.ATTACK && player.hand.contains(this))
         {
-            SetRetain(false);
+            GameActions.Bottom.MoveCard(this, player.hand, player.discardPile)
+            .AddCallback(() -> GameActions.Bottom.Draw(1));
         }
     }
 

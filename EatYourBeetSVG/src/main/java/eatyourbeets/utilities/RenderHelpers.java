@@ -86,7 +86,8 @@ public class RenderHelpers
         }
         else
         {
-            result = FontHelper.cardTitleFont_small;
+            // NOTE: this was FontHelper.cardTitleFont_small
+            result = EYBFontHelper.CardTitleFont_Small;
             result.getData().setScale(card.drawScale * scaleModifier);
         }
 
@@ -120,7 +121,8 @@ public class RenderHelpers
         }
         else
         {
-            result = (card.name.length() > 14) ? FontHelper.cardTitleFont_small : FontHelper.cardTitleFont;
+            // NOTE: this was FontHelper.cardTitleFont_small
+            result = (card.name.length() > 14) ? EYBFontHelper.CardTitleFont_Small : FontHelper.cardTitleFont;
             result.getData().setScale(card.drawScale);
         }
 

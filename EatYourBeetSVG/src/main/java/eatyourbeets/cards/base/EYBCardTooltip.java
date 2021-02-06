@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 import org.apache.commons.lang3.StringUtils;
 
@@ -25,12 +25,12 @@ public class EYBCardTooltip
 {
     private final static ArrayList EMPTY_LIST = new ArrayList();
 
-    private final static FieldInfo<String> _body = JavaUtilities.GetField("BODY", TipHelper.class);
-    private final static FieldInfo<String> _header = JavaUtilities.GetField("HEADER", TipHelper.class);
-    private final static FieldInfo<ArrayList> _card = JavaUtilities.GetField("card", TipHelper.class);
-    private final static FieldInfo<ArrayList> _keywords = JavaUtilities.GetField("KEYWORDS", TipHelper.class);
-    private final static FieldInfo<ArrayList> _powerTips = JavaUtilities.GetField("POWER_TIPS", TipHelper.class);
-    private final static FieldInfo<Boolean> _renderedTipsThisFrame = JavaUtilities.GetField("renderedTipThisFrame", TipHelper.class);
+    private final static FieldInfo<String> _body = JUtils.GetField("BODY", TipHelper.class);
+    private final static FieldInfo<String> _header = JUtils.GetField("HEADER", TipHelper.class);
+    private final static FieldInfo<ArrayList> _card = JUtils.GetField("card", TipHelper.class);
+    private final static FieldInfo<ArrayList> _keywords = JUtils.GetField("KEYWORDS", TipHelper.class);
+    private final static FieldInfo<ArrayList> _powerTips = JUtils.GetField("POWER_TIPS", TipHelper.class);
+    private final static FieldInfo<Boolean> _renderedTipsThisFrame = JUtils.GetField("renderedTipThisFrame", TipHelper.class);
 
     private static final ArrayList<EYBCardTooltip> tooltips = new ArrayList<>();
     private static final float CARD_TIP_PAD = 12f * Settings.scale;
@@ -51,8 +51,12 @@ public class EYBCardTooltip
     private static EYBCard card;
 
     public TextureRegion icon;
+    public String id;
     public String title;
     public String description;
+    public float iconMulti_W = 1;
+    public float iconMulti_H = 1;
+    public boolean canRender = true;
 
     public EYBCardTooltip(String title, String description)
     {
@@ -90,7 +94,7 @@ public class EYBCardTooltip
         card.GenerateDynamicTooltips(tooltips);
         for (EYBCardTooltip tooltip : card.tooltips)
         {
-            if (!tooltips.contains(tooltip))
+            if (tooltip.canRender && !tooltips.contains(tooltip))
             {
                 tooltips.add(tooltip);
             }
@@ -121,7 +125,7 @@ public class EYBCardTooltip
                 float steps = (tooltips.size() - 3) * 0.4f;
                 float multi = 1f - (card.current_y / (Settings.HEIGHT * 0.5f));
 
-                y += AbstractCard.IMG_HEIGHT * (0.5f + JavaUtilities.Round(multi * steps, 3));
+                y += AbstractCard.IMG_HEIGHT * (0.5f + JUtils.Round(multi * steps, 3));
             }
             else
             {
@@ -171,7 +175,7 @@ public class EYBCardTooltip
         if (icon != null)
         {
             // To render it on the right: x + BOX_W - TEXT_OFFSET_X - 28 * Settings.scale
-            renderTipEnergy(sb, icon, x + TEXT_OFFSET_X, y + ORB_OFFSET_Y, 28, 28);
+            renderTipEnergy(sb, icon, x + TEXT_OFFSET_X, y + ORB_OFFSET_Y, 28 * iconMulti_W, 28 * iconMulti_H);
             FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X * 2.5f, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
         }
         else
@@ -184,12 +188,22 @@ public class EYBCardTooltip
         return h;
     }
 
-    public void SetIcon(TextureRegion region)
+    public EYBCardTooltip SetIconSizeMulti(float w, float h)
     {
-        this.icon = region;
+        this.iconMulti_W = w;
+        this.iconMulti_H = h;
+
+        return this;
     }
 
-    public void SetIcon(TextureRegion region, int div)
+    public EYBCardTooltip SetIcon(TextureRegion region)
+    {
+        this.icon = region;
+
+        return this;
+    }
+
+    public EYBCardTooltip SetIcon(TextureRegion region, int div)
     {
         int w = region.getRegionWidth();
         int h = region.getRegionHeight();
@@ -197,26 +211,44 @@ public class EYBCardTooltip
         int y = region.getRegionY();
         int half_div = div / 2;
         this.icon = new TextureRegion(region.getTexture(), x + (w / div), y + (h / div), w - (w / half_div), h - (h / half_div));
+
+        return this;
     }
 
-    public void SetIcon(Texture texture, int div)
+    public EYBCardTooltip SetIcon(Texture texture, int div)
     {
         int w = texture.getWidth();
         int h = texture.getHeight();
         int half_div = div / 2;
         this.icon = new TextureRegion(texture, w / div, h / div, w - (w / half_div), h - (h / half_div));
+
+        return this;
+    }
+
+    public EYBCardTooltip ShowText(boolean value)
+    {
+        this.canRender = value;
+
+        return this;
     }
 
     public void renderTipEnergy(SpriteBatch sb, TextureRegion region, float x, float y, float width, float height)
     {
         sb.setColor(Color.WHITE);
         sb.draw(region.getTexture(), x, y, 0f, 0f,
-        width, height, Settings.scale, Settings.scale, 0f, region.getRegionX(), region.getRegionY(), region.getRegionWidth(), region.getRegionHeight(), false, false);
+        width, height, Settings.scale, Settings.scale, 0f,
+        region.getRegionX(), region.getRegionY(), region.getRegionWidth(),
+        region.getRegionHeight(), false, false);
+    }
+
+    public String GetTitleOrIcon()
+    {
+        return (id != null) ? "["+id+"]" : title;
     }
 
     @Override
     public String toString()
     {
-        return title;
+        return GetTitleOrIcon();
     }
 }

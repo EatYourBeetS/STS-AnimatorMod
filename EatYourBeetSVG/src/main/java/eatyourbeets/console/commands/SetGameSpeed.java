@@ -4,7 +4,7 @@ import basemod.DevConsole;
 import basemod.devcommands.ConsoleCommand;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.MethodInfo;
 
 import java.io.IOException;
@@ -32,10 +32,10 @@ public class SetGameSpeed extends ConsoleCommand
         {
             Class<?> c = Class.forName("skrelpoid.superfastmode.SuperFastMode");
 
-            _config = JavaUtilities.GetField("config", c);
-            _writeConfig = JavaUtilities.GetMethod("writeConfig", c);
-            _isDeltaMultiplied = JavaUtilities.GetField("isDeltaMultiplied", c);
-            _deltaMultiplier = JavaUtilities.GetField("deltaMultiplier", c);
+            _config = JUtils.GetField("config", c);
+            _writeConfig = JUtils.GetMethod("writeConfig", c);
+            _isDeltaMultiplied = JUtils.GetField("isDeltaMultiplied", c);
+            _deltaMultiplier = JUtils.GetField("deltaMultiplier", c);
 
             return true;
         }

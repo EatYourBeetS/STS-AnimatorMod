@@ -23,6 +23,6 @@ public class Defend_GoblinSlayer extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
     }
 }

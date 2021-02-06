@@ -3,12 +3,12 @@ package eatyourbeets.cards.base;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FlightPower;
+import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.actions.special.HasteAction;
@@ -151,11 +151,11 @@ public abstract class EYBCard extends EYBCardBase
     {
         if (upgraded && cardData.Strings.UPGRADE_DESCRIPTION != null)
         {
-            return JavaUtilities.Format(cardData.Strings.UPGRADE_DESCRIPTION, args);
+            return JUtils.Format(cardData.Strings.UPGRADE_DESCRIPTION, args);
         }
         else
         {
-            return JavaUtilities.Format(cardData.Strings.DESCRIPTION, args);
+            return JUtils.Format(cardData.Strings.DESCRIPTION, args);
         }
     }
 
@@ -205,10 +205,9 @@ public abstract class EYBCard extends EYBCardBase
         }
     }
 
-    @Override
-    public final void triggerOnScry()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-
+        // Called at the start of a fight, or when a card is created by MakeTempCard.
     }
 
     @Override
@@ -227,7 +226,7 @@ public abstract class EYBCard extends EYBCardBase
     {
         if (player.cardInUse != this)
         {
-            JavaUtilities.GetLogger(this).error("You should only call PurgeOnUseOnce() within use(p, m)");
+            JUtils.LogError(this, "Only call PurgeOnUseOnce() from AbstractCard.use()");
         }
 
         unhover();
@@ -241,12 +240,7 @@ public abstract class EYBCard extends EYBCardBase
     public boolean IsStarter()
     {
         ArrayList<AbstractCard> played = AbstractDungeon.actionManager.cardsPlayedThisTurn;
-        if (played == null || played.isEmpty())
-        {
-            return true;
-        }
-
-        return played.get(0) == this;
+        return played == null || played.isEmpty() || (played.size() == 1 && played.get(0) == this);
     }
 
     public boolean IsAoE()
@@ -420,11 +414,6 @@ public abstract class EYBCard extends EYBCardBase
     {
         SetTag(GR.Enums.CardTags.UNIQUE, value);
         isMultiUpgrade = multiUpgrade;
-    }
-
-    protected boolean CanSubscribeToEvents()
-    {
-        return GameUtilities.InBattle() && !CardCrawlGame.isPopupOpen;
     }
 
     protected boolean TryUpgrade()
@@ -654,6 +643,13 @@ public abstract class EYBCard extends EYBCardBase
         }
     }
 
+    @Override
+    public final void resetAttributes()
+    {
+        // Triggered after being played, discarded, or at end of turn
+        super.resetAttributes();
+    }
+
     protected void Refresh(AbstractMonster enemy)
     {
         boolean applyEnemyPowers = (enemy != null && !GameUtilities.IsDeadOrEscaped(enemy));
@@ -688,10 +684,10 @@ public abstract class EYBCard extends EYBCardBase
                     {
                         tempDamage *= 2f;
                     }
-//                  else if (LockOnPower.POWER_ID.equals(power.ID))
-//                  {
-//                      tempDamage *= 1.3f;
-//                  }
+                    else if (LockOnPower.POWER_ID.equals(power.ID))
+                    {
+                        tempDamage *= 1.3f;
+                    }
                 }
             }
 

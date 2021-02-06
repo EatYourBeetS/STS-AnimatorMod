@@ -19,7 +19,7 @@ import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
 {
@@ -43,14 +43,14 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
     private final Vector2 origin = new Vector2();
     private float arrowScaleTimer;
 
-    public SelectCreature(Targeting targeting)
+    public SelectCreature(Targeting targeting, String sourceName)
     {
         super(ActionType.SPECIAL);
 
         this.card = null;
         this.targeting = targeting;
 
-        Initialize(amount);
+        Initialize(amount, sourceName);
     }
 
     public SelectCreature(AbstractCard card)
@@ -59,7 +59,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
 
         this.card = card;
 
-        EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
+        EYBCard c = JUtils.SafeCast(card, EYBCard.class);
         if (c != null && c.attackTarget != null)
         {
             switch (c.attackTarget)
@@ -102,8 +102,23 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
             }
         }
 
-        Initialize(amount);
+        Initialize(amount, card.name);
     }
+
+    public SelectCreature SetMessage(String message)
+    {
+        this.message = message;
+
+        return this;
+    }
+
+    public SelectCreature SetMessage(String format, Object... args)
+    {
+        this.message = JUtils.Format(format, args);
+
+        return this;
+    }
+
 
     @Override
     protected void FirstUpdate()
@@ -140,6 +155,11 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
 
         if (InputHelper.justClickedRight && canCancel)
         {
+            if (card != null)
+            {
+                card.applyPowers();
+            }
+
             Complete();
             return;
         }
@@ -157,13 +177,14 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
                 break;
         }
 
-        if (InputHelper.justClickedLeft)
+        if (InputHelper.justClickedLeft || InputHelper.justReleasedClickLeft)
         {
             InputHelper.justClickedLeft = false;
+            InputHelper.justReleasedClickLeft = false;
             switch (targeting)
             {
                 case Random:
-                    Complete(GameUtilities.GetRandomEnemy(true));
+                    Complete(target = GameUtilities.GetRandomEnemy(true));
                     return;
 
                 case AoE:
@@ -183,6 +204,13 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         }
 
         GR.UI.AddPostRender(this::Render);
+    }
+
+    @Override
+    protected void Complete()
+    {
+        GameCursor.hidden = false;
+        super.Complete();
     }
 
     protected void UpdateTarget(boolean targetPlayer, boolean targetEnemy)
@@ -213,7 +241,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         {
             if (target instanceof AbstractMonster)
             {
-                card.calculateCardDamage((AbstractMonster)target);
+                card.calculateCardDamage((AbstractMonster) target);
             }
             else
             {
@@ -222,7 +250,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         }
     }
 
-    public void Render(SpriteBatch sb)
+    protected void Render(SpriteBatch sb)
     {
         switch (targeting)
         {
@@ -325,12 +353,5 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
 
             sb.draw(ImageMaster.TARGET_UI_CIRCLE, points[i].x - 64f, points[i].y - 64f, 64f, 64f, 128f, 128f, radius / 18f, radius / 18f, angle, 0, 0, 128, 128, false, false);
         }
-    }
-
-    @Override
-    protected void Complete()
-    {
-        GameCursor.hidden = false;
-        super.Complete();
     }
 }

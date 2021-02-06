@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -34,7 +34,7 @@ public class PridePower extends AnimatorPower
             ArrayList<Dark> darkOrbs = new ArrayList<>();
             for (AbstractOrb orb : player.orbs)
             {
-                Dark dark = JavaUtilities.SafeCast(orb, Dark.class);
+                Dark dark = JUtils.SafeCast(orb, Dark.class);
                 if (dark != null)
                 {
                     darkOrbs.add(dark);

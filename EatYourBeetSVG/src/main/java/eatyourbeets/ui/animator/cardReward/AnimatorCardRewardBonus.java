@@ -19,7 +19,7 @@ import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -138,14 +138,13 @@ public class AnimatorCardRewardBonus extends GUIElement
         {
             return GetCursedRelicBundle(card);
         }
-
-        if (card instanceof AnimatorCard)
+        else if (card instanceof AnimatorCard)
         {
             for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Series)
             {
                 if (series.promoted && series.bonus < 6)
                 {
-                    if (series.Cards.containsKey(card.cardID) && GameUtilities.GetMasterDeckCopies(card.cardID) == null)
+                    if (series.Cards.containsKey(card.cardID) && GameUtilities.GetMasterDeckCopies(card.cardID).isEmpty())
                     {
                         if (series.bonus % 2 == 0)
                         {
@@ -195,7 +194,7 @@ public class AnimatorCardRewardBonus extends GUIElement
                 series.bonus += 1;
 
                 AbstractMissingPiece.RefreshDescription();
-                JavaUtilities.Log(this, "Obtained Gold Bonus (+" + bundle.amount + "): " + bundle.card.cardID);
+                JUtils.LogInfo(this, "Obtained Gold Bonus (+" + bundle.amount + "): " + bundle.card.cardID);
                 return;
             }
         }
@@ -211,7 +210,7 @@ public class AnimatorCardRewardBonus extends GUIElement
                 series.bonus += 1;
 
                 AbstractMissingPiece.RefreshDescription();
-                JavaUtilities.Log(this, "Obtained Max HP Bonus (+" + bundle.amount + "): " + bundle.card.cardID);
+                JUtils.LogInfo(this, "Obtained Max HP Bonus (+" + bundle.amount + "): " + bundle.card.cardID);
                 return;
             }
         }

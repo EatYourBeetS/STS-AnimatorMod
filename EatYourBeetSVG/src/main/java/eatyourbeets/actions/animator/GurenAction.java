@@ -24,7 +24,7 @@ public class GurenAction extends PlayCard
         {
             if (player.discardPile.size() > 0)
             {
-                GameActions.Top.Add(new GurenAction(this.target));
+                GameActions.Top.Add(new GurenAction(target));
                 GameActions.Top.Add(new EmptyDeckShuffleAction());
             }
 

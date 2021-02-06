@@ -7,7 +7,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.rooms.*;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.interfaces.subscribers.OnReceiveRewardsSubscriber;
@@ -16,11 +18,14 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.rewards.animator.SynergyCardsReward;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.WeightedList;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.StringJoiner;
 
 public abstract class AbstractMissingPiece extends AnimatorRelic implements OnReceiveRewardsSubscriber
 {
@@ -190,7 +195,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
                     }
                 }
 
-                JavaUtilities.Log(this, s.Name + " : " + weight);
+                JUtils.LogInfo(this, s.Name + " : " + weight);
                 list.Add(s, weight);
             }
         }
@@ -208,7 +213,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         final AbstractRoom room = GameUtilities.GetCurrentRoom();
         return room != null && lastRoom != room && room.rewardAllowed
         && !(room instanceof MonsterRoomBoss)
-        && (room instanceof MonsterRoom || room.eliteTrigger || (room instanceof EventRoom && room.combatEvent));
+        && (room instanceof MonsterRoom || room.eliteTrigger); // || (room instanceof EventRoom && room.combatEvent));
     }
 
     private int GetActualCounter()

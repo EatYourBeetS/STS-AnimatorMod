@@ -6,12 +6,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
+import eatyourbeets.interfaces.subscribers.OnCardResetSubscriber;
+import eatyourbeets.interfaces.subscribers.OnCostResetSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.ShiroPower;
 import eatyourbeets.utilities.GameActions;
 
-public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
+public class Shiro extends AnimatorCard implements OnCostResetSubscriber, OnCardResetSubscriber
 {
     public static final EYBCardData DATA = Register(Shiro.class).SetPower(4, CardRarity.RARE);
     static
@@ -47,11 +48,12 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     }
 
     @Override
-    public void resetAttributes()
+    public void OnCardReset(AbstractCard card)
     {
-        super.resetAttributes();
-
-        costModifier = 0;
+        if (card == this)
+        {
+            costModifier = 0;
+        }
     }
 
     @Override
@@ -85,7 +87,7 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     {
         super.Refresh(enemy);
 
-        OnCostRefresh(this);
+        OnCostReset(this);
     }
 
     @Override
@@ -99,7 +101,7 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     }
 
     @Override
-    public void OnCostRefresh(AbstractCard card)
+    public void OnCostReset(AbstractCard card)
     {
         if (card == this && !player.limbo.contains(this))
         {

@@ -29,6 +29,6 @@ public class Defend_Fate extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
     }
 }

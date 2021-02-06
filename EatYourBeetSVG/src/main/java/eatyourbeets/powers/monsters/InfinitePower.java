@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
-import eatyourbeets.actions.special.EndPlayerTurn;
+import eatyourbeets.actions.player.EndPlayerTurn;
 import eatyourbeets.actions.special.KillCharacterAction;
 import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.blights.common.CustomTimeMaze;

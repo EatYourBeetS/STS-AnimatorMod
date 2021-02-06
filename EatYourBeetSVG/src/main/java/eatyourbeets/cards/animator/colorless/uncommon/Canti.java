@@ -28,9 +28,9 @@ public class Canti extends AnimatorCard
     @Override
     protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        if (enemy != null && GameUtilities.IsAttacking(enemy.intent))
+        if (enemy != null)
         {
-            amount += enemy.getIntentDmg();
+            amount += GameUtilities.GetEnemyMove(enemy).GetDamage(false);
         }
 
         return super.ModifyDamage(enemy, amount);

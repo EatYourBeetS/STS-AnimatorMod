@@ -40,6 +40,6 @@ public class TukaLunaMarceau extends AnimatorCard
             GameActions.Bottom.Draw(1);
         }
 
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
     }
 }

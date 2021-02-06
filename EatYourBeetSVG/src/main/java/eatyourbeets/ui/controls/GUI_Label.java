@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.ui.GUIElement;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class GUI_Label extends GUIElement
@@ -47,7 +47,7 @@ public class GUI_Label extends GUIElement
 
     public GUI_Label SetText(String format, Object... args)
     {
-        this.text = JavaUtilities.Format(format, args);
+        this.text = JUtils.Format(format, args);
 
         return this;
     }

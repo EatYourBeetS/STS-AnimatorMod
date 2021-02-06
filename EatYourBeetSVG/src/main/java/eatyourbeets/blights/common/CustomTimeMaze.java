@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.BlightStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.special.EndPlayerTurn;
+import eatyourbeets.actions.player.EndPlayerTurn;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 

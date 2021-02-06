@@ -367,8 +367,24 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
                 default:
                 {
-                    if (card.cardID.startsWith("hubris") || card.cardID.startsWith("ReplayTheSpireMod")
-                    ||  card.cardID.startsWith("infinitespire") || card.cardID.startsWith("StuffTheSpire"))
+                    boolean forbidden = false;
+                    if (card.cardID.startsWith("hubris")
+                    ||  card.cardID.startsWith("ReplayTheSpireMod")
+                    ||  card.cardID.startsWith("infinitespire")
+                    ||  card.cardID.startsWith("StuffTheSpire"))
+                    {
+                        forbidden = true;
+                    }
+                    else
+                    {
+                        Class c = card.getClass().getSuperclass();
+                        if (c != null && c.getSimpleName().equals("AbstractUrbanLegendCard"))
+                        {
+                            forbidden = true;
+                        }
+                    }
+
+                    if (forbidden)
                     {
                         replacement.add(new HigakiRinne());
                     }

@@ -22,7 +22,7 @@ public class Defend_Overlord extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseBlock += c.magicNumber);
     }
 }

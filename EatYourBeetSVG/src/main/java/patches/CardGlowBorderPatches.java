@@ -7,12 +7,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardGlowBorder;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 @SpirePatch(clz= CardGlowBorder.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {AbstractCard.class, Color.class})
 public class CardGlowBorderPatches
 {
-    private static final FieldInfo<Color> _color = JavaUtilities.GetField("color", AbstractGameEffect.class);
+    private static final FieldInfo<Color> _color = JUtils.GetField("color", AbstractGameEffect.class);
 
     public static Color overrideColor;
 

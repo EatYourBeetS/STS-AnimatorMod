@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -14,9 +13,10 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.TargetHelper;
 
-public class Giselle extends AnimatorCard_UltraRare implements StartupCard
+public class Giselle extends AnimatorCard_UltraRare
 {
     public static final EYBCardData DATA = Register(Giselle.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Elemental).SetColor(CardColor.COLORLESS);
 
@@ -42,10 +42,14 @@ public class Giselle extends AnimatorCard_UltraRare implements StartupCard
     }
 
     @Override
-    public boolean atBattleStartPreDraw()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-        GameActions.Bottom.ChannelOrb(new Fire(), false);
+        super.triggerWhenCreated(startOfBattle);
 
-        return true;
+        if (startOfBattle)
+        {
+            GameEffects.List.ShowCopy(this);
+            GameActions.Bottom.ChannelOrb(new Fire(), false);
+        }
     }
 }

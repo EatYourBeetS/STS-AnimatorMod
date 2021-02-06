@@ -15,7 +15,7 @@ public class VestaElixirEffect_Intellect extends VestaElixirEffect
     @Override
     public String GetDescription()
     {
-        return ACTIONS.GainAmount(amount, GR.Tooltips.Intellect.title, true);
+        return ACTIONS.GainAmount(amount, GR.Tooltips.Intellect, true);
     }
 
     @Override

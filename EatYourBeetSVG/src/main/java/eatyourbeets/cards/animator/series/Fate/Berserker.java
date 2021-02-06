@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -20,8 +21,8 @@ public class Berserker extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(23, 0, 2, 12);
-        SetUpgrade(0, 0, 1, 2);
+        Initialize(18, 0, 2, 12);
+        SetUpgrade(6, 0, 0, 0);
         SetScaling(0, 0, 3);
 
         SetSynergy(Synergies.Fate);
@@ -36,7 +37,7 @@ public class Berserker extends AnimatorCard
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY)
             .AddCallback(m.currentBlock, (initialBlock, target) ->
             {
-                if (GameUtilities.IsDeadOrEscaped(target) || ((int) initialBlock > 0 && target.currentBlock <= 0))
+                if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0))
                 {
                     GameActions.Bottom.GainBlock(this.secondaryValue);
                 }
@@ -44,6 +45,13 @@ public class Berserker extends AnimatorCard
             GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
         }
 
-        GameActions.Bottom.GainForce(magicNumber);
+        if (ForceStance.IsActive())
+        {
+            GameActions.Bottom.GainForce(magicNumber);
+        }
+        else
+        {
+            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+        }
     }
 }

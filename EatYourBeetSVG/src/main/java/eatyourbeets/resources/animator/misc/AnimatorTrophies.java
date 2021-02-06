@@ -1,6 +1,6 @@
 package eatyourbeets.resources.animator.misc;
 
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class AnimatorTrophies
 {
@@ -23,13 +23,13 @@ public class AnimatorTrophies
     {
         String[] values = data.split(",");
 
-        int id = JavaUtilities.ParseInt(values[0], -1);
+        int id = JUtils.ParseInt(values[0], -1);
         if (id >= 0)
         {
             this.ID = id;
-            this.Trophy1 = JavaUtilities.ParseInt(values[1], -1);
-            this.Trophy2 = JavaUtilities.ParseInt(values[2], -1);
-            this.Trophy3 = JavaUtilities.ParseInt(values[3], -1);
+            this.Trophy1 = JUtils.ParseInt(values[1], -1);
+            this.Trophy2 = JUtils.ParseInt(values[2], -1);
+            this.Trophy3 = JUtils.ParseInt(values[3], -1);
         }
     }
 

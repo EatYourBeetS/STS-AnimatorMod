@@ -44,14 +44,16 @@ public class CommonImages
 
     public static class Tooltips
     {
+        public final TextureCache GriefSeed        = new TextureCache("images/cardui/eyb/tooltips/GriefSeed.png");
         public final TextureCache ThrowingKnife    = new TextureCache("images/cardui/eyb/tooltips/ThrowingKnife.png");
         public final TextureCache Lightning        = new TextureCache("images/cardui/eyb/tooltips/Lightning.png");
         public final TextureCache Plasma           = new TextureCache("images/cardui/eyb/tooltips/Plasma.png");
-        public final TextureCache Dark           = new TextureCache("images/cardui/eyb/tooltips/Dark.png");
+        public final TextureCache Dark             = new TextureCache("images/cardui/eyb/tooltips/Dark.png");
         public final TextureCache Aether           = new TextureCache("images/cardui/eyb/tooltips/Aether.png");
-        public final TextureCache Frost           = new TextureCache("images/cardui/eyb/tooltips/Frost.png");
-        public final TextureCache Earth           = new TextureCache("images/cardui/eyb/tooltips/Earth.png");
+        public final TextureCache Frost            = new TextureCache("images/cardui/eyb/tooltips/Frost.png");
+        public final TextureCache Earth            = new TextureCache("images/cardui/eyb/tooltips/Earth.png");
         public final TextureCache RandomOrb        = new TextureCache("images/cardui/eyb/tooltips/RandomOrb.png");
         public final TextureCache Fire             = new TextureCache("images/cardui/eyb/tooltips/Fire.png");
+        public final TextureCache Gold             = new TextureCache("images/cardui/eyb/tooltips/Gold.png");
     }
 }

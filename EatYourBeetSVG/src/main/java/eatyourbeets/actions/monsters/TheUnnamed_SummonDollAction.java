@@ -2,6 +2,8 @@ package eatyourbeets.actions.monsters;
 
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.daily.mods.Lethality;
+import com.megacrit.cardcrawl.daily.mods.TimeDilation;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,7 +14,7 @@ import eatyourbeets.actions.EYBAction;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class TheUnnamed_SummonDollAction extends EYBAction
 {
@@ -29,12 +31,12 @@ public class TheUnnamed_SummonDollAction extends EYBAction
         int slot = IdentifySlot(theUnnamed.minions);
         if (slot == -1)
         {
-            JavaUtilities.GetLogger(getClass()).info("INCORRECTLY ATTEMPTED TO CHANNEL GREMLIN.");
+            JUtils.LogInfo(this, "INCORRECTLY ATTEMPTED TO CHANNEL GREMLIN.");
         }
         else
         {
             this.slotToFill = slot;
-            this.monster = this.GetMinion(slot);
+            this.monster = GetMinion(slot);
             theUnnamed.minions[slot] = this.monster;
 
             for (AbstractRelic relic : player.relics)
@@ -86,23 +88,23 @@ public class TheUnnamed_SummonDollAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        this.monster.animX = 1200f * Settings.scale;
-        this.monster.init();
-        this.monster.applyPowers();
+        monster.animX = 1200f * Settings.scale;
+        monster.init();
+        monster.applyPowers();
 
-        AbstractDungeon.getMonsters().addMonster(this.slotToFill, this.monster);
+        AbstractDungeon.getMonsters().addMonster(slotToFill, monster);
 
-        if (ModHelper.isModEnabled("Lethality"))
+        if (ModHelper.isModEnabled(Lethality.ID))
         {
-            GameActions.Bottom.StackPower(new StrengthPower(this.monster, 3));
+            GameActions.Bottom.StackPower(new StrengthPower(monster, 3));
         }
 
-        if (ModHelper.isModEnabled("Time Dilation"))
+        if (ModHelper.isModEnabled(TimeDilation.ID))
         {
-            GameActions.Bottom.StackPower(new StrengthPower(this.monster, 0)).SkipIfZero(false);
+            GameActions.Bottom.StackPower(new StrengthPower(monster, 0)).SkipIfZero(false);
         }
 
-        GameActions.Bottom.ApplyPower(monster, monster, new MinionPower(this.monster));
+        GameActions.Bottom.ApplyPower(monster, monster, new MinionPower(monster));
     }
 
     @Override

@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 
 public class TsurugaMeisai extends AnimatorCard
@@ -18,11 +19,16 @@ public class TsurugaMeisai extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2, 1);
-        SetUpgrade(0, 0, 0, 0);
 
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
         SetMartialArtist();
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
     }
 
     @Override
@@ -35,10 +41,24 @@ public class TsurugaMeisai extends AnimatorCard
             if (cards != null && cards.size() > 0)
             {
                 AbstractCard card = cards.get(0);
-                if (card.type == CardType.ATTACK)
+                switch (card.type)
                 {
-                    GameActions.Bottom.MakeCardInDrawPile(card).SetUpgrade(upgraded, true);
-                    GameActions.Bottom.MakeCardInDrawPile(card).SetUpgrade(upgraded, true);
+                    case ATTACK:
+                        GameActions.Bottom.MakeCardInDrawPile(card).SetUpgrade(false, true);
+                        GameActions.Bottom.MakeCardInDrawPile(card).SetUpgrade(false, true);
+                        break;
+
+                    case SKILL:
+                        GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
+                        break;
+
+                    case POWER:
+                        GameActions.Bottom.Motivate(2);
+                        break;
+
+                    case STATUS:
+                    case CURSE:
+                        break;
                 }
             }
         });

@@ -19,8 +19,10 @@ import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
+// If this action needs 1 more refactoring due to queueing a card not counting
+// as an action, completely override AbstractDungeon.actionManager instead.
 public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractCard>
 {
     public static final float DEFAULT_TARGET_X_LEFT = (Settings.WIDTH / 2f) - (300f * Settings.scale);
@@ -62,6 +64,8 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
         {
             this.card = card;
         }
+
+        AddToLimbo();
 
         Initialize(target, 1);
     }
@@ -157,7 +161,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
             }
             else
             {
-                JavaUtilities.GetLogger(getClass()).warn("Could not find " + card.cardID + " in " + sourcePile.type.name().toLowerCase());
+                JUtils.LogWarning(this, "Could not find " + card.cardID + " in " + sourcePile.type.name().toLowerCase());
                 Complete();
                 return;
             }
@@ -184,6 +188,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
             if (!spendEnergy)
             {
                 card.freeToPlayOnce = true;
+                card.ignoreEnergyOnUse = false;
             }
 
             if (CanUse())
@@ -221,18 +226,15 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
 
     protected boolean CanUse()
     {
-        return card.canUse(player, (AbstractMonster)target) || card.dontTriggerOnUseCard;
+        return card.canUse(player, (AbstractMonster) target) || card.dontTriggerOnUseCard;
     }
 
     protected void ShowCard()
     {
+        AddToLimbo();
+
         GameUtilities.RefreshHandLayout();
         AbstractDungeon.getCurrRoom().souls.remove(card);
-
-        if (!player.limbo.contains(card))
-        {
-            player.limbo.addToBottom(card);
-        }
 
         if (currentPosition != null)
         {
@@ -251,12 +253,9 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
 
     protected void QueueCardItem()
     {
-        final AbstractMonster enemy = (AbstractMonster) target;
+        AddToLimbo();
 
-        if (!player.limbo.contains(card))
-        {
-            player.limbo.addToBottom(card);
-        }
+        final AbstractMonster enemy = (AbstractMonster) target;
 
         if (!spendEnergy)
         {
@@ -267,14 +266,31 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
         card.purgeOnUse = purge;
         card.calculateCardDamage(enemy);
 
-        GameActions.Top.Add(new UnlimboAction(card));
+        //GameActions.Top.Add(new UnlimboAction(card));
         GameActions.Top.Wait(Settings.FAST_MODE ? Settings.ACTION_DUR_FASTER : Settings.ACTION_DUR_MED);
 
-        GameActions.Top.Add(new DelayAllActions()) // So the result of canUse() does not randomly change after queueing the card
-        .Except(a -> a instanceof PlayCard || a instanceof UnlimboAction || a instanceof WaitAction);
+        int energyOnUse = EnergyPanel.getCurrentEnergy();
 
-        AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(card, enemy, EnergyPanel.getCurrentEnergy(), false, !spendEnergy), true);
+        if (spendEnergy)
+        {
+            GameActions.Top.Add(new DelayAllActions()) // So the result of canUse() does not randomly change after queueing the card
+            .Except(a -> a instanceof UnlimboAction || a instanceof WaitAction);
+        }
+        else if (card.energyOnUse != -1)
+        {
+            energyOnUse = card.energyOnUse;
+        }
+
+        AbstractDungeon.actionManager.cardQueue.add(0, new CardQueueItem(card, enemy, energyOnUse, true, !spendEnergy));
 
         Complete(enemy);
+    }
+
+    protected void AddToLimbo()
+    {
+        if (card != null && !player.limbo.contains(card))
+        {
+            player.limbo.addToTop(card);
+        }
     }
 }

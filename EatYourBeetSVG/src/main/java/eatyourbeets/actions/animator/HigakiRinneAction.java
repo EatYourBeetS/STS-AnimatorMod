@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
@@ -27,7 +26,7 @@ import eatyourbeets.powers.deprecated.MarkOfPoisonPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -80,7 +79,6 @@ public class HigakiRinneAction extends EYBAction
         {
             GameActions.Bottom.SelectFromPile(higakiRinne.name, 1, player.hand)
             .SetOptions(false, false)
-            .SetMessage(CardRewardScreen.TEXT[1])
             .AddCallback(cards ->
             {
                 if (cards.size() > 0)
@@ -209,7 +207,7 @@ public class HigakiRinneAction extends EYBAction
         }
         else if (tryActivate(3)) // 111
         {
-            AbstractCard card = JavaUtilities.GetRandomElement(Synergies.GetNonColorlessCard());
+            AbstractCard card = JUtils.GetRandomElement(Synergies.GetNonColorlessCard());
             if (card != null && !card.tags.contains(AbstractCard.CardTags.HEALING))
             {
                 GameActions.Bottom.MakeCardInHand(card.makeCopy());
@@ -217,7 +215,7 @@ public class HigakiRinneAction extends EYBAction
         }
         else if (tryActivate(7)) // 118
         {
-            GameActions.Bottom.SFX(JavaUtilities.GetRandomElement(sounds));
+            GameActions.Bottom.SFX(JUtils.GetRandomElement(sounds));
         }
         else if (tryActivate(6)) // 124
         {
@@ -226,7 +224,7 @@ public class HigakiRinneAction extends EYBAction
         else if (tryActivate(2)) // 126
         {
             ArrayList<String> keys = new ArrayList<>(CardLibrary.cards.keySet());
-            String key = JavaUtilities.GetRandomElement(keys);
+            String key = JUtils.GetRandomElement(keys);
             AbstractCard card = CardLibrary.cards.get(key).makeCopy();
             if (!card.tags.contains(AbstractCard.CardTags.HEALING))
             {

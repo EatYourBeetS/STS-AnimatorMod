@@ -21,7 +21,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
     public EYBPower(AbstractCreature owner, EYBCardData cardData)
     {
-        this.effects = (ArrayList<AbstractGameEffect>)JavaUtilities.GetField("effect", AbstractPower.class).Get(this);
+        this.effects = (ArrayList<AbstractGameEffect>) JUtils.GetField("effect", AbstractPower.class).Get(this);
         this.owner = owner;
         this.ID = cardData.ID + "Power";
 
@@ -56,7 +56,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
     public EYBPower(AbstractCreature owner, String id)
     {
-        this.effects = (ArrayList<AbstractGameEffect>)JavaUtilities.GetField("effect", AbstractPower.class).Get(this);
+        this.effects = (ArrayList<AbstractGameEffect>) JUtils.GetField("effect", AbstractPower.class).Get(this);
         this.owner = owner;
         this.ID = id;
 
@@ -77,7 +77,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
         {
             case 0:
             {
-                JavaUtilities.GetLogger(this).error("powerStrings.Description was an empty array, " + this.name);
+                JUtils.LogError(this, "powerStrings.Description was an empty array, " + this.name);
                 break;
             }
 
@@ -189,7 +189,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
     protected String FormatDescription(int index, Object... args)
     {
-        return JavaUtilities.Format(powerStrings.DESCRIPTIONS[index], args);
+        return JUtils.Format(powerStrings.DESCRIPTIONS[index], args);
     }
 
     protected ColoredString GetPrimaryAmount(Color c)

@@ -21,7 +21,7 @@ public abstract class EYBActionWithCallback<T> extends EYBAction
         super(type, duration);
     }
 
-    public EYBActionWithCallback<T> AddCallback(Object state, ActionT2<Object, T> onCompletion)
+    public <S> EYBActionWithCallback<T> AddCallback(S state, ActionT2<S, T> onCompletion)
     {
         callbacks.add(GenericCallback.FromT2(onCompletion, state));
 

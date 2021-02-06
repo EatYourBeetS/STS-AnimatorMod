@@ -9,6 +9,7 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -45,12 +46,26 @@ public abstract class AnimatorCard extends EYBCard
 
     public boolean HasSynergy()
     {
-        return Synergies.WouldSynergize(this);
+        return Synergies.IsSynergizing(this) || Synergies.WouldSynergize(this);
     }
 
     public boolean HasSynergy(AbstractCard other)
     {
-        return Synergies.WouldSynergize(this, other);
+        return Synergies.IsSynergizing(this) || Synergies.WouldSynergize(this, other);
+    }
+
+    public boolean HasDirectSynergy(AbstractCard other)
+    {
+        if (synergy != null)
+        {
+            AnimatorCard card = JUtils.SafeCast(other, AnimatorCard.class);
+            if (card != null && synergy.equals(card.synergy))
+            {
+                return true;
+            }
+        }
+
+        return Synergies.HasTagSynergy(this, other);
     }
 
     public void SetSpellcaster()

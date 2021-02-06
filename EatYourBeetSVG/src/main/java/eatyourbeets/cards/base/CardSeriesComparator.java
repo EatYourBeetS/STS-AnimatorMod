@@ -1,7 +1,7 @@
 package eatyourbeets.cards.base;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.Comparator;
 
@@ -30,7 +30,7 @@ public class CardSeriesComparator implements Comparator<AbstractCard>
             return thanksJava;
         }
 
-        AnimatorCard card = JavaUtilities.SafeCast(c1, AnimatorCard.class);
+        AnimatorCard card = JUtils.SafeCast(c1, AnimatorCard.class);
         if (card == null)
         {
             thanksJava.rank = 1;

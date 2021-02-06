@@ -1,7 +1,7 @@
 package eatyourbeets.events.base;
 
 import com.megacrit.cardcrawl.localization.EventStrings;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public abstract class EYBEventStrings
 {
@@ -25,7 +25,7 @@ public abstract class EYBEventStrings
 
     public final String GetDescription(int index, Object... args)
     {
-        return JavaUtilities.Format(descriptions[index], args);
+        return JUtils.Format(descriptions[index], args);
     }
 
     public final String GetOption(int index)
@@ -35,6 +35,6 @@ public abstract class EYBEventStrings
 
     public final String GetOption(int index, Object... args)
     {
-        return JavaUtilities.Format(options[index], args);
+        return JUtils.Format(options[index], args);
     }
 }

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.vfx.combat.DeckPoofEffect;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class DieAction extends EYBAction
 {
@@ -26,7 +26,7 @@ public class DieAction extends EYBAction
     {
         if (!GameUtilities.IsDeadOrEscaped(target))
         {
-            AbstractMonster m = JavaUtilities.SafeCast(target, AbstractMonster.class);
+            AbstractMonster m = JUtils.SafeCast(target, AbstractMonster.class);
             if (m != null)
             {
                 m.currentHealth = 0;

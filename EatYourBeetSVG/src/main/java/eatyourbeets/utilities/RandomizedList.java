@@ -43,7 +43,7 @@ public class RandomizedList<T>
 
     public T Retrieve(Random rng, boolean remove)
     {
-        T item = JavaUtilities.GetRandomElement(items, rng);
+        T item = JUtils.GetRandomElement(items, rng);
         if (remove)
         {
             items.remove(item);

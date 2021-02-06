@@ -24,7 +24,7 @@ public class Defend_NoGameNoLife extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
 
         for (int i = 0; i < p.hand.size(); i++)
         {

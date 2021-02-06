@@ -15,7 +15,7 @@ public class VestaElixirEffect_TempHP extends VestaElixirEffect
     @Override
     public String GetDescription()
     {
-        return ACTIONS.GainAmount(amount, "{" + GR.Tooltips.TempHP.title + "}", true);
+        return ACTIONS.GainAmount(amount, GR.Tooltips.TempHP, true);
     }
 
     @Override

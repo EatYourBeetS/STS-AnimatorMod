@@ -2,49 +2,43 @@
 {
 	"Cooldown":
 	{
-		"DESCRIPTION": "每打出或丢弃时减少层数，为 #b0 时，触发效果。",
+		"DESCRIPTION": "每次打出或丢弃时减少层数。 层数为 #b0 时打出或丢弃触发效果。",
 		"NAMES": ["冷却"],
 		"PROPER_NAME": "冷却"
 	},
 	"Martial Artist":
 	{
-		"DESCRIPTION": "#y同调 其他 #y武师 。",
+		"DESCRIPTION": "与 任何 #y武师 #y同调 。",
 		"NAMES": ["武师", "武师"],
 		"PROPER_NAME": "武师"
 	},
 	"Motivate":
 	{
-		"DESCRIPTION": "随机减少手中1张牌直到被打出的1点耗能，重复 N 次。",
+		"DESCRIPTION": "令一张随机手牌直到下次打出前 耗能减少1。重复指定的次数。",
 		"NAMES": ["激励"],
 		"PROPER_NAME": "激励"
 	},
-	"~Orb Core":
-	{
-		"DESCRIPTION": "生成 1 个充能球。 NL NL 每回合第二次协同是获得一个额外效果。",
-		"NAMES": ["~充能球核心", "~充能球核心"],
-		"PROPER_NAME": "充能球核心"
-	},
 	"Reload":
 	{
-		"DESCRIPTION": "弃置若干牌，触发若干次。",
-		"NAMES": ["重装填"],
-		"PROPER_NAME": "重装填"
+		"DESCRIPTION": "丢弃任意数量的手牌， 每丢弃一张发动一次。",
+		"NAMES": ["再装填"],
+		"PROPER_NAME": "再装填"
 	},
 	"Shapeshifter":
 	{
-		"DESCRIPTION": "与所有系列同调。",
-		"NAMES": ["穿越者", "穿越"],
-		"PROPER_NAME": "穿越者"
+		"DESCRIPTION": "与任何牌 #y同调 。",
+		"NAMES": ["变形者"],
+		"PROPER_NAME": "变形者"
 	},
 	"Spellcaster":
 	{
-		"DESCRIPTION": "#y同调 其他 #y法师 。",
+		"DESCRIPTION": "与任何 #y法师 #y同调 。",
 		"NAMES": ["法师"],
 		"PROPER_NAME": "法师"
 	},
 	"Support Damage":
 	{
-		"DESCRIPTION": "回合结束时对血量最低的敌人造成伤害。受伤害加成。",
+		"DESCRIPTION": "回合结束时，对生命值最低的敌人 造成伤害。 受攻击伤害加成影响。",
 		"NAMES": ["支援伤害"],
 		"PROPER_NAME": "支援伤害"
 	},
@@ -53,5 +47,11 @@
 		"DESCRIPTION": "连续使用同一系列的牌或者 #y法师 或者 #y武师 时触发 #y同调 。",
 		"NAMES": ["同调"],
 		"PROPER_NAME": "同调"
+	},
+	"~Orb Core":
+	{
+		"DESCRIPTION": "生成充能球。 NL  NL 每回合第二次 #y同调 获得额外效果。",
+		"NAMES": ["~充能球核心"],
+		"PROPER_NAME": "充能球核心"
 	}
 }

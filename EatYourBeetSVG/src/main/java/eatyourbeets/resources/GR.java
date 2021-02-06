@@ -25,7 +25,7 @@ import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.common.CommonResources;
 import eatyourbeets.resources.unnamed.UnnamedResources;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
@@ -41,10 +41,10 @@ public class GR
     // TODO: Set to false
     public static final boolean TEST_MODE = false;
 
-    protected static final Logger logger = JavaUtilities.GetLogger(GR.class);
-    protected static final ArrayList<String> cardClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.cards.");
-    protected static final ArrayList<String> relicClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.relics.");
-    protected static final ArrayList<String> powerClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.powers.");
+    protected static final Logger logger = JUtils.GetLogger(GR.class);
+    protected static final ArrayList<String> cardClassNames = JUtils.GetClassNamesFromJarFile("eatyourbeets.cards.");
+    protected static final ArrayList<String> relicClassNames = JUtils.GetClassNamesFromJarFile("eatyourbeets.relics.");
+    protected static final ArrayList<String> powerClassNames = JUtils.GetClassNamesFromJarFile("eatyourbeets.powers.");
     protected static final HashMap<String, Texture> textures = new HashMap<>();
 
     public static CardTooltips Tooltips = null; // Created by CommonResources
@@ -160,7 +160,7 @@ public class GR
 
     public static boolean IsTranslationSupported(Settings.GameLanguage language)
     {
-        return language == Settings.GameLanguage.ZHS || language == Settings.GameLanguage.ZHT;
+        return language == Settings.GameLanguage.RUS || language == Settings.GameLanguage.ZHS;// || language == Settings.GameLanguage.ZHT;
     }
 
     public static Texture GetTexture(String path)
@@ -188,7 +188,7 @@ public class GR
             }
             else
             {
-                JavaUtilities.GetLogger(GR.class).error("Texture does not exist: " + path);
+                JUtils.GetLogger(GR.class).error("Texture does not exist: " + path);
                 texture = null;
             }
 
@@ -328,7 +328,7 @@ public class GR
     {
         if (!file.exists())
         {
-            JavaUtilities.GetLogger(this).warn("File not found: " + file.path());
+            JUtils.LogWarning(this, "File not found: " + file.path());
             return;
         }
 
@@ -360,14 +360,14 @@ public class GR
         }
         else
         {
-            JavaUtilities.GetLogger(this).warn("File not found: " + file.path());
+            JUtils.LogWarning(this, "File not found: " + file.path());
         }
     }
 
     @SuppressWarnings("unchecked")
     public static void LoadGroupedCardStrings(String jsonString)
     {
-        Map localizationStrings = (Map) ReflectionHacks.getPrivateStatic(LocalizedStrings.class, "cards");
+        Map localizationStrings = ReflectionHacks.getPrivateStatic(LocalizedStrings.class, "cards");
         Map cardStrings = new HashMap<>();
         try
         {
@@ -386,7 +386,7 @@ public class GR
         catch (Exception ex)
         {
             ex.printStackTrace();
-            JavaUtilities.GetLogger(AnimatorResources.class).error("Loading card strings failed. Using default method.");
+            JUtils.GetLogger(AnimatorResources.class).error("Loading card strings failed. Using default method.");
             BaseMod.loadCustomStrings(CardStrings.class, jsonString);
             return;
         }

@@ -28,7 +28,7 @@ public class Crystallize extends AnimatorCard_Status
         {
             GameActions.Bottom.SFX("ORB_FROST_Evoke", 0.2f);
             GameActions.Bottom.LoseHP(secondaryValue, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-            GameActions.Bottom.GainMetallicize(this.magicNumber);
+            GameActions.Bottom.GainMetallicize(magicNumber);
             GameActions.Bottom.LoseHP(secondaryValue, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         }
     }

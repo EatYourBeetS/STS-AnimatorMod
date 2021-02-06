@@ -1,6 +1,6 @@
 package eatyourbeets.relics.animator;
 
-import eatyourbeets.cards.base.AnimatorCard;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.AnimatorRelic;
@@ -33,7 +33,7 @@ public class LivingPicture extends AnimatorRelic implements OnSynergySubscriber
     }
 
     @Override
-    public void OnSynergy(AnimatorCard card)
+    public void OnSynergy(AbstractCard card)
     {
         GameActions.Bottom.Draw(1);
         SetEnabled(false);

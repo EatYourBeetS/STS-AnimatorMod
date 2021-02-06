@@ -5,21 +5,21 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
 public class GridCardSelectScreenPatch
 {
-    private static final FieldInfo<Float> _drawStartX = JavaUtilities.GetField("drawStartX", GridCardSelectScreen.class);
-    private static final FieldInfo<Float> _padX = JavaUtilities.GetField("padX", GridCardSelectScreen.class);
-    private static final FieldInfo<Float> _padY = JavaUtilities.GetField("padY", GridCardSelectScreen.class);
-    private static final FieldInfo<Float> _drawStartY = JavaUtilities.GetField("drawStartY", GridCardSelectScreen.class);
-    private static final FieldInfo<Float> _currentDiffY = JavaUtilities.GetField("currentDiffY", GridCardSelectScreen.class);
-    private static final FieldInfo<AbstractCard> _hoveredCard = JavaUtilities.GetField("hoveredCard", GridCardSelectScreen.class);
-    private static final FieldInfo<CardGroup> _targetGroup = JavaUtilities.GetField("targetGroup", GridCardSelectScreen.class);
-    private static final FieldInfo<Integer> _prevDeckSize = JavaUtilities.GetField("prevDeckSize", GridCardSelectScreen.class);
-    private static final FieldInfo<Float> _scrollUpperBound = JavaUtilities.GetField("scrollUpperBound", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> _drawStartX = JUtils.GetField("drawStartX", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> _padX = JUtils.GetField("padX", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> _padY = JUtils.GetField("padY", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> _drawStartY = JUtils.GetField("drawStartY", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> _currentDiffY = JUtils.GetField("currentDiffY", GridCardSelectScreen.class);
+    private static final FieldInfo<AbstractCard> _hoveredCard = JUtils.GetField("hoveredCard", GridCardSelectScreen.class);
+    private static final FieldInfo<CardGroup> _targetGroup = JUtils.GetField("targetGroup", GridCardSelectScreen.class);
+    private static final FieldInfo<Integer> _prevDeckSize = JUtils.GetField("prevDeckSize", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> _scrollUpperBound = JUtils.GetField("scrollUpperBound", GridCardSelectScreen.class);
 
     private static final CardGroup mergedGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     private static final ArrayList<CardGroup> cardGroups = new ArrayList<>();

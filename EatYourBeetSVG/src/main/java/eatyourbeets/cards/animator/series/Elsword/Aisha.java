@@ -12,9 +12,9 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.vfx.SmallLaserEffect;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Aisha extends AnimatorCard
 {
@@ -24,8 +24,8 @@ public class Aisha extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 0, IntellectPower.GetThreshold(1));
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(2, 0, 0);
+        SetUpgrade(0, 0, 1);
         SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.Elsword);
@@ -49,7 +49,7 @@ public class Aisha extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        magicNumber = baseMagicNumber + player.filledOrbCount();
+        GameUtilities.IncreaseMagicNumber(this, player.filledOrbCount(), true);
     }
 
     @Override
@@ -62,14 +62,17 @@ public class Aisha extends AnimatorCard
             .SetDamageEffect(enemy -> GameEffects.Queue.Add(new SmallLaserEffect(player.hb.cX, player.hb.cY,
             enemy.hb.cX + MathUtils.random(-0.05f, 0.05f),enemy.hb.cY + MathUtils.random(-0.05f, 0.05f), Color.VIOLET)));
         }
+    }
 
-        if (!CombatStats.HasActivatedSemiLimited(cardID))
+    @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        super.triggerWhenCreated(startOfBattle);
+
+        if (startOfBattle && CombatStats.TryActivateLimited(cardID))
         {
-            if (IntellectPower.GetCurrentLevel() > 1)
-            {
-                GameActions.Bottom.GainOrbSlots(1);
-                CombatStats.TryActivateSemiLimited(cardID);
-            }
+            GameEffects.List.ShowCopy(this);
+            GameActions.Bottom.GainOrbSlots(1);
         }
     }
 }

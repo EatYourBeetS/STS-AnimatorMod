@@ -4,13 +4,17 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
+import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
 import eatyourbeets.utilities.CardSelection;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -22,6 +26,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
 
     protected Predicate<AbstractCard> filter;
     protected CardSelection origin;
+    protected boolean canPlayerCancel;
     protected boolean anyNumber;
 
     public SelectFromPile(String sourceName, int amount, CardGroup... groups)
@@ -34,8 +39,17 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         super(type);
 
         this.groups = groups;
+        this.canPlayerCancel = false;
+        this.message = GR.Common.Strings.GridSelection.ChooseCards;
 
         Initialize(amount, sourceName);
+    }
+
+    public EYBAction CancellableFromPlayer(boolean value)
+    {
+        this.canPlayerCancel = value;
+
+        return this;
     }
 
     public SelectFromPile SetMessage(String message)
@@ -47,7 +61,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
 
     public SelectFromPile SetMessage(String format, Object... args)
     {
-        this.message = JavaUtilities.Format(format, args);
+        this.message = JUtils.Format(format, args);
 
         return this;
     }
@@ -108,10 +122,17 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             }
             else
             {
-                if (temp.type == CardGroup.CardGroupType.DRAW_PILE && !player.hasRelic(FrozenEye.ID))
+                if (temp.type == CardGroup.CardGroupType.DRAW_PILE)
                 {
-                    temp.sortAlphabetically(true);
-                    temp.sortByRarityPlusStatusCardType(true);
+                    if (player.hasRelic(FrozenEye.ID))
+                    {
+                        Collections.reverse(temp.group);
+                    }
+                    else
+                    {
+                        temp.sortAlphabetically(true);
+                        temp.sortByRarityPlusStatusCardType(true);
+                    }
                 }
 
                 GridCardSelectScreenPatch.AddGroup(temp);
@@ -153,7 +174,18 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             }
             else
             {
-                AbstractDungeon.gridSelectScreen.open(mergedGroup, amount, CreateMessage(), false, false, false, false);
+                if (canPlayerCancel)
+                {
+                    // Setting canCancel to true does not ensure the cancel button will be shown...
+                    AbstractDungeon.overlayMenu.cancelButton.show(GridCardSelectScreen.TEXT[1]);
+                }
+                else if (amount > 1 && amount > mergedGroup.size())
+                {
+                    AbstractDungeon.gridSelectScreen.selectedCards.addAll(mergedGroup.group);
+                    return;
+                }
+
+                AbstractDungeon.gridSelectScreen.open(mergedGroup, Math.min(mergedGroup.size(), amount), CreateMessage(), false, false, canPlayerCancel, false);
             }
         }
     }

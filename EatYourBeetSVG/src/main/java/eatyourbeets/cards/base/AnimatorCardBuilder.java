@@ -36,6 +36,33 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         this.id = id;
     }
 
+    public AnimatorCardBuilder(AnimatorCard card, boolean copyNumbers)
+    {
+        this(card, card.rawDescription, copyNumbers);
+    }
+
+    public AnimatorCardBuilder(AnimatorCard card, String text, boolean copyNumbers)
+    {
+        this(card.cardID);
+
+        if (copyNumbers)
+        {
+            SetNumbers(card.damage, card.block, card.magicNumber, card.secondaryValue);
+            SetUpgrades(card.upgrade_damage, card.upgrade_block, card.upgrade_magicNumber, card.upgrade_secondaryValue);
+            SetScaling(card.intellectScaling, card.agilityScaling, card.forceScaling);
+            SetCost(card.cost, card.upgrade_cost);
+        }
+        else
+        {
+            SetCost(-2, 0);
+        }
+
+        SetImage(card.assetUrl);
+        SetProperties(card.type, card.rarity, AbstractCard.CardTarget.NONE);
+        SetText(card.name, text, text);
+        SetSynergy(card.synergy, false);
+    }
+
     public AnimatorCard_Dynamic Build()
     {
         if (cardStrings == null)
@@ -66,10 +93,28 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         return this;
     }
 
+    public AnimatorCardBuilder SetID(String id)
+    {
+        this.id = id;
+
+        return this;
+    }
+
+
     public AnimatorCardBuilder SetCost(int baseCost, int costUpgrade)
     {
         this.cost = baseCost;
         this.costUpgrade = costUpgrade;
+
+        return this;
+    }
+
+    public AnimatorCardBuilder SetNumbers(AnimatorCard source)
+    {
+        this.damageUpgrade = this.damage = source.baseDamage;
+        this.blockUpgrade = this.block = source.baseBlock;
+        this.magicNumberUpgrade = this.magicNumber = source.baseMagicNumber;
+        this.secondaryValueUpgrade = this.secondaryValue = source.baseSecondaryValue;
 
         return this;
     }

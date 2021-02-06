@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.relics.PenNib;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.screens.stats.AchievementGrid;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.EYBCard;
@@ -31,6 +32,7 @@ import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnTryApplyPowerSubscriber;
+import eatyourbeets.monsters.EnemyMoveDetails;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
@@ -47,7 +49,7 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 public class GameUtilities
 {
-    private static final OnPhaseChangedSubscriber handLayoutRefresher = new HandLayoutRefresher();
+    private static final HandLayoutRefresher handLayoutRefresher = new HandLayoutRefresher();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
     public static void ApplyPowerInstantly(AbstractCreature target, PowerHelper powerHelper, int stacks)
@@ -126,6 +128,29 @@ public class GameUtilities
         copy.targetTransparency = original.targetTransparency;
         copy.angle = original.angle;
         copy.targetAngle = original.targetAngle;
+    }
+
+    public static void DecreaseBlock(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyBlock(card, Math.max(0, card.baseBlock - amount), temporary);
+    }
+
+    public static void DecreaseDamage(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyDamage(card, Math.max(0, card.baseDamage - amount), temporary);
+    }
+
+    public static void DecreaseMagicNumber(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyMagicNumber(card, Math.max(0, card.baseMagicNumber - amount), temporary);
+    }
+
+    public static void DecreaseSecondaryValue(AbstractCard card, int amount, boolean temporary)
+    {
+        if (card instanceof EYBCard)
+        {
+            ModifySecondaryValue(card, Math.max(0, ((EYBCard)card).baseSecondaryValue - amount), temporary);
+        }
     }
 
     public static CardGroup FindCardGroup(AbstractCard card, boolean includeLimbo)
@@ -387,7 +412,6 @@ public class GameUtilities
     public static int GetDebuffsCount(ArrayList<AbstractPower> powers)
     {
         int result = 0;
-
         for (AbstractPower power : powers)
         {
             if (power.type == AbstractPower.PowerType.DEBUFF)
@@ -423,14 +447,39 @@ public class GameUtilities
         return monsters;
     }
 
+    public static EnemyMoveDetails GetEnemyMove(AbstractMonster enemy)
+    {
+        return new EnemyMoveDetails(enemy);
+    }
+
     public static float GetHealthPercentage(AbstractCreature creature)
     {
         return creature.currentHealth / (float) creature.maxHealth;
     }
 
+    public static AbstractCard GetLastCardPlayed(boolean currentTurn)
+    {
+        return GetLastCardPlayed(currentTurn, 0);
+    }
+
+    public static AbstractCard GetLastCardPlayed(boolean currentTurn, int offset)
+    {
+        ArrayList<AbstractCard> cards;
+        if (currentTurn)
+        {
+            cards = AbstractDungeon.actionManager.cardsPlayedThisTurn;
+        }
+        else
+        {
+            cards = AbstractDungeon.actionManager.cardsPlayedThisCombat;
+        }
+
+        return cards.size() > offset ? cards.get(cards.size() - 1 - offset) : null;
+    }
+
     public static HashSet<AbstractCard> GetMasterDeckCopies(String cardID)
     {
-        HashSet<AbstractCard> cards = new HashSet<>();
+        final HashSet<AbstractCard> cards = new HashSet<>();
         for (AbstractCard c : player.masterDeck.group)
         {
             if (c.cardID.equals(cardID))
@@ -457,7 +506,7 @@ public class GameUtilities
 
     public static HashSet<AbstractCard> GetOtherCardsInHand(AbstractCard card)
     {
-        HashSet<AbstractCard> cards = new HashSet<>();
+        final HashSet<AbstractCard> cards = new HashSet<>();
         for (AbstractCard c : player.hand.group)
         {
             if (c != card)
@@ -495,7 +544,6 @@ public class GameUtilities
                 catch (ClassCastException e)
                 {
                     e.printStackTrace();
-
                     return null;
                 }
             }
@@ -512,19 +560,14 @@ public class GameUtilities
     public static int GetPowerAmount(AbstractCreature owner, String powerID)
     {
         AbstractPower power = GetPower(owner, powerID);
-        if (power != null)
-        {
-            return power.amount;
-        }
-
-        return 0;
+        return (power != null) ? power.amount : 0;
     }
 
     public static Random GetRNG()
     {
         if (EYBCard.rng == null)
         {
-            JavaUtilities.Log(GameUtilities.class, "EYBCard.rng was null");
+            JUtils.LogInfo(GameUtilities.class, "EYBCard.rng was null");
             return new Random();
         }
 
@@ -533,12 +576,12 @@ public class GameUtilities
 
     public static AbstractCreature GetRandomCharacter(boolean aliveOnly)
     {
-        return JavaUtilities.GetRandomElement(GetAllCharacters(aliveOnly), GetRNG());
+        return JUtils.GetRandomElement(GetAllCharacters(aliveOnly), GetRNG());
     }
 
     public static AbstractMonster GetRandomEnemy(boolean aliveOnly)
     {
-        return JavaUtilities.GetRandomElement(GetEnemies(aliveOnly), GetRNG());
+        return JUtils.GetRandomElement(GetEnemies(aliveOnly), GetRNG());
     }
 
     public static AbstractOrb GetRandomOrb()
@@ -638,7 +681,6 @@ public class GameUtilities
                 catch (ClassCastException e)
                 {
                     e.printStackTrace();
-
                     return null;
                 }
             }
@@ -681,12 +723,12 @@ public class GameUtilities
 
     public static int GetUniqueOrbsCount()
     {
-        HashSet<String> orbs = new HashSet<>();
-        for (AbstractOrb o : player.orbs)
+        final HashSet<String> orbs = new HashSet<>();
+        for (AbstractOrb orb : player.orbs)
         {
-            if (IsValidOrb(o))
+            if (IsValidOrb(orb))
             {
-                orbs.add(o.ID);
+                orbs.add(orb.ID);
             }
         }
 
@@ -729,12 +771,7 @@ public class GameUtilities
     public static boolean InEliteRoom()
     {
         AbstractRoom room = GetCurrentRoom();
-        if (room != null)
-        {
-            return room.eliteTrigger;
-        }
-
-        return false;
+        return (room != null) && room.eliteTrigger;
     }
 
     public static boolean InGame()
@@ -745,6 +782,29 @@ public class GameUtilities
     public static boolean InStance(String stanceID)
     {
         return player != null && player.stance != null && player.stance.ID.equals(stanceID);
+    }
+
+    public static void IncreaseBlock(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyBlock(card, card.baseBlock + amount, temporary);
+    }
+
+    public static void IncreaseDamage(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyDamage(card, card.baseDamage + amount, temporary);
+    }
+
+    public static void IncreaseMagicNumber(AbstractCard card, int amount, boolean temporary)
+    {
+        ModifyMagicNumber(card, card.baseMagicNumber + amount, temporary);
+    }
+
+    public static void IncreaseSecondaryValue(AbstractCard card, int amount, boolean temporary)
+    {
+        if (card instanceof EYBCard)
+        {
+            ModifySecondaryValue(card, ((EYBCard)card).baseSecondaryValue + amount, temporary);
+        }
     }
 
     public static boolean IsAttacking(AbstractMonster.Intent intent)
@@ -783,19 +843,33 @@ public class GameUtilities
         return orb != null && !(orb instanceof EmptyOrbSlot);
     }
 
+    public static boolean IsValidTarget(AbstractMonster enemy)
+    {
+        return enemy != null && !IsDeadOrEscaped(enemy);
+    }
+
     public static void ModifyCostForCombat(AbstractCard card, int amount, boolean relative)
     {
+        if (card.cost < 0 || card.costForTurn < 0)
+        {
+            JUtils.LogWarning(card, "Attempted to modify negative card cost.");
+            return;
+        }
+
         int previousCost = card.cost;
         if (relative)
         {
-            card.costForTurn += amount;
-            card.cost += amount;
+            card.costForTurn = card.costForTurn + amount;
+            card.cost = card.cost + amount;
         }
         else
         {
             card.costForTurn = amount + (card.costForTurn - card.cost);
             card.cost = amount;
         }
+
+        card.costForTurn = Math.max(0, card.costForTurn);
+        card.cost = Math.max(0, card.cost);
 
         if (card.cost != previousCost)
         {
@@ -805,8 +879,58 @@ public class GameUtilities
 
     public static void ModifyCostForTurn(AbstractCard card, int amount, boolean relative)
     {
-        card.costForTurn = relative ? (card.costForTurn + amount) : amount;
+        if (card.cost < 0 || card.costForTurn < 0)
+        {
+            JUtils.LogWarning(card, "Attempted to modify negative card cost.");
+            return;
+        }
+
+        card.costForTurn = Math.max(0, relative ? (card.costForTurn + amount) : amount);
         card.isCostModifiedForTurn = (card.cost != card.costForTurn);
+    }
+
+    public static void ModifyBlock(AbstractCard card, int amount, boolean temporary)
+    {
+        if (!temporary)
+        {
+            card.baseBlock = amount;
+        }
+        card.block = amount;
+        card.isBlockModified = (card.block != card.baseBlock);
+    }
+
+    public static void ModifyDamage(AbstractCard card, int amount, boolean temporary)
+    {
+        if (!temporary)
+        {
+            card.baseDamage = amount;
+        }
+        card.damage = amount;
+        card.isDamageModified = (card.damage != card.baseDamage);
+    }
+
+    public static void ModifyMagicNumber(AbstractCard card, int amount, boolean temporary)
+    {
+        if (!temporary)
+        {
+            card.baseMagicNumber = amount;
+        }
+        card.magicNumber = amount;
+        card.isMagicNumberModified = (card.magicNumber != card.baseMagicNumber);
+    }
+
+    public static void ModifySecondaryValue(AbstractCard card, int amount, boolean temporary)
+    {
+        EYBCard c = JUtils.SafeCast(card, EYBCard.class);
+        if (c != null)
+        {
+            if (!temporary)
+            {
+                c.baseSecondaryValue = amount;
+            }
+            c.secondaryValue = amount;
+            c.isSecondaryValueModified = (c.secondaryValue != c.baseSecondaryValue);
+        }
     }
 
     public static void ObtainBlight(float cX, float cY, AbstractBlight blight)
@@ -821,7 +945,19 @@ public class GameUtilities
 
     public static void RefreshHandLayout()
     {
-        CombatStats.onPhaseChanged.Subscribe(handLayoutRefresher);
+        RefreshHandLayout(false);
+    }
+
+    public static void RefreshHandLayout(boolean refreshInstantly)
+    {
+        if (refreshInstantly)
+        {
+            handLayoutRefresher.Refresh();
+        }
+        else
+        {
+            CombatStats.onPhaseChanged.Subscribe(handLayoutRefresher);
+        }
     }
 
     public static boolean RequiresTarget(AbstractCard card)
@@ -889,29 +1025,27 @@ public class GameUtilities
             CardCrawlGame.playerPref.putBoolean(AbstractPlayer.PlayerClass.THE_SILENT.name() + "_WIN", true);
             CardCrawlGame.playerPref.putBoolean(AbstractPlayer.PlayerClass.DEFECT.name() + "_WIN", true);
 
-            if (UnlockTracker.isAchievementUnlocked("RUBY_PLUS"))
+            if (UnlockTracker.isAchievementUnlocked(AchievementGrid.RUBY_PLUS_KEY))
             {
-                UnlockTracker.unlockAchievement("RUBY_PLUS");
+                UnlockTracker.unlockAchievement(AchievementGrid.RUBY_PLUS_KEY);
             }
-
-            if (UnlockTracker.isAchievementUnlocked("EMERALD_PLUS"))
+            if (UnlockTracker.isAchievementUnlocked(AchievementGrid.EMERALD_PLUS_KEY))
             {
-                UnlockTracker.unlockAchievement("EMERALD_PLUS");
+                UnlockTracker.unlockAchievement(AchievementGrid.EMERALD_PLUS_KEY);
             }
-
-            if (UnlockTracker.isAchievementUnlocked("SAPPHIRE_PLUS"))
+            if (UnlockTracker.isAchievementUnlocked(AchievementGrid.SAPPHIRE_PLUS_KEY))
             {
-                UnlockTracker.unlockAchievement("SAPPHIRE_PLUS");
+                UnlockTracker.unlockAchievement(AchievementGrid.SAPPHIRE_PLUS_KEY);
             }
         }
     }
 
     public static boolean UseArtifact(AbstractCreature target)
     {
-        ArtifactPower artifact = JavaUtilities.SafeCast(target.getPower(ArtifactPower.POWER_ID), ArtifactPower.class);
+        ArtifactPower artifact = JUtils.SafeCast(target.getPower(ArtifactPower.POWER_ID), ArtifactPower.class);
         if (artifact != null)
         {
-            AbstractDungeon.actionManager.addToTop(new TextAboveCreatureAction(target, ApplyPowerAction.TEXT[0]));
+            GameActions.Top.Add(new TextAboveCreatureAction(target, ApplyPowerAction.TEXT[0]));
             CardCrawlGame.sound.play("NULLIFY_SFX");
             artifact.flashWithoutSound();
             artifact.onSpecificTrigger();
@@ -949,6 +1083,10 @@ public class GameUtilities
         {
             amount = card.energyOnUse;
         }
+        else
+        {
+            card.energyOnUse = amount;
+        }
 
         if (player.hasRelic(ChemicalX.ID))
         {
@@ -958,7 +1096,7 @@ public class GameUtilities
 
         if (!card.freeToPlayOnce)
         {
-            EnergyPanel.useEnergy(card.energyOnUse);
+            player.energy.use(card.energyOnUse);
         }
 
         RefreshHandLayout();
@@ -973,13 +1111,18 @@ public class GameUtilities
         {
             if (phase == GameActionManager.Phase.WAITING_ON_USER)
             {
-                CardGroup hand = player.hand;
-                hand.refreshHandLayout();
-                hand.applyPowers();
-                hand.glowCheck();
+                Refresh();
 
                 CombatStats.onPhaseChanged.Unsubscribe(handLayoutRefresher);
             }
+        }
+
+        public void Refresh()
+        {
+            CardGroup hand = player.hand;
+            hand.refreshHandLayout();
+            hand.applyPowers();
+            hand.glowCheck();
         }
     }
 }

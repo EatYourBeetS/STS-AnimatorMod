@@ -2,7 +2,7 @@ package eatyourbeets.interfaces.subscribers;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
-public interface OnCostRefreshSubscriber
+public interface OnCardResetSubscriber
 {
-    void OnCostRefresh(AbstractCard card);
+    void OnCardReset(AbstractCard card);
 }

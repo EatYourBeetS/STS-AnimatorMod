@@ -643,6 +643,13 @@ public abstract class EYBCard extends EYBCardBase
         }
     }
 
+    @Override
+    public final void resetAttributes()
+    {
+        // Triggered after being played, discarded, or at end of turn
+        super.resetAttributes();
+    }
+
     protected void Refresh(AbstractMonster enemy)
     {
         boolean applyEnemyPowers = (enemy != null && !GameUtilities.IsDeadOrEscaped(enemy));

@@ -61,7 +61,8 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnShuffleSubscriber> onShuffle = new GameEvent<>();
     public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = new GameEvent<>();
     public static final GameEvent<OnAfterDeathSubscriber> onAfterDeath = new GameEvent<>();
-    public static final GameEvent<OnCostRefreshSubscriber> onCostRefresh = new GameEvent<>();
+    public static final GameEvent<OnCardResetSubscriber> onCardReset = new GameEvent<>();
+    public static final GameEvent<OnCostResetSubscriber> onCostReset = new GameEvent<>();
     public static final GameEvent<OnCardCreatedSubscriber> onCardCreated  = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnSubscriber> onStartOfTurn = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
@@ -156,7 +157,8 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onShuffle.Clear();
         onApplyPower.Clear();
         onAfterDeath.Clear();
-        onCostRefresh.Clear();
+        onCardReset.Clear();
+        onCostReset.Clear();
         onCardCreated.Clear();
         onStartOfTurn.Clear();
         onStartOfTurnPostDraw.Clear();
@@ -207,19 +209,36 @@ public class CombatStats extends EYBPower implements InvisiblePower
         ClearStats();
     }
 
-    public static void OnCostRefresh(AbstractCard card)
+    public static void OnCardReset(AbstractCard card)
     {
-        OnCostRefreshSubscriber c = JUtils.SafeCast(card, OnCostRefreshSubscriber.class);
+        OnCardResetSubscriber c = JUtils.SafeCast(card, OnCardResetSubscriber.class);
         if (c != null)
         {
-            c.OnCostRefresh(card);
+            c.OnCardReset(card);
         }
 
-        for (OnCostRefreshSubscriber s : onCostRefresh.GetSubscribers())
+        for (OnCardResetSubscriber s : onCardReset.GetSubscribers())
         {
             if (card != s)
             {
-                s.OnCostRefresh(card);
+                s.OnCardReset(card);
+            }
+        }
+    }
+
+    public static void OnCostReset(AbstractCard card)
+    {
+        OnCostResetSubscriber c = JUtils.SafeCast(card, OnCostResetSubscriber.class);
+        if (c != null)
+        {
+            c.OnCostReset(card);
+        }
+
+        for (OnCostResetSubscriber s : onCostReset.GetSubscribers())
+        {
+            if (card != s)
+            {
+                s.OnCostReset(card);
             }
         }
     }

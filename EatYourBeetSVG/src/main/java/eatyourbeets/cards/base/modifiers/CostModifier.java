@@ -2,6 +2,7 @@ package eatyourbeets.cards.base.modifiers;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.interfaces.subscribers.OnCardResetSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import patches.abstractCard.AbstractCard_Fields;
@@ -17,6 +18,7 @@ public class CostModifier implements OnCardResetSubscriber
         {
             modifier = new CostModifier(card);
             AbstractCard_Fields.costModifier.set(card, modifier);
+            CombatStats.onCardReset.Subscribe(modifier);
         }
 
         return modifier;
@@ -31,7 +33,6 @@ public class CostModifier implements OnCardResetSubscriber
     public CostModifier(AbstractCard card)
     {
         this.card = card;
-        this.baseAmount = 0;
     }
 
     public void IncreaseModifier(String key, int amount)
@@ -60,14 +61,18 @@ public class CostModifier implements OnCardResetSubscriber
     @Override
     public void OnCardReset(AbstractCard card)
     {
-        previousAmount = 0;
-        ModifyCost(card);
+        if (this.card == card)
+        {
+            previousAmount = 0;
+            ModifyCost(card);
+        }
     }
 
     private void ModifyCost(AbstractCard card)
     {
-        if (card.freeToPlay())
+        if (card.freeToPlay()) //|| !AbstractDungeon.player.hand.contains(card))
         {
+            previousAmount = 0;
             return;
         }
 

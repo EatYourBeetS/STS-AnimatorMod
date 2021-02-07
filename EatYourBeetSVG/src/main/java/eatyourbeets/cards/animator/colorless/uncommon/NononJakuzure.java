@@ -50,7 +50,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
         {
             CombatStats.onSynergy.Unsubscribe(this);
         }
-        else
+        else if (card != this)
         {
             GameUtilities.IncreaseSecondaryValue(this, 1, false);
             flash();

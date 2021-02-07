@@ -405,14 +405,14 @@ public abstract class EYBCardBase extends AbstractCard
         }
         else
         {
-            result.text = freeToPlay() ? "0" : Integer.toString(this.costForTurn);
+            result.text = freeToPlay() ? "0" : Integer.toString(Math.max(0, this.costForTurn));
         }
 
         if (player != null && player.hand.contains(this) && !this.hasEnoughEnergy())
         {
             result.color = new Color(1f, 0.3f, 0.3f, transparency);
         }
-        else if (this.isCostModified || this.isCostModifiedForTurn || this.freeToPlay())
+        else if (costForTurn < cost || (cost > 0 && this.freeToPlay()))
         {
             result.color = new Color(0.4f, 1f, 0.4f, transparency);
         }

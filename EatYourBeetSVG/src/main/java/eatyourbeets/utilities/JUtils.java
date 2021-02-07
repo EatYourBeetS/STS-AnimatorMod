@@ -223,6 +223,18 @@ public class JUtils
         return (int)map.compute(key, (k, v) -> v == null ? 1 : (int)v + 1);
     }
 
+    public static int IncrementMapElement(Map map, Object key, int amount)
+    {
+        if (map.containsKey(key))
+        {
+            amount += (int)map.get(key);
+        }
+
+        //noinspection unchecked
+        map.put(key, amount);
+        return amount;
+    }
+
     public static <T> String JoinStrings(String delimiter, T[] values)
     {
         StringJoiner sj = new StringJoiner(delimiter);

@@ -850,26 +850,17 @@ public class GameUtilities
 
     public static void ModifyCostForCombat(AbstractCard card, int amount, boolean relative)
     {
-        if (card.cost < 0 || card.costForTurn < 0)
-        {
-            JUtils.LogWarning(card, "Attempted to modify negative card cost.");
-            return;
-        }
-
         int previousCost = card.cost;
         if (relative)
         {
-            card.costForTurn = card.costForTurn + amount;
-            card.cost = card.cost + amount;
+            card.costForTurn = Math.max(0, card.costForTurn + amount);
+            card.cost = Math.max(0, card.cost + amount);
         }
         else
         {
             card.costForTurn = amount + (card.costForTurn - card.cost);
             card.cost = amount;
         }
-
-        card.costForTurn = Math.max(0, card.costForTurn);
-        card.cost = Math.max(0, card.cost);
 
         if (card.cost != previousCost)
         {
@@ -879,13 +870,7 @@ public class GameUtilities
 
     public static void ModifyCostForTurn(AbstractCard card, int amount, boolean relative)
     {
-        if (card.cost < 0 || card.costForTurn < 0)
-        {
-            JUtils.LogWarning(card, "Attempted to modify negative card cost.");
-            return;
-        }
-
-        card.costForTurn = Math.max(0, relative ? (card.costForTurn + amount) : amount);
+        card.costForTurn = relative ? Math.max(0, card.costForTurn + amount) : amount;
         card.isCostModifiedForTurn = (card.cost != card.costForTurn);
     }
 

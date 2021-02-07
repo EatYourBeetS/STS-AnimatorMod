@@ -44,13 +44,13 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
     }
 
     @Override
-    public void OnSynergy(AnimatorCard card)
+    public void OnSynergy(AbstractCard card)
     {
         if (!player.hand.contains(this))
         {
             CombatStats.onSynergy.Unsubscribe(this);
         }
-        else
+        else if (card != this)
         {
             GameUtilities.IncreaseSecondaryValue(this, 1, false);
             flash();

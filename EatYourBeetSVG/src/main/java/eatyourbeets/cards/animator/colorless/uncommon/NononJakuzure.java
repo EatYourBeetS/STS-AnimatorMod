@@ -44,7 +44,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
     }
 
     @Override
-    public void OnSynergy(AnimatorCard card)
+    public void OnSynergy(AbstractCard card)
     {
         if (!player.hand.contains(this))
         {

@@ -49,8 +49,8 @@ public class ByakuyaKuchiki extends AnimatorCard
 
     private void ChooseAction(AbstractMonster m)
     {
-        AnimatorCard damage = BuildCard(GenerateInternal(CardType.ATTACK, this::DamageEffect), m);
-        AnimatorCard block = BuildCard(GenerateInternal(CardType.SKILL, this::BlockEffect), m);
+        AnimatorCard damage = GenerateInternal(CardType.ATTACK, this::DamageEffect).Build();
+        AnimatorCard block = GenerateInternal(CardType.SKILL, this::BlockEffect).Build();
 
         CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         choices.addToTop(damage);
@@ -77,14 +77,6 @@ public class ByakuyaKuchiki extends AnimatorCard
         }
 
         return builder;
-    }
-
-    private AnimatorCard BuildCard(AnimatorCardBuilder builder, AbstractMonster m)
-    {
-        AnimatorCard card = builder.Build();
-        card.applyPowers();
-        card.calculateCardDamage(m);
-        return card;
     }
 
     private void Execute(CardGroup group, AbstractMonster m)

@@ -49,10 +49,20 @@ public class ShidoItsuka extends AnimatorCard
             if (i == 0 && rng.randomBoolean(0.4f))
             {
                 //40% chance the first option is a non-Date-a-Live card such as a shapeshifter
+                if (randomizedSynergicCards.Size() == 0)
+                {
+                    break;
+                }
+
                 randomCard = randomizedSynergicCards.Retrieve(rng, true).makeCopy();
             }
             else
             {
+                if (randomizedDALCards.Size() == 0)
+                {
+                    break;
+                }
+
                 randomCard = randomizedDALCards.Retrieve(rng, true).makeCopy();
             }
 
@@ -101,7 +111,7 @@ public class ShidoItsuka extends AnimatorCard
             && c.rarity != AbstractCard.CardRarity.SPECIAL
             && c.rarity != AbstractCard.CardRarity.BASIC)
             {
-                if (HasSynergy(c))
+                if (Synergies.WouldSynergize(this, c))
                 {
                     if (((AnimatorCard) c).synergy == Synergies.DateALive)
                     {

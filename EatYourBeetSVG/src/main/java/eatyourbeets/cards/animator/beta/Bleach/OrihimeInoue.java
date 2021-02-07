@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class OrihimeInoue extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(OrihimeInoue.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(OrihimeInoue.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
     public static final EYBCardTooltip Other = new EYBCardTooltip(DATA.Strings.EXTENDED_DESCRIPTION[0], DATA.Strings.EXTENDED_DESCRIPTION[1]);
 
     public OrihimeInoue()
@@ -19,6 +19,7 @@ public class OrihimeInoue extends AnimatorCard
 
         Initialize(0, 0, 5, 8);
         SetUpgrade(0, 0, 0);
+        SetEthereal(true);
         SetExhaust(true);
 
         SetSynergy(Synergies.Bleach);

@@ -33,9 +33,9 @@ public class RundelhausCode extends AnimatorCard
         {
             for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
             {
-                if (c.type.equals(CardType.ATTACK) && c.baseDamage > 0)
+                if (c.type.equals(CardType.ATTACK) && c.baseDamage >= 0)
                 {
-                    if (c instanceof EYBCard && ((EYBCard) c).attackType != null && ((EYBCard) c).attackType.equals(EYBAttackType.Elemental))
+                    if (c instanceof EYBCard && EYBAttackType.Elemental.equals(((EYBCard)c).attackType))
                     {
                         GameUtilities.IncreaseDamage(c, magicNumber, false);
                         c.flash();

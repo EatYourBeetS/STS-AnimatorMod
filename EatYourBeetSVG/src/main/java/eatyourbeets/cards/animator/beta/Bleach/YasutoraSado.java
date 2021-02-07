@@ -79,7 +79,12 @@ public class YasutoraSado extends AnimatorCard
 
     private boolean IsInflictingNegativeEffect(AbstractMonster.Intent intent)
     {
-        return (intent == AbstractMonster.Intent.ATTACK_DEBUFF || intent == AbstractMonster.Intent.DEBUFF ||
-                intent == AbstractMonster.Intent.DEFEND_DEBUFF || intent == AbstractMonster.Intent.STRONG_DEBUFF);
+        if (intent != AbstractMonster.Intent.ESCAPE && intent != AbstractMonster.Intent.SLEEP && intent != AbstractMonster.Intent.STUN)
+        {
+            return (intent == AbstractMonster.Intent.ATTACK_DEBUFF || intent == AbstractMonster.Intent.DEBUFF ||
+                    intent == AbstractMonster.Intent.DEFEND_DEBUFF || intent == AbstractMonster.Intent.STRONG_DEBUFF);
+        }
+
+        return false;
     }
 }

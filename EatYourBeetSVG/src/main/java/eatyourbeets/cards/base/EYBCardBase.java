@@ -405,7 +405,7 @@ public abstract class EYBCardBase extends AbstractCard
         }
         else
         {
-            result.text = freeToPlay() ? "0" : Integer.toString(this.costForTurn);
+            result.text = freeToPlay() ? "0" : Integer.toString(Math.max(0, this.costForTurn));
         }
 
         if (player != null && player.hand.contains(this) && !this.hasEnoughEnergy())

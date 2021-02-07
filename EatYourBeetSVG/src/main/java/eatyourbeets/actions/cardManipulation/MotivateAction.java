@@ -4,15 +4,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.cards.base.modifiers.CostModifier;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
-import eatyourbeets.interfaces.subscribers.OnCardResetSubscriber;
-import eatyourbeets.interfaces.subscribers.OnCostResetSubscriber;
-import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
-public class MotivateAction extends EYBActionWithCallback<AbstractCard> implements OnEndOfTurnSubscriber, OnAfterCardPlayedSubscriber, OnCardResetSubscriber, OnCostResetSubscriber
+public class MotivateAction extends EYBActionWithCallback<AbstractCard> implements OnAfterCardPlayedSubscriber
 {
     protected boolean motivateZeroCost = true;
     protected boolean costReduced = false;
@@ -70,11 +67,9 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard> implemen
                 Complete(card);
             }
 
-            ReduceCost(card);
+            ChangeCost(-amount);
 
             CombatStats.onAfterCardPlayed.Subscribe(this);
-            CombatStats.onCardReset.Subscribe(this);
-            CombatStats.onCostReset.Subscribe(this);
         }
         else
         {
@@ -97,38 +92,12 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard> implemen
         if (card.uuid.equals(other.uuid))
         {
             CombatStats.onAfterCardPlayed.Unsubscribe(this);
-            CombatStats.onCardReset.Unsubscribe(this);
-            CombatStats.onCostReset.Unsubscribe(this);
+            ChangeCost(amount);
         }
     }
 
-    @Override
-    public void OnCardReset(AbstractCard other)
+    public void ChangeCost(int amount)
     {
-        if (card.uuid.equals(other.uuid))
-        {
-            ReduceCost(card);
-        }
-    }
-
-    @Override
-    public void OnCostReset(AbstractCard other)
-    {
-        if (card.uuid.equals(other.uuid) && !costReduced)
-        {
-            ReduceCost(card);
-        }
-    }
-
-    @Override
-    public void OnEndOfTurn(boolean isPlayer)
-    {
-        costReduced = false;
-    }
-
-    private void ReduceCost(AbstractCard card)
-    {
-        GameUtilities.ModifyCostForTurn(card, -amount, true);
-        costReduced = true;
+        CostModifier.Initialize(card).IncreaseModifier(MotivateAction.class.getName(), amount);
     }
 }

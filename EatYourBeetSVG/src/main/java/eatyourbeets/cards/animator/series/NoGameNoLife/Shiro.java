@@ -77,6 +77,11 @@ public class Shiro extends AnimatorCard
 
     public void RefreshCost()
     {
+        if (costModifier == null)
+        {
+            costModifier = CostModifier.Initialize(this);
+        }
+
         costModifier.SetModifier(CombatStats.SynergiesThisTurn().size());
     }
 }

@@ -66,6 +66,11 @@ public class CostModifier implements OnCardResetSubscriber
 
     private void ModifyCost(AbstractCard card)
     {
+        if (card.freeToPlay())
+        {
+            return;
+        }
+
         int currentCost = (card.costForTurn - previousAmount);
         int modifier = baseAmount;
         for (Integer n : modifiers.values())

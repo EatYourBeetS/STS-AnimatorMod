@@ -32,18 +32,19 @@ public class Shiro extends AnimatorCard
     }
 
     @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-        this.resetAttributes();
-    }
-
-    @Override
     public void atTurnStart()
     {
         super.atTurnStart();
 
         Refresh(null);
+    }
+
+    @Override
+    public void triggerOnOtherCardPlayed(AbstractCard c)
+    {
+        super.triggerOnOtherCardPlayed(c);
+
+        GameActions.Bottom.Callback(this::RefreshCost);
     }
 
     @Override
@@ -54,14 +55,6 @@ public class Shiro extends AnimatorCard
         copy.costModifier = this.costModifier;
 
         return copy;
-    }
-
-    @Override
-    public void triggerOnOtherCardPlayed(AbstractCard c)
-    {
-        super.triggerOnOtherCardPlayed(c);
-
-        GameActions.Bottom.Callback(this::RefreshCost);
     }
 
     @Override

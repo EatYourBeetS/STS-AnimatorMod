@@ -492,6 +492,11 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         super.onExhaust(card);
 
+        card.targetDrawScale = 0.75F;
+        card.setAngle(0.0F);
+        card.lighten(false);
+        card.clearPowers();
+
         for (OnAfterCardExhaustedSubscriber p : onAfterCardExhausted.GetSubscribers())
         {
             p.OnAfterCardExhausted(card);

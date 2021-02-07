@@ -31,14 +31,6 @@ public class YunYun extends AnimatorCard
     }
 
     @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
-        super.triggerWhenCreated(startOfBattle);
-
-        costModifier = CostModifier.Initialize(this);
-    }
-
-    @Override
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();

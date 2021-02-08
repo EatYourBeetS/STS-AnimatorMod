@@ -4,14 +4,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.interfaces.subscribers.OnCardResetSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 import patches.abstractCard.AbstractCard_Fields;
 
-import java.util.HashMap;
-
-public class CostModifier implements OnCardResetSubscriber
+public class CostModifier extends AbstractModifier implements OnCardResetSubscriber
 {
-    public static CostModifier Initialize(AbstractCard card)
+    public static CostModifier For(AbstractCard card)
     {
         CostModifier modifier = AbstractCard_Fields.costModifier.get(card);
         if (modifier == null)
@@ -24,38 +21,9 @@ public class CostModifier implements OnCardResetSubscriber
         return modifier;
     }
 
-    public int baseAmount;
-
-    protected final AbstractCard card;
-    protected final HashMap<String, Integer> modifiers = new HashMap<>();
-    protected int previousAmount;
-
     public CostModifier(AbstractCard card)
     {
-        this.card = card;
-    }
-
-    public void IncreaseModifier(String key, int amount)
-    {
-        JUtils.IncrementMapElement(modifiers, key, amount);
-        ModifyCost(card);
-    }
-
-    public void SetModifier(int amount)
-    {
-        baseAmount = amount;
-        ModifyCost(card);
-    }
-
-    public void SetModifier(String key, int amount)
-    {
-        modifiers.put(key, amount);
-        ModifyCost(card);
-    }
-
-    public int GetModifier(String key)
-    {
-        return modifiers.get(key);
+        super(card);
     }
 
     @Override
@@ -64,11 +32,12 @@ public class CostModifier implements OnCardResetSubscriber
         if (this.card == card)
         {
             previousAmount = 0;
-            ModifyCost(card);
+            Apply(card);
         }
     }
 
-    private void ModifyCost(AbstractCard card)
+    @Override
+    protected void Apply(AbstractCard card)
     {
         if (card.freeToPlay()) //|| !AbstractDungeon.player.hand.contains(card))
         {

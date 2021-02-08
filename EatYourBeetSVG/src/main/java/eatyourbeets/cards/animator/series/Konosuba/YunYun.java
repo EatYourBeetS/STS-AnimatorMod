@@ -16,8 +16,6 @@ public class YunYun extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(YunYun.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
 
-    private CostModifier costModifier = null;
-
     public YunYun()
     {
         super(DATA);
@@ -51,19 +49,6 @@ public class YunYun extends AnimatorCard
     }
 
     @Override
-    public AbstractCard makeStatEquivalentCopy()
-    {
-        YunYun copy = (YunYun) super.makeStatEquivalentCopy();
-        if (costModifier != null)
-        {
-            copy.costModifier = CostModifier.Initialize(copy);
-            copy.costModifier.baseAmount = costModifier.baseAmount;
-        }
-
-        return copy;
-    }
-
-    @Override
     public void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
@@ -86,11 +71,6 @@ public class YunYun extends AnimatorCard
 
     public void RefreshCost()
     {
-        if (costModifier == null)
-        {
-            costModifier = CostModifier.Initialize(this);
-        }
-
         int attacks = 0;
         for (AbstractCard c : player.hand.group)
         {
@@ -100,6 +80,6 @@ public class YunYun extends AnimatorCard
             }
         }
 
-        costModifier.SetModifier(attacks);
+        CostModifier.For(this).SetModifier(attacks);
     }
 }

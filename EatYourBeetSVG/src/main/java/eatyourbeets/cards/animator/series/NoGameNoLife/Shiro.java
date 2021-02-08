@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.NoGameNoLife;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.series.Konosuba.YunYun;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
@@ -19,8 +18,6 @@ public class Shiro extends AnimatorCard
     {
         DATA.AddPreview(new Sora(), true);
     }
-
-    private CostModifier costModifier = null;
 
     public Shiro()
     {
@@ -49,19 +46,6 @@ public class Shiro extends AnimatorCard
     }
 
     @Override
-    public AbstractCard makeStatEquivalentCopy()
-    {
-        Shiro copy = (Shiro) super.makeStatEquivalentCopy();
-        if (costModifier != null)
-        {
-            copy.costModifier = CostModifier.Initialize(copy);
-            copy.costModifier.baseAmount = costModifier.baseAmount;
-        }
-
-        return copy;
-    }
-
-    @Override
     public void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
@@ -81,11 +65,6 @@ public class Shiro extends AnimatorCard
 
     public void RefreshCost()
     {
-        if (costModifier == null)
-        {
-            costModifier = CostModifier.Initialize(this);
-        }
-
-        costModifier.SetModifier(-CombatStats.SynergiesThisTurn().size());
+        CostModifier.For(this).SetModifier(-CombatStats.SynergiesThisTurn().size());
     }
 }

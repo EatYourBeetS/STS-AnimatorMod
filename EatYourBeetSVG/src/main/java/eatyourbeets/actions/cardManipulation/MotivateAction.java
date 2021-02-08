@@ -98,6 +98,6 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard> implemen
 
     public void ChangeCost(int amount)
     {
-        CostModifier.Initialize(card).IncreaseModifier(MotivateAction.class.getName(), amount);
+        CostModifier.For(card).AddModifier(getClass().getName(), amount);
     }
 }

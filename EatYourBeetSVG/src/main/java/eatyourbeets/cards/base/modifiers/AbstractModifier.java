@@ -58,8 +58,10 @@ public abstract class AbstractModifier
 
     public void RemoveModifier(String key)
     {
-        modifiers.remove(key);
-        Apply(card);
+        if (modifiers.remove(key) != null)
+        {
+            Apply(card);
+        }
     }
 
     public int GetModifier(String key)

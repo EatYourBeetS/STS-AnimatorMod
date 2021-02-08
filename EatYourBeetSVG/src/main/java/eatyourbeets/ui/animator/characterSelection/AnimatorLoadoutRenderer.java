@@ -230,19 +230,18 @@ public class AnimatorLoadoutRenderer extends GUIElement
             selectScreen.confirmButton.isDisabled = false;
         }
 
-        // Text disappears if scale > 1
-        final float scale = Math.min(1, Settings.scale);
-
         // NOTE: this was FontHelper.cardTitleFont_small;
         BitmapFont font = EYBFontHelper.CardTitleFont_Small;
         float originalScale = font.getData().scaleX;
-        font.getData().setScale(scale * 0.8f);
+        font.getData().setScale(0.8f);
 
         FontHelper.renderFont(sb, font, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), textColor);
-        font.getData().setScale(scale * originalScale);
+        font.getData().setScale(originalScale);
 
         FontHelper.renderFont(sb, FontHelper.cardTitleFont, charSelectStrings.LeftText, startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
         FontHelper.renderFont(sb, FontHelper.cardTitleFont, loadout.Name, startingCardsSelectedHb.x, startingCardsSelectedHb.cY, Settings.CREAM_COLOR);//.BLUE_TEXT_COLOR);
+
+        final float scale = Settings.scale;
 
         sb.setColor(startingCardsLeftHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
         sb.draw(ImageMaster.CF_LEFT_ARROW, startingCardsLeftHb.cX - 24f, startingCardsLeftHb.cY - 24f, 24f, 24f,

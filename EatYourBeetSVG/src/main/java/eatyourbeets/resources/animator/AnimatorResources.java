@@ -155,6 +155,7 @@ public class AnimatorResources extends AbstractResources
         Data.Initialize();
         Config.InitializeOptions();
         AnimatorLoadoutsContainer.PreloadResources();
+        AnimatorImages.PreloadResources();
     }
 
     public String ProcessJson(String originalString, boolean useFallback)

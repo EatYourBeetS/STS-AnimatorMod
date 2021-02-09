@@ -3,8 +3,6 @@ package eatyourbeets.powers.common;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -69,9 +67,7 @@ public class PhasingPower extends CommonPower
     {
         if (info.type == DamageInfo.DamageType.NORMAL)
         {
-            Random phaseRNG = AbstractDungeon.miscRng;
-
-            if (phaseRNG.random(100) < amount)
+            if (rng.random(100) < amount)
             {
                 //Phased!
                 GameActions.Bottom.SFX("ORB_PLASMA_CHANNEL", 1.5f);
@@ -89,5 +85,8 @@ public class PhasingPower extends CommonPower
         String[] desc = powerStrings.DESCRIPTIONS;
 
         description = desc[0] + amount + desc[1] + baseEvadePercent + desc[2];
+
+        //Update transparency effect
+        player.tint.color.a = 0.01f * amount;
     }
 }

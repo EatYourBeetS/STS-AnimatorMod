@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT3;
-import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
+import eatyourbeets.interfaces.subscribers.OnCostResetSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStanceChangedSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.stances.AgilityStance;
@@ -18,7 +18,7 @@ import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 
-public class Henrietta extends AnimatorCard implements OnCostRefreshSubscriber, OnStanceChangedSubscriber
+public class Henrietta extends AnimatorCard implements OnCostResetSubscriber, OnStanceChangedSubscriber
 {
     public static final EYBCardData DATA = Register(Henrietta.class).SetPower(3, CardRarity.RARE);
 
@@ -45,15 +45,7 @@ public class Henrietta extends AnimatorCard implements OnCostRefreshSubscriber, 
 
         GameActions.Bottom.StackPower(new HenriettaPower(p, secondaryValue));
     }
-
-    @Override
-    public void resetAttributes()
-    {
-        super.resetAttributes();
-
-        costModifier = 0;
-    }
-
+    
     @Override
     public AbstractCard makeStatEquivalentCopy()
     {
@@ -69,17 +61,17 @@ public class Henrietta extends AnimatorCard implements OnCostRefreshSubscriber, 
     {
         super.Refresh(enemy);
 
-        OnCostRefresh(this);
+        OnCostReset(this);
     }
 
     @Override
     public void OnStanceChanged(AbstractStance oldStance, AbstractStance newStance)
     {
-        OnCostRefresh(this);
+        OnCostReset(this);
     }
 
     @Override
-    public void OnCostRefresh(AbstractCard card)
+    public void OnCostReset(AbstractCard card)
     {
         if (card == this)
         {

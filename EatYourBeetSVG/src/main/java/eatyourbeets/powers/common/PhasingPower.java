@@ -87,6 +87,6 @@ public class PhasingPower extends CommonPower
         description = desc[0] + amount + desc[1] + baseEvadePercent + desc[2];
 
         //Update transparency effect
-        player.tint.color.a = 0.01f * amount;
+        player.tint.color.a = (50-amount)/50f;
     }
 }

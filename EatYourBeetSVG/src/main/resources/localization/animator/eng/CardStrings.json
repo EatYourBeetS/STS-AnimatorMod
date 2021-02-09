@@ -250,7 +250,7 @@
 		},
 		"animator:SosukeAizen":
 		{
-		  "DESCRIPTION": "Gain {Phasing} X times. || Whenever you take 0 attack damage this turn, deal !M! damage to the attacking enemy.",
+		  "DESCRIPTION": "Gain {Phasing} X times. || <LIM>. This game, when you take 0 attack damage, deal !M! damage to the attacking enemy.",
 		  "EXTENDED_DESCRIPTION": ["Whenever you take 0 attack damage this turn, deal #b{0} damage to the attacking enemy."],
 		  "NAME": "Sosuke Aizen"
 		},

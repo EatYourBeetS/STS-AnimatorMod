@@ -4,16 +4,15 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.cards.base.modifiers.CostModifier;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
         implements OnAfterCardPlayedSubscriber, OnStartOfTurnPostDrawSubscriber,
                    OnEndOfTurnSubscriber, OnAfterCardDrawnSubscriber, OnCardResetSubscriber
 {
-    protected boolean motivateZeroCost = true;
     protected boolean firstTimePerTurn = false;
     protected AbstractCard card;
 
@@ -24,13 +23,6 @@ public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
         this.card = card;
 
         Initialize(1);
-    }
-
-    public MotivateTargetAction MotivateZeroCost(boolean value)
-    {
-        this.motivateZeroCost = value;
-
-        return this;
     }
 
     @Override
@@ -75,6 +67,8 @@ public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
     {
         if (card.uuid.equals(other.uuid))
         {
+            CostModifier.For(card).SetModifier(-amount);
+
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
             CombatStats.onEndOfTurn.Unsubscribe(this);
             CombatStats.onAfterCardPlayed.Unsubscribe(this);
@@ -132,6 +126,6 @@ public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
 
     private void ReduceCost(AbstractCard card)
     {
-        GameUtilities.ModifyCostForTurn(card, -amount, true);
+        CostModifier.For(card).SetModifier(-amount);
     }
 }

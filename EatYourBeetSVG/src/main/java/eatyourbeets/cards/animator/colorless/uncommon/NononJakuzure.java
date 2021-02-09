@@ -50,7 +50,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
         {
             CombatStats.onSynergy.Unsubscribe(this);
         }
-        else
+        else if (card != this)
         {
             GameUtilities.IncreaseSecondaryValue(this, 1, false);
             flash();
@@ -71,18 +71,18 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
 
     private void OnMotivate(Integer remaining, AbstractCard card)
     {
-        if (remaining > 1)
+        if (card == null)
         {
-            if (card != null)
-            {
-                GameActions.Top.Motivate()
-                .MotivateZeroCost(false)
-                .AddCallback(remaining - 1, this::OnMotivate);
-            }
-            else
+            if (remaining > 0)
             {
                 GameActions.Bottom.Motivate(remaining);
             }
+        }
+        else if (remaining > 1)
+        {
+            GameActions.Top.Motivate()
+            .MotivateZeroCost(false)
+            .AddCallback(remaining - 1, this::OnMotivate);
         }
     }
 }

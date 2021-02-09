@@ -4,18 +4,15 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.interfaces.subscribers.*;
+import eatyourbeets.cards.base.modifiers.CostModifier;
+import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
-public class MotivateAction extends EYBActionWithCallback<AbstractCard>
-        implements OnAfterCardPlayedSubscriber, OnStartOfTurnPostDrawSubscriber,
-                   OnEndOfTurnSubscriber, OnAfterCardDrawnSubscriber, OnCostRefreshSubscriber
+public class MotivateAction extends EYBActionWithCallback<AbstractCard> implements OnAfterCardPlayedSubscriber
 {
     protected boolean motivateZeroCost = true;
-    protected boolean firstTimePerTurn = false;
+    protected boolean costReduced = false;
     protected AbstractCard card;
 
     public MotivateAction(int amount)
@@ -70,13 +67,9 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
                 Complete(card);
             }
 
-            ReduceCost(card);
+            ChangeCost(-amount);
 
-            CombatStats.onStartOfTurnPostDraw.Subscribe(this);
-            CombatStats.onEndOfTurn.Subscribe(this);
             CombatStats.onAfterCardPlayed.Subscribe(this);
-            CombatStats.onAfterCardDrawn.Subscribe(this);
-            CombatStats.onCostRefresh.Subscribe(this);
         }
         else
         {
@@ -98,63 +91,13 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     {
         if (card.uuid.equals(other.uuid))
         {
-            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
-            CombatStats.onEndOfTurn.Unsubscribe(this);
             CombatStats.onAfterCardPlayed.Unsubscribe(this);
-            CombatStats.onAfterCardDrawn.Unsubscribe(this);
-            CombatStats.onCostRefresh.Unsubscribe(this);
+            ChangeCost(amount);
         }
     }
 
-    @Override
-    public void OnStartOfTurnPostDraw()
+    public void ChangeCost(int amount)
     {
-        if (player.hand.contains(card) && firstTimePerTurn)
-        {
-            GameActions.Bottom.ModifyAllInstances(card.uuid, this::ReduceCost);
-        }
-
-        firstTimePerTurn = false;
-    }
-
-    @Override
-    public void OnEndOfTurn(boolean isPlayer)
-    {
-        firstTimePerTurn = true;
-
-        if (player.hand.contains(card))
-        {
-            GameActions.Bottom.ModifyAllInstances(card.uuid, this::ReduceCost);
-
-            firstTimePerTurn = false;
-        }
-    }
-
-    @Override
-    public void OnAfterCardDrawn(AbstractCard other)
-    {
-        if (firstTimePerTurn)
-        {
-            return;
-        }
-
-        if (card.uuid.equals(other.uuid))
-        {
-            ReduceCost(card);
-        }
-    }
-
-    @Override
-    public void OnCostRefresh(AbstractCard other)
-    {
-        if (card.uuid.equals(other.uuid))
-        {
-            ReduceCost(card);
-        }
-    }
-
-    private void ReduceCost(AbstractCard card)
-    {
-        GameUtilities.ModifyCostForTurn(card, -amount, true);
+        CostModifier.For(card).AddModifier(getClass().getName(), amount);
     }
 }

@@ -139,7 +139,7 @@ public class GUI_DynamicCardGrid extends GUIElement
         {
             hoveredCard.renderHoverShadow(sb);
             hoveredCard.render(sb);
-            //hoveredCard.renderCardTip(sb); //Crashes if enabled for some reason
+            hoveredCard.renderCardTip(sb);
         }
 
         if (message != null)
@@ -155,10 +155,13 @@ public class GUI_DynamicCardGrid extends GUIElement
 
         if (hoveredCard != null)
         {
-
-            if (InputHelper.justClickedLeft || CInputActionSet.select.isJustPressed())
+            if (InputHelper.justClickedLeft)
             {
                 hoveredCard.hb.clickStarted = true;
+            }
+
+            if (hoveredCard.hb.clicked || CInputActionSet.select.isJustPressed())
+            {
                 hoveredCard.hb.clicked = false;
 
                 if (onCardClick != null)
@@ -182,17 +185,12 @@ public class GUI_DynamicCardGrid extends GUIElement
             card.target_y = drawStart_y + scrollDelta - (row * pad_y);
             card.fadingOut = false;
             card.update();
+            card.updateHoverLogic();
 
-            //Ensures that only one card is hovered at a time
-            if (hoveredCard == null || hoveredCard == card) {
-                card.updateHoverLogic();
-                if (card.hb.hovered)
-                {
-                    hoveredCard = card;
-                }
+            if (card.hb.hovered)
+            {
+                hoveredCard = card;
             }
-
-
 
             column += 1;
             if (column >= rowSize)

@@ -38,6 +38,12 @@ public class ParseGenericCommand extends ConsoleCommand
         {
             if (tokens.length > 1)
             {
+                if (tokens[1].equals("ghost"))
+                {
+                    player.tint.color.a = (tokens.length > 2 ? JUtils.ParseFloat(tokens[2], 1) : 0.3f);
+                    return;
+                }
+
                 if (tokens[1].equals("starter") && tokens.length > 2)
                 {
                     String loadoutName = tokens[2].replace("_", " ");

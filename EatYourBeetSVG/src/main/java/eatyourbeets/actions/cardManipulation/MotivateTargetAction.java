@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
         implements OnAfterCardPlayedSubscriber, OnStartOfTurnPostDrawSubscriber,
-                   OnEndOfTurnSubscriber, OnAfterCardDrawnSubscriber, OnCostResetSubscriber
+                   OnEndOfTurnSubscriber, OnAfterCardDrawnSubscriber, OnCardResetSubscriber
 {
     protected boolean motivateZeroCost = true;
     protected boolean firstTimePerTurn = false;
@@ -53,7 +53,7 @@ public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
             CombatStats.onEndOfTurn.Subscribe(this);
             CombatStats.onAfterCardPlayed.Subscribe(this);
             CombatStats.onAfterCardDrawn.Subscribe(this);
-            CombatStats.onCostReset.Subscribe(this);
+            CombatStats.onCardReset.Subscribe(this);
         }
         else
         {
@@ -79,7 +79,7 @@ public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
             CombatStats.onEndOfTurn.Unsubscribe(this);
             CombatStats.onAfterCardPlayed.Unsubscribe(this);
             CombatStats.onAfterCardDrawn.Unsubscribe(this);
-            CombatStats.onCostReset.Unsubscribe(this);
+            CombatStats.onCardReset.Unsubscribe(this);
         }
     }
 
@@ -122,7 +122,7 @@ public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
     }
 
     @Override
-    public void OnCostReset(AbstractCard other)
+    public void OnCardReset(AbstractCard other)
     {
         if (card.uuid.equals(other.uuid))
         {

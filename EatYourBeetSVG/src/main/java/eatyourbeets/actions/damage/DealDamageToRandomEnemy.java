@@ -102,7 +102,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
     @Override
     protected boolean shouldCancelAction()
     {
-        return this.target == null || this.source != null && this.source.isDying;
+        return this.target == null || (this.source != null && this.source.isDying);
     }
 
     @Override

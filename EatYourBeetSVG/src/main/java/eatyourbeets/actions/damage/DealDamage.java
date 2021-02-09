@@ -74,9 +74,15 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
     }
 
     @Override
+    protected boolean shouldCancelAction()
+    {
+        return super.shouldCancelAction() || (this.info.owner != null && (this.info.owner.isDying || this.info.owner.halfDead));
+    }
+
+    @Override
     protected void FirstUpdate()
     {
-        if (this.info.type != DamageInfo.DamageType.THORNS && (this.shouldCancelAction() || this.info.owner.isDying || this.info.owner.halfDead))
+        if (this.info.type != DamageInfo.DamageType.THORNS && this.shouldCancelAction())
         {
             Complete();
             return;

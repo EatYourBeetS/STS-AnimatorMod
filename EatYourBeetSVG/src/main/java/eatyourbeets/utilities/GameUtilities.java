@@ -876,31 +876,31 @@ public class GameUtilities
 
     public static void ModifyBlock(AbstractCard card, int amount, boolean temporary)
     {
+        card.block = Math.max(0, amount);
         if (!temporary)
         {
-            card.baseBlock = amount;
+            card.baseBlock = card.block;
         }
-        card.block = amount;
         card.isBlockModified = (card.block != card.baseBlock);
     }
 
     public static void ModifyDamage(AbstractCard card, int amount, boolean temporary)
     {
+        card.damage = Math.max(0, amount);
         if (!temporary)
         {
-            card.baseDamage = amount;
+            card.baseDamage = card.damage;
         }
-        card.damage = amount;
         card.isDamageModified = (card.damage != card.baseDamage);
     }
 
     public static void ModifyMagicNumber(AbstractCard card, int amount, boolean temporary)
     {
+        card.magicNumber = amount;
         if (!temporary)
         {
-            card.baseMagicNumber = amount;
+            card.baseMagicNumber = card.magicNumber;
         }
-        card.magicNumber = amount;
         card.isMagicNumberModified = (card.magicNumber != card.baseMagicNumber);
     }
 
@@ -909,11 +909,11 @@ public class GameUtilities
         EYBCard c = JUtils.SafeCast(card, EYBCard.class);
         if (c != null)
         {
+            c.secondaryValue = amount;
             if (!temporary)
             {
-                c.baseSecondaryValue = amount;
+                c.baseSecondaryValue = c.secondaryValue;
             }
-            c.secondaryValue = amount;
             c.isSecondaryValueModified = (c.secondaryValue != c.baseSecondaryValue);
         }
     }

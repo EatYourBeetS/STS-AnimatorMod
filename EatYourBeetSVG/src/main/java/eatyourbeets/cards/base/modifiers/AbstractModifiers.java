@@ -5,7 +5,7 @@ import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
 
-public abstract class AbstractModifier
+public abstract class AbstractModifiers
 {
     public int baseAmount;
     public int previousAmount;
@@ -13,12 +13,12 @@ public abstract class AbstractModifier
     protected final AbstractCard card;
     protected final HashMap<String, Integer> modifiers = new HashMap<>();
 
-    public AbstractModifier(AbstractCard card)
+    public AbstractModifiers(AbstractCard card)
     {
         this.card = card;
     }
 
-    public void CopyFrom(AbstractModifier other, boolean copyAll)
+    public void CopyFrom(AbstractModifiers other, boolean copyAll)
     {
         this.baseAmount = other.baseAmount;
         this.previousAmount = other.previousAmount;
@@ -32,31 +32,31 @@ public abstract class AbstractModifier
         }
     }
 
-    public void AddModifier(int amount)
+    public void Add(int amount)
     {
         baseAmount += amount;
         Apply(card);
     }
 
-    public void AddModifier(String key, int amount)
+    public void Add(String key, int amount)
     {
         JUtils.IncrementMapElement(modifiers, key, amount);
         Apply(card);
     }
 
-    public void SetModifier(int amount)
+    public void Set(int amount)
     {
         baseAmount = amount;
         Apply(card);
     }
 
-    public void SetModifier(String key, int amount)
+    public void Set(String key, int amount)
     {
         modifiers.put(key, amount);
         Apply(card);
     }
 
-    public void RemoveModifier(String key)
+    public void Remove(String key)
     {
         if (modifiers.remove(key) != null)
         {
@@ -64,7 +64,7 @@ public abstract class AbstractModifier
         }
     }
 
-    public int GetModifier(String key)
+    public int Get(String key)
     {
         return modifiers.get(key);
     }

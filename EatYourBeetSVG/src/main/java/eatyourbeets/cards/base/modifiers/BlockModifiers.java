@@ -4,21 +4,21 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.utilities.GameUtilities;
 import patches.abstractCard.AbstractCard_Fields;
 
-public class DamageModifier extends AbstractModifier
+public class BlockModifiers extends AbstractModifiers
 {
-    public static DamageModifier For(AbstractCard card)
+    public static BlockModifiers For(AbstractCard card)
     {
-        DamageModifier modifier = AbstractCard_Fields.damageModifier.get(card);
+        BlockModifiers modifier = AbstractCard_Fields.blockModifiers.get(card);
         if (modifier == null)
         {
-            modifier = new DamageModifier(card);
-            AbstractCard_Fields.damageModifier.set(card, modifier);
+            modifier = new BlockModifiers(card);
+            AbstractCard_Fields.blockModifiers.set(card, modifier);
         }
 
         return modifier;
     }
 
-    public DamageModifier(AbstractCard card)
+    public BlockModifiers(AbstractCard card)
     {
         super(card);
     }
@@ -26,7 +26,7 @@ public class DamageModifier extends AbstractModifier
     @Override
     protected void Apply(AbstractCard card)
     {
-        int currentAmount = (card.baseDamage - previousAmount);
+        int currentAmount = (card.baseBlock - previousAmount);
         int modifier = baseAmount;
         for (Integer n : modifiers.values())
         {
@@ -35,6 +35,6 @@ public class DamageModifier extends AbstractModifier
 
         previousAmount = modifier;
 
-        GameUtilities.ModifyDamage(card, currentAmount + modifier, false);
+        GameUtilities.ModifyBlock(card, currentAmount + modifier, false);
     }
 }

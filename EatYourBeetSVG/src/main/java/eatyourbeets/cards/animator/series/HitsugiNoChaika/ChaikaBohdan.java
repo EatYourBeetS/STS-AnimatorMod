@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.modifiers.DamageModifier;
+import eatyourbeets.cards.base.modifiers.DamageModifiers;
 import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -52,7 +52,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
         {
             if (info.type == DamageInfo.DamageType.NORMAL && GameUtilities.IsMonster(target))
             {
-                DamageModifier.For(this).AddModifier(secondaryValue);
+                DamageModifiers.For(this).Add(secondaryValue);
                 this.flash();
             }
         }
@@ -66,6 +66,6 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-        DamageModifier.For(this).SetModifier(0);
+        DamageModifiers.For(this).Set(0);
     }
 }

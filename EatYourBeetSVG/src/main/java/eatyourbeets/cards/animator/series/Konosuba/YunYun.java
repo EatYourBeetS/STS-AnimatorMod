@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.modifiers.CostModifier;
+import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -80,6 +80,6 @@ public class YunYun extends AnimatorCard
             }
         }
 
-        CostModifier.For(this).SetModifier(attacks);
+        CostModifiers.For(this).Set(attacks);
     }
 }

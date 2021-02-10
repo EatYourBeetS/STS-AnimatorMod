@@ -13,14 +13,16 @@ public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
         implements OnAfterCardPlayedSubscriber, OnStartOfTurnPostDrawSubscriber,
                    OnEndOfTurnSubscriber, OnAfterCardDrawnSubscriber, OnCardResetSubscriber
 {
+    protected String sourceName;
     protected boolean firstTimePerTurn = false;
     protected AbstractCard card;
 
-    public MotivateTargetAction(AbstractCard card)
+    public MotivateTargetAction(AbstractCard card, String name)
     {
         super(ActionType.CARD_MANIPULATION, Settings.ACTION_DUR_FASTER);
 
         this.card = card;
+        this.sourceName = name;
 
         Initialize(1);
     }
@@ -67,7 +69,7 @@ public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
     {
         if (card.uuid.equals(other.uuid))
         {
-            CostModifier.For(card).SetModifier(-amount);
+            CostModifier.For(card).RemoveModifier(sourceName);
 
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
             CombatStats.onEndOfTurn.Unsubscribe(this);
@@ -126,6 +128,6 @@ public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
 
     private void ReduceCost(AbstractCard card)
     {
-        CostModifier.For(card).SetModifier(-amount);
+        CostModifier.For(card).SetModifier(sourceName, -amount);
     }
 }

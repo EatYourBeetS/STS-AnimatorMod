@@ -11,14 +11,16 @@ import eatyourbeets.powers.CombatStats;
 public class TempReduceDamageAction extends EYBActionWithCallback<AbstractCard>
         implements OnAfterCardPlayedSubscriber
 {
+    protected String sourceName;
     protected boolean firstTimePerTurn = false;
     protected AbstractCard card;
 
-    public TempReduceDamageAction(AbstractCard card, int amount)
+    public TempReduceDamageAction(AbstractCard card, int amount, String name)
     {
         super(ActionType.CARD_MANIPULATION, Settings.ACTION_DUR_FASTER);
 
         this.card = card;
+        this.sourceName = name;
 
         Initialize(amount);
     }
@@ -61,12 +63,12 @@ public class TempReduceDamageAction extends EYBActionWithCallback<AbstractCard>
     {
         if (card.uuid.equals(other.uuid))
         {
-            DamageModifier.For(card).SetModifier(-amount);
+            DamageModifier.For(card).RemoveModifier(sourceName);
         }
     }
 
     private void ReduceDamage(AbstractCard card)
     {
-        DamageModifier.For(card).SetModifier(amount);
+        DamageModifier.For(card).SetModifier(sourceName, amount);
     }
 }

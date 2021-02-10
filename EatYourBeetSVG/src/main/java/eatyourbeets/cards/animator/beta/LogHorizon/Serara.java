@@ -48,7 +48,7 @@ public class Serara extends AnimatorCard {
         {
             if (c.cardID.equals(Nyanta.DATA.ID))
             {
-                GameActions.Bottom.Add(new MotivateTargetAction(c));
+                GameActions.Bottom.Add(new MotivateTargetAction(c, cardID));
             }
         }
 
@@ -56,7 +56,7 @@ public class Serara extends AnimatorCard {
         {
             if (c.cardID.equals(Nyanta.DATA.ID))
             {
-                GameActions.Bottom.Add(new MotivateTargetAction(c));
+                GameActions.Bottom.Add(new MotivateTargetAction(c, cardID));
             }
         }
     }

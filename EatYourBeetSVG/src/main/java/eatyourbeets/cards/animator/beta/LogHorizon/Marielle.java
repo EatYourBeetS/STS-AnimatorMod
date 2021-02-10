@@ -39,15 +39,15 @@ public class Marielle extends AnimatorCard
 
         for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
         {
-            GameActions.Bottom.Add(new MotivateTargetAction(c));
+            GameActions.Bottom.Add(new MotivateTargetAction(c, cardID));
             if (c.baseBlock > 0)
             {
-                GameActions.Bottom.Add(new TempReduceBlockAction(c, magicNumber));
+                GameActions.Bottom.Add(new TempReduceBlockAction(c, magicNumber, cardID));
             }
 
             if (c.baseDamage > 0)
             {
-                GameActions.Bottom.Add(new TempReduceDamageAction(c, magicNumber));
+                GameActions.Bottom.Add(new TempReduceDamageAction(c, magicNumber, cardID));
             }
 
             c.flash(Color.RED.cpy());

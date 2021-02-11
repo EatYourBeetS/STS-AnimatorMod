@@ -6,22 +6,22 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameUtilities;
 import patches.abstractCard.AbstractCard_Fields;
 
-public class CostModifier extends AbstractModifier implements OnCardResetSubscriber
+public class CostModifiers extends AbstractModifiers implements OnCardResetSubscriber
 {
-    public static CostModifier For(AbstractCard card)
+    public static CostModifiers For(AbstractCard card)
     {
-        CostModifier modifier = AbstractCard_Fields.costModifier.get(card);
+        CostModifiers modifier = AbstractCard_Fields.costModifiers.get(card);
         if (modifier == null)
         {
-            modifier = new CostModifier(card);
-            AbstractCard_Fields.costModifier.set(card, modifier);
+            modifier = new CostModifiers(card);
+            AbstractCard_Fields.costModifiers.set(card, modifier);
             CombatStats.onCardReset.Subscribe(modifier);
         }
 
         return modifier;
     }
 
-    public CostModifier(AbstractCard card)
+    public CostModifiers(AbstractCard card)
     {
         super(card);
     }

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.modifiers.CostModifier;
+import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.ShiroPower;
 import eatyourbeets.utilities.GameActions;
@@ -65,6 +65,6 @@ public class Shiro extends AnimatorCard
 
     public void RefreshCost()
     {
-        CostModifier.For(this).SetModifier(-CombatStats.SynergiesThisTurn().size());
+        CostModifiers.For(this).Set(-CombatStats.SynergiesThisTurn().size());
     }
 }

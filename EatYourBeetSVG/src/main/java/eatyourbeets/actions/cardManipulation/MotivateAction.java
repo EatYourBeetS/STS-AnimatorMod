@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.cards.base.modifiers.CostModifier;
+import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.RandomizedList;
@@ -67,8 +67,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard> implemen
                 Complete(card);
             }
 
-            ChangeCost(-amount);
-
+            CostModifiers.For(card).Add(getClass().getName(), -amount);
             CombatStats.onAfterCardPlayed.Subscribe(this);
         }
         else
@@ -92,12 +91,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard> implemen
         if (card.uuid.equals(other.uuid))
         {
             CombatStats.onAfterCardPlayed.Unsubscribe(this);
-            ChangeCost(amount);
+            CostModifiers.For(card).Remove(getClass().getName());
         }
-    }
-
-    public void ChangeCost(int amount)
-    {
-        CostModifier.For(card).AddModifier(getClass().getName(), amount);
     }
 }

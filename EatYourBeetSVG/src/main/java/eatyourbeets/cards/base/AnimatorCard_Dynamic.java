@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
-import eatyourbeets.interfaces.delegates.FuncT0;
+import eatyourbeets.interfaces.delegates.FuncT1;
 
 public class AnimatorCard_Dynamic extends AnimatorCard
 {
@@ -17,9 +17,9 @@ public class AnimatorCard_Dynamic extends AnimatorCard
     public final ActionT1<AnimatorCard> constructor;
     public final ActionT1<AnimatorCard> onUpgrade;
     public final ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
-    public final FuncT0<AbstractAttribute> getSpecialInfo;
-    public final FuncT0<AbstractAttribute> getDamageInfo;
-    public final FuncT0<AbstractAttribute> getBlockInfo;
+    public final FuncT1<AbstractAttribute, AnimatorCard> getSpecialInfo;
+    public final FuncT1<AbstractAttribute, AnimatorCard> getDamageInfo;
+    public final FuncT1<AbstractAttribute, AnimatorCard> getBlockInfo;
 
     public AnimatorCard_Dynamic(AnimatorCardBuilder builder)
     {
@@ -61,7 +61,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
     {
         if (getDamageInfo != null)
         {
-            return getDamageInfo.Invoke();
+            return getDamageInfo.Invoke(this);
         }
 
         AbstractAttribute info = super.GetDamageInfo();
@@ -78,7 +78,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
     {
         if (getBlockInfo != null)
         {
-            return getBlockInfo.Invoke();
+            return getBlockInfo.Invoke(this);
         }
 
         AbstractAttribute info = super.GetBlockInfo();
@@ -95,7 +95,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
     {
         if (getSpecialInfo != null)
         {
-            return getSpecialInfo.Invoke();
+            return getSpecialInfo.Invoke(this);
         }
 
         return super.GetSpecialInfo();

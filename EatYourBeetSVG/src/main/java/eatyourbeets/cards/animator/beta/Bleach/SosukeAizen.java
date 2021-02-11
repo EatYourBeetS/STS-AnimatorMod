@@ -9,7 +9,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.PhasingPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -22,9 +21,10 @@ public class SosukeAizen extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0, 30);
+        Initialize(0, 0, 20);
 
         SetMultiDamage(true);
+        SetExhaust(true);
         SetSynergy(Synergies.Bleach);
     }
 
@@ -44,10 +44,7 @@ public class SosukeAizen extends AnimatorCard_UltraRare
             GameActions.Bottom.StackPower(new PhasingPower(p, energy));
         }
 
-        if (CombatStats.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.StackPower(new SosukeAizenPower(p, magicNumber));
-        }
+        GameActions.Bottom.StackPower(new SosukeAizenPower(p, magicNumber));
     }
 
     public static class SosukeAizenPower extends AnimatorPower

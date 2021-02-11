@@ -224,8 +224,8 @@
 		},
 		"animator:OrihimeInoue":
 		{
-		  "DESCRIPTION": "Choose a card in your hand: || Cost 0-1 -> Gain !S! [Block]. ** Cost 2+ -> Gain !M! [Temporary HP]. ** Other -> Fill your empty Orb Slots with [Fire].",
-		  "EXTENDED_DESCRIPTION": ["Other", "X-Cost cards and cards without energy costs.","gain an effect."],
+		  "DESCRIPTION": "Choose 1: || If you have a 0-1 cost card: Gain !S! [Block]. ** If you have a 2+ cost card: Gain !M! [Temporary HP]. ** If you have an X or No Cost Card: Evoke your rightmost Orb 3 times and shuffle 2 {Burns} into your draw pile.",
+		  "EXTENDED_DESCRIPTION": ["Evoke your rightmost Orb 3 times and shuffle 2 {Burns} into your draw pile."],
 		  "NAME": "Orihime Inoue"
 		},
 		"animator:RenjiArakai":

@@ -5,14 +5,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.base.modifiers.DamageModifier;
-import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.GameActions;
 
 public class TempReduceDamageAction extends EYBActionWithCallback<AbstractCard>
-        implements OnAfterCardPlayedSubscriber
 {
     protected String sourceName;
-    protected boolean firstTimePerTurn = false;
     protected AbstractCard card;
 
     public TempReduceDamageAction(AbstractCard card, int amount, String name)
@@ -39,36 +37,21 @@ public class TempReduceDamageAction extends EYBActionWithCallback<AbstractCard>
                 Complete(card);
             }
 
-            ReduceDamage(card);
-
-            CombatStats.onAfterCardPlayed.Subscribe(this);
+            GameActions.Bottom.ModifyAllInstances(card.uuid, c ->
+            {
+                DamageModifier.For(c).AddModifier(sourceName, -1 * amount);
+                CombatStats.onAfterCardPlayed.Subscribe(cardPlayed ->
+                {
+                    if (cardPlayed == c)
+                    {
+                        DamageModifier.For(c).RemoveModifier(sourceName);
+                    }
+                });
+            });
         }
         else
         {
             Complete(null);
         }
-    }
-
-    @Override
-    protected void UpdateInternal(float deltaTime)
-    {
-        if (TickDuration(deltaTime))
-        {
-            Complete(card);
-        }
-    }
-
-    @Override
-    public void OnAfterCardPlayed(AbstractCard other)
-    {
-        if (card.uuid.equals(other.uuid))
-        {
-            DamageModifier.For(card).RemoveModifier(sourceName);
-        }
-    }
-
-    private void ReduceDamage(AbstractCard card)
-    {
-        DamageModifier.For(card).SetModifier(sourceName, amount);
     }
 }

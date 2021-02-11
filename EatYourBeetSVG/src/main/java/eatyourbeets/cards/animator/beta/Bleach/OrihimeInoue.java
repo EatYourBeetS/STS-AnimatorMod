@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.resources.GR;
@@ -96,6 +97,7 @@ public class OrihimeInoue extends AnimatorCard
         builder.SetProperties(type, GR.Enums.Cards.THE_ANIMATOR, AbstractCard.CardRarity.RARE, CardTarget.ENEMY);
         builder.SetOnUse(onUseAction);
         builder.SetNumbers(0, 0, magicNumber, 0);
+        builder.SetSpecialInfo(c -> TempHPAttribute.Instance.SetCard(c, true));
 
         return builder;
     }

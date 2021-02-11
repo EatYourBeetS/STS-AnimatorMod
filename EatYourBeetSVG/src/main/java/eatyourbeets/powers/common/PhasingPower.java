@@ -10,7 +10,7 @@ public class PhasingPower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(PhasingPower.class);
 
-    private int baseEvadePercent = 30;
+    private int baseEvadePercent = 35;
     private int decayPerTurn = 5;
     private int maxEvadePercent = 50;
 

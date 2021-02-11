@@ -4,8 +4,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
+import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 
@@ -21,6 +23,9 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
     public ActionT1<AnimatorCard> constructor;
     public ActionT1<AnimatorCard> onUpgrade;
     public ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
+    public FuncT0<AbstractAttribute> getSpecialInfo;
+    public FuncT0<AbstractAttribute> getDamageInfo;
+    public FuncT0<AbstractAttribute> getBlockInfo;
     public EYBAttackType attackType = EYBAttackType.Normal;
     public EYBCardTarget attackTarget = EYBCardTarget.Normal;
     public int attributeMultiplier = 1;
@@ -166,6 +171,27 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         this.attackType = attackType;
         this.attackTarget = attackTarget;
         this.isMultiDamage = (attackTarget == EYBCardTarget.ALL);
+
+        return this;
+    }
+
+    public AnimatorCardBuilder SetDamageInfo(FuncT0<AbstractAttribute> getDamageInfo)
+    {
+        this.getDamageInfo = getDamageInfo;
+
+        return this;
+    }
+
+    public AnimatorCardBuilder SetBlockInfo(FuncT0<AbstractAttribute> getBlockInfo)
+    {
+        this.getBlockInfo = getBlockInfo;
+
+        return this;
+    }
+
+    public AnimatorCardBuilder SetSpecialInfo(FuncT0<AbstractAttribute> getSpecialInfo)
+    {
+        this.getSpecialInfo = getSpecialInfo;
 
         return this;
     }

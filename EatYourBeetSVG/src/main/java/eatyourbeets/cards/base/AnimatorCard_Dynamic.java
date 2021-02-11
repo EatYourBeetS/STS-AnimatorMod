@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
+import eatyourbeets.interfaces.delegates.FuncT0;
 
 public class AnimatorCard_Dynamic extends AnimatorCard
 {
@@ -16,6 +17,9 @@ public class AnimatorCard_Dynamic extends AnimatorCard
     public final ActionT1<AnimatorCard> constructor;
     public final ActionT1<AnimatorCard> onUpgrade;
     public final ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
+    public final FuncT0<AbstractAttribute> getSpecialInfo;
+    public final FuncT0<AbstractAttribute> getDamageInfo;
+    public final FuncT0<AbstractAttribute> getBlockInfo;
 
     public AnimatorCard_Dynamic(AnimatorCardBuilder builder)
     {
@@ -40,6 +44,10 @@ public class AnimatorCard_Dynamic extends AnimatorCard
         this.tags.addAll(builder.tags);
         this.cropPortrait = false;
 
+        this.getSpecialInfo = builder.getSpecialInfo;
+        this.getDamageInfo = builder.getDamageInfo;
+        this.getBlockInfo = builder.getBlockInfo;
+
         if (constructor != null)
         {
             constructor.Invoke(this);
@@ -51,6 +59,11 @@ public class AnimatorCard_Dynamic extends AnimatorCard
     @Override
     public AbstractAttribute GetDamageInfo()
     {
+        if (getDamageInfo != null)
+        {
+            return getDamageInfo.Invoke();
+        }
+
         AbstractAttribute info = super.GetDamageInfo();
         if (info != null && attributeMultiplier > 1)
         {
@@ -63,6 +76,11 @@ public class AnimatorCard_Dynamic extends AnimatorCard
     @Override
     public AbstractAttribute GetBlockInfo()
     {
+        if (getBlockInfo != null)
+        {
+            return getBlockInfo.Invoke();
+        }
+
         AbstractAttribute info = super.GetBlockInfo();
         if (info != null && attributeMultiplier > 1)
         {
@@ -70,6 +88,17 @@ public class AnimatorCard_Dynamic extends AnimatorCard
         }
 
         return info;
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        if (getSpecialInfo != null)
+        {
+            return getSpecialInfo.Invoke();
+        }
+
+        return super.GetSpecialInfo();
     }
 
     @Override

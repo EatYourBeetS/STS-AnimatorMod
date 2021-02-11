@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.cards.base.modifiers.CostModifier;
+import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
@@ -39,12 +39,12 @@ public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
 
             GameActions.Bottom.ModifyAllInstances(card.uuid, c ->
             {
-                CostModifier.For(c).AddModifier(sourceName, amount);
+                CostModifiers.For(c).Add(sourceName, amount);
                 CombatStats.onAfterCardPlayed.Subscribe(cardPlayed ->
                 {
                     if (cardPlayed == c)
                     {
-                        CostModifier.For(c).RemoveModifier(sourceName);
+                        CostModifiers.For(c).Remove(sourceName);
                     }
                 });
             });

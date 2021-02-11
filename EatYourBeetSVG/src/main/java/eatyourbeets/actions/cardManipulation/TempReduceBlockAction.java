@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.cards.base.modifiers.BlockModifier;
+import eatyourbeets.cards.base.modifiers.BlockModifiers;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
@@ -39,12 +39,12 @@ public class TempReduceBlockAction extends EYBActionWithCallback<AbstractCard>
 
             GameActions.Bottom.ModifyAllInstances(card.uuid, c ->
             {
-                BlockModifier.For(c).AddModifier(sourceName, -1 * amount);
+                BlockModifiers.For(c).Add(sourceName, -1 * amount);
                 CombatStats.onAfterCardPlayed.Subscribe(cardPlayed ->
                 {
                     if (cardPlayed == c)
                     {
-                        BlockModifier.For(c).RemoveModifier(sourceName);
+                        BlockModifiers.For(c).Remove(sourceName);
                     }
                 });
             });

@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.cards.base.modifiers.DamageModifier;
+import eatyourbeets.cards.base.modifiers.DamageModifiers;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
@@ -39,12 +39,12 @@ public class TempReduceDamageAction extends EYBActionWithCallback<AbstractCard>
 
             GameActions.Bottom.ModifyAllInstances(card.uuid, c ->
             {
-                DamageModifier.For(c).AddModifier(sourceName, -1 * amount);
+                DamageModifiers.For(c).Add(sourceName, -1 * amount);
                 CombatStats.onAfterCardPlayed.Subscribe(cardPlayed ->
                 {
                     if (cardPlayed == c)
                     {
-                        DamageModifier.For(c).RemoveModifier(sourceName);
+                        DamageModifiers.For(c).Remove(sourceName);
                     }
                 });
             });

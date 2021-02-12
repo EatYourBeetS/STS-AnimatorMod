@@ -169,14 +169,7 @@ public abstract class PlayerAttributePower extends CommonPower
 
         if (this.disabled)
         {
-            if (overrideDisabledPowers.contains(ID))
-            {
-                this.overrideDisabled = true;
-            }
-            else
-            {
-                this.overrideDisabled = false;
-            }
+            this.overrideDisabled = overrideDisabledPowers.contains(ID);
         }
 
         return disabled && !overrideDisabled;

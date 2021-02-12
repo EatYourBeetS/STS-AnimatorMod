@@ -57,14 +57,7 @@ public class MarisaKirisame extends AnimatorCard
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        if (cooldown.GetCurrent() == 0)
-        {
-            this.showEvokeValue = true;
-        }
-        else
-        {
-            this.showEvokeValue = false;
-        }
+        this.showEvokeValue = cooldown.GetCurrent() == 0;
 
         return super.GetDamageInfo();
     }

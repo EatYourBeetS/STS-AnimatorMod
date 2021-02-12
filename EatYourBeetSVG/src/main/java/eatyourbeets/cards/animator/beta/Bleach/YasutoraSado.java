@@ -45,10 +45,7 @@ public class YasutoraSado extends AnimatorCard
             }
             else
             {
-                if (m.currentBlock > 0 || IsInflictingNegativeEffect(m.intent))
-                {
-                    return true;
-                }
+                return m.currentBlock > 0 || IsInflictingNegativeEffect(m.intent);
             }
         }
 

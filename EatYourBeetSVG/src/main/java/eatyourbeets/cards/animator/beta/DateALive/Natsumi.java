@@ -84,8 +84,8 @@ public class Natsumi extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                GameActions.Bottom.ReplaceCard(((AbstractCard) card).uuid, cards.get(0))
-                        .SetUpgrade(((AbstractCard) card).upgraded);
+                GameActions.Bottom.ReplaceCard(card.uuid, cards.get(0))
+                        .SetUpgrade(card.upgraded);
             }
         });
     }

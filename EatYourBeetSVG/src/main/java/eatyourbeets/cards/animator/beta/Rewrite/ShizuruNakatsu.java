@@ -47,7 +47,7 @@ public class ShizuruNakatsu extends AnimatorCard
         }
 
         AgilityPower agility = GameUtilities.GetPower(player, AgilityPower.class);
-        if (agility != null && agility.GetCurrentLevel() > 2)
+        if (agility != null && AgilityPower.GetCurrentLevel() > 2)
         {
             canAttack = true;
         }

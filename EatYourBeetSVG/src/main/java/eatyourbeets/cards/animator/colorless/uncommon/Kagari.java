@@ -29,12 +29,9 @@ public class Kagari extends AnimatorCard
     @Override
     public void OnDrag(AbstractMonster m)
     {
-        if (m != null)
+        for (EnemyIntent intent : GameUtilities.GetIntents())
         {
-            for (EnemyIntent intent : GameUtilities.GetIntents())
-            {
-                intent.AddStrength(-magicNumber);
-            }
+            intent.AddStrength(-magicNumber);
         }
     }
 

@@ -56,17 +56,12 @@ public abstract class AbstractModifiers
         Apply(card);
     }
 
-    public void Remove(String key, boolean applyInstantly)
+    public void Remove(String key)
     {
-        if (modifiers.remove(key) != null && applyInstantly)
+        if (modifiers.remove(key) != null)
         {
             Apply(card);
         }
-    }
-
-    public void Remove(String key)
-    {
-        Remove(key, true);
     }
 
     public int Get(String key)

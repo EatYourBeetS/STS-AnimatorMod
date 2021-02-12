@@ -28,7 +28,7 @@ public class TempReduceDamageAction extends EYBActionWithCallback<AbstractCard>
     {
         if (card != null)
         {
-            if (card.costForTurn < 0)
+            if (card.damage <= 0)
             {
                 Complete(card);
                 return;
@@ -36,20 +36,20 @@ public class TempReduceDamageAction extends EYBActionWithCallback<AbstractCard>
 
             GameActions.Bottom.ModifyAllInstances(card.uuid, c ->
             {
-                if (c.costForTurn > 0)
+                if (c.damage > 0)
                 {
                     card.superFlash(Color.GOLD.cpy());
-                }
 
-                DamageModifiers.For(c).Add(sourceName, -amount);
-                CombatStats.onAfterCardPlayed.Subscribe(cardPlayed ->
-                {
-                    if (cardPlayed == c)
+                    DamageModifiers.For(c).Add(sourceName, -amount);
+                    CombatStats.onAfterCardPlayed.Subscribe(cardPlayed ->
                     {
-                        DamageModifiers.For(c).Remove(sourceName);
-                    }
-                });
-            });
+                        if (cardPlayed == c)
+                        {
+                            DamageModifiers.For(c).Remove(sourceName);
+                        }
+                    });
+                }
+            }).SetDuration(0.01f, false);
         }
         else
         {

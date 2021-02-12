@@ -28,7 +28,7 @@ public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
     {
         if (card != null)
         {
-            if (card.costForTurn < 0)
+            if (card.costForTurn <= 0)
             {
                 Complete(card);
                 return;
@@ -39,17 +39,17 @@ public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
                 if (c.costForTurn > 0)
                 {
                     card.superFlash(Color.GOLD.cpy());
-                }
 
-                CostModifiers.For(c).Add(sourceName, -amount);
-                CombatStats.onAfterCardPlayed.Subscribe(cardPlayed ->
-                {
-                    if (cardPlayed == c)
+                    CostModifiers.For(c).Add(sourceName, -amount);
+                    CombatStats.onAfterCardPlayed.Subscribe(cardPlayed ->
                     {
-                        CostModifiers.For(c).Remove(sourceName, false);
-                    }
-                });
-            });
+                        if (cardPlayed == c)
+                        {
+                            CostModifiers.For(c).Remove(sourceName, false);
+                        }
+                    });
+                }
+            }).SetDuration(0.01f, false);
         }
         else
         {

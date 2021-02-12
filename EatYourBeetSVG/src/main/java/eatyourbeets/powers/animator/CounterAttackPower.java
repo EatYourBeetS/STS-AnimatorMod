@@ -80,6 +80,14 @@ public class CounterAttackPower extends AnimatorPower
     }
 
     @Override
+    public void onRemove()
+    {
+        super.onRemove();
+
+        this.baseAmount = 0;
+    }
+
+    @Override
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount)
     {
         this.flashWithoutSound();

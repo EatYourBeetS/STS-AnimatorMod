@@ -105,21 +105,22 @@ public class EYBCardText
 
     protected void RenderAttributes(SpriteBatch sb)
     {
-        boolean leftAlign = true;
+        AbstractAttribute.leftAlign = true;
         AbstractAttribute temp;
         if ((temp = GetInfo1()) != null)
         {
-            temp.Render(sb, card, leftAlign);
-            leftAlign = false;
+            temp.Render(sb, card);
+            AbstractAttribute.leftAlign = false;
         }
         if ((temp = GetInfo2()) != null)
         {
-            temp.Render(sb, card, leftAlign);
-            leftAlign = false;
+            temp.Render(sb, card);
+            AbstractAttribute.leftAlign = false;
         }
         if ((temp = card.GetSpecialInfo()) != null)
         {
-            temp.Render(sb, card, leftAlign);
+            temp.Render(sb, card);
+            AbstractAttribute.leftAlign = false;
         }
     }
 

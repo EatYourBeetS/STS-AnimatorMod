@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.cards.animator.series.NoGameNoLife.DolaRiku;
@@ -22,6 +21,7 @@ public class DolaRikuAction extends EYBAction
 
         Initialize(choices, DolaRiku.DATA.Strings.NAME);
 
+        message = GR.Common.Strings.GridSelection.ChooseCards;
         card = exhausted;
     }
 
@@ -124,11 +124,5 @@ public class DolaRikuAction extends EYBAction
         }
 
         super.UpdateInternal(deltaTime);
-    }
-
-    @Override
-    public String CreateMessage()
-    {
-        return super.CreateMessageInternal(CardRewardScreen.TEXT[1]);
     }
 }

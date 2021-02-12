@@ -4,15 +4,22 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.VictoryRoom;
+import com.megacrit.cardcrawl.screens.GameOverScreen;
 import com.megacrit.cardcrawl.screens.GameOverStat;
 import com.megacrit.cardcrawl.screens.VictoryScreen;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
+
+import java.util.ArrayList;
 
 // Act 5 and Act 3 victory logic
 public class VictoryPatches
 {
+    private static final FieldInfo<ArrayList<GameOverStat>> _stats = JUtils.GetField("stats", GameOverScreen.class);
+    private static final FieldInfo<Integer> _bossPoints = JUtils.GetField("bossPoints", GameOverScreen.class);
     private static final TheUnnamed.Data data = new TheUnnamed.Data(TheUnnamed.ID);
 
     private static GameOverStat GetUnnamedGameOverStats()
@@ -47,9 +54,9 @@ public class VictoryPatches
         {
             if (GR.Common.Dungeon.IsUnnamedReign())
             {
-                int index = Math.max(0, __instance.stats.size() - 2);
-
-                __instance.stats.add(index, GetUnnamedGameOverStats());
+                _bossPoints.Set(__instance, _bossPoints.Get(__instance) + GetUnnamedScoreBonus());
+                ArrayList<GameOverStat> stats = _stats.Get(__instance);
+                stats.add(Math.max(0, stats.size() - 2), GetUnnamedGameOverStats());
             }
 
             if (Settings.isStandardRun() && AbstractDungeon.player.chosenClass == GR.Animator.PlayerClass)
@@ -59,16 +66,18 @@ public class VictoryPatches
         }
     }
 
-    @SpirePatch(clz = VictoryScreen.class, method = "checkScoreBonus", paramtypez = {boolean.class})
-    public static class VictoryScreenPatches_checkScoreBonus
-    {
-        @SpireInsertPatch(rloc = 1, localvars = {"points"})
-        public static void Method(boolean isVictory, @ByRef int[] points)
-        {
-            if (GR.Common.Dungeon.IsUnnamedReign())
-            {
-                points[0] += GetUnnamedScoreBonus();
-            }
-        }
-    }
+//    Note: Using _bossPoints instead.
+//
+//    @SpirePatch(clz = VictoryScreen.class, method = "checkScoreBonus", paramtypez = {boolean.class})
+//    public static class VictoryScreenPatches_checkScoreBonus
+//    {
+//        @SpireInsertPatch(rloc = 1, localvars = {"points"})
+//        public static void Method(boolean isVictory, @ByRef int[] points)
+//        {
+//            if (GR.Common.Dungeon.IsUnnamedReign())
+//            {
+//                points[0] += GetUnnamedScoreBonus();
+//            }
+//        }
+//    }
 }

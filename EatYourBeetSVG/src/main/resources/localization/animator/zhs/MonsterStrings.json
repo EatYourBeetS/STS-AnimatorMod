@@ -3,285 +3,285 @@
 	"animator:Dark_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "暗黑之方 （小）",
+		"NAME": "黑暗之方",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "暗黑之方 （中）",
+		"NAME": "黑暗之方",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "暗黑之方 （大）",
+		"NAME": "黑暗之方",
 		"DIALOG": [""]
 	},
 
 	"animator:Lightning_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "雷电之方 （小）",
+		"NAME": "雷电之方",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "雷电之方 （中）",
+		"NAME": "雷电之方",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "雷电之方 （大）",
+		"NAME": "雷电之方",
 		"DIALOG": [""]
 	},
 
 	"animator:Frost_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之方 （小）",
+		"NAME": "冰霜之方",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之方 （中）",
+		"NAME": "冰霜之方",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之方 （大）",
+		"NAME": "冰霜之方",
 		"DIALOG": [""]
 	},
 
 	"animator:Fire_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "火焰之方 （小）",
+		"NAME": "火焰之方",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "火焰之方 （中）",
+		"NAME": "火焰之方",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "火焰之方 （大）",
+		"NAME": "火焰之方",
 		"DIALOG": [""]
 	},
 
 	"animator:Healing_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "治愈之方 （小）",
+		"NAME": "治疗之方",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "治愈之方 （中）",
+		"NAME": "治疗之方",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "治愈之方 （大）",
+		"NAME": "治疗之方",
 		"DIALOG": [""]
 	},
 
 	"animator:Dark_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "暗黑之晶 （小）",
+		"NAME": "黑暗之晶",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "暗黑之晶 （中）",
+		"NAME": "黑暗之晶",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "暗黑之晶 （大）",
+		"NAME": "黑暗之晶",
 		"DIALOG": [""]
 	},
 
 	"animator:Lightning_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "雷电之晶 （小）",
+		"NAME": "雷电之晶",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "雷电之晶 （中）",
+		"NAME": "雷电之晶",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "雷电之晶 （大）",
+		"NAME": "雷电之晶",
 		"DIALOG": [""]
 	},
 
 	"animator:Frost_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之晶 （小）",
+		"NAME": "冰霜之晶",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之晶 （中）",
+		"NAME": "冰霜之晶",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之晶 （大）",
+		"NAME": "冰霜之晶",
 		"DIALOG": [""]
 	},
 
 	"animator:Fire_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "火焰之晶 （小）",
+		"NAME": "火焰之晶",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "火焰之晶 （中）",
+		"NAME": "火焰之晶",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "火焰之晶 （大）",
+		"NAME": "火焰之晶",
 		"DIALOG": [""]
 	},
 
 	"animator:Healing_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "治愈之晶 （小）",
+		"NAME": "治疗之晶",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "治愈之晶 （中）",
+		"NAME": "治疗之晶",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "治愈之晶 （大）",
+		"NAME": "治疗之晶",
 		"DIALOG": [""]
 	},
 
 	"animator:Dark_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "暗黑之缕 （小）",
+		"NAME": "黑暗之缕",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "暗黑之缕 （中）",
+		"NAME": "黑暗之缕",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "暗黑之缕 （大）",
+		"NAME": "黑暗之缕",
 		"DIALOG": [""]
 	},
 
 	"animator:Lightning_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "雷电之缕 （小）",
+		"NAME": "雷电之缕",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "雷电之缕 （中）",
+		"NAME": "雷电之缕",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "雷电之缕 （大）",
+		"NAME": "雷电之缕",
 		"DIALOG": [""]
 	},
 
 	"animator:Frost_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之缕 （小）",
+		"NAME": "冰霜之缕",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之缕 （中）",
+		"NAME": "冰霜之缕",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之缕 （大）",
+		"NAME": "冰霜之缕",
 		"DIALOG": [""]
 	},
 
 	"animator:Fire_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "火焰之缕 （小）",
+		"NAME": "火焰之缕",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "火焰之缕 （中）",
+		"NAME": "火焰之缕",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "火焰之缕 （大）",
+		"NAME": "火焰之缕",
 		"DIALOG": [""]
 	},
 
 	"animator:Healing_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "治愈之缕 （小）",
+		"NAME": "治疗之缕",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "治愈之缕 （中）",
+		"NAME": "治疗之缕",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "治愈之缕 （大）",
+		"NAME": "治疗之缕",
 		"DIALOG": [""]
 	},
 
@@ -304,6 +304,18 @@
 		"DIALOG": [""]
 	},
 
+	"animator:HornedBat_P":
+	{
+		"MOVES": [],
+		"NAME": "紫色有角蝙蝠",
+		"DIALOG": [""]
+	},
+	"animator:HornedBat_R":
+	{
+		"MOVES": [],
+		"NAME": "红色有角蝙蝠",
+		"DIALOG": [""]
+	},
 	"animator:KrulTepes":
 	{
 		"MOVES": [],
@@ -333,17 +345,17 @@
 		"NAME": "无名信徒",
 		"DIALOG":
 		[
-			"凝视它并在恐惧中颤抖吧！ 终极之晶！",
-			"凝视它并在恐惧中颤抖吧！ 终极武器！",
-			"凝视它并在恐惧中颤抖吧！ 终极之 @!",
-			"凝视它并在恐惧中颤抖吧！ 终极之缕！",
-			"凝视它并在恐惧中颤抖吧！ 终极... 东西！",
-			"我有个惊喜给你，给我一点点时间准备...",
+			"看哪！这是终极之晶！",
+			"看哪！这是终极武器！",
+			"看哪！这是终极 {0} ！",
+			"看哪！这是终极地精！",
+			"看哪！这是终极…呃…东西！",
+			"我有个惊喜要给你，给我点时间准备……",
 			"还没准备好！",
-			"再等一下！",
-			"就要来了！",
+			"再等一小会！",
+			"就快好了！",
 			"惊喜！",
-			"发现！入侵者！"
+			"注意！入侵者！"
 		]
 	},
 	"animator:TheUnnamed":
@@ -352,41 +364,41 @@
 		"NAME": "无名",
 		"DIALOG":
 		[
-			"到此为止了！爬塔之旅到此为止……",
-			"雕虫小技，我可是拥有无尽之力的人！",
-			"死亡笔记可对我没用！你难道忘了我没有名字吗？",
-			"你把我惹毛了……我这里有个礼物要送给你。",
-			"我就是宇宙的主宰！",
-			"是不是因为我这回合没要了你命而松了口气？",
+			"你够了。到此为止了……",
+			"这是什么玩意！我才是拥有无尽之力的人！",
+			"对不起，我没有名字。",
+			"你把我惹毛了……请收下我这小小的礼物。",
+			"三千世界我主宰",
+			"你在庆幸我这回合没橄榄你吗？",
 			"……",
-			"你管这东西叫牌组？",
-			"你马上就要玩完了……",
-			"我的力量无与伦比！",
-			"我，无可匹敌！",
-			"王之宝库？不过如此。",
-			"这个爆裂魔法最多值五分。",
-			"作弊！禁止氪金道具！",
-			"你站错边了，波罗斯。",
-			"看呐，琦玉的拳头也奈何不了我。",
-			"你再睡几个世纪如何？",
-			"是红莲吗？ 你又被控制了吗？",
-			"我差一点就怕七实了，就差一点……",
-			"哥布林…… 我再给你的牌堆里再加些哥布林怎么样?",
-			"克拉米？小心点，你一轮只能打出16张卡牌。",
-			"想知道什么才是真正的布朗运动吗？",
-			"你没有时间了……",
-			"这招不错。别再那么做了。",
-			"我警告你……",
-			"这不可能。",
-			"最后一次警告。",
-			"我警告过你的……晚安。",
-			"我会回来的……",
-			"咳咳…… 再见？",
-			"你胆敢接近我？",
-			"这牌组有点太小了，等一下……",
-			"Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn.",
-			"无实体？你可不是只有你才能使用这个能力。",
-			"哈哈！你没有时间了，永别啦！"
+			"乳臭未干。",
+			"你要完了……",
+			"我的力量无人能及！",
+			"我立于不败之地！",
+			"吉尔伽美什！你为何叛变？",
+			"爆裂魔法？搁这放鞭炮呢？",
+			"使诈！不许飞鼠！",
+			"摆正你的屁股，波罗斯！",
+			"一拳超人真是虚有其表。",
+			"何不再昏睡几个世纪？",
+			"红莲啊。你又被控制了吗？",
+			"差点被七实吓到了。差点。",
+			"要不给你多来几张哥布林？",
+			"你一回合只能打16张牌。别怪我没提醒你，克拉米。",
+			"我这里有些好康的，比布朗运动……当我没说。",
+			"秒钟转动滴滴答",
+			"不错的尝试。不要再来了。",
+			"我劝你好自为之",
+			"我警告你不要再来了",
+			"勿谓言之不预",
+			"明知故犯……永别了",
+			"我……一定……会回来的……",
+			"咳咳……再见？",
+			"来者何人？",
+			"这牌组太小了，让我调整一下。",
+			"Pgh'nglui mglw'nafh Cthulhu R'lyeh wah'nagl fhtagn.",
+			"你以为就你有无实体？",
+			"看来你气数已尽。没救了，抬走吧。"
 		]
 	}
 }

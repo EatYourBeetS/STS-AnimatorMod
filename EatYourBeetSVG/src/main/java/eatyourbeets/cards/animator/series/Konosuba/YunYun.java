@@ -7,16 +7,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
+import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber
+public class YunYun extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(YunYun.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
-
-    private int costModifier = 0;
 
     public YunYun()
     {
@@ -31,14 +29,6 @@ public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber
     }
 
     @Override
-    public void resetAttributes()
-    {
-        super.resetAttributes();
-
-        costModifier = 0;
-    }
-
-    @Override
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();
@@ -48,8 +38,6 @@ public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber
             GameActions.Bottom.ChannelOrb(new Lightning(), true);
             GameActions.Bottom.Flash(this);
         }
-
-        costModifier = 0;
     }
 
     @Override
@@ -57,25 +45,7 @@ public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber
     {
         super.triggerOnOtherCardPlayed(c);
 
-        GameActions.Bottom.Callback(() -> OnCostRefresh(this));
-    }
-
-    @Override
-    public void triggerOnEndOfTurnForPlayingCard()
-    {
-        super.triggerOnEndOfTurnForPlayingCard();
-
-        costModifier = 0;
-    }
-
-    @Override
-    public AbstractCard makeStatEquivalentCopy()
-    {
-        YunYun copy = (YunYun) super.makeStatEquivalentCopy();
-
-        copy.costModifier = this.costModifier;
-
-        return copy;
+        GameActions.Bottom.Callback(this::RefreshCost);
     }
 
     @Override
@@ -83,7 +53,7 @@ public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber
     {
         super.Refresh(enemy);
 
-        OnCostRefresh(this);
+        RefreshCost();
     }
 
     @Override
@@ -99,28 +69,17 @@ public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
     }
 
-    @Override
-    public void OnCostRefresh(AbstractCard card)
+    public void RefreshCost()
     {
-        if (card == this)
+        int attacks = 0;
+        for (AbstractCard c : player.hand.group)
         {
-            int attacks = 0;
-            for (AbstractCard c : player.hand.group)
+            if (c != this && c.type == CardType.ATTACK)
             {
-                if (c != this && c.type == CardType.ATTACK)
-                {
-                    attacks += 1;
-                }
-            }
-
-            int currentCost = (costForTurn - costModifier);
-
-            costModifier = attacks;
-
-            if (!this.freeToPlayOnce)
-            {
-                this.setCostForTurn(currentCost + costModifier);
+                attacks += 1;
             }
         }
+
+        CostModifiers.For(this).Set(attacks);
     }
 }

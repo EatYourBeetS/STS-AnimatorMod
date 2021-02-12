@@ -51,10 +51,12 @@ public class EYBCardTooltip
     private static EYBCard card;
 
     public TextureRegion icon;
+    public String id;
     public String title;
     public String description;
     public float iconMulti_W = 1;
     public float iconMulti_H = 1;
+    public boolean canRender = true;
 
     public EYBCardTooltip(String title, String description)
     {
@@ -92,7 +94,7 @@ public class EYBCardTooltip
         card.GenerateDynamicTooltips(tooltips);
         for (EYBCardTooltip tooltip : card.tooltips)
         {
-            if (!tooltips.contains(tooltip))
+            if (tooltip.canRender && !tooltips.contains(tooltip))
             {
                 tooltips.add(tooltip);
             }
@@ -223,16 +225,30 @@ public class EYBCardTooltip
         return this;
     }
 
+    public EYBCardTooltip ShowText(boolean value)
+    {
+        this.canRender = value;
+
+        return this;
+    }
+
     public void renderTipEnergy(SpriteBatch sb, TextureRegion region, float x, float y, float width, float height)
     {
         sb.setColor(Color.WHITE);
         sb.draw(region.getTexture(), x, y, 0f, 0f,
-        width, height, Settings.scale, Settings.scale, 0f, region.getRegionX(), region.getRegionY(), region.getRegionWidth(), region.getRegionHeight(), false, false);
+        width, height, Settings.scale, Settings.scale, 0f,
+        region.getRegionX(), region.getRegionY(), region.getRegionWidth(),
+        region.getRegionHeight(), false, false);
+    }
+
+    public String GetTitleOrIcon()
+    {
+        return (id != null) ? "["+id+"]" : title;
     }
 
     @Override
     public String toString()
     {
-        return title;
+        return GetTitleOrIcon();
     }
 }

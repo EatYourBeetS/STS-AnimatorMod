@@ -6,20 +6,18 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
+import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.ShiroPower;
 import eatyourbeets.utilities.GameActions;
 
-public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
+public class Shiro extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Shiro.class).SetPower(4, CardRarity.RARE);
     static
     {
         DATA.AddPreview(new Sora(), true);
     }
-
-    private int costModifier = 0;
 
     public Shiro()
     {
@@ -32,13 +30,6 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     }
 
     @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-        this.resetAttributes();
-    }
-
-    @Override
     public void atTurnStart()
     {
         super.atTurnStart();
@@ -47,37 +38,11 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     }
 
     @Override
-    public void resetAttributes()
+    public void triggerOnOtherCardPlayed(AbstractCard c)
     {
-        super.resetAttributes();
+        super.triggerOnOtherCardPlayed(c);
 
-        costModifier = 0;
-    }
-
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        costModifier = 0;
-    }
-
-    @Override
-    public void triggerOnEndOfTurnForPlayingCard()
-    {
-        super.triggerOnEndOfTurnForPlayingCard();
-
-        costModifier = 0;
-    }
-
-    @Override
-    public AbstractCard makeStatEquivalentCopy()
-    {
-        Shiro copy = (Shiro) super.makeStatEquivalentCopy();
-
-        copy.costModifier = this.costModifier;
-
-        return copy;
+        GameActions.Bottom.Callback(this::RefreshCost);
     }
 
     @Override
@@ -85,7 +50,7 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     {
         super.Refresh(enemy);
 
-        OnCostRefresh(this);
+        RefreshCost();
     }
 
     @Override
@@ -98,19 +63,8 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
         GameActions.Bottom.StackPower(new ShiroPower(p, 1));
     }
 
-    @Override
-    public void OnCostRefresh(AbstractCard card)
+    public void RefreshCost()
     {
-        if (card == this && !player.limbo.contains(this))
-        {
-            int currentCost = (costForTurn + costModifier);
-
-            costModifier = CombatStats.SynergiesThisTurn();
-
-            if (!this.freeToPlayOnce)
-            {
-                setCostForTurn(currentCost - costModifier);
-            }
-        }
+        CostModifiers.For(this).Set(-CombatStats.SynergiesThisTurn().size());
     }
 }

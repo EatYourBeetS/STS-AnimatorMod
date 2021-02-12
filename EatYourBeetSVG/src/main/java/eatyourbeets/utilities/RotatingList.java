@@ -50,7 +50,18 @@ public class RotatingList<T>
 
     public T Current()
     {
-        return items.isEmpty() ? null : items.get(index);
+        return Current(false);
+    }
+
+    public T Current(boolean moveIndex)
+    {
+        T item = items.isEmpty() ? null : items.get(index);
+        if (moveIndex)
+        {
+            Next(true);
+        }
+
+        return item;
     }
 
     public T Previous(boolean moveIndex)

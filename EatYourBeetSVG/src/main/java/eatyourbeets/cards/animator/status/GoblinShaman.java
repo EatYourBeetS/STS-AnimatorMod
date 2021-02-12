@@ -35,7 +35,7 @@ public class GoblinShaman extends AnimatorCard_Status
     {
         if (this.dontTriggerOnUseCard)
         {
-            GameActions.Bottom.StackPower(new FrailPower(p, 1, false));
+            GameActions.Bottom.StackPower(new FrailPower(p, 1, true));
         }
     }
 }

@@ -3,7 +3,6 @@ package eatyourbeets.misc.VestaElixirEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.animator.series.TenseiSlime.Vesta;
 import eatyourbeets.cards.animator.special.Vesta_Elixir;
 import eatyourbeets.cards.base.EYBCard;
@@ -106,7 +105,6 @@ public class VestaElixirEffects
         }
 
         GameActions.Top.SelectFromPile(vesta.name, 1, group)
-        .SetMessage(CardRewardScreen.TEXT[1])
         .SetOptions(false, false)
         .AddCallback(this::ChooseNextEffect);
     }

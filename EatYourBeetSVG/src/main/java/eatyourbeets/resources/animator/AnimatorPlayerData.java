@@ -27,7 +27,7 @@ public class AnimatorPlayerData
     {
         AddBaseLoadouts();
         AddBetaLoadouts();
-        DeserializeTrophies(GR.Animator.Config.GetTrophyString());
+        DeserializeTrophies(GR.Animator.Config.TrophyString());
 
         if (SelectedLoadout == null || SelectedLoadout.ID < 0)
         {
@@ -165,7 +165,7 @@ public class AnimatorPlayerData
     {
         JUtils.LogInfo(AnimatorPlayerData.class, "Saving Trophies");
 
-        GR.Animator.Config.SetTrophyString(SerializeTrophies(), flush);
+        GR.Animator.Config.TrophyString(SerializeTrophies(), flush);
     }
 
     private void AddBaseLoadouts()
@@ -190,6 +190,7 @@ public class AnimatorPlayerData
         add.Invoke(new Overlord(), 3);
         add.Invoke(new Chaika(), 3);
         add.Invoke(new TenSura(), 3);
+        add.Invoke(new MadokaMagica(), 4);
         add.Invoke(new OnePunchMan(), 4);
         add.Invoke(new Kancolle(), 4);
         add.Invoke(new AccelWorld(), 4);
@@ -232,6 +233,11 @@ public class AnimatorPlayerData
                 if (loadoutID > 0)
                 {
                     SelectedLoadout = GetBaseLoadout(loadoutID);
+
+                    if (SelectedLoadout == null)
+                    {
+                        SelectedLoadout = GetBetaLoadout(loadoutID);
+                    }
                 }
 
                 for (int i = 1; i < items.length; i++)

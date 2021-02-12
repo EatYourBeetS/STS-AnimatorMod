@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
 import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
@@ -10,10 +11,11 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.subscribers.OnCardResetSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class Magilou extends AnimatorCard
+public class Magilou extends AnimatorCard implements OnCardResetSubscriber
 {
     public static final EYBCardData DATA = Register(Magilou.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetMaxCopies(1);
     static
@@ -34,9 +36,12 @@ public class Magilou extends AnimatorCard
     }
 
     @Override
-    public void resetAttributes()
+    public void OnCardReset(AbstractCard card)
     {
-        LoadImage(null);
+        if (card == this)
+        {
+            LoadImage(null);
+        }
     }
 
     @Override

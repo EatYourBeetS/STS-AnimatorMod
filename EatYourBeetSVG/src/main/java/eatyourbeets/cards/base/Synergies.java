@@ -2,6 +2,8 @@ package eatyourbeets.cards.base;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 
@@ -54,11 +56,26 @@ public class Synergies
     public final static Synergy Rewrite = CreateSynergy(41);
     public final static Synergy DateALive = CreateSynergy(42);
     public final static Synergy AngelBeats = CreateSynergy(43);
+    public final static Synergy RozenMaiden = CreateSynergy(44);
+    public final static Synergy LogHorizon = CreateSynergy(45);
+    public final static Synergy Vocaloid = CreateSynergy(46);
+    public final static Synergy Atelier = CreateSynergy(47);
+    public final static Synergy CardcaptorSakura = CreateSynergy(48);
+    public final static Synergy GuiltyCrown = CreateSynergy(49);
+    public final static Synergy Gakkougurashi = CreateSynergy(50);
 
-    @SuppressWarnings("FieldCanBeLocal")
-    private static AnimatorCard previousCard = null;
+    private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;
-    private static int preemptiveSynergies;
+
+    public static boolean IsSynergizing(AbstractCard card)
+    {
+        if (card == null || currentSynergy == null)
+        {
+            return false;
+        }
+
+        return currentSynergy.uuid == card.uuid;
+    }
 
     public static void AddCards(Synergy synergy, ArrayList<AbstractCard> source, ArrayList<AnimatorCard> destination)
     {
@@ -70,11 +87,6 @@ public class Synergies
                 destination.add(card);
             }
         }
-    }
-
-    public static int AddPreemptiveSynergies(int amount)
-    {
-        return preemptiveSynergies += amount;
     }
 
     private static Synergy CreateSynergy(int id)
@@ -170,50 +182,72 @@ public class Synergies
         return result;
     }
 
-    public static void SetLastCardPlayed(AbstractCard card)
+    public static void TrySynergize(AbstractCard card)
     {
-        if (card == null)
+        if (WouldSynergize(card))
         {
-            previousCard = null;
-            lastCardPlayed = null;
-            preemptiveSynergies = 0;
+            currentSynergy = card;
+            CombatStats.Instance.OnSynergy(card);
         }
         else
         {
-            if (preemptiveSynergies > 0)
-            {
-                preemptiveSynergies -= 1;
-            }
-
-            previousCard = lastCardPlayed;
-            lastCardPlayed = JUtils.SafeCast(card, AnimatorCard.class);
+            currentSynergy = null;
         }
     }
 
-    public static boolean WouldSynergize(AnimatorCard card)
+    public static void SetLastCardPlayed(AbstractCard card)
+    {
+        lastCardPlayed = JUtils.SafeCast(card, AnimatorCard.class);
+        currentSynergy = null;
+    }
+
+    public static boolean WouldSynergize(AbstractCard card)
     {
         return WouldSynergize(card, lastCardPlayed);
     }
 
-    public static boolean WouldSynergize(AnimatorCard card, AbstractCard abstractCard)
+    public static boolean WouldSynergize(AbstractCard card, AbstractCard other)
     {
-        return WouldSynergize(card, JUtils.SafeCast(abstractCard, AnimatorCard.class));
+        for (OnSynergyCheckSubscriber s : CombatStats.onSynergyCheck.GetSubscribers())
+        {
+            if (s.OnSynergyCheck(card, other))
+            {
+                return true;
+            }
+        }
+
+        if (card == null || other == null)
+        {
+            return false;
+        }
+
+        AnimatorCard a = JUtils.SafeCast(card, AnimatorCard.class);
+        AnimatorCard b = JUtils.SafeCast(other, AnimatorCard.class);
+
+        if (a != null)
+        {
+            if (b != null)
+            {
+                return a.HasDirectSynergy(b) || b.HasDirectSynergy(a);
+            }
+            else
+            {
+                return a.HasDirectSynergy(other);
+            }
+        }
+
+        if (b != null)
+        {
+            return b.HasDirectSynergy(card);
+        }
+
+        return HasTagSynergy(card, other);
     }
 
-    public static boolean WouldSynergize(AnimatorCard card, AnimatorCard other)
+    public static boolean HasTagSynergy(AbstractCard a, AbstractCard b)
     {
-        if (preemptiveSynergies > 0)
-        {
-            return true;
-        }
-        else if (other != null && other.synergy != null && card.synergy != null)
-        {
-            return (card.synergy.equals(other.synergy)
-            || (card.hasTag(AnimatorCard.SHAPESHIFTER) || other.hasTag(AnimatorCard.SHAPESHIFTER))
-            || (card.hasTag(AnimatorCard.MARTIAL_ARTIST) && other.hasTag(AnimatorCard.MARTIAL_ARTIST))
-            || (card.hasTag(AnimatorCard.SPELLCASTER) && other.hasTag(AnimatorCard.SPELLCASTER)));
-        }
-
-        return false;
+        return ((a.hasTag(AnimatorCard.SHAPESHIFTER) || b.hasTag(AnimatorCard.SHAPESHIFTER))
+            || (a.hasTag(AnimatorCard.MARTIAL_ARTIST) && b.hasTag(AnimatorCard.MARTIAL_ARTIST))
+            || (a.hasTag(AnimatorCard.SPELLCASTER) && b.hasTag(AnimatorCard.SPELLCASTER)));
     }
 }

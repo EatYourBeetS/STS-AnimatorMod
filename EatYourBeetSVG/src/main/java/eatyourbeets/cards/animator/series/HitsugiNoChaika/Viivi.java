@@ -61,16 +61,10 @@ public class Viivi extends AnimatorCard
             GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE);
         }
 
-        GameActions.Bottom.Draw(1);
-//        GameActions.Bottom.SelectFromHand(name, 1, true)
-//        .SetFilter(c -> c.type == CardType.ATTACK && !c.retain && !c.selfRetain)
-//        .AddCallback(cards ->
-//        {
-//            if (cards.size() > 0)
-//            {
-//                cards.get(0).retain = true;
-//                cards.get(0).flash();
-//            }
-//        });
+        if (IsStarter())
+        {
+            GameActions.Bottom.GainAgility(1);
+            GameActions.Bottom.Draw(1);
+        }
     }
 }

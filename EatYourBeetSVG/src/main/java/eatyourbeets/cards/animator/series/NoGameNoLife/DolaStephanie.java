@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -7,7 +8,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
 
 public class DolaStephanie extends AnimatorCard
 {
@@ -35,15 +35,14 @@ public class DolaStephanie extends AnimatorCard
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetOptions(false, false, false)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
-        .SetFilter(c -> c instanceof AnimatorCard)
         .AddCallback(cards ->
         {
-            AnimatorCard card = JUtils.SafeCast(cards.get(0), AnimatorCard.class);
-            if (card != null)
+            if (cards.size() > 0)
             {
+                AbstractCard selected = cards.get(0);
                 GameActions.Top.FetchFromPile(name, 1, player.drawPile)
                 .SetOptions(false, false)
-                .SetFilter(card::HasSynergy);
+                .SetFilter(c -> Synergies.WouldSynergize(selected, c)); //
             }
         });
     }

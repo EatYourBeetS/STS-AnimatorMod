@@ -12,10 +12,21 @@ public class DelayAllActions extends EYBAction
 {
     protected final ArrayList<AbstractGameAction> actions = new ArrayList<>();
     protected FuncT1<Boolean, AbstractGameAction> except;
+    protected boolean currentOnly = false;
 
     public DelayAllActions()
     {
+        this(false);
+    }
+
+    public DelayAllActions(boolean currentOnly)
+    {
         super(ActionType.SPECIAL);
+
+        if (currentOnly)
+        {
+            CreateList();
+        }
     }
 
     public DelayAllActions Except(FuncT1<Boolean, AbstractGameAction> except)
@@ -28,12 +39,9 @@ public class DelayAllActions extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        for (AbstractGameAction action : AbstractDungeon.actionManager.actions)
+        if (!currentOnly)
         {
-            if (action != this && (except == null || !except.Invoke(action)))
-            {
-                actions.add(action);
-            }
+            CreateList();
         }
 
         AbstractDungeon.actionManager.actions.removeAll(actions);
@@ -43,5 +51,16 @@ public class DelayAllActions extends EYBAction
         }
 
         Complete();
+    }
+
+    protected void CreateList()
+    {
+        for (AbstractGameAction action : AbstractDungeon.actionManager.actions)
+        {
+            if (action != this && (except == null || !except.Invoke(action)))
+            {
+                actions.add(action);
+            }
+        }
     }
 }

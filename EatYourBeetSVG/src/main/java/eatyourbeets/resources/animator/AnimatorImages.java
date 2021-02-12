@@ -2,7 +2,11 @@ package eatyourbeets.resources.animator;
 
 import com.badlogic.gdx.graphics.Texture;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.TextureCache;
+import eatyourbeets.utilities.RotatingList;
+
+import java.util.HashMap;
 
 public class AnimatorImages
 {
@@ -62,8 +66,41 @@ public class AnimatorImages
     public final TextureCache SYNERGY_CARD_REWARD         = new TextureCache("images/ui/rewards/animator/SynergyCardsReward.png");
     public final TextureCache CHARACTER_BUTTON            = new TextureCache("images/ui/charselect/animator_button.png");
 
+    private final static HashMap<Integer, RotatingList<Texture>> portraits = new HashMap<>();
+
     public Texture GetCharacterPortrait(int id)
     {
-        return GR.GetTexture("images/ui/charselect/animator_portrait_" + id + ".png");
+        return portraits.get(id).Current(true);
+    }
+
+    public static void PreloadResources()
+    {
+        for (AnimatorLoadout loadout : GR.Animator.Data.GetEveryLoadout())
+        {
+            int id = loadout.ID;
+            RotatingList<Texture> images = portraits.get(id);
+            if (images == null)
+            {
+                images = new RotatingList<>();
+                portraits.put(id, images);
+
+                Texture t;
+                t = GR.GetTexture("images/ui/charselect/animator_portrait_" + id + ".png");
+                if (t != null)
+                {
+                    images.Add(t);
+                }
+                t = GR.GetTexture("images/ui/charselect/animator_portrait_" + id + "b.png");
+                if (t != null)
+                {
+                    images.Add(t);
+                }
+                t = GR.GetTexture("images/ui/charselect/animator_portrait_" + id + "c.png");
+                if (t != null)
+                {
+                    images.Add(t);
+                }
+            }
+        }
     }
 }

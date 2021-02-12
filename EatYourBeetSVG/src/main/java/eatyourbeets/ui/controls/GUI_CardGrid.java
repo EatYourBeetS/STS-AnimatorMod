@@ -31,6 +31,7 @@ public class GUI_CardGrid extends GUIElement
     public String message = null;
 
     protected ActionT1<AbstractCard> onCardClick;
+    protected ActionT1<AbstractCard> onCardHovered;
     protected boolean draggingScreen;
     protected float lowerScrollBound = -Settings.DEFAULT_SCROLL_LIMIT;
     protected float upperScrollBound = Settings.DEFAULT_SCROLL_LIMIT;
@@ -44,6 +45,13 @@ public class GUI_CardGrid extends GUIElement
         this.scrollBar = new GUI_VerticalScrollBar(new Hitbox(ScreenW(0.03f), ScreenH(0.7f)))
         .SetPosition(ScreenW(0.05f), ScreenH(0.5f))
         .SetOnScroll(this::OnScroll);
+    }
+
+    public GUI_CardGrid SetOnCardHover(ActionT1<AbstractCard> onCardHovered)
+    {
+        this.onCardHovered = onCardHovered;
+
+        return this;
     }
 
     public GUI_CardGrid SetOnCardClick(ActionT1<AbstractCard> onCardClicked)

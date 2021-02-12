@@ -1,6 +1,7 @@
 package eatyourbeets.ui.animator.characterSelection;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -16,6 +17,7 @@ import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JUtils;
 
@@ -99,7 +101,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
                 this.availableLoadouts.add(loadout);
             }
         }
-        if (GR.Animator.Config.GetDisplayBetaSeries())
+        if (GR.Animator.Config.DisplayBetaSeries())
         {
             for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
             {
@@ -228,22 +230,26 @@ public class AnimatorLoadoutRenderer extends GUIElement
             selectScreen.confirmButton.isDisabled = false;
         }
 
-        float originalScale = FontHelper.cardTitleFont_small.getData().scaleX;
-        FontHelper.cardTitleFont_small.getData().setScale(Settings.scale * 0.8f);
+        // NOTE: this was FontHelper.cardTitleFont_small;
+        BitmapFont font = EYBFontHelper.CardTitleFont_Small;
+        float originalScale = font.getData().scaleX;
+        font.getData().setScale(0.8f);
 
-        FontHelper.renderFont(sb, FontHelper.cardTitleFont_small, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), textColor);
-        FontHelper.cardTitleFont_small.getData().setScale(Settings.scale * originalScale);
+        FontHelper.renderFont(sb, font, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), textColor);
+        font.getData().setScale(originalScale);
 
         FontHelper.renderFont(sb, FontHelper.cardTitleFont, charSelectStrings.LeftText, startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
         FontHelper.renderFont(sb, FontHelper.cardTitleFont, loadout.Name, startingCardsSelectedHb.x, startingCardsSelectedHb.cY, Settings.CREAM_COLOR);//.BLUE_TEXT_COLOR);
 
+        final float scale = Settings.scale;
+
         sb.setColor(startingCardsLeftHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
         sb.draw(ImageMaster.CF_LEFT_ARROW, startingCardsLeftHb.cX - 24f, startingCardsLeftHb.cY - 24f, 24f, 24f,
-                48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
+                48f, 48f, scale, scale, 0f, 0, 0, 48, 48, false, false);
 
         sb.setColor(startingCardsRightHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
         sb.draw(ImageMaster.CF_RIGHT_ARROW, startingCardsRightHb.cX - 24f, startingCardsRightHb.cY - 24f, 24f, 24f,
-                48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
+                48f, 48f, scale, scale, 0f, 0, 0, 48, 48, false, false);
 
         RandomizeButton.TryRender(sb);
     }

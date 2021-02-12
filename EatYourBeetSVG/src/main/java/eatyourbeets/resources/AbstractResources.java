@@ -95,9 +95,14 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
         return Gdx.files.internal("localization/" + prefix + "/eng/" + fileName);
     }
 
+    public boolean IsBetaTranslation()
+    {
+        return testFolder.isDirectory();
+    }
+
     public FileHandle GetFile(Settings.GameLanguage language, String fileName)
     {
-        if (testFolder.isDirectory() && new File(testFolder.path() + "/" + fileName).isFile())
+        if (IsBetaTranslation() && new File(testFolder.path() + "/" + fileName).isFile())
         {
             return Gdx.files.internal(testFolder.path() + "/" + fileName);
         }
@@ -116,7 +121,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     {
         super.LoadKeywords(GetFallbackFile("KeywordStrings.json"));
 
-        if (testFolder.isDirectory() || IsTranslationSupported(Settings.language))
+        if (IsBetaTranslation() || IsTranslationSupported(Settings.language))
         {
             super.LoadKeywords(GetFile(Settings.language, "KeywordStrings.json"));
         }
@@ -141,7 +146,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     {
         super.LoadCustomStrings(type, GetFallbackFile(type.getSimpleName() + ".json"));
 
-        if (testFolder.isDirectory() || IsTranslationSupported(Settings.language))
+        if (IsBetaTranslation() || IsTranslationSupported(Settings.language))
         {
             super.LoadCustomStrings(type, GetFile(Settings.language, type.getSimpleName() + ".json"));
         }

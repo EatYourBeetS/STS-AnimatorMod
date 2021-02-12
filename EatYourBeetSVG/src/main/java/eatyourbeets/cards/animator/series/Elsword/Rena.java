@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Rena extends AnimatorCard
@@ -36,7 +37,10 @@ public class Rena extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.GainBlur(secondaryValue);
+        if (CombatStats.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.GainBlur(secondaryValue);
+        }
     }
 
     @Override
@@ -45,7 +49,7 @@ public class Rena extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.CreateThrowingKnives(1);
 
-        if (HasSynergy())
+        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.GainBlur(secondaryValue);
         }

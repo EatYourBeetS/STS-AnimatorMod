@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -9,8 +8,9 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
-public class PandorasActor extends AnimatorCard implements StartupCard
+public class PandorasActor extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(PandorasActor.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
@@ -32,20 +32,24 @@ public class PandorasActor extends AnimatorCard implements StartupCard
     }
 
     @Override
-    public boolean atBattleStartPreDraw()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-        GameActions.Bottom.SpendEnergy(cost, false).AddCallback(amount ->
+        super.triggerWhenCreated(startOfBattle);
+
+        if (startOfBattle)
         {
-            AbstractCard copy = this.makeStatEquivalentCopy();
-            copy.applyPowers();
-            copy.use(player, null);
-            copy.purgeOnUse = true;
-            copy.freeToPlayOnce = true;
-            Synergies.SetLastCardPlayed(copy);
+            GameEffects.List.ShowCopy(this);
+            GameActions.Bottom.SpendEnergy(cost, false).AddCallback(amount ->
+            {
+                AbstractCard copy = this.makeStatEquivalentCopy();
+                copy.applyPowers();
+                copy.use(player, null);
+                copy.purgeOnUse = true;
+                copy.freeToPlayOnce = true;
 
-            GameActions.Bottom.GainEnergy(amount);
-        });
-
-        return true;
+                Synergies.SetLastCardPlayed(copy);
+                GameActions.Bottom.GainEnergy(amount);
+            });
+        }
     }
 }

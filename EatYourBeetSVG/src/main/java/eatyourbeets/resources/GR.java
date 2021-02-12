@@ -160,7 +160,7 @@ public class GR
 
     public static boolean IsTranslationSupported(Settings.GameLanguage language)
     {
-        return language == Settings.GameLanguage.ZHS || language == Settings.GameLanguage.ZHT;
+        return language == Settings.GameLanguage.RUS || language == Settings.GameLanguage.ZHS;// || language == Settings.GameLanguage.ZHT;
     }
 
     public static Texture GetTexture(String path)
@@ -367,7 +367,7 @@ public class GR
     @SuppressWarnings("unchecked")
     public static void LoadGroupedCardStrings(String jsonString)
     {
-        Map localizationStrings = (Map) ReflectionHacks.getPrivateStatic(LocalizedStrings.class, "cards");
+        Map localizationStrings = ReflectionHacks.getPrivateStatic(LocalizedStrings.class, "cards");
         Map cardStrings = new HashMap<>();
         try
         {

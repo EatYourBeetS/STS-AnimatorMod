@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -9,8 +8,9 @@ import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
-public class SirTouchMe extends AnimatorCard_UltraRare implements StartupCard
+public class SirTouchMe extends AnimatorCard_UltraRare
 {
     public static final EYBCardData DATA = Register(SirTouchMe.class).SetAttack(2, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
@@ -34,10 +34,14 @@ public class SirTouchMe extends AnimatorCard_UltraRare implements StartupCard
     }
 
     @Override
-    public boolean atBattleStartPreDraw()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-        GameActions.Bottom.GainPlatedArmor(secondaryValue);
+        super.triggerWhenCreated(startOfBattle);
 
-        return true;
+        if (startOfBattle)
+        {
+            GameEffects.List.ShowCopy(this);
+            GameActions.Bottom.GainPlatedArmor(secondaryValue);
+        }
     }
 }

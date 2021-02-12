@@ -224,7 +224,7 @@
 		},
 		"animator:OrihimeInoue":
 		{
-		  "DESCRIPTION": "The next time you are attacked this turn, Channel !M! [Fire].  || On Synergy: Draw !S! random card from your discard pile.",
+		  "DESCRIPTION": "Channel !M! [Fire] the next time you are attacked this turn.  || On Synergy: Gain !S! {Counter-Attack}.",
 		  "EXTENDED_DESCRIPTION": ["The next #b{0} time you are attacked this turn, Channel #yFire."],
 		  "NAME": "Orihime Inoue"
 		},
@@ -250,7 +250,7 @@
 		},
 		"animator:SosukeAizen":
 		{
-		  "DESCRIPTION": "Gain {Phasing} X times. || This game, when you take 0 attack damage, deal !M! damage to the attacking enemy.",
+		  "DESCRIPTION": "Gain {Phasing} X times. || Gain !M! {Counter-Attack}.  {Counter-Attack} is not removed this combat.",
 		  "EXTENDED_DESCRIPTION": ["Whenever you take 0 attack damage this turn, deal #b{0} damage to the attacking enemy."],
 		  "NAME": "Sosuke Aizen"
 		},

@@ -54,6 +54,12 @@
 		"NAMES": ["constricted"],
 		"PROPER_NAME": "Constricted"
 	},
+	"Counter-Attack":
+	{
+	  "DESCRIPTION": "The next time you are attacked, deal damage to the attacker.",
+	  "NAMES": ["counter attack", "counter-attack", "Counter Attack"],
+	  "PROPER_NAME": "Counter-Attack"
+	},
 	"Cycle":
 	{
 		"DESCRIPTION": "Discard a certain number of cards then draw that many cards.",

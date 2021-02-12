@@ -40,6 +40,11 @@
 		"DESCRIPTIONS": ["Whenever you play alternating card types this turn, deal #b", " damage to ALL enemies and #yCycle #b1 card. NL NL Last Type played: #y"],
 		"NAME": "Kurami"
 	},
+	"animator:CounterAttackPower":
+	{
+	  "DESCRIPTIONS": ["The next time you are attacked, deal #b", "Whenever you are attacked, deal #b", " damage to the attacker.  Scales with Force and Agility."],
+	  "NAME": "Counter-Attack"
+	},
 	"animator:CursedStabsPower":
 	{
 		"DESCRIPTIONS": ["Whenever it deals unblocked damage, add 1 #yPain to your draw pile."],

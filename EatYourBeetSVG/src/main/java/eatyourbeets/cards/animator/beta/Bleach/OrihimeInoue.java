@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.animator.CounterAttackPower;
 import eatyourbeets.utilities.GameActions;
 
 public class OrihimeInoue extends AnimatorCard
@@ -19,7 +20,7 @@ public class OrihimeInoue extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6, 1, 1);
+        Initialize(0, 5, 1, 2);
         SetUpgrade(0, 3, 0);
 
         SetSynergy(Synergies.Bleach);
@@ -34,9 +35,7 @@ public class OrihimeInoue extends AnimatorCard
 
         if (HasSynergy())
         {
-            GameActions.Bottom.FetchFromPile(name, 1, p.discardPile)
-            .ShowEffect(true, true)
-            .SetOptions(true, true);
+            GameActions.Bottom.StackPower(new CounterAttackPower(p, secondaryValue));
         }
     }
 

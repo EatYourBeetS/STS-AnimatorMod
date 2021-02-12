@@ -39,7 +39,7 @@ public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
 
             GameActions.Bottom.ModifyAllInstances(card.uuid, c ->
             {
-                CostModifiers.For(c).Add(sourceName, amount);
+                CostModifiers.For(c).Add(sourceName, -1 * amount);
                 CombatStats.onAfterCardPlayed.Subscribe(cardPlayed ->
                 {
                     if (cardPlayed == c)

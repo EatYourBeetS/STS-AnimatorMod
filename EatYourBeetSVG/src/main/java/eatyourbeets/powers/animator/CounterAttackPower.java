@@ -33,6 +33,14 @@ public class CounterAttackPower extends AnimatorPower
     }
 
     @Override
+    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    {
+        super.onApplyPower(power, target, source);
+
+        updateDescription();
+    }
+
+    @Override
     public void updateDescription()
     {
         if (removePower)

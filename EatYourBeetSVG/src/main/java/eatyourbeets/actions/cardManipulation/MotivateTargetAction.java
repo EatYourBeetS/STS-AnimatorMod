@@ -46,7 +46,7 @@ public class MotivateTargetAction extends EYBActionWithCallback<AbstractCard>
                 {
                     if (cardPlayed == c)
                     {
-                        CostModifiers.For(c).Remove(sourceName);
+                        CostModifiers.For(c).Remove(sourceName, false);
                     }
                 });
             });

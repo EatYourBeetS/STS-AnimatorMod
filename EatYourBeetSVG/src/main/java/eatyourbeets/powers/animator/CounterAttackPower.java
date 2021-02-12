@@ -15,22 +15,28 @@ public class CounterAttackPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(CounterAttackPower.class);
 
+    private int baseAmount;
+
     private static boolean removePower = true;
 
     public CounterAttackPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-        if (this.amount >= 9999)
-        {
-            this.amount = 9999;
-        }
+        this.baseAmount = amount;
 
         this.type = PowerType.BUFF;
 
         updateDescription();
     }
+
+    @Override
+    public void stackPower(int stackAmount)
+    {
+        this.baseAmount += stackAmount;
+        this.updateDescription();
+    }
+
 
     @Override
     public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
@@ -43,13 +49,15 @@ public class CounterAttackPower extends AnimatorPower
     @Override
     public void updateDescription()
     {
+        this.amount = baseAmount + getForceAgilityAmount();
+
         if (removePower)
         {
-            this.description = powerStrings.DESCRIPTIONS[0] + (this.amount + getForceAgilityAmount()) + powerStrings.DESCRIPTIONS[2];
+            this.description = powerStrings.DESCRIPTIONS[0] + amount + powerStrings.DESCRIPTIONS[2];
         }
         else
         {
-            this.description = powerStrings.DESCRIPTIONS[1] + (this.amount + getForceAgilityAmount()) + powerStrings.DESCRIPTIONS[2];
+            this.description = powerStrings.DESCRIPTIONS[1] + amount + powerStrings.DESCRIPTIONS[2];
         }
     }
 
@@ -73,7 +81,7 @@ public class CounterAttackPower extends AnimatorPower
 
         if (info.owner instanceof AbstractMonster)
         {
-            GameActions.Bottom.DealDamage(player, info.owner, amount + getForceAgilityAmount(), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+            GameActions.Bottom.DealDamage(player, info.owner, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         }
 
         if (removePower)

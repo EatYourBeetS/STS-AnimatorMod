@@ -11,6 +11,7 @@ import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
 import eatyourbeets.utilities.CardSelection;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
@@ -124,7 +125,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             {
                 if (temp.type == CardGroup.CardGroupType.DRAW_PILE)
                 {
-                    if (player.hasRelic(FrozenEye.ID))
+                    if (GameUtilities.HasRelicEffect(FrozenEye.ID))
                     {
                         Collections.reverse(temp.group);
                     }

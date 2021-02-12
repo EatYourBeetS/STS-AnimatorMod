@@ -447,6 +447,16 @@ public class GameUtilities
         return monsters;
     }
 
+    public static float GetHealthPercentage(AbstractCreature creature)
+    {
+        return creature.currentHealth / (float) creature.maxHealth;
+    }
+
+    public static EnemyIntent GetIntent(AbstractMonster enemy)
+    {
+        return new EnemyIntent(enemy);
+    }
+
     public static ArrayList<EnemyIntent> GetIntents()
     {
         return GetIntents(TargetHelper.Enemies());
@@ -483,16 +493,6 @@ public class GameUtilities
         }
 
         return intents;
-    }
-
-    public static EnemyIntent GetIntent(AbstractMonster enemy)
-    {
-        return new EnemyIntent(enemy);
-    }
-
-    public static float GetHealthPercentage(AbstractCreature creature)
-    {
-        return creature.currentHealth / (float) creature.maxHealth;
     }
 
     public static AbstractCard GetLastCardPlayed(boolean currentTurn)
@@ -790,6 +790,13 @@ public class GameUtilities
         return amount;
     }
 
+    public static boolean HasRelicEffect(String relicID)
+    {
+        return player.hasRelic(relicID)
+            || CombatStats.GetCombatData(relicID, false)
+            || CombatStats.GetTurnData(relicID, false);
+    }
+
     public static boolean InBattle()
     {
         AbstractRoom room = GetCurrentRoom();
@@ -886,6 +893,16 @@ public class GameUtilities
         return enemy != null && !IsDeadOrEscaped(enemy);
     }
 
+    public static void ModifyBlock(AbstractCard card, int amount, boolean temporary)
+    {
+        card.block = Math.max(0, amount);
+        if (!temporary)
+        {
+            card.baseBlock = card.block;
+        }
+        card.isBlockModified = (card.block != card.baseBlock);
+    }
+
     public static void ModifyCostForCombat(AbstractCard card, int amount, boolean relative)
     {
         int previousCost = card.cost;
@@ -910,16 +927,6 @@ public class GameUtilities
     {
         card.costForTurn = relative ? Math.max(0, card.costForTurn + amount) : amount;
         card.isCostModifiedForTurn = (card.cost != card.costForTurn);
-    }
-
-    public static void ModifyBlock(AbstractCard card, int amount, boolean temporary)
-    {
-        card.block = Math.max(0, amount);
-        if (!temporary)
-        {
-            card.baseBlock = card.block;
-        }
-        card.isBlockModified = (card.block != card.baseBlock);
     }
 
     public static void ModifyDamage(AbstractCard card, int amount, boolean temporary)

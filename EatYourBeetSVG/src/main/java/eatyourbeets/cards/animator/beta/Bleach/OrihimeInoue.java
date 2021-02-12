@@ -19,7 +19,7 @@ public class OrihimeInoue extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 7, 1, 1);
+        Initialize(0, 6, 1, 1);
         SetUpgrade(0, 3, 0);
 
         SetSynergy(Synergies.Bleach);

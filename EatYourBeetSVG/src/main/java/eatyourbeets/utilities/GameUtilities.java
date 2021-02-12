@@ -32,7 +32,7 @@ import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnTryApplyPowerSubscriber;
-import eatyourbeets.monsters.EnemyMoveDetails;
+import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
@@ -447,9 +447,47 @@ public class GameUtilities
         return monsters;
     }
 
-    public static EnemyMoveDetails GetEnemyMove(AbstractMonster enemy)
+    public static ArrayList<EnemyIntent> GetIntents()
     {
-        return new EnemyMoveDetails(enemy);
+        return GetIntents(TargetHelper.Enemies());
+    }
+
+    public static ArrayList<EnemyIntent> GetIntents(TargetHelper target)
+    {
+        ArrayList<EnemyIntent> intents = new ArrayList<>();
+        switch (target.mode)
+        {
+            case Normal:
+                intents.add(new EnemyIntent((AbstractMonster) target.GetTargets().get(0)));
+                break;
+
+            case ALL:
+            case Enemies:
+                for (AbstractCreature t : target.GetTargets())
+                {
+                    if (t instanceof AbstractMonster)
+                    {
+                        intents.add(new EnemyIntent((AbstractMonster) t));
+                    }
+                }
+                break;
+
+            case Random:
+            case RandomEnemy:
+                throw new RuntimeException("Random intent previews are not supported yet");
+
+            case Player:
+            case Source:
+            default:
+                throw new RuntimeException("Could not obtain enemy intent");
+        }
+
+        return intents;
+    }
+
+    public static EnemyIntent GetIntent(AbstractMonster enemy)
+    {
+        return new EnemyIntent(enemy);
     }
 
     public static float GetHealthPercentage(AbstractCreature creature)

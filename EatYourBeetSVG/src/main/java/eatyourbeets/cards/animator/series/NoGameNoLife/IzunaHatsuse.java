@@ -38,6 +38,15 @@ public class IzunaHatsuse extends AnimatorCard
     }
 
     @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        if (m != null)
+        {
+            GameUtilities.GetIntent(m).AddWeak();
+        }
+    }
+
+    @Override
     public AbstractAttribute GetBlockInfo()
     {
         if (transformed)

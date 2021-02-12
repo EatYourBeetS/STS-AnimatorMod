@@ -34,6 +34,12 @@ public class Caster extends AnimatorCard
     }
 
     @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        GameUtilities.GetIntent(m).AddStrength(-magicNumber);
+    }
+
+    @Override
     public void triggerOnExhaust()
     {
         ChooseAction(null);

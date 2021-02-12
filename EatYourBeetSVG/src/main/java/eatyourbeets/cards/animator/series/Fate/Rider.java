@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.HashSet;
 
@@ -25,6 +26,15 @@ public class Rider extends AnimatorCard
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Fate);
+    }
+
+    @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        if (m != null)
+        {
+            GameUtilities.GetIntent(m).AddStrength(-magicNumber);
+        }
     }
 
     @Override

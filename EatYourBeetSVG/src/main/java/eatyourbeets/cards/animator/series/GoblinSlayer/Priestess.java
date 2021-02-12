@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -22,6 +23,22 @@ public class Priestess extends AnimatorCard
         Initialize(0, 0, 4, 1);
 
         SetSynergy(Synergies.GoblinSlayer);
+    }
+
+    @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        if (upgraded)
+        {
+            for (EnemyIntent intent : GameUtilities.GetIntents())
+            {
+                intent.AddWeak();
+            }
+        }
+        else if (m != null)
+        {
+            GameUtilities.GetIntent(m).AddWeak();
+        }
     }
 
     @Override

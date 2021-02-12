@@ -31,6 +31,15 @@ public class Raven extends AnimatorCard
     }
 
     @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        if (m != null)
+        {
+            GameUtilities.GetIntent(m).AddWeak();
+        }
+    }
+
+    @Override
     public void calculateCardDamage(AbstractMonster mo)
     {
         super.calculateCardDamage(mo);

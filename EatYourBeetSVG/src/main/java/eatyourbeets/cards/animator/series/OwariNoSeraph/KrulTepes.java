@@ -43,6 +43,15 @@ public class KrulTepes extends AnimatorCard
     }
 
     @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        if (m != null)
+        {
+            GameUtilities.GetIntent(m).AddWeak();
+        }
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (m != null)

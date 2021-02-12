@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class NanamiEffect_Debuff extends NanamiEffect
 {
@@ -15,6 +16,15 @@ public class NanamiEffect_Debuff extends NanamiEffect
 
         GameActions.Bottom.ApplyWeak(p, m, stack);
         GameActions.Bottom.ApplyVulnerable(p, m, stack);
+    }
+
+    @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        if (m != null)
+        {
+            GameUtilities.GetIntent(m).AddWeak();
+        }
     }
 
     @Override

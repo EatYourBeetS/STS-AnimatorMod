@@ -81,6 +81,15 @@ public class ThrowingKnife extends AnimatorCard
     }
 
     @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        if (index == 1 && m != null)
+        {
+            GameUtilities.GetIntent(m).AddWeak();
+        }
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (m == null || m.isDeadOrEscaped())

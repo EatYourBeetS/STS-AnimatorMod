@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -34,6 +34,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         None
     }
 
+    protected ActionT1<AbstractCreature> onHovering;
     protected AbstractCreature previous;
     protected AbstractCreature target;
     protected Targeting targeting;
@@ -106,6 +107,13 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         Initialize(amount, card.name);
     }
 
+    public SelectCreature SetOnHovering(ActionT1<AbstractCreature> onHovering)
+    {
+        this.onHovering = onHovering;
+
+        return this;
+    }
+
     public SelectCreature SetMessage(String message)
     {
         this.message = message;
@@ -119,7 +127,6 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
 
         return this;
     }
-
 
     @Override
     protected void FirstUpdate()
@@ -254,6 +261,11 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
             {
                 card.applyPowers();
             }
+        }
+
+        if (onHovering != null)
+        {
+            onHovering.Invoke(target);
         }
     }
 

@@ -34,6 +34,30 @@ public class Caster extends AnimatorCard
     }
 
     @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        if (m != null)
+        {
+            GameUtilities.GetIntent(m).AddStrength(-magicNumber);
+        }
+    }
+
+    @Override
+    public void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        if (HasSynergy())
+        {
+            target = CardTarget.SELF_AND_ENEMY;
+        }
+        else
+        {
+            target = CardTarget.SELF;
+        }
+    }
+
+    @Override
     public void triggerOnExhaust()
     {
         ChooseAction(null);
@@ -81,6 +105,13 @@ public class Caster extends AnimatorCard
             {
                 GameActions.Bottom.SelectCreature(SelectCreature.Targeting.Enemy, card.name)
                 .SetMessage(card.rawDescription)
+                .SetOnHovering(c ->
+                {
+                    if (c instanceof AbstractMonster)
+                    {
+                        GameUtilities.GetIntent((AbstractMonster)c).AddStrength(-magicNumber);
+                    }
+                })
                 .AddCallback(m1 -> GameActions.Top.ReduceStrength(m1, magicNumber, true));
                 return;
             }

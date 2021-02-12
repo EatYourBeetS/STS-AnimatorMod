@@ -91,7 +91,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard> implemen
         if (card.uuid.equals(other.uuid))
         {
             CombatStats.onAfterCardPlayed.Unsubscribe(this);
-            CostModifiers.For(card).Remove(getClass().getName());
+            CostModifiers.For(card).Remove(getClass().getName(), false);
         }
     }
 }

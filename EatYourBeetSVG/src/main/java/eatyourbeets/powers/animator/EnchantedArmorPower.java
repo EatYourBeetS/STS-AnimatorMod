@@ -1,12 +1,7 @@
 package eatyourbeets.powers.animator;
 
-import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.blights.Spear;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.SurroundedPower;
 import eatyourbeets.powers.AnimatorPower;
 
 import java.text.DecimalFormat;
@@ -18,69 +13,6 @@ public class EnchantedArmorPower extends AnimatorPower
     public final boolean reactive;
 
     private float percentage;
-
-    public static int CalculateDamageReduction(AbstractMonster monster, int additionalEnchantedArmor)
-    {
-        float tmp = (float) monster.getIntentBaseDmg();
-        if (player.hasBlight(Spear.ID))
-        {
-            tmp *= player.getBlight(Spear.ID).effectFloat();
-        }
-
-        for (AbstractPower p : monster.powers)
-        {
-            tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
-        }
-
-        for (AbstractPower p : player.powers)
-        {
-            if (p instanceof EnchantedArmorPower)
-            {
-                EnchantedArmorPower armor = (EnchantedArmorPower)p;
-                armor.amount += additionalEnchantedArmor;
-                armor.UpdatePercentage();
-                tmp = armor.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
-                armor.amount -= additionalEnchantedArmor;
-                armor.UpdatePercentage();
-                additionalEnchantedArmor = 0;
-            }
-            else
-            {
-                tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
-            }
-        }
-
-        if (additionalEnchantedArmor > 0)
-        {
-            tmp *= CalculatePercentage(additionalEnchantedArmor);
-        }
-
-        tmp = player.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
-
-        //if (monster.applyBackAttack())
-        if (player.hasPower(SurroundedPower.POWER_ID) && (player.flipHorizontal && player.drawX < monster.drawX || !player.flipHorizontal && player.drawX > monster.drawX))
-        {
-            tmp = (float) ((int) (tmp * 1.5f));
-        }
-
-        for (AbstractPower p : monster.powers)
-        {
-            tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL);
-        }
-
-        for (AbstractPower p : player.powers)
-        {
-            tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL);
-        }
-
-        int dmg = MathUtils.floor(tmp);
-        if (dmg < 0)
-        {
-            dmg = 0;
-        }
-
-        return dmg;
-    }
 
     public static float CalculatePercentage(int amount)
     {
@@ -151,13 +83,18 @@ public class EnchantedArmorPower extends AnimatorPower
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType type)
     {
+        return calculateDamageReceived(damage, 0);
+    }
+
+    public float calculateDamageReceived(float damage, float modifier)
+    {
         if (reactive)
         {
-            return damage * CalculatePercentage(this.amount + (int) damage);
+            return damage * (CalculatePercentage(this.amount + (int) damage) + modifier);
         }
         else
         {
-            return damage * percentage;
+            return damage * (percentage + modifier);
         }
     }
 

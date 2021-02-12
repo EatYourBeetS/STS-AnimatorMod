@@ -36,6 +36,20 @@ public class CostModifiers extends AbstractModifiers implements OnCardResetSubsc
         }
     }
 
+    public void Remove(String key, boolean applyInstantly)
+    {
+        if (modifiers.remove(key) != null && applyInstantly)
+        {
+            Apply(card);
+        }
+    }
+
+    @Override
+    public void Remove(String key)
+    {
+        Remove(key, true);
+    }
+
     @Override
     protected void Apply(AbstractCard card)
     {

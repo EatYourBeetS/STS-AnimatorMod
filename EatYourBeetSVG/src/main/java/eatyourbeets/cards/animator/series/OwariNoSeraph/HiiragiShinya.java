@@ -39,7 +39,7 @@ public class HiiragiShinya extends AnimatorCard
             if (cards.size() > 0)
             {
                 AbstractCard card = cards.get(0);
-                card.setCostForTurn(card.costForTurn + 1);
+                GameUtilities.ModifyCostForTurn(card, 1, true);
                 GameUtilities.Retain(card);
                 GameActions.Bottom.Add(new RefreshHandLayout());
             }

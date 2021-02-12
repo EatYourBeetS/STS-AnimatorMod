@@ -5,8 +5,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class KotoriKanbe extends AnimatorCard
 {
@@ -36,6 +38,24 @@ public class KotoriKanbe extends AnimatorCard
     protected void OnUpgrade()
     {
         SetEthereal(false);
+    }
+
+    @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        if (m != null)
+        {
+            int heal = m.maxHealth - m.currentHealth;
+            int stacks = Math.floorDiv(heal, magicNumber);
+            if (stacks > 0)
+            {
+                EnemyIntent intent = GameUtilities.GetIntent(m).AddWeak();
+                if (heal >= HP_HEAL_THRESHOLD && !CombatStats.HasActivatedLimited(cardID))
+                {
+                    intent.AddStrength(-secondaryValue);
+                }
+            }
+        }
     }
 
     @Override

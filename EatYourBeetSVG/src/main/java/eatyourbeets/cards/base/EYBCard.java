@@ -588,15 +588,14 @@ public abstract class EYBCard extends EYBCardBase
         this.upgrade_cost = value;
     }
 
-    protected void OnUpgrade()
+    public void OnDrag(AbstractMonster m)
     {
 
     }
 
-    @Override
-    protected final void applyPowersToBlock()
+    protected void OnUpgrade()
     {
-        throw new RuntimeException("This method must not be called");
+
     }
 
     @Override

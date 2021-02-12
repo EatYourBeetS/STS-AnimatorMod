@@ -32,7 +32,7 @@ import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnTryApplyPowerSubscriber;
-import eatyourbeets.monsters.EnemyMoveDetails;
+import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
@@ -447,14 +447,52 @@ public class GameUtilities
         return monsters;
     }
 
-    public static EnemyMoveDetails GetEnemyMove(AbstractMonster enemy)
-    {
-        return new EnemyMoveDetails(enemy);
-    }
-
     public static float GetHealthPercentage(AbstractCreature creature)
     {
         return creature.currentHealth / (float) creature.maxHealth;
+    }
+
+    public static EnemyIntent GetIntent(AbstractMonster enemy)
+    {
+        return new EnemyIntent(enemy);
+    }
+
+    public static ArrayList<EnemyIntent> GetIntents()
+    {
+        return GetIntents(TargetHelper.Enemies());
+    }
+
+    public static ArrayList<EnemyIntent> GetIntents(TargetHelper target)
+    {
+        ArrayList<EnemyIntent> intents = new ArrayList<>();
+        switch (target.mode)
+        {
+            case Normal:
+                intents.add(new EnemyIntent((AbstractMonster) target.GetTargets().get(0)));
+                break;
+
+            case ALL:
+            case Enemies:
+                for (AbstractCreature t : target.GetTargets())
+                {
+                    if (t instanceof AbstractMonster)
+                    {
+                        intents.add(new EnemyIntent((AbstractMonster) t));
+                    }
+                }
+                break;
+
+            case Random:
+            case RandomEnemy:
+                throw new RuntimeException("Random intent previews are not supported yet");
+
+            case Player:
+            case Source:
+            default:
+                throw new RuntimeException("Could not obtain enemy intent");
+        }
+
+        return intents;
     }
 
     public static AbstractCard GetLastCardPlayed(boolean currentTurn)
@@ -752,6 +790,13 @@ public class GameUtilities
         return amount;
     }
 
+    public static boolean HasRelicEffect(String relicID)
+    {
+        return player.hasRelic(relicID)
+            || CombatStats.GetCombatData(relicID, false)
+            || CombatStats.GetTurnData(relicID, false);
+    }
+
     public static boolean InBattle()
     {
         AbstractRoom room = GetCurrentRoom();
@@ -848,6 +893,16 @@ public class GameUtilities
         return enemy != null && !IsDeadOrEscaped(enemy);
     }
 
+    public static void ModifyBlock(AbstractCard card, int amount, boolean temporary)
+    {
+        card.block = Math.max(0, amount);
+        if (!temporary)
+        {
+            card.baseBlock = card.block;
+        }
+        card.isBlockModified = (card.block != card.baseBlock);
+    }
+
     public static void ModifyCostForCombat(AbstractCard card, int amount, boolean relative)
     {
         int previousCost = card.cost;
@@ -872,16 +927,6 @@ public class GameUtilities
     {
         card.costForTurn = relative ? Math.max(0, card.costForTurn + amount) : amount;
         card.isCostModifiedForTurn = (card.cost != card.costForTurn);
-    }
-
-    public static void ModifyBlock(AbstractCard card, int amount, boolean temporary)
-    {
-        card.block = Math.max(0, amount);
-        if (!temporary)
-        {
-            card.baseBlock = card.block;
-        }
-        card.isBlockModified = (card.block != card.baseBlock);
     }
 
     public static void ModifyDamage(AbstractCard card, int amount, boolean temporary)

@@ -26,6 +26,15 @@ public class LeleiLaLalena extends AnimatorCard
     }
 
     @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        if (m != null && HasSynergy())
+        {
+            GameUtilities.GetIntent(m).AddWeak();
+        }
+    }
+
+    @Override
     public void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);

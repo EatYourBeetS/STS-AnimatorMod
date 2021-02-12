@@ -24,7 +24,6 @@ public class Fredrika extends AnimatorCard
     private Form currentForm = Form.Default;
 
     public static final EYBCardData DATA = Register(Fredrika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetMaxCopies(2);
-
     static
     {
         DATA.AddPreview(new Fredrika(Form.Cat), true);
@@ -49,6 +48,15 @@ public class Fredrika extends AnimatorCard
         SetAttackType(EYBAttackType.Normal);
         SetSynergy(Synergies.Chaika);
         SetShapeshifter();
+    }
+
+    @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        if (currentForm == Form.Dominica && m != null)
+        {
+            GameUtilities.GetIntent(m).AddWeak();
+        }
     }
 
     @Override

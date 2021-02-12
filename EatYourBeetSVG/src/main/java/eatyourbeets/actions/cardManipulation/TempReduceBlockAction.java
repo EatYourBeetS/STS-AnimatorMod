@@ -28,18 +28,20 @@ public class TempReduceBlockAction extends EYBActionWithCallback<AbstractCard>
     {
         if (card != null)
         {
-            if (card.costForTurn > 0)
-            {
-                card.superFlash(Color.GOLD.cpy());
-            }
-            else
+            if (card.costForTurn < 0)
             {
                 Complete(card);
+                return;
             }
 
             GameActions.Bottom.ModifyAllInstances(card.uuid, c ->
             {
-                BlockModifiers.For(c).Add(sourceName, -1 * amount);
+                if (c.costForTurn > 0)
+                {
+                    card.superFlash(Color.GOLD.cpy());
+                }
+
+                BlockModifiers.For(c).Add(sourceName, -amount);
                 CombatStats.onAfterCardPlayed.Subscribe(cardPlayed ->
                 {
                     if (cardPlayed == c)

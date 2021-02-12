@@ -18,10 +18,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.powers.EYBFlashPowerEffect;
 import eatyourbeets.effects.powers.EYBGainPowerEffect;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -29,6 +26,8 @@ import java.util.StringJoiner;
 
 public abstract class EYBPower extends AbstractPower implements CloneablePowerInterface
 {
+    protected static final FieldInfo<ArrayList<AbstractGameEffect>> _effect = JUtils.GetField("effect", AbstractPower.class);
+
     protected static final Color disabledColor = new Color(0.5f, 0.5f, 0.5f, 1);
     protected final ArrayList<AbstractGameEffect> effects;
     protected final PowerStrings powerStrings;
@@ -41,7 +40,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
     public EYBPower(AbstractCreature owner, EYBCardData cardData)
     {
-        this.effects = (ArrayList<AbstractGameEffect>) JUtils.GetField("effect", AbstractPower.class).Get(this);
+        this.effects = _effect.Get(this);
         this.owner = owner;
         this.ID = cardData.ID + "Power";
 
@@ -56,7 +55,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
     public EYBPower(AbstractCreature owner, String id)
     {
-        this.effects = (ArrayList<AbstractGameEffect>) JUtils.GetField("effect", AbstractPower.class).Get(this);
+        this.effects = _effect.Get(this);
         this.owner = owner;
         this.ID = id;
 

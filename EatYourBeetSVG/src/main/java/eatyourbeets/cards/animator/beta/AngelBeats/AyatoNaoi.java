@@ -48,7 +48,7 @@ public class AyatoNaoi extends AnimatorCard
                 int totalDamage = 0;
                 for (AbstractMonster mo : GameUtilities.GetEnemies(true))
                 {
-                    totalDamage += GameUtilities.GetEnemyMove(mo).GetDamage(true);
+                    totalDamage += GameUtilities.GetIntent(mo).GetDamage(true);
                 }
 
                 if (totalDamage > 0)

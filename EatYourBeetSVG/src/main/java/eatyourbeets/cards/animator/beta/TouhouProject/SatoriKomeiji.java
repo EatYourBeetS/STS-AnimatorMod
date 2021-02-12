@@ -5,12 +5,14 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.special.RefreshHandLayout;
+import com.megacrit.cardcrawl.relics.FrozenEye;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class SatoriKomeiji extends AnimatorCard
 {
@@ -41,18 +43,40 @@ public class SatoriKomeiji extends AnimatorCard
 
     public static class SatoriPower extends AnimatorPower
     {
-
         public SatoriPower(AbstractCreature owner, int amount)
         {
             super(owner, SatoriKomeiji.DATA);
+
             this.amount = amount;
+
             updateDescription();
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.SetCombatData(FrozenEye.ID, true);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.GetCombatData(FrozenEye.ID, false);
         }
 
         @Override
         public void atStartOfTurn()
         {
             super.atStartOfTurn();
+
+            if (player.drawPile.size() == 1)
+            {
+                return;
+            }
 
             GameActions.Top.SelectFromPile(name, amount, player.drawPile)
             .AddCallback(cards ->
@@ -63,15 +87,12 @@ public class SatoriKomeiji extends AnimatorCard
                     player.drawPile.addToTop(c);
                 }
 
-                GameActions.Bottom.Add(new RefreshHandLayout());
+                GameUtilities.RefreshHandLayout();
             });
 
-            if (player.drawPile.isEmpty())
+            if (player.drawPile.isEmpty() && player.discardPile.size() > 0)
             {
-                if (player.discardPile.size() > 0)
-                {
-                    GameActions.Top.Add(new EmptyDeckShuffleAction());
-                }
+                GameActions.Top.Add(new EmptyDeckShuffleAction());
             }
         }
 

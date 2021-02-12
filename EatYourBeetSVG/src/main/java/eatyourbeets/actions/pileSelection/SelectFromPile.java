@@ -133,8 +133,6 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
                     {
                         temp.sortAlphabetically(true);
                         temp.sortByRarityPlusStatusCardType(true);
-                    } else {
-                        Collections.reverse(temp.group); //The top of the deck is at the end of the arraylist
                     }
                 }
 

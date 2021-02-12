@@ -56,7 +56,7 @@ public class EYBCombatScreen extends GUIElement
 
         if (multiDamage)
         {
-            FontHelper.renderFontLeftTopAligned(sb, font, damage + "x" + multiDamageAmount,
+            FontHelper.renderFontLeftTopAligned(sb, font, damage.text + "x" + multiDamageAmount,
             m.intentHb.x + Scale(5), m.intentHb.cY + _bobEffect.Get(m).y - m.intentHb.height * 0.6f, color);
         }
         else

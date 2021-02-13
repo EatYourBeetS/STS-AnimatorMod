@@ -7,9 +7,8 @@ import java.util.HashMap;
 
 public abstract class AbstractModifiers
 {
-    public int baseAmount;
-    public int previousAmount;
-
+    protected int baseAmount;
+    protected int previousAmount;
     protected final AbstractCard card;
     protected final HashMap<String, Integer> modifiers = new HashMap<>();
 

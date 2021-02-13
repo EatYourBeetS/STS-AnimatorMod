@@ -5,12 +5,14 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
-import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
-public class MotivateAction extends EYBActionWithCallback<AbstractCard> implements OnAfterCardPlayedSubscriber
+public class MotivateAction extends EYBActionWithCallback<AbstractCard>
 {
+    public static String ID = GR.CreateID("eyb", MotivateAction.class.getName());
+
     protected boolean motivateZeroCost = true;
     protected boolean costReduced = false;
     protected AbstractCard card;
@@ -67,8 +69,8 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard> implemen
                 Complete(card);
             }
 
-            CostModifiers.For(card).Add(getClass().getName(), -amount);
-            CombatStats.onAfterCardPlayed.Subscribe(this);
+            CostModifiers.For(card).Add(ID, -amount);
+            GameUtilities.TriggerWhenPlayed(card, c -> CostModifiers.For(c).Remove(ID, false));
         }
         else
         {
@@ -82,16 +84,6 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard> implemen
         if (TickDuration(deltaTime))
         {
             Complete(card);
-        }
-    }
-
-    @Override
-    public void OnAfterCardPlayed(AbstractCard other)
-    {
-        if (card.uuid.equals(other.uuid))
-        {
-            CombatStats.onAfterCardPlayed.Unsubscribe(this);
-            CostModifiers.For(card).Remove(getClass().getName(), false);
         }
     }
 }

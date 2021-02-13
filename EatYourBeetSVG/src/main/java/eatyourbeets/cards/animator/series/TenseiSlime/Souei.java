@@ -46,7 +46,7 @@ public class Souei extends AnimatorCard
                         GameActions.Top.Callback(new PoisonLoseHpAction(enemy, player, poison.amount, AbstractGameAction.AttackEffect.POISON))
                         .AddCallback(intangible, (baseIntangible, action) ->
                         {
-                            if (GameUtilities.TriggerOnKill(action.target, true))
+                            if (GameUtilities.IsFatal(action.target, true))
                             {
                                 if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) == baseIntangible)
                                 {

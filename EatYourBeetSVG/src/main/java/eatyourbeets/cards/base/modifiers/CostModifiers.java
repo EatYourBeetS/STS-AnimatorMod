@@ -15,7 +15,6 @@ public class CostModifiers extends AbstractModifiers implements OnCardResetSubsc
         {
             modifier = new CostModifiers(card);
             AbstractCard_Fields.costModifiers.set(card, modifier);
-            CombatStats.onCardReset.Subscribe(modifier);
         }
 
         return modifier;
@@ -53,6 +52,8 @@ public class CostModifiers extends AbstractModifiers implements OnCardResetSubsc
     @Override
     protected void Apply(AbstractCard card)
     {
+        CombatStats.onCardReset.Subscribe(this);
+
         if (card.freeToPlay()) //|| !AbstractDungeon.player.hand.contains(card))
         {
             previousAmount = 0;

@@ -28,8 +28,10 @@ import com.megacrit.cardcrawl.screens.stats.AchievementGrid;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
+import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnTryApplyPowerSubscriber;
 import eatyourbeets.monsters.EnemyIntent;
@@ -868,6 +870,13 @@ public class GameUtilities
         return target.isDeadOrEscaped() || target.currentHealth <= 0;
     }
 
+    public static boolean IsFatal(AbstractCreature enemy, boolean includeMinions)
+    {
+        return (enemy.isDead || enemy.isDying || enemy.currentHealth <= 0)
+            && !enemy.hasPower(RegrowPower.POWER_ID)
+            && (includeMinions || !enemy.hasPower(MinionPower.POWER_ID));
+    }
+
     public static boolean IsMonster(AbstractCreature c)
     {
         return c != null && !c.isPlayer;
@@ -1006,9 +1015,9 @@ public class GameUtilities
         return false;
     }
 
-    public static boolean TriggerOnKill(AbstractCreature enemy, boolean includeMinions)
+    public static void TriggerWhenPlayed(AbstractCard card, ActionT1<AbstractCard> onCardPlayed)
     {
-        return IsDeadOrEscaped(enemy) && !enemy.hasPower(RegrowPower.POWER_ID) && (includeMinions || !enemy.hasPower(MinionPower.POWER_ID));
+        CombatStats.onAfterCardPlayed.Subscribe(new CardPlayedListener(card, onCardPlayed));
     }
 
     public static Vector2 TryGetPosition(CardGroup group)
@@ -1132,6 +1141,32 @@ public class GameUtilities
         RefreshHandLayout();
 
         return amount;
+    }
+
+    private static class CardPlayedListener implements OnAfterCardPlayedSubscriber
+    {
+        private final AbstractCard card;
+        private ActionT1<AbstractCard> onCardPlayed;
+
+        public CardPlayedListener(AbstractCard card, ActionT1<AbstractCard> onCardPlayed)
+        {
+            this.card = card;
+            this.onCardPlayed = onCardPlayed;
+        }
+
+        @Override
+        public void OnAfterCardPlayed(AbstractCard card)
+        {
+            if (this.card.uuid.equals(card.uuid))
+            {
+                if (this.onCardPlayed != null)
+                {
+                    this.onCardPlayed.Invoke(card);
+                }
+
+                CombatStats.onAfterCardPlayed.Unsubscribe(this);
+            }
+        }
     }
 
     private static class HandLayoutRefresher implements OnPhaseChangedSubscriber

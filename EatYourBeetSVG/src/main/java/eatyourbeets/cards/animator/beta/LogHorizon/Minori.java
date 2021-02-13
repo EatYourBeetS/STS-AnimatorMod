@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
 public class Minori extends AnimatorCard {

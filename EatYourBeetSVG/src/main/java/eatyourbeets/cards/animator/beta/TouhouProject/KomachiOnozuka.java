@@ -53,8 +53,8 @@ public class KomachiOnozuka extends AnimatorCard
         {
             AbstractRoom room = AbstractDungeon.getCurrRoom();
             if ((room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
-                && GameUtilities.TriggerOnKill(enemy, false)
-                && CombatStats.TryActivateLimited(cardID))
+            && GameUtilities.IsFatal(enemy, false)
+            && CombatStats.TryActivateLimited(cardID))
             {
                 ObtainReward();
             }

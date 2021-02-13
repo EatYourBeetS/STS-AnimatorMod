@@ -2,7 +2,6 @@ package eatyourbeets.relics.animator.beta;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.JUtils;

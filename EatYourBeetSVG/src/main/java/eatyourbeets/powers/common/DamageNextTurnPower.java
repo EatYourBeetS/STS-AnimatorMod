@@ -3,7 +3,6 @@ package eatyourbeets.powers.common;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 

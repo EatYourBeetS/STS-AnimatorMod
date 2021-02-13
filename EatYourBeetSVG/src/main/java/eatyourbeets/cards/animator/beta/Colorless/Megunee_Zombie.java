@@ -41,8 +41,8 @@ public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDra
         super.triggerWhenDrawn();
 
         GameActions.Bottom.PlayCard(this, player.hand, null)
-                .SpendEnergy(true)
-                .AddCondition(AbstractCard::hasEnoughEnergy);
+        .SpendEnergy(true)
+        .AddCondition(AbstractCard::hasEnoughEnergy);
     }
 
     @Override
@@ -56,15 +56,14 @@ public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDra
             for (int i=0; i<stacks; i++)
             {
                 GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE)
-                        .SetDamageEffect(e -> GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40f * Settings.scale, Color.BROWN.cpy())))
-                        .AddCallback(enemy ->
-                        {
-                            if (GameUtilities.TriggerOnKill(enemy, false)
-                                    && CombatStats.TryActivateLimited(cardID))
-                            {
-                                GameActions.Bottom.Heal(magicNumber);
-                            }
-                        });
+                .SetDamageEffect(e -> GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40f * Settings.scale, Color.BROWN.cpy())))
+                .AddCallback(enemy ->
+                {
+                    if (GameUtilities.IsFatal(enemy, false) && CombatStats.TryActivateLimited(cardID))
+                    {
+                        GameActions.Bottom.Heal(magicNumber);
+                    }
+                });
             }
         }
     }

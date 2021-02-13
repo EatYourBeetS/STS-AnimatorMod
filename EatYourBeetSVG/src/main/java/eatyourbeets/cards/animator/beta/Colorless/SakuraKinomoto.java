@@ -46,36 +46,36 @@ public class SakuraKinomoto extends AnimatorCard
         if (m != null)
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-                    .SetDamageEffect(e -> GameEffects.Queue.Add(new SmallLaserEffect(player.hb.cX, player.hb.cY,
-                            e.hb.cX + MathUtils.random(-0.05F, 0.05F), e.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PINK)))
-                    .AddCallback(enemy ->
+            .SetDamageEffect(e -> GameEffects.Queue.Add(new SmallLaserEffect(player.hb.cX, player.hb.cY,
+                    e.hb.cX + MathUtils.random(-0.05F, 0.05F), e.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PINK)))
+            .AddCallback(enemy ->
+            {
+                AbstractRoom room = AbstractDungeon.getCurrRoom();
+                if ((room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
+                && GameUtilities.IsFatal(enemy, false)
+                && CombatStats.TryActivateLimited(cardID))
+                {
+                    RewardItem reward = new RewardItem();
+                    CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                    for (int i = 0; i < magicNumber; i++)
                     {
-                        AbstractRoom room = AbstractDungeon.getCurrRoom();
-                        if ((room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
-                                && GameUtilities.TriggerOnKill(enemy, false)
-                                && CombatStats.TryActivateLimited(cardID))
-                        {
-                            RewardItem reward = new RewardItem();
-                            CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-                            for (int i = 0; i < magicNumber; i++)
-                            {
-                                AbstractCard card = GameUtilities.GetRandomRewardCard(reward, false);
-                                reward.cards.add(card);
-                                choices.addToBottom(card);
-                            }
+                        AbstractCard card = GameUtilities.GetRandomRewardCard(reward, false);
+                        reward.cards.add(card);
+                        choices.addToBottom(card);
+                    }
 
-                            GameActions.Bottom.SelectFromPile(name, 1, choices)
-                                    .SetOptions(false, true)
-                                    .AddCallback(cards ->
-                                    {
-                                        if (cards.size() > 0)
-                                        {
-                                            AbstractCard card = cards.get(0).makeCopy();
-                                            GameActions.Top.MakeCard(card, player.masterDeck);
-                                        }
-                                    });
+                    GameActions.Bottom.SelectFromPile(name, 1, choices)
+                    .SetOptions(false, true)
+                    .AddCallback(cards ->
+                    {
+                        if (cards.size() > 0)
+                        {
+                            AbstractCard card = cards.get(0).makeCopy();
+                            GameActions.Top.MakeCard(card, player.masterDeck);
                         }
                     });
+                }
+            });
             GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE");
         }
     }

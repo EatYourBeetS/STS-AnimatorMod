@@ -6,4 +6,4 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 public interface OnModifyDamageSubscriber
 {
     int OnModifyDamage(AbstractCreature creature, DamageInfo info, int damage);
-}
+} 

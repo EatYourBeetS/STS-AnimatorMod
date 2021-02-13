@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.series.Bleach;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.beta.special.IkkakuBankai;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.common.AgilityPower;

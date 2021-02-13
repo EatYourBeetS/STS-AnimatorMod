@@ -10,10 +10,12 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class Minori extends AnimatorCard {
+public class Minori extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(Minori.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
-    public Minori() {
+    public Minori()
+    {
         super(DATA);
 
         Initialize(0, 6, 50);
@@ -25,7 +27,8 @@ public class Minori extends AnimatorCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.GainBlock(block);
 
         cooldown.ProgressCooldownAndTrigger(m);
@@ -47,7 +50,7 @@ public class Minori extends AnimatorCard {
     protected void OnCooldownCompleted(AbstractMonster m)
     {
         GameActions.Bottom.Callback(c -> {
-            int blockToGain = (int)(player.currentBlock * ((double)magicNumber/(double)100));
+            int blockToGain = (int) (player.currentBlock * ((double) magicNumber / (double) 100));
 
             GameActions.Bottom.GainBlock(blockToGain);
             GameActions.Bottom.VFX(new RainbowCardEffect());

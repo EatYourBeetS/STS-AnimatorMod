@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.curses.Injury;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.CreateRandomCurses;
+import eatyourbeets.cards.animator.beta.special.Shirosaki_Laplace;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;

@@ -13,14 +13,16 @@ import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Serara extends AnimatorCard {
+public class Serara extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(Serara.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
-    public Serara() {
+    public Serara()
+    {
         super(DATA);
 
         Initialize(0, 0, 6, 17);
-        SetUpgrade(0, 0, 0,6);
+        SetUpgrade(0, 0, 0, 6);
 
         SetSynergy(Synergies.LogHorizon);
     }
@@ -28,7 +30,8 @@ public class Serara extends AnimatorCard {
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        if (!GameUtilities.InBattle() || TempHPField.tempHp.get(player) <= secondaryValue) {
+        if (!GameUtilities.InBattle() || TempHPField.tempHp.get(player) <= secondaryValue)
+        {
             return TempHPAttribute.Instance.SetCard(this, true);
         }
 

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
+import eatyourbeets.cards.animator.beta.special.Enju_Barasuishou;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -14,8 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Enju extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Enju.class)
-    		.SetPower(-1, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Enju.class).SetPower(-1, CardRarity.RARE);
     static
     {
         DATA.AddPreview(new Enju_Barasuishou(-1), false);

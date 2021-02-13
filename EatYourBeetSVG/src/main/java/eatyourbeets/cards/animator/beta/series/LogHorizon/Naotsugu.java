@@ -13,16 +13,18 @@ import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Naotsugu extends AnimatorCard {
+public class Naotsugu extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(Naotsugu.class).SetAttack(3, CardRarity.COMMON, EYBAttackType.Normal);
     public static int basePlatedArmor;
 
-    public Naotsugu() {
+    public Naotsugu()
+    {
         super(DATA);
 
         Initialize(9, 0);
         SetUpgrade(3, 0);
-        SetScaling(0,0,1);
+        SetScaling(0, 0, 1);
 
         basePlatedArmor = magicNumber;
 
@@ -30,25 +32,26 @@ public class Naotsugu extends AnimatorCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         GameActions.Bottom.GainBlock(damage);
 
         if (ForceStance.IsActive())
         {
             GameActions.Bottom.FetchFromPile(name, 1, p.drawPile)
-            .SetOptions(true, false)
-            .SetFilter(c -> c.hasTag(MARTIAL_ARTIST))
-            .AddCallback(cards ->
-            {
-                if (cards.size() > 0)
-                {
-                    AbstractCard card = cards.get(0);
-                    card.setCostForTurn(card.costForTurn + 1);
-                    GameUtilities.Retain(card);
-                    GameActions.Bottom.Add(new RefreshHandLayout());
-                }
-            });
+                    .SetOptions(true, false)
+                    .SetFilter(c -> c.hasTag(MARTIAL_ARTIST))
+                    .AddCallback(cards ->
+                    {
+                        if (cards.size() > 0)
+                        {
+                            AbstractCard card = cards.get(0);
+                            card.setCostForTurn(card.costForTurn + 1);
+                            GameUtilities.Retain(card);
+                            GameActions.Bottom.Add(new RefreshHandLayout());
+                        }
+                    });
         }
     }
 }

@@ -10,7 +10,8 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
-public class Tohya extends AnimatorCard {
+public class Tohya extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(Tohya.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal);
 
     static
@@ -18,7 +19,8 @@ public class Tohya extends AnimatorCard {
         DATA.AddPreview(new Minori(), false);
     }
 
-    public Tohya() {
+    public Tohya()
+    {
         super(DATA);
 
         Initialize(5, 0, 1, 0);
@@ -31,7 +33,8 @@ public class Tohya extends AnimatorCard {
 
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
 
         GameActions.Bottom.Callback(this::DrawMinori);
@@ -59,14 +62,14 @@ public class Tohya extends AnimatorCard {
 
     private boolean DrawMinori()
     {
-       AbstractCard minori = FindMinori(null);
+        AbstractCard minori = FindMinori(null);
 
-       if (minori != null)
-       {
-           GameActions.Top.MoveCard(minori, player.hand)
-                   .ShowEffect(true, true);
-           return true;
-       }
+        if (minori != null)
+        {
+            GameActions.Top.MoveCard(minori, player.hand)
+                    .ShowEffect(true, true);
+            return true;
+        }
 
         return false;
     }

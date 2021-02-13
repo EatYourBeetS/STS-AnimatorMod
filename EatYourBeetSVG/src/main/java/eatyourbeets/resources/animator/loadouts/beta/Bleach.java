@@ -2,7 +2,10 @@ package eatyourbeets.resources.animator.loadouts.beta;
 
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.cards.animator.beta.basic.Defend_Bleach;
+import eatyourbeets.cards.animator.beta.basic.Strike_Bleach;
 import eatyourbeets.cards.animator.beta.series.Bleach.*;
+import eatyourbeets.cards.animator.beta.ultrarare.SosukeAizen;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;

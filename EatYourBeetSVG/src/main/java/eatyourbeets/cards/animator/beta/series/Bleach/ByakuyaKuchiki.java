@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
+import eatyourbeets.cards.animator.beta.special.ByakuyaBankai;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.resources.GR;

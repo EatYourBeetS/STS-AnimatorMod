@@ -9,15 +9,17 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class Shiroe extends AnimatorCard {
+public class Shiroe extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(Shiroe.class).SetAttack(0, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Normal);
 
     protected static final Color upgradeGlowColor = AbstractCard.GREEN_BORDER_GLOW_COLOR;
 
-    public Shiroe() {
+    public Shiroe()
+    {
         super(DATA);
 
-        Initialize(1, 0, 1,4);
+        Initialize(1, 0, 1, 4);
         SetUpgrade(1, 0, 0);
 
         SetUnique(true, true);
@@ -49,7 +51,8 @@ public class Shiroe extends AnimatorCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.FIRE);
         GameActions.Bottom.ApplyConstricted(p, m, magicNumber);
 

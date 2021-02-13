@@ -85,19 +85,16 @@ public class PhasingPower extends CommonPower implements OnModifyDamageSubscribe
     }
 
     @Override
-    public int OnModifyDamage(AbstractCreature creature, DamageInfo info, int damage)
+    public int OnModifyDamage(AbstractCreature target, DamageInfo info, int damage)
     {
-        if (info.type == DamageInfo.DamageType.NORMAL)
+        if (target == owner && info.type == DamageInfo.DamageType.NORMAL && rng.random(100) < amount)
         {
-            if (rng.random(100) < amount)
-            {
-                player.tint.color.a = 0;
-                GameActions.Bottom.SFX("ORB_PLASMA_CHANNEL", 1.6f);
-                GameActions.Top.Wait(0.15f);
-                flashWithoutSound();
+            player.tint.color.a = 0;
+            GameActions.Bottom.SFX("ORB_PLASMA_CHANNEL", 1.6f);
+            GameActions.Top.Wait(0.15f);
+            flashWithoutSound();
 
-                return 0;
-            }
+            return 0;
         }
 
         return damage;

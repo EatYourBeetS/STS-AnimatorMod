@@ -626,6 +626,11 @@ public final class GameActions
         return Add(new MotivateAction(1));
     }
 
+    public MotivateAction Motivate(AbstractCard card, int amount)
+    {
+        return Add(new MotivateAction(card, amount));
+    }
+
     public ArrayList<MotivateAction> Motivate(int times)
     {
         ArrayList<MotivateAction> actions = new ArrayList<>();

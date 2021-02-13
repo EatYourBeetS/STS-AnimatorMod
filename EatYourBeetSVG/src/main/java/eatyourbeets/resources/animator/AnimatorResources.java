@@ -125,7 +125,7 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void InitializePowers()
     {
-        //LoadCustomPowers();
+        // LoadCustomPowers();
     }
 
     @Override

@@ -36,12 +36,6 @@ public class Laby extends AnimatorCard
     }
 
     @Override
-    public void update()
-    {
-        super.update();
-    }
-
-    @Override
     public AbstractAttribute GetSpecialInfo()
     {
         return TempHPAttribute.Instance.SetCard(this, true);

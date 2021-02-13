@@ -161,6 +161,7 @@ public class EYBCardText
         }
         if (card.exhaust || card.exhaustOnUseOnce)
         {
+            //noinspection UnusedAssignment
             offset_y -= RenderBadge(sb, BADGES.Exhaust.Texture(), offset_y, alpha, null);
         }
 

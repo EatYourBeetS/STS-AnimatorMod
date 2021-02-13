@@ -155,6 +155,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
         {
             for (AbstractRelic r : player.relics)
             {
+                //noinspection ConstantConditions
                 if ((r instanceof UnnamedReignRelic) && r != relic)
                 {
                     GameEffects.Queue.RemoveRelic(relic);

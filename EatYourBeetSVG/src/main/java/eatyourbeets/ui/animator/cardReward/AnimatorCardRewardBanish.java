@@ -19,8 +19,8 @@ public class AnimatorCardRewardBanish extends GUIElement
 {
     protected final ArrayList<BanCardButton> buttons = new ArrayList<>();
 
-    protected ActionT1<AbstractCard> onCardBanned;
-    protected ActionT1<AbstractCard> onCardAdded;
+    protected final ActionT1<AbstractCard> onCardBanned;
+    protected final ActionT1<AbstractCard> onCardAdded;
     protected PurgingStone purgingStone;
     protected boolean canBan;
     protected RewardItem rewardItem;

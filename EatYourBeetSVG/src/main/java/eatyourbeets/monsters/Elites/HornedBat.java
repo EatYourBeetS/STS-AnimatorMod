@@ -28,6 +28,7 @@ public abstract class HornedBat extends EYBMonster implements OnReceiveEmeraldBo
             positions.add(new Vector2(x-=185, -55));
             positions.add(new Vector2(x-=185, 7));
             positions.add(new Vector2(x-=185, -56));
+            //noinspection UnusedAssignment
             positions.add(new Vector2(x-=185, 8));
         }
 

@@ -2,7 +2,7 @@ package eatyourbeets.resources.animator.loadouts.beta;
 
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
-import eatyourbeets.cards.animator.beta.AngelBeats.*;
+import eatyourbeets.cards.animator.beta.series.AngelBeats.*;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;

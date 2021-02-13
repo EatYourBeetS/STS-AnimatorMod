@@ -42,7 +42,7 @@
 	},
 	"EYB:PhasingPower":
 	{
-	  "DESCRIPTIONS": ["You have a #b","% chance to dodge each attack. Reduce this number by #b5% each turn. Stacking this power resets this to #b","% and increases the amount by #b5% (up to #b50%)."],
-	  "NAME": "Phasing"
+		"DESCRIPTIONS": ["You have a #b{0}% chance to dodge each attack.", " This chance starts decaying in #b{0} turn(s).", " Reduce this chance by #b{0}% each turn."],
+		"NAME": "Phasing"
 	}
 }

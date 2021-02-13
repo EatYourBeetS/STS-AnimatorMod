@@ -56,9 +56,9 @@
 	},
 	"Counter-Attack":
 	{
-	  "DESCRIPTION": "The next time you are attacked, deal damage to the attacker.",
-	  "NAMES": ["counter attack", "counter-attack", "Counter Attack"],
-	  "PROPER_NAME": "Counter-Attack"
+		"DESCRIPTION": "The next time you are attacked, deal damage to the attacker.",
+		"NAMES": ["counter attack", "counter-attack", "Counter Attack"],
+		"PROPER_NAME": "Counter-Attack"
 	},
 	"Cycle":
 	{
@@ -150,12 +150,6 @@
 		"NAMES": ["limited"],
 		"PROPER_NAME": "Limited"
 	},
-	"~Lock-On":
-	{
-		"DESCRIPTION": "Receive #b50% more damage from Orbs, and #b30% more damage from #yRanged attacks.",
-		"NAMES": ["~lock-on"],
-		"PROPER_NAME": "Lock-On"
-	},
 	"Malleable":
 	{
 		"DESCRIPTION": "Upon receiving damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of turn.",
@@ -174,11 +168,11 @@
 		"NAMES": ["neutral stance"],
 		"PROPER_NAME": "Neutral Stance"
 	},
-	"Starter":
+	"Phasing":
 	{
-		"DESCRIPTION": "Activates if played at the start of turn.",
-		"NAMES": ["starter"],
-		"PROPER_NAME": "Starter"
+		"DESCRIPTION": "You have a 35% chance to dodge each attack. Reduce this chance by 5% each turn. Stacking this power resets and delays the chance reduction by 1 turn.",
+		"NAMES": ["phasing"],
+		"PROPER_NAME": "Phasing"
 	},
 	"Plated Armor":
 	{
@@ -215,6 +209,12 @@
 		"DESCRIPTION": "For every card you have played this turn, enemy takes #b10% more damage from #yAttacks.",
 		"NAMES": ["slow"],
 		"PROPER_NAME": "Slow"
+	},
+	"Starter":
+	{
+		"DESCRIPTION": "Activates if played at the start of turn.",
+		"NAMES": ["starter"],
+		"PROPER_NAME": "Starter"
 	},
 	"Stun":
 	{
@@ -257,6 +257,12 @@
 		"DESCRIPTION": "Start each combat with this card in hand.",
 		"NAMES": ["~innate"],
 		"PROPER_NAME": "Innate"
+	},
+	"~Lock-On":
+	{
+		"DESCRIPTION": "Receive #b50% more damage from Orbs, and #b30% more damage from #yRanged attacks.",
+		"NAMES": ["~lock-on"],
+		"PROPER_NAME": "Lock-On"
 	},
 	"~Piercing":
 	{

@@ -1,6 +1,6 @@
 package eatyourbeets.relics.animator.beta;
 
-import eatyourbeets.cards.animator.beta.DateALive.ShidoItsuka;
+import eatyourbeets.cards.animator.beta.series.DateALive.ShidoItsuka;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 

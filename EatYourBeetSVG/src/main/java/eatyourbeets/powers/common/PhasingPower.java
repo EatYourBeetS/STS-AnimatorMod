@@ -1,47 +1,52 @@
 package eatyourbeets.powers.common;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 
 public class PhasingPower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(PhasingPower.class);
 
-    private int baseEvadePercent = 35;
-    private int decayPerTurn = 5;
-    private int maxEvadePercent = 50;
+    public static final int BASE_AMOUNT = 35;
+    public static final int CHANCE_REDUCTION = 5;
 
-    public PhasingPower(AbstractCreature owner, int timesToStack)
+    protected int turns;
+
+    public PhasingPower(AbstractCreature owner, int stacks)
     {
         super(owner, POWER_ID);
 
-        this.amount = baseEvadePercent;
+        this.amount = BASE_AMOUNT;
         this.type = PowerType.BUFF;
         this.priority = 99;
-
-        for (int i=0; i<timesToStack-1; i++)
-        {
-            stackPower(1);
-        }
+        this.turns = Math.max(0, stacks - 1);
 
         updateDescription();
     }
 
     @Override
-    public void stackPower(int stackAmount)
+    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
     {
-        baseEvadePercent = Math.min(maxEvadePercent, baseEvadePercent + 5);
-        this.amount = baseEvadePercent;
-        this.fontScale = 8f;
-        this.updateDescription();
+        if (ID.equals(power.ID) && target == owner)
+        {
+            this.turns += (((PhasingPower)power).turns + 1);
+        }
+
+        super.onApplyPower(power, target, source);
     }
 
-    public void playApplyPowerSfx()
+    @Override
+    public void stackPower(int stackAmount)
     {
-        CardCrawlGame.sound.playA("ORB_PLASMA_CHANNEL", 2);
+        this.amount = BASE_AMOUNT;
+        this.fontScale = 8f;
+        this.updateDescription();
     }
 
     @Override
@@ -49,17 +54,15 @@ public class PhasingPower extends CommonPower
     {
         super.atStartOfTurn();
 
-        if (enabled && amount > 0)
+        if (turns > 0)
         {
-            reducePower(decayPerTurn);
-
-            if (amount <= 0)
-            {
-                GameActions.Bottom.RemovePower(owner, owner, this);
-            }
+            turns -= 1;
+            updateDescription();
         }
-
-        this.updateDescription();
+        else
+        {
+            GameActions.Bottom.ReducePower(this, CHANCE_REDUCTION);
+        }
     }
 
     @Override
@@ -69,10 +72,11 @@ public class PhasingPower extends CommonPower
         {
             if (rng.random(100) < amount)
             {
-                //Phased!
-                GameActions.Bottom.SFX("ORB_PLASMA_CHANNEL", 1.5f);
-                flashWithoutSound();
                 info.output = damageAmount = 0;
+                player.tint.color.a = 0;
+                GameActions.Bottom.SFX("ORB_PLASMA_CHANNEL", 1.5f);
+                GameActions.Top.Wait(0.15f);
+                flashWithoutSound();
             }
         }
 
@@ -80,13 +84,28 @@ public class PhasingPower extends CommonPower
     }
 
     @Override
+    protected ColoredString GetSecondaryAmount(Color c)
+    {
+        return (turns > 0) ? new ColoredString(turns, Color.WHITE, c.a) : null;
+    }
+
+    public void playApplyPowerSfx()
+    {
+        CardCrawlGame.sound.playA("ORB_PLASMA_CHANNEL", 2);
+    }
+
+    @Override
     public void updateDescription()
     {
-        String[] desc = powerStrings.DESCRIPTIONS;
+        description = FormatDescription(0, amount, CHANCE_REDUCTION);
 
-        description = desc[0] + amount + desc[1] + baseEvadePercent + desc[2];
-
-        //Update transparency effect
-        player.tint.color.a = (50-amount)/50f;
+        if (turns > 0)
+        {
+            description += FormatDescription(1, turns);
+        }
+        else
+        {
+            description += FormatDescription(2, CHANCE_REDUCTION);
+        }
     }
 }

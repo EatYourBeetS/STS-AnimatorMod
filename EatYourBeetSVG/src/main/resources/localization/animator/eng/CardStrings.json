@@ -163,226 +163,245 @@
 			"NAME": "Improved Strike"
 		}
 	},
-
 	"BETA":
 	{
-		"animator:Miracle":
-		{
-			"DESCRIPTION": "Gain !M! [E].",
-			"NAME": "Miracle"
-		},
 		"animator:ManiwaHouou":
 		{
 			"DESCRIPTION": "",
 			"NAME": "Maniwa Houou"
+		},
+		"animator:Miracle":
+		{
+			"DESCRIPTION": "Gain !M! [E].",
+			"NAME": "Miracle"
 		}
 	},
-
+	"BETA:ANGELBEATS":
+	{
+		"animator:AngelAlter":
+		{
+			"DESCRIPTION": "Afterlife. || This card can only be played from Afterlife. ** {Boost} [F] and [A] . ** Shuffle a copy of this card into both your draw and discard piles.",
+			"NAME": "Angel Alter"
+		},
+		"animator:AyatoNaoi":
+		{
+			"DESCRIPTION": "Afterlife. Enter <IS>. Channel ** !M! Dark. || When played from Afterlife: ** ALL enemies lose HP equal to ** their Attack damage.",
+			"NAME": "Ayato Naoi"
+		},
+		"animator:Chaa":
+		{
+			"DESCRIPTION": "At the start of your turn, Exhaust a card, then add a random card of the next rarity to your hand.  ",
+			"EXTENDED_DESCRIPTION": ["At the start of your turn, #yExhaust #b{0} card(s), then add a random card of the next rarity to your hand for each card #yExhausted."],
+			"NAME": "Chaa"
+		},
+		"animator:Defend_AngelBeats":
+		{
+			"DESCRIPTION": "<LIM>. Exhaust !M! card(s).",
+			"NAME": "Improved Defend"
+		},
+		"animator:EriShiina":
+		{
+			"DESCRIPTION": "Afterlife. || When played from Afterlife, add !M! {Throwing-Knives} to your hand.",
+			"NAME": "Eri Shiina"
+		},
+		"animator:GirlDeMo":
+		{
+			"DESCRIPTION": "Double your [F], [A], and [I], if it is the highest or tied for the highest stat.",
+			"NAME": "Girls Dead Monster"
+		},
+		"animator:Godan":
+		{
+			"DESCRIPTION": "<LIM>. Enter <FS>. || Cooldown !S! : Gain !M! [F] and add a {Wound} to your hand.",
+			"NAME": "Matsushita Godan"
+		},
+		"animator:HidekiHinata":
+		{
+			"DESCRIPTION": "Afterlife. || If the enemy intends to attack, deal damage again.",
+			"NAME": "Hideki Hinata"
+		},
+		"animator:KanadeTachibana":
+		{
+			"DESCRIPTION": "Put up to !M! cards from your discard pile into your hand. || Synergy: Exhaust up to !S! cards.",
+			"EXTENDED_DESCRIPTION": ["Choose cards to put into your hand."],
+			"NAME": "Kanade Tachibana"
+		},
+		"animator:MasamiIwasawa":
+		{
+			"DESCRIPTION": "<LIM>. Put !S! {Dazed} on top of your draw pile. || Starter: Apply !M! Vulnerable.",
+			"NAME": "Masami Iwasawa"
+		},
+		"animator:Noda":
+		{
+			"DESCRIPTION": "Afterlife. || {Synergy}: Gain/Boost [F]. || When Discarded: Exhaust.",
+			"NAME": "Noda"
+		},
+		"animator:Strike_AngelBeats":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Improved Strike"
+		},
+		"animator:Yui":
+		{
+			"DESCRIPTION": "Afterlife. Motivate !S!. || When played from {Afterlife}: Add a {Girls Dead Monster} to your draw pile.",
+			"NAME": "Yui"
+		},
+		"animator:YuriNakamura":
+		{
+			"DESCRIPTION": "Afterlife. || <LIM>. Give a Non-{Hindrance}, Non-{Afterlife} card in your Exhaust pile {Afterlife}.",
+			"EXTENDED_DESCRIPTION": ["Give a card Retain.", "Choose a card to give Afterlife."],
+			"NAME": "Yuri Nakamura"
+		},
+		"animator:Yusa":
+		{
+			"DESCRIPTION": "{Scry} !S!. || Exhaust !M! card(s) from your discard pile.",
+			"NAME": "Yusa"
+		},
+		"animator:YuzuruOtonashi":
+		{
+			"DESCRIPTION": "Exhaust up to !M! cards. For each card Exhausted, gain an effect based on its type: || {~Attack} -> Boost [F] . ** {~Skill} -> Gain !S! [Temporary HP]. ** Hindrance -> Draw a card.",
+			"NAME": "Yuzuru Otonashi"
+		}
+	},
 	"BETA:BLEACH":
 	{
 		"animator:ByakuyaBankai":
 		{
-		  "DESCRIPTION": "Choose whether to Attack or Block X times. || When Exhausted: Shuffle this card into your discard pile and upgrade it. ",
-		  "NAME": "Byakuya Bankai"
+			"DESCRIPTION": "Choose whether to Attack or Block X times. || When Exhausted: Shuffle this card into your discard pile and upgrade it. ",
+			"NAME": "Byakuya Bankai"
 		},
 		"animator:ByakuyaKuchiki":
 		{
-		  "DESCRIPTION": "Choose whether to Attack or Block. || [F] or [A] Stance: Exit your Stance to Exhaust and add {Byakuya Bankai} to your draw pile.",
-		  "NAME": "Byakuya Kuchiki"
+			"DESCRIPTION": "Choose whether to Attack or Block. || [F] or [A] Stance: Exit your Stance to Exhaust and add {Byakuya Bankai} to your draw pile.",
+			"NAME": "Byakuya Kuchiki"
 		},
 		"animator:Defend_Bleach":
 		{
-		  "DESCRIPTION": "<LIM>. Discard !M! card(s) to Channel !S! [Fire].",
-		  "NAME": "Improved Defend"
+			"DESCRIPTION": "<LIM>. Discard !M! card(s) to Channel !S! [Fire].",
+			"NAME": "Improved Defend"
 		},
 		"animator:IchigoKurosaki":
 		{
-		  "DESCRIPTION": "Gain [F] [A]. || If you reached !S! [F] this combat: Exhaust and add {Ichigo Bankai} to your draw pile.",
-		  "NAME": "Ichigo Kurosaki"
+			"DESCRIPTION": "Gain [F] [A]. || If you reached !S! [F] this combat: Exhaust and add {Ichigo Bankai} to your draw pile.",
+			"NAME": "Ichigo Kurosaki"
 		},
 		"animator:IkkakuBankai":
 		{
-		  "DESCRIPTION": "Discard up to !M! cards.  Attack an extra time for each card discarded this way.",
-		  "NAME": "Ikkaku Bankai"
+			"DESCRIPTION": "Discard up to !M! cards.  Attack an extra time for each card discarded this way.",
+			"NAME": "Ikkaku Bankai"
 		},
 		"animator:IkkakuMadarame":
 		{
-		  "DESCRIPTION": "If {Zaraki Kenpachi} is active: You may gain [A] this turn. || If you reached !S! [F] or [A] this combat: Exhaust and add {Ikkaku Bankai} to your draw pile.",
-		  "EXTENDED_DESCRIPTION": ["You may gain #yAgility this turn. This overrides other effects that prevent #yAgility gain."],
-		  "NAME": "Ikkaku Madarame"
+			"DESCRIPTION": "If {Zaraki Kenpachi} is active: You may gain [A] this turn. || If you reached !S! [F] or [A] this combat: Exhaust and add {Ikkaku Bankai} to your draw pile.",
+			"EXTENDED_DESCRIPTION": ["You may gain #yAgility this turn. This overrides other effects that prevent #yAgility gain."],
+			"NAME": "Ikkaku Madarame"
 		},
 		"animator:IsshinKurosaki":
 		{
-		  "DESCRIPTION": "Choose 1: Channel 1 [Fire] or Gain !S! [F]. || <LIM>. All [Fire] deal !M! additional damage this combat.",
-		  "NAME": "Isshin Kurosaki"
+			"DESCRIPTION": "Choose 1: Channel 1 [Fire] or Gain !S! [F]. || <LIM>. All [Fire] deal !M! additional damage this combat.",
+			"NAME": "Isshin Kurosaki"
 		},
 		"animator:MayuriKurotsuchi":
 		{
-		  "DESCRIPTION": "Apply !M! [Poison].  Apply additional [Poison] for each point of [F] and [A]. || If the target has at least 30 [Poison]: Apply !S! of a random {Common Debuff}.",
-		  "EXTENDED_DESCRIPTION": ["Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
-		  "NAME": "Mayuri Kurotsuchi"
+			"DESCRIPTION": "Apply !M! [Poison].  Apply additional [Poison] for each point of [F] and [A]. || If the target has at least 30 [Poison]: Apply !S! of a random {Common Debuff}.",
+			"EXTENDED_DESCRIPTION": ["Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
+			"NAME": "Mayuri Kurotsuchi"
 		},
 		"animator:OrihimeInoue":
 		{
-		  "DESCRIPTION": "Channel !M! [Fire] the next time you are attacked this turn.  || On Synergy: Gain !S! {Counter-Attack}.",
-		  "EXTENDED_DESCRIPTION": ["The next #b{0} time you are attacked this turn, Channel #yFire."],
-		  "NAME": "Orihime Inoue"
+			"DESCRIPTION": "Channel !M! [Fire] the next time you are attacked this turn.  || On Synergy: Gain !S! {Counter-Attack}.",
+			"EXTENDED_DESCRIPTION": ["The next #b{0} time you are attacked this turn, Channel #yFire."],
+			"NAME": "Orihime Inoue"
 		},
 		"animator:RenjiArakai":
 		{
-		  "DESCRIPTION": "Not in [A] Stance: Decrease this card's damage by !M! this combat. || Synergy: This card deals Piercing Damage.",
-		  "NAME": "Renji Arakai"
+			"DESCRIPTION": "Not in [A] Stance: Decrease this card's damage by !M! this combat. || Synergy: This card deals Piercing Damage.",
+			"NAME": "Renji Arakai"
 		},
 		"animator:RukiaBankai":
 		{
-		  "DESCRIPTION": "Evoke your rightmost [Frost] !M! times.  Do this X times.",
-		  "NAME": "Rukia Bankai"
+			"DESCRIPTION": "Evoke your rightmost [Frost] !M! times.  Do this X times.",
+			"NAME": "Rukia Bankai"
 		},
 		"animator:RukiaKuchiki":
 		{
-		  "DESCRIPTION": "{Starter}: Channel !M! [Frost]. || Synergy: Gain !S! [Block]. If you have no empty Orb Slots, Exhaust this card, add {Rukia Bankai} to your draw pile.",
-		  "NAME": "Rukia Kuchiki"
+			"DESCRIPTION": "{Starter}: Channel !M! [Frost]. || Synergy: Gain !S! [Block]. If you have no empty Orb Slots, Exhaust this card, add {Rukia Bankai} to your draw pile.",
+			"NAME": "Rukia Kuchiki"
 		},
 		"animator:SajinKomamura":
 		{
-		  "DESCRIPTION": "Gain/Boost !M! [F], [A], or [I], depending on your Stance.  Otherwise, enter a random Stance. || <SLM>. Synergy: Gain !S! [Metallicize].",
-		  "NAME": "Sajin Komamura"
+			"DESCRIPTION": "Gain/Boost !M! [F], [A], or [I], depending on your Stance.  Otherwise, enter a random Stance. || <SLM>. Synergy: Gain !S! [Metallicize].",
+			"NAME": "Sajin Komamura"
 		},
 		"animator:SosukeAizen":
 		{
-		  "DESCRIPTION": "Gain {Phasing} X times. || Gain !M! {Counter-Attack}.  {Counter-Attack} is not removed this combat.",
-		  "EXTENDED_DESCRIPTION": ["Whenever you take 0 attack damage this turn, deal #b{0} damage to the attacking enemy."],
-		  "NAME": "Sosuke Aizen"
+			"DESCRIPTION": "Gain {Phasing} X times. || Gain !M! {Counter-Attack}.  {Counter-Attack} is not removed this combat.",
+			"EXTENDED_DESCRIPTION": ["Whenever you take 0 attack damage this turn, deal #b{0} damage to the attacking enemy."],
+			"NAME": "Sosuke Aizen"
 		},
 		"animator:Strike_Bleach":
 		{
-		  "DESCRIPTION": "If you have !M! or less [F]: Gain [F].",
-		  "NAME": "Improved Strike"
+			"DESCRIPTION": "If you have !M! or less [F]: Gain [F].",
+			"NAME": "Improved Strike"
 		},
 		"animator:UryuuIshida":
 		{
-		  "DESCRIPTION": "When Discarded: Gain !M! [Support Damage]. || Cooldown !S!: Transfer !M! [Weak] and !M! [Vulnerable] from you to a random enemy.",
-		  "NAME": "Uryuu Ishida"
+			"DESCRIPTION": "When Discarded: Gain !M! [Support Damage]. || Cooldown !S!: Transfer !M! [Weak] and !M! [Vulnerable] from you to a random enemy.",
+			"NAME": "Uryuu Ishida"
 		},
 		"animator:YasutoraSado":
 		{
-		  "DESCRIPTION": "Can only attack an enemy with [Block] or is intending to inflict a Negative Effect. || Cooldown !S!: Exhaust this card to enter <FS> or <AS>.",
-		  "NAME": "Yasutora Sado"
+			"DESCRIPTION": "Can only attack an enemy with [Block] or is intending to inflict a Negative Effect. || Cooldown !S!: Exhaust this card to enter <FS> or <AS>.",
+			"NAME": "Yasutora Sado"
 		},
 		"animator:ZarakiKenpachi":
 		{
-		  "DESCRIPTION": "Your [F] no longer decreases. You cannot gain [A][I]. || Once per turn, if you break an enemy's [Block]: Gain !M! {Temp. Strength}.",
-		  "EXTENDED_DESCRIPTION": ["Your #yForce no longer decreases.  You cannot gain #yAgility nor #yIntellect.  Once per turn, if you break an enemy's #yBlock, gain #b{0} #yTemp. #yStrength."],
-		  "NAME": "Zaraki Kenpachi"
+			"DESCRIPTION": "Your [F] no longer decreases. You cannot gain [A][I]. || Once per turn, if you break an enemy's [Block]: Gain !M! {Temp. Strength}.",
+			"EXTENDED_DESCRIPTION": ["Your #yForce no longer decreases.  You cannot gain #yAgility nor #yIntellect.  Once per turn, if you break an enemy's #yBlock, gain #b{0} #yTemp. #yStrength."],
+			"NAME": "Zaraki Kenpachi"
 		}
 	},
-
-	"BETA:LOGHORIZON":
+	"BETA:COLORLESS":
 	{
-		"animator:Akatsuki":
+		"animator:HatsuneMiku":
 		{
-			"DESCRIPTION": "<SLM>. When drawn: ** Create !M! 0-Cost copies of ** this card with Exhaust. They ** deal 0 damage. || This card {Synergizes} with {Uncommon} cards.",
-			"NAME": "Akatsuki"
+			"DESCRIPTION": "Can only be played if there are at least !S! cards in your Discard and {Exhaust} piles combined. || At the start of turn: Draw !M! card(s). They cost 0 this turn.",
+			"EXTENDED_DESCRIPTION": ["At the start of each turn, draw #b{0} cards.  They cost 0 this turn."],
+			"NAME": "Hatsune Miku"
 		},
-		"animator:Defend_LogHorizon":
+		"animator:Megunee":
 		{
-		  "DESCRIPTION": "",
-		  "NAME": "Improved Defend"
+			"DESCRIPTION": "Cooldown !S!: Exhaust this card. || When Exhausted: Put this card in your draw pile zombified after a random number of turns.",
+			"NAME": "Megu-nee"
 		},
-		"animator:Henrietta":
+		"animator:Megunee_Zombie":
 		{
-			"DESCRIPTION": "Costs !M! less if you are NOT in Neutral Stance. || At the end of each turn, ** spend !S! of your remaining ** [E] to enter any Stance.",
-			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend 1 of your remaining Energy to enter any Stance.","Enter [A] Stance.", "Enter [I] Stance.", "Enter [F] Stance.", "Exit your Stance."],
-			"NAME": "Henrietta"
+			"DESCRIPTION": "Autoplay. || <LIM>. If Fatal: Heal !M! HP. || When Exhausted: Put this card in your hand after a random number of turns.",
+			"NAME": "Zombie Megu-nee"
 		},
-		"animator:Isuzu":
+		"animator:NaoTomori":
 		{
-		  "DESCRIPTION": "Choose 1: Next turn, gain !M! [E] or draw !S! cards. || On Synergy: Gain 1 {Temp.} [Artifact].",
-		  "NAME": "Isuzu Tonan"
+			"DESCRIPTION": "Transform a {Power} or {Status} in your hand into a {Normality} to gain {Phasing}. || When Exhausted: Choose 1 of !M! cards to obtain.",
+			"EXTENDED_DESCRIPTION": ["transform into a Normality."],
+			"NAME": "Nao Tomori"
 		},
-		"animator:Krusty":
+		"animator:Rorona":
 		{
-		  "DESCRIPTION": "{Autoplay}. || Double this card's damage this combat.",
-		  "NAME": "Krusty"
+			"DESCRIPTION": "<LIM>. At end of combat: Upgrade a Basic or Common card.",
+			"EXTENDED_DESCRIPTION": ["Limited. At end of combat: Upgrade a Basic or Common card."],
+			"NAME": "Rorona"
 		},
-		"animator:Marielle":
+		"animator:SakuraKinomoto":
 		{
-		  "DESCRIPTION": "{Motivate} ALL cards in your hand.  Reduce their damage and [Block] by !M! until played. || <LIM>. On Synergy: Channel 1 [Aether]. ",
-		  "NAME": "Marielle"
+			"DESCRIPTION": "<LIM>. If this card kills an Elite or Boss: Choose 1 of !M! cards to add to your deck.",
+			"NAME": "Sakura Kinomoto"
 		},
-		"animator:Minori":
+		"animator:ShuuOuma":
 		{
-		 	"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%, rounded down. ||  <SLM>. On Synergy or Discard: Shuffle this card into your draw pile.",
-		  	"NAME": "Minori Housaki"
-		},
-		"animator:Naotsugu":
-		{
-			"DESCRIPTION": "Gain [Block] equal to ** damage dealt. || [F] Stance: Draw and retain a random Martial Artist from your draw pile.",
-			"NAME": "Naotsugu"
-		},
-		"animator:Nyanta":
-		{
-			"DESCRIPTION": "Boost !S! [A], equal to the number of times you Synergized this turn, up to 3. || End your turn.",
-			"NAME": "Nyanta"
-		},
-		"animator:Rayneshia":
-		{
-			"DESCRIPTION": "Draw !M! card(s) that {Synergize} with this card. || This card {Synergizes} ** with {Exhaust} cards and ** {Hindrances}.",
-			"NAME": "Rayneshia"
-		},
-		"animator:RundelhausCode":
-		{
-		  "DESCRIPTION": "Starter: Increase the damage of all {Elemental}-type {Attacks} in your hand by !M! this combat. || Synergy: Channel !S! [Lightning].",
-		  "NAME": "Rundelhaus Code"
-		},
-		"animator:Serara":
-		{
-			"DESCRIPTION": "If you have over !S! [Temporary HP], do not gain [Temporary HP]. || {Motivate} all copies of {Nyanta} in your draw pile or hand. ",
-			"NAME": "Serara"
-		},
-		"animator:Shiroe":
-		{
-			"DESCRIPTION": "{~Unique}. Apply !M! ** Constricted. || <LIM>. If your made !S! or more Synergies this turn: ** Permanently Upgrade this ** card.",
-			"NAME": "Shiroe"
-		},
-		"animator:Soujiro":
-		{
-		  "DESCRIPTION": "<LIM>. At start of combat: Shuffle {Kyouko}, {Kawara}, and {Isami} into your draw pile. || Increase damage by !M! for each {Synergic} card in your hand.",
-		  "NAME": "Soujiro"
-		},
-		"animator:Soujiro_Isami":
-		{
-		  "DESCRIPTION": "Apply !M! [Weak].",
-		  "NAME": "Isami"
-		},
-		"animator:Soujiro_Kawara":
-		{
-		  "DESCRIPTION": "",
-		  "NAME": "Kawara"
-		},
-		"animator:Soujiro_Kyouko":
-		{
-		  "DESCRIPTION": "",
-		  "NAME": "Kyouko"
-		},
-		"animator:Strike_LogHorizon":
-		{
-		  "DESCRIPTION": "",
-		  "NAME": "Improved Strike"
-		},
-		"animator:Tetora":
-		{
-		  "DESCRIPTION": "Can only be played ** with at least !M! other Synergic cards in hand. || On your second Synergy each turn: Gain !S! [Block].",
-		  "EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.{2}"],
-		  "NAME": "Tetora"
-		},
-		"animator:Tohya":
-		{
-		    "DESCRIPTION": "Draw {Minori Housaki} from your draw pile. || {Starter}: Gain !M! [Blur].",
-			"NAME": "Tohya Housaki"
+			"DESCRIPTION": "Fetch a {Power} from your draw or discard pile. || This turn, whenever you play a {Power}: draw a random {Power} from your draw or discard pile.",
+			"EXTENDED_DESCRIPTION": ["This turn, whenever you play a #yPower: draw #b{0} random #yPowers from your draw or discard pile."],
+			"NAME": "Shuu Ouma"
 		}
 	},
-
 	"BETA:DATEALIVE":
 	{
 		"animator:Defend_DateALive":
@@ -481,50 +500,111 @@
 			"NAME": "Zadkiel"
 		}
 	},
-
-	"BETA:COLORLESS":
+	"BETA:LOGHORIZON":
 	{
-		"animator:HatsuneMiku":
+		"animator:Akatsuki":
 		{
-		  "DESCRIPTION": "Can only be played if there are at least !S! cards in your Discard and {Exhaust} piles combined. || At the start of turn: Draw !M! card(s). They cost 0 this turn.",
-		  "EXTENDED_DESCRIPTION": ["At the start of each turn, draw #b{0} cards.  They cost 0 this turn."],
-		  "NAME": "Hatsune Miku"
+			"DESCRIPTION": "<SLM>. When drawn: ** Create !M! 0-Cost copies of ** this card with Exhaust. They ** deal 0 damage. || This card {Synergizes} with {Uncommon} cards.",
+			"NAME": "Akatsuki"
 		},
-		"animator:Megunee":
+		"animator:Defend_LogHorizon":
 		{
-		  "DESCRIPTION": "Cooldown !S!: Exhaust this card. || When Exhausted: Put this card in your draw pile zombified after a random number of turns.",
-		  "NAME": "Megu-nee"
+			"DESCRIPTION": "",
+			"NAME": "Improved Defend"
 		},
-		"animator:Megunee_Zombie":
+		"animator:Henrietta":
 		{
-		  "DESCRIPTION": "Autoplay. || <LIM>. If Fatal: Heal !M! HP. || When Exhausted: Put this card in your hand after a random number of turns.",
-		  "NAME": "Zombie Megu-nee"
+			"DESCRIPTION": "Costs !M! less if you are NOT in Neutral Stance. || At the end of each turn, ** spend !S! of your remaining ** [E] to enter any Stance.",
+			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend 1 of your remaining Energy to enter any Stance.", "Enter [A] Stance.", "Enter [I] Stance.", "Enter [F] Stance.", "Exit your Stance."],
+			"NAME": "Henrietta"
 		},
-		"animator:NaoTomori":
+		"animator:Isuzu":
 		{
-		  "DESCRIPTION": "Transform a {Power} or {Status} in your hand into a {Normality} to gain {Phasing}.  || When Exhausted: Choose 1 of !M! cards to obtain.",
-		  "EXTENDED_DESCRIPTION": ["transform into a Normality."],
-		  "NAME": "Nao Tomori"
+			"DESCRIPTION": "Choose 1: Next turn, gain !M! [E] or draw !S! cards. || On Synergy: Gain 1 {Temp.} [Artifact].",
+			"NAME": "Isuzu Tonan"
 		},
-	   "animator:Rorona":
-	   {
-		  "DESCRIPTION": "<LIM>. At end of combat: Upgrade a Basic or Common card.",
-		  "EXTENDED_DESCRIPTION": ["Limited. At end of combat: Upgrade a Basic or Common card."],
-		  "NAME": "Rorona"
-	   },
-	  "animator:SakuraKinomoto":
-	  {
-		"DESCRIPTION": "<LIM>. If this card kills an Elite or Boss: Choose 1 of !M! cards to add to your deck.",
-		"NAME": "Sakura Kinomoto"
-	  },
-	  "animator:ShuuOuma":
-	  {
-		"DESCRIPTION": "Fetch a {Power} from your draw or discard pile. || This turn, whenever you play a {Power}: draw a random {Power} from your draw or discard pile.",
-		"EXTENDED_DESCRIPTION": ["This turn, whenever you play a #yPower: draw #b{0} random #yPowers from your draw or discard pile."],
-		"NAME": "Shuu Ouma"
-	  }
+		"animator:Krusty":
+		{
+			"DESCRIPTION": "{Autoplay}. || Double this card's damage this combat.",
+			"NAME": "Krusty"
+		},
+		"animator:Marielle":
+		{
+			"DESCRIPTION": "{Motivate} ALL cards in your hand.  Reduce their damage and [Block] by !M! until played. || <LIM>. On Synergy: Channel 1 [Aether]. ",
+			"NAME": "Marielle"
+		},
+		"animator:Minori":
+		{
+			"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%, rounded down. ||  <SLM>. On Synergy or Discard: Shuffle this card into your draw pile.",
+			"NAME": "Minori Housaki"
+		},
+		"animator:Naotsugu":
+		{
+			"DESCRIPTION": "Gain [Block] equal to ** damage dealt. || [F] Stance: Draw and retain a random Martial Artist from your draw pile.",
+			"NAME": "Naotsugu"
+		},
+		"animator:Nyanta":
+		{
+			"DESCRIPTION": "Boost !S! [A], equal to the number of times you Synergized this turn, up to 3. || End your turn.",
+			"NAME": "Nyanta"
+		},
+		"animator:Rayneshia":
+		{
+			"DESCRIPTION": "Draw !M! card(s) that {Synergize} with this card. || This card {Synergizes} ** with {Exhaust} cards and ** {Hindrances}.",
+			"NAME": "Rayneshia"
+		},
+		"animator:RundelhausCode":
+		{
+			"DESCRIPTION": "Starter: Increase the damage of all {Elemental}-type {Attacks} in your hand by !M! this combat. || Synergy: Channel !S! [Lightning].",
+			"NAME": "Rundelhaus Code"
+		},
+		"animator:Serara":
+		{
+			"DESCRIPTION": "If you have over !S! [Temporary HP], do not gain [Temporary HP]. || {Motivate} all copies of {Nyanta} in your draw pile or hand. ",
+			"NAME": "Serara"
+		},
+		"animator:Shiroe":
+		{
+			"DESCRIPTION": "{~Unique}. Apply !M! ** Constricted. || <LIM>. If your made !S! or more Synergies this turn: ** Permanently Upgrade this ** card.",
+			"NAME": "Shiroe"
+		},
+		"animator:Soujiro":
+		{
+			"DESCRIPTION": "<LIM>. At start of combat: Shuffle {Kyouko}, {Kawara}, and {Isami} into your draw pile. || Increase damage by !M! for each {Synergic} card in your hand.",
+			"NAME": "Soujiro"
+		},
+		"animator:Soujiro_Isami":
+		{
+			"DESCRIPTION": "Apply !M! [Weak].",
+			"NAME": "Isami"
+		},
+		"animator:Soujiro_Kawara":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Kawara"
+		},
+		"animator:Soujiro_Kyouko":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Kyouko"
+		},
+		"animator:Strike_LogHorizon":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Improved Strike"
+		},
+		"animator:Tetora":
+		{
+			"DESCRIPTION": "Can only be played ** with at least !M! other Synergic cards in hand. || On your second Synergy each turn: Gain !S! [Block].",
+			"EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.{2}"],
+			"NAME": "Tetora"
+		},
+		"animator:Tohya":
+		{
+			"DESCRIPTION": "Draw {Minori Housaki} from your draw pile. || {Starter}: Gain !M! [Blur].",
+			"NAME": "Tohya Housaki"
+		}
 	},
-
 	"BETA:REWRITE":
 	{
 		"animator:AkaneSenri":
@@ -568,7 +648,7 @@
 		"animator:LuciaKonohana":
 		{
 			"DESCRIPTION": "Apply X times !M! [Poison]. || <LIM>. If X is higher ** than !S!: When the enemy ** dies, transfer its {Common} ** {Debuffs} to ALL enemies.",
-			"EXTENDED_DESCRIPTION": ["When this creature dies, transfer its #yCommon #yDebuffs to ALL enemies.","Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
+			"EXTENDED_DESCRIPTION": ["When this creature dies, transfer its #yCommon #yDebuffs to ALL enemies.", "Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
 			"NAME": "Lucia Konohana"
 		},
 		"animator:Midou":
@@ -617,190 +697,6 @@
 			"NAME": "Yoshino Haruhiko"
 		}
 	},
-
-	"BETA:ANGELBEATS":
-	{
-		"animator:YuriNakamura":
-		{
-			"DESCRIPTION": "Afterlife. || <LIM>. Give a Non-{Hindrance}, Non-{Afterlife} card in your Exhaust pile {Afterlife}.",
-			"EXTENDED_DESCRIPTION": ["Give a card Retain.", "Choose a card to give Afterlife."],
-			"NAME": "Yuri Nakamura"
-		},
-		"animator:KanadeTachibana":
-		{
-			"DESCRIPTION": "Put up to !M! cards from your discard pile into your hand. || Synergy: Exhaust up to !S! cards.",
-			"EXTENDED_DESCRIPTION": ["Choose cards to put into your hand."],
-			"NAME": "Kanade Tachibana"
-		},
-		"animator:AyatoNaoi":
-		{
-			"DESCRIPTION": "Afterlife. Enter <IS>. Channel ** !M! Dark. || When played from Afterlife: ** ALL enemies lose HP equal to ** their Attack damage.",
-			"NAME": "Ayato Naoi"
-		},
-		"animator:Godan":
-		{
-			"DESCRIPTION": "<LIM>. Enter <FS>. || Cooldown !S! : Gain !M! [F] and add a {Wound} to your hand.",
-			"NAME": "Matsushita Godan"
-		},
-		"animator:EriShiina":
-		{
-			"DESCRIPTION": "Afterlife. || When played from Afterlife, add !M! {Throwing-Knives} to your hand.",
-			"NAME": "Eri Shiina"
-		},
-		"animator:MasamiIwasawa":
-		{
-			"DESCRIPTION": "<LIM>. Put !S! {Dazed} on top of your draw pile. || Starter: Apply !M! Vulnerable.",
-			"NAME": "Masami Iwasawa"
-		},
-		"animator:Chaa":
-		{
-			"DESCRIPTION": "At the start of your turn, Exhaust a card, then add a random card of the next rarity to your hand.  ",
-			"EXTENDED_DESCRIPTION": ["At the start of your turn, #yExhaust #b{0} card(s), then add a random card of the next rarity to your hand for each card #yExhausted."],
-			"NAME": "Chaa"
-		},
-		"animator:YuzuruOtonashi":
-		{
-			"DESCRIPTION": "Exhaust up to !M! cards. For each card Exhausted, gain an effect based on its type: || {~Attack} -> Boost [F] . ** {~Skill} -> Gain !S! [Temporary HP]. ** Hindrance -> Draw a card.",
-			"NAME": "Yuzuru Otonashi"
-		},
-		"animator:Noda":
-		{
-			"DESCRIPTION": "Afterlife. || {Synergy}: Gain/Boost [F]. || When Discarded: Exhaust.",
-			"NAME": "Noda"
-		},
-		"animator:HidekiHinata":
-		{
-			"DESCRIPTION": "Afterlife. || If the enemy intends to attack, deal damage again.",
-			"NAME": "Hideki Hinata"
-		},
-		"animator:Yusa":
-		{
-			"DESCRIPTION": "{Scry} !S!. || Exhaust !M! card(s) from your discard pile.",
-			"NAME": "Yusa"
-		},
-		"animator:Yui":
-		{
-			"DESCRIPTION": "Afterlife. Motivate !S!. || When played from {Afterlife}: Add a {Girls Dead Monster} to your draw pile.",
-			"NAME": "Yui"
-		},
-		"animator:GirlDeMo":
-		{
-		  "DESCRIPTION": "Double your [F], [A], and [I], if it is the highest or tied for the highest stat.",
-		  "NAME": "Girls Dead Monster"
-		},
-		"animator:AngelAlter":
-		{
-			"DESCRIPTION": "Afterlife. || This card can only be played from Afterlife. ** {Boost} [F] and [A] . ** Shuffle a copy of this card into both your draw and discard piles.",
-			"NAME": "Angel Alter"
-		},
-		"animator:Strike_AngelBeats":
-		{
-			"DESCRIPTION": "",
-			"NAME": "Improved Strike"
-		},
-		"animator:Defend_AngelBeats":
-		{
-			"DESCRIPTION": "<LIM>. Exhaust !M! card(s).",
-			"NAME": "Improved Defend"
-		}
-	},
-
-	"BETA:TOUHOUPROJECT":
-	{
-		"animator:MarisaKirisame":
-		{
-			"DESCRIPTION": "Channel [Lightning]. ** Put up to 1 card from your hand on top of your draw pile. || Cooldown !S! : Evoke your next [Lightning] !M! times.",
-			"NAME": "Marisa Kirisame"
-		},
-		"animator:ReimuHakurei":
-		{
-			"DESCRIPTION": "Apply !M! [Vulnerable]. ** Apply !M! [Weak]. || Starter: Scry !S!.",
-			"NAME": "Reimu Hakurei"
-		},
-		"animator:SuikaIbuki":
-		{
-		  "DESCRIPTION": "If not in <FS>: Enter <FS> and draw !M! less card next turn. || On Synergy or when discarded: Gain/Boost [F].",
-		  "NAME": "Suika Ibuki"
-		},
-		"animator:AyaShameimaru":
-		{
-		  "DESCRIPTION": "Gain !S! [Blur]. Increase ** this card's [Block] by !M!. || When Drawn: If ** in Neutral Stance, ** enter <AS>.",
-		  "NAME": "Aya Shameimaru"
-		},
-		"animator:KomachiOnozuka":
-		{
-		  "DESCRIPTION": "Apply !M! [Vulnerable]. || <LIM>. If this card ** kills an Elite or Boss: ** Obtain {Shinigami's Ferry}.",
-		  "NAME": "Komachi Onozuka"
-		},
-		"animator:YuukaKazami":
-		{
-		  "DESCRIPTION": "This card can only be played on even-numbered turns. || On Synergy or when discarded: Channel !M! [Earth].",
-		  "EXTENDED_DESCRIPTION": ["This card can only be played on even-numbered turns. ** (Current turn: ", "). ** On Synergy or when discarded: Channel !M! [Earth]."],
-		  "NAME": "Yuuka Kazami"
-		},
-		"animator:SanaeKochiya":
-		{
-		  "DESCRIPTION": "Scry !M!. || For each card discarded, add a {Miracle} to your hand next turn.",
-		  "EXTENDED_DESCRIPTION": ["At the start of your next turn, add #b{0} #yMiracle(s) to your hand."],
-		  "NAME": "Sanae Kochiya"
-		},
-		"animator:Clownpiece":
-		{
-		  "DESCRIPTION": "Play the top card of your draw pile. || <SLM>. Synergy: Channel !M! [Dark].",
-		  "NAME": "Clownpiece"
-		},
-		"animator:KaguyaHouraisan":
-		{
-		  "DESCRIPTION": "Draw 1 card. Gain an effect based on its type. || {~Attack} -> ALL enemies lose !M! HP. ** {~Skill} -> Gain !B! [Block]. ** {~Power} -> Gain/Boost !S! [I].",
-		  "NAME": "Kaguya Houraisan"
-		},
-		"animator:AliceMargatroid":
-		{
-		  "DESCRIPTION": "At the start of your turn, draw !M! card(s), then put !M! card(s) on top of your draw pile. || Synergy: Gain !S! [Temporary HP].",
-		  "EXTENDED_DESCRIPTION": ["At the start of your turn, draw #b{0} card(s), then put #b{0} card(s) on top of your draw pile."],
-		  "NAME": "Alice Margatroid"
-		},
-		"animator:HiedaNoAkyuu":
-		{
-			"DESCRIPTION": "Shuffle your draw pile into your discard pile, then choose !M! cards in your discard pile.  Move them into your draw pile. || You cannot draw additional cards this turn.",
-			"NAME": "Hieda no Akyuu"
-		},
-		"animator:KoishiKomeiji":
-		{
-			"DESCRIPTION": "At the start of your turn, gain [E]. || The first card you draw each turn is {Autoplayed}.",
-			"EXTENDED_DESCRIPTION": ["At the start of your turn, gain #b{0} [E] . The first #b{0} card(s) you draw each turn is #yAutoplayed."],
-			"NAME": "Koishi Komeiji"
-		},
-		"animator:SatoriKomeiji":
-		{
-		  "DESCRIPTION": "At the start of your turn, move !M! card(s) in your draw pile to the top. || Your draw pile is viewed in order.",
-		  "EXTENDED_DESCRIPTION": ["At the start of your turn, move #b{0} card(s) in your draw pile to the top. Your draw pile is viewed in order."],
-		  "NAME": "Satori Komeiji"
-		},
-		"animator:YukariYakumo":
-		{
-		  "DESCRIPTION": "Gain !M! [Weak], [Vulnerable], and [Frail]. || The effects of these powers on you are {Inverted} for !S! turns.",
-		  "EXTENDED_DESCRIPTION": ["The effects of #yWeak, #yVulnerable, and #yFrail on you are #yInverted for #b{0} turn(s)."],
-		  "NAME": "Yukari Yakumo"
-		},
-		"animator:YuyukoSaigyouji":
-		{
-			"DESCRIPTION": "Starts in your Discard pile. || Unblocked attack damage kills non-boss enemies. || Purge at the start of boss battles.",
-			"EXTENDED_DESCRIPTION": ["Unblocked attack damage kills non-boss enemies."],
-			"NAME": "Yuyuko Saigyouji"
-		},
-		"animator:Strike_TouhouProject":
-		{
-			"DESCRIPTION": "",
-			"NAME": "Improved Strike"
-		},
-		"animator:Defend_TouhouProject":
-		{
-			"DESCRIPTION": "Scry !M!.",
-			"NAME": "Improved Defend"
-		}
-	},
-
 	"BETA:ROZENMAIDEN":
 	{
 		"animator:Curse_JunTormented":
@@ -818,17 +714,17 @@
 			"DESCRIPTION": "<LIM>. Upgrade next upgradable card created.",
 			"NAME": "Improved Defend"
 		},
-		"animator:Enju_Barasuishou":
-		{
-			"DESCRIPTION": "{~Unique}. Exhaust a card from your hand. || If it wasn't a Hindrance: Upgrade this.",
-			"NAME": "Barasuishou"
-		},
 		"animator:Enju":
 		{
 			"DESCRIPTION": "Shuffle a {Barasuishou} into your draw pile. ** At start of your turn, Add a {Crystallize} and Upgrade a random card in your hand.",
 			"EXTENDED_DESCRIPTION": ["At start of your turn, add #b{0} #yCrystallize and #yUpgrade #b{0} random card in your hand."],
 			"NAME": "Enju",
 			"UPGRADE_DESCRIPTION": "Shuffle a {Barasuishou} with X+1 into your draw pile. ** At start of your turn, Add a {Crystallize} and Upgrade a random card in your hand."
+		},
+		"animator:Enju_Barasuishou":
+		{
+			"DESCRIPTION": "{~Unique}. Exhaust a card from your hand. || If it wasn't a Hindrance: Upgrade this.",
+			"NAME": "Barasuishou"
 		},
 		"animator:Hinaichigo":
 		{
@@ -838,61 +734,54 @@
 		"animator:JunSakurada":
 		{
 			"DESCRIPTION": "{~Unique}. Get {Tormented}. || Upgrade next !M! upgradable card created this combat. <LIM>. After that, upgrade permanently.",
-			"NAME": "Jun Sakurada",
-			"EXTENDED_DESCRIPTION": [
-				"For the next #b{0} time(s) an upgradable card is created, upgrade it.",
-				"For the next #b{0} time(s) an upgradable card is created, upgrade it, after that, Permanently Upgrade #yJun #ySakurada in your deck."
-			]
+			"EXTENDED_DESCRIPTION": ["For the next #b{0} time(s) an upgradable card is created, upgrade it.", "For the next #b{0} time(s) an upgradable card is created, upgrade it, after that, Permanently Upgrade #yJun #ySakurada in your deck."],
+			"NAME": "Jun Sakurada"
+		},
+		"animator:Kanaria":
+		{
+			"DESCRIPTION": "Whenever you apply a Debuff: Gain 2 [Block]. || <LIM>. On Synergy: Add {Pizzicato} to your hand and Retain it.",
+			"EXTENDED_DESCRIPTION": ["Whenever you apply a Debuff, gain #b{0} [Block]."],
+			"NAME": "Kanaria"
 		},
 		"animator:Kanaria_Pizzicato":
 		{
 			"DESCRIPTION": "If you have [Aether]: <DRW-M>. Otherwise: Channel [Aether]. || Discard a card.",
 			"NAME": "Pizzicato"
 		},
-		"animator:Kanaria":
-		{
-			"DESCRIPTION": "Whenever you apply a Debuff: Gain 2 [Block]. || <LIM>. On Synergy: Add {Pizzicato} to your hand and Retain it.",
-			"NAME": "Kanaria",
-			"EXTENDED_DESCRIPTION": ["Whenever you apply a Debuff, gain #b{0} [Block]."]
-		},
 		"animator:Kirakishou":
 		{
 			"DESCRIPTION": "Apply !M! [Constricted]. Place the top card of your draw pile on the enemy. || Cooldown !S!: Return ALL those cards, they cost 1 less this turn.",
-			"NAME": "Kirakishou",
-			"EXTENDED_DESCRIPTION":	[
-				"On death, nothing return to your hand.",
-				"On death, {0} is returned to your hand.",
-				"On death, {0} are returned to your hand."
-			]
+			"EXTENDED_DESCRIPTION": ["On death, nothing return to your hand.", "On death, {0} is returned to your hand.", "On death, {0} are returned to your hand."],
+			"NAME": "Kirakishou"
 		},
 		"animator:MeguKakizaki":
 		{
 			"DESCRIPTION": "<LIM>. Exhaust a Curse anywhere to heal !M! HP after combat, then Exhaust. || When Discarded: Draw {Suigintou} from anywhere.",
-			"NAME": "Megu Kakizaki",
 			"EXTENDED_DESCRIPTION": ["Exhaust a curse to heal."],
+			"NAME": "Megu Kakizaki",
 			"UPGRADE_DESCRIPTION": "<LIM>. Exhaust a Curse anywhere to heal !M! HP after combat, then Exhaust. || When Discarded: Draw {Suigintou} from anywhere and Retain it."
 		},
 		"animator:NoriSakurada":
 		{
 			"DESCRIPTION": "Draw !M! card(s). Put 1 card on top of your draw pile. || At the end of turn: Reload.",
-			"NAME": "Nori Sakurada",
-			"EXTENDED_DESCRIPTION": ["At end of this turn, discard any number of cards in your hand."]
+			"EXTENDED_DESCRIPTION": ["At end of this turn, discard any number of cards in your hand."],
+			"NAME": "Nori Sakurada"
 		},
 		"animator:Shinku":
 		{
 			"DESCRIPTION": "<ST>: <DRW-M>. || Discard your hand. Obtain [T-Knife] for each card discarded. || Can be Upgraded thrice.",
 			"NAME": "Shinku"
 		},
-		"animator:Shirosaki_Laplace":
-		{
-			"DESCRIPTION": "Afterlife. || When played from {Afterlife}: Draw a card in your discard pile. Otherwise: Discard a {Curse} to Enter a random {Stance}, then Exhaust.",
-			"NAME": "Laplace no Ma",
-			"EXTENDED_DESCRIPTION": ["Discard a curse to enter a random Stance."]
-		},
 		"animator:Shirosaki":
 		{
 			"DESCRIPTION": "Channel !M! [Random Orb]. || Shuffle {Laplace no Ma} and a {Curse} to your draw pile. || On Synergy: The {Curse} is always {Injury}.",
 			"NAME": "Shirosaki"
+		},
+		"animator:Shirosaki_Laplace":
+		{
+			"DESCRIPTION": "Afterlife. || When played from {Afterlife}: Draw a card in your discard pile. Otherwise: Discard a {Curse} to Enter a random {Stance}, then Exhaust.",
+			"EXTENDED_DESCRIPTION": ["Discard a curse to enter a random Stance."],
+			"NAME": "Laplace no Ma"
 		},
 		"animator:Souseiseki":
 		{
@@ -904,15 +793,15 @@
 			"DESCRIPTION": "{~Unique}. || <slm>. Next turn: Add this to your hand.",
 			"NAME": "Improved Strike"
 		},
-		"animator:Suigintou_BlackFeather":
-		{
-			"DESCRIPTION": "Draw Suigintou from anywhere and add a random {Curse} to your hand. || When Discarded: Purge, then apply !M! [Shackles] to a random enemy.",
-			"NAME": "Black Feather"
-		},
 		"animator:Suigintou":
 		{
 			"DESCRIPTION": "{~Unique}. || Cooldown !S!: Channel 1 Fire and trigger it !M! times. || On Discard: Obtain a {Black Feather}.",
 			"NAME": "Suigintou"
+		},
+		"animator:Suigintou_BlackFeather":
+		{
+			"DESCRIPTION": "Draw Suigintou from anywhere and add a random {Curse} to your hand. || When Discarded: Purge, then apply !M! [Shackles] to a random enemy.",
+			"NAME": "Black Feather"
 		},
 		"animator:Suiseiseki":
 		{
@@ -932,7 +821,101 @@
 			"UPGRADE_DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! [Block]. || When Drawn: Gain [F]."
 		}
 	},
-
+	"BETA:TOUHOUPROJECT":
+	{
+		"animator:AliceMargatroid":
+		{
+			"DESCRIPTION": "At the start of your turn, draw !M! card(s), then put !M! card(s) on top of your draw pile. || Synergy: Gain !S! [Temporary HP].",
+			"EXTENDED_DESCRIPTION": ["At the start of your turn, draw #b{0} card(s), then put #b{0} card(s) on top of your draw pile."],
+			"NAME": "Alice Margatroid"
+		},
+		"animator:AyaShameimaru":
+		{
+			"DESCRIPTION": "Gain !S! [Blur]. Increase ** this card's [Block] by !M!. || When Drawn: If ** in Neutral Stance, ** enter <AS>.",
+			"NAME": "Aya Shameimaru"
+		},
+		"animator:Clownpiece":
+		{
+			"DESCRIPTION": "Play the top card of your draw pile. || <SLM>. Synergy: Channel !M! [Dark].",
+			"NAME": "Clownpiece"
+		},
+		"animator:Defend_TouhouProject":
+		{
+			"DESCRIPTION": "Scry !M!.",
+			"NAME": "Improved Defend"
+		},
+		"animator:HiedaNoAkyuu":
+		{
+			"DESCRIPTION": "Shuffle your draw pile into your discard pile, then choose !M! cards in your discard pile.  Move them into your draw pile. || You cannot draw additional cards this turn.",
+			"NAME": "Hieda no Akyuu"
+		},
+		"animator:KaguyaHouraisan":
+		{
+			"DESCRIPTION": "Draw 1 card. Gain an effect based on its type. || {~Attack} -> ALL enemies lose !M! HP. ** {~Skill} -> Gain !B! [Block]. ** {~Power} -> Gain/Boost !S! [I].",
+			"NAME": "Kaguya Houraisan"
+		},
+		"animator:KoishiKomeiji":
+		{
+			"DESCRIPTION": "At the start of your turn, gain [E]. || The first card you draw each turn is {Autoplayed}.",
+			"EXTENDED_DESCRIPTION": ["At the start of your turn, gain #b{0} [E] . The first #b{0} card(s) you draw each turn is #yAutoplayed."],
+			"NAME": "Koishi Komeiji"
+		},
+		"animator:KomachiOnozuka":
+		{
+			"DESCRIPTION": "Apply !M! [Vulnerable]. || <LIM>. If this card ** kills an Elite or Boss: ** Obtain {Shinigami's Ferry}.",
+			"NAME": "Komachi Onozuka"
+		},
+		"animator:MarisaKirisame":
+		{
+			"DESCRIPTION": "Channel [Lightning]. ** Put up to 1 card from your hand on top of your draw pile. || Cooldown !S! : Evoke your next [Lightning] !M! times.",
+			"NAME": "Marisa Kirisame"
+		},
+		"animator:ReimuHakurei":
+		{
+			"DESCRIPTION": "Apply !M! [Vulnerable]. ** Apply !M! [Weak]. || Starter: Scry !S!.",
+			"NAME": "Reimu Hakurei"
+		},
+		"animator:SanaeKochiya":
+		{
+			"DESCRIPTION": "Scry !M!. || For each card discarded, add a {Miracle} to your hand next turn.",
+			"EXTENDED_DESCRIPTION": ["At the start of your next turn, add #b{0} #yMiracle(s) to your hand."],
+			"NAME": "Sanae Kochiya"
+		},
+		"animator:SatoriKomeiji":
+		{
+			"DESCRIPTION": "At the start of your turn, move !M! card(s) in your draw pile to the top. || Your draw pile is viewed in order.",
+			"EXTENDED_DESCRIPTION": ["At the start of your turn, move #b{0} card(s) in your draw pile to the top. Your draw pile is viewed in order."],
+			"NAME": "Satori Komeiji"
+		},
+		"animator:Strike_TouhouProject":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Improved Strike"
+		},
+		"animator:SuikaIbuki":
+		{
+			"DESCRIPTION": "If not in <FS>: Enter <FS> and draw !M! less card next turn. || On Synergy or when discarded: Gain/Boost [F].",
+			"NAME": "Suika Ibuki"
+		},
+		"animator:YukariYakumo":
+		{
+			"DESCRIPTION": "Gain !M! [Weak], [Vulnerable], and [Frail]. || The effects of these powers on you are {Inverted} for !S! turns.",
+			"EXTENDED_DESCRIPTION": ["The effects of #yWeak, #yVulnerable, and #yFrail on you are #yInverted for #b{0} turn(s)."],
+			"NAME": "Yukari Yakumo"
+		},
+		"animator:YuukaKazami":
+		{
+			"DESCRIPTION": "This card can only be played on even-numbered turns. || On Synergy or when discarded: Channel !M! [Earth].",
+			"EXTENDED_DESCRIPTION": ["This card can only be played on even-numbered turns. ** (Current turn: ", "). ** On Synergy or when discarded: Channel !M! [Earth]."],
+			"NAME": "Yuuka Kazami"
+		},
+		"animator:YuyukoSaigyouji":
+		{
+			"DESCRIPTION": "Starts in your Discard pile. || Unblocked attack damage kills non-boss enemies. || Purge at the start of boss battles.",
+			"EXTENDED_DESCRIPTION": ["Unblocked attack damage kills non-boss enemies."],
+			"NAME": "Yuyuko Saigyouji"
+		}
+	},
 	"COLORLESS:RARE":
 	{
 		"animator:Emilia":
@@ -987,7 +970,6 @@
 			"NAME": "Tanya Degurechaff"
 		}
 	},
-
 	"COLORLESS:UNCOMMON":
 	{
 		"animator:Canti":
@@ -1059,7 +1041,6 @@
 			"NAME": "Zero"
 		}
 	},
-
 	"CURSE":
 	{
 		"animator:Curse_Dizziness":
@@ -1078,7 +1059,6 @@
 			"NAME": "Nutcracker"
 		}
 	},
-
 	"SERIES:ELSWORD":
 	{
 		"animator:Add":
@@ -1152,7 +1132,6 @@
 			"NAME": "Rena"
 		}
 	},
-
 	"SERIES:FATE":
 	{
 		"animator:Alexander":
@@ -1228,7 +1207,6 @@
 			"NAME": "Shinji Matou"
 		}
 	},
-
 	"SERIES:FULLMETALALCHEMIST":
 	{
 		"animator:ElricAlphonse":
@@ -1294,7 +1272,6 @@
 			"NAME": "Winry Rockbell"
 		}
 	},
-
 	"SERIES:GATE":
 	{
 		"animator:Arpeggio":
@@ -1350,7 +1327,6 @@
 			"NAME": "Yao Ha Ducy"
 		}
 	},
-
 	"SERIES:GOBLINSLAYER":
 	{
 		"animator:CowGirl":
@@ -1406,7 +1382,6 @@
 			"NAME": "Witch"
 		}
 	},
-
 	"SERIES:HITSUGINOCHAIKA":
 	{
 		"animator:AcuraAkari":
@@ -1461,7 +1436,6 @@
 			"NAME": "Viivi"
 		}
 	},
-
 	"SERIES:KATANAGATARI":
 	{
 		"animator:Azekura":
@@ -1527,7 +1501,6 @@
 			"NAME": "Zanki Kiguchi"
 		}
 	},
-
 	"SERIES:KONOSUBA":
 	{
 		"animator:Aqua":
@@ -1594,7 +1567,6 @@
 			"NAME": "YunYun"
 		}
 	},
-
 	"SERIES:MADOKAMAGICA":
 	{
 		"animator:Charlotte":
@@ -1687,7 +1659,6 @@
 			"NAME": "Yui Tsuruno"
 		}
 	},
-
 	"SERIES:NOGAMENOLIFE":
 	{
 		"animator:ChlammyZell":
@@ -1750,7 +1721,6 @@
 			"NAME": "Tet"
 		}
 	},
-
 	"SERIES:ONEPUNCHMAN":
 	{
 		"animator:Boros":
@@ -1809,7 +1779,6 @@
 			"NAME": "Tatsumaki"
 		}
 	},
-
 	"SERIES:OVERLORD":
 	{
 		"animator:Ainz":
@@ -1865,7 +1834,6 @@
 			"NAME": "Shalltear"
 		}
 	},
-
 	"SERIES:OWARINOSERAPH":
 	{
 		"animator:CrowleyEusford":
@@ -1924,7 +1892,6 @@
 			"NAME": "Yuuichirou"
 		}
 	},
-
 	"SERIES:TENSEISLIME":
 	{
 		"animator:Benimaru":
@@ -1983,7 +1950,6 @@
 			"NAME": "Vesta"
 		}
 	},
-
 	"SPECIAL":
 	{
 		"animator:Asuramaru":
@@ -2043,7 +2009,6 @@
 			"DESCRIPTION": "This card's damage ** is multiplied by X",
 			"NAME": "Ichigo Bankai"
 		},
-
 		"animator:MelzalgaldAlt_1":
 		{
 			"DESCRIPTION": "Gain !M! [F].",
@@ -2132,7 +2097,6 @@
 			"NAME": "Yusarin"
 		}
 	},
-
 	"STATUS":
 	{
 		"animator:Crystallize":
@@ -2177,7 +2141,6 @@
 			"NAME": "The Haunt"
 		}
 	},
-
 	"ULTRARARE":
 	{
 		"animator:Azriel":

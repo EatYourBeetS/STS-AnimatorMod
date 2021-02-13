@@ -24,6 +24,15 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
         Initialize(amount);
     }
 
+    public MotivateAction(AbstractCard card, int amount)
+    {
+        super(ActionType.CARD_MANIPULATION, Settings.ACTION_DUR_FASTER);
+
+        this.card = card;
+
+        Initialize(amount);
+    }
+
     public MotivateAction MotivateZeroCost(boolean value)
     {
         this.motivateZeroCost = value;
@@ -34,47 +43,47 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     @Override
     protected void FirstUpdate()
     {
-        RandomizedList<AbstractCard> betterPossible = new RandomizedList<>();
-        RandomizedList<AbstractCard> possible = new RandomizedList<>();
-
-        for (AbstractCard c : player.hand.group)
+        if (card == null)
         {
-            if (c.costForTurn > 0)
+            RandomizedList<AbstractCard> betterPossible = new RandomizedList<>();
+            RandomizedList<AbstractCard> possible = new RandomizedList<>();
+
+            for (AbstractCard c : player.hand.group)
             {
-                betterPossible.Add(c);
+                if (c.costForTurn > 0)
+                {
+                    betterPossible.Add(c);
+                }
+                else if (c.cost > 0)
+                {
+                    possible.Add(c);
+                }
             }
-            else if (c.cost > 0)
+
+            if (betterPossible.Size() > 0)
             {
-                possible.Add(c);
+                card = betterPossible.Retrieve(rng);
+            }
+            else if (motivateZeroCost && possible.Size() > 0)
+            {
+                card = possible.Retrieve(rng);
             }
         }
 
-        if (betterPossible.Size() > 0)
-        {
-            card = betterPossible.Retrieve(rng);
-        }
-        else if (motivateZeroCost && possible.Size() > 0)
-        {
-            card = possible.Retrieve(rng);
-        }
-
-        if (card != null)
-        {
-            if (card.costForTurn > 0)
-            {
-                card.superFlash(Color.GOLD.cpy());
-            }
-            else
-            {
-                Complete(card);
-            }
-
-            CostModifiers.For(card).Add(ID, -amount);
-            GameUtilities.TriggerWhenPlayed(card, c -> CostModifiers.For(c).Remove(ID, false));
-        }
-        else
+        if (card == null || (card.costForTurn <= 0 && !motivateZeroCost))
         {
             Complete(null);
+            return;
+        }
+
+        card.superFlash(Color.GOLD.cpy());
+
+        CostModifiers.For(card).Add(ID, -amount);
+        GameUtilities.TriggerWhenPlayed(card, c -> CostModifiers.For(c).Remove(ID, false));
+
+        if (card.costForTurn <= 0)
+        {
+            Complete(card);
         }
     }
 

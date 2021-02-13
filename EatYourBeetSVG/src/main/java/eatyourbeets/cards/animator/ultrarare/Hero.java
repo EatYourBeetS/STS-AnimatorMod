@@ -35,7 +35,7 @@ public class Hero extends AnimatorCard_UltraRare
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY)
         .AddCallback(c ->
         {
-            if (GameUtilities.TriggerOnKill(c, true) && CombatStats.TryActivateLimited(cardID))
+            if (GameUtilities.IsFatal(c, true) && CombatStats.TryActivateLimited(cardID))
             {
                 Random rng = new Random(Settings.seed + (AbstractDungeon.actNum * 17) + (AbstractDungeon.floorNum * 23));
                 if (rng.randomBoolean(0.4f))

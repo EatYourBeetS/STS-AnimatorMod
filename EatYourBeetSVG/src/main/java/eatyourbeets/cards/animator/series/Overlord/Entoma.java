@@ -48,7 +48,7 @@ public class Entoma extends AnimatorCard
         .SetDamageEffect(e -> GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40f * Settings.scale, Color.SCARLET.cpy())))
         .AddCallback(enemy ->
         {
-            if (GameUtilities.TriggerOnKill(enemy, true) && CombatStats.TryActivateLimited(cardID))
+            if (GameUtilities.IsFatal(enemy, true) && CombatStats.TryActivateLimited(cardID))
             {
                 player.increaseMaxHp(2, false);
 

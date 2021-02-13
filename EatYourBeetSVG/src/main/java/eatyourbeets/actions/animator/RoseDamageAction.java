@@ -41,7 +41,7 @@ public class RoseDamageAction extends EYBAction
 
             if (action.isDone)
             {
-                if (GameUtilities.TriggerOnKill(target, true))
+                if (GameUtilities.IsFatal(target, true))
                 {
                     for (AbstractMonster m : GameUtilities.GetEnemies(true))
                     {

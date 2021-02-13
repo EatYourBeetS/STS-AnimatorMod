@@ -80,7 +80,7 @@ public final class Examples extends AnimatorCard
         {
            GameActions.Bottom.Heal(enemy.lastDamageTaken);
 
-           if (GameUtilities.TriggerOnKill(enemy, true))
+           if (GameUtilities.IsFatal(enemy, true))
            {
                GameActions.Bottom.GainEnergy(secondaryValue);
            }

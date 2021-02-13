@@ -62,7 +62,7 @@ public class KrulTepes extends AnimatorCard
             {
                 AbstractRoom room = AbstractDungeon.getCurrRoom();
                 if ((room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
-                    && GameUtilities.TriggerOnKill(enemy, false)
+                    && GameUtilities.IsFatal(enemy, false)
                     && CombatStats.TryActivateLimited(cardID))
                 {
                     ObtainReward();

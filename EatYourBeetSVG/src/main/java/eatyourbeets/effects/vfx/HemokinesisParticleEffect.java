@@ -58,7 +58,7 @@ public class HemokinesisParticleEffect extends EYBEffect
         this.rotationRate = MathUtils.random(600f, 650f) * Settings.scale;
         this.currentSpeed = 1000f * Settings.scale;
         this.color = new Color(1f, 0f, 0.02f, 0.6f);
-        this.scale = 1f * Settings.scale;
+        this.scale = Settings.scale;
         this.renderBehind = MathUtils.randomBoolean();
     }
 

@@ -19,9 +19,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
 
     public MotivateAction(int amount)
     {
-        super(ActionType.CARD_MANIPULATION, Settings.ACTION_DUR_FASTER);
-
-        Initialize(amount);
+        this(null, amount);
     }
 
     public MotivateAction(AbstractCard card, int amount)

@@ -12,7 +12,6 @@ import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.animator.LabyPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class Laby extends AnimatorCard
 {
@@ -34,12 +33,6 @@ public class Laby extends AnimatorCard
         {
             intent.AddEnchantedArmor(secondaryValue);
         }
-    }
-
-    @Override
-    public void update()
-    {
-        super.update();
     }
 
     @Override

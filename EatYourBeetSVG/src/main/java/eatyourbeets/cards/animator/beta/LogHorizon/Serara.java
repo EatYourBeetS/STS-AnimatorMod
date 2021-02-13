@@ -4,7 +4,6 @@ import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPF
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.cardManipulation.MotivateTargetAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -48,7 +47,7 @@ public class Serara extends AnimatorCard {
         {
             if (c.cardID.equals(Nyanta.DATA.ID))
             {
-                GameActions.Bottom.Add(new MotivateTargetAction(c, cardID));
+                GameActions.Bottom.Motivate(c, 1);
             }
         }
 
@@ -56,7 +55,7 @@ public class Serara extends AnimatorCard {
         {
             if (c.cardID.equals(Nyanta.DATA.ID))
             {
-                GameActions.Bottom.Add(new MotivateTargetAction(c, cardID));
+                GameActions.Bottom.Motivate(c, 1);
             }
         }
     }

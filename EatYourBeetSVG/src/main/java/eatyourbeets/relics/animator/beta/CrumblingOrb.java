@@ -25,7 +25,7 @@ public class CrumblingOrb extends AnimatorRelic
     {
         super.onEquip();
 
-        player.energy.energyMaster += 2;
+        player.energy.energyMaster += 1;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class CrumblingOrb extends AnimatorRelic
     {
         super.onUnequip();
 
-        player.energy.energyMaster -= 2;
+        player.energy.energyMaster -= 1;
     }
 
     @Override

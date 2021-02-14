@@ -59,7 +59,7 @@ public class SakuraKinomoto extends AnimatorCard
                     CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                     for (int i = 0; i < magicNumber; i++)
                     {
-                        AbstractCard card = GameUtilities.GetRandomRewardCard(reward, false);
+                        AbstractCard card = GameUtilities.GetRandomRewardCard(reward, false, true);
                         reward.cards.add(card);
                         choices.addToBottom(card);
                     }

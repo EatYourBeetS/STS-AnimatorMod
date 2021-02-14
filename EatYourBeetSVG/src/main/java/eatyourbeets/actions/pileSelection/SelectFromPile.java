@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
@@ -46,7 +45,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         Initialize(amount, sourceName);
     }
 
-    public EYBAction CancellableFromPlayer(boolean value)
+    public SelectFromPile CancellableFromPlayer(boolean value)
     {
         this.canPlayerCancel = value;
 

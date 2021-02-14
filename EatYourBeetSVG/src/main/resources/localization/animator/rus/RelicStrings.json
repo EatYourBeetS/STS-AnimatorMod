@@ -36,6 +36,12 @@
 		"FLAVOR": "Цвета медленно меркнут...",
 		"NAME": "Бесцветный Кусочек"
 	},
+	"animator:CrumblingOrb":
+	{
+	  "DESCRIPTIONS": ["Gain [E] at the start of each turn. At the start of each Boss and Elite fight, choose and permanently transform 2 out of 3 random cards in your deck."],
+	  "FLAVOR": "As the orb understands the user's heart, the fusion between the two restructures the soul and causes a great transformation.",
+	  "NAME": "Crumbling Orb"
+	},
 	"animator:CursedBlade":
 	{
 		"DESCRIPTIONS": ["Начинаете бой с #b{0} #yУсилия и #yПроворности. Когда противники наносят урон по ОЗ, добавляет #yРану в руку."],

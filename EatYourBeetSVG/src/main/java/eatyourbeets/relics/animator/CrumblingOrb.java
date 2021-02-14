@@ -81,9 +81,9 @@ public class CrumblingOrb extends AnimatorRelic
                         replacement.upgrade();
                     }
 
-                    GameEffects.TopLevelQueue.Add(new ShowCardAndObtainEffect(replacement, (float) Settings.WIDTH / 3f + x_offset, (float)Settings.HEIGHT / 2f, false));
+                    GameEffects.TopLevelQueue.Add(new ShowCardAndObtainEffect(replacement, (float) Settings.WIDTH / 3f + x_offset, (float) Settings.HEIGHT / 2f, false));
                     GameActions.Top.ReplaceCard(c.uuid, replacement);
-                    x_offset += (float)Settings.WIDTH / 6f;
+                    x_offset += (float) Settings.WIDTH / 6f;
 
                     AbstractDungeon.transformedCard = null;
                 }

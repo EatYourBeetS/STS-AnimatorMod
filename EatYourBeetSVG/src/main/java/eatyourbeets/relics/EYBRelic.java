@@ -84,4 +84,38 @@ public abstract class EYBRelic extends CustomRelic
 
         return counter;
     }
+
+    @Override
+    public void atPreBattle()
+    {
+        super.atPreBattle();
+
+        Subscribe();
+    }
+
+    @Override
+    public void onEquip()
+    {
+        super.onEquip();
+
+        Subscribe();
+    }
+
+    @Override
+    public void onUnequip()
+    {
+        super.onUnequip();
+
+        Unsubscribe();
+    }
+
+    protected void Subscribe()
+    {
+
+    }
+
+    protected void Unsubscribe()
+    {
+
+    }
 }

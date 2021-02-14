@@ -38,7 +38,7 @@
 	},
 	"animator:CrumblingOrb":
 	{
-	  "DESCRIPTIONS": ["Gain 1 [E] at the start of each turn.  At the start of each Boss and Elite fight, permanently transform 2 random non-Hindrance cards in your deck."],
+	  "DESCRIPTIONS": ["Gain [E] at the start of each turn. At the start of each Boss and Elite fight, choose and permanently transform 2 out of 3 random cards in your deck."],
 	  "FLAVOR": "As the orb understands the user's heart, the fusion between the two restructures the soul and causes a great transformation.",
 	  "NAME": "Crumbling Orb"
 	},

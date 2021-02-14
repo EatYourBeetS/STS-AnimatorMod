@@ -4,19 +4,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
-import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 public class CrumblingOrb extends AnimatorRelic
 {
@@ -28,104 +21,74 @@ public class CrumblingOrb extends AnimatorRelic
     }
 
     @Override
-    public void atTurnStartPostDraw()
+    public void onEquip()
     {
-        super.atTurnStartPostDraw();
+        super.onEquip();
 
-        GameActions.Bottom.Callback(() ->
-        {
-            GameActions.Bottom.GainEnergy(1);
-            flash();
-        });
+        player.energy.energyMaster += 2;
     }
 
     @Override
-    public void atBattleStartPreDraw()
+    public void onUnequip()
     {
-        super.atBattleStartPreDraw();
+        super.onUnequip();
 
-        AbstractRoom room = AbstractDungeon.getCurrRoom();
-        if (room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
+        player.energy.energyMaster -= 2;
+    }
+
+    @Override
+    public void atPreBattle()
+    {
+        super.atPreBattle();
+
+        if (!GameUtilities.InBossRoom() && !GameUtilities.InEliteRoom())
         {
-            List<AbstractCard> cardsToChange = new ArrayList();
+            return;
+        }
 
-            RandomizedList<AbstractCard> changeableCards = new RandomizedList<>();
-            for (AbstractCard c : player.masterDeck.group)
+        RandomizedList<AbstractCard> randomList = new RandomizedList<>();
+        for (AbstractCard card : player.masterDeck.group)
+        {
+            if (!GameUtilities.IsCurseOrStatus(card) && card.rarity != AbstractCard.CardRarity.BASIC)
             {
-                if (!GameUtilities.IsCurseOrStatus(c))
-                {
-                    changeableCards.Add(c);
-                }
+                randomList.Add(card);
             }
+        }
 
-            float displayCount = 0f;
+        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        while (group.size() < 3 && randomList.Size() > 0)
+        {
+            group.addToBottom(randomList.Retrieve(rng, true));
+        }
 
-            for (int i=0; i<2; i++)
+        GameActions.Top.SelectFromPile(name, 2, group)
+        .SetOptions(false, false)
+        .CancellableFromPlayer(false)
+        .AddCallback(cards ->
+        {
+            float x_offset = 0;
+            for (AbstractCard c : cards)
             {
-                if (changeableCards.Size() > 0)
-                {
-                    AbstractCard currentCard = changeableCards.Retrieve(rng);
+                AbstractDungeon.transformCard(c, c.upgraded, rng);
+                AbstractCard replacement = AbstractDungeon.transformedCard;
 
-                    if (currentCard != null)
+                if (replacement != null)
+                {
+                    AbstractDungeon.player.masterDeck.removeCard(c);
+                    replacement = replacement.makeCopy();
+
+                    if (c.upgraded)
                     {
-                        boolean upgraded = currentCard.upgraded;
-
-                        UUID uuid = currentCard.uuid;
-
-                        AbstractDungeon.player.masterDeck.removeCard(currentCard);
-
-                        AbstractCard reward = AbstractDungeon.returnTrulyRandomCard();
-
-                        if (reward != null)
-                        {
-                            reward = reward.makeCopy();
-
-                            if (upgraded)
-                            {
-                                reward.upgrade();
-                            }
-
-                            GameEffects.TopLevelQueue.Add(new ShowCardAndObtainEffect(reward, (float) Settings.WIDTH / 3f + displayCount, (float) Settings.HEIGHT / 2f, false));
-                            displayCount += (float) Settings.WIDTH / 6f;
-                        }
-
-                        ReplaceCardWithIDInCurrentGame(uuid, reward.makeCopy());
+                        replacement.upgrade();
                     }
+
+                    GameEffects.TopLevelQueue.Add(new ShowCardAndObtainEffect(replacement, (float) Settings.WIDTH / 3f + x_offset, (float)Settings.HEIGHT / 2f, false));
+                    GameActions.Top.ReplaceCard(c.uuid, replacement);
+                    x_offset += (float)Settings.WIDTH / 6f;
+
+                    AbstractDungeon.transformedCard = null;
                 }
             }
-        }
-
-        flash();
-    }
-
-    private void ReplaceCardWithIDInCurrentGame(UUID uuid, AbstractCard newCard)
-    {
-        if (ReplaceCardWithID(player.drawPile, uuid, newCard) == null)
-        {
-            if (ReplaceCardWithID(player.discardPile, uuid, newCard) == null)
-            {
-                if (ReplaceCardWithID(player.exhaustPile, uuid, newCard) == null)
-                {
-                    ReplaceCardWithID(player.hand, uuid, newCard);
-                }
-            }
-        }
-    }
-
-    private AbstractCard ReplaceCardWithID(CardGroup group, UUID uuid, AbstractCard newCard)
-    {
-        for (AbstractCard c : group.group)
-        {
-            if (uuid.equals(c.uuid))
-            {
-                GameEffects.List.ShowCardBriefly(c.makeStatEquivalentCopy());
-                GameActions.Bottom.ReplaceCard(c.uuid, newCard)
-                        .SetUpgrade(c.upgraded);
-
-                return c;
-            }
-        }
-
-        return null;
+        });
     }
 }

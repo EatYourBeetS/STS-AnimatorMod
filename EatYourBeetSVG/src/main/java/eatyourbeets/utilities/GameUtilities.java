@@ -640,7 +640,7 @@ public class GameUtilities
         return orbs.Retrieve(GetRNG(), false).makeCopy();
     }
 
-    public static AbstractCard GetRandomRewardCard(RewardItem rewardItem, boolean includeRares)
+    public static AbstractCard GetRandomRewardCard(RewardItem rewardItem, boolean includeRares, boolean ignoreCurrentRoom)
     {
         AbstractCard replacement = null;
         boolean searchingCard = true;
@@ -649,7 +649,7 @@ public class GameUtilities
         {
             searchingCard = false;
 
-            AbstractCard temp = GetRandomRewardCard(includeRares);
+            AbstractCard temp = GetRandomRewardCard(includeRares, ignoreCurrentRoom);
             if (temp == null)
             {
                 break;
@@ -682,12 +682,12 @@ public class GameUtilities
         return replacement;
     }
 
-    public static AbstractCard GetRandomRewardCard(boolean includeRares)
+    public static AbstractCard GetRandomRewardCard(boolean includeRares, boolean ignoreCurrentRoom)
     {
         ArrayList<AbstractCard> list;
 
         int roll = AbstractDungeon.cardRng.random(100);
-        if (includeRares && (roll <= 4 || GetCurrentRoom() instanceof MonsterRoomBoss))
+        if (includeRares && (roll <= 4 || (!ignoreCurrentRoom && GetCurrentRoom() instanceof MonsterRoomBoss)))
         {
             list = AbstractDungeon.srcRareCardPool.group;
         }

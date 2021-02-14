@@ -18,6 +18,12 @@
 		"NAMES": ["激励"],
 		"PROPER_NAME": "激励"
 	},
+	"Phasing":
+	{
+		"DESCRIPTION": "You have a 35% chance to dodge each attack. Reduce this chance by 5% each turn. Stacking this power resets and delays the chance reduction by 1 turn.",
+		"NAMES": ["phasing"],
+		"PROPER_NAME": "Phasing"
+	},
 	"Reload":
 	{
 		"DESCRIPTION": "丢弃任意数量的手牌， 每丢弃一张发动一次。",

@@ -24,6 +24,12 @@
 		"NAMES": ["motivate"],
 		"PROPER_NAME": "Motivate"
 	},
+	"Phasing":
+	{
+		"DESCRIPTION": "You have a 35% chance to dodge each attack. Reduce this chance by 5% each turn. Stacking this power resets and delays the chance reduction by 1 turn.",
+		"NAMES": ["phasing"],
+		"PROPER_NAME": "Phasing"
+	},
 	"Reload":
 	{
 		"DESCRIPTION": "Discard any number of cards, activate this effect that many times.",

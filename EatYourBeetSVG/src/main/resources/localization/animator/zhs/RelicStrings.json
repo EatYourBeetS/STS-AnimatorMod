@@ -36,6 +36,12 @@
 		"FLAVOR": "颜色正慢慢褪去…",
 		"NAME": "失色碎片"
 	},
+	"animator:CrumblingOrb":
+	{
+	  "DESCRIPTIONS": ["Gain [E] at the start of each turn. At the start of each Boss and Elite fight, choose and permanently transform 2 out of 3 random cards in your deck."],
+	  "FLAVOR": "As the orb understands the user's heart, the fusion between the two restructures the soul and causes a great transformation.",
+	  "NAME": "Crumbling Orb"
+	},
 	"animator:CursedBlade":
 	{
 		"DESCRIPTIONS": ["每场战斗开始时，获得 #b{0} #y武力 和 #y机敏。 NL 每当你受到未被格挡的攻击伤害， 将一张 #y伤口 置于你的手牌。"],

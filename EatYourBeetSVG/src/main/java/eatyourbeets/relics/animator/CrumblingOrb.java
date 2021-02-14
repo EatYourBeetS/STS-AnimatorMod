@@ -69,11 +69,10 @@ public class CrumblingOrb extends AnimatorRelic
             float x_offset = 0;
             for (AbstractCard c : cards)
             {
-                AbstractDungeon.transformCard(c, c.upgraded, rng);
-
-                if (AbstractDungeon.transformedCard != null)
+                AbstractCard replacement = GameUtilities.GetRandomRewardCard(true, true);
+                if (replacement != null)
                 {
-                    AbstractCard replacement = AbstractDungeon.transformedCard.makeCopy();
+                    replacement = replacement.makeCopy();
                     AbstractDungeon.player.masterDeck.removeCard(c);
 
                     if (c.upgraded)
@@ -84,8 +83,6 @@ public class CrumblingOrb extends AnimatorRelic
                     GameEffects.TopLevelQueue.Add(new ShowCardAndObtainEffect(replacement, (float) Settings.WIDTH / 3f + x_offset, (float) Settings.HEIGHT / 2f, false));
                     GameActions.Top.ReplaceCard(c.uuid, replacement);
                     x_offset += (float) Settings.WIDTH / 6f;
-
-                    AbstractDungeon.transformedCard = null;
                 }
             }
         });

@@ -177,6 +177,12 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
     }
 
+    public static void OnStartup()
+    {
+        EnsurePowerIsApplied();
+        ClearStats();
+    }
+
     public static void OnGameStart()
     {
         ClearStats();
@@ -281,8 +287,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public void OnBattleStart()
     {
-        ClearStats();
-
         onBattleEnd.Clear();
         for (OnBattleStartSubscriber s : onBattleStart.GetSubscribers())
         {

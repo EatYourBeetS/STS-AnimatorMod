@@ -100,7 +100,7 @@ public class AnimatorCardRewardBanish extends GUIElement
                 GameEffects.Queue.Add(new HideCardEffect(toBan.card));
                 OnCardBanned(toBan.card);
 
-                AbstractCard replacement = GameUtilities.GetRandomRewardCard(rewardItem, false);
+                AbstractCard replacement = GameUtilities.GetRandomRewardCard(rewardItem, false,true);
                 if (replacement != null)
                 {
                     replacement.current_x = replacement.target_x = toBan.card.current_x;

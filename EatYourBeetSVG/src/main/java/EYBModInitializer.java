@@ -15,7 +15,7 @@ import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
-@SpireInitializer
+@SpireInitializer //
 public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber,
                                           PostEnergyRechargeSubscriber, PostDrawSubscriber, PostDeathSubscriber,
                                           PreStartGameSubscriber, PostUpdateSubscriber, PostRenderSubscriber

@@ -20,9 +20,9 @@
 	},
 	"Phasing":
 	{
-		"DESCRIPTION": "You have a 35% chance to dodge each attack. Reduce this chance by 5% each turn. Stacking this power resets and delays the chance reduction by 1 turn.",
-		"NAMES": ["phasing"],
-		"PROPER_NAME": "Phasing"
+		"DESCRIPTION": "你有 35% 的几率闪避 每次攻击。 每回合将该 几率降低 5% 。 叠加该能力 会重置几率 并使其推迟 1 回合衰减。",
+		"NAMES": ["透明化"],
+		"PROPER_NAME": "透明化"
 	},
 	"Reload":
 	{

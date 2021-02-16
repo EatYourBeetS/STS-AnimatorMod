@@ -9,26 +9,27 @@ public class ColoredString
 
     public ColoredString(Object text, Color color, float alpha)
     {
-        this.color = color.cpy();
-        this.color.a = alpha;
         this.text = String.valueOf(text);
+        this.color = color;
+
+        if (this.color != null)
+        {
+            this.color.a = alpha;
+        }
     }
 
-    public ColoredString(String text, Color color)
+    public ColoredString(Object text, Color color)
     {
-        this.color = color.cpy();
-        this.text = text;
+        this(text, color, 1);
     }
 
-    public ColoredString(String text, Color color, float alpha)
+    public ColoredString(Object text)
     {
-        this.color = color.cpy();
-        this.color.a = alpha;
-        this.text = text;
+        this(text, Color.WHITE.cpy());
     }
 
     public ColoredString()
     {
-
+        this("");
     }
 }

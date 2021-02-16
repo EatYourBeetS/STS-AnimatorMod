@@ -9,10 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.SurroundedPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
@@ -24,6 +21,7 @@ import java.util.HashMap;
 public class EnemyIntent
 {
     private static final WeakPower WEAK = new WeakPower(null, 1, false);
+    private static final VulnerablePower VULNERABLE = new VulnerablePower(null, 0, false);
     private static final StrengthPower STRENGTH = new StrengthPower(null, 0);
     private static final FieldInfo<EnemyMoveInfo> _move = JUtils.GetField("move", AbstractMonster.class);
 
@@ -67,12 +65,23 @@ public class EnemyIntent
         return this;
     }
 
+    public EnemyIntent AddPlayerVulnerable()
+    {
+        if (isAttacking)
+        {
+            GR.UI.CombatScreen.AddSubIntent(enemy, this::GetIntentDamageString);
+            modifiers.put(VulnerablePower.POWER_ID, 1);
+        }
+
+        return this;
+    }
+
     public EnemyIntent AddEnchantedArmor(int amount)
     {
         if (isAttacking)
         {
             GR.UI.CombatScreen.AddSubIntent(enemy, this::GetIntentDamageString);
-            modifiers.put(WeakPower.POWER_ID, amount);
+            modifiers.put(EnchantedArmorPower.POWER_ID, amount);
         }
 
         return this;
@@ -91,9 +100,9 @@ public class EnemyIntent
 
     protected ColoredString GetIntentDamageString()
     {
-        final ColoredString result = new ColoredString();
-        final int damage = CalculateIntentDamage();
         final int baseDamage = GetBaseDamage(false);
+        final int damage = CalculateIntentDamage();
+        final ColoredString result = new ColoredString(damage);
         if (damage > baseDamage)
         {
             result.color = Settings.RED_TEXT_COLOR.cpy().lerp(Color.WHITE, 0.2f);
@@ -102,7 +111,7 @@ public class EnemyIntent
         {
             result.color = Settings.GREEN_TEXT_COLOR.cpy().lerp(Color.WHITE, 0.2f);
         }
-        result.text = String.valueOf(damage);
+
         return result;
     }
 
@@ -111,6 +120,7 @@ public class EnemyIntent
         final AbstractPlayer player = AbstractDungeon.player;
         float damage = GetBaseDamage(false);
         int weak = modifiers.getOrDefault(WeakPower.POWER_ID, 0);
+        int vulnerable = modifiers.getOrDefault(VulnerablePower.POWER_ID, 0);
         int strength = modifiers.getOrDefault(StrengthPower.POWER_ID, 0);
         int enchantedArmor = modifiers.getOrDefault(EnchantedArmorPower.POWER_ID, 0);
 
@@ -144,7 +154,11 @@ public class EnemyIntent
 
         for (AbstractPower p : player.powers)
         {
-            if (enchantedArmor != 0 && EnchantedArmorPower.POWER_ID.equals(p.ID))
+            if (vulnerable == 0 && VulnerablePower.POWER_ID.equals(p.ID))
+            {
+                vulnerable = 1;
+            }
+            else if (enchantedArmor != 0 && EnchantedArmorPower.POWER_ID.equals(p.ID))
             {
                 damage *= EnchantedArmorPower.CalculatePercentage(p.amount + enchantedArmor);
                 enchantedArmor = 0;
@@ -153,6 +167,12 @@ public class EnemyIntent
             {
                 damage = p.atDamageReceive(damage, DamageInfo.DamageType.NORMAL);
             }
+        }
+
+        if (vulnerable != 0)
+        {
+            VULNERABLE.owner = player;
+            damage = VULNERABLE.atDamageReceive(damage, DamageInfo.DamageType.NORMAL);
         }
 
         if (enchantedArmor != 0)

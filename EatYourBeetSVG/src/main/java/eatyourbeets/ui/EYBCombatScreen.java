@@ -50,7 +50,7 @@ public class EYBCombatScreen extends GUIElement
     {
         final boolean multiDamage = _isMultiDmg.Get(m);
         final int multiDamageAmount = _intentMultiAmt.Get(m);
-        final BitmapFont font = EYBFontHelper.CardDescriptionFont_Normal;
+        final BitmapFont font = EYBFontHelper.CardDescriptionFont_Large;
         final Color color = damage.color.cpy();
         color.a = m.intentAlpha;
 

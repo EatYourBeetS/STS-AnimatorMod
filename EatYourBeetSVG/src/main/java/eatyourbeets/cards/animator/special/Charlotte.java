@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.animator.status.Curse_GriefSeed;
@@ -16,11 +17,9 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.vfx.HemokinesisEffect;
+import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.TargetHelper;
+import eatyourbeets.utilities.*;
 
 public class Charlotte extends AnimatorCard
 {
@@ -35,6 +34,20 @@ public class Charlotte extends AnimatorCard
         SetScaling(3, 0, 6);
 
         SetSynergy(Synergies.MadokaMagica);
+    }
+
+    @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        super.OnDrag(m);
+
+        if (!player.hasPower(ArtifactPower.POWER_ID))
+        {
+            for (EnemyIntent intent : GameUtilities.GetIntents())
+            {
+                intent.AddPlayerVulnerable();
+            }
+        }
     }
 
     @Override

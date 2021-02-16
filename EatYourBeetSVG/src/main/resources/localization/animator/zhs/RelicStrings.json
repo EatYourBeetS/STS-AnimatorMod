@@ -38,9 +38,9 @@
 	},
 	"animator:CrumblingOrb":
 	{
-	  "DESCRIPTIONS": ["Gain [E] at the start of each turn. At the start of each Boss and Elite fight, choose and permanently transform 2 out of 3 random cards in your deck."],
-	  "FLAVOR": "As the orb understands the user's heart, the fusion between the two restructures the soul and causes a great transformation.",
-	  "NAME": "Crumbling Orb"
+		"DESCRIPTIONS": ["在回合开始时获得 [E] 。在Boss战与精英战开始时，从牌库里随机 #b3 张牌选择 #b2 张 #y变化 。"],
+		"FLAVOR": "它将周围的心吸收并具象化，从而带来蜕变。",
+		"NAME": "崩玉"
 	},
 	"animator:CursedBlade":
 	{

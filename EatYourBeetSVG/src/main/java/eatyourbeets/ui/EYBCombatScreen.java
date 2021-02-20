@@ -48,6 +48,11 @@ public class EYBCombatScreen extends GUIElement
 
     private void RenderSubIntent(SpriteBatch sb, AbstractMonster m, AbstractMonster.Intent intent, ColoredString damage)
     {
+        if (intent == null || damage == null || damage.color == null)
+        {
+            return;
+        }
+
         final boolean multiDamage = _isMultiDmg.Get(m);
         final int multiDamageAmount = _intentMultiAmt.Get(m);
         final BitmapFont font = EYBFontHelper.CardDescriptionFont_Large;

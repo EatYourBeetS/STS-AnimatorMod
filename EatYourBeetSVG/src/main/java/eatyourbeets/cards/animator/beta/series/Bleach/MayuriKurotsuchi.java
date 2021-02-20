@@ -29,6 +29,8 @@ public class MayuriKurotsuchi extends AnimatorCard
     @Override
     public void Refresh(AbstractMonster enemy)
     {
+        super.Refresh(enemy);
+
         int force = GameUtilities.GetPowerAmount(AbstractDungeon.player, ForcePower.POWER_ID);
         int agility = GameUtilities.GetPowerAmount(AbstractDungeon.player, AgilityPower.POWER_ID);
 

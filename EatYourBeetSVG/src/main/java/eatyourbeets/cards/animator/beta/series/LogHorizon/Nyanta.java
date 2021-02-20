@@ -40,6 +40,8 @@ public class Nyanta extends AnimatorCard
     @Override
     public void Refresh(AbstractMonster enemy)
     {
+        super.Refresh(enemy);
+
         if (GameUtilities.InBattle())
         {
             int agilityToGain = CombatStats.SynergiesThisTurn().size();

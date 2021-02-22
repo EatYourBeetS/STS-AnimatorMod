@@ -121,7 +121,7 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
     public void Update(EnergyPanel panel)
     {
         timer = Math.max(0, timer - Gdx.graphics.getRawDeltaTime());
-        isHidden = cardGrid.cards.isEmpty();
+        isHidden = !GameUtilities.InBattle() || cardGrid.cards.isEmpty();
 
         if (isHidden)
         {

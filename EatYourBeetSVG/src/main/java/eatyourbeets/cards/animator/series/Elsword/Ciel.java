@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.Elsword;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.LockOnPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
@@ -49,7 +48,7 @@ public class Ciel extends AnimatorCard
 
         if (IsStarter())
         {
-            GameActions.Bottom.StackPower(new VulnerablePower(m, magicNumber, false));
+            GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
             GameActions.Bottom.StackPower(new LockOnPower(m, magicNumber));
         }
 

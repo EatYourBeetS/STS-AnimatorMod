@@ -118,7 +118,7 @@ public class GUI_Image extends GUIElement
 
     public GUI_Image SetColor(Color color)
     {
-        this.color = color;
+        this.color = color.cpy();
 
         return this;
     }

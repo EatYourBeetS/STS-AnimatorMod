@@ -13,8 +13,9 @@ import eatyourbeets.utilities.GameActions;
 public class PoisonPlayerPower extends AbstractPower implements HealthBarRenderPower
 {
     private static final Color healthBarColor = Color.valueOf("78c13c");
-    public static final String POWER_ID = "PoisonPlayer";
     private static final PowerStrings powerStrings;
+
+    public static final String POWER_ID = "PoisonPlayer";
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
 

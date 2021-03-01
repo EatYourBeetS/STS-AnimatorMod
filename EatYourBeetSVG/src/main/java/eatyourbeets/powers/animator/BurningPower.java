@@ -15,6 +15,8 @@ import eatyourbeets.utilities.GameActions;
 
 public class BurningPower extends AnimatorPower implements HealthBarRenderPower
 {
+    private static final Color healthBarColor = Color.ORANGE.cpy();
+
     public static final String POWER_ID = CreateFullID(BurningPower.class);
     public static final float ATTACK_MULTIPLIER = 4;
 
@@ -108,7 +110,7 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
     @Override
     public Color getColor()
     {
-        return Color.ORANGE;
+        return healthBarColor;
     }
 
     @Override

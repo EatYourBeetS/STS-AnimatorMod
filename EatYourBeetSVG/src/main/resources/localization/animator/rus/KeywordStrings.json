@@ -9,7 +9,7 @@
 	"Martial Artist":
 	{
 		"DESCRIPTION": "#yСинергирует с другими #yМастерами #yБоевых #yИскусств.",
-		"NAMES": ["Мастер Боевых Искусств", "Мастер_Боевых_Искусств", "Мастерами Боевых Искусств", "Мастерами_Боевых_Искусств"],
+		"NAMES": ["мастер боевых искусств", "мастер_боевых_бскусств", "мастерами боевых искусств", "мастерами_боевых_искусств"],
 		"PROPER_NAME": "Мастер Боевых Искусств"
 	},
 	"Motivate":
@@ -20,9 +20,9 @@
 	},
 	"Phasing":
 	{
-		"DESCRIPTION": "You have a 35% chance to dodge each attack. Reduce this chance by 5% each turn. Stacking this power resets and delays the chance reduction by 1 turn.",
-		"NAMES": ["phasing"],
-		"PROPER_NAME": "Phasing"
+		"DESCRIPTION": "У вас есть 35% шанс увернуться от каждой атаки, он уменьшается на 5% каждый ход. Накладывание этого эффекта сбрасывает и откладывает снижение шанса на 1 ход.",
+		"NAMES": ["фазовый_сдвиг", "фазовый сдвиг"],
+		"PROPER_NAME": "Фазовый сдвиг"
 	},
 	"Reload":
 	{

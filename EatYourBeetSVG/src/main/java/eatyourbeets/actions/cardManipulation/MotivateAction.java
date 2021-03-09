@@ -74,7 +74,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
             return;
         }
 
-        card.superFlash(Color.GOLD.cpy());
+        GameUtilities.Flash(card, Color.GOLD, true);
 
         CostModifiers.For(card).Add(ID, -amount);
         GameUtilities.TriggerWhenPlayed(card, c -> CostModifiers.For(c).Remove(ID, false));

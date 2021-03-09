@@ -175,6 +175,6 @@ public class AnimatorConfig
 
     protected void AddToggle(ModPanel settingsPanel, String label, float x, float y, boolean initialValue, Consumer<ModToggleButton> onToggle)
     {
-        settingsPanel.addUIElement(new ModLabeledToggleButton(label, x, y, Settings.CREAM_COLOR, FontHelper.charDescFont, initialValue, settingsPanel, __ -> { }, onToggle));
+        settingsPanel.addUIElement(new ModLabeledToggleButton(label, x, y, Settings.CREAM_COLOR.cpy(), FontHelper.charDescFont, initialValue, settingsPanel, __ -> { }, onToggle));
     }
 }

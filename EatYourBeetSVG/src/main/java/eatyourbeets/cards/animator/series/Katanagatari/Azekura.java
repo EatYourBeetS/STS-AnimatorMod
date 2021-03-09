@@ -46,7 +46,7 @@ public class Azekura extends AnimatorCard
             if (c.baseBlock > 0)
             {
                 GameUtilities.DecreaseBlock(c, magicNumber, false);
-                c.flash(Color.RED.cpy());
+                GameUtilities.Flash(this, Color.RED, false);
             }
         }
 

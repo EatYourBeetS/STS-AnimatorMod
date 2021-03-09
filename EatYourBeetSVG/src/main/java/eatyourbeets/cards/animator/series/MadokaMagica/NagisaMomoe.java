@@ -31,14 +31,20 @@ public class NagisaMomoe extends AnimatorCard
     }
 
     @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        GameActions.Bottom.MakeCardInDiscardPile(new Charlotte()).SetUpgrade(upgraded, false);
+        GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.GainRandomStat(1, upgraded);
         }
-        
-        GameActions.Bottom.MakeCardInDiscardPile(new Charlotte()).SetUpgrade(upgraded, false);
-        GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
     }
 }

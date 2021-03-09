@@ -38,9 +38,9 @@
 	},
 	"animator:CrumblingOrb":
 	{
-	  "DESCRIPTIONS": ["Gain [E] at the start of each turn. At the start of each Boss and Elite fight, choose and permanently transform 2 out of 3 random cards in your deck."],
-	  "FLAVOR": "As the orb understands the user's heart, the fusion between the two restructures the soul and causes a great transformation.",
-	  "NAME": "Crumbling Orb"
+	  "DESCRIPTIONS": ["Даёт [E] в начале каждого вашего хода. В начале сражения с Боссом или Элитным врагом выберите и навсегда измените 2 из 3 случайных карт."],
+	  "FLAVOR": "По мере того как сфера понимает сердце пользователя, слияние между ними перестраивает душу и вызывает большие преобразования.",
+	  "NAME": "Разрушающая сфера"
 	},
 	"animator:CursedBlade":
 	{

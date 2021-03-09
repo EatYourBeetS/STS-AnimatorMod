@@ -189,7 +189,7 @@ public class EYBCardText
         RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y), 38, 38);
 
         font.getData().setScale(0.6f * card.drawScale);
-        RenderHelpers.WriteOnCard(sb, card, font, "x" + (int) scaling, (offset_x + 9), (offset_y + y - 12), Settings.CREAM_COLOR.cpy(), true);
+        RenderHelpers.WriteOnCard(sb, card, font, "x" + (int) scaling, (offset_x + 9), (offset_y + y - 12), Settings.CREAM_COLOR, true);
         RenderHelpers.ResetFont(font);
 
         return 36;
@@ -207,7 +207,7 @@ public class EYBCardText
 
             offset = new Vector2(0.5f, 0.425f + offset_y);
             font.getData().setScale(0.5f * card.drawScale);
-            RenderHelpers.WriteOnCardAuto(sb, card, font, text, offset, Settings.CREAM_COLOR.cpy(), true);
+            RenderHelpers.WriteOnCardAuto(sb, card, font, text, offset, Settings.CREAM_COLOR, true);
             RenderHelpers.ResetFont(font);
         }
 

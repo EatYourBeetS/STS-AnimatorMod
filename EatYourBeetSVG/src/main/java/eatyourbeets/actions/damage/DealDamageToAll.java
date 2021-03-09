@@ -109,12 +109,12 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
                 {
                     if (this.attackEffect == AttackEffect.POISON)
                     {
-                        enemy.tint.color.set(Color.CHARTREUSE);
+                        enemy.tint.color.set(Color.CHARTREUSE.cpy());
                         enemy.tint.changeColor(Color.WHITE.cpy());
                     }
                     else if (this.attackEffect == AttackEffect.FIRE)
                     {
-                        enemy.tint.color.set(Color.RED);
+                        enemy.tint.color.set(Color.RED.cpy());
                         enemy.tint.changeColor(Color.WHITE.cpy());
                     }
 

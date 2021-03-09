@@ -76,7 +76,7 @@ public class GUI_Label extends GUIElement
 
     public GUI_Label SetColor(Color textColor)
     {
-        this.textColor = textColor;
+        this.textColor = textColor.cpy();
 
         return this;
     }

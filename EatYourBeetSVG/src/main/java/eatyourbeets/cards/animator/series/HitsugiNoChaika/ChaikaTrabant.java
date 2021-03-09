@@ -19,7 +19,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
 {
     public static final EYBCardData DATA = Register(ChaikaTrabant.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Elemental);
 
-    private AbstractMonster target;
+    private AbstractMonster enemy;
 
     public ChaikaTrabant()
     {
@@ -49,7 +49,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         m.useFastShakeAnimation(0.5f);
 
         ChaikaTrabant other = (ChaikaTrabant) makeStatEquivalentCopy();
-        other.target = m;
+        other.enemy = m;
         other.tags.remove(GR.Enums.CardTags.IGNORE_PEN_NIB);
         CombatStats.onStartOfTurnPostDraw.Subscribe(other);
     }
@@ -57,19 +57,27 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     @Override
     public void OnStartOfTurnPostDraw()
     {
-        if (target == null || GameUtilities.IsDeadOrEscaped(target))
-        {
-            target = GameUtilities.GetRandomEnemy(true);
-        }
-
         GameEffects.Queue.ShowCardBriefly(makeStatEquivalentCopy());
         CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
 
-        this.applyPowers();
-        this.calculateCardDamage(target);
+        GameActions.Bottom.Callback(() ->
+        {
+            if (enemy == null || GameUtilities.IsDeadOrEscaped(enemy))
+            {
+                enemy = GameUtilities.GetRandomEnemy(true);
 
-        GameActions.Bottom.DealDamage(this, target, AbstractGameAction.AttackEffect.FIRE);
-        GameActions.Bottom.ApplyWeak(player, target, 1);
-        GameActions.Bottom.ApplyVulnerable(player, target, 1);
+                if (enemy == null)
+                {
+                    return;
+                }
+            }
+
+            this.applyPowers();
+            this.calculateCardDamage(enemy);
+
+            GameActions.Bottom.DealDamage(this, enemy, AbstractGameAction.AttackEffect.FIRE);
+            GameActions.Bottom.ApplyWeak(player, enemy, 1);
+            GameActions.Bottom.ApplyVulnerable(player, enemy, 1);
+        });
     }
 }

@@ -27,8 +27,8 @@ public class MaskedTravelerTransformCardsEffect extends EYBEffectWithCallback<Ob
     {
         this.purgeMessage = CardCrawlGame.languagePack.getRelicStrings(EmptyCage.ID).DESCRIPTIONS[1];
         this.cardsToRemove = transform;
-        this.screenColor = AbstractDungeon.fadeColor.cpy();
         this.duration = 1.5f;
+        this.screenColor = AbstractDungeon.fadeColor.cpy();
         this.screenColor.a = 0f;
         AbstractDungeon.overlayMenu.proceedButton.hide();
     }

@@ -23,7 +23,7 @@ public class FireballEffect extends EYBEffect
     {
         super(0.5f);
 
-        this.color = Color.CHARTREUSE;
+        this.color = Color.CHARTREUSE.cpy();
         this.secondaryColor = color.cpy();
         this.startX = startX;
         this.startY = startY;

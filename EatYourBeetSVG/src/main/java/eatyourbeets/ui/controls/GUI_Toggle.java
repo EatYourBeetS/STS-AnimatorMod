@@ -27,8 +27,8 @@ public class GUI_Toggle extends GUIElement
     public GUI_Image untickedImage = new GUI_Image(ImageMaster.COLOR_TAB_BOX_UNTICKED);
     public GUI_Image tickedImage = new GUI_Image(ImageMaster.COLOR_TAB_BOX_TICKED);
     public GUI_Image backgroundImage = null;
-    public Color defaultColor = Settings.CREAM_COLOR;
-    public Color hoveredColor = Settings.GOLD_COLOR;
+    public Color defaultColor = Settings.CREAM_COLOR.cpy();
+    public Color hoveredColor = Settings.GOLD_COLOR.cpy();
     public BitmapFont font = FontHelper.topPanelInfoFont;
     public float fontSize = 1;
     public float tickSize = 48;

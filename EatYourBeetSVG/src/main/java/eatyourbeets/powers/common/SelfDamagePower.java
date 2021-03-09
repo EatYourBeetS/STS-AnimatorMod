@@ -11,6 +11,8 @@ import eatyourbeets.utilities.GameActions;
 
 public class SelfDamagePower extends CommonPower implements HealthBarRenderPower
 {
+    private static final Color healthBarColor = Color.PURPLE.cpy();
+
     public static final String POWER_ID = CreateFullID(SelfDamagePower.class);
 
     public SelfDamagePower(AbstractCreature owner, int amount)
@@ -51,6 +53,6 @@ public class SelfDamagePower extends CommonPower implements HealthBarRenderPower
     @Override
     public Color getColor()
     {
-        return Color.PURPLE;
+        return healthBarColor;
     }
 }

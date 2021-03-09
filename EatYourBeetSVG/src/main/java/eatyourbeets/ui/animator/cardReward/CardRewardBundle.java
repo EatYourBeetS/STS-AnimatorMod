@@ -50,7 +50,7 @@ public class CardRewardBundle
     public CardRewardBundle SetText(String text, Color textColor, float textOffsetX, float textOffsetY)
     {
         this.title = text;
-        this.textColor = textColor;
+        this.textColor = textColor.cpy();
         this.textOffsetX = textOffsetX;
         this.textOffsetY = textOffsetY;
 

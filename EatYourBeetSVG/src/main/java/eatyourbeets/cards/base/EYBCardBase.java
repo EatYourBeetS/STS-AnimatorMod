@@ -200,12 +200,12 @@ public abstract class EYBCardBase extends AbstractCard
         String text;
         if (isLocked || !isSeen)
         {
-            color = Color.WHITE.cpy();
+            color = Color.WHITE;
             text = isLocked ? LOCKED_STRING : UNKNOWN_STRING;
         }
         else
         {
-            color = upgraded ? Settings.GREEN_TEXT_COLOR.cpy() : Color.WHITE.cpy();
+            color = upgraded ? Settings.GREEN_TEXT_COLOR : Color.WHITE;
             text = name;
         }
 

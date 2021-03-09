@@ -1,5 +1,6 @@
 package eatyourbeets.utilities;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.megacrit.cardcrawl.actions.GameActionManager;
@@ -180,6 +181,18 @@ public class GameUtilities
         else
         {
             return null;
+        }
+    }
+
+    public static void Flash(AbstractCard card, Color color, boolean superFlash)
+    {
+        if (superFlash)
+        {
+            card.superFlash(color.cpy());
+        }
+        else
+        {
+            card.flash(color.cpy());
         }
     }
 

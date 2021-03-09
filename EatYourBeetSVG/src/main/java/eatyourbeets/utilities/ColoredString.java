@@ -10,10 +10,10 @@ public class ColoredString
     public ColoredString(Object text, Color color, float alpha)
     {
         this.text = String.valueOf(text);
-        this.color = color;
 
-        if (this.color != null)
+        if (color != null)
         {
+            this.color = color.cpy();
             this.color.a = alpha;
         }
     }
@@ -25,7 +25,7 @@ public class ColoredString
 
     public ColoredString(Object text)
     {
-        this(text, Color.WHITE.cpy());
+        this(text, Color.WHITE);
     }
 
     public ColoredString()

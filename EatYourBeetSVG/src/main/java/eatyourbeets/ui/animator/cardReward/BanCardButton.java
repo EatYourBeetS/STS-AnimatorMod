@@ -49,7 +49,7 @@ public class BanCardButton extends GUI_Button
         {
             final String text = GR.Animator.Strings.Misc.NotEnoughCards;
             final BitmapFont font = FontHelper.buttonLabelFont;
-            RenderHelpers.WriteCentered(sb, font, text, hb, Color.WHITE.cpy(), 0.6f);
+            RenderHelpers.WriteCentered(sb, font, text, hb, Color.WHITE, 0.6f);
             RenderHelpers.ResetFont(font);
         }
         else

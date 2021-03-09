@@ -27,8 +27,8 @@ public class MaskedTravelerUpgradeSameCardEffect extends AbstractGameEffect
     {
         this.message = CardCrawlGame.languagePack.getUIString("CampfireSmithEffect").TEXT[0];
         this.upgrades = upgrades;
-        this.screenColor = AbstractDungeon.fadeColor.cpy();
         this.duration = 1.5f;
+        this.screenColor = AbstractDungeon.fadeColor.cpy();
         this.screenColor.a = 0f;
         AbstractDungeon.overlayMenu.proceedButton.hide();
     }

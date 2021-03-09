@@ -119,7 +119,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
             }
             else if (this.attackEffect == AttackEffect.FIRE)
             {
-                this.target.tint.color.set(Color.RED);
+                this.target.tint.color.set(Color.RED.cpy());
                 this.target.tint.changeColor(Color.WHITE.cpy());
             }
 

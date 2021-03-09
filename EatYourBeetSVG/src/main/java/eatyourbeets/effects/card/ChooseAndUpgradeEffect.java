@@ -28,8 +28,8 @@ public class ChooseAndUpgradeEffect extends AbstractGameEffect
 
     public ChooseAndUpgradeEffect()
     {
-        this.screenColor = AbstractDungeon.fadeColor.cpy();
         this.duration = 1.5f;
+        this.screenColor = AbstractDungeon.fadeColor.cpy();
         this.screenColor.a = 0f;
         AbstractDungeon.overlayMenu.proceedButton.hide();
     }

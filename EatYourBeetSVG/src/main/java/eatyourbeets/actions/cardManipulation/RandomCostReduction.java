@@ -4,10 +4,15 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.cards.base.modifiers.CostModifiers;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 public class RandomCostReduction extends EYBActionWithCallback<AbstractCard>
 {
+    public static String ID = GR.CreateID("eyb", RandomCostReduction.class.getName());
+
     private final boolean permanent;
 
     public RandomCostReduction(int amount, boolean permanent)
@@ -54,14 +59,14 @@ public class RandomCostReduction extends EYBActionWithCallback<AbstractCard>
         {
             if (permanent)
             {
-                card.updateCost(Math.max(0, card.cost - amount));
+                CostModifiers.For(card).Add(ID, -amount);
             }
             else
             {
-                card.setCostForTurn(Math.max(0, card.costForTurn - amount));
+                GameUtilities.ModifyCostForTurn(card, -amount, true);
             }
 
-            card.superFlash(Color.GOLD.cpy());
+            GameUtilities.Flash(card, Color.GOLD, true);
         }
     }
 

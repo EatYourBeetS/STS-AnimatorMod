@@ -35,7 +35,7 @@ public class GUI_Image extends GUIElement
     public GUI_Image(Texture texture, Color color)
     {
         this.texture = texture;
-        this.color = color;
+        this.color = color.cpy();
         this.srcWidth = texture.getWidth();
         this.srcHeight = texture.getHeight();
     }

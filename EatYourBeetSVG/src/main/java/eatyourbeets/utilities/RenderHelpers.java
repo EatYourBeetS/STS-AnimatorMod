@@ -270,7 +270,9 @@ public class RenderHelpers
     public static void WriteOnCard(SpriteBatch sb, AbstractCard card, BitmapFont font, String text, float x, float y, Color color, boolean roundY)
     {
         final float scale = card.drawScale * Settings.scale;
-        color.a = card.transparency;
+
+        color = CopyColor(card, color);
+
         FontHelper.renderRotatedText(sb, font, text, card.current_x, card.current_y, x * scale, y * scale, card.angle, roundY, color);
     }
 
@@ -282,7 +284,7 @@ public class RenderHelpers
         }
 
         offset.scl(Settings.scale * card.drawScale);
-        color.a = card.transparency;
+        color = CopyColor(card, color);
 
         FontHelper.renderRotatedText(sb, font, text, card.current_x, card.current_y, offset.x, offset.y, card.angle, roundY, color);
     }
@@ -309,9 +311,7 @@ public class RenderHelpers
 
     public static Color CopyColor(AbstractCard card, Color color)
     {
-        Color result = color.cpy();
-        result.a = card.transparency;
-        return result;
+        return new Color(color.r, color.g, color.b, card.transparency);
     }
 
     public static ColoredString GetCardAttributeString(EYBCard card, char attributeID)
@@ -417,7 +417,8 @@ public class RenderHelpers
                         final float orbWidth = icon.getRegionWidth();
                         final float orbHeight = icon.getRegionHeight();
 
-                        sb.setColor(new Color(1f, 1f, 1f, baseColor.a));
+                        //sb.setColor(1f, 1f, 1f, baseColor.a);
+                        sb.setColor(baseColor);
                         if (curWidth + CARD_ENERGY_IMG_WIDTH > lineWidth)
                         {
                             curHeight -= lineSpacing;
@@ -451,12 +452,12 @@ public class RenderHelpers
                     {
                         if (overrideColor != null)
                         {
-                            font.setColor(overrideColor.cpy());
+                            font.setColor(overrideColor);
                             overrideColor = null;
                         }
                         else
                         {
-                            font.setColor(Color.WHITE.cpy());
+                            font.setColor(Color.WHITE);
                         }
 
                         layout.setText(font, word);
@@ -516,17 +517,17 @@ public class RenderHelpers
         switch (c)
         {
             case 'b':
-                return Settings.BLUE_TEXT_COLOR;
+                return Settings.BLUE_TEXT_COLOR.cpy();
             case 'g':
-                return Settings.GREEN_TEXT_COLOR;
+                return Settings.GREEN_TEXT_COLOR.cpy();
             case 'p':
-                return Settings.PURPLE_COLOR;
+                return Settings.PURPLE_COLOR.cpy();
             case 'r':
-                return Settings.RED_TEXT_COLOR;
+                return Settings.RED_TEXT_COLOR.cpy();
             case 'y':
-                return Settings.GOLD_COLOR;
+                return Settings.GOLD_COLOR.cpy();
             default:
-                return Color.WHITE;
+                return Color.WHITE.cpy();
         }
     }
 }

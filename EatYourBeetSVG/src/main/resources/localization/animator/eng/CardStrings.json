@@ -312,10 +312,10 @@
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time you are attacked this turn, Channel #yFire."],
 			"NAME": "Orihime Inoue"
 		},
-		"animator:RenjiArakai":
+		"animator:RenjiAbarai":
 		{
 			"DESCRIPTION": "Not in [A] Stance: Decrease this card's damage by !M! this combat. || Synergy: This card deals Piercing Damage.",
-			"NAME": "Renji Arakai"
+			"NAME": "Renji Abarai"
 		},
 		"animator:RukiaBankai":
 		{

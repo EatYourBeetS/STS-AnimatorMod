@@ -34,7 +34,7 @@ public class Bleach extends AnimatorLoadout
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
-            startingDeck.add(RenjiArakai.DATA.ID);
+            startingDeck.add(RenjiAbarai.DATA.ID);
             startingDeck.add(UryuuIshida.DATA.ID);
         }
 

@@ -8,11 +8,11 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 
-public class RenjiArakai extends AnimatorCard
+public class RenjiAbarai extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(RenjiArakai.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(RenjiAbarai.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL);
 
-    public RenjiArakai()
+    public RenjiAbarai()
     {
         super(DATA);
 

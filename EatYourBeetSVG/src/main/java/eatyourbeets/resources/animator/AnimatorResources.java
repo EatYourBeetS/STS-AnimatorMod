@@ -22,6 +22,7 @@ import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
 import eatyourbeets.rewards.animator.SynergyCardsReward;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorLoadoutsContainer;
+import eatyourbeets.utilities.JUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.nio.charset.StandardCharsets;
@@ -52,6 +53,8 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void InitializeStrings()
     {
+        JUtils.LogInfo(this, "InitializeStrings();");
+
         LoadCustomStrings(OrbStrings.class);
         LoadCustomStrings(CharacterStrings.class);
 
@@ -106,6 +109,8 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void InitializeCards()
     {
+        JUtils.LogInfo(this, "InitializeCards();");
+
         Strings.Initialize();
         LoadCustomCards();
     }
@@ -113,12 +118,16 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void InitializeRelics()
     {
+        JUtils.LogInfo(this, "InitializeRelics();");
+
         LoadCustomRelics();
     }
 
     @Override
     protected void InitializeKeywords()
     {
+        JUtils.LogInfo(this, "InitializeKeywords();");
+
         LoadKeywords();
     }
 

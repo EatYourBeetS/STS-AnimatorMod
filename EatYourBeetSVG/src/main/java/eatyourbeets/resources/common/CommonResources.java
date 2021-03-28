@@ -75,6 +75,8 @@ public class CommonResources extends AbstractResources
     @Override
     protected void InitializeCards()
     {
+        JUtils.LogInfo(this, "InitializeCards();");
+
         Strings.Initialize();
         GR.Tooltips = new CardTooltips();
         EYBStance.Initialize();
@@ -98,6 +100,8 @@ public class CommonResources extends AbstractResources
     @Override
     protected void InitializeStrings()
     {
+        JUtils.LogInfo(this, "InitializeStrings();");
+
         LoadCustomStrings(PowerStrings.class);
         LoadCustomStrings(StanceStrings.class);
         LoadCustomStrings(UIStrings.class);
@@ -108,6 +112,8 @@ public class CommonResources extends AbstractResources
     @Override
     protected void InitializeKeywords()
     {
+        JUtils.LogInfo(this, "InitializeKeywords();");
+
         LoadKeywords();
 
         AddPowerTooltip("[F]", "Force", new ForcePower(null, 0));

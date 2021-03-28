@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.beta.series.LogHorizon;
+package eatyourbeets.cards.animator.series.LogHorizon;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.cards.AbstractCard;

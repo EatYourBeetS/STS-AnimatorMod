@@ -1,11 +1,11 @@
-package eatyourbeets.resources.animator.loadouts.beta;
+package eatyourbeets.resources.animator.loadouts;
 
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
-import eatyourbeets.cards.animator.beta.basic.Defend_LogHorizon;
-import eatyourbeets.cards.animator.beta.basic.Strike_LogHorizon;
-import eatyourbeets.cards.animator.beta.series.LogHorizon.*;
-import eatyourbeets.cards.animator.beta.ultrarare.Krusty;
+import eatyourbeets.cards.animator.basic.Defend_LogHorizon;
+import eatyourbeets.cards.animator.basic.Strike_LogHorizon;
+import eatyourbeets.cards.animator.series.LogHorizon.*;
+import eatyourbeets.cards.animator.ultrarare.Krusty;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -17,8 +17,6 @@ public class LogHorizon extends AnimatorLoadout
     public LogHorizon()
     {
         super(Synergies.LogHorizon);
-
-        IsBeta = true;
     }
 
     @Override

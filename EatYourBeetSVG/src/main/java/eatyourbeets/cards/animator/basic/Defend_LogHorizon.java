@@ -1,8 +1,7 @@
-package eatyourbeets.cards.animator.beta.basic;
+package eatyourbeets.cards.animator.basic;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 

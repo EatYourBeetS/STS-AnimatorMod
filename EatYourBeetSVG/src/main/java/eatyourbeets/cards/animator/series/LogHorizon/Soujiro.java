@@ -1,13 +1,13 @@
-package eatyourbeets.cards.animator.beta.series.LogHorizon;
+package eatyourbeets.cards.animator.series.LogHorizon;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.beta.special.Soujiro_Isami;
-import eatyourbeets.cards.animator.beta.special.Soujiro_Kawara;
-import eatyourbeets.cards.animator.beta.special.Soujiro_Kyouko;
+import eatyourbeets.cards.animator.special.Soujiro_Isami;
+import eatyourbeets.cards.animator.special.Soujiro_Kawara;
+import eatyourbeets.cards.animator.special.Soujiro_Kyouko;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;

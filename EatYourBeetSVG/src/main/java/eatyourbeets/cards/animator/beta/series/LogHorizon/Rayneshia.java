@@ -33,7 +33,22 @@ public class Rayneshia extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Draw(magicNumber)
-                .SetFilter(this::HasSynergy, false);
+                .SetFilter(this::checkSynergy, false);
+    }
+
+    private boolean checkSynergy(AbstractCard c)
+    {
+        if (!this.HasSynergy(c))
+        {
+            return false;
+        }
+
+        if (c instanceof AnimatorCard)
+        {
+            return ((AnimatorCard)c).HasSynergy(this);
+        }
+
+        return false;
     }
 
     @Override

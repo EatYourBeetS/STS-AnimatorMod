@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.beta.series.LogHorizon;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -37,40 +36,12 @@ public class Tohya extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
 
-        GameActions.Bottom.Callback(this::DrawMinori);
+        GameActions.Bottom.Draw(1)
+                .SetFilter(c -> Minori.DATA.ID.equals(c.cardID), false);
 
         if (IsStarter())
         {
             GameActions.Bottom.GainBlur(magicNumber);
         }
-    }
-
-    private static AbstractCard FindMinori(AbstractMonster target)
-    {
-        AbstractCard minori = null;
-        int maxDamage = Integer.MIN_VALUE;
-        for (AbstractCard c : player.drawPile.group)
-        {
-            if (Minori.DATA.ID.equals(c.cardID))
-            {
-                minori = c;
-            }
-        }
-
-        return minori;
-    }
-
-    private boolean DrawMinori()
-    {
-        AbstractCard minori = FindMinori(null);
-
-        if (minori != null)
-        {
-            GameActions.Top.MoveCard(minori, player.hand)
-                    .ShowEffect(true, true);
-            return true;
-        }
-
-        return false;
     }
 }

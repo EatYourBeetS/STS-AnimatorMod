@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.beta.series.LogHorizon;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -10,7 +9,6 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
@@ -34,46 +32,13 @@ public class Rayneshia extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        synergicCards.clear();
-        AddCardsFromGroupToSynergy(player.drawPile);
-        DrawSynergicCards(player.drawPile);
+        GameActions.Bottom.Draw(magicNumber)
+                .SetFilter(this::HasSynergy, false);
     }
 
     @Override
     public boolean HasDirectSynergy(AbstractCard other)
     {
         return (GameUtilities.IsCurseOrStatus(other)) || (other.exhaust) || super.HasDirectSynergy(other);
-    }
-
-    private void AddCardsFromGroupToSynergy(CardGroup group)
-    {
-        for (AbstractCard c : group.group)
-        {
-            if (HasSynergy(c))
-            {
-                synergicCards.add(c);
-            }
-        }
-    }
-
-    private void DrawSynergicCards(CardGroup group)
-    {
-        RandomizedList<AbstractCard> randomizedSynergicCards = new RandomizedList<>(synergicCards);
-
-        for (int i = 0; i < magicNumber; i++)
-        {
-            if (i > randomizedSynergicCards.Size())
-            {
-                break;
-            }
-
-            AbstractCard randomCard = randomizedSynergicCards.Retrieve(rng, true);
-
-            if (randomCard != null)
-            {
-                GameActions.Top.MoveCard(randomCard, group, player.hand)
-                        .ShowEffect(true, true);
-            }
-        }
     }
 }

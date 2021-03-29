@@ -33,7 +33,7 @@ public class Cirno extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.ChannelOrb(new Frost(), true);
+        GameActions.Bottom.ChannelOrb(new Frost());
     }
 
     @Override
@@ -50,7 +50,7 @@ public class Cirno extends AnimatorCard
             }
         });
 
-        GameActions.Bottom.ChannelOrb(new Frost(), true);
+        GameActions.Bottom.ChannelOrb(new Frost());
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetVFX(false, true);
     }
 }

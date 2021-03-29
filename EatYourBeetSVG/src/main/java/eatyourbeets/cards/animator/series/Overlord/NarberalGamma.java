@@ -30,7 +30,7 @@ public class NarberalGamma extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Lightning(), true);
+        GameActions.Bottom.ChannelOrb(new Lightning());
 
         if (upgraded)
         {

@@ -35,7 +35,7 @@ public class YunYun extends AnimatorCard
 
         if (CombatStats.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.ChannelOrb(new Lightning(), true);
+            GameActions.Bottom.ChannelOrb(new Lightning());
             GameActions.Bottom.Flash(this);
         }
     }

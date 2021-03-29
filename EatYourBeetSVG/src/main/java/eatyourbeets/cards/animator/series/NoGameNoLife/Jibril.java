@@ -34,7 +34,7 @@ public class Jibril extends AnimatorCard
     {
         GameActions.Bottom.VFX(new ShockWaveEffect(p.hb.cX, p.hb.cY, Color.VIOLET.cpy(), ShockWaveEffect.ShockWaveType.ADDITIVE), 0.3f);
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
-        GameActions.Bottom.ChannelOrb(new Dark(), true);
+        GameActions.Bottom.ChannelOrb(new Dark());
 
         if (HasSynergy())
         {

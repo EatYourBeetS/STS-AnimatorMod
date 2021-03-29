@@ -67,10 +67,7 @@ public class LeleiLaLalena extends AnimatorCard
         .SetOptions(false, false, false)
         .AddCallback(() ->
         {
-            for (int i = 0; i < magicNumber; i++)
-            {
-                GameActions.Bottom.ChannelOrb(new Frost(), true);
-            }
+            GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
         });
     }
 }

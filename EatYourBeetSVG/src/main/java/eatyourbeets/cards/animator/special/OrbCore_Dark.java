@@ -25,11 +25,7 @@ public class OrbCore_Dark extends OrbCore
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (int i = 0; i < secondaryValue; i++)
-        {
-            GameActions.Bottom.ChannelOrb(new Dark(), true);
-        }
-
+        GameActions.Bottom.ChannelOrbs(Dark::new, secondaryValue);
         GameActions.Bottom.StackPower(new OrbCore_DarkPower(p, 1));
     }
 }

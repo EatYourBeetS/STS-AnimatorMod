@@ -42,7 +42,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
             other.lazyCounter += 1;
         }
 
-        GameActions.Bottom.ChannelOrb(new Dark(), true);
+        GameActions.Bottom.ChannelOrb(new Dark());
 
         CombatStats.onStartOfTurnPostDraw.Subscribe(other);
     }

@@ -32,7 +32,7 @@ public class Benimaru extends AnimatorCard
 
         if (CombatStats.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.ChannelOrb(new Fire(), true);
+            GameActions.Bottom.ChannelOrb(new Fire());
         }
     }
 

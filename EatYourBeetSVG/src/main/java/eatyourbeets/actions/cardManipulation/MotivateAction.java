@@ -41,6 +41,11 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     @Override
     protected void FirstUpdate()
     {
+        if (amount == 0)
+        {
+            Complete(null);
+        }
+
         if (card == null)
         {
             RandomizedList<AbstractCard> betterPossible = new RandomizedList<>();
@@ -74,10 +79,9 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
             return;
         }
 
-        GameUtilities.Flash(card, Color.GOLD, true);
-
         CostModifiers.For(card).Add(ID, -amount);
         GameUtilities.TriggerWhenPlayed(card, c -> CostModifiers.For(c).Remove(ID, false));
+        GameUtilities.Flash(card, Color.GOLD, true);
 
         if (card.costForTurn <= 0)
         {

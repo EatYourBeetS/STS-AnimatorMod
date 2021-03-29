@@ -33,8 +33,8 @@ public class Veldora extends AnimatorCard_UltraRare
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.ChannelOrb(AbstractOrb.getRandomOrb(true), true);
-        GameActions.Bottom.ChannelRandomOrb(true);
+        GameActions.Bottom.ChannelOrb(AbstractOrb.getRandomOrb(true));
+        GameActions.Bottom.ChannelRandomOrbs(1);
         GameActions.Bottom.Flash(this);
     }
 

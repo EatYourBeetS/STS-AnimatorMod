@@ -37,7 +37,7 @@ public class Elsword extends AnimatorCard
         }
         else
         {
-            GameActions.Bottom.ChannelOrb(new Fire(), true);
+            GameActions.Bottom.ChannelOrb(new Fire());
         }
     }
 }

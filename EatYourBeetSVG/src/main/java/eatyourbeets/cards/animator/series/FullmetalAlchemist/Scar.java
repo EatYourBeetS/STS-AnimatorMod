@@ -32,7 +32,7 @@ public class Scar extends AnimatorCard
         GameActions.Top.ExhaustFromHand(name, 1, true)
         .ShowEffect(true, true)
         .SetOptions(false, false, false)
-        .AddCallback(() -> GameActions.Bottom.ChannelOrb(new Earth(), true));
+        .AddCallback(() -> GameActions.Bottom.ChannelOrb(new Earth()));
 
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
         .SetDamageEffect(__ -> CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3f));

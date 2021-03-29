@@ -66,7 +66,7 @@ public class Caster extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Dark(), true);
+        GameActions.Bottom.ChannelOrb(new Dark());
 
         if (HasSynergy())
         {

@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
@@ -37,6 +36,7 @@ import eatyourbeets.actions.handSelection.DiscardFromHand;
 import eatyourbeets.actions.handSelection.ExhaustFromHand;
 import eatyourbeets.actions.handSelection.SelectFromHand;
 import eatyourbeets.actions.monsters.TalkAction;
+import eatyourbeets.actions.orbs.ChannelOrb;
 import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.actions.pileSelection.*;
 import eatyourbeets.actions.player.ChangeStance;
@@ -44,15 +44,14 @@ import eatyourbeets.actions.player.GainGold;
 import eatyourbeets.actions.player.SpendEnergy;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.actions.powers.ReduceStrength;
-import eatyourbeets.actions.special.*;
+import eatyourbeets.actions.special.DelayAllActions;
+import eatyourbeets.actions.special.SelectCreature;
+import eatyourbeets.actions.special.VFX;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.interfaces.delegates.ActionT0;
-import eatyourbeets.interfaces.delegates.ActionT1;
-import eatyourbeets.interfaces.delegates.ActionT2;
-import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.interfaces.delegates.*;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
@@ -271,14 +270,19 @@ public final class GameActions
         return Add(new ChangeStance(stanceName));
     }
 
-    public ChannelAction ChannelOrb(AbstractOrb orb, boolean autoEvoke)
+    public ChannelOrb ChannelOrbs(FuncT0<AbstractOrb> orbConstructor, int amount)
     {
-        return Add(new ChannelAction(orb, autoEvoke));
+        return Add(new ChannelOrb(orbConstructor, amount));
     }
 
-    public ChannelAction ChannelRandomOrb(boolean autoEvoke)
+    public ChannelOrb ChannelOrb(AbstractOrb orb)
     {
-        return Add(new ChannelAction(GameUtilities.GetRandomOrb(), autoEvoke));
+        return Add(new ChannelOrb(orb));
+    }
+
+    public ChannelOrb ChannelRandomOrbs(int amount)
+    {
+        return Add(new ChannelOrb(GameUtilities::GetRandomOrb, amount));
     }
 
     public CreateThrowingKnives CreateThrowingKnives(int amount)

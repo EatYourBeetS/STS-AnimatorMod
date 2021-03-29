@@ -33,7 +33,7 @@ public class DwarfShaman extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        GameActions.Bottom.ChannelOrb(new Earth(), true);
+        GameActions.Bottom.ChannelOrb(new Earth());
 
         if (ForceStance.IsActive() || IntellectStance.IsActive())
         {

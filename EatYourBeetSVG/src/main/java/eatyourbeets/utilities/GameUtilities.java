@@ -3,6 +3,7 @@ package eatyourbeets.utilities;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
+import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
@@ -182,6 +183,18 @@ public class GameUtilities
         else
         {
             return null;
+        }
+    }
+
+    public static void Flash(AbstractCard card, boolean superFlash)
+    {
+        if (superFlash)
+        {
+            card.superFlash();
+        }
+        else
+        {
+            card.flash();
         }
     }
 
@@ -773,6 +786,16 @@ public class GameUtilities
             default:
                 return null;
         }
+    }
+
+    public static int GetTempHP(AbstractCreature creature)
+    {
+        return creature != null ? TempHPField.tempHp.get(creature) : 0;
+    }
+
+    public static int GetTempHP()
+    {
+        return GetTempHP(player);
     }
 
     public static int GetUniqueOrbsCount()

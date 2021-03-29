@@ -41,7 +41,7 @@ public class Tatsumaki extends AnimatorCard
             GameActions.Bottom.GainOrbSlots(1);
         }
 
-        GameActions.Bottom.ChannelOrb(new Aether(), true);
+        GameActions.Bottom.ChannelOrb(new Aether());
 
         if (CombatStats.TryActivateSemiLimited(cardID))
         {

@@ -48,7 +48,7 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Plasma(), true);
+        GameActions.Bottom.ChannelOrb(new Plasma());
         GameActions.Bottom.ModifyAllInstances(uuid, c ->
         {
             c.isCostModified = c.isCostModifiedForTurn = false;

@@ -45,7 +45,7 @@ public class SayakaMiki extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-        GameActions.Bottom.ChannelOrb(new Frost(), true);
+        GameActions.Bottom.ChannelOrb(new Frost());
 
         IntellectPower.PreserveOnce();
 

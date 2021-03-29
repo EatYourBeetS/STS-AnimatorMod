@@ -28,7 +28,7 @@ public class Chung extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.ChannelOrb(new Frost(), true);
+        GameActions.Bottom.ChannelOrb(new Frost());
     }
 
     @Override

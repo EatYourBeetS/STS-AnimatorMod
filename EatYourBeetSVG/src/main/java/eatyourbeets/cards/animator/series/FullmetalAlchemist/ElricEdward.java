@@ -39,15 +39,15 @@ public class ElricEdward extends AnimatorCard
                 switch (cards.get(0).type)
                 {
                     case ATTACK:
-                        GameActions.Bottom.ChannelOrb(new Lightning(), true);
+                        GameActions.Bottom.ChannelOrb(new Lightning());
                         break;
 
                     case SKILL:
-                        GameActions.Bottom.ChannelOrb(new Frost(), true);
+                        GameActions.Bottom.ChannelOrb(new Frost());
                         break;
 
                     case POWER:
-                        GameActions.Bottom.ChannelOrb(new Earth(), true);
+                        GameActions.Bottom.ChannelOrb(new Earth());
                         break;
                 }
             }

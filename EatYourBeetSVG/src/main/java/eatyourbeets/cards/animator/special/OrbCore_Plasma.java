@@ -25,11 +25,7 @@ public class OrbCore_Plasma extends OrbCore
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (int i = 0; i < secondaryValue; i++)
-        {
-            GameActions.Bottom.ChannelOrb(new Plasma(), true);
-        }
-
+        GameActions.Bottom.ChannelOrbs(Plasma::new, secondaryValue);
         GameActions.Bottom.StackPower(new OrbCore_PlasmaPower(p, 1));
     }
 }

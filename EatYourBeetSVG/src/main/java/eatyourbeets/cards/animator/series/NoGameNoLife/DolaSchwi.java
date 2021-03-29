@@ -45,7 +45,7 @@ public class DolaSchwi extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.StackPower(p, new LockOnPower(m, magicNumber));
-        GameActions.Bottom.ChannelOrb(new Lightning(), true);
+        GameActions.Bottom.ChannelOrb(new Lightning());
 
         cooldown.ProgressCooldownAndTrigger(m);
     }

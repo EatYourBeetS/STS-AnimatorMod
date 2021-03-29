@@ -36,7 +36,7 @@ public class YuiTsuruno extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.ChannelOrb(new Fire(), true);
+        GameActions.Bottom.ChannelOrb(new Fire());
         GameActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
     }
 
@@ -45,7 +45,7 @@ public class YuiTsuruno extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.ChannelOrb(new Fire(), true);
+        GameActions.Bottom.ChannelOrb(new Fire());
         GameActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
     }
 

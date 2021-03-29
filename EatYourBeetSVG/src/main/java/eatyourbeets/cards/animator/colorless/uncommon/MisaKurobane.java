@@ -33,7 +33,7 @@ public class MisaKurobane extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Fire(), true);
+        GameActions.Bottom.ChannelOrb(new Fire());
         GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.MakeCardInDiscardPile(new Yusarin());
     }

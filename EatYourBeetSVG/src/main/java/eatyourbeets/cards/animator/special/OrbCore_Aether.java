@@ -25,11 +25,7 @@ public class OrbCore_Aether extends OrbCore
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (int i = 0; i < secondaryValue; i++)
-        {
-            GameActions.Bottom.ChannelOrb(new Aether(), true);
-        }
-
+        GameActions.Bottom.ChannelOrbs(Aether::new, secondaryValue);
         GameActions.Bottom.StackPower(new OrbCore_AetherPower(p, 1));
     }
 }

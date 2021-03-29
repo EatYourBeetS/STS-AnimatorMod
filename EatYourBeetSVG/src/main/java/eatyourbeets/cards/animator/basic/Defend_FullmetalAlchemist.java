@@ -31,6 +31,6 @@ public class Defend_FullmetalAlchemist extends Defend
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Frost(), true);
+        GameActions.Bottom.ChannelOrb(new Frost());
     }
 }

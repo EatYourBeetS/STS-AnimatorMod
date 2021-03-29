@@ -32,7 +32,7 @@ public class KyokoSakura extends AnimatorCard
         if (IsStarter())
         {
             GameActions.Bottom.GainForce(1);
-            GameActions.Bottom.ChannelOrb(new Fire(), true);
+            GameActions.Bottom.ChannelOrb(new Fire());
         }
 
         GameActions.Bottom.Draw(magicNumber);

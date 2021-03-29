@@ -49,7 +49,7 @@ public class Giselle extends AnimatorCard_UltraRare
         if (startOfBattle)
         {
             GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.ChannelOrb(new Fire(), false);
+            GameActions.Bottom.ChannelOrb(new Fire());
         }
     }
 }

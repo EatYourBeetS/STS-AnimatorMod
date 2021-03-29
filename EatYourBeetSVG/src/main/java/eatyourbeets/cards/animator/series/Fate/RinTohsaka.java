@@ -43,7 +43,7 @@ public class RinTohsaka extends AnimatorCard
                 copy.evokeAmount = orb.evokeAmount;
                 copy.passiveAmount = orb.passiveAmount;
 
-                GameActions.Bottom.ChannelOrb(copy, true);
+                GameActions.Bottom.ChannelOrb(copy);
             }
         }
     }

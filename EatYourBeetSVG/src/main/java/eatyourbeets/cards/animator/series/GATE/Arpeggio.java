@@ -36,7 +36,7 @@ public class Arpeggio extends AnimatorCard
 
         if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.ChannelOrb(new Earth(), true);
+            GameActions.Bottom.ChannelOrb(new Earth());
         }
     }
 }

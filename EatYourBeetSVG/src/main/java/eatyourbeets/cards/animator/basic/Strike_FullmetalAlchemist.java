@@ -32,6 +32,6 @@ public class Strike_FullmetalAlchemist extends Strike
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Lightning(), true);
+        GameActions.Bottom.ChannelOrb(new Lightning());
     }
 }

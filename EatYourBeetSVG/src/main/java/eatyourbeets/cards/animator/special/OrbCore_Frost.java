@@ -25,11 +25,7 @@ public class OrbCore_Frost extends OrbCore
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (int i = 0; i < secondaryValue; i++)
-        {
-            GameActions.Bottom.ChannelOrb(new Frost(), true);
-        }
-
+        GameActions.Bottom.ChannelOrbs(Frost::new, secondaryValue);
         GameActions.Bottom.StackPower(new OrbCore_FrostPower(p, 1));
     }
 }

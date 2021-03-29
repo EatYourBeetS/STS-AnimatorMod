@@ -25,11 +25,7 @@ public class OrbCore_Lightning extends OrbCore
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (int i = 0; i < secondaryValue; i++)
-        {
-            GameActions.Bottom.ChannelOrb(new Lightning(), true);
-        }
-
+        GameActions.Bottom.ChannelOrbs(Lightning::new, secondaryValue);
         GameActions.Bottom.StackPower(new OrbCore_LightningPower(p, 1));
     }
 }

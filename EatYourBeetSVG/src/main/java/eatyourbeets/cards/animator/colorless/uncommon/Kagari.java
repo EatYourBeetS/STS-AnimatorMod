@@ -74,11 +74,7 @@ public class Kagari extends AnimatorCard
             {
                 flash();
                 GameActions.Top.ReducePower(this, 1);
-
-                for (int i = 0; i < EARTH_ORBS; i++)
-                {
-                    GameActions.Bottom.ChannelOrb(new Earth(), true);
-                }
+                GameActions.Bottom.ChannelOrbs(Earth::new, EARTH_ORBS);
             }
         }
     }

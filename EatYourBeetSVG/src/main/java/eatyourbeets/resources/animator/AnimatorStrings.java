@@ -120,7 +120,7 @@ public class AnimatorStrings
 
         public final String ContainsNCards(int cardCount)
         {
-            return JUtils.Format(Strings.TEXT[0], cardCount);
+            return cardCount > 0 ? JUtils.Format(Strings.TEXT[0], cardCount) : "";
         }
 
         public final String ContainsNCards_Promoted(int cardCount)

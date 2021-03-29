@@ -1,12 +1,16 @@
 package eatyourbeets.resources.animator;
 
+import basemod.BaseMod;
+import basemod.abstracts.CustomUnlock;
+import basemod.abstracts.CustomUnlockBundle;
 import com.badlogic.gdx.utils.Base64Coder;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.Synergy;
+import com.megacrit.cardcrawl.unlock.AbstractUnlock;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts.*;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 import eatyourbeets.utilities.JUtils;
 
@@ -180,20 +184,49 @@ public class AnimatorPlayerData
 
         add.Invoke(new Konosuba(), 0);
         add.Invoke(new Gate(), 1);
-        add.Invoke(new Elsword(), 1);
-        add.Invoke(new NoGameNoLife(), 1);
-        add.Invoke(new OwariNoSeraph(), 2);
-        add.Invoke(new GoblinSlayer(), 2);
+        add.Invoke(new Elsword(), 2);
         add.Invoke(new Katanagatari(), 2);
-        add.Invoke(new FullmetalAlchemist(), 2);
-        add.Invoke(new Fate(), 3);
-        add.Invoke(new Overlord(), 3);
-        add.Invoke(new Chaika(), 3);
-        add.Invoke(new TenSura(), 3);
-        add.Invoke(new MadokaMagica(), 4);
-        add.Invoke(new OnePunchMan(), 4);
-        add.Invoke(new Kancolle(), 4);
-        add.Invoke(new AccelWorld(), 4);
+        add.Invoke(new GoblinSlayer(), 3);
+        add.Invoke(new NoGameNoLife(), 3);
+        add.Invoke(new OwariNoSeraph(), 3);
+        add.Invoke(new FullmetalAlchemist(), 4);
+        add.Invoke(new Overlord(), 4);
+        add.Invoke(new Fate(), 5);
+        add.Invoke(new Chaika(), 5);
+        add.Invoke(new Kancolle(), 6);
+        add.Invoke(new OnePunchMan(), 6);
+        add.Invoke(new AccelWorld(), 7);
+        add.Invoke(new TenSura(), 7);
+        add.Invoke(new MadokaMagica(), 8);
+        add.Invoke(new LogHorizon(), 8);
+
+        for (AnimatorLoadout loadout : BaseLoadouts)
+        {
+            final String cardID = loadout.GetSymbolicCard().ID;
+            CustomUnlockBundle bundle = BaseMod.getUnlockBundleFor(GR.Animator.PlayerClass, loadout.UnlockLevel);
+
+            CustomUnlock unlock = new CustomUnlock(AbstractUnlock.UnlockType.MISC, cardID);
+            unlock.type = AbstractUnlock.UnlockType.CARD;
+            unlock.card = new AnimatorRuntimeLoadout(loadout).BuildCard();
+            unlock.key = unlock.card.cardID = GR.Animator.CreateID("series:" + loadout.Name);
+
+            if (bundle == null)
+            {
+                bundle = new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "", "", "");
+                bundle.getUnlocks().clear();
+                bundle.getUnlockIDs().clear();
+                bundle.getUnlockIDs().add(unlock.key);
+                bundle.getUnlocks().add(unlock);
+                bundle.unlockType = AbstractUnlock.UnlockType.CARD;
+            }
+            else
+            {
+                bundle.getUnlockIDs().add(unlock.key);
+                bundle.getUnlocks().add(unlock);
+            }
+
+            BaseMod.addUnlockBundle(bundle, GR.Animator.PlayerClass, loadout.UnlockLevel);
+        }
     }
 
     private void AddBetaLoadouts()

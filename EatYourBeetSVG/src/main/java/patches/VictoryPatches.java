@@ -1,6 +1,8 @@
 package patches;
 
-import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.VictoryRoom;
@@ -59,7 +61,7 @@ public class VictoryPatches
                 stats.add(Math.max(0, stats.size() - 2), GetUnnamedGameOverStats());
             }
 
-            if (Settings.isStandardRun() && AbstractDungeon.player.chosenClass == GR.Animator.PlayerClass)
+            if (Settings.isStandardRun() && GameUtilities.IsPlayerClass(GR.Animator.PlayerClass))
             {
                 GR.Animator.Data.RecordTrueVictory(GameUtilities.GetActualAscensionLevel());
             }

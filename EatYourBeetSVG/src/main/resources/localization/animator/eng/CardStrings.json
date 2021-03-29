@@ -902,7 +902,7 @@
 		},
 		"animator:Nyanta":
 		{
-			"DESCRIPTION": "Boost !S! [A], equal to the number of times you Synergized this turn, up to 3. || End your turn.",
+			"DESCRIPTION": "Gain !S! [A]. Gain 1 ** additional [A] for each ** time you Synergized ** this turn, up to 3. || End your turn.",
 			"NAME": "Nyanta"
 		},
 		"animator:Rayneshia":

@@ -21,7 +21,7 @@ public class Nyanta extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 2, 0);
+        Initialize(3, 0, 2, 1);
         SetUpgrade(1, 0);
         SetScaling(0, 1, 0);
 
@@ -41,10 +41,13 @@ public class Nyanta extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        if (GameUtilities.InBattle())
+        int bonus = CombatStats.SynergiesThisTurn().size();
+        if (bonus > 0 && Synergies.IsSynergizing(this))
         {
-            GameUtilities.ModifySecondaryValue(this, Math.min(3, CombatStats.SynergiesThisTurn().size()), true);
+            bonus -= 1;
         }
+
+        GameUtilities.ModifySecondaryValue(this, baseSecondaryValue + Math.min(3, bonus), true);
     }
 
     @Override

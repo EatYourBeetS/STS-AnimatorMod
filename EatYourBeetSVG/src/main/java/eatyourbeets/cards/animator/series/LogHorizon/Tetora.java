@@ -6,7 +6,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -29,20 +31,7 @@ public class Tetora extends AnimatorCard
     @Override
     public boolean cardPlayable(AbstractMonster m)
     {
-        int synCount = 0;
-
-        if (super.cardPlayable(m))
-        {
-            for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
-            {
-                if (HasSynergy(c))
-                {
-                    synCount++;
-                }
-            }
-        }
-
-        return synCount >= magicNumber;
+        return super.cardPlayable(m) && JUtils.Count(GameUtilities.GetOtherCardsInHand(this), this::HasSynergy) >= magicNumber;
     }
 
     @Override
@@ -51,72 +40,75 @@ public class Tetora extends AnimatorCard
         GameActions.Bottom.StackPower(new TetoraPower(p, secondaryValue));
     }
 
-    public static class TetoraPower extends AnimatorPower
+    public static class TetoraPower extends AnimatorPower implements OnSynergySubscriber
     {
-        private int synCount;
-        private int baseSynCount = 2;
+        public static final int BASE_SYNERGY_COUNTER = 2;
+
+        private int synergies;
 
         public TetoraPower(AbstractPlayer owner, int amount)
         {
             super(owner, Tetora.DATA);
 
             this.amount = amount;
-            synCount = baseSynCount;
-
+            this.synergies = BASE_SYNERGY_COUNTER;
             updateDescription();
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onSynergy.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onSynergy.Unsubscribe(this);
         }
 
         @Override
         public void atStartOfTurn()
         {
-            this.enabled = false;
-            synCount = baseSynCount;
+            super.atStartOfTurn();
+
+            this.enabled = true;
+            this.synergies = BASE_SYNERGY_COUNTER;
             updateDescription();
         }
 
         @Override
-        public void onAfterCardPlayed(AbstractCard usedCard)
+        public void OnSynergy(AbstractCard card)
         {
-            super.onAfterCardPlayed(usedCard);
-
-            AnimatorCard card = JUtils.SafeCast(usedCard, AnimatorCard.class);
-            if (card != null && card.HasSynergy())
+            if (!enabled)
             {
-                if (!enabled)
-                {
-                    enabled = true;
-                }
-                else {
-                    synCount -= 1;
-
-                    if (synCount > 0)
-                    {
-                        this.flash();
-                    }
-                    else if (synCount == 0)
-                    {
-                        GameActions.Top.GainBlock(amount);
-
-                        this.flash();
-                    }
-                }
-
-                updateDescription();
+                return;
             }
+
+            if (synergies-- <= 0)
+            {
+                GameActions.Top.GainBlock(amount);
+                enabled = false;
+            }
+
+            updateDescription();
+            flash();
         }
 
         @Override
         public void updateDescription()
         {
-            int counter = synCount;
-
-            if (counter <= 0)
+            if (enabled)
             {
-                description = FormatDescription(0, amount, 0, " This power has already been activated this turn.");
+                description = FormatDescription(0, amount, synergies, "");
             }
             else
             {
-                description = FormatDescription(0, amount, counter, "");
+                description = FormatDescription(1);
             }
         }
     }

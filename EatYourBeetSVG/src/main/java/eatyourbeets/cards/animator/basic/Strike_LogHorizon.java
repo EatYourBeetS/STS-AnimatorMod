@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.basic;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Synergies;
@@ -12,13 +13,18 @@ public class Strike_LogHorizon extends Strike
 
     public Strike_LogHorizon()
     {
-        super(ID, 1, CardTarget.ENEMY);
+        super(ID, 0, CardTarget.ENEMY);
 
-        Initialize(6, 0);
-        SetUpgrade(3, 0);
+        Initialize(3, 0);
+        SetUpgrade(2, 0);
 
-        SetMartialArtist();
         SetSynergy(Synergies.LogHorizon);
+    }
+
+    @Override
+    public boolean HasDirectSynergy(AbstractCard other)
+    {
+        return other.hasTag(MARTIAL_ARTIST) || super.HasDirectSynergy(other);
     }
 
     @Override

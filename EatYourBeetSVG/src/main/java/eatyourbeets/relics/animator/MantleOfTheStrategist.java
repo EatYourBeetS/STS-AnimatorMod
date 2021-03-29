@@ -1,11 +1,11 @@
-package eatyourbeets.relics.animator.beta;
+package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameUtilities;
 
 public class MantleOfTheStrategist extends AnimatorRelic implements OnSynergyCheckSubscriber
 {
@@ -26,13 +26,20 @@ public class MantleOfTheStrategist extends AnimatorRelic implements OnSynergyChe
         SetEnabled(true);
     }
 
+    @Override
+    public void onPlayCard(AbstractCard c, AbstractMonster m)
+    {
+        super.onPlayCard(c, m);
 
+        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.size() == 2)
+        {
+            SetEnabled(false);
+        }
+    }
 
     @Override
     public boolean OnSynergyCheck(AbstractCard a, AbstractCard b)
     {
-        int cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
-        AbstractCard lastCard = GameUtilities.GetLastCardPlayed(true);
-        return (lastCard == a) ? cardsPlayed == 2 : cardsPlayed == 1;
+        return IsEnabled() && AbstractDungeon.actionManager.cardsPlayedThisTurn.size() > 0;
     }
 }

@@ -1,30 +1,27 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.delegates.ActionT3;
-import eatyourbeets.interfaces.subscribers.OnCardResetSubscriber;
-import eatyourbeets.interfaces.subscribers.OnStanceChangedSubscriber;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardEffectChoice;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
-public class Henrietta extends AnimatorCard implements OnCardResetSubscriber, OnStanceChangedSubscriber
+public class Henrietta extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Henrietta.class).SetPower(3, CardRarity.RARE);
 
-    private int costModifier = 0;
-
-    public Henrietta() {
+    public Henrietta()
+    {
         super(DATA);
 
         Initialize(0, 2, 1, 1);
@@ -40,73 +37,30 @@ public class Henrietta extends AnimatorCard implements OnCardResetSubscriber, On
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.GainBlock(block);
+
+        if (!GameUtilities.InStance(NeutralStance.STANCE_ID))
+        {
+            GameActions.Bottom.Motivate(magicNumber);
+        }
 
         GameActions.Bottom.StackPower(new HenriettaPower(p, secondaryValue));
     }
 
-    @Override
-    public AbstractCard makeStatEquivalentCopy()
+    public static class HenriettaPower extends AnimatorPower
     {
-        Henrietta copy = (Henrietta) super.makeStatEquivalentCopy();
+        private static final CardEffectChoice choices = new CardEffectChoice();
+        private static final Henrietta sourceCard = new Henrietta();
 
-        copy.costModifier = this.costModifier;
-
-        return copy;
-    }
-
-    @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        OnCardReset(this);
-    }
-
-    @Override
-    public void OnStanceChanged(AbstractStance oldStance, AbstractStance newStance)
-    {
-        OnCardReset(this);
-    }
-
-    @Override
-    public void OnCardReset(AbstractCard card)
-    {
-        if (card == this)
+        public HenriettaPower(AbstractPlayer owner, int amount)
         {
-            int currentCost = (costForTurn - costModifier);
-
-            if (!player.stance.ID.equals(NeutralStance.STANCE_ID))
-            {
-                costModifier = -1;
-            }
-            else
-            {
-                costModifier = 0;
-            }
-
-            if (!this.freeToPlayOnce)
-            {
-                this.setCostForTurn(currentCost + costModifier);
-            }
-        }
-    }
-
-
-    public static class HenriettaPower extends AnimatorPower {
-
-        public HenriettaPower(AbstractPlayer owner, int amount) {
             super(owner, Henrietta.DATA);
 
             this.amount = amount;
 
             updateDescription();
-        }
-
-        @Override
-        public void updateDescription() {
-            description = FormatDescription(0);
         }
 
         @Override
@@ -119,38 +73,18 @@ public class Henrietta extends AnimatorCard implements OnCardResetSubscriber, On
             {
                 EnergyPanel.useEnergy(energy);
                 flash();
-                ChooseStance();
+
+                if (choices.TryInitialize(sourceCard))
+                {
+                    choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
+                    choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));
+                    choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
+                    choices.AddEffect(new GenericEffect_EnterStance(NeutralStance.STANCE_ID));
+                }
+
+                choices.Select(GameActions.Top, 1, null)
+                .CancellableFromPlayer(true);
             }
         }
-    }
-
-    private static void ChooseStance()
-    {
-        String[] text = DATA.Strings.EXTENDED_DESCRIPTION;
-        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        group.addToBottom(CreateChoice(text[1], (c1, p1, m1) -> GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID)));
-        group.addToBottom(CreateChoice(text[2], (c1, p1, m1) -> GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID)));
-        group.addToBottom(CreateChoice(text[3], (c1, p1, m1) -> GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID)));
-        group.addToBottom(CreateChoice(text[4], (c1, p1, m1) -> GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID)));
-
-        GameActions.Top.SelectFromPile(Henrietta.DATA.Strings.NAME, 1, group)
-        .SetOptions(false, false)
-        .SetMessage(CardRewardScreen.TEXT[1])
-        .AddCallback(cards ->
-        {
-            for (AbstractCard card : cards)
-            {
-                card.use(player, null);
-            }
-        });
-    }
-
-    private static AnimatorCard_Dynamic CreateChoice(String text, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onSelect)
-    {
-        return new AnimatorCardBuilder(Henrietta.DATA.ID)
-        .SetProperties(CardType.SKILL, Henrietta.DATA.CardRarity, CardTarget.NONE)
-        .SetCost(-1, 0)
-        .SetOnUse(onSelect)
-        .SetText(Henrietta.DATA.Strings.NAME, text, text).Build();
     }
 }

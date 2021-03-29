@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,8 +11,6 @@ import eatyourbeets.utilities.GameActions;
 public class Shiroe extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Shiroe.class).SetAttack(0, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Normal);
-
-    protected static final Color upgradeGlowColor = AbstractCard.GREEN_BORDER_GLOW_COLOR;
 
     public Shiroe()
     {
@@ -46,22 +43,21 @@ public class Shiroe extends AnimatorCard
 
         if (CombatStats.SynergiesThisTurn().size() >= secondaryValue && !CombatStats.HasActivatedLimited(cardID))
         {
-            this.glowColor = upgradeGlowColor;
+            this.glowColor = AbstractCard.GREEN_BORDER_GLOW_COLOR;
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
         GameActions.Bottom.ApplyConstricted(p, m, magicNumber);
 
         if (CombatStats.SynergiesThisTurn().size() >= secondaryValue && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
-                    .IncludeMasterDeck(true)
-                    .IsCancellable(false);
-            flash();
+            .IncludeMasterDeck(true)
+            .IsCancellable(false);
         }
     }
 }

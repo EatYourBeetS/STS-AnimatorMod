@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
-import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -30,7 +29,7 @@ public class Serara extends AnimatorCard
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        if (!GameUtilities.InBattle() || TempHPField.tempHp.get(player) <= secondaryValue)
+        if (!GameUtilities.InBattle() || GameUtilities.GetTempHP() <= secondaryValue)
         {
             return TempHPAttribute.Instance.SetCard(this, true);
         }
@@ -41,12 +40,12 @@ public class Serara extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (TempHPField.tempHp.get(p) <= secondaryValue)
+        if (GameUtilities.GetTempHP(p) <= secondaryValue)
         {
             GameActions.Bottom.GainTemporaryHP(magicNumber);
         }
 
-        for (AbstractCard c : player.drawPile.group)
+        for (AbstractCard c : p.drawPile.group)
         {
             if (c.cardID.equals(Nyanta.DATA.ID))
             {
@@ -54,7 +53,7 @@ public class Serara extends AnimatorCard
             }
         }
 
-        for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
+        for (AbstractCard c : p.hand.group)
         {
             if (c.cardID.equals(Nyanta.DATA.ID))
             {

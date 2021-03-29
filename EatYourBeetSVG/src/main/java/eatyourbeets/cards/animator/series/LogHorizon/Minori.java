@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Minori extends AnimatorCard
 {
@@ -49,17 +50,16 @@ public class Minori extends AnimatorCard
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        GameActions.Bottom.Callback(c -> {
-            int blockToGain = (int) (player.currentBlock * ((double) magicNumber / (double) 100));
-
-            GameActions.Bottom.GainBlock(blockToGain);
+        GameActions.Bottom.Callback(c ->
+        {
+            GameActions.Bottom.GainBlock((int)(player.currentBlock * (1 + (magicNumber/100f))));
             GameActions.Bottom.VFX(new RainbowCardEffect());
         });
     }
 
     private void ShuffleToTopOfDeck()
     {
-        flash();
+        GameUtilities.Flash(this, false);
         GameActions.Last.MoveCard(this, player.drawPile);
     }
 }

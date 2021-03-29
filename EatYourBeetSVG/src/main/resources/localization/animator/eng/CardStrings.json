@@ -57,6 +57,11 @@
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
+		"animator:Defend_LogHorizon":
+		{
+			"DESCRIPTION": "Synergizes with {Spellcasters}.",
+			"NAME": "Improved Defend"
+		},
 		"animator:Defend_NoGameNoLife":
 		{
 			"DESCRIPTION": "Retain your leftmost ** playable card.",
@@ -135,6 +140,11 @@
 		"animator:Strike_Konosuba":
 		{
 			"DESCRIPTION": "",
+			"NAME": "Improved Strike"
+		},
+		"animator:Strike_LogHorizon":
+		{
+			"DESCRIPTION": "Synergizes with {Martial Artists}.",
 			"NAME": "Improved Strike"
 		},
 		"animator:Strike_NoGameNoLife":
@@ -859,20 +869,15 @@
 			"DESCRIPTION": "<SLM>. When drawn: ** Create !M! 0-Cost copies of ** this card with Exhaust. They ** deal 0 damage. || This card {Synergizes} with {Uncommon} cards.",
 			"NAME": "Akatsuki"
 		},
-		"animator:Defend_LogHorizon":
-		{
-			"DESCRIPTION": "",
-			"NAME": "Improved Defend"
-		},
 		"animator:Henrietta":
 		{
-			"DESCRIPTION": "Costs !M! less if you are NOT in Neutral Stance. || At the end of each turn, ** spend !S! of your remaining ** [E] to enter any Stance.",
-			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend 1 of your remaining Energy to enter any Stance.", "Enter [A] Stance.", "Enter [I] Stance.", "Enter [F] Stance.", "Exit your Stance."],
+			"DESCRIPTION": "At the end of each turn, ** spend !S! of your remaining ** [E] to enter any Stance. || If you are not in Neutral ** Stance: Motivate !M!.",
+			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend 1 of your remaining Energy to enter any Stance."],
 			"NAME": "Henrietta"
 		},
 		"animator:Isuzu":
 		{
-			"DESCRIPTION": "Choose 1: Next turn, gain !M! [E] or draw !S! cards. || On Synergy: Gain 1 {Temp.} [Artifact].",
+			"DESCRIPTION": "Choose 1: Next turn, gain !M! [E] or Next turn, draw !S! cards. || On Synergy: Gain 1 {Temp.} [Artifact].",
 			"NAME": "Isuzu Tonan"
 		},
 		"animator:Krusty":
@@ -887,7 +892,7 @@
 		},
 		"animator:Minori":
 		{
-			"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%, rounded down. ||  <SLM>. On Synergy or Discard: Shuffle this card into your draw pile.",
+			"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%. ||  <SLM>. On Synergy or Discard: Shuffle this card into your draw pile.",
 			"NAME": "Minori Housaki"
 		},
 		"animator:Naotsugu":
@@ -902,7 +907,7 @@
 		},
 		"animator:Rayneshia":
 		{
-			"DESCRIPTION": "Draw !M! card(s) that {Synergize} with this card. || This card {Synergizes} ** with {Exhaust} cards and ** {Hindrances}.",
+			"DESCRIPTION": "Draw !M! card(s) that {Synergize} with this card. || This card {Synergizes} ** with {Hindrances} and cards ** which {Exhaus}.",
 			"NAME": "Rayneshia"
 		},
 		"animator:RundelhausCode":
@@ -940,15 +945,10 @@
 			"DESCRIPTION": "",
 			"NAME": "Kyouko"
 		},
-		"animator:Strike_LogHorizon":
-		{
-			"DESCRIPTION": "",
-			"NAME": "Improved Strike"
-		},
 		"animator:Tetora":
 		{
 			"DESCRIPTION": "Can only be played ** with at least !M! other Synergic cards in hand. || On your second Synergy each turn: Gain !S! [Block].",
-			"EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.{2}"],
+			"EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.{2}", "This power has already been activated this turn."],
 			"NAME": "Tetora"
 		},
 		"animator:Tohya":

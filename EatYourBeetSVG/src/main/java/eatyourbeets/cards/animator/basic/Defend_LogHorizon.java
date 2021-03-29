@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.basic;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Synergies;
@@ -11,13 +12,19 @@ public class Defend_LogHorizon extends Defend
 
     public Defend_LogHorizon()
     {
-        super(ID, 1, CardTarget.SELF);
+        super(ID, 0, CardTarget.SELF);
 
-        Initialize(0, 5);
-        SetUpgrade(0, 3);
+        Initialize(0, 2);
+        SetUpgrade(0, 1);
 
         SetSpellcaster();
         SetSynergy(Synergies.LogHorizon);
+    }
+
+    @Override
+    public boolean HasDirectSynergy(AbstractCard other)
+    {
+        return other.hasTag(SPELLCASTER) || super.HasDirectSynergy(other);
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class RundelhausCode extends AnimatorCard
 {
@@ -19,9 +20,9 @@ public class RundelhausCode extends AnimatorCard
 
         Initialize(5, 0, 2, 1);
         SetUpgrade(3, 0, 0);
-        SetSpellcaster();
 
         SetSynergy(Synergies.LogHorizon);
+        SetSpellcaster();
     }
 
     @Override
@@ -33,23 +34,18 @@ public class RundelhausCode extends AnimatorCard
         {
             for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
             {
-                if (c.type.equals(CardType.ATTACK) && c.baseDamage >= 0)
+                EYBCard card = JUtils.SafeCast(c, EYBCard.class);
+                if (card != null && EYBAttackType.Elemental.equals(card.attackType))
                 {
-                    if (c instanceof EYBCard && EYBAttackType.Elemental.equals(((EYBCard)c).attackType))
-                    {
-                        GameUtilities.IncreaseDamage(c, magicNumber, false);
-                        c.flash();
-                    }
+                    GameUtilities.IncreaseDamage(card, magicNumber, false);
+                    GameUtilities.Flash(card, false);
                 }
             }
         }
 
         if (HasSynergy())
         {
-            for (int i=0; i<secondaryValue; i++)
-            {
-                GameActions.Bottom.ChannelOrb(new Lightning(), true);
-            }
+            GameActions.Bottom.ChannelOrbs(Lightning::new, secondaryValue);
         }
     }
 }

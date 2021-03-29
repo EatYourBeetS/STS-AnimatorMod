@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -16,6 +15,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class Soujiro extends AnimatorCard
 {
@@ -41,23 +41,8 @@ public class Soujiro extends AnimatorCard
     @Override
     protected float GetInitialDamage()
     {
-        float damage = super.GetInitialDamage();
-
-        int synergyCount = 0;
-
-        for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
-        {
-            if (HasSynergy(c))
-            {
-                synergyCount++;
-            }
-        }
-
-        damage += synergyCount * magicNumber;
-
-        return damage;
+        return super.GetInitialDamage() + (magicNumber * JUtils.Count(GameUtilities.GetOtherCardsInHand(this), this::HasSynergy));
     }
-
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
@@ -72,16 +57,14 @@ public class Soujiro extends AnimatorCard
 
         if (startOfBattle && CombatStats.TryActivateLimited(cardID))
         {
-            GameEffects.List.ShowCopy(this);
-
             final float speed = Settings.ACTION_DUR_XFAST;
-
             GameActions.Top.MakeCard(new Soujiro_Isami(), player.drawPile)
-                    .SetDuration(speed, true);
+            .SetDuration(speed, true);
             GameActions.Top.MakeCard(new Soujiro_Kawara(), player.drawPile)
-                    .SetDuration(speed, true);
+            .SetDuration(speed, true);
             GameActions.Top.MakeCard(new Soujiro_Kyouko(), player.drawPile)
-                    .SetDuration(speed, true);
+            .SetDuration(speed, true);
+            GameEffects.List.ShowCopy(this);
         }
     }
 }

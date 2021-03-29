@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -10,15 +9,10 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RandomizedList;
-
-import java.util.ArrayList;
 
 public class Rayneshia extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Rayneshia.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
-
-    private final ArrayList<AbstractCard> synergicCards = new ArrayList<>();
 
     public Rayneshia()
     {
@@ -26,17 +20,9 @@ public class Rayneshia extends AnimatorCard
 
         Initialize(0, 0, 1);
         SetUpgrade(0, 0, 1);
+
         SetExhaust(true);
-
         SetSynergy(Synergies.LogHorizon);
-    }
-
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
-    {
-        synergicCards.clear();
-        AddCardsFromGroupToSynergy(player.drawPile);
-        DrawSynergicCards(player.drawPile);
     }
 
     @Override
@@ -45,35 +31,10 @@ public class Rayneshia extends AnimatorCard
         return (GameUtilities.IsCurseOrStatus(other)) || (other.exhaust) || super.HasDirectSynergy(other);
     }
 
-    private void AddCardsFromGroupToSynergy(CardGroup group)
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (AbstractCard c : group.group)
-        {
-            if (HasSynergy(c))
-            {
-                synergicCards.add(c);
-            }
-        }
-    }
-
-    private void DrawSynergicCards(CardGroup group)
-    {
-        RandomizedList<AbstractCard> randomizedSynergicCards = new RandomizedList<>(synergicCards);
-
-        for (int i = 0; i < magicNumber; i++)
-        {
-            if (i > randomizedSynergicCards.Size())
-            {
-                break;
-            }
-
-            AbstractCard randomCard = randomizedSynergicCards.Retrieve(rng, true);
-
-            if (randomCard != null)
-            {
-                GameActions.Top.MoveCard(randomCard, group, player.hand)
-                        .ShowEffect(true, true);
-            }
-        }
+        GameActions.Bottom.Draw(magicNumber)
+        .SetFilter(this::HasSynergy, false);
     }
 }

@@ -11,6 +11,8 @@ public class Isuzu extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Isuzu.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
+    private static final CardEffectChoice choices = new CardEffectChoice();
+
     public Isuzu()
     {
         super(DATA);
@@ -25,13 +27,10 @@ public class Isuzu extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        CardEffectChoice choices = new CardEffectChoice();
-
         choices.Initialize(this, true);
         choices.AddEffect(new GenericEffect_NextTurnEnergy(magicNumber));
         choices.AddEffect(new GenericEffect_NextTurnDraw(secondaryValue));
-
-        choices.Select(1, m);
+        choices.Select(GameActions.Bottom, 1, m);
 
         if (HasSynergy())
         {

@@ -43,34 +43,36 @@ public class Marielle extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
+        for (AbstractCard card : GameUtilities.GetOtherCardsInHand(this))
         {
-            if (c.costForTurn > 0)
+            if (card.costForTurn > 0)
             {
-                c.superFlash(Color.GOLD);
-                CostModifiers.For(c).Add(cardID + uuid, -1);
+                final String key = cardID + uuid;
 
-                if (c.baseBlock >= 0)
+                GameUtilities.Flash(card, Color.GOLD, true);
+                CostModifiers.For(card).Add(key, -1);
+
+                if (card.baseBlock >= 0)
                 {
-                    BlockModifiers.For(c).Add(cardID + uuid, -magicNumber);
+                    BlockModifiers.For(card).Add(key, -magicNumber);
                 }
-                if (c.baseDamage >= 0)
+                if (card.baseDamage >= 0)
                 {
-                    DamageModifiers.For(c).Add(cardID + uuid, -magicNumber);
+                    DamageModifiers.For(card).Add(key, -magicNumber);
                 }
 
-                GameUtilities.TriggerWhenPlayed(c, card ->
+                GameUtilities.TriggerWhenPlayed(card, key, (k, c) ->
                 {
-                    CostModifiers.For(card).Remove(cardID + uuid);
-                    BlockModifiers.For(card).Remove(cardID + uuid);
-                    DamageModifiers.For(card).Remove(cardID + uuid);
+                    CostModifiers.For(c).Remove(k, false);
+                    BlockModifiers.For(c).Remove(k);
+                    DamageModifiers.For(c).Remove(k);
                 });
             }
         }
 
         if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.ChannelOrb(new Aether(), true);
+            GameActions.Bottom.ChannelOrb(new Aether());
         }
     }
 }

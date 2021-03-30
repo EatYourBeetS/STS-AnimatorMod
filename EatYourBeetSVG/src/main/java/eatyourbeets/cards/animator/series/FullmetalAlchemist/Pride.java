@@ -33,7 +33,7 @@ public class Pride extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.ChannelOrbs(Dark::new, magicNumber);
         GameActions.Bottom.ApplyConstricted(p, m, this.secondaryValue);

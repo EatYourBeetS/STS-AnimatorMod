@@ -23,7 +23,7 @@ public class Curse_Nutcracker extends AnimatorCard_Curse
         SetSynergy(Synergies.YoujoSenki);
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (dontTriggerOnUseCard)
         {

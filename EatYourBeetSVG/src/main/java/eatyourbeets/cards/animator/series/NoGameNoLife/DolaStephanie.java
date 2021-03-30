@@ -30,7 +30,7 @@ public class DolaStephanie extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetOptions(false, false, false)

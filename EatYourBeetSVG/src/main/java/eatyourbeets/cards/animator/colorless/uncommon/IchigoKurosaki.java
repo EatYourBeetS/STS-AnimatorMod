@@ -44,7 +44,7 @@ public class IchigoKurosaki extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainForce(1, true);
         GameActions.Bottom.GainAgility(1, true);

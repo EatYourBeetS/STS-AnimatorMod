@@ -22,7 +22,7 @@ public class OrbCore_Chaos extends OrbCore
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.ChannelRandomOrbs(secondaryValue);
         GameActions.Bottom.StackPower(new OrbCore_ChaosPower(p, 1));

@@ -23,7 +23,7 @@ public class Biyorigo extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainThorns(magicNumber);
         GameActions.Bottom.GainArtifact(secondaryValue);

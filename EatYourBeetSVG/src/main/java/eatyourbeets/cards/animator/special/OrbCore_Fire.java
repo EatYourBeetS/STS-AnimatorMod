@@ -23,7 +23,7 @@ public class OrbCore_Fire extends OrbCore
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.ChannelOrbs(Fire::new, secondaryValue);
         GameActions.Bottom.StackPower(new OrbCore_FirePower(p, 1));

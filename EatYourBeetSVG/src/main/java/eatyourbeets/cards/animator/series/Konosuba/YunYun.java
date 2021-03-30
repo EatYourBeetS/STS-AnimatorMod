@@ -57,7 +57,7 @@ public class YunYun extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE");
 

@@ -25,9 +25,9 @@ public class HarukoHaruhara extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Top.DiscardFromHand(name, 1, true)
+        GameActions.Bottom.DiscardFromHand(name, 1, true)
         .ShowEffect(true, true)
         .SetOptions(false, false, false)
         .AddCallback(m, (target, cards) ->

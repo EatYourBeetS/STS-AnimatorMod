@@ -54,7 +54,7 @@ public class Vesta_Elixir extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         for (VestaElixirEffect effect : effects)
         {

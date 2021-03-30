@@ -26,9 +26,14 @@ public class Yoichi extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         GameActions.Bottom.DiscardFromHand(name, 1, false);
         GameActions.Bottom.StackPower(new SupportDamagePower(p, 1))
         .AddCallback(power ->

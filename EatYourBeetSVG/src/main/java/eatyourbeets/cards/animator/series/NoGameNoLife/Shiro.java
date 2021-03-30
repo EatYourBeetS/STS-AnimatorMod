@@ -54,13 +54,12 @@ public class Shiro extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Top.Draw(1)
+        GameActions.Bottom.StackPower(new ShiroPower(p, 1));
+        GameActions.Bottom.Draw(1)
         .ShuffleIfEmpty(false)
         .SetFilter(c -> Sora.DATA.ID.equals(c.cardID), false);
-
-        GameActions.Bottom.StackPower(new ShiroPower(p, 1));
     }
 
     public void RefreshCost()

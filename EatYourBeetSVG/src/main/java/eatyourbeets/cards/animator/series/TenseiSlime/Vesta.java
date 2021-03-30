@@ -40,7 +40,7 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         VestaElixirEffects.BeginCreateElixir((Vesta) this.makeStatEquivalentCopy());
     }

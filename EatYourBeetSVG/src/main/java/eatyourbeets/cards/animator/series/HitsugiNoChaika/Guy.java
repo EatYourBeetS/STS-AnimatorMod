@@ -24,13 +24,13 @@ public class Guy extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
         .SetOptions(false, false, true);
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, secondaryValue)
             .ShowEffect(true, true)

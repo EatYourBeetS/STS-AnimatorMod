@@ -28,7 +28,7 @@ public class HiiragiShinya extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.FetchFromPile(name, 1, p.discardPile)
@@ -45,7 +45,7 @@ public class HiiragiShinya extends AnimatorCard
             }
         });
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.StackPower(new SupportDamagePower(p, magicNumber));
         }

@@ -22,7 +22,7 @@ public class Strike_OnePunchMan extends Strike
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
@@ -30,7 +30,7 @@ public class Strike_OnePunchMan extends Strike
         {
             if (c.tags.contains(CardTags.STRIKE))
             {
-                GameActions.Top.MoveCard(c, p.drawPile, p.hand);
+                GameActions.Bottom.MoveCard(c, p.drawPile, p.hand);
                 return;
             }
         }

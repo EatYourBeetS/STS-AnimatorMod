@@ -23,7 +23,7 @@ public class OrbCore_Dark extends OrbCore
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.ChannelOrbs(Dark::new, secondaryValue);
         GameActions.Bottom.StackPower(new OrbCore_DarkPower(p, 1));

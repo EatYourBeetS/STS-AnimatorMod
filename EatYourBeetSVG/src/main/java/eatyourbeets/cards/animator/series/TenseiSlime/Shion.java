@@ -27,17 +27,21 @@ public class Shion extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
 
-        GameActions.Bottom.DiscardFromHand(name, 1, false)
-        .SetOptions(false, false, false);
-        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 1));
-
-        if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
+        if (isSynergizing && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
         }
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
+        GameActions.Bottom.DiscardFromHand(name, 1, false)
+        .SetOptions(false, false, false);
+        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 1));
     }
 }

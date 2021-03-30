@@ -47,14 +47,7 @@ public class Caster extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        if (HasSynergy())
-        {
-            target = CardTarget.SELF_AND_ENEMY;
-        }
-        else
-        {
-            target = CardTarget.SELF;
-        }
+        target = HasSynergy() ? CardTarget.SELF_AND_ENEMY : CardTarget.SELF;
     }
 
     @Override
@@ -64,11 +57,11 @@ public class Caster extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.ChannelOrb(new Dark());
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             ChooseAction(m);
         }

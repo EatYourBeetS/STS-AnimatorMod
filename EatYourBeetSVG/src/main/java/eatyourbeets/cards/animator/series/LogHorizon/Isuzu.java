@@ -25,14 +25,14 @@ public class Isuzu extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         choices.Initialize(this, true);
         choices.AddEffect(new GenericEffect_NextTurnEnergy(magicNumber));
         choices.AddEffect(new GenericEffect_NextTurnDraw(secondaryValue));
         choices.Select(GameActions.Bottom, 1, m);
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.GainTemporaryArtifact(1);
         }

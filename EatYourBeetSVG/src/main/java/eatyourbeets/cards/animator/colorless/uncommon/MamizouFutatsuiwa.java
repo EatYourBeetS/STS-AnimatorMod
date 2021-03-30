@@ -61,9 +61,14 @@ public class MamizouFutatsuiwa extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetOptions(false, false, false)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])

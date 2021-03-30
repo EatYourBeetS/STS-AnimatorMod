@@ -36,7 +36,7 @@ public class Kagari extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
         {

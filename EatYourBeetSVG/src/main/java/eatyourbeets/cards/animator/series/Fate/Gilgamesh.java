@@ -88,7 +88,7 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (timesUpgraded >= 8)
         {

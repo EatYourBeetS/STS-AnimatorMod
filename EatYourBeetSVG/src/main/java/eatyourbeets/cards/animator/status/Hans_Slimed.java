@@ -32,7 +32,7 @@ public class Hans_Slimed extends AnimatorCard_Status
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
 

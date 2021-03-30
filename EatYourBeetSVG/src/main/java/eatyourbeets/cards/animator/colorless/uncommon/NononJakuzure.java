@@ -58,7 +58,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.Cycle(name, magicNumber)
         .AddCallback(() ->

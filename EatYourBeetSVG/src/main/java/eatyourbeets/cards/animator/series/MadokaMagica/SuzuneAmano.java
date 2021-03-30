@@ -32,22 +32,26 @@ public class SuzuneAmano extends AnimatorCard
         float damage = super.GetInitialDamage();
         if (IsStarter())
         {
-            damage += (JUtils.Count(player.orbs, Fire.class::isInstance) * secondaryValue);
+            damage += (JUtils.Count(player.orbs, o -> Fire.ORB_ID.equals(o.ID)) * secondaryValue);
         }
 
         return damage;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
 
         if (IsStarter())
         {
-            GameActions.Bottom.Draw(JUtils.Count(player.orbs, Fire.class::isInstance));
+            GameActions.Bottom.Draw(JUtils.Count(player.orbs, o -> Fire.ORB_ID.equals(o.ID)));
         }
+    }
 
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         GameActions.Bottom.ExhaustFromHand(name, 1, !upgraded)
         .ShowEffect(true, true)
         .SetOptions(false, false, false)

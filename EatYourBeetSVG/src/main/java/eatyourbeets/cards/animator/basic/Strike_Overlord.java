@@ -21,7 +21,7 @@ public class Strike_Overlord extends Strike
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseDamage += magicNumber);

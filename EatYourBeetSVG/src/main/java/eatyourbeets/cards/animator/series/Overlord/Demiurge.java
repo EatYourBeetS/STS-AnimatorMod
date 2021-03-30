@@ -24,7 +24,7 @@ public class Demiurge extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (upgraded)
         {
@@ -37,7 +37,7 @@ public class Demiurge extends AnimatorCard
             ExecuteEffect(true);
         }
 
-        if (HasSynergy() && !p.hasPower(ConservePower.POWER_ID))
+        if (isSynergizing && !p.hasPower(ConservePower.POWER_ID))
         {
             GameActions.Bottom.StackPower(new ConservePower(p, 1));
         }

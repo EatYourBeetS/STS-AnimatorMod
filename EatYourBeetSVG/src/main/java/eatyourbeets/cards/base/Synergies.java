@@ -182,17 +182,16 @@ public class Synergies
         return result;
     }
 
-    public static void TrySynergize(AbstractCard card)
+    public static boolean TrySynergize(AbstractCard card)
     {
         if (WouldSynergize(card))
         {
             currentSynergy = card;
-            CombatStats.Instance.OnSynergy(card);
+            return true;
         }
-        else
-        {
-            currentSynergy = null;
-        }
+
+        currentSynergy = null;
+        return false;
     }
 
     public static void SetLastCardPlayed(AbstractCard card)

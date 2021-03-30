@@ -17,7 +17,6 @@ public class Defend_LogHorizon extends Defend
         Initialize(0, 2);
         SetUpgrade(0, 1);
 
-        SetSpellcaster();
         SetSynergy(Synergies.LogHorizon);
     }
 
@@ -28,7 +27,7 @@ public class Defend_LogHorizon extends Defend
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(this.block);
     }

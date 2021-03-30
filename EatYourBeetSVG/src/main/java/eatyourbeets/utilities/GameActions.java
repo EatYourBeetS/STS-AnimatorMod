@@ -93,6 +93,16 @@ public final class GameActions
         return Top.Add(new DelayAllActions(true));
     }
 
+    public static ArrayList<AbstractGameAction> GetActions()
+    {
+        return AbstractDungeon.actionManager.actions;
+    }
+
+    public static void ClearActions()
+    {
+        AbstractDungeon.actionManager.actions.clear();
+    }
+
     public <T extends AbstractGameAction> T Add(T action)
     {
         switch (actionOrder)

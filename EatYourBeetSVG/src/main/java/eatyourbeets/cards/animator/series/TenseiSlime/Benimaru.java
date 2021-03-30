@@ -37,7 +37,7 @@ public class Benimaru extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.VFX(new FireballEffect(player.hb.cX, player.hb.cY, m.hb.cX, m.hb.cY)
         .SetColor(Color.RED, Color.ORANGE).SetRealtime(true), true);

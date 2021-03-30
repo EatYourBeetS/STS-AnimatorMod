@@ -30,12 +30,12 @@ public class Archer extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new ArcherPower(p, magicNumber));
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), 1);
         }

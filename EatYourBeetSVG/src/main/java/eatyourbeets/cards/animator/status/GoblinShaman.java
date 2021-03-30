@@ -31,7 +31,7 @@ public class GoblinShaman extends AnimatorCard_Status
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (this.dontTriggerOnUseCard)
         {

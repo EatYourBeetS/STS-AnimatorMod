@@ -23,10 +23,14 @@ public class Defend_MadokaMagica extends Defend
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
+    }
 
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         if (CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.MakeCardInDrawPile(new Curse_GriefSeed()).SetDestination(CardSelection.Top);

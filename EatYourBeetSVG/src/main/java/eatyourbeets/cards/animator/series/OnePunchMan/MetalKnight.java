@@ -33,7 +33,7 @@ public class MetalKnight extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY));
         GameActions.Bottom.Wait(0.8f);

@@ -4,6 +4,7 @@ import basemod.DevConsole;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -22,6 +23,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.actions.special.HasteAction;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.*;
@@ -34,10 +36,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import patches.CardGlowBorderPatches;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CombatStats extends EYBPower implements InvisiblePower
 {
@@ -63,7 +62,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnAfterDeathSubscriber> onAfterDeath = new GameEvent<>();
     public static final GameEvent<OnModifyDamageSubscriber> onModifyDamage = new GameEvent<>();
     public static final GameEvent<OnCardResetSubscriber> onCardReset = new GameEvent<>();
-    public static final GameEvent<OnCardCreatedSubscriber> onCardCreated  = new GameEvent<>();
+    public static final GameEvent<OnCardCreatedSubscriber> onCardCreated = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnSubscriber> onStartOfTurn = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
     public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = new GameEvent<>();
@@ -77,14 +76,14 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     private static final Map<String, Object> combatData = new HashMap<>();
     private static final Map<String, Object> turnData = new HashMap<>();
+    private static final ArrayList<AbstractGameAction> cachedActions = new ArrayList<>();
+    private static final ArrayList<AbstractOrb> orbsEvokedThisCombat = new ArrayList<>();
+    private static final ArrayList<AbstractOrb> orbsEvokedThisTurn = new ArrayList<>();
+    private static final ArrayList<AbstractCard> synergiesThisTurn = new ArrayList<>();
     private static GameActionManager.Phase currentPhase;
     private static int turnCount = 0;
     private static int cardsDrawnThisTurn = 0;
     private static int cardsExhaustedThisTurn = 0;
-
-    private static ArrayList<AbstractOrb> orbsEvokedThisCombat = new ArrayList<>();
-    private static ArrayList<AbstractOrb> orbsEvokedThisTurn = new ArrayList<>();
-    private static ArrayList<AbstractCard> synergiesThisTurn = new ArrayList<>();
 
     //@Formatter: Off
     public static boolean HasActivatedLimited(String id) { return combatData.containsKey(id); }
@@ -325,6 +324,46 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
 
         synergiesThisTurn.add(card);
+    }
+
+    public void OnUsingCard(AbstractCard c, AbstractPlayer p, AbstractMonster m)
+    {
+        AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
+        if (card != null)
+        {
+            boolean isSynergizing = Synergies.IsSynergizing(c);
+
+            card.OnUse(p, m, isSynergizing);
+
+            if (isSynergizing)
+            {
+                OnSynergy(c);
+            }
+
+            ArrayList<AbstractGameAction> actions = GameActions.GetActions();
+
+            cachedActions.clear();
+            cachedActions.addAll(actions);
+
+            actions.clear();
+            card.OnLateUse(p, m, isSynergizing);
+
+            if (actions.isEmpty())
+            {
+                actions.addAll(cachedActions);
+            }
+            else
+            {
+                for (int i = 0; i < cachedActions.size(); i++)
+                {
+                    GameActions.Top.Add(cachedActions.get(cachedActions.size() - 1 - i));
+                }
+            }
+        }
+        else if (c != null)
+        {
+            c.use(p, m);
+        }
     }
 
     public void OnEnemyDying(AbstractMonster enemy, boolean triggerRelics)

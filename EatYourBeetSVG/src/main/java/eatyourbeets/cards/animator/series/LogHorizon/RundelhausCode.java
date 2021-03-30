@@ -26,7 +26,7 @@ public class RundelhausCode extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.LIGHTNING);
 
@@ -43,7 +43,7 @@ public class RundelhausCode extends AnimatorCard
             }
         }
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.ChannelOrbs(Lightning::new, secondaryValue);
         }

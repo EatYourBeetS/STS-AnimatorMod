@@ -22,7 +22,7 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.Draw(magicNumber)
         .AddCallback(() ->

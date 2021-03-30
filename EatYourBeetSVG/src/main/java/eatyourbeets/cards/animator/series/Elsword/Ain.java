@@ -43,7 +43,7 @@ public class Ain extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         //GameActions.Bottom.VFX(new BlizzardEffect(magicNumber, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.6f);
         GameActions.Bottom.Callback(() ->
@@ -68,7 +68,7 @@ public class Ain extends AnimatorCard
             GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
         }
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.GainIntellect(secondaryValue);
         }

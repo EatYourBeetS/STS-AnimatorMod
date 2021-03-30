@@ -29,7 +29,7 @@ public class Excalibur extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, 1));
         GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.GOLD));

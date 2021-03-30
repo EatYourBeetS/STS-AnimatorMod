@@ -46,7 +46,7 @@ public class MaesHughes extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.Draw(Math.floorDiv(p.drawPile.size(), magicNumber));
         GameActions.Bottom.Motivate();

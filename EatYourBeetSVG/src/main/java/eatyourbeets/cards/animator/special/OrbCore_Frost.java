@@ -23,7 +23,7 @@ public class OrbCore_Frost extends OrbCore
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.ChannelOrbs(Frost::new, secondaryValue);
         GameActions.Bottom.StackPower(new OrbCore_FrostPower(p, 1));

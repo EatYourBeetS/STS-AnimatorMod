@@ -26,16 +26,20 @@ public class DolaRiku extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
+        if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.Draw(1)
+            .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsCurseOrStatus(c), false);
+        }
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
         .SetOptions(false, false, false)
         .AddCallback(cards -> GameActions.Bottom.Add(new DolaRikuAction(cards.get(0), magicNumber)));
-
-        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
-        {
-            GameActions.Top.Draw(1)
-            .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsCurseOrStatus(c), false);
-        }
     }
 }

@@ -3,6 +3,7 @@ package eatyourbeets.cards.base;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.ActionT1;
@@ -107,14 +108,7 @@ public abstract class AnimatorCard extends EYBCard
     {
         super.triggerOnGlowCheck();
 
-        if (HasSynergy())
-        {
-            this.glowColor = synergyGlowColor;
-        }
-        else
-        {
-            this.glowColor = defaultGlowColor;
-        }
+        this.glowColor = HasSynergy() ? synergyGlowColor : defaultGlowColor;
     }
 
     @Override
@@ -123,6 +117,25 @@ public abstract class AnimatorCard extends EYBCard
         AnimatorCard copy = (AnimatorCard) super.makeStatEquivalentCopy();
         copy.synergy = synergy;
         return copy;
+    }
+
+    @Override
+    public final void use(AbstractPlayer p1, AbstractMonster m1)
+    {
+        JUtils.LogWarning(this, "AnimatorCard.use() should not be called");
+        boolean isSynergizing = Synergies.IsSynergizing(this);
+        OnUse(p1, m1, isSynergizing);
+        OnLateUse(p1, m1, isSynergizing);
+    }
+
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
+
+    }
+
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
+
     }
 
     @Override

@@ -43,6 +43,15 @@ public class Marielle extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
+        if (isSynergizing && CombatStats.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.ChannelOrb(new Aether());
+        }
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         for (AbstractCard card : GameUtilities.GetOtherCardsInHand(this))
         {
             if (card.costForTurn > 0)
@@ -68,11 +77,6 @@ public class Marielle extends AnimatorCard
                     DamageModifiers.For(c).Remove(k);
                 });
             }
-        }
-
-        if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.ChannelOrb(new Aether());
         }
     }
 }

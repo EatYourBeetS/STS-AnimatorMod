@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.LogHorizon;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -12,6 +13,8 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+
+import java.util.List;
 
 public class Nyanta extends AnimatorCard
 {
@@ -41,8 +44,9 @@ public class Nyanta extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        int bonus = CombatStats.SynergiesThisTurn().size();
-        if (bonus > 0 && Synergies.IsSynergizing(this))
+        List<AbstractCard> synergies = CombatStats.SynergiesThisTurn();
+        int bonus = synergies.size();
+        if (bonus > 0 && synergies.get(synergies.size() - 1).uuid.equals(uuid))
         {
             bonus -= 1;
         }
@@ -59,7 +63,7 @@ public class Nyanta extends AnimatorCard
             .SetVFX(true, false);
         }
 
-        GameActions.Bottom.GainAgility(secondaryValue, true);
+        GameActions.Bottom.GainAgility(secondaryValue, false);
         GameActions.Bottom.Add(new PressEndTurnButtonAction());
     }
 }

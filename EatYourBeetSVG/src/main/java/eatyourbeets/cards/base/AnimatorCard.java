@@ -38,6 +38,11 @@ public abstract class AnimatorCard extends EYBCard
         SetMultiDamage(cardData.CardTarget == EYBCardTarget.ALL);
         SetAttackTarget(cardData.CardTarget);
         SetAttackType(cardData.AttackType);
+
+        if (cardData.Synergy != null)
+        {
+            SetSynergy(cardData.Synergy);
+        }
     }
 
     protected AnimatorCard(EYBCardData data, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)

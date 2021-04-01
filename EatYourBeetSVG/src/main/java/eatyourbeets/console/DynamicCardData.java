@@ -4,8 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCardBuilder;
+import eatyourbeets.cards.base.AnimatorCard_Dynamic;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.Map;
@@ -47,7 +50,7 @@ public class DynamicCardData
 
         if (builder.imagePath == null || !Gdx.files.internal(builder.imagePath).exists())
         {
-            builder.imagePath = AnimatorResources.GetCardImage(QuestionMark.DATA.ID);
+            builder.imagePath = GR.GetCardImage(QuestionMark.DATA.ID);
         }
 
         return builder.Build();
@@ -158,7 +161,7 @@ public class DynamicCardData
         if (ac != null)
         {
             builder.SetSynergy(ac.synergy, ac.hasTag(AnimatorCard.SHAPESHIFTER));
-            data.Image = AnimatorResources.GetCardImage(card.cardID);
+            data.Image = GR.GetCardImage(card.cardID);
         }
         else
         {

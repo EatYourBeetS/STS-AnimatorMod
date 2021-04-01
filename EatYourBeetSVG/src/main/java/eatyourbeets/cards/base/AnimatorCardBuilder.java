@@ -9,7 +9,6 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.AnimatorResources;
 
 public class AnimatorCardBuilder extends DynamicCardBuilder
 {
@@ -77,7 +76,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
 
         if (imagePath == null)
         {
-            SetImage(AnimatorResources.GetCardImage(id));
+            SetImage(GR.GetCardImage(id));
         }
 
         return new AnimatorCard_Dynamic(this);

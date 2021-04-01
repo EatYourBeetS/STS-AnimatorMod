@@ -89,7 +89,7 @@ public class Tetora extends AnimatorCard
                 return;
             }
 
-            if (synergies-- <= 0)
+            if (--synergies <= 0)
             {
                 GameActions.Top.GainBlock(amount);
                 enabled = false;

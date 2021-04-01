@@ -948,7 +948,7 @@
 		"animator:Tetora":
 		{
 			"DESCRIPTION": "Can only be played ** with at least !M! other Synergic cards in hand. || On your second Synergy each turn: Gain !S! [Block].",
-			"EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.{2}", "This power has already been activated this turn."],
+			"EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.", "This power has already been activated this turn."],
 			"NAME": "Tetora"
 		},
 		"animator:Tohya":

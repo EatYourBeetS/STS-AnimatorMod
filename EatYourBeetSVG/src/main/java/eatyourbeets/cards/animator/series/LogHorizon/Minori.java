@@ -52,7 +52,7 @@ public class Minori extends AnimatorCard
     {
         GameActions.Bottom.Callback(c ->
         {
-            GameActions.Bottom.GainBlock((int)(player.currentBlock * (1 + (magicNumber/100f))));
+            GameActions.Bottom.GainBlock((int)(player.currentBlock * (magicNumber/100f)));
             GameActions.Bottom.VFX(new RainbowCardEffect());
         });
     }

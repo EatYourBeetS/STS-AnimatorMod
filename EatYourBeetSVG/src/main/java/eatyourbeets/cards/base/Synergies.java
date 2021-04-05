@@ -11,7 +11,8 @@ import java.util.*;
 
 public class Synergies
 {
-    private final static HashMap<Integer, Synergy> All = new HashMap<>();
+    private final static HashMap<Integer, Synergy> map = new HashMap<>();
+
     public final static Synergy ANY = CreateSynergy(0);
     public final static Synergy Elsword = CreateSynergy(1);
     public final static Synergy Kancolle = CreateSynergy(2);
@@ -94,20 +95,20 @@ public class Synergies
         Synergy s = new Synergy(id, GR.Animator.Strings.Synergies.SynergyName(id));
         if (id > 0)
         {
-            All.put(id, s);
+            map.put(id, s);
         }
 
         return s;
     }
 
-    public static Collection<Synergy> GetAll()
+    public static Collection<Synergy> GetAllSynergies()
     {
-        return All.values();
+        return map.values();
     }
 
     public static Synergy GetByID(int id)
     {
-        return All.get(id);
+        return map.get(id);
     }
 
     public static Map<Synergy, List<AbstractCard>> GetCardsBySynergy(ArrayList<AbstractCard> cards)
@@ -167,7 +168,7 @@ public class Synergies
         return result;
     }
 
-    public static HashSet<Synergy> GetSynergies(ArrayList<AbstractCard> cards)
+    public static HashSet<Synergy> GetAllSynergies(ArrayList<AbstractCard> cards)
     {
         HashSet<Synergy> result = new HashSet<>();
         for (AbstractCard card : cards)

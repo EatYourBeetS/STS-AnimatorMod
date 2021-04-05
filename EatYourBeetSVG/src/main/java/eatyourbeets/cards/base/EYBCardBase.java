@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 
@@ -243,6 +244,14 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride
     protected void renderPortrait(SpriteBatch sb)
     {
+        Texture portraitImg = this.portraitImg;
+        boolean cropPortrait = this.cropPortrait;
+        if (!isSeen || isLocked)
+        {
+            portraitImg = GR.GetTexture(QuestionMark.DATA.ImagePath);
+            cropPortrait = false;
+        }
+
         if (cropPortrait && drawScale > 0.6f && drawScale < 1 && GR.Animator.Config.CropCardImages())
         {
             int width = portraitImg.getWidth();

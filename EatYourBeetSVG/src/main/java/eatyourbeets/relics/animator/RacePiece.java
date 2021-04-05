@@ -46,7 +46,7 @@ public class RacePiece extends AnimatorRelic
     {
         if (super.canSpawn())
         {
-            HashSet<Synergy> synergies = Synergies.GetSynergies(player.masterDeck.group);
+            HashSet<Synergy> synergies = Synergies.GetAllSynergies(player.masterDeck.group);
             for (AnimatorRuntimeLoadout loadout : GR.Animator.Dungeon.Series)
             {
                 if (synergies.contains(Synergies.GetByID(loadout.ID)))

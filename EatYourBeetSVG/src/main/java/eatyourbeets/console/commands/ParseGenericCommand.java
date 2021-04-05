@@ -163,7 +163,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                     temp = tokens[2].replace("_", " ");
                     ArrayList<AnimatorCard> cards = new ArrayList<>();
-                    Synergy synergy = JUtils.Find(Synergies.GetAll(), s -> s.Name.equals(temp));
+                    Synergy synergy = JUtils.Find(Synergies.GetAllSynergies(), s -> s.Name.equals(temp));
                     if (synergy != null)
                     {
                         Settings.seedSet = true;

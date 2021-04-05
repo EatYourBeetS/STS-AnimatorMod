@@ -44,7 +44,12 @@ public class GUI_TextBox extends GUIElement
 
     public GUI_TextBox SetAlignment(float verticalRatio, float horizontalRatio)
     {
-        this.label.SetAlignment(verticalRatio, horizontalRatio);
+        return SetAlignment(verticalRatio, horizontalRatio, false);
+    }
+
+    public GUI_TextBox SetAlignment(float verticalRatio, float horizontalRatio, boolean smartText)
+    {
+        this.label.SetAlignment(verticalRatio, horizontalRatio, smartText);
 
         return this;
     }

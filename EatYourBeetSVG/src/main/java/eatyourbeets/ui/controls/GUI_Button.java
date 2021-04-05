@@ -100,6 +100,13 @@ public class GUI_Button extends GUIElement
         return this;
     }
 
+    public GUI_Button SetTextColor(Color textColor)
+    {
+        this.textColor = textColor.cpy();
+
+        return this;
+    }
+
     @Override
     public void Update()
     {

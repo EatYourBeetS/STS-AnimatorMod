@@ -135,7 +135,21 @@
 			"Selecting this series will NL not unlock trophies for NL the current run.",
 			"Select #ySeries for a total of #b75 or more cards to proceed. Obtain an additional starting #yRelic if you select at least #b100 cards.",
 			"Pickup Bonus",
-			"Obtain a bonus for each #ydifferent card you obtain (up to 6). NL The bonus will improve as you obtain more cards."
+			"Obtain a bonus for each #ydifferent card you obtain (up to 6). NL The bonus will improve as you obtain more cards.",
+			"#pRight-Click a series to view cards from its pool."
+		]
+	},
+	
+	"animator:SeriesSelectionButtons":
+	{
+		"TEXT":
+		[
+			"Show Beta Series.",
+			"Deselect All",
+			"Random ({0} cards)",
+			"Select All",
+			"Show card pool",
+			"Proceed"
 		]
 	},
 

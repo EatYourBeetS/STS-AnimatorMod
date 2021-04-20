@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
@@ -12,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RenderHelpers;
 
-public abstract class Aura extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber//, Hidden
+public abstract class Aura extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber, Hidden
 {
     private static final Color RENDER_COLOR = new Color(0.8f, 0.8f, 0.8f, 1);
 

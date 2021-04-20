@@ -1518,7 +1518,7 @@
 		},
 		"animator:Rayneshia":
 		{
-			"DESCRIPTION": "Draw !M! card(s) that {Synergize} with this card. || This card {Synergizes} ** with {Hindrances} and cards ** which {Exhaus}.",
+			"DESCRIPTION": "Draw !M! card(s) that {Synergize} with this card. || This card {Synergizes} ** with {Hindrances} and cards ** which {Exhaust}.",
 			"NAME": "Rayneshia"
 		},
 		"animator:RundelhausCode":

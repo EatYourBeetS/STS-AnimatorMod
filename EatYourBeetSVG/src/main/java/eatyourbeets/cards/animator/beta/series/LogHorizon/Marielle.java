@@ -61,7 +61,7 @@ public class Marielle extends AnimatorCard
 
                 GameUtilities.TriggerWhenPlayed(c, card ->
                 {
-                    CostModifiers.For(card).Remove(cardID + uuid);
+                    CostModifiers.For(card).Remove(cardID + uuid, false);
                     BlockModifiers.For(card).Remove(cardID + uuid);
                     DamageModifiers.For(card).Remove(cardID + uuid);
                 });

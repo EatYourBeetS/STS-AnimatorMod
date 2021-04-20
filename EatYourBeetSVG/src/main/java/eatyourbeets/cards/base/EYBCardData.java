@@ -134,6 +134,13 @@ public class EYBCardData
         return this;
     }
 
+    public EYBCardData SetImagePath(String imagePath)
+    {
+        ImagePath = imagePath;
+
+        return this;
+    }
+
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity)
     {
         return SetAttack(cost, rarity, EYBAttackType.Normal, EYBCardTarget.Normal);

@@ -66,7 +66,7 @@ public class Entoma extends AnimatorCard
     {
         super.atTurnStart();
 
-        if (CombatStats.TurnCount() > 0 && baseDamage > 0)
+        if (CombatStats.TurnCount(true) > 0 && baseDamage > 0)
         {
             GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseDamage = Math.max(0, c.baseDamage - 1));
         }

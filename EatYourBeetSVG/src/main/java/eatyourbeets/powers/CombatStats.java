@@ -79,6 +79,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     private static final ArrayList<AbstractGameAction> cachedActions = new ArrayList<>();
     private static final ArrayList<AbstractOrb> orbsEvokedThisCombat = new ArrayList<>();
     private static final ArrayList<AbstractOrb> orbsEvokedThisTurn = new ArrayList<>();
+    private static final ArrayList<AbstractCard> synergiesThisCombat = new ArrayList<>();
     private static final ArrayList<AbstractCard> synergiesThisTurn = new ArrayList<>();
     private static GameActionManager.Phase currentPhase;
     private static int turnCount = 0;
@@ -135,6 +136,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         cardsExhaustedThisTurn = 0;
         orbsEvokedThisCombat.clear();
         orbsEvokedThisTurn.clear();
+        synergiesThisCombat.clear();
         synergiesThisTurn.clear();
         currentPhase = null;
         combatData.clear();
@@ -324,6 +326,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
 
         synergiesThisTurn.add(card);
+        synergiesThisCombat.add(card);
     }
 
     public void OnUsingCard(AbstractCard c, AbstractPlayer p, AbstractMonster m)
@@ -435,6 +438,11 @@ public class CombatStats extends EYBPower implements InvisiblePower
         return cardsExhaustedThisTurn;
     }
 
+    public static List<AbstractCard> SynergiesThisCombat()
+    {
+        return synergiesThisCombat;
+    }
+
     public static List<AbstractCard> SynergiesThisTurn()
     {
         return synergiesThisTurn;
@@ -455,9 +463,9 @@ public class CombatStats extends EYBPower implements InvisiblePower
         return orbsEvokedThisTurn;
     }
 
-    public static int TurnCount()
+    public static int TurnCount(boolean fromZero)
     {
-        return turnCount;
+        return fromZero ? turnCount : (turnCount + 1);
     }
 
     @Override

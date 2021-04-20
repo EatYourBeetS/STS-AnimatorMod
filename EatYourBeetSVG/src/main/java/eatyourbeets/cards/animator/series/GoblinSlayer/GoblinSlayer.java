@@ -32,7 +32,7 @@ public class GoblinSlayer extends AnimatorCard
     {
         super.atTurnStart();
 
-        int turnCount = CombatStats.TurnCount();
+        int turnCount = CombatStats.TurnCount(true);
         if (turnCount % 2 == 1)
         {
             int goblins = 1;

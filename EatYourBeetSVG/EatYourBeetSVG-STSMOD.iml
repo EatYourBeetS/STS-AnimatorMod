@@ -42,7 +42,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.evacipated.cardcrawl:stslib:1.22.0">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/StSLib.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/STSLib.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

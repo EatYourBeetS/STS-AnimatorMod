@@ -1346,6 +1346,25 @@
 			"NAME": "Vesta"
 		}
 	},
+	
+	"AURAS":
+	{
+		"animator:Aura1":
+		{
+			"NAME": "Stance Aura",
+			"DESCRIPTION": "At the start of your third/second ** turn: Enter a Stance of ** your choice and Motivate ** 1 card in your draw pile."
+		},
+		"animator:Aura2":
+		{
+			"NAME": "Synergy Aura",
+			"DESCRIPTION": "At the start of your third ** turn: Heal 1 HP for each ** time you Synergized ** this combat, up to !M!."
+		},
+		"animator:Aura3":
+		{
+			"NAME": "Attack Aura",
+			"DESCRIPTION": "At the start of your third ** turn: <DRW-M> and ** apply 1 [Vulnerable] to a random ** enemy, ignoring [Artifact]."
+		}
+	},
 
 	"SPECIAL":
 	{

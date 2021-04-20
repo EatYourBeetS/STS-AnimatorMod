@@ -17,6 +17,7 @@ import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.potions.GrowthPotion;
 import eatyourbeets.resources.AbstractResources;
+import eatyourbeets.rewards.animator.AuraCardsReward;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
 import eatyourbeets.rewards.animator.SynergyCardsReward;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorLoadoutsContainer;
@@ -153,6 +154,9 @@ public class AnimatorResources extends AbstractResources
 
         SpecialGoldReward.Serializer goldSerializer = new SpecialGoldReward.Serializer();
         BaseMod.registerCustomReward(Enums.Rewards.SPECIAL_GOLD, goldSerializer, goldSerializer);
+
+        AuraCardsReward.Serializer auraSerializer = new AuraCardsReward.Serializer();
+        BaseMod.registerCustomReward(Enums.Rewards.AURA_CARDS, auraSerializer, auraSerializer);
     }
 
     @Override

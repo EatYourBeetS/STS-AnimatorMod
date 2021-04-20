@@ -43,7 +43,7 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare implements StartupCa
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.Add(new VFXAction(new CherryBlossomEffect(), 0.7F));
         GameActions.Bottom.ApplyPower(new DeathTouch(p));

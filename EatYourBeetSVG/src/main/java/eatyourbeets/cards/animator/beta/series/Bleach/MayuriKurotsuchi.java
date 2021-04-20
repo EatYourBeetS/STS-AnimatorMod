@@ -38,7 +38,7 @@ public class MayuriKurotsuchi extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.ApplyPoison(TargetHelper.Normal(m), magicNumber)
             .AddCallback(cards -> {

@@ -37,7 +37,7 @@ public class AyatoNaoi extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
 
@@ -64,7 +64,7 @@ public class AyatoNaoi extends AnimatorCard
         //to the above effect's damage
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.ChannelOrb(new Dark(), true);
+            GameActions.Bottom.ChannelOrb(new Dark());
         }
     }
 }

@@ -62,7 +62,7 @@ public class NaoTomori extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetFilter(c -> c.type.equals(CardType.POWER) || c.type.equals(CardType.STATUS))

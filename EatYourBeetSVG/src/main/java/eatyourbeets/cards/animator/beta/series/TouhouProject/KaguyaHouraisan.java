@@ -35,7 +35,7 @@ public class KaguyaHouraisan extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Top.Draw(1)
         .AddCallback(cards ->

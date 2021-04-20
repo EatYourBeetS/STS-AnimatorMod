@@ -37,7 +37,7 @@ public class SanaeKochiya extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Top.Scry(magicNumber)
         .AddCallback(cards ->

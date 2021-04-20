@@ -40,7 +40,7 @@ public class Shirosaki_Laplace extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (CombatStats.ControlPile.Contains(this))
         {

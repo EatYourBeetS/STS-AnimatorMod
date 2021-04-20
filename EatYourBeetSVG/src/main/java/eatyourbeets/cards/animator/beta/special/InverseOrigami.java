@@ -47,7 +47,7 @@ public class InverseOrigami extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         SupportDamagePower supportDamage = GameUtilities.GetPower(p, SupportDamagePower.class);
         if (supportDamage != null && supportDamage.amount > 0)

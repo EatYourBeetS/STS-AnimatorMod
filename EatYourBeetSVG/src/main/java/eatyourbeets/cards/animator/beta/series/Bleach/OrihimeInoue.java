@@ -27,7 +27,7 @@ public class OrihimeInoue extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
 
@@ -78,7 +78,7 @@ public class OrihimeInoue extends AnimatorCard
 
             this.amount--;
 
-            GameActions.Bottom.ChannelOrb(new Fire(), true);
+            GameActions.Bottom.ChannelOrb(new Fire());
 
             return damageAmount;
         }

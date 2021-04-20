@@ -40,7 +40,7 @@ public class GirlDeMo extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         ArrayList<Pair<ActionT1<Integer>, Integer>> pairs = new ArrayList<>();
         pairs.add(new Pair<>(GameActions.Bottom::GainForce, GameUtilities.GetPowerAmount(ForcePower.POWER_ID)));

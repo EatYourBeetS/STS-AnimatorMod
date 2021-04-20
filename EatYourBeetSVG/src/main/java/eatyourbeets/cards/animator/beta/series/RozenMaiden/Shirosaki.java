@@ -37,10 +37,10 @@ public class Shirosaki extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         for (int i = 0; i < magicNumber; i++)
-            GameActions.Bottom.ChannelRandomOrb(true);
+            GameActions.Bottom.ChannelRandomOrbs(1);
 
         GameActions.Bottom.MakeCardInDrawPile(new Shirosaki_Laplace());
 

@@ -34,7 +34,7 @@ public class YukariYakumo extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.StackPower(new WeakPower(player, magicNumber, false));
         GameActions.Bottom.StackPower(new FrailPower(player, magicNumber, false));

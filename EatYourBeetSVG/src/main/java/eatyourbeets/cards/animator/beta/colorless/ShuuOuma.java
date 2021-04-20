@@ -27,7 +27,7 @@ public class ShuuOuma extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         FetchFromPile fetchAction = new FetchFromPile(name, 1, player.drawPile, player.discardPile);
 

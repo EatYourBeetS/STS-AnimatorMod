@@ -26,7 +26,7 @@ public class Strike_RozenMaiden extends Strike // implements OnStartOfTurnSubscr
         SetSynergy(Synergies.RozenMaiden);
     }
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 

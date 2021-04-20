@@ -31,7 +31,7 @@ public class Shimako extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
 
@@ -54,6 +54,6 @@ public class Shimako extends AnimatorCard
             orb = new Lightning();
         }
 
-        GameActions.Bottom.ChannelOrb(orb, true);
+        GameActions.Bottom.ChannelOrb(orb);
     }
 }

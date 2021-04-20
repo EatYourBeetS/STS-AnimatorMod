@@ -34,9 +34,9 @@ public class MarisaKirisame extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.ChannelOrb(new Lightning(), true);
+        GameActions.Bottom.ChannelOrb(new Lightning());
 
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetOptions(true, true, true)

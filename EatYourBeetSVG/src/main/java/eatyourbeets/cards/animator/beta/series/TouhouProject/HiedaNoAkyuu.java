@@ -27,7 +27,7 @@ public class HiedaNoAkyuu extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.MoveCards(player.drawPile, player.discardPile)
         .SetDuration(0.01f, false);

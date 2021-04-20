@@ -37,7 +37,7 @@ public class YuukaKazami extends AnimatorCard implements OnStartOfTurnPostDrawSu
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.POISON);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.POISON);
@@ -45,7 +45,7 @@ public class YuukaKazami extends AnimatorCard implements OnStartOfTurnPostDrawSu
         {
             for (int i = 0; i < magicNumber; i++)
             {
-                GameActions.Bottom.ChannelOrb(new Earth(), true);
+                GameActions.Bottom.ChannelOrb(new Earth());
             }
         }
     }
@@ -55,7 +55,7 @@ public class YuukaKazami extends AnimatorCard implements OnStartOfTurnPostDrawSu
     {
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.ChannelOrb(new Earth(), true);
+            GameActions.Bottom.ChannelOrb(new Earth());
         }
     }
 

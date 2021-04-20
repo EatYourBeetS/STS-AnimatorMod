@@ -30,7 +30,7 @@ public class RukiaBankai extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         int stacks = GameUtilities.UseXCostEnergy(this);
 

@@ -29,7 +29,7 @@ public class AkaneSenri extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
@@ -62,7 +62,7 @@ public class AkaneSenri extends AnimatorCard
             .AddCallback(() ->
             {
                 AbstractOrb darkOrb = new Dark();
-                GameActions.Bottom.ChannelOrb(darkOrb, true);
+                GameActions.Bottom.ChannelOrb(darkOrb);
 
                 for (int i = 0; i < player.hand.size(); i++)
                 {

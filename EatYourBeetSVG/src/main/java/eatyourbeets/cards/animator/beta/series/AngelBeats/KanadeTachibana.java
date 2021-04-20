@@ -24,7 +24,7 @@ public class KanadeTachibana extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Top.FetchFromPile(name, magicNumber, p.discardPile)
         .SetOptions(false, true)

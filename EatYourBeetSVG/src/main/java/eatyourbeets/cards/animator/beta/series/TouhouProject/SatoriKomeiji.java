@@ -36,7 +36,7 @@ public class SatoriKomeiji extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.StackPower(new SatoriPower(p, magicNumber));
     }

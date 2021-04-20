@@ -50,7 +50,7 @@ public class SakuraKashima extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.ApplyPower(new EndTurnDeathPower(p));
 

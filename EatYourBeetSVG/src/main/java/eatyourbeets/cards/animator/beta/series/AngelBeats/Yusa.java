@@ -23,7 +23,7 @@ public class Yusa extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Top.ExhaustFromPile(name, magicNumber, p.discardPile);
         GameActions.Top.Scry(secondaryValue);

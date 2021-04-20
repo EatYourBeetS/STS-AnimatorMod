@@ -24,7 +24,7 @@ public class Hinaichigo extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
         GameActions.Bottom.ApplyWeak(p, m, magicNumber);

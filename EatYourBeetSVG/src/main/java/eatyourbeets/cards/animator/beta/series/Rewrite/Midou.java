@@ -30,12 +30,12 @@ public class Midou extends AnimatorCard
 
         for (int i = 0; i < secondaryValue; i++)
         {
-            GameActions.Bottom.ChannelOrb(new Fire(), true);
+            GameActions.Bottom.ChannelOrb(new Fire());
         }
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
 

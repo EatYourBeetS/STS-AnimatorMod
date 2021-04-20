@@ -35,7 +35,7 @@ public class Kanaria_Pizzicato extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainTemporaryHP(1);
         boolean hasAether = false;
@@ -48,7 +48,7 @@ public class Kanaria_Pizzicato extends AnimatorCard
         if (hasAether)
             GameActions.Bottom.Draw(magicNumber);
         else
-            GameActions.Bottom.ChannelOrb(new Aether(), true);
+            GameActions.Bottom.ChannelOrb(new Aether());
 
         GameActions.Bottom.DiscardFromHand(name, 1, false);
     }

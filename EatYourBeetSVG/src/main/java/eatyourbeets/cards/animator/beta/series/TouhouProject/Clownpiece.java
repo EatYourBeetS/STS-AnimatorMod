@@ -36,13 +36,13 @@ public class Clownpiece extends AnimatorCard
 
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (HasSynergy())
         {
             if (CombatStats.TryActivateSemiLimited(cardID))
             {
-                GameActions.Top.ChannelOrb(new Dark(), true);
+                GameActions.Top.ChannelOrb(new Dark());
             }
         }
 

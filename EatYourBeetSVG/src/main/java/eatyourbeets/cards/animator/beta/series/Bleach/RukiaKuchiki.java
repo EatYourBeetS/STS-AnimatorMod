@@ -46,13 +46,13 @@ public class RukiaKuchiki extends AnimatorCard
 
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (IsStarter())
         {
             for (int i=0; i<magicNumber; i++)
             {
-                GameActions.Bottom.ChannelOrb(new Frost(), true);
+                GameActions.Bottom.ChannelOrb(new Frost());
             }
         }
 

@@ -28,7 +28,7 @@ public class SosukeAizen extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         int energy = GameUtilities.UseXCostEnergy(this);
 

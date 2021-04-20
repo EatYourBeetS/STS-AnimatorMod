@@ -28,7 +28,7 @@ public class GenericEffect_ChannelOrb extends GenericEffect
     {
         for (int i=0; i<amount; i++)
         {
-            GameActions.Bottom.ChannelOrb(orb.makeCopy(), true);
+            GameActions.Bottom.ChannelOrb(orb.makeCopy());
         }
     }
 }

@@ -32,7 +32,7 @@ public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
 

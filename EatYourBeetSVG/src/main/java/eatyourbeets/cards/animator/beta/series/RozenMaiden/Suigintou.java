@@ -46,7 +46,7 @@ public class Suigintou extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
 
@@ -62,7 +62,7 @@ public class Suigintou extends AnimatorCard
     protected void OnCooldownCompleted(AbstractMonster m)
     {
         AbstractOrb fireOrb=new Fire();
-    	GameActions.Bottom.ChannelOrb(fireOrb, true);
+    	GameActions.Bottom.ChannelOrb(fireOrb);
 
     	for (int i = 0; i < magicNumber; i++)
         {

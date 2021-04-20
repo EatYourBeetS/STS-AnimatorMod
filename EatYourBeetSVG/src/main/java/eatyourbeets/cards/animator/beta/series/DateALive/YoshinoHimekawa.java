@@ -38,7 +38,7 @@ public class YoshinoHimekawa extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DiscardFromHand(name, magicNumber, true);
@@ -50,7 +50,7 @@ public class YoshinoHimekawa extends AnimatorCard
         }
         else
         {
-            GameActions.Bottom.ChannelOrb(new Frost(), true);
+            GameActions.Bottom.ChannelOrb(new Frost());
         }
 
         if (CombatStats.TryActivateLimited(this.cardID))

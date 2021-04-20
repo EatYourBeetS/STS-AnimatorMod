@@ -31,7 +31,6 @@ public class AnimatorResources extends AbstractResources
 {
     public final static String ID = "animator";
 
-    public final int MaxUnlockLevel = 12;
     public final AbstractCard.CardColor CardColor = Enums.Cards.THE_ANIMATOR;
     public final AbstractPlayer.PlayerClass PlayerClass = Enums.Characters.THE_ANIMATOR;
     public final AnimatorDungeonData Dungeon = AnimatorDungeonData.Register(CreateID("Data"));

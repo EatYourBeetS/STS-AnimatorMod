@@ -77,7 +77,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                 if (tokens[1].equals("unlock-level") && tokens.length > 2)
                 {
-                    int level = Math.max(0, Math.min(GR.Animator.MaxUnlockLevel, JUtils.ParseInt(tokens[2], 5)));
+                    int level = Math.max(0, Math.min(GR.Animator.Data.MaxUnlockLevel, JUtils.ParseInt(tokens[2], 5)));
                     if (UnlockTracker.getUnlockLevel(GR.Animator.PlayerClass) > level)
                     {
                         UnlockTracker.resetUnlockProgress(GR.Animator.PlayerClass);

@@ -76,7 +76,7 @@ import java.util.ArrayList;
 
 public class GameOverScreenPatches
 {
-    public static final int MAX_LEVEL = GR.Animator.MaxUnlockLevel;
+    public static final int MAX_LEVEL = GR.Animator.Data.MaxUnlockLevel;
     public static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("DeathScreen");
 
     public static final FieldInfo<Integer> _score = JUtils.GetField("score", GameOverScreen.class);

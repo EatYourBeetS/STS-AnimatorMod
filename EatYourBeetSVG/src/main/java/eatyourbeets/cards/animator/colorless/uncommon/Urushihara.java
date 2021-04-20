@@ -31,7 +31,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         Urushihara other = (Urushihara) makeStatEquivalentCopy();
 
@@ -42,7 +42,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
             other.lazyCounter += 1;
         }
 
-        GameActions.Bottom.ChannelOrb(new Dark(), true);
+        GameActions.Bottom.ChannelOrb(new Dark());
 
         CombatStats.onStartOfTurnPostDraw.Subscribe(other);
     }

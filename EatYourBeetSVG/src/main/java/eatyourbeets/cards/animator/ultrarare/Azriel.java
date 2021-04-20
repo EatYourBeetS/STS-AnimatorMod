@@ -30,7 +30,7 @@ public class Azriel extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (!p.hasPower(PlayerFlightPower.POWER_ID))
         {

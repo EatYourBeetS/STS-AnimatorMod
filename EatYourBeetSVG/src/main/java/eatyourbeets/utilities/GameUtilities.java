@@ -3,6 +3,7 @@ package eatyourbeets.utilities;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
+import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
@@ -30,6 +31,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
@@ -181,6 +183,18 @@ public class GameUtilities
         else
         {
             return null;
+        }
+    }
+
+    public static void Flash(AbstractCard card, boolean superFlash)
+    {
+        if (superFlash)
+        {
+            card.superFlash();
+        }
+        else
+        {
+            card.flash();
         }
     }
 
@@ -774,6 +788,16 @@ public class GameUtilities
         }
     }
 
+    public static int GetTempHP(AbstractCreature creature)
+    {
+        return creature != null ? TempHPField.tempHp.get(creature) : 0;
+    }
+
+    public static int GetTempHP()
+    {
+        return GetTempHP(player);
+    }
+
     public static int GetUniqueOrbsCount()
     {
         final HashSet<String> orbs = new HashSet<>();
@@ -1033,6 +1057,11 @@ public class GameUtilities
         CombatStats.onAfterCardPlayed.Subscribe(new CardPlayedListener(card, onCardPlayed));
     }
 
+    public static <T> void TriggerWhenPlayed(AbstractCard card, T state, ActionT2<T, AbstractCard> onCardPlayed)
+    {
+        CombatStats.onAfterCardPlayed.Subscribe(new CardPlayedListener(card, state, onCardPlayed));
+    }
+
     public static Vector2 TryGetPosition(CardGroup group)
     {
         if (group != null)
@@ -1158,13 +1187,25 @@ public class GameUtilities
 
     private static class CardPlayedListener implements OnAfterCardPlayedSubscriber
     {
+        private final Object state;
         private final AbstractCard card;
-        private ActionT1<AbstractCard> onCardPlayed;
+        private final ActionT1<AbstractCard> onCardPlayedT1;
+        private final ActionT2<?, AbstractCard> onCardPlayedT2;
 
         public CardPlayedListener(AbstractCard card, ActionT1<AbstractCard> onCardPlayed)
         {
+            this.state = null;
             this.card = card;
-            this.onCardPlayed = onCardPlayed;
+            this.onCardPlayedT1 = onCardPlayed;
+            this.onCardPlayedT2 = null;
+        }
+
+        public <T> CardPlayedListener(AbstractCard card, T state, ActionT2<T, AbstractCard> onCardPlayed)
+        {
+            this.state = state;
+            this.card = card;
+            this.onCardPlayedT1 = null;
+            this.onCardPlayedT2 = onCardPlayed;
         }
 
         @Override
@@ -1172,9 +1213,14 @@ public class GameUtilities
         {
             if (this.card.uuid.equals(card.uuid))
             {
-                if (this.onCardPlayed != null)
+                if (this.onCardPlayedT1 != null)
                 {
-                    this.onCardPlayed.Invoke(card);
+                    this.onCardPlayedT1.Invoke(card);
+                }
+
+                if (this.onCardPlayedT2 != null)
+                {
+                    this.onCardPlayedT2.CastAndInvoke(state, card);
                 }
 
                 CombatStats.onAfterCardPlayed.Unsubscribe(this);

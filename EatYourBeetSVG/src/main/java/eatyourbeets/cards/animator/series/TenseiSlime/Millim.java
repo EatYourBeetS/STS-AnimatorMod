@@ -42,13 +42,13 @@ public class Millim extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActions.Bottom.ApplyBurning(p, m, magicNumber);
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 2));
         }

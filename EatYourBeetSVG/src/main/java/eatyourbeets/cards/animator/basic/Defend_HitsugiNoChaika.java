@@ -20,9 +20,14 @@ public class Defend_HitsugiNoChaika extends Defend
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         GameActions.Bottom.Cycle(name, 1);
     }
 }

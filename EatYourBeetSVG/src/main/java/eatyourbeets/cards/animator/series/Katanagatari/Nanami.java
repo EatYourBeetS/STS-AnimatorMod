@@ -93,7 +93,7 @@ public class Nanami extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         energyOnUse = GameUtilities.UseXCostEnergy(this);
         NanamiEffect.GetEffect(m).EnqueueActions(this, p, m);

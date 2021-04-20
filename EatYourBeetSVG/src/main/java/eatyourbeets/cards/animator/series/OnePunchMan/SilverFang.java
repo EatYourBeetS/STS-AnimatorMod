@@ -22,7 +22,7 @@ public class SilverFang extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
 
@@ -41,7 +41,7 @@ public class SilverFang extends AnimatorCard
             });
         }
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
         }

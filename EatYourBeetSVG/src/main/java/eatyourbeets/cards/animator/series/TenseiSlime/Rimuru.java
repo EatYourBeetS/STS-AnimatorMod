@@ -39,7 +39,7 @@ public class Rimuru extends AnimatorCard implements OnAfterCardPlayedSubscriber
 
     //@Formatter: Off
     @Override public final boolean canUpgrade() { return false; }
-    @Override public final void use(AbstractPlayer p, AbstractMonster m) { }
+    @Override public final void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) { }
     @Override public final void upgrade() { }
     //@Formatter: On
 

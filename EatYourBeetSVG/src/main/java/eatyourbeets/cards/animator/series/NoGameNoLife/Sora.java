@@ -30,13 +30,13 @@ public class Sora extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Top.Draw(1)
+        GameActions.Bottom.Add(new WaitAction(0.4f));
+        GameActions.Bottom.Add(new SoraAction(name, magicNumber));
+        GameActions.Bottom.Draw(1)
         .ShuffleIfEmpty(false)
         .SetFilter(c -> Shiro.DATA.ID.equals(c.cardID), false);
 
-        GameActions.Bottom.Add(new WaitAction(0.4f));
-        GameActions.Bottom.Add(new SoraAction(name, magicNumber));
     }
 }

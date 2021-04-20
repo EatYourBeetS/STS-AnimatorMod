@@ -33,12 +33,12 @@ public class Sonic extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlur(magicNumber);
         GameActions.Bottom.GainAgility(secondaryValue);
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.CreateThrowingKnives(1);
         }

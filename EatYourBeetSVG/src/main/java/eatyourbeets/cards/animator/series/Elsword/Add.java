@@ -40,21 +40,22 @@ public class Add extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.StackPower(new EnergizedBluePower(p, 2));
         GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
+    }
 
-        for (int i = 0; i < secondaryValue; i++)
-        {
-            GameActions.Bottom.MakeCardInDrawPile(new Crystallize());
-        }
-
-        if (HasSynergy())
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
+        if (isSynergizing)
         {
             GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
             .AddCallback(this::OnCardChosen);
         }
+
+        GameActions.Bottom.MakeCardInDrawPile(new Crystallize()).Repeat(secondaryValue);
     }
 
     private void OnCardChosen(ArrayList<AbstractCard> cards)

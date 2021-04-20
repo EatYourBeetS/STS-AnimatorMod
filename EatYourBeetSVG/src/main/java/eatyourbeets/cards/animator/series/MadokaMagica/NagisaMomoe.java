@@ -40,7 +40,7 @@ public class NagisaMomoe extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         for (int i = 0; i < magicNumber; i++)
         {

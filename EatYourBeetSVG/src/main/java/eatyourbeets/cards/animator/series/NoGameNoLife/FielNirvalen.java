@@ -40,7 +40,7 @@ public class FielNirvalen extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.StackPower(new FielNirvalenPower(p, SCRY_AMOUNT));
@@ -95,9 +95,9 @@ public class FielNirvalen extends AnimatorCard
 
             if (enabled)
             {
-                this.flash();
                 GameActions.Top.Scry(amount);
                 enabled = false;
+                flash();
             }
         }
 

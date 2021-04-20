@@ -67,9 +67,14 @@ public class GUI_Label extends GUIElement
 
     public GUI_Label SetAlignment(float verticalRatio, float horizontalRatio)
     {
+        return SetAlignment(verticalRatio, horizontalRatio, false);
+    }
+
+    public GUI_Label SetAlignment(float verticalRatio, float horizontalRatio, boolean smartText)
+    {
         this.verticalRatio = verticalRatio;
         this.horizontalRatio = horizontalRatio;
-        this.smartText = false;
+        this.smartText = smartText;
 
         return this;
     }

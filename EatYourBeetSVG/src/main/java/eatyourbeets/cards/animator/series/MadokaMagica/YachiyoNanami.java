@@ -37,11 +37,11 @@ public class YachiyoNanami extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.StackPower(new YachiyoNanamiPower(p, 1));
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             if (choices.TryInitialize(this))
             {

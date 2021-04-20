@@ -38,13 +38,9 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.ChannelOrb(new Frost(), true);
-        }
-
+        GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
         CombatStats.onStartOfTurnPostDraw.Subscribe((Emilia) makeStatEquivalentCopy());
     }
 
@@ -57,7 +53,7 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
         {
             if (orb != null && Frost.ORB_ID.equals(orb.ID))
             {
-                GameActions.Bottom.ChannelOrb(new Lightning(), true);
+                GameActions.Bottom.ChannelOrb(new Lightning());
             }
         }
 

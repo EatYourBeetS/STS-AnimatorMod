@@ -20,7 +20,7 @@ public class Defend_Overlord extends Defend
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseBlock += c.magicNumber);

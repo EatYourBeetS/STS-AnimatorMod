@@ -32,7 +32,7 @@ public class TsurugaMeisai extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
         .SetOptions(false, false, false)

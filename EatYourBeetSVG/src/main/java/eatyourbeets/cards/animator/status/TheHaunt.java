@@ -42,7 +42,7 @@ public class TheHaunt extends AnimatorCard_Status implements Hidden
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainGold(magicNumber);
 

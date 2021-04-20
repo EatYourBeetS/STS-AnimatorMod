@@ -66,7 +66,7 @@ public class Father extends AnimatorCard implements OnAddedToDeckSubscriber, OnA
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (!p.hasRelic(relic.relicId))
         {

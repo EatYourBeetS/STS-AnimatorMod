@@ -31,6 +31,7 @@ public class EYBCardData
     public AbstractCard.CardColor CardColor;
     public EYBCardTarget CardTarget;
     public EYBAttackType AttackType;
+    public Synergy Synergy;
     public EYBCard tempCard = null;
 
     private TextureAtlas.AtlasRegion cardIcon = null;
@@ -112,6 +113,13 @@ public class EYBCardData
         }
     }
 
+    public EYBCardData SetSynergy(Synergy synergy)
+    {
+        Synergy = synergy;
+
+        return this;
+    }
+
     public EYBCardData SetMaxCopies(int maxCopies)
     {
         MaxCopies = maxCopies;
@@ -122,6 +130,13 @@ public class EYBCardData
     public EYBCardData SetColor(AbstractCard.CardColor color)
     {
         CardColor = color;
+
+        return this;
+    }
+
+    public EYBCardData SetImagePath(String imagePath)
+    {
+        ImagePath = imagePath;
 
         return this;
     }

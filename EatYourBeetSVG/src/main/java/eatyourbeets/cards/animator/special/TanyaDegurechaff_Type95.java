@@ -46,9 +46,9 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.ChannelOrb(new Plasma(), true);
+        GameActions.Bottom.ChannelOrb(new Plasma());
         GameActions.Bottom.ModifyAllInstances(uuid, c ->
         {
             c.isCostModified = c.isCostModifiedForTurn = false;

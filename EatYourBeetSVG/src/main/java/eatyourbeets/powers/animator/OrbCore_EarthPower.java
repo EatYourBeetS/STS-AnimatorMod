@@ -21,6 +21,6 @@ public class OrbCore_EarthPower extends OrbCore_AbstractPower
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
-        GameActions.Bottom.ChannelOrb(new Earth(), true);
+        GameActions.Bottom.ChannelOrb(new Earth());
     }
 }

@@ -13,6 +13,7 @@ public class AnimatorStrings
     public Synergies Synergies;
     public CharacterSelect CharSelect;
     public SeriesSelection SeriesSelection;
+    public SeriesSelectionButtons SeriesSelectionButtons;
     public Actions Actions;
     public Trophies Trophies;
 
@@ -26,6 +27,7 @@ public class AnimatorStrings
         Actions = new Actions();
         Trophies = new Trophies();
         SeriesSelection = new SeriesSelection();
+        SeriesSelectionButtons = new SeriesSelectionButtons();
     }
 
     public class Tips
@@ -51,8 +53,9 @@ public class AnimatorStrings
         public final String BonusRelic = Strings.TEXT[1];
         public final String CursedRelic = Strings.TEXT[2];
         public final String Banish = Strings.TEXT[3];
-        public final String UpgradeCard = Strings.TEXT[6];
-        public final String UpgradeCardDescription = Strings.TEXT[7];
+        public final String AuraEffects = Strings.TEXT[6];
+        public final String UpgradeCard = Strings.TEXT[7];
+        public final String UpgradeCardDescription = Strings.TEXT[8];
 
         public final String MaxHPBonus(int amount)
         {
@@ -119,10 +122,11 @@ public class AnimatorStrings
         public final String PurgingStoneRequirement = Strings.TEXT[3];
         public final String PickupBonusHeader = Strings.TEXT[4];
         public final String PickupBonusBody = Strings.TEXT[5];
+        public final String RightClickToPreview = Strings.TEXT[6];
 
         public final String ContainsNCards(int cardCount)
         {
-            return JUtils.Format(Strings.TEXT[0], cardCount);
+            return cardCount > 0 ? JUtils.Format(Strings.TEXT[0], cardCount) : "";
         }
 
         public final String ContainsNCards_Promoted(int cardCount)
@@ -133,6 +137,22 @@ public class AnimatorStrings
         public final String ContainsNCards_Beta(int cardCount)
         {
             return ContainsNCards(cardCount) + " NL " + Strings.TEXT[2];
+        }
+    }
+
+    public class SeriesSelectionButtons
+    {
+        private final UIStrings Strings = GetUIStrings("SeriesSelectionButtons");
+
+        public final String ShowBetaSeries = Strings.TEXT[0];
+        public final String DeselectAll = Strings.TEXT[1];
+        public final String SelectAll = Strings.TEXT[3];
+        public final String ShowCardPool = Strings.TEXT[4];
+        public final String Proceed = Strings.TEXT[5];
+
+        public final String SelectRandom(int cards)
+        {
+            return JUtils.Format(Strings.TEXT[2], cards) ;
         }
     }
 

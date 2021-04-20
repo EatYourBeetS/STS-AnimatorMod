@@ -42,7 +42,7 @@ public class Megumin extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.1f);
         GameActions.Bottom.Wait(0.35f);

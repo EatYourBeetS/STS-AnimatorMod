@@ -140,7 +140,6 @@ public class ChooseAndUpgradeEffect extends AbstractGameEffect
         {
             AbstractDungeon.gridSelectScreen.render(sb);
         }
-
     }
 
     public void dispose()

@@ -34,6 +34,7 @@ public class InputManager
     }
 
     public static KeyState RightClick = KeyState.Released;
+    public static KeyState LeftClick = KeyState.Released;
 
     public static void OnControllerKeyPress(int keyCode)
     {
@@ -53,7 +54,34 @@ public class InputManager
 
     public static void PostUpdate()
     {
+        UpdateLeftClick();
         UpdateRightClick();
+    }
+
+    private static void UpdateLeftClick()
+    {
+        if (Gdx.input.isButtonPressed(0))
+        {
+            if (LeftClick.IsJustPressed())
+            {
+                LeftClick = KeyState.Pressed;
+            }
+            else if (LeftClick.IsReleased() || LeftClick.IsJustReleased())
+            {
+                LeftClick = KeyState.JustPressed;
+            }
+        }
+        else
+        {
+            if (LeftClick.IsJustReleased())
+            {
+                LeftClick = KeyState.Released;
+            }
+            else if (LeftClick.IsPressed() || LeftClick.IsJustPressed())
+            {
+                LeftClick = KeyState.JustReleased;
+            }
+        }
     }
 
     private static void UpdateRightClick()

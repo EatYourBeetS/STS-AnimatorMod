@@ -29,7 +29,7 @@ public class TewiInaba extends AnimatorCard implements Hidden // TODO:
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (p.orbs.size() > 0)
         {

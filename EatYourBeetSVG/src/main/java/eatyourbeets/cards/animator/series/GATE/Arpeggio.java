@@ -25,7 +25,7 @@ public class Arpeggio extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (secondaryValue > 0)
         {
@@ -36,7 +36,7 @@ public class Arpeggio extends AnimatorCard
 
         if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.ChannelOrb(new Earth(), true);
+            GameActions.Bottom.ChannelOrb(new Earth());
         }
     }
 }

@@ -83,13 +83,13 @@ public class Illya extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         AbstractCard card = FindBestCard(m);
         if (card != null)
         {
-            GameActions.Top.PlayCard(card, p.drawPile, m);
             GameActions.Bottom.StackPower(new SelfDamagePower(p, magicNumber));
+            GameActions.Bottom.PlayCard(card, p.drawPile, m);
         }
     }
 

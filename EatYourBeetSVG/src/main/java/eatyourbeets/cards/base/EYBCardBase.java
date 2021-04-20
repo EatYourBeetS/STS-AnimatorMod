@@ -14,10 +14,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 
@@ -29,7 +31,6 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride protected void renderBack(SpriteBatch sb, boolean hovered, boolean selected) { SpireSuper.call(sb, hovered, selected); }
     @SpireOverride protected void renderTint(SpriteBatch sb) { SpireSuper.call(sb); }
     @SpireOverride protected void renderDescription(SpriteBatch sb) { SpireSuper.call(sb); }
-    @SpireOverride protected void renderType(SpriteBatch sb) { SpireSuper.call(sb); }
     @SpireOverride protected void renderJokePortrait(SpriteBatch sb) { renderPortrait(sb); }
     @SpireOverride private void renderDescriptionCN(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
     @SpireOverride private void renderCard(SpriteBatch sb, boolean hovered, boolean selected) { Render(sb, hovered, selected, false); }
@@ -51,6 +52,7 @@ public abstract class EYBCardBase extends AbstractCard
 
     protected static final FieldInfo<Boolean> _darken = JUtils.GetField("darken", AbstractCard.class);
     protected static final FieldInfo<Color> _renderColor = JUtils.GetField("renderColor", AbstractCard.class);
+    protected static final FieldInfo<Color> _typeColor = JUtils.GetField("typeColor", AbstractCard.class);
     protected static final Color HOVER_IMG_COLOR = new Color(1f, 0.815f, 0.314f, 0.8f);
     protected static final Color SELECTED_CARD_COLOR = new Color(0.5f, 0.9f, 0.9f, 1f);
     protected static final float SHADOW_OFFSET_X = 18f * Settings.scale;
@@ -214,6 +216,16 @@ public abstract class EYBCardBase extends AbstractCard
     }
 
     @SpireOverride
+    protected void renderType(SpriteBatch sb)
+    {
+        BitmapFont font = FontHelper.cardTypeFont;
+        Color color = _typeColor.Get(this);
+        color.a = _renderColor.Get(this).a;
+        font.getData().setScale(drawScale);
+        FontHelper.renderRotatedText(sb, font, GetTypeText(), current_x, current_y - 22.0f * drawScale * Settings.scale, 0.0F, -1.0F * this.drawScale * Settings.scale, angle, false, color);
+    }
+
+    @SpireOverride
     protected void renderImage(SpriteBatch sb, boolean hovered, boolean selected)
     {
         if (player != null)
@@ -243,6 +255,14 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride
     protected void renderPortrait(SpriteBatch sb)
     {
+        Texture portraitImg = this.portraitImg;
+        boolean cropPortrait = this.cropPortrait;
+        if (!isSeen || isLocked)
+        {
+            portraitImg = GR.GetTexture(QuestionMark.DATA.ImagePath);
+            cropPortrait = false;
+        }
+
         if (cropPortrait && drawScale > 0.6f && drawScale < 1 && GR.Animator.Config.CropCardImages())
         {
             int width = portraitImg.getWidth();
@@ -346,6 +366,30 @@ public abstract class EYBCardBase extends AbstractCard
     protected Texture GetEnergyOrb()
     {
         return null;
+    }
+
+    protected String GetTypeText()
+    {
+        switch(this.type)
+        {
+            case ATTACK:
+                return TEXT[0];
+
+            case CURSE:
+                return TEXT[3];
+
+            case STATUS:
+                return TEXT[7];
+
+            case SKILL:
+                return TEXT[1];
+
+            case POWER:
+                return TEXT[2];
+
+            default:
+                return TEXT[5];
+        }
     }
 
     public ColoredString GetMagicNumberString()

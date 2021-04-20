@@ -1,7 +1,6 @@
 package eatyourbeets.resources.animator;
 
 import basemod.BaseMod;
-import basemod.abstracts.CustomUnlockBundle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
@@ -12,13 +11,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
-import com.megacrit.cardcrawl.unlock.AbstractUnlock;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.EYBCardMetadata;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.potions.GrowthPotion;
 import eatyourbeets.resources.AbstractResources;
+import eatyourbeets.rewards.animator.AuraCardsReward;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
 import eatyourbeets.rewards.animator.SynergyCardsReward;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorLoadoutsContainer;
@@ -31,6 +30,7 @@ import java.util.Map;
 public class AnimatorResources extends AbstractResources
 {
     public final static String ID = "animator";
+
     public final AbstractCard.CardColor CardColor = Enums.Cards.THE_ANIMATOR;
     public final AbstractPlayer.PlayerClass PlayerClass = Enums.Characters.THE_ANIMATOR;
     public final AnimatorDungeonData Dungeon = AnimatorDungeonData.Register(CreateID("Data"));
@@ -48,6 +48,11 @@ public class AnimatorResources extends AbstractResources
     public int GetUnlockLevel()
     {
         return UnlockTracker.getUnlockLevel(PlayerClass);
+    }
+
+    public int GetUnlockCost(int currentCost)
+    {
+        return currentCost < 500 ? 500 : currentCost + (currentCost < 2000 ? 500 : 300);
     }
 
     @Override
@@ -97,13 +102,6 @@ public class AnimatorResources extends AbstractResources
     protected void InitializeCharacter()
     {
         BaseMod.addCharacter(new AnimatorCharacter(), Images.CHAR_BUTTON_PNG, Images.CHAR_PORTRAIT_JPG, PlayerClass);
-
-        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "UNNECESSARY unlock bar", "Anime", "A new starting deck!"), PlayerClass, 0);
-        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "Nothing", "Anime", "A new starting deck!"), PlayerClass, 1);
-        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "Unicorns", "BaseMod", "A new starting deck!"), PlayerClass, 2);
-        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "A piece of paper", "BaseMod", "A new starting deck!"), PlayerClass, 3);
-        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "A new bug", "BaseMod", "A new starting deck!"), PlayerClass, 4);
-        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "The Void", "Breaking changes", "A new starting deck!"), PlayerClass, 5);
     }
 
     @Override
@@ -155,6 +153,9 @@ public class AnimatorResources extends AbstractResources
 
         SpecialGoldReward.Serializer goldSerializer = new SpecialGoldReward.Serializer();
         BaseMod.registerCustomReward(Enums.Rewards.SPECIAL_GOLD, goldSerializer, goldSerializer);
+
+        AuraCardsReward.Serializer auraSerializer = new AuraCardsReward.Serializer();
+        BaseMod.registerCustomReward(Enums.Rewards.AURA_CARDS, auraSerializer, auraSerializer);
     }
 
     @Override

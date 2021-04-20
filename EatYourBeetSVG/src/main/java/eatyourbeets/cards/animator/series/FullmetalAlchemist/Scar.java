@@ -27,17 +27,17 @@ public class Scar extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Top.ExhaustFromHand(name, 1, true)
-        .ShowEffect(true, true)
-        .SetOptions(false, false, false)
-        .AddCallback(() -> GameActions.Bottom.ChannelOrb(new Earth(), true));
-
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
         .SetDamageEffect(__ -> CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3f));
 
-        if (HasSynergy())
+        GameActions.Bottom.ExhaustFromHand(name, 1, true)
+        .ShowEffect(true, true)
+        .SetOptions(false, false, false)
+        .AddCallback(() -> GameActions.Bottom.ChannelOrb(new Earth()));
+
+        if (isSynergizing)
         {
             GameActions.Bottom.FetchFromPile(name, 1, p.exhaustPile)
             .ShowEffect(true, true)

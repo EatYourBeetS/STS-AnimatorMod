@@ -33,7 +33,7 @@ public class LivingPicture extends AnimatorRelic implements OnSynergySubscriber
     }
 
     @Override
-    public void OnSynergy(AbstractCard card)
+    public void OnSynergy(AbstractCard c)
     {
         GameActions.Bottom.Draw(1);
         SetEnabled(false);

@@ -25,14 +25,14 @@ public class KyokoSakura extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
 
         if (IsStarter())
         {
             GameActions.Bottom.GainForce(1);
-            GameActions.Bottom.ChannelOrb(new Fire(), true);
+            GameActions.Bottom.ChannelOrb(new Fire());
         }
 
         GameActions.Bottom.Draw(magicNumber);

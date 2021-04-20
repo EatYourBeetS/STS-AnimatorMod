@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
+import eatyourbeets.utilities.InputManager;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,12 +28,14 @@ public class GUI_CardGrid extends GUIElement
     public final GUI_VerticalScrollBar scrollBar;
     public final ArrayList<AbstractCard> cards;
     public boolean autoShowScrollbar = true;
+    public boolean draggingScreen;
     public AbstractCard hoveredCard = null;
     public String message = null;
 
     protected ActionT1<AbstractCard> onCardClick;
+    protected ActionT1<AbstractCard> onCardRightClick;
     protected ActionT1<AbstractCard> onCardHovered;
-    protected boolean draggingScreen;
+    protected boolean canDragScreen = true;
     protected float lowerScrollBound = -Settings.DEFAULT_SCROLL_LIMIT;
     protected float upperScrollBound = Settings.DEFAULT_SCROLL_LIMIT;
     protected float scrollStart;
@@ -57,6 +60,20 @@ public class GUI_CardGrid extends GUIElement
     public GUI_CardGrid SetOnCardClick(ActionT1<AbstractCard> onCardClicked)
     {
         this.onCardClick = onCardClicked;
+
+        return this;
+    }
+
+    public GUI_CardGrid SetOnCardRightClick(ActionT1<AbstractCard> onCardRightClicked)
+    {
+        this.onCardRightClick = onCardRightClicked;
+
+        return this;
+    }
+
+    public GUI_CardGrid CanDragScreen(boolean canDrag)
+    {
+        this.canDragScreen = canDrag;
 
         return this;
     }
@@ -140,6 +157,12 @@ public class GUI_CardGrid extends GUIElement
 
         if (hoveredCard != null)
         {
+            if (InputManager.RightClick.IsJustPressed() && onCardRightClick != null)
+            {
+                onCardRightClick.Invoke(hoveredCard);
+                return;
+            }
+
             if (InputHelper.justClickedLeft)
             {
                 hoveredCard.hb.clickStarted = true;
@@ -211,7 +234,7 @@ public class GUI_CardGrid extends GUIElement
                     scrollDelta -= Settings.SCROLL_SPEED;
                 }
 
-                if (InputHelper.justClickedLeft && GR.UI.TryDragging())
+                if (canDragScreen && InputHelper.justClickedLeft && GR.UI.TryDragging())
                 {
                     draggingScreen = true;
                     scrollStart = InputHelper.mY - scrollDelta;

@@ -39,7 +39,7 @@ public class Lancer extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         AbstractGameAction.AttackEffect attackEffect;
         if (this.damage >= 15)

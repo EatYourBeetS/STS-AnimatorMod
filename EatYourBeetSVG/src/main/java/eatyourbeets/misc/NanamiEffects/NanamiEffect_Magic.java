@@ -12,10 +12,7 @@ public class NanamiEffect_Magic extends NanamiEffect
     {
         int orbs = GetOrbs(nanami);
 
-        for (int i = 0; i < orbs; i++)
-        {
-            GameActions.Bottom.ChannelRandomOrb(true);
-        }
+        GameActions.Bottom.ChannelRandomOrbs(orbs);
     }
 
     @Override

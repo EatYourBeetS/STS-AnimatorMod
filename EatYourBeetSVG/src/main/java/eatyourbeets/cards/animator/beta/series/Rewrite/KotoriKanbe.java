@@ -59,7 +59,7 @@ public class KotoriKanbe extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         int heal = m.maxHealth - m.currentHealth;
         int stacks = Math.floorDiv(heal, magicNumber);

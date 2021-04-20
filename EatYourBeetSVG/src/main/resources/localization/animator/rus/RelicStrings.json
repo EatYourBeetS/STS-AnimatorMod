@@ -1,4 +1,3 @@
-
 {
 	"animator:AlchemistGlove":
 	{
@@ -105,6 +104,12 @@
 		"DESCRIPTIONS": ["Раз за ход, когда карта #yСинергирует, вы берёте #b1 карту."],
 		"FLAVOR": "Всегда Смотрит.",
 		"NAME": "Живая Картина"
+	},
+	"animator:MantleOfTheStrategist":
+	{
+		"DESCRIPTIONS": ["Каждая вторая карта будет #yСинергировать."],
+		"FLAVOR": "Мантия из ткани, сотканной из следов падающих звёзд.",
+		"NAME": "Мантия стратега"
 	},
 	"animator:OldCoffin":
 	{

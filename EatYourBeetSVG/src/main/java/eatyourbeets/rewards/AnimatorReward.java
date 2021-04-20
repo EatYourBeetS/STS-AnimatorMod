@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.daily.mods.Binary;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.resources.GR;
@@ -116,7 +115,7 @@ public abstract class AnimatorReward extends CustomReward
 
     private void AddUltraRare(ArrayList<AbstractCard> cards, Synergy synergy)
     {
-        int currentLevel = UnlockTracker.getUnlockLevel(GR.Enums.Characters.THE_ANIMATOR);
+        int currentLevel = GR.Animator.GetUnlockLevel();
         if (currentLevel <= 2 || AbstractDungeon.floorNum < 8 || AbstractDungeon.floorNum > 36)
         {
             return;

@@ -57,6 +57,11 @@
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
+		"animator:Defend_LogHorizon":
+		{
+			"DESCRIPTION": "Synergizes with {Spellcasters}.",
+			"NAME": "Improved Defend"
+		},
 		"animator:Defend_NoGameNoLife":
 		{
 			"DESCRIPTION": "Retain your leftmost ** playable card.",
@@ -135,6 +140,11 @@
 		"animator:Strike_Konosuba":
 		{
 			"DESCRIPTION": "",
+			"NAME": "Improved Strike"
+		},
+		"animator:Strike_LogHorizon":
+		{
+			"DESCRIPTION": "Synergizes with {Martial Artists}.",
 			"NAME": "Improved Strike"
 		},
 		"animator:Strike_NoGameNoLife":
@@ -498,111 +508,6 @@
 		{
 			"DESCRIPTION": "When Exhausted: ** Evoke ALL Orbs. || If you Evoked !M! or more ** [Frost]: Deal {~Elemental} ** damage equal to your Block ** to ALL enemies.",
 			"NAME": "Zadkiel"
-		}
-	},
-	"BETA:LOGHORIZON":
-	{
-		"animator:Akatsuki":
-		{
-			"DESCRIPTION": "<SLM>. When drawn: ** Create !M! 0-Cost copies of ** this card with Exhaust. They ** deal 0 damage. || This card {Synergizes} with {Uncommon} cards.",
-			"NAME": "Akatsuki"
-		},
-		"animator:Defend_LogHorizon":
-		{
-			"DESCRIPTION": "",
-			"NAME": "Improved Defend"
-		},
-		"animator:Henrietta":
-		{
-			"DESCRIPTION": "Costs !M! less if you are NOT in Neutral Stance. || At the end of each turn, ** spend !S! of your remaining ** [E] to enter any Stance.",
-			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend 1 of your remaining Energy to enter any Stance.", "Enter [A] Stance.", "Enter [I] Stance.", "Enter [F] Stance.", "Exit your Stance."],
-			"NAME": "Henrietta"
-		},
-		"animator:Isuzu":
-		{
-			"DESCRIPTION": "Choose 1: Next turn, gain !M! [E] or draw !S! cards. || On Synergy: Gain 1 {Temp.} [Artifact].",
-			"NAME": "Isuzu Tonan"
-		},
-		"animator:Krusty":
-		{
-			"DESCRIPTION": "{Autoplay}. || Double this card's damage this combat.",
-			"NAME": "Krusty"
-		},
-		"animator:Marielle":
-		{
-			"DESCRIPTION": "{Motivate} ALL cards in your hand.  Reduce their damage and [Block] by !M! until played. || <LIM>. On Synergy: Channel 1 [Aether]. ",
-			"NAME": "Marielle"
-		},
-		"animator:Minori":
-		{
-			"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%, rounded down. ||  <SLM>. On Synergy or Discard: Shuffle this card into your draw pile.",
-			"NAME": "Minori Housaki"
-		},
-		"animator:Naotsugu":
-		{
-			"DESCRIPTION": "Gain [Block] equal to ** damage dealt. || [F] Stance: Draw and retain a random Martial Artist from your draw pile.",
-			"NAME": "Naotsugu"
-		},
-		"animator:Nyanta":
-		{
-			"DESCRIPTION": "Boost !S! [A], equal to the number of times you Synergized this turn, up to 3. || End your turn.",
-			"NAME": "Nyanta"
-		},
-		"animator:Rayneshia":
-		{
-			"DESCRIPTION": "Draw !M! card(s) that {Synergize} with this card. || This card {Synergizes} ** with {Exhaust} cards and ** {Hindrances}.",
-			"NAME": "Rayneshia"
-		},
-		"animator:RundelhausCode":
-		{
-			"DESCRIPTION": "Starter: Increase the damage of all {Elemental}-type {Attacks} in your hand by !M! this combat. || Synergy: Channel !S! [Lightning].",
-			"NAME": "Rundelhaus Code"
-		},
-		"animator:Serara":
-		{
-			"DESCRIPTION": "If you have over !S! [Temporary HP], do not gain [Temporary HP]. || {Motivate} all copies of {Nyanta} in your draw pile or hand. ",
-			"NAME": "Serara"
-		},
-		"animator:Shiroe":
-		{
-			"DESCRIPTION": "{~Unique}. Apply !M! ** Constricted. || <LIM>. If your made !S! or more Synergies this turn: ** Permanently Upgrade this ** card.",
-			"NAME": "Shiroe"
-		},
-		"animator:Soujiro":
-		{
-			"DESCRIPTION": "<LIM>. At start of combat: Shuffle {Kyouko}, {Kawara}, and {Isami} into your draw pile. || Increase damage by !M! for each {Synergic} card in your hand.",
-			"NAME": "Soujiro"
-		},
-		"animator:Soujiro_Isami":
-		{
-			"DESCRIPTION": "Apply !M! [Weak].",
-			"NAME": "Isami"
-		},
-		"animator:Soujiro_Kawara":
-		{
-			"DESCRIPTION": "",
-			"NAME": "Kawara"
-		},
-		"animator:Soujiro_Kyouko":
-		{
-			"DESCRIPTION": "",
-			"NAME": "Kyouko"
-		},
-		"animator:Strike_LogHorizon":
-		{
-			"DESCRIPTION": "",
-			"NAME": "Improved Strike"
-		},
-		"animator:Tetora":
-		{
-			"DESCRIPTION": "Can only be played ** with at least !M! other Synergic cards in hand. || On your second Synergy each turn: Gain !S! [Block].",
-			"EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.{2}"],
-			"NAME": "Tetora"
-		},
-		"animator:Tohya":
-		{
-			"DESCRIPTION": "Draw {Minori Housaki} from your draw pile. || {Starter}: Gain !M! [Blur].",
-			"NAME": "Tohya Housaki"
 		}
 	},
 	"BETA:REWRITE":
@@ -1567,6 +1472,103 @@
 			"NAME": "YunYun"
 		}
 	},
+
+	"SERIES:LOGHORIZON":
+	{
+		"animator:Akatsuki":
+		{
+			"DESCRIPTION": "<SLM>. When drawn: ** Create !M! 0-Cost copies of ** this card with Exhaust. They ** deal 0 damage. || This card {Synergizes} with {Uncommon} cards.",
+			"NAME": "Akatsuki"
+		},
+		"animator:Henrietta":
+		{
+			"DESCRIPTION": "At the end of each turn, ** spend !S! of your remaining ** [E] to enter any Stance. || If you are not in Neutral ** Stance: Motivate !M!.",
+			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend 1 of your remaining Energy to enter any Stance."],
+			"NAME": "Henrietta"
+		},
+		"animator:Isuzu":
+		{
+			"DESCRIPTION": "Choose 1: Next turn, gain !M! [E] or Next turn, draw !S! cards. || On Synergy: Gain 1 {Temp.} [Artifact].",
+			"NAME": "Isuzu Tonan"
+		},
+		"animator:Krusty":
+		{
+			"DESCRIPTION": "{Autoplay}. || Double this card's damage this combat.",
+			"NAME": "Krusty"
+		},
+		"animator:Marielle":
+		{
+			"DESCRIPTION": "{Motivate} ALL cards in your hand.  Reduce their damage and [Block] by !M! until played. || <LIM>. On Synergy: Channel 1 [Aether]. ",
+			"NAME": "Marielle"
+		},
+		"animator:Minori":
+		{
+			"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%. ||  <SLM>. On Synergy or Discard: Shuffle this card into your draw pile.",
+			"NAME": "Minori Housaki"
+		},
+		"animator:Naotsugu":
+		{
+			"DESCRIPTION": "Gain [Block] equal to ** damage dealt. || [F] Stance: Draw and retain a random Martial Artist from your draw pile.",
+			"NAME": "Naotsugu"
+		},
+		"animator:Nyanta":
+		{
+			"DESCRIPTION": "Gain !S! [A]. Gain 1 ** additional [A] for each ** time you Synergized ** this turn, up to 3. || End your turn.",
+			"NAME": "Nyanta"
+		},
+		"animator:Rayneshia":
+		{
+			"DESCRIPTION": "Draw !M! card(s) that {Synergize} with this card. || This card {Synergizes} ** with {Hindrances} and cards ** which {Exhaus}.",
+			"NAME": "Rayneshia"
+		},
+		"animator:RundelhausCode":
+		{
+			"DESCRIPTION": "Starter: Increase the damage of all {Elemental}-type {Attacks} in your hand by !M! this combat. || Synergy: Channel !S! [Lightning].",
+			"NAME": "Rundelhaus Code"
+		},
+		"animator:Serara":
+		{
+			"DESCRIPTION": "If you have over !S! [Temporary HP], do not gain [Temporary HP]. || {Motivate} all copies of {Nyanta} in your draw pile or hand. ",
+			"NAME": "Serara"
+		},
+		"animator:Shiroe":
+		{
+			"DESCRIPTION": "{~Unique}. Apply !M! ** Constricted. || <LIM>. If your made !S! or more Synergies this turn: ** Permanently Upgrade this ** card.",
+			"NAME": "Shiroe"
+		},
+		"animator:Soujiro":
+		{
+			"DESCRIPTION": "<LIM>. At start of combat: Shuffle {Kyouko}, {Kawara}, and {Isami} into your draw pile. || Increase damage by !M! for each {Synergic} card in your hand.",
+			"NAME": "Soujiro"
+		},
+		"animator:Soujiro_Isami":
+		{
+			"DESCRIPTION": "Apply !M! [Weak].",
+			"NAME": "Isami"
+		},
+		"animator:Soujiro_Kawara":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Kawara"
+		},
+		"animator:Soujiro_Kyouko":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Kyouko"
+		},
+		"animator:Tetora":
+		{
+			"DESCRIPTION": "Can only be played ** with at least !M! other Synergic cards in hand. || On your second Synergy each turn: Gain !S! [Block].",
+			"EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.", "This power has already been activated this turn."],
+			"NAME": "Tetora"
+		},
+		"animator:Tohya":
+		{
+			"DESCRIPTION": "Draw {Minori Housaki} from your draw pile. || {Starter}: Gain !M! [Blur].",
+			"NAME": "Tohya Housaki"
+		}
+	},
+
 	"SERIES:MADOKAMAGICA":
 	{
 		"animator:Charlotte":
@@ -1950,6 +1952,26 @@
 			"NAME": "Vesta"
 		}
 	},
+
+	"AURAS":
+	{
+		"animator:Aura1":
+		{
+			"NAME": "Stance Aura",
+			"DESCRIPTION": "At the start of your third/second ** turn: Enter a Stance of ** your choice and Motivate ** 1 card in your draw pile."
+		},
+		"animator:Aura2":
+		{
+			"NAME": "Synergy Aura",
+			"DESCRIPTION": "At the start of your third ** turn: Heal 1 HP for each ** time you Synergized ** this combat, up to !M!."
+		},
+		"animator:Aura3":
+		{
+			"NAME": "Attack Aura",
+			"DESCRIPTION": "At the start of your third ** turn: <DRW-M> and ** apply 1 [Vulnerable] to a random ** enemy, ignoring [Artifact]."
+		}
+	},
+
 	"SPECIAL":
 	{
 		"animator:Asuramaru":

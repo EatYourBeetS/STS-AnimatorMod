@@ -38,7 +38,7 @@ public class Curse_Greed extends AnimatorCard_Curse
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
 
     }

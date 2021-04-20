@@ -50,11 +50,11 @@ public class Gluttony extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (p.drawPile.size() >= magicNumber)
         {
-            GameActions.Top.MoveCards(p.drawPile, p.exhaustPile, magicNumber)
+            GameActions.Bottom.MoveCards(p.drawPile, p.exhaustPile, magicNumber)
             .ShowEffect(true, true)
             .SetOrigin(CardSelection.Top);
 

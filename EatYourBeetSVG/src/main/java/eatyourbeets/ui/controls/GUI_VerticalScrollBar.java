@@ -58,7 +58,7 @@ public class GUI_VerticalScrollBar extends GUIElement
 
         if (isDragging)
         {
-            if (InputHelper.justReleasedClickLeft)
+            if (!InputHelper.isMouseDown)
             {
                 isDragging = false;
             }

@@ -37,7 +37,7 @@ public class CowGirl extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         FetchFromPile fetchFromPile;
 
@@ -50,7 +50,7 @@ public class CowGirl extends AnimatorCard
             fetchFromPile = new FetchFromPile(name, 1, p.drawPile);
         }
 
-        GameActions.Top.Add(fetchFromPile
+        GameActions.Bottom.Add(fetchFromPile
         .SetOptions(false, false)
         .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsCurseOrStatus(c)));
     }

@@ -1,6 +1,7 @@
 package patches.combatRewardScreen;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
@@ -13,7 +14,8 @@ public class CombatRewardScreen_SetupItemReward
     @SpireInsertPatch(locator = Locator.class)
     public static void Insert(CombatRewardScreen __instance)
     {
-        for (AbstractRelic r : AbstractDungeon.player.relics)
+        final AbstractPlayer p = AbstractDungeon.player;
+        for (AbstractRelic r : p.relics)
         {
             if (r instanceof OnReceiveRewardsSubscriber)
             {
@@ -21,11 +23,10 @@ public class CombatRewardScreen_SetupItemReward
             }
         }
 
-//        TheMissingPiece relic = (TheMissingPiece) AbstractDungeon.player.getRelic(TheMissingPiece.ID);
-//        if (relic != null)
-//        {
-//            relic.receiveRewards(__instance.rewards);
-//        }
+        if (p instanceof OnReceiveRewardsSubscriber)
+        {
+            ((OnReceiveRewardsSubscriber) p).OnReceiveRewards(__instance.rewards);
+        }
     }
 
     @SuppressWarnings("unused")

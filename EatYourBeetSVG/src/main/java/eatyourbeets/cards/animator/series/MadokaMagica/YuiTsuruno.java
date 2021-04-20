@@ -36,7 +36,7 @@ public class YuiTsuruno extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.ChannelOrb(new Fire(), true);
+        GameActions.Bottom.ChannelOrb(new Fire());
         GameActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
     }
 
@@ -45,12 +45,12 @@ public class YuiTsuruno extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.ChannelOrb(new Fire(), true);
+        GameActions.Bottom.ChannelOrb(new Fire());
         GameActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
         GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, 1)

@@ -39,20 +39,13 @@ public class LeleiLaLalena extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        if (HasSynergy())
-        {
-            target = CardTarget.SELF_AND_ENEMY;
-        }
-        else
-        {
-            target = CardTarget.SELF;
-        }
+        target = HasSynergy() ? CardTarget.SELF_AND_ENEMY : CardTarget.SELF;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (HasSynergy())
+        if (isSynergizing)
         {
             if (m == null)
             {
@@ -61,16 +54,14 @@ public class LeleiLaLalena extends AnimatorCard
 
             GameActions.Bottom.ApplyWeak(p, m, 1);
         }
+    }
 
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         GameActions.Bottom.DiscardFromHand(name, 1, !upgraded)
         .ShowEffect(!upgraded, !upgraded)
         .SetOptions(false, false, false)
-        .AddCallback(() ->
-        {
-            for (int i = 0; i < magicNumber; i++)
-            {
-                GameActions.Bottom.ChannelOrb(new Frost(), true);
-            }
-        });
+        .AddCallback(() -> GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber));
     }
 }

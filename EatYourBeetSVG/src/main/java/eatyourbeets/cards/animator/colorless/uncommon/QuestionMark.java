@@ -36,7 +36,7 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.MakeCardInHand(new HigakiRinne());
     }

@@ -28,11 +28,11 @@ public class Chung extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.ChannelOrb(new Frost(), true);
+        GameActions.Bottom.ChannelOrb(new Frost());
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (this.block > 0)
         {

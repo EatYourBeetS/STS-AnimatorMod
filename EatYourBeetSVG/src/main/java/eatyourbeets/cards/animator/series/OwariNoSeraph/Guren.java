@@ -35,11 +35,11 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Top.Add(new GurenAction(m));
+            GameActions.Bottom.Add(new GurenAction(m));
         }
 
         alreadyPlayed = true;

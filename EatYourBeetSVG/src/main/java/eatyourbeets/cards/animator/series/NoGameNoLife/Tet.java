@@ -33,10 +33,20 @@ public class Tet extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        // Order is inverted because of GameActions.Top
-        GameActions.Top.SelectFromPile(name, 1, player.discardPile)
+        GameActions.Bottom.SelectFromPile(name, 1, player.hand, player.drawPile)
+        .SetMessage(GR.Common.Strings.GridSelection.Discard)
+        .SetOptions(false, false)
+        .AddCallback(cards ->
+        {
+            for (AbstractCard card : cards)
+            {
+                GameActions.Top.MoveCard(card, player.discardPile);
+            }
+        });
+
+        GameActions.Bottom.SelectFromPile(name, 1, player.discardPile)
         .SetMessage(GR.Common.Strings.GridSelection.MoveToDrawPile(1))
         .SetOptions(false, true)
         .AddCallback(cards ->
@@ -50,17 +60,6 @@ public class Tet extends AnimatorCard
                     index = Math.max(0, Math.min(list.size(), list.size() - index));
                     list.add(index, c);
                 });
-            }
-        });
-
-        GameActions.Top.SelectFromPile(name, 1, player.hand, player.drawPile)
-        .SetMessage(GR.Common.Strings.GridSelection.Discard)
-        .SetOptions(false, false)
-        .AddCallback(cards ->
-        {
-            for (AbstractCard card : cards)
-            {
-                GameActions.Top.MoveCard(card, player.discardPile);
             }
         });
     }

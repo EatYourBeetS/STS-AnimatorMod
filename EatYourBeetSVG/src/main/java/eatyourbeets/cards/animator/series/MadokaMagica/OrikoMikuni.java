@@ -28,7 +28,7 @@ public class OrikoMikuni extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         choices.Initialize(this, true);
         choices.AddEffect(new GenericEffect_Scry(magicNumber));

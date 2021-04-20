@@ -43,13 +43,13 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
+
         for (AbstractCard c : p.discardPile.group)
         {
-            GameActions.Top.PlayCard(c, p.discardPile, m).SetExhaust(true);
+            GameActions.Bottom.PlayCard(c, p.discardPile, m).SetExhaust(true);
         }
-
-        GameActions.Top.GainTemporaryHP(magicNumber);
     }
 }

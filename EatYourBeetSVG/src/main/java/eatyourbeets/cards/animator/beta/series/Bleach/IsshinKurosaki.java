@@ -32,7 +32,11 @@ public class IsshinKurosaki extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
+    }
 
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         if (choices.TryInitialize(this))
         {
             choices.AddEffect(new GenericEffect_ChannelOrb(magicNumber, new Fire()));

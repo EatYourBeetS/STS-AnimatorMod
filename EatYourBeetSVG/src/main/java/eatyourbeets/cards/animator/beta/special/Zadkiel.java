@@ -1,18 +1,14 @@
 package eatyourbeets.cards.animator.beta.special;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.defect.EvokeAllOrbsAction;
-import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.orbs.Frost;
-import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
@@ -24,7 +20,7 @@ public class Zadkiel extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 4);
+        Initialize(0, 0, 4);
         SetCostUpgrade(-1);
 
         SetExhaust(true);
@@ -34,26 +30,17 @@ public class Zadkiel extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainBlock(block);
+        if (CombatStats.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.GainOrbSlots(1);
+        }
+
+        GameActions.Bottom.ChannelOrbs(Frost::new, JUtils.Count(player.orbs, o -> EmptyOrbSlot.ORB_ID.equals(o.ID)));
     }
 
     @Override
-    public void triggerOnExhaust()
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        super.triggerOnExhaust();
 
-        GameActions.Bottom.Add(new EvokeAllOrbsAction());
-
-        int frostCount = JUtils.Count(player.orbs, orb -> Frost.ORB_ID.equals(orb.ID));
-        if (frostCount >= magicNumber)
-        {
-            GameActions.Bottom.Callback(() ->
-            {
-                int[] damageMatrix = DamageInfo.createDamageMatrix(player.currentBlock);
-                GameActions.Bottom.VFX(new WhirlwindEffect());
-                GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
-                GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
-            });
-        }
     }
 }

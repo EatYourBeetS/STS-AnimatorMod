@@ -3,18 +3,21 @@ package eatyourbeets.cards.animator.beta.series.DateALive;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
+import eatyourbeets.cards.base.modifiers.BlockModifiers;
+import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class ReineMurasame extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ReineMurasame.class).SetSkill(-1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(ReineMurasame.class).SetSkill(-1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
         DATA.AddPreview(new ShidoItsuka(), true);
@@ -24,8 +27,8 @@ public class ReineMurasame extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 1, 2);
-        SetUpgrade(0, 1);
+        Initialize(0, 0, 3);
+        SetUpgrade(0, 0);
 
         SetExhaust(true);
         SetSynergy(Synergies.DateALive);
@@ -42,17 +45,33 @@ public class ReineMurasame extends AnimatorCard
     {
         int stacks = GameUtilities.UseXCostEnergy(this);
 
-        GameActions.Bottom.GainBlock(stacks + baseBlock);
-
         for (int i = 0; i < stacks; i++)
         {
             GameActions.Bottom.MakeCardInDrawPile(new ShidoItsuka())
-            .SetUpgrade(upgraded, true);
+            .SetUpgrade(upgraded, true)
+            .AddCallback(card -> {
+                if (card.costForTurn > 0)
+                {
+                    final String key = cardID + uuid;
+
+                    CostModifiers.For(card).Add(key, -1);
+
+                    if (card.baseBlock >= 0)
+                    {
+                        BlockModifiers.For(card).Add(key, -magicNumber);
+                    }
+
+                    GameUtilities.TriggerWhenPlayed(card, key, (k, c) ->
+                    {
+                        CostModifiers.For(c).Remove(k, false);
+                    });
+                }
+            });
         }
 
-        if (stacks > 1 && HasSynergy())
+        if (isSynergizing)
         {
-            GameActions.Bottom.GainEnergy(magicNumber);
+            GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, stacks));
         }
     }
 }

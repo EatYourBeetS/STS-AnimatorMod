@@ -49,7 +49,7 @@ public class Natsumi extends AnimatorCard
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.SelectFromHand(name, magicNumber, false)
-        .SetOptions(false, false, false)
+        .SetOptions(true, true, true)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
         .AddCallback(cards ->
         {

@@ -45,8 +45,7 @@ public class Mayuri extends AnimatorCard
                     {
                         if (card.tags.contains(CardTags.STARTER_DEFEND));
                         {
-                            card.upgrade();
-                            card.flash();
+                            GameUtilities.Retain(card);
                         }
                     }
             });

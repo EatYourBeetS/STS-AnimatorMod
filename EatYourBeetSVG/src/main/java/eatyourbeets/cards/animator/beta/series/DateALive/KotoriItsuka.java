@@ -65,7 +65,6 @@ public class KotoriItsuka extends AnimatorCard
         for (int i=0; i<secondaryValue; i++)
         {
             GameActions.Bottom.MakeCardInDrawPile(new Burn())
-            .SetUpgrade(true, false)
             .SetDuration(Settings.ACTION_DUR_XFAST, true);
         }
     }

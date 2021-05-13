@@ -34,13 +34,11 @@ public class Zadkiel extends AnimatorCard
         {
             GameActions.Bottom.GainOrbSlots(1);
         }
-
-        GameActions.Bottom.ChannelOrbs(Frost::new, JUtils.Count(player.orbs, o -> EmptyOrbSlot.ORB_ID.equals(o.ID)));
     }
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-
+        GameActions.Bottom.ChannelOrbs(Frost::new, JUtils.Count(player.orbs, o -> o instanceof EmptyOrbSlot));
     }
 }

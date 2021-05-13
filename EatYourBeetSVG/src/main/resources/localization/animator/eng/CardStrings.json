@@ -436,7 +436,7 @@
 		},
 		"animator:KotoriItsuka":
 		{
-			"DESCRIPTION": "This card can only be played if you have more cards in your discard pile than your draw pile. || Add !S! {Burn+} to your draw pile.",
+			"DESCRIPTION": "This card can only be played if you have more cards in your discard pile than your draw pile. || Add !S! {Burn} to your draw pile.",
 			"NAME": "Kotori Itsuka"
 		},
 		"animator:KurumiTokisaki":
@@ -466,7 +466,7 @@
 		},
 		"animator:Natsumi":
 		{
-			"DESCRIPTION": "Transform up to !M! cards in your hand into a random Uncommon. || If a {Hindrance} was transformed with this ability, shuffle a {Depression} into your draw pile.",
+			"DESCRIPTION": "Transform up to !M! cards in your hand into random Uncommons. || Whenever you transform a {Hindrance}: Add a {Depression} into your draw pile.",
 			"EXTENDED_DESCRIPTION": ["Choose a card to transform."],
 			"NAME": "Natsumi Kyouno"
 		},

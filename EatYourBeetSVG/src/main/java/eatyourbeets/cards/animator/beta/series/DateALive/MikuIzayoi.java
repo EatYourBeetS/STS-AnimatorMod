@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.GenericEffects.GenericEffect_GainStat;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.PlayerAttribute;
 
@@ -39,14 +40,17 @@ public class MikuIzayoi extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        if (choices.TryInitialize(this))
+        if (CombatStats.TryActivateLimited(cardID))
         {
-            choices.AddEffect(new GenericEffect_GainStat(1, PlayerAttribute.Force));
-            choices.AddEffect(new GenericEffect_GainStat(1, PlayerAttribute.Agility));
-            choices.AddEffect(new GenericEffect_GainStat(1, PlayerAttribute.Intellect));
-        }
+            if (choices.TryInitialize(this))
+            {
+                choices.AddEffect(new GenericEffect_GainStat(1, PlayerAttribute.Force));
+                choices.AddEffect(new GenericEffect_GainStat(1, PlayerAttribute.Agility));
+                choices.AddEffect(new GenericEffect_GainStat(1, PlayerAttribute.Intellect));
+            }
 
-        choices.Select(1, null);
+            choices.Select(1, null);
+        }
     }
 
     @Override

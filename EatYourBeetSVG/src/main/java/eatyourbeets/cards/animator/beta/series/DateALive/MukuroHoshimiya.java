@@ -27,22 +27,17 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
     {
         super(DATA);
 
-        Initialize(6, 0, 1);
+        Initialize(16, 0, 4);
+        SetUpgrade(0,0,-1);
 
         SetSynergy(Synergies.DateALive);
         SetSpellcaster();
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetScaling(2, 0, 0);
-    }
-
-    @Override
     protected float GetInitialDamage()
     {
-        return baseDamage + (player.drawPile.size() * magicNumber);
+        return baseDamage + (player.drawPile.size() / magicNumber);
     }
 
     @Override

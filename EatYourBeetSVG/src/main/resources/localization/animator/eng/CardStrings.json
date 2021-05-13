@@ -414,9 +414,14 @@
 	},
 	"BETA:DATEALIVE":
 	{
+		"animator:Curse_Depression":
+		{
+		  "DESCRIPTION": "Unplayable. || When drawn: Discard a random non-Hindrance card in your hand.",
+		  "NAME": "Depression"
+		},
 		"animator:Defend_DateALive":
 		{
-			"DESCRIPTION": "<LIM>. If you have !S! or more cards in play: Gain [E] [E].",
+			"DESCRIPTION": "<LIM>. If you have !S! or less cards in play: Gain [E] [E].",
 			"NAME": "Improved Defend"
 		},
 		"animator:InverseOrigami":
@@ -426,12 +431,12 @@
 		},
 		"animator:InverseTohka":
 		{
-			"DESCRIPTION": "When Drawn: Spend [E] ** to deal !M! damage ** to ALL enemies. || {Reload}: Attack an ** additional time.",
+			"DESCRIPTION": "When Drawn: Spend [E] to Enter or Re-Enter <FS>. || Discard any number of 1-Cost cards. Attack an additional time for each card discarded.",
 			"NAME": "Inverse Tohka"
 		},
 		"animator:KotoriItsuka":
 		{
-			"DESCRIPTION": "You may {Exhaust} up to ** !S! cards. Boost [F][A] and ** add 1 {Burn} to your hand ** for each card Exhausted. || If !S! cards were exhausted: Enter <FS>.",
+			"DESCRIPTION": "This card can only be played if you have more cards in your discard pile than your draw pile. || Add !S! {Burn} to your draw pile.",
 			"NAME": "Kotori Itsuka"
 		},
 		"animator:KurumiTokisaki":
@@ -441,8 +446,7 @@
 		},
 		"animator:MikuIzayoi":
 		{
-			"DESCRIPTION": "Unaffected by Block modifiers. || When Discarded: Exit ** your Stance to increase ** your {Common Buffs} by !M!.",
-			"EXTENDED_DESCRIPTION": ["Common Buffs", "#yForce, #yAgility, #yIntellect, #yThorns, #yTemp. #yThorns, #yMetallicize, #yPlated #yArmor. "],
+			"DESCRIPTION": "Unaffected by Block modifiers. || <LIM>. When Discarded: Gain [F], [A], or [I].",
 			"NAME": "Miku Izayoi"
 		},
 		"animator:MioTakamiya":
@@ -450,16 +454,21 @@
 			"DESCRIPTION": "At the start of combat: Enter <AS> and Shuffle three copies of {Shido Itsuka} into your draw pile. || If in <AS>: Exit your stance and gain [A] for every !M! [Block].",
 			"NAME": "Mio Takamiya"
 		},
+		"animator:Mayuri":
+		{
+		  "DESCRIPTION": "If you have !M! or less [A]: enter <AS>. || Synergy: Retain ALL Defends in your hand.",
+		  "NAME": "Mayuri"
+		},
 		"animator:MukuroHoshimiya":
 		{
-			"DESCRIPTION": "Deal !M! additional damage for ** each card in draw pile. || Whenever this enters your ** draw pile, move it to the ** sixth spot from the top.",
+			"DESCRIPTION": "Increase damage for every !M! cards in your draw pile. || Whenever this enters your draw pile, move it to the sixth spot from the top.",
 			"NAME": "Mukuro Hoshimiya"
 		},
 		"animator:Natsumi":
 		{
-			"DESCRIPTION": "Transform a Non- ** {Hindrance} card in your ** hand into 1 of !M! cards ** with the same cost and ** Upgrade level.",
-			"EXTENDED_DESCRIPTION": ["Choose a card to transform.", "Choose a card to transform into."],
-			"NAME": "Natsumi"
+			"DESCRIPTION": "Transform up to !M! cards in your hand into random Uncommons. || Whenever you transform a {Hindrance}: Add a {Depression} into your draw pile.",
+			"EXTENDED_DESCRIPTION": ["Choose a card to transform."],
+			"NAME": "Natsumi Kyouno"
 		},
 		"animator:NiaHonjou":
 		{
@@ -475,8 +484,9 @@
 		},
 		"animator:ReineMurasame":
 		{
-			"DESCRIPTION": "Add X copies of {Shido} ** {Itsuka} to your draw pile. || Synergy: If X is greater than 1: Gain !M! [E].",
-			"NAME": "Reine Murasame"
+			"DESCRIPTION": "Add X copies of {Shido Itsuka} to your draw pile.  {Motivate} them and reduce their [Block] by !M!. || Synergy: Draw X cards next turn.",
+			"NAME": "Reine Murasame",
+		 	"UPGRADE_DESCRIPTION": "Add X Upgraded copies of {Shido Itsuka} to your draw pile.  {Motivate} them and reduce their [Block] by !M!. || Synergy: Draw X cards next turn."
 		},
 		"animator:ShidoItsuka":
 		{
@@ -496,17 +506,17 @@
 		},
 		"animator:YamaiSisters":
 		{
-			"DESCRIPTION": "Upgrade all copies ** of {Yamai Sisters} ** everywhere. || You may Upgrade this ** card up to !M! times.",
+			"DESCRIPTION": "{Starter}: Add a copy of this card to your hand. || This card has [F] scaling against an enemy who intends to attack.",
 			"NAME": "Yamai Sisters"
 		},
 		"animator:YoshinoHimekawa":
 		{
-			"DESCRIPTION": "Discard !M! random card(s). If ** you have !S! or more [Frost]: Add ** {Zadkiel} to your hand. ** Otherwise: Channel 1 [Frost]. || <LIM>. Gain 1 Orb Slot.",
+			"DESCRIPTION": "All [Frost] gain 1 additional [Block] this combat. || When drawn with Haste: Discard this card and shuffle a Zadkiel into your discard pile.",
 			"NAME": "Yoshino Himekawa"
 		},
 		"animator:Zadkiel":
 		{
-			"DESCRIPTION": "When Exhausted: ** Evoke ALL Orbs. || If you Evoked !M! or more ** [Frost]: Deal {~Elemental} ** damage equal to your Block ** to ALL enemies.",
+			"DESCRIPTION": "Gain 1 Orb Slot. || Fill your empty orb slots with Frost.",
 			"NAME": "Zadkiel"
 		}
 	},

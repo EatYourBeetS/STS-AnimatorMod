@@ -26,7 +26,7 @@ public class TohkaYatogami extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(10, 0, 10);
+        Initialize(10, 0, 20);
 
         SetSynergy(Synergies.DateALive);
     }

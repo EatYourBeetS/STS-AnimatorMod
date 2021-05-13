@@ -25,8 +25,8 @@ public class ShidoItsuka extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 3);
-        SetUpgrade(0, 2);
+        Initialize(0, 8, 3);
+        SetUpgrade(0, 0);
 
         SetExhaust(true);
         SetSynergy(Synergies.DateALive);
@@ -36,7 +36,11 @@ public class ShidoItsuka extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
+    }
 
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         InitializeSynergicCards();
 
         RandomizedList<AbstractCard> randomizedDALCards = new RandomizedList<>(dateALiveCards);
@@ -75,25 +79,25 @@ public class ShidoItsuka extends AnimatorCard
         }
 
         GameActions.Top.SelectFromPile(name, 1, options)
-        .SetOptions(false, false)
-        .AddCallback(cards ->
-        {
-            if (cards.size() > 0)
-            {
-                if (HasSynergy())
+                .SetOptions(false, false)
+                .AddCallback(cards ->
                 {
-                    GameActions.Bottom.MakeCardInDrawPile(cards.get(0))
-                    .SetDuration(Settings.ACTION_DUR_FASTER, true);
-                }
-                else
-                {
-                    GameActions.Bottom.MakeCardInDiscardPile(cards.get(0))
-                    .SetDuration(Settings.ACTION_DUR_FASTER, true);
-                }
-            }
-        });
+                    if (cards.size() > 0)
+                    {
+                        if (isSynergizing)
+                        {
+                            GameActions.Bottom.MakeCardInDrawPile(cards.get(0))
+                                    .SetDuration(Settings.ACTION_DUR_FASTER, true);
+                        }
+                        else
+                        {
+                            GameActions.Bottom.MakeCardInDiscardPile(cards.get(0))
+                                    .SetDuration(Settings.ACTION_DUR_FASTER, true);
+                        }
+                    }
+                });
 
-        if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
+        if (isSynergizing && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Last.ModifyAllInstances(uuid, c -> ((EYBCard) c).SetExhaust(true));
         }

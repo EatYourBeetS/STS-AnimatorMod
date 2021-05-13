@@ -15,7 +15,7 @@ public class Defend_DateALive extends Defend
     {
         super(ID, 1, CardTarget.SELF);
 
-        Initialize(0, 6, 2, 30);
+        Initialize(0, 6, 2, 14);
         SetUpgrade(0, 3);
 
         SetSynergy(Synergies.DateALive);
@@ -27,7 +27,7 @@ public class Defend_DateALive extends Defend
         GameActions.Bottom.GainBlock(block);
 
         int totalCards = player.drawPile.size() + player.discardPile.size() + player.hand.size();
-        if (totalCards >= secondaryValue && CombatStats.TryActivateLimited(cardID))
+        if (totalCards <= secondaryValue && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.GainEnergy(magicNumber);
         }

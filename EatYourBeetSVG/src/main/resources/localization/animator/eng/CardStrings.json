@@ -421,7 +421,7 @@
 		},
 		"animator:Defend_DateALive":
 		{
-			"DESCRIPTION": "<LIM>. If you have !S! or more cards in play: Gain [E] [E].",
+			"DESCRIPTION": "<LIM>. If you have !S! or less cards in play: Gain [E] [E].",
 			"NAME": "Improved Defend"
 		},
 		"animator:InverseOrigami":

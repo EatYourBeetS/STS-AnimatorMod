@@ -4,11 +4,13 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -43,7 +45,7 @@ public class Mayuri extends AnimatorCard
             GameActions.Bottom.Callback(cards -> {
                     for (AbstractCard card : GameUtilities.GetOtherCardsInHand(this))
                     {
-                        if (card.tags.contains(CardTags.STARTER_DEFEND));
+                        if (card.tags.contains(GR.Enums.CardTags.IMPROVED_DEFEND) || Defend.DATA.ID.equals(card.cardID));
                         {
                             GameUtilities.Retain(card);
                         }

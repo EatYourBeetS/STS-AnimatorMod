@@ -55,14 +55,15 @@ public class Natsumi extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                AbstractCard card = cards.get(0);
-
-                if (GameUtilities.IsCurseOrStatus(card))
+                for (AbstractCard card : cards)
                 {
-                    GameActions.Bottom.MakeCardInDrawPile(new Curse_Depression());
-                }
+                    if (GameUtilities.IsCurseOrStatus(card))
+                    {
+                        GameActions.Bottom.MakeCardInDrawPile(new Curse_Depression());
+                    }
 
-                GameActions.Bottom.ReplaceCard(card.uuid, AbstractDungeon.getCard(CardRarity.UNCOMMON).makeCopy());
+                    GameActions.Bottom.ReplaceCard(card.uuid, AbstractDungeon.getCard(CardRarity.UNCOMMON).makeCopy());
+                }
             }
         });
     }

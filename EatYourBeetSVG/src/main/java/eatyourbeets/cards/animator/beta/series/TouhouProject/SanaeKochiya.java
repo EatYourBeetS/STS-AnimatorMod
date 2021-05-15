@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.beta.series.TouhouProject;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -13,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class SanaeKochiya extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SanaeKochiya.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(SanaeKochiya.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
     static
     {
         DATA.AddPreview(new Miracle(), false);
@@ -23,25 +24,35 @@ public class SanaeKochiya extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 0);
-        SetUpgrade(0, 0, 0, 0);
+        Initialize(0, 0, 4, 0);
+        SetUpgrade(0, 0, 1, 0);
         SetScaling(0, 0, 0);
 
         SetSynergy(Synergies.TouhouProject);
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetRetain(true);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Top.Scry(magicNumber)
-        .AddCallback(cards ->
-        GameActions.Bottom.StackPower(new NextTurnMiracle(player, cards.size())));
+        .AddCallback(cards -> {
+            boolean hasEthereal = false;
+
+            for (AbstractCard card : cards)
+            {
+                if (card.isEthereal)
+                {
+                    hasEthereal = true;
+                    break;
+                }
+            }
+
+            if (hasEthereal)
+            {
+                GameActions.Top.StackPower(new NextTurnMiracle(p, 1));
+            }
+        }
+        );
     }
 
     public static class NextTurnMiracle extends AnimatorPower

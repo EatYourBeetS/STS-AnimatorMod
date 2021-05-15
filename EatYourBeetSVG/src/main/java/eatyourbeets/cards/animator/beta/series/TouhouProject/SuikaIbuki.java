@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.beta.series.TouhouProject;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -20,9 +21,9 @@ public class SuikaIbuki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(9, 6, 1, 1);
+        Initialize(7, 6, 1, 1);
         SetUpgrade(2, 1, 0, 0);
-        SetScaling(0, 0, 0);
+        SetScaling(0, 0, 1);
         SetEthereal(true);
 
         SetSynergy(Synergies.TouhouProject);
@@ -40,16 +41,21 @@ public class SuikaIbuki extends AnimatorCard
             GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, magicNumber));
         }
 
-        if (HasSynergy())
+        boolean hasPower = false;
+
+        for (AbstractCard card : player.discardPile.group)
+        {
+            if (card.type.equals(CardType.POWER))
+            {
+                hasPower = true;
+                break;
+            }
+        }
+
+        if (hasPower)
         {
             GameActions.Bottom.GainForce(secondaryValue, upgraded);
         }
-    }
-
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        GameActions.Bottom.GainForce(secondaryValue, upgraded);
     }
 }
 

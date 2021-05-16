@@ -180,6 +180,11 @@
 			"DESCRIPTION": "",
 			"NAME": "Maniwa Houou"
 		},
+		"animator:Haniwa":
+		{
+		  "DESCRIPTION": "Costs 1 less if you have another Haniwa in your hand.",
+		  "NAME": "Haniwa"
+		},
 		"animator:Miracle":
 		{
 			"DESCRIPTION": "Gain !M! [E].",
@@ -784,6 +789,11 @@
 		{
 			"DESCRIPTION": "On Synergy: Channel [Lightning]. || On Exhaust: Evoke your rightmost [Lightning] !M! times.",
 			"NAME": "Marisa Kirisame"
+		},
+		"animator:MayumiJoutouguu":
+		{
+		  "DESCRIPTION": "On Synergy: Gain !M! [Plated Armor]. || Cooldown !S!: Add 2 {Haniwa} to your draw pile.",
+		  "NAME": "Mayumi Joutouguu"
 		},
 		"animator:ReimuHakurei":
 		{

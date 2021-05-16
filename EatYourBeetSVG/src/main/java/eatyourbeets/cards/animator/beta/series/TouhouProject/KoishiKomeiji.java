@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class KoishiKomeiji extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(KoishiKomeiji.class).SetPower(2, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(KoishiKomeiji.class).SetPower(1, CardRarity.UNCOMMON);
 
     public KoishiKomeiji()
     {
@@ -21,9 +21,14 @@ public class KoishiKomeiji extends AnimatorCard
         Initialize(0, 0, 1, 1);
         SetUpgrade(0, 0, 0, 0);
         SetScaling(0, 0, 0);
-
-        SetCostUpgrade(-1);
+        SetEthereal(true);
         SetSynergy(Synergies.TouhouProject);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetEthereal(false);
     }
 
     @Override

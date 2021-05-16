@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class SatoriKomeiji extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SatoriKomeiji.class).SetPower(2, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(SatoriKomeiji.class).SetPower(3, CardRarity.RARE);
 
     public SatoriKomeiji()
     {
@@ -26,13 +26,8 @@ public class SatoriKomeiji extends AnimatorCard
         SetUpgrade(0, 0, 0, 0);
         SetScaling(0, 0, 0);
 
+        SetCostUpgrade(-1);
         SetSynergy(Synergies.TouhouProject);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetInnate(true);
     }
 
     @Override

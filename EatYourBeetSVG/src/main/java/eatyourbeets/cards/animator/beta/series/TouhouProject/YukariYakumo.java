@@ -24,10 +24,11 @@ public class YukariYakumo extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 5, 3);
-        SetUpgrade(0, 0, 1, 1);
+        Initialize(0, 0, 5, 2);
+        SetUpgrade(0, 0, 0, 0);
         SetScaling(0, 0, 0);
 
+        SetCostUpgrade(-1);
         SetExhaust(true);
         SetSpellcaster();
         SetSynergy(Synergies.TouhouProject);

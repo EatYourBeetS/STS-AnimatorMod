@@ -22,11 +22,11 @@ public class AliceMargatroid extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 3);
-        SetUpgrade(0, 0, 0, 0);
+        Initialize(0, 0, 1, 5);
+        SetUpgrade(0, 0, 1, 0);
         SetScaling(0, 0, 0);
 
-        SetCostUpgrade(-1);
+        SetEthereal(true);
         SetSpellcaster();
         SetSynergy(Synergies.TouhouProject);
     }
@@ -56,7 +56,7 @@ public class AliceMargatroid extends AnimatorCard
         {
             super.atStartOfTurn();
             GameActions.Bottom.Draw(amount);
-            GameActions.Bottom.SelectFromHand(name, amount, false)
+            GameActions.Bottom.SelectFromHand(name, 1, false)
                     .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
                     .AddCallback(cards ->
                     {

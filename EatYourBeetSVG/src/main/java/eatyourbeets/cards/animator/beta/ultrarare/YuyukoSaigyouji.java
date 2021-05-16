@@ -32,14 +32,8 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare implements StartupCa
         Initialize(0, 0, 0, 0);
         SetUpgrade(0, 0, 0, 0);
         SetSynergy(Synergies.TouhouProject);
-        SetEthereal(true);
+        SetCostUpgrade(-1);
         GraveField.grave.set(this, true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetHaste(true);
     }
 
     @Override

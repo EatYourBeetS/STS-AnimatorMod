@@ -740,8 +740,8 @@
 	{
 		"animator:AliceMargatroid":
 		{
-			"DESCRIPTION": "At the start of your turn, draw !M! card(s), then put !M! card(s) on top of your draw pile. || Synergy: Gain !S! [Temporary HP].",
-			"EXTENDED_DESCRIPTION": ["At the start of your turn, draw #b{0} card(s), then put #b{0} card(s) on top of your draw pile."],
+			"DESCRIPTION": "At the start of your turn, draw !M! card(s), then put a card on top of your draw pile. || Synergy: Gain !S! [Temporary HP].",
+			"EXTENDED_DESCRIPTION": ["At the start of your turn, draw #b{0} card(s), then put a card on top of your draw pile."],
 			"NAME": "Alice Margatroid"
 		},
 		"animator:AyaShameimaru":
@@ -751,7 +751,7 @@
 		},
 		"animator:Clownpiece":
 		{
-			"DESCRIPTION": "Play the top card of your draw pile. || <SLM>. Synergy: Channel !M! [Dark].",
+			"DESCRIPTION": "Reveal the top card in your draw pile.  If it is 0 or 1 cost, play it.  Otherwise, draw it. || <LIM>. Starter: This card will not Exhaust.",
 			"NAME": "Clownpiece"
 		},
 		"animator:Defend_TouhouProject":
@@ -766,7 +766,7 @@
 		},
 		"animator:KaguyaHouraisan":
 		{
-			"DESCRIPTION": "Draw 1 card. Gain an effect based on its type. || {~Attack} -> ALL enemies lose !M! HP. ** {~Skill} -> Gain !B! [Block]. ** {~Power} -> Gain/Boost !S! [I].",
+			"DESCRIPTION": "Can only be played if there are no cards in your draw pile. || On Synergy: Play ALL cards in your hand.",
 			"NAME": "Kaguya Houraisan"
 		},
 		"animator:KoishiKomeiji":
@@ -782,7 +782,7 @@
 		},
 		"animator:MarisaKirisame":
 		{
-			"DESCRIPTION": "Channel [Lightning]. ** Put up to 1 card from your hand on top of your draw pile. || Cooldown !S! : Evoke your next [Lightning] !M! times.",
+			"DESCRIPTION": "On Synergy: Channel [Lightning]. || On Exhaust: Evoke your rightmost [Lightning] !M! times.",
 			"NAME": "Marisa Kirisame"
 		},
 		"animator:ReimuHakurei":
@@ -792,7 +792,7 @@
 		},
 		"animator:SanaeKochiya":
 		{
-			"DESCRIPTION": "Scry !M!. || For each card discarded, add a {Miracle} to your hand next turn.",
+			"DESCRIPTION": "Scry !M!. || If you discarded a card with {Ethereal}, add a {Miracle} to your hand next turn.",
 			"EXTENDED_DESCRIPTION": ["At the start of your next turn, add #b{0} #yMiracle(s) to your hand."],
 			"NAME": "Sanae Kochiya"
 		},
@@ -809,7 +809,7 @@
 		},
 		"animator:SuikaIbuki":
 		{
-			"DESCRIPTION": "If not in <FS>: Enter <FS> and draw !M! less card next turn. || On Synergy or when discarded: Gain/Boost [F].",
+			"DESCRIPTION": "If not in <FS>: Enter <FS> and draw !M! less card next turn. || If you have a {Power} in your discard pile, gain [F].",
 			"NAME": "Suika Ibuki"
 		},
 		"animator:YukariYakumo":
@@ -820,13 +820,12 @@
 		},
 		"animator:YuukaKazami":
 		{
-			"DESCRIPTION": "This card can only be played on even-numbered turns. || On Synergy or when discarded: Channel !M! [Earth].",
-			"EXTENDED_DESCRIPTION": ["This card can only be played on even-numbered turns. ** (Current turn: ", "). ** On Synergy or when discarded: Channel !M! [Earth]."],
+			"DESCRIPTION": "This card can only be played on even numbered turns. || On Discard: Gain !S! {Counter-Attack}.",
 			"NAME": "Yuuka Kazami"
 		},
 		"animator:YuyukoSaigyouji":
 		{
-			"DESCRIPTION": "Starts in your Discard pile. || Unblocked attack damage kills non-boss enemies. || Purge at the start of boss battles.",
+			"DESCRIPTION": "Starts in your discard pile. || Unblocked attack damage kills enemies. || Purges at the start of boss battles.",
 			"EXTENDED_DESCRIPTION": ["Unblocked attack damage kills non-boss enemies."],
 			"NAME": "Yuyuko Saigyouji"
 		}

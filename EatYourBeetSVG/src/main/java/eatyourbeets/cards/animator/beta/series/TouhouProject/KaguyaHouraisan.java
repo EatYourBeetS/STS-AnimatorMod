@@ -58,7 +58,7 @@ public class KaguyaHouraisan extends AnimatorCard
 
             for (AbstractCard card : cardsToPlay)
             {
-                GameActions.Bottom.PlayCard(card, player.drawPile, null)
+                GameActions.Bottom.PlayCard(card, player.hand, null)
                         .SpendEnergy(false);
             }
         }

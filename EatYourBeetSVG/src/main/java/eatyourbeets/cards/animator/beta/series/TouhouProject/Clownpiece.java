@@ -37,7 +37,7 @@ public class Clownpiece extends AnimatorCard
 
         if (!CombatStats.HasActivatedLimited(cardID))
         {
-            SetExhaust(IsStarter());
+            SetExhaust(!IsStarter());
         }
     }
 

@@ -55,18 +55,21 @@ public class AliceMargatroid extends AnimatorCard
         public void atStartOfTurnPostDraw()
         {
             super.atStartOfTurn();
-            GameActions.Bottom.Draw(amount);
-            GameActions.Bottom.SelectFromHand(name, 1, false)
-                    .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
-                    .AddCallback(cards ->
-                    {
-                        for (AbstractCard c : cards)
-                        {
-                            GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, AbstractDungeon.player.drawPile).SetDestination(CardSelection.Top);
-                        }
 
-                        GameActions.Bottom.Add(new RefreshHandLayout());
-                    });
+            GameActions.Bottom.Callback(() -> {
+                GameActions.Bottom.Draw(amount);
+                GameActions.Bottom.SelectFromHand(name, 1, false)
+                        .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
+                        .AddCallback(cards ->
+                        {
+                            for (AbstractCard c : cards)
+                            {
+                                GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, AbstractDungeon.player.drawPile).SetDestination(CardSelection.Top);
+                            }
+
+                            GameActions.Bottom.Add(new RefreshHandLayout());
+                        });
+            });
         }
 
         @Override

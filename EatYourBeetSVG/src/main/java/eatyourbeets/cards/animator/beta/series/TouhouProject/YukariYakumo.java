@@ -18,17 +18,16 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class YukariYakumo extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YukariYakumo.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.Self);
+    public static final EYBCardData DATA = Register(YukariYakumo.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.Self);
 
     public YukariYakumo()
     {
         super(DATA);
 
         Initialize(0, 0, 5, 2);
-        SetUpgrade(0, 0, 0, 0);
+        SetUpgrade(0, 0, 0, 1);
         SetScaling(0, 0, 0);
 
-        SetCostUpgrade(-1);
         SetExhaust(true);
         SetSpellcaster();
         SetSynergy(Synergies.TouhouProject);

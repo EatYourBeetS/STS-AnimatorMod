@@ -45,7 +45,7 @@ public class YamaiSisters extends AnimatorCard
 
         if (IsStarter())
         {
-            GameActions.Bottom.MakeCardInHand(makeCopy());
+            GameActions.Bottom.MakeCardInHand(makeStatEquivalentCopy());
         }
     }
 }

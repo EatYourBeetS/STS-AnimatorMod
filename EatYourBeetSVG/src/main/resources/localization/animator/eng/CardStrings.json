@@ -579,8 +579,8 @@
 		},
 		"animator:SakuraKashima":
 		{
-			"DESCRIPTION": "At the start of combat: Gain !M! [I]. || Choose 1: Add a {Miracle} to your hand, or add {Miracles} to your hand until your hand is full and Die next turn.",
-		 	"EXTENDED_DESCRIPTION": ["Add a {Miracle} to your hand.", "Add {Miracles} to your hand until your hand is full. Die next turn."],
+			"DESCRIPTION": "At the start of combat: Gain !M! [I]. || Choose 1: Add a {Miracle} to your hand, or Fill your hand with {Miracles} and take !S! damage at the end of turn.",
+		 	"EXTENDED_DESCRIPTION": ["Add a {Miracle} to your hand.", "Add {Miracles} to your hand until your hand is full. Take !S! damage at the end of turn."],
 			"NAME": "Sakura Kashima"
 		},
 		"animator:SakuyaOhtori":
@@ -615,7 +615,7 @@
 		},
 		"animator:YoshinoHaruhiko":
 		{
-			"DESCRIPTION": "Only deals damage in <FS>. || <LIM>. If in Neutral Stance, enter <FS> and gain [F].",
+			"DESCRIPTION": "Only deals damage in <FS>. || <LIM>. If not in <FS>: enter <FS> and gain [F].",
 			"NAME": "Yoshino Haruhiko"
 		}
 	},

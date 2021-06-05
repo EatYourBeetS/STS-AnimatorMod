@@ -22,7 +22,7 @@ public class ChihayaOhtori extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(12, 0, 7, 1);
+        Initialize(12, 0, 6, 1);
         SetUpgrade(0, 0, -2);
         SetMartialArtist();
 

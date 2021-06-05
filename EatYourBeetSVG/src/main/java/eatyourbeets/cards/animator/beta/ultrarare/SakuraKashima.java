@@ -4,9 +4,9 @@ import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.watcher.EndTurnDeathPower;
 import eatyourbeets.cards.animator.beta.special.Miracle;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -24,18 +24,12 @@ public class SakuraKashima extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
-        SetUpgrade(0, 0, 0);
+        Initialize(0, 0, 2, 80);
+        SetUpgrade(0, 0, 0, -20);
 
         SetExhaust(true);
         SetSynergy(Synergies.Rewrite);
         SetSpellcaster();
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetRetain(true);
     }
 
     @Override
@@ -79,7 +73,7 @@ public class SakuraKashima extends AnimatorCard_UltraRare
                 GameActions.Bottom.MakeCardInHand(new Miracle());
             }
 
-            GameActions.Bottom.ApplyPower(new EndTurnDeathPower(p));
+            GameActions.Bottom.StackPower(new SelfDamagePower(p, secondaryValue));
         });
     }
 }

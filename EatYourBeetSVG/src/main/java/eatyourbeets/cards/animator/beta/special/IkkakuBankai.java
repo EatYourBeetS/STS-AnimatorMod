@@ -26,7 +26,7 @@ public class IkkakuBankai extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
 
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
         .SetOptions(true, true, true)

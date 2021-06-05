@@ -40,7 +40,7 @@ public class AkaneSenri extends AnimatorCard
         {
             AbstractCard card = randomizedList.Retrieve(rng);
 
-            if (card != null && card instanceof EYBCard)
+            if (card != null && card instanceof EYBCard && !card.hasTag(HASTE))
             {
                 ((EYBCard) card).SetHaste(true);
             }
@@ -68,7 +68,9 @@ public class AkaneSenri extends AnimatorCard
             AbstractOrb darkOrb = new Dark();
             GameActions.Bottom.ChannelOrb(darkOrb);
 
-            for (int i = 0; i < player.hand.size(); i++)
+            int triggerAmount = player.hand.size() / 2;
+
+            for (int i = 0; i < triggerAmount; i++)
             {
                 for (int j = 0; j < amount; j++)
                 {

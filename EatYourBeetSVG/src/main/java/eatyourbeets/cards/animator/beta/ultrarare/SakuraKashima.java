@@ -24,7 +24,7 @@ public class SakuraKashima extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0, 10);
+        Initialize(0, 0, 2);
         SetUpgrade(0, 0, 0);
 
         SetExhaust(true);
@@ -46,7 +46,7 @@ public class SakuraKashima extends AnimatorCard_UltraRare
         if (startOfBattle)
         {
             GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.GainIntellect(1, true);
+            GameActions.Bottom.GainIntellect(magicNumber, false);
         }
     }
 
@@ -71,13 +71,15 @@ public class SakuraKashima extends AnimatorCard_UltraRare
 
     private void Effect2(AbstractCard card, AbstractPlayer p, AbstractMonster m)
     {
-        int numMiraclesToMake = BaseMod.MAX_HAND_SIZE - player.hand.size();
+        GameActions.Bottom.Callback(() -> {
+            int numMiraclesToMake = BaseMod.MAX_HAND_SIZE - player.hand.size();
 
-        for (int i=0; i<numMiraclesToMake; i++)
-        {
-            GameActions.Bottom.MakeCardInHand(new Miracle());
-        }
+            for (int i=0; i<numMiraclesToMake; i++)
+            {
+                GameActions.Bottom.MakeCardInHand(new Miracle());
+            }
 
-        GameActions.Bottom.ApplyPower(new EndTurnDeathPower(p));
+            GameActions.Bottom.ApplyPower(new EndTurnDeathPower(p));
+        });
     }
 }

@@ -59,7 +59,7 @@ public class Shimako extends AnimatorCard
 
         if (curStance.equals(IntellectStance.STANCE_ID))
         {
-            GameActions.Bottom.ChannelOrb(orb);
+            GameActions.Bottom.ChannelOrb(new Dark());
         }
     }
 }

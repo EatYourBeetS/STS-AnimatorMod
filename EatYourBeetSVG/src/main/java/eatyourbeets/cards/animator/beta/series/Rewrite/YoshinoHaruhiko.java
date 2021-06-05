@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -30,7 +31,7 @@ public class YoshinoHaruhiko extends AnimatorCard
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        if (!GameUtilities.InStance(ForceStance.STANCE_ID))
+        if (GameUtilities.InBattle() && !GameUtilities.InStance(ForceStance.STANCE_ID))
         {
             return null;
         }
@@ -49,7 +50,7 @@ public class YoshinoHaruhiko extends AnimatorCard
             }
         }
 
-        if (GameUtilities.InStance(NeutralStance.STANCE_ID))
+        if (GameUtilities.InStance(NeutralStance.STANCE_ID) && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
             GameActions.Bottom.GainForce(1);

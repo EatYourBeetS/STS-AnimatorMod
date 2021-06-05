@@ -8,12 +8,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
-import eatyourbeets.misc.GenericEffects.GenericEffect_Apply;
-import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class ChihayaOhtori extends AnimatorCard
 {
@@ -66,7 +63,7 @@ public class ChihayaOhtori extends AnimatorCard
         if (choices.TryInitialize(this))
         {
             choices.AddEffect(text[0], this::Effect1);
-            choices.AddEffect(new GenericEffect_Apply(TargetHelper.Player(), PowerHelper.Artifact, magicNumber));
+            choices.AddEffect(text[1], this::Effect2);
         }
 
         choices.Select(1, m);
@@ -85,6 +82,11 @@ public class ChihayaOhtori extends AnimatorCard
                 GameActions.Bottom.Add(new RefreshHandLayout());
             }
         });
+    }
+
+    private void Effect2(AbstractCard card, AbstractPlayer p, AbstractMonster m)
+    {
+        GameActions.Top.GainArtifact(secondaryValue);
     }
 
     public void RefreshCost()

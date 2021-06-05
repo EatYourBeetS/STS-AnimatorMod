@@ -529,20 +529,20 @@
 	{
 		"animator:AkaneSenri":
 		{
-			"DESCRIPTION": "Give {Haste} to !M! random cards in your draw pile. || At the end of each turn, Channel [Dark]. Trigger it once for each card in hand.",
-			"EXTENDED_DESCRIPTION": ["At the end of each turn, Channel [Dark]. Trigger it #b{0} times for each card in your hand."],
+			"DESCRIPTION": "Give {Haste} to !M! random cards in your draw pile. || At the end of each turn, Channel [Dark]. Trigger it once for every 2 cards in hand.",
+			"EXTENDED_DESCRIPTION": ["At the end of each turn, Channel 1 Dark. Trigger it #b{0} times for every 2 cards in your hand."],
 			"NAME": "Akane Senri"
 		},
 		"animator:Chibimoth":
 		{
 			"DESCRIPTION": "Gain/Boost [F] and !M! [Temporary HP] ** or [A] and !S! [Blur]. || Synergy: Draw Kotori ** Kanbe from any pile.",
-			"EXTENDED_DESCRIPTION": ["Gain [A] and 1 Blur.", "Gain [F] and 2 Temporary HP"],
+			"EXTENDED_DESCRIPTION": ["Gain/Boost [A] and 1 Blur.", "Gain/Boost [F] and 2 Temporary HP"],
 			"NAME": "Chibimoth"
 		},
 		"animator:ChihayaOhtori":
 		{
 			"DESCRIPTION": "Choose 1: Draw a {Martial Artist} from your discard pile and {Motivate} it, or Gain !S! [Artifact]. || Costs 1 less for every !M! [Force].",
-		  	"EXTENDED_DESCRIPTION": ["Draw a {Martial Artist} from your discard pile and {Motivate} it."],
+		  	"EXTENDED_DESCRIPTION": ["Draw a {Martial Artist} from your discard pile and {Motivate} it.", "Gain 1 [Artifact]."],
 		  	"NAME": "Chihaya Ohtori"
 		},
 		"animator:Defend_Rewrite":
@@ -579,7 +579,7 @@
 		},
 		"animator:SakuraKashima":
 		{
-			"DESCRIPTION": "At the start of combat: Boost [I]. || Choose 1: Add a {Miracle} to your hand, or add {Miracles} to your hand until your hand is full and Die next turn.",
+			"DESCRIPTION": "At the start of combat: Gain !M! [I]. || Choose 1: Add a {Miracle} to your hand, or add {Miracles} to your hand until your hand is full and Die next turn.",
 		 	"EXTENDED_DESCRIPTION": ["Add a {Miracle} to your hand.", "Add {Miracles} to your hand until your hand is full. Die next turn."],
 			"NAME": "Sakura Kashima"
 		},

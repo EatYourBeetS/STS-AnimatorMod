@@ -20,7 +20,7 @@ public class SougenEsaka extends AnimatorCard
         super(DATA);
 
         Initialize(5, 0, 2, 1);
-        SetUpgrade(1, 0, 1);
+        SetUpgrade(1, 0, 2);
 
         SetMartialArtist();
 

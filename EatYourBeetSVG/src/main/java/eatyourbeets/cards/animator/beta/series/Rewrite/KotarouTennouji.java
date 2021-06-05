@@ -5,22 +5,21 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.AbstractStance;
-import com.megacrit.cardcrawl.stances.NeutralStance;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStanceChangedSubscriber;
+import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.common.ExitStanceNextTurnPower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.RandomizedList;
 
 public class KotarouTennouji extends AnimatorCard implements OnStanceChangedSubscriber
 {
     public static final EYBCardData DATA = Register(KotarouTennouji.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Normal);
+
+    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public KotarouTennouji()
     {
@@ -40,7 +39,16 @@ public class KotarouTennouji extends AnimatorCard implements OnStanceChangedSubs
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
 
-        EnterRandomStanceNotCurrent();
+        if (choices.TryInitialize(this))
+        {
+            choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
+            choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
+            choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));
+        }
+
+        choices.Select(1, m);
+
+        GameActions.Bottom.ApplyPower(new ExitStanceNextTurnPower(p, 1));
     }
 
     @Override
@@ -53,33 +61,6 @@ public class KotarouTennouji extends AnimatorCard implements OnStanceChangedSubs
             .IsCancellable(false);
             flash();
         }
-    }
-
-    private void EnterRandomStanceNotCurrent()
-    {
-        RandomizedList<String> stances = new RandomizedList<>();
-
-        if (!player.stance.ID.equals(ForceStance.STANCE_ID))
-        {
-            stances.Add(ForceStance.STANCE_ID);
-        }
-
-        if (!player.stance.ID.equals(AgilityStance.STANCE_ID))
-        {
-            stances.Add(AgilityStance.STANCE_ID);
-        }
-
-        if (!player.stance.ID.equals(IntellectStance.STANCE_ID))
-        {
-            stances.Add(IntellectStance.STANCE_ID);
-        }
-
-        if (!player.stance.ID.equals(NeutralStance.STANCE_ID))
-        {
-            stances.Add(NeutralStance.STANCE_ID);
-        }
-
-        GameActions.Bottom.ChangeStance(stances.Retrieve(rng));
     }
 
     @Override

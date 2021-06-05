@@ -4,8 +4,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
 public class Midou extends AnimatorCard
@@ -16,22 +16,10 @@ public class Midou extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 1, 1);
-        SetUpgrade(0, 0, 0, 1);
-
-        SetEthereal(true);
+        Initialize(2, 0, 1, 1);
+        SetUpgrade(3, 0, 0, 0);
+        SetScaling(1, 0, 0);
         SetSynergy(Synergies.Rewrite);
-    }
-
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        for (int i = 0; i < secondaryValue; i++)
-        {
-            GameActions.Bottom.ChannelOrb(new Fire());
-        }
     }
 
     @Override
@@ -42,6 +30,11 @@ public class Midou extends AnimatorCard
         for (int i=0; i<magicNumber; i++)
         {
             GameActions.Bottom.MakeCardInHand(new Burn());
+        }
+
+        if (isSynergizing)
+        {
+            GameActions.Bottom.EvokeOrb(1, EvokeOrb.Mode.Random);
         }
     }
 }

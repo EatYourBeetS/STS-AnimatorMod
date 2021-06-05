@@ -580,7 +580,7 @@
 		"animator:SakuraKashima":
 		{
 			"DESCRIPTION": "At the start of combat: Gain !M! [I]. || Choose 1: Add a {Miracle} to your hand, or Fill your hand with {Miracles} and take !S! damage at the end of turn.",
-		 	"EXTENDED_DESCRIPTION": ["Add a {Miracle} to your hand.", "Add {Miracles} to your hand until your hand is full. Take !S! damage at the end of turn."],
+		 	"EXTENDED_DESCRIPTION": ["Add a Miracle to your hand.", "Add Miracles to your hand until your hand is full. Take {0} damage at the end of turn."],
 			"NAME": "Sakura Kashima"
 		},
 		"animator:SakuyaOhtori":

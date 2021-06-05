@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.JUtils;
 
 public class SakuraKashima extends AnimatorCard_UltraRare
 {
@@ -52,7 +53,7 @@ public class SakuraKashima extends AnimatorCard_UltraRare
         if (choices.TryInitialize(this))
         {
             choices.AddEffect(text[0], this::Effect1);
-            choices.AddEffect(text[1], this::Effect2);
+            choices.AddEffect(JUtils.Format(text[1], secondaryValue), this::Effect2);
         }
 
         choices.Select(1, m);

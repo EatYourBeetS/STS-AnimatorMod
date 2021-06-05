@@ -1,16 +1,14 @@
 package eatyourbeets.cards.animator.beta.ultrarare;
 
-import com.megacrit.cardcrawl.actions.defect.EvokeAllOrbsAction;
+import basemod.BaseMod;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.EndTurnDeathPower;
 import eatyourbeets.cards.animator.beta.special.Miracle;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class SakuraKashima extends AnimatorCard_UltraRare
 {
@@ -19,6 +17,8 @@ public class SakuraKashima extends AnimatorCard_UltraRare
     {
         DATA.AddPreview(new Miracle(), false);
     }
+
+    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public SakuraKashima()
     {
@@ -39,25 +39,45 @@ public class SakuraKashima extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void triggerWhenDrawn()
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-        super.triggerWhenDrawn();
+        super.triggerWhenCreated(startOfBattle);
 
-        if (CombatStats.TryActivateLimited(cardID))
+        if (startOfBattle)
         {
-            GameActions.Bottom.MakeCardInHand(new Miracle());
+            GameEffects.List.ShowCopy(this);
+            GameActions.Bottom.GainIntellect(1, true);
         }
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
+        String[] text = DATA.Strings.EXTENDED_DESCRIPTION;
+
+        if (choices.TryInitialize(this))
+        {
+            choices.AddEffect(text[0], this::Effect1);
+            choices.AddEffect(text[1], this::Effect2);
+        }
+
+        choices.Select(1, m);
+    }
+
+    private void Effect1(AbstractCard card, AbstractPlayer p, AbstractMonster m)
+    {
+        GameActions.Bottom.MakeCardInHand(new Miracle());
+    }
+
+    private void Effect2(AbstractCard card, AbstractPlayer p, AbstractMonster m)
+    {
+        int numMiraclesToMake = BaseMod.MAX_HAND_SIZE - player.hand.size();
+
+        for (int i=0; i<numMiraclesToMake; i++)
+        {
+            GameActions.Bottom.MakeCardInHand(new Miracle());
+        }
+
         GameActions.Bottom.ApplyPower(new EndTurnDeathPower(p));
-
-        GameActions.Bottom.GainForce(magicNumber);
-        GameActions.Bottom.GainAgility(magicNumber);
-        GameActions.Bottom.GainIntellect(magicNumber);
-
-        GameActions.Last.Add(new EvokeAllOrbsAction());
     }
 }

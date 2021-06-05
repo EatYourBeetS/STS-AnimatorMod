@@ -24,8 +24,9 @@ public class Shimako extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 0);
+        Initialize(0, 4, 2);
         SetUpgrade(0, 3, 0);
+        SetScaling(1,0,0);
 
         SetSynergy(Synergies.Rewrite);
     }
@@ -55,5 +56,10 @@ public class Shimako extends AnimatorCard
         }
 
         GameActions.Bottom.ChannelOrb(orb);
+
+        if (curStance.equals(IntellectStance.STANCE_ID))
+        {
+            GameActions.Bottom.ChannelOrb(orb);
+        }
     }
 }

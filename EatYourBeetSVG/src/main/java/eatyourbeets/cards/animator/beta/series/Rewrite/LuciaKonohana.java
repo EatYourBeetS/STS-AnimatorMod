@@ -22,7 +22,7 @@ public class LuciaKonohana extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 5, 2);
+        Initialize(0, 0, 4, 2);
         SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
@@ -57,6 +57,7 @@ public class LuciaKonohana extends AnimatorCard
                 GameActions.Bottom.VFX(new PotionBounceEffect(m.hb.cX, m.hb.cY, m.hb.cX, m.hb.cY), 0.4f);
             }
             GameActions.Bottom.ApplyPoison(p, m, magicNumber);
+            GameActions.Bottom.ApplyWeak(p, m, 1);
         }
 
         if (stacks >= secondaryValue)

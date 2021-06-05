@@ -1,16 +1,20 @@
 package eatyourbeets.cards.animator.beta.series.Rewrite;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class SakuyaOhtori extends AnimatorCard
 {
@@ -21,10 +25,8 @@ public class SakuyaOhtori extends AnimatorCard
         super(DATA);
 
         Initialize(0, 3, 2, 1);
-        SetUpgrade(0, 0, 1);
-        SetScaling(1, 0, 1);
+        SetUpgrade(0, 2, 0);
 
-        SetHaste(true);
         SetSynergy(Synergies.Rewrite);
         SetMartialArtist();
     }
@@ -36,32 +38,37 @@ public class SakuyaOhtori extends AnimatorCard
     }
 
     @Override
-    public void triggerWhenDrawn()
-    {
-        if (this.hasTag(HASTE))
-        {
-            GameActions.Top.Discard(this, player.hand).ShowEffect(true, true)
-                    .AddCallback(() -> GameActions.Top.GainForce(secondaryValue, upgraded))
-                    .SetDuration(0.15f, true);
-        }
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        for (int i = 0; i < magicNumber; i++)
+        if (GameUtilities.InStance(ForceStance.STANCE_ID))
         {
-            GameActions.Bottom.GainBlock(block);
+            GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
+
+            Dark dark = null;
+
+            for (AbstractOrb orb : player.orbs)
+            {
+                dark = JUtils.SafeCast(orb, Dark.class);
+            }
+
+            if (dark != null)
+            {
+                dark.evokeAmount *= 2;
+            }
         }
-
-        GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
-
-        int forceToConvert = (GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID)) / 2;
-
-        if (forceToConvert > 0)
+        else
         {
-            GameActions.Bottom.GainForce(-forceToConvert);
-            GameActions.Bottom.GainIntellect(forceToConvert);
+            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+
+            for (int i = 0; i < p.hand.size(); i++)
+            {
+                AbstractCard card = p.hand.getNCardFromTop(i);
+                if (card != this && card.hasTag(MARTIAL_ARTIST) && GameUtilities.Retain(card))
+                {
+                    card.flash();
+                    return;
+                }
+            }
         }
     }
 }

@@ -1,14 +1,15 @@
 package eatyourbeets.cards.animator.beta.series.Rewrite;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class YoshinoHaruhiko extends AnimatorCard
 {
@@ -18,9 +19,9 @@ public class YoshinoHaruhiko extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 2);
-        SetUpgrade(0, 0, 1);
-        SetExhaust(true);
+        Initialize(3, 0, 2, 1);
+        SetUpgrade(2, 0, 0);
+        SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.Rewrite);
         SetMartialArtist();
@@ -29,29 +30,29 @@ public class YoshinoHaruhiko extends AnimatorCard
     @Override
     public AbstractAttribute GetDamageInfo()
     {
+        if (!GameUtilities.InStance(ForceStance.STANCE_ID))
+        {
+            return null;
+        }
+
         return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        for (int i = 0; i < magicNumber; i++)
+        if (GameUtilities.InStance(ForceStance.STANCE_ID))
         {
-            GameActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+            for (int i = 0; i < magicNumber; i++)
+            {
+                GameActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+            }
         }
 
-        GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
-
-        if (IsStarter())
+        if (GameUtilities.InStance(NeutralStance.STANCE_ID))
         {
-            for (AbstractCard card : player.hand.group)
-            {
-                if (card instanceof EYBCard && card.type == CardType.ATTACK)
-                {
-                    ((EYBCard) card).forceScaling += 1;
-                    card.flash();
-                }
-            }
+            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+            GameActions.Bottom.GainForce(1);
         }
     }
 }

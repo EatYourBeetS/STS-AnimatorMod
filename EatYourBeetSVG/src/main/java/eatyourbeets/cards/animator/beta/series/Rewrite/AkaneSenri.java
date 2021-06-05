@@ -10,8 +10,8 @@ import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.RandomizedList;
 
 public class AkaneSenri extends AnimatorCard
 {
@@ -21,32 +21,39 @@ public class AkaneSenri extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
-        SetUpgrade(0, 4, 0);
+        Initialize(0, 0, 4, 1);
+        SetUpgrade(0, 0, 2);
+        SetEthereal(true);
 
         SetSynergy(Synergies.Rewrite);
-        SetSpellcaster();
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
-        GameActions.Bottom.StackPower(new AkaneSenriPower(p, magicNumber, secondaryValue));
+        GameActions.Bottom.StackPower(new AkaneSenriPower(p, secondaryValue));
 
-        for (AbstractCard card : player.hand.group)
+        RandomizedList<AbstractCard> randomizedList = new RandomizedList<>();
+        randomizedList.AddAll(player.drawPile.group);
+
+        for (int i=0; i<magicNumber; i++)
         {
-            if (card instanceof EYBCard)
+            AbstractCard card = randomizedList.Retrieve(rng);
+
+            if (card != null && card instanceof EYBCard)
             {
                 ((EYBCard) card).SetHaste(true);
+            }
+            else
+            {
+                break;
             }
         }
     }
 
     public static class AkaneSenriPower extends AnimatorPower
     {
-        public AkaneSenriPower(AbstractPlayer owner, int defaultCountdown, int amount)
+        public AkaneSenriPower(AbstractPlayer owner, int amount)
         {
             super(owner, AkaneSenri.DATA);
 
@@ -58,22 +65,18 @@ public class AkaneSenri extends AnimatorCard
         @Override
         public void atEndOfTurn(boolean isPlayer)
         {
-            GameActions.Bottom.SpendEnergy(1, false)
-            .AddCallback(() ->
-            {
-                AbstractOrb darkOrb = new Dark();
-                GameActions.Bottom.ChannelOrb(darkOrb);
+            AbstractOrb darkOrb = new Dark();
+            GameActions.Bottom.ChannelOrb(darkOrb);
 
-                for (int i = 0; i < player.hand.size(); i++)
+            for (int i = 0; i < player.hand.size(); i++)
+            {
+                for (int j = 0; j < amount; j++)
                 {
-                    for (int j = 0; j < amount; j++)
-                    {
-                        darkOrb.onStartOfTurn();
-                        darkOrb.onEndOfTurn();
-                    }
+                    darkOrb.onStartOfTurn();
+                    darkOrb.onEndOfTurn();
                 }
-                flash();
-            });
+            }
+            flash();
 
             updateDescription();
         }

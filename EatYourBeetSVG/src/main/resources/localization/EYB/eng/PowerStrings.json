@@ -35,6 +35,11 @@
 		"DESCRIPTIONS": ["Deal #b{0} damage to a random enemy at the start of your next turn."],
 		"NAME": "Damage Next Turn"
 	},
+	"EYB:ExitStanceNextTurnPower":
+	{
+	  "DESCRIPTIONS": ["Exit your current stance at the start of your next turn."],
+	  "NAME": "Exit Stance Next Turn"
+	},
 	"EYB:TempHPNextTurnPower":
 	{
 		"DESCRIPTIONS": ["Gain #b{0} Temp HP at the start of your next turn."],

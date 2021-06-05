@@ -529,8 +529,8 @@
 	{
 		"animator:AkaneSenri":
 		{
-			"DESCRIPTION": "Enter <IS>. All cards ** in your hand gain {Haste}. || At the end of each turn, ** spend 1 of your remaining [E] ** to Channel 1 [Dark]. Trigger it ** once for each card in hand.",
-			"EXTENDED_DESCRIPTION": ["At end of turn: Spend 1 remaining Energy at end of turn to Channel 1 Dark at end of turn. Trigger it #b{0} times for each card in your hand."],
+			"DESCRIPTION": "Give {Haste} to !M! random cards in your draw pile. || At the end of each turn, Channel [Dark]. Trigger it once for each card in hand.",
+			"EXTENDED_DESCRIPTION": ["At the end of each turn, Channel [Dark]. Trigger it #b{0} times for each card in your hand."],
 			"NAME": "Akane Senri"
 		},
 		"animator:Chibimoth":
@@ -541,8 +541,9 @@
 		},
 		"animator:ChihayaOhtori":
 		{
-			"DESCRIPTION": "Draw a {Martial Artist} from ** your Discard pile.  It ** costs !M! less this turn. || When drawn with Haste: ** Gain !S! {Temp.} [Artifact].",
-			"NAME": "Chihaya Ohtori"
+			"DESCRIPTION": "Choose 1: Draw a {Martial Artist} from your discard pile and {Motivate} it, or Gain !S! [Artifact]. || Costs 1 less for every !M! [Force].",
+		  	"EXTENDED_DESCRIPTION": ["Draw a {Martial Artist} from your discard pile and {Motivate} it."],
+		  	"NAME": "Chihaya Ohtori"
 		},
 		"animator:Defend_Rewrite":
 		{
@@ -557,7 +558,7 @@
 		},
 		"animator:KotarouTennouji":
 		{
-			"DESCRIPTION": "{Unique}. Enter a random {Stance}. || <LIM>. Whenever you ** change {Stances} while this ** is in your hand, permanently ** Upgrade this card.",
+			"DESCRIPTION": "{Unique}. Enter any {Stance}. Exit your {Stance} next turn. || <LIM>. When you change {Stances} with is in hand: permanently Upgrade this card.",
 			"NAME": "Kotarou Tennouji"
 		},
 		"animator:KotoriKanbe":
@@ -567,28 +568,29 @@
 		},
 		"animator:LuciaKonohana":
 		{
-			"DESCRIPTION": "Apply X times !M! [Poison]. || <LIM>. If X is higher ** than !S!: When the enemy ** dies, transfer its {Common} ** {Debuffs} to ALL enemies.",
+			"DESCRIPTION": "Apply X times !M! [Poison] and X [Weak]. || <LIM>. If X is higher ** than !S!: When the enemy ** dies, transfer its {Common} ** {Debuffs} to ALL enemies.",
 			"EXTENDED_DESCRIPTION": ["When this creature dies, transfer its #yCommon #yDebuffs to ALL enemies.", "Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
 			"NAME": "Lucia Konohana"
 		},
 		"animator:Midou":
 		{
-			"DESCRIPTION": "Add !M! {Burn} to your hand. || When Exhausted: ** Channel !S! [Fire].",
+			"DESCRIPTION": "Add !M! {Burn} to your hand. || On Synergy: Evoke a random Orb.",
 			"NAME": "Midou"
 		},
 		"animator:SakuraKashima":
 		{
-			"DESCRIPTION": "<LIM>. When Drawn: Add ** a {Miracle} to your hand. || Gain !M! [F], [A], and [I], ** then Evoke ALL Orbs.  Die ** next turn.",
+			"DESCRIPTION": "At the start of combat: Boost [I]. || Choose 1: Add a {Miracle} to your hand, or add {Miracles} to your hand until your hand is full and Die next turn.",
+		 	"EXTENDED_DESCRIPTION": ["Add a {Miracle} to your hand.", "Add {Miracles} to your hand until your hand is full. Die next turn."],
 			"NAME": "Sakura Kashima"
 		},
 		"animator:SakuyaOhtori":
 		{
-			"DESCRIPTION": "When drawn with Haste: ** Discard this card and ** Gain/Boost [F]. || Enter <IS>.  Convert ** half your [F] into [I].",
+			"DESCRIPTION": "If in <FS>: Enter <IS> and double your rightmost [Dark] amount. || Otherwise, Enter <FS> and {Retain} your rightmost {Martial Artist}.",
 			"NAME": "Sakuya Ohtori"
 		},
 		"animator:Shimako":
 		{
-			"DESCRIPTION": "Channel 1 Orb based ** on your current {Stance}: ** None -> [Lightning]. ** [F] -> [Fire]. ** [A] -> [Earth]. ** [I] -> [Dark].",
+			"DESCRIPTION": "Channel 1 Orb based ** on your current {Stance}: ** None -> [Lightning]. ** [F] -> [Fire]. ** [A] -> [Earth]. ** [I] -> !M! [Dark].",
 			"NAME": "Shimako"
 		},
 		"animator:ShizuruNakatsu":
@@ -598,7 +600,7 @@
 		},
 		"animator:SougenEsaka":
 		{
-			"DESCRIPTION": "Gain [Block] equal to ** twice your [A]. || Synergy: Upgrade a ** random card in your ** hand.",
+			"DESCRIPTION": "Gain [Block] equal to your [A]. || On Synergy: Increase damage of a random {Attack} in your hand by !M!.",
 			"NAME": "Sougen Esaka"
 		},
 		"animator:Strike_Rewrite":
@@ -613,7 +615,7 @@
 		},
 		"animator:YoshinoHaruhiko":
 		{
-			"DESCRIPTION": "Enter <FS>. || {Starter}: Give ALL {Attacks} ** in your hand +1 [F] Scaling.",
+			"DESCRIPTION": "Only deals damage in <FS>. || <LIM>. If in Neutral Stance, enter <FS> and gain [F].",
 			"NAME": "Yoshino Haruhiko"
 		}
 	},
@@ -1557,7 +1559,7 @@
 		},
 		"animator:Soujiro":
 		{
-			"DESCRIPTION": "<LIM>. At start of combat: Shuffle {Kyouko}, {Kawara}, and {Isami} into your draw pile. || Increase damage by !M! for each {Synergic} card in your hand.",
+			"DESCRIPTION": "<LIM>. At the start of combat: Shuffle {Kyouko}, {Kawara}, and {Isami} into your draw pile. || Increase damage by !M! for each {Synergic} card in your hand.",
 			"NAME": "Soujiro"
 		},
 		"animator:Soujiro_Isami":

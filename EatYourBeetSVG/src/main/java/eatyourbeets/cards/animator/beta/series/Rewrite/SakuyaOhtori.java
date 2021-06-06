@@ -54,6 +54,10 @@ public class SakuyaOhtori extends AnimatorCard
             for (AbstractOrb orb : player.orbs)
             {
                 dark = JUtils.SafeCast(orb, Dark.class);
+                if (JUtils.SafeCast(orb, Dark.class) != null)
+                {
+                    break;
+                }
             }
 
             if (dark != null)

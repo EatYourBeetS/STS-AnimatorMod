@@ -40,6 +40,11 @@ public class SakuyaOhtori extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
+        for (int i=0; i<magicNumber; i++)
+        {
+            GameActions.Bottom.GainBlock(block);
+        }
+
         if (GameUtilities.InStance(ForceStance.STANCE_ID))
         {
             GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);

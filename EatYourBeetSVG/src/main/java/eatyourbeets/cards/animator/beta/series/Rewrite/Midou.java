@@ -36,11 +36,16 @@ public class Midou extends AnimatorCard
 
         if (isSynergizing)
         {
+            boolean hasOrbToEvoke = (player.filledOrbCount() > 0);
+
             GameActions.Bottom.EvokeOrb(1, EvokeOrb.Mode.Random);
 
-            for (int i=0; i<magicNumber; i++)
+            if (hasOrbToEvoke)
             {
-                GameActions.Bottom.MakeCardInHand(new Burn());
+                for (int i = 0; i < magicNumber; i++)
+                {
+                    GameActions.Bottom.MakeCardInHand(new Burn());
+                }
             }
         }
     }

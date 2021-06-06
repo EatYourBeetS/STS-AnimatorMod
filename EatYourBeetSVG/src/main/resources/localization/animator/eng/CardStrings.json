@@ -574,7 +574,7 @@
 		},
 		"animator:Midou":
 		{
-			"DESCRIPTION": "Increases damage by 1 for each Orb you have. || On Synergy: Evoke a random Orb and add !M! {Burn} to your hand.",
+			"DESCRIPTION": "Increases damage by 1 for each Orb you have. || On Synergy: Evoke a random Orb.  If you do, add !M! {Burn} to your hand.",
 			"NAME": "Midou"
 		},
 		"animator:SakuraKashima":

@@ -18,8 +18,15 @@ public class Midou extends AnimatorCard
 
         Initialize(2, 0, 1, 1);
         SetUpgrade(3, 0, 0, 0);
-        SetScaling(1, 0, 0);
         SetSynergy(Synergies.Rewrite);
+    }
+
+    @Override
+    protected float GetInitialDamage()
+    {
+        float damage = super.GetInitialDamage();
+        damage += player.filledOrbCount();
+        return damage;
     }
 
     @Override
@@ -27,14 +34,14 @@ public class Midou extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
 
-        for (int i=0; i<magicNumber; i++)
-        {
-            GameActions.Bottom.MakeCardInHand(new Burn());
-        }
-
         if (isSynergizing)
         {
             GameActions.Bottom.EvokeOrb(1, EvokeOrb.Mode.Random);
+
+            for (int i=0; i<magicNumber; i++)
+            {
+                GameActions.Bottom.MakeCardInHand(new Burn());
+            }
         }
     }
 }

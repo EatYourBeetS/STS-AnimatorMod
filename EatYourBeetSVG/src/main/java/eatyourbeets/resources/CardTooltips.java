@@ -80,6 +80,7 @@ public class CardTooltips
     public EYBCardTooltip Earth = FindByID("Earth");
     public EYBCardTooltip Aether = FindByID("Aether");
     public EYBCardTooltip Dark = FindByID("Dark");
+    public EYBCardTooltip Aura = FindByID("Aura");
 
     // No Description
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);

@@ -5,6 +5,11 @@
 		"DESCRIPTION": "You may play cards with #yAfterlife from your #yExhaust pile by #yPurging #b1 random #yNon-Afterlife card from your #yExhaust pile.",
 		"NAMES": ["afterlife"],
 		"PROPER_NAME": "Afterlife"
+	"Aura":
+	{
+		"DESCRIPTION": "Auras effects are automatically activated when a condition is met. These cards are not added to your draw pile at the start of battle.",
+		"NAMES": ["aura", "auras"],
+		"PROPER_NAME": "Aura"
 	},
 	"Cooldown":
 	{

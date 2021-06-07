@@ -72,12 +72,12 @@ public class TargetHelper
         return new TargetHelper(Mode.Normal, source, source);
     }
 
-    public static TargetHelper Random()
+    public static TargetHelper RandomCharacter()
     {
-        return Random(AbstractDungeon.player);
+        return RandomCharacter(AbstractDungeon.player);
     }
 
-    public static TargetHelper Random(AbstractCreature source)
+    public static TargetHelper RandomCharacter(AbstractCreature source)
     {
         return new TargetHelper(Mode.Random, source, null);
     }

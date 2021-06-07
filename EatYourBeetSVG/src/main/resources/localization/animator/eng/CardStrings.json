@@ -360,7 +360,7 @@
 		},
 		"animator:UryuuIshida":
 		{
-			"DESCRIPTION": "When Discarded: Gain !M! [Support Damage]. || Cooldown !S!: Transfer !M! [Weak] and !M! [Vulnerable] from you to a random enemy.",
+			"DESCRIPTION": "Starter: Transfer !M! [Weak] and !M! [Vulnerable] from you to a random enemy. || When Discarded: Gain !S! [Support Damage].",
 			"NAME": "Uryuu Ishida"
 		},
 		"animator:YasutoraSado":

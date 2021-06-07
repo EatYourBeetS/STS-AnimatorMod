@@ -22,9 +22,8 @@ public class UryuuIshida extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(4, 0, 2);
-        SetUpgrade(3, 0, 0);
-        SetCooldown(2, 0, this::OnCooldownCompleted);
+        Initialize(4, 0, 1, 2);
+        SetUpgrade(2, 0, 1);
 
         SetSynergy(Synergies.Bleach);
     }
@@ -32,9 +31,7 @@ public class UryuuIshida extends AnimatorCard
     @Override
     public void triggerOnManualDiscard()
     {
-        GameActions.Bottom.StackPower(new SupportDamagePower(player, magicNumber));
-
-        cooldown.ProgressCooldownAndTrigger(null);
+        GameActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
     }
 
     @Override
@@ -42,15 +39,13 @@ public class UryuuIshida extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
-        cooldown.ProgressCooldownAndTrigger(m);
-    }
-
-    protected void OnCooldownCompleted(AbstractMonster m)
-    {
-        GameActions.Bottom.Callback(card -> {
-            AbstractMonster enemy = GameUtilities.GetRandomEnemy(true);
-            TransferWeakVulnerable(enemy);
-        });
+        if (IsStarter())
+        {
+            GameActions.Bottom.Callback(card -> {
+                AbstractMonster enemy = GameUtilities.GetRandomEnemy(true);
+                TransferWeakVulnerable(enemy);
+            });
+        }
     }
 
     private void TransferWeakVulnerable(AbstractMonster m)
@@ -58,13 +53,13 @@ public class UryuuIshida extends AnimatorCard
         int weakToTransfer = GameUtilities.GetPowerAmount(player, WeakPower.POWER_ID);
         int vulToTransfer = GameUtilities.GetPowerAmount(player, VulnerablePower.POWER_ID);
 
-        if (weakToTransfer > 2)
+        if (weakToTransfer > magicNumber)
         {
-            weakToTransfer = 2;
+            weakToTransfer = magicNumber;
         }
-        if (vulToTransfer > 2)
+        if (vulToTransfer > magicNumber)
         {
-            vulToTransfer = 2;
+            vulToTransfer = magicNumber;
         }
 
         for (AbstractPower power : player.powers)

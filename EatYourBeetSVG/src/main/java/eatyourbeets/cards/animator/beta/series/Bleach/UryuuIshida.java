@@ -42,8 +42,7 @@ public class UryuuIshida extends AnimatorCard
         if (IsStarter())
         {
             GameActions.Bottom.Callback(card -> {
-                AbstractMonster enemy = GameUtilities.GetRandomEnemy(true);
-                TransferWeakVulnerable(enemy);
+                TransferWeakVulnerable(m);
             });
         }
     }

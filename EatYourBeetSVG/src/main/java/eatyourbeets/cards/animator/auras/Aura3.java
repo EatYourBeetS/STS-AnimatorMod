@@ -22,7 +22,7 @@ public class Aura3 extends Aura
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.Draw(magicNumber);
-        GameActions.Bottom.ApplyVulnerable(TargetHelper.Random(p), 1)
+        GameActions.Bottom.ApplyVulnerable(TargetHelper.RandomEnemy(p), 1)
         .IgnoreArtifact(true);
     }
 }

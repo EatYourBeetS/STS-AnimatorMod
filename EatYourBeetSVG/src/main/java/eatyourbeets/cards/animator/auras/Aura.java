@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
@@ -13,13 +12,13 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RenderHelpers;
 
-public abstract class Aura extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber, Hidden
+public abstract class Aura extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     private static final Color RENDER_COLOR = new Color(0.8f, 0.8f, 0.8f, 1);
 
     public static EYBCardData RegisterAura(Class<? extends AnimatorCard> type)
     {
-        return Register(type).SetSkill(-2, CardRarity.SPECIAL);
+        return Register(type).SetSkill(-2, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
     }
 
     protected Aura(EYBCardData cardData)
@@ -27,6 +26,17 @@ public abstract class Aura extends AnimatorCard implements OnStartOfTurnPostDraw
         super(cardData);
 
         this.cropPortrait = false;
+    }
+
+    @Override
+    public void initializeDescription()
+    {
+        super.initializeDescription();
+
+        if (cardText != null)
+        {
+            tooltips.add(GR.Tooltips.Aura);
+        }
     }
 
     @Override

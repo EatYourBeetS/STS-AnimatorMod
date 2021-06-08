@@ -55,6 +55,6 @@ public class Aura1 extends Aura
     @Override
     public boolean CanActivate(int currentTurn)
     {
-        return super.CanActivate(upgraded ? currentTurn : (currentTurn + 1));
+        return super.CanActivate(upgraded ? (currentTurn + 1) : currentTurn);
     }
 }

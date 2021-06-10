@@ -52,12 +52,12 @@ public abstract class AnimatorCard extends EYBCard
 
     public boolean HasSynergy()
     {
-        return Synergies.IsSynergizing(this) || Synergies.WouldSynergize(this);
+        return Synergies.IsSynergizing(this) || WouldSynergize();
     }
 
     public boolean HasSynergy(AbstractCard other)
     {
-        return Synergies.IsSynergizing(this) || Synergies.WouldSynergize(this, other);
+        return Synergies.IsSynergizing(this) || WouldSynergize(other);
     }
 
     public boolean HasDirectSynergy(AbstractCard other)
@@ -72,6 +72,16 @@ public abstract class AnimatorCard extends EYBCard
         }
 
         return Synergies.HasTagSynergy(this, other);
+    }
+
+    public boolean WouldSynergize()
+    {
+        return Synergies.WouldSynergize(this);
+    }
+
+    public boolean WouldSynergize(AbstractCard other)
+    {
+        return Synergies.WouldSynergize(this, other);
     }
 
     public void SetSpellcaster()

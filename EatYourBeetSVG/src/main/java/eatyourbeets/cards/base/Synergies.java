@@ -113,20 +113,16 @@ public class Synergies
 
     public static Map<Synergy, List<AbstractCard>> GetCardsBySynergy(ArrayList<AbstractCard> cards)
     {
-        Map<Synergy, List<AbstractCard>> map = new HashMap<>();
-        for (AbstractCard card : cards)
+        return JUtils.Group(cards, card ->
         {
-            Synergy key = ANY;
             AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
             if (c != null && c.synergy != null)
             {
-                key = c.synergy;
+                return c.synergy;
             }
 
-            map.computeIfAbsent(key, k -> new ArrayList<>()).add(card);
-        }
-
-        return map;
+            return ANY;
+        });
     }
 
     public static ArrayList<AnimatorCard> GetColorlessCards()

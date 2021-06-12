@@ -7,20 +7,19 @@ import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnDraw;
 import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnEnergy;
 import eatyourbeets.utilities.GameActions;
 
-public class Isuzu extends AnimatorCard
+public class IsuzuTonan extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Isuzu.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(IsuzuTonan.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
-    public Isuzu()
+    public IsuzuTonan()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
-        SetUpgrade(0, 0, 1, 1);
+        Initialize(0, 0, 1);
+        SetUpgrade(0, 0, 1);
 
-        SetExhaust(true);
         SetSynergy(Synergies.LogHorizon);
     }
 

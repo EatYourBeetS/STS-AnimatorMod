@@ -640,6 +640,11 @@ public final class GameActions
         return Add(new MotivateAction(1));
     }
 
+    public MotivateAction Motivate(CardGroup group)
+    {
+        return Motivate().SetGroup(group);
+    }
+
     public MotivateAction Motivate(AbstractCard card, int amount)
     {
         return Add(new MotivateAction(card, amount));
@@ -652,6 +657,18 @@ public final class GameActions
         for (int i = 0; i < times; i++)
         {
             actions.add(Motivate());
+        }
+
+        return actions;
+    }
+
+    public ArrayList<MotivateAction> Motivate(CardGroup group, int times)
+    {
+        ArrayList<MotivateAction> actions = new ArrayList<>();
+
+        for (int i = 0; i < times; i++)
+        {
+            actions.add(Motivate(group));
         }
 
         return actions;

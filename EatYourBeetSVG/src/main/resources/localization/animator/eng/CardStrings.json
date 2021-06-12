@@ -875,9 +875,9 @@
 			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend 1 of your remaining Energy to enter any Stance."],
 			"NAME": "Henrietta"
 		},
-		"animator:Isuzu":
+		"animator:IsuzuTonan":
 		{
-			"DESCRIPTION": "Choose 1: Next turn, gain !M! [E] or Next turn, draw !S! cards. || On Synergy: Gain 1 {Temp.} [Artifact].",
+			"DESCRIPTION": "For !M! turn(s): Whenever ** a {Non-0-Cost} {Attack} ** Synergizes, play a random ** {0-Cost} {Attack} from ** your draw pile.",
 			"NAME": "Isuzu Tonan"
 		},
 		"animator:Krusty":
@@ -887,10 +887,10 @@
 		},
 		"animator:Marielle":
 		{
-			"DESCRIPTION": "{Motivate} ALL cards in your hand.  Reduce their damage and [Block] by !M! until played. || <LIM>. On Synergy: Channel 1 [Aether]. ",
+			"DESCRIPTION": "{Motivate} 1 card of each ** type in your draw pile. || Synergy: Gain !M! [Temporary HP] ** and Purge.",
 			"NAME": "Marielle"
 		},
-		"animator:Minori":
+		"animator:HousakiMinori":
 		{
 			"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%. ||  <SLM>. On Synergy or Discard: Shuffle this card into your draw pile.",
 			"NAME": "Minori Housaki"
@@ -951,7 +951,7 @@
 			"EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.", "This power has already been activated this turn."],
 			"NAME": "Tetora"
 		},
-		"animator:Tohya":
+		"animator:HousakiTohya":
 		{
 			"DESCRIPTION": "Draw {Minori Housaki} from your draw pile. || {Starter}: Gain !M! [Blur].",
 			"NAME": "Tohya Housaki"

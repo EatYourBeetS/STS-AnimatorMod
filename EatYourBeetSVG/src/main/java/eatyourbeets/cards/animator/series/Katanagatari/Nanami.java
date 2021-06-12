@@ -65,12 +65,7 @@ public class Nanami extends AnimatorCard
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        if (currentEffect != null)
-        {
-            return currentEffect.GetSpecialInfo(this);
-        }
-
-        return null;
+        return (currentEffect != null) ? currentEffect.GetSpecialInfo(this) : null;
     }
 
     @Override

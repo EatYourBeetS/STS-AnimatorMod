@@ -1,20 +1,24 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.modifiers.BlockModifiers;
-import eatyourbeets.cards.base.modifiers.CostModifiers;
-import eatyourbeets.cards.base.modifiers.DamageModifiers;
-import eatyourbeets.orbs.animator.Aether;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.effects.utility.SequentialEffect;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
+
+import java.util.List;
+import java.util.Map;
 
 public class Marielle extends AnimatorCard
 {
@@ -24,59 +28,47 @@ public class Marielle extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
-        SetUpgrade(0, 0, 0);
-        SetEthereal(true);
-        SetExhaust(true);
+        Initialize(0, 0, 6);
+        SetUpgrade(0, 0, 6);
 
         SetSynergy(Synergies.LogHorizon);
+        SetSpellcaster();
     }
 
     @Override
-    protected void OnUpgrade()
+    public AbstractAttribute GetSpecialInfo()
     {
-        SetEthereal(false);
+        return HasSynergy() ? TempHPAttribute.Instance.SetCard(this, true) : super.GetSpecialInfo();
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainBlock(block);
+        final SequentialEffect effect = new SequentialEffect();
+        final Map<CardType, List<AbstractCard>> map = JUtils.Group(p.drawPile.group, c -> c.type);
 
-        if (isSynergizing && CombatStats.TryActivateLimited(cardID))
+        int i = 0;
+        for (CardType t : map.keySet())
         {
-            GameActions.Bottom.ChannelOrb(new Aether());
-        }
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        for (AbstractCard card : GameUtilities.GetOtherCardsInHand(this))
-        {
-            if (card.costForTurn > 0)
+            CardGroup group = GameUtilities.CreateCardGroup(map.get(t));
+            GameActions.Bottom.Motivate(group)
+            .AddCallback(i, (index, c) ->
             {
-                final String key = cardID + uuid;
-
-                GameUtilities.Flash(card, Color.GOLD, true);
-                CostModifiers.For(card).Add(key, -1);
-
-                if (card.baseBlock >= 0)
+                float offsetX = (Settings.WIDTH * 0.12f) + index * AbstractCard.IMG_WIDTH * 0.4f;
+                float offsetY = (Settings.HEIGHT * 0.33f) + index * AbstractCard.IMG_HEIGHT * 0.1f;
+                if (c != null)
                 {
-                    BlockModifiers.For(card).Add(key, -magicNumber);
+                    GameEffects.TopLevelList.ShowCardBriefly(c.makeStatEquivalentCopy(), offsetX, offsetY);
                 }
-                if (card.baseDamage >= 0)
-                {
-                    DamageModifiers.For(card).Add(key, -magicNumber);
-                }
+            });
 
-                GameUtilities.TriggerWhenPlayed(card, key, (k, c) ->
-                {
-                    CostModifiers.For(c).Remove(k, false);
-                    BlockModifiers.For(c).Remove(k);
-                    DamageModifiers.For(c).Remove(k);
-                });
-            }
+            i += 1;
+        }
+
+        if (isSynergizing)
+        {
+            GameActions.Bottom.GainTemporaryHP(magicNumber);
+            PurgeOnUseOnce();
         }
     }
 }

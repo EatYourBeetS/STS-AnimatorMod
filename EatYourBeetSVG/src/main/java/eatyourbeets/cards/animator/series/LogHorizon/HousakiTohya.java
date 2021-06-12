@@ -9,15 +9,15 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
-public class Tohya extends AnimatorCard
+public class HousakiTohya extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Tohya.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(HousakiTohya.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal);
     static
     {
-        DATA.AddPreview(new Minori(), false);
+        DATA.AddPreview(new HousakiMinori(), false);
     }
 
-    public Tohya()
+    public HousakiTohya()
     {
         super(DATA);
 
@@ -33,7 +33,7 @@ public class Tohya extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         GameActions.Bottom.Draw(1)
-        .SetFilter(c -> Minori.DATA.ID.equals(c.cardID), false);
+        .SetFilter(c -> HousakiMinori.DATA.ID.equals(c.cardID), false);
 
         if (IsStarter())
         {

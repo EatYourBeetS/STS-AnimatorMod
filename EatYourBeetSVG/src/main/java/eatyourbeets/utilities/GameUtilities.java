@@ -44,10 +44,7 @@ import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Predicate;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
@@ -133,6 +130,18 @@ public class GameUtilities
         copy.targetTransparency = original.targetTransparency;
         copy.angle = original.angle;
         copy.targetAngle = original.targetAngle;
+    }
+
+    public static CardGroup CreateCardGroup(List<AbstractCard> cards)
+    {
+        return CreateCardGroup(cards, CardGroup.CardGroupType.UNSPECIFIED);
+    }
+
+    public static CardGroup CreateCardGroup(List<AbstractCard> cards, CardGroup.CardGroupType type)
+    {
+        CardGroup group = new CardGroup(type);
+        group.group.addAll(cards);
+        return group;
     }
 
     public static void DecreaseBlock(AbstractCard card, int amount, boolean temporary)

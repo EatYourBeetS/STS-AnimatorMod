@@ -31,12 +31,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        if (magicNumber > 0)
-        {
-            return TempHPAttribute.Instance.SetCard(this, true);
-        }
-
-        return null;
+        return (magicNumber > 0) ? TempHPAttribute.Instance.SetCard(this, true) : null;
     }
 
     @Override

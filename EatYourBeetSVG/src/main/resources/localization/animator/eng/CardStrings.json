@@ -877,7 +877,7 @@
 		},
 		"animator:IsuzuTonan":
 		{
-			"DESCRIPTION": "For !M! turn(s): Whenever an {Attack} ** Synergizes, play a random ** lower cost {Attack} from ** your draw pile.",
+			"DESCRIPTION": "For !M! turn(s): Whenever ** an {Attack} Synergizes, ** play a random lower ** cost {Attack} from ** your draw pile.",
 			"EXTENDED_DESCRIPTION": ["For #b{0} turn(s), whenever an #yAttack #ySynergizes: Play a random lower cost #yAttack from your draw pile."],
 			"NAME": "Isuzu Tonan"
 		},

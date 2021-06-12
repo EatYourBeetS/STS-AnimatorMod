@@ -67,7 +67,7 @@ public class IsuzuTonan extends AnimatorCard
                 return;
             }
 
-            GameActions.Bottom.SelectFromPile(name, 1, player.drawPile)
+            GameActions.Last.SelectFromPile(name, 1, player.drawPile)
             .SetOptions(true, false)
             .SetFilter(c -> c.type == CardType.ATTACK && c.costForTurn < card.costForTurn)
             .AddCallback(c ->

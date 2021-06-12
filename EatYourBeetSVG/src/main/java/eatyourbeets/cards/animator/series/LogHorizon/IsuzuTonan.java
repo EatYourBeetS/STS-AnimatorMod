@@ -1,10 +1,12 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnDraw;
-import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnEnergy;
+import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class IsuzuTonan extends AnimatorCard
@@ -26,14 +28,65 @@ public class IsuzuTonan extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        choices.Initialize(this, true);
-        choices.AddEffect(new GenericEffect_NextTurnEnergy(magicNumber));
-        choices.AddEffect(new GenericEffect_NextTurnDraw(secondaryValue));
-        choices.Select(GameActions.Bottom, 1, m);
+        GameActions.Bottom.StackPower(new IsuzuTonanPower(p, magicNumber));
+    }
 
-        if (isSynergizing)
+    public static class IsuzuTonanPower extends AnimatorPower implements OnSynergySubscriber
+    {
+        public IsuzuTonanPower(AbstractPlayer owner, int amount)
         {
-            GameActions.Bottom.GainTemporaryArtifact(1);
+            super(owner, IsuzuTonan.DATA);
+
+            this.amount = amount;
+            this.isTurnBased = true;
+
+            updateDescription();
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onSynergy.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onSynergy.Unsubscribe(this);
+        }
+
+        @Override
+        public void OnSynergy(AbstractCard card)
+        {
+            if (card.type != CardType.ATTACK || card.freeToPlay() || card.costForTurn <= 0)
+            {
+                return;
+            }
+
+            GameActions.Bottom.SelectFromPile(name, 1, player.drawPile)
+            .SetOptions(true, false)
+            .SetFilter(c -> c.type == CardType.ATTACK && c.costForTurn < card.costForTurn)
+            .AddCallback(c ->
+            {
+                if (c.size() > 0)
+                {
+                    GameActions.Top.PlayCard(c.get(0), player.drawPile, null);
+                }
+            });
+
+            flash();
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
+        {
+            super.atEndOfTurn(isPlayer);
+
+            GameActions.Bottom.ReducePower(this, 1);
         }
     }
 }

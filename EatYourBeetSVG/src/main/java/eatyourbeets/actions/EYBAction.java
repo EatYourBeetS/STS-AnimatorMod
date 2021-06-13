@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public abstract class EYBAction extends AbstractGameAction
 {
     public boolean canCancel;
     public boolean isRealtime;
+    public GameActions.ActionOrder originalOrder;
 
     protected final ArrayList<Object> tags = new ArrayList<>(1);
     protected final AbstractPlayer player;
@@ -37,6 +39,13 @@ public abstract class EYBAction extends AbstractGameAction
         this.duration = this.startDuration = duration;
         this.actionType = type;
         this.canCancel = true;
+    }
+
+    public EYBAction SetOriginalOrder(GameActions.ActionOrder order)
+    {
+        this.originalOrder = order;
+
+        return this;
     }
 
     public boolean HasTag(Object tag)
@@ -204,5 +213,6 @@ public abstract class EYBAction extends AbstractGameAction
         tags.addAll(other.tags);
         name = other.name;
         message = other.message;
+        originalOrder = other.originalOrder;
     }
 }

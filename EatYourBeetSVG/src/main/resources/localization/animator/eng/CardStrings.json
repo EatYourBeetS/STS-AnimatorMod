@@ -898,7 +898,7 @@
 		},
 		"animator:Naotsugu":
 		{
-			"DESCRIPTION": "Gain [Block] equal to ** damage dealt. || [F] Stance: Draw and retain a random Martial Artist from your draw pile.",
+			"DESCRIPTION": "Play the lowest [Block] card ** with [Block] lower than ** damage dealt. || [F] Stance: Play ALL ** eligible cards instead.",
 			"NAME": "Naotsugu"
 		},
 		"animator:Nyanta":

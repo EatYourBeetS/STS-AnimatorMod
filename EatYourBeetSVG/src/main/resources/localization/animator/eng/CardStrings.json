@@ -898,7 +898,7 @@
 		},
 		"animator:Naotsugu":
 		{
-			"DESCRIPTION": "Play the lowest [Block] card ** with [Block] lower than ** damage dealt. || [F] Stance: Play ALL ** eligible cards instead.",
+			"DESCRIPTION": "Play the lowest [Block] card ** with [Block] lower than ** unblocked damage dealt. || [F] Stance: Play ALL ** eligible cards instead.",
 			"NAME": "Naotsugu"
 		},
 		"animator:Nyanta":

@@ -7,16 +7,18 @@ import com.megacrit.cardcrawl.relics.FrozenEye;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GenericCondition;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard>>
 {
@@ -24,7 +26,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
     protected final CardGroup fakeHandGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     protected final CardGroup[] groups;
 
-    protected Predicate<AbstractCard> filter;
+    protected GenericCondition<AbstractCard> filter;
     protected CardSelection origin;
     protected boolean canPlayerCancel;
     protected boolean anyNumber;
@@ -86,9 +88,16 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         return this;
     }
 
-    public SelectFromPile SetFilter(Predicate<AbstractCard> filter)
+    public SelectFromPile SetFilter(FuncT1<Boolean, AbstractCard> filter)
     {
-        this.filter = filter;
+        this.filter = GenericCondition.FromT1(filter);
+
+        return this;
+    }
+
+    public <S> SelectFromPile SetFilter(S state, FuncT2<Boolean, S, AbstractCard> filter)
+    {
+        this.filter = GenericCondition.FromT2(filter, state);
 
         return this;
     }
@@ -103,7 +112,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             CardGroup temp = new CardGroup(group.type);
             for (AbstractCard card : group.group)
             {
-                if (filter == null || filter.test(card))
+                if (filter == null || filter.Check(card))
                 {
                     AddCard(temp, card);
                 }

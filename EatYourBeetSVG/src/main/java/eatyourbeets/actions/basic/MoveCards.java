@@ -4,16 +4,18 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GenericCondition;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
 {
     protected ArrayList<AbstractCard> selectedCards = new ArrayList<>();
-    protected Predicate<AbstractCard> filter;
+    protected GenericCondition<AbstractCard> filter;
     protected CardSelection destination;
     protected CardSelection origin;
     protected CardGroup targetPile;
@@ -74,9 +76,16 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
         return this;
     }
 
-    public MoveCards SetFilter(Predicate<AbstractCard> filter)
+    public MoveCards SetFilter(FuncT1<Boolean, AbstractCard> filter)
     {
-        this.filter = filter;
+        this.filter = GenericCondition.FromT1(filter);
+
+        return this;
+    }
+
+    public <S> MoveCards SetFilter(S state, FuncT2<Boolean, S, AbstractCard> filter)
+    {
+        this.filter = GenericCondition.FromT2(filter, state);
 
         return this;
     }
@@ -87,7 +96,7 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
         ArrayList<AbstractCard> temp = new ArrayList<>();
         for (AbstractCard card : sourcePile.group)
         {
-            if (filter == null || filter.test(card))
+            if (filter == null || filter.Check(card))
             {
                 temp.add(card);
             }

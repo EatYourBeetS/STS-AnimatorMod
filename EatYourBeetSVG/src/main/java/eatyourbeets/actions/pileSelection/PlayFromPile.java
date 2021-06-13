@@ -28,7 +28,7 @@ public class PlayFromPile extends SelectFromPile
         this.target = target;
     }
 
-    public PlayFromPile SetPlayCard(ActionT1<PlayCard> onPlayCard)
+    public PlayFromPile OnPlayCard(ActionT1<PlayCard> onPlayCard)
     {
         this.onPlayCard = onPlayCard;
 

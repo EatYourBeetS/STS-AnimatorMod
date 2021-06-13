@@ -4,17 +4,19 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GenericCondition;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard>>
 {
     protected final ArrayList<AbstractCard> excluded = new ArrayList<>();
     protected final ArrayList<AbstractCard> selectedCards = new ArrayList<>();
-    protected Predicate<AbstractCard> filter;
+    protected GenericCondition<AbstractCard> filter;
     protected boolean reAddCards;
     protected boolean isRandom;
     protected boolean canPickLower;
@@ -45,9 +47,16 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
         return this;
     }
 
-    public SelectFromHand SetFilter(Predicate<AbstractCard> filter)
+    public SelectFromHand SetFilter(FuncT1<Boolean, AbstractCard> filter)
     {
-        this.filter = filter;
+        this.filter = GenericCondition.FromT1(filter);
+
+        return this;
+    }
+
+    public <S> SelectFromHand SetFilter(S state, FuncT2<Boolean, S, AbstractCard> filter)
+    {
+        this.filter = GenericCondition.FromT2(filter, state);
 
         return this;
     }
@@ -78,7 +87,7 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
             cardSource = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             for (AbstractCard card : player.hand.group)
             {
-                if (filter.test(card))
+                if (filter.Check(card))
                 {
                     cardSource.addToTop(card);
                 }

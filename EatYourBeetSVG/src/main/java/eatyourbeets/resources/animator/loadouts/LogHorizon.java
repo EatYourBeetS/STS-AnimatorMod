@@ -32,8 +32,8 @@ public class LogHorizon extends AnimatorLoadout
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
-            startingDeck.add(Tohya.DATA.ID);
-            startingDeck.add(Minori.DATA.ID);
+            startingDeck.add(HousakiTohya.DATA.ID);
+            startingDeck.add(HousakiMinori.DATA.ID);
         }
 
         return startingDeck;

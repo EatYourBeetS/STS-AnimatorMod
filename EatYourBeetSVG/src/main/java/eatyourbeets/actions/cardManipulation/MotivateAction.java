@@ -2,12 +2,15 @@ package eatyourbeets.actions.cardManipulation;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
+
+import java.util.List;
 
 public class MotivateAction extends EYBActionWithCallback<AbstractCard>
 {
@@ -16,6 +19,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     protected boolean motivateZeroCost = true;
     protected boolean costReduced = false;
     protected AbstractCard card;
+    protected CardGroup group;
 
     public MotivateAction(int amount)
     {
@@ -38,6 +42,20 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
         return this;
     }
 
+    public MotivateAction SetGroup(List<AbstractCard> cards)
+    {
+        this.group = GameUtilities.CreateCardGroup(cards);
+
+        return this;
+    }
+
+    public MotivateAction SetGroup(CardGroup group)
+    {
+        this.group = group;
+
+        return this;
+    }
+
     @Override
     protected void FirstUpdate()
     {
@@ -51,7 +69,12 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
             RandomizedList<AbstractCard> betterPossible = new RandomizedList<>();
             RandomizedList<AbstractCard> possible = new RandomizedList<>();
 
-            for (AbstractCard c : player.hand.group)
+            if (group == null)
+            {
+                group = player.hand;
+            }
+
+            for (AbstractCard c : group.group)
             {
                 if (c.costForTurn > 0)
                 {

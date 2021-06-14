@@ -11,11 +11,11 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Minori extends AnimatorCard
+public class HousakiMinori extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Minori.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(HousakiMinori.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
-    public Minori()
+    public HousakiMinori()
     {
         super(DATA);
 

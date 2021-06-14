@@ -3,11 +3,12 @@ package eatyourbeets.actions.orbs;
 import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GenericCondition;
 import eatyourbeets.utilities.RandomizedList;
-
-import java.util.function.Predicate;
 
 public class EvokeOrb extends EYBAction
 {
@@ -20,7 +21,7 @@ public class EvokeOrb extends EYBAction
 
     protected Mode mode;
     protected AbstractOrb orb;
-    protected Predicate<AbstractOrb> filter;
+    protected GenericCondition<AbstractOrb> filter;
 
     public EvokeOrb(int times)
     {
@@ -47,9 +48,16 @@ public class EvokeOrb extends EYBAction
         Initialize(times);
     }
 
-    public EvokeOrb SetFilter(Predicate<AbstractOrb> filter)
+    public EvokeOrb SetFilter(FuncT1<Boolean, AbstractOrb> filter)
     {
-        this.filter = filter;
+        this.filter = GenericCondition.FromT1(filter);
+
+        return this;
+    }
+
+    public <S> EvokeOrb SetFilter(S state, FuncT2<Boolean, S, AbstractOrb> filter)
+    {
+        this.filter = GenericCondition.FromT2(filter, state);
 
         return this;
     }
@@ -129,6 +137,6 @@ public class EvokeOrb extends EYBAction
 
     protected boolean CheckOrb(AbstractOrb orb)
     {
-        return GameUtilities.IsValidOrb(orb) && (filter == null || filter.test(orb));
+        return GameUtilities.IsValidOrb(orb) && (filter == null || filter.Check(orb));
     }
 }

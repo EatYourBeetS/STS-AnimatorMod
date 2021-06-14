@@ -1507,9 +1507,10 @@
 			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend 1 of your remaining Energy to enter any Stance."],
 			"NAME": "Henrietta"
 		},
-		"animator:Isuzu":
+		"animator:IsuzuTonan":
 		{
-			"DESCRIPTION": "Choose 1: Next turn, gain !M! [E] or Next turn, draw !S! cards. || On Synergy: Gain 1 {Temp.} [Artifact].",
+			"DESCRIPTION": "For !M! turn(s): Whenever ** an {Attack} Synergizes, ** play a random lower ** cost {Attack} from ** your draw pile.",
+			"EXTENDED_DESCRIPTION": ["For #b{0} turn(s), whenever an #yAttack #ySynergizes: Play a random lower cost #yAttack from your draw pile."],
 			"NAME": "Isuzu Tonan"
 		},
 		"animator:Krusty":
@@ -1519,17 +1520,17 @@
 		},
 		"animator:Marielle":
 		{
-			"DESCRIPTION": "{Motivate} ALL cards in your hand.  Reduce their damage and [Block] by !M! until played. || <LIM>. On Synergy: Channel 1 [Aether]. ",
+			"DESCRIPTION": "{Motivate} 1 card of each ** type in your draw pile. || Synergy: Gain !M! [Temporary HP] ** and Purge.",
 			"NAME": "Marielle"
 		},
-		"animator:Minori":
+		"animator:HousakiMinori":
 		{
 			"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%. ||  <SLM>. On Synergy or Discard: Shuffle this card into your draw pile.",
 			"NAME": "Minori Housaki"
 		},
 		"animator:Naotsugu":
 		{
-			"DESCRIPTION": "Gain [Block] equal to ** damage dealt. || [F] Stance: Draw and retain a random Martial Artist from your draw pile.",
+			"DESCRIPTION": "Play the lowest [Block] card ** with [Block] lower than ** unblocked damage dealt. || [F] Stance: Play ALL ** eligible cards instead.",
 			"NAME": "Naotsugu"
 		},
 		"animator:Nyanta":
@@ -1583,7 +1584,7 @@
 			"EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.", "This power has already been activated this turn."],
 			"NAME": "Tetora"
 		},
-		"animator:Tohya":
+		"animator:HousakiTohya":
 		{
 			"DESCRIPTION": "Draw {Minori Housaki} from your draw pile. || {Starter}: Gain !M! [Blur].",
 			"NAME": "Tohya Housaki"

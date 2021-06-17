@@ -3,12 +3,12 @@ package eatyourbeets.relics.animator;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.interfaces.subscribers.OnEquipUnnamedReignRelicSubscriber;
+import eatyourbeets.interfaces.listeners.OnEquipUnnamedReignRelicListener;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
-public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRelicSubscriber
+public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRelicListener
 {
     public static final String ID = CreateFullID(CursedGlyph.class);
     public static final int MAX_HP_LOSS = 4;

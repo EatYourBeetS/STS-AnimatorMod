@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
-import eatyourbeets.interfaces.subscribers.OnReceiveRewardsSubscriber;
+import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
-public abstract class AbstractMissingPiece extends AnimatorRelic implements OnReceiveRewardsSubscriber
+public abstract class AbstractMissingPiece extends AnimatorRelic implements OnReceiveRewardsListener
 {
     protected transient AbstractRoom lastRoom = null;
 

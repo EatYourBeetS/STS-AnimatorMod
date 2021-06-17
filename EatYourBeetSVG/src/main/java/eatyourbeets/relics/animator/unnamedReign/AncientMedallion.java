@@ -8,14 +8,14 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.campfire.CampfireSmithEffect;
-import eatyourbeets.interfaces.subscribers.OnEquipUnnamedReignRelicSubscriber;
+import eatyourbeets.interfaces.listeners.OnEquipUnnamedReignRelicListener;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RandomizedList;
 
-public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedReignRelicSubscriber, OnRelicObtainedSubscriber
+public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedReignRelicListener, OnRelicObtainedSubscriber
 {
     public static final String ID = CreateFullID(AncientMedallion.class);
     public static final int HEAL_AMOUNT = 4;

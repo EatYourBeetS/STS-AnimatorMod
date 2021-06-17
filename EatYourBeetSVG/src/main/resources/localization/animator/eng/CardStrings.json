@@ -908,7 +908,7 @@
 		},
 		"animator:Rayneshia":
 		{
-			"DESCRIPTION": "Draw !M! card(s) that {Synergize} with this card. || This card {Synergizes} ** with {Hindrances} and cards ** which {Exhaus}.",
+			"DESCRIPTION": "<DRW-M>. Move 2 ** cards from your hand ** to your draw pile. || <slm>. If you have at ** least 4 cards that would ** Synergize with each ** other: Motivate 2.",
 			"NAME": "Rayneshia"
 		},
 		"animator:RundelhausCode":

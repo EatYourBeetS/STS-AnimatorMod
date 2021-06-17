@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
-import eatyourbeets.interfaces.subscribers.OnReceiveRewardsSubscriber;
+import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import javassist.CtBehavior;
 
 @SpirePatch(clz = CombatRewardScreen.class, method = "setupItemReward")
@@ -17,15 +17,15 @@ public class CombatRewardScreen_SetupItemReward
         final AbstractPlayer p = AbstractDungeon.player;
         for (AbstractRelic r : p.relics)
         {
-            if (r instanceof OnReceiveRewardsSubscriber)
+            if (r instanceof OnReceiveRewardsListener)
             {
-                ((OnReceiveRewardsSubscriber) r).OnReceiveRewards(__instance.rewards);
+                ((OnReceiveRewardsListener) r).OnReceiveRewards(__instance.rewards);
             }
         }
 
-        if (p instanceof OnReceiveRewardsSubscriber)
+        if (p instanceof OnReceiveRewardsListener)
         {
-            ((OnReceiveRewardsSubscriber) p).OnReceiveRewards(__instance.rewards);
+            ((OnReceiveRewardsListener) p).OnReceiveRewards(__instance.rewards);
         }
     }
 

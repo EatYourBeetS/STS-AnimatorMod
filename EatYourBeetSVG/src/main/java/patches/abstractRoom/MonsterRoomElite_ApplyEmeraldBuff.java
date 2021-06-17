@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.powers.RegenerateMonsterPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
-import eatyourbeets.interfaces.subscribers.OnReceiveEmeraldBonus;
+import eatyourbeets.interfaces.listeners.OnReceiveEmeraldBonusListener;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.utilities.GameActions;
 
@@ -72,9 +72,9 @@ public class MonsterRoomElite_ApplyEmeraldBuff
     public static int GetStrengthBonus(AbstractMonster m)
     {
         int bonus = AbstractDungeon.actNum + 1;
-        if (m instanceof OnReceiveEmeraldBonus)
+        if (m instanceof OnReceiveEmeraldBonusListener)
         {
-            return ((OnReceiveEmeraldBonus)m).GetEmeraldStrengthBonus(bonus);
+            return ((OnReceiveEmeraldBonusListener)m).GetEmeraldStrengthBonus(bonus);
         }
 
         return bonus;
@@ -83,9 +83,9 @@ public class MonsterRoomElite_ApplyEmeraldBuff
     public static int GetRegenBonus(AbstractMonster m)
     {
         int bonus = 1 + AbstractDungeon.actNum * 2;
-        if (m instanceof OnReceiveEmeraldBonus)
+        if (m instanceof OnReceiveEmeraldBonusListener)
         {
-            return ((OnReceiveEmeraldBonus)m).GetEmeraldRegenBonus(bonus);
+            return ((OnReceiveEmeraldBonusListener)m).GetEmeraldRegenBonus(bonus);
         }
 
         return bonus;
@@ -94,9 +94,9 @@ public class MonsterRoomElite_ApplyEmeraldBuff
     public static int GetMetallicizeBonus(AbstractMonster m)
     {
         int bonus = 2 + AbstractDungeon.actNum * 2;
-        if (m instanceof OnReceiveEmeraldBonus)
+        if (m instanceof OnReceiveEmeraldBonusListener)
         {
-            return ((OnReceiveEmeraldBonus)m).GetEmeraldMetallicizeBonus(bonus);
+            return ((OnReceiveEmeraldBonusListener)m).GetEmeraldMetallicizeBonus(bonus);
         }
 
         return bonus;
@@ -105,9 +105,9 @@ public class MonsterRoomElite_ApplyEmeraldBuff
     public static float GetMaxHPBonus(AbstractMonster m)
     {
         float bonus = 0.25f;
-        if (m instanceof OnReceiveEmeraldBonus)
+        if (m instanceof OnReceiveEmeraldBonusListener)
         {
-            return ((OnReceiveEmeraldBonus)m).GetEmeraldMaxHPBonus(bonus);
+            return ((OnReceiveEmeraldBonusListener)m).GetEmeraldMaxHPBonus(bonus);
         }
 
         return bonus;

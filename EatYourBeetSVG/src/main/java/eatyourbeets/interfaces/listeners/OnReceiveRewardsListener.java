@@ -1,10 +1,10 @@
-package eatyourbeets.interfaces.subscribers;
+package eatyourbeets.interfaces.listeners;
 
 import com.megacrit.cardcrawl.rewards.RewardItem;
 
 import java.util.ArrayList;
 
-public interface OnReceiveRewardsSubscriber
+public interface OnReceiveRewardsListener
 {
     void OnReceiveRewards(ArrayList<RewardItem> rewards);
 }

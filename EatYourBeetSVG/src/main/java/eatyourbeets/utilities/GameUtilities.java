@@ -33,10 +33,10 @@ import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
-import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
+import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
-import eatyourbeets.interfaces.subscribers.OnTryApplyPowerSubscriber;
+import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
@@ -87,9 +87,9 @@ public class GameUtilities
         {
             for (AbstractPower power : target.powers)
             {
-                if (power instanceof OnTryApplyPowerSubscriber)
+                if (power instanceof OnTryApplyPowerListener)
                 {
-                    canApply &= ((OnTryApplyPowerSubscriber) power).TryApplyPower(powerToApply, target, source);
+                    canApply &= ((OnTryApplyPowerListener) power).TryApplyPower(powerToApply, target, source);
                 }
             }
 
@@ -97,9 +97,9 @@ public class GameUtilities
             {
                 for (AbstractPower power : source.powers)
                 {
-                    if (power instanceof OnTryApplyPowerSubscriber)
+                    if (power instanceof OnTryApplyPowerListener)
                     {
-                        canApply &= ((OnTryApplyPowerSubscriber) power).TryApplyPower(powerToApply, target, source);
+                        canApply &= ((OnTryApplyPowerListener) power).TryApplyPower(powerToApply, target, source);
                     }
                 }
             }
@@ -699,7 +699,7 @@ public class GameUtilities
                 }
             }
 
-            if (temp instanceof OnAddingToCardReward && ((OnAddingToCardReward) temp).ShouldCancel(rewardItem))
+            if (temp instanceof OnAddingToCardRewardListener && ((OnAddingToCardRewardListener) temp).ShouldCancel(rewardItem))
             {
                 searchingCard = true;
             }

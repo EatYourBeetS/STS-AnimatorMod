@@ -29,7 +29,7 @@ public class Marielle extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 6);
-        SetUpgrade(0, 0, 6);
+        SetUpgrade(0, 0, 4);
 
         SetSynergy(Synergies.LogHorizon);
         SetSpellcaster();

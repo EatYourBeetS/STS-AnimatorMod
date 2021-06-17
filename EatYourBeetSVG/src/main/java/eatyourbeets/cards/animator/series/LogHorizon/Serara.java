@@ -3,25 +3,28 @@ package eatyourbeets.cards.animator.series.LogHorizon;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
+
+import java.util.HashSet;
 
 public class Serara extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Serara.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Serara.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
+
+    private static final HashSet<AbstractCard> buffs = new HashSet<>();
 
     public Serara()
     {
         super(DATA);
 
-        Initialize(0, 0, 6, 17);
-        SetUpgrade(0, 0, 0, 6);
+        Initialize(0, 0, 1);
 
         SetSynergy(Synergies.LogHorizon);
     }
@@ -29,36 +32,43 @@ public class Serara extends AnimatorCard
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        if (!GameUtilities.InBattle() || GameUtilities.GetTempHP() <= secondaryValue)
-        {
-            return TempHPAttribute.Instance.SetCard(this, true);
-        }
-
-        return null;
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (GameUtilities.GetTempHP(p) <= secondaryValue)
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
+        if (JUtils.Count(GameUtilities.GetIntents(), i -> i.isAttacking) == 0)
         {
-            GameActions.Bottom.GainTemporaryHP(magicNumber);
+            return;
         }
 
-        for (AbstractCard c : p.drawPile.group)
+        if (!CombatStats.GetCombatData(cardID + "_buffs", false))
         {
-            if (c.cardID.equals(Nyanta.DATA.ID))
-            {
-                GameActions.Bottom.Motivate(c, 1);
-            }
+            CombatStats.SetCombatData(cardID + "_buffs", true);
+            buffs.clear();
         }
 
-        for (AbstractCard c : p.hand.group)
+        GameActions.Bottom.GainForce(1);
+        GameActions.Bottom.SelectFromHand(name, 1, !upgraded)
+        .SetOptions(false, false, false)
+        .SetMessage(GR.Common.Strings.HandSelection.GenericBuff)
+        .SetFilter(c -> !GameUtilities.IsCurseOrStatus(c) && !buffs.contains(c) && (c.baseDamage > 0 || c.baseBlock > 0))
+        .AddCallback(cards ->
         {
-            if (c.cardID.equals(Nyanta.DATA.ID))
+            if (cards.size() > 0)
             {
-                GameActions.Bottom.Motivate(c, 1);
+                EYBCard card = (EYBCard)cards.get(0);
+                card.forceScaling += 2;
+                card.flash();
+                buffs.add(card);
             }
-        }
+        });
     }
 }

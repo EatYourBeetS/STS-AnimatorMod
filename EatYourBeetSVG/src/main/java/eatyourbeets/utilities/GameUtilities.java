@@ -52,6 +52,7 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 public class GameUtilities
 {
     private static final HandLayoutRefresher handLayoutRefresher = new HandLayoutRefresher();
+    private static final ArrayList<PowerHelper> commonDebuffs = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
     public static void ApplyPowerInstantly(AbstractCreature target, PowerHelper powerHelper, int stacks)
@@ -424,6 +425,20 @@ public class GameUtilities
         result.add(AbstractDungeon.rareCardPool);
         result.add(AbstractDungeon.curseCardPool);
         return result;
+    }
+
+    public static ArrayList<PowerHelper> GetCommonDebuffs()
+    {
+        if (commonDebuffs.isEmpty())
+        {
+            commonDebuffs.add(PowerHelper.Poison);
+            commonDebuffs.add(PowerHelper.Weak);
+            commonDebuffs.add(PowerHelper.Vulnerable);
+            commonDebuffs.add(PowerHelper.Burning);
+            commonDebuffs.add(PowerHelper.Shackles);
+        }
+
+        return commonDebuffs;
     }
 
     public static AbstractRoom GetCurrentRoom()

@@ -31,6 +31,7 @@ public class CommonStrings
     {
         public final UIStrings Strings = GetUIStrings("HandSelection");
         public final String MoveToDrawPile = Strings.TEXT[0];
+        public final String GenericBuff = Strings.TEXT[1];
         public final String Discard = DiscardAction.TEXT[0];
         public final String Exhaust = ExhaustAction.TEXT[0];
         public final String Choose = CardRewardScreen.TEXT[1];

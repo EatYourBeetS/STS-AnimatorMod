@@ -48,6 +48,12 @@
 		"NAMES": ["choked"],
 		"PROPER_NAME": "Choked"
 	},
+	"Common Debuff":
+	{
+		"DESCRIPTION": "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles.",
+		"NAMES": ["common debuff", "common debuffs"],
+		"PROPER_NAME": "Common Debuff"
+	},
 	"Constricted":
 	{
 		"DESCRIPTION": "Take damage at the end of each turn.",

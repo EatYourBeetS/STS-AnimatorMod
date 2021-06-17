@@ -68,7 +68,7 @@ public class EYBFlashPowerEffect extends AbstractGameEffect
             sb.draw(region128, x, y, half_w, half_h, region128.packedWidth, region128.packedHeight, scale, scale, 0f);
             //sb.draw(this.region128, this.x, this.y, 32f, 32f, 64f, 64f, this.scale * 3f, this.scale * 3f, 0f);
         }
-        else if (img.getWidth() >= 48)
+        else if (this.img != null && this.img.getWidth() >= 48)
         {
             sb.draw(img, x - 16f, y - 16f, 16f, 16f, 32f, 32f, scale * 12f, scale * 12f, 0f, 0, 0, 32, 32, false, false);
             sb.draw(img, x - 16f, y - 16f, 16f, 16f, 32f, 32f, scale * 10f, scale * 10f, 0f, 0, 0, 32, 32, false, false);

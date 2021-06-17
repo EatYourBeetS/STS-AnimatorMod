@@ -611,7 +611,7 @@ public final class GameActions
         return MakeCard(card, player.hand);
     }
 
-    public ModifyAllInstances ModifyAllInstances(UUID uuid, Object state, ActionT2<Object, AbstractCard> onCompletion)
+    public <S> ModifyAllInstances ModifyAllInstances(UUID uuid, S state, ActionT2<S, AbstractCard> onCompletion)
     {
         return Add(new ModifyAllInstances(uuid, state, onCompletion));
     }
@@ -626,7 +626,7 @@ public final class GameActions
         return Add(new ModifyAllInstances(uuid));
     }
 
-    public ModifyAllCopies ModifyAllCopies(String cardID, Object state, ActionT2<Object, AbstractCard> onCompletion)
+    public <S> ModifyAllCopies ModifyAllCopies(String cardID, S state, ActionT2<S, AbstractCard> onCompletion)
     {
         return Add(new ModifyAllCopies(cardID, state, onCompletion));
     }

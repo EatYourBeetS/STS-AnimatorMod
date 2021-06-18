@@ -917,9 +917,9 @@
 		},
 		"animator:Serara":
 		{
-			"DESCRIPTION": "If an enemy intends to ** attack: Gain [F] and ** give a random card +2 [F] ** scaling (does not stack).",
+			"DESCRIPTION": "If an enemy intends ** to attack: Gain [F] and ** give a random card +2 [F] ** scaling (does not stack).",
 			"NAME": "Serara",
-			"UPGRADE_DESCRIPTION": "If an enemy intends to ** attack: Gain [F] and ** give a card +2 [F] ** scaling (does not stack)."
+			"UPGRADE_DESCRIPTION": "If an enemy intends ** to attack: Gain [F] and ** give a card +2 [F] ** scaling (does not stack)."
 		},
 		"animator:Shiroe":
 		{

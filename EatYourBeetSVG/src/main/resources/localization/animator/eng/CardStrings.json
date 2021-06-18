@@ -385,10 +385,10 @@
 		},
 		"animator:EulaLawrence":
 		{
-			"DESCRIPTION": "This card Synergizes with Basic Cards. A random Basic Card in your draw pile costs 0 until played. || <LIM>. Synergy: ** Shuffle a {Song of Broken Pines} into your Draw Pile.",
+			"DESCRIPTION": "This card Synergizes with Basic Cards. A random Basic Card in your draw pile costs 0 until played. || <LIM>. Synergy: ** Shuffle {Song of Broken Pines} into your Draw Pile.",
 			"EXTENDED_DESCRIPTION": ["Limited. On Synergy, shuffle Song of Broken Pines into your draw pile."],
 			"NAME": "Eula Lawrence",
-			"UPGRADE_DESCRIPTION": "This card Synergizes with Basic Cards. A random Basic Card in your draw pile costs 0 until played. || <LIM>. Synergy: ** Shuffle an upgraded {Song of Broken Pines} into your Draw Pile."
+			"UPGRADE_DESCRIPTION": "This card Synergizes with Basic Cards. A random Basic Card in your draw pile costs 0 until played. || <LIM>. Synergy: ** Shuffle {Song of Broken Pines+} into your Draw Pile."
 		},
 		"animator:HatsuneMiku":
 		{

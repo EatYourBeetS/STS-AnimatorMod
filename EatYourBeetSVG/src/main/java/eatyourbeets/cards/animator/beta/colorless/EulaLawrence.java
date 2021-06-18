@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
 public class EulaLawrence extends AnimatorCard {
-    public static final EYBCardData DATA = Register(EulaLawrence.class).SetAttack(3, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(EulaLawrence.class).SetAttack(3, CardRarity.RARE).SetColor(CardColor.COLORLESS);
     static
     {
         DATA.AddPreview(new SongOfBrokenPines(), true);

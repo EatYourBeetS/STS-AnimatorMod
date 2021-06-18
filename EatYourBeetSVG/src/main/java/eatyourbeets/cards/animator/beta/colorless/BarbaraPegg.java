@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameUtilities;
 import java.util.ArrayList;
 
 public class BarbaraPegg extends AnimatorCard {
-    public static final EYBCardData DATA = Register(BarbaraPegg.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(BarbaraPegg.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
     public static final int HP_HEAL_THRESHOLD = 30;
 
     public BarbaraPegg() {

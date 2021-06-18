@@ -18,7 +18,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class SongOfBrokenPines extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SongOfBrokenPines.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(SongOfBrokenPines.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public SongOfBrokenPines()
     {

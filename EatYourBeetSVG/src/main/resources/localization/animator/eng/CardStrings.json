@@ -377,11 +377,30 @@
 	},
 	"BETA:COLORLESS":
 	{
+		"animator:BarbaraPegg":
+		{
+			"DESCRIPTION": "Fully heal ALL enemies. Channel 1 [Dark] and increase its passive power by 1 for every !M! HP healed. || Limited: If you healed at least 30 HP in total, gain !S! ** Regeneration.",
+			"EXTENDED_DESCRIPTION": ["Limited: If you healed at least 30 HP in total, gain 3 #yRegeneration."],
+			"NAME": "Barbara Pegg"
+		},
+		"animator:EulaLawrence":
+		{
+			"DESCRIPTION": "This card Synergizes with Basic Cards. A random Basic Card in your draw pile costs 0 until played. || <LIM>. Synergy: ** Shuffle a {Song of Broken Pines} into your Draw Pile.",
+			"EXTENDED_DESCRIPTION": ["Limited. On Synergy, shuffle Song of Broken Pines into your draw pile."],
+			"NAME": "Eula Lawrence",
+			"UPGRADE_DESCRIPTION": "This card Synergizes with Basic Cards. A random Basic Card in your draw pile costs 0 until played. || <LIM>. Synergy: ** Shuffle an upgraded {Song of Broken Pines} into your Draw Pile."
+		},
 		"animator:HatsuneMiku":
 		{
 			"DESCRIPTION": "Can only be played if there are at least !S! cards in your Discard and {Exhaust} piles combined. || At the start of turn: Draw !M! card(s). They cost 0 this turn.",
 			"EXTENDED_DESCRIPTION": ["At the start of each turn, draw #b{0} cards.  They cost 0 this turn."],
 			"NAME": "Hatsune Miku"
+		},
+		"animator:JeanGunnhildr":
+		{
+			"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile. || <SLM>. Discard a card from your hand. If that card costs 3 or more, attack an additional time. Otherwise, Gain/Boost [A].",
+			"EXTENDED_DESCRIPTION": ["Semi-Limited. If you discarded a Hindrance, gain #yAgility"],
+			"NAME": "Jean Gunnhildr"
 		},
 		"animator:Megunee":
 		{
@@ -415,6 +434,11 @@
 			"DESCRIPTION": "Fetch a {Power} from your draw or discard pile. || This turn, whenever you play a {Power}: draw a random {Power} from your draw or discard pile.",
 			"EXTENDED_DESCRIPTION": ["This turn, whenever you play a #yPower: draw #b{0} random #yPowers from your draw or discard pile."],
 			"NAME": "Shuu Ouma"
+		},
+		"animator:SongOfBrokenPines":
+		{
+			"DESCRIPTION": "Autoplay. || At the end of your turn, deal damage to ALL enemies equal to !M! times the number of Strikes you played after playing this card.",
+			"NAME": "Song of Broken Pines"
 		}
 	},
 	"BETA:DATEALIVE":

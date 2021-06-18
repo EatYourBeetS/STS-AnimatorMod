@@ -305,6 +305,11 @@
 		"DESCRIPTIONS": ["At the start of your turn, gain #b", " energy."],
 		"NAME": "Shiro"
 	},
+	"animator:SongOfBrokenPinesPower":
+	{
+		"DESCRIPTIONS": ["At the end of your turn, deal #b", " #yDamage for each Strike played so far. You have played #b"," Strike(s)."],
+		"NAME": "Song of Broken Pines"
+	},
 	"animator:SonicPower":
 	{
 		"DESCRIPTIONS": ["At the start of your next #b", " turns, gain #b1 #yDexterity and add #b1 #yThrowing-Knives to your hand."],

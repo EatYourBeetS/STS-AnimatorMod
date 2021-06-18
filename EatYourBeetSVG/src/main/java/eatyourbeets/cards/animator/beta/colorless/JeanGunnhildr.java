@@ -10,7 +10,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class JeanGunnhildr extends AnimatorCard {
-    public static final EYBCardData DATA = Register(JeanGunnhildr.class).SetAttack(1, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(JeanGunnhildr.class).SetAttack(1, CardRarity.RARE).SetColor(CardColor.COLORLESS);
 
     public JeanGunnhildr() {
         super(DATA);

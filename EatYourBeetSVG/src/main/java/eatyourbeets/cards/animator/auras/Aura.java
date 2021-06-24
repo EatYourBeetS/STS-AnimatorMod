@@ -2,19 +2,23 @@ package eatyourbeets.cards.animator.auras;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.blights.AbstractBlight;
+import eatyourbeets.blights.common.CardEffectBlight;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.interfaces.subscribers.OnBattleEndSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RenderHelpers;
 
-public abstract class Aura extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
+public abstract class Aura extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber, OnBattleEndSubscriber
 {
     private static final Color RENDER_COLOR = new Color(0.8f, 0.8f, 0.8f, 1);
+
+    protected AbstractBlight blight;
+    protected int maxTurn;
 
     public static EYBCardData RegisterAura(Class<? extends AnimatorCard> type)
     {
@@ -26,6 +30,7 @@ public abstract class Aura extends AnimatorCard implements OnStartOfTurnPostDraw
         super(cardData);
 
         this.cropPortrait = false;
+        this.maxTurn = 3;
     }
 
     @Override
@@ -69,9 +74,14 @@ public abstract class Aura extends AnimatorCard implements OnStartOfTurnPostDraw
     @Override
     public void triggerWhenCreated(boolean startOfBattle)
     {
+        CombatStats.onBattleEnd.Subscribe(this);
         CombatStats.onStartOfTurnPostDraw.Subscribe(this);
         GameActions.Instant.Callback(() ->
         {
+            blight = new CardEffectBlight(makeStatEquivalentCopy());
+            blight.instantObtain(player, player.blights.size(), false);
+            blight.setCounter(GetCountdown());
+
             player.drawPile.removeCard(this);
             player.discardPile.removeCard(this);
             player.exhaustPile.removeCard(this);
@@ -82,16 +92,32 @@ public abstract class Aura extends AnimatorCard implements OnStartOfTurnPostDraw
     @Override
     public void OnStartOfTurnPostDraw()
     {
-        if (CanActivate(CombatStats.TurnCount(false)))
+        int countdown = GetCountdown();
+        if (blight != null)
         {
-            GameEffects.List.ShowCardBriefly(makeCopy(), Settings.WIDTH * 0.75f, Settings.HEIGHT * 0.75f);
+            blight.setCounter(countdown);
+        }
+        if (countdown == 0)
+        {
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
             OnUse(player, null, false);
+            blight.flash();
+
+            GameActions.Last.Callback(this::OnBattleEnd);
         }
     }
 
-    public boolean CanActivate(int currentTurn)
+    @Override
+    public void OnBattleEnd()
     {
-        return currentTurn >= 3;
+        if (blight != null)
+        {
+            player.blights.remove(blight);
+        }
+    }
+
+    public int GetCountdown()
+    {
+        return Math.max(0, maxTurn - CombatStats.TurnCount(false));
     }
 }

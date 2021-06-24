@@ -29,14 +29,16 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.screens.stats.AchievementGrid;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
+import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
-import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
@@ -374,6 +376,28 @@ public class GameUtilities
         }
 
         return result;
+    }
+
+    public static RandomizedList<AbstractCard> GetCardPoolInCombat(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
+    {
+        return GetCardPoolInCombat(GetCardPool(rarity, color), null);
+    }
+
+    public static RandomizedList<AbstractCard> GetCardPoolInCombat(CardGroup group, FuncT1<Boolean, AbstractCard> filter)
+    {
+        RandomizedList<AbstractCard> cards = new RandomizedList<>();
+        if (group != null)
+        {
+            for (AbstractCard c : group.group)
+            {
+                if (!c.hasTag(AbstractCard.CardTags.HEALING) && (filter == null || filter.Invoke(c)))
+                {
+                    cards.Add(c);
+                }
+            }
+        }
+
+        return cards;
     }
 
     public static CardGroup GetCardPool(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
@@ -810,6 +834,38 @@ public class GameUtilities
             default:
                 return null;
         }
+    }
+
+    public static int GetTeamwork(AbstractCard ignored)
+    {
+        int total = 0;
+        AbstractCard c1;
+        AbstractCard c2;
+        for (int i = 0; i < player.hand.group.size(); i++)
+        {
+            c1 = player.hand.group.get(i);
+            if (c1 == ignored)
+            {
+                continue;
+            }
+            if (c1.hasTag(AnimatorCard.SHAPESHIFTER))
+            {
+                total += 1;
+                continue;
+            }
+
+            for (int j = 0; j < player.hand.group.size(); j++)
+            {
+                c2 = player.hand.group.get(j);
+                if (c2 != ignored && c1 != c2 && !c2.hasTag(AnimatorCard.SHAPESHIFTER) && Synergies.WouldSynergize(c1, c2))
+                {
+                    total += 1;
+                    break;
+                }
+            }
+        }
+
+        return total;
     }
 
     public static int GetTempHP(AbstractCreature creature)

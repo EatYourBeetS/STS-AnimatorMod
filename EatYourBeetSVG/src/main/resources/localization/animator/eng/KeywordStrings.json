@@ -57,8 +57,14 @@
 	"Synergy":
 	{
 		"DESCRIPTION": "A card #ySynergizes if the previous card played this turn was of the same series.",
-		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized"],
+		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized", "synergic"],
 		"PROPER_NAME": "Synergy"
+	},
+	"Teamwork":
+	{
+		"DESCRIPTION": "Your #yTeamwork value is equal to the amount of cards in your hand that can #ySynergize with at least #b1 other card. #yShapeshifters only count as #b+1.",
+		"NAMES": ["teamwork"],
+		"PROPER_NAME": "Teamwork"
 	},
 	"~Orb Core":
 	{

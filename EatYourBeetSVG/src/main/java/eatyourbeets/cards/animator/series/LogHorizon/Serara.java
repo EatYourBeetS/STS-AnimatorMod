@@ -59,15 +59,14 @@ public class Serara extends AnimatorCard
         GameActions.Bottom.SelectFromHand(name, 1, !upgraded)
         .SetOptions(false, false, false)
         .SetMessage(GR.Common.Strings.HandSelection.GenericBuff)
-        .SetFilter(c -> !GameUtilities.IsCurseOrStatus(c) && !buffs.contains(c) && (c.baseDamage > 0 || c.baseBlock > 0))
+        .SetFilter(c -> c instanceof EYBCard && !GameUtilities.IsCurseOrStatus(c) && !buffs.contains(c) && (c.baseDamage > 0 || c.baseBlock > 0))
         .AddCallback(cards ->
         {
-            if (cards.size() > 0)
+            for (AbstractCard c : cards)
             {
-                EYBCard card = (EYBCard)cards.get(0);
-                card.forceScaling += 2;
-                card.flash();
-                buffs.add(card);
+                ((EYBCard)c).forceScaling += 2;
+                buffs.add(c);
+                c.flash();
             }
         });
     }

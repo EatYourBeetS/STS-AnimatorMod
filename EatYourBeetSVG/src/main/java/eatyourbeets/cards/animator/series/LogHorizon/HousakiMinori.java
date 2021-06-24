@@ -2,14 +2,13 @@ package eatyourbeets.cards.animator.series.LogHorizon;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class HousakiMinori extends AnimatorCard
 {
@@ -19,11 +18,10 @@ public class HousakiMinori extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6, 50);
-        SetUpgrade(0, 1, 25);
+        Initialize(0, 6, 15);
+        SetUpgrade(0, 1, 0);
 
-        SetSpellcaster();
-        SetCooldown(4, 0, this::OnCooldownCompleted);
+        SetCooldown(4, 1, this::OnCooldownCompleted);
         SetSynergy(Synergies.LogHorizon);
     }
 
@@ -31,9 +29,12 @@ public class HousakiMinori extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
-
         cooldown.ProgressCooldownAndTrigger(m);
+    }
 
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
         {
             ShuffleToTopOfDeck();
@@ -50,16 +51,11 @@ public class HousakiMinori extends AnimatorCard
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        GameActions.Bottom.Callback(c ->
-        {
-            GameActions.Bottom.GainBlock((int)(player.currentBlock * (magicNumber/100f)));
-            GameActions.Bottom.VFX(new RainbowCardEffect());
-        });
+        GameActions.Bottom.StackPower(new EnchantedArmorPower(player, magicNumber));
     }
 
     private void ShuffleToTopOfDeck()
     {
-        GameUtilities.Flash(this, false);
         GameActions.Last.MoveCard(this, player.drawPile);
     }
 }

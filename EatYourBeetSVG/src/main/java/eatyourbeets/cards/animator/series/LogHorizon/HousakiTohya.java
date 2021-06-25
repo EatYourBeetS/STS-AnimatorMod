@@ -33,6 +33,7 @@ public class HousakiTohya extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActions.Bottom.ApplyVulnerable(player, m, magicNumber);
     }
 
     @Override
@@ -40,11 +41,11 @@ public class HousakiTohya extends AnimatorCard
     {
         GameActions.Bottom.Draw(1)
         .SetFilter(c -> HousakiMinori.DATA.ID.equals(c.cardID), false)
-        .AddCallback(m, (enemy, __) ->
+        .AddCallback(() ->
         {
             if (HasTeamwork(secondaryValue))
             {
-                GameActions.Bottom.ApplyVulnerable(player, enemy, magicNumber);
+                GameActions.Bottom.GainEnergy(1);
             }
         });
     }

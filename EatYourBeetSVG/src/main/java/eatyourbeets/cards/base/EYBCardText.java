@@ -89,7 +89,19 @@ public class EYBCardText
             if (bottom != null)
             {
                 BitmapFont font = RenderHelpers.GetSmallTextFont(card, bottom.text);
-                RenderHelpers.WriteOnCard(sb, card, RenderHelpers.GetSmallTextFont(card, bottom.text), bottom.text, 0, -AbstractCard.RAW_H * 0.47f, bottom.color, true);
+
+                float yPos = AbstractCard.RAW_H;
+                if (EYBCard.player != null && EYBCard.player.hand.contains(card))
+                {
+                    font.getData().scale(0.175f);
+                    yPos *= 0.57f;
+                }
+                else
+                {
+                    yPos *= -0.47f;
+                }
+
+                RenderHelpers.WriteOnCard(sb, card, font, bottom.text, 0, yPos, bottom.color, true);
                 RenderHelpers.ResetFont(font);
             }
         }

@@ -21,7 +21,7 @@ public class HousakiMinori extends AnimatorCard
         Initialize(0, 6, 15);
         SetUpgrade(0, 1, 0);
 
-        SetCooldown(4, 1, this::OnCooldownCompleted);
+        SetCooldown(4, -1, this::OnCooldownCompleted);
         SetSynergy(Synergies.LogHorizon);
     }
 

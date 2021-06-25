@@ -18,7 +18,7 @@ public class JeanGunnhildr extends AnimatorCard {
     public JeanGunnhildr() {
         super(DATA);
 
-        Initialize(9, 2, 2);
+        Initialize(8, 1, 2);
         SetUpgrade(3, 1, 0);
         SetScaling(0, 1, 1);
 

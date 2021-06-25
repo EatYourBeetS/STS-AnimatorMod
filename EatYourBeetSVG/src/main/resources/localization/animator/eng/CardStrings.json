@@ -377,27 +377,17 @@
 	},
 	"BETA:COLORLESS":
 	{
-		"animator:BarbaraPegg":
-		{
-			"DESCRIPTION": "Fully heal ALL enemies. Channel 1 [Dark] and increase its passive power by 1 for every !M! HP healed. || <LIM>: If you healed at least 30 HP in total, gain !S! ** Regeneration.",
-			"NAME": "Barbara Pegg"
-		},
 		"animator:EulaLawrence":
 		{
 			"DESCRIPTION": "Synergizes with Basic Cards. {Motivate} a Basic card in your draw pile. || <LIM>. Synergy: ** Shuffle {Song of Broken Pines} into your Draw Pile.",
 			"NAME": "Eula Lawrence",
-			"UPGRADE_DESCRIPTION": "This card Synergizes with Basic Cards. A random Basic Card in your draw pile costs 0 until played. || <LIM>. Synergy: ** Shuffle {Song of Broken Pines+} into your Draw Pile."
+			"UPGRADE_DESCRIPTION": "Synergizes with Basic Cards. {Motivate} a Basic card in your draw pile. || <LIM>. Synergy: ** Shuffle {Song of Broken Pines+} into your Draw Pile."
 		},
 		"animator:HatsuneMiku":
 		{
 			"DESCRIPTION": "Can only be played if there are at least !S! cards in your Discard and {Exhaust} piles combined. || At the start of turn: Draw !M! card(s). They cost 0 this turn.",
 			"EXTENDED_DESCRIPTION": ["At the start of each turn, draw #b{0} cards.  They cost 0 this turn."],
 			"NAME": "Hatsune Miku"
-		},
-		"animator:JeanGunnhildr":
-		{
-			"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile. || Discard up to !M! card(s). Remove 1 [Weak], [Vulnerable], and [Frail] for each discarded card.",
-			"NAME": "Jean Gunnhildr"
 		},
 		"animator:Megunee":
 		{
@@ -434,8 +424,8 @@
 		},
 		"animator:SongOfBrokenPines":
 		{
-			"DESCRIPTION": "Autoplay. || At the end of your turn, deal damage to ALL enemies equal to !M! times the number of Strikes you played after playing this card.",
-			"EXTENDED_DESCRIPTION": ["At the end of your turn, deal #b{0} #yDamage for each Strike played so far. You have played #b{1} Strike(s)."],
+			"DESCRIPTION": "Autoplay. || At the end of your turn, deal Attack damage to ALL enemies equal to !M! times the number of Strikes played this turn.",
+			"EXTENDED_DESCRIPTION": ["At the end of your turn, deal #b{0} #yDamage for each Strike played this turn. You have played #b{1} Strike(s)."],
 			"NAME": "Song of Broken Pines"
 		}
 	},
@@ -545,6 +535,23 @@
 		{
 			"DESCRIPTION": "Gain 1 Orb Slot. || Fill your empty orb slots with Frost.",
 			"NAME": "Zadkiel"
+		}
+	},
+	"BETA:GENSHINIMPACT": {
+		"animator:BarbaraPegg":
+		{
+			"DESCRIPTION": "Fully heal ALL enemies. Channel 1 [Dark] and increase its passive power by 1 for every !M! HP healed. || <LIM>: If you healed at least 30 HP in total, gain !S! ** Regeneration.",
+			"NAME": "Barbara Pegg"
+		},
+		"animator:JeanGunnhildr":
+		{
+			"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile. || Discard up to !M! card(s). Remove 1 [Weak], [Vulnerable], and [Frail] for each discarded card.",
+			"NAME": "Jean Gunnhildr"
+		},
+		"animator:Venti":
+		{
+			"DESCRIPTION": "Channel !M! [Aether]. Orbs evoked by this card are evoked twice. || When discarded, draw !S! card(s).",
+			"NAME": "Venti"
 		}
 	},
 	"BETA:REWRITE":

@@ -424,8 +424,7 @@
 		},
 		"animator:SongOfBrokenPines":
 		{
-			"DESCRIPTION": "Autoplay. || At the end of your turn, deal Attack damage to ALL enemies equal to !M! times the number of Strikes played this turn.",
-			"EXTENDED_DESCRIPTION": ["At the end of your turn, deal #b{0} #yDamage for each Strike played this turn. You have played #b{1} Strike(s)."],
+			"DESCRIPTION": "Autoplay. || At the end of your turn, deal !M! damage to ALL enemies for each Strike played this turn. || When Discarded or Played, Motivate 1.",
 			"NAME": "Song of Broken Pines"
 		}
 	},
@@ -543,15 +542,31 @@
 			"DESCRIPTION": "Fully heal ALL enemies. Channel 1 [Dark] and increase its passive power by 1 for every !M! HP healed. || <LIM>: If you healed at least 30 HP in total, gain !S! ** Regeneration.",
 			"NAME": "Barbara Pegg"
 		},
+		"animator:Defend_GenshinImpact":
+		{
+			"DESCRIPTION": "Cooldown !S!: ** {Channel} 1 [Earth].",
+			"NAME": "Improved Defend"
+		},
 		"animator:JeanGunnhildr":
 		{
 			"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile. || Discard up to !M! card(s). Remove 1 [Weak], [Vulnerable], and [Frail] for each discarded card.",
 			"NAME": "Jean Gunnhildr"
 		},
+		"animator:Strike_GenshinImpact":
+		{
+			"DESCRIPTION": "Lose no [I] next turn.",
+			"NAME": "Improved Strike"
+		},
 		"animator:Venti":
 		{
 			"DESCRIPTION": "Channel !M! [Aether]. Orbs evoked by this card are evoked twice. || When discarded, draw !S! card(s).",
 			"NAME": "Venti"
+		},
+		"animator:Zhongli":
+		{
+			"DESCRIPTION": "Whenever you Evoke [Earth], gain [Block] equal to that orb's evoke amount. At the end of each turn, ** spend !S! of your remaining ** Energy to {Channel} [Earth] and gain !M! [Plated Armor].",
+			"EXTENDED_DESCRIPTION": ["Whenever you Evoke #yEarth, also gain #yBlock. At the end of each turn, spend #b{0} of your remaining energy to channel #b{1} #yEarth."],
+			"NAME": "Zhongli"
 		}
 	},
 	"BETA:REWRITE":

@@ -42,10 +42,14 @@ public class EulaLawrence extends AnimatorCard {
 
         // Set the cost of a random Basic card in your draw pile to 0 until played
         RandomizedList<AbstractCard> randomizedList = new RandomizedList<>();
-        randomizedList.AddAll(player.drawPile.group);
+        for (AbstractCard c : player.drawPile.group) {
+            if (c != null && c.rarity.equals(CardRarity.BASIC))
+            {
+                randomizedList.Add(c);
+            }
+        }
         AbstractCard card = randomizedList.Retrieve(rng);
-
-        if (card != null && card.rarity.equals(CardRarity.BASIC))
+        if (card != null)
         {
             GameActions.Bottom.Motivate(card, 1);
         }

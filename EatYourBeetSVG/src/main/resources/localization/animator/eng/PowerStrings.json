@@ -310,6 +310,11 @@
 		"DESCRIPTIONS": ["At the start of your next #b", " turns, gain #b1 #yDexterity and add #b1 #yThrowing-Knives to your hand."],
 		"NAME": "Speed-o'-Sound Sonic"
 	},
+	"animator:SongOfBrokenPinesPower":
+	{
+		"DESCRIPTIONS": ["At the end of your turn, deal #b{0} #yDamage for each Strike played this turn. You have played #b{1} Strike(s)."],
+		"NAME": "Song of Broken Pines"
+	},
 	"animator:StolenGoldPower":
 	{
 		"DESCRIPTIONS": ["You stole #b", " Gold. You can steal #b", " more Gold."],

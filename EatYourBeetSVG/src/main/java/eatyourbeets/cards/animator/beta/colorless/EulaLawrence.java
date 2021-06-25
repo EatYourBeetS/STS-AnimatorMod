@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.SongOfBrokenPines;
-import eatyourbeets.cards.animator.special.ShichikaKyotouryuu;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
@@ -48,10 +47,10 @@ public class EulaLawrence extends AnimatorCard {
 
         if (card != null && card.rarity.equals(CardRarity.BASIC))
         {
-            card.freeToPlayOnce = true;
+            GameActions.Bottom.Motivate(card, 1);
         }
 
-        // Create Song of Broken Pines if you have at least 15 cards in your draw pile
+        // Create Song of Broken Pines on synergy
         if (HasSynergy() && CombatStats.TryActivateLimited(cardID)) {
             GameActions.Bottom.MakeCardInDrawPile(new SongOfBrokenPines());
         }

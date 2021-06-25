@@ -379,14 +379,12 @@
 	{
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Fully heal ALL enemies. Channel 1 [Dark] and increase its passive power by 1 for every !M! HP healed. || Limited: If you healed at least 30 HP in total, gain !S! ** Regeneration.",
-			"EXTENDED_DESCRIPTION": ["Limited: If you healed at least 30 HP in total, gain 3 #yRegeneration."],
+			"DESCRIPTION": "Fully heal ALL enemies. Channel 1 [Dark] and increase its passive power by 1 for every !M! HP healed. || <LIM>: If you healed at least 30 HP in total, gain !S! ** Regeneration.",
 			"NAME": "Barbara Pegg"
 		},
 		"animator:EulaLawrence":
 		{
-			"DESCRIPTION": "This card Synergizes with Basic Cards. A random Basic Card in your draw pile costs 0 until played. || <LIM>. Synergy: ** Shuffle {Song of Broken Pines} into your Draw Pile.",
-			"EXTENDED_DESCRIPTION": ["Limited. On Synergy, shuffle Song of Broken Pines into your draw pile."],
+			"DESCRIPTION": "Synergizes with Basic Cards. {Motivate} a Basic card in your draw pile. || <LIM>. Synergy: ** Shuffle {Song of Broken Pines} into your Draw Pile.",
 			"NAME": "Eula Lawrence",
 			"UPGRADE_DESCRIPTION": "This card Synergizes with Basic Cards. A random Basic Card in your draw pile costs 0 until played. || <LIM>. Synergy: ** Shuffle {Song of Broken Pines+} into your Draw Pile."
 		},
@@ -398,8 +396,7 @@
 		},
 		"animator:JeanGunnhildr":
 		{
-			"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile. || <SLM>. Discard a card from your hand. If that card costs 3 or more, attack an additional time. Otherwise, Gain/Boost [A].",
-			"EXTENDED_DESCRIPTION": ["Semi-Limited. If you discarded a Hindrance, gain #yAgility"],
+			"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile. || Discard up to !M! card(s). Remove 1 [Weak], [Vulnerable], and [Frail] for each discarded card.",
 			"NAME": "Jean Gunnhildr"
 		},
 		"animator:Megunee":
@@ -438,6 +435,7 @@
 		"animator:SongOfBrokenPines":
 		{
 			"DESCRIPTION": "Autoplay. || At the end of your turn, deal damage to ALL enemies equal to !M! times the number of Strikes you played after playing this card.",
+			"EXTENDED_DESCRIPTION": ["At the end of your turn, deal #b{0} #yDamage for each Strike played so far. You have played #b{1} Strike(s)."],
 			"NAME": "Song of Broken Pines"
 		}
 	},

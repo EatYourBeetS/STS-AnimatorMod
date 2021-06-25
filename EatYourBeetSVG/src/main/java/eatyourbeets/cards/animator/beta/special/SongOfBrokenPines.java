@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -16,6 +17,8 @@ import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 
+import java.util.ArrayList;
+
 public class SongOfBrokenPines extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(SongOfBrokenPines.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
@@ -24,11 +27,17 @@ public class SongOfBrokenPines extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 8);
-        SetUpgrade(0,0,2);
+        Initialize(0, 0, 10);
+        SetUpgrade(0,0,11);
 
         SetExhaust(true);
         SetSynergy(Synergies.GenshinImpact);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
     }
 
     @Override
@@ -58,7 +67,15 @@ public class SongOfBrokenPines extends AnimatorCard
         {
             super(owner, POWER_ID);
 
+            // Initialize to number of strikes you have already played
             strikeCount = 0;
+            ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn;
+            for (AbstractCard abstractCard : cardsPlayed) {
+                if (abstractCard.tags.contains(CardTags.STRIKE)) {
+                    strikeCount += 1;
+                }
+            }
+
             this.amount = amount;
             updateDescription();
         }
@@ -78,11 +95,11 @@ public class SongOfBrokenPines extends AnimatorCard
         @Override
         public void atEndOfTurn(boolean isPlayer)
         {
-            // Deal damage to all enemies dependent on the number of strikes you played after playing this card
+            // Deal damage to all enemies dependent on the number of strikes you played
             if (strikeCount > 0) {
                 int damagePerCreature = strikeCount * this.amount;
-                int[] damage = DamageInfo.createDamageMatrix(damagePerCreature, true);
-                GameActions.Bottom.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+                int[] damage = DamageInfo.createDamageMatrix(damagePerCreature, false);
+                GameActions.Bottom.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH);
             }
 
             RemovePower();

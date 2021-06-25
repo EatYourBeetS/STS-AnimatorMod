@@ -72,13 +72,13 @@ public class SongOfBrokenPines extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            this.description = powerStrings.DESCRIPTIONS[0] + this.amount + powerStrings.DESCRIPTIONS[1] + strikeCount + powerStrings.DESCRIPTIONS[2];
+            this.description = FormatDescription(0, amount, strikeCount);
         }
 
         @Override
         public void atEndOfTurn(boolean isPlayer)
         {
-            // Deal damage dependent on the number of strikes you played after playing this card
+            // Deal damage to all enemies dependent on the number of strikes you played after playing this card
             if (strikeCount > 0) {
                 int damagePerCreature = strikeCount * this.amount;
                 int[] damage = DamageInfo.createDamageMatrix(damagePerCreature, true);

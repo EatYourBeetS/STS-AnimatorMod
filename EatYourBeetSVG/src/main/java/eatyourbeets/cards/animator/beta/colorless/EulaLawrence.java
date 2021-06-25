@@ -47,7 +47,7 @@ public class EulaLawrence extends AnimatorCard {
 
         if (card != null && card.rarity.equals(CardRarity.BASIC))
         {
-            card.freeToPlayOnce = true;
+            GameActions.Bottom.Motivate(card, 1);
         }
 
         // Create Song of Broken Pines on synergy

@@ -39,7 +39,7 @@ public class IsshinKurosaki extends AnimatorCard
     {
         if (choices.TryInitialize(this))
         {
-            choices.AddEffect(new GenericEffect_ChannelOrb(magicNumber, new Fire()));
+            choices.AddEffect(new GenericEffect_ChannelOrb(new Fire(), magicNumber));
             choices.AddEffect(new GenericEffect_GainStat(secondaryValue, PlayerAttribute.Force));
         }
 

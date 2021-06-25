@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
+import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.relics.animator.AbstractMissingPiece;
 import eatyourbeets.relics.animator.CursedGlyph;
 import eatyourbeets.resources.GR;
@@ -50,9 +50,9 @@ public class AnimatorCardRewardBonus extends GUIElement
 
         for (AbstractCard card : cards)
         {
-            if (card instanceof OnAddingToCardReward)
+            if (card instanceof OnAddingToCardRewardListener)
             {
-                if (((OnAddingToCardReward)card).ShouldCancel(rewardItem))
+                if (((OnAddingToCardRewardListener)card).ShouldCancel(rewardItem))
                 {
                     toRemove.add(card);
                     continue;

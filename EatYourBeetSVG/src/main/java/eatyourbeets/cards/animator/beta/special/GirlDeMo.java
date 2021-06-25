@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.beta.special;
 
+import basemod.Pair;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -12,7 +13,6 @@ import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Comparator;

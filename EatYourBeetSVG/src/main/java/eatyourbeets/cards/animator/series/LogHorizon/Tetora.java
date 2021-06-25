@@ -1,7 +1,9 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -9,41 +11,64 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 public class Tetora extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Tetora.class).SetPower(0, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Tetora.class).SetPower(0, CardRarity.UNCOMMON).SetMaxCopies(2);
 
     public Tetora()
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 3);
-        SetUpgrade(0, 0, 0, 2);
+        Initialize(0, 0, 0, 4);
 
-        SetSpellcaster();
         SetSynergy(Synergies.LogHorizon);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
     }
 
     @Override
     public boolean cardPlayable(AbstractMonster m)
     {
-        return super.cardPlayable(m) && JUtils.Count(GameUtilities.GetOtherCardsInHand(this), this::HasSynergy) >= magicNumber;
+        return super.cardPlayable(m) && HasTeamwork(secondaryValue, false);
+    }
+
+    @Override
+    public ColoredString GetMagicNumberString()
+    {
+        if (isMagicNumberModified)
+        {
+            return new ColoredString(magicNumber, magicNumber >= secondaryValue ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, transparency);
+        }
+        else
+        {
+            return new ColoredString(baseMagicNumber, Settings.CREAM_COLOR, transparency);
+        }
+    }
+
+    @Override
+    protected void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        GameUtilities.ModifyMagicNumber(this, GameUtilities.GetTeamwork(null), true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.StackPower(new TetoraPower(p, secondaryValue));
+        GameActions.Bottom.StackPower(new TetoraPower(p, 1));
     }
 
     public static class TetoraPower extends AnimatorPower implements OnSynergySubscriber
     {
-        public static final int BASE_SYNERGY_COUNTER = 2;
-
         private int synergies;
 
         public TetoraPower(AbstractPlayer owner, int amount)
@@ -51,7 +76,7 @@ public class Tetora extends AnimatorCard
             super(owner, Tetora.DATA);
 
             this.amount = amount;
-            this.synergies = BASE_SYNERGY_COUNTER;
+
             updateDescription();
         }
 
@@ -72,44 +97,32 @@ public class Tetora extends AnimatorCard
         }
 
         @Override
-        public void atStartOfTurn()
-        {
-            super.atStartOfTurn();
-
-            this.enabled = true;
-            this.synergies = BASE_SYNERGY_COUNTER;
-            updateDescription();
-        }
-
-        @Override
         public void OnSynergy(AbstractCard card)
         {
-            if (!enabled)
-            {
-                return;
-            }
+            synergies = (synergies + 1) % 3;
 
-            if (--synergies <= 0)
+            if (synergies == 0)
             {
-                GameActions.Top.GainBlock(amount);
+                for (int i = 0; i < amount; i++)
+                {
+                    GameActions.Bottom.GainRandomStat(1);
+                }
+
                 enabled = false;
+                flash();
             }
-
-            updateDescription();
-            flash();
         }
 
         @Override
         public void updateDescription()
         {
-            if (enabled)
-            {
-                description = FormatDescription(0, amount, synergies, "");
-            }
-            else
-            {
-                description = FormatDescription(1);
-            }
+            description = FormatDescription(0, amount);
+        }
+
+        @Override
+        protected ColoredString GetSecondaryAmount(Color c)
+        {
+            return new ColoredString(synergies, Settings.BLUE_TEXT_COLOR);
         }
     }
 }

@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.cards.animator.basic.Strike;
-import eatyourbeets.interfaces.subscribers.OnReceiveRewardsSubscriber;
+import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -30,7 +30,7 @@ import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
-public class AnimatorCharacter extends CustomPlayer implements OnReceiveRewardsSubscriber
+public class AnimatorCharacter extends CustomPlayer implements OnReceiveRewardsListener
 {
     public static final CharacterStrings characterStrings = AnimatorResources.GetCharacterStrings("Animator");
     public static final Color MAIN_COLOR = CardHelper.getColor(210, 147, 106);

@@ -237,6 +237,16 @@ public abstract class EYBCard extends EYBCardBase
         GameEffects.List.Add(new ExhaustCardEffect(this));
     }
 
+    public boolean HasTeamwork(int amount)
+    {
+        return HasTeamwork(amount, true);
+    }
+
+    public boolean HasTeamwork(int amount, boolean ignoreSelf)
+    {
+        return GameUtilities.GetTeamwork(ignoreSelf ? this : null) >= amount;
+    }
+
     public boolean IsStarter()
     {
         ArrayList<AbstractCard> played = AbstractDungeon.actionManager.cardsPlayedThisTurn;

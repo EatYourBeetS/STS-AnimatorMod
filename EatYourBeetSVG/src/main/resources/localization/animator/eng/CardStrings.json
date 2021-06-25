@@ -1014,7 +1014,7 @@
 		},
 		"animator:Ciel":
 		{
-			"DESCRIPTION": "Starter: Apply !M! [Vulnerable] [~Lock-On]. || Increase the damage ** of every copy of {Lu} ** by !S! this combat.",
+			"DESCRIPTION": "<ST>: Apply !M! [Vulnerable] [~Lock-On]. || Increase the damage ** of every copy of {Lu} ** by !S! this combat.",
 			"NAME": "Ciel"
 		},
 		"animator:Elesis":
@@ -1244,7 +1244,6 @@
 		"animator:Tyuule":
 		{
 			"DESCRIPTION": "Apply !M! [Poison] to ** ALL enemies, then ** increase each of their ** {Common Debuffs} by 1.",
-			"EXTENDED_DESCRIPTION": ["Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
 			"NAME": "Tyuule"
 		},
 		"animator:YaoHaDucy":
@@ -1358,7 +1357,7 @@
 		},
 		"animator:Viivi":
 		{
-			"DESCRIPTION": "Starter. Gain [A] ** and <DRW>. || When Discarded: Add ** 1 [T-Knife] to your hand.",
+			"DESCRIPTION": "<ST>. Gain [A] ** and <DRW>. || When Discarded: Add ** 1 [T-Knife] to your hand.",
 			"NAME": "Viivi"
 		}
 	},
@@ -1525,8 +1524,13 @@
 		},
 		"animator:HousakiMinori":
 		{
-			"DESCRIPTION": "Cooldown !S!: Increase your [Block] by !M!%. ||  <SLM>. On Synergy or Discard: Shuffle this card into your draw pile.",
+			"DESCRIPTION": "Cooldown !S!: Gain !M! [Enchanted Armor]. || <SLM>. Synergy or ** Discard: Shuffle this card ** into your draw pile.",
 			"NAME": "Minori Housaki"
+		},
+		"animator:HousakiTohya":
+		{
+			"DESCRIPTION": " Apply !M! [Vulnerable]. || Draw {Minori Housaki}. || <TM-S>: Gain [E]",
+			"NAME": "Tohya Housaki"
 		},
 		"animator:Naotsugu":
 		{
@@ -1535,23 +1539,24 @@
 		},
 		"animator:Nyanta":
 		{
-			"DESCRIPTION": "Gain !S! [A]. Gain 1 ** additional [A] for each ** time you Synergized ** this turn, up to 3. || End your turn.",
+			"DESCRIPTION": "Gain/Boost [A]. Apply a ** random {Common Debuff} ** on each attack. || Any Stance: Attack 1 ** additional time",
 			"NAME": "Nyanta"
 		},
 		"animator:Rayneshia":
 		{
-			"DESCRIPTION": "Draw !M! card(s) that {Synergize} with this card. || This card {Synergizes} ** with {Hindrances} and cards ** which {Exhaust}.",
+			"DESCRIPTION": "<DRW-M>. Move !M! ** cards from your hand ** to your draw pile. || <LIM>. <TM-S>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
 			"NAME": "Rayneshia"
 		},
 		"animator:RundelhausCode":
 		{
-			"DESCRIPTION": "Starter: Increase the damage of all {Elemental}-type {Attacks} in your hand by !M! this combat. || Synergy: Channel !S! [Lightning].",
+			"DESCRIPTION": "Gain [I]. Give !M! random ** card(s) +2 [I] scaling ** (does not stack). || <TM-S>, Choose 1: ** Channel [Fire], [Lightning] or [Frost].",
 			"NAME": "Rundelhaus Code"
 		},
 		"animator:Serara":
 		{
-			"DESCRIPTION": "If you have over !S! [Temporary HP], do not gain [Temporary HP]. || {Motivate} all copies of {Nyanta} in your draw pile or hand. ",
-			"NAME": "Serara"
+			"DESCRIPTION": "If an enemy intends ** to attack: Gain [F] and ** give a random card +2 [F] ** scaling (does not stack).",
+			"NAME": "Serara",
+			"UPGRADE_DESCRIPTION": "If an enemy intends ** to attack: Gain [F] and ** give a card +2 [F] ** scaling (does not stack)."
 		},
 		"animator:Shiroe":
 		{
@@ -1580,14 +1585,9 @@
 		},
 		"animator:Tetora":
 		{
-			"DESCRIPTION": "Can only be played ** with at least !M! other Synergic cards in hand. || On your second Synergy each turn: Gain !S! [Block].",
-			"EXTENDED_DESCRIPTION": ["After #b{1} more Synergies this turn: gain #b{0} #yBlock.", "This power has already been activated this turn."],
+			"DESCRIPTION": "Synergizes with {High ** Cost} cards. Requires ** <TM-S> to play. || Every third Synergy: ** Randomly gain [F], [A], [I].",
+			"EXTENDED_DESCRIPTION": ["Every third #ySynergy, randomly gain #yForce, #yAgility or #yIntellect #b{0} time(s)."],
 			"NAME": "Tetora"
-		},
-		"animator:HousakiTohya":
-		{
-			"DESCRIPTION": "Draw {Minori Housaki} from your draw pile. || {Starter}: Gain !M! [Blur].",
-			"NAME": "Tohya Housaki"
 		}
 	},
 
@@ -1621,7 +1621,7 @@
 		},
 		"animator:KyokoSakura":
 		{
-			"DESCRIPTION": "Starter: Gain [F] ** and Channel 1 [Fire]. || <DRW-M>. ** Put !M! card(s) on top ** of your draw pile.",
+			"DESCRIPTION": "<ST>: Gain [F] ** and Channel 1 [Fire]. || <DRW-M>. ** Put !M! card(s) on top ** of your draw pile.",
 			"NAME": "Kyoko Sakura"
 		},
 		"animator:MadokaKaname":
@@ -1661,9 +1661,9 @@
 		},
 		"animator:SuzuneAmano":
 		{
-			"DESCRIPTION": "Starter: <DRW> and ** deal !S! additional damage ** for each [Fire] you have. || Exhaust 1 random ** card to apply !M! [Burning].",
+			"DESCRIPTION": "<ST>: <DRW> and ** deal !S! additional damage ** for each [Fire] you have. || Exhaust 1 random ** card to apply !M! [Burning].",
 			"NAME": "Suzune Amano",
-			"UPGRADE_DESCRIPTION": "Starter: <DRW> and ** deal !S! additional damage ** for each [Fire] you have. || Exhaust 1 card ** to apply !M! [Burning]."
+			"UPGRADE_DESCRIPTION": "<ST>: <DRW> and ** deal !S! additional damage ** for each [Fire] you have. || Exhaust 1 card ** to apply !M! [Burning]."
 		},
 		"animator:Walpurgisnacht":
 		{
@@ -1980,7 +1980,8 @@
 		"animator:Aura1":
 		{
 			"NAME": "Stance Aura",
-			"DESCRIPTION": "At the start of your third/second ** turn: Enter a Stance of ** your choice and Motivate ** 1 card in your draw pile."
+			"DESCRIPTION": "At the start of your third ** turn: Enter a Stance of ** your choice.",
+			"UPGRADE_DESCRIPTION": "At the start of your third ** turn: Enter a Stance of ** your choice and Motivate ** 1 card in your draw pile."
 		},
 		"animator:Aura2":
 		{
@@ -2085,7 +2086,7 @@
 		},
 		"animator:OrbCore_Fire":
 		{
-			"DESCRIPTION": "Channel !S! [Fire]. || On your second ** Synergy each turn: ** Apply !M! [Burning] ** to ALL enemies.",
+			"DESCRIPTION": "Channel !S! [Fire]. || On your second ** Synergy each turn: ** Apply !M! [Burning] to ** ALL enemies.",
 			"NAME": "Fire Core"
 		},
 		"animator:OrbCore_Frost":

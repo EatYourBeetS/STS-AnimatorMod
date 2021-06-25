@@ -1,9 +1,9 @@
-package eatyourbeets.interfaces.subscribers;
+package eatyourbeets.interfaces.listeners;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public interface OnTryApplyPowerSubscriber
+public interface OnTryApplyPowerListener
 {
     boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source);
 }

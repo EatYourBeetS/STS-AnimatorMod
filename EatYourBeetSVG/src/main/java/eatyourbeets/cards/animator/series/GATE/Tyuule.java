@@ -12,7 +12,21 @@ import eatyourbeets.utilities.TargetHelper;
 public class Tyuule extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Tyuule.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL);
-    public static final EYBCardTooltip CommonDebuffs = new EYBCardTooltip(DATA.Strings.EXTENDED_DESCRIPTION[0], DATA.Strings.EXTENDED_DESCRIPTION[1]);
+
+//    Not used anymore. Commented as an example on how to add custom tooltips
+//
+//    public static final EYBCardTooltip CommonDebuffs = new EYBCardTooltip(DATA.Strings.EXTENDED_DESCRIPTION[0], DATA.Strings.EXTENDED_DESCRIPTION[1]);
+//
+//    @Override
+//    public void initializeDescription()
+//    {
+//        super.initializeDescription();
+//
+//        if (cardText != null)
+//        {
+//            tooltips.add(CommonDebuffs);
+//        }
+//    }
 
     public Tyuule()
     {
@@ -22,17 +36,6 @@ public class Tyuule extends AnimatorCard
         SetUpgrade(0, 0, 2);
 
         SetSynergy(Synergies.Gate);
-    }
-
-    @Override
-    public void initializeDescription()
-    {
-        super.initializeDescription();
-
-        if (cardText != null)
-        {
-            tooltips.add(CommonDebuffs);
-        }
     }
 
     @Override

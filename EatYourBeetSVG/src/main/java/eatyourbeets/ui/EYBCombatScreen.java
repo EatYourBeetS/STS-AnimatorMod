@@ -19,25 +19,26 @@ public class EYBCombatScreen extends GUIElement
     protected final static FieldInfo<Integer> _intentMultiAmt = JUtils.GetField("intentMultiAmt", AbstractMonster.class);
 
     protected final Map<AbstractMonster, FuncT0<ColoredString>> intents = new HashMap<>();
+    protected final EYBCombatInfo combatInfo = new EYBCombatInfo();
+
+    @Override
+    public void Update()
+    {
+        //combatInfo.Update();
+    }
+
+    @Override
+    public void Render(SpriteBatch sb)
+    {
+        //combatInfo.Render(sb);
+    }
 
     public void AddSubIntent(AbstractMonster monster, FuncT0<ColoredString> calculateIntent)
     {
         intents.put(monster, calculateIntent);
     }
 
-    @Override
-    public void Update()
-    {
-        throw new RuntimeException("Not Implemented");
-    }
-
-    @Override
-    public void Render(SpriteBatch sb)
-    {
-        throw new RuntimeException("Not Implemented");
-    }
-
-    public void Render(AbstractMonster m, SpriteBatch sb)
+    public void RenderMonsterInfo(AbstractMonster m, SpriteBatch sb)
     {
         if (intents.containsKey(m))
         {

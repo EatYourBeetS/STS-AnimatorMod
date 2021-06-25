@@ -9,14 +9,14 @@ import com.megacrit.cardcrawl.relics.PhilosopherStone;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.subscribers.OnAddedToDeckSubscriber;
-import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
+import eatyourbeets.interfaces.listeners.OnAddedToDeckListener;
+import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Father extends AnimatorCard implements OnAddedToDeckSubscriber, OnAddingToCardReward
+public class Father extends AnimatorCard implements OnAddedToDeckListener, OnAddingToCardRewardListener
 {
     private static final AbstractRelic relic = new PhilosopherStone();
     private static final EYBCardTooltip tooltip = new EYBCardTooltip(relic.name, relic.description);

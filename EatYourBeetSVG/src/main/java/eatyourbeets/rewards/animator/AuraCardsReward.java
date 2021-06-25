@@ -31,7 +31,7 @@ public class AuraCardsReward extends AnimatorReward
 
     public static void TryAddReward(AbstractPlayer p, ArrayList<RewardItem> rewards)
     {
-        if (AbstractDungeon.actNum == 1 && GameUtilities.InBossRoom())
+        if (GameUtilities.GetActualAscensionLevel() >= 5 && AbstractDungeon.actNum == 1 && GameUtilities.InBossRoom())
         {
             AuraCardsReward reward = new AuraCardsReward();
             if (reward.cards.size() > 0)

@@ -1,14 +1,14 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import eatyourbeets.interfaces.subscribers.OnReceiveRewardsSubscriber;
+import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameEffects;
 
 import java.util.ArrayList;
 
-public class Destiny extends AnimatorRelic implements OnReceiveRewardsSubscriber, Hidden
+public class Destiny extends AnimatorRelic implements OnReceiveRewardsListener, Hidden
 {
     public static final String ID = CreateFullID(Destiny.class);
 

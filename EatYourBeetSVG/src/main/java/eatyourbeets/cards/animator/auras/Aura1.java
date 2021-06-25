@@ -40,6 +40,11 @@ public class Aura1 extends Aura
 
         choices.Select(1, m);
 
+        if (!upgraded)
+        {
+            return;
+        }
+
         GameActions.Bottom.SelectFromPile(name, 1, p.drawPile)
         .SetOptions(true, true)
         .AddCallback(cards ->
@@ -50,11 +55,5 @@ public class Aura1 extends Aura
                 .AddCallback(c -> GameEffects.List.ShowCardBriefly(c.makeStatEquivalentCopy(), D_X, D_Y));
             }
         });
-    }
-
-    @Override
-    public boolean CanActivate(int currentTurn)
-    {
-        return super.CanActivate(upgraded ? (currentTurn + 1) : currentTurn);
     }
 }

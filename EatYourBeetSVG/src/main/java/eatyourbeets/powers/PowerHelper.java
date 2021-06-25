@@ -7,6 +7,7 @@ import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.interfaces.delegates.FuncT3;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
+import eatyourbeets.powers.common.ShacklesPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -39,6 +40,7 @@ public class PowerHelper
     public static final PowerHelper Artifact = new PowerHelper(ArtifactPower.POWER_ID, GR.Tooltips.Artifact, ArtifactPower::new);
     public static final PowerHelper Thorns = new PowerHelper(ThornsPower.POWER_ID, GR.Tooltips.Thorns, ThornsPower::new);
     public static final PowerHelper TemporaryThorns = new PowerHelper(EarthenThornsPower.POWER_ID, null, EarthenThornsPower::new);
+    public static final PowerHelper Shackles = new PowerHelper(ShacklesPower.POWER_ID, GR.Tooltips.Shackles, ShacklesPower::new);
 
     public final String ID;
     public EYBCardTooltip Tooltip;

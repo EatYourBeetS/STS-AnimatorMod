@@ -10,12 +10,12 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.actions.powers.ApplyPower;
-import eatyourbeets.interfaces.subscribers.OnTryApplyPowerSubscriber;
+import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
-public class TemporaryArtifactPower extends AbstractPower implements CloneablePowerInterface, OnTryApplyPowerSubscriber
+public class TemporaryArtifactPower extends AbstractPower implements CloneablePowerInterface, OnTryApplyPowerListener
 {
     public static final String POWER_ID = GR.Common.CreateID(TemporaryArtifactPower.class.getSimpleName());
     public static final PowerStrings STRINGS = CardCrawlGame.languagePack.getPowerStrings(ArtifactPower.POWER_ID);

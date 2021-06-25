@@ -11,7 +11,6 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.effects.utility.SequentialEffect;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -29,7 +28,7 @@ public class Marielle extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 6);
-        SetUpgrade(0, 0, 6);
+        SetUpgrade(0, 0, 4);
 
         SetSynergy(Synergies.LogHorizon);
         SetSpellcaster();
@@ -42,9 +41,8 @@ public class Marielle extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        final SequentialEffect effect = new SequentialEffect();
         final Map<CardType, List<AbstractCard>> map = JUtils.Group(p.drawPile.group, c -> c.type);
 
         int i = 0;

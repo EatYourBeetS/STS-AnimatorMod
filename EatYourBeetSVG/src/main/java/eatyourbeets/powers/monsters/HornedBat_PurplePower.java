@@ -5,12 +5,12 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.actions.special.DieAction;
-import eatyourbeets.interfaces.subscribers.OnTryApplyPowerSubscriber;
+import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.common.PlayerFlightPower;
 import eatyourbeets.utilities.GameActions;
 
-public class HornedBat_PurplePower extends AnimatorPower implements OnTryApplyPowerSubscriber
+public class HornedBat_PurplePower extends AnimatorPower implements OnTryApplyPowerListener
 {
     public static final String POWER_ID = CreateFullID(HornedBat_PurplePower.class);
 

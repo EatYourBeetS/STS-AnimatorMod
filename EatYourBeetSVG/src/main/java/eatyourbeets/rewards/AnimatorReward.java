@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
+import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.JUtils;
@@ -72,7 +72,7 @@ public abstract class AnimatorReward extends CustomReward
         while (result.size() < context.rewardSize && randomPool.Size() > 0)
         {
             AbstractCard card = randomPool.Retrieve(AbstractDungeon.cardRng);
-            if (card instanceof OnAddingToCardReward && ((OnAddingToCardReward) card).ShouldCancel(this))
+            if (card instanceof OnAddingToCardRewardListener && ((OnAddingToCardRewardListener) card).ShouldCancel(this))
             {
                 continue;
             }

@@ -1,12 +1,12 @@
 package eatyourbeets.relics.animator;
 
+import basemod.Pair;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 import eatyourbeets.utilities.WeightedList;
-import javafx.util.Pair;
 
 public class OldCoffin extends AnimatorRelic
 {

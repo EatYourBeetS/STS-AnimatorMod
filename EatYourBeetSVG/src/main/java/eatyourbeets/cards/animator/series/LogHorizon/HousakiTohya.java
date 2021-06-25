@@ -21,23 +21,31 @@ public class HousakiTohya extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 1, 0);
+        Initialize(5, 0, 1, 3);
         SetUpgrade(3, 0, 0, 0);
+        SetScaling(0, 1, 1);
 
-        SetSynergy(Synergies.LogHorizon);
         SetMartialArtist();
+        SetSynergy(Synergies.LogHorizon);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActions.Bottom.Draw(1)
-        .SetFilter(c -> HousakiMinori.DATA.ID.equals(c.cardID), false);
+    }
 
-        if (IsStarter())
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
+        GameActions.Bottom.Draw(1)
+        .SetFilter(c -> HousakiMinori.DATA.ID.equals(c.cardID), false)
+        .AddCallback(m, (enemy, __) ->
         {
-            GameActions.Bottom.GainBlur(magicNumber);
-        }
+            if (HasTeamwork(secondaryValue))
+            {
+                GameActions.Bottom.ApplyVulnerable(player, enemy, magicNumber);
+            }
+        });
     }
 }

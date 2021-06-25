@@ -1,6 +1,6 @@
-package eatyourbeets.interfaces.subscribers;
+package eatyourbeets.interfaces.listeners;
 
-public interface OnReceiveEmeraldBonus
+public interface OnReceiveEmeraldBonusListener
 {
     float GetEmeraldMaxHPBonus(float bonus);
 

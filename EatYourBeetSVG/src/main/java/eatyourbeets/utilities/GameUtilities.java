@@ -29,14 +29,16 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.screens.stats.AchievementGrid;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
-import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
+import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
+import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
-import eatyourbeets.interfaces.subscribers.OnTryApplyPowerSubscriber;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
@@ -52,6 +54,7 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 public class GameUtilities
 {
     private static final HandLayoutRefresher handLayoutRefresher = new HandLayoutRefresher();
+    private static final ArrayList<PowerHelper> commonDebuffs = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
     public static void ApplyPowerInstantly(AbstractCreature target, PowerHelper powerHelper, int stacks)
@@ -87,9 +90,9 @@ public class GameUtilities
         {
             for (AbstractPower power : target.powers)
             {
-                if (power instanceof OnTryApplyPowerSubscriber)
+                if (power instanceof OnTryApplyPowerListener)
                 {
-                    canApply &= ((OnTryApplyPowerSubscriber) power).TryApplyPower(powerToApply, target, source);
+                    canApply &= ((OnTryApplyPowerListener) power).TryApplyPower(powerToApply, target, source);
                 }
             }
 
@@ -97,9 +100,9 @@ public class GameUtilities
             {
                 for (AbstractPower power : source.powers)
                 {
-                    if (power instanceof OnTryApplyPowerSubscriber)
+                    if (power instanceof OnTryApplyPowerListener)
                     {
-                        canApply &= ((OnTryApplyPowerSubscriber) power).TryApplyPower(powerToApply, target, source);
+                        canApply &= ((OnTryApplyPowerListener) power).TryApplyPower(powerToApply, target, source);
                     }
                 }
             }
@@ -375,6 +378,28 @@ public class GameUtilities
         return result;
     }
 
+    public static RandomizedList<AbstractCard> GetCardPoolInCombat(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
+    {
+        return GetCardPoolInCombat(GetCardPool(rarity, color), null);
+    }
+
+    public static RandomizedList<AbstractCard> GetCardPoolInCombat(CardGroup group, FuncT1<Boolean, AbstractCard> filter)
+    {
+        RandomizedList<AbstractCard> cards = new RandomizedList<>();
+        if (group != null)
+        {
+            for (AbstractCard c : group.group)
+            {
+                if (!c.hasTag(AbstractCard.CardTags.HEALING) && (filter == null || filter.Invoke(c)))
+                {
+                    cards.Add(c);
+                }
+            }
+        }
+
+        return cards;
+    }
+
     public static CardGroup GetCardPool(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
     {
         if (color == AbstractCard.CardColor.COLORLESS)
@@ -424,6 +449,20 @@ public class GameUtilities
         result.add(AbstractDungeon.rareCardPool);
         result.add(AbstractDungeon.curseCardPool);
         return result;
+    }
+
+    public static ArrayList<PowerHelper> GetCommonDebuffs()
+    {
+        if (commonDebuffs.isEmpty())
+        {
+            commonDebuffs.add(PowerHelper.Poison);
+            commonDebuffs.add(PowerHelper.Weak);
+            commonDebuffs.add(PowerHelper.Vulnerable);
+            commonDebuffs.add(PowerHelper.Burning);
+            commonDebuffs.add(PowerHelper.Shackles);
+        }
+
+        return commonDebuffs;
     }
 
     public static AbstractRoom GetCurrentRoom()
@@ -699,7 +738,7 @@ public class GameUtilities
                 }
             }
 
-            if (temp instanceof OnAddingToCardReward && ((OnAddingToCardReward) temp).ShouldCancel(rewardItem))
+            if (temp instanceof OnAddingToCardRewardListener && ((OnAddingToCardRewardListener) temp).ShouldCancel(rewardItem))
             {
                 searchingCard = true;
             }
@@ -795,6 +834,38 @@ public class GameUtilities
             default:
                 return null;
         }
+    }
+
+    public static int GetTeamwork(AbstractCard ignored)
+    {
+        int total = 0;
+        AbstractCard c1;
+        AbstractCard c2;
+        for (int i = 0; i < player.hand.group.size(); i++)
+        {
+            c1 = player.hand.group.get(i);
+            if (c1 == ignored)
+            {
+                continue;
+            }
+            if (c1.hasTag(AnimatorCard.SHAPESHIFTER))
+            {
+                total += 1;
+                continue;
+            }
+
+            for (int j = 0; j < player.hand.group.size(); j++)
+            {
+                c2 = player.hand.group.get(j);
+                if (c2 != ignored && c1 != c2 && !c2.hasTag(AnimatorCard.SHAPESHIFTER) && Synergies.WouldSynergize(c1, c2))
+                {
+                    total += 1;
+                    break;
+                }
+            }
+        }
+
+        return total;
     }
 
     public static int GetTempHP(AbstractCreature creature)

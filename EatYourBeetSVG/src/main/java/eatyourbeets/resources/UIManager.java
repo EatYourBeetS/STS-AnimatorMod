@@ -46,6 +46,7 @@ public class UIManager
             CurrentScreen.Update();
         }
 
+        CombatScreen.TryUpdate();
         CardPopup.TryUpdate();
     }
 
@@ -56,6 +57,7 @@ public class UIManager
             CurrentScreen.Render(sb);
         }
 
+        CombatScreen.TryRender(sb);
         CardPopup.TryRender(sb);
     }
 

@@ -1,20 +1,18 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-
-import java.util.List;
+import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Nyanta extends AnimatorCard
 {
@@ -24,11 +22,9 @@ public class Nyanta extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 2, 1);
-        SetUpgrade(1, 0);
+        Initialize(2, 0, 3);
         SetScaling(0, 1, 0);
 
-        SetExhaust(true);
         SetRetain(true);
         SetSynergy(Synergies.LogHorizon);
     }
@@ -40,30 +36,33 @@ public class Nyanta extends AnimatorCard
     }
 
     @Override
-    public void Refresh(AbstractMonster enemy)
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
+    }
+
+    @Override
+    protected void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
 
-        List<AbstractCard> synergies = CombatStats.SynergiesThisTurn();
-        int bonus = synergies.size();
-        if (bonus > 0 && synergies.get(synergies.size() - 1).uuid.equals(uuid))
+        if (player.stance != null && !NeutralStance.STANCE_ID.equals(player.stance.ID))
         {
-            bonus -= 1;
+            GameUtilities.IncreaseMagicNumber(this, 1, true);
         }
-
-        GameUtilities.ModifySecondaryValue(this, baseSecondaryValue + Math.min(3, bonus), true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
+        GameActions.Bottom.GainAgility(1, upgraded);
+
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL)
             .SetVFX(true, false);
+            GameActions.Bottom.StackPower(TargetHelper.Normal(m), JUtils.GetRandomElement(GameUtilities.GetCommonDebuffs()), 1)
+            .ShowEffect(false, true);
         }
-
-        GameActions.Bottom.GainAgility(secondaryValue, false);
-        GameActions.Bottom.Add(new PressEndTurnButtonAction());
     }
 }

@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.beta.colorless;
+package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.CombatStats;
@@ -17,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 import java.util.ArrayList;
 
 public class BarbaraPegg extends AnimatorCard {
-    public static final EYBCardData DATA = Register(BarbaraPegg.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(BarbaraPegg.class).SetSkill(1, CardRarity.UNCOMMON);
     public static final int HP_HEAL_THRESHOLD = 30;
 
     public BarbaraPegg() {

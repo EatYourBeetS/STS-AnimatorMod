@@ -25,15 +25,6 @@ public class GenericEffect_ChannelOrb extends GenericEffect
         this.id = orb.ID;
     }
 
-    public GenericEffect_ChannelOrb(AbstractOrb orb, int amount)
-    {
-        this.orbConstructor = null;
-        this.orb = orb;
-        this.amount = amount;
-        this.tooltip = GetOrbTooltip(orb);
-        this.id = orb.ID;
-    }
-
     public GenericEffect_ChannelOrb(int amount)
     {
         this.orbConstructor = null;

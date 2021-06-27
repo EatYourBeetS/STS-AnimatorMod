@@ -21,7 +21,7 @@ public class Shiroe extends AnimatorCard
 
         SetUnique(true, true);
         SetExhaust(true);
-        SetShapeshifter();
+
         SetSynergy(Synergies.LogHorizon);
     }
 

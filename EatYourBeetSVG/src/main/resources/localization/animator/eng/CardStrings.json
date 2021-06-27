@@ -933,23 +933,28 @@
 		},
 		"animator:Soujiro":
 		{
-			"DESCRIPTION": "<LIM>. At start of combat: Shuffle {Kyouko}, {Kawara}, and {Isami} into your draw pile. || Increase damage by !M! for each {Synergic} card in your hand.",
+			"DESCRIPTION": "Teamwork X: Deal !M!X ** additional damage. || When drawn: Choose 1 of 4 ** cards to add to your hand, ** you can only choose the ** same card once.",
 			"NAME": "Soujiro"
 		},
 		"animator:Soujiro_Isami":
 		{
-			"DESCRIPTION": "Apply !M! [Weak].",
+			"DESCRIPTION": "<ST>: Boost [A].",
 			"NAME": "Isami"
 		},
 		"animator:Soujiro_Kawara":
 		{
-			"DESCRIPTION": "",
+			"DESCRIPTION": "If the enemy ** is attacking: Gain !M! ** additional [Block].",
 			"NAME": "Kawara"
 		},
-		"animator:Soujiro_Kyouko":
+		"animator:Soujiro_Hisako":
 		{
-			"DESCRIPTION": "",
-			"NAME": "Kyouko"
+			"DESCRIPTION": "Evoke your first ** orb to Boost [I].",
+			"NAME": "Hisako"
+		},
+		"animator:Soujiro_Nazuna":
+		{
+			"DESCRIPTION": "Draw 1 less ** card next turn.",
+			"NAME": "Nazuna"
 		},
 		"animator:Tetora":
 		{

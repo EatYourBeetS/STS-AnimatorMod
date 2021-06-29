@@ -3,38 +3,42 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
+import com.megacrit.cardcrawl.orbs.Frost;
+import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.animator.Aether;
+import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GameEffects;
 
 import java.util.ArrayList;
 
-public class Venti extends AnimatorCard {
+public class Venti extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber {
     public static final EYBCardData DATA = Register(Venti.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
+    protected AbstractOrb nextTurnOrb;
 
     public Venti() {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 2);
         SetUpgrade(0, 0, 0);
 
         SetEthereal(true);
+        SetExhaust(true);
         SetShapeshifter();
         SetSynergy(Synergies.GenshinImpact);
     }
 
     @Override
-    public void triggerOnManualDiscard()
+    protected void OnUpgrade()
     {
-        GameActions.Bottom.Draw(secondaryValue);
+        SetExhaust(false);
     }
 
     @Override
@@ -42,21 +46,34 @@ public class Venti extends AnimatorCard {
     {
         GameActions.Bottom.VFX(new WhirlwindEffect(), 0f);
 
-        for (int i = 0; i < magicNumber; i++)
+        int idxStart = p.filledOrbCount() - p.maxOrbs;
+        int orbsEvoked = magicNumber + idxStart;
+        for (int i = Math.max(idxStart,0); i < orbsEvoked; i++)
         {
-            boolean shouldEvoke = p.filledOrbCount() > 0 && p.maxOrbs - p.filledOrbCount() == 0;
-            if (shouldEvoke) {
-                AbstractOrb orb = p.orbs.get(0);
-                if (!(orb instanceof EmptyOrbSlot)) {
-                    GameActions.Bottom.Callback(orb, (orb_, __) ->
-                    {
-                        ((AbstractOrb) orb_).triggerEvokeAnimation();
-                        ((AbstractOrb) orb_).onEvoke();
-                    });
-                }
+            AbstractOrb orb = p.orbs.get(i);
+            if (Fire.ORB_ID.equals(orb.ID) || Frost.ORB_ID.equals(orb.ID) || Lightning.ORB_ID.equals(orb.ID)) {
+                nextTurnOrb = orb.makeCopy();
             }
-            GameActions.Bottom.ChannelOrb(new Aether());
+        }
+        GameActions.Bottom.ChannelOrbs(Aether::new, magicNumber);
+        if (orbsEvoked > 0) {
+            GameActions.Bottom.Cycle(name, orbsEvoked);
         }
 
+        if (nextTurnOrb != null) {
+            Venti other = (Venti) makeStatEquivalentCopy();
+            other.nextTurnOrb = this.nextTurnOrb;
+            CombatStats.onStartOfTurnPostDraw.Subscribe(other);
+        }
+
+    }
+
+    @Override
+    public void OnStartOfTurnPostDraw() {
+        if (nextTurnOrb != null) {
+            GameEffects.Queue.ShowCardBriefly(this);
+            GameActions.Bottom.ChannelOrb(nextTurnOrb);
+            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+        }
     }
 }

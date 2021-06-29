@@ -537,6 +537,11 @@
 		}
 	},
 	"BETA:GENSHINIMPACT": {
+		"animator:Amber":
+		{
+			"DESCRIPTION": "{Starter}: Apply !M! [~Lock-On]. || Synergy: Channel 1 [Fire].",
+			"NAME": "Amber"
+		},
 		"animator:BarbaraPegg":
 		{
 			"DESCRIPTION": "Fully heal ALL enemies. Channel 1 [Dark] and increase its passive power by 1 for every !M! HP healed. || <LIM>: If you healed at least 30 HP in total, gain !S! ** Regeneration.",
@@ -552,6 +557,16 @@
 			"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile. || Discard up to !M! card(s). Remove 1 [Weak], [Vulnerable], and [Frail] for each discarded card.",
 			"NAME": "Jean Gunnhildr"
 		},
+		"animator:KaeyaAlberich":
+		{
+			"DESCRIPTION": "{Channel} 1 [Frost]. Trigger your first [Fire], [Frost], or [Lightning]. || <SLM>. Synergy: Apply !M! [Shackles] to ALL enemies.",
+			"NAME": "Kaeya Alberich"
+		},
+		"animator:Noelle":
+		{
+			"DESCRIPTION": "{Starter}: If you do not have [Earth], channel 1 [Earth]. || Increase block by !M! for each {Synergic} card in your hand.",
+			"NAME": "Noelle"
+		},
 		"animator:Strike_GenshinImpact":
 		{
 			"DESCRIPTION": "Lose no [I] next turn.",
@@ -559,13 +574,13 @@
 		},
 		"animator:Venti":
 		{
-			"DESCRIPTION": "Channel !M! [Aether]. Orbs evoked by this card are evoked twice. || When discarded, draw !S! card(s).",
+			"DESCRIPTION": "{Channel} !M! [Aether]. Cycle a card for every Orb Evoked. || The last [Fire], [Frost], or [Lightning] Evoked by this card is Channeled on your next turn.",
 			"NAME": "Venti"
 		},
 		"animator:Zhongli":
 		{
-			"DESCRIPTION": "Whenever you Evoke [Earth], gain [Block] equal to that orb's evoke amount. At the end of each turn, ** spend !S! of your remaining ** Energy to {Channel} [Earth] and gain !M! [Plated Armor].",
-			"EXTENDED_DESCRIPTION": ["Whenever you Evoke #yEarth, also gain #yBlock. At the end of each turn, spend #b{0} of your remaining energy to channel #b{1} #yEarth."],
+			"DESCRIPTION": "[Earth] now gives half of its damage as [Block] when Evoked. || At the end of each turn, ** spend !S! of your remaining ** Energy to {Channel} [Earth] and gain !M! [Plated Armor].",
+			"EXTENDED_DESCRIPTION": ["#yEarth orbs now also give Block when Evoked. At the end of each turn, spend #b{0} of your remaining energy to channel #yEarth and gain #b{1} #yPlated #yArmor."],
 			"NAME": "Zhongli"
 		}
 	},

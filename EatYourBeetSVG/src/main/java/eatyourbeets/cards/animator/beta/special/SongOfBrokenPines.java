@@ -78,7 +78,6 @@ public class SongOfBrokenPines extends AnimatorCard
         {
             super(owner, POWER_ID);
 
-            // Initialize to number of strikes you have already played
             strikeCount = 0;
             ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn;
             for (AbstractCard abstractCard : cardsPlayed) {
@@ -106,7 +105,6 @@ public class SongOfBrokenPines extends AnimatorCard
         @Override
         public void atEndOfTurn(boolean isPlayer)
         {
-            // Deal damage to all enemies dependent on the number of strikes you played
             if (strikeCount > 0) {
                 int damagePerCreature = strikeCount * this.amount;
                 int[] damage = DamageInfo.createDamageMatrix(damagePerCreature, true);

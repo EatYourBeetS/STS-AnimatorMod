@@ -17,7 +17,7 @@ public class GenshinImpact extends AnimatorLoadout
 {
     public GenshinImpact()
     {
-        super(Synergies.TouhouProject);
+        super(Synergies.GenshinImpact);
         IsBeta = true;
     }
 
@@ -34,10 +34,8 @@ public class GenshinImpact extends AnimatorLoadout
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
-            startingDeck.add(JeanGunnhildr.DATA.ID);
-            startingDeck.add(BarbaraPegg.DATA.ID);
-            startingDeck.add(EulaLawrence.DATA.ID);
-            startingDeck.add(Venti.DATA.ID);
+            startingDeck.add(Amber.DATA.ID);
+            startingDeck.add(Noelle.DATA.ID);
         }
 
         return startingDeck;
@@ -46,7 +44,7 @@ public class GenshinImpact extends AnimatorLoadout
     @Override
     public EYBCardData GetSymbolicCard()
     {
-        return JeanGunnhildr.DATA;
+        return Venti.DATA;
     }
 
     @Override

@@ -69,8 +69,11 @@ public class Zhongli extends AnimatorCard
 
         @Override
         public void onEvokeOrb(AbstractOrb orb) {
+
+            super.onEvokeOrb(orb);
+
             if (Earth.ORB_ID.equals(orb.ID)) {
-                GameActions.Bottom.GainBlock(orb.evokeAmount);
+                GameActions.Bottom.GainBlock(orb.evokeAmount / 2);
             }
         }
 

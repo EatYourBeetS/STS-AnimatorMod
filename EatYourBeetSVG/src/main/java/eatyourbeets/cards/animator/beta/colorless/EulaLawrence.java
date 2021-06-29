@@ -40,7 +40,6 @@ public class EulaLawrence extends AnimatorCard {
 
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
 
-        // Set the cost of a random Basic card in your draw pile to 0 until played
         RandomizedList<AbstractCard> randomizedList = new RandomizedList<>();
         for (AbstractCard c : player.drawPile.group) {
             if (c != null && c.rarity.equals(CardRarity.BASIC))
@@ -54,9 +53,8 @@ public class EulaLawrence extends AnimatorCard {
             GameActions.Bottom.Motivate(card, 1);
         }
 
-        // Create Song of Broken Pines on synergy
         if (HasSynergy() && CombatStats.TryActivateLimited(cardID)) {
-            GameActions.Bottom.MakeCardInDrawPile(new SongOfBrokenPines());
+            GameActions.Bottom.MakeCardInDrawPile(new SongOfBrokenPines()).SetUpgrade(upgraded, false);
         }
 
     }

@@ -240,6 +240,7 @@ public class AnimatorPlayerData
         BetaLoadouts.add(new TouhouProject());
         BetaLoadouts.add(new RozenMaiden());
         BetaLoadouts.add(new Bleach());
+        BetaLoadouts.add(new GenshinImpact());
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...

@@ -18,8 +18,8 @@ public class Noelle extends AnimatorCard {
     public Noelle() {
         super(DATA);
 
-        Initialize(0, 2, 1);
-        SetUpgrade(0, 1, 1);
+        Initialize(0, 4, 1);
+        SetUpgrade(0, 2, 0);
         SetScaling(0, 0, 0);
 
         SetSynergy(Synergies.GenshinImpact);

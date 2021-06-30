@@ -1,8 +1,10 @@
 package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
+import com.megacrit.cardcrawl.actions.defect.DecreaseMaxOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
@@ -16,12 +18,13 @@ import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.TargetHelper;
 
 import java.util.ArrayList;
 
 public class Venti extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber {
     public static final EYBCardData DATA = Register(Venti.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
-    protected AbstractOrb nextTurnOrb;
+    protected final ArrayList<AbstractOrb> nextTurnOrbs = new ArrayList<>();
 
     public Venti() {
         super(DATA);
@@ -30,15 +33,19 @@ public class Venti extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
         SetUpgrade(0, 0, 0);
 
         SetEthereal(true);
-        SetExhaust(true);
         SetShapeshifter();
         SetSynergy(Synergies.GenshinImpact);
     }
 
     @Override
-    protected void OnUpgrade()
+    public void triggerOnExhaust()
     {
-        SetExhaust(false);
+        super.triggerOnExhaust();
+
+        if (player.maxOrbs > 0) {
+            GameActions.Bottom.Add(new DecreaseMaxOrbAction(player.maxOrbs));
+        }
+
     }
 
     @Override
@@ -51,18 +58,19 @@ public class Venti extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
         for (int i = Math.max(idxStart,0); i < orbsEvoked; i++)
         {
             AbstractOrb orb = p.orbs.get(i);
-            if (Fire.ORB_ID.equals(orb.ID) || Frost.ORB_ID.equals(orb.ID) || Lightning.ORB_ID.equals(orb.ID)) {
-                nextTurnOrb = orb.makeCopy();
+            if (!(orb instanceof EmptyOrbSlot)) {
+                nextTurnOrbs.add(orb.makeCopy());
             }
         }
         GameActions.Bottom.ChannelOrbs(Aether::new, magicNumber);
         if (orbsEvoked > 0) {
-            GameActions.Bottom.Cycle(name, orbsEvoked);
+            GameActions.Bottom.DiscardFromHand(name, orbsEvoked, !this.upgraded);
+            GameActions.Bottom.Draw(orbsEvoked);
         }
 
-        if (nextTurnOrb != null) {
+        if (nextTurnOrbs.size() > 0) {
             Venti other = (Venti) makeStatEquivalentCopy();
-            other.nextTurnOrb = this.nextTurnOrb;
+            other.nextTurnOrbs.addAll(this.nextTurnOrbs);
             CombatStats.onStartOfTurnPostDraw.Subscribe(other);
         }
 
@@ -70,9 +78,14 @@ public class Venti extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
 
     @Override
     public void OnStartOfTurnPostDraw() {
-        if (nextTurnOrb != null) {
+        if (this.nextTurnOrbs.size() > 0) {
             GameEffects.Queue.ShowCardBriefly(this);
-            GameActions.Bottom.ChannelOrb(nextTurnOrb);
+
+            for (AbstractOrb orb : this.nextTurnOrbs) {
+                orb.onStartOfTurn();
+                orb.onEndOfTurn();
+            }
+
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         }
     }

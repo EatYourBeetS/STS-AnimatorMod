@@ -18,8 +18,8 @@ public class Amber extends AnimatorCard {
     public Amber() {
         super(DATA);
 
-        Initialize(3, 3, 2);
-        SetUpgrade(1, 1, 0);
+        Initialize(3, 2, 2);
+        SetUpgrade(1, 1, 1);
         SetScaling(0, 0, 0);
 
         SetSynergy(Synergies.GenshinImpact);
@@ -34,13 +34,12 @@ public class Amber extends AnimatorCard {
 
         if (IsStarter())
         {
-            GameActions.Bottom.StackPower(p, new LockOnPower(m, magicNumber));
             GameActions.Bottom.ChannelOrb(new Fire());
         }
 
-        if (HasSynergy() && !CombatStats.HasActivatedSemiLimited(cardID))
+        if (HasSynergy())
         {
-            GameActions.Bottom.ChannelOrb(new Fire());
+            GameActions.Bottom.StackPower(p, new LockOnPower(m, magicNumber));
         }
     }
 }

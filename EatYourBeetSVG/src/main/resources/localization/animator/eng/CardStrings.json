@@ -539,12 +539,12 @@
 	"BETA:GENSHINIMPACT": {
 		"animator:Amber":
 		{
-			"DESCRIPTION": "{Starter}: Apply !M! [~Lock-On]. || Synergy: Channel 1 [Fire].",
+			"DESCRIPTION": "{Starter}: Channel 1 [Fire]. || Synergy: Apply !M! [~Lock-On].",
 			"NAME": "Amber"
 		},
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Fully heal ALL enemies. Channel 1 [Dark] and increase its passive power by 1 for every !M! HP healed. || <LIM>: If you healed at least 30 HP in total, gain !S! ** Regeneration.",
+			"DESCRIPTION": "Fully heal the enemy. Channel 1 [Dark] and increase its passive power by 1 for every !M! HP healed. || <LIM>: If you healed at least 30 HP in total, gain !S! ** Regeneration.",
 			"NAME": "Barbara Pegg"
 		},
 		"animator:Defend_GenshinImpact":
@@ -569,7 +569,7 @@
 		},
 		"animator:Noelle":
 		{
-			"DESCRIPTION": "{Starter}: If you do not have [Earth], channel 1 [Earth]. || Teamwork X: Gain !M!X ** additional [Block].",
+			"DESCRIPTION": "{Starter}: If you have no [Earth], channel 1 [Earth]. || Teamwork X: Gain !M!X more [Block].",
 			"NAME": "Noelle"
 		},
 		"animator:Strike_GenshinImpact":
@@ -577,10 +577,16 @@
 			"DESCRIPTION": "Lose no [I] next turn.",
 			"NAME": "Improved Strike"
 		},
+		"animator:Tartaglia":
+		{
+			"DESCRIPTION": "Remove [Burning]. Deal 1 additional damage for every 2 [Burning] removed. || Cooldown !S!: Transform this card into a {Nutcracker}.",
+			"NAME": "Tartaglia"
+		},
 		"animator:Venti":
 		{
-			"DESCRIPTION": "{Channel} !M! [Aether]. Cycle a card for every Orb Evoked. || The last [Fire], [Frost], or [Lightning] Evoked by this card is Channeled on your next turn.",
-			"NAME": "Venti"
+			"DESCRIPTION": "{Channel} !M! [Aether]. For every Orb Evoked: Cycle a random card and trigger it at the start of your next turn. || When Exhausted, lose ALL of your Orb Slots.",
+			"NAME": "Venti",
+			"UPGRADE_DESCRIPTION": "{Channel} !M! [Aether]. For every Orb Evoked: Cycle a card and trigger it at the start of your next turn. || When Exhausted, lose ALL of your Orb Slots."
 		},
 		"animator:Zhongli":
 		{

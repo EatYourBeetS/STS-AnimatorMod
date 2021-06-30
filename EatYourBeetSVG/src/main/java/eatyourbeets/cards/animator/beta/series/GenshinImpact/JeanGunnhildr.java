@@ -29,8 +29,14 @@ public class JeanGunnhildr extends AnimatorCard {
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.GainBlock(block);
+    }
 
-        GameActions.Top.DiscardFromHand(name, magicNumber, false)
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
+        GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
                 .SetOptions(true, true, true)
                 .AddCallback(cards ->
                 {
@@ -46,10 +52,5 @@ public class JeanGunnhildr extends AnimatorCard {
                         }
                     }
                 });
-
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActions.Bottom.GainBlock(block);
-
-
     }
 }

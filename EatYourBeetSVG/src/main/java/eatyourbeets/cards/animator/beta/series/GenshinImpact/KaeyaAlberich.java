@@ -39,8 +39,6 @@ public class KaeyaAlberich extends AnimatorCard {
             }
         }
 
-        GameActions.Bottom.ChannelOrb(new Frost());
-
         AbstractOrb firstCommonOrb = null;
         for (AbstractOrb orb : p.orbs)
             if (Fire.ORB_ID.equals(orb.ID) || Frost.ORB_ID.equals(orb.ID) || Lightning.ORB_ID.equals(orb.ID)) {
@@ -52,5 +50,7 @@ public class KaeyaAlberich extends AnimatorCard {
             firstCommonOrb.onStartOfTurn();
             firstCommonOrb.onEndOfTurn();
         }
+
+        GameActions.Bottom.ChannelOrb(new Frost());
     }
 }

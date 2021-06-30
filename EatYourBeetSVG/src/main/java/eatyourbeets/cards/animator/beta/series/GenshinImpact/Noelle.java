@@ -8,19 +8,18 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class Noelle extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Noelle.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Noelle.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.Self);
 
     public Noelle() {
         super(DATA);
 
-        Initialize(0, 3, 1);
-        SetUpgrade(0, 3, 0);
+        Initialize(0, 2, 1);
+        SetUpgrade(0, 1, 1);
         SetScaling(0, 0, 0);
 
         SetSynergy(Synergies.GenshinImpact);
@@ -29,7 +28,7 @@ public class Noelle extends AnimatorCard {
     @Override
     protected float GetInitialBlock()
     {
-        return super.GetInitialBlock() + (magicNumber * JUtils.Count(GameUtilities.GetOtherCardsInHand(this), this::HasSynergy));
+        return super.GetInitialBlock() + (magicNumber * GameUtilities.GetTeamwork(null));
     }
 
 

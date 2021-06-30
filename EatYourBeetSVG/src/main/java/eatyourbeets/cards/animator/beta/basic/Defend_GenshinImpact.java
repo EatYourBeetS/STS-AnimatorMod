@@ -2,10 +2,9 @@ package eatyourbeets.cards.animator.beta.basic;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Frost;
+import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
 
 public class Defend_GenshinImpact extends Defend
@@ -19,7 +18,7 @@ public class Defend_GenshinImpact extends Defend
         Initialize(0, 4, 0);
         SetUpgrade(0, 3);
 
-        SetCooldown(2, 0, this::OnCooldownCompleted);
+        SetCooldown(1, 0, this::OnCooldownCompleted);
         SetSynergy(Synergies.GenshinImpact);
     }
 
@@ -33,6 +32,6 @@ public class Defend_GenshinImpact extends Defend
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Earth());
+        GameActions.Bottom.ChannelOrb(new Lightning());
     }
 }

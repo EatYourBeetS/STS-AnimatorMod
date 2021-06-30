@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
@@ -14,7 +15,7 @@ import eatyourbeets.utilities.TargetHelper;
 public class Shiroe extends AnimatorCard
 {
     public static final int MINIMUM_TEAMWORK = 3;
-    public static final EYBCardData DATA = Register(Shiroe.class).SetSkill(0, CardRarity.RARE).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(Shiroe.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None).SetMaxCopies(2);
 
     public Shiroe()
     {

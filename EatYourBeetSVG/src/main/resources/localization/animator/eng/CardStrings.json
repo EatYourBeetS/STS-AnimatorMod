@@ -584,9 +584,8 @@
 		},
 		"animator:Venti":
 		{
-			"DESCRIPTION": "{Channel} !M! [Aether]. For every Orb Evoked: Cycle a random card and trigger it at the start of your next turn. || When Exhausted, lose ALL of your Orb Slots.",
-			"NAME": "Venti",
-			"UPGRADE_DESCRIPTION": "{Channel} !M! [Aether]. For every Orb Evoked: Cycle a card and trigger it at the start of your next turn. || When Exhausted, lose ALL of your Orb Slots."
+			"DESCRIPTION": "{Channel} !M! [Aether]. Next turn, trigger the last !S! Orbs Evoked this combat. || When Exhausted, lose ALL of your Orb Slots.",
+			"NAME": "Venti"
 		},
 		"animator:Zhongli":
 		{

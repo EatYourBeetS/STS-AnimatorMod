@@ -549,7 +549,7 @@
 		},
 		"animator:Defend_GenshinImpact":
 		{
-			"DESCRIPTION": "Cooldown !S!: ** {Channel} 1 [Earth].",
+			"DESCRIPTION": "Cooldown !S!: ** {Channel} 1 [Lightning].",
 			"NAME": "Improved Defend"
 		},
 		"animator:JeanGunnhildr":
@@ -559,12 +559,17 @@
 		},
 		"animator:KaeyaAlberich":
 		{
-			"DESCRIPTION": "{Channel} 1 [Frost]. Trigger your first [Fire], [Frost], or [Lightning]. || <SLM>. Synergy: Apply !M! [Shackles] to ALL enemies.",
+			"DESCRIPTION": "Trigger your first [Fire], [Frost], or [Lightning], then {Channel} 1 [Frost]. || <SLM>. Synergy: Apply !M! [Shackles] to ALL enemies.",
 			"NAME": "Kaeya Alberich"
+		},
+		"animator:LisaMinci":
+		{
+			"DESCRIPTION": "{Scry} !M!. Gain effects based on each Scryed card's rarity: || {Basic} or {Common}: Gain [Block]. ** {Uncommon}: Draw !S! more card(s) next turn. ** {Rare}: Gain [I]",
+			"NAME": "Lisa Minci"
 		},
 		"animator:Noelle":
 		{
-			"DESCRIPTION": "{Starter}: If you do not have [Earth], channel 1 [Earth]. || Increase block by !M! for each {Synergic} card in your hand.",
+			"DESCRIPTION": "{Starter}: If you do not have [Earth], channel 1 [Earth]. || Teamwork X: Gain !M!X ** additional [Block].",
 			"NAME": "Noelle"
 		},
 		"animator:Strike_GenshinImpact":

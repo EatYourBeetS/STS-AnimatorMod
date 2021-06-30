@@ -1,63 +1,68 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Shiroe extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Shiroe.class).SetAttack(0, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Normal);
+    public static final int MINIMUM_TEAMWORK = 3;
+    public static final EYBCardData DATA = Register(Shiroe.class).SetSkill(0, CardRarity.RARE).SetMaxCopies(2);
 
     public Shiroe()
     {
         super(DATA);
 
-        Initialize(1, 0, 1, 4);
-        SetUpgrade(1, 0, 0);
+        Initialize(0, 0, 2, 2);
+        SetUpgrade(0, 0, 0, 1);
 
-        SetUnique(true, true);
         SetExhaust(true);
 
         SetSynergy(Synergies.LogHorizon);
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        if (timesUpgraded % 3 == 0)
-        {
-            upgradeMagicNumber(1);
-        }
-
-        upgradedMagicNumber = true;
-    }
-
-    @Override
-    public void triggerOnGlowCheck()
-    {
-        super.triggerOnGlowCheck();
-
-        if (CombatStats.SynergiesThisTurn().size() >= secondaryValue && !CombatStats.HasActivatedLimited(cardID))
-        {
-            this.glowColor = AbstractCard.GREEN_BORDER_GLOW_COLOR;
-        }
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
-        GameActions.Bottom.ApplyConstricted(p, m, magicNumber);
+        GameActions.Bottom.Cycle(name, magicNumber);
+        GameActions.Bottom.StackPower(new ShiroePower(p, secondaryValue));
+    }
 
-        if (CombatStats.SynergiesThisTurn().size() >= secondaryValue && CombatStats.TryActivateLimited(cardID))
+    public static class ShiroePower extends AnimatorPower
+    {
+        public ShiroePower(AbstractPlayer owner, int amount)
         {
-            GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
-            .IncludeMasterDeck(true)
-            .IsCancellable(false);
+            super(owner, Shiroe.DATA);
+
+            this.amount = amount;
+
+            updateDescription();
+        }
+
+        @Override
+        public void onAfterCardPlayed(AbstractCard usedCard)
+        {
+            super.onAfterCardPlayed(usedCard);
+
+            if (GameUtilities.GetTeamwork(usedCard) >= MINIMUM_TEAMWORK)
+            {
+                GameActions.Bottom.ApplyConstricted(TargetHelper.All(), amount);
+            }
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
+        {
+            super.atEndOfTurn(isPlayer);
+
+            GameActions.Bottom.RemovePower(owner, owner, this);
         }
     }
 }

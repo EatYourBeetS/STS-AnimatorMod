@@ -737,7 +737,7 @@
 		},
 		"animator:Biyorigo":
 		{
-			"DESCRIPTION": "Gain 1 [Artifact]. ** Gain !M! [Thorns]. || At the end of each turn, ** spend 1 of your remaining ** Energy to gain 2 [F] [A].",
+			"DESCRIPTION": "Gain 1 [Artifact]. ** Gain !M! [Thorns]. || At the end of each turn: ** spend 1 of your remaining ** Energy to gain 2 [F] [A].",
 			"NAME": "Biyorigo"
 		},
 		"animator:Emonzaemon":
@@ -865,12 +865,12 @@
 	{
 		"animator:Akatsuki":
 		{
-			"DESCRIPTION": "<SLM>. When drawn: ** Create !M! 0-Cost copies of ** this card with Exhaust. They ** deal 0 damage. || This card {Synergizes} with {Uncommon} cards.",
+			"DESCRIPTION": "Deals !S! additional damage ** if the enemy is not attacking. || <slm>. When drawn: ** Create !M! {0-Cost} {0-Damage} ** copies of this card with ** Ethereal and Purge.",
 			"NAME": "Akatsuki"
 		},
 		"animator:Henrietta":
 		{
-			"DESCRIPTION": "If you are not in Neutral ** Stance: Motivate !M!. || At the end of each turn, ** spend !S! of your remaining ** [E] to enter any Stance.",
+			"DESCRIPTION": "Any Stance: Gain [E]. || At the end of each turn: ** Spend !S! of your ** remaining Energy to ** enter any Stance.",
 			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend 1 of your remaining Energy to enter any Stance."],
 			"NAME": "Henrietta"
 		},
@@ -880,9 +880,19 @@
 			"EXTENDED_DESCRIPTION": ["For #b{0} turn(s), whenever an #yAttack #ySynergizes: Play a random lower cost #yAttack from your draw pile."],
 			"NAME": "Isuzu Tonan"
 		},
+		"animator:Kanami":
+		{
+			"DESCRIPTION": "Apply !M! [Vulnerable] to ALL ** enemies. Return this ** card to your draw pile. || Cooldown !S!: Change ** this card's form.",
+			"NAME": "Kanami"
+		},
+		"animator:KanamiAlt":
+		{
+			"DESCRIPTION": "Deals double damage ** to {Elites} and triple ** damage to {Bosses}. || If the enemy has [Vulnerable]: ** Gain [F][A] and !M! [Block].",
+			"NAME": "Kanami"
+		},
 		"animator:Krusty":
 		{
-			"DESCRIPTION": "{Autoplay}. || Double this card's damage this combat.",
+			"DESCRIPTION": "When drawn: {Autoplay}. || Increase this card [F] scaling by !M!.",
 			"NAME": "Krusty"
 		},
 		"animator:Marielle":
@@ -912,7 +922,7 @@
 		},
 		"animator:Rayneshia":
 		{
-			"DESCRIPTION": "<DRW-M>. Move !M! ** cards from your hand ** to your draw pile. || <LIM>. <TM-S>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
+			"DESCRIPTION": "<DRW-M>. Move !M! ** cards to your draw pile. || <LIM>. <TM-S>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
 			"NAME": "Rayneshia"
 		},
 		"animator:RundelhausCode":
@@ -928,7 +938,8 @@
 		},
 		"animator:Shiroe":
 		{
-			"DESCRIPTION": "{~Unique}. Apply !M! ** Constricted. || <LIM>. If your made !S! or more Synergies this turn: ** Permanently Upgrade this ** card.",
+			"DESCRIPTION": "Cycle !M! cards. || All cards this turn have: Teamwork 3: Apply !S! [Constricted] to ALL enemies.",
+			"EXTENDED_DESCRIPTION": ["All cards have: #yTeamwork 3: Apply #b{0} #yConstricted to ALL enemies."],
 			"NAME": "Shiroe"
 		},
 		"animator:Soujiro":
@@ -960,7 +971,7 @@
 		{
 			"DESCRIPTION": "Synergizes with {High ** Cost} cards. Requires ** <TM-S> to play. || Every third Synergy: ** Randomly gain [F], [A], [I].",
 			"EXTENDED_DESCRIPTION": ["Every third #ySynergy, randomly gain #yForce, #yAgility or #yIntellect #b{0} time(s)."],
-			"NAME": "Tetora"
+			"NAME": "Tetra"
 		}
 	},
 

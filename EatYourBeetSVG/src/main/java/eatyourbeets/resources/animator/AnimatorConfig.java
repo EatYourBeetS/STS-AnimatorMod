@@ -22,10 +22,12 @@ public class AnimatorConfig
     private static final String TROPHY_DATA_KEY = "TDAL";
     private static final String CROP_CARD_PORTRAIT_KEY =  "TheAnimator-UseCroppedPortrait";
     private static final String DISPLAY_BETA_SERIES =  "TheAnimator-DisplayBetaSeries";
+    private static final String FADE_CARDS_WITHOUT_SYNERGY =  "TheAnimator-FadeNonSynergicCards";
 
     private SpireConfig config;
     private Boolean cropCardImages = null;
     private Boolean displayBetaSeries = null;
+    private Boolean fadeCardsWithoutSynergy = null;
 
     public boolean CropCardImages()
     {
@@ -80,6 +82,34 @@ public class AnimatorConfig
             Save();
         }
     }
+
+    public boolean FadeCardsWithoutSynergy()
+    {
+        if (fadeCardsWithoutSynergy == null)
+        {
+            if (config.has(FADE_CARDS_WITHOUT_SYNERGY))
+            {
+                fadeCardsWithoutSynergy = config.getBool(FADE_CARDS_WITHOUT_SYNERGY);
+            }
+            else
+            {
+                fadeCardsWithoutSynergy = true; // Default value
+            }
+        }
+
+        return fadeCardsWithoutSynergy;
+    }
+
+    public void FadeCardsWithoutSynergy(boolean value, boolean flush)
+    {
+        config.setBool(FADE_CARDS_WITHOUT_SYNERGY, fadeCardsWithoutSynergy = value);
+
+        if (flush)
+        {
+            Save();
+        }
+    }
+
 
     public String TrophyString()
     {
@@ -159,11 +189,12 @@ public class AnimatorConfig
     {
         ModPanel settingsPanel = new ModPanel();
         AnimatorStrings.Misc misc = GR.Animator.Strings.Misc;
-        AddToggle(settingsPanel, misc.UseCardHoveringAnimation, 400, 700, CropCardImages(), c -> CropCardImages(c.enabled, true));
+        AddToggle(settingsPanel, misc.FadeCardsWithoutSynergy, 400, 700, CropCardImages(), c -> CropCardImages(c.enabled, true));
+        AddToggle(settingsPanel, misc.UseCardHoveringAnimation, 400, 650, CropCardImages(), c -> CropCardImages(c.enabled, true));
 
         if (GR.Animator.Data.BetaLoadouts.size() > 0)
         {
-            AddToggle(settingsPanel, misc.DisplayBetaSeries, 400, 650, DisplayBetaSeries(), c -> DisplayBetaSeries(c.enabled, true));
+            AddToggle(settingsPanel, misc.DisplayBetaSeries, 400, 600, DisplayBetaSeries(), c -> DisplayBetaSeries(c.enabled, true));
         }
         else
         {

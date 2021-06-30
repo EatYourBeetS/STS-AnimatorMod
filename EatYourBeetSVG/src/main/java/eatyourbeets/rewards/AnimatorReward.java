@@ -121,7 +121,7 @@ public abstract class AnimatorReward extends CustomReward
             return;
         }
 
-        AnimatorLoadout loadout = GR.Animator.Data.GetByName(synergy.Name);
+        AnimatorLoadout loadout = GR.Animator.Data.GetLoadout(synergy);
         if (loadout == null)
         {
             return;
@@ -149,8 +149,7 @@ public abstract class AnimatorReward extends CustomReward
             EYBCardData data = loadout.GetUltraRare();
             if (data != null)
             {
-                cards.remove(0);
-                cards.add(data.CreateNewInstance());
+                cards.set(Math.min(1, cards.size()), data.CreateNewInstance());
             }
         }
     }

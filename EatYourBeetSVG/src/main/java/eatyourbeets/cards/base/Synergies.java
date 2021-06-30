@@ -64,6 +64,7 @@ public class Synergies
     public final static Synergy CardcaptorSakura = CreateSynergy(48);
     public final static Synergy GuiltyCrown = CreateSynergy(49);
     public final static Synergy Gakkougurashi = CreateSynergy(50);
+    public final static Synergy GenshinImpact = CreateSynergy(51);
 
     private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;

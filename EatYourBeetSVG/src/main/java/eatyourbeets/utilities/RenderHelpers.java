@@ -81,6 +81,35 @@ public class RenderHelpers
         BitmapFont result;
         if (card.isPopup)
         {
+            result = EYBFontHelper.CardTitleFont_Large;
+            result.getData().setScale(card.drawScale * scaleModifier * 0.5f);
+        }
+        else
+        {
+            // NOTE: this was FontHelper.cardTitleFont_small
+            result = EYBFontHelper.CardTitleFont_Small;
+            result.getData().setScale(card.drawScale * scaleModifier);
+        }
+
+        return result;
+    }
+
+    public static BitmapFont GetSmallTextFont_Legacy(EYBCardBase card, String text)
+    {
+        float scaleModifier = 0.8f;
+        int length = text.length();
+        if (length > 20)
+        {
+            scaleModifier -= 0.02f * (length - 20);
+            if (scaleModifier < 0.5f)
+            {
+                scaleModifier = 0.5f;
+            }
+        }
+
+        BitmapFont result;
+        if (card.isPopup)
+        {
             result = FontHelper.SCP_cardTitleFont_small;
             result.getData().setScale(card.drawScale * scaleModifier * 0.5f);
         }
@@ -116,13 +145,13 @@ public class RenderHelpers
         BitmapFont result;
         if (card.isPopup)
         {
-            result = FontHelper.SCP_cardTitleFont_small;
+            result = EYBFontHelper.CardTitleFont_Large;
             result.getData().setScale(card.drawScale * 0.5f);
         }
         else
         {
             // NOTE: this was FontHelper.cardTitleFont_small
-            result = (card.name.length() > 14) ? EYBFontHelper.CardTitleFont_Small : FontHelper.cardTitleFont;
+            result = (card.name.length() > 14) ? EYBFontHelper.CardTitleFont_Small : EYBFontHelper.CardTitleFont_Normal;
             result.getData().setScale(card.drawScale);
         }
 

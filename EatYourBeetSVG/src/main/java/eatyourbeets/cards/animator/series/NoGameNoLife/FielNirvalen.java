@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
-import eatyourbeets.misc.GenericEffects.GenericEffect_Boost;
+import eatyourbeets.misc.GenericEffects.GenericEffect_GainOrBoost;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
@@ -47,9 +47,9 @@ public class FielNirvalen extends AnimatorCard
 
         if (choices.TryInitialize(this))
         {
-            choices.AddEffect(new GenericEffect_Boost(GR.Tooltips.Agility, 1));
-            choices.AddEffect(new GenericEffect_Boost(GR.Tooltips.Intellect, 1));
-            choices.AddEffect(new GenericEffect_Boost(GR.Tooltips.Force, 1));
+            choices.AddEffect(new GenericEffect_GainOrBoost(GR.Tooltips.Agility, 1, true));
+            choices.AddEffect(new GenericEffect_GainOrBoost(GR.Tooltips.Intellect, 1, true));
+            choices.AddEffect(new GenericEffect_GainOrBoost(GR.Tooltips.Force, 1, true));
         }
 
         choices.Select(secondaryValue, m);

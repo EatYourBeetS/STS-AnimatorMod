@@ -3,6 +3,7 @@ package eatyourbeets.utilities;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
+import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
@@ -28,13 +29,16 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.screens.stats.AchievementGrid;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
-import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
+import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
+import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
-import eatyourbeets.interfaces.subscribers.OnTryApplyPowerSubscriber;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
@@ -42,10 +46,7 @@ import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Predicate;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
@@ -53,6 +54,7 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 public class GameUtilities
 {
     private static final HandLayoutRefresher handLayoutRefresher = new HandLayoutRefresher();
+    private static final ArrayList<PowerHelper> commonDebuffs = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
     public static void ApplyPowerInstantly(AbstractCreature target, PowerHelper powerHelper, int stacks)
@@ -88,9 +90,9 @@ public class GameUtilities
         {
             for (AbstractPower power : target.powers)
             {
-                if (power instanceof OnTryApplyPowerSubscriber)
+                if (power instanceof OnTryApplyPowerListener)
                 {
-                    canApply &= ((OnTryApplyPowerSubscriber) power).TryApplyPower(powerToApply, target, source);
+                    canApply &= ((OnTryApplyPowerListener) power).TryApplyPower(powerToApply, target, source);
                 }
             }
 
@@ -98,9 +100,9 @@ public class GameUtilities
             {
                 for (AbstractPower power : source.powers)
                 {
-                    if (power instanceof OnTryApplyPowerSubscriber)
+                    if (power instanceof OnTryApplyPowerListener)
                     {
-                        canApply &= ((OnTryApplyPowerSubscriber) power).TryApplyPower(powerToApply, target, source);
+                        canApply &= ((OnTryApplyPowerListener) power).TryApplyPower(powerToApply, target, source);
                     }
                 }
             }
@@ -131,6 +133,18 @@ public class GameUtilities
         copy.targetTransparency = original.targetTransparency;
         copy.angle = original.angle;
         copy.targetAngle = original.targetAngle;
+    }
+
+    public static CardGroup CreateCardGroup(List<AbstractCard> cards)
+    {
+        return CreateCardGroup(cards, CardGroup.CardGroupType.UNSPECIFIED);
+    }
+
+    public static CardGroup CreateCardGroup(List<AbstractCard> cards, CardGroup.CardGroupType type)
+    {
+        CardGroup group = new CardGroup(type);
+        group.group.addAll(cards);
+        return group;
     }
 
     public static void DecreaseBlock(AbstractCard card, int amount, boolean temporary)
@@ -181,6 +195,18 @@ public class GameUtilities
         else
         {
             return null;
+        }
+    }
+
+    public static void Flash(AbstractCard card, boolean superFlash)
+    {
+        if (superFlash)
+        {
+            card.superFlash();
+        }
+        else
+        {
+            card.flash();
         }
     }
 
@@ -352,6 +378,28 @@ public class GameUtilities
         return result;
     }
 
+    public static RandomizedList<AbstractCard> GetCardPoolInCombat(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
+    {
+        return GetCardPoolInCombat(GetCardPool(rarity, color), null);
+    }
+
+    public static RandomizedList<AbstractCard> GetCardPoolInCombat(CardGroup group, FuncT1<Boolean, AbstractCard> filter)
+    {
+        RandomizedList<AbstractCard> cards = new RandomizedList<>();
+        if (group != null)
+        {
+            for (AbstractCard c : group.group)
+            {
+                if (!c.hasTag(AbstractCard.CardTags.HEALING) && (filter == null || filter.Invoke(c)))
+                {
+                    cards.Add(c);
+                }
+            }
+        }
+
+        return cards;
+    }
+
     public static CardGroup GetCardPool(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
     {
         if (color == AbstractCard.CardColor.COLORLESS)
@@ -401,6 +449,20 @@ public class GameUtilities
         result.add(AbstractDungeon.rareCardPool);
         result.add(AbstractDungeon.curseCardPool);
         return result;
+    }
+
+    public static ArrayList<PowerHelper> GetCommonDebuffs()
+    {
+        if (commonDebuffs.isEmpty())
+        {
+            commonDebuffs.add(PowerHelper.Poison);
+            commonDebuffs.add(PowerHelper.Weak);
+            commonDebuffs.add(PowerHelper.Vulnerable);
+            commonDebuffs.add(PowerHelper.Burning);
+            commonDebuffs.add(PowerHelper.Shackles);
+        }
+
+        return commonDebuffs;
     }
 
     public static AbstractRoom GetCurrentRoom()
@@ -676,7 +738,7 @@ public class GameUtilities
                 }
             }
 
-            if (temp instanceof OnAddingToCardReward && ((OnAddingToCardReward) temp).ShouldCancel(rewardItem))
+            if (temp instanceof OnAddingToCardRewardListener && ((OnAddingToCardRewardListener) temp).ShouldCancel(rewardItem))
             {
                 searchingCard = true;
             }
@@ -772,6 +834,48 @@ public class GameUtilities
             default:
                 return null;
         }
+    }
+
+    public static int GetTeamwork(AbstractCard ignored)
+    {
+        int total = 0;
+        AbstractCard c1;
+        AbstractCard c2;
+        for (int i = 0; i < player.hand.group.size(); i++)
+        {
+            c1 = player.hand.group.get(i);
+            if (c1 == ignored)
+            {
+                continue;
+            }
+            if (c1.hasTag(AnimatorCard.SHAPESHIFTER))
+            {
+                total += 1;
+                continue;
+            }
+
+            for (int j = 0; j < player.hand.group.size(); j++)
+            {
+                c2 = player.hand.group.get(j);
+                if (c2 != ignored && c1 != c2 && !c2.hasTag(AnimatorCard.SHAPESHIFTER) && Synergies.WouldSynergize(c1, c2))
+                {
+                    total += 1;
+                    break;
+                }
+            }
+        }
+
+        return total;
+    }
+
+    public static int GetTempHP(AbstractCreature creature)
+    {
+        return creature != null ? TempHPField.tempHp.get(creature) : 0;
+    }
+
+    public static int GetTempHP()
+    {
+        return GetTempHP(player);
     }
 
     public static int GetUniqueOrbsCount()
@@ -1033,6 +1137,11 @@ public class GameUtilities
         CombatStats.onAfterCardPlayed.Subscribe(new CardPlayedListener(card, onCardPlayed));
     }
 
+    public static <T> void TriggerWhenPlayed(AbstractCard card, T state, ActionT2<T, AbstractCard> onCardPlayed)
+    {
+        CombatStats.onAfterCardPlayed.Subscribe(new CardPlayedListener(card, state, onCardPlayed));
+    }
+
     public static Vector2 TryGetPosition(CardGroup group)
     {
         if (group != null)
@@ -1158,13 +1267,25 @@ public class GameUtilities
 
     private static class CardPlayedListener implements OnAfterCardPlayedSubscriber
     {
+        private final Object state;
         private final AbstractCard card;
-        private ActionT1<AbstractCard> onCardPlayed;
+        private final ActionT1<AbstractCard> onCardPlayedT1;
+        private final ActionT2<?, AbstractCard> onCardPlayedT2;
 
         public CardPlayedListener(AbstractCard card, ActionT1<AbstractCard> onCardPlayed)
         {
+            this.state = null;
             this.card = card;
-            this.onCardPlayed = onCardPlayed;
+            this.onCardPlayedT1 = onCardPlayed;
+            this.onCardPlayedT2 = null;
+        }
+
+        public <T> CardPlayedListener(AbstractCard card, T state, ActionT2<T, AbstractCard> onCardPlayed)
+        {
+            this.state = state;
+            this.card = card;
+            this.onCardPlayedT1 = null;
+            this.onCardPlayedT2 = onCardPlayed;
         }
 
         @Override
@@ -1172,9 +1293,14 @@ public class GameUtilities
         {
             if (this.card.uuid.equals(card.uuid))
             {
-                if (this.onCardPlayed != null)
+                if (this.onCardPlayedT1 != null)
                 {
-                    this.onCardPlayed.Invoke(card);
+                    this.onCardPlayedT1.Invoke(card);
+                }
+
+                if (this.onCardPlayedT2 != null)
+                {
+                    this.onCardPlayedT2.CastAndInvoke(state, card);
                 }
 
                 CombatStats.onAfterCardPlayed.Unsubscribe(this);

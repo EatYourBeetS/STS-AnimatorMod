@@ -27,7 +27,7 @@ public class HighElfArcher extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
@@ -36,7 +36,7 @@ public class HighElfArcher extends AnimatorCard
             GameActions.Bottom.GainAgility(1);
         }
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.ModifyAllInstances(uuid)
             .AddCallback(c ->

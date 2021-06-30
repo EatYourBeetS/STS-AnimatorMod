@@ -33,13 +33,13 @@ public class AcuraAkari extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DiscardFromHand(name, 2, false)
         .SetOptions(false, false, false)
         .AddCallback(() -> GameActions.Bottom.CreateThrowingKnives(magicNumber));
 
-        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
+        if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.StackPower(new TemporaryEnvenomPower(p, secondaryValue));
         }

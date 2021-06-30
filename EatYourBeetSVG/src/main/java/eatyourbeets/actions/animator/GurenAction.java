@@ -12,7 +12,7 @@ public class GurenAction extends PlayCard
 {
     public GurenAction(AbstractCreature target)
     {
-        super(null, target, false);
+        super(null, target, false, true);
 
         Initialize(player, target, 1);
     }

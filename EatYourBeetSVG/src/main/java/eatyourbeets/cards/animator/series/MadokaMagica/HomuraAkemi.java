@@ -38,7 +38,7 @@ public class HomuraAkemi extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.SFX("POWER_TIME_WARP", 0.05F);
         GameActions.Bottom.VFX(new TimeWarpTurnEndEffect());

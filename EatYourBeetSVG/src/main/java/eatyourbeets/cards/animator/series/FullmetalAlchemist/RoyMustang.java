@@ -31,21 +31,9 @@ public class RoyMustang extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
-
-        int max = p.orbs.size();
-        int i = 0;
-
-        for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
-        {
-            if (i < max)
-            {
-                GameActions.Bottom.ChannelOrb(new Fire(), true);
-            }
-
-            i += 1;
-        }
+        GameActions.Bottom.ChannelOrbs(Fire::new, Math.min(p.orbs.size(), GameUtilities.GetEnemies(true).size()));
     }
 }

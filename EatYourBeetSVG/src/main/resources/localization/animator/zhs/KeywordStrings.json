@@ -1,5 +1,11 @@
 
 {
+	"Aura":
+	{
+		"DESCRIPTION": "光环在条件满足时自动触发。 不加入战斗中的牌组。",
+		"NAMES": ["光环"],
+		"PROPER_NAME": "光环"
+	},
 	"Cooldown":
 	{
 		"DESCRIPTION": "每次打出或丢弃时减少层数。 层数为 #b0 时打出或丢弃触发效果。",
@@ -53,6 +59,12 @@
 		"DESCRIPTION": "连续使用同一系列的牌或者 #y法师 或者 #y武师 时触发 #y同调 。",
 		"NAMES": ["同调"],
 		"PROPER_NAME": "同调"
+	},
+	"Teamwork":
+	{
+		"DESCRIPTION": "你的 #y协作 值为能与另一张不是 #y 变形者 的手牌 #y同调 的手牌数量。",
+		"NAMES": ["协作"],
+		"PROPER_NAME": "协作"
 	},
 	"~Orb Core":
 	{

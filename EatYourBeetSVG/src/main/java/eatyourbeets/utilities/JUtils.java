@@ -2,6 +2,7 @@ package eatyourbeets.utilities;
 
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.random.Random;
+import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,10 +13,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URISyntaxException;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
@@ -52,6 +50,30 @@ public class JUtils
         }
 
         return count;
+    }
+
+    public static <K, V> Map<K, List<V>> Group(Iterable<V> list, FuncT1<K, V> getKey)
+    {
+        Map<K, List<V>> map = new HashMap<>();
+        for (V v : list)
+        {
+            K k = getKey.Invoke(v);
+            map.computeIfAbsent(k, key -> new ArrayList<>()).add(v);
+        }
+
+        return map;
+    }
+
+    public static <K, V, C> Map<K, C> Group(Iterable<V> list, FuncT1<K, V> getKey, ActionT3<K, V, C> add)
+    {
+        Map<K, C> map = new HashMap<>();
+        for (V v : list)
+        {
+            K k = getKey.Invoke(v);
+            add.Invoke(k, v, map.get(k));
+        }
+
+        return map;
     }
 
     public static <T> ArrayList<T> Filter(Iterable<T> list, Predicate<T> predicate)

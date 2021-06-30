@@ -30,7 +30,7 @@ public class Lelouch extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Top.ExhaustFromHand(name, magicNumber, true).ShowEffect(true, true)
         .SetOptions(true, true, true);

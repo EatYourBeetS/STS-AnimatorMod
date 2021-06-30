@@ -35,7 +35,7 @@ public class MisakiNakahara extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         CardRarity rarity = rng.randomBoolean(0.25f) ? CardRarity.RARE : CardRarity.UNCOMMON;

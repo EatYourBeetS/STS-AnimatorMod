@@ -29,6 +29,7 @@ public class Viivi extends AnimatorCard
         SetUpgrade(0, 0, 1);
         SetScaling(0, 1, 0);
 
+        SetMartialArtist();
         SetSynergy(Synergies.Chaika);
     }
 
@@ -53,7 +54,7 @@ public class Viivi extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         for (int i = 0; i < magicNumber; i++)
         {

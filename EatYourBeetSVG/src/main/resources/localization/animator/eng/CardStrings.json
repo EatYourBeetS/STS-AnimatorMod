@@ -57,6 +57,11 @@
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
+		"animator:Defend_LogHorizon":
+		{
+			"DESCRIPTION": "Synergizes with {Spellcasters}.",
+			"NAME": "Improved Defend"
+		},
 		"animator:Defend_NoGameNoLife":
 		{
 			"DESCRIPTION": "Retain your leftmost ** playable card.",
@@ -135,6 +140,11 @@
 		"animator:Strike_Konosuba":
 		{
 			"DESCRIPTION": "",
+			"NAME": "Improved Strike"
+		},
+		"animator:Strike_LogHorizon":
+		{
+			"DESCRIPTION": "Synergizes with {Martial Artists}.",
 			"NAME": "Improved Strike"
 		},
 		"animator:Strike_NoGameNoLife":
@@ -365,7 +375,7 @@
 		},
 		"animator:Ciel":
 		{
-			"DESCRIPTION": "Starter: Apply !M! [Vulnerable] [~Lock-On]. || Increase the damage ** of every copy of {Lu} ** by !S! this combat.",
+			"DESCRIPTION": "<ST>: Apply !M! [Vulnerable] [~Lock-On]. || Increase the damage ** of every copy of {Lu} ** by !S! this combat.",
 			"NAME": "Ciel"
 		},
 		"animator:Elesis":
@@ -598,7 +608,6 @@
 		"animator:Tyuule":
 		{
 			"DESCRIPTION": "Apply !M! [Poison] to ** ALL enemies, then ** increase each of their ** {Common Debuffs} by 1.",
-			"EXTENDED_DESCRIPTION": ["Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
 			"NAME": "Tyuule"
 		},
 		"animator:YaoHaDucy":
@@ -714,7 +723,7 @@
 		},
 		"animator:Viivi":
 		{
-			"DESCRIPTION": "Starter. Gain [A] ** and <DRW>. || When Discarded: Add ** 1 [T-Knife] to your hand.",
+			"DESCRIPTION": "<ST>. Gain [A] ** and <DRW>. || When Discarded: Add ** 1 [T-Knife] to your hand.",
 			"NAME": "Viivi"
 		}
 	},
@@ -728,7 +737,7 @@
 		},
 		"animator:Biyorigo":
 		{
-			"DESCRIPTION": "Gain 1 [Artifact]. ** Gain !M! [Thorns]. || At the end of each turn, ** spend 1 of your remaining ** Energy to gain 2 [F] [A].",
+			"DESCRIPTION": "Gain 1 [Artifact]. ** Gain !M! [Thorns]. || At the end of each turn: ** spend 1 of your remaining ** Energy to gain 2 [F] [A].",
 			"NAME": "Biyorigo"
 		},
 		"animator:Emonzaemon":
@@ -851,6 +860,120 @@
 			"NAME": "YunYun"
 		}
 	},
+	
+	"SERIES:LOGHORIZON":
+	{
+		"animator:Akatsuki":
+		{
+			"DESCRIPTION": "Deals !S! additional damage ** if the enemy is not attacking. || <slm>. When drawn: ** Create !M! {0-Cost} {0-Damage} ** copies of this card with ** Ethereal and Purge.",
+			"NAME": "Akatsuki"
+		},
+		"animator:Henrietta":
+		{
+			"DESCRIPTION": "Any Stance: Gain [E]. || At the end of each turn: ** Spend !S! of your ** remaining Energy to ** enter any Stance.",
+			"EXTENDED_DESCRIPTION": ["At the end of each turn, spend 1 of your remaining Energy to enter any Stance."],
+			"NAME": "Henrietta"
+		},
+		"animator:IsuzuTonan":
+		{
+			"DESCRIPTION": "For !M! turn(s): Whenever ** an {Attack} Synergizes, ** play a random lower ** cost {Attack} from ** your draw pile.",
+			"EXTENDED_DESCRIPTION": ["For #b{0} turn(s), whenever an #yAttack #ySynergizes: Play a random lower cost #yAttack from your draw pile."],
+			"NAME": "Isuzu Tonan"
+		},
+		"animator:Kanami":
+		{
+			"DESCRIPTION": "Apply !M! [Vulnerable] to ALL ** enemies. Return this ** card to your draw pile. || Cooldown !S!: Change ** this card's form.",
+			"NAME": "Kanami"
+		},
+		"animator:KanamiAlt":
+		{
+			"DESCRIPTION": "Deals double damage ** to {Elites} and triple ** damage to {Bosses}. || If the enemy has [Vulnerable]: ** Gain [F][A] and !M! [Block].",
+			"NAME": "Kanami"
+		},
+		"animator:Krusty":
+		{
+			"DESCRIPTION": "When drawn: {Autoplay}. || Increase this card [F] scaling by !M!.",
+			"NAME": "Krusty"
+		},
+		"animator:Marielle":
+		{
+			"DESCRIPTION": "{Motivate} 1 card of each ** type in your draw pile. || Synergy: Gain !M! [Temporary HP] ** and Purge.",
+			"NAME": "Marielle"
+		},
+		"animator:HousakiMinori":
+		{
+			"DESCRIPTION": "Cooldown !S!: Gain !M! [Enchanted Armor]. || <SLM>. Synergy or ** Discard: Shuffle this card ** into your draw pile.",
+			"NAME": "Minori Housaki"
+		},
+		"animator:HousakiTohya":
+		{
+			"DESCRIPTION": " Apply !M! [Vulnerable]. || Draw {Minori Housaki}. || <TM-S>: Gain [E]",
+			"NAME": "Tohya Housaki"
+		},
+		"animator:Naotsugu":
+		{
+			"DESCRIPTION": "Play the lowest [Block] card ** with [Block] lower than ** unblocked damage dealt. || [F] Stance: Play ALL ** eligible cards instead.",
+			"NAME": "Naotsugu"
+		},
+		"animator:Nyanta":
+		{
+			"DESCRIPTION": "Gain/Boost [A]. Apply a ** random {Common Debuff} ** on each attack. || Any Stance: Attack 1 ** additional time",
+			"NAME": "Nyanta"
+		},
+		"animator:Rayneshia":
+		{
+			"DESCRIPTION": "<DRW-M>. Move !M! ** cards to your draw pile. || <LIM>. <TM-S>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
+			"NAME": "Rayneshia"
+		},
+		"animator:RundelhausCode":
+		{
+			"DESCRIPTION": "Gain [I]. Give !M! random ** card(s) +2 [I] scaling ** (does not stack). || <TM-S>, Choose 1: ** Channel [Fire], [Lightning] or [Frost].",
+			"NAME": "Rundelhaus Code"
+		},
+		"animator:Serara":
+		{
+			"DESCRIPTION": "If an enemy intends ** to attack: Gain [F] and ** give a random card +2 [F] ** scaling (does not stack).",
+			"NAME": "Serara",
+			"UPGRADE_DESCRIPTION": "If an enemy intends ** to attack: Gain [F] and ** give a card +2 [F] ** scaling (does not stack)."
+		},
+		"animator:Shiroe":
+		{
+			"DESCRIPTION": "Cycle !M! cards. || All cards this turn have: Teamwork 3: Apply !S! [Constricted] to ALL enemies.",
+			"EXTENDED_DESCRIPTION": ["All cards have: #yTeamwork 3: Apply #b{0} #yConstricted to ALL enemies."],
+			"NAME": "Shiroe"
+		},
+		"animator:Soujiro":
+		{
+			"DESCRIPTION": "Teamwork X: Deal !M!X ** additional damage. || When drawn: Choose 1 of 4 ** cards to add to your hand, ** you can only choose the ** same card once.",
+			"NAME": "Soujiro"
+		},
+		"animator:Soujiro_Isami":
+		{
+			"DESCRIPTION": "<ST>: Boost [A].",
+			"NAME": "Isami"
+		},
+		"animator:Soujiro_Kawara":
+		{
+			"DESCRIPTION": "If the enemy ** is attacking: Gain !M! ** additional [Block].",
+			"NAME": "Kawara"
+		},
+		"animator:Soujiro_Hisako":
+		{
+			"DESCRIPTION": "Evoke your first ** orb to Boost [I].",
+			"NAME": "Hisako"
+		},
+		"animator:Soujiro_Nazuna":
+		{
+			"DESCRIPTION": "Draw 1 less ** card next turn.",
+			"NAME": "Nazuna"
+		},
+		"animator:Tetora":
+		{
+			"DESCRIPTION": "Synergizes with {High ** Cost} cards. Requires ** <TM-S> to play. || Every third Synergy: ** Randomly gain [F], [A], [I].",
+			"EXTENDED_DESCRIPTION": ["Every third #ySynergy, randomly gain #yForce, #yAgility or #yIntellect #b{0} time(s)."],
+			"NAME": "Tetra"
+		}
+	},
 
 	"SERIES:MADOKAMAGICA":
 	{
@@ -882,7 +1005,7 @@
 		},
 		"animator:KyokoSakura":
 		{
-			"DESCRIPTION": "Starter: Gain [F] ** and Channel 1 [Fire]. || <DRW-M>. ** Put !M! card(s) on top ** of your draw pile.",
+			"DESCRIPTION": "<ST>: Gain [F] ** and Channel 1 [Fire]. || <DRW-M>. ** Put !M! card(s) on top ** of your draw pile.",
 			"NAME": "Kyoko Sakura"
 		},
 		"animator:MadokaKaname":
@@ -922,9 +1045,9 @@
 		},
 		"animator:SuzuneAmano":
 		{
-			"DESCRIPTION": "Starter: <DRW> and ** deal !S! additional damage ** for each [Fire] you have. || Exhaust 1 random ** card to apply !M! [Burning].",
+			"DESCRIPTION": "<ST>: <DRW> and ** deal !S! additional damage ** for each [Fire] you have. || Exhaust 1 random ** card to apply !M! [Burning].",
 			"NAME": "Suzune Amano",
-			"UPGRADE_DESCRIPTION": "Starter: <DRW> and ** deal !S! additional damage ** for each [Fire] you have. || Exhaust 1 card ** to apply !M! [Burning]."
+			"UPGRADE_DESCRIPTION": "<ST>: <DRW> and ** deal !S! additional damage ** for each [Fire] you have. || Exhaust 1 card ** to apply !M! [Burning]."
 		},
 		"animator:Walpurgisnacht":
 		{
@@ -1240,6 +1363,26 @@
 			"NAME": "Vesta"
 		}
 	},
+	
+	"AURAS":
+	{
+		"animator:Aura1":
+		{
+			"NAME": "Stance Aura",
+			"DESCRIPTION": "At the start of your third ** turn: Enter a Stance of ** your choice.",
+			"UPGRADE_DESCRIPTION": "At the start of your third ** turn: Enter a Stance of ** your choice and Motivate ** 1 card in your draw pile."
+		},
+		"animator:Aura2":
+		{
+			"NAME": "Synergy Aura",
+			"DESCRIPTION": "At the start of your third ** turn: Heal 1 HP for each ** time you Synergized ** this combat, up to !M!."
+		},
+		"animator:Aura3":
+		{
+			"NAME": "Attack Aura",
+			"DESCRIPTION": "At the start of your third ** turn: <DRW-M> and ** apply 1 [Vulnerable] to a random ** enemy, ignoring [Artifact]."
+		}
+	},
 
 	"SPECIAL":
 	{
@@ -1338,7 +1481,7 @@
 		},
 		"animator:OrbCore_Fire":
 		{
-			"DESCRIPTION": "Channel !S! [Fire]. || On your second ** Synergy each turn: ** Apply !M! [Burning] ** to ALL enemies.",
+			"DESCRIPTION": "Channel !S! [Fire]. || On your second ** Synergy each turn: ** Apply !M! [Burning] to ** ALL enemies.",
 			"NAME": "Fire Core"
 		},
 		"animator:OrbCore_Frost":

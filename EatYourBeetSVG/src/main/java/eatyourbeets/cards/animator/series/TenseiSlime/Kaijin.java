@@ -10,13 +10,13 @@ import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.subscribers.OnAddedToDeckSubscriber;
+import eatyourbeets.interfaces.listeners.OnAddedToDeckListener;
 import eatyourbeets.powers.animator.KaijinPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RandomizedList;
 
-public class Kaijin extends AnimatorCard implements OnAddedToDeckSubscriber
+public class Kaijin extends AnimatorCard implements OnAddedToDeckListener
 {
     public static final EYBCardData DATA = Register(Kaijin.class).SetPower(1, CardRarity.UNCOMMON);
 
@@ -31,7 +31,7 @@ public class Kaijin extends AnimatorCard implements OnAddedToDeckSubscriber
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.StackPower(new KaijinPower(p, magicNumber));
     }

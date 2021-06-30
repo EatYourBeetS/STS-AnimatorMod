@@ -31,6 +31,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
 
         tags.add(GR.Enums.CardTags.IGNORE_PEN_NIB);
 
+        SetSpellcaster();
         SetSynergy(Synergies.Chaika);
     }
 
@@ -44,7 +45,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         m.useFastShakeAnimation(0.5f);
 

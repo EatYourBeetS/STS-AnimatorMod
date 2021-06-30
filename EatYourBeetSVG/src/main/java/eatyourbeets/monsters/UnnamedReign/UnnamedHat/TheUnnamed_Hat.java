@@ -106,7 +106,7 @@ public class TheUnnamed_Hat extends EYBMonster
                 return move;
             }
 
-            return owner.GetRotation().get((CombatStats.TurnCount() + moveOffset) % owner.GetRotation().size());
+            return owner.GetRotation().get((CombatStats.TurnCount(true) + moveOffset) % owner.GetRotation().size());
         }
 
         static

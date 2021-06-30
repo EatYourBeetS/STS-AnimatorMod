@@ -40,7 +40,7 @@ public class IzunaHatsuse extends AnimatorCard
     @Override
     public void OnDrag(AbstractMonster m)
     {
-        if (m != null)
+        if (m != null && !transformed)
         {
             GameUtilities.GetIntent(m).AddWeak();
         }
@@ -87,7 +87,7 @@ public class IzunaHatsuse extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (transformed)
         {

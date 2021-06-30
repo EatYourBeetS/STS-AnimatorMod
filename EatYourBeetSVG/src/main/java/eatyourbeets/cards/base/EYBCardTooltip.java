@@ -88,6 +88,12 @@ public class EYBCardTooltip
         GR.UI.AddPostRender(EYBCardTooltip::RenderAll);
     }
 
+    public static void ClearTooltips()
+    {
+        tooltips.clear();
+        _renderedTipsThisFrame.Set(null, true);
+    }
+
     public static void RenderAll(SpriteBatch sb)
     {
         tooltips.clear();

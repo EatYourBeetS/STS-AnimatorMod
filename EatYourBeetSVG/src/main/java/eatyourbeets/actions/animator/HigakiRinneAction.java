@@ -138,7 +138,7 @@ public class HigakiRinneAction extends EYBAction
         }
         else if (tryActivate(6)) // 18
         {
-            GameActions.Bottom.ChannelRandomOrb(true);
+            GameActions.Bottom.ChannelRandomOrbs(1);
         }
         else if (tryActivate(6)) // 24
         {
@@ -261,7 +261,7 @@ public class HigakiRinneAction extends EYBAction
         else if (tryActivate(6)) // 156
         {
             GameActions.Bottom.GainOrbSlots(1);
-            GameActions.Bottom.ChannelOrb(new Lightning(), true);
+            GameActions.Bottom.ChannelOrb(new Lightning());
         }
         else if (tryActivate(4)) // 160
         {

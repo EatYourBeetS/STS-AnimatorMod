@@ -36,13 +36,13 @@ public class Albedo extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(2);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActions.Bottom.StackPower(new EnchantedArmorPower(p, damage));
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.GainTemporaryArtifact(1);
         }

@@ -24,7 +24,8 @@ public class AnimatorRuntimeLoadout
 
     public static AnimatorRuntimeLoadout TryCreate(AnimatorLoadout loadout)
     {
-        if (loadout != null)
+        // Starting series of level 5 of more are not selectable until unlocked
+        if (loadout != null && loadout.UnlockLevel <= Math.max(5, GR.Animator.GetUnlockLevel()))
         {
             AnimatorRuntimeLoadout result = new AnimatorRuntimeLoadout(loadout);
             if (result.Cards.size() > 0 && result.Loadout.GetSymbolicCard() != null)
@@ -36,7 +37,7 @@ public class AnimatorRuntimeLoadout
         return null;
     }
 
-    private AnimatorRuntimeLoadout(AnimatorLoadout loadout)
+    public AnimatorRuntimeLoadout(AnimatorLoadout loadout)
     {
         this.ID = loadout.ID;
         this.IsBeta = loadout.IsBeta;

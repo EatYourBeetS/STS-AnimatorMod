@@ -29,9 +29,14 @@ public class ElricEdward extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         GameActions.Bottom.Cycle(name, 1).AddCallback(cards ->
         {
             if (cards.size() > 0)
@@ -39,15 +44,15 @@ public class ElricEdward extends AnimatorCard
                 switch (cards.get(0).type)
                 {
                     case ATTACK:
-                        GameActions.Bottom.ChannelOrb(new Lightning(), true);
+                        GameActions.Bottom.ChannelOrb(new Lightning());
                         break;
 
                     case SKILL:
-                        GameActions.Bottom.ChannelOrb(new Frost(), true);
+                        GameActions.Bottom.ChannelOrb(new Frost());
                         break;
 
                     case POWER:
-                        GameActions.Bottom.ChannelOrb(new Earth(), true);
+                        GameActions.Bottom.ChannelOrb(new Earth());
                         break;
                 }
             }

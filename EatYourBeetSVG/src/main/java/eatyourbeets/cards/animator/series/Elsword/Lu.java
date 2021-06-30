@@ -54,7 +54,7 @@ public class Lu extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (isMultiDamage)
         {
@@ -72,7 +72,7 @@ public class Lu extends AnimatorCard
             GameActions.Bottom.Add(new ShakeScreenAction(0.8f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
         }
 
-        GameActions.Bottom.ChannelOrb(new Frost(), true);
-        GameActions.Bottom.ChannelOrb(new Dark(), true);
+        GameActions.Bottom.ChannelOrb(new Frost());
+        GameActions.Bottom.ChannelOrb(new Dark());
     }
 }

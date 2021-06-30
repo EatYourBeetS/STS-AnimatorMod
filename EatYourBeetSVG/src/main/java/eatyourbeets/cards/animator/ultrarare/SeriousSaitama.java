@@ -26,7 +26,7 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         int amount = GameUtilities.UseXCostEnergy(this) + magicNumber;
         if (amount > 0)

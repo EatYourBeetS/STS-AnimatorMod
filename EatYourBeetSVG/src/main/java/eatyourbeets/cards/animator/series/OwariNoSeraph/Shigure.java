@@ -36,7 +36,7 @@ public class Shigure extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
         .SetDamageEffect(enemy ->
@@ -44,7 +44,11 @@ public class Shigure extends AnimatorCard
             GameEffects.List.Add(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()));
             GameActions.Top.ApplyPoison(player, enemy, magicNumber);
         });
+    }
 
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         if (AgilityStance.IsActive())
         {
             GameActions.Bottom.Cycle(name, 1);

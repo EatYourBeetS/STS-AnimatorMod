@@ -26,9 +26,9 @@ public class ItamiYouji extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Top.Draw(magicNumber)
+        GameActions.Bottom.Draw(magicNumber)
         .AddCallback(m, (enemy, __) ->
         {
             for (AbstractCard card : player.hand.group)
@@ -41,7 +41,7 @@ public class ItamiYouji extends AnimatorCard
             }
         });
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
         }

@@ -21,7 +21,7 @@ public class DelayAllActions extends EYBAction
 
     public DelayAllActions(boolean currentOnly)
     {
-        super(ActionType.SPECIAL);
+        super(ActionType.SPECIAL, 0.01f);
 
         if (currentOnly)
         {

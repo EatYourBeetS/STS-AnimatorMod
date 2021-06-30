@@ -43,7 +43,7 @@ public class ShichikaKyotouryuu extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.Add(new RemoveBlock(m, p)).SetVFX(true, true);
 

@@ -24,13 +24,9 @@ public class OrbCore_Earth extends OrbCore implements Hidden
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        for (int i = 0; i < secondaryValue; i++)
-        {
-            GameActions.Bottom.ChannelOrb(new Earth(), true);
-        }
-
+        GameActions.Bottom.ChannelOrbs(Earth::new, secondaryValue);
         GameActions.Bottom.StackPower(new OrbCore_EarthPower(p, 1));
     }
 }

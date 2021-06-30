@@ -41,6 +41,7 @@ public class ParseGenericCommand extends ConsoleCommand
                 if (tokens[1].equals("ghost"))
                 {
                     player.tint.color.a = (tokens.length > 2 ? JUtils.ParseFloat(tokens[2], 1) : 0.3f);
+
                     return;
                 }
 
@@ -67,6 +68,29 @@ public class ParseGenericCommand extends ConsoleCommand
                     return;
                 }
 
+                if (tokens[1].equals("add-score") && tokens.length > 2)
+                {
+                    UnlockTracker.addScore(GR.Animator.PlayerClass, JUtils.ParseInt(tokens[2], 0));
+
+                    return;
+                }
+
+                if (tokens[1].equals("unlock-level") && tokens.length > 2)
+                {
+                    int level = Math.max(0, Math.min(GR.Animator.Data.MaxUnlockLevel, JUtils.ParseInt(tokens[2], 5)));
+                    if (UnlockTracker.getUnlockLevel(GR.Animator.PlayerClass) > level)
+                    {
+                        UnlockTracker.resetUnlockProgress(GR.Animator.PlayerClass);
+                    }
+
+                    while (UnlockTracker.getUnlockLevel(GR.Animator.PlayerClass) < level)
+                    {
+                        UnlockTracker.addScore(GR.Animator.PlayerClass, 500);
+                    }
+
+                    return;
+                }
+
                 if (tokens[1].equals("stance") && tokens.length > 2)
                 {
                     AbstractStance stance = AbstractStance.getStanceFromName(tokens[2]);
@@ -86,7 +110,7 @@ public class ParseGenericCommand extends ConsoleCommand
                     return;
                 }
 
-                if (tokens[1].equals("sort-by-tribe"))
+                if (tokens[1].equals("sort-by-class"))
                 {
                     CustomCardLibSortHeader.Instance.group.group.sort((a, b) ->
                     {
@@ -123,6 +147,12 @@ public class ParseGenericCommand extends ConsoleCommand
                     return;
                 }
 
+                if (tokens[1].equals("synergy-check"))
+                {
+                    GR.Animator.Config.FadeCardsWithoutSynergy(tokens.length > 2 && tokens[2].equals("true"), true);
+                    return;
+                }
+
                 if (tokens[1].equals("set-zoom"))
                 {
                     GR.Animator.Config.CropCardImages(tokens.length > 2 && tokens[2].equals("true"), true);
@@ -139,7 +169,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                     temp = tokens[2].replace("_", " ");
                     ArrayList<AnimatorCard> cards = new ArrayList<>();
-                    Synergy synergy = JUtils.Find(Synergies.GetAll(), s -> s.Name.equals(temp));
+                    Synergy synergy = JUtils.Find(Synergies.GetAllSynergies(), s -> s.Name.equals(temp));
                     if (synergy != null)
                     {
                         Settings.seedSet = true;

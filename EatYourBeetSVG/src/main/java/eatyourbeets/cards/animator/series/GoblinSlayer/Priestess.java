@@ -69,7 +69,7 @@ public class Priestess extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (upgraded)
         {
@@ -82,9 +82,9 @@ public class Priestess extends AnimatorCard
 
         GameActions.Bottom.GainTemporaryHP(magicNumber);
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
-            GameActions.Top.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
+            GameActions.Bottom.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
             .ShowEffect(true, true)
             .SetOptions(true, true)
             .SetFilter(GameUtilities::IsCurseOrStatus);

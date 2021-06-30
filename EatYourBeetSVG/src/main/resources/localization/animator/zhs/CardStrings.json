@@ -365,7 +365,7 @@
 		},
 		"animator:Ciel":
 		{
-			"DESCRIPTION": "开端 ： 给予 !M! 层 <易伤> 和 <锁定> 。 || 本场战斗所有 {露} ** 的伤害增加 !S! 。",
+			"DESCRIPTION": "<ST> ： 给予 !M! 层 <易伤> 和 <锁定> 。 || 本场战斗所有 {露} ** 的伤害增加 !S! 。",
 			"NAME": "希尔"
 		},
 		"animator:Elesis":
@@ -603,7 +603,6 @@
 		"animator:Tyuule":
 		{
 			"DESCRIPTION": "给予所有敌人 ** !M! 层 <中毒> ，然后使敌人 ** 所有 {普通负面效果} ** 增加 1 层。",
-			"EXTENDED_DESCRIPTION": ["普通负面效果", "中毒，虚弱，易伤，燃烧，镣铐。"],
 			"NAME": "蒂尤蕾"
 		},
 		"animator:YaoHaDucy":
@@ -719,7 +718,7 @@
 		},
 		"animator:Viivi":
 		{
-			"DESCRIPTION": "开端 。获得 [A] ** 并抽 1 张牌。 || 被丢弃时：增加 ** 1 张 <飞刀> 到你的手牌。",
+			"DESCRIPTION": "<ST> 。获得 [A] ** 并抽 1 张牌。 || 被丢弃时：增加 ** 1 张 <飞刀> 到你的手牌。",
 			"NAME": "薇薇·荷罗派涅"
 		}
 	},
@@ -889,7 +888,7 @@
 		},
 		"animator:KyokoSakura":
 		{
-			"DESCRIPTION": "开端 ：获得 [F] ** 并 生成 1 个 <火焰> 。 || 抽 !M! 张牌。 ** 将 !M! 张手牌放回 ** 抽牌堆顶部。",
+			"DESCRIPTION": "<ST> ：获得 [F] ** 并 生成 1 个 <火焰> 。 || 抽 !M! 张牌。 ** 将 !M! 张手牌放回 ** 抽牌堆顶部。",
 			"NAME": "佐仓杏子"
 		},
 		"animator:MadokaKaname":
@@ -930,9 +929,9 @@
 		},
 		"animator:SuzuneAmano":
 		{
-			"DESCRIPTION": "开端 ：你每有一个 <火焰> ： ** 抽 1 张牌并额外 ** 造成 !S! 点伤害。 || 随机 消耗 1 张牌： ** 给予 !M! <燃烧> 。",
+			"DESCRIPTION": "<ST> ：你每有一个 <火焰> ： ** 抽 1 张牌并额外 ** 造成 !S! 点伤害。 || 随机 消耗 1 张牌： ** 给予 !M! <燃烧> 。",
 			"NAME": "天乃铃音",
-			"UPGRADE_DESCRIPTION": "开端 ：你每有一个 <火焰> ： ** 抽 1 张牌并额外 ** 造成 !S! 点伤害。 || 消耗 1 张牌： ** 给予 !M! <燃烧> 。"
+			"UPGRADE_DESCRIPTION": "<ST> ：你每有一个 <火焰> ： ** 抽 1 张牌并额外 ** 造成 !S! 点伤害。 || 消耗 1 张牌： ** 给予 !M! <燃烧> 。"
 		},
 		"animator:Walpurgisnacht":
 		{
@@ -1248,6 +1247,26 @@
 			"NAME": "贝斯塔"
 		}
 	},
+	
+	"AURAS":
+    {
+        "animator:Aura1":
+        {
+            "NAME": "同调光环",
+            "DESCRIPTION": "每场战斗 第三个回合 ** 开始时： 回复等同于 ** 本场战斗 同调 次数的 ** 生命，最多 !M! 点。"
+        },
+        "animator:Aura2":
+        {
+            "NAME": "姿态光环",
+            "DESCRIPTION": "每场战斗 第三个回合 ** 开始时： 选择进入任意 ** 姿态。",
+			"UPGRADE_DESCRIPTION": "每场战斗 第三个回合 ** 开始时： 选择进入任意 ** 姿态， 并从抽牌堆 激励 ** 1 张牌。"
+        },
+        "animator:Aura3":
+        {
+            "NAME": "进攻光环",
+            "DESCRIPTION": "每场战斗 第三个回合 ** 开始时： <DRW-M> 并 ** 给予随机一名敌人 ** 1 层 <易伤> ， 无视 <人工制品> 。"
+        }
+    },
 
 	"SPECIAL":
 	{

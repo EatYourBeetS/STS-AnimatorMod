@@ -38,9 +38,9 @@
 	},
 	"animator:CrumblingOrb":
 	{
-	  "DESCRIPTIONS": ["Gain [E] at the start of each turn. At the start of each Boss and Elite fight, choose and permanently transform 2 out of 3 random cards in your deck."],
-	  "FLAVOR": "As the orb understands the user's heart, the fusion between the two restructures the soul and causes a great transformation.",
-	  "NAME": "Crumbling Orb"
+		"DESCRIPTIONS": ["Gain [E] at the start of each turn. At the start of each Boss and Elite fight, choose and permanently transform 2 out of 3 random cards in your deck."],
+		"FLAVOR": "As the orb understands the user's heart, the fusion between the two restructures the soul and causes a great transformation.",
+		"NAME": "Crumbling Orb"
 	},
 	"animator:CursedBlade":
 	{
@@ -62,11 +62,7 @@
 	},
 	"animator:ExquisiteBloodVial":
 	{
-		"DESCRIPTIONS":
-		[
-			"At the start of each combat, heal #b{0} HP. NL NL #y[Special #yRelic] NL #pRight #pClick at a rest site to start a special fight, winning it will activate this relic's true effect. NL NL You can click this after using a rest site option, Act 3 deck level suggested.",
-			"At the start of each combat, gain #b{0} #yRegeneration and #b{1} Max HP. NL NL Lose all #yBlood #yVials, whenever you would obtain a #yBlood #yVial, improve this relic's effect instead."
-		],
+		"DESCRIPTIONS": ["At the start of each combat, heal #b{0} HP. NL NL #y[Special #yRelic] NL #pRight #pClick at a rest site to start a special fight, winning it will activate this relic's true effect. NL NL You can click this after using a rest site option, Act 3 deck level suggested.", "At the start of each combat, gain #b{0} #yRegeneration and #b{1} Max HP. NL NL Lose all #yBlood #yVials, whenever you would obtain a #yBlood #yVial, improve this relic's effect instead."],
 		"FLAVOR": "A vial containing the blood of a pure and elder vampire.",
 		"NAME": "Exquisite Blood Vial"
 	},
@@ -105,6 +101,12 @@
 		"DESCRIPTIONS": ["Once per turn, when a card #ySynergizes, draw #b1 card."],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Living Picture"
+	},
+	"animator:MantleOfTheStrategist":
+	{
+		"DESCRIPTIONS": ["The second card you play in your turn will #ySynergize."],
+		"FLAVOR": "A robe made from cloth woven from the tracks of falling stars.",
+		"NAME": "Mantle of the Strategist"
 	},
 	"animator:OldCoffin":
 	{

@@ -48,7 +48,7 @@ public class HolyGrail extends AnimatorCard_UltraRare implements OnBattleEndSubs
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.VFX(new OfferingEffect(), Settings.FAST_MODE ? 0.1f : 0.5f);
         GameActions.Bottom.Callback(() ->

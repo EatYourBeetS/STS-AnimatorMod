@@ -17,17 +17,20 @@ import com.megacrit.cardcrawl.daily.mods.PurpleCards;
 import com.megacrit.cardcrawl.daily.mods.RedCards;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.rewards.animator.AuraCardsReward;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
-public class AnimatorCharacter extends CustomPlayer
+public class AnimatorCharacter extends CustomPlayer implements OnReceiveRewardsListener
 {
     public static final CharacterStrings characterStrings = AnimatorResources.GetCharacterStrings("Animator");
     public static final Color MAIN_COLOR = CardHelper.getColor(210, 147, 106);
@@ -219,6 +222,12 @@ public class AnimatorCharacter extends CustomPlayer
     {
         // yes
         return super.getCharStat();
+    }
+
+    @Override
+    public void OnReceiveRewards(ArrayList<RewardItem> rewards)
+    {
+        AuraCardsReward.TryAddReward(this, rewards);
     }
 
     protected AnimatorLoadout PrepareLoadout()

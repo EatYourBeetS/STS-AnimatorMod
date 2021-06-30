@@ -36,7 +36,7 @@ public class Kagari extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
         {
@@ -74,11 +74,7 @@ public class Kagari extends AnimatorCard
             {
                 flash();
                 GameActions.Top.ReducePower(this, 1);
-
-                for (int i = 0; i < EARTH_ORBS; i++)
-                {
-                    GameActions.Bottom.ChannelOrb(new Earth(), true);
-                }
+                GameActions.Bottom.ChannelOrbs(Earth::new, EARTH_ORBS);
             }
         }
     }

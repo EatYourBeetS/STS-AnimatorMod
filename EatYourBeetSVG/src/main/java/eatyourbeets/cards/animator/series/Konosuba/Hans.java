@@ -19,11 +19,12 @@ public class Hans extends AnimatorCard
         Initialize(0, 0, 3, 1);
         SetUpgrade(0, 0, 1, 0);
 
+        SetShapeshifter();
         SetSynergy(Synergies.Konosuba);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.StackPower(new HansPower(p, magicNumber, secondaryValue));
     }

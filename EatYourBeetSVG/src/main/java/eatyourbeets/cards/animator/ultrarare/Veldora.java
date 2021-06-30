@@ -33,13 +33,13 @@ public class Veldora extends AnimatorCard_UltraRare
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.ChannelOrb(AbstractOrb.getRandomOrb(true), true);
-        GameActions.Bottom.ChannelRandomOrb(true);
+        GameActions.Bottom.ChannelOrb(AbstractOrb.getRandomOrb(true));
+        GameActions.Bottom.ChannelRandomOrbs(1);
         GameActions.Bottom.Flash(this);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainIntellect(secondaryValue);
 

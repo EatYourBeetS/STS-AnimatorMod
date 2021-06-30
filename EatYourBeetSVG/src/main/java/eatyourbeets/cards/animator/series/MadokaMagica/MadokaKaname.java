@@ -55,9 +55,9 @@ public class MadokaKaname extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Top.ExhaustFromPile(name, magicNumber, p.drawPile, p.hand, p.discardPile)
+        GameActions.Bottom.ExhaustFromPile(name, magicNumber, p.drawPile, p.hand, p.discardPile)
         .ShowEffect(true, true)
         .SetOptions(true, true)
         .SetFilter(c -> c.type == CardType.CURSE)

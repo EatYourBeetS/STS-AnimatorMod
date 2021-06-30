@@ -1,10 +1,11 @@
 package patches.combatRewardScreen;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
-import eatyourbeets.interfaces.subscribers.OnReceiveRewardsSubscriber;
+import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import javassist.CtBehavior;
 
 @SpirePatch(clz = CombatRewardScreen.class, method = "setupItemReward")
@@ -13,19 +14,19 @@ public class CombatRewardScreen_SetupItemReward
     @SpireInsertPatch(locator = Locator.class)
     public static void Insert(CombatRewardScreen __instance)
     {
-        for (AbstractRelic r : AbstractDungeon.player.relics)
+        final AbstractPlayer p = AbstractDungeon.player;
+        for (AbstractRelic r : p.relics)
         {
-            if (r instanceof OnReceiveRewardsSubscriber)
+            if (r instanceof OnReceiveRewardsListener)
             {
-                ((OnReceiveRewardsSubscriber) r).OnReceiveRewards(__instance.rewards);
+                ((OnReceiveRewardsListener) r).OnReceiveRewards(__instance.rewards);
             }
         }
 
-//        TheMissingPiece relic = (TheMissingPiece) AbstractDungeon.player.getRelic(TheMissingPiece.ID);
-//        if (relic != null)
-//        {
-//            relic.receiveRewards(__instance.rewards);
-//        }
+        if (p instanceof OnReceiveRewardsListener)
+        {
+            ((OnReceiveRewardsListener) p).OnReceiveRewards(__instance.rewards);
+        }
     }
 
     @SuppressWarnings("unused")

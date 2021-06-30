@@ -3,7 +3,7 @@ package eatyourbeets.monsters.Elites;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import eatyourbeets.interfaces.subscribers.OnReceiveEmeraldBonus;
+import eatyourbeets.interfaces.listeners.OnReceiveEmeraldBonusListener;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.powers.CombatStats;
@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class HornedBat extends EYBMonster implements OnReceiveEmeraldBonus
+public abstract class HornedBat extends EYBMonster implements OnReceiveEmeraldBonusListener
 {
     public static final String ID = CreateFullID(HornedBat.class);
 

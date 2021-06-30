@@ -18,6 +18,6 @@ public class AlchemistGlove extends AnimatorRelic
     {
         super.atBattleStart();
 
-        GameActions.Bottom.ChannelOrb(new Fire(), false);
+        GameActions.Bottom.ChannelOrb(new Fire());
     }
 }

@@ -31,12 +31,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        if (magicNumber > 0)
-        {
-            return TempHPAttribute.Instance.SetCard(this, true);
-        }
-
-        return null;
+        return (magicNumber > 0) ? TempHPAttribute.Instance.SetCard(this, true) : null;
     }
 
     @Override
@@ -61,9 +56,14 @@ public class MamizouFutatsuiwa extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetOptions(false, false, false)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])

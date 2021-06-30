@@ -3,10 +3,18 @@ package eatyourbeets.dungeons;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.blue.*;
+import com.megacrit.cardcrawl.cards.colorless.*;
+import com.megacrit.cardcrawl.cards.curses.CurseOfTheBell;
+import com.megacrit.cardcrawl.cards.curses.Necronomicurse;
+import com.megacrit.cardcrawl.cards.green.*;
+import com.megacrit.cardcrawl.cards.red.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.map.DungeonMap;
@@ -15,6 +23,8 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.EmptyRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
 import eatyourbeets.resources.GR;
@@ -110,6 +120,7 @@ public class TheUnnamedReign extends AbstractDungeon
         }
     }
 
+    @Override
     protected void initializeLevelSpecificChances()
     {
         shopRoomChance = 0.12f;
@@ -148,11 +159,13 @@ public class TheUnnamedReign extends AbstractDungeon
         return MonsterHelper.getEncounter(lastCombatMetricKey);
     }
 
+    @Override
     protected ArrayList<String> generateExclusions()
     {
         return new ArrayList<>();
     }
 
+    @Override
     protected void initializeBoss()
     {
         bossList.clear();
@@ -161,6 +174,13 @@ public class TheUnnamedReign extends AbstractDungeon
         bossList.add(UnnamedEnemyGroup.THE_UNNAMED);
     }
 
+    @Override
+    public void initializeSpecialOneTimeEventList()
+    {
+
+    }
+
+    @Override
     protected void initializeEventList()
     {
 //        eventList.add("MindBloom");
@@ -171,6 +191,7 @@ public class TheUnnamedReign extends AbstractDungeon
 //        eventList.add("Winding Halls");
     }
 
+    @Override
     protected void initializeEventImg()
     {
         if (eventBackgroundImg != null)
@@ -182,6 +203,7 @@ public class TheUnnamedReign extends AbstractDungeon
         eventBackgroundImg = ImageMaster.loadImage("images/ui/event/panel.png");
     }
 
+    @Override
     protected void initializeShrineList()
     {
 //        shrineList.add("Match and Keep!");
@@ -243,6 +265,7 @@ public class TheUnnamedReign extends AbstractDungeon
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(14, eliteEnemies.Retrieve(mapRng)); // mo2
     }
 
+    @Override
     protected void generateMonsters()
     {
         generateWeakEnemies(0);
@@ -276,5 +299,187 @@ public class TheUnnamedReign extends AbstractDungeon
         eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_WISP);
         eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_CUBE);
         eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_CRYSTAL);
+    }
+
+    public static ArrayList<AbstractCard> GetCardReplacements(ArrayList<AbstractCard> cards, boolean forceReplace)
+    {
+        ArrayList<AbstractCard> result = new ArrayList<>();
+        for (AbstractCard c : cards)
+        {
+            for (String cardID : GetCardReplacements(c, forceReplace))
+            {
+                UnlockTracker.markCardAsSeen(cardID);
+                result.add(CardLibrary.getCard(cardID).makeCopy());
+            }
+        }
+
+        return result;
+    }
+
+    public static ArrayList<String> GetCardReplacements(AbstractCard card, boolean forceReplace)
+    {
+        ArrayList<String> replacements = new ArrayList<>();
+        switch (card.cardID)
+        {
+            case "infinitespire:Virus":
+            {
+                replacements.add(Anger.ID);
+                replacements.add(HigakiRinne.DATA.ID);
+                break;
+            }
+
+            case "hubris:Fate":
+            {
+                replacements.add(Discovery.ID);
+                break;
+            }
+
+            case "hubris:Rewind":
+            {
+                replacements.add(EchoForm.ID);
+                break;
+            }
+
+            case "hubris:InfiniteBlow":
+            {
+                replacements.add(SearingBlow.ID);
+                break;
+            }
+
+            case "infinitespire:Gouge":
+            {
+                replacements.add(BeamCell.ID);
+                replacements.add(Neutralize.ID);
+                break;
+            }
+
+            case "infinitespire:SevenWalls":
+            {
+                replacements.add(Dash.ID);
+                break;
+            }
+
+            case "infinitespire:Starlight":
+            {
+                replacements.add(BandageUp.ID);
+                break;
+            }
+
+            case "infinitespire:Fortify":
+            {
+                replacements.add(ReinforcedBody.ID);
+                break;
+            }
+
+            case "infinitespire:Punishment":
+            {
+                replacements.add(MindBlast.ID);
+                break;
+            }
+
+            case "infinitespire:FutureSight":
+            {
+                replacements.add(SeeingRed.ID);
+                break;
+            }
+
+            case "infinitespire:Oblivion":
+            {
+                replacements.add(Chaos.ID);
+                break;
+            }
+
+            case "infinitespire:DeathsTouch":
+            {
+                replacements.add(Bludgeon.ID);
+                break;
+            }
+
+            case "infinitespire:NeuralNetwork":
+            {
+                replacements.add(MachineLearning.ID);
+                break;
+            }
+
+            case "infinitespire:Execution":
+            {
+                replacements.add(Terror.ID);
+                break;
+            }
+
+            case "infinitespire:Menacing":
+            {
+                replacements.add(Apparition.ID);
+                replacements.add(Apparition.ID);
+                break;
+            }
+
+            case "infinitespire:TheBestDefense": // This card...
+            {
+                replacements.add(Flex.ID);
+                replacements.add(Apparition.ID);
+                replacements.add(Apparition.ID);
+                break;
+            }
+
+            case "infinitespire:UltimateForm":
+            {
+                replacements.add(Inflame.ID);
+                replacements.add(Defragment.ID);
+                replacements.add(Footwork.ID);
+                break;
+            }
+
+            case "infinitespire:Collect":
+            case "infinitespire:Haul":
+            {
+                replacements.add(MasterOfStrategy.ID);
+                break;
+            }
+
+            case "ReplayTheSpireMod:Black Plague":
+            {
+                replacements.add(Malaise.ID);
+                replacements.add(NoxiousFumes.ID);
+                break;
+            }
+
+            case CurseOfTheBell.ID:
+            case Necronomicurse.ID:
+            {
+                break;
+            }
+
+            default:
+            {
+                boolean forbidden = false;
+                if (card.cardID.startsWith("hubris")
+                        ||  card.cardID.startsWith("ReplayTheSpireMod")
+                        ||  card.cardID.startsWith("infinitespire")
+                        ||  card.cardID.startsWith("StuffTheSpire"))
+                {
+                    forbidden = true;
+                }
+                else
+                {
+                    Class c = card.getClass().getSuperclass();
+                    if (c != null && c.getSimpleName().equals("AbstractUrbanLegendCard"))
+                    {
+                        forbidden = true;
+                    }
+                }
+
+                if (forbidden)
+                {
+                    replacements.add(HigakiRinne.DATA.ID);
+                }
+                else if (forceReplace)
+                {
+                    replacements.add(card.cardID);
+                }
+            }
+        }
+
+        return replacements;
     }
 }

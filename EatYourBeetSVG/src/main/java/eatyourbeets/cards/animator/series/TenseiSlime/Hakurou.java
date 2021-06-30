@@ -21,7 +21,7 @@ public class Hakurou extends AnimatorCard
 
         Initialize(1, 0, 3, 4);
         SetUpgrade(0, 0, 1, 0);
-        SetScaling(0, 1, 0);
+        SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.TenSura);
         SetMartialArtist();
@@ -49,7 +49,7 @@ public class Hakurou extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (ForceStance.IsActive())
         {
@@ -64,7 +64,7 @@ public class Hakurou extends AnimatorCard
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         }
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.GainAgility(1);
         }

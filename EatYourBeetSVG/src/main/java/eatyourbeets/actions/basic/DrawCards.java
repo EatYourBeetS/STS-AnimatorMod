@@ -6,15 +6,17 @@ import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.powers.NoDrawPower;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GenericCondition;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 public class DrawCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
 {
     protected final ArrayList<AbstractCard> cards = new ArrayList<>();
-    protected Predicate<AbstractCard> filter;
+    protected GenericCondition<AbstractCard> filter;
     protected boolean canDrawUnfiltered;
     protected boolean shuffleIfEmpty = true;
 
@@ -36,9 +38,17 @@ public class DrawCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
         Initialize(amount);
     }
 
-    public DrawCards SetFilter(Predicate<AbstractCard> filter, boolean canDrawUnfiltered)
+    public DrawCards SetFilter(FuncT1<Boolean, AbstractCard> filter, boolean canDrawUnfiltered)
     {
-        this.filter = filter;
+        this.filter = GenericCondition.FromT1(filter);
+        this.canDrawUnfiltered = canDrawUnfiltered;
+
+        return this;
+    }
+
+    public <S> DrawCards SetFilter(S state, FuncT2<Boolean, S, AbstractCard> filter, boolean canDrawUnfiltered)
+    {
+        this.filter = GenericCondition.FromT2(filter, state);
         this.canDrawUnfiltered = canDrawUnfiltered;
 
         return this;
@@ -95,7 +105,7 @@ public class DrawCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
                 AbstractCard filtered = null;
                 for (AbstractCard card : player.drawPile.group)
                 {
-                    if (filter.test(card))
+                    if (filter.Check(card))
                     {
                         filtered = card;
                         break;

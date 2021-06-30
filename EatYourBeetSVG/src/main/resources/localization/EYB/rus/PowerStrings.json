@@ -2,12 +2,12 @@
 {
 	"EYB:SelfDamagePower":
 	{
-		"DESCRIPTIONS": ["В конце хода, получит #b", " Урона."],
+		"DESCRIPTIONS": ["В конце хода, вы получите #b", " урона."],
 		"NAME": "Самоурон"
 	},
 	"EYB:MarkedPower":
 	{
-		"DESCRIPTIONS": ["Получит ещё #b{0} Урона от следующей #yАтаки."],
+		"DESCRIPTIONS": ["Получит ещё #b{0} урона от следующей #yАтаки."],
 		"NAME": "Метка"
 	},
 	"EYB:ForcePower":

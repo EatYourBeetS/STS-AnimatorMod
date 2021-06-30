@@ -11,7 +11,8 @@ import java.util.*;
 
 public class Synergies
 {
-    private final static HashMap<Integer, Synergy> All = new HashMap<>();
+    private final static HashMap<Integer, Synergy> map = new HashMap<>();
+
     public final static Synergy ANY = CreateSynergy(0);
     public final static Synergy Elsword = CreateSynergy(1);
     public final static Synergy Kancolle = CreateSynergy(2);
@@ -63,6 +64,7 @@ public class Synergies
     public final static Synergy CardcaptorSakura = CreateSynergy(48);
     public final static Synergy GuiltyCrown = CreateSynergy(49);
     public final static Synergy Gakkougurashi = CreateSynergy(50);
+    public final static Synergy GenshinImpact = CreateSynergy(51);
 
     private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;
@@ -94,38 +96,34 @@ public class Synergies
         Synergy s = new Synergy(id, GR.Animator.Strings.Synergies.SynergyName(id));
         if (id > 0)
         {
-            All.put(id, s);
+            map.put(id, s);
         }
 
         return s;
     }
 
-    public static Collection<Synergy> GetAll()
+    public static Collection<Synergy> GetAllSynergies()
     {
-        return All.values();
+        return map.values();
     }
 
     public static Synergy GetByID(int id)
     {
-        return All.get(id);
+        return map.get(id);
     }
 
     public static Map<Synergy, List<AbstractCard>> GetCardsBySynergy(ArrayList<AbstractCard> cards)
     {
-        Map<Synergy, List<AbstractCard>> map = new HashMap<>();
-        for (AbstractCard card : cards)
+        return JUtils.Group(cards, card ->
         {
-            Synergy key = ANY;
             AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
             if (c != null && c.synergy != null)
             {
-                key = c.synergy;
+                return c.synergy;
             }
 
-            map.computeIfAbsent(key, k -> new ArrayList<>()).add(card);
-        }
-
-        return map;
+            return ANY;
+        });
     }
 
     public static ArrayList<AnimatorCard> GetColorlessCards()
@@ -167,7 +165,7 @@ public class Synergies
         return result;
     }
 
-    public static HashSet<Synergy> GetSynergies(ArrayList<AbstractCard> cards)
+    public static HashSet<Synergy> GetAllSynergies(ArrayList<AbstractCard> cards)
     {
         HashSet<Synergy> result = new HashSet<>();
         for (AbstractCard card : cards)
@@ -182,17 +180,16 @@ public class Synergies
         return result;
     }
 
-    public static void TrySynergize(AbstractCard card)
+    public static boolean TrySynergize(AbstractCard card)
     {
         if (WouldSynergize(card))
         {
             currentSynergy = card;
-            CombatStats.Instance.OnSynergy(card);
+            return true;
         }
-        else
-        {
-            currentSynergy = null;
-        }
+
+        currentSynergy = null;
+        return false;
     }
 
     public static void SetLastCardPlayed(AbstractCard card)

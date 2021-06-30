@@ -3,7 +3,9 @@ package eatyourbeets.cards.base;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
@@ -16,7 +18,7 @@ import java.util.ArrayList;
 public abstract class AnimatorCard extends EYBCard
 {
     protected static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
-    protected static final Color synergyGlowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR;
+    protected static final Color synergyGlowColor = new Color(1, 0.843f, 0, 0.25f);
     protected AnimatorCardCooldown cooldown;
 
     public static final AnimatorImages IMAGES = GR.Animator.Images;
@@ -37,6 +39,11 @@ public abstract class AnimatorCard extends EYBCard
         SetMultiDamage(cardData.CardTarget == EYBCardTarget.ALL);
         SetAttackTarget(cardData.CardTarget);
         SetAttackType(cardData.AttackType);
+
+        if (cardData.Synergy != null)
+        {
+            SetSynergy(cardData.Synergy);
+        }
     }
 
     protected AnimatorCard(EYBCardData data, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
@@ -46,12 +53,12 @@ public abstract class AnimatorCard extends EYBCard
 
     public boolean HasSynergy()
     {
-        return Synergies.IsSynergizing(this) || Synergies.WouldSynergize(this);
+        return Synergies.IsSynergizing(this) || WouldSynergize();
     }
 
     public boolean HasSynergy(AbstractCard other)
     {
-        return Synergies.IsSynergizing(this) || Synergies.WouldSynergize(this, other);
+        return Synergies.IsSynergizing(this) || WouldSynergize(other);
     }
 
     public boolean HasDirectSynergy(AbstractCard other)
@@ -66,6 +73,16 @@ public abstract class AnimatorCard extends EYBCard
         }
 
         return Synergies.HasTagSynergy(this, other);
+    }
+
+    public boolean WouldSynergize()
+    {
+        return Synergies.WouldSynergize(this);
+    }
+
+    public boolean WouldSynergize(AbstractCard other)
+    {
+        return Synergies.WouldSynergize(this, other);
     }
 
     public void SetSpellcaster()
@@ -107,14 +124,42 @@ public abstract class AnimatorCard extends EYBCard
     {
         super.triggerOnGlowCheck();
 
-        if (HasSynergy())
+        this.glowColor = HasSynergy() ? synergyGlowColor : defaultGlowColor;
+    }
+
+    @Override
+    public void hover()
+    {
+        super.hover();
+
+        if (player != null && player.hand.contains(this))
         {
-            this.glowColor = synergyGlowColor;
+            for (AbstractCard c : player.hand.group)
+            {
+                if (c == this || WouldSynergize(c))
+                {
+                    c.transparency = 1f;
+                }
+                else
+                {
+                    c.transparency = 0.2f;
+                }
+            }
         }
-        else
+    }
+
+    @Override
+    public void unhover()
+    {
+        if (hovered && player != null && player.hand.contains(this))
         {
-            this.glowColor = defaultGlowColor;
+            for (AbstractCard c : AbstractDungeon.player.hand.group)
+            {
+                c.transparency = 0.35f;
+            }
         }
+
+        super.unhover();
     }
 
     @Override
@@ -123,6 +168,25 @@ public abstract class AnimatorCard extends EYBCard
         AnimatorCard copy = (AnimatorCard) super.makeStatEquivalentCopy();
         copy.synergy = synergy;
         return copy;
+    }
+
+    @Override
+    public final void use(AbstractPlayer p1, AbstractMonster m1)
+    {
+        JUtils.LogWarning(this, "AnimatorCard.use() should not be called");
+        boolean isSynergizing = Synergies.IsSynergizing(this);
+        OnUse(p1, m1, isSynergizing);
+        OnLateUse(p1, m1, isSynergizing);
+    }
+
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
+
+    }
+
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
+
     }
 
     @Override

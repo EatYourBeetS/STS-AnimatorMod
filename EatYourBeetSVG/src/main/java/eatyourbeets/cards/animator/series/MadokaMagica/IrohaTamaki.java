@@ -27,23 +27,23 @@ public class IrohaTamaki extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (HasSynergy())
-        {
-            GameActions.Top.Scry(magicNumber);
-        }
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
 
         if (p.drawPile.size() > 0)
         {
             AbstractCard topCard = p.drawPile.getTopCard();
             if (GameUtilities.IsCurseOrStatus(topCard))
             {
-                GameActions.Top.Exhaust(topCard);
+                GameActions.Bottom.Exhaust(topCard);
             }
         }
 
-        GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActions.Top.GainBlock(block);
+        if (isSynergizing)
+        {
+            GameActions.Bottom.Scry(magicNumber);
+        }
     }
 }

@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
-import eatyourbeets.misc.GenericEffects.GenericEffect_Boost;
+import eatyourbeets.misc.GenericEffects.GenericEffect_GainOrBoost;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
@@ -40,16 +40,16 @@ public class FielNirvalen extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.StackPower(new FielNirvalenPower(p, SCRY_AMOUNT));
 
         if (choices.TryInitialize(this))
         {
-            choices.AddEffect(new GenericEffect_Boost(GR.Tooltips.Agility, 1));
-            choices.AddEffect(new GenericEffect_Boost(GR.Tooltips.Intellect, 1));
-            choices.AddEffect(new GenericEffect_Boost(GR.Tooltips.Force, 1));
+            choices.AddEffect(new GenericEffect_GainOrBoost(GR.Tooltips.Agility, 1, true));
+            choices.AddEffect(new GenericEffect_GainOrBoost(GR.Tooltips.Intellect, 1, true));
+            choices.AddEffect(new GenericEffect_GainOrBoost(GR.Tooltips.Force, 1, true));
         }
 
         choices.Select(secondaryValue, m);
@@ -95,9 +95,9 @@ public class FielNirvalen extends AnimatorCard
 
             if (enabled)
             {
-                this.flash();
                 GameActions.Bottom.Scry(amount);
                 enabled = false;
+                flash();
             }
         }
 

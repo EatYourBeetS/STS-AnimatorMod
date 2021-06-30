@@ -26,6 +26,7 @@ public class EYBFontHelper
 
     public static BitmapFont CardTitleFont_Small;
     public static BitmapFont CardTitleFont_Normal;
+    public static BitmapFont CardTitleFont_Large;
     public static BitmapFont CardTooltipFont;
     public static BitmapFont CardDescriptionFont_Normal;
     public static BitmapFont CardDescriptionFont_Large;
@@ -94,11 +95,12 @@ public class EYBFontHelper
         param.borderColor = new Color(0.4F, 0.1F, 0.1F, 1.0F);
         param.borderWidth = 0.0F;
         EYBFontHelper.cardTipFont = PrepFont(22.0F, true);
-
-        Color bc = new Color(0.35F, 0.35F, 0.35F, 1.0F);
-        Color sc = new Color(0.0F, 0.0F, 0.0F, 0.25F);
-        EYBFontHelper.CardTitleFont_Small = PrepFont(cardTitleFont, 25, 2f, bc, 3f, sc);
-        EYBFontHelper.CardTitleFont_Normal = PrepFont(cardTitleFont, 27, 2f, bc, 3f, sc);
+        //
+        Color bc1 = new Color(0.35F, 0.35F, 0.35F, 1.0F);
+        Color sc1 = new Color(0, 0, 0, 0.25f);
+        EYBFontHelper.CardTitleFont_Small = PrepFont(cardTitleFont, 25, 2f, bc1, 3f, sc1);
+        EYBFontHelper.CardTitleFont_Normal = PrepFont(cardTitleFont, 27, 2f, bc1, 3f, sc1);
+        EYBFontHelper.CardTitleFont_Large = PrepFont(cardTitleFont, 46, 4f, bc1, 3f, sc1);
         EYBFontHelper.CardDescriptionFont_Normal = PrepFont(cardDescFont, 23, 0, 1f);
         EYBFontHelper.CardDescriptionFont_Large = PrepFont(cardDescFont_L, 46, 0, 2f);
         EYBFontHelper.CardIconFont_VeryLarge = PrepFont(cardDescFont, 76, 4.5f, 1.4f);

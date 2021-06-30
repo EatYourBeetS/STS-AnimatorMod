@@ -3,12 +3,10 @@ package eatyourbeets.utilities;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
@@ -25,6 +23,7 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardFlashVfx;
+import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.animator.CreateThrowingKnives;
 import eatyourbeets.actions.autoTarget.ApplyPowerAuto;
 import eatyourbeets.actions.basic.*;
@@ -37,6 +36,7 @@ import eatyourbeets.actions.handSelection.DiscardFromHand;
 import eatyourbeets.actions.handSelection.ExhaustFromHand;
 import eatyourbeets.actions.handSelection.SelectFromHand;
 import eatyourbeets.actions.monsters.TalkAction;
+import eatyourbeets.actions.orbs.ChannelOrb;
 import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.actions.pileSelection.*;
 import eatyourbeets.actions.player.ChangeStance;
@@ -44,15 +44,14 @@ import eatyourbeets.actions.player.GainGold;
 import eatyourbeets.actions.player.SpendEnergy;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.actions.powers.ReduceStrength;
-import eatyourbeets.actions.special.*;
+import eatyourbeets.actions.special.DelayAllActions;
+import eatyourbeets.actions.special.SelectCreature;
+import eatyourbeets.actions.special.VFX;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.interfaces.delegates.ActionT0;
-import eatyourbeets.interfaces.delegates.ActionT1;
-import eatyourbeets.interfaces.delegates.ActionT2;
-import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.interfaces.delegates.*;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
@@ -94,8 +93,23 @@ public final class GameActions
         return Top.Add(new DelayAllActions(true));
     }
 
+    public static ArrayList<AbstractGameAction> GetActions()
+    {
+        return AbstractDungeon.actionManager.actions;
+    }
+
+    public static void ClearActions()
+    {
+        AbstractDungeon.actionManager.actions.clear();
+    }
+
     public <T extends AbstractGameAction> T Add(T action)
     {
+        if (action instanceof EYBAction)
+        {
+            ((EYBAction)action).SetOriginalOrder(actionOrder);
+        }
+
         switch (actionOrder)
         {
             case Top:
@@ -271,14 +285,19 @@ public final class GameActions
         return Add(new ChangeStance(stanceName));
     }
 
-    public ChannelAction ChannelOrb(AbstractOrb orb, boolean autoEvoke)
+    public ChannelOrb ChannelOrbs(FuncT0<AbstractOrb> orbConstructor, int amount)
     {
-        return Add(new ChannelAction(orb, autoEvoke));
+        return Add(new ChannelOrb(orbConstructor, amount));
     }
 
-    public ChannelAction ChannelRandomOrb(boolean autoEvoke)
+    public ChannelOrb ChannelOrb(AbstractOrb orb)
     {
-        return Add(new ChannelAction(GameUtilities.GetRandomOrb(), autoEvoke));
+        return Add(new ChannelOrb(orb));
+    }
+
+    public ChannelOrb ChannelRandomOrbs(int amount)
+    {
+        return Add(new ChannelOrb(GameUtilities::GetRandomOrb, amount));
     }
 
     public CreateThrowingKnives CreateThrowingKnives(int amount)
@@ -395,9 +414,9 @@ public final class GameActions
         return Add(new EvokeOrb(times, mode));
     }
 
-    public VFXAction Flash(AbstractCard card)
+    public VFX Flash(AbstractCard card)
     {
-        return Add(new VFXAction(new CardFlashVfx(card, Color.ORANGE.cpy())));
+        return VFX(new CardFlashVfx(card, Color.ORANGE.cpy()));
     }
 
     public ApplyPower GainAgility(int amount)
@@ -591,7 +610,7 @@ public final class GameActions
         return MakeCard(card, player.hand);
     }
 
-    public ModifyAllInstances ModifyAllInstances(UUID uuid, Object state, ActionT2<Object, AbstractCard> onCompletion)
+    public <S> ModifyAllInstances ModifyAllInstances(UUID uuid, S state, ActionT2<S, AbstractCard> onCompletion)
     {
         return Add(new ModifyAllInstances(uuid, state, onCompletion));
     }
@@ -606,7 +625,7 @@ public final class GameActions
         return Add(new ModifyAllInstances(uuid));
     }
 
-    public ModifyAllCopies ModifyAllCopies(String cardID, Object state, ActionT2<Object, AbstractCard> onCompletion)
+    public <S> ModifyAllCopies ModifyAllCopies(String cardID, S state, ActionT2<S, AbstractCard> onCompletion)
     {
         return Add(new ModifyAllCopies(cardID, state, onCompletion));
     }
@@ -626,6 +645,11 @@ public final class GameActions
         return Add(new MotivateAction(1));
     }
 
+    public MotivateAction Motivate(CardGroup group)
+    {
+        return Motivate().SetGroup(group);
+    }
+
     public MotivateAction Motivate(AbstractCard card, int amount)
     {
         return Add(new MotivateAction(card, amount));
@@ -638,6 +662,18 @@ public final class GameActions
         for (int i = 0; i < times; i++)
         {
             actions.add(Motivate());
+        }
+
+        return actions;
+    }
+
+    public ArrayList<MotivateAction> Motivate(CardGroup group, int times)
+    {
+        ArrayList<MotivateAction> actions = new ArrayList<>();
+
+        for (int i = 0; i < times; i++)
+        {
+            actions.add(Motivate(group));
         }
 
         return actions;
@@ -670,17 +706,17 @@ public final class GameActions
 
     public PlayCard PlayCard(AbstractCard card, CardGroup sourcePile, AbstractMonster target)
     {
-        return Add(new PlayCard(card, target, false)).SetSourcePile(sourcePile);
+        return Add(new PlayCard(card, target, false, actionOrder == ActionOrder.Top)).SetSourcePile(sourcePile);
     }
 
     public PlayCard PlayCard(AbstractCard card, AbstractMonster target)
     {
-        return Add(new PlayCard(card, target, false));
+        return Add(new PlayCard(card, target, false, actionOrder == ActionOrder.Top));
     }
 
     public PlayCard PlayCopy(AbstractCard card, AbstractMonster target)
     {
-        return Add(new PlayCard(card, target, true))
+        return Add(new PlayCard(card, target, true, actionOrder == ActionOrder.Top))
         .SetCurrentPosition(card.current_x, card.current_y)
         .SpendEnergy(false)
         .SetPurge(true);

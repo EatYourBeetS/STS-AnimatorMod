@@ -14,11 +14,12 @@ import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
+import eatyourbeets.cards.animator.auras.Aura;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.events.base.EYBEvent;
-import eatyourbeets.interfaces.subscribers.OnAddedToDeckSubscriber;
-import eatyourbeets.interfaces.subscribers.OnCardPoolChangedSubscriber;
+import eatyourbeets.interfaces.listeners.OnAddedToDeckListener;
+import eatyourbeets.interfaces.listeners.OnCardPoolChangedListener;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
@@ -199,7 +200,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
         for (CardGroup group : colorless)
         {
-            group.group.removeIf(card -> !(card instanceof EYBCard));
+            group.group.removeIf(card -> !(card instanceof EYBCard) || card instanceof Aura);
         }
 
         ArrayList<CardGroup> groups = new ArrayList<>();
@@ -236,9 +237,9 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
         for (AbstractCard card : player.masterDeck.group)
         {
-            if (card instanceof OnCardPoolChangedSubscriber)
+            if (card instanceof OnCardPoolChangedListener)
             {
-                ((OnCardPoolChangedSubscriber) card).OnCardPoolChanged();
+                ((OnCardPoolChangedListener) card).OnCardPoolChanged();
             }
 
             RemoveExtraCopies(card);
@@ -247,10 +248,20 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
     public void OnCardObtained(AbstractCard card)
     {
-        if (card instanceof OnAddedToDeckSubscriber)
+        AbstractPlayer p = AbstractDungeon.player;
+
+        if (card instanceof OnAddedToDeckListener)
         {
-            ((OnAddedToDeckSubscriber) card).OnAddedToDeck();
+            ((OnAddedToDeckListener) card).OnAddedToDeck(card);
         }
+        for (AbstractRelic relic : p.relics)
+        {
+            if (relic instanceof OnAddedToDeckListener)
+            {
+                ((OnAddedToDeckListener)relic).OnAddedToDeck(card);
+            }
+        }
+
 
         RemoveExtraCopies(card);
 
@@ -259,7 +270,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             AbstractCard first = null;
 
             ArrayList<AbstractCard> toRemove = new ArrayList<>();
-            ArrayList<AbstractCard> cards = AbstractDungeon.player.masterDeck.group;
+            ArrayList<AbstractCard> cards = p.masterDeck.group;
             for (AbstractCard c : cards)
             {
                 if (c.cardID.equals(card.cardID))

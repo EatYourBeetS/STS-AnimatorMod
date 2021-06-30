@@ -172,10 +172,7 @@ public class AinzPower extends AnimatorPower
                 {
                     return effect.Generate((c, p, m) ->
                     {
-                        for (int i = 0; i < c.magicNumber; i++)
-                        {
-                            GameActions.Bottom.ChannelRandomOrb(true);
-                        }
+                        GameActions.Bottom.ChannelRandomOrbs(c.magicNumber);
                     });
                 }
 

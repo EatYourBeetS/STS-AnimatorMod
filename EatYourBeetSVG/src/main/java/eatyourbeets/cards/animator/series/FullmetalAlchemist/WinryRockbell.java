@@ -29,12 +29,12 @@ public class WinryRockbell extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new WinryRockbellPower(p, 1));
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.UpgradeFromHand(name, 1, false);
         }

@@ -2,14 +2,17 @@ package eatyourbeets.actions.orbs;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.actions.EYBAction;
+import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GenericCondition;
 import eatyourbeets.utilities.RandomizedList;
 
-import java.util.function.Predicate;
+import java.util.ArrayList;
 
-public class EvokeOrb extends EYBAction
+public class EvokeOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
 {
     public enum Mode
     {
@@ -18,9 +21,10 @@ public class EvokeOrb extends EYBAction
         SameOrb
     }
 
-    protected Mode mode;
+    protected final ArrayList<AbstractOrb> orbs = new ArrayList<>();
+    protected GenericCondition<AbstractOrb> filter;
     protected AbstractOrb orb;
-    protected Predicate<AbstractOrb> filter;
+    protected Mode mode;
 
     public EvokeOrb(int times)
     {
@@ -47,9 +51,16 @@ public class EvokeOrb extends EYBAction
         Initialize(times);
     }
 
-    public EvokeOrb SetFilter(Predicate<AbstractOrb> filter)
+    public EvokeOrb SetFilter(FuncT1<Boolean, AbstractOrb> filter)
     {
-        this.filter = filter;
+        this.filter = GenericCondition.FromT1(filter);
+
+        return this;
+    }
+
+    public <S> EvokeOrb SetFilter(S state, FuncT2<Boolean, S, AbstractOrb> filter)
+    {
+        this.filter = GenericCondition.FromT2(filter, state);
 
         return this;
     }
@@ -84,10 +95,12 @@ public class EvokeOrb extends EYBAction
                 for (int j = 0; j < (amount - 1); j++)
                 {
                     orb.onEvoke();
+                    orbs.add(orb);
                 }
                 if (amount > 0)
                 {
                     GameActions.Top.Add(new EvokeSpecificOrbAction(orb));
+                    orbs.add(orb);
                 }
             }
         }
@@ -108,6 +121,7 @@ public class EvokeOrb extends EYBAction
                 if (orb != null)
                 {
                     GameActions.Top.Add(new EvokeSpecificOrbAction(orb));
+                    orbs.add(orb);
                 }
             }
         }
@@ -120,15 +134,16 @@ public class EvokeOrb extends EYBAction
                 if (CheckOrb(orb))
                 {
                     GameActions.Top.Add(new EvokeSpecificOrbAction(orb));
+                    orbs.add(orb);
                 }
             }
         }
 
-        Complete();
+        Complete(orbs);
     }
 
     protected boolean CheckOrb(AbstractOrb orb)
     {
-        return GameUtilities.IsValidOrb(orb) && (filter == null || filter.test(orb));
+        return GameUtilities.IsValidOrb(orb) && (filter == null || filter.Check(orb));
     }
 }

@@ -23,17 +23,13 @@ public class ElricAlphonseAlt extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        for (int i = 0; i < secondaryValue; i++)
-        {
-            GameActions.Bottom.ChannelOrb(new Lightning(), true);
-        }
-
+        GameActions.Bottom.ChannelOrbs(Lightning::new, secondaryValue);
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainOrbSlots(1);
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.GainPlatedArmor(magicNumber);
         }

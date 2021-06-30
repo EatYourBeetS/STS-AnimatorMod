@@ -60,7 +60,7 @@ public class Magilou extends AnimatorCard implements OnCardResetSubscriber
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(magicNumber));
         GameActions.Bottom.Callback(new WaitRealtimeAction(0.3f), () -> GameActions.Bottom.Add(new EvokeOrbAction(1)));

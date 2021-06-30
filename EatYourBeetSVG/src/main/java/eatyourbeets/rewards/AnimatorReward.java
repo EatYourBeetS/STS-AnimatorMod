@@ -8,9 +8,8 @@ import com.megacrit.cardcrawl.daily.mods.Binary;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
+import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.JUtils;
@@ -73,7 +72,7 @@ public abstract class AnimatorReward extends CustomReward
         while (result.size() < context.rewardSize && randomPool.Size() > 0)
         {
             AbstractCard card = randomPool.Retrieve(AbstractDungeon.cardRng);
-            if (card instanceof OnAddingToCardReward && ((OnAddingToCardReward) card).ShouldCancel(this))
+            if (card instanceof OnAddingToCardRewardListener && ((OnAddingToCardRewardListener) card).ShouldCancel(this))
             {
                 continue;
             }
@@ -116,13 +115,13 @@ public abstract class AnimatorReward extends CustomReward
 
     private void AddUltraRare(ArrayList<AbstractCard> cards, Synergy synergy)
     {
-        int currentLevel = UnlockTracker.getUnlockLevel(GR.Enums.Characters.THE_ANIMATOR);
+        int currentLevel = GR.Animator.GetUnlockLevel();
         if (currentLevel <= 2 || AbstractDungeon.floorNum < 8 || AbstractDungeon.floorNum > 36)
         {
             return;
         }
 
-        AnimatorLoadout loadout = GR.Animator.Data.GetByName(synergy.Name);
+        AnimatorLoadout loadout = GR.Animator.Data.GetLoadout(synergy);
         if (loadout == null)
         {
             return;
@@ -150,8 +149,7 @@ public abstract class AnimatorReward extends CustomReward
             EYBCardData data = loadout.GetUltraRare();
             if (data != null)
             {
-                cards.remove(0);
-                cards.add(data.CreateNewInstance());
+                cards.set(Math.min(1, cards.size()), data.CreateNewInstance());
             }
         }
     }

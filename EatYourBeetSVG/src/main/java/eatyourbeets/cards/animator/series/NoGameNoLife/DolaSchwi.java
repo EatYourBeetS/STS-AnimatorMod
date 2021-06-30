@@ -42,10 +42,10 @@ public class DolaSchwi extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.StackPower(p, new LockOnPower(m, magicNumber));
-        GameActions.Bottom.ChannelOrb(new Lightning(), true);
+        GameActions.Bottom.ChannelOrb(new Lightning());
 
         cooldown.ProgressCooldownAndTrigger(m);
     }

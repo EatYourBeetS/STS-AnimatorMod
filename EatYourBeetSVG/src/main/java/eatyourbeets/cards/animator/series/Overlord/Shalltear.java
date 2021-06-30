@@ -55,7 +55,7 @@ public class Shalltear extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
@@ -64,7 +64,7 @@ public class Shalltear extends AnimatorCard
             GameEffects.List.Add(new HemokinesisEffect(enemy.hb.cX, enemy.hb.cY, player.hb.cX, player.hb.cY));
             GameActions.Bottom.ApplyWeak(player, enemy, 1);
 
-            if (HasSynergy())
+            if (isSynergizing)
             {
                 GameActions.Bottom.ReduceStrength(enemy, secondaryValue, true).SetForceGain(true);
             }

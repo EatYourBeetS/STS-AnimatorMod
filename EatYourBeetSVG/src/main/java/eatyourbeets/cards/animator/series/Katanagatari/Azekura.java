@@ -36,7 +36,7 @@ public class Azekura extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainPlatedArmor(secondaryValue);
@@ -46,7 +46,7 @@ public class Azekura extends AnimatorCard
             if (c.baseBlock > 0)
             {
                 GameUtilities.DecreaseBlock(c, magicNumber, false);
-                GameUtilities.Flash(this, Color.RED, false);
+                GameUtilities.Flash(c, Color.RED, false);
             }
         }
 

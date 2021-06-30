@@ -61,7 +61,7 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardExhau
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         cooldown.ProgressCooldownAndTrigger(m);
     }

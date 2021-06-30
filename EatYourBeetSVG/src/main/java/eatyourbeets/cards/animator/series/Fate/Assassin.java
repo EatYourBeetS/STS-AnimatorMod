@@ -33,6 +33,7 @@ public class Assassin extends AnimatorCard
         SetScaling(0, 1, 0);
 
         SetRetain(true);
+        SetMartialArtist();
         SetSynergy(Synergies.Fate);
     }
 
@@ -77,7 +78,7 @@ public class Assassin extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)
         .SetDamageEffect(this::DamageEffect)

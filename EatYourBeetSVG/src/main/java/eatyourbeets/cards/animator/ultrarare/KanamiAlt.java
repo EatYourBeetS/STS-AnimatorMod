@@ -10,9 +10,10 @@ import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 
-public class KanamiAlt extends AnimatorCard_UltraRare
+public class KanamiAlt extends AnimatorCard_UltraRare implements Hidden
 {
     public static final EYBCardData DATA = Register(KanamiAlt.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal).SetColor(CardColor.COLORLESS);
 
@@ -21,7 +22,7 @@ public class KanamiAlt extends AnimatorCard_UltraRare
         super(DATA);
 
         Initialize(20, 2, 10);
-        SetUpgrade(6, 0, 0);
+        SetUpgrade(7, 0, 0);
 
         SetScaling(0, 1, 1);
         SetMartialArtist();

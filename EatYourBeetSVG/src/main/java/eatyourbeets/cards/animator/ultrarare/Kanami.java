@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.ultrarare;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,7 +25,7 @@ public class Kanami extends AnimatorCard_UltraRare
         super(DATA);
 
         Initialize(20, 0, 2);
-        SetUpgrade(6, 0, 0);
+        SetUpgrade(7, 0, 0);
 
         SetCooldown(2, 0, this::OnCooldownCompleted);
         SetHaste(true);
@@ -59,12 +60,15 @@ public class Kanami extends AnimatorCard_UltraRare
     {
         GameActions.Last.ReplaceCard(uuid, new KanamiAlt())
         .SetUpgrade(upgraded)
-        .AddCallback(c ->
+        .AddCallback(cardMap ->
         {
-            KanamiAlt other = (KanamiAlt)c;
-            other.intellectScaling = this.intellectScaling;
-            other.agilityScaling = this.agilityScaling;
-            other.forceScaling = this.forceScaling;
+            for (AbstractCard key : cardMap.keySet())
+            {
+                KanamiAlt other = (KanamiAlt) cardMap.get(key);
+                other.intellectScaling = this.intellectScaling;
+                other.agilityScaling = this.agilityScaling;
+                other.forceScaling = this.forceScaling;
+            }
         });
     }
 }

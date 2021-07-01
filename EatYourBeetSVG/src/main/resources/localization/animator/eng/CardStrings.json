@@ -544,7 +544,7 @@
 		},
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Fully heal the enemy. Channel 1 [Dark] and increase its passive power by 1 for every !M! HP healed. || <LIM>: If you healed at least 30 HP in total, gain !S! ** Regeneration.",
+			"DESCRIPTION": "Heal the enemy for up to 30 HP. Channel 1 [Dark] and increase its passive power by 1 for every !M! HP healed. || <LIM>: If you healed 30 HP, gain !S! ** Regeneration.",
 			"NAME": "Barbara Pegg"
 		},
 		"animator:Defend_GenshinImpact":

@@ -3,27 +3,26 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
-import java.util.ArrayList;
-
-public class BarbaraPegg extends AnimatorCard {
+public class BarbaraPegg extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(BarbaraPegg.class).SetSkill(1, CardRarity.UNCOMMON);
     public static final int HP_HEAL_THRESHOLD = 30;
 
-    public BarbaraPegg() {
+    public BarbaraPegg()
+    {
         super(DATA);
 
-        Initialize(0, 0, 8, 3);
-        SetUpgrade(0, 0, -2);
+        Initialize(0, 0, 6, 3);
+        SetUpgrade(0, 0, -1);
 
         SetExhaust(true);
         SetSpellcaster();
@@ -36,30 +35,19 @@ public class BarbaraPegg extends AnimatorCard {
     {
         GameActions.Bottom.VFX(new RainbowCardEffect());
 
-        // Fully heal ALL enemies and calculate the number of stacks
-        int totalHeal = 0;
+        int heal = Math.min(HP_HEAL_THRESHOLD, m.maxHealth - m.currentHealth);
+        GameActions.Bottom.Heal(p, m, heal);
+        int stacks = Math.floorDiv(heal, magicNumber);
 
-        ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
-        for (AbstractMonster mo : enemies)
-        {
-            int heal = mo.maxHealth - mo.currentHealth;
-            GameActions.Bottom.Heal(p, mo, heal);
-            totalHeal += heal;
-        }
-
-        int stacks = Math.floorDiv(totalHeal, magicNumber);
-
-        // Channel an orb and increase its power for each stack
-        // NOTE: An Aether orb is being used here as a placeholder until Water orbs are implemented
-        AbstractOrb waterOrb = new Aether();
+        // NOTE: A Dark orb is being used here as a placeholder until Water orbs are implemented
+        AbstractOrb waterOrb = new Dark();
         GameActions.Bottom.ChannelOrb(waterOrb);
 
         if (stacks > 0)
         {
             waterOrb.passiveAmount += stacks;
 
-            // Limited effect when healing at least 30 HP in total
-            if (totalHeal >= HP_HEAL_THRESHOLD && CombatStats.TryActivateLimited(cardID))
+            if (heal >= HP_HEAL_THRESHOLD && CombatStats.TryActivateLimited(cardID))
             {
                 GameActions.Bottom.StackPower(new RegenPower(player, secondaryValue));
             }

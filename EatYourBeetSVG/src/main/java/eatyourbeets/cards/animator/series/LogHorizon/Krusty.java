@@ -21,8 +21,9 @@ public class Krusty extends AnimatorCard
 
         Initialize(28, 0, 3, 3);
         SetUpgrade(1, 0, 1, 1);
-
         SetScaling(0, 0, 1);
+
+        SetAutoplay(true);
         SetSynergy(Synergies.LogHorizon);
     }
 
@@ -44,15 +45,5 @@ public class Krusty extends AnimatorCard
             card.forceScaling += secondaryValue;
             card.flash();
         });
-    }
-
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        GameActions.Bottom.PlayCard(this, player.hand, null)
-        .SpendEnergy(true)
-        .AddCondition(AbstractCard::hasEnoughEnergy);
     }
 }

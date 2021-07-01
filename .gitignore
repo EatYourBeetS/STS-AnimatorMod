@@ -22,3 +22,4 @@ STS-AnimatorMod.iml
 *.jar
 .classpath
 EatYourBeetSVG/src/main/java/eatyourbeets/cards/animator/colorless/rare/Kyubey.java
+pom.xml

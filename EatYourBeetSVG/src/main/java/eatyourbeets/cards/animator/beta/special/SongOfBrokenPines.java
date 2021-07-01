@@ -32,6 +32,7 @@ public class SongOfBrokenPines extends AnimatorCard
         Initialize(0, 0, 10, 1);
         SetUpgrade(0,0,1, 0);
 
+        SetAutoplay(true);
         SetExhaust(true);
         SetSynergy(Synergies.GenshinImpact);
     }
@@ -47,18 +48,6 @@ public class SongOfBrokenPines extends AnimatorCard
     {
         GameActions.Bottom.Motivate(secondaryValue);
     }
-
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        GameActions.Bottom.PlayCard(this, player.hand, null)
-                .SpendEnergy(true)
-                .AddCondition(AbstractCard::hasEnoughEnergy);
-    }
-
-
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)

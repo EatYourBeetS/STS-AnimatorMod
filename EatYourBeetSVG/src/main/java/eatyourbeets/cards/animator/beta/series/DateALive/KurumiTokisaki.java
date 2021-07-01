@@ -24,6 +24,7 @@ public class KurumiTokisaki extends AnimatorCard
         Initialize(12, 12, 2);
         SetUpgrade(0,0,1);
 
+        SetAutoplay(true);
         SetEthereal(true);
 
         SetCooldown(3, 0, this::OnCooldownCompleted);
@@ -34,16 +35,6 @@ public class KurumiTokisaki extends AnimatorCard
     protected void OnUpgrade()
     {
         SetEthereal(false);
-    }
-
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        GameActions.Bottom.PlayCard(this, player.hand, null)
-        .SpendEnergy(true)
-        .AddCondition(AbstractCard::hasEnoughEnergy);
     }
 
     @Override

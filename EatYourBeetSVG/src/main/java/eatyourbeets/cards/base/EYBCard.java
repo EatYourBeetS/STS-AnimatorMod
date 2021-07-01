@@ -36,6 +36,7 @@ public abstract class EYBCard extends EYBCardBase
 
     public static final CardTags HASTE = GR.Enums.CardTags.HASTE;
     public static final CardTags PURGE = GR.Enums.CardTags.PURGE;
+    public static final CardTags AUTOPLAY = GR.Enums.CardTags.AUTOPLAY;
     public final EYBCardText cardText;
     public final EYBCardData cardData;
     public final ArrayList<EYBCardTooltip> tooltips;
@@ -209,6 +210,20 @@ public abstract class EYBCard extends EYBCardBase
     {
         // Called at the start of a fight, or when a card is created by MakeTempCard.
     }
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        if (hasTag(AUTOPLAY))
+        {
+            GameActions.Bottom.PlayCard(this, player.hand, null)
+                    .SpendEnergy(true)
+                    .AddCondition(AbstractCard::hasEnoughEnergy);
+        }
+    }
+
 
     @Override
     public final void triggerWhenCopied()
@@ -402,6 +417,11 @@ public abstract class EYBCard extends EYBCardBase
     public void SetLoyal(boolean value)
     {
         SetTag(GR.Enums.CardTags.LOYAL, value);
+    }
+
+    public void SetAutoplay(boolean value)
+    {
+        SetTag(GR.Enums.CardTags.AUTOPLAY, value);
     }
 
     public void SetHealing(boolean value)

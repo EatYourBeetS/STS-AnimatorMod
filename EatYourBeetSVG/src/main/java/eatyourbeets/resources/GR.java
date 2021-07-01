@@ -486,10 +486,14 @@ public class GR
             public static AbstractCard.CardTags LOYAL;
 
             @SpireEnum
+            public static AbstractCard.CardTags AUTOPLAY;
+
+            @SpireEnum
             public static AbstractCard.CardTags IMPROVED_STRIKE;
 
             @SpireEnum
             public static AbstractCard.CardTags IMPROVED_DEFEND;
+
         }
     }
 }

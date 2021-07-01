@@ -5,8 +5,6 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.delegates.FuncT2;
-import eatyourbeets.interfaces.delegates.FuncT1;
-import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.GenericCondition;
@@ -27,7 +25,6 @@ public class EvokeOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
     protected GenericCondition<AbstractOrb> filter;
     protected AbstractOrb orb;
     protected Mode mode;
-    protected GenericCondition<AbstractOrb> filter;
 
     public EvokeOrb(int times)
     {

@@ -81,6 +81,7 @@ public class CardTooltips
     public EYBCardTooltip Aether = FindByID("Aether");
     public EYBCardTooltip Dark = FindByID("Dark");
     public EYBCardTooltip Aura = FindByID("Aura");
+    public EYBCardTooltip Autoplay = FindByID("Autoplay");
 
     // No Description
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
@@ -139,6 +140,7 @@ public class CardTooltips
         Innate.SetIcon(badges.Innate.Texture(), 6);
         Haste.SetIcon(badges.Haste.Texture(), 6);
         Purge.SetIcon(badges.Purge.Texture(), 6);
+        Autoplay.SetIcon(badges.Autoplay.Texture(), 6);
 
         CommonImages.CardIcons icons = GR.Common.Images.Icons;
         Ranged.SetIcon(icons.Ranged.Texture(), 6);

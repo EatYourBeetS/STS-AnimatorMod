@@ -396,7 +396,7 @@
 		},
 		"animator:Megunee_Zombie":
 		{
-			"DESCRIPTION": "Autoplay. || <LIM>. If Fatal: Heal !M! HP. || When Exhausted: Put this card in your hand after a random number of turns.",
+			"DESCRIPTION": "<LIM>. If Fatal: Heal !M! HP. || When Exhausted: Put this card in your hand after a random number of turns.",
 			"NAME": "Zombie Megu-nee"
 		},
 		"animator:NaoTomori":
@@ -424,7 +424,7 @@
 		},
 		"animator:SongOfBrokenPines":
 		{
-			"DESCRIPTION": "Autoplay. || At the end of your turn, deal !M! damage to ALL enemies for each Strike played this turn. || When Discarded or Played, Motivate 1.",
+			"DESCRIPTION": "At the end of your turn, deal !M! damage to ALL enemies for each Strike played this turn. || When Discarded or Played, Motivate 1.",
 			"NAME": "Song of Broken Pines"
 		}
 	},
@@ -457,7 +457,7 @@
 		},
 		"animator:KurumiTokisaki":
 		{
-			"DESCRIPTION": "{Autoplay}. || Next turn: Gain !M! [E]. || Cooldown !S!: Skip the next ** enemy turn. Shuffle 3 copies ** of this into your draw pile.",
+			"DESCRIPTION": "Next turn: Gain !M! [E]. || Cooldown !S!: Skip the next ** enemy turn. Shuffle 3 copies ** of this into your draw pile.",
 			"NAME": "Kurumi Tokisaki"
 		},
 		"animator:MikuIzayoi":
@@ -1593,7 +1593,7 @@
 		},
 		"animator:Krusty":
 		{
-			"DESCRIPTION": "When drawn: {Autoplay}. || Increase this card [F] scaling by !M!.",
+			"DESCRIPTION": "Increase this card [F] scaling by !M!.",
 			"NAME": "Krusty"
 		},
 		"animator:Marielle":

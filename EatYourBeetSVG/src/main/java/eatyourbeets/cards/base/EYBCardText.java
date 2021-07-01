@@ -175,8 +175,12 @@ public class EYBCardText
         }
         if (card.exhaust || card.exhaustOnUseOnce)
         {
-            //noinspection UnusedAssignment
             offset_y -= RenderBadge(sb, BADGES.Exhaust.Texture(), offset_y, alpha, null);
+        }
+        if (card.hasTag(GR.Enums.CardTags.AUTOPLAY))
+        {
+            //noinspection UnusedAssignment
+            offset_y -= RenderBadge(sb, BADGES.Autoplay.Texture(), offset_y, alpha, null);
         }
 
         offset_y = 0;

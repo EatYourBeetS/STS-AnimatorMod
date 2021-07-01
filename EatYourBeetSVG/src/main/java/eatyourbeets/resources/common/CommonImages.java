@@ -40,6 +40,7 @@ public class CommonImages
         public final TextureCache Innate                  = new TextureCache("images/cardui/eyb/badges/Innate.png");
         public final TextureCache Retain                  = new TextureCache("images/cardui/eyb/badges/Retain.png");
         public final TextureCache Haste                   = new TextureCache("images/cardui/eyb/badges/Haste.png");
+        public final TextureCache Autoplay                   = new TextureCache("images/cardui/eyb/badges/Autoplay.png");
     }
 
     public static class Tooltips

@@ -95,7 +95,7 @@ public class FielNirvalen extends AnimatorCard
 
             if (enabled)
             {
-                GameActions.Top.Scry(amount);
+                GameActions.Bottom.Scry(amount);
                 enabled = false;
                 flash();
             }

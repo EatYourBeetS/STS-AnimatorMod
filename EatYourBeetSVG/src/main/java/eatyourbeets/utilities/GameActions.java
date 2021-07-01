@@ -3,7 +3,6 @@ package eatyourbeets.utilities;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
@@ -415,9 +414,9 @@ public final class GameActions
         return Add(new EvokeOrb(times, mode));
     }
 
-    public VFXAction Flash(AbstractCard card)
+    public VFX Flash(AbstractCard card)
     {
-        return Add(new VFXAction(new CardFlashVfx(card, Color.ORANGE.cpy())));
+        return VFX(new CardFlashVfx(card, Color.ORANGE.cpy()));
     }
 
     public ApplyPower GainAgility(int amount)

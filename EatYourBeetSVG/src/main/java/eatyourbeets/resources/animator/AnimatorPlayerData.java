@@ -200,7 +200,7 @@ public class AnimatorPlayerData
         add.Invoke(new AccelWorld(), 7);
         add.Invoke(new TenSura(), 7);
         add.Invoke(new MadokaMagica(), 8);
-        add.Invoke(new LogHorizon(), 8);
+        //add.Invoke(new LogHorizon(), 8);
 
         for (AnimatorLoadout loadout : BaseLoadouts)
         {
@@ -240,6 +240,10 @@ public class AnimatorPlayerData
         BetaLoadouts.add(new TouhouProject());
         BetaLoadouts.add(new RozenMaiden());
         BetaLoadouts.add(new Bleach());
+        LogHorizon l = new LogHorizon();
+        l.UnlockLevel = 8;
+        BetaLoadouts.add(l);
+        //BetaLoadouts.add(new <YourLoadoutHere>);
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...

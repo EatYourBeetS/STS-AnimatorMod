@@ -119,6 +119,7 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
                     }
 
                     DamageHelper.DealDamage(enemy, new DamageInfo(this.source, this.damage[i], this.damageType), bypassBlock, bypassThorns);
+                    targets.add(enemy);
                 }
 
                 i += 1;
@@ -136,11 +137,5 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
 
             Complete(targets);
         }
-    }
-
-    protected void DamageTarget(AbstractMonster target, DamageInfo info)
-    {
-        target.damage(info);
-        targets.add(target);
     }
 }

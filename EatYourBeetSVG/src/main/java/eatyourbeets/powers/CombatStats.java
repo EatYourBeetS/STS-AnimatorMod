@@ -469,7 +469,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         return orbsEvokedThisTurn;
     }
 
-    public static HashMap<String, Integer> AmountIncreasedOnOrbs()
+    public static HashMap<String, Integer> AmountIncreasedOnOrbs(boolean fromZero)
     {
         return amountIncreasedOnOrbs;
     }
@@ -709,7 +709,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
         if (card.hasTag(GR.Enums.CardTags.HASTE))
         {
-            GameActions.Bottom.Add(new HasteAction(card));
+            GameActions.Top.Add(new HasteAction(card));
         }
     }
 

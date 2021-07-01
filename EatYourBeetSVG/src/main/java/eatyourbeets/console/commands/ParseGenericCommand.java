@@ -110,7 +110,7 @@ public class ParseGenericCommand extends ConsoleCommand
                     return;
                 }
 
-                if (tokens[1].equals("sort-by-tribe"))
+                if (tokens[1].equals("sort-by-class"))
                 {
                     CustomCardLibSortHeader.Instance.group.group.sort((a, b) ->
                     {
@@ -144,6 +144,12 @@ public class ParseGenericCommand extends ConsoleCommand
 
                         return Integer.compare(aValue, bValue);
                     });
+                    return;
+                }
+
+                if (tokens[1].equals("synergy-check"))
+                {
+                    GR.Animator.Config.FadeCardsWithoutSynergy(tokens.length > 2 && tokens[2].equals("true"), true);
                     return;
                 }
 

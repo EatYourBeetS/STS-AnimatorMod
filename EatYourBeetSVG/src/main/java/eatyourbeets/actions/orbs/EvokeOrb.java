@@ -2,7 +2,7 @@ package eatyourbeets.actions.orbs;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.actions.EYBAction;
+import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.utilities.GameActions;
@@ -10,7 +10,9 @@ import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.GenericCondition;
 import eatyourbeets.utilities.RandomizedList;
 
-public class EvokeOrb extends EYBAction
+import java.util.ArrayList;
+
+public class EvokeOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
 {
     public enum Mode
     {
@@ -19,9 +21,10 @@ public class EvokeOrb extends EYBAction
         SameOrb
     }
 
-    protected Mode mode;
-    protected AbstractOrb orb;
+    protected final ArrayList<AbstractOrb> orbs = new ArrayList<>();
     protected GenericCondition<AbstractOrb> filter;
+    protected AbstractOrb orb;
+    protected Mode mode;
 
     public EvokeOrb(int times)
     {
@@ -92,10 +95,12 @@ public class EvokeOrb extends EYBAction
                 for (int j = 0; j < (amount - 1); j++)
                 {
                     orb.onEvoke();
+                    orbs.add(orb);
                 }
                 if (amount > 0)
                 {
                     GameActions.Top.Add(new EvokeSpecificOrbAction(orb));
+                    orbs.add(orb);
                 }
             }
         }
@@ -116,6 +121,7 @@ public class EvokeOrb extends EYBAction
                 if (orb != null)
                 {
                     GameActions.Top.Add(new EvokeSpecificOrbAction(orb));
+                    orbs.add(orb);
                 }
             }
         }
@@ -128,11 +134,12 @@ public class EvokeOrb extends EYBAction
                 if (CheckOrb(orb))
                 {
                     GameActions.Top.Add(new EvokeSpecificOrbAction(orb));
+                    orbs.add(orb);
                 }
             }
         }
 
-        Complete();
+        Complete(orbs);
     }
 
     protected boolean CheckOrb(AbstractOrb orb)

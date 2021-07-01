@@ -69,10 +69,12 @@ public class EYBCardText
             return;
         }
 
+
         context.Render(sb);
 
         RenderAttributes(sb);
 
+        final boolean inHand = EYBCard.player != null && EYBCard.player.hand.contains(card);
         if (card.drawScale > 0.3f)
         {
             RenderBadges(sb);
@@ -91,7 +93,7 @@ public class EYBCardText
                 BitmapFont font = RenderHelpers.GetSmallTextFont(card, bottom.text);
 
                 float yPos = AbstractCard.RAW_H;
-                if (EYBCard.player != null && EYBCard.player.hand.contains(card))
+                if (inHand)
                 {
                     font.getData().scale(0.175f);
                     yPos *= 0.57f;
@@ -180,31 +182,67 @@ public class EYBCardText
         offset_y = 0;
         if (card.intellectScaling > 0)
         {
-            offset_y -= RenderScaling(sb, ICONS.Intellect.Texture(), card.intellectScaling, offset_y);
-        }
-        if (card.forceScaling > 0)
-        {
-            offset_y -= RenderScaling(sb, ICONS.Force.Texture(), card.forceScaling, offset_y);
+            offset_y += RenderScaling(sb, ICONS.Intellect.Texture(), card.intellectScaling, offset_y);
         }
         if (card.agilityScaling > 0)
         {
-            RenderScaling(sb, ICONS.Agility.Texture(), card.agilityScaling, offset_y);
+            offset_y += RenderScaling(sb, ICONS.Agility.Texture(), card.agilityScaling, offset_y);
+        }
+        if (card.forceScaling > 0)
+        {
+            //noinspection UnusedAssignment
+            offset_y += RenderScaling(sb, ICONS.Force.Texture(), card.forceScaling, offset_y);
         }
     }
 
     private float RenderScaling(SpriteBatch sb, Texture texture, float scaling, float y)
     {
         final float offset_x = -AbstractCard.RAW_W * 0.46f;
-        final float offset_y = AbstractCard.RAW_H * 0.28f;
+        final float offset_y = AbstractCard.RAW_H * 0.1f;//+0.28f;
         final BitmapFont font = EYBFontHelper.CardIconFont_Large;
 
-        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y), 38, 38);
+        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y), 36, 36);
 
         font.getData().setScale(0.6f * card.drawScale);
-        RenderHelpers.WriteOnCard(sb, card, font, "x" + (int) scaling, (offset_x + 9), (offset_y + y - 12), Settings.CREAM_COLOR, true);
+        RenderHelpers.WriteOnCard(sb, card, font, "x" + (int) scaling, (offset_x + 6), (offset_y + y - 12), Settings.CREAM_COLOR, true);
         RenderHelpers.ResetFont(font);
 
-        return 36;
+        return 36; // y offset
+    }
+
+    private void RenderAffinity(SpriteBatch sb, Texture texture, int index, int max, boolean bottom)
+    {
+        if (max > 3)
+        {
+            throw new ArrayIndexOutOfBoundsException("Can't render more than 3 affinities.");
+        }
+
+        float size = 42;
+        float x;
+        if (max == 1)
+        {
+            x = 0;
+        }
+        else if (max == 2)
+        {
+            x = (index == 0) ? -AbstractCard.RAW_W * 0.06f : +AbstractCard.RAW_W * 0.06f;
+        }
+        else
+        {
+            x = (index == 0) ? -AbstractCard.RAW_W * 0.12f : (index == 1) ? 0 : +AbstractCard.RAW_W * 0.12f;
+        }
+
+        final float y = bottom ? -AbstractCard.RAW_H * 0.47f : AbstractCard.RAW_H * 0.57f;
+
+        float transparency = card.transparency;
+        if (index == 0 || index == 2)
+        {
+            card.transparency *= 0.6f;
+            size = 48;
+        }
+        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(x, y), size, size);
+
+        card.transparency = transparency;
     }
 
     private float RenderBadge(SpriteBatch sb, Texture texture, float offset_y, float alpha, String text)

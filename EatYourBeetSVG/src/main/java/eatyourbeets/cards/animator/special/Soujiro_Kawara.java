@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Soujiro_Kawara extends AnimatorCard
 {
@@ -17,15 +18,27 @@ public class Soujiro_Kawara extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 0);
-        SetUpgrade(2, 0, 0);
+        Initialize(5, 2, 3);
+        SetUpgrade(2, 0, 1);
 
         SetSynergy(Synergies.LogHorizon);
     }
 
     @Override
+    protected float ModifyBlock(AbstractMonster enemy, float amount)
+    {
+        if (enemy != null && GameUtilities.IsAttacking(enemy.intent))
+        {
+            return super.ModifyBlock(enemy, amount + magicNumber);
+        }
+
+        return super.ModifyBlock(enemy, amount);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
     }
 }

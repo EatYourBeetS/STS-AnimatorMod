@@ -71,9 +71,11 @@ public class EYBCardData
         }
     }
 
-    public void AddPreview(EYBCardBase card, boolean showUpgrade)
+    public EYBCardBase AddPreview(EYBCardBase card, boolean showUpgrade)
     {
         previews.Add(new EYBCardPreview(card, showUpgrade));
+
+        return card;
     }
 
     public TextureAtlas.AtlasRegion GetCardIcon()

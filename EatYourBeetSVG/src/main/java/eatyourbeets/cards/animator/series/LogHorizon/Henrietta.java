@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.LogHorizon;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
@@ -18,13 +17,13 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Henrietta extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Henrietta.class).SetPower(3, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Henrietta.class).SetPower(2, CardRarity.UNCOMMON);
 
     public Henrietta()
     {
         super(DATA);
 
-        Initialize(0, 2, 1, 1);
+        Initialize(0, 0, 1, 1);
         SetEthereal(true);
 
         SetSynergy(Synergies.LogHorizon);
@@ -39,11 +38,9 @@ public class Henrietta extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainBlock(block);
-
         if (!GameUtilities.InStance(NeutralStance.STANCE_ID))
         {
-            GameActions.Bottom.Motivate(magicNumber);
+            GameActions.Bottom.GainEnergy(1);
         }
 
         GameActions.Bottom.StackPower(new HenriettaPower(p, secondaryValue));
@@ -68,23 +65,25 @@ public class Henrietta extends AnimatorCard
         {
             super.atEndOfTurn(isPlayer);
 
-            int energy = EnergyPanel.getCurrentEnergy();
-            if (energy > 0)
+            for (int i = 0; i < amount; i++)
             {
-                EnergyPanel.useEnergy(energy);
-                flash();
-
-                if (choices.TryInitialize(sourceCard))
+                GameActions.Bottom.SpendEnergy(1, false)
+                .AddCallback(() ->
                 {
-                    choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
-                    choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));
-                    choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
-                    choices.AddEffect(new GenericEffect_EnterStance(NeutralStance.STANCE_ID));
-                }
+                    if (choices.TryInitialize(sourceCard))
+                    {
+                        choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
+                        choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));
+                        choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
+                        choices.AddEffect(new GenericEffect_EnterStance(NeutralStance.STANCE_ID));
+                    }
 
-                choices.Select(GameActions.Top, 1, null)
-                .CancellableFromPlayer(true);
+                    choices.Select(GameActions.Top, 1, null)
+                    .CancellableFromPlayer(true);
+                });
             }
+
+            flash();
         }
     }
 }

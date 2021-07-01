@@ -48,6 +48,12 @@
 		"NAMES": ["勒脖"],
 		"PROPER_NAME": "勒脖"
 	},
+	"Common Debuff":
+	{
+		"DESCRIPTION": "中毒，虚弱，易伤，燃烧，镣铐。",
+		"NAMES": ["普通负面效果"],
+		"PROPER_NAME": "普通负面效果"
+	},
 	"Constricted":
 	{
 		"DESCRIPTION": "回合结束时，受到伤害。",
@@ -144,12 +150,6 @@
 		"NAMES": ["限制"],
 		"PROPER_NAME": "限制"
 	},
-	"~Lock-On":
-	{
-		"DESCRIPTION": "从充能球受到的伤害增加 #b50% 。 从 #y远程 攻击受到的伤害增加 #b30% 。",
-		"NAMES": ["~跟踪锁定"],
-		"PROPER_NAME": "跟踪锁定"
-	},
 	"Malleable":
 	{
 		"DESCRIPTION": "受到伤害时得到 #y格挡 。 每次触发会得到更多 #y格挡 。 回合开始时重置。",
@@ -167,12 +167,6 @@
 		"DESCRIPTION": "",
 		"NAMES": ["一般姿态"],
 		"PROPER_NAME": "一般姿态"
-	},
-	"Starter":
-	{
-		"DESCRIPTION": "为本回合打出的第一张牌时触发。",
-		"NAMES": ["开端"],
-		"PROPER_NAME": "开端"
 	},
 	"Plated Armor":
 	{
@@ -209,6 +203,12 @@
 		"DESCRIPTION": "回合内每打出一张牌， 敌人受到的 #y攻击 伤害增加 #b10% 。",
 		"NAMES": ["缓慢"],
 		"PROPER_NAME": "缓慢"
+	},
+	"Starter":
+	{
+		"DESCRIPTION": "为本回合打出的第一张牌时触发。",
+		"NAMES": ["开端"],
+		"PROPER_NAME": "开端"
 	},
 	"Stun":
 	{
@@ -251,6 +251,12 @@
 		"DESCRIPTION": "在每场战斗开始时， 这张牌会出现在你的手牌中。",
 		"NAMES": ["~固有"],
 		"PROPER_NAME": "固有"
+	},
+	"~Lock-On":
+	{
+		"DESCRIPTION": "从充能球受到的伤害增加 #b50% 。 从 #y远程 攻击受到的伤害增加 #b30% 。",
+		"NAMES": ["~跟踪锁定"],
+		"PROPER_NAME": "跟踪锁定"
 	},
 	"~Piercing":
 	{

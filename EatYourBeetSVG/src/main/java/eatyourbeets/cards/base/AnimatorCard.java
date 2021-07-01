@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public abstract class AnimatorCard extends EYBCard
 {
     protected static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
-    protected static final Color synergyGlowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR;
+    protected static final Color synergyGlowColor = new Color(1, 0.843f, 0, 0.25f);
     protected AnimatorCardCooldown cooldown;
 
     public static final AnimatorImages IMAGES = GR.Animator.Images;
@@ -124,6 +125,41 @@ public abstract class AnimatorCard extends EYBCard
         super.triggerOnGlowCheck();
 
         this.glowColor = HasSynergy() ? synergyGlowColor : defaultGlowColor;
+    }
+
+    @Override
+    public void hover()
+    {
+        super.hover();
+
+        if (player != null && player.hand.contains(this))
+        {
+            for (AbstractCard c : player.hand.group)
+            {
+                if (c == this || WouldSynergize(c))
+                {
+                    c.transparency = 1f;
+                }
+                else
+                {
+                    c.transparency = 0.2f;
+                }
+            }
+        }
+    }
+
+    @Override
+    public void unhover()
+    {
+        if (hovered && player != null && player.hand.contains(this))
+        {
+            for (AbstractCard c : AbstractDungeon.player.hand.group)
+            {
+                c.transparency = 0.35f;
+            }
+        }
+
+        super.unhover();
     }
 
     @Override

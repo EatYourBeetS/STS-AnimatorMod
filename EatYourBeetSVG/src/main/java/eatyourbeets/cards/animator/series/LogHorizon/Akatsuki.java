@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
@@ -22,23 +21,22 @@ public class Akatsuki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(10, 0, 2);
-        SetUpgrade(2, 0, 1);
+        Initialize(11, 0, 2, 4);
+        SetUpgrade(0, 0, 1);
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.LogHorizon);
     }
 
     @Override
-    protected void OnUpgrade()
+    protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        SetEthereal(false);
-    }
+        if (enemy != null && !GameUtilities.IsAttacking(enemy.intent))
+        {
+            amount += secondaryValue;
+        }
 
-    @Override
-    public boolean HasDirectSynergy(AbstractCard other)
-    {
-        return (other.rarity.equals(CardRarity.UNCOMMON)) || super.HasDirectSynergy(other);
+        return super.ModifyDamage(enemy, amount);
     }
 
     @Override
@@ -56,7 +54,8 @@ public class Akatsuki extends AnimatorCard
                 {
                     GameUtilities.ModifyCostForCombat(card, 0, false);
                     GameUtilities.ModifyDamage(card, 0, false);
-                    card.exhaust = true;
+                    card.purgeOnUse = true;
+                    card.isEthereal = true;
                 });
             }
         }

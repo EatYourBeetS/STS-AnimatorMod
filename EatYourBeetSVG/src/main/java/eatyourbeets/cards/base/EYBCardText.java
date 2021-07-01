@@ -108,36 +108,33 @@ public class EYBCardText
             }
 //            else // TEST Card Alignment Icons
 //            {
-//                Texture black = ICONS2.Border.Texture();
-//                Texture white = ICONS2.Border.Texture();
-//
 //                if (card.cost == 0)
 //                {
-//                    RenderAlignment(sb, ICONS2.Agility.Texture(), black, 0, 1, !inHand);
+//                    RenderAlignment(sb, ICONS2.Agility.Texture(), 0, 1, !inHand);
 //                }
 //                else if (card.cost == 1)
 //                {
 //                    if (card.type == AbstractCard.CardType.ATTACK)
 //                    {
-//                        RenderAlignment(sb, ICONS2.Light.Texture(), black, 0, 2, !inHand);
-//                        RenderAlignment(sb, ICONS2.Dark.Texture(), white, 1, 2, !inHand);
+//                        RenderAlignment(sb, ICONS2.Light.Texture(), 0, 2, !inHand);
+//                        RenderAlignment(sb, ICONS2.Dark.Texture(), 1, 2, !inHand);
 //                    }
 //                    else
 //                    {
-//                        RenderAlignment(sb, ICONS2.Dark.Texture(), white, 0, 2, !inHand);
-//                        RenderAlignment(sb, ICONS2.Light.Texture(), black, 1, 2, !inHand);
+//                        RenderAlignment(sb, ICONS2.Dark.Texture(), 0, 2, !inHand);
+//                        RenderAlignment(sb, ICONS2.Light.Texture(), 1, 2, !inHand);
 //                    }
 //                }
 //                else if (card.cost == 2)
 //                {
-//                    RenderAlignment(sb, ICONS2.Force.Texture(), white, 0, 2, !inHand);
-//                    RenderAlignment(sb, ICONS2.Dark.Texture(), white, 1, 2, !inHand);
+//                    RenderAlignment(sb, ICONS2.Force.Texture(), 0, 2, !inHand);
+//                    RenderAlignment(sb, ICONS2.Dark.Texture(), 1, 2, !inHand);
 //                }
 //                else
 //                {
-//                    RenderAlignment(sb, ICONS2.Light.Texture(), black, 0, 3, !inHand);
-//                    RenderAlignment(sb, ICONS2.Intellect.Texture(), white, 1, 3, !inHand);
-//                    RenderAlignment(sb, ICONS2.Dark.Texture(), black, 2, 3, !inHand);
+//                    RenderAlignment(sb, ICONS2.Light.Texture(), 0, 3, !inHand);
+//                    RenderAlignment(sb, ICONS2.Intellect.Texture(), 1, 3, !inHand);
+//                    RenderAlignment(sb, ICONS2.Dark.Texture(), 2, 3, !inHand);
 //                }
 //            }
         }
@@ -244,7 +241,7 @@ public class EYBCardText
         return 36; // y offset
     }
 
-    private void RenderAlignment(SpriteBatch sb, Texture texture, Texture border, int index, int max, boolean bottom)
+    private void RenderAlignment(SpriteBatch sb, Texture texture, int index, int max, boolean bottom)
     {
         if (max > 3)
         {
@@ -258,11 +255,11 @@ public class EYBCardText
         }
         else if (max == 2)
         {
-            x = (index == 0) ? -AbstractCard.RAW_W * 0.06f : +AbstractCard.RAW_W * 0.06f;
+            x = (index == 0) ? -AbstractCard.RAW_W * 0.07f : +AbstractCard.RAW_W * 0.07f;
         }
         else
         {
-            x = (index == 0) ? -AbstractCard.RAW_W * 0.12f : (index == 1) ? 0 : +AbstractCard.RAW_W * 0.12f;
+            x = (index == 0) ? -AbstractCard.RAW_W * 0.14f : (index == 1) ? 0 : +AbstractCard.RAW_W * 0.14f;
         }
 
         final float y = bottom ? -AbstractCard.RAW_H * 0.47f : AbstractCard.RAW_H * 0.57f;
@@ -275,17 +272,16 @@ public class EYBCardText
         }
 
         float transparency = card.transparency;
+        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(x, y), size, size);
         if ((max == 2 && index == 1) || (max == 3 && index == 0 || index == 2))
         {
-            //card.transparency *= 0.6f;
-            size *= 0.8;
+            RenderHelpers.DrawOnCardAuto(sb, card, ICONS2.Border_Weak.Texture(), new Vector2(x, y), size, size);
         }
         else
         {
-            RenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size);
+            RenderHelpers.DrawOnCardAuto(sb, card, ICONS2.Border.Texture(), new Vector2(x, y), size, size);
         }
 
-        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(x, y), size, size);
         card.transparency = transparency;
     }
 

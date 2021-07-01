@@ -41,6 +41,7 @@ public class CommonImages
         public final TextureCache Light                 = new TextureCache("images/cardui/eyb/alignments/Light.png", true);
         public final TextureCache Dark                  = new TextureCache("images/cardui/eyb/alignments/Dark.png", true);
         public final TextureCache Border                = new TextureCache("images/cardui/eyb/alignments/Border.png", true);
+        public final TextureCache Border_Weak           = new TextureCache("images/cardui/eyb/alignments/Border_Weak.png", true);
     }
 
     public static class Badges

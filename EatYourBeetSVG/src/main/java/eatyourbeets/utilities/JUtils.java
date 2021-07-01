@@ -268,6 +268,18 @@ public class JUtils
         return sj.toString();
     }
 
+    public static <T> String JoinStrings(String delimiter, Collection<T> values)
+    {
+        StringJoiner sj = new StringJoiner(delimiter);
+        for (T value : values)
+        {
+            sj.add(value.toString());
+        }
+
+        return sj.toString();
+    }
+
+
     public static void LogError(Object source, Object message)
     {
         GetLogger(source).error(message);

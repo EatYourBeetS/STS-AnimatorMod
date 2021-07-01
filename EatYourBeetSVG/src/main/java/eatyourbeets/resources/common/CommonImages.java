@@ -7,6 +7,7 @@ public class CommonImages
     public final Badges Badges = new Badges();
     public final CardIcons Icons = new CardIcons();
     public final Tooltips Tooltips = new Tooltips();
+    public final Alignments Alignments = new Alignments();
 
     public final TextureCache UnnamedReignEntrance        = new TextureCache("images/ui/map/act5Entrance.png");
     public final TextureCache UnnamedReignEntranceOutline = new TextureCache("images/ui/map/act5EntranceOutline.png");
@@ -30,6 +31,16 @@ public class CommonImages
         public final TextureCache Intellect             = new TextureCache("images/cardui/eyb/core/Intellect.png");
         public final TextureCache Force                 = new TextureCache("images/cardui/eyb/core/Force.png");
         public final TextureCache Agility               = new TextureCache("images/cardui/eyb/core/Agility.png");
+    }
+
+    public static class Alignments
+    {
+        public final TextureCache Agility               = new TextureCache("images/cardui/eyb/alignments/Agility.png", true);
+        public final TextureCache Force                 = new TextureCache("images/cardui/eyb/alignments/Force.png", true);
+        public final TextureCache Intellect             = new TextureCache("images/cardui/eyb/alignments/Intellect.png", true);
+        public final TextureCache Light                 = new TextureCache("images/cardui/eyb/alignments/Light.png", true);
+        public final TextureCache Dark                  = new TextureCache("images/cardui/eyb/alignments/Dark.png", true);
+        public final TextureCache Border                = new TextureCache("images/cardui/eyb/alignments/Border.png", true);
     }
 
     public static class Badges

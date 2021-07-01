@@ -6,11 +6,18 @@ import eatyourbeets.resources.GR;
 public class TextureCache
 {
     private final String path;
+    private final boolean mipmap;
     private Texture texture;
 
     public TextureCache(String path)
     {
+        this(path, false);
+    }
+
+    public TextureCache(String path, boolean mipmap)
+    {
         this.path = path;
+        this.mipmap = mipmap;
     }
 
     public String Path()
@@ -22,7 +29,7 @@ public class TextureCache
     {
         if (texture == null)
         {
-            texture = GR.GetTexture(path);
+            texture = GR.GetTexture(path, mipmap);
         }
 
         return texture;

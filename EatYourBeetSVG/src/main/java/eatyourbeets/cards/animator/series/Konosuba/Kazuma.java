@@ -20,6 +20,7 @@ public class Kazuma extends AnimatorCard
         SetUpgrade(0, 2, 1);
 
         SetSynergy(Synergies.Konosuba);
+        SetAlignment(1, 1, 0, 1, 0);
     }
 
     @Override

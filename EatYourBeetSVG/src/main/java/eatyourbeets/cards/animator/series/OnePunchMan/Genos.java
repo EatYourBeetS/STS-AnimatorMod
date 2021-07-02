@@ -22,6 +22,7 @@ public class Genos extends AnimatorCard
         SetUpgrade(4, 0, 0, 0);
 
         SetSynergy(Synergies.OnePunchMan);
+        SetAlignment(1, 1, 0, 2, 0);
     }
 
     @Override

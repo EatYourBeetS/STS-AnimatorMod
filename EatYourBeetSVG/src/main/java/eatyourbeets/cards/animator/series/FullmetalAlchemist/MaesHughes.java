@@ -23,6 +23,7 @@ public class MaesHughes extends AnimatorCard
         SetUpgrade(0, 0, -1);
 
         SetSynergy(Synergies.FullmetalAlchemist);
+        SetAlignment(0, 0, 1, 2, 0);
     }
 
     @Override

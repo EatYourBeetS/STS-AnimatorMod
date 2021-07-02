@@ -23,6 +23,7 @@ public class Yoichi extends AnimatorCard
         SetUpgrade(0,2, 0);
 
         SetSynergy(Synergies.OwariNoSeraph);
+        SetAlignment(0, 1, 0, 2, 0);
     }
 
     @Override

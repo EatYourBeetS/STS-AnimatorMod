@@ -42,6 +42,7 @@ public class Saitama extends AnimatorCard
 
         SetAttackType(EYBAttackType.Normal);
         SetSynergy(Synergies.OnePunchMan);
+        SetAlignment(2, 2, 0, 1, 0);
 
         GameUtilities.ModifyCostForCombat(this, stage, false);
         this.stage = this.misc = stage;

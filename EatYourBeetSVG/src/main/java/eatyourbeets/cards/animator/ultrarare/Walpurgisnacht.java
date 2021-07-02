@@ -28,7 +28,7 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
         SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.MadokaMagica);
-        SetSpellcaster();
+        SetAlignment(0, 0, 2, 0, 2);
     }
 
     @Override

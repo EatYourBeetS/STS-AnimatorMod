@@ -23,6 +23,7 @@ public class Elsword extends AnimatorCard
         SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.Elsword);
+        SetAlignment(2, 1, 0, 1, 0);
     }
 
     @Override

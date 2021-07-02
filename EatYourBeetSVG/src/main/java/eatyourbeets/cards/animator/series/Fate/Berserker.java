@@ -26,6 +26,7 @@ public class Berserker extends AnimatorCard
         SetScaling(0, 0, 3);
 
         SetSynergy(Synergies.Fate);
+        SetAlignment(2, 0, 0, 0, 0);
     }
 
     @Override

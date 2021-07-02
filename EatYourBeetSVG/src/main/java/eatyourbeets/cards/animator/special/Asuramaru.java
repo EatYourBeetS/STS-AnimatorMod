@@ -22,6 +22,7 @@ public class Asuramaru extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.OwariNoSeraph);
+        SetAlignment(2, 2, 0, 0, 1);
     }
 
     @Override

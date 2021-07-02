@@ -27,6 +27,7 @@ public class Lu extends AnimatorCard
         SetScaling(2, 0, 2);
 
         SetSynergy(Synergies.Elsword);
+        SetAlignment(2, 0, 2, 0, 2);
     }
 
     @Override

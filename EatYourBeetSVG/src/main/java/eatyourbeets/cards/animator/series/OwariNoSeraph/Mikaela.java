@@ -24,6 +24,7 @@ public class Mikaela extends AnimatorCard
         SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.OwariNoSeraph);
+        SetAlignment(1, 1, 0, 0, 1);
     }
 
     @Override

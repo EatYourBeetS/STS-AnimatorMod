@@ -22,6 +22,7 @@ public class KyokoSakura extends AnimatorCard
         SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.MadokaMagica);
+        SetAlignment(1, 1, 1, 0, 0);
     }
 
     @Override

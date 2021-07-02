@@ -24,7 +24,7 @@ public class Hakurou extends AnimatorCard
         SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.TenSura);
-        SetMartialArtist();
+        SetAlignment(1, 2, 0, 0, 0);
     }
 
     @Override

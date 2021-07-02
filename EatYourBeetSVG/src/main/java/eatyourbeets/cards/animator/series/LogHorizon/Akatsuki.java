@@ -26,6 +26,7 @@ public class Akatsuki extends AnimatorCard
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.LogHorizon);
+        SetAlignment(0, 2, 0, 1, 0);
     }
 
     @Override

@@ -25,6 +25,7 @@ public class Layla extends AnimatorCard
         SetUpgrade(0, 0, 1, 0);
 
         SetSynergy(Synergies.Chaika);
+        SetAlignment(0, 0, 1, 0, 1);
     }
 
     @Override

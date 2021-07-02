@@ -33,6 +33,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
 
         SetSpellcaster();
         SetSynergy(Synergies.Chaika);
+        SetAlignment(0, 0, 2, 2, 0);
     }
 
     @Override

@@ -26,6 +26,7 @@ public class Rider extends AnimatorCard
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Fate);
+        SetAlignment(0, 2, 1, 0, 1);
     }
 
     @Override

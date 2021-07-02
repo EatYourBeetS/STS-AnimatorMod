@@ -33,7 +33,9 @@ public class Truth extends AnimatorCard_UltraRare
         SetUpgrade(0, 0, 0);
 
         SetExhaust(true);
+
         SetSynergy(Synergies.FullmetalAlchemist);
+        SetAlignment(0, 0, 2, 2, 2);
     }
 
     @Override

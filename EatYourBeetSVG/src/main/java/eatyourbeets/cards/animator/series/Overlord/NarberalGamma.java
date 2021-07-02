@@ -25,6 +25,7 @@ public class NarberalGamma extends AnimatorCard
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.Overlord);
         SetShapeshifter();
+        SetAlignment(0, 0, 2, 0, 1);
     }
 
     @Override

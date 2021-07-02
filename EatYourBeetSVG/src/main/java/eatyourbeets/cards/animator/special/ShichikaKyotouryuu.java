@@ -27,7 +27,7 @@ public class ShichikaKyotouryuu extends AnimatorCard
         SetEthereal(true);
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
-        SetMartialArtist();
+        SetAlignment(2, 2, 0, 0, 0);
     }
 
     @Override

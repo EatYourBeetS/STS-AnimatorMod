@@ -21,6 +21,7 @@ public class Archer extends AnimatorCard
         SetUpgrade(0, 2, 0);
 
         SetSynergy(Synergies.Fate);
+        SetAlignment(1, 2, 0, 0, 1);
     }
 
     @Override

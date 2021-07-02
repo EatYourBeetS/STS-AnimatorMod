@@ -31,6 +31,7 @@ public class FielNirvalen extends AnimatorCard
         SetUpgrade(0, 0, 0, 1);
 
         SetSynergy(Synergies.NoGameNoLife);
+        SetAlignment(0, 0, 2, 1, 1);
     }
 
     @Override

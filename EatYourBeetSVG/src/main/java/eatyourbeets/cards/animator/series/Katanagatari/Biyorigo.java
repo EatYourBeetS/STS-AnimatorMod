@@ -20,6 +20,7 @@ public class Biyorigo extends AnimatorCard
         SetUpgrade(0, 0, 2, 0);
 
         SetSynergy(Synergies.Katanagatari);
+        SetAlignment(2, 2, 0, 0, 0);
     }
 
     @Override

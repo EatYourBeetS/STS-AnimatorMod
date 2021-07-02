@@ -21,8 +21,9 @@ public class Soujiro_Hisako extends AnimatorCard
 
         SetEthereal(true);
         SetEvokeOrbCount(1);
-        SetSpellcaster();
+
         SetSynergy(Synergies.LogHorizon);
+        SetAlignment(0, 0, 1, 1, 0);
     }
 
     @Override

@@ -30,8 +30,9 @@ public class Kanami extends AnimatorCard_UltraRare
         SetCooldown(2, 0, this::OnCooldownCompleted);
         SetHaste(true);
         SetScaling(0, 1, 1);
-        SetMartialArtist();
+
         SetSynergy(Synergies.LogHorizon);
+        SetAlignment(1, 2, 0, 1, 0);
     }
 
     @Override

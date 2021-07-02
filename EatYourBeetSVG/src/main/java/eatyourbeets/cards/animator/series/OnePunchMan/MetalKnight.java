@@ -24,6 +24,7 @@ public class MetalKnight extends AnimatorCard
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.OnePunchMan);
+        SetAlignment(2, 0, 2, 0, 1);
     }
 
     @Override

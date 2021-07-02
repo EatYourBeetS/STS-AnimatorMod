@@ -28,6 +28,7 @@ public class Raven extends AnimatorCard
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Elsword);
+        SetAlignment(1, 2, 0, 0, 0);
     }
 
     @Override

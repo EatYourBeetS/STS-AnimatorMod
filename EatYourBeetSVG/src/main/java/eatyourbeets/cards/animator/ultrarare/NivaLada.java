@@ -30,7 +30,9 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardExhau
         SetUpgrade(0, 0, 0);
 
         SetCooldown(18, -2, this::OnCooldownCompleted);
+
         SetSynergy(Synergies.Chaika);
+        SetAlignment(0, 0, 2, 0, 0);
     }
 
     @Override

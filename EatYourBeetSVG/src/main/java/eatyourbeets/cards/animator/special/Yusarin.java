@@ -20,7 +20,9 @@ public class Yusarin extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
+
         SetSynergy(Synergies.Charlotte);
+        SetAlignment(0, 0, 0, 1, 0);
     }
 
     @Override

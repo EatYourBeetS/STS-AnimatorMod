@@ -30,7 +30,7 @@ public class Caster extends AnimatorCard
 
         SetEthereal(true);
         SetSynergy(Synergies.Fate);
-        SetSpellcaster();
+        SetAlignment(0, 0, 2, 0, 2);
     }
 
     @Override

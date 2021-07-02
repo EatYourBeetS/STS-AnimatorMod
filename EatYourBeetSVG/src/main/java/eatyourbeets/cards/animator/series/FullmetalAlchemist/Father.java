@@ -34,6 +34,7 @@ public class Father extends AnimatorCard implements OnAddedToDeckListener, OnAdd
         SetHealing(true);
         SetPurge(true);
         SetSynergy(Synergies.FullmetalAlchemist);
+        SetAlignment(0, 0, 2, 0, 2);
 
         // By using purgeOnUse this card will not be duplicated by Burst, Echo Form or similar.
         purgeOnUse = true;

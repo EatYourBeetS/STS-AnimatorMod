@@ -28,6 +28,7 @@ public class Entoma extends AnimatorCard
 
         SetUnique(true, true);
         SetSynergy(Synergies.Overlord);
+        SetAlignment(0, 0, 0, 0, 1);
     }
 
     @Override

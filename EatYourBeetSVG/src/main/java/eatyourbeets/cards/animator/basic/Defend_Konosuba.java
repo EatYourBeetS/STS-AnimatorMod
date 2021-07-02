@@ -19,6 +19,7 @@ public class Defend_Konosuba extends Defend
         SetUpgrade(0, 3);
 
         SetSynergy(Synergies.Konosuba);
+        SetAlignment(0, 0, 0, 1, 0);
     }
 
     @Override

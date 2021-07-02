@@ -26,6 +26,7 @@ public class Veldora extends AnimatorCard_UltraRare
         showEvokeValue = true;
 
         SetSynergy(Synergies.TenSura);
+        SetAlignment(2, 2, 2, 0, 0);
     }
 
     @Override

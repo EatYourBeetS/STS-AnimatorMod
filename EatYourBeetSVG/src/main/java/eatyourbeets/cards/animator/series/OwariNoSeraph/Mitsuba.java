@@ -20,6 +20,7 @@ public class Mitsuba extends AnimatorCard
         SetUpgrade(3, 0, 0, 0);
 
         SetSynergy(Synergies.OwariNoSeraph);
+        SetAlignment(1, 1, 0, 2, 0);
     }
 
     @Override

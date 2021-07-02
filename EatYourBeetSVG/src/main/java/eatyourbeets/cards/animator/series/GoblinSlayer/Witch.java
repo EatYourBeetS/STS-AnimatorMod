@@ -26,7 +26,7 @@ public class Witch extends AnimatorCard
         SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.GoblinSlayer);
-        SetSpellcaster();
+        SetAlignment(0, 0, 2, 0, 0);
     }
 
     @Override

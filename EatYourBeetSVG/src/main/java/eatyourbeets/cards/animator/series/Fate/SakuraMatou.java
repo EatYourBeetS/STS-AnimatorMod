@@ -25,7 +25,7 @@ public class SakuraMatou extends AnimatorCard
         SetEthereal(true);
         SetExhaust(true);
         SetSynergy(Synergies.Fate);
-        SetSpellcaster();
+        SetAlignment(0, 0, 2, 0, 2);
     }
 
     @Override

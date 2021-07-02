@@ -22,6 +22,7 @@ public class Curse_GriefSeed extends AnimatorCard_Curse
         Initialize(0, 0, 1);
 
         SetSynergy(Synergies.MadokaMagica);
+        SetAlignment(0, 0, 0, 0, 1);
     }
 
     @Override

@@ -147,6 +147,9 @@ public class CardTooltips
         TempHP.SetIcon(icons.TempHP.Texture(), 6);
         Block.SetIcon(icons.Block.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
 
+        CommonImages.AlignmentsIcons alignments = GR.Common.Images.Alignments;
+        Shapeshifter.SetIcon(alignments.Star.Texture(), 6);
+
         CommonImages.Tooltips tooltips = GR.Common.Images.Tooltips;
         ThrowingKnife.SetIcon(tooltips.ThrowingKnife.Texture(), 6);
         GriefSeed.SetIcon(tooltips.GriefSeed.Texture(), 6);

@@ -23,7 +23,7 @@ public class IrohaTamaki extends AnimatorCard
         SetUpgrade(0, 2, 1);
 
         SetSynergy(Synergies.MadokaMagica);
-        SetSpellcaster();
+        SetAlignment(0, 0, 2, 2, 0);
     }
 
     @Override

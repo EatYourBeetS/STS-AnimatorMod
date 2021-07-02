@@ -38,12 +38,15 @@ public abstract class EYBCard extends EYBCardBase
     public static final CardTags PURGE = GR.Enums.CardTags.PURGE;
     public final EYBCardText cardText;
     public final EYBCardData cardData;
+    public final EYBCardAlignments alignments;
     public final ArrayList<EYBCardTooltip> tooltips;
     public EYBCardTarget attackTarget = EYBCardTarget.Normal;
     public EYBAttackType attackType = EYBAttackType.Normal;
+
     public float forceScaling = 0;
     public float intellectScaling = 0;
     public float agilityScaling = 0;
+
 
     public abstract ColoredString GetBottomText();
     public abstract ColoredString GetHeaderText();
@@ -82,6 +85,7 @@ public abstract class EYBCard extends EYBCardBase
         this.cardData = cardData;
         this.tooltips = new ArrayList<>();
         this.cardText = new EYBCardText(this);
+        this.alignments = new EYBCardAlignments();
         initializeDescription();
     }
 
@@ -573,6 +577,11 @@ public abstract class EYBCard extends EYBCardBase
         this.intellectScaling = intellect;
         this.agilityScaling = agility;
         this.forceScaling = force;
+    }
+
+    protected void SetAlignment(int red, int green, int blue, int light, int dark)
+    {
+        alignments.Set(red, green, blue, light, dark);
     }
 
     protected void SetUpgrade(int damage, int block)

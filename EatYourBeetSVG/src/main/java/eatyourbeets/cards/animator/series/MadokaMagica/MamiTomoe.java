@@ -31,6 +31,7 @@ public class MamiTomoe extends AnimatorCard
         SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.MadokaMagica);
+        SetAlignment(0, 0, 1, 2, 0);
     }
 
     @Override

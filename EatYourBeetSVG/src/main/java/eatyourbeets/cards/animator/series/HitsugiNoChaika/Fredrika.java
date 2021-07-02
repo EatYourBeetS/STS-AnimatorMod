@@ -48,6 +48,7 @@ public class Fredrika extends AnimatorCard
         SetAttackType(EYBAttackType.Normal);
         SetSynergy(Synergies.Chaika);
         SetShapeshifter();
+        SetAlignment(0, 0, 0, 0, 0);
     }
 
     @Override
@@ -221,6 +222,7 @@ public class Fredrika extends AnimatorCard
             {
                 LoadImage(null);
 
+                SetAlignment(0, 0, 0, 0, 0);
                 this.cardText.OverrideDescription(null, true);
                 this.type = CardType.SKILL;
                 this.target = CardTarget.SELF;
@@ -233,6 +235,7 @@ public class Fredrika extends AnimatorCard
             {
                 LoadImage("_Cat");
 
+                SetAlignment(0, 0, 0, 0, 0);
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
                 this.type = CardType.SKILL;
                 this.target = CardTarget.NONE;
@@ -245,6 +248,7 @@ public class Fredrika extends AnimatorCard
             {
                 LoadImage("_Dragoon");
 
+                SetAlignment(2, 2, 2, 0, 0);
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.SELF_AND_ENEMY;
@@ -259,6 +263,7 @@ public class Fredrika extends AnimatorCard
             {
                 LoadImage("_Dominica");
 
+                SetAlignment(1, 1, 0, 0, 0);
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.ENEMY;

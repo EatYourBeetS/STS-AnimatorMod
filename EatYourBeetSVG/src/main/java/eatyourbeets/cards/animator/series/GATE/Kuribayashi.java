@@ -24,8 +24,8 @@ public class Kuribayashi extends AnimatorCard
         SetUpgrade(4, 0, 0);
         SetScaling(0, 1, 1);
 
-        SetMartialArtist();
         SetSynergy(Synergies.Gate);
+        SetAlignment(2, 2, 0, 1, 0);
     }
 
     @Override

@@ -21,6 +21,7 @@ public class DolaCouronne extends AnimatorCard
         SetUpgrade(0, 1, -1);
 
         SetSynergy(Synergies.NoGameNoLife);
+        SetAlignment(0, 1, 1, 1, 0);
     }
 
     @Override

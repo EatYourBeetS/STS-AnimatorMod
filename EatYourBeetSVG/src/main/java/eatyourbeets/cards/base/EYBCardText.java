@@ -22,7 +22,6 @@ public class EYBCardText
 {
     private static final CommonImages.Badges BADGES = GR.Common.Images.Badges;
     private static final CommonImages.CardIcons ICONS = GR.Common.Images.Icons;
-    private static final CommonImages.Alignments ICONS2 = GR.Common.Images.Alignments;
     private float badgeAlphaTargetOffset = 1f;
     private float badgeAlphaOffset = -0.2f;
 
@@ -87,56 +86,15 @@ public class EYBCardText
                 RenderHelpers.ResetFont(font);
             }
 
-            ColoredString bottom = card.GetBottomText();
-            if (bottom != null)
-            {
-                BitmapFont font = RenderHelpers.GetSmallTextFont(card, bottom.text);
-
-                float yPos = AbstractCard.RAW_H;
-                if (inHand)
-                {
-                    font.getData().scale(0.175f);
-                    yPos *= 0.57f;
-                }
-                else
-                {
-                    yPos *= -0.47f;
-                }
-
-                RenderHelpers.WriteOnCard(sb, card, font, bottom.text, 0, yPos, bottom.color, true);
-                RenderHelpers.ResetFont(font);
-            }
-//            else // TEST Card Alignment Icons
+//            ColoredString bottom = card.GetBottomText();
+//            if (bottom != null)
 //            {
-//                if (card.cost == 0)
-//                {
-//                    RenderAlignment(sb, ICONS2.Agility.Texture(), 0, 1, !inHand);
-//                }
-//                else if (card.cost == 1)
-//                {
-//                    if (card.type == AbstractCard.CardType.ATTACK)
-//                    {
-//                        RenderAlignment(sb, ICONS2.Light.Texture(), 0, 2, !inHand);
-//                        RenderAlignment(sb, ICONS2.Dark.Texture(), 1, 2, !inHand);
-//                    }
-//                    else
-//                    {
-//                        RenderAlignment(sb, ICONS2.Dark.Texture(), 0, 2, !inHand);
-//                        RenderAlignment(sb, ICONS2.Light.Texture(), 1, 2, !inHand);
-//                    }
-//                }
-//                else if (card.cost == 2)
-//                {
-//                    RenderAlignment(sb, ICONS2.Force.Texture(), 0, 2, !inHand);
-//                    RenderAlignment(sb, ICONS2.Dark.Texture(), 1, 2, !inHand);
-//                }
-//                else
-//                {
-//                    RenderAlignment(sb, ICONS2.Light.Texture(), 0, 3, !inHand);
-//                    RenderAlignment(sb, ICONS2.Intellect.Texture(), 1, 3, !inHand);
-//                    RenderAlignment(sb, ICONS2.Dark.Texture(), 2, 3, !inHand);
-//                }
+//                BitmapFont font = RenderHelpers.GetSmallTextFont(card, bottom.text);
+//                RenderHelpers.WriteOnCard(sb, card, font, bottom.text, 0, -0.47f * AbstractCard.RAW_H, bottom.color, true);
+//                RenderHelpers.ResetFont(font);
 //            }
+
+            card.alignments.RenderOnCard(sb, card, inHand);
         }
     }
 
@@ -239,50 +197,6 @@ public class EYBCardText
         RenderHelpers.ResetFont(font);
 
         return 36; // y offset
-    }
-
-    private void RenderAlignment(SpriteBatch sb, Texture texture, int index, int max, boolean bottom)
-    {
-        if (max > 3)
-        {
-            throw new ArrayIndexOutOfBoundsException("Can't render more than 3 affinities.");
-        }
-
-        float x;
-        if (max == 1)
-        {
-            x = 0;
-        }
-        else if (max == 2)
-        {
-            x = (index == 0) ? -AbstractCard.RAW_W * 0.07f : +AbstractCard.RAW_W * 0.07f;
-        }
-        else
-        {
-            x = (index == 0) ? -AbstractCard.RAW_W * 0.14f : (index == 1) ? 0 : +AbstractCard.RAW_W * 0.14f;
-        }
-
-        final float y = bottom ? -AbstractCard.RAW_H * 0.47f : AbstractCard.RAW_H * 0.57f;
-
-        float size = 42;
-        if (bottom)
-        {
-            size = 36;
-            x *= 0.8f;
-        }
-
-        float transparency = card.transparency;
-        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(x, y), size, size);
-        if ((max == 2 && index == 1) || (max == 3 && index == 0 || index == 2))
-        {
-            RenderHelpers.DrawOnCardAuto(sb, card, ICONS2.Border_Weak.Texture(), new Vector2(x, y), size, size);
-        }
-        else
-        {
-            RenderHelpers.DrawOnCardAuto(sb, card, ICONS2.Border.Texture(), new Vector2(x, y), size, size);
-        }
-
-        card.transparency = transparency;
     }
 
     private float RenderBadge(SpriteBatch sb, Texture texture, float offset_y, float alpha, String text)

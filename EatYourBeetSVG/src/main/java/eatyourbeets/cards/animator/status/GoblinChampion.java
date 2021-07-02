@@ -20,6 +20,7 @@ public class GoblinChampion extends AnimatorCard_Status
         Initialize(0, 0);
 
         SetSynergy(Synergies.GoblinSlayer);
+        SetAlignment(2, 0, 0, 0, 1);
     }
 
     @Override

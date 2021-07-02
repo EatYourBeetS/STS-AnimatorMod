@@ -23,6 +23,7 @@ public class HinaKagiyama extends AnimatorCard
         Initialize(0, 0, HinaKagiyamaPower.CARD_DRAW_AMOUNT);
 
         SetSynergy(Synergies.TouhouProject);
+        SetAlignment(0, 0, 1, 2, 0);
     }
 
     @Override

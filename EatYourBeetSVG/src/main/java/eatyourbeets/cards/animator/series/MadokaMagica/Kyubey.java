@@ -22,7 +22,9 @@ public class Kyubey extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
+
         SetSynergy(Synergies.MadokaMagica);
+        SetAlignment(0, 0, 2, 0,2);
     }
 
     @Override

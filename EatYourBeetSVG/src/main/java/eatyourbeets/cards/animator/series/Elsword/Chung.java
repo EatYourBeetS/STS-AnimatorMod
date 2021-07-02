@@ -21,6 +21,7 @@ public class Chung extends AnimatorCard
         SetUpgrade(0, 2, -1);
 
         SetSynergy(Synergies.Elsword);
+        SetAlignment(1, 1, 0, 0, 0);
     }
 
     @Override

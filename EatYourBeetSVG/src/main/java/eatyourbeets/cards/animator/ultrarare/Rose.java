@@ -22,6 +22,7 @@ public class Rose extends AnimatorCard_UltraRare
         SetUpgrade(0, 0, 1, 0);
 
         SetSynergy(Synergies.Elsword);
+        SetAlignment(2, 0, 0, 1, 0);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class LeleiLaLalena extends AnimatorCard
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.Gate);
-        SetSpellcaster();
+        SetAlignment(0, 0, 2, 1, 0);
     }
 
     @Override

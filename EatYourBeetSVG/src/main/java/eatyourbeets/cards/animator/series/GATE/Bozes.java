@@ -22,6 +22,7 @@ public class Bozes extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.Gate);
+        SetAlignment(2, 0, 0, 1, 0);
     }
 
     @Override

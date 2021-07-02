@@ -28,6 +28,7 @@ public class DolaSchwi extends AnimatorCard
 
         SetCooldown(2, 0, this::OnCooldownCompleted);
         SetSynergy(Synergies.NoGameNoLife);
+        SetAlignment(0, 0, 1, 0, 0);
     }
 
     @Override

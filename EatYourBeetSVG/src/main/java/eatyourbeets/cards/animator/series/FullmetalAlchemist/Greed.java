@@ -31,6 +31,7 @@ public class Greed extends AnimatorCard
         SetUpgrade(0,0, -50);
 
         SetSynergy(Synergies.FullmetalAlchemist);
+        SetAlignment(2, 0, 0, 0, 2);
     }
 
     @Override

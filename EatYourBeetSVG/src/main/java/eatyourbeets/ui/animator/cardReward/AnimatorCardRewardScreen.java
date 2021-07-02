@@ -12,6 +12,7 @@ public class AnimatorCardRewardScreen extends GUIElement
 {
     protected final AnimatorCardRewardBonus rewardBundle = new AnimatorCardRewardBonus();
     protected final AnimatorCardRewardInfo cardBadgeLegend = new AnimatorCardRewardInfo();
+    protected final AnimatorCardRewardAlignments cardAlignments = new AnimatorCardRewardAlignments();
     protected final AnimatorCardRewardBanish purgingStoneUI = new AnimatorCardRewardBanish(rewardBundle::Add, rewardBundle::Remove);
 
     public void Open(ArrayList<AbstractCard> cards, RewardItem rItem, String header)
@@ -24,12 +25,14 @@ public class AnimatorCardRewardScreen extends GUIElement
 
         rewardBundle.Open(rItem, cards);
         purgingStoneUI.Open(rItem, cards);
+        cardAlignments.Open();
         cardBadgeLegend.Open();
     }
 
     public void Close()
     {
         cardBadgeLegend.Close();
+        cardAlignments.Close();
         rewardBundle.Close();
         purgingStoneUI.Close();
     }
@@ -38,11 +41,13 @@ public class AnimatorCardRewardScreen extends GUIElement
     {
         purgingStoneUI.TryUpdate();
         rewardBundle.TryUpdate();
+        cardAlignments.TryUpdate();
         cardBadgeLegend.TryUpdate();
     }
 
     public void PreRender(SpriteBatch sb)
     {
+        cardAlignments.TryRender(sb);
         cardBadgeLegend.TryRender(sb);
         purgingStoneUI.TryRender(sb);
     }

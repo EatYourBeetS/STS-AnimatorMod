@@ -32,6 +32,7 @@ public class Marielle extends AnimatorCard
 
         SetSynergy(Synergies.LogHorizon);
         SetSpellcaster();
+        SetAlignment(0, 1, 1, 1, 0);
     }
 
     @Override

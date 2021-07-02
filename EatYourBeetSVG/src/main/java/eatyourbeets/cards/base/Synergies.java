@@ -241,10 +241,20 @@ public class Synergies
         return HasTagSynergy(card, other);
     }
 
-    public static boolean HasTagSynergy(AbstractCard a, AbstractCard b)
+    public static boolean HasTagSynergy(AbstractCard c1, AbstractCard c2)
     {
-        return ((a.hasTag(AnimatorCard.SHAPESHIFTER) || b.hasTag(AnimatorCard.SHAPESHIFTER))
-            || (a.hasTag(AnimatorCard.MARTIAL_ARTIST) && b.hasTag(AnimatorCard.MARTIAL_ARTIST))
-            || (a.hasTag(AnimatorCard.SPELLCASTER) && b.hasTag(AnimatorCard.SPELLCASTER)));
+        if (c1.hasTag(AnimatorCard.SHAPESHIFTER) || c2.hasTag(AnimatorCard.SHAPESHIFTER))
+        {
+            return true;
+        }
+
+        EYBCard a = JUtils.SafeCast(c1, EYBCard.class);
+        EYBCard b = JUtils.SafeCast(c2, EYBCard.class);
+        if (a == null || b == null)
+        {
+            return false;
+        }
+
+        return a.alignments.CanSynergize(b.alignments);
     }
 }

@@ -25,6 +25,7 @@ public class LizardPriest extends AnimatorCard
         SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.GoblinSlayer);
+        SetAlignment(2, 0, 1, 1, 0);
     }
 
     @Override

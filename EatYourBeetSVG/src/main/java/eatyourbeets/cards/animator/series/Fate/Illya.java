@@ -33,6 +33,7 @@ public class Illya extends AnimatorCard
         SetUpgrade(0, 0, -2);
 
         SetSynergy(Synergies.Fate);
+        SetAlignment(0, 0, 1, 0, 0);
     }
 
     @Override

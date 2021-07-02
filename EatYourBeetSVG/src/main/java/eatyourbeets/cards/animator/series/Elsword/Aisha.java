@@ -29,7 +29,7 @@ public class Aisha extends AnimatorCard
         SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.Elsword);
-        SetSpellcaster();
+        SetAlignment(0, 0, 2, 0, 1);
     }
 
     @Override

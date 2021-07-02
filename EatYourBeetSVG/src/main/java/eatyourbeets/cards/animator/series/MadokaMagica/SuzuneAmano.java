@@ -24,6 +24,7 @@ public class SuzuneAmano extends AnimatorCard
         SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.MadokaMagica);
+        SetAlignment(1, 0, 2, 0, 1);
     }
 
     @Override

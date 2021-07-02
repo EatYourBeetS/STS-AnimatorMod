@@ -25,7 +25,7 @@ public class Souei extends AnimatorCard
         SetUpgrade(0, 0, 2);
 
         SetSynergy(Synergies.TenSura);
-        SetMartialArtist();
+        SetAlignment(0, 2, 1, 0, 0);
     }
 
     @Override

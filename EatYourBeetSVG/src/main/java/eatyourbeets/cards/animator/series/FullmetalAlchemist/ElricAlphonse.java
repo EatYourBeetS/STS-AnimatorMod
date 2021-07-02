@@ -28,6 +28,7 @@ public class ElricAlphonse extends AnimatorCard
 
         SetEthereal(true);
         SetSynergy(Synergies.FullmetalAlchemist);
+        SetAlignment(0, 0, 1, 1, 0);
     }
 
 //    @Override

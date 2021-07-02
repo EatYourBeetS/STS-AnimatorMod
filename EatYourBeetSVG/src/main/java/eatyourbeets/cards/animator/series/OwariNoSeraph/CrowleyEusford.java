@@ -20,6 +20,7 @@ public class CrowleyEusford extends AnimatorCard
         SetScaling(0, 2, 1);
 
         SetSynergy(Synergies.OwariNoSeraph);
+        SetAlignment(2, 2, 0, 0, 1);
     }
 
     @Override

@@ -33,6 +33,7 @@ public class SayakaMiki extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.MadokaMagica);
+        SetAlignment(0, 1, 2, 0, 0);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class TsurugaMeisai extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
-        SetMartialArtist();
+        SetAlignment(0, 1, 0, 1, 0);
     }
 
     @Override

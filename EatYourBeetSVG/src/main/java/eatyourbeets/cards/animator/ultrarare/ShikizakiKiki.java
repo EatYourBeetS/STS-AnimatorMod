@@ -18,7 +18,9 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
         SetUpgrade(0, 0, 1, 1);
 
         SetEthereal(true);
+
         SetSynergy(Synergies.Katanagatari);
+        SetAlignment(1, 0, 1, 0, 1);
     }
 
     @Override

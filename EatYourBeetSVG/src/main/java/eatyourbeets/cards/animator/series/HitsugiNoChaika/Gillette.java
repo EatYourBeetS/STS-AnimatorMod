@@ -22,6 +22,7 @@ public class Gillette extends AnimatorCard
         SetUpgrade(3, 0, 0);
 
         SetSynergy(Synergies.Chaika);
+        SetAlignment(0, 1, 0, 2, 0);
     }
 
     @Override

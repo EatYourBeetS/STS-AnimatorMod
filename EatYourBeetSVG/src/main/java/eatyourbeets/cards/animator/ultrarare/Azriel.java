@@ -20,7 +20,9 @@ public class Azriel extends AnimatorCard_UltraRare
         Initialize(0, 0, 1);
 
         SetEthereal(true);
+
         SetSynergy(Synergies.NoGameNoLife);
+        SetAlignment(2, 0, 2, 0, 1);
     }
 
     @Override

@@ -23,6 +23,7 @@ public class SirTouchMe extends AnimatorCard_UltraRare
         SetScaling(0, 0, 2);
 
         SetSynergy(Synergies.Overlord);
+        SetAlignment(2, 1, 0, 2, 0);
     }
 
     @Override

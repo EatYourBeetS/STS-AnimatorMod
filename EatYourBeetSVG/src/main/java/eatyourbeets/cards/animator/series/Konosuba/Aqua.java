@@ -33,6 +33,7 @@ public class Aqua extends AnimatorCard
 
         SetHealing(true);
         SetSynergy(Synergies.Konosuba);
+        SetAlignment(0, 0, 0, 2, 0);
     }
 
     @Override

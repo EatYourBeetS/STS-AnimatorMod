@@ -24,6 +24,7 @@ public class Millim extends AnimatorCard
 
         SetUnique(true, true);
         SetSynergy(Synergies.TenSura);
+        SetAlignment(2, 2, 2, 0, 1);
     }
 
     @Override

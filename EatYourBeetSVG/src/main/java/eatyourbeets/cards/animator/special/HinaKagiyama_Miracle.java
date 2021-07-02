@@ -27,6 +27,7 @@ public class HinaKagiyama_Miracle extends AnimatorCard
         SetRetain(true);
 
         SetSynergy(Synergies.TouhouProject);
+        SetAlignment(0, 0, 0, 1, 0);
     }
 
     @Override

@@ -22,6 +22,7 @@ public class Soujiro_Kawara extends AnimatorCard
         SetUpgrade(2, 0, 1);
 
         SetSynergy(Synergies.LogHorizon);
+        SetAlignment(1, 1, 0, 0, 0);
     }
 
     @Override

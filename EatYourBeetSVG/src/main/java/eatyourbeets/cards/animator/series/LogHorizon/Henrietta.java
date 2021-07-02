@@ -27,6 +27,7 @@ public class Henrietta extends AnimatorCard
         SetEthereal(true);
 
         SetSynergy(Synergies.LogHorizon);
+        SetAlignment(0, 0, 1, 1, 0);
     }
 
     @Override

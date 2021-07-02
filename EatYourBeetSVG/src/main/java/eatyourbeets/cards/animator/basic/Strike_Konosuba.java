@@ -18,6 +18,7 @@ public class Strike_Konosuba extends Strike
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Konosuba);
+        SetAlignment(0, 1, 0, 0, 0);
     }
 
     @Override

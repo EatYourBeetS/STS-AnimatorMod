@@ -28,6 +28,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
         SetExhaust(true);
         SetHealing(true);
         SetSynergy(Synergies.Konosuba);
+        SetAlignment(0, 0, 1, 2, 0);
     }
 
     @Override

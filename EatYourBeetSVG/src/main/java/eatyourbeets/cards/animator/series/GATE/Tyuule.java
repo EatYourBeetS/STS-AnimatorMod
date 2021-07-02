@@ -36,6 +36,7 @@ public class Tyuule extends AnimatorCard
         SetUpgrade(0, 0, 2);
 
         SetSynergy(Synergies.Gate);
+        SetAlignment(0, 0, 1, 0, 2);
     }
 
     @Override

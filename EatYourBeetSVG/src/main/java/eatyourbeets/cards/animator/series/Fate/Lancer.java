@@ -24,7 +24,7 @@ public class Lancer extends AnimatorCard
         SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.Fate);
-        SetMartialArtist();
+        SetAlignment(1, 2, 0, 0, 0);
     }
 
     @Override

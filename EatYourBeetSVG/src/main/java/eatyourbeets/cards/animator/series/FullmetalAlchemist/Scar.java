@@ -24,6 +24,7 @@ public class Scar extends AnimatorCard
         SetScaling(1, 0, 1);
 
         SetSynergy(Synergies.FullmetalAlchemist);
+        SetAlignment(1, 0, 1, 0, 0);
     }
 
     @Override

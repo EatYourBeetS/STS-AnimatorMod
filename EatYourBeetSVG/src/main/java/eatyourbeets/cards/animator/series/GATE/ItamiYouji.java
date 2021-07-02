@@ -23,6 +23,7 @@ public class ItamiYouji extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Gate);
+        SetAlignment(1, 1, 0, 0, 0);
     }
 
     @Override

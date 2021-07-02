@@ -26,8 +26,9 @@ public class IchigoBankai extends AnimatorCard
 
         SetExhaust(true);
         SetMultiDamage(true);
+
         SetSynergy(Synergies.Bleach);
-        SetMartialArtist();
+        SetAlignment(2, 2, 0, 0, 0);
     }
 
     @Override

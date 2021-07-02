@@ -23,7 +23,9 @@ public class Tet extends AnimatorCard
         SetInnate(true);
         SetRetain(true);
         SetExhaust(true);
+
         SetSynergy(Synergies.NoGameNoLife);
+        SetAlignment(0, 0, 1, 1, 1);
     }
 
     @Override

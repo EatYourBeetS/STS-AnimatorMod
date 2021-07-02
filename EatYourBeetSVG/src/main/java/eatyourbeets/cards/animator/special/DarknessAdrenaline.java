@@ -22,6 +22,7 @@ public class DarknessAdrenaline extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.Konosuba);
+        SetAlignment(0, 0, 0, 0, 0);
     }
 
     @Override

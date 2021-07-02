@@ -63,14 +63,14 @@ public abstract class AnimatorCard extends EYBCard
 
     public boolean HasDirectSynergy(AbstractCard other)
     {
-        if (synergy != null)
-        {
-            AnimatorCard card = JUtils.SafeCast(other, AnimatorCard.class);
-            if (card != null && synergy.equals(card.synergy))
-            {
-                return true;
-            }
-        }
+//        if (synergy != null)
+//        {
+//            AnimatorCard card = JUtils.SafeCast(other, AnimatorCard.class);
+//            if (card != null && synergy.equals(card.synergy))
+//            {
+//                return true;
+//            }
+//        }
 
         return Synergies.HasTagSynergy(this, other);
     }
@@ -98,6 +98,7 @@ public abstract class AnimatorCard extends EYBCard
     public void SetShapeshifter()
     {
         SetTag(SHAPESHIFTER, true);
+        alignments.SetStar(1);
     }
 
     public void SetSynergy(Synergy synergy)
@@ -217,20 +218,20 @@ public abstract class AnimatorCard extends EYBCard
     @Override
     public ColoredString GetBottomText()
     {
-        if (hasTag(SHAPESHIFTER))
-        {
-            return new ColoredString(GR.Tooltips.Shapeshifter.title, new Color(1f, 1f, 0.8f, transparency));
-        }
-        else if (hasTag(SPELLCASTER))
-        {
-            return new ColoredString(GR.Tooltips.Spellcaster.title, new Color(0.9f, 0.9f, 1f, transparency));
-        }
-        else if (hasTag(MARTIAL_ARTIST))
-        {
-            return new ColoredString(GR.Tooltips.MartialArtist.title, new Color(0.9f, 1f, 0.9f, transparency));
-        }
+//        if (hasTag(SHAPESHIFTER))
+//        {
+//            return new ColoredString(GR.Tooltips.Shapeshifter.title, new Color(1f, 1f, 0.8f, transparency));
+//        }
+//        else if (hasTag(SPELLCASTER))
+//        {
+//            return new ColoredString(GR.Tooltips.Spellcaster.title, new Color(0.9f, 0.9f, 1f, transparency));
+//        }
+//        else if (hasTag(MARTIAL_ARTIST))
+//        {
+//            return new ColoredString(GR.Tooltips.MartialArtist.title, new Color(0.9f, 1f, 0.9f, transparency));
+//        }
 
-        return null;
+        return (synergy == null) ? null : new ColoredString(synergy.Name, Settings.CREAM_COLOR);
     }
 
     @Override

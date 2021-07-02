@@ -29,6 +29,7 @@ public class MadokaKaname extends AnimatorCard
         SetPurge(true);
 
         SetSynergy(Synergies.MadokaMagica);
+        SetAlignment(0, 0, 1, 2, 0);
     }
 
     @Override

@@ -33,8 +33,8 @@ public class Assassin extends AnimatorCard
         SetScaling(0, 1, 0);
 
         SetRetain(true);
-        SetMartialArtist();
         SetSynergy(Synergies.Fate);
+        SetAlignment(0, 1, 0, 0, 1);
     }
 
     @Override

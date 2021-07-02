@@ -20,6 +20,7 @@ public class Bienfu extends AnimatorCard
 
         SetEthereal(true);
         SetSynergy(Synergies.TalesOfBerseria);
+        SetAlignment(0, 0, 1, 0, 0);
     }
 
     @Override

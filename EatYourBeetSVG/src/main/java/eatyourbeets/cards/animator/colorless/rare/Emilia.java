@@ -27,8 +27,9 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
 
         SetEvokeOrbCount(magicNumber);
         SetExhaust(true);
+
         SetSynergy(Synergies.ReZero);
-        SetSpellcaster();
+        SetAlignment(0, 0, 2, 2, 0);
     }
 
     @Override

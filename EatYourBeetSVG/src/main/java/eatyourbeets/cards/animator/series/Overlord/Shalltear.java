@@ -26,6 +26,7 @@ public class Shalltear extends AnimatorCard
 
         SetEthereal(true);
         SetSynergy(Synergies.Overlord);
+        SetAlignment(0, 2, 2, 0, 2);
     }
 
     @Override

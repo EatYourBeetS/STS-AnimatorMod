@@ -24,6 +24,7 @@ public class Sloth extends AnimatorCard
         SetScaling(0, 0, 2);
 
         SetSynergy(Synergies.FullmetalAlchemist);
+        SetAlignment(2, 0, 0, 0, 2);
     }
 
     @Override

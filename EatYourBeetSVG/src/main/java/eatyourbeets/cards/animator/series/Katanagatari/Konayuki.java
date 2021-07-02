@@ -23,6 +23,7 @@ public class Konayuki extends AnimatorCard
         SetUpgrade(0, 3, 0, 0);
 
         SetSynergy(Synergies.Katanagatari);
+        SetAlignment(2, 0, 0, 0, 0);
     }
 
     @Override

@@ -24,6 +24,7 @@ public class Shion extends AnimatorCard
         SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.TenSura);
+        SetAlignment(2, 1, 0, 0, 0);
     }
 
     @Override

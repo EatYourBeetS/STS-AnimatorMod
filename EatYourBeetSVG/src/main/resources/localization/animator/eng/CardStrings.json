@@ -547,20 +547,40 @@
 			"DESCRIPTION": "Heal the enemy for up to 30 HP. Channel 1 [Dark] and increase its passive power by 1 for every !M! HP healed. || <LIM>: If you healed 30 HP, gain !S! ** Regeneration.",
 			"NAME": "Barbara Pegg"
 		},
+		"animator:Curse_Delusion":
+		{
+		  "DESCRIPTION": "Unplayable. || At the end of your turn, give a random card in your Draw Pile {Autoplay}. ** When Exhausted, enter <AS>.",
+		  "NAME": "Delusion"
+		},
 		"animator:Defend_GenshinImpact":
 		{
 			"DESCRIPTION": "Cooldown !S!: ** {Channel} 1 [Lightning].",
 			"NAME": "Improved Defend"
+		},
+		"animator:Fischl":
+		{
+		  "DESCRIPTION": "Randomly channel 1 [Lightning] or [Dark] !M! times. || <LIM>. Synergy: Add {Oz} to your Discard Pile.",
+		  "NAME": "Fischl"
 		},
 		"animator:JeanGunnhildr":
 		{
 			"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile. || Discard up to !M! card(s). Remove 1 [Weak], [Vulnerable], and [Frail] for each discarded card.",
 			"NAME": "Jean Gunnhildr"
 		},
+		"animator:JumpyDumpty":
+		{
+		  "DESCRIPTION": "Apply !M! [Burning]. ** Any blocked or spillover damage is dealt to you as well.",
+		  "NAME": "Jumpy Dumpty"
+		},
 		"animator:KaeyaAlberich":
 		{
 			"DESCRIPTION": "Trigger your first [Fire], [Frost], or [Lightning], then {Channel} 1 [Frost]. || <SLM>. Synergy: Apply !M! [Shackles] to ALL enemies.",
 			"NAME": "Kaeya Alberich"
+		},
+		"animator:Klee":
+		{
+		  "DESCRIPTION": "Apply !M! [Burning] to ALL targets. || Add !S! {Jumpy Dumpty} to your Discard Pile. ** Add 1 more if at least half of your orbs are [Fire].",
+		  "NAME": "Klee"
 		},
 		"animator:LisaMinci":
 		{
@@ -572,6 +592,12 @@
 			"DESCRIPTION": "{Starter}: If you have no [Earth], channel 1 [Earth]. || Teamwork X: Gain !M!X more [Block].",
 			"NAME": "Noelle"
 		},
+		"animator:Oz":
+		{
+		  "DESCRIPTION": "Gain 1 Orb Slot. || When you play your first Spellcaster of the turn, randomly Channel 1 [Lightning] or [Dark].",
+		  "EXTENDED_DESCRIPTION": ["The first #b{0} Spellcaster(s) played this turn will also randomly Channel 1 [Lightning] or [Dark]. You have played #b{1} Spellcaster(s)."],
+		  "NAME": "Oz"
+		},
 		"animator:Strike_GenshinImpact":
 		{
 			"DESCRIPTION": "Lose no [I] next turn.",
@@ -579,17 +605,22 @@
 		},
 		"animator:Tartaglia":
 		{
-			"DESCRIPTION": "Remove [Burning]. Deal 1 additional damage for every 2 [Burning] removed. || Cooldown !S!: Transform this card into a {Nutcracker}.",
+			"DESCRIPTION": "Deal 1 more damage per [Burning], then remove [Burning]. || If in <FS>: exit your Stance. Otherwise, enter <FS> and transform this card into {Delusion}.",
 			"NAME": "Tartaglia"
+		},
+		"animator:Traveler":
+		{
+		  "DESCRIPTION": "{Channel} !M! [Aether]. Next turn, trigger the last !S! Orbs Evoked this combat. || When Exhausted, lose ALL of your Orb Slots.",
+		  "NAME": "Prince of Abyss Order"
 		},
 		"animator:Venti":
 		{
-			"DESCRIPTION": "{Channel} !M! [Aether]. Next turn, trigger the last !S! Orbs Evoked this combat. || When Exhausted, lose ALL of your Orb Slots.",
+			"DESCRIPTION": "Cycle !M! cards. {Channel} 1 [Aether] and trigger it for every Skill drawn. || <LIM> If you drew !M! non-Skills, play this card again.",
 			"NAME": "Venti"
 		},
 		"animator:Zhongli":
 		{
-			"DESCRIPTION": "[Earth] now gives half of its damage as [Block] when Evoked. || At the end of each turn, ** spend !S! of your remaining ** Energy to {Channel} [Earth] and gain !M! [Plated Armor].",
+			"DESCRIPTION": "[Earth] now gives half of its damage as [Block] when Evoked. || At the end of each turn, spend ** !S! of your remaining Energy ** to {Channel} [Earth] and gain !M! [Plated Armor].",
 			"EXTENDED_DESCRIPTION": ["#yEarth orbs now also give Block when Evoked. At the end of each turn, spend #b{0} of your remaining energy to channel #yEarth and gain #b{1} #yPlated #yArmor."],
 			"NAME": "Zhongli"
 		}

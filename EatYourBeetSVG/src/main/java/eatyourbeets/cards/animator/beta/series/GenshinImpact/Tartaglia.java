@@ -4,7 +4,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.curses.Normality;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.curse.Curse_Nutcracker;
+import com.megacrit.cardcrawl.stances.NeutralStance;
+import eatyourbeets.cards.animator.beta.curse.Curse_Delusion;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -12,6 +13,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.stances.ForceStance;
+import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -19,7 +21,7 @@ public class Tartaglia extends AnimatorCard {
     public static final EYBCardData DATA = Register(Tartaglia.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged);
     static
     {
-        DATA.AddPreview(new Curse_Nutcracker(), false);
+        DATA.AddPreview(new Curse_Delusion(), false);
     }
 
     public Tartaglia() {
@@ -30,7 +32,6 @@ public class Tartaglia extends AnimatorCard {
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.GenshinImpact);
-        SetCooldown(1, 0, this::OnCooldownCompleted);
     }
 
     @Override
@@ -59,13 +60,13 @@ public class Tartaglia extends AnimatorCard {
 
         GameActions.Bottom.RemovePower(p, m, BurningPower.POWER_ID);
 
-        cooldown.ProgressCooldownAndTrigger(m);
-    }
-
-    protected void OnCooldownCompleted(AbstractMonster m)
-    {
-        GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
-        // Will be changed to Delusion when the Autoplay flag is implemented
-        GameActions.Bottom.ReplaceCard(this.uuid, new Curse_Nutcracker());
+        if (ForceStance.IsActive())
+        {
+            GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
+        }
+        else {
+            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+            GameActions.Bottom.ReplaceCard(this.uuid, new Curse_Delusion());
+        }
     }
 }

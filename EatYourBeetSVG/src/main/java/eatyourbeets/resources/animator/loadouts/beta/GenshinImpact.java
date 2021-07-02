@@ -50,6 +50,6 @@ public class GenshinImpact extends AnimatorLoadout
     @Override
     public EYBCardData GetUltraRare()
     {
-        return YuyukoSaigyouji.DATA;
+        return Traveler.DATA;
     }
 }

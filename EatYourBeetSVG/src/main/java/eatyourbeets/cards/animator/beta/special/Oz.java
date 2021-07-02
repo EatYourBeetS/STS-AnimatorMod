@@ -64,6 +64,7 @@ public class Oz extends AnimatorCard
             if (this.spellcastersPlayed < this.amount && card.tags.contains(SPELLCASTER)) {
                 GameActions.Bottom.ChannelOrb(rng.randomBoolean(0.5f) ? new Dark() : new Lightning());
                 this.spellcastersPlayed += 1;
+                updateDescription();
             }
         }
 
@@ -78,7 +79,7 @@ public class Oz extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, 2, amount, spellcastersPlayed);
+            description = FormatDescription(0, amount, this.spellcastersPlayed);
         }
     }
 }

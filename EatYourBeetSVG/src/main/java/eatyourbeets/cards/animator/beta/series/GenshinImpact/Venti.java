@@ -12,22 +12,24 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
-public class Venti extends AnimatorCard {
+import java.util.ArrayList;
+
+public class Venti extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(Venti.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
-    private boolean canActivateEffect;
 
-    public Venti() {
+    public Venti()
+    {
         super(DATA);
 
-        Initialize(0, 0, 2);
-        SetUpgrade(0, 0, 2);
+        Initialize(0, 0, 2, 2);
+        SetUpgrade(0, 0, 2, 0);
 
         SetEthereal(true);
         SetShapeshifter();
         SetSynergy(Synergies.GenshinImpact);
-
-        this.canActivateEffect = true;
     }
 
     @Override
@@ -36,26 +38,31 @@ public class Venti extends AnimatorCard {
         AbstractOrb orb = new Aether();
         GameActions.Bottom.ChannelOrb(orb);
 
-        this.canActivateEffect = true;
-        GameActions.Bottom.Cycle(name, magicNumber).AddCallback(cards ->
+        // Not using Cycle function here because we need a callback on the drawn cards
+        GameActions.Bottom.DiscardFromHand(name, magicNumber, false).SetOptions(true, true, true).AddCallback(cards ->
         {
-            for (AbstractCard card : cards) {
-                if (card.type == CardType.SKILL) {
-                    GameActions.Bottom.VFX(new WhirlwindEffect(), 0f);
-                    orb.onStartOfTurn();
-                    orb.onEndOfTurn();
-                    this.canActivateEffect = false;
-                }
-            }
+            int discardedCards = cards.size();
+            if (discardedCards> 0) {
+                GameActions.Bottom.Draw(discardedCards).AddCallback(cardsDrawn ->
+                {
+                    int hindranceCount = 0;
+                    for (AbstractCard card : cardsDrawn) {
+                        if (card.type == CardType.SKILL) {
+                            GameActions.Bottom.VFX(new WhirlwindEffect(), 0f);
+                            orb.onStartOfTurn();
+                            orb.onEndOfTurn();
+                        }
+                        else if (GameUtilities.IsCurseOrStatus(card)) {
+                            hindranceCount += 1;
+                        }
+                    }
 
-            if (cards.size() < magicNumber) {
-                this.canActivateEffect = false;
+                    if (hindranceCount >= secondaryValue && CombatStats.TryActivateLimited(cardID)) {
+                        GameActions.Bottom.ChannelOrb(new Aether());
+                    }
+                });
             }
         });
-
-        if (this.canActivateEffect && CombatStats.TryActivateLimited(cardID)) {
-            GameActions.Top.PlayCopy(this, m);
-        }
 
     }
 

@@ -3,6 +3,7 @@ package eatyourbeets.powers.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import eatyourbeets.cards.animator.special.OrbCore_Earth;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
 
@@ -14,13 +15,13 @@ public class OrbCore_EarthPower extends OrbCore_AbstractPower
     {
         super(POWER_ID, owner, amount);
 
-        this.value = 1;
+        this.value = OrbCore_Earth.VALUE;
         updateDescription();
     }
 
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
-        GameActions.Bottom.ChannelOrb(new Earth());
+        GameActions.Bottom.GainTemporaryThorns(value);
     }
 }

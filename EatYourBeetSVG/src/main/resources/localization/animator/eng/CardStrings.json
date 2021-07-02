@@ -559,7 +559,7 @@
 		},
 		"animator:Fischl":
 		{
-		  "DESCRIPTION": "Randomly channel 1 [Lightning] or [Dark] !M! times. || <LIM>. Synergy: Add {Oz} to your Discard Pile.",
+		  "DESCRIPTION": "Randomly channel ** [Lightning] or [Dark] !M! times. || <LIM>. Synergy: Add {Oz} to your Discard Pile.",
 		  "NAME": "Fischl"
 		},
 		"animator:JeanGunnhildr":
@@ -595,7 +595,7 @@
 		"animator:Oz":
 		{
 		  "DESCRIPTION": "Gain 1 Orb Slot. || When you play your first Spellcaster of the turn, randomly Channel 1 [Lightning] or [Dark].",
-		  "EXTENDED_DESCRIPTION": ["The first #b{0} Spellcaster(s) played this turn will also randomly Channel 1 [Lightning] or [Dark]. You have played #b{1} Spellcaster(s)."],
+		  "EXTENDED_DESCRIPTION": ["The first #b{0} Spellcaster(s) played this turn will also randomly Channel 1 #yLightning or #yDark. You have played #b{1} Spellcaster(s)."],
 		  "NAME": "Oz"
 		},
 		"animator:Strike_GenshinImpact":
@@ -615,7 +615,7 @@
 		},
 		"animator:Venti":
 		{
-			"DESCRIPTION": "Cycle !M! cards. {Channel} 1 [Aether] and trigger it for every Skill drawn. || <LIM> If you drew !M! non-Skills, play this card again.",
+			"DESCRIPTION": "Cycle !M! cards. {Channel} 1 [Aether] and trigger it for every Skill drawn. || <LIM>. If you drew at least !S! {Hindrances}, ** {Channel} [Aether] again.",
 			"NAME": "Venti"
 		},
 		"animator:Zhongli":
@@ -2199,6 +2199,11 @@
 		{
 			"DESCRIPTION": "Channel !S! [Dark]. || On your second ** Synergy each turn: ** Apply !M! [Vulnerable] and !M! [Weak] to a random enemy.",
 			"NAME": "Dark Core"
+		},
+		"animator:OrbCore_Earth":
+		{
+		  "DESCRIPTION": "Channel !S! [Earth]. || On your second ** Synergy each turn: ** Gain !M! {Temp}. [Thorns].",
+		  "NAME": "Earth Core"
 		},
 		"animator:OrbCore_Fire":
 		{

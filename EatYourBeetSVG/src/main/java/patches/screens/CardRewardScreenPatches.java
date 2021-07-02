@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class CardRewardScreenPatches
 {
-    private static final AnimatorCardRewardScreen screen = new AnimatorCardRewardScreen();
+    private static final AnimatorCardRewardScreen screen = AnimatorCardRewardScreen.Instance;
 
     @SpirePatch(clz= CardRewardScreen.class, method="update")
     public static class CardRewardScreen_Update

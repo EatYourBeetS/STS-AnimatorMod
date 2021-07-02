@@ -2,6 +2,7 @@ package eatyourbeets.ui.animator.cardReward;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.GameUtilities;
@@ -10,10 +11,12 @@ import java.util.ArrayList;
 
 public class AnimatorCardRewardScreen extends GUIElement
 {
-    protected final AnimatorCardRewardBonus rewardBundle = new AnimatorCardRewardBonus();
-    protected final AnimatorCardRewardInfo cardBadgeLegend = new AnimatorCardRewardInfo();
-    protected final AnimatorCardRewardAlignments cardAlignments = new AnimatorCardRewardAlignments();
-    protected final AnimatorCardRewardBanish purgingStoneUI = new AnimatorCardRewardBanish(rewardBundle::Add, rewardBundle::Remove);
+    public static final AnimatorCardRewardScreen Instance = new AnimatorCardRewardScreen();
+
+    public final AnimatorCardRewardBonus rewardBundle = new AnimatorCardRewardBonus();
+    public final AnimatorCardRewardInfo cardBadgeLegend = new AnimatorCardRewardInfo();
+    public final AnimatorCardRewardAlignments cardAlignments = new AnimatorCardRewardAlignments();
+    public final AnimatorCardRewardBanish purgingStoneUI = new AnimatorCardRewardBanish(rewardBundle::Add, rewardBundle::Remove);
 
     public void Open(ArrayList<AbstractCard> cards, RewardItem rItem, String header)
     {
@@ -25,7 +28,7 @@ public class AnimatorCardRewardScreen extends GUIElement
 
         rewardBundle.Open(rItem, cards);
         purgingStoneUI.Open(rItem, cards);
-        cardAlignments.Open();
+        cardAlignments.Open(AbstractDungeon.player.masterDeck.group);
         cardBadgeLegend.Open();
     }
 

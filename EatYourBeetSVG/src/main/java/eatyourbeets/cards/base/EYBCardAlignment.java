@@ -1,5 +1,6 @@
 package eatyourbeets.cards.base;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -22,14 +23,25 @@ public class EYBCardAlignment implements Comparable<EYBCardAlignment>
         this.level = level;
     }
 
-    public void RenderOnCard(SpriteBatch sb, AbstractCard card, float x, float y, float size)
+    public void Render(SpriteBatch sb, float x, float y, float size)
     {
-        RenderHelpers.DrawOnCardAuto(sb, card, Type.GetIcon(), new Vector2(x, y), size, size);
+        RenderHelpers.Draw(sb, Type.GetIcon(), x, y, size);
 
         Texture border = Type.GetBorder(level);
         if (border != null)
         {
-            RenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size);
+            RenderHelpers.Draw(sb, border, x, y, size);
+        }
+    }
+
+    public void RenderOnCard(SpriteBatch sb, AbstractCard card, float x, float y, float size)
+    {
+        RenderHelpers.DrawOnCardAuto(sb, card, Type.GetIcon(), new Vector2(x, y), size, size, Color.WHITE, 1f, 1f);
+
+        Texture border = Type.GetBorder(level);
+        if (border != null)
+        {
+            RenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size, Color.WHITE, 1f, 1f);
         }
     }
 

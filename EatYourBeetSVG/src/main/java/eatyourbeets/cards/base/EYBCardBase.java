@@ -488,7 +488,7 @@ public abstract class EYBCardBase extends AbstractCard
         {
             result.color = new Color(1f, 0.3f, 0.3f, transparency);
         }
-        else if (costForTurn < cost || (cost > 0 && this.freeToPlay()))
+        else if ((upgradedCost && isCostModified) || costForTurn < cost || (cost > 0 && this.freeToPlay()))
         {
             result.color = new Color(0.4f, 1f, 0.4f, transparency);
         }

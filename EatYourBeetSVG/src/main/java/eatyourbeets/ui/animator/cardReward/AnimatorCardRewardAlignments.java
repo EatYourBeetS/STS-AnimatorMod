@@ -1,37 +1,44 @@
 package eatyourbeets.ui.animator.cardReward;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.helpers.Hitbox;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardAlignment;
+import eatyourbeets.cards.base.EYBCardAlignmentType;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.GUIElement;
+import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RenderHelpers;
+
+import java.util.ArrayList;
 
 public class AnimatorCardRewardAlignments extends GUIElement
 {
     private static final CommonImages.AlignmentsIcons ICONS = GR.Common.Images.Alignments;
 
-    public final AlignmentCounter red;
-    public final AlignmentCounter green;
-    public final AlignmentCounter blue;
-    public final AlignmentCounter light;
-    public final AlignmentCounter dark;
+    private final ArrayList<CardAlignmentCounter> counters = new ArrayList<>();
+    private final CardAlignmentCounter starCounter;
+    private final GUI_Image header1;
+    private final GUI_Image header2;
 
     public AnimatorCardRewardAlignments()
     {
-        red = new AlignmentCounter(ICONS.Red.Texture())
-                .SetPosition(ScreenW(0.065f), ScreenH(0.65f));
+        header1 = RenderHelpers.ForTexture(ICONS.Border_Weak.Texture())
+        .SetHitbox(new Hitbox(ScreenW(0.037f), ScreenH(0.67f), Scale(40), Scale(40)));
+        header2 = RenderHelpers.ForTexture(ICONS.Border.Texture())
+        .SetHitbox(new Hitbox(ScreenW(0.062f), ScreenH(0.67f), Scale(40), Scale(40)));
 
-        green = new AlignmentCounter(ICONS.Green.Texture())
-                .SetPosition(ScreenW(0.065f), ScreenH(0.60f));
-
-        blue = new AlignmentCounter(ICONS.Blue.Texture())
-                .SetPosition(ScreenW(0.065f), ScreenH(0.55f));
-
-        light = new AlignmentCounter(ICONS.Light.Texture())
-                .SetPosition(ScreenW(0.065f), ScreenH(0.50f));
-
-        dark = new AlignmentCounter(ICONS.Dark.Texture())
-                .SetPosition(ScreenW(0.065f), ScreenH(0.45f));
+        counters.add(new CardAlignmentCounter(EYBCardAlignmentType.Red));
+        counters.add(new CardAlignmentCounter(EYBCardAlignmentType.Green));
+        counters.add(new CardAlignmentCounter(EYBCardAlignmentType.Blue));
+        counters.add(new CardAlignmentCounter(EYBCardAlignmentType.Light));
+        counters.add(new CardAlignmentCounter(EYBCardAlignmentType.Dark));
+        starCounter = new CardAlignmentCounter(EYBCardAlignmentType.Star);
+        counters.add(starCounter);
     }
 
     public void Close()
@@ -39,39 +46,94 @@ public class AnimatorCardRewardAlignments extends GUIElement
         isActive = false;
     }
 
-    public void Open()
+    public void Open(ArrayList<AbstractCard> cards)
     {
         isActive = GameUtilities.IsPlayerClass(GR.Animator.PlayerClass);
-// TODO:
-//
-//        if (!isActive)
-//        {
-//            return;
-//        }
-//
-//        for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
-//        {
-//
-//        }
+
+        if (!isActive)
+        {
+            return;
+        }
+
+        for (CardAlignmentCounter c : counters)
+        {
+            c.Percentage = c.AlignmentLV1.level = c.AlignmentLV2.level = 0;
+        }
+
+        for (AbstractCard c : cards)
+        {
+            EYBCard card = JUtils.SafeCast(c, EYBCard.class);
+            if (card != null)
+            {
+                if (card.alignments.HasStar())
+                {
+                    starCounter.AlignmentLV1.level += 1;
+                }
+                else
+                {
+                    for (EYBCardAlignment alignment : card.alignments.List)
+                    {
+                        for (CardAlignmentCounter counter : counters)
+                        {
+                            if (counter.Type == alignment.Type)
+                            {
+                                if (alignment.level > 1)
+                                {
+                                    counter.AlignmentLV2.level += 1;
+                                }
+                                else
+                                {
+                                    counter.AlignmentLV1.level += 1;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        for (CardAlignmentCounter c : counters)
+        {
+            int value = c.AlignmentLV1.level + c.AlignmentLV2.level;
+            if (c.SetActive(value > 0).isActive)
+            {
+                c.Percentage = value / (float)cards.size();
+            }
+        }
+
+        counters.sort((a, b) -> (int)(1000 * (b.Percentage - a.Percentage)));
+
+        int index = 0;
+        for (CardAlignmentCounter c : counters)
+        {
+            if (c.isActive)
+            {
+                c.SetPosition(ScreenW(0.053f), ScreenH(0.65f - (0.05f * index)));
+                index += 1;
+            }
+        }
     }
 
     @Override
     public void Update()
     {
-        red.Update();
-        green.Update();
-        blue.Update();
-        light.Update();
-        dark.Update();
+        header1.TryUpdate();
+        header2.TryUpdate();
+        for (CardAlignmentCounter c : counters)
+        {
+            c.TryUpdate();
+        }
     }
 
     @Override
     public void Render(SpriteBatch sb)
     {
-        red.Render(sb);
-        green.Render(sb);
-        blue.Render(sb);
-        light.Render(sb);
-        dark.Render(sb);
+        header1.TryRender(sb);
+        header2.TryRender(sb);
+        for (CardAlignmentCounter c : counters)
+        {
+            c.TryRender(sb);
+        }
     }
 }

@@ -2,6 +2,7 @@ package eatyourbeets.rewards.animator;
 
 import basemod.BaseMod;
 import basemod.abstracts.CustomReward;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.TipHelper;
@@ -13,6 +14,7 @@ import com.megacrit.cardcrawl.rewards.RewardSave;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.rewards.AnimatorReward;
 import eatyourbeets.utilities.JUtils;
 
@@ -24,6 +26,7 @@ public class SynergyCardsReward extends AnimatorReward
 
     public final Synergy synergy;
     private boolean skip = false;
+    private AnimatorRuntimeLoadout loadout;
 
     private static String GenerateRewardTitle(Synergy synergy)
     {
@@ -43,6 +46,7 @@ public class SynergyCardsReward extends AnimatorReward
 
         this.synergy = synergy;
         this.cards = GenerateCardReward(synergy);
+        this.loadout = GR.Animator.Dungeon.GetSeries(synergy);
     }
 
     @Override
@@ -54,6 +58,14 @@ public class SynergyCardsReward extends AnimatorReward
         {
             TipHelper.renderGenericTip(360f * Settings.scale, (float) InputHelper.mY, synergy.Name, GR.Animator.Strings.Rewards.Description);
         }
+    }
+
+    @Override
+    public void render(SpriteBatch sb)
+    {
+        super.render(sb);
+
+        loadout.card.alignments.Render(sb, hb.x + hb.width * 0.77f, hb.cY - 18, 36);
     }
 
     @Override

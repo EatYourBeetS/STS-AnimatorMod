@@ -18,6 +18,12 @@
 	"<IS>": "{[I] Stance}",
 	"<AS>": "{[A] Stance}",
 
+	"<RED>": "[A-Red]",
+	"<GREEN>": "[A-Green]",
+	"<BLUE>": "[A-Blue]",
+	"<LIGHT>": "[A-Light]",
+	"<DARK>": "[A-Dark]",
+
 	" ** ": " NL ",
 	" || ": " NL  NL "
 }

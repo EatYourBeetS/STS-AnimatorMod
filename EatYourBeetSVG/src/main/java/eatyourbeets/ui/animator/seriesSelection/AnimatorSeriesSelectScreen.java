@@ -21,6 +21,8 @@ import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.AbstractScreen;
 import eatyourbeets.ui.AdvancedHitbox;
+import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardAlignments;
+import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardScreen;
 import eatyourbeets.ui.controls.*;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.GameEffects;
@@ -34,6 +36,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     protected ShowCardPileEffect previewCardsEffect;
     protected int totalCardsCache = 0;
 
+    public final AnimatorCardRewardAlignments alignments = AnimatorCardRewardScreen.Instance.cardAlignments;
     public final AnimatorLoadoutsContainer container = new AnimatorLoadoutsContainer();
     public final GUI_CardGrid cardGrid;
     public final GUI_Label startingDeck;
@@ -132,6 +135,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         {
             toggleBeta.isActive = false;
             purgingStoneImage.isActive = false;
+            alignments.Open(container.GetAllCardsInPool());
             UpdateStartingDeckText();
             GameEffects.TopLevelList.Add(new AnimatorSeriesSelectEffect(this));
         }
@@ -140,6 +144,8 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     @Override
     public void Render(SpriteBatch sb)
     {
+        alignments.TryRender(sb);
+
         cardGrid.TryRender(sb);
 
         toggleBeta.TryRender(sb);
@@ -167,6 +173,8 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     @Override
     public void Update()
     {
+        alignments.TryUpdate();
+
         if (previewCardsEffect != null)
         {
             previewCardsEffect.update();
@@ -350,6 +358,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
     protected void TotalCardsChanged(int totalCards)
     {
+        alignments.Open(container.GetAllCardsInPool());
         selectionAmount.SetText(totalCards + " cards selected.");
         purgingStoneImage.SetActive(totalCards >= 100);
 

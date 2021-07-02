@@ -31,13 +31,22 @@ public class EYBCardAlignments
         return false;
     }
 
-    public void Set(int red, int green, int blue, int light, int dark)
+    public void Add(int red, int green, int blue, int light, int dark)
     {
         Add(EYBCardAlignmentType.Red, red);
         Add(EYBCardAlignmentType.Green, green);
         Add(EYBCardAlignmentType.Blue, blue);
         Add(EYBCardAlignmentType.Light, light);
         Add(EYBCardAlignmentType.Dark, dark);
+    }
+
+    public void Set(int red, int green, int blue, int light, int dark)
+    {
+        Set(EYBCardAlignmentType.Red, red);
+        Set(EYBCardAlignmentType.Green, green);
+        Set(EYBCardAlignmentType.Blue, blue);
+        Set(EYBCardAlignmentType.Light, light);
+        Set(EYBCardAlignmentType.Dark, dark);
     }
 
     public void SetStar(int level)
@@ -66,6 +75,14 @@ public class EYBCardAlignments
         for (EYBCardAlignment item : other.List)
         {
             Add(item.Type, item.level);
+        }
+    }
+
+    public void Add(EYBCardAlignments other, int levelLimit)
+    {
+        for (EYBCardAlignment item : other.List)
+        {
+            Add(item.Type, Math.min(levelLimit, item.level));
         }
     }
 
@@ -153,7 +170,6 @@ public class EYBCardAlignments
     {
         float size;
         float y = AbstractCard.RAW_H;
-        float offsetX = 0;
 
         if (inHand)
         {
@@ -192,6 +208,27 @@ public class EYBCardAlignments
             }
 
             item.RenderOnCard(sb, card, x, y, size);
+        }
+    }
+
+    public void Render(SpriteBatch sb, float x, float y, float size)
+    {
+        int half = List.size() / 2;
+        float step = size * 0.995f;
+        for (int i = 0; i < List.size(); i++)
+        {
+            final EYBCardAlignment item = List.get(i);
+            float offsetX = 0;
+            if (List.size() % 2 == 1)
+            {
+                offsetX = (step * (i - half));
+            }
+            else
+            {
+                offsetX = (step * 0.5f) + (step* (i - half));
+            }
+
+            item.Render(sb, x + offsetX, y, size);
         }
     }
 }

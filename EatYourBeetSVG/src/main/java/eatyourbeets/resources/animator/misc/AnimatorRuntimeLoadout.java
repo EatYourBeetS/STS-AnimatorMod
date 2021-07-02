@@ -6,12 +6,14 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AnimatorRuntimeLoadout
 {
     private final static EYBCardTooltip PromotedTooltip = new EYBCardTooltip(GR.Animator.Strings.SeriesSelection.PickupBonusHeader, GR.Animator.Strings.SeriesSelection.PickupBonusBody);
+    private final static float LV2_ALIGNMENT_THRESHOLD = 0.66f;
 
     public final int ID;
     public final Map<String, AbstractCard> Cards;
@@ -88,6 +90,35 @@ public class AnimatorRuntimeLoadout
             card = builder
             .SetText(Loadout.Name, GR.Animator.Strings.SeriesSelection.ContainsNCards(Cards.size()), "")
             .SetProperties(temp.type, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE).Build();
+        }
+
+        EYBCardAlignments alignments = new EYBCardAlignments();
+        for (AbstractCard c : Cards.values())
+        {
+            EYBCard t = JUtils.SafeCast(c, EYBCard.class);
+            if (t != null)
+            {
+                if (t.alignments.HasStar())
+                {
+                    alignments.Add(2, 2, 2, 2, 2);
+                }
+                else
+                {
+                    alignments.Add(t.alignments);
+                }
+            }
+        }
+
+        ArrayList<EYBCardAlignment> list = alignments.List;
+        for (int i = 0; i < alignments.List.size() && i < 3; i++)
+        {
+            int level = 1;
+            EYBCardAlignment a = list.get(i);
+            if ((a.level / (float)Cards.size()) > LV2_ALIGNMENT_THRESHOLD)
+            {
+                level += 1;
+            }
+            card.alignments.Add(a.Type, level);
         }
 
         return card;

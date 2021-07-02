@@ -1,5 +1,6 @@
 package eatyourbeets.ui.controls;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,11 +23,13 @@ public class GUI_Button extends GUIElement
     public GUI_Image background;
     public GUI_Image border;
 
+    public float clickDelay = 0f;
     public float targetAlpha = 1f;
     public float currentAlpha = 1f;
     public boolean interactable;
     public String text;
 
+    protected float currentClickDelay = 0f;
     protected Color textColor = Color.WHITE.cpy();
     protected Color buttonColor = Color.WHITE.cpy();
     protected ActionT0 onClick;
@@ -86,6 +89,13 @@ public class GUI_Button extends GUIElement
         return this;
     }
 
+    public GUI_Button SetClickDelay(float delay)
+    {
+        this.clickDelay = delay;
+
+        return this;
+    }
+
     public GUI_Button SetOnClick(ActionT0 onClick)
     {
         this.onClick = onClick;
@@ -111,6 +121,12 @@ public class GUI_Button extends GUIElement
     public void Update()
     {
         this.currentAlpha = MathHelper.fadeLerpSnap(currentAlpha, targetAlpha);
+
+        if (currentClickDelay > 0)
+        {
+            this.currentClickDelay -= Gdx.graphics.getRawDeltaTime();
+            return;
+        }
 
         if (currentAlpha > 0)
         {
@@ -194,6 +210,7 @@ public class GUI_Button extends GUIElement
     protected void OnClick()
     {
         this.hb.clicked = false;
+        this.currentClickDelay = clickDelay;
 
         if (interactable && onClick != null)
         {

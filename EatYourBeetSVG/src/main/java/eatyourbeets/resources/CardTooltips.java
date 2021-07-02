@@ -83,6 +83,11 @@ public class CardTooltips
     public EYBCardTooltip Aura = FindByID("Aura");
 
     // No Description
+    public EYBCardTooltip Alignment_Red   = new EYBCardTooltip("Red Alignment"  , null);
+    public EYBCardTooltip Alignment_Green = new EYBCardTooltip("Green Alignment", null);
+    public EYBCardTooltip Alignment_Blue  = new EYBCardTooltip("Blue Alignment" , null);
+    public EYBCardTooltip Alignment_Light = new EYBCardTooltip("Light Alignment", null);
+    public EYBCardTooltip Alignment_Dark  = new EYBCardTooltip("Dark Alignment" , null);
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
     public EYBCardTooltip ThrowingKnife = new EYBCardTooltip(eatyourbeets.cards.animator.special.ThrowingKnife.DATA.Strings.NAME, null);
     public EYBCardTooltip GriefSeed = new EYBCardTooltip(Curse_GriefSeed.DATA.Strings.NAME, null);
@@ -124,6 +129,12 @@ public class CardTooltips
 
     public CardTooltips()
     {
+        RegisterID("A-Red", Alignment_Red);
+        RegisterID("A-Green", Alignment_Green);
+        RegisterID("A-Blue", Alignment_Blue);
+        RegisterID("A-Light", Alignment_Light);
+        RegisterID("A-Dark", Alignment_Dark);
+
         RegisterID("Random Orb", RandomOrb);
         RegisterID("Grief Seed", GriefSeed);
         RegisterID("T-Knife", ThrowingKnife);
@@ -149,6 +160,11 @@ public class CardTooltips
 
         CommonImages.AlignmentsIcons alignments = GR.Common.Images.Alignments;
         Shapeshifter.SetIcon(alignments.Star.Texture(), 6);
+        Alignment_Red.SetIcon(alignments.Red.Texture(), 6);
+        Alignment_Green.SetIcon(alignments.Green.Texture(), 6);
+        Alignment_Blue.SetIcon(alignments.Blue.Texture(), 6);
+        Alignment_Light.SetIcon(alignments.Light.Texture(), 6);
+        Alignment_Dark.SetIcon(alignments.Dark.Texture(), 6);
 
         CommonImages.Tooltips tooltips = GR.Common.Images.Tooltips;
         ThrowingKnife.SetIcon(tooltips.ThrowingKnife.Texture(), 6);

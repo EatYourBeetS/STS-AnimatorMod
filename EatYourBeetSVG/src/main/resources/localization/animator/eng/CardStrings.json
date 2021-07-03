@@ -416,6 +416,11 @@
 			"DESCRIPTION": "<LIM>. If this card kills an Elite or Boss: Choose 1 of !M! cards to add to your deck.",
 			"NAME": "Sakura Kinomoto"
 		},
+		"animator:SheerCold":
+		{
+		  "DESCRIPTION": "At the end of your turn, apply !M! {Chilled} to a random enemy for each [Frost] you have. Whenever you Evoke [Frost], apply !S! Chilled to ALL enemies.",
+		  "NAME": "Sheer Cold"
+		},
 		"animator:ShuuOuma":
 		{
 			"DESCRIPTION": "Fetch a {Power} from your draw or discard pile. || This turn, whenever you play a {Power}: draw a random {Power} from your draw or discard pile.",
@@ -544,12 +549,12 @@
 		},
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Heal the enemy for up to 30 HP. Channel 1 [Dark] and increase its passive power by 1 for every !M! HP healed. || <LIM>: If you healed 30 HP, gain !S! ** Regeneration.",
+			"DESCRIPTION": "Gain !M! more [Temporary HP] for every unique Orb you have. || <LIM>. If have you at least 4 unique Orbs, heal !S! HP.",
 			"NAME": "Barbara Pegg"
 		},
 		"animator:Curse_Delusion":
 		{
-		  "DESCRIPTION": "Unplayable. || At the end of your turn, give a random card in your Draw Pile {Autoplay}. ** When Exhausted, enter <AS>.",
+		  "DESCRIPTION": "Unplayable. || At the end of your turn, give a random card in your Draw Pile {Autoplay}. || When Exhausted, Boost [A].",
 		  "NAME": "Delusion"
 		},
 		"animator:Defend_GenshinImpact":
@@ -577,6 +582,11 @@
 			"DESCRIPTION": "Trigger your first [Fire], [Frost], or [Lightning], then {Channel} 1 [Frost]. || <SLM>. Synergy: Apply !M! [Shackles] to ALL enemies.",
 			"NAME": "Kaeya Alberich"
 		},
+		"animator:KamisatoAyaka":
+		{
+		  "DESCRIPTION": "Attack 1 additional time for each [Frost] you have. You cannot gain [Block] for 2 turns. || <LIM>. {Synergy}: Play ** {Sheer Cold}.",
+		  "NAME": "Kamisato Ayaka"
+		},
 		"animator:Klee":
 		{
 		  "DESCRIPTION": "Apply !M! [Burning] to ALL targets. || Add !S! {Jumpy Dumpty} to your Discard Pile. ** Add 1 more if at least half of your orbs are [Fire].",
@@ -589,7 +599,7 @@
 		},
 		"animator:Noelle":
 		{
-			"DESCRIPTION": "{Starter}: If you have no [Earth], channel 1 [Earth]. || Teamwork X: Gain !M!X more [Block].",
+			"DESCRIPTION": "{Starter}: If you have no [Earth], channel 1 [Earth]. || Synergy, <TM-S>: Give a random [Block] card !M! more [Block] this combat.",
 			"NAME": "Noelle"
 		},
 		"animator:Oz":

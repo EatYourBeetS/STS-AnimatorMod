@@ -42,6 +42,12 @@
 		"NAMES": ["burning"],
 		"PROPER_NAME": "Burning"
 	},
+	"Chilled":
+	{
+		"DESCRIPTION": "Damage dealt is lowered. Higher stacks increase the intensity of this debuff. Reduced by half each turn.",
+		"NAMES": ["chilled"],
+		"PROPER_NAME": "Chilled"
+	},
 	"Choked":
 	{
 		"DESCRIPTION": "Whenever you play a card this turn, the target loses 1 HP.",

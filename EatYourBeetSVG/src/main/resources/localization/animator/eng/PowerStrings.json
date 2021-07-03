@@ -35,6 +35,11 @@
 		"DESCRIPTIONS": ["At the start of your turn, lose #b", " HP. Receive #b", "% more #yAttack damage."],
 		"NAME": "Burning"
 	},
+	"animator:ChilledPower":
+	{
+	  "DESCRIPTIONS": ["Deal #b", "% less damage."],
+	  "NAME": "Chilled"
+	},
 	"animator:ChlammyZellPower":
 	{
 		"DESCRIPTIONS": ["Whenever you play alternating card types this turn, deal #b", " damage to ALL enemies and #yCycle #b1 card. NL NL Last Type played: #y"],
@@ -290,10 +295,20 @@
 		"DESCRIPTIONS": ["Until your next turn, when you would take unblocked damage, your rightmost #yDark Orb loses that much damage instead."],
 		"NAME": "Pride"
 	},
+	"animator:RemoveBlockPower":
+	{
+	  "DESCRIPTIONS": ["For the next #b", " turns, remove all your #yBlock at the end of your turn."],
+	  "NAME": "Remove Block"
+	},
 	"animator:RoryMercuryPower":
 	{
 		"DESCRIPTIONS": ["Your #yAttacks this turn deal #b", "% more damage."],
 		"NAME": "Rory Mercury"
+	},
+	"animator:SheerColdPower":
+	{
+	  "DESCRIPTIONS": ["At the end of your turn, apply #b{0} #yChilled to a random enemy for each #yFrost Orb you have. Whenever you Evoke a #yFrost Orb, apply #b{1} #yChilled to all enemies."],
+	  "NAME": "Sheer Cold"
 	},
 	"animator:ShikizakiKikiPower":
 	{

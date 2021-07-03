@@ -64,7 +64,7 @@ public class Curse_Delusion extends AnimatorCard_Curse
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
+        GameActions.Bottom.GainAgility(1, true);
     }
 
     @Override

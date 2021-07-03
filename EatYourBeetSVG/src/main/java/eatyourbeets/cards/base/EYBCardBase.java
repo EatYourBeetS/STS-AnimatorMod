@@ -64,6 +64,11 @@ public abstract class EYBCardBase extends AbstractCard
     protected static final float SHADOW_OFFSET_X = 18f * Settings.scale;
     protected static final float SHADOW_OFFSET_Y = 14f * Settings.scale;
 
+    protected static final Color COLOR_COMMON = new Color(0.65f, 0.65f, 0.65f, 1f);
+    protected static final Color COLOR_UNCOMMON = new Color(0.5f, 0.85f, 0.95f, 1f);
+    protected static final Color COLOR_RARE = new Color(0.95f, 0.85f, 0.3f, 1f);
+    protected static final Color COLOR_SPECIAL = new Color(1f, 1f, 1f, 1f);
+
     public static AbstractPlayer player = null;
     public static Random rng = null;
 
@@ -384,7 +389,7 @@ public abstract class EYBCardBase extends AbstractCard
         return null;
     }
 
-    protected Texture GetCardBanner()
+    protected ColoredTexture GetCardBanner()
     {
         return null;
     }
@@ -471,6 +476,28 @@ public abstract class EYBCardBase extends AbstractCard
         }
     }
 
+    protected Color GetRarityColor()
+    {
+        switch (rarity)
+        {
+            case SPECIAL:
+                return COLOR_SPECIAL;
+
+            case UNCOMMON:
+                return COLOR_UNCOMMON;
+
+            case RARE:
+                return COLOR_RARE;
+
+            case BASIC:
+            case COMMON:
+            case CURSE:
+            default:
+                return COLOR_COMMON;
+                //return new Color(0.65f, 0.6f, 0.55f, 1f);
+        }
+    }
+
     protected ColoredString GetCostString()
     {
         ColoredString result = new ColoredString();
@@ -517,6 +544,18 @@ public abstract class EYBCardBase extends AbstractCard
         {
             tags.add(tag);
         }
+    }
+
+    private boolean TryRenderCentered(SpriteBatch sb, ColoredTexture texture)
+    {
+        if (texture != null)
+        {
+            RenderHelpers.DrawOnCardAuto(sb, this, texture, 0, 0, texture.GetWidth(), texture.GetHeight());
+
+            return true;
+        }
+
+        return false;
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")

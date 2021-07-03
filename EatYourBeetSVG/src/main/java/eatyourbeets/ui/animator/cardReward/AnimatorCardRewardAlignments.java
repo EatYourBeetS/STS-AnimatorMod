@@ -28,9 +28,9 @@ public class AnimatorCardRewardAlignments extends GUIElement
     public AnimatorCardRewardAlignments()
     {
         header1 = RenderHelpers.ForTexture(ICONS.Border_Weak.Texture())
-        .SetHitbox(new Hitbox(ScreenW(0.037f), ScreenH(0.67f), Scale(40), Scale(40)));
+        .SetHitbox(new Hitbox(ScreenW(0.04f), ScreenH(0.67f), Scale(40), Scale(40)));
         header2 = RenderHelpers.ForTexture(ICONS.Border.Texture())
-        .SetHitbox(new Hitbox(ScreenW(0.062f), ScreenH(0.67f), Scale(40), Scale(40)));
+        .SetHitbox(new Hitbox(ScreenW(0.065f), ScreenH(0.67f), Scale(40), Scale(40)));
 
         counters.add(new CardAlignmentCounter(EYBCardAlignmentType.Red));
         counters.add(new CardAlignmentCounter(EYBCardAlignmentType.Green));

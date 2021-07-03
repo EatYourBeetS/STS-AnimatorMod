@@ -20,7 +20,7 @@ public class Verdia extends AnimatorCard
         SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.Konosuba);
-        SetAlignment(2, 1, 1, 0, 2);
+        SetAlignment(2, 0, 1, 0, 2);
     }
 
     @Override

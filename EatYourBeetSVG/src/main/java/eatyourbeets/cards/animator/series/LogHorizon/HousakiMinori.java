@@ -36,7 +36,7 @@ public class HousakiMinori extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
+        if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID))
         {
             ShuffleToTopOfDeck();
         }
@@ -47,7 +47,10 @@ public class HousakiMinori extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        ShuffleToTopOfDeck();
+        if (CombatStats.TryActivateSemiLimited(cardID))
+        {
+            ShuffleToTopOfDeck();
+        }
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)

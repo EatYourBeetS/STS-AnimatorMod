@@ -78,21 +78,21 @@ public class EYBCardText
         {
             RenderBadges(sb);
 
-            ColoredString header = card.GetHeaderText();
-            if (header != null)
-            {
-                BitmapFont font = RenderHelpers.GetSmallTextFont(card, header.text);
-                RenderHelpers.WriteOnCard(sb, card, font, header.text, 0, AbstractCard.RAW_H * 0.48f, header.color, true);
-                RenderHelpers.ResetFont(font);
-            }
-
-//            ColoredString bottom = card.GetBottomText();
-//            if (bottom != null)
+//            ColoredString header = card.GetHeaderText();
+//            if (header != null)
 //            {
-//                BitmapFont font = RenderHelpers.GetSmallTextFont(card, bottom.text);
-//                RenderHelpers.WriteOnCard(sb, card, font, bottom.text, 0, -0.47f * AbstractCard.RAW_H, bottom.color, true);
+//                BitmapFont font = RenderHelpers.GetSmallTextFont(card, header.text);
+//                RenderHelpers.WriteOnCard(sb, card, font, header.text, 0, AbstractCard.RAW_H * 0.48f, header.color, true);
 //                RenderHelpers.ResetFont(font);
 //            }
+
+            ColoredString bottom = card.GetBottomText();
+            if (bottom != null)
+            {
+                BitmapFont font = RenderHelpers.GetSmallTextFont(card, bottom.text);
+                RenderHelpers.WriteOnCard(sb, card, font, bottom.text, 0, -0.47f * AbstractCard.RAW_H, bottom.color, true);
+                RenderHelpers.ResetFont(font);
+            }
 
             card.alignments.RenderOnCard(sb, card, inHand);
         }

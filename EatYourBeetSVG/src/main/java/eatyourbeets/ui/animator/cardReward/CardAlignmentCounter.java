@@ -35,19 +35,19 @@ public class CardAlignmentCounter extends GUIElement
         image_alignment = RenderHelpers.ForTexture(alignment.GetIcon());
 
         textBox_counterWeak = new GUI_TextBox(GR.Common.Images.Panel.Texture(), new Hitbox(0, 0, Scale(72), Scale(36)))
-        .SetAlignment(0.5f, 0.15f) // 0.1f
+        .SetAlignment(0.5f, 0.41f) // 0.1f
         .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
         .SetFont(EYBFontHelper.CardDescriptionFont_Normal, 1)
         .SetText("4");
 
         textBox_counterNormal = new GUI_TextBox(GR.Common.Images.Panel.Texture(), new Hitbox(0, 0, Scale(72), Scale(36)))
-        .SetAlignment(0.5f, 0.15f) // 0.1f
+        .SetAlignment(0.5f, 0.41f) // 0.1f
         .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
         .SetFont(EYBFontHelper.CardDescriptionFont_Normal, 1)
         .SetText("5");
 
         textBox_counterPercentage = new GUI_TextBox(GR.Common.Images.Panel.Texture(), new Hitbox(0, 0, Scale(96), Scale(36)))
-        .SetAlignment(0.5f, 0.15f) // 0.1f
+        .SetAlignment(0.5f, 0.41f) // 0.1f
         .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
         .SetFont(EYBFontHelper.CardDescriptionFont_Normal, 1)
         .SetText("33%");
@@ -67,7 +67,7 @@ public class CardAlignmentCounter extends GUIElement
     {
         textBox_counterWeak.SetText(AlignmentLV1.level == 0 ? "-" : AlignmentLV1.level).Update();
         textBox_counterNormal.SetText(AlignmentLV2.level == 0 ? "-" : AlignmentLV2.level).Update();
-        textBox_counterPercentage.SetText(String.format("%.1f", Percentage * 100) + "%").Update();
+        textBox_counterPercentage.SetText(Math.round(Percentage * 100) + "%").Update();
 
         image_alignment.Update();
     }
@@ -75,9 +75,9 @@ public class CardAlignmentCounter extends GUIElement
     @Override
     public void Render(SpriteBatch sb)
     {
-        textBox_counterWeak.Render(sb);
-        textBox_counterNormal.Render(sb);
         textBox_counterPercentage.Render(sb);
+        textBox_counterNormal.Render(sb);
+        textBox_counterWeak.Render(sb);
 
         image_alignment.Render(sb, textBox_counterWeak.hb.x /*- textBox_counterWeak.hb.width*/ - iconSize,
                 textBox_counterWeak.hb.cY - (iconSize * 0.5f), iconSize, iconSize);

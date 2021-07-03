@@ -11,6 +11,7 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.ColoredTexture;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
@@ -271,14 +272,13 @@ public abstract class AnimatorCard extends EYBCard
     }
 
     @Override
-    protected Texture GetCardBanner()
+    protected ColoredTexture GetCardBanner()
     {
-        if (rarity == CardRarity.SPECIAL)
-        {
-            return IMAGES.CARD_BANNER_SPECIAL.Texture();
-        }
-
-        return null;
+//        if (rarity == CardRarity.SPECIAL)
+//        {
+//            return new ColoredTexture(IMAGES.CARD_BANNER_SPECIAL.Texture());
+//        }
+        return new ColoredTexture(IMAGES.CARD_BANNER_GENERIC.Texture(), GetRarityColor());
     }
 
     @Override

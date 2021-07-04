@@ -8,12 +8,12 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.AnimatorImages;
+import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 import eatyourbeets.rewards.AnimatorReward;
-import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.GUIElement;
+import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 
 public class AnimatorSpecialTrophiesRenderer extends GUIElement
 {
@@ -25,7 +25,7 @@ public class AnimatorSpecialTrophiesRenderer extends GUIElement
 
     public AnimatorSpecialTrophiesRenderer()
     {
-        trophySpecialHb = new AdvancedHitbox(0, 0, 64 * Settings.scale, 64 * Settings.scale, false);
+        trophySpecialHb = new AdvancedHitbox(0, 0, 64 * Settings.scale, 64 * Settings.scale);
 
         float baseX = 200f * Settings.scale;
         float baseY = (float) Settings.HEIGHT / 2f;

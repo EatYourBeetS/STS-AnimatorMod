@@ -12,8 +12,8 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.interfaces.delegates.ActionT0;
-import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.GUIElement;
+import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.RenderHelpers;
 import org.apache.commons.lang3.StringUtils;
 
@@ -36,7 +36,7 @@ public class GUI_Button extends GUIElement
 
     public GUI_Button(Texture buttonTexture, float x, float y)
     {
-        this(buttonTexture, new AdvancedHitbox(x, y, Scale(buttonTexture.getWidth()), Scale(buttonTexture.getHeight()), false));
+        this(buttonTexture, new AdvancedHitbox(x, y, Scale(buttonTexture.getWidth()), Scale(buttonTexture.getHeight())));
     }
 
     public GUI_Button(Texture buttonTexture, Hitbox hitbox)

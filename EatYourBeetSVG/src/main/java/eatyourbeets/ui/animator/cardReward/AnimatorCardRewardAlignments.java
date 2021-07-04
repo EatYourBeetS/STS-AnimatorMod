@@ -2,7 +2,6 @@ package eatyourbeets.ui.animator.cardReward;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAlignment;
 import eatyourbeets.cards.base.EYBCardAlignmentType;
@@ -10,6 +9,9 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
+import eatyourbeets.ui.hitboxes.AdvancedHitbox;
+import eatyourbeets.ui.hitboxes.DraggableHitbox;
+import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
@@ -18,8 +20,11 @@ import java.util.ArrayList;
 
 public class AnimatorCardRewardAlignments extends GUIElement
 {
+    public static final float ICON_SIZE = Scale(40);
+
     private static final CommonImages.AlignmentsIcons ICONS = GR.Common.Images.Alignments;
 
+    private final AdvancedHitbox hb;
     private final ArrayList<CardAlignmentCounter> counters = new ArrayList<>();
     private final CardAlignmentCounter starCounter;
     private final GUI_Image header1;
@@ -27,17 +32,19 @@ public class AnimatorCardRewardAlignments extends GUIElement
 
     public AnimatorCardRewardAlignments()
     {
-        header1 = RenderHelpers.ForTexture(ICONS.Border_Weak.Texture())
-        .SetHitbox(new Hitbox(ScreenW(0.04f), ScreenH(0.67f), Scale(40), Scale(40)));
-        header2 = RenderHelpers.ForTexture(ICONS.Border.Texture())
-        .SetHitbox(new Hitbox(ScreenW(0.065f), ScreenH(0.67f), Scale(40), Scale(40)));
+        hb = new DraggableHitbox(ScreenW(0.025f), ScreenH(0.65f), Scale(140), Scale(50), false);
 
-        counters.add(new CardAlignmentCounter(EYBCardAlignmentType.Red));
-        counters.add(new CardAlignmentCounter(EYBCardAlignmentType.Green));
-        counters.add(new CardAlignmentCounter(EYBCardAlignmentType.Blue));
-        counters.add(new CardAlignmentCounter(EYBCardAlignmentType.Light));
-        counters.add(new CardAlignmentCounter(EYBCardAlignmentType.Dark));
-        starCounter = new CardAlignmentCounter(EYBCardAlignmentType.Star);
+        header1 = RenderHelpers.ForTexture(ICONS.Border_Weak.Texture())
+        .SetHitbox(new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, 0.15f, 1f, true));
+        header2 = RenderHelpers.ForTexture(ICONS.Border.Texture())
+        .SetHitbox(new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, 0.45f, 1f, true));
+
+        counters.add(new CardAlignmentCounter(hb, EYBCardAlignmentType.Red));
+        counters.add(new CardAlignmentCounter(hb, EYBCardAlignmentType.Green));
+        counters.add(new CardAlignmentCounter(hb, EYBCardAlignmentType.Blue));
+        counters.add(new CardAlignmentCounter(hb, EYBCardAlignmentType.Light));
+        counters.add(new CardAlignmentCounter(hb, EYBCardAlignmentType.Dark));
+        starCounter = new CardAlignmentCounter(hb, EYBCardAlignmentType.Star);
         counters.add(starCounter);
     }
 
@@ -109,7 +116,7 @@ public class AnimatorCardRewardAlignments extends GUIElement
         {
             if (c.isActive)
             {
-                c.SetPosition(ScreenW(0.053f), ScreenH(0.65f - (0.05f * index)));
+                c.SetIndex(index);
                 index += 1;
             }
         }
@@ -118,6 +125,7 @@ public class AnimatorCardRewardAlignments extends GUIElement
     @Override
     public void Update()
     {
+        hb.update();
         header1.TryUpdate();
         header2.TryUpdate();
         for (CardAlignmentCounter c : counters)
@@ -135,5 +143,6 @@ public class AnimatorCardRewardAlignments extends GUIElement
         {
             c.TryRender(sb);
         }
+        hb.render(sb);
     }
 }

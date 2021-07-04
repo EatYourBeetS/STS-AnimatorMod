@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
-import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.controls.GUI_Button;
+import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.awt.*;
@@ -29,11 +29,11 @@ public class AnimatorCharacterSelectScreen
         GameUtilities.UnlockAllKeys();
         selectedOption = null;
 
-        DiscordButton = new GUI_Button(GR.Common.Images.Discord.Texture(), new AdvancedHitbox(0, 0, 36, 36, false))
+        DiscordButton = new GUI_Button(GR.Common.Images.Discord.Texture(), new AdvancedHitbox(0, 0, 36, 36))
         .SetPosition(Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.95f).SetText("")
         .SetOnClick(() -> Browse(DiscordButton));
 
-        SteamButton = new GUI_Button(GR.Common.Images.Steam.Texture(), new AdvancedHitbox(0, 0, 36, 36, false))
+        SteamButton = new GUI_Button(GR.Common.Images.Steam.Texture(), new AdvancedHitbox(0, 0, 36, 36))
         .SetPosition(Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.95f - DiscordButton.hb.height * 1.1f).SetText("")
         .SetOnClick(() -> Browse(SteamButton));
 

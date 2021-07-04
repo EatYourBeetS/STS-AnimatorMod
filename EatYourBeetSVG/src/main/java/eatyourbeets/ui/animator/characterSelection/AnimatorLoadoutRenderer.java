@@ -14,9 +14,9 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
+import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JUtils;
@@ -66,7 +66,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         startingCardsSelectedHb.move(startingCardsLeftHb.x + startingCardsLeftHb.width + (rightTextWidth / 2f), POS_Y);
         startingCardsRightHb.move(startingCardsSelectedHb.x + startingCardsSelectedHb.width + (10 * Settings.scale), POS_Y - (10 * Settings.scale));
 
-        RandomizeButton = new GUI_Button(GR.Common.Images.Randomize.Texture(), new AdvancedHitbox(0, 0, (50 * Settings.scale), (50 * Settings.scale), false))
+        RandomizeButton = new GUI_Button(GR.Common.Images.Randomize.Texture(), new AdvancedHitbox(0, 0, (50 * Settings.scale), (50 * Settings.scale)))
         .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width + (15 * Settings.scale), POS_Y - (10 * Settings.scale)).SetText("")
         .SetOnClick(this::RandomizeLoadout);
     }

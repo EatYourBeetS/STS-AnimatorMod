@@ -20,10 +20,10 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.AbstractScreen;
-import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardAlignments;
 import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardScreen;
 import eatyourbeets.ui.controls.*;
+import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RandomizedList;
@@ -135,7 +135,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         {
             toggleBeta.isActive = false;
             purgingStoneImage.isActive = false;
-            alignments.Open(container.GetAllCardsInPool());
             UpdateStartingDeckText();
             GameEffects.TopLevelList.Add(new AnimatorSeriesSelectEffect(this));
         }
@@ -358,7 +357,11 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
     protected void TotalCardsChanged(int totalCards)
     {
-        alignments.Open(container.GetAllCardsInPool());
+        if (alignments.isActive)
+        {
+            alignments.Open(container.GetAllCardsInPool());
+        }
+
         selectionAmount.SetText(totalCards + " cards selected.");
         purgingStoneImage.SetActive(totalCards >= 100);
 

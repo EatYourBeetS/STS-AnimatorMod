@@ -56,6 +56,11 @@ public class AnimatorImages
     public final TextureCache CARD_FRAME_ATTACK_SPECIAL_L = new TextureCache("images/cardui/animator/1024/frame_attack_special.png");
     public final TextureCache CARD_FRAME_SKILL_SPECIAL_L  = new TextureCache("images/cardui/animator/1024/frame_skill_special.png");
     public final TextureCache CARD_FRAME_POWER_SPECIAL_L  = new TextureCache("images/cardui/animator/1024/frame_power_special.png");
+
+    public final TextureCache CARD_FRAME_SKILL            = new TextureCache("images/cardui/animator/512/frame_skill.png");
+    public final TextureCache CARD_FRAME_POWER            = new TextureCache("images/cardui/animator/512/frame_power.png");
+    public final TextureCache CARD_FRAME_ATTACK           = new TextureCache("images/cardui/animator/512/frame_attack.png");
+
     public final TextureCache BRONZE_TROPHY               = new TextureCache("images/ui/rewards/animator/Bronze.png");
     public final TextureCache SILVER_TROPHY               = new TextureCache("images/ui/rewards/animator/Silver.png");
     public final TextureCache GOLD_TROPHY                 = new TextureCache("images/ui/rewards/animator/Gold.png");

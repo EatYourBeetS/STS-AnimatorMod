@@ -15,7 +15,10 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.EYBFontHelper;
+import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RenderHelpers;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -97,6 +100,14 @@ public class EYBCardTooltip
 
     public static void RenderAll(SpriteBatch sb)
     {
+        EYBCardPreview preview = card.GetCardPreview();
+        if (preview != null)
+        {
+            boolean showUpgrade = SingleCardViewPopup.isViewingUpgrade && (AbstractDungeon.player == null || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD);
+            preview.Render(sb, card, card.upgraded || showUpgrade);
+        }
+
+        int totalHidden = 0;
         inHand = AbstractDungeon.player != null && AbstractDungeon.player.hand.contains(card);
         tooltips.clear();
         card.GenerateDynamicTooltips(tooltips);
@@ -122,6 +133,16 @@ public class EYBCardTooltip
             {
                 GR.Animator.Config.HideTipDescription(tip.id, (tip.hideDescription ^= true), true);
             }
+
+            if (tip.hideDescription)
+            {
+                totalHidden += 1;
+            }
+        }
+
+        if (inHand && totalHidden == tooltips.size())
+        {
+            return;
         }
 
         float x;
@@ -166,13 +187,6 @@ public class EYBCardTooltip
         for (int i = 0; i < tooltips.size(); i++)
         {
             y -= tooltips.get(i).Render(sb, x, y, i) + BOX_EDGE_H * 3.15f;
-        }
-
-        EYBCardPreview preview = card.GetCardPreview();
-        if (preview != null)
-        {
-            boolean showUpgrade = SingleCardViewPopup.isViewingUpgrade && (AbstractDungeon.player == null || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD);
-            preview.Render(sb, card, card.upgraded || showUpgrade);
         }
 
         if (GR.IsTranslationSupported(Settings.language) && card.isPopup)

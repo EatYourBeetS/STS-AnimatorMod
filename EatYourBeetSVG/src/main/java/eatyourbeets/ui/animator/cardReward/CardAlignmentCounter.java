@@ -1,6 +1,5 @@
 package eatyourbeets.ui.animator.cardReward;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.cards.base.EYBCardAlignment;
@@ -34,9 +33,9 @@ public class CardAlignmentCounter extends GUIElement
         AlignmentLV1 = new EYBCardAlignment(alignment, 0);
         AlignmentLV2 = new EYBCardAlignment(alignment, 0);
 
-        image_panel = RenderHelpers.ForTexture(GR.Common.Images.Panel.Texture())
+        image_panel = RenderHelpers.ForTexture(GR.Common.Images.Panel_Rounded_Half_H.Texture())
         .SetHitbox(new RelativeHitbox(hb, 1, 1, 0.5f, 0))
-        .SetColor(Color.DARK_GRAY);
+        .SetColor(0.05f, 0.05f, 0.05f, 1f);
 
         image_alignment = RenderHelpers.ForTexture(alignment.GetIcon())
         .SetHitbox(new RelativeHitbox(hb, iconSize, iconSize, -0.5f * (iconSize / hb.width), 0, true));

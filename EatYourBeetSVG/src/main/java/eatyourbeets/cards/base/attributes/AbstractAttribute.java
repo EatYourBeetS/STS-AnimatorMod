@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
@@ -84,54 +83,74 @@ public abstract class AbstractAttribute
 
     public void Render(SpriteBatch sb, EYBCard card)
     {
-        final BitmapFont largeFont = RenderHelpers.GetLargeAttributeFont(card);
-        final float scale = Settings.scale * card.drawScale;
-        float base_x = card.current_x;
-        float base_y = card.current_y - (DESC_OFFSET_Y * card.drawScale);
+        final float suffix_scale = 0.6f;
+        final float cw = AbstractCard.RAW_W;
+        final float ch = AbstractCard.RAW_H;
+        final float i_w = 126f;
+        final float i_h = 90f;
 
-        if (card.angle != 0)
+        BitmapFont largeFont = RenderHelpers.GetLargeAttributeFont(card);
+        largeFont.getData().setScale(1);
+        layout.setText(largeFont, mainText.text);
+
+        float text_width = layout.width;
+        float suffix_width = 0;
+
+        if (suffix != null)
         {
-            base_y += Math.abs(card.angle * scale);
+            layout.setText(largeFont, suffix);
+            suffix_width = (layout.width * suffix_scale);
         }
 
-        layout.setText(largeFont, mainText.text);
-        final float width = layout.width;
+        largeFont = RenderHelpers.GetLargeAttributeFont(card);
 
         if (leftAlign)
         {
-            base_x -= (DESC_OFFSET_X * card.drawScale);
+            final float y = -ch * 0.05f;
+            final float icon_x = -cw * 0.45f;
+            final float text_x = ((text_width + suffix_width) * 0.5f) - cw * 0.34f;
 
-            RenderHelpers.DrawOnCard(sb, card, icon, base_x, base_y, 48);
-            FontHelper.renderFont(sb, largeFont, mainText.text, base_x + 42 * scale, base_y + 20 * scale + layout.height / 2f, mainText.color);
+            RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Skewed_Left.Texture(), -cw * 0.35f, y, i_w, i_h);
+            RenderHelpers.DrawOnCardAuto(sb, card, icon, icon_x, y, 48, 48);
+            RenderHelpers.WriteOnCard(sb, card, largeFont, mainText.text, text_x - suffix_width, y, mainText.color, true);
 
             if (suffix != null)
             {
-                largeFont.getData().setScale(largeFont.getScaleX() * 0.6f);
-                layout.setText(largeFont, suffix);
-                FontHelper.renderFont(sb, largeFont, suffix, base_x + 42 * scale + width, base_y + 14 * scale + layout.height / 2f, mainText.color);
+                largeFont.getData().setScale(largeFont.getScaleX() * suffix_scale);
+                RenderHelpers.WriteOnCard(sb, card, largeFont, suffix, text_x + (text_width * (1 - suffix_scale)), y, mainText.color, true);
+            }
+
+            if (iconTag != null)
+            {
+                BitmapFont smallFont = RenderHelpers.GetSmallAttributeFont(card);
+                RenderHelpers.WriteOnCard(sb, card, smallFont, iconTag, icon_x, -ch * 0.08f, Settings.CREAM_COLOR, true);
+                RenderHelpers.ResetFont(smallFont);
             }
         }
         else
         {
-            base_x += (DESC_OFFSET_X * card.drawScale) - (48 * scale);
+            final float y = -ch * 0.05f;
+            final float icon_x = +cw * 0.45f;
+            final float text_x = -((text_width + suffix_width) * 0.5f) + cw * 0.34f;
 
-            RenderHelpers.DrawOnCard(sb, card, icon, base_x, base_y, 48);
-            FontHelper.renderFont(sb, largeFont, mainText.text, base_x + 7 * scale - width, base_y + 20 * scale + layout.height / 2f, mainText.color);
+            RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Skewed_Right.Texture(), +cw * 0.35f, y, i_w, i_h);
+            RenderHelpers.DrawOnCardAuto(sb, card, icon, icon_x, y, 48, 48);
+            RenderHelpers.WriteOnCard(sb, card, largeFont, mainText.text, text_x + suffix_width, y, mainText.color, true);
 
             if (suffix != null)
             {
-                largeFont.getData().setScale(largeFont.getScaleX() * 0.6f);
-                layout.setText(largeFont, suffix);
-                FontHelper.renderFont(sb, largeFont, suffix, base_x + 7 * scale - width - layout.width, base_y + 14 * scale + layout.height / 2f, mainText.color);
+                largeFont.getData().setScale(largeFont.getScaleX() * suffix_scale);
+                RenderHelpers.WriteOnCard(sb, card, largeFont, suffix, text_x - (text_width * (1 - suffix_scale)), y, mainText.color, true);
+            }
+
+            if (iconTag != null)
+            {
+                BitmapFont smallFont = RenderHelpers.GetSmallAttributeFont(card);
+                RenderHelpers.WriteOnCard(sb, card, smallFont, iconTag, icon_x, -ch * 0.08f, Settings.CREAM_COLOR, true);
+                RenderHelpers.ResetFont(smallFont);
             }
         }
-        RenderHelpers.ResetFont(largeFont);
 
-        if (iconTag != null)
-        {
-            BitmapFont smallFont = RenderHelpers.GetSmallAttributeFont(card);
-            FontHelper.renderFontLeft(sb, smallFont, iconTag, base_x + 10 * scale, base_y + 8 * scale, RenderHelpers.CopyColor(card, Settings.CREAM_COLOR));
-            RenderHelpers.ResetFont(smallFont);
-        }
+        RenderHelpers.ResetFont(largeFont);
     }
 }

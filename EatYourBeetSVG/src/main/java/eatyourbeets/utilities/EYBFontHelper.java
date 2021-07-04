@@ -28,6 +28,7 @@ public class EYBFontHelper
     public static BitmapFont CardTitleFont_Normal;
     public static BitmapFont CardTitleFont_Large;
     public static BitmapFont CardTooltipFont;
+    public static BitmapFont CardTypeFont;
     public static BitmapFont CardDescriptionFont_Normal;
     public static BitmapFont CardDescriptionFont_Large;
     public static BitmapFont CardIconFont_Small;
@@ -62,6 +63,8 @@ public class EYBFontHelper
         {
             fontFile = Gdx.files.internal("font/Kreon-Regular.ttf");
         }
+
+
 
         param.hinting = FreeTypeFontGenerator.Hinting.Slight;
         param.kerning = true;
@@ -101,6 +104,7 @@ public class EYBFontHelper
         EYBFontHelper.CardTitleFont_Small = PrepFont(cardTitleFont, 25, 2f, bc1, 3f, sc1);
         EYBFontHelper.CardTitleFont_Normal = PrepFont(cardTitleFont, 27, 2f, bc1, 3f, sc1);
         EYBFontHelper.CardTitleFont_Large = PrepFont(cardTitleFont, 46, 4f, bc1, 3f, sc1);
+        EYBFontHelper.CardTypeFont = PrepFont(cardDescFont, 17f, 0, null, 1f, sc1);
         EYBFontHelper.CardDescriptionFont_Normal = PrepFont(cardDescFont, 23, 0, 1f);
         EYBFontHelper.CardDescriptionFont_Large = PrepFont(cardDescFont_L, 46, 0, 2f);
         EYBFontHelper.CardIconFont_VeryLarge = PrepFont(cardDescFont, 76, 4.5f, 1.4f);

@@ -94,7 +94,13 @@ public class EYBCardText
                 RenderHelpers.ResetFont(font);
             }
 
-            card.alignments.RenderOnCard(sb, card, inHand);
+            card.alignments.RenderOnCard(sb, card, false);
+
+//            if (inHand)
+//            {
+//                // Show LV2 icons above card while in hand
+//                card.alignments.RenderOnCard(sb, card, true);
+//            }
         }
     }
 
@@ -211,7 +217,7 @@ public class EYBCardText
 
             offset = new Vector2(0.5f, 0.425f + offset_y);
             font.getData().setScale(0.5f * card.drawScale);
-            RenderHelpers.WriteOnCardAuto(sb, card, font, text, offset, Settings.CREAM_COLOR, true);
+            RenderHelpers.WriteOnCard(sb, card, font, text, offset.x, offset.y, Settings.CREAM_COLOR, true);
             RenderHelpers.ResetFont(font);
         }
 

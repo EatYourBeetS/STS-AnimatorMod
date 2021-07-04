@@ -278,23 +278,26 @@ public abstract class AnimatorCard extends EYBCard
 //        {
 //            return new ColoredTexture(IMAGES.CARD_BANNER_SPECIAL.Texture());
 //        }
-        return new ColoredTexture(IMAGES.CARD_BANNER_GENERIC.Texture(), GetRarityColor());
+        return new ColoredTexture(IMAGES.CARD_BANNER_GENERIC.Texture(), GetRarityColor(false));
     }
 
     @Override
-    protected Texture GetPortraitFrame()
+    protected ColoredTexture GetPortraitFrame()
     {
-        if (rarity == CardRarity.SPECIAL)
+        switch (type)
         {
-            switch (type)
-            {
-                case ATTACK: return IMAGES.CARD_FRAME_ATTACK_SPECIAL.Texture();
-                case POWER: return IMAGES.CARD_FRAME_POWER_SPECIAL.Texture();
-                default: return IMAGES.CARD_FRAME_SKILL_SPECIAL.Texture();
-            }
-        }
+            case ATTACK:
+                return new ColoredTexture(IMAGES.CARD_FRAME_ATTACK.Texture(), GetRarityColor(false));
 
-        return null;
+            case POWER:
+                return new ColoredTexture(IMAGES.CARD_FRAME_POWER.Texture(), GetRarityColor(false));
+
+            case SKILL:
+            case CURSE:
+            case STATUS:
+            default:
+                return new ColoredTexture(IMAGES.CARD_FRAME_SKILL.Texture(), GetRarityColor(false));
+        }
     }
 
     @Override

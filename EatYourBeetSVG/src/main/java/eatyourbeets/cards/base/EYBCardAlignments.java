@@ -166,27 +166,21 @@ public class EYBCardAlignments
         return 0;
     }
 
-    public void RenderOnCard(SpriteBatch sb, EYBCard card, boolean inHand)
+    public void RenderOnCard(SpriteBatch sb, EYBCard card, boolean highlight)
     {
-//        if (true)
-//        {
-//            RenderOnCardVertical(sb, card, inHand);
-//            return;
-//        }
-
         float size;
         float y = AbstractCard.RAW_H;
 
-//        if (inHand)
-//        {
-//            size = 44;
-//            y *= 0.57f;
-//        }
-//        else
-//        {
+        if (highlight)
+        {
+            size = 54;
+            y *= 0.60f;
+        }
+        else
+        {
             size = 41;
             y *= 0.49f;// -0.47f;
-//        }
+        }
 
         if (HasStar())
         {
@@ -216,35 +210,7 @@ public class EYBCardAlignments
             }
 // Render Centered
 
-//            if (!inHand)
-//            {
-//                x *= 0.85f;
-//            }
-
             item.RenderOnCard(sb, card, x, y, size);
-        }
-    }
-
-    public void RenderOnCardVertical(SpriteBatch sb, EYBCard card, boolean inHand)
-    {
-        float size = 41;
-        float x = AbstractCard.RAW_W;
-        float y = AbstractCard.RAW_H;
-
-        x *= -0.465f;
-        y *= 0.25f;
-
-        if (HasStar())
-        {
-            Star.RenderOnCard(sb, card, x, y, size);
-            return;
-        }
-
-        float step = (size / AbstractCard.RAW_H) * 1.02f;
-        int half = List.size() / 2;
-        for (int i = 0; i < List.size(); i++)
-        {
-            List.get(i).RenderOnCard(sb, card, x, y - (AbstractCard.RAW_H * (step * i)), size);
         }
     }
 

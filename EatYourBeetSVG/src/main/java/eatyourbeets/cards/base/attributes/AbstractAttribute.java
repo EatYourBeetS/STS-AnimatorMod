@@ -86,11 +86,12 @@ public abstract class AbstractAttribute
         final float suffix_scale = 0.6f;
         final float cw = AbstractCard.RAW_W;
         final float ch = AbstractCard.RAW_H;
-        final float i_w = 126f;
-        final float i_h = 90f;
+        final float b_w = 126f;
+        final float b_h = 90f;
+        final float y = -ch * 0.05f;
 
         BitmapFont largeFont = RenderHelpers.GetLargeAttributeFont(card);
-        largeFont.getData().setScale(1);
+        largeFont.getData().setScale(card.isPopup ? 0.5f : 1);
         layout.setText(largeFont, mainText.text);
 
         float text_width = layout.width;
@@ -106,11 +107,10 @@ public abstract class AbstractAttribute
 
         if (leftAlign)
         {
-            final float y = -ch * 0.05f;
             final float icon_x = -cw * 0.45f;
             final float text_x = ((text_width + suffix_width) * 0.5f) - cw * 0.34f;
 
-            RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Skewed_Left.Texture(), -cw * 0.35f, y, i_w, i_h);
+            RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Skewed_Left.Texture(), -cw * 0.35f, y, b_w, b_h);
             RenderHelpers.DrawOnCardAuto(sb, card, icon, icon_x, y, 48, 48);
             RenderHelpers.WriteOnCard(sb, card, largeFont, mainText.text, text_x - suffix_width, y, mainText.color, true);
 
@@ -129,11 +129,10 @@ public abstract class AbstractAttribute
         }
         else
         {
-            final float y = -ch * 0.05f;
             final float icon_x = +cw * 0.45f;
             final float text_x = -((text_width + suffix_width) * 0.5f) + cw * 0.34f;
 
-            RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Skewed_Right.Texture(), +cw * 0.35f, y, i_w, i_h);
+            RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Skewed_Right.Texture(), +cw * 0.35f, y, b_w, b_h);
             RenderHelpers.DrawOnCardAuto(sb, card, icon, icon_x, y, 48, 48);
             RenderHelpers.WriteOnCard(sb, card, largeFont, mainText.text, text_x + suffix_width, y, mainText.color, true);
 

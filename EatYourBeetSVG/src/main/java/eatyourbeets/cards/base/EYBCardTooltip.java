@@ -133,16 +133,6 @@ public class EYBCardTooltip
             {
                 GR.Animator.Config.HideTipDescription(tip.id, (tip.hideDescription ^= true), true);
             }
-
-            if (tip.hideDescription)
-            {
-                totalHidden += 1;
-            }
-        }
-
-        if (inHand && totalHidden == tooltips.size())
-        {
-            return;
         }
 
         float x;
@@ -186,7 +176,13 @@ public class EYBCardTooltip
 
         for (int i = 0; i < tooltips.size(); i++)
         {
-            y -= tooltips.get(i).Render(sb, x, y, i) + BOX_EDGE_H * 3.15f;
+            EYBCardTooltip tip = tooltips.get(i);
+            if (inHand && tip.hideDescription)
+            {
+                continue;
+            }
+
+            y -= tip.Render(sb, x, y, i) + BOX_EDGE_H * 3.15f;
         }
 
         if (GR.IsTranslationSupported(Settings.language) && card.isPopup)

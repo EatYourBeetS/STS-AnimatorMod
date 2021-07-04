@@ -38,7 +38,7 @@ public class Naotsugu extends AnimatorCard
             int maxBlock = e.lastDamageTaken;
             for (AbstractCard c : player.hand.group)
             {
-                if (c.block > 0 && c.block <= maxBlock)
+                if (c.block > 0 && c.block < maxBlock)
                 {
                     if (ForceStance.IsActive())
                     {

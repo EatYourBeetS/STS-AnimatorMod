@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -23,11 +24,10 @@ public class BarbaraPegg extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 1);
+        Initialize(0, 0, 3, 2);
         SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
-        SetHealing(true);
         SetSpellcaster();
         SetSynergy(Synergies.GenshinImpact);
     }
@@ -35,7 +35,15 @@ public class BarbaraPegg extends AnimatorCard
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        return TempHPAttribute.Instance.SetCard(this).SetText(String.valueOf(this.GetTempHP()), Settings.CREAM_COLOR);
+        return TempHPAttribute.Instance.SetCard(this, true);
+    }
+
+    @Override
+    protected void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        GameUtilities.IncreaseMagicNumber(this, GameUtilities.GetUniqueOrbsCount(), true);
     }
 
 
@@ -43,14 +51,10 @@ public class BarbaraPegg extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.VFX(new RainbowCardEffect());
-        GameActions.Bottom.GainTemporaryHP(this.GetTempHP());
+        GameActions.Bottom.GainTemporaryHP(magicNumber + GameUtilities.GetUniqueOrbsCount());
         if (GameUtilities.GetUniqueOrbsCount() >= UNIQUE_THRESHOLD && CombatStats.TryActivateLimited(cardID)) {
-            GameActions.Bottom.Heal(magicNumber);
+            GameActions.Bottom.StackPower(new RegenPower(player, secondaryValue));
         }
 
-    }
-
-    private int GetTempHP() {
-        return magicNumber + GameUtilities.GetUniqueOrbsCount();
     }
 }

@@ -22,6 +22,7 @@ public class Zhongli extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2, 1);
+        SetUpgrade(0, 3, 1, 0);
 
         SetSynergy(Synergies.GenshinImpact);
     }
@@ -36,6 +37,7 @@ public class Zhongli extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new ZhongliPower(p, this.magicNumber, this.secondaryValue));
     }
 
@@ -57,8 +59,7 @@ public class Zhongli extends AnimatorCard
         public void atEndOfTurn(boolean isPlayer)
         {
             super.atEndOfTurn(isPlayer);
-
-            int energy = Math.min(amount, EnergyPanel.getCurrentEnergy());
+            int energy = Math.min(secondaryAmount, EnergyPanel.getCurrentEnergy());
             if (energy > 0)
             {
                 EnergyPanel.useEnergy(energy);
@@ -80,7 +81,7 @@ public class Zhongli extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, 1, amount);
+            description = FormatDescription(0, secondaryAmount, amount);
         }
     }
 }

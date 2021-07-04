@@ -22,6 +22,7 @@ public class Oz extends AnimatorCard
         Initialize(0, 0, 1, 1);
 
         SetEthereal(true);
+        SetSpellcaster();
         SetSynergy(Synergies.GenshinImpact);
     }
 

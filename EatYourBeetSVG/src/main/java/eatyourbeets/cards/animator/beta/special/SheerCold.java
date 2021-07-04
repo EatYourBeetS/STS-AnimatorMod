@@ -17,14 +17,14 @@ public class SheerCold extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 1);
-        SetUpgrade(0, 0, 1, 1);
+        Initialize(0, 0, 1, 0);
+        SetUpgrade(0, 0, 0, 0);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (JUtils.Count(player.orbs, orb -> Frost.ORB_ID.equals(orb.ID)) == 0)
+        if (upgraded)
             GameActions.Bottom.ChannelOrb(new Frost());
         GameActions.Bottom.StackPower(new SheerColdPower(p, magicNumber));
     }

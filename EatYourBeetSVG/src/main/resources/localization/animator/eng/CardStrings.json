@@ -418,9 +418,9 @@
 		},
 		"animator:SheerCold":
 		{
-		  "DESCRIPTION": "Channel 1 [Frost] if you have no [Frost]. || [Frost] applies [Chilled] to a random enemy when Triggered and to all enemies when Evoked.",
+		  "DESCRIPTION": "[Frost] now applies [Chilled] to a random enemy when Triggered and to all enemies when Evoked.",
 		  "NAME": "Sheer Cold",
-		  "UPGRADE_DESCRIPTION": "Channel 1 [Frost] if you have no [Frost]. || [Frost] applies !M!X [Chilled] to a random enemy when Triggered and to all enemies when Evoked."
+		  "UPGRADE_DESCRIPTION": "Channel 1 [Frost]. || [Frost] now applies !M!X [Chilled] to a random enemy when Triggered and to all enemies when Evoked."
 		},
 		"animator:ShuuOuma":
 		{
@@ -550,7 +550,7 @@
 		},
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Gain !S! more [Temporary HP] for every unique Orb you have. || <LIM>. If have you at least 4 unique Orbs, heal !M! HP.",
+			"DESCRIPTION": "Gain 1 [Temporary HP] for each unique Orb you have. || <LIM>. If have you at least 4 unique Orbs, gain !S! [Regeneration].",
 			"NAME": "Barbara Pegg"
 		},
 		"animator:Curse_Delusion":
@@ -565,8 +565,9 @@
 		},
 		"animator:Fischl":
 		{
-		  "DESCRIPTION": "Randomly channel ** [Lightning] or [Dark] !M! times. || <LIM>. Synergy: Add {Oz} to your Discard Pile.",
-		  "NAME": "Fischl"
+		  "DESCRIPTION": "Randomly channel ** [Lightning] or [Dark] !M! times. || <LIM>. Synergy: Add an {Oz} to your Discard Pile.",
+		  "NAME": "Fischl",
+		  "UPGRADE_DESCRIPTION": "Randomly channel ** [Lightning] or [Dark] !M! times. || <LIM>. Synergy: Add an upgraded {Oz} to your Discard Pile."
 		},
 		"animator:JeanGunnhildr":
 		{
@@ -591,7 +592,8 @@
 		"animator:Klee":
 		{
 		  "DESCRIPTION": "Apply !M! [Burning] to ALL targets. || Add !S! {Jumpy Dumpty} to your Discard Pile. ** Add 1 more if at least half of your orbs are [Fire].",
-		  "NAME": "Klee"
+		  "NAME": "Klee",
+		  "UPGRADE_DESCRIPTION": "Apply !M! [Burning] to ALL targets. || Add !S! upgraded {Jumpy Dumpty} to your Discard Pile. ** Add 1 more if at least half of your orbs are [Fire]."
 		},
 		"animator:LisaMinci":
 		{
@@ -600,7 +602,7 @@
 		},
 		"animator:Noelle":
 		{
-			"DESCRIPTION": "{Starter}, <TM-S>: If you have [Earth], trigger the right-most one. Otherwise, channel 1 [Earth]. || Synergy: Increase this card's [Block] by !M! for the rest of the combat.",
+			"DESCRIPTION": "{Starter}: If you have [Earth], trigger an [Earth]. Otherwise, Channel 1 [Earth]. || Synergy, Teamwork X: Gain X more [Block], up to a maximum of !M!.",
 			"NAME": "Noelle"
 		},
 		"animator:Oz":
@@ -626,7 +628,7 @@
 		},
 		"animator:Venti":
 		{
-			"DESCRIPTION": "Cycle !M! cards. {Channel} 1 [Aether] and trigger it for every Skill drawn. || <LIM>. If you drew at least !S! {Hindrances}, ** {Channel} [Aether] again.",
+			"DESCRIPTION": "Cycle !M! cards. <SLM>. {Channel} 1 [Aether] and trigger it for every Skill drawn. ** If you drew at least 2 {Hindrances}, ** Draw a card.",
 			"NAME": "Venti"
 		},
 		"animator:Zhongli":

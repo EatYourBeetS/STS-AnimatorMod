@@ -41,7 +41,7 @@ public class Fischl extends AnimatorCard {
         }
 
         if (HasSynergy() && CombatStats.TryActivateLimited(cardID)) {
-            GameActions.Bottom.MakeCardInDiscardPile(new Oz()).SetUpgrade(false, false);
+            GameActions.Bottom.MakeCardInDiscardPile(new Oz()).SetUpgrade(upgraded, false);
         }
     }
 }

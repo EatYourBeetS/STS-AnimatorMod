@@ -19,12 +19,13 @@ import java.util.ArrayList;
 public class Venti extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Venti.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
+    private static final int HINDRANCE_THRESHOLD = 2;
 
     public Venti()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
+        Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 2, 0);
 
         SetEthereal(true);
@@ -57,8 +58,8 @@ public class Venti extends AnimatorCard
                         }
                     }
 
-                    if (hindranceCount >= secondaryValue && CombatStats.TryActivateLimited(cardID)) {
-                        GameActions.Bottom.ChannelOrb(new Aether());
+                    if (hindranceCount >= HINDRANCE_THRESHOLD) {
+                        GameActions.Bottom.Draw(secondaryValue);
                     }
                 });
             }

@@ -350,7 +350,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
     protected void TotalCardsChanged(int totalCards)
     {
-        selectionAmount.SetText(totalCards + " cards selected.");
+        selectionAmount.SetText(totalCards + " total cards.");
         purgingStoneImage.SetActive(totalCards >= 100);
 
         if (totalCards >= 75)

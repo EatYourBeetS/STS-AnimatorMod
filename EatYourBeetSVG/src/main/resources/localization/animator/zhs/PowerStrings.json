@@ -48,17 +48,17 @@
 	"animator:DarkCrystalPower":
 	{
 		"DESCRIPTIONS": ["被指定为卡牌目标时，给予其余所有角色 #b", " 层 #y缠绕。"],
-		"NAME": "暗黑之晶"
+		"NAME": "暗黑晶体"
 	},
 	"animator:DarkCubePower":
 	{
 		"DESCRIPTIONS": ["其回合结束时，给予敌人 #b", " 层 #y缠绕。"],
-		"NAME": "暗黑之方"
+		"NAME": "暗黑方块"
 	},
 	"animator:DarkWispPower":
 	{
 		"DESCRIPTIONS": ["死亡时，给予对所有角色 #b", " 层 #y缠绕。"],
-		"NAME": "暗黑之缕"
+		"NAME": "暗黑精灵"
 	},
 	"animator:DarknessPower":
 	{
@@ -108,17 +108,17 @@
 	"animator:FireCrystalPower":
 	{
 		"DESCRIPTIONS": ["被指定为卡牌目标时，给予其余所有角色 #b", " 层 #y力量 和 #y燃烧 。"],
-		"NAME": "火焰之晶"
+		"NAME": "火焰晶体"
 	},
 	"animator:FireCubePower":
 	{
 		"DESCRIPTIONS": ["其回合结束时，给予己方所有角色 #b", " 层 #y力量 和 #y燃烧 。"],
-		"NAME": "火焰之方"
+		"NAME": "火焰方块"
 	},
 	"animator:FireWispPower":
 	{
 		"DESCRIPTIONS": ["死亡时，给予所有角色 #b", " 层 #y力量 和 #y燃烧 。"],
-		"NAME": "火焰之缕"
+		"NAME": "火焰精灵"
 	},
 	"animator:FlamingWeaponPower":
 	{
@@ -128,17 +128,17 @@
 	"animator:FrostCrystalPower":
 	{
 		"DESCRIPTIONS": ["被指定为卡牌目标时，给予其余所有角色 #b", " 层 #y多层护甲 。"],
-		"NAME": "冰霜之晶"
+		"NAME": "冰霜晶体"
 	},
 	"animator:FrostCubePower":
 	{
 		"DESCRIPTIONS": ["其回合结束时，给予己方所有角色 #b", " 层 #y多层护甲 。"],
-		"NAME": "冰霜之方"
+		"NAME": "冰霜方块"
 	},
 	"animator:FrostWispPower":
 	{
 		"DESCRIPTIONS": ["死亡时，给予所有角色 #b", " 层 #y多层护甲 。"],
-		"NAME": "冰霜之缕"
+		"NAME": "冰霜精灵"
 	},
 	"animator:GazelDwargonPower":
 	{
@@ -163,17 +163,17 @@
 	"animator:HealingCrystalPower":
 	{
 		"DESCRIPTIONS": ["被指定为卡牌目标时，其余所有角色回复 #b", " 点生命。"],
-		"NAME": "治疗之晶"
+		"NAME": "治疗晶体"
 	},
 	"animator:HealingCubePower":
 	{
 		"DESCRIPTIONS": ["其回合结束时，己方所有角色回复 #b", " 点生命。"],
-		"NAME": "治疗之方"
+		"NAME": "治疗方块"
 	},
 	"animator:HealingWispPower":
 	{
 		"DESCRIPTIONS": ["死亡时，所有角色回复 #b", " 点生命。"],
-		"NAME": "治疗之缕"
+		"NAME": "治疗精灵"
 	},
 	"animator:HigakiRinnePower":
 	{
@@ -208,17 +208,17 @@
 	"animator:LightningCrystalPower":
 	{
 		"DESCRIPTIONS": ["被指定为卡牌目标时，对其余所有角色造成 #b", " 点 #y穿透伤害 。"],
-		"NAME": "雷电之晶"
+		"NAME": "雷电晶体"
 	},
 	"animator:LightningCubePower":
 	{
 		"DESCRIPTIONS": ["其回合结束时，对敌人造成 #b", " 点 #y穿透伤害 。"],
-		"NAME": "雷电之方"
+		"NAME": "雷电方块"
 	},
 	"animator:LightningWispPower":
 	{
 		"DESCRIPTIONS": ["死亡时，对所有角色造成 #b", " 点 #y穿透伤害 。"],
-		"NAME": "雷电之缕"
+		"NAME": "雷电精灵"
 	},
 	"animator:MarkOfPoisonPower":
 	{
@@ -333,24 +333,27 @@
 	"animator:UltimateCrystalPower":
 	{
 		"DESCRIPTIONS": ["你每打出一张牌，获得 #b", " 点 #y力量 。 NL NL 在 #b", " 回合后，召唤自身的复制。"],
-		"NAME": "终极之晶"
+		"NAME": "终极晶体"
 	},
 	"animator:UltimateCubePower":
 	{
 		"DESCRIPTIONS": ["每个回合结束时，获得 #b", " 种随机增益。 NL NL 在 #b", " 回合后爆炸，造成 #b", " 点伤害。 NL （此效果击中多次）"],
-		"NAME": "终极之方"
+		"NAME": "终极方块"
 	},
 	"animator:UltimateWispPower":
 	{
 		"DESCRIPTIONS": ["每当这个敌人对你造成伤害时，在你的弃牌堆里增加一张 #y灼伤 。 NL NL #y消耗 玩家每回合打出的第一张牌。"],
-		"NAME": "终极之缕"
+		"NAME": "终极精灵"
 	},
 	"animator:UnnamedDollPower":
 	{
 		"DESCRIPTIONS":
 		[
-			"接下来 #b", " 个回合，每打出一张牌，若不以此角色为目标，获得 #b", " 点 #y最大生命 。 NL NL ",
-			"死亡时，给予所有角色 #b", " 点 #y力量 。"
+			"接下来 #b",
+			" 个回合，每打出一张牌，若不以此角色为目标，获得 #b",
+			" 点 #y最大生命 。 NL NL ",
+			"死亡时，给予所有角色 #b",
+			" 点 #y力量 。"
 		],
 		"NAME": "无名傀儡"
 	},

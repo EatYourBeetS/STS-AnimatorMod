@@ -13,8 +13,10 @@ import com.megacrit.cardcrawl.helpers.SaveHelper;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.powers.monsters.DarkCubePower;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.JUtils;
 
 import java.io.IOException;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class AnimatorConfig
@@ -23,11 +25,13 @@ public class AnimatorConfig
     private static final String CROP_CARD_PORTRAIT_KEY =  "TheAnimator-UseCroppedPortrait";
     private static final String DISPLAY_BETA_SERIES =  "TheAnimator-DisplayBetaSeries";
     private static final String FADE_CARDS_WITHOUT_SYNERGY =  "TheAnimator-FadeNonSynergicCards";
+    private static final String HIDE_TIP_DESCRIPTION =  "TheAnimator-HideTipDescription";
 
     private SpireConfig config;
     private Boolean cropCardImages = null;
     private Boolean displayBetaSeries = null;
     private Boolean fadeCardsWithoutSynergy = null;
+    private HashSet<String> tips = null;
 
     public boolean CropCardImages()
     {
@@ -110,6 +114,44 @@ public class AnimatorConfig
         }
     }
 
+    public boolean HideTipDescription(String id)
+    {
+        if (tips == null)
+        {
+            tips = new HashSet<>();
+
+            if (config.has(HIDE_TIP_DESCRIPTION))
+            {
+                Collections.addAll(tips, config.getString(HIDE_TIP_DESCRIPTION).split("\\|"));
+            }
+        }
+
+        return tips.contains(id);
+    }
+
+    public void HideTipDescription(String id, boolean value, boolean flush)
+    {
+        if (tips == null)
+        {
+            tips = new HashSet<>();
+        }
+
+        if (value)
+        {
+            tips.add(id);
+        }
+        else
+        {
+            tips.remove(id);
+        }
+
+        config.setString(HIDE_TIP_DESCRIPTION, JUtils.JoinStrings("|", tips));
+
+        if (flush)
+        {
+            Save();
+        }
+    }
 
     public String TrophyString()
     {

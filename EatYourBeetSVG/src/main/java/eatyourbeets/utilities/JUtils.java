@@ -262,7 +262,7 @@ public class JUtils
         StringJoiner sj = new StringJoiner(delimiter);
         for (T value : values)
         {
-            sj.add(value.toString());
+            sj.add(value == null ? "" : value.toString());
         }
 
         return sj.toString();
@@ -273,12 +273,11 @@ public class JUtils
         StringJoiner sj = new StringJoiner(delimiter);
         for (T value : values)
         {
-            sj.add(value.toString());
+            sj.add(value == null ? "" : value.toString());
         }
 
         return sj.toString();
     }
-
 
     public static void LogError(Object source, Object message)
     {

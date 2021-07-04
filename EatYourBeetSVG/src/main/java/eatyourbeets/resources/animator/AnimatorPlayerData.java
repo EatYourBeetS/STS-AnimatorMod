@@ -199,7 +199,7 @@ public class AnimatorPlayerData
         add.Invoke(new AccelWorld(), 7);
         add.Invoke(new TenSura(), 7);
         add.Invoke(new MadokaMagica(), 8);
-        //add.Invoke(new LogHorizon(), 8);
+        add.Invoke(new LogHorizon(), 8);
 
         for (AnimatorLoadout loadout : BaseLoadouts)
         {
@@ -233,9 +233,6 @@ public class AnimatorPlayerData
     private void AddBetaLoadouts()
     {
         BetaLoadouts.clear();
-        LogHorizon l = new LogHorizon();
-        l.UnlockLevel = 8;
-        BetaLoadouts.add(l);
         //BetaLoadouts.add(new <YourLoadoutHere>);
     }
 

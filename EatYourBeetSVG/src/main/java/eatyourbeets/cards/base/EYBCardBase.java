@@ -546,6 +546,7 @@ public abstract class EYBCardBase extends AbstractCard
         }
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean TryRenderCentered(SpriteBatch sb, ColoredTexture texture)
     {
         if (texture != null)

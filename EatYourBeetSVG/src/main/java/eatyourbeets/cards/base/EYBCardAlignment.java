@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class EYBCardAlignment implements Comparable<EYBCardAlignment>
@@ -41,7 +42,14 @@ public class EYBCardAlignment implements Comparable<EYBCardAlignment>
         Texture border = Type.GetBorder(level);
         if (border != null)
         {
-            RenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size, Color.WHITE, 1f, 1f);
+            Color color = Color.WHITE.cpy();
+            EYBCardBase c = JUtils.SafeCast(card, EYBCardBase.class);
+            if (c != null && level > 1)
+            {
+                color.lerp(c.GetRarityColor(false), 0.3f);
+            }
+
+            RenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size, color, 1f, 1f);
         }
     }
 

@@ -178,8 +178,8 @@ public class EYBCardAlignments
         }
         else
         {
-            size = 41;
-            y *= 0.49f;// -0.47f;
+            size = 43;
+            y *= 0.5f;// -0.47f;
         }
 
         if (HasStar())

@@ -100,13 +100,6 @@ public class EYBCardTooltip
 
     public static void RenderAll(SpriteBatch sb)
     {
-        EYBCardPreview preview = card.GetCardPreview();
-        if (preview != null)
-        {
-            boolean showUpgrade = SingleCardViewPopup.isViewingUpgrade && (AbstractDungeon.player == null || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD);
-            preview.Render(sb, card, card.upgraded || showUpgrade);
-        }
-
         int totalHidden = 0;
         inHand = AbstractDungeon.player != null && AbstractDungeon.player.hand.contains(card);
         tooltips.clear();
@@ -124,14 +117,17 @@ public class EYBCardTooltip
         for (int i = 0; i < tooltips.size(); i++)
         {
             EYBCardTooltip tip = tooltips.get(i);
-            if (tip.hideDescription == null)
+            if (StringUtils.isNotEmpty(tip.id))
             {
-                tip.hideDescription = GR.Animator.Config.HideTipDescription(tip.id);
-            }
+                if (tip.hideDescription == null)
+                {
+                    tip.hideDescription = GR.Animator.Config.HideTipDescription(tip.id);
+                }
 
-            if (!inHand && alt && Gdx.input.isKeyJustPressed(Input.Keys.NUM_1 + i))
-            {
-                GR.Animator.Config.HideTipDescription(tip.id, (tip.hideDescription ^= true), true);
+                if (!inHand && alt && Gdx.input.isKeyJustPressed(Input.Keys.NUM_1 + i))
+                {
+                    GR.Animator.Config.HideTipDescription(tip.id, (tip.hideDescription ^= true), true);
+                }
             }
         }
 
@@ -185,6 +181,13 @@ public class EYBCardTooltip
             y -= tip.Render(sb, x, y, i) + BOX_EDGE_H * 3.15f;
         }
 
+        EYBCardPreview preview = card.GetCardPreview();
+        if (preview != null)
+        {
+            boolean showUpgrade = SingleCardViewPopup.isViewingUpgrade && (AbstractDungeon.player == null || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD);
+            preview.Render(sb, card, card.upgraded || showUpgrade);
+        }
+
         if (GR.IsTranslationSupported(Settings.language) && card.isPopup)
         {
             if (translationTooltip == null)
@@ -225,7 +228,7 @@ public class EYBCardTooltip
 
         if (!StringUtils.isEmpty(description))
         {
-            if (!inHand && index >= 0)
+            if (StringUtils.isNotEmpty(id) && !inHand && index >= 0)
             {
                 FontHelper.renderFontRightTopAligned(sb, EYBFontHelper.CardTooltipFont, "Alt+" + (index + 1), x + BODY_TEXT_WIDTH * 1.07f, y + HEADER_OFFSET_Y * 1.33f, Settings.PURPLE_COLOR);
             }

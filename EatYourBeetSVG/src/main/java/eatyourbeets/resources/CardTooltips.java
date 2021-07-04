@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
 import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.powers.animator.ChilledPower;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.resources.common.CommonImages;
@@ -82,6 +83,8 @@ public class CardTooltips
     public EYBCardTooltip Dark = FindByID("Dark");
     public EYBCardTooltip Aura = FindByID("Aura");
     public EYBCardTooltip Autoplay = FindByID("Autoplay");
+    public EYBCardTooltip Chilled = FindByID("Chilled");
+    public EYBCardTooltip Regeneration = FindByID("Regeneration");
 
     // No Description
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
@@ -161,6 +164,8 @@ public class CardTooltips
         Earth.SetIcon(tooltips.Earth.Texture(), 6);
         RandomOrb.SetIcon(tooltips.RandomOrb.Texture(), 6);
         Gold.SetIcon(tooltips.Gold.Texture(), 6);
+        RandomOrb.SetIcon(tooltips.RandomOrb.Texture(), 6);
+        Regeneration.SetIcon(tooltips.Regeneration.Texture(), 6);
 
         LoadFromPower(Burning, new BurningPower(FakeCharacter.Instance, null, 0)).SetIconSizeMulti(0.95f, 0.95f);
         LoadFromPower(Poison, new PoisonPower(FakeCharacter.Instance, null, 0)).SetIconSizeMulti(1.05f, 1f);
@@ -176,6 +181,7 @@ public class CardTooltips
         LoadFromPower(Constricted, new ConstrictedPower(null, FakeCharacter.Instance, 0));
         LoadFromPower(SupportDamage, new SupportDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(LockOn, new LockOnPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Chilled, new ChilledPower(FakeCharacter.Instance,0)).SetIconSizeMulti(0.95f, 0.95f);
 
         //These use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);

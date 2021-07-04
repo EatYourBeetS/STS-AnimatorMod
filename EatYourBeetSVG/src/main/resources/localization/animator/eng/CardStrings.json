@@ -418,8 +418,9 @@
 		},
 		"animator:SheerCold":
 		{
-		  "DESCRIPTION": "At the end of your turn, apply !M! {Chilled} to a random enemy for each [Frost] you have. Whenever you Evoke [Frost], apply !S! Chilled to ALL enemies.",
-		  "NAME": "Sheer Cold"
+		  "DESCRIPTION": "Channel 1 [Frost] if you have no [Frost]. || [Frost] applies [Chilled] to a random enemy when Triggered and to all enemies when Evoked.",
+		  "NAME": "Sheer Cold",
+		  "UPGRADE_DESCRIPTION": "Channel 1 [Frost] if you have no [Frost]. || [Frost] applies !M!X [Chilled] to a random enemy when Triggered and to all enemies when Evoked."
 		},
 		"animator:ShuuOuma":
 		{
@@ -549,7 +550,7 @@
 		},
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Gain !M! more [Temporary HP] for every unique Orb you have. || <LIM>. If have you at least 4 unique Orbs, heal !S! HP.",
+			"DESCRIPTION": "Gain !S! more [Temporary HP] for every unique Orb you have. || <LIM>. If have you at least 4 unique Orbs, heal !M! HP.",
 			"NAME": "Barbara Pegg"
 		},
 		"animator:Curse_Delusion":
@@ -584,7 +585,7 @@
 		},
 		"animator:KamisatoAyaka":
 		{
-		  "DESCRIPTION": "Attack 1 additional time for each [Frost] you have. You cannot gain [Block] for 2 turns. || <LIM>. {Synergy}: Play ** {Sheer Cold}.",
+		  "DESCRIPTION": "Attack 1 additional time for each [Frost] you have. You cannot gain [Block] for 2 turns. || <LIM>. If all of your Orbs are [Frost]: Play {Sheer Cold}.",
 		  "NAME": "Kamisato Ayaka"
 		},
 		"animator:Klee":
@@ -599,7 +600,7 @@
 		},
 		"animator:Noelle":
 		{
-			"DESCRIPTION": "{Starter}: If you have no [Earth], channel 1 [Earth]. || Synergy, <TM-S>: Give a random [Block] card !M! more [Block] this combat.",
+			"DESCRIPTION": "{Starter}, <TM-S>: If you have [Earth], trigger the right-most one. Otherwise, channel 1 [Earth]. || Synergy: Increase this card's [Block] by !M! for the rest of the combat.",
 			"NAME": "Noelle"
 		},
 		"animator:Oz":
@@ -1875,7 +1876,7 @@
 	{
 		"animator:Boros":
 		{
-			"DESCRIPTION": "Every {Power} is ** played twice. || <LIM>. When ** Exhausted: Gain !M! ** Regeneration.",
+			"DESCRIPTION": "Every {Power} is ** played twice. || <LIM>. When ** Exhausted: Gain !M! [Regeneration].",
 			"NAME": "Boros"
 		},
 		"animator:Genos":

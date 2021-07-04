@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Oz extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Oz.class).SetPower(1, CardRarity.SPECIAL);
+    public static final EYBCardData DATA = Register(Oz.class).SetPower(2, CardRarity.SPECIAL);
 
     public Oz()
     {

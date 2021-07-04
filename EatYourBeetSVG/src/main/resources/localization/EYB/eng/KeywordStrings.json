@@ -210,6 +210,12 @@
 		"NAMES": ["rebound"],
 		"PROPER_NAME": "Rebound"
 	},
+	"Regeneration":
+	{
+	  "DESCRIPTION": "Heal HP at the end of the turn. Reduce by 1 each turn.",
+	  "NAMES": ["regeneration"],
+	  "PROPER_NAME": "Regeneration"
+	},
 	"Semi-Limited":
 	{
 		"DESCRIPTION": "This effect can only trigger once per turn, across all copies of this card.",

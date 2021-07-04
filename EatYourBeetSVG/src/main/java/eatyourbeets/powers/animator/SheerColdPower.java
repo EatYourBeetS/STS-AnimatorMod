@@ -16,14 +16,12 @@ import eatyourbeets.utilities.GameUtilities;
 public class SheerColdPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(SheerColdPower.class);
-    private final int secondaryAmount;
 
-    public SheerColdPower(AbstractPlayer owner, int amount, int secondaryAmount)
+    public SheerColdPower(AbstractPlayer owner, int amount)
     {
         super(owner, POWER_ID);
 
         this.amount = amount;
-        this.secondaryAmount = secondaryAmount;
 
         updateDescription();
     }
@@ -31,7 +29,7 @@ public class SheerColdPower extends AnimatorPower
     @Override
     public void updateDescription()
     {
-        description = FormatDescription(0, amount, secondaryAmount);
+        description = FormatDescription(0, amount);
     }
 
     @Override
@@ -50,7 +48,7 @@ public class SheerColdPower extends AnimatorPower
                 else {
                     target = p;
                 }
-                this.applyPower(target, orb, this.amount);
+                this.applyPower(target, orb, orb.passiveAmount * this.amount);
             }
         }
     }
@@ -65,12 +63,12 @@ public class SheerColdPower extends AnimatorPower
             {
                 for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
                 {
-                    this.applyPower(enemy, orb, this.secondaryAmount);
+                    this.applyPower(enemy, orb, orb.evokeAmount * this.amount);
                 }
             }
             else {
                 AbstractPlayer p = AbstractDungeon.player;
-                this.applyPower(p, orb, this.secondaryAmount);
+                this.applyPower(p, orb, orb.evokeAmount * this.amount);
             }
         }
     }

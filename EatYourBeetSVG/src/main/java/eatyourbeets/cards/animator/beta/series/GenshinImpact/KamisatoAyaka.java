@@ -11,7 +11,7 @@ import eatyourbeets.cards.animator.beta.special.SheerCold;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.animator.RemoveBlockPower;
+import eatyourbeets.powers.animator.NegateBlockPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -48,7 +48,7 @@ public class KamisatoAyaka extends AnimatorCard {
     {
         super.Refresh(enemy);
 
-        GameUtilities.IncreaseMagicNumber(this, JUtils.Count(player.orbs, orb -> Frost.ORB_ID.equals(orb.ID)), true);
+        GameUtilities.IncreaseMagicNumber(this, this.getFrostCount(), true);
     }
 
     @Override
@@ -61,13 +61,17 @@ public class KamisatoAyaka extends AnimatorCard {
             GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE).SetOptions(true, false);
         }
 
-        GameActions.Bottom.StackPower(new RemoveBlockPower(p, NO_BLOCK_TURNS));
+        GameActions.Bottom.StackPower(new NegateBlockPower(p, NO_BLOCK_TURNS, p.currentBlock));
 
-        if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
+        if (this.getFrostCount() == player.orbs.size() && CombatStats.TryActivateLimited(cardID))
         {
             AbstractCard c = new SheerCold();
             c.applyPowers();
             c.use(player, null);
         }
+    }
+
+    private int getFrostCount() {
+        return JUtils.Count(player.orbs, orb -> Frost.ORB_ID.equals(orb.ID));
     }
 }

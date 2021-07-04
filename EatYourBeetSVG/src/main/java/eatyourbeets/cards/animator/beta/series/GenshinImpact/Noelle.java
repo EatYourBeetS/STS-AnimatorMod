@@ -15,7 +15,7 @@ public class Noelle extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 2, 2);
+        Initialize(0, 5, 1, 2);
         SetUpgrade(0, 2, 0, 0);
         SetScaling(0, 0, 0);
 
@@ -28,41 +28,31 @@ public class Noelle extends AnimatorCard
 
         GameActions.Bottom.GainBlock(block);
 
-        if (IsStarter())
+        if (IsStarter() && HasTeamwork(secondaryValue))
         {
-            boolean hasEarth = false;
+            AbstractOrb firstOrb = null;
             for (AbstractOrb orb : p.orbs)
             {
                 if (Earth.ORB_ID.equals(orb.ID))
                 {
-                    hasEarth = true;
+                    firstOrb = orb;
                     break;
                 }
             }
 
-            if (!hasEarth)
+            if (firstOrb != null) {
+                firstOrb.onStartOfTurn();
+                firstOrb.onEndOfTurn();
+            }
+            else
             {
                 GameActions.Bottom.ChannelOrb(new Earth());
             }
         }
 
-        if (HasSynergy() && HasTeamwork(secondaryValue))
+        if (HasSynergy())
         {
-            GameActions.Bottom.SelectFromHand(name, 1, true)
-                    .SetFilter(c -> c instanceof EYBCard && c.block > 0)
-                    .AddCallback(cards ->
-                    {
-                        if (cards.size() > 0)
-                        {
-                            EYBCard card = (EYBCard) cards.get(0);
-                            GameActions.Bottom.ModifyAllInstances(card.uuid, c -> c.baseBlock += c.magicNumber);
-                            card.flash();
-                        }
-                        else
-                        {
-                            GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseBlock += c.magicNumber);
-                        }
-                    });
+            GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseBlock += c.magicNumber);
         }
     }
 }

@@ -21,7 +21,7 @@ public class DolaStephanie extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.NoGameNoLife);
-        SetAlignment(0, 0, 1, 1, 0);
+        SetAffinity(0, 0, 1, 1, 0);
     }
 
     @Override

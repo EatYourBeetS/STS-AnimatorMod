@@ -26,7 +26,7 @@ public class Ciel extends AnimatorCard
         SetUpgrade(0, 0, 0, 2);
 
         SetSynergy(Synergies.Elsword);
-        SetAlignment(0, 2, 0, 0, 2);
+        SetAffinity(0, 2, 0, 0, 2);
     }
 
     @Override

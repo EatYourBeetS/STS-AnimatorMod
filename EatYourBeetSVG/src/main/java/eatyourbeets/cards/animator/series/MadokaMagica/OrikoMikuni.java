@@ -24,7 +24,7 @@ public class OrikoMikuni extends AnimatorCard
         SetUpgrade(0, 0, 1, 2);
 
         SetSynergy(Synergies.MadokaMagica);
-        SetAlignment(0, 0, 1, 2, 0);
+        SetAffinity(0, 0, 1, 2, 0);
     }
 
     @Override

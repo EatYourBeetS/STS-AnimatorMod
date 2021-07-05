@@ -29,7 +29,7 @@ public class Nanami extends AnimatorCard
         SetAttackType(EYBAttackType.Normal);
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
-        SetAlignment(2, 2, 0, 0, 2);
+        SetAffinity(2, 2, 0, 0, 2);
     }
 
     @Override

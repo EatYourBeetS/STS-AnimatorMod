@@ -21,7 +21,7 @@ public class Ainz extends AnimatorCard
 
         SetHealing(true);
         SetSynergy(Synergies.Overlord);
-        SetAlignment(2, 0, 2, 0, 2);
+        SetAffinity(2, 0, 2, 0, 2);
     }
 
     @Override

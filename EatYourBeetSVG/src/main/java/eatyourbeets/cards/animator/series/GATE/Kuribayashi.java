@@ -25,7 +25,7 @@ public class Kuribayashi extends AnimatorCard
         SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.Gate);
-        SetAlignment(2, 2, 0, 1, 0);
+        SetAffinity(2, 2, 0, 1, 0);
     }
 
     @Override

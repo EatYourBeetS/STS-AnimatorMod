@@ -29,7 +29,7 @@ public class Giselle extends AnimatorCard_UltraRare
         SetScaling(0, 1, 2);
 
         SetSynergy(Synergies.Gate);
-        SetAlignment(2, 1, 0, 0, 1);
+        SetAffinity(2, 1, 0, 0, 1);
     }
 
     @Override

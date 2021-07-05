@@ -195,7 +195,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
                     }
                 }
 
-                JUtils.LogInfo(this, s.Name + " : " + weight);
+                JUtils.LogInfo(this, s.LocalizedName + " : " + weight);
                 list.Add(s, weight);
             }
         }

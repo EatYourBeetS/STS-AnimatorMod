@@ -27,7 +27,7 @@ public class Sebas extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.Overlord);
-        SetAlignment(2, 0, 0, 1, 0);
+        SetAffinity(2, 0, 0, 1, 0);
     }
 
     @Override

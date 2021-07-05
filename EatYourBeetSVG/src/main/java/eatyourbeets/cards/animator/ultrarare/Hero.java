@@ -27,7 +27,7 @@ public class Hero extends AnimatorCard_UltraRare
         SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.GoblinSlayer);
-        SetAlignment(1, 1, 0, 2, 0);
+        SetAffinity(1, 1, 0, 2, 0);
     }
 
     @Override

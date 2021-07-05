@@ -8,17 +8,17 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
-public class EYBCardAlignment implements Comparable<EYBCardAlignment>
+public class EYBCardAffinity implements Comparable<EYBCardAffinity>
 {
-    public final EYBCardAlignmentType Type;
+    public final EYBCardAffinityType Type;
     public int level;
 
-    public EYBCardAlignment(EYBCardAlignmentType type)
+    public EYBCardAffinity(EYBCardAffinityType type)
     {
         this.Type = type;
     }
 
-    public EYBCardAlignment(EYBCardAlignmentType type, int level)
+    public EYBCardAffinity(EYBCardAffinityType type, int level)
     {
         this.Type = type;
         this.level = level;
@@ -54,14 +54,14 @@ public class EYBCardAlignment implements Comparable<EYBCardAlignment>
     }
 
     @Override
-    public int compareTo(EYBCardAlignment other)
+    public int compareTo(EYBCardAffinity other)
     {
         return other.calculateRank() - calculateRank();
     }
 
     public int calculateRank()
     {
-        if (Type == EYBCardAlignmentType.Star)
+        if (Type == EYBCardAffinityType.Star)
         {
             return 500 + level;
         }

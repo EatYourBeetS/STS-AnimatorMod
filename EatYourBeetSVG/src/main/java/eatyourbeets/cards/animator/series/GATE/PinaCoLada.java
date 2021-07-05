@@ -20,7 +20,7 @@ public class PinaCoLada extends AnimatorCard
         SetUpgrade(0, 6, 0);
 
         SetSynergy(Synergies.Gate);
-        SetAlignment(0, 0, 1, 2, 0);
+        SetAffinity(0, 0, 1, 2, 0);
     }
 
     @Override

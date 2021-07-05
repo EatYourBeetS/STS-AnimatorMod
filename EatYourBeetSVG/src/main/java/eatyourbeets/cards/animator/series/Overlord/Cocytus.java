@@ -24,7 +24,7 @@ public class Cocytus extends AnimatorCard
         SetScaling(0, 0, 2);
 
         SetSynergy(Synergies.Overlord);
-        SetAlignment(2, 0, 0, 0, 1);
+        SetAffinity(2, 0, 0, 0, 1);
     }
 
     @Override

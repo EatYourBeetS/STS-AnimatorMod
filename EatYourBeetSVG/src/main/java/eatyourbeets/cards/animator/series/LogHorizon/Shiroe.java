@@ -27,7 +27,7 @@ public class Shiroe extends AnimatorCard
         SetExhaust(true);
 
         SetSynergy(Synergies.LogHorizon);
-        SetAlignment(0, 0, 2, 1, 0);
+        SetAffinity(0, 0, 2, 1, 0);
     }
 
     @Override

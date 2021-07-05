@@ -5,21 +5,21 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import java.util.ArrayList;
 
-public class EYBCardAlignments
+public class EYBCardAffinities
 {
-    public final ArrayList<EYBCardAlignment> List = new ArrayList<>();
-    public EYBCardAlignment Star = null;
+    public final ArrayList<EYBCardAffinity> List = new ArrayList<>();
+    public EYBCardAffinity Star = null;
 
-    public EYBCardAlignments()
+    public EYBCardAffinities()
     {
 
     }
 
-    public boolean CanSynergize(EYBCardAlignments other)
+    public boolean CanSynergize(EYBCardAffinities other)
     {
-        for (EYBCardAlignment a : List)
+        for (EYBCardAffinity a : List)
         {
-            for (EYBCardAlignment b : other.List)
+            for (EYBCardAffinity b : other.List)
             {
                 if (a.Type == b.Type && (a.level > 1 || b.level > 1))
                 {
@@ -33,20 +33,20 @@ public class EYBCardAlignments
 
     public void Add(int red, int green, int blue, int light, int dark)
     {
-        Add(EYBCardAlignmentType.Red, red);
-        Add(EYBCardAlignmentType.Green, green);
-        Add(EYBCardAlignmentType.Blue, blue);
-        Add(EYBCardAlignmentType.Light, light);
-        Add(EYBCardAlignmentType.Dark, dark);
+        Add(EYBCardAffinityType.Red, red);
+        Add(EYBCardAffinityType.Green, green);
+        Add(EYBCardAffinityType.Blue, blue);
+        Add(EYBCardAffinityType.Light, light);
+        Add(EYBCardAffinityType.Dark, dark);
     }
 
     public void Set(int red, int green, int blue, int light, int dark)
     {
-        Set(EYBCardAlignmentType.Red, red);
-        Set(EYBCardAlignmentType.Green, green);
-        Set(EYBCardAlignmentType.Blue, blue);
-        Set(EYBCardAlignmentType.Light, light);
-        Set(EYBCardAlignmentType.Dark, dark);
+        Set(EYBCardAffinityType.Red, red);
+        Set(EYBCardAffinityType.Green, green);
+        Set(EYBCardAffinityType.Blue, blue);
+        Set(EYBCardAffinityType.Light, light);
+        Set(EYBCardAffinityType.Dark, dark);
     }
 
     public void SetStar(int level)
@@ -61,7 +61,7 @@ public class EYBCardAlignments
         }
         else
         {
-            Star = new EYBCardAlignment(EYBCardAlignmentType.Star, level);
+            Star = new EYBCardAffinity(EYBCardAffinityType.Star, level);
         }
     }
 
@@ -70,29 +70,29 @@ public class EYBCardAlignments
         return Star != null;
     }
 
-    public void Add(EYBCardAlignments other)
+    public void Add(EYBCardAffinities other)
     {
-        for (EYBCardAlignment item : other.List)
+        for (EYBCardAffinity item : other.List)
         {
             Add(item.Type, item.level);
         }
     }
 
-    public void Add(EYBCardAlignments other, int levelLimit)
+    public void Add(EYBCardAffinities other, int levelLimit)
     {
-        for (EYBCardAlignment item : other.List)
+        for (EYBCardAffinity item : other.List)
         {
             Add(item.Type, Math.min(levelLimit, item.level));
         }
     }
 
-    public void Add(EYBCardAlignmentType type, int level)
+    public void Add(EYBCardAffinityType type, int level)
     {
         if (level > 0)
         {
             for (int i = 0; i < List.size(); i++)
             {
-                EYBCardAlignment a = List.get(i);
+                EYBCardAffinity a = List.get(i);
                 if (a.Type == type)
                 {
                     if ((a.level += level) <= 0)
@@ -101,23 +101,23 @@ public class EYBCardAlignments
                     }
                     else
                     {
-                        List.sort(EYBCardAlignment::compareTo);
+                        List.sort(EYBCardAffinity::compareTo);
                     }
 
                     return;
                 }
             }
 
-            List.add(new EYBCardAlignment(type, level));
-            List.sort(EYBCardAlignment::compareTo);
+            List.add(new EYBCardAffinity(type, level));
+            List.sort(EYBCardAffinity::compareTo);
         }
     }
 
-    public void Set(EYBCardAlignmentType type, int level)
+    public void Set(EYBCardAffinityType type, int level)
     {
         for (int i = 0; i < List.size(); i++)
         {
-            EYBCardAlignment a = List.get(i);
+            EYBCardAffinity a = List.get(i);
             if (a.Type == type)
             {
                 if ((a.level = level) <= 0)
@@ -126,7 +126,7 @@ public class EYBCardAlignments
                 }
                 else
                 {
-                    List.sort(EYBCardAlignment::compareTo);
+                    List.sort(EYBCardAffinity::compareTo);
                 }
 
                 return;
@@ -135,14 +135,14 @@ public class EYBCardAlignments
 
         if (level > 0)
         {
-            List.add(new EYBCardAlignment(type, level));
-            List.sort(EYBCardAlignment::compareTo);
+            List.add(new EYBCardAffinity(type, level));
+            List.sort(EYBCardAffinity::compareTo);
         }
     }
 
-    public EYBCardAlignment Get(EYBCardAlignmentType type)
+    public EYBCardAffinity Get(EYBCardAffinityType type)
     {
-        for (EYBCardAlignment item : List)
+        for (EYBCardAffinity item : List)
         {
             if (item.Type == type)
             {
@@ -153,9 +153,9 @@ public class EYBCardAlignments
         return null;
     }
 
-    public int GetLevel(EYBCardAlignmentType type)
+    public int GetLevel(EYBCardAffinityType type)
     {
-        for (EYBCardAlignment item : List)
+        for (EYBCardAffinity item : List)
         {
             if (item.Type == type)
             {
@@ -192,7 +192,7 @@ public class EYBCardAlignments
         int half = List.size() / 2;
         for (int i = 0; i < List.size(); i++)
         {
-            final EYBCardAlignment item = List.get(i);
+            final EYBCardAffinity item = List.get(i);
             float x = AbstractCard.RAW_W;
 
 // Render Left
@@ -220,7 +220,7 @@ public class EYBCardAlignments
         float step = size * 0.995f;
         for (int i = 0; i < List.size(); i++)
         {
-            final EYBCardAlignment item = List.get(i);
+            final EYBCardAffinity item = List.get(i);
             float offsetX = 0;
             if (List.size() % 2 == 1)
             {

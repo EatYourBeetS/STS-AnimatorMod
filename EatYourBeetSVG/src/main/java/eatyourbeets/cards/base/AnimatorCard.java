@@ -212,7 +212,7 @@ public abstract class AnimatorCard extends EYBCard
     @Override
     public ColoredString GetHeaderText()
     {
-        return (synergy == null) ? null : new ColoredString(synergy.Name, Settings.CREAM_COLOR);
+        return (synergy == null) ? null : new ColoredString(synergy.LocalizedName, Settings.CREAM_COLOR);
     }
 
     @Override

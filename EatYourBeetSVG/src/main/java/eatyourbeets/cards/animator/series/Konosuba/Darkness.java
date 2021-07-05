@@ -26,7 +26,7 @@ public class Darkness extends AnimatorCard
         SetUpgrade(0, 1, 1);
 
         SetSynergy(Synergies.Konosuba);
-        SetAlignment(1, 0, 0, 1, 0);
+        SetAffinity(1, 0, 0, 1, 0);
     }
 
     @Override

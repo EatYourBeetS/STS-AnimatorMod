@@ -27,7 +27,7 @@ public class NagisaMomoe extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.MadokaMagica);
-        SetAlignment(0, 0, 1, 0, 0);
+        SetAffinity(0, 0, 1, 0, 0);
     }
 
     @Override

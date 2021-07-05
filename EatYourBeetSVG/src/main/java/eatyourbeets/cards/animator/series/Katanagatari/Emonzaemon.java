@@ -34,7 +34,7 @@ public class Emonzaemon extends AnimatorCard
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Katanagatari);
-        SetAlignment(0, 2, 0, 0, 1);
+        SetAffinity(0, 2, 0, 0, 1);
     }
 
     @Override

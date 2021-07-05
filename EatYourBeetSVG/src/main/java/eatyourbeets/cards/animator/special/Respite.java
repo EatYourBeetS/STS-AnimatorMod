@@ -28,7 +28,7 @@ public class Respite extends AnimatorCard
 
         SetRetain(true);
         SetPurge(true);
-        SetAlignment(0, 0, 0, 2, 0);
+        SetAffinity(0, 0, 0, 2, 0);
     }
 
     @Override

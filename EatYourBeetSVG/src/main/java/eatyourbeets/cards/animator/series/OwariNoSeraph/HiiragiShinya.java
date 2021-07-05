@@ -25,7 +25,7 @@ public class HiiragiShinya extends AnimatorCard
         SetUpgrade(0, 3, 0);
 
         SetSynergy(Synergies.OwariNoSeraph);
-        SetAlignment(0, 1, 1, 1, 0);
+        SetAffinity(0, 1, 1, 1, 0);
     }
 
     @Override

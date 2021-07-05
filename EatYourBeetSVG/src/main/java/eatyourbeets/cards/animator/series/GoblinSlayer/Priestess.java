@@ -23,7 +23,7 @@ public class Priestess extends AnimatorCard
         Initialize(0, 0, 4, 1);
 
         SetSynergy(Synergies.GoblinSlayer);
-        SetAlignment(0, 0, 1, 2, 0);
+        SetAffinity(0, 0, 1, 2, 0);
     }
 
     @Override

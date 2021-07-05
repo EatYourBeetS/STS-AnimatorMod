@@ -29,7 +29,7 @@ public class Eve extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Elsword);
-        SetAlignment(0, 0, 2, 0, 0);
+        SetAffinity(0, 0, 2, 0, 0);
     }
 
     @Override

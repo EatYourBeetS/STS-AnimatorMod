@@ -11,60 +11,61 @@ import java.util.*;
 
 public class Synergies
 {
-    private final static HashMap<Integer, Synergy> map = new HashMap<>();
+    private final static HashMap<Integer, Synergy> mapIDs = new HashMap<>();
+    private final static HashMap<String, Synergy> mapNames = new HashMap<>();
 
-    public final static Synergy ANY = CreateSynergy(0);
-    public final static Synergy Elsword = CreateSynergy(1);
-    public final static Synergy Kancolle = CreateSynergy(2);
-    public final static Synergy Chaika = CreateSynergy(3);
-    public final static Synergy Konosuba = CreateSynergy(4);
-    public final static Synergy Katanagatari = CreateSynergy(5);
-    public final static Synergy OwariNoSeraph = CreateSynergy(6);
-    public final static Synergy Overlord = CreateSynergy(7);
-    public final static Synergy NoGameNoLife = CreateSynergy(8);
-    public final static Synergy Gate = CreateSynergy(9);
-    public final static Synergy Fate = CreateSynergy(10);
-    public final static Synergy GoblinSlayer = CreateSynergy(11);
-    public final static Synergy FullmetalAlchemist = CreateSynergy(12);
-    public final static Synergy HatarakuMaouSama = CreateSynergy(13);
-    public final static Synergy GrimoireOfZero = CreateSynergy(14);
-    public final static Synergy SteinsGate = CreateSynergy(15);
-    public final static Synergy TenSura = CreateSynergy(16);
-    public final static Synergy ReZero = CreateSynergy(17);
-    public final static Synergy MadokaMagica = CreateSynergy(18);
-    public final static Synergy Charlotte = CreateSynergy(19);
-    public final static Synergy AccelWorld = CreateSynergy(20);
-    public final static Synergy Noragami = CreateSynergy(21);
-    public final static Synergy OnePunchMan = CreateSynergy(22);
-    public final static Synergy PandoraHearts = CreateSynergy(23);
-    public final static Synergy ZeroNoTsukaima = CreateSynergy(24);
-    public final static Synergy GabrielDropOut = CreateSynergy(25);
-    public final static Synergy DeathNote = CreateSynergy(26);
-    public final static Synergy KamisamaNoMemochu = CreateSynergy(27);
-    public final static Synergy CodeGeass = CreateSynergy(28);
-    public final static Synergy YoujoSenki = CreateSynergy(29);
-    public final static Synergy Bleach = CreateSynergy(30);
-    public final static Synergy Jojo = CreateSynergy(31);
-    public final static Synergy TateNoYuusha = CreateSynergy(32);
-    public final static Synergy Symphogear = CreateSynergy(33);
-    public final static Synergy CallOfCthulhu = CreateSynergy(34);
-    public final static Synergy Chuunibyou = CreateSynergy(35);
-    public final static Synergy FLCL = CreateSynergy(36);
-    public final static Synergy KillLaKill = CreateSynergy(37);
-    public final static Synergy TouhouProject = CreateSynergy(38);
-    public final static Synergy WelcomeToNHK = CreateSynergy(39);
-    public final static Synergy TalesOfBerseria = CreateSynergy(40);
-    public final static Synergy Rewrite = CreateSynergy(41);
-    public final static Synergy DateALive = CreateSynergy(42);
-    public final static Synergy AngelBeats = CreateSynergy(43);
-    public final static Synergy RozenMaiden = CreateSynergy(44);
-    public final static Synergy LogHorizon = CreateSynergy(45);
-    public final static Synergy Vocaloid = CreateSynergy(46);
-    public final static Synergy Atelier = CreateSynergy(47);
-    public final static Synergy CardcaptorSakura = CreateSynergy(48);
-    public final static Synergy GuiltyCrown = CreateSynergy(49);
-    public final static Synergy Gakkougurashi = CreateSynergy(50);
-    public final static Synergy GenshinImpact = CreateSynergy(51);
+    public final static Synergy ANY = Add(0, "ANY");
+    public final static Synergy Elsword = Add(1, "Elsword");
+    public final static Synergy Kancolle = Add(2, "Kancolle");
+    public final static Synergy Chaika = Add(3, "Chaika");
+    public final static Synergy Konosuba = Add(4, "Konosuba");
+    public final static Synergy Katanagatari = Add(5, "Katanagatari");
+    public final static Synergy OwariNoSeraph = Add(6, "OwariNoSeraph");
+    public final static Synergy Overlord = Add(7, "Overlord");
+    public final static Synergy NoGameNoLife = Add(8, "NoGameNoLife");
+    public final static Synergy Gate = Add(9, "GATE");
+    public final static Synergy Fate = Add(10, "Fate");
+    public final static Synergy GoblinSlayer = Add(11, "GoblinSlayer");
+    public final static Synergy FullmetalAlchemist = Add(12, "FullmetalAlchemist");
+    public final static Synergy HatarakuMaouSama = Add(13, "HatarakuMaouSama");
+    public final static Synergy GrimoireOfZero = Add(14, "GrimoireOfZero");
+    public final static Synergy SteinsGate = Add(15, "SteinsGate");
+    public final static Synergy TenSura = Add(16, "TenSura");
+    public final static Synergy ReZero = Add(17, "ReZero");
+    public final static Synergy MadokaMagica = Add(18, "MadokaMagica");
+    public final static Synergy Charlotte = Add(19, "Charlotte");
+    public final static Synergy AccelWorld = Add(20, "AccelWorld");
+    public final static Synergy Noragami = Add(21, "Noragami");
+    public final static Synergy OnePunchMan = Add(22, "OnePunchMan");
+    public final static Synergy PandoraHearts = Add(23, "PandoraHearts");
+    public final static Synergy ZeroNoTsukaima = Add(24, "ZeroNoTsukaima");
+    public final static Synergy GabrielDropout = Add(25, "GabrielDropout");
+    public final static Synergy DeathNote = Add(26, "DeathNote");
+    public final static Synergy KamisamaNoMemochu = Add(27, "KamisamaNoMemochou");
+    public final static Synergy CodeGeass = Add(28, "CodeGeass");
+    public final static Synergy YoujoSenki = Add(29, "YoujoSenki");
+    public final static Synergy Bleach = Add(30, "Bleach");
+    public final static Synergy Jojo = Add(31, "Jojo");
+    public final static Synergy TateNoYuusha = Add(32, "TateNoYuusha");
+    public final static Synergy Symphogear = Add(33, "Symphogear");
+    public final static Synergy CallOfCthulhu = Add(34, "CallOfCthulhu");
+    public final static Synergy Chuunibyou = Add(35, "Chuunibyou");
+    public final static Synergy FLCL = Add(36, "FLCL");
+    public final static Synergy KillLaKill = Add(37, "KillLaKill");
+    public final static Synergy TouhouProject = Add(38, "TouhouProject");
+    public final static Synergy WelcomeToNHK = Add(39, "WelcomeToNHK");
+    public final static Synergy TalesOfBerseria = Add(40, "TalesOfBerseria");
+    public final static Synergy Rewrite = Add(41, "Rewrite");
+    public final static Synergy DateALive = Add(42, "DateALive");
+    public final static Synergy AngelBeats = Add(43, "AngelBeats");
+    public final static Synergy RozenMaiden = Add(44, "RozenMaiden");
+    public final static Synergy LogHorizon = Add(45, "LogHorizon");
+    public final static Synergy Vocaloid = Add(46, "Vocaloid");
+    public final static Synergy Atelier = Add(47, "Atelier");
+    public final static Synergy CardcaptorSakura = Add(48, "CardcaptorSakura");
+    public final static Synergy GuiltyCrown = Add(49, "GuiltyCrown");
+    public final static Synergy GakkouGurashi = Add(50, "GakkouGurashi");
+    public final static Synergy GenshinImpact = Add(51, "GenshinImpact");
 
     private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;
@@ -91,12 +92,13 @@ public class Synergies
         }
     }
 
-    private static Synergy CreateSynergy(int id)
+    private static Synergy Add(int id, String name)
     {
-        Synergy s = new Synergy(id, GR.Animator.Strings.Synergies.SynergyName(id));
+        Synergy s = new Synergy(id, name, GR.Animator.Strings.Synergies.SynergyName(id));
         if (id > 0)
         {
-            map.put(id, s);
+            mapIDs.put(id, s);
+            mapNames.put(name, s);
         }
 
         return s;
@@ -104,12 +106,30 @@ public class Synergies
 
     public static Collection<Synergy> GetAllSynergies()
     {
-        return map.values();
+        return mapIDs.values();
     }
 
     public static Synergy GetByID(int id)
     {
-        return map.get(id);
+        return mapIDs.get(id);
+    }
+
+    public static Synergy GetByName(String name, boolean localized)
+    {
+        if (localized)
+        {
+            for (Synergy s : mapIDs.values())
+            {
+                if (s.LocalizedName.equals(name))
+                {
+                    return s;
+                }
+            }
+
+            return null;
+        }
+
+        return mapNames.get(name);
     }
 
     public static Map<Synergy, List<AbstractCard>> GetCardsBySynergy(ArrayList<AbstractCard> cards)
@@ -255,6 +275,6 @@ public class Synergies
             return false;
         }
 
-        return a.alignments.CanSynergize(b.alignments);
+        return a.affinities.CanSynergize(b.affinities);
     }
 }

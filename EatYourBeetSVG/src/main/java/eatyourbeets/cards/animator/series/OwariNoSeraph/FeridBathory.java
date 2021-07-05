@@ -20,7 +20,7 @@ public class FeridBathory extends AnimatorCard
         SetUpgrade(0, 2, 0);
 
         SetSynergy(Synergies.OwariNoSeraph);
-        SetAlignment(2, 2, 0, 0, 2);
+        SetAffinity(2, 2, 0, 0, 2);
     }
 
     @Override

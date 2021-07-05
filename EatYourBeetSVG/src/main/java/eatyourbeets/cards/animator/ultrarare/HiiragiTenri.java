@@ -23,7 +23,7 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
         SetUpgrade(0, 0, 10);
 
         SetSynergy(Synergies.OwariNoSeraph);
-        SetAlignment(0, 0, 1, 2, 2);
+        SetAffinity(0, 0, 1, 2, 2);
     }
 
     @Override

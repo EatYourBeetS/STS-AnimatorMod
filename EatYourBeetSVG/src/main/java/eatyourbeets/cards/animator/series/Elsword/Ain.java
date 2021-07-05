@@ -27,7 +27,7 @@ public class Ain extends AnimatorCard
         SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.Elsword);
-        SetAlignment(0, 0, 2, 0 ,0);
+        SetAffinity(0, 0, 2, 0 ,0);
     }
 
     @Override

@@ -13,6 +13,6 @@ public abstract class MelzalgaldAlt extends AnimatorCard
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan);
         SetShapeshifter();
-        SetAlignment(1, 1, 1, 0, 2);
+        SetAffinity(1, 1, 1, 0, 2);
     }
 }

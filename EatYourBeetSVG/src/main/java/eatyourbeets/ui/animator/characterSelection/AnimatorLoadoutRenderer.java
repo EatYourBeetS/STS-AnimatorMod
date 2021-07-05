@@ -101,7 +101,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
                 this.availableLoadouts.add(loadout);
             }
         }
-        if (GR.Animator.Config.DisplayBetaSeries())
+        if (GR.Animator.Config.DisplayBetaSeries.Get())
         {
             for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
             {

@@ -24,7 +24,7 @@ public class ChlammyZellScheme extends AnimatorCard
         SetRetain(true);
         SetExhaust(true);
         SetSynergy(Synergies.NoGameNoLife);
-        SetAlignment(0, 0, 2, 0, 1);
+        SetAffinity(0, 0, 2, 0, 1);
     }
 
     @Override

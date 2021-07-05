@@ -30,7 +30,7 @@ public class Caster extends AnimatorCard
 
         SetEthereal(true);
         SetSynergy(Synergies.Fate);
-        SetAlignment(0, 0, 2, 0, 2);
+        SetAffinity(0, 0, 2, 0, 2);
     }
 
     @Override

@@ -38,14 +38,14 @@ public abstract class EYBCard extends EYBCardBase
     public static final CardTags PURGE = GR.Enums.CardTags.PURGE;
     public final EYBCardText cardText;
     public final EYBCardData cardData;
-    public final EYBCardAlignments alignments;
+    public final EYBCardAffinities affinities;
     public final ArrayList<EYBCardTooltip> tooltips;
     public EYBCardTarget attackTarget = EYBCardTarget.Normal;
     public EYBAttackType attackType = EYBAttackType.Normal;
 
-    public float forceScaling = 0;
-    public float intellectScaling = 0;
-    public float agilityScaling = 0;
+    public int forceScaling = 0;
+    public int intellectScaling = 0;
+    public int agilityScaling = 0;
 
 
     public abstract ColoredString GetBottomText();
@@ -85,7 +85,7 @@ public abstract class EYBCard extends EYBCardBase
         this.cardData = cardData;
         this.tooltips = new ArrayList<>();
         this.cardText = new EYBCardText(this);
-        this.alignments = new EYBCardAlignments();
+        this.affinities = new EYBCardAffinities();
         initializeDescription();
     }
 
@@ -430,16 +430,16 @@ public abstract class EYBCard extends EYBCardBase
         isMultiUpgrade = multiUpgrade;
     }
 
-    public void SetScaling(float intellect, float agility, float force)
+    public void SetScaling(int intellect, int agility, int force)
     {
         this.intellectScaling = intellect;
         this.agilityScaling = agility;
         this.forceScaling = force;
     }
 
-    public void SetAlignment(int red, int green, int blue, int light, int dark)
+    public void SetAffinity(int red, int green, int blue, int light, int dark)
     {
-        alignments.Add(red, green, blue, light, dark);
+        affinities.Add(red, green, blue, light, dark);
     }
 
     protected boolean TryUpgrade()
@@ -568,7 +568,7 @@ public abstract class EYBCard extends EYBCardBase
 
     protected void Initialize(int damage, int block)
     {
-        Initialize(damage, block, -1, 0);
+        Initialize(damage, block, 0, 0);
     }
 
     protected void Initialize(int damage, int block, int magicNumber)

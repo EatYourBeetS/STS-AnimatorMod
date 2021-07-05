@@ -3,12 +3,14 @@ package eatyourbeets.cards.base;
 public final class Synergy
 {
     public final String Name;
+    public final String LocalizedName;
     public final int ID;
 
-    public Synergy(int id, String name)
+    public Synergy(int id, String name, String localizedName)
     {
-        this.ID = id;
-        this.Name = name;
+        ID = id;
+        Name = name;
+        LocalizedName = localizedName != null ? localizedName : name;
     }
 
     public boolean Equals(Synergy other)

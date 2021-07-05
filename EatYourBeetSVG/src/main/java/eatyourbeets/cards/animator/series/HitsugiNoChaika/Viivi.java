@@ -30,7 +30,7 @@ public class Viivi extends AnimatorCard
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Chaika);
-        SetAlignment(0, 2, 0, 2, 0);
+        SetAffinity(0, 2, 0, 2, 0);
     }
 
     @Override

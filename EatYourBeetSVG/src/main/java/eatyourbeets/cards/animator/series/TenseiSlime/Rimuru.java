@@ -25,7 +25,7 @@ public class Rimuru extends AnimatorCard implements OnAfterCardPlayedSubscriber
         Initialize(0, 0);
         SetSynergy(Synergies.TenSura);
         SetShapeshifter();
-        SetAlignment(0, 0, 1, 0, 0);
+        SetAffinity(0, 0, 1, 0, 0);
 
         this.copy = this;
     }

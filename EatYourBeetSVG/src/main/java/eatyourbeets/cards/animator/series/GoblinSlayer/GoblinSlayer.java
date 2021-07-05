@@ -25,7 +25,7 @@ public class GoblinSlayer extends AnimatorCard
 
         SetRetain(true);
         SetSynergy(Synergies.GoblinSlayer);
-        SetAlignment(1, 0, 2, 1, 0);
+        SetAffinity(1, 0, 2, 1, 0);
     }
 
     @Override

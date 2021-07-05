@@ -29,7 +29,7 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
         SetExhaust(true);
 
         SetSynergy(Synergies.ReZero);
-        SetAlignment(0, 0, 2, 2, 0);
+        SetAffinity(0, 0, 2, 2, 0);
     }
 
     @Override

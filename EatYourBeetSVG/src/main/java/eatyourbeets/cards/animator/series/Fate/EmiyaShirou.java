@@ -23,7 +23,7 @@ public class EmiyaShirou extends AnimatorCard
         SetUpgrade(0, 1, 1);
 
         SetSynergy(Synergies.Fate);
-        SetAlignment(1, 1, 0, 2, 0);
+        SetAffinity(1, 1, 0, 2, 0);
     }
 
     @Override

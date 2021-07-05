@@ -27,7 +27,7 @@ public class Shigure extends AnimatorCard
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.OwariNoSeraph);
-        SetAlignment(1, 1, 0, 1, 0);
+        SetAffinity(1, 1, 0, 1, 0);
     }
 
     @Override

@@ -30,7 +30,7 @@ public class HolyGrail extends AnimatorCard_UltraRare implements OnBattleEndSubs
         SetExhaust(true);
 
         SetSynergy(Synergies.Fate);
-        SetAlignment(0, 0, 0, 2, 2);
+        SetAffinity(0, 0, 0, 2, 2);
     }
 
     @Override

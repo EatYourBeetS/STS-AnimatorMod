@@ -20,7 +20,7 @@ public class Chomusuke extends AnimatorCard_UltraRare
         Initialize(0, 0);
 
         SetSynergy(Synergies.Konosuba);
-        SetAlignment(0, 0, 0, 1, 1);
+        SetAffinity(0, 0, 0, 1, 1);
     }
 
     @Override

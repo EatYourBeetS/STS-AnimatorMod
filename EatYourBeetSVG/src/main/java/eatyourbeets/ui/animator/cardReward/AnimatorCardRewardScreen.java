@@ -15,7 +15,7 @@ public class AnimatorCardRewardScreen extends GUIElement
 
     public final AnimatorCardRewardBonus rewardBundle = new AnimatorCardRewardBonus();
     public final AnimatorCardRewardInfo cardBadgeLegend = new AnimatorCardRewardInfo();
-    public final AnimatorCardRewardAlignments cardAlignments = new AnimatorCardRewardAlignments();
+    public final AnimatorCardRewardAffinities cardAffinities = new AnimatorCardRewardAffinities();
     public final AnimatorCardRewardBanish purgingStoneUI = new AnimatorCardRewardBanish(rewardBundle::Add, rewardBundle::Remove);
 
     public void Open(ArrayList<AbstractCard> cards, RewardItem rItem, String header)
@@ -28,14 +28,14 @@ public class AnimatorCardRewardScreen extends GUIElement
 
         rewardBundle.Open(rItem, cards);
         purgingStoneUI.Open(rItem, cards);
-        cardAlignments.Open(AbstractDungeon.player.masterDeck.group);
+        cardAffinities.Open(AbstractDungeon.player.masterDeck.group);
         cardBadgeLegend.Open();
     }
 
     public void Close()
     {
         cardBadgeLegend.Close();
-        cardAlignments.Close();
+        cardAffinities.Close();
         rewardBundle.Close();
         purgingStoneUI.Close();
     }
@@ -44,13 +44,13 @@ public class AnimatorCardRewardScreen extends GUIElement
     {
         purgingStoneUI.TryUpdate();
         rewardBundle.TryUpdate();
-        cardAlignments.TryUpdate();
+        cardAffinities.TryUpdate();
         cardBadgeLegend.TryUpdate();
     }
 
     public void PreRender(SpriteBatch sb)
     {
-        cardAlignments.TryRender(sb);
+        cardAffinities.TryRender(sb);
         cardBadgeLegend.TryRender(sb);
         purgingStoneUI.TryRender(sb);
     }

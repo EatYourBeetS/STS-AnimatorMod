@@ -34,7 +34,7 @@ public class Assassin extends AnimatorCard
 
         SetRetain(true);
         SetSynergy(Synergies.Fate);
-        SetAlignment(0, 1, 0, 0, 1);
+        SetAffinity(0, 1, 0, 0, 1);
     }
 
     @Override

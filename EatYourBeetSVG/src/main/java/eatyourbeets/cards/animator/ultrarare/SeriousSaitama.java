@@ -24,7 +24,7 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
         SetPurge(true);
 
         SetSynergy(Synergies.OnePunchMan);
-        SetAlignment(2, 2, 0, 0, 0);
+        SetAffinity(2, 2, 0, 0, 0);
     }
 
     @Override

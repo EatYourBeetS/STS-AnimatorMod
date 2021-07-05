@@ -29,9 +29,9 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
     public EYBCardTarget attackTarget = EYBCardTarget.Normal;
     public int attributeMultiplier = 1;
     public Synergy synergy;
-    public float intellectScaling;
-    public float agilityScaling;
-    public float forceScaling;
+    public int intellectScaling;
+    public int agilityScaling;
+    public int forceScaling;
 
     public AnimatorCardBuilder(String id)
     {
@@ -143,7 +143,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         return this;
     }
 
-    public AnimatorCardBuilder SetScaling(float intellect, float agility, float force)
+    public AnimatorCardBuilder SetScaling(int intellect, int agility, int force)
     {
         this.intellectScaling = intellect;
         this.agilityScaling = agility;

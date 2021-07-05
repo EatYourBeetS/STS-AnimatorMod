@@ -2,8 +2,8 @@ package eatyourbeets.ui.animator.cardReward;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import eatyourbeets.cards.base.EYBCardAlignment;
-import eatyourbeets.cards.base.EYBCardAlignmentType;
+import eatyourbeets.cards.base.EYBCardAffinity;
+import eatyourbeets.cards.base.EYBCardAffinityType;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
@@ -12,32 +12,32 @@ import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.RenderHelpers;
 
-public class CardAlignmentCounter extends GUIElement
+public class CardAffinityCounter extends GUIElement
 {
-    public final EYBCardAlignmentType Type;
-    public final EYBCardAlignment AlignmentLV1;
-    public final EYBCardAlignment AlignmentLV2;
+    public final EYBCardAffinityType Type;
+    public final EYBCardAffinity AffinityLV1;
+    public final EYBCardAffinity AffinityLV2;
     public float Percentage;
 
     public GUI_Image image_panel;
-    public GUI_Image image_alignment;
+    public GUI_Image image_affinity;
     public GUI_Label textBox_counterWeak;
     public GUI_Label textBox_counterNormal;
     public GUI_Label textBox_counterPercentage;
 
-    public CardAlignmentCounter(Hitbox hb, EYBCardAlignmentType alignment)
+    public CardAffinityCounter(Hitbox hb, EYBCardAffinityType alignment)
     {
-        final float iconSize = AnimatorCardRewardAlignments.ICON_SIZE;
+        final float iconSize = AnimatorCardRewardAffinities.ICON_SIZE;
 
         Type = alignment;
-        AlignmentLV1 = new EYBCardAlignment(alignment, 0);
-        AlignmentLV2 = new EYBCardAlignment(alignment, 0);
+        AffinityLV1 = new EYBCardAffinity(alignment, 0);
+        AffinityLV2 = new EYBCardAffinity(alignment, 0);
 
         image_panel = RenderHelpers.ForTexture(GR.Common.Images.Panel_Rounded_Half_H.Texture())
         .SetHitbox(new RelativeHitbox(hb, 1, 1, 0.5f, 0))
         .SetColor(0.05f, 0.05f, 0.05f, 1f);
 
-        image_alignment = RenderHelpers.ForTexture(alignment.GetIcon())
+        image_affinity = RenderHelpers.ForTexture(alignment.GetIcon())
         .SetHitbox(new RelativeHitbox(hb, iconSize, iconSize, -0.5f * (iconSize / hb.width), 0, true));
 
         textBox_counterWeak = new GUI_Label(EYBFontHelper.CardTooltipFont,
@@ -56,14 +56,14 @@ public class CardAlignmentCounter extends GUIElement
         .SetText("0%");
     }
 
-    public CardAlignmentCounter SetIndex(int index)
+    public CardAffinityCounter SetIndex(int index)
     {
         float y = -index * 1.05f;
         SetY(image_panel.hb, y);
         SetY(textBox_counterNormal.hb, y);
         SetY(textBox_counterWeak.hb, y);
         SetY(textBox_counterPercentage.hb, y);
-        SetY(image_alignment.hb, y);
+        SetY(image_affinity.hb, y);
 
         return this;
     }
@@ -72,10 +72,10 @@ public class CardAlignmentCounter extends GUIElement
     public void Update()
     {
         image_panel.Update();
-        textBox_counterWeak.SetText(AlignmentLV1.level == 0 ? "-" : AlignmentLV1.level).Update();
-        textBox_counterNormal.SetText(AlignmentLV2.level == 0 ? "-" : AlignmentLV2.level).Update();
+        textBox_counterWeak.SetText(AffinityLV1.level == 0 ? "-" : AffinityLV1.level).Update();
+        textBox_counterNormal.SetText(AffinityLV2.level == 0 ? "-" : AffinityLV2.level).Update();
         textBox_counterPercentage.SetText(Math.round(Percentage * 100) + "%").Update();
-        image_alignment.Update();
+        image_affinity.Update();
     }
 
     @Override
@@ -85,7 +85,7 @@ public class CardAlignmentCounter extends GUIElement
         textBox_counterPercentage.Render(sb);
         textBox_counterNormal.Render(sb);
         textBox_counterWeak.Render(sb);
-        image_alignment.Render(sb);
+        image_affinity.Render(sb);
     }
 
     protected void SetY(Hitbox hb, float y)

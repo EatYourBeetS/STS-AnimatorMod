@@ -32,7 +32,7 @@ public class Kanami extends AnimatorCard_UltraRare
         SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.LogHorizon);
-        SetAlignment(1, 2, 0, 1, 0);
+        SetAffinity(1, 2, 0, 1, 0);
     }
 
     @Override

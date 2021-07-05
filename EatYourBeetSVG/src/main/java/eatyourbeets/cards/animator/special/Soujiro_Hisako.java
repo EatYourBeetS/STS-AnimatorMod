@@ -23,7 +23,7 @@ public class Soujiro_Hisako extends AnimatorCard
         SetEvokeOrbCount(1);
 
         SetSynergy(Synergies.LogHorizon);
-        SetAlignment(0, 0, 1, 1, 0);
+        SetAffinity(0, 0, 1, 1, 0);
     }
 
     @Override

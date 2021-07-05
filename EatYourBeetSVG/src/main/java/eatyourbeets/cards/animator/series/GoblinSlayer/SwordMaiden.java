@@ -23,7 +23,7 @@ public class SwordMaiden extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.GoblinSlayer);
-        SetAlignment(0, 0, 1, 2, 0);
+        SetAffinity(0, 0, 1, 2, 0);
     }
 
     @Override

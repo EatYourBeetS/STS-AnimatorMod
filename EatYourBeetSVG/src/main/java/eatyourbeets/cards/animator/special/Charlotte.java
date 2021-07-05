@@ -34,7 +34,7 @@ public class Charlotte extends AnimatorCard
         SetScaling(3, 0, 6);
 
         SetSynergy(Synergies.MadokaMagica);
-        SetAlignment(2, 0, 2, 0, 2);
+        SetAffinity(2, 0, 2, 0, 2);
     }
 
     @Override

@@ -27,7 +27,7 @@ public class Mitsurugi extends AnimatorCard
         SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.Konosuba);
-        SetAlignment(1, 0, 0, 2, 0);
+        SetAffinity(1, 0, 0, 2, 0);
     }
 
     @Override

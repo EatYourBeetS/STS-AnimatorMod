@@ -36,7 +36,7 @@ public class SynergyCardsReward extends AnimatorReward
         }
         else
         {
-            return "#y" + synergy.Name.replace(" ", " #y");
+            return "#y" + synergy.LocalizedName.replace(" ", " #y");
         }
     }
 
@@ -56,7 +56,7 @@ public class SynergyCardsReward extends AnimatorReward
 
         if (this.hb.hovered)
         {
-            TipHelper.renderGenericTip(360f * Settings.scale, (float) InputHelper.mY, synergy.Name, GR.Animator.Strings.Rewards.Description);
+            TipHelper.renderGenericTip(360f * Settings.scale, (float) InputHelper.mY, synergy.LocalizedName, GR.Animator.Strings.Rewards.Description);
         }
     }
 
@@ -65,7 +65,7 @@ public class SynergyCardsReward extends AnimatorReward
     {
         super.render(sb);
 
-        loadout.card.alignments.Render(sb, hb.x + hb.width * 0.77f, hb.cY - 18, 36);
+        loadout.card.affinities.Render(sb, hb.x + hb.width * 0.77f, hb.cY - 18, 36);
     }
 
     @Override

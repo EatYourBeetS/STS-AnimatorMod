@@ -27,7 +27,7 @@ public class Shiro extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetSynergy(Synergies.NoGameNoLife);
-        SetAlignment(0, 0, 2, 0, 0);
+        SetAffinity(0, 0, 2, 0, 0);
     }
 
     @Override

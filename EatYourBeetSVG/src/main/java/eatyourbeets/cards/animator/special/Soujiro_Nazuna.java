@@ -23,7 +23,7 @@ public class Soujiro_Nazuna extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.LogHorizon);
-        SetAlignment(0, 1, 0, 1, 0);
+        SetAffinity(0, 1, 0, 1, 0);
     }
 
     @Override

@@ -35,7 +35,7 @@ public class IzunaHatsuse extends AnimatorCard
 
         SetTransformed(false);
         SetSynergy(Synergies.NoGameNoLife);
-        SetAlignment(0, 1, 0, 0, 0);
+        SetAffinity(0, 1, 0, 0, 0);
     }
 
     @Override
@@ -133,7 +133,7 @@ public class IzunaHatsuse extends AnimatorCard
             {
                 LoadImage("Alt");
                 SetAttackType(EYBAttackType.Normal);
-                SetAlignment(1, 2, 0, 0, 1);
+                SetAffinity(1, 2, 0, 0, 1);
 
                 this.type = CardType.ATTACK;
 
@@ -142,7 +142,7 @@ public class IzunaHatsuse extends AnimatorCard
             else
             {
                 LoadImage(null);
-                SetAlignment(0, 1, 0, 0, 0);
+                SetAffinity(0, 1, 0, 0, 0);
 
                 this.type = CardType.SKILL;
 

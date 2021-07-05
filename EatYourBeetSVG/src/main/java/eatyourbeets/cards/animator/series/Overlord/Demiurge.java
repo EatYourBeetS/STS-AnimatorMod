@@ -21,7 +21,7 @@ public class Demiurge extends AnimatorCard
         Initialize(0,0,4);
 
         SetSynergy(Synergies.Overlord);
-        SetAlignment(0, 0, 2, 0, 2);
+        SetAffinity(0, 0, 2, 0, 2);
     }
 
     @Override

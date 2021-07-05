@@ -24,7 +24,7 @@ public class GazelDwargon extends AnimatorCard
         SetUpgrade(0, 1, 0);
 
         SetSynergy(Synergies.TenSura);
-        SetAlignment(1, 0, 1, 0, 0);
+        SetAffinity(1, 0, 1, 0, 0);
     }
 
     @Override

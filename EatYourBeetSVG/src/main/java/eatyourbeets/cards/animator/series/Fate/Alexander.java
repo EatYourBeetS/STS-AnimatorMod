@@ -22,7 +22,7 @@ public class Alexander extends AnimatorCard
 
         SetMultiDamage(true);
         SetSynergy(Synergies.Fate);
-        SetAlignment(2, 1, 0, 1, 0);
+        SetAffinity(2, 1, 0, 1, 0);
     }
 
     @Override

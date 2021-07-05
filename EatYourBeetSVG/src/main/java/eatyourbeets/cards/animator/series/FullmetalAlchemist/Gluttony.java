@@ -22,7 +22,7 @@ public class Gluttony extends AnimatorCard
         SetHealing(true);
         SetExhaust(true);
         SetSynergy(Synergies.FullmetalAlchemist);
-        SetAlignment(2, 0, 0, 0, 2);
+        SetAffinity(2, 0, 0, 0, 2);
     }
 
     @Override

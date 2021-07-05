@@ -18,7 +18,7 @@ public class SilverFang extends AnimatorCard
         SetUpgrade(0, 3, 0);
 
         SetSynergy(Synergies.OnePunchMan);
-        SetAlignment(1, 2, 0, 2, 0);
+        SetAffinity(1, 2, 0, 2, 0);
     }
 
     @Override

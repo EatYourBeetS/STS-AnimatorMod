@@ -24,7 +24,7 @@ public class Albedo extends AnimatorCard
         SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.Overlord);
-        SetAlignment(2, 2, 0, 0, 2);
+        SetAffinity(2, 2, 0, 0, 2);
     }
 
     @Override

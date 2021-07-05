@@ -21,7 +21,7 @@ public class ShinjiMatou_CommandSpell extends AnimatorCard
 
         SetPurge(true);
         SetSynergy(Synergies.Fate);
-        SetAlignment(0, 0, 1, 0, 2);
+        SetAffinity(0, 0, 1, 0, 2);
     }
 
     @Override

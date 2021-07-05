@@ -23,7 +23,7 @@ public class Boros extends AnimatorCard
 
         SetEthereal(true);
         SetSynergy(Synergies.OnePunchMan);
-        SetAlignment(2, 2, 0, 0, 2);
+        SetAffinity(2, 2, 0, 0, 2);
     }
 
     @Override

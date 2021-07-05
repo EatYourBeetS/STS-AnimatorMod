@@ -83,11 +83,11 @@ public class CardTooltips
     public EYBCardTooltip Aura = FindByID("Aura");
 
     // No Description
-    public EYBCardTooltip Alignment_Red   = new EYBCardTooltip("Red Alignment"  , null);
-    public EYBCardTooltip Alignment_Green = new EYBCardTooltip("Green Alignment", null);
-    public EYBCardTooltip Alignment_Blue  = new EYBCardTooltip("Blue Alignment" , null);
-    public EYBCardTooltip Alignment_Light = new EYBCardTooltip("Light Alignment", null);
-    public EYBCardTooltip Alignment_Dark  = new EYBCardTooltip("Dark Alignment" , null);
+    public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null);
+    public EYBCardTooltip Affinity_Green = new EYBCardTooltip("Green Affinity", null);
+    public EYBCardTooltip Affinity_Blue = new EYBCardTooltip("Blue Affinity", null);
+    public EYBCardTooltip Affinity_Light = new EYBCardTooltip("Light Affinity", null);
+    public EYBCardTooltip Affinity_Dark = new EYBCardTooltip("Dark Affinity", null);
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
     public EYBCardTooltip ThrowingKnife = new EYBCardTooltip(eatyourbeets.cards.animator.special.ThrowingKnife.DATA.Strings.NAME, null);
     public EYBCardTooltip GriefSeed = new EYBCardTooltip(Curse_GriefSeed.DATA.Strings.NAME, null);
@@ -129,11 +129,11 @@ public class CardTooltips
 
     public CardTooltips()
     {
-        RegisterID("A-Red", Alignment_Red);
-        RegisterID("A-Green", Alignment_Green);
-        RegisterID("A-Blue", Alignment_Blue);
-        RegisterID("A-Light", Alignment_Light);
-        RegisterID("A-Dark", Alignment_Dark);
+        RegisterID("A-Red", Affinity_Red);
+        RegisterID("A-Green", Affinity_Green);
+        RegisterID("A-Blue", Affinity_Blue);
+        RegisterID("A-Light", Affinity_Light);
+        RegisterID("A-Dark", Affinity_Dark);
 
         RegisterID("Random Orb", RandomOrb);
         RegisterID("Grief Seed", GriefSeed);
@@ -158,13 +158,13 @@ public class CardTooltips
         TempHP.SetIcon(icons.TempHP.Texture(), 6);
         Block.SetIcon(icons.Block.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
 
-        CommonImages.AlignmentsIcons alignments = GR.Common.Images.Alignments;
+        CommonImages.AffinityIcons alignments = GR.Common.Images.Affinities;
         Shapeshifter.SetIcon(alignments.Star.Texture(), 6);
-        Alignment_Red.SetIcon(alignments.Red.Texture(), 6);
-        Alignment_Green.SetIcon(alignments.Green.Texture(), 6);
-        Alignment_Blue.SetIcon(alignments.Blue.Texture(), 6);
-        Alignment_Light.SetIcon(alignments.Light.Texture(), 6);
-        Alignment_Dark.SetIcon(alignments.Dark.Texture(), 6);
+        Affinity_Red.SetIcon(alignments.Red.Texture(), 6);
+        Affinity_Green.SetIcon(alignments.Green.Texture(), 6);
+        Affinity_Blue.SetIcon(alignments.Blue.Texture(), 6);
+        Affinity_Light.SetIcon(alignments.Light.Texture(), 6);
+        Affinity_Dark.SetIcon(alignments.Dark.Texture(), 6);
 
         CommonImages.Tooltips tooltips = GR.Common.Images.Tooltips;
         ThrowingKnife.SetIcon(tooltips.ThrowingKnife.Texture(), 6);

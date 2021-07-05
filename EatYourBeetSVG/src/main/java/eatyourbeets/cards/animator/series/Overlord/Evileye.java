@@ -24,7 +24,7 @@ public class Evileye extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetSynergy(Synergies.Overlord);
-        SetAlignment(0, 0, 2, 1, 0);
+        SetAffinity(0, 0, 2, 1, 0);
     }
 
     @Override

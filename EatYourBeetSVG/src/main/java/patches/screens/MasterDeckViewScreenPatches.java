@@ -5,12 +5,12 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.screens.MasterDeckViewScreen;
-import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardAlignments;
+import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardAffinities;
 import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardScreen;
 
 public class MasterDeckViewScreenPatches
 {
-    private static final AnimatorCardRewardAlignments screen = AnimatorCardRewardScreen.Instance.cardAlignments;
+    private static final AnimatorCardRewardAffinities screen = AnimatorCardRewardScreen.Instance.cardAffinities;
 
     @SpirePatch(clz= MasterDeckViewScreen.class, method="update")
     public static class MasterDeckViewScreen_Update

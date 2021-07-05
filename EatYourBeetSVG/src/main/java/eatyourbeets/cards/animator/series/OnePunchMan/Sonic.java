@@ -29,7 +29,7 @@ public class Sonic extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan);
-        SetAlignment(0, 2, 0, 0, 1);
+        SetAffinity(0, 2, 0, 0, 1);
     }
 
     @Override

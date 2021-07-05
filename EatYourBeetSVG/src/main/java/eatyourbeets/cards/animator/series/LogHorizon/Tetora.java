@@ -26,7 +26,7 @@ public class Tetora extends AnimatorCard
         Initialize(0, 0, 0, 4);
 
         SetSynergy(Synergies.LogHorizon);
-        SetAlignment(0, 0, 1, 1, 0);
+        SetAffinity(0, 0, 1, 1, 0);
     }
 
     @Override

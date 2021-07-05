@@ -21,7 +21,7 @@ public class GoblinSoldier extends AnimatorCard_Status
         Initialize(0, 0, 2);
 
         SetSynergy(Synergies.GoblinSlayer);
-        SetAlignment(1, 0, 0, 0, 1);
+        SetAffinity(1, 0, 0, 0, 1);
     }
 
     @Override

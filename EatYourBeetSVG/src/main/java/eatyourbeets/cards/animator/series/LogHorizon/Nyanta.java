@@ -27,7 +27,7 @@ public class Nyanta extends AnimatorCard
 
         SetRetain(true);
         SetSynergy(Synergies.LogHorizon);
-        SetAlignment(0, 2, 0, 1, 0);
+        SetAffinity(0, 2, 0, 1, 0);
     }
 
     @Override

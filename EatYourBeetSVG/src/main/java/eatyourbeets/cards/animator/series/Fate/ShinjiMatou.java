@@ -32,7 +32,7 @@ public class ShinjiMatou extends AnimatorCard
         SetUpgrade(0, 0, 2);
 
         SetSynergy(Synergies.Fate);
-        SetAlignment(0, 0, 1, 0, 1);
+        SetAffinity(0, 0, 1, 0, 1);
     }
 
     @Override

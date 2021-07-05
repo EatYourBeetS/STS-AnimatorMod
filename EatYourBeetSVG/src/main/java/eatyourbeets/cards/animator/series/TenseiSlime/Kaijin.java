@@ -28,7 +28,7 @@ public class Kaijin extends AnimatorCard implements OnAddedToDeckListener
         SetCostUpgrade(-1);
 
         SetSynergy(Synergies.TenSura);
-        SetAlignment(1, 0, 0, 1, 0);
+        SetAffinity(1, 0, 0, 1, 0);
     }
 
     @Override

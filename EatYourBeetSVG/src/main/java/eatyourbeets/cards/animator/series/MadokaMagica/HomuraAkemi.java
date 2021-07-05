@@ -29,7 +29,7 @@ public class HomuraAkemi extends AnimatorCard
         SetExhaust(true);
         SetEthereal(true);
         SetSynergy(Synergies.MadokaMagica);
-        SetAlignment(0, 0, 2, 0, 1);
+        SetAffinity(0, 0, 2, 0, 1);
     }
 
     @Override

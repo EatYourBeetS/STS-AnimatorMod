@@ -37,7 +37,7 @@ public class Add extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.Elsword);
-        SetAlignment(0, 0, 2, 0, 2);
+        SetAffinity(0, 0, 2, 0, 2);
     }
 
     @Override

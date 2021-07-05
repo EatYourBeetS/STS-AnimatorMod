@@ -30,7 +30,7 @@ public class AcuraAkari extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetSynergy(Synergies.Chaika);
-        SetAlignment(1, 2, 0, 0, 0);
+        SetAffinity(1, 2, 0, 0, 0);
     }
 
     @Override

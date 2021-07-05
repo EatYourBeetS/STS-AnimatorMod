@@ -26,7 +26,7 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
 
         SetExhaust(true);
         SetSynergy(Synergies.OwariNoSeraph);
-        SetAlignment(1, 1, 0, 1, 0);
+        SetAffinity(1, 1, 0, 1, 0);
     }
 
     @Override

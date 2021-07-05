@@ -2,6 +2,7 @@ package eatyourbeets.console.commands;
 
 import basemod.DevConsole;
 import basemod.devcommands.ConsoleCommand;
+import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
@@ -10,13 +11,18 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.animator.auras.Aura;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.CustomCardLibSortHeader;
 import eatyourbeets.utilities.*;
 
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
@@ -165,6 +171,20 @@ public class ParseGenericCommand extends ConsoleCommand
                     return;
                 }
 
+                if (tokens[1].equals("extract-card-data"))
+                {
+                    Map<String, Map<String, EYBCardMetadataV2>> data = new HashMap<>();
+                    ExtractCardData(data, CardLibrary.cards.values());
+                    ExtractCardData(data, AnimatorCard_UltraRare.GetCards().values());
+                    ExtractCardData(data, Aura.GetCards());
+
+                    String filePath = "C://temp//" + ((tokens.length > 2) ? tokens[2] : "Animator-CardMetadata") + ".json";
+                    new Gson().toJson(data, new FileWriter(filePath));
+                    DevConsole.log("Exported metadata to: " + filePath);
+
+                    return;
+                }
+
                 if (tokens[1].equals("get-cards") && tokens.length > 2)
                 {
                     if (!GameUtilities.InGame() || player == null || player.masterDeck == null)
@@ -223,9 +243,21 @@ public class ParseGenericCommand extends ConsoleCommand
                 {
                     for (AbstractCard c : CardLibrary.getAllCards())
                     {
-                        UnlockTracker.unlockCard(c.cardID);
-                        UnlockTracker.markCardAsSeen(c.cardID);
+                        String key = c.cardID;
+                        //UnlockTracker.unlockCard(), without flushing after every card.
+                        UnlockTracker.seenPref.putInteger(key, 1);
+                        UnlockTracker.unlockPref.putInteger(key, 2);
+                        UnlockTracker.lockedCards.remove(key);
+                        AbstractCard card = CardLibrary.getCard(key);
+                        if (card != null)
+                        {
+                            card.isSeen = true;
+                            card.unlock();
+                        }
                     }
+
+                    UnlockTracker.unlockPref.flush();
+                    UnlockTracker.seenPref.flush();
                     return;
                 }
 
@@ -261,7 +293,7 @@ public class ParseGenericCommand extends ConsoleCommand
             {
                 for (AnimatorLoadout loadout : GR.Animator.Data.GetEveryLoadout())
                 {
-                    suggestions.add(loadout.Name.replace(" ", "_"));
+                    suggestions.add(loadout.Name);//.replace(" ", "_"));
                 }
             }
         }
@@ -278,5 +310,57 @@ public class ParseGenericCommand extends ConsoleCommand
         }
 
         Testing.SetValues(values);
+    }
+
+    private void ExtractCardData(Map<String, Map<String, EYBCardMetadataV2>> data, Collection cards)
+    {
+        for (Object o : cards)
+        {
+            AnimatorCard c = JUtils.SafeCast(o, AnimatorCard.class);
+            if (c == null)
+            {
+                continue;
+            }
+
+            String key;
+            boolean exportSeries = true;
+            if (c instanceof AnimatorCard_UltraRare)
+            {
+                key = "ULTRARARE";
+            }
+            else if (c instanceof Aura)
+            {
+                key = "AURA";
+            }
+            else if (c.type == AbstractCard.CardType.STATUS)
+            {
+                key = "STATUS";
+            }
+            else if (c.type == AbstractCard.CardType.CURSE)
+            {
+                key = "CURSE";
+            }
+            else if (c.rarity == AbstractCard.CardRarity.BASIC)
+            {
+                key = "BASIC";
+            }
+            else if (c.rarity == AbstractCard.CardRarity.SPECIAL)
+            {
+                key = "SPECIAL";
+            }
+            else if (c.color == AbstractCard.CardColor.COLORLESS)
+            {
+                key = "COLORLESS:" + (c.rarity == AbstractCard.CardRarity.UNCOMMON ? "UNCOMMON" : "RARE");
+            }
+            else
+            {
+                key = "SERIES:" + c.synergy.LocalizedName;
+                exportSeries = false;
+            }
+
+            data
+            .computeIfAbsent(key, k -> new HashMap<>())
+            .put(c.cardID, EYBCardMetadataV2.Export(c, exportSeries));
+        }
     }
 }

@@ -26,7 +26,7 @@ public class Jibril extends AnimatorCard
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.NoGameNoLife);
-        SetAlignment(0, 0, 2, 1, 1);
+        SetAffinity(0, 0, 2, 1, 1);
     }
 
     @Override

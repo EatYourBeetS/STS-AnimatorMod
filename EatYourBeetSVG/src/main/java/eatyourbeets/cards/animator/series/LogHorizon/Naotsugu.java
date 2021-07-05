@@ -26,7 +26,7 @@ public class Naotsugu extends AnimatorCard
         SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.LogHorizon);
-        SetAlignment(2, 0, 0, 1, 0);
+        SetAffinity(2, 0, 0, 1, 0);
     }
 
     @Override

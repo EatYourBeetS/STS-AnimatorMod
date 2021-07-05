@@ -24,7 +24,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
 
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan);
-        SetAlignment(0, 0, 0, 2, 0);
+        SetAffinity(0, 0, 0, 2, 0);
     }
 
     @Override

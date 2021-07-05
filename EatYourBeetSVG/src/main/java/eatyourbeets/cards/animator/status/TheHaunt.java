@@ -40,7 +40,7 @@ public class TheHaunt extends AnimatorCard_Status implements Hidden
         SetEthereal(true);
         SetExhaust(true);
 
-        SetAlignment(0, 0, 0, 0, 2);
+        SetAffinity(0, 0, 0, 0, 2);
     }
 
     @Override

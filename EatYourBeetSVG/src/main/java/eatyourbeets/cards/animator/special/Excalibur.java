@@ -26,7 +26,7 @@ public class Excalibur extends AnimatorCard
         SetRetain(true);
         SetExhaust(true);
         SetSynergy(Synergies.Fate);
-        SetAlignment(2, 0, 0, 2, 0);
+        SetAffinity(2, 0, 0, 2, 0);
     }
 
     @Override

@@ -29,7 +29,7 @@ public class Megumin extends AnimatorCard
         SetExhaust(true);
         SetUnique(true, true);
         SetSynergy(Synergies.Konosuba);
-        SetAlignment(0, 0, 2, 0, 0);
+        SetAffinity(0, 0, 2, 0, 0);
     }
 
     @Override

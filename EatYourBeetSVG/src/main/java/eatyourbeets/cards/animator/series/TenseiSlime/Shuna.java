@@ -20,7 +20,7 @@ public class Shuna extends AnimatorCard
         SetUpgrade(0, 0, 1, 0);
 
         SetSynergy(Synergies.TenSura);
-        SetAlignment(0, 0, 1, 2, 0);
+        SetAffinity(0, 0, 1, 2, 0);
     }
 
     @Override

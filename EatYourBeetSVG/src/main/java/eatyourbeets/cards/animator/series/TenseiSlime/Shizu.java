@@ -24,7 +24,7 @@ public class Shizu extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.TenSura);
-        SetAlignment(1, 2, 0, 2, 0);
+        SetAffinity(1, 2, 0, 2, 0);
     }
 
     @Override

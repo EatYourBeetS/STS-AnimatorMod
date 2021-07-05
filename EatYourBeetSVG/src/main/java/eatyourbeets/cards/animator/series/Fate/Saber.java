@@ -28,7 +28,7 @@ public class Saber extends AnimatorCard
         SetCooldown(8, 0, this::OnCooldownCompleted);
         SetLoyal(true);
         SetSynergy(Synergies.Fate);
-        SetAlignment(2, 2, 0, 2, 0);
+        SetAffinity(2, 2, 0, 2, 0);
     }
 
     @Override

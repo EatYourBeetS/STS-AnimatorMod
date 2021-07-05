@@ -26,7 +26,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
         SetUpgrade(1, 0);
 
         SetSynergy(Synergies.Chaika);
-        SetAlignment(1, 1, 0, 0, 0);
+        SetAffinity(1, 1, 0, 0, 0);
     }
 
     @Override

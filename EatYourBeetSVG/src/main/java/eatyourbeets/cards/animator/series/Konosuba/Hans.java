@@ -21,7 +21,7 @@ public class Hans extends AnimatorCard
 
         SetShapeshifter();
         SetSynergy(Synergies.Konosuba);
-        SetAlignment(1, 0, 1, 0, 2);
+        SetAffinity(1, 0, 1, 0, 2);
     }
 
     @Override

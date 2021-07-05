@@ -27,7 +27,7 @@ public class KanamiAlt extends AnimatorCard_UltraRare implements Hidden
         SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.LogHorizon);
-        SetAlignment(2, 1, 0, 1, 0);
+        SetAffinity(2, 1, 0, 1, 0);
     }
 
     @Override

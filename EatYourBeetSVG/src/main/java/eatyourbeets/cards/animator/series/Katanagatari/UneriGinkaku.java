@@ -30,7 +30,7 @@ public class UneriGinkaku extends AnimatorCard
 
         SetEthereal(true);
         SetSynergy(Synergies.Katanagatari);
-        SetAlignment(0, 2, 0, 0, 0);
+        SetAffinity(0, 2, 0, 0, 0);
     }
 
     @Override

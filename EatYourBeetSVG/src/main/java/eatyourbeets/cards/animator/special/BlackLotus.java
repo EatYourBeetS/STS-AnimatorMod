@@ -20,7 +20,7 @@ public class BlackLotus extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.AccelWorld);
-        SetAlignment(1, 1, 0, 0, 0);
+        SetAffinity(1, 1, 0, 0, 0);
     }
 
     @Override

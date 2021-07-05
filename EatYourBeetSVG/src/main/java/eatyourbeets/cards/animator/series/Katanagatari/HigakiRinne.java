@@ -37,7 +37,7 @@ public class HigakiRinne extends AnimatorCard
         SetAttackType(EYBAttackType.Normal);
         SetSynergy(Synergies.Katanagatari);
         SetShapeshifter();
-        SetAlignment(0, 0, 0, 2, 2);
+        SetAffinity(0, 0, 0, 2, 2);
     }
 
     @Override

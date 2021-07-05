@@ -20,7 +20,7 @@ public class Soujiro_Isami extends AnimatorCard
         SetUpgrade(2, 0, 0);
 
         SetSynergy(Synergies.LogHorizon);
-        SetAlignment(0, 2, 0, 0, 0);
+        SetAffinity(0, 2, 0, 0, 0);
     }
 
     @Override

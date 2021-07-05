@@ -21,7 +21,7 @@ public class Shinoa extends AnimatorCard
         SetUpgrade(0, 3, 0);
 
         SetSynergy(Synergies.OwariNoSeraph);
-        SetAlignment(1, 1, 0, 1, 0);
+        SetAffinity(1, 1, 0, 1, 0);
     }
 
     @Override

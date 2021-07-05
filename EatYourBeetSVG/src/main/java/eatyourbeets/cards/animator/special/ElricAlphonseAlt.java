@@ -20,7 +20,7 @@ public class ElricAlphonseAlt extends AnimatorCard
         SetUpgrade(0, 3, 0, 0);
 
         SetSynergy(Synergies.FullmetalAlchemist);
-        SetAlignment(0, 0, 2, 1, 0);
+        SetAffinity(0, 0, 2, 1, 0);
     }
 
     @Override

@@ -20,7 +20,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.AbstractScreen;
-import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardAlignments;
+import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardAffinities;
 import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardScreen;
 import eatyourbeets.ui.controls.*;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
@@ -36,7 +36,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     protected ShowCardPileEffect previewCardsEffect;
     protected int totalCardsCache = 0;
 
-    public final AnimatorCardRewardAlignments alignments = AnimatorCardRewardScreen.Instance.cardAlignments;
+    public final AnimatorCardRewardAffinities affinities = AnimatorCardRewardScreen.Instance.cardAffinities;
     public final AnimatorLoadoutsContainer container = new AnimatorLoadoutsContainer();
     public final GUI_CardGrid cardGrid;
     public final GUI_Label startingDeck;
@@ -143,7 +143,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     @Override
     public void Render(SpriteBatch sb)
     {
-        alignments.TryRender(sb);
+        affinities.TryRender(sb);
 
         cardGrid.TryRender(sb);
 
@@ -172,7 +172,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     @Override
     public void Update()
     {
-        alignments.TryUpdate();
+        affinities.TryUpdate();
 
         if (previewCardsEffect != null)
         {
@@ -194,7 +194,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
             TotalCardsChanged(totalCardsCache);
         }
 
-        toggleBeta.SetToggle(GR.Animator.Config.DisplayBetaSeries()).TryUpdate();
+        toggleBeta.SetToggle(GR.Animator.Config.DisplayBetaSeries.Get()).TryUpdate();
 
         purgingStoneImage.TryUpdate();
 
@@ -338,7 +338,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
             }
         }
 
-        GR.Animator.Config.DisplayBetaSeries(value, true);
+        GR.Animator.Config.DisplayBetaSeries.Set(value, true);
         UpdateStartingDeckText();
     }
 
@@ -357,9 +357,9 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
     protected void TotalCardsChanged(int totalCards)
     {
-        if (alignments.isActive)
+        if (affinities.isActive)
         {
-            alignments.Open(container.GetAllCardsInPool());
+            affinities.Open(container.GetAllCardsInPool());
         }
 
         selectionAmount.SetText(totalCards + " cards selected.");
@@ -380,7 +380,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     protected void UpdateStartingDeckText()
     {
         String text = "Starting Series: NL #y" + GR.Animator.Data.SelectedLoadout.Name.replace(" ", " #y");
-        if (GR.Animator.Config.DisplayBetaSeries() && GR.Animator.Data.BetaLoadouts.size() > 0)
+        if (GR.Animator.Config.DisplayBetaSeries.Get() && GR.Animator.Data.BetaLoadouts.size() > 0)
         {
             text += " NL Beta: Ascension and NL Trophies disabled.";
         }

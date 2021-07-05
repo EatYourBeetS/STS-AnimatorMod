@@ -9,7 +9,6 @@ import eatyourbeets.cards.animator.ultrarare.HolyGrail;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.utilities.ColoredTexture;
 import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.HashMap;
@@ -95,9 +94,9 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
         return IMAGES.CARD_ENERGY_ORB_A.Texture();
     }
 
-    @Override
-    protected ColoredTexture GetCardBanner()
-    {
-        return new ColoredTexture(IMAGES.CARD_BANNER_ULTRARARE.Texture());
-    }
+//    @Override
+//    protected ColoredTexture GetCardBanner()
+//    {
+//        return new ColoredTexture(IMAGES.CARD_BANNER_ULTRARARE.Texture());
+//    }
 }

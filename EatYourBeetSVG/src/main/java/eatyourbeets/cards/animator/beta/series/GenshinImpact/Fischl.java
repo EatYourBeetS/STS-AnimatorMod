@@ -17,7 +17,7 @@ public class Fischl extends AnimatorCard {
     public static final EYBCardData DATA = Register(Fischl.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Elemental);
     static
     {
-        DATA.AddPreview(new Oz(), false);
+        DATA.AddPreview(new Oz(), true);
     }
 
     public Fischl() {

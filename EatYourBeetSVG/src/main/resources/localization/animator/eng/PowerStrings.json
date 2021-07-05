@@ -85,6 +85,11 @@
 		"DESCRIPTIONS": ["When attacked, deal #b", " damage back."],
 		"NAME": "Earthen Thorns"
 	},
+	"animator:ElementalMasteryPower":
+	{
+	  "DESCRIPTIONS": ["Your orbs' passive and evoke effects are #b", "% more effective."],
+	  "NAME": "Chilled"
+	},
 	"animator:EmiyaShirouPower":
 	{
 		"DESCRIPTIONS": ["Whenever an enemy loses its block this turn, gain #b1 energy and draw #b1 random #yAttack."],

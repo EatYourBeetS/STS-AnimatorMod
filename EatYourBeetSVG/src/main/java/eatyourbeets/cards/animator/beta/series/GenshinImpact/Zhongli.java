@@ -27,12 +27,6 @@ public class Zhongli extends AnimatorCard
         SetSynergy(Synergies.GenshinImpact);
     }
 
-    @Override
-    protected void OnUpgrade()
-    {
-        SetInnate(true);
-    }
-
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)

@@ -416,6 +416,11 @@
 			"DESCRIPTION": "<LIM>. If this card kills an Elite or Boss: Choose 1 of !M! cards to add to your deck.",
 			"NAME": "Sakura Kinomoto"
 		},
+		"animator:SearingBurn":
+		{
+		  "DESCRIPTION": "At the end of your turn, ALL combatants take !M! damage and gain !S! [Burning].",
+		  "NAME": "Searing Burn"
+		},
 		"animator:SheerCold":
 		{
 		  "DESCRIPTION": "[Frost] now applies [Chilled] to a random enemy when Triggered and to all enemies when Evoked.",
@@ -569,6 +574,11 @@
 		  "NAME": "Fischl",
 		  "UPGRADE_DESCRIPTION": "Randomly channel ** [Lightning] or [Dark] !M! times. || <LIM>. Synergy: Add an upgraded {Oz} to your Discard Pile."
 		},
+		"animator:HuTao":
+		{
+		  "DESCRIPTION": "Transform up to !M! random {Burn} from anywhere into {Searing Burn}. || When Exhausted, add !S! {Searing Burn} to your hand.",
+		  "NAME": "Hu Tao"
+		},
 		"animator:JeanGunnhildr":
 		{
 			"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile. || Discard up to !M! card(s). Remove 1 [Weak], [Vulnerable], and [Frail] for each discarded card.",
@@ -588,6 +598,11 @@
 		{
 		  "DESCRIPTION": "Attack 1 additional time for each [Frost] you have. You cannot gain [Block] for 2 turns. || <LIM>. If all of your Orbs are [Frost]: Play {Sheer Cold}.",
 		  "NAME": "Kamisato Ayaka"
+		},
+		"animator:Keqing":
+		{
+		  "DESCRIPTION": "{Starter}: Draw a Card. || On Exhaust: Costs 1 less and returns to your draw pile in !M! turns. Reduce these turns by 1 upon Evoking [Lightning].",
+		  "NAME": "Keqing"
 		},
 		"animator:Klee":
 		{

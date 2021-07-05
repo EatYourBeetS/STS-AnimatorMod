@@ -51,7 +51,7 @@ public class BarbaraPegg extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.VFX(new RainbowCardEffect());
-        GameActions.Bottom.GainTemporaryHP(magicNumber + GameUtilities.GetUniqueOrbsCount());
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
         if (GameUtilities.GetUniqueOrbsCount() >= UNIQUE_THRESHOLD && CombatStats.TryActivateLimited(cardID)) {
             GameActions.Bottom.StackPower(new RegenPower(player, secondaryValue));
         }

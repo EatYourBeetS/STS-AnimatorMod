@@ -66,7 +66,7 @@ public class Tartaglia extends AnimatorCard {
         }
         else {
             GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
-            GameActions.Bottom.ReplaceCard(this.uuid, new Curse_Delusion());
+            GameActions.Last.ReplaceCard(this.uuid, new Curse_Delusion());
         }
     }
 }

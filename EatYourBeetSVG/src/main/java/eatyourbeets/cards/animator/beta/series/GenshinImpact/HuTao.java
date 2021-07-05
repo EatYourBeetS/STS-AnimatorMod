@@ -56,7 +56,7 @@ public class HuTao extends AnimatorCard {
                 {
                     for (AbstractCard card: cards) {
                         GameActions.Bottom.Flash(card);
-                        GameActions.Bottom.ReplaceCard(card.uuid, new SearingBurn());
+                        GameActions.Last.ReplaceCard(card.uuid, new SearingBurn());
                     }
                 });
 

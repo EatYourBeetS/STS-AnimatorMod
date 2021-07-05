@@ -20,7 +20,7 @@ public class Zero extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.GrimoireOfZero);
-        SetSpellcaster();
+        SetAffinity(0, 0, 1, 1, 0);
     }
 
     @Override

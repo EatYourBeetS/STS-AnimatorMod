@@ -26,7 +26,7 @@ public class IchigoKurosaki extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.Bleach);
-        SetMartialArtist();
+        SetAffinity(1, 1, 0, 0, 0);
     }
 
     @Override

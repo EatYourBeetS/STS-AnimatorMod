@@ -32,7 +32,7 @@ public class Magilou extends AnimatorCard implements OnCardResetSubscriber
 
         SetExhaust(true);
         SetSynergy(Synergies.TalesOfBerseria);
-        SetSpellcaster();
+        SetAffinity(0, 0, 1, 1, 1);
     }
 
     @Override

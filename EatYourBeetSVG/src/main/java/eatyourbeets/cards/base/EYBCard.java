@@ -47,10 +47,6 @@ public abstract class EYBCard extends EYBCardBase
     public int intellectScaling = 0;
     public int agilityScaling = 0;
 
-
-    public abstract ColoredString GetBottomText();
-    public abstract ColoredString GetHeaderText();
-
     public static EYBCardData GetStaticData(String cardID)
     {
         return staticCardData.get(cardID);
@@ -137,6 +133,16 @@ public abstract class EYBCard extends EYBCardBase
     public EYBCardPreview GetCardPreview()
     {
         return cardData.GetCardPreview();
+    }
+
+    public ColoredString GetBottomText()
+    {
+        return null;
+    }
+
+    public ColoredString GetHeaderText()
+    {
+        return null;
     }
 
     protected String GetRawDescription()

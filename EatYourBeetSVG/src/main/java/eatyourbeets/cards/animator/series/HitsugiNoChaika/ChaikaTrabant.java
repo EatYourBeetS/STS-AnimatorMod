@@ -31,7 +31,6 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
 
         tags.add(GR.Enums.CardTags.IGNORE_PEN_NIB);
 
-        SetSpellcaster();
         SetSynergy(Synergies.Chaika);
         SetAffinity(0, 0, 2, 2, 0);
     }

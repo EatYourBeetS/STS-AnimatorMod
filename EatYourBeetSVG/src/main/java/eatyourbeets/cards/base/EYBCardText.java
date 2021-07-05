@@ -69,7 +69,6 @@ public class EYBCardText
             return;
         }
 
-
         context.Render(sb);
 
         RenderAttributes(sb);
@@ -91,21 +90,11 @@ public class EYBCardText
             if (bottom != null)
             {
                 BitmapFont font = RenderHelpers.GetSmallTextFont(card, bottom.text);
-
-                float yPos = AbstractCard.RAW_H;
-                if (inHand)
-                {
-                    font.getData().scale(0.175f);
-                    yPos *= 0.57f;
-                }
-                else
-                {
-                    yPos *= -0.47f;
-                }
-
-                RenderHelpers.WriteOnCard(sb, card, font, bottom.text, 0, yPos, bottom.color, true);
+                RenderHelpers.WriteOnCard(sb, card, font, bottom.text, 0, -0.47f * AbstractCard.RAW_H, bottom.color, true);
                 RenderHelpers.ResetFont(font);
             }
+
+            card.affinities.RenderOnCard(sb, card, false);
         }
     }
 

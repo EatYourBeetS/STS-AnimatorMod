@@ -43,7 +43,7 @@ public class Patchouli extends AnimatorCard
         SetScaling(2, 0, 0);
 
         SetSynergy(Synergies.TouhouProject);
-        SetSpellcaster();
+        SetAffinity(0, 0, 2, 0, 0);
     }
 
     @Override

@@ -257,23 +257,23 @@ public class JUtils
         return amount;
     }
 
-    public static <T> String JoinStrings(String delimiter, T[] values)
-    {
-        StringJoiner sj = new StringJoiner(delimiter);
-        for (T value : values)
-        {
-            sj.add(value == null ? "" : value.toString());
-        }
-
-        return sj.toString();
-    }
-
     public static <T> String JoinStrings(String delimiter, Collection<T> values)
     {
         StringJoiner sj = new StringJoiner(delimiter);
         for (T value : values)
         {
-            sj.add(value == null ? "" : value.toString());
+            sj.add(String.valueOf(value));
+        }
+
+        return sj.toString();
+    }
+
+    public static <T> String JoinStrings(String delimiter, T[] values)
+    {
+        StringJoiner sj = new StringJoiner(delimiter);
+        for (T value : values)
+        {
+            sj.add(String.valueOf(value));
         }
 
         return sj.toString();

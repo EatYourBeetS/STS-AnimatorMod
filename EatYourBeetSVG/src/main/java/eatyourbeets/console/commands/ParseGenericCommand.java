@@ -147,15 +147,21 @@ public class ParseGenericCommand extends ConsoleCommand
                     return;
                 }
 
-                if (tokens[1].equals("synergy-check"))
+                if (tokens[1].equals("set-synergy-check"))
                 {
-                    GR.Animator.Config.FadeCardsWithoutSynergy(tokens.length > 2 && tokens[2].equals("true"), true);
+                    GR.Animator.Config.FadeCardsWithoutSynergy.Set(tokens.length > 2 && tokens[2].equals("true"), true);
                     return;
                 }
 
                 if (tokens[1].equals("set-zoom"))
                 {
-                    GR.Animator.Config.CropCardImages(tokens.length > 2 && tokens[2].equals("true"), true);
+                    GR.Animator.Config.CropCardImages.Set(tokens.length > 2 && tokens[2].equals("true"), true);
+                    return;
+                }
+
+                if (tokens[1].equals("set-simple-ui"))
+                {
+                    GR.Animator.Config.SimplifyCardUI.Set(tokens.length > 2 && tokens[2].equals("true"), true);
                     return;
                 }
 

@@ -129,6 +129,11 @@ public class EYBCardTooltip
                     GR.Animator.Config.HideTipDescription(tip.id, (tip.hideDescription ^= true), true);
                 }
             }
+
+            if (tip.hideDescription == null)
+            {
+                tip.hideDescription = false;
+            }
         }
 
         float x;
@@ -154,7 +159,17 @@ public class EYBCardTooltip
             float size = 0;
             for (EYBCardTooltip tip : tooltips)
             {
-                size += (tip.hideDescription || StringUtils.isEmpty(tip.description)) ? 0.2f : 1f;
+                if (tip.hideDescription || StringUtils.isEmpty(tip.description))
+                {
+                    if (!inHand)
+                    {
+                        size += 0.2f;
+                    }
+                }
+                else
+                {
+                    size += 1f;
+                }
             }
 
             if (size > 3f && card.current_y < Settings.HEIGHT * 0.5f && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.CARD_REWARD)
@@ -173,7 +188,7 @@ public class EYBCardTooltip
         for (int i = 0; i < tooltips.size(); i++)
         {
             EYBCardTooltip tip = tooltips.get(i);
-            if (inHand && tip.hideDescription)
+            if (inHand && (tip.hideDescription || StringUtils.isEmpty(tip.description)))
             {
                 continue;
             }
@@ -290,9 +305,9 @@ public class EYBCardTooltip
     {
         sb.setColor(Color.WHITE);
         sb.draw(region.getTexture(), x, y, 0f, 0f,
-        width, height, Settings.scale, Settings.scale, 0f,
-        region.getRegionX(), region.getRegionY(), region.getRegionWidth(),
-        region.getRegionHeight(), false, false);
+                width, height, Settings.scale, Settings.scale, 0f,
+                region.getRegionX(), region.getRegionY(), region.getRegionWidth(),
+                region.getRegionHeight(), false, false);
     }
 
     public String GetTitleOrIcon()

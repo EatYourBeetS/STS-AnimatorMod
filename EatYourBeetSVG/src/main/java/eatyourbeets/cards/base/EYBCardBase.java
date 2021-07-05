@@ -299,7 +299,7 @@ public abstract class EYBCardBase extends AbstractCard
             cropPortrait = false;
         }
 
-        if (cropPortrait && drawScale > 0.6f && drawScale < 1 && GR.Animator.Config.CropCardImages())
+        if (cropPortrait && drawScale > 0.6f && drawScale < 1 && GR.Animator.Config.CropCardImages.Get())
         {
             int width = portraitImg.getWidth();
             int height = portraitImg.getHeight();
@@ -476,7 +476,7 @@ public abstract class EYBCardBase extends AbstractCard
         }
     }
 
-    protected Color GetRarityColor(boolean alt)
+    public Color GetRarityColor(boolean alt)
     {
         switch (rarity)
         {
@@ -494,7 +494,6 @@ public abstract class EYBCardBase extends AbstractCard
             case CURSE:
             default:
                 return COLOR_COMMON;
-                //return new Color(0.65f, 0.6f, 0.55f, 1f);
         }
     }
 

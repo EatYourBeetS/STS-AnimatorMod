@@ -3,304 +3,304 @@
 	"animator:Dark_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "黑暗之方",
+		"NAME": "黑暗方块",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "黑暗之方",
+		"NAME": "黑暗方块",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "黑暗之方",
+		"NAME": "黑暗方块",
 		"DIALOG": [""]
 	},
 
 	"animator:Lightning_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "雷电之方",
+		"NAME": "雷电方块",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "雷电之方",
+		"NAME": "雷电方块",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "雷电之方",
+		"NAME": "雷电方块",
 		"DIALOG": [""]
 	},
 
 	"animator:Frost_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之方",
+		"NAME": "冰霜方块",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之方",
+		"NAME": "冰霜方块",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之方",
+		"NAME": "冰霜方块",
 		"DIALOG": [""]
 	},
 
 	"animator:Fire_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "火焰之方",
+		"NAME": "火焰方块",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "火焰之方",
+		"NAME": "火焰方块",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "火焰之方",
+		"NAME": "火焰方块",
 		"DIALOG": [""]
 	},
 
 	"animator:Healing_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "治疗之方",
+		"NAME": "治疗方块",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "治疗之方",
+		"NAME": "治疗方块",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "治疗之方",
+		"NAME": "治疗方块",
 		"DIALOG": [""]
 	},
 
 	"animator:Dark_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "黑暗之晶",
+		"NAME": "黑暗晶体",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "黑暗之晶",
+		"NAME": "黑暗晶体",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "黑暗之晶",
+		"NAME": "黑暗晶体",
 		"DIALOG": [""]
 	},
 
 	"animator:Lightning_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "雷电之晶",
+		"NAME": "雷电晶体",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "雷电之晶",
+		"NAME": "雷电晶体",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "雷电之晶",
+		"NAME": "雷电晶体",
 		"DIALOG": [""]
 	},
 
 	"animator:Frost_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之晶",
+		"NAME": "冰霜晶体",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之晶",
+		"NAME": "冰霜晶体",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之晶",
+		"NAME": "冰霜晶体",
 		"DIALOG": [""]
 	},
 
 	"animator:Fire_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "火焰之晶",
+		"NAME": "火焰晶体",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "火焰之晶",
+		"NAME": "火焰晶体",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "火焰之晶",
+		"NAME": "火焰晶体",
 		"DIALOG": [""]
 	},
 
 	"animator:Healing_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "治疗之晶",
+		"NAME": "治疗晶体",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "治疗之晶",
+		"NAME": "治疗晶体",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "治疗之晶",
+		"NAME": "治疗晶体",
 		"DIALOG": [""]
 	},
 
 	"animator:Dark_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "黑暗之缕",
+		"NAME": "黑暗精灵",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "黑暗之缕",
+		"NAME": "黑暗精灵",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "黑暗之缕",
+		"NAME": "黑暗精灵",
 		"DIALOG": [""]
 	},
 
 	"animator:Lightning_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "雷电之缕",
+		"NAME": "雷电精灵",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "雷电之缕",
+		"NAME": "雷电精灵",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "雷电之缕",
+		"NAME": "雷电精灵",
 		"DIALOG": [""]
 	},
 
 	"animator:Frost_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之缕",
+		"NAME": "冰霜精灵",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之缕",
+		"NAME": "冰霜精灵",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "冰霜之缕",
+		"NAME": "冰霜精灵",
 		"DIALOG": [""]
 	},
 
 	"animator:Fire_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "火焰之缕",
+		"NAME": "火焰精灵",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "火焰之缕",
+		"NAME": "火焰精灵",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "火焰之缕",
+		"NAME": "火焰精灵",
 		"DIALOG": [""]
 	},
 
 	"animator:Healing_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "治疗之缕",
+		"NAME": "治疗精灵",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "治疗之缕",
+		"NAME": "治疗精灵",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "治疗之缕",
+		"NAME": "治疗精灵",
 		"DIALOG": [""]
 	},
 
 	"animator:Ultimate_Cube_3":
 	{
 		"MOVES": [],
-		"NAME": "终极之方",
+		"NAME": "终极方块",
 		"DIALOG": [""]
 	},
 	"animator:Ultimate_Wisp_3":
 	{
 		"MOVES": [],
-		"NAME": "终极之缕",
+		"NAME": "终极精灵",
 		"DIALOG": [""]
 	},
 	"animator:Ultimate_Crystal_3":
 	{
 		"MOVES": [],
-		"NAME": "终极之晶",
+		"NAME": "终极晶体",
 		"DIALOG": [""]
 	},
 
@@ -345,7 +345,7 @@
 		"NAME": "无名信徒",
 		"DIALOG":
 		[
-			"看哪！这是终极之晶！",
+			"看哪！这是终极晶体！",
 			"看哪！这是终极武器！",
 			"看哪！这是终极 {0} ！",
 			"看哪！这是终极地精！",

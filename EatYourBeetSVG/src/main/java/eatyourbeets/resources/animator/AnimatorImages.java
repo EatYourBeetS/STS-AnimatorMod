@@ -26,12 +26,12 @@ public class AnimatorImages
 
     public final String ORB_VFX_PNG = "images/ui/topPanel/animator_canvas/orbVfx.png";
     public final String[] ORB_TEXTURES =
-    {
-            "images/ui/topPanel/animator_canvas/layer1.png", "images/ui/topPanel/animator_canvas/layer2.png", "images/ui/topPanel/animator_canvas/layer3.png",
-            "images/ui/topPanel/animator_canvas/layer4.png", "images/ui/topPanel/animator_canvas/layer5.png", "images/ui/topPanel/animator_canvas/layer6.png",
-            "images/ui/topPanel/animator_canvas/layer1d.png", "images/ui/topPanel/animator_canvas/layer2d.png", "images/ui/topPanel/animator_canvas/layer3d.png",
-            "images/ui/topPanel/animator_canvas/layer4d.png", "images/ui/topPanel/animator_canvas/layer5d.png"
-    };
+            {
+                    "images/ui/topPanel/animator_canvas/layer1.png", "images/ui/topPanel/animator_canvas/layer2.png", "images/ui/topPanel/animator_canvas/layer3.png",
+                    "images/ui/topPanel/animator_canvas/layer4.png", "images/ui/topPanel/animator_canvas/layer5.png", "images/ui/topPanel/animator_canvas/layer6.png",
+                    "images/ui/topPanel/animator_canvas/layer1d.png", "images/ui/topPanel/animator_canvas/layer2d.png", "images/ui/topPanel/animator_canvas/layer3d.png",
+                    "images/ui/topPanel/animator_canvas/layer4d.png", "images/ui/topPanel/animator_canvas/layer5d.png"
+            };
 
     public final String CHARACTER_PNG = "images/characters/animator/idle/animator.png";
     public final String SKELETON_ATLAS = "images/characters/animator/idle/animator.atlas";

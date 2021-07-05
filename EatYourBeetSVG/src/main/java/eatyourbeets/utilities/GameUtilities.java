@@ -546,7 +546,7 @@ public class GameUtilities
                 intents.add(new EnemyIntent((AbstractMonster) target.GetTargets().get(0)));
                 break;
 
-            case ALL:
+            case AllCharacters:
             case Enemies:
                 for (AbstractCreature t : target.GetTargets())
                 {

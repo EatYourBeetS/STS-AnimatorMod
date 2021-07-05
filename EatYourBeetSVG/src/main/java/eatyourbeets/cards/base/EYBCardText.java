@@ -69,6 +69,7 @@ public class EYBCardText
             return;
         }
 
+
         context.Render(sb);
 
         RenderAttributes(sb);
@@ -78,29 +79,33 @@ public class EYBCardText
         {
             RenderBadges(sb);
 
-//            ColoredString header = card.GetHeaderText();
-//            if (header != null)
-//            {
-//                BitmapFont font = RenderHelpers.GetSmallTextFont(card, header.text);
-//                RenderHelpers.WriteOnCard(sb, card, font, header.text, 0, AbstractCard.RAW_H * 0.48f, header.color, true);
-//                RenderHelpers.ResetFont(font);
-//            }
+            ColoredString header = card.GetHeaderText();
+            if (header != null)
+            {
+                BitmapFont font = RenderHelpers.GetSmallTextFont(card, header.text);
+                RenderHelpers.WriteOnCard(sb, card, font, header.text, 0, AbstractCard.RAW_H * 0.48f, header.color, true);
+                RenderHelpers.ResetFont(font);
+            }
 
             ColoredString bottom = card.GetBottomText();
             if (bottom != null)
             {
                 BitmapFont font = RenderHelpers.GetSmallTextFont(card, bottom.text);
-                RenderHelpers.WriteOnCard(sb, card, font, bottom.text, 0, -0.47f * AbstractCard.RAW_H, bottom.color, true);
+
+                float yPos = AbstractCard.RAW_H;
+                if (inHand)
+                {
+                    font.getData().scale(0.175f);
+                    yPos *= 0.57f;
+                }
+                else
+                {
+                    yPos *= -0.47f;
+                }
+
+                RenderHelpers.WriteOnCard(sb, card, font, bottom.text, 0, yPos, bottom.color, true);
                 RenderHelpers.ResetFont(font);
             }
-
-            card.alignments.RenderOnCard(sb, card, false);
-
-//            if (inHand)
-//            {
-//                // Show LV2 icons above card while in hand
-//                card.alignments.RenderOnCard(sb, card, true);
-//            }
         }
     }
 
@@ -196,7 +201,8 @@ public class EYBCardText
         final float offset_y = AbstractCard.RAW_H * 0.08f;//+0.28f;
         final BitmapFont font = EYBFontHelper.CardIconFont_Large;
 
-        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Circle.Texture(), new Vector2(offset_x, offset_y + y), 32, 32, backgroundColor, 1, 1);
+        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Circle.Texture(),
+                new Vector2(offset_x, offset_y + y),32, 32, backgroundColor, 1, 1);
         RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y), 24, 24);
 
         font.getData().setScale(0.6f * card.drawScale);

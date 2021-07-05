@@ -47,6 +47,7 @@ public class Father extends AnimatorCard implements OnAddedToDeckListener, OnAdd
 
         if (cardText != null)
         {
+            tooltip.id = cardID + ":" + tooltip.title;
             tooltips.add(tooltip);
         }
     }

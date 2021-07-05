@@ -46,7 +46,7 @@ public class HousakiMinori extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        if (CombatStats.HasActivatedSemiLimited(cardID))
+        if (CombatStats.TryActivateSemiLimited(cardID))
         {
             ShuffleToTopOfDeck();
         }

@@ -94,6 +94,7 @@ public class AnimatorStrings
         public final String DisplayBetaSeries = Strings.TEXT[9];
         public final String LocalizationHelpHeader = Strings.TEXT[10];
         public final String FadeCardsWithoutSynergy = Strings.TEXT[11];
+        public final String SimplifyCardUI = Strings.TEXT[12];
 
         public final String SynergyName(int synergyID)
         {

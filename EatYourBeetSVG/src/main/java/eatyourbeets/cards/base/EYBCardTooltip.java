@@ -15,7 +15,10 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.EYBFontHelper;
+import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RenderHelpers;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -97,6 +100,7 @@ public class EYBCardTooltip
 
     public static void RenderAll(SpriteBatch sb)
     {
+        int totalHidden = 0;
         inHand = AbstractDungeon.player != null && AbstractDungeon.player.hand.contains(card);
         tooltips.clear();
         card.GenerateDynamicTooltips(tooltips);
@@ -113,14 +117,22 @@ public class EYBCardTooltip
         for (int i = 0; i < tooltips.size(); i++)
         {
             EYBCardTooltip tip = tooltips.get(i);
-            if (tip.hideDescription == null)
+            if (StringUtils.isNotEmpty(tip.id))
             {
-                tip.hideDescription = GR.Animator.Config.HideTipDescription(tip.id);
+                if (tip.hideDescription == null)
+                {
+                    tip.hideDescription = GR.Animator.Config.HideTipDescription(tip.id);
+                }
+
+                if (!inHand && alt && Gdx.input.isKeyJustPressed(Input.Keys.NUM_1 + i))
+                {
+                    GR.Animator.Config.HideTipDescription(tip.id, (tip.hideDescription ^= true), true);
+                }
             }
 
-            if (!inHand && alt && Gdx.input.isKeyJustPressed(Input.Keys.NUM_1 + i))
+            if (tip.hideDescription == null)
             {
-                GR.Animator.Config.HideTipDescription(tip.id, (tip.hideDescription ^= true), true);
+                tip.hideDescription = false;
             }
         }
 
@@ -147,7 +159,17 @@ public class EYBCardTooltip
             float size = 0;
             for (EYBCardTooltip tip : tooltips)
             {
-                size += (tip.hideDescription || StringUtils.isEmpty(tip.description)) ? 0.2f : 1f;
+                if (tip.hideDescription || StringUtils.isEmpty(tip.description))
+                {
+                    if (!inHand)
+                    {
+                        size += 0.2f;
+                    }
+                }
+                else
+                {
+                    size += 1f;
+                }
             }
 
             if (size > 3f && card.current_y < Settings.HEIGHT * 0.5f && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.CARD_REWARD)
@@ -165,7 +187,13 @@ public class EYBCardTooltip
 
         for (int i = 0; i < tooltips.size(); i++)
         {
-            y -= tooltips.get(i).Render(sb, x, y, i) + BOX_EDGE_H * 3.15f;
+            EYBCardTooltip tip = tooltips.get(i);
+            if (inHand && (tip.hideDescription || StringUtils.isEmpty(tip.description)))
+            {
+                continue;
+            }
+
+            y -= tip.Render(sb, x, y, i) + BOX_EDGE_H * 3.15f;
         }
 
         EYBCardPreview preview = card.GetCardPreview();
@@ -215,7 +243,7 @@ public class EYBCardTooltip
 
         if (!StringUtils.isEmpty(description))
         {
-            if (!inHand && index >= 0)
+            if (StringUtils.isNotEmpty(id) && !inHand && index >= 0)
             {
                 FontHelper.renderFontRightTopAligned(sb, EYBFontHelper.CardTooltipFont, "Alt+" + (index + 1), x + BODY_TEXT_WIDTH * 1.07f, y + HEADER_OFFSET_Y * 1.33f, Settings.PURPLE_COLOR);
             }

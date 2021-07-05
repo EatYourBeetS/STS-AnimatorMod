@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.cards.animator.auras.Aura;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.interfaces.listeners.OnAddedToDeckListener;
 import eatyourbeets.interfaces.listeners.OnCardPoolChangedListener;
@@ -48,6 +49,19 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         BaseMod.addSaveField(id, data);
         BaseMod.subscribe(data);
         return data;
+    }
+
+    public AnimatorRuntimeLoadout GetSeries(Synergy synergy)
+    {
+        for (AnimatorRuntimeLoadout series : Series)
+        {
+            if (series.ID == synergy.ID)
+            {
+                return series;
+            }
+        }
+
+        return null;
     }
 
     public void AddSeries(AnimatorRuntimeLoadout series)
@@ -124,7 +138,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             BannedCards.addAll(data.BannedCards);
             StartingSeries = GR.Animator.Data.GetBaseLoadout(data.startingLoadout);
 
-            if (StartingSeries == null && GR.Animator.Config.DisplayBetaSeries())
+            if (StartingSeries == null && GR.Animator.Config.DisplayBetaSeries.Get())
             {
                 StartingSeries = GR.Animator.Data.GetBetaLoadout(data.startingLoadout);
             }

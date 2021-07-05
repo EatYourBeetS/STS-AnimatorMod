@@ -64,6 +64,11 @@ public abstract class EYBCardBase extends AbstractCard
     protected static final float SHADOW_OFFSET_X = 18f * Settings.scale;
     protected static final float SHADOW_OFFSET_Y = 14f * Settings.scale;
 
+    protected static final Color COLOR_COMMON = new Color(0.65f, 0.65f, 0.65f, 1f);
+    protected static final Color COLOR_UNCOMMON = new Color(0.5f, 0.85f, 0.95f, 1f);
+    protected static final Color COLOR_RARE = new Color(0.95f, 0.85f, 0.3f, 1f);
+    protected static final Color COLOR_SPECIAL = new Color(1f, 1f, 1f, 1f);
+
     public static AbstractPlayer player = null;
     public static Random rng = null;
 
@@ -231,8 +236,8 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride
     protected void renderType(SpriteBatch sb)
     {
-        BitmapFont font = FontHelper.cardTypeFont;
-        Color color = _typeColor.Get(this);
+        BitmapFont font = EYBFontHelper.CardTypeFont;// FontHelper.cardTypeFont;
+        Color color = Color.DARK_GRAY.cpy();//_typeColor.Get(this);
         color.a = _renderColor.Get(this).a;
         font.getData().setScale(drawScale);
         FontHelper.renderRotatedText(sb, font, GetTypeText(), current_x, current_y - 22.0f * drawScale * Settings.scale, 0.0F, -1.0F * this.drawScale * Settings.scale, angle, false, color);
@@ -294,7 +299,7 @@ public abstract class EYBCardBase extends AbstractCard
             cropPortrait = false;
         }
 
-        if (cropPortrait && drawScale > 0.6f && drawScale < 1 && GR.Animator.Config.CropCardImages())
+        if (cropPortrait && drawScale > 0.6f && drawScale < 1 && GR.Animator.Config.CropCardImages.Get())
         {
             int width = portraitImg.getWidth();
             int height = portraitImg.getHeight();
@@ -379,12 +384,12 @@ public abstract class EYBCardBase extends AbstractCard
         }
     }
 
-    protected Texture GetPortraitFrame()
+    protected ColoredTexture GetPortraitFrame()
     {
         return null;
     }
 
-    protected Texture GetCardBanner()
+    protected ColoredTexture GetCardBanner()
     {
         return null;
     }
@@ -471,6 +476,27 @@ public abstract class EYBCardBase extends AbstractCard
         }
     }
 
+    public Color GetRarityColor(boolean alt)
+    {
+        switch (rarity)
+        {
+            case SPECIAL:
+                return COLOR_SPECIAL;
+
+            case UNCOMMON:
+                return COLOR_UNCOMMON;
+
+            case RARE:
+                return COLOR_RARE;
+
+            case BASIC:
+            case COMMON:
+            case CURSE:
+            default:
+                return COLOR_COMMON;
+        }
+    }
+
     protected ColoredString GetCostString()
     {
         ColoredString result = new ColoredString();
@@ -488,7 +514,7 @@ public abstract class EYBCardBase extends AbstractCard
         {
             result.color = new Color(1f, 0.3f, 0.3f, transparency);
         }
-        else if (costForTurn < cost || (cost > 0 && this.freeToPlay()))
+        else if ((upgradedCost && isCostModified) || costForTurn < cost || (cost > 0 && this.freeToPlay()))
         {
             result.color = new Color(0.4f, 1f, 0.4f, transparency);
         }
@@ -517,6 +543,19 @@ public abstract class EYBCardBase extends AbstractCard
         {
             tags.add(tag);
         }
+    }
+
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    private boolean TryRenderCentered(SpriteBatch sb, ColoredTexture texture)
+    {
+        if (texture != null)
+        {
+            RenderHelpers.DrawOnCardAuto(sb, this, texture, 0, 0, texture.GetWidth(), texture.GetHeight());
+
+            return true;
+        }
+
+        return false;
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")

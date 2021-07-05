@@ -865,7 +865,7 @@
 	{
 		"animator:Akatsuki":
 		{
-			"DESCRIPTION": "Deals !S! additional damage ** if the enemy is not attacking. || <slm>. When drawn: ** Create !M! {0-Cost} {0-Damage} ** copies of this card with ** Ethereal and Purge.",
+			"DESCRIPTION": "Deals !S! additional damage ** if the enemy is not attacking. || <slm>. When drawn: ** Create !M! {0-Cost} {0-Damage} ** copies of this card with ** {~Ethereal} and Purge.",
 			"NAME": "Akatsuki"
 		},
 		"animator:Henrietta":

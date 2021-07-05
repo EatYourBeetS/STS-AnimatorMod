@@ -11,6 +11,7 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.ColoredTexture;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
@@ -270,30 +271,32 @@ public abstract class AnimatorCard extends EYBCard
     }
 
     @Override
-    protected Texture GetCardBanner()
+    protected ColoredTexture GetCardBanner()
     {
-        if (rarity == CardRarity.SPECIAL)
-        {
-            return IMAGES.CARD_BANNER_SPECIAL.Texture();
-        }
-
-        return null;
+//        if (rarity == CardRarity.SPECIAL)
+//        {
+//            return IMAGES.CARD_BANNER_SPECIAL.Texture();
+//        }
+        return new ColoredTexture(IMAGES.CARD_BANNER_GENERIC.Texture(), GetRarityColor(false));
     }
 
     @Override
-    protected Texture GetPortraitFrame()
+    protected ColoredTexture GetPortraitFrame()
     {
-        if (rarity == CardRarity.SPECIAL)
+        switch (type)
         {
-            switch (type)
-            {
-                case ATTACK: return IMAGES.CARD_FRAME_ATTACK_SPECIAL.Texture();
-                case POWER: return IMAGES.CARD_FRAME_POWER_SPECIAL.Texture();
-                default: return IMAGES.CARD_FRAME_SKILL_SPECIAL.Texture();
-            }
-        }
+            case ATTACK:
+                return new ColoredTexture(IMAGES.CARD_FRAME_ATTACK.Texture(), GetRarityColor(false));
 
-        return null;
+            case POWER:
+                return new ColoredTexture(IMAGES.CARD_FRAME_POWER.Texture(), GetRarityColor(false));
+
+            case SKILL:
+            case CURSE:
+            case STATUS:
+            default:
+                return new ColoredTexture(IMAGES.CARD_FRAME_SKILL.Texture(), GetRarityColor(false));
+        }
     }
 
     @Override

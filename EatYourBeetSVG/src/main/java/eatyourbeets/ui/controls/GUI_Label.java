@@ -38,6 +38,13 @@ public class GUI_Label extends GUIElement
         this.hb = hb;
     }
 
+    public GUI_Label SetText(Object content)
+    {
+        this.text = String.valueOf(content);
+
+        return this;
+    }
+
     public GUI_Label SetText(String text)
     {
         this.text = text;
@@ -96,6 +103,8 @@ public class GUI_Label extends GUIElement
     public void Render(SpriteBatch sb)
     {
         Render(sb, hb);
+
+        hb.render(sb);
     }
 
     public void Render(SpriteBatch sb, Hitbox hb)

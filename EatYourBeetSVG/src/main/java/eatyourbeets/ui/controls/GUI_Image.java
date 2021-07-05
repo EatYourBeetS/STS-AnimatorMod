@@ -11,6 +11,7 @@ public class GUI_Image extends GUIElement
 {
     public Hitbox hb;
     public Texture texture;
+    public Texture background;
     public Color color;
     public float rotation;
     public float scaleX = 1;
@@ -64,12 +65,21 @@ public class GUI_Image extends GUIElement
     public void Render(SpriteBatch sb, float x, float y, float width, float height)
     {
         sb.setColor(color);
+        if (background != null)
+        {
+            sb.draw(background, x, y, 0, 0, width, height, scaleX, scaleY, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
+        }
         sb.draw(texture, x, y, 0, 0, width, height, scaleX, scaleY, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
     }
 
     public void RenderCentered(SpriteBatch sb, float x, float y, float width, float height)
     {
         sb.setColor(color);
+        if (background != null)
+        {
+            sb.draw(background, x, y, width/2f, height/2f, width, height, Settings.scale * scaleX,
+                    Settings.scale * scaleY, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
+        }
         sb.draw(texture, x, y, width/2f, height/2f, width, height, Settings.scale * scaleX,
                 Settings.scale * scaleY, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
     }
@@ -84,6 +94,13 @@ public class GUI_Image extends GUIElement
     public GUI_Image Resize(float width, float height, float scale)
     {
         hb.resize(width * scale, height * scale);
+
+        return this;
+    }
+
+    public GUI_Image SetBackgroundTexture(Texture texture)
+    {
+        this.background = texture;
 
         return this;
     }

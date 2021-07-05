@@ -37,8 +37,8 @@ public class TheHaunt extends AnimatorCard_Status implements Hidden
 
         Initialize(0, 0, goldBonus);
 
-        this.isEthereal = true;
-        this.exhaust = true;
+        SetEthereal(true);
+        SetExhaust(true);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
 
     public ShowCardPileEffect(CardGroup cards)
     {
-        super(0, 0.7f);
+        super(0.7f);
 
         this.cards = cards;
         this.isRealtime = true;

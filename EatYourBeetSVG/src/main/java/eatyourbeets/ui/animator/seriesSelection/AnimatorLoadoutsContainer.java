@@ -161,4 +161,15 @@ public class AnimatorLoadoutsContainer
 
         GR.Animator.Dungeon.InitializeCardPool(false);
     }
+
+    public ArrayList<AbstractCard> GetAllCardsInPool()
+    {
+        ArrayList<AbstractCard> cards = new ArrayList<>();
+        for (AbstractCard card : selectedCards)
+        {
+            cards.addAll(Find(card).Cards.values());
+        }
+
+        return cards;
+    }
 }

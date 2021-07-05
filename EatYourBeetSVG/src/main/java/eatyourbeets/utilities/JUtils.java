@@ -262,7 +262,7 @@ public class JUtils
         StringJoiner sj = new StringJoiner(delimiter);
         for (T value : values)
         {
-            sj.add(value.toString());
+            sj.add(String.valueOf(value));
         }
 
         return sj.toString();
@@ -273,7 +273,7 @@ public class JUtils
         StringJoiner sj = new StringJoiner(delimiter);
         for (T value : values)
         {
-            sj.add(value.toString());
+            sj.add(String.valueOf(value));
         }
 
         return sj.toString();

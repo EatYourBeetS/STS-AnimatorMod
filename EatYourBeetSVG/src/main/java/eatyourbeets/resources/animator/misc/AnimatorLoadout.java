@@ -47,7 +47,7 @@ public abstract class AnimatorLoadout
     {
         this.IsBeta = false;
         this.Synergy = synergy;
-        this.Name = synergy.Name;
+        this.Name = synergy.LocalizedName;
         this.ID = synergy.ID;
     }
 

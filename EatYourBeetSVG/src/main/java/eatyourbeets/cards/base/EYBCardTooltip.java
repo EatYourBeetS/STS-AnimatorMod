@@ -1,5 +1,7 @@
 package eatyourbeets.cards.base;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -48,6 +50,7 @@ public class EYBCardTooltip
     private static final float TIP_DESC_LINE_SPACING = 26f * Settings.scale;
     private static final float POWER_ICON_OFFSET_X = 40f * Settings.scale;
     private static EYBCardTooltip translationTooltip;
+    private static boolean inHand;
     private static EYBCard card;
 
     public TextureRegion icon;
@@ -57,6 +60,7 @@ public class EYBCardTooltip
     public float iconMulti_W = 1;
     public float iconMulti_H = 1;
     public boolean canRender = true;
+    public Boolean hideDescription = null;
 
     public EYBCardTooltip(String title, String description)
     {
@@ -83,8 +87,8 @@ public class EYBCardTooltip
         _keywords.Set(null, EMPTY_LIST);
         _powerTips.Set(null, EMPTY_LIST);
         _renderedTipsThisFrame.Set(null, true);
-
         card = source;
+
         GR.UI.AddPostRender(EYBCardTooltip::RenderAll);
     }
 
@@ -96,13 +100,39 @@ public class EYBCardTooltip
 
     public static void RenderAll(SpriteBatch sb)
     {
+        int totalHidden = 0;
+        inHand = AbstractDungeon.player != null && AbstractDungeon.player.hand.contains(card);
         tooltips.clear();
         card.GenerateDynamicTooltips(tooltips);
-        for (EYBCardTooltip tooltip : card.tooltips)
+
+        for (EYBCardTooltip tip : card.tooltips)
         {
-            if (tooltip.canRender && !tooltips.contains(tooltip))
+            if (tip.canRender && !tooltips.contains(tip))
             {
-                tooltips.add(tooltip);
+                tooltips.add(tip);
+            }
+        }
+
+        final boolean alt = Gdx.input.isKeyPressed(Input.Keys.ALT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.ALT_RIGHT);
+        for (int i = 0; i < tooltips.size(); i++)
+        {
+            EYBCardTooltip tip = tooltips.get(i);
+            if (StringUtils.isNotEmpty(tip.id))
+            {
+                if (tip.hideDescription == null)
+                {
+                    tip.hideDescription = GR.Animator.Config.HideTipDescription(tip.id);
+                }
+
+                if (!inHand && alt && Gdx.input.isKeyJustPressed(Input.Keys.NUM_1 + i))
+                {
+                    GR.Animator.Config.HideTipDescription(tip.id, (tip.hideDescription ^= true), true);
+                }
+            }
+
+            if (tip.hideDescription == null)
+            {
+                tip.hideDescription = false;
             }
         }
 
@@ -126,7 +156,23 @@ public class EYBCardTooltip
             }
 
             y = card.current_y - BOX_EDGE_H;
-            if (tooltips.size() > 3 && card.current_y < Settings.HEIGHT * 0.5f && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.CARD_REWARD)
+            float size = 0;
+            for (EYBCardTooltip tip : tooltips)
+            {
+                if (tip.hideDescription || StringUtils.isEmpty(tip.description))
+                {
+                    if (!inHand)
+                    {
+                        size += 0.2f;
+                    }
+                }
+                else
+                {
+                    size += 1f;
+                }
+            }
+
+            if (size > 3f && card.current_y < Settings.HEIGHT * 0.5f && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.CARD_REWARD)
             {
                 float steps = (tooltips.size() - 3) * 0.4f;
                 float multi = 1f - (card.current_y / (Settings.HEIGHT * 0.5f));
@@ -139,9 +185,15 @@ public class EYBCardTooltip
             }
         }
 
-        for (EYBCardTooltip tooltip : tooltips)
+        for (int i = 0; i < tooltips.size(); i++)
         {
-            y -= tooltip.Render(sb, x, y) + BOX_EDGE_H * 3.15f;
+            EYBCardTooltip tip = tooltips.get(i);
+            if (inHand && (tip.hideDescription || StringUtils.isEmpty(tip.description)))
+            {
+                continue;
+            }
+
+            y -= tip.Render(sb, x, y, i) + BOX_EDGE_H * 3.15f;
         }
 
         EYBCardPreview preview = card.GetCardPreview();
@@ -159,15 +211,15 @@ public class EYBCardTooltip
             }
 
             EYBFontHelper.CardTooltipFont.getData().setScale(0.9f);
-            translationTooltip.Render(sb,Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.9f);
+            translationTooltip.Render(sb,Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.9f, -1);
             RenderHelpers.ResetFont(EYBFontHelper.CardTooltipFont);
         }
     }
 
-    public float Render(SpriteBatch sb, float x, float y)
+    public float Render(SpriteBatch sb, float x, float y, int index)
     {
         final float textHeight = FontHelper.getSmartHeight(EYBFontHelper.CardTooltipFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING);
-        final float h = StringUtils.isEmpty(description) ? (- 40f * Settings.scale) : (- textHeight - 7f * Settings.scale);
+        final float h = (hideDescription || StringUtils.isEmpty(description)) ? (- 40f * Settings.scale) : (- textHeight - 7f * Settings.scale);
 
         sb.setColor(Settings.TOP_PANEL_SHADOW_COLOR);
         sb.draw(ImageMaster.KEYWORD_TOP, x + SHADOW_DIST_X, y - SHADOW_DIST_Y, BOX_W, BOX_EDGE_H);
@@ -189,7 +241,18 @@ public class EYBCardTooltip
             FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
         }
 
-        RenderHelpers.WriteSmartText(sb, EYBFontHelper.CardTooltipFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
+        if (!StringUtils.isEmpty(description))
+        {
+            if (StringUtils.isNotEmpty(id) && !inHand && index >= 0)
+            {
+                FontHelper.renderFontRightTopAligned(sb, EYBFontHelper.CardTooltipFont, "Alt+" + (index + 1), x + BODY_TEXT_WIDTH * 1.07f, y + HEADER_OFFSET_Y * 1.33f, Settings.PURPLE_COLOR);
+            }
+
+            if (!hideDescription)
+            {
+                RenderHelpers.WriteSmartText(sb, EYBFontHelper.CardTooltipFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
+            }
+        }
 
         return h;
     }
@@ -242,9 +305,9 @@ public class EYBCardTooltip
     {
         sb.setColor(Color.WHITE);
         sb.draw(region.getTexture(), x, y, 0f, 0f,
-        width, height, Settings.scale, Settings.scale, 0f,
-        region.getRegionX(), region.getRegionY(), region.getRegionWidth(),
-        region.getRegionHeight(), false, false);
+                width, height, Settings.scale, Settings.scale, 0f,
+                region.getRegionX(), region.getRegionY(), region.getRegionWidth(),
+                region.getRegionHeight(), false, false);
     }
 
     public String GetTitleOrIcon()

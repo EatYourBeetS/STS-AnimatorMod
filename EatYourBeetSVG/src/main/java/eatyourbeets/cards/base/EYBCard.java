@@ -43,9 +43,9 @@ public abstract class EYBCard extends EYBCardBase
     public final ArrayList<EYBCardTooltip> tooltips;
     public EYBCardTarget attackTarget = EYBCardTarget.Normal;
     public EYBAttackType attackType = EYBAttackType.Normal;
-    public float forceScaling = 0;
-    public float intellectScaling = 0;
-    public float agilityScaling = 0;
+    public int forceScaling = 0;
+    public int intellectScaling = 0;
+    public int agilityScaling = 0;
 
     public abstract ColoredString GetBottomText();
     public abstract ColoredString GetHeaderText();
@@ -577,7 +577,7 @@ public abstract class EYBCard extends EYBCardBase
 
     protected void Initialize(int damage, int block)
     {
-        Initialize(damage, block, -1, 0);
+        Initialize(damage, block, 0, 0);
     }
 
     protected void Initialize(int damage, int block, int magicNumber)
@@ -593,7 +593,7 @@ public abstract class EYBCard extends EYBCardBase
         this.baseSecondaryValue = this.secondaryValue = secondaryValue;
     }
 
-    protected void SetScaling(float intellect, float agility, float force)
+    protected void SetScaling(int intellect, int agility, int force)
     {
         this.intellectScaling = intellect;
         this.agilityScaling = agility;
@@ -702,21 +702,32 @@ public abstract class EYBCard extends EYBCardBase
         }
 
         tempBlock = ModifyBlock(enemy, tempBlock);
+
+        for (AbstractPower p : player.powers)
+        {
+            tempBlock = p.modifyBlockLast(tempBlock);
+        }
+
         tempDamage = ModifyDamage(enemy, tempDamage);
 
         if (applyEnemyPowers)
         {
-            if (attackType == EYBAttackType.Elemental && enemy.currentBlock > 0)
+            if (attackType == EYBAttackType.Elemental)
             {
-                tempDamage *= 1.3f;
+                if (enemy.currentBlock > 0)
+                {
+                    tempDamage *= 1.3f;
+                }
             }
-            else if (attackType == EYBAttackType.Ranged && (enemy.hasPower(FlightPower.POWER_ID) || enemy.hasPower(PlayerFlightPower.POWER_ID)))
+            else if (attackType == EYBAttackType.Ranged)
             {
+                boolean hasFlight = false;
                 for (AbstractPower power : enemy.powers)
                 {
-                    if (FlightPower.POWER_ID.equals(power.ID) || PlayerFlightPower.POWER_ID.equals(power.ID))
+                    if (!hasFlight && (FlightPower.POWER_ID.equals(power.ID) || PlayerFlightPower.POWER_ID.equals(power.ID)))
                     {
                         tempDamage *= 2f;
+                        hasFlight = true;
                     }
                     else if (LockOnPower.POWER_ID.equals(power.ID))
                     {

@@ -1,115 +1,117 @@
 package eatyourbeets.resources.animator;
 
 import basemod.BaseMod;
-import basemod.ModLabeledToggleButton;
 import basemod.ModPanel;
-import basemod.ModToggleButton;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.helpers.SaveHelper;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.powers.monsters.DarkCubePower;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.ConfigOption_Boolean;
+import eatyourbeets.utilities.JUtils;
 
 import java.io.IOException;
-import java.util.function.Consumer;
+import java.util.Collections;
+import java.util.HashSet;
 
 public class AnimatorConfig
 {
     private static final String TROPHY_DATA_KEY = "TDAL";
-    private static final String CROP_CARD_PORTRAIT_KEY =  "TheAnimator-UseCroppedPortrait";
+    private static final String CROP_CARD_PORTRAIT =  "TheAnimator-UseCroppedPortrait";
     private static final String DISPLAY_BETA_SERIES =  "TheAnimator-DisplayBetaSeries";
     private static final String FADE_CARDS_WITHOUT_SYNERGY =  "TheAnimator-FadeNonSynergicCards";
+    private static final String HIDE_TIP_DESCRIPTION =  "TheAnimator-HideTipDescription";
+    private static final String HIDE_BLOCK_DAMAGE_BACKGROUND =  "TheAnimator-HideBlockDamageBackground";
 
     private SpireConfig config;
-    private Boolean cropCardImages = null;
-    private Boolean displayBetaSeries = null;
-    private Boolean fadeCardsWithoutSynergy = null;
+    private HashSet<String> tips = null;
 
-    public boolean CropCardImages()
+    public ConfigOption_Boolean SimplifyCardUI;
+    public ConfigOption_Boolean CropCardImages;
+    public ConfigOption_Boolean DisplayBetaSeries;
+    public ConfigOption_Boolean FadeCardsWithoutSynergy;
+
+    protected void Initialize()
     {
-        if (cropCardImages == null)
+        try
         {
-            if (config.has(CROP_CARD_PORTRAIT_KEY))
+            config = new SpireConfig("TheAnimator", "TheAnimatorConfig");
+
+            SimplifyCardUI = new ConfigOption_Boolean(config, HIDE_BLOCK_DAMAGE_BACKGROUND, true);
+            FadeCardsWithoutSynergy = new ConfigOption_Boolean(config, FADE_CARDS_WITHOUT_SYNERGY, true);
+            DisplayBetaSeries = new ConfigOption_Boolean(config, DISPLAY_BETA_SERIES, false);
+            CropCardImages = new ConfigOption_Boolean(config, CROP_CARD_PORTRAIT, true);
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected void InitializeOptions()
+    {
+        final ModPanel panel = new ModPanel();
+        final AnimatorStrings.Misc misc = GR.Animator.Strings.Misc;
+
+        FadeCardsWithoutSynergy.AddToPanel(panel, misc.FadeCardsWithoutSynergy, 400, 700);
+        CropCardImages.AddToPanel(panel, misc.UseCardHoveringAnimation, 400, 650);
+        SimplifyCardUI.AddToPanel(panel, misc.SimplifyCardUI, 400, 600);
+
+        if (GR.Animator.Data.BetaLoadouts.size() > 0)
+        {
+            DisplayBetaSeries.AddToPanel(panel, misc.DisplayBetaSeries, 400, 550);
+        }
+        else
+        {
+            DisplayBetaSeries.Set(false, false);
+        }
+
+        BaseMod.registerModBadge(GR.GetTexture(GR.GetPowerImage(DarkCubePower.POWER_ID)), AnimatorCharacter.NAME, "EatYourBeetS", "", panel);
+    }
+
+    public boolean HideTipDescription(String id)
+    {
+        if (tips == null)
+        {
+            tips = new HashSet<>();
+
+            if (config.has(HIDE_TIP_DESCRIPTION))
             {
-                cropCardImages = config.getBool(CROP_CARD_PORTRAIT_KEY);
-            }
-            else
-            {
-                cropCardImages = true; // Default value
+                Collections.addAll(tips, config.getString(HIDE_TIP_DESCRIPTION).split("\\|"));
             }
         }
 
-        return cropCardImages;
+        return tips.contains(id);
     }
 
-    public void CropCardImages(boolean value, boolean flush)
+    public void HideTipDescription(String id, boolean value, boolean flush)
     {
-        config.setBool(CROP_CARD_PORTRAIT_KEY, cropCardImages = value);
+        if (tips == null)
+        {
+            tips = new HashSet<>();
+        }
+
+        if (value)
+        {
+            if (id != null)
+            {
+                tips.add(id);
+            }
+        }
+        else
+        {
+            tips.remove(id);
+        }
+
+        config.setString(HIDE_TIP_DESCRIPTION, JUtils.JoinStrings("|", tips));
 
         if (flush)
         {
             Save();
         }
     }
-
-    public boolean DisplayBetaSeries()
-    {
-        if (displayBetaSeries == null)
-        {
-            if (config.has(DISPLAY_BETA_SERIES))
-            {
-                displayBetaSeries = config.getBool(DISPLAY_BETA_SERIES);
-            }
-            else
-            {
-                displayBetaSeries = false; // Default value
-            }
-        }
-
-        return displayBetaSeries;
-    }
-
-    public void DisplayBetaSeries(boolean value, boolean flush)
-    {
-        config.setBool(DISPLAY_BETA_SERIES, displayBetaSeries = value);
-
-        if (flush)
-        {
-            Save();
-        }
-    }
-
-    public boolean FadeCardsWithoutSynergy()
-    {
-        if (fadeCardsWithoutSynergy == null)
-        {
-            if (config.has(FADE_CARDS_WITHOUT_SYNERGY))
-            {
-                fadeCardsWithoutSynergy = config.getBool(FADE_CARDS_WITHOUT_SYNERGY);
-            }
-            else
-            {
-                fadeCardsWithoutSynergy = true; // Default value
-            }
-        }
-
-        return fadeCardsWithoutSynergy;
-    }
-
-    public void FadeCardsWithoutSynergy(boolean value, boolean flush)
-    {
-        config.setBool(FADE_CARDS_WITHOUT_SYNERGY, fadeCardsWithoutSynergy = value);
-
-        if (flush)
-        {
-            Save();
-        }
-    }
-
 
     public String TrophyString()
     {
@@ -166,46 +168,5 @@ public class AnimatorConfig
             e.printStackTrace();
             return false;
         }
-    }
-
-    protected void Initialize()
-    {
-        try
-        {
-            config = new SpireConfig("TheAnimator", "TheAnimatorConfig");
-
-            if (config.has(CROP_CARD_PORTRAIT_KEY))
-            {
-                cropCardImages = config.getBool(CROP_CARD_PORTRAIT_KEY);
-            }
-        }
-        catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
-
-    protected void InitializeOptions()
-    {
-        ModPanel settingsPanel = new ModPanel();
-        AnimatorStrings.Misc misc = GR.Animator.Strings.Misc;
-        AddToggle(settingsPanel, misc.FadeCardsWithoutSynergy, 400, 700, CropCardImages(), c -> CropCardImages(c.enabled, true));
-        AddToggle(settingsPanel, misc.UseCardHoveringAnimation, 400, 650, CropCardImages(), c -> CropCardImages(c.enabled, true));
-
-        if (GR.Animator.Data.BetaLoadouts.size() > 0)
-        {
-            AddToggle(settingsPanel, misc.DisplayBetaSeries, 400, 600, DisplayBetaSeries(), c -> DisplayBetaSeries(c.enabled, true));
-        }
-        else
-        {
-            DisplayBetaSeries(false, false);
-        }
-
-        BaseMod.registerModBadge(GR.GetTexture(GR.GetPowerImage(DarkCubePower.POWER_ID)), AnimatorCharacter.NAME, "EatYourBeetS", "", settingsPanel);
-    }
-
-    protected void AddToggle(ModPanel settingsPanel, String label, float x, float y, boolean initialValue, Consumer<ModToggleButton> onToggle)
-    {
-        settingsPanel.addUIElement(new ModLabeledToggleButton(label, x, y, Settings.CREAM_COLOR.cpy(), FontHelper.charDescFont, initialValue, settingsPanel, __ -> { }, onToggle));
     }
 }

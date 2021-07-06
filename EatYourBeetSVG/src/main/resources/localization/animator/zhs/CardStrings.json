@@ -57,6 +57,11 @@
 			"DESCRIPTION": "",
 			"NAME": "改良防御"
 		},
+		"animator:Defend_LogHorizon":
+		{
+			"DESCRIPTION": "与 {法师} {同调} 。",
+			"NAME": "改良防御"
+		},
 		"animator:Defend_NoGameNoLife":
 		{
 			"DESCRIPTION": "{~保留} 最左侧的 ** 可打出的牌。",
@@ -135,6 +140,11 @@
 		"animator:Strike_Konosuba":
 		{
 			"DESCRIPTION": "",
+			"NAME": "改良打击"
+		},
+		"animator:Strike_LogHorizon":
+		{
+			"DESCRIPTION": "与 {武师} {同调} 。",
 			"NAME": "改良打击"
 		},
 		"animator:Strike_NoGameNoLife":
@@ -371,12 +381,7 @@
 		"animator:Elesis":
 		{
 			"DESCRIPTION": "战斗开始时，从 3 种 ** {形态} 选择 1 种， ** 永久切换为该 {形态} 。",
-			"EXTENDED_DESCRIPTION":
-			[
-				"使用你剩余的 [E] ： ** 获得等量的 [F] 和 [A] 。 || 被抽到或丢弃时： ** 这张牌被打出之前， ** 伤害增加 !M! 。",
-				"给予层数等同于敌人 ** {负面效果} 种数的 <燃烧> 。 || <SLM> 。 ** 同调 或被丢弃时： ** 抽 1 张牌。",
-				"给予 1 层 <易伤> 。 || 战斗开始时： ** 失去 !M! 点生命。"
-			],
+			"EXTENDED_DESCRIPTION":	[ "使用你剩余的 [E] ： ** 获得等量的 [F] 和 [A] 。 || 被抽到或丢弃时： ** 这张牌被打出之前， ** 伤害增加 !M! 。", "给予层数等同于敌人 ** {负面效果} 种数的 <燃烧> 。 || <SLM> 。 ** 同调 或被丢弃时： ** 抽 1 张牌。", "给予 1 层 <易伤> 。 || 战斗开始时： ** 失去 !M! 点生命。" ],
 			"NAME": "艾丽希斯",
 			"UPGRADE_DESCRIPTION": "战斗开始时，从 3 种 ** 已 升级 的 {形态} 选择 1 种， ** 永久切换为该 {形态} 。"
 		},
@@ -400,7 +405,7 @@
 		},
 		"animator:Lu":
 		{
-			"DESCRIPTION": "生成 1 个 <冰霜> 和 <黑暗> 。 || 被抽到时：如果不在 ** 任何姿态，进入 <FS> 。",
+			"DESCRIPTION": "生成 1 个 <冰霜> 和 <黑暗> 。 || 被抽到时不在任何 ** 姿态 ： 进入 <FS> 。",
 			"NAME": "露"
 		},
 		"animator:Raven":
@@ -832,9 +837,9 @@
 		},
 		"animator:Mitsurugi":
 		{
-			"DESCRIPTION": "获得 [F] 。 只能对意图为 ** 攻击的敌人造成伤害。 || 被 消耗 时： 获得 !S! 点 <格挡> 。",
+			"DESCRIPTION": "获得 [F] 。 只能对意图是 ** 攻击的敌人造成伤害。 || 被 消耗 时： 获得 !S! 点 <格挡> 。",
 			"NAME": "御剑响夜",
-			"UPGRADE_DESCRIPTION": "增强 [F] 。 只能对意图为 ** 攻击的敌人造成伤害。 || 被 消耗 时： 获得 !S! 点 <格挡> 。"
+			"UPGRADE_DESCRIPTION": "增强 [F] 。 只能对意图是 ** 攻击的敌人造成伤害。 || 被 消耗 时： 获得 !S! 点 <格挡> 。"
 		},
 		"animator:Vanir":
 		{
@@ -855,6 +860,121 @@
 		{
 			"DESCRIPTION": "手牌每另有一张 {攻击牌} ： ** 这张牌的耗能增加 1 。 || <LIM> 。 被抽到时： ** 生成 1 个 <闪电> 。",
 			"NAME": "悠悠"
+		}
+	},
+
+	"SERIES:LOGHORIZON":
+	{
+		"animator:Akatsuki":
+		{
+			"DESCRIPTION": "如果敌人意图不是攻击： ** 额外造成 !S! 点伤害。 || <SLM> 。 被抽到时： ** 将这张牌复制 !M! 张， ** 复制品耗能和伤害均为0， ** 且具有 {虚无} 和 {抹除} 。",
+			"NAME": "晓"
+		},
+		"animator:Henrietta":
+		{
+			"DESCRIPTION": "任何 {姿态} ：获得 [E] 。 || 每回合结束时， ** 使用你 !S! 点剩余的 [E] ： ** 进入任意 {姿态} 。",
+			"EXTENDED_DESCRIPTION": ["你的回合结束时，消耗 #b1 点剩余能量以进入任意 #y姿态 。"],
+			"NAME": "荷丽艾塔"
+		},
+		"animator:IsuzuTonan":
+		{
+			"DESCRIPTION": "接下来 !M! 个回合： ** 每当一张 {攻击牌} {同调} ， ** 从抽牌堆随机打出一张 ** 耗能更低的 {攻击牌} 。",
+			"EXTENDED_DESCRIPTION": ["每当一张 #y攻击牌 #y同调： 从抽牌堆随机打出一张耗能更低的 #y攻击牌。 效果持续 #b{0} 回合。"],
+			"NAME": "五十铃"
+		},
+		"animator:Kanami":
+		{
+			"DESCRIPTION": "给予所有敌人 !M! 层 <易伤> 。 ** 将这张牌洗入抽牌堆。 || 冷却 !S! ： ** 改变这张牌的形态。",
+			"NAME": "加奈美"
+		},
+		"animator:KanamiAlt":
+		{
+			"DESCRIPTION": "对 {精英} 造成双倍伤害。 ** 对 {Boss} 造成三倍伤害。 || 如果目标敌人有 <易伤> ： ** 获得 [F] [A] 和 !M! 点 <格挡> 。",
+			"NAME": "加奈美"
+		},
+		"animator:Krusty":
+		{
+			"DESCRIPTION": "被抽到时 {自动打出} 。 || 这张牌每被打出一次： ** 从 [F] 多得到 ** !M! 倍的加成。",
+			"NAME": "克拉斯提"
+		},
+		"animator:Marielle":
+		{
+			"DESCRIPTION": "从抽牌堆 {激励} ** 每种类型各 1 张牌。 || 同调： ** 获得 !M! 点 <假命> 并 {抹除} 。",
+			"NAME": "玛莉艾儿"
+		},
+		"animator:HousakiMinori":
+		{
+			"DESCRIPTION": "冷却 !S! ： 获得 !M! 层 <魔甲> 。 || <SLM> 。 {同调} 或被丢弃时： ** 将这张牌洗入抽牌堆。",
+			"NAME": "实莉"
+		},
+		"animator:HousakiTohya":
+		{
+			"DESCRIPTION": "给予 !M! 层 <易伤> 。 || 从抽牌堆抽 1 张 {实莉} 。 || <TM-S> ： 获得 [E] 。",
+			"NAME": "冬弥"
+		},
+		"animator:Naotsugu":
+		{
+			"DESCRIPTION": "以有 <格挡> 值且低于 ** 这张牌造成的未被 格挡 的 ** 伤害为限，从手牌打出： ** <格挡> 值最低的牌。 ** <FS> ：改为所有牌。",
+			"NAME": "直继"
+		},
+		"animator:Nyanta":
+		{
+			"DESCRIPTION": "获得 [A] 。 每次攻击 ** 给予随机 {普通负面效果} 。 || 任何 {姿态} ： ** 额外攻击一次。",
+			"NAME": "喵太",
+			"UPGRADE_DESCRIPTION": "增强 [A] 。 每次攻击 ** 给予随机 {普通负面效果} 。 || 任何 {姿态} ： ** 额外攻击一次。"
+		},
+		"animator:Rayneshia":
+		{
+			"DESCRIPTION": "<DRW-M> 。 ** 将 !M! 张手牌洗入抽牌堆。 || <LIM> 。 <TM-S> ： ** 从 3 张随机 {稀有} 牌 ** 选择 1 张增加到手牌。",
+			"NAME": "蕾妮希雅"
+		},
+		"animator:RundelhausCode":
+		{
+			"DESCRIPTION": "获得 [I] 。 ** !M! 张随机手牌从 [I] ** 多得到 2 倍的加成。 ** （此加成不叠加） || <TM-S> ： 选择 1 项： ** 生成 <火焰> ， <闪电> 或 <冰霜> 。",
+			"NAME": "伦迪浩斯·寇德"
+		},
+		"animator:Serara":
+		{
+			"DESCRIPTION": "如果有敌人意图是攻击： ** 获得 [F] ，一张随机手牌 ** 从 [F] 多得到 2 倍的加成。 ** （此加成不叠加）",
+			"NAME": "瑟拉拉",
+			"UPGRADE_DESCRIPTION": "如果有敌人意图是攻击： ** 获得 [F] ，选择一张手牌 ** 从 [F] 多得到 2 倍的加成。 ** （此加成不叠加）"
+		},
+		"animator:Shiroe":
+		{
+			"DESCRIPTION": "循环 !M! 张牌。 || 本回合所有牌具有 ** {协作} 3 ：给予所有敌人 ** !S! 层 <缠绕>。",
+			"EXTENDED_DESCRIPTION": ["所有牌具有 #y协作 3：给予所有敌人 #b{0} 层 #y缠绕 。"],
+			"NAME": "城惠"
+		},
+		"animator:Soujiro":
+		{
+			"DESCRIPTION": "{协作} X： ** 额外造成 !M! X 点伤害。 || 被抽到时： 从 4 张牌 ** 选择 1 张增加到手牌。 ** （每张每场战斗限一次）",
+			"NAME": "宗次郎"
+		},
+		"animator:Soujiro_Isami":
+		{
+			"DESCRIPTION": "<ST> ： 增强 [A] 。",
+			"NAME": "勇海"
+		},
+		"animator:Soujiro_Kawara":
+		{
+			"DESCRIPTION": "如果敌人意图是攻击： ** 额外获得 !M! 点 <格挡> 。",
+			"NAME": "华和良"
+		},
+		"animator:Soujiro_Hisako":
+		{
+			"DESCRIPTION": "激发 你最右侧的 充能球 ： ** 增强 [I] 。",
+			"NAME": "寿子"
+		},
+		"animator:Soujiro_Nazuna":
+		{
+			"DESCRIPTION": "下一回合少抽 1 张牌。",
+			"NAME": "荠"
+		},
+		"animator:Tetora":
+		{
+			"DESCRIPTION": "与 {高费牌} {同调} 。 ** 只有达到 <TM-S> 才能打出。 || 你每 {同调} 3 次： ** 随机获得 [F] ， [A] 或 [I] 。",
+			"EXTENDED_DESCRIPTION": ["你每 #y同调 3 次，随机获得 #y武力 ， #y机敏 或 #y智力 #b{0} 次。"],
+			"NAME": "特托拉"
 		}
 	},
 
@@ -1059,7 +1179,7 @@
 		},
 		"animator:SilverFang":
 		{
-			"DESCRIPTION": "<AS> ：使 [A] 在一张 ** 随机 {攻击牌} 上发挥 ** 额外 1 倍的效果。 || 同调 ：进入 <AS> 。",
+			"DESCRIPTION": "<AS> ：手牌一张随机 ** {攻击牌} 从 [A] 多得到 ** 1 倍的加成。 || 同调 ：进入 <AS> 。",
 			"NAME": "邦古"
 		},
 		"animator:Sonic":
@@ -1069,7 +1189,7 @@
 		},
 		"animator:Tatsumaki":
 		{
-			"DESCRIPTION": "生成 1 个 <空气> 。 || <IS> ：获得 1 个充能球栏位。 || <SLM> 。如果不在任何 ** 姿态 ：进入 <IS> 。 ** 否则：退出当前 姿态 。",
+			"DESCRIPTION": "生成 1 个 <空气> 。 || <IS> ：获得 1 个充能球栏位。 || <SLM> 。不在任何 姿态 ： ** 进入 <IS> 。 ** 否则：退出当前 姿态 。",
 			"NAME": "战栗的龙卷"
 		}
 	},
@@ -1120,7 +1240,7 @@
 		},
 		"animator:Sebas":
 		{
-			"DESCRIPTION": "对所有意图为攻击 ** 的敌人造成你当前 ** <格挡> 值的伤害。 || 被丢弃时： ** 获得 !M! 点 <假命> 。",
+			"DESCRIPTION": "对所有意图是攻击 ** 的敌人造成你当前 ** <格挡> 值的伤害。 || 被丢弃时： ** 获得 !M! 点 <假命> 。",
 			"NAME": "塞巴斯"
 		},
 		"animator:Shalltear":
@@ -1251,20 +1371,20 @@
 	"AURAS":
     {
         "animator:Aura1":
-        {
-            "NAME": "同调光环",
-            "DESCRIPTION": "每场战斗 第三个回合 ** 开始时： 回复等同于 ** 本场战斗 同调 次数的 ** 生命，最多 !M! 点。"
-        },
-        "animator:Aura2":
-        {
-            "NAME": "姿态光环",
-            "DESCRIPTION": "每场战斗 第三个回合 ** 开始时： 选择进入任意 ** 姿态。",
+		{
+			"NAME": "姿态光环",
+			"DESCRIPTION": "每场战斗 第三个回合 ** 开始时： 选择进入任意 ** 姿态。",
 			"UPGRADE_DESCRIPTION": "每场战斗 第三个回合 ** 开始时： 选择进入任意 ** 姿态， 并从抽牌堆 激励 ** 1 张牌。"
-        },
+		},
+        "animator:Aura2":
+		{
+			"NAME": "同调光环",
+			"DESCRIPTION": "每场战斗 第三个回合 ** 开始时： 回复等同于 ** 本场战斗 同调 次数的 ** 生命，最多 !M! 点。"
+		},
         "animator:Aura3":
         {
             "NAME": "进攻光环",
-            "DESCRIPTION": "每场战斗 第三个回合 ** 开始时： <DRW-M> 并 ** 给予随机一名敌人 ** 1 层 <易伤> ， 无视 <人工制品> 。"
+            "DESCRIPTION": "每场战斗 第三个回合 ** 开始时： <DRW-M> 并 ** 给予随机一名敌人 ** 1 层 <易伤> ， 无视 <人工> 。"
         }
     },
 
@@ -1512,7 +1632,7 @@
 		},
 		"animator:ShikizakiKiki":
 		{
-			"DESCRIPTION": "抽 !M! 张牌。 || 使 [F] 和 [A] 在手牌 ** 每张 {攻击牌} 上发挥 ** 额外 !S! 倍的效果。",
+			"DESCRIPTION": "抽 !M! 张牌。 || 手牌所有 {攻击牌} ** 从 [F] [A] 多得到 ** !S! 倍的加成。",
 			"NAME": "四季崎记纪"
 		},
 		"animator:SirTouchMe":

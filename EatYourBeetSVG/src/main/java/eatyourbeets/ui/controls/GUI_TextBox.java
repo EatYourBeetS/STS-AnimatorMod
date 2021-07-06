@@ -21,6 +21,13 @@ public class GUI_TextBox extends GUIElement
         this.hb = hb;
     }
 
+    public GUI_TextBox SetText(Object value)
+    {
+        this.label.SetText(String.valueOf(value));
+
+        return this;
+    }
+
     public GUI_TextBox SetText(String text)
     {
         this.label.SetText(text);

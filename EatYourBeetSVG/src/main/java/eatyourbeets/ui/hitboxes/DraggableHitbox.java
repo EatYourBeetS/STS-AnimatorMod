@@ -1,7 +1,6 @@
-package eatyourbeets.ui;
+package eatyourbeets.ui.hitboxes;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
@@ -9,53 +8,42 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 
-public class AdvancedHitbox extends Hitbox
+public class DraggableHitbox extends AdvancedHitbox
 {
     protected Vector2 dragStart = null;
 
-    public float target_cX;
-    public float target_cY;
     public boolean canDrag;
 
-    public AdvancedHitbox(Hitbox hb)
+    public DraggableHitbox(Hitbox hb)
     {
-        this(hb.x, hb.y, hb.width, hb.height);
+        this(hb.x, hb.y, hb.width, hb.height, true);
     }
 
-    public AdvancedHitbox(float width, float height)
+    public DraggableHitbox(float width, float height)
     {
-        this(-9999, -9999, width, height);
+        this(-9999, -9999, width, height, true);
     }
 
-    public AdvancedHitbox(Hitbox hb, float width, float height)
+    public DraggableHitbox(Hitbox hb, float width, float height)
     {
-        this(hb.x, hb.y, width, height);
+        this(hb.x, hb.y, width, height, true);
     }
 
-    public AdvancedHitbox(float x, float y, float width, float height)
+    public DraggableHitbox(float x, float y, float width, float height)
     {
-        this(x, y, width, height, false);
+        this(x, y, width, height, true);
     }
 
-    public AdvancedHitbox(float x, float y, float width, float height, boolean canDrag)
+    public DraggableHitbox(float x, float y, float width, float height, boolean canDrag)
     {
         super(x, y, width, height);
 
-        this.target_cX = cX;
-        this.target_cY = cY;
         this.canDrag = canDrag;
     }
 
-    public AdvancedHitbox SetPosition(float cX, float cY)
+    public DraggableHitbox SetPosition(float cX, float cY)
     {
         move(cX, cY);
-
-        return this;
-    }
-
-    public AdvancedHitbox SetDraggable(boolean draggable)
-    {
-        this.canDrag = draggable;
 
         return this;
     }
@@ -64,11 +52,6 @@ public class AdvancedHitbox extends Hitbox
     public void update()
     {
         super.update();
-
-        if (cX != target_cX || cY != target_cY)
-        {
-            moveInternal(Lerp(cX, target_cX), Lerp(cY, target_cY));
-        }
 
         if (canDrag)
         {
@@ -118,54 +101,6 @@ public class AdvancedHitbox extends Hitbox
             }
 
             dragStart = null;
-        }
-    }
-
-    @Override
-    public void translate(float x, float y)
-    {
-        this.x = x;
-        this.y = y;
-        this.target_cX = this.cX = x + this.width / 2f;
-        this.target_cY = this.cY = y + this.height / 2f;
-    }
-
-    @Override
-    public void resize(float w, float h)
-    {
-        this.width = w;
-        this.height = h;
-        this.target_cX = this.cX = x + this.width / 2f;
-        this.target_cY = this.cY = y + this.height / 2f;
-    }
-
-    @Override
-    public void move(float cX, float cY)
-    {
-        this.target_cX = this.cX = cX;
-        this.target_cY = this.cY = cY;
-        this.x = cX - this.width / 2f;
-        this.y = cY - this.height / 2f;
-    }
-
-    protected void moveInternal(float cX, float cY)
-    {
-        this.cX = cX;
-        this.cY = cY;
-        this.x = cX - this.width / 2f;
-        this.y = cY - this.height / 2f;
-    }
-
-    private float Lerp(float current, float target)
-    {
-        float lerp = MathUtils.lerp(current, target, Gdx.graphics.getDeltaTime() * 9f);
-        if (Math.abs(current - target) < Settings.UI_SNAP_THRESHOLD)
-        {
-            return target;
-        }
-        else
-        {
-            return lerp;
         }
     }
 }

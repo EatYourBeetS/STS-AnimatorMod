@@ -76,7 +76,7 @@ public class AnimatorStrings
 
         public final String SynergyName(int synergyID)
         {
-            return Strings.TEXT[synergyID];
+            return Strings.TEXT.length > synergyID ? Strings.TEXT[synergyID] : null;
         }
     }
 
@@ -96,11 +96,7 @@ public class AnimatorStrings
         public final String DisplayBetaSeries = Strings.TEXT[9];
         public final String LocalizationHelpHeader = Strings.TEXT[10];
         public final String FadeCardsWithoutSynergy = Strings.TEXT[11];
-
-        public final String SynergyName(int synergyID)
-        {
-            return Strings.TEXT[synergyID];
-        }
+        public final String SimplifyCardUI = Strings.TEXT[12];
     }
 
     public class CharacterSelect

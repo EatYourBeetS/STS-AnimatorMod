@@ -1,5 +1,6 @@
 package eatyourbeets.ui.controls;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,8 +12,8 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.interfaces.delegates.ActionT0;
-import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.GUIElement;
+import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.RenderHelpers;
 import org.apache.commons.lang3.StringUtils;
 
@@ -22,18 +23,20 @@ public class GUI_Button extends GUIElement
     public GUI_Image background;
     public GUI_Image border;
 
+    public float clickDelay = 0f;
     public float targetAlpha = 1f;
     public float currentAlpha = 1f;
     public boolean interactable;
     public String text;
 
+    protected float currentClickDelay = 0f;
     protected Color textColor = Color.WHITE.cpy();
     protected Color buttonColor = Color.WHITE.cpy();
     protected ActionT0 onClick;
 
     public GUI_Button(Texture buttonTexture, float x, float y)
     {
-        this(buttonTexture, new AdvancedHitbox(x, y, Scale(buttonTexture.getWidth()), Scale(buttonTexture.getHeight()), false));
+        this(buttonTexture, new AdvancedHitbox(x, y, Scale(buttonTexture.getWidth()), Scale(buttonTexture.getHeight())));
     }
 
     public GUI_Button(Texture buttonTexture, Hitbox hitbox)
@@ -86,6 +89,13 @@ public class GUI_Button extends GUIElement
         return this;
     }
 
+    public GUI_Button SetClickDelay(float delay)
+    {
+        this.clickDelay = delay;
+
+        return this;
+    }
+
     public GUI_Button SetOnClick(ActionT0 onClick)
     {
         this.onClick = onClick;
@@ -111,6 +121,12 @@ public class GUI_Button extends GUIElement
     public void Update()
     {
         this.currentAlpha = MathHelper.fadeLerpSnap(currentAlpha, targetAlpha);
+
+        if (currentClickDelay > 0)
+        {
+            this.currentClickDelay -= Gdx.graphics.getRawDeltaTime();
+            return;
+        }
 
         if (currentAlpha > 0)
         {
@@ -194,6 +210,7 @@ public class GUI_Button extends GUIElement
     protected void OnClick()
     {
         this.hb.clicked = false;
+        this.currentClickDelay = clickDelay;
 
         if (interactable && onClick != null)
         {

@@ -20,7 +20,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.AbstractScreen;
-import eatyourbeets.ui.AdvancedHitbox;
+import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.ui.controls.*;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.GameEffects;
@@ -187,7 +187,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
             TotalCardsChanged(totalCardsCache);
         }
 
-        toggleBeta.SetToggle(GR.Animator.Config.DisplayBetaSeries()).TryUpdate();
+        toggleBeta.SetToggle(GR.Animator.Config.DisplayBetaSeries.Get()).TryUpdate();
 
         purgingStoneImage.TryUpdate();
 
@@ -331,7 +331,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
             }
         }
 
-        GR.Animator.Config.DisplayBetaSeries(value, true);
+        GR.Animator.Config.DisplayBetaSeries.Set(value, true);
         UpdateStartingDeckText();
     }
 
@@ -350,7 +350,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
     protected void TotalCardsChanged(int totalCards)
     {
-        selectionAmount.SetText(totalCards + " cards selected.");
+        selectionAmount.SetText(totalCards + " total cards.");
         purgingStoneImage.SetActive(totalCards >= 100);
 
         if (totalCards >= 75)
@@ -368,7 +368,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     protected void UpdateStartingDeckText()
     {
         String text = "Starting Series: NL #y" + GR.Animator.Data.SelectedLoadout.Name.replace(" ", " #y");
-        if (GR.Animator.Config.DisplayBetaSeries() && GR.Animator.Data.BetaLoadouts.size() > 0)
+        if (GR.Animator.Config.DisplayBetaSeries.Get() && GR.Animator.Data.BetaLoadouts.size() > 0)
         {
             text += " NL Beta: Ascension and NL Trophies disabled.";
         }

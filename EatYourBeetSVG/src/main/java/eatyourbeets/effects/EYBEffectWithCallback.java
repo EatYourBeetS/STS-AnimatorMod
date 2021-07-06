@@ -16,14 +16,14 @@ public abstract class EYBEffectWithCallback<T> extends EYBEffect
         super();
     }
 
-    public EYBEffectWithCallback(int amount)
-    {
-        super();
-    }
-
-    public EYBEffectWithCallback(int amount, float duration)
+    public EYBEffectWithCallback(float duration)
     {
         super(duration);
+    }
+
+    public EYBEffectWithCallback(float duration, boolean isRealtime)
+    {
+        super(duration, isRealtime);
     }
 
     public <S> EYBEffectWithCallback<T> AddCallback(S state, ActionT2<S, T> onCompletion)

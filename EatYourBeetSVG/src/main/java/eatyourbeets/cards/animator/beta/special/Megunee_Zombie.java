@@ -33,7 +33,7 @@ public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDra
         SetAutoplay(true);
         SetMultiDamage(true);
 
-        SetSynergy(Synergies.Gakkougurashi);
+        SetSynergy(Synergies.GakkouGurashi);
     }
 
     @Override

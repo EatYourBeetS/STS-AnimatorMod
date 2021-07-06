@@ -13,9 +13,12 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RenderHelpers;
 
+import java.util.ArrayList;
+
 public abstract class Aura extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber, OnBattleEndSubscriber
 {
     private static final Color RENDER_COLOR = new Color(0.8f, 0.8f, 0.8f, 1);
+    private static final ArrayList<Aura> cards = new ArrayList<>();
 
     protected AbstractBlight blight;
     protected int maxTurn;
@@ -23,6 +26,18 @@ public abstract class Aura extends AnimatorCard implements OnStartOfTurnPostDraw
     public static EYBCardData RegisterAura(Class<? extends AnimatorCard> type)
     {
         return Register(type).SetSkill(-2, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    }
+
+    public static ArrayList<Aura> GetCards()
+    {
+        if (cards.isEmpty())
+        {
+            cards.add(new Aura1());
+            cards.add(new Aura2());
+            cards.add(new Aura3());
+        }
+
+        return cards;
     }
 
     protected Aura(EYBCardData cardData)

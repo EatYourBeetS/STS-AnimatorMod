@@ -186,68 +186,52 @@ public class EYBCardText
         offset_y = 0;
         if (card.intellectScaling > 0)
         {
-            offset_y += RenderScaling(sb, ICONS.Intellect.Texture(), card.intellectScaling, offset_y);
+            offset_y += RenderScaling(sb, ICONS.Intellect.Texture(), (int)card.intellectScaling, offset_y, new Color(0.45f, 0.55f, 0.7f, 1f));
         }
         if (card.agilityScaling > 0)
         {
-            offset_y += RenderScaling(sb, ICONS.Agility.Texture(), card.agilityScaling, offset_y);
+            offset_y += RenderScaling(sb, ICONS.Agility.Texture(), (int)card.agilityScaling, offset_y, new Color(0.45f, 0.7f, 0.55f, 1f));
         }
         if (card.forceScaling > 0)
         {
             //noinspection UnusedAssignment
-            offset_y += RenderScaling(sb, ICONS.Force.Texture(), card.forceScaling, offset_y);
+            offset_y += RenderScaling(sb, ICONS.Force.Texture(), (int)card.forceScaling, offset_y, new Color(0.8f, 0.5f, 0.5f, 1f));
         }
     }
 
-    private float RenderScaling(SpriteBatch sb, Texture texture, float scaling, float y)
+    private float RenderScaling(SpriteBatch sb, Texture texture, int scaling, float y, Color backgroundColor)
     {
         final float offset_x = -AbstractCard.RAW_W * 0.46f;
-        final float offset_y = AbstractCard.RAW_H * 0.1f;//+0.28f;
+        final float offset_y = AbstractCard.RAW_H * 0.08f;//+0.28f;
         final BitmapFont font = EYBFontHelper.CardIconFont_Large;
 
-        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y), 36, 36);
+        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Circle.Texture(),
+                new Vector2(offset_x, offset_y + y),32, 32, backgroundColor, 1, 1);
+        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y), 24, 24);
 
         font.getData().setScale(0.6f * card.drawScale);
-        RenderHelpers.WriteOnCard(sb, card, font, "x" + (int) scaling, (offset_x + 6), (offset_y + y - 12), Settings.CREAM_COLOR, true);
+        RenderHelpers.WriteOnCard(sb, card, font, "x" + scaling, (offset_x + 6), (offset_y + y - 12), Settings.CREAM_COLOR, true);
         RenderHelpers.ResetFont(font);
 
-        return 36; // y offset
+        return 35; // y offset
     }
-
-    private void RenderAffinity(SpriteBatch sb, Texture texture, int index, int max, boolean bottom)
-    {
-        if (max > 3)
-        {
-            throw new ArrayIndexOutOfBoundsException("Can't render more than 3 affinities.");
-        }
-
-        float size = 42;
-        float x;
-        if (max == 1)
-        {
-            x = 0;
-        }
-        else if (max == 2)
-        {
-            x = (index == 0) ? -AbstractCard.RAW_W * 0.06f : +AbstractCard.RAW_W * 0.06f;
-        }
-        else
-        {
-            x = (index == 0) ? -AbstractCard.RAW_W * 0.12f : (index == 1) ? 0 : +AbstractCard.RAW_W * 0.12f;
-        }
-
-        final float y = bottom ? -AbstractCard.RAW_H * 0.47f : AbstractCard.RAW_H * 0.57f;
-
-        float transparency = card.transparency;
-        if (index == 0 || index == 2)
-        {
-            card.transparency *= 0.6f;
-            size = 48;
-        }
-        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(x, y), size, size);
-
-        card.transparency = transparency;
-    }
+//
+//    private float RenderScaling(SpriteBatch sb, Texture texture, int scaling, float y, Color backgroundColor)
+//    {
+//        final float offset_x = -AbstractCard.RAW_W * 0.46f;
+//        final float offset_y = AbstractCard.RAW_H * 0.08f;//+0.28f;
+//        final BitmapFont font = EYBFontHelper.CardIconFont_Large;
+//
+//        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Circle.Texture(), new Vector2(offset_x, offset_y + y), 36, 36, backgroundColor, 1, 1);
+//        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y), 28, 28);
+//
+//        font.getData().setScale(0.6f * card.drawScale);
+//        RenderHelpers.WriteOnCard(sb, card, font, "x" + scaling, (offset_x + 6), (offset_y + y - 12), Settings.CREAM_COLOR, true);
+//        //RenderHelpers.WriteOnCard(sb, card, font, "x" + (int) scaling, (offset_x + 6), (offset_y + y - 12), Settings.CREAM_COLOR, true);
+//        RenderHelpers.ResetFont(font);
+//
+//        return 38; // y offset
+//    }
 
     private float RenderBadge(SpriteBatch sb, Texture texture, float offset_y, float alpha, String text)
     {
@@ -261,7 +245,7 @@ public class EYBCardText
 
             offset = new Vector2(0.5f, 0.425f + offset_y);
             font.getData().setScale(0.5f * card.drawScale);
-            RenderHelpers.WriteOnCardAuto(sb, card, font, text, offset, Settings.CREAM_COLOR, true);
+            RenderHelpers.WriteOnCard(sb, card, font, text, offset.x, offset.y, Settings.CREAM_COLOR, true);
             RenderHelpers.ResetFont(font);
         }
 

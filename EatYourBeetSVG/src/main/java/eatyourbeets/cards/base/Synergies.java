@@ -92,7 +92,7 @@ public class Synergies
         }
     }
 
-    private static Synergy Add(int id, String name))
+    private static Synergy Add(int id, String name)
     {
         Synergy s = new Synergy(id, name, GR.Animator.Strings.Synergies.SynergyName(id));
         if (id > 0)

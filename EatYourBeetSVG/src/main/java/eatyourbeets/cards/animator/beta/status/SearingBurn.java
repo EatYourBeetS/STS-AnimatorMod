@@ -20,6 +20,7 @@ public class SearingBurn extends AnimatorCard_Status
 
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 2, 1);
+        SetEthereal(true);
     }
 
 

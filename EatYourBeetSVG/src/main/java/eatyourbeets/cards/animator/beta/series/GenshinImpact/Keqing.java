@@ -52,7 +52,7 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
         CombatStats.onStartOfTurnPostDraw.Subscribe(this);
         if (cost > 0)
         {
-            this.modifyCostForCombat(-1);
+            GameActions.Bottom.Motivate(this, 1);
         }
     }
 
@@ -90,7 +90,6 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
         {
             if (turns <= 0)
             {
-                GameEffects.Queue.ShowCardBriefly(this);
                 GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
                         .ShowEffect(false, false);
                 CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);

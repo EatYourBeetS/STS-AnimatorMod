@@ -12,6 +12,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class HuTao extends AnimatorCard {
     public static final EYBCardData DATA = Register(HuTao.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing);
@@ -23,7 +24,7 @@ public class HuTao extends AnimatorCard {
     public HuTao() {
         super(DATA);
 
-        Initialize(9, 0, 3, 2);
+        Initialize(10, 0, 3, 2);
         SetUpgrade(3, 0, 1, 0);
         SetScaling(0, 0, 1);
 
@@ -50,8 +51,8 @@ public class HuTao extends AnimatorCard {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
 
         GameActions.Bottom.SelectFromPile(name, magicNumber, p.drawPile, p.hand, p.discardPile)
-                .SetOptions(true, true)
-                .SetFilter(c -> c instanceof Burn)
+                .SetOptions(false, true)
+                .SetFilter(GameUtilities::IsCurseOrStatus)
                 .AddCallback(cards ->
                 {
                     for (AbstractCard card: cards) {

@@ -23,7 +23,7 @@ public class Fischl extends AnimatorCard {
     public Fischl() {
         super(DATA);
 
-        Initialize(4, 0, 2);
+        Initialize(3, 0, 0);
         SetUpgrade(3, 0, 0);
         SetScaling(0, 0, 0);
 
@@ -36,9 +36,7 @@ public class Fischl extends AnimatorCard {
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
 
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.LIGHTNING);
-        for (int i = 0; i < magicNumber; i++){
-            GameActions.Bottom.ChannelOrb(rng.randomBoolean(0.5f) ? new Dark() : new Lightning());
-        }
+        GameActions.Bottom.ChannelOrb(rng.randomBoolean(0.5f) ? new Dark() : new Lightning());
 
         if (HasSynergy() && CombatStats.TryActivateLimited(cardID)) {
             GameActions.Bottom.MakeCardInDiscardPile(new Oz()).SetUpgrade(upgraded, false);

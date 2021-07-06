@@ -15,6 +15,7 @@ import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
+import eatyourbeets.powers.animator.NegateBlockPower;
 import eatyourbeets.powers.common.PlayerFlightPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
@@ -781,7 +782,7 @@ public abstract class EYBCard extends EYBCardBase
 
     protected float ModifyBlock(AbstractMonster enemy, float amount)
     {
-        return amount;
+        return GameUtilities.GetPower(player, NegateBlockPower.POWER_ID) == null ? amount : 0;
     }
 
     protected float ModifyDamage(AbstractMonster enemy, float amount)

@@ -44,7 +44,7 @@
 	},
 	"Chilled":
 	{
-		"DESCRIPTION": "Damage dealt is lowered. Higher stacks increase the intensity of this debuff. Reduced by half each turn.",
+		"DESCRIPTION": "Damage dealt is lowered. Higher stacks increase the intensity of this debuff. Removed at the end of the round.",
 		"NAMES": ["chilled"],
 		"PROPER_NAME": "Chilled"
 	},

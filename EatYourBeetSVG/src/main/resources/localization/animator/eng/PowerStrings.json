@@ -37,7 +37,7 @@
 	},
 	"animator:ChilledPower":
 	{
-	  "DESCRIPTIONS": ["Deal #b", "% less damage."],
+	  "DESCRIPTIONS": ["Deal #b", "% less damage. Removed at the end of the round."],
 	  "NAME": "Chilled"
 	},
 	"animator:ChlammyZellPower":

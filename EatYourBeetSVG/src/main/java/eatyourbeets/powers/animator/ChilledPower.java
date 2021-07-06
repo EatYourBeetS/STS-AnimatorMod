@@ -3,6 +3,8 @@ package eatyourbeets.powers.animator;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -73,7 +75,7 @@ public class ChilledPower extends AnimatorPower
     public void atEndOfRound()
     {
         super.atEndOfRound();
-        GameActions.Bottom.ReducePower(this, Math.max(this.amount / 2,1));
+        GameActions.Bottom.RemovePower(owner, owner, this);
     }
 
     @Override
@@ -92,7 +94,8 @@ public class ChilledPower extends AnimatorPower
     {
         if (info.type == DamageInfo.DamageType.NORMAL)
         {
-            damageAmount = Math.round(percentage * (float) damageAmount);
+            float multiplier = (owner.hasPower(WeakPower.POWER_ID)) ? CalculatePercentage(this.amount / 2) : percentage;
+            damageAmount = Math.round(multiplier * (float) damageAmount);
             info.output = damageAmount;
         }
 

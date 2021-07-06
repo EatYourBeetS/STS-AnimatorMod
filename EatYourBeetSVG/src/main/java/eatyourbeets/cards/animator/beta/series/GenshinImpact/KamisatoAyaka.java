@@ -28,7 +28,7 @@ public class KamisatoAyaka extends AnimatorCard {
     public KamisatoAyaka() {
         super(DATA);
 
-        Initialize(9, 0, 1, 10);
+        Initialize(7, 0, 1, 3);
         SetUpgrade(2, 0, 0, 0);
         SetScaling(1, 1, 0);
 
@@ -56,14 +56,14 @@ public class KamisatoAyaka extends AnimatorCard {
 
         for (int i = 0; i < magicNumber; i++)
         {
-            GameEffects.Queue.Add(new FallingIceEffect(magicNumber, false));
+            GameEffects.Queue.Add(new FallingIceEffect(magicNumber,false));
             CardCrawlGame.sound.playA("ORB_FROST_Evoke", -0.25f - (float)magicNumber / 200f);
             GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE).SetOptions(true, false);
         }
 
         GameActions.Bottom.StackPower(new NegateBlockPower(p, NO_BLOCK_TURNS, p.currentBlock));
 
-        if (this.getFrostCount() == player.orbs.size() && CombatStats.TryActivateLimited(cardID))
+        if (this.getFrostCount() == secondaryValue && CombatStats.TryActivateLimited(cardID))
         {
             AbstractCard c = new SheerCold();
             c.applyPowers();

@@ -697,21 +697,32 @@ public abstract class EYBCard extends EYBCardBase
         }
 
         tempBlock = ModifyBlock(enemy, tempBlock);
+
+        for (AbstractPower p : player.powers)
+        {
+            tempBlock = p.modifyBlockLast(tempBlock);
+        }
+
         tempDamage = ModifyDamage(enemy, tempDamage);
 
         if (applyEnemyPowers)
         {
-            if (attackType == EYBAttackType.Elemental && enemy.currentBlock > 0)
+            if (attackType == EYBAttackType.Elemental)
             {
-                tempDamage *= 1.3f;
+                if (enemy.currentBlock > 0)
+                {
+                    tempDamage *= 1.3f;
+                }
             }
-            else if (attackType == EYBAttackType.Ranged && (enemy.hasPower(FlightPower.POWER_ID) || enemy.hasPower(PlayerFlightPower.POWER_ID)))
+            else if (attackType == EYBAttackType.Ranged)
             {
+                boolean hasFlight = false;
                 for (AbstractPower power : enemy.powers)
                 {
-                    if (FlightPower.POWER_ID.equals(power.ID) || PlayerFlightPower.POWER_ID.equals(power.ID))
+                    if (!hasFlight && (FlightPower.POWER_ID.equals(power.ID) || PlayerFlightPower.POWER_ID.equals(power.ID)))
                     {
                         tempDamage *= 2f;
+                        hasFlight = true;
                     }
                     else if (LockOnPower.POWER_ID.equals(power.ID))
                     {

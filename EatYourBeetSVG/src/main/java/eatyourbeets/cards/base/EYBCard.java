@@ -42,7 +42,6 @@ public abstract class EYBCard extends EYBCardBase
     public final ArrayList<EYBCardTooltip> tooltips;
     public EYBCardTarget attackTarget = EYBCardTarget.Normal;
     public EYBAttackType attackType = EYBAttackType.Normal;
-
     public int forceScaling = 0;
     public int intellectScaling = 0;
     public int agilityScaling = 0;

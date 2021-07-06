@@ -26,7 +26,7 @@ public class Yuuichirou extends AnimatorCard
         SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.OwariNoSeraph);
-        SetAffinity(2, 2, 0, 1, 0);
+        SetAffinity(2, 2, 0, 0, 0);
     }
 
     @Override

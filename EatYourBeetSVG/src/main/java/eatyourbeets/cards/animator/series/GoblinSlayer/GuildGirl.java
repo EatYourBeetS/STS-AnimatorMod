@@ -20,7 +20,7 @@ public class GuildGirl extends AnimatorCard
         SetUpgrade(0, 2);
 
         SetSynergy(Synergies.GoblinSlayer);
-        SetAffinity(0, 0, 1, 0, 0);
+        SetAffinity(0, 0, 1, 1, 0);
     }
 
     @Override

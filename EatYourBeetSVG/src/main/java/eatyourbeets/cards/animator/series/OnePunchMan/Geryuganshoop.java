@@ -26,7 +26,7 @@ public class Geryuganshoop extends AnimatorCard
         SetUpgrade(0, 0, 1, 1);
 
         SetSynergy(Synergies.OnePunchMan);
-        SetAffinity(0, 0, 2, 0, 2);
+        SetAffinity(0, 0, 1, 0, 2);
     }
 
     @Override

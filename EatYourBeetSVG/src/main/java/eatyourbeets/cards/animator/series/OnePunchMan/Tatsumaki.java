@@ -26,7 +26,7 @@ public class Tatsumaki extends AnimatorCard
         SetEthereal(true);
 
         SetSynergy(Synergies.OnePunchMan);
-        SetAffinity(0, 0, 2, 0, 0);
+        SetAffinity(0, 1, 2, 0, 0);
     }
 
     @Override

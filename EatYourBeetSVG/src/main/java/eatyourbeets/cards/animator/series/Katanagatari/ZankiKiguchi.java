@@ -23,7 +23,7 @@ public class ZankiKiguchi extends AnimatorCard
         SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.Katanagatari);
-        SetAffinity(1, 2, 0, 0, 0);
+        SetAffinity(1, 1, 0, 0, 0);
     }
 
     @Override

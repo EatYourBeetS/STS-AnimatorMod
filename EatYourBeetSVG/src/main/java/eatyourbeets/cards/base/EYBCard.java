@@ -445,6 +445,11 @@ public abstract class EYBCard extends EYBCardBase
 
     public void SetAffinity(int red, int green, int blue, int light, int dark)
     {
+        affinities.Set(red, green, blue, light, dark);
+    }
+
+    public void AddAffinity(int red, int green, int blue, int light, int dark)
+    {
         affinities.Add(red, green, blue, light, dark);
     }
 

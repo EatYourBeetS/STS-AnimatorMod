@@ -21,7 +21,6 @@ import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.AbstractScreen;
 import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardAffinities;
-import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardScreen;
 import eatyourbeets.ui.controls.*;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
@@ -36,7 +35,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     protected ShowCardPileEffect previewCardsEffect;
     protected int totalCardsCache = 0;
 
-    public final AnimatorCardRewardAffinities affinities = AnimatorCardRewardScreen.Instance.cardAffinities;
+    public final AnimatorCardRewardAffinities affinities = GR.UI.CardAffinities;
     public final AnimatorLoadoutsContainer container = new AnimatorLoadoutsContainer();
     public final GUI_CardGrid cardGrid;
     public final GUI_Label startingDeck;

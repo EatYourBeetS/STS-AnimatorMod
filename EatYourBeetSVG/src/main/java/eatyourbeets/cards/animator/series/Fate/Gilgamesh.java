@@ -44,7 +44,7 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
 
         SetUnique(true, true);
         SetSynergy(Synergies.Fate);
-        SetAffinity(2, 1, 0, 0, 1);
+        SetAffinity(1, 2, 0, 0, 1);
     }
 
     @Override

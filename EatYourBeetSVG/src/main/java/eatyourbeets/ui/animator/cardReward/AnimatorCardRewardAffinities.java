@@ -1,5 +1,6 @@
 package eatyourbeets.ui.animator.cardReward;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.cards.base.EYBCard;
@@ -29,6 +30,7 @@ public class AnimatorCardRewardAffinities extends GUIElement
     private final CardAffinityCounter starCounter;
     private final GUI_Image header1;
     private final GUI_Image header2;
+    private long lastFrame;
 
     public AnimatorCardRewardAffinities()
     {
@@ -50,7 +52,7 @@ public class AnimatorCardRewardAffinities extends GUIElement
 
     public void Close()
     {
-        isActive = false;
+        SetActive(false);
     }
 
     public void Open(ArrayList<AbstractCard> cards)
@@ -137,6 +139,13 @@ public class AnimatorCardRewardAffinities extends GUIElement
     @Override
     public void Render(SpriteBatch sb)
     {
+        long frame = Gdx.graphics.getFrameId();
+        if (frame == lastFrame)
+        {
+            return;
+        }
+
+        lastFrame = frame;
         header1.TryRender(sb);
         header2.TryRender(sb);
         for (CardAffinityCounter c : counters)

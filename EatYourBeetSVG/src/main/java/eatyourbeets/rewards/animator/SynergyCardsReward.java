@@ -65,7 +65,7 @@ public class SynergyCardsReward extends AnimatorReward
     {
         super.render(sb);
 
-        loadout.card.affinities.Render(sb, hb.x + hb.width * 0.77f, hb.cY - 18, 36);
+        loadout.card.affinities.Render(sb, hb.x + hb.width * 0.785f, hb.cY - 18, 38);
     }
 
     @Override

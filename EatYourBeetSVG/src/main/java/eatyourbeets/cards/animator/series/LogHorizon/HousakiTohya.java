@@ -26,7 +26,7 @@ public class HousakiTohya extends AnimatorCard
         SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.LogHorizon);
-        SetAffinity(1, 1, 0, 1, 0);
+        SetAffinity(1, 0, 0, 1, 0);
     }
 
     @Override

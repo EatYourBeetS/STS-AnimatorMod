@@ -30,6 +30,7 @@ import java.util.StringJoiner;
 public abstract class AbstractMissingPiece extends AnimatorRelic implements OnReceiveRewardsListener
 {
     protected transient AbstractRoom lastRoom = null;
+    protected boolean showAffinities = false;
 
     protected abstract int GetRewardInterval();
 
@@ -66,6 +67,29 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
             {
                 FontHelper.renderFontRightTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(actualCounter),
                 this.currentX + 30f * Settings.scale, this.currentY - 7f * Settings.scale, Color.WHITE);
+            }
+        }
+
+        if (showAffinities)
+        {
+            GR.UI.CardAffinities.Render(sb);
+        }
+    }
+
+    @Override
+    public void update()
+    {
+        super.update();
+
+        if (showAffinities)
+        {
+            if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD)
+            {
+                GR.UI.CardAffinities.Update();
+            }
+            else
+            {
+                showAffinities = false;
             }
         }
     }
@@ -163,6 +187,9 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
                 rewards.add(startingIndex + i, new SynergyCardsReward(synergy));
             }
         }
+
+        GR.UI.CardAffinities.Open(player.masterDeck.group);
+        showAffinities = true;
     }
 
     private WeightedList<Synergy> CreateWeightedList()

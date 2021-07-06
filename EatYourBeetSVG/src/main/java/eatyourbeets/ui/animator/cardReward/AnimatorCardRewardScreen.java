@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -15,7 +16,6 @@ public class AnimatorCardRewardScreen extends GUIElement
 
     public final AnimatorCardRewardBonus rewardBundle = new AnimatorCardRewardBonus();
     public final AnimatorCardRewardInfo cardBadgeLegend = new AnimatorCardRewardInfo();
-    public final AnimatorCardRewardAffinities cardAffinities = new AnimatorCardRewardAffinities();
     public final AnimatorCardRewardBanish purgingStoneUI = new AnimatorCardRewardBanish(rewardBundle::Add, rewardBundle::Remove);
 
     public void Open(ArrayList<AbstractCard> cards, RewardItem rItem, String header)
@@ -26,31 +26,35 @@ public class AnimatorCardRewardScreen extends GUIElement
             return;
         }
 
+        GR.UI.CardAffinities.Open(AbstractDungeon.player.masterDeck.group);
+
         rewardBundle.Open(rItem, cards);
         purgingStoneUI.Open(rItem, cards);
-        cardAffinities.Open(AbstractDungeon.player.masterDeck.group);
         cardBadgeLegend.Open();
     }
 
     public void Close()
     {
+        GR.UI.CardAffinities.Close();
+
         cardBadgeLegend.Close();
-        cardAffinities.Close();
         rewardBundle.Close();
         purgingStoneUI.Close();
     }
 
     public void Update()
     {
+        GR.UI.CardAffinities.Update();
+
         purgingStoneUI.TryUpdate();
         rewardBundle.TryUpdate();
-        cardAffinities.TryUpdate();
         cardBadgeLegend.TryUpdate();
     }
 
     public void PreRender(SpriteBatch sb)
     {
-        cardAffinities.TryRender(sb);
+        GR.UI.CardAffinities.TryRender(sb);
+
         cardBadgeLegend.TryRender(sb);
         purgingStoneUI.TryRender(sb);
     }

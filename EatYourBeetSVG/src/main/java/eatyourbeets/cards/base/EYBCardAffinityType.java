@@ -13,8 +13,8 @@ public enum EYBCardAffinityType implements Comparable<EYBCardAffinityType>
     Dark(4, GR.Common.Images.Affinities.Dark),
     Star(-1, GR.Common.Images.Affinities.Star);
 
-    public static final TextureCache BorderLV2 = GR.Common.Images.Affinities.Border;
-    public static final TextureCache BorderLV1 = GR.Common.Images.Affinities.Border_Weak;
+    protected static final TextureCache BorderLV2 = GR.Common.Images.Affinities.Border;
+    protected static final TextureCache BorderLV1 = GR.Common.Images.Affinities.Border_Weak;
 
     public final int ID;
     public final TextureCache Icon;

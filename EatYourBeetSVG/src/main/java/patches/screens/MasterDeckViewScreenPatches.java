@@ -5,20 +5,17 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.screens.MasterDeckViewScreen;
-import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardAffinities;
-import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardScreen;
+import eatyourbeets.resources.GR;
 
 public class MasterDeckViewScreenPatches
 {
-    private static final AnimatorCardRewardAffinities screen = AnimatorCardRewardScreen.Instance.cardAffinities;
-
     @SpirePatch(clz= MasterDeckViewScreen.class, method="update")
     public static class MasterDeckViewScreen_Update
     {
         @SpirePrefixPatch
         public static void Prefix(MasterDeckViewScreen __instance)
         {
-            screen.Update();
+            GR.UI.CardAffinities.Update();
         }
     }
 
@@ -34,7 +31,7 @@ public class MasterDeckViewScreenPatches
         @SpirePrefixPatch
         public static void Prefix(MasterDeckViewScreen __instance, SpriteBatch sb)
         {
-            screen.Render(sb);
+            GR.UI.CardAffinities.Render(sb);
         }
     }
 
@@ -44,7 +41,7 @@ public class MasterDeckViewScreenPatches
         @SpirePrefixPatch
         public static void Prefix(MasterDeckViewScreen __instance)
         {
-            screen.Open(AbstractDungeon.player.masterDeck.group);
+            GR.UI.CardAffinities.Open(AbstractDungeon.player.masterDeck.group);
         }
     }
 

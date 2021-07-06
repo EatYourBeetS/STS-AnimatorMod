@@ -28,7 +28,7 @@ public class YuiTsuruno extends AnimatorCard
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.MadokaMagica);
-        SetAffinity(0, 1, 1, 1, 0);
+        SetAffinity(0, 1, 1, 0, 0);
     }
 
     @Override

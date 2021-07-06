@@ -21,7 +21,7 @@ public class Guy extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Chaika);
-        SetAffinity(0, 0, 0, 0, 1);
+        SetAffinity(0, 1, 0, 0, 1);
     }
 
     @Override

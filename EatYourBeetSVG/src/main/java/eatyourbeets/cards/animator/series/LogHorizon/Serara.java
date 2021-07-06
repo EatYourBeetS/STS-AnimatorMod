@@ -27,7 +27,7 @@ public class Serara extends AnimatorCard
         Initialize(0, 0, 1);
 
         SetSynergy(Synergies.LogHorizon);
-        SetAffinity(0, 0, 1, 2,0);
+        SetAffinity(0, 0, 1, 1,0);
     }
 
     @Override

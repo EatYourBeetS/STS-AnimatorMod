@@ -22,7 +22,7 @@ public class LeleiLaLalena extends AnimatorCard
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.Gate);
-        SetAffinity(0, 0, 2, 1, 0);
+        SetAffinity(0, 0, 1, 1, 0);
     }
 
     @Override

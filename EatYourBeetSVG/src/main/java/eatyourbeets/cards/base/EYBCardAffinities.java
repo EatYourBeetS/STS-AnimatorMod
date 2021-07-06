@@ -217,7 +217,7 @@ public class EYBCardAffinities
     public void Render(SpriteBatch sb, float x, float y, float size)
     {
         int half = List.size() / 2;
-        float step = size * 0.995f;
+        float step = size * 0.95f;
         for (int i = 0; i < List.size(); i++)
         {
             final EYBCardAffinity item = List.get(i);

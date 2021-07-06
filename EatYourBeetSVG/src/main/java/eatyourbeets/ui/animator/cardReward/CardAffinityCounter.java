@@ -3,7 +3,7 @@ package eatyourbeets.ui.animator.cardReward;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.cards.base.EYBCardAffinity;
-import eatyourbeets.cards.base.EYBCardAffinityType;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
@@ -14,7 +14,7 @@ import eatyourbeets.utilities.RenderHelpers;
 
 public class CardAffinityCounter extends GUIElement
 {
-    public final EYBCardAffinityType Type;
+    public final AffinityType Type;
     public final EYBCardAffinity AffinityLV1;
     public final EYBCardAffinity AffinityLV2;
     public float Percentage;
@@ -25,7 +25,7 @@ public class CardAffinityCounter extends GUIElement
     public GUI_Label textBox_counterNormal;
     public GUI_Label textBox_counterPercentage;
 
-    public CardAffinityCounter(Hitbox hb, EYBCardAffinityType alignment)
+    public CardAffinityCounter(Hitbox hb, AffinityType alignment)
     {
         final float iconSize = AnimatorCardRewardAffinities.ICON_SIZE;
 

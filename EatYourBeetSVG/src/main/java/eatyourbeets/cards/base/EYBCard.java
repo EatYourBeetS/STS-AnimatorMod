@@ -442,9 +442,18 @@ public abstract class EYBCard extends EYBCardBase
         this.forceScaling = force;
     }
 
+    //@Formatter: Off
+    protected void SetAffinity_R(int base, int upgrade) { InitializeAffinity(AffinityType.Red, base, upgrade); }
+    protected void SetAffinity_G(int base, int upgrade) { InitializeAffinity(AffinityType.Green, base, upgrade); }
+    protected void SetAffinity_B(int base, int upgrade) { InitializeAffinity(AffinityType.Blue, base, upgrade); }
+    protected void SetAffinity_L(int base, int upgrade) { InitializeAffinity(AffinityType.Light, base, upgrade); }
+    protected void SetAffinity_D(int base, int upgrade) {InitializeAffinity(AffinityType.Dark, base, upgrade); }
+    protected void InitializeAffinity(AffinityType type, int base, int upgrade) { affinities.Initialize(type, base, upgrade); }
+    //@Formatter: On
+
     public void SetAffinity(int red, int green, int blue, int light, int dark)
     {
-        affinities.Set(red, green, blue, light, dark);
+        affinities.Initialize(red, green, blue, light, dark);
     }
 
     public void AddAffinity(int red, int green, int blue, int light, int dark)
@@ -555,6 +564,8 @@ public abstract class EYBCard extends EYBCardBase
                 this.upgradedCost = true;
             }
 
+            affinities.ApplyUpgrades();
+
             OnUpgrade();
         }
     }
@@ -574,6 +585,8 @@ public abstract class EYBCard extends EYBCardBase
         {
             block = baseBlock;
         }
+
+        affinities.displayUpgrades = (affinities.Upgrades.size() > 0);
     }
 
     protected void Initialize(int damage, int block)

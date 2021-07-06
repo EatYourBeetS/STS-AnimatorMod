@@ -1,6 +1,8 @@
 package eatyourbeets.resources;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.ui.AbstractScreen;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 public class UIManager
 {
     protected final ArrayList<ActionT1<SpriteBatch>> postRenderList = new ArrayList<>();
+    protected float timer = 0;
     protected boolean isDragging;
 
     public EYBCombatScreen CombatScreen;
@@ -42,6 +45,7 @@ public class UIManager
 
     public void Update()
     {
+        timer += Gdx.graphics.getRawDeltaTime();
         isDragging = false;
 
         if (CurrentScreen != null)
@@ -77,6 +81,21 @@ public class UIManager
     public boolean TryDragging()
     {
         return !CardCrawlGame.isPopupOpen && (CurrentScreen == null || !isDragging) && (isDragging = true);
+    }
+
+    public float Time_Sin(float distance, float speed)
+    {
+        return MathUtils.sin(timer * speed) * distance;
+    }
+
+    public float Time_Cos(float distance, float speed)
+    {
+        return MathUtils.cos(timer * speed) * distance;
+    }
+
+    public float Time_Multi(float value)
+    {
+        return timer * value;
     }
 
     public void AddPostRender(ActionT1<SpriteBatch> postRender)

@@ -94,7 +94,7 @@ public class EYBCardText
                 RenderHelpers.ResetFont(font);
             }
 
-            card.affinities.RenderOnCard(sb, card, false);
+            card.affinities.RenderOnCard(sb, card, inHand);
         }
     }
 

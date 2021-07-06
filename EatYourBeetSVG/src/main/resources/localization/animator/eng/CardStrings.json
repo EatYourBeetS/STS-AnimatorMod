@@ -1427,10 +1427,10 @@
 			"DESCRIPTION": "Gain 1 Intangible.",
 			"NAME": "Excalibur"
 		},
-		"animator:Giselle":
+		"animator:GiftBox":
 		{
-			"DESCRIPTION": "Apply !M! [Burning] ** to ALL enemies. || At the start of each ** combat: Channel 1 [Fire].",
-			"NAME": "Giselle"
+			"DESCRIPTION": "Discard all cards. || Add !M! random card(s) ** to your hand.",
+			"NAME": "Gift Box"
 		},
 		"animator:HinaKagiyama":
 		{
@@ -1448,7 +1448,6 @@
 			"DESCRIPTION": "This card's damage ** is multiplied by X",
 			"NAME": "Ichigo Bankai"
 		},
-
 		"animator:MelzalgaldAlt_1":
 		{
 			"DESCRIPTION": "Gain !M! [F].",
@@ -1594,6 +1593,11 @@
 		{
 			"DESCRIPTION": "<DRW>. || <SLM>. When ** Exhausted: Return this ** card to your hand and ** gain [E] [E]",
 			"NAME": "Chomusuke"
+		},
+		"animator:Giselle":
+		{
+			"DESCRIPTION": "Apply !M! [Burning] ** to ALL enemies. || At the start of each ** combat: Channel 1 [Fire].",
+			"NAME": "Giselle"
 		},
 		"animator:Hero":
 		{

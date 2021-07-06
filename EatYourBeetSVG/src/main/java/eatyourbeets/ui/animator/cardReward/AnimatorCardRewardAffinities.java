@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinity;
-import eatyourbeets.cards.base.EYBCardAffinityType;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.GUIElement;
@@ -41,12 +41,12 @@ public class AnimatorCardRewardAffinities extends GUIElement
         header2 = RenderHelpers.ForTexture(ICONS.Border.Texture())
         .SetHitbox(new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, 0.45f, 1f, true));
 
-        counters.add(new CardAffinityCounter(hb, EYBCardAffinityType.Red));
-        counters.add(new CardAffinityCounter(hb, EYBCardAffinityType.Green));
-        counters.add(new CardAffinityCounter(hb, EYBCardAffinityType.Blue));
-        counters.add(new CardAffinityCounter(hb, EYBCardAffinityType.Light));
-        counters.add(new CardAffinityCounter(hb, EYBCardAffinityType.Dark));
-        starCounter = new CardAffinityCounter(hb, EYBCardAffinityType.Star);
+        counters.add(new CardAffinityCounter(hb, AffinityType.Red));
+        counters.add(new CardAffinityCounter(hb, AffinityType.Green));
+        counters.add(new CardAffinityCounter(hb, AffinityType.Blue));
+        counters.add(new CardAffinityCounter(hb, AffinityType.Light));
+        counters.add(new CardAffinityCounter(hb, AffinityType.Dark));
+        starCounter = new CardAffinityCounter(hb, AffinityType.Star);
         counters.add(starCounter);
     }
 

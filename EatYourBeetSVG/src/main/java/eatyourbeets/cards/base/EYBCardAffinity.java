@@ -5,20 +5,21 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class EYBCardAffinity implements Comparable<EYBCardAffinity>
 {
-    public final EYBCardAffinityType Type;
+    public final AffinityType Type;
     public int level;
 
-    public EYBCardAffinity(EYBCardAffinityType type)
+    public EYBCardAffinity(AffinityType type)
     {
         this.Type = type;
     }
 
-    public EYBCardAffinity(EYBCardAffinityType type, int level)
+    public EYBCardAffinity(AffinityType type, int level)
     {
         this.Type = type;
         this.level = level;
@@ -35,22 +36,41 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
         }
     }
 
-    public void RenderOnCard(SpriteBatch sb, AbstractCard card, float x, float y, float size)
+    public float RenderOnCard(SpriteBatch sb, AbstractCard card, float x, float y, float size)
     {
-        RenderHelpers.DrawOnCardAuto(sb, card, Type.GetIcon(), new Vector2(x, y), size, size, Color.WHITE, 1f, 1f);
+        float rotation = 0f;
+        Color color = Color.WHITE.cpy();
+
+        if (level > 1)
+        {
+            rotation = GR.UI.Time_Multi(-36f);
+            EYBCardBase c = JUtils.SafeCast(card, EYBCardBase.class);
+            if (c != null)
+            {
+                color.lerp(c.GetRarityColor(false), 0.3f);
+            }
+        }
+        else
+        {
+            y -= (size * 0.025f);
+            size *= 0.95f;
+        }
+
+        Texture background = Type.GetBackground(level);
+        if (background != null)
+        {
+            RenderHelpers.DrawOnCardAuto(sb, card, background, new Vector2(x, y), size, size, color, 1f, 1f, 0f);
+        }
+
+        RenderHelpers.DrawOnCardAuto(sb, card, Type.GetIcon(), new Vector2(x, y), size, size, Color.WHITE, 1f, 1f, 0f);
 
         Texture border = Type.GetBorder(level);
         if (border != null)
         {
-            Color color = Color.WHITE.cpy();
-            EYBCardBase c = JUtils.SafeCast(card, EYBCardBase.class);
-            if (c != null && level > 1)
-            {
-                color.lerp(c.GetRarityColor(false), 0.3f);
-            }
-
-            RenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size, color, 1f, 1f);
+            RenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size, color, 1f, 1f, rotation);
         }
+
+        return size * 1.02f;
     }
 
     @Override
@@ -61,7 +81,7 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
 
     public int calculateRank()
     {
-        if (Type == EYBCardAffinityType.Star)
+        if (Type == AffinityType.Star)
         {
             return 500 + level;
         }

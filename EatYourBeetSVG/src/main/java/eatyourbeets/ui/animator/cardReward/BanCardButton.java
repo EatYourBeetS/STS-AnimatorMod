@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.AdvancedHitbox;
+import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.utilities.RenderHelpers;
 

@@ -96,9 +96,9 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
         return IMAGES.CARD_ENERGY_ORB_A.Texture();
     }
 
-    @Override
-    protected Texture GetCardBanner()
-    {
-        return IMAGES.CARD_BANNER_ULTRARARE.Texture();
-    }
+//    @Override
+//    protected ColoredTexture GetCardBanner()
+//    {
+//        return new ColoredTexture(IMAGES.CARD_BANNER_ULTRARARE.Texture());
+//    }
 }

@@ -18,7 +18,7 @@ public class TargetHelper
         Source,
         Random,
         RandomEnemy,
-        ALL
+        AllCharacters
     }
 
     public final Mode mode;
@@ -92,14 +92,14 @@ public class TargetHelper
         return new TargetHelper(Mode.RandomEnemy, source, null);
     }
 
-    public static TargetHelper All()
+    public static TargetHelper AllCharacters()
     {
-        return All(AbstractDungeon.player);
+        return AllCharacters(AbstractDungeon.player);
     }
 
-    public static TargetHelper All(AbstractCreature source)
+    public static TargetHelper AllCharacters(AbstractCreature source)
     {
-        return new TargetHelper(Mode.ALL, source, null);
+        return new TargetHelper(Mode.AllCharacters, source, null);
     }
 
     protected TargetHelper(Mode mode, AbstractCreature source, AbstractCreature target)
@@ -169,7 +169,7 @@ public class TargetHelper
                     targets.add(GameUtilities.GetRandomEnemy(true));
                     break;
 
-                case ALL:
+                case AllCharacters:
                     targets.addAll(GameUtilities.GetAllCharacters(true));
                     break;
             }

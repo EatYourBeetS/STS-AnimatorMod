@@ -14,7 +14,7 @@ public class AnimatorCardRewardInfo extends GUIElement
 {
     public final GUI_Toggle upgradeToggle;
     public final GUI_Toggle zoomToggle;
-    public final GUI_Toggle synergyFadeoutToggle;
+    public final GUI_Toggle simplifyCardUIToggle;
     public final KeywordLegend exhaust;
     public final KeywordLegend ethereal;
     public final KeywordLegend retain;
@@ -37,12 +37,12 @@ public class AnimatorCardRewardInfo extends GUIElement
         .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.475f)
         .SetOnToggle(this::ToggleCardZoom);
 
-        synergyFadeoutToggle = new GUI_Toggle(new Hitbox(Scale(256), Scale(48f)))
+        simplifyCardUIToggle = new GUI_Toggle(new Hitbox(Scale(256), Scale(48f)))
         .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
         .SetPosition(ScreenW(0.9f), zoomToggle.hb.y - zoomToggle.hb.height)
-        .SetText(GR.Animator.Strings.Misc.FadeCardsWithoutSynergy)
+        .SetText(GR.Animator.Strings.Misc.SimplifyCardUI)
         .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.475f)
-        .SetOnToggle(this::ToggleFadeoutSynergies);
+        .SetOnToggle(this::ToggleSimplifyCardUI);
 
         exhaust = new KeywordLegend(GR.Tooltips.Exhaust);
         ethereal = new KeywordLegend(GR.Tooltips.Ethereal);
@@ -67,12 +67,12 @@ public class AnimatorCardRewardInfo extends GUIElement
     public void Update()
     {
         upgradeToggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
-        zoomToggle.SetToggle(GR.Animator.Config.CropCardImages()).Update();
-        synergyFadeoutToggle.SetToggle(GR.Animator.Config.FadeCardsWithoutSynergy()).Update();
+        zoomToggle.SetToggle(GR.Animator.Config.CropCardImages.Get()).Update();
+        simplifyCardUIToggle.SetToggle(GR.Animator.Config.SimplifyCardUI.Get()).Update();
 
         float x = zoomToggle.hb.x + (zoomToggle.hb.width - (exhaust.textBox.hb.width * 0.5f));
         float step = exhaust.textBox.hb.height;
-        float y = synergyFadeoutToggle.hb.y - (step * 1.1f);
+        float y = simplifyCardUIToggle.hb.y - (step * 1.1f);
         exhaust.SetPosition(x, y).Update();
         ethereal.SetPosition(x, y - step).Update();
         retain.SetPosition(x, y - (step*2)).Update();
@@ -85,7 +85,7 @@ public class AnimatorCardRewardInfo extends GUIElement
     {
         upgradeToggle.Render(sb);
         zoomToggle.Render(sb);
-        synergyFadeoutToggle.Render(sb);
+        simplifyCardUIToggle.Render(sb);
 
         exhaust.Render(sb);
         ethereal.Render(sb);
@@ -101,11 +101,11 @@ public class AnimatorCardRewardInfo extends GUIElement
 
     private void ToggleCardZoom(boolean value)
     {
-        GR.Animator.Config.CropCardImages(value, true);
+        GR.Animator.Config.CropCardImages.Set(value, true);
     }
 
-    private void ToggleFadeoutSynergies(boolean value)
+    private void ToggleSimplifyCardUI(boolean value)
     {
-        GR.Animator.Config.FadeCardsWithoutSynergy(value, true);
+        GR.Animator.Config.SimplifyCardUI.Set(value, true);
     }
 }

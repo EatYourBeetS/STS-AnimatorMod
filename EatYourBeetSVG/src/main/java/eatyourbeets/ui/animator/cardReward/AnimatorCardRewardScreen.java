@@ -10,9 +10,11 @@ import java.util.ArrayList;
 
 public class AnimatorCardRewardScreen extends GUIElement
 {
-    protected final AnimatorCardRewardBonus rewardBundle = new AnimatorCardRewardBonus();
-    protected final AnimatorCardRewardInfo cardBadgeLegend = new AnimatorCardRewardInfo();
-    protected final AnimatorCardRewardBanish purgingStoneUI = new AnimatorCardRewardBanish(rewardBundle::Add, rewardBundle::Remove);
+    public static final AnimatorCardRewardScreen Instance = new AnimatorCardRewardScreen();
+
+    public final AnimatorCardRewardBonus rewardBundle = new AnimatorCardRewardBonus();
+    public final AnimatorCardRewardInfo cardBadgeLegend = new AnimatorCardRewardInfo();
+    public final AnimatorCardRewardBanish purgingStoneUI = new AnimatorCardRewardBanish(rewardBundle::Add, rewardBundle::Remove);
 
     public void Open(ArrayList<AbstractCard> cards, RewardItem rItem, String header)
     {

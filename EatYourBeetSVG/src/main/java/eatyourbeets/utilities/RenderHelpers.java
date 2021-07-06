@@ -221,6 +221,16 @@ public class RenderHelpers
         DrawOnCardAuto(sb, card, img, offset, width, height, Color.WHITE, card.transparency, 1);
     }
 
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, ColoredTexture img, float drawX, float drawY, float width, float height)
+    {
+        DrawOnCardAuto(sb, card, img.texture, new Vector2(drawX, drawY), width, height, img.color, card.transparency, 1);
+    }
+
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, ColoredTexture img, Vector2 offset, float width, float height)
+    {
+        DrawOnCardAuto(sb, card, img.texture, offset, width, height, img.color, card.transparency, 1);
+    }
+
     public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Vector2 offset, float width, float height, Color color, float alpha, float scaleModifier)
     {
         if (card.angle != 0)
@@ -305,18 +315,18 @@ public class RenderHelpers
         FontHelper.renderRotatedText(sb, font, text, card.current_x, card.current_y, x * scale, y * scale, card.angle, roundY, color);
     }
 
-    public static void WriteOnCardAuto(SpriteBatch sb, AbstractCard card, BitmapFont font, String text, Vector2 offset, Color color, boolean roundY)
-    {
-        if (card.angle != 0)
-        {
-            offset.rotate(card.angle);
-        }
-
-        offset.scl(Settings.scale * card.drawScale);
-        color = CopyColor(card, color);
-
-        FontHelper.renderRotatedText(sb, font, text, card.current_x, card.current_y, offset.x, offset.y, card.angle, roundY, color);
-    }
+//    public static void WriteOnCardAuto(SpriteBatch sb, AbstractCard card, BitmapFont font, String text, Vector2 offset, Color color, boolean roundY)
+//    {
+//        if (card.angle != 0)
+//        {
+//            offset.rotate(card.angle);
+//        }
+//
+//        offset.scl(Settings.scale * card.drawScale);
+//        color = CopyColor(card, color);
+//
+//        FontHelper.renderRotatedText(sb, font, text, card.current_x, card.current_y, offset.x, offset.y, card.angle, roundY, color);
+//    }
 
     public static void WriteCentered(SpriteBatch sb, BitmapFont font, String text, Hitbox hb, Color color)
     {

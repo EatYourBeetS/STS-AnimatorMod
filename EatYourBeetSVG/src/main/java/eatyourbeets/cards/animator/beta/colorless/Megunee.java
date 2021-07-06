@@ -31,7 +31,7 @@ public class Megunee extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
         SetUpgrade(0, 2, 1);
         SetCooldown(1, 0, this::OnCooldownCompleted);
 
-        SetSynergy(Synergies.Gakkougurashi);
+        SetSynergy(Synergies.GakkouGurashi);
     }
 
     @Override

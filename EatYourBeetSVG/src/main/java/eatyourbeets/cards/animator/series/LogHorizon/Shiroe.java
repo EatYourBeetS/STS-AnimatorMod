@@ -54,7 +54,7 @@ public class Shiroe extends AnimatorCard
 
             if (GameUtilities.GetTeamwork(usedCard) >= MINIMUM_TEAMWORK)
             {
-                GameActions.Bottom.ApplyConstricted(TargetHelper.All(), amount);
+                GameActions.Bottom.ApplyConstricted(TargetHelper.Enemies(), amount);
             }
         }
 

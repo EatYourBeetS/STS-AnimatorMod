@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.ui.GUIElement;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.utilities.GameUtilities;
@@ -97,6 +96,7 @@ public abstract class AbstractScreen extends GUIElement
         final Texture buttonBorderTexture = GR.Common.Images.HexagonalButtonBorder.Texture();
         return new GUI_Button(buttonTexture, x, y)
         .SetBorder(buttonBorderTexture, Color.WHITE)
+        .SetClickDelay(0.3f)
         .SetDimensions(width, height);
     }
 

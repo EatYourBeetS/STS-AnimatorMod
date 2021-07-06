@@ -31,6 +31,6 @@ public class DarkWispPower extends AnimatorPower
     {
         super.onDeath();
 
-        GameActions.Bottom.ApplyConstricted(TargetHelper.All(null), amount);
+        GameActions.Bottom.ApplyConstricted(TargetHelper.AllCharacters(null), amount);
     }
 }

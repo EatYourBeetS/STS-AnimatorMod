@@ -79,6 +79,6 @@ public class Charlotte extends AnimatorCard
             GameActions.Top.Add(new ShakeScreenAction(0.3f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
         });
 
-        GameActions.Bottom.StackPower(TargetHelper.All(), PowerHelper.Vulnerable, magicNumber);
+        GameActions.Bottom.StackPower(TargetHelper.AllCharacters(), PowerHelper.Vulnerable, magicNumber);
     }
 }

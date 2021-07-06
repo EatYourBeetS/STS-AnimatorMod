@@ -64,8 +64,6 @@ public class EYBFontHelper
             fontFile = Gdx.files.internal("font/Kreon-Regular.ttf");
         }
 
-
-
         param.hinting = FreeTypeFontGenerator.Hinting.Slight;
         param.kerning = true;
         param.gamma = 0.9F;
@@ -136,10 +134,10 @@ public class EYBFontHelper
 
     private static BitmapFont PrepFont(FreeTypeFontGenerator g, float size, boolean isLinearFiltering)
     {
-        FreeTypeFontGenerator.FreeTypeFontParameter p = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        final float fontScale = 1.0F;
+        final FreeTypeFontGenerator.FreeTypeFontParameter p = new FreeTypeFontGenerator.FreeTypeFontParameter();
         p.characters = "";
         p.incremental = true;
-        float fontScale = 1.0F;
         p.size = Math.round(size * fontScale * Settings.scale);
         p.gamma = param.gamma;
         p.spaceX = param.spaceX;

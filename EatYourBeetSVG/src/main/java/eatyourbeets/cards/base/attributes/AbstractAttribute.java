@@ -101,13 +101,13 @@ public abstract class AbstractAttribute
         largeFont.getData().setScale(card.isPopup ? 0.5f : 1);
         layout.setText(largeFont, mainText.text);
 
-        float text_width = layout.width;
+        float text_width = layout.width / Settings.scale;
         float suffix_width = 0;
 
         if (suffix != null)
         {
             layout.setText(largeFont, suffix);
-            suffix_width = (layout.width * suffix_scale);
+            suffix_width = (layout.width / Settings.scale) * suffix_scale;
         }
 
         largeFont = RenderHelpers.GetLargeAttributeFont(card);

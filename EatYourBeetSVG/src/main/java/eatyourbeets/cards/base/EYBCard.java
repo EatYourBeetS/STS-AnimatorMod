@@ -426,6 +426,13 @@ public abstract class EYBCard extends EYBCardBase
         isMultiUpgrade = multiUpgrade;
     }
 
+    public void SetScaling(int intellect, int agility, int force)
+    {
+        this.intellectScaling = intellect;
+        this.agilityScaling = agility;
+        this.forceScaling = force;
+    }
+
     protected boolean TryUpgrade()
     {
         return TryUpgrade(true);
@@ -566,13 +573,6 @@ public abstract class EYBCard extends EYBCardBase
         this.baseBlock = this.block = block > 0 ? block : -1;
         this.baseMagicNumber = this.magicNumber = magicNumber;
         this.baseSecondaryValue = this.secondaryValue = secondaryValue;
-    }
-
-    protected void SetScaling(int intellect, int agility, int force)
-    {
-        this.intellectScaling = intellect;
-        this.agilityScaling = agility;
-        this.forceScaling = force;
     }
 
     protected void SetUpgrade(int damage, int block)

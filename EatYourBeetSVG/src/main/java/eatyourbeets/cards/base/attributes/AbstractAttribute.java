@@ -151,8 +151,8 @@ public abstract class AbstractAttribute
         if (result == null)
         {
             result = new ColoredTexture((leftAlign ?
-                    GR.Common.Images.Panel_Skewed_Left : GR.Common.Images.Panel_Skewed_Right).Texture(),
-                    Color.WHITE.cpy().lerp(card.GetRarityColor(true), 0.25f));
+            GR.Common.Images.Panel_Skewed_Left : GR.Common.Images.Panel_Skewed_Right).Texture(),
+            Color.WHITE.cpy().lerp(card.GetRarityColor(true), 0.25f));
             map.put(card.rarity, result);
         }
 

@@ -20,7 +20,6 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.AbstractScreen;
-import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardAffinities;
 import eatyourbeets.ui.controls.*;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
@@ -35,7 +34,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     protected ShowCardPileEffect previewCardsEffect;
     protected int totalCardsCache = 0;
 
-    public final AnimatorCardRewardAffinities affinities = GR.UI.CardAffinities;
     public final AnimatorLoadoutsContainer container = new AnimatorLoadoutsContainer();
     public final GUI_CardGrid cardGrid;
     public final GUI_Label startingDeck;
@@ -142,7 +140,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     @Override
     public void Render(SpriteBatch sb)
     {
-        affinities.TryRender(sb);
+        GR.UI.CardAffinities.TryRender(sb);
 
         cardGrid.TryRender(sb);
 
@@ -171,7 +169,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     @Override
     public void Update()
     {
-        affinities.TryUpdate();
+        GR.UI.CardAffinities.TryUpdate();
 
         if (previewCardsEffect != null)
         {
@@ -356,9 +354,9 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
     protected void TotalCardsChanged(int totalCards)
     {
-        if (affinities.isActive)
+        if (GR.UI.CardAffinities.isActive)
         {
-            affinities.Open(container.GetAllCardsInPool());
+            GR.UI.CardAffinities.Open(container.GetAllCardsInPool());
         }
 
         selectionAmount.SetText(totalCards + " cards selected.");

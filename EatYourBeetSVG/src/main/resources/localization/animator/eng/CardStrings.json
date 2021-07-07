@@ -880,11 +880,6 @@
 			"EXTENDED_DESCRIPTION": ["For #b{0} turn(s), whenever an #yAttack #ySynergizes: Play a random lower cost #yAttack from your draw pile."],
 			"NAME": "Isuzu Tonan"
 		},
-		"animator:Kanami":
-		{
-			"DESCRIPTION": "Apply !M! [Vulnerable] to ALL ** enemies. Return this ** card to your draw pile. || Cooldown !S!: Change ** this card's form.",
-			"NAME": "Kanami"
-		},
 		"animator:KanamiAlt":
 		{
 			"DESCRIPTION": "Deals double damage ** to {Elites} and triple ** damage to {Bosses}. || If the enemy has [Vulnerable]: ** Gain [F][A] and !M! [Block].",
@@ -1618,6 +1613,11 @@
 		{
 			"DESCRIPTION": "Exhaust a random ** Hindrance from anywhere. || At the start of combat: ** Gain !M! [Temporary HP] and 1 [Artifact].",
 			"NAME": "Jeanne D'Arc"
+		},
+		"animator:Kanami":
+		{
+			"DESCRIPTION": "Apply !M! [Vulnerable] to ALL ** enemies. Return this ** card to your draw pile. || Cooldown !S!: Change ** this card's form.",
+			"NAME": "Kanami"
 		},
 		"animator:NivaLada":
 		{

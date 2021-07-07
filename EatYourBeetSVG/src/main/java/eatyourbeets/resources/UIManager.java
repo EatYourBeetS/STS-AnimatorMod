@@ -27,10 +27,10 @@ public class UIManager
 
     public void Initialize()
     {
+        CardAffinities = new AnimatorCardRewardAffinities();
         CombatScreen = new EYBCombatScreen();
         CardPopup = new EYBSingleCardPopup();
         SeriesSelection = new AnimatorSeriesSelectScreen();
-        CardAffinities = new AnimatorCardRewardAffinities();
     }
 
     public void Dispose()

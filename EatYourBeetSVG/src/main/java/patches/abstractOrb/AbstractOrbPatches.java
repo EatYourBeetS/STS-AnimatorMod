@@ -10,7 +10,7 @@ public class AbstractOrbPatches
     @SpirePatch(clz = Dark.class, method = "onEndOfTurn")
     @SpirePatch(clz = Frost.class, method = "onEndOfTurn")
     @SpirePatch(clz = Lightning.class, method = "onEndOfTurn")
-    public static class Lightning_onEndOfTurn
+    public static class AbstractOrb_onEndOfTurn
     {
         @SpirePostfixPatch
         public static void Postfix(AbstractOrb __instance)
@@ -23,7 +23,7 @@ public class AbstractOrbPatches
     }
 
     @SpirePatch(clz = Plasma.class, method = "onStartOfTurn")
-    public static class Lightning_onStartOfTurn
+    public static class AbstractOrb_onStartOfTurn
     {
         @SpirePostfixPatch
         public static void Postfix(AbstractOrb __instance)

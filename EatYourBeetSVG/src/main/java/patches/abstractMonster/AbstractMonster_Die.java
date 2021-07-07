@@ -13,7 +13,7 @@ public class AbstractMonster_Die
     {
         if (!__instance.isDying) // to avoid triggering this more than once
         {
-            CombatStats.Instance.OnEnemyDying(__instance, triggerRelics);
+            CombatStats.OnEnemyDying(__instance, triggerRelics);
         }
     }
 }

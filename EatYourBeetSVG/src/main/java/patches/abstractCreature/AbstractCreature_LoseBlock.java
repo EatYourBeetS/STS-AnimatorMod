@@ -11,6 +11,6 @@ public class AbstractCreature_LoseBlock
     @SpirePrefixPatch
     public static void Method(AbstractCreature __instance, int amount, boolean noAnimation)
     {
-        CombatStats.Instance.OnBeforeLoseBlock(__instance, amount, noAnimation);
+        CombatStats.OnBeforeLoseBlock(__instance, amount, noAnimation);
     }
 }

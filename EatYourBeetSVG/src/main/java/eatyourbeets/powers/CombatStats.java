@@ -37,7 +37,10 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import patches.CardGlowBorderPatches;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CombatStats extends EYBPower implements InvisiblePower
 {
@@ -53,6 +56,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnAfterCardPlayedSubscriber> onAfterCardPlayed = new GameEvent<>();
     public static final GameEvent<OnAfterCardDiscardedSubscriber> onAfterCardDiscarded = new GameEvent<>();
     public static final GameEvent<OnAfterCardExhaustedSubscriber> onAfterCardExhausted = new GameEvent<>();
+    public static final GameEvent<OnOrbPassiveEffectSubscriber> onOrbPassiveEffect = new GameEvent<>();
     public static final GameEvent<OnChannelOrbSubscriber> onChannelOrb = new GameEvent<>();
     public static final GameEvent<OnEvokeOrbSubscriber> onEvokeOrb = new GameEvent<>();
     public static final GameEvent<OnAttackSubscriber> onAttack = new GameEvent<>();
@@ -154,6 +158,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onAfterCardPlayed.Clear();
         onAfterCardDiscarded.Clear();
         onAfterCardExhausted.Clear();
+        onOrbPassiveEffect.Clear();
         onChannelOrb.Clear();
         onEvokeOrb.Clear();
         onAttack.Clear();
@@ -292,7 +297,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
     }
 
-    public void OnBattleStart()
+    public static void OnBattleStart()
     {
         onBattleEnd.Clear();
         for (OnBattleStartSubscriber s : onBattleStart.GetSubscribers())
@@ -312,7 +317,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
     }
 
-    public void OnBattleEnd()
+    public static void OnBattleEnd()
     {
         for (OnBattleEndSubscriber s : onBattleEnd.GetSubscribers())
         {
@@ -324,7 +329,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         ClearStats();
     }
 
-    public void OnSynergy(AbstractCard card)
+    public static void OnSynergy(AbstractCard card)
     {
         for (OnSynergySubscriber s : onSynergy.GetSubscribers())
         {
@@ -335,7 +340,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         synergiesThisCombat.add(card);
     }
 
-    public void OnUsingCard(AbstractCard c, AbstractPlayer p, AbstractMonster m)
+    public static void OnUsingCard(AbstractCard c, AbstractPlayer p, AbstractMonster m)
     {
         AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
         if (card != null)
@@ -375,7 +380,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
     }
 
-    public void OnEnemyDying(AbstractMonster enemy, boolean triggerRelics)
+    public static void OnEnemyDying(AbstractMonster enemy, boolean triggerRelics)
     {
         for (OnEnemyDyingSubscriber s : onEnemyDying.GetSubscribers())
         {
@@ -383,7 +388,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
     }
 
-    public void OnBlockBroken(AbstractCreature creature)
+    public static void OnBlockBroken(AbstractCreature creature)
     {
         for (OnBlockBrokenSubscriber s : onBlockBroken.GetSubscribers())
         {
@@ -391,11 +396,41 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
     }
 
-    public void OnBeforeLoseBlock(AbstractCreature creature, int amount, boolean noAnimation)
+    public static void OnBeforeLoseBlock(AbstractCreature creature, int amount, boolean noAnimation)
     {
         for (OnBeforeLoseBlockSubscriber s : onBeforeLoseBlock.GetSubscribers())
         {
             s.OnBeforeLoseBlock(creature, amount, noAnimation);
+        }
+    }
+
+    public static void OnOrbPassiveEffect(AbstractOrb orb)
+    {
+        for (OnOrbPassiveEffectSubscriber s : onOrbPassiveEffect.GetSubscribers())
+        {
+            s.OnOrbPassiveEffect(orb);
+        }
+    }
+
+    public static void OnManualDiscard()
+    {
+        for (OnAfterCardDiscardedSubscriber p : onAfterCardDiscarded.GetSubscribers())
+        {
+            p.OnAfterCardDiscarded();
+        }
+    }
+
+    public static void OnAfterDraw(AbstractCard card)
+    {
+        cardsDrawnThisTurn += 1;
+        for (OnAfterCardDrawnSubscriber s : onAfterCardDrawn.GetSubscribers())
+        {
+            s.OnAfterCardDrawn(card);
+        }
+
+        if (card.hasTag(GR.Enums.CardTags.HASTE))
+        {
+            GameActions.Top.Add(new HasteAction(card));
         }
     }
 
@@ -586,14 +621,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
         cardsExhaustedThisTurn += 1;
     }
 
-    public void OnManualDiscard()
-    {
-        for (OnAfterCardDiscardedSubscriber p : onAfterCardDiscarded.GetSubscribers())
-        {
-            p.OnAfterCardDiscarded();
-        }
-    }
-
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target)
     {
@@ -696,20 +723,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
         for (OnStanceChangedSubscriber s : onStanceChanged.GetSubscribers())
         {
             s.OnStanceChanged(oldStance, newStance);
-        }
-    }
-
-    public void OnAfterDraw(AbstractCard card)
-    {
-        cardsDrawnThisTurn += 1;
-        for (OnAfterCardDrawnSubscriber s : onAfterCardDrawn.GetSubscribers())
-        {
-            s.OnAfterCardDrawn(card);
-        }
-
-        if (card.hasTag(GR.Enums.CardTags.HASTE))
-        {
-            GameActions.Top.Add(new HasteAction(card));
         }
     }
 

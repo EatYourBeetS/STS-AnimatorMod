@@ -793,7 +793,7 @@ public abstract class EYBCard extends EYBCardBase
 
     protected float ModifyBlock(AbstractMonster enemy, float amount)
     {
-        return GameUtilities.GetPower(player, NegateBlockPower.POWER_ID) == null ? amount : 0;
+        return amount;
     }
 
     protected float ModifyDamage(AbstractMonster enemy, float amount)

@@ -99,7 +99,7 @@ public class ChilledPower extends AnimatorPower
             info.output = damageAmount;
         }
 
-        return super.onAttackedToChangeDamage(info, damageAmount);
+        return super.onAttackToChangeDamage(info, damageAmount);
     }
 
     private void updatePercentage()

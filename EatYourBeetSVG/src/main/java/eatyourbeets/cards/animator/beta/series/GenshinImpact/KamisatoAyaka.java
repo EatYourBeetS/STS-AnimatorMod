@@ -63,7 +63,7 @@ public class KamisatoAyaka extends AnimatorCard {
 
         GameActions.Bottom.StackPower(new NegateBlockPower(p, NO_BLOCK_TURNS, p.currentBlock));
 
-        if (this.getFrostCount() == secondaryValue && CombatStats.TryActivateLimited(cardID))
+        if (this.getFrostCount() >= secondaryValue && CombatStats.TryActivateLimited(cardID))
         {
             AbstractCard c = new SheerCold();
             c.applyPowers();

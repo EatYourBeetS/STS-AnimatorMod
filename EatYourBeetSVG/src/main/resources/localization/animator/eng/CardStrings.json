@@ -576,17 +576,17 @@
 		},
 		"animator:HuTao":
 		{
-		  "DESCRIPTION": "Transform up to !M! {Hindrances} from anywhere into {Searing Burn}. || When Exhausted, add !S! {Searing Burn} to your hand.",
+		  "DESCRIPTION": "Exhaust up to !M! random {Hindrances} from anywhere. Add a {Searing Burn} to your Draw Pile for each Exhausted card. || When Exhausted, add !S! {Searing Burn} to your hand.",
 		  "NAME": "Hu Tao"
 		},
 		"animator:JeanGunnhildr":
 		{
-			"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile. || Discard up to !M! card(s). Remove 1 [Weak], [Vulnerable], and [Frail] for each discarded card.",
+			"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile. || Discard up to !M! card(s). Remove 1 of your rightmost [Weak], [Vulnerable], or [Frail] for each discarded card.",
 			"NAME": "Jean Gunnhildr"
 		},
 		"animator:JumpyDumpty":
 		{
-		  "DESCRIPTION": "Apply !M! [Burning]. ** Any blocked or spillover damage is dealt to you as well.",
+		  "DESCRIPTION": "Apply !M! [Burning]. ** If the enemy dies or ** loses its [Block]: Shuffle a copy of this card into your Draw Pile. Take !S! damage at the end of the turn.",
 		  "NAME": "Jumpy Dumpty"
 		},
 		"animator:KaeyaAlberich":

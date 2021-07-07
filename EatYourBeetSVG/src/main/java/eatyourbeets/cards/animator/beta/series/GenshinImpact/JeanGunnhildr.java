@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.RandomizedList;
 
 public class JeanGunnhildr extends AnimatorCard {
     public static final EYBCardData DATA = Register(JeanGunnhildr.class).SetAttack(1, CardRarity.RARE);
@@ -41,13 +42,17 @@ public class JeanGunnhildr extends AnimatorCard {
                 .AddCallback(cards ->
                 {
                     int discarded = cards.size();
-
-                    if (cards.size() > 0) {
+                    if (discarded > 0) {
                         for (AbstractPower power : player.powers)
                         {
                             if (WeakPower.POWER_ID.equals(power.ID) || VulnerablePower.POWER_ID.equals(power.ID) || FrailPower.POWER_ID.equals(power.ID))
                             {
-                                GameActions.Top.ReducePower(power, discarded);
+                                int decrease = Math.min(discarded,power.amount);
+                                GameActions.Top.ReducePower(power, decrease);
+                                discarded -= decrease;
+                                if (discarded <= 0) {
+                                    break;
+                                }
                             }
                         }
                     }

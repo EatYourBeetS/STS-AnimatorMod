@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
@@ -37,16 +36,15 @@ public class SheerColdPower extends AnimatorPower
     {
         super.atEndOfTurn(isPlayer);
 
-        AbstractPlayer p = AbstractDungeon.player;
         AbstractCreature target;
 
-        for (AbstractOrb orb : p.orbs) {
+        for (AbstractOrb orb : player.orbs) {
             if (Frost.ORB_ID.equals(orb.ID)) {
                 if (owner.isPlayer) {
                     target = GameUtilities.GetRandomEnemy(true);
                 }
                 else {
-                    target = p;
+                    target = player;
                 }
                 this.applyPower(target, orb, orb.passiveAmount * this.amount);
             }
@@ -67,8 +65,7 @@ public class SheerColdPower extends AnimatorPower
                 }
             }
             else {
-                AbstractPlayer p = AbstractDungeon.player;
-                this.applyPower(p, orb, orb.evokeAmount * this.amount);
+                this.applyPower(player, orb, orb.evokeAmount * this.amount);
             }
         }
     }

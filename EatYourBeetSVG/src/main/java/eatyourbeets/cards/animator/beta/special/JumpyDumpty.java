@@ -9,8 +9,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
+import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class JumpyDumpty extends AnimatorCard
 {
@@ -20,8 +22,8 @@ public class JumpyDumpty extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(9, 0, 1);
-        SetUpgrade(3, 0, 1);
+        Initialize(10, 0, 1, 5);
+        SetUpgrade(3, 0, 1, 0);
         SetAutoplay(true);
         SetExhaust(true);
         SetSynergy(Synergies.GenshinImpact);
@@ -32,11 +34,12 @@ public class JumpyDumpty extends AnimatorCard
     {
         GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX, m.hb.cY), 0.1F);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-                .AddCallback(e ->
+                .AddCallback(m.currentBlock, (initialBlock, target) ->
                 {
-                    int selfDamage = this.damage - e.lastDamageTaken;
-                    if (selfDamage > 0) {
-                        GameActions.Bottom.DealDamage(null, player, selfDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+                    if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0))
+                    {
+                        GameActions.Bottom.MakeCardInDrawPile(new JumpyDumpty());
+                        GameActions.Bottom.StackPower(new SelfDamagePower(p, secondaryValue));
                     }
 
                 });

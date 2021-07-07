@@ -11,6 +11,6 @@ public class AbstractCreature_BrokeBlock
     @SpirePostfixPatch
     public static void Method(AbstractCreature __instance)
     {
-        CombatStats.Instance.OnBlockBroken(__instance);
+        CombatStats.OnBlockBroken(__instance);
     }
 }

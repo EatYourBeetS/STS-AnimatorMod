@@ -38,19 +38,19 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     public void receiveOnBattleStart(AbstractRoom abstractRoom)
     {
         CombatStats.EnsurePowerIsApplied();
-        CombatStats.Instance.OnBattleStart();
+        CombatStats.OnBattleStart();
     }
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom)
     {
-        CombatStats.Instance.OnBattleEnd();
+        CombatStats.OnBattleEnd();
     }
 
     @Override
     public void receivePostDraw(AbstractCard abstractCard)
     {
-        CombatStats.Instance.OnAfterDraw(abstractCard);
+        CombatStats.OnAfterDraw(abstractCard);
     }
 
     @Override

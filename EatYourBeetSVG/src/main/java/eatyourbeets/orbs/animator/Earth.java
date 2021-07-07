@@ -37,7 +37,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
 
     public Earth()
     {
-        super(ORB_ID);
+        super(ORB_ID, true);
 
         if (imgRight == null)
         {
@@ -60,22 +60,10 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
 
     public void updateDescription()
     {
-        String[] desc = orbStrings.DESCRIPTION;
+        final String[] desc = orbStrings.DESCRIPTION;
 
         this.applyFocus();
         this.description = desc[0] + this.passiveAmount + desc[1] + this.evokeAmount + desc[2] + this.turns + desc[3];
-    }
-
-    public void onEvoke()
-    {
-        if (evokeAmount > 0)
-        {
-            GameActions.Top.Add(new EarthOrbEvokeAction(evokeAmount));
-        }
-
-        turns = 0;
-        CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
-        evoked = true;
     }
 
     @Override
@@ -97,6 +85,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         }
     }
 
+    @Override
     public void onEndOfTurn()
     {
         if (evoked)
@@ -106,7 +95,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
 
         if (turns > 0)
         {
-            GameActions.Bottom.Add(new EarthOrbPassiveAction(passiveAmount));
+            PassiveEffect();
         }
 
         this.updateDescription();
@@ -120,6 +109,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         GameEffects.Queue.Add(new DarkOrbActivateEffect(this.cX, this.cY));
     }
 
+    @Override
     public void applyFocus()
     {
         int focus = GetFocus();
@@ -135,12 +125,14 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         }
     }
 
+    @Override
     public void updateAnimation()
     {
         super.updateAnimation();
         this.angle += Gdx.graphics.getDeltaTime() * 18f; //180f;
     }
 
+    @Override
     public void render(SpriteBatch sb)
     {
         sb.setColor(this.c);
@@ -159,6 +151,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.turns), this.cX - NUM_X_OFFSET, this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET + 20f * Settings.scale, this.c, this.fontScale);
     }
 
+    @Override
     public void playChannelSFX()
     {
         CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.2f);
@@ -177,5 +170,26 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         }
 
         return copy;
+    }
+
+    @Override
+    public void PassiveEffect()
+    {
+        GameActions.Bottom.Add(new EarthOrbPassiveAction(passiveAmount));
+        super.PassiveEffect();
+    }
+
+    @Override
+    public void EvokeEffect()
+    {
+        if (evokeAmount > 0)
+        {
+            GameActions.Top.Add(new EarthOrbEvokeAction(evokeAmount));
+            super.EvokeEffect();
+        }
+
+        turns = 0;
+        CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+        evoked = true;
     }
 }

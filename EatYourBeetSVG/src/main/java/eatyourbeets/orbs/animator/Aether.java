@@ -21,7 +21,7 @@ public class Aether extends AnimatorOrb
 
     public Aether()
     {
-        super(ORB_ID);
+        super(ORB_ID, true);
 
         if (imgExt1 == null)
         {
@@ -38,6 +38,7 @@ public class Aether extends AnimatorOrb
         this.channelAnimTimer = 0.5f;
     }
 
+    @Override
     public void updateDescription()
     {
         String[] desc = orbStrings.DESCRIPTION;
@@ -46,33 +47,27 @@ public class Aether extends AnimatorOrb
         this.description = desc[0] + this.passiveAmount + desc[1] + this.evokeAmount + desc[2];
     }
 
-    public void onEvoke()
-    {
-        GameActions.Top.Add(new AetherOrbEvokeAction(this.evokeAmount));
-    }
-
-    public void onEndOfTurn()
-    {
-        GameActions.Bottom.Add(new AetherOrbPassiveAction(this.passiveAmount));
-    }
-
+    @Override
     public void triggerEvokeAnimation()
     {
         CardCrawlGame.sound.play("POWER_FLIGHT", 0.2f);
         CardCrawlGame.sound.playAV("ORB_PLASMA_Evoke", 1.2f, 0.7f);
     }
 
+    @Override
     public void applyFocus()
     {
         this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
     }
 
+    @Override
     public void updateAnimation()
     {
         super.updateAnimation();
         this.angle += Gdx.graphics.getDeltaTime() * 180f;
     }
 
+    @Override
     public void render(SpriteBatch sb)
     {
         sb.setColor(this.c);
@@ -88,10 +83,27 @@ public class Aether extends AnimatorOrb
         this.hb.render(sb);
     }
 
+    @Override
     public void playChannelSFX()
     {
         CardCrawlGame.sound.playAV("ATTACK_WHIRLWIND", 1.5f, 0.7f);
         CardCrawlGame.sound.playAV("ORB_PLASMA_CHANNEL", 1.2f, 0.7f);
         CardCrawlGame.sound.play("POWER_FLIGHT", 0.2f);
+    }
+
+    @Override
+    public void EvokeEffect()
+    {
+        super.EvokeEffect();
+
+        GameActions.Top.Add(new AetherOrbEvokeAction(this.evokeAmount));
+    }
+
+    @Override
+    public void PassiveEffect()
+    {
+        super.PassiveEffect();
+
+        GameActions.Bottom.Add(new AetherOrbPassiveAction(this.passiveAmount));
     }
 }

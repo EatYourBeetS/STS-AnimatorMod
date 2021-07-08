@@ -12,6 +12,6 @@ public class AbstractMonster_Render
     @SpirePrefixPatch
     public static void Method(AbstractMonster __instance, SpriteBatch sb)
     {
-        GR.UI.CombatScreen.RenderMonsterInfo(__instance, sb);
+        GR.UI.CombatScreen.Intents.RenderMonsterInfo(__instance, sb);
     }
 }

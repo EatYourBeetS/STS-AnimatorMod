@@ -6,8 +6,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.ui.AbstractScreen;
-import eatyourbeets.ui.EYBCombatScreen;
 import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardAffinities;
+import eatyourbeets.ui.animator.combat.EYBCombatScreen;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorSeriesSelectScreen;
 import eatyourbeets.ui.common.EYBSingleCardPopup;
 
@@ -64,7 +64,6 @@ public class UIManager
             CurrentScreen.Render(sb);
         }
 
-        CombatScreen.TryRender(sb);
         CardPopup.TryRender(sb);
     }
 

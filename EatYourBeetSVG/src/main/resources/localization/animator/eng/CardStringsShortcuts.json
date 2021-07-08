@@ -23,6 +23,7 @@
 	"<BLUE>": "[A-Blue]",
 	"<LIGHT>": "[A-Light]",
 	"<DARK>": "[A-Dark]",
+	"<STAR>": "[A-Star]",
 
 	" ** ": " NL ",
 	" || ": " NL  NL "

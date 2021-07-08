@@ -261,14 +261,14 @@ public abstract class EYBCard extends EYBCardBase
         GameEffects.List.Add(new ExhaustCardEffect(this));
     }
 
-    public boolean HasTeamwork(int amount)
+    public int GetTeamwork(AffinityType type)
     {
-        return HasTeamwork(amount, true);
+        return GetTeamwork(null, true);
     }
 
-    public boolean HasTeamwork(int amount, boolean ignoreSelf)
+    public int GetTeamwork(AffinityType type, boolean ignoreSelf)
     {
-        return GameUtilities.GetTeamwork(ignoreSelf ? this : null) >= amount;
+        return GameUtilities.GetTotalAffinity(player.hand.group, ignoreSelf ? this : null, 1).GetLevel(type);
     }
 
     public boolean IsStarter()

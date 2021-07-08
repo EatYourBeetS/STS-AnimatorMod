@@ -27,12 +27,24 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
 
     public void Render(SpriteBatch sb, float x, float y, float size)
     {
-        RenderHelpers.Draw(sb, Type.GetIcon(), x, y, size);
+        Texture background = Type.GetBackground(level);
+        if (background != null)
+        {
+            RenderHelpers.Draw(sb, background, x, y, size, size);
+        }
+
+        RenderHelpers.Draw(sb, Type.GetIcon(), x, y, size, size);
 
         Texture border = Type.GetBorder(level);
         if (border != null)
         {
-            RenderHelpers.Draw(sb, border, x, y, size);
+            RenderHelpers.Draw(sb, border, x, y, size, size);
+        }
+
+        Texture foreground = Type.GetForeground(level);
+        if (foreground != null)
+        {
+            RenderHelpers.Draw(sb, foreground, x, y, size, size);
         }
     }
 

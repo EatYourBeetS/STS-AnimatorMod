@@ -24,7 +24,6 @@ public class Pride extends AnimatorCard
         SetExhaust(true);
         SetSynergy(Synergies.FullmetalAlchemist);
         SetShapeshifter();
-        SetAffinity(0, 0, 1, 0, 2);
     }
 
     @Override

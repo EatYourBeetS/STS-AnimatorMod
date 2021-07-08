@@ -50,7 +50,7 @@ public class Rayneshia extends AnimatorCard
 
             GameActions.Bottom.Callback(new RefreshHandLayout(), () ->
             {
-                if (HasTeamwork(secondaryValue) && CombatStats.TryActivateLimited(cardID))
+                if (GetTeamwork(null) >= secondaryValue && CombatStats.TryActivateLimited(cardID))
                 {
                     final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                     final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombat(CardRarity.RARE, player.getCardColor());

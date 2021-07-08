@@ -50,6 +50,7 @@ import eatyourbeets.actions.special.VFX;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.delegates.*;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
@@ -849,6 +850,11 @@ public final class GameActions
     public ApplyPower StackPower(AbstractPower power)
     {
         return StackPower(power.owner, power);
+    }
+
+    public AbstractGameAction SynergyEffect(AffinityType type)
+    {
+        return type.QueueSynergyEffect(this);
     }
 
     public TalkAction Talk(AbstractCreature source, String text)

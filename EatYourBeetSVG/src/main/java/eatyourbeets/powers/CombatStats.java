@@ -26,6 +26,7 @@ import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
@@ -36,10 +37,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import patches.CardGlowBorderPatches;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CombatStats extends EYBPower implements InvisiblePower
 {
@@ -128,10 +126,8 @@ public class CombatStats extends EYBPower implements InvisiblePower
         RefreshPlayer();
         JUtils.LogInfo(CombatStats.class, "Clearing Player Stats");
 
-        for (OnStatsClearedSubscriber s : onStatsCleared.GetSubscribers())
-        {
-            s.OnStatsCleared();
-        }
+        // Iterate onStatsCleared, remove those that return true.
+        onStatsCleared.GetSubscribers().removeIf(OnStatsClearedSubscriber::OnStatsCleared);
 
         CardGlowBorderPatches.overrideColor = null;
         Synergies.SetLastCardPlayed(null);
@@ -171,7 +167,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onStartOfTurn.Clear();
         onStartOfTurnPostDraw.Clear();
         onPhaseChanged.Clear();
-        onStatsCleared.Clear();
         onStanceChanged.Clear();
         onSynergyCheck.Clear();
     }
@@ -357,6 +352,11 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
             actions.clear();
             card.OnLateUse(p, m, isSynergizing);
+
+            if (isSynergizing)
+            {
+                card.affinities.OnSynergy(card);
+            }
 
             if (actions.isEmpty())
             {

@@ -134,6 +134,7 @@ public class CardTooltips
         RegisterID("A-Blue", Affinity_Blue);
         RegisterID("A-Light", Affinity_Light);
         RegisterID("A-Dark", Affinity_Dark);
+        RegisterID("A-Star", Shapeshifter);
 
         RegisterID("Random Orb", RandomOrb);
         RegisterID("Grief Seed", GriefSeed);

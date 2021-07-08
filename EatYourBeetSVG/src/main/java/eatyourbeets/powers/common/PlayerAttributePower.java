@@ -189,11 +189,12 @@ public abstract class PlayerAttributePower extends CommonPower
     public static class PreservedPowers extends HashSet<String> implements OnStatsClearedSubscriber, OnStartOfTurnPostDrawSubscriber
     {
         @Override
-        public void OnStatsCleared()
+        public boolean OnStatsCleared()
         {
             clear();
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
             CombatStats.onStatsCleared.Unsubscribe(this);
+            return true;
         }
 
         @Override

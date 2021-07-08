@@ -1,8 +1,12 @@
 package eatyourbeets.cards.base;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.TargetHelper;
 
 public enum AffinityType implements Comparable<AffinityType>
 {
@@ -45,5 +49,57 @@ public enum AffinityType implements Comparable<AffinityType>
     public Texture GetForeground(int level)
     {
         return this == Star ? null : (level > 1 ? BorderFG.Texture() : null);
+    }
+
+    public AbstractGameAction QueueSynergyEffect(GameActions actions)
+    {
+        switch (this)
+        {
+            case Red:
+                return actions.GainForce(1).ShowEffect(false, true);
+
+            case Green:
+                return actions.GainAgility(1).ShowEffect(false, true);
+
+            case Blue:
+                return actions.GainIntellect(1).ShowEffect(false, true);
+
+            case Light:
+                return actions.GainTemporaryHP(1);
+
+            case Dark:
+                return actions.ApplyConstricted(TargetHelper.RandomEnemy(), 1).IgnoreArtifact(true).ShowEffect(false, true);
+
+            case Star:
+                return actions.GainBlock(1).SetVFX(true, true);
+        }
+
+        throw new EnumConstantNotPresentException(getClass(), "type");
+    }
+
+    public TextureRegion GetSynergyEffectIcon()
+    {
+        switch (this)
+        {
+            case Red:
+                return GR.Tooltips.Force.icon;
+
+            case Green:
+                return GR.Tooltips.Agility.icon;
+
+            case Blue:
+                return GR.Tooltips.Intellect.icon;
+
+            case Light:
+                return GR.Tooltips.TempHP.icon;
+
+            case Dark:
+                return GR.Tooltips.Constricted.icon;
+
+            case Star:
+                return GR.Tooltips.Block.icon;
+        }
+
+        return null;
     }
 }

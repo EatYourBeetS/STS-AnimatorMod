@@ -834,36 +834,24 @@ public class GameUtilities
         }
     }
 
-    public static int GetTeamwork(AbstractCard ignored)
+    public static EYBCardAffinities GetTotalAffinity(Collection<AbstractCard> cards, AbstractCard ignored, int limitPerCard)
     {
-        int total = 0;
-        AbstractCard c1;
-        AbstractCard c2;
-        for (int i = 0; i < player.hand.group.size(); i++)
+        EYBCardAffinities affinities = new EYBCardAffinities();
+        for (AbstractCard c : cards)
         {
-            c1 = player.hand.group.get(i);
-            if (c1 == ignored)
+            EYBCard card = JUtils.SafeCast(c, EYBCard.class);
+            if (card != ignored && card != null)
             {
-                continue;
-            }
-            if (c1.hasTag(AnimatorCard.SHAPESHIFTER))
-            {
-                total += 1;
-                continue;
-            }
+                affinities.Add(card.affinities, limitPerCard);
 
-            for (int j = 0; j < player.hand.group.size(); j++)
-            {
-                c2 = player.hand.group.get(j);
-                if (c2 != ignored && c1 != c2 && !c2.hasTag(AnimatorCard.SHAPESHIFTER) && Synergies.WouldSynergize(c1, c2))
+                if (card.affinities.Star != null)
                 {
-                    total += 1;
-                    break;
+                    affinities.AddStar(card.affinities.Star.level);
                 }
             }
         }
 
-        return total;
+        return affinities;
     }
 
     public static int GetTempHP(AbstractCreature creature)

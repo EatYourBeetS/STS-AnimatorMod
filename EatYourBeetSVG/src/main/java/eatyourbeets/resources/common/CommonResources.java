@@ -175,7 +175,8 @@ public class CommonResources extends AbstractResources
             return;
         }
 
-        tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 2, 4, size-4, size-4);
+        tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 3, 5, size-6, size-6);
+        //tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 2, 4, size-4, size-4);
 
         EYBCardTooltip stance = CardTooltips.FindByID(id + " Stance");
         if (stance != null)

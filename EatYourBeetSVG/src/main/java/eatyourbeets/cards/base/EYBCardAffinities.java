@@ -3,8 +3,10 @@ package eatyourbeets.cards.base;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredTexture;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -89,6 +91,11 @@ public class EYBCardAffinities
         Set(AffinityType.Dark, dark);
     }
 
+    public void AddStar(int level)
+    {
+        SetStar((Star == null ? 0 : Star.level) + level);
+    }
+
     public void SetStar(int level)
     {
         if (level == 0)
@@ -130,6 +137,12 @@ public class EYBCardAffinities
     {
         if (level > 0)
         {
+            if (type == AffinityType.Star)
+            {
+                AddStar(level);
+                return;
+            }
+
             for (int i = 0; i < List.size(); i++)
             {
                 EYBCardAffinity a = List.get(i);
@@ -155,6 +168,12 @@ public class EYBCardAffinities
 
     public EYBCardAffinity Set(AffinityType type, int level)
     {
+        if (type == AffinityType.Star)
+        {
+            SetStar(level);
+            return Star;
+        }
+
         EYBCardAffinity result = null;
         for (int i = 0; i < List.size(); i++)
         {
@@ -186,6 +205,11 @@ public class EYBCardAffinities
 
     public EYBCardAffinity Get(AffinityType type)
     {
+        if (type == AffinityType.Star)
+        {
+            return Star;
+        }
+
         for (EYBCardAffinity item : List)
         {
             if (item.Type == type)
@@ -199,15 +223,46 @@ public class EYBCardAffinities
 
     public int GetLevel(AffinityType type)
     {
-        for (EYBCardAffinity item : List)
+        int star = (Star != null ? Star.level : 0);
+        if (type == AffinityType.Star)
         {
-            if (item.Type == type)
+            return star;
+        }
+        else if (type == null) // Highest level among all affinities
+        {
+            return List.isEmpty() ? star : List.get(0).level;
+        }
+        else
+        {
+            EYBCardAffinity affinity = Get(type);
+            return (affinity != null) ? affinity.level : 0;
+        }
+    }
+
+    public void OnSynergy(AnimatorCard card)
+    {
+        EYBCard c1 = JUtils.SafeCast(card, EYBCard.class);
+        if (c1 == null)
+        {
+            JUtils.LogError(this, "OnSynergy received null card reference.");
+            return;
+        }
+
+        if (c1.affinities.HasStar())
+        {
+            if (CombatStats.TryActivateSemiLimited(AffinityType.Star.name()))
             {
-                return item.level;
+                GameActions.Bottom.SynergyEffect(AffinityType.Star);
             }
         }
 
-        return 0;
+        for (EYBCardAffinity affinity : c1.affinities.List)
+        {
+            if (affinity.level >= 2 && CombatStats.TryActivateSemiLimited(affinity.Type.name()))
+            {
+                GameActions.Bottom.SynergyEffect(affinity.Type);
+            }
+        }
     }
 
     public void RenderOnCard(SpriteBatch sb, EYBCard card, boolean highlight)
@@ -274,7 +329,7 @@ public class EYBCardAffinities
     public void Render(SpriteBatch sb, float x, float y, float size)
     {
         int half = List.size() / 2;
-        float step = size * 0.95f;
+        float step = size * 0.9f;
         for (int i = 0; i < List.size(); i++)
         {
             float offsetX;

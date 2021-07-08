@@ -70,6 +70,7 @@ public class Synergies
     private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;
 
+
     public static boolean IsSynergizing(AbstractCard card)
     {
         if (card == null || currentSynergy == null)
@@ -130,6 +131,11 @@ public class Synergies
         }
 
         return mapNames.get(name);
+    }
+
+    public static AnimatorCard GetLastCardPlayed()
+    {
+        return lastCardPlayed;
     }
 
     public static Map<Synergy, List<AbstractCard>> GetCardsBySynergy(ArrayList<AbstractCard> cards)

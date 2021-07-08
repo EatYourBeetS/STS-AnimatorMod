@@ -227,7 +227,7 @@ public class EYBCardAffinities
         else
         {
             size = 48;//48;
-            y *= 0.51f;// -0.47f;
+            y *= 0.49f;// -0.51f;
             step = size * 1.2f;
         }
 

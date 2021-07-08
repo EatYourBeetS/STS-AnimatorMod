@@ -218,13 +218,16 @@ public abstract class EYBCard extends EYBCardBase
     }
 
 //    Uncomment to render affinity behind banner
-//    @Override
-//    protected void renderBannerImage(SpriteBatch sb, float drawX, float drawY)
-//    {
-//        affinities.RenderOnCard(sb, this, player != null && player.hand.contains(this));
-//
-//        super.renderBannerImage(sb, drawX, drawY);
-//    }
+    @Override
+    protected void renderBannerImage(SpriteBatch sb, float drawX, float drawY)
+    {
+        if (isSeen)
+        {
+            affinities.RenderOnCard(sb, this, player != null && player.hand.contains(this));
+        }
+
+        super.renderBannerImage(sb, drawX, drawY);
+    }
 
     public void triggerWhenCreated(boolean startOfBattle)
     {

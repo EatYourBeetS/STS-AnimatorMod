@@ -51,6 +51,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = new GameEvent<>();
     public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = new GameEvent<>();
     public static final GameEvent<OnBeforeLoseBlockSubscriber> onBeforeLoseBlock = new GameEvent<>();
+    public static final GameEvent<OnTryUseCardSubscriber> onTryUseCard = new GameEvent<>();
     public static final GameEvent<OnAfterCardDrawnSubscriber> onAfterCardDrawn = new GameEvent<>();
     public static final GameEvent<OnAfterCardPlayedSubscriber> onAfterCardPlayed = new GameEvent<>();
     public static final GameEvent<OnAfterCardDiscardedSubscriber> onAfterCardDiscarded = new GameEvent<>();
@@ -150,6 +151,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onEnemyDying.Clear();
         onBlockBroken.Clear();
         onBeforeLoseBlock.Clear();
+        onTryUseCard.Clear();
         onAfterCardDrawn.Clear();
         onAfterCardPlayed.Clear();
         onAfterCardDiscarded.Clear();
@@ -372,6 +374,16 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             c.use(p, m);
         }
+    }
+
+    public static boolean OnTryUseCard(AbstractCard card, AbstractPlayer p, AbstractMonster m, boolean canPlay)
+    {
+        for (OnTryUseCardSubscriber s : onTryUseCard.GetSubscribers())
+        {
+            canPlay &= s.OnTryUseCard(card, p, m, canPlay);
+        }
+
+        return canPlay;
     }
 
     public static void OnEnemyDying(AbstractMonster enemy, boolean triggerRelics)

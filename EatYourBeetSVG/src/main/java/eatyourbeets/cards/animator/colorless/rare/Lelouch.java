@@ -27,6 +27,9 @@ public class Lelouch extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.CodeGeass);
+
+        SetAffinity_Blue(2);
+        SetAffinity_Dark(2);
     }
 
     @Override

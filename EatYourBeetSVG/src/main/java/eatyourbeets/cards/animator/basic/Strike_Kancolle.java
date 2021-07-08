@@ -20,6 +20,7 @@ public class Strike_Kancolle extends Strike
 
         SetHealing(true);
         SetSynergy(Synergies.Kancolle);
+        SetAffinity_Green(1);
     }
 
     @Override

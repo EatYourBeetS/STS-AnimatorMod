@@ -21,6 +21,7 @@ public class Curse_Nutcracker extends AnimatorCard_Curse
         Initialize(0, 0, 3);
 
         SetSynergy(Synergies.YoujoSenki);
+        SetAffinity_Dark(1);
     }
 
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)

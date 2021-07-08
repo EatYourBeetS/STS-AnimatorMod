@@ -18,6 +18,7 @@ public class Strike_Overlord extends Strike
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Overlord);
+        SetAffinity_Blue(1);
     }
 
     @Override

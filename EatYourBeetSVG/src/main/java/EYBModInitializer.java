@@ -1,5 +1,7 @@
 import basemod.BaseMod;
 import basemod.interfaces.*;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -99,7 +101,12 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
                         .SetText("TEST MODE");
             }
 
-            testModeLabel.Render(sb);
+            if (Gdx.input.isKeyPressed(Input.Keys.ALT_LEFT) && Gdx.input.isKeyJustPressed(Input.Keys.NUM_7))
+            {
+                testModeLabel.SetActive(false);
+            }
+
+            testModeLabel.TryRender(sb);
         }
     }
 }

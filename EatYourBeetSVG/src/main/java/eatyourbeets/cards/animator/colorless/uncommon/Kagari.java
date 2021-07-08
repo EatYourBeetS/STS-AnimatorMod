@@ -24,6 +24,7 @@ public class Kagari extends AnimatorCard
         SetUpgrade(0, 0, 3);
 
         SetSynergy(Synergies.Rewrite);
+        SetAffinity_Blue(1);
     }
 
     @Override

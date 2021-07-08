@@ -14,6 +14,7 @@ public enum AffinityType implements Comparable<AffinityType>
     Star(-1, GR.Common.Images.Affinities.Star);
 
     protected static final TextureCache BorderBG = GR.Common.Images.Affinities.BorderBG;
+    protected static final TextureCache BorderFG = GR.Common.Images.Affinities.BorderFG;
     protected static final TextureCache BorderLV2 = GR.Common.Images.Affinities.Border;
     protected static final TextureCache BorderLV1 = GR.Common.Images.Affinities.Border_Weak;
 
@@ -39,5 +40,10 @@ public enum AffinityType implements Comparable<AffinityType>
     public Texture GetBackground(int level)
     {
         return this == Star ? null : (level > 1 ? BorderBG.Texture() : null);
+    }
+
+    public Texture GetForeground(int level)
+    {
+        return this == Star ? null : (level > 1 ? BorderFG.Texture() : null);
     }
 }

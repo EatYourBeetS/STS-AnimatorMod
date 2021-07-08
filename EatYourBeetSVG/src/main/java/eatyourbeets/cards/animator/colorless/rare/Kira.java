@@ -37,6 +37,9 @@ public class Kira extends AnimatorCard
         SetExhaust(true);
         SetEthereal(true);
         SetSynergy(Synergies.DeathNote);
+
+        SetAffinity_Blue(2);
+        SetAffinity_Dark(2);
     }
 
     @Override

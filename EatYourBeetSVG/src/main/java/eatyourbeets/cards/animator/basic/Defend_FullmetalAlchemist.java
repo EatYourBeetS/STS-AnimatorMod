@@ -19,6 +19,7 @@ public class Defend_FullmetalAlchemist extends Defend
 
         SetCooldown(1, 0, this::OnCooldownCompleted);
         SetSynergy(Synergies.FullmetalAlchemist);
+        SetAffinity_Blue(1);
     }
 
     @Override

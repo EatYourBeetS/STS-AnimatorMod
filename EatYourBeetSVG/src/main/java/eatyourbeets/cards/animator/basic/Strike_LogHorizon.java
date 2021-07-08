@@ -19,6 +19,7 @@ public class Strike_LogHorizon extends Strike
         SetUpgrade(2, 0);
 
         SetSynergy(Synergies.LogHorizon);
+        SetAffinity_Green(1);
     }
 
     @Override

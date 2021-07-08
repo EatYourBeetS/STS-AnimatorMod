@@ -22,6 +22,7 @@ public class HarukoHaruhara extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetSynergy(Synergies.FLCL);
+        SetAffinity_Light(1);
     }
 
     @Override

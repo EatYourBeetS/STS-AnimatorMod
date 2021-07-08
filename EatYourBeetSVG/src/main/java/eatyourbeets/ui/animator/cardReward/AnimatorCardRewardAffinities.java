@@ -39,6 +39,8 @@ public class AnimatorCardRewardAffinities extends GUIElement
         header1 = RenderHelpers.ForTexture(ICONS.Border_Weak.Texture())
         .SetHitbox(new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, 0.15f, 1f, true));
         header2 = RenderHelpers.ForTexture(ICONS.Border.Texture())
+        .SetBackgroundTexture(ICONS.BorderBG.Texture())
+        .SetForegroundTexture(ICONS.BorderFG.Texture())
         .SetHitbox(new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, 0.45f, 1f, true));
 
         counters.add(new CardAffinityCounter(hb, AffinityType.Red));

@@ -24,6 +24,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
 
         SetExhaust(true);
         SetSynergy(Synergies.KillLaKill);
+        SetAffinity_Green(1);
     }
 
     @Override

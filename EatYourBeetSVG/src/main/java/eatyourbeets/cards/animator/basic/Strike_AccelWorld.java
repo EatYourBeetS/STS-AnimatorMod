@@ -19,6 +19,7 @@ public class Strike_AccelWorld extends Strike
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.AccelWorld);
+        SetAffinity_Green(1);
     }
 
     @Override

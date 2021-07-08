@@ -26,6 +26,7 @@ public class MisakiNakahara extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.WelcomeToNHK);
+        SetAffinity_Light(1, 1);
     }
 
     @Override

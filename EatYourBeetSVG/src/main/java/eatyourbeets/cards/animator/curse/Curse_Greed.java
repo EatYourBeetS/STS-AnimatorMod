@@ -20,6 +20,7 @@ public class Curse_Greed extends AnimatorCard_Curse
         Initialize(0, 0, 2);
 
         SetSynergy(Synergies.Konosuba);
+        SetAffinity_Dark(1);
     }
 
     @Override

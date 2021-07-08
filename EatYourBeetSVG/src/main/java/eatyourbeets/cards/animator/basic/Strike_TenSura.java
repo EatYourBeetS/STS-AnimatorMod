@@ -20,6 +20,7 @@ public class Strike_TenSura extends Strike
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.TenSura);
+        SetAffinity_Light(1);
     }
 
     @Override

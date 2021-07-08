@@ -19,6 +19,7 @@ public class Strike_GoblinSlayer extends Strike
 
         SetExhaust(true);
         SetSynergy(Synergies.GoblinSlayer);
+        SetAffinity_Red(1);
     }
 
     @Override

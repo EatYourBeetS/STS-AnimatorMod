@@ -17,6 +17,7 @@ public class Defend_Overlord extends Defend
         SetUpgrade(0, 3);
 
         SetSynergy(Synergies.Overlord);
+        SetAffinity_Red(1);
     }
 
     @Override

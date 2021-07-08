@@ -18,6 +18,7 @@ public class Defend_Fate extends Defend
         SetUpgrade(0, 3);
 
         SetSynergy(Synergies.Fate);
+        SetAffinity_Blue(1);
     }
 
     @Override

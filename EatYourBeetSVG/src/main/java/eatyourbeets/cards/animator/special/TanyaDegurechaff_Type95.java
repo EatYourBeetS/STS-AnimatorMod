@@ -20,6 +20,8 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
         Initialize(0, 0);
 
         SetSynergy(Synergies.YoujoSenki);
+        SetAffinity_Dark(1);
+        SetAffinity_Light(1);
     }
 
     @Override

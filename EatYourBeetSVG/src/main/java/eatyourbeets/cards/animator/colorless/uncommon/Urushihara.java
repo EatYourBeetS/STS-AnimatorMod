@@ -28,6 +28,8 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
         SetMultiDamage(true);
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.HatarakuMaouSama);
+        SetAffinity_Blue(1);
+        SetAffinity_Dark(1);
     }
 
     @Override

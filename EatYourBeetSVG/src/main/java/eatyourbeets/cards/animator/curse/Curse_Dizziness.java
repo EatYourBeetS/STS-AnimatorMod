@@ -21,6 +21,7 @@ public class Curse_Dizziness extends AnimatorCard_Curse
         super(DATA, false);
 
         SetSynergy(Synergies.TouhouProject);
+        SetAffinity_Dark(1);
     }
 
     @Override

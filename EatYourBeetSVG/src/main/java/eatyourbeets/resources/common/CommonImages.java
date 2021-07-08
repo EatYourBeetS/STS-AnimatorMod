@@ -47,6 +47,7 @@ public class CommonImages
         public final TextureCache Dark                  = new TextureCache("images/cardui/eyb/affinities/Dark.png", true);
         public final TextureCache Star                  = new TextureCache("images/cardui/eyb/affinities/Star.png", true);
         public final TextureCache Border                = new TextureCache("images/cardui/eyb/affinities/Border.png", true);
+        public final TextureCache BorderFG              = new TextureCache("images/cardui/eyb/affinities/Border_FG.png", true);
         public final TextureCache BorderBG              = new TextureCache("images/cardui/eyb/affinities/Border_BG.png", true);
         public final TextureCache Border_Weak           = new TextureCache("images/cardui/eyb/affinities/Border_Weak.png", true);
     }

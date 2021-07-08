@@ -20,6 +20,7 @@ public class Strike_FullmetalAlchemist extends Strike
 
         SetCooldown(1, 0, this::OnCooldownCompleted);
         SetSynergy(Synergies.FullmetalAlchemist);
+        SetAffinity_Light(1);
     }
 
     @Override

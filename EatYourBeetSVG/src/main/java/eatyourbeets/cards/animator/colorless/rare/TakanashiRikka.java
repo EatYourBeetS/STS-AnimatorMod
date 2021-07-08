@@ -24,6 +24,8 @@ public class TakanashiRikka extends AnimatorCard
         SetEthereal(true);
         SetExhaust(true);
         SetSynergy(Synergies.Chuunibyou);
+
+        SetAffinity_Light(1);
     }
 
     @Override

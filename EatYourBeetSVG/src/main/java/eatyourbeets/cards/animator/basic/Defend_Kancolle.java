@@ -19,6 +19,7 @@ public class Defend_Kancolle extends Defend
 
         SetHealing(true);
         SetSynergy(Synergies.Kancolle);
+        SetAffinity_Green(1);
     }
 
     @Override

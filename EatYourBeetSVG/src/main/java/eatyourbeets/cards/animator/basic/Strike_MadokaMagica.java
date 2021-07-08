@@ -18,6 +18,7 @@ public class Strike_MadokaMagica extends Strike
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.MadokaMagica);
+        SetAffinity_Blue(1);
     }
 
     @Override

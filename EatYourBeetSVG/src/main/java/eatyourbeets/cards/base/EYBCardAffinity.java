@@ -36,30 +36,31 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
         }
     }
 
-    public float RenderOnCard(SpriteBatch sb, AbstractCard card, float x, float y, float size)
+    public void RenderOnCard(SpriteBatch sb, AbstractCard card, float x, float y, float size)
     {
         float rotation = 0f;
         Color color = Color.WHITE.cpy();
 
         if (level > 1)
         {
-            rotation = GR.UI.Time_Multi(-36f);
             EYBCardBase c = JUtils.SafeCast(card, EYBCardBase.class);
+
             if (c != null)
             {
-                color.lerp(c.GetRarityColor(false), 0.3f);
+                rotation = GR.UI.Time_Multi(-(c.isPopup ? 20 : 40));
+                color.lerp(c.GetRarityColor(false), 0.35f);
             }
         }
-        else
-        {
-            y -= (size * 0.025f);
-            size *= 0.95f;
-        }
+//        else
+//        {
+//            y -= (size * 0.025f);
+//            size *= 0.95f;
+//        }
 
         Texture background = Type.GetBackground(level);
         if (background != null)
         {
-            RenderHelpers.DrawOnCardAuto(sb, card, background, new Vector2(x, y), size, size, color, 1f, 1f, 0f);
+            RenderHelpers.DrawOnCardAuto(sb, card, background, new Vector2(x, y), size, size, color, 1f, 1f, 0);
         }
 
         RenderHelpers.DrawOnCardAuto(sb, card, Type.GetIcon(), new Vector2(x, y), size, size, Color.WHITE, 1f, 1f, 0f);
@@ -70,7 +71,11 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
             RenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size, color, 1f, 1f, rotation);
         }
 
-        return size * 1.02f;
+        Texture foreground = Type.GetForeground(level);
+        if (foreground != null)
+        {
+            RenderHelpers.DrawOnCardAuto(sb, card, foreground, new Vector2(x, y), size, size, color, 1f, 1f, -rotation);
+        }
     }
 
     @Override
@@ -87,5 +92,15 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
         }
 
         return (level * 100) + (10 - Type.ID);
+    }
+
+    public static void RenderBackground()
+    {
+
+    }
+
+    public static void RenderForeground()
+    {
+
     }
 }

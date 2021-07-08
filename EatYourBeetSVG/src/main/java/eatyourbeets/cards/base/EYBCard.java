@@ -214,6 +214,15 @@ public abstract class EYBCard extends EYBCardBase
         }
     }
 
+//    Uncomment to render affinity behind banner
+//    @Override
+//    protected void renderBannerImage(SpriteBatch sb, float drawX, float drawY)
+//    {
+//        affinities.RenderOnCard(sb, this, player != null && player.hand.contains(this));
+//
+//        super.renderBannerImage(sb, drawX, drawY);
+//    }
+
     public void triggerWhenCreated(boolean startOfBattle)
     {
         // Called at the start of a fight, or when a card is created by MakeTempCard.
@@ -443,11 +452,16 @@ public abstract class EYBCard extends EYBCardBase
     }
 
     //@Formatter: Off
-    protected void SetAffinity_R(int base, int upgrade) { InitializeAffinity(AffinityType.Red, base, upgrade); }
-    protected void SetAffinity_G(int base, int upgrade) { InitializeAffinity(AffinityType.Green, base, upgrade); }
-    protected void SetAffinity_B(int base, int upgrade) { InitializeAffinity(AffinityType.Blue, base, upgrade); }
-    protected void SetAffinity_L(int base, int upgrade) { InitializeAffinity(AffinityType.Light, base, upgrade); }
-    protected void SetAffinity_D(int base, int upgrade) {InitializeAffinity(AffinityType.Dark, base, upgrade); }
+    protected void SetAffinity_Red(int base) { InitializeAffinity(AffinityType.Red, base, 0); }
+    protected void SetAffinity_Green(int base) { InitializeAffinity(AffinityType.Green, base, 0); }
+    protected void SetAffinity_Blue(int base) { InitializeAffinity(AffinityType.Blue, base, 0); }
+    protected void SetAffinity_Light(int base) { InitializeAffinity(AffinityType.Light, base, 0); }
+    protected void SetAffinity_Dark(int base) { InitializeAffinity(AffinityType.Dark, base, 0); }
+    protected void SetAffinity_Red(int base, int upgrade) { InitializeAffinity(AffinityType.Red, base, upgrade); }
+    protected void SetAffinity_Green(int base, int upgrade) { InitializeAffinity(AffinityType.Green, base, upgrade); }
+    protected void SetAffinity_Blue(int base, int upgrade) { InitializeAffinity(AffinityType.Blue, base, upgrade); }
+    protected void SetAffinity_Light(int base, int upgrade) { InitializeAffinity(AffinityType.Light, base, upgrade); }
+    protected void SetAffinity_Dark(int base, int upgrade) {InitializeAffinity(AffinityType.Dark, base, upgrade); }
     protected void InitializeAffinity(AffinityType type, int base, int upgrade) { affinities.Initialize(type, base, upgrade); }
     //@Formatter: On
 

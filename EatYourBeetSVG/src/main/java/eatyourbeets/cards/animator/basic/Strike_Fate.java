@@ -18,6 +18,7 @@ public class Strike_Fate extends Strike
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Fate);
+        SetAffinity_Green(1);
     }
 
     @Override

@@ -18,6 +18,7 @@ public class Defend_Katanagatari extends Defend
         SetUpgrade(0, 3);
 
         SetSynergy(Synergies.Katanagatari);
+        SetAffinity_Red(1);
     }
 
     @Override

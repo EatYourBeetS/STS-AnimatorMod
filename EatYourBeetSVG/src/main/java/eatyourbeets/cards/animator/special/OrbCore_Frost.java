@@ -20,6 +20,7 @@ public class OrbCore_Frost extends OrbCore
         Initialize(0, 0, VALUE, 2);
 
         SetEvokeOrbCount(secondaryValue);
+        SetAffinity_Blue(2);
     }
 
     @Override

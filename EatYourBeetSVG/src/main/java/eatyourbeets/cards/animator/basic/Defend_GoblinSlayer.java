@@ -18,6 +18,7 @@ public class Defend_GoblinSlayer extends Defend
 
         SetExhaust(true);
         SetSynergy(Synergies.GoblinSlayer);
+        SetAffinity_Red(1);
     }
 
     @Override

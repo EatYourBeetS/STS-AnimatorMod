@@ -18,6 +18,7 @@ public class Strike_HitsugiNoChaika extends Strike
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Chaika);
+        SetAffinity_Green(1);
     }
 
     @Override

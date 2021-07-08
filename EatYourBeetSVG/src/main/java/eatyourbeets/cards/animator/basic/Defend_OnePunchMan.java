@@ -20,6 +20,7 @@ public class Defend_OnePunchMan extends Defend
 
         SetHealing(true);
         SetSynergy(Synergies.OnePunchMan);
+        SetAffinity_Light(1);
     }
 
     @Override

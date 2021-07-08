@@ -20,6 +20,7 @@ public class Strike_NoGameNoLife extends Strike
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.NoGameNoLife);
+        SetAffinity_Blue(1);
     }
 
     @Override

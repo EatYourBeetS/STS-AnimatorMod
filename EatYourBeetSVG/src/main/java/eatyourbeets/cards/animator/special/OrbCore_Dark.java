@@ -20,6 +20,7 @@ public class OrbCore_Dark extends OrbCore
         Initialize(0, 0, VALUE, 1);
 
         SetEvokeOrbCount(secondaryValue);
+        SetAffinity_Dark(2);
     }
 
     @Override

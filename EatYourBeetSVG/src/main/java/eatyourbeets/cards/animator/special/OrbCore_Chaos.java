@@ -19,6 +19,7 @@ public class OrbCore_Chaos extends OrbCore
         Initialize(0, 0, VALUE, 1);
 
         SetEvokeOrbCount(secondaryValue);
+        SetAffinity(1, 1, 1, 1, 1);
     }
 
     @Override

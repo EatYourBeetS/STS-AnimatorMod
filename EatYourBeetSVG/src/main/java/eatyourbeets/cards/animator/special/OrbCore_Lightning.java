@@ -20,6 +20,8 @@ public class OrbCore_Lightning extends OrbCore
         Initialize(0, 0, VALUE, 2);
 
         SetEvokeOrbCount(secondaryValue);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1);
     }
 
     @Override

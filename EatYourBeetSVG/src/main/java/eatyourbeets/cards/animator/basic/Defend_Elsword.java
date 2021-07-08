@@ -18,6 +18,7 @@ public class Defend_Elsword extends Defend
         SetUpgrade(0, 3);
 
         SetSynergy(Synergies.Elsword);
+        SetAffinity_Green(1);
     }
 
     @Override

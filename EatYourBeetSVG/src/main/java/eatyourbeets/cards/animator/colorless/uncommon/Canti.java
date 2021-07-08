@@ -23,6 +23,8 @@ public class Canti extends AnimatorCard
         SetUpgrade(4, 0);
 
         SetSynergy(Synergies.FLCL);
+        SetAffinity_Red(2);
+        SetAffinity_Light(2);
     }
 
     @Override

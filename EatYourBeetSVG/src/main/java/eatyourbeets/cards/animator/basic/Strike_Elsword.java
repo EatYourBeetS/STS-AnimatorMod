@@ -18,6 +18,7 @@ public class Strike_Elsword extends Strike
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Elsword);
+        SetAffinity_Red(1);
     }
 
     @Override

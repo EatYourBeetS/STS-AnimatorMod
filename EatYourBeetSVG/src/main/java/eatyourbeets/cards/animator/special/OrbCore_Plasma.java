@@ -20,6 +20,7 @@ public class OrbCore_Plasma extends OrbCore
         Initialize(0, 0, VALUE, 1);
 
         SetEvokeOrbCount(secondaryValue);
+        SetAffinity_Light(2);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class Strike_Konosuba extends Strike
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Konosuba);
-        SetAffinity(0, 1, 0, 0, 0);
+        SetAffinity_Green(1);
     }
 
     @Override

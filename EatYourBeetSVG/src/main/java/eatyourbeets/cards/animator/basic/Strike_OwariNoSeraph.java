@@ -19,6 +19,7 @@ public class Strike_OwariNoSeraph extends Strike
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.OwariNoSeraph);
+        SetAffinity_Red(1);
     }
 
     @Override

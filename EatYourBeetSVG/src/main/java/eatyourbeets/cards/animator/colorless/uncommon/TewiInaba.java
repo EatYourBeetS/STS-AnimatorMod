@@ -26,6 +26,7 @@ public class TewiInaba extends AnimatorCard implements Hidden // TODO:
         SetUpgrade(0, 0, 0, 0);
 
         SetSynergy(Synergies.TouhouProject);
+        SetAffinity_Dark(1);
     }
 
     @Override

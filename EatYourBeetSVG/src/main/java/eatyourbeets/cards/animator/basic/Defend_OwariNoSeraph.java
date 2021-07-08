@@ -18,6 +18,7 @@ public class Defend_OwariNoSeraph extends Defend
         SetUpgrade(0, 3);
 
         SetSynergy(Synergies.OwariNoSeraph);
+        SetAffinity_Green(1);
     }
 
     @Override

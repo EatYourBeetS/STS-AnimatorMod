@@ -20,6 +20,7 @@ public class Strike_Katanagatari extends Strike
 
         SetAttackType(EYBAttackType.Piercing);
         SetSynergy(Synergies.Katanagatari);
+        SetAffinity_Green(1);
     }
 
     @Override

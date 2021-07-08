@@ -19,6 +19,7 @@ public class Strike_GATE extends Strike
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Gate);
+        SetAffinity_Green(1);
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.animator.special.Oktavia;
-import eatyourbeets.cards.animator.status.Curse_GriefSeed;
+import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;

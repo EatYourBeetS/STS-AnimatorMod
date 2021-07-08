@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.status;
+package eatyourbeets.cards.animator.curse;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -22,7 +22,7 @@ public class Curse_GriefSeed extends AnimatorCard_Curse
         Initialize(0, 0, 1);
 
         SetSynergy(Synergies.MadokaMagica);
-        SetAffinity(0, 0, 0, 0, 1);
+        SetAffinity_Dark(1);
     }
 
     @Override

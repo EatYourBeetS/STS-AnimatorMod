@@ -20,6 +20,8 @@ public class Hibiki extends AnimatorCard
         SetUpgrade(0, 0, 0, 1);
 
         SetSynergy(Synergies.Kancolle);
+
+        SetAffinity_Green(1);
     }
 
     @Override

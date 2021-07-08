@@ -24,6 +24,8 @@ public class KotoriKanbe extends AnimatorCard
         SetEthereal(true);
         SetExhaust(true);
         SetSynergy(Synergies.Rewrite);
+
+        SetAffinity_Blue(1);
     }
 
     @Override

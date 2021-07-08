@@ -18,6 +18,7 @@ public class Defend_LogHorizon extends Defend
         SetUpgrade(0, 1);
 
         SetSynergy(Synergies.LogHorizon);
+        SetAffinity_Blue(1);
     }
 
     @Override

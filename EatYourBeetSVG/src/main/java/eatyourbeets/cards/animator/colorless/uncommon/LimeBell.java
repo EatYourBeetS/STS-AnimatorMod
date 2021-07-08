@@ -21,6 +21,7 @@ public class LimeBell extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.AccelWorld);
+        SetAffinity_Light(2);
     }
 
     @Override

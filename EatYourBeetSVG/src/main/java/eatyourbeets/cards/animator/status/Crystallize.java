@@ -19,7 +19,7 @@ public class Crystallize extends AnimatorCard_Status
         Initialize(0, 0, 4, 3);
 
         SetExhaust(true);
-        SetAffinity(0, 0, 0, 0, 1);
+        SetAffinity_Dark(1);
     }
 
     @Override

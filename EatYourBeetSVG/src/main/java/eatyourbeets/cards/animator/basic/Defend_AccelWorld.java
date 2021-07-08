@@ -17,6 +17,7 @@ public class Defend_AccelWorld extends Defend
         SetUpgrade(0, 3);
 
         SetSynergy(Synergies.AccelWorld);
+        SetAffinity_Green(1);
     }
 
     @Override

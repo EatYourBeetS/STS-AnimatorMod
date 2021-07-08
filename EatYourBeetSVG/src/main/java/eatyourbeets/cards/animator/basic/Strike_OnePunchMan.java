@@ -19,6 +19,7 @@ public class Strike_OnePunchMan extends Strike
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.OnePunchMan);
+        SetAffinity_Green(1);
     }
 
     @Override

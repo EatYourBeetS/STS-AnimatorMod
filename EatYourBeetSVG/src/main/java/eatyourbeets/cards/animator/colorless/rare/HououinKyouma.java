@@ -25,6 +25,8 @@ public class HououinKyouma extends AnimatorCard
 
         SetPurge(true);
         SetSynergy(Synergies.SteinsGate);
+
+        SetAffinity_Blue(1, 1);
     }
 
     @Override

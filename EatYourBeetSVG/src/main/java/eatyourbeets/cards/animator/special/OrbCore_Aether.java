@@ -20,6 +20,7 @@ public class OrbCore_Aether extends OrbCore
         Initialize(0, 0, VALUE, 1);
 
         SetEvokeOrbCount(secondaryValue);
+        SetAffinity_Green(2);
     }
 
     @Override

@@ -19,6 +19,7 @@ public class Defend_NoGameNoLife extends Defend
         SetUpgrade(0, 3);
 
         SetSynergy(Synergies.NoGameNoLife);
+        SetAffinity_Blue(1);
     }
 
     @Override

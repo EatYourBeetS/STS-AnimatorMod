@@ -18,6 +18,7 @@ public class Defend_GATE extends Defend
 
         SetRetain(true);
         SetSynergy(Synergies.Gate);
+        SetAffinity_Green(1);
     }
 
     @Override

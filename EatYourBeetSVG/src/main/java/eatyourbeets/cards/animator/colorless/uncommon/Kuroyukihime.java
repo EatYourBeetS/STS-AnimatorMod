@@ -25,6 +25,7 @@ public class Kuroyukihime extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetSynergy(Synergies.AccelWorld);
+        SetAffinity_Light(1);
     }
 
     @Override

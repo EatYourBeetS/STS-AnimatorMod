@@ -21,6 +21,7 @@ public class Shimakaze extends AnimatorCard
         SetUpgrade(1, 1, 1);
 
         SetSynergy(Synergies.Kancolle);
+        SetAffinity_Green(1);
     }
 
     @Override

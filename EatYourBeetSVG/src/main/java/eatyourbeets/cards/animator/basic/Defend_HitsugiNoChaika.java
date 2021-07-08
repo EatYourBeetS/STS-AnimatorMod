@@ -17,6 +17,7 @@ public class Defend_HitsugiNoChaika extends Defend
         SetUpgrade(0, 3);
 
         SetSynergy(Synergies.Chaika);
+        SetAffinity_Green(1);
     }
 
     @Override

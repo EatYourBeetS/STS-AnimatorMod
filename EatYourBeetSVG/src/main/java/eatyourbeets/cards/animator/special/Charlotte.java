@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
-import eatyourbeets.cards.animator.status.Curse_GriefSeed;
+import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;

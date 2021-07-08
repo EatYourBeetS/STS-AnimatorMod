@@ -44,6 +44,8 @@ public class Patchouli extends AnimatorCard
 
         SetSynergy(Synergies.TouhouProject);
         SetAffinity(0, 0, 2, 0, 0);
+
+        SetAffinity_Blue(2);
     }
 
     @Override

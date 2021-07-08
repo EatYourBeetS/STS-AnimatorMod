@@ -213,17 +213,22 @@ public class EYBCardAffinities
     public void RenderOnCard(SpriteBatch sb, EYBCard card, boolean highlight)
     {
         float size;
+        float step;
+        float x;
         float y = AbstractCard.RAW_H;
+        int half = List.size() / 2;
 
         if (highlight)
         {
             size = 64;
             y *= 0.58f;
+            step = size * 0.9f;
         }
         else
         {
             size = 48;//48;
             y *= 0.51f;// -0.47f;
+            step = size * 1.2f;
         }
 
         if (HasStar())
@@ -232,9 +237,11 @@ public class EYBCardAffinities
             return;
         }
 
-        float x;
-        float step = size * 0.9f;
-        int half = List.size() / 2;
+        if (half >= 2)
+        {
+            step *= 0.75f;
+        }
+
         for (int i = 0; i < List.size(); i++)
         {
             final EYBCardAffinity item = List.get(i);

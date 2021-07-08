@@ -18,6 +18,7 @@ public class Defend_TenSura extends Defend
         SetUpgrade(0, 1);
 
         SetSynergy(Synergies.TenSura);
+        SetAffinity_Green(1);
     }
 
     @Override

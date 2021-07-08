@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.ui.controls.GUI_Button;
@@ -38,6 +39,15 @@ public class AnimatorCharacterSelectScreen
         .SetOnClick(() -> Browse(SteamButton));
 
         DiscordButton.SetActive(SteamButton.SetActive(Desktop.isDesktopSupported()).isActive);
+
+        float c = UnlockTracker.getCurrentProgress(GR.Animator.PlayerClass);
+        if (c >= UnlockTracker.getCurrentScoreCost(GR.Animator.PlayerClass))
+        {
+            if (GR.Animator.GetUnlockLevel() < GR.Animator.Data.MaxUnlockLevel)
+            {
+                UnlockTracker.addScore(GR.Animator.PlayerClass, 1);
+            }
+        }
     }
 
     public static void Update(CharacterSelectScreen selectScreen)

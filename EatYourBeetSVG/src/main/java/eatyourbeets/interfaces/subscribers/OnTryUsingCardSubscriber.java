@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public interface OnTryUseCardSubscriber
+public interface OnTryUsingCardSubscriber
 {
-    boolean OnTryUseCard(AbstractCard card, AbstractPlayer p, AbstractMonster m, boolean canUse);
+    boolean OnTryUsingCard(AbstractCard card, AbstractPlayer p, AbstractMonster m, boolean canUse);
 }

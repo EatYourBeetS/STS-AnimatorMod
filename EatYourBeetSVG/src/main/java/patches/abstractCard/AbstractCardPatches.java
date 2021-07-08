@@ -15,7 +15,7 @@ public class AbstractCardPatches
         @SpirePostfixPatch
         public static boolean Method(boolean __result, AbstractCard __instance, AbstractPlayer p, AbstractMonster m)
         {
-            return CombatStats.OnTryUseCard(__instance, p, m, __result);
+            return CombatStats.OnTryUsingCard(__instance, p, m, __result);
         }
     }
 

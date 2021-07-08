@@ -382,7 +382,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             canPlay &= s.OnTryUsingCard(card, p, m, canPlay);
         }
-
+        
         return canPlay;
     }
 

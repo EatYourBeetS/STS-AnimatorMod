@@ -1,6 +1,9 @@
+
 {
-  "animator:Synergies": {
-	"TEXT": [
+  "animator:Synergies":
+  {
+	"TEXT":
+	[
 	  "[Shapeshifter]",
 	  "Elsword",
 	  "Kantai Collection",
@@ -55,12 +58,16 @@
 	  "Genshin Impact",
 	  "Cowboy Bebop"
 	],
-	"EXTRA_TEXT": [
+	"EXTRA_TEXT":
+	[
 	  "Series"
 	]
   },
-  "animator:Actions": {
-	"TEXT": [
+
+  "animator:Actions":
+  {
+	"TEXT":
+	[
 	  "Gain {0} {1}",
 	  "Apply {0} {1}",
 	  "Apply {0} {1} NL to ALL enemies",
@@ -68,9 +75,11 @@
 	  "Draw {0} card(s)",
 	  "Discard {0} card(s)",
 	  "Exhaust {0} card(s)",
+
 	  "Gain {0} Orb Slot(s)",
 	  "Channel {0} random Orb(s)",
 	  "Channel {0} {1}",
+
 	  "Motivate {0}",
 	  "Upgrade all cards NL in your hand",
 	  "Gain !M! Intangible. NL Lose this Power",
@@ -85,8 +94,11 @@
 	  "Next turn: Gain {0} [E]"
 	]
   },
-  "animator:Trophies": {
-	"TEXT": [
+
+  "animator:Trophies":
+  {
+	"TEXT":
+	[
 	  "Bronze",
 	  "Silver",
 	  "Gold",
@@ -102,8 +114,11 @@
 	  "Platinum"
 	]
   },
-  "animator:Rewards": {
-	"TEXT": [
+
+  "animator:Rewards":
+  {
+	"TEXT":
+	[
 	  "Only contains Cards with this synergy. WARNING: once you click on this, the other 2 Card rewards will disappear.",
 	  "Bonus Relic",
 	  "Cursed Relic",
@@ -115,8 +130,11 @@
 	  "Allows you to upgrade a card in your deck permanently."
 	]
   },
-  "animator:SeriesSelection": {
-	"TEXT": [
+
+  "animator:SeriesSelection":
+  {
+	"TEXT":
+	[
 	  "Contains {0} cards.",
 	  "Cards from this series NL may have a random NL {Bonus} upon pickup.",
 	  "Selecting this series will NL not unlock trophies for NL the current run.",
@@ -126,8 +144,11 @@
 	  "#pRight-Click a series to view cards from its pool."
 	]
   },
-  "animator:SeriesSelectionButtons": {
-	"TEXT": [
+
+  "animator:SeriesSelectionButtons":
+  {
+	"TEXT":
+	[
 	  "Show Beta Series.",
 	  "Deselect All",
 	  "Random ({0} cards)",
@@ -136,15 +157,21 @@
 	  "Proceed"
 	]
   },
-  "animator:CharacterSelect": {
-	"TEXT": [
+
+  "animator:CharacterSelect":
+  {
+	"TEXT":
+	[
 	  "Starting Cards: ",
 	  "###############",
 	  "Unlocks at Level {0} (You are Level {1})"
 	]
   },
-  "animator:Misc": {
-	"TEXT": [
+
+  "animator:Misc":
+  {
+	"TEXT":
+	[
 	  "Discord",
 	  "The Animator Discord link.",
 	  "Steam",
@@ -160,8 +187,10 @@
 	  "Simplify Card UI"
 	]
   },
-  "animator:CardMods": {
-	"TEXT": [
+  "animator:CardMods":
+  {
+	"TEXT":
+	[
 	  "",
 	  "",
 	  "I do not have a non-Afterlife card in my exhaust pile to purge."

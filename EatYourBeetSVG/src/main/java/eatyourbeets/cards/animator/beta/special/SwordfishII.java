@@ -53,17 +53,17 @@ public class SwordfishII extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.WHITE));
-        GameActions.Bottom.StackPower(new SongOfBrokenPinesPower(p, magicNumber));
+        GameActions.Bottom.StackPower(new SwordfishIIPower(p, magicNumber));
         GameActions.Bottom.Motivate(secondaryValue);
     }
 
-    public static class SongOfBrokenPinesPower extends AnimatorPower
+    public static class SwordfishIIPower extends AnimatorPower
     {
-        public static final String POWER_ID = CreateFullID(SongOfBrokenPinesPower.class);
+        public static final String POWER_ID = CreateFullID(SwordfishIIPower.class);
 
         private int strikeCount;
 
-        public SongOfBrokenPinesPower(AbstractCreature owner, int amount)
+        public SwordfishIIPower(AbstractCreature owner, int amount)
         {
             super(owner, POWER_ID);
 

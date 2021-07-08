@@ -218,6 +218,12 @@ public class EYBCardTooltip
 
     public float Render(SpriteBatch sb, float x, float y, int index)
     {
+        if (hideDescription == null)
+        {
+            JUtils.LogWarning(this, "hideDescription was null, why?");
+            hideDescription = !StringUtils.isEmpty(id) && GR.Animator.Config.HideTipDescription(id);
+        }
+
         final float textHeight = FontHelper.getSmartHeight(EYBFontHelper.CardTooltipFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING);
         final float h = (hideDescription || StringUtils.isEmpty(description)) ? (- 40f * Settings.scale) : (- textHeight - 7f * Settings.scale);
 

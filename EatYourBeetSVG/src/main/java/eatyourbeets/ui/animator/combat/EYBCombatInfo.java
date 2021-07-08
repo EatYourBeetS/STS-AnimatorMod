@@ -3,6 +3,7 @@ package eatyourbeets.ui.animator.combat;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.cards.base.AffinityType;
@@ -29,7 +30,7 @@ public class EYBCombatInfo extends GUIElement
 
     public EYBCombatInfo()
     {
-        hb = new DraggableHitbox(Scale(0.025f), ScreenH(0.65f), Scale(96f),  Scale(40f), true);
+        hb = new DraggableHitbox(ScreenW(0.027f), ScreenH(0.65f), Scale(96f),  Scale(40f), true);
 
         AffinityType[] values = AffinityType.values();
         for (int i = 0; i < values.length; i++)
@@ -41,6 +42,11 @@ public class EYBCombatInfo extends GUIElement
     @Override
     public void Update()
     {
+        if (AbstractDungeon.isScreenUp || CardCrawlGame.isPopupOpen)
+        {
+            return;
+        }
+
         EYBCardAffinities affinities;
         AbstractPlayer player = AbstractDungeon.player;
         AbstractCard card = null;
@@ -60,6 +66,11 @@ public class EYBCombatInfo extends GUIElement
     @Override
     public void Render(SpriteBatch sb)
     {
+        if (AbstractDungeon.isScreenUp || CardCrawlGame.isPopupOpen)
+        {
+            return;
+        }
+
         for (AffinityRow t : rows)
         {
             t.Render(sb);
@@ -106,7 +117,7 @@ public class EYBCombatInfo extends GUIElement
 
             if (CombatStats.HasActivatedSemiLimited(Type.name()))
             {
-                synergy_icon.color.a = 0.6f;
+                synergy_icon.color.a = 0.4f;
             }
             else
             {

@@ -378,12 +378,11 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static boolean OnTryUsingCard(AbstractCard card, AbstractPlayer p, AbstractMonster m, boolean canPlay)
     {
-        ArrayList<OnTryUsingCardSubscriber> subscribers = onTryUsingCard.GetSubscribers();
-        for (int i = 0; i < subscribers.size(); i++)
+        for (OnTryUsingCardSubscriber s : onTryUsingCard.GetSubscribers())
         {
-            canPlay = ((i == 0) || canPlay) && subscribers.get(i).OnTryUsingCard(card, p, m, canPlay);
+            canPlay &= s.OnTryUsingCard(card, p, m, canPlay);
         }
-
+        
         return canPlay;
     }
 

@@ -50,9 +50,19 @@ public class AnimatorResources extends AbstractResources
         return UnlockTracker.getUnlockLevel(PlayerClass);
     }
 
-    public int GetUnlockCost(int currentCost)
+    public int GetUnlockCost()
     {
-        return currentCost < 500 ? 500 : currentCost + (currentCost < 2000 ? 500 : 300);
+        return GetUnlockCost(0, true);
+    }
+
+    public int GetUnlockCost(int level, boolean relative)
+    {
+        if (relative)
+        {
+            level += GetUnlockLevel();
+        }
+
+        return level <= 4 ? 300 + (level * 500) : 1000 + (level * 300);
     }
 
     @Override

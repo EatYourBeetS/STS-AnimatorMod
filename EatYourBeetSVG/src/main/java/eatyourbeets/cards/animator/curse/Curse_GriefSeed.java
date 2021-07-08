@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.status;
+package eatyourbeets.cards.animator.curse;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;

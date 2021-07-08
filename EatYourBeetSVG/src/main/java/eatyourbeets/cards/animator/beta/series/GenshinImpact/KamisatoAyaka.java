@@ -61,7 +61,7 @@ public class KamisatoAyaka extends AnimatorCard {
             GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE).SetOptions(true, false);
         }
 
-        GameActions.Bottom.StackPower(new NegateBlockPower(p, NO_BLOCK_TURNS, p.currentBlock));
+        GameActions.Bottom.StackPower(new NegateBlockPower(p, NO_BLOCK_TURNS));
 
         if (this.getFrostCount() >= secondaryValue && CombatStats.TryActivateLimited(cardID))
         {

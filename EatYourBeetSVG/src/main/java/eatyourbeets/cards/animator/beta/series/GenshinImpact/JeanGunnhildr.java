@@ -11,12 +11,13 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.RandomizedList;
 
-public class JeanGunnhildr extends AnimatorCard {
+public class JeanGunnhildr extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(JeanGunnhildr.class).SetAttack(1, CardRarity.RARE);
 
-    public JeanGunnhildr() {
+    public JeanGunnhildr()
+    {
         super(DATA);
 
         Initialize(8, 1, 2);
@@ -29,7 +30,8 @@ public class JeanGunnhildr extends AnimatorCard {
 
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.GainBlock(block);
     }
@@ -42,15 +44,17 @@ public class JeanGunnhildr extends AnimatorCard {
                 .AddCallback(cards ->
                 {
                     int discarded = cards.size();
-                    if (discarded > 0) {
+                    if (discarded > 0)
+                    {
                         for (AbstractPower power : player.powers)
                         {
                             if (WeakPower.POWER_ID.equals(power.ID) || VulnerablePower.POWER_ID.equals(power.ID) || FrailPower.POWER_ID.equals(power.ID))
                             {
-                                int decrease = Math.min(discarded,power.amount);
+                                int decrease = Math.min(discarded, power.amount);
                                 GameActions.Top.ReducePower(power, decrease);
                                 discarded -= decrease;
-                                if (discarded <= 0) {
+                                if (discarded <= 0)
+                                {
                                     break;
                                 }
                             }

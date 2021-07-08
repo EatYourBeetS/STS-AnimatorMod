@@ -1,9 +1,9 @@
 package eatyourbeets.powers.animator;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
@@ -34,7 +34,6 @@ public class ChilledPower extends AnimatorPower
         this.isTurnBased = true;
 
         updatePercentage();
-        updateDescription();
     }
 
     @Override
@@ -60,7 +59,6 @@ public class ChilledPower extends AnimatorPower
     {
         super.stackPower(stackAmount);
         updatePercentage();
-        updateDescription();
     }
 
     @Override
@@ -68,42 +66,35 @@ public class ChilledPower extends AnimatorPower
     {
         super.reducePower(reduceAmount);
         updatePercentage();
-        updateDescription();
     }
 
     @Override
     public void atEndOfRound()
     {
         super.atEndOfRound();
-        GameActions.Bottom.RemovePower(owner, owner, this);
+        GameActions.Bottom.ReducePower(this, Math.max(MathUtils.ceil(this.amount * 0.75f),1));
     }
 
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type)
     {
-        return calculateDamageGiven(damage, 0);
+        float newDamage = calculateDamageGiven(damage, type);
+        return super.atDamageGive(newDamage, type);
     }
 
-    public float calculateDamageGiven(float damage, float modifier)
+    public int calculateDamageGiven(float damage, DamageInfo.DamageType type)
     {
-        return damage * (percentage + modifier);
-    }
-
-    @Override
-    public int onAttackToChangeDamage(DamageInfo info, int damageAmount)
-    {
-        if (info.type == DamageInfo.DamageType.NORMAL)
+        if (type == DamageInfo.DamageType.NORMAL)
         {
             float multiplier = (owner.hasPower(WeakPower.POWER_ID)) ? CalculatePercentage(this.amount / 2) : percentage;
-            damageAmount = Math.round(multiplier * (float) damageAmount);
-            info.output = damageAmount;
+            return MathUtils.ceil(multiplier * damage);
         }
-
-        return super.onAttackToChangeDamage(info, damageAmount);
+        return (int) damage;
     }
 
     private void updatePercentage()
     {
         percentage = CalculatePercentage(this.amount);
+        updateDescription();
     }
 }

@@ -37,7 +37,7 @@
 	},
 	"animator:ChilledPower":
 	{
-	  "DESCRIPTIONS": ["Deal #b", "% less damage. Removed at the end of the round."],
+	  "DESCRIPTIONS": ["Deal #b", "% less damage. Reduced by 75% at the end of the round."],
 	  "NAME": "Chilled"
 	},
 	"animator:ChlammyZellPower":
@@ -242,7 +242,7 @@
 	},
 	"animator:NegateBlockPower":
 	{
-	  "DESCRIPTIONS": ["For the next #b", " turns, negate all incoming #yBlock gained from any source. Existing Block is not affected."],
+	  "DESCRIPTIONS": ["For the next #b", " turns, you cannot gain Block from cards. Gain Self-Damage whenever you gain Block from other sources."],
 	  "NAME": "Negate Block"
 	},
 	"animator:NextTurnDexterityPower":
@@ -330,11 +330,6 @@
 		"DESCRIPTIONS": ["At the start of your next #b", " turns, gain #b1 #yDexterity and add #b1 #yThrowing-Knives to your hand."],
 		"NAME": "Speed-o'-Sound Sonic"
 	},
-	"animator:SongOfBrokenPinesPower":
-	{
-		"DESCRIPTIONS": ["At the end of your turn, deal #b{0} #yDamage for each Strike played this turn. You have played #b{1} Strike(s)."],
-		"NAME": "Song of Broken Pines"
-	},
 	"animator:StolenGoldPower":
 	{
 		"DESCRIPTIONS": ["You stole #b", " Gold. You can steal #b", " more Gold."],
@@ -349,6 +344,12 @@
 	{
 		"DESCRIPTIONS": ["Deal #b", " damage to the enemy with lowest HP at the end of your turn."],
 		"NAME": "Support Damage"
+	},
+	"animator:SwordfishIIPower": {
+	  "DESCRIPTIONS": [
+		"At the end of your turn, deal #b{0} #yDamage for each Strike played this turn. You have played #b{1} Strike(s)."
+	  ],
+	  "NAME": "Swordfish II"
 	},
 	"animator:TheUnnamedCultistPower":
 	{

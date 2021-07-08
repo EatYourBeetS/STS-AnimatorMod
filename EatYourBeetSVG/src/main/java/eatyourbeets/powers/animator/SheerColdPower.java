@@ -8,11 +8,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.effects.vfx.SnowballEffect;
+import eatyourbeets.interfaces.subscribers.OnOrbPassiveEffectSubscriber;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class SheerColdPower extends AnimatorPower
+public class SheerColdPower extends AnimatorPower implements OnOrbPassiveEffectSubscriber
 {
     public static final String POWER_ID = CreateFullID(SheerColdPower.class);
 
@@ -26,29 +28,25 @@ public class SheerColdPower extends AnimatorPower
     }
 
     @Override
-    public void updateDescription()
+    public void onInitialApplication()
     {
-        description = FormatDescription(0, amount);
+        super.onInitialApplication();
+
+        CombatStats.onOrbPassiveEffect.Subscribe(this);
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer)
+    public void onRemove()
     {
-        super.atEndOfTurn(isPlayer);
+        super.onRemove();
 
-        AbstractCreature target;
+        CombatStats.onOrbPassiveEffect.Unsubscribe(this);
+    }
 
-        for (AbstractOrb orb : player.orbs) {
-            if (Frost.ORB_ID.equals(orb.ID)) {
-                if (owner.isPlayer) {
-                    target = GameUtilities.GetRandomEnemy(true);
-                }
-                else {
-                    target = player;
-                }
-                this.applyPower(target, orb, orb.passiveAmount * this.amount);
-            }
-        }
+    @Override
+    public void updateDescription()
+    {
+        description = FormatDescription(0, amount);
     }
 
     @Override
@@ -67,6 +65,14 @@ public class SheerColdPower extends AnimatorPower
             else {
                 this.applyPower(player, orb, orb.evokeAmount * this.amount);
             }
+        }
+    }
+
+    @Override
+    public void OnOrbPassiveEffect(AbstractOrb orb) {
+        if (Frost.ORB_ID.equals(orb.ID)) {
+            AbstractCreature target = (owner.isPlayer) ? GameUtilities.GetRandomEnemy(true) : player;
+            this.applyPower(target, orb, orb.passiveAmount * this.amount);
         }
     }
 

@@ -72,7 +72,8 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     @Override
     public void OnEvokeOrb(AbstractOrb orb)
     {
-        if (Lightning.ORB_ID.equals(orb.ID)) {
+        if (Lightning.ORB_ID.equals(orb.ID))
+        {
             this.reduceTurns();
         }
 
@@ -91,7 +92,7 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
             if (turns <= 0)
             {
                 GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
-                        .ShowEffect(false, false);
+                        .ShowEffect(true, false);
                 CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
                 CombatStats.onEvokeOrb.Unsubscribe(this);
             }

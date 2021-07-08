@@ -1,198 +1,170 @@
-
 {
-	"animator:Synergies":
-	{
-		"TEXT":
-		[
-			"[Shapeshifter]",
-			"Elsword",
-			"Kantai Collection",
-			"Hitsugi no Chaika",
-			"Konosuba",
-			"Katanagatari",
-			"Owari no Seraph",
-			"Overlord",
-			"No Game No Life",
-			"GATE",
-			"Fate",
-			"Goblin Slayer",
-			"Fullmetal Alchemist",
-			"Hataraku Maou-sama",
-			"Grimoire of Zero",
-			"Steins;Gate",
-			"Tensei shitara Slime",
-			"Re:Zero",
-			"Madoka Magica",
-			"Charlotte",
-			"Accel World",
-			"Noragami",
-			"One Punch Man",
-			"Pandora Hearts",
-			"Zero no Tsukaima",
-			"Gabriel DropOut",
-			"Death Note",
-			"Kamisama no Memochou",
-			"Code Geass",
-			"Youjo Senki",
-			"Bleach",
-			"Jojo's Bizzarre Adventures",
-			"Tate no Yuusha",
-			"Symphogear",
-			"Call Of Cthulhu",
-			"Chuunibyou demo Koi ga Shitai!",
-			"FLCL",
-			"Kill la Kill",
-			"Touhou Project",
-			"Welcome to the N.H.K.",
-			"Tales of Berseria",
-			"Rewrite",
-			"Date-a-Live",
-			"Angel Beats",
-			"Rozen Maiden",
-		  	"Log Horizon",
-		    "Vocaloid",
-		  	"Atelier",
-		  	"Cardcaptor Sakura",
-		  	"Guilty Crown",
-		  	"Gakkou Gurashi!",
-			"Genshin Impact"
-		],
-		"EXTRA_TEXT":
-		[
-			"Series"
-		]
-	},
-
-	"animator:Actions":
-	{
-		"TEXT":
-		[
-			"Gain {0} {1}",
-			"Apply {0} {1}",
-			"Apply {0} {1} NL to ALL enemies",
-			"Cycle {0} card(s)",
-			"Draw {0} card(s)",
-			"Discard {0} card(s)",
-			"Exhaust {0} card(s)",
-			
-			"Gain {0} Orb Slot(s)",		
-			"Channel {0} random Orb(s)",
-			"Channel {0} {1}",
-			
-			"Motivate {0}",
-			"Upgrade all cards NL in your hand",
-			"Gain !M! Intangible. NL Lose this Power",
-			"Remove all of NL your debuffs",
-			"Play the top card NL of your draw pile",
-			"Stun the enemy",
-			"Enter {0}",
-			"Boost {0}",
-			"Scry {0}",
-			"Next turn: Gain {0} [Block]",
-			"Next turn: Draw {0} card(s)",
-			"Next turn: Gain {0} [E]"
-		]
-	},
-
-	"animator:Trophies":
-	{
-		"TEXT":
-		[
-			"Bronze",
-			"Silver",
-			"Gold",
-			"Choose this starting deck and complete act 3.",
-			"Complete act 3 with at least #yhalf of the cards in your deck being from this series.",
-			"Complete act 3 with at least #b8 #ydifferent cards from this series in your deck.",
-			"Complete act 3 with at least #b7 #ydifferent card series in your deck. (Colorless cards will not count)",
-			"Complete act 3 with at least #b10 #ydifferent card series in your deck. (Colorless cards will not count)",
-			"Complete act 3 with at least #b20 cards in your deck, and without any duplicate.",
-			"Complete act 3 with at least #b30 cards in your deck, and without any duplicate.",
-			"This Trophy will be revealed once it is obtained. #yHint: Collect all 3 keys.",
-			"Defeat The Unnamed. NL Whenever you obtain this trophy, permanently increase the chance to find #pUltra #pRare cards, higher ascension increases this bonus by a larger amount. NL NL #yThe #yUnnamed #yReign is now available to all characters.",
-			"Platinum"
-		]
-	},
-
-	"animator:Rewards":
-	{
-		"TEXT":
-		[
-			"Only contains Cards with this synergy. WARNING: once you click on this, the other 2 Card rewards will disappear.",
-			"Bonus Relic",
-			"Cursed Relic",
-			"Banish",
-			"+{0} Max HP",
-			"+{0} Gold",
-			"Aura Effects",
-		    "Upgrade a Card",
-		  	"Allows you to upgrade a card in your deck permanently."
-		]
-	},
-
-	"animator:SeriesSelection":
-	{
-		"TEXT":
-		[
-			"Contains {0} cards.",
-			"Cards from this series NL may have a random NL {Bonus} upon pickup.",
-			"Selecting this series will NL not unlock trophies for NL the current run.",
-			"Select #ySeries for a total of #b75 or more cards to proceed. Obtain an additional starting #yRelic if you select at least #b100 cards.",
-			"Pickup Bonus",
-			"Obtain a bonus for each #ydifferent card you obtain (up to 6). NL The bonus will improve as you obtain more cards.",
-			"#pRight-Click a series to view cards from its pool."
-		]
-	},
-
-	"animator:SeriesSelectionButtons":
-	{
-		"TEXT":
-		[
-			"Show Beta Series.",
-			"Deselect All",
-			"Random ({0} cards)",
-			"Select All",
-			"Show card pool",
-			"Proceed"
-		]
-	},
-
-	"animator:CharacterSelect":
-	{
-		"TEXT":
-		[
-			"Starting Cards: ",
-			"###############",
-			"Unlocks at Level {0} (You are Level {1})"
-		]
-	},
-	
-	"animator:Misc":
-	{
-		"TEXT":
-		[
-			"Discord", 
-			"The Animator Discord link.",
-			"Steam", 
-			"The Animator Steam page.",
-			"Not enough cards of this type.",
-			"Dynamic Portraits",
-			"Dynamic cards portraits.",
-			"'CTRL' to cycle",
-			"Have you found a missing or incorrect translation? If you'd like to help, you can join the mod Discord and write your translation in the Localization channel.",
-			"Display Beta Series",
-			"Translation",
-			"Highlight Synergies.",
-			"Simplify Card UI"
-		]
-	},
-	"animator:CardMods":
-	{
-		"TEXT":
-		[
-			"",
-			"",
-			"I do not have a non-Afterlife card in my exhaust pile to purge."
-		]
-	}
+  "animator:Synergies": {
+	"TEXT": [
+	  "[Shapeshifter]",
+	  "Elsword",
+	  "Kantai Collection",
+	  "Hitsugi no Chaika",
+	  "Konosuba",
+	  "Katanagatari",
+	  "Owari no Seraph",
+	  "Overlord",
+	  "No Game No Life",
+	  "GATE",
+	  "Fate",
+	  "Goblin Slayer",
+	  "Fullmetal Alchemist",
+	  "Hataraku Maou-sama",
+	  "Grimoire of Zero",
+	  "Steins;Gate",
+	  "Tensei shitara Slime",
+	  "Re:Zero",
+	  "Madoka Magica",
+	  "Charlotte",
+	  "Accel World",
+	  "Noragami",
+	  "One Punch Man",
+	  "Pandora Hearts",
+	  "Zero no Tsukaima",
+	  "Gabriel DropOut",
+	  "Death Note",
+	  "Kamisama no Memochou",
+	  "Code Geass",
+	  "Youjo Senki",
+	  "Bleach",
+	  "Jojo's Bizzarre Adventures",
+	  "Tate no Yuusha",
+	  "Symphogear",
+	  "Call Of Cthulhu",
+	  "Chuunibyou demo Koi ga Shitai!",
+	  "FLCL",
+	  "Kill la Kill",
+	  "Touhou Project",
+	  "Welcome to the N.H.K.",
+	  "Tales of Berseria",
+	  "Rewrite",
+	  "Date-a-Live",
+	  "Angel Beats",
+	  "Rozen Maiden",
+	  "Log Horizon",
+	  "Vocaloid",
+	  "Atelier",
+	  "Cardcaptor Sakura",
+	  "Guilty Crown",
+	  "Gakkou Gurashi!",
+	  "Genshin Impact",
+	  "Cowboy Bebop"
+	],
+	"EXTRA_TEXT": [
+	  "Series"
+	]
+  },
+  "animator:Actions": {
+	"TEXT": [
+	  "Gain {0} {1}",
+	  "Apply {0} {1}",
+	  "Apply {0} {1} NL to ALL enemies",
+	  "Cycle {0} card(s)",
+	  "Draw {0} card(s)",
+	  "Discard {0} card(s)",
+	  "Exhaust {0} card(s)",
+	  "Gain {0} Orb Slot(s)",
+	  "Channel {0} random Orb(s)",
+	  "Channel {0} {1}",
+	  "Motivate {0}",
+	  "Upgrade all cards NL in your hand",
+	  "Gain !M! Intangible. NL Lose this Power",
+	  "Remove all of NL your debuffs",
+	  "Play the top card NL of your draw pile",
+	  "Stun the enemy",
+	  "Enter {0}",
+	  "Boost {0}",
+	  "Scry {0}",
+	  "Next turn: Gain {0} [Block]",
+	  "Next turn: Draw {0} card(s)",
+	  "Next turn: Gain {0} [E]"
+	]
+  },
+  "animator:Trophies": {
+	"TEXT": [
+	  "Bronze",
+	  "Silver",
+	  "Gold",
+	  "Choose this starting deck and complete act 3.",
+	  "Complete act 3 with at least #yhalf of the cards in your deck being from this series.",
+	  "Complete act 3 with at least #b8 #ydifferent cards from this series in your deck.",
+	  "Complete act 3 with at least #b7 #ydifferent card series in your deck. (Colorless cards will not count)",
+	  "Complete act 3 with at least #b10 #ydifferent card series in your deck. (Colorless cards will not count)",
+	  "Complete act 3 with at least #b20 cards in your deck, and without any duplicate.",
+	  "Complete act 3 with at least #b30 cards in your deck, and without any duplicate.",
+	  "This Trophy will be revealed once it is obtained. #yHint: Collect all 3 keys.",
+	  "Defeat The Unnamed. NL Whenever you obtain this trophy, permanently increase the chance to find #pUltra #pRare cards, higher ascension increases this bonus by a larger amount. NL NL #yThe #yUnnamed #yReign is now available to all characters.",
+	  "Platinum"
+	]
+  },
+  "animator:Rewards": {
+	"TEXT": [
+	  "Only contains Cards with this synergy. WARNING: once you click on this, the other 2 Card rewards will disappear.",
+	  "Bonus Relic",
+	  "Cursed Relic",
+	  "Banish",
+	  "+{0} Max HP",
+	  "+{0} Gold",
+	  "Aura Effects",
+	  "Upgrade a Card",
+	  "Allows you to upgrade a card in your deck permanently."
+	]
+  },
+  "animator:SeriesSelection": {
+	"TEXT": [
+	  "Contains {0} cards.",
+	  "Cards from this series NL may have a random NL {Bonus} upon pickup.",
+	  "Selecting this series will NL not unlock trophies for NL the current run.",
+	  "Select #ySeries for a total of #b75 or more cards to proceed. Obtain an additional starting #yRelic if you select at least #b100 cards.",
+	  "Pickup Bonus",
+	  "Obtain a bonus for each #ydifferent card you obtain (up to 6). NL The bonus will improve as you obtain more cards.",
+	  "#pRight-Click a series to view cards from its pool."
+	]
+  },
+  "animator:SeriesSelectionButtons": {
+	"TEXT": [
+	  "Show Beta Series.",
+	  "Deselect All",
+	  "Random ({0} cards)",
+	  "Select All",
+	  "Show card pool",
+	  "Proceed"
+	]
+  },
+  "animator:CharacterSelect": {
+	"TEXT": [
+	  "Starting Cards: ",
+	  "###############",
+	  "Unlocks at Level {0} (You are Level {1})"
+	]
+  },
+  "animator:Misc": {
+	"TEXT": [
+	  "Discord",
+	  "The Animator Discord link.",
+	  "Steam",
+	  "The Animator Steam page.",
+	  "Not enough cards of this type.",
+	  "Dynamic Portraits",
+	  "Dynamic cards portraits.",
+	  "'CTRL' to cycle",
+	  "Have you found a missing or incorrect translation? If you'd like to help, you can join the mod Discord and write your translation in the Localization channel.",
+	  "Display Beta Series",
+	  "Translation",
+	  "Highlight Synergies.",
+	  "Simplify Card UI"
+	]
+  },
+  "animator:CardMods": {
+	"TEXT": [
+	  "",
+	  "",
+	  "I do not have a non-Afterlife card in my exhaust pile to purge."
+	]
+  }
 }

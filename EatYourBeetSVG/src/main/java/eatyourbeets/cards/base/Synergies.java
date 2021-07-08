@@ -66,6 +66,7 @@ public class Synergies
     public final static Synergy GuiltyCrown = Add(49, "GuiltyCrown");
     public final static Synergy GakkouGurashi = Add(50, "GakkouGurashi");
     public final static Synergy GenshinImpact = Add(51, "GenshinImpact");
+    public final static Synergy CowboyBebop = Add(52, "CowboyBebop");
 
     private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;
@@ -263,7 +264,7 @@ public class Synergies
     public static boolean HasTagSynergy(AbstractCard a, AbstractCard b)
     {
         return ((a.hasTag(AnimatorCard.SHAPESHIFTER) || b.hasTag(AnimatorCard.SHAPESHIFTER))
-            || (a.hasTag(AnimatorCard.MARTIAL_ARTIST) && b.hasTag(AnimatorCard.MARTIAL_ARTIST))
-            || (a.hasTag(AnimatorCard.SPELLCASTER) && b.hasTag(AnimatorCard.SPELLCASTER)));
+                || (a.hasTag(AnimatorCard.MARTIAL_ARTIST) && b.hasTag(AnimatorCard.MARTIAL_ARTIST))
+                || (a.hasTag(AnimatorCard.SPELLCASTER) && b.hasTag(AnimatorCard.SPELLCASTER)));
     }
 }

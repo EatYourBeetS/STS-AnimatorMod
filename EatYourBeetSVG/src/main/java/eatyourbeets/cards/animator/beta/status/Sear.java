@@ -10,11 +10,11 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class SearingBurn extends AnimatorCard_Status
+public class Sear extends AnimatorCard_Status
 {
-    public static final EYBCardData DATA = Register(SearingBurn.class).SetStatus(-2, CardRarity.COMMON, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Sear.class).SetStatus(-2, CardRarity.COMMON, EYBCardTarget.ALL);
 
-    public SearingBurn()
+    public Sear()
     {
         super(DATA, true);
 

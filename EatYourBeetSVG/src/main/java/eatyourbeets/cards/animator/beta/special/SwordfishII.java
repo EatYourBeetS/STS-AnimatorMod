@@ -21,20 +21,20 @@ import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
 
-public class SongOfBrokenPines extends AnimatorCard
+public class SwordfishII extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SongOfBrokenPines.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(SwordfishII.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
-    public SongOfBrokenPines()
+    public SwordfishII()
     {
         super(DATA);
 
         Initialize(0, 0, 10, 1);
-        SetUpgrade(0,0,1, 0);
+        SetUpgrade(0, 0, 1, 0);
 
         SetAutoplay(true);
         SetExhaust(true);
-        SetSynergy(Synergies.GenshinImpact);
+        SetSynergy(Synergies.CowboyBebop);
     }
 
     @Override
@@ -69,8 +69,10 @@ public class SongOfBrokenPines extends AnimatorCard
 
             strikeCount = 0;
             ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn;
-            for (AbstractCard abstractCard : cardsPlayed) {
-                if (abstractCard.tags.contains(CardTags.STRIKE)) {
+            for (AbstractCard abstractCard : cardsPlayed)
+            {
+                if (abstractCard.tags.contains(CardTags.STRIKE))
+                {
                     strikeCount += 1;
                 }
             }
@@ -94,7 +96,8 @@ public class SongOfBrokenPines extends AnimatorCard
         @Override
         public void atEndOfTurn(boolean isPlayer)
         {
-            if (strikeCount > 0) {
+            if (strikeCount > 0)
+            {
                 int damagePerCreature = strikeCount * this.amount;
                 int[] damage = DamageInfo.createDamageMatrix(damagePerCreature, true);
                 GameActions.Bottom.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HEAVY);

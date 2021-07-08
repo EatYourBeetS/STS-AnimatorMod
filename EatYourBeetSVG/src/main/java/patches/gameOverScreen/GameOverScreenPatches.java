@@ -136,7 +136,7 @@ public class GameOverScreenPatches
             _unlockTargetStart.Set(__instance, _unlockProgress.Get(__instance));
             _unlockCost.Set(__instance, UnlockTracker.getCurrentScoreCost(AbstractDungeon.player.chosenClass));
             _unlockTargetProgress.Set(__instance, _unlockProgress.Get(__instance) + _score.Get(__instance));
-            _nextUnlockCost.Set(__instance, GR.Animator.GetUnlockCost(_unlockCost.Get(__instance)));
+            _nextUnlockCost.Set(__instance, GR.Animator.GetUnlockCost(1, true));
 
             if (_unlockTargetProgress.Get(__instance) >= _unlockCost.Get(__instance))
             {
@@ -145,9 +145,9 @@ public class GameOverScreenPatches
                 {
                     _unlockTargetProgress.Set(__instance, (float) _unlockCost.Get(__instance));
                 }
-                else if (_unlockTargetProgress.Get(__instance) > _unlockCost.Get(__instance) - _unlockProgress.Get(__instance) + _nextUnlockCost.Get(__instance) - 1.0F)
+                else if (_unlockTargetProgress.Get(__instance) > (_unlockCost.Get(__instance) - _unlockProgress.Get(__instance) + _nextUnlockCost.Get(__instance) - 1.0F))
                 {
-                    _unlockTargetProgress.Set(__instance, _unlockCost.Get(__instance) - _unlockProgress.Get(__instance) + _nextUnlockCost.Get(__instance) - 1.0F);
+                    _unlockTargetProgress.Set(__instance, (_unlockCost.Get(__instance) - _unlockProgress.Get(__instance) + _nextUnlockCost.Get(__instance) - 1.0F));
                 }
             }
 

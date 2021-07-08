@@ -203,8 +203,13 @@ public class AnimatorPlayerData
 
         for (AnimatorLoadout loadout : BaseLoadouts)
         {
+            if (loadout.UnlockLevel == 0)
+            {
+                continue;
+            }
+
             final String cardID = loadout.GetSymbolicCard().ID;
-            CustomUnlockBundle bundle = BaseMod.getUnlockBundleFor(GR.Animator.PlayerClass, loadout.UnlockLevel);
+            CustomUnlockBundle bundle = BaseMod.getUnlockBundleFor(GR.Animator.PlayerClass, loadout.UnlockLevel - 1);
 
             CustomUnlock unlock = new CustomUnlock(AbstractUnlock.UnlockType.MISC, cardID);
             unlock.type = AbstractUnlock.UnlockType.CARD;
@@ -226,7 +231,7 @@ public class AnimatorPlayerData
                 bundle.getUnlocks().add(unlock);
             }
 
-            BaseMod.addUnlockBundle(bundle, GR.Animator.PlayerClass, loadout.UnlockLevel);
+            BaseMod.addUnlockBundle(bundle, GR.Animator.PlayerClass, loadout.UnlockLevel - 1);
         }
     }
 

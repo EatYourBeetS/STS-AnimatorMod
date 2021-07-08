@@ -71,8 +71,6 @@ public class UnlockTrackerPatches
                 return SpireReturn.Continue();
             }
 
-            final int defaultCost = GR.Animator.GetUnlockCost(0);
-
             String key_unlock_level = c.toString() + "UnlockLevel";
             String key_progress = c.toString() + "Progress";
             String key_current_cost = c.toString() + "CurrentCost";
@@ -88,20 +86,22 @@ public class UnlockTrackerPatches
             p += scoreGained;
             int total;
             int highscore;
-            if (p >= UnlockTracker.unlockProgress.getInteger(key_current_cost, defaultCost))
+            int unlockCost = GR.Animator.GetUnlockCost();
+            if (p >= unlockCost)
             {
                 JUtils.LogInfo(UnlockTrackerPatches.class, "[DEBUG] Level up!");
                 total = UnlockTracker.unlockProgress.getInteger(key_unlock_level, 0);
                 ++total;
-                UnlockTracker.unlockProgress.putInteger(key_unlock_level, total);
-                p -= UnlockTracker.unlockProgress.getInteger(key_current_cost, defaultCost);
+                UnlockTracker.unlockProgress.putInteger(key_unlock_level, total); // <------- LEVEL UP
+                p -= UnlockTracker.unlockProgress.getInteger(key_current_cost, unlockCost);
                 UnlockTracker.unlockProgress.putInteger(key_progress, p);
                 JUtils.LogInfo(UnlockTrackerPatches.class, "[DEBUG] Score Progress: " + key_progress);
-                highscore = UnlockTracker.unlockProgress.getInteger(key_current_cost, defaultCost);
-                UnlockTracker.unlockProgress.putInteger(key_current_cost, GR.Animator.GetUnlockCost(highscore));
-                if (p > UnlockTracker.unlockProgress.getInteger(key_current_cost, defaultCost))
+                //highscore = UnlockTracker.unlockProgress.getInteger(key_current_cost, defaultCost);
+                int nextUnlockCost = GR.Animator.GetUnlockCost();
+                UnlockTracker.unlockProgress.putInteger(key_current_cost, nextUnlockCost);
+                if (p > nextUnlockCost)
                 {
-                    UnlockTracker.unlockProgress.putInteger(key_progress, UnlockTracker.unlockProgress.getInteger(key_current_cost, defaultCost) - 1);
+                    UnlockTracker.unlockProgress.putInteger(key_progress, nextUnlockCost - 1);
                     JUtils.LogInfo(UnlockTrackerPatches.class, "Overflow maxes out next level");
                 }
             }

@@ -1,6 +1,7 @@
 package eatyourbeets.ui.controls;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -87,8 +88,8 @@ public class GUI_CardGrid extends GUIElement
 
     public GUI_CardGrid SetHorizontalAlignment(float percentage)
     {
-        this.draw_x = percentage;
-        this.scrollBar.SetPosition(ScreenW((percentage < 0.5f) ? 0.05f : 0.95f), ScreenH(0.5f));
+        this.draw_x = MathUtils.clamp(percentage, 0.35f, 0.55f);
+        this.scrollBar.SetPosition(ScreenW((percentage < 0.5f) ? 0.05f : 0.9f), ScreenH(0.5f));
 
         return this;
     }

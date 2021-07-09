@@ -21,7 +21,7 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
     private static final float DUR = 1.5f;
     private static final GUI_Toggle upgradeToggle = new GUI_Toggle(new Hitbox(Settings.scale * 256f, Settings.scale * 48f))
     .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
-    .SetPosition(Settings.WIDTH * 0.05f, Settings.HEIGHT * 0.5f)
+    .SetPosition(Settings.WIDTH * 0.075f, Settings.HEIGHT * 0.5f)
     .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.5f)
     .SetText(SingleCardViewPopup.TEXT[6])
     .SetOnToggle(ShowCardPileEffect::ToggleViewUpgrades);

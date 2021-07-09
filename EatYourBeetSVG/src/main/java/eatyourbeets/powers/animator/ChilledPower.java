@@ -18,7 +18,7 @@ public class ChilledPower extends AnimatorPower
 
     public static float CalculatePercentage(int amount)
     {
-        return 100f / (100f + 3 * amount);
+        return 100f / (125f + (2.1f * amount));
     }
 
     public ChilledPower(AbstractCreature owner, int amount)

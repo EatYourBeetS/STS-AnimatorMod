@@ -1,7 +1,6 @@
 package eatyourbeets.powers.animator;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -13,6 +12,8 @@ import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+
+import java.util.ArrayList;
 
 public class SheerColdPower extends AnimatorPower implements OnOrbPassiveEffectSubscriber
 {
@@ -71,17 +72,36 @@ public class SheerColdPower extends AnimatorPower implements OnOrbPassiveEffectS
     @Override
     public void OnOrbPassiveEffect(AbstractOrb orb) {
         if (Frost.ORB_ID.equals(orb.ID)) {
-            AbstractCreature target = (owner.isPlayer) ? GameUtilities.GetRandomEnemy(true) : player;
+
+            AbstractCreature target = player;
+            ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
+            if (owner.isPlayer && enemies.size() > 0) {
+                int highestAttack = Integer.MIN_VALUE;
+                float chance = (float) (1/(Math.max(enemies.size(),1.0)));
+
+                for (AbstractMonster m : enemies)
+                {
+                    int damage = GameUtilities.GetIntent(m).GetDamage(true);
+                    if (damage > highestAttack)
+                    {
+                        highestAttack = damage;
+                        target = m;
+                    }
+                    else if (damage == highestAttack && rng.randomBoolean(chance)) {
+                        target = m;
+                    }
+                }
+            }
             this.applyPower(target, orb, orb.passiveAmount * this.amount);
         }
     }
 
     private void applyPower(AbstractCreature target, AbstractOrb orb, int applyAmount) {
         if (target != null) {
-            GameActions.Bottom.Add(new ApplyPowerAction(target, owner, new ChilledPower(target, applyAmount), applyAmount, true));
             GameActions.Top.Wait(0.15f);
             GameActions.Top.VFX(new SnowballEffect(orb.hb.cX, orb.hb.cY, target.hb.cX, target.hb.cY)
                     .SetColor(Color.SKY, Color.CYAN).SetRealtime(true));
+            GameActions.Bottom.ApplyPower(owner, target, new ChilledPower(target, applyAmount)).IgnoreArtifact(true);
         }
     }
 }

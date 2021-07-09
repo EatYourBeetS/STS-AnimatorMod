@@ -417,9 +417,9 @@
 		},
 		"animator:SheerCold":
 		{
-		  "DESCRIPTION": "[Frost] now applies [Chilled] to a random enemy when Triggered and to all enemies when Evoked.",
+		  "DESCRIPTION": "[Frost] now applies [Chilled] to a random enemy when Triggered and to all enemies when Evoked, ignoring [Artifact].",
 		  "NAME": "Sheer Cold",
-		  "UPGRADE_DESCRIPTION": "Channel 1 [Frost]. || [Frost] now applies !M!X [Chilled] to a random enemy when Triggered and to all enemies when Evoked."
+		  "UPGRADE_DESCRIPTION": "Channel 1 [Frost]. || [Frost] now applies !M!X [Chilled] to a random enemy when Triggered and to all enemies when Evoked, ignoring [Artifact]."
 		},
 		"animator:ShuuOuma":
 		{

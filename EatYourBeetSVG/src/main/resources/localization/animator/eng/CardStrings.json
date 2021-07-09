@@ -1512,11 +1512,6 @@
 			"EXTENDED_DESCRIPTION": ["For #b{0} turn(s), whenever an #yAttack #ySynergizes: Play a random lower cost #yAttack from your draw pile."],
 			"NAME": "Isuzu Tonan"
 		},
-		"animator:Kanami":
-		{
-			"DESCRIPTION": "Apply !M! [Vulnerable] to ALL ** enemies. Return this ** card to your draw pile. || Cooldown !S!: Change ** this card's form.",
-			"NAME": "Kanami"
-		},
 		"animator:KanamiAlt":
 		{
 			"DESCRIPTION": "Deals double damage ** to {Elites} and triple ** damage to {Bosses}. || If the enemy has [Vulnerable]: ** Gain [F][A] and !M! [Block].",
@@ -2054,11 +2049,6 @@
 			"DESCRIPTION": "Gain 1 Intangible.",
 			"NAME": "Excalibur"
 		},
-		"animator:Giselle":
-		{
-			"DESCRIPTION": "Apply !M! [Burning] ** to ALL enemies. || At the start of each ** combat: Channel 1 [Fire].",
-			"NAME": "Giselle"
-		},
 		"animator:HinaKagiyama":
 		{
 			"DESCRIPTION": "Once per turn, when you ** draw a Curse: <DRW-M>. || At the start of turn: You may ** Purge a Hindrance in Exhaust ** pile to obtain a {Miracle}.",
@@ -2214,6 +2204,11 @@
 			"DESCRIPTION": "<DRW>. || <SLM>. When ** Exhausted: Return this ** card to your hand and ** gain [E] [E]",
 			"NAME": "Chomusuke"
 		},
+		"animator:Giselle":
+		{
+			"DESCRIPTION": "Apply !M! [Burning] ** to ALL enemies. || At the start of each ** combat: Channel 1 [Fire].",
+			"NAME": "Giselle"
+		},
 		"animator:Hero":
 		{
 			"DESCRIPTION": "<DRW-M>. || <LIM>. If this card kills ** an enemy, 40% chance to ** obtain a {Relic} at the ** end of combat.",
@@ -2233,6 +2228,11 @@
 		{
 			"DESCRIPTION": "Exhaust a random ** Hindrance from anywhere. || At the start of combat: ** Gain !M! [Temporary HP] and 1 [Artifact].",
 			"NAME": "Jeanne D'Arc"
+		},
+		"animator:Kanami":
+		{
+			"DESCRIPTION": "Apply !M! [Vulnerable] to ALL ** enemies. Return this ** card to your draw pile. || Cooldown !S!: Change ** this card's form.",
+			"NAME": "Kanami"
 		},
 		"animator:NivaLada":
 		{

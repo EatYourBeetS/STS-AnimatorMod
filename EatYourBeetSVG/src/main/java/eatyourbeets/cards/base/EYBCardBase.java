@@ -18,9 +18,8 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
-import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import com.megacrit.cardcrawl.vfx.cardManip.CardGlowBorder;
+import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 
@@ -194,7 +193,7 @@ public abstract class EYBCardBase extends AbstractCard
             return;
         }
 
-        if (SingleCardViewPopup.isViewingUpgrade && !isPreview && !isPopup && (library || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD) && canUpgrade())
+        if (GameUtilities.CanShowUpgrades(library) && !isPreview && !isPopup && canUpgrade())
         {
             renderUpgradePreview(sb);
             return;

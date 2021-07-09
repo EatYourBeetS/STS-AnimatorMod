@@ -17,6 +17,7 @@ public abstract class DynamicCardBuilder
     public int block;
     public int magicNumber;
     public boolean isMultiDamage;
+    public boolean canUpgrade = true;
 
     public ArrayList<AbstractCard.CardTags> tags = new ArrayList<>();
     public AbstractCard.CardTarget cardTarget = AbstractCard.CardTarget.NONE;

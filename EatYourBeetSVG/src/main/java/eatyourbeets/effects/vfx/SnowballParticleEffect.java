@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
@@ -28,7 +27,15 @@ public class SnowballParticleEffect extends EYBEffect
     {
         super(Random(0.5f, 1f));
 
-        this.img = ImageMaster.loadImage("images/orbs/animator/FrostSnow.png");
+        switch (MathUtils.random(0, 2))
+        {
+            case 0:
+                this.img = ImageMaster.loadImage("images/orbs/animator/FrostSnow.png");
+            case 1:
+                this.img = ImageMaster.loadImage("images/orbs/animator/FrostSnow2.png");
+            default:
+                this.img = ImageMaster.loadImage("images/orbs/animator/FrostSnow3.png");
+        }
 
         this.x = x - (float) (SIZE / 2);
         this.y = y - (float) (SIZE / 2);

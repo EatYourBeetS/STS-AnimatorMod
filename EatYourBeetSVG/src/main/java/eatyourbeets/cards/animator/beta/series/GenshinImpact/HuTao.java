@@ -10,6 +10,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -26,13 +28,19 @@ public class HuTao extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0, 3, 2);
-        SetUpgrade(3, 0, 1, 0);
-        SetScaling(0, 0, 2);
+        Initialize(5, 0, 3, 2);
+        SetUpgrade(1, 0, 1, 0);
+        SetScaling(0, 1, 2);
 
         SetEthereal(true);
         SetExhaust(true);
         SetSynergy(Synergies.GenshinImpact);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override
@@ -50,7 +58,7 @@ public class HuTao extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
 
         GameActions.Bottom.SelectFromPile(name, magicNumber, p.drawPile, p.hand, p.discardPile)

@@ -242,7 +242,7 @@
 	},
 	"animator:NegateBlockPower":
 	{
-	  "DESCRIPTIONS": ["For the next #b", " turns, you cannot gain Block from cards. Gain Self-Damage whenever you gain Block from other sources."],
+	  "DESCRIPTIONS": ["For the next #b", " turns, you cannot gain Block from cards. Gain Self Damage whenever you gain Block from other sources."],
 	  "NAME": "Negate Block"
 	},
 	"animator:NextTurnDexterityPower":

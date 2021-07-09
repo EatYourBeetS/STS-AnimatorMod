@@ -1,16 +1,14 @@
 package eatyourbeets.cards.animator.beta.special;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.modifiers.CostModifiers;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.SelfDamagePower;
-import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -22,7 +20,7 @@ public class JumpyDumpty extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(10, 0, 1, 5);
+        Initialize(9, 0, 1, 5);
         SetUpgrade(3, 0, 1, 0);
         SetAutoplay(true);
         SetExhaust(true);

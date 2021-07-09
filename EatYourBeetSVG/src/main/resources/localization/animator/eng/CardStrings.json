@@ -586,7 +586,7 @@
 		},
 		"animator:JumpyDumpty":
 		{
-		  "DESCRIPTION": "Apply !M! [Burning]. ** If the enemy dies or ** loses its [Block]: Shuffle a copy of this card into your Draw Pile. Take !S! damage at the end of the turn.",
+		  "DESCRIPTION": "Apply !M! [Burning]. || If the enemy dies or ** loses its [Block]: Gain !S! {Self Damage} and add a copy of this card into your Draw Pile.",
 		  "NAME": "Jumpy Dumpty"
 		},
 		"animator:KaeyaAlberich":
@@ -606,9 +606,9 @@
 		},
 		"animator:Klee":
 		{
-		  "DESCRIPTION": "Apply !M! [Burning] to ALL targets. || Add !S! {Jumpy Dumpty} to your Discard Pile. ** Add 1 more if at least half of your orbs are [Fire].",
+		  "DESCRIPTION": "Apply !M! [Burning] to ALL targets. || Add !S! {Jumpy Dumpty} to your Draw Pile. ** Add 1 more if at least half of your orbs are [Fire].",
 		  "NAME": "Klee",
-		  "UPGRADE_DESCRIPTION": "Apply !M! [Burning] to ALL targets. || Add !S! upgraded {Jumpy Dumpty} to your Discard Pile. ** Add 1 more if at least half of your orbs are [Fire]."
+		  "UPGRADE_DESCRIPTION": "Apply !M! [Burning] to ALL targets. || Add !S! upgraded {Jumpy Dumpty} to your Draw Pile. ** Add 1 more if at least half of your orbs are [Fire]."
 		},
 		"animator:LisaMinci":
 		{

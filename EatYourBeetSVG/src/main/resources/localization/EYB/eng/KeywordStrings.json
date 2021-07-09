@@ -92,7 +92,7 @@
 	},
 	"Elemental Mastery":
 	{
-	  "DESCRIPTION": "Amplifies the passive and evoke affects of Orbs. Higher stacks increase the intensity of this buff. Reduced by half each turn.",
+	  "DESCRIPTION": "Whenever you Evoke alternating types of Orbs, deal damage to the enemy with the lowest health.",
 	  "NAMES": ["elemental mastery"],
 	  "PROPER_NAME": "Elemental Mastery"
 	},
@@ -221,6 +221,12 @@
 	  "DESCRIPTION": "Heal HP at the end of the turn. Reduce by 1 each turn.",
 	  "NAMES": ["regeneration"],
 	  "PROPER_NAME": "Regeneration"
+	},
+	"Self Damage":
+	{
+	  "DESCRIPTION": "Take damage at the end of your turn.",
+	  "NAMES": ["self damage, self-damage"],
+	  "PROPER_NAME": "Self Damage"
 	},
 	"Semi-Limited":
 	{

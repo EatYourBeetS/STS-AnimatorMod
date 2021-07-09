@@ -25,7 +25,7 @@ public class Klee extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 2, 2);
+        Initialize(3, 0, 2, 2);
         SetUpgrade(1, 0, 1, 0);
         SetScaling(0, 0, 0);
 
@@ -53,7 +53,7 @@ public class Klee extends AnimatorCard
         int additionalCount = (numberOfFire > 0 && numberOfFire >= (p.maxOrbs / 2.0) ? 1 : 0);
         for (int i = 0; i < secondaryValue + additionalCount; i++)
         {
-            GameActions.Bottom.MakeCardInDiscardPile(new JumpyDumpty());
+            GameActions.Bottom.MakeCardInDrawPile(new JumpyDumpty());
         }
     }
 }

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.cards.base.CardSeriesComparator;
 import eatyourbeets.effects.card.ShowCardPileEffect;
 import eatyourbeets.interfaces.delegates.FuncT1;
@@ -20,8 +21,8 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.AbstractScreen;
-import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.ui.controls.*;
+import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RandomizedList;
@@ -43,6 +44,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     public final GUI_Button selectAll;
     public final GUI_Button previewCards;
     public final GUI_Button confirm;
+    public final GUI_Toggle upgradeToggle;
     public final GUI_Toggle toggleBeta;
     public final GUI_TextBox selectionInfo;
     public final GUI_TextBox selectionAmount;
@@ -54,7 +56,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         final AnimatorStrings.SeriesSelection textboxStrings = GR.Animator.Strings.SeriesSelection;
         final AnimatorStrings.SeriesSelectionButtons buttonStrings = GR.Animator.Strings.SeriesSelectionButtons;
         final Texture panelTexture = GR.Common.Images.Panel.Texture();
-        final FuncT1<Float, Float> getY = (delta) -> ScreenH(0.9f) - ScreenH(0.08f * delta);
+        final FuncT1<Float, Float> getY = (delta) -> ScreenH(0.95f) - ScreenH(0.08f * delta);
         final float buttonHeight = ScreenH(0.07f);
         final float buttonWidth = ScreenW(0.18f);
         final float xPos = ScreenW(0.82f);
@@ -68,32 +70,37 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         .SetFont(EYBFontHelper.CardDescriptionFont_Normal, 0.9f)
         .SetColor(Settings.CREAM_COLOR);
 
-        toggleBeta = new GUI_Toggle(new Hitbox(xPos, getY.Invoke(0f), buttonWidth, buttonHeight * 0.8f))
+        upgradeToggle = new GUI_Toggle(new Hitbox(xPos, getY.Invoke(0.2f), buttonWidth, buttonHeight * 0.8f))
+                .SetBackground(panelTexture, Color.DARK_GRAY)
+                .SetText(SingleCardViewPopup.TEXT[6])
+                .SetOnToggle(this::ToggleViewUpgrades);
+
+        toggleBeta = new GUI_Toggle(new Hitbox(xPos, getY.Invoke(1f), buttonWidth, buttonHeight * 0.8f))
         .SetText(buttonStrings.ShowBetaSeries)
         .SetOnToggle(this::ToggleBetaSeries)
         .SetBackground(panelTexture, Color.DARK_GRAY);
 
-        deselectAll = CreateHexagonalButton(xPos, getY.Invoke(1f), buttonWidth, buttonHeight)
+        deselectAll = CreateHexagonalButton(xPos, getY.Invoke(2f), buttonWidth, buttonHeight)
         .SetText(buttonStrings.DeselectAll)
         .SetOnClick(this::DeselectAll)
         .SetColor(Color.FIREBRICK);
 
-        selectRandom75 = CreateHexagonalButton(xPos, getY.Invoke(2f), buttonWidth, buttonHeight)
+        selectRandom75 = CreateHexagonalButton(xPos, getY.Invoke(3f), buttonWidth, buttonHeight)
         .SetText(buttonStrings.SelectRandom(75))
         .SetOnClick(() -> SelectRandom(75))
         .SetColor(Color.SKY);
 
-        selectRandom100 = CreateHexagonalButton(xPos, getY.Invoke(3f), buttonWidth, buttonHeight)
+        selectRandom100 = CreateHexagonalButton(xPos, getY.Invoke(4f), buttonWidth, buttonHeight)
         .SetText(buttonStrings.SelectRandom(100))
         .SetOnClick(() -> SelectRandom(100))
         .SetColor(Color.SKY);
 
-        selectAll = CreateHexagonalButton(xPos, getY.Invoke(4f), buttonWidth, buttonHeight)
+        selectAll = CreateHexagonalButton(xPos, getY.Invoke(5f), buttonWidth, buttonHeight)
         .SetText(buttonStrings.SelectAll)
         .SetOnClick(this::SelectAll)
         .SetColor(Color.ROYAL);
 
-        selectionAmount = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(4.8f), buttonWidth, buttonHeight * 0.8f))
+        selectionAmount = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(5.8f), buttonWidth, buttonHeight * 0.8f))
         .SetColors(Color.DARK_GRAY, Settings.GOLD_COLOR)
         .SetAlignment(0.5f, 0.5f)
         .SetFont(FontHelper.charDescFont, 1); //FontHelper.textAboveEnemyFont);
@@ -102,23 +109,23 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         purgingStoneImage = new GUI_Relic(new PurgingStone(), new Hitbox(selectionAmount.hb.x + (selectionAmountSize * 0.25f),
         selectionAmount.hb.y, selectionAmountSize, selectionAmountSize));
 
-        selectionInfo = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(7f), buttonWidth, buttonHeight * 2.5f))
+        selectionInfo = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(8f), buttonWidth, buttonHeight * 2.5f))
         .SetText(textboxStrings.PurgingStoneRequirement)
         .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
         .SetFont(FontHelper.tipBodyFont, 1);
 
-        previewCardsInfo = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(8f), buttonWidth, buttonHeight * 1.2f))
+        previewCardsInfo = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(9f), buttonWidth, buttonHeight * 1.2f))
         .SetText(textboxStrings.RightClickToPreview)
         .SetAlignment(0.75f, 0.1f, true)
         .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
         .SetFont(FontHelper.tipBodyFont, 1);
 
-        previewCards = CreateHexagonalButton(xPos, getY.Invoke(9f), buttonWidth, buttonHeight)
+        previewCards = CreateHexagonalButton(xPos, getY.Invoke(10f), buttonWidth, buttonHeight)
         .SetText(buttonStrings.ShowCardPool)
         .SetOnClick(() -> PreviewCards(null))
         .SetColor(Color.LIGHT_GRAY);
 
-        confirm = CreateHexagonalButton(xPos, getY.Invoke(10f), buttonWidth, buttonHeight * 1.1f)
+        confirm = CreateHexagonalButton(xPos, getY.Invoke(11f), buttonWidth, buttonHeight * 1.1f)
         .SetText(buttonStrings.Proceed)
         .SetOnClick(this::Proceed)
         .SetColor(Color.FOREST);
@@ -130,8 +137,10 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
         if (firstTime)
         {
+            upgradeToggle.isActive = false;
             toggleBeta.isActive = false;
             purgingStoneImage.isActive = false;
+            upgradeToggle.Toggle(false);
             UpdateStartingDeckText();
             GameEffects.TopLevelList.Add(new AnimatorSeriesSelectEffect(this));
         }
@@ -142,6 +151,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     {
         cardGrid.TryRender(sb);
 
+        upgradeToggle.TryRender(sb);
         toggleBeta.TryRender(sb);
 
         startingDeck.TryRender(sb);
@@ -200,6 +210,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         confirm.Update();
 
         cardGrid.TryUpdate();
+        upgradeToggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
     }
 
     protected void OnCardClicked(AbstractCard card)
@@ -269,7 +280,9 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
             final Collection<AbstractCard> cardsSource = container.Find(source).Cards.values();
             for (AbstractCard c : cardsSource)
             {
-                cards.group.add(c.makeStatEquivalentCopy());
+                AbstractCard nc = c.makeStatEquivalentCopy();
+                if (SingleCardViewPopup.isViewingUpgrade) nc.upgrade();
+                cards.group.add(nc);
             }
         }
         else
@@ -279,7 +292,9 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
                 final Collection<AbstractCard> cardsSource = container.Find(cs).Cards.values();
                 for (AbstractCard c : cardsSource)
                 {
-                    cards.group.add(c.makeStatEquivalentCopy());
+                    AbstractCard nc = c.makeStatEquivalentCopy();
+                    if (SingleCardViewPopup.isViewingUpgrade) nc.upgrade();
+                    cards.group.add(nc);
                 }
             }
         }
@@ -373,5 +388,10 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
             text += " NL Beta: Ascension and NL Trophies disabled.";
         }
         startingDeck.SetText(text);
+    }
+
+    private void ToggleViewUpgrades(boolean value)
+    {
+        SingleCardViewPopup.isViewingUpgrade = value;
     }
 }

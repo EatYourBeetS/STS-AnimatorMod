@@ -38,7 +38,7 @@
 	},
 	"Shapeshifter":
 	{
-		"DESCRIPTION": "#ySynergizes with any card. Also counts as a LV1 affinity of any color.",
+		"DESCRIPTION": "Affinity of any color.",
 		"NAMES": ["shapeshifter", "shapeshift"],
 		"PROPER_NAME": "Shapeshifter"
 	},

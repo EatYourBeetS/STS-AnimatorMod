@@ -8,7 +8,7 @@
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yAgility, gain #yDexterity.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 #yAgility, gain #yDexterity.",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
@@ -23,6 +23,12 @@
 		"DESCRIPTION": "Automatically played. Requires [E].",
 		"NAMES": ["autoplay", "autoplayed"],
 		"PROPER_NAME": "Autoplay"
+	},
+	"Blessing":
+	{
+		"DESCRIPTION": "At the start of each turn, gain 1 #yTemporary #yHP and reduce #yBlessing by #b1.",
+		"NAMES": ["blessing"],
+		"PROPER_NAME": "Blessing"
 	},
 	"Blur":
 	{
@@ -59,6 +65,12 @@
 		"DESCRIPTION": "Take damage at the end of each turn.",
 		"NAMES": ["constricted"],
 		"PROPER_NAME": "Constricted"
+	},
+	"Corruption":
+	{
+		"DESCRIPTION": "At the start of each turn, reduce #yCorruption by #b1. If you have 4 or more #yCorruption, gain #b1 less #yBlock from cards. Upon reaching #b9 #yCorruption, obtain #pSummoning #pRitual.",
+		"NAMES": ["corruption"],
+		"PROPER_NAME": "Corruption"
 	},
 	"Cycle":
 	{
@@ -110,7 +122,7 @@
 	},
 	"Force":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yForce, gain #yStrength.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 #yForce, gain #yStrength.",
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
@@ -134,7 +146,7 @@
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yIntellect, gain #yFocus.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 #yIntellect, gain #yFocus.",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},

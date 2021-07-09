@@ -31,7 +31,7 @@ public class Melzalgald extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan);
-        SetShapeshifter();
+        SetAffinity_Star(1, 1);
     }
 
     @Override

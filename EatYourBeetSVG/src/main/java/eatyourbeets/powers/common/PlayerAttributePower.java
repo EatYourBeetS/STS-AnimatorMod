@@ -27,10 +27,10 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         switch (level)
         {
-            case  1: return 2;
-            case  2: return 4;
-            case  3: return 6;
-            case  4: return 8;
+            case  1: return 3;
+            case  2: return 6;
+            case  3: return 9;
+            case  4: return 12;
             default: return 0;
         }
     }
@@ -45,10 +45,10 @@ public abstract class PlayerAttributePower extends CommonPower
                 switch (power.threshold)
                 {
                     case 0: return 0;
-                    case 2: return 1;
-                    case 4: return 2;
-                    case 6: return 3;
-                    case 8: return 4;
+                    case 3: return 1;
+                    case 6: return 2;
+                    case 9: return 3;
+                    case 12: return 4;
                     default: return 5;
                 }
             }

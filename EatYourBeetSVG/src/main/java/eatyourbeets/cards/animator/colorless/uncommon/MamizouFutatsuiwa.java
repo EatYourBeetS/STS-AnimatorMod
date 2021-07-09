@@ -25,7 +25,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.TouhouProject);
-        SetShapeshifter();
+        SetAffinity_Star(1, 1);
     }
 
     @Override
@@ -73,8 +73,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
             AnimatorCard card = JUtils.SafeCast(cards.get(0), AnimatorCard.class);
             if (card != null)
             {
-                card.SetSynergy(Synergies.ANY);
-                card.SetShapeshifter();
+                card.affinities.Set(AffinityType.Star, 2);
                 card.flash();
             }
         });

@@ -22,7 +22,7 @@ public class PandorasActor extends AnimatorCard
         SetUpgrade(0, 2);
 
         SetSynergy(Synergies.Overlord);
-        SetShapeshifter();
+        SetAffinity_Star(1, 1);
     }
 
     @Override

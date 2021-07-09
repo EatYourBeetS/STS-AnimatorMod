@@ -74,31 +74,40 @@ public class AnimatorCardRewardAffinities extends GUIElement
         for (AbstractCard c : cards)
         {
             EYBCard card = JUtils.SafeCast(c, EYBCard.class);
-            if (card != null)
+            if (card == null)
             {
-                if (card.affinities.HasStar())
+                continue;
+            }
+
+            int star = card.affinities.GetLevel(AffinityType.Star);
+            if (star > 0)
+            {
+                if (star > 1)
                 {
-                    starCounter.AffinityLV1.level += 1;
+                    starCounter.AffinityLV2.level += 1;
                 }
                 else
                 {
-                    for (EYBCardAffinity alignment : card.affinities.List)
+                    starCounter.AffinityLV1.level += 1;
+                }
+                continue;
+            }
+
+            for (EYBCardAffinity alignment : card.affinities.List)
+            {
+                for (CardAffinityCounter counter : counters)
+                {
+                    if (counter.Type == alignment.Type)
                     {
-                        for (CardAffinityCounter counter : counters)
+                        if (alignment.level > 1)
                         {
-                            if (counter.Type == alignment.Type)
-                            {
-                                if (alignment.level > 1)
-                                {
-                                    counter.AffinityLV2.level += 1;
-                                }
-                                else
-                                {
-                                    counter.AffinityLV1.level += 1;
-                                }
-                                break;
-                            }
+                            counter.AffinityLV2.level += 1;
                         }
+                        else
+                        {
+                            counter.AffinityLV1.level += 1;
+                        }
+                        break;
                     }
                 }
             }

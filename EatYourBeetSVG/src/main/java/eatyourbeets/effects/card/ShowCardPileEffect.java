@@ -19,12 +19,33 @@ import eatyourbeets.utilities.InputManager;
 public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
 {
     private static final float DUR = 1.5f;
-    private static final GUI_Toggle upgradeToggle = new GUI_Toggle(new Hitbox(Settings.scale * 256f, Settings.scale * 48f))
-    .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
-    .SetPosition(Settings.WIDTH * 0.075f, Settings.HEIGHT * 0.5f)
-    .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.5f)
-    .SetText(SingleCardViewPopup.TEXT[6])
-    .SetOnToggle(ShowCardPileEffect::ToggleViewUpgrades);
+    private static final GUI_Toggle upgradeToggle;
+    private static final GUI_Toggle zoomToggle;
+    private static final GUI_Toggle simplifyCardUIToggle;
+    static
+    {
+        upgradeToggle = new GUI_Toggle(new Hitbox(Settings.scale * 256f, Settings.scale * 48f))
+        .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
+        .SetPosition(Settings.WIDTH * 0.075f, Settings.HEIGHT * 0.65f)
+        .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.5f)
+        .SetText(SingleCardViewPopup.TEXT[6])
+        .SetOnToggle(ShowCardPileEffect::ToggleViewUpgrades);
+
+        zoomToggle  = new GUI_Toggle(new Hitbox(Settings.scale * 256f, Settings.scale * 48f))
+        .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
+        .SetPosition(Settings.WIDTH * 0.075f, upgradeToggle.hb.y - upgradeToggle.hb.height)
+        .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.475f)
+        .SetText(GR.Animator.Strings.Misc.DynamicPortraits)
+        .SetOnToggle(ShowCardPileEffect::ToggleCardZoom);
+
+        simplifyCardUIToggle = new GUI_Toggle(new Hitbox(Settings.scale * 256f, Settings.scale * 48f))
+        .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
+        .SetPosition(Settings.WIDTH * 0.075f, zoomToggle.hb.y - zoomToggle.hb.height)
+        .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.475f)
+        .SetText(GR.Animator.Strings.Misc.SimplifyCardUI)
+        .SetOnToggle(ShowCardPileEffect::ToggleSimplifyCardUI);
+
+    }
 
     private final CardGroup cards;
     private boolean draggingScreen = false;
@@ -54,11 +75,6 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         .AddCards(cards.group);
     }
 
-    private static void ToggleViewUpgrades(boolean value)
-    {
-        SingleCardViewPopup.isViewingUpgrade = value;
-    }
-
     public ShowCardPileEffect SetStartingPosition(float x, float y)
     {
         for (AbstractCard c : cards.group)
@@ -75,8 +91,10 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
     {
         grid.TryUpdate();
         upgradeToggle.Update();
+        zoomToggle.Update();
+        simplifyCardUIToggle.Update();
 
-        if (upgradeToggle.hb.hovered)
+        if (upgradeToggle.hb.hovered || zoomToggle.hb.hovered || simplifyCardUIToggle.hb.hovered)
         {
             duration = startingDuration * 0.1f;
             isDone = false;
@@ -110,5 +128,22 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0f, 0f, (float) Settings.WIDTH, (float) Settings.HEIGHT);
         grid.TryRender(sb);
         upgradeToggle.Render(sb);
+        zoomToggle.Render(sb);
+        simplifyCardUIToggle.Render(sb);
+    }
+
+    private static void ToggleViewUpgrades(boolean value)
+    {
+        SingleCardViewPopup.isViewingUpgrade = value;
+    }
+
+    private static void ToggleCardZoom(boolean value)
+    {
+        GR.Animator.Config.CropCardImages.Set(value, true);
+    }
+
+    private static void ToggleSimplifyCardUI(boolean value)
+    {
+        GR.Animator.Config.SimplifyCardUI.Set(value, true);
     }
 }

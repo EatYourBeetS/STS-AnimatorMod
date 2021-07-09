@@ -23,7 +23,7 @@ public class Pride extends AnimatorCard
         SetEvokeOrbCount(magicNumber);
         SetExhaust(true);
         SetSynergy(Synergies.FullmetalAlchemist);
-        SetShapeshifter();
+        SetAffinity_Star(1, 1);
     }
 
     @Override

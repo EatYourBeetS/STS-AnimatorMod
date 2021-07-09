@@ -850,11 +850,6 @@ public class GameUtilities
             if (card != ignored && card != null)
             {
                 affinities.Add(card.affinities, limitPerCard);
-
-                if (card.affinities.Star != null)
-                {
-                    affinities.AddStar(card.affinities.Star.level);
-                }
             }
         }
 

@@ -15,12 +15,34 @@ public enum AffinityType implements Comparable<AffinityType>
     Blue(2, GR.Common.Images.Affinities.Blue),
     Light(3, GR.Common.Images.Affinities.Light),
     Dark(4, GR.Common.Images.Affinities.Dark),
-    Star(-1, GR.Common.Images.Affinities.Star);
+    Star(-1, GR.Common.Images.Affinities.Star_BG);
 
     protected static final TextureCache BorderBG = GR.Common.Images.Affinities.BorderBG;
     protected static final TextureCache BorderFG = GR.Common.Images.Affinities.BorderFG;
     protected static final TextureCache BorderLV2 = GR.Common.Images.Affinities.Border;
     protected static final TextureCache BorderLV1 = GR.Common.Images.Affinities.Border_Weak;
+    protected static final AffinityType[] BASIC_TYPES = new AffinityType[5];
+    protected static final AffinityType[] ALL_TYPES = new AffinityType[6];
+
+    static
+    {
+        ALL_TYPES[0] = Star;
+        ALL_TYPES[1] = BASIC_TYPES[0] = Red;
+        ALL_TYPES[2] = BASIC_TYPES[1] = Green;
+        ALL_TYPES[3] = BASIC_TYPES[2] = Blue;
+        ALL_TYPES[4] = BASIC_TYPES[3] = Light;
+        ALL_TYPES[5] = BASIC_TYPES[4] = Dark;
+    }
+
+    public static AffinityType[] BasicTypes()
+    {
+        return BASIC_TYPES;
+    }
+
+    public static AffinityType[] AllTypes()
+    {
+        return ALL_TYPES;
+    }
 
     public final int ID;
     public final TextureCache Icon;
@@ -38,17 +60,17 @@ public enum AffinityType implements Comparable<AffinityType>
 
     public Texture GetBorder(int level)
     {
-        return this == Star ? null : (level > 1 ? BorderLV2 : BorderLV1).Texture();
+        return /*this == Star ? null : */(level > 1 ? BorderLV2 : BorderLV1).Texture();
     }
 
     public Texture GetBackground(int level)
     {
-        return this == Star ? null : (level > 1 ? BorderBG.Texture() : null);
+        return /*this == Star ? null : */(level > 1 ? BorderBG.Texture() : null);
     }
 
     public Texture GetForeground(int level)
     {
-        return this == Star ? null : (level > 1 ? BorderFG.Texture() : null);
+        return /*this == Star ? null : */(level > 1 ? BorderFG.Texture() : null);
     }
 
     public AbstractGameAction QueueSynergyEffect(GameActions actions)

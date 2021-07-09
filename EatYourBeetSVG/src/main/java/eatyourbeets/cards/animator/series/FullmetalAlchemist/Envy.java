@@ -23,7 +23,7 @@ public class Envy extends AnimatorCard
 
         SetEthereal(true);
         SetSynergy(Synergies.FullmetalAlchemist);
-        SetShapeshifter();
+        SetAffinity_Star(1, 1);
     }
 
     @Override

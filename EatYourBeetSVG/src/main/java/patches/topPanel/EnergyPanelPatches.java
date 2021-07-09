@@ -14,7 +14,7 @@ public class EnergyPanelPatches
         @SpirePostfixPatch
         public static void Method(EnergyPanel __instance, SpriteBatch sb)
         {
-            GR.UI.CombatScreen.Info.TryRender(sb);
+            GR.UI.CombatScreen.TryRender(sb);
         }
     }
 }

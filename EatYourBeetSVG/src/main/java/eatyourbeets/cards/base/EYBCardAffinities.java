@@ -27,22 +27,6 @@ public class EYBCardAffinities
 
     }
 
-    public boolean CanSynergize(EYBCardAffinities other)
-    {
-        for (EYBCardAffinity a : List)
-        {
-            for (EYBCardAffinity b : other.List)
-            {
-                if (a.Type == b.Type && (a.level > 1 || b.level > 1))
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
     public void Initialize(int red, int green, int blue, int light, int dark)
     {
         Initialize(AffinityType.Red, red, 0);
@@ -104,11 +88,11 @@ public class EYBCardAffinities
         }
         else if (Star != null)
         {
-            Star.level = 2;
+            Star.level = level;
         }
         else
         {
-            Star = new EYBCardAffinity(AffinityType.Star, 2);
+            Star = new EYBCardAffinity(AffinityType.Star, level);
         }
     }
 
@@ -127,7 +111,13 @@ public class EYBCardAffinities
 
     public void Add(EYBCardAffinities other, int levelLimit)
     {
-        for (EYBCardAffinity item : other.List)
+        int star = Math.min(levelLimit, other.GetLevel(AffinityType.Star));
+        if (star > 0)
+        {
+            AddStar(star);
+            Add(star, star, star, star, star);
+        }
+        else for (EYBCardAffinity item : other.List)
         {
             Add(item.Type, Math.min(levelLimit, item.level));
         }
@@ -223,8 +213,13 @@ public class EYBCardAffinities
 
     public int GetLevel(AffinityType type)
     {
+        return GetLevel(type, true);
+    }
+
+    public int GetLevel(AffinityType type, boolean useStarLevel)
+    {
         int star = (Star != null ? Star.level : 0);
-        if (type == AffinityType.Star)
+        if (type == AffinityType.Star || (useStarLevel && star > 0))
         {
             return star;
         }
@@ -237,6 +232,39 @@ public class EYBCardAffinities
             EYBCardAffinity affinity = Get(type);
             return (affinity != null) ? affinity.level : 0;
         }
+    }
+
+    public boolean CanSynergize(EYBCardAffinities other)
+    {
+        return GetSynergies(other).GetLevel(null) > 0;
+    }
+
+    public EYBCardAffinities GetSynergies(EYBCardAffinities other)
+    {
+        final EYBCardAffinities synergies = new EYBCardAffinities();
+        final int star = GetLevel(AffinityType.Star);
+        if (star > 0)
+        {
+            int lv_b = other.GetLevel(null);
+            if (lv_b > 0)
+            {
+                synergies.Add(AffinityType.Star, star);
+            }
+
+            return synergies;
+        }
+
+        for (AffinityType type : AffinityType.BasicTypes())
+        {
+            int lv_a = GetLevel(type);
+            int lv_b = other.GetLevel(type);
+            if ((lv_a > 1 && lv_b > 0) || (lv_b > 1 && lv_a > 0))
+            {
+                synergies.Add(type, lv_a);
+            }
+        }
+
+        return synergies;
     }
 
     public void OnSynergy(AnimatorCard card)

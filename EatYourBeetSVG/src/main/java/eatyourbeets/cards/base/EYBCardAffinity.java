@@ -46,6 +46,11 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
         {
             RenderHelpers.Draw(sb, foreground, x, y, size, size);
         }
+
+        if (Type == AffinityType.Star)
+        {
+            RenderHelpers.Draw(sb, GR.Common.Images.Affinities.Star_FG.Texture(), x, y, size, size);
+        }
     }
 
     public void RenderOnCard(SpriteBatch sb, AbstractCard card, float x, float y, float size)
@@ -87,6 +92,12 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
         if (foreground != null)
         {
             RenderHelpers.DrawOnCardAuto(sb, card, foreground, new Vector2(x, y), size, size, color, 1f, 1f, -rotation);
+        }
+
+        if (Type == AffinityType.Star)
+        {
+            Texture star = GR.Common.Images.Affinities.Star_FG.Texture();
+            RenderHelpers.DrawOnCardAuto(sb, card, star, new Vector2(x, y), size, size, color, 1f, 1f, 0);
         }
     }
 

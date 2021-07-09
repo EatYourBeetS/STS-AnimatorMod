@@ -80,8 +80,13 @@ public abstract class AnimatorCard extends EYBCard
     public void SetShapeshifter()
     {
         SetTag(SHAPESHIFTER, true);
-        affinities.SetStar(1);
-        affinities.Set(1, 1, 1, 1, 1);
+        affinities.Initialize(AffinityType.Star, 1, 0);
+    }
+
+    public void SetShapeshifter(int base, int upgrade)
+    {
+        SetTag(SHAPESHIFTER, true);
+        affinities.Initialize(AffinityType.Star, base, upgrade);
     }
 
     public void SetSynergy(Synergy synergy)

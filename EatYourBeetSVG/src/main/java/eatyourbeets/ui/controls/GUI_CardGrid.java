@@ -18,7 +18,7 @@ import java.util.Collection;
 
 public class GUI_CardGrid extends GUIElement
 {
-    private static final float DRAW_START_X = (Settings.WIDTH - (5f * AbstractCard.IMG_WIDTH * 0.75f) - (4f * Settings.CARD_VIEW_PAD_X) + AbstractCard.IMG_WIDTH * 0.75f) * 0.41f; // 0.5f
+    private static final float DRAW_START_X = (Settings.WIDTH - (5f * AbstractCard.IMG_WIDTH * 0.75f) - (4f * Settings.CARD_VIEW_PAD_X) + AbstractCard.IMG_WIDTH * 0.75f);
     private static final float DRAW_START_Y = (float) Settings.HEIGHT * 0.7f;
     private static final float PAD_X = AbstractCard.IMG_WIDTH * 0.75f + Settings.CARD_VIEW_PAD_X;
     private static final float PAD_Y = AbstractCard.IMG_HEIGHT * 0.75f + Settings.CARD_VIEW_PAD_Y;
@@ -36,6 +36,7 @@ public class GUI_CardGrid extends GUIElement
     protected ActionT1<AbstractCard> onCardRightClick;
     protected ActionT1<AbstractCard> onCardHovered;
     protected boolean canDragScreen = true;
+    protected float draw_x;
     protected float lowerScrollBound = -Settings.DEFAULT_SCROLL_LIMIT;
     protected float upperScrollBound = Settings.DEFAULT_SCROLL_LIMIT;
     protected float scrollStart;
@@ -44,10 +45,16 @@ public class GUI_CardGrid extends GUIElement
 
     public GUI_CardGrid()
     {
+        this(0.5f);
+    }
+
+    public GUI_CardGrid(float horizontalAlignment)
+    {
         this.cards = new ArrayList<>();
         this.scrollBar = new GUI_VerticalScrollBar(new Hitbox(ScreenW(0.03f), ScreenH(0.7f)))
-        .SetPosition(ScreenW(0.05f), ScreenH(0.5f))
         .SetOnScroll(this::OnScroll);
+
+        SetHorizontalAlignment(horizontalAlignment);
     }
 
     public GUI_CardGrid SetOnCardHover(ActionT1<AbstractCard> onCardHovered)
@@ -74,6 +81,14 @@ public class GUI_CardGrid extends GUIElement
     public GUI_CardGrid CanDragScreen(boolean canDrag)
     {
         this.canDragScreen = canDrag;
+
+        return this;
+    }
+
+    public GUI_CardGrid SetHorizontalAlignment(float percentage)
+    {
+        this.draw_x = percentage;
+        this.scrollBar.SetPosition(ScreenW((percentage < 0.5f) ? 0.05f : 0.95f), ScreenH(0.5f));
 
         return this;
     }
@@ -188,7 +203,7 @@ public class GUI_CardGrid extends GUIElement
         int column = 0;
         for (AbstractCard card : cards)
         {
-            card.target_x = DRAW_START_X + (column * PAD_X);
+            card.target_x = (DRAW_START_X * draw_x) + (column * PAD_X);
             card.target_y = DRAW_START_Y + scrollDelta - (row * PAD_Y);
             card.fadingOut = false;
             card.update();

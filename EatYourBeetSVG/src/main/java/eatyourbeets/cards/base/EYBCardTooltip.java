@@ -13,12 +13,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
-import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.EYBFontHelper;
-import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RenderHelpers;
+import eatyourbeets.utilities.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -199,8 +195,7 @@ public class EYBCardTooltip
         EYBCardPreview preview = card.GetCardPreview();
         if (preview != null)
         {
-            boolean showUpgrade = SingleCardViewPopup.isViewingUpgrade && (AbstractDungeon.player == null || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD);
-            preview.Render(sb, card, card.upgraded || showUpgrade);
+            preview.Render(sb, card, card.upgraded || GameUtilities.CanShowUpgrades(false));
         }
 
         if (GR.IsTranslationSupported(Settings.language) && card.isPopup)

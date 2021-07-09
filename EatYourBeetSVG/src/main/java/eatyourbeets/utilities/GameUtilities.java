@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.relics.PenNib;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.stats.AchievementGrid;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -43,6 +44,7 @@ import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.resources.GR;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -112,6 +114,11 @@ public class GameUtilities
     public static boolean CanRemoveFromDeck(AbstractCard card)
     {
         return (card.rarity != AbstractCard.CardRarity.SPECIAL) && !SoulboundField.soulbound.get(card);
+    }
+
+    public static boolean CanShowUpgrades(boolean isLibrary)
+    {
+        return SingleCardViewPopup.isViewingUpgrade && (player == null || isLibrary || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD || AbstractDungeon.screen == GR.Enums.Screens.EYB_SCREEN);
     }
 
     public static void ClearPostCombatActions()

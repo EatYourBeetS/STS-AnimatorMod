@@ -12,11 +12,13 @@ import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.delegates.FuncT0;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public abstract class EYBStance extends AbstractStance
 {
@@ -143,5 +145,17 @@ public abstract class EYBStance extends AbstractStance
     protected String FormatDescription(Object... args)
     {
         return JUtils.Format(strings.DESCRIPTION[0], args);
+    }
+
+    protected boolean TryApplyStance(String stanceID)
+    {
+        String current = CombatStats.GetCombatData(EYBStance.class.getSimpleName(), null);
+        if (Objects.equals(stanceID, current))
+        {
+            return false;
+        }
+
+        CombatStats.SetCombatData(EYBStance.class.getSimpleName(), stanceID);
+        return true;
     }
 }

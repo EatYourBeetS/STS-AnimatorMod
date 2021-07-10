@@ -113,7 +113,7 @@ public abstract class AbstractAttribute
 
         final float sign = leftAlign ? -1 : +1;
         final float icon_x = sign * (cw * 0.45f);
-        final float text_x = sign * (cw * 0.34f - ((text_width + suffix_width) * 0.5f));
+        float text_x = sign * (cw * 0.34f - ((text_width + suffix_width) * 0.5f));
 
         if (panel != null)
         {

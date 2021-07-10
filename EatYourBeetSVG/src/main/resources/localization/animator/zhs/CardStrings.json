@@ -988,7 +988,7 @@
 		},
 		"animator:Curse_GriefSeed":
 		{
-			"DESCRIPTION": "你的回合结束时： ** 受到 !M! 点伤害。 || 被 消耗 时：移除 ** 你最右边的 {负面效果} 。",
+			"DESCRIPTION": "你的回合结束时： ** 受到 !M! 点伤害。 || 被 消耗 时：移除 ** 随机 {负面效果} 。",
 			"NAME": "悲叹之种"
 		},
 		"animator:Defend_MadokaMagica":

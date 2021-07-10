@@ -26,7 +26,7 @@ public class Fire extends AnimatorOrb
 
     public Fire()
     {
-        super(ORB_ID);
+        super(ORB_ID, true);
 
         if (imgExt == null)
         {
@@ -49,16 +49,6 @@ public class Fire extends AnimatorOrb
 
         this.applyFocus();
         this.description = desc[0] + this.passiveAmount + desc[1] + BURNING_AMOUNT + desc[2] + this.evokeAmount + desc[3];
-    }
-
-    public void onEvoke()
-    {
-        GameActions.Top.Add(new FireOrbEvokeAction(evokeAmount));
-    }
-
-    public void onEndOfTurn()
-    {
-        GameActions.Bottom.Add(new FireOrbPassiveAction(this, passiveAmount));
     }
 
     public void triggerEvokeAnimation()
@@ -98,5 +88,21 @@ public class Fire extends AnimatorOrb
     public void playChannelSFX()
     {
         CardCrawlGame.sound.play("ATTACK_FIRE", 0.2f);
+    }
+
+    @Override
+    public void EvokeEffect()
+    {
+        GameActions.Top.Add(new FireOrbEvokeAction(evokeAmount));
+
+        super.EvokeEffect();
+    }
+
+    @Override
+    public void PassiveEffect()
+    {
+        GameActions.Bottom.Add(new FireOrbPassiveAction(this, passiveAmount));
+
+        super.PassiveEffect();
     }
 }

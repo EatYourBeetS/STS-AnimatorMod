@@ -56,7 +56,7 @@ public class Rayneshia extends AnimatorCard
 
                     while (choice.size() < 3 && pool.Size() > 0)
                     {
-                        choice.addToTop(pool.Retrieve(rng));
+                        choice.addToTop(pool.Retrieve(rng).makeCopy());
                     }
 
                     GameActions.Bottom.SelectFromPile(name, 1, choice)
@@ -65,7 +65,8 @@ public class Rayneshia extends AnimatorCard
                     {
                         if (cards != null && cards.size() > 0)
                         {
-                            GameActions.Bottom.MakeCardInHand(cards.get(0));
+                            GameActions.Bottom.MakeCardInHand(cards.get(0))
+                            .SetUpgrade(false, true);
                         }
                     });
                 }

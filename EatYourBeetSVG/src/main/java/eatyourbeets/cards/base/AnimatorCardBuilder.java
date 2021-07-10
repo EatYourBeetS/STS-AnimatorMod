@@ -265,4 +265,11 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
 
         return this;
     }
+
+    public AnimatorCardBuilder CanUpgrade(boolean canUpgrade)
+    {
+        this.canUpgrade = canUpgrade;
+
+        return this;
+    }
 }

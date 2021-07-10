@@ -62,6 +62,11 @@
 			"DESCRIPTION": "Synergizes with {Spellcasters}.",
 			"NAME": "Improved Defend"
 		},
+		"animator:Defend_MadokaMagica":
+		{
+			"DESCRIPTION": "<LIM>. Add a ** [Grief Seed] to the top of ** your draw pile.",
+			"NAME": "Improved Defend"
+		},
 		"animator:Defend_NoGameNoLife":
 		{
 			"DESCRIPTION": "Retain your leftmost ** playable card.",
@@ -145,6 +150,11 @@
 		"animator:Strike_LogHorizon":
 		{
 			"DESCRIPTION": "Synergizes with {Martial Artists}.",
+			"NAME": "Improved Strike"
+		},
+		"animator:Strike_MadokaMagica":
+		{
+			"DESCRIPTION": "Scry !M!.",
 			"NAME": "Improved Strike"
 		},
 		"animator:Strike_NoGameNoLife":
@@ -979,6 +989,11 @@
 			"DESCRIPTION": "Unplayable. ** When drawn: Raise ** the cost of a random ** card in your hand ** by 1 this turn.",
 			"NAME": "Greed"
 		},
+		"animator:Curse_GriefSeed":
+		{
+			"DESCRIPTION": "At the end of turn: ** Take !M! Damage. || When Exhausted: ** Remove a random ** {Debuff}.",
+			"NAME": "Grief Seed"
+		},
 		"animator:Curse_Nutcracker":
 		{
 			"DESCRIPTION": "Unplayable. ** At the end of turn: ** ALL enemies heal !M! HP.",
@@ -1610,16 +1625,6 @@
 			"EXTENDED_DESCRIPTION": ["I have not played a Grief Seed this turn."],
 			"NAME": "Charlotte"
 		},
-		"animator:Curse_GriefSeed":
-		{
-			"DESCRIPTION": "At the end of turn: ** Take !M! Damage. || When Exhausted: ** Remove your ** rightmost {Debuff}.",
-			"NAME": "Grief Seed"
-		},
-		"animator:Defend_MadokaMagica":
-		{
-			"DESCRIPTION": "<LIM>. Add a ** [Grief Seed] to the top of ** your draw pile.",
-			"NAME": "Improved Defend"
-		},
 		"animator:HomuraAkemi":
 		{
 			"DESCRIPTION": "Skip the next enemy turn. ** Draw !M! card(s) and gain [E] ** next turn. End your turn. || Add !S! random {Curses} to ** your discard pile.",
@@ -1665,22 +1670,11 @@
 			"DESCRIPTION": "Channel 1 [Frost]. || Lose no [I] next turn. || Synergy with [Grief Seed]: Add ** {Oktavia} and a [Grief Seed] to your ** discard pile, then Exhaust.",
 			"NAME": "Sayaka Miki"
 		},
-		"animator:Strike_MadokaMagica":
-		{
-			"DESCRIPTION": "Scry !M!.",
-			"NAME": "Improved Strike"
-		},
 		"animator:SuzuneAmano":
 		{
 			"DESCRIPTION": "<ST>: <DRW> and ** deal !S! additional damage ** for each [Fire] you have. || Exhaust 1 random ** card to apply !M! [Burning].",
 			"NAME": "Suzune Amano",
 			"UPGRADE_DESCRIPTION": "<ST>: <DRW> and ** deal !S! additional damage ** for each [Fire] you have. || Exhaust 1 card ** to apply !M! [Burning]."
-		},
-		"animator:Walpurgisnacht":
-		{
-			"DESCRIPTION": "Add !M! random Spellcaster(s) ** to your hand. They cost 0 ** this turn. || At start of turn: Evoke your ** next Orb for each Curse and ** Spellcaster in your hand.",
-			"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next Orb once for each #yCurse plus each #ySpellcaster in your hand."],
-			"NAME": "Walpurgisnacht"
 		},
 		"animator:YachiyoNanami":
 		{
@@ -2269,6 +2263,12 @@
 		{
 			"DESCRIPTION": "Gain !S! [I]. Evoke ** ALL orbs !M! times. || When Drawn: Channel ** 2 random Orbs.",
 			"NAME": "Veldora"
+		},
+		"animator:Walpurgisnacht":
+		{
+			"DESCRIPTION": "Add !M! random Spellcaster(s) ** to your hand. They cost 0 ** this turn. || At start of turn: Evoke your ** next Orb for each Curse and ** Spellcaster in your hand.",
+			"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next Orb once for each #yCurse plus each #ySpellcaster in your hand."],
+			"NAME": "Walpurgisnacht"
 		}
 	}
 }

@@ -28,7 +28,7 @@ public class AbstractPlayer_UseCard
 
     public static void Use(AbstractCard c, AbstractPlayer p, AbstractMonster m)
     {
-        CombatStats.Instance.OnUsingCard(c, p, m);
+        CombatStats.OnUsingCard(c, p, m);
     }
 
 //    public static boolean CanUse(AbstractCard c)

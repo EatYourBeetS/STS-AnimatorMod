@@ -12,6 +12,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
 {
     protected final AnimatorCardBuilder builder;
 
+    public boolean canUpgrade;
     public boolean canSelect;
     public int attributeMultiplier;
     public final ActionT1<AnimatorCard> constructor;
@@ -43,6 +44,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
         this.isMultiDamage = builder.isMultiDamage;
         this.tags.addAll(builder.tags);
         this.cropPortrait = false;
+        this.canUpgrade = builder.canUpgrade;
 
         this.getSpecialInfo = builder.getSpecialInfo;
         this.getDamageInfo = builder.getDamageInfo;
@@ -117,6 +119,12 @@ public class AnimatorCard_Dynamic extends AnimatorCard
         {
             onUse.Invoke(this, p, m);
         }
+    }
+
+    @Override
+    public boolean canUpgrade()
+    {
+        return canUpgrade && super.canUpgrade();
     }
 
     @Override

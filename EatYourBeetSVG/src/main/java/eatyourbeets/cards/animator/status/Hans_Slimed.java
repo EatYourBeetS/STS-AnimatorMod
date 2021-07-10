@@ -12,13 +12,13 @@ import eatyourbeets.utilities.GameActions;
 
 public class Hans_Slimed extends AnimatorCard_Status
 {
-    public static final EYBCardData DATA = Register(Hans_Slimed.class).SetStatus(1, CardRarity.SPECIAL, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Hans_Slimed.class).SetStatus(3, CardRarity.SPECIAL, EYBCardTarget.None);
 
     public Hans_Slimed()
     {
         super(DATA, false);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 9);
 
         cropPortrait = false;
         SetExhaust(true);

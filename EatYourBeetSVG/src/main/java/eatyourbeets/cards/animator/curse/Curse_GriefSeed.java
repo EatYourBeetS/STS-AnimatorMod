@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.status;
+package eatyourbeets.cards.animator.curse;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.RandomizedList;
 
 public class Curse_GriefSeed extends AnimatorCard_Curse
 {
@@ -27,16 +28,21 @@ public class Curse_GriefSeed extends AnimatorCard_Curse
     @Override
     public void triggerOnExhaust()
     {
+        GameActions.Bottom.WaitRealtime(0.3f);
         GameActions.Bottom.Callback(() ->
         {
-            for (int i = player.powers.size() - 1; i >= 0; i--)
+            RandomizedList<AbstractPower> powers = new RandomizedList<>();
+            for (AbstractPower p : player.powers)
             {
-                AbstractPower power = player.powers.get(i);
-                if (power.type == AbstractPower.PowerType.DEBUFF)
+                if (p.type == AbstractPower.PowerType.DEBUFF)
                 {
-                    GameActions.Top.RemovePower(player, player, power);
-                    return;
+                    powers.Add(p);
                 }
+            }
+
+            if (powers.Size() > 0)
+            {
+                GameActions.Top.RemovePower(player, powers.Retrieve(rng));
             }
         });
     }

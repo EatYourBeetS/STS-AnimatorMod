@@ -29,12 +29,6 @@ public class Elsword extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.Cycle(name, magicNumber);
 
         if (m.hasPower(BurningPower.POWER_ID))
         {
@@ -44,5 +38,11 @@ public class Elsword extends AnimatorCard
         {
             GameActions.Bottom.ChannelOrb(new Fire());
         }
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
+        GameActions.Bottom.Cycle(name, magicNumber);
     }
 }

@@ -25,25 +25,25 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
     static
     {
         upgradeToggle = new GUI_Toggle(new Hitbox(Settings.scale * 256f, Settings.scale * 48f))
-                .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
-                .SetPosition(Settings.WIDTH * 0.075f, Settings.HEIGHT * 0.65f)
-                .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.5f)
-                .SetText(SingleCardViewPopup.TEXT[6])
-                .SetOnToggle(ShowCardPileEffect::ToggleViewUpgrades);
+        .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
+        .SetPosition(Settings.WIDTH * 0.075f, Settings.HEIGHT * 0.65f)
+        .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.5f)
+        .SetText(SingleCardViewPopup.TEXT[6])
+        .SetOnToggle(ShowCardPileEffect::ToggleViewUpgrades);
 
         zoomToggle  = new GUI_Toggle(new Hitbox(Settings.scale * 256f, Settings.scale * 48f))
-                .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
-                .SetPosition(Settings.WIDTH * 0.075f, upgradeToggle.hb.y - upgradeToggle.hb.height)
-                .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.475f)
-                .SetText(GR.Animator.Strings.Misc.DynamicPortraits)
-                .SetOnToggle(ShowCardPileEffect::ToggleCardZoom);
+        .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
+        .SetPosition(Settings.WIDTH * 0.075f, upgradeToggle.hb.y - upgradeToggle.hb.height)
+        .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.475f)
+        .SetText(GR.Animator.Strings.Misc.DynamicPortraits)
+        .SetOnToggle(ShowCardPileEffect::ToggleCardZoom);
 
         simplifyCardUIToggle = new GUI_Toggle(new Hitbox(Settings.scale * 256f, Settings.scale * 48f))
-                .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
-                .SetPosition(Settings.WIDTH * 0.075f, zoomToggle.hb.y - zoomToggle.hb.height)
-                .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.475f)
-                .SetText(GR.Animator.Strings.Misc.SimplifyCardUI)
-                .SetOnToggle(ShowCardPileEffect::ToggleSimplifyCardUI);
+        .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
+        .SetPosition(Settings.WIDTH * 0.075f, zoomToggle.hb.y - zoomToggle.hb.height)
+        .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.475f)
+        .SetText(GR.Animator.Strings.Misc.SimplifyCardUI)
+        .SetOnToggle(ShowCardPileEffect::ToggleSimplifyCardUI);
 
     }
 
@@ -71,8 +71,8 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         }
 
         this.grid = new GUI_CardGrid()
-                .CanDragScreen(false)
-                .AddCards(cards.group);
+        .CanDragScreen(false)
+        .AddCards(cards.group);
     }
 
     public ShowCardPileEffect SetStartingPosition(float x, float y)

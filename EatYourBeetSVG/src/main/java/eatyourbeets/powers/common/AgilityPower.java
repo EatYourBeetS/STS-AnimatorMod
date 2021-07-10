@@ -8,11 +8,6 @@ public class AgilityPower extends PlayerAttributePower
 {
     public static final String POWER_ID = CreateFullID(AgilityPower.class);
 
-    public static int GetCurrentLevel()
-    {
-        return GetLevel(AgilityPower.class);
-    }
-
     public static void PreserveOnce()
     {
         preservedPowers.Subscribe(POWER_ID);
@@ -30,7 +25,7 @@ public class AgilityPower extends PlayerAttributePower
     }
 
     @Override
-    protected void OnThresholdReached()
+    protected void OnThresholdReached(int threshold)
     {
         GameActions.Top.GainDexterity(1);
     }

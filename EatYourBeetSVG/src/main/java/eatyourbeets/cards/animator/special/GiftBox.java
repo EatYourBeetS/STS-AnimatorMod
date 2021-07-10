@@ -30,6 +30,9 @@ public class GiftBox extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
+        GameActions.Bottom.GainBlessing(1);
+        GameActions.Bottom.GainCorruption(1);
+
         GameActions.Bottom.DiscardFromHand(name, 999, false)
         .SetOptions(false, false, true);
 

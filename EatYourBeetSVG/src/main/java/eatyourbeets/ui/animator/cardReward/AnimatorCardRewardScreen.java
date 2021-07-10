@@ -44,7 +44,7 @@ public class AnimatorCardRewardScreen extends GUIElement
 
     public void Update()
     {
-        GR.UI.CardAffinities.Update();
+        GR.UI.CardAffinities.TryUpdate();
 
         purgingStoneUI.TryUpdate();
         rewardBundle.TryUpdate();

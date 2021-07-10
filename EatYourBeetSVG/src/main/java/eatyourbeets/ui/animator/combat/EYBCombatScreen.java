@@ -5,6 +5,7 @@ import eatyourbeets.interfaces.subscribers.OnBattleEndSubscriber;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStatsClearedSubscriber;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -29,7 +30,7 @@ public class EYBCombatScreen extends GUIElement implements OnStatsClearedSubscri
     @Override
     public boolean OnStatsCleared()
     {
-        SetActive(GameUtilities.InBattle());
+        SetActive(GameUtilities.InBattle() && GR.Animator.IsSelected());
         Info.SetActive(isActive);
         return false;
     }

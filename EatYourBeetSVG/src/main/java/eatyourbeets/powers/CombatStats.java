@@ -26,7 +26,6 @@ import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
@@ -37,7 +36,10 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import patches.CardGlowBorderPatches;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CombatStats extends EYBPower implements InvisiblePower
 {

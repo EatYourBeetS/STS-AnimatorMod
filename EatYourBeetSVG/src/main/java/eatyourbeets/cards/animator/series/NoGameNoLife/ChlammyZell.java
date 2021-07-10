@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class ChlammyZell extends AnimatorCard
 {
@@ -24,7 +25,7 @@ public class ChlammyZell extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, IntellectPower.GetThreshold(1));
+        Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 1, 0);
 
         SetSynergy(Synergies.NoGameNoLife);
@@ -37,7 +38,7 @@ public class ChlammyZell extends AnimatorCard
         GameActions.Bottom.Draw(2);
         GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
 
-        if (IntellectPower.GetCurrentLevel() > 1 && CombatStats.TryActivateLimited(cardID))
+        if (GameUtilities.GetPowerAmount(IntellectPower.POWER_ID) >= secondaryValue && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.MakeCardInHand(new ChlammyZellScheme());
         }

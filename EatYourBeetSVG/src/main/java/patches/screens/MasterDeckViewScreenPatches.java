@@ -15,7 +15,7 @@ public class MasterDeckViewScreenPatches
         @SpirePrefixPatch
         public static void Prefix(MasterDeckViewScreen __instance)
         {
-            GR.UI.CardAffinities.Update();
+            GR.UI.CardAffinities.TryUpdate();
         }
     }
 
@@ -31,7 +31,7 @@ public class MasterDeckViewScreenPatches
         @SpirePrefixPatch
         public static void Prefix(MasterDeckViewScreen __instance, SpriteBatch sb)
         {
-            GR.UI.CardAffinities.Render(sb);
+            GR.UI.CardAffinities.TryRender(sb);
         }
     }
 

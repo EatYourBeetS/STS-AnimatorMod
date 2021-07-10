@@ -132,7 +132,8 @@ public abstract class AnimatorReward extends CustomReward
         {
             if (c instanceof AnimatorCard_UltraRare)
             {
-                if (synergy.ID == ((AnimatorCard_UltraRare) c).synergy.ID)
+                Synergy s = ((AnimatorCard_UltraRare) c).synergy;
+                if (s != null && synergy.ID == s.ID)
                 {
                     return; // No duplicates
                 }

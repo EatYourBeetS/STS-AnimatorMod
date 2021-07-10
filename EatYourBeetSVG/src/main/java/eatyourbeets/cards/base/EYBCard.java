@@ -435,7 +435,19 @@ public abstract class EYBCard extends EYBCardBase
 
     public void SetPurge(boolean value)
     {
-        SetTag(PURGE, value);
+        SetPurge(value, true);
+    }
+
+    public void SetPurge(boolean value, boolean canBePlayedTwice)
+    {
+        if (canBePlayedTwice)
+        {
+            SetTag(PURGE, value);
+        }
+        else
+        {
+            purgeOnUse = value;
+        }
 
         if (!value)
         {

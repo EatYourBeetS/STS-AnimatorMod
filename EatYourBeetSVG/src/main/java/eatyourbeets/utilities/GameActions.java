@@ -58,10 +58,8 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
-import eatyourbeets.powers.common.IntellectPower;
-import eatyourbeets.powers.common.TemporaryArtifactPower;
+import eatyourbeets.powers.common.CorruptionPower;
+import eatyourbeets.powers.common.*;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -89,6 +87,11 @@ public final class GameActions
         this.actionOrder = actionOrder;
     }
 
+    public static void ClearActions()
+    {
+        AbstractDungeon.actionManager.actions.clear();
+    }
+
     public static DelayAllActions DelayCurrentActions()
     {
         return Top.Add(new DelayAllActions(true));
@@ -97,11 +100,6 @@ public final class GameActions
     public static ArrayList<AbstractGameAction> GetActions()
     {
         return AbstractDungeon.actionManager.actions;
-    }
-
-    public static void ClearActions()
-    {
-        AbstractDungeon.actionManager.actions.clear();
     }
 
     public <T extends AbstractGameAction> T Add(T action)
@@ -286,14 +284,14 @@ public final class GameActions
         return Add(new ChangeStance(stanceName));
     }
 
-    public ChannelOrb ChannelOrbs(FuncT0<AbstractOrb> orbConstructor, int amount)
-    {
-        return Add(new ChannelOrb(orbConstructor, amount));
-    }
-
     public ChannelOrb ChannelOrb(AbstractOrb orb)
     {
         return Add(new ChannelOrb(orb));
+    }
+
+    public ChannelOrb ChannelOrbs(FuncT0<AbstractOrb> orbConstructor, int amount)
+    {
+        return Add(new ChannelOrb(orbConstructor, amount));
     }
 
     public ChannelOrb ChannelRandomOrbs(int amount)
@@ -375,6 +373,21 @@ public final class GameActions
         .ShowEffect(true, false);
     }
 
+    public EvokeOrb EvokeOrb(int times)
+    {
+        return Add(new EvokeOrb(times, EvokeOrb.Mode.SameOrb));
+    }
+
+    public EvokeOrb EvokeOrb(int times, AbstractOrb orb)
+    {
+        return Add(new EvokeOrb(times, orb));
+    }
+
+    public EvokeOrb EvokeOrb(int times, EvokeOrb.Mode mode)
+    {
+        return Add(new EvokeOrb(times, mode));
+    }
+
     public MoveCard Exhaust(AbstractCard card)
     {
         return MoveCard(card, player.exhaustPile);
@@ -398,21 +411,6 @@ public final class GameActions
     public FetchFromPile FetchFromPile(String sourceName, int amount, CardGroup... groups)
     {
         return Add(new FetchFromPile(sourceName, amount, groups));
-    }
-
-    public EvokeOrb EvokeOrb(int times)
-    {
-        return Add(new EvokeOrb(times, EvokeOrb.Mode.SameOrb));
-    }
-
-    public EvokeOrb EvokeOrb(int times, AbstractOrb orb)
-    {
-        return Add(new EvokeOrb(times, orb));
-    }
-
-    public EvokeOrb EvokeOrb(int times, EvokeOrb.Mode mode)
-    {
-        return Add(new EvokeOrb(times, mode));
     }
 
     public VFX Flash(AbstractCard card)
@@ -440,6 +438,21 @@ public final class GameActions
         return StackPower(new ArtifactPower(player, amount));
     }
 
+    public ApplyPower GainBlessing(int amount)
+    {
+        return GainBlessing(amount, false);
+    }
+
+    public ApplyPower GainBlessing(int amount, boolean preserveOnce)
+    {
+        if (preserveOnce)
+        {
+            BlessingPower.PreserveOnce();
+        }
+
+        return StackPower(new BlessingPower(player, amount));
+    }
+
     public GainBlock GainBlock(AbstractCreature target, int amount)
     {
         return Add(new GainBlock(target, target, amount));
@@ -453,6 +466,21 @@ public final class GameActions
     public ApplyPower GainBlur(int amount)
     {
         return StackPower(new BlurPower(player, amount));
+    }
+
+    public ApplyPower GainCorruption(int amount)
+    {
+        return GainCorruption(amount, false);
+    }
+
+    public ApplyPower GainCorruption(int amount, boolean preserveOnce)
+    {
+        if (preserveOnce)
+        {
+            CorruptionPower.PreserveOnce();
+        }
+
+        return StackPower(new CorruptionPower(player, amount));
     }
 
     public ApplyPower GainDexterity(int amount)
@@ -469,7 +497,7 @@ public final class GameActions
     {
         return StackPower(new FocusPower(player, amount));
     }
-
+    
     public ApplyPower GainForce(int amount)
     {
         return GainForce(amount, false);
@@ -611,21 +639,6 @@ public final class GameActions
         return MakeCard(card, player.hand);
     }
 
-    public <S> ModifyAllInstances ModifyAllInstances(UUID uuid, S state, ActionT2<S, AbstractCard> onCompletion)
-    {
-        return Add(new ModifyAllInstances(uuid, state, onCompletion));
-    }
-
-    public ModifyAllInstances ModifyAllInstances(UUID uuid, ActionT1<AbstractCard> onCompletion)
-    {
-        return Add(new ModifyAllInstances(uuid, onCompletion));
-    }
-
-    public ModifyAllInstances ModifyAllInstances(UUID uuid)
-    {
-        return Add(new ModifyAllInstances(uuid));
-    }
-
     public <S> ModifyAllCopies ModifyAllCopies(String cardID, S state, ActionT2<S, AbstractCard> onCompletion)
     {
         return Add(new ModifyAllCopies(cardID, state, onCompletion));
@@ -639,6 +652,21 @@ public final class GameActions
     public ModifyAllCopies ModifyAllCopies(String cardID)
     {
         return Add(new ModifyAllCopies(cardID));
+    }
+
+    public <S> ModifyAllInstances ModifyAllInstances(UUID uuid, S state, ActionT2<S, AbstractCard> onCompletion)
+    {
+        return Add(new ModifyAllInstances(uuid, state, onCompletion));
+    }
+
+    public ModifyAllInstances ModifyAllInstances(UUID uuid, ActionT1<AbstractCard> onCompletion)
+    {
+        return Add(new ModifyAllInstances(uuid, onCompletion));
+    }
+
+    public ModifyAllInstances ModifyAllInstances(UUID uuid)
+    {
+        return Add(new ModifyAllInstances(uuid));
     }
 
     public MotivateAction Motivate()
@@ -792,11 +820,6 @@ public final class GameActions
         return Add(new ReshuffleDiscardPile(onlyIfEmpty));
     }
 
-    public ScryWhichActuallyTriggersDiscard Scry(int amount)
-    {
-        return Add(new ScryWhichActuallyTriggersDiscard(amount));
-    }
-
     public SFXAction SFX(String key)
     {
         return Add(new SFXAction(key));
@@ -805,6 +828,11 @@ public final class GameActions
     public SFXAction SFX(String key, float pitchVar)
     {
         return Add(new SFXAction(key, pitchVar));
+    }
+
+    public ScryWhichActuallyTriggersDiscard Scry(int amount)
+    {
+        return Add(new ScryWhichActuallyTriggersDiscard(amount));
     }
 
     public SelectCreature SelectCreature(SelectCreature.Targeting target, String source)

@@ -6,66 +6,31 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStatsClearedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.HashSet;
 
 public abstract class PlayerAttributePower extends CommonPower
 {
+    protected static final int[] DEFAULT_THRESHOLDS = new int[] { 3, 6, 9, 12 };
     protected static final PreservedPowers preservedPowers = new PreservedPowers();
-    protected int threshold;
-
-    public static int GetThreshold(int level)
-    {
-        switch (level)
-        {
-            case  1: return 3;
-            case  2: return 6;
-            case  3: return 9;
-            case  4: return 12;
-            default: return 0;
-        }
-    }
-
-    public static int GetLevel(Class<? extends PlayerAttributePower> type)
-    {
-        if (AbstractDungeon.player != null)
-        {
-            PlayerAttributePower power = GameUtilities.GetPower(AbstractDungeon.player, type);
-            if (power != null)
-            {
-                switch (power.threshold)
-                {
-                    case 0: return 0;
-                    case 3: return 1;
-                    case 6: return 2;
-                    case 9: return 3;
-                    case 12: return 4;
-                    default: return 5;
-                }
-            }
-        }
-
-        return 0;
-    }
+    protected int highestThreshold;
 
     protected abstract float GetScaling(EYBCard card);
-    protected abstract void OnThresholdReached();
+    protected abstract void OnThresholdReached(int threshold);
 
     public PlayerAttributePower(String powerID, AbstractCreature owner, int amount)
     {
         super(owner, powerID);
 
         this.amount = amount;
-        this.threshold = 2;
+        this.highestThreshold = 0;
 
         updateDescription();
     }
@@ -75,9 +40,14 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         this.description = powerStrings.DESCRIPTIONS[0];
 
-        if (threshold > 0)
+        int[] thresholds = GetThresholds();
+        if (highestThreshold < thresholds.length)
         {
-            this.description += JUtils.Format(powerStrings.DESCRIPTIONS[1], threshold, 1);
+            this.description = JUtils.Format(description + powerStrings.DESCRIPTIONS[1], name, thresholds[highestThreshold], 1);
+        }
+        else
+        {
+            this.description = JUtils.Format(description, name, highestThreshold, 1);
         }
     }
 
@@ -141,7 +111,8 @@ public abstract class PlayerAttributePower extends CommonPower
     @Override
     public void renderAmount(SpriteBatch sb, float x, float y, Color c)
     {
-        if (threshold > 0)
+        int[] thresholds = GetThresholds();
+        if (highestThreshold < thresholds.length)
         {
             final float offset_x = -24 * Settings.scale;
             final float offset_y = -5 * Settings.scale;
@@ -151,7 +122,7 @@ public abstract class PlayerAttributePower extends CommonPower
             final Color c2 = Settings.CREAM_COLOR.cpy();
             c1.a = c2.a = c.a;
             FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x + offset_x, y + offset_y, fontScale, c1);
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + this.threshold, x + offset_x2, y + offset_y2, 1, c2);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + thresholds[highestThreshold], x + offset_x2, y + offset_y2, 1, c2);
         }
         else
         {
@@ -159,28 +130,21 @@ public abstract class PlayerAttributePower extends CommonPower
         }
     }
 
+    public int[] GetThresholds()
+    {
+        return DEFAULT_THRESHOLDS;
+    }
+
     protected void UpdateThreshold()
     {
-        int powerGain = 0;
-        if (threshold == 2 && amount >= threshold)
+        int[] thresholds = GetThresholds();
+        for (int i = highestThreshold; i < thresholds.length; i++)
         {
-            OnThresholdReached();
-            threshold = 4;
-        }
-        if (threshold == 4 && amount >= threshold)
-        {
-            OnThresholdReached();
-            threshold = 6;
-        }
-        if (threshold == 6 && amount >= threshold)
-        {
-            OnThresholdReached();
-            threshold = 8;
-        }
-        if (threshold == 8 && amount >= threshold)
-        {
-            OnThresholdReached();
-            threshold = -1;
+            if (amount >= thresholds[i])
+            {
+                OnThresholdReached(i);
+                highestThreshold += 1;
+            }
         }
 
         updateDescription();

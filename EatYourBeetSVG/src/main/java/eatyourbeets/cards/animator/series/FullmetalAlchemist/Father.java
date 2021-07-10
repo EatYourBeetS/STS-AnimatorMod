@@ -32,12 +32,9 @@ public class Father extends AnimatorCard implements OnAddedToDeckListener, OnAdd
         SetCostUpgrade(-1);
 
         SetHealing(true);
-        SetPurge(true);
+        SetPurge(true, false);
         SetSynergy(Synergies.FullmetalAlchemist);
         SetAffinity(0, 0, 2, 0, 2);
-
-        // By using purgeOnUse this card will not be duplicated by Burst, Echo Form or similar.
-        purgeOnUse = true;
     }
 
     @Override

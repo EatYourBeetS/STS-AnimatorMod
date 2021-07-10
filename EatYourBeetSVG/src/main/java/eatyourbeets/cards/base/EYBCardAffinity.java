@@ -97,7 +97,8 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
         if (Type == AffinityType.Star)
         {
             Texture star = GR.Common.Images.Affinities.Star_FG.Texture();
-            RenderHelpers.DrawOnCardAuto(sb, card, star, new Vector2(x, y), size, size, color, 1f, 1f, 0);
+            Color starColor = new Color(1, 1, 1, color.a);
+            RenderHelpers.DrawOnCardAuto(sb, card, star, new Vector2(x, y), size, size, starColor, 1f, 1f, 0);
         }
     }
 

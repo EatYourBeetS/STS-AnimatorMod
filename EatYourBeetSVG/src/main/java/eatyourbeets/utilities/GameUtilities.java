@@ -111,6 +111,11 @@ public class GameUtilities
         return canApply;
     }
 
+    public static boolean CanPlayTwice(AbstractCard card)
+    {
+        return !card.isInAutoplay && (!card.purgeOnUse || card.hasTag(GR.Enums.CardTags.PURGE));
+    }
+
     public static boolean CanRemoveFromDeck(AbstractCard card)
     {
         return (card.rarity != AbstractCard.CardRarity.SPECIAL) && !SoulboundField.soulbound.get(card);

@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.TargetHelper;
 
 public enum AffinityType implements Comparable<AffinityType>
 {
@@ -87,13 +86,13 @@ public enum AffinityType implements Comparable<AffinityType>
                 return actions.GainIntellect(1).ShowEffect(false, true);
 
             case Light:
-                return actions.GainTemporaryHP(1);
+                return actions.GainBlessing(1).ShowEffect(false, true);
 
             case Dark:
-                return actions.ApplyConstricted(TargetHelper.RandomEnemy(), 1).IgnoreArtifact(true).ShowEffect(false, true);
+                return actions.GainCorruption(1).ShowEffect(false, true);
 
             case Star:
-                return actions.GainBlock(1).SetVFX(true, true);
+                return null; //return actions.GainBlock(1).SetVFX(true, true);
         }
 
         throw new EnumConstantNotPresentException(getClass(), "type");
@@ -113,13 +112,13 @@ public enum AffinityType implements Comparable<AffinityType>
                 return GR.Tooltips.Intellect.icon;
 
             case Light:
-                return GR.Tooltips.TempHP.icon;
+                return GR.Tooltips.Blessing.icon;
 
             case Dark:
-                return GR.Tooltips.Constricted.icon;
+                return GR.Tooltips.Corruption.icon;
 
             case Star:
-                return GR.Tooltips.Block.icon;
+                return null; //return GR.Tooltips.Block.icon;
         }
 
         return null;

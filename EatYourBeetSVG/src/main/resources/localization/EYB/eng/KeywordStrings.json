@@ -26,7 +26,7 @@
 	},
 	"Blessing":
 	{
-		"DESCRIPTION": "At the start of each turn, gain 1 #yTemporary #yHP and reduce #yBlessing by #b1.",
+		"DESCRIPTION": "Gain #b1 #yTemporary #yHP and reduce this power by #b1 each turn. Upon reaching #b8, #b12 and #b16 #yBlessing, obtain a #yMiracle.",
 		"NAMES": ["blessing"],
 		"PROPER_NAME": "Blessing"
 	},
@@ -68,7 +68,7 @@
 	},
 	"Corruption":
 	{
-		"DESCRIPTION": "At the start of each turn, reduce #yCorruption by #b1. If you have 4 or more #yCorruption, gain #b1 less #yBlock from cards. Upon reaching #b9 #yCorruption, obtain #pSummoning #pRitual.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b5, #b7, #b9 #yCorruption, add a #yCrystallize to your draw pile. Upon reaching #b12 #yCorruption, obtain #pSummoning #pRitual.",
 		"NAMES": ["corruption"],
 		"PROPER_NAME": "Corruption"
 	},

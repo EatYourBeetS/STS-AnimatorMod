@@ -21,6 +21,7 @@ import eatyourbeets.rewards.animator.AuraCardsReward;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
 import eatyourbeets.rewards.animator.SynergyCardsReward;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorLoadoutsContainer;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -63,6 +64,11 @@ public class AnimatorResources extends AbstractResources
         }
 
         return level <= 4 ? 300 + (level * 500) : 1000 + (level * 300);
+    }
+
+    public boolean IsSelected()
+    {
+        return GameUtilities.IsPlayerClass(PlayerClass);
     }
 
     @Override

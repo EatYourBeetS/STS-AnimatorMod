@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class PinaCoLadaPower extends AnimatorPower
 {
@@ -40,7 +41,7 @@ public class PinaCoLadaPower extends AnimatorPower
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action)
     {
-        if ((card.costForTurn == 0 || card.freeToPlayOnce) && amount > 0 && !card.isInAutoplay)
+        if ((card.costForTurn == 0 || card.freeToPlayOnce) && amount > 0 && GameUtilities.CanPlayTwice(card))
         {
             amount -= 1;
             flash();

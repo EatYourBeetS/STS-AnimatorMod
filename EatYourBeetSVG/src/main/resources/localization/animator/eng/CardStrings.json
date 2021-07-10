@@ -365,7 +365,8 @@
 	{
 		"animator:Add":
 		{
-			"DESCRIPTION": "Add 3 {Crystallize} to your ** draw pile. Next turn: Draw ** !M! card(s) and gain [E] [E]. || On Synergy: Exhaust a ** card anywhere, replace ** it with an {Orb Core}.",
+			"DESCRIPTION": "Gain 3 [C]. Next turn: Draw ** !M! card(s) and gain 2 [E]. || 3 <DARK> : Exhaust a card anywhere, replace it ** with an {Orb Core}.",
+			"EXTENDED_DESCRIPTION": ["Add 3 {Crystallize} to your ** draw pile. Next turn: Draw ** !M! card(s) and gain [E] [E]. || On Synergy: Exhaust a ** card anywhere, replace ** it with an {Orb Core}."],
 			"NAME": "Add"
 		},
 		"animator:Ain":
@@ -1418,7 +1419,7 @@
 		},
 		"animator:GiftBox":
 		{
-			"DESCRIPTION": "Discard all cards. || Add !M! random card(s) ** to your hand.",
+			"DESCRIPTION": "Boost [B] [C]. ** Discard all cards. || Add !M! random card(s) ** to your hand.",
 			"NAME": "Gift Box"
 		},
 		"animator:HinaKagiyama":
@@ -1638,6 +1639,12 @@
 		{
 			"DESCRIPTION": "Gain !M! Juggernaut. || At the start of ** combat: Gain !S! [Plated Armor].",
 			"NAME": "Sir Touch Me"
+		},
+		"animator:SummoningRitual":
+		{
+			"DESCRIPTION": "Lose half your HP ** until end of combat. || Summon an ** {Unnamed Doll}.",
+			"EXTENDED_DESCRIPTION": ["At the end of combat, recover #b{0} HP."],
+			"NAME": "Summoning Ritual"
 		},
 		"animator:Truth":
 		{

@@ -355,7 +355,8 @@
 			"Wait a little longer!",
 			"Almost ready!",
 			"Here it is!",
-			"BEHOLD! An interloper."
+			"BEHOLD! An interloper.",
+			"Impossible..."
 		]
 	},
 	"animator:TheUnnamed":
@@ -398,7 +399,8 @@
 			"<UNUSED>",
 			"<UNUSED>",
 			"Intangible? You are not the only one who can use that.",
-			"Oh Look! It seems your time is over. Bye!"
+			"Oh Look! It seems your time is over. Bye!",
+			"What? What kind of joke is this?"
 		]
 	}
 }

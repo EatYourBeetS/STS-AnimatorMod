@@ -12,17 +12,27 @@
 	},
 	"EYB:ForcePower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 #yForce at the start of each turn.", " If you reach #b{0} #yForce, gain #b{1} #yStrength."],
+		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, gain #b{2} #yStrength."],
 		"NAME": "Force"
 	},
 	"EYB:AgilityPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 #yAgility at the start of each turn.", " If you reach #b{0} #yAgility, gain #b{1} #yDexterity."],
+		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, gain #b{2} #yDexterity."],
 		"NAME": "Agility"
 	},
 	"EYB:IntellectPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 #yIntellect at the start of each turn.", " If you reach #b{0} #yIntellect, gain #b{1} #yFocus."],
+		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, gain #b{2} #yFocus."],
 		"NAME": "Intellect"
+	},
+	"EYB:BlessingPower":
+	{
+		"DESCRIPTIONS": ["Gain #b1 Temporary HP and lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, obtain #b{2} #yMiracle."],
+		"NAME": "Blessing"
+	},
+	"EYB:CorruptionPower":
+	{
+		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, obtain #b{2} {3}."],
+		"NAME": "Corruption"
 	}
 }

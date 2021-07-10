@@ -3,9 +3,9 @@ package eatyourbeets.ui.animator.cardReward;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinity;
-import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.GUIElement;
@@ -13,7 +13,6 @@ import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.ui.hitboxes.DraggableHitbox;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -59,7 +58,7 @@ public class AnimatorCardRewardAffinities extends GUIElement
 
     public void Open(ArrayList<AbstractCard> cards)
     {
-        isActive = GameUtilities.IsPlayerClass(GR.Animator.PlayerClass);
+        isActive = GR.Animator.IsSelected();
 
         if (!isActive)
         {

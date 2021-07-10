@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class IchigoKurosaki extends AnimatorCard
 {
@@ -22,7 +23,7 @@ public class IchigoKurosaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 0, ForcePower.GetThreshold(2));
+        Initialize(0, 0, 0, 5);
 
         SetExhaust(true);
         SetSynergy(Synergies.Bleach);
@@ -36,7 +37,7 @@ public class IchigoKurosaki extends AnimatorCard
 
         GameActions.Bottom.Callback(() ->
         {
-            if (ForcePower.GetCurrentLevel() > 2)
+            if (GameUtilities.GetPowerAmount(ForcePower.POWER_ID) >= secondaryValue)
             {
                 GameActions.Bottom.MakeCardInDrawPile(new IchigoBankai());
             }

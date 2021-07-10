@@ -72,7 +72,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
 
         if (showAffinities)
         {
-            GR.UI.CardAffinities.Render(sb);
+            GR.UI.CardAffinities.TryRender(sb);
         }
     }
 
@@ -85,7 +85,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         {
             if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD)
             {
-                GR.UI.CardAffinities.Update();
+                GR.UI.CardAffinities.TryUpdate();
             }
             else
             {

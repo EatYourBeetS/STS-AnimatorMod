@@ -1,6 +1,11 @@
 package eatyourbeets.powers.monsters;
 
+import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.ultrarare.SummoningRitual;
+import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActions;
@@ -39,6 +44,18 @@ public class TheUnnamedCultistPower extends AnimatorPower
         {
             GameActions.Bottom.StackPower(new EnchantedArmorPower(owner, amount * count))
             .ShowEffect(false, true);
+        }
+    }
+
+    @Override
+    public void onAfterCardPlayed(AbstractCard usedCard)
+    {
+        super.onAfterCardPlayed(usedCard);
+
+        if (usedCard instanceof SummoningRitual && !owner.isPlayer)
+        {
+            GameActions.Bottom.Talk(owner, TheUnnamed_Cultist.STRINGS.DIALOG[12]);
+            GameActions.Bottom.ApplyPower(new StunMonsterPower((AbstractMonster) owner));
         }
     }
 }

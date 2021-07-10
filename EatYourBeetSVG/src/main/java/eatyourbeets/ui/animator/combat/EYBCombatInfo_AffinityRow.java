@@ -39,7 +39,7 @@ public class EYBCombatInfo_AffinityRow extends GUIElement
 
         background_image = new GUI_Image(GR.Common.Images.Panel_Rounded_Half_H.Texture(),
                 new RelativeHitbox(hb, 1, 1, 0.5f, offset_y))
-                .SetColor(0.05f, 0.05f, 0.05f, 1f);
+                .SetColor(COLOR_DEFAULT);
 
         affinity_image = new GUI_Image(type.GetIcon(),
                 new RelativeHitbox(hb, Scale(36), Scale(36), Scale(12f), offset_y * hb.height, false));
@@ -57,7 +57,7 @@ public class EYBCombatInfo_AffinityRow extends GUIElement
     {
         boolean synergyEffectAvailable = !CombatStats.HasActivatedSemiLimited(Type.name());
         int total = handAffinities.GetLevel(Type, false);
-        affinity_text.SetText(total > 0 ? total : "-");
+        affinity_text.SetText(total);// > 0 ? total : "-");
         synergy_icon.color.a = synergyEffectAvailable ? 1f : 0.35f;
 
         int level = strongSynergies == null ? 0 : strongSynergies.GetLevel(Type, false);

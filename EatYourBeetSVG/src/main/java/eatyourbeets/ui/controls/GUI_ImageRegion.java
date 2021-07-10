@@ -64,7 +64,10 @@ public class GUI_ImageRegion extends GUIElement
         {
             sb.draw(background, x, y, 0, 0, width, height, scaleX, scaleY, rotation);
         }
-        sb.draw(texture, x, y, 0, 0, width, height, scaleX, scaleY, rotation);
+        if (texture != null)
+        {
+            sb.draw(texture, x, y, 0, 0, width, height, scaleX, scaleY, rotation);
+        }
         if (foreground != null)
         {
             sb.draw(foreground, x, y, 0, 0, width, height, scaleX, scaleY, rotation);
@@ -78,7 +81,10 @@ public class GUI_ImageRegion extends GUIElement
         {
             sb.draw(background, x, y, width/2f, height/2f, width, height, Settings.scale * scaleX,Settings.scale * scaleY, rotation);
         }
-        sb.draw(texture, x, y, width/2f, height/2f, width, height, Settings.scale * scaleX, Settings.scale * scaleY, rotation);
+        if (texture != null)
+        {
+            sb.draw(texture, x, y, width / 2f, height / 2f, width, height, Settings.scale * scaleX, Settings.scale * scaleY, rotation);
+        }
         if (foreground != null)
         {
             sb.draw(foreground, x, y, width/2f, height/2f, width, height, Settings.scale * scaleX, Settings.scale * scaleY, rotation);

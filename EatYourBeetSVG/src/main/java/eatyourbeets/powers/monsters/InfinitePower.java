@@ -24,6 +24,7 @@ import eatyourbeets.cards.animator.series.NoGameNoLife.ChlammyZell;
 import eatyourbeets.cards.animator.series.OnePunchMan.Boros;
 import eatyourbeets.cards.animator.series.Overlord.Ainz;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.Guren;
+import eatyourbeets.cards.animator.ultrarare.SummoningRitual;
 import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
@@ -324,6 +325,10 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         else if (card instanceof HigakiRinne)
         {
             Talk(21, 2.5f);
+        }
+        else if (card instanceof SummoningRitual)
+        {
+            Talk(35, 2.5f);
         }
     }
 

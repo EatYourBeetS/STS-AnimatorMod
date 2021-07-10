@@ -38,6 +38,8 @@ public class CardTooltips
     public EYBCardTooltip Intellect = FindByID("Intellect");
     public EYBCardTooltip Force = FindByID("Force");
     public EYBCardTooltip Agility = FindByID("Agility");
+    public EYBCardTooltip Blessing = FindByID("Blessing");
+    public EYBCardTooltip Corruption = FindByID("Corruption");
     public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
     public EYBCardTooltip ForceStance = FindByID("Force Stance");
     public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");

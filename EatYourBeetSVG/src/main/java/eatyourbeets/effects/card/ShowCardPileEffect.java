@@ -90,9 +90,9 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
     protected void UpdateInternal(float deltaTime)
     {
         grid.TryUpdate();
-        upgradeToggle.Update();
-        zoomToggle.Update();
-        simplifyCardUIToggle.Update();
+        upgradeToggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
+        zoomToggle.SetToggle(GR.Animator.Config.CropCardImages.Get()).Update();
+        simplifyCardUIToggle.SetToggle(GR.Animator.Config.SimplifyCardUI.Get()).Update();
 
         if (upgradeToggle.hb.hovered || zoomToggle.hb.hovered || simplifyCardUIToggle.hb.hovered)
         {

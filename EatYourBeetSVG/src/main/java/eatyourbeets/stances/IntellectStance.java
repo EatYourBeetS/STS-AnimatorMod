@@ -43,9 +43,13 @@ public class IntellectStance extends EYBStance
         super.onEnterStance();
 
         GameActions.Bottom.GainIntellect(1, true);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +STAT_GAIN_AMOUNT);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_LOSE_AMOUNT);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , -STAT_LOSE_AMOUNT);
+
+        if (TryApplyStance(STANCE_ID))
+        {
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, +STAT_GAIN_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_LOSE_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, -STAT_LOSE_AMOUNT);
+        }
     }
 
     @Override
@@ -53,11 +57,12 @@ public class IntellectStance extends EYBStance
     {
         super.onExitStance();
 
-//        GameActions.Bottom.DealDamageToRandomEnemy(DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
-//        .SetDamageEffect(m -> GameEffects.List.Add(new LightningEffect(m.drawX, m.drawY)));
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , -STAT_GAIN_AMOUNT);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , +STAT_LOSE_AMOUNT);
+        if (TryApplyStance(null))
+        {
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, -STAT_GAIN_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, +STAT_LOSE_AMOUNT);
+        }
     }
 
     @Override

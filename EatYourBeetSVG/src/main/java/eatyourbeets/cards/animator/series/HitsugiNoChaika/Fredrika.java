@@ -8,10 +8,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Fredrika extends AnimatorCard
+public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
 {
     private enum Form
     {
@@ -108,18 +110,8 @@ public class Fredrika extends AnimatorCard
     }
 
     @Override
-    public void triggerOnEndOfTurnForPlayingCard()
+    public void OnEndOfTurn(boolean isPlayer)
     {
-        super.triggerOnEndOfTurnForPlayingCard();
-
-        this.ChangeForm(Form.Default);
-    }
-
-    @Override
-    public void onMoveToDiscard()
-    {
-        super.onMoveToDiscard();
-
         this.ChangeForm(Form.Default);
     }
 
@@ -268,6 +260,11 @@ public class Fredrika extends AnimatorCard
 
                 break;
             }
+        }
+
+        if (formID != Form.Default)
+        {
+            CombatStats.onEndOfTurn.SubscribeOnce(this);
         }
 
         this.setCostForTurn(cost);

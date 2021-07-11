@@ -1,8 +1,7 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
@@ -14,6 +13,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.effects.vfx.HemokinesisEffect;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll_Player;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class SummoningRitual extends AnimatorCard_UltraRare
@@ -67,14 +67,16 @@ public class SummoningRitual extends AnimatorCard_UltraRare
             float x = owner.drawX + (180f * Settings.scale);
             float y = owner.drawY + (owner.hb_h * 0.5f) + (180f * Settings.scale);
 
+            GameActions.Bottom.LoseHP(amount, AbstractGameAction.AttackEffect.NONE);
             GameActions.Bottom.Callback(new VFX(new HemokinesisEffect(owner.hb.cX, owner.hb.cY, x, y), false)
             .SetDuration(0.5f, true))
             .AddCallback(new TheUnnamed_Doll_Player(x, y), (c, __) ->
             {
                 this.doll = c;
                 this.doll.rollMove();
+                this.doll.showHealthBar();
+                this.doll.increaseMaxHp(amount, true);
             });
-            GameActions.Bottom.LoseHP(amount, AbstractGameAction.AttackEffect.NONE);
         }
 
         @Override
@@ -102,17 +104,7 @@ public class SummoningRitual extends AnimatorCard_UltraRare
             if (doll != null)
             {
                 doll.update();
-            }
-        }
-
-        @Override
-        public void renderIcons(SpriteBatch sb, float x, float y, Color c)
-        {
-            super.renderIcons(sb, x, y, c);
-
-            if (doll != null)
-            {
-                doll.render(sb);
+                GR.UI.AddPreRender(doll::render);
             }
         }
 
@@ -126,6 +118,19 @@ public class SummoningRitual extends AnimatorCard_UltraRare
                 owner.heal(amount);
                 amount = 0;
             }
+        }
+
+        @Override
+        public int onLoseHp(int damageAmount)
+        {
+            if (doll != null)
+            {
+                int playerDamage = damageAmount / 2;
+                doll.damage(new DamageInfo(null, damageAmount - playerDamage, DamageInfo.DamageType.HP_LOSS));
+                return super.onLoseHp(playerDamage);
+            }
+
+            return super.onLoseHp(damageAmount);
         }
     }
 }

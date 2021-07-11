@@ -52,6 +52,7 @@ public class TheUnnamed_Doll_Player extends EYBMonster
         .SetIntent(Intent.STRONG_DEBUFF)
         .SetOnUse((move, __) ->
         {
+            move.UseAnimation(CreatureAnimation.ATTACK_SLOW);
             GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(this), 30);
         });
     }
@@ -71,12 +72,6 @@ public class TheUnnamed_Doll_Player extends EYBMonster
     }
 
     @Override
-    public void renderHealth(SpriteBatch sb)
-    {
-        //super.renderHealth(sb);
-    }
-
-    @Override
     protected void SetNextMove(int roll, int historySize)
     {
         super.SetNextMove(roll, historySize);
@@ -90,7 +85,7 @@ public class TheUnnamed_Doll_Player extends EYBMonster
         {
             super(id);
 
-            maxHealth = 250;
+            maxHealth = 1;
             atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamedMinion.atlas";
             jsonUrl = "images/monsters/animator/TheUnnamed/TheUnnamedMinion.json";
             scale = 2;

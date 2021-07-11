@@ -163,8 +163,8 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
             case Dominica:
             {
                 GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-                GameActions.Bottom.ApplyVulnerable(p, m, 1);
                 GameActions.Bottom.ApplyWeak(p, m, 1);
+                GameActions.Bottom.ApplyVulnerable(p, m, 1);
                 break;
             }
 

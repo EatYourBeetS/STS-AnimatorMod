@@ -452,18 +452,20 @@ public class RenderHelpers
                     {
                         final float orbWidth = icon.getRegionWidth();
                         final float orbHeight = icon.getRegionHeight();
+                        final float scaleX = CARD_ENERGY_IMG_WIDTH / orbWidth;
+                        final float scaleY = CARD_ENERGY_IMG_WIDTH / orbHeight;
 
                         //sb.setColor(1f, 1f, 1f, baseColor.a);
                         sb.setColor(baseColor);
                         if (curWidth + CARD_ENERGY_IMG_WIDTH > lineWidth)
                         {
                             curHeight -= lineSpacing;
-                            sb.draw(icon, x - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, Settings.scale, Settings.scale, 0f);
+                            sb.draw(icon, x - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, scaleX, scaleY, 0f);
                             curWidth = CARD_ENERGY_IMG_WIDTH + spaceWidth;
                         }
                         else
                         {
-                            sb.draw(icon, x + curWidth - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, Settings.scale, Settings.scale, 0f);
+                            sb.draw(icon, x + curWidth - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, scaleX, scaleY, 0f);
                             curWidth += CARD_ENERGY_IMG_WIDTH + spaceWidth;
                         }
                     }
@@ -530,6 +532,10 @@ public class RenderHelpers
                 return GR.Tooltips.Agility.icon;
             case "I":
                 return GR.Tooltips.Intellect.icon;
+            case "B":
+                return GR.Tooltips.Blessing.icon;
+            case "C":
+                return GR.Tooltips.Corruption.icon;
 
             case "E":
                 return AbstractDungeon.player != null ? AbstractDungeon.player.getOrb() : GR.Tooltips.Energy.icon;

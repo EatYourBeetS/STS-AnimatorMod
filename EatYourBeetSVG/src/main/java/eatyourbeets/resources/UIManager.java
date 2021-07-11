@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class UIManager
 {
+    protected final ArrayList<ActionT1<SpriteBatch>> preRenderList = new ArrayList<>();
     protected final ArrayList<ActionT1<SpriteBatch>> postRenderList = new ArrayList<>();
     protected float timer = 0;
     protected boolean isDragging;
@@ -57,6 +58,16 @@ public class UIManager
         CardPopup.TryUpdate();
     }
 
+    public void PreRender(SpriteBatch sb)
+    {
+        for (ActionT1<SpriteBatch> toRender : preRenderList)
+        {
+            toRender.Invoke(sb);
+        }
+
+        preRenderList.clear();
+    }
+
     public void Render(SpriteBatch sb)
     {
         if (CurrentScreen != null)
@@ -69,9 +80,9 @@ public class UIManager
 
     public void PostRender(SpriteBatch sb)
     {
-        for (ActionT1<SpriteBatch> postRender : postRenderList)
+        for (ActionT1<SpriteBatch> toRender : postRenderList)
         {
-            postRender.Invoke(sb);
+            toRender.Invoke(sb);
         }
 
         postRenderList.clear();
@@ -97,8 +108,13 @@ public class UIManager
         return timer * value;
     }
 
-    public void AddPostRender(ActionT1<SpriteBatch> postRender)
+    public void AddPreRender(ActionT1<SpriteBatch> toRender)
     {
-        postRenderList.add(postRender);
+        preRenderList.add(toRender);
+    }
+
+    public void AddPostRender(ActionT1<SpriteBatch> toRender)
+    {
+        postRenderList.add(toRender);
     }
 }

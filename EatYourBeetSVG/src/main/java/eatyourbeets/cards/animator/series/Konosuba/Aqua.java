@@ -69,6 +69,7 @@ public class Aqua extends AnimatorCard
     {
         if (!transformed)
         {
+            GameActions.Bottom.GainBlessing(1, upgraded);
             GameActions.Bottom.Heal(magicNumber);
             GameActions.Bottom.Draw(1);
             GameActions.Bottom.Callback(() -> SetTransformed(true));

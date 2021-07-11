@@ -27,7 +27,7 @@
 	},
 	"EYB:BlessingPower":
 	{
-		"DESCRIPTIONS": ["Gain #b1 Temporary HP and lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, obtain #b{2} #yMiracle."],
+		"DESCRIPTIONS": ["Lose #b1 #y{0} to gain #b{3} #yTemporary #yHP at the start of each turn.", " If you reach #b{1} #y{0}, increase #yTemporary #yHP gained by #b{2}."],
 		"NAME": "Blessing"
 	},
 	"EYB:CorruptionPower":

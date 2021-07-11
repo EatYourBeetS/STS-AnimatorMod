@@ -27,9 +27,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.*;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
-import eatyourbeets.powers.common.IntellectPower;
+import eatyourbeets.powers.common.*;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
@@ -625,17 +623,25 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             power.priority = -2098;
         }
-        else if (StrengthPower.POWER_ID.equals(power.ID))
+        else if (BlessingPower.POWER_ID.equals(power.ID))
         {
             power.priority = -2097;
         }
-        else if (DexterityPower.POWER_ID.equals(power.ID))
+        else if (CorruptionPower.POWER_ID.equals(power.ID))
         {
             power.priority = -2096;
         }
-        else if (FocusPower.POWER_ID.equals(power.ID))
+        else if (StrengthPower.POWER_ID.equals(power.ID))
         {
             power.priority = -2095;
+        }
+        else if (DexterityPower.POWER_ID.equals(power.ID))
+        {
+            power.priority = -2094;
+        }
+        else if (FocusPower.POWER_ID.equals(power.ID))
+        {
+            power.priority = -2093;
         }
 
         for (OnApplyPowerSubscriber p : onApplyPower.GetSubscribers())

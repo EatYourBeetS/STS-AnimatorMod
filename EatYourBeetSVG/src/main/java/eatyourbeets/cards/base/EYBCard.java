@@ -261,6 +261,11 @@ public abstract class EYBCard extends EYBCardBase
         GameEffects.List.Add(new ExhaustCardEffect(this));
     }
 
+    public boolean CheckTeamwork(AffinityType type, int amount)
+    {
+        return GetTeamwork(type, true) >= amount;
+    }
+
     public int GetTeamwork(AffinityType type)
     {
         return GetTeamwork(null, true);

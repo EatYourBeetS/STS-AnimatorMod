@@ -138,6 +138,7 @@ public class CardTooltips
         RegisterID("A-Dark", Affinity_Dark);
         RegisterID("A-Star", Shapeshifter);
 
+        RegisterID("TempHP", TempHP);
         RegisterID("Random Orb", RandomOrb);
         RegisterID("Grief Seed", GriefSeed);
         RegisterID("T-Knife", ThrowingKnife);

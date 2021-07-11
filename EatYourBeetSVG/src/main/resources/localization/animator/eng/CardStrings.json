@@ -365,8 +365,7 @@
 	{
 		"animator:Add":
 		{
-			"DESCRIPTION": "Gain 3 [C]. Next turn: Draw ** !M! card(s) and gain 2 [E]. || 3 <DARK> : Exhaust a card anywhere, replace it ** with an {Orb Core}.",
-			"EXTENDED_DESCRIPTION": ["Add 3 {Crystallize} to your ** draw pile. Next turn: Draw ** !M! card(s) and gain [E] [E]. || On Synergy: Exhaust a ** card anywhere, replace ** it with an {Orb Core}."],
+			"DESCRIPTION": "Add !S! {Crystallize} to your ** draw pile. Next turn: Draw ** !M! card(s) and gain [E] [E]. || 3 <DARK>: Exhaust a ** card anywhere, replace ** it with an {Orb Core}.",
 			"NAME": "Add"
 		},
 		"animator:Ain":
@@ -814,10 +813,10 @@
 	{
 		"animator:Aqua":
 		{
-			"DESCRIPTION": "Heal !M! HP. <DRW>. || Becomes useless for the ** rest of this combat.",
+			"DESCRIPTION": "Gain [B]. Heal !M! HP. <DRW>. || Becomes useless for the ** rest of this combat.",
 			"EXTENDED_DESCRIPTION": ["", "When Exhausted or ** Discarded: Gain !S! [Temporary HP]."],
 			"NAME": "Aqua",
-			"UPGRADE_DESCRIPTION": "Heal !M! HP. <DRW>. || Becomes slightly less ** useless for the rest of ** this combat."
+			"UPGRADE_DESCRIPTION": "Boost [B]. Heal !M! HP. <DRW>. || Becomes slightly less ** useless for the rest of ** this combat."
 		},
 		"animator:Chris":
 		{
@@ -1531,7 +1530,7 @@
 	{
 		"animator:Crystallize":
 		{
-			"DESCRIPTION": "Lose !S! HP twice. ** Gain !M! [Metallicize].",
+			"DESCRIPTION": "Lose !S! HP twice. ** Gain !M! [Metallicize]. ** Boost [C].",
 			"NAME": "Crystallize"
 		},
 		"animator:GoblinChampion":
@@ -1642,7 +1641,7 @@
 		},
 		"animator:SummoningRitual":
 		{
-			"DESCRIPTION": "Lose half your HP ** until end of combat. || Summon an ** {Unnamed Doll}.",
+			"DESCRIPTION": "Lose half your HP ** until end of combat. || Summon {Unnamed Doll}, ** it receives half of your ** unblocked damage.",
 			"EXTENDED_DESCRIPTION": ["At the end of combat, recover #b{0} HP."],
 			"NAME": "Summoning Ritual"
 		},

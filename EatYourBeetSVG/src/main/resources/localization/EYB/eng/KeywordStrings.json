@@ -8,13 +8,13 @@
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 #yAgility, gain #yDexterity.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [A], gain #yDexterity.",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
 	"Agility Stance":
 	{
-		"DESCRIPTION": "#g+2 #gDexterity, #r-1 #rStrength, #r-1 #rFocus. NL On Enter: #yBoost #yAgility.",
+		"DESCRIPTION": "#g+2 #gDexterity, #r-1 #rStrength, #r-1 #rFocus. NL On Enter: #yBoost [A].",
 		"NAMES": ["[a] stance", "agility stance"],
 		"PROPER_NAME": "Agility Stance"
 	},
@@ -26,7 +26,7 @@
 	},
 	"Blessing":
 	{
-		"DESCRIPTION": "Gain #b1 #yTemporary #yHP and reduce this power by #b1 each turn. Upon reaching #b8, #b12 and #b16 #yBlessing, obtain a #yMiracle.",
+		"DESCRIPTION": "Reduce [B] by #b1 each turn to gain #b1 [TempHP]. Upon reaching #b4, #b8, #b12, and #b16 [B], increase the [TempHP] gained by #b1.",
 		"NAMES": ["blessing"],
 		"PROPER_NAME": "Blessing"
 	},
@@ -44,7 +44,7 @@
 	},
 	"Burning":
 	{
-		"DESCRIPTION": "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack. Reduced by 1 each turn.",
+		"DESCRIPTION": "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack. Reduced by #b1 each turn.",
 		"NAMES": ["burning"],
 		"PROPER_NAME": "Burning"
 	},
@@ -122,13 +122,13 @@
 	},
 	"Force":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 #yForce, gain #yStrength.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [F], gain #yStrength.",
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
 	"Force Stance":
 	{
-		"DESCRIPTION": "#g+2 #gStrength, #r-1 #rFocus, #r-1 #rDexterity. NL On Enter: #yBoost #yForce.",
+		"DESCRIPTION": "#g+2 #gStrength, #r-1 #rFocus, #r-1 #rDexterity. NL On Enter: #yBoost [F].",
 		"NAMES": ["[f] stance", "force stance"],
 		"PROPER_NAME": "Force Stance"
 	},
@@ -146,13 +146,13 @@
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 #yIntellect, gain #yFocus.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain #yFocus.",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},
 	"Intellect Stance":
 	{
-		"DESCRIPTION": "#g+2 #gFocus, #r-1 #rStrength, #r-1 #rDexterity. NL On Enter: #yBoost #yIntellect.",
+		"DESCRIPTION": "#g+2 #gFocus, #r-1 #rStrength, #r-1 #rDexterity. NL On Enter: #yBoost [I].",
 		"NAMES": ["[i] stance", "intellect stance"],
 		"PROPER_NAME": "Intellect Stance"
 	},

@@ -1,6 +1,7 @@
 package eatyourbeets.powers.monsters;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -48,13 +49,13 @@ public class TheUnnamedCultistPower extends AnimatorPower
     }
 
     @Override
-    public void onAfterCardPlayed(AbstractCard usedCard)
+    public void onAfterUseCard(AbstractCard card, UseCardAction action)
     {
-        super.onAfterCardPlayed(usedCard);
+        super.onAfterUseCard(card, action);
 
-        if (usedCard instanceof SummoningRitual && !owner.isPlayer)
+        if (card instanceof SummoningRitual && owner instanceof AbstractMonster)
         {
-            GameActions.Bottom.Talk(owner, TheUnnamed_Cultist.STRINGS.DIALOG[12]);
+            GameActions.Bottom.Talk(owner, TheUnnamed_Cultist.STRINGS.DIALOG[11]);
             GameActions.Bottom.ApplyPower(new StunMonsterPower((AbstractMonster) owner));
         }
     }

@@ -113,7 +113,7 @@ public abstract class AbstractAttribute
 
         final float sign = leftAlign ? -1 : +1;
         final float icon_x = sign * (cw * 0.45f);
-        float text_x = sign * (cw * 0.34f - ((text_width + suffix_width) * 0.5f));
+        float text_x = sign * cw * ((suffix == null) ? 0.35f : 0.375f);
 
         if (panel != null)
         {
@@ -121,12 +121,11 @@ public abstract class AbstractAttribute
         }
 
         RenderHelpers.DrawOnCardAuto(sb, card, icon, icon_x, y, 48, 48);
-        RenderHelpers.WriteOnCard(sb, card, largeFont, mainText.text, text_x + (sign * suffix_width), y, mainText.color, true);
-
+        RenderHelpers.WriteOnCard(sb, card, largeFont, mainText.text, text_x - (sign * text_width * 0.5f), y, mainText.color, true);
         if (suffix != null)
         {
             largeFont.getData().setScale(largeFont.getScaleX() * suffix_scale);
-            RenderHelpers.WriteOnCard(sb, card, largeFont, suffix, text_x - sign * (text_width * (1 - suffix_scale)), y, mainText.color, true);
+            RenderHelpers.WriteOnCard(sb, card, largeFont, suffix, text_x - (sign * text_width) - (sign * suffix_width * 0.6f), y, mainText.color, true);
         }
 
         if (iconTag != null)

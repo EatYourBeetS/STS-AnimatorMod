@@ -28,7 +28,7 @@ import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinitySystem;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.*;
-import eatyourbeets.powers.common.*;
+import eatyourbeets.powers.affinity.*;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;

@@ -1338,7 +1338,7 @@
 		},
 		"animator:Shuna":
 		{
-			"DESCRIPTION": "Gain 1 [B]. <DRW-M>. || When Drawn: ** Gain !S! [Temporary HP].",
+			"DESCRIPTION": "Gain 1 [B]. ** <DRW-M>. || When Drawn: ** Gain !S! [Temporary HP].",
 			"NAME": "Shuna"
 		},
 		"animator:Souei":

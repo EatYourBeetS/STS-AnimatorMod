@@ -44,7 +44,7 @@ public class NagisaMomoe extends AnimatorCard
     {
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.GainRandomStat(1, upgraded);
+            GameActions.Bottom.GainRandomAffinityPower(1, upgraded);
         }
     }
 }

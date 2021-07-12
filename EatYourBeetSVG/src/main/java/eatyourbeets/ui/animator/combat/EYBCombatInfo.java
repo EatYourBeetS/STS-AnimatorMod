@@ -23,7 +23,7 @@ public class EYBCombatInfo extends GUIElement
 
     public EYBCombatInfo()
     {
-        hb = new DraggableHitbox(ScreenW(0.027f), ScreenH(0.65f), Scale(96f),  Scale(40f), true);
+        hb = new DraggableHitbox(ScreenW(0.025f), ScreenH(0.65f), Scale(96f),  Scale(40f), true);
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.75f));
 
         drag_panel = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)

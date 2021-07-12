@@ -102,7 +102,7 @@ public class HigakiRinneAction extends EYBAction
                             break;
 
                         case POWER:
-                            GameActions.Bottom.GainRandomStat(2);
+                            GameActions.Bottom.GainRandomAffinityPower(2, false);
                             break;
 
                         case STATUS:

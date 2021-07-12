@@ -1,4 +1,4 @@
-package eatyourbeets.powers.common;
+package eatyourbeets.powers.affinity;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.base.AffinityType;
@@ -9,6 +9,7 @@ import eatyourbeets.utilities.JUtils;
 public class BlessingPower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(BlessingPower.class);
+    public static final AffinityType AFFINITY_TYPE = AffinityType.Light;
 
     protected static final int[] THRESHOLDS = new int[]{ 4, 8, 12, 16 };
     protected int tempHP = 1;
@@ -20,7 +21,7 @@ public class BlessingPower extends AbstractAffinityPower
 
     public BlessingPower(AbstractCreature owner, int amount)
     {
-        super(AffinityType.Light, POWER_ID, owner, amount);
+        super(AFFINITY_TYPE, POWER_ID, owner, amount);
     }
 
     @Override
@@ -66,5 +67,12 @@ public class BlessingPower extends AbstractAffinityPower
         }
 
         super.atStartOfTurn();
+    }
+
+    @Override
+    public void Initialize(AbstractCreature owner)
+    {
+        this.tempHP = 1;
+        super.Initialize(owner);
     }
 }

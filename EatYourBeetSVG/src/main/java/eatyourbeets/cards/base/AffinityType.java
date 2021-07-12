@@ -74,28 +74,7 @@ public enum AffinityType implements Comparable<AffinityType>
 
     public AbstractGameAction QueueSynergyEffect(GameActions actions)
     {
-        switch (this)
-        {
-            case Red:
-                return actions.GainForce(1).ShowEffect(false, true);
-
-            case Green:
-                return actions.GainAgility(1).ShowEffect(false, true);
-
-            case Blue:
-                return actions.GainIntellect(1).ShowEffect(false, true);
-
-            case Light:
-                return actions.GainBlessing(1).ShowEffect(false, true);
-
-            case Dark:
-                return actions.GainCorruption(1).ShowEffect(false, true);
-
-            case Star:
-                return null; //return actions.GainBlock(1).SetVFX(true, true);
-        }
-
-        throw new EnumConstantNotPresentException(getClass(), "type");
+        return actions.StackAffinityPower(this, 1, false);
     }
 
     public TextureRegion GetSynergyEffectIcon()

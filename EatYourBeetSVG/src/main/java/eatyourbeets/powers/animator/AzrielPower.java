@@ -25,7 +25,7 @@ public class AzrielPower extends AnimatorPower
         {
             this.flash();
 
-            GameActions.Bottom.GainRandomStat(1, true);
+            GameActions.Bottom.GainRandomAffinityPower(1, true);
         }
     }
 }

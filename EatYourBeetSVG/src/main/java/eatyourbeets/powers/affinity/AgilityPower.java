@@ -1,4 +1,4 @@
-package eatyourbeets.powers.common;
+package eatyourbeets.powers.affinity;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.base.AffinityType;
@@ -8,6 +8,7 @@ import eatyourbeets.utilities.GameActions;
 public class AgilityPower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(AgilityPower.class);
+    public static final AffinityType AFFINITY_TYPE = AffinityType.Green;
 
     public static void PreserveOnce()
     {
@@ -16,7 +17,7 @@ public class AgilityPower extends AbstractAffinityPower
 
     public AgilityPower(AbstractCreature owner, int amount)
     {
-        super(AffinityType.Green, POWER_ID, owner, amount);
+        super(AFFINITY_TYPE, POWER_ID, owner, amount);
     }
 
     @Override

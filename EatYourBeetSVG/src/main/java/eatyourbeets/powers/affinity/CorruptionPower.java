@@ -1,4 +1,4 @@
-package eatyourbeets.powers.common;
+package eatyourbeets.powers.affinity;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.animator.status.Crystallize;
@@ -11,6 +11,7 @@ import eatyourbeets.utilities.JUtils;
 public class CorruptionPower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(CorruptionPower.class);
+    public static final AffinityType AFFINITY_TYPE = AffinityType.Dark;
 
     protected static final int[] THRESHOLDS = new int[]{ 5, 7, 9, 12 };
 
@@ -21,7 +22,7 @@ public class CorruptionPower extends AbstractAffinityPower
 
     public CorruptionPower(AbstractCreature owner, int amount)
     {
-        super(AffinityType.Dark, POWER_ID, owner, amount);
+        super(AFFINITY_TYPE, POWER_ID, owner, amount);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package eatyourbeets.powers.common;
+package eatyourbeets.powers.affinity;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -24,6 +24,7 @@ public abstract class AbstractAffinityPower extends CommonPower
     protected int thresholdIndex;
 
     public AffinityType affinityType;
+    public boolean retained;
 
     public AbstractAffinityPower(AffinityType type, String powerID, AbstractCreature owner, int amount)
     {
@@ -39,6 +40,17 @@ public abstract class AbstractAffinityPower extends CommonPower
     protected abstract float GetScaling(EYBCard card);
     protected abstract void OnThresholdReached(int threshold);
 
+    public void Stack(int amount, boolean retain)
+    {
+        this.amount += amount;
+        if (this.enabled && retain)
+        {
+            this.enabled = false;
+        }
+
+        UpdateThreshold();
+    }
+
     public Integer GetCurrentThreshold()
     {
         int[] thresholds = GetThresholds();
@@ -53,6 +65,16 @@ public abstract class AbstractAffinityPower extends CommonPower
     public int[] GetThresholds()
     {
         return DEFAULT_THRESHOLDS;
+    }
+
+    public void Initialize(AbstractCreature owner)
+    {
+        this.owner = owner;
+        this.amount = 0;
+        this.enabled = true;
+        this.retained = false;
+        this.thresholdIndex = 0;
+        this.updateDescription();
     }
 
     protected void UpdateThreshold()

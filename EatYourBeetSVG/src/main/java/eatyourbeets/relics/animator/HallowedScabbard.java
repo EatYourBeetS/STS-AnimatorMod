@@ -51,7 +51,7 @@ public class HallowedScabbard extends AnimatorRelic
         {
             if (AddCounter(damageAmount) >= DAMAGE_THRESHOLD && IsEnabled())
             {
-                GameActions.Bottom.GainBlessing(BLESSING);
+                GameActions.Bottom.GainBlessing(BLESSING, false);
                 GameActions.Bottom.StackPower(new RegenPower(player, REGENERATION));
                 SetEnabled(false);
                 flash();

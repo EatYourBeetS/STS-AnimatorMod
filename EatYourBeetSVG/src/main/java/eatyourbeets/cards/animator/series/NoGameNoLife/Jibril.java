@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import eatyourbeets.actions.orbs.ShuffleOrbs;
 import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.common.IntellectPower;
+import eatyourbeets.powers.affinity.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Jibril extends AnimatorCard

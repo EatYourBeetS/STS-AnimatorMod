@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
 
 public class ReduceStrength extends EYBActionWithCallback<Boolean>

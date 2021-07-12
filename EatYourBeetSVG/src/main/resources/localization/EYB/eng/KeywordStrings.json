@@ -8,8 +8,8 @@
 	},
 	"Affinity Power":
 	{
-		"DESCRIPTION": "[A-Red] -> [F], [A-Green] -> [A], [A-Blue] -> [I], NL [A-Light] -> [B], [A-Dark] -> [C]",
-		"NAMES": ["affinity power", "affinity powers"],
+		"DESCRIPTION": "[A-Red] -> [F], [A-Green] -> [A], [A-Blue] -> [I], NL [A-Light] -> [B], NL [A-Dark] -> [C]",
+		"NAMES": ["affinity power", "affinity powers", "aff. power", "aff. powers"],
 		"PROPER_NAME": "Affinity Power"
 	},
 	"Agility":
@@ -296,7 +296,7 @@
 	},
 	"~Retain":
 	{
-		"DESCRIPTION": "Not discarded at the end of turn.",
+		"DESCRIPTION": "If a card, not discarded at the end of turn. If a power, not reduced at the end of turn or start of next turn.",
 		"NAMES": ["~retain"],
 		"PROPER_NAME": "Retain"
 	},

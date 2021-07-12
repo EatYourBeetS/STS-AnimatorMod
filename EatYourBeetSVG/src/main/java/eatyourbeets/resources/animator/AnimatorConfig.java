@@ -39,7 +39,7 @@ public class AnimatorConfig
         {
             config = new SpireConfig("TheAnimator", "TheAnimatorConfig");
 
-            SimplifyCardUI = new ConfigOption_Boolean(config, HIDE_BLOCK_DAMAGE_BACKGROUND, true);
+            SimplifyCardUI = new ConfigOption_Boolean(config, HIDE_BLOCK_DAMAGE_BACKGROUND, false);
             FadeCardsWithoutSynergy = new ConfigOption_Boolean(config, FADE_CARDS_WITHOUT_SYNERGY, true);
             DisplayBetaSeries = new ConfigOption_Boolean(config, DISPLAY_BETA_SERIES, false);
             CropCardImages = new ConfigOption_Boolean(config, CROP_CARD_PORTRAIT, true);

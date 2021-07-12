@@ -113,7 +113,7 @@ public abstract class AbstractAttribute
 
         final float sign = leftAlign ? -1 : +1;
         final float icon_x = sign * (cw * 0.45f);
-        float text_x = sign * cw * 0.375f;
+        float text_x = sign * cw * ((suffix == null) ? 0.35f : 0.375f);
 
         if (panel != null)
         {
@@ -122,7 +122,7 @@ public abstract class AbstractAttribute
 
         RenderHelpers.DrawOnCardAuto(sb, card, icon, icon_x, y, 48, 48);
         RenderHelpers.WriteOnCard(sb, card, largeFont, mainText.text, text_x - (sign * text_width * 0.5f), y, mainText.color, true);
-
+        
         if (suffix != null)
         {
             largeFont.getData().setScale(largeFont.getScaleX() * suffix_scale);

@@ -116,8 +116,9 @@ public abstract class AnimatorReward extends CustomReward
     private void AddUltraRare(ArrayList<AbstractCard> cards, Synergy synergy)
     {
         int currentLevel = GR.Animator.GetUnlockLevel();
-        if (currentLevel <= 2 || AbstractDungeon.floorNum < 8 || AbstractDungeon.floorNum > 36)
+        if (currentLevel <= 2 || AbstractDungeon.floorNum < 8 || AbstractDungeon.floorNum > 36 || cards.isEmpty())
         {
+            JUtils.LogInfo(this, "Unlucky");
             return;
         }
 
@@ -150,7 +151,7 @@ public abstract class AnimatorReward extends CustomReward
             EYBCardData data = loadout.GetUltraRare();
             if (data != null)
             {
-                cards.set(Math.min(1, cards.size()), data.CreateNewInstance());
+                cards.set(Math.min(1, cards.size() - 1), data.CreateNewInstance());
             }
         }
     }

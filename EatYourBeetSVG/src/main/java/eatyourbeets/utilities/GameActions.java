@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
@@ -43,6 +42,7 @@ import eatyourbeets.actions.player.ChangeStance;
 import eatyourbeets.actions.player.GainGold;
 import eatyourbeets.actions.player.SpendEnergy;
 import eatyourbeets.actions.powers.ApplyPower;
+import eatyourbeets.actions.powers.ReducePower;
 import eatyourbeets.actions.powers.ReduceStrength;
 import eatyourbeets.actions.special.DelayAllActions;
 import eatyourbeets.actions.special.SelectCreature;
@@ -737,14 +737,14 @@ public final class GameActions
         return Add(new PurgeAnywhere(card));
     }
 
-    public ReducePowerAction ReducePower(AbstractCreature source, String powerID, int amount)
+    public ReducePower ReducePower(AbstractCreature source, String powerID, int amount)
     {
-        return Add(new ReducePowerAction(source, source, powerID, amount));
+        return Add(new ReducePower(source, source, powerID, amount));
     }
 
-    public ReducePowerAction ReducePower(AbstractPower power, int amount)
+    public ReducePower ReducePower(AbstractPower power, int amount)
     {
-        return Add(new ReducePowerAction(power.owner, power.owner, power, amount));
+        return Add(new ReducePower(power.owner, power.owner, power, amount));
     }
 
     public ReduceStrength ReduceStrength(AbstractCreature target, int amount, boolean temporary)
@@ -764,6 +764,11 @@ public final class GameActions
         return (DiscardFromHand) Add(new DiscardFromHand(sourceName, 999, false)
         .SetOptions(true, true, true)
         .AddCallback(onReload));
+    }
+
+    public RemoveSpecificPowerAction RemovePower(AbstractCreature source, AbstractPower power)
+    {
+        return Add(new RemoveSpecificPowerAction(power.owner, source, power));
     }
 
     public RemoveSpecificPowerAction RemovePower(AbstractCreature source, AbstractCreature target, AbstractPower power)

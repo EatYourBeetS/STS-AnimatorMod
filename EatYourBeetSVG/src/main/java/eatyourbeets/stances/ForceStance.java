@@ -43,9 +43,13 @@ public class ForceStance extends EYBStance
         super.onEnterStance();
 
         GameActions.Bottom.GainForce(1, true);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , -STAT_LOSE_AMOUNT);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_LOSE_AMOUNT);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , +STAT_GAIN_AMOUNT);
+
+        if (TryApplyStance(STANCE_ID))
+        {
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, -STAT_LOSE_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_LOSE_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, +STAT_GAIN_AMOUNT);
+        }
     }
 
     @Override
@@ -53,10 +57,12 @@ public class ForceStance extends EYBStance
     {
         super.onExitStance();
 
-//        GameActions.Bottom.GainTemporaryHP(TEMP_HP_AMOUNT);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +STAT_LOSE_AMOUNT);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , -STAT_GAIN_AMOUNT);
+        if (TryApplyStance(null))
+        {
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, +STAT_LOSE_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, -STAT_GAIN_AMOUNT);
+        }
     }
 
     @Override

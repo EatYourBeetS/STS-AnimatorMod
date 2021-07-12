@@ -43,9 +43,13 @@ public class AgilityStance extends EYBStance
         super.onEnterStance();
 
         GameActions.Bottom.GainAgility(1, true);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , -STAT_LOSE_AMOUNT);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_GAIN_AMOUNT);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , -STAT_LOSE_AMOUNT);
+
+        if (TryApplyStance(STANCE_ID))
+        {
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, -STAT_LOSE_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_GAIN_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, -STAT_LOSE_AMOUNT);
+        }
     }
 
     @Override
@@ -53,10 +57,12 @@ public class AgilityStance extends EYBStance
     {
         super.onExitStance();
 
-        //GameActions.Bottom.StackPower(new DrawCardNextTurnPower(owner, DRAW_AMOUNT));
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus    , +STAT_LOSE_AMOUNT);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_GAIN_AMOUNT);
-        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength , +STAT_LOSE_AMOUNT);
+        if (TryApplyStance(null))
+        {
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, +STAT_LOSE_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_GAIN_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, +STAT_LOSE_AMOUNT);
+        }
     }
 
     @Override

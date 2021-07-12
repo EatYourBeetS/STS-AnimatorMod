@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardAffinitySystem;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.powers.common.*;
@@ -75,6 +76,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
     public static final GameEvent<OnBattleEndSubscriber> onBattleEnd = new GameEvent<>();
 
+    public static EYBCardAffinitySystem Affinities = new EYBCardAffinitySystem();
     public static boolean LoadingPlayerSave;
 
     private static final Map<String, Object> combatData = new HashMap<>();

@@ -1,25 +1,26 @@
 package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
-public class BlessingPower extends PlayerAttributePower
+public class BlessingPower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(BlessingPower.class);
 
     protected static final int[] THRESHOLDS = new int[]{ 4, 8, 12, 16 };
     protected int tempHP = 1;
 
-    public BlessingPower(AbstractCreature owner, int amount)
-    {
-        super(POWER_ID, owner, amount);
-    }
-
     public static void PreserveOnce()
     {
         preservedPowers.Subscribe(POWER_ID);
+    }
+
+    public BlessingPower(AbstractCreature owner, int amount)
+    {
+        super(AffinityType.Light, POWER_ID, owner, amount);
     }
 
     @Override
@@ -46,13 +47,13 @@ public class BlessingPower extends PlayerAttributePower
         this.description = powerStrings.DESCRIPTIONS[0];
 
         int[] thresholds = GetThresholds();
-        if (highestThreshold < thresholds.length)
+        if (thresholdIndex < thresholds.length)
         {
-            this.description = JUtils.Format(description + powerStrings.DESCRIPTIONS[1], name, thresholds[highestThreshold], 1, tempHP);
+            this.description = JUtils.Format(description + powerStrings.DESCRIPTIONS[1], name, thresholds[thresholdIndex], 1, tempHP);
         }
         else
         {
-            this.description = JUtils.Format(description, name, highestThreshold, 1, tempHP);
+            this.description = JUtils.Format(description, name, thresholdIndex, 1, tempHP);
         }
     }
 

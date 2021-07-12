@@ -163,12 +163,12 @@ public class CardTooltips
         Block.SetIcon(icons.Block.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
 
         CommonImages.AffinityIcons alignments = GR.Common.Images.Affinities;
-        Shapeshifter.SetIcon(alignments.Star.Texture(), 6);
-        Affinity_Red.SetIcon(alignments.Red.Texture(), 6);
-        Affinity_Green.SetIcon(alignments.Green.Texture(), 6);
-        Affinity_Blue.SetIcon(alignments.Blue.Texture(), 6);
-        Affinity_Light.SetIcon(alignments.Light.Texture(), 6);
-        Affinity_Dark.SetIcon(alignments.Dark.Texture(), 6);
+        Shapeshifter.SetIcon(alignments.Star.Texture(), 8);
+        Affinity_Red.SetIcon(alignments.Red.Texture(), 8);
+        Affinity_Green.SetIcon(alignments.Green.Texture(), 8);
+        Affinity_Blue.SetIcon(alignments.Blue.Texture(), 8);
+        Affinity_Light.SetIcon(alignments.Light.Texture(), 8);
+        Affinity_Dark.SetIcon(alignments.Dark.Texture(), 8);
 
         CommonImages.Tooltips tooltips = GR.Common.Images.Tooltips;
         ThrowingKnife.SetIcon(tooltips.ThrowingKnife.Texture(), 6);

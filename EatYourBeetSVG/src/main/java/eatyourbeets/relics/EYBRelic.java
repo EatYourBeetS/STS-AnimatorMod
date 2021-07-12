@@ -1,11 +1,13 @@
 package eatyourbeets.relics;
 
 import basemod.abstracts.CustomRelic;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameActions;
@@ -83,6 +85,12 @@ public abstract class EYBRelic extends CustomRelic
         setCounter(counter + amount);
 
         return counter;
+    }
+
+    @Override
+    public void renderTip(SpriteBatch sb)
+    {
+        EYBCardTooltip.QueueTooltips(this);
     }
 
     @Override

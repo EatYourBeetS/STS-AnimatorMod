@@ -11,7 +11,7 @@ public class HallowedScabbard extends AnimatorRelic
     public static final String ID = CreateFullID(HallowedScabbard.class);
     public static final int DAMAGE_THRESHOLD = 12;
     public static final int REGENERATION = 4;
-    public static final int FORCE = 2;
+    public static final int BLESSING = 2;
 
     public HallowedScabbard()
     {
@@ -21,7 +21,7 @@ public class HallowedScabbard extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return JUtils.Format(DESCRIPTIONS[0], DAMAGE_THRESHOLD, REGENERATION, FORCE);
+        return JUtils.Format(DESCRIPTIONS[0], DAMAGE_THRESHOLD, REGENERATION, BLESSING);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class HallowedScabbard extends AnimatorRelic
         {
             if (AddCounter(damageAmount) >= DAMAGE_THRESHOLD && IsEnabled())
             {
-                GameActions.Bottom.GainForce(FORCE);
+                GameActions.Bottom.GainBlessing(BLESSING);
                 GameActions.Bottom.StackPower(new RegenPower(player, REGENERATION));
                 SetEnabled(false);
                 flash();

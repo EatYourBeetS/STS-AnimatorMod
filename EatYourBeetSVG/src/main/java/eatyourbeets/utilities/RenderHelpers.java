@@ -22,9 +22,9 @@ import eatyourbeets.ui.controls.GUI_Image;
 
 public class RenderHelpers
 {
+    public static final float CARD_ENERGY_IMG_WIDTH = 26.0F * Settings.scale;
     private static final StringBuilder builder = new StringBuilder();
     private static final GlyphLayout layout = new GlyphLayout();
-    private static final float CARD_ENERGY_IMG_WIDTH = 26.0F * Settings.scale;
 
     public static void ResetFont(BitmapFont font)
     {

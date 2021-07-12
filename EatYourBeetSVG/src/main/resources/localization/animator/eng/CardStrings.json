@@ -365,7 +365,7 @@
 	{
 		"animator:Add":
 		{
-			"DESCRIPTION": "Add !S! {Crystallize} to your ** draw pile. Next turn: Draw ** !M! card(s) and gain [E] [E]. || 3 <DARK>: Exhaust a ** card anywhere, replace ** it with an {Orb Core}.",
+			"DESCRIPTION": "Add !S! {Crystallize} to your ** draw pile. Next turn: Draw ** !M! card(s) and gain [E] [E]. || 3 <D> : Exhaust a ** card anywhere, replace ** it with an {Orb Core}.",
 			"NAME": "Add"
 		},
 		"animator:Ain":
@@ -486,7 +486,7 @@
 		},
 		"animator:Rider":
 		{
-			"DESCRIPTION": "Apply !M! [Shackles]. || If you have a LV2 <GREEN> ** and a LV2 <BLUE> card in ** hand: Gain [A] [I].",
+			"DESCRIPTION": "Apply !M! [Shackles]. || 2 <G>: Gain/Boost [A]. || 2 <B>: Gain/Boost [I].",
 			"NAME": "Rider"
 		},
 		"animator:RinTohsaka":
@@ -581,7 +581,7 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !S! [I]. ** Gain !M! Orb Slot(s). || <LIM>. Synergy: ** Channel 1 [Earth].",
+			"DESCRIPTION": "Gain !S! [I]. ** Gain !M! Orb Slot(s). || 2 <R>, <B>: Channel 1 [Earth].",
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":
@@ -596,7 +596,7 @@
 		},
 		"animator:Kuribayashi":
 		{
-			"DESCRIPTION": "Apply !M! [Vulnerable]. || <AS>: Attack twice. || <FS>: Apply !S! [Shackles].",
+			"DESCRIPTION": "Apply !M! [Vulnerable]. || 3 <G>: Attack twice. || 3 <R>: Apply !S! [Shackles].",
 			"NAME": "Kuribayashi"
 		},
 		"animator:LeleiLaLalena":
@@ -773,7 +773,7 @@
 		},
 		"animator:Konayuki":
 		{
-			"DESCRIPTION": "Gain !M! [F]. || <LIM>. If you ** have 10 or more [F]: ** Deal 40 damage to ** a random enemy.",
+			"DESCRIPTION": "Gain !M! [F]. || <LIM>. 5 <R>: ** Deal 40 damage to ** a random enemy.",
 			"NAME": "Konayuki"
 		},
 		"animator:Nanami":
@@ -1087,7 +1087,7 @@
 		},
 		"animator:FielNirvalen":
 		{
-			"DESCRIPTION": "Choose !S! : Boost [A], ** Boost [I] or Boost [F]. || Once per turn, when ** you shuffle your ** draw pile: Scry 2.",
+			"DESCRIPTION": "Choose and Boost ** !M! {Affinity Power(s)}. || Once per turn, when ** you shuffle your ** draw pile: Scry 2.",
 			"EXTENDED_DESCRIPTION": ["Once per turn, when you shuffle your draw pile: #yScry #b{0}."],
 			"NAME": "Fiel Nirvalen"
 		},
@@ -1338,7 +1338,7 @@
 		},
 		"animator:Shuna":
 		{
-			"DESCRIPTION": "<DRW-M>. || When Drawn: ** Gain !S! [Temporary HP].",
+			"DESCRIPTION": "Gain 1 [B]. <DRW-M>. || When Drawn: ** Gain !S! [Temporary HP].",
 			"NAME": "Shuna"
 		},
 		"animator:Souei":
@@ -1418,7 +1418,7 @@
 		},
 		"animator:GiftBox":
 		{
-			"DESCRIPTION": "Boost [B] [C]. ** Discard all cards. || Add !M! random card(s) ** to your hand.",
+			"DESCRIPTION": "Discard all cards. || Add !M! random card(s) ** to your hand.",
 			"NAME": "Gift Box"
 		},
 		"animator:HinaKagiyama":

@@ -3,24 +3,25 @@ package eatyourbeets.powers.common;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.animator.ultrarare.SummoningRitual;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
-public class CorruptionPower extends PlayerAttributePower
+public class CorruptionPower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(CorruptionPower.class);
 
     protected static final int[] THRESHOLDS = new int[]{ 5, 7, 9, 12 };
 
-    public CorruptionPower(AbstractCreature owner, int amount)
-    {
-        super(POWER_ID, owner, amount);
-    }
-
     public static void PreserveOnce()
     {
         preservedPowers.Subscribe(POWER_ID);
+    }
+
+    public CorruptionPower(AbstractCreature owner, int amount)
+    {
+        super(AffinityType.Dark, POWER_ID, owner, amount);
     }
 
     @Override
@@ -54,10 +55,10 @@ public class CorruptionPower extends PlayerAttributePower
         this.description = powerStrings.DESCRIPTIONS[0];
 
         int[] thresholds = GetThresholds();
-        if (highestThreshold < thresholds.length)
+        if (thresholdIndex < thresholds.length)
         {
-            final String card = (highestThreshold == (thresholds.length - 1)) ? "#pSummoning #pRitual" : ("#y" + Crystallize.DATA.Strings.NAME);
-            this.description = JUtils.Format(description + powerStrings.DESCRIPTIONS[1], name, thresholds[highestThreshold], 1, card);
+            final String card = (thresholdIndex == (thresholds.length - 1)) ? "#pSummoning #pRitual" : ("#y" + Crystallize.DATA.Strings.NAME);
+            this.description = JUtils.Format(description + powerStrings.DESCRIPTIONS[1], name, thresholds[thresholdIndex], 1, card);
         }
         else
         {

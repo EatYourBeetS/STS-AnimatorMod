@@ -6,6 +6,12 @@
 		"NAMES": ["aether", "aether+"],
 		"PROPER_NAME": "Aether"
 	},
+	"Affinity Power":
+	{
+		"DESCRIPTION": "[A-Red] -> [F], [A-Green] -> [A], [A-Blue] -> [I], NL [A-Light] -> [B], [A-Dark] -> [C]",
+		"NAMES": ["affinity power", "affinity powers"],
+		"PROPER_NAME": "Affinity Power"
+	},
 	"Agility":
 	{
 		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [A], gain #yDexterity.",

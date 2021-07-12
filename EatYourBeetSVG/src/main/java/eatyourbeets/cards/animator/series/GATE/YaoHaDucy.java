@@ -22,7 +22,7 @@ public class YaoHaDucy extends AnimatorCard
         SetUpgrade(3, 0, 0, 0);
 
         SetSynergy(Synergies.Gate);
-        SetAffinity(1, 1, 0, 0, 0);
+        SetAffinity(0, 1, 0, 0, 0);
     }
 
     @Override

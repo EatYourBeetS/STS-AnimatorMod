@@ -26,7 +26,9 @@ public class Rider extends AnimatorCard
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Fate);
-        SetAffinity(0, 2, 1, 0, 1);
+        SetAffinity_Green(1);
+        SetAffinity_Blue(1);
+        SetAffinity_Dark(2);
     }
 
     @Override
@@ -36,12 +38,6 @@ public class Rider extends AnimatorCard
         {
             GameUtilities.GetIntent(m).AddStrength(-magicNumber);
         }
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetHaste(true);
     }
 
     @Override

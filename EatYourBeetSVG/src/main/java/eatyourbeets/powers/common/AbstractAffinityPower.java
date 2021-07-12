@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStatsClearedSubscriber;
@@ -16,21 +17,55 @@ import eatyourbeets.utilities.JUtils;
 
 import java.util.HashSet;
 
-public abstract class PlayerAttributePower extends CommonPower
+public abstract class AbstractAffinityPower extends CommonPower
 {
     protected static final int[] DEFAULT_THRESHOLDS = new int[] { 3, 6, 9, 12 };
     protected static final PreservedPowers preservedPowers = new PreservedPowers();
-    protected int highestThreshold;
+    protected int thresholdIndex;
+
+    public AffinityType affinityType;
+
+    public AbstractAffinityPower(AffinityType type, String powerID, AbstractCreature owner, int amount)
+    {
+        super(owner, powerID);
+
+        this.affinityType = type;
+        this.amount = amount;
+        this.thresholdIndex = 0;
+
+        updateDescription();
+    }
 
     protected abstract float GetScaling(EYBCard card);
     protected abstract void OnThresholdReached(int threshold);
 
-    public PlayerAttributePower(String powerID, AbstractCreature owner, int amount)
+    public Integer GetCurrentThreshold()
     {
-        super(owner, powerID);
+        int[] thresholds = GetThresholds();
+        if (thresholdIndex < thresholds.length)
+        {
+            return thresholds[thresholdIndex];
+        }
 
-        this.amount = amount;
-        this.highestThreshold = 0;
+        return null;
+    }
+
+    public int[] GetThresholds()
+    {
+        return DEFAULT_THRESHOLDS;
+    }
+
+    protected void UpdateThreshold()
+    {
+        int[] thresholds = GetThresholds();
+        for (int i = thresholdIndex; i < thresholds.length; i++)
+        {
+            if (amount >= thresholds[i])
+            {
+                OnThresholdReached(i);
+                thresholdIndex += 1;
+            }
+        }
 
         updateDescription();
     }
@@ -41,13 +76,13 @@ public abstract class PlayerAttributePower extends CommonPower
         this.description = powerStrings.DESCRIPTIONS[0];
 
         int[] thresholds = GetThresholds();
-        if (highestThreshold < thresholds.length)
+        if (thresholdIndex < thresholds.length)
         {
-            this.description = JUtils.Format(description + powerStrings.DESCRIPTIONS[1], name, thresholds[highestThreshold], 1);
+            this.description = JUtils.Format(description + powerStrings.DESCRIPTIONS[1], name, thresholds[thresholdIndex], 1);
         }
         else
         {
-            this.description = JUtils.Format(description, name, highestThreshold, 1);
+            this.description = JUtils.Format(description, name, thresholdIndex, 1);
         }
     }
 
@@ -111,43 +146,23 @@ public abstract class PlayerAttributePower extends CommonPower
     @Override
     public void renderAmount(SpriteBatch sb, float x, float y, Color c)
     {
-        int[] thresholds = GetThresholds();
-        if (highestThreshold < thresholds.length)
+        Integer threshold = GetCurrentThreshold();
+        if (threshold != null)
         {
-            final float offset_x = -24 * Settings.scale;
-            final float offset_y = -5 * Settings.scale;
-            final float offset_x2 = 0 * Settings.scale;
-            final float offset_y2 = -5 * Settings.scale;
-            final Color c1 = Color.GREEN.cpy();
+            final float offset1_x = -24 * Settings.scale;
+            final float offset2_x = 3 * Settings.scale;
+            final float offset1_y = -5 * Settings.scale;
+            final float offset2_y = -5 * Settings.scale;
+            final Color c1 = Settings.GREEN_TEXT_COLOR.cpy();
             final Color c2 = Settings.CREAM_COLOR.cpy();
             c1.a = c2.a = c.a;
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x + offset_x, y + offset_y, fontScale, c1);
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + thresholds[highestThreshold], x + offset_x2, y + offset_y2, 1, c2);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + offset2_x, y + offset2_y, 1, c2);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x + offset1_x, y + offset1_y, fontScale, c1);
         }
         else
         {
             super.renderAmount(sb, x, y, c);
         }
-    }
-
-    public int[] GetThresholds()
-    {
-        return DEFAULT_THRESHOLDS;
-    }
-
-    protected void UpdateThreshold()
-    {
-        int[] thresholds = GetThresholds();
-        for (int i = highestThreshold; i < thresholds.length; i++)
-        {
-            if (amount >= thresholds[i])
-            {
-                OnThresholdReached(i);
-                highestThreshold += 1;
-            }
-        }
-
-        updateDescription();
     }
 
     public static class PreservedPowers extends HashSet<String> implements OnStatsClearedSubscriber, OnStartOfTurnPostDrawSubscriber

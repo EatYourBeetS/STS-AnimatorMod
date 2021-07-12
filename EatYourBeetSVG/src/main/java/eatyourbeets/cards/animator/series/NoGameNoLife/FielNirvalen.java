@@ -27,8 +27,8 @@ public class FielNirvalen extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, 1, 2);
+        SetUpgrade(0, 0, 1, 0);
 
         SetSynergy(Synergies.NoGameNoLife);
         SetAffinity(0, 0, 1, 1, 1);
@@ -37,7 +37,7 @@ public class FielNirvalen extends AnimatorCard
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        return TempHPAttribute.Instance.SetCard(this, true);
+        return TempHPAttribute.Instance.SetCard(this, false).SetText(GetSecondaryValueString());
     }
 
     @Override

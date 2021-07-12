@@ -85,10 +85,15 @@
 		"DESCRIPTIONS": ["When attacked, deal #b", " damage back."],
 		"NAME": "Earthen Thorns"
 	},
+	"animator:ElementalExposurePower":
+	{
+	  "DESCRIPTIONS": ["The effects of Weak and Vulernable are amplified by #b{0}%. After #b{1} turn(s), decays by 50% of the total gained value each turn."],
+	  "NAME": "Elemental Exposure"
+	},
 	"animator:ElementalMasteryPower":
 	{
-	  "DESCRIPTIONS": ["Your orbs' passive and evoke effects are #b", "% more effective."],
-	  "NAME": "Chilled"
+	  "DESCRIPTIONS": ["For #b{0} turn(s): At the end of the turn, inflict Elemental Exposure to all enemies. Increase this amount by #b{1} whenever an Orb is Channeled."],
+	  "NAME": "Elemental Mastery"
 	},
 	"animator:EmiyaShirouPower":
 	{
@@ -350,6 +355,11 @@
 		"At the end of your turn, deal #b{0} #yDamage for each Strike played this turn. You have played #b{1} Strike(s)."
 	  ],
 	  "NAME": "Swordfish II"
+	},
+	"animator:TravelerAbyssPower":
+	{
+	  "DESCRIPTIONS": ["Whenever you play a card, gains stacks equal to the card's cost + 1. When stacks exceed #b{0}, upgrade and switch the form of #yAbyss #yRuler, then give all enemies 1 Strength."],
+	  "NAME": "Phase of the Abyssal Moon"
 	},
 	"animator:TheUnnamedCultistPower":
 	{

@@ -1,24 +1,22 @@
 package eatyourbeets.powers.animator;
 
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import eatyourbeets.actions.animator.ElementalMasteryAction;
+import eatyourbeets.interfaces.subscribers.OnChannelOrbSubscriber;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 
-import java.text.DecimalFormat;
-
-public class ElementalMasteryPower extends AnimatorPower
+public class ElementalMasteryPower extends AnimatorPower implements OnChannelOrbSubscriber
 {
     public static final String POWER_ID = CreateFullID(ElementalMasteryPower.class);
+    public static final float MULTIPLIER = 5;
+    public static final int MAX_TURNS = 2;
+    public int secondaryAmount;
 
-    public float percentage;
-    public static final float MULTIPLIER = 2;
-
-    public static float CalculatePercentage(int amount)
-    {
-        return (100 + amount * MULTIPLIER) / 100f;
-    }
 
     public ElementalMasteryPower(AbstractCreature owner, int amount)
     {
@@ -31,21 +29,22 @@ public class ElementalMasteryPower extends AnimatorPower
         }
         this.type = PowerType.BUFF;
         this.isTurnBased = true;
+        this.secondaryAmount = MAX_TURNS;
 
-        updatePercentage();
         updateDescription();
     }
+
 
     @Override
     public void updateDescription()
     {
-        if (amount > 0)
-        {
-            DecimalFormat df = new DecimalFormat("#.0");
-            String value = df.format(((1 - this.percentage) * 100));
+        this.description = FormatDescription(0, secondaryAmount, MULTIPLIER);
+    }
 
-            this.description = powerStrings.DESCRIPTIONS[0] + value + powerStrings.DESCRIPTIONS[1];
-        }
+    @Override
+    protected ColoredString GetSecondaryAmount(Color c)
+    {
+        return new ColoredString(secondaryAmount, Color.WHITE, c.a);
     }
 
     @Override
@@ -58,7 +57,6 @@ public class ElementalMasteryPower extends AnimatorPower
     public void stackPower(int stackAmount)
     {
         super.stackPower(stackAmount);
-        updatePercentage();
         updateDescription();
     }
 
@@ -66,19 +64,32 @@ public class ElementalMasteryPower extends AnimatorPower
     public void reducePower(int reduceAmount)
     {
         super.reducePower(reduceAmount);
-        updatePercentage();
         updateDescription();
     }
 
     @Override
-    public void atEndOfRound()
+    public void atEndOfTurn(boolean isPlayer)
     {
-        super.atEndOfRound();
-        GameActions.Bottom.ReducePower(this, Math.max(this.amount / 2,1));
+        super.atEndOfTurn(isPlayer);
+
+        GameActions.Bottom.Add(new ElementalMasteryAction(amount));
+        this.secondaryAmount -= 1;
+
+        if (this.secondaryAmount <= 0) {
+            GameActions.Bottom.RemovePower(owner, owner, this);
+        }
     }
 
-    private void updatePercentage()
+    @Override
+    public void OnChannelOrb(AbstractOrb orb)
     {
-        percentage = CalculatePercentage(this.amount);
+        this.amount += MULTIPLIER;
     }
+
+    @Override
+    public void onEvokeOrb(AbstractOrb orb)
+    {
+        this.amount += MULTIPLIER;
+    }
+
 }

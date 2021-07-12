@@ -44,7 +44,7 @@
 	},
 	"Chilled":
 	{
-		"DESCRIPTION": "Damage dealt is lowered. Higher stacks increase the intensity of this debuff. Removed at the end of the round.",
+		"DESCRIPTION": "Damage dealt is lowered. Higher stacks increase the intensity of this debuff. Reduced by 75% each turn.",
 		"NAMES": ["chilled"],
 		"PROPER_NAME": "Chilled"
 	},
@@ -90,9 +90,15 @@
 		"NAMES": ["earth", "earth+"],
 		"PROPER_NAME": "Earth"
 	},
+	"Elemental Exposure":
+	{
+	  "DESCRIPTION": "Amplifies the effects of Weak and Vulernable. Starts decaying 1 turn after the turn this debuff was last applied.",
+	  "NAMES": ["elemental exposure"],
+	  "PROPER_NAME": "Elemental Exposure"
+	},
 	"Elemental Mastery":
 	{
-	  "DESCRIPTION": "Whenever you Evoke alternating types of Orbs, deal damage to the enemy with the lowest health.",
+	  "DESCRIPTION": "At the end of the turn, Inflict Elemental Exposure to all enemies. Stacks increase whenever an Orb is Channeled.",
 	  "NAMES": ["elemental mastery"],
 	  "PROPER_NAME": "Elemental Mastery"
 	},

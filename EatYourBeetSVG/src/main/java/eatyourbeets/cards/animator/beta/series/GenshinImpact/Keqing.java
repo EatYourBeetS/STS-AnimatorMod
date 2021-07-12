@@ -29,7 +29,7 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
 
         Initialize(2, 0, 3);
         SetUpgrade(1, 0, 0);
-        SetScaling(0, 1, 0);
+        SetScaling(1, 1, 0);
 
         SetExhaust(true);
         SetSynergy(Synergies.GenshinImpact);
@@ -52,7 +52,7 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
         CombatStats.onStartOfTurnPostDraw.Subscribe(this);
         if (cost > 0)
         {
-            GameActions.Bottom.Motivate(this, 1);
+            this.modifyCostForCombat(-1);
         }
     }
 

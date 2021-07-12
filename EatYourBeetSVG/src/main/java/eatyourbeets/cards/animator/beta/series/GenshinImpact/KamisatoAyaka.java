@@ -12,6 +12,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.NegateBlockPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -35,6 +36,17 @@ public class KamisatoAyaka extends AnimatorCard {
         SetSynergy(Synergies.GenshinImpact);
         SetExhaust(true);
         SetMartialArtist();
+    }
+
+    @Override
+    public void initializeDescription()
+    {
+        super.initializeDescription();
+
+        if (cardText != null)
+        {
+            tooltips.add(GR.Tooltips.Chilled);
+        }
     }
 
     @Override

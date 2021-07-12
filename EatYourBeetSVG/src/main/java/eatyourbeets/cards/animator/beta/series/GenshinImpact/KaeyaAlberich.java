@@ -21,7 +21,7 @@ public class KaeyaAlberich extends AnimatorCard {
         super(DATA);
 
         Initialize(0, 0, 2);
-        SetUpgrade(0, 0, 1);
+        SetUpgrade(0, 2, 0);
         SetScaling(0, 0, 0);
 
         SetSynergy(Synergies.GenshinImpact);
@@ -30,6 +30,8 @@ public class KaeyaAlberich extends AnimatorCard {
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+
+        GameActions.Bottom.GainBlock(block);
 
         if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
         {

@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Aether;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -39,26 +40,34 @@ public class Venti extends AnimatorCard
         // Not using Cycle function here because we need a callback on the drawn cards
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false).SetOptions(true, true, true).AddCallback(cards ->
         {
-            int discardedCards = cards.size();
-            if (discardedCards> 0) {
-                GameActions.Bottom.Draw(discardedCards).AddCallback(cardsDrawn ->
+            if (CombatStats.TryActivateSemiLimited(cardID))
+            {
+                int discardedCards = cards.size();
+                if (discardedCards > 0)
                 {
-                    int hindranceCount = 0;
-                    for (AbstractCard card : cardsDrawn) {
-                        if (card.type == CardType.SKILL) {
-                            GameActions.Bottom.VFX(new WhirlwindEffect(), 0f);
-                            orb.onStartOfTurn();
-                            orb.onEndOfTurn();
+                    GameActions.Bottom.Draw(discardedCards).AddCallback(cardsDrawn ->
+                    {
+                        int hindranceCount = 0;
+                        for (AbstractCard card : cardsDrawn)
+                        {
+                            if (card.type == CardType.SKILL)
+                            {
+                                GameActions.Bottom.VFX(new WhirlwindEffect(), 0f);
+                                orb.onStartOfTurn();
+                                orb.onEndOfTurn();
+                            }
+                            else if (GameUtilities.IsCurseOrStatus(card))
+                            {
+                                hindranceCount += 1;
+                            }
                         }
-                        else if (GameUtilities.IsCurseOrStatus(card)) {
-                            hindranceCount += 1;
-                        }
-                    }
 
-                    if (hindranceCount >= HINDRANCE_THRESHOLD) {
-                        GameActions.Bottom.Draw(secondaryValue);
-                    }
-                });
+                        if (hindranceCount >= HINDRANCE_THRESHOLD)
+                        {
+                            GameActions.Bottom.Draw(secondaryValue);
+                        }
+                    });
+                }
             }
         });
 

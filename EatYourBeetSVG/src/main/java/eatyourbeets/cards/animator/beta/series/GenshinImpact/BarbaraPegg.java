@@ -13,6 +13,7 @@ import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class BarbaraPegg extends AnimatorCard
 {
@@ -24,7 +25,7 @@ public class BarbaraPegg extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 3, 2);
-        SetUpgrade(0, 0, 1);
+        SetUpgrade(0, 0, 2, 0);
 
         SetExhaust(true);
         SetSpellcaster();
@@ -42,7 +43,7 @@ public class BarbaraPegg extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        GameUtilities.IncreaseMagicNumber(this, GameUtilities.GetUniqueOrbsCount(), true);
+        GameUtilities.IncreaseMagicNumber(this, secondaryValue * JUtils.Count(GameUtilities.GetIntents(), i -> i.isAttacking), true);
     }
 
 
@@ -51,7 +52,7 @@ public class BarbaraPegg extends AnimatorCard
     {
         GameActions.Bottom.VFX(new RainbowCardEffect());
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-        if (GameUtilities.GetUniqueOrbsCount() >= UNIQUE_THRESHOLD && CombatStats.TryActivateLimited(cardID)) {
+        if (CombatStats.TryActivateLimited(cardID) && JUtils.Find(GameUtilities.GetIntents(), i -> !i.isAttacking) == null) {
             GameActions.Bottom.StackPower(new RegenPower(player, secondaryValue));
         }
 

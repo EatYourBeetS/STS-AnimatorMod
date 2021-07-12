@@ -412,7 +412,7 @@
 		},
 		"animator:Sear":
 		{
-		  "DESCRIPTION": "At the end of your turn, ALL combatants take !M! damage and gain !S! [Burning].",
+		  "DESCRIPTION": "At the end of your turn, ALL characters take !M! damage and gain !S! [Burning].",
 		  "NAME": "Sear"
 		},
 		"animator:SheerCold":
@@ -555,7 +555,7 @@
 		},
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Gain 1 [Temporary HP] for each unique Orb you have. || <LIM>. If have you at least 4 unique Orbs, gain !S! [Regeneration].",
+			"DESCRIPTION": "Gain !S! more [Temporary HP] for each enemy that intends to attack. || <LIM>. If ALL enemies intend to attack: ** Gain !S! [Regeneration].",
 			"NAME": "Barbara Pegg"
 		},
 		"animator:Curse_Delusion":
@@ -576,17 +576,17 @@
 		},
 		"animator:HuTao":
 		{
-		  "DESCRIPTION": "Replace up to !M! random {Hindrances} from anywhere with a {Sear} added to your Draw Pile. || When Exhausted, add !S! {Sear} to your hand.",
+		  "DESCRIPTION": "Exhaust !M! random {Hindrances} from anywhere. Add {Sear} to your Draw Pile for each. || When Exhausted, add !S! {Sear} to your hand.",
 		  "NAME": "Hu Tao"
 		},
 		"animator:JeanGunnhildr":
 		{
-			"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile. || Discard up to !M! card(s). Remove 1 of your rightmost [Weak], [Vulnerable], or [Frail] for each discarded card.",
+			"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile. || Discard up to !M! card(s). Remove 1 of your left-most [Weak], [Vulnerable], or [Frail] for each discarded card.",
 			"NAME": "Jean Gunnhildr"
 		},
 		"animator:JumpyDumpty":
 		{
-		  "DESCRIPTION": "Apply !M! [Burning]. || If the enemy dies or ** loses its [Block]: Gain !S! {Self Damage} and add a copy of this card into your Draw Pile.",
+		  "DESCRIPTION": "Apply !M! [Burning]. || If the enemy dies or loses its [Block]: Gain !S! {Self Damage} and add a copy of this card to your Draw Pile.",
 		  "NAME": "Jumpy Dumpty"
 		},
 		"animator:KaeyaAlberich":
@@ -606,9 +606,9 @@
 		},
 		"animator:Klee":
 		{
-		  "DESCRIPTION": "Apply !M! [Burning] to ALL targets. || Add !S! {Jumpy Dumpty} to your Draw Pile. ** Add 1 more if at least half of your orbs are [Fire].",
+		  "DESCRIPTION": "Apply !M! [Burning] to ALL enemies. || Add !S! {Jumpy Dumpty} to your Draw Pile. ** Add 1 more if at least half of your orbs are [Fire].",
 		  "NAME": "Klee",
-		  "UPGRADE_DESCRIPTION": "Apply !M! [Burning] to ALL targets. || Add !S! upgraded {Jumpy Dumpty} to your Draw Pile. ** Add 1 more if at least half of your orbs are [Fire]."
+		  "UPGRADE_DESCRIPTION": "Apply !M! [Burning] to ALL enemies. || Add !S! upgraded {Jumpy Dumpty} to your Draw Pile. ** Add 1 more if at least half of your orbs are [Fire]."
 		},
 		"animator:LisaMinci":
 		{
@@ -617,7 +617,7 @@
 		},
 		"animator:Noelle":
 		{
-			"DESCRIPTION": "{Starter}: If you have [Earth], trigger an [Earth]. Otherwise, Channel 1 [Earth]. || Synergy, Teamwork X: Gain X more [Block], up to a maximum of !M!.",
+			"DESCRIPTION": "{Starter}: If you have [Earth], trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || Synergy. Gain extra [Block] equal to Teamwork (up to !M!).",
 			"NAME": "Noelle"
 		},
 		"animator:Oz":
@@ -633,17 +633,18 @@
 		},
 		"animator:Tartaglia":
 		{
-			"DESCRIPTION": "Deal 1 more damage per [Burning], then remove [Burning]. || If in <FS>: exit your Stance. Otherwise, enter <FS> and transform this card into {Delusion}.",
+			"DESCRIPTION": "Deal additional damage equal to the enemy's [Burning], then remove [Burning]. || If in <FS>: exit your Stance. Otherwise, enter <FS> and Transform this card into {Delusion}.",
 			"NAME": "Tartaglia"
 		},
 		"animator:Traveler":
 		{
-		  "DESCRIPTION": "{Channel} !M! [Aether]. Next turn, trigger the last !S! Orbs Evoked this combat. || When Exhausted, lose ALL of your Orb Slots.",
-		  "NAME": "Prince of Abyss Order"
+		  "DESCRIPTION": "{Unique}. || At the start of combat, ** transform this card into 1 of 2 {Forms} and becomed accursed.",
+		  "EXTENDED_DESCRIPTION": ["{Unique}. || {Channel} !S! [Aether]. ** Gain !M! [Elemental Mastery] for every non-[Aether] Orb Evoked.", "{Unique}. || Apply !S! of ** a random {Common Debuff} ** to ALL enemies. ** Next turn, trigger the last !M! Orbs Evoked this combat."],
+		  "NAME": "Abyss Ruler"
 		},
 		"animator:Venti":
 		{
-			"DESCRIPTION": "Cycle !M! cards. <SLM>. {Channel} 1 [Aether] and trigger it for every Skill drawn. ** If you drew at least 2 {Hindrances}, ** Draw a card.",
+			"DESCRIPTION": "{Channel} 1 [Aether]. Cycle !M! cards. || <SLM>. Trigger your last [Aether] for every Skill drawn from this card. ** If you drew at least 2 {Hindrances}, Draw a card.",
 			"NAME": "Venti"
 		},
 		"animator:Zhongli":

@@ -20,7 +20,15 @@ public class StarParticleEffect extends EYBEffect
     private Texture img;
 
     public StarParticleEffect(float x, float y, Color mainColor) {
-        this.img = MathUtils.randomBoolean() ? ImageMaster.loadImage("images/effects/Sparkle.png") : ImageMaster.loadImage("images/effects/Sparkle2.png");
+        switch (MathUtils.random(0, 2))
+        {
+            case 0:
+                this.img = ImageMaster.loadImage("images/effects/Sparkle.png");
+            case 1:
+                this.img = ImageMaster.loadImage("images/effects/Sparkle2.png");
+            default:
+                this.img = ImageMaster.loadImage("images/effects/Sparkle3.png");
+        }
 
 
         float offsetX = MathUtils.random(-12.0F, 12.0F) * Settings.scale;

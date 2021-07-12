@@ -3,14 +3,12 @@ package eatyourbeets.cards.animator.beta.ultrarare;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
-import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
+import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -19,12 +17,18 @@ import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.ElementalMasteryPower;
-import eatyourbeets.powers.animator.TravelerAbyssPower;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(Traveler.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    static
+    {
+        DATA.AddPreview(new Traveler(Form.Aether, false), true);
+        DATA.AddPreview(new Traveler(Form.Lumine, false), true);
+    }
 
     public Traveler.Form currentForm;
 
@@ -52,6 +56,18 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
         this.upgraded = upgraded;
         ChangeForm(form);
     }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        if (timesUpgraded % 3 == 0)
+        {
+            upgradeSecondaryValue(1);
+        }
+
+        upgradedSecondaryValue = true;
+    }
+
 
     public void ChangeForm(Traveler.Form form)
     {
@@ -87,7 +103,9 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.RemovePower(player, player, TravelerAbyssPower.POWER_ID);
+        this.ChangeForm(currentForm == Traveler.Form.Aether ? Traveler.Form.Lumine : Traveler.Form.Aether);
+        GameActions.Bottom.MoveCard(this, player.drawPile)
+                .ShowEffect(true, true);
     }
 
     @Override
@@ -96,20 +114,27 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
         switch (currentForm)
         {
             case Aether:
-                int idxStart = p.filledOrbCount() - p.maxOrbs;
-                for (int i = Math.max(idxStart,0); i < secondaryValue + idxStart; i++)
-                {
-                    AbstractOrb orb = p.orbs.get(i);
-                    if (!(orb instanceof EmptyOrbSlot) && !Aether.ORB_ID.equals(orb.ID)) {
-                        GameActions.Bottom.StackPower(new ElementalMasteryPower(p, magicNumber));
+
+                GameActions.Bottom.EvokeOrb(secondaryValue, EvokeOrb.Mode.Sequential).AddCallback(orbs -> {
+
+                    if (orbs.size() > 0) {
+                        GameActions.Bottom.StackPower(new ElementalMasteryPower(p, magicNumber * orbs.size()));
                     }
-                }
-                GameActions.Bottom.VFX(new WhirlwindEffect(), 0f);
-                GameActions.Bottom.ChannelOrbs(Aether::new, secondaryValue);
+                });
+
+                GameActions.Bottom.ChannelOrb(new Aether());
+                GameActions.Bottom.ChannelRandomOrbs(1);
                 break;
             case Lumine:
-                for (AbstractCreature target : GameUtilities.GetEnemies(true)) {
-                    GameActions.Bottom.StackPower(TargetHelper.Normal(target), JUtils.GetRandomElement(GameUtilities.GetCommonDebuffs()), secondaryValue);
+                for (AbstractMonster target : GameUtilities.GetEnemies(true)) {
+                    if (GameUtilities.IsAttacking(target.intent))
+                    {
+                        GameActions.Bottom.ApplyWeak(p, target, secondaryValue);
+                    }
+                    else
+                    {
+                        GameActions.Bottom.ApplyVulnerable(p, target, secondaryValue);
+                    }
                 }
                 if (CombatStats.OrbsEvokedThisCombat().size() > 0)
                 {
@@ -165,10 +190,10 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
                             Traveler card = (Traveler) cards.get(0);
 
                             ChangeForm(card.currentForm);
+                            GameUtilities.ModifyMagicNumber(card, this.magicNumber, false);
+                            GameUtilities.ModifySecondaryValue(card, this.secondaryValue, false);
                         }
                     });
         }
-
-        GameActions.Bottom.StackPower(new TravelerAbyssPower(player));
     }
 }

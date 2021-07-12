@@ -74,7 +74,7 @@ public class StarEffect extends EYBEffect
             scale -= deltaTime * 2f;
         }
 
-        if (color.r == 1.0f) {
+        if (color.r == 1.0f && color.b <= 0.5f) {
             if (color.g <= 0.5f) color.g = Interpolation.pow2Out.apply(0.5f, 1f, duration);
             else color.r = Interpolation.pow2Out.apply(1f, 0.5f, duration);
         }

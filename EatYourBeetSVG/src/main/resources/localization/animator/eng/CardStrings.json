@@ -638,8 +638,8 @@
 		},
 		"animator:Traveler":
 		{
-		  "DESCRIPTION": "{Unique}. || At the start of combat, ** transform this card into 1 of 2 {Forms} and becomed accursed.",
-		  "EXTENDED_DESCRIPTION": ["{Unique}. || {Channel} !S! [Aether]. ** Gain !M! [Elemental Mastery] for every non-[Aether] Orb Evoked.", "{Unique}. || Apply !S! of ** a random {Common Debuff} ** to ALL enemies. ** Next turn, trigger the last !M! Orbs Evoked this combat."],
+		  "DESCRIPTION": "{Unique}. || At the start of combat, ** Transform this card into 1 of 2 {Forms}. || When Exhausted, change this card's form and return it to your Draw Pile.",
+		  "EXTENDED_DESCRIPTION": ["{Unique}. || Channel [Aether][Random Orb]. ** Evoke your first !S! Orb(s) and gain !M! [Elemental Mastery] for each one.", "{Unique}. || For each enemy: Apply !S! [Weak] if it intends to attack. Otherwise, apply !S! [Vulnerable]. ** Next turn, trigger the last !M! Orbs Evoked this combat."],
 		  "NAME": "Abyss Ruler"
 		},
 		"animator:Venti":

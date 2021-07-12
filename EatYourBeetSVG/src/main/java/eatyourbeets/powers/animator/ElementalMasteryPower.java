@@ -4,16 +4,19 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.animator.ElementalMasteryAction;
+import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.interfaces.subscribers.OnChannelOrbSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 
-public class ElementalMasteryPower extends AnimatorPower implements OnChannelOrbSubscriber
+public class ElementalMasteryPower extends AnimatorPower implements OnChannelOrbSubscriber, OnApplyPowerSubscriber
 {
     public static final String POWER_ID = CreateFullID(ElementalMasteryPower.class);
     public static final float MULTIPLIER = 5;
+    public static final float MULTIPLIER_APPLY = 2;
     public static final int MAX_TURNS = 2;
     public int secondaryAmount;
 
@@ -34,11 +37,10 @@ public class ElementalMasteryPower extends AnimatorPower implements OnChannelOrb
         updateDescription();
     }
 
-
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, secondaryAmount, MULTIPLIER);
+        this.description = FormatDescription(0, secondaryAmount, MULTIPLIER, MULTIPLIER_APPLY);
     }
 
     @Override
@@ -79,6 +81,15 @@ public class ElementalMasteryPower extends AnimatorPower implements OnChannelOrb
             GameActions.Bottom.RemovePower(owner, owner, this);
         }
     }
+
+    @Override
+    public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    {
+        if ((power.ID.equals(BurningPower.POWER_ID)  || power.ID.equals(ChilledPower.POWER_ID)) && source == owner && target != owner) {
+            this.amount += MULTIPLIER_APPLY;
+        }
+    }
+
 
     @Override
     public void OnChannelOrb(AbstractOrb orb)

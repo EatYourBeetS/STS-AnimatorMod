@@ -92,7 +92,7 @@
 	},
 	"animator:ElementalMasteryPower":
 	{
-	  "DESCRIPTIONS": ["For #b{0} turn(s): At the end of the turn, inflict Elemental Exposure to all enemies. Increase this amount by #b{1} whenever an Orb is Channeled."],
+	  "DESCRIPTIONS": ["For #b{0} turn(s): At the end of the turn, inflict Elemental Exposure to all enemies. Increase this amount by #b{1} whenever an Orb is Channeled and by #b{2} whenever you apply Burning or Chilled."],
 	  "NAME": "Elemental Mastery"
 	},
 	"animator:EmiyaShirouPower":
@@ -358,7 +358,7 @@
 	},
 	"animator:TravelerAbyssPower":
 	{
-	  "DESCRIPTIONS": ["Whenever you play a card, gains stacks equal to the card's cost + 1. When stacks exceed #b{0}, upgrade and switch the form of #yAbyss #yRuler, then give all enemies 1 Strength."],
+	  "DESCRIPTIONS": ["Whenever you play a card, gains stacks equal to the card's cost + 1. For every #b{0} stacks, play 1 out of 3 random effects."],
 	  "NAME": "Phase of the Abyssal Moon"
 	},
 	"animator:TheUnnamedCultistPower":

@@ -28,9 +28,9 @@ public class HuTao extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 3, 2);
+        Initialize(4, 0, 3, 2);
         SetUpgrade(1, 0, 1, 0);
-        SetScaling(0, 1, 2);
+        SetScaling(0, 0, 4);
 
         SetEthereal(true);
         SetExhaust(true);

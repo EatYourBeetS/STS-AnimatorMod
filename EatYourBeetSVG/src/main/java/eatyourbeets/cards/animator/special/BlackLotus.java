@@ -19,7 +19,7 @@ public class BlackLotus extends AnimatorCard
         Initialize(7, 5, 1);
         SetUpgrade(0, 0, 1);
 
-        SetSynergy(Synergies.AccelWorld);
+        SetSeries(CardSeries.AccelWorld);
         SetAffinity(1, 1, 0, 0, 0);
     }
 

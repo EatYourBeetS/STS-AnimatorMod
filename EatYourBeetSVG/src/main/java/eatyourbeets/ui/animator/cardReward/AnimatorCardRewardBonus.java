@@ -140,7 +140,7 @@ public class AnimatorCardRewardBonus extends GUIElement
         }
         else if (card instanceof AnimatorCard)
         {
-            for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Series)
+            for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
             {
                 if (series.promoted && series.bonus < 6)
                 {
@@ -185,7 +185,7 @@ public class AnimatorCardRewardBonus extends GUIElement
 
     private void ReceiveGold(CardRewardBundle bundle)
     {
-        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Series)
+        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
         {
             if (series.Cards.containsKey(bundle.card.cardID))
             {
@@ -202,7 +202,7 @@ public class AnimatorCardRewardBonus extends GUIElement
 
     private void ReceiveMaxHP(CardRewardBundle bundle)
     {
-        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Series)
+        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
         {
             if (series.Cards.containsKey(bundle.card.cardID))
             {

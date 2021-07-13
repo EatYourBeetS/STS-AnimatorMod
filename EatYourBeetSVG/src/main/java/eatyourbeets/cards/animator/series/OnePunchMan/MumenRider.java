@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -23,7 +23,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
         Initialize(3, 0, 20);
 
         SetExhaust(true);
-        SetSynergy(Synergies.OnePunchMan);
+        SetSeries(CardSeries.OnePunchMan);
         SetAffinity(0, 0, 0, 2, 0);
     }
 

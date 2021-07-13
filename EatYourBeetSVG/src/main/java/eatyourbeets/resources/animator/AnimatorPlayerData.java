@@ -36,7 +36,7 @@ public class AnimatorPlayerData
 
         if (SelectedLoadout == null || SelectedLoadout.ID < 0)
         {
-            SelectedLoadout = GetBaseLoadout(Synergies.Konosuba.ID);
+            SelectedLoadout = GetBaseLoadout(CardSeries.Konosuba.ID);
         }
 
         if (SpecialTrophies == null || SpecialTrophies.ID != 0)
@@ -71,13 +71,13 @@ public class AnimatorPlayerData
         return null;
     }
 
-    public AnimatorLoadout GetLoadout(Synergy synergy)
+    public AnimatorLoadout GetLoadout(CardSeries series)
     {
-        if (synergy != null)
+        if (series != null)
         {
             for (AnimatorLoadout loadout : GetEveryLoadout())
             {
-                if (synergy.equals(loadout.Synergy))
+                if (series.equals(loadout.Series))
                 {
                     return loadout;
                 }

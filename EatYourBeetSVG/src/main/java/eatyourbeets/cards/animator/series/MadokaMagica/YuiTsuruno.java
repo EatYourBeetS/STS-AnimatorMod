@@ -7,7 +7,7 @@ import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
@@ -27,7 +27,7 @@ public class YuiTsuruno extends AnimatorCard
         Initialize(5, 0);
         SetUpgrade(3, 0);
 
-        SetSynergy(Synergies.MadokaMagica);
+        SetSeries(CardSeries.MadokaMagica);
         SetAffinity(0, 1, 1, 0, 0);
     }
 

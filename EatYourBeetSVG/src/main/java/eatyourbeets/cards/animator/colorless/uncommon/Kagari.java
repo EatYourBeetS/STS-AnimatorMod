@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorPower;
@@ -23,7 +23,7 @@ public class Kagari extends AnimatorCard
         Initialize(0, 0, 3, KagariPower.EARTH_ORBS);
         SetUpgrade(0, 0, 3);
 
-        SetSynergy(Synergies.Rewrite);
+        SetSeries(CardSeries.Rewrite);
         SetAffinity_Blue(1);
     }
 

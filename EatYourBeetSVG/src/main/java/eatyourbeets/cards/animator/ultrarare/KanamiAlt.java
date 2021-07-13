@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.vfx.combat.ViolentAttackEffect;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 
@@ -26,7 +26,7 @@ public class KanamiAlt extends AnimatorCard_UltraRare implements Hidden
 
         SetScaling(0, 1, 1);
 
-        SetSynergy(Synergies.LogHorizon);
+        SetSeries(CardSeries.LogHorizon);
         SetAffinity(2, 1, 0, 1, 0);
     }
 

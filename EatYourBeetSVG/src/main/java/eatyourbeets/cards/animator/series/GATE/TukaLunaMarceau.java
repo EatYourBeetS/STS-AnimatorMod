@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class TukaLunaMarceau extends AnimatorCard
@@ -19,7 +19,7 @@ public class TukaLunaMarceau extends AnimatorCard
         Initialize(0, 2);
         SetUpgrade(0, 2);
 
-        SetSynergy(Synergies.Gate);
+        SetSeries(CardSeries.Gate);
         SetAffinity(0, 1, 0, 1, 0);
     }
 

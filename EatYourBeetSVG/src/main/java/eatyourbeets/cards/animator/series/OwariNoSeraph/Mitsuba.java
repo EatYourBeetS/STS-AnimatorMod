@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Mitsuba extends AnimatorCard
@@ -19,7 +19,7 @@ public class Mitsuba extends AnimatorCard
         Initialize(7, 2, 2, 6);
         SetUpgrade(3, 0, 0, 0);
 
-        SetSynergy(Synergies.OwariNoSeraph);
+        SetSeries(CardSeries.OwariNoSeraph);
         SetAffinity(1, 0, 0, 2, 0);
     }
 

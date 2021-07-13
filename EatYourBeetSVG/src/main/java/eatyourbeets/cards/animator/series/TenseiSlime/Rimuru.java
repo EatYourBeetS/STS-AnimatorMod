@@ -7,7 +7,7 @@ import eatyourbeets.actions.animator.RimuruAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -23,7 +23,7 @@ public class Rimuru extends AnimatorCard implements OnAfterCardPlayedSubscriber
         super(DATA);
 
         Initialize(0, 0);
-        SetSynergy(Synergies.TenSura);
+        SetSeries(CardSeries.TenSura);
         SetAffinity_Star(1, 1);
 
         this.copy = this;

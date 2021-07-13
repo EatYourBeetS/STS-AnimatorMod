@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -22,7 +22,7 @@ public class MaesHughes extends AnimatorCard
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, -1);
 
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetSeries(CardSeries.FullmetalAlchemist);
         SetAffinity(0, 0, 1, 2, 0);
     }
 

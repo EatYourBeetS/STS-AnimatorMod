@@ -8,8 +8,8 @@ import eatyourbeets.cards.animator.series.Katanagatari.Azekura;
 import eatyourbeets.cards.animator.series.Katanagatari.Emonzaemon;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.cards.animator.ultrarare.ShikizakiKiki;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class Katanagatari extends AnimatorLoadout
 {
     public Katanagatari()
     {
-        super(Synergies.Katanagatari);
+        super(CardSeries.Katanagatari);
     }
 
     @Override

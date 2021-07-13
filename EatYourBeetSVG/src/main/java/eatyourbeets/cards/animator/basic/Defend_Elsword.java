@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.basic;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Defend_Elsword extends Defend
@@ -17,7 +17,7 @@ public class Defend_Elsword extends Defend
         Initialize(0, 5, 2);
         SetUpgrade(0, 3);
 
-        SetSynergy(Synergies.Elsword);
+        SetSeries(CardSeries.Elsword);
         SetAffinity_Green(1);
     }
 

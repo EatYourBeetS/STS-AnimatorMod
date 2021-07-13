@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Soujiro_Isami extends AnimatorCard
@@ -19,7 +19,7 @@ public class Soujiro_Isami extends AnimatorCard
         Initialize(6, 0, 0);
         SetUpgrade(2, 0, 0);
 
-        SetSynergy(Synergies.LogHorizon);
+        SetSeries(CardSeries.LogHorizon);
         SetAffinity(0, 2, 0, 0, 0);
     }
 

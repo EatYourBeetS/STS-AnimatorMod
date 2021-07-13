@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
@@ -39,6 +40,12 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     protected abstract float GetScaling(EYBCard card);
     protected abstract void OnThresholdReached(int threshold);
+
+    public void Render(SpriteBatch sb, Hitbox hb)
+    {
+        renderIcons(sb, hb.x + hb.width * 2f, hb.cY, Color.WHITE);
+        renderAmount(sb, hb.x + hb.width * 3.33f, hb.y, Color.WHITE);
+    }
 
     public void Stack(int amount, boolean retain)
     {

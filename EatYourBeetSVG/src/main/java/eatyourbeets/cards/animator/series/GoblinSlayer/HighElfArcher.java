@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.affinity.AgilityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -23,7 +23,7 @@ public class HighElfArcher extends AnimatorCard
         SetUpgrade(1, 0, 1);
         SetScaling(0, 1, 0);
 
-        SetSynergy(Synergies.GoblinSlayer);
+        SetSeries(CardSeries.GoblinSlayer);
         SetAffinity(0, 2, 0, 1, 0);
     }
 

@@ -12,7 +12,6 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
-import eatyourbeets.ui.controls.GUI_ImageRegion;
 import eatyourbeets.ui.controls.GUI_Label;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
@@ -29,7 +28,7 @@ public class EYBCombatInfo_AffinityRow extends GUIElement
     protected final GUI_Image background_image;
     protected final GUI_Image affinity_image;
     protected final GUI_Label affinity_text;
-    protected final GUI_ImageRegion synergy_icon;
+    protected final GUI_Image synergy_icon;
 
     public EYBCombatInfo_AffinityRow(AffinityType type, Hitbox hb, int index, int max)
     {
@@ -45,12 +44,14 @@ public class EYBCombatInfo_AffinityRow extends GUIElement
                 new RelativeHitbox(hb, Scale(36), Scale(36), Scale(12f), offset_y * hb.height, false));
 
         affinity_text = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
-                new RelativeHitbox(hb, 0.5f, 1f, 0.5f, offset_y))
+                new RelativeHitbox(hb, 0.5f, 1f, 0.55f, offset_y))
                 .SetAlignment(0.5f, 0.5f)
                 .SetText("-");
 
-        synergy_icon = new GUI_ImageRegion(type.GetSynergyEffectIcon(),
+        synergy_icon = new GUI_Image(GR.Common.Images.Arrow_Right.Texture(), //type.GetSynergyEffectIcon(),
                 new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(10f), offset_y * hb.height, false));
+
+        synergy_icon.SetActive(type != AffinityType.Star);
     }
 
     public void Update(EYBCardAffinities handAffinities, EYBCardAffinities cardAffinities, EYBCardAffinities strongSynergies, boolean draggingCard)
@@ -96,18 +97,22 @@ public class EYBCombatInfo_AffinityRow extends GUIElement
     @Override
     public void Update()
     {
-        background_image.Update();
-        affinity_image.Update();
-        affinity_text.Update();
-        synergy_icon.Update();
+        background_image.TryUpdate();
+        affinity_image.TryUpdate();
+        affinity_text.TryUpdate();
+        synergy_icon.TryUpdate();
     }
 
     @Override
     public void Render(SpriteBatch sb)
     {
-        background_image.Render(sb);
-        affinity_image.Render(sb);
-        affinity_text.Render(sb);
-        synergy_icon.Render(sb);
+        background_image.TryRender(sb);
+        affinity_image.TryRender(sb);
+        affinity_text.TryRender(sb);
+        synergy_icon.TryRender(sb);
+        if (synergy_icon.isActive)
+        {
+            CombatStats.Affinities.GetPower(Type).Render(sb, synergy_icon.hb);
+        }
     }
 }

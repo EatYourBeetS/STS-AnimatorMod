@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -28,7 +28,7 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
         SetEvokeOrbCount(magicNumber);
         SetExhaust(true);
 
-        SetSynergy(Synergies.ReZero);
+        SetSeries(CardSeries.ReZero);
         SetAffinity_Blue(1);
         SetAffinity_Light(2);
     }

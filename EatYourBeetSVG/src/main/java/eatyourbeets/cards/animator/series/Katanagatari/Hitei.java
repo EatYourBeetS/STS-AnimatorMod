@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.HiteiPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -19,7 +19,7 @@ public class Hitei extends AnimatorCard
         Initialize(0, 0, 0, 2);
         SetUpgrade(0, 0, 0, 1);
 
-        SetSynergy(Synergies.Katanagatari);
+        SetSeries(CardSeries.Katanagatari);
         SetAffinity(0, 0, 1, 0, 1);
     }
 

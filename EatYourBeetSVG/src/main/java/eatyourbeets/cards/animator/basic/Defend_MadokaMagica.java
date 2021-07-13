@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.basic;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
@@ -19,7 +19,7 @@ public class Defend_MadokaMagica extends Defend
         Initialize(0, 6);
         SetUpgrade(0, 3);
 
-        SetSynergy(Synergies.MadokaMagica);
+        SetSeries(CardSeries.MadokaMagica);
         SetAffinity_Dark(1);
     }
 

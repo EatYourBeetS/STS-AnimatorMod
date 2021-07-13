@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
@@ -26,7 +26,7 @@ public class Shigure extends AnimatorCard
         SetUpgrade(2, 0, 1, 0);
         SetScaling(0, 1, 0);
 
-        SetSynergy(Synergies.OwariNoSeraph);
+        SetSeries(CardSeries.OwariNoSeraph);
         SetAffinity(0, 1, 0, 1, 0);
     }
 

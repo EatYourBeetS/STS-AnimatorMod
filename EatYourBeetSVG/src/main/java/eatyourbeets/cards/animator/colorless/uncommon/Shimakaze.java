@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Shimakaze extends AnimatorCard
@@ -20,7 +20,7 @@ public class Shimakaze extends AnimatorCard
         Initialize(3, 3, 3);
         SetUpgrade(1, 1, 1);
 
-        SetSynergy(Synergies.Kancolle);
+        SetSeries(CardSeries.Kancolle);
         SetAffinity_Green(1);
     }
 

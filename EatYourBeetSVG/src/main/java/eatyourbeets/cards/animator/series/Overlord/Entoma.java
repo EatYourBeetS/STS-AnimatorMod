@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -27,7 +27,7 @@ public class Entoma extends AnimatorCard
         SetUpgrade(1, 0, 0);
 
         SetUnique(true, true);
-        SetSynergy(Synergies.Overlord);
+        SetSeries(CardSeries.Overlord);
         SetAffinity(0, 0, 0, 0, 1);
     }
 

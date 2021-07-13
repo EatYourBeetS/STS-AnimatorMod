@@ -8,8 +8,8 @@ import eatyourbeets.cards.animator.series.FullmetalAlchemist.ElricAlphonse;
 import eatyourbeets.cards.animator.series.FullmetalAlchemist.ElricEdward;
 import eatyourbeets.cards.animator.series.FullmetalAlchemist.RoyMustang;
 import eatyourbeets.cards.animator.ultrarare.Truth;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class FullmetalAlchemist extends AnimatorLoadout
 {
     public FullmetalAlchemist()
     {
-        super(Synergies.FullmetalAlchemist);
+        super(CardSeries.FullmetalAlchemist);
     }
 
     @Override

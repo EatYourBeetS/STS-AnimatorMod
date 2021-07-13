@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
@@ -20,7 +20,7 @@ public class Shinoa extends AnimatorCard
         Initialize(0, 6, 1);
         SetUpgrade(0, 3, 0);
 
-        SetSynergy(Synergies.OwariNoSeraph);
+        SetSeries(CardSeries.OwariNoSeraph);
         SetAffinity(0, 1, 0, 1, 0);
     }
 

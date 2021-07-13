@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
 
@@ -25,7 +25,7 @@ public class ElricEdward extends AnimatorCard
         SetScaling(1, 0, 0);
 
         SetEvokeOrbCount(1);
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetSeries(CardSeries.FullmetalAlchemist);
         SetAffinity(0, 0, 2, 1, 0);
     }
 

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -21,7 +21,7 @@ public class LeleiLaLalena extends AnimatorCard
         Initialize(0, 0, 1);
 
         SetEvokeOrbCount(1);
-        SetSynergy(Synergies.Gate);
+        SetSeries(CardSeries.Gate);
         SetAffinity(0, 0, 1, 1, 0);
     }
 

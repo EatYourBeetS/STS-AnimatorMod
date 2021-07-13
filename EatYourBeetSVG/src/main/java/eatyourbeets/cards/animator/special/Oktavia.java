@@ -25,7 +25,7 @@ public class Oktavia extends AnimatorCard
         SetUpgrade(2, 0, 0, 0);
         SetScaling(1, 0, 0);
 
-        SetSynergy(Synergies.MadokaMagica);
+        SetSeries(CardSeries.MadokaMagica);
         SetAffinity(0, 0, 1, 0, 1);
     }
 

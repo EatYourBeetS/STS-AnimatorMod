@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
@@ -23,8 +24,8 @@ public class EYBCombatInfo extends GUIElement
 
     public EYBCombatInfo()
     {
-        hb = new DraggableHitbox(ScreenW(0.025f), ScreenH(0.65f), Scale(96f),  Scale(40f), true);
-        hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.75f));
+        hb = new DraggableHitbox(ScreenW(0.024f), ScreenH(0.65f), Scale(80f),  Scale(40f), true);
+        hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));
 
         drag_panel = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
         .SetColor(0.05f, 0.05f, 0.05f, 0.5f);
@@ -63,7 +64,7 @@ public class EYBCombatInfo extends GUIElement
 
             if (cardAffinities != null)
             {
-                AnimatorCard c = Synergies.GetLastCardPlayed();
+                AnimatorCard c = CombatStats.Affinities.GetLastCardPlayed();
                 if (c != null)
                 {
                     strongSynergies = cardAffinities.GetSynergies(c.affinities);

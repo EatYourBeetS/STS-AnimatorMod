@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.subscribers.OnLoseHpSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -27,7 +27,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
 
         SetExhaust(true);
         SetHealing(true);
-        SetSynergy(Synergies.Konosuba);
+        SetSeries(CardSeries.Konosuba);
         SetAffinity(0, 0, 1, 2, 0);
     }
 

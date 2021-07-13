@@ -18,7 +18,7 @@ public class Wiz extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetPurge(true);
-        SetSynergy(Synergies.Konosuba);
+        SetSeries(CardSeries.Konosuba);
         SetAffinity(0, 0, 2, 0, 2);
     }
 
@@ -29,7 +29,7 @@ public class Wiz extends AnimatorCard
 
         if (!CombatStats.HasActivatedLimited(cardID))
         {
-            SetPurge(!(Synergies.WouldSynergize(this)));
+            SetPurge(!(CombatStats.Affinities.WouldSynergize(this)));
         }
     }
 

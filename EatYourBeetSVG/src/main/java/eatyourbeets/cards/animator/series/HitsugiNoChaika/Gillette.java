@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
@@ -21,7 +21,7 @@ public class Gillette extends AnimatorCard
         Initialize(7, 0, 1);
         SetUpgrade(3, 0, 0);
 
-        SetSynergy(Synergies.Chaika);
+        SetSeries(CardSeries.Chaika);
         SetAffinity(0, 1, 0, 2, 0);
     }
 

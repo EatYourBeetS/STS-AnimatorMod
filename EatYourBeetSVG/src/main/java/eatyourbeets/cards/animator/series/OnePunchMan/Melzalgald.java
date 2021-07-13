@@ -8,7 +8,7 @@ import eatyourbeets.cards.animator.special.MelzalgaldAlt_2;
 import eatyourbeets.cards.animator.special.MelzalgaldAlt_3;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -30,7 +30,7 @@ public class Melzalgald extends AnimatorCard
         SetScaling(2, 2, 2);
 
         SetExhaust(true);
-        SetSynergy(Synergies.OnePunchMan);
+        SetSeries(CardSeries.OnePunchMan);
         SetAffinity_Star(1, 1);
     }
 

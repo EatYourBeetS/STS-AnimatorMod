@@ -7,7 +7,7 @@ import eatyourbeets.actions.animator.SoraAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Sora extends AnimatorCard
@@ -26,7 +26,7 @@ public class Sora extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetMultiDamage(true);
-        SetSynergy(Synergies.NoGameNoLife);
+        SetSeries(CardSeries.NoGameNoLife);
         SetAffinity(0, 0, 2, 1, 0);
     }
 

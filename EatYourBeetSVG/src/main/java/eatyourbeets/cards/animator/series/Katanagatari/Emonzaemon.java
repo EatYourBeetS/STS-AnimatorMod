@@ -9,7 +9,7 @@ import eatyourbeets.cards.animator.special.EntouJyuu;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
@@ -33,7 +33,7 @@ public class Emonzaemon extends AnimatorCard
         SetUpgrade(2, 0);
         SetScaling(0, 1, 0);
 
-        SetSynergy(Synergies.Katanagatari);
+        SetSeries(CardSeries.Katanagatari);
         SetAffinity(0, 2, 0, 0, 1);
     }
 

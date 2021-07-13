@@ -6,7 +6,7 @@ import eatyourbeets.cards.animator.special.BlackLotus;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Kuroyukihime extends AnimatorCard
@@ -24,7 +24,7 @@ public class Kuroyukihime extends AnimatorCard
         Initialize(0, 0, 2);
         SetCostUpgrade(-1);
 
-        SetSynergy(Synergies.AccelWorld);
+        SetSeries(CardSeries.AccelWorld);
         SetAffinity_Light(1);
     }
 

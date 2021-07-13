@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.misc.GenericEffects.GenericEffect_GainBlock;
 import eatyourbeets.misc.GenericEffects.GenericEffect_GainTempHP;
 import eatyourbeets.misc.GenericEffects.GenericEffect_StackPower;
@@ -30,7 +30,7 @@ public class Greed extends AnimatorCard
         Initialize(0,0, 200, 1);
         SetUpgrade(0,0, -50);
 
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetSeries(CardSeries.FullmetalAlchemist);
         SetAffinity(2, 0, 0, 0, 2);
     }
 

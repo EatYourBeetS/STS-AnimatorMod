@@ -7,7 +7,7 @@ import eatyourbeets.cards.animator.special.ChlammyZellScheme;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.IntellectPower;
 import eatyourbeets.utilities.GameActions;
@@ -28,7 +28,7 @@ public class ChlammyZell extends AnimatorCard
         Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 1, 0);
 
-        SetSynergy(Synergies.NoGameNoLife);
+        SetSeries(CardSeries.NoGameNoLife);
         SetAffinity(0, 0, 2, 0, 1);
     }
 

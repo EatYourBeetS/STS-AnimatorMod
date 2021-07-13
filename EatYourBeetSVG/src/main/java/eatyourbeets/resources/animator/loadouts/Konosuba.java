@@ -8,8 +8,8 @@ import eatyourbeets.cards.animator.series.Konosuba.Aqua;
 import eatyourbeets.cards.animator.series.Konosuba.Kazuma;
 import eatyourbeets.cards.animator.series.Konosuba.Megumin;
 import eatyourbeets.cards.animator.ultrarare.Chomusuke;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class Konosuba extends AnimatorLoadout
 {
     public Konosuba()
     {
-        super(Synergies.Konosuba);
+        super(CardSeries.Konosuba);
     }
 
     @Override

@@ -33,7 +33,7 @@ public class Father extends AnimatorCard implements OnAddedToDeckListener, OnAdd
 
         SetHealing(true);
         SetPurge(true, false);
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetSeries(CardSeries.FullmetalAlchemist);
         SetAffinity(0, 0, 2, 0, 2);
     }
 

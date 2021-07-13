@@ -7,7 +7,7 @@ import eatyourbeets.cards.animator.special.ShinjiMatou_CommandSpell;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -31,7 +31,7 @@ public class ShinjiMatou extends AnimatorCard
         Initialize(0, 2, 4);
         SetUpgrade(0, 0, 2);
 
-        SetSynergy(Synergies.Fate);
+        SetSeries(CardSeries.Fate);
         SetAffinity(0, 0, 1, 0, 1);
     }
 

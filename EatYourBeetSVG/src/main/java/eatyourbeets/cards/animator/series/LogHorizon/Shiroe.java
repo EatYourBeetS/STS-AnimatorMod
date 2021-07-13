@@ -22,7 +22,7 @@ public class Shiroe extends AnimatorCard
 
         SetExhaust(true);
 
-        SetSynergy(Synergies.LogHorizon);
+        SetSeries(CardSeries.LogHorizon);
         SetAffinity(0, 0, 2, 1, 0);
     }
 

@@ -6,7 +6,7 @@ import eatyourbeets.cards.animator.special.ElricAlphonseAlt;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.affinity.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -27,7 +27,7 @@ public class ElricAlphonse extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetEthereal(true);
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetSeries(CardSeries.FullmetalAlchemist);
         SetAffinity(0, 0, 1, 1, 0);
     }
 

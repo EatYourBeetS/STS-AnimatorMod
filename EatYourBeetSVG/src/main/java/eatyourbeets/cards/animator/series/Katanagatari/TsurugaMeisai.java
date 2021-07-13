@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 
@@ -21,7 +21,7 @@ public class TsurugaMeisai extends AnimatorCard
         Initialize(0, 0, 2, 1);
 
         SetExhaust(true);
-        SetSynergy(Synergies.Katanagatari);
+        SetSeries(CardSeries.Katanagatari);
         SetAffinity(0, 1, 0, 1, 0);
     }
 

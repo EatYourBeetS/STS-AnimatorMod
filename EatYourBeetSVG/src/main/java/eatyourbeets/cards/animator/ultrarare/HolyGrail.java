@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.subscribers.OnBattleEndSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.animator.HolyGrailRelic;
@@ -29,7 +29,7 @@ public class HolyGrail extends AnimatorCard_UltraRare implements OnBattleEndSubs
         SetRetain(true);
         SetExhaust(true);
 
-        SetSynergy(Synergies.Fate);
+        SetSeries(CardSeries.Fate);
         SetAffinity(0, 0, 0, 2, 2);
     }
 

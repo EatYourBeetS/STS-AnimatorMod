@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDrawnSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -25,7 +25,7 @@ public class MisakiNakahara extends AnimatorCard
         Initialize(0, 0, 2);
 
         SetExhaust(true);
-        SetSynergy(Synergies.WelcomeToNHK);
+        SetSeries(CardSeries.WelcomeToNHK);
         SetAffinity_Light(1, 1);
     }
 

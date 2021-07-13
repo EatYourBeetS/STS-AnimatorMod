@@ -6,7 +6,7 @@ import eatyourbeets.actions.pileSelection.FetchFromPile;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -22,7 +22,7 @@ public class CowGirl extends AnimatorCard
         Initialize(0, 0);
 
         SetExhaust(true);
-        SetSynergy(Synergies.GoblinSlayer);
+        SetSeries(CardSeries.GoblinSlayer);
         SetAffinity(0, 0, 0, 1, 0);
     }
 

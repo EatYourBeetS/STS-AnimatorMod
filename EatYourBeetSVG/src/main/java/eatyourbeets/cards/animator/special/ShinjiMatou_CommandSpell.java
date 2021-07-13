@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class ShinjiMatou_CommandSpell extends AnimatorCard
@@ -20,7 +20,7 @@ public class ShinjiMatou_CommandSpell extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetPurge(true);
-        SetSynergy(Synergies.Fate);
+        SetSeries(CardSeries.Fate);
         SetAffinity(0, 0, 1, 0, 2);
     }
 

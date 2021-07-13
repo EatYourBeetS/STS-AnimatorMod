@@ -560,6 +560,11 @@ public final class GameActions
         return StackPower(new ThornsPower(player, amount));
     }
 
+    public ApplyPower GainVitality(int amount)
+    {
+        return StackPower(new VitalityPower(player, amount));
+    }
+
     public HealCreature Heal(AbstractCreature source, AbstractCreature target, int amount)
     {
         return Add(new HealCreature(target, source, amount));

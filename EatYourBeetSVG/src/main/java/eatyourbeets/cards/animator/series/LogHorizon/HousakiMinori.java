@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActions;
@@ -22,7 +22,7 @@ public class HousakiMinori extends AnimatorCard
         SetUpgrade(0, 1, 0);
 
         SetCooldown(4, -1, this::OnCooldownCompleted);
-        SetSynergy(Synergies.LogHorizon);
+        SetSeries(CardSeries.LogHorizon);
         SetAffinity(0, 0, 1, 2, 0);
     }
 

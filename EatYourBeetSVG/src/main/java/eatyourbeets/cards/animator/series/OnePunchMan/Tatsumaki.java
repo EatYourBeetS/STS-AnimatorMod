@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.IntellectStance;
@@ -25,7 +25,7 @@ public class Tatsumaki extends AnimatorCard
         SetEvokeOrbCount(1);
         SetEthereal(true);
 
-        SetSynergy(Synergies.OnePunchMan);
+        SetSeries(CardSeries.OnePunchMan);
         SetAffinity(0, 1, 2, 0, 0);
     }
 

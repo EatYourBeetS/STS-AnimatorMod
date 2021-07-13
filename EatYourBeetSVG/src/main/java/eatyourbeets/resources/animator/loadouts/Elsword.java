@@ -8,8 +8,8 @@ import eatyourbeets.cards.animator.series.Elsword.Chung;
 import eatyourbeets.cards.animator.series.Elsword.Eve;
 import eatyourbeets.cards.animator.series.Elsword.Raven;
 import eatyourbeets.cards.animator.ultrarare.Rose;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class Elsword extends AnimatorLoadout
 {
     public Elsword()
     {
-        super(Synergies.Elsword);
+        super(CardSeries.Elsword);
     }
 
     @Override

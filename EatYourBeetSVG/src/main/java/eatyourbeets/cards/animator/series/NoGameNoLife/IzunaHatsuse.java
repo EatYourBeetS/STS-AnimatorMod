@@ -34,7 +34,7 @@ public class IzunaHatsuse extends AnimatorCard
         SetUpgrade(2, 2, 2);
 
         SetTransformed(false);
-        SetSynergy(Synergies.NoGameNoLife);
+        SetSeries(CardSeries.NoGameNoLife);
         SetAffinity(0, 1, 0, 0, 0);
     }
 

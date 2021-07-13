@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_Status;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
@@ -22,7 +22,7 @@ public class Hans_Slimed extends AnimatorCard_Status
 
         cropPortrait = false;
         SetExhaust(true);
-        SetSynergy(Synergies.Konosuba);
+        SetSeries(CardSeries.Konosuba);
     }
 
     @Override

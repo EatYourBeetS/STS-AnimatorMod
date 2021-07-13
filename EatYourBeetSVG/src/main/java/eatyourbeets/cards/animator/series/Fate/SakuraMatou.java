@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -24,7 +24,7 @@ public class SakuraMatou extends AnimatorCard
 
         SetEthereal(true);
         SetExhaust(true);
-        SetSynergy(Synergies.Fate);
+        SetSeries(CardSeries.Fate);
         SetAffinity(0, 0, 1, 0, 2);
     }
 

@@ -35,7 +35,7 @@ public class HigakiRinne extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetAttackType(EYBAttackType.Normal);
-        SetSynergy(Synergies.Katanagatari);
+        SetSeries(CardSeries.Katanagatari);
         SetAffinity_Star(1, 1);
     }
 

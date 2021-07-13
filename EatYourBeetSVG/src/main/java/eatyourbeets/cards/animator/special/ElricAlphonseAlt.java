@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class ElricAlphonseAlt extends AnimatorCard
@@ -19,7 +19,7 @@ public class ElricAlphonseAlt extends AnimatorCard
         Initialize(0, 2, 3, 2);
         SetUpgrade(0, 3, 0, 0);
 
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetSeries(CardSeries.FullmetalAlchemist);
         SetAffinity(0, 0, 2, 1, 0);
     }
 

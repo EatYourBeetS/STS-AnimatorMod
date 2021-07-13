@@ -13,7 +13,7 @@ import eatyourbeets.cards.animator.special.Soujiro_Nazuna;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
@@ -42,7 +42,7 @@ public class Soujiro extends AnimatorCard
         SetUpgrade(2, 0, 1);
         SetScaling(0,1, 1);
 
-        SetSynergy(Synergies.LogHorizon);
+        SetSeries(CardSeries.LogHorizon);
         SetAffinity(1, 2, 0, 0, 0);
     }
 

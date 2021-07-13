@@ -21,7 +21,7 @@ public class RoyMustang extends AnimatorCard
         SetUpgrade(1, 0, 1);
 
         SetEvokeOrbCount(1);
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetSeries(CardSeries.FullmetalAlchemist);
         SetAffinity(0, 0, 2, 1, 0);
     }
 

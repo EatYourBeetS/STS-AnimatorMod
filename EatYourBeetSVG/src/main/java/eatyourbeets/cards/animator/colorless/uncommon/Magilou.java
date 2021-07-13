@@ -10,7 +10,7 @@ import eatyourbeets.cards.animator.special.Bienfu;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.subscribers.OnCardResetSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -31,7 +31,7 @@ public class Magilou extends AnimatorCard implements OnCardResetSubscriber
         SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
-        SetSynergy(Synergies.TalesOfBerseria);
+        SetSeries(CardSeries.TalesOfBerseria);
         SetAffinity(0, 0, 1, 1, 1);
     }
 

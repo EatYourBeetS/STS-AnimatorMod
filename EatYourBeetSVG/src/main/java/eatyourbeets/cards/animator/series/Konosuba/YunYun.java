@@ -24,7 +24,7 @@ public class YunYun extends AnimatorCard
         SetUpgrade(4, 0);
         SetScaling(1, 0, 0);
 
-        SetSynergy(Synergies.Konosuba);
+        SetSeries(CardSeries.Konosuba);
         SetAffinity(0, 0, 2, 0, 0);
     }
 

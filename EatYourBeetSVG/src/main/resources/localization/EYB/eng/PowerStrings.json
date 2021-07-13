@@ -27,12 +27,17 @@
 	},
 	"EYB:BlessingPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 #y{0} to gain #b{3} #yTemporary #yHP at the start of each turn.", " If you reach #b{1} #y{0}, increase #yTemporary #yHP gained by #b{2}."],
+		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, gain #b{2} #yVitality."],
 		"NAME": "Blessing"
 	},
 	"EYB:CorruptionPower":
 	{
 		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, obtain #b{2} {3}."],
 		"NAME": "Corruption"
+	},
+	"EYB:VitalityPower":
+	{
+		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yTemporary #yHP."],
+		"NAME": "Vitality"
 	}
 }

@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.HinaKagiyamaPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -22,7 +22,7 @@ public class HinaKagiyama extends AnimatorCard
 
         Initialize(0, 0, HinaKagiyamaPower.CARD_DRAW_AMOUNT);
 
-        SetSynergy(Synergies.TouhouProject);
+        SetSeries(CardSeries.TouhouProject);
         SetAffinity(0, 0, 1, 2, 0);
     }
 

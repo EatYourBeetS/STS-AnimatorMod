@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard_Curse;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -22,7 +22,7 @@ public class Curse_GriefSeed extends AnimatorCard_Curse
 
         Initialize(0, 0, 1);
 
-        SetSynergy(Synergies.MadokaMagica);
+        SetSeries(CardSeries.MadokaMagica);
         SetAffinity_Dark(1);
     }
 

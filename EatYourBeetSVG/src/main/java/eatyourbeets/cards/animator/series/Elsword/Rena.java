@@ -6,7 +6,7 @@ import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
@@ -29,7 +29,7 @@ public class Rena extends AnimatorCard
         SetUpgrade(0, 3);
         SetScaling(0, 1, 0);
 
-        SetSynergy(Synergies.Elsword);
+        SetSeries(CardSeries.Elsword);
         SetAffinity(0, 2, 0, 0, 0);
     }
 

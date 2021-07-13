@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator.basic;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Defend_Overlord extends Defend
@@ -16,7 +16,7 @@ public class Defend_Overlord extends Defend
         Initialize(0, 5, 1);
         SetUpgrade(0, 3);
 
-        SetSynergy(Synergies.Overlord);
+        SetSeries(CardSeries.Overlord);
         SetAffinity_Red(1);
     }
 

@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -20,7 +20,7 @@ public class Arpeggio extends AnimatorCard
         Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 1, 0);
 
-        SetSynergy(Synergies.Gate);
+        SetSeries(CardSeries.Gate);
         SetAffinity(0, 0, 2,0,0);
     }
 

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.vfx.combat.ClashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -23,7 +23,7 @@ public class Lancer extends AnimatorCard
         SetUpgrade(3, 0, 0);
         SetScaling(0, 1, 1);
 
-        SetSynergy(Synergies.Fate);
+        SetSeries(CardSeries.Fate);
         SetAffinity(1, 2, 0, 0, 0);
     }
 

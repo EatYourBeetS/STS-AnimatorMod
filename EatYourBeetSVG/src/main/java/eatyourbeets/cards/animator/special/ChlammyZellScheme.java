@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.vfx.combat.FlickCoinEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.ChlammyZellPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -23,7 +23,7 @@ public class ChlammyZellScheme extends AnimatorCard
 
         SetRetain(true);
         SetExhaust(true);
-        SetSynergy(Synergies.NoGameNoLife);
+        SetSeries(CardSeries.NoGameNoLife);
         SetAffinity(0, 0, 2, 0, 1);
     }
 

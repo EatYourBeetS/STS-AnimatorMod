@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.vfx.combat.AdrenalineEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class DarknessAdrenaline extends AnimatorCard
@@ -21,7 +21,7 @@ public class DarknessAdrenaline extends AnimatorCard
         SetUpgrade(0, 0, 0, 1);
 
         SetExhaust(true);
-        SetSynergy(Synergies.Konosuba);
+        SetSeries(CardSeries.Konosuba);
         SetAffinity(0, 0, 0, 0, 0);
     }
 

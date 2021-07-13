@@ -19,7 +19,7 @@ public class CrowleyEusford extends AnimatorCard
         SetUpgrade(2, 0);
         SetScaling(0, 2, 1);
 
-        SetSynergy(Synergies.OwariNoSeraph);
+        SetSeries(CardSeries.OwariNoSeraph);
         SetAffinity(2, 2, 0, 0, 1);
     }
 

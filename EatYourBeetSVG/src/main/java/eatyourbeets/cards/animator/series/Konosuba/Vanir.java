@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Vanir extends AnimatorCard
@@ -22,7 +22,7 @@ public class Vanir extends AnimatorCard
         SetUpgrade(1, 0, -1);
         SetScaling(1, 0, 0);
 
-        SetSynergy(Synergies.Konosuba);
+        SetSeries(CardSeries.Konosuba);
         SetAffinity_Star(1, 1);
     }
 

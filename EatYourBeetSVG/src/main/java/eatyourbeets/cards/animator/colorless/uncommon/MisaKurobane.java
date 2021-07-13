@@ -6,7 +6,7 @@ import eatyourbeets.cards.animator.special.Yusarin;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
@@ -27,7 +27,7 @@ public class MisaKurobane extends AnimatorCard
 
         SetEvokeOrbCount(1);
         SetExhaust(true);
-        SetSynergy(Synergies.Charlotte);
+        SetSeries(CardSeries.Charlotte);
         SetAffinity_Blue(1);
     }
 

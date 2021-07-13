@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.orbs.Plasma;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class TanyaDegurechaff_Type95 extends AnimatorCard
@@ -19,7 +19,7 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
 
         Initialize(0, 0);
 
-        SetSynergy(Synergies.YoujoSenki);
+        SetSeries(CardSeries.YoujoSenki);
         SetAffinity_Dark(1);
         SetAffinity_Light(1);
     }

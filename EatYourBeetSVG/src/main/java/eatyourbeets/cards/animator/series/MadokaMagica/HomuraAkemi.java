@@ -13,7 +13,7 @@ import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class HomuraAkemi extends AnimatorCard
@@ -28,7 +28,7 @@ public class HomuraAkemi extends AnimatorCard
 
         SetExhaust(true);
         SetEthereal(true);
-        SetSynergy(Synergies.MadokaMagica);
+        SetSeries(CardSeries.MadokaMagica);
         SetAffinity(0, 0, 2, 0, 1);
     }
 

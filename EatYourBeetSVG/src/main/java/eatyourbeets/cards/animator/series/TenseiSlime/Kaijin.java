@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.listeners.OnAddedToDeckListener;
 import eatyourbeets.powers.animator.KaijinPower;
 import eatyourbeets.utilities.GameActions;
@@ -27,7 +27,7 @@ public class Kaijin extends AnimatorCard implements OnAddedToDeckListener
         Initialize(0, 0, 1);
         SetCostUpgrade(-1);
 
-        SetSynergy(Synergies.TenSura);
+        SetSeries(CardSeries.TenSura);
         SetAffinity(1, 0, 0, 1, 0);
     }
 

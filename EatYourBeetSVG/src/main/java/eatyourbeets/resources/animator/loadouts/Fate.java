@@ -8,8 +8,8 @@ import eatyourbeets.cards.animator.series.Fate.Alexander;
 import eatyourbeets.cards.animator.series.Fate.Rider;
 import eatyourbeets.cards.animator.series.Fate.Saber;
 import eatyourbeets.cards.animator.ultrarare.JeanneDArc;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class Fate extends AnimatorLoadout
 {
     public Fate()
     {
-        super(Synergies.Fate);
+        super(CardSeries.Fate);
     }
 
     @Override

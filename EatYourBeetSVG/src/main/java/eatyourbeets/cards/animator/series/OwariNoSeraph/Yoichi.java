@@ -12,7 +12,7 @@ public class Yoichi extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Yoichi.class)
             .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
-            .SetSynergy(Synergies.OwariNoSeraph);
+            .SetSeries(CardSeries.OwariNoSeraph);
 
     public Yoichi()
     {

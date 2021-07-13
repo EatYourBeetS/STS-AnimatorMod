@@ -7,7 +7,7 @@ import eatyourbeets.cards.animator.special.TanyaDegurechaff_Type95;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -30,7 +30,7 @@ public class TanyaDegurechaff extends AnimatorCard
         SetUpgrade(2, 2);
         SetScaling(1, 1, 0);
 
-        SetSynergy(Synergies.YoujoSenki);
+        SetSeries(CardSeries.YoujoSenki);
         SetAffinity_Blue(1);
         SetAffinity_Green(1);
     }

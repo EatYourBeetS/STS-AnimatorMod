@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.cards.animator.auras.Aura;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.interfaces.listeners.OnAddedToDeckListener;
 import eatyourbeets.interfaces.listeners.OnCardPoolChangedListener;
@@ -36,7 +36,7 @@ import java.util.HashSet;
 
 public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, StartGameSubscriber, StartActSubscriber
 {
-    public transient final ArrayList<AnimatorRuntimeLoadout> Series = new ArrayList<>();
+    public transient final ArrayList<AnimatorRuntimeLoadout> Loadouts = new ArrayList<>();
     public transient AnimatorLoadout StartingSeries = new _FakeLoadout();
     public HashSet<String> BannedCards = new HashSet<>();
 
@@ -51,36 +51,36 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         return data;
     }
 
-    public AnimatorRuntimeLoadout GetSeries(Synergy synergy)
+    public AnimatorRuntimeLoadout GetLoadout(CardSeries series)
     {
-        for (AnimatorRuntimeLoadout series : Series)
+        for (AnimatorRuntimeLoadout loadout : Loadouts)
         {
-            if (series.ID == synergy.ID)
+            if (loadout.ID == series.ID)
             {
-                return series;
+                return loadout;
             }
         }
 
         return null;
     }
 
-    public void AddSeries(AnimatorRuntimeLoadout series)
+    public void AddLoadout(AnimatorRuntimeLoadout loadout)
     {
-        Series.add(series);
+        Loadouts.add(loadout);
 
-        Log("Adding series: " + series.Loadout.Name);
+        Log("Adding series: " + loadout.Loadout.Name);
     }
 
-    public void AddAllSeries()
+    public void AddAllLoadouts()
     {
-        Series.clear();
+        Loadouts.clear();
 
         for (AnimatorLoadout loadout : GR.Animator.Data.BaseLoadouts)
         {
             AnimatorRuntimeLoadout r = AnimatorRuntimeLoadout.TryCreate(loadout);
             if (r != null)
             {
-                Series.add(r);
+                Loadouts.add(r);
             }
         }
 
@@ -91,7 +91,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     {
         FullLog("RESETTING...");
 
-        Series.clear();
+        Loadouts.clear();
         BannedCards.clear();
         StartingSeries = new _FakeLoadout();
         loadouts.clear();
@@ -103,7 +103,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     {
         loadouts.clear();
 
-        for (AnimatorRuntimeLoadout loadout : Series)
+        for (AnimatorRuntimeLoadout loadout : Loadouts)
         {
             AnimatorLoadoutProxy surrogate = new AnimatorLoadoutProxy();
             surrogate.id = loadout.ID;
@@ -130,7 +130,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     @Override
     public void onLoad(AnimatorDungeonData data)
     {
-        Series.clear();
+        Loadouts.clear();
         BannedCards.clear();
 
         if (data != null)
@@ -155,7 +155,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
                     loadout.bonus = proxy.bonus;
                     loadout.BuildCard();
-                    Series.add(loadout);
+                    Loadouts.add(loadout);
                 }
             }
         }
@@ -203,7 +203,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             GR.Animator.Data.SaveTrophies(true);
         }
 
-        if (Series.isEmpty())
+        if (Loadouts.isEmpty())
         {
             return;
         }
@@ -236,7 +236,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
                 if (!BannedCards.contains(card.cardID))
                 {
-                    for (AnimatorRuntimeLoadout loadout : Series)
+                    for (AnimatorRuntimeLoadout loadout : Loadouts)
                     {
                         if (loadout.Cards.containsKey(card.cardID))
                         {
@@ -435,7 +435,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     private void FullLog(String message)
     {
         JUtils.LogInfo(this, message);
-        JUtils.LogInfo(this, "[Transient  Data] Starting Series: " + StartingSeries.Name + ", Series Count: " + Series.size());
+        JUtils.LogInfo(this, "[Transient  Data] Starting Series: " + StartingSeries.Name + ", Series Count: " + Loadouts.size());
         JUtils.LogInfo(this, "[Persistent Data] Starting Series: " + startingLoadout + ", Series Count: " + loadouts.size());
     }
 

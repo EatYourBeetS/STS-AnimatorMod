@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.powers.ElectroPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.TemporaryElectroPower;
 import eatyourbeets.utilities.GameActions;
@@ -23,7 +23,7 @@ public class NarberalGamma extends AnimatorCard
         Initialize(0, 0, 1);
 
         SetEvokeOrbCount(1);
-        SetSynergy(Synergies.Overlord);
+        SetSeries(CardSeries.Overlord);
         SetAffinity_Star(1, 1);
     }
 

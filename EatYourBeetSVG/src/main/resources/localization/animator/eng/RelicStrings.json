@@ -140,7 +140,7 @@
 	},
 	"animator:TheEgnaroPiece":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, gain [E] and draw 1 card. At the end of turn, #yBoost [B]"],
+		"DESCRIPTIONS": ["At the start of each turn, gain [E] and draw #b1 card. NL At the start of combat, gain #b{0} [Vitality] for every #b{1} cards in your deck (max #b10 [Vitality])."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Egnaro Piece"
 	},

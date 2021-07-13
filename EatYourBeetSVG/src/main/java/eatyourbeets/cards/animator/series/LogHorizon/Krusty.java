@@ -23,7 +23,7 @@ public class Krusty extends AnimatorCard
         SetUpgrade(1, 0, 1, 1);
 
         SetScaling(0, 0, 1);
-        SetSynergy(Synergies.LogHorizon);
+        SetSeries(CardSeries.LogHorizon);
         SetAffinity(2, 0, 0, 0, 0);
     }
 

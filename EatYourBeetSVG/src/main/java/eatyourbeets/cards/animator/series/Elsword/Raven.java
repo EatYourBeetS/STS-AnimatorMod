@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.ui.cards.DrawPileCardPreview;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -27,7 +27,7 @@ public class Raven extends AnimatorCard
         SetUpgrade(3, 0);
         SetScaling(0, 1, 0);
 
-        SetSynergy(Synergies.Elsword);
+        SetSeries(CardSeries.Elsword);
         SetAffinity(1, 1, 0, 0, 0);
     }
 

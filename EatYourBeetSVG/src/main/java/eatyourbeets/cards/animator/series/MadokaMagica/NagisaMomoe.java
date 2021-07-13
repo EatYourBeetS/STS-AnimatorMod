@@ -7,7 +7,7 @@ import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class NagisaMomoe extends AnimatorCard
@@ -26,7 +26,7 @@ public class NagisaMomoe extends AnimatorCard
         Initialize(0, 0, 3);
 
         SetExhaust(true);
-        SetSynergy(Synergies.MadokaMagica);
+        SetSeries(CardSeries.MadokaMagica);
         SetAffinity(0, 0, 1, 0, 0);
     }
 

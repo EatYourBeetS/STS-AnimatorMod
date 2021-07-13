@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Millim extends AnimatorCard
@@ -23,7 +23,7 @@ public class Millim extends AnimatorCard
         SetScaling(1, 1, 1);
 
         SetUnique(true, true);
-        SetSynergy(Synergies.TenSura);
+        SetSeries(CardSeries.TenSura);
         SetAffinity(2, 0, 2, 0, 1);
     }
 

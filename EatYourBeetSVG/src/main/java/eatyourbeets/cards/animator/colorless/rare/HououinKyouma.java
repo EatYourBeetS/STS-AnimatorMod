@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -24,7 +24,7 @@ public class HououinKyouma extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetPurge(true);
-        SetSynergy(Synergies.SteinsGate);
+        SetSeries(CardSeries.SteinsGate);
 
         SetAffinity_Blue(1, 1);
     }

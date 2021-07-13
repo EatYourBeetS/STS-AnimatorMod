@@ -26,7 +26,6 @@ import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinitySystem;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.powers.affinity.*;
 import eatyourbeets.relics.EYBRelic;
@@ -131,9 +130,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
         // Iterate onStatsCleared, remove those that return true.
         onStatsCleared.GetSubscribers().removeIf(OnStatsClearedSubscriber::OnStatsCleared);
 
-        CardGlowBorderPatches.overrideColor = null;
-        Synergies.SetLastCardPlayed(null);
-
         turnCount = 0;
         cardsDrawnThisTurn = 0;
         cardsExhaustedThisTurn = 0;
@@ -171,6 +167,10 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onPhaseChanged.Clear();
         onStanceChanged.Clear();
         onSynergyCheck.Clear();
+
+        CardGlowBorderPatches.overrideColor = null;
+        CombatStats.Affinities.Initialize();
+        CombatStats.Affinities.SetLastCardPlayed(null);
     }
 
     public static void EnsurePowerIsApplied()
@@ -338,7 +338,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
         if (card != null)
         {
-            boolean isSynergizing = Synergies.IsSynergizing(c);
+            boolean isSynergizing = CombatStats.Affinities.IsSynergizing(c);
 
             card.OnUse(p, m, isSynergizing);
 
@@ -552,7 +552,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         super.onPlayCard(card, m);
 
-        Synergies.TrySynergize(card);
+        CombatStats.Affinities.TrySynergize(card);
     }
 
     @Override
@@ -576,7 +576,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         super.onAfterUseCard(card, action);
 
-        Synergies.SetLastCardPlayed(card);
+        CombatStats.Affinities.SetLastCardPlayed(card);
         player.hand.glowCheck();
     }
 
@@ -696,7 +696,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         orbsEvokedThisTurn.clear();
         turnCount += 1;
 
-        Synergies.SetLastCardPlayed(null);
+        CombatStats.Affinities.SetLastCardPlayed(null);
     }
 
     @Override

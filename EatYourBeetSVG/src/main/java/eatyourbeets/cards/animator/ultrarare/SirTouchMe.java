@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.JuggernautPower;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -22,7 +22,7 @@ public class SirTouchMe extends AnimatorCard_UltraRare
         SetUpgrade(2, 2, 2, 0);
         SetScaling(0, 0, 2);
 
-        SetSynergy(Synergies.Overlord);
+        SetSeries(CardSeries.Overlord);
         SetAffinity(2, 1, 0, 2, 0);
     }
 

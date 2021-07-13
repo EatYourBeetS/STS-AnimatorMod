@@ -48,7 +48,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
         SetUpgrade(2, 2, 0);
 
         SetAttackType(EYBAttackType.Normal);
-        SetSynergy(Synergies.Chaika);
+        SetSeries(CardSeries.Chaika);
         SetAffinity_Star(1, 1);
     }
 

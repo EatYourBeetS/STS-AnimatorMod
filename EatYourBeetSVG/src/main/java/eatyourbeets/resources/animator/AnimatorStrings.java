@@ -10,7 +10,7 @@ public class AnimatorStrings
     public Tips Tips;
     public Rewards Rewards;
     public Misc Misc;
-    public Synergies Synergies;
+    public Series Series;
     public CharacterSelect CharSelect;
     public SeriesSelection SeriesSelection;
     public SeriesSelectionButtons SeriesSelectionButtons;
@@ -22,7 +22,7 @@ public class AnimatorStrings
         Misc = new Misc();
         Tips = new Tips();
         Rewards = new Rewards();
-        Synergies = new Synergies();
+        Series = new Series();
         CharSelect = new CharacterSelect();
         Actions = new Actions();
         Trophies = new Trophies();
@@ -66,15 +66,15 @@ public class AnimatorStrings
         }
     }
 
-    public class Synergies
+    public class Series
     {
-        private final UIStrings Strings = GetUIStrings("Synergies");
+        private final UIStrings Strings = GetUIStrings("Series");
 
         public final String Series = Strings.EXTRA_TEXT[0];
 
-        public final String SynergyName(int synergyID)
+        public final String SeriesName(int seriesID)
         {
-            return Strings.TEXT.length > synergyID ? Strings.TEXT[synergyID] : null;
+            return Strings.TEXT.length > seriesID ? Strings.TEXT[seriesID] : null;
         }
     }
 

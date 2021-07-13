@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameActions;
@@ -22,7 +22,7 @@ public class Elsword extends AnimatorCard
         SetUpgrade(4,  0, 0);
         SetScaling(0, 1, 1);
 
-        SetSynergy(Synergies.Elsword);
+        SetSeries(CardSeries.Elsword);
         SetAffinity(2, 1, 0, 1, 0);
     }
 

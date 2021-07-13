@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 
@@ -22,7 +22,7 @@ public class ItamiYouji extends AnimatorCard
         Initialize(3, 0, 3, 2);
         SetUpgrade(0, 0, 1);
 
-        SetSynergy(Synergies.Gate);
+        SetSeries(CardSeries.Gate);
         SetAffinity(1, 1, 0, 0, 0);
     }
 

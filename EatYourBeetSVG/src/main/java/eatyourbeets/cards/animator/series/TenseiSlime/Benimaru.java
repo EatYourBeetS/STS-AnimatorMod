@@ -22,7 +22,7 @@ public class Benimaru extends AnimatorCard
         Initialize(3, 0, 2);
         SetUpgrade(4, 0, 0);
 
-        SetSynergy(Synergies.TenSura);
+        SetSeries(CardSeries.TenSura);
         SetAffinity(1, 0, 2, 0, 0);
     }
 

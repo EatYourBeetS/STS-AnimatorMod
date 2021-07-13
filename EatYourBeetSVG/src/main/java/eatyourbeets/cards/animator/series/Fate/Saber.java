@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Excalibur;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Saber extends AnimatorCard
@@ -27,7 +27,7 @@ public class Saber extends AnimatorCard
 
         SetCooldown(8, 0, this::OnCooldownCompleted);
         SetLoyal(true);
-        SetSynergy(Synergies.Fate);
+        SetSeries(CardSeries.Fate);
         SetAffinity(1, 1, 0, 2, 0);
     }
 

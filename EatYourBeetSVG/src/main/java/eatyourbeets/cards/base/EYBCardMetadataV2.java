@@ -30,7 +30,7 @@ public class EYBCardMetadataV2
 
         if (series != null)
         {
-            card.SetSynergy(Synergies.GetByName(series, false));
+            card.SetSeries(CardSeries.GetByName(series, false));
         }
 
         if (stats != null && stats.length > 0)
@@ -124,9 +124,9 @@ public class EYBCardMetadataV2
             metadata.scaling = new int[] {card.forceScaling, card.agilityScaling, card.intellectScaling };
         }
 
-        if (exportSeries && card.synergy != null)
+        if (exportSeries && card.series != null)
         {
-            metadata.series = card.synergy.Name;
+            metadata.series = card.series.Name;
         }
 
         metadata.affinity = new int[] {0, 0, 0, 0, 0 };

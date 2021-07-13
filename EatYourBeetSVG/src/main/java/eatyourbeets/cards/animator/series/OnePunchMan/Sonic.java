@@ -6,7 +6,7 @@ import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Sonic extends AnimatorCard
@@ -28,7 +28,7 @@ public class Sonic extends AnimatorCard
         SetUpgrade(0, 0, 0, 1);
 
         SetExhaust(true);
-        SetSynergy(Synergies.OnePunchMan);
+        SetSeries(CardSeries.OnePunchMan);
         SetAffinity(0, 2, 0, 0, 1);
     }
 

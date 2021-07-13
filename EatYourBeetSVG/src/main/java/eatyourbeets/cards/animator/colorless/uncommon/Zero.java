@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
@@ -19,7 +19,7 @@ public class Zero extends AnimatorCard
         Initialize(0, 0, 0);
 
         SetExhaust(true);
-        SetSynergy(Synergies.GrimoireOfZero);
+        SetSeries(CardSeries.GrimoireOfZero);
         SetAffinity(0, 0, 1, 1, 0);
     }
 

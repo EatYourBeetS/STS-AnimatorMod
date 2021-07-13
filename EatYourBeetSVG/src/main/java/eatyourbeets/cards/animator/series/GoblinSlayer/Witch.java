@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -25,7 +25,7 @@ public class Witch extends AnimatorCard
         SetUpgrade(0, 2, 1);
         SetScaling(1, 0, 0);
 
-        SetSynergy(Synergies.GoblinSlayer);
+        SetSeries(CardSeries.GoblinSlayer);
         SetAffinity(0, 0, 2, 0, 0);
     }
 

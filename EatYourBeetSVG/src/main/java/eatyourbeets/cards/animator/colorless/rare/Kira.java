@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.utilities.GameActions;
@@ -36,7 +36,7 @@ public class Kira extends AnimatorCard
 
         SetExhaust(true);
         SetEthereal(true);
-        SetSynergy(Synergies.DeathNote);
+        SetSeries(CardSeries.DeathNote);
 
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);

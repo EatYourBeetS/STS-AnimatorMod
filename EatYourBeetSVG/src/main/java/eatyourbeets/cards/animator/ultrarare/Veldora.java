@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Veldora extends AnimatorCard_UltraRare
@@ -25,7 +25,7 @@ public class Veldora extends AnimatorCard_UltraRare
 
         showEvokeValue = true;
 
-        SetSynergy(Synergies.TenSura);
+        SetSeries(CardSeries.TenSura);
         SetAffinity(2, 2, 2, 0, 0);
     }
 

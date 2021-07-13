@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class HousakiTohya extends AnimatorCard
@@ -25,7 +25,7 @@ public class HousakiTohya extends AnimatorCard
         SetUpgrade(3, 0, 0, 0);
         SetScaling(0, 1, 1);
 
-        SetSynergy(Synergies.LogHorizon);
+        SetSeries(CardSeries.LogHorizon);
         SetAffinity(1, 0, 0, 1, 0);
     }
 

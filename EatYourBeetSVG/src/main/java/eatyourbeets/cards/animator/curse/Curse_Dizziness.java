@@ -20,7 +20,7 @@ public class Curse_Dizziness extends AnimatorCard_Curse
     {
         super(DATA, false);
 
-        SetSynergy(Synergies.TouhouProject);
+        SetSeries(CardSeries.TouhouProject);
         SetAffinity_Dark(1);
     }
 

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.powers.ConservePower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActions;
 
@@ -20,7 +20,7 @@ public class Demiurge extends AnimatorCard
 
         Initialize(0,0,4);
 
-        SetSynergy(Synergies.Overlord);
+        SetSeries(CardSeries.Overlord);
         SetAffinity(0, 0, 2, 0, 2);
     }
 

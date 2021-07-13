@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -23,7 +23,7 @@ public class KotoriKanbe extends AnimatorCard
 
         SetEthereal(true);
         SetExhaust(true);
-        SetSynergy(Synergies.Rewrite);
+        SetSeries(CardSeries.Rewrite);
 
         SetAffinity_Blue(1);
     }

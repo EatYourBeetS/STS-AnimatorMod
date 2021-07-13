@@ -42,7 +42,7 @@ public class Patchouli extends AnimatorCard
         SetUpgrade(3, 0, 0, 0);
         SetScaling(2, 0, 0);
 
-        SetSynergy(Synergies.TouhouProject);
+        SetSeries(CardSeries.TouhouProject);
         SetAffinity(0, 0, 2, 0, 0);
 
         SetAffinity_Blue(2);

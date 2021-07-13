@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.animator.special.DarknessAdrenaline;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.DarknessPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -25,7 +25,7 @@ public class Darkness extends AnimatorCard
         Initialize(0, 2, 2);
         SetUpgrade(0, 1, 1);
 
-        SetSynergy(Synergies.Konosuba);
+        SetSeries(CardSeries.Konosuba);
         SetAffinity(1, 0, 0, 1, 0);
     }
 

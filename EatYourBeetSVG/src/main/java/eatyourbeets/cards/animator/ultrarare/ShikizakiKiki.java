@@ -19,7 +19,7 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
 
         SetEthereal(true);
 
-        SetSynergy(Synergies.Katanagatari);
+        SetSeries(CardSeries.Katanagatari);
         SetAffinity(1, 0, 1, 0, 1);
     }
 

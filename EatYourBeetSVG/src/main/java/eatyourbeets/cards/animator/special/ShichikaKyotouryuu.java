@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.vfx.combat.ViolentAttackEffect;
 import eatyourbeets.actions.basic.RemoveBlock;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
@@ -26,7 +26,7 @@ public class ShichikaKyotouryuu extends AnimatorCard
 
         SetEthereal(true);
         SetExhaust(true);
-        SetSynergy(Synergies.Katanagatari);
+        SetSeries(CardSeries.Katanagatari);
         SetAffinity(2, 2, 0, 0, 0);
     }
 

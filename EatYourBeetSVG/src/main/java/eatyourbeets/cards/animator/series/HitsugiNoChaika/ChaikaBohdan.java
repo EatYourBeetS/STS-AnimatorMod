@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.modifiers.DamageModifiers;
 import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -25,7 +25,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
         Initialize(6, 0, 3, 2);
         SetUpgrade(1, 0);
 
-        SetSynergy(Synergies.Chaika);
+        SetSeries(CardSeries.Chaika);
         SetAffinity(1, 1, 0, 0, 0);
     }
 

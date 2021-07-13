@@ -14,12 +14,10 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import eatyourbeets.relics.EYBRelic;
-import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 import org.apache.commons.lang3.StringUtils;
@@ -266,18 +264,10 @@ public class EYBCardTooltip
             y = InputHelper.mY + (50 * Settings.scale);
         }
 
-        ArrayList<PowerTip> tips = relic.tips;
+        ArrayList<EYBCardTooltip> tips = relic.tooltips;
         for (int i = 0; i < tips.size(); i++)
         {
-            final PowerTip temp = tips.get(i);
-            EYBCardTooltip tip = CardTooltips.FindByName(temp.header);
-            if (tip == null)
-            {
-                tip = reusableTooltip;
-                tip.title = temp.header;
-                tip.description = temp.body;
-                tip.hideDescription = false;
-            }
+            EYBCardTooltip tip = tips.get(i);
 
             if (tip.hideDescription == null)
             {
@@ -301,7 +291,7 @@ public class EYBCardTooltip
 
         BitmapFont descriptionFont = card == null ? FontHelper.tipBodyFont : EYBFontHelper.CardTooltipFont;
 
-        final float textHeight = FontHelper.getSmartHeight(descriptionFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING);
+        final float textHeight = RenderHelpers.GetSmartHeight(descriptionFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING);
         final float h = (hideDescription || StringUtils.isEmpty(description)) ? (- 40f * Settings.scale) : (- textHeight - 7f * Settings.scale);
 
         sb.setColor(Settings.TOP_PANEL_SHADOW_COLOR);

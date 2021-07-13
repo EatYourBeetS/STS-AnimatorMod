@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.BozesPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -21,7 +21,7 @@ public class Bozes extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
-        SetSynergy(Synergies.Gate);
+        SetSeries(CardSeries.Gate);
         SetAffinity(2, 0, 0, 1, 0);
     }
 

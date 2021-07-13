@@ -29,7 +29,7 @@ public class Viivi extends AnimatorCard
         SetUpgrade(0, 0, 1);
         SetScaling(0, 1, 0);
 
-        SetSynergy(Synergies.Chaika);
+        SetSeries(CardSeries.Chaika);
         SetAffinity_Green(1, 1);
         SetAffinity_Light(2);
     }

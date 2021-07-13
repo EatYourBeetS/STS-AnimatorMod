@@ -11,8 +11,7 @@ import com.megacrit.cardcrawl.relics.BustedCrown;
 import com.megacrit.cardcrawl.relics.QuestionCard;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rewards.RewardSave;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.rewards.AnimatorReward;
@@ -24,29 +23,29 @@ public class SynergyCardsReward extends AnimatorReward
 {
     public static final String ID = CreateFullID(SynergyCardsReward.class);
 
-    public final Synergy synergy;
+    public final CardSeries series;
     private boolean skip = false;
     private AnimatorRuntimeLoadout loadout;
 
-    private static String GenerateRewardTitle(Synergy synergy)
+    private static String GenerateRewardTitle(CardSeries series)
     {
-        if (synergy.ID == Synergies.ANY.ID)
+        if (series.ID == CardSeries.ANY.ID)
         {
             return "#yColorless";
         }
         else
         {
-            return "#y" + synergy.LocalizedName.replace(" ", " #y");
+            return "#y" + series.LocalizedName.replace(" ", " #y");
         }
     }
 
-    public SynergyCardsReward(Synergy synergy)
+    public SynergyCardsReward(CardSeries series)
     {
-        super(ID, GenerateRewardTitle(synergy), GR.Enums.Rewards.SYNERGY_CARDS);
+        super(ID, GenerateRewardTitle(series), GR.Enums.Rewards.SYNERGY_CARDS);
 
-        this.synergy = synergy;
-        this.cards = GenerateCardReward(synergy);
-        this.loadout = GR.Animator.Dungeon.GetSeries(synergy);
+        this.series = series;
+        this.cards = GenerateCardReward(series);
+        this.loadout = GR.Animator.Dungeon.GetLoadout(series);
     }
 
     @Override
@@ -56,7 +55,7 @@ public class SynergyCardsReward extends AnimatorReward
 
         if (this.hb.hovered)
         {
-            TipHelper.renderGenericTip(360f * Settings.scale, (float) InputHelper.mY, synergy.LocalizedName, GR.Animator.Strings.Rewards.Description);
+            TipHelper.renderGenericTip(360f * Settings.scale, (float) InputHelper.mY, series.LocalizedName, GR.Animator.Strings.Rewards.Description);
         }
     }
 
@@ -115,7 +114,7 @@ public class SynergyCardsReward extends AnimatorReward
         @Override
         public CustomReward onLoad(RewardSave rewardSave)
         {
-            return new SynergyCardsReward(Synergies.GetByID(rewardSave.amount));
+            return new SynergyCardsReward(CardSeries.GetByID(rewardSave.amount));
         }
 
         @Override
@@ -124,7 +123,7 @@ public class SynergyCardsReward extends AnimatorReward
             SynergyCardsReward reward = JUtils.SafeCast(customReward, SynergyCardsReward.class);
             if (reward != null)
             {
-                return new RewardSave(reward.type.toString(), null, reward.synergy.ID, 0);
+                return new RewardSave(reward.type.toString(), null, reward.series.ID, 0);
             }
 
             return null;

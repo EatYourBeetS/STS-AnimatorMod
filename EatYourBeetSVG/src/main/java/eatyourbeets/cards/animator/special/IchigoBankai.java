@@ -27,7 +27,7 @@ public class IchigoBankai extends AnimatorCard
         SetExhaust(true);
         SetMultiDamage(true);
 
-        SetSynergy(Synergies.Bleach);
+        SetSeries(CardSeries.Bleach);
         SetAffinity(2, 2, 0, 0, 0);
     }
 

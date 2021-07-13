@@ -35,7 +35,7 @@ public class Tyuule extends AnimatorCard
         Initialize(0, 0, 1);
         SetUpgrade(0, 0, 2);
 
-        SetSynergy(Synergies.Gate);
+        SetSeries(CardSeries.Gate);
         SetAffinity(0, 0, 1, 0, 2);
     }
 

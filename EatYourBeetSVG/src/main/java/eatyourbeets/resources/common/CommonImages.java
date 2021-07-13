@@ -24,6 +24,7 @@ public class CommonImages
     public final TextureCache HexagonalButtonBorder       = new TextureCache("images/ui/topPanel/eyb/HexagonalButtonBorder.png");
     public final TextureCache HexagonalButtonHover        = new TextureCache("images/ui/topPanel/eyb/HexagonalButtonHover.png");
     public final TextureCache CardBadgeLegend             = new TextureCache("images/cardui/eyb/badges/_Legend.png");
+    public final TextureCache Arrow_Right                 = new TextureCache("images/ui/topPanel/eyb/Arrow_Right.png");
 
     public static class CardIcons
     {

@@ -32,7 +32,7 @@ public class Aqua extends AnimatorCard
         SetUpgrade(0, 0, 1, 0);
 
         SetHealing(true);
-        SetSynergy(Synergies.Konosuba);
+        SetSeries(CardSeries.Konosuba);
         SetAffinity(0, 0, 0, 2, 0);
     }
 

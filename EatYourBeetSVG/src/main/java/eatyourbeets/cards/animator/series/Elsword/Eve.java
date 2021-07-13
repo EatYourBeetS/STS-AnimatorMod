@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.EvePower;
 import eatyourbeets.utilities.GameActions;
 
@@ -28,7 +28,7 @@ public class Eve extends AnimatorCard
         Initialize(0, 0, 0);
         SetUpgrade(0, 0, 1);
 
-        SetSynergy(Synergies.Elsword);
+        SetSeries(CardSeries.Elsword);
         SetAffinity(0, 0, 2, 0, 0);
     }
 

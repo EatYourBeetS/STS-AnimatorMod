@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.AinzPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -20,7 +20,7 @@ public class Ainz extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetHealing(true);
-        SetSynergy(Synergies.Overlord);
+        SetSeries(CardSeries.Overlord);
         SetAffinity(2, 0, 2, 0, 2);
     }
 

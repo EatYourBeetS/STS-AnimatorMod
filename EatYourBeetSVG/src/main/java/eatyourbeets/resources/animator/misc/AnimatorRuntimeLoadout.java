@@ -44,7 +44,7 @@ public class AnimatorRuntimeLoadout
         this.ID = loadout.ID;
         this.IsBeta = loadout.IsBeta;
         this.Loadout = loadout;
-        this.Cards = GetNonColorlessCards(loadout.Synergy);
+        this.Cards = GetNonColorlessCards(loadout.Series);
 
         this.promoted = false;
         this.card = null;
@@ -124,16 +124,16 @@ public class AnimatorRuntimeLoadout
         return card;
     }
 
-    private Map<String, AbstractCard> GetNonColorlessCards(Synergy synergy)
+    private Map<String, AbstractCard> GetNonColorlessCards(CardSeries series)
     {
         Map<String, AbstractCard> cards = new HashMap<>();
 
-        if (synergy != null && synergy != Synergies.ANY)
+        if (series != null && series != CardSeries.ANY)
         {
             for (AbstractCard card : CardLibrary.getAllCards())
             {
                 AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
-                if (c != null && card.color == GR.Animator.CardColor && synergy.equals(c.synergy)
+                if (c != null && card.color == GR.Animator.CardColor && series.equals(c.series)
                     && card.rarity != AbstractCard.CardRarity.SPECIAL
                     && card.rarity != AbstractCard.CardRarity.BASIC)
                 {

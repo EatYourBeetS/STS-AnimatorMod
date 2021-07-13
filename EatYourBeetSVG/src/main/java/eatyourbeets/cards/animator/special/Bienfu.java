@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Bienfu extends AnimatorCard
@@ -19,7 +19,7 @@ public class Bienfu extends AnimatorCard
         Initialize(0, 0);
 
         SetEthereal(true);
-        SetSynergy(Synergies.TalesOfBerseria);
+        SetSeries(CardSeries.TalesOfBerseria);
         SetAffinity(0, 0, 1, 0, 0);
     }
 

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Yusarin extends AnimatorCard
@@ -21,7 +21,7 @@ public class Yusarin extends AnimatorCard
 
         SetExhaust(true);
 
-        SetSynergy(Synergies.Charlotte);
+        SetSeries(CardSeries.Charlotte);
         SetAffinity(0, 0, 0, 1, 0);
     }
 

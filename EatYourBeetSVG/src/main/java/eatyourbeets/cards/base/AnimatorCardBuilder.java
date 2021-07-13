@@ -28,7 +28,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
     public EYBAttackType attackType = EYBAttackType.Normal;
     public EYBCardTarget attackTarget = EYBCardTarget.Normal;
     public int attributeMultiplier = 1;
-    public Synergy synergy;
+    public CardSeries series;
     public int intellectScaling;
     public int agilityScaling;
     public int forceScaling;
@@ -64,7 +64,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         SetImage(card.assetUrl);
         SetProperties(card.type, card.rarity, AbstractCard.CardTarget.NONE);
         SetText(card.name, text, text);
-        SetSynergy(card.synergy, false);
+        SetSeries(card.series, false);
     }
 
     public AnimatorCard_Dynamic Build()
@@ -254,9 +254,9 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         return this;
     }
 
-    public AnimatorCardBuilder SetSynergy(Synergy synergy, boolean isShapeshifter)
+    public AnimatorCardBuilder SetSeries(CardSeries series, boolean isShapeshifter)
     {
-        this.synergy = synergy;
+        this.series = series;
 
         if (isShapeshifter)
         {

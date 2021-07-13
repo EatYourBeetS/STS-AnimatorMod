@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -24,7 +24,7 @@ public class Layla extends AnimatorCard
         Initialize(7, 0, 2, 2);
         SetUpgrade(0, 0, 1, 0);
 
-        SetSynergy(Synergies.Chaika);
+        SetSeries(CardSeries.Chaika);
         SetAffinity(0, 0, 1, 0, 1);
     }
 

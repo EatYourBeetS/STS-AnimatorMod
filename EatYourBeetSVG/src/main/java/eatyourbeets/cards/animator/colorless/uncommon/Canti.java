@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ViolentAttackEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -22,7 +22,7 @@ public class Canti extends AnimatorCard
         Initialize(2, 3);
         SetUpgrade(4, 0);
 
-        SetSynergy(Synergies.FLCL);
+        SetSeries(CardSeries.FLCL);
         SetAffinity_Red(2);
         SetAffinity_Light(2);
     }

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardPreview;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -40,7 +40,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
     {
         super(DATA);
 
-        SetSynergy(Synergies.Elsword);
+        SetSeries(CardSeries.Elsword);
 
         this.upgraded = upgraded;
         ChangeForm(form);

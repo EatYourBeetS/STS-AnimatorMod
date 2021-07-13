@@ -8,8 +8,8 @@ import eatyourbeets.cards.animator.series.GATE.Kuribayashi;
 import eatyourbeets.cards.animator.series.GATE.RoryMercury;
 import eatyourbeets.cards.animator.series.GATE.TukaLunaMarceau;
 import eatyourbeets.cards.animator.ultrarare.Giselle;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class Gate extends AnimatorLoadout
 {
     public Gate()
     {
-        super(Synergies.Gate);
+        super(CardSeries.Gate);
     }
 
     @Override

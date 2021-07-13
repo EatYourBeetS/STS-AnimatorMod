@@ -33,7 +33,7 @@ public class Add extends AnimatorCard
         SetUpgrade(0, 0, 1, 0);
 
         SetExhaust(true);
-        SetSynergy(Synergies.Elsword);
+        SetSeries(CardSeries.Elsword);
         SetAffinity(0, 0, 2, 0, 2);
     }
 

@@ -8,7 +8,7 @@ import eatyourbeets.actions.special.SelectCreature;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -29,7 +29,7 @@ public class Caster extends AnimatorCard
         SetUpgrade(0, 0, 0, 1);
 
         SetEthereal(true);
-        SetSynergy(Synergies.Fate);
+        SetSeries(CardSeries.Fate);
         SetAffinity(0, 0, 2, 0, 2);
     }
 

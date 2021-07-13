@@ -141,7 +141,7 @@ public class AnimatorLoadoutsContainer
 
     public void CommitChanges()
     {
-        GR.Animator.Dungeon.Series.clear();
+        GR.Animator.Dungeon.Loadouts.clear();
         for (AbstractCard card : selectedCards)
         {
             AnimatorRuntimeLoadout loadout = Find(card);
@@ -151,7 +151,7 @@ public class AnimatorLoadoutsContainer
                 Settings.seedSet = true;
             }
 
-            GR.Animator.Dungeon.AddSeries(loadout);
+            GR.Animator.Dungeon.AddLoadout(loadout);
         }
 
         if (GR.Animator.Data.SelectedLoadout.IsBeta)

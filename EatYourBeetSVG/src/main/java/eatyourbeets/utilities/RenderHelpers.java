@@ -435,7 +435,7 @@ public class RenderHelpers
                     curHeight -= lineSpacing;
                     i += 1;
                 }
-                else if ('T' == c && compare.Invoke(text, i+1, 'A') && compare.Invoke(text, i+2, 'B'))
+                else if ('T' == c && compare.Invoke(text, i + 1, 'A') && compare.Invoke(text, i + 2, 'B'))
                 {
                     curWidth += spaceWidth * 5.0F;
                     i += 2;
@@ -474,11 +474,11 @@ public class RenderHelpers
                 {
                     if (text.length() > i + 1)
                     {
-                        overrideColor = GetColor(text.charAt(i+1));
+                        overrideColor = GetColor(text.charAt(i + 1));
                         i += 1;
                     }
                 }
-                else if (' ' == c || text.length() == (i+1))
+                else if (' ' == c || text.length() == (i + 1))
                 {
                     if (c != ' ')
                     {
@@ -520,6 +520,104 @@ public class RenderHelpers
 
             layout.setText(font, text);
         }
+    }
+
+    public static float GetSmartHeight(BitmapFont font, String text, float lineWidth, float lineSpacing)
+    {
+        if (text == null || text.isEmpty())
+        {
+            return 0;
+        }
+
+        builder.setLength(0);
+        layout.setText(font, " ");
+
+        float curWidth = 0.0F;
+        float curHeight = 0.0F;
+        float spaceWidth = layout.width;
+
+        final FuncT3<Boolean, String, Integer, Character> compare = (s, i, c) -> c == ((i < s.length()) ? s.charAt(i) : null);
+        final FuncT1<String, StringBuilder> build = (stringBuilder) ->
+        {
+            String result = stringBuilder.toString();
+            stringBuilder.setLength(0);
+            return result;
+        };
+
+        boolean foundIcon = false;
+
+        for (int i = 0; i < text.length(); i++)
+        {
+            char c = text.charAt(i);
+            if ('N' == c && compare.Invoke(text, i + 1, 'L'))
+            {
+                curWidth = 0.0F;
+                curHeight -= lineSpacing;
+                i += 1;
+            }
+            else if ('T' == c && compare.Invoke(text, i + 1, 'A') && compare.Invoke(text, i + 2, 'B'))
+            {
+                curWidth += spaceWidth * 5.0F;
+                i += 2;
+            }
+            else if ('[' == c)
+            {
+                foundIcon = true;
+            }
+            else if (foundIcon && ']' == c)
+            {
+                foundIcon = false;
+                TextureRegion icon = GetSmallIcon(build.Invoke(builder));
+                if (icon != null)
+                {
+                    if (curWidth + CARD_ENERGY_IMG_WIDTH > lineWidth)
+                    {
+                        curHeight -= lineSpacing;
+                        curWidth = CARD_ENERGY_IMG_WIDTH + spaceWidth;
+                    }
+                    else
+                    {
+                        curWidth += CARD_ENERGY_IMG_WIDTH + spaceWidth;
+                    }
+                }
+            }
+            else if ('#' == c)
+            {
+                if (text.length() > i + 1)
+                {
+                    i += 1;
+                }
+            }
+            else if (' ' == c || text.length() == (i + 1))
+            {
+                if (c != ' ')
+                {
+                    builder.append(c);
+                }
+
+                String word = build.Invoke(builder);
+                if (word != null && word.length() > 0)
+                {
+                    layout.setText(font, word);
+                    if (curWidth + layout.width > lineWidth)
+                    {
+                        curHeight -= lineSpacing;
+                        curWidth = layout.width + spaceWidth;
+                    }
+                    else
+                    {
+                        curWidth += layout.width + spaceWidth;
+                    }
+                }
+            }
+            else
+            {
+                builder.append(c);
+            }
+        }
+
+        layout.setText(font, text);
+        return curHeight;
     }
 
     public static TextureRegion GetSmallIcon(String id)

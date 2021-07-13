@@ -8,12 +8,15 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class EYBRelic extends CustomRelic
 {
@@ -21,6 +24,8 @@ public abstract class EYBRelic extends CustomRelic
 
     public static AbstractPlayer player;
     public static Random rng;
+
+    public ArrayList<EYBCardTooltip> tooltips;
 
     public EYBRelic(String id, String imageID, RelicTier tier, LandingSound sfx)
     {
@@ -115,6 +120,58 @@ public abstract class EYBRelic extends CustomRelic
         super.onUnequip();
 
         Unsubscribe();
+    }
+
+    @Override
+    protected void initializeTips()
+    {
+        if (tooltips == null)
+        {
+            tooltips = new ArrayList<>();
+        }
+        else
+        {
+            tooltips.clear();
+        }
+
+        tooltips.add(new EYBCardTooltip(name, description));
+
+        final Scanner desc = new Scanner(this.description);
+        String s;
+        boolean alreadyExists;
+        do
+        {
+            if (!desc.hasNext())
+            {
+                desc.close();
+                return;
+            }
+
+            s = desc.next();
+            if (s.charAt(0) == '#')
+            {
+                s = s.substring(2);
+            }
+
+            s = s.replace(',', ' ');
+            s = s.replace('.', ' ');
+
+            if (s.length() > 4)
+            {
+                s = s.replace('[', ' ');
+                s = s.replace(']', ' ');
+            }
+
+            s = s.trim();
+            s = s.toLowerCase();
+
+            EYBCardTooltip tip = CardTooltips.FindByName(s);
+            if (tip != null && !tooltips.contains(tip))
+            {
+                tooltips.add(tip);
+            }
+        }
+        while (true);
     }
 
     protected void Subscribe()

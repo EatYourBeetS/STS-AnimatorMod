@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.powers.DemonFormPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Asuramaru extends AnimatorCard
@@ -21,7 +21,7 @@ public class Asuramaru extends AnimatorCard
         Initialize(0, 0, 3, 2);
 
         SetExhaust(true);
-        SetSynergy(Synergies.OwariNoSeraph);
+        SetSeries(CardSeries.OwariNoSeraph);
         SetAffinity(2, 2, 0, 0, 1);
     }
 

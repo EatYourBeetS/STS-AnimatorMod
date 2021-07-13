@@ -27,7 +27,7 @@ public class RoryMercury extends AnimatorCard
         SetUpgrade(2, 0, 0);
         SetScaling(0, 0, 1);
 
-        SetSynergy(Synergies.Gate);
+        SetSeries(CardSeries.Gate);
         SetAffinity(2, 2, 1, 0, 0);
     }
 

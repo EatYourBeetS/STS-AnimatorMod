@@ -4,10 +4,12 @@ import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Defend_MadokaMagica;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.basic.Strike_MadokaMagica;
-import eatyourbeets.cards.animator.series.MadokaMagica.*;
+import eatyourbeets.cards.animator.series.MadokaMagica.IrohaTamaki;
+import eatyourbeets.cards.animator.series.MadokaMagica.MadokaKaname;
+import eatyourbeets.cards.animator.series.MadokaMagica.YuiTsuruno;
 import eatyourbeets.cards.animator.ultrarare.Walpurgisnacht;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ public class MadokaMagica extends AnimatorLoadout
 {
     public MadokaMagica()
     {
-        super(Synergies.MadokaMagica);
+        super(CardSeries.MadokaMagica);
     }
 
     @Override

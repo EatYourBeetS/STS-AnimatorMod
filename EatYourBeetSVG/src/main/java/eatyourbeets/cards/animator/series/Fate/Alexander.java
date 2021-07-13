@@ -21,7 +21,7 @@ public class Alexander extends AnimatorCard
         SetScaling(0, 0, 1);
 
         SetMultiDamage(true);
-        SetSynergy(Synergies.Fate);
+        SetSeries(CardSeries.Fate);
         SetAffinity(2, 1, 0, 1, 0);
     }
 

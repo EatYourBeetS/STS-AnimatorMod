@@ -6,7 +6,7 @@ import eatyourbeets.cards.animator.special.Vesta_Elixir;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect_CompleteFaster;
@@ -36,7 +36,7 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
         SetUpgrade(0, 0, -1);
 
         SetExhaust(true);
-        SetSynergy(Synergies.TenSura);
+        SetSeries(CardSeries.TenSura);
         SetAffinity(0, 0, 2, 0, 0);
     }
 

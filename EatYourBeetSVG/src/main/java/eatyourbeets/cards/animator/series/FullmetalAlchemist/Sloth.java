@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.common.TemporaryDrawReductionPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -23,7 +23,7 @@ public class Sloth extends AnimatorCard
         SetUpgrade(0, 0, -1, 0);
         SetScaling(0, 0, 2);
 
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetSeries(CardSeries.FullmetalAlchemist);
         SetAffinity(2, 0, 0, 0, 2);
     }
 

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class LimeBell extends AnimatorCard
@@ -20,7 +20,7 @@ public class LimeBell extends AnimatorCard
         SetUpgrade(0, 4, 0);
 
         SetExhaust(true);
-        SetSynergy(Synergies.AccelWorld);
+        SetSeries(CardSeries.AccelWorld);
         SetAffinity_Light(2);
     }
 

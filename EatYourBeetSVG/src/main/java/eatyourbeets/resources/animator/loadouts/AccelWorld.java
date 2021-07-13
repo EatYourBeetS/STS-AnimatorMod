@@ -8,8 +8,8 @@ import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.basic.Strike_AccelWorld;
 import eatyourbeets.cards.animator.colorless.uncommon.Kuroyukihime;
 import eatyourbeets.cards.animator.colorless.uncommon.LimeBell;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
@@ -20,7 +20,7 @@ public class AccelWorld extends AnimatorLoadout
 {
     public AccelWorld()
     {
-        super(Synergies.AccelWorld);
+        super(CardSeries.AccelWorld);
     }
 
     @Override

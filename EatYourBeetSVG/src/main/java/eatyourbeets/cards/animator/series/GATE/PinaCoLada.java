@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.PinaCoLadaPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -19,7 +19,7 @@ public class PinaCoLada extends AnimatorCard
         Initialize(0, 0, 1);
         SetUpgrade(0, 6, 0);
 
-        SetSynergy(Synergies.Gate);
+        SetSeries(CardSeries.Gate);
         SetAffinity(0, 0, 1, 2, 0);
     }
 

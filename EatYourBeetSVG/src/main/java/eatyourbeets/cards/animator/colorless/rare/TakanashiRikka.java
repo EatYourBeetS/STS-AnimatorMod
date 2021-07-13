@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -23,7 +23,7 @@ public class TakanashiRikka extends AnimatorCard
 
         SetEthereal(true);
         SetExhaust(true);
-        SetSynergy(Synergies.Chuunibyou);
+        SetSeries(CardSeries.Chuunibyou);
 
         SetAffinity_Light(1);
     }

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class HinaKagiyama_Miracle extends AnimatorCard
@@ -26,7 +26,7 @@ public class HinaKagiyama_Miracle extends AnimatorCard
         SetPurge(true);
         SetRetain(true);
 
-        SetSynergy(Synergies.TouhouProject);
+        SetSeries(CardSeries.TouhouProject);
         SetAffinity(0, 0, 0, 1, 0);
     }
 

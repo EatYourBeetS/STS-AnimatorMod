@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.animator.GeassPower;
 import eatyourbeets.utilities.GameActions;
@@ -26,7 +26,7 @@ public class Lelouch extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetExhaust(true);
-        SetSynergy(Synergies.CodeGeass);
+        SetSeries(CardSeries.CodeGeass);
 
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);

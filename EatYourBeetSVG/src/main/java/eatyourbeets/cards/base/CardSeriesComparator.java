@@ -16,13 +16,13 @@ public class CardSeriesComparator implements Comparator<AbstractCard>
         ThanksJava a1 = CalculateValue(c1);
         ThanksJava a2 = CalculateValue(c2);
 
-        return (a1.rank - a2.rank) + (a1.synergy.LocalizedName.compareTo(a2.synergy.LocalizedName));
+        return (a1.rank - a2.rank) + (a1.series.LocalizedName.compareTo(a2.series.LocalizedName));
     }
 
     private ThanksJava CalculateValue(AbstractCard c1)
     {
         ThanksJava thanksJava = new ThanksJava();
-        thanksJava.synergy = Synergies.ANY;
+        thanksJava.series = CardSeries.ANY;
 
         if (c1 == null)
         {
@@ -37,8 +37,8 @@ public class CardSeriesComparator implements Comparator<AbstractCard>
             return thanksJava;
         }
 
-        Synergy synergy = card.synergy;
-        if (synergy == null)
+        CardSeries series = card.series;
+        if (series == null)
         {
             thanksJava.rank = 2;
             return thanksJava;
@@ -53,13 +53,13 @@ public class CardSeriesComparator implements Comparator<AbstractCard>
             thanksJava.rank = 3;
         }
 
-        thanksJava.synergy = synergy;
+        thanksJava.series = series;
         return thanksJava;
     }
 
     private class ThanksJava
     {
         private int rank;
-        private Synergy synergy;
+        private CardSeries series;
     }
 }

@@ -7,7 +7,7 @@ import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -22,7 +22,7 @@ public class EmiyaShirou extends AnimatorCard
         Initialize(0, 5, 2);
         SetUpgrade(0, 1, 1);
 
-        SetSynergy(Synergies.Fate);
+        SetSeries(CardSeries.Fate);
         SetAffinity(1, 1, 0, 2, 0);
     }
 

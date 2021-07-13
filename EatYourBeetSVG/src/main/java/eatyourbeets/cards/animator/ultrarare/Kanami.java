@@ -31,7 +31,7 @@ public class Kanami extends AnimatorCard_UltraRare
         SetHaste(true);
         SetScaling(0, 1, 1);
 
-        SetSynergy(Synergies.LogHorizon);
+        SetSeries(CardSeries.LogHorizon);
         SetAffinity(1, 2, 0, 1, 0);
     }
 

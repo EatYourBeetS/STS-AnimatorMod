@@ -25,7 +25,7 @@ public class Cirno extends AnimatorCard
 
         SetEthereal(true);
         SetMultiDamage(true);
-        SetSynergy(Synergies.TouhouProject);
+        SetSeries(CardSeries.TouhouProject);
         SetAffinity_Blue(1);
     }
 

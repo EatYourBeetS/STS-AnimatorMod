@@ -6,7 +6,7 @@ import eatyourbeets.cards.animator.special.IchigoBankai;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -26,7 +26,7 @@ public class IchigoKurosaki extends AnimatorCard
         Initialize(0, 0, 0, 5);
 
         SetExhaust(true);
-        SetSynergy(Synergies.Bleach);
+        SetSeries(CardSeries.Bleach);
         SetAffinity(1, 1, 0, 0, 0);
     }
 

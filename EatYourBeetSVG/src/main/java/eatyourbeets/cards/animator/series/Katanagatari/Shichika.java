@@ -6,7 +6,7 @@ import eatyourbeets.cards.animator.special.ShichikaKyotouryuu;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Shichika extends AnimatorCard
@@ -26,7 +26,7 @@ public class Shichika extends AnimatorCard
         SetScaling(0, 1, 1);
 
         SetExhaust(true);
-        SetSynergy(Synergies.Katanagatari);
+        SetSeries(CardSeries.Katanagatari);
         SetAffinity(2, 2, 0, 0, 0);
     }
 

@@ -25,7 +25,7 @@ public class Excalibur extends AnimatorCard
 
         SetRetain(true);
         SetExhaust(true);
-        SetSynergy(Synergies.Fate);
+        SetSeries(CardSeries.Fate);
         SetAffinity(2, 0, 0, 2, 0);
     }
 

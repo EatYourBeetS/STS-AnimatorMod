@@ -6,7 +6,7 @@ import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.TemporaryEnvenomPower;
 import eatyourbeets.utilities.GameActions;
@@ -29,7 +29,7 @@ public class AcuraAkari extends AnimatorCard
         Initialize(0, 0, 2, 2);
         SetCostUpgrade(-1);
 
-        SetSynergy(Synergies.Chaika);
+        SetSeries(CardSeries.Chaika);
         SetAffinity(1, 2, 0, 0, 0);
     }
 

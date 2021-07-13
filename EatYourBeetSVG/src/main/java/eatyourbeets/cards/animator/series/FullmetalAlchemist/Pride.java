@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.PridePower;
 import eatyourbeets.utilities.GameActions;
 
@@ -22,7 +22,7 @@ public class Pride extends AnimatorCard
 
         SetEvokeOrbCount(magicNumber);
         SetExhaust(true);
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetSeries(CardSeries.FullmetalAlchemist);
         SetAffinity_Star(1, 1);
     }
 

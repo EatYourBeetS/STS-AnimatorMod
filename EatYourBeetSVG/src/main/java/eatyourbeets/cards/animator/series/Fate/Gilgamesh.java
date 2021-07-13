@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
@@ -43,7 +43,7 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
         SetUpgrade(1, 0);
 
         SetUnique(true, true);
-        SetSynergy(Synergies.Fate);
+        SetSeries(CardSeries.Fate);
         SetAffinity(1, 2, 0, 0, 1);
     }
 

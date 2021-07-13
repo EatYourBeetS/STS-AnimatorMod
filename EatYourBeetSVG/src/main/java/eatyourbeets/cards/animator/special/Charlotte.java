@@ -15,7 +15,7 @@ import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.effects.vfx.HemokinesisEffect;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.PowerHelper;
@@ -33,7 +33,7 @@ public class Charlotte extends AnimatorCard
         SetUpgrade(20, 0, 0);
         SetScaling(3, 0, 6);
 
-        SetSynergy(Synergies.MadokaMagica);
+        SetSeries(CardSeries.MadokaMagica);
         SetAffinity(2, 0, 2, 0, 2);
     }
 

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.powers.FrailPower;
 import eatyourbeets.cards.base.AnimatorCard_Status;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class GoblinShaman extends AnimatorCard_Status
@@ -19,7 +19,7 @@ public class GoblinShaman extends AnimatorCard_Status
 
         Initialize(0, 0);
 
-        SetSynergy(Synergies.GoblinSlayer);
+        SetSeries(CardSeries.GoblinSlayer);
         SetAffinity(0, 0, 1, 0, 1);
     }
 

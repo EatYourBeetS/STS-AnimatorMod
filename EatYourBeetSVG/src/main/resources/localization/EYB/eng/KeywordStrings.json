@@ -8,7 +8,7 @@
 	},
 	"Affinity Power":
 	{
-		"DESCRIPTION": "[A-Red] -> [F], [A-Green] -> [A], [A-Blue] -> [I], NL [A-Light] -> [B], NL [A-Dark] -> [C]",
+		"DESCRIPTION": "[A-Red] -> [F], [A-Green] -> [A], [A-Blue] -> [I], NL [A-Light] -> [B], [A-Dark] -> [C]",
 		"NAMES": ["affinity power", "affinity powers", "aff. power", "aff. powers"],
 		"PROPER_NAME": "Affinity Power"
 	},
@@ -32,7 +32,7 @@
 	},
 	"Blessing":
 	{
-		"DESCRIPTION": "Reduce [B] by #b1 each turn to gain #b1 [TempHP]. Upon reaching #b4, #b8, #b12, and #b16 [B], increase the [TempHP] gained by #b1.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b4, #b8, #b12, and #b16 [B], gain [Vitality].",
 		"NAMES": ["blessing"],
 		"PROPER_NAME": "Blessing"
 	},
@@ -251,6 +251,12 @@
 		"DESCRIPTION": "Temporary HP last until end of combat.",
 		"NAMES": ["temporary hp", "temp. hp"],
 		"PROPER_NAME": "Temporary HP"
+	},
+	"Vitality":
+	{
+		"DESCRIPTION": "At the start of each turn, gain [TempHP].",
+		"NAMES": ["vitality"],
+		"PROPER_NAME": "Vitality"
 	},
 	"~Damage":
 	{

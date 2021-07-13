@@ -9,8 +9,7 @@ import eatyourbeets.cards.animator.basic.Strike_Kancolle;
 import eatyourbeets.cards.animator.colorless.uncommon.Shimakaze;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
@@ -22,7 +21,7 @@ public class Kancolle extends AnimatorLoadout
 {
     public Kancolle()
     {
-        super(Synergies.Kancolle);
+        super(CardSeries.Kancolle);
 
         this.StartingGold = 249;
     }
@@ -95,13 +94,13 @@ public class Kancolle extends AnimatorLoadout
             AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
             if (card != null && card.color == GR.Enums.Cards.THE_ANIMATOR)
             {
-                Synergy synergy = card.synergy;
-                if (synergy != null)
+                CardSeries series = card.series;
+                if (series != null)
                 {
-                    if (!synergies.contains(synergy.ID))
+                    if (!synergies.contains(series.ID))
                     {
                         uniqueSynergies += 1;
-                        synergies.add(synergy.ID);
+                        synergies.add(series.ID);
                     }
                 }
             }

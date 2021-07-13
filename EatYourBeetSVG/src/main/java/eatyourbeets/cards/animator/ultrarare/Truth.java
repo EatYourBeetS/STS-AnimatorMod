@@ -34,7 +34,7 @@ public class Truth extends AnimatorCard_UltraRare
 
         SetExhaust(true);
 
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetSeries(CardSeries.FullmetalAlchemist);
         SetAffinity(0, 0, 2, 2, 2);
     }
 

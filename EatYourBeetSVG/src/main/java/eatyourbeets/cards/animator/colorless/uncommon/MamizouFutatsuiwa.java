@@ -24,7 +24,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
         SetUpgrade(0, 0, 3);
 
         SetExhaust(true);
-        SetSynergy(Synergies.TouhouProject);
+        SetSeries(CardSeries.TouhouProject);
         SetAffinity_Star(1, 1);
     }
 
@@ -43,8 +43,8 @@ public class MamizouFutatsuiwa extends AnimatorCard
         {
             if (shapeshifterPool.Size() == 0)
             {
-                shapeshifterPool.AddAll(JUtils.Filter(Synergies.GetNonColorlessCard(), c -> c.hasTag(SHAPESHIFTER)));
-                shapeshifterPool.AddAll(JUtils.Filter(Synergies.GetColorlessCards(), c -> c.hasTag(SHAPESHIFTER)));
+                shapeshifterPool.AddAll(JUtils.Filter(CardSeries.GetNonColorlessCard(), c -> c.hasTag(SHAPESHIFTER)));
+                shapeshifterPool.AddAll(JUtils.Filter(CardSeries.GetColorlessCards(), c -> c.hasTag(SHAPESHIFTER)));
             }
 
             AnimatorCard shapeshifter = shapeshifterPool.Retrieve(rng, false);

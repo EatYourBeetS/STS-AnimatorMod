@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.cards.DrawPileCardPreview;
@@ -32,7 +32,7 @@ public class Illya extends AnimatorCard
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, -2);
 
-        SetSynergy(Synergies.Fate);
+        SetSeries(CardSeries.Fate);
         SetAffinity(0, 0, 1, 0, 0);
     }
 

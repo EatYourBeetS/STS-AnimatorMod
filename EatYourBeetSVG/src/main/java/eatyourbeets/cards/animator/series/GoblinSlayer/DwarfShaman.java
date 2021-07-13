@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
@@ -25,7 +25,7 @@ public class DwarfShaman extends AnimatorCard
         SetScaling(1, 0, 1);
 
         SetEvokeOrbCount(1);
-        SetSynergy(Synergies.GoblinSlayer);
+        SetSeries(CardSeries.GoblinSlayer);
         SetAffinity(1, 0, 1, 1, 0);
     }
 

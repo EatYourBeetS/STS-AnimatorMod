@@ -6,7 +6,7 @@ import eatyourbeets.actions.animator.CreateRandomGoblins;
 import eatyourbeets.cards.base.AnimatorCard_Status;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class GoblinChampion extends AnimatorCard_Status
@@ -19,7 +19,7 @@ public class GoblinChampion extends AnimatorCard_Status
 
         Initialize(0, 0);
 
-        SetSynergy(Synergies.GoblinSlayer);
+        SetSeries(CardSeries.GoblinSlayer);
         SetAffinity(2, 0, 0, 0, 1);
     }
 

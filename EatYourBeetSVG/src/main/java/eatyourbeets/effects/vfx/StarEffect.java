@@ -19,7 +19,7 @@ public class StarEffect extends EYBEffect
    protected float y;
    protected float vX;
    protected float vR;
-    protected float vfxTimer;
+   protected float vfxTimer;
 
     public StarEffect(float x, float y, float vxMin, float vxMax)
     {
@@ -29,10 +29,12 @@ public class StarEffect extends EYBEffect
 
         this.x = x - (float) (SIZE / 2);
         this.y = y - (float) (SIZE / 2);
-        this.rotation = Random(-10f, 10f);
+        this.rotation = Random(5f, 10f);
         this.scale = Random(0.2f, 3.0f) * Settings.scale;
         this.vX = Random(vxMin, vxMax) * Settings.scale;
         this.vR = Random(-600f, 600f);
+
+        if (MathUtils.randomBoolean()) this.rotation *= -1;
         SetColor();
 
     }
@@ -41,22 +43,22 @@ public class StarEffect extends EYBEffect
     {
         switch (MathUtils.random(0, 5)) {
             case 0:
-                this.color = new Color(1.0F, 0.5F, 0.5F, 0.15F);
+                this.color = new Color(1.0F, MathUtils.random(0.5F, 1.0F), 0.5F, 0.15F);
                 break;
             case 1:
-                this.color = new Color(1.0F, 1.0F, 0.5F, 0.15F);
+                this.color = new Color(MathUtils.random(0.5F, 1.0F), 1.0F, 0.5F, 0.15F);
                 break;
             case 2:
-                this.color = new Color(0.5F, 1.0F, 0.5F, 0.15F);
+                this.color = new Color(0.5F, 1.0F, MathUtils.random(0.5F, 1.0F), 0.15F);
                 break;
             case 3:
-                this.color = new Color(0.5F, 1.0F, 1.0F, 0.15F);
+                this.color = new Color(0.5F, MathUtils.random(0.5F, 1.0F), 1.0F, 0.15F);
                 break;
             case 4:
-                this.color = new Color(0.5F, 0.5F, 1.0F, 0.15F);
+                this.color = new Color(MathUtils.random(0.5F, 1.0F), 0.5F, 1.0F, 0.15F);
                 break;
             default:
-                this.color = new Color(1.0F, 0.5F, 1.0F, 0.15F);
+                this.color = new Color(1.0F, 0.5F, MathUtils.random(0.5F, 1.0F), 0.15F);
                 break;
         }
         this.color.a = 0.15F;
@@ -72,19 +74,6 @@ public class StarEffect extends EYBEffect
         if (scale > 0.3f * Settings.scale)
         {
             scale -= deltaTime * 2f;
-        }
-
-        if (color.r == 1.0f && color.b <= 0.5f) {
-            if (color.g <= 0.5f) color.g = Interpolation.pow2Out.apply(0.5f, 1f, duration);
-            else color.r = Interpolation.pow2Out.apply(1f, 0.5f, duration);
-        }
-        else if (color.g == 1.0f) {
-            if (color.b <= 0.5f) color.b = Interpolation.pow2Out.apply(0.5f, 1f, duration);
-            else color.g = Interpolation.pow2Out.apply(1f, 0.5f, duration);
-        }
-        else if (color.b == 1.0f) {
-            if (color.r <= 0.5f) color.r = Interpolation.pow2Out.apply(0.5f, 1f, duration);
-            else color.b = Interpolation.pow2Out.apply(1f, 0.5f, duration);
         }
 
         if ((1f - duration) < 0.1f)

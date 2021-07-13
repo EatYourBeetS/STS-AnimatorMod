@@ -46,7 +46,7 @@ public class Klee extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
         for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
         {
-            GameActions.Bottom.ApplyBurning(p, enemy, magicNumber);
+            GameActions.Bottom.ApplyVulnerable(p, enemy, magicNumber);
         }
 
         int numberOfFire = JUtils.Count(player.orbs, orb -> Fire.ORB_ID.equals(orb.ID));

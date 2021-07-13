@@ -423,13 +423,13 @@
 		"animator:Sear":
 		{
 		  "DESCRIPTION": "At the end of your turn, ALL characters take !M! damage and gain !S! [Burning].",
-		  "NAME": "Sear"
+		  "NAME": "Searing Burn"
 		},
 		"animator:SheerCold":
 		{
-		  "DESCRIPTION": "[Frost] now applies [Chilled] to a random enemy when Triggered and to all enemies when Evoked, ignoring [Artifact].",
+		  "DESCRIPTION": "Your [Frost] now applies [Chilled] equal to their [Block] to a random enemy when Triggered and to all enemies when Evoked, ignoring [Artifact].",
 		  "NAME": "Sheer Cold",
-		  "UPGRADE_DESCRIPTION": "Channel 1 [Frost]. || [Frost] now applies !M!X [Chilled] to a random enemy when Triggered and to all enemies when Evoked, ignoring [Artifact]."
+		  "UPGRADE_DESCRIPTION": "Channel 1 [Frost]. || Your [Frost] now applies [Chilled] equal to their [Block] to a random enemy when Triggered and to all enemies when Evoked, ignoring [Artifact]."
 		},
 		"animator:ShuuOuma":
 		{
@@ -586,7 +586,7 @@
 		},
 		"animator:HuTao":
 		{
-		  "DESCRIPTION": "Exhaust !M! random {Hindrances} from anywhere. Add {Sear} to your Draw Pile for each. || When Exhausted, add !S! {Sear} to your hand.",
+		  "DESCRIPTION": "Exhaust !M! random {Hindrances} from anywhere. Add {Searing Burn} to your Draw Pile for each. || When Exhausted, add !S! {Searing Burn} to your hand.",
 		  "NAME": "Hu Tao"
 		},
 		"animator:JeanGunnhildr":
@@ -616,9 +616,9 @@
 		},
 		"animator:Klee":
 		{
-		  "DESCRIPTION": "Apply !M! [Burning] to ALL enemies. || Add !S! {Jumpy Dumpty} to your Draw Pile. ** Add 1 more if at least half of your orbs are [Fire].",
+		  "DESCRIPTION": "Apply !M! [Vulnerable] to ALL enemies. || Add !S! {Jumpy Dumpty} to your Draw Pile. ** Add 1 more if at least half of your orbs are [Fire].",
 		  "NAME": "Klee",
-		  "UPGRADE_DESCRIPTION": "Apply !M! [Burning] to ALL enemies. || Add !S! upgraded {Jumpy Dumpty} to your Draw Pile. ** Add 1 more if at least half of your orbs are [Fire]."
+		  "UPGRADE_DESCRIPTION": "Apply !M! [Vulnerable] to ALL enemies. || Add !S! upgraded {Jumpy Dumpty} to your Draw Pile. ** Add 1 more if at least half of your orbs are [Fire]."
 		},
 		"animator:LisaMinci":
 		{
@@ -648,8 +648,8 @@
 		},
 		"animator:Traveler":
 		{
-		  "DESCRIPTION": "{Unique}. || At the start of combat, ** Transform this card into 1 of 2 {Forms}. || When Exhausted, change this card's form and return it to your Draw Pile.",
-		  "EXTENDED_DESCRIPTION": ["{Unique}. || Channel [Aether][Random Orb]. ** Evoke your first !S! Orb(s) and gain !M! [Elemental Mastery] for each one.", "{Unique}. || For each enemy: Apply !S! [Weak] if it intends to attack. Otherwise, apply !S! [Vulnerable]. ** Next turn, trigger the last !M! Orbs Evoked this combat."],
+		  "DESCRIPTION": "{Unique}. || Choose 1 of 2 {Forms} for this card at the start of combat. || When Exhausted, switches forms and returns to your Draw Pile.",
+		  "EXTENDED_DESCRIPTION": ["{Unique}. || Channel 2 [Aether]. ** Gain !M! [Elemental Mastery]. Evoke your first !S! non-[Aether] Orb(s) and gain 5 more [Elemental Mastery] for each one.", "{Unique}. || Add a {Decay} to your Discard Pile. Apply [Vulnerable][Weak] to ALL enemies !S! times. ** Next turn, trigger the last !M! Orbs Evoked this combat."],
 		  "NAME": "Abyss Ruler"
 		},
 		"animator:Venti":
@@ -659,7 +659,7 @@
 		},
 		"animator:Zhongli":
 		{
-			"DESCRIPTION": "[Earth] now gives half of its damage as [Block] when Evoked. || At the end of each turn, spend ** !S! of your remaining Energy ** to {Channel} [Earth] and gain !M! [Plated Armor].",
+			"DESCRIPTION": "Your [Earth] now give half of their damage as [Block] when Evoked. || At the end of each turn, spend ** !S! of your remaining Energy ** to {Channel} [Earth] and gain !M! [Plated Armor].",
 			"EXTENDED_DESCRIPTION": ["#yEarth orbs now also give Block when Evoked. At the end of each turn, spend #b{0} of your remaining energy to channel #yEarth and gain #b{1} #yPlated #yArmor."],
 			"NAME": "Zhongli"
 		}

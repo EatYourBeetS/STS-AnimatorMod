@@ -2,13 +2,14 @@ package eatyourbeets.cards.animator.beta.ultrarare;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.curses.Decay;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
-import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -48,8 +49,8 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
     {
         super(DATA);
 
-        Initialize(0, 0, 10, 2);
-        SetUpgrade(0, 0, 2, 0);
+        Initialize(0, 0, 20, 2);
+        SetUpgrade(0, 0, 5, 0);
         SetUnique(true, true);
         SetEthereal(true);
         SetSynergy(Synergies.GenshinImpact);
@@ -114,34 +115,32 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
         switch (currentForm)
         {
             case Aether:
-
-                GameActions.Bottom.EvokeOrb(secondaryValue, EvokeOrb.Mode.Sequential).AddCallback(orbs -> {
-
-                    if (orbs.size() > 0) {
-                        GameActions.Bottom.StackPower(new ElementalMasteryPower(p, magicNumber * orbs.size()));
+                GameActions.Bottom.StackPower(new ElementalMasteryPower(p, magicNumber));
+                int evoked = 0;
+                for (AbstractOrb orb : player.orbs) {
+                    if (!(orb instanceof EmptyOrbSlot) && !Aether.ORB_ID.equals(orb.ID)) {
+                        GameActions.Bottom.EvokeOrb(1, orb);
+                        GameActions.Bottom.StackPower(new ElementalMasteryPower(p, 5));
+                        evoked += 1;
+                        if (evoked >= secondaryValue) {
+                            break;
+                        }
                     }
-                });
+                }
 
-                GameActions.Bottom.ChannelOrb(new Aether());
-                GameActions.Bottom.ChannelRandomOrbs(1);
+                GameActions.Bottom.ChannelOrbs(Aether::new, 2);
                 break;
             case Lumine:
                 for (AbstractMonster target : GameUtilities.GetEnemies(true)) {
-                    if (GameUtilities.IsAttacking(target.intent))
-                    {
-                        GameActions.Bottom.ApplyWeak(p, target, secondaryValue);
-                    }
-                    else
-                    {
-                        GameActions.Bottom.ApplyVulnerable(p, target, secondaryValue);
+                    for (int i = 0; i < secondaryValue; i++) {
+                        GameActions.Bottom.ApplyVulnerable(p, target, 1);
+                        GameActions.Bottom.ApplyWeak(p, target, 1);
                     }
                 }
-                if (CombatStats.OrbsEvokedThisCombat().size() > 0)
-                {
-                    Traveler other = (Traveler) makeStatEquivalentCopy();
-                    other.ChangeForm(this.currentForm);
-                    CombatStats.onStartOfTurnPostDraw.Subscribe(other);
-                }
+                Traveler other = (Traveler) makeStatEquivalentCopy();
+                other.ChangeForm(this.currentForm);
+                CombatStats.onStartOfTurnPostDraw.Subscribe(other);
+                GameActions.Bottom.MakeCardInDiscardPile(new Decay());
         }
 
     }

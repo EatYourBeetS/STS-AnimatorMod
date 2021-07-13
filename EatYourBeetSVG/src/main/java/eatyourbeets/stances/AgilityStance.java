@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.stance.StanceParticleHorizontal;
 import eatyourbeets.effects.stance.StanceParticleVertical;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.affinity.AgilityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -68,7 +68,7 @@ public class AgilityStance extends EYBStance
     @Override
     public void onRefreshStance()
     {
-        AgilityPower.PreserveOnce();
+        CombatStats.Affinities.Agility.Retain();
     }
 
     @Override

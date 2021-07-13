@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.affinity.ForcePower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
@@ -49,7 +49,7 @@ public class Alexander extends AnimatorCard
         }
         else
         {
-            ForcePower.PreserveOnce();
+            CombatStats.Affinities.Force.Retain();
         }
     }
 }

@@ -663,6 +663,8 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         super.update(slot);
 
+        Affinities.Update();
+
         if (currentPhase != AbstractDungeon.actionManager.phase)
         {
             currentPhase = AbstractDungeon.actionManager.phase;

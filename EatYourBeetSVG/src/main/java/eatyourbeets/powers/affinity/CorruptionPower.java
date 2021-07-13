@@ -15,11 +15,6 @@ public class CorruptionPower extends AbstractAffinityPower
 
     protected static final int[] THRESHOLDS = new int[]{ 5, 7, 9, 12 };
 
-    public static void PreserveOnce()
-    {
-        preservedPowers.Subscribe(POWER_ID);
-    }
-
     public CorruptionPower(AbstractCreature owner, int amount)
     {
         super(AFFINITY_TYPE, POWER_ID, owner, amount);

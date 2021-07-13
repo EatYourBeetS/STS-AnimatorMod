@@ -13,11 +13,6 @@ public class BlessingPower extends AbstractAffinityPower
 
     protected static final int[] THRESHOLDS = new int[]{ 4, 8, 12, 16 };
 
-    public static void PreserveOnce()
-    {
-        preservedPowers.Subscribe(POWER_ID);
-    }
-
     public BlessingPower(AbstractCreature owner, int amount)
     {
         super(AFFINITY_TYPE, POWER_ID, owner, amount);

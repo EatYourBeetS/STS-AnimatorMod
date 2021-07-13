@@ -29,6 +29,8 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
     {
         super(ActionType.POWER, Settings.FAST_MODE ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FASTER);
 
+        this.retain = retain;
+
         if (affinityType != null)
         {
             this.power = CombatStats.Affinities.GetPower(affinityType);

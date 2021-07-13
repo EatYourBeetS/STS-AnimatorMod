@@ -8,7 +8,6 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredTexture;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -316,7 +315,7 @@ public class EYBCardAffinities
 
         if (HasStar())
         {
-            Star.RenderOnCard(sb, card, 0, y, size);
+            Star.RenderOnCard(sb, card, 0, y, size, displayUpgrades && Upgrades.containsKey(Star.Type));
             return;
         }
 
@@ -344,13 +343,7 @@ public class EYBCardAffinities
             }
 // Render Centered
 
-            item.RenderOnCard(sb, card, x, y, size);
-
-            if (displayUpgrades && Upgrades.containsKey(item.Type))
-            {
-                upgradeCircle.color.a = GR.UI.Time_Sin(0.4f,4f);
-                RenderHelpers.DrawOnCardAuto(sb, card, upgradeCircle, x, y, size * 0.95f, size * 0.95f);
-            }
+            item.RenderOnCard(sb, card, x, y, size, displayUpgrades && Upgrades.containsKey(item.Type));
         }
     }
 

@@ -10,11 +10,6 @@ public class ForcePower extends AbstractAffinityPower
     public static final String POWER_ID = CreateFullID(ForcePower.class);
     public static final AffinityType AFFINITY_TYPE = AffinityType.Red;
 
-    public static void PreserveOnce()
-    {
-        preservedPowers.Subscribe(POWER_ID);
-    }
-
     public ForcePower(AbstractCreature owner, int amount)
     {
         super(AFFINITY_TYPE, POWER_ID, owner, amount);

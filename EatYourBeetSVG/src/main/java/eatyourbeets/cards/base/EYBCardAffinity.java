@@ -5,9 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
+import eatyourbeets.utilities.Testing;
 
 public class EYBCardAffinity implements Comparable<EYBCardAffinity>
 {
@@ -53,7 +55,7 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
         }
     }
 
-    public void RenderOnCard(SpriteBatch sb, AbstractCard card, float x, float y, float size)
+    public void RenderOnCard(SpriteBatch sb, AbstractCard card, float x, float y, float size, boolean highlight)
     {
         float rotation = 0f;
         Color color = Color.WHITE.cpy();
@@ -85,7 +87,15 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
         Texture border = Type.GetBorder(level);
         if (border != null)
         {
-            RenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size, color, 1f, 1f, rotation);
+            Color borderColor = color;
+            if (highlight)
+            {
+                float distance = Testing.TryGetValue(0, 0.5f);
+                float speed = Testing.TryGetValue(1, 4f);
+                borderColor = Color.WHITE.cpy().lerp(Settings.GREEN_RELIC_COLOR, GR.UI.Time_Sin(distance, speed));
+            }
+
+            RenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size, borderColor, 1f, 1f, rotation);
         }
 
         Texture foreground = Type.GetForeground(level);
@@ -116,15 +126,5 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
         }
 
         return (level * 100) + (10 - Type.ID);
-    }
-
-    public static void RenderBackground()
-    {
-
-    }
-
-    public static void RenderForeground()
-    {
-
     }
 }

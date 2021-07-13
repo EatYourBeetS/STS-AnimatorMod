@@ -4,15 +4,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
-import eatyourbeets.cards.animator.special.Oktavia;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
+import eatyourbeets.cards.animator.special.Oktavia;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.powers.affinity.IntellectPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -48,7 +48,7 @@ public class SayakaMiki extends AnimatorCard
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.ChannelOrb(new Frost());
 
-        IntellectPower.PreserveOnce();
+        CombatStats.Affinities.Intellect.Retain();
 
         AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
         if (HasSynergy() && last != null && last.cardID.equals(Curse_GriefSeed.DATA.ID))

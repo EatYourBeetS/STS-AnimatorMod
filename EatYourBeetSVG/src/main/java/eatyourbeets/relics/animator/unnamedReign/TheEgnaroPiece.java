@@ -8,7 +8,7 @@ public class TheEgnaroPiece extends UnnamedReignRelic
 {
     public static final String ID = CreateFullID(TheEgnaroPiece.class);
     public static final int VITALITY_AMOUNT = 1;
-    public static final int CARDS_STEP = 6;
+    public static final int CARDS_STEP = 7;
 
     public TheEgnaroPiece()
     {
@@ -45,7 +45,7 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     {
         super.atBattleStart();
 
-        this.counter = Math.min(10, VITALITY_AMOUNT * player.masterDeck.size() / CARDS_STEP);
+        this.counter = 1 + Math.min(9, VITALITY_AMOUNT * player.masterDeck.size() / CARDS_STEP);
         if (counter > 0)
         {
             GameActions.Bottom.GainVitality(counter);

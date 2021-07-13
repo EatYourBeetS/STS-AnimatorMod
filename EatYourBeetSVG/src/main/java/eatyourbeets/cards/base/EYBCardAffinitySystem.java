@@ -51,6 +51,14 @@ public class EYBCardAffinitySystem implements OnStartOfTurnSubscriber
         CombatStats.onStartOfTurn.Subscribe(this);
     }
 
+    public void Update()
+    {
+        for (int i = 0; i < Powers.size(); i++)
+        {
+            Powers.get(i).update(i);
+        }
+    }
+
     public AbstractAffinityPower GetPower(AffinityType type)
     {
         for (AbstractAffinityPower p : Powers)

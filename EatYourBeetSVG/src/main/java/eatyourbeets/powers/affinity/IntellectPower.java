@@ -10,11 +10,6 @@ public class IntellectPower extends AbstractAffinityPower
     public static final String POWER_ID = CreateFullID(IntellectPower.class);
     public static final AffinityType AFFINITY_TYPE = AffinityType.Blue;
 
-    public static void PreserveOnce()
-    {
-        preservedPowers.Subscribe(POWER_ID);
-    }
-
     public IntellectPower(AbstractCreature owner, int amount)
     {
         super(AFFINITY_TYPE, POWER_ID, owner, amount);

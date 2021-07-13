@@ -10,11 +10,6 @@ public class AgilityPower extends AbstractAffinityPower
     public static final String POWER_ID = CreateFullID(AgilityPower.class);
     public static final AffinityType AFFINITY_TYPE = AffinityType.Green;
 
-    public static void PreserveOnce()
-    {
-        preservedPowers.Subscribe(POWER_ID);
-    }
-
     public AgilityPower(AbstractCreature owner, int amount)
     {
         super(AFFINITY_TYPE, POWER_ID, owner, amount);

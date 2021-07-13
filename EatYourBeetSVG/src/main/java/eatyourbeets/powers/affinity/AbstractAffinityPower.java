@@ -10,18 +10,19 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
-import eatyourbeets.interfaces.subscribers.OnStatsClearedSubscriber;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.JUtils;
 
-import java.util.HashSet;
-
 public abstract class AbstractAffinityPower extends CommonPower
 {
-    protected static final int[] DEFAULT_THRESHOLDS = new int[] { 3, 6, 9, 12 };
-    protected static final PreservedPowers preservedPowers = new PreservedPowers();
+    //@Formatter: off
+    @Override public final void renderIcons(SpriteBatch sb, float x, float y, Color c) { }
+    @Override public final void renderAmount(SpriteBatch sb, float x, float y, Color c) { }
+    @Override public void update(int slot) { super.update(slot); }
+    //@Formatter: on
+
+    protected static final int[] DEFAULT_THRESHOLDS = new int[]{3, 6, 9, 12};
+
     protected int thresholdIndex;
 
     public AffinityType affinityType;
@@ -39,20 +40,54 @@ public abstract class AbstractAffinityPower extends CommonPower
     }
 
     protected abstract float GetScaling(EYBCard card);
+
     protected abstract void OnThresholdReached(int threshold);
 
     public void Render(SpriteBatch sb, Hitbox hb)
     {
-        renderIcons(sb, hb.x + hb.width * 2f, hb.cY, Color.WHITE);
-        renderAmount(sb, hb.x + hb.width * 3.33f, hb.y, Color.WHITE);
+        final float w = hb.width;
+        final float h = hb.height;
+        final float x = hb.x + w * 2f;
+        final float y = hb.y + h;
+
+        sb.setColor(Color.WHITE);
+        if (this.powerIcon != null)
+        {
+            sb.draw(this.powerIcon, x - 12f, y - 16f, 16f, 16f, w, h, Settings.scale, Settings.scale, 0f);
+        }
+        else
+        {
+            sb.draw(this.img, x - 12f, y - 12f, 16f, 16f, w, h, Settings.scale * 1.5f, Settings.scale * 1.5f, 0f, 0, 0, 32, 32, false, false);
+        }
+
+//        for (AbstractGameEffect e : effects)
+//        {
+//            e.render(sb, x, y);
+//        }
+
+        Integer threshold = GetCurrentThreshold();
+        if (threshold != null)
+        {
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (w * 2f), hb.y, 1, Settings.CREAM_COLOR);
+        }
+
+        Color textColor = amount == 0 ? Settings.CREAM_COLOR : retained ? Settings.BLUE_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + (w * 0.9f), hb.y, fontScale, textColor);
+    }
+
+    public void Retain()
+    {
+        this.retained = true;
     }
 
     public void Stack(int amount, boolean retain)
     {
         this.amount += amount;
-        if (this.enabled && retain)
+        this.fontScale = 8f;
+
+        if (retain)
         {
-            this.enabled = false;
+            Retain();
         }
 
         UpdateThreshold();
@@ -116,38 +151,14 @@ public abstract class AbstractAffinityPower extends CommonPower
     }
 
     @Override
-    public void onInitialApplication()
-    {
-        super.onInitialApplication();
-
-        UpdateThreshold();
-    }
-
-    @Override
-    public void stackPower(int stackAmount)
-    {
-        super.stackPower(stackAmount);
-
-        UpdateThreshold();
-    }
-
-    @Override
     public void atStartOfTurn()
     {
         super.atStartOfTurn();
 
-        if (enabled && amount > 0)
+        if (!retained && amount > 0)
         {
             reducePower(1);
         }
-    }
-
-    @Override
-    public void update(int slot)
-    {
-        super.update(slot);
-
-        this.enabled = (!preservedPowers.contains(ID));
     }
 
     @Override
@@ -170,54 +181,5 @@ public abstract class AbstractAffinityPower extends CommonPower
         }
 
         return damage;
-    }
-
-    @Override
-    public void renderAmount(SpriteBatch sb, float x, float y, Color c)
-    {
-        Integer threshold = GetCurrentThreshold();
-        if (threshold != null)
-        {
-            final float offset1_x = -24 * Settings.scale;
-            final float offset2_x = 3 * Settings.scale;
-            final float offset1_y = -5 * Settings.scale;
-            final float offset2_y = -5 * Settings.scale;
-            final Color c1 = Settings.GREEN_TEXT_COLOR.cpy();
-            final Color c2 = Settings.CREAM_COLOR.cpy();
-            c1.a = c2.a = c.a;
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + offset2_x, y + offset2_y, 1, c2);
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x + offset1_x, y + offset1_y, fontScale, c1);
-        }
-        else
-        {
-            super.renderAmount(sb, x, y, c);
-        }
-    }
-
-    public static class PreservedPowers extends HashSet<String> implements OnStatsClearedSubscriber, OnStartOfTurnPostDrawSubscriber
-    {
-        @Override
-        public boolean OnStatsCleared()
-        {
-            clear();
-            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
-            CombatStats.onStatsCleared.Unsubscribe(this);
-            return true;
-        }
-
-        @Override
-        public void OnStartOfTurnPostDraw()
-        {
-            clear();
-            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
-            CombatStats.onStatsCleared.Unsubscribe(this);
-        }
-
-        public void Subscribe(String powerID)
-        {
-            add(powerID);
-            CombatStats.onStatsCleared.Subscribe(this);
-            CombatStats.onStartOfTurnPostDraw.Subscribe(this);
-        }
     }
 }

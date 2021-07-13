@@ -8,14 +8,15 @@ import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class HiiragiShinya extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HiiragiShinya.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(HiiragiShinya.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public HiiragiShinya()
     {
@@ -24,8 +25,8 @@ public class HiiragiShinya extends AnimatorCard
         Initialize(0, 4, 2);
         SetUpgrade(0, 3, 0);
 
-        SetSeries(CardSeries.OwariNoSeraph);
-        SetAffinity(0, 2, 0, 1, 0);
+        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Light(1);
     }
 
     @Override

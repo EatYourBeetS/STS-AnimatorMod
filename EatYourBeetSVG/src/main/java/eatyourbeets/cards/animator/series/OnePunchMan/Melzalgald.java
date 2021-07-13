@@ -8,13 +8,14 @@ import eatyourbeets.cards.animator.special.MelzalgaldAlt_2;
 import eatyourbeets.cards.animator.special.MelzalgaldAlt_3;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Melzalgald extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Melzalgald.class).SetAttack(3, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Melzalgald.class)
+            .SetAttack(3, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new MelzalgaldAlt_1(), true);
@@ -27,11 +28,10 @@ public class Melzalgald extends AnimatorCard
         super(DATA);
 
         Initialize(21, 0);
-        SetScaling(2, 2, 2);
+
+        SetAffinity_Star(1, 1, 2);
 
         SetExhaust(true);
-        SetSeries(CardSeries.OnePunchMan);
-        SetAffinity_Star(1, 1);
     }
 
     @Override

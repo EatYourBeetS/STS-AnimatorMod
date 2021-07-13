@@ -13,18 +13,19 @@ import eatyourbeets.utilities.GameActions;
 
 public class AcuraShin extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(AcuraShin.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(AcuraShin.class)
+            .SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing)
+            .SetSeries(CardSeries.HitsugiNoChaika);
 
     public AcuraShin()
     {
         super(DATA);
 
         Initialize(3,0,2);
-        SetScaling(0, 1, 0);
         SetCostUpgrade(-1);
 
-        SetSeries(CardSeries.Chaika);
-        SetAffinity(0, 2, 0, 0, 1);
+        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Dark(1, 0, 1);
     }
 
     @Override

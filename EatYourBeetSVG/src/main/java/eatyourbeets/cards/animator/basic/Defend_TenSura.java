@@ -17,7 +17,7 @@ public class Defend_TenSura extends Defend
         Initialize(0, 3);
         SetUpgrade(0, 1);
 
-        SetSeries(CardSeries.TenSura);
+        SetSeries(CardSeries.TenseiSlime);
         SetAffinity_Green(1);
     }
 

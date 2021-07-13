@@ -11,7 +11,10 @@ import eatyourbeets.utilities.GameActions;
 
 public class Chomusuke extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(Chomusuke.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Chomusuke.class)
+            .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Konosuba);
 
     public Chomusuke()
     {
@@ -19,8 +22,8 @@ public class Chomusuke extends AnimatorCard_UltraRare
 
         Initialize(0, 0);
 
-        SetSeries(CardSeries.Konosuba);
-        SetAffinity(0, 0, 0, 2, 2);
+        SetAffinity_Light(1);
+        SetAffinity_Dark(1);
     }
 
     @Override

@@ -19,7 +19,10 @@ public class Truth extends AnimatorCard_UltraRare
 {
     private static final Wound wound = new Wound();
 
-    public static final EYBCardData DATA = Register(Truth.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Truth.class)
+            .SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.FullmetalAlchemist);
     static
     {
         DATA.AddPreview(new FakeAbstractCard(wound), false);
@@ -32,10 +35,11 @@ public class Truth extends AnimatorCard_UltraRare
         Initialize(0, 0, 4);
         SetUpgrade(0, 0, 0);
 
-        SetExhaust(true);
+        SetAffinity_Blue(2);
+        SetAffinity_Light(2);
+        SetAffinity_Dark(2);
 
-        SetSeries(CardSeries.FullmetalAlchemist);
-        SetAffinity(0, 0, 2, 2, 2);
+        SetExhaust(true);
     }
 
     @Override

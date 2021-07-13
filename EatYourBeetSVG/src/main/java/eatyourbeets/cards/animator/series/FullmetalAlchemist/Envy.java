@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.animator.EnvyPower;
@@ -13,7 +12,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Envy extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Envy.class).SetPower(2, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Envy.class)
+            .SetPower(2, CardRarity.RARE)
+            .SetSeriesFromClassPackage();
 
     public Envy()
     {
@@ -21,9 +22,9 @@ public class Envy extends AnimatorCard
 
         Initialize(0, 0);
 
+        SetAffinity_Star(1, 1, 0);
+
         SetEthereal(true);
-        SetSeries(CardSeries.FullmetalAlchemist);
-        SetAffinity_Star(1, 1);
     }
 
     @Override

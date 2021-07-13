@@ -13,12 +13,13 @@ import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class HomuraAkemi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HomuraAkemi.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(HomuraAkemi.class)
+            .SetSkill(3, CardRarity.RARE, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public HomuraAkemi()
     {
@@ -26,10 +27,11 @@ public class HomuraAkemi extends AnimatorCard
 
         Initialize(0, 0, 1, 3);
 
+        SetAffinity_Blue(2);
+        SetAffinity_Dark(1);
+
         SetExhaust(true);
         SetEthereal(true);
-        SetSeries(CardSeries.MadokaMagica);
-        SetAffinity(0, 0, 2, 0, 1);
     }
 
     @Override

@@ -6,15 +6,17 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ViolentAttackEffect;
 import eatyourbeets.actions.basic.RemoveBlock;
+import eatyourbeets.cards.animator.series.Katanagatari.Shichika;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class ShichikaKyotouryuu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ShichikaKyotouryuu.class).SetAttack(1, CardRarity.SPECIAL);
+    public static final EYBCardData DATA = Register(ShichikaKyotouryuu.class)
+            .SetAttack(1, CardRarity.SPECIAL)
+            .SetSeries(Shichika.DATA.Series);
 
     public ShichikaKyotouryuu()
     {
@@ -22,12 +24,12 @@ public class ShichikaKyotouryuu extends AnimatorCard
 
         Initialize(1, 0, 4);
         SetUpgrade(1, 0, 0);
-        SetScaling(0, 1, 1);
+
+        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Green(2, 0, 1);
 
         SetEthereal(true);
         SetExhaust(true);
-        SetSeries(CardSeries.Katanagatari);
-        SetAffinity(2, 2, 0, 0, 0);
     }
 
     @Override

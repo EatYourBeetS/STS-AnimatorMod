@@ -6,14 +6,15 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class SwordMaiden extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SwordMaiden.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(SwordMaiden.class)
+            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public SwordMaiden()
     {
@@ -21,9 +22,10 @@ public class SwordMaiden extends AnimatorCard
 
         Initialize(0, 0, 6);
 
+        SetAffinity_Blue(1);
+        SetAffinity_Light(2);
+
         SetExhaust(true);
-        SetSeries(CardSeries.GoblinSlayer);
-        SetAffinity(0, 0, 1, 2, 0);
     }
 
     @Override

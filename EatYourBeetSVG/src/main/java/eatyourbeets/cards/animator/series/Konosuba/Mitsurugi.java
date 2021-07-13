@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.ui.cards.TargetEffectPreview;
 import eatyourbeets.utilities.GameActions;
@@ -13,7 +12,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Mitsurugi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Mitsurugi.class).SetAttack(0, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Mitsurugi.class)
+            .SetAttack(0, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     private final TargetEffectPreview targetEffectPreview = new TargetEffectPreview(this::OnTargetChanged);
     private boolean showDamage = true;
@@ -24,10 +25,9 @@ public class Mitsurugi extends AnimatorCard
 
         Initialize(8, 0, 1, 4);
         SetUpgrade(2, 0, 0, 0);
-        SetScaling(0, 0, 1);
 
-        SetSeries(CardSeries.Konosuba);
-        SetAffinity(1, 0, 0, 2, 0);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Light(2);
     }
 
     @Override

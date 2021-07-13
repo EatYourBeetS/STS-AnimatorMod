@@ -12,7 +12,10 @@ import eatyourbeets.utilities.GameEffects;
 
 public class SirTouchMe extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(SirTouchMe.class).SetAttack(2, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(SirTouchMe.class)
+            .SetAttack(2, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Overlord);
 
     public SirTouchMe()
     {
@@ -20,10 +23,9 @@ public class SirTouchMe extends AnimatorCard_UltraRare
 
         Initialize(4, 4, 4, 3);
         SetUpgrade(2, 2, 2, 0);
-        SetScaling(0, 0, 2);
-
-        SetSeries(CardSeries.Overlord);
-        SetAffinity(2, 1, 0, 2, 0);
+        
+        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Light(2, 0, 1);
     }
 
     @Override

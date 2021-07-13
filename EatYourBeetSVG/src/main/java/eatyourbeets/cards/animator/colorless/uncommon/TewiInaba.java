@@ -16,7 +16,10 @@ import eatyourbeets.utilities.GameActions;
 
 public class TewiInaba extends AnimatorCard implements Hidden // TODO:
 {
-    public static final EYBCardData DATA = Register(TewiInaba.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(TewiInaba.class)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.TouhouProject);
 
     public TewiInaba()
     {
@@ -25,7 +28,6 @@ public class TewiInaba extends AnimatorCard implements Hidden // TODO:
         Initialize(0, 0, 2, 4);
         SetUpgrade(0, 0, 0, 0);
 
-        SetSeries(CardSeries.TouhouProject);
         SetAffinity_Dark(1);
     }
 

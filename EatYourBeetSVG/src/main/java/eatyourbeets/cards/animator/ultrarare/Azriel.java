@@ -11,7 +11,10 @@ import eatyourbeets.utilities.GameActions;
 
 public class Azriel extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(Azriel.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Azriel.class)
+            .SetPower(3, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.NoGameNoLife);
 
     public Azriel()
     {
@@ -19,10 +22,11 @@ public class Azriel extends AnimatorCard_UltraRare
 
         Initialize(0, 0, 1);
 
-        SetEthereal(true);
+        SetAffinity_Red(1);
+        SetAffinity_Blue(1);
+        SetAffinity_Dark(1);
 
-        SetSeries(CardSeries.NoGameNoLife);
-        SetAffinity(2, 0, 2, 0, 1);
+        SetEthereal(true);
     }
 
     @Override

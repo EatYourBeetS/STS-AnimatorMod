@@ -5,15 +5,17 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class MaesHughes extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MaesHughes.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(MaesHughes.class)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSeries(CardSeries.FullmetalAlchemist);
 
     public MaesHughes()
     {
@@ -22,8 +24,8 @@ public class MaesHughes extends AnimatorCard
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, -1);
 
-        SetSeries(CardSeries.FullmetalAlchemist);
-        SetAffinity(0, 0, 1, 2, 0);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1, 1, 0);
     }
 
     @Override

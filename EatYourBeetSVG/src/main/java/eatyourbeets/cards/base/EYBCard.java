@@ -17,6 +17,7 @@ import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.PlayerFlightPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
@@ -45,9 +46,6 @@ public abstract class EYBCard extends EYBCardBase
     public final ArrayList<EYBCardTooltip> tooltips;
     public EYBCardTarget attackTarget = EYBCardTarget.Normal;
     public EYBAttackType attackType = EYBAttackType.Normal;
-    public int forceScaling = 0;
-    public int intellectScaling = 0;
-    public int agilityScaling = 0;
 
     public static EYBCardData GetStaticData(String cardID)
     {
@@ -105,10 +103,7 @@ public abstract class EYBCard extends EYBCardBase
         copy.isEthereal = isEthereal;
         copy.isInnate = isInnate;
 
-        copy.forceScaling = forceScaling;
-        copy.agilityScaling = agilityScaling;
-        copy.intellectScaling = intellectScaling;
-
+        copy.affinities.Initialize(affinities);
         copy.magicNumber = magicNumber;
         copy.isMagicNumberModified = isMagicNumberModified;
 
@@ -467,38 +462,60 @@ public abstract class EYBCard extends EYBCardBase
         isMultiUpgrade = multiUpgrade;
     }
 
-    public void SetScaling(int intellect, int agility, int force)
+    public void AddScaling(AffinityType type, int amount)
     {
-        this.intellectScaling = intellect;
-        this.agilityScaling = agility;
-        this.forceScaling = force;
+        EYBCardAffinity affinity = affinities.Get(type);
+        if (affinity != null)
+        {
+            affinity.scaling += amount;
+        }
+        else
+        {
+            affinities.Set(type, 0).scaling += amount;
+        }
+    }
+
+    public void SetScaling(EYBCardAffinities affinities)
+    {
+        if (affinities.HasStar())
+        {
+            SetScaling(AffinityType.Star, affinities.Star.scaling);
+        }
+
+        for (EYBCardAffinity a : affinities.List)
+        {
+            SetScaling(a.Type, a.scaling);
+        }
+    }
+
+    public void SetScaling(AffinityType type, int amount)
+    {
+        EYBCardAffinity affinity = affinities.Get(type);
+        if (affinity != null)
+        {
+            affinity.scaling = amount;
+        }
+        else
+        {
+            affinities.Set(type, 0).scaling = amount;
+        }
     }
 
     //@Formatter: Off
-    protected void SetAffinity_Red(int base) { InitializeAffinity(AffinityType.Red, base, 0); }
-    protected void SetAffinity_Red(int base, int upgrade) { InitializeAffinity(AffinityType.Red, base, upgrade); }
-    protected void SetAffinity_Green(int base) { InitializeAffinity(AffinityType.Green, base, 0); }
-    protected void SetAffinity_Green(int base, int upgrade) { InitializeAffinity(AffinityType.Green, base, upgrade); }
-    protected void SetAffinity_Blue(int base) { InitializeAffinity(AffinityType.Blue, base, 0); }
-    protected void SetAffinity_Blue(int base, int upgrade) { InitializeAffinity(AffinityType.Blue, base, upgrade); }
-    protected void SetAffinity_Light(int base) { InitializeAffinity(AffinityType.Light, base, 0); }
-    protected void SetAffinity_Light(int base, int upgrade) { InitializeAffinity(AffinityType.Light, base, upgrade); }
-    protected void SetAffinity_Dark(int base) { InitializeAffinity(AffinityType.Dark, base, 0); }
-    protected void SetAffinity_Dark(int base, int upgrade) { InitializeAffinity(AffinityType.Dark, base, upgrade); }
-    protected void SetAffinity_Star(int base) { InitializeAffinity(AffinityType.Star, base, 0); }
-    protected void SetAffinity_Star(int base, int upgrade) { InitializeAffinity(AffinityType.Star, base, upgrade); }
-    protected void InitializeAffinity(AffinityType type, int base, int upgrade) { affinities.Initialize(type, base, upgrade); }
+    protected void SetAffinity_Red(int base) { InitializeAffinity(AffinityType.Red, base, 0, 0); }
+    protected void SetAffinity_Red(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Red, base, upgrade, scaling); }
+    protected void SetAffinity_Green(int base) { InitializeAffinity(AffinityType.Green, base, 0, 0); }
+    protected void SetAffinity_Green(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Green, base, upgrade, scaling); }
+    protected void SetAffinity_Blue(int base) { InitializeAffinity(AffinityType.Blue, base, 0, 0); }
+    protected void SetAffinity_Blue(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Blue, base, upgrade, scaling); }
+    protected void SetAffinity_Light(int base) { InitializeAffinity(AffinityType.Light, base, 0, 0); }
+    protected void SetAffinity_Light(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Light, base, upgrade, scaling); }
+    protected void SetAffinity_Dark(int base) { InitializeAffinity(AffinityType.Dark, base, 0, 0); }
+    protected void SetAffinity_Dark(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Dark, base, upgrade, scaling); }
+    protected void SetAffinity_Star(int base) { InitializeAffinity(AffinityType.Star, base, 0, 0); }
+    protected void SetAffinity_Star(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Star, base, upgrade, scaling); }
+    protected void InitializeAffinity(AffinityType type, int base, int upgrade, int scaling) { affinities.Initialize(type, base, upgrade, scaling); }
     //@Formatter: On
-
-    public void SetAffinity(int red, int green, int blue, int light, int dark)
-    {
-        affinities.Initialize(red, green, blue, light, dark);
-    }
-
-    public void AddAffinity(int red, int green, int blue, int light, int dark)
-    {
-        affinities.Add(red, green, blue, light, dark);
-    }
 
     protected boolean TryUpgrade()
     {
@@ -625,7 +642,7 @@ public abstract class EYBCard extends EYBCardBase
             block = baseBlock;
         }
 
-        affinities.displayUpgrades = (affinities.Upgrades.size() > 0);
+        affinities.displayUpgrades = true;
     }
 
     protected void Initialize(int damage, int block)
@@ -740,6 +757,9 @@ public abstract class EYBCard extends EYBCardBase
         {
             tempDamage = r.atDamageModify(tempDamage, this);
         }
+
+        tempBlock = CombatStats.Affinities.ModifyBlock(tempBlock, this);
+        tempDamage = CombatStats.Affinities.ModifyDamage(tempDamage, this);
 
         for (AbstractPower p : player.powers)
         {

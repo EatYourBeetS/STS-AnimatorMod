@@ -16,7 +16,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Hero extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(Hero.class).SetAttack(1, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Hero.class)
+            .SetAttack(1, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.GoblinSlayer);
 
     public Hero()
     {
@@ -24,10 +27,10 @@ public class Hero extends AnimatorCard_UltraRare
 
         Initialize(8, 0, 2);
         SetUpgrade(4, 0, 0);
-        SetScaling(0, 1, 1);
 
-        SetSeries(CardSeries.GoblinSlayer);
-        SetAffinity(1, 1, 0, 2, 0);
+        SetAffinity_Red(1);
+        SetAffinity_Green(1);
+        SetAffinity_Light(2, 0, 2);
     }
 
     @Override

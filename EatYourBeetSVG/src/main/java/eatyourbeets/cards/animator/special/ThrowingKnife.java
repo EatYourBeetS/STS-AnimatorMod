@@ -17,7 +17,9 @@ import java.util.List;
 
 public class ThrowingKnife extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ThrowingKnife.class).SetAttack(0, CardRarity.SPECIAL, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(ThrowingKnife.class)
+            .SetAttack(0, CardRarity.SPECIAL, EYBAttackType.Ranged)
+            .SetColor(CardColor.COLORLESS);
 
     private static ThrowingKnife preview;
     private int index;

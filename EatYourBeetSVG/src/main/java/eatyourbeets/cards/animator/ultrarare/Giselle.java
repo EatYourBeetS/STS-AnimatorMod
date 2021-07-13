@@ -18,7 +18,10 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class Giselle extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(Giselle.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Elemental).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Giselle.class)
+            .SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Elemental)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.GATE);
 
     public Giselle()
     {
@@ -26,10 +29,9 @@ public class Giselle extends AnimatorCard_UltraRare
 
         Initialize(24, 0, 4);
         SetUpgrade(8, 0, 0);
-        SetScaling(0, 1, 2);
 
-        SetSeries(CardSeries.Gate);
-        SetAffinity(2, 1, 0, 0, 1);
+        SetAffinity_Red(2, 0, 3);
+        SetAffinity_Dark(2);
     }
 
     @Override

@@ -13,7 +13,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Canti extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Canti.class).SetAttack(1, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Canti.class)
+            .SetAttack(1, CardRarity.UNCOMMON)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.FLCL);
 
     public Canti()
     {
@@ -22,7 +25,6 @@ public class Canti extends AnimatorCard
         Initialize(2, 3);
         SetUpgrade(4, 0);
 
-        SetSeries(CardSeries.FLCL);
         SetAffinity_Red(2);
         SetAffinity_Light(2);
     }

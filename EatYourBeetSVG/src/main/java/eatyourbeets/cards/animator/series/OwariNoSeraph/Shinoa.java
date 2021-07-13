@@ -5,13 +5,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
 public class Shinoa extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Shinoa.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Shinoa.class)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL)
+            .SetSeriesFromClassPackage();
 
     public Shinoa()
     {
@@ -20,8 +21,8 @@ public class Shinoa extends AnimatorCard
         Initialize(0, 6, 1);
         SetUpgrade(0, 3, 0);
 
-        SetSeries(CardSeries.OwariNoSeraph);
-        SetAffinity(0, 1, 0, 1, 0);
+        SetAffinity_Green(1);
+        SetAffinity_Light(1);
     }
 
     @Override

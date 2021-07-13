@@ -15,7 +15,10 @@ import eatyourbeets.utilities.GameActions;
 
 public class KanamiAlt extends AnimatorCard_UltraRare implements Hidden
 {
-    public static final EYBCardData DATA = Register(KanamiAlt.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(KanamiAlt.class)
+            .SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.LogHorizon);
 
     public KanamiAlt()
     {
@@ -24,10 +27,9 @@ public class KanamiAlt extends AnimatorCard_UltraRare implements Hidden
         Initialize(20, 2, 10);
         SetUpgrade(7, 0, 0);
 
-        SetScaling(0, 1, 1);
-
-        SetSeries(CardSeries.LogHorizon);
-        SetAffinity(2, 1, 0, 1, 0);
+        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Green(1);
+        SetAffinity_Light(1);
     }
 
     @Override

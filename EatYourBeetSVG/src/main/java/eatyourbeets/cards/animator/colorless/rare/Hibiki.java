@@ -10,7 +10,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Hibiki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Hibiki.class).SetAttack(1, CardRarity.RARE, EYBAttackType.Ranged, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Hibiki.class)
+            .SetAttack(1, CardRarity.RARE, EYBAttackType.Ranged, EYBCardTarget.Random)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Kancolle);
 
     public Hibiki()
     {
@@ -18,8 +21,6 @@ public class Hibiki extends AnimatorCard
 
         Initialize(2, 0, 3, 1);
         SetUpgrade(0, 0, 0, 1);
-
-        SetSeries(CardSeries.Kancolle);
 
         SetAffinity_Green(1);
     }

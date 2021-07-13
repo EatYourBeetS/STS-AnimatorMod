@@ -11,7 +11,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class Curse_Greed extends AnimatorCard_Curse
 {
-    public static final EYBCardData DATA = Register(Curse_Greed.class).SetCurse(-2, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Curse_Greed.class)
+            .SetCurse(-2, EYBCardTarget.None)
+            .SetSeries(CardSeries.Konosuba);
 
     public Curse_Greed()
     {
@@ -19,7 +21,6 @@ public class Curse_Greed extends AnimatorCard_Curse
 
         Initialize(0, 0, 2);
 
-        SetSeries(CardSeries.Konosuba);
         SetAffinity_Dark(1);
     }
 

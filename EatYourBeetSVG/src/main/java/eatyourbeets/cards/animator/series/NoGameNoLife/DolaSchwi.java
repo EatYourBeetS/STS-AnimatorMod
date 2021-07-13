@@ -11,13 +11,14 @@ import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class DolaSchwi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(DolaSchwi.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(DolaSchwi.class)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged)
+            .SetSeriesFromClassPackage();
 
     public DolaSchwi()
     {
@@ -26,9 +27,9 @@ public class DolaSchwi extends AnimatorCard
         Initialize(16, 0, 2);
         SetCostUpgrade(-1);
 
+        SetAffinity_Blue(1);
+
         SetCooldown(2, 0, this::OnCooldownCompleted);
-        SetSeries(CardSeries.NoGameNoLife);
-        SetAffinity(0, 0, 1, 0, 0);
     }
 
     @Override

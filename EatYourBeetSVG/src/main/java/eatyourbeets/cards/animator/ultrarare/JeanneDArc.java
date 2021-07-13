@@ -12,7 +12,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class JeanneDArc extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(JeanneDArc.class).SetAttack(1, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(JeanneDArc.class)
+            .SetAttack(1, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Fate);
 
     public JeanneDArc()
     {
@@ -20,10 +23,9 @@ public class JeanneDArc extends AnimatorCard_UltraRare
 
         Initialize(11, 0, 8);
         SetUpgrade(2, 0, 0);
-        SetScaling(0, 0, 1);
 
-        SetSeries(CardSeries.Fate);
-        SetAffinity(1, 1, 0, 2, 0);
+        SetAffinity_Red(1);
+        SetAffinity_Light(2, 0, 2);
     }
 
     @Override

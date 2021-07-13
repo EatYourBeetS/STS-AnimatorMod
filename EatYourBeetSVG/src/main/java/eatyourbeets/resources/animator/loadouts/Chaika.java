@@ -18,7 +18,7 @@ public class Chaika extends AnimatorLoadout
 {
     public Chaika()
     {
-        super(CardSeries.Chaika);
+        super(CardSeries.HitsugiNoChaika);
     }
 
     @Override

@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -15,7 +14,9 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class Witch extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Witch.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Witch.class)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL)
+            .SetSeriesFromClassPackage();
 
     public Witch()
     {
@@ -23,10 +24,8 @@ public class Witch extends AnimatorCard
 
         Initialize(0, 11,2);
         SetUpgrade(0, 2, 1);
-        SetScaling(1, 0, 0);
 
-        SetSeries(CardSeries.GoblinSlayer);
-        SetAffinity(0, 0, 2, 0, 0);
+        SetAffinity_Blue(2, 0, 1);
     }
 
     @Override

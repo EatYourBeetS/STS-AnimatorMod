@@ -6,13 +6,14 @@ import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Rena extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Rena.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Rena.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
     static
     {
         for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
@@ -27,10 +28,9 @@ public class Rena extends AnimatorCard
 
         Initialize(0, 3, 0, 2);
         SetUpgrade(0, 3);
-        SetScaling(0, 1, 0);
 
-        SetSeries(CardSeries.Elsword);
-        SetAffinity(0, 2, 0, 0, 0);
+        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Dark(1, 0, 1);
     }
 
     @Override

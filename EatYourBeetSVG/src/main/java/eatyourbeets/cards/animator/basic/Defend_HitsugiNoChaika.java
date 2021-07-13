@@ -16,7 +16,7 @@ public class Defend_HitsugiNoChaika extends Defend
         Initialize(0, 5);
         SetUpgrade(0, 3);
 
-        SetSeries(CardSeries.Chaika);
+        SetSeries(CardSeries.HitsugiNoChaika);
         SetAffinity_Green(1);
     }
 

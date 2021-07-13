@@ -6,15 +6,17 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard_Curse;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
 public class Curse_GriefSeed extends AnimatorCard_Curse
 {
-    public static final EYBCardData DATA = Register(Curse_GriefSeed.class).SetCurse(1, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Curse_GriefSeed.class)
+            .SetCurse(1, EYBCardTarget.None)
+            .SetSeries(CardSeries.MadokaMagica);
 
     public Curse_GriefSeed()
     {
@@ -22,7 +24,6 @@ public class Curse_GriefSeed extends AnimatorCard_Curse
 
         Initialize(0, 0, 1);
 
-        SetSeries(CardSeries.MadokaMagica);
         SetAffinity_Dark(1);
     }
 

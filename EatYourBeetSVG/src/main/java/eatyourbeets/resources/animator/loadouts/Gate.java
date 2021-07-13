@@ -18,7 +18,7 @@ public class Gate extends AnimatorLoadout
 {
     public Gate()
     {
-        super(CardSeries.Gate);
+        super(CardSeries.GATE);
     }
 
     @Override

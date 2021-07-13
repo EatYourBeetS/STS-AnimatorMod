@@ -4,12 +4,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BobEffect;
+import com.megacrit.cardcrawl.vfx.combat.ScreenOnFireEffect;
 import eatyourbeets.actions.basic.GainBlock;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.EYBMoveset;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Special;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.TargetHelper;
 
 public class TheUnnamed_Doll_Player extends EYBMonster
@@ -35,7 +37,7 @@ public class TheUnnamed_Doll_Player extends EYBMonster
         .SetIntent(Intent.DEFEND_BUFF)
         .SetOnUse((move, __) ->
         {
-            GameActions.Bottom.Add(new GainBlock(player, this, 30));
+            GameActions.Bottom.Add(new GainBlock(player, this, 24));
             GameActions.Bottom.GainArtifact(1);
         });
 
@@ -43,9 +45,11 @@ public class TheUnnamed_Doll_Player extends EYBMonster
         .SetIntent(Intent.BUFF)
         .SetOnUse((move, __) ->
         {
-            GameActions.Bottom.GainIntellect(30);
-            GameActions.Bottom.GainAgility(30);
-            GameActions.Bottom.GainForce(30);
+            GameActions.Bottom.GainIntellect(12);
+            GameActions.Bottom.GainAgility(12);
+            GameActions.Bottom.GainForce(12);
+            GameActions.Bottom.GainBlessing(12);
+            GameActions.Bottom.GainCorruption(12);
         });
 
         moveset.Normal.Add(new EYBMove_Special())
@@ -53,7 +57,8 @@ public class TheUnnamed_Doll_Player extends EYBMonster
         .SetOnUse((move, __) ->
         {
             move.UseAnimation(CreatureAnimation.ATTACK_SLOW);
-            GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(this), 30);
+            GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(this), 24)
+            .AddCallback(___ -> GameEffects.List.Add(new ScreenOnFireEffect()));
         });
     }
 

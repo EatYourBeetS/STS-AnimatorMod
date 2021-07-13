@@ -18,7 +18,7 @@ public class Strike_GATE extends Strike
         Initialize(5, 0);
         SetUpgrade(3, 0);
 
-        SetSeries(CardSeries.Gate);
+        SetSeries(CardSeries.GATE);
         SetAffinity_Green(1);
     }
 

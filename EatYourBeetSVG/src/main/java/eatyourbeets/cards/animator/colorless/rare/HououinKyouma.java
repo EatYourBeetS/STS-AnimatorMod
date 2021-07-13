@@ -14,7 +14,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class HououinKyouma extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HououinKyouma.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(HououinKyouma.class)
+            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.SteinsGate);
 
     public HououinKyouma()
     {
@@ -23,10 +26,9 @@ public class HououinKyouma extends AnimatorCard
         Initialize(0, 0);
         SetCostUpgrade(-1);
 
-        SetPurge(true);
-        SetSeries(CardSeries.SteinsGate);
+        SetAffinity_Blue(2);
 
-        SetAffinity_Blue(1, 1);
+        SetPurge(true);
     }
 
     @Override

@@ -2,7 +2,6 @@ package eatyourbeets.powers.affinity;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.base.AffinityType;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.utilities.GameActions;
 
 public class ForcePower extends AbstractAffinityPower
@@ -13,12 +12,6 @@ public class ForcePower extends AbstractAffinityPower
     public ForcePower(AbstractCreature owner, int amount)
     {
         super(AFFINITY_TYPE, POWER_ID, owner, amount);
-    }
-
-    @Override
-    public float GetScaling(EYBCard card)
-    {
-        return card.forceScaling * amount;
     }
 
     @Override

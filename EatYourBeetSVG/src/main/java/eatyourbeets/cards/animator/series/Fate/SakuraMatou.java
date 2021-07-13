@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -14,7 +13,9 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class SakuraMatou extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SakuraMatou.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(SakuraMatou.class)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL)
+            .SetSeriesFromClassPackage();
 
     public SakuraMatou()
     {
@@ -22,10 +23,11 @@ public class SakuraMatou extends AnimatorCard
 
         Initialize(0, 0, 3, 2);
 
+        SetAffinity_Dark(2);
+        SetAffinity_Blue(1);
+
         SetEthereal(true);
         SetExhaust(true);
-        SetSeries(CardSeries.Fate);
-        SetAffinity(0, 0, 1, 0, 2);
     }
 
     @Override

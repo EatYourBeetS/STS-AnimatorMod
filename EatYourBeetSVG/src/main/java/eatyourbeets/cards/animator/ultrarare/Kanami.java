@@ -14,7 +14,10 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Kanami extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(Kanami.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Kanami.class)
+            .SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.ALL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.LogHorizon);
     static
     {
         DATA.AddPreview(new KanamiAlt(), true);
@@ -27,12 +30,12 @@ public class Kanami extends AnimatorCard_UltraRare
         Initialize(20, 0, 2);
         SetUpgrade(7, 0, 0);
 
+        SetAffinity_Red(1);
+        SetAffinity_Green(2, 0, 2);
+        SetAffinity_Light(1);
+
         SetCooldown(2, 0, this::OnCooldownCompleted);
         SetHaste(true);
-        SetScaling(0, 1, 1);
-
-        SetSeries(CardSeries.LogHorizon);
-        SetAffinity(1, 2, 0, 1, 0);
     }
 
     @Override
@@ -65,10 +68,7 @@ public class Kanami extends AnimatorCard_UltraRare
         {
             for (AbstractCard key : cardMap.keySet())
             {
-                KanamiAlt other = (KanamiAlt) cardMap.get(key);
-                other.intellectScaling = this.intellectScaling;
-                other.agilityScaling = this.agilityScaling;
-                other.forceScaling = this.forceScaling;
+                ((KanamiAlt) cardMap.get(key)).SetScaling(affinities);
             }
         });
     }

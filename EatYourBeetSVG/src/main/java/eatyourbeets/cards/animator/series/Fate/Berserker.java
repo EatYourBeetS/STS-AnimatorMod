@@ -8,14 +8,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Berserker extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Berserker.class).SetAttack(3, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Berserker.class)
+            .SetAttack(3, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public Berserker()
     {
@@ -23,10 +24,8 @@ public class Berserker extends AnimatorCard
 
         Initialize(18, 0, 2, 12);
         SetUpgrade(6, 0, 0, 0);
-        SetScaling(0, 0, 3);
 
-        SetSeries(CardSeries.Fate);
-        SetAffinity(2, 0, 0, 0, 0);
+        SetAffinity_Red(2, 0, 3);
     }
 
     @Override

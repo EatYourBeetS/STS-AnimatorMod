@@ -8,14 +8,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.ui.cards.DrawPileCardPreview;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Raven extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Raven.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Raven.class)
+            .SetAttack(1, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     private final DrawPileCardPreview drawPileCardPreview = new DrawPileCardPreview(Raven::FindBestCard);
 
@@ -25,10 +26,9 @@ public class Raven extends AnimatorCard
 
         Initialize(5, 0, 1);
         SetUpgrade(3, 0);
-        SetScaling(0, 1, 0);
 
-        SetSeries(CardSeries.Elsword);
-        SetAffinity(1, 1, 0, 0, 0);
+        SetAffinity_Red(1);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override

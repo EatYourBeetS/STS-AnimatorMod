@@ -8,7 +8,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class Wiz extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Wiz.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Wiz.class)
+            .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public Wiz()
     {
@@ -17,9 +19,10 @@ public class Wiz extends AnimatorCard
         Initialize(0, 0);
         SetCostUpgrade(-1);
 
+        SetAffinity_Blue(2);
+        SetAffinity_Dark(2);
+
         SetPurge(true);
-        SetSeries(CardSeries.Konosuba);
-        SetAffinity(0, 0, 2, 0, 2);
     }
 
     @Override

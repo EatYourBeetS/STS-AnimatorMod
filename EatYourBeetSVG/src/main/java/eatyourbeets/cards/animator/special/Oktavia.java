@@ -15,7 +15,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class Oktavia extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Oktavia.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Oktavia.class)
+            .SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetSeries(CardSeries.MadokaMagica);
 
     public Oktavia()
     {
@@ -23,10 +25,9 @@ public class Oktavia extends AnimatorCard
 
         Initialize(9, 0, 1, 2);
         SetUpgrade(2, 0, 0, 0);
-        SetScaling(1, 0, 0);
 
-        SetSeries(CardSeries.MadokaMagica);
-        SetAffinity(0, 0, 1, 0, 1);
+        SetAffinity_Blue(1);
+        SetAffinity_Dark(1);
     }
 
     @Override

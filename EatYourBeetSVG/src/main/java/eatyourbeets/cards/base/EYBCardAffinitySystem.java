@@ -164,4 +164,36 @@ public class EYBCardAffinitySystem implements OnStartOfTurnSubscriber
 
         return a.affinities.CanSynergize(b.affinities);
     }
+
+    public float ModifyBlock(float block, EYBCard card)
+    {
+        if (card.type != AbstractCard.CardType.ATTACK)
+        {
+            for (AbstractAffinityPower p : Powers)
+            {
+                if (p.amount > 0)
+                {
+                    block += card.affinities.GetScaling(p.affinityType, true) * p.amount;
+                }
+            }
+        }
+
+        return block;
+    }
+
+    public float ModifyDamage(float damage, EYBCard card)
+    {
+        if (card.type == AbstractCard.CardType.ATTACK)
+        {
+            for (AbstractAffinityPower p : Powers)
+            {
+                if (p.amount > 0)
+                {
+                    damage += card.affinities.GetScaling(p.affinityType, true) * p.amount;
+                }
+            }
+        }
+
+        return damage;
+    }
 }

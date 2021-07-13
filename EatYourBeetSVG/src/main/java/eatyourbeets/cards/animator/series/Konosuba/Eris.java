@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.subscribers.OnLoseHpSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -16,7 +15,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Eris extends AnimatorCard implements OnLoseHpSubscriber
 {
-    public static final EYBCardData DATA = Register(Eris.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Eris.class)
+            .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public Eris()
     {
@@ -25,10 +26,11 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 3);
 
+        SetAffinity_Blue(1);
+        SetAffinity_Light(2);
+
         SetExhaust(true);
         SetHealing(true);
-        SetSeries(CardSeries.Konosuba);
-        SetAffinity(0, 0, 1, 2, 0);
     }
 
     @Override

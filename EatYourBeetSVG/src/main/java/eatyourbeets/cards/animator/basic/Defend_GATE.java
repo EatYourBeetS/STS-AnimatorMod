@@ -17,7 +17,7 @@ public class Defend_GATE extends Defend
         SetUpgrade(0, 3);
 
         SetRetain(true);
-        SetSeries(CardSeries.Gate);
+        SetSeries(CardSeries.GATE);
         SetAffinity_Green(1);
     }
 

@@ -2,7 +2,6 @@ package eatyourbeets.powers.affinity;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.base.AffinityType;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -22,12 +21,6 @@ public class BlessingPower extends AbstractAffinityPower
     public int[] GetThresholds()
     {
         return THRESHOLDS;
-    }
-
-    @Override
-    public float GetScaling(EYBCard card)
-    {
-        return 0;
     }
 
     @Override

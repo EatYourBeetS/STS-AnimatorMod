@@ -115,6 +115,19 @@ public class EYBCardData
         }
     }
 
+    public EYBCardData SetSeriesFromClassPackage()
+    {
+        final String path = "eatyourbeets.cards.animator.series.";
+        final String name = type.getPackage().getName().substring(path.length());
+        final CardSeries series = CardSeries.GetByName(name, false);
+        if (series == null)
+        {
+            throw new RuntimeException("Couldn't find card series from class package: " + type);
+        }
+
+        return SetSeries(series);
+    }
+
     public EYBCardData SetSeries(CardSeries series)
     {
         Series = series;

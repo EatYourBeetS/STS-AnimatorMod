@@ -9,12 +9,13 @@ import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
-import eatyourbeets.utilities.Testing;
 
 public class EYBCardAffinity implements Comparable<EYBCardAffinity>
 {
     public final AffinityType Type;
     public int level;
+    public int scaling;
+    public int upgrade;
 
     public EYBCardAffinity(AffinityType type)
     {
@@ -84,18 +85,19 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
 
         RenderHelpers.DrawOnCardAuto(sb, card, Type.GetIcon(), new Vector2(x, y), size, size, Color.WHITE, 1f, 1f, 0f);
 
+        if (highlight)
+        {
+            final float alpha = color.a;
+            final float distance = 1;// Testing.TryGetValue(0, 0.5f);
+            final float speed = 4; //Testing.TryGetValue(1, 4f);
+            color = Color.WHITE.cpy().lerp(Settings.GREEN_RELIC_COLOR, GR.UI.Time_Sin(distance, speed));
+            color.a = alpha;
+        }
+
         Texture border = Type.GetBorder(level);
         if (border != null)
         {
-            Color borderColor = color;
-            if (highlight)
-            {
-                float distance = Testing.TryGetValue(0, 0.5f);
-                float speed = Testing.TryGetValue(1, 4f);
-                borderColor = Color.WHITE.cpy().lerp(Settings.GREEN_RELIC_COLOR, GR.UI.Time_Sin(distance, speed));
-            }
-
-            RenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size, borderColor, 1f, 1f, rotation);
+            RenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size, color, 1f, 1f, rotation);
         }
 
         Texture foreground = Type.GetForeground(level);
@@ -125,6 +127,6 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
             return 500 + level;
         }
 
-        return (level * 100) + (10 - Type.ID);
+        return (level * 1000) + (upgrade * 10) + (AffinityType.MAX_ID - Type.ID);
     }
 }

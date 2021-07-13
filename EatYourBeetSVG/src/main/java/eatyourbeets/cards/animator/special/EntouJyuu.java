@@ -2,15 +2,17 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.series.Katanagatari.Emonzaemon;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.FlamingWeaponPower;
 import eatyourbeets.utilities.GameActions;
 
 public class EntouJyuu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(EntouJyuu.class).SetPower(0, CardRarity.SPECIAL);
+    public static final EYBCardData DATA = Register(EntouJyuu.class)
+            .SetPower(0, CardRarity.SPECIAL)
+            .SetSeries(Emonzaemon.DATA.Series);
 
     public EntouJyuu()
     {
@@ -19,8 +21,8 @@ public class EntouJyuu extends AnimatorCard
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetSeries(CardSeries.Katanagatari);
-        SetAffinity(0, 0, 0, 0, 0);
+        SetAffinity_Red(1);
+        SetAffinity_Green(1);
     }
 
     @Override

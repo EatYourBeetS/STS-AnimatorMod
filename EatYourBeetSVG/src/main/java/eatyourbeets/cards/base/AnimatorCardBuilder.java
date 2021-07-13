@@ -28,15 +28,14 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
     public EYBAttackType attackType = EYBAttackType.Normal;
     public EYBCardTarget attackTarget = EYBCardTarget.Normal;
     public int attributeMultiplier = 1;
+    public EYBCardAffinities affinities;
     public CardSeries series;
-    public int intellectScaling;
-    public int agilityScaling;
-    public int forceScaling;
 
     public AnimatorCardBuilder(String id)
     {
         super(id);
 
+        this.affinities = new EYBCardAffinities();
         this.id = id;
     }
 
@@ -53,8 +52,8 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         {
             SetNumbers(card.damage, card.block, card.magicNumber, card.secondaryValue);
             SetUpgrades(card.upgrade_damage, card.upgrade_block, card.upgrade_magicNumber, card.upgrade_secondaryValue);
-            SetScaling(card.intellectScaling, card.agilityScaling, card.forceScaling);
             SetCost(card.cost, card.upgrade_cost);
+            affinities.Initialize(card.affinities);
         }
         else
         {
@@ -139,15 +138,6 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         this.blockUpgrade = block;
         this.magicNumberUpgrade = magicNumber;
         this.secondaryValueUpgrade = secondaryValue;
-
-        return this;
-    }
-
-    public AnimatorCardBuilder SetScaling(int intellect, int agility, int force)
-    {
-        this.intellectScaling = intellect;
-        this.agilityScaling = agility;
-        this.forceScaling = force;
 
         return this;
     }

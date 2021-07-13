@@ -32,9 +32,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
         SetCostUpgrade(builder.costUpgrade);
 
         this.attributeMultiplier = builder.attributeMultiplier;
-        this.intellectScaling = builder.intellectScaling;
-        this.agilityScaling = builder.agilityScaling;
-        this.forceScaling = builder.forceScaling;
+        this.affinities.Initialize(builder.affinities);
         this.attackTarget = builder.attackTarget;
         this.attackType = builder.attackType;
         this.builder = builder;

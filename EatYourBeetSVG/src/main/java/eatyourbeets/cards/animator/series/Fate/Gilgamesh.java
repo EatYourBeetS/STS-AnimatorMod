@@ -17,7 +17,6 @@ import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
@@ -33,7 +32,9 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
     private static final FieldInfo<ArrayList<StoreRelic>> _relics = JUtils.GetField("relics", ShopScreen.class);
     private static AbstractRelic lastRelicObtained = null;
 
-    public static final EYBCardData DATA = Register(Gilgamesh.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(Gilgamesh.class)
+            .SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged)
+            .SetSeriesFromClassPackage();
 
     public Gilgamesh()
     {
@@ -42,9 +43,11 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
         Initialize(3, 0, 3, 25);
         SetUpgrade(1, 0);
 
+        SetAffinity_Red(1);
+        SetAffinity_Green(1);
+        SetAffinity_Dark(1);
+
         SetUnique(true, true);
-        SetSeries(CardSeries.Fate);
-        SetAffinity(1, 2, 0, 0, 1);
     }
 
     @Override

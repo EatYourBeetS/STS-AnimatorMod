@@ -12,7 +12,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class SeriousSaitama extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(SeriousSaitama.class).SetSkill(-1, CardRarity.SPECIAL, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(SeriousSaitama.class)
+            .SetSkill(-1, CardRarity.SPECIAL, EYBCardTarget.ALL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.OnePunchMan);
 
     public SeriousSaitama()
     {
@@ -21,10 +24,10 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
         Initialize(0, 0, 0);
         SetUpgrade(0, 0, 1);
 
-        SetPurge(true);
+        SetAffinity_Red(2);
+        SetAffinity_Green(2);
 
-        SetSeries(CardSeries.OnePunchMan);
-        SetAffinity(2, 2, 0, 0, 0);
+        SetPurge(true);
     }
 
     @Override

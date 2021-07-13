@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.listeners.OnAddedToDeckListener;
 import eatyourbeets.powers.animator.KaijinPower;
 import eatyourbeets.utilities.GameActions;
@@ -18,7 +17,9 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class Kaijin extends AnimatorCard implements OnAddedToDeckListener
 {
-    public static final EYBCardData DATA = Register(Kaijin.class).SetPower(1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Kaijin.class)
+            .SetPower(1, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
 
     public Kaijin()
     {
@@ -27,8 +28,8 @@ public class Kaijin extends AnimatorCard implements OnAddedToDeckListener
         Initialize(0, 0, 1);
         SetCostUpgrade(-1);
 
-        SetSeries(CardSeries.TenSura);
-        SetAffinity(1, 0, 0, 1, 0);
+        SetAffinity_Red(1);
+        SetAffinity_Light(1);
     }
 
     @Override

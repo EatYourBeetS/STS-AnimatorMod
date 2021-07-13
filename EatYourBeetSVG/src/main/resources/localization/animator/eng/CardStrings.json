@@ -773,7 +773,7 @@
 		},
 		"animator:Konayuki":
 		{
-			"DESCRIPTION": "Gain !M! [F]. || <LIM>. 5 <R>: ** Deal 40 damage to ** a random enemy.",
+			"DESCRIPTION": "Gain !M! [F]. || <LIM>. 5 <R>: ** Deal !S! damage to ** a random enemy.",
 			"NAME": "Konayuki"
 		},
 		"animator:Nanami":

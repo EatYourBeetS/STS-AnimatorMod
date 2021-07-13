@@ -15,7 +15,9 @@ import java.util.ArrayList;
 
 public class Add extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Add.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Add.class)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Crystallize(), false);
@@ -32,9 +34,10 @@ public class Add extends AnimatorCard
         Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 1, 0);
 
+        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Dark(2, 0, 0);
+
         SetExhaust(true);
-        SetSeries(CardSeries.Elsword);
-        SetAffinity(0, 0, 2, 0, 2);
     }
 
     @Override

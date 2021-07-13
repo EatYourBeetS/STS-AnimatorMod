@@ -9,7 +9,9 @@ import eatyourbeets.utilities.GameActions;
 public class Curse_Dizziness extends AnimatorCard_Curse
 {
     public static final Dazed DAZED = new Dazed();
-    public static final EYBCardData DATA = Register(Curse_Dizziness.class).SetCurse(-2, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Curse_Dizziness.class)
+            .SetCurse(-2, EYBCardTarget.None)
+            .SetSeries(CardSeries.TouhouProject);
     static
     {
         DATA.CardRarity = CardRarity.SPECIAL;
@@ -20,7 +22,6 @@ public class Curse_Dizziness extends AnimatorCard_Curse
     {
         super(DATA, false);
 
-        SetSeries(CardSeries.TouhouProject);
         SetAffinity_Dark(1);
     }
 

@@ -25,7 +25,10 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
 
     private Form currentForm = Form.Default;
 
-    public static final EYBCardData DATA = Register(Fredrika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(Fredrika.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Fredrika(Form.Cat), true);
@@ -47,9 +50,9 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
         Initialize(9, 2, 2);
         SetUpgrade(2, 2, 0);
 
+        SetAffinity_Star(1, 1, 0);
+
         SetAttackType(EYBAttackType.Normal);
-        SetSeries(CardSeries.Chaika);
-        SetAffinity_Star(1, 1);
     }
 
     @Override
@@ -195,16 +198,6 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
             return;
         }
 
-        switch (currentForm)
-        {
-            case Dominica:
-                SetScaling(intellectScaling, agilityScaling - 1, forceScaling);
-                break;
-            case Dragoon:
-                SetScaling(intellectScaling, agilityScaling, forceScaling - 1);
-                break;
-        }
-
         this.currentForm = formID;
 
         switch (formID)
@@ -242,8 +235,6 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
                 this.target = CardTarget.SELF_AND_ENEMY;
                 this.cost = 2;
 
-                SetScaling(intellectScaling, agilityScaling, forceScaling + 1);
-
                 break;
             }
 
@@ -255,8 +246,6 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.ENEMY;
                 this.cost = 1;
-
-                SetScaling(intellectScaling, agilityScaling + 1, forceScaling);
 
                 break;
             }

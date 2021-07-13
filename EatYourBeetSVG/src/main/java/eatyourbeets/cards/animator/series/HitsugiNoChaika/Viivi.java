@@ -12,7 +12,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class Viivi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Viivi.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged, EYBCardTarget.Random);
+    public static final EYBCardData DATA = Register(Viivi.class)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged, EYBCardTarget.Random)
+            .SetSeriesFromClassPackage();
     static
     {
         for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
@@ -27,10 +29,8 @@ public class Viivi extends AnimatorCard
 
         Initialize(3, 0, 3);
         SetUpgrade(0, 0, 1);
-        SetScaling(0, 1, 0);
 
-        SetSeries(CardSeries.Chaika);
-        SetAffinity_Green(1, 1);
+        SetAffinity_Green(1, 1, 1);
         SetAffinity_Light(2);
     }
 

@@ -6,14 +6,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
 public class SuzuneAmano extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SuzuneAmano.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(SuzuneAmano.class)
+            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental)
+            .SetSeriesFromClassPackage();
 
     public SuzuneAmano()
     {
@@ -21,10 +22,10 @@ public class SuzuneAmano extends AnimatorCard
 
         Initialize(7, 0, 3, 6);
         SetUpgrade(0, 0, 0, 0);
-        SetScaling(1, 0, 0);
 
-        SetSeries(CardSeries.MadokaMagica);
-        SetAffinity(1, 0, 2, 0, 1);
+        SetAffinity_Red(1);
+        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Dark(1);
     }
 
     @Override

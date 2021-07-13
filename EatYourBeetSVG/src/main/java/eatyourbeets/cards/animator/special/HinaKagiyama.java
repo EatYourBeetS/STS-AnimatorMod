@@ -10,7 +10,10 @@ import eatyourbeets.utilities.GameActions;
 
 public class HinaKagiyama extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HinaKagiyama.class).SetPower(1, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(HinaKagiyama.class)
+            .SetPower(1, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.TouhouProject);
     static
     {
         DATA.AddPreview(new HinaKagiyama_Miracle(), false);
@@ -22,8 +25,8 @@ public class HinaKagiyama extends AnimatorCard
 
         Initialize(0, 0, HinaKagiyamaPower.CARD_DRAW_AMOUNT);
 
-        SetSeries(CardSeries.TouhouProject);
-        SetAffinity(0, 0, 1, 2, 0);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(2);
     }
 
     @Override

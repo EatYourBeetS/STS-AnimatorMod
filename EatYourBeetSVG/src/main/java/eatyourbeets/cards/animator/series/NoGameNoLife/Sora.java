@@ -5,14 +5,16 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.SoraAction;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Sora extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Sora.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Sora.class)
+            .SetSkill(2, CardRarity.RARE, EYBCardTarget.ALL)
+            .SetSeries(CardSeries.NoGameNoLife);
     static
     {
         DATA.AddPreview(new Shiro(), true);
@@ -25,9 +27,10 @@ public class Sora extends AnimatorCard
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
+        SetAffinity_Blue(2);
+        SetAffinity_Light(1);
+
         SetMultiDamage(true);
-        SetSeries(CardSeries.NoGameNoLife);
-        SetAffinity(0, 0, 2, 1, 0);
     }
 
     @Override

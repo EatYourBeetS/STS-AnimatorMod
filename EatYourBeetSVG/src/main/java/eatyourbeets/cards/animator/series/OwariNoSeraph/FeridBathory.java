@@ -4,13 +4,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.FeridBathoryPower;
 import eatyourbeets.utilities.GameActions;
 
 public class FeridBathory extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(FeridBathory.class).SetPower(2, CardRarity.RARE).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(FeridBathory.class)
+            .SetPower(2, CardRarity.RARE)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage();
 
     public FeridBathory()
     {
@@ -19,8 +21,9 @@ public class FeridBathory extends AnimatorCard
         Initialize(0,0, 2, FeridBathoryPower.FORCE_AMOUNT);
         SetUpgrade(0, 2, 0);
 
-        SetSeries(CardSeries.OwariNoSeraph);
-        SetAffinity(2, 2, 0, 0, 2);
+        SetAffinity_Red(2);
+        SetAffinity_Green(2);
+        SetAffinity_Dark(2);
     }
 
     @Override

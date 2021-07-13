@@ -6,14 +6,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.affinity.AgilityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class HighElfArcher extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HighElfArcher.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(HighElfArcher.class)
+            .SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Ranged)
+            .SetSeriesFromClassPackage();
 
     public HighElfArcher()
     {
@@ -21,10 +22,8 @@ public class HighElfArcher extends AnimatorCard
 
         Initialize(2, 0, 2);
         SetUpgrade(1, 0, 1);
-        SetScaling(0, 1, 0);
 
-        SetSeries(CardSeries.GoblinSlayer);
-        SetAffinity(0, 2, 0, 1, 0);
+        SetAffinity_Green(2, 0, 1);
     }
 
     @Override

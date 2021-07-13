@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.animator.ultrarare.SummoningRitual;
 import eatyourbeets.cards.base.AffinityType;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
@@ -24,12 +23,6 @@ public class CorruptionPower extends AbstractAffinityPower
     public int[] GetThresholds()
     {
         return THRESHOLDS;
-    }
-
-    @Override
-    public float GetScaling(EYBCard card)
-    {
-        return card.forceScaling * amount;
     }
 
     @Override

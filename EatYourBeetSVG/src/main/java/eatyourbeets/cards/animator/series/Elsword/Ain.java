@@ -16,7 +16,9 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Ain extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Ain.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Ain.class)
+            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetSeries(CardSeries.Elsword);
 
     public Ain()
     {
@@ -24,10 +26,8 @@ public class Ain extends AnimatorCard
 
         Initialize(3, 0, 2, 1);
         SetUpgrade(0, 0, 1, 0);
-        SetScaling(1, 0, 0);
 
-        SetSeries(CardSeries.Elsword);
-        SetAffinity(0, 0, 2, 0 ,0);
+        SetAffinity_Blue(2, 0, 1);
     }
 
     @Override

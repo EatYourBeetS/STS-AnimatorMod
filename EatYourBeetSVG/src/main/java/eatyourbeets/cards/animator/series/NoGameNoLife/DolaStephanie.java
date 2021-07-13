@@ -6,13 +6,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class DolaStephanie extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(DolaStephanie.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(DolaStephanie.class)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public DolaStephanie()
     {
@@ -20,9 +21,9 @@ public class DolaStephanie extends AnimatorCard
 
         Initialize(0, 0);
 
+        SetAffinity_Light(1);
+
         SetExhaust(true);
-        SetSeries(CardSeries.NoGameNoLife);
-        SetAffinity(0, 0, 1, 1, 0);
     }
 
     @Override

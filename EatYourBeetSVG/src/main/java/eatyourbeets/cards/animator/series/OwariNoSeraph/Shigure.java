@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
@@ -16,7 +15,9 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Shigure extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Shigure.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(Shigure.class)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing)
+            .SetSeriesFromClassPackage();
 
     public Shigure()
     {
@@ -24,10 +25,8 @@ public class Shigure extends AnimatorCard
 
         Initialize(7, 0, 2, 3);
         SetUpgrade(2, 0, 1, 0);
-        SetScaling(0, 1, 0);
 
-        SetSeries(CardSeries.OwariNoSeraph);
-        SetAffinity(0, 1, 0, 1, 0);
+        SetAffinity_Green(1, 1, 1);
     }
 
     @Override

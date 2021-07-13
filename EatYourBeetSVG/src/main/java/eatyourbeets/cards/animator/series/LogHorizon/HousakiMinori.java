@@ -5,14 +5,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActions;
 
 public class HousakiMinori extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HousakiMinori.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(HousakiMinori.class)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public HousakiMinori()
     {
@@ -21,9 +22,10 @@ public class HousakiMinori extends AnimatorCard
         Initialize(0, 6, 15);
         SetUpgrade(0, 1, 0);
 
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1, 1, 0);
+
         SetCooldown(4, -1, this::OnCooldownCompleted);
-        SetSeries(CardSeries.LogHorizon);
-        SetAffinity(0, 0, 1, 2, 0);
     }
 
     @Override

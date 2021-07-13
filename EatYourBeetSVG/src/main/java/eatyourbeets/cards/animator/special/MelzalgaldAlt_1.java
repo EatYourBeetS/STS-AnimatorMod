@@ -8,7 +8,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class MelzalgaldAlt_1 extends MelzalgaldAlt
 {
-    public static final EYBCardData DATA = Register(MelzalgaldAlt_1.class).SetAttack(1, CardRarity.SPECIAL);
+    public static final EYBCardData DATA = Register(MelzalgaldAlt_1.class)
+            .SetAttack(1, CardRarity.SPECIAL)
+            .SetSeries(SERIES);
 
     public MelzalgaldAlt_1()
     {
@@ -16,7 +18,8 @@ public class MelzalgaldAlt_1 extends MelzalgaldAlt
 
         Initialize(6, 0, 2);
         SetUpgrade(0, 0, 1);
-        SetScaling(0, 0, 2);
+
+        SetAffinity_Red(0, 0, 2);
     }
 
     @Override

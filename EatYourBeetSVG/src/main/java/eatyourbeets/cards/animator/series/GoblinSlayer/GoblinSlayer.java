@@ -6,14 +6,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.CreateRandomGoblins;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class GoblinSlayer extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(GoblinSlayer.class).SetAttack(1, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(GoblinSlayer.class)
+            .SetAttack(1, CardRarity.RARE)
+            .SetSeriesFromClassPackage();
 
     public GoblinSlayer()
     {
@@ -21,11 +22,12 @@ public class GoblinSlayer extends AnimatorCard
 
         Initialize(4, 4);
         SetUpgrade(3, 3);
-        SetScaling(1, 0, 1);
+
+        SetAffinity_Red(1);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1);
 
         SetRetain(true);
-        SetSeries(CardSeries.GoblinSlayer);
-        SetAffinity(1, 0, 2, 1, 0);
     }
 
     @Override

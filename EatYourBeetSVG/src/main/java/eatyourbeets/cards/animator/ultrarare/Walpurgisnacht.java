@@ -16,7 +16,10 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class Walpurgisnacht extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(Walpurgisnacht.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Walpurgisnacht.class)
+            .SetPower(3, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.MadokaMagica);
 
     private static final RandomizedList<AnimatorCard> spellcasterPool = new RandomizedList<>();
 
@@ -27,8 +30,8 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetSeries(CardSeries.MadokaMagica);
-        SetAffinity(0, 0, 2, 0, 2);
+        SetAffinity_Blue(2);
+        SetAffinity_Dark(2);
     }
 
     @Override

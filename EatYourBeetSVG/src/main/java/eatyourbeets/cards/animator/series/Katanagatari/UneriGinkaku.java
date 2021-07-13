@@ -11,14 +11,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class UneriGinkaku extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(UneriGinkaku.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(UneriGinkaku.class)
+            .SetAttack(1, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public UneriGinkaku()
     {
@@ -26,11 +27,10 @@ public class UneriGinkaku extends AnimatorCard
 
         Initialize(13, 0, 3);
         SetUpgrade(4, 0, 1);
-        SetScaling(0, 3, 0);
+
+        SetAffinity_Green(2, 0, 3);
 
         SetEthereal(true);
-        SetSeries(CardSeries.Katanagatari);
-        SetAffinity(0, 2, 0, 0, 0);
     }
 
     @Override

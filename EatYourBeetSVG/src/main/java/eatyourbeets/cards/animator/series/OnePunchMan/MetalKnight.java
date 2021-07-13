@@ -7,13 +7,14 @@ import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class MetalKnight extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MetalKnight.class).SetAttack(3, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(MetalKnight.class)
+            .SetAttack(3, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
 
     public MetalKnight()
     {
@@ -22,9 +23,11 @@ public class MetalKnight extends AnimatorCard
         Initialize(11, 0, 3);
         SetUpgrade(2, 0, 0);
 
+        SetAffinity_Red(2);
+        SetAffinity_Blue(2);
+        SetAffinity_Dark(1);
+
         SetEvokeOrbCount(1);
-        SetSeries(CardSeries.OnePunchMan);
-        SetAffinity(2, 0, 2, 0, 1);
     }
 
     @Override

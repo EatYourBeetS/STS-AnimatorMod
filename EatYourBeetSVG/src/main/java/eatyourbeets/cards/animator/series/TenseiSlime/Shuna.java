@@ -5,12 +5,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Shuna extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Shuna.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Shuna.class)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public Shuna()
     {
@@ -19,8 +20,8 @@ public class Shuna extends AnimatorCard
         Initialize(0, 4, 1, 2);
         SetUpgrade(0, 0, 1, 0);
 
-        SetSeries(CardSeries.TenSura);
-        SetAffinity(0, 0, 1, 2, 0);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1, 1, 0);
     }
 
     @Override

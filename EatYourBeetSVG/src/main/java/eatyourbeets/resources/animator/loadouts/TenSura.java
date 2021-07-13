@@ -18,7 +18,7 @@ public class TenSura extends AnimatorLoadout
 {
     public TenSura()
     {
-        super(CardSeries.TenSura);
+        super(CardSeries.TenseiSlime);
     }
 
     @Override

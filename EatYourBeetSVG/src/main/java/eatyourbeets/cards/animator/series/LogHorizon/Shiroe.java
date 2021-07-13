@@ -11,7 +11,10 @@ import eatyourbeets.utilities.TargetHelper;
 public class Shiroe extends AnimatorCard
 {
     public static final int MINIMUM_TEAMWORK = 3;
-    public static final EYBCardData DATA = Register(Shiroe.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(Shiroe.class)
+            .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage();
 
     public Shiroe()
     {
@@ -20,10 +23,10 @@ public class Shiroe extends AnimatorCard
         Initialize(0, 0, 2, 2);
         SetUpgrade(0, 0, 0, 1);
 
-        SetExhaust(true);
+        SetAffinity_Blue(2);
+        SetAffinity_Light(1);
 
-        SetSeries(CardSeries.LogHorizon);
-        SetAffinity(0, 0, 2, 1, 0);
+        SetExhaust(true);
     }
 
     @Override

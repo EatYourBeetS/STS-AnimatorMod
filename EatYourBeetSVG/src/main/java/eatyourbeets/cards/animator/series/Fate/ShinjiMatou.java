@@ -7,7 +7,6 @@ import eatyourbeets.cards.animator.special.ShinjiMatou_CommandSpell;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -18,7 +17,9 @@ public class ShinjiMatou extends AnimatorCard
 {
     private static final HashSet<CardType> cardTypes = new HashSet<>();
 
-    public static final EYBCardData DATA = Register(ShinjiMatou.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.Random);
+    public static final EYBCardData DATA = Register(ShinjiMatou.class)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.Random)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new ShinjiMatou_CommandSpell(), false);
@@ -31,8 +32,7 @@ public class ShinjiMatou extends AnimatorCard
         Initialize(0, 2, 4);
         SetUpgrade(0, 0, 2);
 
-        SetSeries(CardSeries.Fate);
-        SetAffinity(0, 0, 1, 0, 1);
+        SetAffinity_Dark(1, 1, 1);
     }
 
     @Override

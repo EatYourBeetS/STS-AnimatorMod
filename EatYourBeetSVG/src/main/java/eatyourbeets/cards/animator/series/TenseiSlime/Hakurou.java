@@ -6,14 +6,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Hakurou extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Hakurou.class).SetAttack(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Hakurou.class)
+            .SetAttack(2, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public Hakurou()
     {
@@ -21,10 +22,9 @@ public class Hakurou extends AnimatorCard
 
         Initialize(1, 0, 3, 4);
         SetUpgrade(0, 0, 1, 0);
-        SetScaling(0, 1, 1);
 
-        SetSeries(CardSeries.TenSura);
-        SetAffinity(1, 2, 0, 0, 0);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override

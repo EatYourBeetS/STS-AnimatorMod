@@ -8,13 +8,14 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
 
 public class ElricEdward extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ElricEdward.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(ElricEdward.class)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental)
+            .SetSeriesFromClassPackage();
 
     public ElricEdward()
     {
@@ -22,11 +23,11 @@ public class ElricEdward extends AnimatorCard
 
         Initialize(4, 0, 1);
         SetUpgrade(4, 0, 0);
-        SetScaling(1, 0, 0);
+
+        SetAffinity_Blue(1, 1, 1);
+        SetAffinity_Light(1);
 
         SetEvokeOrbCount(1);
-        SetSeries(CardSeries.FullmetalAlchemist);
-        SetAffinity(0, 0, 2, 1, 0);
     }
 
     @Override

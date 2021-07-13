@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.cards.DrawPileCardPreview;
@@ -17,7 +16,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Illya extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Illya.class).SetSkill(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Illya.class)
+            .SetSkill(1, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Berserker(), false);
@@ -32,8 +33,7 @@ public class Illya extends AnimatorCard
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, -2);
 
-        SetSeries(CardSeries.Fate);
-        SetAffinity(0, 0, 1, 0, 0);
+        SetAffinity_Blue(1);
     }
 
     @Override

@@ -8,13 +8,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
+import eatyourbeets.cards.animator.series.Fate.Saber;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Excalibur extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Excalibur.class).SetAttack(3, CardRarity.SPECIAL, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Excalibur.class)
+            .SetAttack(3, CardRarity.SPECIAL, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetSeries(Saber.DATA.Series);
 
     public Excalibur()
     {
@@ -23,10 +26,11 @@ public class Excalibur extends AnimatorCard
         Initialize(80, 0);
         SetUpgrade(19, 0);
 
+        SetAffinity_Red(2);
+        SetAffinity_Light(2, 0, 4);
+
         SetRetain(true);
         SetExhaust(true);
-        SetSeries(CardSeries.Fate);
-        SetAffinity(2, 0, 0, 2, 0);
     }
 
     @Override

@@ -13,9 +13,9 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.effects.vfx.HemokinesisEffect;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.PowerHelper;
@@ -23,7 +23,9 @@ import eatyourbeets.utilities.*;
 
 public class Charlotte extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Charlotte.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(Charlotte.class)
+            .SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal)
+            .SetSeries(CardSeries.MadokaMagica);
 
     public Charlotte()
     {
@@ -31,10 +33,10 @@ public class Charlotte extends AnimatorCard
 
         Initialize(60, 0, 3);
         SetUpgrade(20, 0, 0);
-        SetScaling(3, 0, 6);
 
-        SetSeries(CardSeries.MadokaMagica);
-        SetAffinity(2, 0, 2, 0, 2);
+        SetAffinity_Dark(2, 0, 3);
+        SetAffinity_Red(1);
+        SetAffinity_Blue(1);
     }
 
     @Override

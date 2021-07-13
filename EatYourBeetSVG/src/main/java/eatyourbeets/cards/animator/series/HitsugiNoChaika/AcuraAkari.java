@@ -6,14 +6,15 @@ import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.TemporaryEnvenomPower;
 import eatyourbeets.utilities.GameActions;
 
 public class AcuraAkari extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(AcuraAkari.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(AcuraAkari.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
     static
     {
         for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
@@ -29,8 +30,8 @@ public class AcuraAkari extends AnimatorCard
         Initialize(0, 0, 2, 2);
         SetCostUpgrade(-1);
 
-        SetSeries(CardSeries.Chaika);
-        SetAffinity(1, 2, 0, 0, 0);
+        SetAffinity_Red(1);
+        SetAffinity_Green(1);
     }
 
     @Override

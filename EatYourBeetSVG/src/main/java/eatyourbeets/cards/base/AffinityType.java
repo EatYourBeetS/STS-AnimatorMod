@@ -1,11 +1,13 @@
 package eatyourbeets.cards.base;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.Testing;
 
 public enum AffinityType implements Comparable<AffinityType>
 {
@@ -15,6 +17,8 @@ public enum AffinityType implements Comparable<AffinityType>
     Light(3, GR.Common.Images.Affinities.Light),
     Dark(4, GR.Common.Images.Affinities.Dark),
     Star(-1, GR.Common.Images.Affinities.Star_BG);
+
+    public static final int MAX_ID = 4;
 
     protected static final TextureCache BorderBG = GR.Common.Images.Affinities.BorderBG;
     protected static final TextureCache BorderFG = GR.Common.Images.Affinities.BorderFG;
@@ -81,25 +85,41 @@ public enum AffinityType implements Comparable<AffinityType>
     {
         switch (this)
         {
-            case Red:
-                return GR.Tooltips.Force.icon;
+            case Red: return GR.Tooltips.Force.icon;
 
-            case Green:
-                return GR.Tooltips.Agility.icon;
+            case Green: return GR.Tooltips.Agility.icon;
 
-            case Blue:
-                return GR.Tooltips.Intellect.icon;
+            case Blue: return GR.Tooltips.Intellect.icon;
 
-            case Light:
-                return GR.Tooltips.Blessing.icon;
+            case Light: return GR.Tooltips.Blessing.icon;
 
-            case Dark:
-                return GR.Tooltips.Corruption.icon;
+            case Dark: return GR.Tooltips.Corruption.icon;
 
-            case Star:
-                return null; //return GR.Tooltips.Block.icon;
+            case Star: default: return null;
+        }
+    }
+
+    public Color GetAlternateColor()
+    {
+        Float[] values = Testing.GetValues();
+        if (values != null && values.length >= 3)
+        {
+            return new Color(values[0], values[1], values[2], 1);
         }
 
-        return null;
+        switch (this)
+        {
+            case Red: return new Color(0.8f, 0.5f, 0.5f, 1f);
+
+            case Green: return new Color(0.45f, 0.7f, 0.55f, 1f);
+
+            case Blue: return new Color(0.45f, 0.55f, 0.7f, 1f);
+
+            case Light: return new Color(0.8f, 0.8f, 0.3f, 1f);
+
+            case Dark: return new Color(0.7f, 0.55f, 0.7f, 1f);
+
+            case Star: default: return new Color(0.25f, 0.25f, 0.25f, 1f);
+        }
     }
 }

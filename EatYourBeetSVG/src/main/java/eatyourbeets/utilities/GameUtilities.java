@@ -854,7 +854,7 @@ public class GameUtilities
             EYBCard card = JUtils.SafeCast(c, EYBCard.class);
             if (card != ignored && card != null)
             {
-                affinities.Add(card.affinities, limitPerCard);
+                affinities.AddLevels(card.affinities, limitPerCard);
             }
         }
 

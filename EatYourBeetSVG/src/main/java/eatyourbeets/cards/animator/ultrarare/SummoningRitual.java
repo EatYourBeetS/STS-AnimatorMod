@@ -18,7 +18,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class SummoningRitual extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(SummoningRitual.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(SummoningRitual.class)
+            .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS);
 
     public SummoningRitual()
     {
@@ -27,10 +29,10 @@ public class SummoningRitual extends AnimatorCard_UltraRare
         Initialize(0, 0, 3, 3);
         SetUpgrade(0, 0, 0, -1);
 
+        SetAffinity_Dark(2);
+
         SetRetain(true);
         SetPurge(true, false);
-
-        SetAffinity_Dark(2);
     }
 
     @Override

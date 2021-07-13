@@ -13,7 +13,10 @@ import eatyourbeets.utilities.GameActions;
 
 public class HiiragiTenri extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(HiiragiTenri.class).SetSkill(4, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(HiiragiTenri.class)
+            .SetSkill(4, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.OwariNoSeraph);
 
     public HiiragiTenri()
     {
@@ -22,8 +25,8 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
         Initialize(0, 0, 20);
         SetUpgrade(0, 0, 10);
 
-        SetSeries(CardSeries.OwariNoSeraph);
-        SetAffinity(0, 0, 1, 2, 2);
+        SetAffinity_Light(1);
+        SetAffinity_Dark(2);
     }
 
     @Override

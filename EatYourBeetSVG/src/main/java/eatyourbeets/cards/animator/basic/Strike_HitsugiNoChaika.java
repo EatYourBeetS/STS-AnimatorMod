@@ -17,7 +17,7 @@ public class Strike_HitsugiNoChaika extends Strike
         Initialize(5, 0, 2);
         SetUpgrade(3, 0);
 
-        SetSeries(CardSeries.Chaika);
+        SetSeries(CardSeries.HitsugiNoChaika);
         SetAffinity_Green(1);
     }
 

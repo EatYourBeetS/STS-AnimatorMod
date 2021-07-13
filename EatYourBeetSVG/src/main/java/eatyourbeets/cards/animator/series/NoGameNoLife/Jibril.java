@@ -14,7 +14,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class Jibril extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Jibril.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Jibril.class)
+            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetSeriesFromClassPackage();
 
     public Jibril()
     {
@@ -22,11 +24,12 @@ public class Jibril extends AnimatorCard
 
         Initialize(6, 0, 2);
         SetUpgrade(4, 0, 0);
-        SetScaling(3, 0, 0);
+
+        SetAffinity_Blue(2, 0, 2);
+        SetAffinity_Light(1);
+        SetAffinity_Dark(1);
 
         SetEvokeOrbCount(1);
-        SetSeries(CardSeries.NoGameNoLife);
-        SetAffinity(0, 0, 2, 1, 1);
     }
 
     @Override

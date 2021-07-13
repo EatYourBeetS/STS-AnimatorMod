@@ -10,7 +10,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Earth extends OrbCore implements Hidden
 {
-    public static final EYBCardData DATA = Register(OrbCore_Earth.class).SetPower(0, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(OrbCore_Earth.class)
+            .SetPower(0, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS);
 
     public static final int VALUE = 3;
 
@@ -19,6 +21,8 @@ public class OrbCore_Earth extends OrbCore implements Hidden
         super(DATA);
 
         Initialize(0, 0, VALUE, 2);
+
+        SetAffinity_Red(1);
 
         SetEvokeOrbCount(secondaryValue);
     }

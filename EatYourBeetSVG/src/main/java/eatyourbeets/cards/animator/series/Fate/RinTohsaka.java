@@ -7,13 +7,14 @@ import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class RinTohsaka extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(RinTohsaka.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(RinTohsaka.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public RinTohsaka()
     {
@@ -21,10 +22,9 @@ public class RinTohsaka extends AnimatorCard
 
         Initialize(0, 5, 0, 1);
         SetUpgrade(0, 1, 0, 1);
-        SetScaling(1, 0, 0);
 
-        SetSeries(CardSeries.Fate);
-        SetAffinity(0, 0, 1, 1, 0);
+        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Light(1);
     }
 
     @Override

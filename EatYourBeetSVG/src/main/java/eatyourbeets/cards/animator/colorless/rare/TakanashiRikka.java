@@ -13,7 +13,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class TakanashiRikka extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(TakanashiRikka.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(TakanashiRikka.class)
+            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Chuunibyou);
 
     public TakanashiRikka()
     {
@@ -21,11 +24,10 @@ public class TakanashiRikka extends AnimatorCard
 
         Initialize(0, 0, 0);
 
+        SetAffinity_Light(1);
+
         SetEthereal(true);
         SetExhaust(true);
-        SetSeries(CardSeries.Chuunibyou);
-
-        SetAffinity_Light(1);
     }
 
     @Override

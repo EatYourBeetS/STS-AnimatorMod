@@ -7,13 +7,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 
 public class ItamiYouji extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ItamiYouji.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(ItamiYouji.class)
+            .SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged)
+            .SetSeriesFromClassPackage();
 
     public ItamiYouji()
     {
@@ -22,8 +23,8 @@ public class ItamiYouji extends AnimatorCard
         Initialize(3, 0, 3, 2);
         SetUpgrade(0, 0, 1);
 
-        SetSeries(CardSeries.Gate);
-        SetAffinity(1, 1, 0, 0, 0);
+        SetAffinity_Red(1);
+        SetAffinity_Green(1);
     }
 
     @Override

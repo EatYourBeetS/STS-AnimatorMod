@@ -6,12 +6,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class HousakiTohya extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HousakiTohya.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(HousakiTohya.class)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new HousakiMinori(), false);
@@ -23,10 +24,9 @@ public class HousakiTohya extends AnimatorCard
 
         Initialize(5, 0, 1, 3);
         SetUpgrade(3, 0, 0, 0);
-        SetScaling(0, 1, 1);
 
-        SetSeries(CardSeries.LogHorizon);
-        SetAffinity(1, 0, 0, 1, 0);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Light(1);
     }
 
     @Override

@@ -12,7 +12,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class OrikoMikuni extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(OrikoMikuni.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(OrikoMikuni.class)
+            .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -23,8 +25,8 @@ public class OrikoMikuni extends AnimatorCard
         Initialize(0, 0, 3, 4);
         SetUpgrade(0, 0, 1, 2);
 
-        SetSeries(CardSeries.MadokaMagica);
-        SetAffinity(0, 0, 1, 2, 0);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1, 1, 0);
     }
 
     @Override

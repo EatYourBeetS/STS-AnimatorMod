@@ -6,12 +6,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Asuramaru;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Yuuichirou extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Yuuichirou.class).SetAttack(1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Yuuichirou.class)
+            .SetAttack(1, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Asuramaru(), true);
@@ -23,10 +24,9 @@ public class Yuuichirou extends AnimatorCard
 
         Initialize(8, 0);
         SetUpgrade(3, 0);
-        SetScaling(0, 1, 1);
 
-        SetSeries(CardSeries.OwariNoSeraph);
-        SetAffinity(2, 2, 0, 0, 0);
+        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Green(1, 1, 1);
     }
 
     @Override

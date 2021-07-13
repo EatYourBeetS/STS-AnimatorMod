@@ -5,14 +5,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(MumenRider.class).SetAttack(0, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(MumenRider.class)
+            .SetAttack(0, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     private int turns;
 
@@ -22,9 +23,9 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
 
         Initialize(3, 0, 20);
 
+        SetAffinity_Light(1);
+
         SetExhaust(true);
-        SetSeries(CardSeries.OnePunchMan);
-        SetAffinity(0, 0, 0, 2, 0);
     }
 
     @Override

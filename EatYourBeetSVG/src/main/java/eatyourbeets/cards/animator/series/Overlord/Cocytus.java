@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
@@ -13,7 +12,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Cocytus extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Cocytus.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Cocytus.class)
+            .SetAttack(1, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public Cocytus()
     {
@@ -21,10 +22,8 @@ public class Cocytus extends AnimatorCard
 
         Initialize(6, 0, 2, 1);
         SetUpgrade(1, 0, 1, 0);
-        SetScaling(0, 0, 2);
 
-        SetSeries(CardSeries.Overlord);
-        SetAffinity(2, 0, 0, 0, 1);
+        SetAffinity_Red(1, 1, 1);
     }
 
     @Override

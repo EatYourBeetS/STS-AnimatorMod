@@ -23,7 +23,10 @@ import java.util.HashSet;
 
 public class Patchouli extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Patchouli.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Patchouli.class)
+            .SetAttack(3, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Random)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.TouhouProject);
     static
     {
         for (OrbCore core : OrbCore.GetAllCores())
@@ -40,12 +43,8 @@ public class Patchouli extends AnimatorCard
 
         Initialize(7, 0, 1, 2);
         SetUpgrade(3, 0, 0, 0);
-        SetScaling(2, 0, 0);
 
-        SetSeries(CardSeries.TouhouProject);
-        SetAffinity(0, 0, 2, 0, 0);
-
-        SetAffinity_Blue(2);
+        SetAffinity_Blue(2, 0, 2);
     }
 
     @Override

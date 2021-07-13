@@ -2,14 +2,11 @@ package eatyourbeets.powers.affinity;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.cards.base.AffinityType;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.JUtils;
 
@@ -38,8 +35,6 @@ public abstract class AbstractAffinityPower extends CommonPower
 
         updateDescription();
     }
-
-    protected abstract float GetScaling(EYBCard card);
 
     protected abstract void OnThresholdReached(int threshold);
 
@@ -159,27 +154,5 @@ public abstract class AbstractAffinityPower extends CommonPower
         {
             reducePower(1);
         }
-    }
-
-    @Override
-    public float modifyBlock(float blockAmount, AbstractCard card)
-    {
-        if (amount > 0 && card.baseBlock >= 0 && card.type != AbstractCard.CardType.ATTACK && card instanceof EYBCard)
-        {
-            return blockAmount + GetScaling((EYBCard) card);
-        }
-
-        return blockAmount;
-    }
-
-    @Override
-    public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card)
-    {
-        if (amount > 0 && card.baseDamage >= 0 && card.type == AbstractCard.CardType.ATTACK && card instanceof EYBCard)
-        {
-            return damage + GetScaling((EYBCard) card);
-        }
-
-        return damage;
     }
 }

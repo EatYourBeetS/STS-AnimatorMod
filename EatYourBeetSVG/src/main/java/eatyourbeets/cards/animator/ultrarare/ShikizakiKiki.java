@@ -5,10 +5,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 
 public class ShikizakiKiki extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(ShikizakiKiki.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(ShikizakiKiki.class)
+            .SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Katanagatari);
 
     public ShikizakiKiki()
     {
@@ -17,10 +21,11 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
         Initialize(0, 0, 2, 2);
         SetUpgrade(0, 0, 1, 1);
 
-        SetEthereal(true);
+        SetAffinity_Red(1);
+        SetAffinity_Blue(1);
+        SetAffinity_Dark(1);
 
-        SetSeries(CardSeries.Katanagatari);
-        SetAffinity(1, 0, 1, 0, 1);
+        SetEthereal(true);
     }
 
     @Override
@@ -31,11 +36,15 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
         {
            for (AbstractCard card : player.hand.group)
            {
-               if (card instanceof EYBCard && card.type == CardType.ATTACK)
+               if (card.type == CardType.ATTACK)
                {
-                   ((EYBCard)card).agilityScaling += magicNumber;
-                   ((EYBCard)card).forceScaling += magicNumber;
-                   card.flash();
+                   EYBCard c = JUtils.SafeCast(card, EYBCard.class);
+                   if (c != null)
+                   {
+                       c.AddScaling(AffinityType.Green, magicNumber);
+                       c.AddScaling(AffinityType.Red, magicNumber);
+                       c.flash();
+                   }
                }
            }
         });

@@ -4,13 +4,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.AinzPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Ainz extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Ainz.class).SetPower(7, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Ainz.class)
+            .SetPower(7, CardRarity.RARE)
+            .SetSeriesFromClassPackage();
 
     public Ainz()
     {
@@ -19,9 +20,11 @@ public class Ainz extends AnimatorCard
         Initialize(0, 0, AinzPower.CHOICES);
         SetCostUpgrade(-1);
 
+        SetAffinity_Red(1);
+        SetAffinity_Blue(2);
+        SetAffinity_Dark(2);
+
         SetHealing(true);
-        SetSeries(CardSeries.Overlord);
-        SetAffinity(2, 0, 2, 0, 2);
     }
 
     @Override

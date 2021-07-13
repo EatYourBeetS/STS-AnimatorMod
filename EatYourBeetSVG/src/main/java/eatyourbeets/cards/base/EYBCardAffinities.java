@@ -10,49 +10,65 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class EYBCardAffinities
 {
     private static final ColoredTexture upgradeCircle = new ColoredTexture(GR.Common.Images.Circle.Texture(), Settings.GREEN_RELIC_COLOR);
 
     public final ArrayList<EYBCardAffinity> List = new ArrayList<>();
-    public final HashMap<AffinityType, Integer> Upgrades = new HashMap<>();
     public EYBCardAffinity Star = null;
     public boolean displayUpgrades = false;
 
-    public EYBCardAffinities()
-    {
-
-    }
-
     public void Initialize(int red, int green, int blue, int light, int dark)
     {
-        Initialize(AffinityType.Red, red, 0);
-        Initialize(AffinityType.Green, green, 0);
-        Initialize(AffinityType.Blue, blue, 0);
-        Initialize(AffinityType.Light, light, 0);
-        Initialize(AffinityType.Dark, dark, 0);
+        Star = null;
+        List.clear();
+        Initialize(AffinityType.Red, red, 0, 0);
+        Initialize(AffinityType.Green, green, 0, 0);
+        Initialize(AffinityType.Blue, blue, 0, 0);
+        Initialize(AffinityType.Light, light, 0, 0);
+        Initialize(AffinityType.Dark, dark, 0, 0);
     }
 
-    public void Initialize(AffinityType type, int base, int upgrade)
+    public void Initialize(AffinityType type, int base, int upgrade, int scaling)
     {
-        if (base > 0)
+        if (base > 0 || upgrade > 0)
         {
-            Set(type, base);
+            EYBCardAffinity a = Set(type, base);
+            a.upgrade = upgrade;
+            a.scaling = scaling;
+        }
+    }
+
+    public void Initialize(EYBCardAffinities affinities)
+    {
+        if (affinities.Star != null)
+        {
+            Star = new EYBCardAffinity(AffinityType.Star, affinities.Star.level);
+            Star.scaling = affinities.Star.scaling;
+            Star.upgrade = affinities.Star.upgrade;
+        }
+        else
+        {
+            Star = null;
         }
 
-        if (upgrade > 0)
+        List.clear();
+        for (EYBCardAffinity a : affinities.List)
         {
-            JUtils.IncrementMapElement(Upgrades, type, upgrade);
+            EYBCardAffinity t = new EYBCardAffinity(a.Type, a.level);
+            t.scaling = a.scaling;
+            t.upgrade = a.upgrade;
+            List.add(t);
         }
+        List.sort(EYBCardAffinity::compareTo);
     }
 
     public void ApplyUpgrades()
     {
-        for (AffinityType t : Upgrades.keySet())
+        for (EYBCardAffinity a : List)
         {
-            Add(t, Upgrades.get(t));
+            a.level += a.upgrade;
         }
     }
 
@@ -81,11 +97,7 @@ public class EYBCardAffinities
 
     public void SetStar(int level)
     {
-        if (level == 0)
-        {
-            Star = null;
-        }
-        else if (Star != null)
+        if (Star != null)
         {
             Star.level = level;
         }
@@ -97,18 +109,10 @@ public class EYBCardAffinities
 
     public boolean HasStar()
     {
-        return Star != null;
+        return Star != null && Star.level > 0;
     }
 
-    public void Add(EYBCardAffinities other)
-    {
-        for (EYBCardAffinity item : other.List)
-        {
-            Add(item.Type, item.level);
-        }
-    }
-
-    public void Add(EYBCardAffinities other, int levelLimit)
+    public void AddLevels(EYBCardAffinities other, int levelLimit)
     {
         int star = Math.min(levelLimit, other.GetLevel(AffinityType.Star));
         if (star > 0)
@@ -122,37 +126,35 @@ public class EYBCardAffinities
         }
     }
 
+    public void Add(EYBCardAffinities other)
+    {
+        for (EYBCardAffinity item : other.List)
+        {
+            Add(item.Type, item.level);
+        }
+    }
+
     public void Add(AffinityType type, int level)
     {
-        if (level > 0)
+        if (type == AffinityType.Star)
         {
-            if (type == AffinityType.Star)
+            AddStar(level);
+            return;
+        }
+
+        for (int i = 0; i < List.size(); i++)
+        {
+            EYBCardAffinity a = List.get(i);
+            if (a.Type == type)
             {
-                AddStar(level);
+                a.level += level;
+                List.sort(EYBCardAffinity::compareTo);
                 return;
             }
-
-            for (int i = 0; i < List.size(); i++)
-            {
-                EYBCardAffinity a = List.get(i);
-                if (a.Type == type)
-                {
-                    if ((a.level += level) <= 0)
-                    {
-                        List.remove(a);
-                    }
-                    else
-                    {
-                        List.sort(EYBCardAffinity::compareTo);
-                    }
-
-                    return;
-                }
-            }
-
-            List.add(new EYBCardAffinity(type, level));
-            List.sort(EYBCardAffinity::compareTo);
         }
+
+        List.add(new EYBCardAffinity(type, level));
+        List.sort(EYBCardAffinity::compareTo);
     }
 
     public EYBCardAffinity Set(AffinityType type, int level)
@@ -163,32 +165,21 @@ public class EYBCardAffinities
             return Star;
         }
 
-        EYBCardAffinity result = null;
+        EYBCardAffinity result;
         for (int i = 0; i < List.size(); i++)
         {
             result = List.get(i);
             if (result.Type == type)
             {
-                if ((result.level = level) <= 0)
-                {
-                    List.remove(result);
-                }
-                else
-                {
-                    List.sort(EYBCardAffinity::compareTo);
-                }
-
+                result.level = level;
+                List.sort(EYBCardAffinity::compareTo);
                 return result;
             }
         }
 
-        if (level > 0)
-        {
-            result = new EYBCardAffinity(type, level);
-            List.add(result);
-            List.sort(EYBCardAffinity::compareTo);
-        }
-
+        result = new EYBCardAffinity(type, level);
+        List.add(result);
+        List.sort(EYBCardAffinity::compareTo);
         return result;
     }
 
@@ -208,6 +199,29 @@ public class EYBCardAffinities
         }
 
         return null;
+    }
+
+    public int GetScaling(AffinityType type, boolean useStarScaling)
+    {
+        int star = (Star != null ? Star.scaling : 0);
+        if (type == AffinityType.Star)
+        {
+            return star;
+        }
+
+        int scaling = 0;
+        if (useStarScaling)
+        {
+            scaling = star;
+        }
+
+        EYBCardAffinity affinity = Get(type);
+        if (affinity != null)
+        {
+            scaling += affinity.scaling;
+        }
+
+        return scaling;
     }
 
     public int GetLevel(AffinityType type)
@@ -298,7 +312,6 @@ public class EYBCardAffinities
         float step;
         float x;
         float y = AbstractCard.RAW_H;
-        int half = List.size() / 2;
 
         if (highlight)
         {
@@ -315,16 +328,28 @@ public class EYBCardAffinities
 
         if (HasStar())
         {
-            Star.RenderOnCard(sb, card, 0, y, size, displayUpgrades && Upgrades.containsKey(Star.Type));
+            Star.RenderOnCard(sb, card, 0, y, size, displayUpgrades && Star.upgrade > 0);
             return;
         }
 
+        int max = 0;
+        for (EYBCardAffinity eybCardAffinity : List)
+        {
+            max += 1;
+
+            if (eybCardAffinity.level <= 0)
+            {
+                break;
+            }
+        }
+
+        int half = max / 2;
         if (half >= 2)
         {
             step *= 0.75f;
         }
 
-        for (int i = 0; i < List.size(); i++)
+        for (int i = 0; i < max; i++)
         {
             final EYBCardAffinity item = List.get(i);
 
@@ -333,7 +358,7 @@ public class EYBCardAffinities
 // Render Left
 
 // Render Centered
-            if (List.size() % 2 == 1)
+            if (max % 2 == 1)
             {
                 x = (step * (i - half));
             }
@@ -343,19 +368,32 @@ public class EYBCardAffinities
             }
 // Render Centered
 
-            item.RenderOnCard(sb, card, x, y, size, displayUpgrades && Upgrades.containsKey(item.Type));
+            item.RenderOnCard(sb, card, x, y, size, displayUpgrades && item.upgrade > 0);
         }
     }
 
     public void Render(SpriteBatch sb, float x, float y, float size)
     {
-        int half = List.size() / 2;
-        float step = size * 0.9f;
+        int max = 0;
         for (int i = 0; i < List.size(); i++)
+        {
+            max = i;
+
+            EYBCardAffinity t = List.get(i);
+            if (t.level <= 0)
+            {
+                break;
+            }
+        }
+
+        float step = size * 0.9f;
+        int half = max / 2;
+
+        for (int i = 0; i < max; i++)
         {
             float offsetX;
             final EYBCardAffinity item = List.get(i);
-            if (List.size() % 2 == 1)
+            if (max % 2 == 1)
             {
                 offsetX = (step * (i - half));
             }

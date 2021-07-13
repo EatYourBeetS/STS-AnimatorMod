@@ -14,7 +14,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
 {
-    public static final EYBCardData DATA = Register(NononJakuzure.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(NononJakuzure.class)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.KillLaKill);
 
     public NononJakuzure()
     {
@@ -22,9 +25,9 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
 
         Initialize(0, 0, 2, 1);
 
-        SetExhaust(true);
-        SetSeries(CardSeries.KillLaKill);
         SetAffinity_Green(1);
+        
+        SetExhaust(true);
     }
 
     @Override

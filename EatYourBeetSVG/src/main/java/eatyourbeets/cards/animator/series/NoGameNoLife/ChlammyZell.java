@@ -7,7 +7,6 @@ import eatyourbeets.cards.animator.special.ChlammyZellScheme;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.IntellectPower;
 import eatyourbeets.utilities.GameActions;
@@ -15,7 +14,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ChlammyZell extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ChlammyZell.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(ChlammyZell.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new ChlammyZellScheme(), false);
@@ -28,8 +29,8 @@ public class ChlammyZell extends AnimatorCard
         Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 1, 0);
 
-        SetSeries(CardSeries.NoGameNoLife);
-        SetAffinity(0, 0, 2, 0, 1);
+        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Dark(1);
     }
 
     @Override

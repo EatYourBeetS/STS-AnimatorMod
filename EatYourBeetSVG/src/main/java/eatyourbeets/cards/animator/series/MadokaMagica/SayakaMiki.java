@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.animator.special.Oktavia;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -18,7 +17,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class SayakaMiki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SayakaMiki.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(SayakaMiki.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Oktavia(), true);
@@ -32,8 +33,14 @@ public class SayakaMiki extends AnimatorCard
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetSeries(CardSeries.MadokaMagica);
-        SetAffinity(0, 1, 2, 0, 0);
+        SetAffinity_Green(1);
+        SetAffinity_Blue(1);
+    }
+
+    @Override
+    public boolean HasDirectSynergy(AbstractCard other)
+    {
+        return Curse_GriefSeed.DATA.ID.equals(other.cardID) || super.HasDirectSynergy(other);
     }
 
     @Override
@@ -51,7 +58,7 @@ public class SayakaMiki extends AnimatorCard
         CombatStats.Affinities.Intellect.Retain();
 
         AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
-        if (HasSynergy() && last != null && last.cardID.equals(Curse_GriefSeed.DATA.ID))
+        if (isSynergizing && last != null && last.cardID.equals(Curse_GriefSeed.DATA.ID))
         {
             GameActions.Bottom.MakeCardInDiscardPile(new Oktavia()).SetUpgrade(upgraded, false);
             GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());

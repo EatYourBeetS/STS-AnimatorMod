@@ -20,7 +20,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardExhaustedSubscriber, OnAfterCardDiscardedSubscriber
 {
-    public static final EYBCardData DATA = Register(NivaLada.class).SetSkill(0, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(NivaLada.class)
+            .SetSkill(0, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.HitsugiNoChaika);
 
     public NivaLada()
     {
@@ -29,10 +32,9 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardExhau
         Initialize(0, 0, 300);
         SetUpgrade(0, 0, 0);
 
-        SetCooldown(18, -2, this::OnCooldownCompleted);
+        SetAffinity_Blue(2);
 
-        SetSeries(CardSeries.Chaika);
-        SetAffinity(0, 0, 2, 0, 0);
+        SetCooldown(18, -2, this::OnCooldownCompleted);
     }
 
     @Override

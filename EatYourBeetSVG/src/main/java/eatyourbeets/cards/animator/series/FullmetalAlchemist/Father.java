@@ -21,7 +21,10 @@ public class Father extends AnimatorCard implements OnAddedToDeckListener, OnAdd
     private static final AbstractRelic relic = new PhilosopherStone();
     private static final EYBCardTooltip tooltip = new EYBCardTooltip(relic.name, relic.description);
 
-    public static final EYBCardData DATA = Register(Father.class).SetSkill(4, CardRarity.RARE, EYBCardTarget.None).SetMaxCopies(1);
+    public static final EYBCardData DATA = Register(Father.class)
+            .SetSkill(4, CardRarity.RARE, EYBCardTarget.None)
+            .SetMaxCopies(1)
+            .SetSeriesFromClassPackage();
 
     public Father()
     {
@@ -31,10 +34,10 @@ public class Father extends AnimatorCard implements OnAddedToDeckListener, OnAdd
         SetUpgrade(0, 0, 0, -8);
         SetCostUpgrade(-1);
 
-        SetHealing(true);
+        SetAffinity_Dark(2);
+
         SetPurge(true, false);
-        SetSeries(CardSeries.FullmetalAlchemist);
-        SetAffinity(0, 0, 2, 0, 2);
+        SetHealing(true);
     }
 
     @Override

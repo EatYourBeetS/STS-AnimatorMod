@@ -6,14 +6,15 @@ import eatyourbeets.cards.animator.special.ElricAlphonseAlt;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.affinity.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class ElricAlphonse extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ElricAlphonse.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(ElricAlphonse.class)
+            .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new ElricAlphonseAlt(), true);
@@ -26,21 +27,11 @@ public class ElricAlphonse extends AnimatorCard
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetEthereal(true);
-        SetSeries(CardSeries.FullmetalAlchemist);
-        SetAffinity(0, 0, 1, 1, 0);
-    }
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1);
 
-//    @Override
-//    public List<TooltipInfo> getCustomTooltips()
-//    {
-//        if (cardText.index == 1)
-//        {
-//            return super.getCustomTooltips();
-//        }
-//
-//        return null;
-//    }
+        SetEthereal(true);
+    }
 
     @Override
     public void triggerOnExhaust()

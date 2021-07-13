@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -21,8 +20,10 @@ public class Assassin extends AnimatorCard
 {
     private static int EFFECT = 0;
 
-    public static final EYBCardData DATA = Register(Assassin.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Piercing);
     public static final int DEBUFFS_COUNT = 3;
+    public static final EYBCardData DATA = Register(Assassin.class)
+            .SetAttack(0, CardRarity.COMMON, EYBAttackType.Piercing)
+            .SetSeriesFromClassPackage();
 
     public Assassin()
     {
@@ -30,11 +31,11 @@ public class Assassin extends AnimatorCard
 
         Initialize(2, 0, DEBUFFS_COUNT);
         SetUpgrade(2, 0);
-        SetScaling(0, 1, 0);
 
         SetRetain(true);
-        SetSeries(CardSeries.Fate);
-        SetAffinity(0, 1, 0, 0, 1);
+
+        SetAffinity_Green(1);
+        SetAffinity_Dark(1);
     }
 
     @Override

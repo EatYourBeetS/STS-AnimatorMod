@@ -5,14 +5,16 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
 public class Gillette extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Gillette.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Gillette.class)
+            .SetAttack(1, CardRarity.COMMON)
+            .SetSeries(CardSeries.HitsugiNoChaika);
 
     public Gillette()
     {
@@ -21,8 +23,8 @@ public class Gillette extends AnimatorCard
         Initialize(7, 0, 1);
         SetUpgrade(3, 0, 0);
 
-        SetSeries(CardSeries.Chaika);
-        SetAffinity(0, 1, 0, 2, 0);
+        SetAffinity_Green(1);
+        SetAffinity_Light(1, 1, 0);
     }
 
     @Override

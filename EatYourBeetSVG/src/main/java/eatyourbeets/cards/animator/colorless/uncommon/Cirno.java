@@ -13,7 +13,10 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Cirno extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Cirno.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Cirno.class)
+            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.TouhouProject);
 
     public Cirno()
     {
@@ -21,12 +24,10 @@ public class Cirno extends AnimatorCard
 
         Initialize(3, 0);
         SetUpgrade(3, 0);
-        SetScaling(1, 0, 0);
+
+        SetAffinity_Blue(1, 0, 1);
 
         SetEthereal(true);
-        SetMultiDamage(true);
-        SetSeries(CardSeries.TouhouProject);
-        SetAffinity_Blue(1);
     }
 
     @Override

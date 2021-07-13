@@ -3,14 +3,16 @@ package eatyourbeets.cards.animator.special;
 import com.megacrit.cardcrawl.actions.defect.DecreaseMaxOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.series.Fate.ShinjiMatou;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class ShinjiMatou_CommandSpell extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ShinjiMatou_CommandSpell.class).SetSkill(1, CardRarity.SPECIAL);
+    public static final EYBCardData DATA = Register(ShinjiMatou_CommandSpell.class)
+            .SetSkill(1, CardRarity.SPECIAL)
+            .SetSeries(ShinjiMatou.DATA.Series);
 
     public ShinjiMatou_CommandSpell()
     {
@@ -19,9 +21,10 @@ public class ShinjiMatou_CommandSpell extends AnimatorCard
         Initialize(0, 0);
         SetCostUpgrade(-1);
 
+        SetAffinity_Blue(1);
+        SetAffinity_Dark(2);
+
         SetPurge(true);
-        SetSeries(CardSeries.Fate);
-        SetAffinity(0, 0, 1, 0, 2);
     }
 
     @Override

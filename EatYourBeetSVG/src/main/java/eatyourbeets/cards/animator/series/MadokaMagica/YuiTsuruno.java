@@ -7,14 +7,15 @@ import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
 public class YuiTsuruno extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YuiTsuruno.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(YuiTsuruno.class)
+            .SetAttack(0, CardRarity.COMMON, EYBAttackType.Elemental)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Curse_GriefSeed(), false);
@@ -27,8 +28,8 @@ public class YuiTsuruno extends AnimatorCard
         Initialize(5, 0);
         SetUpgrade(3, 0);
 
-        SetSeries(CardSeries.MadokaMagica);
-        SetAffinity(0, 1, 1, 0, 0);
+        SetAffinity_Green(1);
+        SetAffinity_Blue(1);
     }
 
     @Override

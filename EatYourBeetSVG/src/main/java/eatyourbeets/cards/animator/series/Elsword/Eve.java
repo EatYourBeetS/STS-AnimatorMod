@@ -6,13 +6,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.EvePower;
 import eatyourbeets.utilities.GameActions;
 
 public class Eve extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Eve.class).SetPower(3, CardRarity.RARE).SetMaxCopies(1);
+    public static final EYBCardData DATA = Register(Eve.class)
+            .SetPower(3, CardRarity.RARE)
+            .SetMaxCopies(1)
+            .SetSeriesFromClassPackage();
     static
     {
         for (OrbCore core : OrbCore.GetAllCores())
@@ -28,8 +30,9 @@ public class Eve extends AnimatorCard
         Initialize(0, 0, 0);
         SetUpgrade(0, 0, 1);
 
-        SetSeries(CardSeries.Elsword);
-        SetAffinity(0, 0, 2, 0, 0);
+        SetAffinity_Blue(2);
+        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Dark(1, 1, 0);
     }
 
     @Override

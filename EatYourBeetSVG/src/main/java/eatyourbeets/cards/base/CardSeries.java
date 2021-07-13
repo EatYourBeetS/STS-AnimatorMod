@@ -2,8 +2,6 @@ package eatyourbeets.cards.base;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 
@@ -17,20 +15,20 @@ public class CardSeries
     public final static CardSeries ANY = Add(0, "ANY");
     public final static CardSeries Elsword = Add(1, "Elsword");
     public final static CardSeries Kancolle = Add(2, "Kancolle");
-    public final static CardSeries Chaika = Add(3, "Chaika");
+    public final static CardSeries HitsugiNoChaika = Add(3, "HitsugiNoChaika");
     public final static CardSeries Konosuba = Add(4, "Konosuba");
     public final static CardSeries Katanagatari = Add(5, "Katanagatari");
     public final static CardSeries OwariNoSeraph = Add(6, "OwariNoSeraph");
     public final static CardSeries Overlord = Add(7, "Overlord");
     public final static CardSeries NoGameNoLife = Add(8, "NoGameNoLife");
-    public final static CardSeries Gate = Add(9, "GATE");
+    public final static CardSeries GATE = Add(9, "GATE");
     public final static CardSeries Fate = Add(10, "Fate");
     public final static CardSeries GoblinSlayer = Add(11, "GoblinSlayer");
     public final static CardSeries FullmetalAlchemist = Add(12, "FullmetalAlchemist");
     public final static CardSeries HatarakuMaouSama = Add(13, "HatarakuMaouSama");
     public final static CardSeries GrimoireOfZero = Add(14, "GrimoireOfZero");
     public final static CardSeries SteinsGate = Add(15, "SteinsGate");
-    public final static CardSeries TenSura = Add(16, "TenSura");
+    public final static CardSeries TenseiSlime = Add(16, "TenseiSlime");
     public final static CardSeries ReZero = Add(17, "ReZero");
     public final static CardSeries MadokaMagica = Add(18, "MadokaMagica");
     public final static CardSeries Charlotte = Add(19, "Charlotte");
@@ -70,15 +68,15 @@ public class CardSeries
     private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;
 
-    public final String Name;
-    public final String LocalizedName;
     public final int ID;
+    public final String Name;
+    public String LocalizedName;
 
-    public CardSeries(int id, String name, String localizedName)
+    public CardSeries(int id, String name)
     {
         ID = id;
         Name = name;
-        LocalizedName = localizedName != null ? localizedName : name;
+        LocalizedName = name;
     }
 
     public boolean Equals(CardSeries other)
@@ -86,14 +84,13 @@ public class CardSeries
         return other != null && ID == other.ID;
     }
 
-    public static boolean IsSynergizing(AbstractCard card)
+    public static void InitializeStrings()
     {
-        if (card == null || currentSynergy == null)
+        for (Integer k : mapIDs.keySet())
         {
-            return false;
+            CardSeries s = mapIDs.get(k);
+            s.LocalizedName = GR.Animator.Strings.Series.SeriesName(k);
         }
-
-        return currentSynergy.uuid == card.uuid;
     }
 
     public static void AddCards(CardSeries series, ArrayList<AbstractCard> source, ArrayList<AnimatorCard> destination)
@@ -110,7 +107,7 @@ public class CardSeries
 
     private static CardSeries Add(int id, String name)
     {
-        CardSeries s = new CardSeries(id, name, GR.Animator.Strings.Series.SeriesName(id));
+        CardSeries s = new CardSeries(id, name);
         if (id > 0)
         {
             mapIDs.put(id, s);
@@ -219,83 +216,5 @@ public class CardSeries
         }
 
         return result;
-    }
-
-    public static boolean TrySynergize(AbstractCard card)
-    {
-        if (WouldSynergize(card))
-        {
-            currentSynergy = card;
-            return true;
-        }
-
-        currentSynergy = null;
-        return false;
-    }
-
-    public static void SetLastCardPlayed(AbstractCard card)
-    {
-        lastCardPlayed = JUtils.SafeCast(card, AnimatorCard.class);
-        currentSynergy = null;
-    }
-
-    public static boolean WouldSynergize(AbstractCard card)
-    {
-        return WouldSynergize(card, lastCardPlayed);
-    }
-
-    public static boolean WouldSynergize(AbstractCard card, AbstractCard other)
-    {
-        for (OnSynergyCheckSubscriber s : CombatStats.onSynergyCheck.GetSubscribers())
-        {
-            if (s.OnSynergyCheck(card, other))
-            {
-                return true;
-            }
-        }
-
-        if (card == null || other == null)
-        {
-            return false;
-        }
-
-        AnimatorCard a = JUtils.SafeCast(card, AnimatorCard.class);
-        AnimatorCard b = JUtils.SafeCast(other, AnimatorCard.class);
-
-        if (a != null)
-        {
-            if (b != null)
-            {
-                return a.HasDirectSynergy(b) || b.HasDirectSynergy(a);
-            }
-            else
-            {
-                return a.HasDirectSynergy(other);
-            }
-        }
-
-        if (b != null)
-        {
-            return b.HasDirectSynergy(card);
-        }
-
-        return HasTagSynergy(card, other);
-    }
-
-    public static boolean HasTagSynergy(AbstractCard c1, AbstractCard c2)
-    {
-        if (c1.hasTag(AnimatorCard.SHAPESHIFTER) || c2.hasTag(AnimatorCard.SHAPESHIFTER))
-        {
-            return true;
-        }
-
-        EYBCard a = JUtils.SafeCast(c1, EYBCard.class);
-        EYBCard b = JUtils.SafeCast(c2, EYBCard.class);
-        if (a == null || b == null)
-        {
-            return false;
-        }
-
-        return a.affinities.CanSynergize(b.affinities);
     }
 }

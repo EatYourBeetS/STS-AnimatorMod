@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.stances.AgilityStance;
@@ -17,17 +16,20 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Henrietta extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Henrietta.class).SetPower(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Henrietta.class)
+            .SetPower(2, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
 
     public Henrietta()
     {
         super(DATA);
 
         Initialize(0, 0, 1, 1);
-        SetEthereal(true);
 
-        SetSeries(CardSeries.LogHorizon);
-        SetAffinity(0, 0, 1, 1, 0);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1);
+
+        SetEthereal(true);
     }
 
     @Override

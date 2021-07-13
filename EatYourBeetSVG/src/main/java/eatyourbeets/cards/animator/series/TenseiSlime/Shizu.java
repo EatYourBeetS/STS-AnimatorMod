@@ -6,13 +6,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.FlamingWeaponPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Shizu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Shizu.class).SetAttack(2, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Shizu.class)
+            .SetAttack(2, CardRarity.RARE)
+            .SetSeriesFromClassPackage();
 
     public Shizu()
     {
@@ -20,11 +21,12 @@ public class Shizu extends AnimatorCard
 
         Initialize(13, 0);
         SetUpgrade(3, 0);
-        SetScaling(0, 2, 0);
+
+        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Red(1);
+        SetAffinity_Light(2);
 
         SetExhaust(true);
-        SetSeries(CardSeries.TenSura);
-        SetAffinity(1, 2, 0, 2, 0);
     }
 
     @Override

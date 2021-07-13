@@ -19,7 +19,7 @@ public class Strike_TenSura extends Strike
         Initialize(6, 0, 1);
         SetUpgrade(3, 0);
 
-        SetSeries(CardSeries.TenSura);
+        SetSeries(CardSeries.TenseiSlime);
         SetAffinity_Light(1);
     }
 

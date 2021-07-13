@@ -81,25 +81,27 @@ public class EYBCardMetadataV2
             }
         }
 
-        if (scaling != null)
-        {
-            if (affinity.length != 3)
-            {
-                throw new RuntimeException("Card scaling must have 3 elements: " + card.cardID);
-            }
-
-            card.SetScaling(scaling[2], scaling[1], scaling[0]);
-        }
-
-        if (affinity != null)
-        {
-            if (affinity.length != 5)
-            {
-                throw new RuntimeException("Card alignment must have 5 elements: " + card.cardID);
-            }
-
-            card.SetAffinity(affinity[0], affinity[1], affinity[2], affinity[3], affinity[4]);
-        }
+// TODO: export scaling and affinity
+//
+//        if (scaling != null)
+//        {
+//            if (affinity.length != 3)
+//            {
+//                throw new RuntimeException("Card scaling must have 3 elements: " + card.cardID);
+//            }
+//
+//            card.SetScaling(scaling[2], scaling[1], scaling[0]);
+//        }
+//
+//        if (affinity != null)
+//        {
+//            if (affinity.length != 5)
+//            {
+//                throw new RuntimeException("Card alignment must have 5 elements: " + card.cardID);
+//            }
+//
+//            card.SetAffinity(affinity[0], affinity[1], affinity[2], affinity[3], affinity[4]);
+//        }
 
         if (staticPortrait != null)
         {
@@ -119,9 +121,14 @@ public class EYBCardMetadataV2
         metadata.stats = new int[] {card.cost, Math.max(0, card.baseDamage), Math.max(0, card.baseBlock), card.baseMagicNumber, card.baseSecondaryValue};
         metadata.upgrade = new int[] {card.upgrade_cost, card.upgrade_damage, card.upgrade_block, card.upgrade_magicNumber, card.upgrade_secondaryValue};
 
-        if ((card.forceScaling + card.agilityScaling + card.intellectScaling) > 0)
+        if (card.affinities.List.size() > 0 || card.affinities.HasStar())
         {
-            metadata.scaling = new int[] {card.forceScaling, card.agilityScaling, card.intellectScaling };
+            metadata.scaling = new int[]
+            {
+                card.affinities.GetScaling(AffinityType.Red, false),
+                card.affinities.GetScaling(AffinityType.Green, false),
+                card.affinities.GetScaling(AffinityType.Blue, false)
+            };
         }
 
         if (exportSeries && card.series != null)

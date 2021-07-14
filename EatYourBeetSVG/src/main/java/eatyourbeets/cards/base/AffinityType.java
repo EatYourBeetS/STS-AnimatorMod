@@ -12,12 +12,12 @@ import eatyourbeets.utilities.RenderHelpers;
 
 public enum AffinityType implements Comparable<AffinityType>
 {
-    Red(0, GR.Common.Images.Affinities.Red),
-    Green(1, GR.Common.Images.Affinities.Green),
-    Blue(2, GR.Common.Images.Affinities.Blue),
-    Light(3, GR.Common.Images.Affinities.Light),
-    Dark(4, GR.Common.Images.Affinities.Dark),
-    Star(-1, GR.Common.Images.Affinities.Star_BG);
+    Red(0, "Red", GR.Common.Images.Affinities.Red),
+    Green(1, "Green", GR.Common.Images.Affinities.Green),
+    Blue(2, "Blue", GR.Common.Images.Affinities.Blue),
+    Light(3, "Light", GR.Common.Images.Affinities.Light),
+    Dark(4, "Dark", GR.Common.Images.Affinities.Dark),
+    Star(-1, "Star", GR.Common.Images.Affinities.Star_BG);
 
     public static final int MAX_ID = 4;
 
@@ -50,11 +50,13 @@ public enum AffinityType implements Comparable<AffinityType>
 
     public final int ID;
     public final TextureCache Icon;
+    public final String Symbol;
 
-    AffinityType(int id, TextureCache icon)
+    AffinityType(int id, String symbol, TextureCache icon)
     {
         this.ID = id;
         this.Icon = icon;
+        this.Symbol = symbol;
     }
 
     public Texture GetIcon()

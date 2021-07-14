@@ -27,8 +27,9 @@ public class SynergyCardsReward extends AnimatorReward
 
     public final CardSeries series;
     private boolean skip = false;
+    private EYBCardAffinityStatistics statistics;
     private AnimatorRuntimeLoadout loadout;
-    private EYBCardTooltip tooltip = new EYBCardTooltip("", "");
+    private EYBCardTooltip tooltip;
 
     private static String GenerateRewardTitle(CardSeries series)
     {
@@ -49,8 +50,15 @@ public class SynergyCardsReward extends AnimatorReward
         this.series = series;
         this.cards = GenerateCardReward(series);
         this.loadout = GR.Animator.Dungeon.GetLoadout(series);
-        this.tooltip.title = series.LocalizedName;
-        this.tooltip.description = GR.Animator.Strings.Rewards.Description;
+
+        if (series == CardSeries.ANY)
+        {
+            statistics = new EYBCardAffinityStatistics(AbstractDungeon.srcColorlessCardPool.group);
+        }
+        else if (loadout != null)
+        {
+            statistics = loadout.AffinityStatistics;
+        }
     }
 
     @Override
@@ -60,7 +68,23 @@ public class SynergyCardsReward extends AnimatorReward
 
         if (this.hb.hovered)
         {
-            EYBCardTooltip.QueueTooltip(tooltip, 360 * Settings.scale, InputHelper.mY);
+            if (tooltip == null)
+            {
+                tooltip = new EYBCardTooltip(series.LocalizedName, GR.Animator.Strings.Rewards.Description);
+
+                if (statistics != null)
+                {
+                    tooltip.description += " NL NL Possible Affinities:";
+                    StringBuilder builder = new StringBuilder();
+                    for (EYBCardAffinityStatistics.Group g : statistics)
+                    {
+                        builder.append(JUtils.Format(" NL [A-{0}] : {1} ( #b{2} )", g.Type.Symbol, g.GetPercentageString(0), g.GetTotal(0)));
+                    }
+                    tooltip.description += builder.toString();
+                }
+            }
+
+            EYBCardTooltip.QueueTooltip(tooltip, 360 * Settings.scale, InputHelper.mY + 120 * Settings.scale);
             //TipHelper.renderGenericTip(360f * Settings.scale, (float) InputHelper.mY, series.LocalizedName, GR.Animator.Strings.Rewards.Description);
         }
     }
@@ -70,16 +94,36 @@ public class SynergyCardsReward extends AnimatorReward
     {
         super.render(sb);
 
-        EYBCardAffinityStatistics statistics = null;
-        if (series == CardSeries.ANY)
+        if (statistics == null)
         {
-            statistics = new EYBCardAffinityStatistics(AbstractDungeon.srcColorlessCardPool.group);
-        }
-        else if (loadout != null)
-        {
-            statistics = loadout.AffinityStatistics;
+            return;
         }
 
+        final int MAX = 2;
+        int rendered = 0;
+        float size, cX, cY;
+        for (EYBCardAffinityStatistics.Group g : statistics)
+        {
+            if (g.Type == AffinityType.Star)
+            {
+                continue;
+            }
+            if (rendered >= MAX)
+            {
+                break;
+            }
+
+            size = 42f;
+            cX = hb.x + hb.width - ((MAX - rendered) * size);
+            cY = hb.cY;
+
+            g.Render(sb, cX, cY, size, 2);
+            rendered += 1;
+        }
+    }
+
+    private void AdvancedRender(SpriteBatch sb)
+    {
         if (statistics == null)
         {
             return;

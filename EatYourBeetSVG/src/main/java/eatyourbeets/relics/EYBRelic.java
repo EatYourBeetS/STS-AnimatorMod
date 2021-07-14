@@ -1,24 +1,28 @@
 package eatyourbeets.relics;
 
 import basemod.abstracts.CustomRelic;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class EYBRelic extends CustomRelic
 {
-    protected static final FieldInfo<Float> _offsetX = JUtils.GetField("offsetX", AbstractRelic.class);
-
     public static AbstractPlayer player;
     public static Random rng;
+
+    public ArrayList<EYBCardTooltip> tips;
 
     public EYBRelic(String id, String imageID, RelicTier tier, LandingSound sfx)
     {
@@ -86,6 +90,12 @@ public abstract class EYBRelic extends CustomRelic
     }
 
     @Override
+    public void renderTip(SpriteBatch sb)
+    {
+        EYBCardTooltip.QueueTooltips(this);
+    }
+
+    @Override
     public void atPreBattle()
     {
         super.atPreBattle();
@@ -107,6 +117,58 @@ public abstract class EYBRelic extends CustomRelic
         super.onUnequip();
 
         Unsubscribe();
+    }
+
+    @Override
+    protected void initializeTips()
+    {
+        if (tips == null)
+        {
+            tips = new ArrayList<>();
+        }
+        else
+        {
+            tips.clear();
+        }
+
+        tips.add(new EYBCardTooltip(name, description));
+
+        final Scanner desc = new Scanner(this.description);
+        String s;
+        boolean alreadyExists;
+        do
+        {
+            if (!desc.hasNext())
+            {
+                desc.close();
+                return;
+            }
+
+            s = desc.next();
+            if (s.charAt(0) == '#')
+            {
+                s = s.substring(2);
+            }
+
+            s = s.replace(',', ' ');
+            s = s.replace('.', ' ');
+
+            if (s.length() > 4)
+            {
+                s = s.replace('[', ' ');
+                s = s.replace(']', ' ');
+            }
+
+            s = s.trim();
+            s = s.toLowerCase();
+
+            EYBCardTooltip tip = CardTooltips.FindByName(s);
+            if (tip != null && !tips.contains(tip))
+            {
+                tips.add(tip);
+            }
+        }
+        while (true);
     }
 
     protected void Subscribe()

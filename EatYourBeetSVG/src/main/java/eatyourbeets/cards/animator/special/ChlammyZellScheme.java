@@ -3,16 +3,18 @@ package eatyourbeets.cards.animator.special;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlickCoinEffect;
+import eatyourbeets.cards.animator.series.NoGameNoLife.ChlammyZell;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.ChlammyZellPower;
 import eatyourbeets.utilities.GameActions;
 
 public class ChlammyZellScheme extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ChlammyZellScheme.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(ChlammyZellScheme.class)
+            .SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetSeries(ChlammyZell.DATA.Series);
 
     public ChlammyZellScheme()
     {
@@ -21,9 +23,11 @@ public class ChlammyZellScheme extends AnimatorCard
         Initialize(0, 0, 5);
         SetCostUpgrade(-1);
 
+        SetAffinity_Blue(2);
+        SetAffinity_Dark(1);
+
         SetRetain(true);
         SetExhaust(true);
-        SetSynergy(Synergies.NoGameNoLife);
     }
 
     @Override

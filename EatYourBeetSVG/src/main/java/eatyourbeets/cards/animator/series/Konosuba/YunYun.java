@@ -14,7 +14,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class YunYun extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YunYun.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(YunYun.class)
+            .SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetSeriesFromClassPackage();
 
     public YunYun()
     {
@@ -22,10 +24,9 @@ public class YunYun extends AnimatorCard
 
         Initialize(8, 0);
         SetUpgrade(4, 0);
-        SetScaling(1, 0, 0);
 
-        SetSynergy(Synergies.Konosuba);
-        SetSpellcaster();
+        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Light(0, 0, 1);
     }
 
     @Override

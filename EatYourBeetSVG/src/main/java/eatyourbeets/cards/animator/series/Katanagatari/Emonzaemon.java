@@ -9,7 +9,6 @@ import eatyourbeets.cards.animator.special.EntouJyuu;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
@@ -19,7 +18,9 @@ import java.util.ArrayList;
 
 public class Emonzaemon extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Emonzaemon.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(Emonzaemon.class)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new EntouJyuu(), true);
@@ -31,10 +32,9 @@ public class Emonzaemon extends AnimatorCard
 
         Initialize(4, 0);
         SetUpgrade(2, 0);
-        SetScaling(0, 1, 0);
 
-        SetSynergy(Synergies.Katanagatari);
-        SetMartialArtist();
+        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Dark(1);
     }
 
     @Override

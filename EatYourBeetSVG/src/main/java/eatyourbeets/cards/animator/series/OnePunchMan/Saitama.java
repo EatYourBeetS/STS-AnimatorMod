@@ -22,7 +22,9 @@ import eatyourbeets.utilities.JUtils;
 
 public class Saitama extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Saitama.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Saitama.class)
+            .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Saitama(1), false);
@@ -40,9 +42,11 @@ public class Saitama extends AnimatorCard
 
         Initialize(0, 0);
 
-        SetAttackType(EYBAttackType.Normal);
-        SetSynergy(Synergies.OnePunchMan);
+        SetAffinity_Red(2);
+        SetAffinity_Green(2);
+        SetAffinity_Light(1);
 
+        SetAttackType(EYBAttackType.Normal);
         GameUtilities.ModifyCostForCombat(this, stage, false);
         this.stage = this.misc = stage;
         SetEffect(stage);
@@ -244,7 +248,9 @@ public class Saitama extends AnimatorCard
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[3], true);
 
                 Initialize(6, 0, 8, 0);
-                SetScaling(0, 3, 3);
+
+                AddScaling(AffinityType.Red, 3);
+                AddScaling(AffinityType.Green, 1);
 
                 this.attackType = EYBAttackType.Normal;
                 this.target = CardTarget.ENEMY;
@@ -261,7 +267,9 @@ public class Saitama extends AnimatorCard
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[4], true);
 
                 Initialize(999, 0, 0, 0);
-                SetScaling(0, 99, 99);
+
+                SetScaling(AffinityType.Red, 99);
+                SetScaling(AffinityType.Green, 99);
 
                 this.attackType = EYBAttackType.Normal;
                 this.target = CardTarget.ENEMY;

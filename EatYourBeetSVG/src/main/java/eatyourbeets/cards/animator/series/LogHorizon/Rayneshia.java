@@ -8,7 +8,6 @@ import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
@@ -17,7 +16,9 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class Rayneshia extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Rayneshia.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Rayneshia.class)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public Rayneshia()
     {
@@ -26,7 +27,7 @@ public class Rayneshia extends AnimatorCard
         Initialize(0, 0, 2, 4);
         SetUpgrade(0, 0, 1, 0);
 
-        SetSynergy(Synergies.LogHorizon);
+        SetAffinity_Light(1);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class Rayneshia extends AnimatorCard
 
             GameActions.Bottom.Callback(new RefreshHandLayout(), () ->
             {
-                if (HasTeamwork(secondaryValue) && CombatStats.TryActivateLimited(cardID))
+                if (GetTeamwork(null) >= secondaryValue && CombatStats.TryActivateLimited(cardID))
                 {
                     final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                     final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombat(CardRarity.RARE, player.getCardColor());

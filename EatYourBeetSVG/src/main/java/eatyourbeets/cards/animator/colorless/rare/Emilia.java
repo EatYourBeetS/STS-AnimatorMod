@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -16,7 +16,10 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(Emilia.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Emilia.class)
+            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.ReZero);
 
     public Emilia()
     {
@@ -25,10 +28,11 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
+        SetAffinity_Blue(1);
+        SetAffinity_Light(2);
+
         SetEvokeOrbCount(magicNumber);
         SetExhaust(true);
-        SetSynergy(Synergies.ReZero);
-        SetSpellcaster();
     }
 
     @Override

@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.basic;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -18,7 +18,8 @@ public class Defend_NoGameNoLife extends Defend
         Initialize(0, 5);
         SetUpgrade(0, 3);
 
-        SetSynergy(Synergies.NoGameNoLife);
+        SetSeries(CardSeries.NoGameNoLife);
+        SetAffinity_Blue(1);
     }
 
     @Override

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.CardSeriesComparator;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.resources.GR;
 
 import java.util.Collections;
@@ -59,7 +59,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
                 nameButton = buttons[3];
             }
 
-            seriesButton = new SortHeaderButton(Synergies.GetLocalizedSeriesString(), xPosition, 0f, this);
+            seriesButton = new SortHeaderButton(CardSeries.GetLocalizedSeriesString(), xPosition, 0f, this);
 
             float offsetX = -(Settings.scale * 30f);
 

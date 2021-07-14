@@ -10,13 +10,16 @@ import eatyourbeets.utilities.GameActions;
 
 public class Crystallize extends AnimatorCard_Status
 {
-    public static final EYBCardData DATA = Register(Crystallize.class).SetStatus(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Crystallize.class)
+            .SetStatus(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Crystallize()
     {
         super(DATA, false);
 
         Initialize(0, 0, 4, 3);
+
+        SetAffinity_Dark(1);
 
         SetExhaust(true);
     }
@@ -30,6 +33,7 @@ public class Crystallize extends AnimatorCard_Status
             GameActions.Bottom.LoseHP(secondaryValue, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
             GameActions.Bottom.GainMetallicize(magicNumber);
             GameActions.Bottom.LoseHP(secondaryValue, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+            GameActions.Bottom.GainCorruption(1, true);
         }
     }
 }

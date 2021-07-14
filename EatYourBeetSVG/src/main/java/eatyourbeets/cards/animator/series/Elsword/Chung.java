@@ -6,12 +6,13 @@ import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Chung extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Chung.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Chung.class)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public Chung()
     {
@@ -20,7 +21,8 @@ public class Chung extends AnimatorCard
         Initialize(0, 11, 3);
         SetUpgrade(0, 2, -1);
 
-        SetSynergy(Synergies.Elsword);
+        SetAffinity_Red(2);
+        SetAffinity_Green(1);
     }
 
     @Override

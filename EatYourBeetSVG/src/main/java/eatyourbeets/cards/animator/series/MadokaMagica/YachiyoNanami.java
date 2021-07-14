@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.stances.AgilityStance;
@@ -15,7 +14,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class YachiyoNanami extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YachiyoNanami.class).SetPower(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(YachiyoNanami.class)
+            .SetPower(2, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -26,8 +27,9 @@ public class YachiyoNanami extends AnimatorCard
         Initialize(0, 0, YachiyoNanamiPower.BLOCK_AMOUNT);
         SetEthereal(true);
 
-        SetSynergy(Synergies.MadokaMagica);
-        SetSpellcaster();
+        SetAffinity_Blue(2);
+        SetAffinity_Light(1);
+        SetAffinity_Dark(1);
     }
 
     @Override

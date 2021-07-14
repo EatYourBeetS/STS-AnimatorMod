@@ -6,13 +6,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class PandorasActor extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(PandorasActor.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(PandorasActor.class)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public PandorasActor()
     {
@@ -21,8 +23,7 @@ public class PandorasActor extends AnimatorCard
         Initialize(0, 4);
         SetUpgrade(0, 2);
 
-        SetSynergy(Synergies.Overlord);
-        SetShapeshifter();
+        SetAffinity_Star(1, 1, 0);
     }
 
     @Override
@@ -47,7 +48,7 @@ public class PandorasActor extends AnimatorCard
                 copy.purgeOnUse = true;
                 copy.freeToPlayOnce = true;
 
-                Synergies.SetLastCardPlayed(copy);
+                CombatStats.Affinities.SetLastCardPlayed(copy);
                 GameActions.Bottom.GainEnergy(amount);
             });
         }

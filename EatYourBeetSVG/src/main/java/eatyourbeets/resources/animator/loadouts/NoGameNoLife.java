@@ -8,8 +8,8 @@ import eatyourbeets.cards.animator.series.NoGameNoLife.DolaCouronne;
 import eatyourbeets.cards.animator.series.NoGameNoLife.DolaSchwi;
 import eatyourbeets.cards.animator.series.NoGameNoLife.Sora;
 import eatyourbeets.cards.animator.ultrarare.Azriel;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class NoGameNoLife extends AnimatorLoadout
 {
     public NoGameNoLife()
     {
-        super(Synergies.NoGameNoLife);
+        super(CardSeries.NoGameNoLife);
     }
 
     @Override

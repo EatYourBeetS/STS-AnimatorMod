@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.utilities.ColoredString;
@@ -26,7 +27,7 @@ public abstract class AnimatorCard extends EYBCard
     public static final CardTags SHAPESHIFTER = GR.Enums.CardTags.SHAPESHIFTER;
     public static final CardTags MARTIAL_ARTIST = GR.Enums.CardTags.MARTIAL_ARTIST;
     public static final CardTags SPELLCASTER = GR.Enums.CardTags.SPELLCASTER;
-    public Synergy synergy;
+    public CardSeries series;
 
     protected static EYBCardData Register(Class<? extends AnimatorCard> type)
     {
@@ -41,9 +42,9 @@ public abstract class AnimatorCard extends EYBCard
         SetAttackTarget(cardData.CardTarget);
         SetAttackType(cardData.AttackType);
 
-        if (cardData.Synergy != null)
+        if (cardData.Series != null)
         {
-            SetSynergy(cardData.Synergy);
+            SetSeries(cardData.Series);
         }
     }
 
@@ -54,56 +55,44 @@ public abstract class AnimatorCard extends EYBCard
 
     public boolean HasSynergy()
     {
-        return Synergies.IsSynergizing(this) || WouldSynergize();
+        return CombatStats.Affinities.IsSynergizing(this) || WouldSynergize();
     }
 
     public boolean HasSynergy(AbstractCard other)
     {
-        return Synergies.IsSynergizing(this) || WouldSynergize(other);
+        return CombatStats.Affinities.IsSynergizing(this) || WouldSynergize(other);
     }
 
     public boolean HasDirectSynergy(AbstractCard other)
     {
-        if (synergy != null)
-        {
-            AnimatorCard card = JUtils.SafeCast(other, AnimatorCard.class);
-            if (card != null && synergy.equals(card.synergy))
-            {
-                return true;
-            }
-        }
-
-        return Synergies.HasTagSynergy(this, other);
+        return CombatStats.Affinities.HasDirectSynergy(this, other);
     }
 
     public boolean WouldSynergize()
     {
-        return Synergies.WouldSynergize(this);
+        return CombatStats.Affinities.WouldSynergize(this);
     }
 
     public boolean WouldSynergize(AbstractCard other)
     {
-        return Synergies.WouldSynergize(this, other);
-    }
-
-    public void SetSpellcaster()
-    {
-        SetTag(SPELLCASTER, true);
-    }
-
-    public void SetMartialArtist()
-    {
-        SetTag(MARTIAL_ARTIST, true);
+        return CombatStats.Affinities.WouldSynergize(this, other);
     }
 
     public void SetShapeshifter()
     {
         SetTag(SHAPESHIFTER, true);
+        affinities.Initialize(AffinityType.Star, 1, 0, 0);
     }
 
-    public void SetSynergy(Synergy synergy)
+    public void SetShapeshifter(int base, int upgrade)
     {
-        this.synergy = synergy;
+        SetTag(SHAPESHIFTER, true);
+        affinities.Initialize(AffinityType.Star, base, upgrade, 0);
+    }
+
+    public void SetSeries(CardSeries series)
+    {
+        this.series = series;
     }
 
     public void SetCooldown(int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted)
@@ -167,7 +156,7 @@ public abstract class AnimatorCard extends EYBCard
     public AbstractCard makeStatEquivalentCopy()
     {
         AnimatorCard copy = (AnimatorCard) super.makeStatEquivalentCopy();
-        copy.synergy = synergy;
+        copy.series = series;
         return copy;
     }
 
@@ -175,7 +164,7 @@ public abstract class AnimatorCard extends EYBCard
     public final void use(AbstractPlayer p1, AbstractMonster m1)
     {
         JUtils.LogWarning(this, "AnimatorCard.use() should not be called");
-        boolean isSynergizing = Synergies.IsSynergizing(this);
+        boolean isSynergizing = CombatStats.Affinities.IsSynergizing(this);
         OnUse(p1, m1, isSynergizing);
         OnLateUse(p1, m1, isSynergizing);
     }
@@ -210,28 +199,9 @@ public abstract class AnimatorCard extends EYBCard
     }
 
     @Override
-    public ColoredString GetHeaderText()
-    {
-        return (synergy == null) ? null : new ColoredString(synergy.LocalizedName, Settings.CREAM_COLOR);
-    }
-
-    @Override
     public ColoredString GetBottomText()
     {
-        if (hasTag(SHAPESHIFTER))
-        {
-            return new ColoredString(GR.Tooltips.Shapeshifter.title, new Color(1f, 1f, 0.8f, transparency));
-        }
-        else if (hasTag(SPELLCASTER))
-        {
-            return new ColoredString(GR.Tooltips.Spellcaster.title, new Color(0.9f, 0.9f, 1f, transparency));
-        }
-        else if (hasTag(MARTIAL_ARTIST))
-        {
-            return new ColoredString(GR.Tooltips.MartialArtist.title, new Color(0.9f, 1f, 0.9f, transparency));
-        }
-
-        return null;
+        return (series == null) ? null : new ColoredString(series.LocalizedName, Settings.CREAM_COLOR);
     }
 
     @Override
@@ -273,10 +243,6 @@ public abstract class AnimatorCard extends EYBCard
     @Override
     protected ColoredTexture GetCardBanner()
     {
-//        if (rarity == CardRarity.SPECIAL)
-//        {
-//            return IMAGES.CARD_BANNER_SPECIAL.Texture();
-//        }
         return new ColoredTexture(IMAGES.CARD_BANNER_GENERIC.Texture(), GetRarityColor(false));
     }
 

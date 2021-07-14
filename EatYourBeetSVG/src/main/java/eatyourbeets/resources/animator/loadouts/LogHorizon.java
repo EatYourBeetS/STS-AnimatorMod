@@ -8,8 +8,8 @@ import eatyourbeets.cards.animator.series.LogHorizon.Akatsuki;
 import eatyourbeets.cards.animator.series.LogHorizon.HousakiMinori;
 import eatyourbeets.cards.animator.series.LogHorizon.HousakiTohya;
 import eatyourbeets.cards.animator.ultrarare.Kanami;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class LogHorizon extends AnimatorLoadout
 {
     public LogHorizon()
     {
-        super(Synergies.LogHorizon);
+        super(CardSeries.LogHorizon);
     }
 
     @Override

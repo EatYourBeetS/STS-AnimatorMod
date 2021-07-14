@@ -19,7 +19,7 @@ public class EngravedStaff extends AnimatorRelic
 
         GameActions.Bottom.Callback(() ->
         {
-            GameActions.Bottom.GainRandomStat(1, true);
+            GameActions.Bottom.GainRandomAffinityPower(1, true);
             flash();
         });
     }

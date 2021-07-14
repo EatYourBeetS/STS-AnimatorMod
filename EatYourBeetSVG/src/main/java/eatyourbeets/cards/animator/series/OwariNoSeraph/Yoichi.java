@@ -2,10 +2,7 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
@@ -13,7 +10,9 @@ import eatyourbeets.utilities.JUtils;
 
 public class Yoichi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Yoichi.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Yoichi.class)
+            .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSeries(CardSeries.OwariNoSeraph);
 
     public Yoichi()
     {
@@ -22,7 +21,8 @@ public class Yoichi extends AnimatorCard
         Initialize(0,0, 2);
         SetUpgrade(0,2, 0);
 
-        SetSynergy(Synergies.OwariNoSeraph);
+        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Light(1, 1, 0);
     }
 
     @Override

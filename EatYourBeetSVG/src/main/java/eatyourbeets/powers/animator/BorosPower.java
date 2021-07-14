@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class BorosPower extends AnimatorPower
 {
@@ -31,7 +32,7 @@ public class BorosPower extends AnimatorPower
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action)
     {
-        if ((card.type == AbstractCard.CardType.POWER) && !card.isInAutoplay)
+        if ((card.type == AbstractCard.CardType.POWER) && GameUtilities.CanPlayTwice(card))
         {
             flash();
 

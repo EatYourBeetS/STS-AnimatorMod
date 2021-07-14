@@ -6,13 +6,14 @@ import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class LeleiLaLalena extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(LeleiLaLalena.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(LeleiLaLalena.class)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public LeleiLaLalena()
     {
@@ -20,9 +21,10 @@ public class LeleiLaLalena extends AnimatorCard
 
         Initialize(0, 0, 1);
 
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1);
+
         SetEvokeOrbCount(1);
-        SetSynergy(Synergies.Gate);
-        SetSpellcaster();
     }
 
     @Override

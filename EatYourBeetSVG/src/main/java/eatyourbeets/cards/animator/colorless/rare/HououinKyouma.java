@@ -8,13 +8,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class HououinKyouma extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HououinKyouma.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(HououinKyouma.class)
+            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.SteinsGate);
 
     public HououinKyouma()
     {
@@ -23,8 +26,9 @@ public class HououinKyouma extends AnimatorCard
         Initialize(0, 0);
         SetCostUpgrade(-1);
 
+        SetAffinity_Blue(2);
+
         SetPurge(true);
-        SetSynergy(Synergies.SteinsGate);
     }
 
     @Override

@@ -80,52 +80,57 @@ public class GR
 
     public static CharacterStrings GetCharacterStrings(String characterID)
     {
-        return CardCrawlGame.languagePack.getCharacterString(characterID);
+        return GetLanguagePack().getCharacterString(characterID);
     }
 
     public static MonsterStrings GetMonsterStrings(String monsterID)
     {
-        return CardCrawlGame.languagePack.getMonsterStrings(monsterID);
+        return GetLanguagePack().getMonsterStrings(monsterID);
     }
 
     public static PowerStrings GetPowerStrings(String powerID)
     {
-        return CardCrawlGame.languagePack.getPowerStrings(powerID);
+        return GetLanguagePack().getPowerStrings(powerID);
     }
 
     public static RelicStrings GetRelicStrings(String relicID)
     {
-        return CardCrawlGame.languagePack.getRelicStrings(relicID);
+        return GetLanguagePack().getRelicStrings(relicID);
     }
 
     public static CardStrings GetCardStrings(String cardID)
     {
-        return CardCrawlGame.languagePack.getCardStrings(cardID);
+        return GetLanguagePack().getCardStrings(cardID);
     }
 
     public static StanceStrings GetStanceString(String stanceID)
     {
-        return CardCrawlGame.languagePack.getStanceString(stanceID);
+        return GetLanguagePack().getStanceString(stanceID);
     }
 
     public static EventStrings GetEventStrings(String eventID)
     {
-        return CardCrawlGame.languagePack.getEventString(eventID);
+        return GetLanguagePack().getEventString(eventID);
     }
 
     public static BlightStrings GetBlightStrings(String blightID)
     {
-        return CardCrawlGame.languagePack.getBlightString(blightID);
+        return GetLanguagePack().getBlightString(blightID);
     }
 
     public static UIStrings GetUIStrings(String stringID)
     {
-        return CardCrawlGame.languagePack.getUIString(stringID);
+        return GetLanguagePack().getUIString(stringID);
     }
 
     public static OrbStrings GetOrbStrings(String orbID)
     {
-        return CardCrawlGame.languagePack.getOrbString(orbID);
+        return GetLanguagePack().getOrbString(orbID);
+    }
+
+    private static LocalizedStrings GetLanguagePack()
+    {
+        return CardCrawlGame.languagePack;
     }
 
     public static String GetCardImage(String cardID)

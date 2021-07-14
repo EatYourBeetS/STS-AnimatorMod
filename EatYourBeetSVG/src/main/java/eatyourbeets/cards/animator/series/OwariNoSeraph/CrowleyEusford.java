@@ -9,7 +9,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class CrowleyEusford extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(CrowleyEusford.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Random);
+    public static final EYBCardData DATA = Register(CrowleyEusford.class)
+            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Random)
+            .SetSeriesFromClassPackage();
 
     public CrowleyEusford()
     {
@@ -17,9 +19,10 @@ public class CrowleyEusford extends AnimatorCard
 
         Initialize(16, 0);
         SetUpgrade(2, 0);
-        SetScaling(0, 2, 1);
 
-        SetSynergy(Synergies.OwariNoSeraph);
+        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Dark(1);
     }
 
     @Override

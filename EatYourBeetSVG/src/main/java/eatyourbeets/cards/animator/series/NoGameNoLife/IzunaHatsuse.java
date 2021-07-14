@@ -12,7 +12,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class IzunaHatsuse extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(IzunaHatsuse.class).SetSkill(0, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(IzunaHatsuse.class)
+            .SetSkill(0, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new IzunaHatsuse(true), true);
@@ -33,8 +35,9 @@ public class IzunaHatsuse extends AnimatorCard
         Initialize(4, 2, 4);
         SetUpgrade(2, 2, 2);
 
+        SetAffinity_Green(1);
+
         SetTransformed(false);
-        SetSynergy(Synergies.NoGameNoLife);
     }
 
     @Override
@@ -133,6 +136,11 @@ public class IzunaHatsuse extends AnimatorCard
                 LoadImage("Alt");
                 SetAttackType(EYBAttackType.Normal);
 
+                //TODO: handles cases like Serara
+                affinities.List.clear();
+                SetAffinity_Red(1);
+                SetAffinity_Green(2, 0, 1);
+                SetAffinity_Dark(1);
                 this.type = CardType.ATTACK;
 
                 cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
@@ -140,6 +148,8 @@ public class IzunaHatsuse extends AnimatorCard
             else
             {
                 LoadImage(null);
+                affinities.List.clear();
+                SetAffinity_Green(1);
 
                 this.type = CardType.SKILL;
 

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -18,7 +18,10 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class Giselle extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(Giselle.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Elemental).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Giselle.class)
+            .SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Elemental)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.GATE);
 
     public Giselle()
     {
@@ -26,9 +29,9 @@ public class Giselle extends AnimatorCard_UltraRare
 
         Initialize(24, 0, 4);
         SetUpgrade(8, 0, 0);
-        SetScaling(0, 1, 2);
 
-        SetSynergy(Synergies.Gate);
+        SetAffinity_Red(2, 0, 3);
+        SetAffinity_Dark(2);
     }
 
     @Override

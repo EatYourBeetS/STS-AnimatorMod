@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.powers.animator.GazelDwargonPower;
@@ -14,7 +13,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class GazelDwargon extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(GazelDwargon.class).SetPower(-1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(GazelDwargon.class)
+            .SetPower(-1, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
 
     public GazelDwargon()
     {
@@ -23,7 +24,7 @@ public class GazelDwargon extends AnimatorCard
         Initialize(0, 0, 4);
         SetUpgrade(0, 1, 0);
 
-        SetSynergy(Synergies.TenSura);
+        SetAffinity_Red(1);
     }
 
     @Override

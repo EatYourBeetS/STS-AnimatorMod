@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator.basic;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
@@ -17,7 +17,8 @@ public class Defend_OwariNoSeraph extends Defend
         Initialize(0, 5, 1);
         SetUpgrade(0, 3);
 
-        SetSynergy(Synergies.OwariNoSeraph);
+        SetSeries(CardSeries.OwariNoSeraph);
+        SetAffinity_Green(1);
     }
 
     @Override

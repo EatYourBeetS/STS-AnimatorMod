@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
@@ -16,7 +15,9 @@ import java.util.ArrayList;
 
 public class Geryuganshoop extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Geryuganshoop.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Geryuganshoop.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public Geryuganshoop()
     {
@@ -25,7 +26,8 @@ public class Geryuganshoop extends AnimatorCard
         Initialize(0, 0, 2, 2);
         SetUpgrade(0, 0, 1, 1);
 
-        SetSynergy(Synergies.OnePunchMan);
+        SetAffinity_Blue(1);
+        SetAffinity_Dark(1, 1, 0);
     }
 
     @Override

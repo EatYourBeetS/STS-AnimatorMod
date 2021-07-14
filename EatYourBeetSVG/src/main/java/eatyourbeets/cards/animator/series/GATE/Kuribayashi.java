@@ -3,18 +3,19 @@ package eatyourbeets.cards.animator.series.GATE;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.stances.AgilityStance;
-import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Kuribayashi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Kuribayashi.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(Kuribayashi.class)
+            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Ranged)
+            .SetSeriesFromClassPackage();
 
     public Kuribayashi()
     {
@@ -22,10 +23,9 @@ public class Kuribayashi extends AnimatorCard
 
         Initialize(7, 0, 2, 3);
         SetUpgrade(4, 0, 0);
-        SetScaling(0, 1, 1);
 
-        SetMartialArtist();
-        SetSynergy(Synergies.Gate);
+        SetAffinity_Red(1, 1, 1);
+        SetAffinity_Green(2, 0, 1);
     }
 
     @Override
@@ -47,16 +47,16 @@ public class Kuribayashi extends AnimatorCard
         GameActions.Bottom.SFX("ATTACK_FIRE");
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
 
-        if (AgilityStance.IsActive())
+        if (CheckTeamwork(AffinityType.Green, 3))
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         }
 
-        if (ForceStance.IsActive())
+        GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
+
+        if (CheckTeamwork(AffinityType.Red, 3))
         {
             GameActions.Bottom.ReduceStrength(m, secondaryValue, true);
         }
-
-        GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
     }
 }

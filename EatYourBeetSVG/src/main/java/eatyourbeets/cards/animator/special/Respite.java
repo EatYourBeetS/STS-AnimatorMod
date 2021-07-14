@@ -17,7 +17,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Respite extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Respite.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Respite.class)
+            .SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS);
 
     public Respite()
     {
@@ -25,6 +27,8 @@ public class Respite extends AnimatorCard
 
         Initialize(0, 0, 6 + (GameUtilities.GetAscensionLevel() / 2));
         SetUpgrade(0, 0, magicNumber / 2);
+
+        SetAffinity_Star(2);
 
         SetRetain(true);
         SetPurge(true);

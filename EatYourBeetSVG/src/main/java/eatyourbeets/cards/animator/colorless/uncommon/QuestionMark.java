@@ -24,7 +24,7 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
 
         Initialize(0, 0);
 
-        SetShapeshifter();
+        SetAffinity_Star(1, 1, 0);
     }
 
     @Override

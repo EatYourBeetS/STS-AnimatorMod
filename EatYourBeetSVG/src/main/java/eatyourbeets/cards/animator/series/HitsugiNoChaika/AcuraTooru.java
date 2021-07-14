@@ -6,13 +6,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class AcuraTooru extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(AcuraTooru.class).SetAttack(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(AcuraTooru.class)
+            .SetAttack(2, CardRarity.UNCOMMON)
+            .SetSeries(CardSeries.HitsugiNoChaika);
     static
     {
         for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
@@ -27,10 +29,9 @@ public class AcuraTooru extends AnimatorCard
 
         Initialize(3, 0, 2, 2);
         SetUpgrade(0, 0, 0, 1);
-        SetScaling(0, 1, 0);
 
-        SetMartialArtist();
-        SetSynergy(Synergies.Chaika);
+        SetAffinity_Green(1);
+        SetAffinity_Red(1);
     }
 
     @Override

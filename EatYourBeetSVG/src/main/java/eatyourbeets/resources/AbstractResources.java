@@ -3,9 +3,13 @@ package eatyourbeets.resources;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.Settings;
+import eatyourbeets.utilities.JUtils;
 
 import java.io.File;
+import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 
 public abstract class AbstractResources extends GR
 implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber,
@@ -93,6 +97,20 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     public FileHandle GetFallbackFile(String fileName)
     {
         return Gdx.files.internal("localization/" + prefix + "/eng/" + fileName);
+    }
+
+    public <T> T GetFallbackStrings(String fileName, Type typeOfT)
+    {
+        FileHandle file = GetFallbackFile(fileName);
+        if (!file.exists())
+        {
+            JUtils.LogWarning(this, "File not found: " + file.path());
+            return null;
+        }
+
+        String json = file.readString(String.valueOf(StandardCharsets.UTF_8));
+        Gson gson = new Gson();
+        return gson.fromJson(json, typeOfT);
     }
 
     public boolean IsBetaTranslation()

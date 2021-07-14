@@ -16,7 +16,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class Spearman extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Spearman.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(Spearman.class)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Witch(), true);
@@ -31,9 +33,9 @@ public class Spearman extends AnimatorCard
 
         Initialize(8, 0, 1);
         SetUpgrade(4, 0);
-        SetScaling(0, 1, 1);
 
-        SetSynergy(Synergies.GoblinSlayer);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Green(1);
     }
 
     @Override

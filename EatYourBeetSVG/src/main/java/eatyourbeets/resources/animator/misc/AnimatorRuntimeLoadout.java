@@ -12,11 +12,14 @@ import java.util.Map;
 public class AnimatorRuntimeLoadout
 {
     private final static EYBCardTooltip PromotedTooltip = new EYBCardTooltip(GR.Animator.Strings.SeriesSelection.PickupBonusHeader, GR.Animator.Strings.SeriesSelection.PickupBonusBody);
+    private final static float AFFINITY_THRESHOLD = 0.66f;
+    private final static int MAX_AFFINITIES = 2;
 
     public final int ID;
-    public final Map<String, AbstractCard> Cards;
     public final boolean IsBeta;
     public final AnimatorLoadout Loadout;
+    public final Map<String, AbstractCard> Cards;
+    public final EYBCardAffinityStatistics AffinityStatistics;
 
     public int bonus;
     public AnimatorCard card;
@@ -42,7 +45,8 @@ public class AnimatorRuntimeLoadout
         this.ID = loadout.ID;
         this.IsBeta = loadout.IsBeta;
         this.Loadout = loadout;
-        this.Cards = GetNonColorlessCards(loadout.Synergy);
+        this.Cards = GetNonColorlessCards(loadout.Series);
+        this.AffinityStatistics = new EYBCardAffinityStatistics(Cards.values());
 
         this.promoted = false;
         this.card = null;
@@ -90,19 +94,34 @@ public class AnimatorRuntimeLoadout
             .SetProperties(temp.type, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE).Build();
         }
 
+        int i = 0;
+        for (EYBCardAffinityStatistics.Group g : AffinityStatistics)
+        {
+            if (i++ > MAX_AFFINITIES)
+            {
+                break;
+            }
+
+            float percentage = g.GetPercentage(0);
+            if (percentage > 0)
+            {
+                card.affinities.Add(g.Type, percentage > AFFINITY_THRESHOLD ? 2 : 1);
+            }
+        }
+
         return card;
     }
 
-    private Map<String, AbstractCard> GetNonColorlessCards(Synergy synergy)
+    private Map<String, AbstractCard> GetNonColorlessCards(CardSeries series)
     {
         Map<String, AbstractCard> cards = new HashMap<>();
 
-        if (synergy != null && synergy != Synergies.ANY)
+        if (series != null && series != CardSeries.ANY)
         {
             for (AbstractCard card : CardLibrary.getAllCards())
             {
                 AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
-                if (c != null && card.color == GR.Animator.CardColor && synergy.equals(c.synergy)
+                if (c != null && card.color == GR.Animator.CardColor && series.equals(c.series)
                     && card.rarity != AbstractCard.CardRarity.SPECIAL
                     && card.rarity != AbstractCard.CardRarity.BASIC)
                 {

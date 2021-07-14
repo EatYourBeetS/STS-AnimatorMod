@@ -149,6 +149,8 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     @Override
     public void Render(SpriteBatch sb)
     {
+        GR.UI.CardAffinities.TryRender(sb);
+
         cardGrid.TryRender(sb);
 
         upgradeToggle.TryRender(sb);
@@ -177,6 +179,8 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     @Override
     public void Update()
     {
+        GR.UI.CardAffinities.TryUpdate();
+
         if (previewCardsEffect != null)
         {
             previewCardsEffect.update();
@@ -365,7 +369,12 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
     protected void TotalCardsChanged(int totalCards)
     {
-        selectionAmount.SetText(totalCards + " total cards.");
+        if (GR.UI.CardAffinities.isActive)
+        {
+            GR.UI.CardAffinities.Open(container.GetAllCardsInPool());
+        }
+
+        selectionAmount.SetText(totalCards + " cards selected.");
         purgingStoneImage.SetActive(totalCards >= 100);
 
         if (totalCards >= 75)

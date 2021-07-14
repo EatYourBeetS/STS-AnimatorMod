@@ -4,15 +4,17 @@ import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DemonFormPower;
+import eatyourbeets.cards.animator.series.OwariNoSeraph.Yuuichirou;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Asuramaru extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Asuramaru.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Asuramaru.class)
+            .SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetSeries(Yuuichirou.DATA.Series);
 
     public Asuramaru()
     {
@@ -20,8 +22,11 @@ public class Asuramaru extends AnimatorCard
 
         Initialize(0, 0, 3, 2);
 
+        SetAffinity_Red(2);
+        SetAffinity_Green(2);
+        SetAffinity_Dark(1);
+
         SetExhaust(true);
-        SetSynergy(Synergies.OwariNoSeraph);
     }
 
     @Override

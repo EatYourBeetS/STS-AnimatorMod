@@ -5,13 +5,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.Miracle;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.HinaKagiyamaPower;
 import eatyourbeets.utilities.GameActions;
 
 public class HinaKagiyama extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HinaKagiyama.class).SetPower(1, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(HinaKagiyama.class)
+            .SetPower(1, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.TouhouProject);
     static
     {
         DATA.AddPreview(new Miracle(), false);
@@ -23,7 +26,8 @@ public class HinaKagiyama extends AnimatorCard
 
         Initialize(0, 0, HinaKagiyamaPower.CARD_DRAW_AMOUNT);
 
-        SetSynergy(Synergies.TouhouProject);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(2);
     }
 
     @Override

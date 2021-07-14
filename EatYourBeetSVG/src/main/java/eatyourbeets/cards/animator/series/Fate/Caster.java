@@ -8,7 +8,6 @@ import eatyourbeets.actions.special.SelectCreature;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -17,7 +16,9 @@ import java.util.ArrayList;
 
 public class Caster extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Caster.class).SetSkill(1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Caster.class)
+            .SetSkill(1, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -28,9 +29,10 @@ public class Caster extends AnimatorCard
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 0, 1);
 
+        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Dark(2);
+
         SetEthereal(true);
-        SetSynergy(Synergies.Fate);
-        SetSpellcaster();
     }
 
     @Override

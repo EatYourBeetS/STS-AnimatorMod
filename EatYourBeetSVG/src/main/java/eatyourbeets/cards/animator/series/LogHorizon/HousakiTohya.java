@@ -6,12 +6,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class HousakiTohya extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HousakiTohya.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(HousakiTohya.class)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new HousakiMinori(), false);
@@ -23,10 +24,9 @@ public class HousakiTohya extends AnimatorCard
 
         Initialize(5, 0, 1, 3);
         SetUpgrade(3, 0, 0, 0);
-        SetScaling(0, 1, 1);
 
-        SetMartialArtist();
-        SetSynergy(Synergies.LogHorizon);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Light(1);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class HousakiTohya extends AnimatorCard
         .SetFilter(c -> HousakiMinori.DATA.ID.equals(c.cardID), false)
         .AddCallback(() ->
         {
-            if (HasTeamwork(secondaryValue))
+            if (GetTeamwork(null) >= secondaryValue)
             {
                 GameActions.Bottom.GainEnergy(1);
             }

@@ -6,13 +6,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class YaoHaDucy extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YaoHaDucy.class).SetAttack(0, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(YaoHaDucy.class)
+            .SetAttack(0, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public YaoHaDucy()
     {
@@ -21,7 +22,7 @@ public class YaoHaDucy extends AnimatorCard
         Initialize(2, 0, 2, 1);
         SetUpgrade(3, 0, 0, 0);
 
-        SetSynergy(Synergies.Gate);
+        SetAffinity_Green(1);
     }
 
     @Override

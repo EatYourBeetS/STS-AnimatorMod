@@ -44,7 +44,7 @@
 	},
 	"animator:CursedBlade":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} #yForce and #yAgility. Whenever you take unblocked Attack damage, add a #yWound to your hand."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} [F] and [A]. Whenever you take unblocked Attack damage, add a #yWound to your hand."],
 		"FLAVOR": "Power comes at a price.",
 		"NAME": "Cursed Blade"
 	},
@@ -56,7 +56,7 @@
 	},
 	"animator:EngravedStaff":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, randomly #yBoost #yForce, #yAgility, or #yIntellect"],
+		"DESCRIPTIONS": ["At the start of each turn, randomly #yBoost [F], [A], or [I]."],
 		"FLAVOR": "One of the most treasured possessions of the Guild.",
 		"NAME": "Engraved Staff"
 	},
@@ -68,7 +68,7 @@
 	},
 	"animator:HallowedScabbard":
 	{
-		"DESCRIPTIONS": ["Once per combat, if you lose a total of #b{0} HP or more, gain #b{1} #yRegeneration and #b{2} #yForce."],
+		"DESCRIPTIONS": ["Once per combat, if you lose a total of #b{0} HP or more, gain #b{1} #yRegeneration and #b{2} [B]."],
 		"FLAVOR": "The holder of the scabbard is granted potent healing, allowing for critical and fatal wound to be rapidly repaired.",
 		"NAME": "Hallowed Scabbard"
 	},
@@ -170,13 +170,13 @@
 	},
 	"animator:TheEgnaroPiece":
 	{
-		"DESCRIPTIONS": ["Gain [E] and draw 1 card at the start of each turn. NL Gain #b{0} #yTemporary #yHP at the end of each turn, then increase this number by #b1."],
+		"DESCRIPTIONS": ["At the start of each turn, gain [E] and draw #b1 card. NL At the start of combat, gain #b{0} [Vitality], #b+1 for every #b{1} cards in your deck (max #b10 [Vitality])."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Egnaro Piece"
 	},
 	"animator:TheEruzaStone":
 	{
-		"DESCRIPTIONS": ["Gain [E] [E] at the start of each turn. NL Whenever you play a #yPower, draw 1 card."],
+		"DESCRIPTIONS": ["At the start of each turn, gain 2 [E]. NL Whenever you play a #yPower, draw 1 card."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Eruza Stone"
 	},
@@ -188,13 +188,13 @@
 	},
 	"animator:TheWolleyCore":
 	{
-		"DESCRIPTIONS": ["Draw #b{0} cards at the start of each turn. NL Whenever you play a card, deal #b{1} damage to ALL enemies and gain #b{2} #yBlock."],
+		"DESCRIPTIONS": ["At the start of each turn, draw #b{0} cards. NL Whenever you play a card, deal #b{1} damage to ALL enemies and gain #b{2} #yBlock."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Wolley Core"
 	},
 	"animator:VividPicture":
 	{
-		"DESCRIPTIONS": ["Replaces #yThe #yLiving #yPicture. NL Once per turn, when a card #ySynergizes, draw #b1 card and gain [E]"],
+		"DESCRIPTIONS": ["Replaces #yThe #yLiving #yPicture. NL Once per turn, when a card #ySynergizes, draw #b1 card and gain [E]."],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Vivid Picture"
 	},
@@ -206,7 +206,7 @@
 	},
 	"animator:WizardHat":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} #yIntellect. Once per combat, if you end your turn with at least #b{1} unspent energy, deal #b{2} damage to ALL enemies."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} [I]. Once per combat, if you end your turn with at least #b{1} unspent [E], deal #b{2} damage to ALL enemies."],
 		"FLAVOR": "Explosion magic is the strongest magic. But that also means it takes time to prepare.",
 		"NAME": "Wizard Hat"
 	},

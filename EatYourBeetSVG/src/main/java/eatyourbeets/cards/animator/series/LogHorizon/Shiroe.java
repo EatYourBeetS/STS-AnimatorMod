@@ -3,19 +3,18 @@ package eatyourbeets.cards.animator.series.LogHorizon;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class Shiroe extends AnimatorCard
 {
     public static final int MINIMUM_TEAMWORK = 3;
-    public static final EYBCardData DATA = Register(Shiroe.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(Shiroe.class)
+            .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage();
 
     public Shiroe()
     {
@@ -24,9 +23,10 @@ public class Shiroe extends AnimatorCard
         Initialize(0, 0, 2, 2);
         SetUpgrade(0, 0, 0, 1);
 
-        SetExhaust(true);
+        SetAffinity_Blue(2);
+        SetAffinity_Light(1);
 
-        SetSynergy(Synergies.LogHorizon);
+        SetExhaust(true);
     }
 
     @Override
@@ -48,11 +48,11 @@ public class Shiroe extends AnimatorCard
         }
 
         @Override
-        public void onAfterCardPlayed(AbstractCard usedCard)
+        public void onAfterCardPlayed(AbstractCard card)
         {
-            super.onAfterCardPlayed(usedCard);
+            super.onAfterCardPlayed(card);
 
-            if (GameUtilities.GetTeamwork(usedCard) >= MINIMUM_TEAMWORK)
+            if (card instanceof EYBCard && ((EYBCard) card).GetTeamwork(null) >= MINIMUM_TEAMWORK)
             {
                 GameActions.Bottom.ApplyConstricted(TargetHelper.Enemies(), amount);
             }

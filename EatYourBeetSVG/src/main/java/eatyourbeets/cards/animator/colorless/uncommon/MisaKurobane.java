@@ -6,13 +6,16 @@ import eatyourbeets.cards.animator.special.Yusarin;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
 public class MisaKurobane extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MisaKurobane.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(MisaKurobane.class)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Charlotte);
     static
     {
         DATA.AddPreview(new Yusarin(), false);
@@ -25,9 +28,10 @@ public class MisaKurobane extends AnimatorCard
         Initialize(0, 0,1);
         SetUpgrade(0, 0, 1);
 
-        SetEvokeOrbCount(1);
+        SetAffinity_Blue(1);
+
         SetExhaust(true);
-        SetSynergy(Synergies.Charlotte);
+        SetEvokeOrbCount(1);
     }
 
     @Override

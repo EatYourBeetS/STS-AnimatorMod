@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.animator.ExquisiteBloodVial;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
@@ -27,7 +26,9 @@ import java.util.ArrayList;
 
 public class KrulTepes extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(KrulTepes.class).SetAttack(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(KrulTepes.class)
+            .SetAttack(2, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
 
     private static final AbstractRelic relicReward = new BloodVial();
 
@@ -37,9 +38,10 @@ public class KrulTepes extends AnimatorCard
 
         Initialize(12, 0, 2);
         SetUpgrade(4, 0, 0);
-        SetScaling(0, 1, 2);
 
-        SetSynergy(Synergies.OwariNoSeraph);
+        SetAffinity_Red(2);
+        SetAffinity_Green(2);
+        SetAffinity_Dark(2);
     }
 
     @Override

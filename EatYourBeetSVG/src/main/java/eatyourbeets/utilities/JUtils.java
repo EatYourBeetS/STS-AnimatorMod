@@ -233,6 +233,17 @@ public class JUtils
         return GetRandomElement(list, GameUtilities.GetRNG());
     }
 
+    public static <T> T GetRandomElement(T[] arr)
+    {
+        return GetRandomElement(arr, GameUtilities.GetRNG());
+    }
+
+    public static <T> T GetRandomElement(T[] arr, Random rng)
+    {
+        int size = arr.length;
+        return (size > 0) ? arr[rng.random(arr.length - 1)] : null;
+    }
+
     public static <T> T GetRandomElement(List<T> list, Random rng)
     {
         int size = list.size();

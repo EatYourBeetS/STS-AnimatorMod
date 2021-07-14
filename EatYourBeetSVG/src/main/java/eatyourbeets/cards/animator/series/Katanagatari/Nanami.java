@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.misc.NanamiEffects.NanamiEffect;
 import eatyourbeets.ui.cards.TargetEffectPreview;
@@ -14,7 +13,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Nanami extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Nanami.class).SetSkill(-1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Nanami.class)
+            .SetSkill(-1, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
 
     private TargetEffectPreview effectPreview = new TargetEffectPreview(this::ChangeEffect);
     private NanamiEffect currentEffect = null;
@@ -26,9 +27,12 @@ public class Nanami extends AnimatorCard
         Initialize(5, 4, 3);
         SetUpgrade(1, 1, 1);
 
+        SetAffinity_Red(2);
+        SetAffinity_Green(2);
+        SetAffinity_Dark(2);
+
         SetAttackType(EYBAttackType.Normal);
         SetExhaust(true);
-        SetSynergy(Synergies.Katanagatari);
     }
 
     @Override

@@ -6,15 +6,21 @@
 		"NAMES": ["aether", "aether+"],
 		"PROPER_NAME": "Aether"
 	},
+	"Affinity Power":
+	{
+		"DESCRIPTION": "[A-Red] -> [F], [A-Green] -> [A], [A-Blue] -> [I], NL [A-Light] -> [B], [A-Dark] -> [C]",
+		"NAMES": ["affinity power", "affinity powers", "aff. power", "aff. powers"],
+		"PROPER_NAME": "Affinity Power"
+	},
 	"Agility":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yAgility, gain #yDexterity.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [A], gain #yDexterity.",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
 	"Agility Stance":
 	{
-		"DESCRIPTION": "#g+2 #gDexterity, #r-1 #rStrength, #r-1 #rFocus. NL On Enter: #yBoost #yAgility.",
+		"DESCRIPTION": "#g+2 #gDexterity, #r-1 #rStrength, #r-1 #rFocus. NL On Enter: #yBoost [A].",
 		"NAMES": ["[a] stance", "agility stance"],
 		"PROPER_NAME": "Agility Stance"
 	},
@@ -23,6 +29,12 @@
 		"DESCRIPTION": "Automatically played. Requires [E].",
 		"NAMES": ["autoplay", "autoplayed"],
 		"PROPER_NAME": "Autoplay"
+	},
+	"Blessing":
+	{
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b4, #b8, #b12, and #b16 [B], gain [Vitality].",
+		"NAMES": ["blessing"],
+		"PROPER_NAME": "Blessing"
 	},
 	"Blur":
 	{
@@ -38,7 +50,7 @@
 	},
 	"Burning":
 	{
-		"DESCRIPTION": "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack. Reduced by 1 each turn.",
+		"DESCRIPTION": "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack. Reduced by #b1 each turn.",
 		"NAMES": ["burning"],
 		"PROPER_NAME": "Burning"
 	},
@@ -65,6 +77,12 @@
 		"DESCRIPTION": "Take damage at the end of each turn.",
 		"NAMES": ["constricted"],
 		"PROPER_NAME": "Constricted"
+	},
+	"Corruption":
+	{
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b5, #b7, #b9 and #b11 #yCorruption, add a #yCrystallize to your draw pile. Upon reaching #b13 #yCorruption, obtain #pSummoning #pRitual.",
+		"NAMES": ["corruption"],
+		"PROPER_NAME": "Corruption"
 	},
 	"Counter-Attack":
 	{
@@ -134,13 +152,13 @@
 	},
 	"Force":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yForce, gain #yStrength.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [F], gain #yStrength.",
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
 	"Force Stance":
 	{
-		"DESCRIPTION": "#g+2 #gStrength, #r-1 #rFocus, #r-1 #rDexterity. NL On Enter: #yBoost #yForce.",
+		"DESCRIPTION": "#g+2 #gStrength, #r-1 #rFocus, #r-1 #rDexterity. NL On Enter: #yBoost [F].",
 		"NAMES": ["[f] stance", "force stance"],
 		"PROPER_NAME": "Force Stance"
 	},
@@ -158,13 +176,13 @@
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yIntellect, gain #yFocus.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain #yFocus.",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},
 	"Intellect Stance":
 	{
-		"DESCRIPTION": "#g+2 #gFocus, #r-1 #rStrength, #r-1 #rDexterity. NL On Enter: #yBoost #yIntellect.",
+		"DESCRIPTION": "#g+2 #gFocus, #r-1 #rStrength, #r-1 #rDexterity. NL On Enter: #yBoost [I].",
 		"NAMES": ["[i] stance", "intellect stance"],
 		"PROPER_NAME": "Intellect Stance"
 	},
@@ -270,6 +288,12 @@
 		"NAMES": ["temporary hp", "temp. hp"],
 		"PROPER_NAME": "Temporary HP"
 	},
+	"Vitality":
+	{
+		"DESCRIPTION": "At the start of each turn, gain [TempHP].",
+		"NAMES": ["vitality"],
+		"PROPER_NAME": "Vitality"
+	},
 	"~Damage":
 	{
 		"DESCRIPTION": "-",
@@ -320,7 +344,7 @@
 	},
 	"~Retain":
 	{
-		"DESCRIPTION": "Not discarded at the end of turn.",
+		"DESCRIPTION": "If a card, not discarded at the end of turn. If a power, not reduced at the end of turn or start of next turn.",
 		"NAMES": ["~retain"],
 		"PROPER_NAME": "Retain"
 	},

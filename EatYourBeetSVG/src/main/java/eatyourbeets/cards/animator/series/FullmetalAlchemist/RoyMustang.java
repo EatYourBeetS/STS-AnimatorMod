@@ -11,7 +11,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class RoyMustang extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(RoyMustang.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(RoyMustang.class)
+            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetSeriesFromClassPackage();
 
     public RoyMustang()
     {
@@ -20,8 +22,10 @@ public class RoyMustang extends AnimatorCard
         Initialize(6, 0, 2);
         SetUpgrade(1, 0, 1);
 
+        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Light(1);
+
         SetEvokeOrbCount(1);
-        SetSynergy(Synergies.FullmetalAlchemist);
     }
 
     @Override

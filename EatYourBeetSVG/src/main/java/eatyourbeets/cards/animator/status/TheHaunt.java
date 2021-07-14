@@ -12,7 +12,8 @@ import eatyourbeets.utilities.GameActions;
 
 public class TheHaunt extends AnimatorCard_Status implements Hidden
 {
-    public static final EYBCardData DATA = Register(TheHaunt.class).SetStatus(1, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(TheHaunt.class)
+            .SetStatus(1, CardRarity.RARE, EYBCardTarget.None);
 
     public TheHaunt()
     {
@@ -36,6 +37,8 @@ public class TheHaunt extends AnimatorCard_Status implements Hidden
         }
 
         Initialize(0, 0, goldBonus);
+
+        SetAffinity_Dark(2);
 
         SetEthereal(true);
         SetExhaust(true);

@@ -5,14 +5,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Elsword extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Elsword.class).SetAttack(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Elsword.class)
+            .SetAttack(2, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public Elsword()
     {
@@ -20,9 +21,9 @@ public class Elsword extends AnimatorCard
 
         Initialize(13, 0, 2);
         SetUpgrade(4,  0, 0);
-        SetScaling(0, 1, 1);
 
-        SetSynergy(Synergies.Elsword);
+        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Light(1);
     }
 
     @Override

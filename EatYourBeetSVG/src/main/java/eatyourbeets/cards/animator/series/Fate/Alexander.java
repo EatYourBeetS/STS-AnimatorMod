@@ -4,13 +4,15 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Alexander extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Alexander.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Alexander.class)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL)
+            .SetSeriesFromClassPackage();
 
     public Alexander()
     {
@@ -18,10 +20,9 @@ public class Alexander extends AnimatorCard
 
         Initialize(6, 0);
         SetUpgrade(1, 0);
-        SetScaling(0, 0, 1);
 
-        SetMultiDamage(true);
-        SetSynergy(Synergies.Fate);
+        SetAffinity_Red(1, 1, 1);
+        SetAffinity_Light(1);
     }
 
     @Override
@@ -48,7 +49,7 @@ public class Alexander extends AnimatorCard
         }
         else
         {
-            ForcePower.PreserveOnce();
+            CombatStats.Affinities.Force.Retain();
         }
     }
 }

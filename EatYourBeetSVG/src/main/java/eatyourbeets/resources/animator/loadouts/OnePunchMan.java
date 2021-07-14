@@ -8,8 +8,8 @@ import eatyourbeets.cards.animator.series.OnePunchMan.Genos;
 import eatyourbeets.cards.animator.series.OnePunchMan.MumenRider;
 import eatyourbeets.cards.animator.series.OnePunchMan.Saitama;
 import eatyourbeets.cards.animator.ultrarare.SeriousSaitama;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class OnePunchMan extends AnimatorLoadout
 {
     public OnePunchMan()
     {
-        super(Synergies.OnePunchMan);
+        super(CardSeries.OnePunchMan);
     }
 
     @Override

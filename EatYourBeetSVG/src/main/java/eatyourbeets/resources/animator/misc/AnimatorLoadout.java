@@ -9,7 +9,7 @@ import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.relics.animator.LivingPicture;
 import eatyourbeets.relics.animator.TheMissingPiece;
@@ -26,7 +26,7 @@ public abstract class AnimatorLoadout
 
     public int ID;
     public String Name;
-    public Synergy Synergy;
+    public CardSeries Series;
     public boolean IsBeta;
 
     public int StartingGold = 99;
@@ -38,17 +38,17 @@ public abstract class AnimatorLoadout
     public AnimatorLoadout(String name)
     {
         this.IsBeta = true;
-        this.Synergy = null;
+        this.Series = null;
         this.Name = name;
         this.ID = -1;
     }
 
-    public AnimatorLoadout(Synergy synergy)
+    public AnimatorLoadout(CardSeries series)
     {
         this.IsBeta = false;
-        this.Synergy = synergy;
-        this.Name = synergy.LocalizedName;
-        this.ID = synergy.ID;
+        this.Series = series;
+        this.Name = series.LocalizedName;
+        this.ID = series.ID;
     }
 
     public abstract ArrayList<String> GetStartingDeck();
@@ -151,8 +151,8 @@ public abstract class AnimatorLoadout
             AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
             if (card != null)
             {
-                Synergy synergy = card.synergy;
-                if (synergy != null && synergy.ID == ID)
+                CardSeries series = card.series;
+                if (series != null && series.ID == ID)
                 {
                     synergyCount += 1;
                     if (!cardsWithSynergy.contains(card.cardID) && card.rarity != AbstractCard.CardRarity.BASIC)

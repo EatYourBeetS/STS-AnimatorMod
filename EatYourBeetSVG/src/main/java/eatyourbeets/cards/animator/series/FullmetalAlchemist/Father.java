@@ -21,7 +21,10 @@ public class Father extends AnimatorCard implements OnAddedToDeckListener, OnAdd
     private static final AbstractRelic relic = new PhilosopherStone();
     private static final EYBCardTooltip tooltip = new EYBCardTooltip(relic.name, relic.description);
 
-    public static final EYBCardData DATA = Register(Father.class).SetSkill(4, CardRarity.RARE, EYBCardTarget.None).SetMaxCopies(1);
+    public static final EYBCardData DATA = Register(Father.class)
+            .SetSkill(4, CardRarity.RARE, EYBCardTarget.None)
+            .SetMaxCopies(1)
+            .SetSeriesFromClassPackage();
 
     public Father()
     {
@@ -31,12 +34,10 @@ public class Father extends AnimatorCard implements OnAddedToDeckListener, OnAdd
         SetUpgrade(0, 0, 0, -8);
         SetCostUpgrade(-1);
 
-        SetHealing(true);
-        SetPurge(true);
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetAffinity_Dark(2);
 
-        // By using purgeOnUse this card will not be duplicated by Burst, Echo Form or similar.
-        purgeOnUse = true;
+        SetPurge(true, false);
+        SetHealing(true);
     }
 
     @Override

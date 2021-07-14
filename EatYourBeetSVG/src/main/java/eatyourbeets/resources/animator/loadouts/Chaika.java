@@ -8,8 +8,8 @@ import eatyourbeets.cards.animator.series.HitsugiNoChaika.AcuraAkari;
 import eatyourbeets.cards.animator.series.HitsugiNoChaika.ChaikaTrabant;
 import eatyourbeets.cards.animator.series.HitsugiNoChaika.Gillette;
 import eatyourbeets.cards.animator.ultrarare.NivaLada;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class Chaika extends AnimatorLoadout
 {
     public Chaika()
     {
-        super(Synergies.Chaika);
+        super(CardSeries.HitsugiNoChaika);
     }
 
     @Override

@@ -6,12 +6,14 @@ import eatyourbeets.cards.animator.special.ShichikaKyotouryuu;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Shichika extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Shichika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(Shichika.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new ShichikaKyotouryuu(), false);
@@ -23,11 +25,11 @@ public class Shichika extends AnimatorCard
 
         Initialize(0, 2);
         SetUpgrade(0, 0);
-        SetScaling(0, 1, 1);
+
+        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Green(2, 0, 0);
 
         SetExhaust(true);
-        SetSynergy(Synergies.Katanagatari);
-        SetMartialArtist();
     }
 
     @Override

@@ -9,12 +9,14 @@ import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import eatyourbeets.actions.orbs.ShuffleOrbs;
 import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.common.IntellectPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Jibril extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Jibril.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Jibril.class)
+            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetSeriesFromClassPackage();
 
     public Jibril()
     {
@@ -22,11 +24,12 @@ public class Jibril extends AnimatorCard
 
         Initialize(6, 0, 2);
         SetUpgrade(4, 0, 0);
-        SetScaling(3, 0, 0);
+
+        SetAffinity_Blue(2, 0, 2);
+        SetAffinity_Light(1);
+        SetAffinity_Dark(1);
 
         SetEvokeOrbCount(1);
-        SetSynergy(Synergies.NoGameNoLife);
-        SetSpellcaster();
     }
 
     @Override
@@ -42,6 +45,6 @@ public class Jibril extends AnimatorCard
             GameActions.Bottom.Add(new TriggerOrbPassiveAbility(magicNumber, false, true));
         }
 
-        IntellectPower.PreserveOnce();
+        CombatStats.Affinities.Intellect.Retain();
     }
 }

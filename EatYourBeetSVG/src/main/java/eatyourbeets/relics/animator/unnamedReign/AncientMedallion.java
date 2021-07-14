@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.campfire.CampfireSmithEffect;
@@ -108,8 +107,6 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
         else
         {
             description = getUpdatedDescription();
-            tips.clear();
-            tips.add(new PowerTip(name, description));
             initializeTips();
         }
     }

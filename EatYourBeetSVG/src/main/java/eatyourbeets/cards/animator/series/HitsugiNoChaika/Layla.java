@@ -8,14 +8,15 @@ import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 @SuppressWarnings("SuspiciousNameCombination")
 public class Layla extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Layla.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(Layla.class)
+            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing)
+            .SetSeriesFromClassPackage();
 
     public Layla()
     {
@@ -24,7 +25,8 @@ public class Layla extends AnimatorCard
         Initialize(7, 0, 2, 2);
         SetUpgrade(0, 0, 1, 0);
 
-        SetSynergy(Synergies.Chaika);
+        SetAffinity_Blue(1);
+        SetAffinity_Dark(1, 0, 2);
     }
 
     @Override

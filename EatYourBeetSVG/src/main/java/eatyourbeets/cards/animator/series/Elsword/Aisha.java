@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.vfx.SmallLaserEffect;
 import eatyourbeets.powers.CombatStats;
@@ -18,7 +18,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Aisha extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Aisha.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(Aisha.class)
+            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental)
+            .SetSeries(CardSeries.Elsword);
 
     public Aisha()
     {
@@ -26,10 +28,9 @@ public class Aisha extends AnimatorCard
 
         Initialize(2, 0, 0);
         SetUpgrade(0, 0, 1);
-        SetScaling(1, 0, 0);
 
-        SetSynergy(Synergies.Elsword);
-        SetSpellcaster();
+        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Dark(1, 0, 1);
     }
 
     @Override

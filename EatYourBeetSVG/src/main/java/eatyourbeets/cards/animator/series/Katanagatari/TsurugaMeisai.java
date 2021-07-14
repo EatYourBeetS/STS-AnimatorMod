@@ -6,13 +6,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 
 public class TsurugaMeisai extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(TsurugaMeisai.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(TsurugaMeisai.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public TsurugaMeisai()
     {
@@ -20,9 +21,10 @@ public class TsurugaMeisai extends AnimatorCard
 
         Initialize(0, 0, 2, 1);
 
+        SetAffinity_Green(1);
+        SetAffinity_Light(1);
+
         SetExhaust(true);
-        SetSynergy(Synergies.Katanagatari);
-        SetMartialArtist();
     }
 
     @Override

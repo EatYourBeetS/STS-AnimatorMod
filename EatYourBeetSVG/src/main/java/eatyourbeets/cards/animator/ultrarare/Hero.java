@@ -9,14 +9,17 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Hero extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(Hero.class).SetAttack(1, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Hero.class)
+            .SetAttack(1, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.GoblinSlayer);
 
     public Hero()
     {
@@ -24,9 +27,10 @@ public class Hero extends AnimatorCard_UltraRare
 
         Initialize(8, 0, 2);
         SetUpgrade(4, 0, 0);
-        SetScaling(0, 1, 1);
 
-        SetSynergy(Synergies.GoblinSlayer);
+        SetAffinity_Red(1);
+        SetAffinity_Green(1);
+        SetAffinity_Light(2, 0, 2);
     }
 
     @Override

@@ -6,13 +6,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class Tet extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Tet.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Tet.class)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public Tet()
     {
@@ -20,10 +21,13 @@ public class Tet extends AnimatorCard
 
         Initialize(0, 0);
 
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1);
+        SetAffinity_Dark(1);
+
         SetInnate(true);
         SetRetain(true);
         SetExhaust(true);
-        SetSynergy(Synergies.NoGameNoLife);
     }
 
     @Override

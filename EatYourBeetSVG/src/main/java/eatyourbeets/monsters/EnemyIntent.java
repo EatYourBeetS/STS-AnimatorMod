@@ -58,7 +58,7 @@ public class EnemyIntent
     {
         if (isAttacking)
         {
-            GR.UI.CombatScreen.AddSubIntent(enemy, this::GetIntentDamageString);
+            GR.UI.CombatScreen.Intents.Add(enemy, this::GetIntentDamageString);
             modifiers.put(WeakPower.POWER_ID, 1);
         }
 
@@ -69,7 +69,7 @@ public class EnemyIntent
     {
         if (isAttacking)
         {
-            GR.UI.CombatScreen.AddSubIntent(enemy, this::GetIntentDamageString);
+            GR.UI.CombatScreen.Intents.Add(enemy, this::GetIntentDamageString);
             modifiers.put(VulnerablePower.POWER_ID, 1);
         }
 
@@ -80,7 +80,7 @@ public class EnemyIntent
     {
         if (isAttacking)
         {
-            GR.UI.CombatScreen.AddSubIntent(enemy, this::GetIntentDamageString);
+            GR.UI.CombatScreen.Intents.Add(enemy, this::GetIntentDamageString);
             modifiers.put(EnchantedArmorPower.POWER_ID, amount);
         }
 
@@ -91,7 +91,7 @@ public class EnemyIntent
     {
         if (isAttacking)
         {
-            GR.UI.CombatScreen.AddSubIntent(enemy, this::GetIntentDamageString);
+            GR.UI.CombatScreen.Intents.Add(enemy, this::GetIntentDamageString);
             modifiers.put(StrengthPower.POWER_ID, amount);
         }
 

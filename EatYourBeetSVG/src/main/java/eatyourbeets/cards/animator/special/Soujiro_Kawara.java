@@ -3,16 +3,18 @@ package eatyourbeets.cards.animator.special;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.series.LogHorizon.Soujiro;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Soujiro_Kawara extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Soujiro_Kawara.class).SetAttack(0, CardRarity.SPECIAL, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(Soujiro_Kawara.class)
+            .SetAttack(0, CardRarity.SPECIAL, EYBAttackType.Normal)
+            .SetSeries(Soujiro.DATA.Series);
 
     public Soujiro_Kawara()
     {
@@ -21,7 +23,8 @@ public class Soujiro_Kawara extends AnimatorCard
         Initialize(5, 2, 3);
         SetUpgrade(2, 0, 1);
 
-        SetSynergy(Synergies.LogHorizon);
+        SetAffinity_Red(1);
+        SetAffinity_Green(1);
     }
 
     @Override

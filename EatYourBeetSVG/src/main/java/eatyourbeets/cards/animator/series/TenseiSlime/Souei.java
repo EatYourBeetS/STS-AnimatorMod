@@ -8,14 +8,15 @@ import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Souei extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Souei.class).SetSkill(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Souei.class)
+            .SetSkill(2, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
 
     public Souei()
     {
@@ -24,8 +25,8 @@ public class Souei extends AnimatorCard
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, 2);
 
-        SetSynergy(Synergies.TenSura);
-        SetMartialArtist();
+        SetAffinity_Green(2);
+        SetAffinity_Dark(1);
     }
 
     @Override

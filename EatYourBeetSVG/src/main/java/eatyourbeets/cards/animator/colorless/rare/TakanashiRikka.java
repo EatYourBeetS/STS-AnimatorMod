@@ -6,14 +6,17 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class TakanashiRikka extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(TakanashiRikka.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(TakanashiRikka.class)
+            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Chuunibyou);
 
     public TakanashiRikka()
     {
@@ -21,9 +24,10 @@ public class TakanashiRikka extends AnimatorCard
 
         Initialize(0, 0, 0);
 
+        SetAffinity_Light(1);
+
         SetEthereal(true);
         SetExhaust(true);
-        SetSynergy(Synergies.Chuunibyou);
     }
 
     @Override

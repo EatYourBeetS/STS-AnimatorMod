@@ -8,8 +8,8 @@ import eatyourbeets.cards.animator.series.OwariNoSeraph.Mikaela;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.Shinoa;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.Yuuichirou;
 import eatyourbeets.cards.animator.ultrarare.HiiragiTenri;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class OwariNoSeraph extends AnimatorLoadout
 {
     public OwariNoSeraph()
     {
-        super(Synergies.OwariNoSeraph);
+        super(CardSeries.OwariNoSeraph);
     }
 
     @Override

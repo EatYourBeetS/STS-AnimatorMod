@@ -7,8 +7,8 @@ import eatyourbeets.cards.animator.basic.Strike_GoblinSlayer;
 import eatyourbeets.cards.animator.series.GoblinSlayer.DwarfShaman;
 import eatyourbeets.cards.animator.series.GoblinSlayer.LizardPriest;
 import eatyourbeets.cards.animator.ultrarare.Hero;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class GoblinSlayer extends AnimatorLoadout
 {
     public GoblinSlayer()
     {
-        super(Synergies.GoblinSlayer);
+        super(CardSeries.GoblinSlayer);
     }
 
     @Override

@@ -5,14 +5,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Ciel extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Ciel.class).SetSkill(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Ciel.class)
+            .SetSkill(2, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Lu(), true);
@@ -25,7 +26,8 @@ public class Ciel extends AnimatorCard
         Initialize(0, 4, 2, 6);
         SetUpgrade(0, 0, 0, 2);
 
-        SetSynergy(Synergies.Elsword);
+        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Dark(1, 1, 0);
     }
 
     @Override

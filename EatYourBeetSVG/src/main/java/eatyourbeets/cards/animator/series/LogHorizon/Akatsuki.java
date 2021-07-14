@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -15,7 +14,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Akatsuki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Akatsuki.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(Akatsuki.class)
+            .SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing)
+            .SetSeriesFromClassPackage();
 
     public Akatsuki()
     {
@@ -23,9 +24,9 @@ public class Akatsuki extends AnimatorCard
 
         Initialize(11, 0, 2, 4);
         SetUpgrade(0, 0, 1);
-        SetScaling(0, 1, 0);
 
-        SetSynergy(Synergies.LogHorizon);
+        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Light(1);
     }
 
     @Override

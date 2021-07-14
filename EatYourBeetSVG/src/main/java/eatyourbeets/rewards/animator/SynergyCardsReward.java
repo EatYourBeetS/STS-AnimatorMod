@@ -2,17 +2,20 @@ package eatyourbeets.rewards.animator;
 
 import basemod.BaseMod;
 import basemod.abstracts.CustomReward;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.relics.BustedCrown;
 import com.megacrit.cardcrawl.relics.QuestionCard;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rewards.RewardSave;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.EYBCardAffinityStatistics;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.rewards.AnimatorReward;
 import eatyourbeets.utilities.JUtils;
 
@@ -22,27 +25,40 @@ public class SynergyCardsReward extends AnimatorReward
 {
     public static final String ID = CreateFullID(SynergyCardsReward.class);
 
-    public final Synergy synergy;
+    public final CardSeries series;
     private boolean skip = false;
+    private EYBCardAffinityStatistics statistics;
+    private AnimatorRuntimeLoadout loadout;
+    private EYBCardTooltip tooltip;
 
-    private static String GenerateRewardTitle(Synergy synergy)
+    private static String GenerateRewardTitle(CardSeries series)
     {
-        if (synergy.ID == Synergies.ANY.ID)
+        if (series.ID == CardSeries.ANY.ID)
         {
             return "#yColorless";
         }
         else
         {
-            return "#y" + synergy.LocalizedName.replace(" ", " #y");
+            return "#y" + series.LocalizedName.replace(" ", " #y");
         }
     }
 
-    public SynergyCardsReward(Synergy synergy)
+    public SynergyCardsReward(CardSeries series)
     {
-        super(ID, GenerateRewardTitle(synergy), GR.Enums.Rewards.SYNERGY_CARDS);
+        super(ID, GenerateRewardTitle(series), GR.Enums.Rewards.SYNERGY_CARDS);
 
-        this.synergy = synergy;
-        this.cards = GenerateCardReward(synergy);
+        this.series = series;
+        this.cards = GenerateCardReward(series);
+        this.loadout = GR.Animator.Dungeon.GetLoadout(series);
+
+        if (series == CardSeries.ANY)
+        {
+            statistics = new EYBCardAffinityStatistics(AbstractDungeon.srcColorlessCardPool.group);
+        }
+        else if (loadout != null)
+        {
+            statistics = loadout.AffinityStatistics;
+        }
     }
 
     @Override
@@ -52,7 +68,99 @@ public class SynergyCardsReward extends AnimatorReward
 
         if (this.hb.hovered)
         {
-            TipHelper.renderGenericTip(360f * Settings.scale, (float) InputHelper.mY, synergy.LocalizedName, GR.Animator.Strings.Rewards.Description);
+            if (tooltip == null)
+            {
+                tooltip = new EYBCardTooltip(series.LocalizedName, GR.Animator.Strings.Rewards.Description);
+
+                if (statistics != null)
+                {
+                    tooltip.description += " NL NL Possible Affinities:";
+                    StringBuilder builder = new StringBuilder();
+                    for (EYBCardAffinityStatistics.Group g : statistics)
+                    {
+                        builder.append(JUtils.Format(" NL [A-{0}] : {1} ( #b{2} )", g.Type.Symbol, g.GetPercentageString(0), g.GetTotal(0)));
+                    }
+                    tooltip.description += builder.toString();
+                }
+            }
+
+            EYBCardTooltip.QueueTooltip(tooltip, 360 * Settings.scale, InputHelper.mY + 120 * Settings.scale);
+            //TipHelper.renderGenericTip(360f * Settings.scale, (float) InputHelper.mY, series.LocalizedName, GR.Animator.Strings.Rewards.Description);
+        }
+    }
+
+    @Override
+    public void render(SpriteBatch sb)
+    {
+        super.render(sb);
+
+        if (statistics == null)
+        {
+            return;
+        }
+
+        final int MAX = 2;
+        int rendered = 0;
+        float size, cX, cY;
+        for (EYBCardAffinityStatistics.Group g : statistics)
+        {
+            if (g.Type == AffinityType.Star)
+            {
+                continue;
+            }
+            if (rendered >= MAX)
+            {
+                break;
+            }
+
+            size = 42f;
+            cX = hb.x + hb.width - ((MAX - rendered) * size);
+            cY = hb.cY;
+
+            g.Render(sb, cX, cY, size, 2);
+            rendered += 1;
+        }
+    }
+
+    private void AdvancedRender(SpriteBatch sb)
+    {
+        if (statistics == null)
+        {
+            return;
+        }
+
+        int max = AffinityType.BasicTypes().length;
+        int borderLevel, i = 0, rendered = 0;
+        float size, cX, cY;
+        while (rendered < max)
+        {
+            EYBCardAffinityStatistics.Group group = statistics.GetGroup(i++);
+            if (group == null)
+            {
+                return;
+            }
+            else if (group.Type == AffinityType.Star)
+            {
+                continue;
+            }
+
+            if (rendered < 2)
+            {
+                size = 42f;
+                cX = hb.x + hb.width - ((2 - rendered) * size);
+                cY = hb.y + (size * 0.615f);
+                borderLevel = 2;
+            }
+            else
+            {
+                size = 28f;
+                cX = hb.x + hb.width - ((max - rendered) * size * 1.14f);
+                cY = hb.y + hb.height - (size * 0.6f);
+                borderLevel = 0;
+            }
+
+            group.Render(sb, cX, cY, size, borderLevel);
+            rendered += 1;
         }
     }
 
@@ -103,7 +211,7 @@ public class SynergyCardsReward extends AnimatorReward
         @Override
         public CustomReward onLoad(RewardSave rewardSave)
         {
-            return new SynergyCardsReward(Synergies.GetByID(rewardSave.amount));
+            return new SynergyCardsReward(CardSeries.GetByID(rewardSave.amount));
         }
 
         @Override
@@ -112,7 +220,7 @@ public class SynergyCardsReward extends AnimatorReward
             SynergyCardsReward reward = JUtils.SafeCast(customReward, SynergyCardsReward.class);
             if (reward != null)
             {
-                return new RewardSave(reward.type.toString(), null, reward.synergy.ID, 0);
+                return new RewardSave(reward.type.toString(), null, reward.series.ID, 0);
             }
 
             return null;

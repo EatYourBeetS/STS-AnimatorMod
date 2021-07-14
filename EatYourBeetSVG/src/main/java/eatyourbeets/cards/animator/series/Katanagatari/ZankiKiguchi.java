@@ -6,13 +6,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class ZankiKiguchi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ZankiKiguchi.class).SetAttack(0, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(ZankiKiguchi.class)
+            .SetAttack(0, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public ZankiKiguchi()
     {
@@ -20,10 +21,9 @@ public class ZankiKiguchi extends AnimatorCard
 
         Initialize(2, 0, 2);
         SetUpgrade(3, 0, 0);
-        SetScaling(0, 1, 1);
 
-        SetSynergy(Synergies.Katanagatari);
-        SetMartialArtist();
+        SetAffinity_Red(0, 0, 1);
+        SetAffinity_Green(1, 1, 1);
     }
 
     @Override

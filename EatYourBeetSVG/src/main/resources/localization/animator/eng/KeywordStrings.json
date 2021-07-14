@@ -51,7 +51,7 @@
 	},
 	"Shapeshifter":
 	{
-		"DESCRIPTION": "#ySynergizes with any card.",
+		"DESCRIPTION": "Affinity of any color.",
 		"NAMES": ["shapeshifter", "shapeshift"],
 		"PROPER_NAME": "Shapeshifter"
 	},
@@ -75,7 +75,7 @@
 	},
 	"Teamwork":
 	{
-		"DESCRIPTION": "Your #yTeamwork value is equal to the amount of cards in your hand that can #ySynergize with at least #b1 other card. #yShapeshifters only count as #b+1.",
+		"DESCRIPTION": "Your #yTeamwork value is equal to the amount of cards in hand with the same #yAffinity color. If not specified, it refers to the color with the highest number of cards.",
 		"NAMES": ["teamwork"],
 		"PROPER_NAME": "Teamwork"
 	},

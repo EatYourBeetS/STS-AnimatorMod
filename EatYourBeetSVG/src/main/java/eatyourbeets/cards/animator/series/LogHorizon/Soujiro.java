@@ -13,10 +13,8 @@ import eatyourbeets.cards.animator.special.Soujiro_Nazuna;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -26,7 +24,9 @@ public class Soujiro extends AnimatorCard
     private static final CardGroup cardChoices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     private static final CardGroup upgradedCardChoices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
-    public static final EYBCardData DATA = Register(Soujiro.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(Soujiro.class)
+            .SetAttack(3, CardRarity.RARE, EYBAttackType.Normal)
+            .SetSeriesFromClassPackage();
     static
     {
         cardPool.add(DATA.AddPreview(new Soujiro_Isami(), true));
@@ -41,10 +41,8 @@ public class Soujiro extends AnimatorCard
 
         Initialize(10, 0, 4);
         SetUpgrade(2, 0, 1);
-        SetScaling(0,1, 1);
 
-        SetMartialArtist();
-        SetSynergy(Synergies.LogHorizon);
+        SetAffinity_Green(2, 0, 2);
     }
 
     @Override
@@ -89,7 +87,7 @@ public class Soujiro extends AnimatorCard
     @Override
     protected float GetInitialDamage()
     {
-        return super.GetInitialDamage() + (magicNumber * GameUtilities.GetTeamwork(null));
+        return super.GetInitialDamage() + (magicNumber * GetTeamwork(null));
     }
 
     @Override

@@ -6,13 +6,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class SeriousSaitama extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(SeriousSaitama.class).SetSkill(-1, CardRarity.SPECIAL, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(SeriousSaitama.class)
+            .SetSkill(-1, CardRarity.SPECIAL, EYBCardTarget.ALL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.OnePunchMan);
 
     public SeriousSaitama()
     {
@@ -21,8 +24,10 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
         Initialize(0, 0, 0);
         SetUpgrade(0, 0, 1);
 
+        SetAffinity_Red(2);
+        SetAffinity_Green(2);
+
         SetPurge(true);
-        SetSynergy(Synergies.OnePunchMan);
     }
 
     @Override

@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Strike_Katanagatari extends Strike
@@ -19,7 +19,8 @@ public class Strike_Katanagatari extends Strike
         SetUpgrade(3, 0);
 
         SetAttackType(EYBAttackType.Piercing);
-        SetSynergy(Synergies.Katanagatari);
+        SetSeries(CardSeries.Katanagatari);
+        SetAffinity_Green(1);
     }
 
     @Override

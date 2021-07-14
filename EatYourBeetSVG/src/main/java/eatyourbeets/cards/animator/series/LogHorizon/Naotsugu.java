@@ -8,14 +8,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Naotsugu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Naotsugu.class).SetAttack(3, CardRarity.COMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(Naotsugu.class)
+            .SetAttack(3, CardRarity.COMMON, EYBAttackType.Normal)
+            .SetSeriesFromClassPackage();
 
     public Naotsugu()
     {
@@ -23,9 +24,9 @@ public class Naotsugu extends AnimatorCard
 
         Initialize(9, 0);
         SetUpgrade(3, 0);
-        SetScaling(0, 0, 1);
 
-        SetSynergy(Synergies.LogHorizon);
+        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Light(1);
     }
 
     @Override

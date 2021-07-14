@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Strike_GATE extends Strike
@@ -18,7 +18,8 @@ public class Strike_GATE extends Strike
         Initialize(5, 0);
         SetUpgrade(3, 0);
 
-        SetSynergy(Synergies.Gate);
+        SetSeries(CardSeries.GATE);
+        SetAffinity_Green(1);
     }
 
     @Override

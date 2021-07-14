@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.GenericEffects.GenericEffect_GainBlock;
 import eatyourbeets.misc.GenericEffects.GenericEffect_GainTempHP;
 import eatyourbeets.misc.GenericEffects.GenericEffect_StackPower;
@@ -14,7 +13,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Greed extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Greed.class).SetPower(2, CardRarity.RARE).SetMaxCopies(1);
+    public static final EYBCardData DATA = Register(Greed.class)
+            .SetPower(2, CardRarity.RARE)
+            .SetMaxCopies(1)
+            .SetSeriesFromClassPackage();
     public static final int BLOCK = 7;
     public static final int TEMP_HP = 6;
     public static final int MALLEABLE = 5;
@@ -30,7 +32,8 @@ public class Greed extends AnimatorCard
         Initialize(0,0, 200, 1);
         SetUpgrade(0,0, -50);
 
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetAffinity_Red(2);
+        SetAffinity_Dark(2);
     }
 
     @Override

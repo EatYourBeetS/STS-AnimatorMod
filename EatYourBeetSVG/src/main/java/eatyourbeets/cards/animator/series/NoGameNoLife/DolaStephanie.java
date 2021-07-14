@@ -6,12 +6,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class DolaStephanie extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(DolaStephanie.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(DolaStephanie.class)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public DolaStephanie()
     {
@@ -19,8 +21,9 @@ public class DolaStephanie extends AnimatorCard
 
         Initialize(0, 0);
 
+        SetAffinity_Light(1);
+
         SetExhaust(true);
-        SetSynergy(Synergies.NoGameNoLife);
     }
 
     @Override
@@ -42,7 +45,7 @@ public class DolaStephanie extends AnimatorCard
                 AbstractCard selected = cards.get(0);
                 GameActions.Top.FetchFromPile(name, 1, player.drawPile)
                 .SetOptions(false, false)
-                .SetFilter(c -> Synergies.WouldSynergize(selected, c)); //
+                .SetFilter(selected, CombatStats.Affinities::WouldSynergize);
             }
         });
     }

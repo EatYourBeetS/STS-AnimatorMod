@@ -5,14 +5,17 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 public class HarukoHaruhara extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HarukoHaruhara.class).SetSkill(1, CardRarity.RARE).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(HarukoHaruhara.class)
+            .SetSkill(1, CardRarity.RARE)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.FLCL);
 
     public HarukoHaruhara()
     {
@@ -21,7 +24,7 @@ public class HarukoHaruhara extends AnimatorCard
         Initialize(0, 0);
         SetCostUpgrade(-1);
 
-        SetSynergy(Synergies.FLCL);
+        SetAffinity_Light(1);
     }
 
     @Override

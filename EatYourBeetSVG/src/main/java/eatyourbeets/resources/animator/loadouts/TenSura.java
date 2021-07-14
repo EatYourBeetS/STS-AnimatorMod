@@ -8,8 +8,8 @@ import eatyourbeets.cards.animator.series.TenseiSlime.Benimaru;
 import eatyourbeets.cards.animator.series.TenseiSlime.Rimuru;
 import eatyourbeets.cards.animator.series.TenseiSlime.Shuna;
 import eatyourbeets.cards.animator.ultrarare.Veldora;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class TenSura extends AnimatorLoadout
 {
     public TenSura()
     {
-        super(Synergies.TenSura);
+        super(CardSeries.TenseiSlime);
     }
 
     @Override

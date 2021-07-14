@@ -16,7 +16,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Megumin extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Megumin.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Megumin.class)
+            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetSeriesFromClassPackage();
 
     public Megumin()
     {
@@ -24,12 +26,11 @@ public class Megumin extends AnimatorCard
 
         Initialize(10, 0);
         SetUpgrade( 2, 0);
-        SetScaling(4, 0, 0);
+
+        SetAffinity_Blue(2, 0, 4);
 
         SetExhaust(true);
         SetUnique(true, true);
-        SetSynergy(Synergies.Konosuba);
-        SetSpellcaster();
     }
 
     @Override

@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.effects.combatOnly.ShuffleEnemiesEffect;
 import eatyourbeets.effects.combatOnly.TalkEffect;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
@@ -102,7 +102,7 @@ public class HigakiRinneAction extends EYBAction
                             break;
 
                         case POWER:
-                            GameActions.Bottom.GainRandomStat(2);
+                            GameActions.Bottom.GainRandomAffinityPower(2, false);
                             break;
 
                         case STATUS:
@@ -207,7 +207,7 @@ public class HigakiRinneAction extends EYBAction
         }
         else if (tryActivate(3)) // 111
         {
-            AbstractCard card = JUtils.GetRandomElement(Synergies.GetNonColorlessCard());
+            AbstractCard card = JUtils.GetRandomElement(CardSeries.GetNonColorlessCard());
             if (card != null && !card.tags.contains(AbstractCard.CardTags.HEALING))
             {
                 GameActions.Bottom.MakeCardInHand(card.makeCopy());

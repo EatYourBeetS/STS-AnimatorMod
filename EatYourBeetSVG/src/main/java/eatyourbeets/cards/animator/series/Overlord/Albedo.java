@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActions;
@@ -13,7 +12,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Albedo extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Albedo.class).SetAttack(2, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Albedo.class)
+            .SetAttack(2, CardRarity.RARE)
+            .SetSeriesFromClassPackage();
 
     public Albedo()
     {
@@ -21,9 +22,9 @@ public class Albedo extends AnimatorCard
 
         Initialize(8, 2);
         SetUpgrade(3, 0);
-        SetScaling(0, 0, 1);
 
-        SetSynergy(Synergies.Overlord);
+        SetAffinity_Red(2);
+        SetAffinity_Dark(2, 0, 1);
     }
 
     @Override

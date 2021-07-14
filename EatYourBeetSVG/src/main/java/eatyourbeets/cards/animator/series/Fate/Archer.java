@@ -4,14 +4,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.ArcherPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
 public class Archer extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Archer.class).SetPower(1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Archer.class)
+            .SetPower(1, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
 
     public Archer()
     {
@@ -20,7 +21,8 @@ public class Archer extends AnimatorCard
         Initialize(0, 0, 3);
         SetUpgrade(0, 2, 0);
 
-        SetSynergy(Synergies.Fate);
+        SetAffinity_Red(1);
+        SetAffinity_Green(1, 1, 0);
     }
 
     @Override

@@ -42,6 +42,7 @@ public class EvePower extends AnimatorPower
                 CardCrawlGame.sound.play("ATTACK_MAGIC_BEAM_SHORT");
                 GameEffects.List.Add(new SmallLaserEffect(enemy.hb.cX, enemy.hb.cY, owner.hb.cX, owner.hb.cY));
                 GameEffects.List.Add(new BorderFlashEffect(Color.SKY));
+                return 0f;
             });
 
             this.flash();

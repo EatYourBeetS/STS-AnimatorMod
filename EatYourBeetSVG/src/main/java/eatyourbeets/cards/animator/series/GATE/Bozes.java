@@ -5,13 +5,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.BozesPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Bozes extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Bozes.class).SetAttack(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Bozes.class)
+            .SetAttack(2, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
 
     public Bozes()
     {
@@ -20,8 +21,10 @@ public class Bozes extends AnimatorCard
         Initialize(7, 0, 2, 1);
         SetUpgrade(0, 0, 1);
 
+        SetAffinity_Red(1, 1, 0);
+        SetAffinity_Light(1);
+
         SetExhaust(true);
-        SetSynergy(Synergies.Gate);
     }
 
     @Override

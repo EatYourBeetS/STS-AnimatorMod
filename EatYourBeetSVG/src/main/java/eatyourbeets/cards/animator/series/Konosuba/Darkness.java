@@ -6,13 +6,14 @@ import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.animator.special.DarknessAdrenaline;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.DarknessPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Darkness extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Darkness.class).SetPower(1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Darkness.class)
+            .SetPower(1, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new DarknessAdrenaline(), false);
@@ -25,7 +26,8 @@ public class Darkness extends AnimatorCard
         Initialize(0, 2, 2);
         SetUpgrade(0, 1, 1);
 
-        SetSynergy(Synergies.Konosuba);
+        SetAffinity_Red(1);
+        SetAffinity_Light(1);
     }
 
     @Override

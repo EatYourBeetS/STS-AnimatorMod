@@ -7,12 +7,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Vanir extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Vanir.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(Vanir.class)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental)
+            .SetSeriesFromClassPackage();
 
     public Vanir()
     {
@@ -20,10 +21,9 @@ public class Vanir extends AnimatorCard
 
         Initialize(12, 0, 3);
         SetUpgrade(1, 0, -1);
-        SetScaling(1, 0, 0);
 
-        SetSynergy(Synergies.Konosuba);
-        SetShapeshifter();
+        SetAffinity_Blue(0, 0, 1);
+        SetAffinity_Star(1, 1, 0);
     }
 
     @Override

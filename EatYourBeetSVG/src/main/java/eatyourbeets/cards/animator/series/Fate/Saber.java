@@ -6,12 +6,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Excalibur;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Saber extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Saber.class).SetAttack(1, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Saber.class)
+            .SetAttack(1, CardRarity.RARE)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Excalibur(), false);
@@ -23,11 +24,13 @@ public class Saber extends AnimatorCard
 
         Initialize(9, 0, 0);
         SetUpgrade(2, 0, 0);
-        SetScaling(0, 1, 1);
+
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Light(2);
 
         SetCooldown(8, 0, this::OnCooldownCompleted);
         SetLoyal(true);
-        SetSynergy(Synergies.Fate);
     }
 
     @Override

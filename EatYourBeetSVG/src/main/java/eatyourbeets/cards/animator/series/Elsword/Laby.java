@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.monsters.EnemyIntent;
@@ -15,7 +14,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Laby extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Laby.class).SetPower(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Laby.class)
+            .SetPower(2, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
 
     public Laby()
     {
@@ -23,7 +24,8 @@ public class Laby extends AnimatorCard
 
         Initialize(0, 0, 3, 40);
 
-        SetSynergy(Synergies.Elsword);
+        SetAffinity_Light(2, 0, 0);
+        SetAffinity_Dark(2, 0, 0);
     }
 
     @Override

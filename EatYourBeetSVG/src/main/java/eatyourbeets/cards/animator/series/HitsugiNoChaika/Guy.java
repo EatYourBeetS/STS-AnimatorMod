@@ -5,13 +5,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
 public class Guy extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Guy.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Guy.class)
+            .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public Guy()
     {
@@ -20,7 +21,7 @@ public class Guy extends AnimatorCard
         Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 1);
 
-        SetSynergy(Synergies.Chaika);
+        SetAffinity_Dark(1);
     }
 
     @Override

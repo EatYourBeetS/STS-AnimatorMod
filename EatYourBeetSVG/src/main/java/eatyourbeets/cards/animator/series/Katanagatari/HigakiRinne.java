@@ -25,7 +25,9 @@ import java.util.ArrayList;
 
 public class HigakiRinne extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HigakiRinne.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(HigakiRinne.class)
+            .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public HigakiRinne()
     {
@@ -35,8 +37,7 @@ public class HigakiRinne extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetAttackType(EYBAttackType.Normal);
-        SetSynergy(Synergies.Katanagatari);
-        SetShapeshifter();
+        SetAffinity_Star(2, 0, 1);
     }
 
     @Override

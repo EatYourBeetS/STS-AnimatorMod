@@ -8,17 +8,16 @@ import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.animator.status.Crystallize;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
 
 public class Add extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Add.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Add.class)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Crystallize(), false);
@@ -35,8 +34,10 @@ public class Add extends AnimatorCard
         Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 1, 0);
 
+        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Dark(2, 0, 0);
+
         SetExhaust(true);
-        SetSynergy(Synergies.Elsword);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class Add extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (isSynergizing)
+        if (CheckTeamwork(AffinityType.Dark, 3))
         {
             GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
             .AddCallback(this::OnCardChosen);

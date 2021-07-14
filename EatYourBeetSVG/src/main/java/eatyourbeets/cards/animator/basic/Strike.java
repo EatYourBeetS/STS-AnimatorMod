@@ -52,7 +52,7 @@ public class Strike extends AnimatorCard
         AnimatorCard copy = (AnimatorCard) super.makeCopy();
         if (GameUtilities.GetActualAscensionLevel() < 9)
         {
-            copy.SetSynergy(null);
+            copy.SetSeries(null);
         }
 
         return copy;

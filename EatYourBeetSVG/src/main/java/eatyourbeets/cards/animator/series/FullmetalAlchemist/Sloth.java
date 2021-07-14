@@ -7,13 +7,14 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.TemporaryDrawReductionPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Sloth extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Sloth.class).SetAttack(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Sloth.class)
+            .SetAttack(2, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public Sloth()
     {
@@ -21,9 +22,9 @@ public class Sloth extends AnimatorCard
 
         Initialize(16, 13, 2, 9);
         SetUpgrade(0, 0, -1, 0);
-        SetScaling(0, 0, 2);
 
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Dark(2);
     }
 
     @Override

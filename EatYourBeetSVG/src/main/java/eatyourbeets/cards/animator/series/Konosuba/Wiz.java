@@ -8,7 +8,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class Wiz extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Wiz.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Wiz.class)
+            .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public Wiz()
     {
@@ -17,8 +19,10 @@ public class Wiz extends AnimatorCard
         Initialize(0, 0);
         SetCostUpgrade(-1);
 
+        SetAffinity_Blue(2);
+        SetAffinity_Dark(2);
+
         SetPurge(true);
-        SetSynergy(Synergies.Konosuba);
     }
 
     @Override
@@ -28,7 +32,7 @@ public class Wiz extends AnimatorCard
 
         if (!CombatStats.HasActivatedLimited(cardID))
         {
-            SetPurge(!(Synergies.WouldSynergize(this)));
+            SetPurge(!(CombatStats.Affinities.WouldSynergize(this)));
         }
     }
 

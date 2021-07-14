@@ -8,8 +8,8 @@ import eatyourbeets.cards.animator.series.Overlord.Ainz;
 import eatyourbeets.cards.animator.series.Overlord.Cocytus;
 import eatyourbeets.cards.animator.series.Overlord.Demiurge;
 import eatyourbeets.cards.animator.ultrarare.SirTouchMe;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class Overlord extends AnimatorLoadout
 {
     public Overlord()
     {
-        super(Synergies.Overlord);
+        super(CardSeries.Overlord);
     }
 
     @Override

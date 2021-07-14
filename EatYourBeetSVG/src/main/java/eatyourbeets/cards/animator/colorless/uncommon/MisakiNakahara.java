@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDrawnSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -16,7 +16,10 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class MisakiNakahara extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MisakiNakahara.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(MisakiNakahara.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.WelcomeToNHK);
 
     public MisakiNakahara()
     {
@@ -24,8 +27,9 @@ public class MisakiNakahara extends AnimatorCard
 
         Initialize(0, 0, 2);
 
+        SetAffinity_Light(1);
+
         SetExhaust(true);
-        SetSynergy(Synergies.WelcomeToNHK);
     }
 
     @Override

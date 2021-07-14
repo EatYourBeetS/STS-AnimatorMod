@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.effects.vfx.LaserBeamEffect;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDiscardedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnAfterCardExhaustedSubscriber;
@@ -20,7 +20,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardExhaustedSubscriber, OnAfterCardDiscardedSubscriber
 {
-    public static final EYBCardData DATA = Register(NivaLada.class).SetSkill(0, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(NivaLada.class)
+            .SetSkill(0, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.HitsugiNoChaika);
 
     public NivaLada()
     {
@@ -29,8 +32,9 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardExhau
         Initialize(0, 0, 300);
         SetUpgrade(0, 0, 0);
 
+        SetAffinity_Blue(2);
+
         SetCooldown(18, -2, this::OnCooldownCompleted);
-        SetSynergy(Synergies.Chaika);
     }
 
     @Override

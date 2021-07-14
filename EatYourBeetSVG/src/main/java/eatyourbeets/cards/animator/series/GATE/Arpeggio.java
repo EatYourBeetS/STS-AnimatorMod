@@ -4,14 +4,16 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Arpeggio extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Arpeggio.class).SetPower(1, CardRarity.UNCOMMON).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(Arpeggio.class)
+            .SetPower(1, CardRarity.UNCOMMON)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage();
 
     public Arpeggio()
     {
@@ -20,8 +22,7 @@ public class Arpeggio extends AnimatorCard
         Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 1, 0);
 
-        SetSynergy(Synergies.Gate);
-        SetSpellcaster();
+        SetAffinity_Blue(1, 1, 0);
     }
 
     @Override

@@ -7,14 +7,16 @@ import eatyourbeets.cards.animator.special.ChlammyZellScheme;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.IntellectPower;
+import eatyourbeets.powers.affinity.IntellectPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class ChlammyZell extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ChlammyZell.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(ChlammyZell.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new ChlammyZellScheme(), false);
@@ -24,10 +26,11 @@ public class ChlammyZell extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, IntellectPower.GetThreshold(1));
+        Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 1, 0);
 
-        SetSynergy(Synergies.NoGameNoLife);
+        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Dark(1);
     }
 
     @Override
@@ -36,7 +39,7 @@ public class ChlammyZell extends AnimatorCard
         GameActions.Bottom.Draw(2);
         GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
 
-        if (IntellectPower.GetCurrentLevel() > 1 && CombatStats.TryActivateLimited(cardID))
+        if (GameUtilities.GetPowerAmount(IntellectPower.POWER_ID) >= secondaryValue && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.MakeCardInHand(new ChlammyZellScheme());
         }

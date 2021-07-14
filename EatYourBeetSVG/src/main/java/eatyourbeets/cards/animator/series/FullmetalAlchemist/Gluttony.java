@@ -5,13 +5,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
 public class Gluttony extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Gluttony.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Gluttony.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public Gluttony()
     {
@@ -19,9 +20,11 @@ public class Gluttony extends AnimatorCard
 
         Initialize(0, 0, 4, 16);
 
+        SetAffinity_Red(2);
+        SetAffinity_Dark(2);
+
         SetHealing(true);
         SetExhaust(true);
-        SetSynergy(Synergies.FullmetalAlchemist);
     }
 
     @Override

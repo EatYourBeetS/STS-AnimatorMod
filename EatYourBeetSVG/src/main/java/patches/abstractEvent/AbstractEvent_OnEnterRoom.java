@@ -12,7 +12,7 @@ public class AbstractEvent_OnEnterRoom
     @SpirePostfixPatch
     public static void Prefix(AbstractEvent __instance)
     {
-        if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && GR.Animator.Dungeon.Series.isEmpty())
+        if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && GR.Animator.Dungeon.Loadouts.isEmpty())
         {
             GR.UI.SeriesSelection.Open(true);
         }

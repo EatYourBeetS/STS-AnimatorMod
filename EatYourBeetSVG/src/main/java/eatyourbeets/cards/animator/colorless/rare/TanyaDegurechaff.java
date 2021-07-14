@@ -7,7 +7,7 @@ import eatyourbeets.cards.animator.special.TanyaDegurechaff_Type95;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -16,7 +16,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class TanyaDegurechaff extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(TanyaDegurechaff.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(TanyaDegurechaff.class)
+            .SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.YoujoSenki);
     static
     {
         DATA.AddPreview(new TanyaDegurechaff_Type95(), false);
@@ -28,9 +31,9 @@ public class TanyaDegurechaff extends AnimatorCard
 
         Initialize(4, 6, 1);
         SetUpgrade(2, 2);
-        SetScaling(1, 1, 0);
 
-        SetSynergy(Synergies.YoujoSenki);
+        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Blue(1, 0, 1);
     }
 
     @Override

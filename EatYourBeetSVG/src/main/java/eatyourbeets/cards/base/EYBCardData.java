@@ -31,7 +31,7 @@ public class EYBCardData
     public AbstractCard.CardColor CardColor;
     public EYBCardTarget CardTarget;
     public EYBAttackType AttackType;
-    public Synergy Synergy;
+    public CardSeries Series;
     public EYBCard tempCard = null;
 
     private TextureAtlas.AtlasRegion cardIcon = null;
@@ -115,9 +115,22 @@ public class EYBCardData
         }
     }
 
-    public EYBCardData SetSynergy(Synergy synergy)
+    public EYBCardData SetSeriesFromClassPackage()
     {
-        Synergy = synergy;
+        final String path = "eatyourbeets.cards.animator.series.";
+        final String name = type.getPackage().getName().substring(path.length());
+        final CardSeries series = CardSeries.GetByName(name, false);
+        if (series == null)
+        {
+            throw new RuntimeException("Couldn't find card series from class package: " + type);
+        }
+
+        return SetSeries(series);
+    }
+
+    public EYBCardData SetSeries(CardSeries series)
+    {
+        Series = series;
 
         return this;
     }

@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.basic;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Defend_FullmetalAlchemist extends Defend
@@ -18,7 +18,8 @@ public class Defend_FullmetalAlchemist extends Defend
         SetUpgrade(0, 3);
 
         SetCooldown(1, 0, this::OnCooldownCompleted);
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetSeries(CardSeries.FullmetalAlchemist);
+        SetAffinity_Blue(1);
     }
 
     @Override

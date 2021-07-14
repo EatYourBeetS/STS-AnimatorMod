@@ -6,13 +6,14 @@ import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class Kyubey extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Kyubey.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Kyubey.class)
+            .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public Kyubey()
     {
@@ -21,8 +22,10 @@ public class Kyubey extends AnimatorCard
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
+        SetAffinity_Blue(2);
+        SetAffinity_Dark(2);
+
         SetExhaust(true);
-        SetSynergy(Synergies.MadokaMagica);
     }
 
     @Override

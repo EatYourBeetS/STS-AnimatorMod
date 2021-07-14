@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator.basic;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
@@ -17,7 +17,8 @@ public class Defend_TenSura extends Defend
         Initialize(0, 3);
         SetUpgrade(0, 1);
 
-        SetSynergy(Synergies.TenSura);
+        SetSeries(CardSeries.TenseiSlime);
+        SetAffinity_Green(1);
     }
 
     @Override

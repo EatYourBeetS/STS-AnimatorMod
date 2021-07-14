@@ -10,7 +10,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class Aqua extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Aqua.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Aqua.class)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Aqua(true), true);
@@ -28,11 +30,12 @@ public class Aqua extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 2, 2);
+        SetUpgrade(0, 0, 0, 0);
+
+        SetAffinity_Light(2);
 
         SetHealing(true);
-        SetSynergy(Synergies.Konosuba);
     }
 
     @Override
@@ -68,6 +71,7 @@ public class Aqua extends AnimatorCard
     {
         if (!transformed)
         {
+            GameActions.Bottom.GainBlessing(1, upgraded);
             GameActions.Bottom.Heal(magicNumber);
             GameActions.Bottom.Draw(1);
             GameActions.Bottom.Callback(() -> SetTransformed(true));

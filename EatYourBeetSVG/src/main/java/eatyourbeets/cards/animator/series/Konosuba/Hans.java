@@ -4,13 +4,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.HansPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Hans extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Hans.class).SetPower(3, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Hans.class)
+            .SetPower(3, CardRarity.RARE)
+            .SetSeriesFromClassPackage();
 
     public Hans()
     {
@@ -19,8 +20,7 @@ public class Hans extends AnimatorCard
         Initialize(0, 0, 3, 1);
         SetUpgrade(0, 0, 1, 0);
 
-        SetShapeshifter();
-        SetSynergy(Synergies.Konosuba);
+        SetAffinity_Star(2);
     }
 
     @Override

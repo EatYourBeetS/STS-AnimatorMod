@@ -53,11 +53,11 @@ public abstract class AnimatorReward extends CustomReward
         super(rewardImage, text, type);
     }
 
-    public ArrayList<AbstractCard> GenerateCardReward(Synergy synergy)
+    public ArrayList<AbstractCard> GenerateCardReward(CardSeries series)
     {
-        RewardContext context = new RewardContext(synergy);
+        RewardContext context = new RewardContext(series);
         WeightedList<AbstractCard> randomPool = new WeightedList<>();
-        if (synergy != null && synergy != Synergies.ANY)
+        if (series != null && series != CardSeries.ANY)
         {
             AddCards(AbstractDungeon.srcCommonCardPool, randomPool, context);
             AddCards(AbstractDungeon.srcUncommonCardPool, randomPool, context);
@@ -82,7 +82,7 @@ public abstract class AnimatorReward extends CustomReward
 
         if (result.size() > 0)
         {
-            AddUltraRare(result, context.synergy);
+            AddUltraRare(result, context.series);
         }
 
         return result;
@@ -90,18 +90,18 @@ public abstract class AnimatorReward extends CustomReward
 
     private void AddCards(CardGroup pool, WeightedList<AbstractCard> cards, RewardContext context)
     {
-        Synergy synergy = context.synergy;
+        CardSeries series = context.series;
 
         for (AbstractCard c : pool.group)
         {
             AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
-            if (card != null && (synergy.Equals(card.synergy) || Synergies.ANY.equals(synergy)))
+            if (card != null && (series.Equals(card.series) || CardSeries.ANY.equals(series)))
             {
-                if (Synergies.ANY.equals(synergy)) // colorless
+                if (CardSeries.ANY.equals(series)) // colorless
                 {
                     cards.Add(card, card.rarity == AbstractCard.CardRarity.UNCOMMON ? 8 : 2);
                 }
-                else if (synergy.equals(card.synergy))
+                else if (series.equals(card.series))
                 {
                     int weight = context.GetRarityWeight(card.rarity);
                     if (weight > 0)
@@ -113,7 +113,7 @@ public abstract class AnimatorReward extends CustomReward
         }
     }
 
-    private void AddUltraRare(ArrayList<AbstractCard> cards, Synergy synergy)
+    private void AddUltraRare(ArrayList<AbstractCard> cards, CardSeries series)
     {
         int currentLevel = GR.Animator.GetUnlockLevel();
         if (currentLevel <= 2 || AbstractDungeon.floorNum < 8 || AbstractDungeon.floorNum > 36 || cards.isEmpty())
@@ -122,7 +122,7 @@ public abstract class AnimatorReward extends CustomReward
             return;
         }
 
-        AnimatorLoadout loadout = GR.Animator.Data.GetLoadout(synergy);
+        AnimatorLoadout loadout = GR.Animator.Data.GetLoadout(series);
         if (loadout == null)
         {
             return;
@@ -133,7 +133,8 @@ public abstract class AnimatorReward extends CustomReward
         {
             if (c instanceof AnimatorCard_UltraRare)
             {
-                if (synergy.ID == ((AnimatorCard_UltraRare) c).synergy.ID)
+                CardSeries s = ((AnimatorCard_UltraRare) c).series;
+                if (s != null && series.ID == s.ID)
                 {
                     return; // No duplicates
                 }
@@ -157,15 +158,15 @@ public abstract class AnimatorReward extends CustomReward
 
     private static class RewardContext
     {
-        public Synergy synergy;
+        public CardSeries series;
         public int rewardSize;
         public int rareCardChance;
         public int uncommonCardChance;
         public int commonCardChance;
 
-        public RewardContext(Synergy synergy)
+        public RewardContext(CardSeries series)
         {
-            this.synergy = synergy;
+            this.series = series;
             this.rewardSize = 3;
             this.rareCardChance = 3;
             this.uncommonCardChance = 37;

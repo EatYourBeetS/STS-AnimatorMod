@@ -3,7 +3,6 @@ package eatyourbeets.resources.common;
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.Keyword;
@@ -15,10 +14,8 @@ import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.console.CommandsManager;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.monsters.EYBMonster;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
-import eatyourbeets.powers.common.GenericFadingPower;
-import eatyourbeets.powers.common.IntellectPower;
+import eatyourbeets.powers.affinity.*;
+import eatyourbeets.powers.common.*;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
@@ -119,10 +116,12 @@ public class CommonResources extends AbstractResources
         AddPowerTooltip("[F]", "Force", new ForcePower(null, 0));
         AddPowerTooltip("[A]", "Agility", new AgilityPower(null, 0));
         AddPowerTooltip("[I]", "Intellect", new IntellectPower(null, 0));
-        AddEnergyTooltip("[R]", AbstractCard.orb_red);
-        AddEnergyTooltip("[G]", AbstractCard.orb_green);
-        AddEnergyTooltip("[B]", AbstractCard.orb_blue);
-        AddEnergyTooltip("[P]", AbstractCard.orb_purple);
+        AddPowerTooltip("[B]", "Blessing", new BlessingPower(null, 0));
+        AddPowerTooltip("[C]", "Corruption", new CorruptionPower(null, 0));
+//        AddEnergyTooltip("[R]", AbstractCard.orb_red);
+//        AddEnergyTooltip("[G]", AbstractCard.orb_green);
+//        AddEnergyTooltip("[B]", AbstractCard.orb_blue);
+//        AddEnergyTooltip("[P]", AbstractCard.orb_purple);
         AddEnergyTooltip("[E]", null); // TODO: generalize this
 
         for (Field field : GameDictionary.class.getDeclaredFields())
@@ -175,7 +174,8 @@ public class CommonResources extends AbstractResources
             return;
         }
 
-        tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 2, 4, size-4, size-4);
+        tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 3, 5, size-6, size-6);
+        //tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 2, 4, size-4, size-4);
 
         EYBCardTooltip stance = CardTooltips.FindByID(id + " Stance");
         if (stance != null)

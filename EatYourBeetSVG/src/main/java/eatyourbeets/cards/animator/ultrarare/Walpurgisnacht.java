@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
@@ -16,7 +16,10 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class Walpurgisnacht extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(Walpurgisnacht.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Walpurgisnacht.class)
+            .SetPower(3, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.MadokaMagica);
 
     private static final RandomizedList<AnimatorCard> spellcasterPool = new RandomizedList<>();
 
@@ -27,8 +30,8 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetSynergy(Synergies.MadokaMagica);
-        SetSpellcaster();
+        SetAffinity_Blue(2);
+        SetAffinity_Dark(2);
     }
 
     @Override
@@ -36,8 +39,8 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
     {
         if (spellcasterPool.Size() == 0)
         {
-            spellcasterPool.AddAll(JUtils.Filter(Synergies.GetNonColorlessCard(), c -> c.hasTag(SPELLCASTER)));
-            spellcasterPool.AddAll(JUtils.Filter(Synergies.GetColorlessCards(), c -> c.hasTag(SPELLCASTER)));
+            spellcasterPool.AddAll(JUtils.Filter(CardSeries.GetNonColorlessCard(), c -> c.hasTag(SPELLCASTER)));
+            spellcasterPool.AddAll(JUtils.Filter(CardSeries.GetColorlessCards(), c -> c.hasTag(SPELLCASTER)));
         }
 
         for (int i = 0; i < magicNumber; i++)

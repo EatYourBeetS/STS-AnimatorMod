@@ -11,13 +11,16 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Overheat extends AnimatorCard_Status
 {
-    public static final EYBCardData DATA = Register(Overheat.class).SetStatus(0, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Overheat.class)
+            .SetStatus(0, CardRarity.COMMON, EYBCardTarget.None);
 
     public Overheat()
     {
         super(DATA, false);
 
         Initialize(0, 0, 3);
+
+        SetAffinity_Red(1);
     }
 
     @Override

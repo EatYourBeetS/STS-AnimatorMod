@@ -7,13 +7,14 @@ import com.megacrit.cardcrawl.vfx.combat.ClashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Lancer extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Lancer.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(Lancer.class)
+            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing)
+            .SetSeriesFromClassPackage();
 
     public Lancer()
     {
@@ -21,10 +22,9 @@ public class Lancer extends AnimatorCard
 
         Initialize(6, 0, 1);
         SetUpgrade(3, 0, 0);
-        SetScaling(0, 1, 1);
 
-        SetSynergy(Synergies.Fate);
-        SetMartialArtist();
+        SetAffinity_Red(1);
+        SetAffinity_Green(2, 0, 1);
     }
 
     @Override

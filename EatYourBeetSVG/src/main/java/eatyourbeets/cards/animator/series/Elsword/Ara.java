@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
@@ -13,7 +12,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Ara extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Ara.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Ara.class)
+            .SetAttack(1, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public Ara()
     {
@@ -21,10 +22,9 @@ public class Ara extends AnimatorCard
 
         Initialize(3, 0);
         SetUpgrade(2, 0);
-        SetScaling(0, 1, 0);
 
-        SetSynergy(Synergies.Elsword);
-        SetMartialArtist();
+        SetAffinity_Green(1, 1, 1);
+        SetAffinity_Red(1);
     }
 
     @Override

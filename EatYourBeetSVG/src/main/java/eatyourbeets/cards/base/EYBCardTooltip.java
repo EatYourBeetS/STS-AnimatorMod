@@ -4,15 +4,21 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
+import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 import org.apache.commons.lang3.StringUtils;
@@ -48,6 +54,9 @@ public class EYBCardTooltip
     private static EYBCardTooltip translationTooltip;
     private static boolean inHand;
     private static EYBCard card;
+    private static EYBRelic relic;
+    private static EYBCardTooltip genericTip;
+    private static Vector2 genericTipPos = new Vector2(0, 0);
 
     public TextureRegion icon;
     public String id;
@@ -75,17 +84,27 @@ public class EYBCardTooltip
         return !_renderedTipsThisFrame.Get(null);
     }
 
+    public static void QueueTooltip(EYBCardTooltip tooltip, float x, float y)
+    {
+        Initialize();
+        genericTip = tooltip;
+        genericTipPos.x = x;
+        genericTipPos.y = y;
+        GR.UI.AddPostRender(sb -> genericTip.Render(sb, genericTipPos.x, genericTipPos.y, -1));
+    }
+
     public static void QueueTooltips(EYBCard source)
     {
-        _body.Set(null, null);
-        _header.Set(null, null);
-        _card.Set(null, null);
-        _keywords.Set(null, EMPTY_LIST);
-        _powerTips.Set(null, EMPTY_LIST);
-        _renderedTipsThisFrame.Set(null, true);
+        Initialize();
         card = source;
+        GR.UI.AddPostRender(EYBCardTooltip::RenderFromCard);
+    }
 
-        GR.UI.AddPostRender(EYBCardTooltip::RenderAll);
+    public static void QueueTooltips(EYBRelic source)
+    {
+        Initialize();
+        relic = source;
+        GR.UI.AddPostRender(EYBCardTooltip::RenderFromRelic);
     }
 
     public static void ClearTooltips()
@@ -94,8 +113,26 @@ public class EYBCardTooltip
         _renderedTipsThisFrame.Set(null, true);
     }
 
-    public static void RenderAll(SpriteBatch sb)
+    private static void Initialize()
     {
+        _body.Set(null, null);
+        _header.Set(null, null);
+        _card.Set(null, null);
+        _keywords.Set(null, EMPTY_LIST);
+        _powerTips.Set(null, EMPTY_LIST);
+        _renderedTipsThisFrame.Set(null, true);
+        card = null;
+        relic = null;
+        genericTip = null;
+    }
+
+    public static void RenderFromCard(SpriteBatch sb)
+    {
+        if (card == null)
+        {
+            return;
+        }
+
         int totalHidden = 0;
         inHand = AbstractDungeon.player != null && AbstractDungeon.player.hand.contains(card);
         tooltips.clear();
@@ -211,6 +248,63 @@ public class EYBCardTooltip
         }
     }
 
+    public static void RenderFromRelic(SpriteBatch sb)
+    {
+        if (relic == null)
+        {
+            return;
+        }
+
+        float x;
+        float y;
+        if ((float) InputHelper.mX >= 1400.0F * Settings.scale)
+        {
+            x = InputHelper.mX - (350 * Settings.scale);
+            y = InputHelper.mY - (50 * Settings.scale);
+        }
+        else if (CardCrawlGame.mainMenuScreen.screen == MainMenuScreen.CurScreen.RELIC_VIEW)
+        {
+            x = 180 * Settings.scale;
+            y = 0.7f * Settings.HEIGHT;
+        }
+        else if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.SHOP && relic.tips.size() > 2 && !AbstractDungeon.player.hasRelic(relic.relicId))
+        {
+            x = InputHelper.mX + (60 * Settings.scale);
+            y = InputHelper.mY + (180 * Settings.scale);
+        }
+        else if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(relic.relicId))
+        {
+            x = InputHelper.mX + (60 * Settings.scale);
+            y = InputHelper.mY - (30 * Settings.scale);
+        }
+        else if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD)
+        {
+            x = 360 * Settings.scale;
+            y = InputHelper.mY + (50 * Settings.scale);
+        }
+        else
+        {
+            x = InputHelper.mX + (50 * Settings.scale);
+            y = InputHelper.mY + (50 * Settings.scale);
+        }
+
+        ArrayList<EYBCardTooltip> tips = relic.tips;
+        for (int i = 0; i < tips.size(); i++)
+        {
+            EYBCardTooltip tip = tips.get(i);
+
+            if (tip.hideDescription == null)
+            {
+                tip.hideDescription = GR.Animator.Config.HideTipDescription(tip.id);
+            }
+
+            if (!tip.hideDescription)
+            {
+                y -= tip.Render(sb, x, y, i) + BOX_EDGE_H * 3.15f;
+            }
+        }
+    }
+
     public float Render(SpriteBatch sb, float x, float y, int index)
     {
         if (hideDescription == null)
@@ -219,7 +313,9 @@ public class EYBCardTooltip
             hideDescription = !StringUtils.isEmpty(id) && GR.Animator.Config.HideTipDescription(id);
         }
 
-        final float textHeight = FontHelper.getSmartHeight(EYBFontHelper.CardTooltipFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING);
+        BitmapFont descriptionFont = card == null ? FontHelper.tipBodyFont : EYBFontHelper.CardTooltipFont;
+
+        final float textHeight = RenderHelpers.GetSmartHeight(descriptionFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING);
         final float h = (hideDescription || StringUtils.isEmpty(description)) ? (- 40f * Settings.scale) : (- textHeight - 7f * Settings.scale);
 
         sb.setColor(Settings.TOP_PANEL_SHADOW_COLOR);
@@ -244,14 +340,14 @@ public class EYBCardTooltip
 
         if (!StringUtils.isEmpty(description))
         {
-            if (StringUtils.isNotEmpty(id) && !inHand && index >= 0)
+            if (card != null && StringUtils.isNotEmpty(id) && !inHand && index >= 0)
             {
-                FontHelper.renderFontRightTopAligned(sb, EYBFontHelper.CardTooltipFont, "Alt+" + (index + 1), x + BODY_TEXT_WIDTH * 1.07f, y + HEADER_OFFSET_Y * 1.33f, Settings.PURPLE_COLOR);
+                FontHelper.renderFontRightTopAligned(sb, descriptionFont, "Alt+" + (index + 1), x + BODY_TEXT_WIDTH * 1.07f, y + HEADER_OFFSET_Y * 1.33f, Settings.PURPLE_COLOR);
             }
 
             if (!hideDescription)
             {
-                RenderHelpers.WriteSmartText(sb, EYBFontHelper.CardTooltipFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
+                RenderHelpers.WriteSmartText(sb, descriptionFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
             }
         }
 

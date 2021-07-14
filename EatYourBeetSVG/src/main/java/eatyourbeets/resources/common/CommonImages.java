@@ -7,6 +7,7 @@ public class CommonImages
     public final Badges Badges = new Badges();
     public final CardIcons Icons = new CardIcons();
     public final Tooltips Tooltips = new Tooltips();
+    public final AffinityIcons Affinities = new AffinityIcons();
 
     public final TextureCache UnnamedReignEntrance        = new TextureCache("images/ui/map/act5Entrance.png");
     public final TextureCache UnnamedReignEntranceOutline = new TextureCache("images/ui/map/act5EntranceOutline.png");
@@ -23,6 +24,7 @@ public class CommonImages
     public final TextureCache HexagonalButtonBorder       = new TextureCache("images/ui/topPanel/eyb/HexagonalButtonBorder.png");
     public final TextureCache HexagonalButtonHover        = new TextureCache("images/ui/topPanel/eyb/HexagonalButtonHover.png");
     public final TextureCache CardBadgeLegend             = new TextureCache("images/cardui/eyb/badges/_Legend.png");
+    public final TextureCache Arrow_Right                 = new TextureCache("images/ui/topPanel/eyb/Arrow_Right.png");
 
     public static class CardIcons
     {
@@ -35,6 +37,22 @@ public class CommonImages
         public final TextureCache Intellect             = new TextureCache("images/cardui/eyb/core/Intellect.png");
         public final TextureCache Force                 = new TextureCache("images/cardui/eyb/core/Force.png");
         public final TextureCache Agility               = new TextureCache("images/cardui/eyb/core/Agility.png");
+    }
+
+    public static class AffinityIcons
+    {
+        public final TextureCache Green                 = new TextureCache("images/cardui/eyb/affinities/Green.png", true);
+        public final TextureCache Red                   = new TextureCache("images/cardui/eyb/affinities/Red.png", true);
+        public final TextureCache Blue                  = new TextureCache("images/cardui/eyb/affinities/Blue.png", true);
+        public final TextureCache Light                 = new TextureCache("images/cardui/eyb/affinities/Light.png", true);
+        public final TextureCache Dark                  = new TextureCache("images/cardui/eyb/affinities/Dark.png", true);
+        public final TextureCache Star                  = new TextureCache("images/cardui/eyb/affinities/Star.png", true);
+        public final TextureCache Star_BG               = new TextureCache("images/cardui/eyb/affinities/Star_BG.png", true);
+        public final TextureCache Star_FG               = new TextureCache("images/cardui/eyb/affinities/Star_FG.png", true);
+        public final TextureCache Border                = new TextureCache("images/cardui/eyb/affinities/Border.png", false);
+        public final TextureCache BorderFG              = new TextureCache("images/cardui/eyb/affinities/Border_FG.png", false);
+        public final TextureCache BorderBG              = new TextureCache("images/cardui/eyb/affinities/Border_BG.png", true);
+        public final TextureCache Border_Weak           = new TextureCache("images/cardui/eyb/affinities/Border_Weak.png", true);
     }
 
     public static class Badges

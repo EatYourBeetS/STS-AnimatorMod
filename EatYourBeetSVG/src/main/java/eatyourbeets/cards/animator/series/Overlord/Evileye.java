@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
@@ -14,7 +13,9 @@ import java.util.ArrayList;
 
 public class Evileye extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Evileye.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Evileye.class)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public Evileye()
     {
@@ -23,8 +24,8 @@ public class Evileye extends AnimatorCard
         Initialize(0,0, 1);
         SetCostUpgrade(-1);
 
-        SetSynergy(Synergies.Overlord);
-        SetSpellcaster();
+        SetAffinity_Blue(2);
+        SetAffinity_Light(1);
     }
 
     @Override

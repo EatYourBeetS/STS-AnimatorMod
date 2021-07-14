@@ -195,12 +195,12 @@ public class ParseGenericCommand extends ConsoleCommand
 
                     temp = tokens[2].replace("_", " ");
                     ArrayList<AnimatorCard> cards = new ArrayList<>();
-                    Synergy synergy = JUtils.Find(Synergies.GetAllSynergies(), s -> s.Name.equals(temp));
-                    if (synergy != null)
+                    CardSeries series = JUtils.Find(CardSeries.GetAllSynergies(), s -> s.Name.equals(temp));
+                    if (series != null)
                     {
                         Settings.seedSet = true;
                         player.masterDeck.clear();
-                        Synergies.AddCards(synergy, CardLibrary.getAllCards(), cards);
+                        CardSeries.AddCards(series, CardLibrary.getAllCards(), cards);
 
                         cards.sort(new CardRarityComparator());
 
@@ -354,7 +354,7 @@ public class ParseGenericCommand extends ConsoleCommand
             }
             else
             {
-                key = "SERIES:" + c.synergy.LocalizedName;
+                key = "SERIES:" + c.series.LocalizedName;
                 exportSeries = false;
             }
 

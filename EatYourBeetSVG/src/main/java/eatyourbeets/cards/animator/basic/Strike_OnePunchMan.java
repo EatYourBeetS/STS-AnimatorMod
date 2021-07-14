@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Strike_OnePunchMan extends Strike
@@ -18,7 +18,8 @@ public class Strike_OnePunchMan extends Strike
         Initialize(6, 0, 1);
         SetUpgrade(3, 0);
 
-        SetSynergy(Synergies.OnePunchMan);
+        SetSeries(CardSeries.OnePunchMan);
+        SetAffinity_Green(1);
     }
 
     @Override

@@ -6,14 +6,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Shion extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Shion.class).SetAttack(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Shion.class)
+            .SetAttack(2, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public Shion()
     {
@@ -21,9 +22,8 @@ public class Shion extends AnimatorCard
 
         Initialize(16, 0, 2);
         SetUpgrade(5, 0, 0);
-        SetScaling(0, 0, 1);
 
-        SetSynergy(Synergies.TenSura);
+        SetAffinity_Red(1, 1, 2);
     }
 
     @Override

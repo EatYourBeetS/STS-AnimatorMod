@@ -7,8 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
@@ -24,7 +23,7 @@ public class RacePiece extends AnimatorRelic
     public static final String ID = CreateFullID(RacePiece.class);
 
     private boolean awaitingInput;
-    private Synergy synergy;
+    private CardSeries series;
     private int toSelect;
 
     public RacePiece()
@@ -46,10 +45,10 @@ public class RacePiece extends AnimatorRelic
     {
         if (super.canSpawn())
         {
-            HashSet<Synergy> synergies = Synergies.GetAllSynergies(player.masterDeck.group);
-            for (AnimatorRuntimeLoadout loadout : GR.Animator.Dungeon.Series)
+            HashSet<CardSeries> synergies = CardSeries.GetAllSynergies(player.masterDeck.group);
+            for (AnimatorRuntimeLoadout loadout : GR.Animator.Dungeon.Loadouts)
             {
-                if (synergies.contains(Synergies.GetByID(loadout.ID)))
+                if (synergies.contains(CardSeries.GetByID(loadout.ID)))
                 {
                     return true;
                 }
@@ -66,7 +65,7 @@ public class RacePiece extends AnimatorRelic
 
         if (awaitingInput)
         {
-            if (synergy == null)
+            if (series == null)
             {
                 UpdateSynergy();
             }
@@ -122,13 +121,13 @@ public class RacePiece extends AnimatorRelic
         for (AbstractCard c : player.masterDeck.group)
         {
             AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
-            if (card != null && card.synergy != null && card.color != AbstractCard.CardColor.COLORLESS)
+            if (card != null && card.series != null && card.color != AbstractCard.CardColor.COLORLESS)
             {
                 group.addToTop(card);
             }
         }
 
-        synergy = null;
+        series = null;
         if (group.size() > 0)
         {
             awaitingInput = true;
@@ -158,7 +157,7 @@ public class RacePiece extends AnimatorRelic
             WeightedList<AnimatorCard> rewards = new WeightedList<>();
 
             ArrayList<AnimatorCard> cards = new ArrayList<>();
-            Synergies.AddCards(synergy, CardLibrary.getAllCards(), cards);
+            CardSeries.AddCards(series, CardLibrary.getAllCards(), cards);
 
             for (AnimatorCard c : cards)
             {
@@ -211,17 +210,17 @@ public class RacePiece extends AnimatorRelic
     {
         if (AbstractDungeon.gridSelectScreen.selectedCards.size() > 0)
         {
-            synergy = null;
+            series = null;
 
             AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
             AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
             if (card != null)
             {
-                synergy = card.synergy;
+                series = card.series;
             }
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
-            awaitingInput = synergy != null;
+            awaitingInput = series != null;
         }
     }
 }

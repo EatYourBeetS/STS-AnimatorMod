@@ -3,15 +3,18 @@ package eatyourbeets.cards.animator.special;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
+import eatyourbeets.cards.animator.colorless.rare.TanyaDegurechaff;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class TanyaDegurechaff_Type95 extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(TanyaDegurechaff_Type95.class).SetSkill(4, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(TanyaDegurechaff_Type95.class)
+            .SetSkill(4, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(TanyaDegurechaff.DATA.Series);
 
     public TanyaDegurechaff_Type95()
     {
@@ -19,7 +22,8 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
 
         Initialize(0, 0);
 
-        SetSynergy(Synergies.YoujoSenki);
+        SetAffinity_Dark(1);
+        SetAffinity_Light(1);
     }
 
     @Override

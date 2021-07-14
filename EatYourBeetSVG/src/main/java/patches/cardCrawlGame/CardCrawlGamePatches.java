@@ -18,11 +18,21 @@ import javassist.CtBehavior;
 
 public class CardCrawlGamePatches
 {
+    @SpirePatch(clz = AbstractPlayer.class, method = "renderPlayerBattleUi", paramtypez = {SpriteBatch.class})
+    public static class AbstractPlayer_PreRender
+    {
+        @SpirePrefixPatch
+        public static void Insert(AbstractPlayer __instance, SpriteBatch sb)
+        {
+            GR.UI.PreRender(sb);
+        }
+    }
+
     @SpirePatch(clz = CardCrawlGame.class, method = "render")
     public static class CardCrawlGame_Render
     {
         @SpireInsertPatch(locator = Locator.class, localvars = {"sb"})
-        public static void Insert(CardCrawlGame __Instance, SpriteBatch sb)
+        public static void Insert(CardCrawlGame __instance, SpriteBatch sb)
         {
             GR.UI.Render(sb);
         }
@@ -41,7 +51,7 @@ public class CardCrawlGamePatches
     public static class CardCrawlGame_PostRender
     {
         @SpireInsertPatch(locator = Locator.class, localvars = {"sb"})
-        public static void Insert(Object __obj_instance, SpriteBatch sb)
+        public static void Insert(CardCrawlGame __instance, SpriteBatch sb)
         {
             GR.UI.PostRender(sb);
         }
@@ -60,7 +70,7 @@ public class CardCrawlGamePatches
     public static class CardCrawlGame_Update
     {
         @SpireInsertPatch(locator = Locator.class)
-        public static void Insert(Object __obj_instance)
+        public static void Insert(CardCrawlGame __instance)
         {
             GR.UI.Update();
         }
@@ -81,7 +91,7 @@ public class CardCrawlGamePatches
     public static class CardCrawlGame_GetDungeon
     {
         @SpirePrefixPatch
-        public static SpireReturn<AbstractDungeon> Prefix(CardCrawlGame instance, String key, AbstractPlayer p)
+        public static SpireReturn<AbstractDungeon> Prefix(CardCrawlGame __instance, String key, AbstractPlayer p)
         {
             if (key.equals(TheUnnamedReign.ID))
             {
@@ -98,7 +108,7 @@ public class CardCrawlGamePatches
     public static class CardCrawlGame_GetDungeon2
     {
         @SpirePrefixPatch
-        public static SpireReturn<AbstractDungeon> Prefix(CardCrawlGame instance, String key, AbstractPlayer p, SaveFile saveFile)
+        public static SpireReturn<AbstractDungeon> Prefix(CardCrawlGame __instance, String key, AbstractPlayer p, SaveFile saveFile)
         {
             if (key.equals(TheUnnamedReign.ID))
             {

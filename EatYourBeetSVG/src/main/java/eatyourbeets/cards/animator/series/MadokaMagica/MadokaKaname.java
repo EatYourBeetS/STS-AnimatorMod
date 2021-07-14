@@ -8,14 +8,15 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class MadokaKaname extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MadokaKaname.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(MadokaKaname.class)
+            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     private static final int HEAL_AMOUNT = 3;
 
@@ -25,10 +26,12 @@ public class MadokaKaname extends AnimatorCard
 
         Initialize(0, 0, 3, 0);
         SetUpgrade(0, 0, 1, 0);
+
+        SetAffinity_Blue(1);
+        SetAffinity_Light(2);
+
         SetHealing(true);
         SetPurge(true);
-
-        SetSynergy(Synergies.MadokaMagica);
     }
 
     @Override

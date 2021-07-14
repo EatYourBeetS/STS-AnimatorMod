@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.ShiroPower;
@@ -13,7 +12,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class Shiro extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Shiro.class).SetPower(4, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Shiro.class)
+            .SetPower(4, CardRarity.RARE)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Sora(), true);
@@ -26,7 +27,8 @@ public class Shiro extends AnimatorCard
         Initialize(0, 0);
         SetCostUpgrade(-1);
 
-        SetSynergy(Synergies.NoGameNoLife);
+        SetAffinity_Blue(2);
+        SetAffinity_Light(1);
     }
 
     @Override

@@ -2,15 +2,17 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.series.LogHorizon.Soujiro;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Soujiro_Hisako extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Soujiro_Hisako.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Soujiro_Hisako.class)
+            .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetSeries(Soujiro.DATA.Series);
 
     public Soujiro_Hisako()
     {
@@ -19,10 +21,11 @@ public class Soujiro_Hisako extends AnimatorCard
         Initialize(0, 0, 0);
         SetUpgrade(0, 0, 0);
 
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1);
+
         SetEthereal(true);
         SetEvokeOrbCount(1);
-        SetSpellcaster();
-        SetSynergy(Synergies.LogHorizon);
     }
 
     @Override

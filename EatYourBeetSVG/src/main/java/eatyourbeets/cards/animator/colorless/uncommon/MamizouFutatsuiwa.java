@@ -12,7 +12,10 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class MamizouFutatsuiwa extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MamizouFutatsuiwa.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(MamizouFutatsuiwa.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.TouhouProject);
 
     private static final RandomizedList<AnimatorCard> shapeshifterPool = new RandomizedList<>();
 
@@ -23,9 +26,9 @@ public class MamizouFutatsuiwa extends AnimatorCard
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 3);
 
+        SetAffinity_Star(1, 1, 0);
+
         SetExhaust(true);
-        SetSynergy(Synergies.TouhouProject);
-        SetShapeshifter();
     }
 
     @Override
@@ -43,8 +46,8 @@ public class MamizouFutatsuiwa extends AnimatorCard
         {
             if (shapeshifterPool.Size() == 0)
             {
-                shapeshifterPool.AddAll(JUtils.Filter(Synergies.GetNonColorlessCard(), c -> c.hasTag(SHAPESHIFTER)));
-                shapeshifterPool.AddAll(JUtils.Filter(Synergies.GetColorlessCards(), c -> c.hasTag(SHAPESHIFTER)));
+                shapeshifterPool.AddAll(JUtils.Filter(CardSeries.GetNonColorlessCard(), c -> c.hasTag(SHAPESHIFTER)));
+                shapeshifterPool.AddAll(JUtils.Filter(CardSeries.GetColorlessCards(), c -> c.hasTag(SHAPESHIFTER)));
             }
 
             AnimatorCard shapeshifter = shapeshifterPool.Retrieve(rng, false);
@@ -73,8 +76,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
             AnimatorCard card = JUtils.SafeCast(cards.get(0), AnimatorCard.class);
             if (card != null)
             {
-                card.SetSynergy(Synergies.ANY);
-                card.SetShapeshifter();
+                card.affinities.Set(AffinityType.Star, 2);
                 card.flash();
             }
         });

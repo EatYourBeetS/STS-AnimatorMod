@@ -9,7 +9,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Frost extends OrbCore
 {
-    public static final EYBCardData DATA = Register(OrbCore_Frost.class).SetPower(0, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(OrbCore_Frost.class)
+            .SetPower(0, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS);
 
     public static final int VALUE = 2;
 
@@ -18,6 +20,8 @@ public class OrbCore_Frost extends OrbCore
         super(DATA);
 
         Initialize(0, 0, VALUE, 2);
+
+        SetAffinity_Blue(2);
 
         SetEvokeOrbCount(secondaryValue);
     }

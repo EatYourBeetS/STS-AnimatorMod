@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Strike_FullmetalAlchemist extends Strike
@@ -19,7 +19,8 @@ public class Strike_FullmetalAlchemist extends Strike
         SetUpgrade(3, 0);
 
         SetCooldown(1, 0, this::OnCooldownCompleted);
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetSeries(CardSeries.FullmetalAlchemist);
+        SetAffinity_Light(1);
     }
 
     @Override

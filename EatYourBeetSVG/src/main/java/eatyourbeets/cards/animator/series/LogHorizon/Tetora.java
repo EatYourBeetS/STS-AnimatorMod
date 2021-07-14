@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
@@ -17,7 +16,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Tetora extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Tetora.class).SetPower(0, CardRarity.UNCOMMON).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(Tetora.class)
+            .SetPower(0, CardRarity.UNCOMMON)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage();
 
     public Tetora()
     {
@@ -25,7 +27,8 @@ public class Tetora extends AnimatorCard
 
         Initialize(0, 0, 0, 4);
 
-        SetSynergy(Synergies.LogHorizon);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1);
     }
 
     @Override
@@ -37,7 +40,7 @@ public class Tetora extends AnimatorCard
     @Override
     public boolean cardPlayable(AbstractMonster m)
     {
-        return super.cardPlayable(m) && HasTeamwork(secondaryValue, false);
+        return super.cardPlayable(m) && GetTeamwork(null) >= secondaryValue;
     }
 
     @Override
@@ -58,7 +61,7 @@ public class Tetora extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        GameUtilities.ModifyMagicNumber(this, GameUtilities.GetTeamwork(null), true);
+        GameUtilities.ModifyMagicNumber(this, GetTeamwork(null), true);
     }
 
     @Override
@@ -105,7 +108,7 @@ public class Tetora extends AnimatorCard
             {
                 for (int i = 0; i < amount; i++)
                 {
-                    GameActions.Bottom.GainRandomStat(1);
+                    GameActions.Bottom.GainRandomAffinityPower(1, false);
                 }
 
                 enabled = false;

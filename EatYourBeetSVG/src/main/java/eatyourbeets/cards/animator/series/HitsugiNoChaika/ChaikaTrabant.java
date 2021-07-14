@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
@@ -17,7 +16,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(ChaikaTrabant.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(ChaikaTrabant.class)
+            .SetAttack(2, CardRarity.RARE, EYBAttackType.Elemental)
+            .SetSeriesFromClassPackage();
 
     private AbstractMonster enemy;
 
@@ -27,12 +28,11 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
 
         Initialize(21, 0, 6, 2);
         SetUpgrade(7, 0, 0, 0);
-        SetScaling(2, 0, 0);
+
+        SetAffinity_Blue(2, 0, 2);
+        SetAffinity_Light(2);
 
         tags.add(GR.Enums.CardTags.IGNORE_PEN_NIB);
-
-        SetSpellcaster();
-        SetSynergy(Synergies.Chaika);
     }
 
     @Override

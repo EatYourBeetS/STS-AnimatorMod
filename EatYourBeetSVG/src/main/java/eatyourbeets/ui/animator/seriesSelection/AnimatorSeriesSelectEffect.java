@@ -25,6 +25,8 @@ public class AnimatorSeriesSelectEffect extends EYBEffect
         this.container = screen.container;
         this.grid = screen.cardGrid;
         this.grid.Clear();
+
+        GR.UI.CardAffinities.SetActive(false);
     }
 
     @Override
@@ -115,6 +117,9 @@ public class AnimatorSeriesSelectEffect extends EYBEffect
                 {
                     screen.toggleBeta.SetInteractable(true).SetActive(container.betaCards.size() > 0);
                 }
+
+                GR.UI.CardAffinities.SetActive(true);
+                GR.UI.CardAffinities.Open(container.GetAllCardsInPool());
             }
         }
     }

@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardPreview;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -25,7 +24,9 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
         Dark,
     }
 
-    public static final EYBCardData DATA = Register(Elesis.class).SetAttack(-2, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Elesis.class)
+            .SetAttack(-2, CardRarity.RARE)
+            .SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Elesis(Form.Saber, false), true);
@@ -40,7 +41,6 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
     {
         super(DATA);
 
-        SetSynergy(Synergies.Elsword);
         this.upgraded = upgraded;
         ChangeForm(form);
     }
@@ -143,6 +143,11 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
             {
                 LoadImage(null);
 
+                affinities.List.clear();
+                SetAffinity_Red(2);
+                SetAffinity_Green(2);
+                SetAffinity_Light(2);
+
                 cardText.OverrideDescription(null, true);
                 this.isCostModified = this.isCostModifiedForTurn = false;
                 this.cost = this.costForTurn = -2;
@@ -156,7 +161,11 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
 
                 Initialize(3, 0, 5);
                 SetUpgrade(0, 0, 2);
-                SetScaling(0, 1, 1);
+
+                affinities.List.clear();
+                SetAffinity_Red(1, 0, 1);
+                SetAffinity_Green(1, 0, 0);
+                SetAffinity_Light(2, 0, 2);
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;
@@ -171,7 +180,10 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
 
                 Initialize(6, 0, 0);
                 SetUpgrade(4, 0, 0);
-                SetScaling(0, 1, 0);
+
+                affinities.List.clear();
+                SetAffinity_Red(1);
+                SetAffinity_Green(2, 0, 1);
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;
@@ -186,7 +198,10 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
 
                 Initialize(9, 0, 3);
                 SetUpgrade(0, 0, -1);
-                SetScaling(0, 0, 2);
+
+                affinities.List.clear();
+                SetAffinity_Red(2, 0, 2);
+                SetAffinity_Dark(2, 0, 2);
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;
@@ -201,6 +216,17 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
             upgraded = false;
             upgrade();
         }
+    }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy()
+    {
+        if (currentForm == Form.None)
+        {
+            return makeCopy();
+        }
+
+        return super.makeStatEquivalentCopy();
     }
 
     @Override

@@ -9,6 +9,10 @@ import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
+import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.powers.animator.SupportDamagePower;
+import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.powers.animator.*;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.resources.common.CommonImages;
@@ -37,6 +41,8 @@ public class CardTooltips
     public EYBCardTooltip Intellect = FindByID("Intellect");
     public EYBCardTooltip Force = FindByID("Force");
     public EYBCardTooltip Agility = FindByID("Agility");
+    public EYBCardTooltip Blessing = FindByID("Blessing");
+    public EYBCardTooltip Corruption = FindByID("Corruption");
     public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
     public EYBCardTooltip ForceStance = FindByID("Force Stance");
     public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
@@ -58,6 +64,7 @@ public class CardTooltips
     public EYBCardTooltip Metallicize = FindByID("Metallicize");
     public EYBCardTooltip PlatedArmor = FindByID("Plated Armor");
     public EYBCardTooltip EnchantedArmor = FindByID("Enchanted Armor");
+    public EYBCardTooltip Vitality = FindByID("Vitality");
     public EYBCardTooltip TempHP = FindByID("Temporary HP");
     public EYBCardTooltip Weak = FindByID("Weak");
     public EYBCardTooltip Vulnerable = FindByID("Vulnerable");
@@ -88,6 +95,11 @@ public class CardTooltips
     public EYBCardTooltip ElementalExposure = FindByID("Elemental Exposure");
 
     // No Description
+    public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null);
+    public EYBCardTooltip Affinity_Green = new EYBCardTooltip("Green Affinity", null);
+    public EYBCardTooltip Affinity_Blue = new EYBCardTooltip("Blue Affinity", null);
+    public EYBCardTooltip Affinity_Light = new EYBCardTooltip("Light Affinity", null);
+    public EYBCardTooltip Affinity_Dark = new EYBCardTooltip("Dark Affinity", null);
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
     public EYBCardTooltip ThrowingKnife = new EYBCardTooltip(eatyourbeets.cards.animator.special.ThrowingKnife.DATA.Strings.NAME, null);
     public EYBCardTooltip GriefSeed = new EYBCardTooltip(Curse_GriefSeed.DATA.Strings.NAME, null);
@@ -129,6 +141,14 @@ public class CardTooltips
 
     public CardTooltips()
     {
+        RegisterID("A-Red", Affinity_Red);
+        RegisterID("A-Green", Affinity_Green);
+        RegisterID("A-Blue", Affinity_Blue);
+        RegisterID("A-Light", Affinity_Light);
+        RegisterID("A-Dark", Affinity_Dark);
+        RegisterID("A-Star", Shapeshifter);
+
+        RegisterID("TempHP", TempHP);
         RegisterID("Random Orb", RandomOrb);
         RegisterID("Grief Seed", GriefSeed);
         RegisterID("T-Knife", ThrowingKnife);
@@ -153,6 +173,14 @@ public class CardTooltips
         TempHP.SetIcon(icons.TempHP.Texture(), 6);
         Block.SetIcon(icons.Block.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
 
+        CommonImages.AffinityIcons alignments = GR.Common.Images.Affinities;
+        Shapeshifter.SetIcon(alignments.Star.Texture(), 8);
+        Affinity_Red.SetIcon(alignments.Red.Texture(), 8);
+        Affinity_Green.SetIcon(alignments.Green.Texture(), 8);
+        Affinity_Blue.SetIcon(alignments.Blue.Texture(), 8);
+        Affinity_Light.SetIcon(alignments.Light.Texture(), 8);
+        Affinity_Dark.SetIcon(alignments.Dark.Texture(), 8);
+
         CommonImages.Tooltips tooltips = GR.Common.Images.Tooltips;
         ThrowingKnife.SetIcon(tooltips.ThrowingKnife.Texture(), 6);
         GriefSeed.SetIcon(tooltips.GriefSeed.Texture(), 6);
@@ -173,6 +201,7 @@ public class CardTooltips
         LoadFromPower(Metallicize, new MetallicizePower(FakeCharacter.Instance, 0));
         LoadFromPower(PlatedArmor, new PlatedArmorPower(FakeCharacter.Instance, 0));
         LoadFromPower(EnchantedArmor, new EnchantedArmorPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Vitality, new VitalityPower(FakeCharacter.Instance, 0));
         LoadFromPower(Thorns, new ThornsPower(FakeCharacter.Instance, 0));
         LoadFromPower(FlameBarrier, new FlameBarrierPower(FakeCharacter.Instance, 0));
         LoadFromPower(Blur, new BlurPower(FakeCharacter.Instance, 0));

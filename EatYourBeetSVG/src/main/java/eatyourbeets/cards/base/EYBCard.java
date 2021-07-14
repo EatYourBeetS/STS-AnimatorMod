@@ -18,6 +18,7 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
 import eatyourbeets.powers.animator.NegateBlockPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.PlayerFlightPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
@@ -43,15 +44,10 @@ public abstract class EYBCard extends EYBCardBase
     public static final CardTags AUTOPLAY = GR.Enums.CardTags.AUTOPLAY;
     public final EYBCardText cardText;
     public final EYBCardData cardData;
+    public final EYBCardAffinities affinities;
     public final ArrayList<EYBCardTooltip> tooltips;
     public EYBCardTarget attackTarget = EYBCardTarget.Normal;
     public EYBAttackType attackType = EYBAttackType.Normal;
-    public int forceScaling = 0;
-    public int intellectScaling = 0;
-    public int agilityScaling = 0;
-
-    public abstract ColoredString GetBottomText();
-    public abstract ColoredString GetHeaderText();
 
     public static EYBCardData GetStaticData(String cardID)
     {
@@ -87,6 +83,7 @@ public abstract class EYBCard extends EYBCardBase
         this.cardData = cardData;
         this.tooltips = new ArrayList<>();
         this.cardText = new EYBCardText(this);
+        this.affinities = new EYBCardAffinities(this);
         initializeDescription();
     }
 
@@ -108,10 +105,7 @@ public abstract class EYBCard extends EYBCardBase
         copy.isEthereal = isEthereal;
         copy.isInnate = isInnate;
 
-        copy.forceScaling = forceScaling;
-        copy.agilityScaling = agilityScaling;
-        copy.intellectScaling = intellectScaling;
-
+        copy.affinities.Initialize(affinities);
         copy.magicNumber = magicNumber;
         copy.isMagicNumberModified = isMagicNumberModified;
 
@@ -138,6 +132,16 @@ public abstract class EYBCard extends EYBCardBase
     public EYBCardPreview GetCardPreview()
     {
         return cardData.GetCardPreview();
+    }
+
+    public ColoredString GetBottomText()
+    {
+        return null;
+    }
+
+    public ColoredString GetHeaderText()
+    {
+        return null;
     }
 
     protected String GetRawDescription()
@@ -210,6 +214,18 @@ public abstract class EYBCard extends EYBCardBase
         }
     }
 
+//    Uncomment to render affinity behind banner
+    @Override
+    protected void renderBannerImage(SpriteBatch sb, float drawX, float drawY)
+    {
+        if (isSeen)
+        {
+            affinities.RenderOnCard(sb, this, player != null && player.hand.contains(this));
+        }
+
+        super.renderBannerImage(sb, drawX, drawY);
+    }
+
     public void triggerWhenCreated(boolean startOfBattle)
     {
         // Called at the start of a fight, or when a card is created by MakeTempCard.
@@ -256,14 +272,19 @@ public abstract class EYBCard extends EYBCardBase
         GameEffects.List.Add(new ExhaustCardEffect(this));
     }
 
-    public boolean HasTeamwork(int amount)
+    public boolean CheckTeamwork(AffinityType type, int amount)
     {
-        return HasTeamwork(amount, true);
+        return GetTeamwork(type, true) >= amount;
     }
 
-    public boolean HasTeamwork(int amount, boolean ignoreSelf)
+    public int GetTeamwork(AffinityType type)
     {
-        return GameUtilities.GetTeamwork(ignoreSelf ? this : null) >= amount;
+        return GetTeamwork(null, true);
+    }
+
+    public int GetTeamwork(AffinityType type, boolean ignoreSelf)
+    {
+        return GameUtilities.GetTotalAffinity(player.hand.group, ignoreSelf ? this : null, 1).GetLevel(type);
     }
 
     public boolean IsStarter()
@@ -439,7 +460,19 @@ public abstract class EYBCard extends EYBCardBase
 
     public void SetPurge(boolean value)
     {
-        SetTag(PURGE, value);
+        SetPurge(value, true);
+    }
+
+    public void SetPurge(boolean value, boolean canBePlayedTwice)
+    {
+        if (canBePlayedTwice)
+        {
+            SetTag(PURGE, value);
+        }
+        else
+        {
+            purgeOnUse = value;
+        }
 
         if (!value)
         {
@@ -454,12 +487,60 @@ public abstract class EYBCard extends EYBCardBase
         isMultiUpgrade = multiUpgrade;
     }
 
-    public void SetScaling(int intellect, int agility, int force)
+    public void AddScaling(AffinityType type, int amount)
     {
-        this.intellectScaling = intellect;
-        this.agilityScaling = agility;
-        this.forceScaling = force;
+        EYBCardAffinity affinity = affinities.Get(type);
+        if (affinity != null)
+        {
+            affinity.scaling += amount;
+        }
+        else
+        {
+            affinities.Set(type, 0).scaling += amount;
+        }
     }
+
+    public void SetScaling(EYBCardAffinities affinities)
+    {
+        if (affinities.HasStar())
+        {
+            SetScaling(AffinityType.Star, affinities.Star.scaling);
+        }
+
+        for (EYBCardAffinity a : affinities.List)
+        {
+            SetScaling(a.Type, a.scaling);
+        }
+    }
+
+    public void SetScaling(AffinityType type, int amount)
+    {
+        EYBCardAffinity affinity = affinities.Get(type);
+        if (affinity != null)
+        {
+            affinity.scaling = amount;
+        }
+        else
+        {
+            affinities.Set(type, 0).scaling = amount;
+        }
+    }
+
+    //@Formatter: Off
+    protected void SetAffinity_Red(int base) { InitializeAffinity(AffinityType.Red, base, 0, 0); }
+    protected void SetAffinity_Red(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Red, base, upgrade, scaling); }
+    protected void SetAffinity_Green(int base) { InitializeAffinity(AffinityType.Green, base, 0, 0); }
+    protected void SetAffinity_Green(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Green, base, upgrade, scaling); }
+    protected void SetAffinity_Blue(int base) { InitializeAffinity(AffinityType.Blue, base, 0, 0); }
+    protected void SetAffinity_Blue(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Blue, base, upgrade, scaling); }
+    protected void SetAffinity_Light(int base) { InitializeAffinity(AffinityType.Light, base, 0, 0); }
+    protected void SetAffinity_Light(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Light, base, upgrade, scaling); }
+    protected void SetAffinity_Dark(int base) { InitializeAffinity(AffinityType.Dark, base, 0, 0); }
+    protected void SetAffinity_Dark(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Dark, base, upgrade, scaling); }
+    protected void SetAffinity_Star(int base) { InitializeAffinity(AffinityType.Star, base, 0, 0); }
+    protected void SetAffinity_Star(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Star, base, upgrade, scaling); }
+    protected void InitializeAffinity(AffinityType type, int base, int upgrade, int scaling) { affinities.Initialize(type, base, upgrade, scaling); }
+    //@Formatter: On
 
     protected boolean TryUpgrade()
     {
@@ -564,6 +645,8 @@ public abstract class EYBCard extends EYBCardBase
                 this.upgradedCost = true;
             }
 
+            affinities.ApplyUpgrades();
+
             OnUpgrade();
         }
     }
@@ -583,6 +666,8 @@ public abstract class EYBCard extends EYBCardBase
         {
             block = baseBlock;
         }
+
+        affinities.displayUpgrades = true;
     }
 
     protected void Initialize(int damage, int block)
@@ -697,6 +782,9 @@ public abstract class EYBCard extends EYBCardBase
         {
             tempDamage = r.atDamageModify(tempDamage, this);
         }
+
+        tempBlock = CombatStats.Affinities.ModifyBlock(tempBlock, this);
+        tempDamage = CombatStats.Affinities.ModifyDamage(tempDamage, this);
 
         for (AbstractPower p : player.powers)
         {

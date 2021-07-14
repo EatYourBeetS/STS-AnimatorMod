@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.basic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
@@ -19,7 +19,8 @@ public class Strike_Kancolle extends Strike
         SetUpgrade(3, 0);
 
         SetHealing(true);
-        SetSynergy(Synergies.Kancolle);
+        SetSeries(CardSeries.Kancolle);
+        SetAffinity_Green(1);
     }
 
     @Override

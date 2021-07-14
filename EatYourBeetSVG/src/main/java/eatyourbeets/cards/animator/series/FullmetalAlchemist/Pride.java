@@ -5,13 +5,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.PridePower;
 import eatyourbeets.utilities.GameActions;
 
 public class Pride extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Pride.class).SetSkill(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Pride.class)
+            .SetSkill(2, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
 
     public Pride()
     {
@@ -20,10 +21,10 @@ public class Pride extends AnimatorCard
         Initialize(0,0, 1, 3);
         SetUpgrade(0, 0, 1);
 
+        SetAffinity_Star(1, 1, 0);
+
         SetEvokeOrbCount(magicNumber);
         SetExhaust(true);
-        SetSynergy(Synergies.FullmetalAlchemist);
-        SetShapeshifter();
     }
 
     @Override

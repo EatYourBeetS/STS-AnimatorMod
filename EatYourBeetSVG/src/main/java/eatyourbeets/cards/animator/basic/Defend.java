@@ -47,9 +47,9 @@ public class Defend extends AnimatorCard
     public AbstractCard makeCopy()
     {
         AnimatorCard copy = (AnimatorCard) super.makeCopy();
-        if (GameUtilities.GetActualAscensionLevel() < 9)
+        if (GameUtilities.InGame() && GameUtilities.GetActualAscensionLevel() < 9)
         {
-            copy.SetSynergy(null);
+            copy.SetSeries(null);
         }
 
         return copy;

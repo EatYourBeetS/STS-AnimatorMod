@@ -1,11 +1,14 @@
 package eatyourbeets.relics.animator.unnamedReign;
 
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class TheEgnaroPiece extends UnnamedReignRelic
 {
     public static final String ID = CreateFullID(TheEgnaroPiece.class);
-    public static final int INITIAL_TEMPORARY_HP = 1;
+    public static final int VITALITY_AMOUNT = 1;
+    public static final int CARDS_STEP = 7;
 
     public TheEgnaroPiece()
     {
@@ -15,23 +18,7 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(INITIAL_TEMPORARY_HP);
-    }
-
-    @Override
-    public void atBattleStart()
-    {
-        super.atBattleStart();
-
-        SetCounter(INITIAL_TEMPORARY_HP);
-    }
-
-    @Override
-    public void onVictory()
-    {
-        super.onVictory();
-
-        SetCounter(-1);
+        return JUtils.Format(DESCRIPTIONS[0], VITALITY_AMOUNT, CARDS_STEP);
     }
 
     @Override
@@ -43,13 +30,27 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     }
 
     @Override
-    public void onPlayerEndTurn()
+    public void onEquip()
     {
-        super.onPlayerEndTurn();
+        super.onEquip();
 
-        GameActions.Bottom.GainTemporaryHP(this.counter);
-        AddCounter(1);
-        flash();
+        if (GameUtilities.InBattle())
+        {
+            atBattleStart();
+        }
+    }
+
+    @Override
+    public void atBattleStart()
+    {
+        super.atBattleStart();
+
+        this.counter = 1 + Math.min(9, VITALITY_AMOUNT * player.masterDeck.size() / CARDS_STEP);
+        if (counter > 0)
+        {
+            GameActions.Bottom.GainVitality(counter);
+            flash();
+        }
     }
 
     @Override

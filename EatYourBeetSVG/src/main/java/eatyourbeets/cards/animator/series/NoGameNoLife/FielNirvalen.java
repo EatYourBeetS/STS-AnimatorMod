@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
@@ -18,8 +17,11 @@ import eatyourbeets.utilities.GameActions;
 
 public class FielNirvalen extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(FielNirvalen.class).SetPower(1, CardRarity.UNCOMMON).SetMaxCopies(3);
     public static final int SCRY_AMOUNT = 2;
+    public static final EYBCardData DATA = Register(FielNirvalen.class)
+            .SetPower(1, CardRarity.UNCOMMON)
+            .SetMaxCopies(3)
+            .SetSeriesFromClassPackage();
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -27,16 +29,18 @@ public class FielNirvalen extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, 1, 2);
+        SetUpgrade(0, 0, 1, 0);
 
-        SetSynergy(Synergies.NoGameNoLife);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1);
+        SetAffinity_Dark(1);
     }
 
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        return TempHPAttribute.Instance.SetCard(this, true);
+        return TempHPAttribute.Instance.SetCard(this, false).SetText(GetSecondaryValueString());
     }
 
     @Override

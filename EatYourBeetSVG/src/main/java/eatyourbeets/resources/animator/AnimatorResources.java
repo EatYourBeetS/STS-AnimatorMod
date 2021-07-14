@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardMetadata;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.potions.FalseLifePotion;
@@ -21,6 +22,7 @@ import eatyourbeets.rewards.animator.AuraCardsReward;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
 import eatyourbeets.rewards.animator.SynergyCardsReward;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorLoadoutsContainer;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -63,6 +65,11 @@ public class AnimatorResources extends AbstractResources
         }
 
         return level <= 4 ? 300 + (level * 500) : 1000 + (level * 300);
+    }
+
+    public boolean IsSelected()
+    {
+        return GameUtilities.IsPlayerClass(PlayerClass);
     }
 
     @Override
@@ -120,6 +127,7 @@ public class AnimatorResources extends AbstractResources
         JUtils.LogInfo(this, "InitializeCards();");
 
         Strings.Initialize();
+        CardSeries.InitializeStrings();
         LoadCustomCards();
     }
 

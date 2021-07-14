@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
@@ -14,6 +15,7 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -39,6 +41,26 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     public AbstractAttribute GetDamageInfo()
     {
         return super.GetDamageInfo().AddMultiplier(3);
+    }
+
+    @Override
+    public ColoredString GetSecondaryValueString()
+    {
+        if (this.isSecondaryValueModified)
+        {
+            if (this.secondaryValue > 0)
+            {
+                return new ColoredString(this.secondaryValue, Settings.GREEN_TEXT_COLOR.cpy().lerp(Settings.CREAM_COLOR, 0.5f), this.transparency);
+            }
+            else
+            {
+                return new ColoredString(this.secondaryValue, Settings.GREEN_TEXT_COLOR, this.transparency);
+            }
+        }
+        else
+        {
+            return new ColoredString(this.secondaryValue, Settings.CREAM_COLOR, this.transparency);
+        }
     }
 
     @Override
@@ -78,7 +100,7 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     {
         if (player.exhaustPile.contains(this))
         {
-            if (secondaryValue <= 0)
+            if (secondaryValue <= 1)
             {
                 GameUtilities.ModifySecondaryValue(this, magicNumber, true);
                 GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)

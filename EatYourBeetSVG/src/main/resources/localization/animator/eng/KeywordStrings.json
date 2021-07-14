@@ -46,8 +46,8 @@
 	"Ricochet":
 	{
 	  "DESCRIPTION": "Reduce a card's #yRicochet by #b1 for every turn that it is in the Exhaust pile. If it is at #b0, activate this effect.",
-	  "NAMES": ["cooldown"],
-	  "PROPER_NAME": "Cooldown"
+	  "NAMES": ["ricochet"],
+	  "PROPER_NAME": "Ricochet"
 	},
 	"Shapeshifter":
 	{

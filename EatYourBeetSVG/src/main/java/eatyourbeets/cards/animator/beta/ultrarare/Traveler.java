@@ -1,6 +1,9 @@
 package eatyourbeets.cards.animator.beta.ultrarare;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.curses.Decay;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,10 +13,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.CombatStats;
@@ -21,15 +21,14 @@ import eatyourbeets.powers.animator.ElementalMasteryPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RotatingList;
+
+import java.util.ArrayList;
 
 public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(Traveler.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
-    static
-    {
-        DATA.AddPreview(new Traveler(Form.Aether, false), true);
-        DATA.AddPreview(new Traveler(Form.Lumine, false), true);
-    }
+    private RotatingList<EYBCardPreview> previews = new RotatingList<>();
 
     public Traveler.Form currentForm;
 
@@ -42,10 +41,10 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
 
     public Traveler()
     {
-        this(Traveler.Form.None, false);
+        this(Traveler.Form.None);
     }
 
-    private Traveler(Traveler.Form form, boolean upgraded)
+    private Traveler(Traveler.Form form)
     {
         super(DATA);
 
@@ -54,7 +53,6 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
         SetUnique(true, true);
         SetEthereal(true);
         SetSynergy(Synergies.GenshinImpact);
-        this.upgraded = upgraded;
         ChangeForm(form);
     }
 
@@ -69,8 +67,46 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
         upgradedSecondaryValue = true;
     }
 
+    @Override
+    public EYBCardPreview GetCardPreview()
+    {
+        if (previews.Count() == 0) {
+            Traveler formA = ((Traveler) makeStatEquivalentCopy()).ChangeForm(Form.Aether);
+            Traveler formB = ((Traveler) makeStatEquivalentCopy()).ChangeForm(Form.Lumine);
+            previews.Add((new EYBCardPreview(formA, false)));
+            previews.Add((new EYBCardPreview(formB, false)));
+        }
+        ArrayList<EYBCardPreview> cards = previews.GetInnerList();
+        switch (this.currentForm)
+        {
+            case Aether:
+            {
+                return cards.size() >= 2 ? cards.get(1) : super.GetCardPreview();
+            }
 
-    public void ChangeForm(Traveler.Form form)
+            case Lumine:
+            {
+                return cards.size() >= 1 ? cards.get(0) : super.GetCardPreview();
+            }
+            default:
+            {
+                EYBCardPreview currentPreview;
+                if (Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_RIGHT))
+                {
+                    currentPreview = previews.Next(true);
+                }
+                else
+                {
+                    currentPreview = previews.Current();
+                }
+
+                currentPreview.isMultiPreview = true;
+                return currentPreview;
+            }
+        }
+    }
+
+    public Traveler ChangeForm(Traveler.Form form)
     {
         this.currentForm = form;
 
@@ -97,6 +133,8 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
                 break;
             }
         }
+
+        return this;
     }
 
     @Override
@@ -138,11 +176,20 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
                     }
                 }
                 Traveler other = (Traveler) makeStatEquivalentCopy();
-                other.ChangeForm(this.currentForm);
                 CombatStats.onStartOfTurnPostDraw.Subscribe(other);
                 GameActions.Bottom.MakeCardInDiscardPile(new Decay());
         }
 
+    }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy()
+    {
+        Traveler other = (Traveler) super.makeStatEquivalentCopy();
+
+        other.ChangeForm(this.currentForm);
+
+        return other;
     }
 
     @Override
@@ -177,8 +224,10 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
         if (currentForm == Traveler.Form.None)
         {
             CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-            group.group.add(new Traveler(Form.Aether, upgraded));
-            group.group.add(new Traveler(Form.Lumine, upgraded));
+            Traveler formA = ((Traveler) makeStatEquivalentCopy()).ChangeForm(Form.Aether);
+            Traveler formB = ((Traveler) makeStatEquivalentCopy()).ChangeForm(Form.Lumine);
+            group.group.add(formA);
+            group.group.add(formB);
 
             GameActions.Bottom.SelectFromPile(name, 1, group)
                     .SetOptions(false, false)

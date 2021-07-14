@@ -162,6 +162,12 @@
 		"FLAVOR": "Would you like to make a contract?",
 		"NAME": "Soul Gem"
 	},
+	"animator:StraightShooter":
+	{
+	  "DESCRIPTIONS": ["The first time you shuffle your deck, add 2 upgraded Jumpy Dumpty with Haste to your Draw Pile."],
+	  "FLAVOR": "Pretty straightforward.",
+	  "NAME": "Straight Shooter"
+	},
 	"animator:TheEgnaroPiece":
 	{
 		"DESCRIPTIONS": ["Gain [E] and draw 1 card at the start of each turn. NL Gain #b{0} #yTemporary #yHP at the end of each turn, then increase this number by #b1."],
@@ -191,6 +197,12 @@
 		"DESCRIPTIONS": ["Replaces #yThe #yLiving #yPicture. NL Once per turn, when a card #ySynergizes, draw #b1 card and gain [E]"],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Vivid Picture"
+	},
+	"animator:WitchsHeartFlames":
+	{
+	  "DESCRIPTIONS": ["Whenever a Burn is created, transform it into a Searing Burn."],
+	  "FLAVOR": "A clear bottle containing liquid fire.",
+	  "NAME": "Witch's Heart Flames"
 	},
 	"animator:WizardHat":
 	{

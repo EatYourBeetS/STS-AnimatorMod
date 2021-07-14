@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.beta.status.Sear;
+import eatyourbeets.cards.animator.beta.status.SearingBurn;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -21,7 +21,7 @@ public class HuTao extends AnimatorCard
 
     static
     {
-        DATA.AddPreview(new Sear(), false);
+        DATA.AddPreview(new SearingBurn(), false);
     }
 
     public HuTao()
@@ -50,7 +50,7 @@ public class HuTao extends AnimatorCard
 
         for (int i = 0; i < secondaryValue; i++)
         {
-            GameActions.Bottom.MakeCardInHand(new Sear())
+            GameActions.Bottom.MakeCardInHand(new SearingBurn())
                     .SetDuration(Settings.ACTION_DUR_XFAST, true);
         }
     }
@@ -70,7 +70,7 @@ public class HuTao extends AnimatorCard
                     {
                         GameActions.Bottom.Exhaust(card)
                                 .ShowEffect(true, true)
-                                .AddCallback(() -> GameActions.Bottom.MakeCardInDrawPile(new Sear()));
+                                .AddCallback(() -> GameActions.Bottom.MakeCardInDrawPile(new SearingBurn()));
                     }
                 });
 

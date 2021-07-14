@@ -420,7 +420,7 @@
 			"DESCRIPTION": "<LIM>. If this card kills an Elite or Boss: Choose 1 of !M! cards to add to your deck.",
 			"NAME": "Sakura Kinomoto"
 		},
-		"animator:Sear":
+		"animator:SearingBurn":
 		{
 		  "DESCRIPTION": "At the end of your turn, ALL characters take !M! damage and gain !S! [Burning].",
 		  "NAME": "Searing Burn"
@@ -611,7 +611,7 @@
 		},
 		"animator:Keqing":
 		{
-		  "DESCRIPTION": "{Starter}: Draw a Card. || On Exhaust: Costs 1 less and returns to your draw pile in !M! turns. Reduce these turns by 1 upon Evoking [Lightning].",
+		  "DESCRIPTION": "{Ricochet} !S!: Move this card to your Draw Pile. Give this card Haste and lower its cost by 1 this combat. ** Reduce {Ricochet} by 1 upon Evoking [Lightning].",
 		  "NAME": "Keqing"
 		},
 		"animator:Klee":

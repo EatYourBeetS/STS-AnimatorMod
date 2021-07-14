@@ -92,7 +92,7 @@
 	},
 	"animator:ElementalMasteryPower":
 	{
-	  "DESCRIPTIONS": ["For #b{0} turn(s): At the end of the turn, inflict Elemental Exposure to all enemies. Increase this amount by #b{1} whenever an Orb is Channeled and by #b{2} whenever you apply Burning or Chilled."],
+	  "DESCRIPTIONS": ["For #b{0} turn(s): At the end of the turn, inflict Elemental Exposure to all enemies, ignoring Artifact. Increase this amount by #b{1} whenever an Orb is Channeled and by #b{2} whenever you apply Burning or Chilled."],
 	  "NAME": "Elemental Mastery"
 	},
 	"animator:EmiyaShirouPower":

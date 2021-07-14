@@ -34,7 +34,7 @@ public class ElementalMasteryAction extends EYBAction
         for (AbstractMonster m : enemies)
         {
             CardCrawlGame.sound.play("ATTACK_MAGIC_BEAM_SHORT");
-            GameActions.Bottom.StackPower(new ElementalExposurePower(m, amount));
+            GameActions.Bottom.StackPower(new ElementalExposurePower(m, amount)).IgnoreArtifact(true);
         }
 
         Complete();

@@ -16,18 +16,17 @@ import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber, OnEvokeOrbSubscriber
 {
     public static final EYBCardData DATA = Register(Keqing.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing);
 
-    private int turns;
-
     public Keqing()
     {
         super(DATA);
 
-        Initialize(2, 0, 3);
+        Initialize(2, 0, 3, 3);
         SetUpgrade(1, 0, 0);
         SetScaling(1, 1, 0);
 
@@ -47,13 +46,8 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     {
         super.triggerOnExhaust();
 
-        turns = magicNumber;
         CombatStats.onEvokeOrb.Subscribe(this);
         CombatStats.onStartOfTurnPostDraw.Subscribe(this);
-        if (cost > 0)
-        {
-            this.modifyCostForCombat(-1);
-        }
     }
 
     @Override
@@ -62,11 +56,6 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL).SetDamageEffect(c -> GameEffects.List.Add(new DieDieDieEffect()));
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-
-        if (IsStarter())
-        {
-            GameActions.Bottom.Draw(1);
-        }
     }
 
     @Override
@@ -89,16 +78,32 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     {
         if (player.exhaustPile.contains(this))
         {
-            if (turns <= 0)
+            if (secondaryValue <= 0)
             {
+                GameUtilities.ModifySecondaryValue(this, magicNumber, true);
                 GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
                         .ShowEffect(true, false);
+
+                if (cost > 0)
+                {
+                    this.modifyCostForCombat(-1);
+                }
+                GameActions.Bottom.ModifyAllInstances(uuid)
+                        .AddCallback(c ->
+                        {
+                            if (!c.hasTag(HASTE))
+                            {
+                                c.tags.add(HASTE);
+                            }
+                        });
+
+
                 CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
                 CombatStats.onEvokeOrb.Unsubscribe(this);
             }
             else
             {
-                turns -= 1;
+                GameUtilities.ModifySecondaryValue(this, secondaryValue - 1, true);
             }
         }
         else

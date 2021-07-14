@@ -18,7 +18,6 @@ public class ElementalExposurePower extends AnimatorPower
     public static final String POWER_ID = CreateFullID(ElementalExposurePower.class);
     public static final int DECAY_TURNS = 1;
     public int secondaryAmount;
-    public int totalAmount;
 
     private float percentage;
 
@@ -39,7 +38,6 @@ public class ElementalExposurePower extends AnimatorPower
         this.type = PowerType.DEBUFF;
         this.isTurnBased = true;
         this.secondaryAmount = DECAY_TURNS;
-        this.totalAmount = amount;
 
         updatePercentage();
     }
@@ -89,13 +87,9 @@ public class ElementalExposurePower extends AnimatorPower
         super.atEndOfRound();
 
         if (this.secondaryAmount <= 0) {
-            GameActions.Bottom.ReducePower(this, Math.max(MathUtils.ceil(this.totalAmount * 0.5f),1));
-            if (this.amount < 0) {
-                GameActions.Bottom.RemovePower(owner, owner, this);
-            }
+            GameActions.Bottom.RemovePower(owner, owner, this);
         }
         else {
-            this.totalAmount = amount;
             this.secondaryAmount -= 1;
         }
     }

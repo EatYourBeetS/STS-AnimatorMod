@@ -18,6 +18,7 @@ import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.ElementalMasteryPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -25,7 +26,7 @@ import eatyourbeets.utilities.RotatingList;
 
 import java.util.ArrayList;
 
-public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
+public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(Traveler.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
     private RotatingList<EYBCardPreview> previews = new RotatingList<>();
@@ -54,6 +55,19 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
         SetEthereal(true);
         SetSynergy(Synergies.GenshinImpact);
         ChangeForm(form);
+    }
+
+    @Override
+    public void initializeDescription()
+    {
+        super.initializeDescription();
+
+        if (cardText != null)
+        {
+            tooltips.add(GR.Tooltips.ElementalExposure);
+            if (this.currentForm != Form.Aether)
+                tooltips.add(GR.Tooltips.ElementalMastery);
+        }
     }
 
     @Override
@@ -116,6 +130,8 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
             {
                 LoadImage(null);
                 cardText.OverrideDescription(null, true);
+                tooltips.add(GR.Tooltips.ElementalMastery);
+                tooltips.add(GR.Tooltips.ElementalExposure);
                 break;
             }
 
@@ -123,6 +139,7 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
             {
                 LoadImage("_Aether");
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
+                tooltips.add(GR.Tooltips.ElementalExposure);
                 break;
             }
 
@@ -130,6 +147,8 @@ public class Traveler extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
             {
                 LoadImage("_Lumine");
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
+                tooltips.add(GR.Tooltips.ElementalMastery);
+                tooltips.add(GR.Tooltips.ElementalExposure);
                 break;
             }
         }

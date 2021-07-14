@@ -85,6 +85,7 @@ public class CardTooltips
     public EYBCardTooltip Regeneration = FindByID("Regeneration");
     public EYBCardTooltip SelfDamage = FindByID("Self Damage");
     public EYBCardTooltip ElementalMastery = FindByID("Elemental Mastery");
+    public EYBCardTooltip ElementalExposure = FindByID("Elemental Exposure");
 
     // No Description
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
@@ -184,6 +185,7 @@ public class CardTooltips
         LoadFromPower(Chilled, new ChilledPower(FakeCharacter.Instance,0)).SetIconSizeMulti(0.95f, 0.95f);
         LoadFromPower(SelfDamage, new SelfDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalMastery, new ElementalMasteryPower(FakeCharacter.Instance, 0));
+        LoadFromPower(ElementalExposure, new ElementalExposurePower(FakeCharacter.Instance, 0));
 
         //These use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);

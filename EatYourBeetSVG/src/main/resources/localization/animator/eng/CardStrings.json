@@ -439,14 +439,13 @@
 		},
 		"animator:SpikeSpiegel":
 		{
-		  "DESCRIPTION": "Synergizes with Basic Cards. {Motivate} a Basic card in your draw pile. || <LIM>. Synergy: ** Shuffle {Swordfish II} into your Draw Pile.",
-		  "NAME": "Spike Spiegel",
-		  "UPGRADE_DESCRIPTION": "Synergizes with Basic Cards. {Motivate} a Basic card in your draw pile. || <LIM>. Synergy: ** Shuffle {Swordfish II+} into your Draw Pile."
+		  "DESCRIPTION": "Synergizes with Basic Cards. {Motivate} a Basic card ** in your draw pile. || <LIM>. Synergy: ** Shuffle {Swordfish II} ** into your Draw Pile.",
+		  "NAME": "Spike Spiegel"
 		},
 		"animator:SwordfishII":
 		{
 			"DESCRIPTION": "At the end of your turn, deal !M! damage to ALL enemies for each Strike played this turn. || When Discarded or Played, Motivate 1.",
-			"NAME": "SwordfishII"
+			"NAME": "Swordfish II"
 		}
 	},
 	"BETA:DATEALIVE":
@@ -611,7 +610,7 @@
 		},
 		"animator:Keqing":
 		{
-		  "DESCRIPTION": "{Ricochet} !S!: Move this card to your Draw Pile. Give this card Haste and lower its cost by 1 this combat. ** Reduce {Ricochet} by 1 upon Evoking [Lightning].",
+		  "DESCRIPTION": "{Ricochet} !S!: This card returns to your Draw Pile, gains Haste, and costs 1 less this combat. ** Reduce {Ricochet} by 1 upon Evoking [Lightning].",
 		  "NAME": "Keqing"
 		},
 		"animator:Klee":

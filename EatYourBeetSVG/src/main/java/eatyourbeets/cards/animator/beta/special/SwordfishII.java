@@ -30,7 +30,7 @@ public class SwordfishII extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 10, 1);
-        SetUpgrade(0, 0, 1, 0);
+        SetUpgrade(0, 0, 0, 0);
 
         SetAutoplay(true);
         SetExhaust(true);

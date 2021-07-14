@@ -26,7 +26,7 @@ public class Klee extends AnimatorCard
         super(DATA);
 
         Initialize(3, 0, 2, 2);
-        SetUpgrade(1, 0, 1, 0);
+        SetUpgrade(1, 0, 0, 0);
         SetScaling(0, 0, 0);
 
         SetSynergy(Synergies.GenshinImpact);
@@ -46,7 +46,7 @@ public class Klee extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
         for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
         {
-            GameActions.Bottom.ApplyVulnerable(p, enemy, magicNumber);
+            GameActions.Bottom.ApplyBurning(p, enemy, magicNumber);
         }
 
         int numberOfFire = JUtils.Count(player.orbs, orb -> Fire.ORB_ID.equals(orb.ID));

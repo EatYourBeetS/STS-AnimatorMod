@@ -92,7 +92,7 @@
 	},
 	"Elemental Exposure":
 	{
-	  "DESCRIPTION": "Amplifies the effects of Weak and Vulernable. Starts decaying 1 turn after the turn this debuff was last applied.",
+	  "DESCRIPTION": "Amplifies the effects of Weak and Vulernable. Lasts for 2 turns.",
 	  "NAMES": ["elemental exposure"],
 	  "PROPER_NAME": "Elemental Exposure"
 	},

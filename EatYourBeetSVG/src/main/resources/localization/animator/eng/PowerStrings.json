@@ -37,7 +37,7 @@
 	},
 	"animator:ChilledPower":
 	{
-	  "DESCRIPTIONS": ["Deal #b", "% less damage. Reduced by 75% at the end of the round."],
+	  "DESCRIPTIONS": ["Deal #b", "% less damage. Reduced by 75% at the end of the turn."],
 	  "NAME": "Chilled"
 	},
 	"animator:ChlammyZellPower":
@@ -87,7 +87,7 @@
 	},
 	"animator:ElementalExposurePower":
 	{
-	  "DESCRIPTIONS": ["The effects of Weak and Vulernable are amplified by #b{0}%. After #b{1} turn(s), decays by 50% of the total gained value each turn."],
+	  "DESCRIPTIONS": ["The effects of Weak and Vulernable are amplified by #b{0}%. Removed in #b{1} turn(s)."],
 	  "NAME": "Elemental Exposure"
 	},
 	"animator:ElementalMasteryPower":

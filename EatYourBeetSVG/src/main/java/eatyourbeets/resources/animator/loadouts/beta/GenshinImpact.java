@@ -7,7 +7,7 @@ import eatyourbeets.cards.animator.beta.basic.Strike_GenshinImpact;
 import eatyourbeets.cards.animator.beta.series.GenshinImpact.Amber;
 import eatyourbeets.cards.animator.beta.series.GenshinImpact.Noelle;
 import eatyourbeets.cards.animator.beta.series.GenshinImpact.Venti;
-import eatyourbeets.cards.animator.beta.ultrarare.YuyukoSaigyouji;
+import eatyourbeets.cards.animator.beta.ultrarare.Traveler;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -51,6 +51,6 @@ public class GenshinImpact extends AnimatorLoadout
     @Override
     public EYBCardData GetUltraRare()
     {
-        return YuyukoSaigyouji.DATA;
+        return Traveler.DATA;
     }
 }

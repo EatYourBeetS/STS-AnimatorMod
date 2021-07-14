@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -50,11 +51,12 @@ public class EYBCardTooltip
     private static final float BODY_TEXT_WIDTH = 320f * Settings.scale;
     private static final float TIP_DESC_LINE_SPACING = 26f * Settings.scale;
     private static final float POWER_ICON_OFFSET_X = 40f * Settings.scale;
-    private static final EYBCardTooltip reusableTooltip = new EYBCardTooltip("", "");
     private static EYBCardTooltip translationTooltip;
     private static boolean inHand;
     private static EYBCard card;
     private static EYBRelic relic;
+    private static EYBCardTooltip genericTip;
+    private static Vector2 genericTipPos = new Vector2(0, 0);
 
     public TextureRegion icon;
     public String id;
@@ -82,15 +84,26 @@ public class EYBCardTooltip
         return !_renderedTipsThisFrame.Get(null);
     }
 
+    public static void QueueTooltip(EYBCardTooltip tooltip, float x, float y)
+    {
+        Initialize();
+        genericTip = tooltip;
+        genericTipPos.x = x;
+        genericTipPos.y = y;
+        GR.UI.AddPostRender(sb -> genericTip.Render(sb, genericTipPos.x, genericTipPos.y, -1));
+    }
+
     public static void QueueTooltips(EYBCard source)
     {
-        Initialize(source, null);
+        Initialize();
+        card = source;
         GR.UI.AddPostRender(EYBCardTooltip::RenderFromCard);
     }
 
     public static void QueueTooltips(EYBRelic source)
     {
-        Initialize(null, source);
+        Initialize();
+        relic = source;
         GR.UI.AddPostRender(EYBCardTooltip::RenderFromRelic);
     }
 
@@ -100,7 +113,7 @@ public class EYBCardTooltip
         _renderedTipsThisFrame.Set(null, true);
     }
 
-    private static void Initialize(EYBCard cardSource, EYBRelic relicSource)
+    private static void Initialize()
     {
         _body.Set(null, null);
         _header.Set(null, null);
@@ -108,8 +121,9 @@ public class EYBCardTooltip
         _keywords.Set(null, EMPTY_LIST);
         _powerTips.Set(null, EMPTY_LIST);
         _renderedTipsThisFrame.Set(null, true);
-        card = cardSource;
-        relic = relicSource;
+        card = null;
+        relic = null;
+        genericTip = null;
     }
 
     public static void RenderFromCard(SpriteBatch sb)
@@ -274,7 +288,7 @@ public class EYBCardTooltip
             y = InputHelper.mY + (50 * Settings.scale);
         }
 
-        ArrayList<EYBCardTooltip> tips = relic.tooltips;
+        ArrayList<EYBCardTooltip> tips = relic.tips;
         for (int i = 0; i < tips.size(); i++)
         {
             EYBCardTooltip tip = tips.get(i);

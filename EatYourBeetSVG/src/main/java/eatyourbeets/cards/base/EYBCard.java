@@ -81,7 +81,7 @@ public abstract class EYBCard extends EYBCardBase
         this.cardData = cardData;
         this.tooltips = new ArrayList<>();
         this.cardText = new EYBCardText(this);
-        this.affinities = new EYBCardAffinities();
+        this.affinities = new EYBCardAffinities(this);
         initializeDescription();
     }
 

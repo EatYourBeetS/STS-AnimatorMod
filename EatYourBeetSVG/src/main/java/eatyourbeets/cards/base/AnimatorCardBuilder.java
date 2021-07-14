@@ -35,7 +35,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
     {
         super(id);
 
-        this.affinities = new EYBCardAffinities();
+        this.affinities = new EYBCardAffinities(null);
         this.id = id;
     }
 

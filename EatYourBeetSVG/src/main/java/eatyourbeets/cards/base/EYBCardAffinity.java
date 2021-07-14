@@ -28,34 +28,6 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
         this.level = level;
     }
 
-    public void Render(SpriteBatch sb, float x, float y, float size)
-    {
-        Texture background = Type.GetBackground(level);
-        if (background != null)
-        {
-            RenderHelpers.Draw(sb, background, x, y, size, size);
-        }
-
-        RenderHelpers.Draw(sb, Type.GetIcon(), x, y, size, size);
-
-        Texture border = Type.GetBorder(level);
-        if (border != null)
-        {
-            RenderHelpers.Draw(sb, border, x, y, size, size);
-        }
-
-        Texture foreground = Type.GetForeground(level);
-        if (foreground != null)
-        {
-            RenderHelpers.Draw(sb, foreground, x, y, size, size);
-        }
-
-        if (Type == AffinityType.Star)
-        {
-            RenderHelpers.Draw(sb, GR.Common.Images.Affinities.Star_FG.Texture(), x, y, size, size);
-        }
-    }
-
     public void RenderOnCard(SpriteBatch sb, AbstractCard card, float x, float y, float size, boolean highlight)
     {
         float rotation = 0f;

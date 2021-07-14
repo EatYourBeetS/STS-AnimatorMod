@@ -2,11 +2,13 @@ package eatyourbeets.cards.base;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.RenderHelpers;
 
 public enum AffinityType implements Comparable<AffinityType>
 {
@@ -119,6 +121,34 @@ public enum AffinityType implements Comparable<AffinityType>
             case Dark: return new Color(0.75f, 0.25f, 0.65f, 1);//0.7f, 0.55f, 0.7f, 1f);
 
             case Star: default: return new Color(0.25f, 0.25f, 0.25f, 1f);
+        }
+    }
+
+    public void Render(int level, SpriteBatch sb, Color color, float cX, float cY, float size)
+    {
+        Texture background = GetBackground(level);
+        if (background != null)
+        {
+            RenderHelpers.DrawCentered(sb, color, background, cX, cY, size, size, 1, 0);
+        }
+
+        RenderHelpers.DrawCentered(sb, color, GetIcon(), cX, cY, size, size, 1, 0);
+
+        Texture border = GetBorder(level);
+        if (border != null)
+        {
+            RenderHelpers.DrawCentered(sb, color, border, cX, cY, size, size, 1, 0);
+        }
+
+        Texture foreground = GetForeground(level);
+        if (foreground != null)
+        {
+            RenderHelpers.DrawCentered(sb, color, foreground, cX, cY, size, size, 1, 0);
+        }
+
+        if (this == AffinityType.Star)
+        {
+            RenderHelpers.DrawCentered(sb, color, GR.Common.Images.Affinities.Star_FG.Texture(), cX, cY, size, size, 1, 0);
         }
     }
 }

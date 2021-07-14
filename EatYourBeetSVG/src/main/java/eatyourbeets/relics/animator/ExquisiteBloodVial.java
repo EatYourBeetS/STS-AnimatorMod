@@ -3,7 +3,6 @@ package eatyourbeets.relics.animator;
 import com.evacipated.cardcrawl.mod.stslib.patches.HitboxRightClick;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.RegenPower;
@@ -122,8 +121,6 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
         maxHPAmount = 1 + (counter / 3);
 
         description = getUpdatedDescription();
-        tips.clear();
-        tips.add(new PowerTip(name, description));
         initializeTips();
     }
 

@@ -334,6 +334,11 @@ public class RenderHelpers
         FontHelper.renderRotatedText(sb, font, text, card.current_x, card.current_y, x * scale, y * scale, card.angle, roundY, color);
     }
 
+    public static void WriteCentered(SpriteBatch sb, BitmapFont font, String text, float cX, float cY, Color color)
+    {
+        FontHelper.renderFontCentered(sb, font, text, cX, cY, color);
+    }
+
     public static void WriteCentered(SpriteBatch sb, BitmapFont font, String text, Hitbox hb, Color color)
     {
         FontHelper.renderFontCentered(sb, font, text, hb.cX, hb.cY, color);

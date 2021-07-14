@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
@@ -20,12 +19,10 @@ import java.util.Scanner;
 
 public abstract class EYBRelic extends CustomRelic
 {
-    protected static final FieldInfo<Float> _offsetX = JUtils.GetField("offsetX", AbstractRelic.class);
-
     public static AbstractPlayer player;
     public static Random rng;
 
-    public ArrayList<EYBCardTooltip> tooltips;
+    public ArrayList<EYBCardTooltip> tips;
 
     public EYBRelic(String id, String imageID, RelicTier tier, LandingSound sfx)
     {
@@ -125,16 +122,16 @@ public abstract class EYBRelic extends CustomRelic
     @Override
     protected void initializeTips()
     {
-        if (tooltips == null)
+        if (tips == null)
         {
-            tooltips = new ArrayList<>();
+            tips = new ArrayList<>();
         }
         else
         {
-            tooltips.clear();
+            tips.clear();
         }
 
-        tooltips.add(new EYBCardTooltip(name, description));
+        tips.add(new EYBCardTooltip(name, description));
 
         final Scanner desc = new Scanner(this.description);
         String s;
@@ -166,9 +163,9 @@ public abstract class EYBRelic extends CustomRelic
             s = s.toLowerCase();
 
             EYBCardTooltip tip = CardTooltips.FindByName(s);
-            if (tip != null && !tooltips.contains(tip))
+            if (tip != null && !tips.contains(tip))
             {
-                tooltips.add(tip);
+                tips.add(tip);
             }
         }
         while (true);

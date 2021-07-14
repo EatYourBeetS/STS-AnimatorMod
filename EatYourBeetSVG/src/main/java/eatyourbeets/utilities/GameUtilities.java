@@ -848,7 +848,7 @@ public class GameUtilities
 
     public static EYBCardAffinities GetTotalAffinity(Collection<AbstractCard> cards, AbstractCard ignored, int limitPerCard)
     {
-        EYBCardAffinities affinities = new EYBCardAffinities();
+        EYBCardAffinities affinities = new EYBCardAffinities(null);
         for (AbstractCard c : cards)
         {
             EYBCard card = JUtils.SafeCast(c, EYBCard.class);

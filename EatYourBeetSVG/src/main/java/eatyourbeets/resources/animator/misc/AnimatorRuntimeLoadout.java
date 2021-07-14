@@ -6,19 +6,20 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AnimatorRuntimeLoadout
 {
     private final static EYBCardTooltip PromotedTooltip = new EYBCardTooltip(GR.Animator.Strings.SeriesSelection.PickupBonusHeader, GR.Animator.Strings.SeriesSelection.PickupBonusBody);
-    private final static float LV2_AFFINITY_THRESHOLD = 0.66f;
+    private final static float AFFINITY_THRESHOLD = 0.66f;
+    private final static int MAX_AFFINITIES = 2;
 
     public final int ID;
-    public final Map<String, AbstractCard> Cards;
     public final boolean IsBeta;
     public final AnimatorLoadout Loadout;
+    public final Map<String, AbstractCard> Cards;
+    public final EYBCardAffinityStatistics AffinityStatistics;
 
     public int bonus;
     public AnimatorCard card;
@@ -45,6 +46,7 @@ public class AnimatorRuntimeLoadout
         this.IsBeta = loadout.IsBeta;
         this.Loadout = loadout;
         this.Cards = GetNonColorlessCards(loadout.Series);
+        this.AffinityStatistics = new EYBCardAffinityStatistics(Cards.values());
 
         this.promoted = false;
         this.card = null;
@@ -92,33 +94,19 @@ public class AnimatorRuntimeLoadout
             .SetProperties(temp.type, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE).Build();
         }
 
-        EYBCardAffinities alignments = new EYBCardAffinities();
-        for (AbstractCard c : Cards.values())
+        int i = 0;
+        for (EYBCardAffinityStatistics.Group g : AffinityStatistics)
         {
-            EYBCard t = JUtils.SafeCast(c, EYBCard.class);
-            if (t != null)
+            if (i++ > MAX_AFFINITIES)
             {
-                if (t.affinities.HasStar())
-                {
-                    alignments.Add(2, 2, 2, 2, 2);
-                }
-                else
-                {
-                    alignments.Add(t.affinities);
-                }
+                break;
             }
-        }
 
-        ArrayList<EYBCardAffinity> list = alignments.List;
-        for (int i = 0; i < alignments.List.size() && i < 3; i++)
-        {
-            int level = 1;
-            EYBCardAffinity a = list.get(i);
-            if ((a.level / (float)Cards.size()) > LV2_AFFINITY_THRESHOLD)
+            float percentage = g.GetPercentage(0);
+            if (percentage > 0)
             {
-                level += 1;
+                card.affinities.Add(g.Type, percentage > AFFINITY_THRESHOLD ? 2 : 1);
             }
-            card.affinities.Add(a.Type, level);
         }
 
         return card;

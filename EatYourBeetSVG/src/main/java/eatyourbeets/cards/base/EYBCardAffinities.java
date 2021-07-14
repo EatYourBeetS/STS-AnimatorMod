@@ -1,5 +1,6 @@
 package eatyourbeets.cards.base;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
@@ -16,8 +17,14 @@ public class EYBCardAffinities
     private static final ColoredTexture upgradeCircle = new ColoredTexture(GR.Common.Images.Circle.Texture(), Settings.GREEN_RELIC_COLOR);
 
     public final ArrayList<EYBCardAffinity> List = new ArrayList<>();
+    public EYBCard Card;
     public EYBCardAffinity Star = null;
     public boolean displayUpgrades = false;
+
+    public EYBCardAffinities(EYBCard card)
+    {
+        Card = card;
+    }
 
     public void Initialize(int red, int green, int blue, int light, int dark)
     {
@@ -61,6 +68,11 @@ public class EYBCardAffinities
             t.upgrade = a.upgrade;
             List.add(t);
         }
+        Refresh();
+    }
+
+    public void Refresh()
+    {
         List.sort(EYBCardAffinity::compareTo);
     }
 
@@ -76,7 +88,7 @@ public class EYBCardAffinities
             a.level += a.upgrade;
         }
 
-        List.sort(EYBCardAffinity::compareTo);
+        Refresh();
     }
 
     public void Add(int red, int green, int blue, int light, int dark)
@@ -97,12 +109,12 @@ public class EYBCardAffinities
         Set(AffinityType.Dark, dark);
     }
 
-    public void AddStar(int level)
+    public EYBCardAffinity AddStar(int level)
     {
-        SetStar((Star == null ? 0 : Star.level) + level);
+        return SetStar((Star == null ? 0 : Star.level) + level);
     }
 
-    public void SetStar(int level)
+    public EYBCardAffinity SetStar(int level)
     {
         if (Star != null)
         {
@@ -112,6 +124,8 @@ public class EYBCardAffinities
         {
             Star = new EYBCardAffinity(AffinityType.Star, level);
         }
+
+        return Star;
     }
 
     public boolean HasStar()
@@ -141,27 +155,27 @@ public class EYBCardAffinities
         }
     }
 
-    public void Add(AffinityType type, int level)
+    public EYBCardAffinity Add(AffinityType type, int level)
     {
         if (type == AffinityType.Star)
         {
-            AddStar(level);
-            return;
+            return AddStar(level);
         }
 
-        for (int i = 0; i < List.size(); i++)
+        for (EYBCardAffinity a : List)
         {
-            EYBCardAffinity a = List.get(i);
             if (a.Type == type)
             {
                 a.level += level;
-                List.sort(EYBCardAffinity::compareTo);
-                return;
+                Refresh();
+                return a;
             }
         }
 
-        List.add(new EYBCardAffinity(type, level));
-        List.sort(EYBCardAffinity::compareTo);
+        EYBCardAffinity a = new EYBCardAffinity(type, level);
+        List.add(a);
+        Refresh();
+        return a;
     }
 
     public EYBCardAffinity Set(AffinityType type, int level)
@@ -173,20 +187,20 @@ public class EYBCardAffinities
         }
 
         EYBCardAffinity result;
-        for (int i = 0; i < List.size(); i++)
+        for (EYBCardAffinity eybCardAffinity : List)
         {
-            result = List.get(i);
+            result = eybCardAffinity;
             if (result.Type == type)
             {
                 result.level = level;
-                List.sort(EYBCardAffinity::compareTo);
+                Refresh();
                 return result;
             }
         }
 
         result = new EYBCardAffinity(type, level);
         List.add(result);
-        List.sort(EYBCardAffinity::compareTo);
+        Refresh();
         return result;
     }
 
@@ -261,7 +275,7 @@ public class EYBCardAffinities
 
     public EYBCardAffinities GetSynergies(EYBCardAffinities other)
     {
-        final EYBCardAffinities synergies = new EYBCardAffinities();
+        final EYBCardAffinities synergies = new EYBCardAffinities(null);
         final int star = GetLevel(AffinityType.Star);
         if (star > 0)
         {
@@ -398,6 +412,7 @@ public class EYBCardAffinities
             max += 1;
         }
 
+        final Color color = Color.WHITE.cpy();
         float step = size * 0.9f;
         int half = max / 2;
 
@@ -414,7 +429,7 @@ public class EYBCardAffinities
                 offsetX = (step * 0.5f) + (step* (i - half));
             }
 
-            item.Render(sb, x + offsetX, y, size);
+            item.Type.Render(item.level, sb, color, x + offsetX, y, size);
         }
     }
 }

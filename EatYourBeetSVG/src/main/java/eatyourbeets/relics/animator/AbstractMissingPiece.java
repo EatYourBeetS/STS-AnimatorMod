@@ -45,7 +45,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         {
             if (missingPiece.tips.size() > 0)
             {
-                missingPiece.tips.get(0).body = missingPiece.GetFullDescription();
+                missingPiece.tips.get(0).description = missingPiece.GetFullDescription();
                 missingPiece.flash();
             }
         }

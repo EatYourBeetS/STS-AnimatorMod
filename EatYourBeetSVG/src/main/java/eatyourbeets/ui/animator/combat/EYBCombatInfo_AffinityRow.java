@@ -110,9 +110,10 @@ public class EYBCombatInfo_AffinityRow extends GUIElement
         affinity_image.TryRender(sb);
         affinity_text.TryRender(sb);
         synergy_icon.TryRender(sb);
+
         if (synergy_icon.isActive)
         {
-            CombatStats.Affinities.GetPower(Type).Render(sb, synergy_icon.hb);
+            CombatStats.Affinities.GetPower(Type).Render(sb, background_image.hb);
         }
     }
 }

@@ -6,8 +6,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -43,25 +45,32 @@ public abstract class AbstractAffinityPower extends CommonPower
     {
         final float w = hb.width;
         final float h = hb.height;
-        final float x = hb.cX + w + (6f * Settings.scale);
-        final float y = hb.cY + (3f * Settings.scale);
+        final float x = hb.x + w;
+        final float y = hb.y + (9 * Settings.scale);
 
-        sb.setColor(Color.WHITE);
-        RenderHelpers.DrawCentered(sb, Color.WHITE, img, x, y, 32, 32, 1, 0);
+        if (retained)
+        {
+            RenderHelpers.DrawCentered(sb, Settings.HALF_TRANSPARENT_WHITE_COLOR, GR.Common.Images.Panel_Rounded_Half_H.Texture(), hb.cX + w, hb.cY, w + 9, h + 9, 1, 0);
+        }
+        RenderHelpers.DrawCentered(sb, Color.BLACK, GR.Common.Images.Panel_Rounded_Half_H.Texture(), hb.cX + w, hb.cY, w, h, 1, 0);
+        RenderHelpers.DrawCentered(sb, Color.WHITE, img, x + 16 * Settings.scale, hb.cY + (3f * Settings.scale), 32, 32, 1, 0);
 
-//        for (AbstractGameEffect e : effects)
-//        {
-//            e.render(sb, x, y);
-//        }
-
-        Integer threshold = GetCurrentThreshold();
+        final Integer threshold = GetCurrentThreshold();
+        final Color textColor = amount == 0 ? Settings.CREAM_COLOR : retained ? Settings.BLUE_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
         if (threshold != null)
         {
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (w * 2.5f), hb.y, 1, Settings.CREAM_COLOR);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (threshold < 10 ? 70 : 75) * Settings.scale, y, 1, Settings.CREAM_COLOR);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 44 * Settings.scale, y, fontScale, textColor);
+        }
+        else
+        {
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 52 * Settings.scale, y, fontScale, textColor);
         }
 
-        Color textColor = amount == 0 ? Settings.CREAM_COLOR : retained ? Settings.BLUE_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
-        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + (w * 1.25f), hb.y, fontScale, textColor);
+        for (AbstractGameEffect e : effects)
+        {
+            e.render(sb, x, hb.y);
+        }
     }
 
     public void Retain()

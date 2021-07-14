@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -181,8 +182,7 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
                     RenderHelpers.DrawCentered(sb, Color.WHITE, texture, cX, cY, size, size, 1, 0);
                 }
             }
-            RenderHelpers.WriteCentered(sb, font, GetPercentageString(0), cX + (size * 0.1f), cY - (size * 0.25f), Color.WHITE);
-
+            RenderHelpers.WriteCentered(sb, font, GetPercentageString(0), cX + (size * 0.1f * Settings.scale), cY - (size * 0.65f * Settings.scale), Color.WHITE);
             RenderHelpers.ResetFont(font);
         }
     }

@@ -114,8 +114,8 @@ public class SynergyCardsReward extends AnimatorReward
             }
 
             size = 42f;
-            cX = hb.x + hb.width - ((MAX - rendered) * size);
-            cY = hb.cY;
+            cX = hb.x + hb.width - ((MAX - rendered) * size * Settings.scale * 1.05f);
+            cY = hb.cY + (size * Settings.scale * 0.175f);
 
             g.Render(sb, cX, cY, size, 2);
             rendered += 1;

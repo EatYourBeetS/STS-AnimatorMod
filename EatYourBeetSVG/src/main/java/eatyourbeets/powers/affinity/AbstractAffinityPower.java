@@ -43,28 +43,31 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     public void Render(SpriteBatch sb, Hitbox hb)
     {
+        final float scale = Settings.scale;
         final float w = hb.width;
         final float h = hb.height;
-        final float x = hb.x + w;
-        final float y = hb.y + (9 * Settings.scale);
+        final float x = hb.x + w + (5 * scale);
+        final float y = hb.y + (9 * scale);
+        final float cX = hb.cX + w + (5 * scale);
+        final float cY = hb.cY;
 
         if (retained)
         {
-            RenderHelpers.DrawCentered(sb, Settings.HALF_TRANSPARENT_WHITE_COLOR, GR.Common.Images.Panel_Rounded_Half_H.Texture(), hb.cX + w, hb.cY, w + 9, h + 9, 1, 0);
+            RenderHelpers.DrawCentered(sb, Settings.HALF_TRANSPARENT_WHITE_COLOR, GR.Common.Images.Panel_Rounded_Half_H.Texture(), cX, cY, (w / scale) + 9, (h / scale) + 9, 1, 0);
         }
-        RenderHelpers.DrawCentered(sb, Color.BLACK, GR.Common.Images.Panel_Rounded_Half_H.Texture(), hb.cX + w, hb.cY, w, h, 1, 0);
-        RenderHelpers.DrawCentered(sb, Color.WHITE, img, x + 16 * Settings.scale, hb.cY + (3f * Settings.scale), 32, 32, 1, 0);
+        RenderHelpers.DrawCentered(sb, Color.BLACK, GR.Common.Images.Panel_Rounded_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
+        RenderHelpers.DrawCentered(sb, Color.WHITE, img, x + 16 * scale, cY + (3f * scale), 32, 32, 1, 0);
 
         final Integer threshold = GetCurrentThreshold();
         final Color textColor = amount == 0 ? Settings.CREAM_COLOR : retained ? Settings.BLUE_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
         if (threshold != null)
         {
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (threshold < 10 ? 70 : 75) * Settings.scale, y, 1, Settings.CREAM_COLOR);
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 44 * Settings.scale, y, fontScale, textColor);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (threshold < 10 ? 70 : 75) * scale, y, 1, Settings.CREAM_COLOR);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 44 * scale, y, fontScale, textColor);
         }
         else
         {
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 52 * Settings.scale, y, fontScale, textColor);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 52 * scale, y, fontScale, textColor);
         }
 
         for (AbstractGameEffect e : effects)

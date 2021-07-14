@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.Katanagatari;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -35,10 +36,10 @@ public class Konayuki extends AnimatorCard
 
         if (CheckTeamwork(AffinityType.Red, 5) && CombatStats.TryActivateLimited(cardID))
         {
-            GameEffects.Queue.ShowCardBriefly(this.makeStatEquivalentCopy());
-            GameActions.Bottom.DealDamageToRandomEnemy(secondaryValue, damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_HEAVY)
-                    .SetOptions(false, false, false)
-                    .SetPiercing(true, false);
+            GameActions.Bottom.DealDamageToRandomEnemy(secondaryValue, damageTypeForTurn, AbstractGameAction.AttackEffect.NONE)
+            .SetDamageEffect(c -> GameEffects.List.Add(new WeightyImpactEffect(c.hb.cX, c.hb.cY)).duration)
+            .SetOptions(false, false, false)
+            .SetPiercing(true, false);
         }
     }
 }

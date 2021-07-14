@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RenderHelpers;
 
 public abstract class AbstractAffinityPower extends CommonPower
 {
@@ -42,18 +43,11 @@ public abstract class AbstractAffinityPower extends CommonPower
     {
         final float w = hb.width;
         final float h = hb.height;
-        final float x = hb.x + w * 2f;
-        final float y = hb.y + h;
+        final float x = hb.cX + w + (6f * Settings.scale);
+        final float y = hb.cY + (3f * Settings.scale);
 
         sb.setColor(Color.WHITE);
-        if (this.powerIcon != null)
-        {
-            sb.draw(this.powerIcon, x - 12f, y - 16f, 16f, 16f, w, h, Settings.scale, Settings.scale, 0f);
-        }
-        else
-        {
-            sb.draw(this.img, x - 12f, y - 12f, 16f, 16f, w, h, Settings.scale * 1.5f, Settings.scale * 1.5f, 0f, 0, 0, 32, 32, false, false);
-        }
+        RenderHelpers.DrawCentered(sb, Color.WHITE, img, x, y, 32, 32, 1, 0);
 
 //        for (AbstractGameEffect e : effects)
 //        {
@@ -63,11 +57,11 @@ public abstract class AbstractAffinityPower extends CommonPower
         Integer threshold = GetCurrentThreshold();
         if (threshold != null)
         {
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (w * 2f), hb.y, 1, Settings.CREAM_COLOR);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (w * 2.5f), hb.y, 1, Settings.CREAM_COLOR);
         }
 
         Color textColor = amount == 0 ? Settings.CREAM_COLOR : retained ? Settings.BLUE_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
-        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + (w * 0.9f), hb.y, fontScale, textColor);
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + (w * 1.25f), hb.y, fontScale, textColor);
     }
 
     public void Retain()

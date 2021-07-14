@@ -93,6 +93,7 @@ public class Patchouli extends AnimatorCard
         {
             CardCrawlGame.sound.play("ORB_LIGHTNING_EVOKE", 0.2f);
             GameEffects.Queue.Add(new LightningEffect(e.drawX, e.drawY));
+            return 0f;
         });
     }
 
@@ -108,6 +109,8 @@ public class Patchouli extends AnimatorCard
             {
                 GameEffects.Queue.Add(new FallingIceEffect(frostCount, monsters.shouldFlipVfx()));
             }
+
+            return 0f;
         });
     }
 
@@ -117,6 +120,7 @@ public class Patchouli extends AnimatorCard
         {
             CardCrawlGame.sound.play("ATTACK_WHIRLWIND", 0.2f);
             GameEffects.Queue.Add(new WhirlwindEffect());
+            return 0f;
         });
     }
 
@@ -126,6 +130,7 @@ public class Patchouli extends AnimatorCard
         {
             CardCrawlGame.sound.play("ATTACK_FIRE", 0.2f);
             GameEffects.Queue.Add(new FireballEffect(player.hb.cX, player.hb.cY, e.hb.cX, e.hb.cY));
+            return 0f;
         });
     }
 

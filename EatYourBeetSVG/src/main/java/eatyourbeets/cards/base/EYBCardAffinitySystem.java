@@ -82,6 +82,11 @@ public class EYBCardAffinitySystem implements OnStartOfTurnSubscriber
         }
     }
 
+    public int GetLastAffinityLevel(AffinityType type)
+    {
+        return lastCardPlayed == null ? 0 : lastCardPlayed.affinities.GetLevel(type);
+    }
+
     public AnimatorCard GetLastCardPlayed()
     {
         return lastCardPlayed;

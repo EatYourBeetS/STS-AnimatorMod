@@ -10,11 +10,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-
-import java.util.function.Consumer;
 
 public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreature>
 {
@@ -25,7 +24,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
     protected boolean isOrb;
 
     protected final DamageInfo info;
-    protected Consumer<AbstractCreature> onDamageEffect;
+    protected FuncT1<Float, AbstractCreature> onDamageEffect;
 
     protected DealDamageToRandomEnemy(DealDamageToRandomEnemy other)
     {
@@ -65,8 +64,8 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 
         Initialize(player, GameUtilities.GetRandomEnemy(true), info.output);
     }
-
-    public DealDamageToRandomEnemy SetDamageEffect(Consumer<AbstractCreature> onDamageEffect)
+    
+    public DealDamageToRandomEnemy SetDamageEffect(FuncT1<Float, AbstractCreature> onDamageEffect)
     {
         this.onDamageEffect = onDamageEffect;
 
@@ -129,7 +128,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 
         if (onDamageEffect != null)
         {
-            onDamageEffect.accept(target);
+            duration += onDamageEffect.Invoke(target);
         }
     }
 

@@ -66,10 +66,17 @@ public class EYBCardAffinities
 
     public void ApplyUpgrades()
     {
+        if (Star != null)
+        {
+            Star.level += Star.upgrade;
+        }
+
         for (EYBCardAffinity a : List)
         {
             a.level += a.upgrade;
         }
+
+        List.sort(EYBCardAffinity::compareTo);
     }
 
     public void Add(int red, int green, int blue, int light, int dark)
@@ -289,17 +296,23 @@ public class EYBCardAffinities
             return;
         }
 
-        if (c1.affinities.HasStar())
+        AnimatorCard b = CombatStats.Affinities.GetLastCardPlayed();
+        if (b == null)
         {
-            if (CombatStats.TryActivateSemiLimited(AffinityType.Star.name()))
-            {
-                GameActions.Bottom.SynergyEffect(AffinityType.Star);
-            }
+            return;
         }
+
+//        if (c1.affinities.HasStar())
+//        {
+//            if (CombatStats.TryActivateSemiLimited(AffinityType.Star.name()))
+//            {
+//                GameActions.Bottom.SynergyEffect(AffinityType.Star);
+//            }
+//        }
 
         for (EYBCardAffinity affinity : c1.affinities.List)
         {
-            if (affinity.level >= 2 && CombatStats.TryActivateSemiLimited(affinity.Type.name()))
+            if (affinity.level >= 2 && b.affinities.GetLevel(affinity.Type) > 0 && CombatStats.TryActivateSemiLimited(affinity.Type.name()))
             {
                 GameActions.Bottom.SynergyEffect(affinity.Type);
             }
@@ -335,12 +348,12 @@ public class EYBCardAffinities
         int max = 0;
         for (EYBCardAffinity eybCardAffinity : List)
         {
-            max += 1;
-
             if (eybCardAffinity.level <= 0)
             {
                 break;
             }
+
+            max += 1;
         }
 
         int half = max / 2;
@@ -375,15 +388,14 @@ public class EYBCardAffinities
     public void Render(SpriteBatch sb, float x, float y, float size)
     {
         int max = 0;
-        for (int i = 0; i < List.size(); i++)
+        for (EYBCardAffinity t : List)
         {
-            max = i;
-
-            EYBCardAffinity t = List.get(i);
             if (t.level <= 0)
             {
                 break;
             }
+
+            max += 1;
         }
 
         float step = size * 0.9f;

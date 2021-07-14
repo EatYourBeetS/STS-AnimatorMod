@@ -62,7 +62,7 @@ public class EYBCombatInfo_AffinityRow extends GUIElement
         synergy_icon.color.a = synergyEffectAvailable ? 1f : 0.35f;
 
         int level = strongSynergies == null ? 0 : strongSynergies.GetLevel(Type, false);
-        if (level == 2 && synergyEffectAvailable)
+        if (level == 2 && synergyEffectAvailable && CombatStats.Affinities.GetLastAffinityLevel(Type) > 0)
         {
             background_image.SetColor(COLOR_LV2_SYNERGY);
         }

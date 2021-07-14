@@ -114,6 +114,11 @@ public class EYBCardTooltip
 
     public static void RenderFromCard(SpriteBatch sb)
     {
+        if (card == null)
+        {
+            return;
+        }
+
         int totalHidden = 0;
         inHand = AbstractDungeon.player != null && AbstractDungeon.player.hand.contains(card);
         tooltips.clear();
@@ -231,6 +236,11 @@ public class EYBCardTooltip
 
     public static void RenderFromRelic(SpriteBatch sb)
     {
+        if (relic == null)
+        {
+            return;
+        }
+
         float x;
         float y;
         if ((float) InputHelper.mX >= 1400.0F * Settings.scale)

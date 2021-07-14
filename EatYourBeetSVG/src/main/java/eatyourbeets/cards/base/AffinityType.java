@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.Testing;
 
 public enum AffinityType implements Comparable<AffinityType>
 {
@@ -101,11 +100,11 @@ public enum AffinityType implements Comparable<AffinityType>
 
     public Color GetAlternateColor()
     {
-        Float[] values = Testing.GetValues();
-        if (values != null && values.length >= 3)
-        {
-            return new Color(values[0], values[1], values[2], 1);
-        }
+//        Float[] values = Testing.GetValues();
+//        if (values != null && values.length >= 3)
+//        {
+//            return new Color(values[0], values[1], values[2], 1);
+//        }
 
         switch (this)
         {
@@ -117,7 +116,7 @@ public enum AffinityType implements Comparable<AffinityType>
 
             case Light: return new Color(0.8f, 0.8f, 0.3f, 1f);
 
-            case Dark: return new Color(0.7f, 0.55f, 0.7f, 1f);
+            case Dark: return new Color(0.75f, 0.25f, 0.65f, 1);//0.7f, 0.55f, 0.7f, 1f);
 
             case Star: default: return new Color(0.25f, 0.25f, 0.25f, 1f);
         }

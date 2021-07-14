@@ -33,7 +33,11 @@ public class FeridBathoryPower extends AnimatorPower
         super.onExhaust(card);
 
         GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(enemy -> GameEffects.List.Add(new HemokinesisEffect(enemy.hb.cX, enemy.hb.cY, owner.hb.cX, owner.hb.cY)));
+        .SetDamageEffect(enemy ->
+        {
+            GameEffects.List.Add(new HemokinesisEffect(enemy.hb.cX, enemy.hb.cY, owner.hb.cX, owner.hb.cY));
+            return 0f;
+        });
         GameActions.Bottom.GainTemporaryHP(amount);
     }
 

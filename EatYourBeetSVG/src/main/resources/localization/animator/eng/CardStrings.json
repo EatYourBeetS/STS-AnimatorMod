@@ -1530,7 +1530,7 @@
 	{
 		"animator:Crystallize":
 		{
-			"DESCRIPTION": "Lose !S! HP twice. ** Gain !M! [Metallicize]. ** Boost [C].",
+			"DESCRIPTION": "Lose !S! HP twice. || Gain !M! [Metallicize]. || Boost [C].",
 			"NAME": "Crystallize"
 		},
 		"animator:GoblinChampion":

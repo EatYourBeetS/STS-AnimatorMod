@@ -291,6 +291,15 @@ public class RenderHelpers
                 card.angle, 0, 0, srcWidth, srcHeight, false, false);
     }
 
+    public static void DrawCentered(SpriteBatch sb, Color color, Texture img, float drawX, float drawY, float width, float height, float imgScale, float imgRotation)
+    {
+        final float scale = Settings.scale * imgScale;
+
+        sb.setColor(color);
+        sb.draw(img, drawX - (width / 2f), drawY - (height / 2f), width / 2f, height / 2f, width, height,
+                scale, scale, imgRotation, 0, 0, img.getWidth(), img.getHeight(), false, false);
+    }
+
     public static void Draw(SpriteBatch sb, Texture img, float drawX, float drawY, float size)
     {
         Draw(sb, img, Color.WHITE, drawX, drawY, size, size);

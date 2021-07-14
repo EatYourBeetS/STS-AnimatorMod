@@ -117,9 +117,9 @@ public class EYBCardData
 
     public EYBCardData SetSeriesFromClassPackage()
     {
-        final String path = "eatyourbeets.cards.animator.series.";
-        final String name = type.getPackage().getName().substring(path.length());
-        final CardSeries series = CardSeries.GetByName(name, false);
+        final int length = "eatyourbeets.cards.animator.".length();
+        final String name = type.getPackage().getName();
+        final CardSeries series = CardSeries.GetByName(name.substring(length + ((name.charAt(length) == 'b') ? "beta.series." : "series.").length()), false);
         if (series == null)
         {
             throw new RuntimeException("Couldn't find card series from class package: " + type);

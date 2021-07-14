@@ -25,7 +25,7 @@ public class CardEffectBlight extends AbstractBlight
 
         this.card = card;
         this.copy = card.makeStatEquivalentCopy();
-        this.targetScaleModifier = this.scaleModifier = 0.2f;
+        this.targetScaleModifier = this.scaleModifier = 0.15f;
     }
 
     @Override
@@ -49,10 +49,10 @@ public class CardEffectBlight extends AbstractBlight
         {
             sb.setColor(Color.WHITE);
 
-            card.drawScale = card.targetDrawScale = scaleModifier * scale;
+            card.drawScale = card.targetDrawScale = scaleModifier * scale / Settings.scale;
             card.setAngle(_rotation.Get(this), true);
-            card.current_x = card.target_x = this.currentX + _offsetX.Get(null); //- (Settings.scale * Testing.TryGetValue(0, 122f)) + AbstractCard.IMG_WIDTH * 0.5f + _offsetX.Get(null);
-            card.current_y = card.target_y = this.currentY;// - (Settings.scale * Testing.TryGetValue(1, 180f)) + AbstractCard.IMG_HEIGHT * 0.5f;
+            card.current_x = card.target_x = this.currentX + _offsetX.Get(null);
+            card.current_y = card.target_y = this.currentY;
             card.render(sb);
 
             this.renderCounter(sb, true);

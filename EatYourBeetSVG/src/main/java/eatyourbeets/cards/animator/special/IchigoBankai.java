@@ -8,7 +8,10 @@ import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -22,12 +25,11 @@ public class IchigoBankai extends AnimatorCard
 
         Initialize(8, 0);
         SetUpgrade(3, 0);
-        SetScaling(0, 3, 0);
+        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Green(1, 0, 1);
 
         SetExhaust(true);
         SetMultiDamage(true);
-        SetSynergy(Synergies.Bleach);
-        SetMartialArtist();
     }
 
     @Override

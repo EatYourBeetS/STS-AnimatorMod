@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.affinity.AgilityPower;
+import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 

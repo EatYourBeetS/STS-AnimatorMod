@@ -2,7 +2,7 @@ package eatyourbeets.relics.animator.beta;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.helpers.PowerTip;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.JUtils;
 
@@ -85,7 +85,7 @@ public class ShinigamisFerry extends AnimatorRelic
     {
         this.description = getUpdatedDescription();
         this.tips.clear();
-        this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new EYBCardTooltip(this.name, this.description));
         this.initializeTips();
     }
 

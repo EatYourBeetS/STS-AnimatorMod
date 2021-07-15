@@ -6,8 +6,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -24,8 +26,7 @@ public abstract class AbstractAffinityPower extends CommonPower
     protected int thresholdIndex;
 
     public AffinityType affinityType;
-    public boolean retained;
-    public boolean permanentlyRetained;
+    public int retainedTurns;
 
     public AbstractAffinityPower(AffinityType type, String powerID, AbstractCreature owner, int amount)
     {
@@ -42,58 +43,67 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     public void Render(SpriteBatch sb, Hitbox hb)
     {
+        final float scale = Settings.scale;
         final float w = hb.width;
         final float h = hb.height;
-        final float x = hb.cX + w + (6f * Settings.scale);
-        final float y = hb.cY + (3f * Settings.scale);
+        final float x = hb.x + w + (5 * scale);
+        final float y = hb.y + (9 * scale);
+        final float cX = hb.cX + w + (5 * scale);
+        final float cY = hb.cY;
 
-        sb.setColor(Color.WHITE);
-        RenderHelpers.DrawCentered(sb, Color.WHITE, img, x, y, 32, 32, 1, 0);
+        if (retainedTurns != 0)
+        {
+            RenderHelpers.DrawCentered(sb, Settings.HALF_TRANSPARENT_WHITE_COLOR, GR.Common.Images.Panel_Rounded_Half_H.Texture(), cX, cY, (w / scale) + 9, (h / scale) + 9, 1, 0);
+        }
+        RenderHelpers.DrawCentered(sb, Color.BLACK, GR.Common.Images.Panel_Rounded_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
+        RenderHelpers.DrawCentered(sb, new Color(1, 1, 1, enabled ? 1 : 0.5f), img, x + 16 * scale, cY + (3f * scale), 32, 32, 1, 0);
 
-//        for (AbstractGameEffect e : effects)
-//        {
-//            e.render(sb, x, y);
-//        }
-
-        Integer threshold = GetCurrentThreshold();
+        final Integer threshold = GetCurrentThreshold();
         if (threshold != null)
         {
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (w * 2.5f), hb.y, 1, Settings.CREAM_COLOR);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (threshold < 10 ? 70 : 75) * scale, y, 1, Settings.CREAM_COLOR);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 44 * scale, y, fontScale, Settings.GREEN_TEXT_COLOR);
+        }
+        else
+        {
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 52 * scale, y, fontScale, Settings.BLUE_TEXT_COLOR);
         }
 
-        Color textColor = amount == 0 ? Settings.CREAM_COLOR : retained ? Settings.BLUE_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
-        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + (w * 1.25f), hb.y, fontScale, textColor);
+        for (AbstractGameEffect e : effects)
+        {
+            e.render(sb, x, hb.y);
+        }
     }
 
-    public void SetDisabled(boolean disabled)
+    public void RetainOnce()
     {
-        this.disabled = disabled;
+        if (this.retainedTurns == 0)
+        {
+            this.retainedTurns = 1;
+        }
     }
 
-    public void SetPermanentlyRetained(boolean permanentlyRetained)
+    public void Retain(int turns, boolean relative)
     {
-        this.permanentlyRetained = permanentlyRetained;
-        if (permanentlyRetained) this.retained = true;
-    }
-
-    public void Retain()
-    {
-        this.retained = true;
+        this.retainedTurns = (relative ? (retainedTurns + turns) : turns);
     }
 
     public void Stack(int amount, boolean retain)
     {
-        if (!disabled) {
-            this.amount += amount;
-            this.fontScale = 8f;
-
-            if (retain)
-            {
-                Retain();
-            }
-
-            UpdateThreshold();
+        if (!enabled && amount > 0)
+        {
+            return;
         }
+
+        this.amount += amount;
+        this.fontScale = 8f;
+
+        if (retain)
+        {
+            RetainOnce();
+        }
+
+        UpdateThreshold();
     }
 
     public Integer GetCurrentThreshold()
@@ -117,7 +127,7 @@ public abstract class AbstractAffinityPower extends CommonPower
         this.owner = owner;
         this.amount = 0;
         this.enabled = true;
-        this.retained = false;
+        this.retainedTurns = 0;
         this.thresholdIndex = 0;
         this.updateDescription();
     }
@@ -158,9 +168,16 @@ public abstract class AbstractAffinityPower extends CommonPower
     {
         super.atStartOfTurn();
 
-        if (!retained && amount > 0)
+        if (this.retainedTurns == 0)
         {
-            reducePower(1);
+            if (amount > 0)
+            {
+                reducePower(1);
+            }
+        }
+        else if (this.retainedTurns > 0)
+        {
+            this.retainedTurns -= 1;
         }
     }
 }

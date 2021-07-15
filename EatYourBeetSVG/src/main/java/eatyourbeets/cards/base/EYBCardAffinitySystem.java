@@ -78,7 +78,6 @@ public class EYBCardAffinitySystem implements OnStartOfTurnSubscriber
         for (AbstractAffinityPower p : Powers)
         {
             p.atStartOfTurn();
-            if (!p.permanentlyRetained) p.retained = false;
         }
     }
 

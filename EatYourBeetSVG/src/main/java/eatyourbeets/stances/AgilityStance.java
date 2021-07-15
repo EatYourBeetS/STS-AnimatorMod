@@ -2,16 +2,18 @@ package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.effects.stance.StanceParticleHorizontal;
 import eatyourbeets.effects.stance.StanceParticleVertical;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.affinity.AgilityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class AgilityStance extends EYBStance
 {
+    public static final AffinityType AFFINITY = AgilityPower.AFFINITY_TYPE;
     public static final String STANCE_ID = CreateFullID(AgilityStance.class);
     public static final int STAT_GAIN_AMOUNT = 2;
     public static final int STAT_LOSE_AMOUNT = 1;
@@ -42,7 +44,7 @@ public class AgilityStance extends EYBStance
     {
         super.onEnterStance();
 
-        GameActions.Bottom.GainAgility(1, true);
+        GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
 
         if (TryApplyStance(STANCE_ID))
         {
@@ -68,7 +70,7 @@ public class AgilityStance extends EYBStance
     @Override
     public void onRefreshStance()
     {
-        CombatStats.Affinities.Agility.Retain();
+        GameUtilities.RetainPower(AFFINITY);
     }
 
     @Override

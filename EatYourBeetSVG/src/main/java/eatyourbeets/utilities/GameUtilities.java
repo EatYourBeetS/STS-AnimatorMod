@@ -44,6 +44,7 @@ import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
 
 import java.util.*;
@@ -1123,6 +1124,25 @@ public class GameUtilities
         }
 
         return false;
+    }
+
+    public static AbstractAffinityPower RetainPower(AffinityType type)
+    {
+        AbstractAffinityPower power = CombatStats.Affinities.GetPower(type);
+        if (power != null)
+        {
+            power.RetainOnce();
+        }
+
+        return power;
+    }
+
+    public static void RetainAllPowers()
+    {
+        for (AbstractAffinityPower p : CombatStats.Affinities.Powers)
+        {
+            p.RetainOnce();
+        }
     }
 
     public static void TriggerWhenPlayed(AbstractCard card, ActionT1<AbstractCard> onCardPlayed)

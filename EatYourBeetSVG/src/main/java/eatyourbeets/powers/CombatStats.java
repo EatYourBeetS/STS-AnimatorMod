@@ -27,7 +27,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinitySystem;
 import eatyourbeets.interfaces.subscribers.*;
-import eatyourbeets.powers.affinity.*;
+import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.common.ControllableCardPile;
@@ -651,37 +651,21 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         super.onApplyPower(power, target, source);
 
-        if (ForcePower.POWER_ID.equals(power.ID))
-        {
-            power.priority = -2100;
-        }
-        else if (AgilityPower.POWER_ID.equals(power.ID))
+        if (StrengthPower.POWER_ID.equals(power.ID))
         {
             power.priority = -2099;
         }
-        else if (IntellectPower.POWER_ID.equals(power.ID))
+        else if (DexterityPower.POWER_ID.equals(power.ID))
         {
             power.priority = -2098;
         }
-        else if (BlessingPower.POWER_ID.equals(power.ID))
+        else if (FocusPower.POWER_ID.equals(power.ID))
         {
             power.priority = -2097;
         }
-        else if (CorruptionPower.POWER_ID.equals(power.ID))
+        else if (VitalityPower.POWER_ID.equals(power.ID))
         {
             power.priority = -2096;
-        }
-        else if (StrengthPower.POWER_ID.equals(power.ID))
-        {
-            power.priority = -2095;
-        }
-        else if (DexterityPower.POWER_ID.equals(power.ID))
-        {
-            power.priority = -2094;
-        }
-        else if (FocusPower.POWER_ID.equals(power.ID))
-        {
-            power.priority = -2093;
         }
 
         for (OnApplyPowerSubscriber p : onApplyPower.GetSubscribers())

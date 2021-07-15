@@ -88,7 +88,7 @@ public class CardTooltips
     public EYBCardTooltip Chilled = FindByID("Chilled");
     public EYBCardTooltip Regeneration = FindByID("Regeneration");
     public EYBCardTooltip SelfDamage = FindByID("Self Damage");
-    public EYBCardTooltip CounterAttack = FindByID("Counter-Attack");
+    public EYBCardTooltip CounterAttack = FindByID("Counterattack");
     public EYBCardTooltip ElementalMastery = FindByID("Elemental Mastery");
     public EYBCardTooltip ElementalExposure = FindByID("Elemental Exposure");
     public EYBCardTooltip Void = FindByID("Void").ShowText(false);

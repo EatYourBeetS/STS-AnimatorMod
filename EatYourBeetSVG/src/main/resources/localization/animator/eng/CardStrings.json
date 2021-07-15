@@ -333,7 +333,7 @@
 		},
 		"animator:OrihimeInoue":
 		{
-			"DESCRIPTION": "Channel !M! [Fire] the next time you are attacked this turn.  || On Synergy: Gain !S! [Counter-Attack].",
+			"DESCRIPTION": "Channel !M! [Fire] the next time you are attacked this turn.  || On Synergy: Gain !S! [Counterattack].",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time you are attacked this turn, Channel #yFire."],
 			"NAME": "Orihime Inoue"
 		},
@@ -359,7 +359,7 @@
 		},
 		"animator:SosukeAizen":
 		{
-			"DESCRIPTION": "Gain {Phasing} X times. || Gain !M! [Counter-Attack].  [Counter-Attack] is not removed this combat.",
+			"DESCRIPTION": "Gain {Phasing} X times. || Gain !M! [Counterattack].  [Counterattack] is not removed this combat.",
 			"EXTENDED_DESCRIPTION": ["Whenever you take 0 attack damage this turn, deal #b{0} damage to the attacking enemy."],
 			"NAME": "Sosuke Aizen"
 		},
@@ -621,7 +621,7 @@
 		},
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M!. Gain effects based on each Scryed card's rarity: || {Basic} or {Common}: Gain !S! [Counter-Attack]. ** {Uncommon}: Draw !S! more card(s) next turn. ** {Rare}: Gain/Boost [I]",
+			"DESCRIPTION": "{Scry} !M!. Gain effects based on each Scryed card's rarity: || {Basic} or {Common}: Gain !S! [Counterattack]. ** {Uncommon}: Draw !S! more card(s) next turn. ** {Rare}: Gain/Boost [I]",
 			"NAME": "Lisa Minci"
 		},
 		"animator:Noelle":
@@ -970,7 +970,7 @@
 		},
 		"animator:YuukaKazami":
 		{
-			"DESCRIPTION": "This card can only be played on even numbered turns. || On Discard: Gain !S! [Counter-Attack].",
+			"DESCRIPTION": "This card can only be played on even numbered turns. || On Discard: Gain !S! [Counterattack].",
 			"NAME": "Yuuka Kazami"
 		},
 		"animator:YuyukoSaigyouji":
@@ -2181,6 +2181,11 @@
 			"DESCRIPTION": "Once per turn, when you ** draw a Curse: <DRW-M>. || At the start of turn: You may ** Purge a Hindrance in Exhaust ** pile to obtain a {Miracle}.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you draw a curse this turn, draw #b{1} cards.", "Choose up to {0} card(s) to Purge."],
 			"NAME": "Hina Kagiyama"
+		},
+		"animator:HinaKagiyama_Miracle":
+		{
+		  "DESCRIPTION": "Gain !M! [E].",
+		  "NAME": "Miracle"
 		},
 		"animator:IchigoBankai":
 		{

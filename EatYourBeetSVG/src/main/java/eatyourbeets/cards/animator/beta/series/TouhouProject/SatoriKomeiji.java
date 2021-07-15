@@ -24,6 +24,7 @@ public class SatoriKomeiji extends AnimatorCard
         Initialize(0, 0, 1, 0);
         SetUpgrade(0, 0, 0, 0);
         SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
 
         SetCostUpgrade(-1);
     }

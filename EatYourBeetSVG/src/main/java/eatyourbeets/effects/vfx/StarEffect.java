@@ -89,7 +89,7 @@ public class StarEffect extends EYBEffect
         if (vfxTimer < 0f)
         {
             vfxTimer = 0.016f;
-            GameEffects.Queue.Add(new StarParticleEffect(x, y, color));
+            GameEffects.Queue.Add(new StarParticleEffect(x, y, Color.WHITE));
         }
 
         super.UpdateInternal(deltaTime);

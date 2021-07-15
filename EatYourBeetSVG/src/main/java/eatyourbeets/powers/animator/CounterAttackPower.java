@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.affinity.AgilityPower;
-import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -54,7 +53,7 @@ public class CounterAttackPower extends AnimatorPower
     @Override
     public void updateDescription()
     {
-        this.amount = baseAmount + getForceAgilityAmount();
+        this.amount = baseAmount + getAgilityAmount();
 
         if (removePower)
         {
@@ -105,17 +104,11 @@ public class CounterAttackPower extends AnimatorPower
         return super.onAttackedToChangeDamage(info, damageAmount);
     }
 
-    private int getForceAgilityAmount()
+    private int getAgilityAmount()
     {
         int amount = 0;
 
-        int force = GameUtilities.GetPowerAmount(player, ForcePower.POWER_ID);
-        if (force > 0)
-        {
-            amount += force;
-        }
-
-        int agility = GameUtilities.GetPowerAmount(player, AgilityPower.POWER_ID);
+        int agility = GameUtilities.GetPowerAmount(owner, AgilityPower.POWER_ID);
         if (agility > 0)
         {
             amount += agility;

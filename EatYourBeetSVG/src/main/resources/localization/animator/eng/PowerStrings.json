@@ -47,8 +47,8 @@
 	},
 	"animator:CounterAttackPower":
 	{
-	  "DESCRIPTIONS": ["The next time you are attacked, deal #b", "Whenever you are attacked, deal #b", " damage to the attacker.  Scales with Force and Agility."],
-	  "NAME": "Counter-Attack"
+	  "DESCRIPTIONS": ["The next time you are attacked, deal #b", "Whenever you are attacked, deal #b", " damage to the attacker.  Scales with Agility."],
+	  "NAME": "Counterattack"
 	},
 	"animator:CursedStabsPower":
 	{

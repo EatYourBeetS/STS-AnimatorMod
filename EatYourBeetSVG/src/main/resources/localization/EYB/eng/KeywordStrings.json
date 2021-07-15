@@ -84,11 +84,11 @@
 		"NAMES": ["corruption"],
 		"PROPER_NAME": "Corruption"
 	},
-	"Counter-Attack":
+	"Counterattack":
 	{
 		"DESCRIPTION": "The next time you are attacked, deal damage to the attacker.",
-		"NAMES": ["counter attack", "counter-attack", "Counter Attack"],
-		"PROPER_NAME": "Counter-Attack"
+		"NAMES": ["counter attack", "counter-attack", "Counter Attack", "counterattack"],
+		"PROPER_NAME": "Counterattack"
 	},
 	"Cycle":
 	{

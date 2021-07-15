@@ -245,6 +245,29 @@ public class EYBCardAffinities
         return scaling;
     }
 
+    public int GetUpgrade(AffinityType type)
+    {
+        return GetUpgrade(type, true);
+    }
+
+    public int GetUpgrade(AffinityType type, boolean useStar)
+    {
+        int star = (Star != null ? Star.upgrade : 0);
+        if (type == AffinityType.Star || (useStar && star > 0))
+        {
+            return star;
+        }
+        else if (type == null) // Highest level among all affinities
+        {
+            return List.isEmpty() ? star : List.get(0).upgrade;
+        }
+        else
+        {
+            EYBCardAffinity affinity = Get(type);
+            return (affinity != null) ? affinity.upgrade : 0;
+        }
+    }
+
     public int GetLevel(AffinityType type)
     {
         return GetLevel(type, true);

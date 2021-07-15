@@ -14,7 +14,10 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.ui.controls.GUI_CardGrid;
 import eatyourbeets.ui.controls.GUI_Toggle;
 import eatyourbeets.utilities.EYBFontHelper;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.InputManager;
+
+import java.util.ArrayList;
 
 public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
 {
@@ -51,6 +54,11 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
     private boolean draggingScreen = false;
     private Color screenColor;
     private GUI_CardGrid grid;
+
+    public ShowCardPileEffect(ArrayList<AbstractCard> cards)
+    {
+        this(GameUtilities.CreateCardGroup(cards));
+    }
 
     public ShowCardPileEffect(CardGroup cards)
     {

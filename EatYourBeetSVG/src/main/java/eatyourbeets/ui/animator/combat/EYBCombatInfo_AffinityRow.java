@@ -25,10 +25,10 @@ public class EYBCombatInfo_AffinityRow extends GUIElement
     protected static final Color COLOR_CARD_AFFINITY = new Color(0.5f, 0.5f, 0.5f, 0.75f);
     protected static final Color COLOR_DEFAULT = new Color(0.05f, 0.05f, 0.05f, 1f);
 
-    protected final GUI_Image background_image;
-    protected final GUI_Image affinity_image;
-    protected final GUI_Label affinity_text;
-    protected final GUI_Image synergy_icon;
+    protected final GUI_Image image_background;
+    protected final GUI_Image image_affinity;
+    protected final GUI_Label text_affinity;
+    protected final GUI_Image image_synergy;
 
     public EYBCombatInfo_AffinityRow(AffinityType type, Hitbox hb, int index, int max)
     {
@@ -36,50 +36,50 @@ public class EYBCombatInfo_AffinityRow extends GUIElement
 
         float offset_y = -0.5f -(index * 0.975f);
 
-        background_image = new GUI_Image(GR.Common.Images.Panel_Rounded_Half_H.Texture(),
+        image_background = new GUI_Image(GR.Common.Images.Panel_Rounded_Half_H.Texture(),
                 new RelativeHitbox(hb, 1, 1, 0.5f, offset_y))
                 .SetColor(COLOR_DEFAULT);
 
-        affinity_image = new GUI_Image(type.GetIcon(),
+        image_affinity = new GUI_Image(type.GetIcon(),
                 new RelativeHitbox(hb, Scale(36), Scale(36), Scale(12f), offset_y * hb.height, false));
 
-        affinity_text = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
+        text_affinity = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
                 new RelativeHitbox(hb, 0.5f, 1f, 0.55f, offset_y))
                 .SetAlignment(0.5f, 0.5f)
                 .SetText("-");
 
-        synergy_icon = new GUI_Image(GR.Common.Images.Arrow_Right.Texture(), //type.GetSynergyEffectIcon(),
+        image_synergy = new GUI_Image(GR.Common.Images.Arrow_Right.Texture(), //type.GetSynergyEffectIcon(),
                 new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(10f), offset_y * hb.height, false));
 
-        synergy_icon.SetActive(type != AffinityType.Star);
+        image_synergy.SetActive(type != AffinityType.Star);
     }
 
     public void Update(EYBCardAffinities handAffinities, EYBCardAffinities cardAffinities, EYBCardAffinities strongSynergies, boolean draggingCard)
     {
         boolean synergyEffectAvailable = !CombatStats.HasActivatedSemiLimited(Type.name());
         int total = handAffinities.GetLevel(Type, false);
-        affinity_text.SetText(total);// > 0 ? total : "-");
-        synergy_icon.color.a = synergyEffectAvailable ? 1f : 0.35f;
+        text_affinity.SetText(total);// > 0 ? total : "-");
+        image_synergy.color.a = synergyEffectAvailable ? 1f : 0.35f;
 
         int level = strongSynergies == null ? 0 : strongSynergies.GetLevel(Type, false);
         if (level == 2 && synergyEffectAvailable && CombatStats.Affinities.GetLastAffinityLevel(Type) > 0)
         {
-            background_image.SetColor(COLOR_LV2_SYNERGY);
+            image_background.SetColor(COLOR_LV2_SYNERGY);
         }
         else
         {
             level = cardAffinities == null ? 0 : cardAffinities.GetLevel(Type, false);
             if (level == 0)
             {
-                background_image.SetColor(COLOR_DEFAULT);
+                image_background.SetColor(COLOR_DEFAULT);
             }
             else
             {
-                background_image.SetColor(COLOR_CARD_AFFINITY);
+                image_background.SetColor(COLOR_CARD_AFFINITY);
             }
         }
 
-        if (!draggingCard && background_image.hb.hovered)
+        if (!draggingCard && image_background.hb.hovered)
         {
             for (AbstractCard c : AbstractDungeon.player.hand.group)
             {
@@ -97,23 +97,23 @@ public class EYBCombatInfo_AffinityRow extends GUIElement
     @Override
     public void Update()
     {
-        background_image.TryUpdate();
-        affinity_image.TryUpdate();
-        affinity_text.TryUpdate();
-        synergy_icon.TryUpdate();
+        image_background.TryUpdate();
+        image_affinity.TryUpdate();
+        text_affinity.TryUpdate();
+        image_synergy.TryUpdate();
     }
 
     @Override
     public void Render(SpriteBatch sb)
     {
-        background_image.TryRender(sb);
-        affinity_image.TryRender(sb);
-        affinity_text.TryRender(sb);
-        synergy_icon.TryRender(sb);
+        image_background.TryRender(sb);
+        image_affinity.TryRender(sb);
+        text_affinity.TryRender(sb);
+        image_synergy.TryRender(sb);
 
-        if (synergy_icon.isActive)
+        if (image_synergy.isActive)
         {
-            CombatStats.Affinities.GetPower(Type).Render(sb, background_image.hb);
+            CombatStats.Affinities.GetPower(Type).Render(sb, image_background.hb);
         }
     }
 }

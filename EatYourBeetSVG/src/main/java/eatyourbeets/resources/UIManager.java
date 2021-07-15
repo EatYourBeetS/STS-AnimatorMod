@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.ui.AbstractScreen;
-import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardAffinities;
+import eatyourbeets.ui.animator.cardReward.CardAffinityPanel;
 import eatyourbeets.ui.animator.combat.EYBCombatScreen;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorSeriesSelectScreen;
 import eatyourbeets.ui.common.EYBSingleCardPopup;
@@ -24,11 +24,11 @@ public class UIManager
     public EYBSingleCardPopup CardPopup;
     public AbstractScreen CurrentScreen;
     public AnimatorSeriesSelectScreen SeriesSelection;
-    public AnimatorCardRewardAffinities CardAffinities;
+    public CardAffinityPanel CardAffinities;
 
     public void Initialize()
     {
-        CardAffinities = new AnimatorCardRewardAffinities();
+        CardAffinities = new CardAffinityPanel();
         CombatScreen = new EYBCombatScreen();
         CardPopup = new EYBSingleCardPopup();
         SeriesSelection = new AnimatorSeriesSelectScreen();

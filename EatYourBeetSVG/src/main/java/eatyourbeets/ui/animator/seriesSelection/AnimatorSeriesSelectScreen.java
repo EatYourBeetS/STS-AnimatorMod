@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.random.Random;
+import eatyourbeets.cards.base.CardAffinityComparator;
 import eatyourbeets.cards.base.CardSeriesComparator;
 import eatyourbeets.effects.card.ShowCardPileEffect;
 import eatyourbeets.interfaces.delegates.FuncT1;
@@ -24,6 +25,7 @@ import eatyourbeets.ui.controls.*;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.Collection;
@@ -61,7 +63,8 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
         cardGrid = new GUI_CardGrid(0.41f)
         .SetOnCardClick(this::OnCardClicked)
-        .SetOnCardRightClick(this::OnCardRightClicked);
+        .SetOnCardRightClick(this::OnCardRightClicked)
+        .ShowScrollbar(false);
 
         startingDeck = new GUI_Label(null, new AdvancedHitbox(ScreenW(0.18f), ScreenH(0.05f))
         .SetPosition(ScreenW(0.08f), ScreenH(0.97f)))
@@ -115,7 +118,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
         previewCards = CreateHexagonalButton(xPos, getY.Invoke(9f), buttonWidth, buttonHeight)
         .SetText(buttonStrings.ShowCardPool)
-        .SetOnClick(() -> PreviewCards(null))
+        .SetOnClick(() -> PreviewCardPool(null))
         .SetColor(Color.LIGHT_GRAY);
 
         confirm = CreateHexagonalButton(xPos, getY.Invoke(10f), buttonWidth, buttonHeight * 1.1f)
@@ -228,7 +231,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     {
         if (previewCardsEffect == null)
         {
-            PreviewCards(card);
+            PreviewCardPool(card);
         }
     }
 
@@ -263,7 +266,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         }
     }
 
-    public void PreviewCards(AbstractCard source)
+    public void PreviewCardPool(AbstractCard source)
     {
         final CardGroup cards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         if (source != null)
@@ -292,8 +295,14 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         cards.group.sort(new CardSeriesComparator());
         cards.sortByRarity(true);
 
+        PreviewCards(cards);
+    }
+
+    public void PreviewCards(CardGroup cards)
+    {
         previewCardsEffect = new ShowCardPileEffect(cards)
         .SetStartingPosition(InputHelper.mX, InputHelper.mY);
+        GameEffects.Unlisted.add(previewCardsEffect);
     }
 
     public void Deselect(AbstractCard card)
@@ -356,7 +365,19 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     {
         if (GR.UI.CardAffinities.isActive)
         {
-            GR.UI.CardAffinities.Open(container.GetAllCardsInPool());
+            GR.UI.CardAffinities.Open(container.GetAllCardsInPool(), c ->
+            {
+                CardGroup group = GameUtilities.CreateCardGroup(c.AffinityGroup.GetCards());
+                if (group.size() > 0 && previewCardsEffect == null)
+                {
+                    group.sortByRarity(true);
+                    group.sortAlphabetically(true);
+                    group.group.sort(new CardSeriesComparator());
+                    group.group.sort(new CardAffinityComparator(c.Type));
+
+                    PreviewCards(group);
+                }
+            });
         }
 
         selectionAmount.SetText(totalCards + " cards selected.");

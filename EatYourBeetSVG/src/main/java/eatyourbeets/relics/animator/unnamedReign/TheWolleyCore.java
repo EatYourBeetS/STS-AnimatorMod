@@ -63,4 +63,14 @@ public class TheWolleyCore extends UnnamedReignRelic
     {
 
     }
+
+    public String GetTimeMazeString()
+    {
+        return " NL #y" + name.replace(" ", " #y") + " protects, increasing the card play limit by #b" + GetTimeMazeLimitIncrease() + ".";
+    }
+
+    public int GetTimeMazeLimitIncrease()
+    {
+        return 2;
+    }
 }

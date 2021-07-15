@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.screens.MasterDeckViewScreen;
+import eatyourbeets.cards.base.CardAffinityComparator;
 import eatyourbeets.resources.GR;
 
 public class MasterDeckViewScreenPatches
@@ -38,10 +39,13 @@ public class MasterDeckViewScreenPatches
     @SpirePatch(clz= MasterDeckViewScreen.class, method="open")
     public static class MasterDeckViewScreen_Open
     {
+        private static MasterDeckViewScreen screen;
+
         @SpirePrefixPatch
         public static void Prefix(MasterDeckViewScreen __instance)
         {
-            GR.UI.CardAffinities.Open(AbstractDungeon.player.masterDeck.group);
+            screen = __instance;
+            GR.UI.CardAffinities.Open(AbstractDungeon.player.masterDeck.group, c -> screen.setSortOrder(new CardAffinityComparator(c.Type)));
         }
     }
 

@@ -22,7 +22,6 @@ public class LeleiLaLalena extends AnimatorCard
         Initialize(0, 0, 1);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(1);
 
         SetEvokeOrbCount(1);
     }

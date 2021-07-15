@@ -117,6 +117,11 @@ public class GUI_Button extends GUIElement
         return this;
     }
 
+    public boolean IsInteractable()
+    {
+        return interactable && onClick != null;
+    }
+
     @Override
     public void Update()
     {
@@ -157,7 +162,9 @@ public class GUI_Button extends GUIElement
     {
         if (currentAlpha > 0)
         {
-            this.RenderButton(sb);
+            boolean interactable = IsInteractable();
+
+            this.RenderButton(sb, interactable);
 
             if (StringUtils.isNotEmpty(text))
             {
@@ -177,7 +184,7 @@ public class GUI_Button extends GUIElement
         }
     }
 
-    protected void RenderButton(SpriteBatch sb)
+    protected void RenderButton(SpriteBatch sb, boolean interactable)
     {
         background.SetColor(buttonColor).Render(sb, hb);
 
@@ -212,7 +219,7 @@ public class GUI_Button extends GUIElement
         this.hb.clicked = false;
         this.currentClickDelay = clickDelay;
 
-        if (interactable && onClick != null)
+        if (IsInteractable())
         {
             onClick.Invoke();
         }

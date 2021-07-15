@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
+import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.relics.EYBRelic;
 
 public class DialogRelicButton extends LargeDialogOptionButton
 {
@@ -35,10 +37,14 @@ public class DialogRelicButton extends LargeDialogOptionButton
 
         if (this.hb.hovered)
         {
-            TipHelper.queuePowerTips(
-            this.hb.x + this.hb.width * 0.5f,
-            this.hb.y + this.hb.height * 3f,
-            relicPreview.tips);
+            if (relicPreview instanceof EYBRelic)
+            {
+                EYBCardTooltip.QueueTooltips((EYBRelic) relicPreview); //hb.x + hb.width * 0.5f, hb.y + hb.height * 3f, relicPreview.tips);
+            }
+            else
+            {
+                TipHelper.queuePowerTips(hb.x + hb.width * 0.5f, hb.y + hb.height * 3f, relicPreview.tips);
+            }
         }
     }
 }

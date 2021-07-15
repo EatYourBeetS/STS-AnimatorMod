@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import eatyourbeets.actions.orbs.ShuffleOrbs;
 import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Jibril extends AnimatorCard
 {
@@ -45,6 +45,6 @@ public class Jibril extends AnimatorCard
             GameActions.Bottom.Add(new TriggerOrbPassiveAbility(magicNumber, false, true));
         }
 
-        CombatStats.Affinities.Intellect.Retain();
+        GameUtilities.RetainPower(AffinityType.Blue);
     }
 }

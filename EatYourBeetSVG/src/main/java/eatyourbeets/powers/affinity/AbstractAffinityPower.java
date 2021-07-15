@@ -26,7 +26,7 @@ public abstract class AbstractAffinityPower extends CommonPower
     protected int thresholdIndex;
 
     public AffinityType affinityType;
-    public boolean retained;
+    public int retainedTurns;
 
     public AbstractAffinityPower(AffinityType type, String powerID, AbstractCreature owner, int amount)
     {
@@ -51,23 +51,22 @@ public abstract class AbstractAffinityPower extends CommonPower
         final float cX = hb.cX + w + (5 * scale);
         final float cY = hb.cY;
 
-        if (retained)
+        if (retainedTurns != 0)
         {
             RenderHelpers.DrawCentered(sb, Settings.HALF_TRANSPARENT_WHITE_COLOR, GR.Common.Images.Panel_Rounded_Half_H.Texture(), cX, cY, (w / scale) + 9, (h / scale) + 9, 1, 0);
         }
         RenderHelpers.DrawCentered(sb, Color.BLACK, GR.Common.Images.Panel_Rounded_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
-        RenderHelpers.DrawCentered(sb, Color.WHITE, img, x + 16 * scale, cY + (3f * scale), 32, 32, 1, 0);
+        RenderHelpers.DrawCentered(sb, new Color(1, 1, 1, enabled ? 1 : 0.5f), img, x + 16 * scale, cY + (3f * scale), 32, 32, 1, 0);
 
         final Integer threshold = GetCurrentThreshold();
-        final Color textColor = amount == 0 ? Settings.CREAM_COLOR : retained ? Settings.BLUE_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
         if (threshold != null)
         {
             FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (threshold < 10 ? 70 : 75) * scale, y, 1, Settings.CREAM_COLOR);
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 44 * scale, y, fontScale, textColor);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 44 * scale, y, fontScale, Settings.GREEN_TEXT_COLOR);
         }
         else
         {
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 52 * scale, y, fontScale, textColor);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 52 * scale, y, fontScale, Settings.BLUE_TEXT_COLOR);
         }
 
         for (AbstractGameEffect e : effects)
@@ -76,19 +75,32 @@ public abstract class AbstractAffinityPower extends CommonPower
         }
     }
 
-    public void Retain()
+    public void RetainOnce()
     {
-        this.retained = true;
+        if (this.retainedTurns == 0)
+        {
+            this.retainedTurns = 1;
+        }
+    }
+
+    public void Retain(int turns, boolean relative)
+    {
+        this.retainedTurns = (relative ? (retainedTurns + turns) : turns);
     }
 
     public void Stack(int amount, boolean retain)
     {
+        if (!enabled && amount > 0)
+        {
+            return;
+        }
+
         this.amount += amount;
         this.fontScale = 8f;
 
         if (retain)
         {
-            Retain();
+            RetainOnce();
         }
 
         UpdateThreshold();
@@ -115,7 +127,7 @@ public abstract class AbstractAffinityPower extends CommonPower
         this.owner = owner;
         this.amount = 0;
         this.enabled = true;
-        this.retained = false;
+        this.retainedTurns = 0;
         this.thresholdIndex = 0;
         this.updateDescription();
     }
@@ -156,9 +168,16 @@ public abstract class AbstractAffinityPower extends CommonPower
     {
         super.atStartOfTurn();
 
-        if (!retained && amount > 0)
+        if (this.retainedTurns == 0)
         {
-            reducePower(1);
+            if (amount > 0)
+            {
+                reducePower(1);
+            }
+        }
+        else if (this.retainedTurns > 0)
+        {
+            this.retainedTurns -= 1;
         }
     }
 }

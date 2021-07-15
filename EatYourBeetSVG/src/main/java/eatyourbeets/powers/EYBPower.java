@@ -136,6 +136,13 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
         GameActions.Bottom.RemovePower(owner, owner, this);
     }
 
+    public EYBPower SetEnabled(boolean enable)
+    {
+        this.enabled = enable;
+
+        return this;
+    }
+
     @Override
     public void flash()
     {

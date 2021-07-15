@@ -526,9 +526,9 @@
 		},
 		"animator:ShidoItsuka":
 		{
-			"DESCRIPTION": "Synergizes with Date-a-Live cards. || Add 1 of !M! cards that would ** Synergize with this card to ** your discard pile. || Synergy: Add it to your ** draw pile instead.",
+			"DESCRIPTION": "This card Synergizes ** with Date-a-Live cards. || Add 1 of !M! cards that would ** Synergize with this card to ** your discard pile.",
 			"NAME": "Shido Itsuka",
-			"UPGRADE_DESCRIPTION": "Add 1 of !M! Upgraded cards ** that would Synergize with ** this card to your discard pile. || Synergy: Add it to your ** draw pile instead."
+			"UPGRADE_DESCRIPTION": "This card Synergizes ** with Date-a-Live cards. || Add 1 of !M! Upgraded cards ** that would Synergize with ** this card to your Draw pile."
 		},
 		"animator:Strike_DateALive":
 		{
@@ -651,7 +651,7 @@
 		},
 		"animator:Venti":
 		{
-			"DESCRIPTION": "{Channel} 1 [Aether]. || Cycle !M! cards. Trigger your last [Aether] for every Skill  ** drawn from this card. ** If you drew at least 2 {Hindrances}, Draw a card.",
+			"DESCRIPTION": "{Channel} 1 [Aether]. || Cycle !M! cards. Trigger your last [Aether] for every Skill drawn from this card. ** If you drew at least 2 {Hindrances}, Draw a card.",
 			"NAME": "Venti"
 		},
 		"animator:Zhongli":

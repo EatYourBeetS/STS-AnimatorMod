@@ -27,7 +27,7 @@ public class ShidoItsuka extends AnimatorCard
 
         Initialize(0, 8, 3);
         SetUpgrade(0, 0);
-        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Blue(1, 0, 0);
 
         SetExhaust(true);
     }
@@ -90,7 +90,7 @@ public class ShidoItsuka extends AnimatorCard
                 {
                     if (cards.size() > 0)
                     {
-                        if (isSynergizing)
+                        if (upgraded)
                         {
                             GameActions.Bottom.MakeCardInDrawPile(cards.get(0))
                                     .SetDuration(Settings.ACTION_DUR_FASTER, true);

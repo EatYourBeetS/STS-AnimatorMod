@@ -21,6 +21,7 @@ public class InverseTohka extends AnimatorCard
 
         Initialize(10, 0, 10);
         SetAffinity_Red(2, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
     }
 
     @Override

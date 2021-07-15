@@ -23,8 +23,8 @@ public class InverseOrigami extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0);
-        SetAffinity_Blue(1, 0, 0);
-        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Dark(1, 0, 0);
     }
 
     @Override

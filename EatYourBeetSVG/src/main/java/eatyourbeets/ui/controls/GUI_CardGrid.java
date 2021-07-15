@@ -28,7 +28,7 @@ public class GUI_CardGrid extends GUIElement
 
     public final GUI_VerticalScrollBar scrollBar;
     public final ArrayList<AbstractCard> cards;
-    public boolean autoShowScrollbar = true;
+    public boolean autoShowScrollbar;
     public boolean draggingScreen;
     public AbstractCard hoveredCard = null;
     public String message = null;

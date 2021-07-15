@@ -10,7 +10,7 @@ import eatyourbeets.utilities.RandomizedList;
 public class Curse_Delusion extends AnimatorCard_Curse
 {
     public static final EYBCardData DATA = Register(Curse_Delusion.class)
-            .SetCurse(-2, EYBCardTarget.None);
+            .SetCurse(-2, EYBCardTarget.None).SetSeries(CardSeries.GenshinImpact);
     static
     {
         DATA.CardRarity = CardRarity.SPECIAL;
@@ -18,19 +18,11 @@ public class Curse_Delusion extends AnimatorCard_Curse
 
     public Curse_Delusion()
     {
-        super(DATA, false);
-
-        SetSeries(CardSeries.GenshinImpact);
+        super(DATA, true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-
-    }
-
-    @Override
-    public void triggerOnEndOfTurnForPlayingCard()
     {
         GameActions.Bottom.Callback(() ->
         {

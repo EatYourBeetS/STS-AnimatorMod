@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Curse_Depression extends AnimatorCard_Curse
 {
     public static final EYBCardData DATA = Register(Curse_Depression.class)
-            .SetCurse(-2, EYBCardTarget.None);
+            .SetCurse(-2, EYBCardTarget.None).SetSeries(CardSeries.DateALive);
     static
     {
         DATA.CardRarity = CardRarity.SPECIAL;
@@ -21,8 +21,6 @@ public class Curse_Depression extends AnimatorCard_Curse
     public Curse_Depression()
     {
         super(DATA, true);
-
-        SetSeries(CardSeries.DateALive);
     }
 
     @Override

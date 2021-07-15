@@ -333,7 +333,7 @@
 		},
 		"animator:OrihimeInoue":
 		{
-			"DESCRIPTION": "Channel !M! [Fire] the next time you are attacked this turn.  || On Synergy: Gain !S! {Counter-Attack}.",
+			"DESCRIPTION": "Channel !M! [Fire] the next time you are attacked this turn.  || On Synergy: Gain !S! [Counter-Attack].",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time you are attacked this turn, Channel #yFire."],
 			"NAME": "Orihime Inoue"
 		},
@@ -359,7 +359,7 @@
 		},
 		"animator:SosukeAizen":
 		{
-			"DESCRIPTION": "Gain {Phasing} X times. || Gain !M! {Counter-Attack}.  {Counter-Attack} is not removed this combat.",
+			"DESCRIPTION": "Gain {Phasing} X times. || Gain !M! [Counter-Attack].  [Counter-Attack] is not removed this combat.",
 			"EXTENDED_DESCRIPTION": ["Whenever you take 0 attack damage this turn, deal #b{0} damage to the attacking enemy."],
 			"NAME": "Sosuke Aizen"
 		},
@@ -621,18 +621,18 @@
 		},
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M!. Gain effects based on each Scryed card's rarity: || {Basic} or {Common}: Gain [Block]. ** {Uncommon}: Draw !S! more card(s) next turn. ** {Rare}: Gain [I]",
+			"DESCRIPTION": "{Scry} !M!. Gain effects based on each Scryed card's rarity: || {Basic} or {Common}: Gain !S! [Counter-Attack]. ** {Uncommon}: Draw !S! more card(s) next turn. ** {Rare}: Gain/Boost [I]",
 			"NAME": "Lisa Minci"
 		},
 		"animator:Noelle":
 		{
-			"DESCRIPTION": "{Starter}: If you have [Earth], trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || Synergy. Gain extra [Block] equal to Teamwork (up to !M!).",
+			"DESCRIPTION": "{Starter}: If you have [Earth], trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || <SLM>. Gain extra [Block] equal to <L> (up to !M!).",
 			"NAME": "Noelle"
 		},
 		"animator:Oz":
 		{
-		  "DESCRIPTION": "Gain 1 Orb Slot. || When you play your first Spellcaster of the turn, randomly Channel 1 [Lightning] or [Dark].",
-		  "EXTENDED_DESCRIPTION": ["The first #b{0} Spellcaster(s) played this turn will also randomly Channel 1 #yLightning or #yDark. You have played #b{1} Spellcaster(s)."],
+		  "DESCRIPTION": "Gain 1 Orb Slot. || The first time you play a LV.2 <B> card each turn, randomly Channel 1 [Lightning] or [Dark].",
+		  "EXTENDED_DESCRIPTION": ["The first #b{0} LV.2 Blue card(s) played this turn will also randomly Channel 1 #yLightning or #yDark. You have played #b{1} LV.2 Blue card(s)."],
 		  "NAME": "Oz"
 		},
 		"animator:Strike_GenshinImpact":
@@ -970,7 +970,7 @@
 		},
 		"animator:YuukaKazami":
 		{
-			"DESCRIPTION": "This card can only be played on even numbered turns. || On Discard: Gain !S! {Counter-Attack}.",
+			"DESCRIPTION": "This card can only be played on even numbered turns. || On Discard: Gain !S! [Counter-Attack].",
 			"NAME": "Yuuka Kazami"
 		},
 		"animator:YuyukoSaigyouji":

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.AnimatorPower;
@@ -23,7 +24,7 @@ public class Kirakishou extends AnimatorCard_UltraRare
     public static final EYBCardData DATA
     	= Register(Kirakishou.class)
     	. SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.Normal)
-    	. SetColor(CardColor.COLORLESS);
+    	. SetColor(CardColor.COLORLESS).SetSeries(CardSeries.RozenMaiden);
 
     private final DrawPileCardPreview drawpilecardpreview =
             new DrawPileCardPreview(Kirakishou::FindTopCard);

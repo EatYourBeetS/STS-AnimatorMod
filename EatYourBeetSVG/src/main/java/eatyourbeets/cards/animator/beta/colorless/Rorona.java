@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Rorona extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Rorona.class).SetPower(3, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Rorona.class).SetPower(3, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Atelier);
 
     public Rorona()
     {
@@ -24,7 +24,6 @@ public class Rorona extends AnimatorCard
         Initialize(0, 0, 0);
         SetCostUpgrade(-1);
 
-        SetSeries(CardSeries.Atelier);
         SetAffinity_Blue(1);
     }
 

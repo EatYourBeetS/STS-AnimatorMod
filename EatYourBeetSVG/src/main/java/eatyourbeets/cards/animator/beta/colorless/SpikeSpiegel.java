@@ -14,7 +14,7 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class SpikeSpiegel extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SpikeSpiegel.class).SetAttack(3, CardRarity.RARE).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(SpikeSpiegel.class).SetAttack(3, CardRarity.RARE).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.CowboyBebop);
 
     static
     {
@@ -28,7 +28,6 @@ public class SpikeSpiegel extends AnimatorCard
         Initialize(18, 0, 0);
         SetUpgrade(2, 0, 0);
 
-        SetSeries(CardSeries.CowboyBebop);
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
     }

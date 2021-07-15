@@ -4,9 +4,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Strike_GenshinImpact extends Strike
 {
@@ -27,6 +28,6 @@ public class Strike_GenshinImpact extends Strike
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        CombatStats.Affinities.Intellect.Retain();
+        GameUtilities.RetainPower(AffinityType.Blue);
     }
 }

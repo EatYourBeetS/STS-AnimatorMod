@@ -3,9 +3,10 @@ package eatyourbeets.cards.animator.beta.basic;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.basic.Defend;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Defend_Rewrite extends Defend
 {
@@ -26,6 +27,6 @@ public class Defend_Rewrite extends Defend
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(this.block);
-        CombatStats.Affinities.Agility.Retain();
+        GameUtilities.RetainPower(AffinityType.Green);
     }
 }

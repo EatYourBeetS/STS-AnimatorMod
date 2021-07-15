@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Megunee extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(Megunee.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Megunee.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GakkouGurashi);
     static
     {
         DATA.AddPreview(new Megunee_Zombie(), true);
@@ -31,7 +31,6 @@ public class Megunee extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
         SetUpgrade(0, 2, 1);
         SetCooldown(1, 0, this::OnCooldownCompleted);
 
-        SetSeries(CardSeries.GakkouGurashi);
         SetAffinity_Light(1);
     }
 

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Lightning;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -62,7 +63,7 @@ public class Oz extends AnimatorCard
 
             super.onPlayCard(card, m);
 
-            if (this.spellcastersPlayed < this.amount && card.tags.contains(SPELLCASTER)) {
+            if (this.spellcastersPlayed < this.amount && card instanceof AnimatorCard && ((AnimatorCard) card).affinities.GetLevel(AffinityType.Blue) > 1) {
                 GameActions.Bottom.ChannelOrb(rng.randomBoolean(0.5f) ? new Dark() : new Lightning());
                 this.spellcastersPlayed += 1;
                 updateDescription();

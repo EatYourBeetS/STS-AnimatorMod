@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
 import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.animator.beta.series.RozenMaiden.Suigintou;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
@@ -17,7 +18,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Suigintou_BlackFeather extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Suigintou_BlackFeather.class)
-    		.SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.Random);
+    		.SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.Random).SetSeries(CardSeries.RozenMaiden);
 
     static
     {

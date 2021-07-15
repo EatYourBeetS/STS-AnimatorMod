@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.PetalEffect;
 import eatyourbeets.actions.special.KillCharacterAction;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
@@ -22,7 +23,7 @@ import eatyourbeets.utilities.JUtils;
 
 public class YuyukoSaigyouji extends AnimatorCard_UltraRare implements StartupCard
 {
-    public static final EYBCardData DATA = Register(YuyukoSaigyouji.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(YuyukoSaigyouji.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.TouhouProject);
 
     public YuyukoSaigyouji()
     {

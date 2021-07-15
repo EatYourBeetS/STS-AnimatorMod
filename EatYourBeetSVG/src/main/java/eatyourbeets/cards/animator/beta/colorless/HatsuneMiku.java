@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class HatsuneMiku extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HatsuneMiku.class).SetPower(1, CardRarity.RARE).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(HatsuneMiku.class).SetPower(1, CardRarity.RARE).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Vocaloid);
 
     public HatsuneMiku()
     {
@@ -21,7 +21,6 @@ public class HatsuneMiku extends AnimatorCard
         SetCostUpgrade(-1);
         SetRetain(true);
 
-        SetSeries(CardSeries.Vocaloid);
         SetAffinity_Light(1);
     }
 

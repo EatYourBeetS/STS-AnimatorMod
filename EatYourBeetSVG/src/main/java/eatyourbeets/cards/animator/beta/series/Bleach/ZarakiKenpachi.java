@@ -42,9 +42,9 @@ public class ZarakiKenpachi extends AnimatorCard
 
             this.amount = amount;
 
-            CombatStats.Affinities.Force.SetPermanentlyRetained(true);
-            CombatStats.Affinities.Agility.SetDisabled(true);
-            CombatStats.Affinities.Intellect.SetDisabled(true);
+            CombatStats.Affinities.Force.Retain(-1, false);
+            CombatStats.Affinities.Agility.SetEnabled(false);
+            CombatStats.Affinities.Intellect.SetEnabled(false);
 
             CombatStats.onBlockBroken.Subscribe(this);
             CombatStats.onStartOfTurnPostDraw.Subscribe(this);
@@ -64,9 +64,9 @@ public class ZarakiKenpachi extends AnimatorCard
         {
             super.onRemove();
 
-            CombatStats.Affinities.Force.SetPermanentlyRetained(false);
-            CombatStats.Affinities.Agility.SetDisabled(false);
-            CombatStats.Affinities.Intellect.SetDisabled(false);
+            CombatStats.Affinities.Force.Retain(0, false);
+            CombatStats.Affinities.Agility.SetEnabled(true);
+            CombatStats.Affinities.Intellect.SetEnabled(true);
 
             CombatStats.onBlockBroken.Unsubscribe(this);
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);

@@ -71,7 +71,7 @@ public class IkkakuMadarame extends AnimatorCard
 
             if (player.hasPower(ZarakiKenpachi.ZarakiKenpachiPower.POWER_ID))
             {
-                CombatStats.Affinities.Agility.SetDisabled(false);
+                CombatStats.Affinities.Agility.SetEnabled(true);
             }
         }
 
@@ -82,7 +82,7 @@ public class IkkakuMadarame extends AnimatorCard
 
             if (player.hasPower(ZarakiKenpachi.ZarakiKenpachiPower.POWER_ID))
             {
-                CombatStats.Affinities.Agility.SetDisabled(true);
+                CombatStats.Affinities.Agility.SetEnabled(false);
             }
         }
 

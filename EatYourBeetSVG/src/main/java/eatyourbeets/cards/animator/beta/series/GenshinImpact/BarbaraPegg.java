@@ -23,7 +23,7 @@ public class BarbaraPegg extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 2);
+        Initialize(0, 0, 5, 2);
         SetUpgrade(0, 0, 2, 0);
         SetAffinity_Light(2);
 
@@ -41,7 +41,7 @@ public class BarbaraPegg extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        GameUtilities.IncreaseMagicNumber(this, secondaryValue * JUtils.Count(GameUtilities.GetIntents(), i -> i.isAttacking), true);
+        GameUtilities.IncreaseMagicNumber(this, JUtils.Count(GameUtilities.GetIntents(), i -> i.isAttacking), true);
     }
 
 

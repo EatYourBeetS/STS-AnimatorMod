@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -16,7 +17,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Enju_Barasuishou extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Enju_Barasuishou.class).SetAttack(1, CardRarity.SPECIAL, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(Enju_Barasuishou.class).SetAttack(1, CardRarity.SPECIAL, EYBAttackType.Elemental).SetSeries(CardSeries.RozenMaiden);
     static
     {
         DATA.AddPreview(new Crystallize(), false);

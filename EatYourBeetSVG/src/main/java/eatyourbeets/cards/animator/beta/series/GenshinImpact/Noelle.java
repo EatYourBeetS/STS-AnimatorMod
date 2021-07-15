@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.orbs.animator.Earth;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Noelle extends AnimatorCard
@@ -27,7 +28,7 @@ public class Noelle extends AnimatorCard
     @Override
     protected float ModifyBlock(AbstractMonster enemy, float amount)
     {
-        if (HasSynergy())
+        if (!CombatStats.HasActivatedSemiLimited(cardID))
         {
             amount += Math.min(GetTeamwork(AffinityType.Light), magicNumber);
         }
@@ -62,5 +63,7 @@ public class Noelle extends AnimatorCard
                 GameActions.Bottom.ChannelOrb(new Earth());
             }
         }
+
+        CombatStats.TryActivateSemiLimited(cardID);
     }
 }

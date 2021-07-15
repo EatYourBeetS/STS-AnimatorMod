@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.animator.SupportDamagePower;
@@ -15,7 +16,7 @@ import eatyourbeets.utilities.JUtils;
 
 public class InverseOrigami extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(InverseOrigami.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(InverseOrigami.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetSeries(CardSeries.DateALive);
 
     public InverseOrigami()
     {

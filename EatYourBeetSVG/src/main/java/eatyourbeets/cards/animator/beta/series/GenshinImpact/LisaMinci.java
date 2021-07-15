@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.powers.animator.CounterAttackPower;
 import eatyourbeets.utilities.GameActions;
 
 public class LisaMinci extends AnimatorCard {
@@ -15,9 +16,9 @@ public class LisaMinci extends AnimatorCard {
     public LisaMinci() {
         super(DATA);
 
-        Initialize(0, 3, 2, 1);
+        Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 1, 0);
-        SetAffinity_Blue(2, 0, 2);
+        SetAffinity_Blue(2, 0, 0);
     }
 
 
@@ -30,14 +31,14 @@ public class LisaMinci extends AnimatorCard {
                     {
                         switch (card.rarity) {
                             case RARE:
-                                GameActions.Bottom.GainIntellect(1, false);
+                                GameActions.Bottom.GainIntellect(1, upgraded);
                                 break;
                             case UNCOMMON:
                                 GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, secondaryValue));
                                 break;
                             case BASIC:
                             case COMMON:
-                                GameActions.Bottom.GainBlock(block);
+                                GameActions.Bottom.StackPower(new CounterAttackPower(p, secondaryValue));
                                 break;
                         }
                     }

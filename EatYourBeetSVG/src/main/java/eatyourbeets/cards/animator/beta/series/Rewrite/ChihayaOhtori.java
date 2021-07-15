@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardEffectChoice;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
@@ -74,7 +71,7 @@ public class ChihayaOhtori extends AnimatorCard
     {
         GameActions.Top.FetchFromPile(name, 1, player.discardPile)
         .SetOptions(false, false)
-        .SetFilter(c -> c.hasTag(MARTIAL_ARTIST))
+        .SetFilter(c -> (c instanceof AnimatorCard && ((AnimatorCard) c).affinities.GetLevel(AffinityType.Green) > 0))
         .AddCallback(cards ->
         {
             if (cards.size() > 0)

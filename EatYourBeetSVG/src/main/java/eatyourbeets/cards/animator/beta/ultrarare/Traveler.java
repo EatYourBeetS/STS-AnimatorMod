@@ -159,7 +159,6 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
             {
                 LoadImage("_Lumine");
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
-                tooltips.add(GR.Tooltips.ElementalMastery);
                 SetExhaust(true);
                 this.cost = this.costForTurn = 3;
                 break;

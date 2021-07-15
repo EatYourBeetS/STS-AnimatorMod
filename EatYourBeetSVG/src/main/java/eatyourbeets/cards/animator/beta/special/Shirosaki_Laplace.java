@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
@@ -18,7 +19,7 @@ import eatyourbeets.utilities.RandomizedList;
 public class Shirosaki_Laplace extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Shirosaki_Laplace.class)
-    		.SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None);
+    		.SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetSeries(CardSeries.RozenMaiden);
 
     public Shirosaki_Laplace()
     {

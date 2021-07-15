@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ShuuOuma extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ShuuOuma.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(ShuuOuma.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GuiltyCrown);
 
     public ShuuOuma()
     {
@@ -22,8 +22,7 @@ public class ShuuOuma extends AnimatorCard
         Initialize(0, 0, 0);
         SetExhaust(true);
         SetCostUpgrade(-1);
-        
-        SetSeries(CardSeries.GuiltyCrown);
+
         SetAffinity_Blue(1);
     }
 

@@ -4,11 +4,13 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 
 public class TomoeKashiwaba extends AnimatorCard
@@ -40,7 +42,7 @@ public class TomoeKashiwaba extends AnimatorCard
         }
         else
         {
-            CombatStats.Affinities.Force.Retain();
+            GameUtilities.RetainPower(AffinityType.Red);
         }
     }
 

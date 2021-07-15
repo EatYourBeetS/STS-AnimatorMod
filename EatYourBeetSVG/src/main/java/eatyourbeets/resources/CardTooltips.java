@@ -9,12 +9,9 @@ import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
-import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.powers.animator.EnchantedArmorPower;
-import eatyourbeets.powers.animator.SupportDamagePower;
-import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.powers.animator.*;
 import eatyourbeets.powers.common.SelfDamagePower;
+import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.JUtils;
@@ -91,8 +88,10 @@ public class CardTooltips
     public EYBCardTooltip Chilled = FindByID("Chilled");
     public EYBCardTooltip Regeneration = FindByID("Regeneration");
     public EYBCardTooltip SelfDamage = FindByID("Self Damage");
+    public EYBCardTooltip CounterAttack = FindByID("Counter-Attack");
     public EYBCardTooltip ElementalMastery = FindByID("Elemental Mastery");
     public EYBCardTooltip ElementalExposure = FindByID("Elemental Exposure");
+    public EYBCardTooltip Void = FindByID("Void").ShowText(false);
 
     // No Description
     public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null);
@@ -213,6 +212,7 @@ public class CardTooltips
         LoadFromPower(LockOn, new LockOnPower(FakeCharacter.Instance, 0));
         LoadFromPower(Chilled, new ChilledPower(FakeCharacter.Instance,0)).SetIconSizeMulti(0.95f, 0.95f);
         LoadFromPower(SelfDamage, new SelfDamagePower(FakeCharacter.Instance, 0));
+        LoadFromPower(CounterAttack, new CounterAttackPower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalMastery, new ElementalMasteryPower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalExposure, new ElementalExposurePower(FakeCharacter.Instance, 0));
 

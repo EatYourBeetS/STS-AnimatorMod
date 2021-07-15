@@ -11,7 +11,6 @@ import eatyourbeets.cards.animator.beta.curse.Curse_JunTormented;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnCardCreatedSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
@@ -35,12 +34,11 @@ public class JunSakurada extends AnimatorCard
 
         Initialize(0, 6, 2);
         SetUpgrade(0, 1, 0);
+        SetAffinity_Blue(1, 0, 0);
         
         SetUnique(true, true);
         SetEthereal(true);
         SetExhaust(true);
-        
-        SetSynergy(Synergies.RozenMaiden);
     }
 
     @Override

@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AgilityPower;
 import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
@@ -30,7 +31,7 @@ public class IkkakuMadarame extends AnimatorCard
         Initialize(4, 0, 0, 3);
         SetUpgrade(3, 0, 0);
         SetAffinity_Red(2, 0, 1);
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Green(0, 0, 1);
     }
 
     @Override
@@ -68,7 +69,10 @@ public class IkkakuMadarame extends AnimatorCard
         {
             super.onInitialApplication();
 
-            AgilityPower.StartOverrideDisable();
+            if (player.hasPower(ZarakiKenpachi.ZarakiKenpachiPower.POWER_ID))
+            {
+                CombatStats.Affinities.Agility.SetDisabled(false);
+            }
         }
 
         @Override
@@ -76,7 +80,10 @@ public class IkkakuMadarame extends AnimatorCard
         {
             super.onRemove();
 
-            AgilityPower.StopOverrideDisable();
+            if (player.hasPower(ZarakiKenpachi.ZarakiKenpachiPower.POWER_ID))
+            {
+                CombatStats.Affinities.Agility.SetDisabled(true);
+            }
         }
 
         @Override

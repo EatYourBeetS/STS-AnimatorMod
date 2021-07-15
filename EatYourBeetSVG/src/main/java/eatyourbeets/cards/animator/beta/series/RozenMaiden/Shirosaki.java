@@ -8,7 +8,6 @@ import eatyourbeets.cards.animator.beta.special.Shirosaki_Laplace;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Shirosaki extends AnimatorCard
@@ -25,9 +24,10 @@ public class Shirosaki extends AnimatorCard
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 0);
+        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Dark(1, 0, 0);
         
         SetExhaust(true);
-        SetSynergy(Synergies.RozenMaiden);
     }
 
     @Override

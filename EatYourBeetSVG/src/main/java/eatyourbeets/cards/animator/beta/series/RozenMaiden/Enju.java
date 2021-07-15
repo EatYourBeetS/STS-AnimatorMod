@@ -8,7 +8,6 @@ import eatyourbeets.cards.animator.beta.special.Enju_Barasuishou;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -28,8 +27,8 @@ public class Enju extends AnimatorCard
 
         Initialize(0, 0, 0, 0);
         SetUpgrade(0, 0, 0, 1);
-        
-        SetSynergy(Synergies.RozenMaiden);
+        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
     }
 
     

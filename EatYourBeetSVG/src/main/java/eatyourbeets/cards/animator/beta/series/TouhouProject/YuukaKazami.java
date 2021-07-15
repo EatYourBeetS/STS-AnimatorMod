@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.animator.CounterAttackPower;
 import eatyourbeets.utilities.GameActions;
@@ -23,10 +22,7 @@ public class YuukaKazami extends AnimatorCard
 
         Initialize(9, 0, 2, 3);
         SetUpgrade(2, 0, 0, 0);
-        SetScaling(0, 0, 1);
-
-        SetSpellcaster();
-        SetSynergy(Synergies.TouhouProject);
+        SetAffinity_Blue(2, 0, 0);
     }
 
     @Override

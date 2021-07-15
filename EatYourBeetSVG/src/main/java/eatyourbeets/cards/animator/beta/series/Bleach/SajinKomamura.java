@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
@@ -24,11 +23,8 @@ public class SajinKomamura extends AnimatorCard
 
         Initialize(0, 7, 2,1);
         SetUpgrade(0, 3, 0);
-        SetScaling(0,1,0);
-
-        SetMartialArtist();
-
-        SetSynergy(Synergies.Bleach);
+        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Green(2, 0, 1);
     }
 
     @Override

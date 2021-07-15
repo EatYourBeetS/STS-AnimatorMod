@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 
@@ -21,8 +20,8 @@ public class AyaShameimaru extends AnimatorCard
 
         Initialize(0, 4, 3, 1);
         SetUpgrade(0, 1, 0, 1);
-
-        SetSynergy(Synergies.TouhouProject);
+        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Blue(1, 0, 0);
     }
 
     @Override

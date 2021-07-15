@@ -4,10 +4,12 @@ import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.beta.basic.Defend_Rewrite;
 import eatyourbeets.cards.animator.beta.basic.Strike_Rewrite;
-import eatyourbeets.cards.animator.beta.series.Rewrite.*;
+import eatyourbeets.cards.animator.beta.series.Rewrite.Kagari;
+import eatyourbeets.cards.animator.beta.series.Rewrite.ShizuruNakatsu;
+import eatyourbeets.cards.animator.beta.series.Rewrite.YoshinoHaruhiko;
 import eatyourbeets.cards.animator.beta.ultrarare.SakuraKashima;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ public class Rewrite extends AnimatorLoadout
 {
     public Rewrite()
     {
-        super(Synergies.Rewrite);
+        super(CardSeries.Rewrite);
 
         IsBeta = true;
     }

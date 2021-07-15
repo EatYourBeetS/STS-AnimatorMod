@@ -25,12 +25,13 @@ public class KurumiTokisaki extends AnimatorCard
 
         Initialize(12, 12, 2);
         SetUpgrade(0,0,1);
+        SetAffinity_Green(2, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
 
         SetAutoplay(true);
         SetEthereal(true);
 
         SetCooldown(3, 0, this::OnCooldownCompleted);
-        SetSynergy(Synergies.DateALive);
     }
 
     @Override

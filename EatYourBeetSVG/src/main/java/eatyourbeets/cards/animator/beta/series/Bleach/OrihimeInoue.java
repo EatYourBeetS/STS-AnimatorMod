@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.CounterAttackPower;
@@ -23,7 +22,8 @@ public class OrihimeInoue extends AnimatorCard
         Initialize(0, 5, 1, 2);
         SetUpgrade(0, 3, 0);
 
-        SetSynergy(Synergies.Bleach);
+        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Light(1, 0, 0);
     }
 
     @Override

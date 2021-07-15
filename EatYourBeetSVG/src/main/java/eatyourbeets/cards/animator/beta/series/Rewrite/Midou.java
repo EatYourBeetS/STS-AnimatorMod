@@ -21,7 +21,8 @@ public class Midou extends AnimatorCard
 
         Initialize(2, 0, 1, 1);
         SetUpgrade(3, 0, 0, 0);
-        SetSynergy(Synergies.Rewrite);
+        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
     }
 
     @Override

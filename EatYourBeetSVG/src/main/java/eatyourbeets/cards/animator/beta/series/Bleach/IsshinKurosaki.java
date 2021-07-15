@@ -26,9 +26,7 @@ public class IsshinKurosaki extends AnimatorCard
 
         Initialize(0, 6, 1, 2);
         SetUpgrade(0, 3, 0);
-        SetMartialArtist();
-
-        SetSynergy(Synergies.Bleach);
+        SetAffinity_Red(2, 0, 0);
     }
 
     @Override
@@ -49,9 +47,9 @@ public class IsshinKurosaki extends AnimatorCard
         choices.Select(1, m);
 
         if (CombatStats.TryActivateLimited(cardID)){
-            GameActions.Last.Callback(cards -> {
-                GameActions.Bottom.Add(new ApplyAmountToOrbs(Fire.ORB_ID, 1));
-            });
+            GameActions.Last.Callback(cards ->
+                GameActions.Bottom.Add(new ApplyAmountToOrbs(Fire.ORB_ID, 1))
+            );
         }
     }
 }

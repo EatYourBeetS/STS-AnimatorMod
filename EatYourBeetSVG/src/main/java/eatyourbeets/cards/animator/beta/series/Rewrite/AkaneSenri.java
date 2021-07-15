@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
@@ -24,8 +23,7 @@ public class AkaneSenri extends AnimatorCard
         Initialize(0, 0, 4, 1);
         SetUpgrade(0, 0, 2);
         SetEthereal(true);
-
-        SetSynergy(Synergies.Rewrite);
+        SetAffinity_Blue(2, 0, 0);
     }
 
     @Override
@@ -40,7 +38,7 @@ public class AkaneSenri extends AnimatorCard
         {
             AbstractCard card = randomizedList.Retrieve(rng);
 
-            if (card != null && card instanceof EYBCard && !card.hasTag(HASTE))
+            if (card instanceof EYBCard && !card.hasTag(HASTE))
             {
                 ((EYBCard) card).SetHaste(true);
             }

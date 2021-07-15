@@ -30,11 +30,9 @@ public class KotarouTennouji extends AnimatorCard implements OnStanceChangedSubs
 
         Initialize(8, 0, 0);
         SetUpgrade(3, 0, 0);
-        SetScaling(1, 1, 1);
+        SetAffinity_Star(2, 0, 1);
 
         SetUnique(true, true);
-        SetSynergy(Synergies.Rewrite);
-        SetShapeshifter();
     }
 
     @Override

@@ -11,7 +11,7 @@ import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
-import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -27,9 +27,7 @@ public class ChihayaOhtori extends AnimatorCard
 
         Initialize(12, 0, 6, 1);
         SetUpgrade(0, 0, -2);
-        SetMartialArtist();
-
-        SetSynergy(Synergies.Rewrite);
+        SetAffinity_Green(2, 0, 0);
     }
 
     @Override

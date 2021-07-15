@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.AgilityStance;
@@ -27,10 +26,11 @@ public class Shirosaki_Laplace extends AnimatorCard
 
         Initialize(0, 0, 0);
         SetUpgrade(0, 0, 0);
+        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Dark(2, 0, 0);
 
         SetShapeshifter();
         AfterLifeMod.Add(this);
-        SetSynergy(Synergies.RozenMaiden);
     }
 
     @Override

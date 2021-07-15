@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -20,16 +19,19 @@ public class AngelAlter extends AnimatorCard_UltraRare
         super(DATA);
 
         Initialize(10, 0, 1, 0);
-        SetScaling(0, 2, 2);
+        SetAffinity_Green(0, 0, 2);
+        SetAffinity_Red(0, 0, 2);
+        SetAffinity_Light(2, 0, 2);
 
-        SetSynergy(Synergies.AngelBeats);
         AfterLifeMod.Add(this);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetScaling(0, 3, 3);
+        SetAffinity_Green(0, 0, 3);
+        SetAffinity_Red(0, 0, 3);
+        SetAffinity_Light(2, 0, 3);
     }
 
     @Override

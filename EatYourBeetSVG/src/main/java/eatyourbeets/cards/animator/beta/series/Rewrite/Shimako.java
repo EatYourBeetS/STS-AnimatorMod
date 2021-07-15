@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.stances.AgilityStance;
@@ -26,9 +25,7 @@ public class Shimako extends AnimatorCard
 
         Initialize(0, 4, 2);
         SetUpgrade(0, 3, 0);
-        SetScaling(1,0,0);
-
-        SetSynergy(Synergies.Rewrite);
+        SetAffinity_Blue(1, 0, 1);
     }
 
     @Override

@@ -34,9 +34,8 @@ public class Suiseiseki extends AnimatorCard
 
         Initialize(0, 4);
         SetUpgrade(0, 0);
-        
-        SetScaling(0, 1, 0);
-        SetSynergy(Synergies.RozenMaiden);
+
+        SetAffinity_Green(1, 1, 1);
     }
 
     @Override

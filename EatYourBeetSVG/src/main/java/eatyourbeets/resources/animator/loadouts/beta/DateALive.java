@@ -4,10 +4,12 @@ import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.beta.basic.Defend_DateALive;
 import eatyourbeets.cards.animator.beta.basic.Strike_DateALive;
-import eatyourbeets.cards.animator.beta.series.DateALive.*;
+import eatyourbeets.cards.animator.beta.series.DateALive.ShidoItsuka;
+import eatyourbeets.cards.animator.beta.series.DateALive.TohkaYatogami;
+import eatyourbeets.cards.animator.beta.series.DateALive.YamaiSisters;
 import eatyourbeets.cards.animator.beta.ultrarare.MioTakamiya;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ public class DateALive extends AnimatorLoadout {
 
     public DateALive()
     {
-        super(Synergies.DateALive);
+        super(CardSeries.DateALive);
 
         IsBeta = true;
     }

@@ -7,8 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.powers.affinity.AgilityPower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -23,9 +22,7 @@ public class Mayuri extends AnimatorCard
 
         Initialize(8, 0, 2);
         SetUpgrade(0, 0, 1);
-
-        SetScaling(0,0, 2);
-        SetSynergy(Synergies.DateALive);
+        SetAffinity_Light(2, 0, 2);
     }
 
     @Override

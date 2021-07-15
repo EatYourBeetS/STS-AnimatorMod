@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -23,10 +22,10 @@ public class RukiaBankai extends AnimatorCard
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
+        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Green(1, 1, 0);
         SetExhaust(true);
         SetMultiDamage(true);
-
-        SetSynergy(Synergies.Bleach);
     }
 
     @Override

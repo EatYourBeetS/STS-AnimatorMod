@@ -2,12 +2,14 @@ package eatyourbeets.cards.animator.beta.special;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -26,14 +28,13 @@ public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDra
 
         Initialize(13, 0, 6, 10);
         SetUpgrade(3, 0, 0);
-        SetScaling(0, 0, 3);
+        SetAffinity_Red(0, 0, 3);
+        SetAffinity_Dark(2, 0, 0);
 
         SetHealing(true);
         SetExhaust(true);
         SetAutoplay(true);
         SetMultiDamage(true);
-
-        SetSynergy(Synergies.GakkouGurashi);
     }
 
     @Override
@@ -47,7 +48,12 @@ public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDra
             for (int i=0; i<stacks; i++)
             {
                 GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE)
-                .SetDamageEffect(e -> GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40f * Settings.scale, Color.BROWN.cpy())))
+                .SetDamageEffect(e ->
+                        {
+                            GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40f * Settings.scale, Color.BROWN.cpy()));
+                            return 0f;
+                        }
+                )
                 .AddCallback(enemy ->
                 {
                     if (GameUtilities.IsFatal(enemy, false) && CombatStats.TryActivateLimited(cardID))

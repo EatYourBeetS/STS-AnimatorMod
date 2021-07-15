@@ -4,10 +4,12 @@ import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.beta.basic.Defend_AngelBeats;
 import eatyourbeets.cards.animator.beta.basic.Strike_AngelBeats;
-import eatyourbeets.cards.animator.beta.series.AngelBeats.*;
+import eatyourbeets.cards.animator.beta.series.AngelBeats.HidekiHinata;
+import eatyourbeets.cards.animator.beta.series.AngelBeats.KanadeTachibana;
+import eatyourbeets.cards.animator.beta.series.AngelBeats.MasamiIwasawa;
 import eatyourbeets.cards.animator.beta.ultrarare.AngelAlter;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ public class AngelBeats extends AnimatorLoadout
 {
     public AngelBeats()
     {
-        super(Synergies.AngelBeats);
+        super(CardSeries.AngelBeats);
         IsBeta = true;
     }
 

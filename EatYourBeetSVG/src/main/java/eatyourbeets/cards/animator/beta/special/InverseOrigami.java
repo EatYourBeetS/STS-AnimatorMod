@@ -8,7 +8,6 @@ import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -23,8 +22,8 @@ public class InverseOrigami extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0);
-
-        SetSynergy(Synergies.DateALive);
+        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Light(1, 1, 0);
     }
 
     @Override

@@ -24,12 +24,12 @@ public class ByakuyaBankai extends AnimatorCard
 
         Initialize(7, 5);
         SetUpgrade(2, 2);
+        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Green(2, 0, 0);
 
         SetUnique(true, true);
-        SetSynergy(Synergies.Bleach);
         SetExhaust(true);
         SetMultiDamage(true);
-        SetMartialArtist();
     }
 
     @Override
@@ -52,9 +52,9 @@ public class ByakuyaBankai extends AnimatorCard
 
         for (int i=0; i< stacks; i++)
         {
-            GameActions.Bottom.Callback(card -> {
-                ChooseAction(m);
-            });
+            GameActions.Bottom.Callback(card ->
+                ChooseAction(m)
+            );
         }
     }
 

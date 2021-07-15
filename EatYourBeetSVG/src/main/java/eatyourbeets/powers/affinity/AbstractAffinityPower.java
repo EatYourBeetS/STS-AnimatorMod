@@ -25,6 +25,7 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     public AffinityType affinityType;
     public boolean retained;
+    public boolean permanentlyRetained;
 
     public AbstractAffinityPower(AffinityType type, String powerID, AbstractCreature owner, int amount)
     {
@@ -64,6 +65,17 @@ public abstract class AbstractAffinityPower extends CommonPower
         FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + (w * 1.25f), hb.y, fontScale, textColor);
     }
 
+    public void SetDisabled(boolean disabled)
+    {
+        this.disabled = disabled;
+    }
+
+    public void SetPermanentlyRetained(boolean permanentlyRetained)
+    {
+        this.permanentlyRetained = permanentlyRetained;
+        if (permanentlyRetained) this.retained = true;
+    }
+
     public void Retain()
     {
         this.retained = true;
@@ -71,15 +83,17 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     public void Stack(int amount, boolean retain)
     {
-        this.amount += amount;
-        this.fontScale = 8f;
+        if (!disabled) {
+            this.amount += amount;
+            this.fontScale = 8f;
 
-        if (retain)
-        {
-            Retain();
+            if (retain)
+            {
+                Retain();
+            }
+
+            UpdateThreshold();
         }
-
-        UpdateThreshold();
     }
 
     public Integer GetCurrentThreshold()

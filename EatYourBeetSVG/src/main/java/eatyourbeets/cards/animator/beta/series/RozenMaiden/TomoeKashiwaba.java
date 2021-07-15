@@ -6,10 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActions;
 
 
@@ -23,10 +21,8 @@ public class TomoeKashiwaba extends AnimatorCard
 
         Initialize(8, 4, 0);
         SetUpgrade(0, 0, 0);
-        SetScaling(0, 0, 1);
-
-        SetMartialArtist();
-        SetSynergy(Synergies.RozenMaiden);
+        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Blue(1, 0, 1);
     }
 
     @Override
@@ -44,7 +40,7 @@ public class TomoeKashiwaba extends AnimatorCard
         }
         else
         {
-            ForcePower.PreserveOnce();
+            CombatStats.Affinities.Force.Retain();
         }
     }
 

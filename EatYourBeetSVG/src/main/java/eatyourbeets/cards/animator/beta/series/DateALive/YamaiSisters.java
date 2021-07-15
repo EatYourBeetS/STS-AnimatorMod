@@ -7,8 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -22,7 +21,8 @@ public class YamaiSisters extends AnimatorCard
 
         Initialize(2, 0);
         SetUpgrade(1, 0);
-        SetSynergy(Synergies.DateALive);
+        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Green(1, 1, 0);
     }
 
     @Override

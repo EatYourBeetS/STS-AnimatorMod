@@ -1,15 +1,14 @@
 package eatyourbeets.cards.animator.beta.series.Bleach;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.EYBCardTooltip;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.affinity.AgilityPower;
+import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -26,7 +25,7 @@ public class MayuriKurotsuchi extends AnimatorCard
         Initialize(0, 0, 2, 4);
         SetUpgrade(0, 0, 2, 1);
 
-        SetSynergy(Synergies.Bleach);
+        SetAffinity_Blue(1, 0, 0);
     }
 
     @Override
@@ -34,8 +33,8 @@ public class MayuriKurotsuchi extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        int force = GameUtilities.GetPowerAmount(AbstractDungeon.player, ForcePower.POWER_ID);
-        int agility = GameUtilities.GetPowerAmount(AbstractDungeon.player, AgilityPower.POWER_ID);
+        int force = GameUtilities.GetPowerAmount(player, ForcePower.POWER_ID);
+        int agility = GameUtilities.GetPowerAmount(player, AgilityPower.POWER_ID);
 
         GameUtilities.IncreaseMagicNumber(this,  force + agility, true);
     }

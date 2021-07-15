@@ -24,10 +24,7 @@ public class KaguyaHouraisan extends AnimatorCard
 
         Initialize(10, 0, 4);
         SetUpgrade(0, 0, 1);
-        SetScaling(2, 0, 0);
-
-        SetSpellcaster();
-        SetSynergy(Synergies.TouhouProject);
+        SetAffinity_Blue(2, 0, 2);
     }
 
     @Override
@@ -54,10 +51,7 @@ public class KaguyaHouraisan extends AnimatorCard
         {
             List<AbstractCard> cardsToPlay = new ArrayList<>();
 
-            for (AbstractCard card : player.hand.group)
-            {
-                cardsToPlay.add(card);
-            }
+            cardsToPlay.addAll(player.hand.group);
 
             for (AbstractCard card : cardsToPlay)
             {

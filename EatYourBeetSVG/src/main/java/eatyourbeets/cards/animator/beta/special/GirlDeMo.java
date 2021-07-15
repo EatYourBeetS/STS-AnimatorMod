@@ -6,11 +6,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.delegates.ActionT1;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
-import eatyourbeets.powers.common.IntellectPower;
+import eatyourbeets.powers.affinity.AgilityPower;
+import eatyourbeets.powers.affinity.ForcePower;
+import eatyourbeets.powers.affinity.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -27,10 +26,10 @@ public class GirlDeMo extends AnimatorCard
 
         Initialize(0, 0);
         SetUpgrade(0, 0);
+        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Light(2, 0, 0);
         SetExhaust(true);
         SetEthereal(true);
-
-        SetSynergy(Synergies.AngelBeats);
     }
 
     @Override

@@ -9,7 +9,6 @@ import eatyourbeets.cards.animator.beta.special.RukiaBankai;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class RukiaKuchiki extends AnimatorCard
@@ -26,9 +25,8 @@ public class RukiaKuchiki extends AnimatorCard
 
         Initialize(0, 0, 2, 4);
         SetUpgrade(0, 0, 0, 3);
-        SetSpellcaster();
-
-        SetSynergy(Synergies.Bleach);
+        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Green(1, 1, 0);
     }
 
     @Override

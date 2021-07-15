@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
@@ -21,9 +20,10 @@ public class Zadkiel extends AnimatorCard
 
         Initialize(0, 0, 4);
         SetCostUpgrade(-1);
+        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
 
         SetExhaust(true);
-        SetSynergy(Synergies.DateALive);
     }
 
     @Override
@@ -31,8 +31,6 @@ public class Zadkiel extends AnimatorCard
     {
         GameActions.Bottom.GainOrbSlots(1);
         GameActions.Bottom.Callback(() ->
-        {
-            GameActions.Bottom.ChannelOrbs(Frost::new, JUtils.Count(player.orbs, o -> o instanceof EmptyOrbSlot));
-        });
+                GameActions.Bottom.ChannelOrbs(Frost::new, JUtils.Count(player.orbs, o -> o instanceof EmptyOrbSlot)));
     }
 }

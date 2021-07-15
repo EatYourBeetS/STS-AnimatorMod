@@ -8,7 +8,6 @@ import eatyourbeets.cards.animator.beta.special.InverseTohka;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class TohkaYatogami extends AnimatorCard
@@ -27,8 +26,7 @@ public class TohkaYatogami extends AnimatorCard
         super(DATA);
 
         Initialize(10, 0, 20);
-
-        SetSynergy(Synergies.DateALive);
+        SetAffinity_Red(1, 0, 0);
     }
 
     @Override

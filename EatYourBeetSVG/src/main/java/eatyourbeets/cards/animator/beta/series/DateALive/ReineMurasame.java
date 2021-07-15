@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.modifiers.BlockModifiers;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.utilities.GameActions;
@@ -26,9 +25,9 @@ public class ReineMurasame extends AnimatorCard
 
         Initialize(0, 0, 3);
         SetUpgrade(0, 0);
+        SetAffinity_Blue(2, 0, 0);
 
         SetExhaust(true);
-        SetSynergy(Synergies.DateALive);
     }
 
     @Override
@@ -53,9 +52,8 @@ public class ReineMurasame extends AnimatorCard
                     }
 
                     GameUtilities.TriggerWhenPlayed(card, key, (k, c) ->
-                    {
-                        CostModifiers.For(c).Remove(k, false);
-                    });
+                        CostModifiers.For(c).Remove(k, false)
+                    );
                 }
             });
         }

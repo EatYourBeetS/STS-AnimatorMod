@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.vfx.SmallLaserEffect;
 import eatyourbeets.interfaces.subscribers.OnAddedToDrawPileSubscriber;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
@@ -29,9 +28,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
 
         Initialize(16, 0, 4);
         SetUpgrade(0,0,-1);
-
-        SetSynergy(Synergies.DateALive);
-        SetSpellcaster();
+        SetAffinity_Blue(2, 0, 0);
     }
 
     @Override

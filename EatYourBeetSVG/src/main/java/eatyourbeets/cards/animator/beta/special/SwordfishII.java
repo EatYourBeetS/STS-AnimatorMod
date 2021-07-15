@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
@@ -31,10 +30,11 @@ public class SwordfishII extends AnimatorCard
 
         Initialize(0, 0, 10, 1);
         SetUpgrade(0, 0, 0, 0);
+        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Green(1, 0, 0);
 
         SetAutoplay(true);
         SetExhaust(true);
-        SetSynergy(Synergies.CowboyBebop);
     }
 
     @Override

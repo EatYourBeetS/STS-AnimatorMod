@@ -4,7 +4,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 
 public class IkkakuBankai extends AnimatorCard
@@ -17,10 +20,9 @@ public class IkkakuBankai extends AnimatorCard
 
         Initialize(1, 0, 4);
         SetUpgrade(2, 0, 0);
-        SetScaling(0,2,2);
+        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Green(1, 0, 2);
         SetExhaust(true);
-
-        SetSynergy(Synergies.Bleach);
     }
 
     @Override

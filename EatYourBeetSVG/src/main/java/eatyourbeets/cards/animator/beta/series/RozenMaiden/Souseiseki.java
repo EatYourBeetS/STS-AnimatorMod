@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -24,15 +23,13 @@ public class Souseiseki extends AnimatorCard
 
         Initialize(10, 0, 0, 0);
         SetUpgrade(2, 0, 0, 0);
-        
-        SetScaling(0, 1, 0);
-        SetSynergy(Synergies.RozenMaiden);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override
     protected void OnUpgrade()
     {
-    	SetScaling(intellectScaling, agilityScaling + 1, forceScaling);
+        SetAffinity_Green(2, 0, 2);
     }
 
     @Override

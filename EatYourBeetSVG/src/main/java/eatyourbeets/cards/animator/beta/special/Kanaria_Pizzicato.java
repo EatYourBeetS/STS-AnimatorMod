@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.orbs.animator.Aether;
@@ -24,8 +23,7 @@ public class Kanaria_Pizzicato extends AnimatorCard
 
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 1);
-        
-        SetSynergy(Synergies.RozenMaiden);
+        SetAffinity_Blue(1, 0, 0);
     }
 
     @Override
@@ -43,6 +41,7 @@ public class Kanaria_Pizzicato extends AnimatorCard
             if (Aether.ORB_ID.equals(orb.ID))
             {
                 hasAether = true;
+                break;
             }
 
         if (hasAether)

@@ -4,10 +4,12 @@ import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.beta.basic.Defend_TouhouProject;
 import eatyourbeets.cards.animator.beta.basic.Strike_TouhouProject;
-import eatyourbeets.cards.animator.beta.series.TouhouProject.*;
+import eatyourbeets.cards.animator.beta.series.TouhouProject.AyaShameimaru;
+import eatyourbeets.cards.animator.beta.series.TouhouProject.MarisaKirisame;
+import eatyourbeets.cards.animator.beta.series.TouhouProject.ReimuHakurei;
 import eatyourbeets.cards.animator.beta.ultrarare.YuyukoSaigyouji;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ public class TouhouProject extends AnimatorLoadout
 {
     public TouhouProject()
     {
-        super(Synergies.TouhouProject);
+        super(CardSeries.TouhouProject);
         IsBeta = true;
     }
 

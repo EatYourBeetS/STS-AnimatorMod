@@ -8,7 +8,6 @@ import eatyourbeets.cards.animator.beta.special.Zadkiel;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class YoshinoHimekawa extends AnimatorCard
@@ -24,10 +23,10 @@ public class YoshinoHimekawa extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 1, 4);
+        SetAffinity_Green(2, 0, 0);
 
         SetExhaust(true);
         SetHaste(true);
-        SetSynergy(Synergies.DateALive);
         SetCostUpgrade(-1);
     }
 
@@ -50,8 +49,8 @@ public class YoshinoHimekawa extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Last.Callback(cards -> {
-            GameActions.Bottom.Add(new ApplyAmountToOrbs(Frost.ORB_ID, 1));
-        });
+        GameActions.Last.Callback(cards ->
+            GameActions.Bottom.Add(new ApplyAmountToOrbs(Frost.ORB_ID, 1))
+        );
     }
 }

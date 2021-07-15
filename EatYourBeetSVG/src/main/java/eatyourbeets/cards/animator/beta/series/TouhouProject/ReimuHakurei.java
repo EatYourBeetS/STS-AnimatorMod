@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class ReimuHakurei extends AnimatorCard
@@ -19,9 +18,8 @@ public class ReimuHakurei extends AnimatorCard
 
         Initialize(4, 0, 1, 2);
         SetUpgrade(1, 0, 0, 1);
-        SetScaling(0, 0, 0);
-
-        SetSynergy(Synergies.TouhouProject);
+        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Blue(1, 0, 0);
     }
 
     @Override

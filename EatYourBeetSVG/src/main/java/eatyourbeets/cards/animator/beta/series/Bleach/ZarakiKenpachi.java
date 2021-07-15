@@ -6,14 +6,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnBlockBrokenSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
-import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 
 public class ZarakiKenpachi extends AnimatorCard
@@ -26,8 +22,7 @@ public class ZarakiKenpachi extends AnimatorCard
 
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 2);
-
-        SetSynergy(Synergies.Bleach);
+        SetAffinity_Red(2, 0, 0);
     }
 
     @Override
@@ -38,6 +33,7 @@ public class ZarakiKenpachi extends AnimatorCard
 
     public static class ZarakiKenpachiPower extends AnimatorPower implements OnBlockBrokenSubscriber, OnStartOfTurnPostDrawSubscriber
     {
+        public static final String POWER_ID = CreateFullID(ZarakiKenpachiPower.class);
         boolean activated;
 
         public ZarakiKenpachiPower(AbstractPlayer owner, int amount)
@@ -46,9 +42,9 @@ public class ZarakiKenpachi extends AnimatorCard
 
             this.amount = amount;
 
-            ForcePower.StartAlwaysPreserve();
-            AgilityPower.StartDisable();
-            IntellectPower.StartDisable();
+            CombatStats.Affinities.Force.SetPermanentlyRetained(true);
+            CombatStats.Affinities.Agility.SetDisabled(true);
+            CombatStats.Affinities.Intellect.SetDisabled(true);
 
             CombatStats.onBlockBroken.Subscribe(this);
             CombatStats.onStartOfTurnPostDraw.Subscribe(this);
@@ -68,9 +64,9 @@ public class ZarakiKenpachi extends AnimatorCard
         {
             super.onRemove();
 
-            ForcePower.StopAlwaysPreserve();
-            AgilityPower.StopDisable();
-            IntellectPower.StopDisable();
+            CombatStats.Affinities.Force.SetPermanentlyRetained(false);
+            CombatStats.Affinities.Agility.SetDisabled(false);
+            CombatStats.Affinities.Intellect.SetDisabled(false);
 
             CombatStats.onBlockBroken.Unsubscribe(this);
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);

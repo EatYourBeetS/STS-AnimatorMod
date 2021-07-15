@@ -21,11 +21,8 @@ public class MarisaKirisame extends AnimatorCard
 
         Initialize(4, 0, 2);
         SetUpgrade(3, 0, 0);
-        SetScaling(0, 0, 0);
-
-        SetSpellcaster();
+        SetAffinity_Blue(2, 0, 0);
         SetEthereal(true);
-        SetSynergy(Synergies.TouhouProject);
     }
 
     @Override

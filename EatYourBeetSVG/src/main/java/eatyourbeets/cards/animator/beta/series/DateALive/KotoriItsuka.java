@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
@@ -24,10 +23,9 @@ public class KotoriItsuka extends AnimatorCard
 
         Initialize(6, 0, 5, 5);
         SetUpgrade(0, 0, 0);
-        SetScaling(0,0,1);
+        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Green(1, 0, 0);
         SetExhaust(true);
-
-        SetSynergy(Synergies.DateALive);
     }
 
     @Override

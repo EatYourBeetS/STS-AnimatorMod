@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.CounterAttackPower;
 import eatyourbeets.powers.common.PhasingPower;
 import eatyourbeets.utilities.GameActions;
@@ -21,10 +20,11 @@ public class SosukeAizen extends AnimatorCard_UltraRare
 
         Initialize(0, 0, 12);
         SetUpgrade(0,0,6);
+        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Red(2, 0, 0);
 
         SetMultiDamage(true);
         SetExhaust(true);
-        SetSynergy(Synergies.Bleach);
     }
 
     @Override

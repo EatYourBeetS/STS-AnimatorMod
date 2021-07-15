@@ -8,7 +8,6 @@ import eatyourbeets.cards.animator.beta.series.DateALive.ShidoItsuka;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -27,8 +26,7 @@ public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard
 
         Initialize(0, 15, 6);
         SetUpgrade(0, 0, -1);
-
-        SetSynergy(Synergies.DateALive);
+        SetAffinity_Light(2, 0, 0);
     }
 
     @Override

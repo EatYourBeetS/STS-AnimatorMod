@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -24,8 +23,7 @@ public class UryuuIshida extends AnimatorCard
 
         Initialize(4, 0, 1, 2);
         SetUpgrade(2, 0, 1);
-
-        SetSynergy(Synergies.Bleach);
+        SetAffinity_Blue(1, 0, 0);
     }
 
     @Override
@@ -41,9 +39,7 @@ public class UryuuIshida extends AnimatorCard
 
         if (IsStarter())
         {
-            GameActions.Bottom.Callback(card -> {
-                TransferWeakVulnerable(m);
-            });
+            GameActions.Bottom.Callback(card -> TransferWeakVulnerable(m));
         }
     }
 

@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
@@ -26,9 +25,8 @@ public class SakuyaOhtori extends AnimatorCard
 
         Initialize(0, 3, 2, 1);
         SetUpgrade(0, 2, 0);
-
-        SetSynergy(Synergies.Rewrite);
-        SetMartialArtist();
+        SetAffinity_Green(2, 0, 0);
+        SetAffinity_Blue(1, 0, 0);
     }
 
     @Override

@@ -21,9 +21,8 @@ public class RenjiAbarai extends AnimatorCard
 
         Initialize(10, 0, 3);
         SetUpgrade(1, 0, -1);
-        SetScaling(0,1,0);
 
-        SetSynergy(Synergies.Bleach);
+        SetAffinity_Red(2, 0, 1);
     }
 
     @Override

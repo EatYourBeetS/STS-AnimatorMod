@@ -8,7 +8,6 @@ import eatyourbeets.cards.animator.beta.special.Miracle;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -26,9 +25,8 @@ public class SanaeKochiya extends AnimatorCard
 
         Initialize(0, 0, 4, 0);
         SetUpgrade(0, 0, 1, 0);
-        SetScaling(0, 0, 0);
-
-        SetSynergy(Synergies.TouhouProject);
+        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Light(1, 0, 0);
     }
 
     @Override

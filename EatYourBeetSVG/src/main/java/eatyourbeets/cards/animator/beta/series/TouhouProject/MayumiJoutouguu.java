@@ -6,7 +6,6 @@ import eatyourbeets.cards.animator.beta.special.Haniwa;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class MayumiJoutouguu extends AnimatorCard
@@ -23,10 +22,9 @@ public class MayumiJoutouguu extends AnimatorCard
 
         Initialize(0, 5, 2);
         SetUpgrade(0, 1, 1);
+        SetAffinity_Green(1, 1, 0);
 
         SetCooldown(1, 0, this::OnCooldownCompleted);
-
-        SetSynergy(Synergies.TouhouProject);
     }
 
     @Override

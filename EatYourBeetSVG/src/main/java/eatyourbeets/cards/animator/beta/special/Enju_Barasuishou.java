@@ -9,7 +9,6 @@ import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
@@ -41,13 +40,10 @@ public class Enju_Barasuishou extends AnimatorCard
 
         Initialize(6, 0, Hitcount);
         SetUpgrade(2, 0, 0);
-
-        SetScaling(1, 0, 0);
+        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
         
         SetUnique(true, true);
-        SetSpellcaster();
-
-        SetSynergy(Synergies.RozenMaiden);
     }
 
     @Override

@@ -23,10 +23,9 @@ public class Chibimoth extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2, 1);
+        SetAffinity_Star(1, 1, 0);
         SetExhaust(true);
         SetRetain(true);
-
-        SetSynergy(Synergies.Rewrite);
     }
 
     @Override
@@ -75,8 +74,7 @@ public class Chibimoth extends AnimatorCard
         .SetProperties(CardType.SKILL, rarity, CardTarget.NONE)
         .SetCost(-2, 0)
         .SetOnUse(onSelect)
-        .SetText(name, text, text)
-        .SetSynergy(synergy, false).Build();
+        .SetText(name, text, text).Build();
     }
 
     private boolean DrawKotoriKanbe(CardGroup group)

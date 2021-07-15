@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.vfx.PetalEffect;
 import eatyourbeets.actions.special.KillCharacterAction;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -31,7 +30,8 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare implements StartupCa
 
         Initialize(0, 0, 0, 0);
         SetUpgrade(0, 0, 0, 0);
-        SetSynergy(Synergies.TouhouProject);
+        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Dark(2, 0, 0);
         SetCostUpgrade(-1);
         GraveField.grave.set(this, true);
     }

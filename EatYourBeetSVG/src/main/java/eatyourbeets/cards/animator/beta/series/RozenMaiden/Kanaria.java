@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import eatyourbeets.cards.animator.beta.special.Kanaria_Pizzicato;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -29,10 +28,9 @@ public class Kanaria extends AnimatorCard
 
         Initialize(0, 0);
         SetUpgrade(0, 0);
-        
-        SetSpellcaster();
+        SetAffinity_Blue(1, 1, 0);
+
         SetCostUpgrade(-1);
-        SetSynergy(Synergies.RozenMaiden);
     }
 
     @Override

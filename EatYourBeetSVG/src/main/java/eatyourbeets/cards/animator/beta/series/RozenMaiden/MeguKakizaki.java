@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.powers.RepairPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -25,9 +24,9 @@ public class MeguKakizaki extends AnimatorCard
 
         Initialize(0, 5, 6);
         SetUpgrade(0, 3, 0);
+        SetAffinity_Blue(1, 0, 0);
 
         SetHealing(true);
-        SetSynergy(Synergies.RozenMaiden);
     }
 
     @Override

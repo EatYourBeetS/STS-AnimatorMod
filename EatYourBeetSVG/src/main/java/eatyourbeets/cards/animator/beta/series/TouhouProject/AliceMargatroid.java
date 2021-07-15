@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.CardSelection;
@@ -24,11 +23,9 @@ public class AliceMargatroid extends AnimatorCard
 
         Initialize(0, 0, 1, 5);
         SetUpgrade(0, 0, 1, 0);
-        SetScaling(0, 0, 0);
+        SetAffinity_Blue(2, 0, 0);
 
         SetEthereal(true);
-        SetSpellcaster();
-        SetSynergy(Synergies.TouhouProject);
     }
 
     @Override

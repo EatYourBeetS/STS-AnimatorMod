@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
@@ -21,8 +20,7 @@ public class NiaHonjou extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2, 1);
-
-        SetSynergy(Synergies.DateALive);
+        SetAffinity_Light(1, 1, 0);
     }
 
     @Override

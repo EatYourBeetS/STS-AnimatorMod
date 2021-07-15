@@ -10,8 +10,7 @@ import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.powers.affinity.AgilityPower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -28,8 +27,7 @@ public class ShizuruNakatsu extends AnimatorCard
 
         Initialize(0, 5, 2, 1);
         SetUpgrade(0, 3, 0);
-
-        SetSynergy(Synergies.Rewrite);
+        SetAffinity_Green(2, 0, 1);
     }
 
     @Override
@@ -47,7 +45,7 @@ public class ShizuruNakatsu extends AnimatorCard
         }
 
         AgilityPower agility = GameUtilities.GetPower(player, AgilityPower.class);
-        if (agility != null && AgilityPower.GetCurrentLevel() > 2)
+        if (agility != null && GameUtilities.GetPowerAmount(p, AgilityPower.POWER_ID) > 2)
         {
             canAttack = true;
         }

@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
@@ -20,7 +19,7 @@ public class Hinaichigo extends AnimatorCard
         Initialize(0, 0, 2, 4);
         SetUpgrade(0, 0, 1, 1);
 
-        SetSynergy(Synergies.RozenMaiden);
+        SetAffinity_Light(1, 1, 0);
     }
 
     @Override

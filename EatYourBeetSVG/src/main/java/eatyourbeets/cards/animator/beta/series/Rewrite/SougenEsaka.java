@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.powers.affinity.AgilityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
@@ -24,10 +24,8 @@ public class SougenEsaka extends AnimatorCard
 
         Initialize(5, 0, 2, 1);
         SetUpgrade(1, 0, 2);
-
-        SetMartialArtist();
-
-        SetSynergy(Synergies.Rewrite);
+        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Blue(1, 0, 0);
     }
 
     @Override

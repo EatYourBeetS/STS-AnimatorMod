@@ -10,7 +10,6 @@ import eatyourbeets.cards.animator.beta.series.RozenMaiden.Suigintou;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -31,9 +30,10 @@ public class Suigintou_BlackFeather extends AnimatorCard
 
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 0);
+        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Dark(2, 0, 0);
 
         SetPurge(true);
-        SetSynergy(Synergies.RozenMaiden);
     }
 
     @Override

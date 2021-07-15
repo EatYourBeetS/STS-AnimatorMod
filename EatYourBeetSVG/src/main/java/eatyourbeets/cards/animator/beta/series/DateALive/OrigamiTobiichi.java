@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.InverseOrigami;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
@@ -24,10 +23,9 @@ public class OrigamiTobiichi extends AnimatorCard
         super(DATA);
 
         Initialize(0, 3, 1, 10);
-        SetUpgrade(0, 4, 0);
-
-        SetSpellcaster();
-        SetSynergy(Synergies.DateALive);
+        SetUpgrade(0, 0, 0);
+        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Light(1, 1, 0);
     }
 
     @Override

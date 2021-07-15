@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -26,11 +25,10 @@ public class YukariYakumo extends AnimatorCard
 
         Initialize(0, 0, 5, 2);
         SetUpgrade(0, 0, 0, 1);
-        SetScaling(0, 0, 0);
+        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
 
         SetExhaust(true);
-        SetSpellcaster();
-        SetSynergy(Synergies.TouhouProject);
     }
 
     @Override

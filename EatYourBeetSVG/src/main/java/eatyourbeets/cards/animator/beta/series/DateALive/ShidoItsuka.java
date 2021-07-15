@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -30,9 +27,15 @@ public class ShidoItsuka extends AnimatorCard
 
         Initialize(0, 8, 3);
         SetUpgrade(0, 0);
+        SetAffinity_Blue(1, 1, 0);
 
         SetExhaust(true);
-        SetSynergy(Synergies.DateALive);
+    }
+
+    @Override
+    public boolean HasDirectSynergy(AbstractCard other)
+    {
+        return (other instanceof AnimatorCard && ((AnimatorCard) other).series.Equals(CardSeries.DateALive));
     }
 
     @Override
@@ -118,9 +121,9 @@ public class ShidoItsuka extends AnimatorCard
             && c.rarity != AbstractCard.CardRarity.SPECIAL
             && c.rarity != AbstractCard.CardRarity.BASIC)
             {
-                if (Synergies.WouldSynergize(this, c))
+                if (WouldSynergize(c))
                 {
-                    if (((AnimatorCard) c).synergy == Synergies.DateALive)
+                    if (((AnimatorCard) c).series == CardSeries.DateALive)
                     {
                         dateALiveCards.add(c);
                     }

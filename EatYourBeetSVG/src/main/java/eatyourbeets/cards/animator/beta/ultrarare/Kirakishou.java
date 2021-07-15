@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.ui.cards.DrawPileCardPreview;
 import eatyourbeets.utilities.GameActions;
@@ -35,11 +34,9 @@ public class Kirakishou extends AnimatorCard_UltraRare
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
-        
-        SetShapeshifter();
+        SetAffinity_Star(2);
 
         SetCooldown(2, 0, this::OnCooldownCompleted);
-        SetSynergy(Synergies.RozenMaiden);
     }
 
     @Override

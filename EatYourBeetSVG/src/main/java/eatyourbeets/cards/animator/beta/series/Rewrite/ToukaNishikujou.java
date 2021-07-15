@@ -6,7 +6,6 @@ import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class ToukaNishikujou extends AnimatorCard
@@ -19,8 +18,7 @@ public class ToukaNishikujou extends AnimatorCard
 
         Initialize(0, 10, 8, 9);
         SetUpgrade(0, 0, -2);
-
-        SetSynergy(Synergies.Rewrite);
+        SetAffinity_Green(2, 0, 0);
     }
 
     @Override

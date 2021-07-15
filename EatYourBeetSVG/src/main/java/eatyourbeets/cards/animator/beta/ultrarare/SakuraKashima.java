@@ -5,7 +5,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.Miracle;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.CardEffectChoice;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -27,10 +30,9 @@ public class SakuraKashima extends AnimatorCard_UltraRare
 
         Initialize(0, 0, 2, 80);
         SetUpgrade(0, 0, 0, -20);
+        SetAffinity_Blue(2, 0, 0);
 
         SetExhaust(true);
-        SetSynergy(Synergies.Rewrite);
-        SetSpellcaster();
     }
 
     @Override

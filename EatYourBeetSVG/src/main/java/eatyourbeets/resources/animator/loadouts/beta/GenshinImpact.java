@@ -8,8 +8,8 @@ import eatyourbeets.cards.animator.beta.series.GenshinImpact.Amber;
 import eatyourbeets.cards.animator.beta.series.GenshinImpact.Noelle;
 import eatyourbeets.cards.animator.beta.series.GenshinImpact.Venti;
 import eatyourbeets.cards.animator.beta.ultrarare.Traveler;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class GenshinImpact extends AnimatorLoadout
 {
     public GenshinImpact()
     {
-        super(Synergies.GenshinImpact);
+        super(CardSeries.GenshinImpact);
         IsBeta = true;
     }
 

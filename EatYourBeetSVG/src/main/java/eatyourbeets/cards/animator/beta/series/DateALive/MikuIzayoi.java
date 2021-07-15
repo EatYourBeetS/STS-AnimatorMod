@@ -22,9 +22,8 @@ public class MikuIzayoi extends AnimatorCard
         super(DATA);
 
         Initialize(0, 9, 1);
+        SetAffinity_Green(1, 0, 0);
         SetEthereal(true);
-
-        SetSynergy(Synergies.DateALive);
     }
 
     @Override

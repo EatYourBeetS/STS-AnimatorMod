@@ -25,10 +25,8 @@ public class YasutoraSado extends AnimatorCard
 
         Initialize(7, 0, 2);
         SetUpgrade(3, 0, 0);
-        SetScaling(0,0,1);
+        SetAffinity_Red(2, 0, 1);
         SetCooldown(2, 0, this::OnCooldownCompleted);
-
-        SetSynergy(Synergies.Bleach);
     }
 
     @Override

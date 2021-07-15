@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -20,9 +19,8 @@ public class KoishiKomeiji extends AnimatorCard
 
         Initialize(0, 0, 1, 1);
         SetUpgrade(0, 0, 0, 0);
-        SetScaling(0, 0, 0);
+        SetAffinity_Blue(1, 1, 0);
         SetEthereal(true);
-        SetSynergy(Synergies.TouhouProject);
     }
 
     @Override

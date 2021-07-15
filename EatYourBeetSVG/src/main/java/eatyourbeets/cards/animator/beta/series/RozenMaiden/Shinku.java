@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Shinku extends AnimatorCard
@@ -29,9 +28,9 @@ public class Shinku extends AnimatorCard
 
         Initialize(3, 3, 2, 3);
         SetUpgrade(1, 1);
+        SetAffinity_Blue(2, 0, 0);
 
         SetUnique(false, true);
-        SetSynergy(Synergies.RozenMaiden);
     }
 /*
     @Override

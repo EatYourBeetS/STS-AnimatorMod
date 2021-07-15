@@ -564,7 +564,7 @@
 		},
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Gain !S! more [Temporary HP] for each enemy that intends to attack. || <LIM>. If ALL enemies intend to attack: ** Gain !S! [Regeneration].",
+			"DESCRIPTION": "Gain 1 more [Temporary HP] for each enemy that intends to attack. || <LIM>. If ALL enemies intend to attack: Gain !S! [Regeneration].",
 			"NAME": "Barbara Pegg"
 		},
 		"animator:Curse_Delusion":
@@ -579,13 +579,12 @@
 		},
 		"animator:Fischl":
 		{
-		  "DESCRIPTION": "Randomly channel ** [Lightning] or [Dark]. || <LIM>. Synergy: Add an {Oz} to your Discard Pile.",
-		  "NAME": "Fischl",
-		  "UPGRADE_DESCRIPTION": "Randomly channel ** [Lightning] or [Dark]. || <LIM>. Synergy: Add an upgraded {Oz} to your Discard Pile."
+		  "DESCRIPTION": "Randomly Channel ** [Lightning] or [Dark]. || <LIM>. Synergy: Add {Oz} to your Discard Pile.",
+		  "NAME": "Fischl"
 		},
 		"animator:HuTao":
 		{
-		  "DESCRIPTION": "Exhaust !M! random {Hindrances} from anywhere. Add {Searing Burn} to your Draw Pile for each. || When Exhausted, add !S! {Searing Burn} to your hand.",
+		  "DESCRIPTION": "Exhaust !M! random {Hindrances} from anywhere. Add a {Searing Burn} to your Draw Pile for each. || When Exhausted, add !S! {Searing Burn} to your hand.",
 		  "NAME": "Hu Tao"
 		},
 		"animator:JeanGunnhildr":
@@ -605,7 +604,7 @@
 		},
 		"animator:KamisatoAyaka":
 		{
-		  "DESCRIPTION": "Attack 1 additional time for each [Frost] you have. You cannot gain [Block] for 2 turns. || <LIM>. If you have at least !S! [Frost]: Play {Sheer Cold}.",
+		  "DESCRIPTION": "Attack 1 additional time for each [Frost] you have. You cannot gain [Block] for 2 turns. || <LIM>. If you have at least ** !S! [Frost]: Play {Sheer Cold}.",
 		  "NAME": "Kamisato Ayaka"
 		},
 		"animator:Keqing":
@@ -615,9 +614,8 @@
 		},
 		"animator:Klee":
 		{
-		  "DESCRIPTION": "Apply !M! [Vulnerable] to ALL enemies. || Add !S! {Jumpy Dumpty} to your Draw Pile. ** Add 1 more if at least half of your orbs are [Fire].",
-		  "NAME": "Klee",
-		  "UPGRADE_DESCRIPTION": "Apply !M! [Vulnerable] to ALL enemies. || Add !S! upgraded {Jumpy Dumpty} to your Draw Pile. ** Add 1 more if at least half of your orbs are [Fire]."
+		  "DESCRIPTION": "Apply !M! [Vulnerable] to ALL enemies. || Add !S! {Jumpy Dumpty} ** to your Draw Pile. ** 3 <R>: Add 1 more.",
+		  "NAME": "Klee"
 		},
 		"animator:LisaMinci":
 		{
@@ -626,7 +624,7 @@
 		},
 		"animator:Noelle":
 		{
-			"DESCRIPTION": "{Starter}: If you have [Earth], trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || <SLM>. Gain extra [Block] equal to <L> (up to !M!).",
+			"DESCRIPTION": "{Starter}: If you have [Earth], ** trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || <SLM>. Gain extra [Block] equal to <L> (up to !M!).",
 			"NAME": "Noelle"
 		},
 		"animator:Oz":
@@ -642,7 +640,7 @@
 		},
 		"animator:Tartaglia":
 		{
-			"DESCRIPTION": "Deal additional damage equal to the enemy's [Burning], then remove [Burning]. || If in <FS>: exit your Stance. Otherwise, enter <FS> and Transform this card into {Delusion}.",
+			"DESCRIPTION": "Deal additional damage equal to the enemy's [Burning], then remove [Burning]. || If in <FS>: exit your Stance. Otherwise, enter <FS> ** and Transform this card ** into {Delusion}.",
 			"NAME": "Tartaglia"
 		},
 		"animator:Traveler":
@@ -653,7 +651,7 @@
 		},
 		"animator:Venti":
 		{
-			"DESCRIPTION": "{Channel} 1 [Aether]. Cycle !M! cards. || <SLM>. Trigger your last [Aether] for every Skill drawn from this card. ** If you drew at least 2 {Hindrances}, Draw a card.",
+			"DESCRIPTION": "{Channel} 1 [Aether]. || Cycle !M! cards. Trigger your last [Aether] for every Skill  ** drawn from this card. ** If you drew at least 2 {Hindrances}, Draw a card.",
 			"NAME": "Venti"
 		},
 		"animator:Zhongli":

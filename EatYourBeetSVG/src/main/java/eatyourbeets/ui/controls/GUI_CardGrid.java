@@ -46,14 +46,20 @@ public class GUI_CardGrid extends GUIElement
 
     public GUI_CardGrid()
     {
-        this(0.5f);
+        this(0.5f, true);
     }
 
     public GUI_CardGrid(float horizontalAlignment)
     {
+        this(horizontalAlignment, true);
+    }
+
+    public GUI_CardGrid(float horizontalAlignment, boolean autoShowScrollbar)
+    {
         this.cards = new ArrayList<>();
         this.scrollBar = new GUI_VerticalScrollBar(new Hitbox(ScreenW(0.03f), ScreenH(0.7f)))
-        .SetOnScroll(this::OnScroll);
+                .SetOnScroll(this::OnScroll);
+        this.autoShowScrollbar = autoShowScrollbar;
 
         SetHorizontalAlignment(horizontalAlignment);
     }

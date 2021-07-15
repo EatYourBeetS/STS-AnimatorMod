@@ -61,7 +61,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         final float buttonWidth = ScreenW(0.18f);
         final float xPos = ScreenW(0.82f);
 
-        cardGrid = new GUI_CardGrid(0.41f)
+        cardGrid = new GUI_CardGrid(0.41f, false)
         .SetOnCardClick(this::OnCardClicked)
         .SetOnCardRightClick(this::OnCardRightClicked);
 

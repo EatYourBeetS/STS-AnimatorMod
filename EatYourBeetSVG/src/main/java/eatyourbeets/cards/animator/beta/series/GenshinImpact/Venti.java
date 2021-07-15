@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Venti extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Venti.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(Venti.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetMaxCopies(2).SetSeriesFromClassPackage();
     private static final int HINDRANCE_THRESHOLD = 2;
 
     public Venti()

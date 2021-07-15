@@ -32,9 +32,14 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
         RefreshStatistics();
     }
 
+    public ArrayList<EYBCardAffinities> GetAffinities()
+    {
+        return list;
+    }
+
     public void AddCard(AbstractCard card)
     {
-        EYBCardAffinities a = GetAffinities(card);
+        EYBCardAffinities a = GetAffinitiesFromCard(card);
         if (a != null)
         {
             list.add(a);
@@ -96,12 +101,12 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
             }
         }
 
-        Group g = new Group(type);
+        Group g = new Group(this, type);
         groups.add(g);
         return g;
     }
 
-    public static EYBCardAffinities GetAffinities(AbstractCard card)
+    public static EYBCardAffinities GetAffinitiesFromCard(AbstractCard card)
     {
         return card instanceof EYBCard ? ((EYBCard) card).affinities : null;
     }
@@ -115,13 +120,15 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
     public static class Group
     {
         public AffinityType Type;
+        public EYBCardAffinityStatistics Statistics;
         public int Size;
         public int Total_LV1;
         public int Total_LV2;
 
-        public Group(AffinityType type)
+        public Group(EYBCardAffinityStatistics statistics, AffinityType type)
         {
             Type = type;
+            Statistics = statistics;
         }
 
         public void Reset()
@@ -184,6 +191,20 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
             }
             RenderHelpers.WriteCentered(sb, font, GetPercentageString(0), cX + (size * 0.1f * Settings.scale), cY - (size * 0.65f * Settings.scale), Color.WHITE);
             RenderHelpers.ResetFont(font);
+        }
+
+        public ArrayList<AbstractCard> GetCards()
+        {
+            final ArrayList<AbstractCard> cards = new ArrayList<>();
+            for (EYBCardAffinities a : Statistics.GetAffinities())
+            {
+                if (a.GetLevel(Type) > 0)
+                {
+                    cards.add(a.Card);
+                }
+            }
+
+            return cards;
         }
     }
 }

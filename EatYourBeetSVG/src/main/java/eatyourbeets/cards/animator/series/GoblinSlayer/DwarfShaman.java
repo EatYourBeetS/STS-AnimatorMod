@@ -25,7 +25,7 @@ public class DwarfShaman extends AnimatorCard
         SetUpgrade(4, 0, 0);
 
         SetAffinity_Blue(1, 0, 2);
-        SetAffinity_Light(1);
+        SetAffinity_Red(1);
 
         SetEvokeOrbCount(1);
     }

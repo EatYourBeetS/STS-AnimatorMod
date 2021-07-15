@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public final class GameEffects
 {
+    public final static ArrayList<AbstractGameEffect> Unlisted = new ArrayList<>();
     public final static GameEffects List = new GameEffects(EffectType.List);
     public final static GameEffects Queue = new GameEffects(EffectType.Queue);
     public final static GameEffects TopLevelList = new GameEffects(EffectType.TopLevelList);
@@ -32,6 +33,11 @@ public final class GameEffects
     protected GameEffects(EffectType effectType)
     {
         this.effectType = effectType;
+    }
+
+    public static boolean IsEmpty()
+    {
+        return Unlisted.isEmpty() && AbstractDungeon.topLevelEffects.isEmpty();
     }
 
     public ArrayList<AbstractGameEffect> GetList()

@@ -20,8 +20,9 @@ public class TheEruzaStone extends UnnamedReignRelic
     {
         super.onPlayCard(c, m);
 
-        if (c.type == AbstractCard.CardType.POWER)
+        if (IsEnabled() && c.type == AbstractCard.CardType.POWER)
         {
+            SetEnabled(false);
             GameActions.Bottom.Draw(1);
             flash();
         }
@@ -39,5 +40,23 @@ public class TheEruzaStone extends UnnamedReignRelic
         super.onUnequip();
 
         player.energy.energyMaster -= 2;
+    }
+
+    @Override
+    public void atTurnStart()
+    {
+        super.atTurnStart();
+
+        SetEnabled(true);
+    }
+
+    public String GetDoomedString()
+    {
+        return " NL #y" + name.replace(" ", " #y") + " protects you, increasing the turn limit by #b" + GetDoomedTurnIncrease() + ".";
+    }
+
+    public int GetDoomedTurnIncrease()
+    {
+        return 1;
     }
 }

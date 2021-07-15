@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.utilities.GameEffects;
 
 public abstract class EYBEffect extends AbstractGameEffect
 {
@@ -109,6 +110,7 @@ public abstract class EYBEffect extends AbstractGameEffect
 
     protected void Complete()
     {
+        GameEffects.Unlisted.remove(this);
         this.isDone = true;
     }
 

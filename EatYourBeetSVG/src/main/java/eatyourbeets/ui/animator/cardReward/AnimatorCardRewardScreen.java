@@ -26,7 +26,7 @@ public class AnimatorCardRewardScreen extends GUIElement
             return;
         }
 
-        GR.UI.CardAffinities.Open(AbstractDungeon.player.masterDeck.group);
+        GR.UI.CardAffinities.Open(AbstractDungeon.player.masterDeck.group, null);
 
         rewardBundle.Open(rItem, cards);
         purgingStoneUI.Open(rItem, cards);

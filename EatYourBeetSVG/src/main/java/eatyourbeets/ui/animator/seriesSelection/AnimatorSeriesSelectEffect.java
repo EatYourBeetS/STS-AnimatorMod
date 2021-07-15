@@ -119,7 +119,7 @@ public class AnimatorSeriesSelectEffect extends EYBEffect
                 }
 
                 GR.UI.CardAffinities.SetActive(true);
-                GR.UI.CardAffinities.Open(container.GetAllCardsInPool());
+                GR.UI.CardAffinities.Open(container.GetAllCardsInPool(), null);
             }
         }
     }

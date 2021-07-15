@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class EYBCombatInfo extends GUIElement
 {
     protected final DraggableHitbox hb;
-    protected final GUI_Image drag_panel;
+    protected final GUI_Image dragPanel_image;
     protected final ArrayList<EYBCombatInfo_AffinityRow> rows = new ArrayList<>();
 
     public EYBCombatInfo()
@@ -27,7 +27,7 @@ public class EYBCombatInfo extends GUIElement
         hb = new DraggableHitbox(ScreenW(0.024f), ScreenH(0.65f), Scale(80f),  Scale(40f), true);
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));
 
-        drag_panel = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
+        dragPanel_image = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
         .SetColor(0.05f, 0.05f, 0.05f, 0.5f);
 
         AffinityType[] values = AffinityType.values();
@@ -77,7 +77,7 @@ public class EYBCombatInfo extends GUIElement
             t.Update(handAffinities, cardAffinities, strongSynergies, draggingCard);
         }
 
-        drag_panel.Update();
+        dragPanel_image.Update();
     }
 
     @Override
@@ -88,7 +88,7 @@ public class EYBCombatInfo extends GUIElement
             return;
         }
 
-        drag_panel.Render(sb);
+        dragPanel_image.Render(sb);
 
         for (EYBCombatInfo_AffinityRow t : rows)
         {

@@ -9,7 +9,6 @@ import eatyourbeets.cards.animator.beta.status.SearingBurn;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
@@ -17,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class HuTao extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HuTao.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(HuTao.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing).SetSeriesFromClassPackage();
 
     static
     {
@@ -30,11 +29,11 @@ public class HuTao extends AnimatorCard
 
         Initialize(4, 0, 3, 2);
         SetUpgrade(1, 0, 1, 0);
-        SetScaling(0, 0, 4);
+        SetAffinity_Red(1, 0, 3);
+        SetAffinity_Dark(1, 0, 0);
 
         SetEthereal(true);
         SetExhaust(true);
-        SetSynergy(Synergies.GenshinImpact);
     }
 
     @Override

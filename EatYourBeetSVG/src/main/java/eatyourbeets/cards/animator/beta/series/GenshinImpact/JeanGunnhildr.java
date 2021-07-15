@@ -9,12 +9,11 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class JeanGunnhildr extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(JeanGunnhildr.class).SetAttack(1, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(JeanGunnhildr.class).SetAttack(1, CardRarity.RARE).SetSeriesFromClassPackage();
 
     public JeanGunnhildr()
     {
@@ -22,10 +21,11 @@ public class JeanGunnhildr extends AnimatorCard
 
         Initialize(8, 1, 2);
         SetUpgrade(3, 1, 0);
-        SetScaling(0, 1, 1);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Light(2);
 
         SetLoyal(true);
-        SetSynergy(Synergies.GenshinImpact);
     }
 
 

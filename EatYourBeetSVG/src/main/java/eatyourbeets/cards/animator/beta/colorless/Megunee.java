@@ -4,9 +4,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.Megunee_Zombie;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
@@ -31,7 +31,8 @@ public class Megunee extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
         SetUpgrade(0, 2, 1);
         SetCooldown(1, 0, this::OnCooldownCompleted);
 
-        SetSynergy(Synergies.GakkouGurashi);
+        SetSeries(CardSeries.GakkouGurashi);
+        SetAffinity_Light(1);
     }
 
     @Override

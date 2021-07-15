@@ -18,7 +18,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class YukariYakumo extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YukariYakumo.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.Self);
+    public static final EYBCardData DATA = Register(YukariYakumo.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.Self).SetSeriesFromClassPackage();
 
     public YukariYakumo()
     {

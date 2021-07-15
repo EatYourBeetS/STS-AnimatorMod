@@ -4,16 +4,19 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.IkkakuBankai;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.affinity.AgilityPower;
+import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class IkkakuMadarame extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(IkkakuMadarame.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(IkkakuMadarame.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL).SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new ZarakiKenpachi(), false);
@@ -24,11 +27,10 @@ public class IkkakuMadarame extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(4, 0, 0, ForcePower.GetThreshold(2));
+        Initialize(4, 0, 0, 3);
         SetUpgrade(3, 0, 0);
-        SetScaling(0,1,1);
-
-        SetSynergy(Synergies.Bleach);
+        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override
@@ -42,7 +44,7 @@ public class IkkakuMadarame extends AnimatorCard
         }
 
         GameActions.Bottom.Callback(card -> {
-            if (ForcePower.GetCurrentLevel() > 2 || AgilityPower.GetCurrentLevel() > 2 )
+            if (GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID) > secondaryValue || GameUtilities.GetPowerAmount(p, AgilityPower.POWER_ID) > secondaryValue )
             {
                 GameActions.Bottom.MakeCardInDrawPile(new IkkakuBankai());
                 GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);

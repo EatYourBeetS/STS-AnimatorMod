@@ -6,24 +6,24 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Oz extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Oz.class).SetPower(2, CardRarity.SPECIAL);
+    public static final EYBCardData DATA = Register(Oz.class).SetPower(2, CardRarity.SPECIAL).SetSeries(CardSeries.GenshinImpact);
 
     public Oz()
     {
         super(DATA);
 
         Initialize(0, 0, 1, 1);
+        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
 
         SetEthereal(true);
-        SetSpellcaster();
-        SetSynergy(Synergies.GenshinImpact);
     }
 
     @Override

@@ -8,23 +8,20 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class KaeyaAlberich extends AnimatorCard {
-    public static final EYBCardData DATA = Register(KaeyaAlberich.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(KaeyaAlberich.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL).SetSeriesFromClassPackage();
 
     public KaeyaAlberich() {
         super(DATA);
 
         Initialize(0, 0, 2);
-        SetUpgrade(0, 2, 0);
-        SetScaling(0, 0, 0);
-
-        SetSynergy(Synergies.GenshinImpact);
+        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Green(1, 1, 0);
     }
 
 

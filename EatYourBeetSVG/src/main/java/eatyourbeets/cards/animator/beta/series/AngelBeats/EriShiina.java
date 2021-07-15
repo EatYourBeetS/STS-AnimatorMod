@@ -7,7 +7,6 @@ import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
@@ -15,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class EriShiina extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(EriShiina.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(EriShiina.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
     static
     {
         for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
@@ -30,10 +29,8 @@ public class EriShiina extends AnimatorCard
 
         Initialize(7, 0, 2, 0);
         SetUpgrade(3, 0, 0, 0);
-        SetScaling(0, 1, 0);
 
-        SetSynergy(Synergies.AngelBeats);
-        SetMartialArtist();
+        SetAffinity_Green(2, 0, 1);
         SetExhaust(true);
         AfterLifeMod.Add(this);
     }

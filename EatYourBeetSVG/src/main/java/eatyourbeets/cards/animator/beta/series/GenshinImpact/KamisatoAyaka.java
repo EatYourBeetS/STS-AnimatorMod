@@ -8,7 +8,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.animator.beta.special.SheerCold;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.NegateBlockPower;
@@ -19,7 +22,7 @@ import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class KamisatoAyaka extends AnimatorCard {
-    public static final EYBCardData DATA = Register(KamisatoAyaka.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing, EYBCardTarget.Random);
+    public static final EYBCardData DATA = Register(KamisatoAyaka.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing, EYBCardTarget.Random).SetSeriesFromClassPackage();
     private static final int NO_BLOCK_TURNS = 2;
     static
     {
@@ -31,11 +34,10 @@ public class KamisatoAyaka extends AnimatorCard {
 
         Initialize(7, 0, 1, 3);
         SetUpgrade(2, 0, 0, 0);
-        SetScaling(1, 1, 0);
+        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Green(2, 0, 1);
 
-        SetSynergy(Synergies.GenshinImpact);
         SetExhaust(true);
-        SetMartialArtist();
     }
 
     @Override

@@ -7,7 +7,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.animator.SheerColdPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
 
 public class SheerCold extends AnimatorCard
 {
@@ -19,6 +18,7 @@ public class SheerCold extends AnimatorCard
 
         Initialize(0, 0, 1, 0);
         SetUpgrade(0, 0, 0, 0);
+        SetAffinity_Blue(2);
     }
 
     @Override

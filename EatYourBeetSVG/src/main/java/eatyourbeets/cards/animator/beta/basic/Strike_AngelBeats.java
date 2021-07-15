@@ -4,8 +4,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Strike_AngelBeats extends Strike
@@ -20,7 +20,8 @@ public class Strike_AngelBeats extends Strike
         SetUpgrade(3, 0);
 
         SetAttackType(EYBAttackType.Ranged);
-        SetSynergy(Synergies.AngelBeats);
+        SetSeries(CardSeries.AngelBeats);
+        SetAffinity_Green(1);
     }
 
     @Override

@@ -7,21 +7,17 @@ import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class LisaMinci extends AnimatorCard {
-    public static final EYBCardData DATA = Register(LisaMinci.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.Self);
+    public static final EYBCardData DATA = Register(LisaMinci.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.Self).SetSeriesFromClassPackage();
 
     public LisaMinci() {
         super(DATA);
 
         Initialize(0, 3, 2, 1);
         SetUpgrade(0, 0, 1, 0);
-        SetScaling(2, 0, 0);
-
-        SetSynergy(Synergies.GenshinImpact);
-        SetSpellcaster();
+        SetAffinity_Blue(2, 0, 2);
     }
 
 

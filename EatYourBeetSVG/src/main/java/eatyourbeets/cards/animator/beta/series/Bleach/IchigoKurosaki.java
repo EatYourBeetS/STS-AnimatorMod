@@ -4,13 +4,17 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.IchigoBankai;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class IchigoKurosaki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(IchigoKurosaki.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Random);
+    public static final EYBCardData DATA = Register(IchigoKurosaki.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Random).SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new IchigoBankai(), false);
@@ -20,12 +24,10 @@ public class IchigoKurosaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 0, ForcePower.GetThreshold(4));
+        Initialize(2, 0, 0, 6);
         SetUpgrade(3, 0, 0, 0);
-        SetScaling(0,1,1);
-
-        SetSynergy(Synergies.Bleach);
-        SetMartialArtist();
+        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override
@@ -37,7 +39,7 @@ public class IchigoKurosaki extends AnimatorCard
         GameActions.Bottom.GainAgility(1, false);
 
         GameActions.Bottom.Callback(card -> {
-            if (ForcePower.GetCurrentLevel() > 4)
+            if (GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID) > secondaryValue)
             {
                 GameActions.Bottom.MakeCardInDrawPile(new IchigoBankai());
                 GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);

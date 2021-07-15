@@ -7,14 +7,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Chaa extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Chaa.class).SetPower(3, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Chaa.class).SetPower(3, CardRarity.UNCOMMON).SetSeriesFromClassPackage();
 
     public Chaa()
     {
@@ -23,7 +22,7 @@ public class Chaa extends AnimatorCard
         Initialize(0, 6, 1, 0);
         SetUpgrade(0, 4, 0, 0);
 
-        SetSynergy(Synergies.AngelBeats);
+        SetAffinity_Green(2, 0, 0);
     }
 
     @Override

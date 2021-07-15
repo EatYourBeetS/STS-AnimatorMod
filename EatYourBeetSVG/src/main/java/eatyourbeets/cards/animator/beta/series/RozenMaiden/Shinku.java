@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 public class Shinku extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Shinku.class)
-    		.SetAttack(2, CardRarity.RARE);
+    		.SetAttack(2, CardRarity.RARE).SetSeriesFromClassPackage();
     static
     {
         for (ThrowingKnife knife : ThrowingKnife.GetAllCards())

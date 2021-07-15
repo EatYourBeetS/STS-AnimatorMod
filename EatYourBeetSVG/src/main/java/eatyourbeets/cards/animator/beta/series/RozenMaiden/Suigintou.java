@@ -15,9 +15,7 @@ import eatyourbeets.utilities.GameActions;
 public class Suigintou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Suigintou.class)
-    		.SetAttack(1, 
-    				CardRarity.UNCOMMON,
-    				EYBAttackType.Elemental);
+    		.SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental).SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Suigintou_BlackFeather(), false);

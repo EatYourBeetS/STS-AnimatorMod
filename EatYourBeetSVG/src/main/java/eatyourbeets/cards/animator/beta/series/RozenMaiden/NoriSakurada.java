@@ -17,7 +17,7 @@ public class NoriSakurada extends AnimatorCard
 {
 	public static final EYBCardData DATA =
 			Register(NoriSakurada.class)
-			.SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
+			.SetSkill(0, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
 	
 	public NoriSakurada()
 	{

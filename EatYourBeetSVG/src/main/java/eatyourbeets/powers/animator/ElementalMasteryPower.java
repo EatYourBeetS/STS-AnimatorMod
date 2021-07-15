@@ -52,7 +52,7 @@ public class ElementalMasteryPower extends AnimatorPower implements OnChannelOrb
     @Override
     public void playApplyPowerSfx()
     {
-        CardCrawlGame.sound.playA("ORB_FROST_CHANNEL", -0.25f);
+        CardCrawlGame.sound.playA("ORB_PLASMA_CHANNEL", -0.25f);
     }
 
     @Override

@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
@@ -22,7 +21,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber, OnEvokeOrbSubscriber
 {
-    public static final EYBCardData DATA = Register(Keqing.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(Keqing.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing).SetSeriesFromClassPackage();
 
     public Keqing()
     {
@@ -30,11 +29,10 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
 
         Initialize(2, 0, 3, 3);
         SetUpgrade(1, 0, 0);
-        SetScaling(1, 1, 0);
+        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Green(2, 0, 1);
 
         SetExhaust(true);
-        SetSynergy(Synergies.GenshinImpact);
-        SetMartialArtist();
     }
 
     @Override

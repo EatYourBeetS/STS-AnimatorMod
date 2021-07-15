@@ -9,12 +9,11 @@ import eatyourbeets.cards.animator.beta.special.Oz;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Fischl extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Fischl.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(Fischl.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Elemental).SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Oz(), true);
@@ -25,9 +24,8 @@ public class Fischl extends AnimatorCard {
 
         Initialize(3, 0, 0);
         SetUpgrade(3, 0, 0);
-        SetScaling(0, 0, 0);
+        SetAffinity_Blue(1);
 
-        SetSynergy(Synergies.GenshinImpact);
         SetExhaust(true);
     }
 

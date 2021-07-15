@@ -6,14 +6,13 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Zhongli extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Zhongli.class).SetPower(3, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Zhongli.class).SetPower(3, CardRarity.RARE).SetSeriesFromClassPackage();
 
     public Zhongli()
     {
@@ -21,8 +20,8 @@ public class Zhongli extends AnimatorCard
 
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 3, 1, 0);
-
-        SetSynergy(Synergies.GenshinImpact);
+        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Blue(2, 0, 0);
     }
 
 

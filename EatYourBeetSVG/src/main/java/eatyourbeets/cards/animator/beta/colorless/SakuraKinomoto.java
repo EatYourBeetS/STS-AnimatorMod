@@ -13,9 +13,9 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.vfx.SmallLaserEffect;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -32,12 +32,10 @@ public class SakuraKinomoto extends AnimatorCard
 
         Initialize(17, 0, 2);
         SetUpgrade(0, 0, 1);
-        SetScaling(1,0,0);
 
         SetExhaust(true);
-        SetSpellcaster();
-
-        SetSynergy(Synergies.CardcaptorSakura);
+        SetSeries(CardSeries.CardcaptorSakura);
+        SetAffinity_Blue(2, 0 ,1);
     }
 
     @Override

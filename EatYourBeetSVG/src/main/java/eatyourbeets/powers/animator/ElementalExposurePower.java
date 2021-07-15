@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.powers.AnimatorPower;
@@ -63,7 +64,7 @@ public class ElementalExposurePower extends AnimatorPower
     @Override
     public void playApplyPowerSfx()
     {
-        CardCrawlGame.sound.playA("ORB_FROST_CHANNEL", -0.25f);
+        CardCrawlGame.sound.playA("ORB_PLASMA_CHANNEL", -0.25f);
     }
 
     @Override
@@ -121,6 +122,15 @@ public class ElementalExposurePower extends AnimatorPower
         return damage;
     }
 
+    @Override
+    public float modifyBlock(float blockAmount) {
+        if (owner.hasPower(FrailPower.POWER_ID)) {
+            float newBlock = calculateMultiplier(blockAmount,0.75F);
+            return super.modifyBlock(newBlock);
+        }
+        return super.modifyBlock(blockAmount);
+    }
+
     private void updatePercentage()
     {
         percentage = CalculatePercentage(this.amount);
@@ -129,6 +139,7 @@ public class ElementalExposurePower extends AnimatorPower
 
     private int calculateMultiplier(float value, float baseMultiplier) {
         float modifiedMultiplier = (1.0f - baseMultiplier) * percentage;
-        return MathUtils.ceil(value * (1 - modifiedMultiplier) / baseMultiplier);
+        float finalMultiplier = Math.max(0, 1 - modifiedMultiplier);
+        return MathUtils.ceil(value * finalMultiplier / baseMultiplier);
     }
 }

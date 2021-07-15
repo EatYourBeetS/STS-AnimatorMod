@@ -3,15 +3,22 @@ package eatyourbeets.cards.animator.beta.ultrarare;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.DarkOrbEvokeAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.curses.Decay;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
+import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
@@ -28,7 +35,7 @@ import java.util.ArrayList;
 
 public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(Traveler.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Traveler.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact);
     private RotatingList<EYBCardPreview> previews = new RotatingList<>();
 
     public Traveler.Form currentForm;
@@ -51,9 +58,10 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
 
         Initialize(0, 0, 20, 2);
         SetUpgrade(0, 0, 5, 0);
+        SetAffinity_Light(1);
+        SetAffinity_Dark(2);
         SetUnique(true, true);
         SetEthereal(true);
-        SetSynergy(Synergies.GenshinImpact);
         ChangeForm(form);
     }
 
@@ -132,6 +140,8 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
                 cardText.OverrideDescription(null, true);
                 tooltips.add(GR.Tooltips.ElementalMastery);
                 tooltips.add(GR.Tooltips.ElementalExposure);
+                SetExhaust(false);
+                this.cost = this.costForTurn = -2;
                 break;
             }
 
@@ -140,6 +150,8 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
                 LoadImage("_Aether");
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
                 tooltips.add(GR.Tooltips.ElementalExposure);
+                SetExhaust(false);
+                this.cost = this.costForTurn = 2;
                 break;
             }
 
@@ -148,7 +160,8 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
                 LoadImage("_Lumine");
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
                 tooltips.add(GR.Tooltips.ElementalMastery);
-                tooltips.add(GR.Tooltips.ElementalExposure);
+                SetExhaust(true);
+                this.cost = this.costForTurn = 3;
                 break;
             }
         }
@@ -188,6 +201,7 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
                 GameActions.Bottom.ChannelOrbs(Aether::new, 2);
                 break;
             case Lumine:
+                GameActions.Top.Add(new VFXAction(new OfferingEffect(), Settings.FAST_MODE ? 0.1F : 0.5F));
                 for (AbstractMonster target : GameUtilities.GetEnemies(true)) {
                     for (int i = 0; i < secondaryValue; i++) {
                         GameActions.Bottom.ApplyVulnerable(p, target, 1);
@@ -196,7 +210,7 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
                 }
                 Traveler other = (Traveler) makeStatEquivalentCopy();
                 CombatStats.onStartOfTurnPostDraw.Subscribe(other);
-                GameActions.Bottom.MakeCardInDiscardPile(new Decay());
+                GameActions.Bottom.MakeCardInDiscardPile(new VoidCard());
         }
 
     }
@@ -219,7 +233,7 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
         {
             GameEffects.Queue.ShowCardBriefly(this);
 
-            AbstractDungeon.effectsQueue.add(new RoomTintEffect(Color.BLACK.cpy(), 0.8F));
+            AbstractDungeon.effectsQueue.add(new RoomTintEffect(Color.BLACK.cpy(), 0.8F, 2.0F+ (orbCount/10.0F), true));
             AbstractDungeon.effectsQueue.add(new BorderLongFlashEffect(new Color(1.0F, 1.0F, 1.0F, 0.5F)));
 
             int startIdx = Math.max(orbCount - magicNumber, 0);
@@ -227,8 +241,13 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
             for (int i = startIdx; i < orbCount; i++)
             {
                 AbstractOrb orb = CombatStats.OrbsEvokedThisCombat().get(i);
-                orb.onStartOfTurn();
-                orb.onEndOfTurn();
+                if (Dark.ORB_ID.equals(orb.ID)) {
+                    GameActions.Bottom.Add(new DarkOrbEvokeAction(new DamageInfo(AbstractDungeon.player, orb.passiveAmount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+                }
+                else {
+                    orb.onStartOfTurn();
+                    orb.onEndOfTurn();
+                }
             }
 
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);

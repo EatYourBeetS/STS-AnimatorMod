@@ -6,14 +6,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class HidekiHinata extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HidekiHinata.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(HidekiHinata.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged).SetSeriesFromClassPackage();
 
     public HidekiHinata()
     {
@@ -22,7 +21,7 @@ public class HidekiHinata extends AnimatorCard
         Initialize(6, 0, 0, 0);
         SetUpgrade(2, 0, 0, 0);
 
-        SetSynergy(Synergies.AngelBeats);
+        SetAffinity_Green(1, 1, 0);
         SetExhaust(true);
         AfterLifeMod.Add(this);
     }

@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.beta.basic;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.basic.Defend;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
@@ -18,7 +18,8 @@ public class Defend_AngelBeats extends Defend
         Initialize(0, 5, 1);
         SetUpgrade(0, 3);
 
-        SetSynergy(Synergies.AngelBeats);
+        SetSeries(CardSeries.AngelBeats);
+        SetAffinity_Light(1);
     }
 
     @Override

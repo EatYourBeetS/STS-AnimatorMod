@@ -18,7 +18,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Shimako extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Shimako.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Shimako.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
 
     public Shimako()
     {

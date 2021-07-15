@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.beta.basic;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.basic.Defend;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
@@ -18,7 +18,8 @@ public class Defend_DateALive extends Defend
         Initialize(0, 6, 2, 14);
         SetUpgrade(0, 3);
 
-        SetSynergy(Synergies.DateALive);
+        SetSeries(CardSeries.DateALive);
+        SetAffinity_Blue(1);
     }
 
     @Override

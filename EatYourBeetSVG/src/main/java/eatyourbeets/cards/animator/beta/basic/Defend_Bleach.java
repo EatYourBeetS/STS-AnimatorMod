@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.beta.basic;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.basic.Defend;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -19,7 +19,8 @@ public class Defend_Bleach extends Defend
         Initialize(0, 5, 2, 1);
         SetUpgrade(0, 3);
 
-        SetSynergy(Synergies.Bleach);
+        SetSeries(CardSeries.Bleach);
+        SetAffinity_Red(1);
     }
 
     @Override

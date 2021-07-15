@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.IntellectStance;
@@ -21,7 +20,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class AyatoNaoi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(AyatoNaoi.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(AyatoNaoi.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.None).SetSeriesFromClassPackage();
 
     public AyatoNaoi()
     {
@@ -30,8 +29,8 @@ public class AyatoNaoi extends AnimatorCard
         Initialize(0, 0, 1, 0);
         SetUpgrade(0, 0, 2, 0);
 
-        SetSynergy(Synergies.AngelBeats);
-        SetSpellcaster();
+        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Green(1, 0, 0);
         SetExhaust(true);
         AfterLifeMod.Add(this);
     }

@@ -4,8 +4,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.card.ChooseAndUpgradeEffect;
 import eatyourbeets.interfaces.subscribers.OnBattleEndSubscriber;
 import eatyourbeets.powers.AnimatorPower;
@@ -24,7 +24,8 @@ public class Rorona extends AnimatorCard
         Initialize(0, 0, 0);
         SetCostUpgrade(-1);
 
-        SetSynergy(Synergies.Atelier);
+        SetSeries(CardSeries.Atelier);
+        SetAffinity_Blue(1);
     }
 
     @Override

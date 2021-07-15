@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Enju extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Enju.class).SetPower(-1, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Enju.class).SetPower(-1, CardRarity.RARE).SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Enju_Barasuishou(-1), false);

@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Chibimoth extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Chibimoth.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Chibimoth.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new KotoriKanbe(), false);

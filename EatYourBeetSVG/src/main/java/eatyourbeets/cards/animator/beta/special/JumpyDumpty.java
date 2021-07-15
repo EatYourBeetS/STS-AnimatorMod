@@ -5,16 +5,16 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class JumpyDumpty extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(JumpyDumpty.class).SetAttack(0, CardRarity.SPECIAL, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(JumpyDumpty.class).SetAttack(0, CardRarity.SPECIAL, EYBAttackType.Elemental).SetSeries(CardSeries.GenshinImpact);
 
     public JumpyDumpty()
     {
@@ -22,9 +22,9 @@ public class JumpyDumpty extends AnimatorCard
 
         Initialize(9, 0, 1, 5);
         SetUpgrade(3, 0, 1, 0);
+        SetAffinity_Red(1, 0, 1);
         SetAutoplay(true);
         SetExhaust(true);
-        SetSynergy(Synergies.GenshinImpact);
     }
 
     @Override

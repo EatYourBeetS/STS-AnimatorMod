@@ -8,7 +8,6 @@ import eatyourbeets.cards.animator.beta.curse.Curse_Delusion;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.stances.ForceStance;
@@ -16,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Tartaglia extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Tartaglia.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(Tartaglia.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged).SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Curse_Delusion(), false);
@@ -27,9 +26,7 @@ public class Tartaglia extends AnimatorCard {
 
         Initialize(7, 0);
         SetUpgrade(2, 0);
-        SetScaling(0, 1, 0);
-
-        SetSynergy(Synergies.GenshinImpact);
+        SetAffinity_Green(2, 0, 1);
     }
 
     @Override

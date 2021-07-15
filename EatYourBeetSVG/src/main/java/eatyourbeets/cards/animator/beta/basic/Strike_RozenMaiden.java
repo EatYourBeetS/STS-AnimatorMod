@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.NightmarePower;
 import eatyourbeets.cards.animator.basic.Strike;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
@@ -23,7 +23,8 @@ public class Strike_RozenMaiden extends Strike // implements OnStartOfTurnSubscr
         SetUnique(true,true);
         SetPurge(true);
 
-        SetSynergy(Synergies.RozenMaiden);
+        SetSeries(CardSeries.RozenMaiden);
+        SetAffinity_Dark(1);
     }
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)

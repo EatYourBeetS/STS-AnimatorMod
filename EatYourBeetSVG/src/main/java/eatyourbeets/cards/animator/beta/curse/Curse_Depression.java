@@ -3,9 +3,9 @@ package eatyourbeets.cards.animator.beta.curse;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_Curse;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -22,7 +22,7 @@ public class Curse_Depression extends AnimatorCard_Curse
     {
         super(DATA, true);
 
-        SetSynergy(Synergies.DateALive);
+        SetSeries(CardSeries.DateALive);
     }
 
     @Override

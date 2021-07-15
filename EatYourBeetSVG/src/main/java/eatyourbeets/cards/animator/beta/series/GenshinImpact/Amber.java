@@ -7,21 +7,18 @@ import com.megacrit.cardcrawl.powers.LockOnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
 public class Amber extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Amber.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(Amber.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged).SetSeriesFromClassPackage();
 
     public Amber() {
         super(DATA);
 
         Initialize(3, 2, 2);
         SetUpgrade(1, 1, 1);
-        SetScaling(0, 0, 0);
-
-        SetSynergy(Synergies.GenshinImpact);
+        SetAffinity_Green(2);
     }
 
 

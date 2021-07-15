@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.beta.series.RozenMaiden.JunSakurada;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
@@ -19,7 +19,8 @@ public class Defend_RozenMaiden extends Defend
         Initialize(0, 5);
         SetUpgrade(0, 3);
 
-        SetSynergy(Synergies.RozenMaiden);
+        SetSeries(CardSeries.RozenMaiden);
+        SetAffinity_Dark(1);
     }
 
     @Override

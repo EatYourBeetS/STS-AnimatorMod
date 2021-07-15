@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class SanaeKochiya extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SanaeKochiya.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(SanaeKochiya.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Miracle(), false);

@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.SwordfishII;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
@@ -27,9 +27,10 @@ public class SpikeSpiegel extends AnimatorCard
 
         Initialize(18, 0, 0);
         SetUpgrade(2, 0, 0);
-        SetScaling(0, 1, 1);
 
-        SetSynergy(Synergies.CowboyBebop);
+        SetSeries(CardSeries.CowboyBebop);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override

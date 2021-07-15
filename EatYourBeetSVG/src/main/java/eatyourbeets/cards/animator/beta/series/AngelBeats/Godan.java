@@ -6,14 +6,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Godan extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Godan.class).SetAttack(1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Godan.class).SetAttack(1, CardRarity.UNCOMMON).SetSeriesFromClassPackage();
 
     public Godan()
     {
@@ -21,11 +20,9 @@ public class Godan extends AnimatorCard
 
         Initialize(5, 0, 2);
         SetUpgrade(1, 0, 1);
-        SetScaling(0, 0, 1);
 
         SetCooldown(2, 0, this::OnCooldownCompleted);
-        SetSynergy(Synergies.AngelBeats);
-        SetMartialArtist();
+        SetAffinity_Red(1, 0, 1);
     }
 
     @Override

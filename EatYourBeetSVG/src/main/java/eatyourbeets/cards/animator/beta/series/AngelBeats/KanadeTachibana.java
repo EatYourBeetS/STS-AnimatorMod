@@ -5,12 +5,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class KanadeTachibana extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(KanadeTachibana.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(KanadeTachibana.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetSeriesFromClassPackage();
 
     public KanadeTachibana()
     {
@@ -20,7 +19,8 @@ public class KanadeTachibana extends AnimatorCard
         SetUpgrade(0, 0, 1, 1);
 
         SetExhaust(true);
-        SetSynergy(Synergies.AngelBeats);
+        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Light(2, 0, 0);
     }
 
     @Override

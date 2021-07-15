@@ -5,12 +5,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Yusa extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Yusa.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Yusa.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
 
     public Yusa()
     {
@@ -19,7 +18,7 @@ public class Yusa extends AnimatorCard
         Initialize(0, 6, 1, 2);
         SetUpgrade(0, 1, 0, 1);
 
-        SetSynergy(Synergies.AngelBeats);
+        SetAffinity_Green(1, 1, 0);
     }
 
     @Override

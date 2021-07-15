@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class YamaiSisters extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YamaiSisters.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(YamaiSisters.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
 
     public YamaiSisters()
     {

@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ToukaNishikujou extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ToukaNishikujou.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(ToukaNishikujou.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
 
     public ToukaNishikujou()
     {

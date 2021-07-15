@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.animator.basic.Defend;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 
 public class Defend_GenshinImpact extends Defend
@@ -19,7 +19,8 @@ public class Defend_GenshinImpact extends Defend
         SetUpgrade(0, 3);
 
         SetCooldown(1, 0, this::OnCooldownCompleted);
-        SetSynergy(Synergies.GenshinImpact);
+        SetSeries(CardSeries.GenshinImpact);
+        SetAffinity_Green(1);
     }
 
     @Override

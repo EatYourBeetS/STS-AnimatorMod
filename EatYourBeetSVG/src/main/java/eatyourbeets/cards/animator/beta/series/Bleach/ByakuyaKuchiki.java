@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ByakuyaKuchiki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ByakuyaKuchiki.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(ByakuyaKuchiki.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new ByakuyaBankai(), false);
@@ -28,9 +28,8 @@ public class ByakuyaKuchiki extends AnimatorCard
 
         Initialize(23, 14, 0);
         SetUpgrade(3, 3, 0);
-        SetMartialArtist();
-
-        SetSynergy(Synergies.Bleach);
+        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Green(2, 0, 0);
     }
 
     @Override

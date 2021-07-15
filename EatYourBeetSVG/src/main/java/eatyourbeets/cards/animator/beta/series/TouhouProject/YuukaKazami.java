@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class YuukaKazami extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YuukaKazami.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(YuukaKazami.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental).SetSeriesFromClassPackage();
 
     public YuukaKazami()
     {

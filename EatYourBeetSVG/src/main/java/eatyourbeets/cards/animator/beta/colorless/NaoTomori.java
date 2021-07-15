@@ -7,9 +7,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.PhasingPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -25,7 +25,8 @@ public class NaoTomori extends AnimatorCard
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 0);
 
-        SetSynergy(Synergies.Charlotte);
+        SetSeries(CardSeries.Charlotte);
+        SetAffinity_Green(1);
     }
 
     @Override

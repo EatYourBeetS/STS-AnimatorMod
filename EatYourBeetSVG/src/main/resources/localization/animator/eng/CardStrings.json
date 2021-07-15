@@ -648,7 +648,7 @@
 		"animator:Traveler":
 		{
 		  "DESCRIPTION": "{Unique}. || Choose 1 of 2 {Forms} for this card at the start of combat. || When Exhausted, switches forms and returns to your Draw Pile.",
-		  "EXTENDED_DESCRIPTION": ["{Unique}. || Channel 2 [Aether]. ** Gain !M! [Elemental Mastery]. Evoke your first !S! non-[Aether] Orb(s) and gain 5 more [Elemental Mastery] for each one.", "{Unique}. || Add a {Decay} to your Discard Pile. Apply [Vulnerable][Weak] to ALL enemies !S! times. ** Next turn, trigger the last !M! Orbs Evoked this combat."],
+		  "EXTENDED_DESCRIPTION": ["{Unique}. || Channel 2 [Aether]. ** Gain !M! [Elemental Mastery]. Evoke your first !S! non-[Aether] Orb(s) and gain 5 more [Elemental Mastery] for each one.", "{Unique}. || Add a {Void} to your Discard Pile. Apply [Vulnerable][Weak] to ALL enemies !S! times. ** Next turn, trigger the last !M! Orbs Evoked this combat."],
 		  "NAME": "Abyss Ruler"
 		},
 		"animator:Venti":

@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
@@ -16,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class YuriNakamura extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YuriNakamura.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(YuriNakamura.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged).SetSeriesFromClassPackage();
 
     public YuriNakamura()
     {
@@ -24,9 +23,8 @@ public class YuriNakamura extends AnimatorCard
 
         Initialize(4, 8, 1, 0);
         SetUpgrade(1, 2);
-        SetScaling(0, 1, 0);
+        SetAffinity_Green(1, 0, 0);
         SetExhaust(true);
-        SetSynergy(Synergies.AngelBeats);
     }
 
     @Override

@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.LogHorizon;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -23,7 +22,6 @@ public class Krusty extends AnimatorCard
 
         Initialize(28, 0, 3, 3);
         SetUpgrade(1, 0, 1, 1);
-        SetScaling(0, 0, 1);
 
         SetAutoplay(true);
 

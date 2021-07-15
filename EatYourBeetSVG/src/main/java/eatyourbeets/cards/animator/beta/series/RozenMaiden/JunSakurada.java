@@ -23,7 +23,7 @@ import eatyourbeets.utilities.JUtils;
 public class JunSakurada extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(JunSakurada.class)
-    		.SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    		.SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new Curse_JunTormented(), false);

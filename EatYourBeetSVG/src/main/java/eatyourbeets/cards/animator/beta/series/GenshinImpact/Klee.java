@@ -6,7 +6,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.cards.animator.beta.special.JumpyDumpty;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -14,7 +17,7 @@ import eatyourbeets.utilities.JUtils;
 
 public class Klee extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Klee.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Klee.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL).SetSeriesFromClassPackage();
 
     static
     {
@@ -27,9 +30,8 @@ public class Klee extends AnimatorCard
 
         Initialize(3, 0, 2, 2);
         SetUpgrade(1, 0, 0, 0);
-        SetScaling(0, 0, 0);
+        SetAffinity_Red(1, 0, 0);
 
-        SetSynergy(Synergies.GenshinImpact);
         SetExhaust(true);
     }
 

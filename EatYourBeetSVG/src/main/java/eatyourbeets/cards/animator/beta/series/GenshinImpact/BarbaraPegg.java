@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.CombatStats;
@@ -17,7 +16,7 @@ import eatyourbeets.utilities.JUtils;
 
 public class BarbaraPegg extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(BarbaraPegg.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(BarbaraPegg.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
     private static final int UNIQUE_THRESHOLD = 4;
 
     public BarbaraPegg()
@@ -26,10 +25,9 @@ public class BarbaraPegg extends AnimatorCard
 
         Initialize(0, 0, 3, 2);
         SetUpgrade(0, 0, 2, 0);
+        SetAffinity_Light(2);
 
         SetExhaust(true);
-        SetSpellcaster();
-        SetSynergy(Synergies.GenshinImpact);
     }
 
     @Override

@@ -110,7 +110,7 @@
 	},
 	"Elemental Exposure":
 	{
-	  "DESCRIPTION": "Amplifies the effects of Weak and Vulernable. Lasts for 2 turns.",
+	  "DESCRIPTION": "Amplifies the effects of Frail, Vulernable, and Weak. Lasts for 2 turns.",
 	  "NAMES": ["elemental exposure"],
 	  "PROPER_NAME": "Elemental Exposure"
 	},

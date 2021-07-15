@@ -4,7 +4,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
@@ -13,7 +16,7 @@ import java.util.List;
 
 public class KaguyaHouraisan extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(KaguyaHouraisan.class).SetAttack(1,CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(KaguyaHouraisan.class).SetAttack(1,CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.ALL).SetSeriesFromClassPackage();
 
     public KaguyaHouraisan()
     {

@@ -5,9 +5,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.pileSelection.FetchFromPile;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -22,8 +22,9 @@ public class ShuuOuma extends AnimatorCard
         Initialize(0, 0, 0);
         SetExhaust(true);
         SetCostUpgrade(-1);
-
-        SetSynergy(Synergies.GuiltyCrown);
+        
+        SetSeries(CardSeries.GuiltyCrown);
+        SetAffinity_Blue(1);
     }
 
     @Override

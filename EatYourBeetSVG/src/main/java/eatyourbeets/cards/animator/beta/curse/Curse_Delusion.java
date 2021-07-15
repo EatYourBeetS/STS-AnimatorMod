@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -21,7 +20,7 @@ public class Curse_Delusion extends AnimatorCard_Curse
     {
         super(DATA, false);
 
-        SetSynergy(Synergies.GenshinImpact);
+        SetSeries(CardSeries.GenshinImpact);
     }
 
     @Override

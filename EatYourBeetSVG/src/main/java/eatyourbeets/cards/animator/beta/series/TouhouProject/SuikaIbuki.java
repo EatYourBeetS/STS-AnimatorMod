@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class SuikaIbuki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SuikaIbuki.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(SuikaIbuki.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
 
     public SuikaIbuki()
     {

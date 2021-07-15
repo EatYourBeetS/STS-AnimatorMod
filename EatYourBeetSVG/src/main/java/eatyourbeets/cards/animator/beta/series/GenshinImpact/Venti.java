@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -16,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Venti extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Venti.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Venti.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetSeriesFromClassPackage();
     private static final int HINDRANCE_THRESHOLD = 2;
 
     public Venti()
@@ -25,10 +24,9 @@ public class Venti extends AnimatorCard
 
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 2, 0);
+        SetAffinity_Star(2, 0, 0);
 
         SetEthereal(true);
-        SetShapeshifter();
-        SetSynergy(Synergies.GenshinImpact);
     }
 
     @Override

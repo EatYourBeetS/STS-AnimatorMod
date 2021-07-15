@@ -5,14 +5,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
 public class MasamiIwasawa extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MasamiIwasawa.class).SetSkill(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(MasamiIwasawa.class).SetSkill(2, CardRarity.COMMON).SetSeriesFromClassPackage();
 
     public MasamiIwasawa()
     {
@@ -21,7 +20,7 @@ public class MasamiIwasawa extends AnimatorCard
         Initialize(0, 14, 2, 1);
         SetUpgrade(0, 4, 0, 0);
 
-        SetSynergy(Synergies.AngelBeats);
+        SetAffinity_Green(1, 0, 0);
     }
 
     @Override

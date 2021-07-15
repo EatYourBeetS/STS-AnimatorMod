@@ -4,8 +4,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.basic.Strike;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -20,7 +20,8 @@ public class Strike_Bleach extends Strike
         Initialize(5, 0, 2);
         SetUpgrade(3, 0);
 
-        SetSynergy(Synergies.Bleach);
+        SetSeries(CardSeries.Bleach);
+        SetAffinity_Red(1);
     }
 
     @Override

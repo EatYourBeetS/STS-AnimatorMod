@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Kagari extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Kagari.class).SetPower(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Kagari.class).SetPower(2, CardRarity.UNCOMMON).SetSeriesFromClassPackage();
 
     public Kagari()
     {

@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class HiedaNoAkyuu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HiedaNoAkyuu.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(HiedaNoAkyuu.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetSeriesFromClassPackage();
 
     public HiedaNoAkyuu()
     {

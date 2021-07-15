@@ -3,17 +3,16 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Noelle extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Noelle.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.Self);
+    public static final EYBCardData DATA = Register(Noelle.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.Self).SetSeriesFromClassPackage();
 
     public Noelle()
     {
@@ -21,9 +20,8 @@ public class Noelle extends AnimatorCard
 
         Initialize(0, 5, 4);
         SetUpgrade(0, 2, 1);
-        SetScaling(0, 0, 0);
-
-        SetSynergy(Synergies.GenshinImpact);
+        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Light(1, 0, 0);
     }
 
     @Override
@@ -31,7 +29,7 @@ public class Noelle extends AnimatorCard
     {
         if (HasSynergy())
         {
-            amount += Math.min(GameUtilities.GetTeamwork(null), magicNumber);
+            amount += Math.min(GetTeamwork(AffinityType.Light), magicNumber);
         }
 
         return super.ModifyBlock(enemy, amount);

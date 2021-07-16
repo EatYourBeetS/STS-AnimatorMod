@@ -85,4 +85,29 @@ public class VFX
     {
         return new FlashAttackEffect(target.cX, target.cY, effect, muteSFX);
     }
+
+    public static ClawEffect Claw(Hitbox source, Color color1, Color color2)
+    {
+        return new ClawEffect(source.cX, source.cY, color1, color2);
+    }
+
+    public static ExplosionSmallEffect ExplosionSmallEffect(Hitbox source)
+    {
+        return new ExplosionSmallEffect(source.cX, source.cY);
+    }
+
+    public static FlameBarrierEffect FlameBarrierEffect(Hitbox source)
+    {
+        return new FlameBarrierEffect(source.cX, source.cY);
+    }
+
+    public static SnowballEffect Snowball(Hitbox source, Hitbox target)
+    {
+        return new SnowballEffect(source.cX, source.cY, target.cX, target.cY);
+    }
+
+    public static ElementalEffect Elemental(Hitbox source, float spread)
+    {
+        return new ElementalEffect(source.cX, source.cY, spread);
+    }
 }

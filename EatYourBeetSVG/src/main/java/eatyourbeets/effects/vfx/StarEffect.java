@@ -52,7 +52,7 @@ public class StarEffect extends EYBEffect
         RGB.add(1f);
         RGB.add(Random(0.5f, 1f));
 
-        this.color = new Color(RGB.remove(Random(0, RGB.size()-1)), RGB.remove(Random(0, RGB.size()-1)), RGB.remove(0), 0.15f);
+        this.color = new Color(RGB.remove(Random(0, 2)), RGB.remove(Random(0, 1)), RGB.remove(0), 0.15f);
 
         return this;
     }

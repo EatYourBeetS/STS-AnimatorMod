@@ -16,6 +16,7 @@ public class EYBCardAffinitySystem implements OnStartOfTurnSubscriber
     public ForcePower Force;
     public AgilityPower Agility;
     public IntellectPower Intellect;
+    public LuckPower Luck;
     public BlessingPower Blessing;
     public CorruptionPower Corruption;
 
@@ -27,6 +28,7 @@ public class EYBCardAffinitySystem implements OnStartOfTurnSubscriber
         Powers.add(Force = new ForcePower(null, 0));
         Powers.add(Agility = new AgilityPower(null, 0));
         Powers.add(Intellect = new IntellectPower(null, 0));
+        Powers.add(Luck = new LuckPower(null, 0));
         Powers.add(Blessing = new BlessingPower(null, 0));
         Powers.add(Corruption = new CorruptionPower(null, 0));
     }

@@ -644,6 +644,8 @@ public class RenderHelpers
                 return GR.Tooltips.Agility.icon;
             case "I":
                 return GR.Tooltips.Intellect.icon;
+            case "O":
+                return GR.Tooltips.Luck.icon;
             case "B":
                 return GR.Tooltips.Blessing.icon;
             case "C":

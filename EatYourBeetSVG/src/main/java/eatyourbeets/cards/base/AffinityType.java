@@ -15,8 +15,9 @@ public enum AffinityType implements Comparable<AffinityType>
     Red(0, "Red", GR.Common.Images.Affinities.Red),
     Green(1, "Green", GR.Common.Images.Affinities.Green),
     Blue(2, "Blue", GR.Common.Images.Affinities.Blue),
-    Light(3, "Light", GR.Common.Images.Affinities.Light),
-    Dark(4, "Dark", GR.Common.Images.Affinities.Dark),
+    Orange(4, "Orange", GR.Common.Images.Affinities.Orange),
+    Light(5, "Light", GR.Common.Images.Affinities.Light),
+    Dark(6, "Dark", GR.Common.Images.Affinities.Dark),
     Star(-1, "Star", GR.Common.Images.Affinities.Star_BG);
 
     public static final int MAX_ID = 4;
@@ -25,8 +26,8 @@ public enum AffinityType implements Comparable<AffinityType>
     protected static final TextureCache BorderFG = GR.Common.Images.Affinities.BorderFG;
     protected static final TextureCache BorderLV2 = GR.Common.Images.Affinities.Border;
     protected static final TextureCache BorderLV1 = GR.Common.Images.Affinities.Border_Weak;
-    protected static final AffinityType[] BASIC_TYPES = new AffinityType[5];
-    protected static final AffinityType[] ALL_TYPES = new AffinityType[6];
+    protected static final AffinityType[] BASIC_TYPES = new AffinityType[6];
+    protected static final AffinityType[] ALL_TYPES = new AffinityType[7];
 
     static
     {
@@ -34,8 +35,9 @@ public enum AffinityType implements Comparable<AffinityType>
         ALL_TYPES[1] = BASIC_TYPES[0] = Red;
         ALL_TYPES[2] = BASIC_TYPES[1] = Green;
         ALL_TYPES[3] = BASIC_TYPES[2] = Blue;
-        ALL_TYPES[4] = BASIC_TYPES[3] = Light;
-        ALL_TYPES[5] = BASIC_TYPES[4] = Dark;
+        ALL_TYPES[4] = BASIC_TYPES[3] = Orange;
+        ALL_TYPES[5] = BASIC_TYPES[4] = Light;
+        ALL_TYPES[6] = BASIC_TYPES[5] = Dark;
     }
 
     public static AffinityType[] BasicTypes()
@@ -94,6 +96,8 @@ public enum AffinityType implements Comparable<AffinityType>
 
             case Blue: return GR.Tooltips.Intellect.icon;
 
+            case Orange: return GR.Tooltips.Luck.icon;
+
             case Light: return GR.Tooltips.Blessing.icon;
 
             case Dark: return GR.Tooltips.Corruption.icon;
@@ -117,6 +121,8 @@ public enum AffinityType implements Comparable<AffinityType>
             case Green: return new Color(0.45f, 0.7f, 0.55f, 1f);
 
             case Blue: return new Color(0.45f, 0.55f, 0.7f, 1f);
+
+            case Orange: return new Color(0.7f, 0.6f, 0.5f, 1f);
 
             case Light: return new Color(0.8f, 0.8f, 0.3f, 1f);
 

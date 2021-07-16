@@ -198,6 +198,12 @@
 		"NAMES": ["limited"],
 		"PROPER_NAME": "Limited"
 	},
+	"Luck":
+	{
+	  "DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain #yGold.",
+	  "NAMES": ["luck"],
+	  "PROPER_NAME": "Luck"
+	},
 	"Malleable":
 	{
 		"DESCRIPTION": "Upon receiving damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of turn.",

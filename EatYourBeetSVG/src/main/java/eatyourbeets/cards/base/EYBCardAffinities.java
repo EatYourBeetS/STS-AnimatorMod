@@ -26,13 +26,14 @@ public class EYBCardAffinities
         Card = card;
     }
 
-    public void Initialize(int red, int green, int blue, int light, int dark)
+    public void Initialize(int red, int green, int blue, int orange, int light, int dark)
     {
         Star = null;
         List.clear();
         Initialize(AffinityType.Red, red, 0, 0);
         Initialize(AffinityType.Green, green, 0, 0);
         Initialize(AffinityType.Blue, blue, 0, 0);
+        Initialize(AffinityType.Orange, orange, 0, 0);
         Initialize(AffinityType.Light, light, 0, 0);
         Initialize(AffinityType.Dark, dark, 0, 0);
     }
@@ -91,20 +92,22 @@ public class EYBCardAffinities
         Refresh();
     }
 
-    public void Add(int red, int green, int blue, int light, int dark)
+    public void Add(int red, int green, int blue, int orange, int light, int dark)
     {
         Add(AffinityType.Red, red);
         Add(AffinityType.Green, green);
         Add(AffinityType.Blue, blue);
+        Add(AffinityType.Orange, orange);
         Add(AffinityType.Light, light);
         Add(AffinityType.Dark, dark);
     }
 
-    public void Set(int red, int green, int blue, int light, int dark)
+    public void Set(int red, int green, int blue, int orange, int light, int dark)
     {
         Set(AffinityType.Red, red);
         Set(AffinityType.Green, green);
         Set(AffinityType.Blue, blue);
+        Set(AffinityType.Orange, orange);
         Set(AffinityType.Light, light);
         Set(AffinityType.Dark, dark);
     }
@@ -139,7 +142,7 @@ public class EYBCardAffinities
         if (star > 0)
         {
             AddStar(star);
-            Add(star, star, star, star, star);
+            Add(star, star, star, star, star, star);
         }
         else for (EYBCardAffinity item : other.List)
         {

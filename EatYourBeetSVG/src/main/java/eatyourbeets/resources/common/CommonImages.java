@@ -44,6 +44,7 @@ public class CommonImages
         public final TextureCache Green                 = new TextureCache("images/cardui/eyb/affinities/Green.png", true);
         public final TextureCache Red                   = new TextureCache("images/cardui/eyb/affinities/Red.png", true);
         public final TextureCache Blue                  = new TextureCache("images/cardui/eyb/affinities/Blue.png", true);
+        public final TextureCache Orange                = new TextureCache("images/cardui/eyb/affinities/Orange.png", true);
         public final TextureCache Light                 = new TextureCache("images/cardui/eyb/affinities/Light.png", true);
         public final TextureCache Dark                  = new TextureCache("images/cardui/eyb/affinities/Dark.png", true);
         public final TextureCache Star                  = new TextureCache("images/cardui/eyb/affinities/Star.png", true);

@@ -15,7 +15,7 @@ import eatyourbeets.console.CommandsManager;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.powers.affinity.*;
-import eatyourbeets.powers.common.*;
+import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
@@ -116,6 +116,7 @@ public class CommonResources extends AbstractResources
         AddPowerTooltip("[F]", "Force", new ForcePower(null, 0));
         AddPowerTooltip("[A]", "Agility", new AgilityPower(null, 0));
         AddPowerTooltip("[I]", "Intellect", new IntellectPower(null, 0));
+        AddPowerTooltip("[O]", "Luck", new LuckPower(null, 0));
         AddPowerTooltip("[B]", "Blessing", new BlessingPower(null, 0));
         AddPowerTooltip("[C]", "Corruption", new CorruptionPower(null, 0));
 //        AddEnergyTooltip("[R]", AbstractCard.orb_red);

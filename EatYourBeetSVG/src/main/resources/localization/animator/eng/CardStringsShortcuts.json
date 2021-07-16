@@ -21,6 +21,7 @@
 	"<R>": "[A-Red]",
 	"<G>": "[A-Green]",
 	"<B>": "[A-Blue]",
+  	"<O>": "[A-Orange]",
 	"<L>": "[A-Light]",
 	"<D>": "[A-Dark]",
 	"<S>": "[A-Star]",

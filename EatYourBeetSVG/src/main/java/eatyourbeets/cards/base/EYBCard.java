@@ -17,7 +17,6 @@ import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
-import eatyourbeets.powers.animator.NegateBlockPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.PlayerFlightPower;
 import eatyourbeets.resources.GR;
@@ -533,6 +532,8 @@ public abstract class EYBCard extends EYBCardBase
     protected void SetAffinity_Green(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Green, base, upgrade, scaling); }
     protected void SetAffinity_Blue(int base) { InitializeAffinity(AffinityType.Blue, base, 0, 0); }
     protected void SetAffinity_Blue(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Blue, base, upgrade, scaling); }
+    protected void SetAffinity_Orange(int base) { InitializeAffinity(AffinityType.Orange, base, 0, 0); }
+    protected void SetAffinity_Orange(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Orange, base, upgrade, scaling); }
     protected void SetAffinity_Light(int base) { InitializeAffinity(AffinityType.Light, base, 0, 0); }
     protected void SetAffinity_Light(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Light, base, upgrade, scaling); }
     protected void SetAffinity_Dark(int base) { InitializeAffinity(AffinityType.Dark, base, 0, 0); }

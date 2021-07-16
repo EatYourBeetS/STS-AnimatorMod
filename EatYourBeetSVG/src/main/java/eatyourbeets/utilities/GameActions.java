@@ -57,11 +57,12 @@ import eatyourbeets.interfaces.delegates.*;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.affinity.*;
 import eatyourbeets.powers.affinity.CorruptionPower;
+import eatyourbeets.powers.affinity.*;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
-import eatyourbeets.powers.common.*;
+import eatyourbeets.powers.common.TemporaryArtifactPower;
+import eatyourbeets.powers.common.VitalityPower;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -455,6 +456,11 @@ public final class GameActions
         return StackAffinityPower(IntellectPower.AFFINITY_TYPE, amount, false);
     }
 
+    public ApplyAffinityPower GainLuck(int amount)
+    {
+        return StackAffinityPower(LuckPower.AFFINITY_TYPE, amount, false);
+    }
+
     public ApplyAffinityPower GainBlessing(int amount)
     {
         return StackAffinityPower(BlessingPower.AFFINITY_TYPE, amount, false);
@@ -478,6 +484,11 @@ public final class GameActions
     public ApplyAffinityPower GainIntellect(int amount, boolean retain)
     {
         return StackAffinityPower(IntellectPower.AFFINITY_TYPE, amount, retain);
+    }
+
+    public ApplyAffinityPower GainLuck(int amount, boolean retain)
+    {
+        return StackAffinityPower(LuckPower.AFFINITY_TYPE, amount, retain);
     }
 
     public ApplyAffinityPower GainBlessing(int amount, boolean retain)

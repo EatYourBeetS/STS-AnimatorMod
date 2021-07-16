@@ -29,7 +29,7 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
 
         Initialize(2, 0, 4, 4);
         SetUpgrade(1, 0, 0);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Orange(1, 0, 0);
         SetAffinity_Green(2, 0, 1);
 
         SetExhaust(true);

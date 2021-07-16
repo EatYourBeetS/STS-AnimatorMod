@@ -140,6 +140,9 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
                 tooltips.add(GR.Tooltips.ElementalMastery);
                 tooltips.add(GR.Tooltips.ElementalExposure);
                 SetExhaust(false);
+                affinities.List.clear();
+                SetAffinity_Light(2);
+                SetAffinity_Dark(2);
                 this.cost = this.costForTurn = -2;
                 break;
             }
@@ -150,6 +153,10 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
                 tooltips.add(GR.Tooltips.ElementalExposure);
                 SetExhaust(false);
+                affinities.List.clear();
+                SetAffinity_Light(2);
+                SetAffinity_Dark(1);
+                SetAffinity_Green(1);
                 this.cost = this.costForTurn = 2;
                 break;
             }
@@ -159,6 +166,9 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
                 LoadImage("_Lumine");
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
                 SetExhaust(true);
+                affinities.List.clear();
+                SetAffinity_Light(1);
+                SetAffinity_Dark(2);
                 this.cost = this.costForTurn = 3;
                 break;
             }

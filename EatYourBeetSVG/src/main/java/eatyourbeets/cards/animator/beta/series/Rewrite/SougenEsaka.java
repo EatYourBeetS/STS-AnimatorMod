@@ -24,8 +24,7 @@ public class SougenEsaka extends AnimatorCard
 
         Initialize(5, 0, 2, 1);
         SetUpgrade(1, 0, 2);
-        SetAffinity_Green(1, 1, 0);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Orange(1, 1, 0);
     }
 
     @Override

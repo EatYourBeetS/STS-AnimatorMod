@@ -98,6 +98,7 @@ public class CardTooltips
     public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null);
     public EYBCardTooltip Affinity_Green = new EYBCardTooltip("Green Affinity", null);
     public EYBCardTooltip Affinity_Blue = new EYBCardTooltip("Blue Affinity", null);
+    public EYBCardTooltip Affinity_Orange = new EYBCardTooltip("Orange Affinity", null);
     public EYBCardTooltip Affinity_Light = new EYBCardTooltip("Light Affinity", null);
     public EYBCardTooltip Affinity_Dark = new EYBCardTooltip("Dark Affinity", null);
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
@@ -144,6 +145,7 @@ public class CardTooltips
         RegisterID("A-Red", Affinity_Red);
         RegisterID("A-Green", Affinity_Green);
         RegisterID("A-Blue", Affinity_Blue);
+        RegisterID("A-Orange", Affinity_Orange);
         RegisterID("A-Light", Affinity_Light);
         RegisterID("A-Dark", Affinity_Dark);
         RegisterID("A-Star", Shapeshifter);
@@ -178,6 +180,7 @@ public class CardTooltips
         Affinity_Red.SetIcon(alignments.Red.Texture(), 8);
         Affinity_Green.SetIcon(alignments.Green.Texture(), 8);
         Affinity_Blue.SetIcon(alignments.Blue.Texture(), 8);
+        Affinity_Orange.SetIcon(alignments.Orange.Texture(), 8);
         Affinity_Light.SetIcon(alignments.Light.Texture(), 8);
         Affinity_Dark.SetIcon(alignments.Dark.Texture(), 8);
 

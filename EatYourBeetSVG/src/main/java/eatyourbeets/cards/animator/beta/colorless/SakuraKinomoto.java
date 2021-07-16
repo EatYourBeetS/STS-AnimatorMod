@@ -44,7 +44,7 @@ public class SakuraKinomoto extends AnimatorCard
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
             .SetDamageEffect(e -> GameEffects.Queue.Add(new SmallLaserEffect(player.hb.cX, player.hb.cY,
-                    e.hb.cX + MathUtils.random(-0.05F, 0.05F), e.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PINK)))
+                    e.hb.cX + MathUtils.random(-0.05F, 0.05F), e.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.PINK)).duration)
             .AddCallback(enemy ->
             {
                 AbstractRoom room = AbstractDungeon.getCurrRoom();

@@ -22,7 +22,7 @@ public class MayumiJoutouguu extends AnimatorCard
 
         Initialize(0, 5, 2);
         SetUpgrade(0, 1, 1);
-        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Orange(1, 1, 0);
 
         SetCooldown(1, 0, this::OnCooldownCompleted);
     }

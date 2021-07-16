@@ -23,7 +23,7 @@ public class Tet extends AnimatorCard
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
-        SetAffinity_Dark(1);
+        SetAffinity_Orange(2);
 
         SetInnate(true);
         SetRetain(true);

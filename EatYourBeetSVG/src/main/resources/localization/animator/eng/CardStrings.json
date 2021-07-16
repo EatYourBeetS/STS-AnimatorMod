@@ -439,7 +439,7 @@
 		},
 		"animator:SpikeSpiegel":
 		{
-		  "DESCRIPTION": "Synergizes with Basic Cards. {Motivate} a Basic card ** in your draw pile. || <LIM>. Synergy: ** Shuffle {Swordfish II} ** into your Draw Pile.",
+		  "DESCRIPTION": "Play !M! random Strikes from your Draw Pile. || <LIM>. 2 <R>, <G>: ** Shuffle {Swordfish II} ** into your Draw Pile.",
 		  "NAME": "Spike Spiegel"
 		},
 		"animator:SwordfishII":

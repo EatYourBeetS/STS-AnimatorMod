@@ -21,7 +21,7 @@ public class Guy extends AnimatorCard
         Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Dark(1);
+        SetAffinity_Orange(1);
     }
 
     @Override

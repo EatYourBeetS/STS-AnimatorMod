@@ -73,7 +73,7 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL).SetDamageEffect(c -> GameEffects.List.Add(new DieDieDieEffect()));
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL).SetDamageEffect(c -> GameEffects.List.Add(new DieDieDieEffect()).duration);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
     }

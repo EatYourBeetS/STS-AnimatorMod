@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class ShidoItsuka extends AnimatorCard
         Initialize(0, 8, 3);
         SetUpgrade(0, 0);
         SetAffinity_Blue(1, 0, 0);
-        SetAffinity_Orange(1, 1, 0);
+        SetAffinity_Orange(1, 0, 0);
 
         SetExhaust(true);
     }
@@ -36,7 +37,11 @@ public class ShidoItsuka extends AnimatorCard
     @Override
     public boolean HasDirectSynergy(AbstractCard other)
     {
-        return (other instanceof AnimatorCard && ((AnimatorCard) other).series.Equals(CardSeries.DateALive));
+        AnimatorCard a = JUtils.SafeCast(other, AnimatorCard.class);
+        if (a != null && a.series != null) {
+            return a.series.Equals(CardSeries.DateALive);
+        }
+        return false;
     }
 
     @Override
@@ -116,7 +121,8 @@ public class ShidoItsuka extends AnimatorCard
             {
                 if (WouldSynergize(c))
                 {
-                    if (((AnimatorCard) c).series == CardSeries.DateALive)
+                    CardSeries series = ((AnimatorCard) c).series;
+                    if (series != null && series.Equals(CardSeries.DateALive))
                     {
                         dateALiveCards.add(c);
                     }

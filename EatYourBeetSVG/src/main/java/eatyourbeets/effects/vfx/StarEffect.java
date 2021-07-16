@@ -18,10 +18,11 @@ public class StarEffect extends EYBEffect
    protected float x;
    protected float y;
    protected float vX;
+   protected float vY;
    protected float vR;
    protected float vfxTimer;
 
-    public StarEffect(float x, float y, float vxMin, float vxMax)
+    public StarEffect(float x, float y, float vxMin, float vxMax, float vyMin, float vyMax)
     {
         super(Random(0.5f, 1f));
 
@@ -32,6 +33,7 @@ public class StarEffect extends EYBEffect
         this.rotation = Random(5f, 10f);
         this.scale = Random(0.2f, 3.0f) * Settings.scale;
         this.vX = Random(vxMin, vxMax) * Settings.scale;
+        this.vY = Random(vyMin, vyMax) * Settings.scale;
         this.vR = Random(-600f, 600f);
 
         if (MathUtils.randomBoolean()) this.rotation *= -1;
@@ -70,6 +72,7 @@ public class StarEffect extends EYBEffect
     protected void UpdateInternal(float deltaTime)
     {
         x += vX * deltaTime;
+        y += vY * deltaTime;
         rotation += vR * deltaTime;
         if (scale > 0.3f * Settings.scale)
         {

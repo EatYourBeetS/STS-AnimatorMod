@@ -27,7 +27,7 @@ public class ElementalEffect extends EYBEffect
         if (vfxTimer < 0f)
         {
             vfxTimer = 0.025f;
-            GameEffects.Queue.Add(new StarEffect(x, y + Random(-spreadY, spreadY), 1800f, 2300f));
+            GameEffects.Queue.Add(new StarEffect(x, y + Random(-spreadY, spreadY), 1800f, 2300f, 0f, 0f));
         }
 
         if (TickDuration(deltaTime)) Complete();

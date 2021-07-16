@@ -24,7 +24,7 @@ public class Rorona extends AnimatorCard
         Initialize(0, 0, 0);
         SetCostUpgrade(-1);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Orange(2, 0, 0);
     }
 
     @Override

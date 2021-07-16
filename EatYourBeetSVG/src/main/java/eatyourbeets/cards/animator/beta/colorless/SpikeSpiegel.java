@@ -25,17 +25,12 @@ public class SpikeSpiegel extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(18, 0, 0);
+        Initialize(3, 0, 4);
         SetUpgrade(2, 0, 0);
 
-        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 1);
-    }
-
-    @Override
-    public boolean HasDirectSynergy(AbstractCard other)
-    {
-        return (other.rarity.equals(CardRarity.BASIC)) || super.HasDirectSynergy(other);
+        SetAffinity_Orange(2, 0, 1);
     }
 
     @Override

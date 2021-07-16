@@ -528,7 +528,7 @@
 		{
 			"DESCRIPTION": "This card Synergizes ** with Date-a-Live cards. || Add 1 of !M! cards that would ** Synergize with this card to ** your discard pile.",
 			"NAME": "Shido Itsuka",
-			"UPGRADE_DESCRIPTION": "This card Synergizes ** with Date-a-Live cards. || Add 1 of !M! Upgraded cards ** that would Synergize with ** this card to your Draw pile."
+			"UPGRADE_DESCRIPTION": "This card Synergizes ** with Date-a-Live cards. || Add 1 of !M! Upgraded cards ** that would Synergize with ** this card to your discard pile."
 		},
 		"animator:Strike_DateALive":
 		{
@@ -576,6 +576,11 @@
 		{
 			"DESCRIPTION": "Cooldown !S!: ** {Channel} 1 [Lightning].",
 			"NAME": "Improved Defend"
+		},
+		"animator:Dvalin":
+		{
+		  "DESCRIPTION": "If the enemy dies from the first hit, the second hit will target a random living enemy and deal !M! more damage.",
+		  "NAME": "Dvalin"
 		},
 		"animator:Fischl":
 		{
@@ -651,7 +656,7 @@
 		},
 		"animator:Venti":
 		{
-			"DESCRIPTION": "{Channel} 1 [Aether]. || Cycle !M! cards. Trigger your last [Aether] for every Skill drawn from this card. ** If you drew at least 2 {Hindrances}: <DRW>.",
+			"DESCRIPTION": "Cycle !M! cards. {Channel} 1 [Aether] and Trigger it once for every Skill drawn from this card. || <LIM>. If you drew at least 2 {Hindrances}: Add {Dvalin} to your Discard Pile.",
 			"NAME": "Venti"
 		},
 		"animator:Zhongli":

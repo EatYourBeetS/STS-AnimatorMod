@@ -24,6 +24,7 @@ public class Kanaria_Pizzicato extends AnimatorCard
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 1);
         SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Orange(1, 0, 0);
     }
 
     @Override

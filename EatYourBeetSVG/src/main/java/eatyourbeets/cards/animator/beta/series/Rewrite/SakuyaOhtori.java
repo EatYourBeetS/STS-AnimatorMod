@@ -28,6 +28,7 @@ public class SakuyaOhtori extends AnimatorCard
         SetUpgrade(0, 2, 0);
         SetAffinity_Green(2, 0, 0);
         SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
     }
 
     @Override

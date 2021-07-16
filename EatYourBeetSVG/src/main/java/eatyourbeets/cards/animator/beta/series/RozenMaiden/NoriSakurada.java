@@ -24,7 +24,7 @@ public class NoriSakurada extends AnimatorCard
 		
 		Initialize(0 ,0 ,1 ,0);
 		SetUpgrade(0 ,0 ,1 ,0);
-		SetAffinity_Blue(1, 0, 0);
+		SetAffinity_Orange(1, 0, 0);
 
 		SetExhaust(true);
 	}

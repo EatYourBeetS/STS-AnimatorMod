@@ -29,7 +29,7 @@ public class HuTao extends AnimatorCard
 
         Initialize(2, 0, 3, 2);
         SetUpgrade(1, 0, 1, 0);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Orange(1, 0, 0);
         SetAffinity_Dark(2, 0, 4);
 
         SetEthereal(true);

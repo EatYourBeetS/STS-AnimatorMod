@@ -18,7 +18,7 @@ public class OrbCore_Earth extends OrbCore
         super(DATA);
 
         Initialize(0, 0, VALUE, 1);
-        SetAffinity_Red(1);
+        SetAffinity_Orange(2);
 
         SetEvokeOrbCount(secondaryValue);
     }

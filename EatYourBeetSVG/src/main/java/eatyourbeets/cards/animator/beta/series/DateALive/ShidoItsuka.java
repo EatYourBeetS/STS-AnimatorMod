@@ -28,6 +28,7 @@ public class ShidoItsuka extends AnimatorCard
         Initialize(0, 8, 3);
         SetUpgrade(0, 0);
         SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Orange(1, 1, 0);
 
         SetExhaust(true);
     }
@@ -90,16 +91,8 @@ public class ShidoItsuka extends AnimatorCard
                 {
                     if (cards.size() > 0)
                     {
-                        if (upgraded)
-                        {
-                            GameActions.Bottom.MakeCardInDrawPile(cards.get(0))
-                                    .SetDuration(Settings.ACTION_DUR_FASTER, true);
-                        }
-                        else
-                        {
-                            GameActions.Bottom.MakeCardInDiscardPile(cards.get(0))
-                                    .SetDuration(Settings.ACTION_DUR_FASTER, true);
-                        }
+                        GameActions.Bottom.MakeCardInDiscardPile(cards.get(0))
+                                .SetDuration(Settings.ACTION_DUR_FASTER, true);
                     }
                 });
 

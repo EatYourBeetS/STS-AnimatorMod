@@ -25,6 +25,7 @@ public class ChihayaOhtori extends AnimatorCard
         Initialize(12, 0, 6, 1);
         SetUpgrade(0, 0, -2);
         SetAffinity_Green(2, 0, 0);
+        SetAffinity_Orange(1, 0, 0);
     }
 
     @Override

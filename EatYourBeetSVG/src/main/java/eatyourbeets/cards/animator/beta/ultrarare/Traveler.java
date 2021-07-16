@@ -24,12 +24,10 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.animator.ElementalMasteryPower;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RotatingList;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
@@ -202,11 +200,9 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
                 break;
             case Lumine:
                 GameActions.Top.Add(new VFXAction(new OfferingEffect(), Settings.FAST_MODE ? 0.1F : 0.5F));
-                for (AbstractMonster target : GameUtilities.GetEnemies(true)) {
-                    for (int i = 0; i < secondaryValue; i++) {
-                        GameActions.Bottom.ApplyVulnerable(p, target, 1);
-                        GameActions.Bottom.ApplyWeak(p, target, 1);
-                    }
+                for (int i = 0; i < secondaryValue; i++) {
+                    GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Vulnerable, 1);
+                    GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Weak, 1);
                 }
                 Traveler other = (Traveler) makeStatEquivalentCopy();
                 CombatStats.onStartOfTurnPostDraw.Subscribe(other);

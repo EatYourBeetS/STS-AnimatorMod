@@ -25,6 +25,7 @@ public class KaguyaHouraisan extends AnimatorCard
         Initialize(10, 0, 4);
         SetUpgrade(0, 0, 1);
         SetAffinity_Blue(2, 0, 2);
+        SetAffinity_Orange(1, 0, 0);
     }
 
     @Override

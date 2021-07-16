@@ -7,8 +7,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.cards.animator.beta.special.JumpyDumpty;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Klee extends AnimatorCard
 {
@@ -26,6 +28,7 @@ public class Klee extends AnimatorCard
         Initialize(3, 0, 2, 2);
         SetUpgrade(1, 0, 0, 0);
         SetAffinity_Red(1, 1, 0);
+        SetAffinity_Orange(1, 0, 0);
 
         SetExhaust(true);
     }
@@ -41,10 +44,7 @@ public class Klee extends AnimatorCard
         }
 
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
-        for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
-        {
-            GameActions.Bottom.ApplyBurning(p, enemy, magicNumber);
-        }
+        GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Burning, magicNumber);
 
         int additionalCount = (CheckTeamwork(AffinityType.Red, 3) ? 1 : 0);
         for (int i = 0; i < secondaryValue + additionalCount; i++)

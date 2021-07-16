@@ -10,8 +10,9 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class KaeyaAlberich extends AnimatorCard {
     public static final EYBCardData DATA = Register(KaeyaAlberich.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL).SetSeriesFromClassPackage();
@@ -21,7 +22,7 @@ public class KaeyaAlberich extends AnimatorCard {
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 2, 0);
-        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Orange(1, 0, 0);
         SetAffinity_Green(1, 1, 0);
     }
 
@@ -33,10 +34,7 @@ public class KaeyaAlberich extends AnimatorCard {
 
         if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
         {
-            for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
-            {
-                GameActions.Bottom.ReduceStrength(enemy, magicNumber, true);
-            }
+            GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, magicNumber);
         }
 
         AbstractOrb firstCommonOrb = null;

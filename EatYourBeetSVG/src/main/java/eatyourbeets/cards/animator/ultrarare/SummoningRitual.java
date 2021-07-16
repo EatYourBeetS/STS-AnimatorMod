@@ -6,11 +6,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.special.VFX;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.effects.vfx.HemokinesisEffect;
+import eatyourbeets.effects.vfx.HemokinesisEffect2;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll_Player;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.resources.GR;
@@ -70,15 +69,15 @@ public class SummoningRitual extends AnimatorCard_UltraRare
             float y = owner.drawY + (owner.hb_h * 0.5f) + (180f * Settings.scale);
 
             GameActions.Bottom.LoseHP(amount, AbstractGameAction.AttackEffect.NONE);
-            GameActions.Bottom.Callback(new VFX(new HemokinesisEffect(owner.hb.cX, owner.hb.cY, x, y), false)
-            .SetDuration(0.5f, true))
+            GameActions.Bottom.VFX(new HemokinesisEffect2(owner.hb.cX, owner.hb.cY, x, y))
             .AddCallback(new TheUnnamed_Doll_Player(x, y), (c, __) ->
             {
                 this.doll = c;
                 this.doll.rollMove();
                 this.doll.showHealthBar();
                 this.doll.increaseMaxHp(amount, true);
-            });
+            })
+            .SetDuration(0.5f, true);
         }
 
         @Override

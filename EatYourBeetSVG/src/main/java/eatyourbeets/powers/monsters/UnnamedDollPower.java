@@ -3,7 +3,7 @@ package eatyourbeets.powers.monsters;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.effects.vfx.HemokinesisEffect;
+import eatyourbeets.effects.vfx.HemokinesisEffect2;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -35,7 +35,7 @@ public class UnnamedDollPower extends AnimatorPower
         {
             for (AbstractCreature c : GameUtilities.GetAllCharacters(true))
             {
-                GameActions.Bottom.VFX(new HemokinesisEffect(owner.hb.cX, owner.hb.cY, c.hb.cX, c.hb.cY), 0.35f);
+                GameActions.Bottom.VFX(new HemokinesisEffect2(owner.hb.cX, owner.hb.cY, c.hb.cX, c.hb.cY), 0.35f);
                 GameActions.Bottom.StackPower(null, new StrengthPower(c, STRENGTH));
             }
         }

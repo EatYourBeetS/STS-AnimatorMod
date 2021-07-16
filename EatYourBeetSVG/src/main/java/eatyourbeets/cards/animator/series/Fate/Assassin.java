@@ -94,7 +94,7 @@ public class Assassin extends AnimatorCard
         .SetDuration(0.2f, false);
     }
 
-    private void DamageEffect(AbstractCreature e)
+    private float DamageEffect(AbstractCreature e)
     {
         float x = e.hb.cX;
         float y = e.hb.cY - 60f * Settings.scale;
@@ -128,6 +128,6 @@ public class Assassin extends AnimatorCard
             EFFECT = 0;
         }
 
-        GameEffects.List.Add(new AnimatedSlashEffect(x, y, dx, dy, angle, scale, Color.VIOLET.cpy(), Color.TEAL.cpy()));
+        return GameEffects.List.Add(new AnimatedSlashEffect(x, y, dx, dy, angle, scale, Color.VIOLET.cpy(), Color.TEAL.cpy())).duration;
     }
 }

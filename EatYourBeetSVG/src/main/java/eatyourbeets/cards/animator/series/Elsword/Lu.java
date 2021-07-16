@@ -67,7 +67,7 @@ public class Lu extends AnimatorCard
         else
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-            .SetDamageEffect(enemy -> GameEffects.List.Add(new ClawEffect(enemy.hb.cX, enemy.hb.cY, Color.VIOLET, Color.WHITE)));
+            .SetDamageEffect(enemy -> GameEffects.List.Add(new ClawEffect(enemy.hb.cX, enemy.hb.cY, Color.VIOLET, Color.WHITE)).duration);
         }
 
         if (damage > 20)

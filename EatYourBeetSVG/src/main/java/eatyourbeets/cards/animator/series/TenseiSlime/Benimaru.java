@@ -4,12 +4,15 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.effects.vfx.FireballEffect;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Benimaru extends AnimatorCard
 {
@@ -35,6 +38,7 @@ public class Benimaru extends AnimatorCard
 
         if (CombatStats.TryActivateSemiLimited(cardID))
         {
+            GameActions.Bottom.Flash(this);
             GameActions.Bottom.ChannelOrb(new Fire());
         }
     }
@@ -42,10 +46,9 @@ public class Benimaru extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.VFX(new FireballEffect(player.hb.cX, player.hb.cY, m.hb.cX, m.hb.cY)
-        .SetColor(Color.RED, Color.ORANGE).SetRealtime(true), true);
-
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(e -> GameActions.Top.StackPower(player, new BurningPower(e, player, magicNumber)));
+        .SetDamageEffect(e -> GameEffects.List.Add(VFX.Fireball(player.hb, e.hb)).SetColor(Color.RED, Color.ORANGE).SetRealtime(true).duration)
+        .AddCallback(m, (enemy, __) -> GameActions.Top.ApplyBurning(player, enemy, magicNumber))
+        .SetRealtime(true);
     }
 }

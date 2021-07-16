@@ -63,13 +63,15 @@ public class UneriGinkaku extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetDamageEffect(enemy ->
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+        .SetDamageEffect(enemy ->
         {
-            GameEffects.List.Add(new AnimatedSlashEffect(enemy.hb.cX, enemy.hb.cY - 30f * Settings.scale,
-            500f, 200f, 290f, 3f, Color.LIGHT_GRAY.cpy(), Color.RED.cpy()));
-            GameEffects.Queue.Add(new AnimatedSlashEffect(enemy.hb.cX, enemy.hb.cY - 60f * Settings.scale,
-            500f, 200f, 290f, 5f, Color.DARK_GRAY.cpy(), Color.BLACK.cpy()));
+            float wait = GameEffects.List.Add(new AnimatedSlashEffect(enemy.hb.cX, enemy.hb.cY - 30f * Settings.scale,
+            500f, 200f, 290f, 3f, Color.LIGHT_GRAY.cpy(), Color.RED.cpy())).duration;
+            wait += GameEffects.Queue.Add(new AnimatedSlashEffect(enemy.hb.cX, enemy.hb.cY - 60f * Settings.scale,
+            500f, 200f, 290f, 5f, Color.DARK_GRAY.cpy(), Color.BLACK.cpy())).duration;
             CardCrawlGame.sound.play("ANIMATOR_REAPER");
+            return wait * 0.65f;
         });
     }
 }

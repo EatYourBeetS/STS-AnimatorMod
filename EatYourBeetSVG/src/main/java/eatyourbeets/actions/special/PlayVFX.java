@@ -4,21 +4,13 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.GameEffects;
 
-public class VFX extends EYBActionWithCallback<AbstractGameEffect>
+public class PlayVFX extends EYBActionWithCallback<AbstractGameEffect>
 {
     private AbstractGameEffect effect;
     private boolean isTopLevelEffect;
     private boolean wait;
 
-    public VFX(AbstractGameEffect effect, boolean wait)
-    {
-        super(ActionType.WAIT, wait ? effect.duration : 0);
-
-        this.wait = wait;
-        this.effect = effect;
-    }
-
-    public VFX(AbstractGameEffect effect, float duration)
+    public PlayVFX(AbstractGameEffect effect, float duration)
     {
         super(ActionType.WAIT, duration);
 

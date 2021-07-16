@@ -5,14 +5,14 @@ import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.GameEffects;
 
-public class HemokinesisEffect extends EYBEffect
+public class HemokinesisEffect2 extends EYBEffect
 {
     private final float x;
     private final float y;
     private final float tX;
     private final float tY;
 
-    public HemokinesisEffect(float x, float y, float targetX, float targetY)
+    public HemokinesisEffect2(float x, float y, float targetX, float targetY)
     {
         super(0.5f);
 

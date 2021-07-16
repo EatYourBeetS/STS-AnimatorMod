@@ -46,7 +46,7 @@ public class FielNirvalen extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.GainTemporaryHP(secondaryValue);
         GameActions.Bottom.StackPower(new FielNirvalenPower(p, SCRY_AMOUNT));
 
         if (choices.TryInitialize(this))
@@ -56,7 +56,7 @@ public class FielNirvalen extends AnimatorCard
             choices.AddEffect(new GenericEffect_GainOrBoost(GR.Tooltips.Force, 1, true));
         }
 
-        choices.Select(secondaryValue, m);
+        choices.Select(magicNumber, m);
     }
 
     public static class FielNirvalenPower extends AnimatorPower implements OnShuffleSubscriber

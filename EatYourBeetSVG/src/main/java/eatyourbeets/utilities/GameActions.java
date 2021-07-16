@@ -23,6 +23,8 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardFlashVfx;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.animator.CreateThrowingKnives;
@@ -242,6 +244,16 @@ public final class GameActions
     public ApplyPowerAuto ApplyWeak(TargetHelper target, int amount)
     {
         return StackPower(target, PowerHelper.Weak, amount);
+    }
+
+    public PlayVFX BorderFlash(Color color)
+    {
+        return VFX(new BorderFlashEffect(color, true));
+    }
+
+    public PlayVFX BorderLongFlash(Color color)
+    {
+        return VFX(new BorderLongFlashEffect(color, true));
     }
 
     public CallbackAction Callback(AbstractGameAction action, Object state, ActionT2<Object, AbstractGameAction> onCompletion)

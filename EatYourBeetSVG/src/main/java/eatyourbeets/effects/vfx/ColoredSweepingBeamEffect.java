@@ -1,6 +1,5 @@
 package eatyourbeets.effects.vfx;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
@@ -48,9 +47,9 @@ public class ColoredSweepingBeamEffect extends EYBEffect
         this.startingDuration = DUR;
     }
 
-    public void update()
+    @Override
+    protected void UpdateInternal(float deltaTime)
     {
-        this.duration -= Gdx.graphics.getDeltaTime();
         if (this.isFlipped)
         {
             this.dX = (float) Settings.WIDTH / 2f * Interpolation.pow3Out.apply(this.duration);
@@ -75,11 +74,7 @@ public class ColoredSweepingBeamEffect extends EYBEffect
             this.color.a = Interpolation.pow2Out.apply(0f, 1f, this.duration * 4f);
         }
 
-        if (this.duration < 0f)
-        {
-            this.isDone = true;
-        }
-
+        super.UpdateInternal(deltaTime);
     }
 
     public void render(SpriteBatch sb)

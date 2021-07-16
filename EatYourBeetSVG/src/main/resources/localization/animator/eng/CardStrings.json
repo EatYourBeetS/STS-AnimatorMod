@@ -294,7 +294,7 @@
 		},
 		"animator:MamizouFutatsuiwa":
 		{
-			"DESCRIPTION": "Give Shapeshifter to ** a card in your hand. || <LIM>. When Discarded: ** Create and add a random ** Shapeshifter to your hand.",
+			"DESCRIPTION": "Give LV2 <S> to ** a card in your hand. || <LIM>. When Discarded: ** Create and add a random ** <S> card to your hand.",
 			"EXTENDED_DESCRIPTION": ["turn into a Shapeshifter."],
 			"NAME": "Mamizou Futatsuiwa"
 		},
@@ -581,7 +581,7 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !S! [I]. ** Gain !M! Orb Slot(s). || 2 <R>, <B>: Channel 1 [Earth].",
+			"DESCRIPTION": "Gain !S! [I]. ** Gain !M! Orb Slot(s). || 2 <B> 2 <R>: ** Channel 1 [Earth].",
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":

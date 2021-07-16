@@ -143,16 +143,16 @@ public class RenderHelpers
     public static BitmapFont GetTitleFont(EYBCardBase card)
     {
         BitmapFont result;
+        final float scale = ((card.name.length() > 14) ? 0.8f : 1);
         if (card.isPopup)
         {
             result = EYBFontHelper.CardTitleFont_Large;
-            result.getData().setScale(card.drawScale * 0.5f);
+            result.getData().setScale(card.drawScale * 0.5f * scale);
         }
         else
         {
-            // NOTE: this was FontHelper.cardTitleFont_small
-            result = (card.name.length() > 14) ? EYBFontHelper.CardTitleFont_Small : EYBFontHelper.CardTitleFont_Normal;
-            result.getData().setScale(card.drawScale);
+            result = EYBFontHelper.CardTitleFont_Normal;
+            result.getData().setScale(card.drawScale * scale);
         }
 
         return result;

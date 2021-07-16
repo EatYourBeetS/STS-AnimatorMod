@@ -20,7 +20,7 @@ public class JumpyDumpty extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(9, 0, 1, 5);
+        Initialize(10, 0, 1, 5);
         SetUpgrade(3, 0, 1, 0);
         SetAffinity_Red(1, 0, 1);
         SetAutoplay(true);
@@ -36,7 +36,7 @@ public class JumpyDumpty extends AnimatorCard
                 {
                     if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0))
                     {
-                        GameActions.Bottom.MakeCardInDrawPile(new JumpyDumpty());
+                        GameActions.Bottom.MakeCardInDrawPile(this.makeStatEquivalentCopy());
                         GameActions.Bottom.StackPower(new SelfDamagePower(p, secondaryValue));
                     }
 

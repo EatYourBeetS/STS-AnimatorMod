@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -27,6 +26,7 @@ public class BarbaraPegg extends AnimatorCard
         SetUpgrade(0, 0, 2, 0);
         SetAffinity_Light(2);
 
+        SetHealing(true);
         SetExhaust(true);
     }
 
@@ -51,7 +51,8 @@ public class BarbaraPegg extends AnimatorCard
         GameActions.Bottom.VFX(new RainbowCardEffect());
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         if (CombatStats.TryActivateLimited(cardID) && JUtils.Find(GameUtilities.GetIntents(), i -> !i.isAttacking) == null) {
-            GameActions.Bottom.StackPower(new RegenPower(player, secondaryValue));
+            GameActions.Bottom.GainBlessing(1, true);
+            GameActions.Bottom.Heal(secondaryValue);
         }
 
     }

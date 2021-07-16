@@ -1,5 +1,7 @@
 package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
+import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -10,6 +12,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Noelle extends AnimatorCard
 {
@@ -19,21 +22,10 @@ public class Noelle extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 4);
-        SetUpgrade(0, 2, 1);
+        Initialize(0, 5, 1);
+        SetUpgrade(0, 2, 0);
         SetAffinity_Red(1, 0, 0);
-        SetAffinity_Light(1, 0, 0);
-    }
-
-    @Override
-    protected float ModifyBlock(AbstractMonster enemy, float amount)
-    {
-        if (!CombatStats.HasActivatedSemiLimited(cardID))
-        {
-            amount += Math.min(GetTeamwork(AffinityType.Light), magicNumber);
-        }
-
-        return super.ModifyBlock(enemy, amount);
+        SetAffinity_Light(1, 1, 0);
     }
 
     @Override
@@ -64,6 +56,20 @@ public class Noelle extends AnimatorCard
             }
         }
 
-        CombatStats.TryActivateSemiLimited(cardID);
+        if (GetTeamwork(AffinityType.Light) >= 2 && CombatStats.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.SelectFromHand(name, magicNumber, false)
+                    .SetOptions(true, true, true)
+                    .SetMessage(RetainCardsAction.TEXT[0])
+                    .SetFilter(c -> !c.isEthereal)
+                    .AddCallback(cards ->
+                    {
+                        if (cards.size() > 0)
+                        {
+                            AbstractCard card = cards.get(0);
+                            GameUtilities.Retain(card);
+                        }
+                    });
+        }
     }
 }

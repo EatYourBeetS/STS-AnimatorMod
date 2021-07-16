@@ -34,7 +34,7 @@ public class KamisatoAyaka extends AnimatorCard {
 
         Initialize(7, 0, 1, 3);
         SetUpgrade(2, 0, 0, 0);
-        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Blue(1, 0, 0);
         SetAffinity_Green(2, 0, 1);
 
         SetExhaust(true);

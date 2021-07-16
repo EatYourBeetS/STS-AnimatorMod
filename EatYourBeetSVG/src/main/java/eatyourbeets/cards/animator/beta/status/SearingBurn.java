@@ -34,7 +34,7 @@ public class SearingBurn extends AnimatorCard_Status
     }
 
     @Override
-    public void triggerOnEndOfTurnForPlayingCard()
+    public void triggerOnExhaust()
     {
         GameActions.Bottom.Callback(() ->
         {

@@ -81,6 +81,7 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
     @Override
     protected void OnUpgrade()
     {
+        previews.Clear();
         if (timesUpgraded % 3 == 0)
         {
             upgradeSecondaryValue(1);

@@ -22,7 +22,7 @@ public class Oz extends AnimatorCard
 
         Initialize(0, 0, 1, 1);
         SetAffinity_Blue(2, 0, 0);
-        SetAffinity_Dark(1, 0, 0);
+        SetAffinity_Dark(2, 0, 0);
 
         SetEthereal(true);
     }

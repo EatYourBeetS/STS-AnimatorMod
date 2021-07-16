@@ -16,7 +16,7 @@ public class Klee extends AnimatorCard
 
     static
     {
-        DATA.AddPreview(new JumpyDumpty(), false);
+        DATA.AddPreview(new JumpyDumpty(), true);
     }
 
     public Klee()
@@ -25,7 +25,7 @@ public class Klee extends AnimatorCard
 
         Initialize(3, 0, 2, 2);
         SetUpgrade(1, 0, 0, 0);
-        SetAffinity_Red(2, 0, 0);
+        SetAffinity_Red(1, 1, 0);
 
         SetExhaust(true);
     }
@@ -49,7 +49,7 @@ public class Klee extends AnimatorCard
         int additionalCount = (CheckTeamwork(AffinityType.Red, 3) ? 1 : 0);
         for (int i = 0; i < secondaryValue + additionalCount; i++)
         {
-            GameActions.Bottom.MakeCardInDrawPile(this.makeStatEquivalentCopy());
+            GameActions.Bottom.MakeCardInDrawPile(new JumpyDumpty()).SetUpgrade(upgraded, false);
         }
     }
 }

@@ -422,7 +422,7 @@
 		},
 		"animator:SearingBurn":
 		{
-		  "DESCRIPTION": "At the end of your turn, ALL characters take !M! damage and gain !S! [Burning].",
+		  "DESCRIPTION": "When Exhausted: ALL characters take !M! damage and gain !S! [Burning].",
 		  "NAME": "Searing Burn"
 		},
 		"animator:SheerCold":
@@ -564,7 +564,7 @@
 		},
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Gain 1 more [Temporary HP] for each enemy that intends to attack. || <LIM>. If ALL enemies intend to attack: Gain !S! [Regeneration].",
+			"DESCRIPTION": "Gain 1 additional [Temporary HP] for each enemy that intends to attack. || <LIM>. If ALL enemies intend to attack: Boost [B] and Heal !S! HP.",
 			"NAME": "Barbara Pegg"
 		},
 		"animator:Curse_Delusion":
@@ -589,12 +589,12 @@
 		},
 		"animator:JeanGunnhildr":
 		{
-			"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile. || Discard up to !M! card(s). Remove 1 of your left-most [Weak], [Vulnerable], or [Frail] for each discarded card.",
+			"DESCRIPTION": "If this would enter your discard pile: Move it to your draw pile. || Discard up to !M! card(s). Remove 1 of your left-most [Weak], [Vulnerable], or [Frail] for each discarded card.",
 			"NAME": "Jean Gunnhildr"
 		},
 		"animator:JumpyDumpty":
 		{
-		  "DESCRIPTION": "Apply !M! [Burning]. || If the enemy dies or loses its [Block]: Gain !S! {Self Damage} and add a copy of this card to your Draw Pile.",
+		  "DESCRIPTION": "Apply !M! [Burning]. || If the enemy dies or loses its [Block]: Add a copy of this card to your Draw Pile. Take !S! damage at the end of the turn.",
 		  "NAME": "Jumpy Dumpty"
 		},
 		"animator:KaeyaAlberich":
@@ -609,38 +609,38 @@
 		},
 		"animator:Keqing":
 		{
-		  "DESCRIPTION": "{Ricochet} !S!: This card returns to your Draw Pile, gains Haste, and costs 1 less this combat. ** Reduce {Ricochet} by 1 upon Evoking [Lightning].",
+		  "DESCRIPTION": "{Ricochet} !S!: This card returns to your Draw Pile, gains {~Haste}, and costs 1 less this combat. ** Reduce {Ricochet} by 1 upon Evoking [Lightning].",
 		  "NAME": "Keqing"
 		},
 		"animator:Klee":
 		{
-		  "DESCRIPTION": "Apply !M! [Vulnerable] to ALL enemies. || Add !S! {Jumpy Dumpty} ** to your Draw Pile. ** 3 <R>: Add 1 more.",
+		  "DESCRIPTION": "Apply !M! [Burning] to ALL enemies. || Add !S! {Jumpy Dumpty} ** to your Draw Pile. ** 3 <R>: Add 1 more.",
 		  "NAME": "Klee"
 		},
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M!. Gain effects based on each Scryed card's rarity: || {Basic} or {Common}: Gain !S! [Counterattack]. ** {Uncommon}: Draw !S! more card(s) next turn. ** {Rare}: Gain/Boost [I]",
+			"DESCRIPTION": "{Scry} !M!. Gain effects based on each Scried card's rarity: || {Basic} or {Common}: Gain !S! [Counterattack]. ** {Uncommon}: Draw !S! more card(s) next turn. ** {Rare}: Gain/Boost [I]",
 			"NAME": "Lisa Minci"
 		},
 		"animator:Noelle":
 		{
-			"DESCRIPTION": "{Starter}: If you have [Earth], ** trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || <SLM>. Gain extra [Block] equal to <L> (up to !M!).",
+			"DESCRIPTION": "{Starter}: If you have [Earth], ** Trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || <SLM>. 2 <L>: Retain a card in your hand.",
 			"NAME": "Noelle"
 		},
 		"animator:Oz":
 		{
-		  "DESCRIPTION": "Gain 1 Orb Slot. || The first time you play a LV.2 <B> card each turn, randomly Channel 1 [Lightning] or [Dark].",
+		  "DESCRIPTION": "Gain 1 Orb Slot. || The first time you play a LV2 <B> card each turn: Randomly Channel 1 [Lightning] or [Dark].",
 		  "EXTENDED_DESCRIPTION": ["The first #b{0} LV.2 Blue card(s) played this turn will also randomly Channel 1 #yLightning or #yDark. You have played #b{1} LV.2 Blue card(s)."],
 		  "NAME": "Oz"
 		},
 		"animator:Strike_GenshinImpact":
 		{
-			"DESCRIPTION": "Lose no [I] next turn.",
+			"DESCRIPTION": "Retain [I].",
 			"NAME": "Improved Strike"
 		},
 		"animator:Tartaglia":
 		{
-			"DESCRIPTION": "Deal additional damage equal to the enemy's [Burning], then remove [Burning]. || If in <FS>: exit your Stance. Otherwise, enter <FS> ** and Transform this card ** into {Delusion}.",
+			"DESCRIPTION": "Deal additional damage equal to the enemy's [Burning], then remove [Burning]. || If in <FS>: Exit your Stance. Otherwise, Enter <FS> ** and Transform this card ** into {Delusion}.",
 			"NAME": "Tartaglia"
 		},
 		"animator:Traveler":
@@ -651,12 +651,12 @@
 		},
 		"animator:Venti":
 		{
-			"DESCRIPTION": "{Channel} 1 [Aether]. || Cycle !M! cards. Trigger your last [Aether] for every Skill drawn from this card. ** If you drew at least 2 {Hindrances}, Draw a card.",
+			"DESCRIPTION": "{Channel} 1 [Aether]. || Cycle !M! cards. Trigger your last [Aether] for every Skill drawn from this card. ** If you drew at least 2 {Hindrances}: <DRW>.",
 			"NAME": "Venti"
 		},
 		"animator:Zhongli":
 		{
-			"DESCRIPTION": "Your [Earth] now give half of their damage as [Block] when Evoked. || At the end of each turn, spend ** !S! of your remaining Energy ** to {Channel} [Earth] and gain !M! [Plated Armor].",
+			"DESCRIPTION": "Your [Earth] now give half of their damage as [Block] when Evoked. || At the end of each turn: Spend ** !S! of your remaining Energy ** to {Channel} [Earth] and gain !M! [Plated Armor].",
 			"EXTENDED_DESCRIPTION": ["#yEarth orbs now also give Block when Evoked. At the end of each turn, spend #b{0} of your remaining energy to channel #yEarth and gain #b{1} #yPlated #yArmor."],
 			"NAME": "Zhongli"
 		}
@@ -874,9 +874,9 @@
 		},
 		"animator:TomoeKashiwaba":
 		{
-			"DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! [Block]. || When Drawn: Lose no [F] next turn.",
+			"DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! [Block]. || When Drawn: Lose no [A] next turn.",
 			"NAME": "Tomoe Kashiwaba",
-			"UPGRADE_DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! [Block]. || When Drawn: Gain [F]."
+			"UPGRADE_DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! [Block]. || When Drawn: Gain [A]."
 		}
 	},
 	"BETA:TOUHOUPROJECT":

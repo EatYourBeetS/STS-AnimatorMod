@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.combat.FrostOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.FrostOrbPassiveEffect;
-import com.megacrit.cardcrawl.vfx.combat.IceShatterEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.GameEffects;
@@ -62,6 +61,7 @@ public class SnowballEffect extends EYBEffect
         {
             GameEffects.Queue.Add(new SnowballTriggerEffect(x, y).SetColor(color)).SetRealtime(isRealtime);
             GameEffects.Queue.Add(new FrostOrbActivateEffect(x, y));
+            Complete();
         }
     }
 }

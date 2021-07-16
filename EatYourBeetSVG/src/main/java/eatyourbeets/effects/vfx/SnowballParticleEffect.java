@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
@@ -14,6 +13,7 @@ public class SnowballParticleEffect extends EYBEffect
 {
    protected static final float GRAVITY = 180f * Settings.scale;
    protected static final int SIZE = 96;
+
    protected Texture img;
    protected float floor;
    protected float x;
@@ -27,16 +27,7 @@ public class SnowballParticleEffect extends EYBEffect
     {
         super(Random(0.5f, 1f));
 
-        switch (MathUtils.random(0, 2))
-        {
-            case 0:
-                this.img = ImageMaster.loadImage("images/orbs/animator/FrostSnow.png");
-            case 1:
-                this.img = ImageMaster.loadImage("images/orbs/animator/FrostSnow2.png");
-            default:
-                this.img = ImageMaster.loadImage("images/orbs/animator/FrostSnow3.png");
-        }
-
+        this.img = ImageMaster.loadImage("images/orbs/animator/FrostSnow" + Random(1, 3) + ".png");
         this.x = x - (float) (SIZE / 2);
         this.y = y - (float) (SIZE / 2);
         this.rotation = Random(-10f, 10f);

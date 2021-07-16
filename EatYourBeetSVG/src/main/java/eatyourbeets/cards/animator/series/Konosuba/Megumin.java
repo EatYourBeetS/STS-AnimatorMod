@@ -6,11 +6,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -47,20 +47,20 @@ public class Megumin extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.1f);
+        GameActions.Bottom.Add(SFX.LightningPassive(0.1f, true));
         GameActions.Bottom.Wait(0.35f);
-        GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.2f);
-        GameActions.Bottom.VFX(new BorderFlashEffect(Color.ORANGE));
+        GameActions.Bottom.Add(SFX.LightningPassive(0.2f, true));
+        GameActions.Bottom.BorderFlash(Color.ORANGE);
         GameActions.Bottom.Wait(0.35f);
-        GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.3f);
+        GameActions.Bottom.Add(SFX.LightningPassive(0.3f, true));
         GameActions.Bottom.Wait(0.35f);
-        GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
-        GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.5f);
+        GameActions.Bottom.BorderFlash(Color.RED);
+        GameActions.Bottom.Add(SFX.LightningEvoke(0.5f, true));
 
         for (AbstractCreature m1 : GameUtilities.GetEnemies(true))
         {
-            GameActions.Bottom.VFX(VFX.FlameBarrierEffect(m1.hb));
-            GameActions.Bottom.VFX(VFX.ExplosionSmallEffect(m1.hb));
+            GameActions.Bottom.VFX(VFX.FlameBarrier(m1.hb));
+            GameActions.Bottom.VFX(VFX.SmallExplosion(m1.hb));
         }
 
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);

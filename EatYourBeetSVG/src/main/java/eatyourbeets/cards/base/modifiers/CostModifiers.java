@@ -1,20 +1,23 @@
 package eatyourbeets.cards.base.modifiers;
 
+import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.interfaces.subscribers.OnCardResetSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameUtilities;
-import patches.abstractCard.AbstractCard_Fields;
+import patches.abstractCard.AbstractCardPatches;
 
 public class CostModifiers extends AbstractModifiers implements OnCardResetSubscriber
 {
+    public static SpireField<CostModifiers> Field = AbstractCardPatches.AbstractCard_Fields.costModifiers;
+
     public static CostModifiers For(AbstractCard card)
     {
-        CostModifiers modifier = AbstractCard_Fields.costModifiers.get(card);
+        CostModifiers modifier = Field.get(card);
         if (modifier == null)
         {
             modifier = new CostModifiers(card);
-            AbstractCard_Fields.costModifiers.set(card, modifier);
+            Field.set(card, modifier);
         }
 
         return modifier;

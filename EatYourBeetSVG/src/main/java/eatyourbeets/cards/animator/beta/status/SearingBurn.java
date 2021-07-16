@@ -16,7 +16,7 @@ public class SearingBurn extends AnimatorCard_Status
 
     public SearingBurn()
     {
-        super(DATA, true);
+        super(DATA, false);
 
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 2, 1);
@@ -36,12 +36,7 @@ public class SearingBurn extends AnimatorCard_Status
     @Override
     public void triggerOnExhaust()
     {
-        super.triggerOnExhaust();
-        GameActions.Bottom.Callback(() ->
-        {
-            GameActions.Bottom.Flash(this);
-            this.performAction();
-        });
+        this.performAction();
     }
 
     private void performAction() {

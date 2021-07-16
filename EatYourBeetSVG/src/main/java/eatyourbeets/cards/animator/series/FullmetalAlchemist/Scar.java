@@ -31,7 +31,11 @@ public class Scar extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(__ -> CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3f));
+        .SetDamageEffect(__ ->
+        {
+            CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3f);
+            return 0f;
+        });
 
         GameActions.Bottom.ExhaustFromHand(name, 1, true)
         .ShowEffect(true, true)

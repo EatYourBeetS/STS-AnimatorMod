@@ -39,9 +39,8 @@ public class MetalKnight extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY));
-        GameActions.Bottom.Wait(0.8f);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY), 0.6f, true);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActions.Bottom.ChannelOrb(new Plasma());
 
         if (magicNumber > 0)

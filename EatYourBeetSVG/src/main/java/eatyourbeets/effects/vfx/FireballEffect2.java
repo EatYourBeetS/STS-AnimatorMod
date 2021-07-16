@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.GameEffects;
 
-public class FireballEffect extends EYBEffect
+public class FireballEffect2 extends EYBEffect
 {
     protected Color secondaryColor;
     protected float x;
@@ -19,7 +19,7 @@ public class FireballEffect extends EYBEffect
     protected float targetY;
     protected float vfxTimer;
 
-    public FireballEffect(float startX, float startY, float targetX, float targetY)
+    public FireballEffect2(float startX, float startY, float targetX, float targetY)
     {
         super(0.5f);
 
@@ -33,7 +33,7 @@ public class FireballEffect extends EYBEffect
         this.y = startY;
     }
 
-    public FireballEffect SetColor(Color mainColor, Color secondaryColor)
+    public FireballEffect2 SetColor(Color mainColor, Color secondaryColor)
     {
         this.color = mainColor.cpy();
         this.secondaryColor = secondaryColor.cpy();

@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -76,13 +75,11 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
         {
             if (!GameUtilities.IsDeadOrEscaped(enemy))
             {
+                GameEffects.List.Attack(enemy, this.attackEffect, mute);
+
                 if (onDamageEffect != null)
                 {
                     onDamageEffect.accept(enemy, !mute);
-                }
-                else
-                {
-                    GameEffects.List.Add(new FlashAtkImgEffect(enemy.hb.cX, enemy.hb.cY, this.attackEffect, mute));
                 }
 
                 mute = true;

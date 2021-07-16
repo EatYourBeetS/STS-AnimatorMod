@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.GameActions;
@@ -17,6 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreature>
 {
+    protected boolean hasPlayedEffect;
     protected boolean applyPowers;
     protected boolean bypassBlock;
     protected boolean bypassThorns;
@@ -39,6 +39,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
         this.bypassBlock = other.bypassBlock;
         this.bypassThorns = other.bypassThorns;
         this.onDamageEffect = other.onDamageEffect;
+        this.hasPlayedEffect = other.hasPlayedEffect;
     }
 
     public DealDamageToRandomEnemy(AbstractCard card, AttackEffect effect)
@@ -124,11 +125,9 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
             return;
         }
 
-        GameEffects.List.Add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
-
         if (onDamageEffect != null)
         {
-            duration += onDamageEffect.Invoke(target);
+            AddDuration(onDamageEffect.Invoke(target));
         }
     }
 
@@ -139,6 +138,12 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
         {
             Complete();
             return;
+        }
+
+        if (!hasPlayedEffect && duration < 0.1f)
+        {
+            GameEffects.List.Attack(this.target, this.attackEffect, false);
+            hasPlayedEffect = true;
         }
 
         if (TickDuration(deltaTime))

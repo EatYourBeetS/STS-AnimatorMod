@@ -66,6 +66,6 @@ public class Akatsuki extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL)
-        .SetDamageEffect(c -> GameEffects.List.Add(new DieDieDieEffect()));
+        .SetDamageEffect(c -> GameEffects.List.Add(new DieDieDieEffect()).duration);
     }
 }

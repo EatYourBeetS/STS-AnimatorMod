@@ -422,7 +422,7 @@
 		},
 		"animator:SearingBurn":
 		{
-		  "DESCRIPTION": "When Exhausted: ALL characters take !M! damage and gain !S! [Burning].",
+		  "DESCRIPTION": "When Exhausted: ** ALL characters take !M! damage and gain !S! [Burning].",
 		  "NAME": "Searing Burn"
 		},
 		"animator:SheerCold":
@@ -569,7 +569,7 @@
 		},
 		"animator:Curse_Delusion":
 		{
-		  "DESCRIPTION": "Unplayable. || At the end of your turn, give a random card in your Draw Pile {Autoplay}. || When Exhausted, Boost [A].",
+		  "DESCRIPTION": "Unplayable. || At the end of your turn, give a random card in your Draw Pile {Autoplay}. || When Exhausted: Boost [A].",
 		  "NAME": "Delusion"
 		},
 		"animator:Defend_GenshinImpact":
@@ -584,7 +584,7 @@
 		},
 		"animator:HuTao":
 		{
-		  "DESCRIPTION": "Exhaust !M! random {Hindrances} from anywhere. Add a {Searing Burn} to your Draw Pile for each. || When Exhausted, add !S! {Searing Burn} to your hand.",
+		  "DESCRIPTION": "Exhaust !M! random {Hindrances} from anywhere. Add a {Searing Burn} to your Draw Pile for each. || When Exhausted: Add !S! {Searing Burn} to your hand.",
 		  "NAME": "Hu Tao"
 		},
 		"animator:JeanGunnhildr":

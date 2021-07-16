@@ -36,6 +36,7 @@ public class SearingBurn extends AnimatorCard_Status
     @Override
     public void triggerOnExhaust()
     {
+        super.triggerOnExhaust();
         GameActions.Bottom.Callback(() ->
         {
             GameActions.Bottom.Flash(this);

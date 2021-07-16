@@ -20,6 +20,7 @@ public class KaeyaAlberich extends AnimatorCard {
         super(DATA);
 
         Initialize(0, 0, 2);
+        SetUpgrade(0, 2, 0);
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 1, 0);
     }

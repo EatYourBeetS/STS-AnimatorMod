@@ -1,13 +1,17 @@
 package eatyourbeets.utilities;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.effects.combatOnly.TalkEffect;
 import eatyourbeets.effects.player.ObtainRelicEffect;
 import eatyourbeets.effects.player.RemoveRelicEffect;
@@ -38,6 +42,11 @@ public final class GameEffects
     public static boolean IsEmpty()
     {
         return Unlisted.isEmpty() && AbstractDungeon.topLevelEffects.isEmpty();
+    }
+
+    public AbstractGameEffect Attack(AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, boolean muteSFX)
+    {
+        return Add(VFX.FlashAttack(target.hb, attackEffect, muteSFX));
     }
 
     public ArrayList<AbstractGameEffect> GetList()
@@ -110,6 +119,16 @@ public final class GameEffects
     public CallbackEffect Callback(AbstractGameAction action, Object state, ActionT2<Object, AbstractGameAction> onCompletion)
     {
         return Add(new CallbackEffect(action, state, onCompletion));
+    }
+
+    public BorderFlashEffect BorderFlash(Color color)
+    {
+        return Add(new BorderFlashEffect(color, true));
+    }
+
+    public BorderLongFlashEffect BorderLongFlash(Color color)
+    {
+        return Add(new BorderLongFlashEffect(color, true));
     }
 
     public SpawnRelicEffect SpawnRelic(AbstractRelic relic, float x, float y)

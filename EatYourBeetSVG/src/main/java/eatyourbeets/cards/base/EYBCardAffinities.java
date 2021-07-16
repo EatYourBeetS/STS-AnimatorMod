@@ -40,7 +40,7 @@ public class EYBCardAffinities
 
     public void Initialize(AffinityType type, int base, int upgrade, int scaling)
     {
-        if (base > 0 || upgrade > 0)
+        if (base > 0 || upgrade > 0 || scaling > 0)
         {
             EYBCardAffinity a = Set(type, base);
             a.upgrade = upgrade;

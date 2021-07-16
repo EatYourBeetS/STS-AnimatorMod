@@ -4,11 +4,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -46,10 +45,11 @@ public class Entoma extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(e -> GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40f * Settings.scale, Color.SCARLET.cpy())))
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.POISON)
+        .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.GREEN)).duration)
         .AddCallback(enemy ->
         {
+            GameActions.Bottom.ApplyPoison(player, enemy, magicNumber).ShowEffect(false, true);
             if (GameUtilities.IsFatal(enemy, true) && CombatStats.TryActivateLimited(cardID))
             {
                 player.increaseMaxHp(2, false);
@@ -59,8 +59,6 @@ public class Entoma extends AnimatorCard
                 .IsCancellable(false);
             }
         });
-
-        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
     }
 
     @Override

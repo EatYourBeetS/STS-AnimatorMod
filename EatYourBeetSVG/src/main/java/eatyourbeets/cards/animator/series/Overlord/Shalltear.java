@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.effects.vfx.HemokinesisEffect;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -65,7 +65,7 @@ public class Shalltear extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
         .SetDamageEffect((enemy, aBoolean) ->
         {
-            GameEffects.List.Add(new HemokinesisEffect(enemy.hb.cX, enemy.hb.cY, player.hb.cX, player.hb.cY));
+            GameEffects.List.Add(VFX.Hemokinesis(player.hb, enemy.hb));
             GameActions.Bottom.ApplyWeak(player, enemy, 1);
 
             if (isSynergizing)

@@ -5,20 +5,19 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.powers.animator.StolenGoldPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-import java.util.function.Consumer;
-
 public class DealDamage extends EYBActionWithCallback<AbstractCreature>
 {
     protected final DamageInfo info;
 
-    protected Consumer<AbstractCreature> onDamageEffect;
+    protected FuncT1<Float, AbstractCreature> onDamageEffect;
+    protected boolean hasPlayedEffect;
     protected boolean bypassBlock;
     protected boolean bypassThorns;
     protected boolean skipWait;
@@ -43,7 +42,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         Initialize(info.owner, target, info.output);
     }
 
-    public DealDamage SetDamageEffect(Consumer<AbstractCreature> onDamageEffect)
+    public DealDamage SetDamageEffect(FuncT1<Float, AbstractCreature> onDamageEffect)
     {
         this.onDamageEffect = onDamageEffect;
 
@@ -88,11 +87,9 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
             return;
         }
 
-        GameEffects.List.Add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect, this.muteSfx));
-
         if (onDamageEffect != null)
         {
-            onDamageEffect.accept(target);
+            AddDuration(onDamageEffect.Invoke(target));
         }
 
         if (this.goldAmount > 0)
@@ -108,6 +105,12 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         {
             Complete();
             return;
+        }
+
+        if (!hasPlayedEffect && duration < 0.1f)
+        {
+            GameEffects.List.Attack(target, attackEffect, muteSfx);
+            hasPlayedEffect = true;
         }
 
         if (TickDuration(deltaTime))

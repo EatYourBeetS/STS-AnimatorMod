@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.effects.vfx.FireballEffect;
+import eatyourbeets.effects.vfx.FireballEffect2;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -51,7 +51,7 @@ public class FireOrbPassiveAction extends EYBAction
             }
 
             GameActions.Top.Wait(0.15f);
-            GameActions.Top.VFX(new FireballEffect(orb.hb.cX, orb.hb.cY, enemy.hb.cX, enemy.hb.cY)
+            GameActions.Top.VFX(new FireballEffect2(orb.hb.cX, orb.hb.cY, enemy.hb.cX, enemy.hb.cY)
             .SetColor(Color.RED, Color.ORANGE).SetRealtime(true));
         }
 

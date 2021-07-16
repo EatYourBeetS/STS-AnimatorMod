@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.FeridBathory;
-import eatyourbeets.effects.vfx.HemokinesisEffect;
+import eatyourbeets.effects.vfx.HemokinesisEffect2;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -35,7 +35,7 @@ public class FeridBathoryPower extends AnimatorPower
         GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.NONE)
         .SetDamageEffect(enemy ->
         {
-            GameEffects.List.Add(new HemokinesisEffect(enemy.hb.cX, enemy.hb.cY, owner.hb.cX, owner.hb.cY));
+            GameEffects.List.Add(new HemokinesisEffect2(enemy.hb.cX, enemy.hb.cY, owner.hb.cX, owner.hb.cY));
             return 0f;
         });
         GameActions.Bottom.GainTemporaryHP(amount);

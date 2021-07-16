@@ -60,8 +60,8 @@ public class Aisha extends AnimatorCard
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE)
             .SetVFX(true, false)
-            .SetDamageEffect(enemy -> GameEffects.Queue.Add(new SmallLaserEffect(player.hb.cX, player.hb.cY,
-            enemy.hb.cX + MathUtils.random(-0.05f, 0.05f),enemy.hb.cY + MathUtils.random(-0.05f, 0.05f), Color.VIOLET)));
+            .SetDamageEffect(enemy -> GameEffects.List.Add(new SmallLaserEffect(player.hb.cX, player.hb.cY,
+            enemy.hb.cX + MathUtils.random(-0.05f, 0.05f),enemy.hb.cY + MathUtils.random(-0.05f, 0.05f), Color.VIOLET)).duration);
         }
     }
 

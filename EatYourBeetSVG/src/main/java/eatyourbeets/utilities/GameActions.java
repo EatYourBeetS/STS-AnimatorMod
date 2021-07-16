@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -16,6 +17,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
@@ -47,7 +49,7 @@ import eatyourbeets.actions.powers.ReducePower;
 import eatyourbeets.actions.powers.ReduceStrength;
 import eatyourbeets.actions.special.DelayAllActions;
 import eatyourbeets.actions.special.SelectCreature;
-import eatyourbeets.actions.special.VFX;
+import eatyourbeets.actions.special.PlayVFX;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
@@ -326,13 +328,13 @@ public final class GameActions
 
     public DealDamageToAll DealDamageToAll(EYBCard card, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamageToAll(player, card.multiDamage, card.damageTypeForTurn, effect))
+        return Add(new DealDamageToAll(player, card.multiDamage, card.damageTypeForTurn, effect, false))
         .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock);
     }
 
     public DealDamageToAll DealDamageToAll(int[] damageMatrix, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamageToAll(player, damageMatrix, damageType, effect));
+        return Add(new DealDamageToAll(player, damageMatrix, damageType, effect, false));
     }
 
     public DealDamageToRandomEnemy DealDamageToRandomEnemy(int baseDamage, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
@@ -416,7 +418,7 @@ public final class GameActions
         return Add(new FetchFromPile(sourceName, amount, groups));
     }
 
-    public VFX Flash(AbstractCard card)
+    public PlayVFX Flash(AbstractCard card)
     {
         return VFX(new CardFlashVfx(card, Color.ORANGE.cpy()));
     }
@@ -802,6 +804,11 @@ public final class GameActions
         return Add(new SFXAction(key, pitchVar));
     }
 
+    public ShakeScreenAction ShakeScreen(float actionDuration, ScreenShake.ShakeDur shakeDuration, ScreenShake.ShakeIntensity intensity)
+    {
+        return Add(new ShakeScreenAction(actionDuration, shakeDuration, intensity));
+    }
+
     public ScryWhichActuallyTriggersDiscard Scry(int amount)
     {
         return Add(new ScryWhichActuallyTriggersDiscard(amount));
@@ -896,19 +903,19 @@ public final class GameActions
         });
     }
 
-    public VFX VFX(AbstractGameEffect effect)
+    public PlayVFX VFX(AbstractGameEffect effect)
     {
-        return Add(new VFX(effect, false));
+        return Add(new PlayVFX(effect, 0));
     }
 
-    public VFX VFX(AbstractGameEffect effect, boolean wait)
+    public PlayVFX VFX(AbstractGameEffect effect, float wait)
     {
-        return Add(new VFX(effect, wait));
+        return Add(new PlayVFX(effect, wait));
     }
 
-    public VFX VFX(AbstractGameEffect effect, float duration)
+    public PlayVFX VFX(AbstractGameEffect effect, float wait, boolean isPercentage)
     {
-        return Add(new VFX(effect, duration));
+        return Add(new PlayVFX(effect, isPercentage ? effect.duration * wait : wait));
     }
 
     public WaitAction Wait(float duration)

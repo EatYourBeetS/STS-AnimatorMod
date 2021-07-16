@@ -7,9 +7,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
-import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -57,8 +59,8 @@ public class Megumin extends AnimatorCard
 
         for (AbstractCreature m1 : GameUtilities.GetEnemies(true))
         {
-            GameActions.Bottom.VFX(new FlameBarrierEffect(m1.hb_x, m1.hb_y));
-            GameActions.Bottom.VFX(new ExplosionSmallEffect(m1.hb_x, m1.hb_y));
+            GameActions.Bottom.VFX(VFX.FlameBarrierEffect(m1.hb));
+            GameActions.Bottom.VFX(VFX.ExplosionSmallEffect(m1.hb));
         }
 
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);

@@ -1,18 +1,21 @@
 package eatyourbeets.cards.base.modifiers;
 
+import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.utilities.GameUtilities;
-import patches.abstractCard.AbstractCard_Fields;
+import patches.abstractCard.AbstractCardPatches;
 
 public class BlockModifiers extends AbstractModifiers
 {
+    public static SpireField<BlockModifiers> Field = AbstractCardPatches.AbstractCard_Fields.blockModifiers;
+
     public static BlockModifiers For(AbstractCard card)
     {
-        BlockModifiers modifier = AbstractCard_Fields.blockModifiers.get(card);
+        BlockModifiers modifier = Field.get(card);
         if (modifier == null)
         {
             modifier = new BlockModifiers(card);
-            AbstractCard_Fields.blockModifiers.set(card, modifier);
+            Field.set(card, modifier);
         }
 
         return modifier;

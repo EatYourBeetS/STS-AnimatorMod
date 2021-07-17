@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.effects.combatOnly.TalkEffect;
 import eatyourbeets.effects.player.ObtainRelicEffect;
@@ -41,7 +42,15 @@ public final class GameEffects
 
     public static boolean IsEmpty()
     {
-        return Unlisted.isEmpty() && AbstractDungeon.topLevelEffects.isEmpty();
+        for (AbstractGameEffect effect : AbstractDungeon.topLevelEffects)
+        {
+            if (effect instanceof EYBEffect)
+            {
+                return false;
+            }
+        }
+
+        return Unlisted.isEmpty();
     }
 
     public AbstractGameEffect Attack(AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, boolean muteSFX)

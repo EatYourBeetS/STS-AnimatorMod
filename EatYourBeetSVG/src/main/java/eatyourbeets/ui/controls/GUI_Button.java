@@ -137,19 +137,22 @@ public class GUI_Button extends GUIElement
         {
             this.hb.update();
 
-            if (this.hb.justHovered)
+            if (IsInteractable())
             {
-                OnHover();
-            }
+                if (this.hb.justHovered)
+                {
+                    OnHover();
+                }
 
-            if (this.hb.hovered && InputHelper.justClickedLeft)
-            {
-                OnClickStart();
-            }
+                if (this.hb.hovered && InputHelper.justClickedLeft)
+                {
+                    OnClickStart();
+                }
 
-            if (this.hb.clicked)
-            {
-                OnClick();
+                if (this.hb.clicked)
+                {
+                    OnClick();
+                }
             }
 
             this.textColor.a = currentAlpha;
@@ -219,9 +222,9 @@ public class GUI_Button extends GUIElement
         this.hb.clicked = false;
         this.currentClickDelay = clickDelay;
 
-        if (IsInteractable())
+        if (onClick != null)
         {
-            onClick.Invoke();
+            this.onClick.Invoke();
         }
     }
 }

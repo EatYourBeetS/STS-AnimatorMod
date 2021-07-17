@@ -187,7 +187,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
             }
         }
 
-        GR.UI.CardAffinities.Open(player.masterDeck.group, null);
+        GR.UI.CardAffinities.Open(player.masterDeck.group);
         showAffinities = true;
     }
 

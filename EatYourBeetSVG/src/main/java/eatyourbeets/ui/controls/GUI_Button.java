@@ -75,9 +75,9 @@ public class GUI_Button extends GUIElement
         return this;
     }
 
-    public GUI_Button SetPosition(float x, float y)
+    public GUI_Button SetPosition(float cX, float cY)
     {
-        this.hb.move(x, y);
+        this.hb.move(cX, cY);
 
         return this;
     }

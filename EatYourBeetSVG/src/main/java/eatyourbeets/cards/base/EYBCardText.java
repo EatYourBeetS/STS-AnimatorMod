@@ -94,8 +94,6 @@ public class EYBCardText
                 RenderHelpers.WriteOnCard(sb, card, font, bottom.text, 0, -0.47f * AbstractCard.RAW_H, bottom.color, true);
                 RenderHelpers.ResetFont(font);
             }
-
-            //card.affinities.RenderOnCard(sb, card, inHand);
         }
     }
 

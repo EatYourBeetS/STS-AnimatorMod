@@ -24,7 +24,6 @@ public class AnimatorCharacterSelectScreen
     protected static GUI_Button DiscordButton;
     protected static GUI_Button SteamButton;
 
-
     public static void Initialize(CharacterSelectScreen selectScreen)
     {
         GameUtilities.UnlockAllKeys();

@@ -17,7 +17,8 @@ public enum AffinityType implements Comparable<AffinityType>
     Blue(2, "Blue", GR.Common.Images.Affinities.Blue),
     Light(3, "Light", GR.Common.Images.Affinities.Light),
     Dark(4, "Dark", GR.Common.Images.Affinities.Dark),
-    Star(-1, "Star", GR.Common.Images.Affinities.Star_BG);
+    Star(-1, "Star", GR.Common.Images.Affinities.Star_BG),
+    Neutral(-2, "Neutral", GR.Common.Images.Affinities.Neutral);// Displayed on cards with no affinity, don't use directly
 
     public static final int MAX_ID = 4;
 

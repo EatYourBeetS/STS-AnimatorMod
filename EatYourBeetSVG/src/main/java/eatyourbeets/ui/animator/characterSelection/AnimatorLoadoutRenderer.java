@@ -41,6 +41,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
     protected final Hitbox startingCardsRightHb;
 
     protected GUI_Button RandomizeButton;
+    protected GUI_Button LoadoutEditorButton;
     protected CharacterSelectScreen selectScreen;
     protected CharacterOption characterOption;
     protected String lockedDescription;
@@ -66,8 +67,8 @@ public class AnimatorLoadoutRenderer extends GUIElement
         startingCardsSelectedHb.move(startingCardsLeftHb.x + startingCardsLeftHb.width + (rightTextWidth / 2f), POS_Y);
         startingCardsRightHb.move(startingCardsSelectedHb.x + startingCardsSelectedHb.width + (10 * Settings.scale), POS_Y - (10 * Settings.scale));
 
-        RandomizeButton = new GUI_Button(GR.Common.Images.Randomize.Texture(), new AdvancedHitbox(0, 0, (50 * Settings.scale), (50 * Settings.scale)))
-        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width + (15 * Settings.scale), POS_Y - (10 * Settings.scale)).SetText("")
+        RandomizeButton = new GUI_Button(GR.Common.Images.Randomize.Texture(), new AdvancedHitbox(0, 0, Scale(50), Scale(50)))
+        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(90), POS_Y - Scale(55)).SetText("")
         .SetOnClick(this::RandomizeLoadout);
     }
 
@@ -161,6 +162,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         startingCardsRightHb.update();
         startingCardsLeftHb.update();
         RandomizeButton.TryUpdate();
+        LoadoutEditorButton.TryUpdate();
 
         if (InputHelper.justClickedLeft)
         {
@@ -252,5 +254,6 @@ public class AnimatorLoadoutRenderer extends GUIElement
                 48f, 48f, scale, scale, 0f, 0, 0, 48, 48, false, false);
 
         RandomizeButton.TryRender(sb);
+        LoadoutEditorButton.TryRender(sb);
     }
 }

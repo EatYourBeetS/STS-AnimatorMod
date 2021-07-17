@@ -132,6 +132,12 @@
 		"NAMES": ["envenom"],
 		"PROPER_NAME": "Envenom"
 	},
+	"Eternal":
+	{
+	  "DESCRIPTION": "Cannot be removed from your deck. When exhausted, returns to your draw pile and changes form if it has multiple forms.",
+	  "NAMES": ["eternal"],
+	  "PROPER_NAME": "Eternal"
+	},
 	"Fire":
 	{
 		"DESCRIPTION": "Orb: Applies #yBurning and damages the highest health enemy.",
@@ -179,6 +185,12 @@
 		"DESCRIPTION": "A #yStatus or #yCurse card.",
 		"NAMES": ["hindrance", "hindrances"],
 		"PROPER_NAME": "Hindrance"
+	},
+	"Induce":
+	{
+	  "DESCRIPTION": "Evokes a new Orb without Channeling it.",
+	  "NAMES": ["induce"],
+	  "PROPER_NAME": "Induce"
 	},
 	"Intellect":
 	{

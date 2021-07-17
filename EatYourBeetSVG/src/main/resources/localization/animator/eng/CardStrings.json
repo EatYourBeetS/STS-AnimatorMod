@@ -187,7 +187,7 @@
 	{
 		"animator:ManiwaHouou":
 		{
-			"DESCRIPTION": "",
+			"DESCRIPTION": "{Ricochet} !S!: Return this card to your hand. It costs 0 and gains Purge.",
 			"NAME": "Maniwa Houou"
 		},
 		"animator:Haniwa":
@@ -387,6 +387,12 @@
 	},
 	"BETA:COLORLESS":
 	{
+		"animator:BlazingHeat":
+		{
+		  "DESCRIPTION": "Your [Fire] deals 1 additional damage at the end of the turn and deals damage to ALL enemies equal to its [Burning] when Evoked.",
+		  "NAME": "Sheer Cold",
+		  "UPGRADE_DESCRIPTION": "Channel 1 [Frost]. || Your [Frost] now applies [Chilled] equal to their [Block] to a random enemy when Triggered and to all enemies when Evoked, ignoring [Artifact]."
+		},
 		"animator:HatsuneMiku":
 		{
 			"DESCRIPTION": "Can only be played if there are at least !S! cards in your Discard and {Exhaust} piles combined. || At the start of turn: Draw !M! card(s). They cost 0 this turn.",
@@ -624,7 +630,7 @@
 		},
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M!. Gain effects based on each Scried card's rarity: || {Basic} or {Common}: Gain !S! [Counterattack]. ** {Uncommon}: Draw !S! more card(s) next turn. ** {Rare}: Gain/Boost [I][L]",
+			"DESCRIPTION": "{Scry} !M!. Gain effects based on each Scried card's rarity: || {Basic} or {Common}: Draw !S! more card(s) next turn. ** {Uncommon}: Gain/Boost [I][L] ** {Rare}: Induce [Lightning]",
 			"NAME": "Lisa Minci"
 		},
 		"animator:Noelle":

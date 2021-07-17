@@ -30,6 +30,7 @@ public class Rena extends AnimatorCard
         SetUpgrade(0, 3);
 
         SetAffinity_Green(2, 0, 1);
+        SetAffinity_Dark(1, 0, 1);
     }
 
     @Override

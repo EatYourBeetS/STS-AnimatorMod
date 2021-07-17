@@ -1,13 +1,15 @@
 package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.animator.CounterAttackPower;
 import eatyourbeets.utilities.GameActions;
 
 public class LisaMinci extends AnimatorCard {
@@ -31,15 +33,16 @@ public class LisaMinci extends AnimatorCard {
                     {
                         switch (card.rarity) {
                             case RARE:
+                                AbstractOrb tempOrb = new Lightning();
+                                GameActions.Bottom.Add(new EvokeSpecificOrbAction(tempOrb));
+                                break;
+                            case UNCOMMON:
                                 GameActions.Bottom.GainIntellect(1, upgraded);
                                 GameActions.Bottom.GainLuck(1, upgraded);
                                 break;
-                            case UNCOMMON:
-                                GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, secondaryValue));
-                                break;
                             case BASIC:
                             case COMMON:
-                                GameActions.Bottom.StackPower(new CounterAttackPower(p, secondaryValue));
+                                GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, secondaryValue));
                                 break;
                         }
                     }

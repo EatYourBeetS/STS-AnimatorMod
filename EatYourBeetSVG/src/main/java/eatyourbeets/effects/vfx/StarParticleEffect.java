@@ -32,7 +32,7 @@ public class StarParticleEffect extends EYBEffect
         this.img = ImageMaster.loadImage("images/effects/Sparkle" + Random(1, 3) + ".png");
         this.x = x + offsetX - (float) (SIZE / 2);
         this.y = y + offsetY - (float) (SIZE / 2);
-        this.scale = Random(0.05f, 0.3f) * Settings.scale;
+        this.scale = Random(0.04f, 0.31f) * Settings.scale;
         this.alpha = Random(0.5F, 1.0F);
         this.color = mainColor.cpy();
         this.color.a = this.alpha;

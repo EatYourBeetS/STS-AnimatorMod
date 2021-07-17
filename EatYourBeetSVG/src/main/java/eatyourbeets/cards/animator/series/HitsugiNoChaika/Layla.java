@@ -25,7 +25,7 @@ public class Layla extends AnimatorCard
         Initialize(7, 0, 2, 2);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Green(1);
         SetAffinity_Dark(1, 0, 2);
     }
 

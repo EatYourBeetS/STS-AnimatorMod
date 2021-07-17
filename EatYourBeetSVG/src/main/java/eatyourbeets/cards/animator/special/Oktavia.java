@@ -27,7 +27,7 @@ public class Oktavia extends AnimatorCard
         SetUpgrade(2, 0, 0, 0);
 
         SetAffinity_Blue(1);
-        SetAffinity_Dark(1);
+        SetAffinity_Dark(2);
     }
 
     @Override

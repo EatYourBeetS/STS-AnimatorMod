@@ -2,6 +2,7 @@ package eatyourbeets.powers.affinity;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.powers.common.FortuityPower;
 import eatyourbeets.utilities.GameActions;
 
 public class LuckPower extends AbstractAffinityPower
@@ -17,6 +18,6 @@ public class LuckPower extends AbstractAffinityPower
     @Override
     protected void OnThresholdReached(int threshold)
     {
-        GameActions.Top.GainGold(10);
+        GameActions.Bottom.StackPower(new FortuityPower(owner, 1));
     }
 }

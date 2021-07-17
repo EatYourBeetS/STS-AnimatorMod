@@ -6,7 +6,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
@@ -30,8 +33,7 @@ public class Viivi extends AnimatorCard
         Initialize(3, 0, 3);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Green(1, 1, 1);
-        SetAffinity_Light(2);
+        SetAffinity_Green(2, 0, 1);
     }
 
     @Override

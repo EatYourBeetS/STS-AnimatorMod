@@ -4,9 +4,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -25,7 +25,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
 
         Initialize(0, 0, 2, 1);
 
-        SetAffinity_Green(1);
+        SetAffinity_Orange(2);
         
         SetExhaust(true);
     }

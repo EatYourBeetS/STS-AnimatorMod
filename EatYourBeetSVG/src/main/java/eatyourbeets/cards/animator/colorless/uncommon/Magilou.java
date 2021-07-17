@@ -8,9 +8,9 @@ import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.animator.special.Bienfu;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.subscribers.OnCardResetSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -34,8 +34,7 @@ public class Magilou extends AnimatorCard implements OnCardResetSubscriber
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Blue(1);
-        SetAffinity_Dark(1);
+        SetAffinity_Blue(2);
 
         SetExhaust(true);
     }

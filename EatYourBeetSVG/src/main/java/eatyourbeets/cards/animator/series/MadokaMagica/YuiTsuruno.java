@@ -28,7 +28,7 @@ public class YuiTsuruno extends AnimatorCard
         Initialize(5, 0);
         SetUpgrade(3, 0);
 
-        SetAffinity_Green(1);
+        SetAffinity_Orange(2);
         SetAffinity_Blue(1);
     }
 

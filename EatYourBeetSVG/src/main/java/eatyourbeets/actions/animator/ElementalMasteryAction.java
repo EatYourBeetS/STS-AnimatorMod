@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.effects.vfx.ElementalEffect;
+import eatyourbeets.effects.vfx.ShootingStarsEffect;
 import eatyourbeets.powers.animator.ElementalExposurePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -27,7 +27,7 @@ public class ElementalMasteryAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        GameActions.Top.VFX(new ElementalEffect(-200, player.hb.cY, 85f));
+        GameActions.Top.VFX(new ShootingStarsEffect(-200, player.hb.cY, 85f, false));
         GameEffects.List.Add(new BorderFlashEffect(Color.CORAL));
 
         ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);

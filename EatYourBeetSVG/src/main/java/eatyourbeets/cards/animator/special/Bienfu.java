@@ -22,6 +22,7 @@ public class Bienfu extends AnimatorCard
         Initialize(0, 0);
 
         SetAffinity_Blue(1);
+        SetAffinity_Dark(1);
 
         SetEthereal(true);
     }

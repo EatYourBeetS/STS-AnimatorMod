@@ -23,6 +23,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
 
         Initialize(3, 0, 20);
 
+        SetAffinity_Red(1);
         SetAffinity_Light(1);
 
         SetExhaust(true);

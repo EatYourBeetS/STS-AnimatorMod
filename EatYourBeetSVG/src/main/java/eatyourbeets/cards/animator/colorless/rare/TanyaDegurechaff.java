@@ -5,9 +5,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.TanyaDegurechaff_Type95;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -33,7 +33,7 @@ public class TanyaDegurechaff extends AnimatorCard
         SetUpgrade(2, 2);
 
         SetAffinity_Green(1, 0, 1);
-        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Orange(1, 0, 1);
     }
 
     @Override

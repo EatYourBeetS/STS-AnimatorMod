@@ -162,6 +162,12 @@
 		"NAMES": ["[f] stance", "force stance"],
 		"PROPER_NAME": "Force Stance"
 	},
+	"Fortuity":
+	{
+	  "DESCRIPTION": "Reduces the effects of Frail, Vulernable, and Weak.",
+	  "NAMES": ["fortuity"],
+	  "PROPER_NAME": "Fortuity"
+	},
 	"High-Cost":
 	{
 		"DESCRIPTION": "Cards which cost 2 or more [E].",

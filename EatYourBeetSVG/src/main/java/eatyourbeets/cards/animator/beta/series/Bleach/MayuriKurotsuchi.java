@@ -25,7 +25,7 @@ public class MayuriKurotsuchi extends AnimatorCard
         Initialize(0, 0, 2, 4);
         SetUpgrade(0, 0, 2, 1);
 
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Orange(2, 0, 0);
     }
 
     @Override

@@ -32,6 +32,7 @@ public class LisaMinci extends AnimatorCard {
                         switch (card.rarity) {
                             case RARE:
                                 GameActions.Bottom.GainIntellect(1, upgraded);
+                                GameActions.Bottom.GainLuck(1, upgraded);
                                 break;
                             case UNCOMMON:
                                 GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, secondaryValue));

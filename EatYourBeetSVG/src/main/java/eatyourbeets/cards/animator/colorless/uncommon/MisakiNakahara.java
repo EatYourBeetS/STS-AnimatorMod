@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDrawnSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -28,6 +28,7 @@ public class MisakiNakahara extends AnimatorCard
         Initialize(0, 0, 2);
 
         SetAffinity_Light(1);
+        SetAffinity_Orange(1);
 
         SetExhaust(true);
     }

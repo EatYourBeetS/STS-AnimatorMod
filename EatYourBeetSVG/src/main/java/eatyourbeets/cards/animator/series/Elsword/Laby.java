@@ -26,6 +26,7 @@ public class Laby extends AnimatorCard
 
         SetAffinity_Light(2, 0, 0);
         SetAffinity_Dark(2, 0, 0);
+        SetAffinity_Orange(1);
     }
 
     @Override

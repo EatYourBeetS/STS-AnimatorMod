@@ -3,7 +3,10 @@ package eatyourbeets.cards.animator.series.LogHorizon;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardEffectChoice;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
@@ -24,8 +27,8 @@ public class IsuzuTonan extends AnimatorCard
         Initialize(0, 0, 1);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Blue(1);
-        SetAffinity_Light(1);
+        SetAffinity_Green(1);
+        SetAffinity_Orange(1);
     }
 
     @Override

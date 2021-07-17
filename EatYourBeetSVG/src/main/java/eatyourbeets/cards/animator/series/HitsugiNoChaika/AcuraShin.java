@@ -4,9 +4,9 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.animator.PoisonAffinityPower;
 import eatyourbeets.utilities.GameActions;
@@ -25,7 +25,7 @@ public class AcuraShin extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetAffinity_Green(1, 0, 1);
-        SetAffinity_Dark(1, 0, 1);
+        SetAffinity_Red(1, 0, 1);
     }
 
     @Override

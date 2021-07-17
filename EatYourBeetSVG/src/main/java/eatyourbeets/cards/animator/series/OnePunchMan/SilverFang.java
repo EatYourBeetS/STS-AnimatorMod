@@ -19,9 +19,9 @@ public class SilverFang extends AnimatorCard
         Initialize(0, 9, 1);
         SetUpgrade(0, 3, 0);
 
-        SetAffinity_Red(1);
+        SetAffinity_Red(2);
         SetAffinity_Green(1, 1, 0);
-        SetAffinity_Light(2);
+        SetAffinity_Light(1);
     }
 
     @Override

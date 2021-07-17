@@ -50,8 +50,8 @@ import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.actions.powers.ReducePower;
 import eatyourbeets.actions.powers.ReduceStrength;
 import eatyourbeets.actions.special.DelayAllActions;
-import eatyourbeets.actions.special.SelectCreature;
 import eatyourbeets.actions.special.PlayVFX;
+import eatyourbeets.actions.special.SelectCreature;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
@@ -65,6 +65,7 @@ import eatyourbeets.powers.affinity.CorruptionPower;
 import eatyourbeets.powers.affinity.*;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
+import eatyourbeets.powers.common.FortuityPower;
 import eatyourbeets.powers.common.TemporaryArtifactPower;
 import eatyourbeets.powers.common.VitalityPower;
 
@@ -588,6 +589,11 @@ public final class GameActions
     public ApplyPower GainVitality(int amount)
     {
         return StackPower(new VitalityPower(player, amount));
+    }
+
+    public ApplyPower GainFortuity(int amount)
+    {
+        return StackPower(new FortuityPower(player, amount));
     }
 
     public HealCreature Heal(AbstractCreature source, AbstractCreature target, int amount)

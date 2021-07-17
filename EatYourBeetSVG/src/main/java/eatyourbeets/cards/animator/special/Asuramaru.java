@@ -24,7 +24,7 @@ public class Asuramaru extends AnimatorCard
 
         SetAffinity_Red(2);
         SetAffinity_Green(2);
-        SetAffinity_Dark(1);
+        SetAffinity_Dark(2);
 
         SetExhaust(true);
     }

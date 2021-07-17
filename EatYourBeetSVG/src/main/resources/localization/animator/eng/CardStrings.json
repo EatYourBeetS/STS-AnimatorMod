@@ -267,7 +267,7 @@
 		},
 		"animator:Yui":
 		{
-			"DESCRIPTION": "Afterlife. Motivate !S!. || When played from {Afterlife}: Add a {Girls Dead Monster} to your draw pile.",
+			"DESCRIPTION": "Afterlife. Gain/Boost [L]. Motivate !S!. || When played from {Afterlife}: Add a {Girls Dead Monster} to your draw pile.",
 			"NAME": "Yui"
 		},
 		"animator:YuriNakamura":
@@ -574,7 +574,7 @@
 		},
 		"animator:Defend_GenshinImpact":
 		{
-			"DESCRIPTION": "Cooldown !S!: ** {Channel} 1 [Lightning].",
+			"DESCRIPTION": "Retain [L].",
 			"NAME": "Improved Defend"
 		},
 		"animator:Dvalin":
@@ -624,7 +624,7 @@
 		},
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M!. Gain effects based on each Scried card's rarity: || {Basic} or {Common}: Gain !S! [Counterattack]. ** {Uncommon}: Draw !S! more card(s) next turn. ** {Rare}: Gain/Boost [I]",
+			"DESCRIPTION": "{Scry} !M!. Gain effects based on each Scried card's rarity: || {Basic} or {Common}: Gain !S! [Counterattack]. ** {Uncommon}: Draw !S! more card(s) next turn. ** {Rare}: Gain/Boost [I][L]",
 			"NAME": "Lisa Minci"
 		},
 		"animator:Noelle":

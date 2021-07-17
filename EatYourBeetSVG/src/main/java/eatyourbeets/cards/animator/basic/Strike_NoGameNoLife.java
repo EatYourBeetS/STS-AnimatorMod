@@ -20,7 +20,7 @@ public class Strike_NoGameNoLife extends Strike
         SetUpgrade(3, 0);
 
         SetSeries(CardSeries.NoGameNoLife);
-        SetAffinity_Blue(1);
+        SetAffinity_Orange(1);
     }
 
     @Override

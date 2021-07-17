@@ -32,8 +32,7 @@ public class Marielle extends AnimatorCard
         SetUpgrade(0, 0, 4);
 
         SetAffinity_Green(1);
-        SetAffinity_Blue(1);
-        SetAffinity_Light(1);
+        SetAffinity_Orange(2);
     }
 
     @Override

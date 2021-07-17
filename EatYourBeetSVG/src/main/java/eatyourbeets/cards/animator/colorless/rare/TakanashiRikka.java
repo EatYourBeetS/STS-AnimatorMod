@@ -4,9 +4,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -24,7 +24,7 @@ public class TakanashiRikka extends AnimatorCard
 
         Initialize(0, 0, 0);
 
-        SetAffinity_Light(1);
+        SetAffinity_Orange(1);
 
         SetEthereal(true);
         SetExhaust(true);

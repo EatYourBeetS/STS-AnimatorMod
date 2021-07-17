@@ -2,7 +2,10 @@ package eatyourbeets.cards.animator.series.Konosuba;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
@@ -20,7 +23,7 @@ public class Wiz extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetAffinity_Blue(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
 
         SetPurge(true);
     }

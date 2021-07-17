@@ -24,6 +24,7 @@ public class Kyubey extends AnimatorCard
 
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);
+        SetAffinity_Orange(1);
 
         SetExhaust(true);
     }

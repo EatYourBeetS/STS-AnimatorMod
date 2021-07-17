@@ -26,6 +26,7 @@ public class NaoTomori extends AnimatorCard
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Green(1);
+        SetAffinity_Orange(1);
     }
 
     @Override

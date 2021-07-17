@@ -25,7 +25,7 @@ public class Evileye extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetAffinity_Blue(2);
-        SetAffinity_Light(1);
+        SetAffinity_Dark(1);
     }
 
     @Override

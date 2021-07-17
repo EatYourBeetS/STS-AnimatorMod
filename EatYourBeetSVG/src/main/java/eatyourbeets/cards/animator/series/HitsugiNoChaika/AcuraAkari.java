@@ -29,8 +29,7 @@ public class AcuraAkari extends AnimatorCard
 
         Initialize(0, 0, 2, 2);
         SetCostUpgrade(-1);
-
-        SetAffinity_Red(1);
+        
         SetAffinity_Green(1);
     }
 

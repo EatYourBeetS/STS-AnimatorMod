@@ -21,7 +21,6 @@ public class Archer extends AnimatorCard
         Initialize(0, 0, 3);
         SetUpgrade(0, 2, 0);
 
-        SetAffinity_Red(1);
         SetAffinity_Green(1, 1, 0);
     }
 

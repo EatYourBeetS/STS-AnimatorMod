@@ -21,8 +21,8 @@ public class Demiurge extends AnimatorCard
 
         Initialize(0,0,4);
 
-        SetAffinity_Blue(1);
         SetAffinity_Dark(1, 1, 0);
+        SetAffinity_Orange(1);
     }
 
     @Override

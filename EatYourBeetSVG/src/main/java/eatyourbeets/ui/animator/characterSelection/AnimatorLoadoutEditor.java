@@ -6,6 +6,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import eatyourbeets.cards.animator.basic.Defend;
+import eatyourbeets.cards.animator.basic.Defend_Dark;
+import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.cards.animator.basic.Strike_Dark;
+import eatyourbeets.cards.animator.series.Konosuba.Kazuma;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.AbstractScreen;
@@ -13,8 +18,11 @@ import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.controls.GUI_TextBox;
 
+import java.util.ArrayList;
+
 public class AnimatorLoadoutEditor extends AbstractScreen
 {
+    protected final ArrayList<AnimatorCardSlotEditor> slotsEditors = new ArrayList<>();
     protected GUI_Image background_image;
     protected GUI_Button cancel_button;
     protected GUI_Button confirm_button;
@@ -27,7 +35,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         final float buttonWidth = ScreenW(0.18f);
         final float button_cY = buttonHeight * 1.5f;
 
-        background_image = new GUI_Image(GR.Common.Images.Square.Texture(), new Hitbox(ScreenW(1), ScreenH(1)))
+        background_image = new GUI_Image(GR.Common.Images.FullSquare.Texture(), new Hitbox(ScreenW(1), ScreenH(1)))
         .SetPosition(ScreenW(0.5f), ScreenH(0.5f))
         .SetColor(0, 0, 0, 0.85f);
 
@@ -40,7 +48,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         confirm_button = CreateHexagonalButton(0, 0, buttonWidth, buttonHeight)
         .SetPosition(ScreenW(1) - (buttonWidth * 0.75f), button_cY)
         .SetColor(Color.FOREST)
-        .SetText("Confirm")
+        .SetText("Save")
         .SetInteractable(false)
         .SetOnClick(AbstractDungeon::closeCurrentScreen);
 
@@ -57,6 +65,13 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         .SetPosition(confirm_button.hb.cX, button_cY * 1.75f)
         .SetFont(FontHelper.charDescFont, 1)
         .SetText("Power: #r" + 12 + " /10");
+
+        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.135f), ScreenH(0.75f)).SetButtons(true, false, true).SetCard(new Strike()));
+        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.335f), ScreenH(0.75f)).SetButtons(true, false, true).SetCard(new Defend()));
+        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.135f), ScreenH(0.35f)).SetButtons(false, true, false).SetCard(new Strike_Dark()));
+        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.335f), ScreenH(0.35f)).SetButtons(false, true, false).SetCard(new Defend_Dark()));
+        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.635f), ScreenH(0.75f)).SetButtons(false, true, true).SetCard(new Kazuma()));
+        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.835f), ScreenH(0.75f)).SetButtons(false, true, true));
     }
 
     public void Open(AnimatorLoadout loadout)
@@ -74,6 +89,11 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         confirm_button.Update();
         cardsCount_text.Update();
         cardsPower_text.Update();
+
+        for (AnimatorCardSlotEditor editor : slotsEditors)
+        {
+            editor.Update();
+        }
     }
 
     @Override
@@ -86,5 +106,10 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         confirm_button.Render(sb);
         cardsCount_text.Render(sb);
         cardsPower_text.Render(sb);
+
+        for (AnimatorCardSlotEditor editor : slotsEditors)
+        {
+            editor.Render(sb);
+        }
     }
 }

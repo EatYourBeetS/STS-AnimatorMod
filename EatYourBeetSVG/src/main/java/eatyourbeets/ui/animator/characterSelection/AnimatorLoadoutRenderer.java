@@ -70,6 +70,15 @@ public class AnimatorLoadoutRenderer extends GUIElement
         RandomizeButton = new GUI_Button(GR.Common.Images.Randomize.Texture(), new AdvancedHitbox(0, 0, Scale(50), Scale(50)))
         .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(90), POS_Y - Scale(55)).SetText("")
         .SetOnClick(this::RandomizeLoadout);
+
+        LoadoutEditorButton = new GUI_Button(GR.Common.Images.SwapCards.Texture(), new AdvancedHitbox(0, 0, Scale(50), Scale(50)))
+        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(35), POS_Y - Scale(55)).SetText("")
+        .SetOnClick(this::OpenLoadoutEditor);
+    }
+
+    private void OpenLoadoutEditor()
+    {
+        GR.UI.LoadoutEditor.Open(loadout);
     }
 
     private void RandomizeLoadout()

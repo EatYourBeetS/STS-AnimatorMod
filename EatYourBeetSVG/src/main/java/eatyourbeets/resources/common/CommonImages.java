@@ -21,13 +21,14 @@ public class CommonImages
     public final TextureCache Steam                       = new TextureCache("images/ui/topPanel/eyb/Steam.png");
     public final TextureCache Randomize                   = new TextureCache("images/ui/topPanel/eyb/Randomize.png");
     public final TextureCache SwapCards                   = new TextureCache("images/ui/topPanel/eyb/SwapCards.png");
+    public final TextureCache SquaredButton               = new TextureCache("images/ui/topPanel/eyb/SquaredButton.png");
     public final TextureCache HexagonalButton             = new TextureCache("images/ui/topPanel/eyb/HexagonalButton.png");
     public final TextureCache HexagonalButtonBorder       = new TextureCache("images/ui/topPanel/eyb/HexagonalButtonBorder.png");
     public final TextureCache HexagonalButtonHover        = new TextureCache("images/ui/topPanel/eyb/HexagonalButtonHover.png");
     public final TextureCache CardBadgeLegend             = new TextureCache("images/cardui/eyb/badges/_Legend.png");
     public final TextureCache Arrow_Right                 = new TextureCache("images/ui/topPanel/eyb/Arrow_Right.png");
     public final TextureCache Draggable                   = new TextureCache("images/ui/topPanel/eyb/Draggable.png");
-    public final TextureCache Square                      = new TextureCache("images/ui/topPanel/eyb/Square.png");
+    public final TextureCache FullSquare                  = new TextureCache("images/ui/topPanel/eyb/FullSquare.png");
 
     public static class CardIcons
     {
@@ -44,6 +45,7 @@ public class CommonImages
 
     public static class AffinityIcons
     {
+        public final TextureCache General               = new TextureCache("images/cardui/eyb/affinities/General.png", true);
         public final TextureCache Green                 = new TextureCache("images/cardui/eyb/affinities/Green.png", true);
         public final TextureCache Red                   = new TextureCache("images/cardui/eyb/affinities/Red.png", true);
         public final TextureCache Blue                  = new TextureCache("images/cardui/eyb/affinities/Blue.png", true);

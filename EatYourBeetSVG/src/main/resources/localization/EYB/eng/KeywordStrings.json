@@ -210,6 +210,12 @@
 		"NAMES": ["plated armor", "plat. armor"],
 		"PROPER_NAME": "Plated Armor"
 	},
+	"General Affinity":
+	{
+		"DESCRIPTION": "#yGeneral #yAffinity is equal to the highest amount of cards in hand with the same #yAffinity color.",
+		"NAMES": ["general affinity"],
+		"PROPER_NAME": "General Affinity"
+	},
 	"Purge":
 	{
 		"DESCRIPTION": "Removed from combat.",

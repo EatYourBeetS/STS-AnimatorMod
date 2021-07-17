@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class EYBCardAffinities
 {
     private static final ColoredTexture upgradeCircle = new ColoredTexture(GR.Common.Images.Circle.Texture(), Settings.GREEN_RELIC_COLOR);
-    private static final EYBCardAffinity Neutral = new EYBCardAffinity(AffinityType.Neutral, 1);
 
     public final ArrayList<EYBCardAffinity> List = new ArrayList<>();
     public EYBCard Card;
@@ -384,12 +383,6 @@ public class EYBCardAffinities
             }
 
             max += 1;
-        }
-
-        if (max == 0)
-        {
-            Neutral.RenderOnCard(sb, card, 0, y, size, false);
-            return;
         }
 
         int half = max / 2;

@@ -1,35 +1,136 @@
 package eatyourbeets.ui.animator.characterSelection;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
+import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.controls.GUI_Image;
-import eatyourbeets.ui.hitboxes.DraggableHitbox;
+import eatyourbeets.ui.controls.GUI_TextBox;
+import eatyourbeets.ui.hitboxes.AdvancedHitbox;
+import eatyourbeets.ui.hitboxes.RelativeHitbox;
 
 public class AnimatorCardSlotEditor extends GUIElement
 {
-    protected DraggableHitbox hb;
+    protected static final float CARD_SCALE = 0.75f;
+    protected AdvancedHitbox hb;
     protected GUI_Image background_image;
+    protected GUI_TextBox cardAmount_text;
+    protected GUI_Button add_button;
+    protected GUI_Button change_button;
+    protected GUI_Button remove_button;
+    protected AbstractCard card;
 
-    public AnimatorCardSlotEditor()
+    public AnimatorCardSlotEditor(float cX, float cY)
     {
-        hb = new DraggableHitbox(0, 0, Scale(AbstractCard.RAW_W) * 0.75f, Scale(AbstractCard.RAW_H) * 0.75f, true);
+        hb = new AdvancedHitbox(Scale(AbstractCard.RAW_W) * CARD_SCALE, Scale(AbstractCard.RAW_H) * CARD_SCALE);
 
-        background_image = new GUI_Image(GR.Common.Images.Square.Texture(), hb)
-        .SetPosition(ScreenW(0.5f), ScreenH(0.5f))
-        .SetColor(0, 0, 0, 0.85f);
+        background_image = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
+        .SetBackgroundTexture(GR.Common.Images.Panel_Rounded.Texture(), new Color(0.5f, 0.5f, 0.5f , 1f), 1.03f)
+        .SetColor(0, 0, 0, 0.85f)
+        .SetPosition(cX, cY);
+
+        cardAmount_text = new GUI_TextBox(GR.Common.Images.Panel_Rounded_Half_H.Texture(), new RelativeHitbox(hb, 0.35f, 0.2f, -0.175f, 0.9f))
+        .SetColors(Settings.HALF_TRANSPARENT_BLACK_COLOR, Settings.CREAM_COLOR)
+        .SetAlignment(0.5f, 0.5f)
+        .SetFont(FontHelper.charDescFont, 1)
+        .SetText("x 12");
+
+        add_button = CreateButton(0.7f, Color.FOREST, "+");
+
+        change_button = CreateButton(0.5f, Color.SKY, "Next").SetFont(null, 0.75f);
+
+        remove_button = CreateButton(0.3f, Color.FIREBRICK, "-");
+    }
+
+    public AnimatorCardSlotEditor SetButtons(boolean add, boolean change, boolean remove)
+    {
+        cardAmount_text.SetActive(add);
+        add_button.SetActive(add);
+        change_button.SetActive(change);
+        remove_button.SetActive(remove);
+
+        float cY = 0.9f;
+        if (add)
+        {
+            RelativeHitbox.SetPercentageOffset(add_button.hb, null, cY);
+            cY -= 0.15f;
+        }
+        if (change)
+        {
+            RelativeHitbox.SetPercentageOffset(change_button.hb, null, cY);
+            cY -= 0.15f;
+        }
+        if (remove)
+        {
+            RelativeHitbox.SetPercentageOffset(remove_button.hb, null, cY);
+            cY -= 0.15f;
+        }
+        if (add)
+        {
+            RelativeHitbox.SetPercentageOffset(cardAmount_text.hb, null, cY);
+        }
+
+        return this;
+    }
+
+    public AnimatorCardSlotEditor SetCard(AbstractCard card)
+    {
+        this.card = card;
+
+        return this;
     }
 
     @Override
     public void Update()
     {
         background_image.Update();
+        cardAmount_text.Update();
+        add_button.TryUpdate();
+        change_button.TryUpdate();
+        remove_button.TryUpdate();
+
+        if (card != null)
+        {
+            card.drawScale = card.targetDrawScale = CARD_SCALE * 0.97f;
+            card.current_x = card.target_x = card.hb.cX = background_image.hb.cX;
+            card.current_y = card.target_y = card.hb.cY = background_image.hb.cY;
+        }
     }
 
     @Override
     public void Render(SpriteBatch sb)
     {
         background_image.Render(sb);
+        cardAmount_text.Render(sb);
+        add_button.TryRender(sb);
+        change_button.TryRender(sb);
+        remove_button.TryRender(sb);
+
+        if (card != null)
+        {
+            card.renderInLibrary(sb);
+        }
+    }
+
+    private GUI_Button CreateButton(float cY, Color color, String text)
+    {
+        final Texture buttonTexture = GR.Common.Images.SquaredButton.Texture();
+        return new GUI_Button(buttonTexture, new RelativeHitbox(hb, 0.35f, 0.15f, -0.175f, cY))
+        .SetClickDelay(0.02f)
+        .SetTextColor(Settings.CREAM_COLOR)
+        .SetFont(FontHelper.charDescFont, 1f)
+        .SetColor(color.cpy().lerp(Color.BLACK, 0.2f))
+        .SetText(text)
+        .SetOnClick(this::Test);
+    }
+
+    private void Test()
+    {
+
     }
 }

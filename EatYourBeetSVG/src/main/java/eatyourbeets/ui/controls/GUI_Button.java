@@ -29,6 +29,8 @@ public class GUI_Button extends GUIElement
     public boolean interactable;
     public String text;
 
+    protected BitmapFont font;
+    protected float fontScale;
     protected float currentClickDelay = 0f;
     protected Color textColor = Color.WHITE.cpy();
     protected Color buttonColor = Color.WHITE.cpy();
@@ -45,6 +47,8 @@ public class GUI_Button extends GUIElement
         this.background = RenderHelpers.ForTexture(buttonTexture);
         this.interactable = true;
         this.text = "-";
+        this.font = FontHelper.buttonLabelFont;
+        this.fontScale = 1f;
     }
 
     public GUI_Button SetBorder(Texture borderTexture, Color color)
@@ -57,6 +61,18 @@ public class GUI_Button extends GUIElement
         {
             this.border = RenderHelpers.ForTexture(borderTexture, color).SetHitbox(hb);
         }
+
+        return this;
+    }
+
+    public GUI_Button SetFont(BitmapFont font, float fontScale)
+    {
+        if (font != null)
+        {
+            this.font = font;
+        }
+
+        this.fontScale = fontScale;
 
         return this;
     }
@@ -171,8 +187,8 @@ public class GUI_Button extends GUIElement
 
             if (StringUtils.isNotEmpty(text))
             {
-                BitmapFont font = FontHelper.buttonLabelFont;
-                Color textColor = interactable ? this.textColor : TEXT_DISABLED_COLOR;
+                font.getData().setScale(fontScale);
+                final Color textColor = interactable ? this.textColor : TEXT_DISABLED_COLOR;
                 if (FontHelper.getSmartWidth(font, text, 9999f, 0f) > (hb.width * 0.7))
                 {
                     RenderHelpers.WriteCentered(sb, font, text, hb, textColor, 0.8f);
@@ -181,6 +197,7 @@ public class GUI_Button extends GUIElement
                 {
                     RenderHelpers.WriteCentered(sb, font, text, hb, textColor);
                 }
+                RenderHelpers.ResetFont(font);
             }
 
             this.hb.render(sb);

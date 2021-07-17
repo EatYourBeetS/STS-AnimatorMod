@@ -7,6 +7,19 @@
 			"DESCRIPTION": "",
 			"NAME": "Defend"
 		},
+		
+		
+		"animator:Strike_Dark":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Improved Strike"
+		},
+		"animator:Defend_Dark":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Improved Defend"
+		},
+		
 		"animator:Defend_AccelWorld":
 		{
 			"DESCRIPTION": "When Discarded: ** Gain !M! [Block].",
@@ -581,7 +594,7 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !S! [I]. ** Gain !M! Orb Slot(s). || 2 <B> 2 <R>: ** Channel 1 [Earth].",
+			"DESCRIPTION": "Gain !S! [I]. ** Gain !M! Orb Slot(s). || 2 <B>, 2 <R>: ** Channel 1 [Earth].",
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":
@@ -932,7 +945,7 @@
 		},
 		"animator:Rayneshia":
 		{
-			"DESCRIPTION": "<DRW-M>. Move !M! ** cards to your draw pile. || <LIM>. <TM-S>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
+			"DESCRIPTION": "<DRW-M>. Move !M! ** cards to your draw pile. || <LIM>. !S! <GEN>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
 			"NAME": "Rayneshia"
 		},
 		"animator:RundelhausCode":
@@ -1582,6 +1595,11 @@
 		{
 			"DESCRIPTION": "<DRW>. || <SLM>. When ** Exhausted: Return this ** card to your hand and ** gain [E] [E]",
 			"NAME": "Chomusuke"
+		},
+		"animator:Cthulhu":
+		{
+			"DESCRIPTION": "This card's cost cannot be reduced, except by its own effect, its own effect hasn't been decided yet. || When Drawn: Add {Madness} to your hand.",
+			"NAME": "Cthulhu"
 		},
 		"animator:Giselle":
 		{

@@ -67,11 +67,11 @@ public class CardAffinityCounter extends GUIElement
     public CardAffinityCounter SetIndex(int index)
     {
         float y = -index * 1.05f;
-        SetY(background_button.hb, y);
-        SetY(counterNormal_text.hb, y);
-        SetY(counterWeak_text.hb, y);
-        SetY(counterPercentage_text.hb, y);
-        SetY(affinity_image.hb, y);
+        RelativeHitbox.SetPercentageOffset(background_button.hb, null, y);
+        RelativeHitbox.SetPercentageOffset(counterNormal_text.hb, null, y);
+        RelativeHitbox.SetPercentageOffset(counterWeak_text.hb, null, y);
+        RelativeHitbox.SetPercentageOffset(counterPercentage_text.hb, null, y);
+        RelativeHitbox.SetPercentageOffset(affinity_image.hb, null, y);
 
         return this;
     }
@@ -105,11 +105,5 @@ public class CardAffinityCounter extends GUIElement
         counterNormal_text.Render(sb);
         counterWeak_text.Render(sb);
         affinity_image.Render(sb);
-    }
-
-    protected void SetY(Hitbox hb, float y)
-    {
-        RelativeHitbox temp = (RelativeHitbox)hb;
-        temp.SetPercentageOffset(temp.offset_cX, y);
     }
 }

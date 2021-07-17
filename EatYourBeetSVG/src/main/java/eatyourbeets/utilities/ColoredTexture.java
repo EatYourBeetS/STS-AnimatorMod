@@ -7,9 +7,11 @@ public class ColoredTexture
 {
     public Color color;
     public Texture texture;
+    public float scale;
 
     public ColoredTexture(Texture texture, Color color, float alpha)
     {
+        this.scale = 1;
         this.texture = texture;
 
         if (color != null)

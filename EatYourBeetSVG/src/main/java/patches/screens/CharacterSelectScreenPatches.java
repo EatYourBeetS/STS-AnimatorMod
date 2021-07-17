@@ -5,8 +5,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
+import eatyourbeets.resources.GR;
 import eatyourbeets.ui.animator.characterSelection.AnimatorCharacterSelectScreen;
 
 public class CharacterSelectScreenPatches
@@ -43,7 +43,7 @@ public class CharacterSelectScreenPatches
         @SpirePrefixPatch
         public static SpireReturn Prefix(CharacterSelectScreen __instance)
         {
-            return AbstractDungeon.isScreenUp ? SpireReturn.Return() : SpireReturn.Continue();
+            return (GR.UI.CurrentScreen != null) ? SpireReturn.Return() : SpireReturn.Continue();
         }
 
         @SpirePostfixPatch

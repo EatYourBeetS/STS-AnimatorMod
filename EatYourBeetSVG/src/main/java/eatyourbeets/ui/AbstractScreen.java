@@ -35,7 +35,7 @@ public abstract class AbstractScreen extends GUIElement
             AbstractDungeon.overlayMenu.hideCombatPanels();
         }
 
-        if (AbstractDungeon.player != null)
+        if (GameUtilities.InGame())
         {
             AbstractDungeon.topPanel.unhoverHitboxes();
             AbstractDungeon.topPanel.potionUi.isHidden = true;

@@ -1598,7 +1598,7 @@
 		},
 		"animator:Cthulhu":
 		{
-			"DESCRIPTION": "This card's cost cannot be reduced, except by its own effect, its own effect hasn't been decided yet. || When Drawn: Add {Madness} to your hand.",
+			"DESCRIPTION": "This card's cost cannot ** be reduced, except by ** its own effect. || When Drawn: Add ** {Madness} to your hand.",
 			"NAME": "Cthulhu"
 		},
 		"animator:Giselle":

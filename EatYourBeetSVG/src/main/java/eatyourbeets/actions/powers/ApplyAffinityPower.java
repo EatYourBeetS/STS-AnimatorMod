@@ -40,7 +40,7 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
             this.power = JUtils.GetRandomElement(CombatStats.Affinities.Powers, EYBPower.rng);
         }
 
-        if (power == null || GameUtilities.GetEnemies(true).isEmpty())
+        if (power == null || AbstractDungeon.getMonsters().areMonstersBasicallyDead())
         {
             Complete();
             return;

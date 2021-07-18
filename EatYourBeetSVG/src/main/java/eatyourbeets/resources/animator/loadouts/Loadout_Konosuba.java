@@ -1,5 +1,6 @@
 package eatyourbeets.resources.animator.loadouts;
 
+import eatyourbeets.cards.animator.curse.Curse_Greed;
 import eatyourbeets.cards.animator.series.Konosuba.*;
 import eatyourbeets.cards.animator.ultrarare.Chomusuke;
 import eatyourbeets.cards.base.CardSeries;
@@ -24,6 +25,7 @@ public class Loadout_Konosuba extends AnimatorLoadout
         AddSeriesItem(Chris.DATA, 5);
         AddSeriesItem(Vanir.DATA, 7);
         AddSeriesItem(YunYun.DATA, 9);
+        AddSeriesItem(Curse_Greed.DATA, -7);
     }
 
     @Override

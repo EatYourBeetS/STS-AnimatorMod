@@ -22,6 +22,7 @@ public class AnimatorCardSlotEditor extends GUIElement
     protected static final float CARD_SCALE = 0.75f;
     protected AdvancedHitbox hb;
     protected GUI_Image background_image;
+    protected GUI_TextBox cardValue_text;
     protected GUI_TextBox cardAmount_text;
     protected GUI_Button add_button;
     protected GUI_Button change_button;
@@ -37,7 +38,13 @@ public class AnimatorCardSlotEditor extends GUIElement
         .SetColor(0, 0, 0, 0.85f)
         .SetPosition(cX, cY);
 
-        cardAmount_text = new GUI_TextBox(GR.Common.Images.Panel_Rounded_Half_H.Texture(), new RelativeHitbox(hb, 0.35f, 0.2f, -0.175f, 0.9f))
+        cardValue_text = new GUI_TextBox(GR.Common.Images.Panel_Rounded_Half_H.Texture(), new RelativeHitbox(hb, 0.33f, 0.2f, -0.175f, 0.9f))
+        .SetBackgroundTexture(GR.Common.Images.Panel_Rounded_Half_H.Texture(), new Color(0.5f, 0.5f, 0.5f , 1f), 1.05f)
+        .SetColors(new Color(0, 0, 0, 0.85f), Settings.CREAM_COLOR)
+        .SetAlignment(0.5f, 0.5f)
+        .SetFont(FontHelper.cardEnergyFont_L, 0.75f);
+
+        cardAmount_text = new GUI_TextBox(GR.Common.Images.Panel_Rounded_Half_H.Texture(), new RelativeHitbox(hb, 0.35f, 0.2f, -0.175f, 0.75f))
         .SetColors(Settings.HALF_TRANSPARENT_BLACK_COLOR, Settings.CREAM_COLOR)
         .SetAlignment(0.5f, 0.5f)
         .SetFont(FontHelper.charDescFont, 1);
@@ -60,7 +67,7 @@ public class AnimatorCardSlotEditor extends GUIElement
         this.change_button.SetOnClick(this.slot::Next).SetActive(change);
         this.remove_button.SetOnClick(this.slot::Remove).SetActive(remove);
 
-        float cY = 0.9f;
+        float cY = 0.75f;
         if (add)
         {
             RelativeHitbox.SetPercentageOffset(add_button.hb, null, cY);
@@ -93,6 +100,11 @@ public class AnimatorCardSlotEditor extends GUIElement
         {
             card = slot.GetCard();
 
+            int value = slot.GetEstimatedValue();
+            cardValue_text.SetText(value)
+            .SetFontColor(value == 0 ? Settings.CREAM_COLOR : value < 0 ? Settings.RED_TEXT_COLOR : Settings.GREEN_TEXT_COLOR)
+            .Update();
+
             if (add_button.isActive)
             {
                 add_button.SetInteractable(slot.CanAdd()).Update();
@@ -110,6 +122,7 @@ public class AnimatorCardSlotEditor extends GUIElement
         else
         {
             card = null;
+            cardValue_text.SetText(0).SetFontColor(Settings.CREAM_COLOR).Update();
         }
 
         if (card != null)
@@ -124,6 +137,7 @@ public class AnimatorCardSlotEditor extends GUIElement
     public void Render(SpriteBatch sb)
     {
         background_image.Render(sb);
+        cardValue_text.TryRender(sb);
         cardAmount_text.Render(sb);
         add_button.TryRender(sb);
         change_button.TryRender(sb);

@@ -44,7 +44,7 @@ public class GUI_TextBox extends GUIElement
 
     public GUI_TextBox SetFont(BitmapFont font, float fontScale)
     {
-        this.label.SetFont(font, 1);
+        this.label.SetFont(font, fontScale);
 
         return this;
     }
@@ -57,6 +57,20 @@ public class GUI_TextBox extends GUIElement
     public GUI_TextBox SetAlignment(float verticalRatio, float horizontalRatio, boolean smartText)
     {
         this.label.SetAlignment(verticalRatio, horizontalRatio, smartText);
+
+        return this;
+    }
+
+    public GUI_TextBox SetBackgroundTexture(Texture texture, Color color, float scale)
+    {
+        this.image.SetBackgroundTexture(texture, color, scale);
+
+        return this;
+    }
+
+    public GUI_TextBox SetBackgroundTexture(Texture texture)
+    {
+        this.image.SetBackgroundTexture(texture);
 
         return this;
     }

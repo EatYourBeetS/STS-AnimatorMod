@@ -81,7 +81,7 @@ public abstract class AnimatorLoadout
     public abstract EYBCardData GetSymbolicCard();
     public abstract EYBCardData GetUltraRare();
 
-    protected void AddSeriesItem(EYBCardData data, float estimatedValue)
+    protected void AddSeriesItem(EYBCardData data, int estimatedValue)
     {
         Slot_Series1.AddItem(data, estimatedValue);
         Slot_Series2.AddItem(data, estimatedValue);

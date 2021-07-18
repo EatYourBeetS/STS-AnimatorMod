@@ -135,6 +135,11 @@ public class EYBCardAffinities
 
     public void AddLevels(EYBCardAffinities other, int levelLimit)
     {
+        if (other == null)
+        {
+            return;
+        }
+
         int star = Math.min(levelLimit, other.GetLevel(AffinityType.Star));
         if (star > 0)
         {

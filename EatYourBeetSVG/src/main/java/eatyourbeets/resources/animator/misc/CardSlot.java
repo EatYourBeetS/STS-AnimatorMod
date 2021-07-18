@@ -2,13 +2,18 @@ package eatyourbeets.resources.animator.misc;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardAffinities;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RotatingList;
 
 import java.util.ArrayList;
 
 public class CardSlot
 {
+    public static final int MAX_VALUE = 30;
+
     public transient ArrayList<CardSlot> sharedSlots = new ArrayList<>();
     public transient RotatingList<Item> cards = new RotatingList<>();
     public Item selected;
@@ -37,9 +42,15 @@ public class CardSlot
         return selected != null ? selected.GetCard() : null;
     }
 
-    public float GetEstimatedValue()
+    public EYBCardAffinities GetAffinities()
     {
-        return selected != null ? selected.estimatedValue : 0;
+        EYBCard card = JUtils.SafeCast(GetCard(), EYBCard.class);
+        return card != null ? card.affinities : null;
+    }
+
+    public int GetEstimatedValue()
+    {
+        return amount * (selected != null ? selected.estimatedValue : 0);
     }
 
     public void Next()
@@ -117,7 +128,7 @@ public class CardSlot
         }
     }
 
-    public void AddItem(EYBCardData data, float estimatedValue)
+    public void AddItem(EYBCardData data, int estimatedValue)
     {
         cards.Add(new Item(data, estimatedValue));
 
@@ -152,9 +163,9 @@ public class CardSlot
     {
         public EYBCardData data;
         public AbstractCard card;
-        public float estimatedValue;
+        public int estimatedValue;
 
-        public Item(EYBCardData data, float estimatedValue)
+        public Item(EYBCardData data, int estimatedValue)
         {
             this.data = data;
             this.estimatedValue = estimatedValue;

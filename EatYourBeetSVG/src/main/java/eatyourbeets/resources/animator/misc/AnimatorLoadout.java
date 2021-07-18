@@ -2,27 +2,35 @@ package eatyourbeets.resources.animator.misc;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.basic.Defend;
+import eatyourbeets.cards.animator.basic.ImprovedDefend;
+import eatyourbeets.cards.animator.basic.ImprovedStrike;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.characters.AnimatorCharacter;
+import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.relics.animator.LivingPicture;
 import eatyourbeets.relics.animator.TheMissingPiece;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
-import java.util.StringJoiner;
 
 public abstract class AnimatorLoadout
 {
+    public CardSlot Slot_Defend = new CardSlot(1, 6);
+    public CardSlot Slot_Strike = new CardSlot(1, 6);
+    public CardSlot Slot_ImprovedDefend = new CardSlot(1, 1);
+    public CardSlot Slot_ImprovedStrike = new CardSlot(1, 1);
+    public CardSlot Slot_Series1 = new CardSlot(0, 1);
+    public CardSlot Slot_Series2 = new CardSlot(0, 1);
+
     protected ArrayList<String> startingDeck = new ArrayList<>();
-    protected String shortDescription = null;
+    protected String shortDescription = "";
 
     public int ID;
     public String Name;
@@ -51,14 +59,62 @@ public abstract class AnimatorLoadout
         this.ID = series.ID;
     }
 
-    public abstract ArrayList<String> GetStartingDeck();
+    public void InitializeSlots()
+    {
+        Slot_Defend.AddItem(Defend.DATA, -2);
+        Slot_Strike.AddItem(Strike.DATA, -2);
+
+        for (EYBCardData data : ImprovedStrike.GetCards())
+        {
+            Slot_ImprovedStrike.AddItem(data, 1);
+        }
+
+        for (EYBCardData data : ImprovedDefend.GetCards())
+        {
+            Slot_ImprovedDefend.AddItem(data, 1);
+        }
+
+        Slot_Series1.AddSharedSlot(Slot_Series2);
+        Slot_Series2.AddSharedSlot(Slot_Series1);
+    }
+
     public abstract EYBCardData GetSymbolicCard();
     public abstract EYBCardData GetUltraRare();
+
+    protected void AddSeriesItem(EYBCardData data, float estimatedValue)
+    {
+        Slot_Series1.AddItem(data, estimatedValue);
+        Slot_Series2.AddItem(data, estimatedValue);
+    }
 
     public CharSelectInfo GetLoadout(String name, String description, AnimatorCharacter animatorCharacter)
     {
         return new CharSelectInfo(name + "-" + ID, description, MaxHP, MaxHP, OrbSlots, StartingGold, CardDraw,
                                         animatorCharacter, GetStartingRelics(), GetStartingDeck(), false);
+    }
+
+    public ArrayList<String> GetStartingDeck()
+    {
+        ActionT2<ArrayList<String>, CardSlot> add = (list, slot) ->
+        {
+            EYBCardData data = slot.GetData();
+            if (data != null)
+            {
+                for (int i = 0; i < slot.amount; i++)
+                {
+                    list.add(data.ID);
+                }
+            }
+        };
+
+        ArrayList<String> cards = new ArrayList<>();
+        add.Invoke(cards, Slot_Defend);
+        add.Invoke(cards, Slot_Strike);
+        add.Invoke(cards, Slot_ImprovedDefend);
+        add.Invoke(cards, Slot_ImprovedStrike);
+        add.Invoke(cards, Slot_Series1);
+        add.Invoke(cards, Slot_Series2);
+        return cards;
     }
 
     public ArrayList<String> GetStartingRelics()
@@ -97,19 +153,21 @@ public abstract class AnimatorLoadout
 
     public String GetDeckPreviewString()
     {
-        if (shortDescription == null)
-        {
-            StringJoiner sj = new StringJoiner(", ");
-            for (String s : GetStartingDeck())
-            {
-                if (!s.contains(Strike.DATA.ID) && !s.contains(Defend.DATA.ID))
-                {
-                    sj.add(CardLibrary.getCard(s).originalName);
-                }
-            }
-
-            shortDescription = sj.toString();
-        }
+// TODO: Loadout preview string
+//
+//        if (shortDescription == null)
+//        {
+//            StringJoiner sj = new StringJoiner(", ");
+//            for (String s : GetStartingDeck())
+//            {
+//                if (!s.contains(Strike.DATA.ID) && !s.contains(Defend.DATA.ID))
+//                {
+//                    sj.add(CardLibrary.getCard(s).originalName);
+//                }
+//            }
+//
+//            shortDescription = sj.toString();
+//        }
 
         return shortDescription;
     }

@@ -35,7 +35,7 @@ public class EYBCombatInfo extends GUIElement
         {
             rows.add(new EYBCombatInfo_AffinityRow(values[i], hb, i, values.length + 1));
         }
-        rows.add(new EYBCombatInfo_AffinityRow(AffinityType.Star, hb, values.length, values.length + 1));
+        rows.add(new EYBCombatInfo_AffinityRow(AffinityType.General, hb, values.length, values.length + 1));
     }
 
     @Override

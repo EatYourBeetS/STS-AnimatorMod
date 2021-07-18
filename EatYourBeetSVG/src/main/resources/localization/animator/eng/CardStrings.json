@@ -2,21 +2,93 @@
 {
 	"BASIC":
 	{
+		"animator:Strike":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Strike"
+		},
+		
 		"animator:Defend":
 		{
 			"DESCRIPTION": "",
 			"NAME": "Defend"
 		},
 		
+		"animator:Strike_Red":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "Starter: Retain [F]",
+			"NAME": "Improved Strike"
+		},
+		"animator:Defend_Red":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "Starter: Retain [F]",
+			"NAME": "Improved Defend"
+		},
+		
+		"animator:Strike_Green":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "Starter: Retain [A]",
+			"NAME": "Improved Strike"
+		},
+		"animator:Defend_Green":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "Starter: Retain [A]",
+			"NAME": "Improved Defend"
+		},
+		
+		"animator:Strike_Blue":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "Starter: Retain [I]",
+			"NAME": "Improved Strike"
+		},
+		"animator:Defend_Blue":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "Starter: Retain [I]",
+			"NAME": "Improved Defend"
+		},
+	
+		"animator:Strike_Light":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "Starter: Retain [B]",
+			"NAME": "Improved Strike"
+		},
+		"animator:Defend_Light":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "Starter: Retain [B]",
+			"NAME": "Improved Defend"
+		},
 		
 		"animator:Strike_Dark":
 		{
 			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "Starter: Retain [C]",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Dark":
 		{
 			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "Starter: Retain [C]",
+			"NAME": "Improved Defend"
+		},
+		
+		"animator:Strike_Star":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "Starter: Retain your highest {Affinity Power}.",
+			"NAME": "Improved Strike"
+		},
+		"animator:Defend_Star":
+		{
+			"DESCRIPTION": "",
+		    "UPGRADE_DESCRIPTION": "Starter: Retain your highest {Affinity Power}.",
 			"NAME": "Improved Defend"
 		},
 		
@@ -105,11 +177,7 @@
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
-		"animator:Strike":
-		{
-			"DESCRIPTION": "",
-			"NAME": "Strike"
-		},
+
 		"animator:Strike_AccelWorld":
 		{
 			"DESCRIPTION": "When Discarded: ** Deal !M! damage to ** a random enemy.",

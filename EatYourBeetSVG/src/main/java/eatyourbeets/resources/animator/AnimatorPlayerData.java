@@ -181,25 +181,24 @@ public class AnimatorPlayerData
         {
             BaseLoadouts.add(loadout);
             loadout.UnlockLevel = unlockLevel;
+            loadout.InitializeSlots();
         };
 
-        add.Invoke(new Konosuba(), 0);
-        add.Invoke(new Gate(), 1);
-        add.Invoke(new Elsword(), 2);
-        add.Invoke(new Katanagatari(), 2);
-        add.Invoke(new GoblinSlayer(), 3);
-        add.Invoke(new NoGameNoLife(), 3);
-        add.Invoke(new OwariNoSeraph(), 3);
-        add.Invoke(new FullmetalAlchemist(), 4);
-        add.Invoke(new Overlord(), 4);
-        add.Invoke(new Fate(), 5);
-        add.Invoke(new Chaika(), 5);
-        add.Invoke(new Kancolle(), 6);
-        add.Invoke(new OnePunchMan(), 6);
-        add.Invoke(new AccelWorld(), 7);
-        add.Invoke(new TenSura(), 7);
-        add.Invoke(new MadokaMagica(), 8);
-        add.Invoke(new LogHorizon(), 8);
+        add.Invoke(new Loadout_Konosuba(), 0);
+        add.Invoke(new Loadout_GATE(), 1);
+        add.Invoke(new Loadout_Elsword(), 2);
+        add.Invoke(new Loadout_Katanagatari(), 2);
+        add.Invoke(new Loadout_GoblinSlayer(), 3);
+        add.Invoke(new Loadout_NoGameNoLife(), 3);
+        add.Invoke(new Loadout_OwariNoSeraph(), 3);
+        add.Invoke(new Loadout_FullmetalAlchemist(), 4);
+        add.Invoke(new Loadout_Overlord(), 4);
+        add.Invoke(new Loadout_Fate(), 5);
+        add.Invoke(new Loadout_HitsugiNoChaika(), 5);
+        add.Invoke(new Loadout_OnePunchMan(), 6);
+        add.Invoke(new Loadout_TenseiSlime(), 6);
+        add.Invoke(new Loadout_MadokaMagica(), 7);
+        add.Invoke(new Loadout_LogHorizon(), 7);
 
         for (AnimatorLoadout loadout : BaseLoadouts)
         {

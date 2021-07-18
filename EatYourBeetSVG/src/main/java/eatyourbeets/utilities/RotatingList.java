@@ -38,6 +38,11 @@ public class RotatingList<T>
         return items.size();
     }
 
+    public int GetIndex()
+    {
+        return index;
+    }
+
     public boolean Remove(T item)
     {
         return items.remove(item);
@@ -46,6 +51,12 @@ public class RotatingList<T>
     public ArrayList<T> GetInnerList()
     {
         return items;
+    }
+
+    public T SetIndex(int index)
+    {
+        this.index = index < 0 ? 0 : index < items.size() ? index : items.size() - 1;
+        return Current();
     }
 
     public T Current()

@@ -6,11 +6,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import eatyourbeets.cards.animator.basic.Defend;
-import eatyourbeets.cards.animator.basic.Defend_Dark;
-import eatyourbeets.cards.animator.basic.Strike;
-import eatyourbeets.cards.animator.basic.Strike_Dark;
-import eatyourbeets.cards.animator.series.Konosuba.Kazuma;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.AbstractScreen;
@@ -27,12 +22,15 @@ public class AnimatorLoadoutEditor extends AbstractScreen
     protected GUI_Button cancel_button;
     protected GUI_Button confirm_button;
     protected GUI_TextBox cardsCount_text;
-    protected GUI_TextBox cardsPower_text;
+    protected GUI_TextBox cardsValue_text;
+    protected GUI_TextBox affinityValue_text;
 
     public AnimatorLoadoutEditor()
     {
         final float buttonHeight = ScreenH(0.07f);
+        final float labelHeight = ScreenH(0.04f);
         final float buttonWidth = ScreenW(0.18f);
+        final float labelWidth = ScreenW(0.20f);
         final float button_cY = buttonHeight * 1.5f;
 
         background_image = new GUI_Image(GR.Common.Images.FullSquare.Texture(), new Hitbox(ScreenW(1), ScreenH(1)))
@@ -52,31 +50,45 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         .SetInteractable(false)
         .SetOnClick(AbstractDungeon::closeCurrentScreen);
 
-        cardsCount_text = new GUI_TextBox(GR.Common.Images.Panel_Rounded_Half_H.Texture(), new Hitbox(buttonWidth, buttonHeight))
+        cardsValue_text = new GUI_TextBox(GR.Common.Images.Panel_Rounded.Texture(), new Hitbox(labelWidth, labelHeight))
         .SetColors(Settings.HALF_TRANSPARENT_BLACK_COLOR, Settings.CREAM_COLOR)
-        .SetAlignment(0.6f, 0.2f, true)
-        .SetPosition(confirm_button.hb.cX, button_cY * 2.5f)
+        .SetAlignment(0.5f, 0.5f)
+        .SetPosition(confirm_button.hb.cX, confirm_button.hb.y + confirm_button.hb.height + labelHeight * 0.8f)
         .SetFont(FontHelper.charDescFont, 1)
-        .SetText("Cards: #g" + 12 + " /15");
+        .SetText("Value: " + 12 + " / 10");
 
-        cardsPower_text = new GUI_TextBox(GR.Common.Images.Panel_Rounded_Half_H.Texture(), new Hitbox(buttonWidth, buttonHeight))
+        cardsCount_text = new GUI_TextBox(GR.Common.Images.Panel_Rounded.Texture(), new Hitbox(labelWidth, labelHeight))
         .SetColors(Settings.HALF_TRANSPARENT_BLACK_COLOR, Settings.CREAM_COLOR)
-        .SetAlignment(0.6f, 0.2f, true)
-        .SetPosition(confirm_button.hb.cX, button_cY * 1.75f)
+        .SetAlignment(0.5f, 0.5f)
+        .SetPosition(confirm_button.hb.cX, cardsValue_text.hb.y + cardsValue_text.hb.height + labelHeight * 0.8f)
         .SetFont(FontHelper.charDescFont, 1)
-        .SetText("Power: #r" + 12 + " /10");
+        .SetText("Cards: " + 12 + " / 15");
 
-        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.135f), ScreenH(0.75f)).SetButtons(true, false, true).SetCard(new Strike()));
-        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.335f), ScreenH(0.75f)).SetButtons(true, false, true).SetCard(new Defend()));
-        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.135f), ScreenH(0.35f)).SetButtons(false, true, false).SetCard(new Strike_Dark()));
-        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.335f), ScreenH(0.35f)).SetButtons(false, true, false).SetCard(new Defend_Dark()));
-        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.635f), ScreenH(0.75f)).SetButtons(false, true, true).SetCard(new Kazuma()));
-        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.835f), ScreenH(0.75f)).SetButtons(false, true, true));
+        affinityValue_text = new GUI_TextBox(GR.Common.Images.Panel_Rounded.Texture(), new Hitbox(labelWidth, labelHeight))
+        .SetColors(Settings.HALF_TRANSPARENT_BLACK_COLOR, Settings.CREAM_COLOR)
+        .SetAlignment(0.5f, 0.5f)
+        .SetPosition(confirm_button.hb.cX, cardsCount_text.hb.y + cardsCount_text.hb.height + labelHeight * 0.8f)
+        .SetFont(FontHelper.charDescFont, 1)
+        .SetText("Affinity: +3 Value");
+
+        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.135f), ScreenH(0.75f)));
+        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.335f), ScreenH(0.75f)));
+        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.135f), ScreenH(0.35f)));
+        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.335f), ScreenH(0.35f)));
+        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.635f), ScreenH(0.75f)));
+        slotsEditors.add(new AnimatorCardSlotEditor(ScreenW(0.835f), ScreenH(0.75f)));
     }
 
     public void Open(AnimatorLoadout loadout)
     {
         super.Open();
+
+        slotsEditors.get(0).SetSlot(loadout.Slot_Defend);
+        slotsEditors.get(1).SetSlot(loadout.Slot_Strike);
+        slotsEditors.get(2).SetSlot(loadout.Slot_ImprovedDefend);
+        slotsEditors.get(3).SetSlot(loadout.Slot_ImprovedStrike);
+        slotsEditors.get(4).SetSlot(loadout.Slot_Series1);
+        slotsEditors.get(5).SetSlot(loadout.Slot_Series2);
     }
 
     @Override
@@ -87,8 +99,9 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         background_image.Update();
         cancel_button.Update();
         confirm_button.Update();
+        affinityValue_text.Update();
         cardsCount_text.Update();
-        cardsPower_text.Update();
+        cardsValue_text.Update();
 
         for (AnimatorCardSlotEditor editor : slotsEditors)
         {
@@ -104,8 +117,9 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         background_image.Render(sb);
         cancel_button.Render(sb);
         confirm_button.Render(sb);
+        affinityValue_text.Render(sb);
         cardsCount_text.Render(sb);
-        cardsPower_text.Render(sb);
+        cardsValue_text.Render(sb);
 
         for (AnimatorCardSlotEditor editor : slotsEditors)
         {

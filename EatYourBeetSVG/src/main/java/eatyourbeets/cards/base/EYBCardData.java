@@ -53,6 +53,17 @@ public class EYBCardData
         this.MaxCopies = -1;
     }
 
+    public AbstractCard CreateNewInstance(boolean upgrade) throws RuntimeException
+    {
+        AbstractCard card = CreateNewInstance();
+        if (upgrade && card.canUpgrade())
+        {
+            card.upgrade();
+        }
+
+        return card;
+    }
+
     public AbstractCard CreateNewInstance() throws RuntimeException
     {
         try

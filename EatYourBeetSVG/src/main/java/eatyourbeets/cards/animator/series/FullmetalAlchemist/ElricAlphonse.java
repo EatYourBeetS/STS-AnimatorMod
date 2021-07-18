@@ -3,12 +3,12 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ElricAlphonseAlt;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.affinity.IntellectPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class ElricAlphonse extends AnimatorCard
 {
@@ -44,7 +44,7 @@ public class ElricAlphonse extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (GameUtilities.GetPowerAmount(p, IntellectPower.POWER_ID) <= magicNumber)
+        if (CombatStats.Affinities.GetPower(AffinityType.Blue).amount <= magicNumber)
         {
             GameActions.Bottom.GainIntellect(1, true);
         }

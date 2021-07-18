@@ -40,4 +40,14 @@ public class ColoredTexture
     {
         return texture.getHeight();
     }
+
+    public ColoredTexture SetColor(Color color)
+    {
+        this.color.r = color.r;
+        this.color.g = color.g;
+        this.color.b = color.b;
+        this.color.a = color.a;
+
+        return this;
+    }
 }

@@ -17,7 +17,7 @@ public class Cthulhu extends AnimatorCard_UltraRare
 {
     public static final int COST = 12;
     public static final EYBCardData DATA = Register(Cthulhu.class)
-            .SetAttack(-2, CardRarity.SPECIAL, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetAttack(-1, CardRarity.SPECIAL, EYBAttackType.Elemental, EYBCardTarget.ALL)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.CallOfCthulhu);
 
@@ -56,6 +56,12 @@ public class Cthulhu extends AnimatorCard_UltraRare
 
     @Override
     public boolean freeToPlay()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean canUpgrade()
     {
         return false;
     }

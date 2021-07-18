@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.CardSlot;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.controls.GUI_Image;
@@ -16,6 +17,8 @@ import eatyourbeets.ui.hitboxes.RelativeHitbox;
 
 public class AnimatorCardSlotEditor extends GUIElement
 {
+    public CardSlot slot;
+
     protected static final float CARD_SCALE = 0.75f;
     protected AdvancedHitbox hb;
     protected GUI_Image background_image;
@@ -37,22 +40,25 @@ public class AnimatorCardSlotEditor extends GUIElement
         cardAmount_text = new GUI_TextBox(GR.Common.Images.Panel_Rounded_Half_H.Texture(), new RelativeHitbox(hb, 0.35f, 0.2f, -0.175f, 0.9f))
         .SetColors(Settings.HALF_TRANSPARENT_BLACK_COLOR, Settings.CREAM_COLOR)
         .SetAlignment(0.5f, 0.5f)
-        .SetFont(FontHelper.charDescFont, 1)
-        .SetText("x 12");
+        .SetFont(FontHelper.charDescFont, 1);
 
         add_button = CreateButton(0.7f, Color.FOREST, "+");
-
         change_button = CreateButton(0.5f, Color.SKY, "Next").SetFont(null, 0.75f);
-
         remove_button = CreateButton(0.3f, Color.FIREBRICK, "-");
     }
 
-    public AnimatorCardSlotEditor SetButtons(boolean add, boolean change, boolean remove)
+    public AnimatorCardSlotEditor SetSlot(CardSlot slot)
     {
-        cardAmount_text.SetActive(add);
-        add_button.SetActive(add);
-        change_button.SetActive(change);
-        remove_button.SetActive(remove);
+        final boolean add = slot.max > 1;
+        final boolean change = slot.cards.Count() > 1;
+        final boolean remove = slot.max > slot.min;
+
+        this.slot = slot;
+        this.card = slot.GetCard();
+        this.cardAmount_text.SetActive(add);
+        this.add_button.SetOnClick(this.slot::Add).SetActive(add);
+        this.change_button.SetOnClick(this.slot::Next).SetActive(change);
+        this.remove_button.SetOnClick(this.slot::Remove).SetActive(remove);
 
         float cY = 0.9f;
         if (add)
@@ -78,21 +84,33 @@ public class AnimatorCardSlotEditor extends GUIElement
         return this;
     }
 
-    public AnimatorCardSlotEditor SetCard(AbstractCard card)
-    {
-        this.card = card;
-
-        return this;
-    }
-
     @Override
     public void Update()
     {
         background_image.Update();
-        cardAmount_text.Update();
-        add_button.TryUpdate();
-        change_button.TryUpdate();
-        remove_button.TryUpdate();
+
+        if (slot != null)
+        {
+            card = slot.GetCard();
+
+            if (add_button.isActive)
+            {
+                add_button.SetInteractable(slot.CanAdd()).Update();
+                cardAmount_text.SetText("x" + slot.amount).Update();
+            }
+            if (change_button.isActive)
+            {
+                change_button.Update();
+            }
+            if (remove_button.isActive)
+            {
+                remove_button.SetInteractable(slot.CanRemove()).Update();
+            }
+        }
+        else
+        {
+            card = null;
+        }
 
         if (card != null)
         {
@@ -125,12 +143,6 @@ public class AnimatorCardSlotEditor extends GUIElement
         .SetTextColor(Settings.CREAM_COLOR)
         .SetFont(FontHelper.charDescFont, 1f)
         .SetColor(color.cpy().lerp(Color.BLACK, 0.2f))
-        .SetText(text)
-        .SetOnClick(this::Test);
-    }
-
-    private void Test()
-    {
-
+        .SetText(text);
     }
 }

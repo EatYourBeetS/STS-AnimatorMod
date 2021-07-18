@@ -1,26 +1,15 @@
 package eatyourbeets.cards.animator.basic;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.EYBCardData;
 
-public class Defend_Dark extends Defend
+public class Defend_Dark extends ImprovedDefend
 {
-    public static final String ID = Register(Defend_Dark.class).ID;
+    public static final AffinityType AFFINITY_TYPE = AffinityType.Dark;
+    public static final EYBCardData DATA = Register(Defend_Dark.class);
 
     public Defend_Dark()
     {
-        super(ID, 1, CardTarget.SELF);
-
-        Initialize(0, 5);
-        SetUpgrade(0, 3);
-
-        SetAffinity_Dark(1);
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.GainBlock(block);
+        super(DATA, AFFINITY_TYPE);
     }
 }

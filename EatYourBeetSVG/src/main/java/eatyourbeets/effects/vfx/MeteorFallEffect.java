@@ -55,11 +55,15 @@ public class MeteorFallEffect extends AbstractGameEffect
         if (this.duration < 0f)
         {
             CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.HIGH, ScreenShake.ShakeDur.SHORT, false);
-            GameEffects.Queue.Add(new DarkSmokePuffEffect(this.x, this.y));
 
-            for (int i = 0; i < 12; ++i)
+            if (!Settings.DISABLE_EFFECTS)
             {
-                GameEffects.Queue.Add(new SmokingEmberEffect(this.x + MathUtils.random(-50f, 50f) * Settings.scale, this.y + MathUtils.random(-50f, 50f) * Settings.scale));
+                GameEffects.Queue.Add(new DarkSmokePuffEffect(this.x, this.y));
+
+                for (int i = 0; i < 12; ++i)
+                {
+                    GameEffects.Queue.Add(new SmokingEmberEffect(this.x + MathUtils.random(-50f, 50f) * Settings.scale, this.y + MathUtils.random(-50f, 50f) * Settings.scale));
+                }
             }
 
             this.isDone = true;

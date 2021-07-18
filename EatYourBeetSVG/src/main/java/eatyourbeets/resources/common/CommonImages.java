@@ -12,6 +12,7 @@ public class CommonImages
     public final TextureCache UnnamedReignEntrance        = new TextureCache("images/ui/map/act5Entrance.png");
     public final TextureCache UnnamedReignEntranceOutline = new TextureCache("images/ui/map/act5EntranceOutline.png");
     public final TextureCache Circle                      = new TextureCache("images/ui/topPanel/eyb/Circle.png");
+    public final TextureCache Tag                         = new TextureCache("images/ui/topPanel/eyb/Tag.png");
     public final TextureCache Panel                       = new TextureCache("images/ui/topPanel/eyb/Panel.png");
     public final TextureCache Panel_Skewed_Left           = new TextureCache("images/ui/topPanel/eyb/Panel_Skewed_Left.png");
     public final TextureCache Panel_Skewed_Right          = new TextureCache("images/ui/topPanel/eyb/Panel_Skewed_Right.png");

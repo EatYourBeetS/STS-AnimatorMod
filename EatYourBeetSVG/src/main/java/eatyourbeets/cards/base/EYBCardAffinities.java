@@ -257,7 +257,7 @@ public class EYBCardAffinities
         {
             return star;
         }
-        else if (type == null) // Highest level among all affinities
+        else if (type == null || type == AffinityType.General) // Highest level among all affinities
         {
             return List.isEmpty() ? star : List.get(0).upgrade;
         }
@@ -280,7 +280,7 @@ public class EYBCardAffinities
         {
             return star;
         }
-        else if (type == null) // Highest level among all affinities
+        else if (type == null || type == AffinityType.General) // Highest level among all affinities
         {
             return List.isEmpty() ? star : List.get(0).level;
         }

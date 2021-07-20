@@ -75,7 +75,14 @@ public class FalseLifePotion extends AbstractPotion
     protected void UpdateDescription()
     {
         this.description = JUtils.Format(DESCRIPTIONS[0], this.potency) + (relic != null ? (" NL " + relic.GetFalseLifePotionString()) : "");
-        this.descriptionTip.body = description;
+        if (descriptionTip == null)
+        {
+            this.descriptionTip = new PowerTip(name, description);
+        }
+        else
+        {
+            this.descriptionTip.body = description;
+        }
 
         if (!tips.contains(descriptionTip))
         {

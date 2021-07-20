@@ -304,18 +304,6 @@ public class EYBCardAffinities
     public EYBCardAffinities GetSynergies(EYBCardAffinities other)
     {
         final EYBCardAffinities synergies = new EYBCardAffinities(null);
-        final int star = GetLevel(AffinityType.Star);
-        if (star > 0)
-        {
-            int lv_b = other.GetLevel(null);
-            if (lv_b > 0)
-            {
-                synergies.Add(AffinityType.Star, star);
-            }
-
-            return synergies;
-        }
-
         for (AffinityType type : AffinityType.BasicTypes())
         {
             int lv_a = GetLevel(type);

@@ -10,7 +10,6 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Naotsugu extends AnimatorCard
 {
@@ -58,20 +57,5 @@ public class Naotsugu extends AnimatorCard
                 GameActions.Top.PlayCard(best, player.hand, (AbstractMonster) e);
             }
         });
-
-        if (ForceStance.IsActive())
-        {
-            GameActions.Bottom.FetchFromPile(name, 1, p.drawPile)
-            .SetOptions(true, false)
-            .SetFilter(c -> c.hasTag(MARTIAL_ARTIST))
-            .AddCallback(cards ->
-            {
-                if (cards.size() > 0)
-                {
-                    GameUtilities.ModifyCostForTurn(cards.get(0), 1, true);
-                    GameUtilities.Retain(cards.get(0));
-                }
-            });
-        }
     }
 }

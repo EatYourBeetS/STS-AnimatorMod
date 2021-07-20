@@ -86,7 +86,7 @@ public class CardSlot
             int currentIndex = i;
             for (CardSlot s : Container)
             {
-                if (selected.data.IsNotSeen() || (s != this && selected.data == s.GetData()))
+                if (s != this && selected.data == s.GetData())
                 {
                     Select(Cards.Next(true));
                     i += 1;
@@ -215,6 +215,10 @@ public class CardSlot
             if (card == null || forceRefresh)
             {
                 card = CardLibrary.getCard(data.ID).makeCopy();
+                if (data.IsNotSeen())
+                {
+                    card.isSeen = false;
+                }
             }
 
             return card;

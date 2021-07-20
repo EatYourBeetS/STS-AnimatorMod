@@ -158,7 +158,7 @@
 	},
 	"~Lock-On":
 	{
-		"DESCRIPTION": "Receive #b50% more damage from Orbs, and #b30% more damage from #yRanged attacks.",
+		"DESCRIPTION": "Receive #b50% more damage from Orbs and #yRanged attacks.",
 		"NAMES": ["~lock-on"],
 		"PROPER_NAME": "Lock-On"
 	},

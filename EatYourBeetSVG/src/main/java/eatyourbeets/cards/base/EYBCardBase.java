@@ -562,7 +562,7 @@ public abstract class EYBCardBase extends AbstractCard
     {
         if (texture != null)
         {
-            RenderHelpers.DrawOnCardAuto(sb, this, texture, 0, 0, texture.getWidth(), texture.getHeight());
+            RenderHelpers.DrawOnCardAuto(sb, this, texture, _renderColor.Get(this), 0, 0, texture.getWidth(), texture.getHeight());
 
             return true;
         }

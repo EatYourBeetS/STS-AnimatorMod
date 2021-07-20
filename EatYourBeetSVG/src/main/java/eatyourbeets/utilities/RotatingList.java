@@ -2,8 +2,9 @@ package eatyourbeets.utilities;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
-public class RotatingList<T>
+public class RotatingList<T> implements Iterable<T>
 {
     private final ArrayList<T> items;
     private int index;
@@ -38,6 +39,11 @@ public class RotatingList<T>
         return items.size();
     }
 
+    public int GetIndex()
+    {
+        return index;
+    }
+
     public boolean Remove(T item)
     {
         return items.remove(item);
@@ -46,6 +52,12 @@ public class RotatingList<T>
     public ArrayList<T> GetInnerList()
     {
         return items;
+    }
+
+    public T SetIndex(int index)
+    {
+        this.index = index < 0 ? 0 : index < items.size() ? index : items.size() - 1;
+        return Current();
     }
 
     public T Current()
@@ -94,5 +106,11 @@ public class RotatingList<T>
         }
 
         return items.get(newIndex);
+    }
+
+    @Override
+    public Iterator<T> iterator()
+    {
+        return items.iterator();
     }
 }

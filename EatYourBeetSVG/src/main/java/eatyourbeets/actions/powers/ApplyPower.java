@@ -220,10 +220,11 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
     {
         callbackResult = power;
         power.stackPower(amount);
-        power.flash();
 
         if (showEffect)
         {
+            power.flash();
+
             if (amount <= 0 && IsStrengthDexterityOrFocus(power))
             {
                 GameEffects.List.Add(new PowerDebuffEffect(target.hb.cX - target.animX,
@@ -266,10 +267,11 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         Collections.sort(target.powers);
 
         powerToApply.onInitialApplication();
-        powerToApply.flash();
 
         if (showEffect)
         {
+            powerToApply.flash();
+
             if (amount <= 0 && IsStrengthDexterityOrFocus(powerToApply))
             {
                 GameEffects.List.Add(new PowerDebuffEffect(target.hb.cX - target.animX,

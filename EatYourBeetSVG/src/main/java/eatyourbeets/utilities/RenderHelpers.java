@@ -22,9 +22,9 @@ import eatyourbeets.ui.controls.GUI_Image;
 
 public class RenderHelpers
 {
+    public static final float CARD_ENERGY_IMG_WIDTH = 26.0F * Settings.scale;
     private static final StringBuilder builder = new StringBuilder();
     private static final GlyphLayout layout = new GlyphLayout();
-    private static final float CARD_ENERGY_IMG_WIDTH = 26.0F * Settings.scale;
 
     public static void ResetFont(BitmapFont font)
     {
@@ -143,16 +143,16 @@ public class RenderHelpers
     public static BitmapFont GetTitleFont(EYBCardBase card)
     {
         BitmapFont result;
+        final float scale = ((card.name.length() > 14) ? 0.8f : 1);
         if (card.isPopup)
         {
             result = EYBFontHelper.CardTitleFont_Large;
-            result.getData().setScale(card.drawScale * 0.5f);
+            result.getData().setScale(card.drawScale * 0.5f * scale);
         }
         else
         {
-            // NOTE: this was FontHelper.cardTitleFont_small
-            result = (card.name.length() > 14) ? EYBFontHelper.CardTitleFont_Small : EYBFontHelper.CardTitleFont_Normal;
-            result.getData().setScale(card.drawScale);
+            result = EYBFontHelper.CardTitleFont_Normal;
+            result.getData().setScale(card.drawScale * scale);
         }
 
         return result;
@@ -194,44 +194,59 @@ public class RenderHelpers
                 card.angle, 0, 0, width, height, false, false);
     }
 
-    public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, TextureRegion img, float drawX, float drawY, float width, float height, float scaleModifier)
+    public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, TextureRegion img, float drawX, float drawY, float width, float height, float imgScale)
     {
-        final float scale = card.drawScale * Settings.scale * scaleModifier;
+        final float scale = card.drawScale * Settings.scale * imgScale;
 
         sb.setColor(color);
         sb.draw(img, drawX - (width / 2f), drawY - (height / 2f), width / 2f, height / 2f, width, height, scale, scale, card.angle);
     }
 
-    public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, Texture img, float drawX, float drawY, float width, float height, float scaleModifier)
+    public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, Texture img, float drawX, float drawY, float width, float height, float imgScale)
     {
-        final float scale = card.drawScale * Settings.scale * scaleModifier;
+        DrawOnCardCentered(sb, card, color, img, drawX, drawY, width, height, imgScale, 0);
+    }
+
+    public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, Texture img, float drawX, float drawY, float width, float height, float imgScale, float imgRotation)
+    {
+        final float scale = card.drawScale * Settings.scale * imgScale;
 
         sb.setColor(color);
         sb.draw(img, drawX - (width / 2f), drawY - (height / 2f), width / 2f, height / 2f, width, height,
-                scale, scale, card.angle, 0, 0, img.getWidth(), img.getHeight(), false, false);
+                scale, scale, card.angle + imgRotation, 0, 0, img.getWidth(), img.getHeight(), false, false);
+    }
+
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Color color, float drawX, float drawY, float width, float height)
+    {
+        DrawOnCardAuto(sb, card, img, new Vector2(drawX, drawY), width, height, color, color.a, 1, 0);
     }
 
     public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY, float width, float height)
     {
-        DrawOnCardAuto(sb, card, img, new Vector2(drawX, drawY), width, height, Color.WHITE, card.transparency, 1);
+        DrawOnCardAuto(sb, card, img, new Vector2(drawX, drawY), width, height, Color.WHITE, card.transparency, 1, 0);
     }
 
     public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Vector2 offset, float width, float height)
     {
-        DrawOnCardAuto(sb, card, img, offset, width, height, Color.WHITE, card.transparency, 1);
+        DrawOnCardAuto(sb, card, img, offset, width, height, Color.WHITE, card.transparency, 1, 0);
     }
 
     public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, ColoredTexture img, float drawX, float drawY, float width, float height)
     {
-        DrawOnCardAuto(sb, card, img.texture, new Vector2(drawX, drawY), width, height, img.color, card.transparency, 1);
+        DrawOnCardAuto(sb, card, img.texture, new Vector2(drawX, drawY), width, height, img.color, img.color.a * card.transparency, 1, 0);
     }
 
     public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, ColoredTexture img, Vector2 offset, float width, float height)
     {
-        DrawOnCardAuto(sb, card, img.texture, offset, width, height, img.color, card.transparency, 1);
+        DrawOnCardAuto(sb, card, img.texture, offset, width, height, img.color, img.color.a * card.transparency, 1, 0);
     }
 
-    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Vector2 offset, float width, float height, Color color, float alpha, float scaleModifier)
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Vector2 offset, float width, float height, Color color, float alpha, float imgScale)
+    {
+        DrawOnCardAuto(sb, card, img, offset, width, height, color, alpha, imgScale, 0f);
+    }
+
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, TextureRegion img, Vector2 offset, float width, float height, Color color, float alpha, float imgScale)
     {
         if (card.angle != 0)
         {
@@ -240,10 +255,10 @@ public class RenderHelpers
 
         offset.scl(Settings.scale * card.drawScale);
 
-        DrawOnCardCentered(sb, card, new Color(color.r, color.g, color.b, alpha), img, card.current_x + offset.x, card.current_y + offset.y, width, height, scaleModifier);
+        DrawOnCardCentered(sb, card, new Color(color.r, color.g, color.b, alpha), img, card.current_x + offset.x, card.current_y + offset.y, width, height, imgScale);
     }
 
-    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, TextureRegion img, Vector2 offset, float width, float height, Color color, float alpha, float scaleModifier)
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Vector2 offset, float width, float height, Color color, float alpha, float imgScale, float imgRotation)
     {
         if (card.angle != 0)
         {
@@ -252,7 +267,7 @@ public class RenderHelpers
 
         offset.scl(Settings.scale * card.drawScale);
 
-        DrawOnCardCentered(sb, card, new Color(color.r, color.g, color.b, alpha), img, card.current_x + offset.x, card.current_y + offset.y, width, height, scaleModifier);
+        DrawOnCardCentered(sb, card, new Color(color.r, color.g, color.b, alpha), img, card.current_x + offset.x, card.current_y + offset.y, width, height, imgScale, imgRotation);
     }
 
     public static void DrawOnCard(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY, float size)
@@ -279,6 +294,15 @@ public class RenderHelpers
         sb.draw(img, drawX, drawY, 0, 0, width, height,
                 card.drawScale * Settings.scale, card.drawScale * Settings.scale,
                 card.angle, 0, 0, srcWidth, srcHeight, false, false);
+    }
+
+    public static void DrawCentered(SpriteBatch sb, Color color, Texture img, float drawX, float drawY, float width, float height, float imgScale, float imgRotation)
+    {
+        final float scale = Settings.scale * imgScale;
+
+        sb.setColor(color);
+        sb.draw(img, drawX - (width / 2f), drawY - (height / 2f), width / 2f, height / 2f, width, height,
+                scale, scale, imgRotation, 0, 0, img.getWidth(), img.getHeight(), false, false);
     }
 
     public static void Draw(SpriteBatch sb, Texture img, float drawX, float drawY, float size)
@@ -313,6 +337,11 @@ public class RenderHelpers
         color = CopyColor(card, color);
 
         FontHelper.renderRotatedText(sb, font, text, card.current_x, card.current_y, x * scale, y * scale, card.angle, roundY, color);
+    }
+
+    public static void WriteCentered(SpriteBatch sb, BitmapFont font, String text, float cX, float cY, Color color)
+    {
+        FontHelper.renderFontCentered(sb, font, text, cX, cY, color);
     }
 
     public static void WriteCentered(SpriteBatch sb, BitmapFont font, String text, Hitbox hb, Color color)
@@ -425,7 +454,7 @@ public class RenderHelpers
                     curHeight -= lineSpacing;
                     i += 1;
                 }
-                else if ('T' == c && compare.Invoke(text, i+1, 'A') && compare.Invoke(text, i+2, 'B'))
+                else if ('T' == c && compare.Invoke(text, i + 1, 'A') && compare.Invoke(text, i + 2, 'B'))
                 {
                     curWidth += spaceWidth * 5.0F;
                     i += 2;
@@ -442,18 +471,20 @@ public class RenderHelpers
                     {
                         final float orbWidth = icon.getRegionWidth();
                         final float orbHeight = icon.getRegionHeight();
+                        final float scaleX = CARD_ENERGY_IMG_WIDTH / orbWidth;
+                        final float scaleY = CARD_ENERGY_IMG_WIDTH / orbHeight;
 
                         //sb.setColor(1f, 1f, 1f, baseColor.a);
                         sb.setColor(baseColor);
                         if (curWidth + CARD_ENERGY_IMG_WIDTH > lineWidth)
                         {
                             curHeight -= lineSpacing;
-                            sb.draw(icon, x - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, Settings.scale, Settings.scale, 0f);
+                            sb.draw(icon, x - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, scaleX, scaleY, 0f);
                             curWidth = CARD_ENERGY_IMG_WIDTH + spaceWidth;
                         }
                         else
                         {
-                            sb.draw(icon, x + curWidth - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, Settings.scale, Settings.scale, 0f);
+                            sb.draw(icon, x + curWidth - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, scaleX, scaleY, 0f);
                             curWidth += CARD_ENERGY_IMG_WIDTH + spaceWidth;
                         }
                     }
@@ -462,11 +493,11 @@ public class RenderHelpers
                 {
                     if (text.length() > i + 1)
                     {
-                        overrideColor = GetColor(text.charAt(i+1));
+                        overrideColor = GetColor(text.charAt(i + 1));
                         i += 1;
                     }
                 }
-                else if (' ' == c || text.length() == (i+1))
+                else if (' ' == c || text.length() == (i + 1))
                 {
                     if (c != ' ')
                     {
@@ -508,6 +539,104 @@ public class RenderHelpers
 
             layout.setText(font, text);
         }
+    }
+
+    public static float GetSmartHeight(BitmapFont font, String text, float lineWidth, float lineSpacing)
+    {
+        if (text == null || text.isEmpty())
+        {
+            return 0;
+        }
+
+        builder.setLength(0);
+        layout.setText(font, " ");
+
+        float curWidth = 0.0F;
+        float curHeight = 0.0F;
+        float spaceWidth = layout.width;
+
+        final FuncT3<Boolean, String, Integer, Character> compare = (s, i, c) -> c == ((i < s.length()) ? s.charAt(i) : null);
+        final FuncT1<String, StringBuilder> build = (stringBuilder) ->
+        {
+            String result = stringBuilder.toString();
+            stringBuilder.setLength(0);
+            return result;
+        };
+
+        boolean foundIcon = false;
+
+        for (int i = 0; i < text.length(); i++)
+        {
+            char c = text.charAt(i);
+            if ('N' == c && compare.Invoke(text, i + 1, 'L'))
+            {
+                curWidth = 0.0F;
+                curHeight -= lineSpacing;
+                i += 1;
+            }
+            else if ('T' == c && compare.Invoke(text, i + 1, 'A') && compare.Invoke(text, i + 2, 'B'))
+            {
+                curWidth += spaceWidth * 5.0F;
+                i += 2;
+            }
+            else if ('[' == c)
+            {
+                foundIcon = true;
+            }
+            else if (foundIcon && ']' == c)
+            {
+                foundIcon = false;
+                TextureRegion icon = GetSmallIcon(build.Invoke(builder));
+                if (icon != null)
+                {
+                    if (curWidth + CARD_ENERGY_IMG_WIDTH > lineWidth)
+                    {
+                        curHeight -= lineSpacing;
+                        curWidth = CARD_ENERGY_IMG_WIDTH + spaceWidth;
+                    }
+                    else
+                    {
+                        curWidth += CARD_ENERGY_IMG_WIDTH + spaceWidth;
+                    }
+                }
+            }
+            else if ('#' == c)
+            {
+                if (text.length() > i + 1)
+                {
+                    i += 1;
+                }
+            }
+            else if (' ' == c || text.length() == (i + 1))
+            {
+                if (c != ' ')
+                {
+                    builder.append(c);
+                }
+
+                String word = build.Invoke(builder);
+                if (word != null && word.length() > 0)
+                {
+                    layout.setText(font, word);
+                    if (curWidth + layout.width > lineWidth)
+                    {
+                        curHeight -= lineSpacing;
+                        curWidth = layout.width + spaceWidth;
+                    }
+                    else
+                    {
+                        curWidth += layout.width + spaceWidth;
+                    }
+                }
+            }
+            else
+            {
+                builder.append(c);
+            }
+        }
+
+        layout.setText(font, text);
+        return curHeight;
     }
 
     public static TextureRegion GetSmallIcon(String id)

@@ -1,5 +1,7 @@
 import basemod.BaseMod;
 import basemod.interfaces.*;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -8,8 +10,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.ui.controls.GUI_TextBox;
+import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.InputManager;
 import eatyourbeets.utilities.JUtils;
 
@@ -99,7 +101,12 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
                         .SetText("TEST MODE");
             }
 
-            testModeLabel.Render(sb);
+            if (Gdx.input.isKeyPressed(Input.Keys.ALT_LEFT) && Gdx.input.isKeyJustPressed(Input.Keys.NUM_7))
+            {
+                testModeLabel.SetActive(false);
+            }
+
+            testModeLabel.TryRender(sb);
         }
     }
 }

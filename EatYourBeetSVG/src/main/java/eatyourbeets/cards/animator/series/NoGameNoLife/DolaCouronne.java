@@ -39,6 +39,11 @@ public class DolaCouronne extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
         .SetOptions(false, false, true);
     }

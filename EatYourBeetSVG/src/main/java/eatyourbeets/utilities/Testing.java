@@ -39,6 +39,21 @@ public class Testing
         return false;
     }
 
+    public static Color TryGetColor()
+    {
+        return TryGetColor(Color.WHITE);
+    }
+
+    public static Color TryGetColor(Color defaultColor)
+    {
+        if (values != null && values.length >= 3)
+        {
+            return new Color(values[0], values[1], values[2], values.length > 3 ? values[3] : 1);
+        }
+
+        return defaultColor;
+    }
+
     public static float TryGetValue(int index, float defaultValue)
     {
         if (values != null && values.length > index)

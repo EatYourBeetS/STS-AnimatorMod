@@ -83,10 +83,10 @@ public abstract class EYBAction extends AbstractGameAction
         return this;
     }
 
-    public EYBAction AddDuration(float duration, boolean isRealtime)
+    public EYBAction AddDuration(float duration)
     {
-        this.isRealtime = isRealtime;
-        this.duration = (this.startDuration += duration);
+        this.startDuration += duration;
+        this.duration += duration;
 
         return this;
     }

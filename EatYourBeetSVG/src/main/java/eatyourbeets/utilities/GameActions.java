@@ -706,17 +706,17 @@ public final class GameActions
 
     public PlayCard PlayCard(AbstractCard card, CardGroup sourcePile, AbstractMonster target)
     {
-        return Add(new PlayCard(card, target, false, actionOrder == ActionOrder.Top)).SetSourcePile(sourcePile);
+        return Add(new PlayCard(card, target, false, actionOrder != ActionOrder.Top)).SetSourcePile(sourcePile);
     }
 
     public PlayCard PlayCard(AbstractCard card, AbstractMonster target)
     {
-        return Add(new PlayCard(card, target, false, actionOrder == ActionOrder.Top));
+        return Add(new PlayCard(card, target, false, actionOrder != ActionOrder.Top));
     }
 
     public PlayCard PlayCopy(AbstractCard card, AbstractMonster target)
     {
-        return Add(new PlayCard(card, target, true, actionOrder == ActionOrder.Top))
+        return Add(new PlayCard(card, target, true, actionOrder != ActionOrder.Top))
         .SetCurrentPosition(card.current_x, card.current_y)
         .SpendEnergy(false)
         .SetPurge(true);

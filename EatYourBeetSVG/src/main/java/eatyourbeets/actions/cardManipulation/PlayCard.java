@@ -37,6 +37,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
     protected boolean spendEnergy;
     protected Vector2 currentPosition;
     protected Vector2 targetPosition;
+    protected boolean renderLast;
 
     public PlayCard(FuncT1<AbstractCard, CardGroup> findCard, CardGroup sourcePile, AbstractCreature target)
     {
@@ -49,7 +50,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
         Initialize(target, 1);
     }
 
-    public PlayCard(AbstractCard card, AbstractCreature target, boolean copy, boolean toBottomLimbo)
+    public PlayCard(AbstractCard card, AbstractCreature target, boolean copy, boolean renderLast)
     {
         super(ActionType.WAIT, Settings.ACTION_DUR_FAST);
 
@@ -65,7 +66,9 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
             this.card = card;
         }
 
-        AddToLimbo(toBottomLimbo);
+        this.renderLast = renderLast;
+
+        AddToLimbo();
 
         Initialize(target, 1);
     }
@@ -231,7 +234,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
 
     protected void ShowCard()
     {
-        AddToLimbo(true);
+        AddToLimbo();
 
         GameUtilities.RefreshHandLayout();
         AbstractDungeon.getCurrRoom().souls.remove(card);
@@ -253,7 +256,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
 
     protected void QueueCardItem()
     {
-        AddToLimbo(true);
+        AddToLimbo();
 
         final AbstractMonster enemy = (AbstractMonster) target;
 
@@ -274,7 +277,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
         if (spendEnergy)
         {
             GameActions.Top.Add(new DelayAllActions()) // So the result of canUse() does not randomly change after queueing the card
-                    .Except(a -> a instanceof UnlimboAction || a instanceof WaitAction);
+            .Except(a -> a instanceof UnlimboAction || a instanceof WaitAction);
         }
         else if (card.energyOnUse != -1)
         {
@@ -286,17 +289,17 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
         Complete(enemy);
     }
 
-    protected void AddToLimbo(boolean toBottom)
+    protected void AddToLimbo()
     {
         if (card != null && !player.limbo.contains(card))
         {
-            if (toBottom)
+            if (renderLast)
             {
-                player.limbo.addToBottom(card);
+                player.limbo.addToTop(card);
             }
             else
             {
-                player.limbo.addToTop(card);
+                player.limbo.addToBottom(card);
             }
         }
     }

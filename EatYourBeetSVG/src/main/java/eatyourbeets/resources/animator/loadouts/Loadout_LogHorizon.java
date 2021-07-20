@@ -1,6 +1,6 @@
 package eatyourbeets.resources.animator.loadouts;
 
-import eatyourbeets.cards.animator.series.LogHorizon.Akatsuki;
+import eatyourbeets.cards.animator.series.LogHorizon.*;
 import eatyourbeets.cards.animator.ultrarare.Kanami;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -11,6 +11,18 @@ public class Loadout_LogHorizon extends AnimatorLoadout
     public Loadout_LogHorizon()
     {
         super(CardSeries.LogHorizon);
+    }
+
+    @Override
+    public void InitializeSlots()
+    {
+        super.InitializeSlots();
+
+        AddToSpecialSlots(HousakiTohya.DATA, 4);
+        AddToSpecialSlots(HousakiMinori.DATA, 4);
+        AddToSpecialSlots(Serara.DATA, 6);
+        AddToSpecialSlots(Marielle.DATA, 7);
+        AddToSpecialSlots(Naotsugu.DATA, 8);
     }
 
     @Override

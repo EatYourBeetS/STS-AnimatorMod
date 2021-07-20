@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.EYBCardAffinities;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.resources.animator.misc.CardSlot;
+import eatyourbeets.resources.animator.misc.CardSlots;
 import eatyourbeets.ui.AbstractScreen;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.controls.GUI_Image;
@@ -21,6 +21,9 @@ import java.util.ArrayList;
 public class AnimatorLoadoutEditor extends AbstractScreen
 {
     protected final ArrayList<AnimatorCardSlotEditor> slotsEditors = new ArrayList<>();
+    protected AnimatorLoadout loadout;
+    protected CardSlots slots;
+
     protected GUI_Image background_image;
     protected GUI_Button cancel_button;
     protected GUI_Button save_button;
@@ -51,7 +54,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         .SetColor(Color.FOREST)
         .SetText("Save")
         .SetInteractable(false)
-        .SetOnClick(AbstractDungeon::closeCurrentScreen);
+        .SetOnClick(this::Save);
 
         cardsValue_text = new GUI_TextBox(GR.Common.Images.Panel_Rounded.Texture(), new Hitbox(labelWidth, labelHeight))
         .SetColors(Settings.HALF_TRANSPARENT_BLACK_COLOR, Settings.CREAM_COLOR)
@@ -83,12 +86,15 @@ public class AnimatorLoadoutEditor extends AbstractScreen
     {
         super.Open();
 
-        slotsEditors.get(0).SetSlot(loadout.Slot_Defend);
-        slotsEditors.get(1).SetSlot(loadout.Slot_Strike);
-        slotsEditors.get(2).SetSlot(loadout.Slot_ImprovedDefend);
-        slotsEditors.get(3).SetSlot(loadout.Slot_ImprovedStrike);
-        slotsEditors.get(4).SetSlot(loadout.Slot_Series1);
-        slotsEditors.get(5).SetSlot(loadout.Slot_Series2);
+        this.loadout = loadout;
+        this.slots = loadout.Slots.MakeCopy();
+
+        for (int i = 0; i < slotsEditors.size(); i++)
+        {
+            AnimatorCardSlotEditor editor = slotsEditors.get(i);
+            editor.SetActive(slots.Size() > i);
+            editor.SetSlot(editor.isActive ? slots.Get(i) : null);
+        }
     }
 
     @Override
@@ -101,8 +107,9 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         save_button.Update();
 
         int cards = 0;
-        int value = CardSlot.MAX_VALUE;
+        int value = AnimatorLoadout.MAX_VALUE;
         int affinityLevel = 0;
+        boolean seen = true;
         EYBCardAffinities affinities = new EYBCardAffinities(null);
         for (AnimatorCardSlotEditor editor : slotsEditors)
         {
@@ -113,6 +120,11 @@ public class AnimatorLoadoutEditor extends AbstractScreen
                 affinities.AddLevels(editor.slot.GetAffinities(), 1);
                 value += editor.slot.GetEstimatedValue();
                 cards += editor.slot.amount;
+
+                if (editor.slot.selected != null && editor.slot.selected.data.IsNotSeen())
+                {
+                    seen = false;
+                }
             }
         }
 
@@ -127,13 +139,13 @@ public class AnimatorLoadoutEditor extends AbstractScreen
 
         value += affinityLevel;
 
-        affinityValue_text.SetText("Affinity: +" + affinityLevel)
-        .SetActive(affinityLevel > 0).TryUpdate();
-        cardsCount_text.SetText("Cards: {0}", cards)
-        .SetFontColor(cards >= 10 ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
-        cardsValue_text.SetText("Value: {0}/{1}", value, CardSlot.MAX_VALUE)
-        .SetFontColor(value <= CardSlot.MAX_VALUE ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
-        save_button.SetInteractable(value <= CardSlot.MAX_VALUE && cards >= 10).TryUpdate();
+        final boolean valueCheck = value <= AnimatorLoadout.MAX_VALUE;
+        final boolean cardsCheck = cards >= AnimatorLoadout.MIN_CARDS;
+
+        affinityValue_text.SetText("Affinity: +" + affinityLevel).SetActive(affinityLevel > 0).TryUpdate();
+        cardsCount_text.SetText("Cards: {0}", cards).SetFontColor(cardsCheck ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
+        cardsValue_text.SetText("Value: {0}/{1}", value, AnimatorLoadout.MAX_VALUE).SetFontColor(valueCheck ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
+        save_button.SetInteractable(valueCheck && cardsCheck && seen).TryUpdate();
     }
 
     @Override
@@ -152,5 +164,12 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         {
             editor.TryRender(sb);
         }
+    }
+
+    public void Save()
+    {
+        loadout.Slots = slots;
+        GR.Animator.Data.SaveLoadouts(true);
+        AbstractDungeon.closeCurrentScreen();
     }
 }

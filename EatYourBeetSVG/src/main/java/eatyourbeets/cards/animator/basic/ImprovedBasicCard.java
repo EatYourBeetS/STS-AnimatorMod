@@ -26,15 +26,21 @@ public abstract class ImprovedBasicCard extends AnimatorCard
         this.overrideRenderColor = Color.WHITE.cpy().lerp(affinityType.GetAlternateColor(), 0.85f);
     }
 
-    protected void RetainPower()
+    protected void SecondaryEffect()
     {
         if (affinityType == AffinityType.Star)
         {
-            JUtils.FindMax(CombatStats.Affinities.Powers, p -> p.amount).RetainOnce();
+            if (CheckTeamwork(AffinityType.General, magicNumber))
+            {
+                JUtils.FindMax(CombatStats.Affinities.Powers, p -> p.amount).RetainOnce();
+            }
         }
         else
         {
-            CombatStats.Affinities.GetPower(affinityType).RetainOnce();
+            if (CheckTeamwork(affinityType, magicNumber))
+            {
+                CombatStats.Affinities.GetPower(affinityType).RetainOnce();
+            }
         }
     }
 

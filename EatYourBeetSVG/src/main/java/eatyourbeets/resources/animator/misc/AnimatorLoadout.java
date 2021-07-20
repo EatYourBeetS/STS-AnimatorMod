@@ -12,7 +12,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.characters.AnimatorCharacter;
-import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.relics.animator.LivingPicture;
 import eatyourbeets.relics.animator.TheMissingPiece;
 import eatyourbeets.resources.GR;
@@ -22,12 +21,12 @@ import java.util.ArrayList;
 
 public abstract class AnimatorLoadout
 {
-    public CardSlot Slot_Defend = new CardSlot(1, 6);
-    public CardSlot Slot_Strike = new CardSlot(1, 6);
-    public CardSlot Slot_ImprovedDefend = new CardSlot(1, 1);
-    public CardSlot Slot_ImprovedStrike = new CardSlot(1, 1);
-    public CardSlot Slot_Series1 = new CardSlot(0, 1);
-    public CardSlot Slot_Series2 = new CardSlot(0, 1);
+    public static final int MAX_VALUE = 30;
+    public static final int MIN_CARDS = 10;
+
+    public CardSlots Slots;
+    public CardSlot SpecialSlot1;
+    public CardSlot SpecialSlot2;
 
     protected ArrayList<String> startingDeck = new ArrayList<>();
     protected String shortDescription = "";
@@ -59,32 +58,36 @@ public abstract class AnimatorLoadout
         this.ID = series.ID;
     }
 
-    public void InitializeSlots()
-    {
-        Slot_Defend.AddItem(Defend.DATA, -2);
-        Slot_Strike.AddItem(Strike.DATA, -2);
-
-        for (EYBCardData data : ImprovedStrike.GetCards())
-        {
-            Slot_ImprovedStrike.AddItem(data, 1);
-        }
-
-        for (EYBCardData data : ImprovedDefend.GetCards())
-        {
-            Slot_ImprovedDefend.AddItem(data, 1);
-        }
-
-        Slot_Series1.AddSharedSlot(Slot_Series2);
-        Slot_Series2.AddSharedSlot(Slot_Series1);
-    }
-
     public abstract EYBCardData GetSymbolicCard();
     public abstract EYBCardData GetUltraRare();
 
-    protected void AddSeriesItem(EYBCardData data, int estimatedValue)
+    public void InitializeSlots()
     {
-        Slot_Series1.AddItem(data, estimatedValue);
-        Slot_Series2.AddItem(data, estimatedValue);
+        Slots = new CardSlots();
+        Slots.AddSlot(1, 6).AddItem(Defend.DATA, -2);
+        Slots.AddSlot(1, 6).AddItem(Strike.DATA, -2);
+        Slots.AddSlot(0, 1).AddItems(ImprovedStrike.GetCards(), 1);
+        Slots.AddSlot(0, 1).AddItems(ImprovedDefend.GetCards(), 1);
+        SpecialSlot1 = Slots.AddSlot(0, 1);
+        SpecialSlot2 = Slots.AddSlot(0, 1);
+    }
+
+    public void LoadStartingDeck()
+    {
+        if (Slots.Ready)
+        {
+            return;
+        }
+
+        Slots.Get(0).Select(0, 4).GetData().MarkSeen();
+        Slots.Get(1).Select(0, 4).GetData().MarkSeen();
+        Slots.Get(2).Select(null);
+        JUtils.ForEach(ImprovedStrike.GetCards(), EYBCardData::MarkSeen);
+        Slots.Get(3).Select(null);
+        JUtils.ForEach(ImprovedDefend.GetCards(), EYBCardData::MarkSeen);
+        Slots.Get(4).Select(0, 1).GetData().MarkSeen();
+        Slots.Get(5).Select(1, 1).GetData().MarkSeen();
+        Slots.Ready = true;
     }
 
     public CharSelectInfo GetLoadout(String name, String description, AnimatorCharacter animatorCharacter)
@@ -95,25 +98,28 @@ public abstract class AnimatorLoadout
 
     public ArrayList<String> GetStartingDeck()
     {
-        ActionT2<ArrayList<String>, CardSlot> add = (list, slot) ->
+        final ArrayList<String> cards = new ArrayList<>();
+        for (CardSlot slot : Slots)
         {
             EYBCardData data = slot.GetData();
             if (data != null)
             {
                 for (int i = 0; i < slot.amount; i++)
                 {
-                    list.add(data.ID);
+                    cards.add(data.ID);
                 }
             }
-        };
+        }
 
-        ArrayList<String> cards = new ArrayList<>();
-        add.Invoke(cards, Slot_Defend);
-        add.Invoke(cards, Slot_Strike);
-        add.Invoke(cards, Slot_ImprovedDefend);
-        add.Invoke(cards, Slot_ImprovedStrike);
-        add.Invoke(cards, Slot_Series1);
-        add.Invoke(cards, Slot_Series2);
+        if (cards.isEmpty())
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                cards.add(Strike.DATA.ID);
+                cards.add(Defend.DATA.ID);
+            }
+        }
+
         return cards;
     }
 
@@ -231,5 +237,11 @@ public abstract class AnimatorLoadout
         {
             trophies.Trophy3 = Math.max(trophies.Trophy3, ascensionLevel);
         }
+    }
+
+    protected void AddToSpecialSlots(EYBCardData data, int estimatedValue)
+    {
+        SpecialSlot1.AddItem(data, estimatedValue);
+        SpecialSlot2.AddItem(data, estimatedValue);
     }
 }

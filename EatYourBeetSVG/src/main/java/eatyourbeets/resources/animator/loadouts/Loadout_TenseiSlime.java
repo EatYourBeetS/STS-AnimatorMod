@@ -1,6 +1,6 @@
 package eatyourbeets.resources.animator.loadouts;
 
-import eatyourbeets.cards.animator.series.TenseiSlime.Rimuru;
+import eatyourbeets.cards.animator.series.TenseiSlime.*;
 import eatyourbeets.cards.animator.ultrarare.Veldora;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -11,6 +11,18 @@ public class Loadout_TenseiSlime extends AnimatorLoadout
     public Loadout_TenseiSlime()
     {
         super(CardSeries.TenseiSlime);
+    }
+
+    @Override
+    public void InitializeSlots()
+    {
+        super.InitializeSlots();
+
+        AddToSpecialSlots(Benimaru.DATA, 5);
+        AddToSpecialSlots(Shuna.DATA, 5);
+        AddToSpecialSlots(Shion.DATA, 6);
+        AddToSpecialSlots(Souei.DATA, 7);
+        AddToSpecialSlots(Rimuru.DATA, 18);
     }
 
     @Override

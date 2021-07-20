@@ -52,16 +52,31 @@ public class AnimatorCardSlotEditor extends GUIElement
         add_button = CreateButton(0.7f, Color.FOREST, "+");
         change_button = CreateButton(0.5f, Color.SKY, "Next").SetFont(null, 0.75f);
         remove_button = CreateButton(0.3f, Color.FIREBRICK, "-");
+
+        SetSlot(null);
     }
 
     public AnimatorCardSlotEditor SetSlot(CardSlot slot)
     {
+        if (slot == null)
+        {
+            this.slot = null;
+            this.card = null;
+            this.cardAmount_text.SetActive(false);
+            this.cardValue_text.SetActive(false);
+            this.add_button.SetActive(false);
+            this.change_button.SetActive(false);
+            this.remove_button.SetActive(false);
+            return this;
+        }
+
         final boolean add = slot.max > 1;
-        final boolean change = slot.cards.Count() > 1;
+        final boolean change = slot.Cards.Count() > 1;
         final boolean remove = slot.max > slot.min;
 
         this.slot = slot;
-        this.card = slot.GetCard();
+        this.card = slot.GetCard(true);
+        this.cardValue_text.SetActive(true);
         this.cardAmount_text.SetActive(add);
         this.add_button.SetOnClick(this.slot::Add).SetActive(add);
         this.change_button.SetOnClick(this.slot::Next).SetActive(change);
@@ -96,40 +111,36 @@ public class AnimatorCardSlotEditor extends GUIElement
     {
         background_image.Update();
 
-        if (slot != null)
+        if (slot == null)
         {
-            card = slot.GetCard();
-
-            int value = slot.GetEstimatedValue();
-            cardValue_text.SetText(value)
-            .SetFontColor(value == 0 ? Settings.CREAM_COLOR : value < 0 ? Settings.RED_TEXT_COLOR : Settings.GREEN_TEXT_COLOR)
-            .Update();
-
-            if (add_button.isActive)
-            {
-                add_button.SetInteractable(slot.CanAdd()).Update();
-                cardAmount_text.SetText("x" + slot.amount).Update();
-            }
-            if (change_button.isActive)
-            {
-                change_button.Update();
-            }
-            if (remove_button.isActive)
-            {
-                remove_button.SetInteractable(slot.CanRemove()).Update();
-            }
-        }
-        else
-        {
-            card = null;
-            cardValue_text.SetText(0).SetFontColor(Settings.CREAM_COLOR).Update();
+            return;
         }
 
+        card = slot.GetCard(false);
         if (card != null)
         {
             card.drawScale = card.targetDrawScale = CARD_SCALE * 0.97f;
             card.current_x = card.target_x = card.hb.cX = background_image.hb.cX;
             card.current_y = card.target_y = card.hb.cY = background_image.hb.cY;
+        }
+
+        int value = slot.GetEstimatedValue();
+        cardValue_text.SetText(value)
+        .SetFontColor(value == 0 ? Settings.CREAM_COLOR : value < 0 ? Settings.RED_TEXT_COLOR : Settings.GREEN_TEXT_COLOR)
+        .TryUpdate();
+
+        if (add_button.isActive)
+        {
+            add_button.SetInteractable(slot.CanAdd()).Update();
+            cardAmount_text.SetText("x" + slot.amount).Update();
+        }
+        if (change_button.isActive)
+        {
+            change_button.Update();
+        }
+        if (remove_button.isActive)
+        {
+            remove_button.SetInteractable(slot.CanRemove()).Update();
         }
     }
 
@@ -138,7 +149,7 @@ public class AnimatorCardSlotEditor extends GUIElement
     {
         background_image.Render(sb);
         cardValue_text.TryRender(sb);
-        cardAmount_text.Render(sb);
+        cardAmount_text.TryRender(sb);
         add_button.TryRender(sb);
         change_button.TryRender(sb);
         remove_button.TryRender(sb);

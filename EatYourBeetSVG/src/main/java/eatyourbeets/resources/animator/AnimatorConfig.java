@@ -10,6 +10,7 @@ import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.powers.monsters.DarkCubePower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.ConfigOption_Boolean;
+import eatyourbeets.resources.animator.misc.ConfigOption_String;
 import eatyourbeets.utilities.JUtils;
 
 import java.io.IOException;
@@ -19,6 +20,7 @@ import java.util.HashSet;
 public class AnimatorConfig
 {
     private static final String TROPHY_DATA_KEY = "TDAL";
+    private static final String CUSTOM_LOADOUTS_KEY =  "TheAnimator-Loadouts";
     private static final String CROP_CARD_PORTRAIT =  "TheAnimator-UseCroppedPortrait";
     private static final String DISPLAY_BETA_SERIES =  "TheAnimator-DisplayBetaSeries";
     private static final String FADE_CARDS_WITHOUT_SYNERGY =  "TheAnimator-FadeNonSynergicCards";
@@ -28,6 +30,7 @@ public class AnimatorConfig
     private SpireConfig config;
     private HashSet<String> tips = null;
 
+    public ConfigOption_String CustomLoadouts;
     public ConfigOption_Boolean SimplifyCardUI;
     public ConfigOption_Boolean CropCardImages;
     public ConfigOption_Boolean DisplayBetaSeries;
@@ -39,6 +42,7 @@ public class AnimatorConfig
         {
             config = new SpireConfig("TheAnimator", "TheAnimatorConfig");
 
+            CustomLoadouts = new ConfigOption_String(config, CUSTOM_LOADOUTS_KEY, "");
             SimplifyCardUI = new ConfigOption_Boolean(config, HIDE_BLOCK_DAMAGE_BACKGROUND, false);
             FadeCardsWithoutSynergy = new ConfigOption_Boolean(config, FADE_CARDS_WITHOUT_SYNERGY, true);
             DisplayBetaSeries = new ConfigOption_Boolean(config, DISPLAY_BETA_SERIES, false);

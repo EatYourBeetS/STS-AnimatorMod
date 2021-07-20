@@ -5,15 +5,21 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import eatyourbeets.relics.animator.unnamedReign.TheEgnaroPiece;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class FalseLifePotion extends AbstractPotion
 {
-    public static final String POTION_ID = "animator:FalseLifePotion";
-    private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
+    public static final String POTION_ID = GR.Animator.CreateID(FalseLifePotion.class.getSimpleName());
+    public static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
     public static final String NAME = potionStrings.NAME;
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
+
+    private PowerTip descriptionTip;
+    private TheEgnaroPiece relic;
 
     public FalseLifePotion()
     {
@@ -23,10 +29,9 @@ public class FalseLifePotion extends AbstractPotion
     @Override
     public void initializeData()
     {
-        this.potency = this.getPotency();
-        this.description = JUtils.Format(DESCRIPTIONS[0], this.potency);
         this.isThrown = false;
-        this.tips.add(new PowerTip(this.name, this.description));
+        this.potency = this.getPotency();
+        UpdateDescription();
     }
 
     @Override
@@ -42,19 +47,39 @@ public class FalseLifePotion extends AbstractPotion
     }
 
     @Override
+    public void setAsObtained(int potionSlot)
+    {
+        super.setAsObtained(potionSlot);
+
+        if ((relic = GameUtilities.GetRelic(TheEgnaroPiece.ID)) != null)
+        {
+            potency += relic.GetFalseLifePotionPowerIncrease();
+            UpdateDescription();
+            relic.flash();
+            this.flash();
+        }
+    }
+
+    @Override
     public int getPotency(int ascensionLevel)
     {
-        if (ascensionLevel < 7)
+        int result = (ascensionLevel < 7) ? 8 : (ascensionLevel < 14) ? 10 : 12;
+        if (relic != null)
         {
-            return 8;
+            result += relic.GetFalseLifePotionPowerIncrease();
         }
-        else if (ascensionLevel < 14)
+
+        return result;
+    }
+
+    protected void UpdateDescription()
+    {
+        this.description = JUtils.Format(DESCRIPTIONS[0], this.potency) + (relic != null ? (" NL " + relic.GetFalseLifePotionString()) : "");
+        this.descriptionTip.body = description;
+
+        if (!tips.contains(descriptionTip))
         {
-            return 10;
-        }
-        else
-        {
-            return 12;
+            this.tips.add(descriptionTip);
         }
     }
 }

@@ -1,6 +1,6 @@
 package eatyourbeets.resources.animator.loadouts;
 
-import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
+import eatyourbeets.cards.animator.series.Katanagatari.*;
 import eatyourbeets.cards.animator.ultrarare.ShikizakiKiki;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -11,6 +11,18 @@ public class Loadout_Katanagatari extends AnimatorLoadout
     public Loadout_Katanagatari()
     {
         super(CardSeries.Katanagatari);
+    }
+
+    @Override
+    public void InitializeSlots()
+    {
+        super.InitializeSlots();
+
+        AddToSpecialSlots(Azekura.DATA, 5);
+        AddToSpecialSlots(Emonzaemon.DATA, 5);
+        AddToSpecialSlots(UneriGinkaku.DATA, 7);
+        AddToSpecialSlots(Shichika.DATA, 8);
+        AddToSpecialSlots(Togame.DATA, 8);
     }
 
     @Override

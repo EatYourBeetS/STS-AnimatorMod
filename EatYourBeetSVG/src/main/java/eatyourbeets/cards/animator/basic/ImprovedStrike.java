@@ -43,7 +43,15 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
     {
         super(data, type);
 
-        Initialize(type == AffinityType.Star ? 5 : 6, 0);
+        if (affinityType == AffinityType.Star)
+        {
+            Initialize(5, 0, 3);
+        }
+        else
+        {
+            Initialize(6, 0, 2);
+        }
+        SetUpgrade(0, 3);
         SetUpgrade(3, 0);
 
         this.tags.add(CardTags.STARTER_STRIKE);
@@ -51,19 +59,19 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
     }
 
     @Override
+    protected Texture GetPortraitForeground()
+    {
+        return GR.GetTexture(GR.GetCardImage(Strike.DATA.ID + "Alt2"), true);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 
-        if (upgraded && IsStarter())
+        if (upgraded)
         {
-            RetainPower();
+            SecondaryEffect();
         }
-    }
-
-    @Override
-    protected Texture GetPortraitForeground()
-    {
-        return GR.GetTexture(GR.GetCardImage(Strike.DATA.ID + "Alt2"), true);
     }
 }

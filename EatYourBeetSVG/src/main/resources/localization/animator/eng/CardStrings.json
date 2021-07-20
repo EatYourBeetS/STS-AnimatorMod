@@ -16,78 +16,78 @@
 		"animator:Strike_Red":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "Starter: Retain [F]",
+			"UPGRADE_DESCRIPTION": "!M! <R>: Retain [F]",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Red":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "Starter: Retain [F]",
+			"UPGRADE_DESCRIPTION": "!M! <R>: Retain [F]",
 			"NAME": "Improved Defend"
 		},
 		
 		"animator:Strike_Green":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "Starter: Retain [A]",
+			"UPGRADE_DESCRIPTION": "!M! <G>: Retain [A]",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Green":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "Starter: Retain [A]",
+			"UPGRADE_DESCRIPTION": "!M! <G>: Retain [A]",
 			"NAME": "Improved Defend"
 		},
 		
 		"animator:Strike_Blue":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "Starter: Retain [I]",
+			"UPGRADE_DESCRIPTION": "!M! <B>: Retain [I]",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Blue":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "Starter: Retain [I]",
+			"UPGRADE_DESCRIPTION": "!M! <B>: Retain [I]",
 			"NAME": "Improved Defend"
 		},
 	
 		"animator:Strike_Light":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "Starter: Retain [B]",
+			"UPGRADE_DESCRIPTION": "!M! <L>: Retain [B]",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Light":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "Starter: Retain [B]",
+			"UPGRADE_DESCRIPTION": "!M! <L>: Retain [B]",
 			"NAME": "Improved Defend"
 		},
 		
 		"animator:Strike_Dark":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "Starter: Retain [C]",
+			"UPGRADE_DESCRIPTION": "!M! <D>: Retain [C]",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Dark":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "Starter: Retain [C]",
+			"UPGRADE_DESCRIPTION": "!M! <D>: Retain [C]",
 			"NAME": "Improved Defend"
 		},
 		
 		"animator:Strike_Star":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "Starter: Retain your highest {Affinity Power}.",
+			"UPGRADE_DESCRIPTION": "!M! <GEN>: Retain ** your highest ** {Affinity Power}.",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Star":
 		{
 			"DESCRIPTION": "",
-		    "UPGRADE_DESCRIPTION": "Starter: Retain your highest {Affinity Power}.",
+		    "UPGRADE_DESCRIPTION": "!M! <GEN>:  Retain ** your highest ** {Affinity Power}.",
 			"NAME": "Improved Defend"
 		}
 	},

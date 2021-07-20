@@ -1,6 +1,6 @@
 package eatyourbeets.resources.animator.loadouts;
 
-import eatyourbeets.cards.animator.series.FullmetalAlchemist.RoyMustang;
+import eatyourbeets.cards.animator.series.FullmetalAlchemist.*;
 import eatyourbeets.cards.animator.ultrarare.Truth;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -11,6 +11,19 @@ public class Loadout_FullmetalAlchemist extends AnimatorLoadout
     public Loadout_FullmetalAlchemist()
     {
         super(CardSeries.FullmetalAlchemist);
+    }
+
+    @Override
+    public void InitializeSlots()
+    {
+        super.InitializeSlots();
+
+        AddToSpecialSlots(ElricAlphonse.DATA, 4);
+        AddToSpecialSlots(ElricEdward.DATA, 4);
+        AddToSpecialSlots(MaesHughes.DATA, 5);
+        AddToSpecialSlots(RoyMustang.DATA, 8);
+        AddToSpecialSlots(Sloth.DATA, 8);
+        AddToSpecialSlots(Pride.DATA, 10);
     }
 
     @Override

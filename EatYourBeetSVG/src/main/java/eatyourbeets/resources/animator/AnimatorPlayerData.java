@@ -12,7 +12,9 @@ import eatyourbeets.resources.animator.loadouts.*;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
+import eatyourbeets.resources.animator.misc.CardSlot;
 import eatyourbeets.utilities.JUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,7 @@ public class AnimatorPlayerData
         AddBaseLoadouts();
         AddBetaLoadouts();
         DeserializeTrophies(GR.Animator.Config.TrophyString());
+        DeserializeCustomLoadouts(GR.Animator.Config.CustomLoadouts.Get());
 
         if (SelectedLoadout == null || SelectedLoadout.ID < 0)
         {
@@ -85,6 +88,17 @@ public class AnimatorPlayerData
         }
 
         return null;
+    }
+
+    public AnimatorLoadout GetLoadout(int id)
+    {
+        AnimatorLoadout loadout = GetBaseLoadout(id);
+        if (loadout == null)
+        {
+            return GetBetaLoadout(id);
+        }
+
+        return loadout;
     }
 
     public AnimatorLoadout GetLoadout(int id, boolean isBeta)
@@ -171,6 +185,13 @@ public class AnimatorPlayerData
         JUtils.LogInfo(AnimatorPlayerData.class, "Saving Trophies");
 
         GR.Animator.Config.TrophyString(SerializeTrophies(), flush);
+    }
+
+    public void SaveLoadouts(boolean flush)
+    {
+        JUtils.LogInfo(AnimatorPlayerData.class, "Saving Loadouts");
+
+        GR.Animator.Config.CustomLoadouts.Set(SerializeCustomLoadouts(), flush);
     }
 
     private void AddBaseLoadouts()
@@ -294,6 +315,79 @@ public class AnimatorPlayerData
                     }
                 }
             }
+        }
+    }
+
+    //003 Strike@3;Defend@3;animator:Strike_Dark@1|004 Strike@4 ...
+    private String SerializeCustomLoadouts()
+    {
+        StringJoiner sj = new StringJoiner("|");
+        StringBuilder sb = new StringBuilder();
+
+        int level = GR.Animator.GetUnlockLevel();
+        for (AnimatorLoadout loadout : GetEveryLoadout())
+        {
+            if (loadout.UnlockLevel <= level)
+            {
+                sb.setLength(0);
+                sb.append(StringUtils.leftPad(String.valueOf(loadout.ID), 3, '0'));
+                sb.append(" ");
+                for (CardSlot slot : loadout.Slots)
+                {
+                    if (slot.amount > 0)
+                    {
+                        sb.append(slot.GetData().ID);
+                        sb.append("@");
+                        sb.append(slot.amount);
+                        sb.append(";");
+                    }
+                }
+                sj.add(sb.toString());
+            }
+        }
+
+        return Base64Coder.encodeString(sj.toString());
+    }
+
+    private void DeserializeCustomLoadouts(String data)
+    {
+        if (StringUtils.isEmpty(data))
+        {
+            return;
+        }
+
+        final String decoded = Base64Coder.decodeString(data);
+        final String[] strings = decoded.split(Pattern.quote("|"));
+        for (String s : strings)
+        {
+            final int id = JUtils.ParseInt(s.substring(0, 3), -1);
+            final AnimatorLoadout loadout = GetLoadout(id);
+            if (loadout == null)
+            {
+                JUtils.LogWarning(this, "Loadout not found, ID:" + id);
+                continue;
+            }
+
+            int i = 0;
+            for (String card : s.substring(4).split(Pattern.quote(";")))
+            {
+                final int index = card.indexOf("@");
+                final int cardAmount = JUtils.ParseInt(card.substring(index + 1), 0);
+                final String cardID = card.substring(0, index);
+                final CardSlot slot = loadout.Slots.Get(i);
+                for (CardSlot.Item item : slot.Cards)
+                {
+                    if (item.data.ID.equals(cardID))
+                    {
+                        slot.Select(item, cardAmount);
+                        break;
+                    }
+                }
+
+                i += 1;
+            }
+
+            loadout.Slots.Ready = true;
         }
     }
 }

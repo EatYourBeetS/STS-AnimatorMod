@@ -109,18 +109,20 @@ public class AnimatorLoadoutRenderer extends GUIElement
             if (unlockLevel >= loadout.UnlockLevel)
             {
                 this.availableLoadouts.add(loadout);
+                loadout.LoadStartingDeck();
             }
         }
         if (GR.Animator.Config.DisplayBetaSeries.Get())
         {
             for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
             {
-                if (loadout.GetStartingDeck().size() > 0)
+                if (loadout.Slots.Size() > 0)
                 {
                     this.loadouts.add(loadout);
                     if (unlockLevel >= loadout.UnlockLevel)
                     {
                         this.availableLoadouts.add(loadout);
+                        loadout.LoadStartingDeck();
                     }
                 }
             }

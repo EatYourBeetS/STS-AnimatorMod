@@ -19,13 +19,13 @@ public class Loadout_Konosuba extends AnimatorLoadout
     {
         super.InitializeSlots();
 
-        AddSeriesItem(Kazuma.DATA, 4);
-        AddSeriesItem(Aqua.DATA, 4);
-        AddSeriesItem(Mitsurugi.DATA, 5);
-        AddSeriesItem(Chris.DATA, 5);
-        AddSeriesItem(Vanir.DATA, 7);
-        AddSeriesItem(YunYun.DATA, 9);
-        AddSeriesItem(Curse_Greed.DATA, -7);
+        AddToSpecialSlots(Aqua.DATA, 4);
+        AddToSpecialSlots(Kazuma.DATA, 5);
+        AddToSpecialSlots(Chris.DATA, 5);
+        AddToSpecialSlots(Mitsurugi.DATA, 6);
+        AddToSpecialSlots(Vanir.DATA, 7);
+        AddToSpecialSlots(YunYun.DATA, 9);
+        AddToSpecialSlots(Curse_Greed.DATA, -7);
     }
 
     @Override

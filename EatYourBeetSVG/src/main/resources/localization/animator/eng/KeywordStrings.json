@@ -45,7 +45,7 @@
 	},
 	"Ricochet":
 	{
-	  "DESCRIPTION": "Reduce a card's #yRicochet by #b1 for every turn that it is in the Exhaust pile. If it is at #b0, activate this effect.",
+	  "DESCRIPTION": "Reduce a card's #yRicochet by #b1 for every turn that it is in the Exhaust pile. If it is at #b0 while in your Exhaust pile, move it to your draw pile.",
 	  "NAMES": ["ricochet"],
 	  "PROPER_NAME": "Ricochet"
 	},

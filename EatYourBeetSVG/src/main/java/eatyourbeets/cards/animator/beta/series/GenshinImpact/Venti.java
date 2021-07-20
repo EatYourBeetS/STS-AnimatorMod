@@ -5,12 +5,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
-import eatyourbeets.cards.animator.beta.special.Dvalin;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -18,16 +18,12 @@ public class Venti extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Venti.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetMaxCopies(2).SetSeriesFromClassPackage();
     private static final int HINDRANCE_THRESHOLD = 2;
-    static
-    {
-        DATA.AddPreview(new Dvalin(), true);
-    }
 
     public Venti()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 2, 2);
         SetUpgrade(0, 0, 2, 0);
         SetAffinity_Star(2, 0, 0);
 
@@ -65,7 +61,7 @@ public class Venti extends AnimatorCard
 
                     if (hindranceCount >= HINDRANCE_THRESHOLD && CombatStats.TryActivateLimited(cardID))
                     {
-                        GameActions.Bottom.MakeCardInDiscardPile(new Dvalin()).SetUpgrade(upgraded, false);
+                        GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
                     }
                 });
             }

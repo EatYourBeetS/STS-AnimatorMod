@@ -2,15 +2,19 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.BlurPower;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -19,7 +23,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber, OnEvokeOrbSubscriber
+public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber, OnEvokeOrbSubscriber, OnApplyPowerSubscriber
 {
     public static final EYBCardData DATA = Register(Keqing.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing).SetSeriesFromClassPackage();
 
@@ -89,6 +93,14 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     }
 
     @Override
+    public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    {
+        if (power.ID.equals(BlurPower.POWER_ID) && target == player) {
+            this.reduceTurns();
+        }
+    }
+
+    @Override
     public void OnStartOfTurnPostDraw()
     {
         this.reduceTurns();
@@ -106,7 +118,7 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
 
                 if (cost > 0)
                 {
-                    this.modifyCostForCombat(-1);
+                    GameActions.Bottom.Motivate(this, 1);
                 }
                 GameActions.Bottom.ModifyAllInstances(uuid)
                         .AddCallback(c ->

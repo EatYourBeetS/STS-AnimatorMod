@@ -3,7 +3,9 @@ package eatyourbeets.actions.orbs;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class EarthOrbEvokeAction extends EYBAction
 {
@@ -26,8 +28,8 @@ public class EarthOrbEvokeAction extends EYBAction
             for (int i = 0; i < DAMAGE_TICKS; i++)
             {
                 GameActions.Top.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS,
-                rng.randomBoolean() ? AttackEffect.SMASH : AttackEffect.BLUNT_LIGHT)
-                .SetOptions(true, true);
+                AttackEffect.NONE)
+                .SetOptions(true, true).SetDamageEffect(m -> GameEffects.List.Add(VFX.Rock(m.hb)).duration);
             }
         }
 

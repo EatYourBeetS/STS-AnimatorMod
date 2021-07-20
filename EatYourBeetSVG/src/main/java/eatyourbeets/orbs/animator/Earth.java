@@ -12,9 +12,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
 import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
@@ -26,9 +26,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
 {
     public static final String ORB_ID = CreateFullID(Earth.class);
 
-    public static Texture imgRight;
-    public static Texture imgLeft;
-    public static Texture imgMid;
+    public static Texture img;
 
     private final boolean hFlip1;
     private final boolean hFlip2;
@@ -40,11 +38,9 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         super(ORB_ID, true);
 
-        if (imgRight == null)
+        if (img == null)
         {
-            imgRight = ImageMaster.loadImage("images/orbs/animator/EarthRight.png");
-            imgLeft = ImageMaster.loadImage( "images/orbs/animator/EarthLeft.png");
-            imgMid = ImageMaster.loadImage(  "images/orbs/animator/EarthMid.png");
+            img = ImageMaster.loadImage("images/orbs/animator/Earth.png");
         }
 
         this.hFlip1 = MathUtils.randomBoolean();
@@ -106,8 +102,8 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     public void triggerEvokeAnimation()
     {
         //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.1f);
-        //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1f);
-        GameEffects.Queue.Add(new DarkOrbActivateEffect(this.cX, this.cY));
+        CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1f);
+        GameEffects.Queue.Add(VFX.Rock(this.hb));
     }
 
     @Override
@@ -132,16 +128,14 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     public void updateAnimation()
     {
         super.updateAnimation();
-        this.angle += Gdx.graphics.getDeltaTime() * 18f; //180f;
+        this.angle += Gdx.graphics.getDeltaTime() * 180f;
     }
 
     @Override
     public void render(SpriteBatch sb)
     {
         sb.setColor(this.c);
-        sb.draw(imgLeft, this.cX - 48f + this.bobEffect.y / 4f, this.cY - 48f - this.bobEffect.y / 4f, 48f, 48f, 96f, 96f, this.scale, this.scale, 0f, 0, 0, 96, 96, this.hFlip1, false);
-        sb.draw(imgMid, this.cX - 48f - this.bobEffect.y / 4f, this.cY - 48f + this.bobEffect.y / 2f, 48f, 48f, 96f, 96f, this.scale, this.scale, 0f, 0, 0, 96, 96, this.hFlip2, false);
-        sb.draw(imgRight, this.cX - 48f + this.bobEffect.y / 4f, this.cY - 48f + this.bobEffect.y / 4f, 48f, 48f, 96f, 96f, this.scale, this.scale, 0f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.draw(img, this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale, this.scale, this.angle / 12f, 0, 0, 96, 96, this.hFlip1, false);
         this.renderText(sb);
         this.hb.render(sb);
     }

@@ -31,14 +31,19 @@ public class VFX
         return new ClawEffect(source.cX, source.cY, color1, color2);
     }
 
+    public static ColoredSweepingBeamEffect SweepingBeam(AbstractCreature source)
+    {
+        return SweepingBeam(source.hb, source.flipHorizontal, Color.CYAN);
+    }
+
+    public static ColoredSweepingBeamEffect SweepingBeam(Hitbox source, boolean flipHorizontal, Color color)
+    {
+        return new ColoredSweepingBeamEffect(source.cX, source.cY, flipHorizontal, color);
+    }
+
     public static DaggerSprayEffect DaggerSpray()
     {
         return new DaggerSprayEffect(FlipHorizontally());
-    }
-
-    public static ShootingStarsEffect ShootingStars(Hitbox source, float spread)
-    {
-        return new ShootingStarsEffect(source.cX, source.cY, spread, FlipHorizontally());
     }
 
     public static ExplosionSmallEffect SmallExplosion(Hitbox source)
@@ -76,19 +81,19 @@ public class VFX
         return new LightningEffect(target.cX, target.cY);
     }
 
+    public static RockEffect Rock(Hitbox source)
+    {
+        return new RockEffect(source.cX, source.cY);
+    }
+
+    public static ShootingStarsEffect ShootingStars(Hitbox source, float spread)
+    {
+        return new ShootingStarsEffect(source.cX, source.cY, spread, FlipHorizontally());
+    }
+
     public static SnowballEffect Snowball(Hitbox source, Hitbox target)
     {
         return new SnowballEffect(source.cX, source.cY, target.cX, target.cY);
-    }
-
-    public static ColoredSweepingBeamEffect SweepingBeam(AbstractCreature source)
-    {
-        return SweepingBeam(source.hb, source.flipHorizontal, Color.CYAN);
-    }
-
-    public static ColoredSweepingBeamEffect SweepingBeam(Hitbox source, boolean flipHorizontal, Color color)
-    {
-        return new ColoredSweepingBeamEffect(source.cX, source.cY, flipHorizontal, color);
     }
 
     public static VerticalImpactEffect VerticalImpact(Hitbox target)

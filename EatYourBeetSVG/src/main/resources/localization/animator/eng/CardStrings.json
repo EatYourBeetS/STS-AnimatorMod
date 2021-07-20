@@ -620,7 +620,7 @@
 		},
 		"animator:Keqing":
 		{
-		  "DESCRIPTION": "{Ricochet} !S!: This card returns to your Draw Pile, gains {~Haste}, and costs 1 less this combat. ** Reduce {Ricochet} by 1 upon Evoking [Lightning].",
+		  "DESCRIPTION": "{Ricochet} !S!. ** Reduce {Ricochet} by 1 upon Evoking [Lightning] or gaining [Blur]. || When {Exhausted}: Costs 1 less until played and gains {~Haste}.",
 		  "NAME": "Keqing"
 		},
 		"animator:Klee":
@@ -662,7 +662,7 @@
 		},
 		"animator:Venti":
 		{
-			"DESCRIPTION": "Cycle !M! cards. {Channel} 1 [Aether] and Trigger it once for every Skill drawn from this card. || <LIM>. If you drew at least 2 {Hindrances}: Add {Dvalin} to your Discard Pile.",
+			"DESCRIPTION": "Cycle !M! cards. {Channel} 1 [Aether] and Trigger it once for every Skill drawn. || <LIM>. If you drew at least 2 {Hindrances}: Gain !S! [Support Damage].",
 			"NAME": "Venti"
 		},
 		"animator:Zhongli":
@@ -721,7 +721,7 @@
 		},
 		"animator:Midou":
 		{
-			"DESCRIPTION": "Increases damage by 1 for each Orb you have. || On Synergy: Evoke a random Orb.  If you do, add !M! {Burn} to your hand.",
+			"DESCRIPTION": "Add a {Searing Burn} to your hand. || On Synergy: Evoke a random Orb.  If you do, add !M! {Burn} to your hand.",
 			"NAME": "Midou"
 		},
 		"animator:SakuraKashima":

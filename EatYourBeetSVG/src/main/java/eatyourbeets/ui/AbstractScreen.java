@@ -35,12 +35,16 @@ public abstract class AbstractScreen extends GUIElement
             AbstractDungeon.overlayMenu.hideCombatPanels();
         }
 
-        AbstractDungeon.topPanel.unhoverHitboxes();
-        AbstractDungeon.topPanel.potionUi.isHidden = true;
-        AbstractDungeon.dynamicBanner.hide();
-        AbstractDungeon.overlayMenu.proceedButton.hide();
-        AbstractDungeon.overlayMenu.cancelButton.hide();
-        AbstractDungeon.overlayMenu.showBlackScreen(0.7f);
+        if (GameUtilities.InGame())
+        {
+            AbstractDungeon.topPanel.unhoverHitboxes();
+            AbstractDungeon.topPanel.potionUi.isHidden = true;
+
+            AbstractDungeon.dynamicBanner.hide();
+            AbstractDungeon.overlayMenu.proceedButton.hide();
+            AbstractDungeon.overlayMenu.cancelButton.hide();
+            AbstractDungeon.overlayMenu.showBlackScreen(0.7f);
+        }
 
         CardCrawlGame.sound.play("DECK_OPEN");
     }
@@ -57,6 +61,12 @@ public abstract class AbstractScreen extends GUIElement
         {
             AbstractDungeon.previousScreen = null;
             AbstractDungeon.screen = previous;
+        }
+
+        if (AbstractDungeon.player == null)
+        {
+            AbstractDungeon.isScreenUp = !IsNullOrNone(previous);
+            return;
         }
 
         if (IsNullOrNone(previous) || previous == ScreenType)

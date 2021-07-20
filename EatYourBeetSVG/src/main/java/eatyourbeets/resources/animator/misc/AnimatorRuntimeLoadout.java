@@ -12,8 +12,6 @@ import java.util.Map;
 public class AnimatorRuntimeLoadout
 {
     private final static EYBCardTooltip PromotedTooltip = new EYBCardTooltip(GR.Animator.Strings.SeriesSelection.PickupBonusHeader, GR.Animator.Strings.SeriesSelection.PickupBonusBody);
-    private final static float AFFINITY_THRESHOLD = 0.66f;
-    private final static int MAX_AFFINITIES = 2;
 
     public final int ID;
     public final boolean IsBeta;
@@ -77,36 +75,45 @@ public class AnimatorRuntimeLoadout
         if (promoted)
         {
             card = builder
-            .SetText(Loadout.Name, GR.Animator.Strings.SeriesSelection.ContainsNCards_Promoted(Cards.size()), "")
+            .SetText(Loadout.Name, GR.Animator.Strings.SeriesSelection.ContainsNCards_Promoted(Cards.size()), null)
             .SetProperties(temp.type, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.NONE).Build();
             card.tooltips.add(PromotedTooltip);
         }
         else if (Loadout.IsBeta)
         {
             card = builder
-            .SetText(Loadout.Name, GR.Animator.Strings.SeriesSelection.ContainsNCards_Beta(Cards.size()), "")
+            .SetText(Loadout.Name, GR.Animator.Strings.SeriesSelection.ContainsNCards_Beta(Cards.size()), null)
             .SetProperties(temp.type, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.NONE).Build();
         }
         else
         {
             card = builder
-            .SetText(Loadout.Name, GR.Animator.Strings.SeriesSelection.ContainsNCards(Cards.size()), "")
+            .SetText(Loadout.Name, GR.Animator.Strings.SeriesSelection.ContainsNCards(Cards.size()), null)
             .SetProperties(temp.type, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE).Build();
         }
 
         int i = 0;
+        int maxLevel = 2;
+        float maxPercentage = 0;
         for (EYBCardAffinityStatistics.Group g : AffinityStatistics)
         {
-            if (i++ > MAX_AFFINITIES)
+            float percentage = g.GetPercentage(0);
+            if (percentage == 0 || i > 2)
             {
                 break;
             }
 
-            float percentage = g.GetPercentage(0);
-            if (percentage > 0)
+            if (percentage < maxPercentage || (maxLevel == 2 && percentage < 0.3f))
             {
-                card.affinities.Add(g.Type, percentage > AFFINITY_THRESHOLD ? 2 : 1);
+                maxLevel -= 1;
             }
+            if (maxLevel > 0)
+            {
+                card.affinities.Add(g.Type, maxLevel);
+            }
+
+            maxPercentage = percentage;
+            i += 1;
         }
 
         return card;

@@ -66,4 +66,14 @@ public class TheEgnaroPiece extends UnnamedReignRelic
 
         player.energy.energyMaster -= 1;
     }
+
+    public String GetFalseLifePotionString()
+    {
+        return " NL #y" + name.replace(" ", " #y") + " increases the power of this potion by #b" + GetFalseLifePotionPowerIncrease() + ".";
+    }
+
+    public int GetFalseLifePotionPowerIncrease()
+    {
+        return 1;
+    }
 }

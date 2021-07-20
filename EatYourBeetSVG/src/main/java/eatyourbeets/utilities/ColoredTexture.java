@@ -7,9 +7,11 @@ public class ColoredTexture
 {
     public Color color;
     public Texture texture;
+    public float scale;
 
     public ColoredTexture(Texture texture, Color color, float alpha)
     {
+        this.scale = 1;
         this.texture = texture;
 
         if (color != null)
@@ -37,5 +39,15 @@ public class ColoredTexture
     public int GetHeight()
     {
         return texture.getHeight();
+    }
+
+    public ColoredTexture SetColor(Color color)
+    {
+        this.color.r = color.r;
+        this.color.g = color.g;
+        this.color.b = color.b;
+        this.color.a = color.a;
+
+        return this;
     }
 }

@@ -216,6 +216,11 @@ public class RenderHelpers
                 scale, scale, card.angle + imgRotation, 0, 0, img.getWidth(), img.getHeight(), false, false);
     }
 
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Color color, float drawX, float drawY, float width, float height)
+    {
+        DrawOnCardAuto(sb, card, img, new Vector2(drawX, drawY), width, height, color, color.a, 1, 0);
+    }
+
     public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY, float width, float height)
     {
         DrawOnCardAuto(sb, card, img, new Vector2(drawX, drawY), width, height, Color.WHITE, card.transparency, 1, 0);

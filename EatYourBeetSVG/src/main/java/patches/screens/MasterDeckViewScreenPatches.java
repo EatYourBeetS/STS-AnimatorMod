@@ -45,7 +45,7 @@ public class MasterDeckViewScreenPatches
         public static void Prefix(MasterDeckViewScreen __instance)
         {
             screen = __instance;
-            GR.UI.CardAffinities.Open(AbstractDungeon.player.masterDeck.group, c -> screen.setSortOrder(new CardAffinityComparator(c.Type)));
+            GR.UI.CardAffinities.Open(AbstractDungeon.player.masterDeck.group, false, c -> screen.setSortOrder(new CardAffinityComparator(c.Type)));
         }
     }
 

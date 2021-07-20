@@ -30,11 +30,12 @@ public class EYBCombatInfo extends GUIElement
         dragPanel_image = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
         .SetColor(0.05f, 0.05f, 0.05f, 0.5f);
 
-        AffinityType[] values = AffinityType.values();
+        AffinityType[] values = AffinityType.BasicTypes();
         for (int i = 0; i < values.length; i++)
         {
-            rows.add(new EYBCombatInfo_AffinityRow(values[i], hb, i, values.length));
+            rows.add(new EYBCombatInfo_AffinityRow(values[i], hb, i, values.length + 1));
         }
+        rows.add(new EYBCombatInfo_AffinityRow(AffinityType.General, hb, values.length, values.length + 1));
     }
 
     @Override

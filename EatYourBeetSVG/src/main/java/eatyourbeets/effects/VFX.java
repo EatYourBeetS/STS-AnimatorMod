@@ -1,6 +1,7 @@
 package eatyourbeets.effects;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
@@ -11,9 +12,19 @@ import eatyourbeets.effects.vfx.*;
 
 public class VFX
 {
-    private static boolean FlipHorizontally()
+    public static CataclysmEffect Cataclysm()
     {
-        return AbstractDungeon.player.flipHorizontal;
+        return new CataclysmEffect();
+    }
+
+    public static MeteorFallEffect MeteorFall(Hitbox hb)
+    {
+        return new MeteorFallEffect(hb.cX, hb.cY, MathUtils.random(-0.2f, 0.2f) * hb.width, MathUtils.random(-0.2f, 0.2f) * hb.height);
+    }
+
+    public static boolean FlipHorizontally()
+    {
+        return AbstractDungeon.player.flipHorizontal || AbstractDungeon.getMonsters().shouldFlipVfx();
     }
 
     public static BiteEffect2 Bite(Hitbox target)

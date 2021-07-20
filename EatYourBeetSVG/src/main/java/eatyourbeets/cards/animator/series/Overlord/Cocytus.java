@@ -3,12 +3,11 @@ package eatyourbeets.cards.animator.series.Overlord;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Cocytus extends AnimatorCard
 {
@@ -31,7 +30,7 @@ public class Cocytus extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
 
-        if (GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID) <= magicNumber)
+        if (CombatStats.Affinities.GetPower(AffinityType.Red).amount <= magicNumber)
         {
             GameActions.Bottom.GainForce(1, true);
         }

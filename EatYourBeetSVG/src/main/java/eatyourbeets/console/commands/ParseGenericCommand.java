@@ -12,6 +12,8 @@ import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.auras.Aura;
+import eatyourbeets.cards.animator.basic.ImprovedDefend;
+import eatyourbeets.cards.animator.basic.ImprovedStrike;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -48,6 +50,19 @@ public class ParseGenericCommand extends ConsoleCommand
                 {
                     player.tint.color.a = (tokens.length > 2 ? JUtils.ParseFloat(tokens[2], 1) : 0.3f);
 
+                    return;
+                }
+
+                if (tokens[1].equals("strike-defend"))
+                {
+                    for (EYBCardData data : ImprovedDefend.GetCards())
+                    {
+                        player.masterDeck.group.add(data.CreateNewInstance(true));
+                    }
+                    for (EYBCardData data : ImprovedStrike.GetCards())
+                    {
+                        player.masterDeck.group.add(data.CreateNewInstance(true));
+                    }
                     return;
                 }
 

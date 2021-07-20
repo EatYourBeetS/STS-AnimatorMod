@@ -371,6 +371,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
             GameEffects.TopLevelQueue.SpawnRelic(new PurgingStone(), purgingStoneImage.hb.cX, purgingStoneImage.hb.cY);
         }
 
+        SingleCardViewPopup.isViewingUpgrade = false;
         cardGrid.Clear();
         container.CommitChanges();
         AbstractDungeon.closeCurrentScreen();
@@ -380,7 +381,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     {
         if (GR.UI.CardAffinities.isActive)
         {
-            GR.UI.CardAffinities.Open(container.GetAllCardsInPool(), c ->
+            GR.UI.CardAffinities.Open(container.GetAllCardsInPool(), true, c ->
             {
                 CardGroup group = GameUtilities.CreateCardGroup(c.AffinityGroup.GetCards());
                 if (group.size() > 0 && previewCardsEffect == null)

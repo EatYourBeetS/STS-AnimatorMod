@@ -796,6 +796,11 @@ public class GameUtilities
 
     public static <T extends AbstractRelic> T GetRelic(String relicID)
     {
+        if (player == null)
+        {
+            return null;
+        }
+
         for (AbstractRelic relic : player.relics)
         {
             if (relic != null && relicID.equals(relic.relicId))

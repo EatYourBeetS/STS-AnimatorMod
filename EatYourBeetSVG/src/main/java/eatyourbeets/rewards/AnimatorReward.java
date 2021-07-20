@@ -8,7 +8,10 @@ import com.megacrit.cardcrawl.daily.mods.Binary;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -33,7 +36,11 @@ public abstract class AnimatorReward extends CustomReward
             bonus += level / (level + 100f);
         }
 
-        if (loadout != null && loadout.IsBeta)
+        if (loadout == null)
+        {
+            return 7f * bonus;
+        }
+        else if (loadout.IsBeta)
         {
             return 6f * bonus;
         }
@@ -118,16 +125,10 @@ public abstract class AnimatorReward extends CustomReward
         int currentLevel = GR.Animator.GetUnlockLevel();
         if (currentLevel <= 2 || AbstractDungeon.floorNum < 8 || AbstractDungeon.floorNum > 36 || cards.isEmpty())
         {
-            JUtils.LogInfo(this, "Unlucky");
             return;
         }
 
-        AnimatorLoadout loadout = GR.Animator.Data.GetLoadout(series);
-        if (loadout == null)
-        {
-            return;
-        }
-
+        final AnimatorLoadout loadout = GR.Animator.Data.GetLoadout(series);
         float chances = GetUltraRareChance(loadout);
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
         {
@@ -148,7 +149,7 @@ public abstract class AnimatorReward extends CustomReward
         float roll = AbstractDungeon.cardRng.random(100f);
         if (roll < chances)
         {
-            EYBCardData data = loadout.GetUltraRare();
+            EYBCardData data = AnimatorCard_UltraRare.GetCardData(loadout);
             if (data != null)
             {
                 cards.set(Math.min(1, cards.size() - 1), data.CreateNewInstance());

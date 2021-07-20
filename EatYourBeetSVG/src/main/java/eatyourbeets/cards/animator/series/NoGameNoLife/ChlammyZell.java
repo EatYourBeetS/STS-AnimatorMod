@@ -4,13 +4,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.animator.special.ChlammyZellScheme;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.affinity.IntellectPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class ChlammyZell extends AnimatorCard
 {
@@ -39,7 +38,7 @@ public class ChlammyZell extends AnimatorCard
         GameActions.Bottom.Draw(2);
         GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
 
-        if (GameUtilities.GetPowerAmount(IntellectPower.POWER_ID) >= secondaryValue && CombatStats.TryActivateLimited(cardID))
+        if (CombatStats.Affinities.GetPower(AffinityType.Blue).amount >= secondaryValue && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.MakeCardInHand(new ChlammyZellScheme());
         }

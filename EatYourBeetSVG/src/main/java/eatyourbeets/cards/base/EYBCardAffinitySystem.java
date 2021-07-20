@@ -1,5 +1,6 @@
 package eatyourbeets.cards.base;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
@@ -179,7 +180,7 @@ public class EYBCardAffinitySystem implements OnStartOfTurnSubscriber
             {
                 if (p.amount > 0)
                 {
-                    block += card.affinities.GetScaling(p.affinityType, true) * p.amount;
+                    block = ApplyScaling(p, card, block);
                 }
             }
         }
@@ -195,11 +196,16 @@ public class EYBCardAffinitySystem implements OnStartOfTurnSubscriber
             {
                 if (p.amount > 0)
                 {
-                    damage += card.affinities.GetScaling(p.affinityType, true) * p.amount;
+                    damage = ApplyScaling(p, card, damage);
                 }
             }
         }
 
         return damage;
+    }
+
+    protected float ApplyScaling(AbstractAffinityPower power, EYBCard card, float base)
+    {
+        return base + MathUtils.ceil(card.affinities.GetScaling(power.affinityType, true) * power.amount * 0.5f);
     }
 }

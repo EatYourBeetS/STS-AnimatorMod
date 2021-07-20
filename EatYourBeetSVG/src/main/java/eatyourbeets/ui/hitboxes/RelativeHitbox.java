@@ -74,4 +74,11 @@ public class RelativeHitbox extends AdvancedHitbox
 
         UpdateTargetPosition();
     }
+
+    public static RelativeHitbox SetPercentageOffset(Hitbox hb, Float x, Float y)
+    {
+        RelativeHitbox hitbox = (RelativeHitbox)hb;
+        hitbox.SetPercentageOffset(x == null ? hitbox.offset_cX : x, y == null ? hitbox.offset_cY : y);
+        return hitbox;
+    }
 }

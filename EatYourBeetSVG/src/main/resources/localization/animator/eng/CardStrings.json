@@ -2,185 +2,93 @@
 {
 	"BASIC":
 	{
-		"animator:Defend":
-		{
-			"DESCRIPTION": "",
-			"NAME": "Defend"
-		},
-		"animator:Defend_AccelWorld":
-		{
-			"DESCRIPTION": "When Discarded: ** Gain !M! [Block].",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_Elsword":
-		{
-			"DESCRIPTION": "Next turn: ** Gain !M! [Block].",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_Fate":
-		{
-			"DESCRIPTION": "Gain !M! additional [Block] ** for each enemy.",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_FullmetalAlchemist":
-		{
-			"DESCRIPTION": "Cooldown !S!: ** {Channel} 1 [Frost].",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_GATE":
-		{
-			"DESCRIPTION": "",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_GoblinSlayer":
-		{
-			"DESCRIPTION": "",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_HitsugiNoChaika":
-		{
-			"DESCRIPTION": "Cycle 1 card.",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_Kancolle":
-		{
-			"DESCRIPTION": "<LIM>. Gain !M! [Gold].",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_Katanagatari":
-		{
-			"DESCRIPTION": "Gain !M! {Temp}. [Thorns].",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_Konosuba":
-		{
-			"DESCRIPTION": "",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_LogHorizon":
-		{
-			"DESCRIPTION": "Synergizes with {Spellcasters}.",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_MadokaMagica":
-		{
-			"DESCRIPTION": "<LIM>. Add a ** [Grief Seed] to the top of ** your draw pile.",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_NoGameNoLife":
-		{
-			"DESCRIPTION": "Retain your leftmost ** playable card.",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_OnePunchMan":
-		{
-			"DESCRIPTION": "<LIM>. Next ** turn: Gain [E].",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_Overlord":
-		{
-			"DESCRIPTION": "Increase this card's ** [Block] by !M! this combat.",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_OwariNoSeraph":
-		{
-			"DESCRIPTION": "When Exhausted: ** Apply !M! [Weak] to ** ALL enemies.",
-			"NAME": "Improved Defend"
-		},
-		"animator:Defend_TenSura":
-		{
-			"DESCRIPTION": "",
-			"NAME": "Improved Defend"
-		},
 		"animator:Strike":
 		{
 			"DESCRIPTION": "",
 			"NAME": "Strike"
 		},
-		"animator:Strike_AccelWorld":
-		{
-			"DESCRIPTION": "When Discarded: ** Deal !M! damage to ** a random enemy.",
-			"NAME": "Improved Strike"
-		},
-		"animator:Strike_Elsword":
-		{
-			"DESCRIPTION": "Apply !M! [Burning].",
-			"NAME": "Improved Strike"
-		},
-		"animator:Strike_Fate":
-		{
-			"DESCRIPTION": "If you have less ** than 3 cards in ** hand: Gain [E].",
-			"NAME": "Improved Strike"
-		},
-		"animator:Strike_FullmetalAlchemist":
-		{
-			"DESCRIPTION": "Cooldown !S! : ** Channel 1 [Lightning].",
-			"NAME": "Improved Strike"
-		},
-		"animator:Strike_GATE":
-		{
-			"DESCRIPTION": "Next turn: <DRW>.",
-			"NAME": "Improved Strike"
-		},
-		"animator:Strike_GoblinSlayer":
+		"animator:Defend":
 		{
 			"DESCRIPTION": "",
-			"NAME": "Improved Strike"
+			"NAME": "Defend"
 		},
-		"animator:Strike_HitsugiNoChaika":
-		{
-			"DESCRIPTION": "Apply !M! [Poison].",
-			"NAME": "Improved Strike"
-		},
-		"animator:Strike_Kancolle":
-		{
-			"DESCRIPTION": "<LIM>. Gain !M! [Gold].",
-			"NAME": "Improved Strike"
-		},
-		"animator:Strike_Katanagatari":
+		
+		"animator:Strike_Red":
 		{
 			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "!M! <R>: Retain [F]",
 			"NAME": "Improved Strike"
 		},
-		"animator:Strike_Konosuba":
+		"animator:Defend_Red":
 		{
 			"DESCRIPTION": "",
-			"NAME": "Improved Strike"
+			"UPGRADE_DESCRIPTION": "!M! <R>: Retain [F]",
+			"NAME": "Improved Defend"
 		},
-		"animator:Strike_LogHorizon":
-		{
-			"DESCRIPTION": "Synergizes with {Martial Artists}.",
-			"NAME": "Improved Strike"
-		},
-		"animator:Strike_MadokaMagica":
-		{
-			"DESCRIPTION": "Scry !M!.",
-			"NAME": "Improved Strike"
-		},
-		"animator:Strike_NoGameNoLife":
-		{
-			"DESCRIPTION": "Retain your rightmost ** playable card.",
-			"NAME": "Improved Strike"
-		},
-		"animator:Strike_OnePunchMan":
-		{
-			"DESCRIPTION": "Draw a {Strike}.",
-			"NAME": "Improved Strike"
-		},
-		"animator:Strike_Overlord":
-		{
-			"DESCRIPTION": "Increase this card's ** damage by !M! this ** combat.",
-			"NAME": "Improved Strike"
-		},
-		"animator:Strike_OwariNoSeraph":
-		{
-			"DESCRIPTION": "When Exhausted: ** Apply !M! [Vulnerable] to ** ALL enemies.",
-			"NAME": "Improved Strike"
-		},
-		"animator:Strike_TenSura":
+		
+		"animator:Strike_Green":
 		{
 			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "!M! <G>: Retain [A]",
 			"NAME": "Improved Strike"
+		},
+		"animator:Defend_Green":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "!M! <G>: Retain [A]",
+			"NAME": "Improved Defend"
+		},
+		
+		"animator:Strike_Blue":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "!M! <B>: Retain [I]",
+			"NAME": "Improved Strike"
+		},
+		"animator:Defend_Blue":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "!M! <B>: Retain [I]",
+			"NAME": "Improved Defend"
+		},
+	
+		"animator:Strike_Light":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "!M! <L>: Retain [B]",
+			"NAME": "Improved Strike"
+		},
+		"animator:Defend_Light":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "!M! <L>: Retain [B]",
+			"NAME": "Improved Defend"
+		},
+		
+		"animator:Strike_Dark":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "!M! <D>: Retain [C]",
+			"NAME": "Improved Strike"
+		},
+		"animator:Defend_Dark":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "!M! <D>: Retain [C]",
+			"NAME": "Improved Defend"
+		},
+		
+		"animator:Strike_Star":
+		{
+			"DESCRIPTION": "",
+			"UPGRADE_DESCRIPTION": "!M! <GEN>: Retain ** your highest ** {Affinity Power}.",
+			"NAME": "Improved Strike"
+		},
+		"animator:Defend_Star":
+		{
+			"DESCRIPTION": "",
+		    "UPGRADE_DESCRIPTION": "!M! <GEN>:  Retain ** your highest ** {Affinity Power}.",
+			"NAME": "Improved Defend"
 		}
 	},
 	"BETA":
@@ -1354,7 +1262,7 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !S! [I]. ** Gain !M! Orb Slot(s). || 2 <B> 2 <R>: ** Channel 1 [Earth].",
+			"DESCRIPTION": "Gain !S! [I]. ** Gain !M! Orb Slot(s). || 2 <B>, 2 <R>: ** Channel 1 [Earth].",
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":
@@ -1701,7 +1609,7 @@
 		},
 		"animator:Rayneshia":
 		{
-			"DESCRIPTION": "<DRW-M>. Move !M! ** cards to your draw pile. || <LIM>. <TM-S>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
+			"DESCRIPTION": "<DRW-M>. Move !M! ** cards to your draw pile. || <LIM>. !S! <GEN>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
 			"NAME": "Rayneshia"
 		},
 		"animator:RundelhausCode":
@@ -2349,6 +2257,11 @@
 		{
 			"DESCRIPTION": "<DRW>. || <SLM>. When ** Exhausted: Return this ** card to your hand and ** gain [E] [E]",
 			"NAME": "Chomusuke"
+		},
+		"animator:Cthulhu":
+		{
+			"DESCRIPTION": "This card's cost cannot ** be reduced, except by ** its own effect. || When Drawn: Add ** {Madness} to your hand.",
+			"NAME": "Cthulhu"
 		},
 		"animator:Giselle":
 		{

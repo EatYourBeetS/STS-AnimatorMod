@@ -9,11 +9,13 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.utilities.GameEffects;
 
 public abstract class EYBEffect extends AbstractGameEffect
 {
+    public static final Random RNG = new Random();
     public final AbstractPlayer player;
     public boolean isRealtime;
     public int ticks;

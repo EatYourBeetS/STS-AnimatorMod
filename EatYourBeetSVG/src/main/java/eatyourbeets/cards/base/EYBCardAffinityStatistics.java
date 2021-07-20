@@ -29,7 +29,7 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
     public EYBCardAffinityStatistics(Collection<AbstractCard> cards)
     {
         AddCards(cards);
-        RefreshStatistics();
+        RefreshStatistics(false);
     }
 
     public ArrayList<EYBCardAffinities> GetAffinities()
@@ -72,13 +72,23 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
         }
     }
 
-    public ArrayList<Group> RefreshStatistics()
+    public ArrayList<Group> RefreshStatistics(boolean showUpgrades)
     {
+        for (Group g : groups)
+        {
+            g.Reset();
+        }
+
         for (EYBCardAffinities a : list)
         {
             for (AffinityType t : AffinityType.AllTypes())
             {
-                GetGroup(t).Add(a.GetLevel(t, true));
+                int level = a.GetLevel(t, true);
+                if (showUpgrades)
+                {
+                    level += a.GetUpgrade(t, true);
+                }
+                GetGroup(t).Add(level);
             }
         }
 

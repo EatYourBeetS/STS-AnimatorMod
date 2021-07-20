@@ -209,7 +209,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
 
     public AnimatorCardBuilder SetText(String name, String description, String upgradeDescription)
     {
-        return SetText(name, description, upgradeDescription, new String[0]);
+        return SetText(name, description, upgradeDescription != null ? upgradeDescription : description, new String[0]);
     }
 
     public AnimatorCardBuilder SetText(String name, String description, String upgradeDescription, String[] extendedDescription)

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.ui.AbstractScreen;
 import eatyourbeets.ui.animator.cardReward.CardAffinityPanel;
+import eatyourbeets.ui.animator.characterSelection.AnimatorLoadoutEditor;
 import eatyourbeets.ui.animator.combat.EYBCombatScreen;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorSeriesSelectScreen;
 import eatyourbeets.ui.common.EYBSingleCardPopup;
@@ -24,6 +25,7 @@ public class UIManager
     public EYBSingleCardPopup CardPopup;
     public AbstractScreen CurrentScreen;
     public AnimatorSeriesSelectScreen SeriesSelection;
+    public AnimatorLoadoutEditor LoadoutEditor;
     public CardAffinityPanel CardAffinities;
 
     public void Initialize()
@@ -32,6 +34,7 @@ public class UIManager
         CombatScreen = new EYBCombatScreen();
         CardPopup = new EYBSingleCardPopup();
         SeriesSelection = new AnimatorSeriesSelectScreen();
+        LoadoutEditor = new AnimatorLoadoutEditor();
     }
 
     public void Dispose()

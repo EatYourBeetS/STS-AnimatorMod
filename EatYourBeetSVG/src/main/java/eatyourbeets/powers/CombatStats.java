@@ -27,7 +27,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinitySystem;
 import eatyourbeets.interfaces.subscribers.*;
-import eatyourbeets.powers.common.FortuityPower;
+import eatyourbeets.powers.common.ResiliencePower;
 import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
@@ -664,7 +664,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             power.priority = -2097;
         }
-        else if (FortuityPower.POWER_ID.equals(power.ID))
+        else if (ResiliencePower.POWER_ID.equals(power.ID))
         {
             power.priority = -2096;
         }

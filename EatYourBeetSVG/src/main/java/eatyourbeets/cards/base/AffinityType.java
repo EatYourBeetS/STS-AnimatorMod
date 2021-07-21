@@ -97,7 +97,7 @@ public enum AffinityType implements Comparable<AffinityType>
 
             case Blue: return GR.Tooltips.Intellect.icon;
 
-            case Orange: return GR.Tooltips.Luck.icon;
+            case Orange: return GR.Tooltips.Willpower.icon;
 
             case Light: return GR.Tooltips.Blessing.icon;
 

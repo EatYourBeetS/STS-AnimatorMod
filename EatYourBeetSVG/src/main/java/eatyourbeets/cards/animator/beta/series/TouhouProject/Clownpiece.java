@@ -21,7 +21,8 @@ public class Clownpiece extends AnimatorCard
 
         Initialize(0, 0, 1, 0);
         SetUpgrade(0, 0, 0, 0);
-        SetAffinity_Orange(2, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
+        SetAffinity_Orange(1, 0, 0);
         SetExhaust(true);
 
     }

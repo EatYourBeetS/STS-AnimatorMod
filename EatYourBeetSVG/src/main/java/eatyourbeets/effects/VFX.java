@@ -1,6 +1,7 @@
 package eatyourbeets.effects;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -82,6 +83,12 @@ public class VFX
         return new FlashAttackEffect(target.cX, target.cY, effect, muteSFX);
     }
 
+    public static GenericThrowEffect GenericThrow(Hitbox source, Hitbox target, Texture img)
+    {
+        return new GenericThrowEffect(img, source.cX, source.cY, target.cX, target.cY);
+    }
+
+
     public static HemokinesisEffect2 Hemokinesis(Hitbox source, Hitbox target)
     {
         return new HemokinesisEffect2(target.cX, target.cY, source.cX, source.cY);
@@ -92,9 +99,14 @@ public class VFX
         return new LightningEffect(target.cX, target.cY);
     }
 
-    public static RockEffect Rock(Hitbox source)
+    public static RockBurstEffect RockBurst(Hitbox source, float scale)
     {
-        return new RockEffect(source.cX, source.cY);
+        return new RockBurstEffect(source.cX, source.cY, scale);
+    }
+
+    public static RockBurstEffect RockBurst(Hitbox source, float scale, float spread)
+    {
+        return new RockBurstEffect(source.cX + MathUtils.random(-spread, spread), source.cY + MathUtils.random(-spread, spread), scale);
     }
 
     public static ShootingStarsEffect ShootingStars(Hitbox source, float spread)

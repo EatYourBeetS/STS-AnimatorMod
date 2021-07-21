@@ -4,12 +4,13 @@ import basemod.BaseMod;
 import basemod.abstracts.CustomUnlock;
 import basemod.abstracts.CustomUnlockBundle;
 import com.badlogic.gdx.utils.Base64Coder;
-import eatyourbeets.resources.animator.loadouts.beta.*;
 import com.megacrit.cardcrawl.unlock.AbstractUnlock;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts.*;
+import eatyourbeets.resources.animator.loadouts.beta.*;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
@@ -258,14 +259,20 @@ public class AnimatorPlayerData
 
     private void AddBetaLoadouts()
     {
+        final ActionT1<AnimatorLoadout> add = (loadout) ->
+        {
+            BetaLoadouts.add(loadout);
+            loadout.InitializeSlots();
+        };
+
         BetaLoadouts.clear();
-        BetaLoadouts.add(new DateALive());
-        BetaLoadouts.add(new Rewrite());
-        BetaLoadouts.add(new AngelBeats());
-        BetaLoadouts.add(new TouhouProject());
-        BetaLoadouts.add(new RozenMaiden());
-        BetaLoadouts.add(new Bleach());
-        BetaLoadouts.add(new GenshinImpact());
+        add.Invoke(new Loadout_DateALive());
+        add.Invoke(new Loadout_Rewrite());
+        add.Invoke(new Loadout_AngelBeats());
+        add.Invoke(new Loadout_TouhouProject());
+        add.Invoke(new Loadout_RozenMaiden());
+        add.Invoke(new Loadout_Bleach());
+        add.Invoke(new Loadout_GenshinImpact());
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...

@@ -51,7 +51,18 @@
 			"UPGRADE_DESCRIPTION": "!M! <B>: Retain [I]",
 			"NAME": "Improved Defend"
 		},
-	
+		"animator:Strike_Orange":
+		{
+		  "DESCRIPTION": "",
+		  "UPGRADE_DESCRIPTION": "!M! <L>: Retain [L]",
+		  "NAME": "Improved Strike"
+		},
+		"animator:Defend_Orange":
+		{
+		  "DESCRIPTION": "",
+		  "UPGRADE_DESCRIPTION": "!M! <L>: Retain [L]",
+		  "NAME": "Improved Defend"
+		},
 		"animator:Strike_Light":
 		{
 			"DESCRIPTION": "",
@@ -64,7 +75,6 @@
 			"UPGRADE_DESCRIPTION": "!M! <L>: Retain [B]",
 			"NAME": "Improved Defend"
 		},
-		
 		"animator:Strike_Dark":
 		{
 			"DESCRIPTION": "",
@@ -629,7 +639,7 @@
 		},
 		"animator:Midou":
 		{
-			"DESCRIPTION": "Add a {Searing Burn} to your hand. || On Synergy: Evoke a random Orb.  If you do, add !M! {Burn} to your hand.",
+			"DESCRIPTION": "{Induce} [Fire]. Add a {Burn} to your hand. || <LIM>. When Exhausted: Transform all {Burns} in your hand or Draw pile into {Searing Burn}.",
 			"NAME": "Midou"
 		},
 		"animator:SakuraKashima":

@@ -23,6 +23,7 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
             list.add(Defend_Red.DATA);
             list.add(Defend_Green.DATA);
             list.add(Defend_Blue.DATA);
+            list.add(Defend_Orange.DATA);
             list.add(Defend_Light.DATA);
             list.add(Defend_Dark.DATA);
             list.add(Defend_Star.DATA);

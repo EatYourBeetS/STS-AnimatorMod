@@ -65,7 +65,7 @@ import eatyourbeets.powers.affinity.CorruptionPower;
 import eatyourbeets.powers.affinity.*;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
-import eatyourbeets.powers.common.FortuityPower;
+import eatyourbeets.powers.common.ResiliencePower;
 import eatyourbeets.powers.common.TemporaryArtifactPower;
 import eatyourbeets.powers.common.VitalityPower;
 
@@ -471,9 +471,9 @@ public final class GameActions
         return StackAffinityPower(IntellectPower.AFFINITY_TYPE, amount, false);
     }
 
-    public ApplyAffinityPower GainLuck(int amount)
+    public ApplyAffinityPower GainWillpower(int amount)
     {
-        return StackAffinityPower(LuckPower.AFFINITY_TYPE, amount, false);
+        return StackAffinityPower(WillpowerPower.AFFINITY_TYPE, amount, false);
     }
 
     public ApplyAffinityPower GainBlessing(int amount)
@@ -501,9 +501,9 @@ public final class GameActions
         return StackAffinityPower(IntellectPower.AFFINITY_TYPE, amount, retain);
     }
 
-    public ApplyAffinityPower GainLuck(int amount, boolean retain)
+    public ApplyAffinityPower GainWillpower(int amount, boolean retain)
     {
-        return StackAffinityPower(LuckPower.AFFINITY_TYPE, amount, retain);
+        return StackAffinityPower(WillpowerPower.AFFINITY_TYPE, amount, retain);
     }
 
     public ApplyAffinityPower GainBlessing(int amount, boolean retain)
@@ -593,7 +593,7 @@ public final class GameActions
 
     public ApplyPower GainFortuity(int amount)
     {
-        return StackPower(new FortuityPower(player, amount));
+        return StackPower(new ResiliencePower(player, amount));
     }
 
     public HealCreature Heal(AbstractCreature source, AbstractCreature target, int amount)

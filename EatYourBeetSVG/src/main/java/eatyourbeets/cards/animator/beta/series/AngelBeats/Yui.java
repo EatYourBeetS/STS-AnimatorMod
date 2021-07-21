@@ -38,7 +38,7 @@ public class Yui extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainLuck(1, upgraded);
+        GameActions.Bottom.GainWillpower(1, upgraded);
         GameActions.Bottom.Motivate(secondaryValue);
 
         if (CombatStats.ControlPile.Contains(this))

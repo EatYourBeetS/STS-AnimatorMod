@@ -22,15 +22,18 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import patches.orbs.AbstractOrbPatches;
 
+import java.util.ArrayList;
+
 public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber
 {
     public static final String ORB_ID = CreateFullID(Earth.class);
+    public static final int HIT_COUNT = 8;
 
-    public static Texture img;
+    public static Texture imgExt1;
+    public static Texture imgExt2;
 
     private final boolean hFlip1;
-    private final boolean hFlip2;
-
+    private final ArrayList<EarthParticle> particles = new ArrayList<>();
     private boolean evoked;
     private int turns;
 
@@ -38,13 +41,13 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         super(ORB_ID, true);
 
-        if (img == null)
+        if (imgExt1 == null || imgExt2 == null)
         {
-            img = ImageMaster.loadImage("images/orbs/animator/Earth.png");
+            imgExt1 = ImageMaster.loadImage("images/orbs/animator/Earth.png");
+            imgExt2 = ImageMaster.loadImage("images/orbs/animator/Earth2.png");
         }
 
         this.hFlip1 = MathUtils.randomBoolean();
-        this.hFlip2 = MathUtils.randomBoolean();
         this.evoked = false;
         this.baseEvokeAmount = 16;
         this.evokeAmount = this.baseEvokeAmount;
@@ -53,6 +56,13 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         this.channelAnimTimer = 0.5f;
         this.turns = 3;
         this.updateDescription();
+
+        for (int i = 0; i < HIT_COUNT; i++)
+        {
+            EarthParticle particle = new EarthParticle(this.scale / (2.5f + 0.5f * MathUtils.cos(i)), 0.15f * MathUtils.sin(i) , 12 * MathUtils.sin(1.5f*i + 1) - 48f, 12 * MathUtils.cos(1.5f*i) -48f, -0.25f * MathUtils.sin(1.2f*i), -0.25f * MathUtils.cos(1.7f*i + 1), i, i % 2 == 0);
+            this.particles.add(particle);
+        }
+
     }
 
     public void updateDescription()
@@ -103,7 +113,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.1f);
         CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1f);
-        GameEffects.Queue.Add(VFX.Rock(this.hb));
+        GameEffects.Queue.Add(VFX.RockBurst(this.hb, 0.5f));
     }
 
     @Override
@@ -134,8 +144,11 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void render(SpriteBatch sb)
     {
-        sb.setColor(this.c);
-        sb.draw(img, this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale, this.scale, this.angle / 12f, 0, 0, 96, 96, this.hFlip1, false);
+        for (EarthParticle particle : this.particles) {
+            sb.setColor(particle.GetColor());
+            sb.draw(particle.useAltImg ? imgExt2 : imgExt1, particle.GetPositionX(), particle.GetPositionY(), 48f, 48f, 96f, 96f, this.scale / 2f, this.scale / 2f, particle.angle + this.angle / 12f, 0, 0, 96, 96, this.hFlip1, false);
+        }
+
         this.renderText(sb);
         this.hb.render(sb);
     }
@@ -181,12 +194,50 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         if (evokeAmount > 0)
         {
-            GameActions.Top.Add(new EarthOrbEvokeAction(evokeAmount));
+            GameActions.Top.Add(new EarthOrbEvokeAction(evokeAmount, cX, cY, this.scale));
             super.EvokeEffect();
         }
 
         turns = 0;
         CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         evoked = true;
+    }
+
+    public class EarthParticle {
+
+        public Color color;
+        public boolean useAltImg;
+        public float scale;
+        public float tint;
+        public float offsetX;
+        public float offsetY;
+        public float bobX;
+        public float bobY;
+        public float angle;
+
+        public EarthParticle(float scale, float tint, float offsetX, float offsetY, float bobX, float bobY, float angle, boolean useAltImg) {
+            this.scale = scale;
+            this.tint = tint;
+            this.offsetX = offsetX;
+            this.offsetY = offsetY;
+            this.bobX = bobX;
+            this.bobY = bobY;
+            this.angle = angle;
+            this.color = c.cpy().add(this.tint, this.tint, this.tint, 0);
+            this.useAltImg = useAltImg;
+        }
+
+        public Color GetColor(){
+            return c.cpy().add(this.tint, this.tint, this.tint, 0);
+        }
+
+        public float GetPositionX() {
+            return cX + this.offsetX + bobEffect.y * this.bobX;
+        }
+
+        public float GetPositionY() {
+            return cY + this.offsetY + bobEffect.y * this.bobY;
+        }
+
     }
 }

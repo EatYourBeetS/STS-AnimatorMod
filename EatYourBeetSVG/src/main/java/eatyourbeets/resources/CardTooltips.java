@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
 import eatyourbeets.powers.animator.*;
-import eatyourbeets.powers.common.FortuityPower;
+import eatyourbeets.powers.common.ResiliencePower;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.resources.common.CommonImages;
@@ -39,7 +39,7 @@ public class CardTooltips
     public EYBCardTooltip Intellect = FindByID("Intellect");
     public EYBCardTooltip Force = FindByID("Force");
     public EYBCardTooltip Agility = FindByID("Agility");
-    public EYBCardTooltip Luck = FindByID("Luck");
+    public EYBCardTooltip Willpower = FindByID("Willpower");
     public EYBCardTooltip Blessing = FindByID("Blessing");
     public EYBCardTooltip Corruption = FindByID("Corruption");
     public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
@@ -91,7 +91,7 @@ public class CardTooltips
     public EYBCardTooltip Regeneration = FindByID("Regeneration");
     public EYBCardTooltip SelfDamage = FindByID("Self Damage");
     public EYBCardTooltip CounterAttack = FindByID("Counterattack");
-    public EYBCardTooltip Fortuity = FindByID("Fortuity");
+    public EYBCardTooltip Resilience = FindByID("Resilience");
     public EYBCardTooltip ElementalMastery = FindByID("Elemental Mastery");
     public EYBCardTooltip ElementalExposure = FindByID("Elemental Exposure");
     public EYBCardTooltip Void = FindByID("Void").ShowText(false);
@@ -222,7 +222,7 @@ public class CardTooltips
         LoadFromPower(Chilled, new ChilledPower(FakeCharacter.Instance,0)).SetIconSizeMulti(0.95f, 0.95f);
         LoadFromPower(SelfDamage, new SelfDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(CounterAttack, new CounterAttackPower(FakeCharacter.Instance, 0));
-        LoadFromPower(Fortuity, new FortuityPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Resilience, new ResiliencePower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalMastery, new ElementalMasteryPower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalExposure, new ElementalExposurePower(FakeCharacter.Instance, 0));
 

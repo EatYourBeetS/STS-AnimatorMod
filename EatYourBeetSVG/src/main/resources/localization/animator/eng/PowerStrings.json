@@ -145,11 +145,6 @@
 		"DESCRIPTIONS": ["Whenever you deal unblocked damage to an enemy, apply #b", " #yBurning."],
 		"NAME": "Flaming Weapon"
 	},
-	"animator:FortuityPower":
-	{
-	  "DESCRIPTIONS": ["The effects of Frail, Vulernable, and Weak are decreased by #b{0}%."],
-	  "NAME": "Fortuity"
-	},
 	"animator:FrostCrystalPower":
 	{
 		"DESCRIPTIONS": ["When targeted by a card, All other characters gain #b", " #yPlated #yArmor."],
@@ -319,6 +314,11 @@
 	{
 		"DESCRIPTIONS": ["Your #yAttacks this turn deal #b", "% more damage."],
 		"NAME": "Rory Mercury"
+	},
+	"animator:ResiliencePower":
+	{
+	  "DESCRIPTIONS": ["The effects of Frail, Vulernable, and Weak are decreased by #b{0}%."],
+	  "NAME": "Resilience"
 	},
 	"animator:SheerColdPower":
 	{

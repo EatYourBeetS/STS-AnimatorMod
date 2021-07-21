@@ -24,7 +24,7 @@ public class SymbolToken extends CTToken
         tokenCache.put("F", new SymbolToken("[F]")); // Force
         tokenCache.put("A", new SymbolToken("[A]")); // Agility
         tokenCache.put("I", new SymbolToken("[I]")); // Intellect
-        tokenCache.put("L", new SymbolToken("[L]")); // Luck
+        tokenCache.put("W", new SymbolToken("[W]")); // Willpower
         tokenCache.put("B", new SymbolToken("[B]")); // Blessing
         tokenCache.put("C", new SymbolToken("[C]")); // Corruption
     }

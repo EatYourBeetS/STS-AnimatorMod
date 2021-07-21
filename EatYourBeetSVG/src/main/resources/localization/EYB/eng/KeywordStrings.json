@@ -168,12 +168,6 @@
 		"NAMES": ["[f] stance", "force stance"],
 		"PROPER_NAME": "Force Stance"
 	},
-	"Fortuity":
-	{
-	  "DESCRIPTION": "Reduces the effects of Frail, Vulernable, and Weak.",
-	  "NAMES": ["fortuity"],
-	  "PROPER_NAME": "Fortuity"
-	},
 	"High-Cost":
 	{
 		"DESCRIPTION": "Cards which cost 2 or more [E].",
@@ -215,12 +209,6 @@
 		"DESCRIPTION": "This effect can only trigger once per combat, across all copies of this card.",
 		"NAMES": ["limited"],
 		"PROPER_NAME": "Limited"
-	},
-	"Luck":
-	{
-	  "DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain #yGold.",
-	  "NAMES": ["luck"],
-	  "PROPER_NAME": "Luck"
 	},
 	"Malleable":
 	{
@@ -276,6 +264,12 @@
 	  "NAMES": ["regeneration"],
 	  "PROPER_NAME": "Regeneration"
 	},
+	"Resilience":
+	{
+	  "DESCRIPTION": "Reduces the effects of Frail, Vulernable, and Weak.",
+	  "NAMES": ["resilience"],
+	  "PROPER_NAME": "Resilience"
+	},
 	"Self Damage":
 	{
 	  "DESCRIPTION": "Take damage at the end of your turn.",
@@ -323,6 +317,12 @@
 		"DESCRIPTION": "At the start of each turn, gain [TempHP].",
 		"NAMES": ["vitality"],
 		"PROPER_NAME": "Vitality"
+	},
+	"Willpower":
+	{
+	  "DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain #yResilience.",
+	  "NAMES": ["willpower"],
+	  "PROPER_NAME": "Willpower"
 	},
 	"~Damage":
 	{

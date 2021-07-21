@@ -314,7 +314,7 @@
 	},
 	"~RetainOnce":
 	{
-		"DESCRIPTION": "Not discarded at this end of turn. Activates once.",
+		"DESCRIPTION": "Not discarded at the end of turn.",
 		"NAMES": ["~retain once"],
 		"PROPER_NAME": "Retain Once"
 	},

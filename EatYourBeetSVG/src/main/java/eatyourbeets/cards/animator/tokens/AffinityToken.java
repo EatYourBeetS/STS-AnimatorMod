@@ -59,5 +59,7 @@ public abstract class AffinityToken extends AnimatorCard
         this.cropPortrait = false;
         this.portraitForeground = portraitImg;
         this.portraitImg = new ColoredTexture(GR.GetTexture(GR.GetCardImage(ID), true), affinityType.GetAlternateColor(0.55f));
+
+        SetRetainOnce(true);
     }
 }

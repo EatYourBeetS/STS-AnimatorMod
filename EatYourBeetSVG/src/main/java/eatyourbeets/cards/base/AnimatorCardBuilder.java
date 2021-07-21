@@ -63,7 +63,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         SetImage(card.assetUrl);
         SetProperties(card.type, card.rarity, AbstractCard.CardTarget.NONE);
         SetText(card.name, text, text);
-        SetSeries(card.series, false);
+        SetSeries(card.series);
     }
 
     public AnimatorCard_Dynamic Build()
@@ -209,7 +209,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
 
     public AnimatorCardBuilder SetText(String name, String description, String upgradeDescription)
     {
-        return SetText(name, description, upgradeDescription, new String[0]);
+        return SetText(name, description, upgradeDescription != null ? upgradeDescription : description, new String[0]);
     }
 
     public AnimatorCardBuilder SetText(String name, String description, String upgradeDescription, String[] extendedDescription)
@@ -244,14 +244,9 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         return this;
     }
 
-    public AnimatorCardBuilder SetSeries(CardSeries series, boolean isShapeshifter)
+    public AnimatorCardBuilder SetSeries(CardSeries series)
     {
         this.series = series;
-
-        if (isShapeshifter)
-        {
-            tags.add(AnimatorCard.SHAPESHIFTER);
-        }
 
         return this;
     }

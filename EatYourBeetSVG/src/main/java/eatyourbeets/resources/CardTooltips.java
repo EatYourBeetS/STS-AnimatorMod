@@ -92,6 +92,7 @@ public class CardTooltips
     public EYBCardTooltip Affinity_Blue = new EYBCardTooltip("Blue Affinity", null);
     public EYBCardTooltip Affinity_Light = new EYBCardTooltip("Light Affinity", null);
     public EYBCardTooltip Affinity_Dark = new EYBCardTooltip("Dark Affinity", null);
+    public EYBCardTooltip Affinity_General = FindByID("General Affinity");
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
     public EYBCardTooltip ThrowingKnife = new EYBCardTooltip(eatyourbeets.cards.animator.special.ThrowingKnife.DATA.Strings.NAME, null);
     public EYBCardTooltip GriefSeed = new EYBCardTooltip(Curse_GriefSeed.DATA.Strings.NAME, null);
@@ -139,6 +140,7 @@ public class CardTooltips
         RegisterID("A-Light", Affinity_Light);
         RegisterID("A-Dark", Affinity_Dark);
         RegisterID("A-Star", Shapeshifter);
+        RegisterID("A-General", Affinity_General);
 
         RegisterID("TempHP", TempHP);
         RegisterID("Random Orb", RandomOrb);
@@ -171,6 +173,7 @@ public class CardTooltips
         Affinity_Blue.SetIcon(alignments.Blue.Texture(), 8);
         Affinity_Light.SetIcon(alignments.Light.Texture(), 8);
         Affinity_Dark.SetIcon(alignments.Dark.Texture(), 8);
+        Affinity_General.SetIcon(alignments.General.Texture(), 8);
 
         CommonImages.Tooltips tooltips = GR.Common.Images.Tooltips;
         ThrowingKnife.SetIcon(tooltips.ThrowingKnife.Texture(), 6);

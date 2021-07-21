@@ -2,6 +2,7 @@ package eatyourbeets.utilities;
 
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.random.Random;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import org.apache.logging.log4j.LogManager;
@@ -90,17 +91,25 @@ public class JUtils
         return res;
     }
 
-    public static <T> T Find(Iterable<T> list, Predicate<T> predicate)
+    public static <T> T Find(Iterable<T> list, FuncT1<Boolean, T> predicate)
     {
         for (T t : list)
         {
-            if (predicate.test(t))
+            if (predicate.Invoke(t))
             {
                 return t;
             }
         }
 
         return null;
+    }
+
+    public static <T> void ForEach(Iterable<T> list, ActionT1<T> action)
+    {
+        for (T t : list)
+        {
+            action.Invoke(t);
+        }
     }
 
     public static <T, N extends Comparable<N>> T FindMax(Iterable<T> list, FuncT1<N, T> getProperty)

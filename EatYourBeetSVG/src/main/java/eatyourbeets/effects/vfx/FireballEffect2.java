@@ -59,6 +59,7 @@ public class FireballEffect2 extends EYBEffect
         {
             GameEffects.Queue.Add(new GhostIgniteEffect(x, y).SetColor(color)).SetRealtime(isRealtime);
             GameEffects.Queue.Add(new GhostlyWeakFireEffect(x, y).SetColor(secondaryColor)).SetRealtime(isRealtime);
+            Complete();
         }
     }
 }

@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
 
 public class ReduceStrength extends EYBActionWithCallback<Boolean>
@@ -45,7 +44,7 @@ public class ReduceStrength extends EYBActionWithCallback<Boolean>
 
             if (giveForceToSource)
             {
-                GameActions.Top.StackPower(source, new ForcePower(source, amount));
+                GameActions.Top.GainForce(amount).source = source;
             }
 
             Complete(true);

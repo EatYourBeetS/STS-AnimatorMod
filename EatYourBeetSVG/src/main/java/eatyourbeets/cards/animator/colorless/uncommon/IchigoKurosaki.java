@@ -3,13 +3,9 @@ package eatyourbeets.cards.animator.colorless.uncommon;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.IchigoBankai;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.powers.affinity.ForcePower;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class IchigoKurosaki extends AnimatorCard
 {
@@ -41,7 +37,7 @@ public class IchigoKurosaki extends AnimatorCard
 
         GameActions.Bottom.Callback(() ->
         {
-            if (GameUtilities.GetPowerAmount(ForcePower.POWER_ID) >= secondaryValue)
+            if (CombatStats.Affinities.GetPower(AffinityType.Red).amount >= secondaryValue)
             {
                 GameActions.Bottom.MakeCardInDrawPile(new IchigoBankai());
             }

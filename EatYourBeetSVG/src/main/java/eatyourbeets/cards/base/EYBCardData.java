@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.RotatingList;
 
@@ -51,6 +52,17 @@ public class EYBCardData
         this.Strings = strings;
         this.ID = cardID;
         this.MaxCopies = -1;
+    }
+
+    public AbstractCard CreateNewInstance(boolean upgrade) throws RuntimeException
+    {
+        AbstractCard card = CreateNewInstance();
+        if (upgrade && card.canUpgrade())
+        {
+            card.upgrade();
+        }
+
+        return card;
     }
 
     public AbstractCard CreateNewInstance() throws RuntimeException
@@ -226,5 +238,19 @@ public class EYBCardData
         BaseCost = cost;
 
         return this;
+    }
+
+    public boolean IsNotSeen()
+    {
+        return UnlockTracker.isCardLocked(ID) || !UnlockTracker.isCardSeen(ID);
+    }
+
+
+    public void MarkSeen()
+    {
+        if (!UnlockTracker.isCardSeen(ID))
+        {
+            UnlockTracker.markCardAsSeen(ID);
+        }
     }
 }

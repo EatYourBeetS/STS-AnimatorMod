@@ -156,16 +156,16 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
                         bonus += 18;
                         break;
 
-                    case SPECIAL:
-                        bonus += 25;
-                        break;
-
                     case BOSS:
                         bonus += 30;
                         break;
 
                     case SHOP:
                         bonus += 10;
+                        break;
+
+                    case SPECIAL: default:
+                        bonus += 25;
                         break;
                 }
             }

@@ -62,7 +62,7 @@ public class AnimatorSpecialTrophiesRenderer extends GUIElement
         String trophyString = "";
         if (trophyLevel > 0)
         {
-            trophyString += " " + String.format("%.2f", AnimatorReward.GetUltraRareChance(null)) + "%";
+            trophyString += " " + String.format("%.2f", AnimatorReward.GetUltraRareChance(GR.Animator.Data.SelectedLoadout)) + "%";
         }
 
         float w = 64;

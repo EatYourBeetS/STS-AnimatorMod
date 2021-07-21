@@ -70,7 +70,6 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         this.screenColor.a = 0.8f;
 
         AbstractDungeon.overlayMenu.proceedButton.hide();
-        ToggleViewUpgrades(false);
 
         if (cards.isEmpty())
         {
@@ -120,7 +119,6 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         {
             if (InputManager.LeftClick.IsJustReleased() || InputManager.RightClick.IsJustReleased())
             {
-                ToggleViewUpgrades(false);
                 Complete(this.cards);
                 return;
             }

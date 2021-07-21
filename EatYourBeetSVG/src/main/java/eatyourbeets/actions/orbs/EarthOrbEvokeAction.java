@@ -1,5 +1,6 @@
 package eatyourbeets.actions.orbs;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.actions.EYBAction;
@@ -13,7 +14,7 @@ public class EarthOrbEvokeAction extends EYBAction
     {
         super(ActionType.DAMAGE);
 
-        Initialize((int) Math.ceil(damage / (float) DAMAGE_TICKS));
+        Initialize(MathUtils.ceil(damage / (float) DAMAGE_TICKS));
     }
 
     @Override

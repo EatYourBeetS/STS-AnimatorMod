@@ -143,16 +143,16 @@ public class RenderHelpers
     public static BitmapFont GetTitleFont(EYBCardBase card)
     {
         BitmapFont result;
+        final float scale = ((card.name.length() > 14) ? 0.8f : 1);
         if (card.isPopup)
         {
             result = EYBFontHelper.CardTitleFont_Large;
-            result.getData().setScale(card.drawScale * 0.5f);
+            result.getData().setScale(card.drawScale * 0.5f * scale);
         }
         else
         {
-            // NOTE: this was FontHelper.cardTitleFont_small
-            result = (card.name.length() > 14) ? EYBFontHelper.CardTitleFont_Small : EYBFontHelper.CardTitleFont_Normal;
-            result.getData().setScale(card.drawScale);
+            result = EYBFontHelper.CardTitleFont_Normal;
+            result.getData().setScale(card.drawScale * scale);
         }
 
         return result;
@@ -214,6 +214,11 @@ public class RenderHelpers
         sb.setColor(color);
         sb.draw(img, drawX - (width / 2f), drawY - (height / 2f), width / 2f, height / 2f, width, height,
                 scale, scale, card.angle + imgRotation, 0, 0, img.getWidth(), img.getHeight(), false, false);
+    }
+
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Color color, float drawX, float drawY, float width, float height)
+    {
+        DrawOnCardAuto(sb, card, img, new Vector2(drawX, drawY), width, height, color, color.a, 1, 0);
     }
 
     public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY, float width, float height)

@@ -17,7 +17,8 @@ public enum AffinityType implements Comparable<AffinityType>
     Blue(2, "Blue", GR.Common.Images.Affinities.Blue),
     Light(3, "Light", GR.Common.Images.Affinities.Light),
     Dark(4, "Dark", GR.Common.Images.Affinities.Dark),
-    Star(-1, "Star", GR.Common.Images.Affinities.Star_BG);
+    Star(-1, "Star", GR.Common.Images.Affinities.Star_BG),
+    General(-2, "General", GR.Common.Images.Affinities.General);// Don't use directly
 
     public static final int MAX_ID = 4;
 
@@ -104,12 +105,6 @@ public enum AffinityType implements Comparable<AffinityType>
 
     public Color GetAlternateColor()
     {
-//        Float[] values = Testing.GetValues();
-//        if (values != null && values.length >= 3)
-//        {
-//            return new Color(values[0], values[1], values[2], 1);
-//        }
-
         switch (this)
         {
             case Red: return new Color(0.8f, 0.5f, 0.5f, 1f);
@@ -120,7 +115,7 @@ public enum AffinityType implements Comparable<AffinityType>
 
             case Light: return new Color(0.8f, 0.8f, 0.3f, 1f);
 
-            case Dark: return new Color(0.75f, 0.25f, 0.65f, 1);//0.7f, 0.55f, 0.7f, 1f);
+            case Dark: return new Color(0.55f, 0.1f, 0.85f, 1);//0.7f, 0.55f, 0.7f, 1f);
 
             case Star: default: return new Color(0.25f, 0.25f, 0.25f, 1f);
         }

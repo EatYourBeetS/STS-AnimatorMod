@@ -23,6 +23,8 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardFlashVfx;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.animator.CreateThrowingKnives;
@@ -241,6 +243,16 @@ public final class GameActions
     public ApplyPowerAuto ApplyWeak(TargetHelper target, int amount)
     {
         return StackPower(target, PowerHelper.Weak, amount);
+    }
+
+    public PlayVFX BorderFlash(Color color)
+    {
+        return VFX(new BorderFlashEffect(color, true));
+    }
+
+    public PlayVFX BorderLongFlash(Color color)
+    {
+        return VFX(new BorderLongFlashEffect(color, true));
     }
 
     public CallbackAction Callback(AbstractGameAction action, Object state, ActionT2<Object, AbstractGameAction> onCompletion)
@@ -698,17 +710,17 @@ public final class GameActions
 
     public PlayCard PlayCard(AbstractCard card, CardGroup sourcePile, AbstractMonster target)
     {
-        return Add(new PlayCard(card, target, false, actionOrder == ActionOrder.Top)).SetSourcePile(sourcePile);
+        return Add(new PlayCard(card, target, false, actionOrder != ActionOrder.Top)).SetSourcePile(sourcePile);
     }
 
     public PlayCard PlayCard(AbstractCard card, AbstractMonster target)
     {
-        return Add(new PlayCard(card, target, false, actionOrder == ActionOrder.Top));
+        return Add(new PlayCard(card, target, false, actionOrder != ActionOrder.Top));
     }
 
     public PlayCard PlayCopy(AbstractCard card, AbstractMonster target)
     {
-        return Add(new PlayCard(card, target, true, actionOrder == ActionOrder.Top))
+        return Add(new PlayCard(card, target, true, actionOrder != ActionOrder.Top))
         .SetCurrentPosition(card.current_x, card.current_y)
         .SpendEnergy(false)
         .SetPurge(true);

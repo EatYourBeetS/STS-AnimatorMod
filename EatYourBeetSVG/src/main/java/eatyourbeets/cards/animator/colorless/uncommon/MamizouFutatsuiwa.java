@@ -46,8 +46,8 @@ public class MamizouFutatsuiwa extends AnimatorCard
         {
             if (shapeshifterPool.Size() == 0)
             {
-                shapeshifterPool.AddAll(JUtils.Filter(CardSeries.GetNonColorlessCard(), c -> c.hasTag(SHAPESHIFTER)));
-                shapeshifterPool.AddAll(JUtils.Filter(CardSeries.GetColorlessCards(), c -> c.hasTag(SHAPESHIFTER)));
+                shapeshifterPool.AddAll(JUtils.Filter(CardSeries.GetNonColorlessCard(), c -> c.affinities.GetLevel(AffinityType.Star) > 0));
+                shapeshifterPool.AddAll(JUtils.Filter(CardSeries.GetColorlessCards(), c -> c.affinities.GetLevel(AffinityType.Star) > 0));
             }
 
             AnimatorCard shapeshifter = shapeshifterPool.Retrieve(rng, false);
@@ -70,7 +70,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetOptions(false, false, false)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
-        .SetFilter(c -> c instanceof AnimatorCard && !c.hasTag(SHAPESHIFTER))
+        .SetFilter(c -> c instanceof AnimatorCard && !((AnimatorCard)c).affinities.HasStar())
         .AddCallback(cards ->
         {
             AnimatorCard card = JUtils.SafeCast(cards.get(0), AnimatorCard.class);

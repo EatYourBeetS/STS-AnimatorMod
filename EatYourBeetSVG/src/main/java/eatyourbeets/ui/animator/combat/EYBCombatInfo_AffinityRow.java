@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinities;
+import eatyourbeets.cards.base.EYBCardAffinity;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
@@ -16,6 +17,7 @@ import eatyourbeets.ui.controls.GUI_Label;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.JUtils;
+import org.apache.commons.lang3.ArrayUtils;
 
 public class EYBCombatInfo_AffinityRow extends GUIElement
 {
@@ -51,7 +53,7 @@ public class EYBCombatInfo_AffinityRow extends GUIElement
         image_synergy = new GUI_Image(GR.Common.Images.Arrow_Right.Texture(), //type.GetSynergyEffectIcon(),
                 new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(10f), offset_y * hb.height, false));
 
-        image_synergy.SetActive(type != AffinityType.Star);
+        image_synergy.SetActive(ArrayUtils.contains(AffinityType.BasicTypes(), type));
     }
 
     public void Update(EYBCardAffinities handAffinities, EYBCardAffinities cardAffinities, EYBCardAffinities strongSynergies, boolean draggingCard)
@@ -81,10 +83,20 @@ public class EYBCombatInfo_AffinityRow extends GUIElement
 
         if (!draggingCard && image_background.hb.hovered)
         {
+            AffinityType type = Type;
+            if (type == AffinityType.General)
+            {
+                EYBCardAffinity a = JUtils.FindMax(handAffinities.List, t -> t.level);
+                if (a != null)
+                {
+                    type = a.Type;
+                }
+            }
+
             for (AbstractCard c : AbstractDungeon.player.hand.group)
             {
                 EYBCard t = JUtils.SafeCast(c, EYBCard.class);
-                if (t == null || t.affinities.GetLevel(Type) == 0)
+                if (t == null || t.affinities.GetLevel(type) == 0)
                 {
                     c.transparency = 0.35f;
                 }

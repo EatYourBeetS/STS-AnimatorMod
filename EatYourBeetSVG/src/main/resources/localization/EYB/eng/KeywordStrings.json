@@ -176,7 +176,7 @@
 	},
 	"~Lock-On":
 	{
-		"DESCRIPTION": "Receive #b50% more damage from Orbs, and #b30% more damage from #yRanged attacks.",
+		"DESCRIPTION": "Receive #b50% more damage from Orbs and #yRanged attacks.",
 		"NAMES": ["~lock-on"],
 		"PROPER_NAME": "Lock-On"
 	},
@@ -209,6 +209,12 @@
 		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving damage.",
 		"NAMES": ["plated armor", "plat. armor"],
 		"PROPER_NAME": "Plated Armor"
+	},
+	"General Affinity":
+	{
+		"DESCRIPTION": "#yGeneral #yAffinity is equal to the highest amount of cards in hand with the same #yAffinity color.",
+		"NAMES": ["general affinity"],
+		"PROPER_NAME": "General Affinity"
 	},
 	"Purge":
 	{

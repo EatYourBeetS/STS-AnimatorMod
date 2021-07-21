@@ -135,6 +135,11 @@ public class EYBCardAffinities
 
     public void AddLevels(EYBCardAffinities other, int levelLimit)
     {
+        if (other == null)
+        {
+            return;
+        }
+
         int star = Math.min(levelLimit, other.GetLevel(AffinityType.Star));
         if (star > 0)
         {
@@ -257,7 +262,7 @@ public class EYBCardAffinities
         {
             return star;
         }
-        else if (type == null) // Highest level among all affinities
+        else if (type == null || type == AffinityType.General) // Highest level among all affinities
         {
             return List.isEmpty() ? star : List.get(0).upgrade;
         }
@@ -280,7 +285,7 @@ public class EYBCardAffinities
         {
             return star;
         }
-        else if (type == null) // Highest level among all affinities
+        else if (type == null || type == AffinityType.General) // Highest level among all affinities
         {
             return List.isEmpty() ? star : List.get(0).level;
         }
@@ -299,18 +304,6 @@ public class EYBCardAffinities
     public EYBCardAffinities GetSynergies(EYBCardAffinities other)
     {
         final EYBCardAffinities synergies = new EYBCardAffinities(null);
-        final int star = GetLevel(AffinityType.Star);
-        if (star > 0)
-        {
-            int lv_b = other.GetLevel(null);
-            if (lv_b > 0)
-            {
-                synergies.Add(AffinityType.Star, star);
-            }
-
-            return synergies;
-        }
-
         for (AffinityType type : AffinityType.BasicTypes())
         {
             int lv_a = GetLevel(type);
@@ -338,14 +331,6 @@ public class EYBCardAffinities
         {
             return;
         }
-
-//        if (c1.affinities.HasStar())
-//        {
-//            if (CombatStats.TryActivateSemiLimited(AffinityType.Star.name()))
-//            {
-//                GameActions.Bottom.SynergyEffect(AffinityType.Star);
-//            }
-//        }
 
         for (EYBCardAffinity affinity : c1.affinities.List)
         {

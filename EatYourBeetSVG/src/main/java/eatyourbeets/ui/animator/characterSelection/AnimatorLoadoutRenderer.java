@@ -41,6 +41,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
     protected final Hitbox startingCardsRightHb;
 
     protected GUI_Button RandomizeButton;
+    protected GUI_Button LoadoutEditorButton;
     protected CharacterSelectScreen selectScreen;
     protected CharacterOption characterOption;
     protected String lockedDescription;
@@ -66,9 +67,18 @@ public class AnimatorLoadoutRenderer extends GUIElement
         startingCardsSelectedHb.move(startingCardsLeftHb.x + startingCardsLeftHb.width + (rightTextWidth / 2f), POS_Y);
         startingCardsRightHb.move(startingCardsSelectedHb.x + startingCardsSelectedHb.width + (10 * Settings.scale), POS_Y - (10 * Settings.scale));
 
-        RandomizeButton = new GUI_Button(GR.Common.Images.Randomize.Texture(), new AdvancedHitbox(0, 0, (50 * Settings.scale), (50 * Settings.scale)))
-        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width + (15 * Settings.scale), POS_Y - (10 * Settings.scale)).SetText("")
+        RandomizeButton = new GUI_Button(GR.Common.Images.Randomize.Texture(), new AdvancedHitbox(0, 0, Scale(50), Scale(50)))
+        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(90), POS_Y - Scale(55)).SetText("")
         .SetOnClick(this::RandomizeLoadout);
+
+        LoadoutEditorButton = new GUI_Button(GR.Common.Images.SwapCards.Texture(), new AdvancedHitbox(0, 0, Scale(50), Scale(50)))
+        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(35), POS_Y - Scale(55)).SetText("")
+        .SetOnClick(this::OpenLoadoutEditor);
+    }
+
+    private void OpenLoadoutEditor()
+    {
+        GR.UI.LoadoutEditor.Open(loadout);
     }
 
     private void RandomizeLoadout()
@@ -99,18 +109,20 @@ public class AnimatorLoadoutRenderer extends GUIElement
             if (unlockLevel >= loadout.UnlockLevel)
             {
                 this.availableLoadouts.add(loadout);
+                loadout.LoadStartingDeck();
             }
         }
         if (GR.Animator.Config.DisplayBetaSeries.Get())
         {
             for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
             {
-                if (loadout.GetStartingDeck().size() > 0)
+                if (loadout.Slots.Size() > 0)
                 {
                     this.loadouts.add(loadout);
                     if (unlockLevel >= loadout.UnlockLevel)
                     {
                         this.availableLoadouts.add(loadout);
+                        loadout.LoadStartingDeck();
                     }
                 }
             }
@@ -161,6 +173,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         startingCardsRightHb.update();
         startingCardsLeftHb.update();
         RandomizeButton.TryUpdate();
+        LoadoutEditorButton.TryUpdate();
 
         if (InputHelper.justClickedLeft)
         {
@@ -252,5 +265,6 @@ public class AnimatorLoadoutRenderer extends GUIElement
                 48f, 48f, scale, scale, 0f, 0, 0, 48, 48, false, false);
 
         RandomizeButton.TryRender(sb);
+        LoadoutEditorButton.TryRender(sb);
     }
 }

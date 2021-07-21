@@ -92,9 +92,9 @@ public class GUI_Toggle extends GUIElement
         return this;
     }
 
-    public GUI_Toggle SetPosition(float x, float y)
+    public GUI_Toggle SetPosition(float cX, float cY)
     {
-        this.hb.move(x, y);
+        this.hb.move(cX, cY);
 
         return this;
     }
@@ -155,6 +155,11 @@ public class GUI_Toggle extends GUIElement
     {
         hb.update();
 
+        if (!interactable)
+        {
+            return;
+        }
+
         if (hb.justHovered)
         {
             CardCrawlGame.sound.playA("UI_HOVER", -0.3f);
@@ -175,7 +180,7 @@ public class GUI_Toggle extends GUIElement
             }
         }
 
-        if (interactable && (hb.clicked || controllerPressed))
+        if (hb.clicked || controllerPressed)
         {
             hb.clicked = false;
             CardCrawlGame.sound.playA("UI_CLICK_1", -0.2f);

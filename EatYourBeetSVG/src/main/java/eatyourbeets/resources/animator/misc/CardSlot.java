@@ -55,6 +55,29 @@ public class CardSlot
         return amount * (selected != null ? selected.estimatedValue : 0);
     }
 
+    public ArrayList<AbstractCard> GetSelectableCards()
+    {
+        final ArrayList<AbstractCard> cards = new ArrayList<>();
+        for (Item item : Cards)
+        {
+            boolean add = true;
+            for (CardSlot slot : Container)
+            {
+                if (slot != this && slot.GetData() == item.data)
+                {
+                    add = false;
+                }
+            }
+
+            if (add)
+            {
+                cards.add(item.GetCard(true));
+            }
+        }
+
+        return cards;
+    }
+
     public CardSlot MakeCopy(CardSlots container)
     {
         CardSlot copy = new CardSlot(container, min, max);

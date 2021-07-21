@@ -82,6 +82,9 @@ public abstract class EYBCardBase extends AbstractCard
     public int baseSecondaryValue = 0;
     public int secondaryValue = 0;
 
+    protected ColoredTexture portraitImg;
+    protected ColoredTexture portraitForeground;
+
     public EYBCardBase(String id, String name, String imagePath, int cost, String rawDescription, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
         super(id, name, "status/beta", "status/beta", cost, rawDescription, type, color, rarity, target);
@@ -97,7 +100,7 @@ public abstract class EYBCardBase extends AbstractCard
 
     public void LoadImage(String suffix)
     {
-        portraitImg = GR.GetTexture(suffix == null ? assetUrl : assetUrl.replace(".png", suffix + ".png"), true);
+        portraitImg = new ColoredTexture(GR.GetTexture(suffix == null ? assetUrl : assetUrl.replace(".png", suffix + ".png"), true), null);
     }
 
     public boolean IsOnScreen()
@@ -290,31 +293,49 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride
     protected void renderPortrait(SpriteBatch sb)
     {
-        Texture portraitImg = this.portraitImg;
-        boolean cropPortrait = this.cropPortrait;
         if (!isSeen || isLocked)
         {
-            portraitImg = GR.GetTexture(QuestionMark.DATA.ImagePath);
-            cropPortrait = false;
+            RenderPortraitImage(sb, GR.GetTexture(QuestionMark.DATA.ImagePath), _renderColor.Get(this), 1, false);
+            return;
         }
 
-        if (cropPortrait && drawScale > 0.6f && drawScale < 1 && GR.Animator.Config.CropCardImages.Get())
+        final boolean cropPortrait = this.cropPortrait && GR.Animator.Config.CropCardImages.Get();
+        ColoredTexture image = GetPortraitImage();
+        if (image != null)
         {
-            int width = portraitImg.getWidth();
-            int height = portraitImg.getHeight();
+            RenderPortraitImage(sb, image.texture, image.color, image.scale, cropPortrait);
+        }
+        image = GetPortraitForeground();
+        if (image != null)
+        {
+            RenderPortraitImage(sb, image.texture, image.color, image.scale, cropPortrait);
+        }
+    }
+
+    protected void RenderPortraitImage(SpriteBatch sb, Texture texture, Color color, float scale, boolean cropPortrait)
+    {
+        if (color == null)
+        {
+            color = _renderColor.Get(this);
+        }
+
+        if (cropPortrait && drawScale > 0.6f && drawScale < 1)
+        {
+            int width = texture.getWidth();
+            int height = texture.getHeight();
             int offset_x = (int) ((1 - drawScale) * (0.5f * width));
             int offset_y1 = 0;//(int) ((1-drawScale) * (0.5f * height));
             int offset_y2 = (int) ((1 - drawScale) * (1f * height));
-            TextureRegion region = new TextureRegion(portraitImg, offset_x, offset_y1, width - (2 * offset_x), height - offset_y1 - offset_y2);
-            RenderHelpers.DrawOnCardAuto(sb, this, region, new Vector2(0, 72), 250, 190, _renderColor.Get(this), transparency, 1);
+            TextureRegion region = new TextureRegion(texture, offset_x, offset_y1, width - (2 * offset_x), height - offset_y1 - offset_y2);
+            RenderHelpers.DrawOnCardAuto(sb, this, region, new Vector2(0, 72), 250, 190, color, transparency, scale);
         }
         else if (isPopup)
         {
-            RenderHelpers.DrawOnCardAuto(sb, this, portraitImg, new Vector2(0, 72), 500, 380, _renderColor.Get(this), transparency, 0.5f);
+            RenderHelpers.DrawOnCardAuto(sb, this, texture, new Vector2(0, 72), 500, 380, color, transparency, scale * 0.5f);
         }
         else
         {
-            RenderHelpers.DrawOnCardAuto(sb, this, portraitImg, new Vector2(0, 72), 250, 190, _renderColor.Get(this), transparency, 1f);
+            RenderHelpers.DrawOnCardAuto(sb, this, texture, new Vector2(0, 72), 250, 190, color, transparency, scale);
         }
     }
 
@@ -381,6 +402,16 @@ public abstract class EYBCardBase extends AbstractCard
                 RenderHelpers.ResetFont(font);
             }
         }
+    }
+
+    protected ColoredTexture GetPortraitImage()
+    {
+        return portraitImg;
+    }
+
+    protected ColoredTexture GetPortraitForeground()
+    {
+        return portraitForeground;
     }
 
     protected ColoredTexture GetPortraitFrame()

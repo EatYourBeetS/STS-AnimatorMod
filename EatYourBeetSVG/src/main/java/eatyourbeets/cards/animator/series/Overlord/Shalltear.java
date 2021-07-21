@@ -63,7 +63,7 @@ public class Shalltear extends AnimatorCard
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect((enemy, aBoolean) ->
+        .SetDamageEffect((enemy, __) ->
         {
             GameEffects.List.Add(VFX.Hemokinesis(player.hb, enemy.hb));
             GameActions.Bottom.ApplyWeak(player, enemy, 1);

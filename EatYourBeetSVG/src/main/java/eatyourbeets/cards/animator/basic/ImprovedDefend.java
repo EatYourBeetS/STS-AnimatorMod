@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.basic;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AffinityType;
@@ -33,15 +32,13 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
 
     protected static EYBCardData Register(Class<? extends AnimatorCard> type)
     {
-        return AnimatorCard.Register(type)
-                .SetColor(CardColor.COLORLESS)
-                .SetSkill(1, CardRarity.BASIC, EYBCardTarget.None)
+        return AnimatorCard.Register(type).SetColor(CardColor.COLORLESS).SetSkill(1, CardRarity.BASIC, EYBCardTarget.None)
                 .SetImagePath(GR.GetCardImage(Defend.DATA.ID + "Alt1"));
     }
 
     public ImprovedDefend(EYBCardData data, AffinityType type)
     {
-        super(data, type);
+        super(data, type, GR.GetCardImage(Defend.DATA.ID + "Alt2"));
 
         if (affinityType == AffinityType.Star)
         {
@@ -53,14 +50,8 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
         }
         SetUpgrade(0, 3);
 
-        this.tags.add(CardTags.STARTER_DEFEND);
-        this.tags.add(GR.Enums.CardTags.IMPROVED_DEFEND);
-    }
-
-    @Override
-    protected Texture GetPortraitForeground()
-    {
-        return GR.GetTexture(GR.GetCardImage(Defend.DATA.ID + "Alt2"), true);
+        SetTag(CardTags.STARTER_DEFEND, true);
+        SetTag(GR.Enums.CardTags.IMPROVED_DEFEND, true);
     }
 
     @Override

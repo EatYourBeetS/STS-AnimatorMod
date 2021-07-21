@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.interfaces.delegates.ActionT0;
+import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.RenderHelpers;
@@ -27,6 +28,7 @@ public class GUI_Button extends GUIElement
     public float targetAlpha = 1f;
     public float currentAlpha = 1f;
     public boolean interactable;
+    public ActionT0 onClick;
     public String text;
 
     protected BitmapFont font;
@@ -34,7 +36,6 @@ public class GUI_Button extends GUIElement
     protected float currentClickDelay = 0f;
     protected Color textColor = Color.WHITE.cpy();
     protected Color buttonColor = Color.WHITE.cpy();
-    protected ActionT0 onClick;
 
     public GUI_Button(Texture buttonTexture, float x, float y)
     {
@@ -153,7 +154,7 @@ public class GUI_Button extends GUIElement
         {
             this.hb.update();
 
-            if (IsInteractable())
+            if (IsInteractable() && GR.UI.TryHover(hb))
             {
                 if (this.hb.justHovered)
                 {

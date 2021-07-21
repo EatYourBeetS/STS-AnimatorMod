@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.EYBCardAffinities;
-import eatyourbeets.effects.card.ShowCardPileEffect;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.CardSlot;
@@ -28,7 +27,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
     protected AnimatorLoadout loadout;
     protected CardSlots slots;
 
-    protected ShowCardPileEffect cardSelectionEffect;
+    protected AnimatorCardSlotSelectionEffect cardSelectionEffect;
     protected GUI_Image background_image;
     protected GUI_Button cancel_button;
     protected GUI_Button save_button;
@@ -107,6 +106,14 @@ public class AnimatorLoadoutEditor extends AbstractScreen
     }
 
     @Override
+    public void Dispose()
+    {
+        super.Dispose();
+
+        ToggleViewUpgrades(false);
+    }
+
+    @Override
     public void Update()
     {
         super.Update();
@@ -114,7 +121,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         background_image.Update();
         cancel_button.Update();
         save_button.Update();
-        upgrade_toggle.Update();
+        upgrade_toggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
 
         if (cardSelectionEffect != null)
         {
@@ -199,8 +206,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
 
     public void TrySelectCard(CardSlot cardSlot)
     {
-        cardSlot.Select(null);
-        cardSelectionEffect = new ShowCardPileEffect(cardSlot.GetSelectableCards());
+        cardSelectionEffect = new AnimatorCardSlotSelectionEffect(cardSlot);
         SetSlotsActive(false);
     }
 
@@ -218,11 +224,21 @@ public class AnimatorLoadoutEditor extends AbstractScreen
 
     public void SetSlotsActive(boolean active)
     {
-        for (int i = 0; i < slotsEditors.size(); i++)
+        if (active)
         {
-            AnimatorCardSlotEditor editor = slotsEditors.get(i);
-            editor.SetActive(slots.Size() > i);
-            editor.SetSlot(editor.isActive ? slots.Get(i) : null);
+            for (int i = 0; i < slotsEditors.size(); i++)
+            {
+                AnimatorCardSlotEditor editor = slotsEditors.get(i);
+                editor.SetActive(slots.Size() > i);
+                editor.SetSlot(editor.isActive ? slots.Get(i) : null);
+            }
+        }
+        else
+        {
+            for (AnimatorCardSlotEditor editor : slotsEditors)
+            {
+                editor.SetActive(false);
+            }
         }
     }
 }

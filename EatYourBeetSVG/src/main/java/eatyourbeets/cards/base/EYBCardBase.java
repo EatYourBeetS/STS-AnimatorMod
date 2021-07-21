@@ -198,6 +198,8 @@ public abstract class EYBCardBase extends AbstractCard
 
         if (GameUtilities.CanShowUpgrades(library) && !isPreview && !isPopup && canUpgrade())
         {
+            updateGlow();
+            renderGlow(sb);
             renderUpgradePreview(sb);
             return;
         }

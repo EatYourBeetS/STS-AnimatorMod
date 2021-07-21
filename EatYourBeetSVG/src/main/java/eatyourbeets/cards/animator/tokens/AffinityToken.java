@@ -35,6 +35,7 @@ public abstract class AffinityToken extends AnimatorCard
             case Red: return AffinityToken_Red.DATA;
             case Green: return AffinityToken_Green.DATA;
             case Blue: return AffinityToken_Blue.DATA;
+            case Orange: return AffinityToken_Orange.DATA;
             case Light: return AffinityToken_Light.DATA;
             case Dark: return AffinityToken_Dark.DATA;
             //case Star: return AffinityToken_Star.DATA;

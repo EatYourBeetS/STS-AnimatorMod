@@ -26,6 +26,7 @@ public class HarukoHaruhara extends AnimatorCard
 
         SetAffinity_Orange(1);
         SetAffinity_Red(1);
+        SetAffinity_Green(1);
     }
 
     @Override

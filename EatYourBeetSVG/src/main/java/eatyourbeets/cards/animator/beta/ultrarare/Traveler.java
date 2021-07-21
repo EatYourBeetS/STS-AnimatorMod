@@ -195,6 +195,7 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
             case Aether:
                 GameActions.Bottom.StackPower(new ElementalMasteryPower(p, magicNumber));
                 int evoked = 0;
+
                 for (AbstractOrb orb : player.orbs) {
                     if (!(orb instanceof EmptyOrbSlot) && !Aether.ORB_ID.equals(orb.ID)) {
                         GameActions.Bottom.EvokeOrb(1, orb);
@@ -206,16 +207,18 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
                     }
                 }
 
-                GameActions.Bottom.ChannelOrbs(Aether::new, 2);
+                GameActions.Bottom.ChannelOrbs(Aether::new, 1);
                 break;
             case Lumine:
                 GameActions.Top.Add(new VFXAction(new OfferingEffect(), Settings.FAST_MODE ? 0.1F : 0.5F));
                 for (int i = 0; i < secondaryValue; i++) {
+                    GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Frail, 1);
                     GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Vulnerable, 1);
                     GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Weak, 1);
                 }
                 Traveler other = (Traveler) makeStatEquivalentCopy();
                 CombatStats.onStartOfTurnPostDraw.Subscribe(other);
+                GameActions.Bottom.MakeCardInDiscardPile(new VoidCard());
                 GameActions.Bottom.MakeCardInDiscardPile(new VoidCard());
         }
 

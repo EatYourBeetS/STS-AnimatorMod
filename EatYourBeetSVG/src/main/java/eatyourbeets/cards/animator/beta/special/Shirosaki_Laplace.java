@@ -30,7 +30,6 @@ public class Shirosaki_Laplace extends AnimatorCard
         SetAffinity_Blue(1, 1, 0);
         SetAffinity_Dark(2, 0, 0);
 
-        SetShapeshifter();
         AfterLifeMod.Add(this);
     }
 

@@ -54,13 +54,13 @@
 		"animator:Strike_Orange":
 		{
 		  "DESCRIPTION": "",
-		  "UPGRADE_DESCRIPTION": "!M! <L>: Retain [L]",
+		  "UPGRADE_DESCRIPTION": "!M! <L>: Retain [W]",
 		  "NAME": "Improved Strike"
 		},
 		"animator:Defend_Orange":
 		{
 		  "DESCRIPTION": "",
-		  "UPGRADE_DESCRIPTION": "!M! <L>: Retain [L]",
+		  "UPGRADE_DESCRIPTION": "!M! <L>: Retain [W]",
 		  "NAME": "Improved Defend"
 		},
 		"animator:Strike_Light":
@@ -185,7 +185,7 @@
 		},
 		"animator:Yui":
 		{
-			"DESCRIPTION": "Afterlife. Gain/Boost [L]. Motivate !S!. || When played from {Afterlife}: Add a {Girls Dead Monster} to your draw pile.",
+			"DESCRIPTION": "Afterlife. Gain/Boost [B]. Motivate !S!. || When played from {Afterlife}: Add a {Girls Dead Monster} to your draw pile.",
 			"NAME": "Yui"
 		},
 		"animator:YuriNakamura":
@@ -496,11 +496,6 @@
 		  "DESCRIPTION": "Unplayable. || At the end of your turn, give a random card in your Draw Pile {Autoplay}. || When Exhausted: Boost [A].",
 		  "NAME": "Delusion"
 		},
-		"animator:Defend_GenshinImpact":
-		{
-			"DESCRIPTION": "Retain [L].",
-			"NAME": "Improved Defend"
-		},
 		"animator:Dvalin":
 		{
 		  "DESCRIPTION": "If the enemy dies from the first hit, the second hit will target a random living enemy and deal !M! more damage.",
@@ -548,7 +543,7 @@
 		},
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M!. Gain effects based on each Scried card's rarity: || {Basic} or {Common}: Draw !S! more card(s) next turn. ** {Uncommon}: Gain/Boost [I][L] ** {Rare}: Induce [Lightning]",
+			"DESCRIPTION": "{Scry} !M!. Gain effects based on each Scried card's rarity: || {Basic} or {Common}: Draw !S! more card(s) next turn. ** {Uncommon}: Gain/Boost [I][W] ** {Rare}: Induce [Lightning]",
 			"NAME": "Lisa Minci"
 		},
 		"animator:Noelle":
@@ -562,11 +557,6 @@
 		  "EXTENDED_DESCRIPTION": ["The first #b{0} LV.2 Blue card(s) played this turn will also randomly Channel 1 #yLightning or #yDark. You have played #b{1} LV.2 Blue card(s)."],
 		  "NAME": "Oz"
 		},
-		"animator:Strike_GenshinImpact":
-		{
-			"DESCRIPTION": "Retain [I].",
-			"NAME": "Improved Strike"
-		},
 		"animator:Tartaglia":
 		{
 			"DESCRIPTION": "Deal additional damage equal to the enemy's [Burning], then remove [Burning]. || If in <FS>: Exit your Stance. Otherwise, Enter <FS> ** and Transform this card ** into {Delusion}.",
@@ -575,7 +565,7 @@
 		"animator:Traveler":
 		{
 		  "DESCRIPTION": "{Unique}. || Choose 1 of 2 {Forms} for this card at the start of combat. || When Exhausted, switches forms and returns to your Draw Pile.",
-		  "EXTENDED_DESCRIPTION": ["{Unique}. || Channel 2 [Aether]. ** Gain !M! [Elemental Mastery]. Evoke your first !S! non-[Aether] Orb(s) and gain 5 more [Elemental Mastery] for each one.", "{Unique}. || Add a {Void} to your Discard Pile. Apply [Vulnerable][Weak] to ALL enemies !S! times. ** Next turn, trigger the last !M! Orbs Evoked this combat."],
+		  "EXTENDED_DESCRIPTION": ["{Unique}. || Channel [Aether]. Gain !M! [Elemental Mastery]. || {Induce} a copy of a random Orb you have !S! times. Gain 5 additional [Elemental Mastery] for every unique Orb Induced.", "{Unique}. || Add 2 {Void} to your Discard Pile. Apply [Frail][Vulnerable][Weak] to ALL enemies !S! times. ** Next turn, trigger the last !M! Orbs Evoked this combat."],
 		  "NAME": "Abyss Ruler"
 		},
 		"animator:Venti":
@@ -795,11 +785,6 @@
 			"DESCRIPTION": "Cycle 1 card or exit your Stance. || {Starter}: Add a random card of the same rarity to your discard pile, then gain [A].",
 			"NAME": "Suiseiseki",
 			"UPGRADE_DESCRIPTION": "Cycle 1 card or exit your Stance. || On Discard or {Starter}: Add a random card of the same rarity to your discard pile, then gain [A]."
-		},
-		"animator:Suiseiseki_Suidream":
-		{
-			"DESCRIPTION": "<Deprecated>",
-			"NAME": "Sui Dream"
 		},
 		"animator:TomoeKashiwaba":
 		{
@@ -2071,6 +2056,11 @@
 		{
 			"DESCRIPTION": "Have +1 <B> for ** the rest of combat. || 3 <R> or <G>: Gain [E].",
 			"NAME": "Affinity Token"
+		},
+		"animator:AffinityToken_Orange":
+		{
+		  "DESCRIPTION": "Have +1 <O> for ** the rest of combat. || 3 <L> or <D>: Gain [E].",
+		  "NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Light":
 		{

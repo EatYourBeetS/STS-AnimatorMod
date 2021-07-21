@@ -19,7 +19,6 @@ public class SymbolToken extends CTToken
     {
 //        tokenCache.put("R", new SymbolToken("[R]"));
 //        tokenCache.put("G", new SymbolToken("[G]"));
-        tokenCache.put("W", new SymbolToken("[W]"));
         tokenCache.put("E", new SymbolToken("[E]")); // Energy
         tokenCache.put("F", new SymbolToken("[F]")); // Force
         tokenCache.put("A", new SymbolToken("[A]")); // Agility

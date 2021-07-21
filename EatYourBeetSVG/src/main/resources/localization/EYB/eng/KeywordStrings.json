@@ -116,7 +116,7 @@
 	},
 	"Elemental Mastery":
 	{
-	  "DESCRIPTION": "At the end of the turn, Inflict Elemental Exposure to all enemies. Stacks increase whenever an Orb is Channeled.",
+	  "DESCRIPTION": "At the end of the turn, Inflict Elemental Exposure to all enemies. Stacks increase whenever an Orb is Channeled or Burning/Chilled is inflicted.",
 	  "NAMES": ["elemental mastery"],
 	  "PROPER_NAME": "Elemental Mastery"
 	},

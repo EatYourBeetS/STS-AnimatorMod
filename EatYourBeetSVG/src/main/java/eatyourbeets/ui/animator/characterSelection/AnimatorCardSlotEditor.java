@@ -133,7 +133,7 @@ public class AnimatorCardSlotEditor extends GUIElement
                 return;
             }
 
-            background_image.color.a = 0.75f;
+            background_image.color.a = 0.7f;
         }
         else
         {

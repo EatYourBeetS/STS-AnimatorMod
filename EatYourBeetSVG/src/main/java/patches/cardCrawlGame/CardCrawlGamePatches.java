@@ -69,6 +69,18 @@ public class CardCrawlGamePatches
     @SpirePatch(clz = CardCrawlGame.class, method = "update")
     public static class CardCrawlGame_Update
     {
+        @SpirePrefixPatch
+        public static void Prefix(CardCrawlGame __instance)
+        {
+            GR.UI.PreUpdate();
+        }
+
+        @SpirePostfixPatch
+        public static void Postfix(CardCrawlGame __instance)
+        {
+            GR.UI.PostUpdate();
+        }
+
         @SpireInsertPatch(locator = Locator.class)
         public static void Insert(CardCrawlGame __instance)
         {

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.CardSlot;
 import eatyourbeets.ui.GUIElement;
@@ -82,7 +83,7 @@ public class AnimatorCardSlotEditor extends GUIElement
         this.cardAmount_text.SetActive(add);
         this.add_button.SetOnClick(this.slot::Add).SetActive(add);
         this.remove_button.SetOnClick(this.slot::Remove).SetActive(remove);
-        this.change_button.SetOnClick(() -> this.loadoutEditor.TrySelectCard(this.slot)).SetActive(change);
+        this.change_button.SetOnClick(this.slot::Next).SetActive(change);
 
         float cY = 0.75f;
         if (add)
@@ -118,13 +119,35 @@ public class AnimatorCardSlotEditor extends GUIElement
             return;
         }
 
+        if (change_button.isActive && background_image.hb.hovered)
+        {
+            if (InputHelper.justClickedLeft)
+            {
+                background_image.hb.clickStarted = true;
+            }
+
+            if (background_image.hb.clicked)
+            {
+                background_image.hb.clicked = false;
+                loadoutEditor.TrySelectCard(this.slot);
+                return;
+            }
+
+            background_image.color.a = 0.7f;
+        }
+        else
+        {
+            background_image.color.a = 0.85f;
+        }
+
         card = slot.GetCard(false);
         if (card != null)
         {
-            card.drawScale = card.targetDrawScale = CARD_SCALE * 0.97f;
             card.current_x = card.target_x = card.hb.cX = background_image.hb.cX;
             card.current_y = card.target_y = card.hb.cY = background_image.hb.cY;
             card.update();
+            card.updateHoverLogic();
+            card.drawScale = card.targetDrawScale = CARD_SCALE * ((card.hb.hovered) ? 0.97f : 0.95f);
         }
 
         int value = slot.GetEstimatedValue();
@@ -160,6 +183,11 @@ public class AnimatorCardSlotEditor extends GUIElement
         if (card != null)
         {
             card.renderInLibrary(sb);
+
+            if (card.hb.hovered)
+            {
+                card.renderCardTip(sb);
+            }
         }
     }
 

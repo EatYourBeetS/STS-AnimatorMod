@@ -12,8 +12,9 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import eatyourbeets.ui.GUIElement;
 import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.resources.GR;
+import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class GUI_Toggle extends GUIElement
@@ -160,27 +161,20 @@ public class GUI_Toggle extends GUIElement
             return;
         }
 
-        if (hb.justHovered)
+        if (GR.UI.TryHover(hb))
         {
-            CardCrawlGame.sound.playA("UI_HOVER", -0.3f);
-        }
-
-        if (hb.hovered && InputHelper.justClickedLeft)
-        {
-            hb.clickStarted = true;
-        }
-
-        boolean controllerPressed = false;
-        if (controllerAction != null && controllerAction.isJustPressed())
-        {
-            if (controllerAction != CInputActionSet.select || hb.hovered)
+            if (hb.justHovered)
             {
-                controllerPressed = true;
-                controllerAction.unpress();
+                CardCrawlGame.sound.playA("UI_HOVER", -0.3f);
+            }
+
+            if (hb.hovered && InputHelper.justClickedLeft)
+            {
+                hb.clickStarted = true;
             }
         }
 
-        if (hb.clicked || controllerPressed)
+        if (hb.clicked)
         {
             hb.clicked = false;
             CardCrawlGame.sound.playA("UI_CLICK_1", -0.2f);

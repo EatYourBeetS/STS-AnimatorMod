@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.ui.AbstractScreen;
 import eatyourbeets.ui.animator.cardReward.CardAffinityPanel;
@@ -20,6 +21,8 @@ public class UIManager
     protected final ArrayList<ActionT1<SpriteBatch>> postRenderList = new ArrayList<>();
     protected float timer = 0;
     protected boolean isDragging;
+    protected Hitbox lastHovered;
+    protected Hitbox lastHoveredTemp;
 
     public EYBCombatScreen CombatScreen;
     public EYBSingleCardPopup CardPopup;
@@ -45,13 +48,18 @@ public class UIManager
         }
 
         CurrentScreen = null;
+        lastHovered = null;
+    }
+
+    public void PreUpdate()
+    {
+        timer += Gdx.graphics.getRawDeltaTime();
+        isDragging = false;
+        lastHoveredTemp = null;
     }
 
     public void Update()
     {
-        timer += Gdx.graphics.getRawDeltaTime();
-        isDragging = false;
-
         if (CurrentScreen != null)
         {
             CurrentScreen.Update();
@@ -59,6 +67,11 @@ public class UIManager
 
         CombatScreen.TryUpdate();
         CardPopup.TryUpdate();
+    }
+
+    public void PostUpdate()
+    {
+        lastHovered = lastHoveredTemp;
     }
 
     public void PreRender(SpriteBatch sb)
@@ -94,6 +107,17 @@ public class UIManager
     public boolean TryDragging()
     {
         return !CardCrawlGame.isPopupOpen && (CurrentScreen == null || !isDragging) && (isDragging = true);
+    }
+
+    public boolean TryHover(Hitbox hitbox)
+    {
+        if (hitbox == null || hitbox.justHovered || hitbox.hovered)
+        {
+            lastHoveredTemp = hitbox;
+            return hitbox == lastHovered;
+        }
+
+        return false;
     }
 
     public float Time_Sin(float distance, float speed)

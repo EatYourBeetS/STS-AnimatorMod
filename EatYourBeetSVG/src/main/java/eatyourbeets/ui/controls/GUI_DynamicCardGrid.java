@@ -7,12 +7,15 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT2;
+import eatyourbeets.resources.GR;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.ui.GUIElement;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+// This class is incomplete
 public class GUI_DynamicCardGrid extends GUIElement
 {
     private static final float PAD_X = AbstractCard.IMG_WIDTH * 0.75f + Settings.CARD_VIEW_PAD_X;
@@ -22,9 +25,10 @@ public class GUI_DynamicCardGrid extends GUIElement
     public boolean autoShowScrollbar = true;
     public AbstractCard hoveredCard = null;
     public String message = null;
-    public float scale = 1;
+    public float scale;
 
     public int rowSize = 5;
+    public boolean draggingScreen;
     public float drawStart_x;
     public float drawStart_y;
     public float pad_x;
@@ -32,7 +36,7 @@ public class GUI_DynamicCardGrid extends GUIElement
 
     protected ActionT1<AbstractCard> onCardClick;
     protected ActionT1<AbstractCard> onCardHovered;
-    protected boolean draggingScreen;
+    protected ActionT2<SpriteBatch, AbstractCard> onCardRender;
     protected float lowerScrollBound = -Settings.DEFAULT_SCROLL_LIMIT;
     protected float upperScrollBound = Settings.DEFAULT_SCROLL_LIMIT;
     protected float scrollStart;
@@ -41,6 +45,7 @@ public class GUI_DynamicCardGrid extends GUIElement
 
     public GUI_DynamicCardGrid()
     {
+        this.scale = 1;
         this.cards = new ArrayList<>();
         this.drawStart_x = (Settings.WIDTH - (5f * AbstractCard.IMG_WIDTH * 0.75f) - (4f * Settings.CARD_VIEW_PAD_X) + AbstractCard.IMG_WIDTH * 0.75f) * 0.4f;
         this.drawStart_y = ScreenH(0.7f);
@@ -62,6 +67,13 @@ public class GUI_DynamicCardGrid extends GUIElement
         return this;
     }
 
+    public GUI_DynamicCardGrid SetOnCardRender(ActionT2<SpriteBatch, AbstractCard> onCardRender)
+    {
+        this.onCardRender = onCardRender;
+
+        return this;
+    }
+
     public GUI_DynamicCardGrid SetRowSize(int size)
     {
         if (size < 1)
@@ -74,11 +86,24 @@ public class GUI_DynamicCardGrid extends GUIElement
         return this;
     }
 
+    public GUI_DynamicCardGrid UseScrollbar(boolean autoShowScrollbar)
+    {
+        this.autoShowScrollbar = autoShowScrollbar;
+
+        return this;
+    }
 
     public GUI_DynamicCardGrid SetDrawStart(float x, float y)
     {
         this.drawStart_x = x;
         this.drawStart_y = y;
+
+        return this;
+    }
+
+    public GUI_DynamicCardGrid AddPadY(float padY)
+    {
+        this.pad_y += padY * scale;
 
         return this;
     }
@@ -132,14 +157,14 @@ public class GUI_DynamicCardGrid extends GUIElement
         {
             if (card != hoveredCard)
             {
-                card.render(sb);
+                RenderCard(sb, card);
             }
         }
 
         if (hoveredCard != null)
         {
             hoveredCard.renderHoverShadow(sb);
-            hoveredCard.render(sb);
+            RenderCard(sb, hoveredCard);
 
             if (!AfterLifeMod.IsAdded(hoveredCard))
             {
@@ -159,7 +184,7 @@ public class GUI_DynamicCardGrid extends GUIElement
     {
         UpdateCards();
 
-        if (hoveredCard != null)
+        if (hoveredCard != null && GR.UI.TryHover(hoveredCard.hb))
         {
             if (InputHelper.justClickedLeft)
             {
@@ -186,12 +211,12 @@ public class GUI_DynamicCardGrid extends GUIElement
         int column = 0;
         for (AbstractCard card : cards)
         {
-            card.targetDrawScale = (0.75f * scale);
             card.target_x = drawStart_x + (column * pad_x);
             card.target_y = drawStart_y + scrollDelta - (row * pad_y);
             card.fadingOut = false;
             card.update();
             card.updateHoverLogic();
+            card.drawScale = card.targetDrawScale = (0.75f * scale);
 
             if (card.hb.hovered)
             {
@@ -204,6 +229,16 @@ public class GUI_DynamicCardGrid extends GUIElement
                 column = 0;
                 row += 1;
             }
+        }
+    }
+
+    protected void RenderCard(SpriteBatch sb, AbstractCard card)
+    {
+        card.render(sb);
+
+        if (onCardRender != null)
+        {
+            onCardRender.Invoke(sb, card);
         }
     }
 

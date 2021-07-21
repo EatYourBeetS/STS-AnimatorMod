@@ -118,7 +118,7 @@ public class CardSeries
         return s;
     }
 
-    public static Collection<CardSeries> GetAllSynergies()
+    public static Collection<CardSeries> GetAllSeries()
     {
         return mapIDs.values();
     }
@@ -204,7 +204,7 @@ public class CardSeries
         return result;
     }
 
-    public static HashSet<CardSeries> GetAllSynergies(ArrayList<AbstractCard> cards)
+    public static HashSet<CardSeries> GetAllSeries(ArrayList<AbstractCard> cards)
     {
         HashSet<CardSeries> result = new HashSet<>();
         for (AbstractCard card : cards)

@@ -5,8 +5,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.MathHelper;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
 
 public class CardEffectBlight extends AbstractBlight
@@ -14,6 +17,7 @@ public class CardEffectBlight extends AbstractBlight
     protected static final FieldInfo<Float> _offsetX = JUtils.GetField("offsetX", AbstractBlight.class);
     protected static final FieldInfo<Float> _rotation = JUtils.GetField("rotation", AbstractBlight.class);
 
+    protected AbstractRoom room;
     protected AbstractCard card;
     protected AbstractCard copy;
     protected float scaleModifier;
@@ -110,5 +114,13 @@ public class CardEffectBlight extends AbstractBlight
     {
         card.superFlash();
         targetScaleModifier = 0.3f;
+    }
+
+    @Override
+    public void onVictory()
+    {
+        super.onVictory();
+
+        GameEffects.TopLevelList.WaitRealtime(0.01f).AddCallback(() -> AbstractDungeon.player.blights.remove(this));
     }
 }

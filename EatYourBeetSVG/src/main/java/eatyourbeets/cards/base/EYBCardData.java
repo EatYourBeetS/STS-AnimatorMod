@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.resources.GR;
@@ -81,6 +82,11 @@ public class EYBCardData
         {
             throw new RuntimeException(e);
         }
+    }
+
+    public EYBCard MakeCopy(boolean upgraded)
+    {
+        return (EYBCard) CardLibrary.getCopy(ID, upgraded ? 1 : 0, 0);
     }
 
     public EYBCardBase AddPreview(EYBCardBase card, boolean showUpgrade)

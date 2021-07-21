@@ -823,7 +823,7 @@ public abstract class EYBCard extends EYBCardBase
                     }
                     else if (LockOnPower.POWER_ID.equals(power.ID))
                     {
-                        tempDamage *= 1.3f;
+                        tempDamage *= 1.5f;
                     }
                 }
             }

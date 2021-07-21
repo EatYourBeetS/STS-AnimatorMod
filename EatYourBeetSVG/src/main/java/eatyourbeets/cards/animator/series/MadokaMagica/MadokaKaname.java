@@ -50,7 +50,7 @@ public class MadokaKaname extends AnimatorCard
     {
         super.triggerOnOtherCardPlayed(c);
 
-        if (player.hand.contains(this) && c.hasTag(SPELLCASTER))
+        if (player.hand.contains(this))
         {
             GameActions.Bottom.GainTemporaryHP(1);
             GameActions.Bottom.Flash(this);

@@ -458,15 +458,6 @@ public class GR
             public static AbstractCard.CardTags TEMPORARY;
 
             @SpireEnum
-            public static AbstractCard.CardTags SHAPESHIFTER;
-
-            @SpireEnum
-            public static AbstractCard.CardTags SPELLCASTER;
-
-            @SpireEnum
-            public static AbstractCard.CardTags MARTIAL_ARTIST;
-
-            @SpireEnum
             public static AbstractCard.CardTags UNIQUE;
 
             @SpireEnum

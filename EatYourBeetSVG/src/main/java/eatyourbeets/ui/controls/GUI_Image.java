@@ -3,6 +3,7 @@ package eatyourbeets.ui.controls;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.ColoredTexture;
@@ -199,17 +200,17 @@ public class GUI_Image extends GUIElement
     {
         if (background != null)
         {
-            final float scale = background.scale;
+            final float scale = background.scale * Settings.scale;
             sb.setColor(background.color != null ? background.color : color);
             sb.draw(background.texture, x, y, width/2f, height/2f, width, height, scaleX * scale, scaleY * scale, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
         }
 
         sb.setColor(color);
-        sb.draw(texture, x, y, width/2f, height/2f, width, height, scaleX, scaleY, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
+        sb.draw(texture, x, y, width/2f, height/2f, width, height, scaleX * Settings.scale, scaleY * Settings.scale, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
 
         if (foreground != null)
         {
-            final float scale = foreground.scale;
+            final float scale = foreground.scale * Settings.scale;
             sb.setColor(foreground.color != null ? foreground.color : color);
             sb.draw(foreground.texture, x, y, width/2f, height/2f, width, height, scaleX * scale, scaleY * scale, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
         }

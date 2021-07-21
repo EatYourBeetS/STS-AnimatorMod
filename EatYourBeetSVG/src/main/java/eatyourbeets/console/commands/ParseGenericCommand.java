@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.auras.Aura;
 import eatyourbeets.cards.animator.basic.ImprovedDefend;
 import eatyourbeets.cards.animator.basic.ImprovedStrike;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -53,15 +54,20 @@ public class ParseGenericCommand extends ConsoleCommand
                     return;
                 }
 
-                if (tokens[1].equals("strike-defend"))
+                if (tokens[1].equals("show-cards"))
                 {
+                    boolean upgrade = tokens.length > 2 && tokens[2].equals("true");
                     for (EYBCardData data : ImprovedDefend.GetCards())
                     {
-                        player.masterDeck.group.add(data.CreateNewInstance(true));
+                        player.masterDeck.group.add(data.CreateNewInstance(upgrade));
                     }
                     for (EYBCardData data : ImprovedStrike.GetCards())
                     {
-                        player.masterDeck.group.add(data.CreateNewInstance(true));
+                        player.masterDeck.group.add(data.CreateNewInstance(upgrade));
+                    }
+                    for (EYBCardData data : AffinityToken.GetCards())
+                    {
+                        player.masterDeck.group.add(data.CreateNewInstance(upgrade));
                     }
                     return;
                 }
@@ -133,38 +139,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                 if (tokens[1].equals("sort-by-class"))
                 {
-                    CustomCardLibSortHeader.Instance.group.group.sort((a, b) ->
-                    {
-                        int aValue = 0;
-                        if (a.hasTag(AnimatorCard.SPELLCASTER))
-                        {
-                            aValue = 1;
-                        }
-                        else if (a.hasTag(AnimatorCard.MARTIAL_ARTIST))
-                        {
-                            aValue = 2;
-                        }
-                        else if (a.hasTag(AnimatorCard.SHAPESHIFTER))
-                        {
-                            aValue = 3;
-                        }
-
-                        int bValue = 0;
-                        if (b.hasTag(AnimatorCard.SPELLCASTER))
-                        {
-                            bValue = 1;
-                        }
-                        else if (b.hasTag(AnimatorCard.MARTIAL_ARTIST))
-                        {
-                            bValue = 2;
-                        }
-                        else if (b.hasTag(AnimatorCard.SHAPESHIFTER))
-                        {
-                            bValue = 3;
-                        }
-
-                        return Integer.compare(aValue, bValue);
-                    });
+                    CustomCardLibSortHeader.Instance.group.group.sort(new CardAffinityComparator(AffinityType.Star));
                     return;
                 }
 
@@ -210,7 +185,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                     temp = tokens[2].replace("_", " ");
                     ArrayList<AnimatorCard> cards = new ArrayList<>();
-                    CardSeries series = JUtils.Find(CardSeries.GetAllSynergies(), s -> s.Name.equals(temp));
+                    CardSeries series = JUtils.Find(CardSeries.GetAllSeries(), s -> s.Name.equals(temp));
                     if (series != null)
                     {
                         Settings.seedSet = true;

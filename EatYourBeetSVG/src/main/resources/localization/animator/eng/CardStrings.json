@@ -2057,6 +2057,32 @@
 
 	"SPECIAL":
 	{
+		"animator:AffinityToken_Red":
+		{
+			"DESCRIPTION": "Have +1 <R> for ** the rest of combat. || 3 <G> or <B>: Gain [E].",
+			"NAME": "Affinity Token"
+		},
+		"animator:AffinityToken_Green":
+		{
+			"DESCRIPTION": "Have +1 <G> for ** the rest of combat. || 3 <R> or <B>: Gain [E].",
+			"NAME": "Affinity Token"
+		},
+		"animator:AffinityToken_Blue":
+		{
+			"DESCRIPTION": "Have +1 <B> for ** the rest of combat. || 3 <R> or <G>: Gain [E].",
+			"NAME": "Affinity Token"
+		},
+		"animator:AffinityToken_Light":
+		{
+			"DESCRIPTION": "Have +1 <L> for ** the rest of combat. || 3 <D> or <R>: Gain [E].",
+			"NAME": "Affinity Token"
+		},		
+		"animator:AffinityToken_Dark":
+		{
+			"DESCRIPTION": "Have +1 <D> for ** the rest of combat. || 3 <L> or <G>: Gain [E].",
+			"NAME": "Affinity Token"
+		},
+		
 		"animator:Asuramaru":
 		{
 			"DESCRIPTION": "Gain !M! [F] [A] [I]. ** Gain 2 {Demon Form}. ** Add 2 {Wounds} to ** your hand.",

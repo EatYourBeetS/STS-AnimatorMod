@@ -157,11 +157,6 @@ public class EYBCardAffinitySystem implements OnStartOfTurnSubscriber
 
     public boolean HasDirectSynergy(AbstractCard c1, AbstractCard c2)
     {
-        if (c1.hasTag(AnimatorCard.SHAPESHIFTER) || c2.hasTag(AnimatorCard.SHAPESHIFTER))
-        {
-            return true;
-        }
-
         EYBCard a = JUtils.SafeCast(c1, EYBCard.class);
         EYBCard b = JUtils.SafeCast(c2, EYBCard.class);
         if (a == null || b == null)

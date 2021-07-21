@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.basic;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -34,15 +33,13 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
 
     protected static EYBCardData Register(Class<? extends AnimatorCard> type)
     {
-        return AnimatorCard.Register(type)
-                .SetColor(CardColor.COLORLESS)
-                .SetAttack(1, CardRarity.BASIC)
+        return AnimatorCard.Register(type).SetColor(CardColor.COLORLESS).SetAttack(1, CardRarity.BASIC)
                 .SetImagePath(GR.GetCardImage(Strike.DATA.ID + "Alt1"));
     }
 
     public ImprovedStrike(EYBCardData data, AffinityType type)
     {
-        super(data, type);
+        super(data, type, GR.GetCardImage(Strike.DATA.ID + "Alt2"));
 
         if (affinityType == AffinityType.Star)
         {
@@ -55,14 +52,8 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
         SetUpgrade(0, 3);
         SetUpgrade(3, 0);
 
-        this.tags.add(CardTags.STARTER_STRIKE);
-        this.tags.add(GR.Enums.CardTags.IMPROVED_STRIKE);
-    }
-
-    @Override
-    protected Texture GetPortraitForeground()
-    {
-        return GR.GetTexture(GR.GetCardImage(Strike.DATA.ID + "Alt2"), true);
+        SetTag(CardTags.STARTER_STRIKE, true);
+        SetTag(GR.Enums.CardTags.IMPROVED_STRIKE, true);
     }
 
     @Override

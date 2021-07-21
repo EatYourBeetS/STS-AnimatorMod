@@ -18,6 +18,7 @@ import eatyourbeets.ui.hitboxes.RelativeHitbox;
 public class AnimatorCardSlotEditor extends GUIElement
 {
     public CardSlot slot;
+    public AnimatorLoadoutEditor loadoutEditor;
 
     protected static final float CARD_SCALE = 0.75f;
     protected AdvancedHitbox hb;
@@ -29,9 +30,10 @@ public class AnimatorCardSlotEditor extends GUIElement
     protected GUI_Button remove_button;
     protected AbstractCard card;
 
-    public AnimatorCardSlotEditor(float cX, float cY)
+    public AnimatorCardSlotEditor(AnimatorLoadoutEditor loadoutEditor, float cX, float cY)
     {
-        hb = new AdvancedHitbox(Scale(AbstractCard.RAW_W) * CARD_SCALE, Scale(AbstractCard.RAW_H) * CARD_SCALE);
+        this.loadoutEditor = loadoutEditor;
+        this.hb = new AdvancedHitbox(Scale(AbstractCard.RAW_W) * CARD_SCALE, Scale(AbstractCard.RAW_H) * CARD_SCALE);
 
         background_image = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
         .SetBackgroundTexture(GR.Common.Images.Panel_Rounded.Texture(), new Color(0.5f, 0.5f, 0.5f , 1f), 1.03f)
@@ -79,8 +81,8 @@ public class AnimatorCardSlotEditor extends GUIElement
         this.cardValue_text.SetActive(true);
         this.cardAmount_text.SetActive(add);
         this.add_button.SetOnClick(this.slot::Add).SetActive(add);
-        this.change_button.SetOnClick(this.slot::Next).SetActive(change);
         this.remove_button.SetOnClick(this.slot::Remove).SetActive(remove);
+        this.change_button.SetOnClick(() -> this.loadoutEditor.TrySelectCard(this.slot)).SetActive(change);
 
         float cY = 0.75f;
         if (add)
@@ -122,6 +124,7 @@ public class AnimatorCardSlotEditor extends GUIElement
             card.drawScale = card.targetDrawScale = CARD_SCALE * 0.97f;
             card.current_x = card.target_x = card.hb.cX = background_image.hb.cX;
             card.current_y = card.target_y = card.hb.cY = background_image.hb.cY;
+            card.update();
         }
 
         int value = slot.GetEstimatedValue();
@@ -132,7 +135,7 @@ public class AnimatorCardSlotEditor extends GUIElement
         if (add_button.isActive)
         {
             add_button.SetInteractable(slot.CanAdd()).Update();
-            cardAmount_text.SetText("x" + slot.amount).Update();
+            cardAmount_text.SetText("x " + slot.amount).Update();
         }
         if (change_button.isActive)
         {

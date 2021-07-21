@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
 import com.megacrit.cardcrawl.actions.defect.EvokeWithoutRemovingOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
@@ -39,8 +36,8 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
     {
         if (spellcasterPool.Size() == 0)
         {
-            spellcasterPool.AddAll(JUtils.Filter(CardSeries.GetNonColorlessCard(), c -> c.hasTag(SPELLCASTER)));
-            spellcasterPool.AddAll(JUtils.Filter(CardSeries.GetColorlessCards(), c -> c.hasTag(SPELLCASTER)));
+            spellcasterPool.AddAll(JUtils.Filter(CardSeries.GetNonColorlessCard(), c -> c.affinities.GetLevel(AffinityType.Blue) > 0));
+            spellcasterPool.AddAll(JUtils.Filter(CardSeries.GetColorlessCards(), c -> c.affinities.GetLevel(AffinityType.Blue) > 0));
         }
 
         for (int i = 0; i < magicNumber; i++)
@@ -79,7 +76,7 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
         {
             GameActions.Bottom.Callback(() ->
             {
-                int count = JUtils.Count(player.hand.group, c -> c.type == CardType.CURSE || c.hasTag(AnimatorCard.SPELLCASTER));
+                int count = JUtils.Count(player.hand.group, c -> c.type == CardType.CURSE || (c instanceof EYBCard && ((EYBCard)c).affinities.GetLevel(AffinityType.Blue) > 0));
                 if (count > 0)
                 {
                     for (int i = 1; i < count; i++)

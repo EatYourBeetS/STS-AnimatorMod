@@ -15,8 +15,6 @@ import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.ColoredTexture;
 import eatyourbeets.utilities.JUtils;
 
-import java.util.ArrayList;
-
 public abstract class AnimatorCard extends EYBCard
 {
     protected static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
@@ -24,9 +22,6 @@ public abstract class AnimatorCard extends EYBCard
     protected AnimatorCardCooldown cooldown;
 
     public static final AnimatorImages IMAGES = GR.Animator.Images;
-    public static final CardTags SHAPESHIFTER = GR.Enums.CardTags.SHAPESHIFTER;
-    public static final CardTags MARTIAL_ARTIST = GR.Enums.CardTags.MARTIAL_ARTIST;
-    public static final CardTags SPELLCASTER = GR.Enums.CardTags.SPELLCASTER;
     public CardSeries series;
 
     protected static EYBCardData Register(Class<? extends AnimatorCard> type)
@@ -76,18 +71,6 @@ public abstract class AnimatorCard extends EYBCard
     public boolean WouldSynergize(AbstractCard other)
     {
         return CombatStats.Affinities.WouldSynergize(this, other);
-    }
-
-    public void SetShapeshifter()
-    {
-        SetTag(SHAPESHIFTER, true);
-        affinities.Initialize(AffinityType.Star, 1, 0, 0);
-    }
-
-    public void SetShapeshifter(int base, int upgrade)
-    {
-        SetTag(SHAPESHIFTER, true);
-        affinities.Initialize(AffinityType.Star, base, upgrade, 0);
     }
 
     public void SetSeries(CardSeries series)
@@ -177,25 +160,6 @@ public abstract class AnimatorCard extends EYBCard
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
 
-    }
-
-    @Override
-    public void GenerateDynamicTooltips(ArrayList<EYBCardTooltip> dynamicTooltips)
-    {
-        super.GenerateDynamicTooltips(dynamicTooltips);
-
-        if (hasTag(SHAPESHIFTER))
-        {
-            dynamicTooltips.add(GR.Tooltips.Shapeshifter);
-        }
-        else if (hasTag(MARTIAL_ARTIST))
-        {
-            dynamicTooltips.add(GR.Tooltips.MartialArtist);
-        }
-        else if (hasTag(SPELLCASTER))
-        {
-            dynamicTooltips.add(GR.Tooltips.Spellcaster);
-        }
     }
 
     @Override

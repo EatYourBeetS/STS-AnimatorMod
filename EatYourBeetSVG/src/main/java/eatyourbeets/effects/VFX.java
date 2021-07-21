@@ -1,6 +1,7 @@
 package eatyourbeets.effects;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -42,14 +43,19 @@ public class VFX
         return new ClawEffect(source.cX, source.cY, color1, color2);
     }
 
+    public static ColoredSweepingBeamEffect SweepingBeam(AbstractCreature source)
+    {
+        return SweepingBeam(source.hb, source.flipHorizontal, Color.CYAN);
+    }
+
+    public static ColoredSweepingBeamEffect SweepingBeam(Hitbox source, boolean flipHorizontal, Color color)
+    {
+        return new ColoredSweepingBeamEffect(source.cX, source.cY, flipHorizontal, color);
+    }
+
     public static DaggerSprayEffect DaggerSpray()
     {
         return new DaggerSprayEffect(FlipHorizontally());
-    }
-
-    public static ShootingStarsEffect ShootingStars(Hitbox source, float spread)
-    {
-        return new ShootingStarsEffect(source.cX, source.cY, spread, FlipHorizontally());
     }
 
     public static ExplosionSmallEffect SmallExplosion(Hitbox source)
@@ -77,6 +83,12 @@ public class VFX
         return new FlashAttackEffect(target.cX, target.cY, effect, muteSFX);
     }
 
+    public static GenericThrowEffect GenericThrow(Hitbox source, Hitbox target, Texture img)
+    {
+        return new GenericThrowEffect(img, source.cX, source.cY, target.cX, target.cY);
+    }
+
+
     public static HemokinesisEffect2 Hemokinesis(Hitbox source, Hitbox target)
     {
         return new HemokinesisEffect2(target.cX, target.cY, source.cX, source.cY);
@@ -87,19 +99,24 @@ public class VFX
         return new LightningEffect(target.cX, target.cY);
     }
 
+    public static RockBurstEffect RockBurst(Hitbox source, float scale)
+    {
+        return new RockBurstEffect(source.cX, source.cY, scale);
+    }
+
+    public static RockBurstEffect RockBurst(Hitbox source, float scale, float spread)
+    {
+        return new RockBurstEffect(source.cX + MathUtils.random(-spread, spread), source.cY + MathUtils.random(-spread, spread), scale);
+    }
+
+    public static ShootingStarsEffect ShootingStars(Hitbox source, float spread)
+    {
+        return new ShootingStarsEffect(source.cX, source.cY, spread, FlipHorizontally());
+    }
+
     public static SnowballEffect Snowball(Hitbox source, Hitbox target)
     {
         return new SnowballEffect(source.cX, source.cY, target.cX, target.cY);
-    }
-
-    public static ColoredSweepingBeamEffect SweepingBeam(AbstractCreature source)
-    {
-        return SweepingBeam(source.hb, source.flipHorizontal, Color.CYAN);
-    }
-
-    public static ColoredSweepingBeamEffect SweepingBeam(Hitbox source, boolean flipHorizontal, Color color)
-    {
-        return new ColoredSweepingBeamEffect(source.cX, source.cY, flipHorizontal, color);
     }
 
     public static VerticalImpactEffect VerticalImpact(Hitbox target)

@@ -312,6 +312,12 @@
 		"NAMES": ["~retain"],
 		"PROPER_NAME": "Retain"
 	},
+	"~RetainOnce":
+	{
+		"DESCRIPTION": "Not discarded at the end of turn.",
+		"NAMES": ["~retain once"],
+		"PROPER_NAME": "Retain Once"
+	},
 	"~Steal":
 	{
 		"DESCRIPTION": "You can steal up to #b50 #yGold from a boss, #b25 #yGold from an elite, or #b10 #yGold from other non-minion enemies.",

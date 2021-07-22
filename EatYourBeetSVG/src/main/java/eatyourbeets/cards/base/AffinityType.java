@@ -17,7 +17,7 @@ public enum AffinityType implements Comparable<AffinityType>
     Blue(2, "Blue", GR.Common.Images.Affinities.Blue),
     Light(3, "Light", GR.Common.Images.Affinities.Light),
     Dark(4, "Dark", GR.Common.Images.Affinities.Dark),
-    Star(-1, "Star", GR.Common.Images.Affinities.Star_BG),
+    Star(-1, "Star", GR.Common.Images.Affinities.Star),
     General(-2, "General", GR.Common.Images.Affinities.General);// Don't use directly
 
     public static final int MAX_ID = 4;
@@ -101,6 +101,11 @@ public enum AffinityType implements Comparable<AffinityType>
 
             case Star: default: return null;
         }
+    }
+
+    public Color GetAlternateColor(float lerp)
+    {
+        return Color.WHITE.cpy().lerp(GetAlternateColor(), lerp);
     }
 
     public Color GetAlternateColor()

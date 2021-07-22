@@ -1,7 +1,6 @@
 package eatyourbeets.resources.animator.misc;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinities;
@@ -39,7 +38,7 @@ public class CardSlot
         return selected != null ? selected.data : null;
     }
 
-    public AbstractCard GetCard(boolean refresh)
+    public EYBCard GetCard(boolean refresh)
     {
         return selected != null ? selected.GetCard(refresh) : null;
     }
@@ -53,6 +52,29 @@ public class CardSlot
     public int GetEstimatedValue()
     {
         return amount * (selected != null ? selected.estimatedValue : 0);
+    }
+
+    public ArrayList<EYBCard> GetSelectableCards()
+    {
+        final ArrayList<EYBCard> cards = new ArrayList<>();
+        for (Item item : Cards)
+        {
+            boolean add = true;
+            for (CardSlot slot : Container)
+            {
+                if (slot != this && slot.GetData() == item.data)
+                {
+                    add = false;
+                }
+            }
+
+            if (add)
+            {
+                cards.add(item.GetCard(true));
+            }
+        }
+
+        return cards;
     }
 
     public CardSlot MakeCopy(CardSlots container)
@@ -202,7 +224,7 @@ public class CardSlot
         public final EYBCardData data;
         public final int estimatedValue;
 
-        protected AbstractCard card;
+        protected EYBCard card;
 
         public Item(EYBCardData data, int estimatedValue)
         {
@@ -210,11 +232,11 @@ public class CardSlot
             this.estimatedValue = estimatedValue;
         }
 
-        public AbstractCard GetCard(boolean forceRefresh)
+        public EYBCard GetCard(boolean forceRefresh)
         {
             if (card == null || forceRefresh)
             {
-                card = CardLibrary.getCard(data.ID).makeCopy();
+                card = (EYBCard) CardLibrary.getCard(data.ID).makeCopy();
                 if (data.IsNotSeen())
                 {
                     card.isSeen = false;

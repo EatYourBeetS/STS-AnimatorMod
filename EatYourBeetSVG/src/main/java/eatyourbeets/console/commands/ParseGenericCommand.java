@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.auras.Aura;
 import eatyourbeets.cards.animator.basic.ImprovedDefend;
 import eatyourbeets.cards.animator.basic.ImprovedStrike;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -53,15 +54,20 @@ public class ParseGenericCommand extends ConsoleCommand
                     return;
                 }
 
-                if (tokens[1].equals("strike-defend"))
+                if (tokens[1].equals("show-cards"))
                 {
+                    boolean upgrade = tokens.length > 2 && tokens[2].equals("true");
                     for (EYBCardData data : ImprovedDefend.GetCards())
                     {
-                        player.masterDeck.group.add(data.CreateNewInstance(true));
+                        player.masterDeck.group.add(data.CreateNewInstance(upgrade));
                     }
                     for (EYBCardData data : ImprovedStrike.GetCards())
                     {
-                        player.masterDeck.group.add(data.CreateNewInstance(true));
+                        player.masterDeck.group.add(data.CreateNewInstance(upgrade));
+                    }
+                    for (EYBCardData data : AffinityToken.GetCards())
+                    {
+                        player.masterDeck.group.add(data.CreateNewInstance(upgrade));
                     }
                     return;
                 }

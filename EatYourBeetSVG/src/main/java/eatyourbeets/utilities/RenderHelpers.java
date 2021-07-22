@@ -143,7 +143,7 @@ public class RenderHelpers
     public static BitmapFont GetTitleFont(EYBCardBase card)
     {
         BitmapFont result;
-        final float scale = ((card.name.length() > 14) ? 0.8f : 1);
+        final float scale = 1 - ((Math.max(14, card.name.length()) / 14f) - 1);
         if (card.isPopup)
         {
             result = EYBFontHelper.CardTitleFont_Large;

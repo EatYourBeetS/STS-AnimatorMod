@@ -3,6 +3,7 @@ package eatyourbeets.ui.hitboxes;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import eatyourbeets.utilities.JUtils;
 
 public class AdvancedHitbox extends Hitbox
 {
@@ -102,13 +103,6 @@ public class AdvancedHitbox extends Hitbox
             return target;
         }
 
-        float lerp = (target - current) * Gdx.graphics.getDeltaTime() * lerpSpeed;
-        float result = current + lerp;
-        if (current < target)
-        {
-            return result > target ? target : result;
-        }
-
-        return result < target ? target : result;
+        return JUtils.Lerp(current, target, lerpSpeed * Gdx.graphics.getDeltaTime());
     }
 }

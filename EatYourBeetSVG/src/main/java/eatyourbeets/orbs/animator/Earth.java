@@ -103,7 +103,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.1f);
         CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1f);
-        GameEffects.Queue.Add(VFX.RockBurst(this.hb, 0.5f));
+        GameEffects.Queue.Add(VFX.RotatingRocks(this.hb, 8).SetImageParameters(this.scale / 2f, 200f, MathUtils.random(-100f,100f)));
     }
 
     @Override
@@ -134,13 +134,22 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void render(SpriteBatch sb)
     {
-        sb.draw(imgExt1, GetPositionX(-48, 0.25f), GetPositionY(-48, -0.25f), 48f, 48f, 96f, 96f, this.scale / 2f, this.scale / 2f, 1f + this.angle / 12f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.setColor(GetColor(0f));
+        sb.draw(imgExt1, GetPositionX(-64, -0.15f), GetPositionY(-64, -0.2f), 48f, 48f, 96f, 96f, this.scale / 3.3f, this.scale / 3.3f, 300f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
         sb.setColor(GetColor(0.1f));
-        sb.draw(imgExt2, GetPositionX(-48, -0.25f), GetPositionY(-48, 0.5f), 48f, 48f, 96f, 96f, this.scale / 2f, this.scale / 2f, 2f + this.angle / 12f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.draw(imgExt2, GetPositionX(-48, -0.1f), GetPositionY(-32, 0.1f), 48f, 48f, 96f, 96f, this.scale / 2.2f, this.scale / 2f, 200f + this.angle / 12f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.setColor(GetColor(0.15f));
+        sb.draw(imgExt1, GetPositionX(-64, -0.15f), GetPositionY(-48, 0.15f), 48f, 48f, 96f, 96f, this.scale / 3f, this.scale / 3f, 400f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
         sb.setColor(GetColor(0.05f));
-        sb.draw(imgExt1, GetPositionX(-48, 0.25f), GetPositionY(-48, 0.25f), 48f, 48f, 96f, 96f, this.scale / 3f, this.scale / 3f, 4f + this.angle / 12f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.draw(imgExt1, GetPositionX(-32, 0.15f), GetPositionY(-32, 0.15f), 48f, 48f, 96f, 96f, this.scale / 3.1f, this.scale / 3.1f, 500f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
         sb.setColor(GetColor(0.1f));
-        sb.draw(imgExt2, GetPositionX(-48, -0.25f), GetPositionY(-48, -0.5f), 48f, 48f, 96f, 96f, this.scale / 2f, this.scale / 2f, 8f + this.angle / 12f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.draw(imgExt1, GetPositionX(-64, -0.2f), GetPositionY(-32, 0.15f), 48f, 48f, 96f, 96f, this.scale / 3.5f, this.scale / 3.1f, 400f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.setColor(GetColor(0.05f));
+        sb.draw(imgExt2, GetPositionX(-48, -0.15f), GetPositionY(-64, -0.2f), 48f, 48f, 96f, 96f, this.scale / 2.9f, this.scale / 2f, 800f + this.angle / 12f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.setColor(GetColor(0.15f));
+        sb.draw(imgExt1, GetPositionX(-32, 0.2f), GetPositionY(-48, -0.15f), 48f, 48f, 96f, 96f, this.scale / 3f, this.scale / 3f, 400f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.setColor(GetColor(0.2f));
+        sb.draw(imgExt1, GetPositionX(-48, 0.1f), GetPositionY(-48, -0.1f), 48f, 48f, 96f, 96f, this.scale / 2.7f, this.scale / 3.1f, 600f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
 
         this.renderText(sb);
         this.hb.render(sb);

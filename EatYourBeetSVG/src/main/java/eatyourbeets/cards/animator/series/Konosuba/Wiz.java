@@ -24,6 +24,7 @@ public class Wiz extends AnimatorCard
 
         SetAffinity_Blue(2);
         SetAffinity_Dark(1);
+        SetAffinity_Orange(1);
 
         SetPurge(true);
     }

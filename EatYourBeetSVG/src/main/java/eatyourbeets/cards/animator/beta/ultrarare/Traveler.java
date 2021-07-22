@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.ultrarare;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DarkOrbEvokeAction;
@@ -16,7 +17,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
@@ -30,11 +30,12 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(Traveler.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact);
-    private RotatingList<EYBCardPreview> previews = new RotatingList<>();
+    private final RotatingList<EYBCardPreview> previews = new RotatingList<>();
 
     public Traveler.Form currentForm;
 
@@ -193,21 +194,29 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
         switch (currentForm)
         {
             case Aether:
-                GameActions.Bottom.StackPower(new ElementalMasteryPower(p, magicNumber));
-                int evoked = 0;
+                int totalMastery = magicNumber;
+
+                HashSet<String> uniqueOrbs = new HashSet<>();
+                RandomizedList<AbstractOrb> randomOrbs = new RandomizedList<>();
 
                 for (AbstractOrb orb : player.orbs) {
-                    if (!(orb instanceof EmptyOrbSlot) && !Aether.ORB_ID.equals(orb.ID)) {
-                        GameActions.Bottom.EvokeOrb(1, orb);
-                        GameActions.Bottom.StackPower(new ElementalMasteryPower(p, 5));
-                        evoked += 1;
-                        if (evoked >= secondaryValue) {
-                            break;
-                        }
+                    if (GameUtilities.IsValidOrb(orb)) {
+                        randomOrbs.Add(orb);
                     }
                 }
 
+                for (int i = 0; i < secondaryValue; i++) {
+                    AbstractOrb orb = randomOrbs.Retrieve(rng, false);
+                    AbstractOrb orbCopy = orb.makeCopy();
+                    if (!uniqueOrbs.contains(orb.ID)) {
+                        uniqueOrbs.add(orb.ID);
+                        totalMastery += 5;
+                    }
+                    GameActions.Bottom.Add(new EvokeSpecificOrbAction(orbCopy));
+                }
+
                 GameActions.Bottom.ChannelOrbs(Aether::new, 1);
+                GameActions.Bottom.StackPower(new ElementalMasteryPower(p, totalMastery));
                 break;
             case Lumine:
                 GameActions.Top.Add(new VFXAction(new OfferingEffect(), Settings.FAST_MODE ? 0.1F : 0.5F));

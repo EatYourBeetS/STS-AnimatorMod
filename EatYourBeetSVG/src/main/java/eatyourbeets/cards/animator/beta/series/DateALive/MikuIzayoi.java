@@ -22,7 +22,7 @@ public class MikuIzayoi extends AnimatorCard
         super(DATA);
 
         Initialize(0, 9, 1);
-        SetAffinity_Orange(1, 1, 0);
+        SetAffinity_Light(1, 1, 0);
         SetEthereal(true);
     }
 

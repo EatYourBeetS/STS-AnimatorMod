@@ -99,6 +99,11 @@ public class VFX
         return new LightningEffect(target.cX, target.cY);
     }
 
+    public static RazorWindEffect RazorWind(Hitbox source, float horizontalSpeed, float horizontalAcceleration)
+    {
+        return new RazorWindEffect(source.cX, source.cY, horizontalSpeed, horizontalAcceleration);
+    }
+
     public static RockBurstEffect RockBurst(Hitbox source, float scale)
     {
         return new RockBurstEffect(source.cX, source.cY, scale);
@@ -107,6 +112,11 @@ public class VFX
     public static RockBurstEffect RockBurst(Hitbox source, float scale, float spread)
     {
         return new RockBurstEffect(source.cX + MathUtils.random(-spread, spread), source.cY + MathUtils.random(-spread, spread), scale);
+    }
+
+    public static RotatingRocksEffect RotatingRocks(Hitbox source, int number)
+    {
+        return new RotatingRocksEffect(source.cX, source.cY, number);
     }
 
     public static ShootingStarsEffect ShootingStars(Hitbox source, float spread)

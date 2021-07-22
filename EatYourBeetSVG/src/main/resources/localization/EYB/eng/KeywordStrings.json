@@ -210,12 +210,6 @@
 		"NAMES": ["limited"],
 		"PROPER_NAME": "Limited"
 	},
-	"~Lock-On":
-	{
-		"DESCRIPTION": "Receive #b50% more damage from Orbs and #yRanged attacks.",
-		"NAMES": ["~lock-on"],
-		"PROPER_NAME": "Lock-On"
-	},
 	"Malleable":
 	{
 		"DESCRIPTION": "Upon receiving damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of turn.",
@@ -362,7 +356,7 @@
 	},
 	"~Lock-On":
 	{
-		"DESCRIPTION": "Receive #b50% more damage from Orbs, and #b30% more damage from #yRanged attacks.",
+		"DESCRIPTION": "Receive #b50% more damage from Orbs and #yRanged attacks.",
 		"NAMES": ["~lock-on"],
 		"PROPER_NAME": "Lock-On"
 	},

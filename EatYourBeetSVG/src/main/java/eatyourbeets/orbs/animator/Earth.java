@@ -15,20 +15,27 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
 import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
 import eatyourbeets.effects.VFX;
+import eatyourbeets.interfaces.subscribers.OnChannelOrbSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.AdvancedTexture;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.Mathf;
 
-public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber
+import java.util.ArrayList;
+
+public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber, OnChannelOrbSubscriber
 {
     public static final String ORB_ID = CreateFullID(Earth.class);
+    public static final int PROJECTILES = 8;
 
-    public static Texture imgExt1;
-    public static Texture imgExt2;
+    public static Texture PROJECTILE_LARGE;
+    public static Texture PROJECTILE_SMALL;
 
-    private final boolean hFlip1;
+    private final ArrayList<AdvancedTexture> projectiles = new ArrayList<>();
+    private float timer;
     private boolean evoked;
     private int turns;
 
@@ -36,24 +43,44 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         super(ORB_ID, true);
 
-        if (imgExt1 == null || imgExt2 == null)
+        if (PROJECTILE_LARGE == null || PROJECTILE_SMALL == null)
         {
-            imgExt1 = ImageMaster.loadImage("images/orbs/animator/Earth.png");
-            imgExt2 = ImageMaster.loadImage("images/orbs/animator/Earth2.png");
+            PROJECTILE_LARGE = ImageMaster.loadImage("images/orbs/animator/Earth1.png");
+            PROJECTILE_SMALL = ImageMaster.loadImage("images/orbs/animator/Earth2.png");
         }
 
-        this.hFlip1 = MathUtils.randomBoolean();
         this.evoked = false;
-        this.baseEvokeAmount = 16;
-        this.evokeAmount = this.baseEvokeAmount;
-        this.basePassiveAmount = 2;
-        this.passiveAmount = this.basePassiveAmount;
+        this.evokeAmount = this.baseEvokeAmount = 16;
+        this.passiveAmount = this.basePassiveAmount = 2;
         this.channelAnimTimer = 0.5f;
         this.turns = 3;
-        this.updateDescription();
 
+        for (int i = 0; i < PROJECTILES; i++)
+        {
+            projectiles.add(new AdvancedTexture((i % 3 == 0) ? PROJECTILE_LARGE : PROJECTILE_SMALL, 48f, 48f)
+            .SetColor(Mathf.RandomColor(0f, 0.15f, true))
+            .SetScale(MathUtils.random(0.8f, 1f))
+            .SetFlip(i % 2 == 0, null));
+        }
+
+        this.updateDescription();
     }
 
+    @Override
+    public void OnChannelOrb(AbstractOrb orb)
+    {
+        if (orb == this)
+        {
+            for (AdvancedTexture t : projectiles)
+            {
+                t.SetPosition(cX, cY)
+                .SetOffset(0f, 0f, MathUtils.random(0f, 360f))
+                .SetSpeedMulti(0.2f, 0.2f, MathUtils.random(0.8f, 1f));
+            }
+        }
+    }
+
+    @Override
     public void updateDescription()
     {
         final String[] desc = orbStrings.DESCRIPTION;
@@ -102,7 +129,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.1f);
         CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1f);
-        GameEffects.Queue.Add(VFX.RotatingRocks(this.hb, 8).SetImageParameters(this.scale / 2f, 200f, MathUtils.random(-100f,100f)));
+        GameEffects.Queue.Add(VFX.RotatingRocks(this.hb, 8).SetImageParameters(this.scale / 2f, 200f, MathUtils.random(-100f, 100f)));
     }
 
     @Override
@@ -125,28 +152,34 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     public void updateAnimation()
     {
         super.updateAnimation();
-        this.angle += Gdx.graphics.getDeltaTime() * 180f;
+
+        final float delta = Gdx.graphics.getRawDeltaTime();
+        for (AdvancedTexture texture : projectiles)
+        {
+            texture.SetPosition(cX, cY).SetTargetRotation(angle).Update(delta);
+        }
+
+        if ((timer -= delta) <= 0)
+        {
+            final float w = hb.width * 0.5f;
+            final float h = hb.height * 0.5f;
+            for (AdvancedTexture texture : projectiles)
+            {
+                texture.SetTargetOffset((w * 0.5f) - MathUtils.random(w), (h * 0.5f) - MathUtils.random(h), null);
+            }
+            timer = 1.5f;
+        }
+
+        this.angle += delta * 180f;
     }
 
     @Override
     public void render(SpriteBatch sb)
     {
-        sb.setColor(GetColor(0f));
-        sb.draw(imgExt1, GetPositionX(-64, -0.15f), GetPositionY(-64, -0.2f), 48f, 48f, 96f, 96f, this.scale / 3.3f, this.scale / 3.3f, 300f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
-        sb.setColor(GetColor(0.1f));
-        sb.draw(imgExt2, GetPositionX(-48, -0.1f), GetPositionY(-32, 0.1f), 48f, 48f, 96f, 96f, this.scale / 2.2f, this.scale / 2f, 200f + this.angle / 12f, 0, 0, 96, 96, this.hFlip1, false);
-        sb.setColor(GetColor(0.15f));
-        sb.draw(imgExt1, GetPositionX(-64, -0.15f), GetPositionY(-48, 0.15f), 48f, 48f, 96f, 96f, this.scale / 3f, this.scale / 3f, 400f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
-        sb.setColor(GetColor(0.05f));
-        sb.draw(imgExt1, GetPositionX(-32, 0.15f), GetPositionY(-32, 0.15f), 48f, 48f, 96f, 96f, this.scale / 3.1f, this.scale / 3.1f, 500f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
-        sb.setColor(GetColor(0.1f));
-        sb.draw(imgExt1, GetPositionX(-64, -0.2f), GetPositionY(-32, 0.15f), 48f, 48f, 96f, 96f, this.scale / 3.5f, this.scale / 3.1f, 400f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
-        sb.setColor(GetColor(0.05f));
-        sb.draw(imgExt2, GetPositionX(-48, -0.15f), GetPositionY(-64, -0.2f), 48f, 48f, 96f, 96f, this.scale / 2.9f, this.scale / 2f, 800f + this.angle / 12f, 0, 0, 96, 96, this.hFlip1, false);
-        sb.setColor(GetColor(0.15f));
-        sb.draw(imgExt1, GetPositionX(-32, 0.2f), GetPositionY(-48, -0.15f), 48f, 48f, 96f, 96f, this.scale / 3f, this.scale / 3f, 400f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
-        sb.setColor(GetColor(0.2f));
-        sb.draw(imgExt1, GetPositionX(-48, 0.1f), GetPositionY(-48, -0.1f), 48f, 48f, 96f, 96f, this.scale / 2.7f, this.scale / 3.1f, 600f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
+        for (AdvancedTexture projectile : projectiles)
+        {
+            projectile.Render(sb, Mathf.SubtractColor(c.cpy(), projectile.color, false));
+        }
 
         this.renderText(sb);
         this.hb.render(sb);
@@ -201,17 +234,4 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         evoked = true;
     }
-
-    protected Color GetColor(float tint){
-        return c.cpy().add(tint, tint, tint, 0);
-    }
-
-    protected float GetPositionX(float offsetX, float bob) {
-        return cX + offsetX + bobEffect.y * bob;
-    }
-
-    protected float GetPositionY(float offsetY, float bob) {
-        return cY + offsetY + bobEffect.y * bob;
-    }
-
 }

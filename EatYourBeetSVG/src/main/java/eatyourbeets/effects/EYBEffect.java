@@ -3,6 +3,7 @@ package eatyourbeets.effects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.RenderHelpers;
 
 public abstract class EYBEffect extends AbstractGameEffect
 {
@@ -139,6 +141,13 @@ public abstract class EYBEffect extends AbstractGameEffect
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
         sb.setColor(this.color);
         sb.draw(img, x, y, img.packedWidth * 0.5f, img.packedHeight * 0.5f, img.packedWidth, img.packedHeight, scale, scale, rotation);
+        sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+    }
+
+    protected void RenderImage(SpriteBatch sb, Texture img, float x, float y)
+    {
+        sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
+        RenderHelpers.DrawCentered(sb, color, img, x, y, img.getWidth(), img.getHeight(), scale, rotation);
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
     }
 

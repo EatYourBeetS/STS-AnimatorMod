@@ -1,7 +1,6 @@
 package eatyourbeets.effects;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -9,7 +8,12 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.vfx.combat.*;
+import eatyourbeets.effects.vfx.SmallLaserEffect;
 import eatyourbeets.effects.vfx.*;
+import eatyourbeets.orbs.animator.Earth;
+import eatyourbeets.utilities.AdvancedTexture;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.Mathf;
 
 public class VFX
 {
@@ -63,6 +67,13 @@ public class VFX
         return new ExplosionSmallEffect(source.cX, source.cY);
     }
 
+    public static SmallLaserEffect SmallLaser(Hitbox source, Hitbox target, Color color)
+    {
+        return new SmallLaserEffect(source.cX, source.cY,
+                target.cX + (MathUtils.random(-0.15f, 0.15f) * target.width),
+                target.cY + (MathUtils.random(-0.15f, 0.15f) * target.height), color);
+    }
+
     public static FallingIceEffect FallingIce(int frostCount)
     {
         return new FallingIceEffect(frostCount, FlipHorizontally());
@@ -83,11 +94,20 @@ public class VFX
         return new FlashAttackEffect(target.cX, target.cY, effect, muteSFX);
     }
 
-    public static GenericThrowEffect GenericThrow(Hitbox source, Hitbox target, Texture img)
+    public static ThrowProjectileEffect ThrowRock(Hitbox source, Hitbox target, float duration)
     {
-        return new GenericThrowEffect(img, source.cX, source.cY, target.cX, target.cY);
+        duration *= Mathf.Abs(target.cX - source.cX) / (Settings.WIDTH * 0.5f);
+        return (ThrowProjectileEffect)new ThrowProjectileEffect(new AdvancedTexture(Earth.PROJECTILE_LARGE, 128f, 128f)
+        .SetColor(Mathf.RandomColor(0.6f, 0.85f, true))
+        .SetPosition(source.cX, source.cY), target)
+        .AddCallback(hb -> GameEffects.Queue.Add(RockBurst(hb, 1.3f)))
+        .SetDuration(duration, true);
     }
 
+    public static ThrowProjectileEffect ThrowProjectile(AdvancedTexture projectile, Hitbox target)
+    {
+        return new ThrowProjectileEffect(projectile, target);
+    }
 
     public static HemokinesisEffect2 Hemokinesis(Hitbox source, Hitbox target)
     {
@@ -99,19 +119,9 @@ public class VFX
         return new LightningEffect(target.cX, target.cY);
     }
 
-    public static RockBurstEffect RockBurst(Hitbox source, float scale)
+    public static RockBurstEffect RockBurst(Hitbox target, float scale)
     {
-        return new RockBurstEffect(source.cX, source.cY, scale);
-    }
-
-    public static RockBurstEffect RockBurst(Hitbox source, float scale, float spread)
-    {
-        return new RockBurstEffect(source.cX + MathUtils.random(-spread, spread), source.cY + MathUtils.random(-spread, spread), scale);
-    }
-
-    public static RotatingRocksEffect RotatingRocks(Hitbox source, int number)
-    {
-        return new RotatingRocksEffect(source.cX, source.cY, number);
+        return new RockBurstEffect(target.cX, target.cY, scale);
     }
 
     public static ShootingStarsEffect ShootingStars(Hitbox source, float spread)

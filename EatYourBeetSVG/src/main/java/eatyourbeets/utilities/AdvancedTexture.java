@@ -174,6 +174,11 @@ public class AdvancedTexture extends ColoredTexture
         return (AdvancedTexture) super.SetColor(color);
     }
 
+    public AdvancedTexture SetColor(Float r, Float g, Float b, Float a)
+    {
+        return (AdvancedTexture) super.SetColor(r, g, b, a);
+    }
+
     public void Update(float delta)
     {
         if (scale != target_scale)

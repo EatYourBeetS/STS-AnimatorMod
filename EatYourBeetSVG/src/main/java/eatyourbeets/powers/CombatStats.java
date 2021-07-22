@@ -27,6 +27,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinitySystem;
 import eatyourbeets.interfaces.subscribers.*;
+import eatyourbeets.orbs.EYBOrb;
 import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
@@ -524,9 +525,9 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
         if (orb != null && !(orb instanceof EmptyOrbSlot))
         {
-            if (orb instanceof OnChannelOrbSubscriber)
+            if (orb instanceof EYBOrb)
             {
-                ((OnChannelOrbSubscriber) orb).OnChannelOrb(orb);
+                ((EYBOrb) orb).onChannel();
             }
 
             for (OnChannelOrbSubscriber p : onChannelOrb.GetSubscribers())

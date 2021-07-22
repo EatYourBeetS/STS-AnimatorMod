@@ -109,6 +109,11 @@ public class VFX
         return new RockBurstEffect(source.cX + MathUtils.random(-spread, spread), source.cY + MathUtils.random(-spread, spread), scale);
     }
 
+    public static RotatingRocksEffect RotatingRocks(Hitbox source, int number)
+    {
+        return new RotatingRocksEffect(source.cX, source.cY, number);
+    }
+
     public static ShootingStarsEffect ShootingStars(Hitbox source, float spread)
     {
         return new ShootingStarsEffect(source.cX, source.cY, spread, FlipHorizontally());

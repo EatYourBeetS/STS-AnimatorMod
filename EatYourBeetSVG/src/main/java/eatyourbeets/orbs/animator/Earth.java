@@ -21,18 +21,14 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
-import java.util.ArrayList;
-
 public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber
 {
     public static final String ORB_ID = CreateFullID(Earth.class);
-    public static final int HIT_COUNT = 8;
 
     public static Texture imgExt1;
     public static Texture imgExt2;
 
     private final boolean hFlip1;
-    private final ArrayList<EarthParticle> particles = new ArrayList<>();
     private boolean evoked;
     private int turns;
 
@@ -55,12 +51,6 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         this.channelAnimTimer = 0.5f;
         this.turns = 3;
         this.updateDescription();
-
-        for (int i = 0; i < HIT_COUNT; i++)
-        {
-            EarthParticle particle = new EarthParticle(this.scale / (2.5f + 0.5f * MathUtils.cos(i)), 0.15f * MathUtils.sin(i) , 12 * MathUtils.sin(1.5f*i + 1) - 48f, 12 * MathUtils.cos(1.5f*i) -48f, -0.25f * MathUtils.sin(1.2f*i), -0.25f * MathUtils.cos(1.7f*i + 1), i, i % 2 == 0);
-            this.particles.add(particle);
-        }
 
     }
 
@@ -112,7 +102,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.1f);
         CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1f);
-        GameEffects.Queue.Add(VFX.RockBurst(this.hb, 0.5f));
+        GameEffects.Queue.Add(VFX.RotatingRocks(this.hb, 8).SetImageParameters(this.scale / 2f, 200f, MathUtils.random(-100f,100f)));
     }
 
     @Override
@@ -141,10 +131,22 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void render(SpriteBatch sb)
     {
-        for (EarthParticle particle : this.particles) {
-            sb.setColor(particle.GetColor());
-            sb.draw(particle.useAltImg ? imgExt2 : imgExt1, particle.GetPositionX(), particle.GetPositionY(), 48f, 48f, 96f, 96f, this.scale / 2f, this.scale / 2f, particle.angle + this.angle / 12f, 0, 0, 96, 96, this.hFlip1, false);
-        }
+        sb.setColor(GetColor(0f));
+        sb.draw(imgExt1, GetPositionX(-64, -0.15f), GetPositionY(-64, -0.2f), 48f, 48f, 96f, 96f, this.scale / 3.3f, this.scale / 3.3f, 300f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.setColor(GetColor(0.1f));
+        sb.draw(imgExt2, GetPositionX(-48, -0.1f), GetPositionY(-32, 0.1f), 48f, 48f, 96f, 96f, this.scale / 2.2f, this.scale / 2f, 200f + this.angle / 12f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.setColor(GetColor(0.15f));
+        sb.draw(imgExt1, GetPositionX(-64, -0.15f), GetPositionY(-48, 0.15f), 48f, 48f, 96f, 96f, this.scale / 3f, this.scale / 3f, 400f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.setColor(GetColor(0.05f));
+        sb.draw(imgExt1, GetPositionX(-32, 0.15f), GetPositionY(-32, 0.15f), 48f, 48f, 96f, 96f, this.scale / 3.1f, this.scale / 3.1f, 500f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.setColor(GetColor(0.1f));
+        sb.draw(imgExt1, GetPositionX(-64, -0.2f), GetPositionY(-32, 0.15f), 48f, 48f, 96f, 96f, this.scale / 3.5f, this.scale / 3.1f, 400f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.setColor(GetColor(0.05f));
+        sb.draw(imgExt2, GetPositionX(-48, -0.15f), GetPositionY(-64, -0.2f), 48f, 48f, 96f, 96f, this.scale / 2.9f, this.scale / 2f, 800f + this.angle / 12f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.setColor(GetColor(0.15f));
+        sb.draw(imgExt1, GetPositionX(-32, 0.2f), GetPositionY(-48, -0.15f), 48f, 48f, 96f, 96f, this.scale / 3f, this.scale / 3f, 400f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.setColor(GetColor(0.2f));
+        sb.draw(imgExt1, GetPositionX(-48, 0.1f), GetPositionY(-48, -0.1f), 48f, 48f, 96f, 96f, this.scale / 2.7f, this.scale / 3.1f, 600f + this.angle / 6f, 0, 0, 96, 96, this.hFlip1, false);
 
         this.renderText(sb);
         this.hb.render(sb);
@@ -191,7 +193,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         if (evokeAmount > 0)
         {
-            GameActions.Top.Add(new EarthOrbEvokeAction(evokeAmount, cX, cY, this.scale));
+            GameActions.Top.Add(new EarthOrbEvokeAction(evokeAmount, cX, cY, this.scale / 2));
             super.EvokeEffect();
         }
 
@@ -200,41 +202,16 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         evoked = true;
     }
 
-    public class EarthParticle {
-
-        public Color color;
-        public boolean useAltImg;
-        public float scale;
-        public float tint;
-        public float offsetX;
-        public float offsetY;
-        public float bobX;
-        public float bobY;
-        public float angle;
-
-        public EarthParticle(float scale, float tint, float offsetX, float offsetY, float bobX, float bobY, float angle, boolean useAltImg) {
-            this.scale = scale;
-            this.tint = tint;
-            this.offsetX = offsetX;
-            this.offsetY = offsetY;
-            this.bobX = bobX;
-            this.bobY = bobY;
-            this.angle = angle;
-            this.color = c.cpy().add(this.tint, this.tint, this.tint, 0);
-            this.useAltImg = useAltImg;
-        }
-
-        public Color GetColor(){
-            return c.cpy().add(this.tint, this.tint, this.tint, 0);
-        }
-
-        public float GetPositionX() {
-            return cX + this.offsetX + bobEffect.y * this.bobX;
-        }
-
-        public float GetPositionY() {
-            return cY + this.offsetY + bobEffect.y * this.bobY;
-        }
-
+    protected Color GetColor(float tint){
+        return c.cpy().add(tint, tint, tint, 0);
     }
+
+    protected float GetPositionX(float offsetX, float bob) {
+        return cX + offsetX + bobEffect.y * bob;
+    }
+
+    protected float GetPositionY(float offsetY, float bob) {
+        return cY + offsetY + bobEffect.y * bob;
+    }
+
 }

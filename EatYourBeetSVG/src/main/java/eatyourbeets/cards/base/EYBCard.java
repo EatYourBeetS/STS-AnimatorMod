@@ -307,9 +307,13 @@ public abstract class EYBCard extends EYBCardBase
         {
             dynamicTooltips.add(GR.Tooltips.Ethereal);
         }
-        if (retain || selfRetain)
+        if (selfRetain)
         {
             dynamicTooltips.add(GR.Tooltips.Retain);
+        }
+        else if (retain)
+        {
+            dynamicTooltips.add(GR.Tooltips.RetainOnce);
         }
         if (hasTag(HASTE))
         {
@@ -419,6 +423,11 @@ public abstract class EYBCard extends EYBCardBase
     public void SetRetain(boolean value)
     {
         this.selfRetain = value;
+    }
+
+    public void SetRetainOnce(boolean value)
+    {
+        this.retain = value;
     }
 
     public void SetInnate(boolean value)

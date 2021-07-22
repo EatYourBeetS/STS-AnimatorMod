@@ -55,6 +55,7 @@ public class CardTooltips
     public EYBCardTooltip Ethereal = FindByID("~Ethereal");
     public EYBCardTooltip Haste = FindByID("~Haste");
     public EYBCardTooltip Retain = FindByID("~Retain").ShowText(false);
+    public EYBCardTooltip RetainOnce = FindByID("~RetainOnce").ShowText(false);
     public EYBCardTooltip Exhaust = FindByID("Exhaust").ShowText(false);
     public EYBCardTooltip Channel = FindByID("Channel").ShowText(false);
     public EYBCardTooltip Block = FindByID("Block").ShowText(false);
@@ -166,6 +167,7 @@ public class CardTooltips
         CommonImages.Badges badges = GR.Common.Images.Badges;
         Exhaust.SetIcon(badges.Exhaust.Texture(), 6);
         Ethereal.SetIcon(badges.Ethereal.Texture(), 6);
+        RetainOnce.SetIcon(badges.RetainOnce.Texture(), 6);
         Retain.SetIcon(badges.Retain.Texture(), 6);
         Innate.SetIcon(badges.Innate.Texture(), 6);
         Haste.SetIcon(badges.Haste.Texture(), 6);

@@ -10,6 +10,8 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
+import eatyourbeets.interfaces.delegates.ActionT2;
+import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 
 import java.util.ArrayList;

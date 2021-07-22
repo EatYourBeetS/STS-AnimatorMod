@@ -34,8 +34,8 @@ public class RotatingRocksEffect extends EYBEffect
         this.x = startX;
         this.y = startY;
         this.vR = 0;
-        this.sizeX = Earth.imgExt1.getWidth();
-        this.sizeY = Earth.imgExt1.getHeight();
+        this.sizeX = Earth.PROJECTILE_LARGE.getWidth();
+        this.sizeY = Earth.PROJECTILE_LARGE.getHeight();
         this.vfxTimer = 0.23f;
         this.count = number;
         this.spread = 0f;
@@ -80,18 +80,22 @@ public class RotatingRocksEffect extends EYBEffect
     }
 
     @Override
-    public void render(SpriteBatch sb) {
+    public void render(SpriteBatch sb)
+    {
         sb.setColor(this.color);
-        for (int i = count - 1; i >= 0; i--) {
-            sb.draw(Earth.imgExt1, this.x - 48 + GetCosVariance(spread, i), this.y  - 48 + GetSinVariance(spread, i), this.sizeX / 2.0F, this.sizeY / 2.0F, this.sizeX, this.sizeY, this.scale, this.scale, this.rotation, 0, 0, (int)this.sizeX, (int)this.sizeY, false, false);
+        for (int i = count - 1; i >= 0; i--)
+        {
+            sb.draw(Earth.PROJECTILE_LARGE, this.x - 48 + GetCosVariance(spread, i), this.y - 48 + GetSinVariance(spread, i), this.sizeX / 2.0F, this.sizeY / 2.0F, this.sizeX, this.sizeY, this.scale, this.scale, this.rotation, 0, 0, (int) this.sizeX, (int) this.sizeY, false, false);
         }
     }
 
-    public static float GetCosVariance(float magnitude, float time) {
+    public static float GetCosVariance(float magnitude, float time)
+    {
         return magnitude * MathUtils.cosDeg(time * 45);
     }
 
-    public static float GetSinVariance(float magnitude, float time) {
+    public static float GetSinVariance(float magnitude, float time)
+    {
         return magnitude * MathUtils.sinDeg(time * 45);
     }
 }

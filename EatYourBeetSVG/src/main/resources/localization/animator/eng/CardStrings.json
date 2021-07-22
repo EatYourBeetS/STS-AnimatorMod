@@ -2066,13 +2066,13 @@
 		{
 			"DESCRIPTION": "Have +1 <L> for ** the rest of combat. || 3 <D> or <R>: Gain [E].",
 			"NAME": "Affinity Token"
-		},		
+		},
 		"animator:AffinityToken_Dark":
 		{
 			"DESCRIPTION": "Have +1 <D> for ** the rest of combat. || 3 <L> or <G>: Gain [E].",
 			"NAME": "Affinity Token"
 		},
-		
+
 		"animator:Asuramaru":
 		{
 			"DESCRIPTION": "Gain !M! [F] [A] [I]. ** Gain 2 {Demon Form}. ** Add 2 {Wounds} to ** your hand.",

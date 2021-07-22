@@ -149,9 +149,13 @@ public class EYBCardText
         {
             offset_y -= RenderBadge(sb, BADGES.Ethereal.Texture(), offset_y, alpha, null);
         }
-        if (card.retain || card.selfRetain)
+        if (card.selfRetain)
         {
             offset_y -= RenderBadge(sb, BADGES.Retain.Texture(), offset_y, alpha, null);
+        }
+        else if (card.retain)
+        {
+            offset_y -= RenderBadge(sb, BADGES.RetainOnce.Texture(), offset_y, alpha, null);
         }
         if (card.hasTag(GR.Enums.CardTags.HASTE))
         {

@@ -7,16 +7,16 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.effects.VFX;
+import eatyourbeets.effects.vfx.RotatingRocksEffect;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-
-import static eatyourbeets.effects.vfx.RotatingRocksEffect.GetCosVariance;
-import static eatyourbeets.effects.vfx.RotatingRocksEffect.GetSinVariance;
+import eatyourbeets.utilities.Mathf;
 
 public class EarthOrbEvokeAction extends EYBAction
 {
-    private static final int DAMAGE_TICKS = 8;
+    public static final int DAMAGE_TICKS = Earth.PROJECTILES;
+
     private float x;
     private float y;
     private float scale;
@@ -33,7 +33,7 @@ public class EarthOrbEvokeAction extends EYBAction
         this.spread = 0;
         this.baseDuration = duration;
 
-        Initialize(MathUtils.ceil(damage / (float) DAMAGE_TICKS));
+        Initialize(Mathf.CeilToInt(damage / (float) DAMAGE_TICKS));
     }
 
     @Override
@@ -51,17 +51,15 @@ public class EarthOrbEvokeAction extends EYBAction
 
             for (int i = 0; i < DAMAGE_TICKS; i++)
             {
-                Hitbox hb = new Hitbox(x-48 + GetCosVariance(spread, i), y-48 + GetSinVariance(spread, i), 96, 96);
-                GameActions.Top.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS,
-                        AttackEffect.NONE)
-                        .SetOptions(true, true).SetDamageEffect(m ->
+                Hitbox hb = new Hitbox(x-48 + RotatingRocksEffect.GetCosVariance(spread, i), y-48 + RotatingRocksEffect.GetSinVariance(spread, i), 96, 96);
+                GameActions.Top.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS, AttackEffect.NONE)
+                .SetOptions(true, true)
+                .SetDamageEffect(m ->
                 {
-                    GameEffects.List.Add(
-                            VFX.GenericThrow(hb, m.hb, Earth.imgExt1)
-                                    .SetSpread(20f, 20f)
-                                    .SetImageParameters(this.scale * MathUtils.random(0.7f,0.8f), MathUtils.random(400f,600f), MathUtils.random(0f,600f))
-                                    .SetHitEffect(VFX.RockBurst(m.hb, this.scale))
-                    );
+                    GameEffects.List.Add(VFX.GenericThrow(hb, m.hb, Earth.PROJECTILE_LARGE)
+                    .SetSpread(20f, 20f)
+                    .SetImageParameters(this.scale * MathUtils.random(0.7f,0.8f), MathUtils.random(400f,600f), MathUtils.random(0f,600f))
+                    .SetHitEffect(VFX.RockBurst(m.hb, this.scale)));
                     return 0f;
                 });
             }

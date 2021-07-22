@@ -50,7 +50,7 @@ public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
 
         final float speed_x = (Mathf.Abs(projectile.target_pos.x - projectile.current_pos.x) / duration);
         final float speed_y = (Mathf.Abs(projectile.target_pos.y - projectile.current_pos.y) / duration);
-        projectile.SetSpeed(speed_x * 0.5f, speed_y * 0.5f, null).SetAcceleration(speed_x / duration, speed_y / duration, null);
+        projectile.SetSpeed(0f, 0f, null).SetAcceleration(speed_x / duration, speed_y / duration, null);
     }
 
     @Override

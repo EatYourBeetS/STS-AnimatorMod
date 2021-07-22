@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import eatyourbeets.effects.vfx.SmallLaserEffect;
 import eatyourbeets.effects.vfx.*;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.utilities.AdvancedTexture;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.Mathf;
 
@@ -97,14 +96,14 @@ public class VFX
     public static ThrowProjectileEffect ThrowRock(Hitbox source, Hitbox target, float duration)
     {
         duration *= Mathf.Abs(target.cX - source.cX) / (Settings.WIDTH * 0.5f);
-        return (ThrowProjectileEffect)new ThrowProjectileEffect(new AdvancedTexture(Earth.PROJECTILE_LARGE, 128f, 128f)
+        return (ThrowProjectileEffect)new ThrowProjectileEffect(new Projectile(Earth.PROJECTILE_LARGE, 128f, 128f)
         .SetColor(Mathf.RandomColor(0.6f, 0.85f, true))
         .SetPosition(source.cX, source.cY), target)
         .AddCallback(hb -> GameEffects.Queue.Add(RockBurst(hb, 1.3f)))
         .SetDuration(duration, true);
     }
 
-    public static ThrowProjectileEffect ThrowProjectile(AdvancedTexture projectile, Hitbox target)
+    public static ThrowProjectileEffect ThrowProjectile(Projectile projectile, Hitbox target)
     {
         return new ThrowProjectileEffect(projectile, target);
     }

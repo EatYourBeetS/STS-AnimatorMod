@@ -17,7 +17,7 @@ import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.AdvancedTexture;
+import eatyourbeets.effects.Projectile;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.Mathf;
 
@@ -31,7 +31,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     public static Texture PROJECTILE_LARGE;
     public static Texture PROJECTILE_SMALL;
 
-    public final ArrayList<AdvancedTexture> projectiles = new ArrayList<>();
+    public final ArrayList<Projectile> projectiles = new ArrayList<>();
     public boolean evoked;
     public int turns;
 
@@ -61,7 +61,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         projectiles.clear();
         for (int i = 0; i < PROJECTILES; i++)
         {
-            projectiles.add(new AdvancedTexture((i % 3 == 0) ? PROJECTILE_LARGE : PROJECTILE_SMALL, 48f, 48f)
+            projectiles.add(new Projectile((i % 3 == 0) ? PROJECTILE_LARGE : PROJECTILE_SMALL, 48f, 48f)
             .SetPosition(cX, cY)
             .SetColor(Mathf.RandomColor(0f, 0.15f, true))
             .SetScale(MathUtils.random(0.8f, 1f))
@@ -147,7 +147,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         super.updateAnimation();
 
         final float delta = Gdx.graphics.getRawDeltaTime();
-        for (AdvancedTexture texture : projectiles)
+        for (Projectile texture : projectiles)
         {
             texture.SetPosition(cX, cY).SetTargetRotation(angle).Update(delta);
         }
@@ -156,7 +156,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         {
             final float w = hb.width * 0.5f;
             final float h = hb.height * 0.5f;
-            for (AdvancedTexture texture : projectiles)
+            for (Projectile texture : projectiles)
             {
                 texture.SetTargetOffset((w * 0.5f) - MathUtils.random(w), (h * 0.5f) - MathUtils.random(h), null);
             }
@@ -169,7 +169,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void render(SpriteBatch sb)
     {
-        for (AdvancedTexture projectile : projectiles)
+        for (Projectile projectile : projectiles)
         {
             projectile.Render(sb, Mathf.SubtractColor(c.cpy(), projectile.color, false));
         }

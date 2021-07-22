@@ -1,10 +1,12 @@
 package eatyourbeets.actions.orbs;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.effects.Projectile;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.effects.card.RenderProjectilesEffect;
 import eatyourbeets.orbs.animator.Earth;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 
 public class EarthOrbEvokeAction extends EYBAction
 {
-    private final ArrayList<AdvancedTexture> projectiles = new ArrayList<>();
+    private final ArrayList<Projectile> projectiles = new ArrayList<>();
     private final float throwDuration;
     private RenderProjectilesEffect effect;
 
@@ -39,10 +41,10 @@ public class EarthOrbEvokeAction extends EYBAction
 
         final float w = earth.hb.width * 1.1f;
         final float h = earth.hb.height * 0.8f;
-        final float angle = 90f / projectiles.size();
+        final float angle = -MathUtils.random(40f, 80f) + (MathUtils.random(120f, 240f) / projectiles.size());
         for (int i = 0; i < projectiles.size(); i++)
         {
-            AdvancedTexture p = projectiles.get(i);
+            Projectile p = projectiles.get(i);
             p.SetTargetScale(p.scale + 0.35f)
             .SetSpeed(33f, 35f, 210f + (i * 30))
             .SetTargetPosition(earth.cX + (earth.hb.width * 0.35f), earth.cY + (earth.hb.height * 3))

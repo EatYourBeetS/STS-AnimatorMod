@@ -189,4 +189,11 @@ public class Mathf
 
         return a.clamp();
     }
+
+    public static void AddVector(Vector3f a, Vector3f b, float delta)
+    {
+        a.x = Max(0, a.x + (b.x * delta));
+        a.y = Max(0, a.y + (b.y * delta));
+        a.z = Max(0, a.z + (b.z * delta));
+    }
 }

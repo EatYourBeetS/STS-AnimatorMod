@@ -2,15 +2,15 @@ package eatyourbeets.effects.card;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import eatyourbeets.effects.EYBEffect;
-import eatyourbeets.utilities.AdvancedTexture;
+import eatyourbeets.effects.Projectile;
 
 import java.util.ArrayList;
 
 public class RenderProjectilesEffect extends EYBEffect
 {
-    private final ArrayList<AdvancedTexture> projectiles;
+    private final ArrayList<Projectile> projectiles;
 
-    public RenderProjectilesEffect(ArrayList<AdvancedTexture> projectiles, float duration, boolean isRealtime)
+    public RenderProjectilesEffect(ArrayList<Projectile> projectiles, float duration, boolean isRealtime)
     {
         super(duration, isRealtime);
 
@@ -26,7 +26,7 @@ public class RenderProjectilesEffect extends EYBEffect
         {
             Complete();
         }
-        else for (AdvancedTexture p : projectiles)
+        else for (Projectile p : projectiles)
         {
             p.Update(deltaTime);
         }
@@ -34,7 +34,7 @@ public class RenderProjectilesEffect extends EYBEffect
 
     public void render(SpriteBatch sb)
     {
-        for (AdvancedTexture p : projectiles)
+        for (Projectile p : projectiles)
         {
             p.Render(sb);
         }

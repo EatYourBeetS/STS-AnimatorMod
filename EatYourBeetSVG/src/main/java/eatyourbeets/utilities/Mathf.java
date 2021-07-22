@@ -13,27 +13,29 @@ public class Mathf
     public static final float Rad2Deg = 1F / Deg2Rad;
     public static final float Epsilon = 0.00001f;
 
-    public static float Sign(float f) { return f >= 0f ? 1f : -1f; }
-    public static float Sin(float f) { return (float)Math.sin(f); }
-    public static float Cos(float f) { return (float)Math.cos(f); }
-    public static float Tan(float f) { return (float)Math.tan(f); }
-    public static float Asin(float f) { return (float)Math.asin(f); }
-    public static float Acos(float f) { return (float)Math.acos(f); }
-    public static float Atan(float f) { return (float)Math.atan(f); }
-    public static float Atan2(float y, float x) { return (float)Math.atan2(y, x); }
-    public static float Sqrt(float f) { return (float)Math.sqrt(f); }
-    public static float Abs(float f) { return Math.abs(f); }
-    public static float Pow(float f, float p) { return (float)Math.pow(f, p); }
-    public static float Exp(float power) { return (float)Math.exp(power); }
-    public static float Log(float f) { return (float)Math.log(f); }
-    public static float Log10(float f) { return (float)Math.log10(f); }
-    public static float Ceil(float f) { return (float)Math.ceil(f); }
-    public static float Floor(float f) { return (float)Math.floor(f); }
-    public static float Round(float f) { return (float)Math.round(f); }
+    //@Formatter: Off
+    public static int Abs(int value) { return Math.abs(value); }
     public static int CeilToInt(float f) { return (int)Math.ceil(f); }
     public static int FloorToInt(float f) { return (int)Math.floor(f); }
     public static int RoundToInt(float f) { return Math.round(f); }
-    public static int Abs(int value) { return Math.abs(value); }
+    public static float Abs(float f) { return Math.abs(f); }
+    public static float Acos(float f) { return (float)Math.acos(f); }
+    public static float Asin(float f) { return (float)Math.asin(f); }
+    public static float Atan(float f) { return (float)Math.atan(f); }
+    public static float Atan2(float y, float x) { return (float)Math.atan2(y, x); }
+    public static float Ceil(float f) { return (float)Math.ceil(f); }
+    public static float Cos(float f) { return (float)Math.cos(f); }
+    public static float Exp(float power) { return (float)Math.exp(power); }
+    public static float Floor(float f) { return (float)Math.floor(f); }
+    public static float Log(float f) { return (float)Math.log(f); }
+    public static float Log10(float f) { return (float)Math.log10(f); }
+    public static float Pow(float f, float p) { return (float)Math.pow(f, p); }
+    public static float Round(float f) { return (float)Math.round(f); }
+    public static float Sign(float f) { return f >= 0f ? 1f : -1f; }
+    public static float Sin(float f) { return (float)Math.sin(f); }
+    public static float Sqrt(float f) { return (float)Math.sqrt(f); }
+    public static float Tan(float f) { return (float)Math.tan(f); }
+    //@Formatter: On
 
     public static int Max(int a, int b)
     {
@@ -87,6 +89,7 @@ public class Mathf
         {
             delta -= 360;
         }
+
         return current + delta * Clamp01(progress);
     }
 
@@ -110,6 +113,7 @@ public class Mathf
     {
         progress = Clamp01(progress);
         progress = -(2.0F * progress * progress * progress) + (3.0F * progress * progress);
+
         return (target * progress) + (current * (1F - progress));
     }
 
@@ -135,6 +139,7 @@ public class Mathf
         {
             delta -= 360.0F;
         }
+
         return delta;
     }
 
@@ -164,7 +169,7 @@ public class Mathf
     {
         if (grayscale)
         {
-            float value = MathUtils.random(min, max);
+            final float value = MathUtils.random(min, max);
             return new Color(value, value, value, 1);
         }
 
@@ -177,9 +182,11 @@ public class Mathf
         {
             a.a -= b.a;
         }
+
         a.r -= b.r;
         a.g -= b.g;
         a.b -= b.b;
+
         return a.clamp();
     }
 }

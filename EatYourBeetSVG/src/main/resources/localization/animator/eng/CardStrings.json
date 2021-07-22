@@ -363,7 +363,7 @@
 		},
 		"animator:SpikeSpiegel":
 		{
-		  "DESCRIPTION": "Play !M! random Strikes from your Draw Pile. || <LIM>. 2 <R>, <G>: ** Shuffle {Swordfish II} ** into your Draw Pile.",
+		  "DESCRIPTION": "Play !M! random Strikes from your Draw Pile. || <LIM>. 3 <GEN>: ** Shuffle {Swordfish II} ** into your Draw Pile.",
 		  "NAME": "Spike Spiegel"
 		},
 		"animator:SwordfishII":
@@ -548,7 +548,7 @@
 		},
 		"animator:Noelle":
 		{
-			"DESCRIPTION": "{Starter}: If you have [Earth], ** Trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || <SLM>. 2 <L>: Retain a card in your hand.",
+			"DESCRIPTION": "{Starter}: If you have [Earth], ** Trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || <SLM>. 2 <O>: Retain a card in your hand.",
 			"NAME": "Noelle"
 		},
 		"animator:Oz":

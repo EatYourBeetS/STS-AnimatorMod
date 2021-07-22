@@ -34,7 +34,7 @@ import java.util.HashSet;
 
 public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(Traveler.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact);
+    public static final EYBCardData DATA = Register(Traveler.class).SetSkill(3, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact);
     private final RotatingList<EYBCardPreview> previews = new RotatingList<>();
 
     public Traveler.Form currentForm;
@@ -57,7 +57,7 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
 
         Initialize(0, 0, 20, 2);
         SetUpgrade(0, 0, 5, 0);
-        SetAffinity_Light(1);
+        SetAffinity_Light(2);
         SetAffinity_Dark(2);
         SetUnique(true, true);
         SetEthereal(true);
@@ -141,10 +141,6 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
                 tooltips.add(GR.Tooltips.ElementalMastery);
                 tooltips.add(GR.Tooltips.ElementalExposure);
                 SetExhaust(false);
-                affinities.List.clear();
-                SetAffinity_Light(2);
-                SetAffinity_Dark(2);
-                this.cost = this.costForTurn = -2;
                 break;
             }
 
@@ -154,11 +150,6 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
                 tooltips.add(GR.Tooltips.ElementalExposure);
                 SetExhaust(false);
-                affinities.List.clear();
-                SetAffinity_Light(2);
-                SetAffinity_Dark(1);
-                SetAffinity_Green(1);
-                this.cost = this.costForTurn = 2;
                 break;
             }
 
@@ -167,10 +158,6 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
                 LoadImage("_Lumine");
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
                 SetExhaust(true);
-                affinities.List.clear();
-                SetAffinity_Light(1);
-                SetAffinity_Dark(2);
-                this.cost = this.costForTurn = 3;
                 break;
             }
         }

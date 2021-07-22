@@ -99,6 +99,12 @@ public class VFX
         return new LightningEffect(target.cX, target.cY);
     }
 
+    public static RazorWindEffect RazorWind(Hitbox source, float horizontalSpeed, float horizontalAcceleration)
+    {
+        return new RazorWindEffect(source.cX, source.cY, horizontalSpeed, horizontalAcceleration);
+    }
+
+
     public static RockBurstEffect RockBurst(Hitbox source, float scale)
     {
         return new RockBurstEffect(source.cX, source.cY, scale);

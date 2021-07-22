@@ -21,7 +21,7 @@ public class HatsuneMiku extends AnimatorCard
         SetCostUpgrade(-1);
         SetRetain(true);
 
-        SetAffinity_Light(1);
+        SetAffinity_Light(2);
     }
 
     @Override

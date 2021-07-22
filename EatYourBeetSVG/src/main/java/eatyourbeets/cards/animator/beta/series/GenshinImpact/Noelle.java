@@ -25,7 +25,7 @@ public class Noelle extends AnimatorCard
         Initialize(0, 5, 1);
         SetUpgrade(0, 3, 0);
         SetAffinity_Red(1, 0, 0);
-        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Orange(1, 1, 0);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class Noelle extends AnimatorCard
             }
         }
 
-        if (CheckTeamwork(AffinityType.Light, 2) && CombatStats.TryActivateSemiLimited(cardID))
+        if (CheckTeamwork(AffinityType.Orange, 2) && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.SelectFromHand(name, magicNumber, false)
                     .SetOptions(true, true, true)

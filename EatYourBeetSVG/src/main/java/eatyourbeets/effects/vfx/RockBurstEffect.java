@@ -6,11 +6,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.effects.EYBEffect;
 
 import java.util.ArrayList;
 
-public class RockBurstEffect extends AbstractGameEffect
+public class RockBurstEffect extends EYBEffect
 {
     private float x;
     private float y;

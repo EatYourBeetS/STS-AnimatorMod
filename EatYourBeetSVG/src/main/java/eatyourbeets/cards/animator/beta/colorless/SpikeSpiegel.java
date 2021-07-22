@@ -5,7 +5,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.SwordfishII;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
@@ -23,7 +26,7 @@ public class SpikeSpiegel extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 3);
+        Initialize(6, 0, 3, 3);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1, 0, 0);
@@ -59,7 +62,7 @@ public class SpikeSpiegel extends AnimatorCard
         });
 
 
-        if (CheckTeamwork(AffinityType.Red, 2) && CheckTeamwork(AffinityType.Green, 2) && CombatStats.TryActivateLimited(cardID))
+        if (GetTeamwork(null) >= secondaryValue && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.MakeCardInDrawPile(new SwordfishII()).SetUpgrade(upgraded, false);
         }

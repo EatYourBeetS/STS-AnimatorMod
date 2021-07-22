@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,7 +9,7 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.effects.vfx.SmallLaserEffect;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -58,10 +57,8 @@ public class Aisha extends AnimatorCard
     {
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE)
-            .SetVFX(true, false)
-            .SetDamageEffect(enemy -> GameEffects.List.Add(new SmallLaserEffect(player.hb.cX, player.hb.cY,
-            enemy.hb.cX + MathUtils.random(-0.05f, 0.05f),enemy.hb.cY + MathUtils.random(-0.05f, 0.05f), Color.VIOLET)).duration);
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE).SetVFX(true, false)
+            .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.VIOLET)).duration * 0.1f);
         }
     }
 

@@ -6,10 +6,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class DwarfShaman extends AnimatorCard
 {
@@ -33,7 +35,8 @@ public class DwarfShaman extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetVFX(true, false)
+        .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowRock(player.hb, c.hb, 0.25f)).duration);
         GameActions.Bottom.ChannelOrb(new Earth());
 
         if (ForceStance.IsActive() || IntellectStance.IsActive())

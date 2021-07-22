@@ -12,52 +12,75 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
 import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.AdvancedTexture;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.Mathf;
+
+import java.util.ArrayList;
 
 public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber
 {
     public static final String ORB_ID = CreateFullID(Earth.class);
+    public static final int PROJECTILES = 8;
 
-    public static Texture imgRight;
-    public static Texture imgLeft;
-    public static Texture imgMid;
+    public static Texture PROJECTILE_LARGE;
+    public static Texture PROJECTILE_SMALL;
 
-    private final boolean hFlip1;
-    private final boolean hFlip2;
+    public final ArrayList<AdvancedTexture> projectiles = new ArrayList<>();
+    public boolean evoked;
+    public int turns;
 
-    private boolean evoked;
-    private int turns;
+    private float timer;
 
     public Earth()
     {
         super(ORB_ID, true);
 
-        if (imgRight == null)
+        if (PROJECTILE_LARGE == null || PROJECTILE_SMALL == null)
         {
-            imgRight = ImageMaster.loadImage("images/orbs/animator/EarthRight.png");
-            imgLeft = ImageMaster.loadImage( "images/orbs/animator/EarthLeft.png");
-            imgMid = ImageMaster.loadImage(  "images/orbs/animator/EarthMid.png");
+            PROJECTILE_LARGE = ImageMaster.loadImage("images/orbs/animator/Earth1.png");
+            PROJECTILE_SMALL = ImageMaster.loadImage("images/orbs/animator/Earth2.png");
         }
 
-        this.hFlip1 = MathUtils.randomBoolean();
-        this.hFlip2 = MathUtils.randomBoolean();
         this.evoked = false;
-        this.baseEvokeAmount = 16;
-        this.evokeAmount = this.baseEvokeAmount;
-        this.basePassiveAmount = 2;
-        this.passiveAmount = this.basePassiveAmount;
+        this.evokeAmount = this.baseEvokeAmount = 16;
+        this.passiveAmount = this.basePassiveAmount = 2;
         this.channelAnimTimer = 0.5f;
         this.turns = 3;
+
         this.updateDescription();
     }
 
+    public void GenerateProjectiles()
+    {
+        projectiles.clear();
+        for (int i = 0; i < PROJECTILES; i++)
+        {
+            projectiles.add(new AdvancedTexture((i % 3 == 0) ? PROJECTILE_LARGE : PROJECTILE_SMALL, 48f, 48f)
+            .SetPosition(cX, cY)
+            .SetColor(Mathf.RandomColor(0f, 0.15f, true))
+            .SetScale(MathUtils.random(0.8f, 1f))
+            .SetFlip(i % 2 == 0, null)
+            .SetOffset(0f, 0f, MathUtils.random(0f, 360f))
+            .SetSpeed(2f, 2f, MathUtils.random(18f, 24f)));
+        }
+    }
+
+    @Override
+    public void onChannel()
+    {
+        turns = 3;
+        evoked = false;
+        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
+        GenerateProjectiles();
+    }
+
+    @Override
     public void updateDescription()
     {
         final String[] desc = orbStrings.DESCRIPTION;
@@ -88,14 +111,9 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void onEndOfTurn()
     {
-        if (evoked)
+        if (!evoked && turns > 0)
         {
-            return;
-        }
-
-        if (turns > 0)
-        {
-            PassiveEffect();
+            Passive();
         }
 
         this.updateDescription();
@@ -104,9 +122,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void triggerEvokeAnimation()
     {
-        //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.1f);
-        //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1f);
-        GameEffects.Queue.Add(new DarkOrbActivateEffect(this.cX, this.cY));
+
     }
 
     @Override
@@ -129,16 +145,35 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     public void updateAnimation()
     {
         super.updateAnimation();
-        this.angle += Gdx.graphics.getDeltaTime() * 18f; //180f;
+
+        final float delta = Gdx.graphics.getRawDeltaTime();
+        for (AdvancedTexture texture : projectiles)
+        {
+            texture.SetPosition(cX, cY).SetTargetRotation(angle).Update(delta);
+        }
+
+        if (!evoked && (timer -= delta) <= 0)
+        {
+            final float w = hb.width * 0.5f;
+            final float h = hb.height * 0.5f;
+            for (AdvancedTexture texture : projectiles)
+            {
+                texture.SetTargetOffset((w * 0.5f) - MathUtils.random(w), (h * 0.5f) - MathUtils.random(h), null);
+            }
+            timer = 1.5f;
+        }
+
+        this.angle += delta * 180f;
     }
 
     @Override
     public void render(SpriteBatch sb)
     {
-        sb.setColor(this.c);
-        sb.draw(imgLeft, this.cX - 48f + this.bobEffect.y / 4f, this.cY - 48f - this.bobEffect.y / 4f, 48f, 48f, 96f, 96f, this.scale, this.scale, 0f, 0, 0, 96, 96, this.hFlip1, false);
-        sb.draw(imgMid, this.cX - 48f - this.bobEffect.y / 4f, this.cY - 48f + this.bobEffect.y / 2f, 48f, 48f, 96f, 96f, this.scale, this.scale, 0f, 0, 0, 96, 96, this.hFlip2, false);
-        sb.draw(imgRight, this.cX - 48f + this.bobEffect.y / 4f, this.cY - 48f + this.bobEffect.y / 4f, 48f, 48f, 96f, 96f, this.scale, this.scale, 0f, 0, 0, 96, 96, this.hFlip1, false);
+        for (AdvancedTexture projectile : projectiles)
+        {
+            projectile.Render(sb, Mathf.SubtractColor(c.cpy(), projectile.color, false));
+        }
+
         this.renderText(sb);
         this.hb.render(sb);
     }
@@ -155,9 +190,6 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     public void playChannelSFX()
     {
         CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.2f);
-        turns = 3;
-        evoked = false;
-        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override
@@ -173,19 +205,24 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     }
 
     @Override
-    public void PassiveEffect()
+    public void Passive()
     {
         GameActions.Bottom.Add(new EarthOrbPassiveAction(passiveAmount));
-        super.PassiveEffect();
+        super.Passive();
     }
 
     @Override
-    public void EvokeEffect()
+    public void Evoke()
     {
         if (evokeAmount > 0)
         {
-            GameActions.Top.Add(new EarthOrbEvokeAction(evokeAmount));
-            super.EvokeEffect();
+            if (projectiles.isEmpty())
+            {
+                GenerateProjectiles();
+            }
+
+            GameActions.Bottom.Add(new EarthOrbEvokeAction(this, evokeAmount));
+            super.Evoke();
         }
 
         turns = 0;

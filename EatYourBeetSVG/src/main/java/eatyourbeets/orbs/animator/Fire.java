@@ -88,18 +88,18 @@ public class Fire extends AnimatorOrb
     }
 
     @Override
-    public void EvokeEffect()
+    public void Evoke()
     {
         GameActions.Top.Add(new FireOrbEvokeAction(evokeAmount));
 
-        super.EvokeEffect();
+        super.Evoke();
     }
 
     @Override
-    public void PassiveEffect()
+    public void Passive()
     {
         GameActions.Bottom.Add(new FireOrbPassiveAction(this, passiveAmount));
 
-        super.PassiveEffect();
+        super.Passive();
     }
 }

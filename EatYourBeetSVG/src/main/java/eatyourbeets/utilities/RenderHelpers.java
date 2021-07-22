@@ -298,11 +298,16 @@ public class RenderHelpers
 
     public static void DrawCentered(SpriteBatch sb, Color color, Texture img, float drawX, float drawY, float width, float height, float imgScale, float imgRotation)
     {
+        DrawCentered(sb, color, img, drawX, drawY, width, height, imgScale, imgRotation, false, false);
+    }
+
+    public static void DrawCentered(SpriteBatch sb, Color color, Texture img, float drawX, float drawY, float width, float height, float imgScale, float imgRotation, boolean flipX, boolean flipY)
+    {
         final float scale = Settings.scale * imgScale;
 
         sb.setColor(color);
         sb.draw(img, drawX - (width / 2f), drawY - (height / 2f), width / 2f, height / 2f, width, height,
-                scale, scale, imgRotation, 0, 0, img.getWidth(), img.getHeight(), false, false);
+                scale, scale, imgRotation, 0, 0, img.getWidth(), img.getHeight(), flipX, flipY);
     }
 
     public static void Draw(SpriteBatch sb, Texture img, float drawX, float drawY, float size)

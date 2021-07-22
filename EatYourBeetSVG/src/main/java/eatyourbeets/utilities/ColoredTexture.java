@@ -50,4 +50,26 @@ public class ColoredTexture
 
         return this;
     }
+
+    public ColoredTexture SetColor(Float r, Float g, Float b, Float a)
+    {
+        if (r != null)
+        {
+            this.color.r = r;
+        }
+        if (g != null)
+        {
+            this.color.g = g;
+        }
+        if (b != null)
+        {
+            this.color.b = b;
+        }
+        if (a != null)
+        {
+            this.color.a = a;
+        }
+
+        return this;
+    }
 }

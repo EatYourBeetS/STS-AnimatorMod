@@ -573,6 +573,11 @@
 			"DESCRIPTION": "Retain !M! card(s) at ** the end of this turn. || Synergy: Set the [Block] ** of each enemy to 1.",
 			"NAME": "Lizard Priest"
 		},
+		"animator:NobleFencer":
+		{
+			"DESCRIPTION": "Evoke your first [Lightning]. || Whenever you Synergize this turn: Channel 1 [Lightning].",
+			"NAME": "Noble Fencer"
+		},
 		"animator:Priestess":
 		{
 			"DESCRIPTION": "Apply !S! [Weak]. || Synergy: Exhaust a ** random Hindrance ** from anywhere.",

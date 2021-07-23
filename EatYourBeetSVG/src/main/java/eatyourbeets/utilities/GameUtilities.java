@@ -599,7 +599,7 @@ public class GameUtilities
         {
             cards = AbstractDungeon.actionManager.cardsPlayedThisCombat;
         }
-
+		
         return cards.size() > offset ? cards.get(cards.size() - 1 - offset) : null;
     }
 

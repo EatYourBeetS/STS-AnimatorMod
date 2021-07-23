@@ -38,7 +38,7 @@ public class ShootingStarsEffect extends EYBEffect
         vfxTimer -= deltaTime;
         if (vfxTimer < 0f)
         {
-            vfxTimer = 0.025f;
+            vfxTimer = 0.023f;
             GameEffects.Queue.Add(new StarEffect(x, y + Random(-spreadY, spreadY), horizontalSpeedMin, horizontalSpeedMax, 0f, 0));
         }
 

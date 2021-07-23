@@ -10,69 +10,50 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.GameEffects;
 
-import java.util.ArrayList;
-
-public class StarEffect extends EYBEffect
+public class RazorWindEffect extends EYBEffect
 {
-    protected static final ArrayList<Float> RGB = new ArrayList<>(3);
-    protected static final int SIZE = 96;
+    public static Texture img;
+    public static final int SIZE = 96;
 
-    protected static Texture img;
     protected float x;
     protected float y;
+    protected float targetY;
+    protected float horizontalAcceleration;
     protected float horizontalSpeed;
-    protected float verticalSpeed;
     protected float rotationSpeed;
     protected float vfxTimer;
 
-    public StarEffect(float x, float y, float horizontalSpeedMin, float horizontalSpeedMax, float verticalSpeedMin, float verticalSpeedMax)
+    public RazorWindEffect(float x, float y, float targetY, float horizontalSpeed, float horizontalAcceleration)
     {
-        super(Random(0.5f, 1f));
+        super(1f);
 
         if (img == null) {
-            img = ImageMaster.loadImage("images/effects/Star.png");
+            img = ImageMaster.loadImage("images/orbs/animator/AirSlice.png");
         }
+
         this.x = x - (SIZE / 2f);
         this.y = y - (SIZE / 2f);
+        this.targetY = targetY - (SIZE /2f);
         this.rotation = Random(5f, 10f);
-        this.scale = Random(0.2f, 3.0f) * Settings.scale;
-        this.horizontalSpeed = Random(horizontalSpeedMin, horizontalSpeedMax) * Settings.scale;
-        this.verticalSpeed = Random(verticalSpeedMin, verticalSpeedMax) * Settings.scale;
-        this.rotationSpeed = Random(-600f, 600f);
-
-        if (RandomBoolean(0.5f))
-        {
-            this.rotation *= -1;
-        }
-
-        SetRandomColor();
+        this.scale = 2.3f * Settings.scale;
+        this.horizontalSpeed = horizontalSpeed * Settings.scale;
+        this.horizontalAcceleration = horizontalSpeed * Settings.scale;
+        this.rotationSpeed = Random(1000f, 1200f);
+        this.color = Color.WHITE.cpy();
     }
 
-    public StarEffect SetRandomColor()
-    {
-        RGB.add(0f);
-        RGB.add(1f);
-        RGB.add(Random(0.5f, 1f));
-
-        this.color = new Color(RGB.remove(Random(0, 2)), RGB.remove(Random(0, 1)), RGB.remove(0), 0.15f);
-
-        return this;
-    }
 
     @Override
     protected void UpdateInternal(float deltaTime)
     {
         x += horizontalSpeed * deltaTime;
-        y += verticalSpeed * deltaTime;
+        y = Interpolation.pow2OutInverse.apply(y, targetY, Math.min(1f, (1f - duration) / 2f));
+        horizontalSpeed += horizontalAcceleration * deltaTime;
         rotation += rotationSpeed * deltaTime;
-        if (scale > 0.3f * Settings.scale)
-        {
-            scale -= deltaTime * 2f;
-        }
 
         if ((1f - duration) < 0.1f)
         {
-            color.a = Interpolation.fade.apply(0.1f, 1f, (1f - duration) * 10f);
+            color.a = Interpolation.fade.apply(0.1f, 1f, (1f - duration) * 7f);
         }
         else
         {
@@ -83,7 +64,7 @@ public class StarEffect extends EYBEffect
         if (vfxTimer < 0f)
         {
             vfxTimer = 0.016f;
-            GameEffects.Queue.Add(new StarParticleEffect(x, y, Color.WHITE));
+            GameEffects.Queue.Add(new RazorWindParticleEffect(x, y, Math.signum(horizontalSpeed) * Random(-300f, -50f) * Settings.scale, Random(-200f, 200f) * Settings.scale));
         }
 
         super.UpdateInternal(deltaTime);

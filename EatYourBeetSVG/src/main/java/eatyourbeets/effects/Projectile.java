@@ -220,12 +220,36 @@ public class Projectile extends ColoredTexture
 
     public void Render(SpriteBatch sb)
     {
-        Render(sb, color == null ? sb.getColor() : color);
+        Render(sb, color == null ? sb.getColor() : color, GetCurrentX(true), GetCurrentY(true), scale);
     }
 
     public void Render(SpriteBatch sb, Color color)
     {
-        RenderHelpers.DrawCentered(sb, color, texture, current_pos.x + current_offset.x, current_pos.y + current_offset.y,
-                width, height, scale, current_pos.z + current_offset.z, flipX, flipY);
+        Render(sb, color, GetCurrentX(true), GetCurrentY(true), scale);
+    }
+
+    public void Render(SpriteBatch sb, Color color, float cX, float cY, float scale)
+    {
+        RenderHelpers.DrawCentered(sb, color, texture, cX, cY, width, height, scale, GetCurrentRotation(true), flipX, flipY);
+    }
+
+    public Vector3f GetCurrentPosition(boolean addOffset)
+    {
+        return new Vector3f(GetCurrentX(addOffset), GetCurrentY(addOffset), GetCurrentRotation(addOffset));
+    }
+
+    public float GetCurrentX(boolean addOffset)
+    {
+        return addOffset ? (current_pos.x + current_offset.x) : current_pos.x;
+    }
+
+    public float GetCurrentY(boolean addOffset)
+    {
+        return addOffset ? (current_pos.y + current_offset.y) : current_pos.y;
+    }
+
+    public float GetCurrentRotation(boolean addOffset)
+    {
+        return addOffset ? (current_pos.z + current_offset.z) : current_pos.z;
     }
 }

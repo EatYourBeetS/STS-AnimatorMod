@@ -7,9 +7,14 @@ import eatyourbeets.effects.EYBEffectWithCallback;
 import eatyourbeets.effects.Projectile;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.Mathf;
+import org.lwjgl.util.vector.Vector3f;
+
+import java.util.ArrayList;
 
 public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
 {
+    protected final ArrayList<Vector3f> trailPositions = new ArrayList<>(); // z = scale
+    protected boolean addTrailPosition;
     protected Projectile projectile;
     protected Hitbox target;
     protected float offset_x;
@@ -57,8 +62,30 @@ public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
     @Override
     protected void UpdateInternal(float deltaTime)
     {
-        projectile.Update(deltaTime);
+        if (!Settings.DISABLE_EFFECTS)
+        {
+            int i = 0;
+            while (i < trailPositions.size())
+            {
+                if ((trailPositions.get(i).z -= deltaTime * i * 2) <= 0)
+                {
+                    trailPositions.remove(i);
+                }
+                else
+                {
+                    i++;
+                }
+            }
 
+            if (projectile.speed.x > (projectile.width * 2.5f) && (addTrailPosition ^= true))
+            {
+                Vector3f pos = projectile.GetCurrentPosition(true);
+                pos.z = 0.75f;// scale
+                trailPositions.add(0, pos);
+            }
+        }
+
+        projectile.Update(deltaTime);
         if (JUtils.ShowDebugInfo())
         {
             JUtils.LogInfo(this, "D: " + deltaTime + ", S: " + projectile.speed + ", A: " + projectile.acceleration);
@@ -75,6 +102,11 @@ public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
     {
         if (projectile != null)
         {
+            for (Vector3f trailPos : trailPositions)
+            {
+                projectile.Render(sb, Mathf.Copy(projectile.color, trailPos.z * 0.5f), trailPos.x, trailPos.y, projectile.scale * trailPos.z);
+            }
+
             projectile.Render(sb);
         }
     }

@@ -107,6 +107,6 @@ public class Aether extends AnimatorOrb
     {
         super.Passive();
 
-        GameActions.Bottom.Add(new AetherOrbPassiveAction(this.passiveAmount));
+        GameActions.Bottom.Add(new AetherOrbPassiveAction(this, this.passiveAmount));
     }
 }

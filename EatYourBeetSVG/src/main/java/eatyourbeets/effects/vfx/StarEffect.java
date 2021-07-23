@@ -1,13 +1,13 @@
 package eatyourbeets.effects.vfx;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
-import eatyourbeets.effects.Projectile;
 import eatyourbeets.utilities.GameEffects;
 
 import java.util.ArrayList;
@@ -15,34 +15,37 @@ import java.util.ArrayList;
 public class StarEffect extends EYBEffect
 {
     protected static final ArrayList<Float> RGB = new ArrayList<>(3);
-    protected static Texture img;
+    protected static final int SIZE = 96;
 
+    protected static Texture img;
     protected float x;
     protected float y;
     protected float horizontalSpeed;
     protected float verticalSpeed;
     protected float rotationSpeed;
     protected float vfxTimer;
-    protected Projectile projectile;
 
     public StarEffect(float x, float y, float horizontalSpeedMin, float horizontalSpeedMax, float verticalSpeedMin, float verticalSpeedMax)
     {
         super(Random(0.5f, 1f));
 
-        if (img == null)
-        {
+        if (img == null) {
             img = ImageMaster.loadImage("images/effects/Star.png");
+        }
+        this.x = x - (SIZE / 2f);
+        this.y = y - (SIZE / 2f);
+        this.rotation = Random(5f, 10f);
+        this.scale = Random(0.2f, 3.0f) * Settings.scale;
+        this.horizontalSpeed = Random(horizontalSpeedMin, horizontalSpeedMax) * Settings.scale;
+        this.verticalSpeed = Random(verticalSpeedMin, verticalSpeedMax) * Settings.scale;
+        this.rotationSpeed = Random(-600f, 600f);
+
+        if (RandomBoolean(0.5f))
+        {
+            this.rotation *= -1;
         }
 
         SetRandomColor();
-
-        this.projectile = new Projectile(img, 48f, 48f)
-                .SetPosition(x, y)
-                .SetSpeed(Random(horizontalSpeedMin, horizontalSpeedMax) * Settings.scale, Random(verticalSpeedMin, verticalSpeedMax) * Settings.scale, Random(-600f, 600f))
-        .SetScale(Random(0.2f, 3.0f) * Settings.scale)
-                .SetTargetScale(0.3f)
-        .SetRotation(Random(5f, 10f)).SetFlip(RandomBoolean(0.5f), null)
-        .SetColor(this.color);
     }
 
     public StarEffect SetRandomColor()
@@ -59,6 +62,13 @@ public class StarEffect extends EYBEffect
     @Override
     protected void UpdateInternal(float deltaTime)
     {
+        x += horizontalSpeed * deltaTime;
+        y += verticalSpeed * deltaTime;
+        rotation += rotationSpeed * deltaTime;
+        if (scale > 0.3f * Settings.scale)
+        {
+            scale -= deltaTime * 2f;
+        }
 
         if ((1f - duration) < 0.1f)
         {
@@ -68,8 +78,6 @@ public class StarEffect extends EYBEffect
         {
             color.a = Interpolation.pow2Out.apply(0.1f, 1f, duration);
         }
-        this.projectile.color.a = this.color.a;
-        this.projectile.Update(deltaTime);
 
         vfxTimer -= deltaTime;
         if (vfxTimer < 0f)
@@ -83,6 +91,9 @@ public class StarEffect extends EYBEffect
 
     public void render(SpriteBatch sb)
     {
-        this.projectile.Render(sb);
+        sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
+        sb.setColor(this.color);
+        sb.draw(img, x, y, SIZE * 0.5f, SIZE * 0.5f, SIZE, SIZE, scale, scale, rotation, 0, 0, SIZE, SIZE, false, false);
+        sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
     }
 }

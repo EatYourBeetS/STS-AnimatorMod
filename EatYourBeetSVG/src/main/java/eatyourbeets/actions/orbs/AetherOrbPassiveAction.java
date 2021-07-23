@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.effects.VFX;
+import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -16,9 +17,12 @@ import java.util.Collections;
 
 public class AetherOrbPassiveAction extends EYBAction
 {
-    public AetherOrbPassiveAction(int damage)
+    protected final Aether orb;
+
+    public AetherOrbPassiveAction(Aether orb, int damage)
     {
         super(ActionType.DAMAGE);
+        this.orb = orb;
 
         Initialize(damage);
     }
@@ -40,7 +44,7 @@ public class AetherOrbPassiveAction extends EYBAction
         }
 
         GameActions.Top.SFX("ATTACK_WHIRLWIND");
-        GameActions.Top.VFX(VFX.RazorWind(player.hb, MathUtils.random(2000.0F, 2200.0F) * Settings.scale, 0));
+        GameActions.Top.VFX(VFX.RazorWind(this.orb.hb, player.hb, MathUtils.random(1000.0F, 1200.0F) * Settings.scale, MathUtils.random(10.0F, 20.0F) * Settings.scale));
         GameActions.Top.VFX(new WhirlwindEffect(), 0);
 
         Complete();

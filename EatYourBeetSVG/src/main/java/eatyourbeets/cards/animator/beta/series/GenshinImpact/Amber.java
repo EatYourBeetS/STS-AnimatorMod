@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.VFX;
+import eatyourbeets.effects.vfx.GenericAnimationEffect;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
@@ -29,8 +30,7 @@ public class Amber extends AnimatorCard {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.GainBlock(block);
 
-        GameActions.Bottom.VFX(VFX.Dark(m.hb));
-        GameActions.Bottom.VFX(VFX.RazorWind(player.hb, 20f, 20f));
+        GameActions.Bottom.VFX(VFX.Dark(m.hb).SetMode(GenericAnimationEffect.AnimationMode.Loop,250));
 
         if (IsStarter())
         {

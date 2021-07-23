@@ -113,9 +113,9 @@ public class VFX
         return new LightShaftEffect(target.cX, target.cY);
     }
 
-    public static RazorWindEffect RazorWind(Hitbox source, float horizontalSpeed, float horizontalAcceleration)
+    public static RazorWindEffect RazorWind(Hitbox source, Hitbox target, float horizontalSpeed, float horizontalAcceleration)
     {
-        return new RazorWindEffect(source.cX, source.cY, horizontalSpeed, horizontalAcceleration);
+        return new RazorWindEffect(source.cX, source.cY, target.cY, horizontalSpeed, horizontalAcceleration);
     }
 
     public static RockBurstEffect RockBurst(Hitbox target, float scale)

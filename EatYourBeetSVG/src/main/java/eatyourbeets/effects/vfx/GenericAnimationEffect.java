@@ -1,6 +1,5 @@
 package eatyourbeets.effects.vfx;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -33,6 +32,7 @@ public abstract class GenericAnimationEffect extends EYBEffect
     protected float y;
     protected float vR;
     protected float animTimer;
+    protected float animDelay;
     protected int frame;
     protected int duration;
 
@@ -51,7 +51,7 @@ public abstract class GenericAnimationEffect extends EYBEffect
         this.rows = MathUtils.ceil(imageSheet.getHeight() / size);
         this.totalFrames = this.rows * this.columns;
         this.duration = this.totalFrames;
-        this.animTimer = animTimer;
+        this.animTimer = this.animDelay = animTimer;
     }
 
 
@@ -79,56 +79,53 @@ public abstract class GenericAnimationEffect extends EYBEffect
         return this;
     }
 
-    public void update() {
-        this.animTimer -= Gdx.graphics.getDeltaTime();
-        if (this.animTimer < 0.0F) {
-            this.animTimer += 0.03F;
-            ++this.frame;
-
-            if (this.frame >= duration - 1) {
-                this.isDone = true;
-            }
-        }
-
-    }
-
     @Override
     protected void UpdateInternal(float deltaTime)
     {
+        super.UpdateInternal(deltaTime);
         rotation += vR * deltaTime;
 
-        this.animTimer -= Gdx.graphics.getDeltaTime();
+        this.animTimer -= deltaTime;
         if (this.animTimer < 0.0F) {
-            this.animTimer += 0.03F;
+            this.animTimer += this.animDelay;
             ++this.frame;
 
             if (this.frame > totalFrames) {
-                this.frame = totalFrames;
-                this.isDone = true;
+                Complete();
             }
         }
     }
 
+    @Override
     public void render(SpriteBatch sb) {
         sb.setColor(this.color);
         TextureRegion region = this.GetFrameRegion(this.frame);
+        //sb.draw(this.imageSheet, x, y, RazorWindEffect.SIZE * 0.5f, RazorWindEffect.SIZE * 0.5f, RazorWindEffect.SIZE, RazorWindEffect.SIZE, scale, scale, rotation, 0, 0, RazorWindEffect.SIZE, RazorWindEffect.SIZE, false, false);
         sb.draw(region, this.x - (this.size / 2f), this.y - (this.size / 2f), this.size / 2f, this.size / 2f, this.size, this.size, this.scale, this.scale, this.rotation);
     }
 
     public TextureRegion GetFrameRegion(int frame) {
+        int zframe = frame;
         switch (this.mode) {
             case Loop:
-                frame = frame % totalFrames;
+                zframe = frame % totalFrames;
             case Reverse:
                 int cycle = (frame / totalFrames) % 2;
-                frame = Math.abs(frame % totalFrames + (-(totalFrames - 1) * cycle));
+                zframe = Math.abs(frame % totalFrames + (-(totalFrames - 1) * cycle));
             default:
-                frame = Math.max(frame, totalFrames - 1);
+                zframe = Math.min(frame, totalFrames - 1);
         }
 
-        float targetX = (frame % this.columns) * this.size;
-        float targetY = (frame / (float) this.rows) * this.size;
-        return new TextureRegion(this.imageSheet, targetX, targetY, Math.max(targetX + size, this.imageSheet.getWidth()), Math.max(targetY + size, this.imageSheet.getWidth()));
+        int targetX = (zframe % this.columns) * (int)this.size;
+        int targetY = (int)zframe / this.rows * (int)this.size;
+        //JUtils.GetLogger(GR.class).error("zframe: " + zframe);
+        //JUtils.GetLogger(GR.class).error("targetX: " + targetX);
+        //JUtils.GetLogger(GR.class).error("targetY: " + targetY);
+        //JUtils.GetLogger(GR.class).error("columns: " + this.columns);
+        //JUtils.GetLogger(GR.class).error("columns: " + this.rows);
+        //JUtils.GetLogger(GR.class).error("total: " + this.totalFrames);
+        return new TextureRegion(this.imageSheet, targetX, targetY, (int)size, (int)size);
+        //return new TextureRegion(this.imageSheet, zframe * (int)size, zframe * (int)size, (int)size, (int)size);
     }
 
     public void dispose()

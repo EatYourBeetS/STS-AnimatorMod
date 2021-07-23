@@ -1,31 +1,29 @@
 package eatyourbeets.effects.vfx;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
-import eatyourbeets.effects.Projectile;
 import eatyourbeets.utilities.GameEffects;
-
-import java.util.ArrayList;
 
 public class RazorWindEffect extends EYBEffect
 {
-    protected static final ArrayList<Float> RGB = new ArrayList<>(3);
-    protected static Texture img;
+    public static Texture img;
+    public static final int SIZE = 96;
 
     protected float x;
     protected float y;
+    protected float targetY;
     protected float horizontalAcceleration;
     protected float horizontalSpeed;
     protected float rotationSpeed;
     protected float vfxTimer;
-    protected Projectile projectile;
 
-    public RazorWindEffect(float x, float y, float horizontalSpeed, float horizontalAcceleration)
+    public RazorWindEffect(float x, float y, float targetY, float horizontalSpeed, float horizontalAcceleration)
     {
         super(1f);
 
@@ -33,8 +31,14 @@ public class RazorWindEffect extends EYBEffect
             img = ImageMaster.loadImage("images/orbs/animator/AirSlice.png");
         }
 
-        this.projectile = new Projectile(img, 48f, 48f)
-        .SetPosition(x,y).SetTargetPosition((float)Settings.WIDTH, y).SetTargetRotation(96000).SetScale(Settings.scale * 2).SetSpeed(horizontalSpeed  * Settings.scale, 0f, 600f).SetSpeedMulti(horizontalAcceleration  * Settings.scale, 0f, 0f);
+        this.x = x - (SIZE / 2f);
+        this.y = y - (SIZE / 2f);
+        this.targetY = targetY - (SIZE /2f);
+        this.rotation = Random(5f, 10f);
+        this.scale = 2.3f * Settings.scale;
+        this.horizontalSpeed = horizontalSpeed * Settings.scale;
+        this.horizontalAcceleration = horizontalSpeed * Settings.scale;
+        this.rotationSpeed = Random(1000f, 1200f);
         this.color = Color.WHITE.cpy();
     }
 
@@ -42,11 +46,14 @@ public class RazorWindEffect extends EYBEffect
     @Override
     protected void UpdateInternal(float deltaTime)
     {
-        this.projectile.Update(deltaTime);
+        x += horizontalSpeed * deltaTime;
+        y = Interpolation.pow2OutInverse.apply(y, targetY, Math.min(1f, (1f - duration) / 2f));
+        horizontalSpeed += horizontalAcceleration * deltaTime;
+        rotation += rotationSpeed * deltaTime;
 
         if ((1f - duration) < 0.1f)
         {
-            color.a = Interpolation.fade.apply(0.1f, 1f, (1f - duration) * 10f);
+            color.a = Interpolation.fade.apply(0.1f, 1f, (1f - duration) * 7f);
         }
         else
         {
@@ -57,7 +64,7 @@ public class RazorWindEffect extends EYBEffect
         if (vfxTimer < 0f)
         {
             vfxTimer = 0.016f;
-            GameEffects.Queue.Add(new RazorWindParticleEffect(x, y));
+            GameEffects.Queue.Add(new RazorWindParticleEffect(x, y, Math.signum(horizontalSpeed) * Random(-300f, -50f) * Settings.scale, Random(-200f, 200f) * Settings.scale));
         }
 
         super.UpdateInternal(deltaTime);
@@ -65,6 +72,9 @@ public class RazorWindEffect extends EYBEffect
 
     public void render(SpriteBatch sb)
     {
-        this.projectile.Render(sb, this.color);
+        sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
+        sb.setColor(this.color);
+        sb.draw(img, x, y, SIZE * 0.5f, SIZE * 0.5f, SIZE, SIZE, scale, scale, rotation, 0, 0, SIZE, SIZE, false, false);
+        sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
     }
 }

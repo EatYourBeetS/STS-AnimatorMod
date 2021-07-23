@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
-import eatyourbeets.utilities.AdvancedTexture;
+import eatyourbeets.effects.Projectile;
 
 public class RazorWindParticleEffect extends EYBEffect
 {
@@ -17,7 +17,7 @@ public class RazorWindParticleEffect extends EYBEffect
     protected float x;
     protected float y;
     protected float alpha;
-    protected AdvancedTexture particle;
+    protected Projectile particle;
 
 
     public RazorWindParticleEffect(float x, float y)
@@ -33,7 +33,7 @@ public class RazorWindParticleEffect extends EYBEffect
         this.alpha = Random(0.7F, 1.0F);
         this.color = Color.WHITE.cpy();
         this.color.a = this.alpha;
-        this.particle = new AdvancedTexture(img, 48f, 48f)
+        this.particle = new Projectile(img, 48f, 48f)
                 .SetPosition(x + offsetX, y)
                 .SetScale( Random(0.08f, 0.31f) * Settings.scale)
                 .SetColor(this.color)

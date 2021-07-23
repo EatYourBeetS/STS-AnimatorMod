@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.powers.LockOnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
@@ -27,6 +28,9 @@ public class Amber extends AnimatorCard {
 
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.GainBlock(block);
+
+        GameActions.Bottom.VFX(VFX.Dark(m.hb));
+        GameActions.Bottom.VFX(VFX.RazorWind(player.hb, 20f, 20f));
 
         if (IsStarter())
         {

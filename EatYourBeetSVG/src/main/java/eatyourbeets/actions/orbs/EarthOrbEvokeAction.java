@@ -10,7 +10,9 @@ import eatyourbeets.effects.Projectile;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.effects.card.RenderProjectilesEffect;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.Mathf;
 
 import java.util.ArrayList;
 
@@ -24,7 +26,7 @@ public class EarthOrbEvokeAction extends EYBAction
     {
         super(ActionType.DAMAGE, 0.6f);
 
-        this.throwDuration = Settings.FAST_MODE ? 0.14f : 0.21f;
+        this.throwDuration = Settings.FAST_MODE ? 0.28f : 0.42f;
         this.isRealtime = true;
 
         while (earth.projectiles.size() > 0)

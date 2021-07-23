@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
-import eatyourbeets.utilities.AdvancedTexture;
+import eatyourbeets.effects.Projectile;
 import eatyourbeets.utilities.GameEffects;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class StarEffect extends EYBEffect
     protected float verticalSpeed;
     protected float rotationSpeed;
     protected float vfxTimer;
-    protected AdvancedTexture projectile;
+    protected Projectile projectile;
 
     public StarEffect(float x, float y, float horizontalSpeedMin, float horizontalSpeedMax, float verticalSpeedMin, float verticalSpeedMax)
     {
@@ -36,7 +36,7 @@ public class StarEffect extends EYBEffect
 
         SetRandomColor();
 
-        this.projectile = new AdvancedTexture(img, 48f, 48f)
+        this.projectile = new Projectile(img, 48f, 48f)
                 .SetPosition(x, y)
                 .SetSpeed(Random(horizontalSpeedMin, horizontalSpeedMax) * Settings.scale, Random(verticalSpeedMin, verticalSpeedMax) * Settings.scale, Random(-600f, 600f))
         .SetScale(Random(0.2f, 3.0f) * Settings.scale)

@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
-import eatyourbeets.utilities.AdvancedTexture;
+import eatyourbeets.effects.Projectile;
 import eatyourbeets.utilities.GameEffects;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class RazorWindEffect extends EYBEffect
     protected float horizontalSpeed;
     protected float rotationSpeed;
     protected float vfxTimer;
-    protected AdvancedTexture projectile;
+    protected Projectile projectile;
 
     public RazorWindEffect(float x, float y, float horizontalSpeed, float horizontalAcceleration)
     {
@@ -33,8 +33,8 @@ public class RazorWindEffect extends EYBEffect
             img = ImageMaster.loadImage("images/orbs/animator/AirSlice.png");
         }
 
-        this.projectile = new AdvancedTexture(img, 48f, 48f)
-        .SetPosition(x,y).SetSpeed(horizontalSpeed  * Settings.scale, 0f, 600f).SetSpeedMulti(horizontalAcceleration  * Settings.scale, 0f, 0f);
+        this.projectile = new Projectile(img, 48f, 48f)
+        .SetPosition(x,y).SetTargetPosition((float)Settings.WIDTH, y).SetTargetRotation(96000).SetScale(Settings.scale * 2).SetSpeed(horizontalSpeed  * Settings.scale, 0f, 600f).SetSpeedMulti(horizontalAcceleration  * Settings.scale, 0f, 0f);
         this.color = Color.WHITE.cpy();
     }
 

@@ -1,6 +1,6 @@
 package eatyourbeets.effects.vfx;
 
-public abstract class LightShaftEffect extends GenericAnimationEffect
+public class LightShaftEffect extends GenericAnimationEffect
 {
     public static final int SIZE = 192;
     public static final String IMAGE_PATH = "images/effects/LightShaft.png";

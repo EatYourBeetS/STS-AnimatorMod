@@ -59,7 +59,7 @@ public class EYBCombatInfo_AffinityRow extends GUIElement
     public void Update(EYBCardAffinities handAffinities, EYBCardAffinities cardAffinities, EYBCardAffinities strongSynergies, boolean draggingCard)
     {
         boolean synergyEffectAvailable = !CombatStats.HasActivatedSemiLimited(Type.name());
-        int total = handAffinities.GetLevel(Type, false);
+        int total = handAffinities == null ? 0 : handAffinities.GetLevel(Type, false);
         text_affinity.SetText(total);// > 0 ? total : "-");
         image_synergy.color.a = synergyEffectAvailable ? 1f : 0.35f;
 

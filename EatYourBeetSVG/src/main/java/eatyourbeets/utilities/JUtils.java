@@ -1,6 +1,7 @@
 package eatyourbeets.utilities;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.interfaces.delegates.ActionT1;
@@ -378,5 +379,10 @@ public class JUtils
         current.g = Lerp(current.g, target.g, amount);
         current.b = Lerp(current.b, target.b, amount);
         current.a = Lerp(current.a, target.a, amount);
+    }
+
+    public static boolean ShowDebugInfo()
+    {
+        return Settings.isDebug || Settings.isInfo;
     }
 }

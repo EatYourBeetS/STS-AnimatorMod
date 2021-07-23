@@ -3,10 +3,12 @@ package eatyourbeets.effects;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Interpolation;
 import eatyourbeets.utilities.ColoredTexture;
 import eatyourbeets.utilities.Mathf;
 import eatyourbeets.utilities.RenderHelpers;
 import org.lwjgl.util.vector.Vector3f;
+import org.lwjgl.util.vector.Vector4f;
 
 public class Projectile extends ColoredTexture
 {
@@ -19,8 +21,8 @@ public class Projectile extends ColoredTexture
     public Vector3f target_pos = new Vector3f();
     public Vector3f current_offset = new Vector3f();
     public Vector3f target_offset = new Vector3f();
-    public Vector3f acceleration = new Vector3f(0f, 0f, 0f);
     public Vector3f speed = new Vector3f(10f, 10f, 24f);
+    public Vector4f acceleration = new Vector4f(0f, 0f, 0f, 0f);
 
     public Projectile(Texture texture, float width, float height)
     {
@@ -48,7 +50,7 @@ public class Projectile extends ColoredTexture
         return this;
     }
 
-    public Projectile SetAcceleration(Float x, Float y, Float rotation)
+    public Projectile SetAcceleration(Float x, Float y, Float rotation, Float duration)
     {
         if (x != null)
         {
@@ -61,6 +63,10 @@ public class Projectile extends ColoredTexture
         if (rotation != null)
         {
             this.acceleration.z = rotation;
+        }
+        if (duration != null)
+        {
+            this.acceleration.w = duration;
         }
 
         return this;
@@ -207,9 +213,9 @@ public class Projectile extends ColoredTexture
             scale = Mathf.MoveTowards(scale, target_scale, delta * 2f);
         }
 
-        Mathf.MoveTowards(current_pos, target_pos, speed, delta);
-        Mathf.MoveTowards(current_offset, target_offset, speed, delta);
-        Mathf.AddVector(speed, acceleration, delta);
+        Mathf.ApplyMovement(current_pos, target_pos, speed, delta);
+        Mathf.ApplyMovement(current_offset, target_offset, speed, delta);
+        Mathf.ApplyAcceleration(speed, acceleration, delta, Interpolation.linear);
     }
 
     public void Render(SpriteBatch sb)

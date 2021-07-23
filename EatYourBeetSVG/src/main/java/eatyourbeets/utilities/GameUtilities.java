@@ -852,21 +852,6 @@ public class GameUtilities
         }
     }
 
-    public static EYBCardAffinities GetTotalAffinity(Collection<AbstractCard> cards, AbstractCard ignored, int limitPerCard)
-    {
-        EYBCardAffinities affinities = new EYBCardAffinities(null);
-        for (AbstractCard c : cards)
-        {
-            EYBCard card = JUtils.SafeCast(c, EYBCard.class);
-            if (card != ignored && card != null)
-            {
-                affinities.AddLevels(card.affinities, limitPerCard);
-            }
-        }
-
-        return affinities;
-    }
-
     public static int GetTempHP(AbstractCreature creature)
     {
         return creature != null ? TempHPField.tempHp.get(creature) : 0;

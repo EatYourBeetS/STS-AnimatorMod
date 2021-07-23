@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.effects.EYBEffectWithCallback;
 import eatyourbeets.effects.Projectile;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.Mathf;
 
 public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
@@ -50,13 +51,18 @@ public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
 
         final float speed_x = (Mathf.Abs(projectile.target_pos.x - projectile.current_pos.x) / duration);
         final float speed_y = (Mathf.Abs(projectile.target_pos.y - projectile.current_pos.y) / duration);
-        projectile.SetSpeed(0f, 0f, null).SetAcceleration(speed_x / duration, speed_y / duration, null);
+        projectile.SetSpeed(0f, 0f, null).SetAcceleration(speed_x * 2, speed_y * 2, null, duration);
     }
 
     @Override
     protected void UpdateInternal(float deltaTime)
     {
         projectile.Update(deltaTime);
+
+        if (JUtils.ShowDebugInfo())
+        {
+            JUtils.LogInfo(this, "D: " + deltaTime + ", S: " + projectile.speed + ", A: " + projectile.acceleration);
+        }
 
         if (TickDuration(deltaTime))
         {

@@ -10,9 +10,7 @@ import eatyourbeets.effects.Projectile;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.effects.card.RenderProjectilesEffect;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
@@ -26,7 +24,7 @@ public class EarthOrbEvokeAction extends EYBAction
     {
         super(ActionType.DAMAGE, 0.6f);
 
-        this.throwDuration = Settings.FAST_MODE ? 0.28f : 0.42f;
+        this.throwDuration = Settings.FAST_MODE ? 0.15f : 0.25f;
         this.isRealtime = true;
 
         while (earth.projectiles.size() > 0)
@@ -52,7 +50,7 @@ public class EarthOrbEvokeAction extends EYBAction
             .SetTargetPosition(earth.cX + (earth.hb.width * 0.35f), earth.cY + (earth.hb.height * 3))
             .SetTargetOffset(w * Mathf.Cos(angle * i), h * Mathf.Sin(angle * i), null)
             .SetTargetRotation(p.target_pos.z + 36000)
-            .SetColor(Mathf.SubtractColor(Color.WHITE.cpy(), p.color, false));
+            .SetColor(Mathf.Subtract(Color.WHITE.cpy(), p.color, false));
         }
         GameEffects.List.Add(effect = new RenderProjectilesEffect(projectiles, 999f, isRealtime));
     }

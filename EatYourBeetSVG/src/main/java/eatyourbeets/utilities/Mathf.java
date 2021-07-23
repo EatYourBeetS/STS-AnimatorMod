@@ -1,8 +1,11 @@
 package eatyourbeets.utilities;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.core.Settings;
 import org.lwjgl.util.vector.Vector3f;
+import org.lwjgl.util.vector.Vector4f;
 
 public class Mathf
 {
@@ -176,7 +179,7 @@ public class Mathf
         return new Color(MathUtils.random(min, max), MathUtils.random(min, max), MathUtils.random(min, max), 1);
     }
 
-    public static Color SubtractColor(Color a, Color b, boolean includeAlpha)
+    public static Color Subtract(Color a, Color b, boolean includeAlpha)
     {
         if (includeAlpha)
         {
@@ -188,5 +191,47 @@ public class Mathf
         a.b -= b.b;
 
         return a.clamp();
+    }
+
+    public static void Add(Vector3f a, Vector3f b, float delta)
+    {
+        a.x = Max(0, a.x + (b.x * delta));
+        a.y = Max(0, a.y + (b.y * delta));
+        a.z = Max(0, a.z + (b.z * delta));
+    }
+
+    public static void ApplyMovement(Vector3f current, Vector3f target, Vector3f speed, float progress)
+    {
+        current.x = MoveTowards(current.x, target.x, speed.x * progress * Settings.scale);
+        current.y = MoveTowards(current.y, target.y, speed.y * progress * Settings.scale);
+        current.z = MoveTowards(current.z, target.z, speed.z * progress); // rotation
+    }
+
+    public static void ApplyAcceleration(Vector3f speed, Vector4f acceleration, float delta, Interpolation interpolation)
+    {
+        if (acceleration.w == 0)
+        {
+            speed.x = Max(0, speed.x + (acceleration.x * delta));
+            speed.y = Max(0, speed.y + (acceleration.y * delta));
+            speed.z = Max(0, speed.z + (acceleration.z * delta));
+            return;
+        }
+
+        float m = Min(1, delta / acceleration.w);
+        if (interpolation != null)
+        {
+            m = interpolation.apply(m);
+        }
+
+        final float x = acceleration.x * m;
+        final float y = acceleration.y * m;
+        final float z = acceleration.z * m;
+        speed.x = Max(0, speed.x + x);
+        speed.y = Max(0, speed.y + y);
+        speed.z = Max(0, speed.z + z);
+        acceleration.x = Max(0, acceleration.x - x);
+        acceleration.y = Max(0, acceleration.y - y);
+        acceleration.z = Max(0, acceleration.z - z);
+        acceleration.w = Max(0, acceleration.w - delta);
     }
 }

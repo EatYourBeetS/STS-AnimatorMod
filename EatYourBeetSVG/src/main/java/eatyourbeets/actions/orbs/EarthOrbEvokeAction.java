@@ -1,10 +1,12 @@
 package eatyourbeets.actions.orbs;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.effects.Projectile;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.effects.card.RenderProjectilesEffect;
 import eatyourbeets.orbs.animator.Earth;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 
 public class EarthOrbEvokeAction extends EYBAction
 {
-    private final ArrayList<AdvancedTexture> projectiles = new ArrayList<>();
+    private final ArrayList<Projectile> projectiles = new ArrayList<>();
     private final float throwDuration;
     private RenderProjectilesEffect effect;
 
@@ -22,7 +24,7 @@ public class EarthOrbEvokeAction extends EYBAction
     {
         super(ActionType.DAMAGE, 0.6f);
 
-        this.throwDuration = Settings.FAST_MODE ? 0.14f : 0.21f;
+        this.throwDuration = Settings.FAST_MODE ? 0.15f : 0.25f;
         this.isRealtime = true;
 
         while (earth.projectiles.size() > 0)
@@ -39,16 +41,16 @@ public class EarthOrbEvokeAction extends EYBAction
 
         final float w = earth.hb.width * 1.1f;
         final float h = earth.hb.height * 0.8f;
-        final float angle = 90f / projectiles.size();
+        final float angle = -MathUtils.random(40f, 80f) + (MathUtils.random(120f, 240f) / projectiles.size());
         for (int i = 0; i < projectiles.size(); i++)
         {
-            AdvancedTexture p = projectiles.get(i);
+            Projectile p = projectiles.get(i);
             p.SetTargetScale(p.scale + 0.35f)
             .SetSpeed(33f, 35f, 210f + (i * 30))
             .SetTargetPosition(earth.cX + (earth.hb.width * 0.35f), earth.cY + (earth.hb.height * 3))
             .SetTargetOffset(w * Mathf.Cos(angle * i), h * Mathf.Sin(angle * i), null)
             .SetTargetRotation(p.target_pos.z + 36000)
-            .SetColor(Mathf.SubtractColor(Color.WHITE.cpy(), p.color, false));
+            .SetColor(Mathf.Subtract(Color.WHITE.cpy(), p.color, false));
         }
         GameEffects.List.Add(effect = new RenderProjectilesEffect(projectiles, 999f, isRealtime));
     }

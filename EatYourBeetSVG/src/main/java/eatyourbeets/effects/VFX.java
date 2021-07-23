@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import eatyourbeets.effects.vfx.SmallLaserEffect;
 import eatyourbeets.effects.vfx.*;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.utilities.AdvancedTexture;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.Mathf;
 
@@ -62,6 +61,11 @@ public class VFX
         return new DaggerSprayEffect(FlipHorizontally());
     }
 
+    public static DarkEffect Dark(Hitbox target)
+    {
+        return new DarkEffect(target.cX, target.cY);
+    }
+
     public static ExplosionSmallEffect SmallExplosion(Hitbox source)
     {
         return new ExplosionSmallEffect(source.cX, source.cY);
@@ -94,21 +98,6 @@ public class VFX
         return new FlashAttackEffect(target.cX, target.cY, effect, muteSFX);
     }
 
-    public static ThrowProjectileEffect ThrowRock(Hitbox source, Hitbox target, float duration)
-    {
-        duration *= Mathf.Abs(target.cX - source.cX) / (Settings.WIDTH * 0.5f);
-        return (ThrowProjectileEffect)new ThrowProjectileEffect(new AdvancedTexture(Earth.PROJECTILE_LARGE, 128f, 128f)
-        .SetColor(Mathf.RandomColor(0.6f, 0.85f, true))
-        .SetPosition(source.cX, source.cY), target)
-        .AddCallback(hb -> GameEffects.Queue.Add(RockBurst(hb, 1.3f)))
-        .SetDuration(duration, true);
-    }
-
-    public static ThrowProjectileEffect ThrowProjectile(AdvancedTexture projectile, Hitbox target)
-    {
-        return new ThrowProjectileEffect(projectile, target);
-    }
-
     public static HemokinesisEffect2 Hemokinesis(Hitbox source, Hitbox target)
     {
         return new HemokinesisEffect2(target.cX, target.cY, source.cX, source.cY);
@@ -129,10 +118,27 @@ public class VFX
         return new ShootingStarsEffect(source.cX, source.cY, spread, FlipHorizontally());
     }
 
+
     public static SnowballEffect Snowball(Hitbox source, Hitbox target)
     {
         return new SnowballEffect(source.cX, source.cY, target.cX, target.cY);
     }
+
+    public static ThrowProjectileEffect ThrowProjectile(Projectile projectile, Hitbox target)
+    {
+        return new ThrowProjectileEffect(projectile, target);
+    }
+
+    public static ThrowProjectileEffect ThrowRock(Hitbox source, Hitbox target, float duration)
+    {
+        duration *= Mathf.Abs(target.cX - source.cX) / (Settings.WIDTH * 0.5f);
+        return (ThrowProjectileEffect)new ThrowProjectileEffect(new Projectile(Earth.PROJECTILE_LARGE, 128f, 128f)
+                .SetColor(Mathf.RandomColor(0.6f, 0.85f, true))
+                .SetPosition(source.cX, source.cY), target)
+                .AddCallback(hb -> GameEffects.Queue.Add(RockBurst(hb, 1.3f)))
+                .SetDuration(duration, true);
+    }
+
 
     public static VerticalImpactEffect VerticalImpact(Hitbox target)
     {

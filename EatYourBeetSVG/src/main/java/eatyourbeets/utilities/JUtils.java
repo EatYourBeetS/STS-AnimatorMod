@@ -1,5 +1,7 @@
 package eatyourbeets.utilities;
 
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.interfaces.delegates.ActionT1;
@@ -362,5 +364,25 @@ public class JUtils
     public static <T> T SafeCast(Object o, Class<T> type)
     {
         return type.isInstance(o) ? (T)o : null;
+    }
+
+    public static float Lerp(float current, float target, float amount)
+    {
+        float lerp = (target - current) * amount;
+        float result = current + lerp;
+        return (current < target) ? (result > target ? target : result) : (result < target ? target : result);
+    }
+
+    public static void Lerp(Color current, Color target, float amount)
+    {
+        current.r = Lerp(current.r, target.r, amount);
+        current.g = Lerp(current.g, target.g, amount);
+        current.b = Lerp(current.b, target.b, amount);
+        current.a = Lerp(current.a, target.a, amount);
+    }
+
+    public static boolean ShowDebugInfo()
+    {
+        return Settings.isDebug || Settings.isInfo;
     }
 }

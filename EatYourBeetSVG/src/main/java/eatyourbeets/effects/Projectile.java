@@ -1,11 +1,16 @@
-package eatyourbeets.utilities;
+package eatyourbeets.effects;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Interpolation;
+import eatyourbeets.utilities.ColoredTexture;
+import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.RenderHelpers;
 import org.lwjgl.util.vector.Vector3f;
+import org.lwjgl.util.vector.Vector4f;
 
-public class AdvancedTexture extends ColoredTexture
+public class Projectile extends ColoredTexture
 {
     public boolean flipX;
     public boolean flipY;
@@ -17,8 +22,9 @@ public class AdvancedTexture extends ColoredTexture
     public Vector3f current_offset = new Vector3f();
     public Vector3f target_offset = new Vector3f();
     public Vector3f speed = new Vector3f(10f, 10f, 24f);
+    public Vector4f acceleration = new Vector4f(0f, 0f, 0f, 0f);
 
-    public AdvancedTexture(Texture texture, float width, float height)
+    public Projectile(Texture texture, float width, float height)
     {
         super(texture);
 
@@ -26,7 +32,7 @@ public class AdvancedTexture extends ColoredTexture
         this.height = height;
     }
 
-    public AdvancedTexture SetSpeedMulti(Float x, Float y, Float rotation)
+    public Projectile SetSpeedMulti(Float x, Float y, Float rotation)
     {
         if (x != null)
         {
@@ -44,8 +50,29 @@ public class AdvancedTexture extends ColoredTexture
         return this;
     }
 
+    public Projectile SetAcceleration(Float x, Float y, Float rotation, Float duration)
+    {
+        if (x != null)
+        {
+            this.acceleration.x = x;
+        }
+        if (y != null)
+        {
+            this.acceleration.y = y;
+        }
+        if (rotation != null)
+        {
+            this.acceleration.z = rotation;
+        }
+        if (duration != null)
+        {
+            this.acceleration.w = duration;
+        }
 
-    public AdvancedTexture SetSpeed(Float x, Float y, Float rotation)
+        return this;
+    }
+
+    public Projectile SetSpeed(Float x, Float y, Float rotation)
     {
         if (x != null)
         {
@@ -63,7 +90,7 @@ public class AdvancedTexture extends ColoredTexture
         return this;
     }
 
-    public AdvancedTexture SetPosition(Float cX, Float cY)
+    public Projectile SetPosition(Float cX, Float cY)
     {
         if (cX != null)
         {
@@ -77,7 +104,7 @@ public class AdvancedTexture extends ColoredTexture
         return this;
     }
 
-    public AdvancedTexture SetTargetPosition(Float cX, Float cY)
+    public Projectile SetTargetPosition(Float cX, Float cY)
     {
         if (cX != null)
         {
@@ -91,35 +118,35 @@ public class AdvancedTexture extends ColoredTexture
         return this;
     }
 
-    public AdvancedTexture SetScale(float scale)
+    public Projectile SetScale(float scale)
     {
         this.scale = this.target_scale = scale;
 
         return this;
     }
 
-    public AdvancedTexture SetTargetScale(float scale)
+    public Projectile SetTargetScale(float scale)
     {
         this.target_scale = scale;
 
         return this;
     }
 
-    public AdvancedTexture SetRotation(float degrees)
+    public Projectile SetRotation(float degrees)
     {
         this.current_pos.z = this.target_pos.z = degrees;
 
         return this;
     }
 
-    public AdvancedTexture SetTargetRotation(float degrees)
+    public Projectile SetTargetRotation(float degrees)
     {
         this.target_pos.z = degrees;
 
         return this;
     }
 
-    public AdvancedTexture SetOffset(Float x, Float y, Float rotation)
+    public Projectile SetOffset(Float x, Float y, Float rotation)
     {
         if (x != null)
         {
@@ -137,7 +164,7 @@ public class AdvancedTexture extends ColoredTexture
         return this;
     }
 
-    public AdvancedTexture SetTargetOffset(Float x, Float y, Float rotation)
+    public Projectile SetTargetOffset(Float x, Float y, Float rotation)
     {
         if (x != null)
         {
@@ -155,7 +182,7 @@ public class AdvancedTexture extends ColoredTexture
         return this;
     }
 
-    public AdvancedTexture SetFlip(Boolean flipX, Boolean flipY)
+    public Projectile SetFlip(Boolean flipX, Boolean flipY)
     {
         if (flipX != null)
         {
@@ -169,14 +196,14 @@ public class AdvancedTexture extends ColoredTexture
         return this;
     }
 
-    public AdvancedTexture SetColor(Color color)
+    public Projectile SetColor(Color color)
     {
-        return (AdvancedTexture) super.SetColor(color);
+        return (Projectile) super.SetColor(color);
     }
 
-    public AdvancedTexture SetColor(Float r, Float g, Float b, Float a)
+    public Projectile SetColor(Float r, Float g, Float b, Float a)
     {
-        return (AdvancedTexture) super.SetColor(r, g, b, a);
+        return (Projectile) super.SetColor(r, g, b, a);
     }
 
     public void Update(float delta)
@@ -186,8 +213,9 @@ public class AdvancedTexture extends ColoredTexture
             scale = Mathf.MoveTowards(scale, target_scale, delta * 2f);
         }
 
-        Mathf.MoveTowards(current_pos, target_pos, speed, delta);
-        Mathf.MoveTowards(current_offset, target_offset, speed, delta);
+        Mathf.ApplyMovement(current_pos, target_pos, speed, delta);
+        Mathf.ApplyMovement(current_offset, target_offset, speed, delta);
+        Mathf.ApplyAcceleration(speed, acceleration, delta, Interpolation.linear);
     }
 
     public void Render(SpriteBatch sb)

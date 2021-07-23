@@ -309,7 +309,13 @@
 		{
 		  "DESCRIPTION": "Your [Fire] deals 1 additional damage at the end of the turn and deals damage to ALL enemies equal to its [Burning] when Evoked.",
 		  "NAME": "Sheer Cold",
-		  "UPGRADE_DESCRIPTION": "Channel 1 [Frost]. || Your [Frost] now applies [Chilled] equal to their [Block] to a random enemy when Triggered and to all enemies when Evoked, ignoring [Artifact]."
+		  "UPGRADE_DESCRIPTION": "Channel 1 [Fire]. || Your [Fire] deals 1 additional damage at the end of the turn and deals damage to ALL enemies equal to its [Burning] when Evoked."
+		},
+		"animator:GarbageDoll":
+		{
+		  "DESCRIPTION": "Purge up to !M! cards in your Exhaust pile. Gain the {Affinity Power} of the affinities ** of each card Purged. || <LIM>. If you Purged {Ushio}: Add it back to your hand.",
+		  "EXTENDED_DESCRIPTION": ["Choose {0} cards to Purge."],
+		  "NAME": "Garbage Doll"
 		},
 		"animator:HatsuneMiku":
 		{
@@ -326,6 +332,11 @@
 		{
 			"DESCRIPTION": "<LIM>. If Fatal: Heal !M! HP. || When Exhausted: Put this card in your hand after a random number of turns.",
 			"NAME": "Zombie Megu-nee"
+		},
+		"animator:MotokoKusanagi":
+		{
+		  "DESCRIPTION": "{Ricochet} !S!. || When Exhausted: Reduce {Ricochet} by 1 for every 150 Gold you have (minimum 1). Increase this card's [A] scaling by 1 this combat.",
+		  "NAME": "Motoko Kusanagi"
 		},
 		"animator:NaoTomori":
 		{
@@ -370,6 +381,16 @@
 		{
 			"DESCRIPTION": "At the end of your turn, deal !M! damage to ALL enemies for each Strike played this turn. || When Discarded or Played, Motivate 1.",
 			"NAME": "Swordfish II"
+		},
+		"animator:TomoyaOkazaki":
+		{
+		  "DESCRIPTION": "Motivate !M! random Cards in your draw pile or discard pile whose Affinity matches that of your highest Affinity.",
+		  "NAME": "Tomoya Okazaki"
+		},
+		"animator:Ushio":
+		{
+		  "DESCRIPTION": "Skip your next turn. ** On the following turn: ** <DRW-M> and gain !S! [E]. || <LIM>. If {Tomoya Okazaki} is in your draw pile, add {Garbage Doll} to your discard pile.",
+		  "NAME": "Ushio"
 		}
 	},
 	"BETA:DATEALIVE":

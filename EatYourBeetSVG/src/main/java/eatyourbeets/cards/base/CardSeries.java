@@ -65,6 +65,8 @@ public class CardSeries
     public final static CardSeries GakkouGurashi = Add(50, "GakkouGurashi");
     public final static CardSeries GenshinImpact = Add(51, "GenshinImpact");
     public final static CardSeries CowboyBebop = Add(52, "CowboyBebop");
+    public final static CardSeries GhostInTheShell = Add(53, "GhostInTheShell");
+    public final static CardSeries Clannad = Add(54, "Clannad");
 
     private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;

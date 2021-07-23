@@ -98,6 +98,16 @@ public class VFX
         return new FlashAttackEffect(target.cX, target.cY, effect, muteSFX);
     }
 
+    public static GunshotEffect Gunshot(Hitbox target)
+    {
+        return new GunshotEffect(target.cX, target.cY);
+    }
+
+    public static GunshotEffect Gunshot(Hitbox target, float spread)
+    {
+        return new GunshotEffect(target.cX + MathUtils.random(-spread, spread) * target.width, target.cY + MathUtils.random(-spread, spread) * target.height);
+    }
+
     public static HemokinesisEffect2 Hemokinesis(Hitbox source, Hitbox target)
     {
         return new HemokinesisEffect2(target.cX, target.cY, source.cX, source.cY);

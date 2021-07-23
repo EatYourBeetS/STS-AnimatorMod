@@ -1,0 +1,112 @@
+package eatyourbeets.cards.animator.beta.colorless;
+
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.VFX;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
+
+public class MotokoKusanagi extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
+{
+    public static final int GOLD_THRESHOLD = 150;
+
+    public static final EYBCardData DATA = Register(MotokoKusanagi.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GhostInTheShell);
+
+    public MotokoKusanagi()
+    {
+        super(DATA);
+
+        Initialize(2, 0, 3, 3);
+        SetUpgrade(1, 0, 0);
+        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Green(1, 0, 1);
+
+        SetExhaust(true);
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
+    }
+
+    @Override
+    public ColoredString GetSecondaryValueString()
+    {
+        if (this.isSecondaryValueModified)
+        {
+            if (this.secondaryValue > 0)
+            {
+                return new ColoredString(this.secondaryValue, Settings.GREEN_TEXT_COLOR.cpy().lerp(Settings.CREAM_COLOR, 0.5f), this.transparency);
+            }
+            else
+            {
+                return new ColoredString(this.secondaryValue, Settings.GREEN_TEXT_COLOR, this.transparency);
+            }
+        }
+        else
+        {
+            return new ColoredString(this.secondaryValue, Settings.CREAM_COLOR, this.transparency);
+        }
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+        GameUtilities.ModifySecondaryValue(this, Math.max(1, magicNumber - Math.floorDiv(player.gold, GOLD_THRESHOLD)), true);
+        GameActions.Bottom.ModifyAllInstances(uuid, c ->
+        {
+            ((EYBCard) c).AddScaling(AffinityType.Green, 1);
+            c.flash();
+        });
+
+        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
+    }
+
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
+        for (int i = 0; i < magicNumber; i++) {
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetDamageEffect(mo -> {GameEffects.List.Add(VFX.Gunshot(mo.hb)); return 0f;});
+        }
+    }
+
+    @Override
+    public void OnStartOfTurnPostDraw()
+    {
+        this.reduceTurns();
+    }
+
+    private void reduceTurns()
+    {
+        if (player.exhaustPile.contains(this))
+        {
+            if (secondaryValue <= 1)
+            {
+                GameUtilities.ModifySecondaryValue(this, magicNumber, true);
+                GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
+                        .ShowEffect(true, false);
+
+                CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+            }
+            else
+            {
+                GameUtilities.ModifySecondaryValue(this, secondaryValue - 1, true);
+            }
+        }
+        else
+        {
+            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+        }
+    }
+}

@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.EYBEffect;
@@ -34,7 +35,7 @@ public abstract class GenericAnimationEffect extends EYBEffect
     protected float animTimer;
     protected float animDelay;
     protected int frame;
-    protected int duration;
+    protected int animDuration;
 
     public GenericAnimationEffect(String imgUrl, float x, float y, float size, float animTimer) {
         this.x = x;
@@ -50,7 +51,7 @@ public abstract class GenericAnimationEffect extends EYBEffect
         this.columns = MathUtils.ceil(imageSheet.getWidth() / size);
         this.rows = MathUtils.ceil(imageSheet.getHeight() / size);
         this.totalFrames = this.rows * this.columns;
-        this.duration = this.totalFrames;
+        this.animDuration = this.totalFrames;
         this.animTimer = this.animDelay = animTimer;
     }
 
@@ -75,14 +76,13 @@ public abstract class GenericAnimationEffect extends EYBEffect
 
     public GenericAnimationEffect SetMode(AnimationMode mode, int duration){
         this.mode = mode;
-        this.duration = duration;
+        this.animDuration = duration;
         return this;
     }
 
     @Override
     protected void UpdateInternal(float deltaTime)
     {
-        super.UpdateInternal(deltaTime);
         rotation += vR * deltaTime;
 
         this.animTimer -= deltaTime;
@@ -90,9 +90,13 @@ public abstract class GenericAnimationEffect extends EYBEffect
             this.animTimer += this.animDelay;
             ++this.frame;
 
-            if (this.frame > totalFrames) {
+            if (this.frame >= animDuration) {
                 Complete();
             }
+        }
+
+        if (this.mode == AnimationMode.Fade && this.frame >= totalFrames) {
+            this.color.a = Interpolation.fade.apply(0f, 1f, (animDuration - this.frame) / (float)(animDuration - totalFrames));
         }
     }
 
@@ -100,32 +104,27 @@ public abstract class GenericAnimationEffect extends EYBEffect
     public void render(SpriteBatch sb) {
         sb.setColor(this.color);
         TextureRegion region = this.GetFrameRegion(this.frame);
-        //sb.draw(this.imageSheet, x, y, RazorWindEffect.SIZE * 0.5f, RazorWindEffect.SIZE * 0.5f, RazorWindEffect.SIZE, RazorWindEffect.SIZE, scale, scale, rotation, 0, 0, RazorWindEffect.SIZE, RazorWindEffect.SIZE, false, false);
         sb.draw(region, this.x - (this.size / 2f), this.y - (this.size / 2f), this.size / 2f, this.size / 2f, this.size, this.size, this.scale, this.scale, this.rotation);
     }
 
     public TextureRegion GetFrameRegion(int frame) {
-        int zframe = frame;
+        int zframe;
         switch (this.mode) {
             case Loop:
                 zframe = frame % totalFrames;
+                break;
             case Reverse:
                 int cycle = (frame / totalFrames) % 2;
                 zframe = Math.abs(frame % totalFrames + (-(totalFrames - 1) * cycle));
+                break;
             default:
                 zframe = Math.min(frame, totalFrames - 1);
+                break;
         }
 
         int targetX = (zframe % this.columns) * (int)this.size;
-        int targetY = (int)zframe / this.rows * (int)this.size;
-        //JUtils.GetLogger(GR.class).error("zframe: " + zframe);
-        //JUtils.GetLogger(GR.class).error("targetX: " + targetX);
-        //JUtils.GetLogger(GR.class).error("targetY: " + targetY);
-        //JUtils.GetLogger(GR.class).error("columns: " + this.columns);
-        //JUtils.GetLogger(GR.class).error("columns: " + this.rows);
-        //JUtils.GetLogger(GR.class).error("total: " + this.totalFrames);
+        int targetY = zframe / this.rows * (int)this.size;
         return new TextureRegion(this.imageSheet, targetX, targetY, (int)size, (int)size);
-        //return new TextureRegion(this.imageSheet, zframe * (int)size, zframe * (int)size, (int)size, (int)size);
     }
 
     public void dispose()

@@ -91,7 +91,7 @@ public class EYBCombatInfo_AffinityRow extends GUIElement
         if (!draggingCard && image_background.hb.hovered)
         {
             AffinityType type = Type;
-            if (type == AffinityType.General)
+            if (type == AffinityType.General && handAffinities != null)
             {
                 EYBCardAffinity a = JUtils.FindMax(handAffinities.List, t -> t.level);
                 if (a != null)

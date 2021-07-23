@@ -20,8 +20,6 @@ public class GoblinSlayer extends AnimatorCard
     {
         super(DATA);
 
-        cropPortrait = true;
-
         Initialize(4, 4);
         SetUpgrade(3, 3);
 

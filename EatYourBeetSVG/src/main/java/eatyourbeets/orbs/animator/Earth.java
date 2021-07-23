@@ -171,7 +171,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         for (Projectile projectile : projectiles)
         {
-            projectile.Render(sb, Mathf.SubtractColor(c.cpy(), projectile.color, false));
+            projectile.Render(sb, Mathf.Subtract(c.cpy(), projectile.color, false));
         }
 
         this.renderText(sb);

@@ -98,6 +98,21 @@ public class VFX
         return new FlashAttackEffect(target.cX, target.cY, effect, muteSFX);
     }
 
+    public static ThrowProjectileEffect ThrowRock(Hitbox source, Hitbox target, float duration)
+    {
+        duration *= Mathf.Abs(target.cX - source.cX) / (Settings.WIDTH * 0.5f);
+        return (ThrowProjectileEffect)new ThrowProjectileEffect(new Projectile(Earth.PROJECTILE_LARGE, 128f, 128f)
+        .SetColor(Mathf.RandomColor(0.6f, 0.85f, true))
+        .SetPosition(source.cX, source.cY), target)
+        .AddCallback(hb -> GameEffects.Queue.Add(RockBurst(hb, 1.3f)))
+        .SetDuration(duration, true);
+    }
+
+    public static ThrowProjectileEffect ThrowProjectile(Projectile projectile, Hitbox target)
+    {
+        return new ThrowProjectileEffect(projectile, target);
+    }
+
     public static HemokinesisEffect2 Hemokinesis(Hitbox source, Hitbox target)
     {
         return new HemokinesisEffect2(target.cX, target.cY, source.cX, source.cY);

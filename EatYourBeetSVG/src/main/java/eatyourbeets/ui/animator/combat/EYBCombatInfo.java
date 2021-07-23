@@ -6,13 +6,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardAffinities;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.hitboxes.DraggableHitbox;
-import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -47,7 +49,7 @@ public class EYBCombatInfo extends GUIElement
             return;
         }
 
-        EYBCardAffinities handAffinities;
+        EYBCardAffinities handAffinities = null;
         EYBCardAffinities cardAffinities = null;
         EYBCardAffinities strongSynergies = null;
         boolean draggingCard = false;
@@ -57,10 +59,10 @@ public class EYBCombatInfo extends GUIElement
         {
             draggingCard = true;
         }
-        handAffinities = GameUtilities.GetTotalAffinity(player.hand.group, card, 1);
 
         if (card instanceof EYBCard)
         {
+            handAffinities = CombatStats.Affinities.GetAffinities(player.hand.group, ((EYBCard) card));
             cardAffinities = ((EYBCard) card).affinities;
 
             if (cardAffinities != null)

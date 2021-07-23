@@ -59,25 +59,32 @@ public class EYBCombatInfo_AffinityRow extends GUIElement
     public void Update(EYBCardAffinities handAffinities, EYBCardAffinities cardAffinities, EYBCardAffinities strongSynergies, boolean draggingCard)
     {
         boolean synergyEffectAvailable = !CombatStats.HasActivatedSemiLimited(Type.name());
-        int total = handAffinities.GetLevel(Type, false);
+        int total = handAffinities == null ? 0 : handAffinities.GetLevel(Type, false);
         text_affinity.SetText(total);// > 0 ? total : "-");
         image_synergy.color.a = synergyEffectAvailable ? 1f : 0.35f;
 
-        int level = strongSynergies == null ? 0 : strongSynergies.GetLevel(Type, false);
-        if (level == 2 && synergyEffectAvailable && CombatStats.Affinities.GetLastAffinityLevel(Type) > 0)
+        if (Type == AffinityType.General)
         {
-            image_background.SetColor(COLOR_LV2_SYNERGY);
+            image_background.SetColor(COLOR_DEFAULT);
         }
         else
         {
-            level = cardAffinities == null ? 0 : cardAffinities.GetLevel(Type, false);
-            if (level == 0)
+            int level = strongSynergies == null ? 0 : strongSynergies.GetLevel(Type, false);
+            if (level == 2 && synergyEffectAvailable && CombatStats.Affinities.GetLastAffinityLevel(Type) > 0)
             {
-                image_background.SetColor(COLOR_DEFAULT);
+                image_background.SetColor(COLOR_LV2_SYNERGY);
             }
             else
             {
-                image_background.SetColor(COLOR_CARD_AFFINITY);
+                level = cardAffinities == null ? 0 : cardAffinities.GetLevel(Type, false);
+                if (level == 0)
+                {
+                    image_background.SetColor(COLOR_DEFAULT);
+                }
+                else
+                {
+                    image_background.SetColor(COLOR_CARD_AFFINITY);
+                }
             }
         }
 

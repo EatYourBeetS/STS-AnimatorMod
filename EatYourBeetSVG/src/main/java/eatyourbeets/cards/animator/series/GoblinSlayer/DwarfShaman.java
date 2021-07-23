@@ -36,7 +36,7 @@ public class DwarfShaman extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetVFX(true, false)
-        .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowRock(player.hb, c.hb, 0.25f)).duration);
+        .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowRock(player.hb, c.hb, 0.4f)).duration).SetRealtime(true);
         GameActions.Bottom.ChannelOrb(new Earth());
 
         if (ForceStance.IsActive() || IntellectStance.IsActive())

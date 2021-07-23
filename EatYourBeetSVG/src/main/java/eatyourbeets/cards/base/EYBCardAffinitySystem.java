@@ -20,6 +20,7 @@ public class EYBCardAffinitySystem implements OnStartOfTurnSubscriber
     public BlessingPower Blessing;
     public CorruptionPower Corruption;
 
+    private EYBCardAffinities bonusAffinities = new EYBCardAffinities(null);
     private AbstractCard currentSynergy = null;
     private AnimatorCard lastCardPlayed = null;
 
@@ -30,6 +31,23 @@ public class EYBCardAffinitySystem implements OnStartOfTurnSubscriber
         Powers.add(Intellect = new IntellectPower(null, 0));
         Powers.add(Blessing = new BlessingPower(null, 0));
         Powers.add(Corruption = new CorruptionPower(null, 0));
+    }
+
+    public EYBCardAffinities GetAffinities(Iterable<AbstractCard> cards, EYBCard ignored)
+    {
+        EYBCardAffinities affinities = new EYBCardAffinities(null);
+        for (AbstractCard c : cards)
+        {
+            EYBCard card = JUtils.SafeCast(c, EYBCard.class);
+            if (card != ignored && card != null)
+            {
+                affinities.AddLevels(card.affinities, 1);
+            }
+        }
+
+        affinities.Add(bonusAffinities);
+
+        return affinities;
     }
 
     public boolean IsSynergizing(AbstractCard card)

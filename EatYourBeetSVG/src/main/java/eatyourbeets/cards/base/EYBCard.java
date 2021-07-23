@@ -268,7 +268,7 @@ public abstract class EYBCard extends EYBCardBase
 
     public int GetTeamwork(AffinityType type, boolean ignoreSelf)
     {
-        return GameUtilities.GetTotalAffinity(player.hand.group, ignoreSelf ? this : null, 1).GetLevel(type);
+        return CombatStats.Affinities.GetAffinities(player.hand.group, ignoreSelf ? this : null).GetLevel(type);
     }
 
     public boolean IsStarter()

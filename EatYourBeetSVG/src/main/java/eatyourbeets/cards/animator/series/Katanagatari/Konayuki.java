@@ -34,7 +34,7 @@ public class Konayuki extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainForce(magicNumber);
 
-        if (CheckTeamwork(AffinityType.Red, 5) && CombatStats.TryActivateLimited(cardID))
+        if (CheckAffinity(AffinityType.Red, 5) && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.DealDamageToRandomEnemy(secondaryValue, damageTypeForTurn, AbstractGameAction.AttackEffect.NONE)
             .SetDamageEffect(c -> GameEffects.List.Add(new WeightyImpactEffect(c.hb.cX, c.hb.cY)).duration)

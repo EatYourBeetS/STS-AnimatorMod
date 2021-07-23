@@ -31,7 +31,7 @@ public class HighElfArcher extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
-        if (CombatStats.Affinities.GetPower(AffinityType.Green).amount <= magicNumber)
+        if (CombatStats.Affinities.GetPowerAmount(AffinityType.Green) <= magicNumber)
         {
             GameActions.Bottom.GainAgility(1);
         }

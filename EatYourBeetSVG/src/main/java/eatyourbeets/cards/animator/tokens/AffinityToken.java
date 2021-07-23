@@ -1,8 +1,11 @@
 package eatyourbeets.cards.animator.tokens;
 
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredTexture;
 import eatyourbeets.utilities.JUtils;
@@ -51,7 +54,7 @@ public abstract class AffinityToken extends AnimatorCard
     {
         super(cardData);
 
-        Initialize(0, 0, affinityType == AffinityType.Star ? 1 : 2);
+        Initialize(0, 0, 0, 3);
         SetCostUpgrade(-1);
         InitializeAffinity(affinityType, 2, 0, 0);
 
@@ -61,5 +64,11 @@ public abstract class AffinityToken extends AnimatorCard
         this.portraitImg = new ColoredTexture(GR.GetTexture(GR.GetCardImage(ID), true), affinityType.GetAlternateColor(0.55f));
 
         SetRetainOnce(true);
+    }
+
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
+        CombatStats.Affinities.BonusAffinities.Add(affinityType, 1);
     }
 }

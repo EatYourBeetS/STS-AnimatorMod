@@ -66,7 +66,7 @@ public class RundelhausCode extends AnimatorCard
             }
         });
 
-        if (GetTeamwork(null) >= secondaryValue)
+        if (GetHandAffinity(null) >= secondaryValue)
         {
             if (choices.TryInitialize(this))
             {

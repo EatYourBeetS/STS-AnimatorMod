@@ -38,7 +38,7 @@ public class ChlammyZell extends AnimatorCard
         GameActions.Bottom.Draw(2);
         GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
 
-        if (CombatStats.Affinities.GetPower(AffinityType.Blue).amount >= secondaryValue && CombatStats.TryActivateLimited(cardID))
+        if (CombatStats.Affinities.GetPowerAmount(AffinityType.Blue) >= secondaryValue && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.MakeCardInHand(new ChlammyZellScheme());
         }

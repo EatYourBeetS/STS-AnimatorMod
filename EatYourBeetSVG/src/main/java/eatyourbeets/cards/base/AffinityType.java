@@ -4,10 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RenderHelpers;
 
 public enum AffinityType implements Comparable<AffinityType>
@@ -80,12 +78,7 @@ public enum AffinityType implements Comparable<AffinityType>
         return /*this == Star ? null : */(level > 1 ? BorderFG.Texture() : null);
     }
 
-    public AbstractGameAction QueueSynergyEffect(GameActions actions)
-    {
-        return actions.StackAffinityPower(this, 1, false);
-    }
-
-    public TextureRegion GetSynergyEffectIcon()
+    public TextureRegion GetPowerIcon()
     {
         switch (this)
         {

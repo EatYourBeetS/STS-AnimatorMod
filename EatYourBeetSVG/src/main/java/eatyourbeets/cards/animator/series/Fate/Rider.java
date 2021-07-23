@@ -45,12 +45,12 @@ public class Rider extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ReduceStrength(m, magicNumber, true);
 
-        if (CheckTeamwork(AffinityType.Green, 2))
+        if (CheckAffinity(AffinityType.Green, 2))
         {
             GameActions.Bottom.GainAgility(1, upgraded);
         }
 
-        if (CheckTeamwork(AffinityType.Blue, 2))
+        if (CheckAffinity(AffinityType.Blue, 2))
         {
             GameActions.Bottom.GainIntellect(1, upgraded);
         }

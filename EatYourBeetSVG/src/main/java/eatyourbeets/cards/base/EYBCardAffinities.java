@@ -4,11 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredTexture;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -133,31 +130,33 @@ public class EYBCardAffinities
         return Star != null && Star.level > 0;
     }
 
-    public void AddLevels(EYBCardAffinities other, int levelLimit)
+    public EYBCardAffinities Add(EYBCardAffinities other, int levelLimit)
     {
-        if (other == null)
+        if (other != null)
         {
-            return;
+            int star = Math.min(levelLimit, other.GetLevel(AffinityType.Star));
+            if (star > 0)
+            {
+                AddStar(star);
+                Add(star, star, star, star, star);
+            }
+            else for (EYBCardAffinity item : other.List)
+            {
+                Add(item.Type, Math.min(levelLimit, item.level));
+            }
         }
 
-        int star = Math.min(levelLimit, other.GetLevel(AffinityType.Star));
-        if (star > 0)
-        {
-            AddStar(star);
-            Add(star, star, star, star, star);
-        }
-        else for (EYBCardAffinity item : other.List)
-        {
-            Add(item.Type, Math.min(levelLimit, item.level));
-        }
+        return this;
     }
 
-    public void Add(EYBCardAffinities other)
+    public EYBCardAffinities Add(EYBCardAffinities other)
     {
         for (EYBCardAffinity item : other.List)
         {
             Add(item.Type, item.level);
         }
+
+        return this;
     }
 
     public EYBCardAffinity Add(AffinityType type, int level)
@@ -211,6 +210,13 @@ public class EYBCardAffinities
 
     public EYBCardAffinity Get(AffinityType type)
     {
+        if (type == AffinityType.General)
+        {
+            final int star = Star != null ? Star.level : 0;
+            final EYBCardAffinity a = List.size() > 0 ? List.get(0) : null;
+            return a != null && a.level >= star ? a : Star;
+        }
+
         if (type == AffinityType.Star)
         {
             return Star;
@@ -293,51 +299,6 @@ public class EYBCardAffinities
         {
             EYBCardAffinity affinity = Get(type);
             return (affinity != null) ? affinity.level : 0;
-        }
-    }
-
-    public boolean CanSynergize(EYBCardAffinities other)
-    {
-        return GetSynergies(other).GetLevel(null) > 0;
-    }
-
-    public EYBCardAffinities GetSynergies(EYBCardAffinities other)
-    {
-        final EYBCardAffinities synergies = new EYBCardAffinities(null);
-        for (AffinityType type : AffinityType.BasicTypes())
-        {
-            int lv_a = GetLevel(type);
-            int lv_b = other.GetLevel(type);
-            if ((lv_a > 1 && lv_b > 0) || (lv_b > 1 && lv_a > 0))
-            {
-                synergies.Add(type, lv_a);
-            }
-        }
-
-        return synergies;
-    }
-
-    public void OnSynergy(AnimatorCard card)
-    {
-        EYBCard c1 = JUtils.SafeCast(card, EYBCard.class);
-        if (c1 == null)
-        {
-            JUtils.LogError(this, "OnSynergy received null card reference.");
-            return;
-        }
-
-        AnimatorCard b = CombatStats.Affinities.GetLastCardPlayed();
-        if (b == null)
-        {
-            return;
-        }
-
-        for (EYBCardAffinity affinity : c1.affinities.List)
-        {
-            if (affinity.level >= 2 && b.affinities.GetLevel(affinity.Type) > 0 && CombatStats.TryActivateSemiLimited(affinity.Type.name()))
-            {
-                GameActions.Bottom.SynergyEffect(affinity.Type);
-            }
         }
     }
 

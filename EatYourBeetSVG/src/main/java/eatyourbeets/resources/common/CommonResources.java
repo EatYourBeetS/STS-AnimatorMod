@@ -113,11 +113,11 @@ public class CommonResources extends AbstractResources
 
         LoadKeywords();
 
-        AddPowerTooltip("[F]", "Force", new ForcePower(null, 0));
-        AddPowerTooltip("[A]", "Agility", new AgilityPower(null, 0));
-        AddPowerTooltip("[I]", "Intellect", new IntellectPower(null, 0));
-        AddPowerTooltip("[B]", "Blessing", new BlessingPower(null, 0));
-        AddPowerTooltip("[C]", "Corruption", new CorruptionPower(null, 0));
+        AddPowerTooltip("[F]", "Force", new ForcePower());
+        AddPowerTooltip("[A]", "Agility", new AgilityPower());
+        AddPowerTooltip("[I]", "Intellect", new IntellectPower());
+        AddPowerTooltip("[B]", "Blessing", new BlessingPower());
+        AddPowerTooltip("[C]", "Corruption", new CorruptionPower());
 //        AddEnergyTooltip("[R]", AbstractCard.orb_red);
 //        AddEnergyTooltip("[G]", AbstractCard.orb_green);
 //        AddEnergyTooltip("[B]", AbstractCard.orb_blue);

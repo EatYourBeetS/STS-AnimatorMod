@@ -47,14 +47,14 @@ public class Kuribayashi extends AnimatorCard
         GameActions.Bottom.SFX("ATTACK_FIRE");
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
 
-        if (CheckTeamwork(AffinityType.Green, 3))
+        if (CheckAffinity(AffinityType.Green, 3))
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         }
 
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
 
-        if (CheckTeamwork(AffinityType.Red, 3))
+        if (CheckAffinity(AffinityType.Red, 3))
         {
             GameActions.Bottom.ReduceStrength(m, secondaryValue, true);
         }

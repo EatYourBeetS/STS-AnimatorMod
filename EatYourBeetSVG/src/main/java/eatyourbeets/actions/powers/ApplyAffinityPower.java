@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.EYBPower;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -27,7 +27,7 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
 
     public ApplyAffinityPower(AbstractCreature source, AffinityType affinityType, int amount, boolean retain)
     {
-        super(ActionType.POWER, Settings.FAST_MODE ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FASTER);
+        super(ActionType.POWER, Settings.ACTION_DUR_XFAST);
 
         this.retain = retain;
 
@@ -37,7 +37,7 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
         }
         else
         {
-            this.power = JUtils.GetRandomElement(CombatStats.Affinities.Powers, EYBPower.rng);
+            this.power = JUtils.GetRandomElement(CombatStats.Affinities.Powers, EYBCard.rng);
         }
 
         if (power == null || AbstractDungeon.getMonsters().areMonstersBasicallyDead())

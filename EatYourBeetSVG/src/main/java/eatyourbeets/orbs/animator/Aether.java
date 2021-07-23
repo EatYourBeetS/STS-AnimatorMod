@@ -95,17 +95,17 @@ public class Aether extends AnimatorOrb
     }
 
     @Override
-    public void EvokeEffect()
+    public void Evoke()
     {
-        super.EvokeEffect();
+        super.Evoke();
 
         GameActions.Top.Add(new AetherOrbEvokeAction(this.evokeAmount));
     }
 
     @Override
-    public void PassiveEffect()
+    public void Passive()
     {
-        super.PassiveEffect();
+        super.Passive();
 
         GameActions.Bottom.Add(new AetherOrbPassiveAction(this.passiveAmount));
     }

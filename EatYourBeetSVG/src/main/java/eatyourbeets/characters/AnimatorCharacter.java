@@ -223,7 +223,7 @@ public class AnimatorCharacter extends CustomPlayer implements OnReceiveRewardsL
         // yes
         return super.getCharStat();
     }
-    
+
     @Override
     public void OnReceiveRewards(ArrayList<RewardItem> rewards)
     {

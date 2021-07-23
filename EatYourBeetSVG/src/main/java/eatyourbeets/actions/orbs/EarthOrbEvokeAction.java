@@ -1,70 +1,93 @@
 package eatyourbeets.actions.orbs;
 
-import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.effects.Projectile;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.effects.vfx.RotatingRocksEffect;
+import eatyourbeets.effects.card.RenderProjectilesEffect;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.*;
+
+import java.util.ArrayList;
 
 public class EarthOrbEvokeAction extends EYBAction
 {
-    public static final int DAMAGE_TICKS = Earth.PROJECTILES;
+    private final ArrayList<Projectile> projectiles = new ArrayList<>();
+    private final float throwDuration;
+    private RenderProjectilesEffect effect;
 
-    private float x;
-    private float y;
-    private float scale;
-    private float spread;
-    private float baseDuration;
-
-
-    public EarthOrbEvokeAction(int damage, float x, float y, float scale)
+    public EarthOrbEvokeAction(Earth earth, int damage)
     {
-        super(ActionType.DAMAGE);
-        this.x = x;
-        this.y = y;
-        this.scale = scale;
-        this.spread = 0;
-        this.baseDuration = duration;
+        super(ActionType.DAMAGE, 0.6f);
 
-        Initialize(Mathf.CeilToInt(damage / (float) DAMAGE_TICKS));
-    }
+        this.throwDuration = Settings.FAST_MODE ? 0.14f : 0.21f;
+        this.isRealtime = true;
 
-    @Override
-    protected void UpdateInternal(float deltaTime)
-    {
-        spread = Interpolation.exp5Out.apply(0f, 64f, (this.baseDuration - this.duration) * 8);
+        while (earth.projectiles.size() > 0)
+        {
+            projectiles.add(earth.projectiles.remove(earth.projectiles.size() - 1));
+        }
+
+        Initialize(Mathf.CeilToInt(damage / (float) projectiles.size()));
+        if (amount <= 0)
+        {
+            Complete();
+            return;
+        }
+
+        final float w = earth.hb.width * 1.1f;
+        final float h = earth.hb.height * 0.8f;
+        final float angle = -MathUtils.random(40f, 80f) + (MathUtils.random(120f, 240f) / projectiles.size());
+        for (int i = 0; i < projectiles.size(); i++)
+        {
+            Projectile p = projectiles.get(i);
+            p.SetTargetScale(p.scale + 0.35f)
+            .SetSpeed(33f, 35f, 210f + (i * 30))
+            .SetTargetPosition(earth.cX + (earth.hb.width * 0.35f), earth.cY + (earth.hb.height * 3))
+            .SetTargetOffset(w * Mathf.Cos(angle * i), h * Mathf.Sin(angle * i), null)
+            .SetTargetRotation(p.target_pos.z + 36000)
+            .SetColor(Mathf.SubtractColor(Color.WHITE.cpy(), p.color, false));
+        }
+        GameEffects.List.Add(effect = new RenderProjectilesEffect(projectiles, 999f, isRealtime));
     }
 
     @Override
     protected void FirstUpdate()
     {
-        if (amount > 0)
+        super.FirstUpdate();
+
+        effect.SetDuration(duration + (throwDuration * projectiles.size()), isRealtime);
+    }
+
+    @Override
+    protected void UpdateInternal(float deltaTime)
+    {
+        super.UpdateInternal(deltaTime);
+
+        if (TickDuration(deltaTime))
         {
             CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1f);
 
-            for (int i = 0; i < DAMAGE_TICKS; i++)
+            for (int i = 0; i < projectiles.size(); i++)
             {
-                Hitbox hb = new Hitbox(x-48 + RotatingRocksEffect.GetCosVariance(spread, i), y-48 + RotatingRocksEffect.GetSinVariance(spread, i), 96, 96);
                 GameActions.Top.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS, AttackEffect.NONE)
                 .SetOptions(true, true)
                 .SetDamageEffect(m ->
                 {
-                    GameEffects.List.Add(VFX.GenericThrow(hb, m.hb, Earth.PROJECTILE_LARGE)
-                    .SetSpread(20f, 20f)
-                    .SetImageParameters(this.scale * MathUtils.random(0.7f,0.8f), MathUtils.random(400f,600f), MathUtils.random(0f,600f))
-                    .SetHitEffect(VFX.RockBurst(m.hb, this.scale)));
+                    GameEffects.List.Add(VFX.ThrowProjectile(projectiles.remove(0), m.hb)
+                    .SetSpread(0.3f, 0.3f)
+                    .AddCallback(hb -> GameEffects.Queue.Add(VFX.RockBurst(hb, 1))))
+                    .SetDuration(throwDuration, isRealtime);
                     return 0f;
-                });
+                })
+                .SetDuration(throwDuration, isRealtime);
             }
-        }
 
-        Complete();
+            Complete();
+        }
     }
 }

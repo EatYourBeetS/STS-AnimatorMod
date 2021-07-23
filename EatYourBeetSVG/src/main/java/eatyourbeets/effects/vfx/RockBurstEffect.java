@@ -1,10 +1,9 @@
 package eatyourbeets.effects.vfx;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
 
@@ -12,51 +11,73 @@ import java.util.ArrayList;
 
 public class RockBurstEffect extends EYBEffect
 {
-    private float x;
-    private float y;
-    private int frame = 0;
-    private float animTimer = 0.03F;
     private static final ArrayList<Texture> images = new ArrayList<>();
-    private static final int FRAME_END = 4;
+    private static final float DELAY = 0.05f;
+    private static final int FRAMES = 5;
     private static final int SIZE = 192;
 
-    public RockBurstEffect(float x, float y, float scale) {
+    private int frame;
+    private float x;
+    private float y;
+    private float timer;
+
+    public RockBurstEffect(float x, float y, float scale)
+    {
+        super(1f, true);
+
         this.x = x;
         this.y = y;
         this.frame = 0;
-        this.scale = scale * Settings.scale;
+        this.scale = scale;
         this.color = Color.WHITE.cpy();
+        this.timer = DELAY;
 
-        if (images.size() <= FRAME_END) {
-            for (int i = 0; i <= FRAME_END; i++) {
-                Texture img = ImageMaster.loadImage("images/orbs/animator/EarthEvoke" + i + ".png");
-                images.add(img);
+        if (images.isEmpty())
+        {
+            for (int i = 1; i <= FRAMES; i++)
+            {
+                images.add(ImageMaster.loadImage("images/effects/RockBurst" + i + ".png"));
             }
         }
     }
 
-    public void update() {
-        this.animTimer -= Gdx.graphics.getDeltaTime();
-        if (this.animTimer < 0.0F) {
-            this.animTimer += 0.03F;
-            ++this.frame;
-
-            if (this.frame > FRAME_END) {
-                this.frame = FRAME_END;
-                this.isDone = true;
-            }
-        }
-
-    }
-
-    public void render(SpriteBatch sb) {
-        sb.setColor(this.color);
-        if (frame < images.size()) {
-            sb.draw(images.get(frame), this.x - (SIZE / 2f), this.y - (SIZE / 2f), SIZE / 2f, SIZE / 2f, SIZE, SIZE, this.scale, this.scale, this.rotation, 0, 0, SIZE, SIZE, false, false);
-        }
-    }
-
-    public void dispose()
+    @Override
+    protected void UpdateInternal(float deltaTime)
     {
+        super.UpdateInternal(deltaTime);
+
+        this.timer -= deltaTime;
+
+        if (this.timer < 0.0F)
+        {
+            this.timer = DELAY;
+
+            if (frame == 0)
+            {
+                if (scale > 1)
+                {
+                    CardCrawlGame.sound.play("BLUNT_HEAVY");
+                }
+                else
+                {
+                    CardCrawlGame.sound.play("BLUNT_FAST");
+                }
+            }
+
+            if ((frame + 1) < images.size())
+            {
+                this.frame += 1;
+            }
+            else
+            {
+                Complete();
+            }
+        }
+    }
+
+    @Override
+    public void render(SpriteBatch sb)
+    {
+        RenderImage(sb, images.get(frame), x, y);
     }
 }

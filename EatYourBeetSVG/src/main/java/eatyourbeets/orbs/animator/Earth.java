@@ -14,19 +14,16 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
 import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
-import eatyourbeets.effects.VFX;
-import eatyourbeets.interfaces.subscribers.OnChannelOrbSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.AdvancedTexture;
+import eatyourbeets.effects.Projectile;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.Mathf;
 
 import java.util.ArrayList;
 
-public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber, OnChannelOrbSubscriber
+public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber
 {
     public static final String ORB_ID = CreateFullID(Earth.class);
     public static final int PROJECTILES = 8;
@@ -34,10 +31,11 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     public static Texture PROJECTILE_LARGE;
     public static Texture PROJECTILE_SMALL;
 
-    private final ArrayList<AdvancedTexture> projectiles = new ArrayList<>();
+    public final ArrayList<Projectile> projectiles = new ArrayList<>();
+    public boolean evoked;
+    public int turns;
+
     private float timer;
-    private boolean evoked;
-    private int turns;
 
     public Earth()
     {
@@ -55,29 +53,31 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         this.channelAnimTimer = 0.5f;
         this.turns = 3;
 
-        for (int i = 0; i < PROJECTILES; i++)
-        {
-            projectiles.add(new AdvancedTexture((i % 3 == 0) ? PROJECTILE_LARGE : PROJECTILE_SMALL, 48f, 48f)
-            .SetColor(Mathf.RandomColor(0f, 0.15f, true))
-            .SetScale(MathUtils.random(0.8f, 1f))
-            .SetFlip(i % 2 == 0, null));
-        }
-
         this.updateDescription();
     }
 
-    @Override
-    public void OnChannelOrb(AbstractOrb orb)
+    public void GenerateProjectiles()
     {
-        if (orb == this)
+        projectiles.clear();
+        for (int i = 0; i < PROJECTILES; i++)
         {
-            for (AdvancedTexture t : projectiles)
-            {
-                t.SetPosition(cX, cY)
-                .SetOffset(0f, 0f, MathUtils.random(0f, 360f))
-                .SetSpeedMulti(0.2f, 0.2f, MathUtils.random(0.8f, 1f));
-            }
+            projectiles.add(new Projectile((i % 3 == 0) ? PROJECTILE_LARGE : PROJECTILE_SMALL, 48f, 48f)
+            .SetPosition(cX, cY)
+            .SetColor(Mathf.RandomColor(0f, 0.15f, true))
+            .SetScale(MathUtils.random(0.8f, 1f))
+            .SetFlip(i % 2 == 0, null)
+            .SetOffset(0f, 0f, MathUtils.random(0f, 360f))
+            .SetSpeed(2f, 2f, MathUtils.random(18f, 24f)));
         }
+    }
+
+    @Override
+    public void onChannel()
+    {
+        turns = 3;
+        evoked = false;
+        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
+        GenerateProjectiles();
     }
 
     @Override
@@ -111,14 +111,9 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void onEndOfTurn()
     {
-        if (evoked)
+        if (!evoked && turns > 0)
         {
-            return;
-        }
-
-        if (turns > 0)
-        {
-            PassiveEffect();
+            Passive();
         }
 
         this.updateDescription();
@@ -127,9 +122,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void triggerEvokeAnimation()
     {
-        //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.1f);
-        CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1f);
-        GameEffects.Queue.Add(VFX.RotatingRocks(this.hb, 8).SetImageParameters(this.scale / 2f, 200f, MathUtils.random(-100f, 100f)));
+
     }
 
     @Override
@@ -154,16 +147,16 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         super.updateAnimation();
 
         final float delta = Gdx.graphics.getRawDeltaTime();
-        for (AdvancedTexture texture : projectiles)
+        for (Projectile texture : projectiles)
         {
             texture.SetPosition(cX, cY).SetTargetRotation(angle).Update(delta);
         }
 
-        if ((timer -= delta) <= 0)
+        if (!evoked && (timer -= delta) <= 0)
         {
             final float w = hb.width * 0.5f;
             final float h = hb.height * 0.5f;
-            for (AdvancedTexture texture : projectiles)
+            for (Projectile texture : projectiles)
             {
                 texture.SetTargetOffset((w * 0.5f) - MathUtils.random(w), (h * 0.5f) - MathUtils.random(h), null);
             }
@@ -176,7 +169,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void render(SpriteBatch sb)
     {
-        for (AdvancedTexture projectile : projectiles)
+        for (Projectile projectile : projectiles)
         {
             projectile.Render(sb, Mathf.SubtractColor(c.cpy(), projectile.color, false));
         }
@@ -197,9 +190,6 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     public void playChannelSFX()
     {
         CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.2f);
-        turns = 3;
-        evoked = false;
-        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override
@@ -215,19 +205,24 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     }
 
     @Override
-    public void PassiveEffect()
+    public void Passive()
     {
         GameActions.Bottom.Add(new EarthOrbPassiveAction(passiveAmount));
-        super.PassiveEffect();
+        super.Passive();
     }
 
     @Override
-    public void EvokeEffect()
+    public void Evoke()
     {
         if (evokeAmount > 0)
         {
-            GameActions.Top.Add(new EarthOrbEvokeAction(evokeAmount, cX, cY, this.scale / 2));
-            super.EvokeEffect();
+            if (projectiles.isEmpty())
+            {
+                GenerateProjectiles();
+            }
+
+            GameActions.Bottom.Add(new EarthOrbEvokeAction(this, evokeAmount));
+            super.Evoke();
         }
 
         turns = 0;

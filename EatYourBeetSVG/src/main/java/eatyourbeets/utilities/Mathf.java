@@ -19,22 +19,22 @@ public class Mathf
     public static int FloorToInt(float f) { return (int)Math.floor(f); }
     public static int RoundToInt(float f) { return Math.round(f); }
     public static float Abs(float f) { return Math.abs(f); }
-    public static float Acos(float f) { return (float)Math.acos(f); }
-    public static float Asin(float f) { return (float)Math.asin(f); }
-    public static float Atan(float f) { return (float)Math.atan(f); }
-    public static float Atan2(float y, float x) { return (float)Math.atan2(y, x); }
     public static float Ceil(float f) { return (float)Math.ceil(f); }
-    public static float Cos(float f) { return (float)Math.cos(f); }
     public static float Exp(float power) { return (float)Math.exp(power); }
     public static float Floor(float f) { return (float)Math.floor(f); }
     public static float Log(float f) { return (float)Math.log(f); }
     public static float Log10(float f) { return (float)Math.log10(f); }
     public static float Pow(float f, float p) { return (float)Math.pow(f, p); }
     public static float Round(float f) { return (float)Math.round(f); }
-    public static float Sign(float f) { return f >= 0f ? 1f : -1f; }
-    public static float Sin(float f) { return (float)Math.sin(f); }
     public static float Sqrt(float f) { return (float)Math.sqrt(f); }
-    public static float Tan(float f) { return (float)Math.tan(f); }
+    public static float Sign(float f) { return f >= 0f ? 1f : -1f; }
+    public static float Acos(float f) { return (float)Math.acos(f); }
+    public static float Asin(float f) { return (float)Math.asin(f); }
+    public static float Atan(float f) { return (float)Math.atan(f); }
+    public static float Atan2(float y, float x) { return (float)Math.atan2(y, x); }
+    public static float Cos(float degrees) { return (float)Math.cos(degrees * Deg2Rad); }
+    public static float Sin(float degrees) { return (float)Math.sin(degrees * Deg2Rad); }
+    public static float Tan(float degrees) { return (float)Math.tan(degrees * Deg2Rad); }
     //@Formatter: On
 
     public static int Max(int a, int b)
@@ -188,5 +188,12 @@ public class Mathf
         a.b -= b.b;
 
         return a.clamp();
+    }
+
+    public static void AddVector(Vector3f a, Vector3f b, float delta)
+    {
+        a.x = Max(0, a.x + (b.x * delta));
+        a.y = Max(0, a.y + (b.y * delta));
+        a.z = Max(0, a.z + (b.z * delta));
     }
 }

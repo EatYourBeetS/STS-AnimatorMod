@@ -50,7 +50,7 @@ public class Add extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (CheckTeamwork(AffinityType.Dark, 3))
+        if (CheckAffinity(AffinityType.Dark, 3))
         {
             GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
             .AddCallback(this::OnCardChosen);

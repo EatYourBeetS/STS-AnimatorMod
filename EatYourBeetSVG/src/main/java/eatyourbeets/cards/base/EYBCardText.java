@@ -182,7 +182,7 @@ public class EYBCardText
             int scaling = card.affinities.GetScaling(type, false);
             if (scaling > 0)
             {
-                offset_y += RenderScaling(sb, type.GetSynergyEffectIcon(), scaling, offset_y, type.GetAlternateColor());
+                offset_y += RenderScaling(sb, type.GetPowerIcon(), scaling, offset_y, type.GetAlternateColor());
             }
         }
 

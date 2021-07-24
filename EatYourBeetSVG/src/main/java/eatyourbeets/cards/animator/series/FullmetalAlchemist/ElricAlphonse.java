@@ -44,7 +44,7 @@ public class ElricAlphonse extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (CombatStats.Affinities.GetPower(AffinityType.Blue).amount <= magicNumber)
+        if (CombatStats.Affinities.GetPowerAmount(AffinityType.Blue) <= magicNumber)
         {
             GameActions.Bottom.GainIntellect(1, true);
         }

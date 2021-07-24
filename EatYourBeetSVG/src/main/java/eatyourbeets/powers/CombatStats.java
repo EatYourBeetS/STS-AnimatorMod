@@ -25,7 +25,6 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.EYBCardAffinitySystem;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.powers.common.ResiliencePower;
 import eatyourbeets.orbs.EYBOrb;
@@ -33,6 +32,7 @@ import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.common.ControllableCardPile;
+import eatyourbeets.ui.animator.combat.EYBCardAffinitySystem;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import patches.CardGlowBorderPatches;
@@ -47,6 +47,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final String POWER_ID = GR.Common.CreateID(CombatStats.class.getSimpleName());
 
     public static final CombatStats Instance = new CombatStats();
+    public static final EYBCardAffinitySystem Affinities = new EYBCardAffinitySystem();
 
     public static final GameEvent<OnSynergySubscriber> onSynergy = new GameEvent<>();
     public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = new GameEvent<>();
@@ -346,7 +347,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
         if (card != null)
         {
-            boolean isSynergizing = CombatStats.Affinities.IsSynergizing(c);
+            boolean isSynergizing = Affinities.IsSynergizing(c);
 
             card.OnUse(p, m, isSynergizing);
 
@@ -365,7 +366,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
             if (isSynergizing)
             {
-                card.affinities.OnSynergy(card);
+                Affinities.OnSynergy(card);
             }
 
             if (actions.isEmpty())
@@ -700,8 +701,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public void update(int slot)
     {
         super.update(slot);
-
-        Affinities.Update();
 
         if (currentPhase != AbstractDungeon.actionManager.phase)
         {

@@ -30,7 +30,7 @@ public class Cocytus extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
 
-        if (CombatStats.Affinities.GetPower(AffinityType.Red).amount <= magicNumber)
+        if (CombatStats.Affinities.GetPowerAmount(AffinityType.Red) <= magicNumber)
         {
             GameActions.Bottom.GainForce(1, true);
         }

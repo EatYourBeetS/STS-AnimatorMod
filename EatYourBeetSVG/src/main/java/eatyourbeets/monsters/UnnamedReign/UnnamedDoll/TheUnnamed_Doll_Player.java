@@ -11,7 +11,6 @@ import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.EYBMoveset;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Special;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.TargetHelper;
 
 public class TheUnnamed_Doll_Player extends EYBMonster
@@ -37,7 +36,10 @@ public class TheUnnamed_Doll_Player extends EYBMonster
         .SetIntent(Intent.DEFEND_BUFF)
         .SetOnUse((move, __) ->
         {
-            GameActions.Bottom.Add(new GainBlock(player, this, 24));
+            for (int i = 0; i < 3; i++)
+            {
+                GameActions.Bottom.Add(new GainBlock(player, this, 8)).SetVFX(false, i > 0);
+            }
             GameActions.Bottom.GainArtifact(1);
         });
 
@@ -56,9 +58,12 @@ public class TheUnnamed_Doll_Player extends EYBMonster
         .SetIntent(Intent.STRONG_DEBUFF)
         .SetOnUse((move, __) ->
         {
+            GameActions.Bottom.VFX(new ScreenOnFireEffect(), 0.2f);
+            for (int i = 0; i < 3; i++)
+            {
+                GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(this), 8);
+            }
             move.UseAnimation(CreatureAnimation.ATTACK_SLOW);
-            GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(this), 24)
-            .AddCallback(___ -> GameEffects.List.Add(new ScreenOnFireEffect()));
         });
     }
 

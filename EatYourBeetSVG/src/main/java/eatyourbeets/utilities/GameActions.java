@@ -887,11 +887,6 @@ public final class GameActions
         return StackPower(power.owner, power);
     }
 
-    public AbstractGameAction SynergyEffect(AffinityType type)
-    {
-        return type.QueueSynergyEffect(this);
-    }
-
     public TalkAction Talk(AbstractCreature source, String text)
     {
         return Add(new TalkAction(source, text));

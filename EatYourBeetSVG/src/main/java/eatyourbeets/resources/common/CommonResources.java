@@ -113,12 +113,12 @@ public class CommonResources extends AbstractResources
 
         LoadKeywords();
 
-        AddPowerTooltip("[F]", "Force", new ForcePower(null, 0));
-        AddPowerTooltip("[A]", "Agility", new AgilityPower(null, 0));
-        AddPowerTooltip("[I]", "Intellect", new IntellectPower(null, 0));
-        AddPowerTooltip("[W]", "Willpower", new WillpowerPower(null, 0));
-        AddPowerTooltip("[B]", "Blessing", new BlessingPower(null, 0));
-        AddPowerTooltip("[C]", "Corruption", new CorruptionPower(null, 0));
+        AddPowerTooltip("[F]", "Force", new ForcePower(null));
+        AddPowerTooltip("[A]", "Agility", new AgilityPower(null));
+        AddPowerTooltip("[I]", "Intellect", new IntellectPower(null));
+        AddPowerTooltip("[W]", "Willpower", new WillpowerPower(null));
+        AddPowerTooltip("[B]", "Blessing", new BlessingPower(null));
+        AddPowerTooltip("[C]", "Corruption", new CorruptionPower(null));
 //        AddEnergyTooltip("[R]", AbstractCard.orb_red);
 //        AddEnergyTooltip("[G]", AbstractCard.orb_green);
 //        AddEnergyTooltip("[B]", AbstractCard.orb_blue);
@@ -166,7 +166,7 @@ public class CommonResources extends AbstractResources
     private static void AddPowerTooltip(String symbol, String id, AbstractPower power)
     {
         int size = power.img.getWidth(); // width should always be equal to height
-        
+
         EYBCardTooltip tooltip = CardTooltips.FindByID(id);
         if (tooltip == null)
         {

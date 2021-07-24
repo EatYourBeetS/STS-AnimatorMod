@@ -95,4 +95,10 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
 
         return (level * 1000) + (upgrade * 10) + (AffinityType.MAX_ID - Type.ID);
     }
+
+    @Override
+    public String toString()
+    {
+        return Type + ": " + level + " (+" + upgrade + "), s:" + scaling;
+    }
 }

@@ -145,7 +145,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
 
             if (editor.slot != null)
             {
-                affinities.AddLevels(editor.slot.GetAffinities(), 1);
+                affinities.Add(editor.slot.GetAffinities(), 1);
                 value += editor.slot.GetEstimatedValue();
                 cards += editor.slot.amount;
 

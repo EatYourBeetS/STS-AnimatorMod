@@ -1,14 +1,7 @@
 package eatyourbeets.cards.base;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.core.Settings;
-import eatyourbeets.utilities.EYBFontHelper;
-import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,7 +10,7 @@ import java.util.Iterator;
 
 public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatistics.Group>
 {
-    protected final ArrayList<EYBCardAffinities> list = new ArrayList<>();
+    protected final ArrayList<EYBCardAffinities> cardsAffinities = new ArrayList<>();
     protected final ArrayList<Group> groups = new ArrayList<>();
     protected int cards;
 
@@ -34,7 +27,7 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
 
     public ArrayList<EYBCardAffinities> GetAffinities()
     {
-        return list;
+        return cardsAffinities;
     }
 
     public void AddCard(AbstractCard card)
@@ -42,7 +35,7 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
         EYBCardAffinities a = GetAffinitiesFromCard(card);
         if (a != null)
         {
-            list.add(a);
+            cardsAffinities.add(a);
         }
 
         cards += 1;
@@ -64,7 +57,7 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
     public void Reset()
     {
         cards = 0;
-        list.clear();
+        cardsAffinities.clear();
 
         for (Group g : groups)
         {
@@ -79,7 +72,7 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
             g.Reset();
         }
 
-        for (EYBCardAffinities a : list)
+        for (EYBCardAffinities a : cardsAffinities)
         {
             for (AffinityType t : AffinityType.AllTypes())
             {
@@ -177,30 +170,6 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
         public String GetPercentageString(int level)
         {
             return Math.round(GetPercentage(level) * 100) + "%";
-        }
-
-        public void Render(SpriteBatch sb, float cX, float cY, float size, int level)
-        {
-            final BitmapFont font = EYBFontHelper.CardTitleFont_Large;
-            font.getData().setScale(size* 0.00925f);
-
-            RenderHelpers.DrawCentered(sb, Color.WHITE, Type.GetIcon(), cX, cY, size, size, 1, 0);
-            if (level > 0)
-            {
-                Texture texture = Type.GetBorder(level);
-                if (texture != null)
-                {
-                    RenderHelpers.DrawCentered(sb, Color.WHITE, texture, cX, cY, size, size, 1, 0);
-                }
-
-                texture = Type.GetForeground(level);
-                if (texture != null)
-                {
-                    RenderHelpers.DrawCentered(sb, Color.WHITE, texture, cX, cY, size, size, 1, 0);
-                }
-            }
-            RenderHelpers.WriteCentered(sb, font, GetPercentageString(0), cX + (size * 0.1f * Settings.scale), cY - (size * 0.65f * Settings.scale), Color.WHITE);
-            RenderHelpers.ResetFont(font);
         }
 
         public ArrayList<AbstractCard> GetCards()

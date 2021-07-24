@@ -43,7 +43,7 @@ public class HousakiTohya extends AnimatorCard
         .SetFilter(c -> HousakiMinori.DATA.ID.equals(c.cardID), false)
         .AddCallback(() ->
         {
-            if (GetTeamwork(null) >= secondaryValue)
+            if (GetHandAffinity(null) >= secondaryValue)
             {
                 GameActions.Bottom.GainEnergy(1);
             }

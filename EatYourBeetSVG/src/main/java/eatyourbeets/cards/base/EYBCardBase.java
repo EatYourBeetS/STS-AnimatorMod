@@ -276,7 +276,7 @@ public abstract class EYBCardBase extends AbstractCard
             }
 
             RenderAtlas(sb, new Color(0, 0, 0, transparency * 0.25f), getCardBgAtlas(), current_x + SHADOW_OFFSET_X * drawScale, current_y - SHADOW_OFFSET_Y * drawScale);
-            if (player.hoveredCard == this && (player.isDraggingCard && player.isHoveringDropZone || player.inSingleTargetMode))
+            if ((player.hoveredCard == this) && ((player.isDraggingCard && player.isHoveringDropZone) || player.inSingleTargetMode))
             {
                 RenderAtlas(sb, HOVER_IMG_COLOR, getCardBgAtlas(), current_x, current_y);
             }

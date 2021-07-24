@@ -35,10 +35,9 @@ public class Shichika extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainBlock(block).SetVFX(false, true);
         GameActions.Bottom.GainForce(1, upgraded);
         GameActions.Bottom.GainAgility(1, upgraded);
-
         GameActions.Bottom.MakeCardInHand(new ShichikaKyotouryuu());
     }
 }

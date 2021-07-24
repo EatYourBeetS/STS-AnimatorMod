@@ -67,7 +67,7 @@ public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
             int i = 0;
             while (i < trailPositions.size())
             {
-                if ((trailPositions.get(i).z -= deltaTime * i * 2) <= 0)
+                if ((trailPositions.get(i).z -= deltaTime * i) <= 0)
                 {
                     trailPositions.remove(i);
                 }

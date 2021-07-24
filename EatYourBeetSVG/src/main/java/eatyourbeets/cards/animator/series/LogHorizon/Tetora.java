@@ -41,7 +41,7 @@ public class Tetora extends AnimatorCard
     @Override
     public boolean cardPlayable(AbstractMonster m)
     {
-        return super.cardPlayable(m) && GetTeamwork(null) >= secondaryValue;
+        return super.cardPlayable(m) && GetHandAffinity(null) >= secondaryValue;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Tetora extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        GameUtilities.ModifyMagicNumber(this, GetTeamwork(null), true);
+        GameUtilities.ModifyMagicNumber(this, GetHandAffinity(null), true);
     }
 
     @Override

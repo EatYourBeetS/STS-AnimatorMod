@@ -8,11 +8,11 @@ import eatyourbeets.resources.GR;
 
 public class EnergyPanelPatches
 {
-    @SpirePatch(clz= EnergyPanel.class, method="renderVfx")
+    @SpirePatch(clz= EnergyPanel.class, method="render")
     public static class EnergyPanel_Render
     {
         @SpirePostfixPatch
-        public static void Method(EnergyPanel __instance, SpriteBatch sb)
+        public static void Postfix(EnergyPanel __instance, SpriteBatch sb)
         {
             GR.UI.CombatScreen.TryRender(sb);
         }

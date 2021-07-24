@@ -18,6 +18,8 @@ public class CommonImages
     public final TextureCache Panel_Skewed_Right          = new TextureCache("images/ui/topPanel/eyb/Panel_Skewed_Right.png");
     public final TextureCache Panel_Rounded               = new TextureCache("images/ui/topPanel/eyb/Panel_Rounded.png");
     public final TextureCache Panel_Rounded_Half_H        = new TextureCache("images/ui/topPanel/eyb/Panel_Rounded_Half_H.png");
+    public final TextureCache Panel_Elliptical            = new TextureCache("images/ui/topPanel/eyb/Panel_Elliptical.png");
+    public final TextureCache Panel_Elliptical_Half_H     = new TextureCache("images/ui/topPanel/eyb/Panel_Elliptical_Half_H.png");
     public final TextureCache Discord                     = new TextureCache("images/ui/topPanel/eyb/Discord.png");
     public final TextureCache Steam                       = new TextureCache("images/ui/topPanel/eyb/Steam.png");
     public final TextureCache Randomize                   = new TextureCache("images/ui/topPanel/eyb/Randomize.png");

@@ -28,6 +28,7 @@ public class EYBCardAffinityRow extends GUIElement
     public final AffinityType Type;
     public final EYBCardAffinitySystem System;
     public final AbstractAffinityPower Power;
+    public int Level;
 
     protected final GUI_Image image_background;
     protected final GUI_Image image_affinity;
@@ -43,7 +44,7 @@ public class EYBCardAffinityRow extends GUIElement
         final Hitbox hb = system.hb;
         final float offset_y = -0.5f -(index * 0.975f);
 
-        image_background = new GUI_Image(GR.Common.Images.Panel_Rounded_Half_H.Texture(),
+        image_background = new GUI_Image(GR.Common.Images.Panel_Elliptical_Half_H.Texture(),
         new RelativeHitbox(hb, 1, 1, 0.5f, offset_y))
         .SetColor(COLOR_DEFAULT);
 
@@ -56,7 +57,7 @@ public class EYBCardAffinityRow extends GUIElement
         .SetText("-");
 
         image_synergy = new GUI_Image(GR.Common.Images.Arrow_Right.Texture(), //type.GetSynergyEffectIcon(),
-        new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(10f), offset_y * hb.height, false));
+        new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(18f), offset_y * hb.height, false));
 
         image_synergy.SetActive(Power != null);
     }
@@ -66,8 +67,8 @@ public class EYBCardAffinityRow extends GUIElement
         final boolean synergyEffectAvailable = System.CanActivateSynergyBonus(Type);
 
         image_background.SetColor(COLOR_DEFAULT);
-        image_synergy.color.a = synergyEffectAvailable ? 1f : 0.35f;
-        text_affinity.SetText(handAffinities.GetLevel(Type, false));
+        image_synergy.color.a = synergyEffectAvailable ? 1f : 0.25f;
+        text_affinity.SetText(Level = handAffinities.GetLevel(Type, false));
 
         if (Type != AffinityType.General)
         {

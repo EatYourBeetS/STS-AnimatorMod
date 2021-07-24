@@ -1,10 +1,12 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.animator.BiyorigoPower;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
 
 public class Biyorigo extends AnimatorCard
@@ -30,5 +32,33 @@ public class Biyorigo extends AnimatorCard
         GameActions.Bottom.GainThorns(magicNumber);
         GameActions.Bottom.GainArtifact(secondaryValue);
         GameActions.Bottom.StackPower(new BiyorigoPower(p, 1));
+    }
+
+    public static class BiyorigoPower extends AnimatorClickablePower
+    {
+        public static final int POWER_GAIN = 2;
+
+        public BiyorigoPower(AbstractCreature owner, int amount)
+        {
+            super(owner, Biyorigo.DATA, PowerTriggerConditionType.Energy, 1);
+
+            this.amount = amount;
+            this.triggerCondition.SetUsesFromPowerAmount(true);
+
+            updateDescription();
+        }
+
+        @Override
+        public String GetUpdatedDescription()
+        {
+            return FormatDescription(0, triggerCondition.uses, POWER_GAIN);
+        }
+
+        @Override
+        public void onSpecificTrigger()
+        {
+            GameActions.Bottom.GainForce(POWER_GAIN);
+            GameActions.Bottom.GainAgility(POWER_GAIN);
+        }
     }
 }

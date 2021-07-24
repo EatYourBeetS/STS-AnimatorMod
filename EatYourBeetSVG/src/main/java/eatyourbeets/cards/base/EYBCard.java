@@ -28,6 +28,15 @@ import java.util.Map;
 
 public abstract class EYBCard extends EYBCardBase
 {
+    public static final CardTags HASTE = GR.Enums.CardTags.HASTE;
+    public static final CardTags PURGE = GR.Enums.CardTags.PURGE;
+    public final EYBCardText cardText;
+    public final EYBCardData cardData;
+    public final EYBCardAffinities affinities;
+    public final ArrayList<EYBCardTooltip> tooltips;
+    public EYBCardTarget attackTarget = EYBCardTarget.Normal;
+    public EYBAttackType attackType = EYBAttackType.Normal;
+
     protected static final String UNPLAYABLE_MESSAGE = CardCrawlGame.languagePack.getCardStrings(Tactician.ID).EXTENDED_DESCRIPTION[0];
     private static final Map<String, EYBCardData> staticCardData = new HashMap<>();
 
@@ -37,15 +46,6 @@ public abstract class EYBCard extends EYBCardBase
     protected int upgrade_secondaryValue;
     protected int upgrade_block;
     protected int upgrade_cost;
-
-    public static final CardTags HASTE = GR.Enums.CardTags.HASTE;
-    public static final CardTags PURGE = GR.Enums.CardTags.PURGE;
-    public final EYBCardText cardText;
-    public final EYBCardData cardData;
-    public final EYBCardAffinities affinities;
-    public final ArrayList<EYBCardTooltip> tooltips;
-    public EYBCardTarget attackTarget = EYBCardTarget.Normal;
-    public EYBAttackType attackType = EYBAttackType.Normal;
 
     public static EYBCardData GetStaticData(String cardID)
     {

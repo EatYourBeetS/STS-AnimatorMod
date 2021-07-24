@@ -665,7 +665,8 @@
 		},
 		"animator:Biyorigo":
 		{
-			"DESCRIPTION": "Gain 1 [Artifact]. ** Gain !M! [Thorns]. || At the end of each turn: ** spend 1 of your remaining ** Energy to gain 2 [F] [A].",
+			"DESCRIPTION": "Gain 1 [Artifact]. ** Gain !M! [Thorns]. || Once per turn, Pay [E]: Gain 2 [F] [A].",
+			"EXTENDED_DESCRIPTION": ["Pay #b1 [E] to gain #b{1} [F] [A]."],
 			"NAME": "Biyorigo"
 		},
 		"animator:Emonzaemon":

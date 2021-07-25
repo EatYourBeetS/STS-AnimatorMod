@@ -18,13 +18,11 @@ import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class CardTooltips
 {
     protected static final HashMap<String, EYBCardTooltip> tooltipIDs = new HashMap<>();
     protected static final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
-    protected static final HashSet<EYBCardTooltip> ignored = new HashSet<>();
 
     public EYBCardTooltip Energy = FindByName("[E]").ShowText(false);
     public EYBCardTooltip Starter = FindByID("Starter");
@@ -46,14 +44,12 @@ public class CardTooltips
     public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
     public EYBCardTooltip NeutralStance = FindByID("Neutral Stance");
     public EYBCardTooltip SupportDamage = FindByID("Support Damage");
-    public EYBCardTooltip Spellcaster = FindByID("Spellcaster");
-    public EYBCardTooltip MartialArtist = FindByID("Martial Artist");
-    public EYBCardTooltip Shapeshifter = FindByID("Shapeshifter");
+    public EYBCardTooltip Affinity_Star = FindByID("Multicolor");
     public EYBCardTooltip OrbCore = FindByID("~Orb Core");
     public EYBCardTooltip Innate = FindByID("~Innate");
     public EYBCardTooltip Ethereal = FindByID("~Ethereal");
     public EYBCardTooltip Haste = FindByID("~Haste");
-    public EYBCardTooltip Retain = FindByID("~Retain").ShowText(false);
+    public EYBCardTooltip Retain = FindByID("~Retain");
     public EYBCardTooltip RetainOnce = FindByID("~RetainOnce").ShowText(false);
     public EYBCardTooltip Exhaust = FindByID("Exhaust").ShowText(false);
     public EYBCardTooltip Channel = FindByID("Channel").ShowText(false);
@@ -64,6 +60,7 @@ public class CardTooltips
     public EYBCardTooltip PlatedArmor = FindByID("Plated Armor");
     public EYBCardTooltip EnchantedArmor = FindByID("Enchanted Armor");
     public EYBCardTooltip Vitality = FindByID("Vitality");
+    public EYBCardTooltip Ritual = FindByID("Ritual");
     public EYBCardTooltip TempHP = FindByID("Temporary HP");
     public EYBCardTooltip Weak = FindByID("Weak");
     public EYBCardTooltip Vulnerable = FindByID("Vulnerable");
@@ -93,7 +90,9 @@ public class CardTooltips
     public EYBCardTooltip Affinity_Blue = new EYBCardTooltip("Blue Affinity", null);
     public EYBCardTooltip Affinity_Light = new EYBCardTooltip("Light Affinity", null);
     public EYBCardTooltip Affinity_Dark = new EYBCardTooltip("Dark Affinity", null);
-    public EYBCardTooltip Affinity_General = FindByID("General Affinity");
+    public EYBCardTooltip Affinity_General = FindByID("Affinity");
+    public EYBCardTooltip Affinity_Power = FindByID("Affinity Power");
+    public EYBCardTooltip Affinity_Token = FindByID("Affinity Token");
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
     public EYBCardTooltip ThrowingKnife = new EYBCardTooltip(eatyourbeets.cards.animator.special.ThrowingKnife.DATA.Strings.NAME, null);
     public EYBCardTooltip GriefSeed = new EYBCardTooltip(Curse_GriefSeed.DATA.Strings.NAME, null);
@@ -140,8 +139,8 @@ public class CardTooltips
         RegisterID("A-Blue", Affinity_Blue);
         RegisterID("A-Light", Affinity_Light);
         RegisterID("A-Dark", Affinity_Dark);
-        RegisterID("A-Star", Shapeshifter);
-        RegisterID("A-General", Affinity_General);
+        RegisterID("A-Star", Affinity_Star);
+        RegisterID("A-Gen", Affinity_General);
 
         RegisterID("TempHP", TempHP);
         RegisterID("Random Orb", RandomOrb);
@@ -168,14 +167,15 @@ public class CardTooltips
         TempHP.SetIcon(icons.TempHP.Texture(), 6);
         Block.SetIcon(icons.Block.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
 
-        CommonImages.AffinityIcons alignments = GR.Common.Images.Affinities;
-        Shapeshifter.SetIcon(alignments.Star.Texture(), 8);
-        Affinity_Red.SetIcon(alignments.Red.Texture(), 8);
-        Affinity_Green.SetIcon(alignments.Green.Texture(), 8);
-        Affinity_Blue.SetIcon(alignments.Blue.Texture(), 8);
-        Affinity_Light.SetIcon(alignments.Light.Texture(), 8);
-        Affinity_Dark.SetIcon(alignments.Dark.Texture(), 8);
-        Affinity_General.SetIcon(alignments.General.Texture(), 8);
+        CommonImages.AffinityIcons affinities = GR.Common.Images.Affinities;
+        Affinity_Red.SetIcon(affinities.Red.Texture(), 8);
+        Affinity_Green.SetIcon(affinities.Green.Texture(), 8);
+        Affinity_Blue.SetIcon(affinities.Blue.Texture(), 8);
+        Affinity_Light.SetIcon(affinities.Light.Texture(), 8);
+        Affinity_Dark.SetIcon(affinities.Dark.Texture(), 8);
+        Affinity_Star.SetIcon(affinities.Star.Texture(), 8);
+        Affinity_General.SetIcon(affinities.General.Texture(), 8);
+        Affinity_Power.icon = Affinity_Token.icon = Affinity_General.icon;
 
         CommonImages.Tooltips tooltips = GR.Common.Images.Tooltips;
         ThrowingKnife.SetIcon(tooltips.ThrowingKnife.Texture(), 6);
@@ -196,6 +196,7 @@ public class CardTooltips
         LoadFromPower(PlatedArmor, new PlatedArmorPower(FakeCharacter.Instance, 0));
         LoadFromPower(EnchantedArmor, new EnchantedArmorPower(FakeCharacter.Instance, 0));
         LoadFromPower(Vitality, new VitalityPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Ritual, new RitualPower(FakeCharacter.Instance, 0, true));
         LoadFromPower(Thorns, new ThornsPower(FakeCharacter.Instance, 0));
         LoadFromPower(FlameBarrier, new FlameBarrierPower(FakeCharacter.Instance, 0));
         LoadFromPower(Blur, new BlurPower(FakeCharacter.Instance, 0));

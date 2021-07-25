@@ -81,13 +81,13 @@
 		"animator:Strike_Star":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "!M! <GEN>: Retain ** your highest ** {Affinity Power}.",
+			"UPGRADE_DESCRIPTION": "Synergy: {~Retain} your ** highest {<W> Power}.",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Star":
 		{
 			"DESCRIPTION": "",
-		    "UPGRADE_DESCRIPTION": "!M! <GEN>:  Retain ** your highest ** {Affinity Power}.",
+			"UPGRADE_DESCRIPTION": "Synergy: {~Retain} your ** highest {<W> Power}.",
 			"NAME": "Improved Defend"
 		}
 	},
@@ -315,9 +315,8 @@
 		},
 		"animator:Eve":
 		{
-			"DESCRIPTION": "Play 1 {Orb Core}. || When you Synergize: Deal ** 1 damage to an enemy and ** increase this damage by 1. ** Does not Stack.",
-			"NAME": "Eve",
-			"UPGRADE_DESCRIPTION": "Play 1 {Orb Core}. ** Gain !M! Orb Slot. || When you Synergize: Deal ** 1 damage to an enemy and ** increase this damage by 1. ** Does not Stack."
+			"DESCRIPTION": "When you Synergize: Deal damage equal to <W> to a random enemy !M! times. || Once per turn, pay [E]: ** Play 1 of 3 {<W> Tokens}.",
+			"NAME": "Eve"
 		},
 		"animator:Laby":
 		{
@@ -665,7 +664,7 @@
 		},
 		"animator:Biyorigo":
 		{
-			"DESCRIPTION": "Gain 1 [Artifact]. ** Gain !M! [Thorns]. || Once per turn, Pay [E]: Gain 2 [F] [A].",
+			"DESCRIPTION": "Gain 1 [Artifact] and !M! [Thorns]. || Once per turn, pay [E]: ** Gain 2 [F] and 2 [A].",
 			"EXTENDED_DESCRIPTION": ["Pay #b1 [E] to gain #b{1} [F] [A]."],
 			"NAME": "Biyorigo"
 		},
@@ -846,7 +845,7 @@
 		},
 		"animator:Rayneshia":
 		{
-			"DESCRIPTION": "<DRW-M>. Move !M! ** cards to your draw pile. || <LIM>. !S! <GEN>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
+			"DESCRIPTION": "<DRW-M>. Move !M! ** cards to your draw pile. || <LIM>. !S! <W>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
 			"NAME": "Rayneshia"
 		},
 		"animator:RundelhausCode":

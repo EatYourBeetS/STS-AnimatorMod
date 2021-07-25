@@ -44,8 +44,6 @@ public class Biyorigo extends AnimatorCard
 
             this.amount = amount;
             this.triggerCondition.SetUsesFromPowerAmount(true);
-
-            updateDescription();
         }
 
         @Override

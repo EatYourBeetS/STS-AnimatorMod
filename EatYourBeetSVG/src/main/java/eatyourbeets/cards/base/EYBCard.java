@@ -312,6 +312,10 @@ public abstract class EYBCard extends EYBCardBase
         {
             dynamicTooltips.add(GR.Tooltips.Exhaust);
         }
+        if (affinities.HasStar())
+        {
+            dynamicTooltips.add(GR.Tooltips.Affinity_Star);
+        }
 
         if (attackType == EYBAttackType.Elemental)
         {

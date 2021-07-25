@@ -49,6 +49,7 @@ public class PowerTriggerCondition
     {
         this.baseUses += uses;
         this.uses += uses;
+        this.power.updateDescription();
 
         return this;
     }
@@ -58,6 +59,7 @@ public class PowerTriggerCondition
         this.baseUses = this.uses = uses;
         this.refreshEachTurn = refreshEachTurn;
         this.usePowerAmount = usePowerAmount;
+        this.power.updateDescription();
 
         return this;
     }
@@ -67,8 +69,14 @@ public class PowerTriggerCondition
         return SetUses(power.amount, refreshEachTurn, true);
     }
 
-    public void Refresh()
+    public void Refresh(boolean startOfTurn)
     {
+        if (startOfTurn && refreshEachTurn)
+        {
+            uses = baseUses;
+            power.updateDescription();
+        }
+
         canUse = uses > 0 && CheckCondition();
     }
 

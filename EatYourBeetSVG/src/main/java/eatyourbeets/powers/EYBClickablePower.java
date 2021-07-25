@@ -2,7 +2,7 @@ package eatyourbeets.powers;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -21,8 +21,9 @@ public abstract class EYBClickablePower extends EYBPower
     public PowerTriggerCondition triggerCondition;
     public EYBCardTooltip tooltip;
     public boolean hovered;
+    public boolean clickable;
 
-    private AbstractGameAction currentAction;
+    private GameActionManager.Phase currentPhase;
     private float cX;
     private float cY;
 
@@ -86,7 +87,7 @@ public abstract class EYBClickablePower extends EYBPower
 
         if (triggerCondition.refreshEachTurn)
         {
-            triggerCondition.uses = triggerCondition.baseUses;
+            triggerCondition.Refresh(true);
         }
     }
 
@@ -95,22 +96,22 @@ public abstract class EYBClickablePower extends EYBPower
     {
         super.update(slot);
 
-        AbstractGameAction action = AbstractDungeon.actionManager.currentAction;
-        if (currentAction != action)
+        GameActionManager.Phase phase = AbstractDungeon.actionManager.phase;
+        if (currentPhase != phase)
         {
-            triggerCondition.Refresh();
-            currentAction = action;
+            triggerCondition.Refresh(false);
+            currentPhase = phase;
+            clickable = currentPhase == GameActionManager.Phase.WAITING_ON_USER && !AbstractDungeon.actionManager.turnHasEnded;
         }
 
-        final float size = ICON_SIZE * Settings.scale;
+        final float size = ICON_SIZE * Settings.scale * 1.5f;
         final float x = cX - (size * 0.5f);
         final float y = cY - (size * 0.5f);
         hovered = InputHelper.mX >= x && InputHelper.mX <= (x + size) && InputHelper.mY >= y && InputHelper.mY <= (y + size);
         if (hovered)
         {
             EYBCardTooltip.QueueTooltip(tooltip, InputHelper.mX + size, InputHelper.mY + (size * 0.5f));
-
-            if (InputHelper.justClickedLeft && currentAction == null && triggerCondition.CanUse())
+            if (InputHelper.justClickedLeft && clickable && triggerCondition.CanUse())
             {
                 triggerCondition.Use();
             }
@@ -127,7 +128,7 @@ public abstract class EYBClickablePower extends EYBPower
         Color imageColor = enabled ? c : disabledColor;
         RenderHelpers.DrawCentered(sb, borderColor, GR.Common.Images.SquaredButton.Texture(), x, y, ICON_SIZE, ICON_SIZE, 1.5f, 0);
         RenderHelpers.DrawCentered(sb, imageColor, this.powerIcon, x, y, ICON_SIZE, ICON_SIZE, 0.75f, 0);
-        if (enabled && hovered && triggerCondition.CanUse())
+        if (enabled && hovered && clickable && triggerCondition.CanUse())
         {
             RenderHelpers.DrawCentered(sb, RenderHelpers.WhiteColor(0.3f), GR.Common.Images.SquaredButton.Texture(), x, y, ICON_SIZE, ICON_SIZE, 1.5f, 0);
         }

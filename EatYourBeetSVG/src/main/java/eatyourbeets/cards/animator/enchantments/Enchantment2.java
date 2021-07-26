@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.auras;
+package eatyourbeets.cards.animator.enchantments;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -6,13 +6,14 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class Aura2 extends Aura
+public class Enchantment2 extends Enchantment
 {
-    public static final EYBCardData DATA = RegisterAura(Aura2.class);
+    public static final int INDEX = 2;
+    public static final EYBCardData DATA = RegisterAura(Enchantment2.class);
 
-    public Aura2()
+    public Enchantment2()
     {
-        super(DATA);
+        super(DATA, INDEX);
 
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 1);

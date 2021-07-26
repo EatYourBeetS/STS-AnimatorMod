@@ -84,7 +84,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public int GetAffinityLevel(AffinityType type, AbstractCard ignored)
     {
-        return GetHandAffinities(ignored).GetLevel(type);
+        return GetHandAffinities(ignored).GetLevel(type, false);
     }
 
     public EYBCardAffinityRow GetRow(AffinityType type)

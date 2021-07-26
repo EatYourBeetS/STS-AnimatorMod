@@ -11,14 +11,14 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.cards.animator.auras.Aura;
+import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.cards.animator.basic.ImprovedDefend;
 import eatyourbeets.cards.animator.basic.ImprovedStrike;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.ui.CustomCardLibSortHeader;
+import eatyourbeets.ui.common.CustomCardLibSortHeader;
 import eatyourbeets.utilities.*;
 
 import java.io.FileWriter;
@@ -166,7 +166,7 @@ public class ParseGenericCommand extends ConsoleCommand
                     Map<String, Map<String, EYBCardMetadataV2>> data = new HashMap<>();
                     ExtractCardData(data, CardLibrary.cards.values());
                     ExtractCardData(data, AnimatorCard_UltraRare.GetCards().values());
-                    ExtractCardData(data, Aura.GetCards());
+                    ExtractCardData(data, Enchantment.GetCards());
 
                     String filePath = "C://temp//" + ((tokens.length > 2) ? tokens[2] : "Animator-CardMetadata") + ".json";
                     new Gson().toJson(data, new FileWriter(filePath));
@@ -318,7 +318,7 @@ public class ParseGenericCommand extends ConsoleCommand
             {
                 key = "ULTRARARE";
             }
-            else if (c instanceof Aura)
+            else if (c instanceof Enchantment)
             {
                 key = "AURA";
             }

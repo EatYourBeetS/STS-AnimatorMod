@@ -43,7 +43,7 @@ public class Biyorigo extends AnimatorCard
             super(owner, Biyorigo.DATA, PowerTriggerConditionType.Energy, 1);
 
             this.amount = amount;
-            this.triggerCondition.SetUsesFromPowerAmount(true);
+            this.triggerCondition.SetOneUsePerPower(true);
         }
 
         @Override

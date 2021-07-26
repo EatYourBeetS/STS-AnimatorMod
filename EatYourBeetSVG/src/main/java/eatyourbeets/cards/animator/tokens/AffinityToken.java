@@ -1,14 +1,19 @@
 package eatyourbeets.cards.animator.tokens;
 
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.random.Random;
+import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredTexture;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
@@ -64,6 +69,25 @@ public abstract class AffinityToken extends AnimatorCard
         this.portraitImg = new ColoredTexture(GR.GetTexture(GR.GetCardImage(ID), true), affinityType.GetAlternateColor(0.55f));
 
         SetRetainOnce(true);
+    }
+
+    public static SelectFromPile SelectTokenAction(String name, int amount, int size)
+    {
+        return new SelectFromPile(name, amount, CreateTokenGroup(size, GameUtilities.GetRNG()));
+    }
+
+    public static CardGroup CreateTokenGroup(int amount, Random rng)
+    {
+        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        RandomizedList<EYBCardData> temp = new RandomizedList<>(GetCards());
+
+        while (amount > 0 && temp.Size() > 0)
+        {
+            group.group.add(temp.Retrieve(rng, true).MakeCopy(false));
+            amount -= 1;
+        }
+
+        return group;
     }
 
     @Override

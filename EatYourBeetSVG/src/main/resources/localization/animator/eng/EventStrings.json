@@ -84,7 +84,7 @@
 		"OPTIONS":
 		[
 			"[Accept] #gObtain #gRelic",
-			"[Accept] #gRemove #g{0} #gcards, #gobtain #g{1} #grandom #gUpgraded #gcards.",
+			"[Accept] #gRemove #g{0} #gcards, #gchoose #gand #gobtain #g{1} #gUncommon #gcards.",
 			"[Accept] #gRecover #gyour #gstarting #grelics. #rLose #r{0} #rMax #rHP."
 		]
 	},

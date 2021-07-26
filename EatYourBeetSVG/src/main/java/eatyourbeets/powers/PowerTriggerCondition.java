@@ -12,7 +12,7 @@ public class PowerTriggerCondition
     public final EYBPower power;
     public final PowerTriggerConditionType type;
     public boolean refreshEachTurn;
-    public boolean usePowerAmount;
+    public boolean stackAutomatically;
     public int requiredAmount;
     public int baseUses;
     public int uses;
@@ -42,7 +42,7 @@ public class PowerTriggerCondition
         this.payCost = payCost != null ? payCost : EMPTY_ACTION;
         this.baseUses = this.uses = 1;
         this.refreshEachTurn = true;
-        this.usePowerAmount = false;
+        this.stackAutomatically = false;
     }
 
     public PowerTriggerCondition AddUses(int uses)
@@ -54,19 +54,19 @@ public class PowerTriggerCondition
         return this;
     }
 
-    public PowerTriggerCondition SetUses(int uses, boolean refreshEachTurn, boolean usePowerAmount)
+    public PowerTriggerCondition SetUses(int uses, boolean refreshEachTurn, boolean stackAutomatically)
     {
         this.baseUses = this.uses = uses;
         this.refreshEachTurn = refreshEachTurn;
-        this.usePowerAmount = usePowerAmount;
+        this.stackAutomatically = stackAutomatically;
         this.power.updateDescription();
 
         return this;
     }
 
-    public PowerTriggerCondition SetUsesFromPowerAmount(boolean refreshEachTurn)
+    public PowerTriggerCondition SetOneUsePerPower(boolean refreshEachTurn)
     {
-        return SetUses(power.amount, refreshEachTurn, true);
+        return SetUses(1, refreshEachTurn, true);
     }
 
     public void Refresh(boolean startOfTurn)

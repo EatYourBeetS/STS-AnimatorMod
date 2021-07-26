@@ -14,7 +14,7 @@ public class ForcePower extends AbstractAffinityPower
     }
 
     @Override
-    protected void OnThresholdReached(int threshold)
+    protected void OnThresholdReached(int thresholdIndex)
     {
         GameActions.Top.GainStrength(1);
     }

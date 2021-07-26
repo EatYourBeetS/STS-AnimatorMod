@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import eatyourbeets.cards.animator.auras.Aura;
+import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.CardSeries;
@@ -214,7 +214,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
         for (CardGroup group : colorless)
         {
-            group.group.removeIf(card -> !(card instanceof EYBCard) || card instanceof Aura);
+            group.group.removeIf(card -> !(card instanceof EYBCard) || card instanceof Enchantment);
         }
 
         ArrayList<CardGroup> groups = new ArrayList<>();

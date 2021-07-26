@@ -1,11 +1,5 @@
 
 {
-	"Aura":
-	{
-		"DESCRIPTION": "Auras effects are automatically activated when a condition is met. These cards are not added to your draw pile at the start of battle.",
-		"NAMES": ["aura", "auras"],
-		"PROPER_NAME": "Aura"
-	},
 	"Cooldown":
 	{
 		"DESCRIPTION": "Whenever you play or discard this card, reduce its #yCooldown by #b1. If it is at #b0, activate this effect instead.",

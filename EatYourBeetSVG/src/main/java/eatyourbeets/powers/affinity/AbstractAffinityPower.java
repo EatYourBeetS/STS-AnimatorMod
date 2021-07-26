@@ -26,7 +26,7 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     protected static final int[] DEFAULT_THRESHOLDS = new int[]{3, 6, 9, 12};
     protected int thresholdIndex;
-    protected abstract void OnThresholdReached(int threshold);
+    protected abstract void OnThresholdReached(int thresholdIndex);
 
     public AbstractAffinityPower(AffinityType type, String powerID)
     {

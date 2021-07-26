@@ -1,6 +1,6 @@
 package eatyourbeets.powers.affinity;
 
-import com.megacrit.cardcrawl.powers.RitualPower;
+import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.animator.ultrarare.SummoningRitual;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.utilities.GameActions;
@@ -25,15 +25,15 @@ public class CorruptionPower extends AbstractAffinityPower
     }
 
     @Override
-    protected void OnThresholdReached(int threshold)
+    protected void OnThresholdReached(int thresholdIndex)
     {
-        if (threshold == (GetThresholds().length - 1))
+        if (thresholdIndex == (GetThresholds().length - 1))
         {
             GameActions.Bottom.MakeCardInHand(new SummoningRitual());
         }
         else
         {
-            GameActions.Bottom.StackPower(new RitualPower(player, 1, true));
+            GameActions.Bottom.MakeCardInDrawPile(new Crystallize());
         }
     }
 
@@ -46,15 +46,10 @@ public class CorruptionPower extends AbstractAffinityPower
         Integer threshold = GetCurrentThreshold();
         if (threshold != null)
         {
-            if (threshold == thresholds[thresholds.length - 2])
-            {
-                final String card = "#p" + SummoningRitual.DATA.Strings.NAME.replace(" ", " #p");
-                this.description = JUtils.Format(description + powerStrings.DESCRIPTIONS[1], name, thresholds[thresholdIndex], card);
-            }
-            else
-            {
-                this.description = JUtils.Format(description + powerStrings.DESCRIPTIONS[1], name, thresholds[thresholdIndex], 1);
-            }
+            final String card = (threshold == thresholds[thresholds.length - 2])
+                    ? ("#p" + SummoningRitual.DATA.Strings.NAME.replace(" ", " #p"))
+                    : ("#y" + Crystallize.DATA.Strings.NAME);
+            this.description = JUtils.Format(description + powerStrings.DESCRIPTIONS[1], name, thresholds[thresholdIndex], card);
         }
         else
         {

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.screens.compendium.CardLibSortHeader;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.ColorTabBar;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.CustomCardLibSortHeader;
+import eatyourbeets.ui.common.CustomCardLibSortHeader;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JUtils;
 

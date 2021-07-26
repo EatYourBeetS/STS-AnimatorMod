@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTooltip;
@@ -70,13 +71,13 @@ public abstract class EYBClickablePower extends EYBPower
     }
 
     @Override
-    public void stackPower(int stackAmount)
+    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
     {
-        super.stackPower(stackAmount);
+        super.onApplyPower(power, target, source);
 
-        if (triggerCondition.usePowerAmount)
+        if (triggerCondition.stackAutomatically && power.ID.equals(ID) && target == owner)
         {
-            triggerCondition.AddUses(stackAmount);
+            triggerCondition.AddUses(1);
         }
     }
 
@@ -113,7 +114,7 @@ public abstract class EYBClickablePower extends EYBPower
             EYBCardTooltip.QueueTooltip(tooltip, InputHelper.mX + size, InputHelper.mY + (size * 0.5f));
             if (InputHelper.justClickedLeft && clickable && triggerCondition.CanUse())
             {
-                triggerCondition.Use();
+                OnClick();
             }
         }
     }
@@ -137,5 +138,10 @@ public abstract class EYBClickablePower extends EYBPower
         {
             e.render(sb, x, y);
         }
+    }
+
+    public void OnClick()
+    {
+        triggerCondition.Use();
     }
 }

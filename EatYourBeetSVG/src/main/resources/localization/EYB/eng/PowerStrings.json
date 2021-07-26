@@ -32,7 +32,7 @@
 	},
 	"EYB:CorruptionPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, gain #b{2} #yRitual.", " If you reach #b{1} #y{0}, obtain {2}."],
+		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, obtain {2}."],
 		"NAME": "Corruption"
 	},
 	"EYB:VitalityPower":

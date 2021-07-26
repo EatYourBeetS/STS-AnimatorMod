@@ -130,7 +130,8 @@ public class TheMaskedTraveler2 extends EYBEvent
 
         private void ReplaceCards()
         {
-            GameEffects.List.Add(new MaskedTravelerTransformCardsEffect(REMOVE_CARDS))
+            ClearOptions();
+            GameEffects.List.Add(new MaskedTravelerTransformCardsEffect(REMOVE_CARDS, OBTAIN_CARDS))
             .AddCallback(() -> ChangePhase(EnterUnnamedReign.class));
         }
 

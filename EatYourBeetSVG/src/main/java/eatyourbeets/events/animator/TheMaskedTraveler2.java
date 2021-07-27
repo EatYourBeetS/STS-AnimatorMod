@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Circlet;
@@ -22,6 +23,7 @@ import eatyourbeets.relics.animator.unnamedReign.TheEruzaStone;
 import eatyourbeets.relics.animator.unnamedReign.TheWolleyCore;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -119,11 +121,8 @@ public class TheMaskedTraveler2 extends EYBEvent
 
         private void ObtainRelic()
         {
-            AbstractRelic relic = new AncientMedallion(true);
-            relic.instantObtain();
-            CardCrawlGame.metricData.addRelicObtainData(relic);
-
             ClearOptions();
+            GameUtilities.ObtainRelic(InputHelper.mX, InputHelper.mY, new AncientMedallion(true));
             AddPhaseChangeOption(COMMON_STRINGS.Leave(), EnterUnnamedReign.class);
             BuildOptions();
         }
@@ -137,6 +136,7 @@ public class TheMaskedTraveler2 extends EYBEvent
 
         private void RecoverRelics()
         {
+            ClearOptions();
             player.decreaseMaxHealth(currentHPLoss);
 
             for (String relicID : player.getStartingRelics())

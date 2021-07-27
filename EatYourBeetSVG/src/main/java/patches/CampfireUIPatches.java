@@ -25,7 +25,7 @@ public class CampfireUIPatches
             {
                 ArrayList<AbstractCampfireOption> buttons = _buttons.Get(__instance);
                 buttons.add(new EnchantCampfireOption());
-                
+
                 float x = 950.f;
                 float y = 990.0f - (270.0f * ((buttons.size() + 1) * 0.5f));
                 if (buttons.size() % 2 == 0)

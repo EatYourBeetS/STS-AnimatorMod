@@ -1,26 +1,35 @@
 package eatyourbeets.ui.common;
 
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.CampfireUI;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.animator.enchantments.Enchantment;
-import eatyourbeets.relics.animator.LivingPicture;
-import eatyourbeets.relics.animator.VividPicture;
+import eatyourbeets.relics.EnchantableRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class EnchantCampfireOption extends AbstractCampfireOption
 {
     private RestRoom room;
-    private LivingPicture relic;
+    private EnchantableRelic relic;
 
     public static boolean CanUse()
     {
-        return AbstractDungeon.player.hasRelic(LivingPicture.ID) || AbstractDungeon.player.hasRelic(VividPicture.ID);
+        for (AbstractRelic r : AbstractDungeon.player.relics)
+        {
+            if (r instanceof EnchantableRelic && ((EnchantableRelic) r).GetEnchantmentLevel() < 2)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public EnchantCampfireOption()
@@ -34,10 +43,21 @@ public class EnchantCampfireOption extends AbstractCampfireOption
     @Override
     public void useOption()
     {
-        relic = GameUtilities.GetRelic(LivingPicture.ID);
+        for (AbstractRelic r : AbstractDungeon.player.relics)
+        {
+            EnchantableRelic er = JUtils.SafeCast(r, EnchantableRelic.class);
+            if (er != null && er.GetEnchantmentLevel() < 2)
+            {
+                relic = er;
+            }
+        }
+
         if (relic == null)
         {
-            relic = GameUtilities.GetRelic(VividPicture.ID);
+            GameEffects.Queue.Callback(new WaitAction(0.1f), ((RestRoom) AbstractDungeon.getCurrRoom()).campfireUI::reopen);
+            JUtils.LogWarning(this, "EnchantableRelic not found, despite 'usable' being true.");
+            usable = false;
+            return;
         }
 
         room = (RestRoom) AbstractDungeon.getCurrRoom();

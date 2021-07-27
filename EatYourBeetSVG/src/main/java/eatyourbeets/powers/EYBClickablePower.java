@@ -7,15 +7,22 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.actions.special.SelectCreature;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RenderHelpers;
+
+import java.util.ArrayList;
 
 public abstract class EYBClickablePower extends EYBPower
 {
@@ -27,6 +34,30 @@ public abstract class EYBClickablePower extends EYBPower
     private GameActionManager.Phase currentPhase;
     private float cX;
     private float cY;
+
+    private EYBClickablePower(AbstractCreature owner, EYBRelic relic)
+    {
+        super(owner, relic);
+
+        priority = CombatStats.Instance.priority + 1;
+        tooltip = new EYBCardTooltip(name, description);
+        tooltip.subText = new ColoredString();
+        tooltip.icon = powerIcon;
+    }
+
+    public EYBClickablePower(AbstractCreature owner, EYBRelic relic, PowerTriggerConditionType type, int requiredAmount)
+    {
+        this(owner, relic);
+
+        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount);
+    }
+
+    public EYBClickablePower(AbstractCreature owner, EYBRelic relic, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
+    {
+        this(owner, relic);
+
+        triggerCondition = new PowerTriggerCondition(this, requiredAmount, checkCondition, payCost);
+    }
 
     private EYBClickablePower(AbstractCreature owner, EYBCardData cardData)
     {
@@ -66,7 +97,7 @@ public abstract class EYBClickablePower extends EYBPower
         if (uses >= 0)
         {
             tooltip.subText.color = uses == 0 ? Settings.RED_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
-            tooltip.subText.text = uses == 1 ? "1 use remaining" : (uses + " uses remaining");
+            tooltip.subText.text = uses == 1 ? "1 use" : (uses + " uses");
         }
     }
 
@@ -127,7 +158,7 @@ public abstract class EYBClickablePower extends EYBPower
 
         Color borderColor = (enabled && triggerCondition.CanUse()) ? c : disabledColor;
         Color imageColor = enabled ? c : disabledColor;
-        RenderHelpers.DrawCentered(sb, borderColor, GR.Common.Images.SquaredButton.Texture(), x, y, ICON_SIZE, ICON_SIZE, 1.5f, 0);
+        RenderHelpers.DrawCentered(sb, borderColor, GR.Common.Images.SquaredButton_EmptyCenter.Texture(), x, y, ICON_SIZE, ICON_SIZE, 1.5f, 0);
         RenderHelpers.DrawCentered(sb, imageColor, this.powerIcon, x, y, ICON_SIZE, ICON_SIZE, 0.75f, 0);
         if (enabled && hovered && clickable && triggerCondition.CanUse())
         {
@@ -142,6 +173,30 @@ public abstract class EYBClickablePower extends EYBPower
 
     public void OnClick()
     {
-        triggerCondition.Use();
+        ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
+        if (enemies.size() == 1)
+        {
+            this.triggerCondition.Use(enemies.get(0));
+        }
+        else if (triggerCondition.requiresTarget)
+        {
+            GameActions.Bottom.SelectCreature(SelectCreature.Targeting.Enemy, name)
+            .AddCallback(c ->
+            {
+                if (c != null)
+                {
+                    this.triggerCondition.Use((AbstractMonster) c);
+                }
+            });
+        }
+        else
+        {
+            this.triggerCondition.Use(null);
+        }
+    }
+
+    public void OnUse(AbstractMonster m)
+    {
+
     }
 }

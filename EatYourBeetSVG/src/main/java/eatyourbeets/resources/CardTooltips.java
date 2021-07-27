@@ -141,7 +141,7 @@ public class CardTooltips
         RegisterID("A-Star", Affinity_Star);
         RegisterID("A-Gen", Affinity_General);
 
-        RegisterID("TempHP", TempHP);
+        RegisterID("Temp HP", TempHP);
         RegisterID("Random Orb", RandomOrb);
         RegisterID("Grief Seed", GriefSeed);
         RegisterID("T-Knife", ThrowingKnife);

@@ -56,6 +56,8 @@ public class ParseGenericCommand extends ConsoleCommand
 
                 if (tokens[1].equals("show-cards"))
                 {
+                    player.masterDeck.clear();
+
                     boolean upgrade = tokens.length > 2 && tokens[2].equals("true");
                     for (EYBCardData data : ImprovedDefend.GetCards())
                     {
@@ -68,6 +70,11 @@ public class ParseGenericCommand extends ConsoleCommand
                     for (EYBCardData data : AffinityToken.GetCards())
                     {
                         player.masterDeck.group.add(data.CreateNewInstance(upgrade));
+                    }
+                    for (Enchantment card : Enchantment.GetCards())
+                    {
+                        player.masterDeck.group.add(card.makeCopy());
+                        player.masterDeck.group.addAll(card.GetUpgrades());
                     }
                     return;
                 }

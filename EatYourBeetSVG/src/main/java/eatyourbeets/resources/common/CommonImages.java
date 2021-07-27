@@ -26,6 +26,7 @@ public class CommonImages
     public final TextureCache Randomize                   = new TextureCache("images/ui/topPanel/eyb/Randomize.png");
     public final TextureCache SwapCards                   = new TextureCache("images/ui/topPanel/eyb/SwapCards.png");
     public final TextureCache SquaredButton               = new TextureCache("images/ui/topPanel/eyb/SquaredButton.png");
+    public final TextureCache SquaredButton_EmptyCenter   = new TextureCache("images/ui/topPanel/eyb/SquaredButton_EmptyCenter.png");
     public final TextureCache HexagonalButton             = new TextureCache("images/ui/topPanel/eyb/HexagonalButton.png");
     public final TextureCache HexagonalButtonBorder       = new TextureCache("images/ui/topPanel/eyb/HexagonalButtonBorder.png");
     public final TextureCache HexagonalButtonHover        = new TextureCache("images/ui/topPanel/eyb/HexagonalButtonHover.png");

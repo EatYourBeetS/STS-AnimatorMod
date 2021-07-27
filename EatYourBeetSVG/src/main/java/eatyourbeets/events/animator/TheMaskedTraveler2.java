@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.effects.special.MaskedTravelerTransformCardsEffect;
 import eatyourbeets.effects.special.UnnamedRelicEquipEffect;
@@ -17,6 +18,9 @@ import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventOption;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
+import eatyourbeets.relics.EnchantableRelic;
+import eatyourbeets.relics.animator.LivingPicture;
+import eatyourbeets.relics.animator.VividPicture;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.relics.animator.unnamedReign.TheEgnaroPiece;
 import eatyourbeets.relics.animator.unnamedReign.TheEruzaStone;
@@ -85,6 +89,10 @@ public class TheMaskedTraveler2 extends EYBEvent
                 {
                     event.startingRelicsCache.add(relic);
                 }
+                else if (relic instanceof VividPicture)
+                {
+                    event.startingRelicsCache.add(new LivingPicture(((VividPicture) relic).enchantment));
+                }
             }
 
             AbstractRelic relic = option.relic.makeCopy();
@@ -128,7 +136,7 @@ public class TheMaskedTraveler2 extends EYBEvent
         private void ReplaceCards()
         {
             ClearOptions();
-            GameEffects.List.Add(new MaskedTravelerTransformCardsEffect(REMOVE_CARDS, OBTAIN_CARDS))
+            GameEffects.List.Add(new MaskedTravelerTransformCardsEffect(REPLACE_CARDS, REPLACE_CARDS))
             .AddCallback(() -> ChangePhase(EnterUnnamedReign.class));
         }
 
@@ -176,6 +184,12 @@ public class TheMaskedTraveler2 extends EYBEvent
             }
             else
             {
+                if (relic instanceof EnchantableRelic)
+                {
+                    EnchantableRelic r = ((EnchantableRelic) relic);
+                    r.ApplyEnchantment(r.GetEnchantmentLevel() >= 2 ? (Enchantment) r.enchantment.makeCopy() : null);
+                }
+
                 float START_X = 64f * Settings.scale;
                 float START_Y = (float) Settings.HEIGHT - 102f * Settings.scale;
 

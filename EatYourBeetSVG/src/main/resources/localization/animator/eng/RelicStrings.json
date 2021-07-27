@@ -164,7 +164,7 @@
 	},
 	"animator:VividPicture":
 	{
-		"DESCRIPTIONS": ["Replaces #yThe #yLiving #yPicture. NL Once per turn, when a card #ySynergizes, draw #b1 card and gain [E]."],
+		"DESCRIPTIONS": ["Replaces #yThe #yLiving #yPicture. NL On your first #ySynergy each turn, gain [E] and draw #b1 card."],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Vivid Picture"
 	},

@@ -1,9 +1,11 @@
 package eatyourbeets.cards.animator.enchantments;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.relics.EnchantableRelic;
 import eatyourbeets.relics.animator.LivingPicture;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredTexture;
@@ -17,7 +19,8 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
 
     public int index;
     public int upgradeIndex;
-    public LivingPicture relic;
+    public boolean requiresTarget;
+    public EnchantableRelic relic;
 
     private final Color borderColor;
 
@@ -48,6 +51,7 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
                 if (upgradeIndex > 0)
                 {
                     result.upgradeIndex = upgradeIndex;
+                    result.cardData.Strings.UPGRADE_DESCRIPTION = result.cardData.Strings.EXTENDED_DESCRIPTION[upgradeIndex - 1];
                     result.upgrade();
                 }
 
@@ -62,13 +66,31 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
     {
         super(cardData);
 
-        this.relic = new LivingPicture(index);
         this.index = index;
         this.borderColor = new Color(0.7f, 0.8f, 0.9f, 1f);
         this.cropPortrait = false;
+        this.relic = new LivingPicture(this);
         this.portraitForeground = new ColoredTexture(relic.img, null);
         this.portraitForeground.scale = 2;
     }
+
+    public int GetPowerCost()
+    {
+        return secondaryValue;
+    }
+
+    public boolean CanUsePower(int cost)
+    {
+        return player.energy.energy >= cost;
+    }
+
+    public void PayPowerCost(int cost)
+    {
+        player.energy.use(cost);
+    }
+
+    public abstract int GetMaxUpgradeIndex();
+    public abstract void UsePower(AbstractMonster m);
 
     @Override
     protected ColoredTexture GetCardBanner()
@@ -80,5 +102,16 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
     protected ColoredTexture GetPortraitFrame()
     {
         return super.GetPortraitFrame().SetColor(borderColor);
+    }
+
+    public ArrayList<Enchantment> GetUpgrades()
+    {
+        ArrayList<Enchantment> result = new ArrayList<>();
+        for (int i = 1; i <= GetMaxUpgradeIndex(); i++)
+        {
+            result.add(GetCard(index, i));
+        }
+
+        return result;
     }
 }

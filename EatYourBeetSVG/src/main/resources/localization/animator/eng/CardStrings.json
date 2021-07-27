@@ -192,7 +192,7 @@
 		},
 		"animator:LimeBell":
 		{
-			"DESCRIPTION": "Reload: Gain !M! ** [Temporary HP].",
+			"DESCRIPTION": "Reload: Gain !M! ** [Temp HP].",
 			"NAME": "Lime Bell"
 		},
 		"animator:Magilou":
@@ -433,7 +433,7 @@
 		},
 		"animator:Envy":
 		{
-			"DESCRIPTION": "The first card played ** each turn will Synergize. || Gain 20% of your ** missing HP as [Temporary HP].",
+			"DESCRIPTION": "The first card played ** each turn will Synergize. || Gain 20% of your ** missing HP as [Temp HP].",
 			"NAME": "Envy"
 		},
 		"animator:Father":
@@ -449,7 +449,7 @@
 		},
 		"animator:Greed":
 		{
-			"DESCRIPTION": "Choose !S!: Gain {0} [Block], ** Gain {1} [Temporary HP], Gain {2} [Malleable], ** Gain {3} [Plated Armor], or Gain {4} [Metallicize]. || For every !M! [Gold] you have: Choose 1 additional effect.",
+			"DESCRIPTION": "Choose !S!: Gain {0} [Block], ** Gain {1} [Temp HP], Gain {2} [Malleable], ** Gain {3} [Plated Armor], or Gain {4} [Metallicize]. || For every !M! [Gold] you have: Choose 1 additional effect.",
 			"NAME": "Greed"
 		},
 		"animator:MaesHughes":
@@ -728,7 +728,7 @@
 		"animator:Aqua":
 		{
 			"DESCRIPTION": "Gain [B]. Heal !M! HP. <DRW>. || Becomes useless for the ** rest of this combat.",
-			"EXTENDED_DESCRIPTION": ["", "When Exhausted or ** Discarded: Gain !S! [Temporary HP]."],
+			"EXTENDED_DESCRIPTION": ["", "When Exhausted or ** Discarded: Gain !S! [Temp HP]."],
 			"NAME": "Aqua",
 			"UPGRADE_DESCRIPTION": "Boost [B]. Heal !M! HP. <DRW>. || Becomes slightly less ** useless for the rest of ** this combat."
 		},
@@ -749,7 +749,7 @@
 		},
 		"animator:Hans":
 		{
-			"DESCRIPTION": "At the start of turn: ** Apply !M! [Poison] to ALL ** enemies, then gain ** !S! [Temporary HP] for each ** enemy with [Poison].",
+			"DESCRIPTION": "At the start of turn: ** Apply !M! [Poison] to ALL ** enemies, then gain ** !S! [Temp HP] for each ** enemy with [Poison].",
 			"EXTENDED_DESCRIPTION": ["At the start of turn, apply #b{0} #y[Poison] to ALL enemies, then gain #b{1} #yTemporary #yHP for each enemy with #y[Poison]."],
 			"NAME": "Hans"
 		},
@@ -821,7 +821,7 @@
 		},
 		"animator:Marielle":
 		{
-			"DESCRIPTION": "{Motivate} 1 card of each ** type in your draw pile. || Synergy: Gain !M! [Temporary HP] ** and Purge.",
+			"DESCRIPTION": "{Motivate} 1 card of each ** type in your draw pile. || Synergy: Gain !M! [Temp HP] ** and Purge.",
 			"NAME": "Marielle"
 		},
 		"animator:HousakiMinori":
@@ -924,7 +924,7 @@
 		},
 		"animator:MadokaKaname":
 		{
-			"DESCRIPTION": "Exhaust up to !M! random ** {Curses} from anywhere. ** Heal 3 HP for each (!S!). || While in hand: Gain 1 [Temporary HP] ** when playing a Spellcaster.",
+			"DESCRIPTION": "Exhaust up to !M! random ** {Curses} from anywhere. ** Heal 3 HP for each (!S!). || While in hand: Gain 1 [Temp HP] ** when playing a Spellcaster.",
 			"NAME": "Madoka Kaname"
 		},
 		"animator:MamiTomoe":
@@ -1139,7 +1139,7 @@
 		},
 		"animator:Sebas":
 		{
-			"DESCRIPTION": "Deal damage equal to ** your [Block] to each enemy ** who intends to Attack. || When Discarded: ** Gain !M! [Temporary HP].",
+			"DESCRIPTION": "Deal damage equal to ** your [Block] to each enemy ** who intends to Attack. || When Discarded: ** Gain !M! [Temp HP].",
 			"NAME": "Sebas"
 		},
 		"animator:Shalltear":
@@ -1158,7 +1158,7 @@
 		},
 		"animator:FeridBathory":
 		{
-			"DESCRIPTION": "Whenever a card is ** Exhausted: Steal !M! HP from ** a random enemy as [Temporary HP]. || <LIM>. At the start of turn, ** if you have 20 or more cards ** in Exhaust pile: Gain !S! [F].",
+			"DESCRIPTION": "Whenever a card is ** Exhausted: Steal !M! HP from ** a random enemy as [Temp HP]. || <LIM>. At the start of turn, ** if you have 20 or more cards ** in Exhaust pile: Gain !S! [F].",
 			"NAME": "Ferid Bathory"
 		},
 		"animator:Guren":
@@ -1252,7 +1252,7 @@
 		},
 		"animator:Shuna":
 		{
-			"DESCRIPTION": "Gain 1 [B]. ** <DRW-M>. || When Drawn: ** Gain !S! [Temporary HP].",
+			"DESCRIPTION": "Gain 1 [B]. ** <DRW-M>. || When Drawn: ** Gain !S! [Temp HP].",
 			"NAME": "Shuna"
 		},
 		"animator:Souei":
@@ -1271,36 +1271,36 @@
 	{
 		"animator:Enchantment1":
 		{
-			"DESCRIPTION": "Once per turn, ** pay 2 [E]: Choose and ** Enter any Stance.",
+			"DESCRIPTION": "Once per turn, ** pay !S! [E]: Choose and ** Enter any Stance.",
 			"EXTENDED_DESCRIPTION": 
 			[
-				"Once per turn, pay 2 [E]: Enter a Stance of your choice, if you are already in the chosen Stance: Gain 8 [Block].",
-				"Once per turn, pay 2 [E]: Enter a Stance of your choice, then Motivate the bottom card of your draw pile.",
-				"Once per turn, pay [E] and lose 3 HP: Enter a Stance of your choice."
+				"Once per turn, pay !S! [E]: Choose and Enter any Stance, if you are already in the chosen Stance: Gain {0} [Block].",
+				"Once per turn, pay !S! [E]: Choose and Enter any Stance, then Motivate the bottom card of your draw pile.",
+				"Once per turn, pay !S! [E] and lose {0} HP: Choose and Enter any Stance."
 			],
 			"NAME": "Stances"
 		},
 		"animator:Enchantment2":
 		{
-			"DESCRIPTION": "Once per turn, ** pay 1 [E]: Retain ** all {[A-Gen] Powers}.",
+			"DESCRIPTION": "Once per turn, ** pay !S! [E]: Retain ** all {[A-Gen] Powers}.",
 			"EXTENDED_DESCRIPTION": 
 			[
-				"Once per turn, pay 2 [E]: Boost [F] and gain 3 [Plated Armor].",
-				"Once per turn, pay 2 [E]: Boost [A] and retain 1 card.",
-				"Once per turn, pay 2 [E]: Boost [I] and gain 1 orb slot.",
-				"Once per turn, pay 2 [E]: Boost [B] and gain 1 {Temporary} [Artifact].",
-				"Once per turn, pay 2 [E]: Boost [C] and convert 4 HP to 8 [Temp HP]."
+				"Once per turn, pay !S! [E]: Boost [F] and gain !M! [Plated Armor].",
+				"Once per turn, pay !S! [E]: Boost [A] and Retain !M! card(s).",
+				"Once per turn, pay !S! [E]: Boost [I] and gain !M! orb slot(s).",
+				"Once per turn, pay !S! [E]: Boost [B] and gain !M! {Temporary} [Artifact].",
+				"Once per turn, pay !S! [E]: Boost [C] and convert {0} HP to !M! [Temp HP]."
 			],
 			"NAME": "Powers"
 		},
 		"animator:Enchantment3":
 		{
-			"DESCRIPTION": "Once per turn, ** pay 2 [E]: Apply 2 [Vulnerable].",
+			"DESCRIPTION": "Once per turn, ** pay !S! [E]: Apply !M! [Vulnerable].",
 			"EXTENDED_DESCRIPTION": 
 			[
-				"Once per turn, pay 2 [E]: Apply 2 [Vulnerable] and 5 [Poison].",
-				"Once per turn, pay 2 [E]: Apply 1 [Vulnerable] and 1 [Weak].",
-				"Once per turn, pay [E] and lose 3 HP: Apply 2 [Vulnerable]."
+				"Once per turn, pay !S! [E]: Apply !M! [Vulnerable] and {0} [Poison].",
+				"Once per turn, pay !S! [E]: Apply !M! [Vulnerable] and {0} [Weak].",
+				"Once per turn, pay !S! [E] and lose {0} HP: Apply !M! [Vulnerable]."
 			],
 			"NAME": "Debuffs"
 		}
@@ -1443,7 +1443,7 @@
 		},
 		"animator:OrbCore_Plasma":
 		{
-			"DESCRIPTION": "Channel !S! [Plasma]. || On your second ** Synergy each turn: ** Gain !M! [Temporary HP].",
+			"DESCRIPTION": "Channel !S! [Plasma]. || On your second ** Synergy each turn: ** Gain !M! [Temp HP].",
 			"NAME": "Plasma Core"
 		},
 		"animator:Respite":
@@ -1569,7 +1569,7 @@
 		},
 		"animator:JeanneDArc":
 		{
-			"DESCRIPTION": "Exhaust a random ** Hindrance from anywhere. || At the start of combat: ** Gain !M! [Temporary HP] and 1 [Artifact].",
+			"DESCRIPTION": "Exhaust a random ** Hindrance from anywhere. || At the start of combat: ** Gain !M! [Temp HP] and 1 [Artifact].",
 			"NAME": "Jeanne D'Arc"
 		},
 		"animator:Kanami":

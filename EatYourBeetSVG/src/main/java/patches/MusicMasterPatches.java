@@ -10,33 +10,14 @@ import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
-// If a track is already playing, do not start playing the same one
-@SpirePatch(clz = MusicMaster.class, method = "playTempBgmInstantly", paramtypez = {String.class})
 public class MusicMasterPatches
 {
     private static final FieldInfo<ArrayList<TempMusic>> _tempTracks = JUtils.GetField("tempTrack", MusicMaster.class);
 
-    @SpirePrefixPatch
-    public static SpireReturn Prefix(MusicMaster instance, String key)
-    {
-        ArrayList<TempMusic> tempTracks = _tempTracks.Get(instance);
-
-        for (TempMusic m : tempTracks)
-        {
-            if (m.key.equals(key))
-            {
-                return SpireReturn.Return(null);
-            }
-        }
-
-        return SpireReturn.Continue();
-    }
-
     public static boolean IsAlreadyPlaying(MusicMaster instance, String key)
     {
-        ArrayList<TempMusic> tempTracks = _tempTracks.Get(instance);
-
-        for (TempMusic m : tempTracks)
+        final ArrayList<TempMusic> tracks = _tempTracks.Get(instance);
+        for (TempMusic m : tracks)
         {
             if (m.key.equals(key))
             {
@@ -45,5 +26,17 @@ public class MusicMasterPatches
         }
 
         return false;
+    }
+
+    // If a track is already playing, do not start playing the same one
+    @SpirePatch(clz = MusicMaster.class, method = "playTempBgmInstantly", paramtypez = {String.class})
+    @SpirePatch(clz = MusicMaster.class, method = "playTempBGM", paramtypez = {String.class})
+    public static class MusicMasterPatches_playTempBgm
+    {
+        @SpirePrefixPatch
+        public static SpireReturn Prefix(MusicMaster instance, String key)
+        {
+            return IsAlreadyPlaying(instance, key) ? SpireReturn.Return(null) : SpireReturn.Continue();
+        }
     }
 }

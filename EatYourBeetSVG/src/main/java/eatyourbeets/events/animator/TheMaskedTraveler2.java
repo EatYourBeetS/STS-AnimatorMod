@@ -97,9 +97,7 @@ public class TheMaskedTraveler2 extends EYBEvent
     private static class Offering extends EYBEventPhase<TheMaskedTraveler2, EventStrings>
     {
         private static final AncientMedallion MedallionPreview = new AncientMedallion();
-        private static final int REMOVE_CARDS = 2;
-        private static final int OBTAIN_CARDS = 2;
-        private static final int UPGRADE_SAME_CARD = 4;
+        private static final int REPLACE_CARDS = 2;
         private int currentHPLoss = 0;
 
         @Override
@@ -115,7 +113,7 @@ public class TheMaskedTraveler2 extends EYBEvent
 
             AddText(text.Offering());
             AddOption(text.ObtainRelicOption(), MedallionPreview).AddCallback(this::ObtainRelic);
-            AddOption(text.ReplaceCardsOption(REMOVE_CARDS, OBTAIN_CARDS)).AddCallback(this::ReplaceCards);
+            AddOption(text.ReplaceCardsOption(REPLACE_CARDS, REPLACE_CARDS)).AddCallback(this::ReplaceCards);
             AddOption(text.RecoverRelicsOption(currentHPLoss)).AddCallback(this::RecoverRelics);
         }
 

@@ -16,9 +16,8 @@ public class MusicMasterPatches
 
     public static boolean IsAlreadyPlaying(MusicMaster instance, String key)
     {
-        ArrayList<TempMusic> tempTracks = _tempTracks.Get(instance);
-
-        for (TempMusic m : tempTracks)
+        final ArrayList<TempMusic> tracks = _tempTracks.Get(instance);
+        for (TempMusic m : tracks)
         {
             if (m.key.equals(key))
             {

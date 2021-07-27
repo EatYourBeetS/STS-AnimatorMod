@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.campfire.CampfireSmithEffect;
@@ -21,7 +20,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
     public static final int HEAL_AMOUNT = 4;
     public static final int MULTI_UPGRADE = 2;
 
-    private int equipCounter;
+    private int equipEffects;
     private boolean event;
     private boolean awaitingInput;
 
@@ -41,7 +40,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
     {
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK);
 
-        this.equipCounter = counter;
+        this.equipEffects = counter;
     }
 
     @Override
@@ -60,7 +59,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
     {
         if (counter <= 0)
         {
-            SetCounter(equipCounter);
+            SetCounter(equipEffects);
         }
 
         if (UpgradeRandomCards())
@@ -69,7 +68,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
         }
         else
         {
-            equipCounter -= 1;
+            equipEffects -= 1;
             TriggerEvent();
         }
     }
@@ -83,8 +82,8 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
         {
             if (UpdateSelection())
             {
-                equipCounter -= 1;
-                if (equipCounter > 0)
+                equipEffects -= 1;
+                if (equipEffects > 0)
                 {
                     onManualEquip();
                 }
@@ -108,8 +107,6 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
         else
         {
             description = getUpdatedDescription();
-            tips.clear();
-            tips.add(new PowerTip(name, description));
             initializeTips();
         }
     }
@@ -129,13 +126,19 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
         {
             if (this != relic)
             {
-                equipCounter = ((AncientMedallion) relic).equipCounter;
-                flash();
-
-                GameEffects.Queue.RemoveRelic(relic).AddCallback(equipCounter, (c, r) -> AddCounter(c));
+                GameEffects.Queue.RemoveRelic(relic)
+                .AddCallback(((AncientMedallion) relic).equipEffects, (c, r) ->
+                {
+                    flash();
+                    equipEffects = c;
+                    AddCounter(c);
+                    onManualEquip();
+                });
             }
-
-            onManualEquip();
+            else if (player.getRelic(ID) == this) // First relic with same ID
+            {
+                onManualEquip();
+            }
         }
     }
 
@@ -154,19 +157,19 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
         if (upgradableCards.Size() > 0)
         {
             upgraded += 1;
-            AbstractCard card1 = upgradableCards.Retrieve(rng);
-            card1.upgrade();
-            player.bottledCardUpgradeCheck(card1);
-            GameEffects.TopLevelList.ShowCardBriefly(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2f + AbstractCard.IMG_WIDTH / 2f + 20f * Settings.scale, (float) Settings.HEIGHT / 2f);
+            AbstractCard card = upgradableCards.Retrieve(rng);
+            card.upgrade();
+            player.bottledCardUpgradeCheck(card);
+            GameEffects.TopLevelList.ShowCardBriefly(card.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2f + AbstractCard.IMG_WIDTH / 2f + 20f * Settings.scale, (float) Settings.HEIGHT / 2f);
         }
 
         if (upgradableCards.Size() > 0)
         {
             upgraded += 1;
-            AbstractCard card1 = upgradableCards.Retrieve(rng);
-            card1.upgrade();
-            player.bottledCardUpgradeCheck(card1);
-            GameEffects.TopLevelList.ShowCardBriefly(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2f - AbstractCard.IMG_WIDTH / 2f - 20f * Settings.scale, (float) Settings.HEIGHT / 2f);
+            AbstractCard card = upgradableCards.Retrieve(rng);
+            card.upgrade();
+            player.bottledCardUpgradeCheck(card);
+            GameEffects.TopLevelList.ShowCardBriefly(card.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2f - AbstractCard.IMG_WIDTH / 2f - 20f * Settings.scale, (float) Settings.HEIGHT / 2f);
         }
 
         if (upgraded > 0)

@@ -20,7 +20,7 @@ public class ShionDessert extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(POISON_AMOUNT);
+        return FormatDescription(0, POISON_AMOUNT);
     }
 
     @Override

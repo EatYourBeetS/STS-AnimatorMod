@@ -66,9 +66,9 @@ public abstract class EYBRelic extends CustomRelic
         }
     }
 
-    protected String FormatDescription(Object... args)
+    protected String FormatDescription(int index, Object... args)
     {
-        return JUtils.Format(DESCRIPTIONS[0], args);
+        return JUtils.Format(DESCRIPTIONS[index], args);
     }
 
     protected void DisplayAboveCreature(AbstractCreature creature)

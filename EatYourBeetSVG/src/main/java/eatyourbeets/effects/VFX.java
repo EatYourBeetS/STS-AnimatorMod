@@ -46,6 +46,16 @@ public class VFX
         return new ClawEffect(source.cX, source.cY, color1, color2);
     }
 
+    public static ShockWaveEffect ShockWave(Hitbox source, Color color)
+    {
+        return ShockWave(source, color, ShockWaveEffect.ShockWaveType.ADDITIVE);
+    }
+
+    public static ShockWaveEffect ShockWave(Hitbox source, Color color, ShockWaveEffect.ShockWaveType type)
+    {
+        return new ShockWaveEffect(source.cX, source.cY, color.cpy(), type);
+    }
+
     public static ColoredSweepingBeamEffect SweepingBeam(AbstractCreature source)
     {
         return SweepingBeam(source.hb, source.flipHorizontal, Color.CYAN);

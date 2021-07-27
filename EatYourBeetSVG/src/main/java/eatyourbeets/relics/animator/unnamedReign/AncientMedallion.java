@@ -52,7 +52,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(HEAL_AMOUNT * Math.max(1, counter));
+        return FormatDescription(0, HEAL_AMOUNT * Math.max(1, counter));
     }
 
     public void onManualEquip()

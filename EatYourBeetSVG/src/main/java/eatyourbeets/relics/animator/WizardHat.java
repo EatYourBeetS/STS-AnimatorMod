@@ -27,7 +27,7 @@ public class WizardHat extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(INTELLECT_AMOUNT, ENERGY_COST, DAMAGE_AMOUNT);
+        return FormatDescription(0, INTELLECT_AMOUNT, ENERGY_COST, DAMAGE_AMOUNT);
     }
 
     @Override

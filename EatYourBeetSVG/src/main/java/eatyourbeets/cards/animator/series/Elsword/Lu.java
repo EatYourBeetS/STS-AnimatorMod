@@ -32,7 +32,7 @@ public class Lu extends AnimatorCard
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Red(2, 0, 2);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Dark(2, 0, 0);
     }
 
     @Override

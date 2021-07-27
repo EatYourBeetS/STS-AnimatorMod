@@ -44,7 +44,7 @@
 	},
 	"animator:CursedBlade":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} [F] and [A]. Whenever you take unblocked Attack damage, add a #yWound to your hand."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} [F] and [A]. Whenever you take unblocked Attack damage, add a #yWound to your hand.", "Once per turn, pay #b{0} HP to deal #b{1} damage to ALL enemies, then increase this effect's cost by #b{2}."],
 		"FLAVOR": "Power comes at a price.",
 		"NAME": "Cursed Blade"
 	},

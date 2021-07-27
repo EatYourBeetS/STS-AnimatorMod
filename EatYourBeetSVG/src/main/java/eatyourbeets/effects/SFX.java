@@ -32,48 +32,48 @@ public class SFX
         return new PlaySFX(key, pitchAdjustment, !variable);
     }
 
-    public static PlaySFX Bite(float pitch, boolean variable)
+    public static PlaySFX Bite(float pitchAdj, boolean variable)
     {
-        return Create(EVENT_VAMP_BITE, pitch, variable);
+        return Create(EVENT_VAMP_BITE, pitchAdj, variable);
     }
 
-    public static PlaySFX Fire(float pitch, boolean variable)
+    public static PlaySFX Fire(float pitchAdj, boolean variable)
     {
-        return Create(ATTACK_FIRE, pitch, variable);
+        return Create(ATTACK_FIRE, pitchAdj, variable);
     }
 
-    public static PlaySFX FrostChannel(float pitch, boolean variable)
+    public static PlaySFX FrostChannel(float pitchAdj, boolean variable)
     {
-        return Create(ORB_FROST_CHANNEL, pitch, variable);
+        return Create(ORB_FROST_CHANNEL, pitchAdj, variable);
     }
 
-    public static PlaySFX FrostEvoke(float pitch, boolean variable)
+    public static PlaySFX FrostEvoke(float pitchAdj, boolean variable)
     {
-        return Create(ORB_FROST_EVOKE, pitch, variable);
+        return Create(ORB_FROST_EVOKE, pitchAdj, variable);
     }
 
-    public static PlaySFX LightningEvoke(float pitch, boolean variable)
+    public static PlaySFX LightningEvoke(float pitchAdj, boolean variable)
     {
-        return Create(ORB_LIGHTNING_EVOKE, pitch, variable);
+        return Create(ORB_LIGHTNING_EVOKE, pitchAdj, variable);
     }
 
-    public static PlaySFX LightningPassive(float pitch, boolean variable)
+    public static PlaySFX LightningPassive(float pitchAdj, boolean variable)
     {
-        return Create(ORB_LIGHTNING_PASSIVE, pitch, variable);
+        return Create(ORB_LIGHTNING_PASSIVE, pitchAdj, variable);
     }
 
-    public static PlaySFX MagicBeam_Short(float pitch, boolean variable)
+    public static PlaySFX MagicBeam_Short(float pitchAdj, boolean variable)
     {
-        return Create(ATTACK_MAGIC_BEAM_SHORT, pitch, variable)                ;
+        return Create(ATTACK_MAGIC_BEAM_SHORT, pitchAdj, variable);
     }
 
-    public static PlaySFX SweepingBeam(float pitch, boolean variable)
+    public static PlaySFX SweepingBeam(float pitchAdj, boolean variable)
     {
-        return Create(ATTACK_DEFECT_BEAM, pitch, variable);
+        return Create(ATTACK_DEFECT_BEAM, pitchAdj, variable);
     }
 
-    public static PlaySFX Whirlwind(float pitch, boolean variable)
+    public static PlaySFX Whirlwind(float pitchAdj, boolean variable)
     {
-        return Create(ATTACK_WHIRLWIND, pitch, variable);
+        return Create(ATTACK_WHIRLWIND, pitchAdj, variable);
     }
 }

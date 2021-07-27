@@ -96,7 +96,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(GetRewardInterval());
+        return FormatDescription(0, GetRewardInterval());
     }
 
     @Override

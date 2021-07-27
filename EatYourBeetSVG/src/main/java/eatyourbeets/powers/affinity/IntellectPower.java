@@ -14,7 +14,7 @@ public class IntellectPower extends AbstractAffinityPower
     }
 
     @Override
-    protected void OnThresholdReached(int threshold)
+    protected void OnThresholdReached(int thresholdIndex)
     {
         GameActions.Top.GainFocus(1);
     }

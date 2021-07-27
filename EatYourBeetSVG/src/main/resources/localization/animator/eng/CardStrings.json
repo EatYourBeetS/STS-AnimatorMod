@@ -91,13 +91,13 @@
 		"animator:Strike_Star":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "!M! <GEN>: Retain ** your highest ** {Affinity Power}.",
+			"UPGRADE_DESCRIPTION": "Synergy: {~Retain} your ** highest {<W> Power}.",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Star":
 		{
 			"DESCRIPTION": "",
-		    "UPGRADE_DESCRIPTION": "!M! <GEN>:  Retain ** your highest ** {Affinity Power}.",
+			"UPGRADE_DESCRIPTION": "Synergy: {~Retain} your ** highest {<W> Power}.",
 			"NAME": "Improved Defend"
 		}
 	},
@@ -1107,9 +1107,9 @@
 		},
 		"animator:Eve":
 		{
-			"DESCRIPTION": "Play 1 {Orb Core}. || When you Synergize: Deal ** 1 damage to an enemy and ** increase this damage by 1. ** Does not Stack.",
-			"NAME": "Eve",
-			"UPGRADE_DESCRIPTION": "Play 1 {Orb Core}. ** Gain !M! Orb Slot. || When you Synergize: Deal ** 1 damage to an enemy and ** increase this damage by 1. ** Does not Stack."
+			"DESCRIPTION": "When you Synergize: Deal damage equal to <W> to a random enemy !M! times. || Once per turn, pay [E]: ** Play 1 of 3 {<W> Tokens}.",
+			"EXTENDED_DESCRIPTION": ["Pay 1 [E] to play #b1 [A-Gen] #yToken. || Whenever a card #ySynergizes, deal damage equal to [A-Gen] to a random enemy #b{0} time(s)."],
+			"NAME": "Eve"
 		},
 		"animator:Laby":
 		{
@@ -1451,7 +1451,8 @@
 		},
 		"animator:Biyorigo":
 		{
-			"DESCRIPTION": "Gain 1 [Artifact]. ** Gain !M! [Thorns]. || At the end of each turn: ** spend 1 of your remaining ** Energy to gain 2 [F] [A].",
+			"DESCRIPTION": "Gain 1 [Artifact] and !M! [Thorns]. || Once per turn, pay [E]: ** Gain 2 [F] and 2 [A].",
+			"EXTENDED_DESCRIPTION": ["Pay #b1 [E] to gain #b{1} [F] [A]."],
 			"NAME": "Biyorigo"
 		},
 		"animator:Emonzaemon":
@@ -1630,7 +1631,7 @@
 		},
 		"animator:Rayneshia":
 		{
-			"DESCRIPTION": "<DRW-M>. Move !M! ** cards to your draw pile. || <LIM>. !S! <GEN>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
+			"DESCRIPTION": "<DRW-M>. Move !M! ** cards to your draw pile. || <LIM>. !S! <W>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
 			"NAME": "Rayneshia"
 		},
 		"animator:RundelhausCode":
@@ -2048,21 +2049,40 @@
 
 	"AURA":
 	{
-		"animator:Aura1":
+		"animator:Enchantment1":
 		{
-			"NAME": "Stance Aura",
-			"DESCRIPTION": "At the start of your third ** turn: Enter a Stance of ** your choice.",
-			"UPGRADE_DESCRIPTION": "At the start of your third ** turn: Enter a Stance of ** your choice and Motivate ** 1 card in your draw pile."
+			"DESCRIPTION": "Once per turn, ** pay 2 [E]: Choose and ** Enter any Stance.",
+			"EXTENDED_DESCRIPTION": 
+			[
+				"Once per turn, pay 2 [E]: Enter a Stance of your choice, if you are already in the chosen Stance: Gain 8 [Block].",
+				"Once per turn, pay 2 [E]: Enter a Stance of your choice, then Motivate the bottom card of your draw pile.",
+				"Once per turn, pay [E] and lose 3 HP: Enter a Stance of your choice."
+			],
+			"NAME": "Stances"
 		},
-		"animator:Aura2":
+		"animator:Enchantment2":
 		{
-			"NAME": "Synergy Aura",
-			"DESCRIPTION": "At the start of your third ** turn: Heal 1 HP for each ** time you Synergized ** this combat, up to !M!."
+			"DESCRIPTION": "Once per turn, ** pay 1 [E]: Retain ** all {[A-Gen] Powers}.",
+			"EXTENDED_DESCRIPTION": 
+			[
+				"Once per turn, pay 2 [E]: Boost [F] and gain 3 [Plated Armor].",
+				"Once per turn, pay 2 [E]: Boost [A] and retain 1 card.",
+				"Once per turn, pay 2 [E]: Boost [I] and gain 1 orb slot.",
+				"Once per turn, pay 2 [E]: Boost [B] and gain 1 {Temporary} [Artifact].",
+				"Once per turn, pay 2 [E]: Boost [C] and convert 4 HP to 8 [Temp HP]."
+			],
+			"NAME": "Powers"
 		},
-		"animator:Aura3":
+		"animator:Enchantment3":
 		{
-			"NAME": "Attack Aura",
-			"DESCRIPTION": "At the start of your third ** turn: <DRW-M> and ** apply 1 [Vulnerable] to a random ** enemy, ignoring [Artifact]."
+			"DESCRIPTION": "Once per turn, ** pay 2 [E]: Apply 2 [Vulnerable].",
+			"EXTENDED_DESCRIPTION": 
+			[
+				"Once per turn, pay 2 [E]: Apply 2 [Vulnerable] and 5 [Poison].",
+				"Once per turn, pay 2 [E]: Apply 1 [Vulnerable] and 1 [Weak].",
+				"Once per turn, pay [E] and lose 3 HP: Apply 2 [Vulnerable]."
+			],
+			"NAME": "Debuffs"
 		}
 	},
 

@@ -9,8 +9,9 @@ import eatyourbeets.interfaces.delegates.ActionT2;
 
 public class CallbackEffect extends EYBEffectWithCallback<AbstractGameAction>
 {
-    private boolean updateIfScreenIsUp = true;
-    private final AbstractGameAction action;
+    protected float blackScreenAlpha = 0;
+    protected boolean updateIfScreenIsUp = true;
+    protected final AbstractGameAction action;
 
     public CallbackEffect(AbstractGameAction action)
     {
@@ -47,6 +48,13 @@ public class CallbackEffect extends EYBEffectWithCallback<AbstractGameAction>
         return this;
     }
 
+    public CallbackEffect ShowBlackScreen(float alpha)
+    {
+        blackScreenAlpha = alpha;
+
+        return this;
+    }
+
     @Override
     public void update()
     {
@@ -60,6 +68,11 @@ public class CallbackEffect extends EYBEffectWithCallback<AbstractGameAction>
         else
         {
             Complete(action);
+        }
+
+        if (blackScreenAlpha != 0)
+        {
+            AbstractDungeon.overlayMenu.showBlackScreen(action.isDone ? 0 : blackScreenAlpha);
         }
     }
 }

@@ -23,7 +23,7 @@ public class BlessingPower extends AbstractAffinityPower
     }
 
     @Override
-    protected void OnThresholdReached(int threshold)
+    protected void OnThresholdReached(int thresholdIndex)
     {
         GameActions.Bottom.StackPower(new VitalityPower(owner, 1));
     }

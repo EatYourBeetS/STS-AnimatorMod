@@ -27,6 +27,7 @@ import java.util.StringJoiner;
 public abstract class EYBPower extends AbstractPower implements CloneablePowerInterface
 {
     protected static final FieldInfo<ArrayList<AbstractGameEffect>> _effect = JUtils.GetField("effect", AbstractPower.class);
+    protected static final float ICON_SIZE = 32f;
 
     protected static final Color disabledColor = new Color(0.5f, 0.5f, 0.5f, 1);
     protected final ArrayList<AbstractGameEffect> effects;
@@ -34,7 +35,6 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
     public static AbstractPlayer player = null;
     public static Random rng = null;
-
     public TextureAtlas.AtlasRegion powerIcon;
     public boolean enabled = true;
     public boolean overrideDisabled = false;
@@ -162,15 +162,14 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     @Override
     public void renderIcons(SpriteBatch sb, float x, float y, Color c)
     {
-        sb.setColor(enabled ? c : disabledColor);
-
         if (this.powerIcon != null)
         {
-            sb.draw(this.powerIcon, x - 12f, y - 16f, 16f, 16f, 32f, 32f, Settings.scale, Settings.scale, 0f);
+            RenderHelpers.DrawCentered(sb, enabled ? c : disabledColor, this.powerIcon, x, y, ICON_SIZE, ICON_SIZE, 1, 0);
         }
         else
         {
-            sb.draw(this.img, x - 12f, y - 12f, 16f, 16f, 32f, 32f, Settings.scale * 1.5f, Settings.scale * 1.5f, 0f, 0, 0, 32, 32, false, false);
+            sb.setColor(enabled ? c : disabledColor);
+            sb.draw(this.img, x - 12f, y - 12f, 16f, 16f, ICON_SIZE, ICON_SIZE, Settings.scale * 1.5f, Settings.scale * 1.5f, 0f, 0, 0, 32, 32, false, false);
         }
 
         for (AbstractGameEffect e : effects)

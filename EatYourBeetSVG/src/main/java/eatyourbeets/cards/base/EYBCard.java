@@ -28,16 +28,6 @@ import java.util.Map;
 
 public abstract class EYBCard extends EYBCardBase
 {
-    protected static final String UNPLAYABLE_MESSAGE = CardCrawlGame.languagePack.getCardStrings(Tactician.ID).EXTENDED_DESCRIPTION[0];
-    private static final Map<String, EYBCardData> staticCardData = new HashMap<>();
-
-    protected boolean isMultiUpgrade;
-    protected int upgrade_damage;
-    protected int upgrade_magicNumber;
-    protected int upgrade_secondaryValue;
-    protected int upgrade_block;
-    protected int upgrade_cost;
-
     public static final CardTags HASTE = GR.Enums.CardTags.HASTE;
     public static final CardTags PURGE = GR.Enums.CardTags.PURGE;
     public static final CardTags AUTOPLAY = GR.Enums.CardTags.AUTOPLAY;
@@ -47,6 +37,16 @@ public abstract class EYBCard extends EYBCardBase
     public final ArrayList<EYBCardTooltip> tooltips;
     public EYBCardTarget attackTarget = EYBCardTarget.Normal;
     public EYBAttackType attackType = EYBAttackType.Normal;
+
+    protected static final String UNPLAYABLE_MESSAGE = CardCrawlGame.languagePack.getCardStrings(Tactician.ID).EXTENDED_DESCRIPTION[0];
+    private static final Map<String, EYBCardData> staticCardData = new HashMap<>();
+
+    protected boolean isMultiUpgrade;
+    protected int upgrade_damage;
+    protected int upgrade_magicNumber;
+    protected int upgrade_secondaryValue;
+    protected int upgrade_block;
+    protected int upgrade_cost;
 
     public static EYBCardData GetStaticData(String cardID)
     {
@@ -330,6 +330,10 @@ public abstract class EYBCard extends EYBCardBase
         if (hasTag(AUTOPLAY))
         {
             dynamicTooltips.add(GR.Tooltips.Autoplay);
+        }
+        if (affinities.HasStar())
+        {
+            dynamicTooltips.add(GR.Tooltips.Affinity_Star);
         }
 
         if (attackType == EYBAttackType.Elemental)

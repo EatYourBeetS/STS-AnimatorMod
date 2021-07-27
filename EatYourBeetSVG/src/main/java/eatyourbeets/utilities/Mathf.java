@@ -193,11 +193,6 @@ public class Mathf
         return a.clamp();
     }
 
-    public static Color Copy(Color color, float a)
-    {
-        return new Color(color.r, color.g, color.b, a);
-    }
-
     public static void Add(Vector3f a, Vector3f b, float delta)
     {
         a.x = Max(0, a.x + (b.x * delta));

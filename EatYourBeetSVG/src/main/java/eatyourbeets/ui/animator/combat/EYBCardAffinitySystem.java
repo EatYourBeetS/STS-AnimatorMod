@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.powers.ApplyAffinityPower;
@@ -50,7 +49,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         Powers.add(Blessing = new BlessingPower());
         Powers.add(Corruption = new CorruptionPower());
 
-        hb = new DraggableHitbox(ScreenW(0.024f), ScreenH(0.65f), Scale(80f),  Scale(40f), true);
+        hb = new DraggableHitbox(ScreenW(0.02725f), ScreenH(0.415f), Scale(80f),  Scale(40f), true);
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));
 
         dragPanel_image = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
@@ -87,7 +86,20 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public int GetAffinityLevel(AffinityType type, AbstractCard ignored)
     {
-        return GetHandAffinities(ignored).GetLevel(type);
+        return GetHandAffinities(ignored).GetLevel(type, false);
+    }
+
+    public EYBCardAffinityRow GetRow(AffinityType type)
+    {
+        for (EYBCardAffinityRow row : rows)
+        {
+            if (row.Type == type)
+            {
+                return row;
+            }
+        }
+
+        return null;
     }
 
     public boolean IsSynergizing(AbstractCard card)
@@ -294,7 +306,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public void Update()
     {
-        if (player == null || AbstractDungeon.isScreenUp || CardCrawlGame.isPopupOpen)
+        if (player == null || AbstractDungeon.overlayMenu.energyPanel.isHidden)
         {
             return;
         }
@@ -330,7 +342,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public void Render(SpriteBatch sb)
     {
-        if (player == null || AbstractDungeon.isScreenUp || CardCrawlGame.isPopupOpen)
+        if (player == null || AbstractDungeon.overlayMenu.energyPanel.isHidden)
         {
             return;
         }

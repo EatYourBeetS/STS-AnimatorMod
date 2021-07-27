@@ -1,13 +1,24 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.OrbCore;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.animator.EvePower;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.VFX;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Eve extends AnimatorCard
 {
@@ -27,7 +38,7 @@ public class Eve extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 0);
+        Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Blue(2);
@@ -38,27 +49,67 @@ public class Eve extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (!p.hasPower(EvePower.POWER_ID))
+        GameActions.Bottom.StackPower(new EvePower(p, magicNumber));
+    }
+
+    public static class EvePower extends AnimatorClickablePower
+    {
+        public EvePower(AbstractCreature owner, int amount)
         {
-            GameActions.Bottom.StackPower(new EvePower(p, 1));
+            super(owner, Eve.DATA, PowerTriggerConditionType.Energy, 1);
+
+            this.amount = amount;
+            this.triggerCondition.SetOneUsePerPower(true);
         }
 
-        if (magicNumber > 0)
+        @Override
+        public void onSpecificTrigger()
         {
-            GameActions.Bottom.GainOrbSlots(magicNumber);
-        }
+            super.onSpecificTrigger();
 
-        GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
-        .AddCallback(orbCores ->
-        {
-            if (orbCores != null && orbCores.size() > 0)
+            GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, 1, 3)
+            .AddCallback(cards ->
             {
-                for (AbstractCard c : orbCores)
+                if (cards != null && cards.size() > 0)
                 {
-                    c.applyPowers();
-                    c.use(player, null);
+                    for (AbstractCard c : cards)
+                    {
+                        GameActions.Bottom.PlayCard(c, null);
+                        //c.applyPowers();
+                        //c.use(player, null);
+                        //CombatStats.Affinities.SetLastCardPlayed(c);
+                    }
+                }
+            }));
+        }
+
+        @Override
+        public void onAfterCardPlayed(AbstractCard usedCard)
+        {
+            super.onAfterCardPlayed(usedCard);
+
+            if (CombatStats.Affinities.IsSynergizing(usedCard))
+            {
+                int damage = CombatStats.Affinities.GetAffinityLevel(AffinityType.General, usedCard);
+                if (damage > 0)
+                {
+                    GameEffects.Queue.BorderFlash(Color.SKY);
+                    for (int i = 0; i < amount; i++)
+                    {
+                        GameActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
+                        .SetOptions(true, false)
+                        .SetDamageEffect(enemy ->
+                        {
+                            SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.1f, true);
+                            GameEffects.List.Add(VFX.SmallLaser(owner.hb, enemy.hb, Color.CYAN));
+                            return 0f;
+                        });
+                    }
+
+                    this.flash();
+                    this.updateDescription();
                 }
             }
-        }));
+        }
     }
 }

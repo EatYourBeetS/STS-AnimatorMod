@@ -100,10 +100,10 @@ public class EYBCardData
     {
         if (cardIcon == null)
         {
-            Texture texture = GR.GetTexture(ImagePath);
-            int h = texture.getHeight();
-            int w = texture.getWidth();
-            int section = h / 2;
+            final Texture texture = GR.GetTexture(ImagePath);
+            final int h = texture.getHeight();
+            final int w = texture.getWidth();
+            final int section = h / 2;
             cardIcon = new TextureAtlas.AtlasRegion(texture, (w / 2) - (section / 2), 0, section, section);
         }
 

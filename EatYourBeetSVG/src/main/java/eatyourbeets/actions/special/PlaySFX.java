@@ -1,7 +1,7 @@
 package eatyourbeets.actions.special;
 
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.effects.SFX;
 
 public class PlaySFX extends EYBAction//WithCallback<AbstractGameEffect> TODO: callback when sound is finished
 {
@@ -43,13 +43,6 @@ public class PlaySFX extends EYBAction//WithCallback<AbstractGameEffect> TODO: c
 
     public void Play()
     {
-        if (variable)
-        {
-            CardCrawlGame.sound.play(this.key, this.pitch);
-        }
-        else
-        {
-            CardCrawlGame.sound.playA(this.key, this.pitch);
-        }
+        SFX.Play(key, pitch, variable);
     }
 }

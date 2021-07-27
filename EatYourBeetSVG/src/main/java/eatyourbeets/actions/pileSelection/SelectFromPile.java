@@ -30,6 +30,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
     protected CardSelection origin;
     protected boolean canPlayerCancel;
     protected boolean anyNumber;
+    protected boolean selected;
 
     public SelectFromPile(String sourceName, int amount, CardGroup... groups)
     {
@@ -42,7 +43,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
 
         this.groups = groups;
         this.canPlayerCancel = false;
-        this.message = GR.Common.Strings.GridSelection.ChooseCards;
+        this.message = GR.Common.Strings.GridSelection.ChooseCards_F1;
 
         Initialize(amount, sourceName);
     }
@@ -172,6 +173,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
                 }
             }
 
+            selected = true;
             GridCardSelectScreenPatch.Clear();
             Complete(selectedCards);
         }
@@ -217,15 +219,25 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         if (AbstractDungeon.gridSelectScreen.selectedCards.size() != 0)
         {
             selectedCards.addAll(AbstractDungeon.gridSelectScreen.selectedCards);
+            selected = true;
 
             player.hand.group.addAll(fakeHandGroup.group);
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
             GridCardSelectScreenPatch.Clear();
         }
 
-        if (TickDuration(deltaTime))
+        if (selected)
         {
-            Complete(selectedCards);
+            if (TickDuration(deltaTime))
+            {
+                Complete(selectedCards);
+            }
+            return;
+        }
+
+        if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.GRID) // cancelled
+        {
+            Complete();
         }
     }
 }

@@ -540,6 +540,11 @@ public class GameUtilities
         return creature.currentHealth / (float) creature.maxHealth;
     }
 
+    public static float GetActualHealth(AbstractCreature creature)
+    {
+        return creature.currentHealth + TempHPField.tempHp.get(creature);
+    }
+
     public static EnemyIntent GetIntent(AbstractMonster enemy)
     {
         return new EnemyIntent(enemy);

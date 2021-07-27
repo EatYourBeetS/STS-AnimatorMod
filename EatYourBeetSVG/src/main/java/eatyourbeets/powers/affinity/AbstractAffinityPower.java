@@ -26,7 +26,7 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     protected static final int[] DEFAULT_THRESHOLDS = new int[]{3, 6, 9, 12};
     protected int thresholdIndex;
-    protected abstract void OnThresholdReached(int threshold);
+    protected abstract void OnThresholdReached(int thresholdIndex);
 
     public AbstractAffinityPower(AffinityType type, String powerID)
     {
@@ -151,11 +151,15 @@ public abstract class AbstractAffinityPower extends CommonPower
         Color amountColor = Settings.BLUE_TEXT_COLOR;
         if (retainedTurns != 0)
         {
-            RenderHelpers.DrawCentered(sb, Settings.HALF_TRANSPARENT_WHITE_COLOR, GR.Common.Images.Panel_Rounded_Half_H.Texture(), cX, cY, (w / scale) + 9, (h / scale) + 9, 1, 0);
+            RenderHelpers.DrawCentered(sb, RenderHelpers.CopyColor(Settings.GOLD_COLOR, 0.7f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, (w / scale) + 8, (h / scale) + 8, 1, 0);
+            RenderHelpers.DrawCentered(sb, RenderHelpers.BlackColor(0.9f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
             amountColor = Settings.GREEN_TEXT_COLOR;
         }
+        else
+        {
+            RenderHelpers.DrawCentered(sb, RenderHelpers.BlackColor(0.6f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
+        }
 
-        RenderHelpers.DrawCentered(sb, Color.BLACK, GR.Common.Images.Panel_Rounded_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
         RenderHelpers.DrawCentered(sb, new Color(1, 1, 1, enabled ? 1 : 0.5f), img, x + 16 * scale, cY + (3f * scale), 32, 32, 1, 0);
 
         final Integer threshold = GetCurrentThreshold();

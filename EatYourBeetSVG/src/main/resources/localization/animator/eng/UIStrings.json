@@ -66,36 +66,39 @@
 		]
 	},
 
-  "animator:Actions":
-  {
-	"TEXT":
-	[
-	  "Gain {0} {1}",
-	  "Apply {0} {1}",
-	  "Apply {0} {1} NL to ALL enemies",
-	  "Cycle {0} card(s)",
-	  "Draw {0} card(s)",
-	  "Discard {0} card(s)",
-	  "Exhaust {0} card(s)",
-
-	  "Gain {0} Orb Slot(s)",
-	  "Channel {0} random Orb(s)",
-	  "Channel {0} {1}",
-
-	  "Motivate {0}",
-	  "Upgrade all cards NL in your hand",
-	  "Gain !M! Intangible. NL Lose this Power",
-	  "Remove all of NL your debuffs",
-	  "Play the top card NL of your draw pile",
-	  "Stun the enemy",
-	  "Enter {0}",
-	  "Boost {0}",
-	  "Scry {0}",
-	  "Next turn: Gain {0} [Block]",
-	  "Next turn: Draw {0} card(s)",
-	  "Next turn: Gain {0} [E]"
-	]
-  },
+	"animator:Actions":
+	{
+		"TEXT":
+		[
+			"Gain {0} {1}",
+			"Apply {0} {1}",
+			"Apply {0} {1} NL to ALL enemies",
+			"Cycle {0} card(s)",
+			"Draw {0} card(s)",
+			"Discard {0} card(s)",
+			"Exhaust {0} card(s)",
+			
+			"Gain {0} Orb Slot(s)",		
+			"Channel {0} random Orb(s)",
+			"Channel {0} {1}",
+			
+			"Motivate {0}",
+			"Upgrade all cards NL in your hand",
+			"Gain !M! Intangible. NL Lose this Power",
+			"Remove all of NL your debuffs",
+			"Play the top card NL of your draw pile",
+			"Stun the enemy",
+			"Enter {0}",
+			"Boost {0}",
+			"Scry {0}",
+			"Next turn: Gain {0} [Block]",
+			"Next turn: Draw {0} card(s)",
+			"Next turn: Gain {0} [E]",
+			"Enter any stance",
+			"Pay {0} [E]",
+			"Lose {0} HP"
+		]
+	},
 
   "animator:Trophies":
   {

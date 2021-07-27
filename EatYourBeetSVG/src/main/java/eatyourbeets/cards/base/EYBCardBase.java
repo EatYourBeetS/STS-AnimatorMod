@@ -297,7 +297,7 @@ public abstract class EYBCardBase extends AbstractCard
     {
         if (!isSeen || isLocked)
         {
-            RenderPortraitImage(sb, GR.GetTexture(QuestionMark.DATA.ImagePath), _renderColor.Get(this), 1, false);
+            RenderPortraitImage(sb, GR.GetTexture(QuestionMark.DATA.ImagePath), _renderColor.Get(this), 1, false, false);
             return;
         }
 
@@ -305,39 +305,41 @@ public abstract class EYBCardBase extends AbstractCard
         ColoredTexture image = GetPortraitImage();
         if (image != null)
         {
-            RenderPortraitImage(sb, image.texture, image.color, image.scale, cropPortrait);
+            RenderPortraitImage(sb, image.texture, image.color, image.scale, cropPortrait, false);
         }
         image = GetPortraitForeground();
         if (image != null)
         {
-            RenderPortraitImage(sb, image.texture, image.color, image.scale, cropPortrait);
+            RenderPortraitImage(sb, image.texture, image.color, image.scale, cropPortrait, image.scale != 1);
         }
     }
 
-    protected void RenderPortraitImage(SpriteBatch sb, Texture texture, Color color, float scale, boolean cropPortrait)
+    protected void RenderPortraitImage(SpriteBatch sb, Texture texture, Color color, float scale, boolean cropPortrait, boolean useTextureSize)
     {
         if (color == null)
         {
             color = _renderColor.Get(this);
         }
 
+        final float render_width = useTextureSize ? texture.getWidth() : 250;
+        final float render_height = useTextureSize ? texture.getWidth() : 190;
         if (cropPortrait && drawScale > 0.6f && drawScale < 1)
         {
-            int width = texture.getWidth();
-            int height = texture.getHeight();
-            int offset_x = (int) ((1 - drawScale) * (0.5f * width));
-            int offset_y1 = 0;//(int) ((1-drawScale) * (0.5f * height));
-            int offset_y2 = (int) ((1 - drawScale) * (1f * height));
-            TextureRegion region = new TextureRegion(texture, offset_x, offset_y1, width - (2 * offset_x), height - offset_y1 - offset_y2);
-            RenderHelpers.DrawOnCardAuto(sb, this, region, new Vector2(0, 72), 250, 190, color, transparency, scale);
+            final int width = texture.getWidth();
+            final int height = texture.getHeight();
+            final int offset_x = (int) ((1 - drawScale) * (0.5f * width));
+            final int offset_y1 = 0;//(int) ((1-drawScale) * (0.5f * height));
+            final int offset_y2 = (int) ((1 - drawScale) * (1f * height));
+            final TextureRegion region = new TextureRegion(texture, offset_x, offset_y1, width - (2 * offset_x), height - offset_y1 - offset_y2);
+            RenderHelpers.DrawOnCardAuto(sb, this, region, new Vector2(0, 72), render_width, render_height, color, transparency, scale);
         }
         else if (isPopup)
         {
-            RenderHelpers.DrawOnCardAuto(sb, this, texture, new Vector2(0, 72), 500, 380, color, transparency, scale * 0.5f);
+            RenderHelpers.DrawOnCardAuto(sb, this, texture, new Vector2(0, 72), render_width*2, render_height*2, color, transparency, scale * 0.5f);
         }
         else
         {
-            RenderHelpers.DrawOnCardAuto(sb, this, texture, new Vector2(0, 72), 250, 190, color, transparency, scale);
+            RenderHelpers.DrawOnCardAuto(sb, this, texture, new Vector2(0, 72), render_width, render_height, color, transparency, scale);
         }
     }
 

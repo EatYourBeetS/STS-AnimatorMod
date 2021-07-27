@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.auras;
+package eatyourbeets.cards.animator.enchantments;
 
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,17 +12,18 @@ import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
-public class Aura1 extends Aura
+public class Enchantment1 extends Enchantment
 {
-    public static final EYBCardData DATA = RegisterAura(Aura1.class);
+    public static final int INDEX = 1;
+    public static final EYBCardData DATA = RegisterAura(Enchantment1.class);
     public static final float D_X = CardGroup.DRAW_PILE_X * 1.5f;
     public static final float D_Y = CardGroup.DRAW_PILE_Y * 3.5f;
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
-    public Aura1()
+    public Enchantment1()
     {
-        super(DATA);
+        super(DATA, INDEX);
 
         Initialize(0, 0, 1);
         SetUpgrade(0, 0, 1);

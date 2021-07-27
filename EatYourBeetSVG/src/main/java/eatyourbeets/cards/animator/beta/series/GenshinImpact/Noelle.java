@@ -56,7 +56,7 @@ public class Noelle extends AnimatorCard
             }
         }
 
-        if (CheckTeamwork(AffinityType.Orange, 2) && CombatStats.TryActivateSemiLimited(cardID))
+        if (CheckAffinity(AffinityType.Orange, 2) && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.SelectFromHand(name, magicNumber, false)
                     .SetOptions(true, true, true)

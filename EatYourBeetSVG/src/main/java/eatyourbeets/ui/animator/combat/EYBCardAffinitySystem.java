@@ -29,6 +29,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     public final ForcePower Force;
     public final AgilityPower Agility;
     public final IntellectPower Intellect;
+    public final WillpowerPower Willpower;
     public final BlessingPower Blessing;
     public final CorruptionPower Corruption;
 
@@ -45,6 +46,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         Powers.add(Force = new ForcePower());
         Powers.add(Agility = new AgilityPower());
         Powers.add(Intellect = new IntellectPower());
+        Powers.add(Willpower = new WillpowerPower());
         Powers.add(Blessing = new BlessingPower());
         Powers.add(Corruption = new CorruptionPower());
 

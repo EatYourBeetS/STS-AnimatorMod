@@ -37,7 +37,7 @@ public class Arpeggio extends AnimatorCard
 
         GameActions.Bottom.GainIntellect(secondaryValue, false);
 
-        if (CheckTeamwork(AffinityType.Red, 2) && CheckTeamwork(AffinityType.Blue, 2) && CombatStats.TryActivateLimited(cardID))
+        if (CheckAffinity(AffinityType.Red, 2) && CheckAffinity(AffinityType.Blue, 2) && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ChannelOrb(new Earth());
         }

@@ -14,7 +14,7 @@ import java.text.DecimalFormat;
 public class ResiliencePower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(ResiliencePower.class);
-    public static final int MULTIPLIER = 5;
+    public static final int MULTIPLIER = 10;
     private float percentage;
 
     public static float CalculatePercentage(int amount)

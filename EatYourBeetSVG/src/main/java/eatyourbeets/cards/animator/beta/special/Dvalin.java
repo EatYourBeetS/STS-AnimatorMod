@@ -13,10 +13,11 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Dvalin extends AnimatorCard
+public class Dvalin extends AnimatorCard implements Hidden
 {
     public static final EYBCardData DATA = Register(Dvalin.class).SetAttack(3, CardRarity.SPECIAL, EYBAttackType.Normal).SetSeries(CardSeries.GenshinImpact);
 

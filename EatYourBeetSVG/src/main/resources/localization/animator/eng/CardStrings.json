@@ -313,7 +313,7 @@
 		},
 		"animator:GarbageDoll":
 		{
-		  "DESCRIPTION": "Purge up to !M! cards in your Exhaust pile. Gain the {Affinity Power} of the affinities ** of each card Purged. || <LIM>. If you Purged {Ushio}: Add it back to your hand.",
+		  "DESCRIPTION": "Purge a card in your Exhaust pile. Play a random card in your Discard Pile that has any of the affinities of the Purged card. || <LIM>. If you Purged {Ushio}: Add it back to your hand.",
 		  "EXTENDED_DESCRIPTION": ["Choose {0} cards to Purge."],
 		  "NAME": "Garbage Doll"
 		},

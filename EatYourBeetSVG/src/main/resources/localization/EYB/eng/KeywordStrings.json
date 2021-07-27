@@ -320,7 +320,7 @@
 	},
 	"Willpower":
 	{
-	  "DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain #yResilience.",
+	  "DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [W], gain #yResilience.",
 	  "NAMES": ["willpower"],
 	  "PROPER_NAME": "Willpower"
 	},

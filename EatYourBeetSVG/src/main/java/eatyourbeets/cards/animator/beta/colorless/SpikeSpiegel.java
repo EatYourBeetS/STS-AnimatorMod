@@ -62,7 +62,7 @@ public class SpikeSpiegel extends AnimatorCard
         });
 
 
-        if (GetTeamwork(null) >= secondaryValue && CombatStats.TryActivateLimited(cardID))
+        if (GetHandAffinity(null) >= secondaryValue && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.MakeCardInDrawPile(new SwordfishII()).SetUpgrade(upgraded, false);
         }

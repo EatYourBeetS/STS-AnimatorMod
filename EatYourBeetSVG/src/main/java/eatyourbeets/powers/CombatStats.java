@@ -26,13 +26,13 @@ import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.subscribers.*;
-import eatyourbeets.powers.common.ResiliencePower;
 import eatyourbeets.orbs.EYBOrb;
+import eatyourbeets.powers.common.ResiliencePower;
 import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.common.ControllableCardPile;
 import eatyourbeets.ui.animator.combat.EYBCardAffinitySystem;
+import eatyourbeets.ui.common.ControllableCardPile;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import patches.CardGlowBorderPatches;
@@ -79,7 +79,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
     public static final GameEvent<OnBattleEndSubscriber> onBattleEnd = new GameEvent<>();
 
-    public static EYBCardAffinitySystem Affinities = new EYBCardAffinitySystem();
     public static final ControllableCardPile ControlPile = new ControllableCardPile();
     public static boolean LoadingPlayerSave;
 

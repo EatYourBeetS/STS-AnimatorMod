@@ -46,7 +46,7 @@ public class Klee extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
         GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Burning, magicNumber);
 
-        int additionalCount = (CheckTeamwork(AffinityType.Red, 3) ? 1 : 0);
+        int additionalCount = (CheckAffinity(AffinityType.Red, 3) ? 1 : 0);
         for (int i = 0; i < secondaryValue + additionalCount; i++)
         {
             GameActions.Bottom.MakeCardInDrawPile(new JumpyDumpty()).SetUpgrade(upgraded, false);

@@ -56,7 +56,7 @@ public class Spearman extends AnimatorCard
             choices.Initialize(this);
         }
 
-        if (!CombatStats.HasActivatedSemiLimited(cardID))
+        if (CombatStats.CanActivateSemiLimited(cardID))
         {
             for (AbstractCard c : p.hand.group)
             {

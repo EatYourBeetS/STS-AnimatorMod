@@ -105,7 +105,7 @@
 	{
 		"animator:Emilia":
 		{
-			"DESCRIPTION": "Channel !M! [Frost]. || Next turn: Channel ** 1 Lightning for each ** Frost Orb you have.",
+			"DESCRIPTION": "Channel !M! [Frost]. || Next turn: Channel ** 1 Lightning for each ** Frost orb you have.",
 			"NAME": "Emilia"
 		},
 		"animator:HarukoHaruhara":
@@ -146,7 +146,7 @@
 		},
 		"animator:Patchouli":
 		{
-			"DESCRIPTION": "Attack 1 additional time ** for each unique Orb ** Channeled this combat. || <LIM>. At the start of ** combat, add a random {Orb} ** {Core} to your discard pile.",
+			"DESCRIPTION": "Attack 1 additional time ** for each unique orb ** Channeled this combat. || <LIM>. At the start of ** combat, add a random {Orb} ** {Core} to your discard pile.",
 			"NAME": "Patchouli"
 		},
 		"animator:TakanashiRikka":
@@ -197,7 +197,7 @@
 		},
 		"animator:Magilou":
 		{
-			"DESCRIPTION": "Trigger your first Orb ** !M! time(s), then Evoke it. || <LIM>. When Drawn: ** Discard this and add ** {Bienfu} to your hand.",
+			"DESCRIPTION": "Trigger your first orb ** !M! time(s), then Evoke it. || <LIM>. When Drawn: ** Discard this and add ** {Bienfu} to your hand.",
 			"NAME": "Magilou"
 		},
 		"animator:MamizouFutatsuiwa":
@@ -283,7 +283,7 @@
 		},
 		"animator:Aisha":
 		{
-			"DESCRIPTION": "Deal !S! additional damage ** for each Orb you have. || <slm>. If you Evoked an ** orb this turn: Gain 2 [I] [C].",
+			"DESCRIPTION": "Deal !S! additional damage ** for each orb you have. || <slm>. If you Evoked an ** orb this turn: Gain 2 [I] [C].",
 			"NAME": "Aisha"
 		},
 		"animator:Ara":
@@ -367,8 +367,8 @@
 		},
 		"animator:Caster":
 		{
-			"DESCRIPTION": "Channel 1 [Dark]. || Synergy or Exhaust: ** Choose !S!: Evoke your ** first Orb, Apply !M! [Shackles], ** or Gain [F] [I].",
-			"EXTENDED_DESCRIPTION": ["Evoke your first Orb.", "Apply {0} [Shackles].", "Gain [F] [I]."],
+			"DESCRIPTION": "Channel 1 [Dark]. || Synergy or Exhaust: ** Choose !S!: Evoke your ** first orb, Apply !M! [Shackles], ** or Gain [F] [I].",
+			"EXTENDED_DESCRIPTION": ["Evoke your first orb.", "Apply {0} [Shackles].", "Gain [F] [I]."],
 			"NAME": "Caster"
 		},
 		"animator:EmiyaShirou":
@@ -398,7 +398,7 @@
 		},
 		"animator:RinTohsaka":
 		{
-			"DESCRIPTION": "Gain !S! {Temp}. [Artifact]. || <slm>. Synergy: ** {Channel} a copy of ** your first Orb.",
+			"DESCRIPTION": "Gain !S! {Temp}. [Artifact]. || <slm>. Synergy: ** {Channel} a copy of ** your first orb.",
 			"NAME": "Rin Tohsaka"
 		},
 		"animator:Saber":
@@ -488,7 +488,7 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !S! [I]. ** Gain !M! Orb Slot(s). || 2 <B>, 2 <R>: ** Channel 1 [Earth].",
+			"DESCRIPTION": "Gain !S! [I]. ** Gain !M! orb slot(s). || 2 <B>, 2 <R>: ** Channel 1 [Earth].",
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":
@@ -1012,7 +1012,7 @@
 		},
 		"animator:Jibril":
 		{
-			"DESCRIPTION": "Channel 1 [Dark]. ** Lose no [I] next turn. || On Synergy: Shuffle ** your Orbs, then trigger ** your first !M! Orbs.",
+			"DESCRIPTION": "Channel 1 [Dark]. ** Lose no [I] next turn. || On Synergy: Shuffle ** your orbs, then trigger ** your first !M! orbs.",
 			"NAME": "Jibril"
 		},
 		"animator:Shiro":
@@ -1087,7 +1087,7 @@
 		},
 		"animator:Tatsumaki":
 		{
-			"DESCRIPTION": "Channel 1 [Aether]. || <IS>: Gain 1 Orb Slot. || <slm>. If in Neutral ** Stance: Enter <IS>. ** Otherwise: Exit your Stance.",
+			"DESCRIPTION": "Channel 1 [Aether]. || <IS>: Gain 1 orb slot. || <slm>. If in Neutral ** Stance: Enter <IS>. ** Otherwise: Exit your Stance.",
 			"NAME": "Tatsumaki"
 		}
 	},
@@ -1122,7 +1122,7 @@
 		},
 		"animator:Evileye":
 		{
-			"DESCRIPTION": "<DRW-M>. Reload: ** Trigger your next Orb. || <LIM>. Synergy: Gain ** 2 [I] and 1 Orb Slot.",
+			"DESCRIPTION": "<DRW-M>. Reload: ** Trigger your next orb. || <LIM>. Synergy: Gain ** 2 [I] and 1 orb slot.",
 			"NAME": "Evileye"
 		},
 		"animator:NarberalGamma":
@@ -1361,7 +1361,7 @@
 		},
 		"animator:ElricAlphonseAlt":
 		{
-			"DESCRIPTION": "Gain 1 Orb Slot. ** Channel !S! [Lightning]. || Synergy: Gain !M! [Plated Armor].",
+			"DESCRIPTION": "Gain 1 orb slot. ** Channel !S! [Lightning]. || Synergy: Gain !M! [Plated Armor].",
 			"NAME": "Armored Alphonse"
 		},
 		"animator:EntouJyuu":
@@ -1417,7 +1417,7 @@
 		},
 		"animator:OrbCore_Chaos":
 		{
-			"DESCRIPTION": "Channel !S! Random Orb. || On your second ** Synergy each turn: ** Choose 1 of 3 cards to ** obtain, it costs 1 less.",
+			"DESCRIPTION": "Channel !S! [Random Orb]. || On your second ** Synergy each turn: ** Choose 1 of 3 cards to ** obtain, it costs 1 less.",
 			"NAME": "Chaos Core"
 		},
 		"animator:OrbCore_Dark":
@@ -1457,7 +1457,7 @@
 		},
 		"animator:ShinjiMatou_CommandSpell":
 		{
-			"DESCRIPTION": "Lose 1 Orb Slot to play a ** card which Synergizes ** with this card from ** your discard pile.",
+			"DESCRIPTION": "Lose 1 orb slot to play a ** card which Synergizes ** with this card from ** your discard pile.",
 			"NAME": "Command Spell"
 		},
 		"animator:TanyaDegurechaff_Type95":
@@ -1610,18 +1610,18 @@
 		},
 		"animator:Truth":
 		{
-			"DESCRIPTION": "Gain !M! [F], [A], [I] and [E]. || If you have at least 3 ** unique Orbs: Remove all your ** Orbs. Otherwise choose and ** replace a card in your deck ** with a {~Wound}.",
+			"DESCRIPTION": "Gain !M! [F], [A], [I] and [E]. || If you have at least 3 ** unique orbs: Remove all your ** orbs. Otherwise choose and ** replace a card in your deck ** with a {~Wound}.",
 			"NAME": "Truth"
 		},
 		"animator:Veldora":
 		{
-			"DESCRIPTION": "Gain !S! [I]. Evoke ** ALL orbs !M! times. || When Drawn: Channel ** 2 random Orbs.",
+			"DESCRIPTION": "Gain !S! [I]. Evoke ** ALL orbs !M! times. || When Drawn: Channel ** 2 random orbs.",
 			"NAME": "Veldora"
 		},
 		"animator:Walpurgisnacht":
 		{
-			"DESCRIPTION": "Add !M! random Spellcaster(s) ** to your hand. They cost 0 ** this turn. || At start of turn: Evoke your ** next Orb for each Curse and ** Spellcaster in your hand.",
-			"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next Orb once for each #yCurse plus each #ySpellcaster in your hand."],
+			"DESCRIPTION": "Add !M! random Spellcaster(s) ** to your hand. They cost 0 ** this turn. || At start of turn: Evoke your ** next orb for each Curse and ** Spellcaster in your hand.",
+			"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next orb once for each #yCurse plus each #ySpellcaster in your hand."],
 			"NAME": "Walpurgisnacht"
 		}
 	}

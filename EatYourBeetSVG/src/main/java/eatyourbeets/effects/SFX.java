@@ -10,6 +10,7 @@ public class SFX
     public static final String ATTACK_HEAVY = "ATTACK_HEAVY";
     public static final String ATTACK_MAGIC_BEAM_SHORT = "ATTACK_MAGIC_BEAM_SHORT";
     public static final String ATTACK_WHIRLWIND = "ATTACK_WHIRLWIND";
+    public static final String CARD_EXHAUST = "CARD_EXHAUST";
     public static final String EVENT_VAMP_BITE = "EVENT_VAMP_BITE";
     public static final String ORB_DARK_CHANNEL = "ORB_DARK_CHANNEL";
     public static final String ORB_DARK_EVOKE = "ORB_DARK_EVOKE";

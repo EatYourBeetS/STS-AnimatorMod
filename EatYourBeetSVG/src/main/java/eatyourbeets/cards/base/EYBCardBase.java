@@ -368,6 +368,8 @@ public abstract class EYBCardBase extends AbstractCard
         {
             SpireSuper.call(sb, x, y);
         }
+
+        TryRenderCentered(sb, GetCardBorderIndicator());
     }
 
     @SpireOverride
@@ -424,6 +426,11 @@ public abstract class EYBCardBase extends AbstractCard
     }
 
     protected ColoredTexture GetCardBanner()
+    {
+        return null;
+    }
+
+    protected ColoredTexture GetCardBorderIndicator()
     {
         return null;
     }

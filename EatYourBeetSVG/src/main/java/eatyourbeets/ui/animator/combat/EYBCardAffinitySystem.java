@@ -162,7 +162,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public boolean CanActivateSynergyBonus(AffinityType type)
     {
-        return type.ID >= 0 && !CombatStats.HasActivatedSemiLimited(type.name());
+        return type.ID >= 0 && CombatStats.CanActivateSemiLimited(type.name());
     }
 
     public ApplyAffinityPower ActivateSynergyBonus(AffinityType type)

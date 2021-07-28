@@ -11,15 +11,14 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.ColoredTexture;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.*;
 
 public abstract class AnimatorCard extends EYBCard
 {
     protected static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
     protected static final Color synergyGlowColor = new Color(1, 0.843f, 0, 0.25f);
     protected AnimatorCardCooldown cooldown;
+    protected Color borderIndicatorColor;
 
     public static final AnimatorImages IMAGES = GR.Animator.Images;
     public CardSeries series;
@@ -73,6 +72,11 @@ public abstract class AnimatorCard extends EYBCard
         return CombatStats.Affinities.WouldSynergize(this, other);
     }
 
+    public boolean CheckSpecialCondition(boolean use)
+    {
+        return false;
+    }
+
     public void SetSeries(CardSeries series)
     {
         this.series = series;
@@ -97,7 +101,25 @@ public abstract class AnimatorCard extends EYBCard
     {
         super.triggerOnGlowCheck();
 
-        this.glowColor = HasSynergy() ? synergyGlowColor : defaultGlowColor;
+        this.glowColor = defaultGlowColor;
+        this.borderIndicatorColor = null;
+
+        if (CheckSpecialCondition(false))
+        {
+            this.glowColor = AbstractCard.GREEN_BORDER_GLOW_COLOR;
+            this.borderIndicatorColor = glowColor;
+        }
+
+        if (HasSynergy())
+        {
+            this.glowColor = synergyGlowColor;
+        }
+    }
+
+    @Override
+    protected void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
     }
 
     @Override
@@ -196,12 +218,13 @@ public abstract class AnimatorCard extends EYBCard
     @Override
     protected Texture GetEnergyOrb()
     {
-        if (color == GR.Animator.CardColor)
-        {
-            return IMAGES.CARD_ENERGY_ORB_A.Texture();
-        }
+        return color == GR.Animator.CardColor ? IMAGES.CARD_ENERGY_ORB_A.Texture() : null;
+    }
 
-        return null;
+    @Override
+    protected ColoredTexture GetCardBorderIndicator()
+    {
+        return borderIndicatorColor == null ? null : new ColoredTexture(IMAGES.CARD_BORDER_INDICATOR.Texture(), borderIndicatorColor);
     }
 
     @Override

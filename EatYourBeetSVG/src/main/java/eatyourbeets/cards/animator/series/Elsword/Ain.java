@@ -64,7 +64,7 @@ public class Ain extends AnimatorCard
             GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE).SetVFX(false, true);
         }
 
-        if (GameActionManager.totalDiscardedThisTurn > 0)
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
         }
@@ -73,5 +73,11 @@ public class Ain extends AnimatorCard
         {
             GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(AffinityType.Blue, false));
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean use)
+    {
+        return GameActionManager.totalDiscardedThisTurn > 0;
     }
 }

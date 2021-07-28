@@ -92,15 +92,18 @@ public class CombatStats extends EYBPower implements InvisiblePower
     private static int cardsExhaustedThisTurn = 0;
 
     //@Formatter: Off
+    public static boolean CanActivateLimited(String id) { return !combatData.containsKey(id); }
     public static boolean HasActivatedLimited(String id) { return combatData.containsKey(id); }
+    public static boolean CanActivateSemiLimited(String id) { return !turnData.containsKey(id); }
     public static boolean HasActivatedSemiLimited(String id) { return turnData.containsKey(id); }
     public static boolean TryActivateLimited(String id) { return combatData.put(id, 1) == null; }
     public static boolean TryActivateSemiLimited(String id) { return turnData.put(id, 1) == null; }
 
-    public static boolean HasActivatedLimited(String id, int cap) { return combatData.containsKey(id) && (int)combatData.get(id) >= cap; }
-    public static boolean HasActivatedSemiLimited(String id, int cap) { return turnData.containsKey(id) && (int)turnData.get(id) >= cap; }
-    public static boolean TryActivateLimited(String id, int cap) { return JUtils.IncrementMapElement(combatData, id) <= cap; }
-    public static boolean TryActivateSemiLimited(String id, int cap) { return JUtils.IncrementMapElement(turnData, id) <= cap; }
+//    Unused, uncomment if you decide to reimplement Limited/Semi-limited with more than 1 use
+//    public static boolean HasActivatedLimited(String id, int cap) { return combatData.containsKey(id) && (int)combatData.get(id) >= cap; }
+//    public static boolean HasActivatedSemiLimited(String id, int cap) { return turnData.containsKey(id) && (int)turnData.get(id) >= cap; }
+//    public static boolean TryActivateLimited(String id, int cap) { return JUtils.IncrementMapElement(combatData, id) <= cap; }
+//    public static boolean TryActivateSemiLimited(String id, int cap) { return JUtils.IncrementMapElement(turnData, id) <= cap; }
     //@Formatter: On
 
     protected CombatStats()

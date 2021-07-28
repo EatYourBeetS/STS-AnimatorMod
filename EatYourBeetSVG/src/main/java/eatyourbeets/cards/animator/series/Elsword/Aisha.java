@@ -59,10 +59,16 @@ public class Aisha extends AnimatorCard
             });
         }
 
-        if (CombatStats.OrbsEvokedThisTurn().size() > 0)
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.GainIntellect(2);
             GameActions.Bottom.GainCorruption(2);
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean use)
+    {
+        return CombatStats.OrbsEvokedThisTurn().size() > 0 && (use ? CombatStats.TryActivateSemiLimited(cardID) : CombatStats.CanActivateSemiLimited(cardID));
     }
 }

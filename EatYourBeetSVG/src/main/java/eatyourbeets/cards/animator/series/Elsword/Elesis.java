@@ -103,8 +103,8 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
             {
                 GameActions.Bottom.SpendEnergy(999, true).AddCallback(amount ->
                 {
-                    GameActions.Bottom.GainForce(amount);
-                    GameActions.Bottom.GainAgility(amount);
+                    GameActions.Bottom.GainForce(amount * 2);
+                    GameActions.Bottom.GainAgility(amount * 2);
                 });
                 AddDamageBonus(-bonusDamage);
                 break;

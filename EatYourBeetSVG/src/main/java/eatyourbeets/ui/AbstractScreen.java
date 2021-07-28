@@ -63,7 +63,7 @@ public abstract class AbstractScreen extends GUIElement
             AbstractDungeon.screen = previous;
         }
 
-        if (AbstractDungeon.player == null)
+        if (AbstractDungeon.player == null || !GameUtilities.InGame())
         {
             AbstractDungeon.isScreenUp = !IsNullOrNone(previous);
             return;

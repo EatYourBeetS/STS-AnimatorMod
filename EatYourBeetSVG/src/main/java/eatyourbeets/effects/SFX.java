@@ -14,6 +14,8 @@ public class SFX
     public static final String ORB_FROST_CHANNEL = "ORB_FROST_CHANNEL";
     public static final String ATTACK_FIRE = "ATTACK_FIRE";
     public static final String EVENT_VAMP_BITE = "EVENT_VAMP_BITE";
+    public static final String UI_HOVER = "UI_HOVER";
+    public static final String UI_CLICK_1 = "UI_CLICK_1";
 
     public static void Play(String key, float pitchAdjustment, boolean variable)
     {
@@ -25,6 +27,11 @@ public class SFX
         {
             CardCrawlGame.sound.playA(key, pitchAdjustment);
         }
+    }
+
+    public static void Play(String key)
+    {
+        CardCrawlGame.sound.play(key);
     }
 
     public static PlaySFX Create(String key, float pitchAdjustment, boolean variable)

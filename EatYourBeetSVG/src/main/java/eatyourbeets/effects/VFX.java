@@ -79,8 +79,8 @@ public class VFX
     public static SmallLaserEffect SmallLaser(Hitbox source, Hitbox target, Color color)
     {
         return new SmallLaserEffect(source.cX, source.cY,
-                target.cX + (MathUtils.random(-0.15f, 0.15f) * target.width),
-                target.cY + (MathUtils.random(-0.15f, 0.15f) * target.height), color);
+                target.cX + (MathUtils.random(-0.2f, 0.2f) * target.width),
+                target.cY + (MathUtils.random(-0.2f, 0.2f) * target.height), color);
     }
 
     public static FallingIceEffect FallingIce(int frostCount)

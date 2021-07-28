@@ -25,17 +25,11 @@ public class Aisha extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 0);
-        SetUpgrade(0, 0, 1);
+        Initialize(2, 0, 2, 2);
+        SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Dark(1, 0, 1);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        upgradedDamage = true;
     }
 
     @Override
@@ -49,7 +43,7 @@ public class Aisha extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        GameUtilities.IncreaseMagicNumber(this, player.filledOrbCount(), true);
+        GameUtilities.IncreaseDamage(this, player.filledOrbCount() * secondaryValue, true);
     }
 
     @Override
@@ -58,19 +52,17 @@ public class Aisha extends AnimatorCard
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE).SetVFX(true, false)
-            .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.VIOLET)).duration * 0.1f);
+            .SetDamageEffect(enemy ->
+            {
+                GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.PURPLE));
+                return GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.VIOLET)).duration * 0.1f;
+            });
         }
-    }
 
-    @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
-        super.triggerWhenCreated(startOfBattle);
-
-        if (startOfBattle && CombatStats.TryActivateLimited(cardID))
+        if (CombatStats.OrbsEvokedThisTurn().size() > 0)
         {
-            GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.GainOrbSlots(1);
+            GameActions.Bottom.GainIntellect(2);
+            GameActions.Bottom.GainCorruption(2);
         }
     }
 }

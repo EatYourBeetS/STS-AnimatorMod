@@ -278,17 +278,17 @@
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "If you discarded ** a card this turn: ** Enter <IS>. || Synergy: Gain [I].",
+			"DESCRIPTION": "If you discarded ** a card this turn: ** Enter <IS>. || !S! <L>: Obtain {<B> Token}.",
 			"NAME": "Ain"
 		},
 		"animator:Aisha":
 		{
-			"DESCRIPTION": "Attack 1 additional time ** for each Orb you have. || <LIM>. At the start of ** combat: Gain 1 Orb Slot.",
+			"DESCRIPTION": "Deal !S! additional damage ** for each Orb you have. || <slm>. If you Evoked an ** orb this turn: Gain 2 [I] [C].",
 			"NAME": "Aisha"
 		},
 		"animator:Ara":
 		{
-			"DESCRIPTION": "<DRW> for every ** {Debuff} on the enemy. ** Discard 1 card. || If you discarded a ** {Power}: Enter <AS>",
+			"DESCRIPTION": "<DRW> for every ** {Debuff} on the enemy. ** Discard 1 card. || !S! <R>: Apply !M! [Vulnerable].",
 			"NAME": "Ara"
 		},
 		"animator:Chung":
@@ -298,15 +298,14 @@
 		},
 		"animator:Ciel":
 		{
-			"DESCRIPTION": "<ST>: Apply !M! [Vulnerable] [~Lock-On]. || Increase the damage ** of every copy of {Lu} ** by !S! this combat.",
+			"DESCRIPTION": "Increase the damage of ** every copy of {Lu} by !M!. || !S! <B>: Apply 2 [~Lock-On]. || !S! <G>: Gain 1 [Blur].",
 			"NAME": "Ciel"
 		},
 		"animator:Elesis":
 		{
 			"DESCRIPTION": "At the start of combat, ** choose 1 of 3 {Forms} and ** permanently change ** this card into it.",
-			"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain that much [F] and [A]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply 1 [Burning] for ** every {Debuff} on ** the enemy. || <slm>. Synergy or ** Discard: <DRW>.", "Apply 1 [Vulnerable]. || At the start of each ** combat: Lose !M! HP."],
-			"NAME": "Elesis",
-			"UPGRADE_DESCRIPTION": "At the start of combat, ** choose 1 of 3 Upgraded ** {Forms} and permanently ** change this card into it."
+			"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain twice that much [F] [A]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply 1 [Burning] for every ** {Debuff} on the enemy. || <slm>. Synergy or ** Discard: <DRW>.", "Apply 1 [Vulnerable]. || At the start of each ** combat: Lose !M! HP."],
+			"NAME": "Elesis"
 		},
 		"animator:Elsword":
 		{
@@ -1489,7 +1488,7 @@
 	{
 		"animator:Crystallize":
 		{
-			"DESCRIPTION": "Lose !S! HP twice. || Gain !M! [Metallicize]. || Boost [C].",
+			"DESCRIPTION": "Lose !S! HP twice. || Gain !M! [Metallicize] and 1 [C].",
 			"NAME": "Crystallize"
 		},
 		"animator:GoblinChampion":

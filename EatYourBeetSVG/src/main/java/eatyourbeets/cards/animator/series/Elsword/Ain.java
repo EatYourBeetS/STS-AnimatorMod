@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.stances.IntellectStance;
@@ -24,10 +25,10 @@ public class Ain extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 2, 1);
+        Initialize(3, 0, 2, 3);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Blue(2, 0, 2);
     }
 
     @Override
@@ -68,9 +69,9 @@ public class Ain extends AnimatorCard
             GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
         }
 
-        if (isSynergizing)
+        if (CheckAffinity(AffinityType.Light, secondaryValue))
         {
-            GameActions.Bottom.GainIntellect(secondaryValue);
+            GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(AffinityType.Blue, false));
         }
     }
 }

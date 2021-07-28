@@ -20,6 +20,10 @@ public class Ain extends AnimatorCard
     public static final EYBCardData DATA = Register(Ain.class)
             .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
             .SetSeries(CardSeries.Elsword);
+    static
+    {
+        DATA.AddPreview((EYBCard) AffinityToken.GetCard(AffinityType.Blue).CreateNewInstance(), false);
+    }
 
     public Ain()
     {

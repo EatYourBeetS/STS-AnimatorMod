@@ -25,13 +25,19 @@ public abstract class AffinityToken extends AnimatorCard
 
     public static EYBCardData Register(Class<? extends AnimatorCard> type)
     {
-        EYBCardData data = AnimatorCard.Register(type).SetPower(2, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
-        cards.add(data);
-        return data;
+        return AnimatorCard.Register(type).SetPower(2, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
     }
 
     public static ArrayList<EYBCardData> GetCards()
     {
+        if (cards.isEmpty())
+        {
+            for (AffinityType type : AffinityType.BasicTypes())
+            {
+                cards.add(GetCard(type));
+            }
+        }
+
         return cards;
     }
 

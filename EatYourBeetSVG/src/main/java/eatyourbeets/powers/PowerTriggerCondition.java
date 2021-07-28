@@ -3,6 +3,7 @@ package eatyourbeets.powers;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.GameActions;
@@ -109,7 +110,7 @@ public class PowerTriggerCondition
     {
         switch (type)
         {
-            case Energy: return AbstractDungeon.player.energy.energy >= requiredAmount;
+            case Energy: return EnergyPanel.getCurrentEnergy() >= requiredAmount;
 
             case Discard: case Exhaust: return AbstractDungeon.player.hand.size() >= requiredAmount;
 

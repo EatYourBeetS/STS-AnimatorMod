@@ -564,7 +564,7 @@ public class RenderHelpers
                         }
                         else
                         {
-                            font.setColor(Color.WHITE);
+                            font.setColor(baseColor);
                         }
 
                         layout.setText(font, word);

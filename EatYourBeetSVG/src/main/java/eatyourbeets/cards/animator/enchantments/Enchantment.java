@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.enchantments;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.markers.Hidden;
@@ -81,12 +82,12 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
 
     public boolean CanUsePower(int cost)
     {
-        return player.energy.energy >= cost;
+        return EnergyPanel.getCurrentEnergy() >= cost;
     }
 
     public void PayPowerCost(int cost)
     {
-        player.energy.use(cost);
+        EnergyPanel.useEnergy(cost);
     }
 
     public abstract int GetMaxUpgradeIndex();

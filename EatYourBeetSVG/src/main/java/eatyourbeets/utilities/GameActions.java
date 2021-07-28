@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
@@ -50,6 +49,7 @@ import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.actions.powers.ReducePower;
 import eatyourbeets.actions.powers.ReduceStrength;
 import eatyourbeets.actions.special.DelayAllActions;
+import eatyourbeets.actions.special.PlaySFX;
 import eatyourbeets.actions.special.PlayVFX;
 import eatyourbeets.actions.special.SelectCreature;
 import eatyourbeets.actions.utility.CallbackAction;
@@ -796,14 +796,14 @@ public final class GameActions
         return Add(new ReshuffleDiscardPile(onlyIfEmpty));
     }
 
-    public SFXAction SFX(String key)
+    public PlaySFX SFX(String key)
     {
-        return Add(new SFXAction(key));
+        return SFX(key, 1, 1);
     }
 
-    public SFXAction SFX(String key, float pitchVar)
+    public PlaySFX SFX(String key, float pitchMin, float pitchMax)
     {
-        return Add(new SFXAction(key, pitchVar));
+        return Add(new PlaySFX(key, pitchMin, pitchMax));
     }
 
     public ShakeScreenAction ShakeScreen(float actionDuration, ScreenShake.ShakeDur shakeDuration, ScreenShake.ShakeIntensity intensity)

@@ -5,9 +5,9 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -67,15 +67,15 @@ public class WizardHat extends AnimatorRelic
             {
                 SetEnabled(false);
 
-                GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.1f);
+                GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.9f, 1.1f);
                 GameActions.Bottom.Wait(0.35f);
-                GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.2f);
-                GameActions.Bottom.VFX(new BorderFlashEffect(Color.ORANGE));
+                GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.8f, 1.2f);
+                GameActions.Bottom.BorderFlash(Color.ORANGE);
                 GameActions.Bottom.Wait(0.35f);
-                GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.3f);
+                GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.7f, 1.3f);
                 GameActions.Bottom.Wait(0.35f);
-                GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
-                GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.5f);
+                GameActions.Bottom.BorderFlash(Color.RED);
+                GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.5f, 1.5f);
 
                 for (AbstractCreature m : GameUtilities.GetEnemies(true))
                 {

@@ -18,6 +18,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 import eatyourbeets.utilities.FieldInfo;
@@ -97,8 +98,8 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
         if (timesUpgraded >= 8)
         {
             GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.GOLD));
-            GameActions.Bottom.SFX("ORB_DARK_EVOKE", 0.1f);
-            GameActions.Bottom.SFX("ATTACK_WHIRLWIND");
+            GameActions.Bottom.SFX(SFX.ORB_DARK_EVOKE, 0.9f, 1.1f);
+            GameActions.Bottom.SFX(SFX.ATTACK_WHIRLWIND);
             GameActions.Bottom.VFX(new WhirlwindEffect(), 0f);
 
             for (int i = 0; i < magicNumber; i++)

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_Status;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.utilities.GameActions;
 
 public class Crystallize extends AnimatorCard_Status
@@ -29,7 +30,7 @@ public class Crystallize extends AnimatorCard_Status
     {
         if (!this.dontTriggerOnUseCard)
         {
-            GameActions.Bottom.SFX("ORB_FROST_Evoke", 0.2f);
+            GameActions.Bottom.SFX(SFX.ORB_FROST_EVOKE, 1f, 1.2f);
             GameActions.Bottom.LoseHP(secondaryValue, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
             GameActions.Bottom.GainMetallicize(magicNumber);
             GameActions.Bottom.LoseHP(secondaryValue, AbstractGameAction.AttackEffect.SLASH_VERTICAL);

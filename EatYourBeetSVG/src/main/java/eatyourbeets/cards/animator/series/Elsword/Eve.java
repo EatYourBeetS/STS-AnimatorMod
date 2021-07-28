@@ -100,7 +100,7 @@ public class Eve extends AnimatorCard
                         .SetOptions(true, false)
                         .SetDamageEffect(enemy ->
                         {
-                            SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.1f, true);
+                            SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.9f, 1.1f);
                             GameEffects.List.Add(VFX.SmallLaser(owner.hb, enemy.hb, Color.CYAN));
                             return 0f;
                         });

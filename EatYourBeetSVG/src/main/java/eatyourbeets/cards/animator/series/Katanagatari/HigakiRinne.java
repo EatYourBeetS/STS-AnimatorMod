@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.actions.animator.HigakiRinneAction;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.animator.HigakiRinnePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
@@ -162,7 +163,7 @@ public class HigakiRinne extends AnimatorCard
 
             GameActions.Bottom.Wait(0.35f);
             GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
-            GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.5f);
+            GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_EVOKE, 0.5f, 0.6f);
             GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4f, m.hb.cY - m.hb.height / 4f));
 
             GameActions.Bottom.DealDamage(p, m, 1, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);

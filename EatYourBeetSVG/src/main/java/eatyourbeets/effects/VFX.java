@@ -46,6 +46,11 @@ public class VFX
         return new ClawEffect(source.cX, source.cY, color1, color2);
     }
 
+    public static MindblastEffect Mindblast(float dialogX, float dialogY, boolean flipHorizontal)
+    {
+        return new MindblastEffect(dialogX, dialogY, flipHorizontal);
+    }
+
     public static ShockWaveEffect ShockWave(Hitbox source, Color color)
     {
         return ShockWave(source, color, ShockWaveEffect.ShockWaveType.ADDITIVE);

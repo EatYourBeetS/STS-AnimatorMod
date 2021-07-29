@@ -32,4 +32,18 @@ public class ColoredString
     {
         this("");
     }
+
+    public ColoredString SetText(String text)
+    {
+        this.text = text;
+
+        return this;
+    }
+
+    public ColoredString SetColor(Color color)
+    {
+        this.color = color.cpy();
+
+        return this;
+    }
 }

@@ -105,6 +105,7 @@ public class AnimatorStrings
 
         public final String LeftText = Strings.TEXT[0];  // Starting Cards:
         public final String RightText = Strings.TEXT[1]; // ##############
+        public final String InvalidLoadout = Strings.TEXT[3];
 
         public final String UnlocksAtLevel(int unlockLevel, int currentLevel)
         {

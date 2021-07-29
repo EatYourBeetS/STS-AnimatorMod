@@ -2,15 +2,15 @@ package eatyourbeets.cards.animator.enchantments;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.RetainCardPower;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.common.TemporaryRetainPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Enchantment2 extends Enchantment
 {
-    public static final EYBCardData DATA = RegisterAura(Enchantment2.class);
+    public static final EYBCardData DATA = RegisterInternal(Enchantment2.class);
     public static final int INDEX = 2;
     public static final int UP5_LOSE_HP = 4;
 
@@ -60,7 +60,7 @@ public class Enchantment2 extends Enchantment
 
         if (upgradeIndex == 5)
         {
-            GameActions.Bottom.LoseHP(magicNumber, AbstractGameAction.AttackEffect.NONE).IgnoreTempHP(true);
+            GameActions.Bottom.LoseHP(UP5_LOSE_HP, AbstractGameAction.AttackEffect.NONE).IgnoreTempHP(true);
         }
     }
 
@@ -85,7 +85,7 @@ public class Enchantment2 extends Enchantment
                 break;
 
             case Green:
-                GameActions.Bottom.StackPower(new RetainCardPower(player, magicNumber));
+                GameActions.Bottom.StackPower(new TemporaryRetainPower(player, magicNumber));
                 break;
 
             case Blue:

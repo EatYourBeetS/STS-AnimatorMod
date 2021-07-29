@@ -13,7 +13,6 @@ import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Aisha extends AnimatorCard
 {
@@ -25,8 +24,8 @@ public class Aisha extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 2, 2);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(1, 0, 2, 2);
+        SetUpgrade(2, 0, 0, 0);
 
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Dark(1, 0, 1);
@@ -39,11 +38,9 @@ public class Aisha extends AnimatorCard
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
+    protected float GetInitialDamage()
     {
-        super.Refresh(enemy);
-
-        GameUtilities.IncreaseDamage(this, player.filledOrbCount() * secondaryValue, true);
+        return super.GetInitialDamage() + (player.filledOrbCount() * secondaryValue);
     }
 
     @Override

@@ -1,8 +1,8 @@
 package eatyourbeets.cards.base;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import eatyourbeets.utilities.ColoredTexture;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,8 @@ public abstract class DynamicCardBuilder
 {
     public String id;
     public String imagePath;
-    public Texture imageTexture;
+    public ColoredTexture portraitImage;
+    public ColoredTexture portraitForeground;
 
     public int cost = -2;
     public int damage;

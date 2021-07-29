@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardPreview;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.relics.EnchantableRelic;
 import eatyourbeets.relics.animator.LivingPicture;
@@ -25,7 +26,7 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
 
     private final Color borderColor;
 
-    public static EYBCardData RegisterAura(Class<? extends AnimatorCard> type)
+    public static EYBCardData RegisterInternal(Class<? extends AnimatorCard> type)
     {
         return Register(type).SetPower(-2, CardRarity.SPECIAL).SetImagePath(GR.GetCardImage(ID));
     }
@@ -37,6 +38,14 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
             cards.add(new Enchantment1());
             cards.add(new Enchantment2());
             cards.add(new Enchantment3());
+
+            for (Enchantment a : cards)
+            {
+                for (Enchantment b : Enchantment.GetCard(a.index, 0).GetUpgrades())
+                {
+                    a.cardData.AddPreview(b, true);
+                }
+            }
         }
 
         return cards;
@@ -94,6 +103,12 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
     public abstract void UsePower(AbstractMonster m);
 
     @Override
+    public EYBCardPreview GetCardPreview()
+    {
+        return upgraded ? null : super.GetCardPreview();
+    }
+
+    @Override
     protected ColoredTexture GetCardBanner()
     {
         return super.GetCardBanner().SetColor(borderColor);
@@ -107,7 +122,7 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
 
     public ArrayList<Enchantment> GetUpgrades()
     {
-        ArrayList<Enchantment> result = new ArrayList<>();
+        final ArrayList<Enchantment> result = new ArrayList<>();
         for (int i = 1; i <= GetMaxUpgradeIndex(); i++)
         {
             result.add(GetCard(index, i));

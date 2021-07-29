@@ -20,14 +20,13 @@ public class AnimatorCardRewardScreen extends GUIElement
 
     public void Open(ArrayList<AbstractCard> cards, RewardItem rItem, String header)
     {
-        if (GameUtilities.InBattle())
+        if (GameUtilities.InBattle() || cards == null || rItem == null)
         {
             Close();
             return;
         }
 
         GR.UI.CardAffinities.Open(AbstractDungeon.player.masterDeck.group);
-
         rewardBundle.Open(rItem, cards);
         purgingStoneUI.Open(rItem, cards);
         cardBadgeLegend.Open();
@@ -36,7 +35,6 @@ public class AnimatorCardRewardScreen extends GUIElement
     public void Close()
     {
         GR.UI.CardAffinities.Close();
-
         cardBadgeLegend.Close();
         rewardBundle.Close();
         purgingStoneUI.Close();
@@ -45,7 +43,6 @@ public class AnimatorCardRewardScreen extends GUIElement
     public void Update()
     {
         GR.UI.CardAffinities.TryUpdate();
-
         purgingStoneUI.TryUpdate();
         rewardBundle.TryUpdate();
         cardBadgeLegend.TryUpdate();
@@ -54,7 +51,6 @@ public class AnimatorCardRewardScreen extends GUIElement
     public void PreRender(SpriteBatch sb)
     {
         GR.UI.CardAffinities.TryRender(sb);
-
         cardBadgeLegend.TryRender(sb);
         purgingStoneUI.TryRender(sb);
     }

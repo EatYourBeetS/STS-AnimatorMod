@@ -65,8 +65,6 @@ public class Eve extends AnimatorCard
         @Override
         public void OnUse(AbstractMonster m)
         {
-            super.onSpecificTrigger();
-
             GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, 1, 3)
             .AddCallback(cards ->
             {

@@ -42,7 +42,37 @@ public class CardRewardScreenPatches
         }
     }
 
-    @SpirePatch(clz= CardRewardScreen.class, method="open")
+    @SpirePatch(clz= CardRewardScreen.class, method="draftOpen")
+    public static class CardRewardScreen_DraftOpen
+    {
+        @SpirePostfixPatch
+        public static void Postfix(CardRewardScreen __instance)
+        {
+            screen.Open(null, null, null);
+        }
+    }
+
+    @SpirePatch(clz= CardRewardScreen.class, method="chooseOneOpen", paramtypez = {ArrayList.class})
+    public static class CardRewardScreen_ChooseOneOpen
+    {
+        @SpirePostfixPatch
+        public static void Postfix(CardRewardScreen __instance, ArrayList<AbstractCard> choices)
+        {
+            screen.Open(choices, null, null);
+        }
+    }
+
+    @SpirePatch(clz= CardRewardScreen.class, method="customCombatOpen", paramtypez = {ArrayList.class, String.class, boolean.class})
+    public static class CardRewardScreen_CustomCombatOpen
+    {
+        @SpirePostfixPatch
+        public static void Postfix(CardRewardScreen __instance, ArrayList<AbstractCard> choices, String text, boolean skippable)
+        {
+            screen.Open(choices, null, text);
+        }
+    }
+
+    @SpirePatch(clz= CardRewardScreen.class, method="open", paramtypez = {ArrayList.class, RewardItem.class, String.class})
     public static class CardRewardScreen_Open
     {
         @SpirePostfixPatch

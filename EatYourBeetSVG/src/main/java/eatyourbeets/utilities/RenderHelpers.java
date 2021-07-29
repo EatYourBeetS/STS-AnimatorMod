@@ -498,23 +498,14 @@ public class RenderHelpers
             for (int i = 0; i < text.length(); i++)
             {
                 char c = text.charAt(i);
-                if ('N' == c && compare.Invoke(text, i + 1, 'L'))
+                if (foundIcon)
                 {
-                    curWidth = 0f;
-                    curHeight -= lineSpacing;
-                    i += 1;
-                }
-                else if ('T' == c && compare.Invoke(text, i + 1, 'A') && compare.Invoke(text, i + 2, 'B'))
-                {
-                    curWidth += spaceWidth * 5.0F;
-                    i += 2;
-                }
-                else if ('[' == c)
-                {
-                    foundIcon = true;
-                }
-                else if (foundIcon && ']' == c)
-                {
+                    if (']' != c)
+                    {
+                        builder.append(c);
+                        continue;
+                    }
+
                     foundIcon = false;
                     TextureRegion icon = GetSmallIcon(build.Invoke(builder));
                     if (icon != null)
@@ -538,6 +529,21 @@ public class RenderHelpers
                             curWidth += CARD_ENERGY_IMG_WIDTH + spaceWidth;
                         }
                     }
+                }
+                else if ('N' == c && compare.Invoke(text, i + 1, 'L'))
+                {
+                    curWidth = 0f;
+                    curHeight -= lineSpacing;
+                    i += 1;
+                }
+                else if ('T' == c && compare.Invoke(text, i + 1, 'A') && compare.Invoke(text, i + 2, 'B'))
+                {
+                    curWidth += spaceWidth * 5.0F;
+                    i += 2;
+                }
+                else if ('[' == c)
+                {
+                    foundIcon = true;
                 }
                 else if ('#' == c)
                 {

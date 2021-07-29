@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.interfaces.listeners.OnCardResetListener;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.orbs.EYBOrb;
 import eatyourbeets.powers.common.ResiliencePower;
@@ -243,10 +244,10 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static void OnCardReset(AbstractCard card)
     {
-        OnCardResetSubscriber c = JUtils.SafeCast(card, OnCardResetSubscriber.class);
+        OnCardResetListener c = JUtils.SafeCast(card, OnCardResetListener.class);
         if (c != null)
         {
-            c.OnCardReset(card);
+            c.OnReset();
         }
 
         for (OnCardResetSubscriber s : onCardReset.GetSubscribers())

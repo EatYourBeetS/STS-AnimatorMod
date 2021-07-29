@@ -21,7 +21,7 @@ public class CampfireUIPatches
         @SpirePostfixPatch
         public static void Postfix(CampfireUI __instance)
         {
-            if (EnchantCampfireOption.CanUse())
+            if (EnchantCampfireOption.CanAddOption())
             {
                 ArrayList<AbstractCampfireOption> buttons = _buttons.Get(__instance);
                 buttons.add(new EnchantCampfireOption());

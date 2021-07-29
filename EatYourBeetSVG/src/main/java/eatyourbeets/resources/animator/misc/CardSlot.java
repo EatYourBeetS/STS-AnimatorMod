@@ -51,7 +51,7 @@ public class CardSlot
 
     public int GetEstimatedValue()
     {
-        return amount * (selected != null ? selected.estimatedValue : 0);
+        return amount * (selected == null ? 0 : selected.estimatedValue);
     }
 
     public ArrayList<EYBCard> GetSelectableCards()

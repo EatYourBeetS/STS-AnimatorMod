@@ -19,10 +19,7 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RenderHelpers;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
@@ -35,9 +32,9 @@ public abstract class EYBClickablePower extends EYBPower
     private GameActionManager.Phase currentPhase;
     private Hitbox hb;
 
-    private EYBClickablePower(AbstractCreature owner, EYBRelic relic)
+    private EYBClickablePower(AbstractCreature owner, EYBCardData cardData, EYBRelic relic)
     {
-        super(owner, relic);
+        super(owner, cardData, relic);
 
         priority = CombatStats.Instance.priority + 1;
         tooltip = new EYBCardTooltip(name, description);
@@ -50,41 +47,28 @@ public abstract class EYBClickablePower extends EYBPower
 
     public EYBClickablePower(AbstractCreature owner, EYBRelic relic, PowerTriggerConditionType type, int requiredAmount)
     {
-        this(owner, relic);
+        this(owner, null, relic);
 
         triggerCondition = new PowerTriggerCondition(this, type, requiredAmount);
     }
 
     public EYBClickablePower(AbstractCreature owner, EYBRelic relic, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
     {
-        this(owner, relic);
+        this(owner, null, relic);
 
         triggerCondition = new PowerTriggerCondition(this, requiredAmount, checkCondition, payCost);
     }
 
-    private EYBClickablePower(AbstractCreature owner, EYBCardData cardData)
-    {
-        super(owner, cardData);
-
-        priority = CombatStats.Instance.priority + 1;
-        tooltip = new EYBCardTooltip(name, description);
-        tooltip.subText = new ColoredString();
-        tooltip.icon = powerIcon;
-
-        final float size = ICON_SIZE * Settings.scale * 1.5f;
-        hb = new Hitbox(size, size);
-    }
-
     public EYBClickablePower(AbstractCreature owner, EYBCardData cardData, PowerTriggerConditionType type, int requiredAmount)
     {
-        this(owner, cardData);
+        this(owner, cardData, null);
 
         triggerCondition = new PowerTriggerCondition(this, type, requiredAmount);
     }
 
     public EYBClickablePower(AbstractCreature owner, EYBCardData cardData, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
     {
-        this(owner, cardData);
+        this(owner, cardData, null);
 
         triggerCondition = new PowerTriggerCondition(this, requiredAmount, checkCondition, payCost);
     }

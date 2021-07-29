@@ -215,14 +215,15 @@ public class GUI_DynamicCardGrid extends GUIElement
         {
             card.target_x = drawStart_x + (column * pad_x);
             card.target_y = drawStart_y + scrollDelta - (row * pad_y);
+            card.drawScale = card.targetDrawScale = (0.75f * scale);
             card.fadingOut = false;
             card.update();
             card.updateHoverLogic();
-            card.drawScale = card.targetDrawScale = (0.75f * scale);
 
             if (card.hb.hovered)
             {
                 hoveredCard = card;
+                card.drawScale = card.targetDrawScale = (0.8f * scale);
             }
 
             column += 1;

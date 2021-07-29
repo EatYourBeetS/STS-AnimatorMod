@@ -33,7 +33,6 @@ public class SynergyCardsReward extends AnimatorReward
     public final CardSeries series;
     private boolean skip = false;
     private EYBCardAffinityStatistics statistics;
-    private AnimatorRuntimeLoadout loadout;
     private EYBCardTooltip tooltip;
 
     private static String GenerateRewardTitle(CardSeries series)
@@ -44,7 +43,7 @@ public class SynergyCardsReward extends AnimatorReward
         }
         else
         {
-            return "#y" + series.LocalizedName.replace(" ", " #y");
+            return JUtils.ModifyString(series.LocalizedName, w -> "#y" + w);
         }
     }
 
@@ -54,13 +53,15 @@ public class SynergyCardsReward extends AnimatorReward
 
         this.series = series;
         this.cards = GenerateCardReward(series);
-        this.loadout = GR.Animator.Dungeon.GetLoadout(series);
 
         if (series == CardSeries.ANY)
         {
             statistics = new EYBCardAffinityStatistics(AbstractDungeon.srcColorlessCardPool.group);
+            return;
         }
-        else if (loadout != null)
+
+        final AnimatorRuntimeLoadout loadout = GR.Animator.Dungeon.GetLoadout(series);
+        if (loadout != null)
         {
             statistics = loadout.AffinityStatistics;
         }

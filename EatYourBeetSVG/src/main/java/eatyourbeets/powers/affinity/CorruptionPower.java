@@ -47,7 +47,7 @@ public class CorruptionPower extends AbstractAffinityPower
         if (threshold != null)
         {
             final String card = (threshold == thresholds[thresholds.length - 2])
-                    ? ("#p" + SummoningRitual.DATA.Strings.NAME.replace(" ", " #p"))
+                    ? (JUtils.ModifyString(SummoningRitual.DATA.Strings.NAME, w -> "#p" + w))
                     : ("#y" + Crystallize.DATA.Strings.NAME);
             this.description = JUtils.Format(description + powerStrings.DESCRIPTIONS[1], name, thresholds[thresholdIndex], card);
         }

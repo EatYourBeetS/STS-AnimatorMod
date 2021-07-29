@@ -37,7 +37,8 @@ public class GUI_Button extends GUIElement
     protected float fontScale;
     protected float currentClickDelay = 0f;
     protected Color textColor = Color.WHITE.cpy();
-    protected Color buttonColor = Color.WHITE.cpy();
+    protected Color buttonColor;
+    protected Color disabledButtonColor;
 
     public GUI_Button(Texture buttonTexture, float x, float y)
     {
@@ -52,6 +53,7 @@ public class GUI_Button extends GUIElement
         this.text = "-";
         this.font = FontHelper.buttonLabelFont;
         this.fontScale = 1f;
+        SetColor(Color.WHITE);
     }
 
     public GUI_Button SetBorder(Texture borderTexture, Color color)
@@ -125,6 +127,7 @@ public class GUI_Button extends GUIElement
     public GUI_Button SetColor(Color buttonColor)
     {
         this.buttonColor = buttonColor.cpy();
+        this.disabledButtonColor = Mathf.LerpCopy(buttonColor, Color.BLACK, 0.4f);
 
         return this;
     }
@@ -203,7 +206,7 @@ public class GUI_Button extends GUIElement
             }
             else
             {
-                this.RenderButton(sb, interactable, interactable ? buttonColor : Mathf.LerpCopy(buttonColor, Color.BLACK, 0.4f));
+                this.RenderButton(sb, interactable, interactable ? buttonColor : disabledButtonColor);
             }
 
             this.hb.render(sb);

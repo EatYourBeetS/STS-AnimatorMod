@@ -20,11 +20,20 @@ public class TupleT3<V1, V2, V3>
         this.V3 = v3;
     }
 
-    public void Clear()
+    public TupleT3<V1, V2, V3> Set(V1 v1, V2 v2, V3 v3)
+    {
+        this.V1 = v1;
+        this.V2 = v2;
+        this.V3 = v3;
+        return this;
+    }
+
+    public TupleT3<V1, V2, V3> Clear()
     {
         this.V1 = null;
         this.V2 = null;
         this.V3 = null;
+        return this;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package eatyourbeets.ui.common;
 
+import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -14,11 +15,13 @@ import eatyourbeets.utilities.JUtils;
 
 public class EnchantCampfireOption extends AbstractCampfireOption
 {
+    private static final float REFRESH_DELAY = 1f;
     private static final String LABEL_GOLD_F1 = "Enchant [{0} Gold]";
     private static final String LABEL_MAX = "Enchant [Max Level]";
 
-    private RestRoom room;
+    private float refreshTimer = REFRESH_DELAY;
     private EnchantableRelic relic;
+    private RestRoom room;
     private int goldCost;
 
     public static boolean CanAddOption()
@@ -37,6 +40,19 @@ public class EnchantCampfireOption extends AbstractCampfireOption
     public EnchantCampfireOption()
     {
         Refresh();
+    }
+
+    @Override
+    public void update()
+    {
+        super.update();
+
+        refreshTimer -= Gdx.graphics.getRawDeltaTime();
+        if (refreshTimer <= 0)
+        {
+            refreshTimer = REFRESH_DELAY;
+            Refresh();
+        }
     }
 
     public void Refresh()

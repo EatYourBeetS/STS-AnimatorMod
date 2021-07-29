@@ -183,31 +183,34 @@ public class GUI_Button extends GUIElement
         if (currentAlpha > 0)
         {
             boolean interactable = IsInteractable();
-
-            this.RenderButton(sb, interactable);
-
             if (StringUtils.isNotEmpty(text))
             {
+                this.RenderButton(sb, interactable, buttonColor);
+
                 font.getData().setScale(fontScale);
-                final Color textColor = interactable ? this.textColor : TEXT_DISABLED_COLOR;
+                final Color color = interactable ? textColor : TEXT_DISABLED_COLOR;
                 if (FontHelper.getSmartWidth(font, text, 9999f, 0f) > (hb.width * 0.7))
                 {
-                    RenderHelpers.WriteCentered(sb, font, text, hb, textColor, 0.8f);
+                    RenderHelpers.WriteCentered(sb, font, text, hb, color, 0.8f);
                 }
                 else
                 {
-                    RenderHelpers.WriteCentered(sb, font, text, hb, textColor);
+                    RenderHelpers.WriteCentered(sb, font, text, hb, color);
                 }
                 RenderHelpers.ResetFont(font);
+            }
+            else
+            {
+                this.RenderButton(sb, interactable, interactable ? buttonColor : TEXT_DISABLED_COLOR);
             }
 
             this.hb.render(sb);
         }
     }
 
-    protected void RenderButton(SpriteBatch sb, boolean interactable)
+    protected void RenderButton(SpriteBatch sb, boolean interactable, Color color)
     {
-        background.SetColor(buttonColor).Render(sb, hb);
+        background.SetColor(color).Render(sb, hb);
 
         if (border != null)
         {

@@ -7,8 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
-import eatyourbeets.cards.base.AffinityType;
-import eatyourbeets.cards.base.EYBCardAffinities;
+import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.CardSlot;
@@ -23,9 +22,11 @@ import java.util.ArrayList;
 
 public class AnimatorLoadoutEditor extends AbstractScreen
 {
+    protected final static AnimatorLoadout.Validation val = new AnimatorLoadout.Validation();
     protected final ArrayList<AnimatorCardSlotEditor> slotsEditors = new ArrayList<>();
     protected AnimatorLoadout loadout;
     protected CardSlots slots;
+    protected ActionT0 onClose;
 
     protected AnimatorCardSlotSelectionEffect cardSelectionEffect;
     protected GUI_Image background_image;
@@ -93,15 +94,14 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.835f), ScreenH(0.75f)));
     }
 
-    public void Open(AnimatorLoadout loadout)
+    public void Open(AnimatorLoadout loadout, ActionT0 onClose)
     {
         super.Open();
 
         ToggleViewUpgrades(false);
-
         this.loadout = loadout;
         this.slots = loadout.Slots.MakeCopy();
-
+        this.onClose = onClose;
         SetSlotsActive(true);
     }
 
@@ -111,6 +111,11 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         super.Dispose();
 
         ToggleViewUpgrades(false);
+
+        if (onClose != null)
+        {
+            onClose.Invoke();
+        }
     }
 
     @Override
@@ -134,46 +139,16 @@ public class AnimatorLoadoutEditor extends AbstractScreen
             }
         }
 
-        int cards = 0;
-        int value = AnimatorLoadout.MAX_VALUE;
-        int affinityLevel = 0;
-        boolean seen = true;
-        EYBCardAffinities affinities = new EYBCardAffinities(null);
         for (AnimatorCardSlotEditor editor : slotsEditors)
         {
             editor.TryUpdate();
-
-            if (editor.slot != null)
-            {
-                affinities.Add(editor.slot.GetAffinities(), 1);
-                value += editor.slot.GetEstimatedValue();
-                cards += editor.slot.amount;
-
-                if (editor.slot.selected != null && editor.slot.selected.data.IsNotSeen())
-                {
-                    seen = false;
-                }
-            }
         }
 
-        for (AffinityType t : AffinityType.BasicTypes())
-        {
-            int level = affinities.GetLevel(t, false);
-            if (level > 2)
-            {
-                affinityLevel += (level - 2);
-            }
-        }
-
-        value += affinityLevel;
-
-        final boolean valueCheck = value <= AnimatorLoadout.MAX_VALUE;
-        final boolean cardsCheck = cards >= AnimatorLoadout.MIN_CARDS;
-
-        affinityValue_text.SetText("Affinity: +" + affinityLevel).SetActive(affinityLevel > 0).TryUpdate();
-        cardsCount_text.SetText("Cards: {0}", cards).SetFontColor(cardsCheck ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
-        cardsValue_text.SetText("Value: {0}/{1}", value, AnimatorLoadout.MAX_VALUE).SetFontColor(valueCheck ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
-        save_button.SetInteractable(valueCheck && cardsCheck && seen).TryUpdate();
+        val.Refresh(slots);
+        affinityValue_text.SetText("Affinity: +" + val.AffinityLevel).SetActive(val.AffinityLevel > 0).TryUpdate();
+        cardsCount_text.SetText("Cards: {0}", val.CardsCount.V1).SetFontColor(val.CardsCount.V2 ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
+        cardsValue_text.SetText("Value: {0}/{1}", val.CardsValue.V1, AnimatorLoadout.MAX_VALUE).SetFontColor(val.CardsValue.V2 ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
+        save_button.SetInteractable(val.IsValid).TryUpdate();
     }
 
     @Override

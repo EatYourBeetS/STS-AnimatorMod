@@ -20,8 +20,9 @@ public class EnchantmentPower extends AnimatorClickablePower
     {
         super(owner, relic, PowerTriggerConditionType.Special, relic.enchantment.GetPowerCost(), relic.enchantment::CanUsePower, relic.enchantment::PayPowerCost);
 
-        this.enchantment = relic.enchantment;
         this.amount = amount;
+        this.enchantment = relic.enchantment;
+        this.ID += "(" + enchantment.index + "-" + enchantment.upgradeIndex + ")";
         this.triggerCondition.requiresTarget = enchantment.requiresTarget;
         this.triggerCondition.SetOneUsePerPower(true);
     }

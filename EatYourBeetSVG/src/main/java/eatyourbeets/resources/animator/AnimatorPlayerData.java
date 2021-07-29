@@ -387,7 +387,14 @@ public class AnimatorPlayerData
                 i += 1;
             }
 
-            loadout.Slots.Ready = true;
+            if (!loadout.Validate().IsValid)
+            {
+                loadout.LoadStartingDeck();
+            }
+            else
+            {
+                loadout.Slots.Ready = true;
+            }
         }
     }
 }

@@ -2,25 +2,86 @@ package eatyourbeets.resources.animator.misc;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.ImprovedDefend;
 import eatyourbeets.cards.animator.basic.ImprovedStrike;
 import eatyourbeets.cards.animator.basic.Strike;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.relics.animator.LivingPicture;
 import eatyourbeets.relics.animator.TheMissingPiece;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.TupleT2;
 
 import java.util.ArrayList;
+import java.util.StringJoiner;
 
 public abstract class AnimatorLoadout
 {
+    public static class Validation
+    {
+        public final TupleT2<Integer, Boolean> CardsCount = new TupleT2<>();
+        public final TupleT2<Integer, Boolean> CardsValue = new TupleT2<>();
+        public int AffinityLevel;
+        public boolean AllCardsSeen;
+        public boolean IsValid;
+
+        public Validation()
+        {
+
+        }
+
+        public Validation(CardSlots slots)
+        {
+            Refresh(slots);
+        }
+
+        public Validation Refresh(CardSlots slots)
+        {
+            CardsCount.Set(0, false);
+            CardsValue.Set(MAX_VALUE, false);
+            AllCardsSeen = true;
+            final EYBCardAffinities affinities = new EYBCardAffinities(null);
+            for (CardSlot slot : slots)
+            {
+                if (slot == null)
+                {
+                    continue;
+                }
+
+                affinities.Add(slot.GetAffinities(), 1);
+                CardsValue.V1 += slot.GetEstimatedValue();
+                CardsCount.V1 += slot.amount;
+
+                if (slot.selected != null && slot.selected.data.IsNotSeen())
+                {
+                    AllCardsSeen = false;
+                }
+            }
+
+            AffinityLevel = 0;
+            for (AffinityType t : AffinityType.BasicTypes())
+            {
+                int level = affinities.GetLevel(t, false);
+                if (level > 2)
+                {
+                    AffinityLevel += (level - 2);
+                }
+            }
+
+            CardsValue.V1 += AffinityLevel;
+            CardsValue.V2 = CardsValue.V1 <= MAX_VALUE;
+            CardsCount.V2 = CardsCount.V1 >= MIN_CARDS;
+            IsValid = CardsValue.V2 && CardsCount.V2 && AllCardsSeen;
+
+            return this;
+        }
+    }
+
     public static final int MAX_VALUE = 30;
     public static final int MIN_CARDS = 10;
 
@@ -113,6 +174,7 @@ public abstract class AnimatorLoadout
 
         if (cards.isEmpty())
         {
+            JUtils.LogWarning(this, "Starting loadout was empty");
             for (int i = 0; i < 5; i++)
             {
                 cards.add(Strike.DATA.ID);
@@ -157,25 +219,24 @@ public abstract class AnimatorLoadout
         return trophies;
     }
 
-    public String GetDeckPreviewString()
+    public String GetDeckPreviewString(boolean forceRefresh)
     {
-// TODO: Loadout preview string
-//
-//        if (shortDescription == null)
-//        {
-//            StringJoiner sj = new StringJoiner(", ");
-//            for (String s : GetStartingDeck())
-//            {
-//                if (!s.contains(Strike.DATA.ID) && !s.contains(Defend.DATA.ID))
-//                {
-//                    sj.add(CardLibrary.getCard(s).originalName);
-//                }
-//            }
-//
-//            shortDescription = sj.toString();
-//        }
+        if (shortDescription == null || forceRefresh)
+        {
+            StringJoiner sj = new StringJoiner(", ");
+            for (String s : GetStartingDeck())
+            {
+                AbstractCard card = CardLibrary.getCard(s);
+                if (card.rarity != AbstractCard.CardRarity.BASIC)
+                {
+                    sj.add(card.originalName);
+                }
+            }
 
-        return shortDescription;
+            shortDescription = sj.toString();
+        }
+
+        return shortDescription.isEmpty() ? "-" : shortDescription;
     }
 
     public String GetTrophyMessage(int trophy)
@@ -237,6 +298,11 @@ public abstract class AnimatorLoadout
         {
             trophies.Trophy3 = Math.max(trophies.Trophy3, ascensionLevel);
         }
+    }
+
+    public Validation Validate()
+    {
+        return new Validation(Slots);
     }
 
     protected void AddToSpecialSlots(EYBCardData data, int estimatedValue)

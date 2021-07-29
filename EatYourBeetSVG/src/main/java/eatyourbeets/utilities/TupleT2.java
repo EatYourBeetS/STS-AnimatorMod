@@ -18,10 +18,18 @@ public class TupleT2<V1, V2>
         this.V2 = v2;
     }
 
-    public void Clear()
+    public TupleT2<V1, V2> Set(V1 v1, V2 v2)
+    {
+        this.V1 = v1;
+        this.V2 = v2;
+        return this;
+    }
+
+    public TupleT2<V1, V2> Clear()
     {
         this.V1 = null;
         this.V2 = null;
+        return this;
     }
 
     @Override

@@ -8,6 +8,7 @@ import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.relics.EnchantableRelic;
+import eatyourbeets.utilities.JUtils;
 
 public class EnchantmentPower extends AnimatorClickablePower
 {
@@ -37,6 +38,7 @@ public class EnchantmentPower extends AnimatorClickablePower
             .replace(" NL ", " ")
             .replace("{", "")
             .replace("}", "");
+            enchantmentDescription = JUtils.ModifyString(enchantmentDescription, " ", " ", w -> Character.isDigit(w.charAt(0)) ? ("#b" + w) : w);
         }
 
         return enchantmentDescription;

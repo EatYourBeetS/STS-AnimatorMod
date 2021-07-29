@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Enchantment3 extends Enchantment
 {
-    public static final EYBCardData DATA = RegisterAura(Enchantment3.class);
+    public static final EYBCardData DATA = RegisterInternal(Enchantment3.class);
     public static final int INDEX = 3;
     public static final int UP1_POISON = 5;
     public static final int UP2_WEAK = 1;

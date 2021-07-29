@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Enchantment2 extends Enchantment
 {
-    public static final EYBCardData DATA = RegisterAura(Enchantment2.class);
+    public static final EYBCardData DATA = RegisterInternal(Enchantment2.class);
     public static final int INDEX = 2;
     public static final int UP5_LOSE_HP = 4;
 
@@ -60,7 +60,7 @@ public class Enchantment2 extends Enchantment
 
         if (upgradeIndex == 5)
         {
-            GameActions.Bottom.LoseHP(magicNumber, AbstractGameAction.AttackEffect.NONE).IgnoreTempHP(true);
+            GameActions.Bottom.LoseHP(UP5_LOSE_HP, AbstractGameAction.AttackEffect.NONE).IgnoreTempHP(true);
         }
     }
 

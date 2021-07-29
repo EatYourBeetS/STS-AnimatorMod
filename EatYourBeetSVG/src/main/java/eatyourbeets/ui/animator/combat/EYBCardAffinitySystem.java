@@ -3,7 +3,6 @@ package eatyourbeets.ui.animator.combat;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.powers.ApplyAffinityPower;
@@ -21,6 +20,8 @@ import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
+
 public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSubscriber
 {
     public final ArrayList<AbstractAffinityPower> Powers = new ArrayList<>();
@@ -35,7 +36,6 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     protected final GUI_Image dragPanel_image;
     protected final ArrayList<EYBCardAffinityRow> rows = new ArrayList<>();
 
-    protected AbstractPlayer player;
     protected AbstractCard currentSynergy = null;
     protected AnimatorCard lastCardPlayed = null;
 
@@ -309,7 +309,6 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public void Initialize()
     {
-        player = AbstractDungeon.player;
         for (AbstractAffinityPower p : Powers)
         {
             p.Initialize(player);
@@ -322,7 +321,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public void Update()
     {
-        if (player == null || AbstractDungeon.overlayMenu.energyPanel.isHidden)
+        if (player == null || player.hand == null || AbstractDungeon.overlayMenu.energyPanel.isHidden)
         {
             return;
         }

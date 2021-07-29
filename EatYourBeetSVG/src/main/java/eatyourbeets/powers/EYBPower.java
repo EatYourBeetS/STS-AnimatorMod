@@ -39,34 +39,39 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     public TextureAtlas.AtlasRegion powerIcon;
     public boolean enabled = true;
 
-    public EYBPower(AbstractCreature owner, EYBRelic relic)
+    protected EYBPower(AbstractCreature owner, EYBCardData cardData, EYBRelic relic)
     {
         this.effects = _effect.Get(this);
         this.owner = owner;
-        this.ID = relic.relicId + "Power";
-
-        this.powerIcon = relic.GetPowerIcon();
         this.img = null;
-
         this.powerStrings = new PowerStrings();
-        this.powerStrings.NAME = relic.name;
-        this.powerStrings.DESCRIPTIONS = relic.DESCRIPTIONS;
+
+        if (relic != null)
+        {
+            this.ID = relic.relicId + "Power";
+            this.powerIcon = relic.GetPowerIcon();
+            this.powerStrings.NAME = relic.name;
+            this.powerStrings.DESCRIPTIONS = relic.DESCRIPTIONS;
+        }
+        else
+        {
+            this.ID = cardData.ID + "Power";
+            this.powerIcon = cardData.GetCardIcon();
+            this.powerStrings.NAME = cardData.Strings.NAME;
+            this.powerStrings.DESCRIPTIONS = cardData.Strings.EXTENDED_DESCRIPTION;
+        }
+
         this.name = powerStrings.NAME;
+    }
+
+    public EYBPower(AbstractCreature owner, EYBRelic relic)
+    {
+        this(owner, null, relic);
     }
 
     public EYBPower(AbstractCreature owner, EYBCardData cardData)
     {
-        this.effects = _effect.Get(this);
-        this.owner = owner;
-        this.ID = cardData.ID + "Power";
-
-        this.powerIcon = cardData.GetCardIcon();
-        this.img = null;
-
-        this.powerStrings = new PowerStrings();
-        this.powerStrings.NAME = cardData.Strings.NAME;
-        this.powerStrings.DESCRIPTIONS = cardData.Strings.EXTENDED_DESCRIPTION;
-        this.name = powerStrings.NAME;
+        this(owner, cardData, null);
     }
 
     public EYBPower(AbstractCreature owner, String id)

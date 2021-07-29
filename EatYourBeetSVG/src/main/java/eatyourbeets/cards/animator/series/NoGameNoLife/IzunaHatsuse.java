@@ -117,12 +117,7 @@ public class IzunaHatsuse extends AnimatorCard
     @Override
     public EYBCardPreview GetCardPreview()
     {
-        if (transformed)
-        {
-            return null;
-        }
-
-        return super.GetCardPreview();
+        return transformed ? null : super.GetCardPreview();
     }
 
     private void SetTransformed(boolean value)

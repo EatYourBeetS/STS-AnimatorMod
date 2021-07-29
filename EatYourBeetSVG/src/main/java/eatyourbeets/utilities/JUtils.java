@@ -20,6 +20,7 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
+import java.util.regex.Pattern;
 
 public class JUtils
 {
@@ -281,7 +282,7 @@ public class JUtils
 
     public static <T> String JoinStrings(String delimiter, Collection<T> values)
     {
-        StringJoiner sj = new StringJoiner(delimiter);
+        final StringJoiner sj = new StringJoiner(delimiter);
         for (T value : values)
         {
             sj.add(String.valueOf(value));
@@ -292,13 +293,27 @@ public class JUtils
 
     public static <T> String JoinStrings(String delimiter, T[] values)
     {
-        StringJoiner sj = new StringJoiner(delimiter);
+        final StringJoiner sj = new StringJoiner(delimiter);
         for (T value : values)
         {
             sj.add(String.valueOf(value));
         }
 
         return sj.toString();
+    }
+
+    public static String ModifyString(String string, String separator, String delimiter, FuncT1<String, String> modifyWord)
+    {
+        final String[] words = string.split(Pattern.quote(separator));
+        if (modifyWord != null)
+        {
+            for (int i = 0; i < words.length; i++)
+            {
+                words[i] = modifyWord.Invoke(words[i]);
+            }
+        }
+
+        return JoinStrings(delimiter, words);
     }
 
     public static void LogError(Object source, Object message)

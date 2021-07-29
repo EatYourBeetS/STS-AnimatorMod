@@ -9,6 +9,7 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.ColoredTexture;
 
 public class AnimatorCardBuilder extends DynamicCardBuilder
 {
@@ -60,7 +61,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
             SetCost(-2, 0);
         }
 
-        SetImage(card.assetUrl);
+        SetImage(card.portraitImg, card.portraitForeground);
         SetProperties(card.type, card.rarity, AbstractCard.CardTarget.NONE);
         SetText(card.name, text, text);
         SetSeries(card.series);
@@ -75,7 +76,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
 
         if (imagePath == null)
         {
-            SetImage(GR.GetCardImage(id));
+            imagePath = GR.GetCardImage(id);
         }
 
         return new AnimatorCard_Dynamic(this);
@@ -195,7 +196,15 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         return this;
     }
 
-    public AnimatorCardBuilder SetImage(String imagePath)
+    public AnimatorCardBuilder SetImage(ColoredTexture portraitImage, ColoredTexture portraitForeground)
+    {
+        this.portraitImage = portraitImage;
+        this.portraitForeground = portraitForeground;
+
+        return this;
+    }
+
+    public AnimatorCardBuilder SetImagePath(String imagePath)
     {
         this.imagePath = imagePath;
 

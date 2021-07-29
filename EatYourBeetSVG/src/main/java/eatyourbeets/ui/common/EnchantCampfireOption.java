@@ -3,8 +3,6 @@ package eatyourbeets.ui.common;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.CampfireUI;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
@@ -16,10 +14,14 @@ import eatyourbeets.utilities.JUtils;
 
 public class EnchantCampfireOption extends AbstractCampfireOption
 {
+    private static final String LABEL_GOLD_F1 = "Enchant [{0} Gold]";
+    private static final String LABEL_MAX = "Enchant [Max Level]";
+
     private RestRoom room;
     private EnchantableRelic relic;
+    private int goldCost;
 
-    public static boolean CanUse()
+    public static boolean CanAddOption()
     {
         for (AbstractRelic r : AbstractDungeon.player.relics)
         {
@@ -34,29 +36,48 @@ public class EnchantCampfireOption extends AbstractCampfireOption
 
     public EnchantCampfireOption()
     {
-        this.label = "Enchant";
-        this.description = "Improve the effects of Living Picture.";
-        this.usable = CanUse();
-        this.img = GR.Common.Images.CampfireOption_Enchant.Texture();
+        Refresh();
     }
 
-    @Override
-    public void useOption()
+    public void Refresh()
     {
+        this.usable = false;
+        this.goldCost = 100;
+
         for (AbstractRelic r : AbstractDungeon.player.relics)
         {
             EnchantableRelic er = JUtils.SafeCast(r, EnchantableRelic.class);
             if (er != null && er.GetEnchantmentLevel() < 2)
             {
                 relic = er;
+                goldCost += (er.GetEnchantmentLevel() * 50);
+                break;
             }
         }
 
-        if (relic == null)
+        if (relic.GetEnchantmentLevel() > 1)
+        {
+            this.label = LABEL_MAX;
+            this.usable = false;
+        }
+        else
+        {
+            this.label = JUtils.Format(LABEL_GOLD_F1, goldCost);
+            this.usable = AbstractDungeon.player.gold >= goldCost;
+        }
+
+        this.description = "Improve the effects of Living Picture.";
+        this.img = GR.Common.Images.CampfireOption_Enchant.Texture();
+    }
+
+    @Override
+    public void useOption()
+    {
+        Refresh();
+
+        if (!usable)
         {
             GameEffects.Queue.Callback(new WaitAction(0.1f), ((RestRoom) AbstractDungeon.getCurrRoom()).campfireUI::reopen);
-            JUtils.LogWarning(this, "EnchantableRelic not found, despite 'usable' being true.");
-            usable = false;
             return;
         }
 
@@ -65,33 +86,15 @@ public class EnchantCampfireOption extends AbstractCampfireOption
 
         GameEffects.Queue.Callback(new SelectFromPile(relic.name, 1, relic.CreateUpgradeGroup())
         .CancellableFromPlayer(true)
-        .AddCallback(c ->
-        {
-            if (c.size() > 0)
-            {
-                CampfireUI.hidden = true;
-                AbstractRoom.waitTimer = 0.0F;
-                room.phase = AbstractRoom.RoomPhase.COMPLETE;
-                room.cutFireSound();
-                OnEffectSelected((Enchantment)c.get(0));
-            }
-        }), () ->
-        {
-            if (room.phase == AbstractRoom.RoomPhase.COMPLETE)
-            {
-                room.fadeIn();
-            }
-            else
-            {
-                room.campfireUI.reopen();
-            }
-        })
+        .AddCallback(c -> OnEffectSelected((Enchantment)c.get(0))), () -> room.campfireUI.reopen())
         .ShowBlackScreen(0.95f);
     }
 
     public void OnEffectSelected(Enchantment enchantment)
     {
+        AbstractDungeon.player.loseGold(goldCost);
         relic.ApplyEnchantment(enchantment);
         relic.flash();
+        Refresh();
     }
 }

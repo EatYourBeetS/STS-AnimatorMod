@@ -2,6 +2,8 @@ package eatyourbeets.powers;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.GameActions;
@@ -9,40 +11,57 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class PowerTriggerCondition
 {
-    public final EYBPower power;
+    public final EYBClickablePower power;
     public final PowerTriggerConditionType type;
     public boolean refreshEachTurn;
     public boolean stackAutomatically;
+    public boolean requiresTarget;
     public int requiredAmount;
     public int baseUses;
     public int uses;
 
     private static final ActionT1<Integer> EMPTY_ACTION = __ -> {};
     private static final FuncT1<Boolean, Integer> EMPTY_FUNCTION = __ -> true;
-    private final FuncT1<Boolean, Integer> checkCondition;
-    private final ActionT1<Integer> payCost;
+    private FuncT1<Boolean, Integer> checkCondition;
+    private ActionT1<Integer> payCost;
     private boolean canUse;
 
-    protected PowerTriggerCondition(EYBPower power, PowerTriggerConditionType type, int requiredAmount)
+    protected PowerTriggerCondition(EYBClickablePower power, PowerTriggerConditionType type, int requiredAmount)
     {
         this(power, type, requiredAmount, null, null);
     }
 
-    protected PowerTriggerCondition(EYBPower power, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
+    protected PowerTriggerCondition(EYBClickablePower power, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
     {
         this(power, PowerTriggerConditionType.Special, requiredAmount, checkCondition, payCost);
     }
 
-    private PowerTriggerCondition(EYBPower power, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
+    private PowerTriggerCondition(EYBClickablePower power, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
     {
         this.power = power;
         this.type = type;
         this.requiredAmount = requiredAmount;
-        this.checkCondition = checkCondition != null ? checkCondition : EMPTY_FUNCTION;
-        this.payCost = payCost != null ? payCost : EMPTY_ACTION;
         this.baseUses = this.uses = 1;
         this.refreshEachTurn = true;
         this.stackAutomatically = false;
+
+        SetCheckCondition(checkCondition)
+        .SetPayCost(payCost)
+        .Refresh(false);
+    }
+
+    public PowerTriggerCondition SetCheckCondition(FuncT1<Boolean, Integer> checkCondition)
+    {
+        this.checkCondition = checkCondition == null ? EMPTY_FUNCTION : checkCondition;
+
+        return this;
+    }
+
+    public PowerTriggerCondition SetPayCost(ActionT1<Integer> payCost)
+    {
+        this.payCost = payCost == null ? EMPTY_ACTION : payCost;
+
+        return this;
     }
 
     public PowerTriggerCondition AddUses(int uses)
@@ -50,6 +69,7 @@ public class PowerTriggerCondition
         this.baseUses += uses;
         this.uses += uses;
         this.power.updateDescription();
+        Refresh(false);
 
         return this;
     }
@@ -60,6 +80,7 @@ public class PowerTriggerCondition
         this.refreshEachTurn = refreshEachTurn;
         this.stackAutomatically = stackAutomatically;
         this.power.updateDescription();
+        Refresh(false);
 
         return this;
     }
@@ -89,7 +110,7 @@ public class PowerTriggerCondition
     {
         switch (type)
         {
-            case Energy: return AbstractDungeon.player.energy.energy >= requiredAmount;
+            case Energy: return EnergyPanel.getCurrentEnergy() >= requiredAmount;
 
             case Discard: case Exhaust: return AbstractDungeon.player.hand.size() >= requiredAmount;
 
@@ -101,7 +122,7 @@ public class PowerTriggerCondition
         }
     }
 
-    public void Use()
+    public void Use(AbstractMonster m)
     {
         if (!canUse)
         {
@@ -138,8 +159,9 @@ public class PowerTriggerCondition
         }
 
         uses -= 1;
-        power.onSpecificTrigger();
+        power.OnUse(m);
         power.flashWithoutSound();
+        Refresh(false);
         power.updateDescription();
     }
 }

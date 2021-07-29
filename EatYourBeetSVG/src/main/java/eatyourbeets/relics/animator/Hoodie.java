@@ -17,7 +17,7 @@ public class Hoodie extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(MAX_HP_BONUS);
+        return FormatDescription(0, MAX_HP_BONUS);
     }
 
     @Override

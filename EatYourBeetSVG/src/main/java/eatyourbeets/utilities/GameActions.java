@@ -4,11 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
@@ -34,6 +32,7 @@ import eatyourbeets.actions.cardManipulation.*;
 import eatyourbeets.actions.damage.DealDamage;
 import eatyourbeets.actions.damage.DealDamageToAll;
 import eatyourbeets.actions.damage.DealDamageToRandomEnemy;
+import eatyourbeets.actions.damage.LoseHP;
 import eatyourbeets.actions.handSelection.CycleCards;
 import eatyourbeets.actions.handSelection.DiscardFromHand;
 import eatyourbeets.actions.handSelection.ExhaustFromHand;
@@ -51,6 +50,7 @@ import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.actions.powers.ReducePower;
 import eatyourbeets.actions.powers.ReduceStrength;
 import eatyourbeets.actions.special.DelayAllActions;
+import eatyourbeets.actions.special.PlaySFX;
 import eatyourbeets.actions.special.PlayVFX;
 import eatyourbeets.actions.special.SelectCreature;
 import eatyourbeets.actions.utility.CallbackAction;
@@ -69,6 +69,7 @@ import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.common.ResiliencePower;
 import eatyourbeets.powers.common.TemporaryArtifactPower;
 import eatyourbeets.powers.common.VitalityPower;
+import eatyourbeets.powers.common.TemporaryArtifactPower;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -617,9 +618,9 @@ public final class GameActions
         return Add(new InduceOrb(orbConstructor, amount));
     }
 
-    public LoseHPAction LoseHP(int amount, AbstractGameAction.AttackEffect effect)
+    public LoseHP LoseHP(int amount, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new LoseHPAction(player, player, amount, effect));
+        return Add(new LoseHP(player, player, amount, effect));
     }
 
     public MakeTempCard MakeCard(AbstractCard card, CardGroup group)
@@ -823,14 +824,14 @@ public final class GameActions
         return Add(new ReshuffleDiscardPile(onlyIfEmpty));
     }
 
-    public SFXAction SFX(String key)
+    public PlaySFX SFX(String key)
     {
-        return Add(new SFXAction(key));
+        return SFX(key, 1, 1);
     }
 
-    public SFXAction SFX(String key, float pitchVar)
+    public PlaySFX SFX(String key, float pitchMin, float pitchMax)
     {
-        return Add(new SFXAction(key, pitchVar));
+        return Add(new PlaySFX(key, pitchMin, pitchMax));
     }
 
     public ShakeScreenAction ShakeScreen(float actionDuration, ScreenShake.ShakeDur shakeDuration, ScreenShake.ShakeIntensity intensity)

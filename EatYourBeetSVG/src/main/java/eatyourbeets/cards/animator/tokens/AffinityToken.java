@@ -12,7 +12,6 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredTexture;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -26,13 +25,19 @@ public abstract class AffinityToken extends AnimatorCard
 
     public static EYBCardData Register(Class<? extends AnimatorCard> type)
     {
-        EYBCardData data = AnimatorCard.Register(type).SetPower(2, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
-        cards.add(data);
-        return data;
+        return AnimatorCard.Register(type).SetPower(2, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
     }
 
     public static ArrayList<EYBCardData> GetCards()
     {
+        if (cards.isEmpty())
+        {
+            for (AffinityType type : AffinityType.BasicTypes())
+            {
+                cards.add(GetCard(type));
+            }
+        }
+
         return cards;
     }
 
@@ -50,10 +55,14 @@ public abstract class AffinityToken extends AnimatorCard
 
             default:
             {
-                JUtils.LogWarning(AffinityToken.class, "Affinity token not supported for " + type);
-                return null;
+                throw new RuntimeException("Affinity token not supported for " + type);
             }
         }
+    }
+
+    public static AffinityToken GetCopy(AffinityType type, boolean upgraded)
+    {
+        return (AffinityToken) GetCard(type).MakeCopy(upgraded);
     }
 
     protected AffinityToken(EYBCardData cardData, AffinityType affinityType)

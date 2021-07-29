@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.cardTextParsing.CTContext;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.utilities.ColoredString;
@@ -23,6 +24,7 @@ public class EYBCardText
 {
     private static final CommonImages.Badges BADGES = GR.Common.Images.Badges;
     private static final CommonImages.CardIcons ICONS = GR.Common.Images.Icons;
+    private static final ColoredString cs = new ColoredString("", Settings.CREAM_COLOR);
     private float badgeAlphaTargetOffset = 1f;
     private float badgeAlphaOffset = -0.2f;
 
@@ -77,7 +79,7 @@ public class EYBCardText
         final boolean inHand = EYBCard.player != null && EYBCard.player.hand.contains(card);
         if (card.drawScale > 0.3f)
         {
-            RenderBadges(sb);
+            RenderBadges(sb, inHand);
 
             ColoredString header = card.GetHeaderText();
             if (header != null)
@@ -136,7 +138,7 @@ public class EYBCardText
         return card.type == AbstractCard.CardType.ATTACK ? card.GetBlockInfo() : card.GetDamageInfo();
     }
 
-    protected void RenderBadges(SpriteBatch sb)
+    protected void RenderBadges(SpriteBatch sb, boolean inHand)
     {
         final float alpha = UpdateBadgeAlpha();
 
@@ -182,45 +184,69 @@ public class EYBCardText
             int scaling = card.affinities.GetScaling(type, false);
             if (scaling > 0)
             {
-                offset_y += RenderScaling(sb, type.GetPowerIcon(), scaling, offset_y, type.GetAlternateColor());
+                if (inHand)
+                {
+                    final int amount = (int)CombatStats.Affinities.ApplyScaling(type, card, 0);
+                    cs.color = amount > 0 ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR;
+                    cs.text = "+" + amount;
+                }
+                else
+                {
+                    cs.color = Settings.CREAM_COLOR;
+                    cs.text = "x" + scaling;
+                }
+
+                offset_y += RenderScaling(sb, type.GetPowerIcon(), cs, offset_y, Color.BLACK);//type.GetAlternateColor());
             }
         }
 
         int starScaling = card.affinities.GetScaling(AffinityType.Star, false);
         if (starScaling > 0)
         {
-            RenderScaling(sb, GR.Common.Images.Affinities.Star.Texture(), starScaling, offset_y, AffinityType.Star.GetAlternateColor());
+            if (inHand)
+            {
+                final int amount = (int)CombatStats.Affinities.ApplyScaling(AffinityType.Star, card, 0);
+                cs.color = amount > 0 ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR;
+                cs.text = "+" + amount;
+            }
+            else
+            {
+                cs.color = Settings.CREAM_COLOR;
+                cs.text = "x" + starScaling;
+            }
+
+            RenderScaling(sb, GR.Common.Images.Affinities.Star.Texture(), cs, offset_y, Color.BLACK);// AffinityType.Star.GetAlternateColor());
         }
     }
 
-    private float RenderScaling(SpriteBatch sb, Texture texture, int scaling, float y, Color backgroundColor)
+    private float RenderScaling(SpriteBatch sb, Texture texture, ColoredString scaling, float y, Color backgroundColor)
     {
-        final float offset_x = -AbstractCard.RAW_W * 0.46f;
+        final float offset_x = -AbstractCard.RAW_W * 0.4625f;
         final float offset_y = AbstractCard.RAW_H * 0.08f;//+0.28f;
         final BitmapFont font = EYBFontHelper.CardIconFont_Large;
 
-        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.SquaredButton.Texture(), new Vector2(offset_x, offset_y + y), 36, 42, backgroundColor, 0.7f, 1);
+        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Elliptical.Texture(), new Vector2(offset_x, offset_y + y), 24, 32, backgroundColor, 0.4f, 1);
         RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y + 8), 34, 34, Color.WHITE, 1, 1);
 
         font.getData().setScale(0.6f * card.drawScale);
-        RenderHelpers.WriteOnCard(sb, card, font, "x" + scaling, offset_x, offset_y + y - 6, Settings.CREAM_COLOR, true);
+        RenderHelpers.WriteOnCard(sb, card, font, scaling.text, offset_x, offset_y + y - 6, scaling.color, true);
         //RenderHelpers.WriteOnCard(sb, card, font, "x" + scaling, (offset_x + 6), (offset_y + y - 12), Settings.CREAM_COLOR, true);
         RenderHelpers.ResetFont(font);
 
         return 42; // y offset
     }
 
-    private float RenderScaling(SpriteBatch sb, TextureRegion texture, int scaling, float y, Color backgroundColor)
+    private float RenderScaling(SpriteBatch sb, TextureRegion texture, ColoredString scaling, float y, Color backgroundColor)
     {
-        final float offset_x = -AbstractCard.RAW_W * 0.46f;
+        final float offset_x = -AbstractCard.RAW_W * 0.4625f;
         final float offset_y = AbstractCard.RAW_H * 0.08f;//+0.28f;
         final BitmapFont font = EYBFontHelper.CardIconFont_Large;
 
-        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.SquaredButton.Texture(), new Vector2(offset_x, offset_y + y), 36, 42, backgroundColor, 0.7f, 1);
+        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Elliptical.Texture(), new Vector2(offset_x, offset_y + y), 24, 32, backgroundColor, 0.4f, 1);
         RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y + 8), 24, 24, Color.WHITE, 1, 1);
 
         font.getData().setScale(0.6f * card.drawScale);
-        RenderHelpers.WriteOnCard(sb, card, font, "x" + scaling, offset_x, offset_y + y - 6, Settings.CREAM_COLOR, true);
+        RenderHelpers.WriteOnCard(sb, card, font, scaling.text, offset_x, offset_y + y - 6, scaling.color, true);
         //RenderHelpers.WriteOnCard(sb, card, font, "x" + scaling, (offset_x + 6), (offset_y + y - 12), Settings.CREAM_COLOR, true);
         RenderHelpers.ResetFont(font);
 

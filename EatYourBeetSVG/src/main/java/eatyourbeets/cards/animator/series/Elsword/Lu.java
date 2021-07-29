@@ -20,7 +20,7 @@ import eatyourbeets.utilities.GameEffects;
 public class Lu extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Lu.class)
-            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal)
+            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 

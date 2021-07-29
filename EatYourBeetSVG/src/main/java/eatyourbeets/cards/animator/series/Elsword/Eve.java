@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
@@ -28,9 +28,9 @@ public class Eve extends AnimatorCard
             .SetSeriesFromClassPackage();
     static
     {
-        for (OrbCore core : OrbCore.GetAllCores())
+        for (EYBCardData data : AffinityToken.GetCards())
         {
-            DATA.AddPreview(core, false);
+            DATA.AddPreview((EYBCard) data.CreateNewInstance(), false);
         }
     }
 
@@ -100,7 +100,7 @@ public class Eve extends AnimatorCard
                         .SetOptions(true, false)
                         .SetDamageEffect(enemy ->
                         {
-                            SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.1f, true);
+                            SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.9f, 1.1f);
                             GameEffects.List.Add(VFX.SmallLaser(owner.hb, enemy.hb, Color.CYAN));
                             return 0f;
                         });

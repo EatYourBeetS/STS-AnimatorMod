@@ -49,7 +49,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         Powers.add(Blessing = new BlessingPower());
         Powers.add(Corruption = new CorruptionPower());
 
-        hb = new DraggableHitbox(ScreenW(0.02725f), ScreenH(0.415f), Scale(80f),  Scale(40f), true);
+        hb = new DraggableHitbox(ScreenW(0.0366f), ScreenH(0.425f), Scale(80f),  Scale(40f), true);
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));
 
         dragPanel_image = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
@@ -164,7 +164,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public boolean CanActivateSynergyBonus(AffinityType type)
     {
-        return type.ID >= 0 && !CombatStats.HasActivatedSemiLimited(type.name());
+        return type.ID >= 0 && CombatStats.CanActivateSemiLimited(type.name());
     }
 
     public ApplyAffinityPower ActivateSynergyBonus(AffinityType type)
@@ -282,7 +282,25 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return damage;
     }
 
-    protected float ApplyScaling(AbstractAffinityPower power, EYBCard card, float base)
+    public float ApplyScaling(AffinityType type, EYBCard card, float base)
+    {
+        if (type == AffinityType.Star)
+        {
+            for (AbstractAffinityPower p : Powers)
+            {
+                if (p.amount > 0)
+                {
+                    base = ApplyScaling(p, card, base);
+                }
+            }
+
+            return base;
+        }
+
+        return ApplyScaling(GetPower(type), card, base);
+    }
+
+    public float ApplyScaling(AbstractAffinityPower power, EYBCard card, float base)
     {
         return base + MathUtils.ceil(card.affinities.GetScaling(power.affinityType, true) * power.amount * 0.5f);
     }

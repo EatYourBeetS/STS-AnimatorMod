@@ -34,7 +34,7 @@ public class Wiz extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        if (!CombatStats.HasActivatedLimited(cardID))
+        if (CombatStats.CanActivateLimited(cardID))
         {
             SetPurge(!(CombatStats.Affinities.WouldSynergize(this)));
         }

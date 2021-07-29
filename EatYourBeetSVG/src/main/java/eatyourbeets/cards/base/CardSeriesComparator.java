@@ -13,9 +13,8 @@ public class CardSeriesComparator implements Comparator<AbstractCard>
 
     public int compare(AbstractCard c1, AbstractCard c2)
     {
-        ThanksJava a1 = CalculateValue(c1);
-        ThanksJava a2 = CalculateValue(c2);
-
+        final ThanksJava a1 = CalculateValue(c1);
+        final ThanksJava a2 = CalculateValue(c2);
         return (a1.rank - a2.rank) + (a1.series.LocalizedName.compareTo(a2.series.LocalizedName));
     }
 

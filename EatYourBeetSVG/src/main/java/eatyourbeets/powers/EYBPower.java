@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.powers.EYBFlashPowerEffect;
 import eatyourbeets.effects.powers.EYBGainPowerEffect;
+import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 
@@ -39,6 +40,21 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     public boolean enabled = true;
     public boolean overrideDisabled = false;
     public boolean disabled = false;
+
+    public EYBPower(AbstractCreature owner, EYBRelic relic)
+    {
+        this.effects = _effect.Get(this);
+        this.owner = owner;
+        this.ID = relic.relicId + "Power";
+
+        this.powerIcon = relic.GetPowerIcon();
+        this.img = null;
+
+        this.powerStrings = new PowerStrings();
+        this.powerStrings.NAME = relic.name;
+        this.powerStrings.DESCRIPTIONS = relic.DESCRIPTIONS;
+        this.name = powerStrings.NAME;
+    }
 
     public EYBPower(AbstractCreature owner, EYBCardData cardData)
     {

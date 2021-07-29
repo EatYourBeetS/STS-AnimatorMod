@@ -48,7 +48,7 @@ public class KotoriKanbe extends AnimatorCard
             if (stacks > 0)
             {
                 EnemyIntent intent = GameUtilities.GetIntent(m).AddWeak();
-                if (heal >= HP_HEAL_THRESHOLD && !CombatStats.HasActivatedLimited(cardID))
+                if (heal >= HP_HEAL_THRESHOLD && CombatStats.CanActivateLimited(cardID))
                 {
                     intent.AddStrength(-secondaryValue);
                 }

@@ -18,7 +18,7 @@ public class HolyGrailRelic extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(MAX_HP_ON_PICKUP);
+        return FormatDescription(0, MAX_HP_ON_PICKUP);
     }
 
     @Override

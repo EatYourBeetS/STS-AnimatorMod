@@ -32,6 +32,21 @@ import java.util.ArrayList;
 
 public class EYBCardTooltip
 {
+    public static final Color BASE_COLOR = new Color(1f, 0.9725f, 0.8745f, 1f);
+    public static final float CARD_TIP_PAD = 12f * Settings.scale;
+    public static final float BOX_EDGE_H = 32f * Settings.scale;
+    public static final float SHADOW_DIST_Y = 14f * Settings.scale;
+    public static final float SHADOW_DIST_X = 9f * Settings.scale;
+    public static final float BOX_BODY_H = 64f * Settings.scale;
+    public static final float TEXT_OFFSET_X = 22f * Settings.scale;
+    public static final float HEADER_OFFSET_Y = 12f * Settings.scale;
+    public static final float ORB_OFFSET_Y = -8f * Settings.scale;
+    public static final float BODY_OFFSET_Y = -20f * Settings.scale;
+    public static final float BOX_W = 360f * Settings.scale;
+    public static final float BODY_TEXT_WIDTH = 320f * Settings.scale;
+    public static final float TIP_DESC_LINE_SPACING = 26f * Settings.scale;
+    public static final float POWER_ICON_OFFSET_X = 40f * Settings.scale;
+
     private final static ArrayList EMPTY_LIST = new ArrayList();
 
     private final static FieldInfo<String> _body = JUtils.GetField("BODY", TipHelper.class);
@@ -42,20 +57,6 @@ public class EYBCardTooltip
     private final static FieldInfo<Boolean> _renderedTipsThisFrame = JUtils.GetField("renderedTipThisFrame", TipHelper.class);
 
     private static final ArrayList<EYBCardTooltip> tooltips = new ArrayList<>();
-    private static final float CARD_TIP_PAD = 12f * Settings.scale;
-    private static final float BOX_EDGE_H = 32f * Settings.scale;
-    private static final Color BASE_COLOR = new Color(1f, 0.9725f, 0.8745f, 1f);
-    private static final float SHADOW_DIST_Y = 14f * Settings.scale;
-    private static final float SHADOW_DIST_X = 9f * Settings.scale;
-    private static final float BOX_BODY_H = 64f * Settings.scale;
-    private static final float TEXT_OFFSET_X = 22f * Settings.scale;
-    private static final float HEADER_OFFSET_Y = 12f * Settings.scale;
-    private static final float ORB_OFFSET_Y = -8f * Settings.scale;
-    private static final float BODY_OFFSET_Y = -20f * Settings.scale;
-    private static final float BOX_W = 360f * Settings.scale;
-    private static final float BODY_TEXT_WIDTH = 320f * Settings.scale;
-    private static final float TIP_DESC_LINE_SPACING = 26f * Settings.scale;
-    private static final float POWER_ICON_OFFSET_X = 40f * Settings.scale;
     private static EYBCardTooltip translationTooltip;
     private static boolean inHand;
     private static EYBCard card;

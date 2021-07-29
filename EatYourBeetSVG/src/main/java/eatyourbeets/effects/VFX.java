@@ -47,6 +47,21 @@ public class VFX
         return new ClawEffect(source.cX, source.cY, color1, color2);
     }
 
+    public static MindblastEffect Mindblast(float dialogX, float dialogY, boolean flipHorizontal)
+    {
+        return new MindblastEffect(dialogX, dialogY, flipHorizontal);
+    }
+
+    public static ShockWaveEffect ShockWave(Hitbox source, Color color)
+    {
+        return ShockWave(source, color, ShockWaveEffect.ShockWaveType.ADDITIVE);
+    }
+
+    public static ShockWaveEffect ShockWave(Hitbox source, Color color, ShockWaveEffect.ShockWaveType type)
+    {
+        return new ShockWaveEffect(source.cX, source.cY, color.cpy(), type);
+    }
+
     public static ColoredSweepingBeamEffect SweepingBeam(AbstractCreature source)
     {
         return SweepingBeam(source.hb, source.flipHorizontal, Color.CYAN);
@@ -70,8 +85,8 @@ public class VFX
     public static SmallLaserEffect SmallLaser(Hitbox source, Hitbox target, Color color)
     {
         return new SmallLaserEffect(source.cX, source.cY,
-                target.cX + (MathUtils.random(-0.15f, 0.15f) * target.width),
-                target.cY + (MathUtils.random(-0.15f, 0.15f) * target.height), color);
+                target.cX + (MathUtils.random(-0.2f, 0.2f) * target.width),
+                target.cY + (MathUtils.random(-0.2f, 0.2f) * target.height), color);
     }
 
     public static FallingIceEffect FallingIce(int frostCount)

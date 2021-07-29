@@ -94,16 +94,15 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     @Override
     public void setGroup(CardGroup group)
     {
-        super.setGroup(group);
+        if (isColorless)
+        {
+            super.setGroup(group);
+            return;
+        }
 
         if (!ShowSpecial)
         {
             group.group.removeIf(card -> card instanceof EYBCard && card.rarity == AbstractCard.CardRarity.SPECIAL);
-        }
-
-        if (isColorless)
-        {
-            return;
         }
 
         for (AnimatorCard_UltraRare card : AnimatorCard_UltraRare.GetCards().values())
@@ -116,6 +115,8 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
                 }
             }
         }
+
+        super.setGroup(group);
     }
 
     @Override

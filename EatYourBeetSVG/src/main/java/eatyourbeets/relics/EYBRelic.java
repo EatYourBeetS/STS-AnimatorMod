@@ -1,7 +1,9 @@
 package eatyourbeets.relics;
 
 import basemod.abstracts.CustomRelic;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -22,6 +24,7 @@ public abstract class EYBRelic extends CustomRelic
     public static AbstractPlayer player;
     public static Random rng;
 
+    public EYBCardTooltip mainTooltip;
     public ArrayList<EYBCardTooltip> tips;
 
     public EYBRelic(String id, String imageID, RelicTier tier, LandingSound sfx)
@@ -32,6 +35,15 @@ public abstract class EYBRelic extends CustomRelic
     public EYBRelic(String id, RelicTier tier, LandingSound sfx)
     {
         this(id, id, tier, sfx);
+    }
+
+    public TextureAtlas.AtlasRegion GetPowerIcon()
+    {
+        final Texture texture = img;
+        final int h = texture.getHeight();
+        final int w = texture.getWidth();
+        final int section = h / 2;
+        return new TextureAtlas.AtlasRegion(texture, (w / 2) - (section / 2), (h / 2) - (section / 2), section, section);
     }
 
     @Override
@@ -54,9 +66,9 @@ public abstract class EYBRelic extends CustomRelic
         }
     }
 
-    protected String FormatDescription(Object... args)
+    protected String FormatDescription(int index, Object... args)
     {
-        return JUtils.Format(DESCRIPTIONS[0], args);
+        return JUtils.Format(DESCRIPTIONS[index], args);
     }
 
     protected void DisplayAboveCreature(AbstractCreature creature)
@@ -131,7 +143,8 @@ public abstract class EYBRelic extends CustomRelic
             tips.clear();
         }
 
-        tips.add(new EYBCardTooltip(name, description));
+        mainTooltip = new EYBCardTooltip(name, description);
+        tips.add(mainTooltip);
 
         final Scanner desc = new Scanner(this.description);
         String s;

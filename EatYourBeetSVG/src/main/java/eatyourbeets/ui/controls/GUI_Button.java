@@ -6,11 +6,11 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
@@ -226,13 +226,13 @@ public class GUI_Button extends GUIElement
 
     protected void OnHover()
     {
-        CardCrawlGame.sound.play("UI_HOVER");
+        SFX.Play(SFX.UI_HOVER);
     }
 
     protected void OnClickStart()
     {
         this.hb.clickStarted = true;
-        CardCrawlGame.sound.play("UI_CLICK_1");
+        SFX.Play(SFX.UI_CLICK_1);
     }
 
     protected void OnClick()

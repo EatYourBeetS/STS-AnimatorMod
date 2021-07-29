@@ -47,15 +47,15 @@ public class Megumin extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.Add(SFX.LightningPassive(0.1f, true));
+        GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.9f, 1.1f);
         GameActions.Bottom.Wait(0.35f);
-        GameActions.Bottom.Add(SFX.LightningPassive(0.2f, true));
+        GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.8f, 1.2f);
         GameActions.Bottom.BorderFlash(Color.ORANGE);
         GameActions.Bottom.Wait(0.35f);
-        GameActions.Bottom.Add(SFX.LightningPassive(0.3f, true));
+        GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.7f, 1.3f);
         GameActions.Bottom.Wait(0.35f);
         GameActions.Bottom.BorderFlash(Color.RED);
-        GameActions.Bottom.Add(SFX.LightningEvoke(0.5f, true));
+        GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.5f, 1.5f);
 
         for (AbstractCreature m1 : GameUtilities.GetEnemies(true))
         {

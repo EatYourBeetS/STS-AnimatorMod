@@ -63,7 +63,7 @@ public class Eve extends AnimatorCard
         }
 
         @Override
-        public void onSpecificTrigger()
+        public void OnUse(AbstractMonster m)
         {
             super.onSpecificTrigger();
 

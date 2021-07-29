@@ -19,7 +19,10 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.ArrayList;
 
@@ -67,6 +70,9 @@ public abstract class EYBClickablePower extends EYBPower
         tooltip = new EYBCardTooltip(name, description);
         tooltip.subText = new ColoredString();
         tooltip.icon = powerIcon;
+
+        final float size = ICON_SIZE * Settings.scale * 1.5f;
+        hb = new Hitbox(size, size);
     }
 
     public EYBClickablePower(AbstractCreature owner, EYBCardData cardData, PowerTriggerConditionType type, int requiredAmount)

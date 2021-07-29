@@ -534,7 +534,7 @@
 		},
 		"animator:Ganyu":
 		{
-		  "DESCRIPTION": "Deal !S! more damage for every stack of [~Lock-On] on the enemy. You cannot gain [Block] for 2 turns. || When Discarded: Channel !M! [Frost]",
+		  "DESCRIPTION": "If the enemy has [~Lock-On]: Deal !S! more damage, then nullify all Block you gain for 2 turns. || Otherwise, {Induce} !M! [Frost]",
 		  "NAME": "Ganyu"
 		},
 		"animator:HuTao":
@@ -616,8 +616,8 @@
 		},
 		"animator:Zhongli":
 		{
-			"DESCRIPTION": "Your [Earth] now give half of their damage as [Block] when Evoked. || At the end of each turn: Spend ** !S! of your remaining Energy ** to {Channel} [Earth] and gain !M! [Plated Armor].",
-			"EXTENDED_DESCRIPTION": ["#yEarth orbs now also give Block when Evoked. At the end of each turn, spend #b{0} of your remaining energy to channel #yEarth and gain #b{1} #yPlated #yArmor."],
+			"DESCRIPTION": "Your [Earth] now give half of their damage as [Block] when Evoked. || Once per turn, pay [E]: ** {Channel} [Earth] and gain !M! [Plated Armor].",
+		  	"EXTENDED_DESCRIPTION": ["Pay #b1 [E] to channel #b1 [Earth] and gain {0} [Plated Armor]. || Your [Earth] now give half of their damage as [Block] when #yEvoked."],
 			"NAME": "Zhongli"
 		}
 	},

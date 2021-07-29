@@ -51,7 +51,7 @@ public class Ushio extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     {
         GameActions.Bottom.StackPower(new DrawCardNextTurnPower(player, magicNumber));
         GameActions.Bottom.StackPower(new EnergizedPower(player, secondaryValue));
-        GameActions.Bottom.SFX("POWER_TIME_WARP", 0.05F);
+        GameActions.Bottom.SFX("POWER_TIME_WARP", 0.05F, 0.05F);
         GameActions.Bottom.VFX(new TimeWarpTurnEndEffect());
         GameActions.Bottom.Add(new PressEndTurnButtonAction());
         CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);

@@ -3,11 +3,11 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
 
 public class Zhongli extends AnimatorCard
@@ -28,34 +28,26 @@ public class Zhongli extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.StackPower(new ZhongliPower(p, this.magicNumber, this.secondaryValue));
+        GameActions.Bottom.StackPower(new ZhongliPower(p, this.magicNumber));
     }
 
-    public static class ZhongliPower extends AnimatorPower
+    public static class ZhongliPower extends AnimatorClickablePower
     {
-        private final int secondaryAmount;
-
-        public ZhongliPower(AbstractPlayer owner, int amount, int secondaryAmount)
+        public ZhongliPower(AbstractPlayer owner, int amount)
         {
-            super(owner, Zhongli.DATA);
+            super(owner, Zhongli.DATA, PowerTriggerConditionType.Energy, 1);
 
             this.amount = amount;
-            this.secondaryAmount = secondaryAmount;
+            this.triggerCondition.SetOneUsePerPower(true);
 
             updateDescription();
         }
 
         @Override
-        public void atEndOfTurn(boolean isPlayer)
+        public void OnUse(AbstractMonster m)
         {
-            super.atEndOfTurn(isPlayer);
-            int energy = Math.min(secondaryAmount, EnergyPanel.getCurrentEnergy());
-            if (energy > 0)
-            {
-                EnergyPanel.useEnergy(energy);
-                GameActions.Bottom.ChannelOrb(new Earth());
-                GameActions.Bottom.GainPlatedArmor(amount);
-            }
+            GameActions.Bottom.ChannelOrb(new Earth());
+            GameActions.Bottom.GainPlatedArmor(amount);
         }
 
         @Override
@@ -66,12 +58,6 @@ public class Zhongli extends AnimatorCard
             if (Earth.ORB_ID.equals(orb.ID)) {
                 GameActions.Bottom.GainBlock(orb.evokeAmount / 2);
             }
-        }
-
-        @Override
-        public void updateDescription()
-        {
-            description = FormatDescription(0, secondaryAmount, amount);
         }
     }
 }

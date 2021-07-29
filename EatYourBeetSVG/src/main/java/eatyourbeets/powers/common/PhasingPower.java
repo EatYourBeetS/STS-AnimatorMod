@@ -90,7 +90,7 @@ public class PhasingPower extends CommonPower implements OnModifyDamageSubscribe
         if (target == owner && info.type == DamageInfo.DamageType.NORMAL && rng.random(100) < amount)
         {
             player.tint.color.a = 0;
-            GameActions.Bottom.SFX("ORB_PLASMA_CHANNEL", 1.6f);
+            GameActions.Bottom.SFX("ORB_PLASMA_CHANNEL", 1.6f, 1.6f);
             GameActions.Top.Wait(0.15f);
             flashWithoutSound();
 

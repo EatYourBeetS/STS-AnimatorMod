@@ -53,7 +53,7 @@ public class Biyorigo extends AnimatorCard
         }
 
         @Override
-        public void onSpecificTrigger()
+        public void OnUse(AbstractMonster m)
         {
             GameActions.Bottom.GainForce(POWER_GAIN);
             GameActions.Bottom.GainAgility(POWER_GAIN);

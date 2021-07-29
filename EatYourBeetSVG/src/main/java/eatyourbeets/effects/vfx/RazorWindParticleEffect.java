@@ -11,7 +11,7 @@ import eatyourbeets.effects.EYBEffect;
 
 public class RazorWindParticleEffect extends EYBEffect
 {
-    protected static final int SIZE = 96;
+    protected static final int SIZE = 600;
     protected static Texture img;
 
     protected float x;
@@ -41,7 +41,7 @@ public class RazorWindParticleEffect extends EYBEffect
         this.y = y + offsetY - (float) (SIZE / 2);
         this.horizontalSpeed = horizontalSpeed * Settings.scale;
         this.verticalSpeed = verticalSpeed * Settings.scale;
-        this.scale = Random(0.15f, 1f) * Settings.scale;
+        this.scale = Random(0.01f, 0.1f) * Settings.scale;
         this.alpha = Random(0.3F, 1.0F);
         this.color = Color.WHITE.cpy();
         this.color.a = this.alpha;

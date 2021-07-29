@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.beta.ultrarare;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
-import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DarkOrbEvokeAction;
@@ -17,6 +16,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
+import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
@@ -187,7 +187,7 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
                 RandomizedList<AbstractOrb> randomOrbs = new RandomizedList<>();
 
                 for (AbstractOrb orb : player.orbs) {
-                    if (GameUtilities.IsValidOrb(orb)) {
+                    if (GameUtilities.IsValidOrb(orb) && !Aether.ORB_ID.equals(orb.ID) && !Plasma.ORB_ID.equals(orb.ID)) {
                         randomOrbs.Add(orb);
                     }
                 }
@@ -199,7 +199,7 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
                         uniqueOrbs.add(orb.ID);
                         totalMastery += 5;
                     }
-                    GameActions.Bottom.Add(new EvokeSpecificOrbAction(orbCopy));
+                    GameActions.Bottom.InduceOrb(orbCopy);
                 }
 
                 GameActions.Bottom.ChannelOrbs(Aether::new, 1);

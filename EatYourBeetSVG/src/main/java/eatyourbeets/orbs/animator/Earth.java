@@ -10,14 +10,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
 import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
+import eatyourbeets.effects.Projectile;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.effects.Projectile;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.Mathf;
 
@@ -27,9 +27,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
 {
     public static final String ORB_ID = CreateFullID(Earth.class);
     public static final int PROJECTILES = 8;
-
-    public static Texture PROJECTILE_LARGE;
-    public static Texture PROJECTILE_SMALL;
+    public static final int FRAMES = 3;
 
     public final ArrayList<Projectile> projectiles = new ArrayList<>();
     public boolean evoked;
@@ -40,12 +38,6 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     public Earth()
     {
         super(ORB_ID, true);
-
-        if (PROJECTILE_LARGE == null || PROJECTILE_SMALL == null)
-        {
-            PROJECTILE_LARGE = ImageMaster.loadImage("images/orbs/animator/Earth1.png");
-            PROJECTILE_SMALL = ImageMaster.loadImage("images/orbs/animator/Earth2.png");
-        }
 
         this.evoked = false;
         this.evokeAmount = this.baseEvokeAmount = 16;
@@ -61,10 +53,11 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         projectiles.clear();
         for (int i = 0; i < PROJECTILES; i++)
         {
-            projectiles.add(new Projectile((i % 3 == 0) ? PROJECTILE_LARGE : PROJECTILE_SMALL, 48f, 48f)
+            Texture image = GR.GetTexture("images/orbs/animator/Earth" + i % FRAMES + ".png");
+            projectiles.add(new Projectile(image, 80f, 80f)
             .SetPosition(cX, cY)
             .SetColor(Mathf.RandomColor(0f, 0.15f, true))
-            .SetScale(MathUtils.random(0.8f, 1f))
+            .SetScale(MathUtils.random(0.35f, 0.6f))
             .SetFlip(i % 2 == 0, null)
             .SetOffset(0f, 0f, MathUtils.random(0f, 360f))
             .SetSpeed(2f, 2f, MathUtils.random(18f, 24f)));

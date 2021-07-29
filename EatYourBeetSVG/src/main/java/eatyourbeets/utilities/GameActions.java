@@ -41,6 +41,7 @@ import eatyourbeets.actions.handSelection.SelectFromHand;
 import eatyourbeets.actions.monsters.TalkAction;
 import eatyourbeets.actions.orbs.ChannelOrb;
 import eatyourbeets.actions.orbs.EvokeOrb;
+import eatyourbeets.actions.orbs.InduceOrb;
 import eatyourbeets.actions.pileSelection.*;
 import eatyourbeets.actions.player.ChangeStance;
 import eatyourbeets.actions.player.GainGold;
@@ -604,6 +605,16 @@ public final class GameActions
     public HealCreature Heal(int amount)
     {
         return Add(new HealCreature(player, player, amount));
+    }
+
+    public InduceOrb InduceOrb(AbstractOrb orb)
+    {
+        return Add(new InduceOrb(orb));
+    }
+
+    public InduceOrb InduceOrbs(FuncT0<AbstractOrb> orbConstructor, int amount)
+    {
+        return Add(new InduceOrb(orbConstructor, amount));
     }
 
     public LoseHPAction LoseHP(int amount, AbstractGameAction.AttackEffect effect)

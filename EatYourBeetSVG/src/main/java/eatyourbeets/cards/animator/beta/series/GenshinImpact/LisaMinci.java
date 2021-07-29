@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -32,7 +31,7 @@ public class LisaMinci extends AnimatorCard {
                     {
                         switch (card.rarity) {
                             case RARE:
-                                GameActions.Bottom.Add(new EvokeSpecificOrbAction(new Lightning()));
+                                GameActions.Bottom.InduceOrbs(Lightning::new, 1);
                                 break;
                             case UNCOMMON:
                                 GameActions.Bottom.GainIntellect(1, upgraded);

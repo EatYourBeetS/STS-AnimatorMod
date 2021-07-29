@@ -4,7 +4,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
@@ -17,6 +20,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class MotokoKusanagi extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final int GOLD_THRESHOLD = 150;
+    public static final int BASE_RICOCHET = 3;
 
     public static final EYBCardData DATA = Register(MotokoKusanagi.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GhostInTheShell);
 
@@ -24,8 +28,8 @@ public class MotokoKusanagi extends AnimatorCard implements OnStartOfTurnPostDra
     {
         super(DATA);
 
-        Initialize(2, 0, 3, 3);
-        SetUpgrade(1, 0, 0);
+        Initialize(3, 0, 2, 3);
+        SetUpgrade(2, 0, 0);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Green(1, 0, 1);
@@ -60,15 +64,16 @@ public class MotokoKusanagi extends AnimatorCard implements OnStartOfTurnPostDra
     }
 
     @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        GameUtilities.ModifySecondaryValue(this, Math.max(1, BASE_RICOCHET - Math.floorDiv(player.gold, GOLD_THRESHOLD)), true);
+    }
+
+    @Override
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
-        GameUtilities.ModifySecondaryValue(this, Math.max(1, magicNumber - Math.floorDiv(player.gold, GOLD_THRESHOLD)), true);
-        GameActions.Bottom.ModifyAllInstances(uuid, c ->
-        {
-            ((EYBCard) c).AddScaling(AffinityType.Green, 1);
-            c.flash();
-        });
+        GameActions.Bottom.GainBlur(magicNumber);
 
         CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
@@ -77,7 +82,7 @@ public class MotokoKusanagi extends AnimatorCard implements OnStartOfTurnPostDra
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         for (int i = 0; i < magicNumber; i++) {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetDamageEffect(mo -> {GameEffects.List.Add(VFX.Gunshot(mo.hb)); return 0f;});
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetDamageEffect(mo -> {GameEffects.List.Add(VFX.Gunshot(mo.hb).SetImageParameters(0.25f,0)); return 0f;});
         }
     }
 
@@ -93,7 +98,7 @@ public class MotokoKusanagi extends AnimatorCard implements OnStartOfTurnPostDra
         {
             if (secondaryValue <= 1)
             {
-                GameUtilities.ModifySecondaryValue(this, magicNumber, true);
+                GameUtilities.ModifySecondaryValue(this, Math.max(1, BASE_RICOCHET - Math.floorDiv(player.gold, GOLD_THRESHOLD)), true);
                 GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
                         .ShowEffect(true, false);
 

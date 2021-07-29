@@ -12,12 +12,10 @@ import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Venti extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Venti.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetMaxCopies(2).SetSeriesFromClassPackage();
-    private static final int HINDRANCE_THRESHOLD = 2;
 
     public Venti()
     {
@@ -28,6 +26,17 @@ public class Venti extends AnimatorCard
         SetAffinity_Star(2, 0, 0);
 
         SetEthereal(true);
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        if (CombatStats.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
+        }
     }
 
     @Override
@@ -44,7 +53,6 @@ public class Venti extends AnimatorCard
             {
                 GameActions.Bottom.Draw(discardedCards).AddCallback(cardsDrawn ->
                 {
-                    int hindranceCount = 0;
                     for (AbstractCard card : cardsDrawn)
                     {
                         if (card.type == CardType.SKILL)
@@ -53,15 +61,6 @@ public class Venti extends AnimatorCard
                             orb.onStartOfTurn();
                             orb.onEndOfTurn();
                         }
-                        else if (GameUtilities.IsCurseOrStatus(card))
-                        {
-                            hindranceCount += 1;
-                        }
-                    }
-
-                    if (hindranceCount >= HINDRANCE_THRESHOLD && CombatStats.TryActivateLimited(cardID))
-                    {
-                        GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
                     }
                 });
             }

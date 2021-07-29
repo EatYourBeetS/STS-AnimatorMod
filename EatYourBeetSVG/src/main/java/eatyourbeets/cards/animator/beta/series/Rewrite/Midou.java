@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.series.Rewrite;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.Burn;
@@ -57,7 +56,7 @@ public class Midou extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
 
-        GameActions.Bottom.Add(new EvokeSpecificOrbAction(new Fire()));
+        GameActions.Bottom.InduceOrbs(Fire::new, 1);
         GameActions.Bottom.MakeCardInHand(new Burn());
     }
 }

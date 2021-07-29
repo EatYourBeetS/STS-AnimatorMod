@@ -335,7 +335,7 @@
 		},
 		"animator:MotokoKusanagi":
 		{
-		  "DESCRIPTION": "{Ricochet} !S!. || When Exhausted: Reduce {Ricochet} by 1 for every 150 Gold you have (minimum 1). Increase this card's [A] scaling by 1 this combat.",
+		  "DESCRIPTION": "{Ricochet} !S!. Reduced by 1 for every 150 Gold you have (minimum 1). || When Exhausted: Gain !M! [Blur] and [Counterattack].",
 		  "NAME": "Motoko Kusanagi"
 		},
 		"animator:NaoTomori":
@@ -507,6 +507,11 @@
 			"DESCRIPTION": "{Starter}: Channel 1 [Fire]. || Synergy: Apply !M! [~Lock-On].",
 			"NAME": "Amber"
 		},
+		"animator:AyakaKamisato":
+		{
+		  "DESCRIPTION": "Attack 1 additional time for each [Frost] you have. You cannot gain [Block] for 2 turns. || <LIM>. If you have at least ** !S! [Frost]: Play {Sheer Cold}.",
+		  "NAME": "Ayaka Kamisato"
+		},
 		"animator:BarbaraPegg":
 		{
 			"DESCRIPTION": "Gain 1 additional [Temporary HP] for each enemy that intends to attack. || <LIM>. If ALL enemies intend to attack: Boost [B] and Heal !S! HP.",
@@ -526,6 +531,11 @@
 		{
 		  "DESCRIPTION": "Randomly Channel ** [Lightning] or [Dark]. || <LIM>. Synergy: Add {Oz} to your Discard Pile.",
 		  "NAME": "Fischl"
+		},
+		"animator:Ganyu":
+		{
+		  "DESCRIPTION": "Deal !S! more damage for every stack of [~Lock-On] on the enemy. You cannot gain [Block] for 2 turns. || When Discarded: Channel !M! [Frost]",
+		  "NAME": "Ganyu"
 		},
 		"animator:HuTao":
 		{
@@ -547,20 +557,20 @@
 			"DESCRIPTION": "Trigger your first [Fire], [Frost], or [Lightning], then {Channel} 1 [Frost]. || <SLM>. Synergy: Apply !M! [Shackles] to ALL enemies.",
 			"NAME": "Kaeya Alberich"
 		},
-		"animator:KamisatoAyaka":
-		{
-		  "DESCRIPTION": "Attack 1 additional time for each [Frost] you have. You cannot gain [Block] for 2 turns. || <LIM>. If you have at least ** !S! [Frost]: Play {Sheer Cold}.",
-		  "NAME": "Kamisato Ayaka"
-		},
 		"animator:Keqing":
 		{
-		  "DESCRIPTION": "{Ricochet} !S!. ** Reduce {Ricochet} by 1 upon Evoking [Lightning] or gaining [Blur]. || When {Exhausted}: Costs 1 less until played and gains {~Haste}.",
+		  "DESCRIPTION": "{Ricochet} !S!. Reduced by 1 upon Evoking [Lightning] or gaining [Blur]. || When {Exhausted}: Costs 1 less until played and gains {~Haste}.",
 		  "NAME": "Keqing"
 		},
 		"animator:Klee":
 		{
 		  "DESCRIPTION": "Apply !M! [Burning] to ALL enemies. || Add !S! {Jumpy Dumpty} ** to your Draw Pile. ** 3 <R>: Add 1 more.",
 		  "NAME": "Klee"
+		},
+		"animator:Kokomi":
+		{
+		  "DESCRIPTION": "Fully heal ALL enemies. Channel Water and trigger it once for every !M! HP healed. <LIM>. If at least 30 HP was healed in total, gain 1 Static Regen.",
+		  "NAME": "Kokomi"
 		},
 		"animator:LisaMinci":
 		{
@@ -572,6 +582,11 @@
 			"DESCRIPTION": "{Starter}: If you have [Earth], ** Trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || <SLM>. 2 <O>: Retain a card in your hand.",
 			"NAME": "Noelle"
 		},
+		"animator:OgoshoNarukami":
+		{
+		  "DESCRIPTION": "At the start of your turn, increase the damage of all [Lightning] and [Dark] by !M! this combat. You can only channel [Lightning] and [Dark].",
+		  "NAME": "Klee"
+		},
 		"animator:Oz":
 		{
 		  "DESCRIPTION": "Gain 1 Orb Slot. || The first time you play a LV2 <B> card each turn: Randomly Channel 1 [Lightning] or [Dark].",
@@ -580,19 +595,24 @@
 		},
 		"animator:Tartaglia":
 		{
-			"DESCRIPTION": "Deal additional damage equal to the enemy's [Burning], then remove [Burning]. || If in <FS>: Exit your Stance. Otherwise, Enter <FS> ** and Transform this card ** into {Delusion}.",
+			"DESCRIPTION": "Deal additional damage equal to the enemy's [Burning], then remove [Burning]. || <LIM>. If the enemy dies, enter <FS> ** and add {Delusion} to your draw pile.",
 			"NAME": "Tartaglia"
 		},
 		"animator:Traveler":
 		{
 		  "DESCRIPTION": "{Unique}. || Choose 1 of 2 {Forms} for this card at the start of combat. || When Exhausted, switches forms and returns to your Draw Pile.",
-		  "EXTENDED_DESCRIPTION": ["{Unique}. || Channel [Aether]. Gain !M! [Elemental Mastery]. || {Induce} a copy of a random Orb you have !S! times. Gain 5 additional [Elemental Mastery] for every unique Orb Induced.", "{Unique}. || Add 2 {Void} to your Discard Pile. Apply [Frail][Vulnerable][Weak] to ALL enemies !S! times. ** Next turn, trigger the last !M! Orbs Evoked this combat."],
+		  "EXTENDED_DESCRIPTION": ["{Unique}. || Channel [Aether]. Gain !M! [Elemental Mastery]. || {Induce} a random non-[Aether], non-[Plasma] Orb you have !S! times. Gain 5 additional [Elemental Mastery] for every unique Orb Induced.", "{Unique}. || Add 2 {Void} to your Discard Pile. Apply [Frail][Vulnerable][Weak] to ALL enemies !S! times. ** Next turn, trigger the last !M! Orbs Evoked this combat."],
 		  "NAME": "Abyss Ruler"
 		},
 		"animator:Venti":
 		{
-			"DESCRIPTION": "Cycle !M! cards. {Channel} 1 [Aether] and Trigger it once for every Skill drawn. || <LIM>. If you drew at least 2 {Hindrances}: Gain !S! [Support Damage].",
+			"DESCRIPTION": "Cycle !M! cards. {Channel} 1 [Aether] and Trigger it once for every Skill drawn. || <LIM>. When Exhausted: Gain !S! [Support Damage].",
 			"NAME": "Venti"
+		},
+		"animator:Yoimiya":
+		{
+		  "DESCRIPTION": "Attack once for every Attack played this turn. || <LIM>. At the end of your turn, transfer your [Self Damage] and [Burning] to a random enemy.",
+		  "NAME": "Yoimiya"
 		},
 		"animator:Zhongli":
 		{

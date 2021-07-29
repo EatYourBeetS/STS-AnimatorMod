@@ -194,7 +194,7 @@
 	},
 	"Induce":
 	{
-	  "DESCRIPTION": "Evokes a new Orb without Channeling it.",
+	  "DESCRIPTION": "Evokes a copy of an Orb without Channeling it.",
 	  "NAMES": ["induce"],
 	  "PROPER_NAME": "Induce"
 	},

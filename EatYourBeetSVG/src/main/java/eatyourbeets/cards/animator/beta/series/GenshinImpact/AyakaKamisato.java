@@ -21,15 +21,15 @@ import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-public class KamisatoAyaka extends AnimatorCard {
-    public static final EYBCardData DATA = Register(KamisatoAyaka.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing, EYBCardTarget.Random).SetSeriesFromClassPackage();
+public class AyakaKamisato extends AnimatorCard {
+    public static final EYBCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing, EYBCardTarget.Random).SetSeriesFromClassPackage();
     private static final int NO_BLOCK_TURNS = 2;
     static
     {
         DATA.AddPreview(new SheerCold(), false);
     }
 
-    public KamisatoAyaka() {
+    public AyakaKamisato() {
         super(DATA);
 
         Initialize(7, 0, 1, 3);

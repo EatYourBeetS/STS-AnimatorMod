@@ -50,6 +50,8 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
         }
         SetUpgrade(0, 3);
 
+        SetAffinityRequirement(affinityType, magicNumber);
+
         SetTag(CardTags.STARTER_DEFEND, true);
         SetTag(GR.Enums.CardTags.IMPROVED_DEFEND, true);
     }

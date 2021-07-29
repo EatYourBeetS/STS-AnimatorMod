@@ -33,6 +33,8 @@ public class Ain extends AnimatorCard
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Blue(2, 0, 2);
+
+        SetAffinityRequirement(AffinityType.Light, 3);
     }
 
     @Override
@@ -73,7 +75,7 @@ public class Ain extends AnimatorCard
             GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
         }
 
-        if (CheckAffinity(AffinityType.Light, secondaryValue))
+        if (CheckAffinity(AffinityType.Light))
         {
             GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(AffinityType.Blue, false));
         }

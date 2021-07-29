@@ -28,14 +28,14 @@ public abstract class ImprovedBasicCard extends AnimatorCard
     {
         if (affinityType == AffinityType.Star)
         {
-            if (CheckAffinity(AffinityType.General, magicNumber))
+            if (CheckAffinity(AffinityType.General))
             {
                 JUtils.FindMax(CombatStats.Affinities.Powers, p -> p.amount).RetainOnce();
             }
         }
         else
         {
-            if (CheckAffinity(affinityType, magicNumber))
+            if (CheckAffinity(affinityType))
             {
                 CombatStats.Affinities.GetPower(affinityType).RetainOnce();
             }

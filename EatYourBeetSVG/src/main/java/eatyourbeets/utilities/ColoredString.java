@@ -40,6 +40,13 @@ public class ColoredString
         return this;
     }
 
+    public ColoredString SetText(Object text)
+    {
+        this.text = String.valueOf(text);
+
+        return this;
+    }
+
     public ColoredString SetColor(Color color)
     {
         this.color = color.cpy();

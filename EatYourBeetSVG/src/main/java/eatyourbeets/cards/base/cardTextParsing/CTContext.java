@@ -123,7 +123,6 @@ public class CTContext
 
         this.start_y = (card.current_y - IMG_HEIGHT * card.drawScale * 0.5f + DESC_OFFSET_Y * card.drawScale) + (height * 0.775f + font.getCapHeight() * 0.375f) -6f;
         this.start_x = 0;
-        this.lineIndex = 0;
         this.color = RenderHelpers.CopyColor(card, DEFAULT_COLOR);
 
         for (lineIndex = 0; lineIndex < lines.size(); lineIndex += 1)

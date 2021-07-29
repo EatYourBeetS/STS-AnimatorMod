@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -28,6 +29,7 @@ public class Rayneshia extends AnimatorCard
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Light(1);
+        SetAffinityRequirement(AffinityType.General, 4);
     }
 
     @Override
@@ -50,7 +52,7 @@ public class Rayneshia extends AnimatorCard
 
             GameActions.Bottom.Callback(new RefreshHandLayout(), () ->
             {
-                if (GetHandAffinity(null) >= secondaryValue && CombatStats.TryActivateLimited(cardID))
+                if (CheckAffinity(AffinityType.General) && CombatStats.TryActivateLimited(cardID))
                 {
                     final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                     final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombat(CardRarity.RARE, player.getCardColor());

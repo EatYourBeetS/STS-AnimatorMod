@@ -25,6 +25,8 @@ public class Ara extends AnimatorCard
 
         SetAffinity_Green(1, 1, 1);
         SetAffinity_Red(1);
+
+        SetAffinityRequirement(AffinityType.Red, 2);
     }
 
     @Override
@@ -47,7 +49,7 @@ public class Ara extends AnimatorCard
         GameActions.Bottom.DiscardFromHand(name, 1, false)
         .SetOptions(false, false, false);
 
-        if (CheckAffinity(AffinityType.Red, secondaryValue))
+        if (CheckAffinity(AffinityType.Red))
         {
             GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
         }

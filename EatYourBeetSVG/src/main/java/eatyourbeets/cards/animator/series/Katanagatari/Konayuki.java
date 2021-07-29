@@ -22,10 +22,12 @@ public class Konayuki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 3, 40);
+        Initialize(0, 5, 3, 50);
         SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Red(2);
+
+        SetAffinityRequirement(AffinityType.Red, 5);
     }
 
     @Override
@@ -34,7 +36,7 @@ public class Konayuki extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainForce(magicNumber);
 
-        if (CheckAffinity(AffinityType.Red, 5) && CombatStats.TryActivateLimited(cardID))
+        if (CheckAffinity(AffinityType.Red) && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.DealDamageToRandomEnemy(secondaryValue, damageTypeForTurn, AbstractGameAction.AttackEffect.NONE)
             .SetDamageEffect(c -> GameEffects.List.Add(new WeightyImpactEffect(c.hb.cX, c.hb.cY)).duration)

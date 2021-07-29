@@ -29,6 +29,9 @@ public class Ciel extends AnimatorCard
 
         SetAffinity_Green(2, 0, 1);
         SetAffinity_Dark(1, 1, 0);
+
+        SetAffinityRequirement(AffinityType.Green, 2);
+        SetAffinityRequirement(AffinityType.Blue, 2);
     }
 
     @Override
@@ -56,12 +59,12 @@ public class Ciel extends AnimatorCard
             c.flash();
         });
 
-        if (CheckAffinity(AffinityType.Blue, secondaryValue))
+        if (CheckAffinity(AffinityType.Blue))
         {
             GameActions.Bottom.StackPower(new LockOnPower(m, 2));
         }
 
-        if (CheckAffinity(AffinityType.Green, secondaryValue))
+        if (CheckAffinity(AffinityType.Green))
         {
             GameActions.Bottom.GainBlur(1);
         }

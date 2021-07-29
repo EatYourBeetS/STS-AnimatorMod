@@ -273,7 +273,7 @@
 	{
 		"animator:Add":
 		{
-			"DESCRIPTION": "Add !S! {Crystallize} to your ** draw pile. Next turn: Draw ** !M! card(s) and gain [E] [E]. || 3 <D> : Exhaust a ** card anywhere, replace ** it with an {Orb Core}.",
+			"DESCRIPTION": "Add !S! {Crystallize} to your ** draw pile. Next turn: Draw ** !M! card(s) and gain [E] [E]. || !A! <D> : Exhaust a ** card anywhere, replace ** it with an {Orb Core}.",
 			"NAME": "Add"
 		},
 		"animator:Ain":
@@ -288,7 +288,7 @@
 		},
 		"animator:Ara":
 		{
-			"DESCRIPTION": "<DRW> for every ** {Debuff} on the enemy. ** Discard 1 card. || !S! <R>: Apply !M! [Vulnerable].",
+			"DESCRIPTION": "<DRW> for every ** {Debuff} on the enemy. ** Discard 1 card. || !A! <R>: Apply !M! [Vulnerable].",
 			"NAME": "Ara"
 		},
 		"animator:Chung":
@@ -298,7 +298,7 @@
 		},
 		"animator:Ciel":
 		{
-			"DESCRIPTION": "Increase the damage of ** every copy of {Lu} by !M!. || !S! <B>: Apply 2 [~Lock-On]. || !S! <G>: Gain 1 [Blur].",
+			"DESCRIPTION": "Increase the damage of ** every copy of {Lu} by !M!. || !A! <B>: Apply 2 [~Lock-On]. || !A! <G>: Gain 1 [Blur].",
 			"NAME": "Ciel"
 		},
 		"animator:Elesis":
@@ -393,7 +393,7 @@
 		},
 		"animator:Rider":
 		{
-			"DESCRIPTION": "Apply !M! [Shackles]. || 2 <G>: Gain/Boost [A]. || 2 <B>: Gain/Boost [I].",
+			"DESCRIPTION": "Apply !M! [Shackles]. || !A! <G>: Gain/Boost [A]. || !A! <B>: Gain/Boost [I].",
 			"NAME": "Rider"
 		},
 		"animator:RinTohsaka":
@@ -503,7 +503,7 @@
 		},
 		"animator:Kuribayashi":
 		{
-			"DESCRIPTION": "Apply !M! [Vulnerable]. || 3 <G>: Attack twice. || 3 <R>: Apply !S! [Shackles].",
+			"DESCRIPTION": "Apply !M! [Vulnerable]. || !A! <G>: Attack twice. || !A! <R>: Apply !S! [Shackles].",
 			"NAME": "Kuribayashi"
 		},
 		"animator:LeleiLaLalena":
@@ -686,7 +686,7 @@
 		},
 		"animator:Konayuki":
 		{
-			"DESCRIPTION": "Gain !M! [F]. || <LIM>. 5 <R>: ** Deal !S! damage to ** a random enemy.",
+			"DESCRIPTION": "Gain !M! [F]. || <LIM>. !A! <R>: ** Deal !S! damage to ** a random enemy.",
 			"NAME": "Konayuki"
 		},
 		"animator:Nanami":
@@ -845,7 +845,7 @@
 		},
 		"animator:Rayneshia":
 		{
-			"DESCRIPTION": "<DRW-M>. Move !M! ** cards to your draw pile. || <LIM>. !S! <W>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
+			"DESCRIPTION": "<DRW-M>. Move !M! ** cards to your draw pile. || <LIM>. !A! <W>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
 			"NAME": "Rayneshia"
 		},
 		"animator:RundelhausCode":
@@ -974,7 +974,7 @@
 	{
 		"animator:ChlammyZell":
 		{
-			"DESCRIPTION": "Draw 2 cards. Next turn, ** draw !M! additional card(s). || <LIM>. If you reached ** !S! [I] this combat: Add a ** {Scheme} to your hand.",
+			"DESCRIPTION": "Draw 2 cards. Next turn, ** draw !M! additional card(s). || <LIM>. !A! <B> and <D>: Add ** a {Scheme} to your hand.",
 			"NAME": "Kurami"
 		},
 		"animator:DolaCouronne":
@@ -1309,27 +1309,27 @@
 	{
 		"animator:AffinityToken_Red":
 		{
-			"DESCRIPTION": "Gain +1 <R> for ** the rest of combat. || !S! <G> or <B>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <R> for ** the rest of combat. || !A! <G> or <B>: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Green":
 		{
-			"DESCRIPTION": "Gain +1 <G> for ** the rest of combat. || !S! <R> or <B>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <G> for ** the rest of combat. || !A! <R> or <B>: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Blue":
 		{
-			"DESCRIPTION": "Gain +1 <B> for ** the rest of combat. || !S! <R> or <G>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <B> for ** the rest of combat. || !A! <R> or <G>: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Light":
 		{
-			"DESCRIPTION": "Gain +1 <L> for ** the rest of combat. || !S! <D> or <R>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <L> for ** the rest of combat. || !A! <D> or <R>: Gain [E].",
 			"NAME": "Affinity Token"
 		},		
 		"animator:AffinityToken_Dark":
 		{
-			"DESCRIPTION": "Gain +1 <D> for ** the rest of combat. || !S! <L> or <G>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <D> for ** the rest of combat. || !A! <L> or <G>: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		

@@ -23,24 +23,14 @@ public class EYBCardAffinities
         Card = card;
     }
 
-    public void Initialize(int red, int green, int blue, int light, int dark)
+    public void Initialize(AffinityType type, int base, int upgrade, int scaling, int requirement)
     {
-        Star = null;
-        List.clear();
-        Initialize(AffinityType.Red, red, 0, 0);
-        Initialize(AffinityType.Green, green, 0, 0);
-        Initialize(AffinityType.Blue, blue, 0, 0);
-        Initialize(AffinityType.Light, light, 0, 0);
-        Initialize(AffinityType.Dark, dark, 0, 0);
-    }
-
-    public void Initialize(AffinityType type, int base, int upgrade, int scaling)
-    {
-        if (base > 0 || upgrade > 0 || scaling > 0)
+        if (base > 0 || upgrade > 0 || scaling > 0 || requirement > 0)
         {
             EYBCardAffinity a = Set(type, base);
             a.upgrade = upgrade;
             a.scaling = scaling;
+            a.requirement = requirement;
         }
     }
 
@@ -51,6 +41,7 @@ public class EYBCardAffinities
             Star = new EYBCardAffinity(AffinityType.Star, affinities.Star.level);
             Star.scaling = affinities.Star.scaling;
             Star.upgrade = affinities.Star.upgrade;
+            Star.requirement = affinities.Star.requirement;
         }
         else
         {
@@ -63,6 +54,7 @@ public class EYBCardAffinities
             EYBCardAffinity t = new EYBCardAffinity(a.Type, a.level);
             t.scaling = a.scaling;
             t.upgrade = a.upgrade;
+            t.requirement = a.requirement;
             List.add(t);
         }
         Refresh();
@@ -300,6 +292,30 @@ public class EYBCardAffinities
             EYBCardAffinity affinity = Get(type);
             return (affinity != null) ? affinity.level : 0;
         }
+    }
+
+    public void SetRequirement(AffinityType type, int requirement)
+    {
+        if (type == AffinityType.General)
+        {
+            type = AffinityType.Star;
+        }
+        EYBCardAffinity a = Get(type);
+        if (a == null)
+        {
+            a = Set(type, 0);
+        }
+        a.requirement = requirement;
+    }
+
+    public int GetRequirement(AffinityType type)
+    {
+        if (type == AffinityType.General)
+        {
+            type = AffinityType.Star;
+        }
+        EYBCardAffinity a = Get(type);
+        return a == null ? 0 : a.requirement;
     }
 
     public void RenderOnCard(SpriteBatch sb, EYBCard card, boolean highlight)

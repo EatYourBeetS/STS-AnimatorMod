@@ -17,6 +17,7 @@ import eatyourbeets.utilities.GameEffects;
 public class Aisha extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Aisha.class)
+            .SetMaxCopies(2)
             .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental)
             .SetSeries(CardSeries.Elsword);
 

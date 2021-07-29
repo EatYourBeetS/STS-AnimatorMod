@@ -32,7 +32,7 @@ public class YaoHaDucy extends AnimatorCard
     @Override
     public boolean HasDirectSynergy(AbstractCard other)
     {
-        final boolean canSynergize = (other.freeToPlay() || other.costForTurn == 0) || super.HasDirectSynergy(other);
+        final boolean canSynergize = other.freeToPlay() || other.costForTurn == 0 || super.HasDirectSynergy(other);
         final AbstractCard last = CombatStats.Affinities.GetLastCardPlayed();
         if (last == null)
         {

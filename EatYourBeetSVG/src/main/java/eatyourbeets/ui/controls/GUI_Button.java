@@ -15,6 +15,7 @@ import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
+import eatyourbeets.utilities.Mathf;
 import eatyourbeets.utilities.RenderHelpers;
 import org.apache.commons.lang3.StringUtils;
 
@@ -31,6 +32,7 @@ public class GUI_Button extends GUIElement
     public ActionT0 onClick;
     public String text;
 
+    protected boolean darkenNonInteractableButton;
     protected BitmapFont font;
     protected float fontScale;
     protected float currentClickDelay = 0f;
@@ -201,7 +203,7 @@ public class GUI_Button extends GUIElement
             }
             else
             {
-                this.RenderButton(sb, interactable, interactable ? buttonColor : TEXT_DISABLED_COLOR);
+                this.RenderButton(sb, interactable, interactable ? buttonColor : Mathf.LerpCopy(buttonColor, Color.BLACK, 0.4f));
             }
 
             this.hb.render(sb);

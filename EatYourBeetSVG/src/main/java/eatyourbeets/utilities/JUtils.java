@@ -302,9 +302,19 @@ public class JUtils
         return sj.toString();
     }
 
-    public static String ModifyString(String string, String separator, String delimiter, FuncT1<String, String> modifyWord)
+    public static String TitleCase(String text)
     {
-        final String[] words = string.split(Pattern.quote(separator));
+        return ModifyString(text, w -> Character.toUpperCase(w.charAt(0)) + (w.length() > 1 ? w.substring(1) : ""));
+    }
+
+    public static String ModifyString(String text, FuncT1<String, String> modifyWord)
+    {
+        return ModifyString(text, " ", " ", modifyWord);
+    }
+
+    public static String ModifyString(String text, String separator, String delimiter, FuncT1<String, String> modifyWord)
+    {
+        final String[] words = text.split(Pattern.quote(separator));
         if (modifyWord != null)
         {
             for (int i = 0; i < words.length; i++)

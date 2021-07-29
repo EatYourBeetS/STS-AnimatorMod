@@ -44,8 +44,14 @@ public class AnimatorCard_Dynamic extends AnimatorCard
         this.cropPortrait = false;
         this.canUpgrade = builder.canUpgrade;
 
-        this.portraitImg = builder.portraitImage;
-        this.portraitForeground = builder.portraitForeground;
+        if (builder.portraitImage != null)
+        {
+            this.portraitImg = builder.portraitImage;
+        }
+        if (builder.portraitForeground != null)
+        {
+            this.portraitForeground = builder.portraitForeground;
+        }
 
         this.getSpecialInfo = builder.getSpecialInfo;
         this.getDamageInfo = builder.getDamageInfo;

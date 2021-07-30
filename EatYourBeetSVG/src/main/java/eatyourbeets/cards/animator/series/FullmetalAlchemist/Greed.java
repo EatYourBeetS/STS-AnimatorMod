@@ -39,7 +39,7 @@ public class Greed extends AnimatorCard
     @Override
     public String GetRawDescription()
     {
-        return super.GetRawDescription(BLOCK, TEMP_HP, MALLEABLE, PLATED_ARMOR, METALLICIZE);
+        return GetRawDescription(BLOCK, TEMP_HP, MALLEABLE, PLATED_ARMOR, METALLICIZE);
     }
 
     @Override

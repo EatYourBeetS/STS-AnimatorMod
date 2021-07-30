@@ -35,7 +35,7 @@ public class CTLine
                 width += tokenWidth;
             }
         }
-        else if ((tokenWidth + width) < DESC_BOX_WIDTH || (token.type == CTTokenType.Punctuation && token.text.length() == 1))
+        else if ((tokenWidth + width) < DESC_BOX_WIDTH || (token.type == CTTokenType.Punctuation && token.rawText.length() == 1))
         {
             tokens.add(token);
             width += tokenWidth;
@@ -90,7 +90,7 @@ public class CTLine
         StringBuilder sb = new StringBuilder();
         for (CTToken token : tokens)
         {
-            sb.append(token.text);
+            sb.append(token.rawText);
         }
 
         return sb.toString();

@@ -255,11 +255,6 @@ public abstract class AnimatorCard extends EYBCard
     @Override
     public ColoredString GetSecondaryValueString()
     {
-        if (cooldown != null)
-        {
-            return cooldown.GetSecondaryValueString();
-        }
-
-        return super.GetSecondaryValueString();
+        return cooldown != null ? cooldown.GetSecondaryValueString() : super.GetSecondaryValueString();
     }
 }

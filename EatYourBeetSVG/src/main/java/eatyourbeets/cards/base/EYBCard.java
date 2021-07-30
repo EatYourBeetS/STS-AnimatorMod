@@ -146,14 +146,7 @@ public abstract class EYBCard extends EYBCardBase
 
     protected String GetRawDescription()
     {
-        if (upgraded && cardData.Strings.UPGRADE_DESCRIPTION != null)
-        {
-            return cardData.Strings.UPGRADE_DESCRIPTION;
-        }
-        else
-        {
-            return cardData.Strings.DESCRIPTION;
-        }
+        return GetRawDescription((Object[]) null);
     }
 
     protected String GetRawDescription(Object... args)

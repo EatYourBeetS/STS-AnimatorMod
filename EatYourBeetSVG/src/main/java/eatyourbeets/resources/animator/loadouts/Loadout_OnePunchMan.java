@@ -14,9 +14,9 @@ public class Loadout_OnePunchMan extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(Genos.DATA, 4);
         AddToSpecialSlots(SilverFang.DATA, 4);

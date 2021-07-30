@@ -202,6 +202,11 @@ public class EYBCardAffinities
 
     public EYBCardAffinity Get(AffinityType type)
     {
+        return Get(type, false);
+    }
+
+    public EYBCardAffinity Get(AffinityType type, boolean createIfNull)
+    {
         if (type == AffinityType.General)
         {
             final int star = Star != null ? Star.level : 0;
@@ -211,7 +216,7 @@ public class EYBCardAffinities
 
         if (type == AffinityType.Star)
         {
-            return Star;
+            return (createIfNull && Star == null) ? SetStar(0) : Star;
         }
 
         for (EYBCardAffinity item : List)
@@ -222,7 +227,7 @@ public class EYBCardAffinities
             }
         }
 
-        return null;
+        return createIfNull ? Set(type, 0) : null;
     }
 
     public int GetScaling(AffinityType type, boolean useStarScaling)
@@ -300,12 +305,8 @@ public class EYBCardAffinities
         {
             type = AffinityType.Star;
         }
-        EYBCardAffinity a = Get(type);
-        if (a == null)
-        {
-            a = Set(type, 0);
-        }
-        a.requirement = requirement;
+
+        Get(type, true).requirement = requirement;
     }
 
     public int GetRequirement(AffinityType type)

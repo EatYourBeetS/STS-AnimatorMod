@@ -9,7 +9,10 @@ public class ColoredString
 
     public ColoredString(Object text, Color color, float alpha)
     {
-        this.text = String.valueOf(text);
+        if (text != null)
+        {
+            this.text = String.valueOf(text);
+        }
 
         if (color != null)
         {

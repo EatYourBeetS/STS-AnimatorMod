@@ -42,13 +42,13 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
 
         if (affinityType == AffinityType.Star)
         {
-            Initialize(5, 0, 3);
+            Initialize(6, 0, 3);
         }
         else
         {
-            Initialize(6, 0, 2);
+            Initialize(7, 0, 2);
         }
-        SetUpgrade(3, 0);
+        SetUpgrade(2, 0);
 
         SetAffinityRequirement(affinityType, magicNumber);
 

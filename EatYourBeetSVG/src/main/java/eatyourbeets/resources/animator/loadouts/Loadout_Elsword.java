@@ -14,9 +14,9 @@ public class Loadout_Elsword extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(Ara.DATA, 4);
         AddToSpecialSlots(Chung.DATA, 5);

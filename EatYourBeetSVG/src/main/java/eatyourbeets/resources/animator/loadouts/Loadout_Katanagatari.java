@@ -14,9 +14,9 @@ public class Loadout_Katanagatari extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(Azekura.DATA, 5);
         AddToSpecialSlots(Emonzaemon.DATA, 5);

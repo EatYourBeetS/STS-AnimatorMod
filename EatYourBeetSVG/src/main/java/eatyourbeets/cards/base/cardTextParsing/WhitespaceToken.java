@@ -42,6 +42,6 @@ public class WhitespaceToken extends CTToken
     @Override
     public void Render(SpriteBatch sb, CTContext context)
     {
-        context.start_x += GetWidth(context.font, text);
+        context.start_x += GetWidth(context.font, rawText);
     }
 }

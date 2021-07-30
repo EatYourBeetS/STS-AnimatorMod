@@ -25,8 +25,10 @@ public abstract class AnimatorLoadout
     public static class Validation
     {
         public final TupleT2<Integer, Boolean> CardsCount = new TupleT2<>();
-        public final TupleT2<Integer, Boolean> CardsValue = new TupleT2<>();
+        public final TupleT2<Integer, Boolean> TotalValue = new TupleT2<>();
         public int AffinityLevel;
+        public int GoldValue;
+        public int HpValue;
         public boolean AllCardsSeen;
         public boolean IsValid;
 
@@ -35,18 +37,18 @@ public abstract class AnimatorLoadout
 
         }
 
-        public Validation(CardSlots slots)
+        public Validation(AnimatorLoadoutData data)
         {
-            Refresh(slots);
+            Refresh(data);
         }
 
-        public Validation Refresh(CardSlots slots)
+        public Validation Refresh(AnimatorLoadoutData data)
         {
             CardsCount.Set(0, false);
-            CardsValue.Set(MAX_VALUE, false);
+            TotalValue.Set(MAX_VALUE, false);
             AllCardsSeen = true;
             final EYBCardAffinities affinities = new EYBCardAffinities(null);
-            for (CardSlot slot : slots)
+            for (CardSlot slot : data)
             {
                 if (slot == null)
                 {
@@ -54,7 +56,7 @@ public abstract class AnimatorLoadout
                 }
 
                 affinities.Add(slot.GetAffinities(), 1);
-                CardsValue.V1 += slot.GetEstimatedValue();
+                TotalValue.V1 += slot.GetEstimatedValue();
                 CardsCount.V1 += slot.amount;
 
                 if (slot.selected != null && slot.selected.data.IsNotSeen())
@@ -73,10 +75,12 @@ public abstract class AnimatorLoadout
                 }
             }
 
-            CardsValue.V1 += AffinityLevel;
-            CardsValue.V2 = CardsValue.V1 <= MAX_VALUE;
+            GoldValue = 2 * ((data.Gold - BASE_GOLD) / GOLD_STEP);
+            HpValue = 2 * ((data.HP - BASE_HP) / HP_STEP);
+            TotalValue.V1 += GoldValue + HpValue + AffinityLevel;
+            TotalValue.V2 = TotalValue.V1 <= MAX_VALUE;
             CardsCount.V2 = CardsCount.V1 >= MIN_CARDS;
-            IsValid = CardsValue.V2 && CardsCount.V2 && AllCardsSeen;
+            IsValid = TotalValue.V2 && CardsCount.V2 && AllCardsSeen;
 
             return this;
         }
@@ -84,8 +88,13 @@ public abstract class AnimatorLoadout
 
     public static final int MAX_VALUE = 30;
     public static final int MIN_CARDS = 10;
+    public static final int BASE_GOLD = 99;
+    public static final int BASE_HP = 60;
+    public static final int GOLD_STEP = 30;
+    public static final int HP_STEP = 4;
+    public static final int MAX_STEP = 3;
 
-    public CardSlots Slots;
+    public AnimatorLoadoutData Data = new AnimatorLoadoutData();
     public CardSlot SpecialSlot1;
     public CardSlot SpecialSlot2;
 
@@ -97,8 +106,6 @@ public abstract class AnimatorLoadout
     public CardSeries Series;
     public boolean IsBeta;
 
-    public int StartingGold = 99;
-    public int MaxHP = 60;
     public int CardDraw = 5;
     public int OrbSlots = 3;
     public int UnlockLevel = 0;
@@ -122,45 +129,47 @@ public abstract class AnimatorLoadout
     public abstract EYBCardData GetSymbolicCard();
     public abstract EYBCardData GetUltraRare();
 
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        Slots = new CardSlots();
-        Slots.AddSlot(1, 6).AddItem(Defend.DATA, -2);
-        Slots.AddSlot(1, 6).AddItem(Strike.DATA, -2);
-        Slots.AddSlot(0, 1).AddItems(ImprovedStrike.GetCards(), 1);
-        Slots.AddSlot(0, 1).AddItems(ImprovedDefend.GetCards(), 1);
-        SpecialSlot1 = Slots.AddSlot(0, 1);
-        SpecialSlot2 = Slots.AddSlot(0, 1);
+        Data.HP = BASE_HP;
+        Data.Gold = BASE_GOLD;
+        Data.AddSlot(1, 6).AddItem(Defend.DATA, -2);
+        Data.AddSlot(1, 6).AddItem(Strike.DATA, -2);
+        Data.AddSlot(0, 1).AddItems(ImprovedStrike.GetCards(), 1);
+        Data.AddSlot(0, 1).AddItems(ImprovedDefend.GetCards(), 1);
+        SpecialSlot1 = Data.AddSlot(0, 1);
+        SpecialSlot2 = Data.AddSlot(0, 1);
     }
 
-    public void LoadStartingDeck()
+    public void LoadDefaultData()
     {
-        if (Slots.Ready)
+        if (Data.Ready)
         {
             return;
         }
 
-        Slots.Get(0).Select(0, 4).GetData().MarkSeen();
-        Slots.Get(1).Select(0, 4).GetData().MarkSeen();
-        Slots.Get(2).Select(null);
+        Data.HP = BASE_HP;
+        Data.Gold = BASE_GOLD;
+        Data.Get(0).Select(0, 4).GetData().MarkSeen();
+        Data.Get(1).Select(0, 4).GetData().MarkSeen();
+        Data.Get(2).Select(null);
         JUtils.ForEach(ImprovedStrike.GetCards(), EYBCardData::MarkSeen);
-        Slots.Get(3).Select(null);
+        Data.Get(3).Select(null);
         JUtils.ForEach(ImprovedDefend.GetCards(), EYBCardData::MarkSeen);
-        Slots.Get(4).Select(0, 1).GetData().MarkSeen();
-        Slots.Get(5).Select(1, 1).GetData().MarkSeen();
-        Slots.Ready = true;
+        Data.Get(4).Select(0, 1).GetData().MarkSeen();
+        Data.Get(5).Select(1, 1).GetData().MarkSeen();
+        Data.Ready = true;
     }
 
-    public CharSelectInfo GetLoadout(String name, String description, AnimatorCharacter animatorCharacter)
+    public CharSelectInfo GetLoadout(String name, String description, AnimatorCharacter c)
     {
-        return new CharSelectInfo(name + "-" + ID, description, MaxHP, MaxHP, OrbSlots, StartingGold, CardDraw,
-                                        animatorCharacter, GetStartingRelics(), GetStartingDeck(), false);
+        return new CharSelectInfo(name + "-" + ID, description, Data.HP, Data.HP, OrbSlots, Data.Gold, CardDraw, c, GetStartingRelics(), GetStartingDeck(), false);
     }
 
     public ArrayList<String> GetStartingDeck()
     {
         final ArrayList<String> cards = new ArrayList<>();
-        for (CardSlot slot : Slots)
+        for (CardSlot slot : Data)
         {
             EYBCardData data = slot.GetData();
             if (data != null)
@@ -302,7 +311,7 @@ public abstract class AnimatorLoadout
 
     public Validation Validate()
     {
-        return new Validation(Slots);
+        return new Validation(Data);
     }
 
     protected void AddToSpecialSlots(EYBCardData data, int estimatedValue)

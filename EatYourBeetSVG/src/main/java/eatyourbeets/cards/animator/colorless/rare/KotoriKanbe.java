@@ -33,7 +33,7 @@ public class KotoriKanbe extends AnimatorCard
     @Override
     public String GetRawDescription()
     {
-        return super.GetRawDescription(HP_HEAL_THRESHOLD);
+        return GetRawDescription(HP_HEAL_THRESHOLD);
     }
 
     @Override

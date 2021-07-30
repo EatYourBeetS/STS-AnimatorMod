@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
@@ -20,6 +22,7 @@ public class Aisha extends AnimatorCard
             .SetMaxCopies(2)
             .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental)
             .SetSeries(CardSeries.Elsword);
+    public static final int BOOST = 2;
 
     public Aisha()
     {
@@ -30,6 +33,12 @@ public class Aisha extends AnimatorCard
 
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Dark(1, 0, 1);
+    }
+
+    @Override
+    protected String GetRawDescription()
+    {
+        return super.GetRawDescription(BOOST);
     }
 
     @Override
@@ -59,14 +68,22 @@ public class Aisha extends AnimatorCard
 
         if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.GainIntellect(2);
-            GameActions.Bottom.GainCorruption(2);
+            GameActions.Bottom.GainIntellect(BOOST);
+            GameActions.Bottom.GainCorruption(BOOST);
         }
     }
 
     @Override
     public boolean CheckSpecialCondition(boolean use)
     {
-        return CombatStats.OrbsEvokedThisTurn().size() > 0 && (use ? CombatStats.TryActivateSemiLimited(cardID) : CombatStats.CanActivateSemiLimited(cardID));
+        for (AbstractOrb orb : player.orbs)
+        {
+            if (Dark.ORB_ID.equals(orb.ID))
+            {
+                return (use ? CombatStats.TryActivateLimited(cardID) : CombatStats.CanActivateLimited(cardID));
+            }
+        }
+
+        return false;
     }
 }

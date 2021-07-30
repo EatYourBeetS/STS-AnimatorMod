@@ -15,6 +15,8 @@ public class Ciel extends AnimatorCard
     public static final EYBCardData DATA = Register(Ciel.class)
             .SetSkill(2, CardRarity.COMMON)
             .SetSeriesFromClassPackage();
+    public static final int LOCK_ON = 2;
+    public static final int BLUR = 1;
     static
     {
         DATA.AddPreview(new Lu(), true);
@@ -41,9 +43,15 @@ public class Ciel extends AnimatorCard
     }
 
     @Override
+    protected String GetRawDescription()
+    {
+        return super.GetRawDescription(LOCK_ON, BLUR);
+    }
+
+    @Override
     public AbstractAttribute GetBlockInfo()
     {
-        return super.GetBlockInfo().AddMultiplier(2);
+        return super.GetBlockInfo().AddMultiplier(secondaryValue);
     }
 
     @Override
@@ -61,12 +69,12 @@ public class Ciel extends AnimatorCard
 
         if (CheckAffinity(AffinityType.Blue))
         {
-            GameActions.Bottom.StackPower(new LockOnPower(m, 2));
+            GameActions.Bottom.StackPower(new LockOnPower(m, LOCK_ON));
         }
 
         if (CheckAffinity(AffinityType.Green))
         {
-            GameActions.Bottom.GainBlur(1);
+            GameActions.Bottom.GainBlur(BLUR);
         }
     }
 }

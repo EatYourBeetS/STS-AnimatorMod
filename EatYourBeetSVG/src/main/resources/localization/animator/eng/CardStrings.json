@@ -283,7 +283,7 @@
 		},
 		"animator:Aisha":
 		{
-			"DESCRIPTION": "Deal !S! additional damage ** for each orb you have. || <slm>. If you Evoked an ** orb this turn: Gain 2 [I] [C].",
+			"DESCRIPTION": "Deal !S! additional damage ** for each orb you have. || <LIM>. If you have 1 or ** more [Dark]: Gain {0} [I] [C].",
 			"NAME": "Aisha"
 		},
 		"animator:Ara":
@@ -298,7 +298,7 @@
 		},
 		"animator:Ciel":
 		{
-			"DESCRIPTION": "Increase the damage of ** every copy of {Lu} by !M!. || !A! <B>: Apply 2 [~Lock-On]. || !A! <G>: Gain 1 [Blur].",
+			"DESCRIPTION": "Increase the damage of ** every copy of {Lu} by !M!. || !A! <B>: Apply {0} [~Lock-On]. || !A! <G>: Gain {1} [Blur].",
 			"NAME": "Ciel"
 		},
 		"animator:Elesis":
@@ -327,7 +327,7 @@
 		},
 		"animator:Lu":
 		{
-			"DESCRIPTION": "Channel 1 [Frost] [Dark]. || When Drawn: If ** in Neutral Stance, ** enter <FS>.",
+			"DESCRIPTION": "Channel 1 [Dark] and [Frost]. || When Drawn: If ** in Neutral Stance, ** enter <FS>.",
 			"NAME": "Lu"
 		},
 		"animator:Raven":
@@ -488,7 +488,7 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !S! [I]. ** Gain !M! orb slot(s). || 2 <B>, 2 <R>: ** Channel 1 [Earth].",
+			"DESCRIPTION": "Gain !S! [I]. ** Gain !M! orb slot(s). || !A! <B> and <R>: ** Channel 1 [Earth].",
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":

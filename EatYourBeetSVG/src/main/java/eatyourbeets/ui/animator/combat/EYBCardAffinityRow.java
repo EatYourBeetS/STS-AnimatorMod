@@ -3,7 +3,6 @@ package eatyourbeets.ui.animator.combat;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.cards.base.AffinityType;
@@ -16,6 +15,7 @@ import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.controls.GUI_Label;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.JUtils;
 
@@ -68,11 +68,14 @@ public class EYBCardAffinityRow extends GUIElement
 
         image_background.SetColor(COLOR_DEFAULT);
         image_synergy.color.a = synergyEffectAvailable ? 1f : 0.25f;
-        text_affinity.SetText(Level = handAffinities.GetLevel(Type, false));
+        text_affinity.SetText(Level = handAffinities.GetLevel(Type, false)).SetColor(Colors.Cream(Level > 0 ? 1 : 0.6f));
 
         if (Type != AffinityType.General)
         {
-            text_affinity.SetColor(System.BonusAffinities.GetLevel(Type) > 0 ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR);
+            if ((System.BonusAffinities.GetLevel(Type) > 0))
+            {
+                text_affinity.SetColor(Colors.Green(1));
+            }
 
             if (hoveredCard != null)
             {

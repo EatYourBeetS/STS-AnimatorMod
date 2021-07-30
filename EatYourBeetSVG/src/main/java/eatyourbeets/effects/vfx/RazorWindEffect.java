@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameEffects;
 public class RazorWindEffect extends EYBEffect
 {
     public static Texture img;
-    public static final int SIZE = 640;
+    public static final int SIZE = 256;
 
     protected float x;
     protected float y;
@@ -35,7 +35,7 @@ public class RazorWindEffect extends EYBEffect
         this.y = y - (SIZE / 2f);
         this.targetY = targetY - (SIZE /2f);
         this.rotation = Random(5f, 10f);
-        this.scale = 0.4f * Settings.scale;
+        this.scale = Settings.scale;
         this.horizontalSpeed = horizontalSpeed * Settings.scale;
         this.horizontalAcceleration = horizontalSpeed * Settings.scale;
         this.rotationSpeed = Random(1000f, 1200f);

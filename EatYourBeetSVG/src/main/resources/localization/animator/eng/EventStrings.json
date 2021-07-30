@@ -145,5 +145,57 @@
 			"[Embrace] #gObtain #gHina #gKagiyama #rAnd #rA #rCurse.",
 			"[Purify] #gRemove #g{0} #gRandom #gCurses #gFrom #gYour #gDeck."
 		]
-	}
+	},
+	"animator:ThePharmacy":
+	{
+	  "DESCRIPTIONS":
+	  [
+		"You stumble into an indescript pharmacy on the side of the road. NL NL It is ~dark~ and ~humid~ inside, and the floorboards creak as you step on them. NL NL As you approach what appears to be a receptionist desk, the pharmacy suddenly ~lights~ up, and a small figure peeps out of the desk.",
+
+		"\"Buy potions. Or take on bounties.\" NL NL The receptionist says in an emotionless tone. NL NL The receptionist appears to be a small girl wearing a strange hat.",
+
+		"\"Thank you. Buy more points? Or take on bounties.\" NL NL The receptionist says, again with no emotion whatsoever.",
+
+		"\"Are you interested in bounties? If so, hunt a Cocogoat. Use this map to locate it.\"",
+
+		"\"Please hunt a Cocogoat soon. Thank you.\"",
+
+		"You decide that it is not wise to shop in such an ominous place as this and quickly take your leave before the receptionist can say anything else."
+	  ],
+	  "NAME": "The Pharmacy",
+	  "OPTIONS":
+	  [
+		"[Inquire about Bounties]",
+		"[Buy] #gObtain #ga #gPotion. #rLose #r{0} #rGold.",
+		"[Locked] Not enough Gold.",
+		"[Accept Bounty] #gObtain #gBounty",
+		"[Refuse Bounty]"
+	  ]
+	},
+  "animator:TheMysteriousPeak":
+  {
+	"DESCRIPTIONS":
+	[
+	  "You finally come across the location given to you in the map you got from The Pharmacy. NL NL ~Thick~ fog covers your eyes, obscuring your vision. NL NL You wander aimlessly for a while to search for a Cocogoat. NL NL Finally, the fog breaks up. Through the clearing fog, you spot a strange figure grazing on a hill in the distance.",
+
+	  "You feel a tug on your pants. You quickly spin around to find the receptionist from the pharmacy next to you. NL NL The receptionist points at the figure in the distance and states \"That is the Cocogoat. Hunt it.\"",
+
+	  "You muster all the courage you have and charge towards the goat. NL NL As you approach the goat, the goat suddenly swivels its head towards you. NL NL To your utter shock, it lets out a ~bone-chilling~ screech before blasting you with a hailstorm of icicles that knocks you to the ground.",
+
+	  "Somehow, you manage to get up and stagger towards the goat. NL NL You fight the goat and endure waves of icicles for what seems like an eternity. NL NL Finally, you are able to deliver the finishing blow to the goat. The goat emits one final cry before collapsing to the ground.",
+
+	  "You set up a trap and lay the Relic in it as bait for the goat. NL NL Then, you hide in the nearest bush and wait for the goat to arrive. NL NL After a few minutes, you spot the goat walking straight into the trap. NL NL The trap ~explodes~ as the goat steps on it, instantly knocking the goat out.",
+
+	  "The receptionist walks up to the defeated goat and kneels down to examine it. She searches the goat for a while. Finally, she finds a bottle of liquid and gets up. \"Obtained Cocomilk. Thank you.\"",
+
+	  "You take a closer look at the bottle and realize in utter disbelief that it is just a bottle of coconut milk that you could have bought at any convenience store. NL NL You start to complain about the bounty, but the receptionist ignores you, drinking the coconut milk as she walks away. NL NL She doesn't even bother paying you for your troubles."
+	],
+	"NAME": "The Mysterious Peak",
+	"OPTIONS":
+	[
+	  "[Fight the Goat] #gObtain #gGanyu. #rLose #r{0} #rHP.",
+	  "[Set a Trap] #gObtain #gGanyu. #rLose #r{0}.",
+	  "[Run]"
+	]
+  }
 }

@@ -180,6 +180,12 @@
 		"NAMES": ["[f] stance", "force stance"],
 		"PROPER_NAME": "Force Stance"
 	},
+	"Harmonic":
+	{
+	  "DESCRIPTION": "Synergizes with other cards from the same series.",
+	  "NAMES": ["harmonic"],
+	  "PROPER_NAME": "Harmonic"
+	},
 	"High-Cost":
 	{
 		"DESCRIPTION": "Cards which cost 2 or more [E].",
@@ -356,9 +362,21 @@
 	},
 	"~Haste":
 	{
-		"DESCRIPTION": "When drawn, lose #yHaste and draw 1 card.",
+		"DESCRIPTION": "When drawn, draw 1 card.",
 		"NAMES": ["~haste"],
 		"PROPER_NAME": "Haste"
+	},
+	"~HasteInfinite":
+	{
+	  "DESCRIPTION": "When drawn, draw 1 card. NL #yThis #yeffect #yis #ypermanent.",
+	  "NAMES": ["~haste infinite"],
+	  "PROPER_NAME": "Haste"
+	},
+	"~HasteOnce":
+	{
+	  "DESCRIPTION": "When drawn, draw 1 card. NL #bOnce #bactivated, #bremove #bthis #beffect.",
+	  "NAMES": ["~haste"],
+	  "PROPER_NAME": "Haste"
 	},
 	"~Innate":
 	{
@@ -386,13 +404,19 @@
 	},
 	"~Retain":
 	{
-		"DESCRIPTION": "Not discarded at the end of turn. NL If it is an [A-Gen] Power, not reduced at the start of next turn.",
+		"DESCRIPTION": "Not discarded at the end of the turn. NL If it is an [A-Gen] Power, not reduced at the start of next turn.",
 		"NAMES": ["~retain"],
 		"PROPER_NAME": "Retain"
 	},
+	"~RetainInfinite":
+	{
+	  "DESCRIPTION": "Not discarded at the end of this turn. NL #yThis #yeffect #yis #ypermanent.",
+	  "NAMES": ["~retain infinite"],
+	  "PROPER_NAME": "Retain Once"
+	},
 	"~RetainOnce":
 	{
-		"DESCRIPTION": "Not discarded at the end of turn.",
+		"DESCRIPTION": "Not discarded at the end of this turn. NL #bOnce #bactivated, #bremove #bthis #beffect.",
 		"NAMES": ["~retain once"],
 		"PROPER_NAME": "Retain Once"
 	},

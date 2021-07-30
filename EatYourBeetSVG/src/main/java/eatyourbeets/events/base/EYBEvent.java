@@ -31,7 +31,14 @@ public abstract class EYBEvent extends AbstractImageEvent
     {
         if (isAnimator)
         {
-            return TheCursedForest.TryCreate(rng);
+            AbstractEvent event = TheCursedForest.TryCreate(rng);
+            if (event != null) {
+                return event;
+            }
+
+            if (rng.randomBoolean(0.15f)) {
+                return new ThePharmacy();
+            }
         }
 
         return null;

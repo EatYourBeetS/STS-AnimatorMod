@@ -476,6 +476,9 @@ public class GR
             public static AbstractCard.CardTags HASTE;
 
             @SpireEnum
+            public static AbstractCard.CardTags HASTE_INFINITE;
+
+            @SpireEnum
             public static AbstractCard.CardTags PURGING;
 
             @SpireEnum

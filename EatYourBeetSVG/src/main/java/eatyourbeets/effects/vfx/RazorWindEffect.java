@@ -64,7 +64,7 @@ public class RazorWindEffect extends EYBEffect
         if (vfxTimer < 0f)
         {
             vfxTimer = 0.007f;
-            GameEffects.Queue.Add(new RazorWindParticleEffect(x, y + 320 + Random(-100,100), Math.signum(horizontalSpeed) * Random(-300f, -50f) * Settings.scale, Random(-200f, 200f) * Settings.scale));
+            GameEffects.Queue.Add(new RazorWindParticleEffect(x, y + (SIZE / 2) + Random(-100,100), Math.signum(horizontalSpeed) * Random(-300f, -50f) * Settings.scale, Random(-200f, 200f) * Settings.scale));
         }
 
         super.UpdateInternal(deltaTime);

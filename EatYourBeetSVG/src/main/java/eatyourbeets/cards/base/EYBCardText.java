@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.cardTextParsing.CTContext;
+import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
@@ -159,7 +160,11 @@ public class EYBCardText
         {
             offset_y -= RenderBadge(sb, BADGES.RetainOnce.Texture(), offset_y, alpha, null);
         }
-        if (card.hasTag(GR.Enums.CardTags.HASTE))
+        if (card.hasTag(GR.Enums.CardTags.HASTE_INFINITE))
+        {
+            offset_y -= RenderBadge(sb, BADGES.Haste.Texture(), offset_y, alpha, null);
+        }
+        else if (card.hasTag(GR.Enums.CardTags.HASTE))
         {
             offset_y -= RenderBadge(sb, BADGES.Haste.Texture(), offset_y, alpha, null);
         }
@@ -173,8 +178,12 @@ public class EYBCardText
         }
         if (card.hasTag(GR.Enums.CardTags.AUTOPLAY))
         {
-            //noinspection UnusedAssignment
             offset_y -= RenderBadge(sb, BADGES.Autoplay.Texture(), offset_y, alpha, null);
+        }
+        if (AfterLifeMod.IsAdded(card))
+        {
+            //noinspection UnusedAssignment
+            offset_y -= RenderBadge(sb, BADGES.Afterlife.Texture(), offset_y, alpha, null);
         }
 
         offset_y = 0;

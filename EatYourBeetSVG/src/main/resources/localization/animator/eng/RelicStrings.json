@@ -18,6 +18,12 @@
 		"FLAVOR": "Engineering perfection.",
 		"NAME": "Battle Drones"
 	},
+	"animator:BountyMap":
+	{
+	  "DESCRIPTIONS": ["Go through the following types of rooms in order to trigger a special event: b{0}."],
+	  "FLAVOR": "Wanted dead or alive.",
+	  "NAME": "Bounty Map"
+	},
 	"animator:Buoy":
 	{
 		"DESCRIPTIONS": ["If you end your turn below #b{0}% HP, gain #b{1} #yBlock."],

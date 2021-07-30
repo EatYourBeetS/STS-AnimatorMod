@@ -50,6 +50,7 @@ public class CardTooltips
     public EYBCardTooltip Innate = FindByID("~Innate");
     public EYBCardTooltip Ethereal = FindByID("~Ethereal");
     public EYBCardTooltip Haste = FindByID("~Haste");
+    public EYBCardTooltip HasteInfinite = FindByID("~HasteInfinite");
     public EYBCardTooltip Retain = FindByID("~Retain");
     public EYBCardTooltip RetainOnce = FindByID("~RetainOnce").ShowText(false);
     public EYBCardTooltip Exhaust = FindByID("Exhaust").ShowText(false);
@@ -93,6 +94,7 @@ public class CardTooltips
     public EYBCardTooltip ElementalMastery = FindByID("Elemental Mastery");
     public EYBCardTooltip ElementalExposure = FindByID("Elemental Exposure");
     public EYBCardTooltip Void = FindByID("Void").ShowText(false);
+    public EYBCardTooltip Afterlife = FindByID("Afterlife");
 
     // No Description
     public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null);
@@ -170,8 +172,10 @@ public class CardTooltips
         Retain.SetIcon(badges.Retain.Texture(), 6);
         Innate.SetIcon(badges.Innate.Texture(), 6);
         Haste.SetIcon(badges.Haste.Texture(), 6);
+        HasteInfinite.SetIcon(badges.HasteInfinite.Texture(), 6);
         Purge.SetIcon(badges.Purge.Texture(), 6);
         Autoplay.SetIcon(badges.Autoplay.Texture(), 6);
+        Afterlife.SetIcon(badges.Afterlife.Texture(), 6);
 
         CommonImages.CardIcons icons = GR.Common.Images.Icons;
         Ranged.SetIcon(icons.Ranged.Texture(), 6);

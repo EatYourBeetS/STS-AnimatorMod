@@ -448,7 +448,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
             s.OnAfterCardDrawn(card);
         }
 
-        if (card.hasTag(GR.Enums.CardTags.HASTE))
+        if (card.hasTag(GR.Enums.CardTags.HASTE) || card.hasTag(GR.Enums.CardTags.HASTE_INFINITE))
         {
             GameActions.Top.Add(new HasteAction(card));
         }

@@ -39,7 +39,7 @@ public class ShidoItsuka extends AnimatorCard
     {
         AnimatorCard a = JUtils.SafeCast(other, AnimatorCard.class);
         if (a != null && a.series != null) {
-            return a.series.Equals(CardSeries.DateALive);
+            return a.series.Equals(this.series);
         }
         return false;
     }

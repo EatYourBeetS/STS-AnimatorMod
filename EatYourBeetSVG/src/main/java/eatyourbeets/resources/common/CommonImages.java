@@ -74,9 +74,13 @@ public class CommonImages
         public final TextureCache Purge                   = new TextureCache("images/cardui/eyb/badges/Purge.png");
         public final TextureCache Innate                  = new TextureCache("images/cardui/eyb/badges/Innate.png");
         public final TextureCache Retain                  = new TextureCache("images/cardui/eyb/badges/Retain.png");
+        public final TextureCache RetainInfinite          = new TextureCache("images/cardui/eyb/badges/RetainInfinite.png");
         public final TextureCache RetainOnce              = new TextureCache("images/cardui/eyb/badges/RetainOnce.png");
         public final TextureCache Haste                   = new TextureCache("images/cardui/eyb/badges/Haste.png");
-        public final TextureCache Autoplay                   = new TextureCache("images/cardui/eyb/badges/Autoplay.png");
+        public final TextureCache HasteInfinite           = new TextureCache("images/cardui/eyb/badges/HasteInfinite.png");
+        public final TextureCache Autoplay                = new TextureCache("images/cardui/eyb/badges/Autoplay.png");
+        public final TextureCache Afterlife               = new TextureCache("images/cardui/eyb/badges/Afterlife.png");
+        public final TextureCache Harmonic                = new TextureCache("images/cardui/eyb/badges/Harmonic.png");
     }
 
     public static class Tooltips

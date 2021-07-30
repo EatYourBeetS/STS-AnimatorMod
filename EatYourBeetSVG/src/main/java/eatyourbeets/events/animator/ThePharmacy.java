@@ -1,11 +1,11 @@
 package eatyourbeets.events.animator;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
-import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.relics.animator.beta.BountyMap;
 
 public class ThePharmacy extends EYBEvent
@@ -19,7 +19,7 @@ public class ThePharmacy extends EYBEvent
 
         RegisterPhase(0, new Introduction());
         RegisterPhase(1, new Offering());
-        RegisterPhase(2, new Offering());
+        RegisterPhase(2, new Bounty());
         RegisterPhase(3, new Offering());
         ProgressPhase();
     }
@@ -51,8 +51,12 @@ public class ThePharmacy extends EYBEvent
             AddText(merchantLine);
 
             boolean hasEnoughGold = (player.gold >= price);
+            boolean hasBounty = (player.hasRelic(BountyMap.ID));
 
-            AddOption(text.InquireBountyOption());
+            if (!hasBounty) {
+                AddOption(text.InquireBountyOption()).AddCallback(this::ProgressPhase);
+            }
+
             if (hasEnoughGold)
             {
                 AddOption(text.BuyPotionOption(price)).AddCallback(this::BuyPotion);
@@ -68,7 +72,7 @@ public class ThePharmacy extends EYBEvent
         {
             player.loseGold(price);
 
-            AbstractPotion potion = new FalseLifePotion();
+            AbstractPotion potion = AbstractDungeon.returnRandomPotion(false);
             if (player.hasRelic("Sozu")) {
                 player.getRelic("Sozu").flash();
             } else {
@@ -99,6 +103,16 @@ public class ThePharmacy extends EYBEvent
         }
     }
 
+    private static class Accepted extends EYBEventPhase<ThePharmacy, ThePharmacy.EventStrings>
+    {
+        @Override
+        protected void OnEnter()
+        {
+            AddText(text.Accepted());
+            AddOption(EYBEvent.COMMON_STRINGS.Continue()).AddCallback(() -> ChangePhase(2));
+        }
+    }
+
     private static class EventStrings extends EYBEventStrings
     {
         public final String Introduction()
@@ -119,6 +133,11 @@ public class ThePharmacy extends EYBEvent
         public final String Bounty()
         {
             return GetDescription(3);
+        }
+
+        public final String Accepted()
+        {
+            return GetDescription(4);
         }
 
         public final String InquireBountyOption()

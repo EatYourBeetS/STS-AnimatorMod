@@ -70,7 +70,7 @@ public class Chibimoth extends AnimatorCard
     private AnimatorCard_Dynamic CreateChoice(String text, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onSelect)
     {
         return new AnimatorCardBuilder(cardID)
-        .SetImage(assetUrl)
+        .SetImagePath(assetUrl)
         .SetProperties(CardType.SKILL, rarity, CardTarget.NONE)
         .SetCost(-2, 0)
         .SetOnUse(onSelect)

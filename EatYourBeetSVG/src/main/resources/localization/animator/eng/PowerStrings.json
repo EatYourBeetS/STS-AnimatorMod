@@ -30,11 +30,6 @@
 		"DESCRIPTIONS": ["When a card #ySynergizes, gain #b", " #ySupport #yDamage."],
 		"NAME": "Bozes Co Palesti"
 	},
-	"animator:BurningPower":
-	{
-		"DESCRIPTIONS": ["At the start of your turn, lose #b", " HP. Receive #b", "% more #yAttack damage."],
-		"NAME": "Burning"
-	},
 	"animator:ChlammyZellPower":
 	{
 		"DESCRIPTIONS": ["Whenever you play alternating card types this turn, deal #b", " damage to ALL enemies and #yCycle #b1 card. NL NL Last Type played: #y"],

@@ -1,4 +1,4 @@
-package eatyourbeets.powers.common;
+package eatyourbeets.powers.replacement;
 
 import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.core.AbstractCreature;

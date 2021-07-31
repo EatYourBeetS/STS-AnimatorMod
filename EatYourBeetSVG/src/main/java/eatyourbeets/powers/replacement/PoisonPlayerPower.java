@@ -1,4 +1,4 @@
-package eatyourbeets.powers.common;
+package eatyourbeets.powers.replacement;
 
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;

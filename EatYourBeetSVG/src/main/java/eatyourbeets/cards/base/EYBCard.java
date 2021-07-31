@@ -19,7 +19,7 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.PlayerFlightPower;
+import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 

@@ -913,6 +913,28 @@ public class GameUtilities
         return amount;
     }
 
+    public static boolean HasOrb(String orbID)
+    {
+        return GetOrbCount(orbID) > 0;
+    }
+
+    public static int GetOrbCount(String orbID)
+    {
+        int count = 0;
+        if (player != null && player.orbs != null)
+        {
+            for (AbstractOrb orb : player.orbs)
+            {
+                if (orbID.equals(orb.ID))
+                {
+                    count += 1;
+                }
+            }
+        }
+
+        return count;
+    }
+
     public static boolean HasRelicEffect(String relicID)
     {
         return player.hasRelic(relicID)

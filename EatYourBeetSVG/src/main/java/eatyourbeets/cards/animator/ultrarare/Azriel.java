@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.AzrielPower;
-import eatyourbeets.powers.common.PlayerFlightPower;
+import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Azriel extends AnimatorCard_UltraRare

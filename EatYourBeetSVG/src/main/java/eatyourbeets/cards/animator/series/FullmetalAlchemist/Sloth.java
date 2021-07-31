@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.common.TemporaryDrawReductionPower;
+import eatyourbeets.powers.replacement.TemporaryDrawReductionPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Sloth extends AnimatorCard

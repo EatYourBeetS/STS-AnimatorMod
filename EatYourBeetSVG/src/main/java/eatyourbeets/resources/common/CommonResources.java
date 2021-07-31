@@ -15,7 +15,7 @@ import eatyourbeets.console.CommandsManager;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.powers.affinity.*;
-import eatyourbeets.powers.common.*;
+import eatyourbeets.powers.replacement.GenericFadingPower;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;

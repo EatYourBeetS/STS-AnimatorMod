@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.TemporaryElectroPower;
+import eatyourbeets.powers.replacement.TemporaryElectroPower;
 import eatyourbeets.utilities.GameActions;
 
 public class NarberalGamma extends AnimatorCard

@@ -82,7 +82,7 @@ public class Ain extends AnimatorCard
     }
 
     @Override
-    public boolean CheckSpecialCondition(boolean use)
+    public boolean CheckSpecialCondition(boolean tryUse)
     {
         return GameActionManager.totalDiscardedThisTurn > 0;
     }

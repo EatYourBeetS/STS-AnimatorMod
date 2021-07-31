@@ -7,7 +7,7 @@ import eatyourbeets.interfaces.listeners.OnReceiveEmeraldBonusListener;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.PlayerFlightPower;
+import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;

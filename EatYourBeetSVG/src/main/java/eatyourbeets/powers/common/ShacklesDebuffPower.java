@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 
-public class ShacklesPower extends CommonPower implements InvisiblePower
+public class ShacklesDebuffPower extends CommonPower implements InvisiblePower
 {
-    public static final String POWER_ID = CreateFullID(ShacklesPower.class);
+    public static final String POWER_ID = CreateFullID(ShacklesDebuffPower.class);
 
-    public ShacklesPower(AbstractCreature owner, int amount)
+    public ShacklesDebuffPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 

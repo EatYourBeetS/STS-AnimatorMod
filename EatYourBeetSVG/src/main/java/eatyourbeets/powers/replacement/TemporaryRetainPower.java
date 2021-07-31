@@ -1,19 +1,19 @@
-package eatyourbeets.powers.common;
+package eatyourbeets.powers.replacement;
 
 import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.EnvenomPower;
+import com.megacrit.cardcrawl.powers.RetainCardPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
-public class TemporaryEnvenomPower extends EnvenomPower implements CloneablePowerInterface
+public class TemporaryRetainPower extends RetainCardPower implements CloneablePowerInterface
 {
-    public TemporaryEnvenomPower(AbstractCreature owner, int amount)
+    public TemporaryRetainPower(AbstractCreature owner, int numCards)
     {
-        super(owner, amount);
+        super(owner, numCards);
 
-        this.ID = GR.Animator.CreateID(TemporaryEnvenomPower.class.getSimpleName());
+        this.ID = GR.Animator.CreateID(TemporaryRetainPower.class.getSimpleName());
     }
 
     @Override
@@ -27,6 +27,6 @@ public class TemporaryEnvenomPower extends EnvenomPower implements CloneablePowe
     @Override
     public AbstractPower makeCopy()
     {
-        return new TemporaryEnvenomPower(owner, amount);
+        return new TemporaryRetainPower(owner, amount);
     }
 }

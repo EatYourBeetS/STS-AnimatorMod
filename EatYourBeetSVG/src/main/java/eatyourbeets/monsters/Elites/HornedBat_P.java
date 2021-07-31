@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.common.TemporaryConfusionPower;
+import eatyourbeets.powers.replacement.TemporaryConfusionPower;
 import eatyourbeets.powers.monsters.HornedBat_PurplePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;

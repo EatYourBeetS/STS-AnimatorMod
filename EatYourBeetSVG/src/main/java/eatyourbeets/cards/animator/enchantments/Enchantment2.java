@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.TemporaryRetainPower;
+import eatyourbeets.powers.replacement.TemporaryRetainPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Enchantment2 extends Enchantment

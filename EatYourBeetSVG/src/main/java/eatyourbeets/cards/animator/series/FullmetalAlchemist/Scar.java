@@ -25,6 +25,7 @@ public class Scar extends AnimatorCard
 
         SetAffinity_Red(1);
         SetAffinity_Blue(1);
+        SetAffinity_Orange(2);
     }
 
     @Override

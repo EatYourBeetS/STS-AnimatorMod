@@ -22,7 +22,7 @@ public class HasteAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        if (card.hasTag(GR.Enums.CardTags.HASTE) || card.hasTag(GR.Enums.CardTags.HASTE_INFINITE))
+        if (card.hasTag(GR.Enums.CardTags.HASTE))
         {
             GameActions.Top.Draw(1);
             GameActions.Top.Flash(card);
@@ -40,9 +40,6 @@ public class HasteAction extends EYBAction
         {
             CardCrawlGame.sound.playA("POWER_FLIGHT", MathUtils.random(0.3f, 0.4f));
             card.tags.remove(GR.Enums.CardTags.HASTE);
-        }
-        else if (card.hasTag(GR.Enums.CardTags.HASTE_INFINITE)) {
-            CardCrawlGame.sound.playA("POWER_FLIGHT", MathUtils.random(0.3f, 0.4f));
         }
 
         isDone = true;

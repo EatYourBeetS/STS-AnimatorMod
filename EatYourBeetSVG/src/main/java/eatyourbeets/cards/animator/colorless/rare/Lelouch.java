@@ -29,7 +29,7 @@ public class Lelouch extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetAffinity_Orange(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Blue(2);
 
         SetExhaust(true);
     }

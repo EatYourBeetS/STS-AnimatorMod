@@ -8,13 +8,13 @@
 	},
 	"Affinity":
 	{
-		"DESCRIPTION": "#yAffinity can be of any color between NL [A-Red], [A-Green], [A-Blue], [A-Light], [A-Dark]. NL [A-Gen] refers either to generic #yAffinity, or your current best #yAffinity.",
+		"DESCRIPTION": "#yAffinity can be of any color between NL [A-Red], [A-Green], [A-Blue], [A-Orange], [A-Light], [A-Dark]. NL [A-Gen] refers either to generic #yAffinity, or your current best #yAffinity.",
 		"NAMES": ["affinity"],
 		"PROPER_NAME": "Affinity"
 	},
 	"Affinity Power":
 	{
-		"DESCRIPTION": "[A-Red] -> [F], [A-Green] -> [A], [A-Blue] -> [I], NL [A-Light] -> [B], [A-Dark] -> [C]",
+		"DESCRIPTION": "[A-Red] -> [F], [A-Green] -> [A], [A-Blue] -> [I], NL [A-Orange] -> [W], [A-Light] -> [B], [A-Dark] -> [C]",
 		"NAMES": ["[a-gen] power", "[a-gen] powers", "affinity power", "affinity powers"],
 		"PROPER_NAME": "Affinity Power"
 	},
@@ -302,7 +302,7 @@
 	},
 	"Shackles":
 	{
-		"DESCRIPTION": "#yStrength reduction until end of turn.",
+		"DESCRIPTION": "#yStrength is reduced until the end of turn.",
 		"NAMES": ["shackles"],
 		"PROPER_NAME": "Shackles"
 	},
@@ -368,14 +368,14 @@
 	},
 	"~HasteInfinite":
 	{
-	  "DESCRIPTION": "When drawn, draw 1 card. NL #yThis #yeffect #yis #ypermanent.",
+	  "DESCRIPTION": "When drawn, draw 1 card. NL #yThis #yeffect #ycan #yactivate #yonce #yper #yturn.",
 	  "NAMES": ["~haste infinite"],
 	  "PROPER_NAME": "Haste"
 	},
 	"~HasteOnce":
 	{
 	  "DESCRIPTION": "When drawn, draw 1 card. NL #bOnce #bactivated, #bremove #bthis #beffect.",
-	  "NAMES": ["~haste"],
+	  "NAMES": ["~haste once"],
 	  "PROPER_NAME": "Haste"
 	},
 	"~Innate":

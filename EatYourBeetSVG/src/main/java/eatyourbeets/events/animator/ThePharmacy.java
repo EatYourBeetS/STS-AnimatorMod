@@ -3,6 +3,7 @@ package eatyourbeets.events.animator;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
@@ -13,10 +14,17 @@ public class ThePharmacy extends EYBEvent
     public static final EventStrings STRINGS = new EventStrings();
     public static final String ID = CreateFullID(ThePharmacy.class);
 
+    public static ThePharmacy TryCreate(Random rng)
+    {
+        if (!AbstractDungeon.player.hasRelic(BountyMap.ID) && rng.randomBoolean(0.15f)) {
+            return new ThePharmacy();
+        }
+        return null;
+    }
+
     public ThePharmacy()
     {
         super(ID, new EventStrings(),"BubuPharmacy.png");
-
         RegisterPhase(0, new Introduction());
         RegisterPhase(1, new Offering());
         RegisterPhase(2, new Bounty());
@@ -37,7 +45,7 @@ public class ThePharmacy extends EYBEvent
     private static class Offering extends EYBEventPhase<ThePharmacy, ThePharmacy.EventStrings>
     {
         private String merchantLine;
-        private final int price = 40;
+        protected int price = 20;
 
 
         @Override
@@ -71,11 +79,13 @@ public class ThePharmacy extends EYBEvent
         private void BuyPotion()
         {
             player.loseGold(price);
+            price += 10;
 
             AbstractPotion potion = AbstractDungeon.returnRandomPotion(false);
             if (player.hasRelic("Sozu")) {
                 player.getRelic("Sozu").flash();
-            } else {
+            }
+            else {
                 player.obtainPotion(potion);
             }
             CardCrawlGame.metricData.addPotionObtainData(potion);
@@ -91,7 +101,7 @@ public class ThePharmacy extends EYBEvent
         {
             AddText(text.Bounty());
             AddOption(text.AcceptBountyOption()).AddCallback(this::AcceptBounty);
-            AddOption(text.RefuseBountyOption()).AddCallback(() -> ChangePhase(2));
+            AddOption(text.RefuseBountyOption()).AddCallback(() -> ChangePhase(Offering.class));
         }
 
         private void AcceptBounty()
@@ -109,7 +119,7 @@ public class ThePharmacy extends EYBEvent
         protected void OnEnter()
         {
             AddText(text.Accepted());
-            AddOption(EYBEvent.COMMON_STRINGS.Continue()).AddCallback(() -> ChangePhase(2));
+            AddOption(EYBEvent.COMMON_STRINGS.Continue()).AddCallback(() -> ChangePhase(Offering.class));
         }
     }
 

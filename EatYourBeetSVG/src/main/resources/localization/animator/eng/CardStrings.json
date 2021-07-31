@@ -123,12 +123,12 @@
 	{
 		"animator:AngelAlter":
 		{
-			"DESCRIPTION": "Afterlife. || This card can only be played from Afterlife. ** {Boost} [F] and [A] . ** Shuffle a copy of this card into both your draw and discard piles.",
+			"DESCRIPTION": "This card can only be played from Afterlife. ** {Boost} [F] and [A] . ** Shuffle a copy of this card into both your draw and discard piles.",
 			"NAME": "Angel Alter"
 		},
 		"animator:AyatoNaoi":
 		{
-			"DESCRIPTION": "Afterlife. Enter <IS>. Channel ** !M! Dark. || When played from Afterlife: ** ALL enemies lose HP equal to ** their Attack damage.",
+			"DESCRIPTION": "Enter <IS>. Channel ** !M! Dark. || When played from Afterlife: ** ALL enemies lose HP equal to ** their Attack damage.",
 			"NAME": "Ayato Naoi"
 		},
 		"animator:Chaa":
@@ -144,7 +144,7 @@
 		},
 		"animator:EriShiina":
 		{
-			"DESCRIPTION": "Afterlife. || When played from Afterlife, add !M! {Throwing-Knives} to your hand.",
+			"DESCRIPTION": "When played from Afterlife, add !M! {Throwing-Knives} to your hand.",
 			"NAME": "Eri Shiina"
 		},
 		"animator:GirlDeMo":
@@ -159,7 +159,7 @@
 		},
 		"animator:HidekiHinata":
 		{
-			"DESCRIPTION": "Afterlife. || If the enemy intends to attack, deal damage again.",
+			"DESCRIPTION": "If the enemy intends to attack, deal damage again.",
 			"NAME": "Hideki Hinata"
 		},
 		"animator:KanadeTachibana":
@@ -175,7 +175,7 @@
 		},
 		"animator:Noda":
 		{
-			"DESCRIPTION": "Afterlife. || {Synergy}: Gain/Boost [F]. || When Discarded: Exhaust.",
+			"DESCRIPTION": "{Synergy}: Gain/Boost [F]. || When Discarded: Exhaust.",
 			"NAME": "Noda"
 		},
 		"animator:Strike_AngelBeats":
@@ -185,12 +185,12 @@
 		},
 		"animator:Yui":
 		{
-			"DESCRIPTION": "Afterlife. Gain/Boost [B]. Motivate !S!. || When played from {Afterlife}: Add a {Girls Dead Monster} to your draw pile.",
+			"DESCRIPTION": "Gain/Boost [B]. Motivate !S!. || When played from {Afterlife}: Add a {Girls Dead Monster} to your draw pile.",
 			"NAME": "Yui"
 		},
 		"animator:YuriNakamura":
 		{
-			"DESCRIPTION": "Afterlife. || <LIM>. Give a Non-{Hindrance}, Non-{Afterlife} card in your Exhaust pile {Afterlife}.",
+			"DESCRIPTION": "<LIM>. Give a Non-{Hindrance}, Non-{Afterlife} card in your Exhaust pile {Afterlife}.",
 			"EXTENDED_DESCRIPTION": ["Give a card Retain.", "Choose a card to give Afterlife."],
 			"NAME": "Yuri Nakamura"
 		},
@@ -471,7 +471,7 @@
 		},
 		"animator:ShidoItsuka":
 		{
-			"DESCRIPTION": "Harmonic. || Add 1 of !M! cards that would ** Synergize with this card to ** your discard pile.",
+			"DESCRIPTION": "Harmonic. || Add 1 of !M! cards that would Synergize with this card to your discard pile.",
 			"NAME": "Shido Itsuka",
 			"UPGRADE_DESCRIPTION": "This card Synergizes ** with Date-a-Live cards. || Add 1 of !M! Upgraded cards ** that would Synergize with ** this card to your discard pile."
 		},
@@ -519,7 +519,7 @@
 		},
 		"animator:Curse_Delusion":
 		{
-		  "DESCRIPTION": "Unplayable. || At the end of your turn, give a random card in your Draw Pile {Autoplay}. || When Exhausted: Boost [A].",
+		  "DESCRIPTION": "Unplayable. || At the end of your turn, give a random card in your ** Draw Pile {Autoplay}. || When Exhausted: Boost [A] and play {<G> Token}.",
 		  "NAME": "Delusion"
 		},
 		"animator:Dvalin":
@@ -549,7 +549,7 @@
 		},
 		"animator:JumpyDumpty":
 		{
-		  "DESCRIPTION": "Apply !M! [Burning]. || If the enemy dies or loses its [Block]: Add a copy of this card to your Draw Pile. Take !S! damage at the end of the turn.",
+		  "DESCRIPTION": "Apply !M! [Burning]. || If the enemy dies ** or loses its [Block]: Add a copy of this card to your Draw Pile. Then, take !S! damage at the end of the turn.",
 		  "NAME": "Jumpy Dumpty"
 		},
 		"animator:KaeyaAlberich":
@@ -559,7 +559,7 @@
 		},
 		"animator:Keqing":
 		{
-		  "DESCRIPTION": "{Ricochet} !S!. Reduced by 1 upon Evoking [Lightning] or gaining [Blur]. || When {Exhausted}: Costs 1 less until played and gains {~Haste}.",
+		  "DESCRIPTION": "{Ricochet} !S!. Reduce by 1 upon Evoking [Lightning] ** or gaining [Blur]. || When {Exhausted}: Costs 1 less until played and gains {~Haste}.",
 		  "NAME": "Keqing"
 		},
 		"animator:Klee":
@@ -574,7 +574,7 @@
 		},
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M!. Gain effects based on each Scried card's rarity: || {Basic} or {Common}: Draw !S! more card(s) next turn. ** {Uncommon}: Gain/Boost [I][W] ** {Rare}: Induce [Lightning]",
+			"DESCRIPTION": "{Scry} !M!. Gain effects based on each Scried card's rarity: || {Basic} or {Common}: Draw !S! more card(s) next turn. ** {Uncommon}: Gain/Boost [I] ** {Rare}: Induce [Lightning]",
 			"NAME": "Lisa Minci"
 		},
 		"animator:Noelle":
@@ -595,7 +595,7 @@
 		},
 		"animator:Tartaglia":
 		{
-			"DESCRIPTION": "Deal additional damage equal to the enemy's [Burning], then remove [Burning]. || <LIM>. If the enemy dies, enter <FS> ** and add {Delusion} to your draw pile.",
+			"DESCRIPTION": "Deal additional damage ** equal to twice the enemy's [Burning], then remove [Burning]. || <LIM>. If the enemy dies: Enter <FS> and add {Delusion} to your draw pile.",
 			"NAME": "Tartaglia"
 		},
 		"animator:Traveler":
@@ -617,7 +617,7 @@
 		"animator:Zhongli":
 		{
 			"DESCRIPTION": "Your [Earth] now give half of their damage as [Block] when Evoked. || Once per turn, pay [E]: ** {Channel} [Earth] and gain !M! [Plated Armor].",
-		  	"EXTENDED_DESCRIPTION": ["Pay #b1 [E] to channel #b1 [Earth] and gain {0} [Plated Armor]. || Your [Earth] now give half of their damage as [Block] when #yEvoked."],
+		  	"EXTENDED_DESCRIPTION": ["Pay #b1 [E] to channel #b1 [Earth] ** and gain {0} [Plated Armor]. || Your [Earth] now give half of their damage as [Block] when #yEvoked."],
 			"NAME": "Zhongli"
 		}
 	},
@@ -797,7 +797,7 @@
 		},
 		"animator:Shirosaki_Laplace":
 		{
-			"DESCRIPTION": "Afterlife. || When played from {Afterlife}: Draw a card in your discard pile. Otherwise: Discard a {Curse} to Enter a random {Stance}, then Exhaust.",
+			"DESCRIPTION": "When played from {Afterlife}: Draw a card in your discard pile. Otherwise: Discard a {Curse} to Enter a random {Stance}, then Exhaust.",
 			"EXTENDED_DESCRIPTION": ["Discard a curse to enter a random Stance."],
 			"NAME": "Laplace no Ma"
 		},
@@ -2124,17 +2124,17 @@
 		},
 		"animator:AffinityToken_Orange":
 		{
-		  "DESCRIPTION": "Have +1 <O> for ** the rest of combat. || 3 <L> or <D>: Gain [E].",
-		  "NAME": "Affinity Token"
+			"DESCRIPTION": "Gain +1 <O> for ** the rest of combat. || !S! <L> or <D>: Gain [E].",
+			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Light":
 		{
-			"DESCRIPTION": "Gain +1 <L> for ** the rest of combat. || !S! <D> or <R>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <L> for ** the rest of combat. || !S! <D> or <O>: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Dark":
 		{
-			"DESCRIPTION": "Gain +1 <D> for ** the rest of combat. || !S! <L> or <G>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <D> for ** the rest of combat. || !S! <L> or <O>: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 

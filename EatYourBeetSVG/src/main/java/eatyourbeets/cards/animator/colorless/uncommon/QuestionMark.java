@@ -44,6 +44,7 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
     @Override
     public void OnStartOfTurn()
     {
+        super.OnStartOfTurn();
         if (!player.hand.contains(copy))
         {
             if (transformBack(player.drawPile) || transformBack(player.discardPile) || transformBack(player.exhaustPile))

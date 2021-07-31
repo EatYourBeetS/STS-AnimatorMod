@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.beta.special;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
@@ -20,11 +21,47 @@ public class JumpyDumpty extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(10, 0, 1, 5);
+        Initialize(11, 0, 3, 5);
         SetUpgrade(3, 0, 1, 0);
         SetAffinity_Red(1, 0, 1);
         SetAutoplay(true);
         SetExhaust(true);
+    }
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        if (hasTag(AUTOPLAY))
+        {
+            AbstractMonster enemy = null;
+            int minBlock = Integer.MAX_VALUE;
+            int minHealth = Integer.MAX_VALUE;
+
+            for (AbstractMonster m : GameUtilities.GetEnemies(true))
+            {
+                if (m.currentBlock > 0 && m.currentBlock < minBlock)
+                {
+                    minBlock = m.currentBlock;
+                    enemy = m;
+                }
+            }
+            if (enemy == null) {
+                for (AbstractMonster m : GameUtilities.GetEnemies(true))
+                {
+                    if (m.currentHealth  < minHealth)
+                    {
+                        minHealth = m.currentHealth;
+                        enemy = m;
+                    }
+                }
+            }
+
+            GameActions.Bottom.PlayCard(this, player.hand, enemy)
+                    .SpendEnergy(true)
+                    .AddCondition(AbstractCard::hasEnoughEnergy);
+        }
     }
 
     @Override

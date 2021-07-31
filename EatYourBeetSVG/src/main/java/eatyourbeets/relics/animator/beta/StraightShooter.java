@@ -18,19 +18,15 @@ public class StraightShooter extends AnimatorRelic
     public void onShuffle()
     {
         super.onShuffle();
-        for (int i=0; i<2; i++) {
-            GameActions.Bottom.MakeCardInDrawPile(new JumpyDumpty())
-                    .AddCallback(card ->
-                    {
-                        if (card instanceof EYBCard) {
-                            ((EYBCard) card).SetHaste(true);
-                            card.upgrade();
-                            card.applyPowers();
-                        }
+        GameActions.Bottom.MakeCardInDrawPile(new JumpyDumpty())
+                .AddCallback(card ->
+                {
+                    if (card instanceof EYBCard) {
+                        card.upgrade();
+                        card.applyPowers();
+                    }
 
-                    });
-        }
-        SetEnabled(false);
+                });
         flash();
     }
 }

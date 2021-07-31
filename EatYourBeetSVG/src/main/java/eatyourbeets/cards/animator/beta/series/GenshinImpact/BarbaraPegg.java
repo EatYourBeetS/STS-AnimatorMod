@@ -22,7 +22,7 @@ public class BarbaraPegg extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 5, 2);
+        Initialize(0, 0, 5, 4);
         SetUpgrade(0, 0, 2, 0);
         SetAffinity_Light(2);
         SetAffinity_Blue(1);

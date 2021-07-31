@@ -56,6 +56,7 @@ public class InduceOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
 
             if (GameUtilities.IsValidOrb(orb))
             {
+                orb.applyFocus();
                 GameActions.Top.Callback(new EvokeSpecificOrbAction(orb))
                         .AddCallback(() -> {
                             while (player.orbs.size() > this.initialOrbSlotCount)

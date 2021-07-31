@@ -1,5 +1,6 @@
 package eatyourbeets.relics.animator.beta;
 
+import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -12,16 +13,15 @@ import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
 
-public class BountyMap extends AnimatorRelic
+public class BountyMap extends AnimatorRelic implements CustomSavable<ArrayList<String>>
 {
     public static final String ID = CreateFullID(BountyMap.class);
     private static final WeightedList<String> possibleRooms = new WeightedList<>();
-    private ArrayList<String> path;
-    private int progress;
+    private ArrayList<String> path = new ArrayList<>();
 
     public BountyMap()
     {
-        super(ID, RelicTier.RARE, LandingSound.MAGICAL);
+        super(ID, RelicTier.SPECIAL, LandingSound.MAGICAL);
     }
 
     @Override
@@ -30,9 +30,9 @@ public class BountyMap extends AnimatorRelic
         super.onEquip();
 
         if (possibleRooms.Size() == 0) {
-            possibleRooms.Add("?", 2);
+            possibleRooms.Add("?", 3);
             possibleRooms.Add("T", 1);
-            possibleRooms.Add("M", 3);
+            possibleRooms.Add("M", 4);
             possibleRooms.Add("E", 2);
             possibleRooms.Add("$", 1);
             possibleRooms.Add("R", 1);
@@ -43,22 +43,23 @@ public class BountyMap extends AnimatorRelic
             path.add(possibleRooms.Retrieve(rng, false));
         }
         path.add("?");
-        progress = 0;
+        SetCounter(0);
 
-        this.description = getUpdatedDescription();
-        this.tips.clear();
-        this.tips.add(new EYBCardTooltip(this.name, this.description));
-        this.initializeTips();
+        fixDescription();
     }
 
     @Override
-    public void onEnterRoom(AbstractRoom room)
+    public void justEnteredRoom(AbstractRoom room)
     {
-        if (progress < path.size() - 1 && path.get(progress).equals(room.getMapSymbol())) {
+        super.justEnteredRoom(room);
+
+        if (counter < path.size() - 1 && path.get(counter).equals(room.getMapSymbol())) {
             flash();
-            progress += 1;
+            AddCounter(1);
+            fixDescription();
         }
-        if (progress >= path.size() && this.IsEnabled()) {
+        if (counter >= path.size() && this.IsEnabled()) {
+            flash();
             SetEnabled(false);
             EYBEvent newRoom = new TheMysteriousPeak();
             newRoom.onEnterRoom();
@@ -68,10 +69,32 @@ public class BountyMap extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        if (CardCrawlGame.isInARun()) {
-            return JUtils.Format(DESCRIPTIONS[0], String.join(" ", path));
+        if (CardCrawlGame.isInARun() && path != null && path.size() > 0) {
+            return JUtils.Format(DESCRIPTIONS[0], String.join(" #y", path), counter);
         } else {
-            return JUtils.Format(DESCRIPTIONS[0], "...");
+            return JUtils.Format(DESCRIPTIONS[0], "...", counter);
         }
+    }
+
+    @Override
+    public ArrayList<String> onSave()
+    {
+        return this.path;
+    }
+
+    @Override
+    public void onLoad(ArrayList<String> strings)
+    {
+        if (strings != null) {
+            this.path.addAll(strings);
+        }
+    }
+
+    private void fixDescription()
+    {
+        this.description = getUpdatedDescription();
+        this.tips.clear();
+        this.tips.add(new EYBCardTooltip(this.name, this.description));
+        this.initializeTips();
     }
 }

@@ -35,7 +35,6 @@ public class LisaMinci extends AnimatorCard {
                                 break;
                             case UNCOMMON:
                                 GameActions.Bottom.GainIntellect(1, upgraded);
-                                GameActions.Bottom.GainWillpower(1, upgraded);
                                 break;
                             case BASIC:
                             case COMMON:

@@ -3,6 +3,8 @@ package eatyourbeets.cards.animator.beta.curse;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
+import eatyourbeets.cards.animator.tokens.AffinityToken_Green;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
@@ -14,11 +16,13 @@ public class Curse_Delusion extends AnimatorCard_Curse
     static
     {
         DATA.CardRarity = CardRarity.SPECIAL;
+        DATA.AddPreview((EYBCard) AffinityToken.GetCard(AffinityType.Green).CreateNewInstance(), false);
     }
 
     public Curse_Delusion()
     {
         super(DATA, true);
+        SetAffinity_Dark(1);
     }
 
     @Override
@@ -55,7 +59,9 @@ public class Curse_Delusion extends AnimatorCard_Curse
     {
         super.triggerOnExhaust();
 
+        AffinityToken_Green token = new AffinityToken_Green();
         GameActions.Bottom.GainAgility(1, true);
+        GameActions.Bottom.PlayCard(token, null);
     }
 
     @Override

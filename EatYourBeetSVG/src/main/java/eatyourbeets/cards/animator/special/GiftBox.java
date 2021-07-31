@@ -22,6 +22,7 @@ public class GiftBox extends AnimatorCard
 
         Initialize(0, 0, 5);
         SetUpgrade(0, 0, 2);
+        SetAffinity_Star(1, 0, 0);
 
         cropPortrait = false;
         SetPurge(true);

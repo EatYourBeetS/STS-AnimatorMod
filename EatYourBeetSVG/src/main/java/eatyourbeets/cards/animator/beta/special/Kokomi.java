@@ -11,16 +11,17 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.powers.animator.NegateBlockPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Ganyu extends AnimatorCard
+public class Kokomi extends AnimatorCard implements Hidden
 {
-    public static final EYBCardData DATA = Register(Ganyu.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Ranged).SetSeries(CardSeries.GenshinImpact);
+    public static final EYBCardData DATA = Register(Kokomi.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Ranged).SetSeries(CardSeries.GenshinImpact);
     private static final int NO_BLOCK_TURNS = 2;
 
-    public Ganyu()
+    public Kokomi()
     {
         super(DATA);
 

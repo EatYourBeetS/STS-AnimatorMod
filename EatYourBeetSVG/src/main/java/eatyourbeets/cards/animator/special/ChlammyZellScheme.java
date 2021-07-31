@@ -24,7 +24,6 @@ public class ChlammyZellScheme extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetAffinity_Blue(2);
-        SetAffinity_Orange(2);
         SetAffinity_Dark(1);
 
         SetRetain(true);

@@ -3,6 +3,7 @@ package eatyourbeets.events.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.cards.animator.beta.special.Ganyu;
 import eatyourbeets.events.base.EYBEvent;
@@ -51,43 +52,53 @@ public class TheMysteriousPeak extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            RandomizedList<AbstractCard> cards = new RandomizedList<>();
+            RandomizedList<AbstractRelic> relics = new RandomizedList<>();
 
-            for (AbstractCard card : player.masterDeck.group)
+            for (AbstractRelic r : player.relics)
             {
-                if (card.type == AbstractCard.CardType.ATTACK && (card.cost >= 3 || card.rarity == AbstractCard.CardRarity.RARE))
+                if (r.tier == AbstractRelic.RelicTier.UNCOMMON)
                 {
-                    cards.Add(card);
+                    relics.Add(r);
                 }
             }
-            AbstractCard card = cards.Retrieve(RNG);
+            AbstractRelic relic = relics.Retrieve(RNG);
+            if (relic == null) {
+                for (AbstractRelic r : player.relics)
+                {
+                    if (r.tier == AbstractRelic.RelicTier.RARE)
+                    {
+                        relics.Add(r);
+                    }
+                }
+                relic = relics.Retrieve(RNG);
+            }
 
             AddText(text.Hunt());
             AddOption(text.FightOption(HP_LOSS), obtainedCard).AddCallback(this::LoseHealth);
-            if (card != null)
+            if (relic != null)
             {
-                AddOption(text.TrapOption(card.name), card).AddCallback(this::LoseCard);
+                AddOption(text.TrapOption(relic.name), relic).AddCallback(this::LoseRelic);
             }
             else
             {
                 AddOption(text.TrapLockedOption()).SetDisabled(true);
             }
 
-            AddOption(text.FleeOption()).AddCallback(() -> ChangePhase(8));
+            AddOption(text.FleeOption()).AddCallback(() -> ChangePhase(Flee.class));
         }
 
         private void LoseHealth()
         {
             player.damage(new DamageInfo(null, HP_LOSS));
             GameEffects.List.Add(new ShowCardAndObtainEffect(obtainedCard, (float) Settings.WIDTH * 0.45f, (float) Settings.HEIGHT / 2f));
-            ChangePhase(2);
+            ChangePhase(Fight1.class);
         }
 
-        private void LoseCard(EYBEventOption option)
+        private void LoseRelic(EYBEventOption option)
         {
-            player.masterDeck.removeCard(option.card);
+            player.relics.remove(option.relic);
             GameEffects.List.Add(new ShowCardAndObtainEffect(obtainedCard, (float) Settings.WIDTH * 0.45f, (float) Settings.HEIGHT / 2f));
-            ChangePhase(4);
+            ChangePhase(Trap.class);
         }
     }
 

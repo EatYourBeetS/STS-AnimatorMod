@@ -20,7 +20,7 @@
 	},
 	"animator:BountyMap":
 	{
-	  "DESCRIPTIONS": ["Go through the following types of rooms in order to trigger a special event: b{0}."],
+	  "DESCRIPTIONS": ["Traverse these rooms in the given order special event: NL #y{0}. NL You have entered #b{1} rooms on the path so far.","On pickup, assign this relic a random set of rooms. Traverse the rooms in the given order to trigger a special event.","You have completed this bounty."],
 	  "FLAVOR": "Wanted dead or alive.",
 	  "NAME": "Bounty Map"
 	},
@@ -170,7 +170,7 @@
 	},
 	"animator:StraightShooter":
 	{
-	  "DESCRIPTIONS": ["The first time you shuffle your deck, add 2 upgraded Jumpy Dumpty with Haste to your Draw Pile."],
+	  "DESCRIPTIONS": ["Whenever you shuffle your deck, add an upgraded Jumpy Dumpty to your Draw Pile."],
 	  "FLAVOR": "Pretty straightforward.",
 	  "NAME": "Straight Shooter"
 	},

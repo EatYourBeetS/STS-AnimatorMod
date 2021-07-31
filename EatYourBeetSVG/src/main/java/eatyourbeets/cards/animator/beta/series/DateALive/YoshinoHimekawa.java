@@ -24,7 +24,6 @@ public class YoshinoHimekawa extends AnimatorCard
 
         Initialize(0, 0, 1, 4);
         SetAffinity_Green(2, 0, 0);
-        SetAffinity_Orange(1, 0, 0);
 
         SetExhaust(true);
         SetHaste(true);

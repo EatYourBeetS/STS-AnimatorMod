@@ -144,6 +144,10 @@ public class EYBCardText
         final float alpha = UpdateBadgeAlpha();
 
         int offset_y = 0;
+        if (AfterLifeMod.IsAdded(card))
+        {
+            offset_y -= RenderBadge(sb, BADGES.Afterlife.Texture(), offset_y, alpha, null);
+        }
         if (card.isInnate)
         {
             offset_y -= RenderBadge(sb, BADGES.Innate.Texture(), offset_y, alpha, null);
@@ -178,12 +182,8 @@ public class EYBCardText
         }
         if (card.hasTag(GR.Enums.CardTags.AUTOPLAY))
         {
-            offset_y -= RenderBadge(sb, BADGES.Autoplay.Texture(), offset_y, alpha, null);
-        }
-        if (AfterLifeMod.IsAdded(card))
-        {
             //noinspection UnusedAssignment
-            offset_y -= RenderBadge(sb, BADGES.Afterlife.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.Autoplay.Texture(), offset_y, alpha, null);
         }
 
         offset_y = 0;

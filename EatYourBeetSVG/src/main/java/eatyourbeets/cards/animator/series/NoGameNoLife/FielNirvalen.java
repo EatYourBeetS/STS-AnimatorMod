@@ -34,7 +34,6 @@ public class FielNirvalen extends AnimatorCard
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
-        SetAffinity_Orange(1);
     }
 
     @Override

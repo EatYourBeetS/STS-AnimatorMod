@@ -2,7 +2,10 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
@@ -21,8 +24,7 @@ public class Yoichi extends AnimatorCard
         Initialize(0,0, 2);
         SetUpgrade(0,2, 0);
 
-        SetAffinity_Green(1, 0, 0);
-        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Green(1, 1, 0);
     }
 
     @Override

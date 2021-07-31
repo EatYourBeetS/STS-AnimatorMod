@@ -17,6 +17,7 @@ import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.PlayerFlightPower;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class EYBCard extends EYBCardBase
+public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscriber
 {
     public static final CardTags HASTE = GR.Enums.CardTags.HASTE;
     public static final CardTags HASTE_INFINITE = GR.Enums.CardTags.HASTE_INFINITE;
@@ -258,6 +259,15 @@ public abstract class EYBCard extends EYBCardBase
         }
     }
 
+    @Override
+    public void OnStartOfTurn()
+    {
+        if (hasTag(HASTE_INFINITE))
+        {
+            SetTag(HASTE,true);
+        }
+    }
+
     public void PurgeOnUseOnce()
     {
         if (player.cardInUse != this)
@@ -301,6 +311,10 @@ public abstract class EYBCard extends EYBCardBase
 
     public void GenerateDynamicTooltips(ArrayList<EYBCardTooltip> dynamicTooltips)
     {
+        if (AfterLifeMod.IsAdded(this))
+        {
+            dynamicTooltips.add(GR.Tooltips.Afterlife);
+        }
         if (isInnate)
         {
             dynamicTooltips.add(GR.Tooltips.Innate);
@@ -336,10 +350,6 @@ public abstract class EYBCard extends EYBCardBase
         if (hasTag(AUTOPLAY))
         {
             dynamicTooltips.add(GR.Tooltips.Autoplay);
-        }
-        if (AfterLifeMod.IsAdded(this))
-        {
-            dynamicTooltips.add(GR.Tooltips.Afterlife);
         }
         if (affinities.HasStar())
         {
@@ -431,15 +441,13 @@ public abstract class EYBCard extends EYBCardBase
 
     public void SetHaste(boolean value)
     {
-        if (!hasTag(HASTE_INFINITE)) {
-            SetTag(HASTE, value);
-        }
+        SetTag(HASTE, value);
     }
 
     public void SetPermanentHaste(boolean value)
     {
         SetTag(HASTE_INFINITE, value);
-        SetTag(HASTE, false);
+        SetTag(HASTE, value);
     }
 
     public void SetRetain(boolean value)

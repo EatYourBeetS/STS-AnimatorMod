@@ -7,11 +7,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import eatyourbeets.cards.base.EYBCardBase;
 import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.CardSlot;
-import eatyourbeets.resources.animator.misc.CardSlots;
+import eatyourbeets.resources.animator.misc.AnimatorLoadoutData;
 import eatyourbeets.ui.AbstractScreen;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.controls.GUI_Image;
@@ -24,8 +25,10 @@ public class AnimatorLoadoutEditor extends AbstractScreen
 {
     protected final static AnimatorLoadout.Validation val = new AnimatorLoadout.Validation();
     protected final ArrayList<AnimatorCardSlotEditor> slotsEditors = new ArrayList<>();
+    protected AnimatorBaseStatEditor goldEditor;
+    protected AnimatorBaseStatEditor hpEditor;
     protected AnimatorLoadout loadout;
-    protected CardSlots slots;
+    protected AnimatorLoadoutData data;
     protected ActionT0 onClose;
 
     protected AnimatorCardSlotSelectionEffect cardSelectionEffect;
@@ -92,16 +95,23 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.335f), ScreenH(0.35f)));
         slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.635f), ScreenH(0.75f)));
         slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.835f), ScreenH(0.75f)));
+
+        hpEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.HP, ScreenW(0.666f), ScreenH(0.442f));
+        goldEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.Gold, ScreenW(0.666f), ScreenH(0.353f));
     }
 
     public void Open(AnimatorLoadout loadout, ActionT0 onClose)
     {
         super.Open();
 
+        EYBCardBase.canCropPortraits = false;
         ToggleViewUpgrades(false);
+
         this.loadout = loadout;
-        this.slots = loadout.Slots.MakeCopy();
+        this.data = loadout.Data.MakeCopy();
         this.onClose = onClose;
+        this.hpEditor.SetLoadout(data);
+        this.goldEditor.SetLoadout(data);
         SetSlotsActive(true);
     }
 
@@ -110,6 +120,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
     {
         super.Dispose();
 
+        EYBCardBase.canCropPortraits = true;
         ToggleViewUpgrades(false);
 
         if (onClose != null)
@@ -123,9 +134,8 @@ public class AnimatorLoadoutEditor extends AbstractScreen
     {
         super.Update();
 
+        val.Refresh(data);
         background_image.Update();
-        cancel_button.Update();
-        save_button.Update();
         upgrade_toggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
 
         if (cardSelectionEffect != null)
@@ -138,16 +148,22 @@ public class AnimatorLoadoutEditor extends AbstractScreen
                 SetSlotsActive(true);
             }
         }
+        else
+        {
+            hpEditor.SetEstimatedValue(val.HpValue).Update();
+            goldEditor.SetEstimatedValue(val.GoldValue).Update();
+            cancel_button.Update();
+            save_button.Update();
+        }
 
         for (AnimatorCardSlotEditor editor : slotsEditors)
         {
             editor.TryUpdate();
         }
 
-        val.Refresh(slots);
         affinityValue_text.SetText("Affinity: +" + val.AffinityLevel).SetActive(val.AffinityLevel > 0).TryUpdate();
         cardsCount_text.SetText("Cards: {0}", val.CardsCount.V1).SetFontColor(val.CardsCount.V2 ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
-        cardsValue_text.SetText("Value: {0}/{1}", val.CardsValue.V1, AnimatorLoadout.MAX_VALUE).SetFontColor(val.CardsValue.V2 ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
+        cardsValue_text.SetText("Value: {0}/{1}", val.TotalValue.V1, AnimatorLoadout.MAX_VALUE).SetFontColor(val.TotalValue.V2 ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
         save_button.SetInteractable(val.IsValid).TryUpdate();
     }
 
@@ -164,6 +180,8 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         }
         else
         {
+            hpEditor.Render(sb);
+            goldEditor.Render(sb);
             cancel_button.Render(sb);
             save_button.Render(sb);
         }
@@ -187,7 +205,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
 
     public void Save()
     {
-        loadout.Slots = slots;
+        loadout.Data = data;
         GR.Animator.Data.SaveLoadouts(true);
         AbstractDungeon.closeCurrentScreen();
     }
@@ -204,8 +222,8 @@ public class AnimatorLoadoutEditor extends AbstractScreen
             for (int i = 0; i < slotsEditors.size(); i++)
             {
                 AnimatorCardSlotEditor editor = slotsEditors.get(i);
-                editor.SetActive(slots.Size() > i);
-                editor.SetSlot(editor.isActive ? slots.Get(i) : null);
+                editor.SetActive(data.Size() > i);
+                editor.SetSlot(editor.isActive ? data.Get(i) : null);
             }
         }
         else

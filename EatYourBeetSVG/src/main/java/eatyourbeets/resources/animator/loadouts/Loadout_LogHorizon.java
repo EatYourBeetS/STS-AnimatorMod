@@ -14,9 +14,9 @@ public class Loadout_LogHorizon extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(HousakiTohya.DATA, 4);
         AddToSpecialSlots(HousakiMinori.DATA, 4);

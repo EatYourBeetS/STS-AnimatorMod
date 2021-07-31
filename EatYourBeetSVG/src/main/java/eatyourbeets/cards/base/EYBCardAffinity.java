@@ -16,6 +16,7 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
     public int level;
     public int scaling;
     public int upgrade;
+    public int requirement;
 
     public EYBCardAffinity(AffinityType type)
     {

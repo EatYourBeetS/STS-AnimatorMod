@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -148,25 +149,26 @@ public abstract class AbstractAffinityPower extends CommonPower
         final float cX = hb.cX + w + (5 * scale);
         final float cY = hb.cY;
 
-        Color amountColor = Settings.BLUE_TEXT_COLOR;
+        Color amountColor;
         if (retainedTurns != 0)
         {
-            RenderHelpers.DrawCentered(sb, RenderHelpers.CopyColor(Settings.GOLD_COLOR, 0.7f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, (w / scale) + 8, (h / scale) + 8, 1, 0);
-            RenderHelpers.DrawCentered(sb, RenderHelpers.BlackColor(0.9f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
-            amountColor = Settings.GREEN_TEXT_COLOR;
+            RenderHelpers.DrawCentered(sb, Colors.Gold(0.7f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, (w / scale) + 8, (h / scale) + 8, 1, 0);
+            RenderHelpers.DrawCentered(sb, Colors.Black(0.9f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
+            amountColor = Colors.Green(1).cpy();
         }
         else
         {
-            RenderHelpers.DrawCentered(sb, RenderHelpers.BlackColor(0.6f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
+            RenderHelpers.DrawCentered(sb, Colors.Black(0.6f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
+            amountColor = (amount > 0 ? Colors.Blue(1) : Colors.Cream(0.6f)).cpy();
         }
 
-        RenderHelpers.DrawCentered(sb, new Color(1, 1, 1, enabled ? 1 : 0.5f), img, x + 16 * scale, cY + (3f * scale), 32, 32, 1, 0);
+        RenderHelpers.DrawCentered(sb, Colors.White(enabled ? 1 : 0.5f), img, x + 16 * scale, cY + (3f * scale), 32, 32, 1, 0);
 
         final Integer threshold = GetCurrentThreshold();
         if (threshold != null)
         {
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (threshold < 10 ? 70 : 75) * scale, y, 1, Settings.CREAM_COLOR);
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 44 * scale, y, fontScale, amount == 0 ? Settings.CREAM_COLOR : amountColor);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (threshold < 10 ? 70 : 75) * scale, y, 1, amount > 0 ? Colors.White(1) : amountColor);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 44 * scale, y, fontScale, amountColor);
         }
         else
         {

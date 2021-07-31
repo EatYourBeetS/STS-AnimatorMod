@@ -25,8 +25,6 @@ import java.util.ArrayList;
 public class RenderHelpers
 {
     public static final float CARD_ENERGY_IMG_WIDTH = 26.0F * Settings.scale;
-    private static final Color BLACK = Color.BLACK.cpy();
-    private static final Color WHITE = Color.WHITE.cpy();
     private static final StringBuilder builder = new StringBuilder();
     private static final GlyphLayout layout = new GlyphLayout();
 
@@ -45,18 +43,6 @@ public class RenderHelpers
     private static final float TIP_DESC_LINE_SPACING = 26.0F * Settings.scale;
     private static final float POWER_ICON_OFFSET_X = 40.0F * Settings.scale;
     //
-
-    public static Color BlackColor(float a)
-    {
-        BLACK.a = a;
-        return BLACK;
-    }
-
-    public static Color WhiteColor(float a)
-    {
-        WHITE.a = a;
-        return WHITE;
-    }
 
     public static void ResetFont(BitmapFont font)
     {

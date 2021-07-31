@@ -125,6 +125,18 @@ public enum AffinityType implements Comparable<AffinityType>
         }
     }
 
+    public static AffinityType FromTooltip(EYBCardTooltip tooltip)
+    {   //@Formatter: Off
+        if (tooltip == GR.Tooltips.Affinity_Red    ) { return AffinityType.Red;     }
+        if (tooltip == GR.Tooltips.Affinity_Green  ) { return AffinityType.Green;   }
+        if (tooltip == GR.Tooltips.Affinity_Blue   ) { return AffinityType.Blue;    }
+        if (tooltip == GR.Tooltips.Affinity_Light  ) { return AffinityType.Light;   }
+        if (tooltip == GR.Tooltips.Affinity_Dark   ) { return AffinityType.Dark;    }
+        if (tooltip == GR.Tooltips.Affinity_Star   ) { return AffinityType.Star;    }
+        if (tooltip == GR.Tooltips.Affinity_General) { return AffinityType.General; }
+        return null;
+    }   //@Formatter: On
+
     public void Render(int level, SpriteBatch sb, Color color, float cX, float cY, float size)
     {
         Texture background = GetBackground(level);

@@ -14,6 +14,9 @@ public class AffinityToken_Light extends AffinityToken
     public AffinityToken_Light()
     {
         super(DATA, AFFINITY_TYPE);
+
+        SetAffinityRequirement(AffinityType.Dark, secondaryValue);
+        SetAffinityRequirement(AffinityType.Red, secondaryValue);
     }
 
     @Override
@@ -21,7 +24,7 @@ public class AffinityToken_Light extends AffinityToken
     {
         super.OnUse(p, m, isSynergizing);
 
-        if (CheckAffinity(AffinityType.Dark, secondaryValue) || CheckAffinity(AffinityType.Orange, secondaryValue))
+        if (CheckAffinity(AffinityType.Dark) || CheckAffinity(AffinityType.Red))
         {
             GameActions.Bottom.GainEnergy(1);
         }

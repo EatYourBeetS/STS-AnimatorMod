@@ -8,6 +8,7 @@ import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredTexture;
@@ -25,7 +26,7 @@ public abstract class AffinityToken extends AnimatorCard
 
     public static EYBCardData Register(Class<? extends AnimatorCard> type)
     {
-        return AnimatorCard.Register(type).SetPower(2, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+        return AnimatorCard.Register(type).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
     }
 
     public static ArrayList<EYBCardData> GetCards()
@@ -78,6 +79,7 @@ public abstract class AffinityToken extends AnimatorCard
         this.portraitForeground = portraitImg;
         this.portraitImg = new ColoredTexture(GR.GetTexture(GR.GetCardImage(ID), true), affinityType.GetAlternateColor(0.55f));
 
+        SetPurge(true);
         SetRetainOnce(true);
     }
 

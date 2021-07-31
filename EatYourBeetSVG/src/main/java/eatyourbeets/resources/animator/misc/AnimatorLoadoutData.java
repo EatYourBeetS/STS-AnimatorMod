@@ -3,11 +3,13 @@ package eatyourbeets.resources.animator.misc;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class CardSlots implements Iterable<CardSlot>
+public class AnimatorLoadoutData implements Iterable<CardSlot>
 {
-    public boolean Ready;
+    public boolean Ready = false;
+    public int Gold;
+    public int HP;
 
-    private final ArrayList<CardSlot> list = new ArrayList<>();
+    protected final ArrayList<CardSlot> list = new ArrayList<>();
 
     public CardSlot AddSlot(int min, int max)
     {
@@ -16,10 +18,12 @@ public class CardSlots implements Iterable<CardSlot>
         return slot;
     }
 
-    public CardSlots MakeCopy()
+    public AnimatorLoadoutData MakeCopy()
     {
-        CardSlots copy = new CardSlots();
+        AnimatorLoadoutData copy = new AnimatorLoadoutData();
         copy.Ready = Ready;
+        copy.Gold = Gold;
+        copy.HP = HP;
         for (CardSlot slot : list)
         {
             copy.list.add(slot.MakeCopy(copy));

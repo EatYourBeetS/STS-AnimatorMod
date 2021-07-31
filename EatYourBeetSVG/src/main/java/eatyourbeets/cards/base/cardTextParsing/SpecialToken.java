@@ -79,7 +79,7 @@ public abstract class SpecialToken extends CTToken
                     {
                         if (token instanceof WordToken)
                         {
-                            ((WordToken)token).overrideColor = Settings.GOLD_COLOR.cpy();
+                            ((WordToken)token).coloredString.SetColor(Settings.GOLD_COLOR);
                             ((WordToken)token).tooltip = tooltip;
                         }
 

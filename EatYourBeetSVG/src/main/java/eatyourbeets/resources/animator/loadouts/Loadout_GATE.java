@@ -14,9 +14,9 @@ public class Loadout_GATE extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(TukaLunaMarceau.DATA, 4);
         AddToSpecialSlots(Kuribayashi.DATA, 5);

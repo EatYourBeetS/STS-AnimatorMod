@@ -230,16 +230,16 @@ public class EYBCardText
 
     private float RenderScaling(SpriteBatch sb, Texture texture, ColoredString scaling, float y, Color backgroundColor)
     {
+        final float alpha = card.transparency;
         final float offset_x = -AbstractCard.RAW_W * 0.4625f;
         final float offset_y = AbstractCard.RAW_H * 0.08f;//+0.28f;
         final BitmapFont font = EYBFontHelper.CardIconFont_Large;
 
-        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Elliptical.Texture(), new Vector2(offset_x, offset_y + y), 24, 32, backgroundColor, 0.4f, 1);
-        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y + 8), 34, 34, Color.WHITE, 1, 1);
+        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Elliptical.Texture(), new Vector2(offset_x, offset_y + y), 24, 32, backgroundColor, alpha * 0.4f, 1);
+        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y + 8), 34, 34, Color.WHITE, alpha, 1);
 
         font.getData().setScale(0.6f * card.drawScale);
         RenderHelpers.WriteOnCard(sb, card, font, scaling.text, offset_x, offset_y + y - 6, scaling.color, true);
-        //RenderHelpers.WriteOnCard(sb, card, font, "x" + scaling, (offset_x + 6), (offset_y + y - 12), Settings.CREAM_COLOR, true);
         RenderHelpers.ResetFont(font);
 
         return 42; // y offset
@@ -247,16 +247,16 @@ public class EYBCardText
 
     private float RenderScaling(SpriteBatch sb, TextureRegion texture, ColoredString scaling, float y, Color backgroundColor)
     {
+        final float alpha = card.transparency;
         final float offset_x = -AbstractCard.RAW_W * 0.4625f;
         final float offset_y = AbstractCard.RAW_H * 0.08f;//+0.28f;
         final BitmapFont font = EYBFontHelper.CardIconFont_Large;
 
-        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Elliptical.Texture(), new Vector2(offset_x, offset_y + y), 24, 32, backgroundColor, 0.4f, 1);
-        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y + 8), 24, 24, Color.WHITE, 1, 1);
+        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Elliptical.Texture(), new Vector2(offset_x, offset_y + y), 24, 32, backgroundColor, alpha * 0.4f, 1);
+        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y + 8), 24, 24, Color.WHITE, alpha, 1);
 
         font.getData().setScale(0.6f * card.drawScale);
         RenderHelpers.WriteOnCard(sb, card, font, scaling.text, offset_x, offset_y + y - 6, scaling.color, true);
-        //RenderHelpers.WriteOnCard(sb, card, font, "x" + scaling, (offset_x + 6), (offset_y + y - 12), Settings.CREAM_COLOR, true);
         RenderHelpers.ResetFont(font);
 
         return 42; // y offset

@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.powers.animator.EnchantmentPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 
 public abstract class EnchantableRelic extends AnimatorRelic// implements CustomSavable<Integer> NOTE: I do not implement this here because CustomSavable patch does not check abstract classes
 {
@@ -40,6 +41,8 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
     {
         if (index != null && index > 0)
         {
+            JUtils.LogInfo(this, "onLoad:" + index);
+
             ApplyEnchantment(Enchantment.GetCard(index / 10, index % 10));
         }
     }

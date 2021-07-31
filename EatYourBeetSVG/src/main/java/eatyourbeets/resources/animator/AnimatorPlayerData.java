@@ -36,6 +36,7 @@ public class AnimatorPlayerData
     {
         AddBaseLoadouts();
         AddBetaLoadouts();
+
         DeserializeTrophies(GR.Animator.Config.TrophyString());
         DeserializeCustomLoadouts(GR.Animator.Config.CustomLoadouts.Get());
 
@@ -204,7 +205,7 @@ public class AnimatorPlayerData
         {
             BaseLoadouts.add(loadout);
             loadout.UnlockLevel = unlockLevel;
-            loadout.InitializeSlots();
+            loadout.InitializeData();
         };
 
         add.Invoke(new Loadout_Konosuba(), 0);
@@ -332,7 +333,7 @@ public class AnimatorPlayerData
         }
     }
 
-    //003 Strike@3;Defend@3;animator:Strike_Dark@1|004 Strike@4 ...
+    //003 _Gold@60;_HP@99;Strike@3:0;Defend@3:1;animator:Strike_Dark@1:2|004 Strike@4:0 ...
     private String SerializeCustomLoadouts()
     {
         StringJoiner sj = new StringJoiner("|");
@@ -346,14 +347,15 @@ public class AnimatorPlayerData
                 sb.setLength(0);
                 sb.append(StringUtils.leftPad(String.valueOf(loadout.ID), 3, '0'));
                 sb.append(" ");
-                for (CardSlot slot : loadout.Slots)
+                sb.append("_Gold@").append(loadout.Data.Gold).append(";");
+                sb.append("_HP@").append(loadout.Data.HP).append(";");
+                for (CardSlot slot : loadout.Data)
                 {
                     if (slot.amount > 0)
                     {
-                        sb.append(slot.GetData().ID);
-                        sb.append("@");
-                        sb.append(slot.amount);
-                        sb.append(";");
+                        sb.append(slot.GetData().ID).append("@")
+                        .append(slot.amount).append(":")
+                        .append(slot.GetSlotIndex()).append(";");
                     }
                 }
                 sj.add(sb.toString());
@@ -383,31 +385,49 @@ public class AnimatorPlayerData
             }
 
             int i = 0;
-            for (String card : s.substring(4).split(Pattern.quote(";")))
+            for (String item : s.substring(4).split(Pattern.quote(";")))
             {
-                final int index = card.indexOf("@");
-                final int cardAmount = JUtils.ParseInt(card.substring(index + 1), 0);
-                final String cardID = card.substring(0, index);
-                final CardSlot slot = loadout.Slots.Get(i);
-                for (CardSlot.Item item : slot.Cards)
+                final int index = item.indexOf("@");
+
+                final String[] amountAndIndex = item.substring(index + 1).split(Pattern.quote(":"));
+                final int itemAmount = JUtils.ParseInt(amountAndIndex[0], 0);
+                final int itemIndex = amountAndIndex.length > 1 ? JUtils.ParseInt( amountAndIndex[1], -1) : -1;
+                final String itemID = item.substring(0, index);
+                if (itemID.equals("_Gold"))
                 {
-                    if (item.data.ID.equals(cardID))
+                    loadout.Data.Gold = itemAmount;
+                }
+                else if (itemID.equals("_HP"))
+                {
+                    loadout.Data.HP = itemAmount;
+                }
+                else
+                {
+                    if (itemIndex < 0 || itemIndex >= loadout.Data.Size())
                     {
-                        slot.Select(item, cardAmount);
-                        break;
+                        loadout.LoadDefaultData();
+                        return;
+                    }
+
+                    final CardSlot slot = loadout.Data.Get(itemIndex);
+                    for (CardSlot.Item c : slot.Cards)
+                    {
+                        if (c.data.ID.equals(itemID))
+                        {
+                            slot.Select(c, itemAmount);
+                            break;
+                        }
                     }
                 }
-
-                i += 1;
             }
 
             if (!loadout.Validate().IsValid)
             {
-                loadout.LoadStartingDeck();
+                loadout.LoadDefaultData();
             }
             else
             {
-                loadout.Slots.Ready = true;
+                loadout.Data.Ready = true;
             }
         }
     }

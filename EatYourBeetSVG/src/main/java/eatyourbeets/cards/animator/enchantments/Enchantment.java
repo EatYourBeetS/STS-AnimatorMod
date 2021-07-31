@@ -11,6 +11,7 @@ import eatyourbeets.relics.EnchantableRelic;
 import eatyourbeets.relics.animator.LivingPicture;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredTexture;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -61,7 +62,6 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
                 if (upgradeIndex > 0)
                 {
                     result.upgradeIndex = upgradeIndex;
-                    result.cardData.Strings.UPGRADE_DESCRIPTION = result.cardData.Strings.EXTENDED_DESCRIPTION[upgradeIndex - 1];
                     result.upgrade();
                 }
 
@@ -82,6 +82,19 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
         this.relic = new LivingPicture(this);
         this.portraitForeground = new ColoredTexture(relic.img, null);
         this.portraitForeground.scale = 2;
+    }
+
+    @Override
+    protected String GetRawDescription(Object... args)
+    {
+        if (upgraded && upgradeIndex > 0)
+        {
+            return JUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[upgradeIndex - 1], args);
+        }
+        else
+        {
+            return JUtils.Format(cardData.Strings.DESCRIPTION, args);
+        }
     }
 
     public int GetPowerCost()

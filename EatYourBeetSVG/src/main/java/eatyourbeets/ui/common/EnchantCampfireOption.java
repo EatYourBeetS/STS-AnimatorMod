@@ -82,7 +82,7 @@ public class EnchantCampfireOption extends AbstractCampfireOption
             this.usable = AbstractDungeon.player.gold >= goldCost;
         }
 
-        this.description = "Improve the effects of Living Picture.";
+        this.description = "Improve the effects of Living Picture (Free option).";
         this.img = GR.Common.Images.CampfireOption_Enchant.Texture();
     }
 

@@ -2,28 +2,33 @@ package eatyourbeets.cards.base.cardTextParsing;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class VariableToken extends CTToken
 {
     private final char variableID;
+    private ColoredString coloredString;
 
-    static final Map<Character, VariableToken> tokenCache = new HashMap<>();
+    static final ArrayList<Character> validTokens = new ArrayList<>();
     static
     {
-        tokenCache.put('D', new VariableToken('D'));
-        tokenCache.put('M', new VariableToken('M'));
-        tokenCache.put('B', new VariableToken('B'));
-        tokenCache.put('S', new VariableToken('S'));
+        validTokens.add('D');
+        validTokens.add('M');
+        validTokens.add('B');
+        validTokens.add('S');
+        validTokens.add('A');
     }
 
     private VariableToken(char variableID)
     {
         super(CTTokenType.Variable, null);
+        this.coloredString = new ColoredString(null, null);
         this.variableID = variableID;
     }
 
@@ -31,7 +36,7 @@ public class VariableToken extends CTToken
     {
         if (parser.character == '!' && parser.CompareNext(2, '!'))
         {
-            VariableToken token = tokenCache.get(parser.NextCharacter(1));
+            VariableToken token = CreateToken(parser.NextCharacter(1));
             if (token != null)
             {
                 parser.AddToken(token);
@@ -45,6 +50,11 @@ public class VariableToken extends CTToken
         }
 
         return 0;
+    }
+
+    private static VariableToken CreateToken(Character c)
+    {
+        return validTokens.contains(c) ? new VariableToken(c) : null;
     }
 
     @Override
@@ -63,6 +73,59 @@ public class VariableToken extends CTToken
     @Override
     public void Render(SpriteBatch sb, CTContext context)
     {
-        super.Render(sb, context, RenderHelpers.GetCardAttributeString(context.card, variableID));
+        if (coloredString.text == null || GR.UI.Elapsed25())
+        {
+            UpdateString(context);
+        }
+
+        super.Render(sb, context, coloredString);
+    }
+
+    private void UpdateString(CTContext context)
+    {
+        if (variableID == 'A')
+        {
+            int i = 1;
+            boolean requireAll = false;
+            CTLine line = context.lines.get(context.lineIndex);
+            ArrayList<AffinityType> types = new ArrayList<>();
+            while (true)
+            {
+                final CTToken next = line.Get(line.tokenIndex + (i++));
+                if (next instanceof SymbolToken)
+                {
+                    AffinityType t = AffinityType.FromTooltip(((SymbolToken) next).tooltip);
+                    if (t != null)
+                    {
+                        types.add(t);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else if (next instanceof WordToken)
+                {
+                    if (next.rawText.equals("and"))
+                    {
+                        requireAll = true;
+                    }
+                    else if (!next.rawText.equals("or"))
+                    {
+                        break;
+                    }
+                }
+                else if (!(next instanceof WhitespaceToken))
+                {
+                    break;
+                }
+            }
+
+            coloredString = context.card.GetAffinityString(types, requireAll);
+        }
+        else
+        {
+            coloredString = RenderHelpers.GetCardAttributeString(context.card, variableID);
+        }
     }
 }

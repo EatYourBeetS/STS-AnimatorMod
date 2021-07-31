@@ -15,6 +15,7 @@ public class CTLine
     protected final static float DESC_OFFSET_Y = IMG_HEIGHT * 0.255f;
     protected final ArrayList<CTToken> tokens = new ArrayList<>();
     protected final CTContext context;
+    protected int tokenIndex;
 
     public float width = 0;
 
@@ -34,7 +35,7 @@ public class CTLine
                 width += tokenWidth;
             }
         }
-        else if ((tokenWidth + width) < DESC_BOX_WIDTH || (token.type == CTTokenType.Punctuation && token.text.length() == 1))
+        else if ((tokenWidth + width) < DESC_BOX_WIDTH || (token.type == CTTokenType.Punctuation && token.rawText.length() == 1))
         {
             tokens.add(token);
             width += tokenWidth;
@@ -51,6 +52,11 @@ public class CTLine
 
             TrimEnd();
         }
+    }
+
+    public CTToken Get(int index)
+    {
+        return (index >= tokens.size()) ? null : tokens.get(index);
     }
 
     public float CalculateHeight(BitmapFont font)
@@ -72,9 +78,9 @@ public class CTLine
         context.start_x = card.current_x - (width * card.drawScale * 0.5f);
         context.start_y = context.start_y - (CalculateHeight(context.font) * 1.45f);
 
-        for (CTToken token : tokens)
+        for (tokenIndex = 0; tokenIndex < tokens.size(); tokenIndex++)
         {
-            token.Render(sb, context);
+            tokens.get(tokenIndex).Render(sb, context);
         }
     }
 
@@ -84,7 +90,7 @@ public class CTLine
         StringBuilder sb = new StringBuilder();
         for (CTToken token : tokens)
         {
-            sb.append(token.text);
+            sb.append(token.rawText);
         }
 
         return sb.toString();

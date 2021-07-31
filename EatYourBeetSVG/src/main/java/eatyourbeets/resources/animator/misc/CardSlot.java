@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class CardSlot
 {
-    public transient final CardSlots Container;
+    public transient final AnimatorLoadoutData Container;
     public transient final RotatingList<Item> Cards;
 
     public Item selected;
@@ -20,7 +20,7 @@ public class CardSlot
     public int max;
     public int min;
 
-    public CardSlot(CardSlots container, int min, int max)
+    public CardSlot(AnimatorLoadoutData container, int min, int max)
     {
         if (min > max)
         {
@@ -31,6 +31,11 @@ public class CardSlot
         this.Container = container;
         this.min = min;
         this.max = max;
+    }
+
+    public int GetSlotIndex()
+    {
+        return Container.list.indexOf(this);
     }
 
     public EYBCardData GetData()
@@ -77,7 +82,7 @@ public class CardSlot
         return cards;
     }
 
-    public CardSlot MakeCopy(CardSlots container)
+    public CardSlot MakeCopy(AnimatorLoadoutData container)
     {
         CardSlot copy = new CardSlot(container, min, max);
         for (Item item : Cards)

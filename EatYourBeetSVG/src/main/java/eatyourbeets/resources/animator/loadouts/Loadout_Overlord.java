@@ -14,9 +14,9 @@ public class Loadout_Overlord extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(Demiurge.DATA, 5);
         AddToSpecialSlots(Cocytus.DATA, 5);

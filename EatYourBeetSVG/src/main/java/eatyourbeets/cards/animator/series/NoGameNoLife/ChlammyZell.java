@@ -29,6 +29,10 @@ public class ChlammyZell extends AnimatorCard
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Dark(1);
+
+        SetAffinityRequirement(AffinityType.Blue, 2);
+        SetAffinityRequirement(AffinityType.Dark, 2);
     }
 
     @Override
@@ -37,7 +41,7 @@ public class ChlammyZell extends AnimatorCard
         GameActions.Bottom.Draw(2);
         GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
 
-        if (CombatStats.Affinities.GetPowerAmount(AffinityType.Blue) >= secondaryValue && CombatStats.TryActivateLimited(cardID))
+        if (CheckAffinity(AffinityType.Blue) && CheckAffinity(AffinityType.Dark) && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.MakeCardInHand(new ChlammyZellScheme());
         }

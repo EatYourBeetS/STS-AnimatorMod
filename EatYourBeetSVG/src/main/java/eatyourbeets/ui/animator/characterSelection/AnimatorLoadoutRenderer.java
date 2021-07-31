@@ -121,20 +121,20 @@ public class AnimatorLoadoutRenderer extends GUIElement
             if (unlockLevel >= loadout.UnlockLevel)
             {
                 this.availableLoadouts.add(loadout);
-                loadout.LoadStartingDeck();
+                loadout.LoadDefaultData();
             }
         }
         if (GR.Animator.Config.DisplayBetaSeries.Get())
         {
             for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
             {
-                if (loadout.Slots.Size() > 0)
+                if (loadout.Data.Size() > 0)
                 {
                     this.loadouts.add(loadout);
                     if (unlockLevel >= loadout.UnlockLevel)
                     {
                         this.availableLoadouts.add(loadout);
-                        loadout.LoadStartingDeck();
+                        loadout.LoadDefaultData();
                     }
                 }
             }
@@ -169,8 +169,8 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
     protected void RefreshInternal()
     {
-        _gold.Set(characterOption, loadout.StartingGold);
-        _hp.Set(characterOption, String.valueOf(loadout.MaxHP));
+        _gold.Set(characterOption, loadout.Data.Gold);
+        _hp.Set(characterOption, String.valueOf(loadout.Data.HP));
         selectScreen.bgCharImg = GR.Animator.Images.GetCharacterPortrait(loadout.ID);
 
         int currentLevel = GR.Animator.GetUnlockLevel();

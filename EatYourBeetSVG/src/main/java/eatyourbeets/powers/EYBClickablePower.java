@@ -167,7 +167,7 @@ public abstract class EYBClickablePower extends EYBPower
         RenderHelpers.DrawCentered(sb, imageColor, this.powerIcon, x, y, ICON_SIZE, ICON_SIZE, 0.75f, 0);
         if (enabled && hb.hovered && clickable)
         {
-            RenderHelpers.DrawCentered(sb, RenderHelpers.WhiteColor(0.3f), GR.Common.Images.SquaredButton.Texture(), x, y, ICON_SIZE, ICON_SIZE, 1.5f, 0);
+            RenderHelpers.DrawCentered(sb, Colors.White(0.3f), GR.Common.Images.SquaredButton.Texture(), x, y, ICON_SIZE, ICON_SIZE, 1.5f, 0);
         }
 
         for (AbstractGameEffect e : effects)

@@ -34,7 +34,6 @@ public class SakuraMatou extends AnimatorCard
     protected void OnUpgrade()
     {
         SetEthereal(false);
-        LoadImage("2");
     }
 
     @Override

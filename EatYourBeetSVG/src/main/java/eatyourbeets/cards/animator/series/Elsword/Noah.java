@@ -32,6 +32,12 @@ public class Noah extends AnimatorCard
         SetAffinity_Dark(2, 0, 4);
 
         SetAffinityRequirement(AffinityType.Dark, 3);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        super.OnUpgrade();
 
         SetHaste(true);
     }

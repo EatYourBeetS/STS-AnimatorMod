@@ -158,7 +158,7 @@
 	},
 	"Freezing":
 	{
-		"DESCRIPTION": "Reduces #yAttack damage by #b3, or by #b4 if at least #b1 [Frost] is channeled. At the end of turn, reduce [Freezing] by #b1.",
+		"DESCRIPTION": "Reduces #yAttack damage by #b3, or by #b4 if at least #b1 [Frost] is #yChanneled. At the end of turn, reduce [Freezing] by #b1.",
 		"NAMES": ["freezing"],
 		"PROPER_NAME": "Freezing"
 	},

@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URISyntaxException;
-import java.text.MessageFormat;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
@@ -24,7 +23,8 @@ import java.util.regex.Pattern;
 
 public class JUtils
 {
-    private static final MessageFormat formatter = new MessageFormat("");
+    private static final StringBuilder sb1 = new StringBuilder();
+    private static final StringBuilder sb2 = new StringBuilder();
     private static final ArrayList<String> classNames = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
@@ -149,19 +149,52 @@ public class JUtils
         return result;
     }
 
+    // Simple string Formatting in which integers inside curly braces are replaced by args[i].
     public static String Format(String format, Object... args)
     {
-        if (args == null)
+        if (args == null || args.length == 0)
         {
             return format;
         }
-        else if (args.length > 0)
+
+        sb1.setLength(0);
+        sb2.setLength(0);
+        int braces = 0;
+        for (int i = 0; i < format.length(); i++)
         {
-            format = format.replaceAll("(?<!\\\\)'", "''").replaceAll("\\\\'", "'");
+            Character c = format.charAt(i);
+            if (c == '{')
+            {
+                sb2.setLength(0);
+                int j = i + 1;
+                while (j < format.length())
+                {
+                    final Character next = format.charAt(j);
+                    if (Character.isDigit(next))
+                    {
+                        sb2.append(next);
+                        j += 1;
+                        continue;
+                    }
+                    else if (next == '}' && sb2.length() > 0)
+                    {
+                        sb1.append(args[ParseInt(sb2.toString(), -1)]);
+                        i = j;
+                    }
+
+                    break;
+                }
+
+                if (sb2.length() > 0)
+                {
+                    continue;
+                }
+            }
+
+            sb1.append(c);
         }
 
-        formatter.applyPattern(format);
-        return formatter.format(args);
+        return sb1.toString();
     }
 
     public static ArrayList<String> GetClassNamesFromJarFile(String prefix)

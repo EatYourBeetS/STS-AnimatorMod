@@ -42,11 +42,17 @@ public abstract class GenericAnimationEffect extends EYBEffect
         return this;
     }
 
-    public GenericAnimationEffect SetImageParameters(float scale, float vR, float rotation)
+    public GenericAnimationEffect SetImageParameters(float scale)
     {
-        this.scale = scale;
-        this.vR = vR;
-        this.rotation = rotation;
+        this.projectile.scale = scale;
+
+        return this;
+    }
+
+    public GenericAnimationEffect SetImageParameters(float scale, float rotation)
+    {
+        this.projectile.scale = scale;
+        this.projectile.SetRotation(rotation);
 
         return this;
     }
@@ -54,6 +60,13 @@ public abstract class GenericAnimationEffect extends EYBEffect
     public GenericAnimationEffect SetMode(AnimatedProjectile.AnimationMode mode, int duration){
         this.projectile.mode = mode;
         this.endFrame = duration;
+        return this;
+    }
+
+    public GenericAnimationEffect SetSpeed(float vX, float vY, float vR)
+    {
+        this.projectile.SetSpeed(vX, vY, vR);
+
         return this;
     }
 

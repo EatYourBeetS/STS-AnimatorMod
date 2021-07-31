@@ -1,83 +1,46 @@
 package eatyourbeets.effects.vfx;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.effects.EYBEffect;
-
-import java.util.ArrayList;
+import eatyourbeets.effects.VFX;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.Mathf;
 
 public class RockBurstEffect extends EYBEffect
 {
-    private static final ArrayList<Texture> images = new ArrayList<>();
     private static final float DELAY = 0.05f;
-    private static final int FRAMES = 5;
-    private static final int SIZE = 192;
+    public static final int FRAMES = 3;
+    public static final int PROJECTILES = 25;
+    public static final float RADIUS = 240;
 
-    private int frame;
-    private float x;
-    private float y;
-    private float timer;
+    public Hitbox hb;
 
-    public RockBurstEffect(float x, float y, float scale)
+    public RockBurstEffect(Hitbox hb, float scale)
     {
         super(1f, true);
 
-        this.x = x;
-        this.y = y;
-        this.frame = 0;
+        this.hb = hb;
         this.scale = scale;
         this.color = Color.WHITE.cpy();
-        this.timer = DELAY;
-
-        if (images.isEmpty())
-        {
-            for (int i = 1; i <= FRAMES; i++)
-            {
-                images.add(ImageMaster.loadImage("images/effects/RockBurst" + i + ".png"));
-            }
-        }
     }
 
     @Override
-    protected void UpdateInternal(float deltaTime)
+    protected void FirstUpdate()
     {
-        super.UpdateInternal(deltaTime);
-
-        this.timer -= deltaTime;
-
-        if (this.timer < 0.0F)
+        GameEffects.Queue.Add(VFX.Whack(hb).SetImageParameters(0.25f * Settings.scale, 0).SetColor(Color.TAN.cpy()));
+        for (int i = 0; i < PROJECTILES; ++i)
         {
-            this.timer = DELAY;
-
-            if (frame == 0)
-            {
-                if (scale > 1)
-                {
-                    CardCrawlGame.sound.play("BLUNT_HEAVY");
-                }
-                else
-                {
-                    CardCrawlGame.sound.play("BLUNT_FAST");
-                }
-            }
-
-            if ((frame + 1) < images.size())
-            {
-                this.frame += 1;
-            }
-            else
-            {
-                Complete();
-            }
+            float angle = Random(-500f,500f);
+            GameEffects.Queue.Add(new FadingParticleEffect("images/orbs/animator/Earth" + i % FRAMES + ".png", hb.cX, hb.cY,  80f)
+            .SetColor(Mathf.RandomColor(0.3f, 0.7f, true))).SetScale(MathUtils.random(0.05f, 0.35f))
+                    .SetSpeed(Random(300f, 420f), Random(300f, 420f), Random(500f, 800f))
+                    .SetTargetRotation(36000)
+            .SetTargetPosition(hb.cX + RADIUS * MathUtils.cos(angle), hb.cY + RADIUS * MathUtils.sin(angle));
         }
-    }
 
-    @Override
-    public void render(SpriteBatch sb)
-    {
-        RenderImage(sb, images.get(frame), x, y);
+        Complete();
     }
 }

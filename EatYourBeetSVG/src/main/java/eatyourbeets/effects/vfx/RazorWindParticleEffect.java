@@ -41,7 +41,7 @@ public class RazorWindParticleEffect extends EYBEffect
         this.y = y + offsetY - (float) (SIZE / 2);
         this.horizontalSpeed = horizontalSpeed * Settings.scale;
         this.verticalSpeed = verticalSpeed * Settings.scale;
-        this.scale = Random(0.15f, 1f) * Settings.scale;
+        this.scale = Random(0.04f, 0.6f) * Settings.scale;
         this.alpha = Random(0.3F, 1.0F);
         this.color = Color.WHITE.cpy();
         this.color.a = this.alpha;

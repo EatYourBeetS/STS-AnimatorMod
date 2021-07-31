@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameEffects;
 public class RazorWindEffect extends EYBEffect
 {
     public static Texture img;
-    public static final int SIZE = 96;
+    public static final int SIZE = 256;
 
     protected float x;
     protected float y;
@@ -35,7 +35,7 @@ public class RazorWindEffect extends EYBEffect
         this.y = y - (SIZE / 2f);
         this.targetY = targetY - (SIZE /2f);
         this.rotation = Random(5f, 10f);
-        this.scale = 2.3f * Settings.scale;
+        this.scale = Settings.scale;
         this.horizontalSpeed = horizontalSpeed * Settings.scale;
         this.horizontalAcceleration = horizontalSpeed * Settings.scale;
         this.rotationSpeed = Random(1000f, 1200f);
@@ -63,8 +63,8 @@ public class RazorWindEffect extends EYBEffect
         vfxTimer -= deltaTime;
         if (vfxTimer < 0f)
         {
-            vfxTimer = 0.016f;
-            GameEffects.Queue.Add(new RazorWindParticleEffect(x, y, Math.signum(horizontalSpeed) * Random(-300f, -50f) * Settings.scale, Random(-200f, 200f) * Settings.scale));
+            vfxTimer = 0.007f;
+            GameEffects.Queue.Add(new RazorWindParticleEffect(x, y + (SIZE / 2) + Random(-100,100), Math.signum(horizontalSpeed) * Random(-300f, -50f) * Settings.scale, Random(-200f, 200f) * Settings.scale));
         }
 
         super.UpdateInternal(deltaTime);

@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import eatyourbeets.effects.vfx.SmallLaserEffect;
 import eatyourbeets.effects.vfx.*;
 import eatyourbeets.orbs.animator.Earth;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.Mathf;
 
@@ -76,11 +77,6 @@ public class VFX
         return new DaggerSprayEffect(FlipHorizontally());
     }
 
-    public static DarkEffect Dark(Hitbox target)
-    {
-        return new DarkEffect(target.cX, target.cY);
-    }
-
     public static ExplosionSmallEffect SmallExplosion(Hitbox source)
     {
         return new ExplosionSmallEffect(source.cX, source.cY);
@@ -113,14 +109,16 @@ public class VFX
         return new FlashAttackEffect(target.cX, target.cY, effect, muteSFX);
     }
 
-    public static GunshotEffect Gunshot(Hitbox target)
+    public static ShotEffect Gunshot(Hitbox target)
     {
-        return new GunshotEffect(target.cX, target.cY);
+        return Gunshot(target, 0);
     }
 
-    public static GunshotEffect Gunshot(Hitbox target, float spread)
+    public static ShotEffect Gunshot(Hitbox target, float spread)
     {
-        return new GunshotEffect(target.cX + MathUtils.random(-spread, spread) * target.width, target.cY + MathUtils.random(-spread, spread) * target.height);
+
+        return (ShotEffect) new ShotEffect(target.cX + MathUtils.random(-spread, spread) * target.width, target.cY + MathUtils.random(-spread, spread) * target.height)
+                .SetColor(Color.RED.cpy());
     }
 
     public static HemokinesisEffect2 Hemokinesis(Hitbox source, Hitbox target)
@@ -133,11 +131,6 @@ public class VFX
         return new LightningEffect(target.cX, target.cY);
     }
 
-    public static LightShaftEffect LightShaft(Hitbox target)
-    {
-        return new LightShaftEffect(target.cX, target.cY);
-    }
-
     public static RazorWindEffect RazorWind(Hitbox source, Hitbox target, float horizontalSpeed, float horizontalAcceleration)
     {
         return new RazorWindEffect(source.cX, source.cY, target.cY, horizontalSpeed, horizontalAcceleration);
@@ -145,7 +138,7 @@ public class VFX
 
     public static RockBurstEffect RockBurst(Hitbox target, float scale)
     {
-        return new RockBurstEffect(target.cX, target.cY, scale);
+        return new RockBurstEffect(target, scale);
     }
 
     public static ShootingStarsEffect ShootingStars(Hitbox source, float spread)
@@ -167,10 +160,10 @@ public class VFX
     public static ThrowProjectileEffect ThrowRock(Hitbox source, Hitbox target, float duration)
     {
         duration *= Mathf.Abs(target.cX - source.cX) / (Settings.WIDTH * 0.5f);
-        return (ThrowProjectileEffect)new ThrowProjectileEffect(new Projectile(Earth.PROJECTILE_LARGE, 128f, 128f)
+        return (ThrowProjectileEffect)new ThrowProjectileEffect(new Projectile(GR.GetTexture("images/orbs/animator/Earth" + MathUtils.random(0, Earth.FRAMES - 1) + ".png"), 128f, 128f)
                 .SetColor(Mathf.RandomColor(0.6f, 0.85f, true))
                 .SetPosition(source.cX, source.cY), target)
-                .AddCallback(hb -> GameEffects.Queue.Add(RockBurst(hb, 1.3f)))
+                .AddCallback(() -> GameEffects.Queue.Add(RockBurst(target, 1.3f)))
                 .SetDuration(duration, true);
     }
 
@@ -188,6 +181,11 @@ public class VFX
     public static WeightyImpactEffect WeightyImpact(Hitbox target, Color color)
     {
         return new WeightyImpactEffect(target.cX, target.cY);
+    }
+
+    public static WhackEffect Whack(Hitbox target)
+    {
+        return new WhackEffect(target.cX, target.cY);
     }
 
     public static WhirlwindEffect Whirlwind()

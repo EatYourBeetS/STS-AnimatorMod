@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.cards.animator.series.Overlord.Ainz;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.resources.GR;
@@ -43,9 +43,9 @@ public class AinzPower extends AnimatorPower
     {
         super.onInitialApplication();
 
-        GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.1f);
-        GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.valueOf("3d0066")));
-        GameActions.Bottom.SFX("ORB_DARK_EVOKE", 0.1f);
+        GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_EVOKE, 0.9f, 1.1f);
+        GameActions.Bottom.BorderLongFlash(Color.valueOf("3d0066"));
+        GameActions.Bottom.SFX(SFX.ORB_DARK_EVOKE, 0.9f, 1.1f);
     }
 
     @Override

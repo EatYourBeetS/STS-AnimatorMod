@@ -87,7 +87,7 @@ public class Soujiro extends AnimatorCard
     @Override
     protected float GetInitialDamage()
     {
-        return super.GetInitialDamage() + (magicNumber * GetTeamwork(null));
+        return super.GetInitialDamage() + (magicNumber * GetHandAffinity(null));
     }
 
     @Override

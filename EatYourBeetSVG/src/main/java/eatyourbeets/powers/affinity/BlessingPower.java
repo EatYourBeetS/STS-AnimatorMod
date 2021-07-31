@@ -1,6 +1,5 @@
 package eatyourbeets.powers.affinity;
 
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.utilities.GameActions;
@@ -12,9 +11,9 @@ public class BlessingPower extends AbstractAffinityPower
 
     protected static final int[] THRESHOLDS = new int[]{ 4, 8, 12, 16 };
 
-    public BlessingPower(AbstractCreature owner, int amount)
+    public BlessingPower()
     {
-        super(AFFINITY_TYPE, POWER_ID, owner, amount);
+        super(AFFINITY_TYPE, POWER_ID);
     }
 
     @Override
@@ -24,7 +23,7 @@ public class BlessingPower extends AbstractAffinityPower
     }
 
     @Override
-    protected void OnThresholdReached(int threshold)
+    protected void OnThresholdReached(int thresholdIndex)
     {
         GameActions.Bottom.StackPower(new VitalityPower(owner, 1));
     }

@@ -50,6 +50,7 @@ import eatyourbeets.resources.GR;
 import java.util.*;
 import java.util.function.Predicate;
 
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.actionManager;
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 public class GameUtilities
@@ -540,6 +541,11 @@ public class GameUtilities
         return creature.currentHealth / (float) creature.maxHealth;
     }
 
+    public static float GetActualHealth(AbstractCreature creature)
+    {
+        return creature.currentHealth + TempHPField.tempHp.get(creature);
+    }
+
     public static EnemyIntent GetIntent(AbstractMonster enemy)
     {
         return new EnemyIntent(enemy);
@@ -860,6 +866,20 @@ public class GameUtilities
     public static int GetTempHP()
     {
         return GetTempHP(player);
+    }
+
+    public static int GetTimesPlayedThisTurn(AbstractCard card)
+    {
+        int result = 0;
+        for (AbstractCard c : actionManager.cardsPlayedThisTurn)
+        {
+            if (c.uuid.equals(card.uuid))
+            {
+                result += 1;
+            }
+        }
+
+        return result;
     }
 
     public static int GetUniqueOrbsCount()

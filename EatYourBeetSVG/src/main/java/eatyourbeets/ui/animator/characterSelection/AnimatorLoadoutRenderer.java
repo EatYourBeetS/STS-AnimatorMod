@@ -17,6 +17,7 @@ import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JUtils;
@@ -44,8 +45,8 @@ public class AnimatorLoadoutRenderer extends GUIElement
     protected GUI_Button LoadoutEditorButton;
     protected CharacterSelectScreen selectScreen;
     protected CharacterOption characterOption;
-    protected String lockedDescription;
     protected AnimatorLoadout loadout;
+    protected ColoredString subtitle;
 
     public AnimatorLoadoutRenderer()
     {
@@ -55,6 +56,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         float POS_X = 180f * Settings.scale;
         float POS_Y = ((float) Settings.HEIGHT / 2f) + (20 * Settings.scale);
 
+        subtitle = new ColoredString();
         loadouts = new ArrayList<>();
         availableLoadouts = new ArrayList<>();
         startingCardsLabelHb = new Hitbox(leftTextWidth, 50f * Settings.scale);
@@ -67,18 +69,18 @@ public class AnimatorLoadoutRenderer extends GUIElement
         startingCardsSelectedHb.move(startingCardsLeftHb.x + startingCardsLeftHb.width + (rightTextWidth / 2f), POS_Y);
         startingCardsRightHb.move(startingCardsSelectedHb.x + startingCardsSelectedHb.width + (10 * Settings.scale), POS_Y - (10 * Settings.scale));
 
-        RandomizeButton = new GUI_Button(GR.Common.Images.Randomize.Texture(), new AdvancedHitbox(0, 0, Scale(50), Scale(50)))
-        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(90), POS_Y - Scale(55)).SetText("")
+        RandomizeButton = new GUI_Button(GR.Common.Images.Randomize.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
+        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(110), POS_Y - Scale(70)).SetText("")
         .SetOnClick(this::RandomizeLoadout);
 
-        LoadoutEditorButton = new GUI_Button(GR.Common.Images.SwapCards.Texture(), new AdvancedHitbox(0, 0, Scale(50), Scale(50)))
-        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(35), POS_Y - Scale(55)).SetText("")
+        LoadoutEditorButton = new GUI_Button(GR.Common.Images.SwapCards.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
+        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(50), POS_Y - Scale(70)).SetText("")
         .SetOnClick(this::OpenLoadoutEditor);
     }
 
     private void OpenLoadoutEditor()
     {
-        GR.UI.LoadoutEditor.Open(loadout);
+        GR.UI.LoadoutEditor.Open(loadout, this::RefreshInternal);
     }
 
     private void RandomizeLoadout()
@@ -87,7 +89,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         {
             while (loadout == GR.Animator.Data.SelectedLoadout)
             {
-                GR.Animator.Data.SelectedLoadout = JUtils.GetRandomElement(loadouts, RNG);
+                GR.Animator.Data.SelectedLoadout = JUtils.GetRandomElement(availableLoadouts, RNG);
             }
 
             Refresh(selectScreen, characterOption);
@@ -109,20 +111,20 @@ public class AnimatorLoadoutRenderer extends GUIElement
             if (unlockLevel >= loadout.UnlockLevel)
             {
                 this.availableLoadouts.add(loadout);
-                loadout.LoadStartingDeck();
+                loadout.LoadDefaultData();
             }
         }
         if (GR.Animator.Config.DisplayBetaSeries.Get())
         {
             for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
             {
-                if (loadout.Slots.Size() > 0)
+                if (loadout.Data.Size() > 0)
                 {
                     this.loadouts.add(loadout);
                     if (unlockLevel >= loadout.UnlockLevel)
                     {
                         this.availableLoadouts.add(loadout);
-                        loadout.LoadStartingDeck();
+                        loadout.LoadDefaultData();
                     }
                 }
             }
@@ -148,23 +150,38 @@ public class AnimatorLoadoutRenderer extends GUIElement
             this.loadout = GR.Animator.Data.SelectedLoadout = loadouts.get(0);
         }
 
-        _gold.Set(characterOption, loadout.StartingGold);
-        _hp.Set(characterOption, String.valueOf(loadout.MaxHP));
-        selectScreen.bgCharImg = GR.Animator.Images.GetCharacterPortrait(loadout.ID);
-
-        int currentLevel = GR.Animator.GetUnlockLevel();
-        if (currentLevel >= loadout.UnlockLevel)
-        {
-            lockedDescription = null;
-        }
-        else
-        {
-            lockedDescription = GR.Animator.Strings.CharSelect.UnlocksAtLevel(loadout.UnlockLevel, currentLevel);
-        }
+        RefreshInternal();
 
         RandomizeButton.SetActive(availableLoadouts.size() > 1);
         AnimatorCharacterSelectScreen.TrophiesRenderer.Refresh(loadout);
         AnimatorCharacterSelectScreen.SpecialTrophiesRenderer.Refresh();
+    }
+
+    protected void RefreshInternal()
+    {
+        _gold.Set(characterOption, loadout.Data.Gold);
+        _hp.Set(characterOption, String.valueOf(loadout.Data.HP));
+        selectScreen.bgCharImg = GR.Animator.Images.GetCharacterPortrait(loadout.ID);
+
+        int currentLevel = GR.Animator.GetUnlockLevel();
+        if (currentLevel < loadout.UnlockLevel)
+        {
+            subtitle.SetText(GR.Animator.Strings.CharSelect.UnlocksAtLevel(loadout.UnlockLevel, currentLevel)).SetColor(Settings.RED_TEXT_COLOR);
+            LoadoutEditorButton.SetInteractable(false);
+            selectScreen.confirmButton.isDisabled = true;
+        }
+        else if (!loadout.Validate().IsValid)
+        {
+            subtitle.SetText(GR.Animator.Strings.CharSelect.InvalidLoadout).SetColor(Settings.RED_TEXT_COLOR);
+            LoadoutEditorButton.SetInteractable(true);
+            selectScreen.confirmButton.isDisabled = true;
+        }
+        else
+        {
+            subtitle.SetText(loadout.GetDeckPreviewString(true)).SetColor(Settings.GREEN_TEXT_COLOR);
+            LoadoutEditorButton.SetInteractable(true);
+            selectScreen.confirmButton.isDisabled = false;
+        }
     }
 
     public void Update()
@@ -228,27 +245,12 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
     public void Render(SpriteBatch sb)
     {
-        Color textColor;
-        String description;
-        if (lockedDescription != null)
-        {
-            description = lockedDescription;
-            textColor = Settings.RED_TEXT_COLOR;
-            selectScreen.confirmButton.isDisabled = true;
-        }
-        else
-        {
-            description = loadout.GetDeckPreviewString();
-            textColor = Settings.GREEN_TEXT_COLOR;
-            selectScreen.confirmButton.isDisabled = false;
-        }
-
         // NOTE: this was FontHelper.cardTitleFont_small;
         BitmapFont font = EYBFontHelper.CardTitleFont_Small;
         float originalScale = font.getData().scaleX;
         font.getData().setScale(0.8f);
 
-        FontHelper.renderFont(sb, font, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), textColor);
+        FontHelper.renderFont(sb, font, subtitle.text, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), subtitle.color);
         font.getData().setScale(originalScale);
 
         FontHelper.renderFont(sb, FontHelper.cardTitleFont, charSelectStrings.LeftText, startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);

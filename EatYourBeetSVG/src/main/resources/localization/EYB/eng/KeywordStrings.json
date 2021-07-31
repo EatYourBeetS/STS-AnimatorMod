@@ -6,11 +6,23 @@
 		"NAMES": ["aether", "aether+"],
 		"PROPER_NAME": "Aether"
 	},
+	"Affinity":
+	{
+		"DESCRIPTION": "#yAffinity can be of any color between NL [A-Red], [A-Green], [A-Blue], [A-Light], [A-Dark]. NL [A-Gen] refers either to generic #yAffinity, or your current best #yAffinity.",
+		"NAMES": ["affinity"],
+		"PROPER_NAME": "Affinity"
+	},
 	"Affinity Power":
 	{
 		"DESCRIPTION": "[A-Red] -> [F], [A-Green] -> [A], [A-Blue] -> [I], NL [A-Light] -> [B], [A-Dark] -> [C]",
-		"NAMES": ["affinity power", "affinity powers", "aff. power", "aff. powers"],
+		"NAMES": ["[a-gen] power", "[a-gen] powers", "affinity power", "affinity powers"],
 		"PROPER_NAME": "Affinity Power"
+	},
+	"Affinity Token":
+	{
+		"DESCRIPTION": "#yPower which increases your #yAffinity for the rest of combat.",
+		"NAMES": ["[a-gen] token", "[a-gen] tokens", "affinity token", "affinity tokens"],
+		"PROPER_NAME": "Affinity Token"
 	},
 	"Agility":
 	{
@@ -26,7 +38,7 @@
 	},
 	"Autoplay":
 	{
-		"DESCRIPTION": "Automatically played. Requires [E].",
+		"DESCRIPTION": "Automatically played. Still uses [E].",
 		"NAMES": ["autoplay", "autoplayed"],
 		"PROPER_NAME": "Autoplay"
 	},
@@ -74,7 +86,7 @@
 	},
 	"Corruption":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b5, #b7, #b9 and #b11 #yCorruption, add a #yCrystallize to your draw pile. Upon reaching #b13 #yCorruption, obtain #pSummoning #pRitual.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b5, #b7, #b9 and #b11 #yCorruption, gain [Ritual]. Upon reaching #b13 #yCorruption, obtain #pSummoning #pRitual.",
 		"NAMES": ["corruption"],
 		"PROPER_NAME": "Corruption"
 	},
@@ -174,12 +186,6 @@
 		"NAMES": ["limited"],
 		"PROPER_NAME": "Limited"
 	},
-	"~Lock-On":
-	{
-		"DESCRIPTION": "Receive #b50% more damage from Orbs and #yRanged attacks.",
-		"NAMES": ["~lock-on"],
-		"PROPER_NAME": "Lock-On"
-	},
 	"Malleable":
 	{
 		"DESCRIPTION": "Upon receiving damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of turn.",
@@ -192,29 +198,23 @@
 		"NAMES": ["metallicize"],
 		"PROPER_NAME": "Metallicize"
 	},
+	"Multicolor":
+	{
+		"DESCRIPTION": "Counts as an #yAffinity of any color.",
+		"NAMES": ["multicolor"],
+		"PROPER_NAME": "Multicolor"
+	},
 	"Neutral Stance":
 	{
 		"DESCRIPTION": "",
 		"NAMES": ["neutral stance"],
 		"PROPER_NAME": "Neutral Stance"
 	},
-	"Starter":
-	{
-		"DESCRIPTION": "Activates if played at the start of turn.",
-		"NAMES": ["starter"],
-		"PROPER_NAME": "Starter"
-	},
 	"Plated Armor":
 	{
 		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving damage.",
 		"NAMES": ["plated armor", "plat. armor"],
 		"PROPER_NAME": "Plated Armor"
-	},
-	"General Affinity":
-	{
-		"DESCRIPTION": "#yGeneral #yAffinity is equal to the highest amount of cards in hand with the same #yAffinity color.",
-		"NAMES": ["general affinity"],
-		"PROPER_NAME": "General Affinity"
 	},
 	"Purge":
 	{
@@ -245,6 +245,12 @@
 		"DESCRIPTION": "For every card you have played this turn, enemy takes #b10% more damage from #yAttacks.",
 		"NAMES": ["slow"],
 		"PROPER_NAME": "Slow"
+	},
+	"Starter":
+	{
+		"DESCRIPTION": "Activates if played at the start of turn.",
+		"NAMES": ["starter"],
+		"PROPER_NAME": "Starter"
 	},
 	"Stun":
 	{
@@ -294,6 +300,12 @@
 		"NAMES": ["~innate"],
 		"PROPER_NAME": "Innate"
 	},
+	"~Lock-On":
+	{
+		"DESCRIPTION": "Receive #b50% more damage from Orbs and #yRanged attacks.",
+		"NAMES": ["~lock-on"],
+		"PROPER_NAME": "Lock-On"
+	},
 	"~Piercing":
 	{
 		"DESCRIPTION": "Ignores #yBlock and #yThorns.",
@@ -308,7 +320,7 @@
 	},
 	"~Retain":
 	{
-		"DESCRIPTION": "If a card, not discarded at the end of turn. If a power, not reduced at the end of turn or start of next turn.",
+		"DESCRIPTION": "Not discarded at the end of turn. NL If it is an [A-Gen] Power, not reduced at the start of next turn.",
 		"NAMES": ["~retain"],
 		"PROPER_NAME": "Retain"
 	},

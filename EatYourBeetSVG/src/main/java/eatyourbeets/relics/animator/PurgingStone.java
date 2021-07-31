@@ -28,7 +28,7 @@ public class PurgingStone extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(MAX_STORED_USES);
+        return FormatDescription(0, MAX_STORED_USES);
     }
 
     @Override

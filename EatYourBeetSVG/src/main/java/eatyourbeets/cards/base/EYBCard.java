@@ -1,5 +1,6 @@
 package eatyourbeets.cards.base;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -28,6 +29,16 @@ import java.util.Map;
 
 public abstract class EYBCard extends EYBCardBase
 {
+    public static final Color MUTED_TEXT_COLOR = Mathf.LerpCopy(Color.DARK_GRAY, Settings.CREAM_COLOR, 0.5f);
+    public static final CardTags HASTE = GR.Enums.CardTags.HASTE;
+    public static final CardTags PURGE = GR.Enums.CardTags.PURGE;
+    public final EYBCardText cardText;
+    public final EYBCardData cardData;
+    public final EYBCardAffinities affinities;
+    public final ArrayList<EYBCardTooltip> tooltips;
+    public EYBCardTarget attackTarget = EYBCardTarget.Normal;
+    public EYBAttackType attackType = EYBAttackType.Normal;
+
     protected static final String UNPLAYABLE_MESSAGE = CardCrawlGame.languagePack.getCardStrings(Tactician.ID).EXTENDED_DESCRIPTION[0];
     private static final Map<String, EYBCardData> staticCardData = new HashMap<>();
 
@@ -37,15 +48,6 @@ public abstract class EYBCard extends EYBCardBase
     protected int upgrade_secondaryValue;
     protected int upgrade_block;
     protected int upgrade_cost;
-
-    public static final CardTags HASTE = GR.Enums.CardTags.HASTE;
-    public static final CardTags PURGE = GR.Enums.CardTags.PURGE;
-    public final EYBCardText cardText;
-    public final EYBCardData cardData;
-    public final EYBCardAffinities affinities;
-    public final ArrayList<EYBCardTooltip> tooltips;
-    public EYBCardTarget attackTarget = EYBCardTarget.Normal;
-    public EYBAttackType attackType = EYBAttackType.Normal;
 
     public static EYBCardData GetStaticData(String cardID)
     {
@@ -144,14 +146,7 @@ public abstract class EYBCard extends EYBCardBase
 
     protected String GetRawDescription()
     {
-        if (upgraded && cardData.Strings.UPGRADE_DESCRIPTION != null)
-        {
-            return cardData.Strings.UPGRADE_DESCRIPTION;
-        }
-        else
-        {
-            return cardData.Strings.DESCRIPTION;
-        }
+        return GetRawDescription((Object[]) null);
     }
 
     protected String GetRawDescription(Object... args)
@@ -256,19 +251,19 @@ public abstract class EYBCard extends EYBCardBase
         GameEffects.List.Add(new ExhaustCardEffect(this));
     }
 
-    public boolean CheckTeamwork(AffinityType type, int amount)
+    public boolean CheckAffinity(AffinityType type)
     {
-        return GetTeamwork(type, true) >= amount;
+        return GetHandAffinity(type, true) >= affinities.GetRequirement(type);
     }
 
-    public int GetTeamwork(AffinityType type)
+    public int GetHandAffinity(AffinityType type)
     {
-        return GetTeamwork(null, true);
+        return GetHandAffinity(null, true);
     }
 
-    public int GetTeamwork(AffinityType type, boolean ignoreSelf)
+    public int GetHandAffinity(AffinityType type, boolean ignoreSelf)
     {
-        return CombatStats.Affinities.GetAffinities(player.hand.group, ignoreSelf ? this : null).GetLevel(type);
+        return CombatStats.Affinities.GetHandAffinities(ignoreSelf ? this : null).GetLevel(type, false);
     }
 
     public boolean IsStarter()
@@ -311,6 +306,10 @@ public abstract class EYBCard extends EYBCardBase
         if (exhaust || exhaustOnUseOnce)
         {
             dynamicTooltips.add(GR.Tooltips.Exhaust);
+        }
+        if (affinities.HasStar())
+        {
+            dynamicTooltips.add(GR.Tooltips.Affinity_Star);
         }
 
         if (attackType == EYBAttackType.Elemental)
@@ -378,6 +377,37 @@ public abstract class EYBCard extends EYBCardBase
     public AbstractAttribute GetSpecialInfo()
     {
         return null;
+    }
+
+    public ColoredString GetAffinityString(ArrayList<AffinityType> types, boolean requireAll)
+    {
+        final ColoredString result = new ColoredString();
+        if (player != null && player.hand.contains(this))
+        {
+            EYBCardAffinities hand = CombatStats.Affinities.GetHandAffinities(this);
+            for (AffinityType t : types)
+            {
+                final int req = affinities.GetRequirement(t);
+                final int level = hand.GetLevel(t, false);
+                result.SetText(req);
+
+                if (requireAll)
+                {
+                    if (level < req)
+                    {
+                        return result.SetColor(MUTED_TEXT_COLOR);
+                    }
+                }
+                else if (level >= req)
+                {
+                    return result.SetColor(Settings.GREEN_TEXT_COLOR);
+                }
+            }
+
+            return result.SetColor(requireAll ? Settings.GREEN_TEXT_COLOR : MUTED_TEXT_COLOR);
+        }
+
+        return result.SetText(affinities.GetRequirement(types.get(0))).SetColor(Settings.CREAM_COLOR);
     }
 
     public void SetAttackType(EYBAttackType attackType)
@@ -510,6 +540,11 @@ public abstract class EYBCard extends EYBCardBase
         }
     }
 
+    protected void SetAffinityRequirement(AffinityType type, int requirement)
+    {
+        affinities.SetRequirement(type, requirement);
+    }
+
     //@Formatter: Off
     protected void SetAffinity_Red(int base) { InitializeAffinity(AffinityType.Red, base, 0, 0); }
     protected void SetAffinity_Red(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Red, base, upgrade, scaling); }
@@ -523,7 +558,7 @@ public abstract class EYBCard extends EYBCardBase
     protected void SetAffinity_Dark(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Dark, base, upgrade, scaling); }
     protected void SetAffinity_Star(int base) { InitializeAffinity(AffinityType.Star, base, 0, 0); }
     protected void SetAffinity_Star(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Star, base, upgrade, scaling); }
-    protected void InitializeAffinity(AffinityType type, int base, int upgrade, int scaling) { affinities.Initialize(type, base, upgrade, scaling); }
+    protected void InitializeAffinity(AffinityType type, int base, int upgrade, int scaling) { affinities.Initialize(type, base, upgrade, scaling, 0); }
     //@Formatter: On
 
     protected boolean TryUpgrade()

@@ -2,11 +2,11 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
@@ -42,22 +42,21 @@ public class Geryuganshoop extends AnimatorCard
 
     private void OnCardChosen(ArrayList<AbstractCard> cards)
     {
-        boolean limited = CombatStats.HasActivatedLimited(this.cardID);
-
+        final boolean canActivateLimited = CombatStats.CanActivateLimited(this.cardID);
         if (cards != null && cards.size() > 0)
         {
             for (AbstractCard card : cards)
             {
-                if (!limited && (card.cardID.equals(Boros.DATA.ID) || card.cardID.startsWith(Melzalgald.DATA.ID)))
+                if (canActivateLimited && (card.cardID.equals(Boros.DATA.ID) || card.cardID.startsWith(Melzalgald.DATA.ID)))
                 {
                     CombatStats.TryActivateLimited(this.cardID);
                     GameActions.Bottom.MoveCard(card, player.exhaustPile, player.hand)
-                            .ShowEffect(true, false);
+                    .ShowEffect(true, false);
                 }
                 else
                 {
                     player.exhaustPile.removeCard(card);
-                    CardCrawlGame.sound.play("CARD_EXHAUST", 0.2f);
+                    SFX.Play(SFX.CARD_EXHAUST, 0.8f, 1.2f);
                 }
             }
 

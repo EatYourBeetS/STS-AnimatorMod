@@ -14,9 +14,9 @@ public class Loadout_NoGameNoLife extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(DolaCouronne.DATA, 4);
         AddToSpecialSlots(DolaSchwi.DATA, 4);

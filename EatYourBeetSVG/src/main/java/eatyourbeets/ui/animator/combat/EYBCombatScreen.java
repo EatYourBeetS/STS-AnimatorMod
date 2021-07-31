@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class EYBCombatScreen extends GUIElement implements OnStatsClearedSubscriber, OnBattleStartSubscriber, OnBattleEndSubscriber
 {
-    public final EYBCombatInfo Info = new EYBCombatInfo();
+    public final EYBCardAffinitySystem Info = CombatStats.Affinities;
     public final EnemySubIntents Intents = new EnemySubIntents();
 
     protected float delay = 0;
@@ -27,8 +27,7 @@ public class EYBCombatScreen extends GUIElement implements OnStatsClearedSubscri
     //@Formatter: off
     @Override public void OnBattleEnd() { OnStatsCleared(); }
     @Override public void OnBattleStart() { OnStatsCleared(); }
-    @Override
-    public boolean OnStatsCleared()
+    @Override public boolean OnStatsCleared()
     {
         SetActive(GameUtilities.InBattle() && GR.Animator.IsSelected());
         Info.SetActive(isActive);

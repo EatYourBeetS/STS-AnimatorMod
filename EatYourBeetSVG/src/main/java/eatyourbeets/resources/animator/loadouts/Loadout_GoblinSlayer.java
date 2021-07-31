@@ -14,9 +14,9 @@ public class Loadout_GoblinSlayer extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(DwarfShaman.DATA, 4);
         AddToSpecialSlots(LizardPriest.DATA, 4);

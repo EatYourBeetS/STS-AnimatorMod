@@ -14,9 +14,9 @@ public class Loadout_OwariNoSeraph extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(Mikaela.DATA, 5);
         AddToSpecialSlots(Shigure.DATA, 5);

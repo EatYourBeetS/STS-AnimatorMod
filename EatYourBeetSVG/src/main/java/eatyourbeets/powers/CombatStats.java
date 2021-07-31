@@ -25,12 +25,13 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.EYBCardAffinitySystem;
+import eatyourbeets.interfaces.listeners.OnCardResetListener;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.orbs.EYBOrb;
 import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
+import eatyourbeets.ui.animator.combat.EYBCardAffinitySystem;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import patches.CardGlowBorderPatches;
@@ -45,6 +46,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final String POWER_ID = GR.Common.CreateID(CombatStats.class.getSimpleName());
 
     public static final CombatStats Instance = new CombatStats();
+    public static final EYBCardAffinitySystem Affinities = new EYBCardAffinitySystem();
 
     public static final GameEvent<OnSynergySubscriber> onSynergy = new GameEvent<>();
     public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = new GameEvent<>();
@@ -76,7 +78,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
     public static final GameEvent<OnBattleEndSubscriber> onBattleEnd = new GameEvent<>();
 
-    public static EYBCardAffinitySystem Affinities = new EYBCardAffinitySystem();
     public static boolean LoadingPlayerSave;
 
     private static final Map<String, Object> combatData = new HashMap<>();
@@ -92,15 +93,18 @@ public class CombatStats extends EYBPower implements InvisiblePower
     private static int cardsExhaustedThisTurn = 0;
 
     //@Formatter: Off
+    public static boolean CanActivateLimited(String id) { return !combatData.containsKey(id); }
     public static boolean HasActivatedLimited(String id) { return combatData.containsKey(id); }
+    public static boolean CanActivateSemiLimited(String id) { return !turnData.containsKey(id); }
     public static boolean HasActivatedSemiLimited(String id) { return turnData.containsKey(id); }
     public static boolean TryActivateLimited(String id) { return combatData.put(id, 1) == null; }
     public static boolean TryActivateSemiLimited(String id) { return turnData.put(id, 1) == null; }
 
-    public static boolean HasActivatedLimited(String id, int cap) { return combatData.containsKey(id) && (int)combatData.get(id) >= cap; }
-    public static boolean HasActivatedSemiLimited(String id, int cap) { return turnData.containsKey(id) && (int)turnData.get(id) >= cap; }
-    public static boolean TryActivateLimited(String id, int cap) { return JUtils.IncrementMapElement(combatData, id) <= cap; }
-    public static boolean TryActivateSemiLimited(String id, int cap) { return JUtils.IncrementMapElement(turnData, id) <= cap; }
+//    Unused, uncomment if you decide to reimplement Limited/Semi-limited with more than 1 use
+//    public static boolean HasActivatedLimited(String id, int cap) { return combatData.containsKey(id) && (int)combatData.get(id) >= cap; }
+//    public static boolean HasActivatedSemiLimited(String id, int cap) { return turnData.containsKey(id) && (int)turnData.get(id) >= cap; }
+//    public static boolean TryActivateLimited(String id, int cap) { return JUtils.IncrementMapElement(combatData, id) <= cap; }
+//    public static boolean TryActivateSemiLimited(String id, int cap) { return JUtils.IncrementMapElement(turnData, id) <= cap; }
     //@Formatter: On
 
     protected CombatStats()
@@ -233,10 +237,10 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static void OnCardReset(AbstractCard card)
     {
-        OnCardResetSubscriber c = JUtils.SafeCast(card, OnCardResetSubscriber.class);
+        OnCardResetListener c = JUtils.SafeCast(card, OnCardResetListener.class);
         if (c != null)
         {
-            c.OnCardReset(card);
+            c.OnReset();
         }
 
         for (OnCardResetSubscriber s : onCardReset.GetSubscribers())
@@ -339,7 +343,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
         if (card != null)
         {
-            boolean isSynergizing = CombatStats.Affinities.IsSynergizing(c);
+            boolean isSynergizing = Affinities.IsSynergizing(c);
 
             card.OnUse(p, m, isSynergizing);
 
@@ -358,7 +362,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
             if (isSynergizing)
             {
-                card.affinities.OnSynergy(card);
+                Affinities.OnSynergy(card);
             }
 
             if (actions.isEmpty())
@@ -652,8 +656,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public void update(int slot)
     {
         super.update(slot);
-
-        Affinities.Update();
 
         if (currentPhase != AbstractDungeon.actionManager.phase)
         {

@@ -20,6 +20,9 @@ public class UIManager
     protected final ArrayList<ActionT1<SpriteBatch>> preRenderList = new ArrayList<>();
     protected final ArrayList<ActionT1<SpriteBatch>> postRenderList = new ArrayList<>();
     protected float timer = 0;
+    protected float timer25 = 0;
+    protected float timer50 = 0;
+    protected float timer100 = 0;
     protected boolean isDragging;
     protected Hitbox lastHovered;
     protected Hitbox lastHoveredTemp;
@@ -53,7 +56,21 @@ public class UIManager
 
     public void PreUpdate()
     {
-        timer += Gdx.graphics.getRawDeltaTime();
+        final float delta = Gdx.graphics.getRawDeltaTime();
+        timer += delta;
+        if ((timer25 += delta) > 0.25f)
+        {
+            timer25 = 0;
+        }
+        if ((timer50 += delta) > 0.5f)
+        {
+            timer50 = 0;
+        }
+        if ((timer100 += delta) > 1f)
+        {
+            timer100 = 0;
+        }
+
         isDragging = false;
         lastHoveredTemp = null;
     }
@@ -133,6 +150,21 @@ public class UIManager
     public float Time_Multi(float value)
     {
         return timer * value;
+    }
+
+    public boolean Elapsed25()
+    {
+        return timer25 == 0;
+    }
+
+    public boolean Elapsed50()
+    {
+        return timer50 == 0;
+    }
+
+    public boolean Elapsed100()
+    {
+        return timer100 == 0;
     }
 
     public void AddPreRender(ActionT1<SpriteBatch> toRender)

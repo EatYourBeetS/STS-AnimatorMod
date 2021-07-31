@@ -6,15 +6,16 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
+import eatyourbeets.utilities.Mathf;
 import eatyourbeets.utilities.RenderHelpers;
 import org.apache.commons.lang3.StringUtils;
 
@@ -31,11 +32,13 @@ public class GUI_Button extends GUIElement
     public ActionT0 onClick;
     public String text;
 
+    protected boolean darkenNonInteractableButton;
     protected BitmapFont font;
     protected float fontScale;
     protected float currentClickDelay = 0f;
     protected Color textColor = Color.WHITE.cpy();
-    protected Color buttonColor = Color.WHITE.cpy();
+    protected Color buttonColor;
+    protected Color disabledButtonColor;
 
     public GUI_Button(Texture buttonTexture, float x, float y)
     {
@@ -50,6 +53,7 @@ public class GUI_Button extends GUIElement
         this.text = "-";
         this.font = FontHelper.buttonLabelFont;
         this.fontScale = 1f;
+        SetColor(Color.WHITE);
     }
 
     public GUI_Button SetBorder(Texture borderTexture, Color color)
@@ -123,6 +127,7 @@ public class GUI_Button extends GUIElement
     public GUI_Button SetColor(Color buttonColor)
     {
         this.buttonColor = buttonColor.cpy();
+        this.disabledButtonColor = Mathf.LerpCopy(buttonColor, Color.BLACK, 0.4f);
 
         return this;
     }
@@ -183,31 +188,34 @@ public class GUI_Button extends GUIElement
         if (currentAlpha > 0)
         {
             boolean interactable = IsInteractable();
-
-            this.RenderButton(sb, interactable);
-
             if (StringUtils.isNotEmpty(text))
             {
+                this.RenderButton(sb, interactable, buttonColor);
+
                 font.getData().setScale(fontScale);
-                final Color textColor = interactable ? this.textColor : TEXT_DISABLED_COLOR;
+                final Color color = interactable ? textColor : TEXT_DISABLED_COLOR;
                 if (FontHelper.getSmartWidth(font, text, 9999f, 0f) > (hb.width * 0.7))
                 {
-                    RenderHelpers.WriteCentered(sb, font, text, hb, textColor, 0.8f);
+                    RenderHelpers.WriteCentered(sb, font, text, hb, color, 0.8f);
                 }
                 else
                 {
-                    RenderHelpers.WriteCentered(sb, font, text, hb, textColor);
+                    RenderHelpers.WriteCentered(sb, font, text, hb, color);
                 }
                 RenderHelpers.ResetFont(font);
+            }
+            else
+            {
+                this.RenderButton(sb, interactable, interactable ? buttonColor : disabledButtonColor);
             }
 
             this.hb.render(sb);
         }
     }
 
-    protected void RenderButton(SpriteBatch sb, boolean interactable)
+    protected void RenderButton(SpriteBatch sb, boolean interactable, Color color)
     {
-        background.SetColor(buttonColor).Render(sb, hb);
+        background.SetColor(color).Render(sb, hb);
 
         if (border != null)
         {
@@ -226,13 +234,13 @@ public class GUI_Button extends GUIElement
 
     protected void OnHover()
     {
-        CardCrawlGame.sound.play("UI_HOVER");
+        SFX.Play(SFX.UI_HOVER);
     }
 
     protected void OnClickStart()
     {
         this.hb.clickStarted = true;
-        CardCrawlGame.sound.play("UI_CLICK_1");
+        SFX.Play(SFX.UI_CLICK_1);
     }
 
     protected void OnClick()

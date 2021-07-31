@@ -14,9 +14,9 @@ public class Loadout_Fate extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(Assassin.DATA, 4);
         AddToSpecialSlots(Alexander.DATA, 5);

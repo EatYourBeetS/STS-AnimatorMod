@@ -7,18 +7,20 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.cards.animator.auras.Aura;
 import eatyourbeets.cards.animator.basic.ImprovedDefend;
 import eatyourbeets.cards.animator.basic.ImprovedStrike;
+import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.relics.EnchantableRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.ui.CustomCardLibSortHeader;
+import eatyourbeets.ui.common.CustomCardLibSortHeader;
 import eatyourbeets.utilities.*;
 
 import java.io.FileWriter;
@@ -56,6 +58,8 @@ public class ParseGenericCommand extends ConsoleCommand
 
                 if (tokens[1].equals("show-cards"))
                 {
+                    player.masterDeck.clear();
+
                     boolean upgrade = tokens.length > 2 && tokens[2].equals("true");
                     for (EYBCardData data : ImprovedDefend.GetCards())
                     {
@@ -68,6 +72,11 @@ public class ParseGenericCommand extends ConsoleCommand
                     for (EYBCardData data : AffinityToken.GetCards())
                     {
                         player.masterDeck.group.add(data.CreateNewInstance(upgrade));
+                    }
+                    for (Enchantment card : Enchantment.GetCards())
+                    {
+                        player.masterDeck.group.add(card.makeCopy());
+                        player.masterDeck.group.addAll(card.GetUpgrades());
                     }
                     return;
                 }
@@ -98,6 +107,33 @@ public class ParseGenericCommand extends ConsoleCommand
                 if (tokens[1].equals("add-score") && tokens.length > 2)
                 {
                     UnlockTracker.addScore(GR.Animator.PlayerClass, JUtils.ParseInt(tokens[2], 0));
+
+                    return;
+                }
+
+                if (tokens[1].equals("apply-enchantment") && tokens.length > 3)
+                {
+                    for (AbstractRelic r : player.relics)
+                    {
+                        if (r instanceof EnchantableRelic)
+                        {
+                            ((EnchantableRelic) r).ApplyEnchantment(Enchantment.GetCard(JUtils.ParseInt(tokens[2], 1), JUtils.ParseInt(tokens[3], 0)));
+
+                            if (GameUtilities.InBattle())
+                            {
+                                for (int i = 0; i < player.powers.size(); i++)
+                                {
+                                    if (player.powers.get(i).ID.equals(r.relicId + "Power"))
+                                    {
+                                        player.powers.remove(i);
+                                        break;
+                                    }
+                                }
+
+                                r.atBattleStartPreDraw();
+                            }
+                        }
+                    }
 
                     return;
                 }
@@ -166,7 +202,7 @@ public class ParseGenericCommand extends ConsoleCommand
                     Map<String, Map<String, EYBCardMetadataV2>> data = new HashMap<>();
                     ExtractCardData(data, CardLibrary.cards.values());
                     ExtractCardData(data, AnimatorCard_UltraRare.GetCards().values());
-                    ExtractCardData(data, Aura.GetCards());
+                    ExtractCardData(data, Enchantment.GetCards());
 
                     String filePath = "C://temp//" + ((tokens.length > 2) ? tokens[2] : "Animator-CardMetadata") + ".json";
                     new Gson().toJson(data, new FileWriter(filePath));
@@ -318,7 +354,7 @@ public class ParseGenericCommand extends ConsoleCommand
             {
                 key = "ULTRARARE";
             }
-            else if (c instanceof Aura)
+            else if (c instanceof Enchantment)
             {
                 key = "AURA";
             }

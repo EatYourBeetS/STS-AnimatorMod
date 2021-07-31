@@ -5,10 +5,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.effects.special.MaskedTravelerTransformCardsEffect;
 import eatyourbeets.effects.special.UnnamedRelicEquipEffect;
@@ -16,12 +18,16 @@ import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventOption;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
+import eatyourbeets.relics.EnchantableRelic;
+import eatyourbeets.relics.animator.LivingPicture;
+import eatyourbeets.relics.animator.VividPicture;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.relics.animator.unnamedReign.TheEgnaroPiece;
 import eatyourbeets.relics.animator.unnamedReign.TheEruzaStone;
 import eatyourbeets.relics.animator.unnamedReign.TheWolleyCore;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -83,6 +89,10 @@ public class TheMaskedTraveler2 extends EYBEvent
                 {
                     event.startingRelicsCache.add(relic);
                 }
+                else if (relic instanceof VividPicture)
+                {
+                    event.startingRelicsCache.add(new LivingPicture(((VividPicture) relic).enchantment));
+                }
             }
 
             AbstractRelic relic = option.relic.makeCopy();
@@ -95,9 +105,7 @@ public class TheMaskedTraveler2 extends EYBEvent
     private static class Offering extends EYBEventPhase<TheMaskedTraveler2, EventStrings>
     {
         private static final AncientMedallion MedallionPreview = new AncientMedallion();
-        private static final int REMOVE_CARDS = 2;
-        private static final int OBTAIN_CARDS = 2;
-        private static final int UPGRADE_SAME_CARD = 4;
+        private static final int REPLACE_CARDS = 2;
         private int currentHPLoss = 0;
 
         @Override
@@ -113,29 +121,28 @@ public class TheMaskedTraveler2 extends EYBEvent
 
             AddText(text.Offering());
             AddOption(text.ObtainRelicOption(), MedallionPreview).AddCallback(this::ObtainRelic);
-            AddOption(text.ReplaceCardsOption(REMOVE_CARDS, OBTAIN_CARDS)).AddCallback(this::ReplaceCards);
+            AddOption(text.ReplaceCardsOption(REPLACE_CARDS, REPLACE_CARDS)).AddCallback(this::ReplaceCards);
             AddOption(text.RecoverRelicsOption(currentHPLoss)).AddCallback(this::RecoverRelics);
         }
 
         private void ObtainRelic()
         {
-            AbstractRelic relic = new AncientMedallion(true);
-            relic.instantObtain();
-            CardCrawlGame.metricData.addRelicObtainData(relic);
-
             ClearOptions();
+            GameUtilities.ObtainRelic(InputHelper.mX, InputHelper.mY, new AncientMedallion(true));
             AddPhaseChangeOption(COMMON_STRINGS.Leave(), EnterUnnamedReign.class);
             BuildOptions();
         }
 
         private void ReplaceCards()
         {
-            GameEffects.List.Add(new MaskedTravelerTransformCardsEffect(REMOVE_CARDS))
+            ClearOptions();
+            GameEffects.List.Add(new MaskedTravelerTransformCardsEffect(REPLACE_CARDS, REPLACE_CARDS))
             .AddCallback(() -> ChangePhase(EnterUnnamedReign.class));
         }
 
         private void RecoverRelics()
         {
+            ClearOptions();
             player.decreaseMaxHealth(currentHPLoss);
 
             for (String relicID : player.getStartingRelics())
@@ -177,6 +184,12 @@ public class TheMaskedTraveler2 extends EYBEvent
             }
             else
             {
+                if (relic instanceof EnchantableRelic)
+                {
+                    EnchantableRelic r = ((EnchantableRelic) relic);
+                    r.ApplyEnchantment(r.GetEnchantmentLevel() >= 2 ? (Enchantment) r.enchantment.makeCopy() : null);
+                }
+
                 float START_X = 64f * Settings.scale;
                 float START_Y = (float) Settings.HEIGHT - 102f * Settings.scale;
 

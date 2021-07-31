@@ -81,13 +81,13 @@
 		"animator:Strike_Star":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "!M! <GEN>: Retain ** your highest ** {Affinity Power}.",
+			"UPGRADE_DESCRIPTION": "Synergy: {~Retain} your ** highest {<W> Power}.",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Star":
 		{
 			"DESCRIPTION": "",
-		    "UPGRADE_DESCRIPTION": "!M! <GEN>:  Retain ** your highest ** {Affinity Power}.",
+			"UPGRADE_DESCRIPTION": "Synergy: {~Retain} your ** highest {<W> Power}.",
 			"NAME": "Improved Defend"
 		}
 	},
@@ -105,7 +105,7 @@
 	{
 		"animator:Emilia":
 		{
-			"DESCRIPTION": "Channel !M! [Frost]. || Next turn: Channel ** 1 Lightning for each ** Frost Orb you have.",
+			"DESCRIPTION": "Channel !M! [Frost]. || Next turn: Channel ** 1 Lightning for each ** Frost orb you have.",
 			"NAME": "Emilia"
 		},
 		"animator:HarukoHaruhara":
@@ -146,7 +146,7 @@
 		},
 		"animator:Patchouli":
 		{
-			"DESCRIPTION": "Attack 1 additional time ** for each unique Orb ** Channeled this combat. || <LIM>. At the start of ** combat, add a random {Orb} ** {Core} to your discard pile.",
+			"DESCRIPTION": "Attack 1 additional time ** for each unique orb ** Channeled this combat. || <LIM>. At the start of ** combat, add a random {Orb} ** {Core} to your discard pile.",
 			"NAME": "Patchouli"
 		},
 		"animator:TakanashiRikka":
@@ -192,12 +192,12 @@
 		},
 		"animator:LimeBell":
 		{
-			"DESCRIPTION": "Reload: Gain !M! ** [Temporary HP].",
+			"DESCRIPTION": "Reload: Gain !M! ** [Temp HP].",
 			"NAME": "Lime Bell"
 		},
 		"animator:Magilou":
 		{
-			"DESCRIPTION": "Trigger your first Orb ** !M! time(s), then Evoke it. || <LIM>. When Drawn: ** Discard this and add ** {Bienfu} to your hand.",
+			"DESCRIPTION": "Trigger your first orb ** !M! time(s), then Evoke it. || <LIM>. When Drawn: ** Discard this and add ** {Bienfu} to your hand.",
 			"NAME": "Magilou"
 		},
 		"animator:MamizouFutatsuiwa":
@@ -273,22 +273,22 @@
 	{
 		"animator:Add":
 		{
-			"DESCRIPTION": "Add !S! {Crystallize} to your ** draw pile. Next turn: Draw ** !M! card(s) and gain [E] [E]. || 3 <D> : Exhaust a ** card anywhere, replace ** it with an {Orb Core}.",
+			"DESCRIPTION": "Add !S! {Crystallize} to your ** draw pile. Next turn: Draw ** !M! card(s) and gain [E] [E]. || !A! <D> : Exhaust a ** card anywhere, replace ** it with an {Orb Core}.",
 			"NAME": "Add"
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "If you discarded ** a card this turn: ** Enter <IS>. || Synergy: Gain [I].",
+			"DESCRIPTION": "If you discarded ** a card this turn: ** Enter <IS>. || !S! <L>: Obtain {<B> Token}.",
 			"NAME": "Ain"
 		},
 		"animator:Aisha":
 		{
-			"DESCRIPTION": "Attack 1 additional time ** for each Orb you have. || <LIM>. At the start of ** combat: Gain 1 Orb Slot.",
+			"DESCRIPTION": "Deal !S! additional damage ** for each orb you have. || <LIM>. If you have 1 or ** more [Dark]: Gain {0} [I] [C].",
 			"NAME": "Aisha"
 		},
 		"animator:Ara":
 		{
-			"DESCRIPTION": "<DRW> for every ** {Debuff} on the enemy. ** Discard 1 card. || If you discarded a ** {Power}: Enter <AS>",
+			"DESCRIPTION": "<DRW> for every ** {Debuff} on the enemy. ** Discard 1 card. || !A! <R>: Apply !M! [Vulnerable].",
 			"NAME": "Ara"
 		},
 		"animator:Chung":
@@ -298,15 +298,14 @@
 		},
 		"animator:Ciel":
 		{
-			"DESCRIPTION": "<ST>: Apply !M! [Vulnerable] [~Lock-On]. || Increase the damage ** of every copy of {Lu} ** by !S! this combat.",
+			"DESCRIPTION": "Increase the damage of ** every copy of {Lu} by !M!. || !A! <B>: Apply {0} [~Lock-On]. || !A! <G>: Gain {1} [Blur].",
 			"NAME": "Ciel"
 		},
 		"animator:Elesis":
 		{
 			"DESCRIPTION": "At the start of combat, ** choose 1 of 3 {Forms} and ** permanently change ** this card into it.",
-			"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain that much [F] and [A]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply 1 [Burning] for ** every {Debuff} on ** the enemy. || <slm>. Synergy or ** Discard: <DRW>.", "Apply 1 [Vulnerable]. || At the start of each ** combat: Lose !M! HP."],
-			"NAME": "Elesis",
-			"UPGRADE_DESCRIPTION": "At the start of combat, ** choose 1 of 3 Upgraded ** {Forms} and permanently ** change this card into it."
+			"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain twice that much [F] [A]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply 1 [Burning] for every ** {Debuff} on the enemy. || <slm>. Synergy or ** Discard: <DRW>.", "Apply 1 [Vulnerable]. || At the start of each ** combat: Lose !M! HP."],
+			"NAME": "Elesis"
 		},
 		"animator:Elsword":
 		{
@@ -315,9 +314,9 @@
 		},
 		"animator:Eve":
 		{
-			"DESCRIPTION": "Play 1 {Orb Core}. || When you Synergize: Deal ** 1 damage to an enemy and ** increase this damage by 1. ** Does not Stack.",
-			"NAME": "Eve",
-			"UPGRADE_DESCRIPTION": "Play 1 {Orb Core}. ** Gain !M! Orb Slot. || When you Synergize: Deal ** 1 damage to an enemy and ** increase this damage by 1. ** Does not Stack."
+			"DESCRIPTION": "When you Synergize: Deal damage equal to <W> to a random enemy !M! times. || Once per turn, pay [E]: ** Play 1 of 3 {<W> Tokens}.",
+			"EXTENDED_DESCRIPTION": ["Pay 1 [E] to play #b1 [A-Gen] #yToken. || Whenever a card #ySynergizes, deal damage equal to [A-Gen] to a random enemy #b{0} time(s)."],
+			"NAME": "Eve"
 		},
 		"animator:Laby":
 		{
@@ -328,7 +327,7 @@
 		},
 		"animator:Lu":
 		{
-			"DESCRIPTION": "Channel 1 [Frost] [Dark]. || When Drawn: If ** in Neutral Stance, ** enter <FS>.",
+			"DESCRIPTION": "Channel 1 [Dark] and [Frost]. || When Drawn: If ** in Neutral Stance, ** enter <FS>.",
 			"NAME": "Lu"
 		},
 		"animator:Raven":
@@ -368,8 +367,8 @@
 		},
 		"animator:Caster":
 		{
-			"DESCRIPTION": "Channel 1 [Dark]. || Synergy or Exhaust: ** Choose !S!: Evoke your ** first Orb, Apply !M! [Shackles], ** or Gain [F] [I].",
-			"EXTENDED_DESCRIPTION": ["Evoke your first Orb.", "Apply {0} [Shackles].", "Gain [F] [I]."],
+			"DESCRIPTION": "Channel 1 [Dark]. || Synergy or Exhaust: ** Choose !S!: Evoke your ** first orb, Apply !M! [Shackles], ** or Gain [F] [I].",
+			"EXTENDED_DESCRIPTION": ["Evoke your first orb.", "Apply {0} [Shackles].", "Gain [F] [I]."],
 			"NAME": "Caster"
 		},
 		"animator:EmiyaShirou":
@@ -394,12 +393,12 @@
 		},
 		"animator:Rider":
 		{
-			"DESCRIPTION": "Apply !M! [Shackles]. || 2 <G>: Gain/Boost [A]. || 2 <B>: Gain/Boost [I].",
+			"DESCRIPTION": "Apply !M! [Shackles]. || !A! <G>: Gain/Boost [A]. || !A! <B>: Gain/Boost [I].",
 			"NAME": "Rider"
 		},
 		"animator:RinTohsaka":
 		{
-			"DESCRIPTION": "Gain !S! {Temp}. [Artifact]. || <slm>. Synergy: ** {Channel} a copy of ** your first Orb.",
+			"DESCRIPTION": "Gain !S! {Temp}. [Artifact]. || <slm>. Synergy: ** {Channel} a copy of ** your first orb.",
 			"NAME": "Rin Tohsaka"
 		},
 		"animator:Saber":
@@ -433,7 +432,7 @@
 		},
 		"animator:Envy":
 		{
-			"DESCRIPTION": "The first card played ** each turn will Synergize. || Gain 20% of your ** missing HP as [Temporary HP].",
+			"DESCRIPTION": "The first card played ** each turn will Synergize. || Gain 20% of your ** missing HP as [Temp HP].",
 			"NAME": "Envy"
 		},
 		"animator:Father":
@@ -449,7 +448,7 @@
 		},
 		"animator:Greed":
 		{
-			"DESCRIPTION": "Choose !S!: Gain {0} [Block], ** Gain {1} [Temporary HP], Gain {2} [Malleable], ** Gain {3} [Plated Armor], or Gain {4} [Metallicize]. || For every !M! [Gold] you have: Choose 1 additional effect.",
+			"DESCRIPTION": "Choose !S!: Gain {0} [Block], ** Gain {1} [Temp HP], Gain {2} [Malleable], ** Gain {3} [Plated Armor], or Gain {4} [Metallicize]. || For every !M! [Gold] you have: Choose 1 additional effect.",
 			"NAME": "Greed"
 		},
 		"animator:MaesHughes":
@@ -489,7 +488,7 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !S! [I]. ** Gain !M! Orb Slot(s). || 2 <B>, 2 <R>: ** Channel 1 [Earth].",
+			"DESCRIPTION": "Gain !S! [I]. ** Gain !M! orb slot(s). || !A! <B> and <R>: ** Channel 1 [Earth].",
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":
@@ -504,7 +503,7 @@
 		},
 		"animator:Kuribayashi":
 		{
-			"DESCRIPTION": "Apply !M! [Vulnerable]. || 3 <G>: Attack twice. || 3 <R>: Apply !S! [Shackles].",
+			"DESCRIPTION": "Apply !M! [Vulnerable]. || !A! <G>: Attack twice. || !A! <R>: Apply !S! [Shackles].",
 			"NAME": "Kuribayashi"
 		},
 		"animator:LeleiLaLalena":
@@ -665,7 +664,8 @@
 		},
 		"animator:Biyorigo":
 		{
-			"DESCRIPTION": "Gain 1 [Artifact]. ** Gain !M! [Thorns]. || At the end of each turn: ** spend 1 of your remaining ** Energy to gain 2 [F] [A].",
+			"DESCRIPTION": "Gain 1 [Artifact] and !M! [Thorns]. || Once per turn, pay [E]: ** Gain 2 [F] and 2 [A].",
+			"EXTENDED_DESCRIPTION": ["Pay #b1 [E] to gain #b{1} [F] [A]."],
 			"NAME": "Biyorigo"
 		},
 		"animator:Emonzaemon":
@@ -686,7 +686,7 @@
 		},
 		"animator:Konayuki":
 		{
-			"DESCRIPTION": "Gain !M! [F]. || <LIM>. 5 <R>: ** Deal !S! damage to ** a random enemy.",
+			"DESCRIPTION": "Gain !M! [F]. || <LIM>. !A! <R>: ** Deal !S! damage to ** a random enemy.",
 			"NAME": "Konayuki"
 		},
 		"animator:Nanami":
@@ -727,7 +727,7 @@
 		"animator:Aqua":
 		{
 			"DESCRIPTION": "Gain [B]. Heal !M! HP. <DRW>. || Becomes useless for the ** rest of this combat.",
-			"EXTENDED_DESCRIPTION": ["", "When Exhausted or ** Discarded: Gain !S! [Temporary HP]."],
+			"EXTENDED_DESCRIPTION": ["", "When Exhausted or ** Discarded: Gain !S! [Temp HP]."],
 			"NAME": "Aqua",
 			"UPGRADE_DESCRIPTION": "Boost [B]. Heal !M! HP. <DRW>. || Becomes slightly less ** useless for the rest of ** this combat."
 		},
@@ -748,7 +748,7 @@
 		},
 		"animator:Hans":
 		{
-			"DESCRIPTION": "At the start of turn: ** Apply !M! [Poison] to ALL ** enemies, then gain ** !S! [Temporary HP] for each ** enemy with [Poison].",
+			"DESCRIPTION": "At the start of turn: ** Apply !M! [Poison] to ALL ** enemies, then gain ** !S! [Temp HP] for each ** enemy with [Poison].",
 			"EXTENDED_DESCRIPTION": ["At the start of turn, apply #b{0} #y[Poison] to ALL enemies, then gain #b{1} #yTemporary #yHP for each enemy with #y[Poison]."],
 			"NAME": "Hans"
 		},
@@ -820,7 +820,7 @@
 		},
 		"animator:Marielle":
 		{
-			"DESCRIPTION": "{Motivate} 1 card of each ** type in your draw pile. || Synergy: Gain !M! [Temporary HP] ** and Purge.",
+			"DESCRIPTION": "{Motivate} 1 card of each ** type in your draw pile. || Synergy: Gain !M! [Temp HP] ** and Purge.",
 			"NAME": "Marielle"
 		},
 		"animator:HousakiMinori":
@@ -845,7 +845,7 @@
 		},
 		"animator:Rayneshia":
 		{
-			"DESCRIPTION": "<DRW-M>. Move !M! ** cards to your draw pile. || <LIM>. !S! <GEN>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
+			"DESCRIPTION": "<DRW-M>. Move !M! ** cards to your draw pile. || <LIM>. !A! <W>: ** Choose and add 1 of 3 {Rare} ** cards to your hand.",
 			"NAME": "Rayneshia"
 		},
 		"animator:RundelhausCode":
@@ -923,7 +923,7 @@
 		},
 		"animator:MadokaKaname":
 		{
-			"DESCRIPTION": "Exhaust up to !M! random ** {Curses} from anywhere. ** Heal 3 HP for each (!S!). || While in hand: Gain 1 [Temporary HP] ** when playing a Spellcaster.",
+			"DESCRIPTION": "Exhaust up to !M! random ** {Curses} from anywhere. ** Heal 3 HP for each (!S!). || While in hand: Gain 1 [Temp HP] ** when playing a Spellcaster.",
 			"NAME": "Madoka Kaname"
 		},
 		"animator:MamiTomoe":
@@ -974,7 +974,7 @@
 	{
 		"animator:ChlammyZell":
 		{
-			"DESCRIPTION": "Draw 2 cards. Next turn, ** draw !M! additional card(s). || <LIM>. If you reached ** !S! [I] this combat: Add a ** {Scheme} to your hand.",
+			"DESCRIPTION": "Draw 2 cards. Next turn, ** draw !M! additional card(s). || <LIM>. !A! <B> and <D>: Add ** a {Scheme} to your hand.",
 			"NAME": "Kurami"
 		},
 		"animator:DolaCouronne":
@@ -1012,7 +1012,7 @@
 		},
 		"animator:Jibril":
 		{
-			"DESCRIPTION": "Channel 1 [Dark]. ** Lose no [I] next turn. || On Synergy: Shuffle ** your Orbs, then trigger ** your first !M! Orbs.",
+			"DESCRIPTION": "Channel 1 [Dark]. ** Lose no [I] next turn. || On Synergy: Shuffle ** your orbs, then trigger ** your first !M! orbs.",
 			"NAME": "Jibril"
 		},
 		"animator:Shiro":
@@ -1087,7 +1087,7 @@
 		},
 		"animator:Tatsumaki":
 		{
-			"DESCRIPTION": "Channel 1 [Aether]. || <IS>: Gain 1 Orb Slot. || <slm>. If in Neutral ** Stance: Enter <IS>. ** Otherwise: Exit your Stance.",
+			"DESCRIPTION": "Channel 1 [Aether]. || <IS>: Gain 1 orb slot. || <slm>. If in Neutral ** Stance: Enter <IS>. ** Otherwise: Exit your Stance.",
 			"NAME": "Tatsumaki"
 		}
 	},
@@ -1122,7 +1122,7 @@
 		},
 		"animator:Evileye":
 		{
-			"DESCRIPTION": "<DRW-M>. Reload: ** Trigger your next Orb. || <LIM>. Synergy: Gain ** 2 [I] and 1 Orb Slot.",
+			"DESCRIPTION": "<DRW-M>. Reload: ** Trigger your next orb. || <LIM>. Synergy: Gain ** 2 [I] and 1 orb slot.",
 			"NAME": "Evileye"
 		},
 		"animator:NarberalGamma":
@@ -1138,7 +1138,7 @@
 		},
 		"animator:Sebas":
 		{
-			"DESCRIPTION": "Deal damage equal to ** your [Block] to each enemy ** who intends to Attack. || When Discarded: ** Gain !M! [Temporary HP].",
+			"DESCRIPTION": "Deal damage equal to ** your [Block] to each enemy ** who intends to Attack. || When Discarded: ** Gain !M! [Temp HP].",
 			"NAME": "Sebas"
 		},
 		"animator:Shalltear":
@@ -1157,7 +1157,7 @@
 		},
 		"animator:FeridBathory":
 		{
-			"DESCRIPTION": "Whenever a card is ** Exhausted: Steal !M! HP from ** a random enemy as [Temporary HP]. || <LIM>. At the start of turn, ** if you have 20 or more cards ** in Exhaust pile: Gain !S! [F].",
+			"DESCRIPTION": "Whenever a card is ** Exhausted: Steal !M! HP from ** a random enemy as [Temp HP]. || <LIM>. At the start of turn, ** if you have 20 or more cards ** in Exhaust pile: Gain !S! [F].",
 			"NAME": "Ferid Bathory"
 		},
 		"animator:Guren":
@@ -1251,7 +1251,7 @@
 		},
 		"animator:Shuna":
 		{
-			"DESCRIPTION": "Gain 1 [B]. ** <DRW-M>. || When Drawn: ** Gain !S! [Temporary HP].",
+			"DESCRIPTION": "Gain 1 [B]. ** <DRW-M>. || When Drawn: ** Gain !S! [Temp HP].",
 			"NAME": "Shuna"
 		},
 		"animator:Souei":
@@ -1268,21 +1268,40 @@
 	
 	"AURA":
 	{
-		"animator:Aura1":
+		"animator:Enchantment1":
 		{
-			"NAME": "Stance Aura",
-			"DESCRIPTION": "At the start of your third ** turn: Enter a Stance of ** your choice.",
-			"UPGRADE_DESCRIPTION": "At the start of your third ** turn: Enter a Stance of ** your choice and Motivate ** 1 card in your draw pile."
+			"DESCRIPTION": "Once per turn, ** pay !S! [E]: Choose and ** Enter any Stance.",
+			"EXTENDED_DESCRIPTION": 
+			[
+				"Once per turn, pay !S! [E]: Choose and Enter any Stance, if you are already in the chosen Stance: Gain {0} [Block].",
+				"Once per turn, pay !S! [E]: Choose and Enter any Stance, then Motivate the bottom card of your draw pile.",
+				"Once per turn, pay !S! [E] and lose {0} HP: Choose and Enter any Stance."
+			],
+			"NAME": "Stances"
 		},
-		"animator:Aura2":
+		"animator:Enchantment2":
 		{
-			"NAME": "Synergy Aura",
-			"DESCRIPTION": "At the start of your third ** turn: Heal 1 HP for each ** time you Synergized ** this combat, up to !M!."
+			"DESCRIPTION": "Once per turn, ** pay !S! [E]: Retain ** all {[A-Gen] Powers}.",
+			"EXTENDED_DESCRIPTION": 
+			[
+				"Once per turn, pay !S! [E]: Boost [F] and gain !M! [Plated Armor].",
+				"Once per turn, pay !S! [E]: Boost [A] and Retain !M! card(s).",
+				"Once per turn, pay !S! [E]: Boost [I] and gain !M! orb slot(s).",
+				"Once per turn, pay !S! [E]: Boost [B] and gain !M! {Temporary} [Artifact].",
+				"Once per turn, pay !S! [E]: Boost [C] and convert {0} HP to !M! [Temp HP]."
+			],
+			"NAME": "Powers"
 		},
-		"animator:Aura3":
+		"animator:Enchantment3":
 		{
-			"NAME": "Attack Aura",
-			"DESCRIPTION": "At the start of your third ** turn: <DRW-M> and ** apply 1 [Vulnerable] to a random ** enemy, ignoring [Artifact]."
+			"DESCRIPTION": "Once per turn, ** pay !S! [E]: Apply !M! [Vulnerable].",
+			"EXTENDED_DESCRIPTION": 
+			[
+				"Once per turn, pay !S! [E]: Apply !M! [Vulnerable] and {0} [Poison].",
+				"Once per turn, pay !S! [E]: Apply !M! [Vulnerable] and {0} [Weak].",
+				"Once per turn, pay !S! [E] and lose {0} HP: Apply !M! [Vulnerable]."
+			],
+			"NAME": "Debuffs"
 		}
 	},
 
@@ -1290,27 +1309,27 @@
 	{
 		"animator:AffinityToken_Red":
 		{
-			"DESCRIPTION": "Have +1 <R> for ** the rest of combat. || 3 <G> or <B>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <R> for ** the rest of combat. || !A! <G> or <B>: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Green":
 		{
-			"DESCRIPTION": "Have +1 <G> for ** the rest of combat. || 3 <R> or <B>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <G> for ** the rest of combat. || !A! <R> or <B>: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Blue":
 		{
-			"DESCRIPTION": "Have +1 <B> for ** the rest of combat. || 3 <R> or <G>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <B> for ** the rest of combat. || !A! <R> or <G>: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Light":
 		{
-			"DESCRIPTION": "Have +1 <L> for ** the rest of combat. || 3 <D> or <R>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <L> for ** the rest of combat. || !A! <D> or <R>: Gain [E].",
 			"NAME": "Affinity Token"
 		},		
 		"animator:AffinityToken_Dark":
 		{
-			"DESCRIPTION": "Have +1 <D> for ** the rest of combat. || 3 <L> or <G>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <D> for ** the rest of combat. || !A! <L> or <G>: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		
@@ -1342,7 +1361,7 @@
 		},
 		"animator:ElricAlphonseAlt":
 		{
-			"DESCRIPTION": "Gain 1 Orb Slot. ** Channel !S! [Lightning]. || Synergy: Gain !M! [Plated Armor].",
+			"DESCRIPTION": "Gain 1 orb slot. ** Channel !S! [Lightning]. || Synergy: Gain !M! [Plated Armor].",
 			"NAME": "Armored Alphonse"
 		},
 		"animator:EntouJyuu":
@@ -1398,7 +1417,7 @@
 		},
 		"animator:OrbCore_Chaos":
 		{
-			"DESCRIPTION": "Channel !S! Random Orb. || On your second ** Synergy each turn: ** Choose 1 of 3 cards to ** obtain, it costs 1 less.",
+			"DESCRIPTION": "Channel !S! [Random Orb]. || On your second ** Synergy each turn: ** Choose 1 of 3 cards to ** obtain, it costs 1 less.",
 			"NAME": "Chaos Core"
 		},
 		"animator:OrbCore_Dark":
@@ -1423,7 +1442,7 @@
 		},
 		"animator:OrbCore_Plasma":
 		{
-			"DESCRIPTION": "Channel !S! [Plasma]. || On your second ** Synergy each turn: ** Gain !M! [Temporary HP].",
+			"DESCRIPTION": "Channel !S! [Plasma]. || On your second ** Synergy each turn: ** Gain !M! [Temp HP].",
 			"NAME": "Plasma Core"
 		},
 		"animator:Respite":
@@ -1438,7 +1457,7 @@
 		},
 		"animator:ShinjiMatou_CommandSpell":
 		{
-			"DESCRIPTION": "Lose 1 Orb Slot to play a ** card which Synergizes ** with this card from ** your discard pile.",
+			"DESCRIPTION": "Lose 1 orb slot to play a ** card which Synergizes ** with this card from ** your discard pile.",
 			"NAME": "Command Spell"
 		},
 		"animator:TanyaDegurechaff_Type95":
@@ -1469,7 +1488,7 @@
 	{
 		"animator:Crystallize":
 		{
-			"DESCRIPTION": "Lose !S! HP twice. || Gain !M! [Metallicize]. || Boost [C].",
+			"DESCRIPTION": "Lose !S! HP twice. || Gain !M! [Metallicize] and 1 [C].",
 			"NAME": "Crystallize"
 		},
 		"animator:GoblinChampion":
@@ -1549,7 +1568,7 @@
 		},
 		"animator:JeanneDArc":
 		{
-			"DESCRIPTION": "Exhaust a random ** Hindrance from anywhere. || At the start of combat: ** Gain !M! [Temporary HP] and 1 [Artifact].",
+			"DESCRIPTION": "Exhaust a random ** Hindrance from anywhere. || At the start of combat: ** Gain !M! [Temp HP] and 1 [Artifact].",
 			"NAME": "Jeanne D'Arc"
 		},
 		"animator:Kanami":
@@ -1591,18 +1610,18 @@
 		},
 		"animator:Truth":
 		{
-			"DESCRIPTION": "Gain !M! [F], [A], [I] and [E]. || If you have at least 3 ** unique Orbs: Remove all your ** Orbs. Otherwise choose and ** replace a card in your deck ** with a {~Wound}.",
+			"DESCRIPTION": "Gain !M! [F], [A], [I] and [E]. || If you have at least 3 ** unique orbs: Remove all your ** orbs. Otherwise choose and ** replace a card in your deck ** with a {~Wound}.",
 			"NAME": "Truth"
 		},
 		"animator:Veldora":
 		{
-			"DESCRIPTION": "Gain !S! [I]. Evoke ** ALL orbs !M! times. || When Drawn: Channel ** 2 random Orbs.",
+			"DESCRIPTION": "Gain !S! [I]. Evoke ** ALL orbs !M! times. || When Drawn: Channel ** 2 random orbs.",
 			"NAME": "Veldora"
 		},
 		"animator:Walpurgisnacht":
 		{
-			"DESCRIPTION": "Add !M! random Spellcaster(s) ** to your hand. They cost 0 ** this turn. || At start of turn: Evoke your ** next Orb for each Curse and ** Spellcaster in your hand.",
-			"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next Orb once for each #yCurse plus each #ySpellcaster in your hand."],
+			"DESCRIPTION": "Add !M! random Spellcaster(s) ** to your hand. They cost 0 ** this turn. || At start of turn: Evoke your ** next orb for each Curse and ** Spellcaster in your hand.",
+			"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next orb once for each #yCurse plus each #ySpellcaster in your hand."],
 			"NAME": "Walpurgisnacht"
 		}
 	}

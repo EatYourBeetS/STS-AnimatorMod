@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.stances.IntellectStance;
@@ -19,15 +20,21 @@ public class Ain extends AnimatorCard
     public static final EYBCardData DATA = Register(Ain.class)
             .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
             .SetSeries(CardSeries.Elsword);
+    static
+    {
+        DATA.AddPreview((EYBCard) AffinityToken.GetCard(AffinityType.Blue).CreateNewInstance(), false);
+    }
 
     public Ain()
     {
         super(DATA);
 
-        Initialize(3, 0, 2, 1);
+        Initialize(3, 0, 2, 3);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Blue(2, 0, 2);
+
+        SetAffinityRequirement(AffinityType.Light, 3);
     }
 
     @Override
@@ -63,14 +70,20 @@ public class Ain extends AnimatorCard
             GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE).SetVFX(false, true);
         }
 
-        if (GameActionManager.totalDiscardedThisTurn > 0)
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
         }
 
-        if (isSynergizing)
+        if (CheckAffinity(AffinityType.Light))
         {
-            GameActions.Bottom.GainIntellect(secondaryValue);
+            GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(AffinityType.Blue, false));
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean use)
+    {
+        return GameActionManager.totalDiscardedThisTurn > 0;
     }
 }

@@ -19,7 +19,7 @@ public class HeavyHalberd extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(FORCE_AMOUNT);
+        return FormatDescription(0, FORCE_AMOUNT);
     }
 
     @Override

@@ -103,8 +103,8 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
             {
                 GameActions.Bottom.SpendEnergy(999, true).AddCallback(amount ->
                 {
-                    GameActions.Bottom.GainForce(amount);
-                    GameActions.Bottom.GainAgility(amount);
+                    GameActions.Bottom.GainForce(amount * 2);
+                    GameActions.Bottom.GainAgility(amount * 2);
                 });
                 AddDamageBonus(-bonusDamage);
                 break;
@@ -165,7 +165,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
                 affinities.List.clear();
                 SetAffinity_Red(1, 0, 1);
                 SetAffinity_Green(1, 0, 0);
-                SetAffinity_Light(2, 0, 2);
+                SetAffinity_Light(2, 0, 3);
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;

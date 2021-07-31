@@ -1,22 +1,10 @@
 
 {
-	"Aura":
-	{
-		"DESCRIPTION": "Auras effects are automatically activated when a condition is met. These cards are not added to your draw pile at the start of battle.",
-		"NAMES": ["aura", "auras"],
-		"PROPER_NAME": "Aura"
-	},
 	"Cooldown":
 	{
 		"DESCRIPTION": "Whenever you play or discard this card, reduce its #yCooldown by #b1. If it is at #b0, activate this effect instead.",
 		"NAMES": ["cooldown"],
 		"PROPER_NAME": "Cooldown"
-	},
-	"Martial Artist":
-	{
-		"DESCRIPTION": "#ySynergizes with other #yMartial #yArtists.",
-		"NAMES": ["martial artist"],
-		"PROPER_NAME": "Martial Artist"
 	},
 	"Motivate":
 	{
@@ -36,18 +24,6 @@
 		"NAMES": ["reload"],
 		"PROPER_NAME": "Reload"
 	},
-	"Shapeshifter":
-	{
-		"DESCRIPTION": "Affinity of any color.",
-		"NAMES": ["shapeshifter", "shapeshift"],
-		"PROPER_NAME": "Shapeshifter"
-	},
-	"Spellcaster":
-	{
-		"DESCRIPTION": "#ySynergizes with other #ySpellcasters.",
-		"NAMES": ["spellcaster"],
-		"PROPER_NAME": "Spellcaster"
-	},
 	"Support Damage":
 	{
 		"DESCRIPTION": "Deal damage to the enemy with the lowest HP at the end of each turn. Affected by damage modifiers.",
@@ -56,7 +32,7 @@
 	},
 	"Synergy":
 	{
-		"DESCRIPTION": "A card #ySynergizes if the previous card played this turn was of the same series.",
+		"DESCRIPTION": "A card #ySynergizes if the last card played this turn shares an #yAffinity color, with at least #b1 of the #b2 #yAffinities being #yLV2.",
 		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized", "synergic"],
 		"PROPER_NAME": "Synergy"
 	},

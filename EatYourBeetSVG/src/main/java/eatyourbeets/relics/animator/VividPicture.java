@@ -1,21 +1,29 @@
 package eatyourbeets.relics.animator;
 
+import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.relics.EnchantableRelic;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
-public class VividPicture extends AnimatorRelic implements OnSynergySubscriber
+public class VividPicture extends EnchantableRelic implements OnSynergySubscriber, CustomSavable<Integer>
 {
     public static final String ID = CreateFullID(VividPicture.class);
 
     public VividPicture()
     {
-        super(ID, RelicTier.BOSS, LandingSound.MAGICAL);
+        this(null);
+    }
+
+    public VividPicture(Enchantment enchantment)
+    {
+        super(ID, RelicTier.BOSS, LandingSound.MAGICAL, enchantment);
     }
 
     @Override
@@ -50,8 +58,10 @@ public class VividPicture extends AnimatorRelic implements OnSynergySubscriber
         ArrayList<AbstractRelic> relics = player.relics;
         for (int i = 0; i < relics.size(); i++)
         {
-            if (relics.get(i).relicId.equals(LivingPicture.ID))
+            LivingPicture relic = JUtils.SafeCast(relics.get(i), LivingPicture.class);
+            if (relic != null)
             {
+                ApplyEnchantment(relic.enchantment);
                 instantObtain(player, i, true);
                 return;
             }

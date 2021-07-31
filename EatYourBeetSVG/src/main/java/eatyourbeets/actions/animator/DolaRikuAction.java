@@ -21,7 +21,7 @@ public class DolaRikuAction extends EYBAction
 
         Initialize(choices, DolaRiku.DATA.Strings.NAME);
 
-        message = GR.Common.Strings.GridSelection.ChooseCards;
+        message = GR.Common.Strings.GridSelection.ChooseCards_F1;
         card = exhausted;
     }
 

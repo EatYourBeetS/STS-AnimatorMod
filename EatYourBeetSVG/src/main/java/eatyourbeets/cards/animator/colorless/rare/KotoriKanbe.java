@@ -33,7 +33,7 @@ public class KotoriKanbe extends AnimatorCard
     @Override
     public String GetRawDescription()
     {
-        return super.GetRawDescription(HP_HEAL_THRESHOLD);
+        return GetRawDescription(HP_HEAL_THRESHOLD);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class KotoriKanbe extends AnimatorCard
             if (stacks > 0)
             {
                 EnemyIntent intent = GameUtilities.GetIntent(m).AddWeak();
-                if (heal >= HP_HEAL_THRESHOLD && !CombatStats.HasActivatedLimited(cardID))
+                if (heal >= HP_HEAL_THRESHOLD && CombatStats.CanActivateLimited(cardID))
                 {
                     intent.AddStrength(-secondaryValue);
                 }

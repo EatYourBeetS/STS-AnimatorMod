@@ -9,12 +9,10 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import eatyourbeets.actions.special.PlaySFX;
 import eatyourbeets.effects.SFX;
 
 public class BiteEffect2 extends AbstractGameEffect
 {
-    private static PlaySFX BITE_SFX;
     private static AtlasRegion top;
     private static AtlasRegion bot;
 
@@ -32,7 +30,6 @@ public class BiteEffect2 extends AbstractGameEffect
     {
         if (top == null)
         {
-            BITE_SFX = SFX.Bite(0.05f, true);
             top = ImageMaster.vfxAtlas.findRegion("combat/biteTop");
             bot = ImageMaster.vfxAtlas.findRegion("combat/biteBot");
         }
@@ -64,7 +61,7 @@ public class BiteEffect2 extends AbstractGameEffect
         
         if (!this.playedSfx && actualDuration < this.startingDuration - 0.3F)
         {
-            BITE_SFX.Play();
+            SFX.Play(SFX.EVENT_VAMP_BITE, 0.9f, 1.1f);
             this.playedSfx = true;
         }
 

@@ -42,13 +42,15 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
 
         if (affinityType == AffinityType.Star)
         {
-            Initialize(0, 4, 3);
+            Initialize(0, 5, 3);
         }
         else
         {
-            Initialize(0, 5, 2);
+            Initialize(0, 6, 2);
         }
-        SetUpgrade(0, 3);
+        SetUpgrade(0, 2);
+
+        SetAffinityRequirement(affinityType, magicNumber);
 
         SetTag(CardTags.STARTER_DEFEND, true);
         SetTag(GR.Enums.CardTags.IMPROVED_DEFEND, true);

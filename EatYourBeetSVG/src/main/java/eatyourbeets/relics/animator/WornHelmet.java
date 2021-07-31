@@ -20,7 +20,7 @@ public class WornHelmet extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(BLOCK_AMOUNT1, BLOCK_AMOUNT2);
+        return FormatDescription(0, BLOCK_AMOUNT1, BLOCK_AMOUNT2);
     }
 
     @Override

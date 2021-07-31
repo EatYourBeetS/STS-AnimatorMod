@@ -4,11 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredTexture;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -26,24 +23,14 @@ public class EYBCardAffinities
         Card = card;
     }
 
-    public void Initialize(int red, int green, int blue, int light, int dark)
+    public void Initialize(AffinityType type, int base, int upgrade, int scaling, int requirement)
     {
-        Star = null;
-        List.clear();
-        Initialize(AffinityType.Red, red, 0, 0);
-        Initialize(AffinityType.Green, green, 0, 0);
-        Initialize(AffinityType.Blue, blue, 0, 0);
-        Initialize(AffinityType.Light, light, 0, 0);
-        Initialize(AffinityType.Dark, dark, 0, 0);
-    }
-
-    public void Initialize(AffinityType type, int base, int upgrade, int scaling)
-    {
-        if (base > 0 || upgrade > 0 || scaling > 0)
+        if (base > 0 || upgrade > 0 || scaling > 0 || requirement > 0)
         {
             EYBCardAffinity a = Set(type, base);
             a.upgrade = upgrade;
             a.scaling = scaling;
+            a.requirement = requirement;
         }
     }
 
@@ -54,6 +41,7 @@ public class EYBCardAffinities
             Star = new EYBCardAffinity(AffinityType.Star, affinities.Star.level);
             Star.scaling = affinities.Star.scaling;
             Star.upgrade = affinities.Star.upgrade;
+            Star.requirement = affinities.Star.requirement;
         }
         else
         {
@@ -66,6 +54,7 @@ public class EYBCardAffinities
             EYBCardAffinity t = new EYBCardAffinity(a.Type, a.level);
             t.scaling = a.scaling;
             t.upgrade = a.upgrade;
+            t.requirement = a.requirement;
             List.add(t);
         }
         Refresh();
@@ -133,31 +122,33 @@ public class EYBCardAffinities
         return Star != null && Star.level > 0;
     }
 
-    public void AddLevels(EYBCardAffinities other, int levelLimit)
+    public EYBCardAffinities Add(EYBCardAffinities other, int levelLimit)
     {
-        if (other == null)
+        if (other != null)
         {
-            return;
+            int star = Math.min(levelLimit, other.GetLevel(AffinityType.Star));
+            if (star > 0)
+            {
+                AddStar(star);
+                Add(star, star, star, star, star);
+            }
+            else for (EYBCardAffinity item : other.List)
+            {
+                Add(item.Type, Math.min(levelLimit, item.level));
+            }
         }
 
-        int star = Math.min(levelLimit, other.GetLevel(AffinityType.Star));
-        if (star > 0)
-        {
-            AddStar(star);
-            Add(star, star, star, star, star);
-        }
-        else for (EYBCardAffinity item : other.List)
-        {
-            Add(item.Type, Math.min(levelLimit, item.level));
-        }
+        return this;
     }
 
-    public void Add(EYBCardAffinities other)
+    public EYBCardAffinities Add(EYBCardAffinities other)
     {
         for (EYBCardAffinity item : other.List)
         {
             Add(item.Type, item.level);
         }
+
+        return this;
     }
 
     public EYBCardAffinity Add(AffinityType type, int level)
@@ -211,9 +202,21 @@ public class EYBCardAffinities
 
     public EYBCardAffinity Get(AffinityType type)
     {
+        return Get(type, false);
+    }
+
+    public EYBCardAffinity Get(AffinityType type, boolean createIfNull)
+    {
+        if (type == AffinityType.General)
+        {
+            final int star = Star != null ? Star.level : 0;
+            final EYBCardAffinity a = List.size() > 0 ? List.get(0) : null;
+            return a != null && a.level >= star ? a : Star;
+        }
+
         if (type == AffinityType.Star)
         {
-            return Star;
+            return (createIfNull && Star == null) ? SetStar(0) : Star;
         }
 
         for (EYBCardAffinity item : List)
@@ -224,7 +227,7 @@ public class EYBCardAffinities
             }
         }
 
-        return null;
+        return createIfNull ? Set(type, 0) : null;
     }
 
     public int GetScaling(AffinityType type, boolean useStarScaling)
@@ -296,49 +299,24 @@ public class EYBCardAffinities
         }
     }
 
-    public boolean CanSynergize(EYBCardAffinities other)
+    public void SetRequirement(AffinityType type, int requirement)
     {
-        return GetSynergies(other).GetLevel(null) > 0;
+        if (type == AffinityType.General)
+        {
+            type = AffinityType.Star;
+        }
+
+        Get(type, true).requirement = requirement;
     }
 
-    public EYBCardAffinities GetSynergies(EYBCardAffinities other)
+    public int GetRequirement(AffinityType type)
     {
-        final EYBCardAffinities synergies = new EYBCardAffinities(null);
-        for (AffinityType type : AffinityType.BasicTypes())
+        if (type == AffinityType.General)
         {
-            int lv_a = GetLevel(type);
-            int lv_b = other.GetLevel(type);
-            if ((lv_a > 1 && lv_b > 0) || (lv_b > 1 && lv_a > 0))
-            {
-                synergies.Add(type, lv_a);
-            }
+            type = AffinityType.Star;
         }
-
-        return synergies;
-    }
-
-    public void OnSynergy(AnimatorCard card)
-    {
-        EYBCard c1 = JUtils.SafeCast(card, EYBCard.class);
-        if (c1 == null)
-        {
-            JUtils.LogError(this, "OnSynergy received null card reference.");
-            return;
-        }
-
-        AnimatorCard b = CombatStats.Affinities.GetLastCardPlayed();
-        if (b == null)
-        {
-            return;
-        }
-
-        for (EYBCardAffinity affinity : c1.affinities.List)
-        {
-            if (affinity.level >= 2 && b.affinities.GetLevel(affinity.Type) > 0 && CombatStats.TryActivateSemiLimited(affinity.Type.name()))
-            {
-                GameActions.Bottom.SynergyEffect(affinity.Type);
-            }
-        }
+        EYBCardAffinity a = Get(type);
+        return a == null ? 0 : a.requirement;
     }
 
     public void RenderOnCard(SpriteBatch sb, EYBCard card, boolean highlight)

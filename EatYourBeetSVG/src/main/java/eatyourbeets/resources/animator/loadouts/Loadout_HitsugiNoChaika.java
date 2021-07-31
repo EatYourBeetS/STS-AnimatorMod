@@ -14,9 +14,9 @@ public class Loadout_HitsugiNoChaika extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(Gillette.DATA, 4);
         AddToSpecialSlots(ChaikaBohdan.DATA, 5);

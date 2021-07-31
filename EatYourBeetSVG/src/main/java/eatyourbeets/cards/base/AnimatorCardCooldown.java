@@ -33,16 +33,16 @@ public class AnimatorCardCooldown
         {
             if (card.secondaryValue > 0)
             {
-                return new ColoredString(card.secondaryValue, COOLDOWN_INCOMPLETE_COLOR, card.transparency);
+                return new ColoredString(card.secondaryValue, COOLDOWN_INCOMPLETE_COLOR);
             }
             else
             {
-                return new ColoredString(card.secondaryValue, Settings.GREEN_TEXT_COLOR, card.transparency);
+                return new ColoredString(card.secondaryValue, Settings.GREEN_TEXT_COLOR);
             }
         }
         else
         {
-            return new ColoredString(card.secondaryValue, Settings.CREAM_COLOR, card.transparency);
+            return new ColoredString(card.secondaryValue, Settings.CREAM_COLOR);
         }
     }
 

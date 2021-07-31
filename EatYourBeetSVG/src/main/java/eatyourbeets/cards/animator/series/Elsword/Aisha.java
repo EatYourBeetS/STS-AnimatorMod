@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
@@ -13,29 +15,30 @@ import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Aisha extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Aisha.class)
+            .SetMaxCopies(2)
             .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental)
             .SetSeries(CardSeries.Elsword);
+    public static final int BOOST = 2;
 
     public Aisha()
     {
         super(DATA);
 
-        Initialize(2, 0, 0);
-        SetUpgrade(0, 0, 1);
+        Initialize(1, 0, 2, 2);
+        SetUpgrade(2, 0, 0, 0);
 
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Dark(1, 0, 1);
     }
 
     @Override
-    protected void OnUpgrade()
+    protected String GetRawDescription()
     {
-        upgradedDamage = true;
+        return super.GetRawDescription(BOOST);
     }
 
     @Override
@@ -45,11 +48,9 @@ public class Aisha extends AnimatorCard
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
+    protected float GetInitialDamage()
     {
-        super.Refresh(enemy);
-
-        GameUtilities.IncreaseMagicNumber(this, player.filledOrbCount(), true);
+        return super.GetInitialDamage() + (player.filledOrbCount() * secondaryValue);
     }
 
     @Override
@@ -58,19 +59,31 @@ public class Aisha extends AnimatorCard
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE).SetVFX(true, false)
-            .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.VIOLET)).duration * 0.1f);
+            .SetDamageEffect(enemy ->
+            {
+                GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.PURPLE));
+                return GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.VIOLET)).duration * 0.1f;
+            });
+        }
+
+        if (CheckSpecialCondition(true))
+        {
+            GameActions.Bottom.GainIntellect(BOOST);
+            GameActions.Bottom.GainCorruption(BOOST);
         }
     }
 
     @Override
-    public void triggerWhenCreated(boolean startOfBattle)
+    public boolean CheckSpecialCondition(boolean use)
     {
-        super.triggerWhenCreated(startOfBattle);
-
-        if (startOfBattle && CombatStats.TryActivateLimited(cardID))
+        for (AbstractOrb orb : player.orbs)
         {
-            GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.GainOrbSlots(1);
+            if (Dark.ORB_ID.equals(orb.ID))
+            {
+                return (use ? CombatStats.TryActivateLimited(cardID) : CombatStats.CanActivateLimited(cardID));
+            }
         }
+
+        return false;
     }
 }

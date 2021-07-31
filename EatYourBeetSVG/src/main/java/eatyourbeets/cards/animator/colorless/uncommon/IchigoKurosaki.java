@@ -37,7 +37,7 @@ public class IchigoKurosaki extends AnimatorCard
 
         GameActions.Bottom.Callback(() ->
         {
-            if (CombatStats.Affinities.GetPower(AffinityType.Red).amount >= secondaryValue)
+            if (CombatStats.Affinities.GetPowerAmount(AffinityType.Red) >= secondaryValue)
             {
                 GameActions.Bottom.MakeCardInDrawPile(new IchigoBankai());
             }

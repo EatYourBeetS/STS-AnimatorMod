@@ -90,7 +90,10 @@
 			"Scry {0}",
 			"Next turn: Gain {0} [Block]",
 			"Next turn: Draw {0} card(s)",
-			"Next turn: Gain {0} [E]"
+			"Next turn: Gain {0} [E]",
+			"Enter any stance",
+			"Pay {0} [E]",
+			"Lose {0} HP"
 		]
 	},
 
@@ -161,7 +164,8 @@
 		[
 			"Starting Cards: ",
 			"###############",
-			"Unlocks at Level {0} (You are Level {1})"
+			"Unlocks at Level {0} (You are Level {1})",
+			"Invalid Loadout"
 		]
 	},
 	

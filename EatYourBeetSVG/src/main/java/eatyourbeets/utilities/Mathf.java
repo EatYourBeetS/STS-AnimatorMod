@@ -154,6 +154,16 @@ public class Mathf
         current.a = Lerp(current.a, target.a, amount);
     }
 
+    public static Color LerpCopy(Color current, Color target, float amount)
+    {
+        current = current.cpy();
+        current.r = Lerp(current.r, target.r, amount);
+        current.g = Lerp(current.g, target.g, amount);
+        current.b = Lerp(current.b, target.b, amount);
+        current.a = Lerp(current.a, target.a, amount);
+        return current;
+    }
+
     public static void MoveTowards(Vector3f current, Vector3f target, Vector3f speed, float progress)
     {
         current.x = MoveTowards(current.x, target.x, speed.x * progress);

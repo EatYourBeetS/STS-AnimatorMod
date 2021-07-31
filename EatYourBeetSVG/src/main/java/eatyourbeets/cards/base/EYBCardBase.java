@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
@@ -68,6 +67,7 @@ public abstract class EYBCardBase extends AbstractCard
     protected static final Color COLOR_RARE = new Color(0.95f, 0.85f, 0.3f, 1f);
     protected static final Color COLOR_SPECIAL = new Color(1f, 1f, 1f, 1f);
 
+    public static boolean canCropPortraits = true;
     public static AbstractPlayer player = null;
     public static Random rng = null;
 
@@ -276,7 +276,7 @@ public abstract class EYBCardBase extends AbstractCard
             }
 
             RenderAtlas(sb, new Color(0, 0, 0, transparency * 0.25f), getCardBgAtlas(), current_x + SHADOW_OFFSET_X * drawScale, current_y - SHADOW_OFFSET_Y * drawScale);
-            if (player.hoveredCard == this && (player.isDraggingCard && player.isHoveringDropZone || player.inSingleTargetMode))
+            if ((player.hoveredCard == this) && ((player.isDraggingCard && player.isHoveringDropZone) || player.inSingleTargetMode))
             {
                 RenderAtlas(sb, HOVER_IMG_COLOR, getCardBgAtlas(), current_x, current_y);
             }
@@ -297,47 +297,70 @@ public abstract class EYBCardBase extends AbstractCard
     {
         if (!isSeen || isLocked)
         {
-            RenderPortraitImage(sb, GR.GetTexture(QuestionMark.DATA.ImagePath), _renderColor.Get(this), 1, false);
+            RenderPortraitImage(sb, GR.GetTexture(QuestionMark.DATA.ImagePath), _renderColor.Get(this), 1, false, false, false);
             return;
         }
 
-        final boolean cropPortrait = this.cropPortrait && GR.Animator.Config.CropCardImages.Get();
+        final boolean cropPortrait = canCropPortraits && (this.cropPortrait && GR.Animator.Config.CropCardImages.Get());
         ColoredTexture image = GetPortraitImage();
         if (image != null)
         {
-            RenderPortraitImage(sb, image.texture, image.color, image.scale, cropPortrait);
+            RenderPortraitImage(sb, image.texture, image.color, image.scale, cropPortrait, false, false);
         }
         image = GetPortraitForeground();
         if (image != null)
         {
-            RenderPortraitImage(sb, image.texture, image.color, image.scale, cropPortrait);
+            RenderPortraitImage(sb, image.texture, image.color, image.scale, cropPortrait, image.scale != 1, true);
         }
     }
 
-    protected void RenderPortraitImage(SpriteBatch sb, Texture texture, Color color, float scale, boolean cropPortrait)
+    protected void RenderPortraitImage(SpriteBatch sb, Texture texture, Color color, float scale, boolean cropPortrait, boolean useTextureSize, boolean foreground)
     {
         if (color == null)
         {
             color = _renderColor.Get(this);
         }
 
+        final float render_width = useTextureSize ? texture.getWidth() : 250;
+        final float render_height = useTextureSize ? texture.getWidth() : 190;
         if (cropPortrait && drawScale > 0.6f && drawScale < 1)
         {
-            int width = texture.getWidth();
-            int height = texture.getHeight();
-            int offset_x = (int) ((1 - drawScale) * (0.5f * width));
-            int offset_y1 = 0;//(int) ((1-drawScale) * (0.5f * height));
-            int offset_y2 = (int) ((1 - drawScale) * (1f * height));
-            TextureRegion region = new TextureRegion(texture, offset_x, offset_y1, width - (2 * offset_x), height - offset_y1 - offset_y2);
-            RenderHelpers.DrawOnCardAuto(sb, this, region, new Vector2(0, 72), 250, 190, color, transparency, scale);
+            final int width = texture.getWidth();
+            final int offset_x = (int) ((1 - drawScale) * (0.5f * width));
+            TextureAtlas.AtlasRegion region = foreground ? jokePortrait : portrait;
+            if (region == null || texture != region.getTexture() || (region.getRegionX() != offset_x) || GR.UI.Elapsed50())
+            {
+                final int height = texture.getHeight();
+                final int offset_y1 = 0;//(int) ((1-drawScale) * (0.5f * height));
+                final int offset_y2 = (int) ((1 - drawScale) * (1f * height));
+                if (region == null)
+                {
+                    region = new TextureAtlas.AtlasRegion(texture, offset_x, offset_y1, width - (2 * offset_x), height - offset_y1 - offset_y2);
+                    if (foreground)
+                    {
+                        jokePortrait = region; // let's just reuse this.
+                    }
+                    else
+                    {
+                        portrait = region;
+                    }
+                }
+                else
+                {
+                    region.setRegion(texture);
+                    region.setRegion(offset_x, offset_y1, width - (2 * offset_x), height - offset_y1 - offset_y2);
+                }
+            }
+
+            RenderHelpers.DrawOnCardAuto(sb, this, region, new Vector2(0, 72), render_width, render_height, color, transparency, scale);
         }
         else if (isPopup)
         {
-            RenderHelpers.DrawOnCardAuto(sb, this, texture, new Vector2(0, 72), 500, 380, color, transparency, scale * 0.5f);
+            RenderHelpers.DrawOnCardAuto(sb, this, texture, new Vector2(0, 72), render_width*2, render_height*2, color, transparency, scale * 0.5f);
         }
         else
         {
-            RenderHelpers.DrawOnCardAuto(sb, this, texture, new Vector2(0, 72), 250, 190, color, transparency, scale);
+            RenderHelpers.DrawOnCardAuto(sb, this, texture, new Vector2(0, 72), render_width, render_height, color, transparency, scale);
         }
     }
 
@@ -366,6 +389,8 @@ public abstract class EYBCardBase extends AbstractCard
         {
             SpireSuper.call(sb, x, y);
         }
+
+        TryRenderCentered(sb, GetCardBorderIndicator());
     }
 
     @SpireOverride
@@ -426,6 +451,11 @@ public abstract class EYBCardBase extends AbstractCard
         return null;
     }
 
+    protected ColoredTexture GetCardBorderIndicator()
+    {
+        return null;
+    }
+
     protected Texture GetCardBackground()
     {
         return null;
@@ -464,47 +494,41 @@ public abstract class EYBCardBase extends AbstractCard
     {
         if (isMagicNumberModified)
         {
-            return new ColoredString(magicNumber, magicNumber >= baseMagicNumber ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, transparency);
+            return new ColoredString(magicNumber, magicNumber >= baseMagicNumber ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR);
         }
-        else
-        {
-            return new ColoredString(baseMagicNumber, Settings.CREAM_COLOR, transparency);
-        }
+
+        return new ColoredString(baseMagicNumber, Settings.CREAM_COLOR);
     }
 
     public ColoredString GetBlockString()
     {
         if (isBlockModified)
         {
-            return new ColoredString(block, block >= baseBlock ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, transparency);
+            return new ColoredString(block, block >= baseBlock ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR);
         }
-        else
-        {
-            return new ColoredString(baseBlock, Settings.CREAM_COLOR, transparency);
-        }
+
+        return new ColoredString(baseBlock, Settings.CREAM_COLOR);
     }
 
     public ColoredString GetDamageString()
     {
         if (isDamageModified)
         {
-            return new ColoredString(damage, damage >= baseDamage ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, transparency);
+            return new ColoredString(damage, damage >= baseDamage ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR);
         }
-        else
-        {
-            return new ColoredString(baseDamage, Settings.CREAM_COLOR, transparency);
-        }
+
+        return new ColoredString(baseDamage, Settings.CREAM_COLOR);
     }
 
     public ColoredString GetSecondaryValueString()
     {
         if (isSecondaryValueModified)
         {
-            return new ColoredString(secondaryValue, secondaryValue >= baseSecondaryValue ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, transparency);
+            return new ColoredString(secondaryValue, secondaryValue >= baseSecondaryValue ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR);
         }
         else
         {
-            return new ColoredString(baseSecondaryValue, Settings.CREAM_COLOR, transparency);
+            return new ColoredString(baseSecondaryValue, Settings.CREAM_COLOR);
         }
     }
 

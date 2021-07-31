@@ -79,7 +79,7 @@ public class CardAffinityCounter extends GUIElement
     public CardAffinityCounter SetOnClick(ActionT1<CardAffinityCounter> onClick)
     {
         this.onClick = onClick;
-        this.background_button.SetOnClick(() -> this.onClick.Invoke(this));
+        this.background_button.SetOnClick(onClick == null ? null : () -> this.onClick.Invoke(this));
 
         return this;
     }

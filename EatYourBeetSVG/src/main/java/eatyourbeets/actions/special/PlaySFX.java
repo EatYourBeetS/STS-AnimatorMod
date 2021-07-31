@@ -1,39 +1,42 @@
 package eatyourbeets.actions.special;
 
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import eatyourbeets.actions.EYBAction;
+import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.effects.SFX;
 
-public class PlaySFX extends EYBAction//WithCallback<AbstractGameEffect> TODO: callback when sound is finished
+public class PlaySFX extends EYBActionWithCallback<PlaySFX>
 {
     private String key;
-    private float pitch;
-    private boolean variable;
+    private float pitchMin;
+    private float pitchMax;
 
     public PlaySFX(String key)
     {
-        this(key, 0.0F, false);
+        this(key, 1, 1);
     }
 
-    public PlaySFX(String key, float pitch)
+    public PlaySFX(String key, float pitchMin, float pitchMax)
     {
-        this(key, pitch, false);
-    }
-
-    public PlaySFX(String key, float pitch, boolean variable)
-    {
-        super(ActionType.WAIT);
+        super(ActionType.WAIT, 0.1f);
 
         this.key = key;
-        this.pitch = pitch;
-        this.variable = variable;
-        this.actionType = ActionType.WAIT;
+        this.pitchMin = pitchMin;
+        this.pitchMax = pitchMax;
+        this.isRealtime = true;
     }
 
-    public void update()
+    @Override
+    protected void FirstUpdate()
     {
         Play();
+    }
 
-        this.isDone = true;
+    @Override
+    protected void UpdateInternal(float deltaTime)
+    {
+        if (TickDuration(deltaTime))
+        {
+            Complete(this);
+        }
     }
 
     public String GetKey()
@@ -43,13 +46,11 @@ public class PlaySFX extends EYBAction//WithCallback<AbstractGameEffect> TODO: c
 
     public void Play()
     {
-        if (variable)
+        float seconds = SFX.Play(key, pitchMin, pitchMax);
+        if (callbacks.size() > 0)
         {
-            CardCrawlGame.sound.play(this.key, this.pitch);
-        }
-        else
-        {
-            CardCrawlGame.sound.playA(this.key, this.pitch);
+            duration = seconds;
+            startDuration = duration + 0.001f;
         }
     }
 }

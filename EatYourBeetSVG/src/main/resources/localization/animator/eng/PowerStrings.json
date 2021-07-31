@@ -95,11 +95,6 @@
 		"DESCRIPTIONS": ["The first #b", " card(s) you play each turn will Synergize."],
 		"NAME": "Envy"
 	},
-	"animator:EvePower":
-	{
-		"DESCRIPTIONS": ["Whenever a card #ySynergizes, deal #b", " damage to a random enemy, then increase this damage by 1."],
-		"NAME": "Eve"
-	},
 	"animator:FeridBathoryPower":
 	{
 		"DESCRIPTIONS": ["Whenever a card is Exhausted, a random enemy loses #b", " HP and you gain #b", " #yTemporary #yHp."],

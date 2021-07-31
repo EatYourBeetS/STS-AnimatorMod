@@ -11,6 +11,7 @@ public class CommonImages
 
     public final TextureCache UnnamedReignEntrance        = new TextureCache("images/ui/map/act5Entrance.png");
     public final TextureCache UnnamedReignEntranceOutline = new TextureCache("images/ui/map/act5EntranceOutline.png");
+    public final TextureCache CampfireOption_Enchant      = new TextureCache("images/ui/campfire/Enchant.png");
     public final TextureCache Circle                      = new TextureCache("images/ui/topPanel/eyb/Circle.png");
     public final TextureCache Tag                         = new TextureCache("images/ui/topPanel/eyb/Tag.png");
     public final TextureCache Panel                       = new TextureCache("images/ui/topPanel/eyb/Panel.png");
@@ -18,11 +19,14 @@ public class CommonImages
     public final TextureCache Panel_Skewed_Right          = new TextureCache("images/ui/topPanel/eyb/Panel_Skewed_Right.png");
     public final TextureCache Panel_Rounded               = new TextureCache("images/ui/topPanel/eyb/Panel_Rounded.png");
     public final TextureCache Panel_Rounded_Half_H        = new TextureCache("images/ui/topPanel/eyb/Panel_Rounded_Half_H.png");
+    public final TextureCache Panel_Elliptical            = new TextureCache("images/ui/topPanel/eyb/Panel_Elliptical.png");
+    public final TextureCache Panel_Elliptical_Half_H     = new TextureCache("images/ui/topPanel/eyb/Panel_Elliptical_Half_H.png");
     public final TextureCache Discord                     = new TextureCache("images/ui/topPanel/eyb/Discord.png");
     public final TextureCache Steam                       = new TextureCache("images/ui/topPanel/eyb/Steam.png");
     public final TextureCache Randomize                   = new TextureCache("images/ui/topPanel/eyb/Randomize.png");
     public final TextureCache SwapCards                   = new TextureCache("images/ui/topPanel/eyb/SwapCards.png");
     public final TextureCache SquaredButton               = new TextureCache("images/ui/topPanel/eyb/SquaredButton.png");
+    public final TextureCache SquaredButton_EmptyCenter   = new TextureCache("images/ui/topPanel/eyb/SquaredButton_EmptyCenter.png");
     public final TextureCache HexagonalButton             = new TextureCache("images/ui/topPanel/eyb/HexagonalButton.png");
     public final TextureCache HexagonalButtonBorder       = new TextureCache("images/ui/topPanel/eyb/HexagonalButtonBorder.png");
     public final TextureCache HexagonalButtonHover        = new TextureCache("images/ui/topPanel/eyb/HexagonalButtonHover.png");

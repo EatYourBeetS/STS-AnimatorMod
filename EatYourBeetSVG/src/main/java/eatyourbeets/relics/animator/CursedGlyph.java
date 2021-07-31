@@ -21,7 +21,7 @@ public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRel
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(MAX_HP_LOSS);
+        return FormatDescription(0, MAX_HP_LOSS);
     }
 
     @Override

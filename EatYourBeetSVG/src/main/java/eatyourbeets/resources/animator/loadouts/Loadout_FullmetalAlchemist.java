@@ -14,9 +14,9 @@ public class Loadout_FullmetalAlchemist extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(ElricAlphonse.DATA, 4);
         AddToSpecialSlots(ElricEdward.DATA, 4);

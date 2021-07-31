@@ -20,11 +20,29 @@ import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.controls.GUI_Image;
 
+import java.util.ArrayList;
+
 public class RenderHelpers
 {
     public static final float CARD_ENERGY_IMG_WIDTH = 26.0F * Settings.scale;
     private static final StringBuilder builder = new StringBuilder();
     private static final GlyphLayout layout = new GlyphLayout();
+
+    //copied from TipHelper
+    private static final float CARD_TIP_PAD = 12.0F * Settings.scale;
+    private static final float SHADOW_DIST_Y = 14.0F * Settings.scale;
+    private static final float SHADOW_DIST_X = 9.0F * Settings.scale;
+    private static final float BOX_EDGE_H = 32.0F * Settings.scale;
+    private static final float BOX_BODY_H = 64.0F * Settings.scale;
+    private static final float BOX_W = 320.0F * Settings.scale;
+    private static final float TEXT_OFFSET_X = 22.0F * Settings.scale;
+    private static final float HEADER_OFFSET_Y = 12.0F * Settings.scale;
+    private static final float ORB_OFFSET_Y = -8.0F * Settings.scale;
+    private static final float BODY_OFFSET_Y = -20.0F * Settings.scale;
+    private static final float BODY_TEXT_WIDTH = 280.0F * Settings.scale;
+    private static final float TIP_DESC_LINE_SPACING = 26.0F * Settings.scale;
+    private static final float POWER_ICON_OFFSET_X = 40.0F * Settings.scale;
+    //
 
     public static void ResetFont(BitmapFont font)
     {
@@ -315,8 +333,7 @@ public class RenderHelpers
         final float scale = Settings.scale * imgScale;
 
         sb.setColor(color);
-        sb.draw(img, drawX - (width / 2f), drawY - (height / 2f), width / 2f, height / 2f, width, height,
-                scale, scale, imgRotation);
+        sb.draw(img, drawX - (width / 2f), drawY - (height / 2f), width / 2f, height / 2f, width, height, scale, scale, imgRotation);
     }
 
     public static void Draw(SpriteBatch sb, Texture img, float drawX, float drawY, float size)
@@ -376,6 +393,11 @@ public class RenderHelpers
     public static GUI_Image ForTexture(Texture texture, Color color)
     {
         return new GUI_Image(texture, color);
+    }
+
+    public static Color CopyColor(Color color, float a)
+    {
+        return new Color(color.r, color.g, color.b, a);
     }
 
     public static Color CopyColor(AbstractCard card, Color color)
@@ -444,8 +466,8 @@ public class RenderHelpers
             builder.setLength(0);
             layout.setText(font, " ");
 
-            float curWidth = 0.0F;
-            float curHeight = 0.0F;
+            float curWidth = 0f;
+            float curHeight = 0f;
             float spaceWidth = layout.width;
 
             final FuncT3<Boolean, String, Integer, Character> compare = (s, i, c) -> c == ((i < s.length()) ? s.charAt(i) : null);
@@ -462,23 +484,14 @@ public class RenderHelpers
             for (int i = 0; i < text.length(); i++)
             {
                 char c = text.charAt(i);
-                if ('N' == c && compare.Invoke(text, i + 1, 'L'))
+                if (foundIcon)
                 {
-                    curWidth = 0.0F;
-                    curHeight -= lineSpacing;
-                    i += 1;
-                }
-                else if ('T' == c && compare.Invoke(text, i + 1, 'A') && compare.Invoke(text, i + 2, 'B'))
-                {
-                    curWidth += spaceWidth * 5.0F;
-                    i += 2;
-                }
-                else if ('[' == c)
-                {
-                    foundIcon = true;
-                }
-                else if (foundIcon && ']' == c)
-                {
+                    if (']' != c)
+                    {
+                        builder.append(c);
+                        continue;
+                    }
+
                     foundIcon = false;
                     TextureRegion icon = GetSmallIcon(build.Invoke(builder));
                     if (icon != null)
@@ -502,6 +515,21 @@ public class RenderHelpers
                             curWidth += CARD_ENERGY_IMG_WIDTH + spaceWidth;
                         }
                     }
+                }
+                else if ('N' == c && compare.Invoke(text, i + 1, 'L'))
+                {
+                    curWidth = 0f;
+                    curHeight -= lineSpacing;
+                    i += 1;
+                }
+                else if ('T' == c && compare.Invoke(text, i + 1, 'A') && compare.Invoke(text, i + 2, 'B'))
+                {
+                    curWidth += spaceWidth * 5.0F;
+                    i += 2;
+                }
+                else if ('[' == c)
+                {
+                    foundIcon = true;
                 }
                 else if ('#' == c)
                 {
@@ -528,7 +556,7 @@ public class RenderHelpers
                         }
                         else
                         {
-                            font.setColor(Color.WHITE);
+                            font.setColor(baseColor);
                         }
 
                         layout.setText(font, word);
@@ -565,8 +593,8 @@ public class RenderHelpers
         builder.setLength(0);
         layout.setText(font, " ");
 
-        float curWidth = 0.0F;
-        float curHeight = 0.0F;
+        float curWidth = 0f;
+        float curHeight = 0f;
         float spaceWidth = layout.width;
 
         final FuncT3<Boolean, String, Integer, Character> compare = (s, i, c) -> c == ((i < s.length()) ? s.charAt(i) : null);
@@ -584,7 +612,7 @@ public class RenderHelpers
             char c = text.charAt(i);
             if ('N' == c && compare.Invoke(text, i + 1, 'L'))
             {
-                curWidth = 0.0F;
+                curWidth = 0f;
                 curHeight -= lineSpacing;
                 i += 1;
             }
@@ -702,5 +730,43 @@ public class RenderHelpers
             default:
                 return Color.WHITE.cpy();
         }
+    }
+
+    public static float GetTooltipHeight(EYBCardTooltip tip)
+    {
+        return -GetSmartHeight(FontHelper.tipBodyFont, tip.description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING) - 7.0F * Settings.scale;
+    }
+
+    public static float CalculateAdditionalOffset(ArrayList<EYBCardTooltip> tips, float hb_cY)
+    {
+        return tips.isEmpty() ? 0f : (1f - hb_cY / (float) Settings.HEIGHT) * GetTallestOffset(tips) - (GetTooltipHeight(tips.get(0)) + BOX_EDGE_H * 3.15f) * 0.5f;
+    }
+
+    public static float CalculateToAvoidOffscreen(ArrayList<EYBCardTooltip> tips, float hb_cY)
+    {
+        return tips.isEmpty() ? 0f : Math.max(0.0F, GetTallestOffset(tips) - hb_cY);
+    }
+
+    private static float GetTallestOffset(ArrayList<EYBCardTooltip> tips)
+    {
+        float currentOffset = 0f;
+        float maxOffset = 0f;
+
+        for (EYBCardTooltip p : tips)
+        {
+            float offsetChange = GetTooltipHeight(p) + BOX_EDGE_H * 3.15F;
+            if ((currentOffset + offsetChange) >= (float) Settings.HEIGHT * 0.7F)
+            {
+                currentOffset = 0f;
+            }
+
+            currentOffset += offsetChange;
+            if (currentOffset > maxOffset)
+            {
+                maxOffset = currentOffset;
+            }
+        }
+
+        return maxOffset;
     }
 }

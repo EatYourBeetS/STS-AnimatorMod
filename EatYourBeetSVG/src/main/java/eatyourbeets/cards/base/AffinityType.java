@@ -4,10 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RenderHelpers;
 
 public enum AffinityType implements Comparable<AffinityType>
@@ -80,12 +78,7 @@ public enum AffinityType implements Comparable<AffinityType>
         return /*this == Star ? null : */(level > 1 ? BorderFG.Texture() : null);
     }
 
-    public AbstractGameAction QueueSynergyEffect(GameActions actions)
-    {
-        return actions.StackAffinityPower(this, 1, false);
-    }
-
-    public TextureRegion GetSynergyEffectIcon()
+    public TextureRegion GetPowerIcon()
     {
         switch (this)
         {
@@ -125,6 +118,18 @@ public enum AffinityType implements Comparable<AffinityType>
             case Star: default: return new Color(0.25f, 0.25f, 0.25f, 1f);
         }
     }
+
+    public static AffinityType FromTooltip(EYBCardTooltip tooltip)
+    {   //@Formatter: Off
+        if (tooltip == GR.Tooltips.Affinity_Red    ) { return AffinityType.Red;     }
+        if (tooltip == GR.Tooltips.Affinity_Green  ) { return AffinityType.Green;   }
+        if (tooltip == GR.Tooltips.Affinity_Blue   ) { return AffinityType.Blue;    }
+        if (tooltip == GR.Tooltips.Affinity_Light  ) { return AffinityType.Light;   }
+        if (tooltip == GR.Tooltips.Affinity_Dark   ) { return AffinityType.Dark;    }
+        if (tooltip == GR.Tooltips.Affinity_Star   ) { return AffinityType.Star;    }
+        if (tooltip == GR.Tooltips.Affinity_General) { return AffinityType.General; }
+        return null;
+    }   //@Formatter: On
 
     public void Render(int level, SpriteBatch sb, Color color, float cX, float cY, float size)
     {

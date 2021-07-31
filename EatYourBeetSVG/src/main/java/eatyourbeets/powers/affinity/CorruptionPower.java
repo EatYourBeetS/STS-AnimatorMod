@@ -1,6 +1,5 @@
 package eatyourbeets.powers.affinity;
 
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.animator.ultrarare.SummoningRitual;
 import eatyourbeets.cards.base.AffinityType;
@@ -14,9 +13,9 @@ public class CorruptionPower extends AbstractAffinityPower
 
     protected static final int[] THRESHOLDS = new int[]{ 5, 7, 9, 11, 13 };
 
-    public CorruptionPower(AbstractCreature owner, int amount)
+    public CorruptionPower()
     {
-        super(AFFINITY_TYPE, POWER_ID, owner, amount);
+        super(AFFINITY_TYPE, POWER_ID);
     }
 
     @Override
@@ -26,9 +25,9 @@ public class CorruptionPower extends AbstractAffinityPower
     }
 
     @Override
-    protected void OnThresholdReached(int threshold)
+    protected void OnThresholdReached(int thresholdIndex)
     {
-        if (threshold == (GetThresholds().length - 1))
+        if (thresholdIndex == (GetThresholds().length - 1))
         {
             GameActions.Bottom.MakeCardInHand(new SummoningRitual());
         }
@@ -44,10 +43,13 @@ public class CorruptionPower extends AbstractAffinityPower
         this.description = powerStrings.DESCRIPTIONS[0];
 
         int[] thresholds = GetThresholds();
-        if (thresholdIndex < thresholds.length)
+        Integer threshold = GetCurrentThreshold();
+        if (threshold != null)
         {
-            final String card = (thresholdIndex == (thresholds.length - 1)) ? "#pSummoning #pRitual" : ("#y" + Crystallize.DATA.Strings.NAME);
-            this.description = JUtils.Format(description + powerStrings.DESCRIPTIONS[1], name, thresholds[thresholdIndex], 1, card);
+            final String card = (threshold == thresholds[thresholds.length - 2])
+                    ? (JUtils.ModifyString(SummoningRitual.DATA.Strings.NAME, w -> "#p" + w))
+                    : ("#y" + Crystallize.DATA.Strings.NAME);
+            this.description = JUtils.Format(description + powerStrings.DESCRIPTIONS[1], name, thresholds[thresholdIndex], card);
         }
         else
         {

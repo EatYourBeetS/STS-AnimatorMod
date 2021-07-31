@@ -24,8 +24,8 @@
 	"<L>": "[A-Light]",
 	"<D>": "[A-Dark]",
 	"<S>": "[A-Star]",
-	"<GEN>": "[A-General]",
-
+	"<W>": "[A-Gen]",
+	
 	" ** ": " NL ",
 	" || ": " NL  NL "
 }

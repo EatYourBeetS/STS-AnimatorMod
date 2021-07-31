@@ -70,7 +70,7 @@ public class AnimatorRuntimeLoadout
         }
 
         AbstractCard temp = data.CreateNewInstance();
-        AnimatorCardBuilder builder = new AnimatorCardBuilder(String.valueOf(Loadout.ID)).SetImage(temp.assetUrl).CanUpgrade(false);
+        AnimatorCardBuilder builder = new AnimatorCardBuilder(String.valueOf(Loadout.ID)).SetImagePath(temp.assetUrl).CanUpgrade(false);
 
         if (promoted)
         {

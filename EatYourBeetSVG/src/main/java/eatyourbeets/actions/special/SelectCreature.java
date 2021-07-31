@@ -289,7 +289,8 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
                 break;
         }
 
-        if (CreateMessage().length() > 0)
+        String message = CreateMessage();
+        if (message.length() > 0)
         {
             FontHelper.renderDeckViewTip(sb, message, Settings.scale * 96f, Settings.CREAM_COLOR);
         }

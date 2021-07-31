@@ -1,18 +1,25 @@
 package eatyourbeets.relics.animator;
 
+import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.relics.EnchantableRelic;
 import eatyourbeets.utilities.GameActions;
 
-public class LivingPicture extends AnimatorRelic implements OnSynergySubscriber
+public class LivingPicture extends EnchantableRelic implements OnSynergySubscriber, CustomSavable<Integer>
 {
     public static final String ID = CreateFullID(LivingPicture.class);
 
     public LivingPicture()
     {
-        super(ID, RelicTier.STARTER, LandingSound.MAGICAL);
+        this(null);
+    }
+
+    public LivingPicture(Enchantment enchantment)
+    {
+        super(ID, RelicTier.STARTER, LandingSound.MAGICAL, enchantment);
     }
 
     @Override

@@ -14,9 +14,9 @@ public class Loadout_MadokaMagica extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(IrohaTamaki.DATA, 4);
         AddToSpecialSlots(OrikoMikuni.DATA, 4);

@@ -26,7 +26,7 @@ public class TheWolleyCore extends UnnamedReignRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(CARD_DRAW, DAMAGE_AMOUNT, BLOCK_AMOUNT);
+        return FormatDescription(0, CARD_DRAW, DAMAGE_AMOUNT, BLOCK_AMOUNT);
     }
 
     @Override

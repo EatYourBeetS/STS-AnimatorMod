@@ -2,6 +2,9 @@ package eatyourbeets.rewards.animator;
 
 import basemod.BaseMod;
 import basemod.abstracts.CustomReward;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -17,7 +20,9 @@ import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.rewards.AnimatorReward;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.ArrayList;
 
@@ -28,7 +33,6 @@ public class SynergyCardsReward extends AnimatorReward
     public final CardSeries series;
     private boolean skip = false;
     private EYBCardAffinityStatistics statistics;
-    private AnimatorRuntimeLoadout loadout;
     private EYBCardTooltip tooltip;
 
     private static String GenerateRewardTitle(CardSeries series)
@@ -39,7 +43,7 @@ public class SynergyCardsReward extends AnimatorReward
         }
         else
         {
-            return "#y" + series.LocalizedName.replace(" ", " #y");
+            return JUtils.ModifyString(series.LocalizedName, w -> "#y" + w);
         }
     }
 
@@ -49,13 +53,15 @@ public class SynergyCardsReward extends AnimatorReward
 
         this.series = series;
         this.cards = GenerateCardReward(series);
-        this.loadout = GR.Animator.Dungeon.GetLoadout(series);
 
         if (series == CardSeries.ANY)
         {
             statistics = new EYBCardAffinityStatistics(AbstractDungeon.srcColorlessCardPool.group);
+            return;
         }
-        else if (loadout != null)
+
+        final AnimatorRuntimeLoadout loadout = GR.Animator.Dungeon.GetLoadout(series);
+        if (loadout != null)
         {
             statistics = loadout.AffinityStatistics;
         }
@@ -117,7 +123,7 @@ public class SynergyCardsReward extends AnimatorReward
             cX = hb.x + hb.width - ((MAX - rendered) * size * Settings.scale * 1.05f);
             cY = hb.cY + (size * Settings.scale * 0.175f);
 
-            g.Render(sb, cX, cY, size, 2);
+            RenderAffinities(g, sb, cX, cY, size, 2);
             rendered += 1;
         }
     }
@@ -159,7 +165,7 @@ public class SynergyCardsReward extends AnimatorReward
                 borderLevel = 0;
             }
 
-            group.Render(sb, cX, cY, size, borderLevel);
+            RenderAffinities(group, sb, cX, cY, size, borderLevel);
             rendered += 1;
         }
     }
@@ -204,6 +210,31 @@ public class SynergyCardsReward extends AnimatorReward
         this.isDone = false;
 
         return false;
+    }
+
+    public static void RenderAffinities(EYBCardAffinityStatistics.Group group, SpriteBatch sb, float cX, float cY, float size, int level)
+    {
+        final AffinityType type = group.Type;
+        final BitmapFont font = EYBFontHelper.CardTitleFont_Large;
+        font.getData().setScale(size* 0.00925f);
+
+        RenderHelpers.DrawCentered(sb, Color.WHITE, type.GetIcon(), cX, cY, size, size, 1, 0);
+        if (level > 0)
+        {
+            Texture texture = type.GetBorder(level);
+            if (texture != null)
+            {
+                RenderHelpers.DrawCentered(sb, Color.WHITE, texture, cX, cY, size, size, 1, 0);
+            }
+
+            texture = type.GetForeground(level);
+            if (texture != null)
+            {
+                RenderHelpers.DrawCentered(sb, Color.WHITE, texture, cX, cY, size, size, 1, 0);
+            }
+        }
+        RenderHelpers.WriteCentered(sb, font, group.GetPercentageString(0), cX + (size * 0.1f * Settings.scale), cY - (size * 0.65f * Settings.scale), Color.WHITE);
+        RenderHelpers.ResetFont(font);
     }
 
     public static class Serializer implements BaseMod.LoadCustomReward, BaseMod.SaveCustomReward

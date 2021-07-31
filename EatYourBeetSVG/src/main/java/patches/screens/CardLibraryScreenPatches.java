@@ -9,12 +9,28 @@ import com.megacrit.cardcrawl.screens.compendium.CardLibSortHeader;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.ColorTabBar;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.CustomCardLibSortHeader;
+import eatyourbeets.ui.common.CustomCardLibSortHeader;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JUtils;
 
 public class CardLibraryScreenPatches
 {
+    @SpirePatch(clz = CardLibraryScreen.class, method = "open")
+    public static class CardLibraryScreen_Open
+    {
+        private static final FieldInfo<ColorTabBar> _colorBar = JUtils.GetField("colorBar", CardLibraryScreen.class);
+
+        @SpirePrefixPatch
+        public static void Prefix(CardLibraryScreen screen)
+        {
+            ColorTabBar tabBar = _colorBar.Get(screen);
+            if (tabBar.curTab != ColorTabBarFix.Enums.MOD)
+            {
+                screen.didChangeTab(tabBar, tabBar.curTab = ColorTabBarFix.Enums.MOD);
+            }
+        }
+    }
+
     @SpirePatch(clz = CardLibraryScreen.class, method = "didChangeTab", paramtypez = {ColorTabBar.class, ColorTabBar.CurrentTab.class})
     public static class CardLibraryScreen_DidChangeTab
     {

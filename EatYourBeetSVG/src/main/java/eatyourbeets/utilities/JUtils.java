@@ -20,6 +20,7 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
+import java.util.regex.Pattern;
 
 public class JUtils
 {
@@ -150,7 +151,11 @@ public class JUtils
 
     public static String Format(String format, Object... args)
     {
-        if (args.length > 0)
+        if (args == null)
+        {
+            return format;
+        }
+        else if (args.length > 0)
         {
             format = format.replaceAll("(?<!\\\\)'", "''").replaceAll("\\\\'", "'");
         }
@@ -281,7 +286,7 @@ public class JUtils
 
     public static <T> String JoinStrings(String delimiter, Collection<T> values)
     {
-        StringJoiner sj = new StringJoiner(delimiter);
+        final StringJoiner sj = new StringJoiner(delimiter);
         for (T value : values)
         {
             sj.add(String.valueOf(value));
@@ -292,13 +297,37 @@ public class JUtils
 
     public static <T> String JoinStrings(String delimiter, T[] values)
     {
-        StringJoiner sj = new StringJoiner(delimiter);
+        final StringJoiner sj = new StringJoiner(delimiter);
         for (T value : values)
         {
             sj.add(String.valueOf(value));
         }
 
         return sj.toString();
+    }
+
+    public static String TitleCase(String text)
+    {
+        return ModifyString(text, w -> Character.toUpperCase(w.charAt(0)) + (w.length() > 1 ? w.substring(1) : ""));
+    }
+
+    public static String ModifyString(String text, FuncT1<String, String> modifyWord)
+    {
+        return ModifyString(text, " ", " ", modifyWord);
+    }
+
+    public static String ModifyString(String text, String separator, String delimiter, FuncT1<String, String> modifyWord)
+    {
+        final String[] words = text.split(Pattern.quote(separator));
+        if (modifyWord != null)
+        {
+            for (int i = 0; i < words.length; i++)
+            {
+                words[i] = modifyWord.Invoke(words[i]);
+            }
+        }
+
+        return JoinStrings(delimiter, words);
     }
 
     public static void LogError(Object source, Object message)

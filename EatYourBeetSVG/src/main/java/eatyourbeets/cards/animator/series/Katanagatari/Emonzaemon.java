@@ -51,7 +51,7 @@ public class Emonzaemon extends AnimatorCard
         GameActions.Bottom.SFX("ATTACK_FIRE");
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
 
-        if (!CombatStats.HasActivatedLimited(cardID))
+        if (CombatStats.CanActivateLimited(cardID))
         {
             ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn;
             int size = cardsPlayed.size();

@@ -7,7 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.TemporaryEnvenomPower;
+import eatyourbeets.powers.replacement.TemporaryEnvenomPower;
 import eatyourbeets.utilities.GameActions;
 
 public class AcuraAkari extends AnimatorCard

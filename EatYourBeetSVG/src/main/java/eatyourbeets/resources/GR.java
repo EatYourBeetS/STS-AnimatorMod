@@ -488,11 +488,7 @@ public class GR
             public static AbstractCard.CardTags AUTOPLAY;
 
             @SpireEnum
-            public static AbstractCard.CardTags IMPROVED_STRIKE;
-
-            @SpireEnum
-            public static AbstractCard.CardTags IMPROVED_DEFEND;
-
+            public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
         }
     }
 }

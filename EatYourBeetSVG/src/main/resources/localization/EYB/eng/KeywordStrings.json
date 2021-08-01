@@ -150,6 +150,12 @@
 	  "NAMES": ["eternal"],
 	  "PROPER_NAME": "Eternal"
 	},
+	"Chaos":
+	{
+		"DESCRIPTION": "Orb: Changes into a random orb whenever you play an #yAttack. Retains its last form at the end of turn.",
+		"NAMES": ["chaos", "chaos+"],
+		"PROPER_NAME": "Chaos"
+	},
 	"Fire":
 	{
 		"DESCRIPTION": "Orb: Applies #yBurning and damages the highest health enemy.",
@@ -164,7 +170,7 @@
 	},
 	"Flight":
 	{
-		"DESCRIPTION": "Take 50% less #yAttack damage. Lose 1 stack until end of turn when taking damage, the power is cancelled at 0 stacks.",
+		"DESCRIPTION": "Take 50% less #yAttack damage. Lose #b1 stack until end of turn when taking damage, the power is cancelled at #b0 stacks.",
 		"NAMES": ["flight"],
 		"PROPER_NAME": "Flight"
 	},
@@ -186,9 +192,15 @@
 	  "NAMES": ["harmonic"],
 	  "PROPER_NAME": "Harmonic"
 	},
+	"Freezing":
+	{
+		"DESCRIPTION": "Reduces #yAttack damage by #b3, or by #b4 if at least #b1 [Frost] is #yChanneled. At the end of turn, reduce [Freezing] by #b1.",
+		"NAMES": ["freezing"],
+		"PROPER_NAME": "Freezing"
+	},
 	"High-Cost":
 	{
-		"DESCRIPTION": "Cards which cost 2 or more [E].",
+		"DESCRIPTION": "Cards which cost #b2 or more [E].",
 		"NAMES": ["high-cost", "high cost"],
 		"PROPER_NAME": "High-Cost"
 	},

@@ -22,6 +22,8 @@ public abstract class ImprovedBasicCard extends AnimatorCard
         this.cropPortrait = false;
         this.portraitImg.color = affinityType.GetAlternateColor(0.85f);
         this.portraitForeground = new ColoredTexture(GR.GetTexture(foregroundTexturePath, true), null);
+
+        SetTag(GR.Enums.CardTags.IMPROVED_BASIC_CARD, true);
     }
 
     protected void SecondaryEffect()

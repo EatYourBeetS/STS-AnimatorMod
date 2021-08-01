@@ -12,6 +12,10 @@ import eatyourbeets.powers.EYBPower;
 import eatyourbeets.powers.animator.*;
 import eatyourbeets.powers.common.ResiliencePower;
 import eatyourbeets.powers.common.SelfDamagePower;
+import eatyourbeets.powers.common.BurningPower;
+import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.powers.animator.SupportDamagePower;
+import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.TextureCache;
@@ -69,6 +73,7 @@ public class CardTooltips
     public EYBCardTooltip Frail = FindByID("Frail");
     public EYBCardTooltip Poison = FindByID("Poison");
     public EYBCardTooltip Burning = FindByID("Burning");
+    public EYBCardTooltip Freezing = FindByID("Freezing");
     public EYBCardTooltip Thorns = FindByID("Thorns");
     public EYBCardTooltip Constricted = FindByID("Constricted");
     public EYBCardTooltip Malleable = FindByID("Malleable");
@@ -81,6 +86,7 @@ public class CardTooltips
     public EYBCardTooltip Plasma = FindByID("Plasma");
     public EYBCardTooltip Frost = FindByID("Frost");
     public EYBCardTooltip Fire = FindByID("Fire");
+    public EYBCardTooltip Chaos = FindByID("Chaos");
     public EYBCardTooltip Earth = FindByID("Earth");
     public EYBCardTooltip Aether = FindByID("Aether");
     public EYBCardTooltip Dark = FindByID("Dark");
@@ -205,12 +211,14 @@ public class CardTooltips
         Frost.SetIcon(tooltips.Frost.Texture(), 6);
         Aether.SetIcon(tooltips.Aether.Texture(), 6);
         Earth.SetIcon(tooltips.Earth.Texture(), 6);
+        Chaos.SetIcon(tooltips.Chaos.Texture(), 6);
         RandomOrb.SetIcon(tooltips.RandomOrb.Texture(), 6);
         Gold.SetIcon(tooltips.Gold.Texture(), 6);
         RandomOrb.SetIcon(tooltips.RandomOrb.Texture(), 6);
         Regeneration.SetIcon(tooltips.Regeneration.Texture(), 6);
 
         LoadFromPower(Burning, new BurningPower(FakeCharacter.Instance, null, 0)).SetIconSizeMulti(0.95f, 0.95f);
+        LoadFromPower(Freezing, new FreezingPower(FakeCharacter.Instance, null, 0));//.SetIconSizeMulti(0.95f, 0.95f);
         LoadFromPower(Poison, new PoisonPower(FakeCharacter.Instance, null, 0)).SetIconSizeMulti(1.05f, 1f);
         LoadFromPower(Metallicize, new MetallicizePower(FakeCharacter.Instance, 0));
         LoadFromPower(PlatedArmor, new PlatedArmorPower(FakeCharacter.Instance, 0));

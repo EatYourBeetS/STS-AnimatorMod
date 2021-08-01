@@ -5,9 +5,10 @@ import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.interfaces.delegates.FuncT3;
-import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
-import eatyourbeets.powers.common.ShacklesPower;
+import eatyourbeets.powers.common.FreezingPower;
+import eatyourbeets.powers.common.ShacklesDebuffPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -20,6 +21,7 @@ public class PowerHelper
 
     public static final PowerHelper Poison = new PowerHelper(PoisonPower.POWER_ID, GR.Tooltips.Poison, PoisonPower::new);
     public static final PowerHelper Burning = new PowerHelper(BurningPower.POWER_ID, GR.Tooltips.Burning, BurningPower::new);
+    public static final PowerHelper Freezing = new PowerHelper(FreezingPower.POWER_ID, GR.Tooltips.Freezing, FreezingPower::new);
     public static final PowerHelper Constricted = new PowerHelper(ConstrictedPower.POWER_ID, GR.Tooltips.Constricted, ConstrictedPower::new);
 
     public static final PowerHelper Weak = new PowerHelper(WeakPower.POWER_ID, GR.Tooltips.Weak, (o, s, a) -> new WeakPower(o, a, GameUtilities.IsMonster(s)));
@@ -40,7 +42,7 @@ public class PowerHelper
     public static final PowerHelper Artifact = new PowerHelper(ArtifactPower.POWER_ID, GR.Tooltips.Artifact, ArtifactPower::new);
     public static final PowerHelper Thorns = new PowerHelper(ThornsPower.POWER_ID, GR.Tooltips.Thorns, ThornsPower::new);
     public static final PowerHelper TemporaryThorns = new PowerHelper(EarthenThornsPower.POWER_ID, null, EarthenThornsPower::new);
-    public static final PowerHelper Shackles = new PowerHelper(ShacklesPower.POWER_ID, GR.Tooltips.Shackles, ShacklesPower::new);
+    public static final PowerHelper Shackles = new PowerHelper(ShacklesDebuffPower.POWER_ID, GR.Tooltips.Shackles, ShacklesDebuffPower::new);
 
     public final String ID;
     public EYBCardTooltip Tooltip;

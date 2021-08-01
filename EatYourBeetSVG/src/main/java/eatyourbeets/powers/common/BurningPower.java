@@ -1,19 +1,19 @@
-package eatyourbeets.powers.animator;
+package eatyourbeets.powers.common;
 
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 
-public class BurningPower extends AnimatorPower implements HealthBarRenderPower
+public class BurningPower extends CommonPower implements HealthBarRenderPower
 {
     private static final Color healthBarColor = Color.ORANGE.cpy();
 
@@ -26,15 +26,7 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
     {
         super(owner, POWER_ID);
 
-        if (source == null)
-        {
-            this.source = owner;
-        }
-        else
-        {
-            this.source = source;
-        }
-
+        this.source = source == null ? owner : source;
         this.amount = amount;
         if (this.amount >= 9999)
         {
@@ -50,13 +42,13 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
     @Override
     public void updateDescription()
     {
-        this.description = powerStrings.DESCRIPTIONS[0] + getHealthBarAmount() + powerStrings.DESCRIPTIONS[1] + (int)(this.amount * ATTACK_MULTIPLIER) + powerStrings.DESCRIPTIONS[2];
+        this.description = FormatDescription(0, getHealthBarAmount(), (int)(this.amount * ATTACK_MULTIPLIER));
     }
 
     @Override
     public void playApplyPowerSfx()
     {
-        CardCrawlGame.sound.play("ATTACK_FIRE", 0.05f);
+        SFX.Play(SFX.ATTACK_FIRE, 0.95f, 1.05f);
     }
 
     @Override

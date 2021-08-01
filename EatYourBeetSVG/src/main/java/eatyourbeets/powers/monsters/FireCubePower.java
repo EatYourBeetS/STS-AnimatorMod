@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.utilities.GameUtilities;
 
 public class FireCubePower extends AnimatorPower

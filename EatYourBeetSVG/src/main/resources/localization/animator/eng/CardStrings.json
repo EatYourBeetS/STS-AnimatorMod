@@ -1085,7 +1085,7 @@
 	{
 		"animator:Add":
 		{
-			"DESCRIPTION": "Add !S! {Crystallize} to your ** draw pile. Next turn: Draw ** !M! card(s) and gain [E] [E]. || !A! <D> : Exhaust a ** card anywhere, replace ** it with an {Orb Core}.",
+			"DESCRIPTION": "Add !S! {Crystallize} to your ** draw pile. Next turn: Draw ** !M! card(s) and gain [E] [E]. || Synergy or !A! <D> : Exhaust a ** card anywhere, replace ** it with an {Orb Core}.",
 			"NAME": "Add"
 		},
 		"animator:Ain":
@@ -1141,6 +1141,11 @@
 		{
 			"DESCRIPTION": "Channel 1 [Dark] and [Frost]. || When Drawn: If ** in Neutral Stance, ** enter <FS>.",
 			"NAME": "Lu"
+		},
+		"animator:Noah":
+		{
+			"DESCRIPTION": "Boost [C]. Apply !M! [Freezing]. || Less than !A! <D>: Take ** !S! damage at the ** end of turn.",
+			"NAME": "Noah"
 		},
 		"animator:Raven":
 		{
@@ -2222,7 +2227,7 @@
 		},
 		"animator:OrbCore_Chaos":
 		{
-			"DESCRIPTION": "Channel !S! [Random Orb]. || On your second ** Synergy each turn: ** Choose 1 of 3 cards to ** obtain, it costs 1 less.",
+			"DESCRIPTION": "Channel !S! [Chaos]. || On your second ** Synergy each turn: ** Choose 1 of 3 cards to ** obtain, it costs 1 less.",
 			"NAME": "Chaos Core"
 		},
 		"animator:OrbCore_Dark":

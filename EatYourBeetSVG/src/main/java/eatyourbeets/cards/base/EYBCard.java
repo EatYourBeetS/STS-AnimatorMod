@@ -21,7 +21,7 @@ import eatyourbeets.cards.base.attributes.DamageAttribute;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.PlayerFlightPower;
+import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 
@@ -75,15 +75,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     {
         super(id, cardData.Strings.NAME, imagePath, cost, "", type, color, rarity, target);
 
-        if (cardData.Metadata != null)
-        {
-            this.cropPortrait = cardData.Metadata.cropPortrait;
-        }
-        else
-        {
-            this.cropPortrait = true;
-        }
-
+        this.cropPortrait = cardData.Metadata == null || cardData.Metadata.cropPortrait;
         this.cardData = cardData;
         this.tooltips = new ArrayList<>();
         this.cardText = new EYBCardText(this);
@@ -155,14 +147,9 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     protected String GetRawDescription(Object... args)
     {
-        if (upgraded && cardData.Strings.UPGRADE_DESCRIPTION != null)
-        {
-            return JUtils.Format(cardData.Strings.UPGRADE_DESCRIPTION, args);
-        }
-        else
-        {
-            return JUtils.Format(cardData.Strings.DESCRIPTION, args);
-        }
+        return upgraded && cardData.Strings.UPGRADE_DESCRIPTION != null
+                ? JUtils.Format(cardData.Strings.UPGRADE_DESCRIPTION, args)
+                : JUtils.Format(cardData.Strings.DESCRIPTION, args);
     }
 
     @Override
@@ -367,50 +354,22 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     public AbstractAttribute GetPrimaryInfo()
     {
-        if (type == CardType.ATTACK)
-        {
-            return GetDamageInfo();
-        }
-        else
-        {
-            return GetBlockInfo();
-        }
+        return type == CardType.ATTACK ? GetDamageInfo() : GetBlockInfo();
     }
 
     public AbstractAttribute GetSecondaryInfo()
     {
-        if (type == CardType.ATTACK)
-        {
-            return GetBlockInfo();
-        }
-        else
-        {
-            return GetDamageInfo();
-        }
+        return type == CardType.ATTACK ? GetBlockInfo() : GetDamageInfo();
     }
 
     public AbstractAttribute GetDamageInfo()
     {
-        if (baseDamage >= 0)
-        {
-            return DamageAttribute.Instance.SetCard(this);
-        }
-        else
-        {
-            return null;
-        }
+        return baseDamage >= 0 ? DamageAttribute.Instance.SetCard(this) : null;
     }
 
     public AbstractAttribute GetBlockInfo()
     {
-        if (baseBlock >= 0)
-        {
-            return BlockAttribute.Instance.SetCard(this);
-        }
-        else
-        {
-            return null;
-        }
+        return baseBlock >= 0 ? BlockAttribute.Instance.SetCard(this) : null;
     }
 
     public AbstractAttribute GetSpecialInfo()
@@ -553,15 +512,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     public void AddScaling(AffinityType type, int amount)
     {
-        EYBCardAffinity affinity = affinities.Get(type);
-        if (affinity != null)
-        {
-            affinity.scaling += amount;
-        }
-        else
-        {
-            affinities.Set(type, 0).scaling += amount;
-        }
+        affinities.Get(type, true).scaling += amount;
     }
 
     public void SetScaling(EYBCardAffinities affinities)
@@ -579,15 +530,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     public void SetScaling(AffinityType type, int amount)
     {
-        EYBCardAffinity affinity = affinities.Get(type);
-        if (affinity != null)
-        {
-            affinity.scaling = amount;
-        }
-        else
-        {
-            affinities.Set(type, 0).scaling = amount;
-        }
+        affinities.Get(type, true).scaling = amount;
     }
 
     protected void SetAffinityRequirement(AffinityType type, int requirement)
@@ -790,6 +733,13 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     protected void OnUpgrade()
     {
 
+    }
+
+    @Override
+    public boolean cardPlayable(AbstractMonster m)
+    {
+        cantUseMessage = UNPLAYABLE_MESSAGE;
+        return super.cardPlayable(m);
     }
 
     @Override

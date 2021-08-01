@@ -144,7 +144,7 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public int getAscensionMaxHPLoss()
     {
-        return maxHealth / 10;
+        return AnimatorLoadout.BASE_HP / 10;
     }
 
     @Override

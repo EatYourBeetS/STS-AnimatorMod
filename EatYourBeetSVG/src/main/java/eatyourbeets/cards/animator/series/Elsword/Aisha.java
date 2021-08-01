@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
@@ -15,6 +14,7 @@ import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Aisha extends AnimatorCard
 {
@@ -74,16 +74,8 @@ public class Aisha extends AnimatorCard
     }
 
     @Override
-    public boolean CheckSpecialCondition(boolean use)
+    public boolean CheckSpecialCondition(boolean tryUse)
     {
-        for (AbstractOrb orb : player.orbs)
-        {
-            if (Dark.ORB_ID.equals(orb.ID))
-            {
-                return (use ? CombatStats.TryActivateLimited(cardID) : CombatStats.CanActivateLimited(cardID));
-            }
-        }
-
-        return false;
+        return GameUtilities.HasOrb(Dark.ORB_ID) && (tryUse ? CombatStats.TryActivateLimited(cardID) : CombatStats.CanActivateLimited(cardID));
     }
 }

@@ -1,6 +1,7 @@
 package eatyourbeets.orbs.animator;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -8,8 +9,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.actions.orbs.AetherOrbEvokeAction;
 import eatyourbeets.actions.orbs.AetherOrbPassiveAction;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.vfx.OrbFlareEffect2;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 import patches.orbs.AbstractOrbPatches;
 
 public class Aether extends AnimatorOrb
@@ -22,7 +26,7 @@ public class Aether extends AnimatorOrb
 
     public Aether()
     {
-        super(ORB_ID, true);
+        super(ORB_ID, Timing.EndOfTurn);
 
         if (imgExt1 == null)
         {
@@ -42,17 +46,15 @@ public class Aether extends AnimatorOrb
     @Override
     public void updateDescription()
     {
-        String[] desc = orbStrings.DESCRIPTION;
-
         this.applyFocus();
-        this.description = desc[0] + this.passiveAmount + desc[1] + this.evokeAmount + desc[2];
+        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], this.passiveAmount, this.evokeAmount);
     }
 
     @Override
     public void triggerEvokeAnimation()
     {
-        CardCrawlGame.sound.play("POWER_FLIGHT", 0.2f);
-        CardCrawlGame.sound.playAV("ORB_PLASMA_Evoke", 1.2f, 0.7f);
+        CardCrawlGame.sound.play(SFX.POWER_FLIGHT, 0.2f);
+        CardCrawlGame.sound.playAV(SFX.ORB_PLASMA_EVOKE, 1.2f, 0.7f);
     }
 
     @Override
@@ -108,5 +110,11 @@ public class Aether extends AnimatorOrb
         super.Passive();
 
         GameActions.Bottom.Add(new AetherOrbPassiveAction(this, this.passiveAmount));
+    }
+
+    @Override
+    protected OrbFlareEffect2 GetOrbFlareEffect()
+    {
+        return super.GetOrbFlareEffect().SetColors(Color.FOREST, Color.CYAN);
     }
 }

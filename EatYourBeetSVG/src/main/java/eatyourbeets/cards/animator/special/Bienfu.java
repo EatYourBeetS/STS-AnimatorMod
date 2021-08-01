@@ -54,7 +54,6 @@ public class Bienfu extends AnimatorCard
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-        this.cantUseMessage = UNPLAYABLE_MESSAGE;
         return false;
     }
 }

@@ -42,6 +42,11 @@ public class VFX
         return new BiteEffect2(target.cX, target.cY - 40.0F * Settings.scale, color);
     }
 
+    public static ClashEffect2 Clash(Hitbox target)
+    {
+        return new ClashEffect2(target.cX, target.cY);
+    }
+
     public static ClawEffect Claw(Hitbox source, Color color1, Color color2)
     {
         return new ClawEffect(source.cX, source.cY, color1, color2);

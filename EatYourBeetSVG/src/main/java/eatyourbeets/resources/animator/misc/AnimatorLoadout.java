@@ -133,8 +133,8 @@ public abstract class AnimatorLoadout
     {
         Data.HP = BASE_HP;
         Data.Gold = BASE_GOLD;
-        Data.AddSlot(1, 6).AddItem(Defend.DATA, -2);
         Data.AddSlot(1, 6).AddItem(Strike.DATA, -2);
+        Data.AddSlot(1, 6).AddItem(Defend.DATA, -2);
         Data.AddSlot(0, 1).AddItems(ImprovedStrike.GetCards(), 1);
         Data.AddSlot(0, 1).AddItems(ImprovedDefend.GetCards(), 1);
         SpecialSlot1 = Data.AddSlot(0, 1);

@@ -31,24 +31,18 @@ public class GameEvent<T>
         subscribers.clear();
     }
 
-    public void Unsubscribe(T subscriber)
+    public boolean Unsubscribe(T subscriber)
     {
-        subscribers.remove(subscriber);
+        return subscribers.remove(subscriber);
     }
 
-    public void Subscribe(T subscriber)
+    public boolean Subscribe(T subscriber)
     {
-        if (!subscribers.contains(subscriber))
-        {
-            subscribers.add(subscriber);
-        }
+        return !subscribers.contains(subscriber) && subscribers.add(subscriber);
     }
 
-    public void SubscribeOnce(T subscriber)
+    public boolean SubscribeOnce(T subscriber)
     {
-        if (!oneTimeSubscribers.contains(subscriber))
-        {
-            oneTimeSubscribers.add(subscriber);
-        }
+        return !oneTimeSubscribers.contains(subscriber) && oneTimeSubscribers.add(subscriber);
     }
 }

@@ -14,11 +14,13 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
 import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
 import eatyourbeets.effects.Projectile;
+import eatyourbeets.effects.vfx.OrbFlareEffect2;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.Mathf;
 
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
 
     public Earth()
     {
-        super(ORB_ID, true);
+        super(ORB_ID, Timing.EndOfTurn);
 
         this.evoked = false;
         this.evokeAmount = this.baseEvokeAmount = 16;
@@ -76,10 +78,8 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void updateDescription()
     {
-        final String[] desc = orbStrings.DESCRIPTION;
-
         this.applyFocus();
-        this.description = desc[0] + this.passiveAmount + desc[1] + this.evokeAmount + desc[2] + this.turns + desc[3];
+        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], this.passiveAmount, this.evokeAmount, this.turns);
     }
 
     @Override
@@ -110,12 +110,6 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         }
 
         this.updateDescription();
-    }
-
-    @Override
-    public void triggerEvokeAnimation()
-    {
-
     }
 
     @Override
@@ -221,5 +215,11 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         turns = 0;
         CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         evoked = true;
+    }
+
+    @Override
+    protected OrbFlareEffect2 GetOrbFlareEffect()
+    {
+        return super.GetOrbFlareEffect().SetColors(Color.BROWN, Color.DARK_GRAY);
     }
 }

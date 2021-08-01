@@ -20,7 +20,7 @@ import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.common.AntiArtifactSlowPower;
+import eatyourbeets.powers.replacement.AntiArtifactSlowPower;
 import eatyourbeets.powers.monsters.UltimateCrystalPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;

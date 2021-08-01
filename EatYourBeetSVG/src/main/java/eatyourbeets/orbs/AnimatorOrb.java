@@ -9,8 +9,8 @@ public abstract class AnimatorOrb extends EYBOrb
         return GR.Animator.CreateID(type.getSimpleName());
     }
 
-    public AnimatorOrb(String id, boolean passiveAtEndOfTurn)
+    public AnimatorOrb(String id, Timing passiveEffectTiming)
     {
-        super(id, passiveAtEndOfTurn);
+        super(id, passiveEffectTiming);
     }
 }

@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.effects.SFX;
 
 public class FlashAttackEffect extends AbstractGameEffect
 {
@@ -23,6 +24,7 @@ public class FlashAttackEffect extends AbstractGameEffect
     private static final float DURATION = 0.6F;
     private AbstractGameAction.AttackEffect effect;
     private boolean triggered;
+    private String key;
 
     public FlashAttackEffect(float x, float y, AbstractGameAction.AttackEffect effect, boolean mute)
     {
@@ -64,6 +66,13 @@ public class FlashAttackEffect extends AbstractGameEffect
         this(x, y, effect, false);
     }
 
+    public FlashAttackEffect OverrideSound(String key)
+    {
+        this.key = key;
+
+        return this;
+    }
+
     private TextureAtlas.AtlasRegion loadImage()
     {
         switch (this.effect)
@@ -96,6 +105,12 @@ public class FlashAttackEffect extends AbstractGameEffect
 
     private void playSound(AbstractGameAction.AttackEffect effect)
     {
+        if (key != null)
+        {
+            SFX.Play(key, 1);
+            return;
+        }
+
         switch (effect)
         {
             case SHIELD:
@@ -123,7 +138,6 @@ public class FlashAttackEffect extends AbstractGameEffect
                 CardCrawlGame.sound.play("ATTACK_POISON");
             case NONE:
         }
-
     }
 
     private void playBlockSound()

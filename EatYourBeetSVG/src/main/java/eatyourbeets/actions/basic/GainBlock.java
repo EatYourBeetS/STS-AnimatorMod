@@ -3,13 +3,15 @@ package eatyourbeets.actions.basic;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.vfx.FlashAttackEffect;
 import eatyourbeets.utilities.GameEffects;
 
 public class GainBlock extends EYBActionWithCallback<AbstractCreature>
 {
     protected boolean mute;
+    protected boolean useFrostSound;
 
     public GainBlock(AbstractCreature target, AbstractCreature source, int amount)
     {
@@ -28,6 +30,13 @@ public class GainBlock extends EYBActionWithCallback<AbstractCreature>
         }
     }
 
+    public GainBlock SetFrostSound(boolean value)
+    {
+        this.useFrostSound = value;
+
+        return this;
+    }
+
     public GainBlock SetVFX(boolean mute, boolean superFast)
     {
         this.mute = mute;
@@ -41,7 +50,11 @@ public class GainBlock extends EYBActionWithCallback<AbstractCreature>
     {
         if (!target.isDying && !target.isDead && amount > 0)
         {
-            GameEffects.List.Add(new FlashAtkImgEffect(target.hb.cX, target.hb.cY, AttackEffect.SHIELD, mute));
+            FlashAttackEffect effect = GameEffects.List.Add(new FlashAttackEffect(target.hb.cX, target.hb.cY, AttackEffect.SHIELD, mute));
+            if (useFrostSound)
+            {
+                effect.OverrideSound(SFX.GetRandom(SFX.ORB_FROST_DEFEND_1, SFX.ORB_FROST_DEFEND_2, SFX.ORB_FROST_DEFEND_3));
+            }
 
             target.addBlock(amount);
 

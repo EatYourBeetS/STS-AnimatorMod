@@ -26,11 +26,7 @@ public class Enchantment3 extends Enchantment
     @Override
     protected void OnUpgrade()
     {
-        if (upgradeIndex == 2)
-        {
-            upgradeMagicNumber(-1);
-        }
-        else if (upgradeIndex == 3)
+        if (upgradeIndex == 3)
         {
             upgradeSecondaryValue(-1);
         }

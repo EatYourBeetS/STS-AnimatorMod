@@ -54,7 +54,6 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
         SetAffinityRequirement(affinityType, magicNumber);
 
         SetTag(CardTags.STARTER_DEFEND, true);
-        SetTag(GR.Enums.CardTags.IMPROVED_DEFEND, true);
     }
 
     @Override

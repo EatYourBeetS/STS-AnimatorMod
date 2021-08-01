@@ -16,7 +16,7 @@ public class EarthOrbPassiveAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        GameActions.Bottom.StackPower(new EarthenThornsPower(player, amount));
+        GameActions.Bottom.StackPower(new EarthenThornsPower(player, amount)).ShowEffect(false, true);
 
         Complete();
     }

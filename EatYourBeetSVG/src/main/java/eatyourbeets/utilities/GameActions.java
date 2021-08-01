@@ -63,9 +63,10 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.CorruptionPower;
 import eatyourbeets.powers.affinity.*;
-import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
-import eatyourbeets.powers.common.TemporaryArtifactPower;
+import eatyourbeets.powers.common.FreezingPower;
+import eatyourbeets.powers.replacement.TemporaryArtifactPower;
 import eatyourbeets.powers.common.VitalityPower;
 
 import java.util.ArrayList;
@@ -169,6 +170,16 @@ public final class GameActions
         }
 
         return action;
+    }
+
+    public ApplyPower ApplyFreezing(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new FreezingPower(target, source, amount));
+    }
+
+    public ApplyPowerAuto ApplyFreezing(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.Freezing, amount);
     }
 
     public ApplyPower ApplyBurning(AbstractCreature source, AbstractCreature target, int amount)

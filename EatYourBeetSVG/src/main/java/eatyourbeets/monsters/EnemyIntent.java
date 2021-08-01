@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.FieldInfo;
@@ -23,6 +24,7 @@ public class EnemyIntent
     private static final WeakPower WEAK = new WeakPower(null, 1, false);
     private static final VulnerablePower VULNERABLE = new VulnerablePower(null, 0, false);
     private static final StrengthPower STRENGTH = new StrengthPower(null, 0);
+    private static final FreezingPower FREEZING = new FreezingPower(null, null, 0);
     private static final FieldInfo<EnemyMoveInfo> _move = JUtils.GetField("move", AbstractMonster.class);
 
     public final AbstractMonster enemy;
@@ -98,6 +100,17 @@ public class EnemyIntent
         return this;
     }
 
+    public EnemyIntent AddFreezing()
+    {
+        if (isAttacking)
+        {
+            GR.UI.CombatScreen.Intents.Add(enemy, this::GetIntentDamageString);
+            modifiers.put(FreezingPower.POWER_ID, 1);
+        }
+
+        return this;
+    }
+
     protected ColoredString GetIntentDamageString()
     {
         final int baseDamage = GetBaseDamage(false);
@@ -120,6 +133,7 @@ public class EnemyIntent
         final AbstractPlayer player = AbstractDungeon.player;
         float damage = GetBaseDamage(false);
         int weak = modifiers.getOrDefault(WeakPower.POWER_ID, 0);
+        int freezing = modifiers.getOrDefault(FreezingPower.POWER_ID, 0);
         int vulnerable = modifiers.getOrDefault(VulnerablePower.POWER_ID, 0);
         int strength = modifiers.getOrDefault(StrengthPower.POWER_ID, 0);
         int enchantedArmor = modifiers.getOrDefault(EnchantedArmorPower.POWER_ID, 0);
@@ -142,8 +156,18 @@ public class EnemyIntent
             {
                 weak = 0;
             }
+            else if (p.ID.equals(FreezingPower.POWER_ID))
+            {
+                freezing = 0;
+            }
 
             damage = p.atDamageGive(damage, DamageInfo.DamageType.NORMAL);
+        }
+
+        if (freezing != 0)
+        {
+            FREEZING.owner = enemy;
+            damage = FREEZING.atDamageGive(damage, DamageInfo.DamageType.NORMAL);
         }
 
         if (weak != 0)

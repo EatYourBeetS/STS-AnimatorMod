@@ -1,10 +1,13 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.animator.WinryRockbellPower;
+import eatyourbeets.interfaces.subscribers.OnAfterCardDiscardedSubscriber;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class WinryRockbell extends AnimatorCard
@@ -43,6 +46,62 @@ public class WinryRockbell extends AnimatorCard
         if (isSynergizing)
         {
             GameActions.Bottom.UpgradeFromHand(name, 1, false);
+        }
+    }
+
+    public static class WinryRockbellPower extends AnimatorPower implements OnAfterCardDiscardedSubscriber
+    {
+        public static final int BLOCK_AMOUNT = 4;
+
+        private int baseAmount;
+
+        public WinryRockbellPower(AbstractCreature owner, int amount)
+        {
+            super(owner, WinryRockbell.DATA);
+
+            Initialize(amount);
+        }
+
+        @Override
+        public void updateDescription()
+        {
+            this.description = FormatDescription(0, amount, BLOCK_AMOUNT);
+            SetEnabled(amount > 0);
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onAfterCardDiscarded.Subscribe(this);
+        }
+
+        @Override
+        public void atStartOfTurn()
+        {
+            super.atStartOfTurn();
+
+            ResetAmount();
+        }
+
+        @Override
+        public void OnAfterCardDiscarded()
+        {
+            if (owner == null || !owner.powers.contains(this))
+            {
+                CombatStats.onAfterCardDiscarded.Unsubscribe(this);
+                return;
+            }
+
+            if (enabled)
+            {
+                GameActions.Bottom.GainBlock(BLOCK_AMOUNT);
+                this.amount -= 1;
+                this.flashWithoutSound();
+            }
+
+            updateDescription();
         }
     }
 }

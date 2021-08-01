@@ -1,8 +1,8 @@
-package eatyourbeets.powers.common;
+package eatyourbeets.powers.deprecated;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -14,15 +14,13 @@ public class MarkedPower extends CommonPower
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-        this.type = PowerType.DEBUFF;
-
-        updateDescription();
+        Initialize(amount, PowerType.DEBUFF, false);
     }
 
+    @Override
     public void playApplyPowerSfx()
     {
-        CardCrawlGame.sound.playA("ORB_SLOT_GAIN", 1);
+        SFX.Play(SFX.ORB_SLOT_GAIN, 2.1f, 2.3f);
     }
 
     @Override

@@ -13,35 +13,34 @@ public class HinaKagiyamaPower extends AnimatorPower
     public static final String POWER_ID = CreateFullID(HinaKagiyamaPower.class);
     public static final int CARD_DRAW_AMOUNT = 2;
 
-    private int baseAmount;
-
     public HinaKagiyamaPower(AbstractCreature owner, int amount)
     {
         super(owner, HinaKagiyama.DATA);
 
-        this.amount = amount;
-        this.baseAmount = amount;
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override
-    public void stackPower(int stackAmount)
+    public void updateDescription()
     {
-        super.stackPower(stackAmount);
-        this.baseAmount += stackAmount;
-        updateDescription();
+        this.description = FormatDescription(0, amount, CARD_DRAW_AMOUNT);
+
+        SetEnabled(amount > 0);
     }
 
     @Override
     public void atStartOfTurn()
     {
-        this.amount = baseAmount;
-        updateDescription();
+        super.atStartOfTurn();
+
+        ResetAmount();
     }
 
     @Override
     public void atStartOfTurnPostDraw()
     {
+        super.atStartOfTurnPostDraw();
+
         GameActions.Bottom.SelectFromPile(name, baseAmount, player.exhaustPile)
         .SetOptions(false, true)
         .SetMessage(FormatDescription(1, baseAmount))
@@ -61,20 +60,15 @@ public class HinaKagiyamaPower extends AnimatorPower
     @Override
     public void onCardDraw(AbstractCard c)
     {
+        super.onCardDraw(c);
+
         if (c.type == AbstractCard.CardType.CURSE && this.amount > 0)
         {
             GameActions.Bottom.Draw(CARD_DRAW_AMOUNT);
-            this.amount--;
-            this.flash();
+            this.amount -= 1;
             updateDescription();
+            this.flash();
         }
-    }
-
-    @Override
-    public void updateDescription()
-    {
-        this.description = FormatDescription(0, amount, CARD_DRAW_AMOUNT);
-        this.enabled = (amount > 0);
     }
 }
 

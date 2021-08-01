@@ -65,7 +65,7 @@
 		"OPTIONS":
 		[
 			"[Sell] #gRemove {0}. #gGain #g{1} #gGold.",
-			"[Trade] #gImprove #gall Strikes #gand Defends. #rLose #r{0} #rGold.",
+			"[Trade] #gImprove #g1 #gStrike #gand #g1 #gDefend. #rLose #r{0} #rGold.",
 			"[Locked] No card to sell.",
 			"[Locked] Not enough Gold."
 		]

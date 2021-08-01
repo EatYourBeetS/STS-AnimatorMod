@@ -89,6 +89,7 @@ public class CommonImages
         public final TextureCache Earth            = new TextureCache("images/cardui/eyb/tooltips/Earth.png");
         public final TextureCache RandomOrb        = new TextureCache("images/cardui/eyb/tooltips/RandomOrb.png");
         public final TextureCache Fire             = new TextureCache("images/cardui/eyb/tooltips/Fire.png");
+        public final TextureCache Chaos            = new TextureCache("images/cardui/eyb/tooltips/Chaos.png");
         public final TextureCache Gold             = new TextureCache("images/cardui/eyb/tooltips/Gold.png");
     }
 }

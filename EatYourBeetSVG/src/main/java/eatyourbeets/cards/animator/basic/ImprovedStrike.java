@@ -53,7 +53,6 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
         SetAffinityRequirement(affinityType, magicNumber);
 
         SetTag(CardTags.STARTER_STRIKE, true);
-        SetTag(GR.Enums.CardTags.IMPROVED_STRIKE, true);
     }
 
     @Override

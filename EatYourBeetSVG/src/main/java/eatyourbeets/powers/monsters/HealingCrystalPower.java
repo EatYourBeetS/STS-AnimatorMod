@@ -7,9 +7,9 @@ public class HealingCrystalPower extends AbstractCrystalPower
 {
     public static final String POWER_ID = CreateFullID(HealingCrystalPower.class);
 
-    public HealingCrystalPower(AbstractCreature owner, int value)
+    public HealingCrystalPower(AbstractCreature owner, int amount)
     {
-        super(POWER_ID, owner, value);
+        super(POWER_ID, owner, amount);
     }
 
     @Override

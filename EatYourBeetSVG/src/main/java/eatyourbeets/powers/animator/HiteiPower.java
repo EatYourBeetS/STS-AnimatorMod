@@ -28,15 +28,20 @@ public class HiteiPower extends AnimatorPower
             this.unupgradedStacks = 1;
         }
 
-        this.amount = 1;
-
-        updateDescription();
+        Initialize(1);
     }
 
     @Override
-    public void updateDescription()
+    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
     {
-        this.description = (powerStrings.DESCRIPTIONS[0] + amount + powerStrings.DESCRIPTIONS[1]);
+        super.onApplyPower(power, target, source);
+
+        HiteiPower other = JUtils.SafeCast(power, HiteiPower.class);
+        if (other != null && power.owner == target)
+        {
+            this.unupgradedStacks += other.unupgradedStacks;
+            this.upgradeStack += other.upgradeStack;
+        }
     }
 
     @Override
@@ -57,18 +62,5 @@ public class HiteiPower extends AnimatorPower
         GameActions.Bottom.Draw(1);
 
         this.flash();
-    }
-
-    @Override
-    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
-    {
-        HiteiPower other = JUtils.SafeCast(power, HiteiPower.class);
-        if (other != null && power.owner == target)
-        {
-            this.unupgradedStacks += other.unupgradedStacks;
-            this.upgradeStack += other.upgradeStack;
-        }
-
-        super.onApplyPower(power, target, source);
     }
 }

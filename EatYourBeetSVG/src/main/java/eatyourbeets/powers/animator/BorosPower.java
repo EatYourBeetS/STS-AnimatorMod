@@ -16,33 +16,18 @@ public class BorosPower extends AnimatorPower
     {
         super(owner, POWER_ID);
 
-        this.amount = -1;
-
-        updateDescription();
-    }
-
-    @Override
-    public void updateDescription()
-    {
-        String[] desc = powerStrings.DESCRIPTIONS;
-
-        description = desc[0];
+        Initialize(-1);
     }
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action)
     {
+        super.onUseCard(card, action);
+
         if ((card.type == AbstractCard.CardType.POWER) && GameUtilities.CanPlayTwice(card))
         {
-            flash();
-
-            AbstractMonster m = null;
-            if (action.target != null)
-            {
-                m = (AbstractMonster) action.target;
-            }
-
-            GameActions.Top.PlayCopy(card, m);
+            GameActions.Top.PlayCopy(card, (AbstractMonster)((action.target == null) ? null : action.target));
+            this.flash();
         }
     }
 }

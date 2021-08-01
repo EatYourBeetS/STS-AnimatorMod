@@ -51,7 +51,7 @@ public class Enchantment1 extends Enchantment
     {
         if (upgradeIndex == 1)
         {
-            upgradeMagicNumber(8);
+            upgradeMagicNumber(7);
         }
         else if (upgradeIndex == 3)
         {

@@ -62,7 +62,7 @@
 	},
 	"Burning":
 	{
-		"DESCRIPTION": "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack. Reduced by #b1 each turn.",
+		"DESCRIPTION": "Increases incoming #yAttack damage by #b15% (min. #b1 additional damage). NL At the start of turn, lose HP equal to half the amount of [Burning] and reduce [Burning] by #b1.",
 		"NAMES": ["burning"],
 		"PROPER_NAME": "Burning"
 	},
@@ -120,6 +120,12 @@
 		"NAMES": ["envenom"],
 		"PROPER_NAME": "Envenom"
 	},
+	"Chaos":
+	{
+		"DESCRIPTION": "Orb: Changes into a random orb whenever you play an #yAttack. Retains its last form at the end of turn.",
+		"NAMES": ["chaos", "chaos+"],
+		"PROPER_NAME": "Chaos"
+	},
 	"Fire":
 	{
 		"DESCRIPTION": "Orb: Applies #yBurning and damages the highest health enemy.",
@@ -134,7 +140,7 @@
 	},
 	"Flight":
 	{
-		"DESCRIPTION": "Take 50% less #yAttack damage. Lose 1 stack until end of turn when taking damage, the power is cancelled at 0 stacks.",
+		"DESCRIPTION": "Take 50% less #yAttack damage. Lose #b1 stack until end of turn when taking damage, the power is cancelled at #b0 stacks.",
 		"NAMES": ["flight"],
 		"PROPER_NAME": "Flight"
 	},
@@ -150,9 +156,15 @@
 		"NAMES": ["[f] stance", "force stance"],
 		"PROPER_NAME": "Force Stance"
 	},
+	"Freezing":
+	{
+		"DESCRIPTION": "Reduces #yAttack damage by #b3, or by #b4 if at least #b1 [Frost] is #yChanneled. At the end of turn, reduce [Freezing] by #b1.",
+		"NAMES": ["freezing"],
+		"PROPER_NAME": "Freezing"
+	},
 	"High-Cost":
 	{
-		"DESCRIPTION": "Cards which cost 2 or more [E].",
+		"DESCRIPTION": "Cards which cost #b2 or more [E].",
 		"NAMES": ["high-cost", "high cost"],
 		"PROPER_NAME": "High-Cost"
 	},

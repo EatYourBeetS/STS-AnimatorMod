@@ -4,13 +4,13 @@ import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
+import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-public class GeassPower extends AnimatorPower
+public class GeassPower extends AnimatorPower implements OnTryApplyPowerListener
 {
     public static final String POWER_ID = CreateFullID(GeassPower.class);
 
@@ -18,29 +18,13 @@ public class GeassPower extends AnimatorPower
     {
         super(owner, POWER_ID);
 
-        amount = -1;
-        type = PowerType.DEBUFF;
-
-        updateDescription();
+        Initialize(-1, PowerType.DEBUFF, false);
     }
 
     @Override
-    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
     {
-        super.onApplyPower(power, target, source);
-
-        if (power.type == PowerType.DEBUFF && owner == source && (owner.isPlayer != target.isPlayer))
-        {
-            ArtifactPower artifact = GameUtilities.GetPower(owner, ArtifactPower.POWER_ID);
-            if (artifact != null)
-            {
-                artifact.amount += 1;
-            }
-            else
-            {
-                target.powers.add(0, new ArtifactPower(target, 1));
-            }
-        }
+        return (power.type != PowerType.DEBUFF || owner != source || (owner.isPlayer == target.isPlayer));
     }
 
     @Override

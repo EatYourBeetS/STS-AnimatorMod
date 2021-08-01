@@ -18,42 +18,27 @@ public class PinaCoLadaPower extends AnimatorPower
     {
         super(owner, POWER_ID);
 
-        this.baseAmount = amount;
-        this.amount = amount;
-
-        updateDescription();
+        Initialize(amount);
     }
 
     public void atStartOfTurn()
     {
-        this.amount = this.baseAmount;
-        updateDescription();
-    }
+        super.atStartOfTurn();
 
-    @Override
-    public void stackPower(int stackAmount)
-    {
-        super.stackPower(stackAmount);
-
-        baseAmount += stackAmount;
+        ResetAmount();
     }
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action)
     {
+        super.onUseCard(card, action);
+
         if ((card.costForTurn == 0 || card.freeToPlayOnce) && amount > 0 && GameUtilities.CanPlayTwice(card))
         {
-            amount -= 1;
-            flash();
+            GameActions.Top.PlayCopy(card, (AbstractMonster)((action.target == null) ? null : action.target));
+            this.amount -= 1;
             updateDescription();
-
-            AbstractMonster m = null;
-            if (action.target != null)
-            {
-                m = (AbstractMonster) action.target;
-            }
-
-            GameActions.Top.PlayCopy(card, m);
+            flash();
         }
     }
 }

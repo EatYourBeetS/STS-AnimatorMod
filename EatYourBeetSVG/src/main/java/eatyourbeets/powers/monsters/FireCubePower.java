@@ -4,29 +4,20 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.utilities.GameUtilities;
 
 public class FireCubePower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(FireCubePower.class);
 
-    public FireCubePower(AbstractCreature owner, int value)
+    public FireCubePower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.amount = value;
         this.priority = -99;
 
-        updateDescription();
-    }
-
-    @Override
-    public void updateDescription()
-    {
-        String[] desc = powerStrings.DESCRIPTIONS;
-
-        description = desc[0] + amount + desc[1];
+        Initialize(amount);
     }
 
     @Override

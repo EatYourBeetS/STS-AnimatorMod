@@ -8,21 +8,11 @@ import eatyourbeets.utilities.GameUtilities;
 
 public abstract class AbstractCrystalPower extends AnimatorPower
 {
-    public AbstractCrystalPower(String id, AbstractCreature owner, int value)
+    public AbstractCrystalPower(String id, AbstractCreature owner, int amount)
     {
         super(owner, id);
 
-        this.amount = value;
-
-        updateDescription();
-    }
-
-    @Override
-    public void updateDescription()
-    {
-        String[] desc = powerStrings.DESCRIPTIONS;
-
-        description = desc[0] + amount + desc[1];
+        Initialize(amount);
     }
 
     @Override

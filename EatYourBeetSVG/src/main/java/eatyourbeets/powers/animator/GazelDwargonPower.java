@@ -16,9 +16,7 @@ public class GazelDwargonPower extends AnimatorPower
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override
@@ -26,9 +24,7 @@ public class GazelDwargonPower extends AnimatorPower
     {
         super.atStartOfTurn();
 
-        handlePlayerBlock = (!owner.hasPower(BarricadePower.POWER_ID) && !owner.hasPower(BlurPower.POWER_ID));
-
-        if (handlePlayerBlock)
+        if (handlePlayerBlock = (!owner.hasPower(BarricadePower.POWER_ID) && !owner.hasPower(BlurPower.POWER_ID)))
         {
             this.ID = BarricadePower.POWER_ID;
         }

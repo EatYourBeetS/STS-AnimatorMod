@@ -20,10 +20,9 @@ public class HansPower extends AnimatorPower
     {
         super(owner, Hans.DATA);
 
-        this.amount = poison;
         this.tempHP = tempHP;
 
-        updateDescription();
+        Initialize(poison);
     }
 
     @Override
@@ -46,6 +45,8 @@ public class HansPower extends AnimatorPower
     @Override
     public void atStartOfTurnPostDraw()
     {
+        super.atStartOfTurnPostDraw();
+
         GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(owner), amount);
         GameActions.Bottom.Callback(() ->
         {
@@ -57,6 +58,7 @@ public class HansPower extends AnimatorPower
                 }
             }
         });
+        this.flash();
     }
 
     @Override

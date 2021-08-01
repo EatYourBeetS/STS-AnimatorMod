@@ -13,7 +13,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.powers.common.GenericFadingPower;
+import eatyourbeets.powers.replacement.GenericFadingPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;

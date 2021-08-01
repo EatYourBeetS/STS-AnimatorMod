@@ -18,39 +18,38 @@ public class ChlammyZellPower extends AnimatorPower
         super(owner, POWER_ID);
 
         lastType = AbstractCard.CardType.SKILL;
-        this.amount = amount;
-        updateDescription();
+
+        Initialize(amount);
     }
 
     @Override
     public void updateDescription()
     {
-        this.description = powerStrings.DESCRIPTIONS[0] + this.amount + powerStrings.DESCRIPTIONS[1] + lastType;
+        this.description = FormatDescription(0, amount, lastType);
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer)
+    public void onAfterCardPlayed(AbstractCard card)
     {
-        RemovePower();
+        super.onAfterCardPlayed(card);
 
-        super.atEndOfTurn(isPlayer);
-    }
-
-    @Override
-    public void onAfterCardPlayed(AbstractCard usedCard)
-    {
-        super.onAfterCardPlayed(usedCard);
-
-        if (usedCard.type != lastType)
+        if (card.type != lastType)
         {
-            lastType = usedCard.type;
+            lastType = card.type;
 
-            int[] damage = DamageInfo.createDamageMatrix(amount, true);
-
+            final int[] damage = DamageInfo.createDamageMatrix(amount, true);
             GameActions.Bottom.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
             GameActions.Bottom.Cycle(name, 1);
 
             updateDescription();
         }
+    }
+
+    @Override
+    public void atEndOfTurn(boolean isPlayer)
+    {
+        super.atEndOfTurn(isPlayer);
+
+        RemovePower();
     }
 }

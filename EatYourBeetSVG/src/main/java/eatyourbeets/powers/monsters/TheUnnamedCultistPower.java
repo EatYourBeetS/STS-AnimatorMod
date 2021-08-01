@@ -16,21 +16,13 @@ public class TheUnnamedCultistPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(TheUnnamedCultistPower.class);
 
+    private boolean stunned;
+
     public TheUnnamedCultistPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-
-        updateDescription();
-    }
-
-    @Override
-    public void updateDescription()
-    {
-        String[] desc = powerStrings.DESCRIPTIONS;
-
-        description = desc[0] + amount + desc[1];
+        Initialize(amount);
     }
 
     @Override
@@ -53,10 +45,11 @@ public class TheUnnamedCultistPower extends AnimatorPower
     {
         super.onAfterUseCard(card, action);
 
-        if (card instanceof SummoningRitual && owner instanceof AbstractMonster)
+        if (card instanceof SummoningRitual && owner instanceof AbstractMonster && !stunned)
         {
             GameActions.Bottom.Talk(owner, TheUnnamed_Cultist.STRINGS.DIALOG[11]);
             GameActions.Bottom.ApplyPower(new StunMonsterPower((AbstractMonster) owner));
+            stunned = true;
         }
     }
 }

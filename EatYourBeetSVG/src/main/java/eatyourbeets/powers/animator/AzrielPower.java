@@ -13,19 +13,17 @@ public class AzrielPower extends AnimatorPower
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-
-        updateDescription();
+        Initialize(amount);
     }
 
-    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    public void onApplyPower(AbstractPower p, AbstractCreature target, AbstractCreature source)
     {
-        if (power.type == PowerType.DEBUFF && !power.ID.equals(GainStrengthPower.POWER_ID) &&
-            source == this.owner && !target.hasPower(ArtifactPower.POWER_ID))
-        {
-            this.flash();
+        super.onApplyPower(p, target, source);
 
+        if (p.type == PowerType.DEBUFF && !p.ID.equals(GainStrengthPower.POWER_ID) && source == owner && !target.hasPower(ArtifactPower.POWER_ID))
+        {
             GameActions.Bottom.GainRandomAffinityPower(1, true);
+            this.flash();
         }
     }
 }

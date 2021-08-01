@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.DarkSmokePuffEffect;
 import com.megacrit.cardcrawl.vfx.GenericSmokeEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmokingEmberEffect;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.utilities.GameEffects;
 
 public class MeteorFallEffect extends AbstractGameEffect
@@ -24,11 +25,11 @@ public class MeteorFallEffect extends AbstractGameEffect
     private final AtlasRegion img;
     private boolean playedSound = false;
 
-    public MeteorFallEffect(float x, float y, float offset_x, float offset_y)
+    public MeteorFallEffect(float x, float y)
     {
         this.img = ImageMaster.VERTICAL_IMPACT;
-        this.x = x - (float) this.img.packedWidth / 2f + offset_x;
-        this.y = y - (float) this.img.packedHeight * 0.01f + offset_y;
+        this.x = x - (float) this.img.packedWidth / 2f;
+        this.y = y - (float) this.img.packedHeight * 0.01f;
         this.startingDuration = DUR;
         this.duration = DUR;
         this.scale = Settings.scale;
@@ -39,7 +40,7 @@ public class MeteorFallEffect extends AbstractGameEffect
 
     private void playRandomSfX()
     {
-        CardCrawlGame.sound.playA("ORB_LIGHTNING_EVOKE", -MathUtils.random(0.3f, 0.5f));
+        SFX.Play(SFX.ORB_LIGHTNING_EVOKE, 0.5f, 0.7f);
     }
 
     public void update()

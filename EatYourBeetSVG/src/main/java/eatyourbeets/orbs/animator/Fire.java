@@ -1,17 +1,19 @@
 package eatyourbeets.orbs.animator;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.actions.orbs.FireOrbEvokeAction;
 import eatyourbeets.actions.orbs.FireOrbPassiveAction;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.vfx.OrbFlareEffect2;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.JUtils;
 
 public class Fire extends AnimatorOrb
 {
@@ -25,7 +27,7 @@ public class Fire extends AnimatorOrb
 
     public Fire()
     {
-        super(ORB_ID, true);
+        super(ORB_ID, Timing.EndOfTurn);
 
         if (imgExt == null)
         {
@@ -44,18 +46,19 @@ public class Fire extends AnimatorOrb
 
     public void updateDescription()
     {
-        String[] desc = orbStrings.DESCRIPTION;
-
         this.applyFocus();
-        this.description = desc[0] + this.passiveAmount + desc[1] + BURNING_AMOUNT + desc[2] + this.evokeAmount + desc[3];
+        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], this.passiveAmount, BURNING_AMOUNT, this.evokeAmount);
     }
 
+    @Override
     public void triggerEvokeAnimation()
     {
-        CardCrawlGame.sound.play("ATTACK_FIRE", 0.1f);
-        GameEffects.Queue.Add(new DarkOrbActivateEffect(this.cX, this.cY));
+        super.triggerEvokeAnimation();
+
+        SFX.Play(SFX.ATTACK_FIRE, 0.9f, 1.1f);
     }
 
+    @Override
     public void applyFocus()
     {
         this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
@@ -64,7 +67,7 @@ public class Fire extends AnimatorOrb
     public void updateAnimation()
     {
         super.updateAnimation();
-        this.angle += Gdx.graphics.getDeltaTime() * 18f; //180f;
+        this.angle += Gdx.graphics.getRawDeltaTime() * 90f; //180f;
     }
 
     public void render(SpriteBatch sb)
@@ -101,5 +104,11 @@ public class Fire extends AnimatorOrb
         GameActions.Bottom.Add(new FireOrbPassiveAction(this, passiveAmount));
 
         super.Passive();
+    }
+
+    @Override
+    protected OrbFlareEffect2 GetOrbFlareEffect()
+    {
+        return super.GetOrbFlareEffect().SetColors(Color.FIREBRICK, Color.ORANGE);
     }
 }

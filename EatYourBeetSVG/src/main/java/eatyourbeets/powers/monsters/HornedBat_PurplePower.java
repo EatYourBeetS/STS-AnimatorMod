@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.actions.special.DieAction;
 import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.common.PlayerFlightPower;
+import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.utilities.GameActions;
 
 public class HornedBat_PurplePower extends AnimatorPower implements OnTryApplyPowerListener
@@ -18,9 +18,7 @@ public class HornedBat_PurplePower extends AnimatorPower implements OnTryApplyPo
     {
         super(owner, POWER_ID);
 
-        this.amount = -1;
-
-        updateDescription();
+        Initialize(-1);
     }
 
     @Override

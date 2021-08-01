@@ -14,16 +14,12 @@ public class CursedStabsPower extends AnimatorPower
     {
         super(owner, POWER_ID);
 
-        this.amount = -1;
-
-        updateDescription();
+        Initialize(-1, (owner == player) ? PowerType.DEBUFF : PowerType.BUFF, false);
     }
 
     @Override
     public void atEndOfTurn(boolean isPlayer)
     {
-        super.atEndOfTurn(isPlayer);
-
         enabled = true;
     }
 

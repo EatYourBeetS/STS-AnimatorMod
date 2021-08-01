@@ -16,19 +16,14 @@ public class OrbCore_ChaosPower extends OrbCore_AbstractPower
 
     public OrbCore_ChaosPower(AbstractCreature owner, int amount)
     {
-        super(POWER_ID, owner, amount);
-
-        this.value = OrbCore_Chaos.VALUE;
-
-        updateDescription();
+        super(POWER_ID, owner, amount, OrbCore_Chaos.VALUE);
     }
 
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
-        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-
-        if (p.hand.size() < BaseMod.MAX_HAND_SIZE)
+        final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        if (p.hand.size() < (BaseMod.MAX_HAND_SIZE - 1))
         {
             while (group.size() < 3)
             {

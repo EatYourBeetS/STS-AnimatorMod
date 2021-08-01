@@ -25,6 +25,6 @@ public class Defend extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainBlock(block);//
     }
 }

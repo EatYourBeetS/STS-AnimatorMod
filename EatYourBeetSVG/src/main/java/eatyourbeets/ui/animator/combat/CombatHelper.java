@@ -1,4 +1,4 @@
-package eatyourbeets.powers;
+package eatyourbeets.ui.animator.combat;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -8,7 +8,7 @@ import eatyourbeets.utilities.Mathf;
 
 import java.util.ArrayList;
 
-public class PowerHealthBarHelper
+public class CombatHelper
 {
     private static final ArrayList<CreatureStatus> creatures = new ArrayList<>();
 
@@ -19,13 +19,16 @@ public class PowerHealthBarHelper
 
     public void Update()
     {
-        if (GR.UI.Elapsed100() && !GameUtilities.InBattle())
+        if (creatures.isEmpty())
         {
-            Clear();
             return;
         }
 
-        for (CreatureStatus s : creatures)
+        if (GR.UI.Elapsed100() && !GameUtilities.InBattle())
+        {
+            Clear();
+        }
+        else for (CreatureStatus s : creatures)
         {
             s.Refresh();
         }

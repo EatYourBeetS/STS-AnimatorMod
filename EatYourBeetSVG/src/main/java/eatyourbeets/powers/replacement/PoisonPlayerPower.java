@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
-import eatyourbeets.powers.PowerHealthBarHelper;
+import eatyourbeets.ui.animator.combat.CombatHelper;
 import eatyourbeets.utilities.GameActions;
 
 public class PoisonPlayerPower extends AbstractPower implements HealthBarRenderPower
@@ -70,7 +70,7 @@ public class PoisonPlayerPower extends AbstractPower implements HealthBarRenderP
     @Override
     public int getHealthBarAmount()
     {
-        return PowerHealthBarHelper.GetHealthBarAmount(owner, amount, false, true);
+        return CombatHelper.GetHealthBarAmount(owner, amount, false, true);
     }
 
     @Override

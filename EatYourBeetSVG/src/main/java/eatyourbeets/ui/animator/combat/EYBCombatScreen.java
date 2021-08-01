@@ -5,7 +5,6 @@ import eatyourbeets.interfaces.subscribers.OnBattleEndSubscriber;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStatsClearedSubscriber;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.PowerHealthBarHelper;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.GameUtilities;
@@ -13,8 +12,8 @@ import eatyourbeets.utilities.GameUtilities;
 public class EYBCombatScreen extends GUIElement implements OnStatsClearedSubscriber, OnBattleStartSubscriber, OnBattleEndSubscriber
 {
     public final EYBCardAffinitySystem Affinities = CombatStats.Affinities;
-    public final PowerHealthBarHelper Helper = new PowerHealthBarHelper();
     public final EnemySubIntents Intents = new EnemySubIntents();
+    public final CombatHelper Helper = new CombatHelper();
 
     protected float delay = 0;
 

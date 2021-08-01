@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CommonPower;
-import eatyourbeets.powers.PowerHealthBarHelper;
+import eatyourbeets.ui.animator.combat.CombatHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.Mathf;
 
@@ -66,7 +66,7 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     @Override
     public int getHealthBarAmount()
     {
-        return PowerHealthBarHelper.GetHealthBarAmount(owner, amount, false, true);
+        return CombatHelper.GetHealthBarAmount(owner, amount, false, true);
     }
 
     @Override

@@ -301,21 +301,12 @@ public class EYBCardAffinities
 
     public void SetRequirement(AffinityType type, int requirement)
     {
-        if (type == AffinityType.General)
-        {
-            type = AffinityType.Star;
-        }
-
-        Get(type, true).requirement = requirement;
+        Get(type == AffinityType.General ? AffinityType.Star : type, true).requirement = requirement;
     }
 
     public int GetRequirement(AffinityType type)
     {
-        if (type == AffinityType.General)
-        {
-            type = AffinityType.Star;
-        }
-        EYBCardAffinity a = Get(type);
+        EYBCardAffinity a = Get(type == AffinityType.General ? AffinityType.Star : type);
         return a == null ? 0 : a.requirement;
     }
 

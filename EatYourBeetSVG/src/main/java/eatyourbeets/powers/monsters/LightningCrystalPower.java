@@ -10,9 +10,9 @@ public class LightningCrystalPower extends AbstractCrystalPower
 {
     public static final String POWER_ID = CreateFullID(LightningCrystalPower.class);
 
-    public LightningCrystalPower(AbstractCreature owner, int value)
+    public LightningCrystalPower(AbstractCreature owner, int amount)
     {
-        super(POWER_ID, owner, value);
+        super(POWER_ID, owner, amount);
     }
 
     @Override

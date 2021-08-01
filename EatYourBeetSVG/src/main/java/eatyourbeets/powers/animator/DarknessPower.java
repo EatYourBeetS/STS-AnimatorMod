@@ -14,9 +14,7 @@ public class DarknessPower extends AnimatorPower
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override
@@ -24,11 +22,15 @@ public class DarknessPower extends AnimatorPower
     {
         super.wasHPLost(info, damageAmount);
 
-        if (info.type != DamageInfo.DamageType.HP_LOSS && damageAmount > 0)
+        if (amount > 0 && info.type != DamageInfo.DamageType.HP_LOSS && damageAmount > 0)
         {
-            flash();
-            GameActions.Top.ReducePower(this, 1);
             GameActions.Bottom.MakeCardInDrawPile(new DarknessAdrenaline());
+            if ((amount -= 1) <= 0)
+            {
+                RemovePower();
+            }
+
+            this.flash();
         }
     }
 }

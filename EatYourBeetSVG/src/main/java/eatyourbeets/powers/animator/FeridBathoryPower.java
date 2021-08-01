@@ -13,18 +13,15 @@ import eatyourbeets.utilities.GameEffects;
 
 public class FeridBathoryPower extends AnimatorPower
 {
+    public static final String POWER_ID = CreateFullID(FeridBathoryPower.class);
     public static final int EXHAUST_PILE_THRESHOLD = 20;
     public static final int FORCE_AMOUNT = 10;
-
-    public static final String POWER_ID = CreateFullID(FeridBathoryPower.class);
 
     public FeridBathoryPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override
@@ -39,6 +36,7 @@ public class FeridBathoryPower extends AnimatorPower
             return 0f;
         });
         GameActions.Bottom.GainTemporaryHP(amount);
+        flashWithoutSound();
     }
 
     @Override

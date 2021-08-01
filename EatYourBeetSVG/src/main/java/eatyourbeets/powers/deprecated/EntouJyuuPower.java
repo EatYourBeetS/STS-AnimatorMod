@@ -26,14 +26,6 @@ public class EntouJyuuPower extends AnimatorPower
     }
 
     @Override
-    public void updateDescription()
-    {
-        String[] desc = powerStrings.DESCRIPTIONS;
-
-        this.description = desc[0] + amount + desc[1];
-    }
-
-    @Override
     public void renderAmount(SpriteBatch sb, float x, float y, Color c)
     {
         if (amount >= 0)

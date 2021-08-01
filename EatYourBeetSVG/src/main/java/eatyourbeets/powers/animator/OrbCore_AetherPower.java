@@ -1,6 +1,5 @@
 package eatyourbeets.powers.animator;
 
-import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -13,27 +12,20 @@ public class OrbCore_AetherPower extends OrbCore_AbstractPower
 
     public OrbCore_AetherPower(AbstractCreature owner, int amount)
     {
-        super(POWER_ID, owner, amount);
-
-        this.value = OrbCore_Aether.VALUE;
-
-        updateDescription();
+        super(POWER_ID, owner, amount, OrbCore_Aether.VALUE);
     }
 
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
-        if (p.hand.size() < BaseMod.MAX_HAND_SIZE)
+        GameActions.Bottom.Draw(potency)
+        .AddCallback(cards ->
         {
-            GameActions.Bottom.Draw(value)
-            .AddCallback(cards ->
+            if (cards.size() > 0)
             {
-                if (cards.size() > 0)
-                {
-                    GameActions.Top.DiscardFromHand(name, 1, false)
-                    .SetOptions(false, false, false);
-                }
-            });
-        }
+                GameActions.Top.DiscardFromHand(name, 1, false)
+                .SetOptions(false, false, false);
+            }
+        });
     }
 }

@@ -9,21 +9,11 @@ public class DarkWispPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(DarkWispPower.class);
 
-    public DarkWispPower(AbstractCreature owner, int value)
+    public DarkWispPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.amount = value;
-
-        updateDescription();
-    }
-
-    @Override
-    public void updateDescription()
-    {
-        String[] desc = powerStrings.DESCRIPTIONS;
-
-        description = desc[0] + amount + desc[1];
+        Initialize(amount);
     }
 
     @Override

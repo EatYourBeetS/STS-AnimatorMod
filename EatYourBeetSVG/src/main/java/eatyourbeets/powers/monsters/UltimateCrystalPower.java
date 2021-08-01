@@ -15,16 +15,13 @@ import eatyourbeets.utilities.GameUtilities;
 public class UltimateCrystalPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(UltimateCrystalPower.class);
-
-    private static final int STRENGTH_GAIN = 2;
+    public static final int STRENGTH_GAIN = 2;
 
     public UltimateCrystalPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override
@@ -43,9 +40,7 @@ public class UltimateCrystalPower extends AnimatorPower
     @Override
     public void updateDescription()
     {
-        String[] desc = powerStrings.DESCRIPTIONS;
-
-        description = desc[0] + STRENGTH_GAIN + desc[1] + amount + desc[2];
+        this.description = FormatDescription(0, STRENGTH_GAIN, amount);
     }
 
     @Override

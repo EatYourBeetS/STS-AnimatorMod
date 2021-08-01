@@ -15,14 +15,12 @@ public class ShacklesDebuffPower extends CommonPower implements InvisiblePower
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-        this.type = PowerType.DEBUFF;
+        Initialize(amount, PowerType.DEBUFF, false);
     }
 
     @Override
     public void onInitialApplication()
     {
-        //GameActions.Instant.Callback(() -> owner.powers.remove(this));
         owner.powers.remove(this);
         GameActions.Top.ReduceStrength(owner, amount, true);
     }

@@ -3,7 +3,6 @@ package eatyourbeets.powers.animator;
 import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -16,9 +15,7 @@ public class KaijinPower extends AnimatorPower
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override
@@ -26,7 +23,7 @@ public class KaijinPower extends AnimatorPower
     {
         super.atEndOfTurn(isPlayer);
 
-        if (isPlayer && !AbstractDungeon.player.hand.isEmpty())
+        if (isPlayer && !player.hand.isEmpty())
         {
             GameActions.Bottom.SelectFromHand(name, 1, false)
             .SetOptions(true, true, true)

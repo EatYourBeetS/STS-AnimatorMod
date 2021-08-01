@@ -2,7 +2,7 @@
 {
 	"EYB:BurningPower":
 	{
-		"DESCRIPTIONS": ["At the start of your turn, lose #b{0} HP. Receive #b{1}% more #yAttack damage."],
+		"DESCRIPTIONS": ["At the start of your turn, lose #b{0} HP. Receive #b{1}% more #yAttack damage (min. #b1 additional damage)."],
 		"NAME": "Burning"
 	},
 	"EYB:FreezingPower":
@@ -12,7 +12,7 @@
 	},
 	"EYB:SelfDamagePower":
 	{
-		"DESCRIPTIONS": ["At the end of this turn, take #b", " damage."],
+		"DESCRIPTIONS": ["At the end of this turn, take #b{0} damage."],
 		"NAME": "Self Damage"
 	},
 	"EYB:MarkedPower":

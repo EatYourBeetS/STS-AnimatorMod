@@ -30,16 +30,10 @@ public class FreezingPower extends CommonPower implements OnChannelOrbSubscriber
     {
         super(owner, POWER_ID);
 
-        this.source = source == null ? owner : source;
-        this.amount = amount;
-        if (this.amount >= 9999)
-        {
-            this.amount = 9999;
-        }
+        this.source = source;
+        this.priority = 4;
 
-        this.type = PowerType.DEBUFF;
-        this.isTurnBased = true;
-        updateDescription();
+        Initialize(amount, PowerType.DEBUFF, true);
     }
 
     @Override
@@ -58,6 +52,18 @@ public class FreezingPower extends CommonPower implements OnChannelOrbSubscriber
 
         CombatStats.onChannelOrb.Unsubscribe(this);
         CombatStats.onEvokeOrb.Unsubscribe(this);
+    }
+
+    @Override
+    public void updateDescription()
+    {
+        this.description = FormatDescription(0, GetDamageReduction());
+    }
+
+    @Override
+    public void playApplyPowerSfx()
+    {
+        SFX.Play(SFX.ORB_FROST_EVOKE, 1.2f, 1.5f);
     }
 
     @Override
@@ -92,18 +98,6 @@ public class FreezingPower extends CommonPower implements OnChannelOrbSubscriber
     public float atDamageGive(float damage, DamageInfo.DamageType type)
     {
         return super.atDamageGive(type == DamageInfo.DamageType.NORMAL ? (damage - GetDamageReduction()) : damage, type);
-    }
-
-    @Override
-    public void updateDescription()
-    {
-        this.description = FormatDescription(0, GetDamageReduction());
-    }
-
-    @Override
-    public void playApplyPowerSfx()
-    {
-        SFX.Play(SFX.ORB_FROST_EVOKE, 1.2f, 1.5f);
     }
 
     @Override

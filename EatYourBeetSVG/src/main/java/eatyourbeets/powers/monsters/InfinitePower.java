@@ -67,13 +67,10 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         this.maxCardsPerTurn = 16;
         this.timeMaze = new CustomTimeMaze(maxCardsPerTurn);
         this.enchantedArmorPower = new EnchantedArmorPower(owner, 0, true);
-
         this.dialog = owner.data.strings.DIALOG;
-
         this.priority = 100;
-        this.amount = -1;
 
-        updateDescription();
+        Initialize(-1);
     }
 
     @Override
@@ -90,6 +87,8 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     @Override
     public void onRemove()
     {
+        super.onRemove();
+
         GameActions.Bottom.ApplyPower(owner, this)
         .ShowEffect(false, true);
     }

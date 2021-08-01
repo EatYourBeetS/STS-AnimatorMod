@@ -62,7 +62,7 @@
 	},
 	"Burning":
 	{
-		"DESCRIPTION": "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack. Reduced by #b1 each turn.",
+		"DESCRIPTION": "Increases incoming #yAttack damage by #b15% (min. #b1 additional damage). NL At the start of turn, lose HP equal to half the amount of [Burning] and reduce [Burning] by #b1.",
 		"NAMES": ["burning"],
 		"PROPER_NAME": "Burning"
 	},

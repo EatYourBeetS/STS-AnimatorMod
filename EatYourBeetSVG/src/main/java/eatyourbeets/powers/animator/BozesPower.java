@@ -2,30 +2,43 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
 
-public class BozesPower extends AnimatorPower
+public class BozesPower extends AnimatorPower implements OnSynergySubscriber
 {
     public static final String POWER_ID = CreateFullID(BozesPower.class);
 
-    public BozesPower(AbstractCreature owner, int value)
+    public BozesPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.amount = value;
-
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override
-    public void updateDescription()
+    public void onInitialApplication()
     {
-        String[] desc = powerStrings.DESCRIPTIONS;
+        super.onInitialApplication();
 
-        description = desc[0] + amount + desc[1];
+        CombatStats.onSynergy.Subscribe(this);
+    }
+
+    @Override
+    public void onRemove()
+    {
+        super.onRemove();
+
+        CombatStats.onSynergy.Unsubscribe(this);
+    }
+
+    @Override
+    public void OnSynergy(AbstractCard card)
+    {
+        GameActions.Bottom.StackPower(new SupportDamagePower(owner, amount));
+        this.flash();
     }
 
     @Override
@@ -34,19 +47,5 @@ public class BozesPower extends AnimatorPower
         super.atEndOfTurn(isPlayer);
 
         RemovePower();
-    }
-
-    @Override
-    public void onAfterCardPlayed(AbstractCard usedCard)
-    {
-        super.onAfterCardPlayed(usedCard);
-
-        AnimatorCard card = JUtils.SafeCast(usedCard, AnimatorCard.class);
-        if (card != null && card.HasSynergy())
-        {
-            GameActions.Bottom.StackPower(new SupportDamagePower(owner, amount));
-
-            this.flash();
-        }
     }
 }

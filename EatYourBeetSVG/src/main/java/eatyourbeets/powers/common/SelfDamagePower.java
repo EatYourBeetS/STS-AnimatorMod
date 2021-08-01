@@ -5,7 +5,7 @@ import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPowe
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -19,16 +19,15 @@ public class SelfDamagePower extends CommonPower implements HealthBarRenderPower
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-        this.type = PowerType.DEBUFF;
         this.priority = 97;
 
-        updateDescription();
+        Initialize(amount, PowerType.DEBUFF, false);
     }
 
+    @Override
     public void playApplyPowerSfx()
     {
-        CardCrawlGame.sound.play("BLOOD_SPLAT", 0.05f);
+        SFX.Play(SFX.BLOOD_SPLAT, 0.95f, 1.05f);
     }
 
     @Override

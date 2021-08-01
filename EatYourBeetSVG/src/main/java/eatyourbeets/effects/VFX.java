@@ -16,6 +16,16 @@ import eatyourbeets.utilities.Mathf;
 
 public class VFX
 {
+    protected static float RandomX(Hitbox hb, float variance)
+    {
+        return hb.cX + (MathUtils.random(-variance, variance) * hb.width);
+    }
+
+    protected static float RandomY(Hitbox hb, float variance)
+    {
+        return hb.cY + (MathUtils.random(-variance, variance) * hb.height);
+    }
+
     public static CataclysmEffect Cataclysm()
     {
         return new CataclysmEffect();
@@ -23,7 +33,7 @@ public class VFX
 
     public static MeteorFallEffect MeteorFall(Hitbox hb)
     {
-        return new MeteorFallEffect(hb.cX, hb.cY, MathUtils.random(-0.2f, 0.2f) * hb.width, MathUtils.random(-0.2f, 0.2f) * hb.height);
+        return new MeteorFallEffect(RandomX(hb, 0.2f), RandomY(hb, 0.2f));
     }
 
     public static boolean FlipHorizontally()
@@ -38,7 +48,7 @@ public class VFX
 
     public static BiteEffect2 Bite(Hitbox target, Color color)
     {
-        return new BiteEffect2(target.cX, target.cY - 40.0F * Settings.scale, color);
+        return new BiteEffect2(target.cX, target.cY - (40.0F * Settings.scale), color);
     }
 
     public static ClashEffect2 Clash(Hitbox target)
@@ -86,11 +96,14 @@ public class VFX
         return new ExplosionSmallEffect(source.cX, source.cY);
     }
 
+    public static ExplosionSmallEffect SmallExplosion(Hitbox source, float variance)
+    {
+        return new ExplosionSmallEffect(RandomX(source, variance), RandomY(source, variance));
+    }
+
     public static SmallLaserEffect SmallLaser(Hitbox source, Hitbox target, Color color)
     {
-        return new SmallLaserEffect(source.cX, source.cY,
-                target.cX + (MathUtils.random(-0.2f, 0.2f) * target.width),
-                target.cY + (MathUtils.random(-0.2f, 0.2f) * target.height), color);
+        return new SmallLaserEffect(source.cX, source.cY, RandomX(target, 0.2f), RandomY(target, 0.2f), color);
     }
 
     public static FallingIceEffect FallingIce(int frostCount)
@@ -111,6 +124,11 @@ public class VFX
     public static FlashAttackEffect FlashAttack(Hitbox target, AbstractGameAction.AttackEffect effect, boolean muteSFX)
     {
         return new FlashAttackEffect(target.cX, target.cY, effect, muteSFX);
+    }
+
+    public static ThrowDaggerEffect ThrowDagger(Hitbox target, float variance)
+    {
+        return new ThrowDaggerEffect(RandomX(target, variance), RandomY(target, variance));
     }
 
     public static ThrowProjectileEffect ThrowRock(Hitbox source, Hitbox target, float duration)

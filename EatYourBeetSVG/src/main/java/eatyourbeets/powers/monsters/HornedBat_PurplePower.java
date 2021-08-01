@@ -18,9 +18,7 @@ public class HornedBat_PurplePower extends AnimatorPower implements OnTryApplyPo
     {
         super(owner, POWER_ID);
 
-        this.amount = -1;
-
-        updateDescription();
+        Initialize(-1);
     }
 
     @Override

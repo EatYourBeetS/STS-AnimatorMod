@@ -21,14 +21,12 @@ public class PridePower extends AnimatorPower
 
         this.priority = -99;
 
-        updateDescription();
+        Initialize(-1);
     }
 
     @Override
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount)
     {
-        damageAmount = super.onAttacked(info, damageAmount);
-
         if (damageAmount > 0)
         {
             ArrayList<Dark> darkOrbs = new ArrayList<>();
@@ -47,15 +45,15 @@ public class PridePower extends AnimatorPower
             }
         }
 
-        return damageAmount;
+        return super.onAttackedToChangeDamage(info, damageAmount);
     }
 
     @Override
     public void atStartOfTurn()
     {
-        RemovePower();
-
         super.atStartOfTurn();
+
+        RemovePower();
     }
 
     private int AbsorbDamage(int damage, ArrayList<Dark> darkOrbs)

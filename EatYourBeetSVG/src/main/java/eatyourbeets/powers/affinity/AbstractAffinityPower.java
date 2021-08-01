@@ -41,11 +41,11 @@ public abstract class AbstractAffinityPower extends CommonPower
     public void Initialize(AbstractCreature owner)
     {
         this.owner = owner;
-        this.amount = 0;
         this.enabled = true;
         this.retainedTurns = 0;
         this.thresholdIndex = 0;
-        this.updateDescription();
+
+        Initialize(0, PowerType.BUFF, true);
     }
 
     public void RetainOnce()
@@ -108,16 +108,14 @@ public abstract class AbstractAffinityPower extends CommonPower
     @Override
     public void updateDescription()
     {
-        this.description = powerStrings.DESCRIPTIONS[0];
-
         final Integer threshold = GetCurrentThreshold();
         if (threshold != null)
         {
-            this.description = JUtils.Format(description + powerStrings.DESCRIPTIONS[1], name, threshold, 1);
+            this.description = JUtils.Format(powerStrings.DESCRIPTIONS[0] + powerStrings.DESCRIPTIONS[1], name, threshold, 1);
         }
         else
         {
-            this.description = JUtils.Format(description, name);
+            this.description = JUtils.Format(powerStrings.DESCRIPTIONS[0], name);
         }
     }
 

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.powers.PowerHealthBarHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.Mathf;
 
@@ -38,7 +39,7 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, getHealthBarAmount(), ATTACK_MULTIPLIER);
+        this.description = FormatDescription(0, GetPassiveDamage(), ATTACK_MULTIPLIER);
     }
 
     @Override
@@ -52,7 +53,7 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     {
         this.flashWithoutSound();
 
-        GameActions.Bottom.DealDamage(source, owner, amount, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.DealDamage(source, owner, GetPassiveDamage(), DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.FIRE);
         ReducePower(1);
     }
 
@@ -65,7 +66,7 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     @Override
     public int getHealthBarAmount()
     {
-        return amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2;
+        return PowerHealthBarHelper.GetHealthBarAmount(owner, amount, false, true);
     }
 
     @Override
@@ -78,5 +79,10 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     public AbstractPower makeCopy()
     {
         return new BurningPower(owner, source, amount);
+    }
+
+    private int GetPassiveDamage()
+    {
+        return amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2;
     }
 }

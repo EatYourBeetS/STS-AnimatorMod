@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.powers.PowerHealthBarHelper;
 import eatyourbeets.utilities.GameActions;
 
 public class SelfDamagePower extends CommonPower implements HealthBarRenderPower
@@ -46,7 +47,7 @@ public class SelfDamagePower extends CommonPower implements HealthBarRenderPower
     @Override
     public int getHealthBarAmount()
     {
-        return Math.max(0, amount - owner.currentBlock);
+        return PowerHealthBarHelper.GetHealthBarAmount(owner, amount, true, true);
     }
 
     @Override

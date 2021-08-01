@@ -17,6 +17,7 @@ import eatyourbeets.actions.handSelection.SelectFromHand;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.vfx.OrbFlareEffect2;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.orbs.EYBOrb;
 import eatyourbeets.powers.CombatStats;
@@ -26,7 +27,7 @@ import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
-public class Chaos extends AnimatorOrb implements OnAfterCardPlayedSubscriber
+public class Chaos extends AnimatorOrb implements OnEndOfTurnSubscriber, OnAfterCardPlayedSubscriber
 {
     public static final String ORB_ID = CreateFullID(Chaos.class);
 
@@ -62,6 +63,7 @@ public class Chaos extends AnimatorOrb implements OnAfterCardPlayedSubscriber
     {
         super.onChannel();
 
+        CombatStats.onEndOfTurn.Subscribe(this);
         CombatStats.onAfterCardPlayed.Subscribe(this);
     }
 
@@ -98,19 +100,17 @@ public class Chaos extends AnimatorOrb implements OnAfterCardPlayedSubscriber
     }
 
     @Override
-    public void onEndOfTurn()
+    public void OnEndOfTurn(boolean isPlayer)
     {
-        super.onEndOfTurn();
-
+        CombatStats.onEndOfTurn.Unsubscribe(this);
         CombatStats.onAfterCardPlayed.Unsubscribe(this);
     }
 
     @Override
     public void updateDescription()
     {
-        String[] desc = orbStrings.DESCRIPTION;
         this.applyFocus();
-        this.description = desc[0];
+        this.description = orbStrings.DESCRIPTION[0];
     }
 
     @Override

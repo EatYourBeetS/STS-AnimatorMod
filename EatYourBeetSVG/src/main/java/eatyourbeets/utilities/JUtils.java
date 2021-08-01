@@ -178,7 +178,14 @@ public class JUtils
                     }
                     else if (next == '}' && sb2.length() > 0)
                     {
-                        sb1.append(args[ParseInt(sb2.toString(), -1)]);
+                        if (sb2.length() == 1)
+                        {
+                            sb1.append(args[Character.getNumericValue(sb2.toString().charAt(0))]);
+                        }
+                        else
+                        {
+                            sb1.append(args[ParseInt(sb2.toString(), -1)]);
+                        }
                         i = j;
                     }
 

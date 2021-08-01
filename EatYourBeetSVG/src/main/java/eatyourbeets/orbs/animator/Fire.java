@@ -46,8 +46,6 @@ public class Fire extends AnimatorOrb
 
     public void updateDescription()
     {
-        String[] desc = orbStrings.DESCRIPTION;
-
         this.applyFocus();
         this.description = JUtils.Format(orbStrings.DESCRIPTION[0], this.passiveAmount, BURNING_AMOUNT, this.evokeAmount);
     }

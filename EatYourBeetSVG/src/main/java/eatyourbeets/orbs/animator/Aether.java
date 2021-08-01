@@ -45,8 +45,6 @@ public class Aether extends AnimatorOrb
     @Override
     public void updateDescription()
     {
-        String[] desc = orbStrings.DESCRIPTION;
-
         this.applyFocus();
         this.description = JUtils.Format(orbStrings.DESCRIPTION[0], this.passiveAmount, this.evokeAmount);
     }

@@ -41,7 +41,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
 
     public Earth()
     {
-        super(ORB_ID, Timing.StartOfTurn);
+        super(ORB_ID, Timing.EndOfTurn);
 
         if (PROJECTILE_LARGE == null || PROJECTILE_SMALL == null)
         {
@@ -85,8 +85,6 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void updateDescription()
     {
-        final String[] desc = orbStrings.DESCRIPTION;
-
         this.applyFocus();
         this.description = JUtils.Format(orbStrings.DESCRIPTION[0], this.passiveAmount, this.evokeAmount, this.turns);
     }

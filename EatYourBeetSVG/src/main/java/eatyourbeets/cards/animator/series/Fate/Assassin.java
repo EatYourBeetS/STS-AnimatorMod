@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.series.Fate;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -81,15 +81,15 @@ public class Assassin extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL)
         .SetDamageEffect(this::DamageEffect)
         .SetDuration(0.3f, false);
 
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL)
         .SetDamageEffect(this::DamageEffect)
         .SetDuration(0.3f, false);
 
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL)
         .SetDamageEffect(this::DamageEffect)
         .SetDuration(0.2f, false);
     }

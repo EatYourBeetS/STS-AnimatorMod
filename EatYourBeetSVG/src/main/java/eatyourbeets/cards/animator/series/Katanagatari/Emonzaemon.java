@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,6 +9,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
@@ -46,10 +46,9 @@ public class Emonzaemon extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.SFX("ATTACK_FIRE");
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
-        GameActions.Bottom.SFX("ATTACK_FIRE");
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(0.55f, 0.65f);
+        GameActions.Bottom.WaitRealtime(0.25f);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(0.55f, 0.65f);
 
         if (CombatStats.CanActivateLimited(cardID))
         {

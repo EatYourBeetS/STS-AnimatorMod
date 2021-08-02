@@ -1,7 +1,7 @@
 package eatyourbeets.relics.animator;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -85,7 +85,7 @@ public class CursedBlade extends AnimatorRelic
             GameActions.Bottom.SFX(SFX.ATTACK_WHIRLWIND, 0.9f, 1.1f);
             GameActions.Bottom.VFX(VFX.Whirlwind(Color.RED, false));
             GameActions.Bottom.DealDamageToAll(DamageInfo.createDamageMatrix(CursedBlade.AOE_DAMAGE, true),
-                    DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+                    DamageInfo.DamageType.THORNS, AttackEffects.SLASH_HORIZONTAL);
 
             this.triggerCondition.requiredAmount += HP_COST_INCREASE;
             this.amount = triggerCondition.requiredAmount;

@@ -2,7 +2,11 @@ package eatyourbeets.powers.monsters;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+<<<<<<< HEAD
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+=======
+import eatyourbeets.effects.AttackEffects;
+>>>>>>> redesignEffects
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -88,7 +92,11 @@ public class UltimateCubePower extends AnimatorPower
         {
             GameActions.Bottom.Wait(0.3f);
             GameActions.Bottom.VFX(VFX.SmallExplosion(owner.hb, 0.3f), 0f);
+<<<<<<< HEAD
             GameActions.Bottom.DealDamage(owner, player, damageStep, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+=======
+            GameActions.Bottom.DealDamage(owner, player, damageStep, DamageInfo.DamageType.THORNS, AttackEffects.NONE);
+>>>>>>> redesignEffects
         }
 
         GameActions.Bottom.Add(new SuicideAction((AbstractMonster)this.owner));

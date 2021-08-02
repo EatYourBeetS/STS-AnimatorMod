@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.special;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ViolentAttackEffect;
@@ -50,10 +50,10 @@ public class ShichikaKyotouryuu extends AnimatorCard
         GameActions.Bottom.Add(new RemoveBlock(m, p)).SetVFX(true, true);
 
         GameActions.Bottom.VFX(new ViolentAttackEffect(m.hb.cX, m.hb.cY, Color.SCARLET.cpy()));
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
         GameActions.Last.Add(new RemoveBlock(m, p)).SetVFX(true, false);
     }

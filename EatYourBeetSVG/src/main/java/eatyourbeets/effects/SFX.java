@@ -5,11 +5,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 
 public class SFX
 {
+    public static final String ANIMATOR_ARROW = "ANIMATOR_ARROW";
+    public static final String ANIMATOR_GUNSHOT = "ANIMATOR_GUNSHOT";
     public static final String ANIMATOR_KIRA_POWER = "ANIMATOR_KIRA_POWER";
     public static final String ANIMATOR_MEGUMIN_CHARGE = "ANIMATOR_MEGUMIN_CHARGE";
     public static final String ANIMATOR_ORB_EARTH_CHANNEL = "ANIMATOR_ORB_EARTH_CHANNEL";
     public static final String ANIMATOR_ORB_EARTH_EVOKE = "ANIMATOR_ORB_EARTH_EVOKE";
-    public static final String ANIMATOR_REAPER = "ANIMATOR_REAPER";
     public static final String ANIMATOR_THE_CREATURE = "ANIMATOR_THE_CREATURE.ogg";
     public static final String ANIMATOR_THE_HAUNT = "ANIMATOR_THE_HAUNT.ogg";
     public static final String ANIMATOR_THE_ULTIMATE_CRYSTAL = "ANIMATOR_THE_ULTIMATE_CRYSTAL";
@@ -18,7 +19,9 @@ public class SFX
     public static final String AMBIANCE_BOTTOM = "AMBIANCE_BOTTOM";
     public static final String AMBIANCE_CITY = "AMBIANCE_CITY";
     public static final String APPEAR = "APPEAR";
+    public static final String ATTACK_AXE = "ATTACK_AXE";
     public static final String ATTACK_BOWLING = "ATTACK_BOWLING";
+    public static final String ATTACK_DAGGER = "ATTACK_DAGGER";
     public static final String ATTACK_DAGGER_1 = "ATTACK_DAGGER_1";
     public static final String ATTACK_DAGGER_2 = "ATTACK_DAGGER_2";
     public static final String ATTACK_DAGGER_3 = "ATTACK_DAGGER_3";
@@ -43,6 +46,9 @@ public class SFX
     public static final String ATTACK_PIERCING_WAIL = "ATTACK_PIERCING_WAIL";
     public static final String ATTACK_POISON = "ATTACK_POISON";
     public static final String ATTACK_POISON2 = "ATTACK_POISON2";
+    public static final String ATTACK_REAPER = "ATTACK_REAPER";
+    public static final String ATTACK_SCIMITAR = "ATTACK_SCIMITAR";
+    public static final String ATTACK_SCYTHE = "ATTACK_SCYTHE";
     public static final String ATTACK_WHIFF_1 = "ATTACK_WHIFF_1";
     public static final String ATTACK_WHIFF_2 = "ATTACK_WHIFF_2";
     public static final String ATTACK_WHIRLWIND = "ATTACK_WHIRLWIND";
@@ -395,6 +401,15 @@ public class SFX
 
     public static float Play(String key, float pitchMin, float pitchMax)
     {
+        if (pitchMin > pitchMax)
+        {
+            throw new RuntimeException("Min can't be greater than max");
+        }
+        if (key == null || pitchMin <= 0)
+        {
+            return 0f;
+        }
+
         return CardCrawlGame.sound.playA(key, ((pitchMin == pitchMax) ? pitchMin : MathUtils.random(pitchMin, pitchMax)) - 1) / 1000f;
     }
 

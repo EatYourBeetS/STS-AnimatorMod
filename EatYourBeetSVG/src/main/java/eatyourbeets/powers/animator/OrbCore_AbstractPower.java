@@ -27,7 +27,7 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
     @Override
     public void updateDescription()
     {
-        this.description = enabled ? FormatDescription(0, amount, potency) : "Needs 1 more Synergy";
+        this.description = enabled ? FormatDescription(amount, potency) : "Needs 1 more Synergy";
     }
 
     @Override

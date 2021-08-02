@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.special;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.colorless.uncommon.Kuroyukihime;
@@ -33,7 +33,7 @@ public class BlackLotus extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.SFX("ATTACK_DEFECT_BEAM");
         GameActions.Bottom.VFX(new ColoredSweepingBeamEffect(p.hb.cX, p.hb.cY, p.flipHorizontal, Color.valueOf("3d0066")), 0.3f);
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
         GameActions.Bottom.GainBlur(magicNumber);
     }
 }

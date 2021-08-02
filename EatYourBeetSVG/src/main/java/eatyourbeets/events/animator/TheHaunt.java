@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import eatyourbeets.blights.animator.Haunted;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
 
 public class TheHaunt extends EYBEvent
@@ -59,7 +59,7 @@ public class TheHaunt extends EYBEvent
             player.gainGold(GOLD_AMOUNT);
             AbstractDungeon.scene.fadeOutAmbiance();
             CardCrawlGame.music.silenceTempBgmInstantly();
-            CardCrawlGame.music.playTempBgmInstantly(GR.Common.Audio_TheHaunt, false);
+            CardCrawlGame.music.playTempBgmInstantly(SFX.ANIMATOR_THE_HAUNT, false);
         }
 
         private void Blighted()

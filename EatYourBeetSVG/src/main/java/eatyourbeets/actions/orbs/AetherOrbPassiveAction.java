@@ -1,21 +1,25 @@
 package eatyourbeets.actions.orbs;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
+import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.VFX;
+import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-
-import java.util.ArrayList;
-import java.util.Collections;
+import eatyourbeets.utilities.GameEffects;
 
 public class AetherOrbPassiveAction extends EYBAction
 {
-    public AetherOrbPassiveAction(int damage)
+    protected final Aether orb;
+
+    public AetherOrbPassiveAction(Aether orb, int damage)
     {
-        super(ActionType.DAMAGE);
+        super(ActionType.DAMAGE, Settings.ACTION_DUR_XFAST);
+
+        this.orb = orb;
 
         Initialize(damage);
     }
@@ -23,21 +27,11 @@ public class AetherOrbPassiveAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
-
-        Collections.reverse(enemies);
-        for (AbstractMonster m : enemies)
-        {
-            int actualDamage = AbstractOrb.applyLockOn(m, amount);
-            if (actualDamage > 0)
-            {
-                GameActions.Top.DealDamage(player, m, actualDamage, DamageInfo.DamageType.THORNS, AttackEffect.SLASH_HORIZONTAL)
-                .SetPiercing(true, true);
-            }
-        }
-
-        GameActions.Top.SFX("ATTACK_WHIRLWIND");
-        GameActions.Top.VFX(new WhirlwindEffect(), 0);
+        SFX.Play(SFX.ATTACK_WHIRLWIND);
+        GameEffects.Queue.Add(VFX.Whirlwind());
+        GameEffects.Queue.Add(VFX.RazorWind(orb.hb, player.hb, MathUtils.random(1000.0F, 1200.0F), MathUtils.random(-20.0F, 20.0F)));
+        int[] damage = DamageInfo.createDamageMatrix(amount, true, true);
+        GameActions.Top.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AttackEffects.SLASH_HORIZONTAL).SetVFX(true, false);
 
         Complete();
     }

@@ -1,6 +1,6 @@
 package eatyourbeets.powers.deprecated;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.powers.CommonPower;
@@ -29,7 +29,7 @@ public class DamageNextTurnPower extends CommonPower
     {
         flash();
 
-        GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.LIGHTNING);
+        GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS, AttackEffects.LIGHTNING);
         GameActions.Bottom.RemovePower(owner, owner, this);
     }
 }

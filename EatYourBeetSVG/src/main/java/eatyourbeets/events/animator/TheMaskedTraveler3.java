@@ -19,7 +19,7 @@ public class TheMaskedTraveler3 extends EYBEvent
 
     public TheMaskedTraveler3()
     {
-        super(ID, STRINGS, "MaskedTraveler.png");
+        super(ID, STRINGS, IMAGES.MaskedTraveler.Path());
 
         this.noCardsInRewards = true;
 

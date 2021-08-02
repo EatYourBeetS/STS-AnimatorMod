@@ -81,8 +81,8 @@ public class HornedBat_P extends HornedBat
                 SetMaxHP(24, 28);
             }
 
-            atlasUrl = "images/monsters/animator/HornedBat/HornedBat_P.atlas";
-            jsonUrl = "images/monsters/animator/HornedBat/HornedBat.json";
+            atlasUrl = "images/animator/monsters/HornedBat/HornedBat_P.atlas";
+            jsonUrl = "images/animator/monsters/HornedBat/HornedBat.json";
             scale = 1f;
 
             SetHB(0, 0, 120, 150, 0, 50);

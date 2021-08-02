@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
@@ -62,7 +62,7 @@ public class Shalltear extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE)
         .SetDamageEffect((enemy, __) ->
         {
             GameEffects.List.Add(VFX.Hemokinesis(player.hb, enemy.hb));

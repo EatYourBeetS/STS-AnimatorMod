@@ -12,6 +12,8 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.console.CommandsManager;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.powers.affinity.*;
@@ -27,15 +29,10 @@ import java.lang.reflect.Field;
 
 public class CommonResources extends AbstractResources
 {
-    public final static String ID = "EYB";
+    public final static String ID = "eyb";
     public final CommonDungeonData Dungeon = CommonDungeonData.Register(CreateID("Data"));
     public final CommonStrings Strings = new CommonStrings();
     public final CommonImages Images = new CommonImages();
-
-    public final String Audio_TheUltimateCrystal = "ANIMATOR_THE_ULTIMATE_CRYSTAL";
-    public final String Audio_TheCreature = "ANIMATOR_THE_CREATURE.ogg";
-    public final String Audio_TheUnnamed = "ANIMATOR_THE_UNNAMED.ogg";
-    public final String Audio_TheHaunt = "ANIMATOR_THE_HAUNT.ogg";
 
     public CommonResources()
     {
@@ -51,16 +48,23 @@ public class CommonResources extends AbstractResources
     @Override
     protected void InitializeAudio()
     {
-        BaseMod.addAudio("ANIMATOR_REAPER", "audio/sound/STS_SFX_Reaper_v1.ogg");
-        BaseMod.addAudio("ANIMATOR_ORB_EARTH_EVOKE", "audio/sound/ANIMATOR_ORB_EARTH_EVOKE.ogg");
-        BaseMod.addAudio("ANIMATOR_ORB_EARTH_CHANNEL", "audio/sound/ANIMATOR_ORB_EARTH_CHANNEL.ogg");
-        BaseMod.addAudio("ANIMATOR_KIRA_POWER", "audio/sound/ANIMATOR_KIRA_POWER.ogg");
-        BaseMod.addAudio("ANIMATOR_MEGUMIN_CHARGE", "audio/sound/ANIMATOR_MEGUMIN_CHARGE.ogg");
-        //BaseMod.addAudio("ANIMATOR_EMONZAEMON_ATTACK", "audio/sound/ANIMATOR_EMONZAEMON_ATTACK.ogg");
-        BaseMod.addAudio(Audio_TheUltimateCrystal, "audio/sound/ANIMATOR_THE_ULTIMATE_CRYSTAL.ogg");
-        BaseMod.addAudio(Audio_TheHaunt, "audio/music/ANIMATOR_THE_HAUNT.ogg");
-        BaseMod.addAudio(Audio_TheUnnamed, "audio/music/ANIMATOR_THE_UNNAMED.ogg");
-        BaseMod.addAudio(Audio_TheCreature, "audio/music/ANIMATOR_THE_CREATURE.ogg");
+        BaseMod.addAudio(SFX.ATTACK_REAPER, "audio/sound/STS_SFX_Reaper_v1.ogg");
+        BaseMod.addAudio(SFX.ATTACK_SCYTHE, "audio/sound/STS_SFX_Scythe_v1.ogg");
+        BaseMod.addAudio(SFX.ATTACK_AXE, "audio/sound/STS_SFX_EnemyAtk_Axe_v1.ogg");
+        BaseMod.addAudio(SFX.ATTACK_DAGGER, "audio/sound/STS_SFX_EnemyAtk_Dagger_v1.ogg");
+        BaseMod.addAudio(SFX.ATTACK_SCIMITAR, "audio/sound/STS_SFX_EnemyAtk_Scimitar_v1.ogg");
+
+        BaseMod.addAudio(SFX.ANIMATOR_ARROW, "audio/animator/sound/FIRING_ARROW.ogg");
+        BaseMod.addAudio(SFX.ANIMATOR_GUNSHOT, "audio/animator/sound/FIRING_BULLET.ogg");
+        BaseMod.addAudio(SFX.ANIMATOR_ORB_EARTH_EVOKE, "audio/animator/sound/ORB_EARTH_EVOKE.ogg");
+        BaseMod.addAudio(SFX.ANIMATOR_ORB_EARTH_EVOKE, "audio/animator/sound/ORB_EARTH_EVOKE.ogg");
+        BaseMod.addAudio(SFX.ANIMATOR_ORB_EARTH_CHANNEL, "audio/animator/sound/ORB_EARTH_CHANNEL.ogg");
+        BaseMod.addAudio(SFX.ANIMATOR_KIRA_POWER, "audio/animator/sound/KIRA_POWER.ogg");
+        BaseMod.addAudio(SFX.ANIMATOR_MEGUMIN_CHARGE, "audio/animator/sound/MEGUMIN_CHARGE.ogg");
+        BaseMod.addAudio(SFX.ANIMATOR_THE_ULTIMATE_CRYSTAL, "audio/animator/sound/THE_ULTIMATE_CRYSTAL.ogg");
+        BaseMod.addAudio(SFX.ANIMATOR_THE_HAUNT, "audio/animator/music/THE_HAUNT.ogg");
+        BaseMod.addAudio(SFX.ANIMATOR_THE_CREATURE, "audio/animator/music/THE_CREATURE.ogg");
+        //BaseMod.addAudio(Audio_TheUnnamed, "audio/music/ANIMATOR_THE_UNNAMED.ogg");
     }
 
     @Override
@@ -88,6 +92,7 @@ public class CommonResources extends AbstractResources
     @Override
     protected void PostInitialize()
     {
+        AttackEffects.Initialize();
         CommandsManager.RegisterCommands();
         GR.Tooltips.InitializeIcons();
         GR.UI.Initialize();

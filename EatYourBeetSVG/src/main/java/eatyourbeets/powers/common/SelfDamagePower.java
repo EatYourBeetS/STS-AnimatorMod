@@ -2,7 +2,7 @@ package eatyourbeets.powers.common;
 
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.effects.SFX;
@@ -34,7 +34,7 @@ public class SelfDamagePower extends CommonPower implements HealthBarRenderPower
     @Override
     public void atEndOfTurn(boolean isPlayer)
     {
-        GameActions.Bottom.DealDamage(null, owner, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActions.Bottom.DealDamage(null, owner, amount, DamageInfo.DamageType.THORNS, AttackEffects.SLASH_VERTICAL);
 
         RemovePower();
 

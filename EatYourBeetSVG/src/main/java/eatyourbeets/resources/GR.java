@@ -9,6 +9,7 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,7 +25,6 @@ import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.common.CommonResources;
-import eatyourbeets.resources.unnamed.UnnamedResources;
 import eatyourbeets.utilities.JUtils;
 import org.apache.logging.log4j.Logger;
 
@@ -35,6 +35,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class GR
 {
@@ -50,7 +51,6 @@ public class GR
     public static CardTooltips Tooltips = null; // Created by CommonResources
     public static UIManager UI = new UIManager();
     public static AnimatorResources Animator;
-    public static UnnamedResources Unnamed;
     public static CommonResources Common;
     public static boolean IsLoaded;
 
@@ -63,11 +63,9 @@ public class GR
 
         Common = new CommonResources();
         Animator = new AnimatorResources();
-        Unnamed = new UnnamedResources();
 
         Initialize(Common);
         Initialize(Animator);
-        //Initialize(Unnamed);
     }
 
     protected static void Initialize(AbstractResources resources)
@@ -133,34 +131,40 @@ public class GR
         return CardCrawlGame.languagePack;
     }
 
-    public static String GetCardImage(String cardID)
+    public static String GetPng(String id, String subFolder)
     {
-        return "images/cards/" + cardID.replace(":", "/") + ".png";
+        final String[] s = id.split(Pattern.quote(":"), 2);
+        return "images/" + s[0] + "/" + subFolder + "/" + s[1].replace(":", "_") + ".png";
     }
 
-    public static String GetRelicImage(String relicID)
+    public static String GetCardImage(String id)
     {
-        return "images/relics/" + relicID.replace(":", "/") + ".png";
+        return GetPng(id, "cards");
     }
 
-    public static String GetBlightImageName(String blightID)
+    public static String GetRelicImage(String id)
     {
-        return blightID.replace(":", "/") + ".png";
+        return GetPng(id, "relics");
     }
 
-    public static String GetPowerImage(String powerID)
+    public static String GetBlightImageName(String id)
     {
-        return "images/powers/" + powerID.replace(":", "/") + ".png";
+        return id.replace(":", "/") + ".png";
     }
 
-    public static String GetMonsterImage(String monsterID)
+    public static String GetPowerImage(String id)
     {
-        return "images/monsters/" + monsterID.replace(":", "/") + ".png";
+        return GetPng(id, "powers");
     }
 
-    public static String GetRewardImage(String rewardID)
+    public static String GetMonsterImage(String id)
     {
-        return "images/ui/rewards/" + rewardID.replace(":", "/") + ".png";
+        return GetPng(id, "monsters");
+    }
+
+    public static String GetRewardImage(String id)
+    {
+        return GetPng(id, "ui/rewards");
     }
 
     public static boolean IsTranslationSupported(Settings.GameLanguage language)
@@ -194,7 +198,6 @@ public class GR
             else
             {
                 JUtils.GetLogger(GR.class).error("Texture does not exist: " + path);
-                texture = null;
             }
 
             textures.put(path, texture);
@@ -408,51 +411,37 @@ public class GR
     {
         public static class Characters
         {
-            @SpireEnum
-            public static AbstractPlayer.PlayerClass THE_ANIMATOR;
-
-            @SpireEnum
-            public static AbstractPlayer.PlayerClass THE_UNNAMED;
+            @SpireEnum public static AbstractPlayer.PlayerClass THE_ANIMATOR;
+            @SpireEnum public static AbstractPlayer.PlayerClass THE_UNNAMED;
         }
 
         public static class Cards
         {
-            @SpireEnum
-            public static AbstractCard.CardColor THE_ANIMATOR;
-
-            @SpireEnum
-            public static AbstractCard.CardColor THE_UNNAMED;
+            @SpireEnum public static AbstractCard.CardColor THE_ANIMATOR;
+            @SpireEnum public static AbstractCard.CardColor THE_UNNAMED;
         }
 
         public static class Library
         {
-            @SpireEnum
-            public static CardLibrary.LibraryType THE_ANIMATOR;
-
-            @SpireEnum
-            public static CardLibrary.LibraryType THE_UNNAMED;
+            @SpireEnum public static CardLibrary.LibraryType THE_ANIMATOR;
+            @SpireEnum public static CardLibrary.LibraryType THE_UNNAMED;
         }
 
         public static class Screens
         {
-            @SpireEnum
-            public static AbstractDungeon.CurrentScreen EYB_SCREEN;
+            @SpireEnum public static AbstractDungeon.CurrentScreen EYB_SCREEN;
         }
 
         public static class Rewards
         {
-            @SpireEnum
-            public static RewardItem.RewardType SYNERGY_CARDS;
-
-            @SpireEnum
-            public static RewardItem.RewardType AURA_CARDS;
-
-            @SpireEnum
-            public static RewardItem.RewardType SPECIAL_GOLD;
+            @SpireEnum public static RewardItem.RewardType SYNERGY_CARDS;
+            @SpireEnum public static RewardItem.RewardType AURA_CARDS;
+            @SpireEnum public static RewardItem.RewardType SPECIAL_GOLD;
         }
 
         public static class CardTags
         {
+<<<<<<< HEAD
             @SpireEnum
             public static AbstractCard.CardTags TEMPORARY;
 
@@ -482,6 +471,26 @@ public class GR
 
             @SpireEnum
             public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
+=======
+            @SpireEnum public static AbstractCard.CardTags TEMPORARY;
+            @SpireEnum public static AbstractCard.CardTags UNIQUE;
+            @SpireEnum public static AbstractCard.CardTags VOIDBOUND;
+            @SpireEnum public static AbstractCard.CardTags IGNORE_PEN_NIB;
+            @SpireEnum public static AbstractCard.CardTags ECHO;
+            @SpireEnum public static AbstractCard.CardTags PURGE;
+            @SpireEnum public static AbstractCard.CardTags HASTE;
+            @SpireEnum public static AbstractCard.CardTags PURGING;
+            @SpireEnum public static AbstractCard.CardTags LOYAL;
+            @SpireEnum public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
+        }
+
+        public static class AttackEffect
+        {
+            @SpireEnum public static AbstractGameAction.AttackEffect GUNSHOT;
+            @SpireEnum public static AbstractGameAction.AttackEffect SHIELD_FROST;
+            @SpireEnum public static AbstractGameAction.AttackEffect DAGGER;
+            @SpireEnum public static AbstractGameAction.AttackEffect SPEAR;
+>>>>>>> redesignEffects
         }
     }
 }

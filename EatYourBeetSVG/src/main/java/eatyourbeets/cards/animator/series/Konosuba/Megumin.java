@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -63,7 +63,7 @@ public class Megumin extends AnimatorCard
             GameActions.Bottom.VFX(VFX.SmallExplosion(m1.hb));
         }
 
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE);
 
         if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
         {

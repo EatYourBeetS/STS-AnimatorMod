@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.GATE;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AffinityType;
@@ -8,6 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 
@@ -34,25 +34,17 @@ public class Kuribayashi extends AnimatorCard
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        if (AgilityStance.IsActive())
-        {
-            return super.GetDamageInfo().AddMultiplier(2);
-        }
-        else
-        {
-            return super.GetDamageInfo();
-        }
+        return AgilityStance.IsActive() ? super.GetDamageInfo().AddMultiplier(2) : super.GetDamageInfo();
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.SFX("ATTACK_FIRE");
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(0.6f, 0.8f);
 
         if (CheckAffinity(AffinityType.Green))
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         }
 
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);

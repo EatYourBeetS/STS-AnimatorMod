@@ -27,7 +27,7 @@ public abstract class EYBAction extends AbstractGameAction
     protected String name;
     protected int ticks;
 
-    public EYBAction(ActionType type)
+    public EYBAction(AbstractGameAction.ActionType type)
     {
         this(type, Settings.ACTION_DUR_FAST);
     }

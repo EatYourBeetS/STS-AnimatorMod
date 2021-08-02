@@ -2,7 +2,6 @@ package eatyourbeets.utilities;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import org.lwjgl.util.vector.Vector3f;
 import org.lwjgl.util.vector.Vector4f;
@@ -176,17 +175,6 @@ public class Mathf
         current.x = Lerp(current.x, target.x, speed.x * progress);
         current.y = Lerp(current.y, target.y, speed.y * progress);
         current.z = Lerp(current.z, target.z, speed.z * progress);
-    }
-
-    public static Color RandomColor(float min, float max, boolean grayscale)
-    {
-        if (grayscale)
-        {
-            final float value = MathUtils.random(min, max);
-            return new Color(value, value, value, 1);
-        }
-
-        return new Color(MathUtils.random(min, max), MathUtils.random(min, max), MathUtils.random(min, max), 1);
     }
 
     public static Color Subtract(Color a, Color b, boolean includeAlpha)

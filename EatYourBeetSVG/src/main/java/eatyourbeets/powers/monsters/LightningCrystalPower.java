@@ -1,6 +1,6 @@
 package eatyourbeets.powers.monsters;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
@@ -20,7 +20,7 @@ public class LightningCrystalPower extends AbstractCrystalPower
     {
         GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE");
         GameActions.Bottom.VFX(new LightningEffect(target.drawX, target.drawY));
-        GameActions.Bottom.DealDamage(owner, target, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
+        GameActions.Bottom.DealDamage(owner, target, amount, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
         .SetPiercing(true, true);
     }
 }

@@ -63,11 +63,18 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.CorruptionPower;
 import eatyourbeets.powers.affinity.*;
+<<<<<<< HEAD
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.powers.replacement.TemporaryArtifactPower;
+=======
+import eatyourbeets.powers.animator.EarthenThornsPower;
+import eatyourbeets.powers.common.BurningPower;
+import eatyourbeets.powers.common.FreezingPower;
+>>>>>>> redesignEffects
 import eatyourbeets.powers.common.VitalityPower;
+import eatyourbeets.powers.replacement.TemporaryArtifactPower;
 
 import java.util.ArrayList;
 import java.util.UUID;

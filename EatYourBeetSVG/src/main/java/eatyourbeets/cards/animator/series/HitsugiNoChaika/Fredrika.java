@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -165,7 +165,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
 
             case Dominica:
             {
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
                 GameActions.Bottom.ApplyWeak(p, m, 1);
                 GameActions.Bottom.ApplyVulnerable(p, m, 1);
                 break;
@@ -173,8 +173,8 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
 
             case Dragoon:
             {
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
                 GameActions.Bottom.GainMetallicize(2);
                 break;
             }

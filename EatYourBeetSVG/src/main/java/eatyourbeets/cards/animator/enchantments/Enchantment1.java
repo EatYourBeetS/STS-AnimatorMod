@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.enchantments;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.CardEffectChoice;
@@ -73,7 +73,7 @@ public class Enchantment1 extends Enchantment
 
         if (upgradeIndex == 3)
         {
-            GameActions.Bottom.LoseHP(magicNumber, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.LoseHP(magicNumber, AttackEffects.NONE);
         }
     }
 

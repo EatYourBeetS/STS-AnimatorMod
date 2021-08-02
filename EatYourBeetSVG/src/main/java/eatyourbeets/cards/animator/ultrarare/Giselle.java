@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -39,7 +39,7 @@ public class Giselle extends AnimatorCard_UltraRare
     {
         GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4f, m.hb.cY - m.hb.height / 4f));
         GameActions.Bottom.VFX(new FlameBarrierEffect(m.hb.cX, m.hb.cY), 0.5f);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
         GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), magicNumber);
     }

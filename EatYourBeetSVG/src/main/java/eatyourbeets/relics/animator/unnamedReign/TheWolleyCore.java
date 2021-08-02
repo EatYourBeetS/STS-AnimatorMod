@@ -1,6 +1,6 @@
 package eatyourbeets.relics.animator.unnamedReign;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -46,7 +46,7 @@ public class TheWolleyCore extends UnnamedReignRelic
         .SetVFX(true, true);
 
         int[] damage = DamageInfo.createDamageMatrix(DAMAGE_AMOUNT, true);
-        GameActions.Bottom.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
+        GameActions.Bottom.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
         .SetVFX(true, true)
         .SetDamageEffect((enemy, mute) ->
         {

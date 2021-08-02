@@ -82,7 +82,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
         this.owner = owner;
         this.ID = id;
 
-        String imagePath = GR.GetPowerImage(ID);
+        final String imagePath = GR.GetPowerImage(ID);
         if (Gdx.files.internal(imagePath).exists())
         {
             this.img = GR.GetTexture(imagePath);

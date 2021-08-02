@@ -13,7 +13,7 @@ import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 public class TheMaskedTraveler1 extends EYBEvent
@@ -99,8 +99,8 @@ public class TheMaskedTraveler1 extends EYBEvent
                 }
             }
 
-            final EYBCardData defend = JUtils.GetRandomElement(ImprovedDefend.GetCards(), RNG);
-            final EYBCardData strike = JUtils.GetRandomElement(ImprovedStrike.GetCards(), RNG);
+            final EYBCardData defend = GameUtilities.GetRandomElement(ImprovedDefend.GetCards(), RNG);
+            final EYBCardData strike = GameUtilities.GetRandomElement(ImprovedStrike.GetCards(), RNG);
             if (strikes.Size() > 0 && strike != null)
             {
                 SwapCards(strike, strikes.Retrieve(RNG), defend == null ? 0.5f : 0.4f);

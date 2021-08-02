@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -41,8 +41,8 @@ public class Kanami extends AnimatorCard_UltraRare
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)
-        .SetVFX(false, true)
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL)
+        .SetVFX(true, false)
         .AddCallback(enemies ->
         {
             CardCrawlGame.sound.play("ATTACK_WHIRLWIND");

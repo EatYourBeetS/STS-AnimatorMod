@@ -6,22 +6,22 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
 import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
-import eatyourbeets.effects.vfx.OrbFlareEffect2;
+import eatyourbeets.effects.Projectile;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.effects.Projectile;
+import eatyourbeets.ui.TextureCache;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
@@ -30,24 +30,27 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     public static final String ORB_ID = CreateFullID(Earth.class);
     public static final int PROJECTILES = 8;
 
-    public static Texture PROJECTILE_LARGE;
-    public static Texture PROJECTILE_SMALL;
+    private static final TextureCache[] images = { IMAGES.Earth1, IMAGES.Earth2, IMAGES.Earth3, IMAGES.Earth4 };
+    private static final RandomizedList<TextureCache> textures = new RandomizedList<>();
+    private float vfxTimer;
 
     public final ArrayList<Projectile> projectiles = new ArrayList<>();
     public boolean evoked;
     public int turns;
 
-    private float timer;
+    public static Texture GetRandomTexture()
+    {
+        if (textures.Size() <= 1) // Adds some randomness but still ensures all textures are cycled through
+        {
+            textures.AddAll(images);
+        }
+
+        return textures.RetrieveUnseeded(true).Texture();
+    }
 
     public Earth()
     {
         super(ORB_ID, Timing.EndOfTurn);
-
-        if (PROJECTILE_LARGE == null || PROJECTILE_SMALL == null)
-        {
-            PROJECTILE_LARGE = ImageMaster.loadImage("images/orbs/animator/Earth1.png");
-            PROJECTILE_SMALL = ImageMaster.loadImage("images/orbs/animator/Earth2.png");
-        }
 
         this.evoked = false;
         this.evokeAmount = this.baseEvokeAmount = 16;
@@ -63,10 +66,10 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         projectiles.clear();
         for (int i = 0; i < PROJECTILES; i++)
         {
-            projectiles.add(new Projectile((i % 3 == 0) ? PROJECTILE_LARGE : PROJECTILE_SMALL, 48f, 48f)
+            projectiles.add(new Projectile(GetRandomTexture(), IMAGE_SIZE * 0.5f, IMAGE_SIZE * 0.5f)
             .SetPosition(cX, cY)
-            .SetColor(Mathf.RandomColor(0f, 0.15f, true))
-            .SetScale(MathUtils.random(0.8f, 1f))
+            .SetColor(Colors.Random(0.9f, 1f, false))
+            .SetScale(MathUtils.random(0.6f, 1f))
             .SetFlip(i % 2 == 0, null)
             .SetOffset(0f, 0f, MathUtils.random(0f, 360f))
             .SetSpeed(2f, 2f, MathUtils.random(18f, 24f)));
@@ -146,7 +149,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
             texture.SetPosition(cX, cY).SetTargetRotation(angle).Update(delta);
         }
 
-        if (!evoked && (timer -= delta) <= 0)
+        if (!evoked && (vfxTimer -= delta) <= 0)
         {
             final float w = hb.width * 0.5f;
             final float h = hb.height * 0.5f;
@@ -154,7 +157,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
             {
                 texture.SetTargetOffset((w * 0.5f) - MathUtils.random(w), (h * 0.5f) - MathUtils.random(h), null);
             }
-            timer = 1.5f;
+            vfxTimer = 1.5f;
         }
 
         this.angle += delta * 180f;
@@ -165,7 +168,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         for (Projectile projectile : projectiles)
         {
-            projectile.Render(sb, Mathf.Subtract(c.cpy(), projectile.color, false));
+            projectile.Render(sb, Colors.Copy(projectile.color, c.a));
         }
 
         this.renderText(sb);
@@ -183,7 +186,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void playChannelSFX()
     {
-        CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.2f);
+        SFX.Play(SFX.ANIMATOR_ORB_EARTH_CHANNEL, 0.8f, 1.2f);
     }
 
     @Override
@@ -225,8 +228,14 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     }
 
     @Override
-    protected OrbFlareEffect2 GetOrbFlareEffect()
+    protected Color GetColor1()
     {
-        return super.GetOrbFlareEffect().SetColors(Color.BROWN, Color.DARK_GRAY);
+        return new Color(0.3f, 0.25f, 0f, 1f);
+    }
+
+    @Override
+    protected Color GetColor2()
+    {
+        return Color.DARK_GRAY;
     }
 }

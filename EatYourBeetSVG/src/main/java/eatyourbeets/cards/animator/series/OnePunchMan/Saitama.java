@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.common.PummelDamageAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -145,7 +145,7 @@ public class Saitama extends AnimatorCard
                 {
                     GameActions.Bottom.Add(new PummelDamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn)));
                 }
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
                 break;
             }
@@ -158,7 +158,7 @@ public class Saitama extends AnimatorCard
                 GameActions.Bottom.RemovePower(p, m, InvinciblePower.POWER_ID);
 
                 GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4f, m.hb.cY - m.hb.height / 4f));
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetPiercing(true, true);
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).SetPiercing(true, true);
                 GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
 
                 GameActions.Bottom.ApplyPower(p, m, new StunMonsterPower(m, 1));

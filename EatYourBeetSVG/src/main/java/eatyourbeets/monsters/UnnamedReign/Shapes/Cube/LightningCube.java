@@ -1,6 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.PowerHelper;
@@ -13,7 +13,7 @@ public class LightningCube extends Cube
     {
         super(MonsterElement.Lightning, tier, x, y);
 
-        moveset.SetAttackEffect(AbstractGameAction.AttackEffect.LIGHTNING);
+        moveset.SetAttackEffect(AttackEffects.LIGHTNING);
 
         moveset.Normal.AttackDebuff(tier.Add(2, 4), PowerHelper.Weak, 1)
         .SetDamageScaling(0.2f);

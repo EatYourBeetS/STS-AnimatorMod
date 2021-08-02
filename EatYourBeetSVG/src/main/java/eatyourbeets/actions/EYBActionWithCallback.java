@@ -1,5 +1,6 @@
 package eatyourbeets.actions;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
@@ -11,12 +12,12 @@ public abstract class EYBActionWithCallback<T> extends EYBAction
 {
     protected ArrayList<GenericCallback<T>> callbacks = new ArrayList<>();
 
-    public EYBActionWithCallback(ActionType type)
+    public EYBActionWithCallback(AbstractGameAction.ActionType type)
     {
         super(type);
     }
 
-    public EYBActionWithCallback(ActionType type, float duration)
+    public EYBActionWithCallback(AbstractGameAction.ActionType type, float duration)
     {
         super(type, duration);
     }

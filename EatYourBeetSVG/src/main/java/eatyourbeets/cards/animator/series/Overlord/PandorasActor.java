@@ -1,14 +1,13 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class PandorasActor extends AnimatorCard
 {
@@ -40,16 +39,11 @@ public class PandorasActor extends AnimatorCard
         if (startOfBattle)
         {
             GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.SpendEnergy(cost, false).AddCallback(amount ->
+            GameActions.Bottom.SpendEnergy(cost, false)
+            .AddCallback(energy ->
             {
-                AbstractCard copy = this.makeStatEquivalentCopy();
-                copy.applyPowers();
-                copy.use(player, null);
-                copy.purgeOnUse = true;
-                copy.freeToPlayOnce = true;
-
-                CombatStats.Affinities.SetLastCardPlayed(copy);
-                GameActions.Bottom.GainEnergy(amount);
+                GameUtilities.PlayManually(this, null);
+                GameActions.Bottom.GainEnergy(energy);
             });
         }
     }

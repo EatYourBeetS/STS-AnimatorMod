@@ -1,14 +1,18 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class HighElfArcher extends AnimatorCard
 {
@@ -29,7 +33,9 @@ public class HighElfArcher extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActions.Bottom.SFX(SFX.ANIMATOR_ARROW);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
+        .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowDagger(c.hb, 0.15f).SetColor(Color.TAN)).duration * 0.5f);
 
         if (CombatStats.Affinities.GetPowerAmount(AffinityType.Green) <= magicNumber)
         {

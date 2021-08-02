@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -67,7 +67,7 @@ public class YunYun extends AnimatorCard
             GameActions.Bottom.VFX(new LightningEffect(m1.drawX, m1.drawY));
         }
 
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE);
     }
 
     public void RefreshCost()

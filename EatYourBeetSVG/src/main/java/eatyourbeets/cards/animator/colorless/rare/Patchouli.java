@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.colorless.rare;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -136,7 +136,7 @@ public class Patchouli extends AnimatorCard
 
     private DealDamageToRandomEnemy CreateDamageAction()
     {
-        return GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE).SetOptions(true, false);
+        return GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.NONE).SetOptions(true, false);
     }
 
     @Override
@@ -148,7 +148,7 @@ public class Patchouli extends AnimatorCard
         {
             GameEffects.List.ShowCopy(this);
             GameActions.Bottom.Wait(0.3f);
-            GameActions.Bottom.MakeCardInDiscardPile(JUtils.GetRandomElement(OrbCore.GetAllCores()).makeCopy());
+            GameActions.Bottom.MakeCardInDiscardPile(GameUtilities.GetRandomElement(OrbCore.GetAllCores()).makeCopy());
         }
     }
 }

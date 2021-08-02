@@ -4,14 +4,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.effects.SFX;
-import eatyourbeets.effects.vfx.FlashAttackEffect;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameEffects;
 
 public class GainBlock extends EYBActionWithCallback<AbstractCreature>
 {
-    protected boolean mute;
-    protected boolean useFrostSound;
+    protected float pitchMin;
+    protected float pitchMax;
 
     public GainBlock(AbstractCreature target, AbstractCreature source, int amount)
     {
@@ -22,6 +21,10 @@ public class GainBlock extends EYBActionWithCallback<AbstractCreature>
     {
         super(ActionType.BLOCK, superFast ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FAST);
 
+        this.attackEffect = AttackEffects.SHIELD;
+        this.pitchMin = 0.95f;
+        this.pitchMax = 1.05f;
+
         Initialize(source, target, amount);
 
         if (amount <= 0)
@@ -30,17 +33,21 @@ public class GainBlock extends EYBActionWithCallback<AbstractCreature>
         }
     }
 
-    public GainBlock SetFrostSound(boolean value)
+    public GainBlock SetFrostShield(boolean value)
     {
-        this.useFrostSound = value;
+        this.attackEffect = value ? AttackEffects.SHIELD_FROST : AttackEffects.SHIELD;
 
         return this;
     }
 
     public GainBlock SetVFX(boolean mute, boolean superFast)
     {
-        this.mute = mute;
         this.startDuration = this.duration = superFast ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FAST;
+
+        if (mute)
+        {
+            this.pitchMin = this.pitchMax = 0;
+        }
 
         return this;
     }
@@ -50,11 +57,7 @@ public class GainBlock extends EYBActionWithCallback<AbstractCreature>
     {
         if (!target.isDying && !target.isDead && amount > 0)
         {
-            FlashAttackEffect effect = GameEffects.List.Add(new FlashAttackEffect(target.hb.cX, target.hb.cY, AttackEffect.SHIELD, mute));
-            if (useFrostSound)
-            {
-                effect.OverrideSound(SFX.GetRandom(SFX.ORB_FROST_DEFEND_1, SFX.ORB_FROST_DEFEND_2, SFX.ORB_FROST_DEFEND_3));
-            }
+            GameEffects.List.Attack(target, attackEffect, 0.95f, 1.05f);
 
             target.addBlock(amount);
 

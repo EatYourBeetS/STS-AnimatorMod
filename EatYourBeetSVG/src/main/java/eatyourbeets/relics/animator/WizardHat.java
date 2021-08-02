@@ -1,7 +1,7 @@
 package eatyourbeets.relics.animator;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
@@ -84,7 +84,7 @@ public class WizardHat extends AnimatorRelic
                 }
 
                 int[] multiDamage = DamageInfo.createDamageMatrix(DAMAGE_AMOUNT, true);
-                GameActions.Bottom.DealDamageToAll(multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+                GameActions.Bottom.DealDamageToAll(multiDamage, DamageInfo.DamageType.THORNS, AttackEffects.NONE);
             }
         }
     }

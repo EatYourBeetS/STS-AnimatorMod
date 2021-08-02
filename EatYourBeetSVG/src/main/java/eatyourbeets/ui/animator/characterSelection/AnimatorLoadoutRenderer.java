@@ -17,10 +17,7 @@ import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.EYBFontHelper;
-import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
@@ -89,7 +86,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         {
             while (loadout == GR.Animator.Data.SelectedLoadout)
             {
-                GR.Animator.Data.SelectedLoadout = JUtils.GetRandomElement(availableLoadouts, RNG);
+                GR.Animator.Data.SelectedLoadout = GameUtilities.GetRandomElement(availableLoadouts, RNG);
             }
 
             Refresh(selectScreen, characterOption);

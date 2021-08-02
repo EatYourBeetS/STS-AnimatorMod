@@ -21,7 +21,7 @@ import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
@@ -29,9 +29,9 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
 {
     public static final String ORB_ID = CreateFullID(Earth.class);
     public static final int PROJECTILES = 8;
-    public static final int FRAMES = 3;
 
-    private static final TextureCache[] images = { IMAGES.Earth1, IMAGES.Earth2, IMAGES.Earth3 };
+    private static final TextureCache[] images = { IMAGES.Earth1, IMAGES.Earth2, IMAGES.Earth3, IMAGES.Earth4 };
+    private static final RandomizedList<TextureCache> textures = new RandomizedList<>();
     private float vfxTimer;
 
     public final ArrayList<Projectile> projectiles = new ArrayList<>();
@@ -40,7 +40,12 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
 
     public static Texture GetRandomTexture()
     {
-        return images[MathUtils.random(0, images.length - 1)].Texture();
+        if (textures.Size() <= 1) // Adds some randomness but still ensures all textures are cycled through
+        {
+            textures.AddAll(images);
+        }
+
+        return textures.RetrieveUnseeded(true).Texture();
     }
 
     public Earth()
@@ -63,8 +68,8 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         {
             projectiles.add(new Projectile(GetRandomTexture(), IMAGE_SIZE * 0.5f, IMAGE_SIZE * 0.5f)
             .SetPosition(cX, cY)
-            .SetColor(Colors.Random(0f, 0.15f, true))
-            .SetScale(MathUtils.random(0.7f, 1f))
+            .SetColor(Colors.Random(0.9f, 1f, false))
+            .SetScale(MathUtils.random(0.6f, 1f))
             .SetFlip(i % 2 == 0, null)
             .SetOffset(0f, 0f, MathUtils.random(0f, 360f))
             .SetSpeed(2f, 2f, MathUtils.random(18f, 24f)));
@@ -163,7 +168,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         for (Projectile projectile : projectiles)
         {
-            projectile.Render(sb, Mathf.Subtract(c.cpy(), projectile.color, false));
+            projectile.Render(sb, Colors.Copy(projectile.color, c.a));
         }
 
         this.renderText(sb);

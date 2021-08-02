@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -67,7 +67,7 @@ public class Ain extends AnimatorCard
 
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE).SetVFX(false, true);
+            GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE).SetVFX(true, false);
         }
 
         if (CheckSpecialCondition(true))

@@ -5,7 +5,8 @@ import eatyourbeets.effects.SFX;
 
 public class PlaySFX extends EYBActionWithCallback<PlaySFX>
 {
-    private String key;
+    public final String key;
+
     private float pitchMin;
     private float pitchMax;
 
@@ -39,11 +40,6 @@ public class PlaySFX extends EYBActionWithCallback<PlaySFX>
         }
     }
 
-    public String GetKey()
-    {
-        return key;
-    }
-
     public void Play()
     {
         float seconds = SFX.Play(key, pitchMin, pitchMax);
@@ -51,6 +47,10 @@ public class PlaySFX extends EYBActionWithCallback<PlaySFX>
         {
             duration = seconds;
             startDuration = duration + 0.001f;
+        }
+        else
+        {
+            Complete();
         }
     }
 }

@@ -1,6 +1,6 @@
 package eatyourbeets.actions.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -264,7 +264,7 @@ public class SoraAction extends EYBAction
                     {
                         for (int i = 0; i < 2; i++)
                         {
-                            GameActions.Bottom.DealDamageToRandomEnemy(c, AbstractGameAction.AttackEffect.SMASH);
+                            GameActions.Bottom.DealDamageToRandomEnemy(c, AttackEffects.BLUNT_LIGHT);
                         }
                         GameUtilities.UsePenNib();
                     });

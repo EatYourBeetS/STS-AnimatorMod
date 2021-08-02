@@ -1,6 +1,6 @@
 package eatyourbeets.powers.monsters;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.effects.SFX;
@@ -29,7 +29,7 @@ public class LightningWispPower extends AnimatorPower
         {
             GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_EVOKE);
             GameActions.Bottom.VFX(VFX.Lightning(c.hb));
-            GameActions.Bottom.DealDamage(owner, c, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
+            GameActions.Bottom.DealDamage(owner, c, amount, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
             .SetPiercing(true, true);
         }
     }

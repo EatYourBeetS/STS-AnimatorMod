@@ -1,6 +1,6 @@
 package eatyourbeets.monsters.Elites;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.powers.AngryPower;
 import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Buff;
@@ -18,7 +18,7 @@ public class HornedBat_R extends HornedBat
         super(new Data(ID), x, y);
 
         moveset.Normal.Attack(1, 3)
-        .SetAttackEffect(AbstractGameAction.AttackEffect.SLASH_DIAGONAL, null)
+        .SetAttackEffect(AttackEffects.SLASH_DIAGONAL, null)
         .SetDamageBonus(3, 1);
 
         moveset.Normal.Add(new EYBMove_Buff(1))
@@ -26,7 +26,7 @@ public class HornedBat_R extends HornedBat
 
         moveset.Normal.AttackBuff(4, 1, PowerHelper.Strength, 1)
         .SetDamageBonus(3, 2)
-        .SetAttackEffect(AbstractGameAction.AttackEffect.SLASH_VERTICAL, null);
+        .SetAttackEffect(AttackEffects.SLASH_VERTICAL, null);
     }
 
     @Override

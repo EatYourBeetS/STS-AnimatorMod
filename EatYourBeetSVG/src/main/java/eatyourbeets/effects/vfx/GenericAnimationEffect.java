@@ -7,13 +7,23 @@ import com.badlogic.gdx.math.Interpolation;
 import eatyourbeets.effects.AnimatedProjectile;
 import eatyourbeets.effects.EYBEffect;
 
-public abstract class GenericAnimationEffect extends EYBEffect
+public class GenericAnimationEffect extends EYBEffect
 {
     protected AnimatedProjectile projectile;
     protected float x;
     protected float y;
     protected float vR;
     protected int endFrame;
+
+    public GenericAnimationEffect(Texture texture, float x, float y, float width, float height, float animTimer, int totalFrames)
+    {
+        this.x = x;
+        this.y = y;
+
+        this.projectile = new AnimatedProjectile(texture, width, height, animTimer, totalFrames);
+        this.projectile.SetPosition(x, y).SetTargetPosition(x, y);
+        this.endFrame = this.projectile.totalFrames;
+    }
 
     public GenericAnimationEffect(Texture texture, float x, float y, float size, float animTimer, int totalFrames)
     {
@@ -33,6 +43,16 @@ public abstract class GenericAnimationEffect extends EYBEffect
     public GenericAnimationEffect(Texture texture, float x, float y, float size)
     {
         this(texture, x, y, size, 0.03F, Integer.MAX_VALUE);
+    }
+
+    public GenericAnimationEffect SetSound(String key)
+    {
+        return this;
+    }
+
+    public GenericAnimationEffect SetPitch(float pitchMin, float pitchMax)
+    {
+        return this;
     }
 
     public GenericAnimationEffect AdvanceToFrame(int frame)

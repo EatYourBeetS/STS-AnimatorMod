@@ -1,6 +1,6 @@
 package eatyourbeets.powers.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -36,7 +36,7 @@ public class ArcherPower extends AnimatorPower
             for (int i = 0; i < debuffs; i++)
             {
                 GameActions.Bottom.VFX(VFX.ThrowDagger(m.hb, 0.2f));
-                GameActions.Bottom.DealDamage(owner, m, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
+                GameActions.Bottom.DealDamage(owner, m, amount, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
                 .SetVFX(true, true);
             }
         }

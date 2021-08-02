@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
@@ -60,6 +60,6 @@ public class DolaSchwi extends AnimatorCard
         GameActions.Bottom.BorderFlash(Color.SKY);
         GameActions.Bottom.SFX(SFX.ATTACK_HEAVY);
         GameActions.Bottom.VFX(VFX.Mindblast(player.dialogX, player.dialogY, player.flipHorizontal), 0.1f);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
     }
 }

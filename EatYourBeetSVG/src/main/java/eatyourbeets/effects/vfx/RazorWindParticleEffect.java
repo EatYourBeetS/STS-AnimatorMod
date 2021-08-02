@@ -1,18 +1,17 @@
 package eatyourbeets.effects.vfx;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.ui.TextureCache;
 
 public class RazorWindParticleEffect extends EYBEffect
 {
     protected static final int SIZE = 96;
-    protected static Texture img;
+    protected static TextureCache image = IMAGES.AirTrail;
 
     protected float x;
     protected float y;
@@ -25,10 +24,6 @@ public class RazorWindParticleEffect extends EYBEffect
     public RazorWindParticleEffect(float x, float y, float horizontalSpeed, float verticalSpeed)
     {
         super(MathUtils.random(0.4F, 0.8F));
-
-        if (img == null) {
-            img = ImageMaster.loadImage("images/orbs/animator/AirTrail.png");
-        }
 
         final float offsetX = MathUtils.random(-16.0F, 16.0F) * Settings.scale;
         final float offsetY = MathUtils.random(-16.0F, 16.0F) * Settings.scale;
@@ -69,7 +64,7 @@ public class RazorWindParticleEffect extends EYBEffect
     {
         sb.setColor(this.color);
         sb.setBlendFunction(770, 1);
-        sb.draw(img, x, y, SIZE * 0.5f, SIZE * 0.5f, SIZE, SIZE, scale, scale, rotation, 0, 0, SIZE, SIZE, RandomBoolean(0.5f), false);
+        sb.draw(image.Texture(), x, y, SIZE * 0.5f, SIZE * 0.5f, SIZE, SIZE, scale, scale, rotation, 0, 0, SIZE, SIZE, RandomBoolean(0.5f), false);
         sb.setBlendFunction(770, 771);
     }
 }

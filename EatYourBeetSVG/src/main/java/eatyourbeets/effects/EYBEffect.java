@@ -72,6 +72,13 @@ public abstract class EYBEffect extends AbstractGameEffect
         return this;
     }
 
+    public EYBEffect SetRotation(float degrees)
+    {
+        this.rotation = degrees;
+
+        return this;
+    }
+
     @Override
     public void render(SpriteBatch sb)
     {
@@ -171,10 +178,5 @@ public abstract class EYBEffect extends AbstractGameEffect
     protected static boolean RandomBoolean()
     {
         return MathUtils.randomBoolean();
-    }
-
-    protected static <T> T Random(T[] arr)
-    {
-        return arr[Random(0, arr.length-1)];
     }
 }

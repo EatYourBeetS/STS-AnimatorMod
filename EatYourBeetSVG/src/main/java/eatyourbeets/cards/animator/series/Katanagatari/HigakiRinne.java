@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -20,6 +20,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.animator.HigakiRinnePower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
@@ -82,7 +83,7 @@ public class HigakiRinne extends AnimatorCard
         }
         else if (n < 45)
         {
-            GameActions.Bottom.SFX(JUtils.GetRandomElement(sounds));
+            GameActions.Bottom.SFX(GameUtilities.GetRandomElement(sounds));
         }
         else if (n < 55)
         {
@@ -154,7 +155,7 @@ public class HigakiRinne extends AnimatorCard
             {
                 int damage = rng.random(1);
                 DamageInfo info = new DamageInfo(p, damage, DamageInfo.DamageType.THORNS);
-                GameActions.Bottom.Add(new DamageAction(m, info, AbstractGameAction.AttackEffect.POISON, true));
+                GameActions.Bottom.Add(new DamageAction(m, info, AttackEffects.POISON, true));
             }
         }
         else if (n < 10)
@@ -166,21 +167,21 @@ public class HigakiRinne extends AnimatorCard
             GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_EVOKE, 0.5f, 0.6f);
             GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4f, m.hb.cY - m.hb.height / 4f));
 
-            GameActions.Bottom.DealDamage(p, m, 1, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.DealDamage(p, m, 1, DamageInfo.DamageType.THORNS, AttackEffects.NONE);
 
             GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
             GameActions.Bottom.WaitRealtime(0.6f);
 
-            GameActions.Bottom.DealDamage(p, m, rng.random(10, d), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
+            GameActions.Bottom.DealDamage(p, m, rng.random(10, d), DamageInfo.DamageType.THORNS, AttackEffects.POISON);
         }
         else
         {
             int d = upgraded ? 8 : 6;
 
-            GameActions.Bottom.DealDamage(p, m, rng.random(2, d), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
-            GameActions.Bottom.DealDamage(p, m, rng.random(2, d), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
+            GameActions.Bottom.DealDamage(p, m, rng.random(2, d), DamageInfo.DamageType.THORNS, AttackEffects.POISON);
+            GameActions.Bottom.DealDamage(p, m, rng.random(2, d), DamageInfo.DamageType.THORNS, AttackEffects.POISON);
 
-            GameActions.Bottom.SFX(JUtils.GetRandomElement(sounds));
+            GameActions.Bottom.SFX(GameUtilities.GetRandomElement(sounds));
         }
     }
 

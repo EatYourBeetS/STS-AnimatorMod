@@ -39,6 +39,13 @@ public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
         return this;
     }
 
+    public ThrowProjectileEffect SetTargetRotation(float degrees, float speed)
+    {
+        this.projectile.SetTargetRotation(degrees).SetSpeed(null, null, speed);
+
+        return this;
+    }
+
     public ThrowProjectileEffect SetScale(float scale)
     {
         this.projectile.SetScale(scale);

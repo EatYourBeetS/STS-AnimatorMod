@@ -21,7 +21,8 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
     protected boolean bypassBlock;
     protected boolean bypassThorns;
     protected boolean skipWait;
-    protected boolean muteSfx;
+    protected float pitchMin;
+    protected float pitchMax;
     protected int goldAmount;
 
     public DealDamage(AbstractCreature target, DamageInfo info)
@@ -35,9 +36,10 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
 
         this.goldAmount = 0;
         this.skipWait = false;
-        this.muteSfx = false;
         this.info = info;
         this.attackEffect = effect;
+        this.pitchMin = 0.95f;
+        this.pitchMax = 1.05f;
 
         Initialize(info.owner, target, info.output);
     }
@@ -57,10 +59,22 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         return this;
     }
 
+    public DealDamage SetSoundPitch(float pitchMin, float pitchMax)
+    {
+        this.pitchMin = pitchMin;
+        this.pitchMax = pitchMax;
+
+        return this;
+    }
+
     public DealDamage SetVFX(boolean superFast, boolean muteSfx)
     {
         this.skipWait = superFast;
-        this.muteSfx = muteSfx;
+
+        if (muteSfx)
+        {
+            this.pitchMin = this.pitchMax = 0;
+        }
 
         return this;
     }
@@ -107,9 +121,9 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
             return;
         }
 
-        if (!hasPlayedEffect && duration < 0.1f)
+        if (!hasPlayedEffect && duration <= 0.1f)
         {
-            GameEffects.List.Attack(target, attackEffect, muteSfx);
+            GameEffects.List.Attack(target, attackEffect, pitchMin, pitchMax);
             hasPlayedEffect = true;
         }
 

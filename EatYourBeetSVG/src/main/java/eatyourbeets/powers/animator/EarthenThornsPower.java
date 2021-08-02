@@ -1,6 +1,6 @@
 package eatyourbeets.powers.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
@@ -22,7 +22,7 @@ public class EarthenThornsPower extends AnimatorPower
     {
         if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != this.owner)
         {
-            GameActions.Top.DealDamage(owner, info.owner, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)
+            GameActions.Top.DealDamage(owner, info.owner, amount, DamageInfo.DamageType.THORNS, AttackEffects.SLASH_HORIZONTAL)
             .SetVFX(true, false);
             this.flash();
         }

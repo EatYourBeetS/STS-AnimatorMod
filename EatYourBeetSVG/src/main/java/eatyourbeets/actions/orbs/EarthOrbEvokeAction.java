@@ -1,6 +1,5 @@
 package eatyourbeets.actions.orbs;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.Settings;
@@ -51,8 +50,7 @@ public class EarthOrbEvokeAction extends EYBAction
             .SetSpeed(33f, 35f, 210f + (i * 30))
             .SetTargetPosition(earth.cX + (earth.hb.width * 0.35f), earth.cY + (earth.hb.height * 3))
             .SetTargetOffset(w * Mathf.Cos(angle * i), h * Mathf.Sin(angle * i), null)
-            .SetTargetRotation(p.target_pos.z + 36000)
-            .SetColor(Mathf.Subtract(Color.WHITE.cpy(), p.color, false));
+            .SetTargetRotation(p.target_pos.z + 36000);
         }
         GameEffects.List.Add(effect = new RenderProjectilesEffect(projectiles, 999f, isRealtime));
     }

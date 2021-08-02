@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -41,7 +41,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         super.triggerOnManualDiscard();
 
         GameActions.Bottom.DealDamageToAll(DamageInfo.createDamageMatrix(magicNumber, false),
-        damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE).SetPiercing(true, false);
+        damageTypeForTurn, AttackEffects.FIRE).SetPiercing(true, false);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
             this.applyPowers();
             this.calculateCardDamage(enemy);
 
-            GameActions.Bottom.DealDamage(this, enemy, AbstractGameAction.AttackEffect.FIRE);
+            GameActions.Bottom.DealDamage(this, enemy, AttackEffects.FIRE);
             GameActions.Bottom.ApplyWeak(player, enemy, 1);
             GameActions.Bottom.ApplyVulnerable(player, enemy, 1);
         });

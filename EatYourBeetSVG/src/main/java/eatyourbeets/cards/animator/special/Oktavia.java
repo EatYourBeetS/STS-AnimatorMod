@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.special;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -60,8 +60,8 @@ public class Oktavia extends AnimatorCard
 
                 for (int i = 0; i < player.hand.getCardsOfType(CardType.CURSE).size(); i++)
                 {
-                    GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
-                    .SetVFX(false, true);
+                    GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE)
+                    .SetVFX(true, false);
                 }
             });
         });

@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -64,12 +64,12 @@ public class Lu extends AnimatorCard
     {
         if (isMultiDamage)
         {
-            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
+            GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE)
             .SetDamageEffect((enemy, __) -> GameEffects.List.Add(VFX.Claw(enemy.hb, Color.VIOLET, Color.WHITE)));
         }
         else
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
             .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.Claw(enemy.hb, Color.VIOLET, Color.WHITE)).duration);
         }
 

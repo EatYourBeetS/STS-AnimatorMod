@@ -1,6 +1,6 @@
 package eatyourbeets.powers.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -37,7 +37,7 @@ public class OrbCore_LightningPower extends OrbCore_AbstractPower
             if (!e.isDeadOrEscaped())
             {
                 GameActions.Bottom.VFX(VFX.Lightning(e.hb));
-                GameActions.Bottom.Add(new DamageAction(e, new DamageInfo(p, damage[i], DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.NONE, true));
+                GameActions.Bottom.Add(new DamageAction(e, new DamageInfo(p, damage[i], DamageInfo.DamageType.THORNS), AttackEffects.NONE, true));
             }
         }
     }

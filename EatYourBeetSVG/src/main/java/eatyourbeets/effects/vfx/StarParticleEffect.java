@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.ui.TextureCache;
+import eatyourbeets.utilities.JUtils;
 
 public class StarParticleEffect extends EYBEffect
 {
@@ -32,7 +33,7 @@ public class StarParticleEffect extends EYBEffect
 
         this.x = x + offsetX;
         this.y = y + offsetY;
-        this.image = Random(images).Texture();
+        this.image = JUtils.Random(images).Texture();
         this.color = mainColor.cpy();
         this.color.a = this.alpha = Random(0.5F, 1.0F);
         this.scale = Random(0.05f, 0.3f);

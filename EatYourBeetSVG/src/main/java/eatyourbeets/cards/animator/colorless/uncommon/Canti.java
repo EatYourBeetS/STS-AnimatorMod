@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ViolentAttackEffect;
@@ -50,11 +50,11 @@ public class Canti extends AnimatorCard
             //GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY));
             //GameActions.Bottom.Wait(0.8f);
             GameActions.Bottom.VFX(new ViolentAttackEffect(m.hb.cX, m.hb.cY, Color.SKY));
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
         }
         else
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
         }
     }
 }

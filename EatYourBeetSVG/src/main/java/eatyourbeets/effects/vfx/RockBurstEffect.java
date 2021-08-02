@@ -38,9 +38,9 @@ public class RockBurstEffect extends EYBEffect
 
         for (int i = 0; i < PROJECTILES; ++i)
         {
-            float angle = Random(-500f,500f);
-            GameEffects.Queue.Add(new FadingParticleEffect(Earth.GetRandomTexture(), hb.cX, hb.cY,  80f)
-            .SetColor(Colors.Random(0.3f, 0.7f, true))).SetScale(MathUtils.random(0.05f, 0.35f))
+            float angle = Random(-500f, 500f);
+            GameEffects.Queue.Add(new FadingParticleEffect(Earth.GetRandomTexture(), hb.cX, hb.cY, 80f)
+            .SetColor(Colors.Random(0.7f, 1f, true))).SetScale(Random(0.05f, 0.35f))
             .SetSpeed(Random(300f, 420f), Random(300f, 420f), Random(500f, 800f))
             .SetTargetRotation(36000)
             .SetTargetPosition(hb.cX + RADIUS * MathUtils.cos(angle), hb.cY + RADIUS * MathUtils.sin(angle));

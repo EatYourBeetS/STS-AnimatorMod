@@ -24,7 +24,8 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
     protected boolean bypassBlock;
     protected boolean bypassThorns;
     protected boolean isFast;
-    protected boolean muteSfx;
+    protected float pitchMin;
+    protected float pitchMax;
 
     public DealDamageToAll(AbstractCreature source, int[] amount, DamageInfo.DamageType damageType, AttackEffect attackEffect)
     {
@@ -38,6 +39,8 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
         this.attackEffect = attackEffect;
         this.damageType = damageType;
         this.damage = amount;
+        this.pitchMin = 0.95f;
+        this.pitchMax = 1.05f;
 
         Initialize(source, null, amount[0]);
     }
@@ -57,10 +60,22 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
         return this;
     }
 
-    public DealDamageToAll SetVFX(boolean mute, boolean superFast)
+    public DealDamageToAll SetSoundPitch(float pitchMin, float pitchMax)
+    {
+        this.pitchMin = pitchMin;
+        this.pitchMax = pitchMax;
+
+        return this;
+    }
+
+    public DealDamageToAll SetVFX(boolean superFast, boolean muteSfx)
     {
         this.isFast = superFast;
-        this.muteSfx = mute;
+
+        if (muteSfx)
+        {
+            this.pitchMin = this.pitchMax = 0;
+        }
 
         return this;
     }
@@ -68,14 +83,14 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
     @Override
     protected void FirstUpdate()
     {
-        boolean mute = muteSfx;
+        boolean mute = pitchMin == 0;
 
         int i = 0;
         for (AbstractMonster enemy : AbstractDungeon.getCurrRoom().monsters.monsters)
         {
             if (!GameUtilities.IsDeadOrEscaped(enemy))
             {
-                GameEffects.List.Attack(enemy, this.attackEffect, mute);
+                GameEffects.List.Attack(enemy, this.attackEffect, pitchMin, pitchMax);
 
                 if (onDamageEffect != null)
                 {

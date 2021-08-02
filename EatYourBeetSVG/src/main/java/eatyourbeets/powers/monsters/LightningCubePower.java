@@ -1,6 +1,6 @@
 package eatyourbeets.powers.monsters;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.effects.SFX;
@@ -30,7 +30,7 @@ public class LightningCubePower extends AnimatorPower
         final AbstractCreature target = owner.isPlayer ? GameUtilities.GetRandomEnemy(true) : player;
         GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_EVOKE);
         GameActions.Bottom.VFX(VFX.Lightning(target.hb));
-        GameActions.Bottom.DealDamage(owner, target, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
+        GameActions.Bottom.DealDamage(owner, target, amount, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
         .SetPiercing(true, true);
     }
 }

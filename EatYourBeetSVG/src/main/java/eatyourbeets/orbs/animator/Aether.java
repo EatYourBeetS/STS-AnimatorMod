@@ -79,9 +79,9 @@ public class Aether extends AnimatorOrb
     @Override
     public void playChannelSFX()
     {
-        CardCrawlGame.sound.playAV("ATTACK_WHIRLWIND", 1.5f, 0.7f);
-        CardCrawlGame.sound.playAV("ORB_PLASMA_CHANNEL", 1.2f, 0.7f);
-        CardCrawlGame.sound.play("POWER_FLIGHT", 0.2f);
+        CardCrawlGame.sound.playAV(SFX.ATTACK_WHIRLWIND, 1.5f, 0.7f);
+        CardCrawlGame.sound.playAV(SFX.ORB_PLASMA_CHANNEL, 1.2f, 0.7f);
+        CardCrawlGame.sound.play(SFX.POWER_FLIGHT, 0.2f);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class Aether extends AnimatorOrb
     {
         super.Passive();
 
-        GameActions.Bottom.Add(new AetherOrbPassiveAction(this.passiveAmount));
+        GameActions.Bottom.Add(new AetherOrbPassiveAction(this, this.passiveAmount));
     }
 
     @Override

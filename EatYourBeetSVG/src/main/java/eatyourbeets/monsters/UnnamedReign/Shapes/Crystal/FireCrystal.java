@@ -1,7 +1,7 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.cards.animator.status.Crystallize;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.PowerHelper;
@@ -14,7 +14,7 @@ public class FireCrystal extends Crystal
     {
         super(MonsterElement.Fire, tier, x, y);
 
-        moveset.SetAttackEffect(AbstractGameAction.AttackEffect.FIRE);
+        moveset.SetAttackEffect(AttackEffects.FIRE);
 
         moveset.Normal.ShuffleCard(new Crystallize(), 3);
 

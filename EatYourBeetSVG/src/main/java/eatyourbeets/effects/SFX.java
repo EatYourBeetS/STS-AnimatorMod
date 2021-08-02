@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 
 public class SFX
 {
+    public static final String ANIMATOR_GUNSHOT = "ANIMATOR_GUNSHOT";
     public static final String ANIMATOR_KIRA_POWER = "ANIMATOR_KIRA_POWER";
     public static final String ANIMATOR_MEGUMIN_CHARGE = "ANIMATOR_MEGUMIN_CHARGE";
     public static final String ANIMATOR_ORB_EARTH_CHANNEL = "ANIMATOR_ORB_EARTH_CHANNEL";
@@ -395,6 +396,15 @@ public class SFX
 
     public static float Play(String key, float pitchMin, float pitchMax)
     {
+        if (pitchMin > pitchMax)
+        {
+            throw new RuntimeException("Min can't be greater than max");
+        }
+        if (pitchMin <= 0)
+        {
+            return 0f;
+        }
+
         return CardCrawlGame.sound.playA(key, ((pitchMin == pitchMax) ? pitchMin : MathUtils.random(pitchMin, pitchMax)) - 1) / 1000f;
     }
 

@@ -2,7 +2,6 @@ package eatyourbeets.effects;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -122,11 +121,6 @@ public class VFX
         return new FlameBarrierEffect(source.cX, source.cY);
     }
 
-    public static FlashAttackEffect FlashAttack(Hitbox target, AbstractGameAction.AttackEffect effect, boolean muteSFX)
-    {
-        return new FlashAttackEffect(target.cX, target.cY, effect, muteSFX);
-    }
-
     public static ShotEffect Gunshot(Hitbox target)
     {
         return Gunshot(target, 0);
@@ -182,8 +176,9 @@ public class VFX
     {
         duration *= Mathf.Abs(target.cX - source.cX) / (Settings.WIDTH * 0.5f);
         return (ThrowProjectileEffect)new ThrowProjectileEffect(new Projectile(Earth.GetRandomTexture(), 128f, 128f)
-                .SetColor(Colors.Random(0.6f, 0.85f, true))
+                .SetColor(Colors.Random(0.8f, 1f, true))
                 .SetPosition(source.cX, source.cY), target)
+                .SetTargetRotation(36000, 360f)
                 .AddCallback(hb -> GameEffects.Queue.Add(RockBurst(hb, 1.3f)))
                 .SetDuration(duration, true);
     }

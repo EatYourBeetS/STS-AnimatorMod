@@ -9,6 +9,7 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -484,6 +485,18 @@ public class GR
 
             @SpireEnum
             public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
+        }
+
+        public static class AttackEffect
+        {
+            @SpireEnum
+            public static AbstractGameAction.AttackEffect GUNSHOT;
+
+            @SpireEnum
+            public static AbstractGameAction.AttackEffect SHIELD_FROST;
+
+            @SpireEnum
+            public static AbstractGameAction.AttackEffect SPEAR;
         }
     }
 }

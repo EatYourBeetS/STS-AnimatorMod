@@ -95,26 +95,6 @@ public class CommonImages
         public final TextureCache Gold             = new TextureCache("images/eyb/cardui/tooltips/Gold.png");
     }
 
-    public static class Orbs
-    {
-        public final TextureCache AirLeft          = new TextureCache("images/animator/orbs/AirLeft.png");
-        public final TextureCache AirRight         = new TextureCache("images/animator/orbs/AirRight.png");
-        public final TextureCache AirSlice         = new TextureCache("images/animator/orbs/AirSlice.png");
-        public final TextureCache AirTrail         = new TextureCache("images/animator/orbs/AirTrail.png");
-        public final TextureCache Chaos1           = new TextureCache("images/animator/orbs/Chaos1.png");
-        public final TextureCache Chaos2           = new TextureCache("images/animator/orbs/Chaos2.png");
-        public final TextureCache Chaos3           = new TextureCache("images/animator/orbs/Chaos3.png");
-        public final TextureCache Earth1           = new TextureCache("images/animator/orbs/Earth1.png");
-        public final TextureCache Earth2           = new TextureCache("images/animator/orbs/Earth2.png");
-        public final TextureCache Earth3           = new TextureCache("images/animator/orbs/Earth3.png");
-        public final TextureCache FireExternal     = new TextureCache("images/animator/orbs/FireExternal.png");
-        public final TextureCache FireInternal     = new TextureCache("images/animator/orbs/FireInternal.png");
-        public final TextureCache FrostSnow1       = new TextureCache("images/animator/orbs/FrostSnow1.png");
-        public final TextureCache FrostSnow2       = new TextureCache("images/animator/orbs/FrostSnow2.png");
-        public final TextureCache FrostSnow3       = new TextureCache("images/animator/orbs/FrostSnow3.png");
-        public final TextureCache FrostSnow4       = new TextureCache("images/animator/orbs/FrostSnow4.png");
-    }
-
     public static class Events
     {
         public final TextureCache Cabin1           = new TextureCache("images/animator/events/Cabin1.png");
@@ -125,6 +105,21 @@ public class CommonImages
         public final TextureCache Merchant         = new TextureCache("images/animator/events/Merchant.png");
         public final TextureCache Portal           = new TextureCache("images/animator/events/Portal.png");
         public final TextureCache Placeholder      = new TextureCache("images/animator/events/Placeholder.png");
+    }
+
+    public static class Orbs
+    {
+        public final TextureCache AirLeft          = new TextureCache("images/animator/orbs/AirLeft.png");
+        public final TextureCache AirRight         = new TextureCache("images/animator/orbs/AirRight.png");
+        public final TextureCache Chaos1           = new TextureCache("images/animator/orbs/Chaos1.png");
+        public final TextureCache Chaos2           = new TextureCache("images/animator/orbs/Chaos2.png");
+        public final TextureCache Chaos3           = new TextureCache("images/animator/orbs/Chaos3.png");
+        public final TextureCache Earth1           = new TextureCache("images/animator/orbs/Earth1.png");
+        public final TextureCache Earth2           = new TextureCache("images/animator/orbs/Earth2.png");
+        public final TextureCache Earth3           = new TextureCache("images/animator/orbs/Earth3.png");
+        public final TextureCache Earth4           = new TextureCache("images/animator/orbs/Earth4.png");
+        public final TextureCache FireExternal     = new TextureCache("images/animator/orbs/FireExternal.png");
+        public final TextureCache FireInternal     = new TextureCache("images/animator/orbs/FireInternal.png");
     }
 
     public static class Effects
@@ -138,5 +133,11 @@ public class CommonImages
         public final TextureCache Shot3            = new TextureCache("images/animator/effects/Shot3.png");
         public final TextureCache Star             = new TextureCache("images/animator/effects/Star.png");
         public final TextureCache Whack            = new TextureCache("images/animator/effects/Whack.png");
+        public final TextureCache FrostSnow1       = new TextureCache("images/animator/effects/FrostSnow1.png");
+        public final TextureCache FrostSnow2       = new TextureCache("images/animator/effects/FrostSnow2.png");
+        public final TextureCache FrostSnow3       = new TextureCache("images/animator/effects/FrostSnow3.png");
+        public final TextureCache FrostSnow4       = new TextureCache("images/animator/effects/FrostSnow4.png");
+        public final TextureCache AirSlice         = new TextureCache("images/animator/effects/AirSlice.png");
+        public final TextureCache AirTrail         = new TextureCache("images/animator/effects/AirTrail.png");
     }
 }

@@ -17,7 +17,6 @@ public class AnimatedProjectile extends Projectile
         Reverse
     }
 
-    protected final float size;
     protected final int columns;
     protected final int rows;
     protected float animTimer;
@@ -26,28 +25,32 @@ public class AnimatedProjectile extends Projectile
     public int frame;
     public final int totalFrames;
 
-    public AnimatedProjectile(Texture texture, float size, float animTimer, int totalFrames)
+    public AnimatedProjectile(Texture texture, float size)
     {
-        super(texture, size, size);
-
-        this.frame = 0;
-        this.mode = AnimationMode.Remain;
-
-        this.size = size;
-        this.columns = MathUtils.ceil(texture.getWidth() / size);
-        this.rows = MathUtils.ceil(texture.getHeight() / size);
-        this.totalFrames = Math.min(totalFrames, this.rows * this.columns);
-        this.animTimer = this.animDelay = animTimer;
+        this(texture, size, size, 0.03F, Integer.MAX_VALUE);
     }
 
     public AnimatedProjectile(Texture texture, float size, float animTimer)
     {
-        this(texture, size, animTimer, Integer.MAX_VALUE);
+        this(texture, size, size, animTimer, Integer.MAX_VALUE);
     }
 
-    public AnimatedProjectile(Texture texture, float size)
+    public AnimatedProjectile(Texture texture, float size, float animTimer, int totalFrames)
     {
-        this(texture, size, 0.03F, Integer.MAX_VALUE);
+        this(texture, size, size, animTimer, totalFrames);
+    }
+
+    public AnimatedProjectile(Texture texture, float width, float height, float animTimer, int totalFrames)
+    {
+        super(texture, width, height);
+
+        this.frame = 0;
+        this.mode = AnimationMode.Remain;
+
+        this.columns = MathUtils.ceil(texture.getWidth() / width);
+        this.rows = MathUtils.ceil(texture.getHeight() / height);
+        this.totalFrames = Math.min(totalFrames, this.rows * this.columns);
+        this.animTimer = this.animDelay = animTimer;
     }
 
     @Override
@@ -94,9 +97,9 @@ public class AnimatedProjectile extends Projectile
                 break;
         }
 
-        int targetX = (zframe % this.columns) * (int) this.size;
-        int targetY = zframe / this.rows * (int) this.size;
-        return new TextureRegion(this.texture, targetX, targetY, (int) size, (int) size);
+        int targetX = (zframe % this.columns) * (int) this.width;
+        int targetY = zframe / this.rows * (int) this.height;
+        return new TextureRegion(this.texture, targetX, targetY, (int) width, (int) height);
     }
 
     public void dispose()

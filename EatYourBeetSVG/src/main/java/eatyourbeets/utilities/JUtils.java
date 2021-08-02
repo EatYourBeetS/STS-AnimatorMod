@@ -22,11 +22,8 @@ import java.util.regex.Pattern;
 
 public class JUtils
 {
-<<<<<<< HEAD
-=======
     public static final Random RNG = new Random();
 
->>>>>>> redesignEffects
     private static final StringBuilder sb1 = new StringBuilder();
     private static final StringBuilder sb2 = new StringBuilder();
     private static final ArrayList<String> classNames = new ArrayList<>();

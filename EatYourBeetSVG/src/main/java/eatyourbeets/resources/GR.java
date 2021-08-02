@@ -441,37 +441,6 @@ public class GR
 
         public static class CardTags
         {
-<<<<<<< HEAD
-            @SpireEnum
-            public static AbstractCard.CardTags TEMPORARY;
-
-            @SpireEnum
-            public static AbstractCard.CardTags UNIQUE;
-
-            @SpireEnum
-            public static AbstractCard.CardTags VOIDBOUND;
-
-            @SpireEnum
-            public static AbstractCard.CardTags IGNORE_PEN_NIB;
-
-            @SpireEnum
-            public static AbstractCard.CardTags ECHO;
-
-            @SpireEnum
-            public static AbstractCard.CardTags PURGE;
-
-            @SpireEnum
-            public static AbstractCard.CardTags HASTE;
-
-            @SpireEnum
-            public static AbstractCard.CardTags PURGING;
-
-            @SpireEnum
-            public static AbstractCard.CardTags LOYAL;
-
-            @SpireEnum
-            public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
-=======
             @SpireEnum public static AbstractCard.CardTags TEMPORARY;
             @SpireEnum public static AbstractCard.CardTags UNIQUE;
             @SpireEnum public static AbstractCard.CardTags VOIDBOUND;
@@ -490,7 +459,6 @@ public class GR
             @SpireEnum public static AbstractGameAction.AttackEffect SHIELD_FROST;
             @SpireEnum public static AbstractGameAction.AttackEffect DAGGER;
             @SpireEnum public static AbstractGameAction.AttackEffect SPEAR;
->>>>>>> redesignEffects
         }
     }
 }

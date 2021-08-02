@@ -62,7 +62,7 @@ public class GenericAnimationEffect extends EYBEffect
         return this;
     }
 
-    public GenericAnimationEffect Fade(int fadingFrames)
+    public GenericAnimationEffect SetFading(int fadingFrames)
     {
         this.endFrame = projectile.totalFrames + fadingFrames;
         this.fade = fadingFrames > 0;

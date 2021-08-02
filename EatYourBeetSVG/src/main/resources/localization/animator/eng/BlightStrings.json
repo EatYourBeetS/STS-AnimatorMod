@@ -18,7 +18,7 @@
 	"animator:UltimateCube":
 	{
 		"NAME": "Ultimate Cube",
-		"DESCRIPTION": ["At the end of your first turn, take #b{0} damage."]
+		"DESCRIPTION": ["If you end your turn without dealing unblocked #yAttack damage, lose #b{0} #yBlock."]
 	},
 	"animator:UltimateWisp":
 	{

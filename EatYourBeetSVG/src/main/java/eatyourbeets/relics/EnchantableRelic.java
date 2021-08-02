@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.powers.animator.EnchantmentPower;
@@ -27,8 +28,7 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
 
         if (enchantment != null)
         {
-            this.enchantment = enchantment;
-            RefreshTexture();
+            ApplyEnchantment(enchantment);
         }
     }
 
@@ -57,7 +57,7 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
             enchantment.drawScale = enchantment.targetDrawScale = 0.8f;
             enchantment.current_x = enchantment.target_x = InputHelper.mX + (((InputHelper.mX > (Settings.WIDTH * 0.5f)) ? -1.505f : 1.505f) * EYBCardTooltip.BOX_W);
             enchantment.current_y = enchantment.target_y = InputHelper.mY - (AbstractCard.IMG_HEIGHT * 0.5f);
-            enchantment.render(sb);
+            GR.UI.AddPostRender(enchantment::render);
         }
     }
 
@@ -111,5 +111,17 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
         {
             GameActions.Bottom.ApplyPower(new EnchantmentPower(this, player, 1)).ShowEffect(false, true);
         }
+    }
+
+    @Override
+    public AbstractRelic makeCopy()
+    {
+        EnchantableRelic copy = (EnchantableRelic) super.makeCopy();
+        if (enchantment != null)
+        {
+            copy.ApplyEnchantment((Enchantment) enchantment.makeStatEquivalentCopy());
+        }
+
+        return copy;
     }
 }

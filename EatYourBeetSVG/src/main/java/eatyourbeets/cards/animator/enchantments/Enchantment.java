@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.enchantments;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -131,6 +132,12 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
     protected ColoredTexture GetPortraitFrame()
     {
         return super.GetPortraitFrame().SetColor(borderColor);
+    }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy()
+    {
+        return GetCard(index, upgradeIndex);
     }
 
     public ArrayList<Enchantment> GetUpgrades()

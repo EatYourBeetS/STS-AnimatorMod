@@ -17,9 +17,12 @@ import com.megacrit.cardcrawl.daily.mods.PurpleCards;
 import com.megacrit.cardcrawl.daily.mods.RedCards;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.cards.animator.enchantments.Enchantment;
+import eatyourbeets.relics.EnchantableRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -76,6 +79,28 @@ public class AnimatorCharacter extends CustomPlayer
     public AbstractPlayer newInstance()
     {
         return new AnimatorCharacter();
+    }
+
+    @Override
+    public ArrayList<String> getRelicNames()
+    {
+        final ArrayList<String> list = new ArrayList<>();
+        for (AbstractRelic r : relics)
+        {
+            if (r instanceof EnchantableRelic)
+            {
+                Enchantment enchantment = ((EnchantableRelic)r).enchantment;
+                if (enchantment != null)
+                {
+                    list.add(r.relicId + ":" + enchantment.index + ":" + enchantment.upgradeIndex);
+                    continue;
+                }
+            }
+
+            list.add(r.relicId);
+        }
+
+        return list;
     }
 
     @Override

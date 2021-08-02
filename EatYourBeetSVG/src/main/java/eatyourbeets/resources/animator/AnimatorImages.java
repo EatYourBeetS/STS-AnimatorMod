@@ -62,15 +62,15 @@ public class AnimatorImages
     public final TextureCache CARD_FRAME_POWER            = new TextureCache("images/animator/cardui/512/frame_power.png");
     public final TextureCache CARD_FRAME_ATTACK           = new TextureCache("images/animator/cardui/512/frame_attack.png");
 
-    public final TextureCache BRONZE_TROPHY               = new TextureCache("image/animator/ui/rewards/Bronze.png");
-    public final TextureCache SILVER_TROPHY               = new TextureCache("image/animator/ui/rewards/Silver.png");
-    public final TextureCache GOLD_TROPHY                 = new TextureCache("image/animator/ui/rewards/Gold.png");
-    public final TextureCache PLATINUM_TROPHY             = new TextureCache("image/animator/ui/rewards/Platinum.png");
-    public final TextureCache LOCKED_TROPHY               = new TextureCache("image/animator/ui/rewards/Locked.png");
-    public final TextureCache BRONZE_TROPHY_SLOT          = new TextureCache("image/animator/ui/rewards/Slot1.png");
-    public final TextureCache GOLD_TROPHY_SLOT            = new TextureCache("image/animator/ui/rewards/Slot2.png");
-    public final TextureCache PLATINUM_TROPHY_SLOT        = new TextureCache("image/animator/ui/rewards/Slot3.png");
-    public final TextureCache SYNERGY_CARD_REWARD         = new TextureCache("image/animator/ui/rewards/SynergyCardsReward.png");
+    public final TextureCache BRONZE_TROPHY               = new TextureCache("images/animator/ui/rewards/Bronze.png");
+    public final TextureCache SILVER_TROPHY               = new TextureCache("images/animator/ui/rewards/Silver.png");
+    public final TextureCache GOLD_TROPHY                 = new TextureCache("images/animator/ui/rewards/Gold.png");
+    public final TextureCache PLATINUM_TROPHY             = new TextureCache("images/animator/ui/rewards/Platinum.png");
+    public final TextureCache LOCKED_TROPHY               = new TextureCache("images/animator/ui/rewards/Locked.png");
+    public final TextureCache BRONZE_TROPHY_SLOT          = new TextureCache("images/animator/ui/rewards/Slot1.png");
+    public final TextureCache GOLD_TROPHY_SLOT            = new TextureCache("images/animator/ui/rewards/Slot2.png");
+    public final TextureCache PLATINUM_TROPHY_SLOT        = new TextureCache("images/animator/ui/rewards/Slot3.png");
+    public final TextureCache SYNERGY_CARD_REWARD         = new TextureCache("images/animator/ui/rewards/SynergyCardsReward.png");
     public final TextureCache CHARACTER_BUTTON            = new TextureCache("images/animator/ui/charselect/animator_button.png");
 
     private final static HashMap<Integer, RotatingList<Texture>> portraits = new HashMap<>();

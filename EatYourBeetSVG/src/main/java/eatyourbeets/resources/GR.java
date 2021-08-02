@@ -147,9 +147,14 @@ public class GR
         return GetPng(id, "relics");
     }
 
-    public static String GetBlightImageName(String id)
+    public static String GetBlightImage(String id)
     {
-        return id.replace(":", "/") + ".png";
+        return GetPng(id, "blights");
+    }
+
+    public static String GetBlightOutlineImage(String id)
+    {
+        return GetPng(id, "blights/outline");
     }
 
     public static String GetPowerImage(String id)

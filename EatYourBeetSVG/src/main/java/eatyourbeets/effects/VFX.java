@@ -162,9 +162,9 @@ public class VFX
         return new SnowballEffect(source.cX, source.cY, target.cX, target.cY);
     }
 
-    public static ThrowDaggerEffect ThrowDagger(Hitbox target, float variance)
+    public static ThrowDaggerEffect2 ThrowDagger(Hitbox target, float variance)
     {
-        return new ThrowDaggerEffect(RandomX(target, variance), RandomY(target, variance));
+        return new ThrowDaggerEffect2(RandomX(target, variance), RandomY(target, variance));
     }
 
     public static ThrowProjectileEffect ThrowProjectile(Projectile projectile, Hitbox target)

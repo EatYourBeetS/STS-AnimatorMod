@@ -78,6 +78,10 @@ public class AttackEffects
       {
          return new TupleT3<>(IMAGES.Shot1.Texture(), 4, 4);
       }
+      if (effect == SPEAR)
+      {
+         throw new RuntimeException("Spear effect is not implemented yet.");
+      }
 
       return null;
    }

@@ -29,6 +29,11 @@ public class GenericRenderEffect extends EYBEffect
         this.scale = Settings.scale;
         this.x = x;
         this.y = y;
+
+        if (image == null)
+        {
+            Complete();
+        }
     }
 
     @Override

@@ -49,7 +49,8 @@ public class CommonResources extends AbstractResources
     {
         BaseMod.addAudio(SFX.ATTACK_SCYTHE, "audio/sound/STS_SFX_Reaper_v1.ogg");
 
-        BaseMod.addAudio(SFX.ANIMATOR_GUNSHOT, "audio/animator/sound/GUNSHOT_SINGLE.ogg");
+        BaseMod.addAudio(SFX.ANIMATOR_ARROW, "audio/animator/sound/FIRING_ARROW.ogg");
+        BaseMod.addAudio(SFX.ANIMATOR_GUNSHOT, "audio/animator/sound/FIRING_BULLET.ogg");
         BaseMod.addAudio(SFX.ANIMATOR_ORB_EARTH_EVOKE, "audio/animator/sound/ORB_EARTH_EVOKE.ogg");
         BaseMod.addAudio(SFX.ANIMATOR_ORB_EARTH_EVOKE, "audio/animator/sound/ORB_EARTH_EVOKE.ogg");
         BaseMod.addAudio(SFX.ANIMATOR_ORB_EARTH_CHANNEL, "audio/animator/sound/ORB_EARTH_CHANNEL.ogg");

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
@@ -123,7 +124,7 @@ public class CTContext
 
         this.start_y = (card.current_y - IMG_HEIGHT * card.drawScale * 0.5f + DESC_OFFSET_Y * card.drawScale) + (height * 0.775f + font.getCapHeight() * 0.375f) -6f;
         this.start_x = 0;
-        this.color = RenderHelpers.CopyColor(card, DEFAULT_COLOR);
+        this.color = Colors.Copy(DEFAULT_COLOR, card.transparency);
 
         for (lineIndex = 0; lineIndex < lines.size(); lineIndex += 1)
         {

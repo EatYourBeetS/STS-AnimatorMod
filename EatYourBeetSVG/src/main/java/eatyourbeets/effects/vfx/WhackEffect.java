@@ -1,5 +1,7 @@
 package eatyourbeets.effects.vfx;
 
+import eatyourbeets.resources.GR;
+
 public class WhackEffect extends GenericAnimationEffect
 {
     public static final int SIZE = 512;
@@ -7,7 +9,7 @@ public class WhackEffect extends GenericAnimationEffect
 
     public WhackEffect(float x, float y) {
 
-        super(IMAGE_PATH,x,y,SIZE, 0.03F);
+        super(GR.Common.Images.Effects.Whack.Texture(),x,y,SIZE, 0.03F);
     }
 
 }

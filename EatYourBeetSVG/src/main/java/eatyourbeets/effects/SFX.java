@@ -9,7 +9,6 @@ public class SFX
     public static final String ANIMATOR_MEGUMIN_CHARGE = "ANIMATOR_MEGUMIN_CHARGE";
     public static final String ANIMATOR_ORB_EARTH_CHANNEL = "ANIMATOR_ORB_EARTH_CHANNEL";
     public static final String ANIMATOR_ORB_EARTH_EVOKE = "ANIMATOR_ORB_EARTH_EVOKE";
-    public static final String ANIMATOR_REAPER = "ANIMATOR_REAPER";
     public static final String ANIMATOR_THE_CREATURE = "ANIMATOR_THE_CREATURE.ogg";
     public static final String ANIMATOR_THE_HAUNT = "ANIMATOR_THE_HAUNT.ogg";
     public static final String ANIMATOR_THE_ULTIMATE_CRYSTAL = "ANIMATOR_THE_ULTIMATE_CRYSTAL";
@@ -43,6 +42,7 @@ public class SFX
     public static final String ATTACK_PIERCING_WAIL = "ATTACK_PIERCING_WAIL";
     public static final String ATTACK_POISON = "ATTACK_POISON";
     public static final String ATTACK_POISON2 = "ATTACK_POISON2";
+    public static final String ATTACK_SCYTHE = "ATTACK_SCYTHE";
     public static final String ATTACK_WHIFF_1 = "ATTACK_WHIFF_1";
     public static final String ATTACK_WHIFF_2 = "ATTACK_WHIFF_2";
     public static final String ATTACK_WHIRLWIND = "ATTACK_WHIRLWIND";

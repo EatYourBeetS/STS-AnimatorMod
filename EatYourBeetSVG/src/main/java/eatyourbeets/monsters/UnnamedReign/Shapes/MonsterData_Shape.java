@@ -18,7 +18,7 @@ public class MonsterData_Shape extends EYBMonsterData
         this.shape = shape;
         this.tier = tier;
 
-        String filePath = "images/monsters/animator/" + shape + "/" + shape + "_" + element + "_" + tier.GetId();
+        String filePath = "images/animator/monsters/" + shape + "/" + shape + "_" + element + "_" + tier.GetId();
         atlasUrl = filePath + ".atlas";
         jsonUrl = filePath + ".json";
         imgUrl = filePath + ".png";

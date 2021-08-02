@@ -24,7 +24,6 @@ import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.common.CommonResources;
-import eatyourbeets.resources.unnamed.UnnamedResources;
 import eatyourbeets.utilities.JUtils;
 import org.apache.logging.log4j.Logger;
 
@@ -35,6 +34,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class GR
 {
@@ -50,7 +50,6 @@ public class GR
     public static CardTooltips Tooltips = null; // Created by CommonResources
     public static UIManager UI = new UIManager();
     public static AnimatorResources Animator;
-    public static UnnamedResources Unnamed;
     public static CommonResources Common;
     public static boolean IsLoaded;
 
@@ -63,11 +62,9 @@ public class GR
 
         Common = new CommonResources();
         Animator = new AnimatorResources();
-        Unnamed = new UnnamedResources();
 
         Initialize(Common);
         Initialize(Animator);
-        //Initialize(Unnamed);
     }
 
     protected static void Initialize(AbstractResources resources)
@@ -133,34 +130,40 @@ public class GR
         return CardCrawlGame.languagePack;
     }
 
-    public static String GetCardImage(String cardID)
+    public static String GetPng(String id, String subFolder)
     {
-        return "images/cards/" + cardID.replace(":", "/") + ".png";
+        final String[] s = id.split(Pattern.quote(":"), 2);
+        return "images/" + s[0] + "/" + subFolder + "/" + s[1].replace(":", "_") + ".png";
     }
 
-    public static String GetRelicImage(String relicID)
+    public static String GetCardImage(String id)
     {
-        return "images/relics/" + relicID.replace(":", "/") + ".png";
+        return GetPng(id, "cards");
     }
 
-    public static String GetBlightImageName(String blightID)
+    public static String GetRelicImage(String id)
     {
-        return blightID.replace(":", "/") + ".png";
+        return GetPng(id, "relics");
     }
 
-    public static String GetPowerImage(String powerID)
+    public static String GetBlightImageName(String id)
     {
-        return "images/powers/" + powerID.replace(":", "/") + ".png";
+        return id.replace(":", "/") + ".png";
     }
 
-    public static String GetMonsterImage(String monsterID)
+    public static String GetPowerImage(String id)
     {
-        return "images/monsters/" + monsterID.replace(":", "/") + ".png";
+        return GetPng(id, "powers");
     }
 
-    public static String GetRewardImage(String rewardID)
+    public static String GetMonsterImage(String id)
     {
-        return "images/ui/rewards/" + rewardID.replace(":", "/") + ".png";
+        return GetPng(id, "monsters");
+    }
+
+    public static String GetRewardImage(String id)
+    {
+        return GetPng(id, "ui/rewards");
     }
 
     public static boolean IsTranslationSupported(Settings.GameLanguage language)
@@ -194,7 +197,6 @@ public class GR
             else
             {
                 JUtils.GetLogger(GR.class).error("Texture does not exist: " + path);
-                texture = null;
             }
 
             textures.put(path, texture);

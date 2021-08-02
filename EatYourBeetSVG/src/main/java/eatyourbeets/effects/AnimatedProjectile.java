@@ -1,10 +1,10 @@
 package eatyourbeets.effects;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class AnimatedProjectile extends Projectile
@@ -26,8 +26,9 @@ public class AnimatedProjectile extends Projectile
     public int frame;
     public final int totalFrames;
 
-    public AnimatedProjectile(String imgUrl, float size, float animTimer, int totalFrames) {
-        super(GR.GetTexture(imgUrl), size, size);
+    public AnimatedProjectile(Texture texture, float size, float animTimer, int totalFrames)
+    {
+        super(texture, size, size);
 
         this.frame = 0;
         this.mode = AnimationMode.Remain;
@@ -39,14 +40,15 @@ public class AnimatedProjectile extends Projectile
         this.animTimer = this.animDelay = animTimer;
     }
 
-    public AnimatedProjectile(String imgUrl, float size, float animTimer) {
-        this(imgUrl,size,animTimer, Integer.MAX_VALUE);
+    public AnimatedProjectile(Texture texture, float size, float animTimer)
+    {
+        this(texture, size, animTimer, Integer.MAX_VALUE);
     }
 
-    public AnimatedProjectile(String imgUrl, float size) {
-        this(imgUrl,size,0.03F, Integer.MAX_VALUE);
+    public AnimatedProjectile(Texture texture, float size)
+    {
+        this(texture, size, 0.03F, Integer.MAX_VALUE);
     }
-
 
     @Override
     public void Update(float delta)
@@ -54,7 +56,8 @@ public class AnimatedProjectile extends Projectile
         super.Update(delta);
 
         this.animTimer -= delta;
-        if (this.animTimer < 0.0F) {
+        if (this.animTimer < 0.0F)
+        {
             this.animTimer += this.animDelay;
             ++this.frame;
         }
@@ -74,9 +77,11 @@ public class AnimatedProjectile extends Projectile
                 width, height, scale, current_pos.z + current_offset.z);
     }
 
-    public TextureRegion GetFrameRegion(int frame) {
+    public TextureRegion GetFrameRegion(int frame)
+    {
         int zframe;
-        switch (this.mode) {
+        switch (this.mode)
+        {
             case Loop:
                 zframe = frame % totalFrames;
                 break;
@@ -89,9 +94,9 @@ public class AnimatedProjectile extends Projectile
                 break;
         }
 
-        int targetX = (zframe % this.columns) * (int)this.size;
-        int targetY = zframe / this.rows * (int)this.size;
-        return new TextureRegion(this.texture, targetX, targetY, (int)size, (int)size);
+        int targetX = (zframe % this.columns) * (int) this.size;
+        int targetY = zframe / this.rows * (int) this.size;
+        return new TextureRegion(this.texture, targetX, targetY, (int) size, (int) size);
     }
 
     public void dispose()

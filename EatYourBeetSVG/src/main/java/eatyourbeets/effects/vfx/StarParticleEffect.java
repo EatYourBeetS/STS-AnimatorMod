@@ -6,17 +6,18 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.ui.TextureCache;
 
 public class StarParticleEffect extends EYBEffect
 {
-    protected static final int SIZE = 96;
+    protected static final TextureCache[] images = { IMAGES.Sparkle1, IMAGES.Sparkle2, IMAGES.Sparkle3, IMAGES.Sparkle4 };
 
     protected float x;
     protected float y;
     protected float alpha;
-    protected Texture img;
+    protected boolean flipX;
+    protected Texture image;
 
     public StarParticleEffect(float x, float y, Color mainColor)
     {
@@ -29,13 +30,13 @@ public class StarParticleEffect extends EYBEffect
             this.renderBehind = true;
         }
 
-        this.img = ImageMaster.loadImage("images/effects/Sparkle" + Random(1, 3) + ".png");
-        this.x = x + offsetX - (float) (SIZE / 2);
-        this.y = y + offsetY - (float) (SIZE / 2);
-        this.scale = Random(0.05f, 0.3f) * Settings.scale;
-        this.alpha = Random(0.5F, 1.0F);
+        this.x = x + offsetX;
+        this.y = y + offsetY;
+        this.image = Random(images).Texture();
         this.color = mainColor.cpy();
-        this.color.a = this.alpha;
+        this.color.a = this.alpha = Random(0.5F, 1.0F);
+        this.scale = Random(0.05f, 0.3f);
+        this.flipX = RandomBoolean();
         this.rotation = Random(-10f, 10f);
     }
 
@@ -53,9 +54,6 @@ public class StarParticleEffect extends EYBEffect
 
     public void render(SpriteBatch sb)
     {
-        sb.setColor(this.color);
-        sb.setBlendFunction(770, 1);
-        sb.draw(img, x, y, SIZE * 0.5f, SIZE * 0.5f, SIZE, SIZE, scale, scale, rotation, 0, 0, SIZE, SIZE, RandomBoolean(0.5f), false);
-        sb.setBlendFunction(770, 771);
+        RenderImage(sb, image, x, y, flipX, false);
     }
 }

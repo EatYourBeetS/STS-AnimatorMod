@@ -1,6 +1,6 @@
 
 {
-	"EYB:ForceStance":
+	"eyb:ForceStance":
 	{
 		"NAME": "Force Stance",
 		"DESCRIPTION": 
@@ -8,7 +8,7 @@
 			"#g+{0} #gStrength, NL #r-{1} #rFocus, NL #r-{1} #rDexterity. NL On Enter: #yBoost #yForce."
 		]
 	},
-	"EYB:AgilityStance":
+	"eyb:AgilityStance":
 	{
 		"NAME": "Agility Stance",
 		"DESCRIPTION": 
@@ -16,7 +16,7 @@
 			"#g+{0} #gDexterity, NL #r-{1} #rStrength, NL #r-{1} #rFocus. NL On Enter: #yBoost #yAgility."
 		]
 	},
-	"EYB:IntellectStance":
+	"eyb:IntellectStance":
 	{
 		"NAME": "Intellect Stance",
 		"DESCRIPTION": 

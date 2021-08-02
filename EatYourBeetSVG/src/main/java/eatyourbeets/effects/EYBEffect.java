@@ -12,11 +12,14 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RenderHelpers;
 
 public abstract class EYBEffect extends AbstractGameEffect
 {
+    public static final CommonImages.Effects IMAGES = GR.Common.Images.Effects;
     public static final Random RNG = new Random();
     public final AbstractPlayer player;
     public boolean isRealtime;
@@ -139,15 +142,14 @@ public abstract class EYBEffect extends AbstractGameEffect
     protected void RenderImage(SpriteBatch sb, TextureAtlas.AtlasRegion img, float x, float y)
     {
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
-        sb.setColor(this.color);
-        sb.draw(img, x, y, img.packedWidth * 0.5f, img.packedHeight * 0.5f, img.packedWidth, img.packedHeight, scale, scale, rotation);
+        RenderHelpers.DrawCentered(sb, color, img, x, y, img.packedWidth, img.packedHeight, scale, rotation);
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
     }
 
-    protected void RenderImage(SpriteBatch sb, Texture img, float x, float y)
+    protected void RenderImage(SpriteBatch sb, Texture img, float x, float y, boolean flipX, boolean flipY)
     {
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
-        RenderHelpers.DrawCentered(sb, color, img, x, y, img.getWidth(), img.getHeight(), scale, rotation);
+        RenderHelpers.DrawCentered(sb, color, img, x, y, img.getWidth(), img.getHeight(), scale, rotation, flipX, flipY);
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
     }
 
@@ -164,5 +166,15 @@ public abstract class EYBEffect extends AbstractGameEffect
     protected static boolean RandomBoolean(float chance)
     {
         return MathUtils.randomBoolean(chance);
+    }
+
+    protected static boolean RandomBoolean()
+    {
+        return MathUtils.randomBoolean();
+    }
+
+    protected static <T> T Random(T[] arr)
+    {
+        return arr[Random(0, arr.length-1)];
     }
 }

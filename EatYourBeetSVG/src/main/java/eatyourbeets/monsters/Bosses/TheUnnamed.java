@@ -314,8 +314,8 @@ public class TheUnnamed extends EYBMonster
             super(id);
 
             maxHealth = 1000 + (GameUtilities.GetAscensionLevel() * 5);
-            atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamed.atlas";
-            jsonUrl = "images/monsters/animator/TheUnnamed/TheUnnamed.json";
+            atlasUrl = "images/animator/monsters/TheUnnamed/TheUnnamed.atlas";
+            jsonUrl = "images/animator/monsters/TheUnnamed/TheUnnamed.json";
 
             SetHB(0, -20, 200, 260, 0, 80);
         }

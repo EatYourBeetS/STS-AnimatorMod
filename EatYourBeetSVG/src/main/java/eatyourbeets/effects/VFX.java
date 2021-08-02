@@ -11,18 +11,18 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import eatyourbeets.effects.vfx.SmallLaserEffect;
 import eatyourbeets.effects.vfx.*;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.Mathf;
 
 public class VFX
 {
-    protected static float RandomX(Hitbox hb, float variance)
+    private static float RandomX(Hitbox hb, float variance)
     {
         return hb.cX + (MathUtils.random(-variance, variance) * hb.width);
     }
 
-    protected static float RandomY(Hitbox hb, float variance)
+    private static float RandomY(Hitbox hb, float variance)
     {
         return hb.cY + (MathUtils.random(-variance, variance) * hb.height);
     }
@@ -158,9 +158,9 @@ public class VFX
         return new RockBurstEffect(target, scale);
     }
 
-    public static ShootingStarsEffect ShootingStars(Hitbox source, float spread)
+    public static ShootingStarsEffect ShootingStars(Hitbox source, float spreadY)
     {
-        return new ShootingStarsEffect(source.cX, source.cY, spread, FlipHorizontally());
+        return new ShootingStarsEffect(source.cX, source.cY).SetSpread(0, spreadY).FlipHorizontally(FlipHorizontally());
     }
 
     public static SnowballEffect Snowball(Hitbox source, Hitbox target)
@@ -181,13 +181,12 @@ public class VFX
     public static ThrowProjectileEffect ThrowRock(Hitbox source, Hitbox target, float duration)
     {
         duration *= Mathf.Abs(target.cX - source.cX) / (Settings.WIDTH * 0.5f);
-        return (ThrowProjectileEffect)new ThrowProjectileEffect(new Projectile(GR.GetTexture("images/orbs/animator/Earth" + MathUtils.random(0, Earth.FRAMES - 1) + ".png"), 128f, 128f)
-                .SetColor(Mathf.RandomColor(0.6f, 0.85f, true))
+        return (ThrowProjectileEffect)new ThrowProjectileEffect(new Projectile(Earth.GetRandomTexture(), 128f, 128f)
+                .SetColor(Colors.Random(0.6f, 0.85f, true))
                 .SetPosition(source.cX, source.cY), target)
-                .AddCallback(() -> GameEffects.Queue.Add(RockBurst(target, 1.3f)))
+                .AddCallback(hb -> GameEffects.Queue.Add(RockBurst(hb, 1.3f)))
                 .SetDuration(duration, true);
     }
-
 
     public static VerticalImpactEffect VerticalImpact(Hitbox target)
     {

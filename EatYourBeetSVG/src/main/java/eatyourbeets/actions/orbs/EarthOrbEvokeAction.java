@@ -3,14 +3,16 @@ package eatyourbeets.actions.orbs;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.effects.Projectile;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.effects.card.RenderProjectilesEffect;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.Mathf;
 
 import java.util.ArrayList;
 
@@ -70,7 +72,7 @@ public class EarthOrbEvokeAction extends EYBAction
 
         if (TickDuration(deltaTime))
         {
-            CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1f);
+            SFX.Play(SFX.ANIMATOR_ORB_EARTH_EVOKE, 0.9f, 1.1f);
 
             for (int i = 0; i < projectiles.size(); i++)
             {

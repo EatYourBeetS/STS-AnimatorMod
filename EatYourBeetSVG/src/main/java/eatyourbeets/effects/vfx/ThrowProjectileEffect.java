@@ -5,9 +5,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.effects.EYBEffectWithCallback;
 import eatyourbeets.effects.Projectile;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.Mathf;
-import eatyourbeets.utilities.RenderHelpers;
 import org.lwjgl.util.vector.Vector3f;
 
 import java.util.ArrayList;
@@ -105,7 +105,7 @@ public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
         {
             for (Vector3f trailPos : trailPositions)
             {
-                projectile.Render(sb, RenderHelpers.CopyColor(projectile.color, trailPos.z * 0.5f), trailPos.x, trailPos.y, projectile.scale * trailPos.z);
+                projectile.Render(sb, Colors.Copy(projectile.color, trailPos.z * 0.5f), trailPos.x, trailPos.y, projectile.scale * trailPos.z);
             }
 
             projectile.Render(sb);

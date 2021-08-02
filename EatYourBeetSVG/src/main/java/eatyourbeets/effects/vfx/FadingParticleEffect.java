@@ -1,32 +1,33 @@
 package eatyourbeets.effects.vfx;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.effects.Projectile;
-import eatyourbeets.resources.GR;
 
 public class FadingParticleEffect extends EYBEffect
 {
-
     protected Projectile projectile;
     protected float x;
     protected float y;
     protected float alpha;
     protected boolean isTranslucent;
 
-    public FadingParticleEffect(String imgUrl, float x, float y, float size) {
+    public FadingParticleEffect(Texture texture, float x, float y, float size)
+    {
         this.x = x;
         this.y = y;
         this.alpha = 1.0F;
 
-        this.projectile = new Projectile(GR.GetTexture(imgUrl), size, size);
-        this.projectile.SetPosition(x,y).SetTargetPosition(x,y);
+        this.projectile = new Projectile(texture, size, size);
+        this.projectile.SetPosition(x, y).SetTargetPosition(x, y);
         this.isTranslucent = false;
     }
 
-    public FadingParticleEffect SetColor(Color color){
+    public FadingParticleEffect SetColor(Color color)
+    {
         this.projectile.SetColor(color);
         return this;
     }
@@ -50,8 +51,9 @@ public class FadingParticleEffect extends EYBEffect
         return this;
     }
 
-    public FadingParticleEffect SetTargetPosition(float x, float y){
-        this.projectile.SetTargetPosition(x,y);
+    public FadingParticleEffect SetTargetPosition(float x, float y)
+    {
+        this.projectile.SetTargetPosition(x, y);
         return this;
     }
 
@@ -62,7 +64,8 @@ public class FadingParticleEffect extends EYBEffect
         return this;
     }
 
-    public FadingParticleEffect SetTranslucent(float alpha){
+    public FadingParticleEffect SetTranslucent(float alpha)
+    {
         this.isTranslucent = true;
         this.alpha = alpha;
         this.projectile.color.a = this.alpha;
@@ -83,15 +86,18 @@ public class FadingParticleEffect extends EYBEffect
     }
 
     @Override
-    public void render(SpriteBatch sb) {
+    public void render(SpriteBatch sb)
+    {
         if (projectile != null)
         {
-            if (isTranslucent) {
+            if (isTranslucent)
+            {
                 sb.setBlendFunction(770, 1);
                 projectile.Render(sb);
                 sb.setBlendFunction(770, 771);
             }
-            else {
+            else
+            {
                 projectile.Render(sb);
             }
         }

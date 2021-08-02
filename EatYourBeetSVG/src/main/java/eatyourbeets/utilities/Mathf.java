@@ -178,17 +178,6 @@ public class Mathf
         current.z = Lerp(current.z, target.z, speed.z * progress);
     }
 
-    public static Color RandomColor(float min, float max, boolean grayscale)
-    {
-        if (grayscale)
-        {
-            final float value = MathUtils.random(min, max);
-            return new Color(value, value, value, 1);
-        }
-
-        return new Color(MathUtils.random(min, max), MathUtils.random(min, max), MathUtils.random(min, max), 1);
-    }
-
     public static Color Subtract(Color a, Color b, boolean includeAlpha)
     {
         if (includeAlpha)
@@ -201,11 +190,6 @@ public class Mathf
         a.b -= b.b;
 
         return a.clamp();
-    }
-
-    public static Color Copy(Color color, float a)
-    {
-        return new Color(color.r, color.g, color.b, a);
     }
 
     public static void Add(Vector3f a, Vector3f b, float delta)

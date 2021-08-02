@@ -4,8 +4,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
+import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.effects.Projectile;
+import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT2;
 
 public class FadingParticleEffect extends EYBEffect
 {
@@ -17,49 +20,40 @@ public class FadingParticleEffect extends EYBEffect
 
     public FadingParticleEffect(Texture texture, float x, float y, float size)
     {
-        this.x = x;
-        this.y = y;
-        this.alpha = 1.0F;
+        super(Settings.ACTION_DUR_FAST, false);
 
         this.projectile = new Projectile(texture, size, size);
         this.projectile.SetPosition(x, y).SetTargetPosition(x, y);
+        this.x = x;
+        this.y = y;
+        this.alpha = 1.0F;
         this.isTranslucent = false;
     }
 
     public FadingParticleEffect SetColor(Color color)
     {
         this.projectile.SetColor(color);
+
         return this;
     }
 
     public FadingParticleEffect SetScale(float scale)
     {
         this.projectile.scale = scale;
-        return this;
-    }
-
-    public FadingParticleEffect SetSpeed(float vX, float vY, float vR)
-    {
-        this.projectile.SetSpeed(vX, vY, vR);
 
         return this;
     }
 
-    public FadingParticleEffect SetRotation(float rotation)
+    public FadingParticleEffect Edit(ActionT1<Projectile> action)
     {
-        this.rotation = rotation;
+        action.Invoke(projectile);
+
         return this;
     }
 
-    public FadingParticleEffect SetTargetPosition(float x, float y)
+    public <T> FadingParticleEffect Edit(T state, ActionT2<T, Projectile> action)
     {
-        this.projectile.SetTargetPosition(x, y);
-        return this;
-    }
-
-    public FadingParticleEffect SetTargetRotation(float degrees)
-    {
-        this.projectile.SetTargetRotation(degrees);
+        action.Invoke(state, projectile);
 
         return this;
     }
@@ -69,6 +63,7 @@ public class FadingParticleEffect extends EYBEffect
         this.isTranslucent = true;
         this.alpha = alpha;
         this.projectile.color.a = this.alpha;
+
         return this;
     }
 
@@ -103,7 +98,9 @@ public class FadingParticleEffect extends EYBEffect
         }
     }
 
+    @Override
     public void dispose()
     {
+
     }
 }

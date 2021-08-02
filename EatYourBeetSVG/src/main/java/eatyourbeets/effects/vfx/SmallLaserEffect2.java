@@ -12,16 +12,17 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class SmallLaserEffect extends EYBEffect
+public class SmallLaserEffect2 extends EYBEffect
 {
+    private static AtlasRegion img;
     private final float sX;
     private final float sY;
     private final float dX;
     private final float dY;
     private final float dst;
-    private static AtlasRegion img;
+    private Color color2;
 
-    public SmallLaserEffect(float sX, float sY, float dX, float dY, Color color)
+    public SmallLaserEffect2(float sX, float sY, float dX, float dY)
     {
         super(0.5f);
 
@@ -35,10 +36,19 @@ public class SmallLaserEffect extends EYBEffect
         this.dX = dX;
         this.dY = dY;
         this.dst = Vector2.dst(this.sX, this.sY, this.dX, this.dY) / Settings.scale;
-        this.color = color.cpy();
+        this.color = Color.CYAN.cpy();
+        this.color2 = new Color(0.3f, 0.3f, 1f, this.color.a);
         this.rotation = MathUtils.atan2(dX - sX, dY - sY);
         this.rotation *= 57.295776f;
         this.rotation = -this.rotation + 90f;
+    }
+
+    public SmallLaserEffect2 SetColors(Color color1, Color color2)
+    {
+        this.color.set(color1);
+        this.color2.set(color2);
+
+        return this;
     }
 
     public void update()
@@ -57,7 +67,6 @@ public class SmallLaserEffect extends EYBEffect
         {
             this.isDone = true;
         }
-
     }
 
     public void render(SpriteBatch sb)
@@ -65,7 +74,8 @@ public class SmallLaserEffect extends EYBEffect
         sb.setBlendFunction(770, 1);
         sb.setColor(this.color);
         sb.draw(img, this.sX, this.sY - (float) img.packedHeight / 2f + 10f * Settings.scale, 0f, (float) img.packedHeight / 2f, this.dst, 50f, this.scale + Random(-0.01f, 0.01f), this.scale, this.rotation);
-        sb.setColor(new Color(0.3f, 0.3f, 1f, this.color.a));
+        color2.a = color.a;
+        sb.setColor(color2);
         sb.draw(img, this.sX, this.sY - (float) img.packedHeight / 2f, 0f, (float) img.packedHeight / 2f, this.dst, Random(50f, 90f), this.scale + Random(-0.02f, 0.02f), this.scale, this.rotation);
         sb.setBlendFunction(770, 771);
     }

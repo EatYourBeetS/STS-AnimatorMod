@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.vfx.combat.*;
-import eatyourbeets.effects.vfx.SmallLaserEffect;
+import eatyourbeets.effects.vfx.SmallLaserEffect2;
 import eatyourbeets.effects.vfx.*;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.Colors;
@@ -16,14 +16,14 @@ import eatyourbeets.utilities.Mathf;
 
 public class VFX
 {
-    private static float RandomX(Hitbox hb, float variance)
+    public static float RandomX(Hitbox hb, float variance)
     {
-        return hb.cX + (MathUtils.random(-variance, variance) * hb.width);
+        return hb.cX + (variance == 0 ? 0 : (MathUtils.random(-variance, variance) * hb.width));
     }
 
-    private static float RandomY(Hitbox hb, float variance)
+    public static float RandomY(Hitbox hb, float variance)
     {
-        return hb.cY + (MathUtils.random(-variance, variance) * hb.height);
+        return hb.cY + (variance == 0 ? 0 : (MathUtils.random(-variance, variance) * hb.height));
     }
 
     public static CataclysmEffect Cataclysm()
@@ -61,9 +61,9 @@ public class VFX
         return new ClawEffect(source.cX, source.cY, color1, color2);
     }
 
-    public static MindblastEffect Mindblast(float dialogX, float dialogY, boolean flipHorizontal)
+    public static MindblastEffect2 Mindblast(float dialogX, float dialogY)
     {
-        return new MindblastEffect(dialogX, dialogY, flipHorizontal);
+        return new MindblastEffect2(dialogX, dialogY, FlipHorizontally());
     }
 
     public static ShockWaveEffect ShockWave(Hitbox source, Color color)
@@ -101,9 +101,15 @@ public class VFX
         return new ExplosionSmallEffect(RandomX(source, variance), RandomY(source, variance));
     }
 
-    public static SmallLaserEffect SmallLaser(Hitbox source, Hitbox target, Color color)
+    public static LaserBeamEffect2 Laser(Hitbox source, Color color)
     {
-        return new SmallLaserEffect(source.cX, source.cY, RandomX(target, 0.2f), RandomY(target, 0.2f), color);
+        return new LaserBeamEffect2(source.cX, source.cY).SetColor(color);
+    }
+
+    public static SmallLaserEffect2 SmallLaser(Hitbox source, Hitbox target, Color color)
+    {
+        return new SmallLaserEffect2(source.cX, source.cY, RandomX(target, 0.2f), RandomY(target, 0.2f))
+        .SetColors(color, Mathf.LerpCopy(color, Color.BLACK, 0.3f));
     }
 
     public static FallingIceEffect FallingIce(int frostCount)
@@ -121,15 +127,14 @@ public class VFX
         return new FlameBarrierEffect(source.cX, source.cY);
     }
 
-    public static ShotEffect Gunshot(Hitbox target)
+    public static GenericAnimationEffect Gunshot(Hitbox target, float spread)
     {
-        return Gunshot(target, 0);
+        return Gunshot(RandomX(target, spread), RandomY(target, spread));
     }
 
-    public static ShotEffect Gunshot(Hitbox target, float spread)
+    public static GenericAnimationEffect Gunshot(float cX, float cY)
     {
-        return (ShotEffect) new ShotEffect(target.cX + MathUtils.random(-spread, spread) * target.width, target.cY + MathUtils.random(-spread, spread) * target.height)
-                .SetColor(Color.RED.cpy());
+        return new GenericAnimationEffect(EYBEffect.IMAGES.Shot.Texture(), cX, cY, 4, 4).SetColor(Color.DARK_GRAY);
     }
 
     public static HemokinesisEffect2 Hemokinesis(Hitbox source, Hitbox target)
@@ -139,17 +144,32 @@ public class VFX
 
     public static LightningEffect Lightning(Hitbox target)
     {
-        return new LightningEffect(target.cX, target.cY);
+        return Lightning(target.cX, target.cY);
+    }
+
+    public static LightningEffect Lightning(float cX, float cY)
+    {
+        return new LightningEffect(cX, cY);
     }
 
     public static RazorWindEffect RazorWind(Hitbox source, Hitbox target, float horizontalSpeed, float horizontalAcceleration)
     {
-        return new RazorWindEffect(source.cX, source.cY, target.cY, horizontalSpeed, horizontalAcceleration);
+        return new RazorWindEffect(source.cX, source.cY, RandomY(target, 0.33f), horizontalSpeed, horizontalAcceleration);
     }
 
     public static RockBurstEffect RockBurst(Hitbox target, float scale)
     {
         return new RockBurstEffect(target, scale);
+    }
+
+    public static ShieldEffect Shield(Hitbox target)
+    {
+        return Shield(target.cX, target.cY);
+    }
+
+    public static ShieldEffect Shield(float cX, float cY)
+    {
+        return new ShieldEffect(cX, cY);
     }
 
     public static ShootingStarsEffect ShootingStars(Hitbox source, float spreadY)
@@ -198,9 +218,14 @@ public class VFX
         return new WeightyImpactEffect(target.cX, target.cY);
     }
 
-    public static WhackEffect Whack(Hitbox target)
+    public static GenericAnimationEffect Whack(Hitbox target, float spread)
     {
-        return new WhackEffect(target.cX, target.cY);
+        return Whack(RandomX(target, spread), RandomY(target, spread));
+    }
+
+    public static GenericAnimationEffect Whack(float cX, float cY)
+    {
+        return new GenericAnimationEffect(EYBEffect.IMAGES.Whack.Texture(), cX, cY, 4, 4);
     }
 
     public static WhirlwindEffect Whirlwind()

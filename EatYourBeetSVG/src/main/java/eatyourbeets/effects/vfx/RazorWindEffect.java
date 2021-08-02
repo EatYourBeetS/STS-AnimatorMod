@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.Mathf;
 
 public class RazorWindEffect extends EYBEffect
 {
-    public static TextureCache image = IMAGES.AirSlice;
-    public static final int SIZE = 256;
+    public static final TextureCache image = IMAGES.AirSlice;
 
     protected float x;
     protected float y;
@@ -20,20 +20,29 @@ public class RazorWindEffect extends EYBEffect
     protected float horizontalSpeed;
     protected float rotationSpeed;
     protected float vfxTimer;
+    protected float vfxFrequency;
 
     public RazorWindEffect(float x, float y, float targetY, float horizontalSpeed, float horizontalAcceleration)
     {
         super(1f);
 
-        this.x = x - (SIZE / 2f);
-        this.y = y - (SIZE / 2f);
-        this.targetY = targetY - (SIZE /2f);
-        this.rotation = Random(5f, 10f);
-        this.scale = Settings.scale;
+        this.x = x;
+        this.y = y;
+        this.targetY = targetY;
+        this.scale = 1;
         this.horizontalSpeed = horizontalSpeed * Settings.scale;
         this.horizontalAcceleration = horizontalSpeed * Settings.scale;
+        this.rotation = Random(5f, 10f);
         this.rotationSpeed = Random(1000f, 1200f);
         this.color = Color.WHITE.cpy();
+        this.vfxFrequency = 0.01f;
+    }
+
+    public RazorWindEffect SetFrequency(float frequency)
+    {
+        this.vfxFrequency = Mathf.Clamp(frequency, 0.01f, startingDuration / 5f);
+
+        return this;
     }
 
     @Override
@@ -56,8 +65,9 @@ public class RazorWindEffect extends EYBEffect
         vfxTimer -= deltaTime;
         if (vfxTimer < 0f)
         {
-            vfxTimer = 0.007f;
-            GameEffects.Queue.Add(new RazorWindParticleEffect(x, y + (SIZE / 2f) + Random(-100,100), Math.signum(horizontalSpeed) * Random(-300f, -50f) * Settings.scale, Random(-200f, 200f) * Settings.scale));
+            GameEffects.Queue.Add(new RazorWindParticleEffect(x, y + (Random(-100, 100) * Settings.scale),
+                    Random(-300f, -50f) * Math.signum(horizontalSpeed), Random(-200f, 200f)));
+            vfxTimer = vfxFrequency;
         }
 
         super.UpdateInternal(deltaTime);

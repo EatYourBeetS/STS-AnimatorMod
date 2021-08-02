@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.console.CommandsManager;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.monsters.EYBMonster;
@@ -47,7 +48,11 @@ public class CommonResources extends AbstractResources
     @Override
     protected void InitializeAudio()
     {
-        BaseMod.addAudio(SFX.ATTACK_SCYTHE, "audio/sound/STS_SFX_Reaper_v1.ogg");
+        BaseMod.addAudio(SFX.ATTACK_REAPER, "audio/sound/STS_SFX_Reaper_v1.ogg");
+        BaseMod.addAudio(SFX.ATTACK_SCYTHE, "audio/sound/STS_SFX_Scythe_v1.ogg");
+        BaseMod.addAudio(SFX.ATTACK_AXE, "audio/sound/STS_SFX_EnemyAtk_Axe_v1.ogg");
+        BaseMod.addAudio(SFX.ATTACK_DAGGER, "audio/sound/STS_SFX_EnemyAtk_Dagger_v1.ogg");
+        BaseMod.addAudio(SFX.ATTACK_SCIMITAR, "audio/sound/STS_SFX_EnemyAtk_Scimitar_v1.ogg");
 
         BaseMod.addAudio(SFX.ANIMATOR_ARROW, "audio/animator/sound/FIRING_ARROW.ogg");
         BaseMod.addAudio(SFX.ANIMATOR_GUNSHOT, "audio/animator/sound/FIRING_BULLET.ogg");
@@ -87,6 +92,7 @@ public class CommonResources extends AbstractResources
     @Override
     protected void PostInitialize()
     {
+        AttackEffects.Initialize();
         CommandsManager.RegisterCommands();
         GR.Tooltips.InitializeIcons();
         GR.UI.Initialize();

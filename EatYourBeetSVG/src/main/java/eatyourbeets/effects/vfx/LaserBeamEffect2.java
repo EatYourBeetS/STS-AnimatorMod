@@ -9,16 +9,17 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.utilities.GameEffects;
 
-public class LaserBeamEffect extends EYBEffect
+public class LaserBeamEffect2 extends EYBEffect
 {
     private final float x;
     private final float y;
     private static AtlasRegion img;
     private boolean playedSfx = false;
 
-    public LaserBeamEffect(float x, float y)
+    public LaserBeamEffect2(float x, float y)
     {
         super(2);
 
@@ -32,13 +33,20 @@ public class LaserBeamEffect extends EYBEffect
         this.color = Color.CYAN.cpy();
     }
 
+    public LaserBeamEffect2 SetColor(Color color)
+    {
+        this.color.set(color);
+
+        return this;
+    }
+
     public void update()
     {
         if (!this.playedSfx)
         {
-            GameEffects.Queue.Add(new BorderLongFlashEffect(Color.SKY));
+            GameEffects.Queue.Add(new BorderLongFlashEffect(color));
             this.playedSfx = true;
-            CardCrawlGame.sound.play("ATTACK_MAGIC_BEAM");
+            CardCrawlGame.sound.play(SFX.ATTACK_MAGIC_BEAM);
             CardCrawlGame.screenShake.rumble(2f);
         }
 
@@ -56,7 +64,6 @@ public class LaserBeamEffect extends EYBEffect
         {
             this.isDone = true;
         }
-
     }
 
     public void render(SpriteBatch sb)

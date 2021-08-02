@@ -4,80 +4,52 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
+import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.AnimatedProjectile;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.effects.Projectile;
+import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT2;
 
 public class GenericAnimationEffect extends EYBEffect
 {
-    protected AnimatedProjectile projectile;
+    public final AnimatedProjectile projectile;
+
+    protected boolean fade;
+    protected int endFrame;
+    protected float vR;
     protected float x;
     protected float y;
-    protected float vR;
-    protected int endFrame;
 
-    public GenericAnimationEffect(Texture texture, float x, float y, float width, float height, float animTimer, int totalFrames)
+    public GenericAnimationEffect(Texture texture, float x, float y, int rows, int columns)
     {
-        this.x = x;
-        this.y = y;
+        super(Settings.ACTION_DUR_MED, false);
 
-        this.projectile = new AnimatedProjectile(texture, width, height, animTimer, totalFrames);
+        this.projectile = new AnimatedProjectile(texture, rows, columns);
         this.projectile.SetPosition(x, y).SetTargetPosition(x, y);
         this.endFrame = this.projectile.totalFrames;
-    }
-
-    public GenericAnimationEffect(Texture texture, float x, float y, float size, float animTimer, int totalFrames)
-    {
+        this.scale = 1;
         this.x = x;
         this.y = y;
-
-        this.projectile = new AnimatedProjectile(texture, size, animTimer, totalFrames);
-        this.projectile.SetPosition(x, y).SetTargetPosition(x, y);
-        this.endFrame = this.projectile.totalFrames;
     }
 
-    public GenericAnimationEffect(Texture texture, float x, float y, float size, float animTimer)
-    {
-        this(texture, x, y, size, 0.03F, Integer.MAX_VALUE);
-    }
-
-    public GenericAnimationEffect(Texture texture, float x, float y, float size)
-    {
-        this(texture, x, y, size, 0.03F, Integer.MAX_VALUE);
-    }
-
-    public GenericAnimationEffect SetSound(String key)
-    {
-        return this;
-    }
-
-    public GenericAnimationEffect SetPitch(float pitchMin, float pitchMax)
-    {
-        return this;
-    }
-
-    public GenericAnimationEffect AdvanceToFrame(int frame)
+    public GenericAnimationEffect SetFrame(int frame)
     {
         this.projectile.frame = frame;
+
         return this;
     }
 
     public GenericAnimationEffect SetColor(Color color)
     {
         this.projectile.SetColor(color);
-        return this;
-    }
-
-    public GenericAnimationEffect SetImageParameters(float scale)
-    {
-        this.projectile.scale = scale;
 
         return this;
     }
 
-    public GenericAnimationEffect SetImageParameters(float scale, float rotation)
+    public GenericAnimationEffect SetScale(float scale)
     {
-        this.projectile.scale = scale;
-        this.projectile.SetRotation(rotation);
+        this.projectile.SetScale(this.scale = scale);
 
         return this;
     }
@@ -86,19 +58,29 @@ public class GenericAnimationEffect extends EYBEffect
     {
         this.projectile.mode = mode;
         this.endFrame = duration;
-        return this;
-    }
-
-    public GenericAnimationEffect SetSpeed(float vX, float vY, float vR)
-    {
-        this.projectile.SetSpeed(vX, vY, vR);
 
         return this;
     }
 
-    public GenericAnimationEffect SetTargetPosition(float x, float y)
+    public GenericAnimationEffect Fade(int fadingFrames)
     {
-        this.projectile.SetTargetPosition(x, y);
+        this.endFrame = projectile.totalFrames + fadingFrames;
+        this.fade = fadingFrames > 0;
+
+        return this;
+    }
+
+    public GenericAnimationEffect Edit(ActionT1<AnimatedProjectile> action)
+    {
+        action.Invoke(projectile);
+
+        return this;
+    }
+
+    public <T> GenericAnimationEffect Edit(T state, ActionT2<T, Projectile> action)
+    {
+        action.Invoke(state, projectile);
+
         return this;
     }
 
@@ -106,14 +88,16 @@ public class GenericAnimationEffect extends EYBEffect
     protected void UpdateInternal(float deltaTime)
     {
         this.projectile.Update(deltaTime);
+
         if (this.projectile.frame >= endFrame)
         {
             Complete();
+            return;
         }
 
-        if (this.projectile.mode == AnimatedProjectile.AnimationMode.Fade && this.projectile.frame >= this.projectile.totalFrames)
+        if (fade && this.projectile.frame >= this.projectile.totalFrames)
         {
-            this.projectile.color.a = Interpolation.fade.apply(0f, 1f, (endFrame - this.projectile.frame) / (float) (endFrame - this.projectile.totalFrames));
+            this.projectile.color.a = Interpolation.fade.apply(0f, 1f, (endFrame - projectile.frame) / (float)(endFrame - projectile.totalFrames));
         }
     }
 
@@ -126,7 +110,9 @@ public class GenericAnimationEffect extends EYBEffect
         }
     }
 
+    @Override
     public void dispose()
     {
+
     }
 }

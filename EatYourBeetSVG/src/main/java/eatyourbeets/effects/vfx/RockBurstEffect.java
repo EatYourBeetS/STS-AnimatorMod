@@ -33,17 +33,17 @@ public class RockBurstEffect extends EYBEffect
     protected void FirstUpdate()
     {
         SFX.Play(scale > 1 ? SFX.BLUNT_HEAVY : SFX.BLUNT_FAST, 0.9f, 1.1f);
-
-        GameEffects.Queue.Add(VFX.Whack(hb).SetImageParameters(0.25f * Settings.scale, 0).SetColor(Color.TAN));
+        GameEffects.Queue.Add(VFX.Whack(hb, 0).SetScale(0.25f * Settings.scale).SetColor(Color.TAN));
 
         for (int i = 0; i < PROJECTILES; ++i)
         {
             float angle = Random(-500f, 500f);
             GameEffects.Queue.Add(new FadingParticleEffect(Earth.GetRandomTexture(), hb.cX, hb.cY, 80f)
-            .SetColor(Colors.Random(0.7f, 1f, true))).SetScale(Random(0.05f, 0.35f))
-            .SetSpeed(Random(300f, 420f), Random(300f, 420f), Random(500f, 800f))
-            .SetTargetRotation(36000)
-            .SetTargetPosition(hb.cX + RADIUS * MathUtils.cos(angle), hb.cY + RADIUS * MathUtils.sin(angle));
+            .Edit(angle, (r, p) -> p
+                    .SetColor(Colors.Random(0.7f, 1f, true))
+                    .SetScale(Random(0.05f, 0.35f)).SetTargetRotation(36000)
+                    .SetSpeed(Random(300f, 420f), Random(300f, 420f), Random(500f, 800f))
+                    .SetTargetPosition(hb.cX + RADIUS * MathUtils.cos(r), hb.cY + RADIUS * MathUtils.sin(r))));
         }
 
         Complete();

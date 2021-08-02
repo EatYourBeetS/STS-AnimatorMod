@@ -4,53 +4,57 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class AnimatedProjectile extends Projectile
 {
     public enum AnimationMode
     {
-        Fade,
         Loop,
         Remain,
         Reverse
     }
 
+    public AnimationMode mode;
+    public int totalFrames;
+    public int frame;
+
+    protected TextureRegion region;
     protected final int columns;
     protected final int rows;
-    protected float animTimer;
-    protected float animDelay;
-    public AnimationMode mode;
-    public int frame;
-    public final int totalFrames;
+    protected float frameTimer;
+    protected float frameDelay;
 
-    public AnimatedProjectile(Texture texture, float size)
+    private static int GetCellSize(int totalWidth, int cells)
     {
-        this(texture, size, size, 0.03F, Integer.MAX_VALUE);
+        if (totalWidth % cells != 0)
+        {
+            throw new RuntimeException("The texture can't be evenly divided");
+        }
+
+        return totalWidth / cells;
     }
 
-    public AnimatedProjectile(Texture texture, float size, float animTimer)
+    public AnimatedProjectile(Texture texture, int rows, int columns)
     {
-        this(texture, size, size, animTimer, Integer.MAX_VALUE);
+        this(texture, rows, columns, 0.03F);
     }
 
-    public AnimatedProjectile(Texture texture, float size, float animTimer, int totalFrames)
+    public AnimatedProjectile(Texture texture, int rows, int columns, float frameDuration)
     {
-        this(texture, size, size, animTimer, totalFrames);
+        this(texture, rows, columns, frameDuration, rows * columns);
     }
 
-    public AnimatedProjectile(Texture texture, float width, float height, float animTimer, int totalFrames)
+    public AnimatedProjectile(Texture texture, int rows, int columns, float frameDuration, int maxFrames)
     {
-        super(texture, width, height);
+        super(texture, GetCellSize(texture.getWidth(), columns), GetCellSize(texture.getHeight(), rows));
 
-        this.frame = 0;
+        this.totalFrames = Math.min(maxFrames, rows * columns);
+        this.frameTimer = this.frameDelay = frameDuration;
         this.mode = AnimationMode.Remain;
-
-        this.columns = MathUtils.ceil(texture.getWidth() / width);
-        this.rows = MathUtils.ceil(texture.getHeight() / height);
-        this.totalFrames = Math.min(totalFrames, this.rows * this.columns);
-        this.animTimer = this.animDelay = animTimer;
+        this.columns = columns;
+        this.rows = rows;
+        this.frame = 0;
     }
 
     @Override
@@ -58,51 +62,41 @@ public class AnimatedProjectile extends Projectile
     {
         super.Update(delta);
 
-        this.animTimer -= delta;
-        if (this.animTimer < 0.0F)
+        this.frameTimer -= delta;
+        if (this.frameTimer < 0f)
         {
-            this.animTimer += this.animDelay;
-            ++this.frame;
+            this.frame += 1;
+            this.frameTimer = this.frameDelay;
+            this.region = null;
         }
     }
 
     @Override
-    public void Render(SpriteBatch sb)
+    public void Render(SpriteBatch sb, Color color, float cX, float cY, float scale)
     {
-        this.Render(sb, color == null ? sb.getColor() : color);
-    }
+        if (region == null)
+        {
+            this.region = GetFrameRegion(frame);
+        }
 
-    @Override
-    public void Render(SpriteBatch sb, Color color)
-    {
-        TextureRegion region = this.GetFrameRegion(this.frame);
-        RenderHelpers.DrawCentered(sb, color, region, current_pos.x + current_offset.x, current_pos.y + current_offset.y,
-                width, height, scale, current_pos.z + current_offset.z);
+        RenderHelpers.DrawCentered(sb, color, region, cX, cY, width, height, scale, GetCurrentRotation(true), flipX, flipY);
     }
 
     public TextureRegion GetFrameRegion(int frame)
     {
-        int zframe;
-        switch (this.mode)
+        final int clampedFrame;
+        if (mode == AnimationMode.Reverse)
         {
-            case Loop:
-                zframe = frame % totalFrames;
-                break;
-            case Reverse:
-                int cycle = (frame / totalFrames) % 2;
-                zframe = Math.abs(frame % totalFrames + (-(totalFrames - 1) * cycle));
-                break;
-            default:
-                zframe = Math.min(frame, totalFrames - 1);
-                break;
+            final int cycle = (frame / totalFrames) % 2;
+            clampedFrame = Math.abs((frame % totalFrames) - ((totalFrames - 1) * cycle));
+        }
+        else
+        {
+            clampedFrame = mode == AnimationMode.Loop ? (frame % totalFrames) : Math.min(frame, totalFrames - 1);
         }
 
-        int targetX = (zframe % this.columns) * (int) this.width;
-        int targetY = zframe / this.rows * (int) this.height;
-        return new TextureRegion(this.texture, targetX, targetY, (int) width, (int) height);
-    }
-
-    public void dispose()
-    {
+        final int h = (int) height;
+        final int w = (int) width;
+        return new TextureRegion(texture, (clampedFrame % columns) * w, (clampedFrame / rows) * h, w, h);
     }
 }

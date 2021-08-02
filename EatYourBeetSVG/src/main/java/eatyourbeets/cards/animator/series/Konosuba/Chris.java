@@ -37,6 +37,6 @@ public class Chris extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL).StealGold(magicNumber);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.DAGGER).StealGold(magicNumber);
     }
 }

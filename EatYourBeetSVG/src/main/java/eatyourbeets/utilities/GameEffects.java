@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.effects.combatOnly.TalkEffect;
 import eatyourbeets.effects.player.ObtainRelicEffect;
 import eatyourbeets.effects.player.RemoveRelicEffect;
@@ -55,8 +56,13 @@ public final class GameEffects
 
     public AbstractGameEffect Attack(AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax)
     {
+        return Attack(target, attackEffect, pitchMin, pitchMax, 0.15f);
+    }
+
+    public AbstractGameEffect Attack(AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax, float spread)
+    {
         AttackEffects.PlaySound(attackEffect, pitchMin, pitchMax);
-        return Add(AttackEffects.GetVFX(attackEffect, target.hb.cX, target.hb.cY));
+        return Add(AttackEffects.GetVFX(attackEffect, VFX.RandomX(target.hb, spread), VFX.RandomY(target.hb, spread)));
     }
 
     public ArrayList<AbstractGameEffect> GetList()

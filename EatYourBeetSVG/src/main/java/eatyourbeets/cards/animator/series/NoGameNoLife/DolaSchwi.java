@@ -59,7 +59,7 @@ public class DolaSchwi extends AnimatorCard
         GameActions.Bottom.SFX(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.5f, 0.6f);
         GameActions.Bottom.BorderFlash(Color.SKY);
         GameActions.Bottom.SFX(SFX.ATTACK_HEAVY);
-        GameActions.Bottom.VFX(VFX.Mindblast(player.dialogX, player.dialogY, player.flipHorizontal), 0.1f);
+        GameActions.Bottom.VFX(VFX.Mindblast(player.dialogX, player.dialogY), 0.1f);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
     }
 }

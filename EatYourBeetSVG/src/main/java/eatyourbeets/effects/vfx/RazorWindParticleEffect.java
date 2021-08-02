@@ -20,7 +20,6 @@ public class RazorWindParticleEffect extends EYBEffect
     protected float rotationSpeed;
     protected float alpha;
 
-
     public RazorWindParticleEffect(float x, float y, float horizontalSpeed, float verticalSpeed)
     {
         super(MathUtils.random(0.4F, 0.8F));
@@ -32,23 +31,28 @@ public class RazorWindParticleEffect extends EYBEffect
             this.renderBehind = true;
         }
 
-        this.x = x + offsetX - (float) (SIZE / 2);
-        this.y = y + offsetY - (float) (SIZE / 2);
+        this.x = x + offsetX;
+        this.y = y + offsetY;
         this.horizontalSpeed = horizontalSpeed * Settings.scale;
         this.verticalSpeed = verticalSpeed * Settings.scale;
-        this.scale = Random(0.04f, 0.6f) * Settings.scale;
+        this.scale = Random(0.04f, 0.6f);
         this.alpha = Random(0.3F, 1.0F);
         this.color = Color.WHITE.cpy();
         this.color.a = this.alpha;
         this.rotation = Random(-10f, 10f);
         this.rotationSpeed = Random(500f, 800f);
-        if (RandomBoolean(0.5f)) this.rotationSpeed *= -1;
+
+        if (RandomBoolean())
+        {
+            this.rotationSpeed *= -1;
+        }
     }
 
     @Override
     protected void UpdateInternal(float deltaTime)
     {
         super.UpdateInternal(deltaTime);
+
         x += horizontalSpeed * deltaTime;
         y += verticalSpeed * deltaTime;
         rotation += rotationSpeed * deltaTime;
@@ -62,9 +66,6 @@ public class RazorWindParticleEffect extends EYBEffect
 
     public void render(SpriteBatch sb)
     {
-        sb.setColor(this.color);
-        sb.setBlendFunction(770, 1);
-        sb.draw(image.Texture(), x, y, SIZE * 0.5f, SIZE * 0.5f, SIZE, SIZE, scale, scale, rotation, 0, 0, SIZE, SIZE, RandomBoolean(0.5f), false);
-        sb.setBlendFunction(770, 771);
+        RenderImage(sb, image.Texture(), x, y, false, false);
     }
 }

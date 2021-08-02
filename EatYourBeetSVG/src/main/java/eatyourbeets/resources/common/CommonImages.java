@@ -128,9 +128,7 @@ public class CommonImages
         public final TextureCache Sparkle2         = new TextureCache("images/animator/effects/Sparkle2.png");
         public final TextureCache Sparkle3         = new TextureCache("images/animator/effects/Sparkle3.png");
         public final TextureCache Sparkle4         = new TextureCache("images/animator/effects/Sparkle4.png");
-        public final TextureCache Shot1            = new TextureCache("images/animator/effects/Shot1.png");
-        public final TextureCache Shot2            = new TextureCache("images/animator/effects/Shot2.png");
-        public final TextureCache Shot3            = new TextureCache("images/animator/effects/Shot3.png");
+        public final TextureCache Shot             = new TextureCache("images/animator/effects/Shot.png");
         public final TextureCache Star             = new TextureCache("images/animator/effects/Star.png");
         public final TextureCache Whack            = new TextureCache("images/animator/effects/Whack.png");
         public final TextureCache FrostSnow1       = new TextureCache("images/animator/effects/FrostSnow1.png");

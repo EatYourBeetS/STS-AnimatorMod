@@ -411,92 +411,54 @@ public class GR
     {
         public static class Characters
         {
-            @SpireEnum
-            public static AbstractPlayer.PlayerClass THE_ANIMATOR;
-
-            @SpireEnum
-            public static AbstractPlayer.PlayerClass THE_UNNAMED;
+            @SpireEnum public static AbstractPlayer.PlayerClass THE_ANIMATOR;
+            @SpireEnum public static AbstractPlayer.PlayerClass THE_UNNAMED;
         }
 
         public static class Cards
         {
-            @SpireEnum
-            public static AbstractCard.CardColor THE_ANIMATOR;
-
-            @SpireEnum
-            public static AbstractCard.CardColor THE_UNNAMED;
+            @SpireEnum public static AbstractCard.CardColor THE_ANIMATOR;
+            @SpireEnum public static AbstractCard.CardColor THE_UNNAMED;
         }
 
         public static class Library
         {
-            @SpireEnum
-            public static CardLibrary.LibraryType THE_ANIMATOR;
-
-            @SpireEnum
-            public static CardLibrary.LibraryType THE_UNNAMED;
+            @SpireEnum public static CardLibrary.LibraryType THE_ANIMATOR;
+            @SpireEnum public static CardLibrary.LibraryType THE_UNNAMED;
         }
 
         public static class Screens
         {
-            @SpireEnum
-            public static AbstractDungeon.CurrentScreen EYB_SCREEN;
+            @SpireEnum public static AbstractDungeon.CurrentScreen EYB_SCREEN;
         }
 
         public static class Rewards
         {
-            @SpireEnum
-            public static RewardItem.RewardType SYNERGY_CARDS;
-
-            @SpireEnum
-            public static RewardItem.RewardType AURA_CARDS;
-
-            @SpireEnum
-            public static RewardItem.RewardType SPECIAL_GOLD;
+            @SpireEnum public static RewardItem.RewardType SYNERGY_CARDS;
+            @SpireEnum public static RewardItem.RewardType AURA_CARDS;
+            @SpireEnum public static RewardItem.RewardType SPECIAL_GOLD;
         }
 
         public static class CardTags
         {
-            @SpireEnum
-            public static AbstractCard.CardTags TEMPORARY;
-
-            @SpireEnum
-            public static AbstractCard.CardTags UNIQUE;
-
-            @SpireEnum
-            public static AbstractCard.CardTags VOIDBOUND;
-
-            @SpireEnum
-            public static AbstractCard.CardTags IGNORE_PEN_NIB;
-
-            @SpireEnum
-            public static AbstractCard.CardTags ECHO;
-
-            @SpireEnum
-            public static AbstractCard.CardTags PURGE;
-
-            @SpireEnum
-            public static AbstractCard.CardTags HASTE;
-
-            @SpireEnum
-            public static AbstractCard.CardTags PURGING;
-
-            @SpireEnum
-            public static AbstractCard.CardTags LOYAL;
-
-            @SpireEnum
-            public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
+            @SpireEnum public static AbstractCard.CardTags TEMPORARY;
+            @SpireEnum public static AbstractCard.CardTags UNIQUE;
+            @SpireEnum public static AbstractCard.CardTags VOIDBOUND;
+            @SpireEnum public static AbstractCard.CardTags IGNORE_PEN_NIB;
+            @SpireEnum public static AbstractCard.CardTags ECHO;
+            @SpireEnum public static AbstractCard.CardTags PURGE;
+            @SpireEnum public static AbstractCard.CardTags HASTE;
+            @SpireEnum public static AbstractCard.CardTags PURGING;
+            @SpireEnum public static AbstractCard.CardTags LOYAL;
+            @SpireEnum public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
         }
 
         public static class AttackEffect
         {
-            @SpireEnum
-            public static AbstractGameAction.AttackEffect GUNSHOT;
-
-            @SpireEnum
-            public static AbstractGameAction.AttackEffect SHIELD_FROST;
-
-            @SpireEnum
-            public static AbstractGameAction.AttackEffect SPEAR;
+            @SpireEnum public static AbstractGameAction.AttackEffect GUNSHOT;
+            @SpireEnum public static AbstractGameAction.AttackEffect SHIELD_FROST;
+            @SpireEnum public static AbstractGameAction.AttackEffect DAGGER;
+            @SpireEnum public static AbstractGameAction.AttackEffect SPEAR;
         }
     }
 }

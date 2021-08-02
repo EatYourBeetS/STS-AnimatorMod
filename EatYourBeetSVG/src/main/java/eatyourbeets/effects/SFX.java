@@ -19,7 +19,9 @@ public class SFX
     public static final String AMBIANCE_BOTTOM = "AMBIANCE_BOTTOM";
     public static final String AMBIANCE_CITY = "AMBIANCE_CITY";
     public static final String APPEAR = "APPEAR";
+    public static final String ATTACK_AXE = "ATTACK_AXE";
     public static final String ATTACK_BOWLING = "ATTACK_BOWLING";
+    public static final String ATTACK_DAGGER = "ATTACK_DAGGER";
     public static final String ATTACK_DAGGER_1 = "ATTACK_DAGGER_1";
     public static final String ATTACK_DAGGER_2 = "ATTACK_DAGGER_2";
     public static final String ATTACK_DAGGER_3 = "ATTACK_DAGGER_3";
@@ -44,6 +46,8 @@ public class SFX
     public static final String ATTACK_PIERCING_WAIL = "ATTACK_PIERCING_WAIL";
     public static final String ATTACK_POISON = "ATTACK_POISON";
     public static final String ATTACK_POISON2 = "ATTACK_POISON2";
+    public static final String ATTACK_REAPER = "ATTACK_REAPER";
+    public static final String ATTACK_SCIMITAR = "ATTACK_SCIMITAR";
     public static final String ATTACK_SCYTHE = "ATTACK_SCYTHE";
     public static final String ATTACK_WHIFF_1 = "ATTACK_WHIFF_1";
     public static final String ATTACK_WHIFF_2 = "ATTACK_WHIFF_2";
@@ -401,7 +405,7 @@ public class SFX
         {
             throw new RuntimeException("Min can't be greater than max");
         }
-        if (pitchMin <= 0)
+        if (key == null || pitchMin <= 0)
         {
             return 0f;
         }

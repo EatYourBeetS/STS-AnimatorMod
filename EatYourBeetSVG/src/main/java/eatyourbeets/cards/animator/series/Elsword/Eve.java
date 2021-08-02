@@ -91,7 +91,7 @@ public class Eve extends AnimatorCard
                 int damage = CombatStats.Affinities.GetAffinityLevel(AffinityType.General, usedCard);
                 if (damage > 0)
                 {
-                    GameEffects.Queue.BorderFlash(Color.SKY);
+                    //GameEffects.Queue.BorderFlash(Color.SKY);
                     for (int i = 0; i < amount; i++)
                     {
                         GameActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.THORNS, AttackEffects.NONE)

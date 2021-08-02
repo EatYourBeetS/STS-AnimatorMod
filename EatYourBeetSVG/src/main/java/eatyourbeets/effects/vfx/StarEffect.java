@@ -16,7 +16,6 @@ public class StarEffect extends EYBEffect
     protected static final TextureCache image = IMAGES.Star;
 
     protected float vfxFrequency = 0.016f;
-
     protected float horizontalSpeed;
     protected float verticalSpeed;
     protected float rotationSpeed;

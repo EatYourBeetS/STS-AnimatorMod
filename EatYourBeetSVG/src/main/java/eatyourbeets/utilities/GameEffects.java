@@ -54,12 +54,12 @@ public final class GameEffects
         return Unlisted.isEmpty();
     }
 
-    public AbstractGameEffect Attack(AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax)
+    public AbstractGameEffect Attack(AbstractCreature source, AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax)
     {
-        return Attack(target, attackEffect, pitchMin, pitchMax, 0.15f);
+        return Attack(source, target, attackEffect, pitchMin, pitchMax, source == target ? 0 : 0.15f);
     }
 
-    public AbstractGameEffect Attack(AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax, float spread)
+    public AbstractGameEffect Attack(AbstractCreature source, AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax, float spread)
     {
         AttackEffects.PlaySound(attackEffect, pitchMin, pitchMax);
         return Add(AttackEffects.GetVFX(attackEffect, VFX.RandomX(target.hb, spread), VFX.RandomY(target.hb, spread)));

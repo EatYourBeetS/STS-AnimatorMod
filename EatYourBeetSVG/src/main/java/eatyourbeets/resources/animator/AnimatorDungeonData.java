@@ -1,6 +1,7 @@
 package eatyourbeets.resources.animator;
 
 import basemod.BaseMod;
+import basemod.abstracts.CustomCard;
 import basemod.abstracts.CustomSavable;
 import basemod.interfaces.StartActSubscriber;
 import basemod.interfaces.StartGameSubscriber;
@@ -14,10 +15,10 @@ import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardBase;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.interfaces.listeners.OnAddedToDeckListener;
 import eatyourbeets.interfaces.listeners.OnCardPoolChangedListener;
@@ -191,7 +192,6 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             AbstractDungeon.colorlessCardPool.group.removeIf(AnimatorCard.class::isInstance);
             EYBEvent.UpdateEvents(false);
             AnimatorRelic.UpdateRelics(false);
-
             return;
         }
 
@@ -208,33 +208,22 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             return;
         }
 
-        ArrayList<CardGroup> colorless = new ArrayList<>();
-        colorless.add(AbstractDungeon.colorlessCardPool);
-        colorless.add(AbstractDungeon.srcColorlessCardPool);
-
-        for (CardGroup group : colorless)
-        {
-            group.group.removeIf(card -> !(card instanceof EYBCard) || card instanceof Enchantment);
-        }
-
-        ArrayList<CardGroup> groups = new ArrayList<>();
-        groups.add(AbstractDungeon.commonCardPool);
-        groups.add(AbstractDungeon.srcCommonCardPool);
-        groups.add(AbstractDungeon.uncommonCardPool);
-        groups.add(AbstractDungeon.srcUncommonCardPool);
-        groups.add(AbstractDungeon.rareCardPool);
-        groups.add(AbstractDungeon.srcRareCardPool);
-
+        final ArrayList<CardGroup> groups = new ArrayList<>();
+        groups.addAll(GameUtilities.GetCardPools());
+        groups.addAll(GameUtilities.GetSourceCardPools());
         for (CardGroup group : groups)
         {
             group.group.removeIf(card ->
             {
-                if (card.color != GR.Animator.CardColor)
+                if (card.color == AbstractCard.CardColor.COLORLESS)
+                {
+                    return !(card instanceof EYBCardBase) && !(card instanceof CustomCard);
+                }
+                else if (card.color != GR.Animator.CardColor)
                 {
                     return false;
                 }
-
-                if (!BannedCards.contains(card.cardID))
+                else if (!BannedCards.contains(card.cardID))
                 {
                     for (AnimatorRuntimeLoadout loadout : Loadouts)
                     {
@@ -262,29 +251,27 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
     public void OnCardObtained(AbstractCard card)
     {
-        AbstractPlayer p = AbstractDungeon.player;
-
+        final AbstractPlayer player = CombatStats.RefreshPlayer();
         if (card instanceof OnAddedToDeckListener)
         {
             ((OnAddedToDeckListener) card).OnAddedToDeck(card);
         }
-        for (AbstractRelic relic : p.relics)
+
+        for (AbstractRelic relic : player.relics)
         {
             if (relic instanceof OnAddedToDeckListener)
             {
-                ((OnAddedToDeckListener)relic).OnAddedToDeck(card);
+                ((OnAddedToDeckListener) relic).OnAddedToDeck(card);
             }
         }
-
 
         RemoveExtraCopies(card);
 
         if (card.tags.contains(GR.Enums.CardTags.UNIQUE))
         {
             AbstractCard first = null;
-
             ArrayList<AbstractCard> toRemove = new ArrayList<>();
-            ArrayList<AbstractCard> cards = p.masterDeck.group;
+            ArrayList<AbstractCard> cards = player.masterDeck.group;
             for (AbstractCard c : cards)
             {
                 if (c.cardID.equals(card.cardID))
@@ -319,90 +306,48 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
     public void Ban(String cardID)
     {
-        AbstractCard card = CardLibrary.getCard(cardID);
+        final AbstractCard card = CardLibrary.getCard(cardID);
         if (card == null)
         {
             return;
         }
 
-        CardGroup srcPool = GameUtilities.GetCardPoolSource(card.rarity, card.color);
-        if (srcPool != null)
-        {
-            srcPool.removeCard(card.cardID);
-        }
-
-        CardGroup pool = GameUtilities.GetCardPool(card.rarity, card.color);
-        if (pool != null)
-        {
-            pool.removeCard(card.cardID);
-        }
-
+        RemoveCardFromPools(card);
         BannedCards.add(card.cardID);
-
         Log("Banned " + card.cardID + ", Total: " + BannedCards.size());
     }
 
     private void RemoveExtraCopies(AbstractCard card)
     {
-        EYBCard eybCard = JUtils.SafeCast(card, EYBCard.class);
-        if (eybCard != null)
+        final EYBCard eybCard = JUtils.SafeCast(card, EYBCard.class);
+        if (eybCard != null && eybCard.cardData.MaxCopies > 0)
         {
-            if (eybCard.cardData.MaxCopies > 0)
+            final int copies = GameUtilities.GetAllCopies(eybCard.cardID, AbstractDungeon.player.masterDeck).size();
+            if (copies > eybCard.cardData.MaxCopies)
             {
-                int copies = GameUtilities.GetAllCopies(eybCard.cardID, AbstractDungeon.player.masterDeck).size();
-                if (copies > eybCard.cardData.MaxCopies)
-                {
-                    RemoveCardFromPools(eybCard);
-                }
+                RemoveCardFromPools(eybCard);
             }
         }
     }
 
     private void RemoveCardFromPools(AbstractCard card)
     {
-        if (card.color == AbstractCard.CardColor.COLORLESS)
+        final AbstractCard.CardRarity rarity = card.color == AbstractCard.CardColor.COLORLESS ? null : card.rarity;
+        final CardGroup srcPool = GameUtilities.GetCardPoolSource(rarity);
+        if (srcPool != null)
         {
-            AbstractDungeon.colorlessCardPool.removeCard(card.cardID);
-            AbstractDungeon.srcColorlessCardPool.removeCard(card.cardID);
-            return;
+            srcPool.removeCard(card.cardID);
         }
-
-        switch (card.rarity)
+        final CardGroup pool = GameUtilities.GetCardPool(rarity);
+        if (pool != null)
         {
-            case BASIC:
-            case SPECIAL:
-            case CURSE:
-            {
-                JUtils.LogWarning(this, "Wrong card rarity for RemoveCardFromPools(), " + card.cardID);
-                break;
-            }
-
-            case COMMON:
-            {
-                AbstractDungeon.commonCardPool.removeCard(card.cardID);
-                AbstractDungeon.srcCommonCardPool.removeCard(card.cardID);
-                break;
-            }
-
-            case UNCOMMON:
-            {
-                AbstractDungeon.uncommonCardPool.removeCard(card.cardID);
-                AbstractDungeon.srcUncommonCardPool.removeCard(card.cardID);
-                break;
-            }
-
-            case RARE:
-            {
-                AbstractDungeon.rareCardPool.removeCard(card.cardID);
-                AbstractDungeon.srcRareCardPool.removeCard(card.cardID);
-                break;
-            }
+            pool.removeCard(card.cardID);
         }
     }
 
     public void RemoveRelic(String relicID)
     {
-        ArrayList<String> pool = GameUtilities.GetRelicPool(RelicLibrary.getRelic(relicID).tier);
+        final ArrayList<String> pool = GameUtilities.GetRelicPool(RelicLibrary.getRelic(relicID).tier);
         if (pool != null)
         {
             pool.remove(relicID);
@@ -413,7 +358,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     {
         if (!AbstractDungeon.player.hasRelic(relicID))
         {
-            ArrayList<String> pool = GameUtilities.GetRelicPool(tier);
+            final ArrayList<String> pool = GameUtilities.GetRelicPool(tier);
             if (pool != null && pool.size() > 0 && !pool.contains(relicID))
             {
                 Random rng = AbstractDungeon.relicRng;

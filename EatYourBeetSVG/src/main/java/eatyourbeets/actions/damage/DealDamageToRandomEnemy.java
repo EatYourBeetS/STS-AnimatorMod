@@ -155,7 +155,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 
         if (!hasPlayedEffect && duration < 0.1f)
         {
-            GameEffects.List.Attack(this.target, this.attackEffect, pitchMin, pitchMax);
+            GameEffects.List.Attack(source, target, attackEffect, pitchMin, pitchMax);
             hasPlayedEffect = true;
         }
 

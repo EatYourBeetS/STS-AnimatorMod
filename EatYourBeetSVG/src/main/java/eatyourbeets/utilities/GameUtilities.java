@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.*;
@@ -23,7 +22,6 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.relics.PenNib;
-import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
@@ -35,7 +33,6 @@ import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
-import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
@@ -49,7 +46,6 @@ import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
 
 import java.util.*;
-import java.util.function.Predicate;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.actionManager;
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
@@ -235,20 +231,6 @@ public class GameUtilities
         }
     }
 
-    public static ArrayList<AbstractCard> GenerateCardPool(Predicate<AbstractCard> filter)
-    {
-        ArrayList<AbstractCard> pool = new ArrayList<>();
-        for (AbstractCard c : CardLibrary.getAllCards())
-        {
-            if (filter.test(c))
-            {
-                pool.add(c);
-            }
-        }
-
-        return pool;
-    }
-
     public static int GetActualAscensionLevel()
     {
         return AbstractDungeon.isAscensionMode ? AbstractDungeon.ascensionLevel : 0;
@@ -396,14 +378,14 @@ public class GameUtilities
         return result;
     }
 
-    public static RandomizedList<AbstractCard> GetCardPoolInCombat(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
+    public static RandomizedList<AbstractCard> GetCardPoolInCombat(AbstractCard.CardRarity rarity)
     {
-        return GetCardPoolInCombat(GetCardPool(rarity, color), null);
+        return GetCardPoolInCombat(GetCardPool(rarity), null);
     }
 
     public static RandomizedList<AbstractCard> GetCardPoolInCombat(CardGroup group, FuncT1<Boolean, AbstractCard> filter)
     {
-        RandomizedList<AbstractCard> cards = new RandomizedList<>();
+        final RandomizedList<AbstractCard> cards = new RandomizedList<>();
         if (group != null)
         {
             for (AbstractCard c : group.group)
@@ -418,54 +400,59 @@ public class GameUtilities
         return cards;
     }
 
-    public static CardGroup GetCardPool(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
+    public static CardGroup GetCardPool(AbstractCard.CardRarity rarity)
     {
-        if (color == AbstractCard.CardColor.COLORLESS)
+        if (rarity == null)
         {
             return AbstractDungeon.colorlessCardPool;
         }
 
         switch (rarity)
         {
-            case COMMON:
-                return AbstractDungeon.commonCardPool;
-            case UNCOMMON:
-                return AbstractDungeon.uncommonCardPool;
-            case RARE:
-                return AbstractDungeon.rareCardPool;
-            default:
-                return null;
+            case CURSE: return AbstractDungeon.curseCardPool;
+            case COMMON: return AbstractDungeon.commonCardPool;
+            case UNCOMMON: return AbstractDungeon.uncommonCardPool;
+            case RARE: return AbstractDungeon.rareCardPool;
+            default: return null;
         }
     }
 
-    public static CardGroup GetCardPoolSource(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
+    public static CardGroup GetCardPoolSource(AbstractCard.CardRarity rarity)
     {
-        if (color == AbstractCard.CardColor.COLORLESS)
+        if (rarity == null)
         {
             return AbstractDungeon.srcColorlessCardPool;
         }
 
         switch (rarity)
         {
-            case COMMON:
-                return AbstractDungeon.srcCommonCardPool;
-            case UNCOMMON:
-                return AbstractDungeon.srcUncommonCardPool;
-            case RARE:
-                return AbstractDungeon.srcRareCardPool;
-            default:
-                return null;
+            case CURSE: return AbstractDungeon.srcCurseCardPool;
+            case COMMON: return AbstractDungeon.srcCommonCardPool;
+            case UNCOMMON: return AbstractDungeon.srcUncommonCardPool;
+            case RARE: return AbstractDungeon.srcRareCardPool;
+            default: return null;
         }
     }
 
     public static ArrayList<CardGroup> GetCardPools()
     {
-        ArrayList<CardGroup> result = new ArrayList<>();
+        final ArrayList<CardGroup> result = new ArrayList<>();
         result.add(AbstractDungeon.colorlessCardPool);
         result.add(AbstractDungeon.commonCardPool);
         result.add(AbstractDungeon.uncommonCardPool);
         result.add(AbstractDungeon.rareCardPool);
         result.add(AbstractDungeon.curseCardPool);
+        return result;
+    }
+
+    public static ArrayList<CardGroup> GetSourceCardPools()
+    {
+        final ArrayList<CardGroup> result = new ArrayList<>();
+        result.add(AbstractDungeon.srcColorlessCardPool);
+        result.add(AbstractDungeon.srcCommonCardPool);
+        result.add(AbstractDungeon.srcUncommonCardPool);
+        result.add(AbstractDungeon.srcRareCardPool);
+        result.add(AbstractDungeon.srcCurseCardPool);
         return result;
     }
 
@@ -758,74 +745,6 @@ public class GameUtilities
         }
 
         return orbs.Retrieve(GetRNG(), false).makeCopy();
-    }
-
-    public static AbstractCard GetRandomRewardCard(RewardItem rewardItem, boolean includeRares, boolean ignoreCurrentRoom)
-    {
-        AbstractCard replacement = null;
-        boolean searchingCard = true;
-
-        while (searchingCard)
-        {
-            searchingCard = false;
-
-            AbstractCard temp = GetRandomRewardCard(includeRares, ignoreCurrentRoom);
-            if (temp == null)
-            {
-                break;
-            }
-
-            for (AbstractCard c : rewardItem.cards)
-            {
-                if (temp.cardID.equals(c.cardID))
-                {
-                    searchingCard = true;
-                }
-            }
-
-            if (temp instanceof OnAddingToCardRewardListener && ((OnAddingToCardRewardListener) temp).ShouldCancel(rewardItem))
-            {
-                searchingCard = true;
-            }
-
-            if (!searchingCard)
-            {
-                replacement = temp.makeCopy();
-            }
-        }
-
-        for (AbstractRelic r : player.relics)
-        {
-            r.onPreviewObtainCard(replacement);
-        }
-
-        return replacement;
-    }
-
-    public static AbstractCard GetRandomRewardCard(boolean includeRares, boolean ignoreCurrentRoom)
-    {
-        ArrayList<AbstractCard> list;
-
-        int roll = AbstractDungeon.cardRng.random(100);
-        if (includeRares && (roll <= 4 || (!ignoreCurrentRoom && GetCurrentRoom() instanceof MonsterRoomBoss)))
-        {
-            list = AbstractDungeon.srcRareCardPool.group;
-        }
-        else if (roll < 40)
-        {
-            list = AbstractDungeon.srcUncommonCardPool.group;
-        }
-        else
-        {
-            list = AbstractDungeon.srcCommonCardPool.group;
-        }
-
-        if (list != null && list.size() > 0)
-        {
-            return list.get(AbstractDungeon.cardRng.random(list.size() - 1));
-        }
-
-        return null;
     }
 
     public static <T extends AbstractRelic> T GetRelic(String relicID)

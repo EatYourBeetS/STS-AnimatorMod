@@ -6,9 +6,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.PhilosopherStone;
-import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.listeners.OnAddedToDeckListener;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.resources.GR;
@@ -60,7 +62,7 @@ public class Father extends AnimatorCard implements OnAddedToDeckListener, OnAdd
     }
 
     @Override
-    public boolean ShouldCancel(RewardItem rewardItem)
+    public boolean ShouldCancel()
     {
         GR.Animator.Dungeon.Ban(cardData.ID);
 

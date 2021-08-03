@@ -46,35 +46,34 @@ public class AnimatorCardRewardBonus extends GUIElement
         this.rewardItem = rewardItem;
         this.bundles.clear();
 
-        ArrayList<AbstractCard> toRemove = new ArrayList<>();
-
+        final ArrayList<AbstractCard> toRemove = new ArrayList<>();
         for (AbstractCard card : cards)
         {
-            if (card instanceof OnAddingToCardRewardListener)
+            if (card instanceof OnAddingToCardRewardListener && ((OnAddingToCardRewardListener) card).ShouldCancel())
             {
-                if (((OnAddingToCardRewardListener)card).ShouldCancel(rewardItem))
-                {
-                    toRemove.add(card);
-                    continue;
-                }
+                toRemove.add(card);
+                continue;
             }
 
             Add(card);
         }
 
-        for (AbstractCard c : toRemove)
+        for (AbstractCard card : toRemove)
         {
-            rewardItem.cards.remove(c);
-            cards.remove(c);
-
-            AbstractCard card = GameUtilities.GetRandomRewardCard(rewardItem, true, false);
-            GameUtilities.CopyVisualProperties(card, c);
-            cards.add(card);
-            if (rewardItem.cards != cards)
+            final AbstractCard replacement = GR.Common.Dungeon.GetRandomRewardCard(cards, true, false);
+            if (replacement != null)
             {
-                rewardItem.cards.add(card);
+                GameUtilities.CopyVisualProperties(replacement, card);
+                cards.remove(card);
+                cards.add(replacement);
+                if (rewardItem.cards != cards)
+                {
+                    rewardItem.cards.remove(card);
+                    rewardItem.cards.add(replacement);
+                }
+
+                Add(replacement);
             }
-            Add(card);
         }
     }
 

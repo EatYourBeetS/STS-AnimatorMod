@@ -26,9 +26,9 @@ import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.ArrayList;
 
-public class SynergyCardsReward extends AnimatorReward
+public class MissingPieceReward extends AnimatorReward
 {
-    public static final String ID = CreateFullID(SynergyCardsReward.class);
+    public static final String ID = CreateFullID(MissingPieceReward.class);
 
     public final CardSeries series;
     private boolean skip = false;
@@ -47,7 +47,7 @@ public class SynergyCardsReward extends AnimatorReward
         }
     }
 
-    public SynergyCardsReward(CardSeries series)
+    public MissingPieceReward(CardSeries series)
     {
         super(ID, GenerateRewardTitle(series), GR.Enums.Rewards.SYNERGY_CARDS);
 
@@ -182,7 +182,7 @@ public class SynergyCardsReward extends AnimatorReward
         int i = 0;
         while (i < rewards.size())
         {
-            SynergyCardsReward other = JUtils.SafeCast(rewards.get(i), SynergyCardsReward.class);
+            MissingPieceReward other = JUtils.SafeCast(rewards.get(i), MissingPieceReward.class);
             if (other != null && other != this)
             {
                 other.isDone = true;
@@ -242,13 +242,13 @@ public class SynergyCardsReward extends AnimatorReward
         @Override
         public CustomReward onLoad(RewardSave rewardSave)
         {
-            return new SynergyCardsReward(CardSeries.GetByID(rewardSave.amount));
+            return new MissingPieceReward(CardSeries.GetByID(rewardSave.amount));
         }
 
         @Override
         public RewardSave onSave(CustomReward customReward)
         {
-            SynergyCardsReward reward = JUtils.SafeCast(customReward, SynergyCardsReward.class);
+            MissingPieceReward reward = JUtils.SafeCast(customReward, MissingPieceReward.class);
             if (reward != null)
             {
                 return new RewardSave(reward.type.toString(), null, reward.series.ID, 0);

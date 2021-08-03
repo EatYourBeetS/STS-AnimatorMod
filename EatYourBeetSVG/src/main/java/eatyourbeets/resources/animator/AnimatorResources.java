@@ -19,7 +19,7 @@ import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.potions.GrowthPotion;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
-import eatyourbeets.rewards.animator.SynergyCardsReward;
+import eatyourbeets.rewards.animator.MissingPieceReward;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorLoadoutsContainer;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -165,7 +165,7 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void InitializeRewards()
     {
-        SynergyCardsReward.Serializer synergySerializer = new SynergyCardsReward.Serializer();
+        MissingPieceReward.Serializer synergySerializer = new MissingPieceReward.Serializer();
         BaseMod.registerCustomReward(Enums.Rewards.SYNERGY_CARDS, synergySerializer, synergySerializer);
 
         SpecialGoldReward.Serializer goldSerializer = new SpecialGoldReward.Serializer();

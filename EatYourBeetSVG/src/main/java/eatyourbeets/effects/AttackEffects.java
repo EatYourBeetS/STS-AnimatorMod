@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.effects.vfx.GenericRenderEffect;
-import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
@@ -54,19 +53,22 @@ public class AttackEffects
 
    public static AbstractGameEffect GetVFX(AttackEffect effect, float cX, float cY)
    {
-      if (effect == NONE)
+      if (effect != null && effect != NONE)
       {
-         return new GenericRenderEffect((TextureRegion) null, cX, cY);
+         final AttackEffectData data = map.get(effect);
+         if (data.createVFX != null)
+         {
+            return data.createVFX.Invoke(cX, cY);
+         }
+
+         final TextureRegion region = data.GetTexture();
+         if (region != null)
+         {
+            return new GenericRenderEffect(region, cX, cY).SetRotation(MathUtils.random(effect == BLUNT_HEAVY ? 360f : 12f));
+         }
       }
 
-      AttackEffectData data = map.get(effect);
-      TextureRegion region = data.GetTexture();
-      if (region != null)
-      {
-         return new GenericRenderEffect(region, cX, cY).SetRotation(MathUtils.random(effect == BLUNT_HEAVY ? 360f : 12f));
-      }
-
-      return data.GetVFX(cX, cY);
+      return new GenericRenderEffect((TextureRegion) null, cX, cY);
    }
 
    public static void PlaySound(AttackEffect effect, float pitchMin, float pitchMax)
@@ -96,74 +98,107 @@ public class AttackEffects
 
    public static void Initialize()
    {
-      Add(melee, BLUNT_LIGHT, () -> ImageMaster.ATK_BLUNT_LIGHT, SFX.BLUNT_FAST);
-      //
-      Add(melee, BLUNT_HEAVY, () -> ImageMaster.ATK_BLUNT_HEAVY, SFX.BLUNT_HEAVY);
-      //
-      Add(melee, SLASH_DIAGONAL, () -> ImageMaster.ATK_SLASH_D, SFX.ATTACK_FAST);
-      //
-      Add(melee, SLASH_HEAVY, () -> ImageMaster.ATK_SLASH_HEAVY, SFX.ATTACK_HEAVY);
-      //
-      Add(melee, SLASH_HORIZONTAL, () -> ImageMaster.ATK_SLASH_H, SFX.ATTACK_FAST);
-      //
-      Add(melee, SLASH_VERTICAL, () -> ImageMaster.ATK_SLASH_V, SFX.ATTACK_FAST);
-      //
-      Add(melee, SMASH, VFX::Whack, SFX.BLUNT_FAST);
-      //
-      Add(magic, FIRE, () -> ImageMaster.ATK_FIRE, SFX.ATTACK_FIRE);
-      //
-      Add(magic, POISON, () -> ImageMaster.ATK_POISON, SFX.ATTACK_POISON, SFX.ATTACK_POISON2);
-      //
-      Add(other, SHIELD, () -> ImageMaster.ATK_SHIELD, SFX.BLOCK_GAIN_1, SFX.BLOCK_GAIN_2, SFX.BLOCK_GAIN_3);
-      //
-      Add(magic, LIGHTNING, VFX::Lightning, SFX.ORB_LIGHTNING_EVOKE);
-      //
-      Add(other, SHIELD_FROST, () -> ImageMaster.ATK_SHIELD, SFX.ORB_FROST_DEFEND_1, SFX.ORB_FROST_DEFEND_2, SFX.ORB_FROST_DEFEND_3);
-      //
-      Add(other, GUNSHOT, VFX::Gunshot, SFX.ANIMATOR_GUNSHOT);
-      //
-      Add(melee, DAGGER, () -> ImageMaster.ATK_SLASH_H, SFX.ATTACK_DAGGER_1, SFX.ATTACK_DAGGER_2);
-      //
-      Add(melee, SPEAR, () -> ImageMaster.ATK_SLASH_V, SFX.ATTACK_FAST); // TODO: dedicated texture
+      Add(melee, BLUNT_LIGHT, ImageMaster.ATK_BLUNT_LIGHT)
+              .SetSFX(SFX.BLUNT_FAST);
+
+      Add(melee, BLUNT_HEAVY, ImageMaster.ATK_BLUNT_HEAVY)
+              .SetSFX(SFX.BLUNT_HEAVY);
+
+      Add(melee, SLASH_DIAGONAL, ImageMaster.ATK_SLASH_D)
+              .SetSFX(SFX.ATTACK_FAST);
+
+      Add(melee, SLASH_HEAVY, ImageMaster.ATK_SLASH_HEAVY)
+              .SetSFX(SFX.ATTACK_HEAVY);
+
+      Add(melee, SLASH_HORIZONTAL, ImageMaster.ATK_SLASH_H)
+              .SetSFX(SFX.ATTACK_FAST);
+
+      Add(melee, SLASH_VERTICAL, ImageMaster.ATK_SLASH_V)
+              .SetSFX(SFX.ATTACK_FAST);
+
+      Add(melee, SMASH)
+              .SetVFX(VFX::Whack)
+              .SetSFX(SFX.BLUNT_FAST);
+
+      Add(magic, FIRE, ImageMaster.ATK_FIRE)
+              .SetSFX(SFX.ATTACK_FIRE);
+
+      Add(magic, POISON, ImageMaster.ATK_POISON)
+              .SetSFX(SFX.ATTACK_POISON, SFX.ATTACK_POISON2);
+
+      Add(other, SHIELD, ImageMaster.ATK_SHIELD)
+              .SetVFX(VFX::Shield)
+              .SetSFX(SFX.BLOCK_GAIN_1, SFX.BLOCK_GAIN_2, SFX.BLOCK_GAIN_3);
+
+      Add(magic, LIGHTNING)
+              .SetVFX(VFX::Lightning)
+              .SetSFX(SFX.ORB_LIGHTNING_EVOKE);
+
+      Add(other, SHIELD_FROST, ImageMaster.ATK_SHIELD) // TODO: dedicated texture
+              .SetVFX(VFX::Shield)
+              .SetSFX(SFX.ORB_FROST_DEFEND_1, SFX.ORB_FROST_DEFEND_2, SFX.ORB_FROST_DEFEND_3);
+
+      Add(other, GUNSHOT)
+              .SetVFX(VFX::Gunshot)
+              .SetSFX(SFX.ANIMATOR_GUNSHOT);
+
+      Add(melee, DAGGER, ImageMaster.ATK_SLASH_H)
+              .SetSFX(SFX.ATTACK_DAGGER_1)
+              .SetSFX(SFX.ATTACK_DAGGER_2);
+
+      Add(melee, SPEAR, ImageMaster.ATK_SLASH_V) // TODO: dedicated texture
+              .SetSFX(SFX.ATTACK_FAST);
    }
 
-   private static void Add(ArrayList<AttackEffect> category, AttackEffect effect, FuncT2<AbstractGameEffect, Float, Float> createVFX, String... sounds)
+   private static AttackEffectData Add(ArrayList<AttackEffect> category, AttackEffect effect)
+   {
+      return Add(category, effect, null);
+   }
+
+   private static AttackEffectData Add(ArrayList<AttackEffect> category, AttackEffect effect, TextureRegion texture)
    {
       AttackEffectData data = new AttackEffectData();
-      data.createVFX = createVFX;
-      data.sounds = sounds;
+      data.texture = texture;
       category.add(effect);
       map.put(effect, data);
+      return data;
    }
 
-   private static void Add(ArrayList<AttackEffect> category, AttackEffect effect, FuncT0<TextureRegion> getRegion, String... sounds)
-   {
-      AttackEffectData data = new AttackEffectData();
-      data.getRegion = getRegion;
-      data.sounds = sounds;
-      category.add(effect);
-      map.put(effect, data);
-   }
-
-    private static class AttackEffectData
+   private static class AttackEffectData
    {
       private String[] sounds;
       private FuncT2<AbstractGameEffect, Float, Float> createVFX;
-      private FuncT0<TextureRegion> getRegion;
+      private TextureRegion texture;
 
-      private String GetSound()
+      private AttackEffectData SetSFX(String... sounds)
       {
-         return sounds.length == 0 ? null : sounds.length == 1 ? sounds[0] : JUtils.Random(sounds);
+         this.sounds = sounds;
+
+         return this;
+      }
+
+      private AttackEffectData SetTexture(TextureRegion texture)
+      {
+         this.texture = texture;
+
+         return this;
+      }
+
+      private AttackEffectData SetVFX(FuncT2<AbstractGameEffect, Float, Float> createVFX)
+      {
+         this.createVFX = createVFX;
+
+         return this;
       }
 
       private TextureRegion GetTexture()
       {
-         return getRegion != null ? getRegion.Invoke() : null;
+         return texture;
       }
-
-      private AbstractGameEffect GetVFX(float cX, float cY)
+      
+      private String GetSound()
       {
-         return createVFX != null ? createVFX.Invoke(cX, cY) : null;
+         return sounds.length == 0 ? null : sounds.length == 1 ? sounds[0] : JUtils.Random(sounds);
       }
    }
 }

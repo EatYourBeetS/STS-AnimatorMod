@@ -52,7 +52,7 @@ public class AnimatorStrings
         public final String Description = Strings.TEXT[0];
         public final String BonusRelic = Strings.TEXT[1];
         public final String CursedRelic = Strings.TEXT[2];
-        public final String Banish = Strings.TEXT[3];
+        public final String Reroll = Strings.TEXT[3];
         public final String AuraEffects = Strings.TEXT[6];
         public final String UpgradeCard = Strings.TEXT[7];
         public final String UpgradeCardDescription = Strings.TEXT[8];

@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -26,7 +25,7 @@ public class GenericRenderEffect extends EYBEffect
 
         this.image = region;
         this.color = Color.WHITE.cpy();
-        this.scale = Settings.scale;
+        this.scale = 1;
         this.x = x;
         this.y = y;
 

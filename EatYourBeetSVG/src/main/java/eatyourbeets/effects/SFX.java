@@ -11,9 +11,9 @@ public class SFX
     public static final String ANIMATOR_MEGUMIN_CHARGE = "ANIMATOR_MEGUMIN_CHARGE";
     public static final String ANIMATOR_ORB_EARTH_CHANNEL = "ANIMATOR_ORB_EARTH_CHANNEL";
     public static final String ANIMATOR_ORB_EARTH_EVOKE = "ANIMATOR_ORB_EARTH_EVOKE";
-    public static final String ANIMATOR_THE_CREATURE = "ANIMATOR_THE_CREATURE.ogg";
-    public static final String ANIMATOR_THE_HAUNT = "ANIMATOR_THE_HAUNT.ogg";
     public static final String ANIMATOR_THE_ULTIMATE_CRYSTAL = "ANIMATOR_THE_ULTIMATE_CRYSTAL";
+    public static final String ANIMATOR_THE_CREATURE = "THE_CREATURE.ogg";
+    public static final String ANIMATOR_THE_HAUNT = "THE_HAUNT.ogg";
 
     public static final String AMBIANCE_BEYOND = "AMBIANCE_BEYOND";
     public static final String AMBIANCE_BOTTOM = "AMBIANCE_BOTTOM";

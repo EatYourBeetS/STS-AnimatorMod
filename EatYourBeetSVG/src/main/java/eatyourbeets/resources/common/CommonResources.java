@@ -24,6 +24,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.stances.EYBStance;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.JUtils;
+import patches.MainMusicPatches;
 
 import java.lang.reflect.Field;
 
@@ -62,8 +63,10 @@ public class CommonResources extends AbstractResources
         BaseMod.addAudio(SFX.ANIMATOR_KIRA_POWER, "audio/animator/sound/KIRA_POWER.ogg");
         BaseMod.addAudio(SFX.ANIMATOR_MEGUMIN_CHARGE, "audio/animator/sound/MEGUMIN_CHARGE.ogg");
         BaseMod.addAudio(SFX.ANIMATOR_THE_ULTIMATE_CRYSTAL, "audio/animator/sound/THE_ULTIMATE_CRYSTAL.ogg");
-        BaseMod.addAudio(SFX.ANIMATOR_THE_HAUNT, "audio/animator/music/THE_HAUNT.ogg");
-        BaseMod.addAudio(SFX.ANIMATOR_THE_CREATURE, "audio/animator/music/THE_CREATURE.ogg");
+
+        MainMusicPatches.SetFolderPath("audio/animator/music/");
+        MainMusicPatches.AddMusic(SFX.ANIMATOR_THE_CREATURE);
+        MainMusicPatches.AddMusic(SFX.ANIMATOR_THE_HAUNT);
         //BaseMod.addAudio(Audio_TheUnnamed, "audio/music/ANIMATOR_THE_UNNAMED.ogg");
     }
 

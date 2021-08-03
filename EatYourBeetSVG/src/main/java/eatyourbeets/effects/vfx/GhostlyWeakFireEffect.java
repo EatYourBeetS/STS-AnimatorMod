@@ -3,7 +3,6 @@ package eatyourbeets.effects.vfx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
@@ -20,14 +19,18 @@ public class GhostlyWeakFireEffect extends EYBEffect
     {
         super(1f);
 
-        switch (MathUtils.random(0, 2))
+        int roll = Random(0, 2);
+        if (roll == 0)
         {
-            case 0:
-                this.img = ImageMaster.TORCH_FIRE_1;
-            case 1:
-                this.img = ImageMaster.TORCH_FIRE_2;
-            default:
-                this.img = ImageMaster.TORCH_FIRE_3;
+            this.img = ImageMaster.TORCH_FIRE_1;
+        }
+        else if (roll == 1)
+        {
+            this.img = ImageMaster.TORCH_FIRE_2;
+        }
+        else
+        {
+            this.img = ImageMaster.TORCH_FIRE_3;
         }
 
         this.x = x + Random(-2f, 2f) * Settings.scale - (this.img.packedWidth / 2f);
@@ -36,7 +39,7 @@ public class GhostlyWeakFireEffect extends EYBEffect
         this.vY = Random(0f, 80f) * Settings.scale;
         this.color = Color.SKY.cpy();
         this.color.a = 0f;
-        this.scale = Settings.scale * Random(2f, 3f);
+        this.scale = Random(2f, 3f);
     }
 
     @Override

@@ -40,7 +40,7 @@ public class FireBurstParticleEffect extends EYBEffect
         this.x = x - (float) (this.img.packedWidth / 2);
         this.y = y - (float) (this.img.packedHeight / 2);
         this.rotation = Random(-10f, 10f);
-        this.scale = Random(2f, 4f) * Settings.scale;
+        this.scale = Random(2f, 4f);
         this.vX = Random(-900f, 900f) * Settings.scale;
         this.vY = Random(0f, 500f) * Settings.scale;
         this.floor = Random(100f, 250f) * Settings.scale;
@@ -69,7 +69,7 @@ public class FireBurstParticleEffect extends EYBEffect
         vY += GRAVITY / scale * deltaTime;
         x += vX * deltaTime * MathUtils.sinDeg(deltaTime);
         y += vY * deltaTime;
-        if (scale > 0.3f * Settings.scale)
+        if (scale > 0.3f)
         {
             scale -= deltaTime * 2f;
         }

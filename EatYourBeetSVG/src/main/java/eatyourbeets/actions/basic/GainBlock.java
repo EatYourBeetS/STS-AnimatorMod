@@ -57,7 +57,7 @@ public class GainBlock extends EYBActionWithCallback<AbstractCreature>
     {
         if (!target.isDying && !target.isDead && amount > 0)
         {
-            GameEffects.List.Attack(target, attackEffect, 0.95f, 1.05f);
+            GameEffects.List.Attack(source, target, attackEffect, 0.95f, 1.05f);
 
             target.addBlock(amount);
 

@@ -123,7 +123,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
 
         if (!hasPlayedEffect && duration <= 0.1f)
         {
-            GameEffects.List.Attack(target, attackEffect, pitchMin, pitchMax);
+            GameEffects.List.Attack(source, target, attackEffect, pitchMin, pitchMax);
             hasPlayedEffect = true;
         }
 

@@ -26,7 +26,14 @@ public class ShieldEffect extends EYBEffect
         this.color = Color.WHITE.cpy();
         this.scale = 1;
         this.x = x;
-        this.y = this.sY = this.tY = y + (80.0F * Settings.scale);
+        this.y = this.sY = y + (80.0F * Settings.scale);
+        this.tY = y;
+    }
+
+    @Override
+    protected void FirstUpdate()
+    {
+        UpdateInternal(GetDeltaTime());
     }
 
     @Override
@@ -44,10 +51,10 @@ public class ShieldEffect extends EYBEffect
         }
         else
         {
-            this.color.a = Interpolation.fade.apply(1.0f, 0.0f, this.duration * 0.75f / 0.6f);
+            this.color.a = Interpolation.fade.apply(1.0f, 0.0f, duration * 0.75f / startingDuration);
         }
 
-        this.y = Interpolation.exp10In.apply(this.tY, this.sY, this.duration / 0.6f);
+        this.y = Interpolation.exp10In.apply(tY, sY, duration / startingDuration);
     }
 
     @Override

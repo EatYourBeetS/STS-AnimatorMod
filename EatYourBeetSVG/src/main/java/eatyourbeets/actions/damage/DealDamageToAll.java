@@ -90,7 +90,7 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
         {
             if (!GameUtilities.IsDeadOrEscaped(enemy))
             {
-                GameEffects.List.Attack(enemy, this.attackEffect, pitchMin, pitchMax);
+                GameEffects.List.Attack(source, enemy, this.attackEffect, pitchMin, pitchMax);
 
                 if (onDamageEffect != null)
                 {

@@ -1060,6 +1060,12 @@
 	},
 	"CURSE":
 	{
+		"animator:Curse_AscendersBane":
+		{
+			"DESCRIPTION": "Unplayable.",
+			"EXTENDED_DESCRIPTION": ["Unplayable. || When Exhausted: ** Purge the top card ** of your draw pile.", "Ascension {0}+"],
+			"NAME": "Ascender's Bane"
+		},
 		"animator:Curse_Dizziness":
 		{
 			"DESCRIPTION": "Unplayable. ** When drawn: Add ** a Dazed to your ** draw pile.",
@@ -1126,8 +1132,8 @@
 		},
 		"animator:Eve":
 		{
-			"DESCRIPTION": "When you Synergize: Deal damage equal to <W> to a random enemy !M! times. || Once per turn, pay [E]: ** Play 1 of 3 {<W> Tokens}.",
-			"EXTENDED_DESCRIPTION": ["Pay 1 [E] to play #b1 [A-Gen] #yToken. || Whenever a card #ySynergizes, deal damage equal to [A-Gen] to a random enemy #b{0} time(s)."],
+			"DESCRIPTION": "When you Synergize: Deal damage equal to <W> to a random enemy !M! times. || Once per turn, pay 2 [E]: ** Play 1 of 3 {<W> Tokens}.",
+			"EXTENDED_DESCRIPTION": ["Pay 2 [E] to play #b1 [A-Gen] #yToken. || Whenever a card #ySynergizes, deal damage equal to [A-Gen] to a random enemy #b{0} time(s)."],
 			"NAME": "Eve"
 		},
 		"animator:Laby":

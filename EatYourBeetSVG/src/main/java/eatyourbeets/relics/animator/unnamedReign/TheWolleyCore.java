@@ -1,12 +1,12 @@
 package eatyourbeets.relics.animator.unnamedReign;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -52,8 +52,8 @@ public class TheWolleyCore extends UnnamedReignRelic
         {
             if (!mute)
             {
-                CardCrawlGame.sound.play("ATTACK_HEAVY");
-                GameEffects.List.Add(new CleaveEffect());
+                SFX.Play(SFX.ATTACK_HEAVY);
+                GameEffects.List.Add(VFX.Cleave(true));
             }
         });
     }

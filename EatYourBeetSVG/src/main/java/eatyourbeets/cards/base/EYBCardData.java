@@ -223,9 +223,9 @@ public class EYBCardData
         return this;
     }
 
-    public EYBCardData SetCurse(int cost, EYBCardTarget target)
+    public EYBCardData SetCurse(int cost, EYBCardTarget target, boolean special)
     {
-        CardRarity = AbstractCard.CardRarity.CURSE;
+        CardRarity = special ? AbstractCard.CardRarity.SPECIAL : AbstractCard.CardRarity.CURSE;
         CardColor = AbstractCard.CardColor.CURSE;
         CardType = AbstractCard.CardType.CURSE;
         AttackType = EYBAttackType.None;

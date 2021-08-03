@@ -69,6 +69,7 @@ import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.powers.common.ResiliencePower;
 import eatyourbeets.powers.common.VitalityPower;
+import eatyourbeets.powers.replacement.ImprovedConstrictedPower;
 import eatyourbeets.powers.replacement.TemporaryArtifactPower;
 
 import java.util.ArrayList;
@@ -196,7 +197,7 @@ public final class GameActions
 
     public ApplyPower ApplyConstricted(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new ConstrictedPower(target, source, amount));
+        return StackPower(source, new ImprovedConstrictedPower(target, source, amount));
     }
 
     public ApplyPowerAuto ApplyConstricted(TargetHelper target, int amount)
@@ -269,7 +270,7 @@ public final class GameActions
         return VFX(new BorderLongFlashEffect(color, true));
     }
 
-    public CallbackAction Callback(AbstractGameAction action, Object state, ActionT2<Object, AbstractGameAction> onCompletion)
+    public <T> CallbackAction Callback(AbstractGameAction action, T state, ActionT2<T, AbstractGameAction> onCompletion)
     {
         return Add(new CallbackAction(action, state, onCompletion));
     }
@@ -299,7 +300,7 @@ public final class GameActions
         return Callback(new WaitAction(0.05f), onCompletion);
     }
 
-    public CallbackAction Callback(Object state, ActionT2<Object, AbstractGameAction> onCompletion)
+    public <T> CallbackAction Callback(T state, ActionT2<T, AbstractGameAction> onCompletion)
     {
         return Callback(new WaitAction(0.05f), state, onCompletion);
     }
@@ -626,6 +627,11 @@ public final class GameActions
     public InduceOrb InduceOrbs(FuncT0<AbstractOrb> orbConstructor, int amount)
     {
         return Add(new InduceOrb(orbConstructor, amount));
+    }
+
+    public LoseHP LoseHP(AbstractCreature source, AbstractCreature target, int amount, AbstractGameAction.AttackEffect effect)
+    {
+        return Add(new LoseHP(target, source, amount, effect));
     }
 
     public LoseHP LoseHP(int amount, AbstractGameAction.AttackEffect effect)

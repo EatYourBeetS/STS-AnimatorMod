@@ -15,7 +15,7 @@ import eatyourbeets.utilities.RandomizedList;
 public class Curse_GriefSeed extends AnimatorCard_Curse
 {
     public static final EYBCardData DATA = Register(Curse_GriefSeed.class)
-            .SetCurse(1, EYBCardTarget.None)
+            .SetCurse(1, EYBCardTarget.None, false)
             .SetSeries(CardSeries.MadokaMagica);
 
     public Curse_GriefSeed()

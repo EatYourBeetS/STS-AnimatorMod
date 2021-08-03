@@ -26,6 +26,7 @@ import eatyourbeets.actions.special.SendMinionsAway;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.cards.animator.special.Respite;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
@@ -66,9 +67,9 @@ public class TheUnnamed extends EYBMonster
         .SetOnUse((m, t) ->
         {
             final int turns = m.misc.Calculate();
-            GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
+            GameActions.Bottom.SFX(SFX.MONSTER_COLLECTOR_DEBUFF);
             GameActions.Bottom.VFX(new CollectorCurseEffect(t.hb.cX, t.hb.cY), 2f);
-            GameActions.Bottom.Callback(turns, (i, __) ->GameUtilities.ObtainBlight(hb.cX, hb.cY, new Doomed((int)i)));
+            GameActions.Bottom.Callback(turns, (i, __) ->GameUtilities.ObtainBlight(hb.cX, hb.cY, new Doomed(i)));
             GameActions.Bottom.Add(new PlayTempBgmAction("MINDBLOOM", 1));
             AbstractDungeon.player.drawPile.addToTop(new Respite());
         });

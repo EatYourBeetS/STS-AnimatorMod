@@ -24,7 +24,7 @@ public class Eve extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Eve.class)
             .SetPower(3, CardRarity.RARE)
-            .SetMaxCopies(2)
+            .SetMaxCopies(1)
             .SetSeriesFromClassPackage();
     static
     {
@@ -56,7 +56,7 @@ public class Eve extends AnimatorCard
     {
         public EvePower(AbstractCreature owner, int amount)
         {
-            super(owner, Eve.DATA, PowerTriggerConditionType.Energy, 1);
+            super(owner, Eve.DATA, PowerTriggerConditionType.Energy, 2);
 
             this.amount = amount;
             this.triggerCondition.SetOneUsePerPower(true);

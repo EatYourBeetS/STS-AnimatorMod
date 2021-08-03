@@ -60,7 +60,7 @@ public class CursedBlade extends AnimatorRelic
     {
         super.atBattleStartPreDraw();
 
-        GameActions.Bottom.StackPower(new CursedBladePower(player, this));
+        GameActions.Bottom.ApplyPower(new CursedBladePower(player, this));
     }
 
     public static class CursedBladePower extends AnimatorClickablePower

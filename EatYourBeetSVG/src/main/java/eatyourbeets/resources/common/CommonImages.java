@@ -14,6 +14,8 @@ public class CommonImages
 
     public final TextureCache UnnamedReignEntrance        = new TextureCache("images/animator/ui/map/act5Entrance.png");
     public final TextureCache UnnamedReignEntranceOutline = new TextureCache("images/animator/ui/map/act5EntranceOutline.png");
+    public final TextureCache UnnamedReignBoss            = new TextureCache("images/animator/ui/map/boss/TheUnnamed.png");
+    public final TextureCache UnnamedReignBossOutline     = new TextureCache("images/animator/ui/map/bossOutline/TheUnnamed.png");
     public final TextureCache CampfireOption_Enchant      = new TextureCache("images/animator/ui/campfire/Enchant.png");
     public final TextureCache Circle                      = new TextureCache("images/eyb/ui/topPanel/Circle.png");
     public final TextureCache Tag                         = new TextureCache("images/eyb/ui/topPanel/Tag.png");

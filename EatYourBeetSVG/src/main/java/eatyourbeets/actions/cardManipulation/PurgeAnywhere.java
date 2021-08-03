@@ -1,10 +1,14 @@
 package eatyourbeets.actions.cardManipulation;
 
+import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -12,6 +16,8 @@ import java.util.UUID;
 public class PurgeAnywhere extends EYBAction
 {
     protected final UUID uuid;
+    protected boolean showEffect;
+    protected boolean purged;
 
     public PurgeAnywhere(AbstractCard card)
     {
@@ -37,29 +43,54 @@ public class PurgeAnywhere extends EYBAction
         Initialize(repeat);
     }
 
-    public void update()
+    public PurgeAnywhere ShowEffect(boolean value)
     {
+        this.showEffect = value;
+
+        return this;
+    }
+
+    @Override
+    protected void FirstUpdate()
+    {
+        super.FirstUpdate();
+
+        final ArrayList<CardGroup> groups = new ArrayList<>();
+        groups.add(player.hand);
+        groups.add(player.limbo);
+        groups.add(player.drawPile);
+        groups.add(player.discardPile);
+        groups.add(player.exhaustPile);
+
         if (card != null)
         {
-            player.hand.removeCard(card);
-            player.limbo.removeCard(card);
-            player.drawPile.removeCard(card);
-            player.discardPile.removeCard(card);
-            player.exhaustPile.removeCard(card);
+            boolean queueEffect = showEffect;
+            for (CardGroup group : groups)
+            {
+                if (group.contains(card))
+                {
+                    group.removeCard(card);
+
+                    if (queueEffect)
+                    {
+                        PurgeEffect(group, card);
+                        queueEffect = false;
+                    }
+                }
+            }
         }
 
         if (uuid != null)
         {
-            RemoveAll(player.hand);
-            RemoveAll(player.limbo);
-            RemoveAll(player.drawPile);
-            RemoveAll(player.discardPile);
-            RemoveAll(player.exhaustPile);
+            for (CardGroup group : groups)
+            {
+                RemoveAll(group);
+            }
         }
 
         if (amount > 0)
         {
-            GameActions.Bottom.Add(new PurgeAnywhere(card, uuid, amount - 1));
+            GameActions.Bottom.Add(new PurgeAnywhere(card, uuid, amount - 1).ShowEffect(showEffect));
         }
 
         Complete();
@@ -79,6 +110,24 @@ public class PurgeAnywhere extends EYBAction
         for (AbstractCard c : toRemove)
         {
             group.removeCard(c);
+
+            if (showEffect)
+            {
+                PurgeEffect(group, c);
+            }
+        }
+    }
+
+    private void PurgeEffect(CardGroup group, AbstractCard c)
+    {
+        final Vector2 pos = GameUtilities.TryGetPosition(group);
+        if (pos != null)
+        {
+            GameEffects.List.Add(new PurgeCardEffect(c, pos.x, pos.y));
+        }
+        else
+        {
+            GameEffects.List.Add(new PurgeCardEffect(c));
         }
     }
 }

@@ -185,8 +185,13 @@ public class GR
 
     public static Texture GetTexture(String path, boolean useMipMap)
     {
+        return GetTexture(path, true, false);
+    }
+
+    public static Texture GetTexture(String path, boolean useMipMap, boolean refresh)
+    {
         Texture texture = textures.get(path);
-        if (texture == null)
+        if (texture == null || refresh)
         {
             FileHandle file = Gdx.files.internal(path);
             if (file.exists())

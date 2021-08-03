@@ -3,7 +3,6 @@ package eatyourbeets.powers.replacement;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -63,7 +62,7 @@ public class PoisonPlayerPower extends AbstractPower implements HealthBarRenderP
     {
         this.flashWithoutSound();
 
-        GameActions.Bottom.DealDamage(source, owner, this.amount, DamageInfo.DamageType.HP_LOSS, AttackEffect.POISON);
+        GameActions.Bottom.LoseHP(source, owner, this.amount, AttackEffect.POISON).CanKill(!owner.isPlayer);
         GameActions.Bottom.ReducePower(this, 1);
     }
 

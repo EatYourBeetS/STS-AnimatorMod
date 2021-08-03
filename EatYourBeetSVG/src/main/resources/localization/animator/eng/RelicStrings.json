@@ -32,7 +32,7 @@
 	},
 	"animator:CerealBox":
 	{
-		"DESCRIPTIONS": ["#pRight #pClick to #yHeal #b{0} HP. NL Starts at #b{1} uses, gain #b{2} uses when entering a shop room. NL You can store up to #b{3} uses."],
+		"DESCRIPTIONS": ["Once per combat, pay #b{0} [E] to heal #b{1} HP."],
 		"FLAVOR": "Whole Grain Guaranteed! Approved by Konayuki.",
 		"NAME": "Cereal Box"
 	},
@@ -182,7 +182,7 @@
 	},
 	"animator:TheEruzaStone":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, gain 2 [E]. NL Once per turn, when you play a #yPower, draw 1 card."],
+		"DESCRIPTIONS": ["At the start of each turn, gain 2 [E] and move a random #yPower from your discard pile to your draw pile."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Eruza Stone"
 	},

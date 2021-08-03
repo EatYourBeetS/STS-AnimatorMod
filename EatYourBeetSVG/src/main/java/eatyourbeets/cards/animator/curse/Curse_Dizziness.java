@@ -10,7 +10,7 @@ public class Curse_Dizziness extends AnimatorCard_Curse
 {
     public static final Dazed DAZED = new Dazed();
     public static final EYBCardData DATA = Register(Curse_Dizziness.class)
-            .SetCurse(-2, EYBCardTarget.None)
+            .SetCurse(-2, EYBCardTarget.None, true)
             .SetSeries(CardSeries.TouhouProject);
     static
     {

@@ -24,7 +24,7 @@ public class ShieldEffect extends EYBEffect
 
         this.image = AttackEffects.GetTextureRegion(AttackEffects.SHIELD);
         this.color = Color.WHITE.cpy();
-        this.scale = Settings.scale;
+        this.scale = 1;
         this.x = x;
         this.y = this.sY = this.tY = y + (80.0F * Settings.scale);
     }

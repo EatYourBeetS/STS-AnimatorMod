@@ -3,9 +3,9 @@ package eatyourbeets.blights.animator;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.blights.AnimatorBlight;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.EYBPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -13,11 +13,13 @@ import eatyourbeets.utilities.GameUtilities;
 public class UltimateCube extends AnimatorBlight
 {
     public static final String ID = CreateFullID(UltimateCube.class);
-    public static final int LOSE_BLOCK = 6;
+    public static final int HP_LOSS = 6;
+
+    public int damageDealtThisTurn;
 
     public UltimateCube()
     {
-        super(ID, LOSE_BLOCK);
+        super(ID, HP_LOSS);
 
         setCounter(-1);
     }
@@ -34,7 +36,7 @@ public class UltimateCube extends AnimatorBlight
                 m.powers.add(new Tracker(this, m));
             }
 
-            setCounter(0);
+            setCounter(HP_LOSS);
         }
         else
         {
@@ -55,7 +57,8 @@ public class UltimateCube extends AnimatorBlight
     {
         super.atTurnStart();
 
-        setCounter(0);
+        damageDealtThisTurn = 0;
+        setCounter(HP_LOSS);
     }
 
     @Override
@@ -63,7 +66,7 @@ public class UltimateCube extends AnimatorBlight
     {
         super.setCounter(counter);
 
-        if (this.pulse = (counter == 0))
+        if (this.pulse = (counter > 0))
         {
             this.flashTimer += 0.01f; // because updateFlash() checks for flashTimer != 0 ...
         }
@@ -74,12 +77,17 @@ public class UltimateCube extends AnimatorBlight
     {
         super.onPlayerEndTurn();
 
-        if (counter == 0)
+        if (counter > 0)
         {
-            AbstractDungeon.player.loseBlock(LOSE_BLOCK);
-            GameActions.Top.WaitRealtime(0.25f);
-            this.flash();
+            GameActions.Bottom.Callback(counter, (damage, __) ->
+            {
+                GameActions.Top.LoseHP(damage, AttackEffects.RandomMagic()).CanKill(false).SetSoundPitch(0.75f, 0.9f);
+                GameActions.Top.WaitRealtime(0.25f);
+                this.flash();
+            });
         }
+
+        setCounter(HP_LOSS);
     }
 
     @Override
@@ -88,6 +96,11 @@ public class UltimateCube extends AnimatorBlight
         super.onCreateEnemy(m);
 
         m.powers.add(new Tracker(this, m));
+    }
+
+    public void OnDamageDealt(int damage)
+    {
+        setCounter(Math.max(0, HP_LOSS - ((damageDealtThisTurn += damage) / 2)));
     }
 
     private static class Tracker extends EYBPower implements InvisiblePower
@@ -108,7 +121,7 @@ public class UltimateCube extends AnimatorBlight
 
             if (damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL && GameUtilities.IsPlayer(info.owner))
             {
-                blight.setCounter(blight.counter + damageAmount);
+                blight.OnDamageDealt(damageAmount);
             }
         }
     }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -91,6 +92,11 @@ public abstract class EYBCardBase extends AbstractCard
 
         portrait = null;
         assetUrl = imagePath;
+
+        if (rarity == CardRarity.SPECIAL)
+        {
+            SoulboundField.soulbound.set(this, true);
+        }
 
         if (imagePath != null)
         {

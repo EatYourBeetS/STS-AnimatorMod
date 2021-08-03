@@ -24,7 +24,7 @@ public class CallbackAction extends EYBActionWithCallback<AbstractGameAction>
         AddCallback(onCompletion);
     }
 
-    public CallbackAction(AbstractGameAction action, Object state, ActionT2<Object, AbstractGameAction> onCompletion)
+    public <T> CallbackAction(AbstractGameAction action, T state, ActionT2<T, AbstractGameAction> onCompletion)
     {
         this(action);
 

@@ -7,7 +7,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import eatyourbeets.cards.base.CardRarityComparator;
-import eatyourbeets.interfaces.subscribers.OnRemoveFromDeckSubscriber;
+import eatyourbeets.interfaces.listeners.OnRemovedFromDeckListener;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
@@ -34,7 +34,7 @@ public class CardGroupPatches
         @SpirePrefixPatch
         public static SpireReturn<CardGroup> Postfix(CardGroup __instance)
         {
-            CardGroup result = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+            final CardGroup result = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             for (AbstractCard c : __instance.group)
             {
                 if (GameUtilities.CanRemoveFromDeck(c))
@@ -54,10 +54,10 @@ public class CardGroupPatches
         {
             if (__instance.type == CardGroup.CardGroupType.MASTER_DECK)
             {
-                OnRemoveFromDeckSubscriber card = JUtils.SafeCast(c, OnRemoveFromDeckSubscriber.class);
+                OnRemovedFromDeckListener card = JUtils.SafeCast(c, OnRemovedFromDeckListener.class);
                 if (card != null)
                 {
-                    card.OnRemoveFromDeck();
+                    card.OnRemovedFromDeck();
                 }
             }
         }

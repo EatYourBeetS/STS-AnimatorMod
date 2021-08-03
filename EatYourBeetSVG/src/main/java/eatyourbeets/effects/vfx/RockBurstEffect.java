@@ -13,8 +13,6 @@ import eatyourbeets.utilities.GameEffects;
 
 public class RockBurstEffect extends EYBEffect
 {
-    private static final float DELAY = 0.05f;
-    public static final int FRAMES = 3;
     public static final int PROJECTILES = 25;
     public static final float RADIUS = 240;
 
@@ -41,7 +39,7 @@ public class RockBurstEffect extends EYBEffect
             GameEffects.Queue.Add(new FadingParticleEffect(Earth.GetRandomTexture(), hb.cX, hb.cY, 80f)
             .Edit(angle, (r, p) -> p
                     .SetColor(Colors.Random(0.7f, 1f, true))
-                    .SetScale(Random(0.05f, 0.35f)).SetTargetRotation(36000)
+                    .SetScale(scale * Random(0.2f, 0.5f)).SetTargetRotation(36000)
                     .SetSpeed(Random(300f, 420f), Random(300f, 420f), Random(500f, 800f))
                     .SetTargetPosition(hb.cX + RADIUS * MathUtils.cos(r), hb.cY + RADIUS * MathUtils.sin(r))));
         }

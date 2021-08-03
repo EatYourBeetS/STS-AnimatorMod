@@ -63,7 +63,7 @@ public class EnchantedArmorPower extends AnimatorPower
     {
         if (reactive)
         {
-            damage = (CalculatePercentage(amount + (int) damage));
+            damage *= (CalculatePercentage(amount + (int) damage));
         }
         else if (type == DamageInfo.DamageType.NORMAL)
         {

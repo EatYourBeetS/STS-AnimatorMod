@@ -1324,10 +1324,9 @@ public class GameUtilities
 
         public void Refresh()
         {
-            CardGroup hand = player.hand;
-            hand.refreshHandLayout();
-            hand.applyPowers();
-            hand.glowCheck();
+            player.hand.refreshHandLayout();
+            player.hand.applyPowers();
+            player.hand.glowCheck();
         }
     }
 }

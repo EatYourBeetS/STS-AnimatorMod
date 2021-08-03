@@ -5,6 +5,7 @@ import basemod.devcommands.ConsoleCommand;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.curses.AscendersBane;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -14,6 +15,7 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.basic.ImprovedDefend;
 import eatyourbeets.cards.animator.basic.ImprovedStrike;
+import eatyourbeets.cards.animator.curse.Curse_AscendersBane;
 import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
@@ -52,6 +54,29 @@ public class ParseGenericCommand extends ConsoleCommand
                 if (tokens[1].equals("ghost"))
                 {
                     player.tint.color.a = (tokens.length > 2 ? JUtils.ParseFloat(tokens[2], 1) : 0.3f);
+
+                    return;
+                }
+
+                if (tokens[1].equals("bane"))
+                {
+                    ArrayList<AbstractCard> group = player.masterDeck.group;
+                    for (int i = 0; i < group.size(); i++)
+                    {
+                        AbstractCard c = group.get(i);
+                        if (c.cardID.equals(AscendersBane.ID) || c.cardID.equals(Curse_AscendersBane.DATA.ID))
+                        {
+                            c = Curse_AscendersBane.DATA.MakeCopy(false);
+                            ((Curse_AscendersBane)c).AddUnnamedReignEffect();
+                            group.set(i, c);
+                        }
+                    }
+
+                    if (GameUtilities.InBattle())
+                    {
+                        GameActions.Bottom.MakeCardInHand(new Curse_AscendersBane())
+                        .AddCallback(c -> ((Curse_AscendersBane)c).AddUnnamedReignEffect());
+                    }
 
                     return;
                 }

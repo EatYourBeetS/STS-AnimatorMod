@@ -56,6 +56,11 @@ public class VFX
         return new ClashEffect2(target.cX, target.cY);
     }
 
+    public static CleaveEffect Cleave(boolean fromPlayer)
+    {
+        return new CleaveEffect(fromPlayer);
+    }
+
     public static ClawEffect Claw(Hitbox source, Color color1, Color color2)
     {
         return new ClawEffect(source.cX, source.cY, color1, color2);

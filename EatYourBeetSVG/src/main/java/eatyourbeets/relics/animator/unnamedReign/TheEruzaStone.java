@@ -1,9 +1,9 @@
 package eatyourbeets.relics.animator.unnamedReign;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
 public class TheEruzaStone extends UnnamedReignRelic
@@ -16,16 +16,15 @@ public class TheEruzaStone extends UnnamedReignRelic
     }
 
     @Override
-    public void onPlayCard(AbstractCard c, AbstractMonster m)
+    public void atTurnStartPostDraw()
     {
-        super.onPlayCard(c, m);
+        super.atTurnStartPostDraw();
 
-        if (IsEnabled() && c.type == AbstractCard.CardType.POWER)
-        {
-            SetEnabled(false);
-            GameActions.Bottom.Draw(1);
-            flash();
-        }
+        GameActions.Bottom.MoveCards(player.discardPile, player.drawPile, 1)
+        .SetFilter(c -> c.type == AbstractCard.CardType.POWER)
+        .ShowEffect(true, true)
+        .SetOrigin(CardSelection.Random);
+        flash();
     }
 
     @Override
@@ -40,14 +39,6 @@ public class TheEruzaStone extends UnnamedReignRelic
         super.onUnequip();
 
         player.energy.energyMaster -= 2;
-    }
-
-    @Override
-    public void atTurnStart()
-    {
-        super.atTurnStart();
-
-        SetEnabled(true);
     }
 
     public String GetDoomedString()

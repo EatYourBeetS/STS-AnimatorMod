@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
@@ -76,7 +77,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
 
         if (imagePath == null)
         {
-            imagePath = GR.GetCardImage(id);
+            imagePath = QuestionMark.DATA.ImagePath;
         }
 
         return new AnimatorCard_Dynamic(this);

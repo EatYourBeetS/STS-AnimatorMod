@@ -79,7 +79,7 @@ public class MaskedTravelerTransformCardsEffect extends EYBEffectWithCallback<Ob
                 float displayCount = 0f;
                 for (AbstractCard card : AbstractDungeon.gridSelectScreen.selectedCards)
                 {
-                    GameEffects.Queue.Add(new ShowCardAndObtainEffect(card, (float) Settings.WIDTH / 3f + displayCount, (float) Settings.HEIGHT / 2f, false));
+                    GameEffects.Queue.Add(new ShowCardAndObtainEffect(card.makeCopy(), (float) Settings.WIDTH / 3f + displayCount, (float) Settings.HEIGHT / 2f, false));
                     displayCount += (float) Settings.WIDTH / 6f;
                 }
 

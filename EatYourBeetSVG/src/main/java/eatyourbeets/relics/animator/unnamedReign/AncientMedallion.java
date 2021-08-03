@@ -258,7 +258,6 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
         if (event)
         {
             GR.Common.Dungeon.EnterUnnamedReign();
-
             event = false;
         }
     }

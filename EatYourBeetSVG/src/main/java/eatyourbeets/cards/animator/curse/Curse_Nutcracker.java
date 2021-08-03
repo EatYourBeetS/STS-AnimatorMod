@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Curse_Nutcracker extends AnimatorCard_Curse
 {
     public static final EYBCardData DATA = Register(Curse_Nutcracker.class)
-            .SetCurse(-2, EYBCardTarget.None)
+            .SetCurse(-2, EYBCardTarget.None, false)
             .SetSeries(CardSeries.YoujoSenki);
 
     public Curse_Nutcracker()

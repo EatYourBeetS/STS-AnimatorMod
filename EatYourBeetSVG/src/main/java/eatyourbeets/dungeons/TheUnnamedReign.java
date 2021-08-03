@@ -111,8 +111,8 @@ public class TheUnnamedReign extends AbstractDungeon
 
         if (key.equals(TheUnnamed.ID))
         {
-            DungeonMap.boss = GR.Common.Images.UnnamedReignBoss.Texture();
-            DungeonMap.bossOutline = GR.Common.Images.UnnamedReignBossOutline.Texture();
+            DungeonMap.boss = GR.Common.Images.UnnamedReignBoss.Texture(true);
+            DungeonMap.bossOutline = GR.Common.Images.UnnamedReignBossOutline.Texture(true);
         }
         else
         {

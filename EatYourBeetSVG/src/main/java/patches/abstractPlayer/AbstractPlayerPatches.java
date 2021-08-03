@@ -128,4 +128,22 @@ public class AbstractPlayerPatches
             return SpireReturn.Return();
         }
     }
+
+    @SpirePatch(clz = AbstractPlayer.class, method = "isCursed")
+    public static class AbstractPlayer_IsCursed
+    {
+        @SpirePrefixPatch
+        public static SpireReturn<Boolean> Method(AbstractPlayer __instance)
+        {
+            for (AbstractCard c : __instance.masterDeck.group)
+            {
+                if (c.type == AbstractCard.CardType.CURSE && c.rarity != AbstractCard.CardRarity.SPECIAL)
+                {
+                    return SpireReturn.Return(true);
+                }
+            }
+
+            return SpireReturn.Return(false);
+        }
+    }
 }

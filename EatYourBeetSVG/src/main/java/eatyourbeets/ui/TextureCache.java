@@ -25,13 +25,18 @@ public class TextureCache
         return path;
     }
 
-    public Texture Texture()
+    public Texture Texture(boolean refresh)
     {
-        if (texture == null)
+        if (refresh || texture == null)
         {
-            texture = GR.GetTexture(path, mipmap);
+            texture = GR.GetTexture(path, mipmap, refresh);
         }
 
         return texture;
+    }
+
+    public Texture Texture()
+    {
+        return Texture(false);
     }
 }

@@ -62,7 +62,7 @@
 	},
 	"Burning":
 	{
-		"DESCRIPTION": "Increases incoming #yAttack damage by #b15% (min. #b1 additional damage). NL At the start of turn, lose HP equal to half the amount of [Burning] and reduce [Burning] by #b1.",
+		"DESCRIPTION": "Increases incoming #yAttack damage by #b10% + #b0.5% per stack (max. multiplier is #b20%, min. damage icrease is #b1). NL At the start of turn, lose HP equal to #b50% of [Burning] and reduce [Burning] by #b1.",
 		"NAMES": ["burning"],
 		"PROPER_NAME": "Burning"
 	},

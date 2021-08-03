@@ -6,28 +6,26 @@ import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPowe
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.WeakPower;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.ui.animator.combat.CombatHelper;
 import eatyourbeets.utilities.GameActions;
-
-import java.text.DecimalFormat;
 
 public class ChilledPower extends AnimatorPower implements HealthBarRenderPower
 {
     private static final Color healthBarColor = Color.SKY.cpy();
     public static final String POWER_ID = CreateFullID(ChilledPower.class);
-    public static final int MAX_REDUCTION_STACKS = 20;
+    public static final int BASE_MULTIPLIER = 10;
+    public static final int MAX_MULTIPLIER_STACKS = 20;
     public static final float RATE = 0.5f;
 
     private float percentage;
     private final AbstractCreature source;
 
-    public static float CalculatePercentage(int amount)
+    public static float CalculatePercentage(int amount) {return BASE_MULTIPLIER + RATE * Math.min(MAX_MULTIPLIER_STACKS,amount);}
+    public static float CalculateDamage(float damage, float percentage)
     {
-        return 90f - (0.f * Math.min(MAX_REDUCTION_STACKS,amount));
+        return damage - MathUtils.ceil(percentage * damage);
     }
 
     public ChilledPower(AbstractCreature owner, AbstractCreature source, int amount)
@@ -49,13 +47,7 @@ public class ChilledPower extends AnimatorPower implements HealthBarRenderPower
     @Override
     public void updateDescription()
     {
-        if (amount > 0)
-        {
-            DecimalFormat df = new DecimalFormat("#.0");
-            String value = df.format(((1 - this.percentage) * 100));
-
-            this.description = powerStrings.DESCRIPTIONS[0] + value + powerStrings.DESCRIPTIONS[1];
-        }
+        FormatDescription(0, GetPassiveDamage(), percentage);
     }
 
     @Override
@@ -67,13 +59,10 @@ public class ChilledPower extends AnimatorPower implements HealthBarRenderPower
     @Override
     public void atStartOfTurn()
     {
-        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.getMonsters().areMonstersBasicallyDead())
-        {
-            this.flashWithoutSound();
+        this.flashWithoutSound();
 
-            GameActions.Bottom.DealDamage(source, owner, getHealthBarAmount(), DamageInfo.DamageType.HP_LOSS, AttackEffects.SHIELD_FROST);
-            GameActions.Bottom.ReducePower(this, 1);
-        }
+        GameActions.Bottom.DealDamage(source, owner, GetPassiveDamage(), DamageInfo.DamageType.HP_LOSS, AttackEffects.FIRE);
+        ReducePower(1);
     }
 
     @Override
@@ -107,18 +96,7 @@ public class ChilledPower extends AnimatorPower implements HealthBarRenderPower
     @Override
     public int getHealthBarAmount()
     {
-        if (amount == 1)
-        {
-            return 1;
-        }
-        else if (amount > 1)
-        {
-            return (amount / 2) + amount % 2;
-        }
-        else
-        {
-            return 0;
-        }
+        return CombatHelper.GetHealthBarAmount(owner, amount, false, true);
     }
 
     @Override
@@ -129,12 +107,12 @@ public class ChilledPower extends AnimatorPower implements HealthBarRenderPower
 
     public int calculateDamageGiven(float damage, DamageInfo.DamageType type)
     {
-        if (type == DamageInfo.DamageType.NORMAL)
-        {
-            float multiplier = (owner.hasPower(WeakPower.POWER_ID)) ? CalculatePercentage(this.amount / 2) : percentage;
-            return MathUtils.ceil(multiplier * damage);
-        }
-        return (int) damage;
+        return (int) ((type == DamageInfo.DamageType.NORMAL) ? CalculateDamage(damage, percentage) : damage);
+    }
+
+    private int GetPassiveDamage()
+    {
+        return amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2;
     }
 
     private void updatePercentage()

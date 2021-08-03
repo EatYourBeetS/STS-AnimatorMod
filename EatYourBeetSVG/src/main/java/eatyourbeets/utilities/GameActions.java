@@ -267,7 +267,7 @@ public final class GameActions
         return VFX(new BorderLongFlashEffect(color, true));
     }
 
-    public CallbackAction Callback(AbstractGameAction action, Object state, ActionT2<Object, AbstractGameAction> onCompletion)
+    public <T> CallbackAction Callback(AbstractGameAction action, T state, ActionT2<T, AbstractGameAction> onCompletion)
     {
         return Add(new CallbackAction(action, state, onCompletion));
     }
@@ -297,7 +297,7 @@ public final class GameActions
         return Callback(new WaitAction(0.05f), onCompletion);
     }
 
-    public CallbackAction Callback(Object state, ActionT2<Object, AbstractGameAction> onCompletion)
+    public <T> CallbackAction Callback(T state, ActionT2<T, AbstractGameAction> onCompletion)
     {
         return Callback(new WaitAction(0.05f), state, onCompletion);
     }

@@ -12,7 +12,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class LoseHP extends EYBAction
 {
-    protected boolean ignoreTempHP;
+    protected boolean ignoreTempHP = false;
+    protected boolean canKill = true;
+    protected float pitchMin = 0;
+    protected float pitchMax = 0;
 
     public LoseHP(AbstractCreature target, AbstractCreature source, int amount)
     {
@@ -35,12 +38,27 @@ public class LoseHP extends EYBAction
         return this;
     }
 
+    public LoseHP SetSoundPitch(float pitchMin, float pitchMax)
+    {
+        this.pitchMin = pitchMin;
+        this.pitchMax = pitchMax;
+
+        return this;
+    }
+
+    public LoseHP CanKill(boolean value)
+    {
+        this.canKill = value;
+
+        return this;
+    }
+
     @Override
     protected void FirstUpdate()
     {
         if (this.target.currentHealth > 0)
         {
-            GameEffects.List.Attack(target, attackEffect, 0, 0);
+            GameEffects.List.Attack(target, attackEffect, pitchMin, pitchMax);
         }
     }
 
@@ -54,6 +72,11 @@ public class LoseHP extends EYBAction
             {
                 tempHP = TempHPField.tempHp.get(target);
                 TempHPField.tempHp.set(target, 0);
+            }
+
+            if (!canKill)
+            {
+                amount = Math.min(GameUtilities.GetActualHealth(target) - 1, amount);
             }
 
             this.target.damage(new DamageInfo(this.source, this.amount, DamageInfo.DamageType.HP_LOSS));

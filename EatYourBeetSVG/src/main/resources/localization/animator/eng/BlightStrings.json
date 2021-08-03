@@ -18,7 +18,7 @@
 	"animator:UltimateCube":
 	{
 		"NAME": "Ultimate Cube",
-		"DESCRIPTION": ["If you end your turn without dealing unblocked #yAttack damage, lose #b{0} #yBlock."]
+		"DESCRIPTION": ["At the end of each turn, lose #b{0} HP (you can't die from this). NL Reduce the HP loss by #b1 for every #b2 points of unblocked #yAttack damage you deal."]
 	},
 	"animator:UltimateWisp":
 	{

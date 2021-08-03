@@ -132,7 +132,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             }
             else
             {
-                if (temp.type == CardGroup.CardGroupType.DRAW_PILE)
+                if (temp.type == CardGroup.CardGroupType.DRAW_PILE && origin == null)
                 {
                     if (GameUtilities.HasRelicEffect(FrozenEye.ID))
                     {

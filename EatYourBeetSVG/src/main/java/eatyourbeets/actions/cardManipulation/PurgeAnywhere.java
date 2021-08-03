@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
-import eatyourbeets.actions.EYBAction;
+import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class PurgeAnywhere extends EYBAction
+public class PurgeAnywhere extends EYBActionWithCallback<Boolean>
 {
     protected final UUID uuid;
     protected boolean showEffect;
@@ -70,6 +70,7 @@ public class PurgeAnywhere extends EYBAction
                 if (group.contains(card))
                 {
                     group.removeCard(card);
+                    this.purged = true;
 
                     if (queueEffect)
                     {
@@ -93,7 +94,7 @@ public class PurgeAnywhere extends EYBAction
             GameActions.Bottom.Add(new PurgeAnywhere(card, uuid, amount - 1).ShowEffect(showEffect));
         }
 
-        Complete();
+        Complete(purged);
     }
 
     private void RemoveAll(CardGroup group)
@@ -110,6 +111,7 @@ public class PurgeAnywhere extends EYBAction
         for (AbstractCard c : toRemove)
         {
             group.removeCard(c);
+            this.purged = true;
 
             if (showEffect)
             {

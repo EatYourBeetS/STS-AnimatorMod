@@ -179,18 +179,18 @@ public class WordToken extends CTToken
         {
             coloredString.color.a = 1;
 
-            if (tooltip == GR.Tooltips.Starter && !AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty())
+            if (GR.Tooltips.Starter.Is(tooltip) && !AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty())
             {
                 coloredString.color.a = 0.6f;
             }
             else
             {
                 Integer t = null;
-                if (tooltip == GR.Tooltips.Limited)
+                if (GR.Tooltips.Limited.Is(tooltip))
                 {
                     t = CombatStats.GetCombatData(context.card.cardID, null);
                 }
-                else if (tooltip == GR.Tooltips.SemiLimited)
+                else if (GR.Tooltips.SemiLimited.Is(tooltip))
                 {
                     t = CombatStats.GetTurnData(context.card.cardID, null);
                 }

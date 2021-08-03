@@ -109,6 +109,11 @@ public class AnimatorStrings
         {
             return JUtils.Format(Strings.TEXT[2], unlockLevel, currentLevel);
         }
+
+        public final String UnlocksAtAscension(int ascension)
+        {
+            return JUtils.Format(Strings.TEXT[4], ascension);
+        }
     }
 
     public class SeriesSelection

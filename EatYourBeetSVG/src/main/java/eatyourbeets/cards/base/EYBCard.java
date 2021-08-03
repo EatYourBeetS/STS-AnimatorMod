@@ -340,10 +340,16 @@ public abstract class EYBCard extends EYBCardBase
 
     public ColoredString GetAffinityString(ArrayList<AffinityType> types, boolean requireAll)
     {
+        if (types == null || types.size() == 0)
+        {
+            JUtils.LogError(this, "Types was null or empty.");
+            return new ColoredString("?", Settings.RED_TEXT_COLOR);
+        }
+
         final ColoredString result = new ColoredString();
         if (player != null && player.hand.contains(this))
         {
-            EYBCardAffinities hand = CombatStats.Affinities.GetHandAffinities(this);
+            final EYBCardAffinities hand = CombatStats.Affinities.GetHandAffinities(this);
             for (AffinityType t : types)
             {
                 final int req = affinities.GetRequirement(t);

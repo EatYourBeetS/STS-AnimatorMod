@@ -390,6 +390,11 @@ public class EYBCardTooltip
         }
     }
 
+    public boolean Is(EYBCardTooltip tooltip)
+    {
+        return tooltip != null && id.equals(tooltip.id);
+    }
+
     public float Render(SpriteBatch sb, float x, float y, int index)
     {
         if (hideDescription == null)

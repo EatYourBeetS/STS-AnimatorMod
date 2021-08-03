@@ -73,6 +73,7 @@ public class AnimatorBaseStatEditor extends GUIElement
     public AnimatorLoadoutData data;
 
     protected static final float ICON_SIZE = 64f * Settings.scale;
+    protected boolean interactable;
     protected Hitbox hb;
     protected GUI_Image image;
     protected GUI_Label label;
@@ -114,6 +115,13 @@ public class AnimatorBaseStatEditor extends GUIElement
 
         return this;
     }
+
+    public AnimatorBaseStatEditor SetInteractable(boolean interactable)
+    {
+        this.interactable = interactable;
+
+        return this;
+    }
     
     @Override
     public void Update()
@@ -121,8 +129,8 @@ public class AnimatorBaseStatEditor extends GUIElement
         hb.update();
         image.Update();
         label.SetText(type.GetText(data)).Update();
-        decrease_button.SetInteractable(CanDecrease()).Update();
-        increase_button.SetInteractable(CanIncrease()).Update();
+        decrease_button.SetInteractable(interactable && CanDecrease()).Update();
+        increase_button.SetInteractable(interactable && CanIncrease()).Update();
         value_text.Update();
     }
 

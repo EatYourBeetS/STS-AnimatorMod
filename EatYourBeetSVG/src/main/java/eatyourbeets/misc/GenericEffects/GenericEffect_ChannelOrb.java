@@ -57,7 +57,7 @@ public class GenericEffect_ChannelOrb extends GenericEffect
     @Override
     public void Use(AnimatorCard card, AbstractPlayer p, AbstractMonster m)
     {
-        if (tooltip == GR.Tooltips.RandomOrb)
+        if (GR.Tooltips.RandomOrb.Is(tooltip))
         {
             GameActions.Bottom.ChannelRandomOrbs(amount);
         }

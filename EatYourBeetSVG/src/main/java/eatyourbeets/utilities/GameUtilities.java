@@ -369,6 +369,11 @@ public class GameUtilities
         return AbstractDungeon.isAscensionMode ? Math.max(0, Math.min(20, AbstractDungeon.ascensionLevel)) : 0;
     }
 
+    public static int GetMaxAscensionLevel(AbstractPlayer p)
+    {
+        return p.getPrefs().getInteger("ASCENSION_LEVEL", 0);
+    }
+
     public static ArrayList<AbstractCard> GetAvailableCards()
     {
         return GetAvailableCards(null);

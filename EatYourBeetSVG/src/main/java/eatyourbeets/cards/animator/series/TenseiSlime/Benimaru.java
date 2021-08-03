@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -46,7 +46,7 @@ public class Benimaru extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
         .SetDamageEffect(e -> GameEffects.List.Add(VFX.Fireball(player.hb, e.hb)).SetColor(Color.RED, Color.ORANGE).SetRealtime(true).duration)
         .AddCallback(m, (enemy, __) -> GameActions.Top.ApplyBurning(player, enemy, magicNumber))
         .SetRealtime(true);

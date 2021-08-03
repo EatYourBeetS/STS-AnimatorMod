@@ -13,16 +13,12 @@ public class OrbCore_FirePower extends OrbCore_AbstractPower
 
     public OrbCore_FirePower(AbstractCreature owner, int amount)
     {
-        super(POWER_ID, owner, amount);
-
-        this.value = OrbCore_Fire.VALUE;
-
-        updateDescription();
+        super(POWER_ID, owner, amount, OrbCore_Fire.VALUE);
     }
 
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
-        GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), value);
+        GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), potency);
     }
 }

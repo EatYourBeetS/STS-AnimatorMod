@@ -28,8 +28,10 @@ public class AnimatorBlight extends AbstractBlight
 
     public AnimatorBlight(String id, BlightStrings strings, int amount)
     {
-        super(id, strings.NAME, JUtils.Format(strings.DESCRIPTION[0], amount), GR.GetBlightImageName(id), true);
+        super(id, strings.NAME, JUtils.Format(strings.DESCRIPTION[0], amount), "durian.png", true);
 
+        this.img = GR.GetTexture(GR.GetBlightImage(id));
+        this.outlineImg = GR.GetTexture(GR.GetBlightOutlineImage(id));
         this.initialAmount = amount;
         this.counter = amount;
         this.strings = strings;

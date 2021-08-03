@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
@@ -38,7 +38,7 @@ public class Gillette extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         GameActions.Bottom.StackPower(new EnergizedPower(p, 1));
     }
 }

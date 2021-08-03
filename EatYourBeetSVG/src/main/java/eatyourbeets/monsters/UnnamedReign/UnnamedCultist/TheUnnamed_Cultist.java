@@ -25,8 +25,8 @@ public abstract class TheUnnamed_Cultist extends EYBMonster
             super(id);
 
             scale = 2;
-            jsonUrl = "images/monsters/animator/TheUnnamed/TheUnnamedCultist.json";
-            atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamedCultist.atlas";
+            jsonUrl = "images/animator/monsters/TheUnnamed/TheUnnamedCultist.json";
+            atlasUrl = "images/animator/monsters/TheUnnamed/TheUnnamedCultist.atlas";
             imgUrl = null;
 
             if (GameUtilities.GetAscensionLevel() >= 8)

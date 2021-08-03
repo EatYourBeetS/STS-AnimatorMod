@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -99,8 +99,8 @@ public class IzunaHatsuse extends AnimatorCard
         if (transformed)
         {
             GameActions.Bottom.Heal(magicNumber);
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         }
         else
         {

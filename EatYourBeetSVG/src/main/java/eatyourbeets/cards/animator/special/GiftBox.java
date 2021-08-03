@@ -37,14 +37,14 @@ public class GiftBox extends AnimatorCard
         ArrayList<AbstractCard> cards = GameUtilities.GetAvailableCards();
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.MakeCardInHand(JUtils.GetRandomElement(cards))
+            GameActions.Bottom.MakeCardInHand(GameUtilities.GetRandomElement(cards))
             .SetUpgrade(false, true)
             .AddCallback(c ->
             {
                 EYBCard card = JUtils.SafeCast(c, EYBCard.class);
                 if (card != null)
                 {
-                    card.AddScaling(JUtils.GetRandomElement(AffinityType.AllTypes(), rng), 1);
+                    card.AddScaling(GameUtilities.GetRandomElement(AffinityType.AllTypes(), rng), 1);
                 }
             });
         }

@@ -12,7 +12,6 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
 {
@@ -37,7 +36,7 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
         }
         else
         {
-            this.power = JUtils.GetRandomElement(CombatStats.Affinities.Powers, EYBCard.rng);
+            this.power = GameUtilities.GetRandomElement(CombatStats.Affinities.Powers, EYBCard.rng);
         }
 
         if (power == null || AbstractDungeon.getMonsters().areMonstersBasicallyDead())

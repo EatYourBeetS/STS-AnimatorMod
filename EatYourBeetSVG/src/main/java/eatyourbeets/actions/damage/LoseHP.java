@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -41,7 +40,7 @@ public class LoseHP extends EYBAction
     {
         if (this.target.currentHealth > 0)
         {
-            GameEffects.List.Add(VFX.FlashAttack(target.hb, attackEffect, false));
+            GameEffects.List.Attack(target, attackEffect, 0, 0);
         }
     }
 

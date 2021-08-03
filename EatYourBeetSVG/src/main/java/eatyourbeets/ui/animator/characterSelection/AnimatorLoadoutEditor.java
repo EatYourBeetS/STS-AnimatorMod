@@ -7,17 +7,20 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import eatyourbeets.cards.base.EYBCardBase;
 import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.resources.animator.misc.CardSlot;
 import eatyourbeets.resources.animator.misc.AnimatorLoadoutData;
+import eatyourbeets.resources.animator.misc.CardSlot;
 import eatyourbeets.ui.AbstractScreen;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.controls.GUI_TextBox;
 import eatyourbeets.ui.controls.GUI_Toggle;
+import eatyourbeets.utilities.Colors;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -36,6 +39,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
     protected GUI_Button cancel_button;
     protected GUI_Button save_button;
     protected GUI_Toggle upgrade_toggle;
+    protected GUI_TextBox ascensionRequirement;
     protected GUI_TextBox cardsCount_text;
     protected GUI_TextBox cardsValue_text;
     protected GUI_TextBox affinityValue_text;
@@ -96,13 +100,31 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.635f), ScreenH(0.75f)));
         slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.835f), ScreenH(0.75f)));
 
-        hpEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.HP, ScreenW(0.666f), ScreenH(0.442f));
-        goldEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.Gold, ScreenW(0.666f), ScreenH(0.353f));
+        hpEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.HP, ScreenW(0.666f), ScreenH(0.432f));
+        goldEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.Gold, ScreenW(0.666f), ScreenH(0.343f));
+
+        ascensionRequirement = new GUI_TextBox(GR.Common.Images.Panel_Rounded.Texture(), new Hitbox(labelWidth, labelHeight * 4))
+        .SetColors(Colors.Black(0.4f), Colors.Cream(0.9f))
+        .SetText(GR.Animator.Strings.CharSelect.UnlocksAtAscension(AnimatorLoadout.GOLD_HP_EDITOR_ASCENSION_REQUIRED))
+        .SetAlignment(0.5f, 0.5f)
+        .SetPosition(ScreenW(0.666f), ScreenH(0.37f))
+        .SetFont(FontHelper.charDescFont, 0.9f);
     }
 
-    public void Open(AnimatorLoadout loadout, ActionT0 onClose)
+    public void Open(AnimatorLoadout loadout, CharacterOption option, ActionT0 onClose)
     {
         super.Open();
+
+        boolean enableHPAndGoldEditor = GameUtilities.GetMaxAscensionLevel(option.c) >= AnimatorLoadout.GOLD_HP_EDITOR_ASCENSION_REQUIRED;
+        ascensionRequirement.SetActive(!enableHPAndGoldEditor);
+        goldEditor.SetInteractable(enableHPAndGoldEditor);
+        hpEditor.SetInteractable(enableHPAndGoldEditor);
+
+        if (!enableHPAndGoldEditor)
+        {
+            loadout.Data.Gold = AnimatorLoadout.BASE_GOLD;
+            loadout.Data.HP = AnimatorLoadout.BASE_HP;
+        }
 
         EYBCardBase.canCropPortraits = false;
         ToggleViewUpgrades(false);
@@ -150,6 +172,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         }
         else
         {
+            ascensionRequirement.TryUpdate();
             hpEditor.SetEstimatedValue(val.HpValue).Update();
             goldEditor.SetEstimatedValue(val.GoldValue).Update();
             cancel_button.Update();
@@ -182,6 +205,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         {
             hpEditor.Render(sb);
             goldEditor.Render(sb);
+            ascensionRequirement.TryRender(sb);
             cancel_button.Render(sb);
             save_button.Render(sb);
         }

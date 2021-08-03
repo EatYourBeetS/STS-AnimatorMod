@@ -11,9 +11,8 @@ public class VitalityPower extends CommonPower
     public VitalityPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
-        this.amount = amount;
 
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override

@@ -43,9 +43,9 @@ public class TheMaskedTraveler2 extends EYBEvent
 
     public TheMaskedTraveler2()
     {
-        super(ID, STRINGS, "secretPortal.jpg");
+        super(ID, STRINGS, IMAGES.Portal.Path());
 
-        MapRoomNode node = AbstractDungeon.getCurrMapNode();
+        final MapRoomNode node = AbstractDungeon.getCurrMapNode();
         if (node != null && node.room != null)
         {
             node.room.rewardAllowed = false;

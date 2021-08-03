@@ -10,13 +10,15 @@ import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.events.animator.*;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
 public abstract class EYBEvent extends AbstractImageEvent
 {
-    public final static EYBCommonStrings COMMON_STRINGS = new EYBCommonStrings();
+    public static final CommonImages.Events IMAGES = GR.Common.Images.Events;
+    public static final EYBCommonStrings COMMON_STRINGS = new EYBCommonStrings();
     public final ArrayList<EYBEventPhase> phases = new ArrayList<>();
     public final EYBEventStrings strings;
     public EYBEventPhase currentPhase;
@@ -65,12 +67,12 @@ public abstract class EYBEvent extends AbstractImageEvent
 
     public EYBEvent(String id, EYBEventStrings strings)
     {
-        this(id, strings, "placeholder.jpg");
+        this(id, strings, GR.Common.Images.Events.Placeholder.Path());
     }
 
     public EYBEvent(String id, EYBEventStrings strings, String imageUrl)
     {
-        super("NAME", "BODY", "images/events/" + imageUrl);
+        super("NAME", "BODY", imageUrl);
 
         this.strings = strings.SetStrings(GR.GetEventStrings(id));
         this.title = strings.name;

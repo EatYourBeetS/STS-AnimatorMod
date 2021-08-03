@@ -1,6 +1,6 @@
 package eatyourbeets.misc.NanamiEffects;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.resources.GR;
@@ -16,7 +16,7 @@ public class NanamiEffect_Stun extends NanamiEffect
         int damage = GetDamage(nanami);
         if (damage > 0)
         {
-            GameActions.Bottom.DealDamage(p, m, damage, nanami.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.DealDamage(p, m, damage, nanami.damageTypeForTurn, AttackEffects.NONE);
             GameUtilities.UsePenNib();
         }
 

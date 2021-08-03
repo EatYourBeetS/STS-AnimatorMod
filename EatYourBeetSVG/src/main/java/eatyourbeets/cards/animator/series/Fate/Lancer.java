@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.vfx.combat.ClashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -45,11 +46,11 @@ public class Lancer extends AnimatorCard
         if (this.damage >= 15)
         {
             GameActions.Bottom.VFX(new ClashEffect(m.hb.cX, m.hb.cY), 0.1f);
-            attackEffect = AbstractGameAction.AttackEffect.NONE;
+            attackEffect = AttackEffects.NONE;
         }
         else
         {
-            attackEffect = AbstractGameAction.AttackEffect.SLASH_VERTICAL;
+            attackEffect = AttackEffects.SLASH_VERTICAL;
         }
 
         GameActions.Bottom.DealDamage(this, m, attackEffect);

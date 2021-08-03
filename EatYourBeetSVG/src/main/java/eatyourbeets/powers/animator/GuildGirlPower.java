@@ -19,9 +19,7 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override
@@ -46,6 +44,7 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
         super.atStartOfTurnPostDraw();
 
         GameActions.Bottom.Callback(() -> GameActions.Bottom.Cycle(name, amount));
+        this.flash();
     }
 
     @Override

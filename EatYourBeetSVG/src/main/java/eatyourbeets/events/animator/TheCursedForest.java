@@ -47,7 +47,7 @@ public class TheCursedForest extends EYBEvent
 
     public TheCursedForest()
     {
-        super(ID, STRINGS, "CursedForest.png");
+        super(ID, STRINGS, IMAGES.CursedForest.Path());
 
         RegisterPhase(0, new Introduction());
         RegisterPhase(1, new Offer());

@@ -17,10 +17,7 @@ import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.EYBFontHelper;
-import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
@@ -90,7 +87,10 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
     private void OpenLoadoutEditor()
     {
-        GR.UI.LoadoutEditor.Open(loadout, this::RefreshInternal);
+        if (loadout != null && characterOption != null)
+        {
+            GR.UI.LoadoutEditor.Open(loadout, characterOption, () -> RefreshInternal(false));
+        }
     }
 
     private void RandomizeLoadout()
@@ -99,7 +99,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         {
             while (loadout == GR.Animator.Data.SelectedLoadout)
             {
-                GR.Animator.Data.SelectedLoadout = JUtils.GetRandomElement(availableLoadouts, RNG);
+                GR.Animator.Data.SelectedLoadout = GameUtilities.GetRandomElement(availableLoadouts, RNG);
             }
 
             Refresh(selectScreen, characterOption);
@@ -124,6 +124,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
                 loadout.LoadDefaultData();
             }
         }
+
         if (GR.Animator.Config.DisplayBetaSeries.Get())
         {
             for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
@@ -160,18 +161,22 @@ public class AnimatorLoadoutRenderer extends GUIElement
             this.loadout = GR.Animator.Data.SelectedLoadout = loadouts.get(0);
         }
 
-        RefreshInternal();
+        RefreshInternal(true);
 
         RandomizeButton.SetActive(availableLoadouts.size() > 1);
         AnimatorCharacterSelectScreen.TrophiesRenderer.Refresh(loadout);
         AnimatorCharacterSelectScreen.SpecialTrophiesRenderer.Refresh();
     }
 
-    protected void RefreshInternal()
+    protected void RefreshInternal(boolean refreshPortrait)
     {
-        _gold.Set(characterOption, loadout.Data.Gold);
-        _hp.Set(characterOption, String.valueOf(loadout.Data.HP));
-        selectScreen.bgCharImg = GR.Animator.Images.GetCharacterPortrait(loadout.ID);
+        _gold.Set(characterOption, loadout.GetGold());
+        _hp.Set(characterOption, String.valueOf(loadout.GetHP()));
+
+        if (refreshPortrait)
+        {
+            selectScreen.bgCharImg = GR.Animator.Images.GetCharacterPortrait(loadout.ID);
+        }
 
         int currentLevel = GR.Animator.GetUnlockLevel();
         if (currentLevel < loadout.UnlockLevel)

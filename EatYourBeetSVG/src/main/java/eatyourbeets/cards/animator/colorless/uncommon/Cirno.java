@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -53,7 +53,7 @@ public class Cirno extends AnimatorCard
         });
 
         GameActions.Bottom.ChannelOrb(new Frost());
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetVFX(false, true);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_VERTICAL).SetVFX(true, false);
     }
 }
 

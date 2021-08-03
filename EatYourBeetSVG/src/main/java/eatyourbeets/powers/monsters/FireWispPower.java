@@ -11,21 +11,11 @@ public class FireWispPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(FireWispPower.class);
 
-    public FireWispPower(AbstractCreature owner, int value)
+    public FireWispPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.amount = value;
-
-        updateDescription();
-    }
-
-    @Override
-    public void updateDescription()
-    {
-        String[] desc = powerStrings.DESCRIPTIONS;
-
-        description = desc[0] + amount + desc[1];
+        Initialize(amount);
     }
 
     @Override

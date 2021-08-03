@@ -119,7 +119,7 @@ public abstract class EYBClickablePower extends EYBPower
         super.update(slot);
 
         final GameActionManager.Phase phase = AbstractDungeon.actionManager.phase;
-        if (currentPhase != phase)
+        if (currentPhase != phase || GR.UI.Elapsed50())
         {
             triggerCondition.Refresh(false);
             currentPhase = phase;

@@ -15,13 +15,11 @@ public class PoisonAffinityPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(PoisonAffinityPower.class);
 
-    public PoisonAffinityPower(AbstractCreature owner, int stacks)
+    public PoisonAffinityPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.amount = stacks;
-        this.type = PowerType.BUFF;
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override
@@ -33,7 +31,7 @@ public class PoisonAffinityPower extends AnimatorPower
         {
             power.amount += this.amount;
 
-            AbstractGameAction action = AbstractDungeon.actionManager.currentAction;
+            final AbstractGameAction action = AbstractDungeon.actionManager.currentAction;
             if (action instanceof ApplyPower || action instanceof ApplyPowerAction)
             {
                 action.amount += this.amount;

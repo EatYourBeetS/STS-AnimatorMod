@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
@@ -40,7 +40,7 @@ public class MetalKnight extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY), 0.6f, true);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.ChannelOrb(new Plasma());
 
         if (magicNumber > 0)

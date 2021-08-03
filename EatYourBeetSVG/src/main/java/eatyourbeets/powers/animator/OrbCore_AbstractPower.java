@@ -12,46 +12,31 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
 {
     private static final Color disabledColor = new Color(0.5f, 0.5f, 0.5f, 1);
 
-    protected int value;
-    protected int uses;
+    protected int potency;
 
-    public OrbCore_AbstractPower(String id, AbstractCreature owner, int amount)
+    public OrbCore_AbstractPower(String id, AbstractCreature owner, int amount, int potency)
     {
         super(owner, id);
 
-        this.enabled = false;
-        this.uses = amount;
-        this.amount = amount;
+        this.potency = potency;
+        SetEnabled(false);
+
+        Initialize(amount);
     }
 
     @Override
     public void updateDescription()
     {
-        if (enabled)
-        {
-            this.description = powerStrings.DESCRIPTIONS[0] + this.amount + powerStrings.DESCRIPTIONS[1] + this.value + powerStrings.DESCRIPTIONS[2];
-        }
-        else
-        {
-            this.description = "Needs 1 more Synergy";
-        }
-    }
-
-    @Override
-    public void stackPower(int stackAmount)
-    {
-        super.stackPower(stackAmount);
-
-        this.uses += stackAmount;
-        this.updateDescription();
+        this.description = enabled ? FormatDescription(0, amount, potency) : "Needs 1 more Synergy";
     }
 
     @Override
     public void atStartOfTurn()
     {
-        this.enabled = false;
-        this.amount = uses;
-        updateDescription();
+        super.atStartOfTurn();
+
+        SetEnabled(false);
+        ResetAmount();
     }
 
     @Override
@@ -59,7 +44,7 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
     {
         super.onAfterCardPlayed(usedCard);
 
-        AnimatorCard card = JUtils.SafeCast(usedCard, AnimatorCard.class);
+        final AnimatorCard card = JUtils.SafeCast(usedCard, AnimatorCard.class);
         if (card != null && card.HasSynergy())
         {
             if (!enabled)

@@ -573,11 +573,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
                 ((EYBOrb) orb).onChannel();
             }
 
-            if (orb instanceof OnChannelOrbSubscriber)
-            {
-                ((OnChannelOrbSubscriber) orb).OnChannelOrb(orb);
-            }
-
             for (OnChannelOrbSubscriber p : onChannelOrb.GetSubscribers())
             {
                 p.OnChannelOrb(orb);

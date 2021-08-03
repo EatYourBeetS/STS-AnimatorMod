@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
@@ -53,7 +53,7 @@ public class YuiTsuruno extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
         GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, 1)
         .ShowEffect(true, true)
         .SetOrigin(CardSelection.Bottom);

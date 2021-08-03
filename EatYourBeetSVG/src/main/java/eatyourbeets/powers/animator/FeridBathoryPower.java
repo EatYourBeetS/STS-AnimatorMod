@@ -1,6 +1,6 @@
 package eatyourbeets.powers.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -13,18 +13,15 @@ import eatyourbeets.utilities.GameEffects;
 
 public class FeridBathoryPower extends AnimatorPower
 {
+    public static final String POWER_ID = CreateFullID(FeridBathoryPower.class);
     public static final int EXHAUST_PILE_THRESHOLD = 20;
     public static final int FORCE_AMOUNT = 10;
-
-    public static final String POWER_ID = CreateFullID(FeridBathoryPower.class);
 
     public FeridBathoryPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override
@@ -32,13 +29,14 @@ public class FeridBathoryPower extends AnimatorPower
     {
         super.onExhaust(card);
 
-        GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.NONE)
+        GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.HP_LOSS, AttackEffects.NONE)
         .SetDamageEffect(enemy ->
         {
             GameEffects.List.Add(new HemokinesisEffect2(enemy.hb.cX, enemy.hb.cY, owner.hb.cX, owner.hb.cY));
             return 0f;
         });
         GameActions.Bottom.GainTemporaryHP(amount);
+        flashWithoutSound();
     }
 
     @Override

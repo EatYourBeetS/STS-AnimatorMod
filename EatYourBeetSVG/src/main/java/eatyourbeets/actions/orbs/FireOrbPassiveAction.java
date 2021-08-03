@@ -1,7 +1,7 @@
 package eatyourbeets.actions.orbs;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -46,7 +46,7 @@ public class FireOrbPassiveAction extends EYBAction
             int actualDamage = AbstractOrb.applyLockOn(enemy, amount);
             if (actualDamage > 0)
             {
-                GameActions.Top.DealDamage(source, enemy, actualDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE)
+                GameActions.Top.DealDamage(source, enemy, actualDamage, DamageInfo.DamageType.THORNS, AttackEffects.FIRE)
                 .SetVFX(true, true);
             }
 

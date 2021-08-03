@@ -12,16 +12,12 @@ public class OrbCore_PlasmaPower extends OrbCore_AbstractPower
 
     public OrbCore_PlasmaPower(AbstractCreature owner, int amount)
     {
-        super(POWER_ID, owner, amount);
-
-        this.value = OrbCore_Plasma.VALUE;
-
-        updateDescription();
+        super(POWER_ID, owner, amount, OrbCore_Plasma.VALUE);
     }
 
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
-        GameActions.Bottom.GainTemporaryHP(value);
+        GameActions.Bottom.GainTemporaryHP(potency);
     }
 }

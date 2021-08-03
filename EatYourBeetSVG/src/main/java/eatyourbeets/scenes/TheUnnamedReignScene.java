@@ -67,7 +67,7 @@ public class TheUnnamedReignScene extends AbstractScene
 
     public TheUnnamedReignScene()
     {
-        super("images/scenes/theUnnamedReign/scene.atlas");
+        super("images/animator/scenes/theUnnamedReign/scene.atlas");
         this.columnConfig = TheUnnamedReignScene.ColumnConfig.OPEN;
         this.overlayColor = new Color(1f, 1f, 1f, 0.2f);
         this.bg1 = this.atlas.findRegion("mod/bg1");

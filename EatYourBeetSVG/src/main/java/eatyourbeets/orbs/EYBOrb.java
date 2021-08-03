@@ -1,11 +1,13 @@
 package eatyourbeets.orbs;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.FocusPower;
-import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
+import eatyourbeets.effects.vfx.OrbEvokeParticle;
 import eatyourbeets.effects.vfx.OrbFlareEffect2;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -13,11 +15,14 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.Mathf;
 
 import java.lang.reflect.InvocationTargetException;
 
 public abstract class EYBOrb extends AbstractOrb implements OnStartOfTurnPostDrawSubscriber
 {
+    public static final int IMAGE_SIZE = 96;
+
     public enum Timing
     {
         EndOfTurn,
@@ -67,7 +72,10 @@ public abstract class EYBOrb extends AbstractOrb implements OnStartOfTurnPostDra
     @Override
     public void triggerEvokeAnimation()
     {
-        GameEffects.Queue.Add(new DarkOrbActivateEffect(this.cX, this.cY));
+        for (int i = 0; i < 4; i++)
+        {
+            GameEffects.Queue.Add(new OrbEvokeParticle(this.cX, this.cY, Mathf.LerpCopy(GetColor1(), GetColor2(), MathUtils.random(0, 0.5f))));
+        }
     }
 
     @Override
@@ -129,6 +137,16 @@ public abstract class EYBOrb extends AbstractOrb implements OnStartOfTurnPostDra
 
     protected OrbFlareEffect2 GetOrbFlareEffect()
     {
-        return new OrbFlareEffect2(this);
+        return new OrbFlareEffect2(this).SetColors(GetColor1(), GetColor2());
+    }
+
+    protected Color GetColor1()
+    {
+        return Color.WHITE;
+    }
+
+    protected Color GetColor2()
+    {
+        return Color.LIGHT_GRAY;
     }
 }

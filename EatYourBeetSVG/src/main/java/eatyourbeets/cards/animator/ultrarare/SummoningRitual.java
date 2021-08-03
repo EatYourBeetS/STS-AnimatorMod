@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -68,7 +68,7 @@ public class SummoningRitual extends AnimatorCard_UltraRare
             float x = owner.drawX + (180f * Settings.scale);
             float y = owner.drawY + (owner.hb_h * 0.5f) + (180f * Settings.scale);
 
-            GameActions.Bottom.LoseHP(amount, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.LoseHP(amount, AttackEffects.NONE);
             GameActions.Bottom.VFX(new HemokinesisEffect2(owner.hb.cX, owner.hb.cY, x, y))
             .AddCallback(new TheUnnamed_Doll_Player(x, y), (c, __) ->
             {

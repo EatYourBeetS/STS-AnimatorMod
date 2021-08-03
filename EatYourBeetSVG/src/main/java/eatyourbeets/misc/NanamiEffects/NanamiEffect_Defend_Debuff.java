@@ -1,6 +1,6 @@
 package eatyourbeets.misc.NanamiEffects;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -17,7 +17,7 @@ public class NanamiEffect_Defend_Debuff extends NanamiEffect
         int damage = GetDamage(nanami);
         if (damage > 0)
         {
-            GameActions.Bottom.DealDamage(p, m, damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+            GameActions.Bottom.DealDamage(p, m, damage, DamageInfo.DamageType.THORNS, AttackEffects.BLUNT_LIGHT);
             GameUtilities.UsePenNib();
         }
 

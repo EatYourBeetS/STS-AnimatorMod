@@ -290,7 +290,7 @@ public class RenderHelpers
 
     public static void DrawOnCard(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY, float size)
     {
-        DrawOnCard(sb, card, CopyColor(card, Color.WHITE), img, drawX, drawY, size, size);
+        DrawOnCard(sb, card, Colors.White(card.transparency), img, drawX, drawY, size, size);
     }
 
     public static void DrawOnCard(SpriteBatch sb, AbstractCard card, Color color, Texture img, float drawX, float drawY)
@@ -336,6 +336,16 @@ public class RenderHelpers
         sb.draw(img, drawX - (width / 2f), drawY - (height / 2f), width / 2f, height / 2f, width, height, scale, scale, imgRotation);
     }
 
+    public static void DrawCentered(SpriteBatch sb, Color color, TextureRegion img, float drawX, float drawY, float width, float height, float imgScale, float imgRotation, boolean flipX, boolean flipY)
+    {
+        final float scale = Settings.scale * imgScale;
+
+        img.flip(flipX, flipY);
+        sb.setColor(color);
+        sb.draw(img, drawX - (width / 2f), drawY - (height / 2f), width / 2f, height / 2f, width, height, scale, scale, imgRotation);
+        img.flip(flipX, flipY);
+    }
+
     public static void Draw(SpriteBatch sb, Texture img, float drawX, float drawY, float size)
     {
         Draw(sb, img, Color.WHITE, drawX, drawY, size, size);
@@ -365,7 +375,7 @@ public class RenderHelpers
     {
         final float scale = card.drawScale * Settings.scale;
 
-        color = CopyColor(card, color);
+        color = Colors.Copy(color, card.transparency);
 
         FontHelper.renderRotatedText(sb, font, text, card.current_x, card.current_y, x * scale, y * scale, card.angle, roundY, color);
     }
@@ -393,16 +403,6 @@ public class RenderHelpers
     public static GUI_Image ForTexture(Texture texture, Color color)
     {
         return new GUI_Image(texture, color);
-    }
-
-    public static Color CopyColor(Color color, float a)
-    {
-        return new Color(color.r, color.g, color.b, a);
-    }
-
-    public static Color CopyColor(AbstractCard card, Color color)
-    {
-        return new Color(color.r, color.g, color.b, card.transparency);
     }
 
     public static ColoredString GetCardAttributeString(EYBCard card, char attributeID)

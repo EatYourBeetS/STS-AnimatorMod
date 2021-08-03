@@ -1,6 +1,6 @@
 package eatyourbeets.misc.NanamiEffects;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActions;
@@ -12,7 +12,7 @@ public class NanamiEffect_Attack_Defend extends NanamiEffect
     public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(GetBlock(nanami));
-        GameActions.Bottom.DealDamage(p, m, GetDamage(nanami), nanami.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamage(p, m, GetDamage(nanami), nanami.damageTypeForTurn, AttackEffects.NONE);
     }
 
     @Override

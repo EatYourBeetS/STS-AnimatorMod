@@ -1,6 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.PowerHelper;
@@ -13,7 +13,7 @@ public class LightningCrystal extends Crystal
     {
         super(MonsterElement.Lightning, tier, x, y);
 
-        moveset.SetAttackEffect(AbstractGameAction.AttackEffect.LIGHTNING);
+        moveset.SetAttackEffect(AttackEffects.LIGHTNING);
 
         moveset.Normal.Attack(tier.Add(2, 1), 3)
         .SetDamageScaling(0.25f);

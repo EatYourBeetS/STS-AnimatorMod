@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.colorless.rare;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.TanyaDegurechaff_Type95;
@@ -62,7 +62,7 @@ public class TanyaDegurechaff extends AnimatorCard
             for (int i = 0; i < (cards.size() + baseMagicNumber); i++)
             {
                 GameActions.Bottom.SFX("ATTACK_FIRE");
-                GameActions.Bottom.DealDamage(this, enemy, AbstractGameAction.AttackEffect.NONE);
+                GameActions.Bottom.DealDamage(this, enemy, AttackEffects.NONE);
             }
         });
     }

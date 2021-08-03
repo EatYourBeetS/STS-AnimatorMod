@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
@@ -39,7 +39,7 @@ public class ZankiKiguchi extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
         if (!player.stance.ID.equals(NeutralStance.STANCE_ID) && CombatStats.TryActivateSemiLimited(cardID))
         {

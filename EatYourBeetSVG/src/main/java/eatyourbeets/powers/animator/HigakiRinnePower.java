@@ -16,10 +16,9 @@ public class HigakiRinnePower extends AnimatorPower
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
         this.higakiRinne = higakiRinne;
 
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override

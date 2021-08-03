@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.curse;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -55,7 +55,7 @@ public class Curse_GriefSeed extends AnimatorCard_Curse
         GameActions.Bottom.Callback(() ->
         {
             GameActions.Bottom.Flash(this);
-            GameActions.Bottom.DealDamage(null, player, magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+            GameActions.Bottom.DealDamage(null, player, magicNumber, DamageInfo.DamageType.THORNS, AttackEffects.FIRE);
         });
     }
 

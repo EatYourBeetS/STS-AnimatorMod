@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -94,6 +94,6 @@ public class Cthulhu extends AnimatorCard_UltraRare
         EnergyPanel.useEnergy(COST);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.VFX(VFX.Cataclysm(), 0.8f, true)
-        .AddCallback(__ -> GameActions.Top.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE));
+        .AddCallback(__ -> GameActions.Top.DealDamageToAll(this, AttackEffects.NONE));
     }
 }

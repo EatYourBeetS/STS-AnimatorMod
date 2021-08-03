@@ -8,9 +8,9 @@ public class FrostCrystalPower extends AbstractCrystalPower
 {
     public static final String POWER_ID = CreateFullID(FrostCrystalPower.class);
 
-    public FrostCrystalPower(AbstractCreature owner, int value)
+    public FrostCrystalPower(AbstractCreature owner, int amount)
     {
-        super(POWER_ID, owner, value);
+        super(POWER_ID, owner, amount);
     }
 
     @Override

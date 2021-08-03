@@ -2,47 +2,44 @@ package eatyourbeets.powers.common;
 
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.ui.animator.combat.CombatHelper;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.Mathf;
 
 public class BurningPower extends CommonPower implements HealthBarRenderPower
 {
     private static final Color healthBarColor = Color.ORANGE.cpy();
 
     public static final String POWER_ID = CreateFullID(BurningPower.class);
-    public static final float ATTACK_MULTIPLIER = 4;
+    public static final int ATTACK_MULTIPLIER = 15;
 
     private final AbstractCreature source;
+
+    public static float CalculateDamage(float damage)
+    {
+        return damage + Mathf.Max(1, damage * (ATTACK_MULTIPLIER / 100f));
+    }
 
     public BurningPower(AbstractCreature owner, AbstractCreature source, int amount)
     {
         super(owner, POWER_ID);
 
-        this.source = source == null ? owner : source;
-        this.amount = amount;
-        if (this.amount >= 9999)
-        {
-            this.amount = 9999;
-        }
+        this.source = source;
+        this.priority = 4;
 
-        this.type = PowerType.DEBUFF;
-        this.isTurnBased = true;
-
-        updateDescription();
+        Initialize(amount, PowerType.DEBUFF, true);
     }
 
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, getHealthBarAmount(), (int)(this.amount * ATTACK_MULTIPLIER));
+        this.description = FormatDescription(0, GetPassiveDamage(), ATTACK_MULTIPLIER);
     }
 
     @Override
@@ -54,49 +51,22 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     @Override
     public void atStartOfTurn()
     {
-        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.getMonsters().areMonstersBasicallyDead())
-        {
-            this.flashWithoutSound();
+        this.flashWithoutSound();
 
-            GameActions.Bottom.DealDamage(source, owner, getHealthBarAmount(), DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.FIRE);
-            GameActions.Bottom.ReducePower(this, 1);
-        }
+        GameActions.Bottom.DealDamage(source, owner, GetPassiveDamage(), DamageInfo.DamageType.HP_LOSS, AttackEffects.FIRE);
+        ReducePower(1);
     }
 
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType type)
     {
-        if (type == DamageInfo.DamageType.NORMAL)
-        {
-            float multiplier = ATTACK_MULTIPLIER;
-            if (owner.hasPower(VulnerablePower.POWER_ID))
-            {
-                multiplier *= 0.5f;
-            }
-
-            return Math.round(damage * ((100 + this.amount * multiplier) / 100f));
-        }
-        else
-        {
-            return damage;
-        }
+        return super.atDamageReceive(type == DamageInfo.DamageType.NORMAL ? CalculateDamage(damage) : damage, type);
     }
 
     @Override
     public int getHealthBarAmount()
     {
-        if (amount == 1)
-        {
-            return 1;
-        }
-        else if (amount > 1)
-        {
-            return (amount / 2) + amount % 2;
-        }
-        else
-        {
-            return 0;
-        }
+        return CombatHelper.GetHealthBarAmount(owner, amount, false, true);
     }
 
     @Override
@@ -109,5 +79,10 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     public AbstractPower makeCopy()
     {
         return new BurningPower(owner, source, amount);
+    }
+
+    private int GetPassiveDamage()
+    {
+        return amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2;
     }
 }

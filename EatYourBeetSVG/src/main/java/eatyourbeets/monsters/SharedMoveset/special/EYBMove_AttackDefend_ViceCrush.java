@@ -1,6 +1,6 @@
 package eatyourbeets.monsters.SharedMoveset.special;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.vfx.combat.ViceCrushEffect;
@@ -26,14 +26,14 @@ public class EYBMove_AttackDefend_ViceCrush extends EYBMove_AttackDefend
         {
             owner.useFastAttackAnimation();
 
-            GameActions.Bottom.Add(new DamageAction(target, this.damageInfo, AbstractGameAction.AttackEffect.SMASH));
+            GameActions.Bottom.Add(new DamageAction(target, this.damageInfo, AttackEffects.BLUNT_LIGHT));
         }
         else
         {
             owner.useSlowAttackAnimation();
 
             GameActions.Bottom.VFX(new ViceCrushEffect(target.hb.cX, target.hb.cY), 0.5f);
-            GameActions.Bottom.Add(new DamageAction(target, this.damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+            GameActions.Bottom.Add(new DamageAction(target, this.damageInfo, AttackEffects.BLUNT_HEAVY));
         }
     }
 }

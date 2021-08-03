@@ -6,14 +6,13 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Burn;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.GameActions;
 import patches.CardGlowBorderPatches;
 
 public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPostDrawSubscriber, OnBattleStartSubscriber
@@ -28,11 +27,8 @@ public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPos
     {
         super(owner, POWER_ID);
 
-        this.amount = -1;
-
+        Initialize(-1);
         OnBattleStart();
-
-        updateDescription();
     }
 
     @Override
@@ -54,14 +50,6 @@ public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPos
     }
 
     @Override
-    public void updateDescription()
-    {
-        String[] desc = powerStrings.DESCRIPTIONS;
-
-        description = desc[0];
-    }
-
-    @Override
     public void onUseCard(AbstractCard card, UseCardAction action)
     {
         super.onUseCard(card, action);
@@ -78,6 +66,8 @@ public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPos
     @Override
     public void onInflictDamage(DamageInfo info, int damageAmount, AbstractCreature target)
     {
+        super.onInflictDamage(info, damageAmount, target);
+
         if (target != owner && damageAmount > 0 && info.type != DamageInfo.DamageType.THORNS)
         {
             GameActions.Bottom.MakeCardInDiscardPile(new Burn());
@@ -96,6 +86,7 @@ public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPos
     public void onRemove()
     {
         super.onRemove();
+
         CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
     }
 
@@ -110,10 +101,9 @@ public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPos
     {
         super.onDeath();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        if (!AbstractDungeon.player.hasBlight(eatyourbeets.blights.animator.UltimateWisp.ID))
+        if (!player.hasBlight(eatyourbeets.blights.animator.UltimateWisp.ID))
         {
-            AbstractDungeon.getCurrRoom().spawnBlightAndObtain(p.hb.cX, p.hb.cY, new eatyourbeets.blights.animator.UltimateWisp());
+            AbstractDungeon.getCurrRoom().spawnBlightAndObtain(player.hb.cX, player.hb.cY, new eatyourbeets.blights.animator.UltimateWisp());
         }
     }
 }

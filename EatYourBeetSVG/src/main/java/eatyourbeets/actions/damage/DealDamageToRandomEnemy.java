@@ -23,6 +23,9 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
     protected boolean skipWait;
     protected boolean isOrb;
 
+    protected float pitchMin = 0.95f;
+    protected float pitchMax = 1.05f;
+
     protected final DamageInfo info;
     protected FuncT1<Float, AbstractCreature> onDamageEffect;
 
@@ -34,6 +37,8 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 
         this.card = other.card;
         this.isOrb = other.isOrb;
+        this.pitchMin = other.pitchMin;
+        this.pitchMax = other.pitchMax;
         this.skipWait = other.skipWait;
         this.applyPowers = other.applyPowers;
         this.bypassBlock = other.bypassBlock;
@@ -77,6 +82,14 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
     {
         this.bypassBlock = bypassBlock;
         this.bypassThorns = bypassThorns;
+
+        return this;
+    }
+
+    public DealDamageToRandomEnemy SetSoundPitch(float pitchMin, float pitchMax)
+    {
+        this.pitchMin = pitchMin;
+        this.pitchMax = pitchMax;
 
         return this;
     }
@@ -142,7 +155,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 
         if (!hasPlayedEffect && duration < 0.1f)
         {
-            GameEffects.List.Attack(this.target, this.attackEffect, false);
+            GameEffects.List.Attack(this.target, this.attackEffect, pitchMin, pitchMax);
             hasPlayedEffect = true;
         }
 

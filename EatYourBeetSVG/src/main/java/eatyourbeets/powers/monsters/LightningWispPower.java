@@ -1,32 +1,23 @@
 package eatyourbeets.powers.monsters;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class LightningWispPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(LightningWispPower.class);
 
-    public LightningWispPower(AbstractCreature owner, int value)
+    public LightningWispPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.amount = value;
-
-        updateDescription();
-    }
-
-    @Override
-    public void updateDescription()
-    {
-        String[] desc = powerStrings.DESCRIPTIONS;
-
-        description = desc[0] + amount + desc[1];
+        Initialize(amount);
     }
 
     @Override
@@ -36,10 +27,10 @@ public class LightningWispPower extends AnimatorPower
 
         for (AbstractCreature c : GameUtilities.GetAllCharacters(true))
         {
-            GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE");
-            GameActions.Bottom.VFX(new LightningEffect(c.drawX, c.drawY));
-            GameActions.Bottom.DealDamage(owner, c, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
-                    .SetPiercing(true, true);
+            GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_EVOKE);
+            GameActions.Bottom.VFX(VFX.Lightning(c.hb));
+            GameActions.Bottom.DealDamage(owner, c, amount, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
+            .SetPiercing(true, true);
         }
     }
 }

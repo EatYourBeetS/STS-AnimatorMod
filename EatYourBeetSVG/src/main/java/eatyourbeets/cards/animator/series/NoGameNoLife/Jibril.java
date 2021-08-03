@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
@@ -36,7 +36,7 @@ public class Jibril extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.VFX(VFX.ShockWave(p.hb, Color.VIOLET), 0.3f);
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
         GameActions.Bottom.ChannelOrb(new Dark());
 
         if (isSynergizing)

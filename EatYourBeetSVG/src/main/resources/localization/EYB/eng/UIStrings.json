@@ -1,6 +1,6 @@
 
 {
-	"EYB:HandSelection":
+	"eyb:HandSelection":
 	{
 		"TEXT":
 		[
@@ -8,8 +8,7 @@
 			"buff."
 		]
 	},
-
-	"EYB:GridSelection":
+	"eyb:GridSelection":
 	{
 		"TEXT":
 		[
@@ -19,8 +18,7 @@
 			"Choose {0} card(s)."
 		]
 	},
-
-	"EYB:TheUnnamedReign":
+	"eyb:TheUnnamedReign":
 	{
 		"TEXT":
 		[

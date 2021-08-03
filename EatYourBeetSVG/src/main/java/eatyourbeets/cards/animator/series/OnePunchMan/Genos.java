@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -29,7 +29,7 @@ public class Genos extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
         GameActions.Bottom.StackPower(new SelfDamagePower(p, secondaryValue));
 
         if (isSynergizing)

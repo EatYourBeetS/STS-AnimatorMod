@@ -38,8 +38,8 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     public static Random rng = null;
     public TextureAtlas.AtlasRegion powerIcon;
     public boolean enabled = true;
-    public boolean overrideDisabled = false;
-    public boolean disabled = false;
+    public int maxAmount = 9999;
+    public int baseAmount = 0;
 
     protected EYBPower(AbstractCreature owner, EYBCardData cardData, EYBRelic relic)
     {
@@ -82,7 +82,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
         this.owner = owner;
         this.ID = id;
 
-        String imagePath = GR.GetPowerImage(ID);
+        final String imagePath = GR.GetPowerImage(ID);
         if (Gdx.files.internal(imagePath).exists())
         {
             this.img = GR.GetTexture(imagePath);
@@ -90,6 +90,35 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
         this.powerStrings = CardCrawlGame.languagePack.getPowerStrings(this.ID);
         this.name = powerStrings.NAME;
+    }
+
+    protected void Initialize(int amount)
+    {
+        Initialize(amount, PowerType.BUFF, false);
+    }
+
+    protected void Initialize(int amount, PowerType type, boolean turnBased)
+    {
+        this.baseAmount = this.amount = Mathf.Min(9999, amount);
+        this.type = type;
+        this.isTurnBased = turnBased;
+
+        updateDescription();
+    }
+
+    @Override
+    public void stackPower(int stackAmount)
+    {
+        if ((baseAmount += stackAmount) > maxAmount)
+        {
+            baseAmount = maxAmount;
+        }
+        if ((amount + stackAmount) > maxAmount)
+        {
+            stackAmount = maxAmount - amount;
+        }
+
+        super.stackPower(stackAmount);
     }
 
     @Override
@@ -162,6 +191,13 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     public void RemovePower()
     {
         GameActions.Bottom.RemovePower(owner, owner, this);
+    }
+
+    public int ResetAmount()
+    {
+        this.amount = baseAmount;
+        updateDescription();
+        return amount;
     }
 
     public EYBPower SetEnabled(boolean enable)

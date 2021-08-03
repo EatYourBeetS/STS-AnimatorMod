@@ -1,7 +1,7 @@
 package eatyourbeets.powers.animator;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -33,9 +33,7 @@ public class AinzPower extends AnimatorPower
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override
@@ -220,7 +218,7 @@ public class AinzPower extends AnimatorPower
                 {
                     return effect.Generate((c, p, m) ->
                     {
-                        GameActions.Bottom.DealDamageToAll(c, AbstractGameAction.AttackEffect.FIRE);
+                        GameActions.Bottom.DealDamageToAll(c, AttackEffects.FIRE);
                         GameUtilities.UsePenNib();
                     });
                 }

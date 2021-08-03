@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.Fate;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -34,7 +34,7 @@ public class Berserker extends AnimatorCard
         if (m != null)
         {
             GameActions.Bottom.VFX(VFX.VerticalImpact(m.hb));
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY)
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY)
             .AddCallback(m.currentBlock, (initialBlock, target) ->
             {
                 if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0))

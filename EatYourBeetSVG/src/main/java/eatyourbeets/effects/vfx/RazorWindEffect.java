@@ -1,19 +1,17 @@
 package eatyourbeets.effects.vfx;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.Mathf;
 
 public class RazorWindEffect extends EYBEffect
 {
-    public static Texture img;
-    public static final int SIZE = 256;
+    public static final TextureCache image = IMAGES.AirSlice;
 
     protected float x;
     protected float y;
@@ -22,26 +20,30 @@ public class RazorWindEffect extends EYBEffect
     protected float horizontalSpeed;
     protected float rotationSpeed;
     protected float vfxTimer;
+    protected float vfxFrequency;
 
     public RazorWindEffect(float x, float y, float targetY, float horizontalSpeed, float horizontalAcceleration)
     {
         super(1f);
 
-        if (img == null) {
-            img = ImageMaster.loadImage("images/orbs/animator/AirSlice.png");
-        }
-
-        this.x = x - (SIZE / 2f);
-        this.y = y - (SIZE / 2f);
-        this.targetY = targetY - (SIZE /2f);
-        this.rotation = Random(5f, 10f);
-        this.scale = Settings.scale;
+        this.x = x;
+        this.y = y;
+        this.targetY = targetY;
+        this.scale = 1;
         this.horizontalSpeed = horizontalSpeed * Settings.scale;
         this.horizontalAcceleration = horizontalSpeed * Settings.scale;
+        this.rotation = Random(5f, 10f);
         this.rotationSpeed = Random(1000f, 1200f);
         this.color = Color.WHITE.cpy();
+        this.vfxFrequency = 0.01f;
     }
 
+    public RazorWindEffect SetFrequency(float frequency)
+    {
+        this.vfxFrequency = Mathf.Clamp(frequency, 0.01f, startingDuration / 5f);
+
+        return this;
+    }
 
     @Override
     protected void UpdateInternal(float deltaTime)
@@ -63,8 +65,9 @@ public class RazorWindEffect extends EYBEffect
         vfxTimer -= deltaTime;
         if (vfxTimer < 0f)
         {
-            vfxTimer = 0.007f;
-            GameEffects.Queue.Add(new RazorWindParticleEffect(x, y + (SIZE / 2) + Random(-100,100), Math.signum(horizontalSpeed) * Random(-300f, -50f) * Settings.scale, Random(-200f, 200f) * Settings.scale));
+            GameEffects.Queue.Add(new RazorWindParticleEffect(x, y + (Random(-100, 100) * Settings.scale),
+                    Random(-300f, -50f) * Math.signum(horizontalSpeed), Random(-200f, 200f)));
+            vfxTimer = vfxFrequency;
         }
 
         super.UpdateInternal(deltaTime);
@@ -72,9 +75,6 @@ public class RazorWindEffect extends EYBEffect
 
     public void render(SpriteBatch sb)
     {
-        sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
-        sb.setColor(this.color);
-        sb.draw(img, x, y, SIZE * 0.5f, SIZE * 0.5f, SIZE, SIZE, scale, scale, rotation, 0, 0, SIZE, SIZE, false, false);
-        sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        RenderImage(sb, image.Texture(), x, y, false, false);
     }
 }

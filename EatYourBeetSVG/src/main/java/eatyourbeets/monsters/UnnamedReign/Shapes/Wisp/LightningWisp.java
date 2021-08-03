@@ -1,6 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.PowerHelper;
@@ -13,7 +13,7 @@ public class LightningWisp extends Wisp
     {
         super(MonsterElement.Lightning, tier, x, y);
 
-        moveset.SetAttackEffect(AbstractGameAction.AttackEffect.LIGHTNING);
+        moveset.SetAttackEffect(AttackEffects.LIGHTNING);
 
         moveset.Normal.AttackDebuff(tier.Add(6, 3), PowerHelper.Weak, 1)
         .SetMiscBonus(4, 1)

@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -93,6 +93,6 @@ public class Soujiro extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
     }
 }

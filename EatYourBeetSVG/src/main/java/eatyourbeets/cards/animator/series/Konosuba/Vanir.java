@@ -1,13 +1,17 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.events.shrines.Transmogrifier;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Vanir extends AnimatorCard
 {
@@ -46,7 +50,18 @@ public class Vanir extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SMASH);
+        if (damage > 8)
+        {
+            GameActions.Bottom.SFX(SFX.ATTACK_DEFECT_BEAM);
+            GameActions.Bottom.VFX(VFX.SmallLaser(p.hb, m.hb, Color.RED));
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE)
+            .SetDamageEffect(c -> GameEffects.List.Add(VFX.SmallExplosion(c.hb)).duration * 0.1f);
+        }
+        else
+        {
+            GameActions.Bottom.Wait(0.25f);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH);
+        }
         GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseDamage = Math.max(0, c.baseDamage - c.magicNumber));
     }
 }

@@ -86,6 +86,7 @@ public abstract class AnimatorLoadout
         }
     }
 
+    public static final int GOLD_HP_EDITOR_ASCENSION_REQUIRED = 7;
     public static final int MAX_VALUE = 30;
     public static final int MIN_CARDS = 10;
     public static final int BASE_GOLD = 99;
@@ -209,6 +210,16 @@ public abstract class AnimatorLoadout
         res.add(LivingPicture.ID);
         res.add(TheMissingPiece.ID);
         return res;
+    }
+
+    public int GetHP()
+    {
+        return Data.HP;
+    }
+
+    public int GetGold()
+    {
+        return Data.Gold;
     }
 
     public AnimatorTrophies GetTrophies()

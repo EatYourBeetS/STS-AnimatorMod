@@ -3,7 +3,6 @@ package eatyourbeets.utilities;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.delegates.FuncT1;
@@ -23,6 +22,8 @@ import java.util.regex.Pattern;
 
 public class JUtils
 {
+    public static final Random RNG = new Random();
+
     private static final StringBuilder sb1 = new StringBuilder();
     private static final StringBuilder sb2 = new StringBuilder();
     private static final ArrayList<String> classNames = new ArrayList<>();
@@ -284,28 +285,6 @@ public class JUtils
         }
     }
 
-    public static <T> T GetRandomElement(List<T> list)
-    {
-        return GetRandomElement(list, GameUtilities.GetRNG());
-    }
-
-    public static <T> T GetRandomElement(T[] arr)
-    {
-        return GetRandomElement(arr, GameUtilities.GetRNG());
-    }
-
-    public static <T> T GetRandomElement(T[] arr, Random rng)
-    {
-        int size = arr.length;
-        return (size > 0) ? arr[rng.random(arr.length - 1)] : null;
-    }
-
-    public static <T> T GetRandomElement(List<T> list, Random rng)
-    {
-        int size = list.size();
-        return (size > 0) ? list.get(rng.random(list.size() - 1)) : null;
-    }
-
     public static int IncrementMapElement(Map map, Object key)
     {
         //noinspection unchecked
@@ -453,5 +432,36 @@ public class JUtils
     public static boolean ShowDebugInfo()
     {
         return Settings.isDebug || Settings.isInfo;
+    }
+
+    public static <T> T Random(T[] items)
+    {
+        return items[RNG.nextInt(items.length)];
+    }
+
+    public static <T> T Random(ArrayList<T> items)
+    {
+        return items.get(RNG.nextInt(items.size()));
+    }
+
+    public static <T> T Random(Collection<T> items)
+    {
+        int size = items.size();
+        if (size == 0)
+        {
+            return null;
+        }
+
+        int i = 0;
+        int targetIndex = RNG.nextInt(size);
+        for (T item : items)
+        {
+            if (i++ == targetIndex)
+            {
+                return item;
+            }
+        }
+
+        throw new RuntimeException("items.size() was smaller than " + targetIndex + ".");
     }
 }

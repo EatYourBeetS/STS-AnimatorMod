@@ -1,6 +1,6 @@
 package eatyourbeets.powers;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
@@ -148,7 +148,7 @@ public class PowerTriggerCondition
             }
             case LoseHP:
             {
-                GameActions.Bottom.LoseHP(requiredAmount, AbstractGameAction.AttackEffect.NONE);
+                GameActions.Bottom.LoseHP(requiredAmount, AttackEffects.NONE);
                 break;
             }
             case Special:

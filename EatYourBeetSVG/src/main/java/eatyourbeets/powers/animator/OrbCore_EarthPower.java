@@ -13,10 +13,7 @@ public class OrbCore_EarthPower extends OrbCore_AbstractPower
 
     public OrbCore_EarthPower(AbstractCreature owner, int amount)
     {
-        super(POWER_ID, owner, amount);
-
-        this.value = OrbCore_Earth.VALUE;
-        updateDescription();
+        super(POWER_ID, owner, amount, OrbCore_Earth.VALUE);
     }
 
     @Override

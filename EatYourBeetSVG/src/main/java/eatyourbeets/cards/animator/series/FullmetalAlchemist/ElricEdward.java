@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
@@ -33,7 +33,7 @@ public class ElricEdward extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
     }
 
     @Override

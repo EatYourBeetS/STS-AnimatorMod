@@ -170,7 +170,8 @@
 	  "Starting Cards: ",
 	  "###############",
 	  "Unlocks at Level {0} (You are Level {1})",
-	  "Invalid Loadout"
+	  "Invalid Loadout (Please Edit)",
+	  "Unlocks at Ascension {0}"
 	]
   },
 

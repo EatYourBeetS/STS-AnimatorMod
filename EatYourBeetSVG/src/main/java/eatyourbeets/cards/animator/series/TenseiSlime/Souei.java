@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.unique.PoisonLoseHpAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -44,7 +44,7 @@ public class Souei extends AnimatorCard
                     PoisonPower poison = GameUtilities.GetPower(enemy, PoisonPower.class);
                     if (poison != null)
                     {
-                        GameActions.Top.Callback(new PoisonLoseHpAction(enemy, player, poison.amount, AbstractGameAction.AttackEffect.POISON))
+                        GameActions.Top.Callback(new PoisonLoseHpAction(enemy, player, poison.amount, AttackEffects.POISON))
                         .AddCallback(intangible, (baseIntangible, action) ->
                         {
                             if (GameUtilities.IsFatal(action.target, true))

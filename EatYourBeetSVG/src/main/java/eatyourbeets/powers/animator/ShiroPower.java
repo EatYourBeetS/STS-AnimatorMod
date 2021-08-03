@@ -12,9 +12,7 @@ public class ShiroPower extends AnimatorPower
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override

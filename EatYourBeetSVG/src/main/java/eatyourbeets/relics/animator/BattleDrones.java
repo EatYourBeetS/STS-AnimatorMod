@@ -1,7 +1,7 @@
 package eatyourbeets.relics.animator;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -51,7 +51,7 @@ public class BattleDrones extends AnimatorRelic implements OnSynergySubscriber
             GameActions.Bottom.Callback(()->
             {
                 GameActions.Bottom.GainBlock(BLOCK_AMOUNT).SetVFX(true, true);
-                GameActions.Bottom.DealDamageToRandomEnemy(DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
+                GameActions.Bottom.DealDamageToRandomEnemy(DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
                 .SetDamageEffect(enemy ->
                 {
                     CardCrawlGame.sound.play("ATTACK_MAGIC_BEAM_SHORT");

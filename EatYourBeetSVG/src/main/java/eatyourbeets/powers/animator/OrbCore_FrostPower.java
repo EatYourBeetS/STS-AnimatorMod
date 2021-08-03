@@ -12,16 +12,12 @@ public class OrbCore_FrostPower extends OrbCore_AbstractPower
 
     public OrbCore_FrostPower(AbstractCreature owner, int amount)
     {
-        super(POWER_ID, owner, amount);
-
-        this.value = OrbCore_Frost.VALUE;
-
-        updateDescription();
+        super(POWER_ID, owner, amount, OrbCore_Frost.VALUE);
     }
 
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
-        GameActions.Bottom.GainPlatedArmor(value);
+        GameActions.Bottom.GainPlatedArmor(potency);
     }
 }

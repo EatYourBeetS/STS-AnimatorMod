@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -62,7 +62,7 @@ public class Viivi extends AnimatorCard
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.VFX(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()), 0f);
-            GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.NONE);
         }
 
         if (IsStarter())

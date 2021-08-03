@@ -11,26 +11,26 @@ import eatyourbeets.utilities.GameUtilities;
 public class UnnamedDollPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(UnnamedDollPower.class);
-
-    private static final int STRENGTH = 30;
+    public static final int STRENGTH = 30;
 
     public UnnamedDollPower(AbstractCreature owner)
     {
         super(owner, POWER_ID);
 
-        updateDescription();
+        Initialize(-1);
     }
 
     @Override
     public void updateDescription()
     {
-        String[] text = powerStrings.DESCRIPTIONS;
-        this.description = text[3] + STRENGTH + text[4];
+        this.description = FormatDescription(0, STRENGTH);
     }
 
     @Override
     public void onDeath()
     {
+        super.onDeath();
+
         if (!AbstractDungeon.getCurrRoom().isBattleEnding())
         {
             for (AbstractCreature c : GameUtilities.GetAllCharacters(true))

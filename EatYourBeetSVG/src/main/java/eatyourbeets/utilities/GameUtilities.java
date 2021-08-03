@@ -30,7 +30,8 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.stats.AchievementGrid;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
@@ -366,6 +367,11 @@ public class GameUtilities
     public static int GetAscensionLevel()
     {
         return AbstractDungeon.isAscensionMode ? Math.max(0, Math.min(20, AbstractDungeon.ascensionLevel)) : 0;
+    }
+
+    public static int GetMaxAscensionLevel(AbstractPlayer p)
+    {
+        return p.getPrefs().getInteger("ASCENSION_LEVEL", 0);
     }
 
     public static ArrayList<AbstractCard> GetAvailableCards()
@@ -708,12 +714,34 @@ public class GameUtilities
 
     public static AbstractCreature GetRandomCharacter(boolean aliveOnly)
     {
-        return JUtils.GetRandomElement(GetAllCharacters(aliveOnly), GetRNG());
+        return GetRandomElement(GetAllCharacters(aliveOnly), GetRNG());
+    }
+
+    public static <T> T GetRandomElement(List<T> list)
+    {
+        return GetRandomElement(list, GetRNG());
+    }
+
+    public static <T> T GetRandomElement(T[] arr)
+    {
+        return GetRandomElement(arr, GetRNG());
+    }
+
+    public static <T> T GetRandomElement(T[] arr, Random rng)
+    {
+        int size = arr.length;
+        return (size > 0) ? arr[rng.random(arr.length - 1)] : null;
+    }
+
+    public static <T> T GetRandomElement(List<T> list, Random rng)
+    {
+        int size = list.size();
+        return (size > 0) ? list.get(rng.random(list.size() - 1)) : null;
     }
 
     public static AbstractMonster GetRandomEnemy(boolean aliveOnly)
     {
-        return JUtils.GetRandomElement(GetEnemies(aliveOnly), GetRNG());
+        return GetRandomElement(GetEnemies(aliveOnly), GetRNG());
     }
 
     public static AbstractOrb GetRandomOrb()
@@ -1123,6 +1151,15 @@ public class GameUtilities
     public static void ObtainRelic(float cX, float cY, AbstractRelic relic)
     {
         GetCurrentRoom(true).spawnRelicAndObtain(cX, cY, relic);
+    }
+
+    public static void PlayManually(AbstractCard card, AbstractMonster m)
+    {
+        card.applyPowers();
+        card.use(player, m);
+        actionManager.cardsPlayedThisTurn.add(card);
+        actionManager.cardsPlayedThisCombat.add(card);
+        CombatStats.Affinities.SetLastCardPlayed(card);
     }
 
     public static void RefreshHandLayout()

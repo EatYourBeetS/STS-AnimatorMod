@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -47,7 +47,7 @@ public class Sebas extends AnimatorCard
         {
             for (EnemyIntent intent : JUtils.Filter(GameUtilities.GetIntents(), i -> i.isAttacking))
             {
-                GameActions.Bottom.DealDamage(player, intent.enemy, player.currentBlock, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+                GameActions.Bottom.DealDamage(player, intent.enemy, player.currentBlock, DamageInfo.DamageType.THORNS, AttackEffects.BLUNT_HEAVY);
             }
         });
     }

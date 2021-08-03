@@ -11,21 +11,11 @@ public class EnvyPower extends AnimatorPower implements OnSynergyCheckSubscriber
 {
     public static final String POWER_ID = CreateFullID(EnvyPower.class);
 
-    private int baseAmount;
-
     public EnvyPower(AbstractPlayer owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.baseAmount = this.amount = amount;
-        updateDescription();
-    }
-
-    public void stackPower(int stackAmount)
-    {
-        super.stackPower(stackAmount);
-
-        this.baseAmount += stackAmount;
+        Initialize(amount);
     }
 
     @Override
@@ -45,9 +35,18 @@ public class EnvyPower extends AnimatorPower implements OnSynergyCheckSubscriber
     }
 
     @Override
+    public void updateDescription()
+    {
+        super.updateDescription();
+
+        SetEnabled(amount > 0);
+    }
+
+    @Override
     public void atStartOfTurn()
     {
-        super.onInitialApplication();
+        super.atStartOfTurn();
+
         this.amount = this.baseAmount;
         updateDescription();
     }
@@ -56,7 +55,9 @@ public class EnvyPower extends AnimatorPower implements OnSynergyCheckSubscriber
     public void onPlayCard(AbstractCard card, AbstractMonster m)
     {
         super.onPlayCard(card, m);
+
         this.amount = Math.max(0, this.amount - 1);
+        updateDescription();
     }
 
     @Override

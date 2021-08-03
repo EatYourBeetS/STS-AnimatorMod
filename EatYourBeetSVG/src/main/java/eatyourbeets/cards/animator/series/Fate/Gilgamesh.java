@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.series.Fate;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -106,7 +106,7 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
             {
                 GameActions.Bottom.SFX("ATTACK_HEAVY");
                 GameActions.Bottom.VFX(new IronWaveEffect(p.hb.cX, p.hb.cY, m.hb.cX), 0.1f);
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
                 GameActions.Bottom.VFX(new CleaveEffect());
             }
         }
@@ -114,7 +114,7 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
         {
             for (int i = 0; i < magicNumber; i++)
             {
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
             }
         }
     }

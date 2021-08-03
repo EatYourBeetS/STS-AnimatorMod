@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.special;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -69,7 +69,7 @@ public class Charlotte extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
         .SetDamageEffect(e ->
         {
             float wait = GameEffects.List.Add(VFX.Bite(e.hb)).duration;

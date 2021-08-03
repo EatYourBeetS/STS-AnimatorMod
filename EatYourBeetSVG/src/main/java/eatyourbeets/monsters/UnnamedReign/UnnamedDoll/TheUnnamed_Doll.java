@@ -150,8 +150,8 @@ public class TheUnnamed_Doll extends EYBMonster
                 maxHealth = 221;
             }
 
-            atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamedMinion.atlas";
-            jsonUrl = "images/monsters/animator/TheUnnamed/TheUnnamedMinion.json";
+            atlasUrl = "images/animator/monsters/TheUnnamed/TheUnnamedMinion.atlas";
+            jsonUrl = "images/animator/monsters/TheUnnamed/TheUnnamedMinion.json";
             scale = 2;
 
             SetHB(0,-20,120,140, 0, 60);

@@ -13,6 +13,7 @@ import eatyourbeets.actions.monsters.MoveMonsterAction;
 import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.animator.status.Crystallize;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.monsters.EYBMoveset;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Attack;
 import eatyourbeets.monsters.SharedMoveset.special.EYBMove_AttackDefend_ViceCrush;
@@ -20,9 +21,8 @@ import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.replacement.AntiArtifactSlowPower;
 import eatyourbeets.powers.monsters.UltimateCrystalPower;
-import eatyourbeets.resources.GR;
+import eatyourbeets.powers.replacement.AntiArtifactSlowPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -120,7 +120,7 @@ public class UltimateCrystal extends Crystal
 
             GameEffects.List.Callback(new WaitRealtimeAction(15), () -> CardCrawlGame.music.unsilenceBGM());
 
-            CardCrawlGame.sound.play(GR.Common.Audio_TheUltimateCrystal, true);
+            CardCrawlGame.sound.play(SFX.ANIMATOR_THE_ULTIMATE_CRYSTAL, true);
         }
         else
         {

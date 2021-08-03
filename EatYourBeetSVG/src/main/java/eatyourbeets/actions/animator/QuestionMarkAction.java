@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -79,6 +78,6 @@ public class QuestionMarkAction extends EYBAction
             }
         }
 
-        return (AnimatorCard) JUtils.GetRandomElement(cardPool).makeCopy();
+        return (AnimatorCard) GameUtilities.GetRandomElement(cardPool).makeCopy();
     }
 }

@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -91,10 +91,10 @@ public class Eve extends AnimatorCard
                 int damage = CombatStats.Affinities.GetAffinityLevel(AffinityType.General, usedCard);
                 if (damage > 0)
                 {
-                    GameEffects.Queue.BorderFlash(Color.SKY);
+                    //GameEffects.Queue.BorderFlash(Color.SKY);
                     for (int i = 0; i < amount; i++)
                     {
-                        GameActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
+                        GameActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
                         .SetOptions(true, false)
                         .SetDamageEffect(enemy ->
                         {

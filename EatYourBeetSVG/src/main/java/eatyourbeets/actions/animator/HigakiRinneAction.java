@@ -1,6 +1,6 @@
 package eatyourbeets.actions.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.unique.BouncingFlaskAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -26,7 +26,6 @@ import eatyourbeets.powers.deprecated.MarkOfPoisonPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -133,7 +132,7 @@ public class HigakiRinneAction extends EYBAction
         {
             for (int i = 0; i < 3; i++)
             {
-                GameActions.Bottom.Add(new DamageRandomEnemyAction(new DamageInfo(player, 3, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
+                GameActions.Bottom.Add(new DamageRandomEnemyAction(new DamageInfo(player, 3, DamageInfo.DamageType.THORNS), AttackEffects.POISON));
             }
         }
         else if (tryActivate(6)) // 18
@@ -207,7 +206,7 @@ public class HigakiRinneAction extends EYBAction
         }
         else if (tryActivate(3)) // 111
         {
-            AbstractCard card = JUtils.GetRandomElement(CardSeries.GetNonColorlessCard());
+            AbstractCard card = GameUtilities.GetRandomElement(CardSeries.GetNonColorlessCard());
             if (card != null && !card.tags.contains(AbstractCard.CardTags.HEALING))
             {
                 GameActions.Bottom.MakeCardInHand(card.makeCopy());
@@ -215,7 +214,7 @@ public class HigakiRinneAction extends EYBAction
         }
         else if (tryActivate(7)) // 118
         {
-            GameActions.Bottom.SFX(JUtils.GetRandomElement(sounds));
+            GameActions.Bottom.SFX(GameUtilities.GetRandomElement(sounds));
         }
         else if (tryActivate(6)) // 124
         {
@@ -224,7 +223,7 @@ public class HigakiRinneAction extends EYBAction
         else if (tryActivate(2)) // 126
         {
             ArrayList<String> keys = new ArrayList<>(CardLibrary.cards.keySet());
-            String key = JUtils.GetRandomElement(keys);
+            String key = GameUtilities.GetRandomElement(keys);
             AbstractCard card = CardLibrary.cards.get(key).makeCopy();
             if (!card.tags.contains(AbstractCard.CardTags.HEALING))
             {

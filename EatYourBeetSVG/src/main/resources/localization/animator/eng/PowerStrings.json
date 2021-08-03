@@ -77,7 +77,7 @@
 	},
 	"animator:ElementalMasteryPower":
 	{
-	  "DESCRIPTIONS": ["For #b{0} turn(s): At the end of the turn, inflict Elemental Exposure to all enemies, ignoring Artifact. Increase this amount by #b{1} whenever an Orb is Channeled and by #b{2} whenever you apply Burning or Chilled."],
+	  "DESCRIPTIONS": ["For #b{0} turn(s): At the end of the turn, inflict Elemental Exposure to all enemies, ignoring Artifact. Increase this amount by #b{1} whenever an Orb is Channeled and by #b{2} whenever you apply Burning or Freezing."],
 	  "NAME": "Elemental Mastery"
 	},
 	"animator:EmiyaShirouPower":
@@ -295,14 +295,9 @@
 		"DESCRIPTIONS": ["Your #yAttacks this turn deal #b{0}% more damage."],
 		"NAME": "Rory Mercury"
 	},
-	"animator:ResiliencePower":
-	{
-	  "DESCRIPTIONS": ["The effects of Frail, Vulernable, and Weak are decreased by #b{0}%."],
-	  "NAME": "Resilience"
-	},
 	"animator:SheerColdPower":
 	{
-	  "DESCRIPTIONS": ["Frost applies #b{0}X #yChilled to a random enemy when Triggered and to all enemies when Evoked."],
+	  "DESCRIPTIONS": ["Frost applies #b{0} #yFreezing to a random enemy when Triggered and #b{1} #yFreezing to all enemies when Evoked."],
 	  "NAME": "Sheer Cold"
 	},
 	"animator:ShikizakiKikiPower":

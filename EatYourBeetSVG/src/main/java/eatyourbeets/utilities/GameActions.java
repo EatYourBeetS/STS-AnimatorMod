@@ -65,10 +65,7 @@ import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.CorruptionPower;
 import eatyourbeets.powers.affinity.*;
 import eatyourbeets.powers.animator.EarthenThornsPower;
-import eatyourbeets.powers.common.BurningPower;
-import eatyourbeets.powers.common.FreezingPower;
-import eatyourbeets.powers.common.ResiliencePower;
-import eatyourbeets.powers.common.VitalityPower;
+import eatyourbeets.powers.common.*;
 import eatyourbeets.powers.replacement.ImprovedConstrictedPower;
 import eatyourbeets.powers.replacement.TemporaryArtifactPower;
 
@@ -175,14 +172,14 @@ public final class GameActions
         return action;
     }
 
-    public ApplyPower ApplyFreezing(AbstractCreature source, AbstractCreature target, int amount)
+    public ApplyPower ApplyBlinded(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new FreezingPower(target, source, amount));
+        return StackPower(source, new BlindedPower(target, source, amount));
     }
 
-    public ApplyPowerAuto ApplyFreezing(TargetHelper target, int amount)
+    public ApplyPowerAuto ApplyBlinded(TargetHelper target, int amount)
     {
-        return StackPower(target, PowerHelper.Freezing, amount);
+        return StackPower(target, PowerHelper.Blinded, amount);
     }
 
     public ApplyPower ApplyBurning(AbstractCreature source, AbstractCreature target, int amount)
@@ -208,6 +205,16 @@ public final class GameActions
     public ApplyPower ApplyFrail(AbstractCreature source, AbstractCreature target, int amount)
     {
         return StackPower(source, new FrailPower(target, amount, GameUtilities.IsMonster(source)));
+    }
+
+    public ApplyPower ApplyFreezing(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new FreezingPower(target, source, amount));
+    }
+
+    public ApplyPowerAuto ApplyFreezing(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.Freezing, amount);
     }
 
     public ApplyPower ApplyPoison(AbstractCreature source, AbstractCreature target, int amount)
@@ -606,7 +613,7 @@ public final class GameActions
 
     public ApplyPower GainFortuity(int amount)
     {
-        return StackPower(new ResiliencePower(player, amount));
+        return StackPower(new BalancePower(player, amount));
     }
 
     public HealCreature Heal(AbstractCreature source, AbstractCreature target, int amount)

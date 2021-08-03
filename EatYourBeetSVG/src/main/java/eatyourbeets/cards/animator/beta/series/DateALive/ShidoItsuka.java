@@ -6,6 +6,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.beta.special.SheerCold;
+import eatyourbeets.cards.animator.special.OrbCore_Frost;
+import eatyourbeets.cards.animator.tokens.AffinityToken_Blue;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -29,7 +32,6 @@ public class ShidoItsuka extends AnimatorCard
         Initialize(0, 8, 3);
         SetUpgrade(0, 0);
         SetAffinity_Blue(1, 0, 0);
-        SetAffinity_Orange(1, 0, 0);
 
         SetExhaust(true);
     }
@@ -114,7 +116,12 @@ public class ShidoItsuka extends AnimatorCard
 
         for (AbstractCard c : CardLibrary.getAllCards())
         {
-            if (c instanceof AnimatorCard && !GameUtilities.IsCurseOrStatus(c)
+            // Certain special cards are allowed
+            if (c instanceof SheerCold || c instanceof OrbCore_Frost || c instanceof AffinityToken_Blue) {
+                otherSynergicCards.add(c);
+            }
+
+            else if (c instanceof AnimatorCard && !GameUtilities.IsCurseOrStatus(c)
             && !c.hasTag(AbstractCard.CardTags.HEALING)
             && c.rarity != AbstractCard.CardRarity.SPECIAL
             && c.rarity != AbstractCard.CardRarity.BASIC)

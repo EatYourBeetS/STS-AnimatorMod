@@ -1,7 +1,7 @@
 package eatyourbeets.powers.affinity;
 
 import eatyourbeets.cards.base.AffinityType;
-import eatyourbeets.powers.common.ResiliencePower;
+import eatyourbeets.powers.common.BalancePower;
 import eatyourbeets.utilities.GameActions;
 
 public class WillpowerPower extends AbstractAffinityPower
@@ -17,6 +17,6 @@ public class WillpowerPower extends AbstractAffinityPower
     @Override
     protected void OnThresholdReached(int threshold)
     {
-        GameActions.Bottom.StackPower(new ResiliencePower(owner, 1));
+        GameActions.Bottom.StackPower(new BalancePower(owner, 1));
     }
 }

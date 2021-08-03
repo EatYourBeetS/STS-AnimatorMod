@@ -41,6 +41,7 @@ public class CardTooltips
     public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
     public EYBCardTooltip ForceStance = FindByID("Force Stance");
     public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
+    public EYBCardTooltip WillpowerStance = FindByID("Willpower Stance");
     public EYBCardTooltip NeutralStance = FindByID("Neutral Stance");
     public EYBCardTooltip SupportDamage = FindByID("Support Damage");
     public EYBCardTooltip Affinity_Star = FindByID("Multicolor");
@@ -68,6 +69,7 @@ public class CardTooltips
     public EYBCardTooltip Poison = FindByID("Poison");
     public EYBCardTooltip Burning = FindByID("Burning");
     public EYBCardTooltip Freezing = FindByID("Freezing");
+    public EYBCardTooltip Blinded = FindByID("Blinded");
     public EYBCardTooltip Thorns = FindByID("Thorns");
     public EYBCardTooltip Constricted = FindByID("Constricted");
     public EYBCardTooltip Malleable = FindByID("Malleable");
@@ -86,11 +88,10 @@ public class CardTooltips
     public EYBCardTooltip Dark = FindByID("Dark");
     public EYBCardTooltip Aura = FindByID("Aura");
     public EYBCardTooltip Autoplay = FindByID("Autoplay");
-    public EYBCardTooltip Chilled = FindByID("Chilled");
     public EYBCardTooltip Regeneration = FindByID("Regeneration");
     public EYBCardTooltip SelfDamage = FindByID("Self Damage");
     public EYBCardTooltip CounterAttack = FindByID("Counterattack");
-    public EYBCardTooltip Resilience = FindByID("Resilience");
+    public EYBCardTooltip Balance = FindByID("Balance");
     public EYBCardTooltip ElementalMastery = FindByID("Elemental Mastery");
     public EYBCardTooltip ElementalExposure = FindByID("Elemental Exposure");
     public EYBCardTooltip Void = FindByID("Void").ShowText(false);
@@ -212,7 +213,8 @@ public class CardTooltips
         Regeneration.SetIcon(tooltips.Regeneration.Texture(), 6);
 
         LoadFromPower(Burning, new BurningPower(FakeCharacter.Instance, null, 0)).SetIconSizeMulti(0.95f, 0.95f);
-        LoadFromPower(Freezing, new FreezingPower(FakeCharacter.Instance, null, 0));//.SetIconSizeMulti(0.95f, 0.95f);
+        LoadFromPower(Blinded, new BlindedPower(FakeCharacter.Instance, null, 0));//.SetIconSizeMulti(0.95f, 0.95f);
+        LoadFromPower(Freezing, new FreezingPower(FakeCharacter.Instance, null,0)).SetIconSizeMulti(0.95f, 0.95f);
         LoadFromPower(Poison, new PoisonPower(FakeCharacter.Instance, null, 0)).SetIconSizeMulti(1.05f, 1f);
         LoadFromPower(Metallicize, new MetallicizePower(FakeCharacter.Instance, 0));
         LoadFromPower(PlatedArmor, new PlatedArmorPower(FakeCharacter.Instance, 0));
@@ -228,10 +230,9 @@ public class CardTooltips
         LoadFromPower(Constricted, new ConstrictedPower(null, FakeCharacter.Instance, 0));
         LoadFromPower(SupportDamage, new SupportDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(LockOn, new LockOnPower(FakeCharacter.Instance, 0));
-        LoadFromPower(Chilled, new ChilledPower(FakeCharacter.Instance, null,0)).SetIconSizeMulti(0.95f, 0.95f);
         LoadFromPower(SelfDamage, new SelfDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(CounterAttack, new CounterAttackPower(FakeCharacter.Instance, 0));
-        LoadFromPower(Resilience, new ResiliencePower(FakeCharacter.Instance, 0));
+        LoadFromPower(Balance, new BalancePower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalMastery, new ElementalMasteryPower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalExposure, new ElementalExposurePower(FakeCharacter.Instance, 0));
 

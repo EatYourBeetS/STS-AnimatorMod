@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.animator.beta.special.SheerCold;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
@@ -30,11 +27,13 @@ public class AyakaKamisato extends AnimatorCard {
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(7, 0, 1, 3);
+        Initialize(7, 0, 1, 0);
         SetUpgrade(2, 0, 0, 0);
-        SetAffinity_Blue(1, 0, 0);
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Green(1, 0, 0);
         SetAffinity_Orange(2, 0, 0);
+
+        SetAffinityRequirement(AffinityType.Blue, 3);
 
         SetExhaust(true);
     }
@@ -46,7 +45,7 @@ public class AyakaKamisato extends AnimatorCard {
 
         if (cardText != null)
         {
-            tooltips.add(GR.Tooltips.Chilled);
+            tooltips.add(GR.Tooltips.Freezing);
         }
     }
 
@@ -70,12 +69,12 @@ public class AyakaKamisato extends AnimatorCard {
         for (int i = 0; i < magicNumber; i++)
         {
             CardCrawlGame.sound.playA("ORB_FROST_Evoke", -0.25f - (float)magicNumber / 200f);
-            GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_VERTICAL).SetOptions(true, false);
+            GameActions.Bottom.DealDamageToRandomEnemy(this, i % 2 == 0 ? AttackEffects.SLASH_VERTICAL : AttackEffects.SLASH_DIAGONAL).SetOptions(true, false);
         }
 
         GameActions.Bottom.StackPower(new NegateBlockPower(p, NO_BLOCK_TURNS));
 
-        if (this.getFrostCount() >= secondaryValue && CombatStats.TryActivateLimited(cardID))
+        if (CheckAffinity(AffinityType.Blue) && CombatStats.TryActivateLimited(cardID))
         {
             AbstractCard c = new SheerCold();
             c.applyPowers();

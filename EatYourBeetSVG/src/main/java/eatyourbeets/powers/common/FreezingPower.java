@@ -1,108 +1,123 @@
 package eatyourbeets.powers.common;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.Frost;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.effects.SFX;
-import eatyourbeets.interfaces.subscribers.OnChannelOrbSubscriber;
-import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
-import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.CommonPower;
-import eatyourbeets.utilities.GameUtilities;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.ui.animator.combat.CombatHelper;
+import eatyourbeets.utilities.GameActions;
 
-public class FreezingPower extends CommonPower implements OnChannelOrbSubscriber, OnEvokeOrbSubscriber
+public class FreezingPower extends AnimatorPower implements HealthBarRenderPower
 {
+    private static final Color healthBarColor = Color.SKY.cpy();
     public static final String POWER_ID = CreateFullID(FreezingPower.class);
-    public static final int DAMAGE_REDUCTION_LV1 = 3;
-    public static final int DAMAGE_REDUCTION_LV2 = 4;
+    public static final int BASE_MULTIPLIER = 10;
+    public static final int MAX_MULTIPLIER_STACKS = 20;
+    public static final float RATE = 0.5f;
 
+    private float percentage;
     private final AbstractCreature source;
 
-    public static int GetDamageReduction()
+    public static float CalculatePercentage(int amount) {return BASE_MULTIPLIER + RATE * Math.min(MAX_MULTIPLIER_STACKS,amount);}
+    public static float CalculateDamage(float damage, float percentage)
     {
-        return GameUtilities.HasOrb(Frost.ORB_ID) ? DAMAGE_REDUCTION_LV2 : DAMAGE_REDUCTION_LV1;
+        return damage - MathUtils.ceil(percentage * damage);
     }
 
     public FreezingPower(AbstractCreature owner, AbstractCreature source, int amount)
     {
         super(owner, POWER_ID);
 
-        this.source = source;
-        this.priority = 4;
+        this.source = source == null ? owner : source;
+        this.amount = amount;
+        if (this.amount >= 9999)
+        {
+            this.amount = 9999;
+        }
+        this.type = PowerType.DEBUFF;
+        this.isTurnBased = true;
 
-        Initialize(amount, PowerType.DEBUFF, true);
-    }
-
-    @Override
-    public void onInitialApplication()
-    {
-        super.onInitialApplication();
-
-        CombatStats.onChannelOrb.Subscribe(this);
-        CombatStats.onEvokeOrb.Subscribe(this);
-    }
-
-    @Override
-    public void onRemove()
-    {
-        super.onRemove();
-
-        CombatStats.onChannelOrb.Unsubscribe(this);
-        CombatStats.onEvokeOrb.Unsubscribe(this);
+        updatePercentage();
     }
 
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, GetDamageReduction());
+        FormatDescription(0, GetPassiveDamage(), percentage);
     }
 
     @Override
     public void playApplyPowerSfx()
     {
-        SFX.Play(SFX.ORB_FROST_EVOKE, 1.2f, 1.5f);
+        CardCrawlGame.sound.playA("ORB_FROST_CHANNEL", -0.25f);
     }
 
     @Override
-    public void OnChannelOrb(AbstractOrb orb)
+    public void atStartOfTurn()
     {
-        if (Frost.ORB_ID.equals(orb.ID))
-        {
-            AbstractDungeon.onModifyPower();
-            updateDescription();
-        }
-    }
+        this.flashWithoutSound();
 
-    @Override
-    public void OnEvokeOrb(AbstractOrb orb)
-    {
-        if (Frost.ORB_ID.equals(orb.ID))
-        {
-            AbstractDungeon.onModifyPower();
-            updateDescription();
-        }
-    }
-
-    @Override
-    public void atEndOfTurn(boolean isPlayer)
-    {
-        super.atEndOfTurn(isPlayer);
-
+        GameActions.Bottom.DealDamage(source, owner, GetPassiveDamage(), DamageInfo.DamageType.HP_LOSS, AttackEffects.FIRE);
         ReducePower(1);
+    }
+
+    @Override
+    public void stackPower(int stackAmount)
+    {
+        super.stackPower(stackAmount);
+        updatePercentage();
+    }
+
+    @Override
+    public void reducePower(int reduceAmount)
+    {
+        super.reducePower(reduceAmount);
+        updatePercentage();
+    }
+
+    @Override
+    public void atEndOfRound()
+    {
+        super.atEndOfRound();
+        GameActions.Bottom.ReducePower(this, Math.max(MathUtils.ceil(this.amount * 0.75f),1));
     }
 
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type)
     {
-        return super.atDamageGive(type == DamageInfo.DamageType.NORMAL ? (damage - GetDamageReduction()) : damage, type);
+        float newDamage = calculateDamageGiven(damage, type);
+        return super.atDamageGive(newDamage, type);
     }
 
     @Override
-    public AbstractPower makeCopy()
+    public int getHealthBarAmount()
     {
-        return new FreezingPower(owner, source, amount);
+        return CombatHelper.GetHealthBarAmount(owner, amount, false, true);
+    }
+
+    @Override
+    public Color getColor()
+    {
+        return healthBarColor;
+    }
+
+    public int calculateDamageGiven(float damage, DamageInfo.DamageType type)
+    {
+        return (int) ((type == DamageInfo.DamageType.NORMAL) ? CalculateDamage(damage, percentage) : damage);
+    }
+
+    private int GetPassiveDamage()
+    {
+        return amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2;
+    }
+
+    private void updatePercentage()
+    {
+        percentage = CalculatePercentage(this.amount);
+        updateDescription();
     }
 }

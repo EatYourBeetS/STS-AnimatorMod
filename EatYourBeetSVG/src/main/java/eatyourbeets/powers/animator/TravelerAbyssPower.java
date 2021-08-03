@@ -71,7 +71,7 @@ public class TravelerAbyssPower extends AnimatorPower
 
     private enum AbyssPositiveEffect {
         ApplyBurning(ACTIONS.ApplyToALL(7, GR.Tooltips.Burning, true), 10, 4),
-        ApplyChilled(ACTIONS.ApplyToALL(30, GR.Tooltips.Chilled, true), 10, 4),
+        ApplyFreezing(ACTIONS.ApplyToALL(30, GR.Tooltips.Freezing, true), 10, 4),
         ApplyVulnerable(ACTIONS.ApplyToALL(2, GR.Tooltips.Vulnerable, true), 10, 4),
         ApplyWeak(ACTIONS.ApplyToALL(2, GR.Tooltips.Weak, true), 10, 4),
         ChannelRandomOrbs(ACTIONS.ChannelRandomOrbs(2, true), 10, 2),

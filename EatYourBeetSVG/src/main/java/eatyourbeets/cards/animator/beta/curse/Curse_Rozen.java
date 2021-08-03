@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 public class Curse_Rozen extends AnimatorCard_Curse implements OnSynergySubscriber
 {
     public static final EYBCardData DATA = Register(Curse_Rozen.class)
-    		.SetCurse(-2, EYBCardTarget.None).SetSeries(CardSeries.RozenMaiden);
+    		.SetCurse(-2, EYBCardTarget.None, false).SetSeries(CardSeries.RozenMaiden);
 
     public Curse_Rozen()
     {

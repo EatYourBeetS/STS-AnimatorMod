@@ -1,13 +1,13 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActions;
@@ -47,7 +47,7 @@ public class Noah extends AnimatorCard
     {
         if (m != null)
         {
-            GameUtilities.GetIntent(m).AddFreezing();
+            GameUtilities.GetIntent(m).AddBlinded();
         }
     }
 
@@ -57,7 +57,7 @@ public class Noah extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL)
         .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.PURPLE, Color.LIGHT_GRAY, Color.VIOLET, Color.BLUE).duration * 0.6f);
         GameActions.Bottom.GainCorruption(1, true);
-        GameActions.Bottom.ApplyFreezing(p, m, magicNumber);
+        GameActions.Bottom.ApplyBlinded(p, m, magicNumber);
 
         if (!CheckAffinity(AffinityType.Dark))
         {

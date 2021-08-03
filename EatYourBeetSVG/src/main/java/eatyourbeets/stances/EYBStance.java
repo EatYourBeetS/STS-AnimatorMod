@@ -34,11 +34,13 @@ public abstract class EYBStance extends AbstractStance
         stances.put(ForceStance.STANCE_ID, ForceStance::new);
         stances.put(IntellectStance.STANCE_ID, IntellectStance::new);
         stances.put(AgilityStance.STANCE_ID, AgilityStance::new);
+        stances.put(WillpowerStance.STANCE_ID, WillpowerStance::new);
 
         tooltips.clear();
         tooltips.put(ForceStance.STANCE_ID, GR.Tooltips.ForceStance);
         tooltips.put(AgilityStance.STANCE_ID, GR.Tooltips.AgilityStance);
         tooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.IntellectStance);
+        tooltips.put(WillpowerStance.STANCE_ID, GR.Tooltips.WillpowerStance);
         tooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);
     }
 

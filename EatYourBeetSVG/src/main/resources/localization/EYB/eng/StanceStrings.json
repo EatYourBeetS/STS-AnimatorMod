@@ -23,5 +23,13 @@
 		[
 			"#g+{0} #gFocus, NL #r-{1} #rStrength, NL #r-{1} #rDexterity. NL On Enter: #yBoost #yIntellect."
 		]
+	},
+	"eyb:WillpowerStance":
+	{
+	  "NAME": "Willpower Stance",
+	  "DESCRIPTION":
+	  [
+		"#g+{0} #gBalance, NL #r-{1} #rStrength, NL #r-{1} #rDexterity. NL On Enter: #yBoost #yWillpower."
+	  ]
 	}
 }

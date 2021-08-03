@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 public class Curse_JunTormented extends AnimatorCard_Curse
 {
     public static final EYBCardData DATA = Register(Curse_JunTormented.class)
-            .SetCurse(-2, EYBCardTarget.None).SetSeries(CardSeries.RozenMaiden);
+            .SetCurse(-2, EYBCardTarget.None, false).SetSeries(CardSeries.RozenMaiden);
     static
     {
         DATA.CardRarity = CardRarity.SPECIAL;

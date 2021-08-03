@@ -1,5 +1,15 @@
 
 {
+	"eyb:BalancePower":
+	{
+	  "DESCRIPTIONS": ["Reduce the effects of Frail, Vulernable, and Weak by #b{0}%."],
+	  "NAME": "Balance"
+	},
+	"eyb:BlindedPower":
+	{
+	  "DESCRIPTIONS": ["Deal #b{0} less #yAttack damage."],
+	  "NAME": "Blinded"
+	},
 	"eyb:BurningPower":
 	{
 		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Receive #b{1}% more #yAttack damage (min. #b1 additional damage)."],
@@ -7,7 +17,7 @@
 	},
 	"eyb:FreezingPower":
 	{
-		"DESCRIPTIONS": ["Deal #b{0} less #yAttack damage."],
+		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Deal #b{1}% less #yAttack damage (rounded up)."],
 		"NAME": "Freezing"
 	},
 	"eyb:SelfDamagePower":
@@ -34,6 +44,11 @@
 	{
 		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, gain #b{2} #yFocus."],
 		"NAME": "Intellect"
+	},
+	"eyb:WillpowerPower":
+	{
+	  "DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, gain #b{2} #yBalance."],
+	  "NAME": "Intellect"
 	},
 	"eyb:BlessingPower":
 	{

@@ -1,18 +1,15 @@
 package eatyourbeets.cards.animator.beta.series.Rewrite;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.affinity.AgilityPower;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.affinity.WillpowerPower;
+import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RandomizedList;
 
 public class SougenEsaka extends AnimatorCard
 {
@@ -22,16 +19,18 @@ public class SougenEsaka extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 2, 1);
-        SetUpgrade(1, 0, 2);
-        SetAffinity_Orange(1, 1, 0);
+        Initialize(5, 0, 1);
+        SetUpgrade(1, 0, 1);
+        SetAffinity_Orange(1, 1, 1);
+
+        SetAffinityRequirement(AffinityType.Orange, 3);
     }
 
     @Override
     protected float ModifyBlock(AbstractMonster enemy, float amount)
     {
-        int agility = GameUtilities.GetPowerAmount(AbstractDungeon.player, AgilityPower.POWER_ID);
-        return super.ModifyBlock(enemy, amount + agility);
+        int willpower = GameUtilities.GetPowerAmount(AbstractDungeon.player, WillpowerPower.POWER_ID);
+        return super.ModifyBlock(enemy, amount + willpower);
     }
 
 
@@ -40,30 +39,16 @@ public class SougenEsaka extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT);
 
-        int agility = GameUtilities.GetPowerAmount(p, AgilityPower.POWER_ID);
-        if (agility > 0)
+        int willpower = GameUtilities.GetPowerAmount(p, WillpowerPower.POWER_ID);
+        if (willpower > 0)
         {
             GameActions.Bottom.GainBlock(block);
         }
 
-        if (HasSynergy())
+        if (CheckAffinity(AffinityType.Orange) && CombatStats.TryActivateLimited(cardID))
         {
-            RandomizedList<AbstractCard> cardsToGainAttack = new RandomizedList<>();
-
-            for (AbstractCard card : player.hand.group)
-            {
-                if (card.type.equals(CardType.ATTACK) && card.baseDamage > 0)
-                {
-                    cardsToGainAttack.Add(card);
-                }
-            }
-
-            AbstractCard card = cardsToGainAttack.Retrieve(rng);
-
-            if (card != null)
-            {
-                GameUtilities.IncreaseDamage(card, magicNumber, false);
-            }
+            GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID);
+            GameActions.Bottom.GainWillpower(magicNumber);
         }
     }
 }

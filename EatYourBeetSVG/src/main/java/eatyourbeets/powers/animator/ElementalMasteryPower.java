@@ -10,6 +10,7 @@ import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.interfaces.subscribers.OnChannelOrbSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.common.BurningPower;
+import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 
@@ -86,7 +87,7 @@ public class ElementalMasteryPower extends AnimatorPower implements OnChannelOrb
     @Override
     public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
     {
-        if ((power.ID.equals(BurningPower.POWER_ID)  || power.ID.equals(ChilledPower.POWER_ID)) && source == owner && target != owner) {
+        if ((power.ID.equals(BurningPower.POWER_ID)  || power.ID.equals(FreezingPower.POWER_ID)) && source == owner && target != owner) {
             this.amount += MULTIPLIER_APPLY;
         }
     }

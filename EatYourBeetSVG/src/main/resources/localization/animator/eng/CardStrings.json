@@ -362,9 +362,9 @@
 		},
 		"animator:SheerCold":
 		{
-		  "DESCRIPTION": "Your [Frost] now applies [Chilled] equal to their [Block] to a random enemy when Triggered and to all enemies when Evoked, ignoring [Artifact].",
+		  "DESCRIPTION": "Your [Frost] now applies !M! [Freezing] to a random enemy when Triggered and twice that amount to all enemies when Evoked.",
 		  "NAME": "Sheer Cold",
-		  "UPGRADE_DESCRIPTION": "Channel 1 [Frost]. || Your [Frost] now applies [Chilled] equal to their [Block] to a random enemy when Triggered and to all enemies when Evoked, ignoring [Artifact]."
+		  "UPGRADE_DESCRIPTION": "Channel 1 [Frost]. || Your [Frost] now applies !M! [Freezing] to a random enemy when Triggered and twice that amount to all enemies when Evoked."
 		},
 		"animator:ShuuOuma":
 		{
@@ -509,7 +509,7 @@
 		},
 		"animator:AyakaKamisato":
 		{
-		  "DESCRIPTION": "Attack 1 additional time for each [Frost] you have. You cannot gain [Block] for 2 turns. || <LIM>. If you have at least ** !S! [Frost]: Play {Sheer Cold}.",
+		  "DESCRIPTION": "Attack 1 additional time for each [Frost] you have. You cannot gain [Block] for 2 turns. || <LIM>. 3 <B>: Play {Sheer Cold}.",
 		  "NAME": "Ayaka Kamisato"
 		},
 		"animator:BarbaraPegg":
@@ -696,7 +696,7 @@
 		},
 		"animator:SougenEsaka":
 		{
-			"DESCRIPTION": "Gain [Block] equal to your [A]. || On Synergy: Increase damage of a random {Attack} in your hand by !M!.",
+			"DESCRIPTION": "Gain [Block] equal to your [W]. || <LIM>. 3 <O>: Enter <WS> and gain [W].",
 			"NAME": "Sougen Esaka"
 		},
 		"animator:Strike_Rewrite":
@@ -1150,7 +1150,7 @@
 		},
 		"animator:Noah":
 		{
-			"DESCRIPTION": "Boost [C]. Apply !M! [Freezing]. || Less than !A! <D>: Take ** !S! damage at the ** end of turn.",
+			"DESCRIPTION": "Boost [C]. Apply !M! [Blinded]. || Less than !A! <D>: Take ** !S! damage at the ** end of turn.",
 			"NAME": "Noah"
 		},
 		"animator:Raven":

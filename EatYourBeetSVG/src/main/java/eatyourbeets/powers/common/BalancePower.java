@@ -11,9 +11,9 @@ import eatyourbeets.utilities.GameActions;
 
 import java.text.DecimalFormat;
 
-public class ResiliencePower extends CommonPower
+public class BalancePower extends CommonPower
 {
-    public static final String POWER_ID = CreateFullID(ResiliencePower.class);
+    public static final String POWER_ID = CreateFullID(BalancePower.class);
     public static final int MULTIPLIER = 10;
     private float percentage;
 
@@ -22,7 +22,7 @@ public class ResiliencePower extends CommonPower
         return (100f - (amount * MULTIPLIER)) / 100f;
     }
 
-    public ResiliencePower(AbstractCreature owner, int amount)
+    public BalancePower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
         this.amount = amount;

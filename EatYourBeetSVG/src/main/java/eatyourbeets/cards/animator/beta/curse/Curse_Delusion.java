@@ -12,7 +12,7 @@ import eatyourbeets.utilities.RandomizedList;
 public class Curse_Delusion extends AnimatorCard_Curse
 {
     public static final EYBCardData DATA = Register(Curse_Delusion.class)
-            .SetCurse(-2, EYBCardTarget.None).SetSeries(CardSeries.GenshinImpact);
+            .SetCurse(-2, EYBCardTarget.None, false).SetSeries(CardSeries.GenshinImpact);
     static
     {
         DATA.CardRarity = CardRarity.SPECIAL;

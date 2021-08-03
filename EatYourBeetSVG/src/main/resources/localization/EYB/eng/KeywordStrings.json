@@ -42,11 +42,23 @@
 		"NAMES": ["autoplay", "autoplayed"],
 		"PROPER_NAME": "Autoplay"
 	},
+	"Balance":
+	{
+	  "DESCRIPTION": "Reduces the effects of Frail, Vulernable, and Weak.",
+	  "NAMES": ["balance"],
+	  "PROPER_NAME": "Balance"
+	},
 	"Blessing":
 	{
 		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b4, #b8, #b12, and #b16 [B], gain [Vitality].",
 		"NAMES": ["blessing"],
 		"PROPER_NAME": "Blessing"
+	},
+	"Blinded":
+	{
+	  "DESCRIPTION": "Reduces #yAttack damage by #b3, or by #b4 if at least #b1 [Dark] is #yChanneled. At the end of turn, reduce [Blinded] by #b1.",
+	  "NAMES": ["blinded"],
+	  "PROPER_NAME": "Blinded"
 	},
 	"Blur":
 	{
@@ -62,15 +74,9 @@
 	},
 	"Burning":
 	{
-		"DESCRIPTION": "Increases incoming #yAttack damage by #b10% + #b0.5% per stack (max. multiplier is #b20%, min. damage icrease is #b1). NL At the start of turn, lose HP equal to #b50% of [Burning] and reduce [Burning] by #b1.",
+		"DESCRIPTION": "Increases incoming #yAttack damage by #b10% + #b1% per stack (max. multiplier is #b30%, min. damage icrease is #b1). NL At the start of turn, lose HP equal to #b50% of [Burning] and reduce [Burning] by #b1.",
 		"NAMES": ["burning"],
 		"PROPER_NAME": "Burning"
-	},
-	"Chilled":
-	{
-		"DESCRIPTION": "Damage dealt is lowered. Higher stacks increase the intensity of this debuff. Reduced by 75% each turn.",
-		"NAMES": ["chilled"],
-		"PROPER_NAME": "Chilled"
 	},
 	"Choked":
 	{
@@ -128,7 +134,7 @@
 	},
 	"Elemental Mastery":
 	{
-	  "DESCRIPTION": "At the end of the turn, Inflict Elemental Exposure to all enemies. Stacks increase whenever an Orb is Channeled or Burning/Chilled is inflicted.",
+	  "DESCRIPTION": "At the end of the turn, Inflict Elemental Exposure to all enemies. Stacks increase whenever an Orb is Channeled or Burning or Freezing is inflicted.",
 	  "NAMES": ["elemental mastery"],
 	  "PROPER_NAME": "Elemental Mastery"
 	},
@@ -186,17 +192,17 @@
 		"NAMES": ["[f] stance", "force stance"],
 		"PROPER_NAME": "Force Stance"
 	},
+	"Freezing":
+	{
+		"DESCRIPTION": "Reduces outgoing #yAttack damage by #b10% + #b0.5% per stack (max. multiplier is #b20%, damage is rounded up). NL At the start of turn, lose HP equal to #b50% of [Freezing] and reduce [Freezing] by #b1.",
+		"NAMES": ["freezing"],
+		"PROPER_NAME": "Freezing"
+	},
 	"Harmonic":
 	{
 	  "DESCRIPTION": "Synergizes with other cards from the same series.",
 	  "NAMES": ["harmonic"],
 	  "PROPER_NAME": "Harmonic"
-	},
-	"Freezing":
-	{
-		"DESCRIPTION": "Reduces #yAttack damage by #b3, or by #b4 if at least #b1 [Frost] is #yChanneled. At the end of turn, reduce [Freezing] by #b1.",
-		"NAMES": ["freezing"],
-		"PROPER_NAME": "Freezing"
 	},
 	"High-Cost":
 	{
@@ -294,12 +300,6 @@
 	  "NAMES": ["regeneration"],
 	  "PROPER_NAME": "Regeneration"
 	},
-	"Resilience":
-	{
-	  "DESCRIPTION": "Reduces the effects of Frail, Vulernable, and Weak.",
-	  "NAMES": ["resilience"],
-	  "PROPER_NAME": "Resilience"
-	},
 	"Self Damage":
 	{
 	  "DESCRIPTION": "Take damage at the end of your turn.",
@@ -350,7 +350,7 @@
 	},
 	"Willpower":
 	{
-	  "DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [W], gain #yResilience.",
+	  "DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [W], gain #yBalance.",
 	  "NAMES": ["willpower"],
 	  "PROPER_NAME": "Willpower"
 	},

@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.series.TouhouProject;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
@@ -9,6 +8,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class MarisaKirisame extends AnimatorCard
@@ -37,7 +37,7 @@ public class MarisaKirisame extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.LIGHTNING);
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.LIGHTNING);
 
         if (isSynergizing)
         {

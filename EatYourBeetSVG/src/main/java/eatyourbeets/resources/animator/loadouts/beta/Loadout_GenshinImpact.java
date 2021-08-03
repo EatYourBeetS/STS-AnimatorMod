@@ -15,9 +15,9 @@ public class Loadout_GenshinImpact extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(Amber.DATA, 4);
         AddToSpecialSlots(Noelle.DATA, 4);

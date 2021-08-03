@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.beta.ultrarare;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DarkOrbEvokeAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -21,6 +20,7 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.CombatStats;
@@ -247,7 +247,7 @@ public class Traveler extends AnimatorCard_UltraRare implements OnStartOfTurnPos
             {
                 AbstractOrb orb = CombatStats.OrbsEvokedThisCombat().get(i);
                 if (Dark.ORB_ID.equals(orb.ID)) {
-                    GameActions.Bottom.Add(new DarkOrbEvokeAction(new DamageInfo(AbstractDungeon.player, orb.passiveAmount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+                    GameActions.Bottom.Add(new DarkOrbEvokeAction(new DamageInfo(AbstractDungeon.player, orb.passiveAmount, DamageInfo.DamageType.THORNS), AttackEffects.FIRE));
                 }
                 else {
                     orb.onStartOfTurn();

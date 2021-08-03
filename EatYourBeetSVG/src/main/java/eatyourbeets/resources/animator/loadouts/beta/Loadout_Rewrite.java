@@ -16,9 +16,9 @@ public class Loadout_Rewrite extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(YoshinoHaruhiko.DATA, 4);
         AddToSpecialSlots(ShizuruNakatsu.DATA, 4);

@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.animator.special.OrbCore_Earth;
-import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_EarthPower extends OrbCore_AbstractPower
@@ -19,6 +18,6 @@ public class OrbCore_EarthPower extends OrbCore_AbstractPower
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
-        GameActions.Bottom.GainTemporaryThorns(value);
+        GameActions.Bottom.GainTemporaryThorns(amount);
     }
 }

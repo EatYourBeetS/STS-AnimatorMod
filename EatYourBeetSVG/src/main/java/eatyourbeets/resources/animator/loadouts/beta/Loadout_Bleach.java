@@ -16,9 +16,9 @@ public class Loadout_Bleach extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(RenjiAbarai.DATA, 4);
         AddToSpecialSlots(UryuuIshida.DATA, 4);

@@ -27,7 +27,7 @@ public class ElementalMasteryAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        GameActions.Top.VFX(new ShootingStarsEffect(-200, player.hb.cY, 85f, false));
+        GameActions.Top.VFX(new ShootingStarsEffect(-200, player.hb.cY).SetSpread(0,85));
         GameEffects.List.Add(new BorderFlashEffect(Color.CORAL));
 
         ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);

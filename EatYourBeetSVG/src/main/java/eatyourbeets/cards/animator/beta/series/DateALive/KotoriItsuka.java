@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.series.DateALive;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -11,6 +10,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class KotoriItsuka extends AnimatorCard
@@ -47,7 +47,7 @@ public class KotoriItsuka extends AnimatorCard
 
         for (int i=0; i<magicNumber; i++)
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
         }
     }
 

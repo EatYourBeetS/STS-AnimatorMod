@@ -15,9 +15,9 @@ public class Loadout_AngelBeats extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(HidekiHinata.DATA, 4);
         AddToSpecialSlots(MasamiIwasawa.DATA, 5);

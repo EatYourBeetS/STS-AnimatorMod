@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.colorless;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -9,12 +8,11 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.effects.VFX;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class MotokoKusanagi extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
@@ -82,7 +80,7 @@ public class MotokoKusanagi extends AnimatorCard implements OnStartOfTurnPostDra
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         for (int i = 0; i < magicNumber; i++) {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetDamageEffect(mo -> {GameEffects.List.Add(VFX.Gunshot(mo.hb).SetImageParameters(0.25f,0)); return 0f;});
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
         }
     }
 

@@ -263,7 +263,7 @@ public class AnimatorPlayerData
         final ActionT1<AnimatorLoadout> add = (loadout) ->
         {
             BetaLoadouts.add(loadout);
-            loadout.InitializeSlots();
+            loadout.InitializeData();
         };
 
         BetaLoadouts.clear();

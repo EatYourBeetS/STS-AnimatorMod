@@ -15,9 +15,9 @@ public class Loadout_RozenMaiden extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(Souseiseki.DATA, 4);
         AddToSpecialSlots(Suiseiseki.DATA, 5);

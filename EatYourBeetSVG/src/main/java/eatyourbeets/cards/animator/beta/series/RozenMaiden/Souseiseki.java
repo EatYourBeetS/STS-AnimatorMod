@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animator.beta.series.RozenMaiden;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -37,7 +37,7 @@ public class Souseiseki extends AnimatorCard
     {
         if (GameUtilities.IsAttacking(m.intent))
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
         }
 
         GameActions.Bottom.ExhaustFromHand(name, 1, false)

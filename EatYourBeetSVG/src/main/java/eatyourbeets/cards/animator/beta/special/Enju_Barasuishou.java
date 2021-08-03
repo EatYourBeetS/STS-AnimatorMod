@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.special;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -12,6 +11,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -74,7 +74,7 @@ public class Enju_Barasuishou extends AnimatorCard
 
         for (int i = 0; i < magicNumber; i ++)
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT)
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT)
                     .SetVFX(true, false);
         }
 

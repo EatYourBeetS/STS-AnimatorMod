@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.series.Bleach;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.animator.beta.special.ByakuyaBankai;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.resources.GR;
 import eatyourbeets.stances.AgilityStance;
@@ -94,7 +94,7 @@ public class ByakuyaKuchiki extends AnimatorCard
 
     private void DamageEffect(AbstractCard card, AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SMASH);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH);
     }
 
     private void BlockEffect(AbstractCard card, AbstractPlayer p, AbstractMonster m)

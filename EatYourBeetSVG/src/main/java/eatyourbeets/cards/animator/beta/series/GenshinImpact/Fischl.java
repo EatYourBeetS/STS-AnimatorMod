@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
@@ -9,6 +8,7 @@ import eatyourbeets.cards.animator.beta.special.Oz;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
@@ -40,7 +40,7 @@ public class Fischl extends AnimatorCard {
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
 
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.LIGHTNING);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.LIGHTNING);
         GameActions.Bottom.ChannelOrb(rng.randomBoolean(0.5f) ? new Dark() : new Lightning());
 
         if (HasSynergy() && CombatStats.TryActivateLimited(cardID)) {

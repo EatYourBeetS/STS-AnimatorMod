@@ -1,12 +1,12 @@
 package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.curse.Curse_Delusion;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.stances.ForceStance;
@@ -44,7 +44,7 @@ public class Tartaglia extends AnimatorCard {
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
 
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT)
                 .AddCallback(m.currentBlock, (initialBlock, target) ->
                 {
                     if (GameUtilities.IsDeadOrEscaped(target) && CombatStats.TryActivateLimited(cardID))

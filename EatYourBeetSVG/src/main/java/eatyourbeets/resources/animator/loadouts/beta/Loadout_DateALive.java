@@ -16,9 +16,9 @@ public class Loadout_DateALive extends AnimatorLoadout {
     }
 
     @Override
-    public void InitializeSlots()
+    public void InitializeData()
     {
-        super.InitializeSlots();
+        super.InitializeData();
 
         AddToSpecialSlots(ShidoItsuka.DATA, 5);
         AddToSpecialSlots(YamaiSisters.DATA, 4);

@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.series.TouhouProject;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,6 +11,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.animator.beta.ShinigamisFerry;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
@@ -50,7 +50,7 @@ public class KomachiOnozuka extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY)
         .AddCallback(enemy ->
         {
             AbstractRoom room = AbstractDungeon.getCurrRoom();

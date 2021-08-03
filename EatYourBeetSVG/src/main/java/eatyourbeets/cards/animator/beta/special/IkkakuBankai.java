@@ -1,10 +1,10 @@
 package eatyourbeets.cards.animator.beta.special;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class IkkakuBankai extends AnimatorCard
@@ -25,7 +25,7 @@ public class IkkakuBankai extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL);
 
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
         .SetOptions(true, true, true)
@@ -33,7 +33,7 @@ public class IkkakuBankai extends AnimatorCard
         {
             for (AbstractCard card : cards)
             {
-                GameActions.Top.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL)
+                GameActions.Top.DealDamageToAll(this, AttackEffects.SLASH_DIAGONAL)
                         .SetVFX(false, true);
             }
         });

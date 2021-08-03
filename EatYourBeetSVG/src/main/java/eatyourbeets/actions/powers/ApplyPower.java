@@ -167,7 +167,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         {
             AbstractAffinityPower attributePower = (AbstractAffinityPower) powerToApply;
 
-            if (attributePower.disabled)
+            if (!attributePower.enabled)
             {
                 tickDuration();
                 return;

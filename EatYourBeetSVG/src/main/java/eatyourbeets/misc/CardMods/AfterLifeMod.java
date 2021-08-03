@@ -72,7 +72,7 @@ public class AfterLifeMod extends AbstractCardModifier
                 GameActions.Bottom.SelectCreature(control.card).AddCallback(control, (state, creature) ->
                 {
                     //Put this here so the cost is only paid upon successful completion of the selectCreature action
-                    AbstractCard cardToPurge = JUtils.GetRandomElement(JUtils.Filter(player.exhaustPile.group, AfterLifeMod::CanPurge));
+                    AbstractCard cardToPurge = JUtils.Random(JUtils.Filter(player.exhaustPile.group, AfterLifeMod::CanPurge));
                     AbstractCard copy = cardToPurge.makeStatEquivalentCopy();
                     GameEffects.List.ShowCardBriefly(copy);
                     GameEffects.List.Add(new ExhaustCardEffect(copy));

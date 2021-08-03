@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animator.beta.series.RozenMaiden;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class Shinku extends AnimatorCard
@@ -70,7 +70,7 @@ public class Shinku extends AnimatorCard
             GameActions.Bottom.Draw(magicNumber);
 
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this,m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActions.Bottom.DealDamage(this,m, AttackEffects.SLASH_VERTICAL);
 
         GameActions.Bottom.MoveCards(p.hand, p.discardPile)
                 .AddCallback( cards ->

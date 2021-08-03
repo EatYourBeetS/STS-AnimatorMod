@@ -41,7 +41,7 @@ public class InverseOrigami extends AnimatorCard
         GameActions.Bottom.SpendEnergy(1, false)
         .AddCallback(() ->
         {
-            GameActions.Bottom.MakeCardInHand(JUtils.GetRandomElement(OrbCore.GetAllCores()).makeCopy());
+            GameActions.Bottom.MakeCardInHand(JUtils.Random(OrbCore.GetAllCores()).makeCopy());
             GameActions.Bottom.Flash(this);
         });
     }

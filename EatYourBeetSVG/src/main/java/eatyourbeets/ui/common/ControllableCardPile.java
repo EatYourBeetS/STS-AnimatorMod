@@ -16,7 +16,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.unnamed.UnnamedResources;
 import eatyourbeets.ui.controls.GUI_DynamicCardGrid;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.utilities.GameUtilities;
@@ -31,10 +30,10 @@ import java.util.Iterator;
 public class ControllableCardPile implements OnPhaseChangedSubscriber
 {
     // TODO: Use better textures
-    private static final Texture Orb_BG = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_BG.png");
-    private static final Texture Orb_FG = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_FG.png");
-    private static final Texture Orb_VFX1 = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_VFX1.png");
-    private static final Texture Orb_VFX2 = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_VFX2.png");
+    private static final Texture Orb_BG = GR.GetTexture("images/characters/unnamed/energy2/Orb_BG.png");
+    private static final Texture Orb_FG = GR.GetTexture("images/characters/unnamed/energy2/Orb_FG.png");
+    private static final Texture Orb_VFX1 = GR.GetTexture("images/characters/unnamed/energy2/Orb_VFX1.png");
+    private static final Texture Orb_VFX2 = GR.GetTexture("images/characters/unnamed/energy2/Orb_VFX2.png");
 
     public static final float HOVER_TIME_OUT = 0.4F;
 

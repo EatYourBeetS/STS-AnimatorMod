@@ -1,30 +1,40 @@
 package eatyourbeets.powers.animator;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
 import java.text.DecimalFormat;
 
-public class ChilledPower extends AnimatorPower
+public class ChilledPower extends AnimatorPower implements HealthBarRenderPower
 {
+    private static final Color healthBarColor = Color.SKY.cpy();
     public static final String POWER_ID = CreateFullID(ChilledPower.class);
+    public static final int MAX_REDUCTION_STACKS = 20;
+    public static final float RATE = 0.5f;
 
     private float percentage;
+    private final AbstractCreature source;
 
     public static float CalculatePercentage(int amount)
     {
-        return 100f / (125f + (2.1f * amount));
+        return 90f - (0.f * Math.min(MAX_REDUCTION_STACKS,amount));
     }
 
-    public ChilledPower(AbstractCreature owner, int amount)
+    public ChilledPower(AbstractCreature owner, AbstractCreature source, int amount)
     {
         super(owner, POWER_ID);
 
+        this.source = source == null ? owner : source;
         this.amount = amount;
         if (this.amount >= 9999)
         {
@@ -55,6 +65,18 @@ public class ChilledPower extends AnimatorPower
     }
 
     @Override
+    public void atStartOfTurn()
+    {
+        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.getMonsters().areMonstersBasicallyDead())
+        {
+            this.flashWithoutSound();
+
+            GameActions.Bottom.DealDamage(source, owner, getHealthBarAmount(), DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.ReducePower(this, 1);
+        }
+    }
+
+    @Override
     public void stackPower(int stackAmount)
     {
         super.stackPower(stackAmount);
@@ -80,6 +102,29 @@ public class ChilledPower extends AnimatorPower
     {
         float newDamage = calculateDamageGiven(damage, type);
         return super.atDamageGive(newDamage, type);
+    }
+
+    @Override
+    public int getHealthBarAmount()
+    {
+        if (amount == 1)
+        {
+            return 1;
+        }
+        else if (amount > 1)
+        {
+            return (amount / 2) + amount % 2;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    @Override
+    public Color getColor()
+    {
+        return healthBarColor;
     }
 
     public int calculateDamageGiven(float damage, DamageInfo.DamageType type)

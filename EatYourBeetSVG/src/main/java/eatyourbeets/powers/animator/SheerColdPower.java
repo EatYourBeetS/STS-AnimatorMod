@@ -101,7 +101,7 @@ public class SheerColdPower extends AnimatorPower implements OnOrbPassiveEffectS
             GameActions.Top.Wait(0.15f);
             GameActions.Top.VFX(new SnowballEffect(orb.hb.cX, orb.hb.cY, target.hb.cX, target.hb.cY)
                     .SetColor(Color.SKY, Color.CYAN).SetRealtime(true));
-            GameActions.Bottom.ApplyPower(owner, target, new ChilledPower(target, applyAmount)).CanStack(true).IgnoreArtifact(true);
+            GameActions.Bottom.ApplyPower(owner, target, new ChilledPower(target, owner, applyAmount)).CanStack(true).IgnoreArtifact(true);
         }
     }
 }

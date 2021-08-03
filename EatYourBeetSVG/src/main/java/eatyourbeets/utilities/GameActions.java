@@ -67,6 +67,7 @@ import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.powers.common.VitalityPower;
+import eatyourbeets.powers.replacement.ImprovedConstrictedPower;
 import eatyourbeets.powers.replacement.TemporaryArtifactPower;
 
 import java.util.ArrayList;
@@ -194,7 +195,7 @@ public final class GameActions
 
     public ApplyPower ApplyConstricted(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new ConstrictedPower(target, source, amount));
+        return StackPower(source, new ImprovedConstrictedPower(target, source, amount));
     }
 
     public ApplyPowerAuto ApplyConstricted(TargetHelper target, int amount)
@@ -599,6 +600,11 @@ public final class GameActions
     public HealCreature Heal(int amount)
     {
         return Add(new HealCreature(player, player, amount));
+    }
+
+    public LoseHP LoseHP(AbstractCreature source, AbstractCreature target, int amount, AbstractGameAction.AttackEffect effect)
+    {
+        return Add(new LoseHP(target, source, amount, effect));
     }
 
     public LoseHP LoseHP(int amount, AbstractGameAction.AttackEffect effect)

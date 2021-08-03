@@ -15,7 +15,7 @@ import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
-import eatyourbeets.rewards.animator.SynergyCardsReward;
+import eatyourbeets.rewards.animator.MissingPieceReward;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.WeightedList;
@@ -183,7 +183,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
             CardSeries series = synergies.Retrieve(AbstractDungeon.cardRng);
             if (series != null)
             {
-                rewards.add(startingIndex + i, new SynergyCardsReward(series));
+                rewards.add(startingIndex + i, new MissingPieceReward(series));
             }
         }
 

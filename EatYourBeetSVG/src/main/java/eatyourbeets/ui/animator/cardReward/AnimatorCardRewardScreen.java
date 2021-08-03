@@ -16,7 +16,7 @@ public class AnimatorCardRewardScreen extends GUIElement
 
     public final AnimatorCardRewardBonus rewardBundle = new AnimatorCardRewardBonus();
     public final AnimatorCardRewardInfo cardBadgeLegend = new AnimatorCardRewardInfo();
-    public final AnimatorCardRewardBanish purgingStoneUI = new AnimatorCardRewardBanish(rewardBundle::Add, rewardBundle::Remove);
+    public final AnimatorCardRewardReroll purgingStoneUI = new AnimatorCardRewardReroll(rewardBundle::Add, rewardBundle::Remove);
 
     public void Open(ArrayList<AbstractCard> cards, RewardItem rItem, String header)
     {

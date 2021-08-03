@@ -79,7 +79,7 @@ public abstract class AnimatorReward extends CustomReward
         while (result.size() < context.rewardSize && randomPool.Size() > 0)
         {
             AbstractCard card = randomPool.Retrieve(AbstractDungeon.cardRng);
-            if (card instanceof OnAddingToCardRewardListener && ((OnAddingToCardRewardListener) card).ShouldCancel(this))
+            if (card instanceof OnAddingToCardRewardListener && ((OnAddingToCardRewardListener) card).ShouldCancel())
             {
                 continue;
             }

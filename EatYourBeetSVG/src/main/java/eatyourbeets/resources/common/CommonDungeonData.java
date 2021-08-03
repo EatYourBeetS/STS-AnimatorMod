@@ -2,16 +2,24 @@ package eatyourbeets.resources.common;
 
 import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.GenericEventDialog;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import eatyourbeets.dungeons.TheUnnamedReign;
+import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
+import eatyourbeets.utilities.GameUtilities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 public class CommonDungeonData implements CustomSavable<CommonDungeonData>
 {
@@ -118,5 +126,73 @@ public class CommonDungeonData implements CustomSavable<CommonDungeonData>
         {
             EnteredUnnamedReign = false;
         }
+    }
+
+    public AbstractCard GetRandomRewardCard(ArrayList<AbstractCard> ignore, boolean includeRares, boolean ignoreCurrentRoom)
+    {
+        AbstractCard replacement = null;
+        boolean searchingCard = true;
+
+        while (searchingCard)
+        {
+            searchingCard = false;
+
+            AbstractCard temp = GetRandomRewardCard(includeRares, ignoreCurrentRoom);
+            if (temp == null)
+            {
+                break;
+            }
+
+            for (AbstractCard c : ignore)
+            {
+                if (temp.cardID.equals(c.cardID))
+                {
+                    searchingCard = true;
+                }
+            }
+
+            if (temp instanceof OnAddingToCardRewardListener && ((OnAddingToCardRewardListener) temp).ShouldCancel())
+            {
+                searchingCard = true;
+            }
+
+            if (!searchingCard)
+            {
+                replacement = temp.makeCopy();
+            }
+        }
+
+        for (AbstractRelic r : player.relics)
+        {
+            r.onPreviewObtainCard(replacement);
+        }
+
+        return replacement;
+    }
+
+    private AbstractCard GetRandomRewardCard(boolean includeRares, boolean ignoreCurrentRoom)
+    {
+        ArrayList<AbstractCard> list;
+
+        int roll = AbstractDungeon.cardRng.random(100);
+        if (includeRares && (roll <= 4 || (!ignoreCurrentRoom && GameUtilities.GetCurrentRoom() instanceof MonsterRoomBoss)))
+        {
+            list = AbstractDungeon.srcRareCardPool.group;
+        }
+        else if (roll < 40)
+        {
+            list = AbstractDungeon.srcUncommonCardPool.group;
+        }
+        else
+        {
+            list = AbstractDungeon.srcCommonCardPool.group;
+        }
+
+        if (list != null && list.size() > 0)
+        {
+            return list.get(AbstractDungeon.cardRng.random(list.size() - 1));
+        }
+
+        return null;
     }
 }

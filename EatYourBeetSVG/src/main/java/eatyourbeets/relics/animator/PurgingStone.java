@@ -1,7 +1,6 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
@@ -17,8 +16,8 @@ public class PurgingStone extends AnimatorRelic
     private static final FieldInfo<Boolean> _isBoss = JUtils.GetField("isBoss", RewardItem.class);
 
     public static final String ID = CreateFullID(PurgingStone.class);
-    public static final int MAX_BAN_COUNT = 80;
     public static final int MAX_STORED_USES = 3;
+    public static final int USES_PER_ELITE = 2;
 
     public PurgingStone()
     {
@@ -28,7 +27,7 @@ public class PurgingStone extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(0, MAX_STORED_USES);
+        return FormatDescription(0, USES_PER_ELITE, MAX_STORED_USES);
     }
 
     @Override
@@ -36,8 +35,7 @@ public class PurgingStone extends AnimatorRelic
     {
         super.onEquip();
 
-        SetCounter(0);
-        AddUses(0);
+        SetCounter(1);
     }
 
     @Override
@@ -45,94 +43,27 @@ public class PurgingStone extends AnimatorRelic
     {
         super.onVictory();
 
-        AbstractRoom room = GameUtilities.GetCurrentRoom();
+        final AbstractRoom room = GameUtilities.GetCurrentRoom();
         if (room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
         {
-            AddUses(2);
+            SetCounter(Math.min(MAX_STORED_USES, counter + USES_PER_ELITE));
+            flash();
         }
-        else
-        {
-            AddUses(1);
-        }
-        flash();
-    }
-
-    public int GetBannedCount()
-    {
-        return GR.Animator.Dungeon.BannedCards.size();
-    }
-
-    private void AddUses(int uses)
-    {
-        int banned = GetBannedCount();
-        if (AddCounter(uses) + banned > MAX_BAN_COUNT)
-        {
-            SetCounter(MAX_BAN_COUNT - banned);
-        }
-        if (counter > MAX_STORED_USES)
-        {
-            SetCounter(MAX_STORED_USES);
-        }
-    }
-
-    public boolean IsBanned(String cardID)
-    {
-        return GR.Animator.Dungeon.BannedCards.contains(cardID);
-    }
-
-    public boolean IsBanned(AbstractCard card)
-    {
-        return card != null && IsBanned(card.cardID);
     }
 
     public boolean CanActivate(RewardItem rewardItem)
     {
-        if (!GameUtilities.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD && !_isBoss.Get(rewardItem))
-        {
-            return counter > 0;
-        }
-
-        return false;
+        return CanReroll() && !GameUtilities.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD && !_isBoss.Get(rewardItem);
     }
 
-    public boolean CanBan(AbstractCard card)
+    public boolean CanReroll()
     {
-        if (counter > 0)
-        {
-            if (card.color == AbstractCard.CardColor.COLORLESS)
-            {
-                return false;
-            }
-
-            if (!GR.Animator.Dungeon.BannedCards.contains(card.cardID))
-            {
-                CardGroup pool = GameUtilities.GetCardPoolSource(card.rarity, card.color);
-                if (pool == null)
-                {
-                    return false;
-                }
-                else if (card.type == AbstractCard.CardType.POWER)
-                {
-                    return card.rarity == AbstractCard.CardRarity.COMMON || pool.getPowers().size() >= 2;
-                }
-                else if (card.type == AbstractCard.CardType.SKILL)
-                {
-                    return pool.getSkills().size() >= 3;
-                }
-                else if (card.type == AbstractCard.CardType.ATTACK)
-                {
-                    return pool.getAttacks().size() >= 3;
-                }
-            }
-        }
-
-        return false;
+        return counter > 0;
     }
 
-    public void Ban(AbstractCard card)
+    public AbstractCard Reroll(RewardItem rewardItem)
     {
-        GR.Animator.Dungeon.Ban(card.cardID);
-        AddCounter(-1);
-        flash();
+        SetCounter(counter - 1);
+        return GR.Common.Dungeon.GetRandomRewardCard(rewardItem.cards, false,true);
     }
 }

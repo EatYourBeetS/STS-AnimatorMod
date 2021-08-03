@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -74,7 +75,7 @@ public class CrumblingOrb extends AnimatorRelic
             float x_offset = 0;
             for (AbstractCard c : cards)
             {
-                AbstractCard replacement = GameUtilities.GetRandomRewardCard(true, true);
+                AbstractCard replacement = GR.Common.Dungeon.GetRandomRewardCard(cards, true, true);
                 if (replacement != null)
                 {
                     replacement = replacement.makeCopy();

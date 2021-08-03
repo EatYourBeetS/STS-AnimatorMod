@@ -56,6 +56,7 @@ public class CommonImages
         public final TextureCache Green                 = new TextureCache("images/eyb/cardui/affinities/Green.png", true);
         public final TextureCache Red                   = new TextureCache("images/eyb/cardui/affinities/Red.png", true);
         public final TextureCache Blue                  = new TextureCache("images/eyb/cardui/affinities/Blue.png", true);
+        public final TextureCache Orange                = new TextureCache("images/eyb/cardui/affinities/Orange.png", true);
         public final TextureCache Light                 = new TextureCache("images/eyb/cardui/affinities/Light.png", true);
         public final TextureCache Dark                  = new TextureCache("images/eyb/cardui/affinities/Dark.png", true);
         public final TextureCache Star                  = new TextureCache("images/eyb/cardui/affinities/Star.png", true);
@@ -70,18 +71,18 @@ public class CommonImages
 
     public static class Badges
     {
-        public final TextureCache Ethereal                = new TextureCache("images/cardui/eyb/badges/Ethereal.png");
-        public final TextureCache Exhaust                 = new TextureCache("images/cardui/eyb/badges/Exhaust.png");
-        public final TextureCache Purge                   = new TextureCache("images/cardui/eyb/badges/Purge.png");
-        public final TextureCache Innate                  = new TextureCache("images/cardui/eyb/badges/Innate.png");
-        public final TextureCache Retain                  = new TextureCache("images/cardui/eyb/badges/Retain.png");
-        public final TextureCache RetainInfinite          = new TextureCache("images/cardui/eyb/badges/RetainInfinite.png");
-        public final TextureCache RetainOnce              = new TextureCache("images/cardui/eyb/badges/RetainOnce.png");
-        public final TextureCache Haste                   = new TextureCache("images/cardui/eyb/badges/Haste.png");
-        public final TextureCache HasteInfinite           = new TextureCache("images/cardui/eyb/badges/HasteInfinite.png");
-        public final TextureCache Autoplay                = new TextureCache("images/cardui/eyb/badges/Autoplay.png");
-        public final TextureCache Afterlife               = new TextureCache("images/cardui/eyb/badges/Afterlife.png");
-        public final TextureCache Harmonic                = new TextureCache("images/cardui/eyb/badges/Harmonic.png");
+        public final TextureCache Ethereal                = new TextureCache("images/eyb/cardui/badges/Ethereal.png");
+        public final TextureCache Exhaust                 = new TextureCache("images/eyb/cardui/badges/Exhaust.png");
+        public final TextureCache Purge                   = new TextureCache("images/eyb/cardui/badges/Purge.png");
+        public final TextureCache Innate                  = new TextureCache("images/eyb/cardui/badges/Innate.png");
+        public final TextureCache Retain                  = new TextureCache("images/eyb/cardui/badges/Retain.png");
+        public final TextureCache RetainInfinite          = new TextureCache("images/eyb/cardui/badges/RetainInfinite.png");
+        public final TextureCache RetainOnce              = new TextureCache("images/eyb/cardui/badges/RetainOnce.png");
+        public final TextureCache Haste                   = new TextureCache("images/eyb/cardui/badges/Haste.png");
+        public final TextureCache HasteInfinite           = new TextureCache("images/eyb/cardui/badges/HasteInfinite.png");
+        public final TextureCache Autoplay                = new TextureCache("images/eyb/cardui/badges/Autoplay.png");
+        public final TextureCache Afterlife               = new TextureCache("images/eyb/cardui/badges/Afterlife.png");
+        public final TextureCache Harmonic                = new TextureCache("images/eyb/cardui/badges/Harmonic.png");
     }
 
     public static class Tooltips

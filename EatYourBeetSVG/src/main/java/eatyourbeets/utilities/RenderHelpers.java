@@ -405,6 +405,17 @@ public class RenderHelpers
         return new GUI_Image(texture, color);
     }
 
+    public static Color CopyColor(Color color, float a)
+    {
+        return new Color(color.r, color.g, color.b, a);
+    }
+
+    public static Color CopyColor(AbstractCard card, Color color)
+    {
+        return new Color(color.r, color.g, color.b, card.transparency);
+    }
+
+
     public static ColoredString GetCardAttributeString(EYBCard card, char attributeID)
     {
         switch (attributeID)

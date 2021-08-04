@@ -1,23 +1,16 @@
 package eatyourbeets.relics.animator.beta;
 
-import basemod.abstracts.CustomSavable;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.*;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.events.animator.TheMysteriousPeak;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.WeightedList;
 
-import java.util.ArrayList;
-
-public class BountyMap extends AnimatorRelic implements CustomSavable<ArrayList<String>>
+public class BountyMap extends AnimatorRelic
 {
     public static final String ID = CreateFullID(BountyMap.class);
-    private static final WeightedList<String> possibleRooms = new WeightedList<>();
-    private ArrayList<String> path = new ArrayList<>();
 
     public BountyMap()
     {
@@ -28,21 +21,6 @@ public class BountyMap extends AnimatorRelic implements CustomSavable<ArrayList<
     public void onEquip()
     {
         super.onEquip();
-
-        if (possibleRooms.Size() == 0) {
-            possibleRooms.Add("?", 3);
-            possibleRooms.Add("T", 1);
-            possibleRooms.Add("M", 4);
-            possibleRooms.Add("E", 2);
-            possibleRooms.Add("$", 1);
-            possibleRooms.Add("R", 1);
-        }
-
-        path = new ArrayList<>();
-        for (int i = 0; i < MathUtils.random(3,5); i++) {
-            path.add(possibleRooms.Retrieve(rng, false));
-        }
-        path.add("?");
         SetCounter(0);
 
         fixDescription();
@@ -53,40 +31,46 @@ public class BountyMap extends AnimatorRelic implements CustomSavable<ArrayList<
     {
         super.justEnteredRoom(room);
 
-        if (counter < path.size() - 1 && path.get(counter).equals(room.getMapSymbol())) {
+        Class<? extends AbstractRoom> roomType = this.GetCurrentRequiredRoom();
+
+        if (room.getClass().equals(roomType) && this.IsEnabled()) {
             flash();
-            AddCounter(1);
-            fixDescription();
-        }
-        if (counter >= path.size() && this.IsEnabled()) {
-            flash();
-            SetEnabled(false);
-            EYBEvent newRoom = new TheMysteriousPeak();
-            newRoom.onEnterRoom();
+            if (roomType.equals(EventRoom.class)) {
+                SetEnabled(false);
+                EYBEvent newRoom = new TheMysteriousPeak();
+                newRoom.onEnterRoom();
+            }
+            else {
+                AddCounter(1);
+                fixDescription();
+            }
         }
     }
 
     @Override
     public String getUpdatedDescription()
     {
-        if (CardCrawlGame.isInARun() && path != null && path.size() > 0) {
-            return JUtils.Format(DESCRIPTIONS[0], String.join(" #y", path), counter);
+        Class<? extends AbstractRoom> room = this.GetCurrentRequiredRoom();
+        if (CardCrawlGame.isInARun() && !room.equals(EventRoom.class)) {
+            String name = room.equals(MonsterRoomElite.class) ? "Elite" : room.getSimpleName().split("Room")[0];
+            return JUtils.Format(DESCRIPTIONS[0], "NL Current Required Room: #b" + name);
         } else {
-            return JUtils.Format(DESCRIPTIONS[0], "...", counter);
+            return JUtils.Format(DESCRIPTIONS[0], "");
         }
     }
 
-    @Override
-    public ArrayList<String> onSave()
-    {
-        return this.path;
-    }
-
-    @Override
-    public void onLoad(ArrayList<String> strings)
-    {
-        if (strings != null) {
-            this.path.addAll(strings);
+    private Class<? extends AbstractRoom> GetCurrentRequiredRoom() {
+        switch (counter) {
+            case 0:
+                return MonsterRoom.class;
+            case 1:
+                return MonsterRoomElite.class;
+            case 2:
+                return TreasureRoom.class;
+            case 3:
+                return ShopRoom.class;
+            default:
+                return EventRoom.class;
         }
     }
 

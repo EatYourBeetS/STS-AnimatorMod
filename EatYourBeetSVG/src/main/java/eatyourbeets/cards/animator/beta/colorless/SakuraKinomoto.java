@@ -17,9 +17,12 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+
+import java.util.ArrayList;
 
 public class SakuraKinomoto extends AnimatorCard
 {
@@ -52,9 +55,12 @@ public class SakuraKinomoto extends AnimatorCard
                 {
                     RewardItem reward = new RewardItem();
                     CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                    // Copies of this card won't appear in card rewards
+                    ArrayList<AbstractCard> ignored = new ArrayList<>();
+                    ignored.add(this);
                     for (int i = 0; i < magicNumber; i++)
                     {
-                        AbstractCard card = GameUtilities.GetRandomRewardCard(reward, false, true);
+                        AbstractCard card = GR.Common.Dungeon.GetRandomRewardCard(ignored, false, true);
                         reward.cards.add(card);
                         choices.addToBottom(card);
                     }

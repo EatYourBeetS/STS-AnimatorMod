@@ -20,7 +20,7 @@
 	},
 	"animator:BountyMap":
 	{
-	  "DESCRIPTIONS": ["Traverse these rooms in the given order special event: NL #y{0}. NL You have entered #b{1} rooms on the path so far.","On pickup, assign this relic a random set of rooms. Traverse the rooms in the given order to trigger a special event.","You have completed this bounty."],
+	  "DESCRIPTIONS": ["When you enter (in order) a #yMonster room, an #yElite room, a #yTreasure room, and a #yShop room, the next ? room you enter will trigger a special event.{0}"],
 	  "FLAVOR": "Wanted dead or alive.",
 	  "NAME": "Bounty Map"
 	},

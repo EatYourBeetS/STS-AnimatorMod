@@ -127,7 +127,8 @@ public class EYBCardMetadataV2
             {
                 card.affinities.GetScaling(AffinityType.Red, false),
                 card.affinities.GetScaling(AffinityType.Green, false),
-                card.affinities.GetScaling(AffinityType.Blue, false)
+                card.affinities.GetScaling(AffinityType.Blue, false),
+                card.affinities.GetScaling(AffinityType.Orange, false)
             };
         }
 

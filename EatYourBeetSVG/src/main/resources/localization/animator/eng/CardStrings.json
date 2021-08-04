@@ -696,7 +696,7 @@
 		},
 		"animator:SougenEsaka":
 		{
-			"DESCRIPTION": "Gain [Block] equal to your [W]. || <LIM>. 3 <O>: Enter <WS> and gain [W].",
+			"DESCRIPTION": "Gain additional [Block] equal to half of your [W]. || <LIM>. 3 <O>: Enter <WS> and gain [W].",
 			"NAME": "Sougen Esaka"
 		},
 		"animator:Strike_Rewrite":

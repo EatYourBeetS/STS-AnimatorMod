@@ -29,7 +29,7 @@
 	  "NAME": "Willpower Stance",
 	  "DESCRIPTION":
 	  [
-		"#g+{0} #gBalance, NL #r-{1} #rStrength, NL #r-{1} #rDexterity. NL On Enter: #yBoost #yWillpower."
+		"#g+{0} #gBalance, NL #r-{1} #rDexterity, NL #r-{1} #rFocus. NL On Enter: #yBoost #yWillpower."
 	  ]
 	}
 }

@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.Fate;
 
+import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -25,7 +26,9 @@ public class Berserker extends AnimatorCard
         Initialize(18, 0, 2, 12);
         SetUpgrade(6, 0, 0, 0);
 
-        SetAffinity_Red(2, 0, 3);
+        SetAffinity_Red(2, 0, 6);
+
+        SetAffinityRequirement(AffinityType.Red, 2);
     }
 
     @Override
@@ -45,11 +48,7 @@ public class Berserker extends AnimatorCard
             GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
         }
 
-        if (ForceStance.IsActive())
-        {
-            GameActions.Bottom.GainForce(magicNumber);
-        }
-        else
+        if (CheckAffinity(AffinityType.Red))
         {
             GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
         }

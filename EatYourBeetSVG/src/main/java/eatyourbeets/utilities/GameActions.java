@@ -602,6 +602,16 @@ public final class GameActions
         return Add(new HealCreature(player, player, amount));
     }
 
+    public ModifyAffinityScaling IncreaseExistingScaling(AbstractCard card, int amount)
+    {
+        return Add(new ModifyAffinityScaling(card, AffinityType.General, amount, true));
+    }
+
+    public ModifyAffinityScaling IncreaseScaling(AbstractCard card, AffinityType type, int amount)
+    {
+        return Add(new ModifyAffinityScaling(card, type, amount, true));
+    }
+
     public LoseHP LoseHP(AbstractCreature source, AbstractCreature target, int amount, AbstractGameAction.AttackEffect effect)
     {
         return Add(new LoseHP(target, source, amount, effect));

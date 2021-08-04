@@ -2,11 +2,9 @@ package eatyourbeets.cards.base;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
-import eatyourbeets.utilities.RenderHelpers;
 
 public enum AffinityType implements Comparable<AffinityType>
 {
@@ -68,9 +66,9 @@ public enum AffinityType implements Comparable<AffinityType>
         return /*this == Star ? null : */(level > 1 ? BorderLV2 : BorderLV1).Texture();
     }
 
-    public Texture GetBackground(int level)
+    public Texture GetBackground(int level, int upgrade)
     {
-        return /*this == Star ? null : */(level > 1 ? BorderBG.Texture() : null);
+        return /*this == Star ? null : */((level + upgrade) > 1 ? BorderBG.Texture() : null);
     }
 
     public Texture GetForeground(int level)
@@ -92,7 +90,9 @@ public enum AffinityType implements Comparable<AffinityType>
 
             case Dark: return GR.Tooltips.Corruption.icon;
 
-            case Star: default: return null;
+            case Star: return GR.Tooltips.Affinity_Star.icon;
+
+            default: return null;
         }
     }
 
@@ -130,32 +130,4 @@ public enum AffinityType implements Comparable<AffinityType>
         if (tooltip.Is(GR.Tooltips.Affinity_General)) { return AffinityType.General; }
         return null;
     }   //@Formatter: On
-
-    public void Render(int level, SpriteBatch sb, Color color, float cX, float cY, float size)
-    {
-        Texture background = GetBackground(level);
-        if (background != null)
-        {
-            RenderHelpers.DrawCentered(sb, color, background, cX, cY, size, size, 1, 0);
-        }
-
-        RenderHelpers.DrawCentered(sb, color, GetIcon(), cX, cY, size, size, 1, 0);
-
-        Texture border = GetBorder(level);
-        if (border != null)
-        {
-            RenderHelpers.DrawCentered(sb, color, border, cX, cY, size, size, 1, 0);
-        }
-
-        Texture foreground = GetForeground(level);
-        if (foreground != null)
-        {
-            RenderHelpers.DrawCentered(sb, color, foreground, cX, cY, size, size, 1, 0);
-        }
-
-        if (this == AffinityType.Star)
-        {
-            RenderHelpers.DrawCentered(sb, color, GR.Common.Images.Affinities.Star_FG.Texture(), cX, cY, size, size, 1, 0);
-        }
-    }
 }

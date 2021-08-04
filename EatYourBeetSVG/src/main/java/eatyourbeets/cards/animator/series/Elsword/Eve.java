@@ -88,7 +88,7 @@ public class Eve extends AnimatorCard
 
             if (CombatStats.Affinities.IsSynergizing(usedCard))
             {
-                int damage = CombatStats.Affinities.GetAffinityLevel(AffinityType.General, usedCard);
+                int damage = CombatStats.Affinities.GetHandAffinityLevel(AffinityType.General, usedCard);
                 if (damage > 0)
                 {
                     //GameEffects.Queue.BorderFlash(Color.SKY);

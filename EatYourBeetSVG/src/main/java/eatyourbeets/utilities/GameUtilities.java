@@ -30,6 +30,8 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardAffinities;
+import eatyourbeets.cards.base.EYBCardAffinity;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
@@ -234,6 +236,23 @@ public class GameUtilities
     public static int GetActualAscensionLevel()
     {
         return AbstractDungeon.isAscensionMode ? AbstractDungeon.ascensionLevel : 0;
+    }
+
+    public static EYBCardAffinities GetAffinities(AbstractCard card)
+    {
+        return card instanceof EYBCard ? ((EYBCard) card).affinities : null;
+    }
+
+    public static EYBCardAffinity GetAffinity(AbstractCard card, AffinityType type)
+    {
+        final EYBCardAffinities a = GetAffinities(card);
+        return a != null ? a.Get(type, false) : null;
+    }
+
+    public static int GetAffinityLevel(AbstractCard card, AffinityType type, boolean useStarLevel)
+    {
+        final EYBCardAffinities a = GetAffinities(card);
+        return a != null ? a.GetLevel(type, useStarLevel) : 0;
     }
 
     public static ArrayList<AbstractCreature> GetAllCharacters(boolean aliveOnly)

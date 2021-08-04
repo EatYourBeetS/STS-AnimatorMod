@@ -29,8 +29,16 @@ public class Rider extends AnimatorCard
         SetAffinity_Blue(1);
         SetAffinity_Dark(2, 0, 1);
 
-        SetAffinityRequirement(AffinityType.Green, 2);
-        SetAffinityRequirement(AffinityType.Blue, 2);
+        SetAffinityRequirement(AffinityType.Green, 3);
+        SetAffinityRequirement(AffinityType.Blue, 3);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        super.OnUpgrade();
+
+        SetRetainOnce(true);
     }
 
     @Override
@@ -50,12 +58,12 @@ public class Rider extends AnimatorCard
 
         if (CheckAffinity(AffinityType.Green))
         {
-            GameActions.Bottom.GainAgility(1, upgraded);
+            GameActions.Bottom.GainAgility(1, true);
         }
 
         if (CheckAffinity(AffinityType.Blue))
         {
-            GameActions.Bottom.GainIntellect(1, upgraded);
+            GameActions.Bottom.GainIntellect(1, true);
         }
     }
 }

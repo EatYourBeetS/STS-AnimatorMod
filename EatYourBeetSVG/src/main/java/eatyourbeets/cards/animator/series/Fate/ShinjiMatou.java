@@ -32,7 +32,7 @@ public class ShinjiMatou extends AnimatorCard
         Initialize(0, 2, 4);
         SetUpgrade(0, 0, 2);
 
-        SetAffinity_Dark(1, 1, 1);
+        SetAffinity_Dark(1, 0, 1);
     }
 
     @Override

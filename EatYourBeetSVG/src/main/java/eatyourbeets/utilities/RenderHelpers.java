@@ -203,8 +203,8 @@ public class RenderHelpers
 
     public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, Texture img, float drawX, float drawY)
     {
-        int width = img.getWidth();
-        int height = img.getHeight();
+        final int width = img.getWidth();
+        final int height = img.getHeight();
 
         sb.setColor(color);
         sb.draw(img, drawX - (width / 2f), drawY - (height / 2f), width / 2f, height / 2f, width, height,
@@ -305,8 +305,8 @@ public class RenderHelpers
 
     public static void DrawOnCard(SpriteBatch sb, AbstractCard card, Color color, Texture img, float drawX, float drawY, float width, float height)
     {
-        int srcWidth = img.getWidth();
-        int srcHeight = img.getHeight();
+        final int srcWidth = img.getWidth();
+        final int srcHeight = img.getHeight();
 
         sb.setColor(color);
         sb.draw(img, drawX, drawY, 0, 0, width, height,
@@ -358,8 +358,8 @@ public class RenderHelpers
 
     public static void Draw(SpriteBatch sb, Texture img, Color color, float x, float y, float width, float height)
     {
-        int srcWidth = img.getWidth();
-        int srcHeight = img.getHeight();
+        final int srcWidth = img.getWidth();
+        final int srcHeight = img.getHeight();
 
         sb.setColor(color);
         sb.draw(img, x, y, 0, 0, width, height, Settings.scale, Settings.scale, 0, 0, 0,
@@ -375,8 +375,7 @@ public class RenderHelpers
     {
         final float scale = card.drawScale * Settings.scale;
 
-        color = Colors.Copy(color, card.transparency);
-
+        color = Colors.Copy(color, color.a * card.transparency);
         FontHelper.renderRotatedText(sb, font, text, card.current_x, card.current_y, x * scale, y * scale, card.angle, roundY, color);
     }
 

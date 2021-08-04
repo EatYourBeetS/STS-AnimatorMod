@@ -326,10 +326,10 @@
 		},
 		"animator:Laby":
 		{
-			"DESCRIPTION": "Gain !S! [Enchanted Armor]. || At the start of turn: ** Gain 1 [Constricted].",
+			"DESCRIPTION": "Gain !S! [Enchanted Armor]. || At the start of each ** turn: Gain 1 [Constricted].",
 			"EXTENDED_DESCRIPTION": ["At the start of each turn, gain #b{0} #yConstricted.", "At the start of each turn, gain #b{0} #yConstricted and apply #b{1} #yConstricted to ALL enemies."],
 			"NAME": "Laby",
-			"UPGRADE_DESCRIPTION": "Gain !S! [Enchanted Armor]. || At the start of turn: ** Apply 1 [Constricted] to ** ALL characters."
+			"UPGRADE_DESCRIPTION": "Gain !S! [Enchanted Armor]. || At the start of each ** turn: Apply 1 [Constricted] to ** ALL characters."
 		},
 		"animator:Lu":
 		{
@@ -348,7 +348,7 @@
 		},
 		"animator:Rena":
 		{
-			"DESCRIPTION": "Add 1 [T-Knife] to your hand. || <SLM>. On ** Synergy or Discard: ** Gain !S! [Blur].",
+			"DESCRIPTION": "Add 1 [T-Knife] to your hand. || <slm>. Synergy or ** Discard: Gain !S! [Blur].",
 			"NAME": "Rena"
 		}
 	},
@@ -357,9 +357,8 @@
 	{
 		"animator:Alexander":
 		{
-			"DESCRIPTION": "Lose no [F] next turn. || <FS>: Gain 1 [Plated Armor]. || When Exhausted: ** Play this card.",
-			"NAME": "Alexander",
-			"UPGRADE_DESCRIPTION": "Gain [F]. || <FS>: Gain 1 [Plated Armor]. || When Exhausted: ** Play this card."
+			"DESCRIPTION": "Retain [F]. || <FS>: Gain 1 [Plated Armor]. || When Exhausted: ** Play this card.",
+			"NAME": "Alexander"
 		},
 		"animator:Archer":
 		{
@@ -373,7 +372,7 @@
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "<FS>: Gain !M! [F]. Otherwise: Enter <FS>. || If the enemy dies or ** loses its [Block]: Gain !S! [Block].",
+			"DESCRIPTION": "If the enemy dies or ** loses its [Block]: Gain !S! [Block]. || !A! <R>: Enter <FS>.",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
@@ -404,7 +403,7 @@
 		},
 		"animator:Rider":
 		{
-			"DESCRIPTION": "Apply !M! [Shackles]. || !A! <G>: Gain/Boost [A]. || !A! <B>: Gain/Boost [I].",
+			"DESCRIPTION": "Apply !M! [Shackles]. || !A! <G>: Boost [A]. || !A! <B>: Boost [I].",
 			"NAME": "Rider"
 		},
 		"animator:RinTohsaka":
@@ -1468,7 +1467,7 @@
 		},
 		"animator:ShinjiMatou_CommandSpell":
 		{
-			"DESCRIPTION": "Lose 1 orb slot to play a ** card which Synergizes ** with this card from ** your discard pile.",
+			"DESCRIPTION": "Lose 1 orb slot to ** Fetch a <R> or <G> card ** from your discard pile, ** Motivate it and increase ** its scalings by !M!.",
 			"NAME": "Command Spell"
 		},
 		"animator:TanyaDegurechaff_Type95":

@@ -18,8 +18,8 @@ public class Alexander extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0);
-        SetUpgrade(1, 0);
+        Initialize(7, 0);
+        SetUpgrade(2, 0);
 
         SetAffinity_Red(1, 1, 1);
         SetAffinity_Light(1);
@@ -38,18 +38,11 @@ public class Alexander extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
 
+        GameUtilities.RetainPower(AffinityType.Red);
+
         if (ForceStance.IsActive())
         {
             GameActions.Bottom.GainPlatedArmor(1);
-        }
-
-        if (upgraded)
-        {
-            GameActions.Bottom.GainForce(1);
-        }
-        else
-        {
-            GameUtilities.RetainPower(AffinityType.Red);
         }
     }
 }

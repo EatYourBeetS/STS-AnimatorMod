@@ -135,6 +135,11 @@ public class AbstractDungeonPatches
         @SpirePostfixPatch
         public static void Postfix()
         {
+            if (!GameUtilities.IsPlayerClass(GR.Animator.PlayerClass))
+            {
+                return;
+            }
+
             final ArrayList<AbstractCard> cards = AbstractDungeon.player.masterDeck.group;
             for (int i = 0; i < cards.size(); i++)
             {

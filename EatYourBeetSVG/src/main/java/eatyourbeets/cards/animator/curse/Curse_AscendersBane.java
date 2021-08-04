@@ -69,7 +69,17 @@ public class Curse_AscendersBane extends AnimatorCard_Curse implements OnRemoved
             {
                 if (cards.size() > 0)
                 {
-                    GameActions.Top.Purge(cards.get(0)).ShowEffect(true);
+                    final AbstractCard c = cards.get(0);
+                    GameActions.Top.Purge(c).ShowEffect(true)
+                    .AddCallback(c, (card, purged) ->
+                    {
+                        if (purged && GameUtilities.IsCurseOrStatus(card))
+                        {
+                            GameActions.Top.MoveCard(this, player.drawPile)
+                            .ShowEffect(true, true)
+                            .SetDestination(CardSelection.Top);
+                        }
+                    });
                 }
             });
         }

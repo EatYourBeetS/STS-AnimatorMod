@@ -1063,7 +1063,7 @@
 		"animator:Curse_AscendersBane":
 		{
 			"DESCRIPTION": "Unplayable.",
-			"EXTENDED_DESCRIPTION": ["Unplayable. || When Exhausted: ** Purge the top card ** of your draw pile.", "Ascension {0}+"],
+			"EXTENDED_DESCRIPTION": ["Unplayable. || When Exhausted: Purge ** the top card of your draw ** pile. If it was a Hindrance: ** Replace it with this card.", "Ascension {0}+"],
 			"NAME": "Ascender's Bane"
 		},
 		"animator:Curse_Dizziness":

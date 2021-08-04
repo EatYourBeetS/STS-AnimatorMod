@@ -252,10 +252,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
         for (OnCardResetSubscriber s : onCardReset.GetSubscribers())
         {
-            if (card != s)
-            {
-                s.OnCardReset(card);
-            }
+            s.OnCardReset(card);
         }
     }
 

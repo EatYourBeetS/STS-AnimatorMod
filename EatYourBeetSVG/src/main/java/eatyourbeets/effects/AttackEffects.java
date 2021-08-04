@@ -36,6 +36,7 @@ public class AttackEffects
    public static final AttackEffect SHIELD = AttackEffect.SHIELD;
    public static final AttackEffect LIGHTNING = AttackEffect.LIGHTNING;
    // Custom:
+   public static AttackEffect DARKNESS = GR.Enums.AttackEffect.DARKNESS;
    public static AttackEffect SHIELD_FROST = GR.Enums.AttackEffect.SHIELD_FROST;
    public static AttackEffect GUNSHOT = GR.Enums.AttackEffect.GUNSHOT;
    public static AttackEffect DAGGER = GR.Enums.AttackEffect.DAGGER;
@@ -125,6 +126,10 @@ public class AttackEffects
 
       Add(magic, POISON, ImageMaster.ATK_POISON)
               .SetSFX(SFX.ATTACK_POISON, SFX.ATTACK_POISON2);
+
+      Add(magic, DARKNESS)
+              .SetVFX(VFX::Darkness)
+              .SetSFX(SFX.ATTACK_POISON);
 
       Add(other, SHIELD, ImageMaster.ATK_SHIELD)
               .SetVFX(VFX::Shield)

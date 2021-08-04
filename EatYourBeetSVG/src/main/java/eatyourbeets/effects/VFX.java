@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.vfx.combat.*;
-import eatyourbeets.effects.vfx.SmallLaserEffect2;
 import eatyourbeets.effects.vfx.*;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.Colors;
@@ -94,6 +93,16 @@ public class VFX
     public static DaggerSprayEffect DaggerSpray()
     {
         return new DaggerSprayEffect(FlipHorizontally());
+    }
+
+    public static GenericAnimationEffect Darkness(Hitbox target, float spread)
+    {
+        return Darkness(RandomX(target, spread), RandomY(target, spread));
+    }
+
+    public static GenericAnimationEffect Darkness(float cX, float cY)
+    {
+        return new GenericAnimationEffect(EYBEffect.IMAGES.Darkness.Texture(), cX, cY, 1, 5).SetColor(Color.WHITE).SetMode(AnimatedProjectile.AnimationMode.Reverse, 10);
     }
 
     public static ExplosionSmallEffect SmallExplosion(Hitbox source)

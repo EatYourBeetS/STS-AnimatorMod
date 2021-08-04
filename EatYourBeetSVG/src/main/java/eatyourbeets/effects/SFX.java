@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 public class SFX
 {
     public static final String ANIMATOR_ARROW = "ANIMATOR_ARROW";
+    public static final String ANIMATOR_DARKNESS = "ANIMATOR_DARKNESS";
     public static final String ANIMATOR_GUNSHOT = "ANIMATOR_GUNSHOT";
     public static final String ANIMATOR_KIRA_POWER = "ANIMATOR_KIRA_POWER";
     public static final String ANIMATOR_MEGUMIN_CHARGE = "ANIMATOR_MEGUMIN_CHARGE";

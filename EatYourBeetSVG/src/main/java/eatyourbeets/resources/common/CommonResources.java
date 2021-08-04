@@ -56,6 +56,7 @@ public class CommonResources extends AbstractResources
         BaseMod.addAudio(SFX.ATTACK_SCIMITAR, "audio/sound/STS_SFX_EnemyAtk_Scimitar_v1.ogg");
 
         BaseMod.addAudio(SFX.ANIMATOR_ARROW, "audio/animator/sound/FIRING_ARROW.ogg");
+        BaseMod.addAudio(SFX.ANIMATOR_DARKNESS, "audio/animator/sound/DARKNESS.ogg");
         BaseMod.addAudio(SFX.ANIMATOR_GUNSHOT, "audio/animator/sound/FIRING_BULLET.ogg");
         BaseMod.addAudio(SFX.ANIMATOR_ORB_EARTH_EVOKE, "audio/animator/sound/ORB_EARTH_EVOKE.ogg");
         BaseMod.addAudio(SFX.ANIMATOR_ORB_EARTH_EVOKE, "audio/animator/sound/ORB_EARTH_EVOKE.ogg");
@@ -173,6 +174,12 @@ public class CommonResources extends AbstractResources
 
     private static void AddPowerTooltip(String symbol, String id, AbstractPower power)
     {
+        if (power.img == null)
+        {
+            JUtils.LogError(CommonResources.class, "Could not find image: Symbol: {0}, ID: {1}, Power: {2} ",
+                    symbol, id, power.name);
+            return;
+        }
         int size = power.img.getWidth(); // width should always be equal to height
 
         EYBCardTooltip tooltip = CardTooltips.FindByID(id);

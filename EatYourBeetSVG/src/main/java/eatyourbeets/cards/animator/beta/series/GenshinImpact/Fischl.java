@@ -40,7 +40,7 @@ public class Fischl extends AnimatorCard {
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
 
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.LIGHTNING);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.DARKNESS);
         GameActions.Bottom.ChannelOrb(rng.randomBoolean(0.5f) ? new Dark() : new Lightning());
 
         if (HasSynergy() && CombatStats.TryActivateLimited(cardID)) {

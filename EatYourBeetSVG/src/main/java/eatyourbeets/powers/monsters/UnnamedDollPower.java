@@ -3,7 +3,7 @@ package eatyourbeets.powers.monsters;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.effects.vfx.HemokinesisEffect2;
+import eatyourbeets.effects.vfx.megacritCopy.HemokinesisEffect2;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;

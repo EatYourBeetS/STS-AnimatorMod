@@ -58,7 +58,7 @@ public class LoseHP extends EYBAction
     {
         if (this.target.currentHealth > 0)
         {
-            GameEffects.List.Attack(source, target, attackEffect, pitchMin, pitchMax);
+            GameEffects.List.Attack(source, target, attackEffect, pitchMin, pitchMax, null);
         }
     }
 

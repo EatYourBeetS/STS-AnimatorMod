@@ -29,7 +29,7 @@ import java.util.Map;
 
 public abstract class EYBCard extends EYBCardBase
 {
-    public static final Color MUTED_TEXT_COLOR = Mathf.LerpCopy(Color.DARK_GRAY, Settings.CREAM_COLOR, 0.5f);
+    public static final Color MUTED_TEXT_COLOR = Colors.Lerp(Color.DARK_GRAY, Settings.CREAM_COLOR, 0.5f);
     public static final CardTags HASTE = GR.Enums.CardTags.HASTE;
     public static final CardTags PURGE = GR.Enums.CardTags.PURGE;
     public final EYBCardText cardText;

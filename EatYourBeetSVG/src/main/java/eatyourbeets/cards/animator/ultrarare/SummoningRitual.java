@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.effects.vfx.HemokinesisEffect2;
+import eatyourbeets.effects.vfx.megacritCopy.HemokinesisEffect2;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll_Player;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.resources.GR;

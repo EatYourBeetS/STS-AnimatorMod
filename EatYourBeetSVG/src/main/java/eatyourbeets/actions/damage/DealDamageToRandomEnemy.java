@@ -25,6 +25,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 
     protected float pitchMin = 0.95f;
     protected float pitchMax = 1.05f;
+    protected Color vfxColor = null;
 
     protected final DamageInfo info;
     protected FuncT1<Float, AbstractCreature> onDamageEffect;
@@ -37,6 +38,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 
         this.card = other.card;
         this.isOrb = other.isOrb;
+        this.vfxColor = other.vfxColor;
         this.pitchMin = other.pitchMin;
         this.pitchMax = other.pitchMax;
         this.skipWait = other.skipWait;
@@ -82,6 +84,13 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
     {
         this.bypassBlock = bypassBlock;
         this.bypassThorns = bypassThorns;
+
+        return this;
+    }
+
+    public DealDamageToRandomEnemy SetVFXColor(Color color)
+    {
+        this.vfxColor = color.cpy();
 
         return this;
     }
@@ -155,7 +164,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 
         if (!hasPlayedEffect && duration < 0.1f)
         {
-            GameEffects.List.Attack(source, target, attackEffect, pitchMin, pitchMax);
+            GameEffects.List.Attack(source, target, attackEffect, pitchMin, pitchMax, vfxColor);
             hasPlayedEffect = true;
         }
 

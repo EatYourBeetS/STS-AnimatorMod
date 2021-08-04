@@ -42,7 +42,7 @@ public class GenericAnimationEffect extends EYBEffect
 
     public GenericAnimationEffect SetColor(Color color)
     {
-        this.projectile.SetColor(color);
+        this.projectile.SetColor(this.color = color.cpy());
 
         return this;
     }

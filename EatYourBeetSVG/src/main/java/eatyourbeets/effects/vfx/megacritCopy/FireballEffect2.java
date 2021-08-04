@@ -1,4 +1,4 @@
-package eatyourbeets.effects.vfx;
+package eatyourbeets.effects.vfx.megacritCopy;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Interpolation;
@@ -6,6 +6,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.effects.vfx.FireBurstParticleEffect;
+import eatyourbeets.effects.vfx.GhostIgniteEffect;
+import eatyourbeets.effects.vfx.GhostlyWeakFireEffect;
 import eatyourbeets.utilities.GameEffects;
 
 public class FireballEffect2 extends EYBEffect

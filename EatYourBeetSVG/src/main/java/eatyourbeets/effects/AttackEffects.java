@@ -2,11 +2,11 @@ package eatyourbeets.effects;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.effects.vfx.GenericRenderEffect;
 import eatyourbeets.interfaces.delegates.FuncT2;
+import eatyourbeets.interfaces.delegates.FuncT3;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.utilities.JUtils;
@@ -19,6 +19,7 @@ import static com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 public class AttackEffects
 {
    private static final HashMap<AttackEffect, AttackEffectData> map = new HashMap<>();
+   private static final CommonImages.Effects IMAGES = GR.Common.Images.Effects;
    private static final ArrayList<AttackEffect> melee = new ArrayList<>();
    private static final ArrayList<AttackEffect> magic = new ArrayList<>();
    private static final ArrayList<AttackEffect> other = new ArrayList<>();
@@ -39,36 +40,31 @@ public class AttackEffects
    public static AttackEffect SHIELD_FROST = GR.Enums.AttackEffect.SHIELD_FROST;
    public static AttackEffect GUNSHOT = GR.Enums.AttackEffect.GUNSHOT;
    public static AttackEffect DAGGER = GR.Enums.AttackEffect.DAGGER;
-   public static AttackEffect SPEAR = GR.Enums.AttackEffect.SPEAR; // TODO:
+   public static AttackEffect SPEAR = GR.Enums.AttackEffect.SPEAR;
 
-   private static final CommonImages.Effects IMAGES = GR.Common.Images.Effects;
-   private static final String[] BLOCK_SOUNDS = { SFX.BLOCK_GAIN_1, SFX.BLOCK_GAIN_2, SFX.BLOCK_GAIN_3 };
-   private static final String[] BLOCK_FROST_SOUNDS = { SFX.ORB_FROST_DEFEND_1, SFX.ORB_FROST_DEFEND_2, SFX.ORB_FROST_DEFEND_3 };
-   private static final String[] POISON_SOUNDS = { SFX.ATTACK_POISON, SFX.ATTACK_POISON2 };
-
-   public static AbstractGameEffect GetVFX(AttackEffect effect, Hitbox hb, float spread)
-   {
-      return GetVFX(effect, VFX.RandomX(hb, spread), VFX.RandomY(hb, spread));
-   }
-
-   public static AbstractGameEffect GetVFX(AttackEffect effect, float cX, float cY)
+   public static EYBEffect GetVFX(AttackEffect effect, AbstractCreature source, float t_cX, float t_cY)
    {
       if (effect != null && effect != NONE)
       {
          final AttackEffectData data = map.get(effect);
+         if (data.createVFX2 != null)
+         {
+            return data.createVFX2.Invoke(source, t_cX, t_cY);
+         }
          if (data.createVFX != null)
          {
-            return data.createVFX.Invoke(cX, cY);
+            return data.createVFX.Invoke(t_cX, t_cY);
          }
 
          final TextureRegion region = data.GetTexture();
          if (region != null)
          {
-            return new GenericRenderEffect(region, cX, cY).SetRotation(MathUtils.random(effect == BLUNT_HEAVY ? 360f : 12f));
+            return new GenericRenderEffect(region, t_cX, t_cY)
+            .SetRotation(effect == BLUNT_HEAVY ? MathUtils.random(0, 360) : MathUtils.random(-12f, 12f));
          }
       }
 
-      return new GenericRenderEffect((TextureRegion) null, cX, cY);
+      return new GenericRenderEffect((TextureRegion) null, t_cX, t_cY);
    }
 
    public static void PlaySound(AttackEffect effect, float pitchMin, float pitchMax)
@@ -143,11 +139,11 @@ public class AttackEffects
               .SetSFX(SFX.ANIMATOR_GUNSHOT);
 
       Add(melee, DAGGER, ImageMaster.ATK_SLASH_H)
-              .SetSFX(SFX.ATTACK_DAGGER_1)
-              .SetSFX(SFX.ATTACK_DAGGER_2);
+              .SetSFX(SFX.ATTACK_DAGGER_1, SFX.ATTACK_DAGGER_2);
 
-      Add(melee, SPEAR, ImageMaster.ATK_SLASH_V) // TODO: dedicated texture
-              .SetSFX(SFX.ATTACK_FAST);
+      Add(melee, SPEAR, ImageMaster.ATK_SLASH_V)
+              .SetVFX2(VFX::Pierce)
+              .SetSFX(SFX.ANIMATOR_SPEAR_1, SFX.ANIMATOR_SPEAR_2);
    }
 
    private static AttackEffectData Add(ArrayList<AttackEffect> category, AttackEffect effect)
@@ -167,7 +163,8 @@ public class AttackEffects
    private static class AttackEffectData
    {
       private String[] sounds;
-      private FuncT2<AbstractGameEffect, Float, Float> createVFX;
+      private FuncT2<EYBEffect, Float, Float> createVFX;
+      private FuncT3<EYBEffect, AbstractCreature, Float, Float> createVFX2;
       private TextureRegion texture;
 
       private AttackEffectData SetSFX(String... sounds)
@@ -184,9 +181,16 @@ public class AttackEffects
          return this;
       }
 
-      private AttackEffectData SetVFX(FuncT2<AbstractGameEffect, Float, Float> createVFX)
+      private AttackEffectData SetVFX(FuncT2<EYBEffect, Float, Float> createVFX)
       {
          this.createVFX = createVFX;
+
+         return this;
+      }
+
+      private AttackEffectData SetVFX2(FuncT3<EYBEffect, AbstractCreature, Float, Float> createVFX2)
+      {
+         this.createVFX2 = createVFX2;
 
          return this;
       }

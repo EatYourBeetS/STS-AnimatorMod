@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CommonPower;
 import eatyourbeets.ui.animator.combat.CombatHelper;
 import eatyourbeets.utilities.GameActions;
 
-public class FreezingPower extends AnimatorPower implements HealthBarRenderPower
+public class FreezingPower extends CommonPower implements HealthBarRenderPower
 {
     private static final Color healthBarColor = Color.SKY.cpy();
     public static final String POWER_ID = CreateFullID(FreezingPower.class);

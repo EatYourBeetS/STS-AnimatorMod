@@ -21,6 +21,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
     protected boolean bypassBlock;
     protected boolean bypassThorns;
     protected boolean skipWait;
+    protected Color vfxColor;
     protected float pitchMin;
     protected float pitchMax;
     protected int goldAmount;
@@ -55,6 +56,13 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
     {
         this.bypassBlock = bypassBlock;
         this.bypassThorns = bypassThorns;
+
+        return this;
+    }
+
+    public DealDamage SetVFXColor(Color color)
+    {
+        this.vfxColor = color.cpy();
 
         return this;
     }
@@ -123,7 +131,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
 
         if (!hasPlayedEffect && duration <= 0.1f)
         {
-            GameEffects.List.Attack(source, target, attackEffect, pitchMin, pitchMax);
+            GameEffects.List.Attack(source, target, attackEffect, pitchMin, pitchMax, vfxColor);
             hasPlayedEffect = true;
         }
 

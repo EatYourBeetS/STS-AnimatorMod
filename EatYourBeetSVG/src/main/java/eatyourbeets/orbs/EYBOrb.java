@@ -8,14 +8,11 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.effects.vfx.OrbEvokeParticle;
-import eatyourbeets.effects.vfx.OrbFlareEffect2;
+import eatyourbeets.effects.vfx.megacritCopy.OrbFlareEffect2;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.*;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -74,7 +71,7 @@ public abstract class EYBOrb extends AbstractOrb implements OnStartOfTurnPostDra
     {
         for (int i = 0; i < 4; i++)
         {
-            GameEffects.Queue.Add(new OrbEvokeParticle(this.cX, this.cY, Mathf.LerpCopy(GetColor1(), GetColor2(), MathUtils.random(0, 0.5f))));
+            GameEffects.Queue.Add(new OrbEvokeParticle(this.cX, this.cY, Colors.Lerp(GetColor1(), GetColor2(), MathUtils.random(0, 0.5f))));
         }
     }
 

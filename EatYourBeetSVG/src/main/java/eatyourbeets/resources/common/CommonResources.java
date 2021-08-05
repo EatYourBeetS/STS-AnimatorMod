@@ -24,7 +24,6 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.stances.EYBStance;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.JUtils;
-import patches.MainMusicPatches;
 
 import java.lang.reflect.Field;
 
@@ -49,26 +48,7 @@ public class CommonResources extends AbstractResources
     @Override
     protected void InitializeAudio()
     {
-        BaseMod.addAudio(SFX.ATTACK_REAPER, "audio/sound/STS_SFX_Reaper_v1.ogg");
-        BaseMod.addAudio(SFX.ATTACK_SCYTHE, "audio/sound/STS_SFX_Scythe_v1.ogg");
-        BaseMod.addAudio(SFX.ATTACK_AXE, "audio/sound/STS_SFX_EnemyAtk_Axe_v1.ogg");
-        BaseMod.addAudio(SFX.ATTACK_DAGGER, "audio/sound/STS_SFX_EnemyAtk_Dagger_v1.ogg");
-        BaseMod.addAudio(SFX.ATTACK_SCIMITAR, "audio/sound/STS_SFX_EnemyAtk_Scimitar_v1.ogg");
-
-        BaseMod.addAudio(SFX.ANIMATOR_ARROW, "audio/animator/sound/FIRING_ARROW.ogg");
-        BaseMod.addAudio(SFX.ANIMATOR_DARKNESS, "audio/animator/sound/DARKNESS.ogg");
-        BaseMod.addAudio(SFX.ANIMATOR_GUNSHOT, "audio/animator/sound/FIRING_BULLET.ogg");
-        BaseMod.addAudio(SFX.ANIMATOR_ORB_EARTH_EVOKE, "audio/animator/sound/ORB_EARTH_EVOKE.ogg");
-        BaseMod.addAudio(SFX.ANIMATOR_ORB_EARTH_EVOKE, "audio/animator/sound/ORB_EARTH_EVOKE.ogg");
-        BaseMod.addAudio(SFX.ANIMATOR_ORB_EARTH_CHANNEL, "audio/animator/sound/ORB_EARTH_CHANNEL.ogg");
-        BaseMod.addAudio(SFX.ANIMATOR_KIRA_POWER, "audio/animator/sound/KIRA_POWER.ogg");
-        BaseMod.addAudio(SFX.ANIMATOR_MEGUMIN_CHARGE, "audio/animator/sound/MEGUMIN_CHARGE.ogg");
-        BaseMod.addAudio(SFX.ANIMATOR_THE_ULTIMATE_CRYSTAL, "audio/animator/sound/THE_ULTIMATE_CRYSTAL.ogg");
-
-        MainMusicPatches.SetFolderPath("audio/animator/music/");
-        MainMusicPatches.AddMusic(SFX.ANIMATOR_THE_CREATURE);
-        MainMusicPatches.AddMusic(SFX.ANIMATOR_THE_HAUNT);
-        //BaseMod.addAudio(Audio_TheUnnamed, "audio/music/ANIMATOR_THE_UNNAMED.ogg");
+        SFX.Initialize();
     }
 
     @Override

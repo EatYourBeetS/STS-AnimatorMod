@@ -7,10 +7,12 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.vfx.combat.*;
+import eatyourbeets.effects.vfx.megacritCopy.*;
 import eatyourbeets.effects.vfx.*;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.Mathf;
 
 public class VFX
@@ -129,7 +131,7 @@ public class VFX
     public static SmallLaserEffect2 SmallLaser(Hitbox source, Hitbox target, Color color)
     {
         return new SmallLaserEffect2(source.cX, source.cY, RandomX(target, 0.2f), RandomY(target, 0.2f))
-        .SetColors(color, Mathf.LerpCopy(color, Color.BLACK, 0.3f));
+        .SetColors(color, Colors.Lerp(color, Color.BLACK, 0.3f));
     }
 
     public static FallingIceEffect FallingIce(int frostCount)
@@ -162,14 +164,27 @@ public class VFX
         return new HemokinesisEffect2(target.cX, target.cY, source.cX, source.cY);
     }
 
-    public static LightningEffect Lightning(Hitbox target)
+    public static LightningEffect2 Lightning(Hitbox target)
     {
         return Lightning(target.cX, target.cY);
     }
 
-    public static LightningEffect Lightning(float cX, float cY)
+    public static LightningEffect2 Lightning(float cX, float cY)
     {
-        return new LightningEffect(cX, cY);
+        return new LightningEffect2(cX, cY);
+    }
+
+    public static GenericRenderEffect Pierce(AbstractCreature source, Hitbox target, float spread)
+    {
+        return Pierce(source, RandomX(target, spread), RandomY(target, spread));
+    }
+
+    public static GenericRenderEffect Pierce(AbstractCreature source, float cX, float cY)
+    {
+        final float x = cX + ((source.hb.cX > cX ? +80 : -80) * Settings.scale);
+        final float rotation = Mathf.GetAngle(source.hb.cX, source.hb.cY, x, cY);
+        JUtils.LogInfo(VFX.class, "Rotation:" + rotation);
+        return new GenericRenderEffect(EYBEffect.IMAGES.Spear.Texture(), x, cY).SetRotation(rotation);
     }
 
     public static PsychokinesisEffect Psychokinesis(Hitbox target)

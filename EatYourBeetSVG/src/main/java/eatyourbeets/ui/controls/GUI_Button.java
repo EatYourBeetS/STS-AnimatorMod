@@ -15,7 +15,7 @@ import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
-import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.RenderHelpers;
 import org.apache.commons.lang3.StringUtils;
 
@@ -127,7 +127,7 @@ public class GUI_Button extends GUIElement
     public GUI_Button SetColor(Color buttonColor)
     {
         this.buttonColor = buttonColor.cpy();
-        this.disabledButtonColor = Mathf.LerpCopy(buttonColor, Color.BLACK, 0.4f);
+        this.disabledButtonColor = Colors.Lerp(buttonColor, Color.BLACK, 0.4f);
 
         return this;
     }

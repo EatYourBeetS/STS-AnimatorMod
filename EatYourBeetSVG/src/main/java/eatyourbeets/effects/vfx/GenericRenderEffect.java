@@ -11,6 +11,8 @@ public class GenericRenderEffect extends EYBEffect
 {
     public final TextureRegion image;
 
+    private boolean flipX;
+    private boolean flipY;
     private float x;
     private float y;
 
@@ -35,6 +37,21 @@ public class GenericRenderEffect extends EYBEffect
         }
     }
 
+    public GenericRenderEffect SetRotation(float degrees)
+    {
+        super.SetRotation(degrees);
+
+        return this;
+    }
+
+    public GenericRenderEffect Flip(boolean horizontally, boolean vertically)
+    {
+        this.flipX = horizontally;
+        this.flipY = vertically;
+
+        return this;
+    }
+
     @Override
     protected void FirstUpdate()
     {
@@ -46,7 +63,7 @@ public class GenericRenderEffect extends EYBEffect
     {
         if (this.image != null)
         {
-            RenderHelpers.DrawCentered(sb, color, image, x, y, image.getRegionWidth(), image.getRegionHeight(), scale, rotation);
+            RenderHelpers.DrawCentered(sb, color, image, x, y, image.getRegionWidth(), image.getRegionHeight(), scale, rotation, flipX, flipY);
         }
     }
 

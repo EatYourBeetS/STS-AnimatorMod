@@ -1,9 +1,11 @@
 package eatyourbeets.utilities;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.delegates.FuncT3;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class CardSelection
@@ -26,6 +28,7 @@ public abstract class CardSelection
     public static final CardSelection Top = Top(0);
     public static final CardSelection Bottom = Bottom(0);
     public static final CardSelection Random = Random(null);
+    public static final CardSelection Default = Top;
 
     public final Mode mode;
 
@@ -56,6 +59,20 @@ public abstract class CardSelection
                                         FuncT3<AbstractCard, List<AbstractCard>, Integer, Boolean> getCard)
     {
         return new Special(addCard, getCard);
+    }
+
+    public void ForEach(ArrayList<AbstractCard> modifiableList, int amount, ActionT1<AbstractCard> apply)
+    {
+        final boolean remove = mode.IsRandom();
+        final int max = Math.min(modifiableList.size(), amount);
+        for (int i = 0; i < max; i++)
+        {
+            AbstractCard card = GetCard(modifiableList, i, remove);
+            if (card != null)
+            {
+                apply.Invoke(card);
+            }
+        }
     }
 
     private static class Bottom extends CardSelection

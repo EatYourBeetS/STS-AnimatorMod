@@ -153,16 +153,6 @@ public class Mathf
         current.a = Lerp(current.a, target.a, amount);
     }
 
-    public static Color LerpCopy(Color current, Color target, float amount)
-    {
-        current = current.cpy();
-        current.r = Lerp(current.r, target.r, amount);
-        current.g = Lerp(current.g, target.g, amount);
-        current.b = Lerp(current.b, target.b, amount);
-        current.a = Lerp(current.a, target.a, amount);
-        return current;
-    }
-
     public static void MoveTowards(Vector3f current, Vector3f target, Vector3f speed, float progress)
     {
         current.x = MoveTowards(current.x, target.x, speed.x * progress);
@@ -177,18 +167,16 @@ public class Mathf
         current.z = Lerp(current.z, target.z, speed.z * progress);
     }
 
-    public static Color Subtract(Color a, Color b, boolean includeAlpha)
+    public static void Subtract(Color a, Color b, boolean includeAlpha)
     {
         if (includeAlpha)
         {
             a.a -= b.a;
         }
-
         a.r -= b.r;
         a.g -= b.g;
         a.b -= b.b;
-
-        return a.clamp();
+        a.clamp();
     }
 
     public static void Add(Vector3f a, Vector3f b, float delta)
@@ -231,5 +219,10 @@ public class Mathf
         acceleration.y = Max(0, acceleration.y - y);
         acceleration.z = Max(0, acceleration.z - z);
         acceleration.w = Max(0, acceleration.w - delta);
+    }
+
+    public static float GetAngle(float aX, float aY, float bX, float bY)
+    {
+        return Rad2Deg * Atan2(bY - aY, bX - aX);
     }
 }

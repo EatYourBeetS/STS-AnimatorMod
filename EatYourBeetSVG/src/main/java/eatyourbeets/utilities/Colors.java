@@ -19,6 +19,16 @@ public class Colors
         return new Color(color.r, color.g, color.b, a);
     }
 
+    public static Color Lerp(Color current, Color target, float amount)
+    {
+        current = current.cpy();
+        current.r = Mathf.Lerp(current.r, target.r, amount);
+        current.g = Mathf.Lerp(current.g, target.g, amount);
+        current.b = Mathf.Lerp(current.b, target.b, amount);
+        current.a = Mathf.Lerp(current.a, target.a, amount);
+        return current;
+    }
+
     public static Color Random(float min, float max, boolean grayscale)
     {
         if (grayscale)

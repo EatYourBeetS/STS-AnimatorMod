@@ -54,15 +54,21 @@ public final class GameEffects
         return Unlisted.isEmpty();
     }
 
-    public AbstractGameEffect Attack(AbstractCreature source, AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax)
+    public EYBEffect Attack(AbstractCreature source, AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax, Color vfxColor)
     {
-        return Attack(source, target, attackEffect, pitchMin, pitchMax, source == target ? 0 : 0.15f);
+        return Attack(source, target, attackEffect, pitchMin, pitchMax, vfxColor, source == target ? 0 : 0.15f);
     }
 
-    public AbstractGameEffect Attack(AbstractCreature source, AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax, float spread)
+    public EYBEffect Attack(AbstractCreature source, AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax, Color vfxColor, float spread)
     {
         AttackEffects.PlaySound(attackEffect, pitchMin, pitchMax);
-        return Add(AttackEffects.GetVFX(attackEffect, VFX.RandomX(target.hb, spread), VFX.RandomY(target.hb, spread)));
+        EYBEffect effect = Add(AttackEffects.GetVFX(attackEffect, source, VFX.RandomX(target.hb, spread), VFX.RandomY(target.hb, spread)));
+        if (vfxColor != null)
+        {
+            effect.SetColor(vfxColor);
+        }
+
+        return effect;
     }
 
     public ArrayList<AbstractGameEffect> GetList()

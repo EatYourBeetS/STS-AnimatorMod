@@ -162,6 +162,12 @@
 		"NAMES": ["chaos", "chaos+"],
 		"PROPER_NAME": "Chaos"
 	},
+	"Fetch":
+	{
+		"DESCRIPTION": "Choose a card and move it to your hand.",
+		"NAMES": ["fetch"],
+		"PROPER_NAME": "Fetch"
+	},
 	"Fire":
 	{
 		"DESCRIPTION": "Orb: Applies #yBurning and damages the highest health enemy.",

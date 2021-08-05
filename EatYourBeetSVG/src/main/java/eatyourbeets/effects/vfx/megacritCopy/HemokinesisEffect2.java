@@ -1,8 +1,9 @@
-package eatyourbeets.effects.vfx;
+package eatyourbeets.effects.vfx.megacritCopy;
 
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.effects.vfx.HemokinesisParticleEffect;
 import eatyourbeets.utilities.GameEffects;
 
 public class HemokinesisEffect2 extends EYBEffect

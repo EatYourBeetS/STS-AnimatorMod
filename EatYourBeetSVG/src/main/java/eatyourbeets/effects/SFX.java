@@ -1,13 +1,41 @@
 package eatyourbeets.effects;
 
+import basemod.BaseMod;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import patches.MainMusicPatches;
 
 public class SFX
 {
+    public static void Initialize()
+    {
+        BaseMod.addAudio(ATTACK_REAPER, "audio/sound/STS_SFX_Reaper_v1.ogg");
+        BaseMod.addAudio(ATTACK_SCYTHE, "audio/sound/STS_SFX_Scythe_v1.ogg");
+        BaseMod.addAudio(ATTACK_AXE, "audio/sound/STS_SFX_EnemyAtk_Axe_v1.ogg");
+        BaseMod.addAudio(ATTACK_DAGGER, "audio/sound/STS_SFX_EnemyAtk_Dagger_v1.ogg");
+        BaseMod.addAudio(ATTACK_SCIMITAR, "audio/sound/STS_SFX_EnemyAtk_Scimitar_v1.ogg");
+
+        BaseMod.addAudio(ANIMATOR_SPEAR_1, "audio/animator/sound/SPEAR_1.ogg");
+        BaseMod.addAudio(ANIMATOR_SPEAR_2, "audio/animator/sound/SPEAR_2.ogg");
+        BaseMod.addAudio(ANIMATOR_ARROW, "audio/animator/sound/FIRING_ARROW.ogg");
+        BaseMod.addAudio(ANIMATOR_GUNSHOT, "audio/animator/sound/FIRING_BULLET.ogg");
+        BaseMod.addAudio(ANIMATOR_ORB_EARTH_EVOKE, "audio/animator/sound/ORB_EARTH_EVOKE.ogg");
+        BaseMod.addAudio(ANIMATOR_ORB_EARTH_CHANNEL, "audio/animator/sound/ORB_EARTH_CHANNEL.ogg");
+        BaseMod.addAudio(ANIMATOR_KIRA_POWER, "audio/animator/sound/KIRA_POWER.ogg");
+        BaseMod.addAudio(ANIMATOR_MEGUMIN_CHARGE, "audio/animator/sound/MEGUMIN_CHARGE.ogg");
+        BaseMod.addAudio(ANIMATOR_THE_ULTIMATE_CRYSTAL, "audio/animator/sound/THE_ULTIMATE_CRYSTAL.ogg");
+
+        MainMusicPatches.SetFolderPath("audio/animator/music/");
+        MainMusicPatches.AddMusic(ANIMATOR_THE_CREATURE);
+        MainMusicPatches.AddMusic(ANIMATOR_THE_HAUNT);
+        //BaseMod.addAudio(Audio_TheUnnamed, "audio/music/ANIMATOR_THE_UNNAMED.ogg");
+    }
+
     public static final String ANIMATOR_ARROW = "ANIMATOR_ARROW";
     public static final String ANIMATOR_DARKNESS = "ANIMATOR_DARKNESS";
     public static final String ANIMATOR_GUNSHOT = "ANIMATOR_GUNSHOT";
+    public static final String ANIMATOR_SPEAR_1 = "ANIMATOR_SPEAR_1";
+    public static final String ANIMATOR_SPEAR_2 = "ANIMATOR_SPEAR_2";
     public static final String ANIMATOR_KIRA_POWER = "ANIMATOR_KIRA_POWER";
     public static final String ANIMATOR_MEGUMIN_CHARGE = "ANIMATOR_MEGUMIN_CHARGE";
     public static final String ANIMATOR_ORB_EARTH_CHANNEL = "ANIMATOR_ORB_EARTH_CHANNEL";

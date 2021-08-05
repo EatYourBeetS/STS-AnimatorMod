@@ -1,4 +1,4 @@
-package eatyourbeets.effects.vfx;
+package eatyourbeets.effects.vfx.megacritCopy;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

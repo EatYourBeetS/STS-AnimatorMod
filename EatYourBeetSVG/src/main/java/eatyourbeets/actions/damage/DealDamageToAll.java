@@ -24,6 +24,8 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
     protected boolean bypassBlock;
     protected boolean bypassThorns;
     protected boolean isFast;
+
+    protected Color vfxColor;
     protected float pitchMin;
     protected float pitchMax;
 
@@ -60,6 +62,13 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
         return this;
     }
 
+    public DealDamageToAll SetVFXColor(Color color)
+    {
+        this.vfxColor = color.cpy();
+
+        return this;
+    }
+
     public DealDamageToAll SetSoundPitch(float pitchMin, float pitchMax)
     {
         this.pitchMin = pitchMin;
@@ -90,7 +99,7 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
         {
             if (!GameUtilities.IsDeadOrEscaped(enemy))
             {
-                GameEffects.List.Attack(source, enemy, this.attackEffect, pitchMin, pitchMax);
+                GameEffects.List.Attack(source, enemy, this.attackEffect, pitchMin, pitchMax, vfxColor);
 
                 if (onDamageEffect != null)
                 {

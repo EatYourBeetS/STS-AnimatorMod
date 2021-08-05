@@ -32,6 +32,7 @@ public class EYBCardAffinities
             a.scaling = scaling;
             a.requirement = requirement;
         }
+        Refresh();
     }
 
     public void Initialize(EYBCardAffinities affinities)
@@ -234,7 +235,7 @@ public class EYBCardAffinities
 
     public int GetScaling(AffinityType type, boolean useStarScaling)
     {
-        int star = (Star != null ? Star.scaling : 0);
+        final int star = (Star != null ? Star.scaling : 0);
         if (type == AffinityType.Star)
         {
             return star;
@@ -246,7 +247,7 @@ public class EYBCardAffinities
             scaling = star;
         }
 
-        EYBCardAffinity affinity = Get(type);
+        final EYBCardAffinity affinity = Get(type);
         if (affinity != null)
         {
             scaling += affinity.scaling;
@@ -262,7 +263,7 @@ public class EYBCardAffinities
 
     public int GetUpgrade(AffinityType type, boolean useStar)
     {
-        int star = (Star != null ? Star.upgrade : 0);
+        final int star = (Star != null ? Star.upgrade : 0);
         if (type == AffinityType.Star || (useStar && star > 0))
         {
             return star;
@@ -273,7 +274,7 @@ public class EYBCardAffinities
         }
         else
         {
-            EYBCardAffinity affinity = Get(type);
+            final EYBCardAffinity affinity = Get(type);
             return (affinity != null) ? affinity.upgrade : 0;
         }
     }
@@ -296,7 +297,7 @@ public class EYBCardAffinities
         }
         else
         {
-            EYBCardAffinity affinity = Get(type);
+            final EYBCardAffinity affinity = Get(type);
             return (affinity != null) ? affinity.level : 0;
         }
     }
@@ -308,7 +309,7 @@ public class EYBCardAffinities
 
     public int GetRequirement(AffinityType type)
     {
-        EYBCardAffinity a = Get(type == AffinityType.General ? AffinityType.Star : type);
+        final EYBCardAffinity a = Get(type == AffinityType.General ? AffinityType.Star : type);
         return a == null ? 0 : a.requirement;
     }
 
@@ -349,7 +350,7 @@ public class EYBCardAffinities
             max += 1;
         }
 
-        int half = max / 2;
+        final int half = max / 2;
         if (half >= 2)
         {
             step *= 0.75f;
@@ -392,9 +393,8 @@ public class EYBCardAffinities
         }
 
         final Color color = Color.WHITE.cpy();
-        float step = size * 0.9f;
-        int half = max / 2;
-
+        final float step = size * 0.9f;
+        final int half = max / 2;
         for (int i = 0; i < max; i++)
         {
             float offsetX;
@@ -408,7 +408,7 @@ public class EYBCardAffinities
                 offsetX = (step * 0.5f) + (step* (i - half));
             }
 
-            item.Type.Render(item.level, sb, color, x + offsetX, y, size);
+            item.Render(sb, color, x + offsetX, y, size);
         }
     }
 }

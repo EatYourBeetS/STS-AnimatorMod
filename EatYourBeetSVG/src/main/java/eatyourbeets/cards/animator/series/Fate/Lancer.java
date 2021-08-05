@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.Fate;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ClashEffect;
@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -42,18 +43,15 @@ public class Lancer extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        AbstractGameAction.AttackEffect attackEffect;
         if (this.damage >= 15)
         {
             GameActions.Bottom.VFX(new ClashEffect(m.hb.cX, m.hb.cY), 0.1f);
-            attackEffect = AttackEffects.NONE;
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
         }
         else
         {
-            attackEffect = AttackEffects.SLASH_VERTICAL;
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetVFXColor(Colors.Lerp(Color.SCARLET, Color.WHITE, 0.3f));
         }
-
-        GameActions.Bottom.DealDamage(this, m, attackEffect);
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
     }
 }

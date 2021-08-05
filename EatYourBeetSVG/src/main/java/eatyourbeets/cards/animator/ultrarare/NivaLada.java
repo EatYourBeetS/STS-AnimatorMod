@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.effects.vfx.LaserBeamEffect2;
+import eatyourbeets.effects.vfx.megacritCopy.LaserBeamEffect2;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDiscardedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnAfterCardExhaustedSubscriber;
 import eatyourbeets.powers.CombatStats;

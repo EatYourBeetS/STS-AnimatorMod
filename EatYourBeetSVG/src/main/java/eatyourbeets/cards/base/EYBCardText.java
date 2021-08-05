@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -27,6 +28,7 @@ public class EYBCardText
     private static final CommonImages.Badges BADGES = GR.Common.Images.Badges;
     private static final CommonImages.CardIcons ICONS = GR.Common.Images.Icons;
     private static final ColoredString cs = new ColoredString("", Settings.CREAM_COLOR);
+    private static AbstractPlayer player;
     private float badgeAlphaTargetOffset = 1f;
     private float badgeAlphaOffset = -0.2f;
 
@@ -65,6 +67,8 @@ public class EYBCardText
 
     public void RenderDescription(SpriteBatch sb)
     {
+        player = EYBCard.player;
+
         if (card.isLocked || !card.isSeen)
         {
             FontHelper.menuBannerFont.getData().setScale(card.drawScale * 1.25f);
@@ -78,7 +82,7 @@ public class EYBCardText
 
         RenderAttributes(sb);
 
-        final boolean inHand = EYBCard.player != null && EYBCard.player.hand.contains(card);
+        final boolean inHand = player != null && player.hand.contains(card);
         if (card.drawScale > 0.3f)
         {
             RenderBadges(sb, inHand);
@@ -189,61 +193,27 @@ public class EYBCardText
 
         offset_y = 0;
 
-        for (AffinityType type : AffinityType.BasicTypes())
+        boolean showActualScaling = inHand && player.hoveredCard == card && (player.isDraggingCard || player.isHoveringDropZone || player.inSingleTargetMode);
+        for (AffinityType type : AffinityType.AllTypes())
         {
             int scaling = card.affinities.GetScaling(type, false);
             if (scaling > 0)
             {
-                if (inHand)
+                if (showActualScaling)
                 {
                     final int amount = (int)CombatStats.Affinities.ApplyScaling(type, card, 0);
-                    cs.color = amount > 0 ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR;
+                    cs.SetColor(amount > 0 ? Colors.Green(1) : Colors.Cream(0.75f));
                     cs.text = "+" + amount;
                 }
                 else
                 {
-                    cs.color = Settings.CREAM_COLOR;
+                    cs.SetColor(Colors.Cream(1));
                     cs.text = "x" + scaling;
                 }
 
                 offset_y += RenderScaling(sb, type.GetPowerIcon(), cs, offset_y, Color.BLACK);//type.GetAlternateColor());
             }
         }
-
-        int starScaling = card.affinities.GetScaling(AffinityType.Star, false);
-        if (starScaling > 0)
-        {
-            if (inHand)
-            {
-                final int amount = (int)CombatStats.Affinities.ApplyScaling(AffinityType.Star, card, 0);
-                cs.color = amount > 0 ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR;
-                cs.text = "+" + amount;
-            }
-            else
-            {
-                cs.color = Settings.CREAM_COLOR;
-                cs.text = "x" + starScaling;
-            }
-
-            RenderScaling(sb, GR.Common.Images.Affinities.Star.Texture(), cs, offset_y, Color.BLACK);// AffinityType.Star.GetAlternateColor());
-        }
-    }
-
-    private float RenderScaling(SpriteBatch sb, Texture texture, ColoredString scaling, float y, Color backgroundColor)
-    {
-        final float alpha = card.transparency;
-        final float offset_x = -AbstractCard.RAW_W * 0.4625f;
-        final float offset_y = AbstractCard.RAW_H * 0.08f;//+0.28f;
-        final BitmapFont font = EYBFontHelper.CardIconFont_Large;
-
-        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Elliptical.Texture(), new Vector2(offset_x, offset_y + y), 24, 32, backgroundColor, alpha * 0.4f, 1);
-        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y + 8), 34, 34, Color.WHITE, alpha, 1);
-
-        font.getData().setScale(0.6f * card.drawScale);
-        RenderHelpers.WriteOnCard(sb, card, font, scaling.text, offset_x, offset_y + y - 6, scaling.color, true);
-        RenderHelpers.ResetFont(font);
-
-        return 42; // y offset
     }
 
     private float RenderScaling(SpriteBatch sb, TextureRegion texture, ColoredString scaling, float y, Color backgroundColor)
@@ -260,7 +230,7 @@ public class EYBCardText
         RenderHelpers.WriteOnCard(sb, card, font, scaling.text, offset_x, offset_y + y - 6, scaling.color, true);
         RenderHelpers.ResetFont(font);
 
-        return 42; // y offset
+        return 36; // y offset
     }
 
     private float RenderBadge(SpriteBatch sb, Texture texture, float offset_y, float alpha, String text)

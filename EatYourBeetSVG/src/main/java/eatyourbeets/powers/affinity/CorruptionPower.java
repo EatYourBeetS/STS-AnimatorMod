@@ -55,5 +55,7 @@ public class CorruptionPower extends AbstractAffinityPower
         {
             this.description = JUtils.Format(description, name, 0, 1, "");
         }
+
+        this.tooltip.description = description;
     }
 }

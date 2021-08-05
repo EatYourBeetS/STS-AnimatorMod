@@ -307,9 +307,8 @@
 	{
 		"animator:BlazingHeat":
 		{
-		  "DESCRIPTION": "Your [Fire] applies 1 additional [Burning] at the end of the turn and deals damage to ALL enemies !M! times when Evoked.",
-		  "NAME": "Sheer Cold",
-		  "UPGRADE_DESCRIPTION": "Channel 1 [Fire]. || Your [Fire] applies 1 additional [Burning] at the end of the turn and deals damage to ALL enemies !M! times when Evoked."
+		  "DESCRIPTION": "Channel !S! [Fire]. || Your [Fire] applies 1 additional [Burning] at the end of the turn and deals !M!X damage to the enemy with the highest health when Evoked.",
+		  "NAME": "Blazing Heat"
 		},
 		"animator:GarbageDoll":
 		{
@@ -362,9 +361,8 @@
 		},
 		"animator:SheerCold":
 		{
-		  "DESCRIPTION": "Your [Frost] now applies !M! [Freezing] to a random enemy when Triggered and twice that amount to ALL ** enemies when Evoked.",
-		  "NAME": "Sheer Cold",
-		  "UPGRADE_DESCRIPTION": "Channel 1 [Frost]. || Your [Frost] now applies !M! [Freezing] to a random enemy when Triggered and twice that amount to ALL ** enemies when Evoked."
+		  "DESCRIPTION": "Channel !S! [Frost]. || Your [Frost] now applies !M! [Freezing] to a random enemy when Triggered and twice that amount to ALL ** enemies when Evoked.",
+		  "NAME": "Sheer Cold"
 		},
 		"animator:ShuuOuma":
 		{

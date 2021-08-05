@@ -6,6 +6,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.megacrit.cardcrawl.core.Settings;
 
 import java.io.File;
+import java.util.Locale;
 
 public abstract class AbstractResources extends GR
 implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber,
@@ -92,7 +93,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
 
     public FileHandle GetFallbackFile(String fileName)
     {
-        return Gdx.files.internal("localization/" + prefix + "/eng/" + fileName);
+        return Gdx.files.internal("localization/" + prefix.toLowerCase(Locale.ROOT) + "/eng/" + fileName);
     }
 
     public boolean IsBetaTranslation()
@@ -113,7 +114,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
                 language = Settings.GameLanguage.ENG;
             }
 
-            return Gdx.files.internal("localization/" + prefix + "/" + language.name().toLowerCase() + "/" + fileName);
+            return Gdx.files.internal("localization/" + prefix.toLowerCase(Locale.ROOT) + "/" + language.name().toLowerCase() + "/" + fileName);
         }
     }
 

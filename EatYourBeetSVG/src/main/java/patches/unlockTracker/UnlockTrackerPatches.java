@@ -60,6 +60,36 @@ import eatyourbeets.utilities.JUtils;
 
 public class UnlockTrackerPatches
 {
+    private static final String base = GR.Animator.PlayerClass.toString();
+    private static final String key_unlock_level = base + "UnlockLevel";
+    private static final String key_progress = base + "Progress";
+    private static final String key_current_cost = base + "CurrentCost";
+    private static final String key_total_score = base + "TotalScore";
+    private static final String key_high_score = base + "HighScore";
+    
+    public static void Validate()
+    {
+        final float progress = UnlockTracker.getCurrentProgress(GR.Animator.PlayerClass);
+        final int cost = UnlockTracker.getCurrentScoreCost(GR.Animator.PlayerClass);
+        final int expectedCost = GR.Animator.GetUnlockCost();
+        if (cost != expectedCost)
+        {
+            UnlockTracker.unlockProgress.putInteger(key_current_cost, expectedCost);
+            if (progress < expectedCost)
+            {
+                UnlockTracker.unlockProgress.flush();
+            }
+        }
+
+        if (progress >= expectedCost)
+        {
+            if (GR.Animator.GetUnlockLevel() < GR.Animator.Data.MaxUnlockLevel)
+            {
+                UnlockTracker.addScore(GR.Animator.PlayerClass, 1);
+            }
+        }
+    }
+    
     @SpirePatch(clz = UnlockTracker.class, method = "addScore", paramtypez = {AbstractPlayer.PlayerClass.class, int.class})
     public static class UnlockTracker_addScore
     {
@@ -71,17 +101,6 @@ public class UnlockTrackerPatches
                 return SpireReturn.Continue();
             }
 
-            String key_unlock_level = c.toString() + "UnlockLevel";
-            String key_progress = c.toString() + "Progress";
-            String key_current_cost = c.toString() + "CurrentCost";
-            String key_total_score = c.toString() + "TotalScore";
-            String key_high_score = c.toString() + "HighScore";
-            JUtils.LogInfo(UnlockTrackerPatches.class, "Keys");
-            JUtils.LogInfo(UnlockTrackerPatches.class, key_unlock_level);
-            JUtils.LogInfo(UnlockTrackerPatches.class, key_progress);
-            JUtils.LogInfo(UnlockTrackerPatches.class, key_current_cost);
-            JUtils.LogInfo(UnlockTrackerPatches.class, key_total_score);
-            JUtils.LogInfo(UnlockTrackerPatches.class, key_high_score);
             int p = UnlockTracker.unlockProgress.getInteger(key_progress, 0);
             p += scoreGained;
             int total;
@@ -90,8 +109,7 @@ public class UnlockTrackerPatches
             if (p >= unlockCost)
             {
                 JUtils.LogInfo(UnlockTrackerPatches.class, "[DEBUG] Level up!");
-                total = UnlockTracker.unlockProgress.getInteger(key_unlock_level, 0);
-                ++total;
+                total = UnlockTracker.unlockProgress.getInteger(key_unlock_level, 0) + 1;
                 UnlockTracker.unlockProgress.putInteger(key_unlock_level, total); // <------- LEVEL UP
                 p -= UnlockTracker.unlockProgress.getInteger(key_current_cost, unlockCost);
                 UnlockTracker.unlockProgress.putInteger(key_progress, p);

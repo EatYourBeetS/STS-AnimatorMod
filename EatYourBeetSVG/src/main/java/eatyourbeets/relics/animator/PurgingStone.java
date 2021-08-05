@@ -39,11 +39,10 @@ public class PurgingStone extends AnimatorRelic
     }
 
     @Override
-    public void onVictory()
+    public void onEnterRoom(AbstractRoom room)
     {
-        super.onVictory();
+        super.onEnterRoom(room);
 
-        final AbstractRoom room = GameUtilities.GetCurrentRoom();
         if (room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
         {
             SetCounter(Math.min(MAX_STORED_USES, counter + USES_PER_ELITE));

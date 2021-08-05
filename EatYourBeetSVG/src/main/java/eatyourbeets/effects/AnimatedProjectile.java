@@ -97,6 +97,6 @@ public class AnimatedProjectile extends Projectile
 
         final int h = (int) height;
         final int w = (int) width;
-        return new TextureRegion(texture, (clampedFrame % columns) * w, (clampedFrame / rows) * h, w, h);
+        return new TextureRegion(texture, (clampedFrame % columns) * w, (clampedFrame / columns) * h, w, h);
     }
 }

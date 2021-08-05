@@ -26,10 +26,7 @@ import eatyourbeets.ui.common.CustomCardLibSortHeader;
 import eatyourbeets.utilities.*;
 
 import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
@@ -103,6 +100,46 @@ public class ParseGenericCommand extends ConsoleCommand
                         player.masterDeck.group.add(card.makeCopy());
                         player.masterDeck.group.addAll(card.GetUpgrades());
                     }
+                    return;
+                }
+
+                if (tokens[1].equals("affinity") && tokens.length > 2)
+                {
+                    ArrayList<AbstractCard> cards;
+                    if (GameUtilities.InGame())
+                    {
+                        cards = player.masterDeck.group;
+                        cards.clear();
+                    }
+                    else
+                    {
+                        cards = new ArrayList<>();
+                    }
+
+                    boolean upgrade = tokens.length > 3 && tokens[3].equals("+");
+                    for (AffinityType type : AffinityType.AllTypes())
+                    {
+                        if (type.name().toLowerCase(Locale.ROOT).equals(tokens[2]))
+                        {
+                            for (Map.Entry<String, AbstractCard> pair : CardLibrary.cards.entrySet())
+                            {
+                                AbstractCard card = pair.getValue();
+                                if (!GameUtilities.IsCurseOrStatus(card) && card.rarity != AbstractCard.CardRarity.SPECIAL
+                                && card.color != AbstractCard.CardColor.COLORLESS && GameUtilities.GetAffinityLevel(card, type, false) > 0)
+                                {
+                                    card = card.makeCopy();
+                                    if (upgrade)
+                                    {
+                                        card.upgrade();
+                                    }
+                                    cards.add(card);
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    DevConsole.log("Total " + tokens[2] + " cards: " + cards.size());
+
                     return;
                 }
 

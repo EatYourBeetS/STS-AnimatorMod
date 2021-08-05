@@ -307,9 +307,9 @@
 	{
 		"animator:BlazingHeat":
 		{
-		  "DESCRIPTION": "Your [Fire] deals 1 additional damage at the end of the turn and deals damage to ALL enemies equal to its [Burning] when Evoked.",
+		  "DESCRIPTION": "Your [Fire] applies 1 additional [Burning] at the end of the turn and deals damage to ALL enemies !M! times when Evoked.",
 		  "NAME": "Sheer Cold",
-		  "UPGRADE_DESCRIPTION": "Channel 1 [Fire]. || Your [Fire] deals 1 additional damage at the end of the turn and deals damage to ALL enemies equal to its [Burning] when Evoked."
+		  "UPGRADE_DESCRIPTION": "Channel 1 [Fire]. || Your [Fire] applies 1 additional [Burning] at the end of the turn and deals damage to ALL enemies !M! times when Evoked."
 		},
 		"animator:GarbageDoll":
 		{
@@ -509,7 +509,7 @@
 		},
 		"animator:AyakaKamisato":
 		{
-		  "DESCRIPTION": "Attack 1 additional time for each [Frost] you have. You cannot gain [Block] for 2 turns. || <LIM>. 3 <B>: Play {Sheer Cold}.",
+		  "DESCRIPTION": "Gain !S! {Temp}. [Thorns] ** for each [Frost] you have. You cannot gain [Block] for 2 turns. || <LIM>. 3 <B>: Play {Sheer Cold}.",
 		  "NAME": "Ayaka Kamisato"
 		},
 		"animator:BarbaraPegg":
@@ -549,7 +549,7 @@
 		},
 		"animator:JumpyDumpty":
 		{
-		  "DESCRIPTION": "Apply !M! [Burning]. || If the enemy dies ** or loses its [Block]: Add a copy of this card to your Draw Pile. Then, take !S! damage at the end of the turn.",
+		  "DESCRIPTION": "Apply !M! [Burning]. || If the enemy dies or ** loses its [Block]: Add a copy of this card to your Draw Pile. Then, take !S! damage at the end of the turn.",
 		  "NAME": "Jumpy Dumpty"
 		},
 		"animator:KaeyaAlberich":
@@ -584,8 +584,8 @@
 		},
 		"animator:OgoshoNarukami":
 		{
-		  "DESCRIPTION": "At the start of your turn, increase the damage of all [Lightning] and [Dark] by !M! this combat. You can only channel [Lightning] and [Dark].",
-		  "NAME": "Klee"
+		  "DESCRIPTION": "[Lightning] and [Dark] now have +1 [C] and +1 [I] scaling. If you channel any Orb other than [Lightning], [Dark], or [Chaos], replace it with [Lightning] and take !M! damage at the end of your turn.",
+		  "NAME": "Ogosho Narukami"
 		},
 		"animator:Oz":
 		{

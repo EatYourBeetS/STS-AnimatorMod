@@ -21,9 +21,9 @@ public class JumpyDumpty extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(11, 0, 2, 5);
-        SetUpgrade(3, 0, 1, 0);
-        SetAffinity_Red(1, 0, 1);
+        Initialize(12, 0, 1, 5);
+        SetUpgrade(4, 0, 1, 0);
+        SetAffinity_Red(1, 0, 2);
         SetAutoplay(true);
         SetExhaust(true);
     }

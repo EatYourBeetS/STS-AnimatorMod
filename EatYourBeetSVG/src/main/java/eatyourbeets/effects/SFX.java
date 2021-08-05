@@ -18,7 +18,9 @@ public class SFX
         BaseMod.addAudio(ANIMATOR_SPEAR_1, "audio/animator/sound/SPEAR_1.ogg");
         BaseMod.addAudio(ANIMATOR_SPEAR_2, "audio/animator/sound/SPEAR_2.ogg");
         BaseMod.addAudio(ANIMATOR_ARROW, "audio/animator/sound/FIRING_ARROW.ogg");
+        BaseMod.addAudio(ANIMATOR_DARKNESS, "audio/animator/sound/DARKNESS.ogg");
         BaseMod.addAudio(ANIMATOR_GUNSHOT, "audio/animator/sound/FIRING_BULLET.ogg");
+        BaseMod.addAudio(ANIMATOR_PSI, "audio/animator/sound/PSI.ogg");
         BaseMod.addAudio(ANIMATOR_ORB_EARTH_EVOKE, "audio/animator/sound/ORB_EARTH_EVOKE.ogg");
         BaseMod.addAudio(ANIMATOR_ORB_EARTH_CHANNEL, "audio/animator/sound/ORB_EARTH_CHANNEL.ogg");
         BaseMod.addAudio(ANIMATOR_KIRA_POWER, "audio/animator/sound/KIRA_POWER.ogg");

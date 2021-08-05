@@ -23,10 +23,10 @@ public class Tartaglia extends AnimatorCard {
     public Tartaglia() {
         super(DATA);
 
-        Initialize(11, 0);
+        Initialize(12, 0);
         SetUpgrade(4, 0);
         SetAffinity_Red(1, 0, 0);
-        SetAffinity_Green(1, 1, 1);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override

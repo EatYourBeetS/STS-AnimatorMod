@@ -491,12 +491,12 @@ public class GameUtilities
 
     public static AbstractRoom GetCurrentRoom()
     {
-        return (AbstractDungeon.currMapNode == null) ? null : AbstractDungeon.currMapNode.getRoom();
+        return GetCurrentRoom(false);
     }
 
     public static AbstractRoom GetCurrentRoom(boolean notNull)
     {
-        AbstractRoom room = GetCurrentRoom();
+        final AbstractRoom room = (AbstractDungeon.currMapNode == null) ? null : AbstractDungeon.currMapNode.getRoom();
         if (room == null && notNull)
         {
             throw new NullPointerException("GetCurrentRoom() returned null");
@@ -809,18 +809,12 @@ public class GameUtilities
     {
         switch (tier)
         {
-            case COMMON:
-                return AbstractDungeon.commonRelicPool;
-            case UNCOMMON:
-                return AbstractDungeon.uncommonRelicPool;
-            case RARE:
-                return AbstractDungeon.rareRelicPool;
-            case BOSS:
-                return AbstractDungeon.bossRelicPool;
-            case SHOP:
-                return AbstractDungeon.shopRelicPool;
-            default:
-                return null;
+            case COMMON: return AbstractDungeon.commonRelicPool;
+            case UNCOMMON: return AbstractDungeon.uncommonRelicPool;
+            case RARE: return AbstractDungeon.rareRelicPool;
+            case BOSS: return AbstractDungeon.bossRelicPool;
+            case SHOP: return AbstractDungeon.shopRelicPool;
+            default: return null;
         }
     }
 
@@ -910,8 +904,8 @@ public class GameUtilities
 
     public static boolean InBattle()
     {
-        AbstractRoom room = GetCurrentRoom();
-        if (room != null && !room.isBattleOver && !player.isDead)
+        final AbstractRoom room = GetCurrentRoom();
+        if (room != null && !room.isBattleOver && player != null && !player.isDead)
         {
             return room.phase == AbstractRoom.RoomPhase.COMBAT || (room.monsters != null && !room.monsters.areMonstersBasicallyDead());
         }

@@ -47,6 +47,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static final CombatStats Instance = new CombatStats();
     public static final EYBCardAffinitySystem Affinities = new EYBCardAffinitySystem();
+    public static float EnemyVulnerableModifier;
 
     public static final GameEvent<OnSynergySubscriber> onSynergy = new GameEvent<>();
     public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = new GameEvent<>();
@@ -134,6 +135,8 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
         // Iterate onStatsCleared, remove those that return true.
         onStatsCleared.GetSubscribers().removeIf(OnStatsClearedSubscriber::OnStatsCleared);
+
+        EnemyVulnerableModifier = 0;
 
         turnCount = 0;
         cardsDrawnThisTurn = 0;

@@ -1,4 +1,4 @@
-package patches;
+package patches.abstractPower;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;

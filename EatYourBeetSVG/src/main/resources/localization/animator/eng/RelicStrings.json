@@ -176,7 +176,7 @@
 	},
 	"animator:WornHelmet":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} #yBlock. At the end of each turn, gain #b{1} #yBlock for every #yStatus and #yCurse in your hand."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} #yBlock. At the end of each turn, gain #b{1} #yBlock for every #yHindrance in your hand."],
 		"FLAVOR": "Goblins.",
 		"NAME": "Worn Helmet"
 	}

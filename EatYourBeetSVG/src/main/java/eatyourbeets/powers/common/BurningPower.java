@@ -66,7 +66,7 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     @Override
     public int getHealthBarAmount()
     {
-        return CombatHelper.GetHealthBarAmount(owner, amount, false, true);
+        return CombatHelper.GetHealthBarAmount(owner, GetPassiveDamage(), false, true);
     }
 
     @Override

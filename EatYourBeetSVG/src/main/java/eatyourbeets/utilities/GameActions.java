@@ -883,9 +883,9 @@ public final class GameActions
         return Add(new ApplyAffinityPower(player, type, amount, retain));
     }
 
-    public ApplyPowerAuto StackPower(TargetHelper target, PowerHelper power, int stacks)
+    public ApplyPower StackPower(AbstractPower power)
     {
-        return Add(new ApplyPowerAuto(target, power, stacks));
+        return StackPower(power.owner, power);
     }
 
     public ApplyPower StackPower(AbstractCreature source, AbstractPower power)
@@ -893,9 +893,9 @@ public final class GameActions
         return Add(new ApplyPower(source, power.owner, power, power.amount));
     }
 
-    public ApplyPower StackPower(AbstractPower power)
+    public ApplyPowerAuto StackPower(TargetHelper target, PowerHelper power, int stacks)
     {
-        return StackPower(power.owner, power);
+        return Add(new ApplyPowerAuto(target, power, stacks));
     }
 
     public TalkAction Talk(AbstractCreature source, String text)

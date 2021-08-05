@@ -1,4 +1,4 @@
-package eatyourbeets.relics.animator;
+package eatyourbeets.relics.deprecated;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -17,7 +17,7 @@ public class Rinne extends AnimatorRelic
 
     public Rinne()
     {
-        super(ID, RelicTier.SPECIAL, LandingSound.MAGICAL);
+        super(ID, RelicTier.DEPRECATED, LandingSound.MAGICAL);
     }
 
     @Override

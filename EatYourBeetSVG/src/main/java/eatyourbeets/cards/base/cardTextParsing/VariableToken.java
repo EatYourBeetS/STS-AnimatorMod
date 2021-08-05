@@ -9,10 +9,12 @@ import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class VariableToken extends CTToken
 {
     private final char variableID;
+    private boolean modifier;
     private ColoredString coloredString;
 
     static final ArrayList<Character> validTokens = new ArrayList<>();
@@ -34,25 +36,41 @@ public class VariableToken extends CTToken
 
     public static int TryAdd(CTContext parser)
     {
-        if (parser.character == '!' && parser.CompareNext(2, '!'))
+        if (parser.character == '!' && parser.remaining > 1)
         {
-            VariableToken token = CreateToken(parser.NextCharacter(1));
-            if (token != null)
+            int size = 0;
+            VariableToken token = null;
+            if (parser.CompareNext(1, '~') && parser.CompareNext(3, '!'))
             {
-                parser.AddToken(token);
+                size = 4;
+                token = TryCreateToken(parser.NextCharacter(2));
             }
-            else
+            else if (parser.CompareNext(2, '!'))
             {
-                JUtils.LogInfo(VariableToken.class, "Unknown variable type: " + parser.text);
+                size = 3;
+                token = TryCreateToken(parser.NextCharacter(1));
             }
 
-            return 3;
+            if (size > 0)
+            {
+                if (token != null)
+                {
+                    token.modifier = (size == 4);
+                    parser.AddToken(token);
+                }
+                else
+                {
+                    JUtils.LogInfo(VariableToken.class, "Unknown variable type: " + parser.text);
+                }
+
+                return size;
+            }
         }
 
         return 0;
     }
 
-    private static VariableToken CreateToken(Character c)
+    private static VariableToken TryCreateToken(Character c)
     {
         return validTokens.contains(c) ? new VariableToken(c) : null;
     }
@@ -89,6 +107,14 @@ public class VariableToken extends CTToken
             boolean requireAll = false;
             CTLine line = context.lines.get(context.lineIndex);
             ArrayList<AffinityType> types = new ArrayList<>();
+
+            if (modifier)
+            {
+                Collections.addAll(types, AffinityType.BasicTypes());
+                coloredString = context.card.GetAffinityString(types, requireAll);
+                return;
+            }
+
             while (true)
             {
                 final CTToken next = line.Get(line.tokenIndex + (i++));
@@ -110,7 +136,7 @@ public class VariableToken extends CTToken
                     {
                         requireAll = true;
                     }
-                    else if (!next.rawText.equals("or"))
+                    else if (!next.rawText.equals("or") && !next.rawText.equals(","))
                     {
                         break;
                     }

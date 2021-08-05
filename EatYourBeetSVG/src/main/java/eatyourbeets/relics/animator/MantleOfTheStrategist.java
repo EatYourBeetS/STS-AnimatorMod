@@ -7,6 +7,7 @@
 //import eatyourbeets.powers.CombatStats;
 //import eatyourbeets.relics.AnimatorRelic;
 //
+//TODO: Implement this
 //public class MantleOfTheStrategist extends AnimatorRelic implements OnSynergyCheckSubscriber
 //{
 //    public static final String ID = CreateFullID(MantleOfTheStrategist.class);

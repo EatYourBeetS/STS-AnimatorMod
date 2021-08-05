@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.series.DateALive;
 
-import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -8,13 +7,11 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.effects.VFX;
 import eatyourbeets.interfaces.subscribers.OnAddedToDrawPileSubscriber;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
 
 public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuffleSubscriber, OnAddedToDrawPileSubscriber
@@ -40,9 +37,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-        .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.PURPLE)).duration * 0.1f);
-        GameActions.Bottom.SFX("ATTACK_FIRE");
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.PSYCHOKINESIS);
     }
 
     @Override

@@ -55,6 +55,9 @@ public class SnowballEffect extends EYBEffect
             vfxTimer = 0.016f;
             GameEffects.Queue.Add(new LightFlareParticleEffect(x, y, secondaryColor));
             GameEffects.Queue.Add(new FrostOrbPassiveEffect(x, y));
+            if (RandomBoolean(0.3f)) {
+                GameEffects.Queue.Add(new SnowballParticleEffect(this.x, this.y, color).SetScale(Random(0.05f,0.1f) * Settings.scale));
+            }
         }
 
         if (TickDuration(deltaTime))

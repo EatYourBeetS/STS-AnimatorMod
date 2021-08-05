@@ -83,6 +83,7 @@
                 <excludes>
                     <exclude>**/_cards.psd</exclude>
                     <exclude>**/temp/*</exclude>
+                    <exclude>**/*.xcf</exclude>
                 </excludes>
             </resource>
         </resources>

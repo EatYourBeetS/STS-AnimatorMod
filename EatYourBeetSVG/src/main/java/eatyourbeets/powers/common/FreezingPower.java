@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class FreezingPower extends CommonPower implements HealthBarRenderPower
 {
-    private static final Color healthBarColor = Color.SKY.cpy();
+    private static final Color healthBarColor = new Color(0.372F, 0.5F, 1.0F, 1.0F);
     public static final String POWER_ID = CreateFullID(FreezingPower.class);
     public static final int BASE_MULTIPLIER = 10;
     public static final int MAX_MULTIPLIER_STACKS = 20;
@@ -25,7 +25,7 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
     public static float CalculatePercentage(int amount) {return BASE_MULTIPLIER + RATE * Math.min(MAX_MULTIPLIER_STACKS,amount);}
     public static float CalculateDamage(float damage, float percentage)
     {
-        return damage - MathUtils.ceil(percentage * damage);
+        return damage - MathUtils.ceil( damage * (percentage / 100f));
     }
 
     public FreezingPower(AbstractCreature owner, AbstractCreature source, int amount)
@@ -47,7 +47,7 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
     @Override
     public void updateDescription()
     {
-        FormatDescription(0, GetPassiveDamage(), percentage);
+        this.description = FormatDescription(0, GetPassiveDamage(), percentage);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
     {
         this.flashWithoutSound();
 
-        GameActions.Bottom.DealDamage(source, owner, GetPassiveDamage(), DamageInfo.DamageType.HP_LOSS, AttackEffects.FIRE);
+        GameActions.Bottom.DealDamage(source, owner, GetPassiveDamage(), DamageInfo.DamageType.HP_LOSS, AttackEffects.ICE);
         ReducePower(1);
     }
 
@@ -77,13 +77,6 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
     {
         super.reducePower(reduceAmount);
         updatePercentage();
-    }
-
-    @Override
-    public void atEndOfRound()
-    {
-        super.atEndOfRound();
-        GameActions.Bottom.ReducePower(this, Math.max(MathUtils.ceil(this.amount * 0.75f),1));
     }
 
     @Override

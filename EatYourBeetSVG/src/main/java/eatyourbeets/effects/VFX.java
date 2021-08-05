@@ -102,7 +102,13 @@ public class VFX
 
     public static GenericAnimationEffect Darkness(float cX, float cY)
     {
-        return new GenericAnimationEffect(EYBEffect.IMAGES.Darkness.Texture(), cX, cY, 1, 5).SetColor(Color.WHITE).SetMode(AnimatedProjectile.AnimationMode.Reverse, 10);
+        return new GenericAnimationEffect(EYBEffect.IMAGES.Darkness.Texture(), cX, cY, 4, 5, 0.01f)
+                .SetColor(Color.WHITE)
+                .SetRotation(0f, 1800f)
+                .SetScale(0f)
+                .SetTargetScale(1f,5f)
+                .SetMode(AnimatedProjectile.AnimationMode.Loop, 240)
+                .SetFading(30);
     }
 
     public static ExplosionSmallEffect SmallExplosion(Hitbox source)
@@ -166,6 +172,16 @@ public class VFX
         return new LightningEffect(cX, cY);
     }
 
+    public static PsychokinesisEffect Psychokinesis(Hitbox target)
+    {
+        return Psychokinesis(target.cX, target.cY);
+    }
+
+    public static PsychokinesisEffect Psychokinesis(float cX, float cY)
+    {
+        return new PsychokinesisEffect(cX, cY);
+    }
+
     public static RazorWindEffect RazorWind(Hitbox source, Hitbox target, float horizontalSpeed, float horizontalAcceleration)
     {
         return new RazorWindEffect(source.cX, source.cY, RandomY(target, 0.33f), horizontalSpeed, horizontalAcceleration);
@@ -194,6 +210,16 @@ public class VFX
     public static SnowballEffect Snowball(Hitbox source, Hitbox target)
     {
         return new SnowballEffect(source.cX, source.cY, target.cX, target.cY);
+    }
+
+    public static SnowballTriggerEffect SnowballTrigger(Hitbox source)
+    {
+        return SnowballTrigger(source.cX, source.cY);
+    }
+
+    public static SnowballTriggerEffect SnowballTrigger(float cX, float cY)
+    {
+        return (SnowballTriggerEffect) new SnowballTriggerEffect(cX, cY, 8).SetColor(Color.SKY.cpy());
     }
 
     public static ThrowDaggerEffect2 ThrowDagger(Hitbox target, float variance)

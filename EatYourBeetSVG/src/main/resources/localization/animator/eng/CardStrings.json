@@ -362,9 +362,9 @@
 		},
 		"animator:SheerCold":
 		{
-		  "DESCRIPTION": "Your [Frost] now applies !M! [Freezing] to a random enemy when Triggered and twice that amount to all enemies when Evoked.",
+		  "DESCRIPTION": "Your [Frost] now applies !M! [Freezing] to a random enemy when Triggered and twice that amount to ALL ** enemies when Evoked.",
 		  "NAME": "Sheer Cold",
-		  "UPGRADE_DESCRIPTION": "Channel 1 [Frost]. || Your [Frost] now applies !M! [Freezing] to a random enemy when Triggered and twice that amount to all enemies when Evoked."
+		  "UPGRADE_DESCRIPTION": "Channel 1 [Frost]. || Your [Frost] now applies !M! [Freezing] to a random enemy when Triggered and twice that amount to ALL ** enemies when Evoked."
 		},
 		"animator:ShuuOuma":
 		{

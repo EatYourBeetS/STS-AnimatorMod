@@ -1181,12 +1181,12 @@
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "If the enemy dies or ** loses its [Block]: Gain !S! [Block]. || !A! <R>: Enter <FS>.",
+			"DESCRIPTION": "Gain 2 [F]. || If the enemy dies or ** loses its [Block]: Gain !S! [Block]. || !A! <R>: Enter <FS>.",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
 		{
-			"DESCRIPTION": "Channel 1 [Dark]. || Synergy or Exhaust: ** Choose !S!: Evoke your ** first orb, Apply !M! [Shackles], ** or Gain [F] [I].",
+			"DESCRIPTION": "Channel 1 [Dark]. || Steal !M! Strength. || Gain !S! [Frail] and [C].",
 			"EXTENDED_DESCRIPTION": ["Evoke your first orb.", "Apply {0} [Shackles].", "Gain [F] [I]."],
 			"NAME": "Caster"
 		},
@@ -1207,7 +1207,8 @@
 		},
 		"animator:Lancer":
 		{
-			"DESCRIPTION": "Apply !M! [Vulnerable]. || This card's damage is ** increased by the enemy's ** missing HP percentage.",
+			"DESCRIPTION": "Retain [A]. Apply 1 [Vulnerable]. || <slm>. Increase the ** effect of [Vulnerable] on enemies ** by 25% this turn.",
+			"EXTENDED_DESCRIPTION": ["Enemies take {0}% more damage from [Vulnerable]."],
 			"NAME": "Lancer"
 		},
 		"animator:Rider":
@@ -1217,7 +1218,7 @@
 		},
 		"animator:RinTohsaka":
 		{
-			"DESCRIPTION": "Gain !S! {Temp}. [Artifact]. || <slm>. Synergy: ** {Channel} a copy of ** your first orb.",
+			"DESCRIPTION": "Gain !S! {Temp}. [Artifact]. || <LIM>. !~A! of all [A-Gen] colors: {Channel} !M! [Chaos].",
 			"NAME": "Rin Tohsaka"
 		},
 		"animator:Saber":

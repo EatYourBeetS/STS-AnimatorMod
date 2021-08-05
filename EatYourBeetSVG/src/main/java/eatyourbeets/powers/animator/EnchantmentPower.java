@@ -1,7 +1,5 @@
 package eatyourbeets.powers.animator;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.enchantments.Enchantment;
@@ -24,6 +22,7 @@ public class EnchantmentPower extends AnimatorClickablePower
         this.ID += "(" + enchantment.index + "-" + enchantment.upgradeIndex + ")";
         this.triggerCondition.requiresTarget = enchantment.requiresTarget;
         this.triggerCondition.SetOneUsePerPower(true);
+        this.hideAmount = true;
 
         Initialize(amount);
     }
@@ -50,11 +49,5 @@ public class EnchantmentPower extends AnimatorClickablePower
     public void OnUse(AbstractMonster m)
     {
         this.enchantment.UsePower(m);
-    }
-
-    @Override
-    public void renderAmount(SpriteBatch sb, float x, float y, Color c)
-    {
-        //super.renderAmount(sb, x, y, c);
     }
 }

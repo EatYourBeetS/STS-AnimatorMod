@@ -37,6 +37,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     public static AbstractPlayer player = null;
     public static Random rng = null;
     public TextureAtlas.AtlasRegion powerIcon;
+    public boolean hideAmount = false;
     public boolean enabled = true;
     public int maxAmount = 9999;
     public int baseAmount = 0;
@@ -243,6 +244,11 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     @Override
     public void renderAmount(SpriteBatch sb, float x, float y, Color c)
     {
+        if (hideAmount)
+        {
+            return;
+        }
+
         ColoredString amount = GetPrimaryAmount(c);
         if (amount != null)
         {

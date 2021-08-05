@@ -10,7 +10,8 @@ import eatyourbeets.utilities.GameActions;
 public class ReduceStrength extends EYBActionWithCallback<Boolean>
 {
     protected boolean temporary;
-    protected boolean giveForceToSource;
+    protected boolean giveForceToPlayer;
+    protected boolean giveStrengthToSource;
 
     public ReduceStrength(AbstractCreature source, AbstractCreature target, int amount, boolean temporary)
     {
@@ -21,12 +22,20 @@ public class ReduceStrength extends EYBActionWithCallback<Boolean>
         Initialize(source, target, amount);
     }
 
-    public ReduceStrength SetForceGain(boolean giveForceToSource)
+    public ReduceStrength SetForceGain(boolean giveForceToPlayer)
     {
-        this.giveForceToSource = giveForceToSource;
+        this.giveForceToPlayer = giveForceToPlayer;
 
         return this;
     }
+
+    public ReduceStrength SetStrengthGain(boolean giveStrengthToSource)
+    {
+        this.giveStrengthToSource = giveStrengthToSource;
+
+        return this;
+    }
+
 
     @Override
     protected void FirstUpdate()
@@ -42,10 +51,15 @@ public class ReduceStrength extends EYBActionWithCallback<Boolean>
                 GameActions.Top.StackPower(source, new GainStrengthPower(target, amount));
             }
 
-            if (giveForceToSource)
+            if (giveForceToPlayer)
             {
-                GameActions.Top.GainForce(amount).source = source;
+                GameActions.Top.GainForce(amount);
             }
+            if (giveStrengthToSource)
+            {
+                GameActions.Top.StackPower(new StrengthPower(source, amount));
+            }
+
 
             Complete(true);
         }

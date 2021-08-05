@@ -28,7 +28,6 @@ public class WornHelmet extends AnimatorRelic
     {
         GameActions.Bottom.Add(new RelicAboveCreatureAction(player, this));
         GameActions.Bottom.GainBlock(BLOCK_AMOUNT1);
-
         SetCounter(0);
         flash();
     }

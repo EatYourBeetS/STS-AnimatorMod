@@ -2,14 +2,18 @@ package eatyourbeets.powers.affinity;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
@@ -19,11 +23,12 @@ public abstract class AbstractAffinityPower extends CommonPower
     //@Formatter: off
     @Override public final void renderIcons(SpriteBatch sb, float x, float y, Color c) { }
     @Override public final void renderAmount(SpriteBatch sb, float x, float y, Color c) { }
-    @Override public void update(int slot) { super.update(slot); }
     //@Formatter: on
 
     public final AffinityType affinityType;
     public int retainedTurns;
+    public EYBCardTooltip tooltip;
+    public Hitbox hb;
 
     protected static final int[] DEFAULT_THRESHOLDS = new int[]{3, 6, 9, 12};
     protected int thresholdIndex;
@@ -34,6 +39,11 @@ public abstract class AbstractAffinityPower extends CommonPower
         super(null, powerID);
 
         this.affinityType = type;
+
+        //TODO: Add tooltip to EYBPower base class
+        tooltip = new EYBCardTooltip(name, description);
+        tooltip.subText = new ColoredString();
+        tooltip.icon = new TextureRegion(img);
 
         Initialize(null);
     }
@@ -117,6 +127,8 @@ public abstract class AbstractAffinityPower extends CommonPower
         {
             this.description = JUtils.Format(powerStrings.DESCRIPTIONS[0], name);
         }
+
+        this.tooltip.description = description;
     }
 
     @Override
@@ -137,14 +149,14 @@ public abstract class AbstractAffinityPower extends CommonPower
         }
     }
 
-    public void Render(SpriteBatch sb, Hitbox hb)
+    public void Render(SpriteBatch sb)
     {
         final float scale = Settings.scale;
         final float w = hb.width;
         final float h = hb.height;
-        final float x = hb.x + w + (5 * scale);
+        final float x = hb.x + (5 * scale);
         final float y = hb.y + (9 * scale);
-        final float cX = hb.cX + w + (5 * scale);
+        final float cX = hb.cX + (5 * scale);
         final float cY = hb.cY;
 
         Color amountColor;
@@ -160,7 +172,8 @@ public abstract class AbstractAffinityPower extends CommonPower
             amountColor = (amount > 0 ? Colors.Blue(1) : Colors.Cream(0.6f)).cpy();
         }
 
-        RenderHelpers.DrawCentered(sb, Colors.White(enabled ? 1 : 0.5f), img, x + 16 * scale, cY + (3f * scale), 32, 32, 1, 0);
+        final Color imgColor = Colors.White((enabled && (retainedTurns + amount) > 0) ? 1 : 0.5f);
+        RenderHelpers.DrawCentered(sb, imgColor, img, x + 16 * scale, cY + (3f * scale), 32, 32, 1, 0);
 
         final Integer threshold = GetCurrentThreshold();
         if (threshold != null)
@@ -176,6 +189,19 @@ public abstract class AbstractAffinityPower extends CommonPower
         for (AbstractGameEffect e : effects)
         {
             e.render(sb, x + w + (5 * scale), cY + (5f * scale));
+        }
+    }
+
+    @Override
+    public void update(int slot)
+    {
+        super.update(slot);
+
+        hb.update();
+
+        if (hb.hovered)
+        {
+            EYBCardTooltip.QueueTooltip(tooltip, InputHelper.mX + hb.width, InputHelper.mY + (hb.height * 0.5f));
         }
     }
 }

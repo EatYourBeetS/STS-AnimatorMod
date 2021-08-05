@@ -25,12 +25,6 @@ public class Archer extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetRetain(true);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);

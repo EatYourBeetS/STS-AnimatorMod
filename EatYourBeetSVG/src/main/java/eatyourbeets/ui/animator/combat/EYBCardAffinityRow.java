@@ -37,12 +37,17 @@ public class EYBCardAffinityRow extends GUIElement
 
     public EYBCardAffinityRow(EYBCardAffinitySystem system, AffinityType type, int index, int max)
     {
+        final Hitbox hb = system.hb;
+        final float offset_y = -0.5f -(index * 0.975f);
+
         Type = type;
         System = system;
         Power = system.GetPower(type);
 
-        final Hitbox hb = system.hb;
-        final float offset_y = -0.5f -(index * 0.975f);
+        if (Power != null)
+        {
+            Power.hb = new RelativeHitbox(hb, 1, 1, 1.5f, offset_y);
+        }
 
         image_background = new GUI_Image(GR.Common.Images.Panel_Elliptical_Half_H.Texture(),
         new RelativeHitbox(hb, 1, 1, 0.5f, offset_y))
@@ -132,7 +137,7 @@ public class EYBCardAffinityRow extends GUIElement
 
         if (Power != null)
         {
-            Power.Render(sb, image_background.hb);
+            Power.Render(sb);
         }
     }
 }

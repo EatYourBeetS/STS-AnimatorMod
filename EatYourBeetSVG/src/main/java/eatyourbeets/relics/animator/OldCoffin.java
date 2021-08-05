@@ -25,6 +25,7 @@ public class OldCoffin extends AnimatorRelic
             Debuffs.Add(new TupleT2<>(PowerHelper.Weak, 1), 5);
             Debuffs.Add(new TupleT2<>(PowerHelper.Poison, 3), 3);
             Debuffs.Add(new TupleT2<>(PowerHelper.Burning, 3), 3);
+            Debuffs.Add(new TupleT2<>(PowerHelper.Freezing, 2), 3);
             Debuffs.Add(new TupleT2<>(PowerHelper.Constricted, 2), 2);
         }
     }

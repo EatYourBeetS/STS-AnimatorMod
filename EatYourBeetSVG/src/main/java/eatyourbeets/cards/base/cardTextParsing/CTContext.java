@@ -136,7 +136,7 @@ public class CTContext
 
     protected boolean CompareNext(int amount, char character)
     {
-        Character other = NextCharacter(amount);
+        final Character other = NextCharacter(amount);
         if (other != null)
         {
             return other == character;

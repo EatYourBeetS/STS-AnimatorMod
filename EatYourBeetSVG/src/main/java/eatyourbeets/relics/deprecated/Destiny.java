@@ -1,4 +1,4 @@
-package eatyourbeets.relics.animator;
+package eatyourbeets.relics.deprecated;
 
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
@@ -14,7 +14,7 @@ public class Destiny extends AnimatorRelic implements OnReceiveRewardsListener, 
 
     public Destiny()
     {
-        super(ID, RelicTier.SPECIAL, LandingSound.CLINK);
+        super(ID, RelicTier.DEPRECATED, LandingSound.CLINK);
     }
 
     @Override

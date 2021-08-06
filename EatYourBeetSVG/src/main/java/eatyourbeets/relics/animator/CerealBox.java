@@ -69,7 +69,7 @@ public class CerealBox extends AnimatorRelic
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, triggerCondition.requiredAmount, CerealBox.HEAL_AMOUNT);
+            return FormatDescription(1, triggerCondition.requiredAmount, CerealBox.HEAL_AMOUNT);
         }
 
         @Override

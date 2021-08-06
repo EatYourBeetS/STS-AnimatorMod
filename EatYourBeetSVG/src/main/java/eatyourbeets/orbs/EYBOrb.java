@@ -12,7 +12,10 @@ import eatyourbeets.effects.vfx.megacritCopy.OrbFlareEffect2;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.Colors;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -145,5 +148,25 @@ public abstract class EYBOrb extends AbstractOrb implements OnStartOfTurnPostDra
     protected Color GetColor2()
     {
         return Color.LIGHT_GRAY;
+    }
+
+    public int GetBasePassiveAmount() {
+        return this.basePassiveAmount;
+    }
+
+    public int GetBaseEvokeAmount(int amount) {
+        return this.baseEvokeAmount;
+    }
+
+    public void IncreaseBasePassiveAmount(int amount) {
+        this.basePassiveAmount += amount;
+        applyFocus();
+        this.updateDescription();
+    }
+
+    public void IncreaseBaseEvokeAmount(int amount) {
+        this.baseEvokeAmount += amount;
+        applyFocus();
+        this.updateDescription();
     }
 }

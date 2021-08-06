@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.NegateBlockPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -24,12 +25,23 @@ public class Ganyu extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 30, 2);
-        SetUpgrade(1, 0, 10);
+        Initialize(2, 0, 35, 2);
+        SetUpgrade(0, 0, 15);
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Orange(1, 0, 0);
 
+        SetEthereal(true);
         SetExhaust(true);
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        if (CombatStats.TryActivateLimited(cardID)) {
+            GameActions.Bottom.ChannelOrbs(Frost::new, secondaryValue);
+        }
     }
 
     @Override
@@ -47,15 +59,12 @@ public class Ganyu extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (GameUtilities.GetPowerAmount(m, LockOnPower.POWER_ID) >= 1) {
-            GameActions.Bottom.StackPower(new NegateBlockPower(p, NO_BLOCK_TURNS));
             GameActions.Bottom.VFX(new ClawEffect(m.hb.cX, m.hb.cY, Color.TEAL, Color.WHITE));
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         }
         else {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-            GameActions.Bottom.InduceOrbs(Frost::new, secondaryValue);
         }
-
-
+        GameActions.Bottom.StackPower(new NegateBlockPower(p, NO_BLOCK_TURNS));
     }
 }

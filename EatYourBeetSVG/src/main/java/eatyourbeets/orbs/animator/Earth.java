@@ -22,6 +22,7 @@ import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
+import patches.orbs.AbstractOrbPatches;
 
 import java.util.ArrayList;
 
@@ -136,6 +137,8 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
             this.evokeAmount = this.baseEvokeAmount;
             this.passiveAmount = this.basePassiveAmount;
         }
+
+        AbstractOrbPatches.ApplyAmountChangeToOrb(this);
     }
 
     @Override

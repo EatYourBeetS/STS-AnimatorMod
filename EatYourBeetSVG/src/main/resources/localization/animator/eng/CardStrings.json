@@ -532,7 +532,7 @@
 		},
 		"animator:Ganyu":
 		{
-		  "DESCRIPTION": "If the enemy has [~Lock-On]: Deal !S! more damage, then nullify all Block you gain for 2 turns. || Otherwise, {Induce} !M! [Frost]",
+		  "DESCRIPTION": "Deals !M! more damage if the target has [~Lock-On]. You cannot gain [Block] for 2 turns. || <LIM>. When Exhausted, {Channel} !S! [Frost]",
 		  "NAME": "Ganyu"
 		},
 		"animator:HuTao":
@@ -565,10 +565,10 @@
 		  "DESCRIPTION": "Apply !M! [Burning] to ALL enemies. || Add !S! {Jumpy Dumpty} ** to your Draw Pile. ** 3 <R>: Add 1 more.",
 		  "NAME": "Klee"
 		},
-		"animator:Kokomi":
+		"animator:KokomiSangonomiya":
 		{
-		  "DESCRIPTION": "Fully heal ALL enemies. Channel Water and trigger it once for every !M! HP healed. <LIM>. If at least 30 HP was healed in total, gain 1 Static Regen.",
-		  "NAME": "Kokomi"
+		  "DESCRIPTION": "Fully heal ALL enemies. Channel [Water] with +1 Focus for every !M! HP healed. || <LIM>. If at least 30 HP was healed, gain Rejuvenation.",
+		  "NAME": "Kokomi Sangonomiya"
 		},
 		"animator:LisaMinci":
 		{

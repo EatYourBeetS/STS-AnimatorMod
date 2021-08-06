@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.vfx.combat.*;
-import eatyourbeets.effects.vfx.megacritCopy.*;
 import eatyourbeets.effects.vfx.*;
+import eatyourbeets.effects.vfx.megacritCopy.*;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameEffects;
@@ -271,6 +271,24 @@ public class VFX
     public static WeightyImpactEffect WeightyImpact(Hitbox target, Color color)
     {
         return new WeightyImpactEffect(target.cX, target.cY);
+    }
+
+    public static FadingParticleEffect Water(Hitbox target, float spread)
+    {
+        return Water(RandomX(target, spread), RandomY(target, spread));
+    }
+
+    public static FadingParticleEffect Water(float cX, float cY)
+    {
+        return (FadingParticleEffect) new FadingParticleEffect(EYBEffect.IMAGES.Water.Texture(), cX, cY).SetColor(Color.WHITE)
+                .Edit(p -> p.SetRotation(MathUtils.random(100f,800f)).SetTargetRotation(36000).SetSpeed(0f, 0f, MathUtils.random(500f, 750f)).SetTargetScale(1f,5f))
+                .SetTranslucent(MathUtils.random(0.7f,1f))
+                .SetDuration(1.3f,false);
+    }
+
+    public static GenericAnimationEffect WaterDome(float cX, float cY)
+    {
+        return new GenericAnimationEffect(EYBEffect.IMAGES.WaterDome.Texture(), cX, cY, 12, 5, 0.015f).SetScale(2f);
     }
 
     public static GenericAnimationEffect Whack(Hitbox target, float spread)

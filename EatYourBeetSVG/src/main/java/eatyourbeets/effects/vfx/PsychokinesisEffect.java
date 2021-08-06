@@ -12,10 +12,10 @@ public class PsychokinesisEffect extends EYBEffect
     protected float y;
     protected float spreadX = 10f * Settings.scale;
     protected float spreadY = 10f * Settings.scale;
-    protected float spreadGrowth = 2.4f * Settings.scale;
+    protected float spreadGrowth = 2.5f * Settings.scale;
     protected float scaleLower = 0.2f;
     protected float scaleUpper = 1f;
-    protected float scaleGrowth = -0.02f;
+    protected float scaleGrowth = -0.021f;
     protected float vfxTimer;
     protected float vfxFrequency = 0.04f;
     protected float vfxFrequencyGrowth = -0.006f;
@@ -64,7 +64,7 @@ public class PsychokinesisEffect extends EYBEffect
         {
             final float x = this.x + Random(-spreadX, spreadX);
             final float y = this.y + Random(-spreadY, spreadY);
-            final float scale = Random(Math.max(0,this.scaleLower),this.scaleUpper);
+            final float scale = Random(Math.max(0.05f,this.scaleLower),this.scaleUpper);
             GameEffects.Queue.Add(new GenericAnimationEffect(EYBEffect.IMAGES.Psi.Texture(), x, y, 5, 5, 0.01f).SetColor(Color.WHITE)).SetScale(this.scaleLower * 0.05f).SetTargetScale(scale, 5f);
             vfxFrequency += vfxFrequencyGrowth;
             vfxTimer = vfxFrequency;

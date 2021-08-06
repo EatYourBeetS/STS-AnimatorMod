@@ -25,10 +25,10 @@ public class Yoimiya extends AnimatorCard implements Hidden
     {
         super(DATA);
 
-        Initialize(2, 0, 30, 2);
+        Initialize(1, 0, 30, 2);
         SetUpgrade(1, 0, 10);
-        SetAffinity_Blue(2, 0, 1);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Green(2, 0, 0);
 
         SetExhaust(true);
     }

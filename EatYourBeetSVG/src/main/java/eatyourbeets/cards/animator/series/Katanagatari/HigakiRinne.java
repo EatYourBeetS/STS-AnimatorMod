@@ -211,21 +211,23 @@ public class HigakiRinne extends AnimatorCard
 
     static
     {
-        sounds.add("VO_AWAKENEDONE_3");
-        sounds.add("VO_GIANTHEAD_1B");
-        sounds.add("VO_GREMLINANGRY_1A");
-        sounds.add("VO_GREMLINCALM_2A");
-        sounds.add("VO_GREMLINFAT_2A");
-        sounds.add("VO_GREMLINNOB_1B");
-        sounds.add("VO_HEALER_1A");
-        sounds.add("VO_MERCENARY_1B");
-        sounds.add("VO_MERCHANT_MB");
-        sounds.add("VO_SLAVERBLUE_2A");
-        sounds.add("THUNDERCLAP");
-        sounds.add("BELL");
-        sounds.add("BELL");
-        sounds.add("BELL");
-        sounds.add("NECRONOMICON");
-        sounds.add("INTIMIDATE");
+        sounds.add(SFX.VO_AWAKENEDONE_3);
+        sounds.add(SFX.VO_GIANTHEAD_1B);
+        sounds.add(SFX.VO_GREMLINANGRY_1A);
+        sounds.add(SFX.VO_GREMLINCALM_2A);
+        sounds.add(SFX.VO_GREMLINFAT_2A);
+        sounds.add(SFX.VO_GREMLINNOB_1B);
+        sounds.add(SFX.VO_HEALER_1A);
+        sounds.add(SFX.VO_MERCENARY_1B);
+        sounds.add(SFX.VO_MERCHANT_MB);
+        sounds.add(SFX.VO_SLAVERBLUE_2A);
+        sounds.add(SFX.THUNDERCLAP);
+        sounds.add(SFX.BELL);
+        sounds.add(SFX.ENEMY_TURN);
+        sounds.add(SFX.DEATH_STINGER);
+        sounds.add(SFX.BOSS_VICTORY_STINGER);
+        sounds.add(SFX.TINGSHA);
+        sounds.add(SFX.NECRONOMICON);
+        sounds.add(SFX.INTIMIDATE);
     }
 }

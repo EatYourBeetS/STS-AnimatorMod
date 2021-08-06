@@ -11,14 +11,14 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.EYBCardTooltip;
-import eatyourbeets.interfaces.listeners.OnAddedToDeckListener;
+import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Father extends AnimatorCard implements OnAddedToDeckListener, OnAddingToCardRewardListener
+public class Father extends AnimatorCard implements OnAddToDeckListener, OnAddingToCardRewardListener
 {
     private static final AbstractRelic relic = new PhilosopherStone();
     private static final EYBCardTooltip tooltip = new EYBCardTooltip(relic.name, relic.description);
@@ -55,10 +55,12 @@ public class Father extends AnimatorCard implements OnAddedToDeckListener, OnAdd
     }
 
     @Override
-    public void OnAddedToDeck()
+    public boolean OnAddToDeck()
     {
+        final boolean add = (!GameUtilities.HasRelic(PhilosopherStone.ID) && !GR.Animator.Dungeon.BannedCards.contains(cardID));
         GR.Animator.Dungeon.Ban(cardData.ID);
         AbstractDungeon.bossRelicPool.remove(relic.relicId);
+        return add;
     }
 
     @Override

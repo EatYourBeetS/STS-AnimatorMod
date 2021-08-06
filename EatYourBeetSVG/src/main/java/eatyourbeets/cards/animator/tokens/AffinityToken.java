@@ -9,11 +9,10 @@ import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.ColoredTexture;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
@@ -69,7 +68,7 @@ public abstract class AffinityToken extends AnimatorCard
     {
         super(cardData);
 
-        Initialize(0, 0, 0, 3);
+        Initialize(0, 5, 0, 4);
         SetCostUpgrade(-1);
         InitializeAffinity(affinityType, 2, 0, 0);
 
@@ -80,6 +79,20 @@ public abstract class AffinityToken extends AnimatorCard
 
         SetPurge(true);
         SetRetainOnce(true);
+
+        if (affinityType != AffinityType.General)
+        {
+            SetAffinityRequirement(GetAffinityRequirement1(), secondaryValue);
+            SetAffinityRequirement(GetAffinityRequirement2(), secondaryValue);
+        }
+    }
+
+    @Override
+    protected String GetRawDescription()
+    {
+        return affinityType != AffinityType.General
+            ? super.GetRawDescription(GetAffinityRequirement1().GetTooltip().id, GetAffinityRequirement2().GetTooltip().id)
+            : super.GetRawDescription();
     }
 
     public static SelectFromPile SelectTokenAction(String name, int amount, int size)
@@ -89,9 +102,8 @@ public abstract class AffinityToken extends AnimatorCard
 
     public static CardGroup CreateTokenGroup(int amount, Random rng)
     {
-        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        RandomizedList<EYBCardData> temp = new RandomizedList<>(GetCards());
-
+        final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        final RandomizedList<EYBCardData> temp = new RandomizedList<>(GetCards());
         while (amount > 0 && temp.Size() > 0)
         {
             group.group.add(temp.Retrieve(rng, true).MakeCopy(false));
@@ -104,6 +116,16 @@ public abstract class AffinityToken extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
+        GameActions.Bottom.GainBlock(block);
         CombatStats.Affinities.BonusAffinities.Add(affinityType, 1);
+
+        if (CheckAffinity(GetAffinityRequirement1()) || CheckAffinity(GetAffinityRequirement2()))
+        {
+            GameActions.Bottom.GainEnergy(1);
+            GameActions.Bottom.SFX(SFX.RELIC_ACTIVATION, 0.75f, 0.85f);
+        }
     }
+
+    protected abstract AffinityType GetAffinityRequirement1();
+    protected abstract AffinityType GetAffinityRequirement2();
 }

@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.cards.animator.curse.Curse_Dizziness;
 import eatyourbeets.cards.animator.special.HinaKagiyama;
 import eatyourbeets.events.base.EYBEvent;
@@ -87,8 +86,8 @@ public class TheCursedForest extends EYBEvent
 
         private void Embrace()
         {
-            GameEffects.List.Add(new ShowCardAndObtainEffect(card, (float) Settings.WIDTH * 0.45f, (float) Settings.HEIGHT / 2f));
-            GameEffects.List.Add(new ShowCardAndObtainEffect(curse, (float) Settings.WIDTH * 0.55f, (float) Settings.HEIGHT / 2f));
+            GameEffects.List.ShowAndObtain(card, (float) Settings.WIDTH * 0.45f, (float) Settings.HEIGHT / 2f, false);
+            GameEffects.List.ShowAndObtain(curse, (float) Settings.WIDTH * 0.55f, (float) Settings.HEIGHT / 2f, false);
             ProgressPhase();
         }
 

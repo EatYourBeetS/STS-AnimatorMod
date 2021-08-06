@@ -130,4 +130,19 @@ public enum AffinityType implements Comparable<AffinityType>
         if (tooltip.Is(GR.Tooltips.Affinity_General)) { return AffinityType.General; }
         return null;
     }   //@Formatter: On
+
+    public EYBCardTooltip GetTooltip()
+    {
+        switch (this)
+        {
+            case Red: return GR.Tooltips.Affinity_Red;
+            case Green: return GR.Tooltips.Affinity_Green;
+            case Blue: return GR.Tooltips.Affinity_Blue;
+            case Light: return GR.Tooltips.Affinity_Light;
+            case Dark: return GR.Tooltips.Affinity_Dark;
+            case Star: return GR.Tooltips.Affinity_Star;
+            case General: return GR.Tooltips.Affinity_General;
+            default: throw new EnumConstantNotPresentException(AffinityType.class, this.name());
+        }
+    }
 }

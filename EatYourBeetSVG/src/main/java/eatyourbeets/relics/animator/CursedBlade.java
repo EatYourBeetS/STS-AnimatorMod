@@ -1,11 +1,11 @@
 package eatyourbeets.relics.animator;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.AnimatorClickablePower;
@@ -19,7 +19,7 @@ public class CursedBlade extends AnimatorRelic
     public static final String ID = CreateFullID(CursedBlade.class);
     public static final int BUFF_AMOUNT = 3;
     public static final int HP_COST = 3;
-    public static final int HP_COST_INCREASE = 2;
+    public static final int DAMAGE_AND_COST_INCREASE = 2;
     public static final int AOE_DAMAGE = 9;
 
     public CursedBlade()
@@ -30,17 +30,7 @@ public class CursedBlade extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(0, BUFF_AMOUNT) + " NL " + FormatDescription(1, HP_COST, AOE_DAMAGE, HP_COST_INCREASE);
-    }
-
-    @Override
-    public void atBattleStart()
-    {
-        super.atBattleStart();
-
-        GameActions.Bottom.GainForce(BUFF_AMOUNT);
-        GameActions.Bottom.GainAgility(BUFF_AMOUNT);
-        flash();
+        return FormatDescription(0, BUFF_AMOUNT) + " NL " + FormatDescription(1, HP_COST, AOE_DAMAGE, DAMAGE_AND_COST_INCREASE);
     }
 
     @Override
@@ -56,11 +46,14 @@ public class CursedBlade extends AnimatorRelic
     }
 
     @Override
-    public void atBattleStartPreDraw()
+    protected void ActivateBattleEffect()
     {
-        super.atBattleStartPreDraw();
+        super.ActivateBattleEffect();
 
         GameActions.Bottom.ApplyPower(new CursedBladePower(player, this));
+        GameActions.Bottom.GainForce(BUFF_AMOUNT);
+        GameActions.Bottom.GainAgility(BUFF_AMOUNT);
+        flash();
     }
 
     public static class CursedBladePower extends AnimatorClickablePower
@@ -69,14 +62,14 @@ public class CursedBlade extends AnimatorRelic
         {
             super(owner, relic, PowerTriggerConditionType.LoseHP, HP_COST);
 
-            this.amount = triggerCondition.requiredAmount;
+            this.amount = CursedBlade.AOE_DAMAGE;
             this.triggerCondition.SetUses(1, true, false);
         }
 
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(1, triggerCondition.requiredAmount, AOE_DAMAGE, HP_COST_INCREASE);
+            return FormatDescription(1, triggerCondition.requiredAmount, amount, DAMAGE_AND_COST_INCREASE);
         }
 
         @Override
@@ -87,8 +80,8 @@ public class CursedBlade extends AnimatorRelic
             GameActions.Bottom.DealDamageToAll(DamageInfo.createDamageMatrix(CursedBlade.AOE_DAMAGE, true),
                     DamageInfo.DamageType.THORNS, AttackEffects.SLASH_HORIZONTAL);
 
-            this.triggerCondition.requiredAmount += HP_COST_INCREASE;
-            this.amount = triggerCondition.requiredAmount;
+            this.triggerCondition.requiredAmount += DAMAGE_AND_COST_INCREASE;
+            this.amount += DAMAGE_AND_COST_INCREASE;
         }
     }
 }

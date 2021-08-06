@@ -20,7 +20,7 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardBase;
 import eatyourbeets.events.base.EYBEvent;
-import eatyourbeets.interfaces.listeners.OnAddedToDeckListener;
+import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.listeners.OnCardPoolChangedListener;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.AnimatorRelic;
@@ -249,29 +249,34 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         }
     }
 
-    public void OnCardObtained(AbstractCard card)
+    public boolean TryObtainCard(AbstractCard card)
     {
-        final AbstractPlayer player = CombatStats.RefreshPlayer();
-        if (card instanceof OnAddedToDeckListener)
+        boolean canAdd = true;
+        if (card instanceof OnAddToDeckListener)
         {
-            ((OnAddedToDeckListener) card).OnAddedToDeck(card);
+            canAdd &= ((OnAddToDeckListener) card).OnAddToDeck(card);
         }
 
-        for (AbstractRelic relic : player.relics)
+        for (AbstractRelic relic : AbstractDungeon.player.relics)
         {
-            if (relic instanceof OnAddedToDeckListener)
+            if (relic instanceof OnAddToDeckListener)
             {
-                ((OnAddedToDeckListener) relic).OnAddedToDeck(card);
+                canAdd &= ((OnAddToDeckListener) relic).OnAddToDeck(card);
             }
         }
 
+        return canAdd;
+    }
+
+    public void OnCardObtained(AbstractCard card)
+    {
         RemoveExtraCopies(card);
 
         if (card.tags.contains(GR.Enums.CardTags.UNIQUE))
         {
             AbstractCard first = null;
-            ArrayList<AbstractCard> toRemove = new ArrayList<>();
-            ArrayList<AbstractCard> cards = player.masterDeck.group;
+            final ArrayList<AbstractCard> toRemove = new ArrayList<>();
+            final ArrayList<AbstractCard> cards = AbstractDungeon.player.masterDeck.group;
             for (AbstractCard c : cards)
             {
                 if (c.cardID.equals(card.cardID))

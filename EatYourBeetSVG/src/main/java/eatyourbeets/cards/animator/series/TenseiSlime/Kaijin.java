@@ -9,13 +9,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.interfaces.listeners.OnAddedToDeckListener;
+import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.powers.animator.KaijinPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RandomizedList;
 
-public class Kaijin extends AnimatorCard implements OnAddedToDeckListener
+public class Kaijin extends AnimatorCard implements OnAddToDeckListener
 {
     public static final EYBCardData DATA = Register(Kaijin.class)
             .SetPower(1, CardRarity.UNCOMMON)
@@ -39,7 +39,7 @@ public class Kaijin extends AnimatorCard implements OnAddedToDeckListener
     }
 
     @Override
-    public void OnAddedToDeck()
+    public boolean OnAddToDeck()
     {
         GameEffects.Queue.Callback(new WaitAction(0.05f), () ->
         {
@@ -65,5 +65,7 @@ public class Kaijin extends AnimatorCard implements OnAddedToDeckListener
                 GameEffects.TopLevelList.Add(new UpgradeShineEffect(x, y));
             }
         });
+
+        return true;
     }
 }

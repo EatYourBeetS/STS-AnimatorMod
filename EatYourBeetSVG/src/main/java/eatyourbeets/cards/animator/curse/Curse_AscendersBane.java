@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.cards.base.AnimatorCard_Curse;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -38,7 +37,7 @@ public class Curse_AscendersBane extends AnimatorCard_Curse implements OnRemoved
     @Override
     public void OnRemovedFromDeck()
     {
-        GameEffects.TopLevelQueue.Add(new ShowCardAndObtainEffect(this, Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.5f));
+        GameEffects.TopLevelQueue.ShowAndObtain(this);
     }
 
     @Override

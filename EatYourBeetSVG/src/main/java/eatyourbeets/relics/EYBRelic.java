@@ -7,12 +7,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 import java.lang.reflect.InvocationTargetException;
@@ -102,6 +104,12 @@ public abstract class EYBRelic extends CustomRelic
     }
 
     @Override
+    public void renderBossTip(SpriteBatch sb)
+    {
+        EYBCardTooltip.QueueTooltips(tips, Settings.WIDTH * 0.63F, Settings.HEIGHT * 0.63F);
+    }
+
+    @Override
     public void renderTip(SpriteBatch sb)
     {
         EYBCardTooltip.QueueTooltips(this);
@@ -112,7 +120,7 @@ public abstract class EYBRelic extends CustomRelic
     {
         super.atPreBattle();
 
-        Subscribe();
+        ActivateBattleEffect();
     }
 
     @Override
@@ -120,7 +128,10 @@ public abstract class EYBRelic extends CustomRelic
     {
         super.onEquip();
 
-        Subscribe();
+        if (GameUtilities.InBattle())
+        {
+            ActivateBattleEffect();
+        }
     }
 
     @Override
@@ -128,7 +139,10 @@ public abstract class EYBRelic extends CustomRelic
     {
         super.onUnequip();
 
-        Unsubscribe();
+        if (GameUtilities.InBattle())
+        {
+            DeactivateBattleEffect();
+        }
     }
 
     @Override
@@ -184,12 +198,12 @@ public abstract class EYBRelic extends CustomRelic
         while (true);
     }
 
-    protected void Subscribe()
+    protected void ActivateBattleEffect()
     {
 
     }
 
-    protected void Unsubscribe()
+    protected void DeactivateBattleEffect()
     {
 
     }

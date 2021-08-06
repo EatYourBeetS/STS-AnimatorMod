@@ -2,12 +2,18 @@ package patches.soul;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.Soul;
+import com.megacrit.cardcrawl.cards.SoulGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.vfx.combat.CardPoofEffect;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.subscribers.OnAddedToDrawPileSubscriber;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.CardSelection;
+import eatyourbeets.utilities.GameEffects;
 import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
@@ -56,10 +62,28 @@ public class SoulPatches
         }
     }
 
+    @SpirePatch(clz = SoulGroup.class, method = "obtain", paramtypez = {AbstractCard.class, boolean.class})
+    public static class SoulGroupPatches_Obtain
+    {
+        @SpirePrefixPatch
+        public static SpireReturn Prefix(SoulGroup __instance, AbstractCard card, boolean obtain)
+        {
+            if (obtain && !GR.Animator.Dungeon.TryObtainCard(card))
+            {
+                SFX.Play(SFX.CARD_BURN, 0.8f, 1.2f, 0.5f);
+                GameEffects.TopLevelQueue.Add(new CardPoofEffect(card.current_x, card.current_y));
+                return SpireReturn.Return();
+            }
+
+            return SpireReturn.Continue();
+        }
+    }
+
     @SpirePatch(clz = Soul.class, method = "obtain", paramtypez = {AbstractCard.class})
     public static class SoulPatches_Obtain
     {
-        public static void Postfix(Soul soul, AbstractCard card)
+        @SpirePostfixPatch
+        public static void Postfix(Soul __instance, AbstractCard card)
         {
             GR.Animator.Dungeon.OnCardObtained(card);
         }

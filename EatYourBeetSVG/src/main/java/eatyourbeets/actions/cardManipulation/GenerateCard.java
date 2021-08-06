@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
 
-public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
+public class GenerateCard extends EYBActionWithCallback<AbstractCard>
 {
     private transient AbstractGameEffect effect = null;
 
@@ -28,7 +28,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
     protected CardSelection destination;
     protected AbstractCard actualCard;
 
-    public MakeTempCard(AbstractCard card, CardGroup group)
+    public GenerateCard(AbstractCard card, CardGroup group)
     {
         super(ActionType.CARD_MANIPULATION, Settings.ACTION_DUR_MED);
 
@@ -45,7 +45,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         Initialize(1);
     }
 
-    public MakeTempCard Repeat(int times)
+    public GenerateCard Repeat(int times)
     {
         this.amount = times;
 
@@ -57,14 +57,14 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         return this;
     }
 
-    public MakeTempCard CancelIfFull(boolean cancelIfFull)
+    public GenerateCard CancelIfFull(boolean cancelIfFull)
     {
         this.cancelIfFull = cancelIfFull;
 
         return this;
     }
 
-    public MakeTempCard SetUpgrade(boolean upgrade, boolean makeCopy)
+    public GenerateCard SetUpgrade(boolean upgrade, boolean makeCopy)
     {
         this.makeCopy = makeCopy;
         this.upgrade = upgrade;
@@ -72,7 +72,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         return this;
     }
 
-    public MakeTempCard SetDestination(CardSelection destination)
+    public GenerateCard SetDestination(CardSelection destination)
     {
         this.destination = destination;
 
@@ -184,7 +184,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         {
             if (amount > 1)
             {
-                MakeTempCard copy = new MakeTempCard(actualCard, cardGroup);
+                GenerateCard copy = new GenerateCard(actualCard, cardGroup);
                 copy.Import(this);
                 copy.destination = destination;
                 copy.makeCopy = copy.upgrade = false;

@@ -409,7 +409,7 @@ public class GameUtilities
         {
             for (AbstractCard c : group.group)
             {
-                if (!c.hasTag(AbstractCard.CardTags.HEALING) && (filter == null || filter.Invoke(c)))
+                if (IsObtainableInCombat(c) && (filter == null || filter.Invoke(c)))
                 {
                     cards.Add(c);
                 }
@@ -895,9 +895,14 @@ public class GameUtilities
         return count;
     }
 
+    public static boolean HasRelic(String relicID)
+    {
+        return player != null && player.hasRelic(relicID);
+    }
+
     public static boolean HasRelicEffect(String relicID)
     {
-        return player.hasRelic(relicID)
+        return HasRelic(relicID)
             || CombatStats.GetCombatData(relicID, false)
             || CombatStats.GetTurnData(relicID, false);
     }
@@ -983,6 +988,11 @@ public class GameUtilities
     public static boolean IsMonster(AbstractCreature c)
     {
         return c != null && !c.isPlayer;
+    }
+
+    private static boolean IsObtainableInCombat(AbstractCard c)
+    {
+        return !c.hasTag(AbstractCard.CardTags.HEALING);
     }
 
     public static boolean IsPlayer(AbstractCreature c)
@@ -1156,7 +1166,7 @@ public class GameUtilities
         CombatStats.onAfterCardPlayed.Subscribe(new CardPlayedListener(card, state, onCardPlayed));
     }
 
-    public static Vector2 TryGetPosition(CardGroup group)
+    public static Vector2 TryGetPosition(CardGroup group, AbstractCard card)
     {
         if (group != null)
         {
@@ -1174,21 +1184,21 @@ public class GameUtilities
             }
         }
 
-        return null;
+        return card == null ? null : new Vector2(card.current_x, card.current_y);
     }
 
     public static boolean TrySetPosition(CardGroup group, AbstractCard card)
     {
-        Vector2 pos = TryGetPosition(group);
-        if (pos != null)
+        Vector2 pos = TryGetPosition(group, null);
+        if (pos == null)
         {
-            card.current_x = pos.x;
-            card.current_y = pos.y;
-
-            return true;
+            return false;
         }
 
-        return false;
+        card.current_x = pos.x;
+        card.current_y = pos.y;
+
+        return true;
     }
 
     public static void UnlockAllKeys()

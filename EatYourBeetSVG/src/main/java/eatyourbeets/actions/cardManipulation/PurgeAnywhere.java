@@ -3,6 +3,8 @@ package eatyourbeets.actions.cardManipulation;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.resources.GR;
@@ -16,6 +18,7 @@ import java.util.UUID;
 public class PurgeAnywhere extends EYBActionWithCallback<Boolean>
 {
     protected final UUID uuid;
+    protected Vector2 targetPosition;
     protected boolean showEffect;
     protected boolean purged;
 
@@ -31,7 +34,7 @@ public class PurgeAnywhere extends EYBActionWithCallback<Boolean>
 
     public PurgeAnywhere(AbstractCard card, UUID uuid, int repeat)
     {
-        super(ActionType.CARD_MANIPULATION);
+        super(ActionType.CARD_MANIPULATION, Settings.ACTION_DUR_LONG);
 
         this.uuid = uuid;
         this.card = card;
@@ -41,6 +44,13 @@ public class PurgeAnywhere extends EYBActionWithCallback<Boolean>
         }
 
         Initialize(repeat);
+    }
+
+    public PurgeAnywhere SetTargetPosition(Vector2 position)
+    {
+        this.targetPosition = position;
+
+        return this;
     }
 
     public PurgeAnywhere ShowEffect(boolean value)
@@ -91,10 +101,17 @@ public class PurgeAnywhere extends EYBActionWithCallback<Boolean>
 
         if (amount > 0)
         {
-            GameActions.Bottom.Add(new PurgeAnywhere(card, uuid, amount - 1).ShowEffect(showEffect));
+            GameActions.Bottom.Add(new PurgeAnywhere(card, uuid, amount - 1).SetTargetPosition(targetPosition).ShowEffect(showEffect));
         }
+    }
 
-        Complete(purged);
+    @Override
+    protected void UpdateInternal(float deltaTime)
+    {
+        if (TickDuration(deltaTime))
+        {
+            Complete(purged);
+        }
     }
 
     private void RemoveAll(CardGroup group)
@@ -122,14 +139,27 @@ public class PurgeAnywhere extends EYBActionWithCallback<Boolean>
 
     private void PurgeEffect(CardGroup group, AbstractCard c)
     {
-        final Vector2 pos = GameUtilities.TryGetPosition(group);
+        if (c.drawScale < 0.3f)
+        {
+            c.targetDrawScale = 0.75f;
+        }
+
+        c.untip();
+        c.unhover();
+        c.unfadeOut();
+        c.targetAngle = 0;
+
+        final Vector2 pos = GameUtilities.TryGetPosition(group, c);
         if (pos != null)
         {
-            GameEffects.List.Add(new PurgeCardEffect(c, pos.x, pos.y));
-        }
-        else
-        {
-            GameEffects.List.Add(new PurgeCardEffect(c));
+            final AbstractGameEffect effect = GameEffects.List.Add(new PurgeCardEffect(c, pos.x, pos.y));
+            if (targetPosition != null)
+            {
+                c.target_x = targetPosition.x;
+                c.target_y = targetPosition.y;
+            }
+
+            effect.startingDuration = effect.duration = duration;
         }
     }
 }

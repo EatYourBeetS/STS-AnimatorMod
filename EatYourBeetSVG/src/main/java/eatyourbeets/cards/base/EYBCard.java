@@ -432,6 +432,11 @@ public abstract class EYBCard extends EYBCardBase
         SetTag(GR.Enums.CardTags.LOYAL, value);
     }
 
+    public void SetObtainableInCombat(boolean value)
+    {
+        SetHealing(!value);
+    }
+
     public void SetHealing(boolean value)
     {
         SetTag(CardTags.HEALING, value);

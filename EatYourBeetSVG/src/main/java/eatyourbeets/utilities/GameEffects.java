@@ -4,12 +4,15 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.EYBEffect;
@@ -168,6 +171,11 @@ public final class GameEffects
         return Add(new RemoveRelicEffect(relic));
     }
 
+    public RoomTintEffect RoomTint(Color color, float transparency)
+    {
+        return Add(new RoomTintEffect(color.cpy(), transparency));
+    }
+
     public ShowCardBrieflyEffect ShowCardBriefly(AbstractCard card)
     {
         return Add(new ShowCardBrieflyEffect(card));
@@ -181,6 +189,16 @@ public final class GameEffects
     public ShowCardBrieflyEffect ShowCopy(AbstractCard card)
     {
         return ShowCardBriefly(card.makeStatEquivalentCopy());
+    }
+
+    public ShowCardAndObtainEffect ShowAndObtain(AbstractCard card)
+    {
+        return ShowAndObtain(card, Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.5f, true);
+    }
+
+    public ShowCardAndObtainEffect ShowAndObtain(AbstractCard card, float x, float y, boolean converge)
+    {
+        return Add(new ShowCardAndObtainEffect(card, x, y, converge));
     }
 
     public TalkEffect Talk(AbstractCreature source, String message)

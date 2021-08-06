@@ -134,7 +134,7 @@ public abstract class EYBOrb extends AbstractOrb implements OnStartOfTurnPostDra
 
     protected OrbFlareEffect2 GetOrbFlareEffect()
     {
-        return new OrbFlareEffect2(this).SetColors(GetColor1(), GetColor2());
+        return new OrbFlareEffect2(this.cX, this.cY).SetColors(GetColor1(), GetColor2());
     }
 
     protected Color GetColor1()

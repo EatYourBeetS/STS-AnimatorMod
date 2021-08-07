@@ -93,7 +93,7 @@ public class Rorona extends AnimatorCard
         @Override
         public void OnBattleEnd()
         {
-            if ((card.misc + amount) >= rng.random(100))
+            if ((card.misc + amount) >= rng.random(maxAmount))
             {
                 GameActions.Instant.Add(new PermanentlyUpgrade(player.masterDeck, 1).SetFilter(c -> !c.cardID.equals(Rorona.DATA.ID)));
                 card.misc = 0;
@@ -101,7 +101,7 @@ public class Rorona extends AnimatorCard
             }
             else
             {
-                card.misc += 8;
+                card.misc = Math.max(2, card.misc * 2);
             }
 
             final AbstractCard permanentCard = GameUtilities.GetMasterDeckInstance(card.uuid);

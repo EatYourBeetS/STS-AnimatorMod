@@ -130,6 +130,7 @@ public enum AffinityType implements Comparable<AffinityType>
         if (tooltip.Is(GR.Tooltips.Affinity_Red)    ) { return AffinityType.Red;     }
         if (tooltip.Is(GR.Tooltips.Affinity_Green)  ) { return AffinityType.Green;   }
         if (tooltip.Is(GR.Tooltips.Affinity_Blue)   ) { return AffinityType.Blue;    }
+        if (tooltip.Is(GR.Tooltips.Affinity_Orange)   ) { return AffinityType.Orange;    }
         if (tooltip.Is(GR.Tooltips.Affinity_Light)  ) { return AffinityType.Light;   }
         if (tooltip.Is(GR.Tooltips.Affinity_Dark)   ) { return AffinityType.Dark;    }
         if (tooltip.Is(GR.Tooltips.Affinity_Star)   ) { return AffinityType.Star;    }
@@ -144,6 +145,7 @@ public enum AffinityType implements Comparable<AffinityType>
             case Red: return GR.Tooltips.Affinity_Red;
             case Green: return GR.Tooltips.Affinity_Green;
             case Blue: return GR.Tooltips.Affinity_Blue;
+            case Orange: return GR.Tooltips.Affinity_Orange;
             case Light: return GR.Tooltips.Affinity_Light;
             case Dark: return GR.Tooltips.Affinity_Dark;
             case Star: return GR.Tooltips.Affinity_Star;

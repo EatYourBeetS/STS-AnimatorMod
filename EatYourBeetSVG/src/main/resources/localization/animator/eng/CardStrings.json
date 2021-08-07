@@ -305,6 +305,11 @@
 	},
 	"BETA:COLORLESS":
 	{
+		"animator:Asuka Langley":
+		{
+		  "DESCRIPTION": "The first Attack you play each turn applies Burn equal to 20% of its damage and Exhausts.",
+		  "NAME": "AsukaLangley"
+		},
 		"animator:BlazingHeat":
 		{
 		  "DESCRIPTION": "Channel !S! [Fire]. || Your [Fire] applies 1 additional [Burning] at the end of the turn and deals !M!X damage to the enemy with the highest health when Evoked.",
@@ -324,8 +329,8 @@
 		},
 		"animator:Kirby":
 		{
-		  "DESCRIPTION": "When you add this card to your deck, remove 2 non-Hindrance Animator cards from your deck. This card gains the cost and effects of the removed cards.",
-		  "EXTENDED_DESCRIPTION": ["Choose 2 cards to fuse.", "This card has the effects of {0} and {1}.","This card has the effects of {0}."],
+		  "DESCRIPTION": "When you add this card to your deck, remove 2 non-Hindrance cards from your deck. Set this card's cost to the sum of their cost and give this card their effects.",
+		  "EXTENDED_DESCRIPTION": ["Choose 2 cards to fuse.", "Unique. || This card has the effects of {0} and {1}.","Unique. || This card has the effects of {0}."],
 		  "NAME": "Kirby"
 		},
 		"animator:Megunee":
@@ -343,17 +348,32 @@
 		  "DESCRIPTION": "{Ricochet} !S!. Reduced by 1 for every 150 Gold you have (minimum 1). || When Exhausted: Gain !M! [Blur] and [Counterattack].",
 		  "NAME": "Motoko Kusanagi"
 		},
+		"animator:Mythra":
+		{
+		  "DESCRIPTION": "At the start of combat: Replace this card with {Pyra} if you have more <R> in your deck than <G>. || The first Attack you play each turn is Motivated and gains Haste and Exhaust.",
+		  "NAME": "Mythra"
+		},
 		"animator:NaoTomori":
 		{
 			"DESCRIPTION": "Transform a {Power} or {Status} in your hand into a {Normality} to gain {Phasing}. || When Exhausted: Choose 1 of !M! cards to obtain.",
 			"EXTENDED_DESCRIPTION": ["transform into a Normality."],
 			"NAME": "Nao Tomori"
 		},
+		"animator:Pyra":
+		{
+		  "DESCRIPTION": "The first Attack you play each turn applies Burn equal to 20% of its damage and Exhausts.",
+		  "NAME": "Pyra"
+		},
 		"animator:Rorona":
 		{
 			"DESCRIPTION": "<LIM>. At end of combat: Upgrade a Basic or Common card.",
 			"EXTENDED_DESCRIPTION": ["Limited. At end of combat: Upgrade a Basic or Common card."],
 			"NAME": "Rorona"
+		},
+		"animator:R":
+		{
+		  "DESCRIPTION": "Increase your maximum hand size by 2 this combat. || <LIM>. !A! <GEN>. If you reached 12 <B> this combat, permanently incraese your maximum hand size by 1 (does not stack).",
+		  "NAME": "R"
 		},
 		"animator:SakuraKinomoto":
 		{

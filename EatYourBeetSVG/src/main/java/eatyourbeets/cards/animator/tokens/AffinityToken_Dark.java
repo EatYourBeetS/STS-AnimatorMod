@@ -8,7 +8,7 @@ public class AffinityToken_Dark extends AffinityToken
     public static final EYBCardData DATA = Register(AffinityToken_Dark.class);
     public static final AffinityType AFFINITY_TYPE = AffinityType.Dark;
     public static final AffinityType AFFINITY_REQ1 = AffinityType.Light;
-    public static final AffinityType AFFINITY_REQ2 = AffinityType.Blue;
+    public static final AffinityType AFFINITY_REQ2 = AffinityType.Orange;
 
     public AffinityToken_Dark()
     {

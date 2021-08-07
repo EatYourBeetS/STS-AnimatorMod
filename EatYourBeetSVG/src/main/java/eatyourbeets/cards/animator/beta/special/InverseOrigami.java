@@ -56,6 +56,6 @@ public class InverseOrigami extends AnimatorCard
         }
 
         GameActions.Bottom.VFX(new RainbowCardEffect());
-        GameActions.Bottom.Add(new TriggerOrbPassiveAbility(p.maxOrbs, false, true));
+        GameActions.Bottom.Add(new TriggerOrbPassiveAbility(p.maxOrbs, false, true, null));
     }
 }

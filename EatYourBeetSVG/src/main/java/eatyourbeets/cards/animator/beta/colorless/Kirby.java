@@ -19,7 +19,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.EYBEffectWithCallback;
-import eatyourbeets.interfaces.listeners.OnAddedToDeckListener;
+import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.resources.GR;
@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import static eatyourbeets.resources.GR.Enums.CardTags.LOYAL;
 
 public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<String>>,
-                                                   OnAddedToDeckListener,
+                                                   OnAddToDeckListener,
                                                    OnApplyPowerSubscriber,
                                                    StartupCard
 {
@@ -164,7 +164,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         super.triggerWhenCreated(startOfBattle);
         if (inheritedCards.size() == 0) {
             if (inheritedCardIDs.size() == 0) {
-                OnAddedToDeck();
+                OnAddToDeck();
             }
             else {
                 for (String id : inheritedCardIDs) {
@@ -223,9 +223,10 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     }
 
     @Override
-    public void OnAddedToDeck()
+    public boolean OnAddToDeck()
     {
         GameEffects.Queue.Add(new KirbyEffect(COPIED_CARDS));
+        return true;
     }
 
     public void AddInheritedCard(AnimatorCard card, boolean isAddingID) {

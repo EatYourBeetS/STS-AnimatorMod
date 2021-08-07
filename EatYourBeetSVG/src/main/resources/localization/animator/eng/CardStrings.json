@@ -2139,7 +2139,7 @@
 		},
 		"animator:AffinityToken_Orange":
 		{
-			"DESCRIPTION": "Gain +1 <O> for ** the rest of combat. || !S! <L> or <D>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <O> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Light":

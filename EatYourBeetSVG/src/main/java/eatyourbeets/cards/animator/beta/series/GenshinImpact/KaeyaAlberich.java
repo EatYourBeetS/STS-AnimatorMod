@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
+import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -45,8 +46,7 @@ public class KaeyaAlberich extends AnimatorCard {
             }
 
         if (firstCommonOrb != null) {
-            firstCommonOrb.onStartOfTurn();
-            firstCommonOrb.onEndOfTurn();
+            GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(magicNumber, false, false, firstCommonOrb));
         }
 
         GameActions.Bottom.ChannelOrb(new Frost());

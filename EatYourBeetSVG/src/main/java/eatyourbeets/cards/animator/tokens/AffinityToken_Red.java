@@ -8,7 +8,7 @@ public class AffinityToken_Red extends AffinityToken
     public static final EYBCardData DATA = Register(AffinityToken_Red.class);
     public static final AffinityType AFFINITY_TYPE = AffinityType.Red;
     public static final AffinityType AFFINITY_REQ1 = AffinityType.Green;
-    public static final AffinityType AFFINITY_REQ2 = AffinityType.Light;
+    public static final AffinityType AFFINITY_REQ2 = AffinityType.Orange;
 
     public AffinityToken_Red()
     {

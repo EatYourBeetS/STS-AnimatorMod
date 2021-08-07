@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -8,6 +7,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
@@ -76,7 +76,7 @@ public class Cthulhu extends AnimatorCard_UltraRare
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
+    public void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
 

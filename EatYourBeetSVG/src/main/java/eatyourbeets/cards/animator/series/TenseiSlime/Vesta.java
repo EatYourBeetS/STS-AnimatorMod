@@ -38,6 +38,7 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
         SetUpgrade(0, 0, -1);
 
         SetAffinity_Blue(1);
+        SetAffinity_Orange(1);
 
         SetExhaust(true);
     }

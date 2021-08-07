@@ -11,7 +11,9 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.ColoredTexture;
+import eatyourbeets.utilities.JUtils;
 
 public abstract class AnimatorCard extends EYBCard
 {
@@ -117,7 +119,7 @@ public abstract class AnimatorCard extends EYBCard
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
+    public void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
     }

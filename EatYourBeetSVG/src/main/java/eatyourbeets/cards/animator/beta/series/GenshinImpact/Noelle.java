@@ -27,7 +27,7 @@ public class Noelle extends AnimatorCard
         SetAffinity_Orange(1, 1, 0);
         SetAffinity_Light(1, 0, 0);
 
-        SetAffinityRequirement(AffinityType.Orange, 2);
+        SetAffinityRequirement(AffinityType.Orange, 3);
     }
 
     @Override

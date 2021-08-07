@@ -26,7 +26,7 @@ public class Tartaglia extends AnimatorCard {
         Initialize(12, 0);
         SetUpgrade(4, 0);
         SetAffinity_Red(1, 0, 0);
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Green(1, 0, 2);
     }
 
     @Override

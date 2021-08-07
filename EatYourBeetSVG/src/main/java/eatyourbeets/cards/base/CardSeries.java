@@ -67,6 +67,7 @@ public class CardSeries
     public final static CardSeries CowboyBebop = Add(52, "CowboyBebop");
     public final static CardSeries GhostInTheShell = Add(53, "GhostInTheShell");
     public final static CardSeries Clannad = Add(54, "Clannad");
+    public final static CardSeries HoshiNoKirby = Add(55, "HoshiNoKirby");
 
     private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;

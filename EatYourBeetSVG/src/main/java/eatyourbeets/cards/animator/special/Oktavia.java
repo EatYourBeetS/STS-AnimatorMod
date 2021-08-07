@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.special;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -11,6 +10,7 @@ import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class Oktavia extends AnimatorCard
@@ -31,7 +31,7 @@ public class Oktavia extends AnimatorCard
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
+    public void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
 

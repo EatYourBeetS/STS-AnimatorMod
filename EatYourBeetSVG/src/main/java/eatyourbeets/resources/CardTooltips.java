@@ -97,6 +97,7 @@ public class CardTooltips
     public EYBCardTooltip ElementalExposure = FindByID("Elemental Exposure");
     public EYBCardTooltip Void = FindByID("Void").ShowText(false);
     public EYBCardTooltip Afterlife = FindByID("Afterlife");
+    public EYBCardTooltip Rejuvenation = FindByID("Rejuvenation");
 
     // No Description
     public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null);
@@ -237,6 +238,7 @@ public class CardTooltips
         LoadFromPower(Balance, new BalancePower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalMastery, new ElementalMasteryPower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalExposure, new ElementalExposurePower(FakeCharacter.Instance, 0));
+        LoadFromPower(Rejuvenation, new RejuvenationPower(FakeCharacter.Instance, 0));
 
         //These use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);

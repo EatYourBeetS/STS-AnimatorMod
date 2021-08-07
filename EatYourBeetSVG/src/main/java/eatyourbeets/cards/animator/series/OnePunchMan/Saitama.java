@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.common.PummelDamageAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -16,6 +15,7 @@ import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -70,7 +70,7 @@ public class Saitama extends AnimatorCard
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
+    public void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
 

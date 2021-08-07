@@ -13,13 +13,13 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Ushio extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(Ushio.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetMaxCopies(2).SetSeries(CardSeries.Clannad);
     static
     {
-        DATA.AddPreview(new TomoyaOkazaki(), false);
         DATA.AddPreview(new GarbageDoll(), true);
     }
 
@@ -29,11 +29,18 @@ public class Ushio extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 3);
+        Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Light(2);
+        SetEthereal(true);
         SetExhaust(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetEthereal(false);
     }
 
     @Override
@@ -49,10 +56,11 @@ public class Ushio extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     @Override
     public void OnStartOfTurnPostDraw()
     {
-        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(player, magicNumber));
-        GameActions.Bottom.StackPower(new EnergizedPower(player, secondaryValue));
+        GameEffects.Queue.ShowCardBriefly(this);
         GameActions.Bottom.SFX("POWER_TIME_WARP", 0.05F, 0.05F);
         GameActions.Bottom.VFX(new TimeWarpTurnEndEffect());
+        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(player, magicNumber));
+        GameActions.Bottom.StackPower(new EnergizedPower(player, secondaryValue));
         GameActions.Bottom.Add(new PressEndTurnButtonAction());
         CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
     }

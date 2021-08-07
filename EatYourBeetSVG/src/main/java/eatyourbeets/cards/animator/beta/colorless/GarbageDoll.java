@@ -1,19 +1,23 @@
 package eatyourbeets.cards.animator.beta.colorless;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
 public class GarbageDoll extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(GarbageDoll.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Clannad);
+    public static final EYBCardData DATA = Register(GarbageDoll.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Clannad);
 
     private int turns;
 
@@ -21,11 +25,12 @@ public class GarbageDoll extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 1);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Star(1, 0, 0);
-        SetPurge(true);
+        SetAffinity_Orange(1, 0, 0);
+        SetExhaust(true);
+        AfterLifeMod.Add(this);
     }
 
 
@@ -50,8 +55,9 @@ public class GarbageDoll extends AnimatorCard
                 if (!limited && (card.cardID.equals(Ushio.DATA.ID)))
                 {
                     CombatStats.TryActivateLimited(this.cardID);
-                    GameActions.Bottom.MoveCard(card, player.exhaustPile, player.hand)
-                            .ShowEffect(true, false);
+                    GameEffects.Queue.ShowCardBriefly(card);
+                    AfterLifeMod.Add(card);
+                    AfterLifeMod.AfterlifeAddToControlPile(card);
                 }
                 else
                 {
@@ -61,11 +67,29 @@ public class GarbageDoll extends AnimatorCard
 
                 if (card instanceof AnimatorCard) {
                     AnimatorCard aCard = JUtils.SafeCast(card, AnimatorCard.class);
-                    for (AffinityType affinity : AffinityType.BasicTypes()) {
-                        if (aCard.affinities.GetLevel(affinity) > 0 || aCard.affinities.GetLevel(AffinityType.Star) > 0) {
-                            GameActions.Bottom.StackAffinityPower(affinity, 1, false);
+
+                    final CardGroup possiblePicks = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+                    if (aCard.affinities.GetLevel(AffinityType.Star) > 0) {
+                        for (AbstractCard possibleCard : player.discardPile.group)
+                        {
+                            if (possibleCard instanceof AnimatorCard && JUtils.Find(((AnimatorCard) possibleCard).affinities.List, a -> a.level > 0) != null)
+                            {
+                                possiblePicks.addToBottom(possibleCard);
+                            }
                         }
                     }
+                    else {
+                        ArrayList<EYBCardAffinity> aCardAffinities = JUtils.Filter(aCard.affinities.List, a -> a.level > 0);
+                        for (AbstractCard possibleCard : player.discardPile.group) {
+                            for (EYBCardAffinity aCardAffinity : aCardAffinities) {
+                                if (possibleCard instanceof AnimatorCard && ((AnimatorCard) possibleCard).affinities.GetLevel(aCardAffinity.Type) > 0) {
+                                    possiblePicks.addToBottom(possibleCard);
+                                }
+                            }
+                        }
+                    }
+
+                    GameActions.Top.PlayCard(GameUtilities.GetRandomElement(possiblePicks.group), GameUtilities.GetRandomEnemy(true));
                 }
             }
         }

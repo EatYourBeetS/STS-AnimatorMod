@@ -306,6 +306,12 @@
 	  "NAMES": ["regeneration"],
 	  "PROPER_NAME": "Regeneration"
 	},
+	"Rejuvenation":
+	{
+	  "DESCRIPTION": "Heal HP at the start of the turn.",
+	  "NAMES": ["rejuvenation"],
+	  "PROPER_NAME": "Rejuvenation"
+	},
 	"Self Damage":
 	{
 	  "DESCRIPTION": "Take damage at the end of your turn.",

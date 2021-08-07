@@ -46,7 +46,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     protected static final String UNPLAYABLE_MESSAGE = CardCrawlGame.languagePack.getCardStrings(Tactician.ID).EXTENDED_DESCRIPTION[0];
     private static final Map<String, EYBCardData> staticCardData = new HashMap<>();
 
-    protected boolean isMultiUpgrade;
+    public boolean isMultiUpgrade;
     protected int upgrade_damage;
     protected int upgrade_magicNumber;
     protected int upgrade_secondaryValue;

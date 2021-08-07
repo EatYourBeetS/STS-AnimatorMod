@@ -32,9 +32,9 @@ public class AyakaKamisato extends AnimatorCard {
         SetUpgrade(1, 0, 0, 1);
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Green(1, 0, 0);
-        SetAffinity_Orange(2, 0, 0);
+        SetAffinity_Orange(2, 0, 1);
 
-        SetAffinityRequirement(AffinityType.Blue, 3);
+        SetAffinityRequirement(AffinityType.Blue, 4);
 
         SetExhaust(true);
     }

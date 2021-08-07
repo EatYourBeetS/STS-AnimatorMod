@@ -38,7 +38,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     protected static final int COPIED_CARDS = 2;
     protected static final RotatingList<EYBCardPreview> previews = new RotatingList<>();
     protected static final ArrayList<String> inheritedCardIDs = new ArrayList<>(COPIED_CARDS);
-    protected final ArrayList<AnimatorCard> inheritedCards = new ArrayList<>(COPIED_CARDS);
+    protected final ArrayList<AbstractCard> inheritedCards = new ArrayList<>(COPIED_CARDS);
     protected boolean hasAttackOrSkill = false;
 
 
@@ -55,7 +55,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
     {
         if (target == player) {
-            for (AnimatorCard card: inheritedCards) {
+            for (AbstractCard card: inheritedCards) {
                 card.applyPowers();
             }
         }
@@ -67,7 +67,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         this.cost = -2;
         this.exhaust = false;
         this.isEthereal = false;
-        for (AnimatorCard card : inheritedCards) {
+        for (AbstractCard card : inheritedCards) {
             card.upgrade();
             updateTags(card);
         }
@@ -77,8 +77,8 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     public EYBCardPreview GetCardPreview()
     {
         if (previews.Count() == 0) {
-            for (AnimatorCard card: inheritedCards) {
-                previews.Add((new EYBCardPreview(card, false)));
+            for (AbstractCard card: inheritedCards) {
+                previews.Add(GeneratePreviewCard(card));
             }
         }
         if (previews.Count() > 0) {
@@ -102,31 +102,57 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     public void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
-        for (AnimatorCard card : inheritedCards) {
-            card.Refresh(enemy);
+        for (AbstractCard card : inheritedCards) {
+            if (card instanceof AnimatorCard)
+            {
+                ((AnimatorCard) card).Refresh(enemy);
+            }
         }
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        for (AnimatorCard card : inheritedCards) {
-            card.OnUse(p,m,isSynergizing);
+        ArrayList<AbstractCard> played = AbstractDungeon.actionManager.cardsPlayedThisTurn;
+        if (played != null && (played.isEmpty() || (played.size() == 1 && played.get(0) == this))) {
+            AbstractDungeon.actionManager.cardsPlayedThisTurn.clear();
+        }
+        for (AbstractCard card : inheritedCards) {
+            if (card instanceof AnimatorCard)
+            {
+                ((AnimatorCard) card).OnUse(p, m, isSynergizing);
+            }
+            else {
+                card.use(p,m);
+            }
+        }
+        if (played != null && !played.isEmpty() && played.get(played.size() -1) != this) {
+            AbstractDungeon.actionManager.cardsPlayedThisTurn.add(this);
         }
     }
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        for (AnimatorCard card : inheritedCards) {
-            card.OnLateUse(p,m,isSynergizing);
+        ArrayList<AbstractCard> played = AbstractDungeon.actionManager.cardsPlayedThisTurn;
+        if (played != null && (played.isEmpty() || (played.size() == 1 && played.get(0) == this))) {
+            AbstractDungeon.actionManager.cardsPlayedThisTurn.clear();
+        }
+        for (AbstractCard card : inheritedCards) {
+            if (card instanceof AnimatorCard)
+            {
+                ((AnimatorCard) card).OnLateUse(p, m, isSynergizing);
+            }
+        }
+        if (played != null && !played.isEmpty() && played.get(played.size() -1) != this) {
+            AbstractDungeon.actionManager.cardsPlayedThisTurn.add(this);
         }
     }
 
     @Override
     public boolean atBattleStartPreDraw()
     {
-        for (AnimatorCard card : inheritedCards) {
+        for (AbstractCard card : inheritedCards) {
             if (card instanceof StartupCard) {
                 ((StartupCard) card).atBattleStartPreDraw();
             }
@@ -137,7 +163,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     @Override
     public void triggerOnEndOfTurnForPlayingCard()
     {
-        for (AnimatorCard card : inheritedCards) {
+        for (AbstractCard card : inheritedCards) {
             card.triggerOnEndOfTurnForPlayingCard();
         }
     }
@@ -145,7 +171,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     @Override
     public void triggerOnExhaust()
     {
-        for (AnimatorCard card : inheritedCards) {
+        for (AbstractCard card : inheritedCards) {
             card.triggerOnExhaust();
         }
     }
@@ -153,7 +179,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     @Override
     public void triggerOnManualDiscard()
     {
-        for (AnimatorCard card : inheritedCards) {
+        for (AbstractCard card : inheritedCards) {
             card.triggerOnManualDiscard();
         }
     }
@@ -169,18 +195,19 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
             else {
                 for (String id : inheritedCardIDs) {
                     AbstractCard card = CardLibrary.getCard(id);
-                    if (card instanceof AnimatorCard) {
-                        for (int i = 0; i < this.timesUpgraded; i++) {
-                            card.upgrade();
-                        }
-
-                        AddInheritedCard((AnimatorCard) card, false);
+                    for (int i = 0; i < this.timesUpgraded; i++) {
+                        card.upgrade();
                     }
+
+                    AddInheritedCard((AnimatorCard) card, false);
                 }
             }
         }
-        for (AnimatorCard card : inheritedCards) {
-            card.triggerWhenCreated(startOfBattle);
+        for (AbstractCard card : inheritedCards) {
+            if (card instanceof AnimatorCard) {
+                ((AnimatorCard) card).triggerWhenCreated(startOfBattle);
+            }
+
         }
         refreshDescription();
     }
@@ -188,7 +215,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     @Override
     public void triggerWhenDrawn()
     {
-        for (AnimatorCard card : inheritedCards) {
+        for (AbstractCard card : inheritedCards) {
             card.triggerWhenDrawn();
         }
     }
@@ -197,7 +224,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     public ArrayList<String> onSave()
     {
         ArrayList<String> ids = new ArrayList<>();
-        for (AnimatorCard card : inheritedCards) {
+        for (AbstractCard card : inheritedCards) {
             ids.add(card.cardID);
         }
         return ids;
@@ -211,13 +238,11 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         previews.Clear();
         for (String id: cardIDs) {
             AbstractCard card = CardLibrary.getCard(id);
-            if (card instanceof AnimatorCard) {
-                for (int i = 0; i < this.timesUpgraded; i++) {
-                    card.upgrade();
-                }
-
-                AddInheritedCard((AnimatorCard) card, true);
+            for (int i = 0; i < this.timesUpgraded; i++) {
+                card.upgrade();
             }
+
+            AddInheritedCard((AnimatorCard) card, true);
         }
         refreshDescription();
     }
@@ -229,12 +254,12 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         return true;
     }
 
-    public void AddInheritedCard(AnimatorCard card, boolean isAddingID) {
+    public void AddInheritedCard(AbstractCard card, boolean isAddingID) {
         if (isAddingID) {
             inheritedCardIDs.add(card.cardID);
         }
         inheritedCards.add(card);
-        previews.Add((new EYBCardPreview(card, false)));
+        previews.Add(GeneratePreviewCard(card));
 
         if (card.type == CardType.ATTACK) {
             if (this.type == CardType.POWER) {
@@ -262,6 +287,10 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
 
         updateTags(card);
 
+    }
+
+    private EYBCardPreview GeneratePreviewCard(AbstractCard card) {
+        return (card instanceof EYBCardBase) ? new EYBCardPreview((EYBCardBase) card, false) : new EYBCardPreview(new FakeAbstractCard(card), false);
     }
 
     private void updateTags(AbstractCard card) {
@@ -398,7 +427,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
             CardGroup cardGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             for (AbstractCard c : player.masterDeck.getPurgeableCards().group)
             {
-                if (c instanceof AnimatorCard && c.cost > -2 && !GameUtilities.IsCurseOrStatus(c) && !(c instanceof AnimatorCard_UltraRare) && !(c instanceof Kirby))
+                if (!isBanned(c))
                 {
                     cardGroup.group.add(c);
                 }
@@ -418,6 +447,13 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
 
             AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.INCOMPLETE;
             AbstractDungeon.gridSelectScreen.open(cardGroup, cardsToRemove, purgeMessage, false, false, false, true);
+        }
+
+        public boolean isBanned(AbstractCard c) {
+            return c.cost < -1 || GameUtilities.IsCurseOrStatus(c) || c.purgeOnUse || c instanceof AnimatorCard_UltraRare || c instanceof Kirby || c.cardID.startsWith("hubris")
+                    ||  c.cardID.startsWith("ReplayTheSpireMod")
+                    ||  c.cardID.startsWith("infinitespire")
+                    ||  c.cardID.startsWith("StuffTheSpire");
         }
     }
 

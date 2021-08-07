@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.resources.GR;
@@ -25,7 +25,7 @@ public abstract class AbstractAffinityPower extends CommonPower
     @Override public final void renderAmount(SpriteBatch sb, float x, float y, Color c) { }
     //@Formatter: on
 
-    public final AffinityType affinityType;
+    public final Affinity affinity;
     public int retainedTurns;
     public EYBCardTooltip tooltip;
     public Hitbox hb;
@@ -34,16 +34,16 @@ public abstract class AbstractAffinityPower extends CommonPower
     protected int thresholdIndex;
     protected abstract void OnThresholdReached(int thresholdIndex);
 
-    public AbstractAffinityPower(AffinityType type, String powerID)
+    public AbstractAffinityPower(Affinity affinity, String powerID)
     {
         super(null, powerID);
 
-        this.affinityType = type;
+        this.affinity = affinity;
 
         //TODO: Add tooltip to EYBPower base class
-        tooltip = new EYBCardTooltip(name, description);
-        tooltip.subText = new ColoredString();
-        tooltip.icon = new TextureRegion(img);
+        this.tooltip = new EYBCardTooltip(name, description);
+        this.tooltip.subText = new ColoredString();
+        this.tooltip.icon = new TextureRegion(img);
 
         Initialize(null);
     }

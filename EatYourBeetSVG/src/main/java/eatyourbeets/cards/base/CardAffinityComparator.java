@@ -7,17 +7,17 @@ import java.util.Comparator;
 
 public class CardAffinityComparator implements Comparator<AbstractCard>
 {
-    private final AffinityType type;
+    private final Affinity affinity;
     private boolean ascending;
 
-    public CardAffinityComparator(AffinityType type)
+    public CardAffinityComparator(Affinity affinity)
     {
-        this(type, false);
+        this(affinity, false);
     }
 
-    public CardAffinityComparator(AffinityType type, boolean ascending)
+    public CardAffinityComparator(Affinity affinity, boolean ascending)
     {
-        this.type = type;
+        this.affinity = affinity;
     }
 
     public int compare(AbstractCard c1, AbstractCard c2)
@@ -35,6 +35,6 @@ public class CardAffinityComparator implements Comparator<AbstractCard>
             return 0;
         }
 
-        return (c.affinities.HasStar() ? 100 : 1000) * c.affinities.GetLevel(type) + c.affinities.GetUpgrade(type);
+        return (c.affinities.HasStar() ? 100 : 1000) * c.affinities.GetLevel(affinity) + c.affinities.GetUpgrade(affinity);
     }
 }

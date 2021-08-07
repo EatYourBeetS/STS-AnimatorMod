@@ -40,7 +40,7 @@ public class Krusty extends AnimatorCard
         GameActions.Bottom.ShakeScreen(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH);
         GameActions.Bottom.ModifyAllInstances(uuid, c ->
         {
-            ((EYBCard) c).AddScaling(AffinityType.Red, secondaryValue);
+            ((EYBCard) c).AddScaling(Affinity.Red, secondaryValue);
             c.flash();
         });
     }

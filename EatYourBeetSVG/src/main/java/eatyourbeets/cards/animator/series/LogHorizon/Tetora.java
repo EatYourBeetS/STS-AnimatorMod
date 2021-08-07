@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
@@ -40,7 +41,7 @@ public class Tetora extends AnimatorCard
     @Override
     public boolean cardPlayable(AbstractMonster m)
     {
-        return super.cardPlayable(m) && GetHandAffinity(null) >= secondaryValue;
+        return super.cardPlayable(m) && GetHandAffinity(Affinity.General) >= secondaryValue;
     }
 
     @Override
@@ -61,7 +62,7 @@ public class Tetora extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        GameUtilities.ModifyMagicNumber(this, GetHandAffinity(null), true);
+        GameUtilities.ModifyMagicNumber(this, GetHandAffinity(Affinity.General), true);
     }
 
     @Override

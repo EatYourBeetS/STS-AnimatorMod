@@ -3,7 +3,7 @@ package eatyourbeets.ui.animator.cardReward;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardAffinityStatistics;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
@@ -21,7 +21,7 @@ public class CardAffinityCounter extends GUIElement
     private static final Color PANEL_COLOR = new Color(0.05f, 0.05f, 0.05f, 1f);
     private ActionT1<CardAffinityCounter> onClick;
 
-    public final AffinityType Type;
+    public final Affinity Type;
     public EYBCardAffinityStatistics.Group AffinityGroup;
 
     public GUI_Button background_button;
@@ -30,17 +30,17 @@ public class CardAffinityCounter extends GUIElement
     public GUI_Label counterNormal_text;
     public GUI_Label counterPercentage_text;
 
-    public CardAffinityCounter(Hitbox hb, AffinityType type)
+    public CardAffinityCounter(Hitbox hb, Affinity affinity)
     {
         final float iconSize = CardAffinityPanel.ICON_SIZE;
 
-        Type = type;
+        Type = affinity;
 
         background_button = new GUI_Button(GR.Common.Images.Panel_Rounded_Half_H.Texture(), new RelativeHitbox(hb, 1, 1, 0.5f, 0))
         .SetColor(PANEL_COLOR)
         .SetText("");
 
-        affinity_image = RenderHelpers.ForTexture(type.GetIcon())
+        affinity_image = RenderHelpers.ForTexture(affinity.GetIcon())
         .SetHitbox(new RelativeHitbox(hb, iconSize, iconSize, -0.5f * (iconSize / hb.width), 0, true));
 
         counterWeak_text = new GUI_Label(EYBFontHelper.CardTooltipFont,

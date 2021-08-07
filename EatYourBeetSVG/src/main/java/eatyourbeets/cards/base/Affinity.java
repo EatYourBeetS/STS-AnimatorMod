@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
 
-public enum AffinityType implements Comparable<AffinityType>
+public enum Affinity implements Comparable<Affinity>
 {
     Red(0, "Red", GR.Common.Images.Affinities.Red),
     Green(1, "Green", GR.Common.Images.Affinities.Green),
@@ -22,25 +22,25 @@ public enum AffinityType implements Comparable<AffinityType>
     protected static final TextureCache BorderFG = GR.Common.Images.Affinities.BorderFG;
     protected static final TextureCache BorderLV2 = GR.Common.Images.Affinities.Border;
     protected static final TextureCache BorderLV1 = GR.Common.Images.Affinities.Border_Weak;
-    protected static final AffinityType[] BASIC_TYPES = new AffinityType[5];
-    protected static final AffinityType[] ALL_TYPES = new AffinityType[6];
+    protected static final Affinity[] BASIC_TYPES = new Affinity[5];
+    protected static final Affinity[] ALL_TYPES = new Affinity[6];
 
     static
     {
-        ALL_TYPES[0] = Star;
-        ALL_TYPES[1] = BASIC_TYPES[0] = Red;
-        ALL_TYPES[2] = BASIC_TYPES[1] = Green;
-        ALL_TYPES[3] = BASIC_TYPES[2] = Blue;
-        ALL_TYPES[4] = BASIC_TYPES[3] = Light;
-        ALL_TYPES[5] = BASIC_TYPES[4] = Dark;
+        ALL_TYPES[0] = BASIC_TYPES[0] = Red;
+        ALL_TYPES[1] = BASIC_TYPES[1] = Green;
+        ALL_TYPES[2] = BASIC_TYPES[2] = Blue;
+        ALL_TYPES[3] = BASIC_TYPES[3] = Light;
+        ALL_TYPES[4] = BASIC_TYPES[4] = Dark;
+        ALL_TYPES[5] = Star;
     }
 
-    public static AffinityType[] BasicTypes()
+    public static Affinity[] Basic()
     {
         return BASIC_TYPES;
     }
 
-    public static AffinityType[] AllTypes()
+    public static Affinity[] All()
     {
         return ALL_TYPES;
     }
@@ -49,7 +49,7 @@ public enum AffinityType implements Comparable<AffinityType>
     public final TextureCache Icon;
     public final String Symbol;
 
-    AffinityType(int id, String symbol, TextureCache icon)
+    Affinity(int id, String symbol, TextureCache icon)
     {
         this.ID = id;
         this.Icon = icon;
@@ -119,15 +119,15 @@ public enum AffinityType implements Comparable<AffinityType>
         }
     }
 
-    public static AffinityType FromTooltip(EYBCardTooltip tooltip)
+    public static Affinity FromTooltip(EYBCardTooltip tooltip)
     {   //@Formatter: Off
-        if (tooltip.Is(GR.Tooltips.Affinity_Red)    ) { return AffinityType.Red;     }
-        if (tooltip.Is(GR.Tooltips.Affinity_Green)  ) { return AffinityType.Green;   }
-        if (tooltip.Is(GR.Tooltips.Affinity_Blue)   ) { return AffinityType.Blue;    }
-        if (tooltip.Is(GR.Tooltips.Affinity_Light)  ) { return AffinityType.Light;   }
-        if (tooltip.Is(GR.Tooltips.Affinity_Dark)   ) { return AffinityType.Dark;    }
-        if (tooltip.Is(GR.Tooltips.Affinity_Star)   ) { return AffinityType.Star;    }
-        if (tooltip.Is(GR.Tooltips.Affinity_General)) { return AffinityType.General; }
+        if (tooltip.Is(GR.Tooltips.Affinity_Red)    ) { return Affinity.Red;     }
+        if (tooltip.Is(GR.Tooltips.Affinity_Green)  ) { return Affinity.Green;   }
+        if (tooltip.Is(GR.Tooltips.Affinity_Blue)   ) { return Affinity.Blue;    }
+        if (tooltip.Is(GR.Tooltips.Affinity_Light)  ) { return Affinity.Light;   }
+        if (tooltip.Is(GR.Tooltips.Affinity_Dark)   ) { return Affinity.Dark;    }
+        if (tooltip.Is(GR.Tooltips.Affinity_Star)   ) { return Affinity.Star;    }
+        if (tooltip.Is(GR.Tooltips.Affinity_General)) { return Affinity.General; }
         return null;
     }   //@Formatter: On
 
@@ -142,7 +142,7 @@ public enum AffinityType implements Comparable<AffinityType>
             case Dark: return GR.Tooltips.Affinity_Dark;
             case Star: return GR.Tooltips.Affinity_Star;
             case General: return GR.Tooltips.Affinity_General;
-            default: throw new EnumConstantNotPresentException(AffinityType.class, this.name());
+            default: throw new EnumConstantNotPresentException(Affinity.class, this.name());
         }
     }
 }

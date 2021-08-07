@@ -125,9 +125,9 @@ public class EYBCardMetadataV2
         {
             metadata.scaling = new int[]
             {
-                card.affinities.GetScaling(AffinityType.Red, false),
-                card.affinities.GetScaling(AffinityType.Green, false),
-                card.affinities.GetScaling(AffinityType.Blue, false)
+                card.affinities.GetScaling(Affinity.Red, false),
+                card.affinities.GetScaling(Affinity.Green, false),
+                card.affinities.GetScaling(Affinity.Blue, false)
             };
         }
 
@@ -139,9 +139,9 @@ public class EYBCardMetadataV2
         metadata.affinity = new int[] {0, 0, 0, 0, 0 };
         for (EYBCardAffinity a : card.affinities.List)
         {
-            if (a.Type.ID >= 0)
+            if (a.type.ID >= 0)
             {
-                metadata.affinity[a.Type.ID] = a.level;
+                metadata.affinity[a.type.ID] = a.level;
             }
         }
 

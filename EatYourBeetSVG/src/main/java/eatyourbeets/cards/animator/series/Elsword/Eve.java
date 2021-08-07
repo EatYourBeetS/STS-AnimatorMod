@@ -1,17 +1,16 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.AnimatorClickablePower;
@@ -30,7 +29,7 @@ public class Eve extends AnimatorCard
     {
         for (EYBCardData data : AffinityToken.GetCards())
         {
-            DATA.AddPreview((EYBCard) data.CreateNewInstance(), false);
+            DATA.AddPreview(data.CreateNewInstance(), false);
         }
     }
 
@@ -88,7 +87,7 @@ public class Eve extends AnimatorCard
 
             if (CombatStats.Affinities.IsSynergizing(usedCard))
             {
-                int damage = CombatStats.Affinities.GetHandAffinityLevel(AffinityType.General, usedCard);
+                int damage = CombatStats.Affinities.GetHandAffinityLevel(Affinity.General, usedCard);
                 if (damage > 0)
                 {
                     //GameEffects.Queue.BorderFlash(Color.SKY);

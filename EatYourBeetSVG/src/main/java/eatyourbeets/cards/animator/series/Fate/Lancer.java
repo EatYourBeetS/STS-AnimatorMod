@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -37,7 +37,7 @@ public class Lancer extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetVFXColor(Colors.Lerp(Color.SCARLET, Color.WHITE, 0.3f));
 
-        GameUtilities.RetainPower(AffinityType.Green);
+        GameUtilities.RetainPower(Affinity.Green);
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
 
         if (CombatStats.TryActivateSemiLimited(cardID))

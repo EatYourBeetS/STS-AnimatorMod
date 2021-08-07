@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -43,7 +44,7 @@ public class HousakiTohya extends AnimatorCard
         .SetFilter(c -> HousakiMinori.DATA.ID.equals(c.cardID), false)
         .AddCallback(() ->
         {
-            if (GetHandAffinity(null) >= secondaryValue)
+            if (GetHandAffinity(Affinity.General) >= secondaryValue)
             {
                 GameActions.Bottom.GainEnergy(1);
             }

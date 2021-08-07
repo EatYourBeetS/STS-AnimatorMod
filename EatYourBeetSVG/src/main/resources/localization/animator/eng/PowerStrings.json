@@ -80,11 +80,6 @@
 		"DESCRIPTIONS": ["On your next #b{0} #yAttack(s) this turn, draw #b1 card and apply #b1 #yBurning to ALL enemies."],
 		"NAME": "Entou Jyuu"
 	},
-	"animator:EnvyPower":
-	{
-		"DESCRIPTIONS": ["The next card you play this turn will Synergize."],
-		"NAME": "Envy"
-	},
 	"animator:FeridBathoryPower":
 	{
 		"DESCRIPTIONS": ["Whenever a card is Exhausted, a random enemy loses #b{0} HP and you gain #b{0} #yTemporary #yHp."],

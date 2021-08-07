@@ -74,7 +74,7 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
 
         for (EYBCardAffinities a : cardsAffinities)
         {
-            for (AffinityType t : AffinityType.AllTypes())
+            for (Affinity t : Affinity.All())
             {
                 int level = a.GetLevel(t, true);
                 if (showUpgrades)
@@ -94,17 +94,17 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
         return groups.get(index);
     }
 
-    public Group GetGroup(AffinityType type)
+    public Group GetGroup(Affinity affinity)
     {
         for (Group g : groups)
         {
-            if (g.Type == type)
+            if (g.Affinity == affinity)
             {
                 return g;
             }
         }
 
-        Group g = new Group(this, type);
+        Group g = new Group(this, affinity);
         groups.add(g);
         return g;
     }
@@ -122,15 +122,15 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
 
     public static class Group
     {
-        public AffinityType Type;
+        public Affinity Affinity;
         public EYBCardAffinityStatistics Statistics;
         public int Size;
         public int Total_LV1;
         public int Total_LV2;
 
-        public Group(EYBCardAffinityStatistics statistics, AffinityType type)
+        public Group(EYBCardAffinityStatistics statistics, Affinity affinity)
         {
-            Type = type;
+            Affinity = affinity;
             Statistics = statistics;
         }
 
@@ -177,7 +177,7 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
             final ArrayList<AbstractCard> cards = new ArrayList<>();
             for (EYBCardAffinities a : Statistics.GetAffinities())
             {
-                if (a.GetLevel(Type) > 0)
+                if (a.GetLevel(Affinity) > 0)
                 {
                     cards.add(a.Card);
                 }

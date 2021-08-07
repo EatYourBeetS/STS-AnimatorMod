@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator.series.Fate;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -27,11 +27,9 @@ public class RinTohsaka extends AnimatorCard
         SetAffinity_Light(1);
 
         final int requirement = 3;
-        SetAffinityRequirement(AffinityType.Red, requirement);
-        SetAffinityRequirement(AffinityType.Green, requirement);
-        SetAffinityRequirement(AffinityType.Blue, requirement);
-        SetAffinityRequirement(AffinityType.Light, requirement);
-        SetAffinityRequirement(AffinityType.Dark, requirement);
+        SetAffinityRequirement(Affinity.Red, requirement);
+        SetAffinityRequirement(Affinity.Green, requirement);
+        SetAffinityRequirement(Affinity.Blue, requirement);
     }
 
     @Override
@@ -40,16 +38,7 @@ public class RinTohsaka extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryArtifact(secondaryValue);
 
-        boolean canActivate = true;
-        for (AffinityType type : AffinityType.BasicTypes())
-        {
-            if (!CheckAffinity(type))
-            {
-                canActivate = false;
-            }
-        }
-
-        if (canActivate && CombatStats.TryActivateLimited(cardID))
+        if ((CheckAffinity(Affinity.Red) && CheckAffinity(Affinity.Green) && CheckAffinity(Affinity.Blue)) && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ChannelOrbs(Chaos::new, Math.min(p.orbs.size(), magicNumber));
         }

@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.basic;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.GR;
@@ -36,11 +36,11 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
                 .SetImagePath(GR.GetCardImage(Strike.DATA.ID + "Alt1"));
     }
 
-    public ImprovedStrike(EYBCardData data, AffinityType type)
+    public ImprovedStrike(EYBCardData data, Affinity affinity)
     {
-        super(data, type, GR.GetCardImage(Strike.DATA.ID + "Alt2"));
+        super(data, affinity, GR.GetCardImage(Strike.DATA.ID + "Alt2"));
 
-        if (affinityType == AffinityType.Star)
+        if (affinity == Affinity.Star)
         {
             Initialize(6, 0, 3);
         }
@@ -50,7 +50,7 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
         }
         SetUpgrade(2, 0);
 
-        SetAffinityRequirement(affinityType, magicNumber);
+        SetAffinityRequirement(affinity, magicNumber);
 
         SetTag(CardTags.STARTER_STRIKE, true);
     }

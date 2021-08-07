@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator.series.Fate;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
@@ -29,8 +29,8 @@ public class Rider extends AnimatorCard
         SetAffinity_Blue(1);
         SetAffinity_Dark(2, 0, 1);
 
-        SetAffinityRequirement(AffinityType.Green, 3);
-        SetAffinityRequirement(AffinityType.Blue, 3);
+        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Blue, 3);
     }
 
     @Override
@@ -56,12 +56,12 @@ public class Rider extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ReduceStrength(m, magicNumber, true);
 
-        if (CheckAffinity(AffinityType.Green))
+        if (CheckAffinity(Affinity.Green))
         {
             GameActions.Bottom.GainAgility(1, true);
         }
 
-        if (CheckAffinity(AffinityType.Blue))
+        if (CheckAffinity(Affinity.Blue))
         {
             GameActions.Bottom.GainIntellect(1, true);
         }

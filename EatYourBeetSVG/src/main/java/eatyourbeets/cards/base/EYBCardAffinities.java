@@ -23,11 +23,11 @@ public class EYBCardAffinities
         Card = card;
     }
 
-    public void Initialize(AffinityType type, int base, int upgrade, int scaling, int requirement)
+    public void Initialize(Affinity affinity, int base, int upgrade, int scaling, int requirement)
     {
         if (base > 0 || upgrade > 0 || scaling > 0 || requirement > 0)
         {
-            EYBCardAffinity a = Set(type, base);
+            EYBCardAffinity a = Set(affinity, base);
             a.upgrade = upgrade;
             a.scaling = scaling;
             a.requirement = requirement;
@@ -39,7 +39,7 @@ public class EYBCardAffinities
     {
         if (affinities.Star != null)
         {
-            Star = new EYBCardAffinity(AffinityType.Star, affinities.Star.level);
+            Star = new EYBCardAffinity(Affinity.Star, affinities.Star.level);
             Star.scaling = affinities.Star.scaling;
             Star.upgrade = affinities.Star.upgrade;
             Star.requirement = affinities.Star.requirement;
@@ -52,7 +52,7 @@ public class EYBCardAffinities
         List.clear();
         for (EYBCardAffinity a : affinities.List)
         {
-            EYBCardAffinity t = new EYBCardAffinity(a.Type, a.level);
+            EYBCardAffinity t = new EYBCardAffinity(a.type, a.level);
             t.scaling = a.scaling;
             t.upgrade = a.upgrade;
             t.requirement = a.requirement;
@@ -83,20 +83,20 @@ public class EYBCardAffinities
 
     public void Add(int red, int green, int blue, int light, int dark)
     {
-        Add(AffinityType.Red, red);
-        Add(AffinityType.Green, green);
-        Add(AffinityType.Blue, blue);
-        Add(AffinityType.Light, light);
-        Add(AffinityType.Dark, dark);
+        Add(Affinity.Red, red);
+        Add(Affinity.Green, green);
+        Add(Affinity.Blue, blue);
+        Add(Affinity.Light, light);
+        Add(Affinity.Dark, dark);
     }
 
     public void Set(int red, int green, int blue, int light, int dark)
     {
-        Set(AffinityType.Red, red);
-        Set(AffinityType.Green, green);
-        Set(AffinityType.Blue, blue);
-        Set(AffinityType.Light, light);
-        Set(AffinityType.Dark, dark);
+        Set(Affinity.Red, red);
+        Set(Affinity.Green, green);
+        Set(Affinity.Blue, blue);
+        Set(Affinity.Light, light);
+        Set(Affinity.Dark, dark);
     }
 
     public EYBCardAffinity AddStar(int level)
@@ -112,7 +112,7 @@ public class EYBCardAffinities
         }
         else
         {
-            Star = new EYBCardAffinity(AffinityType.Star, level);
+            Star = new EYBCardAffinity(Affinity.Star, level);
         }
 
         return Star;
@@ -127,7 +127,7 @@ public class EYBCardAffinities
     {
         if (other != null)
         {
-            int star = Math.min(levelLimit, other.GetLevel(AffinityType.Star));
+            int star = Math.min(levelLimit, other.GetLevel(Affinity.Star));
             if (star > 0)
             {
                 AddStar(star);
@@ -135,7 +135,7 @@ public class EYBCardAffinities
             }
             else for (EYBCardAffinity item : other.List)
             {
-                Add(item.Type, Math.min(levelLimit, item.level));
+                Add(item.type, Math.min(levelLimit, item.level));
             }
         }
 
@@ -146,22 +146,22 @@ public class EYBCardAffinities
     {
         for (EYBCardAffinity item : other.List)
         {
-            Add(item.Type, item.level);
+            Add(item.type, item.level);
         }
 
         return this;
     }
 
-    public EYBCardAffinity Add(AffinityType type, int level)
+    public EYBCardAffinity Add(Affinity affinity, int level)
     {
-        if (type == AffinityType.Star)
+        if (affinity == Affinity.Star)
         {
             return AddStar(level);
         }
 
         for (EYBCardAffinity a : List)
         {
-            if (a.Type == type)
+            if (a.type == affinity)
             {
                 a.level += level;
                 Refresh();
@@ -169,15 +169,15 @@ public class EYBCardAffinities
             }
         }
 
-        EYBCardAffinity a = new EYBCardAffinity(type, level);
+        EYBCardAffinity a = new EYBCardAffinity(affinity, level);
         List.add(a);
         Refresh();
         return a;
     }
 
-    public EYBCardAffinity Set(AffinityType type, int level)
+    public EYBCardAffinity Set(Affinity affinity, int level)
     {
-        if (type == AffinityType.Star)
+        if (affinity == Affinity.Star)
         {
             SetStar(level);
             return Star;
@@ -187,7 +187,7 @@ public class EYBCardAffinities
         for (EYBCardAffinity eybCardAffinity : List)
         {
             result = eybCardAffinity;
-            if (result.Type == type)
+            if (result.type == affinity)
             {
                 result.level = level;
                 Refresh();
@@ -195,46 +195,46 @@ public class EYBCardAffinities
             }
         }
 
-        result = new EYBCardAffinity(type, level);
+        result = new EYBCardAffinity(affinity, level);
         List.add(result);
         Refresh();
         return result;
     }
 
-    public EYBCardAffinity Get(AffinityType type)
+    public EYBCardAffinity Get(Affinity affinity)
     {
-        return Get(type, false);
+        return Get(affinity, false);
     }
 
-    public EYBCardAffinity Get(AffinityType type, boolean createIfNull)
+    public EYBCardAffinity Get(Affinity affinity, boolean createIfNull)
     {
-        if (type == AffinityType.General)
+        if (affinity == Affinity.General)
         {
             final int star = Star != null ? Star.level : 0;
             final EYBCardAffinity a = List.size() > 0 ? List.get(0) : null;
             return a != null && a.level >= star ? a : Star;
         }
 
-        if (type == AffinityType.Star)
+        if (affinity == Affinity.Star)
         {
             return (createIfNull && Star == null) ? SetStar(0) : Star;
         }
 
         for (EYBCardAffinity item : List)
         {
-            if (item.Type == type)
+            if (item.type == affinity)
             {
                 return item;
             }
         }
 
-        return createIfNull ? Set(type, 0) : null;
+        return createIfNull ? Set(affinity, 0) : null;
     }
 
-    public int GetScaling(AffinityType type, boolean useStarScaling)
+    public int GetScaling(Affinity affinity, boolean useStarScaling)
     {
         final int star = (Star != null ? Star.scaling : 0);
-        if (type == AffinityType.Star)
+        if (affinity == Affinity.Star)
         {
             return star;
         }
@@ -245,69 +245,69 @@ public class EYBCardAffinities
             scaling = star;
         }
 
-        final EYBCardAffinity affinity = Get(type);
-        if (affinity != null)
+        final EYBCardAffinity a = Get(affinity);
+        if (a != null)
         {
-            scaling += affinity.scaling;
+            scaling += a.scaling;
         }
 
         return scaling;
     }
 
-    public int GetUpgrade(AffinityType type)
+    public int GetUpgrade(Affinity type)
     {
         return GetUpgrade(type, true);
     }
 
-    public int GetUpgrade(AffinityType type, boolean useStar)
+    public int GetUpgrade(Affinity affinity, boolean useStar)
     {
         final int star = (Star != null ? Star.upgrade : 0);
-        if (type == AffinityType.Star || (useStar && star > 0))
+        if (affinity == Affinity.Star || (useStar && star > 0))
         {
             return star;
         }
-        else if (type == null || type == AffinityType.General) // Highest level among all affinities
+        else if (affinity == null || affinity == Affinity.General) // Highest level among all affinities
         {
             return List.isEmpty() ? star : List.get(0).upgrade;
         }
         else
         {
-            final EYBCardAffinity affinity = Get(type);
-            return (affinity != null) ? affinity.upgrade : 0;
+            final EYBCardAffinity a = Get(affinity);
+            return (a != null) ? a.upgrade : 0;
         }
     }
 
-    public int GetLevel(AffinityType type)
+    public int GetLevel(Affinity affinity)
     {
-        return GetLevel(type, true);
+        return GetLevel(affinity, true);
     }
 
-    public int GetLevel(AffinityType type, boolean useStarLevel)
+    public int GetLevel(Affinity affinity, boolean useStarLevel)
     {
         int star = (Star != null ? Star.level : 0);
-        if (type == AffinityType.Star || (useStarLevel && star > 0))
+        if (affinity == Affinity.Star || (useStarLevel && star > 0))
         {
             return star;
         }
-        else if (type == null || type == AffinityType.General) // Highest level among all affinities
+        else if (affinity == null || affinity == Affinity.General) // Highest level among all affinities
         {
             return List.isEmpty() ? star : List.get(0).level;
         }
         else
         {
-            final EYBCardAffinity affinity = Get(type);
-            return (affinity != null) ? affinity.level : 0;
+            final EYBCardAffinity a = Get(affinity);
+            return (a != null) ? a.level : 0;
         }
     }
 
-    public void SetRequirement(AffinityType type, int requirement)
+    public void SetRequirement(Affinity affinity, int requirement)
     {
-        Get(type == AffinityType.General ? AffinityType.Star : type, true).requirement = requirement;
+        Get(affinity == Affinity.General ? Affinity.Star : affinity, true).requirement = requirement;
     }
 
-    public int GetRequirement(AffinityType type)
+    public int GetRequirement(Affinity affinity)
     {
-        final EYBCardAffinity a = Get(type == AffinityType.General ? AffinityType.Star : type);
+        final EYBCardAffinity a = Get(affinity == Affinity.General ? Affinity.Star : affinity);
         return a == null ? 0 : a.requirement;
     }
 

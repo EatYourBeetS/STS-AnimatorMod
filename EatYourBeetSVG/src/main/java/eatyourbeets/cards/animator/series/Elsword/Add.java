@@ -37,7 +37,7 @@ public class Add extends AnimatorCard
         SetAffinity_Blue(1, 1, 0);
         SetAffinity_Dark(2, 0, 0);
 
-        SetAffinityRequirement(AffinityType.Dark, 3);
+        SetAffinityRequirement(Affinity.Dark, 3);
 
         SetExhaust(true);
     }
@@ -52,7 +52,7 @@ public class Add extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (isSynergizing || CheckAffinity(AffinityType.Dark))
+        if (isSynergizing || CheckAffinity(Affinity.Dark))
         {
             GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
             .AddCallback(this::OnCardChosen);

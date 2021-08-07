@@ -1,12 +1,12 @@
 package eatyourbeets.powers.affinity;
 
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.utilities.GameActions;
 
 public class IntellectPower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(IntellectPower.class);
-    public static final AffinityType AFFINITY_TYPE = AffinityType.Blue;
+    public static final Affinity AFFINITY_TYPE = Affinity.Blue;
 
     public IntellectPower()
     {

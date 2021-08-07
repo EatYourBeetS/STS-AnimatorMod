@@ -88,9 +88,9 @@ public class Laby extends AnimatorCard
         }
 
         @Override
-        public void atStartOfTurnPostDraw()
+        public void atStartOfTurn()
         {
-            this.flashWithoutSound();
+            super.atStartOfTurn();
 
             GameActions.Top.ApplyConstricted(owner, owner, amount);
 
@@ -99,6 +99,8 @@ public class Laby extends AnimatorCard
                 GameActions.Top.ApplyConstricted(TargetHelper.Enemies(), upgradedAmount)
                 .ShowEffect(false, true);
             }
+
+            this.flashWithoutSound();
         }
     }
 }

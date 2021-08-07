@@ -2,7 +2,7 @@ package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class IntellectStance extends EYBStance
 {
-    public static final AffinityType AFFINITY = IntellectPower.AFFINITY_TYPE;
+    public static final Affinity AFFINITY = IntellectPower.AFFINITY_TYPE;
     public static final String STANCE_ID = CreateFullID(IntellectStance.class);
     public static final int STAT_GAIN_AMOUNT = 2;
     public static final int STAT_LOSE_AMOUNT = 1;

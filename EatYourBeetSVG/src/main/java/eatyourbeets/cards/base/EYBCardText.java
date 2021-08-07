@@ -180,15 +180,15 @@ public class EYBCardText
 
         offset_y = 0;
 
-        boolean showActualScaling = inHand && player.hoveredCard == card && (player.isDraggingCard || player.isHoveringDropZone || player.inSingleTargetMode);
-        for (AffinityType type : AffinityType.AllTypes())
+        final boolean showActualScaling = inHand && player.hoveredCard == card && (player.isDraggingCard || player.isHoveringDropZone || player.inSingleTargetMode);
+        for (Affinity affinity : Affinity.All())
         {
-            int scaling = card.affinities.GetScaling(type, false);
+            int scaling = card.affinities.GetScaling(affinity, false);
             if (scaling > 0)
             {
                 if (showActualScaling)
                 {
-                    final int amount = (int)CombatStats.Affinities.ApplyScaling(type, card, 0);
+                    final int amount = (int)CombatStats.Affinities.ApplyScaling(affinity, card, 0);
                     cs.SetColor(amount > 0 ? Colors.Green(1) : Colors.Cream(0.75f));
                     cs.text = "+" + amount;
                 }
@@ -198,7 +198,7 @@ public class EYBCardText
                     cs.text = "x" + scaling;
                 }
 
-                offset_y += RenderScaling(sb, type.GetPowerIcon(), cs, offset_y, Color.BLACK);//type.GetAlternateColor());
+                offset_y += RenderScaling(sb, affinity.GetPowerIcon(), cs, offset_y, Color.BLACK);//affinity.GetAlternateColor());
             }
         }
     }

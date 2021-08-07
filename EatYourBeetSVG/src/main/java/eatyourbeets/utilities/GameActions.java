@@ -56,7 +56,7 @@ import eatyourbeets.actions.special.SelectCreature;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.delegates.*;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
@@ -605,12 +605,17 @@ public final class GameActions
 
     public ModifyAffinityScaling IncreaseExistingScaling(AbstractCard card, int amount)
     {
-        return Add(new ModifyAffinityScaling(card, AffinityType.General, amount, true));
+        return Add(new ModifyAffinityScaling(card, Affinity.General, amount, true));
     }
 
-    public ModifyAffinityScaling IncreaseScaling(AbstractCard card, AffinityType type, int amount)
+    public ModifyAffinityScaling IncreaseScaling(AbstractCard card, Affinity affinity, int amount)
     {
-        return Add(new ModifyAffinityScaling(card, type, amount, true));
+        return Add(new ModifyAffinityScaling(card, affinity, amount, true));
+    }
+
+    public ModifyAffinityScaling IncreaseScaling(CardGroup group, int cards, Affinity affinity, int amount)
+    {
+        return Add(new ModifyAffinityScaling(group, cards, affinity, amount, true));
     }
 
     public LoseHP LoseHP(AbstractCreature source, AbstractCreature target, int amount, AbstractGameAction.AttackEffect effect)
@@ -889,9 +894,9 @@ public final class GameActions
         return Add(new SpendEnergy(amount, canSpendLess));
     }
 
-    public ApplyAffinityPower StackAffinityPower(AffinityType type, int amount, boolean retain)
+    public ApplyAffinityPower StackAffinityPower(Affinity affinity, int amount, boolean retain)
     {
-        return Add(new ApplyAffinityPower(player, type, amount, retain));
+        return Add(new ApplyAffinityPower(player, affinity, amount, retain));
     }
 
     public ApplyPower StackPower(AbstractPower power)

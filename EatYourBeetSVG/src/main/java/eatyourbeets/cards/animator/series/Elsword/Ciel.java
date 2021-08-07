@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.series.Elsword;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.LockOnPower;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -32,8 +32,8 @@ public class Ciel extends AnimatorCard
         SetAffinity_Green(2, 0, 1);
         SetAffinity_Dark(1, 1, 0);
 
-        SetAffinityRequirement(AffinityType.Green, 2);
-        SetAffinityRequirement(AffinityType.Blue, 2);
+        SetAffinityRequirement(Affinity.Green, 2);
+        SetAffinityRequirement(Affinity.Blue, 2);
     }
 
     @Override
@@ -67,12 +67,12 @@ public class Ciel extends AnimatorCard
             c.flash();
         });
 
-        if (CheckAffinity(AffinityType.Blue))
+        if (CheckAffinity(Affinity.Blue))
         {
             GameActions.Bottom.StackPower(new LockOnPower(m, LOCK_ON));
         }
 
-        if (CheckAffinity(AffinityType.Green))
+        if (CheckAffinity(Affinity.Green))
         {
             GameActions.Bottom.GainBlur(BLUR);
         }

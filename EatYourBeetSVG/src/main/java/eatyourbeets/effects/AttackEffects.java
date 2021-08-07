@@ -37,10 +37,10 @@ public class AttackEffects
    public static final AttackEffect SHIELD = AttackEffect.SHIELD;
    public static final AttackEffect LIGHTNING = AttackEffect.LIGHTNING;
    // Custom:
-   public static AttackEffect SHIELD_FROST = GR.Enums.AttackEffect.SHIELD_FROST;
-   public static AttackEffect GUNSHOT = GR.Enums.AttackEffect.GUNSHOT;
-   public static AttackEffect DAGGER = GR.Enums.AttackEffect.DAGGER;
-   public static AttackEffect SPEAR = GR.Enums.AttackEffect.SPEAR;
+   public static final AttackEffect SHIELD_FROST = GR.Enums.AttackEffect.SHIELD_FROST;
+   public static final AttackEffect GUNSHOT = GR.Enums.AttackEffect.GUNSHOT;
+   public static final AttackEffect DAGGER = GR.Enums.AttackEffect.DAGGER;
+   public static final AttackEffect SPEAR = GR.Enums.AttackEffect.SPEAR;
 
    public static EYBEffect GetVFX(AttackEffect effect, AbstractCreature source, float t_cX, float t_cY)
    {

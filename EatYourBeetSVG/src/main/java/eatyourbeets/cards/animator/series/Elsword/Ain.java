@@ -22,7 +22,7 @@ public class Ain extends AnimatorCard
             .SetSeries(CardSeries.Elsword);
     static
     {
-        DATA.AddPreview((EYBCard) AffinityToken.GetCard(AffinityType.Blue).CreateNewInstance(), false);
+        DATA.AddPreview(AffinityToken.GetCard(Affinity.Blue), true);
     }
 
     public Ain()
@@ -34,7 +34,7 @@ public class Ain extends AnimatorCard
 
         SetAffinity_Blue(2, 0, 2);
 
-        SetAffinityRequirement(AffinityType.Light, 3);
+        SetAffinityRequirement(Affinity.Light, 3);
     }
 
     @Override
@@ -75,9 +75,9 @@ public class Ain extends AnimatorCard
             GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
         }
 
-        if (CheckAffinity(AffinityType.Light))
+        if (CheckAffinity(Affinity.Light))
         {
-            GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(AffinityType.Blue, false));
+            GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Blue, upgraded));
         }
     }
 

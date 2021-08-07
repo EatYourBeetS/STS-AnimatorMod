@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -21,7 +21,7 @@ public abstract class AffinityToken extends AnimatorCard
     public static final String ID = GR.Animator.CreateID(AffinityToken.class.getSimpleName());
 
     protected static final ArrayList<EYBCardData> cards = new ArrayList<>();
-    protected final AffinityType affinityType;
+    protected final Affinity affinity;
 
     public static EYBCardData Register(Class<? extends AnimatorCard> type)
     {
@@ -32,18 +32,18 @@ public abstract class AffinityToken extends AnimatorCard
     {
         if (cards.isEmpty())
         {
-            for (AffinityType type : AffinityType.BasicTypes())
+            for (Affinity affinity : Affinity.Basic())
             {
-                cards.add(GetCard(type));
+                cards.add(GetCardData(affinity));
             }
         }
 
         return cards;
     }
 
-    public static EYBCardData GetCard(AffinityType type)
+    public static EYBCardData GetCardData(Affinity affinity)
     {
-        switch (type)
+        switch (affinity)
         {
             case Red: return AffinityToken_Red.DATA;
             case Green: return AffinityToken_Green.DATA;
@@ -54,33 +54,38 @@ public abstract class AffinityToken extends AnimatorCard
 
             default:
             {
-                throw new RuntimeException("Affinity token not supported for " + type);
+                throw new RuntimeException("Affinity token not supported for " + affinity);
             }
         }
     }
 
-    public static AffinityToken GetCopy(AffinityType type, boolean upgraded)
+    public static AffinityToken GetCard(Affinity affinity)
     {
-        return (AffinityToken) GetCard(type).MakeCopy(upgraded);
+        return (AffinityToken) GetCardData(affinity).CreateNewInstance();
     }
 
-    protected AffinityToken(EYBCardData cardData, AffinityType affinityType)
+    public static AffinityToken GetCopy(Affinity affinity, boolean upgraded)
+    {
+        return (AffinityToken) GetCardData(affinity).MakeCopy(upgraded);
+    }
+
+    protected AffinityToken(EYBCardData cardData, Affinity affinity)
     {
         super(cardData);
 
-        Initialize(0, 5, 0, 4);
-        SetCostUpgrade(-1);
-        InitializeAffinity(affinityType, 2, 0, 0);
+        Initialize(0, 4, 1, 4);
+        SetUpgrade(0, 0, 1, 0);
+        InitializeAffinity(affinity, 2, 0, 0);
 
-        this.affinityType = affinityType;
+        this.affinity = affinity;
         this.cropPortrait = false;
         this.portraitForeground = portraitImg;
-        this.portraitImg = new ColoredTexture(GR.GetTexture(GR.GetCardImage(ID), true), affinityType.GetAlternateColor(0.55f));
+        this.portraitImg = new ColoredTexture(GR.GetTexture(GR.GetCardImage(ID), true), affinity.GetAlternateColor(0.55f));
 
         SetPurge(true);
         SetRetainOnce(true);
 
-        if (affinityType != AffinityType.General)
+        if (affinity != Affinity.General)
         {
             SetAffinityRequirement(GetAffinityRequirement1(), secondaryValue);
             SetAffinityRequirement(GetAffinityRequirement2(), secondaryValue);
@@ -90,9 +95,9 @@ public abstract class AffinityToken extends AnimatorCard
     @Override
     protected String GetRawDescription()
     {
-        return affinityType != AffinityType.General
-            ? super.GetRawDescription(GetAffinityRequirement1().GetTooltip().id, GetAffinityRequirement2().GetTooltip().id)
-            : super.GetRawDescription();
+        final Affinity a1 = GetAffinityRequirement1();
+        final Affinity a2 = GetAffinityRequirement2();
+        return a1 == null ? super.GetRawDescription() : super.GetRawDescription(a1.GetTooltip().id, a2.GetTooltip().id);
     }
 
     public static SelectFromPile SelectTokenAction(String name, int amount, int size)
@@ -117,7 +122,7 @@ public abstract class AffinityToken extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
-        CombatStats.Affinities.BonusAffinities.Add(affinityType, 1);
+        CombatStats.Affinities.BonusAffinities.Add(affinity, magicNumber);
 
         if (CheckAffinity(GetAffinityRequirement1()) || CheckAffinity(GetAffinityRequirement2()))
         {
@@ -126,6 +131,6 @@ public abstract class AffinityToken extends AnimatorCard
         }
     }
 
-    protected abstract AffinityType GetAffinityRequirement1();
-    protected abstract AffinityType GetAffinityRequirement2();
+    protected abstract Affinity GetAffinityRequirement1();
+    protected abstract Affinity GetAffinityRequirement2();
 }

@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.series.Elsword;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -26,7 +26,7 @@ public class Ara extends AnimatorCard
         SetAffinity_Green(1, 1, 1);
         SetAffinity_Red(1);
 
-        SetAffinityRequirement(AffinityType.Red, 2);
+        SetAffinityRequirement(Affinity.Red, 2);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Ara extends AnimatorCard
         GameActions.Bottom.DiscardFromHand(name, 1, false)
         .SetOptions(false, false, false);
 
-        if (CheckAffinity(AffinityType.Red))
+        if (CheckAffinity(Affinity.Red))
         {
             GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
         }

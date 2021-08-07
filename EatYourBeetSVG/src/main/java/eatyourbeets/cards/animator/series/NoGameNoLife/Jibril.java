@@ -44,6 +44,6 @@ public class Jibril extends AnimatorCard
             GameActions.Bottom.TriggerOrbPassive(magicNumber).SetSequential(true);
         }
 
-        GameUtilities.RetainPower(AffinityType.Blue);
+        GameUtilities.RetainPower(Affinity.Blue);
     }
 }

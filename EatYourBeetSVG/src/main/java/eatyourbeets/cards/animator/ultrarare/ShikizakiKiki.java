@@ -41,8 +41,8 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
                    EYBCard c = JUtils.SafeCast(card, EYBCard.class);
                    if (c != null)
                    {
-                       c.AddScaling(AffinityType.Green, magicNumber);
-                       c.AddScaling(AffinityType.Red, magicNumber);
+                       c.AddScaling(Affinity.Green, magicNumber);
+                       c.AddScaling(Affinity.Red, magicNumber);
                        c.flash();
                    }
                }

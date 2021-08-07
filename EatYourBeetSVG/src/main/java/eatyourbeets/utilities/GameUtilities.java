@@ -324,7 +324,7 @@ public class GameUtilities
 
     public static HashSet<AbstractCard> GetAllInBattleInstances(UUID uuid)
     {
-        HashSet<AbstractCard> cards = new HashSet<>();
+        final HashSet<AbstractCard> cards = new HashSet<>();
 
         if (player.cardInUse != null && player.cardInUse.uuid.equals(uuid))
         {
@@ -342,8 +342,8 @@ public class GameUtilities
 
     public static HashSet<AbstractCard> GetAllInstances(UUID uuid)
     {
-        HashSet<AbstractCard> cards = GetAllInBattleInstances(uuid);
-        AbstractCard masterDeckInstance = GetMasterDeckInstance(uuid);
+        final HashSet<AbstractCard> cards = GetAllInBattleInstances(uuid);
+        final AbstractCard masterDeckInstance = GetMasterDeckInstance(uuid);
         if (masterDeckInstance != null)
         {
             cards.add(masterDeckInstance);

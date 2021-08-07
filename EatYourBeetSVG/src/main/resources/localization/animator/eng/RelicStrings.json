@@ -56,7 +56,7 @@
 	},
 	"animator:EngravedStaff":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, #yBoost 1 random #yAffinity #yPower."],
+		"DESCRIPTIONS": ["At the start of each turn, #yBoost 1 random [A-Gen] #yPower."],
 		"FLAVOR": "One of the most treasured possessions of the Guild.",
 		"NAME": "Engraved Staff"
 	},

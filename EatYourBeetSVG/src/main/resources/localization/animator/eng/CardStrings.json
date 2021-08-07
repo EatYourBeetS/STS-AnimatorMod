@@ -232,6 +232,12 @@
 			"DESCRIPTION": "<DRW-M>. ** Add 1 Dazed to ** your draw pile.",
 			"NAME": "Shimakaze"
 		},
+		"animator:Rorona":
+		{
+			"DESCRIPTION": "Once per turn: ** Pay !S! [Gold] to obtain a ** random potion (Max 2). || At the end of combat: ** !M!% chance to permanently ** Upgrade a random card.",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [Gold] to obtain a random potion. || At the end of combat: #b{1}% chance to #yUpgrade a random card."],
+			"NAME": "Rorona"
+		},
 		"animator:Urushihara":
 		{
 			"DESCRIPTION": "Channel 1 [Dark]. || Deal damage after a random number of turns.",

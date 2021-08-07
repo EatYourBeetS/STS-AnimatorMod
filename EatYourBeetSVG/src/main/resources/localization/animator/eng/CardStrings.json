@@ -1234,7 +1234,7 @@
 		},
 		"animator:SakuraMatou":
 		{
-			"DESCRIPTION": "Apply !M! [Constricted] to ALL ** enemies. Apply !S! ** additional [Constricted] for ** each [Dark] you have.",
+			"DESCRIPTION": "90%Remove your strongest [Dark] ** to apply [Constricted] equal to half its ** damage. If you have no [Dark]: ** Channel 1 [Dark] and trigger its ** passive ability !M! times. || <LIM>. !A! <L>: Gain !S! [B].",
 			"NAME": "Sakura Matou"
 		},
 		"animator:ShinjiMatou":
@@ -2124,17 +2124,17 @@
 	{
 		"animator:AffinityToken_Red":
 		{
-			"DESCRIPTION": "Gain +1 <R> for ** the rest of combat. || !A! <G> or <B>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <R> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Green":
 		{
-			"DESCRIPTION": "Gain +1 <G> for ** the rest of combat. || !A! <R> or <B>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <G> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Blue":
 		{
-			"DESCRIPTION": "Gain +1 <B> for ** the rest of combat. || !A! <R> or <G>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <B> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Orange":
@@ -2144,12 +2144,17 @@
 		},
 		"animator:AffinityToken_Light":
 		{
-			"DESCRIPTION": "Gain +1 <L> for ** the rest of combat. || !A! <D> or <R>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <L> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Dark":
 		{
-			"DESCRIPTION": "Gain +1 <D> for ** the rest of combat. || !A! <L> or <G>: Gain [E].",
+			"DESCRIPTION": "Gain +1 <D> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
+			"NAME": "Affinity Token"
+		},
+		"animator:AffinityToken_General":
+		{
+			"DESCRIPTION": "When you add this card ** to your deck: Transform ** this card into an {Affinity ** Token} of your choice.",
 			"NAME": "Affinity Token"
 		},
 
@@ -2391,7 +2396,7 @@
 		},
 		"animator:JeanneDArc":
 		{
-			"DESCRIPTION": "Exhaust a random ** Hindrance from anywhere. || At the start of combat: ** Gain !M! [Temp HP] and 1 [Artifact].",
+			"DESCRIPTION": "Boost [B]. Purge a random ** Hindrance from anywhere. || At the start of combat: ** Gain !M! [Temp HP] and 1 [Artifact].",
 			"NAME": "Jeanne D'Arc"
 		},
 		"animator:Kanami":

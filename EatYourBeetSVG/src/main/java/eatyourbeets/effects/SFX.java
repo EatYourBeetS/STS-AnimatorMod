@@ -14,6 +14,7 @@ public class SFX
         BaseMod.addAudio(ATTACK_AXE, "audio/sound/STS_SFX_EnemyAtk_Axe_v1.ogg");
         BaseMod.addAudio(ATTACK_DAGGER, "audio/sound/STS_SFX_EnemyAtk_Dagger_v1.ogg");
         BaseMod.addAudio(ATTACK_SCIMITAR, "audio/sound/STS_SFX_EnemyAtk_Scimitar_v1.ogg");
+        BaseMod.addAudio(RELIC_ACTIVATION, "audio/sound/SOTE_SFX_RelicActivation_v1.ogg");
 
         BaseMod.addAudio(ANIMATOR_SPEAR_1, "audio/animator/sound/SPEAR_1.ogg");
         BaseMod.addAudio(ANIMATOR_SPEAR_2, "audio/animator/sound/SPEAR_2.ogg");
@@ -253,6 +254,7 @@ public class SFX
     public static final String RELIC_DROP_HEAVY = "RELIC_DROP_HEAVY";
     public static final String RELIC_DROP_MAGICAL = "RELIC_DROP_MAGICAL";
     public static final String RELIC_DROP_ROCKY = "RELIC_DROP_ROCKY";
+    public static final String RELIC_ACTIVATION = "RELIC_ACTIVATION";
     public static final String REST_FIRE_DRY = "REST_FIRE_DRY";
     public static final String REST_FIRE_WET = "REST_FIRE_WET";
     public static final String SCENE_TORCH_EXTINGUISH = "SCENE_TORCH_EXTINGUISH";
@@ -434,10 +436,15 @@ public class SFX
 
     public static float Play(String key, float pitch)
     {
-        return Play(key, pitch, pitch);
+        return Play(key, pitch, pitch, 1);
     }
 
     public static float Play(String key, float pitchMin, float pitchMax)
+    {
+        return Play(key, pitchMin, pitchMax, 1);
+    }
+
+    public static float Play(String key, float pitchMin, float pitchMax, float volume)
     {
         if (pitchMin > pitchMax)
         {
@@ -448,7 +455,7 @@ public class SFX
             return 0f;
         }
 
-        return CardCrawlGame.sound.playA(key, ((pitchMin == pitchMax) ? pitchMin : MathUtils.random(pitchMin, pitchMax)) - 1) / 1000f;
+        return CardCrawlGame.sound.playAV(key, ((pitchMin == pitchMax) ? pitchMin : MathUtils.random(pitchMin, pitchMax)) - 1, volume) / 1000f;
     }
 
     public static String GetRandom(String... keys)

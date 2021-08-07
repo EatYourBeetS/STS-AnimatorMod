@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.powers.replacement.GenericFadingPower;
@@ -89,12 +90,12 @@ public class Kira extends AnimatorCard
             CardCrawlGame.music.silenceBGMInstantly();
             CardCrawlGame.music.silenceTempBgmInstantly();
 
-            GameActions.Bottom.SFX("ANIMATOR_KIRA_POWER");
+            GameActions.Bottom.SFX(SFX.ANIMATOR_KIRA_POWER);
             GameEffects.Queue.Callback(new WaitRealtimeAction(9f), CardCrawlGame.music::unsilenceBGM);
         }
         else
         {
-            GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
+            GameActions.Bottom.SFX(SFX.MONSTER_COLLECTOR_DEBUFF);
         }
 
         GameActions.Bottom.VFX(new CollectorCurseEffect(m.hb.cX, m.hb.cY), 2f);

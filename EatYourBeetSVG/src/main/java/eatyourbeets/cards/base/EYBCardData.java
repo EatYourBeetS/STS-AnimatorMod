@@ -196,6 +196,13 @@ public class EYBCardData
         return this;
     }
 
+    public EYBCardData SetRarity(AbstractCard.CardRarity rarity)
+    {
+        CardRarity = rarity;
+
+        return this;
+    }
+
     public EYBCardData SetSkill(int cost, AbstractCard.CardRarity rarity)
     {
         return SetSkill(cost, rarity, EYBCardTarget.Normal);

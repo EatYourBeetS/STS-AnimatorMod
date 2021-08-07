@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import eatyourbeets.effects.EYBEffect;
 
@@ -17,10 +16,11 @@ public class OrbFlareEffect2 extends EYBEffect
     private static AtlasRegion outer;
     private static AtlasRegion inner;
     private float scaleY;
-    private AbstractOrb orb;
     private Color color2;
+    private float cX;
+    private float cY;
 
-    public OrbFlareEffect2(AbstractOrb orb)
+    public OrbFlareEffect2(float cX, float cY)
     {
         super(0.5f);
 
@@ -30,7 +30,8 @@ public class OrbFlareEffect2 extends EYBEffect
             inner = ImageMaster.vfxAtlas.findRegion("combat/orbFlareInner");
         }
 
-        this.orb = orb;
+        this.cX = cX;
+        this.cY = cY;
         this.renderBehind = true;
         this.scale = 2.0F * Settings.scale;
         this.scaleY = 0.0F;
@@ -88,14 +89,14 @@ public class OrbFlareEffect2 extends EYBEffect
     public void render(SpriteBatch sb)
     {
         sb.setColor(this.color2);
-        sb.draw(inner, this.orb.cX - (float) inner.packedWidth / 2.0F, this.orb.cY - (float) inner.packedHeight / 2.0F, (float) inner.packedWidth / 2.0F, (float) inner.packedHeight / 2.0F, (float) inner.packedWidth, (float) inner.packedHeight, this.scale * Settings.scale * 1.1F, this.scaleY * Settings.scale, MathUtils.random(-1.0F, 1.0F));
+        sb.draw(inner, this.cX - (float) inner.packedWidth / 2.0F, this.cY - (float) inner.packedHeight / 2.0F, (float) inner.packedWidth / 2.0F, (float) inner.packedHeight / 2.0F, (float) inner.packedWidth, (float) inner.packedHeight, this.scale * Settings.scale * 1.1F, this.scaleY * Settings.scale, MathUtils.random(-1.0F, 1.0F));
         sb.setBlendFunction(770, 1);
         sb.setColor(this.color);
-        sb.draw(outer, this.orb.cX - (float) outer.packedWidth / 2.0F, this.orb.cY - (float) outer.packedHeight / 2.0F, (float) outer.packedWidth / 2.0F, (float) outer.packedHeight / 2.0F, (float) outer.packedWidth, (float) outer.packedHeight, this.scale, this.scaleY * Settings.scale, MathUtils.random(-2.0F, 2.0F));
-        sb.draw(outer, this.orb.cX - (float) outer.packedWidth / 2.0F, this.orb.cY - (float) outer.packedHeight / 2.0F, (float) outer.packedWidth / 2.0F, (float) outer.packedHeight / 2.0F, (float) outer.packedWidth, (float) outer.packedHeight, this.scale, this.scaleY * Settings.scale, MathUtils.random(-2.0F, 2.0F));
+        sb.draw(outer, this.cX - (float) outer.packedWidth / 2.0F, this.cY - (float) outer.packedHeight / 2.0F, (float) outer.packedWidth / 2.0F, (float) outer.packedHeight / 2.0F, (float) outer.packedWidth, (float) outer.packedHeight, this.scale, this.scaleY * Settings.scale, MathUtils.random(-2.0F, 2.0F));
+        sb.draw(outer, this.cX - (float) outer.packedWidth / 2.0F, this.cY - (float) outer.packedHeight / 2.0F, (float) outer.packedWidth / 2.0F, (float) outer.packedHeight / 2.0F, (float) outer.packedWidth, (float) outer.packedHeight, this.scale, this.scaleY * Settings.scale, MathUtils.random(-2.0F, 2.0F));
         sb.setBlendFunction(770, 771);
         sb.setColor(this.color2);
-        sb.draw(inner, this.orb.cX - (float) inner.packedWidth / 2.0F, this.orb.cY - (float) inner.packedHeight / 2.0F, (float) inner.packedWidth / 2.0F, (float) inner.packedHeight / 2.0F, (float) inner.packedWidth, (float) inner.packedHeight, this.scale * Settings.scale * 1.1F, this.scaleY * Settings.scale, MathUtils.random(-1.0F, 1.0F));
+        sb.draw(inner, this.cX - (float) inner.packedWidth / 2.0F, this.cY - (float) inner.packedHeight / 2.0F, (float) inner.packedWidth / 2.0F, (float) inner.packedHeight / 2.0F, (float) inner.packedWidth, (float) inner.packedHeight, this.scale * Settings.scale * 1.1F, this.scaleY * Settings.scale, MathUtils.random(-1.0F, 1.0F));
     }
 
     public void dispose()

@@ -62,7 +62,7 @@ public class EYBCardTooltip
     private static EYBCard card;
     private static EYBRelic relic;
     private static AbstractCreature creature;
-    private static EYBCardTooltip genericTip;
+    private static ArrayList< EYBCardTooltip> genericTip;
     private static Vector2 genericTipPos = new Vector2(0, 0);
 
     public TextureRegion icon;
@@ -94,42 +94,46 @@ public class EYBCardTooltip
 
     public static void QueueTooltip(EYBCardTooltip tooltip, float x, float y)
     {
-        Initialize();
-        genericTip = tooltip;
+        Reset();
+        tooltips.add(tooltip);
         genericTipPos.x = x;
         genericTipPos.y = y;
-        GR.UI.AddPostRender(sb -> genericTip.Render(sb, genericTipPos.x, genericTipPos.y, -1));
+        GR.UI.AddPostRender(EYBCardTooltip::RenderGeneric);
+    }
+
+    public static void QueueTooltips(ArrayList<EYBCardTooltip> tips, float x, float y)
+    {
+        Reset();
+        tooltips.addAll(tips);
+        genericTipPos.x = x;
+        genericTipPos.y = y;
+        GR.UI.AddPostRender(EYBCardTooltip::RenderGeneric);
     }
 
     public static void QueueTooltips(AbstractCreature source)
     {
-        Initialize();
+        Reset();
         creature = source;
         GR.UI.AddPostRender(EYBCardTooltip::RenderFromCreature);
     }
 
     public static void QueueTooltips(EYBCard source)
     {
-        Initialize();
+        Reset();
         card = source;
         GR.UI.AddPostRender(EYBCardTooltip::RenderFromCard);
     }
 
     public static void QueueTooltips(EYBRelic source)
     {
-        Initialize();
+        Reset();
         relic = source;
         GR.UI.AddPostRender(EYBCardTooltip::RenderFromRelic);
     }
 
-    public static void ClearTooltips()
+    private static void Reset()
     {
         tooltips.clear();
-        _renderedTipsThisFrame.Set(null, true);
-    }
-
-    private static void Initialize()
-    {
         _body.Set(null, null);
         _header.Set(null, null);
         _card.Set(null, null);
@@ -387,6 +391,25 @@ public class EYBCardTooltip
 
             y -= tip.Render(sb, x, y, i) + BOX_EDGE_H * 3.15f;
             offset += offsetChange;
+        }
+    }
+
+    public static void RenderGeneric(SpriteBatch sb)
+    {
+        float x = genericTipPos.x;
+        float y = genericTipPos.y;
+        for (int i = 0; i < tooltips.size(); i++)
+        {
+            final EYBCardTooltip tip = tooltips.get(i);
+            if (tip.hideDescription == null)
+            {
+                tip.hideDescription = !StringUtils.isEmpty(tip.id) && GR.Animator.Config.HideTipDescription(tip.id);
+            }
+
+            if (!tip.hideDescription)
+            {
+                y -= tip.Render(sb, x, y, i) + BOX_EDGE_H * 3.15f;
+            }
         }
     }
 

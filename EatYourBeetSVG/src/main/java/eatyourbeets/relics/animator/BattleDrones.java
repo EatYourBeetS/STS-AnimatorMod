@@ -32,13 +32,13 @@ public class BattleDrones extends AnimatorRelic implements OnSynergySubscriber
     }
 
     @Override
-    protected void Subscribe()
+    protected void ActivateBattleEffect()
     {
         CombatStats.onSynergy.Subscribe(this);
     }
 
     @Override
-    protected void Unsubscribe()
+    protected void DeactivateBattleEffect()
     {
         CombatStats.onSynergy.Unsubscribe(this);
     }

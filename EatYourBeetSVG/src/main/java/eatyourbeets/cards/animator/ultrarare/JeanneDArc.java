@@ -1,11 +1,12 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import eatyourbeets.effects.AttackEffects;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -37,8 +38,9 @@ public class JeanneDArc extends AnimatorCard_UltraRare
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
-        GameActions.Bottom.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetVFXColor(Color.GOLD).SetSoundPitch(0.6f, 0.7f);
+        GameActions.Bottom.GainBlessing(1, true);
+        GameActions.Bottom.PurgeFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
         .ShowEffect(true, true)
         .SetOptions(true, true)
         .SetFilter(GameUtilities::IsCurseOrStatus);

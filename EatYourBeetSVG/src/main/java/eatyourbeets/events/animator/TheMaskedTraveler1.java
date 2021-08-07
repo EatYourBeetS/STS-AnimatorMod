@@ -3,7 +3,6 @@ package eatyourbeets.events.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.cards.animator.basic.ImprovedDefend;
 import eatyourbeets.cards.animator.basic.ImprovedStrike;
 import eatyourbeets.cards.base.EYBCardData;
@@ -116,7 +115,7 @@ public class TheMaskedTraveler1 extends EYBEvent
         private void SwapCards(EYBCardData toAdd, AbstractCard toRemove, float offset_x)
         {
             player.masterDeck.group.remove(toRemove);
-            GameEffects.List.Add(new ShowCardAndObtainEffect(toAdd.MakeCopy(toRemove.upgraded), Settings.WIDTH * offset_x, (float) Settings.HEIGHT / 2f));
+            GameEffects.List.ShowAndObtain(toAdd.MakeCopy(toRemove.upgraded), Settings.WIDTH * offset_x, (float) Settings.HEIGHT / 2f, false);
         }
     }
 

@@ -1,32 +1,29 @@
 package eatyourbeets.cards.animator.tokens;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AffinityType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.utilities.GameActions;
 
 public class AffinityToken_Light extends AffinityToken
 {
-    public static final AffinityType AFFINITY_TYPE = AffinityType.Light;
     public static final EYBCardData DATA = Register(AffinityToken_Light.class);
+    public static final AffinityType AFFINITY_TYPE = AffinityType.Light;
+    public static final AffinityType AFFINITY_REQ1 = AffinityType.Dark;
+    public static final AffinityType AFFINITY_REQ2 = AffinityType.Red;
 
     public AffinityToken_Light()
     {
         super(DATA, AFFINITY_TYPE);
-
-        SetAffinityRequirement(AffinityType.Dark, secondaryValue);
-        SetAffinityRequirement(AffinityType.Red, secondaryValue);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    protected AffinityType GetAffinityRequirement1()
     {
-        super.OnUse(p, m, isSynergizing);
+        return AFFINITY_REQ1;
+    }
 
-        if (CheckAffinity(AffinityType.Dark) || CheckAffinity(AffinityType.Red))
-        {
-            GameActions.Bottom.GainEnergy(1);
-        }
+    @Override
+    protected AffinityType GetAffinityRequirement2()
+    {
+        return AFFINITY_REQ2;
     }
 }

@@ -8,7 +8,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.card.RenderCardEffect;
 import eatyourbeets.effects.card.UnfadeOutEffect;
 import eatyourbeets.interfaces.delegates.ActionT3;
@@ -18,6 +21,7 @@ import java.util.List;
 
 public class MoveCard extends EYBActionWithCallback<AbstractCard>
 {
+    public static final CardGroup PURGE = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     public static float DEFAULT_CARD_X_LEFT = (float) Settings.WIDTH * 0.35f;
     public static float DEFAULT_CARD_X_RIGHT = (float) Settings.WIDTH * 0.65f;
     public static float DEFAULT_CARD_Y = (float) Settings.HEIGHT * 0.5f;
@@ -136,6 +140,12 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             targetPosition.y = DEFAULT_CARD_Y;
         }
 
+        if (targetPile == PURGE)
+        {
+            Purge();
+            return;
+        }
+
         switch (targetPile.type)
         {
             case DRAW_PILE:
@@ -165,7 +175,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
     @Override
     protected void UpdateInternal(float deltaTime)
     {
-        if (showEffect)
+        if (showEffect && targetPile != PURGE)
         {
             UpdateCard();
         }
@@ -295,8 +305,33 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         else
         {
             card.triggerWhenDrawn();
-            CardCrawlGame.sound.play("CARD_OBTAIN");
+            SFX.Play(SFX.CARD_OBTAIN);
             sourcePile.moveToHand(card, sourcePile);
+        }
+    }
+
+    protected void Purge()
+    {
+        PURGE.clear();
+        sourcePile.removeCard(card);
+
+        if (showEffect)
+        {
+            ShowCard();
+
+            final Vector2 pos = GameUtilities.TryGetPosition(sourcePile, card);
+            final AbstractGameEffect effect = GameEffects.List.Add(new PurgeCardEffect(card, pos.x, pos.y));
+            if (targetPosition != null)
+            {
+                card.target_x = targetPosition.x;
+                card.target_y = targetPosition.y;
+            }
+
+            this.startDuration = (this.duration = effect.startingDuration = effect.duration = Settings.ACTION_DUR_LONG) + 0.001f;
+        }
+        else
+        {
+            SFX.Play(SFX.CARD_BURN);
         }
     }
 

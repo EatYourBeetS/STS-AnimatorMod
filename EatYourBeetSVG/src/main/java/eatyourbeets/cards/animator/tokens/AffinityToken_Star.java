@@ -5,8 +5,8 @@
 //
 //public class AffinityToken_Star extends AffinityToken
 //{
-//    public static final AffinityType AFFINITY_TYPE = AffinityType.Star;
 //    public static final EYBCardData DATA = Register(AffinityToken_Star.class);
+//    public static final AffinityType AFFINITY_TYPE = AffinityType.Star;
 //
 //    public AffinityToken_Star()
 //    {

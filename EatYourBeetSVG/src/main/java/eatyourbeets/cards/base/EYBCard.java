@@ -482,6 +482,11 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         SetTag(GR.Enums.CardTags.AUTOPLAY, value);
     }
 
+    public void SetObtainableInCombat(boolean value)
+    {
+        SetHealing(!value);
+    }
+
     public void SetHealing(boolean value)
     {
         SetTag(CardTags.HEALING, value);

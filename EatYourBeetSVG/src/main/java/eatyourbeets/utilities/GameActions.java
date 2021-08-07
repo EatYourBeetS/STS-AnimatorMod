@@ -41,6 +41,7 @@ import eatyourbeets.actions.monsters.TalkAction;
 import eatyourbeets.actions.orbs.ChannelOrb;
 import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.actions.orbs.InduceOrb;
+import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.actions.pileSelection.*;
 import eatyourbeets.actions.player.ChangeStance;
 import eatyourbeets.actions.player.GainGold;
@@ -656,22 +657,22 @@ public final class GameActions
         return Add(new LoseHP(player, player, amount, effect));
     }
 
-    public MakeTempCard MakeCard(AbstractCard card, CardGroup group)
+    public GenerateCard MakeCard(AbstractCard card, CardGroup group)
     {
-        return Add(new MakeTempCard(card, group));
+        return Add(new GenerateCard(card, group));
     }
 
-    public MakeTempCard MakeCardInDiscardPile(AbstractCard card)
+    public GenerateCard MakeCardInDiscardPile(AbstractCard card)
     {
         return MakeCard(card, player.discardPile);
     }
 
-    public MakeTempCard MakeCardInDrawPile(AbstractCard card)
+    public GenerateCard MakeCardInDrawPile(AbstractCard card)
     {
         return MakeCard(card, player.drawPile);
     }
 
-    public MakeTempCard MakeCardInHand(AbstractCard card)
+    public GenerateCard MakeCardInHand(AbstractCard card)
     {
         return MakeCard(card, player.hand);
     }
@@ -803,6 +804,11 @@ public final class GameActions
         return Add(new PurgeAnywhere(card));
     }
 
+    public PurgeFromPile PurgeFromPile(String sourceName, int amount, CardGroup... groups)
+    {
+        return Add(new PurgeFromPile(sourceName, amount, groups));
+    }
+
     public ReducePower ReducePower(AbstractCreature source, String powerID, int amount)
     {
         return Add(new ReducePower(source, source, powerID, amount));
@@ -859,12 +865,17 @@ public final class GameActions
 
     public PlaySFX SFX(String key)
     {
-        return SFX(key, 1, 1);
+        return SFX(key, 1, 1, 1);
     }
 
     public PlaySFX SFX(String key, float pitchMin, float pitchMax)
     {
-        return Add(new PlaySFX(key, pitchMin, pitchMax));
+        return Add(new PlaySFX(key, pitchMin, pitchMax, 1));
+    }
+
+    public PlaySFX SFX(String key, float pitchMin, float pitchMax, float volume)
+    {
+        return Add(new PlaySFX(key, pitchMin, pitchMax, volume));
     }
 
     public ShakeScreenAction ShakeScreen(float actionDuration, ScreenShake.ShakeDur shakeDuration, ScreenShake.ShakeIntensity intensity)
@@ -940,6 +951,16 @@ public final class GameActions
     public TalkAction Talk(AbstractCreature source, String text, float duration, float bubbleDuration)
     {
         return Add(new TalkAction(source, text, duration, bubbleDuration));
+    }
+
+    public TriggerOrbPassiveAbility TriggerOrbPassive(int times)
+    {
+        return Add(new TriggerOrbPassiveAbility(times));
+    }
+
+    public TriggerOrbPassiveAbility TriggerOrbPassive(AbstractOrb orb, int times)
+    {
+        return Add(new TriggerOrbPassiveAbility(orb, times));
     }
 
     public SelectFromHand UpgradeFromHand(String sourceName, int amount, boolean isRandom)

@@ -21,7 +21,7 @@ import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.effects.special.UnnamedRelicEquipEffect;
 import eatyourbeets.effects.utility.CallbackEffect;
 import eatyourbeets.effects.utility.SequentialEffect;
-import eatyourbeets.interfaces.listeners.OnAddedToDeckListener;
+import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.listeners.OnEquipUnnamedReignRelicListener;
 import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
@@ -35,7 +35,7 @@ import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
-public abstract class UnnamedReignRelic extends AnimatorRelic implements OnReceiveRewardsListener, OnAddedToDeckListener
+public abstract class UnnamedReignRelic extends AnimatorRelic implements OnReceiveRewardsListener, OnAddToDeckListener
 {
     public UnnamedReignRelic(String id, RelicTier tier, LandingSound sfx)
     {
@@ -182,18 +182,21 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
     }
 
     @Override
-    public void OnAddedToDeck(AbstractCard card)
+    public boolean OnAddToDeck(AbstractCard card)
     {
-        ArrayList<String> cards = TheUnnamedReign.GetCardReplacements(card, false);
+        final ArrayList<String> cards = TheUnnamedReign.GetCardReplacements(card, false);
         if (cards.size() > 0)
         {
-            player.masterDeck.removeCard(card);
             for (String cardID : cards)
             {
                 UnlockTracker.markCardAsSeen(cardID);
-                player.masterDeck.group.add(CardLibrary.getCard(cardID).makeCopy());
+                GameEffects.TopLevelQueue.ShowAndObtain(CardLibrary.getCard(cardID).makeCopy());
             }
+
+            return false;
         }
+
+        return true;
     }
 
     private void AddGoldToRewards(ArrayList<RewardItem> rewards, int step)

@@ -9,19 +9,21 @@ public class PlaySFX extends EYBActionWithCallback<PlaySFX>
 
     private float pitchMin;
     private float pitchMax;
+    private float volume;
 
     public PlaySFX(String key)
     {
-        this(key, 1, 1);
+        this(key, 1, 1, 1);
     }
 
-    public PlaySFX(String key, float pitchMin, float pitchMax)
+    public PlaySFX(String key, float pitchMin, float pitchMax, float volume)
     {
         super(ActionType.WAIT, 0.1f);
 
         this.key = key;
         this.pitchMin = pitchMin;
         this.pitchMax = pitchMax;
+        this.volume = volume;
         this.isRealtime = true;
     }
 
@@ -42,7 +44,7 @@ public class PlaySFX extends EYBActionWithCallback<PlaySFX>
 
     public void Play()
     {
-        float seconds = SFX.Play(key, pitchMin, pitchMax);
+        float seconds = SFX.Play(key, pitchMin, pitchMax, volume);
         if (callbacks.size() > 0)
         {
             duration = seconds;

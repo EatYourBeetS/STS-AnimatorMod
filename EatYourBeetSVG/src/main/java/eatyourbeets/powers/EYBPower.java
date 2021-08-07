@@ -42,6 +42,11 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     public int maxAmount = 9999;
     public int baseAmount = 0;
 
+    public static String DeriveID(String base)
+    {
+        return base + "Power";
+    }
+
     protected EYBPower(AbstractCreature owner, EYBCardData cardData, EYBRelic relic)
     {
         this.effects = _effect.Get(this);
@@ -51,14 +56,14 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
         if (relic != null)
         {
-            this.ID = relic.relicId + "Power";
+            this.ID = DeriveID(relic.relicId);
             this.powerIcon = relic.GetPowerIcon();
             this.powerStrings.NAME = relic.name;
             this.powerStrings.DESCRIPTIONS = relic.DESCRIPTIONS;
         }
         else
         {
-            this.ID = cardData.ID + "Power";
+            this.ID = DeriveID(cardData.ID);
             this.powerIcon = cardData.GetCardIcon();
             this.powerStrings.NAME = cardData.Strings.NAME;
             this.powerStrings.DESCRIPTIONS = cardData.Strings.EXTENDED_DESCRIPTION;

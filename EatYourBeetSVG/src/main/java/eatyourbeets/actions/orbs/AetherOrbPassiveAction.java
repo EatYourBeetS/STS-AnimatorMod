@@ -31,7 +31,9 @@ public class AetherOrbPassiveAction extends EYBAction
         GameEffects.Queue.Add(VFX.Whirlwind());
         GameEffects.Queue.Add(VFX.RazorWind(orb.hb, player.hb, MathUtils.random(1000.0F, 1200.0F), MathUtils.random(-20.0F, 20.0F)));
         int[] damage = DamageInfo.createDamageMatrix(amount, true, true);
-        GameActions.Top.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AttackEffects.SLASH_HORIZONTAL).SetVFX(true, false);
+        GameActions.Top.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AttackEffects.SLASH_HORIZONTAL)
+        .SetPiercing(true, true)
+        .SetVFX(true, false);
 
         Complete();
     }

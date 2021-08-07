@@ -24,6 +24,9 @@ import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
+import javassist.CannotCompileException;
+import javassist.expr.ExprEditor;
+import javassist.expr.MethodCall;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -181,6 +184,26 @@ public class AbstractDungeonPatches
             }
 
             return SpireReturn.Return();
+        }
+    }
+
+    @SpirePatch(clz = AbstractDungeon.class, method = "onModifyPower")
+    public static class AbstractDungeonPatches_OnModifyPower
+    {
+        public static ExprEditor Instrument()
+        {
+            return new ExprEditor()
+            {
+                @Override
+                public void edit(MethodCall m) throws CannotCompileException
+                {
+                    if (m.getMethodName().equals("hasPower"))
+                    {
+                        //onModifyPower checks if the player has focus to update orbs, it doesn't update them if focus is reduced to 0...
+                        m.replace("$_ = true;");
+                    }
+                }
+            };
         }
     }
 }

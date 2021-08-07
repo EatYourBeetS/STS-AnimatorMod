@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon.CurrentScreen;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.EmptyCage;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.effects.EYBEffectWithCallback;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
@@ -79,7 +78,7 @@ public class MaskedTravelerTransformCardsEffect extends EYBEffectWithCallback<Ob
                 float displayCount = 0f;
                 for (AbstractCard card : AbstractDungeon.gridSelectScreen.selectedCards)
                 {
-                    GameEffects.Queue.Add(new ShowCardAndObtainEffect(card.makeCopy(), (float) Settings.WIDTH / 3f + displayCount, (float) Settings.HEIGHT / 2f, false));
+                    GameEffects.Queue.ShowAndObtain(card.makeCopy(), (float) Settings.WIDTH / 3f + displayCount, (float) Settings.HEIGHT / 2f, false);
                     displayCount += (float) Settings.WIDTH / 6f;
                 }
 

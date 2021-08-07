@@ -3,7 +3,7 @@ package eatyourbeets.blights.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.actions.cardManipulation.MakeTempCard;
+import eatyourbeets.actions.cardManipulation.GenerateCard;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
@@ -35,7 +35,7 @@ public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscri
     {
         for (AbstractGameAction action : AbstractDungeon.actionManager.actions)
         {
-            MakeTempCard temp = JUtils.SafeCast(action, MakeTempCard.class);
+            GenerateCard temp = JUtils.SafeCast(action, GenerateCard.class);
             if (temp != null && temp.HasTag(this))
             {
                 return;

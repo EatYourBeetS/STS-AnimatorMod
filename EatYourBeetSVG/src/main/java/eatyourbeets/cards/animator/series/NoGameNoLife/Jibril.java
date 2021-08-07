@@ -1,13 +1,12 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.actions.orbs.ShuffleOrbs;
-import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -42,7 +41,7 @@ public class Jibril extends AnimatorCard
         if (isSynergizing)
         {
             GameActions.Bottom.Add(new ShuffleOrbs(1));
-            GameActions.Bottom.Add(new TriggerOrbPassiveAbility(magicNumber, false, true));
+            GameActions.Bottom.TriggerOrbPassive(magicNumber).SetSequential(true);
         }
 
         GameUtilities.RetainPower(AffinityType.Blue);

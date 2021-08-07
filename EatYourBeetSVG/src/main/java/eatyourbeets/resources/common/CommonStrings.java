@@ -44,6 +44,7 @@ public class CommonStrings
         public final String MoveToDrawPile_F1 = Strings.TEXT[1];
         public final String TransformInto_F1 = Strings.TEXT[2];
         public final String ChooseCards_F1 = Strings.TEXT[3];
+        public final String Purge_F1 = Strings.TEXT[4];
         public final String Discard = DiscardAction.TEXT[0];
         public final String Exhaust = ExhaustAction.TEXT[0];
         public final String Cycle = GamblingChipAction.TEXT[1];
@@ -67,6 +68,11 @@ public class CommonStrings
         public final String ChooseCards(int amount)
         {
             return JUtils.Format(ChooseCards_F1, amount);
+        }
+
+        public final String Purge(int amount)
+        {
+            return JUtils.Format(Purge_F1, amount);
         }
     }
 

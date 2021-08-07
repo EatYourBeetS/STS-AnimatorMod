@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
@@ -86,7 +85,7 @@ public class CrumblingOrb extends AnimatorRelic
                         replacement.upgrade();
                     }
 
-                    GameEffects.TopLevelQueue.Add(new ShowCardAndObtainEffect(replacement, (float) Settings.WIDTH / 3f + x_offset, (float) Settings.HEIGHT / 2f, false));
+                    GameEffects.TopLevelQueue.ShowAndObtain(replacement, (float) Settings.WIDTH / 3f + x_offset, (float) Settings.HEIGHT / 2f, false);
                     GameActions.Top.ReplaceCard(c.uuid, replacement);
                     x_offset += (float) Settings.WIDTH / 6f;
                 }

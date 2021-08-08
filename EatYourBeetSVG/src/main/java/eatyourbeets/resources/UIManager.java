@@ -22,7 +22,7 @@ public class UIManager
     protected float timer = 0;
     protected float timer25 = 0;
     protected float timer50 = 0;
-    protected float timer100 = 0;
+    protected float timer80 = 0;
     protected boolean isDragging;
     protected Hitbox lastHovered;
     protected Hitbox lastHoveredTemp;
@@ -62,13 +62,13 @@ public class UIManager
         {
             timer25 = 0;
         }
-        if ((timer50 += delta) > 0.5f)
+        if ((timer50 += delta) > 0.50f)
         {
             timer50 = 0;
         }
-        if ((timer100 += delta) > 1f)
+        if ((timer80 += delta) > 0.80f)
         {
-            timer100 = 0;
+            timer80 = 0;
         }
 
         isDragging = false;
@@ -162,9 +162,9 @@ public class UIManager
         return timer50 == 0;
     }
 
-    public boolean Elapsed100()
+    public boolean Elapsed80()
     {
-        return timer100 == 0;
+        return timer80 == 0;
     }
 
     public void AddPreRender(ActionT1<SpriteBatch> toRender)

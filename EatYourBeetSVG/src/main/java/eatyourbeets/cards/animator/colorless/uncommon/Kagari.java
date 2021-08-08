@@ -6,13 +6,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Kagari extends AnimatorCard
+public class Kagari extends AnimatorCard implements Hidden //TODO:
 {
     public static final EYBCardData DATA = Register(Kagari.class)
             .SetPower(2, CardRarity.UNCOMMON)

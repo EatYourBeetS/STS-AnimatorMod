@@ -22,8 +22,8 @@ public class Cirno extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0);
-        SetUpgrade(3, 0);
+        Initialize(3, 0, 1);
+        SetUpgrade(1, 0, 1);
 
         SetAffinity_Blue(1, 0, 1);
 
@@ -50,10 +50,13 @@ public class Cirno extends AnimatorCard
             {
                 GameEffects.Queue.Add(new FallingIceEffect(frostCount, monsters.shouldFlipVfx()));
             }
+
+            GameActions.Top.Wait(0.3f);
         });
 
-        GameActions.Bottom.ChannelOrb(new Frost());
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_VERTICAL).SetVFX(true, false);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT)
+        .SetVFX(true, false)
+        .SetDamageEffect((c, __) -> GameActions.Bottom.ApplyFreezing(player, c, magicNumber).ShowEffect(false, true));
     }
 }
 

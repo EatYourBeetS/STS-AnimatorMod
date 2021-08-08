@@ -117,12 +117,6 @@ public abstract class AnimatorCard extends EYBCard
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-    }
-
-    @Override
     public void hover()
     {
         super.hover();

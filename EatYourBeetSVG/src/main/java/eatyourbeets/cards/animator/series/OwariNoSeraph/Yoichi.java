@@ -21,7 +21,7 @@ public class Yoichi extends AnimatorCard
         Initialize(0,0, 2);
         SetUpgrade(0,2, 0);
 
-        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Green(1);
         SetAffinity_Light(1, 1, 0);
     }
 

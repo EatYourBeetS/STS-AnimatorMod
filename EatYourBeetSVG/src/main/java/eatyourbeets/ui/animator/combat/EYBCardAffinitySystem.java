@@ -53,11 +53,13 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         dragPanel_image = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
         .SetColor(0.05f, 0.05f, 0.05f, 0.5f);
 
-        final Affinity[] types = Affinity.All();
+        final Affinity[] types = Affinity.Basic();
         for (int i = 0; i < types.length; i++)
         {
             rows.add(new EYBCardAffinityRow(this, types[i], i));
         }
+
+        rows.add(new EYBCardAffinityRow(this, Affinity.General, types.length));
     }
 
     public EYBCardAffinities GetAffinities(Iterable<AbstractCard> cards, AbstractCard ignored)

@@ -9,12 +9,13 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDrawnSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
-public class MisakiNakahara extends AnimatorCard
+public class MisakiNakahara extends AnimatorCard implements Hidden //TODO:
 {
     public static final EYBCardData DATA = Register(MisakiNakahara.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)

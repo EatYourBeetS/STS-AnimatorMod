@@ -282,14 +282,24 @@ public class ParseGenericCommand extends ConsoleCommand
                     }
 
                     temp = tokens[2].replace("_", " ");
-                    ArrayList<AnimatorCard> cards = new ArrayList<>();
-                    CardSeries series = JUtils.Find(CardSeries.GetAllSeries(), s -> s.Name.equals(temp));
-                    if (series != null)
+                    final ArrayList<AnimatorCard> cards = new ArrayList<>();
+                    if (temp.equals("colorless"))
+                    {
+                        cards.addAll(CardSeries.GetColorlessCards());
+                    }
+                    else
+                    {
+                        final CardSeries series = JUtils.Find(CardSeries.GetAllSeries(), s -> s.Name.equals(temp));
+                        if (series != null)
+                        {
+                            CardSeries.AddCards(series, CardLibrary.getAllCards(), cards);
+                        }
+                    }
+
+                    if (cards.size() > 0)
                     {
                         Settings.seedSet = true;
                         player.masterDeck.clear();
-                        CardSeries.AddCards(series, CardLibrary.getAllCards(), cards);
-
                         cards.sort(new CardRarityComparator());
 
                         for (AnimatorCard card : cards)

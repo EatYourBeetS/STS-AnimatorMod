@@ -131,7 +131,7 @@
 		},
 		"animator:KotoriKanbe":
 		{
-			"DESCRIPTION": "Fully heal the enemy. Apply ** 1 [Weak] and [Vulnerable] for every !M! HP healed. || <LIM>. If you healed {0} ** or more HP: The enemy ** also loses !S! Strength.",
+			"DESCRIPTION": "Fully heal the enemy. ** Apply 1 [Weak] and [Vulnerable] for ** every !M! HP healed. || <LIM>. If you healed {0} ** or more HP: The enemy ** also loses !S! Strength.",
 			"NAME": "Kotori Kanbe"
 		},
 		"animator:Kyubey":
@@ -170,7 +170,7 @@
 		},
 		"animator:Cirno":
 		{
-			"DESCRIPTION": "Channel 1 [Frost]. || When Exhausted, ** Channel 1 [Frost].",
+			"DESCRIPTION": "Apply !M! [Freezing] to ** ALL enemies. || When Exhausted, ** Channel 1 [Frost].",
 			"NAME": "Cirno"
 		},
 		"animator:IchigoKurosaki":
@@ -187,12 +187,12 @@
 		},
 		"animator:Kuroyukihime":
 		{
-			"DESCRIPTION": "Discard !M! cards to add ** {Black Lotus} to your ** hand, then Exhaust.",
+			"DESCRIPTION": "Discard !M! cards to add ** {Black Lotus} to your ** hand, then Exhaust. || !A! <W>: Upgrade it.",
 			"NAME": "Kuroyukihime"
 		},
 		"animator:LimeBell":
 		{
-			"DESCRIPTION": "Reload: Gain !M! ** [Temp HP].",
+			"DESCRIPTION": "Convert up ** to !M! [Block] into [Temp HP]. || Reload: Gain !S! [B].",
 			"NAME": "Lime Bell"
 		},
 		"animator:Magilou":
@@ -202,7 +202,7 @@
 		},
 		"animator:MamizouFutatsuiwa":
 		{
-			"DESCRIPTION": "Give LV2 <S> to ** a card in your hand. || <LIM>. When Discarded: ** Create and add a random ** <S> card to your hand.",
+			"DESCRIPTION": "Give a card LV2 <S>. || <LIM>. When Discarded: ** Create and add a random ** <S> card to your hand.",
 			"EXTENDED_DESCRIPTION": ["turn into a Shapeshifter."],
 			"NAME": "Mamizou Futatsuiwa"
 		},
@@ -229,7 +229,7 @@
 		},
 		"animator:Shimakaze":
 		{
-			"DESCRIPTION": "<DRW-M>. ** Add 1 Dazed to ** your draw pile.",
+			"DESCRIPTION": "Retain [A]. || <DRW-M>. ** Add 1 Dazed to ** your draw pile.",
 			"NAME": "Shimakaze"
 		},
 		"animator:Rorona":
@@ -246,7 +246,7 @@
 		},
 		"animator:Zero":
 		{
-			"DESCRIPTION": "Play a random ** {Skill} from your ** draw pile.",
+			"DESCRIPTION": "Gain [I] || Play a random ** {Skill} from your ** draw pile.",
 			"NAME": "Zero"
 		}
 	},
@@ -1378,7 +1378,7 @@
 		},
 		"animator:BlackLotus":
 		{
-			"DESCRIPTION": "Gain !M! [Blur].",
+			"DESCRIPTION": "Retain [F] [A]. || <FS>: Gain !M! [Metallicize]. || <AS>: Gain !S! [Blur].",
 			"NAME": "Black Lotus"
 		},
 		"animator:ChlammyZellScheme":

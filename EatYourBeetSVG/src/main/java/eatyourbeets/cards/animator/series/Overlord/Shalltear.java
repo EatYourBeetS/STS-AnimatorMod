@@ -28,7 +28,7 @@ public class Shalltear extends AnimatorCard
         SetEthereal(true);
 
         SetAffinity_Blue(1, 1, 1);
-        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Green(1);
         SetAffinity_Dark(2, 0, 2);
     }
 

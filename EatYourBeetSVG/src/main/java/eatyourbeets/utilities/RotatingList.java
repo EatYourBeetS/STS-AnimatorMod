@@ -31,8 +31,8 @@ public class RotatingList<T> implements Iterable<T>
 
     public void Clear()
     {
+        ResetIndex();
         items.clear();
-        index = 0;
     }
 
     public boolean Contains(T item)
@@ -50,6 +50,7 @@ public class RotatingList<T> implements Iterable<T>
         return index;
     }
 
+    /** Call ResetIndex() if you reduce the list size. */
     public ArrayList<T> GetInnerList()
     {
         return items;

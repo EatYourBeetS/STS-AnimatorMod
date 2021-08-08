@@ -12,8 +12,6 @@ import eatyourbeets.ui.cards.DrawPileCardPreview;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RotatingList;
 
-import java.util.Comparator;
-
 public class Zero extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Zero.class)
@@ -51,7 +49,7 @@ public class Zero extends AnimatorCard
 
         drawPileCardPreview.Update();
 
-        if (GR.UI.Elapsed80() && drawPileCardPreview.GetCurrentCard() != null)
+        if (GR.UI.Elapsed75() && drawPileCardPreview.GetCurrentCard() != null)
         {
             drawPileCardPreview.FindCard();
         }
@@ -85,28 +83,18 @@ public class Zero extends AnimatorCard
 
     protected AbstractCard FindNextSkill(AbstractMonster target)
     {
-        boolean refresh = false;
+        final int previousSize = skillsCache.Count();
+        final int previousIndex = skillsCache.GetIndex();
+
+        skillsCache.Clear();
         for (AbstractCard c : player.drawPile.group)
         {
-            if (c.type == CardType.SKILL && !skillsCache.Contains(c))
+            if (c.type == CardType.SKILL)
             {
-                refresh = true;
-                break;
+                skillsCache.Add(c);
             }
         }
-
-        if (refresh)
-        {
-            skillsCache.Clear();
-            for (AbstractCard c : player.drawPile.group)
-            {
-                if (c.type == CardType.SKILL)
-                {
-                    skillsCache.Add(c);
-                }
-            }
-            skillsCache.GetInnerList().sort(Comparator.comparing(a -> a.name));
-        }
+        skillsCache.SetIndex((skillsCache.Count() == previousSize) ? previousIndex : 0);
 
         return skillsCache.Next(true);
     }

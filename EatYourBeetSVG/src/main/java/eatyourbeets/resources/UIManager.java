@@ -19,10 +19,8 @@ public class UIManager
 {
     protected final ArrayList<ActionT1<SpriteBatch>> preRenderList = new ArrayList<>();
     protected final ArrayList<ActionT1<SpriteBatch>> postRenderList = new ArrayList<>();
+    protected float delta = 0;
     protected float timer = 0;
-    protected float timer25 = 0;
-    protected float timer50 = 0;
-    protected float timer80 = 0;
     protected boolean isDragging;
     protected Hitbox lastHovered;
     protected Hitbox lastHoveredTemp;
@@ -56,21 +54,8 @@ public class UIManager
 
     public void PreUpdate()
     {
-        final float delta = Gdx.graphics.getRawDeltaTime();
+        delta = Gdx.graphics.getRawDeltaTime();
         timer += delta;
-        if ((timer25 += delta) > 0.25f)
-        {
-            timer25 = 0;
-        }
-        if ((timer50 += delta) > 0.50f)
-        {
-            timer50 = 0;
-        }
-        if ((timer80 += delta) > 0.80f)
-        {
-            timer80 = 0;
-        }
-
         isDragging = false;
         lastHoveredTemp = null;
     }
@@ -152,19 +137,39 @@ public class UIManager
         return timer * value;
     }
 
+    public float Delta()
+    {
+        return delta;
+    }
+
+    public float Delta(float multiplier)
+    {
+        return delta * multiplier;
+    }
+
+    public boolean Elapsed(float value)
+    {
+        return (delta >= value) || (((timer % value) - delta) < 0);
+    }
+
     public boolean Elapsed25()
     {
-        return timer25 == 0;
+        return Elapsed(0.25f);
     }
 
     public boolean Elapsed50()
     {
-        return timer50 == 0;
+        return Elapsed(0.50f);
     }
 
-    public boolean Elapsed80()
+    public boolean Elapsed75()
     {
-        return timer80 == 0;
+        return Elapsed(0.75f);
+    }
+
+    public boolean Elapsed100()
+    {
+        return Elapsed(1.00f);
     }
 
     public void AddPreRender(ActionT1<SpriteBatch> toRender)

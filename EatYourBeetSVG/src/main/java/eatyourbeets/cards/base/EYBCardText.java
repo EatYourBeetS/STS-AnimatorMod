@@ -1,6 +1,5 @@
 package eatyourbeets.cards.base;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -255,7 +254,7 @@ public class EYBCardText
         {
             if (badgeAlphaOffset < badgeAlphaTargetOffset)
             {
-                badgeAlphaOffset += Gdx.graphics.getRawDeltaTime() * 0.33f;
+                badgeAlphaOffset += GR.UI.Delta(0.33f);
                 if (badgeAlphaOffset > badgeAlphaTargetOffset)
                 {
                     badgeAlphaOffset = badgeAlphaTargetOffset;
@@ -264,7 +263,7 @@ public class EYBCardText
             }
             else
             {
-                badgeAlphaOffset -= Gdx.graphics.getRawDeltaTime() * 0.5f;
+                badgeAlphaOffset -= GR.UI.Delta(0.5f);
                 if (badgeAlphaOffset < badgeAlphaTargetOffset)
                 {
                     badgeAlphaOffset = badgeAlphaTargetOffset;

@@ -24,7 +24,7 @@ public class CombatHelper
             return;
         }
 
-        if (GR.UI.Elapsed80() && !GameUtilities.InBattle())
+        if (GR.UI.Elapsed100() && !GameUtilities.InBattle())
         {
             Clear();
         }

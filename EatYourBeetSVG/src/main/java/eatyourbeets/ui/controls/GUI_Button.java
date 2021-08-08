@@ -1,6 +1,5 @@
 package eatyourbeets.ui.controls;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -151,7 +150,7 @@ public class GUI_Button extends GUIElement
 
         if (currentClickDelay > 0)
         {
-            this.currentClickDelay -= Gdx.graphics.getRawDeltaTime();
+            this.currentClickDelay -= GR.UI.Delta();
             return;
         }
 

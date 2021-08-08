@@ -67,7 +67,6 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
         if (level > 1)
         {
             rotation = GR.UI.Time_Multi(-(card.isPopup ? 20 : 40));
-            //borderColor.lerp(c.GetRarityColor(false), 0.35f);
         }
 
         Texture background = type.GetBackground(level, upgrade);

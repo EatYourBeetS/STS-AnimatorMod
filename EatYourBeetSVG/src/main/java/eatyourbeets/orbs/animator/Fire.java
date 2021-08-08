@@ -1,6 +1,5 @@
 package eatyourbeets.orbs.animator;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -9,6 +8,7 @@ import eatyourbeets.actions.orbs.FireOrbEvokeAction;
 import eatyourbeets.actions.orbs.FireOrbPassiveAction;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.orbs.AnimatorOrb;
+import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
@@ -58,7 +58,8 @@ public class Fire extends AnimatorOrb
     public void updateAnimation()
     {
         super.updateAnimation();
-        this.angle += Gdx.graphics.getRawDeltaTime() * 90f; //180f;
+
+        this.angle += GR.UI.Delta(90f);
     }
 
     public void render(SpriteBatch sb)

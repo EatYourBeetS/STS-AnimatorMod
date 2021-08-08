@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator.enchantments;
 
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.replacement.TemporaryRetainPower;
@@ -69,16 +69,16 @@ public class Enchantment2 extends Enchantment
     {
         if (!upgraded)
         {
-            for (AffinityType t : AffinityType.BasicTypes())
+            for (Affinity t : Affinity.Basic())
             {
                 CombatStats.Affinities.GetPower(t).RetainOnce();
             }
             return;
         }
 
-        final AffinityType type = GetAffinityType();
-        GameActions.Bottom.StackAffinityPower(type, 1, true);
-        switch (type)
+        final Affinity affinity = GetAffinity();
+        GameActions.Bottom.StackAffinityPower(affinity, 1, true);
+        switch (affinity)
         {
             case Red:
                 GameActions.Bottom.GainPlatedArmor(magicNumber);
@@ -102,15 +102,15 @@ public class Enchantment2 extends Enchantment
         }
     }
 
-    public AffinityType GetAffinityType()
+    public Affinity GetAffinity()
     {
         switch (upgradeIndex)
         {
-            case 1: return AffinityType.Red;
-            case 2: return AffinityType.Green;
-            case 3: return AffinityType.Blue;
-            case 4: return AffinityType.Light;
-            case 5: return AffinityType.Dark;
+            case 1: return Affinity.Red;
+            case 2: return Affinity.Green;
+            case 3: return Affinity.Blue;
+            case 4: return Affinity.Light;
+            case 5: return Affinity.Dark;
             default: return null;
         }
     }

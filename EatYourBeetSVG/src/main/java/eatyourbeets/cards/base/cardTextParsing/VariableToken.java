@@ -2,19 +2,17 @@ package eatyourbeets.cards.base.cardTextParsing;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class VariableToken extends CTToken
 {
     private final char variableID;
-    private boolean modifier;
     private ColoredString coloredString;
 
     static final ArrayList<Character> validTokens = new ArrayList<>();
@@ -27,52 +25,37 @@ public class VariableToken extends CTToken
         validTokens.add('A');
     }
 
+    private static VariableToken TryCreateToken(Character c)
+    {
+        return validTokens.contains(c) ? new VariableToken(c) : null;
+    }
+
     private VariableToken(char variableID)
     {
         super(CTTokenType.Variable, null);
+
         this.coloredString = new ColoredString(null, null);
         this.variableID = variableID;
     }
 
     public static int TryAdd(CTContext parser)
     {
-        if (parser.character == '!' && parser.remaining > 1)
+        if (parser.character == '!' && parser.CompareNext(2, '!'))
         {
-            int size = 0;
-            VariableToken token = null;
-            if (parser.CompareNext(1, '~') && parser.CompareNext(3, '!'))
+            final VariableToken token = TryCreateToken(parser.NextCharacter(1));
+            if (token != null)
             {
-                size = 4;
-                token = TryCreateToken(parser.NextCharacter(2));
+                parser.AddToken(token);
             }
-            else if (parser.CompareNext(2, '!'))
+            else
             {
-                size = 3;
-                token = TryCreateToken(parser.NextCharacter(1));
+                JUtils.LogInfo(VariableToken.class, "Unknown variable type: " + parser.text);
             }
 
-            if (size > 0)
-            {
-                if (token != null)
-                {
-                    token.modifier = (size == 4);
-                    parser.AddToken(token);
-                }
-                else
-                {
-                    JUtils.LogInfo(VariableToken.class, "Unknown variable type: " + parser.text);
-                }
-
-                return size;
-            }
+            return 3;
         }
 
         return 0;
-    }
-
-    private static VariableToken TryCreateToken(Character c)
-    {
-        return validTokens.contains(c) ? new VariableToken(c) : null;
     }
 
     @Override
@@ -104,23 +87,15 @@ public class VariableToken extends CTToken
         if (variableID == 'A')
         {
             int i = 1;
-            boolean requireAll = false;
-            CTLine line = context.lines.get(context.lineIndex);
-            ArrayList<AffinityType> types = new ArrayList<>();
-
-            if (modifier)
-            {
-                Collections.addAll(types, AffinityType.BasicTypes());
-                coloredString = context.card.GetAffinityString(types, requireAll);
-                return;
-            }
-
+            boolean requireAll = true;
+            final CTLine line = context.lines.get(context.lineIndex);
+            final ArrayList<Affinity> types = new ArrayList<>();
             while (true)
             {
                 final CTToken next = line.Get(line.tokenIndex + (i++));
                 if (next instanceof SymbolToken)
                 {
-                    AffinityType t = AffinityType.FromTooltip(((SymbolToken) next).tooltip);
+                    Affinity t = Affinity.FromTooltip(((SymbolToken) next).tooltip);
                     if (t != null)
                     {
                         types.add(t);
@@ -132,16 +107,16 @@ public class VariableToken extends CTToken
                 }
                 else if (next instanceof WordToken)
                 {
-                    if (next.rawText.equals("and"))
+                    if (next.rawText.equals("or"))
                     {
-                        requireAll = true;
+                        requireAll = false;
                     }
-                    else if (!next.rawText.equals("or") && !next.rawText.equals(","))
+                    else if (!next.rawText.equals("and"))
                     {
                         break;
                     }
                 }
-                else if (!(next instanceof WhitespaceToken))
+                else if (!(next instanceof WhitespaceToken) && !next.rawText.equals(","))
                 {
                     break;
                 }

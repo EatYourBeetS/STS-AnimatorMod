@@ -78,7 +78,7 @@ public class GenericCardSelection extends EYBActionWithCallback<ArrayList<Abstra
         final ArrayList<AbstractCard> list = new ArrayList<>();
         for (AbstractCard card : group.group)
         {
-            if (filter == null || filter.Check(card))
+            if (CanSelect(card))
             {
                 list.add(card);
             }
@@ -91,6 +91,11 @@ public class GenericCardSelection extends EYBActionWithCallback<ArrayList<Abstra
 
         selection.ForEach(list, amount, this::SelectCard);
         Complete(result);
+    }
+
+    protected boolean CanSelect(AbstractCard card)
+    {
+        return filter == null || filter.Check(card);
     }
 
     protected void SelectCard(AbstractCard card)

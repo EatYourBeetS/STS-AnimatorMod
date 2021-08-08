@@ -117,15 +117,15 @@ public class ParseGenericCommand extends ConsoleCommand
                     }
 
                     boolean upgrade = tokens.length > 3 && tokens[3].equals("+");
-                    for (AffinityType type : AffinityType.AllTypes())
+                    for (Affinity affinity : Affinity.All())
                     {
-                        if (type.name().toLowerCase(Locale.ROOT).equals(tokens[2]))
+                        if (affinity.name().toLowerCase(Locale.ROOT).equals(tokens[2]))
                         {
                             for (Map.Entry<String, AbstractCard> pair : CardLibrary.cards.entrySet())
                             {
                                 AbstractCard card = pair.getValue();
                                 if (!GameUtilities.IsCurseOrStatus(card) && card.rarity != AbstractCard.CardRarity.SPECIAL
-                                && card.color != AbstractCard.CardColor.COLORLESS && GameUtilities.GetAffinityLevel(card, type, false) > 0)
+                                && card.color != AbstractCard.CardColor.COLORLESS && GameUtilities.GetAffinityLevel(card, affinity, false) > 0)
                                 {
                                     card = card.makeCopy();
                                     if (upgrade)
@@ -237,7 +237,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                 if (tokens[1].equals("sort-by-class"))
                 {
-                    CustomCardLibSortHeader.Instance.group.group.sort(new CardAffinityComparator(AffinityType.Star));
+                    CustomCardLibSortHeader.Instance.group.group.sort(new CardAffinityComparator(Affinity.Star));
                     return;
                 }
 

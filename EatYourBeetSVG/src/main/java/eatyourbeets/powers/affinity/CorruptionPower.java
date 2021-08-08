@@ -2,14 +2,14 @@ package eatyourbeets.powers.affinity;
 
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.animator.ultrarare.SummoningRitual;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
 public class CorruptionPower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(CorruptionPower.class);
-    public static final AffinityType AFFINITY_TYPE = AffinityType.Dark;
+    public static final Affinity AFFINITY_TYPE = Affinity.Dark;
 
     protected static final int[] THRESHOLDS = new int[]{ 5, 7, 9, 11, 13 };
 

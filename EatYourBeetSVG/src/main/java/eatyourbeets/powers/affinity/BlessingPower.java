@@ -1,13 +1,13 @@
 package eatyourbeets.powers.affinity;
 
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.utilities.GameActions;
 
 public class BlessingPower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(BlessingPower.class);
-    public static final AffinityType AFFINITY_TYPE = AffinityType.Light;
+    public static final Affinity AFFINITY_TYPE = Affinity.Light;
 
     protected static final int[] THRESHOLDS = new int[]{ 4, 8, 12, 16 };
 

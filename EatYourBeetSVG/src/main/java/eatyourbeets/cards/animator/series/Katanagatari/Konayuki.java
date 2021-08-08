@@ -4,7 +4,7 @@ import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -27,7 +27,7 @@ public class Konayuki extends AnimatorCard
 
         SetAffinity_Red(2);
 
-        SetAffinityRequirement(AffinityType.Red, 5);
+        SetAffinityRequirement(Affinity.Red, 5);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class Konayuki extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainForce(magicNumber);
 
-        if (CheckAffinity(AffinityType.Red) && CombatStats.TryActivateLimited(cardID))
+        if (CheckAffinity(Affinity.Red) && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.DealDamageToRandomEnemy(secondaryValue, damageTypeForTurn, AttackEffects.NONE)
             .SetDamageEffect(c -> GameEffects.List.Add(new WeightyImpactEffect(c.hb.cX, c.hb.cY)).duration)

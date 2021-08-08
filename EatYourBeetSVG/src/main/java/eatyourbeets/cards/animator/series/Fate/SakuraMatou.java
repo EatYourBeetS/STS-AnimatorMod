@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateParticle;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import eatyourbeets.actions.orbs.RemoveOrb;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.SFX;
@@ -36,7 +36,7 @@ public class SakuraMatou extends AnimatorCard
 
         SetExhaust(true);
 
-        SetAffinityRequirement(AffinityType.Light, 5);
+        SetAffinityRequirement(Affinity.Light, 5);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class SakuraMatou extends AnimatorCard
            }
         });
 
-        if (CheckAffinity(AffinityType.Light))
+        if (CheckAffinity(Affinity.Light))
         {
             GameActions.Bottom.GainBlessing(secondaryValue);
         }

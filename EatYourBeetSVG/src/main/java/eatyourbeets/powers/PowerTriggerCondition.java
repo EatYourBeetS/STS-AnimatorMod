@@ -4,6 +4,7 @@ import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.GameActions;
@@ -108,17 +109,24 @@ public class PowerTriggerCondition
 
     public boolean CheckCondition()
     {
+        final boolean result = checkCondition == null || checkCondition.Invoke(requiredAmount);
         switch (type)
         {
-            case Energy: return EnergyPanel.getCurrentEnergy() >= requiredAmount;
+            case Energy:
+                return result && EnergyPanel.getCurrentEnergy() >= requiredAmount;
 
-            case Discard: case Exhaust: return AbstractDungeon.player.hand.size() >= requiredAmount;
+            case Discard:
+            case Exhaust:
+                return result && AbstractDungeon.player.hand.size() >= requiredAmount;
 
-            case LoseHP: return GameUtilities.GetActualHealth(AbstractDungeon.player) > requiredAmount;
+            case LoseHP:
+                return result && GameUtilities.GetActualHealth(AbstractDungeon.player) > requiredAmount;
 
-            case Special: return checkCondition.Invoke(requiredAmount);
+            case Gold:
+                return result && AbstractDungeon.player.gold >= requiredAmount;
 
-            case None: default: return true;
+            default:
+                return result;
         }
     }
 
@@ -127,6 +135,11 @@ public class PowerTriggerCondition
         if (!canUse)
         {
             return;
+        }
+
+        if (payCost != null)
+        {
+            payCost.Invoke(requiredAmount);
         }
 
         switch (type)
@@ -146,14 +159,15 @@ public class PowerTriggerCondition
                 GameActions.Bottom.ExhaustFromHand(power.name, requiredAmount, false).SetOptions(false, false, false);
                 break;
             }
+            case Gold:
+            {
+                AbstractDungeon.player.loseGold(requiredAmount);
+                SFX.Play(SFX.EVENT_PURCHASE, 0.95f, 1.05f);
+                break;
+            }
             case LoseHP:
             {
                 GameActions.Bottom.LoseHP(requiredAmount, AttackEffects.NONE);
-                break;
-            }
-            case Special:
-            {
-                payCost.Invoke(requiredAmount);
                 break;
             }
         }

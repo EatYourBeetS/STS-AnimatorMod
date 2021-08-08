@@ -28,7 +28,7 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.stats.AchievementGrid;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinities;
 import eatyourbeets.cards.base.EYBCardAffinity;
@@ -243,16 +243,16 @@ public class GameUtilities
         return card instanceof EYBCard ? ((EYBCard) card).affinities : null;
     }
 
-    public static EYBCardAffinity GetAffinity(AbstractCard card, AffinityType type)
+    public static EYBCardAffinity GetAffinity(AbstractCard card, Affinity affinity)
     {
         final EYBCardAffinities a = GetAffinities(card);
-        return a != null ? a.Get(type, false) : null;
+        return a != null ? a.Get(affinity, false) : null;
     }
 
-    public static int GetAffinityLevel(AbstractCard card, AffinityType type, boolean useStarLevel)
+    public static int GetAffinityLevel(AbstractCard card, Affinity affinity, boolean useStarLevel)
     {
         final EYBCardAffinities a = GetAffinities(card);
-        return a != null ? a.GetLevel(type, useStarLevel) : 0;
+        return a != null ? a.GetLevel(affinity, useStarLevel) : 0;
     }
 
     public static ArrayList<AbstractCreature> GetAllCharacters(boolean aliveOnly)
@@ -324,7 +324,7 @@ public class GameUtilities
 
     public static HashSet<AbstractCard> GetAllInBattleInstances(UUID uuid)
     {
-        HashSet<AbstractCard> cards = new HashSet<>();
+        final HashSet<AbstractCard> cards = new HashSet<>();
 
         if (player.cardInUse != null && player.cardInUse.uuid.equals(uuid))
         {
@@ -342,8 +342,8 @@ public class GameUtilities
 
     public static HashSet<AbstractCard> GetAllInstances(UUID uuid)
     {
-        HashSet<AbstractCard> cards = GetAllInBattleInstances(uuid);
-        AbstractCard masterDeckInstance = GetMasterDeckInstance(uuid);
+        final HashSet<AbstractCard> cards = GetAllInBattleInstances(uuid);
+        final AbstractCard masterDeckInstance = GetMasterDeckInstance(uuid);
         if (masterDeckInstance != null)
         {
             cards.add(masterDeckInstance);
@@ -1137,9 +1137,9 @@ public class GameUtilities
         return false;
     }
 
-    public static AbstractAffinityPower RetainPower(AffinityType type)
+    public static AbstractAffinityPower RetainPower(Affinity affinity)
     {
-        AbstractAffinityPower power = CombatStats.Affinities.GetPower(type);
+        final AbstractAffinityPower power = CombatStats.Affinities.GetPower(affinity);
         if (power != null)
         {
             power.RetainOnce();

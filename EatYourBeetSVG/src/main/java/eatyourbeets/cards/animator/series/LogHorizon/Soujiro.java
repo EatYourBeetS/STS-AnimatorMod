@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -87,7 +88,7 @@ public class Soujiro extends AnimatorCard
     @Override
     protected float GetInitialDamage()
     {
-        return super.GetInitialDamage() + (magicNumber * GetHandAffinity(null));
+        return super.GetInitialDamage() + (magicNumber * GetHandAffinity(Affinity.General));
     }
 
     @Override

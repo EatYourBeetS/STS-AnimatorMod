@@ -3,34 +3,49 @@ package eatyourbeets.actions.cardManipulation;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import eatyourbeets.actions.utility.GenericCardSelection;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardAffinities;
 import eatyourbeets.cards.base.EYBCardAffinity;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.GameUtilities;
 
 public class ModifyAffinityScaling extends GenericCardSelection
 {
-    protected AffinityType affinityType;
+    protected Affinity affinity;
     protected boolean relative;
+    protected boolean flash = true;
     protected int scaling;
 
-    protected ModifyAffinityScaling(AbstractCard card, CardGroup group, int amount, AffinityType affinityType, int scaling, boolean relative)
+    protected ModifyAffinityScaling(AbstractCard card, CardGroup group, int amount, Affinity affinity, int scaling, boolean relative)
     {
         super(card, group, amount);
 
-        this.affinityType = affinityType;
+        this.affinity = affinity;
         this.scaling = scaling;
         this.relative = relative;
     }
 
-    public ModifyAffinityScaling(CardGroup group, int amount, AffinityType affinityType, int scaling, boolean relative)
+    public ModifyAffinityScaling(CardGroup group, int amount, Affinity affinity, int scaling, boolean relative)
     {
-        this(null, group, amount, affinityType, scaling, relative);
+        this(null, group, amount, affinity, scaling, relative);
     }
 
-    public ModifyAffinityScaling(AbstractCard card, AffinityType affinityType, int scaling, boolean relative)
+    public ModifyAffinityScaling(AbstractCard card, Affinity affinity, int scaling, boolean relative)
     {
-        this(card, null, 1, affinityType, scaling, relative);
+        this(card, null, 1, affinity, scaling, relative);
+    }
+
+    public ModifyAffinityScaling Flash(boolean flash)
+    {
+        this.flash = flash;
+
+        return this;
+    }
+
+    @Override
+    protected boolean CanSelect(AbstractCard card)
+    {
+        return super.CanSelect(card) && card instanceof EYBCard && (card.baseBlock > 0 || card.baseDamage > 0);
     }
 
     @Override
@@ -38,15 +53,15 @@ public class ModifyAffinityScaling extends GenericCardSelection
     {
         super.SelectCard(card);
 
-        EYBCard c = JUtils.SafeCast(card, EYBCard.class);
-        if (c == null)
+        if (flash)
         {
-            return;
+            GameUtilities.Flash(card, false);
         }
 
-        if (affinityType == AffinityType.General)
+        final EYBCardAffinities affinities = ((EYBCard) card).affinities;
+        if (affinity == Affinity.General) // Modify all existing scaling
         {
-            for (EYBCardAffinity a : c.affinities.List)
+            for (EYBCardAffinity a : affinities.List)
             {
                 if (a.scaling > 0)
                 {
@@ -54,15 +69,15 @@ public class ModifyAffinityScaling extends GenericCardSelection
                 }
             }
 
-            if (c.affinities.Star != null && c.affinities.Star.scaling > 0)
+            if (affinities.Star != null && affinities.Star.scaling > 0)
             {
-                ChangeScaling(c.affinities.Star);
+                ChangeScaling(affinities.Star);
             }
-
-            return;
         }
-
-        ChangeScaling(c.affinities.Get(affinityType, true));
+        else
+        {
+            ChangeScaling(affinities.Get(affinity, true));
+        }
     }
 
     protected void ChangeScaling(EYBCardAffinity affinity)

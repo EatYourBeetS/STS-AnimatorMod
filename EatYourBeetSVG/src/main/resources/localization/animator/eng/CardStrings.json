@@ -1070,6 +1070,12 @@
 			"DESCRIPTION": "<DRW-M>. ** Add 1 Dazed to ** your draw pile.",
 			"NAME": "Shimakaze"
 		},
+		"animator:Rorona":
+		{
+			"DESCRIPTION": "Once per turn: ** Pay !S! [Gold] to obtain a ** random potion (Max 2). || At the end of combat: ** !M!% chance to permanently ** Upgrade a random card.",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [Gold] to obtain a random potion. || At the end of combat: #b{1}% chance to #yUpgrade a random card."],
+			"NAME": "Rorona"
+		},
 		"animator:Urushihara":
 		{
 			"DESCRIPTION": "Channel 1 [Dark]. || Deal damage after a random number of turns.",
@@ -1244,7 +1250,7 @@
 		},
 		"animator:RinTohsaka":
 		{
-			"DESCRIPTION": "Gain !S! {Temp}. [Artifact]. || <LIM>. !~A! of all [A-Gen] colors: {Channel} !M! [Chaos].",
+			"DESCRIPTION": "Gain !S! {Temp}. [Artifact]. || <LIM>. !A! <R>, <G>, <B>: ** {Channel} !M! [Chaos].",
 			"NAME": "Rin Tohsaka"
 		},
 		"animator:Saber":
@@ -1278,6 +1284,7 @@
 		"animator:Envy":
 		{
 			"DESCRIPTION": "The first card played ** each turn will Synergize. || Gain 20% of your ** missing HP as [Temp HP].",
+			"EXTENDED_DESCRIPTION": ["The next card you play this turn will Synergize."],
 			"NAME": "Envy"
 		},
 		"animator:Father":
@@ -1295,6 +1302,11 @@
 		{
 			"DESCRIPTION": "Choose !S!: Gain {0} [Block], ** Gain {1} [Temp HP], Gain {2} [Malleable], ** Gain {3} [Plated Armor], or Gain {4} [Metallicize]. || For every !M! [Gold] you have: Choose 1 additional effect.",
 			"NAME": "Greed"
+		},
+		"animator:Lust":
+		{
+			"DESCRIPTION": "Attack 1 additional ** time for each ** Hindrance in hand. || If the enemy has [Vulnerable]: ** Gain !M! [Temp HP].",
+			"NAME": "Lust"
 		},
 		"animator:MaesHughes":
 		{
@@ -1326,6 +1338,11 @@
 			"DESCRIPTION": "Once per turn, when ** you discard a card: ** Gain !M! [Block]. || Synergy: Upgrade a ** card in your hand.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you discard a card this turn, gain #b{1} #yBlock."],
 			"NAME": "Winry Rockbell"
+		},
+		"animator:Wrath":
+		{
+			"DESCRIPTION": "Gain !M! [F]. Give all cards ** in hand +1 [F] scaling. || If you have at least ** 7 cards in Exhaust pile: ** Obtain {<R> Token}.",
+			"NAME": "Wrath"
 		}
 	},
 	"SERIES:GATE":
@@ -2144,17 +2161,17 @@
 	{
 		"animator:AffinityToken_Red":
 		{
-			"DESCRIPTION": "Gain +1 <R> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
+			"DESCRIPTION": "Gain +!M! <R> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Green":
 		{
-			"DESCRIPTION": "Gain +1 <G> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
+			"DESCRIPTION": "Gain +!M! <G> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Blue":
 		{
-			"DESCRIPTION": "Gain +1 <B> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
+			"DESCRIPTION": "Gain +!M! <B> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Orange":
@@ -2164,12 +2181,12 @@
 		},
 		"animator:AffinityToken_Light":
 		{
-			"DESCRIPTION": "Gain +1 <L> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
+			"DESCRIPTION": "Gain +!M! <L> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Dark":
 		{
-			"DESCRIPTION": "Gain +1 <D> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
+			"DESCRIPTION": "Gain +!M! <D> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_General":

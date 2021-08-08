@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
@@ -19,20 +19,20 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
     public boolean showEffect;
     public boolean retain;
 
-    public ApplyAffinityPower(AbstractCreature source, AffinityType affinityType, int amount)
+    public ApplyAffinityPower(AbstractCreature source, Affinity affinity, int amount)
     {
-        this(source, affinityType, amount, false);
+        this(source, affinity, amount, false);
     }
 
-    public ApplyAffinityPower(AbstractCreature source, AffinityType affinityType, int amount, boolean retain)
+    public ApplyAffinityPower(AbstractCreature source, Affinity affinity, int amount, boolean retain)
     {
         super(ActionType.POWER, Settings.ACTION_DUR_XFAST);
 
         this.retain = retain;
 
-        if (affinityType != null)
+        if (affinity != null)
         {
-            this.power = CombatStats.Affinities.GetPower(affinityType);
+            this.power = CombatStats.Affinities.GetPower(affinity);
         }
         else
         {

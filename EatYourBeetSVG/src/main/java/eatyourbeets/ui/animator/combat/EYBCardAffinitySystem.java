@@ -55,18 +55,16 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         dragPanel_image = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
         .SetColor(0.05f, 0.05f, 0.05f, 0.5f);
 
-        final AffinityType[] types = AffinityType.BasicTypes();
-        final int length = types.length;
-        for (int i = 0; i < length; i++)
+        final Affinity[] types = Affinity.All();
+        for (int i = 0; i < types.length; i++)
         {
-            rows.add(new EYBCardAffinityRow(this, types[i], i, length + 1));
+            rows.add(new EYBCardAffinityRow(this, types[i], i));
         }
-        rows.add(new EYBCardAffinityRow(this, AffinityType.General, length, length + 1));
     }
 
     public EYBCardAffinities GetAffinities(Iterable<AbstractCard> cards, AbstractCard ignored)
     {
-        EYBCardAffinities affinities = new EYBCardAffinities(null);
+        final EYBCardAffinities affinities = new EYBCardAffinities(null);
         for (AbstractCard c : cards)
         {
             EYBCard card = JUtils.SafeCast(c, EYBCard.class);
@@ -84,16 +82,16 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return GetAffinities(player.hand.group, ignored).Add(BonusAffinities);
     }
 
-    public int GetHandAffinityLevel(AffinityType type, AbstractCard ignored)
+    public int GetHandAffinityLevel(Affinity affinity, AbstractCard ignored)
     {
-        return GetHandAffinities(ignored).GetLevel(type, false);
+        return GetHandAffinities(ignored).GetLevel(affinity, false);
     }
 
-    public EYBCardAffinityRow GetRow(AffinityType type)
+    public EYBCardAffinityRow GetRow(Affinity affinity)
     {
         for (EYBCardAffinityRow row : rows)
         {
-            if (row.Type == type)
+            if (row.Type == affinity)
             {
                 return row;
             }
@@ -107,11 +105,11 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return card != null && currentSynergy != null && currentSynergy.uuid == card.uuid;
     }
 
-    public AbstractAffinityPower GetPower(AffinityType type)
+    public AbstractAffinityPower GetPower(Affinity affinity)
     {
         for (AbstractAffinityPower p : Powers)
         {
-            if (p.affinityType.equals(type))
+            if (p.affinity.equals(affinity))
             {
                 return p;
             }
@@ -120,9 +118,9 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return null;
     }
 
-    public int GetPowerAmount(AffinityType type)
+    public int GetPowerAmount(Affinity affinity)
     {
-        AbstractAffinityPower p = GetPower(type);
+        final AbstractAffinityPower p = GetPower(affinity);
         return p == null ? 0 : p.amount;
     }
 
@@ -135,9 +133,9 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         }
     }
 
-    public int GetLastAffinityLevel(AffinityType type)
+    public int GetLastAffinityLevel(Affinity affinity)
     {
-        return lastCardPlayed == null ? 0 : lastCardPlayed.affinities.GetLevel(type);
+        return lastCardPlayed == null ? 0 : lastCardPlayed.affinities.GetLevel(affinity);
     }
 
     public AnimatorCard GetLastCardPlayed()
@@ -159,17 +157,17 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public boolean CanActivateSynergyBonus(EYBCardAffinity affinity)
     {
-        return affinity.level >= 2 && GetLastAffinityLevel(affinity.Type) > 0 && CanActivateSynergyBonus(affinity.Type);
+        return affinity.level >= 2 && GetLastAffinityLevel(affinity.type) > 0 && CanActivateSynergyBonus(affinity.type);
     }
 
-    public boolean CanActivateSynergyBonus(AffinityType type)
+    public boolean CanActivateSynergyBonus(Affinity affinity)
     {
-        return type.ID >= 0 && CombatStats.CanActivateSemiLimited(type.name());
+        return affinity.ID >= 0 && CombatStats.CanActivateSemiLimited(affinity.name());
     }
 
-    public ApplyAffinityPower ActivateSynergyBonus(AffinityType type)
+    public ApplyAffinityPower ActivateSynergyBonus(Affinity affinity)
     {
-        return type.ID >= 0 ? GameActions.Bottom.StackAffinityPower(type, 1, false) : null;
+        return affinity.ID >= 0 ? GameActions.Bottom.StackAffinityPower(affinity, 1, false) : null;
     }
 
     public void OnSynergy(AnimatorCard card)
@@ -178,8 +176,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             if (CanActivateSynergyBonus(affinity))
             {
-                CombatStats.TryActivateSemiLimited(affinity.Type.name());
-                ActivateSynergyBonus(affinity.Type);
+                CombatStats.TryActivateSemiLimited(affinity.type.name());
+                ActivateSynergyBonus(affinity.type);
             }
         }
     }
@@ -237,13 +235,13 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             return synergies;
         }
 
-        for (AffinityType type : AffinityType.BasicTypes())
+        for (Affinity affinity : Affinity.Basic())
         {
-            int lv_a = a.affinities.GetLevel(type);
-            int lv_b = b.affinities.GetLevel(type);
+            int lv_a = a.affinities.GetLevel(affinity);
+            int lv_b = b.affinities.GetLevel(affinity);
             if ((lv_a > 1 && lv_b > 0) || (lv_b > 1 && lv_a > 0))
             {
-                synergies.Add(type, lv_a);
+                synergies.Add(affinity, lv_a);
             }
         }
 
@@ -282,9 +280,9 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return damage;
     }
 
-    public float ApplyScaling(AffinityType type, EYBCard card, float base)
+    public float ApplyScaling(Affinity affinity, EYBCard card, float base)
     {
-        if (type == AffinityType.Star)
+        if (affinity == Affinity.Star)
         {
             for (AbstractAffinityPower p : Powers)
             {
@@ -297,12 +295,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             return base;
         }
 
-        return ApplyScaling(GetPower(type), card, base);
+        return ApplyScaling(GetPower(affinity), card, base);
     }
 
     public float ApplyScaling(AbstractAffinityPower power, EYBCard card, float base)
     {
-        return base + MathUtils.ceil(card.affinities.GetScaling(power.affinityType, true) * power.amount * 0.5f);
+        return base + MathUtils.ceil(card.affinities.GetScaling(power.affinity, true) * power.amount * 0.5f);
     }
 
     // ====================== //

@@ -90,6 +90,16 @@ public class EYBCardData
         return (EYBCard) (type.isAssignableFrom(Hidden.class) ? CreateNewInstance(upgraded) : CardLibrary.getCopy(ID, upgraded ? 1 : 0, 0));
     }
 
+    public EYBCardBase AddPreview(AbstractCard card, boolean showUpgrade)
+    {
+        if (card instanceof EYBCardBase)
+        {
+            return AddPreview((EYBCardBase) card, showUpgrade);
+        }
+
+        throw new RuntimeException("Only instances of EYBCardBase are supported for previews.");
+    }
+
     public EYBCardBase AddPreview(EYBCardBase card, boolean showUpgrade)
     {
         previews.Add(new EYBCardPreview(card, showUpgrade));

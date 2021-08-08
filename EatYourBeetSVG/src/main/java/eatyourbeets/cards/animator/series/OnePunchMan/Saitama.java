@@ -249,8 +249,8 @@ public class Saitama extends AnimatorCard
 
                 Initialize(6, 0, 8, 0);
 
-                AddScaling(AffinityType.Red, 3);
-                AddScaling(AffinityType.Green, 1);
+                AddScaling(Affinity.Red, 3);
+                AddScaling(Affinity.Green, 1);
 
                 this.attackType = EYBAttackType.Normal;
                 this.target = CardTarget.ENEMY;
@@ -268,8 +268,8 @@ public class Saitama extends AnimatorCard
 
                 Initialize(999, 0, 0, 0);
 
-                SetScaling(AffinityType.Red, 99);
-                SetScaling(AffinityType.Green, 99);
+                SetScaling(Affinity.Red, 99);
+                SetScaling(Affinity.Green, 99);
 
                 this.attackType = EYBAttackType.Normal;
                 this.target = CardTarget.ENEMY;

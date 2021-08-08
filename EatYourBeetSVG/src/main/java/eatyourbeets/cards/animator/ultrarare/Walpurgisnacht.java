@@ -36,8 +36,8 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
     {
         if (spellcasterPool.Size() == 0)
         {
-            spellcasterPool.AddAll(JUtils.Filter(CardSeries.GetNonColorlessCard(), c -> c.affinities.GetLevel(AffinityType.Blue) > 0));
-            spellcasterPool.AddAll(JUtils.Filter(CardSeries.GetColorlessCards(), c -> c.affinities.GetLevel(AffinityType.Blue) > 0));
+            spellcasterPool.AddAll(JUtils.Filter(CardSeries.GetNonColorlessCard(), c -> c.affinities.GetLevel(Affinity.Blue) > 0));
+            spellcasterPool.AddAll(JUtils.Filter(CardSeries.GetColorlessCards(), c -> c.affinities.GetLevel(Affinity.Blue) > 0));
         }
 
         for (int i = 0; i < magicNumber; i++)
@@ -76,7 +76,7 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
         {
             GameActions.Bottom.Callback(() ->
             {
-                int count = JUtils.Count(player.hand.group, c -> c.type == CardType.CURSE || (c instanceof EYBCard && ((EYBCard)c).affinities.GetLevel(AffinityType.Blue) > 0));
+                int count = JUtils.Count(player.hand.group, c -> c.type == CardType.CURSE || (c instanceof EYBCard && ((EYBCard)c).affinities.GetLevel(Affinity.Blue) > 0));
                 if (count > 0)
                 {
                     for (int i = 1; i < count; i++)

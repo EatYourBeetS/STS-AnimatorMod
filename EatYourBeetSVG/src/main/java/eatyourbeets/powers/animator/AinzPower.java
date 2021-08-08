@@ -141,7 +141,7 @@ public class AinzPower extends AnimatorPower
             {
                 builder.SetNumbers(number, 0, 0, 0);
                 builder.SetAttackType(EYBAttackType.Elemental, EYBCardTarget.ALL);
-                builder.affinities.Set(AffinityType.Blue, 0).scaling = 3;
+                builder.affinities.Set(Affinity.Blue, 0).scaling = 3;
                 builder.cardType = AbstractCard.CardType.ATTACK;
             }
             else

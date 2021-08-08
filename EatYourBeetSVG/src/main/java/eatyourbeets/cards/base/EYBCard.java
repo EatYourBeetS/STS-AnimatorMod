@@ -265,19 +265,19 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         GameEffects.List.Add(new ExhaustCardEffect(this));
     }
 
-    public boolean CheckAffinity(AffinityType type)
+    public boolean CheckAffinity(Affinity affinity)
     {
-        return GetHandAffinity(type, true) >= affinities.GetRequirement(type);
+        return GetHandAffinity(affinity, true) >= affinities.GetRequirement(affinity);
     }
 
-    public int GetHandAffinity(AffinityType type)
+    public int GetHandAffinity(Affinity affinity)
     {
-        return GetHandAffinity(null, true);
+        return GetHandAffinity(affinity, true);
     }
 
-    public int GetHandAffinity(AffinityType type, boolean ignoreSelf)
+    public int GetHandAffinity(Affinity affinity, boolean ignoreSelf)
     {
-        return CombatStats.Affinities.GetHandAffinities(ignoreSelf ? this : null).GetLevel(type, false);
+        return CombatStats.Affinities.GetHandAffinities(ignoreSelf ? this : null).GetLevel(affinity, false);
     }
 
     public boolean IsStarter()
@@ -377,7 +377,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         return null;
     }
 
-    public ColoredString GetAffinityString(ArrayList<AffinityType> types, boolean requireAll)
+    public ColoredString GetAffinityString(ArrayList<Affinity> types, boolean requireAll)
     {
         if (types == null || types.size() == 0)
         {
@@ -389,7 +389,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         if (player != null && player.hand.contains(this))
         {
             final EYBCardAffinities hand = CombatStats.Affinities.GetHandAffinities(this);
-            for (AffinityType t : types)
+            for (Affinity t : types)
             {
                 final int req = affinities.GetRequirement(t);
                 final int level = hand.GetLevel(t, false);
@@ -521,50 +521,50 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         isMultiUpgrade = multiUpgrade;
     }
 
-    public void AddScaling(AffinityType type, int amount)
+    public void AddScaling(Affinity affinity, int amount)
     {
-        affinities.Get(type, true).scaling += amount;
+        affinities.Get(affinity, true).scaling += amount;
     }
 
     public void SetScaling(EYBCardAffinities affinities)
     {
         if (affinities.HasStar())
         {
-            SetScaling(AffinityType.Star, affinities.Star.scaling);
+            SetScaling(Affinity.Star, affinities.Star.scaling);
         }
 
         for (EYBCardAffinity a : affinities.List)
         {
-            SetScaling(a.Type, a.scaling);
+            SetScaling(a.type, a.scaling);
         }
     }
 
-    public void SetScaling(AffinityType type, int amount)
+    public void SetScaling(Affinity affinity, int amount)
     {
-        affinities.Get(type, true).scaling = amount;
+        affinities.Get(affinity, true).scaling = amount;
     }
 
-    protected void SetAffinityRequirement(AffinityType type, int requirement)
+    protected void SetAffinityRequirement(Affinity affinity, int requirement)
     {
-        affinities.SetRequirement(type, requirement);
+        affinities.SetRequirement(affinity, requirement);
     }
 
     //@Formatter: Off
-    protected void SetAffinity_Red(int base) { InitializeAffinity(AffinityType.Red, base, 0, 0); }
-    protected void SetAffinity_Red(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Red, base, upgrade, scaling); }
-    protected void SetAffinity_Green(int base) { InitializeAffinity(AffinityType.Green, base, 0, 0); }
-    protected void SetAffinity_Green(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Green, base, upgrade, scaling); }
-    protected void SetAffinity_Blue(int base) { InitializeAffinity(AffinityType.Blue, base, 0, 0); }
-    protected void SetAffinity_Blue(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Blue, base, upgrade, scaling); }
-    protected void SetAffinity_Orange(int base) { InitializeAffinity(AffinityType.Orange, base, 0, 0); }
-    protected void SetAffinity_Orange(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Orange, base, upgrade, scaling); }
-    protected void SetAffinity_Light(int base) { InitializeAffinity(AffinityType.Light, base, 0, 0); }
-    protected void SetAffinity_Light(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Light, base, upgrade, scaling); }
-    protected void SetAffinity_Dark(int base) { InitializeAffinity(AffinityType.Dark, base, 0, 0); }
-    protected void SetAffinity_Dark(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Dark, base, upgrade, scaling); }
-    protected void SetAffinity_Star(int base) { InitializeAffinity(AffinityType.Star, base, 0, 0); }
-    protected void SetAffinity_Star(int base, int upgrade, int scaling) { InitializeAffinity(AffinityType.Star, base, upgrade, scaling); }
-    protected void InitializeAffinity(AffinityType type, int base, int upgrade, int scaling) { affinities.Initialize(type, base, upgrade, scaling, 0); }
+    protected void SetAffinity_Red(int base) { InitializeAffinity(Affinity.Red, base, 0, 0); }
+    protected void SetAffinity_Red(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Red, base, upgrade, scaling); }
+    protected void SetAffinity_Green(int base) { InitializeAffinity(Affinity.Green, base, 0, 0); }
+    protected void SetAffinity_Green(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Green, base, upgrade, scaling); }
+    protected void SetAffinity_Blue(int base) { InitializeAffinity(Affinity.Blue, base, 0, 0); }
+    protected void SetAffinity_Blue(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Blue, base, upgrade, scaling); }
+    protected void SetAffinity_Orange(int base) { InitializeAffinity(Affinity.Orange, base, 0, 0); }
+    protected void SetAffinity_Orange(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Orange, base, upgrade, scaling); }
+    protected void SetAffinity_Light(int base) { InitializeAffinity(Affinity.Light, base, 0, 0); }
+    protected void SetAffinity_Light(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Light, base, upgrade, scaling); }
+    protected void SetAffinity_Dark(int base) { InitializeAffinity(Affinity.Dark, base, 0, 0); }
+    protected void SetAffinity_Dark(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Dark, base, upgrade, scaling); }
+    protected void SetAffinity_Star(int base) { InitializeAffinity(Affinity.Star, base, 0, 0); }
+    protected void SetAffinity_Star(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Star, base, upgrade, scaling); }
+    protected void InitializeAffinity(Affinity affinity, int base, int upgrade, int scaling) { affinities.Initialize(affinity, base, upgrade, scaling, 0); }
     //@Formatter: On
 
     protected boolean TryUpgrade()

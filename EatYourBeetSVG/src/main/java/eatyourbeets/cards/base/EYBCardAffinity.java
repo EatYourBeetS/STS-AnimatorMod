@@ -10,20 +10,21 @@ import eatyourbeets.utilities.RenderHelpers;
 
 public class EYBCardAffinity implements Comparable<EYBCardAffinity>
 {
-    public final AffinityType Type;
+    public final Affinity type;
+
     public int level;
     public int scaling;
     public int upgrade;
     public int requirement;
 
-    public EYBCardAffinity(AffinityType type)
+    public EYBCardAffinity(Affinity affinity)
     {
-        this.Type = type;
+        this.type = affinity;
     }
 
-    public EYBCardAffinity(AffinityType type, int level)
+    public EYBCardAffinity(Affinity affinity, int level)
     {
-        this.Type = type;
+        this.type = affinity;
         this.level = level;
     }
 
@@ -35,18 +36,18 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
 
     public int calculateRank()
     {
-        if (Type == AffinityType.Star)
+        if (type == Affinity.Star)
         {
             return 500 + level;
         }
 
-        return (level * 1000) + (upgrade * 10) + (AffinityType.MAX_ID - Type.ID);
+        return (level * 1000) + (upgrade * 10) + (Affinity.MAX_ID - type.ID);
     }
 
     @Override
     public String toString()
     {
-        return Type + ": " + level + " (+" + upgrade + "), s:" + scaling;
+        return type + ": " + level + " (+" + upgrade + "), s:" + scaling;
     }
 
     public void RenderOnCard(SpriteBatch sb, EYBCard card, float x, float y, float size, boolean highlight)
@@ -69,27 +70,27 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
             //borderColor.lerp(c.GetRarityColor(false), 0.35f);
         }
 
-        Texture background = Type.GetBackground(level, upgrade);
+        Texture background = type.GetBackground(level, upgrade);
         if (background != null)
         {
             RenderHelpers.DrawOnCardAuto(sb, card, background, new Vector2(x, y), size, size, Color.LIGHT_GRAY, 1f, 1f, 0);
         }
 
-        RenderHelpers.DrawOnCardAuto(sb, card, Type.GetIcon(), new Vector2(x, y), size, size, color, 1f, 1f, 0f);
+        RenderHelpers.DrawOnCardAuto(sb, card, type.GetIcon(), new Vector2(x, y), size, size, color, 1f, 1f, 0f);
 
-        Texture border = Type.GetBorder(level);
+        Texture border = type.GetBorder(level);
         if (border != null)
         {
             RenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size, borderColor, 1f, borderScale, rotation);
         }
 
-        Texture foreground = Type.GetForeground(level);
+        Texture foreground = type.GetForeground(level);
         if (foreground != null)
         {
             RenderHelpers.DrawOnCardAuto(sb, card, foreground, new Vector2(x, y), size, size, borderColor, 1f, borderScale, -rotation);
         }
 
-        if (Type == AffinityType.Star)
+        if (type == Affinity.Star)
         {
             Texture star = GR.Common.Images.Affinities.Star_FG.Texture();
             RenderHelpers.DrawOnCardAuto(sb, card, star, new Vector2(x, y), size, size, color, 1f, 1f, 0);
@@ -98,27 +99,27 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
 
     public void Render(SpriteBatch sb, Color color, float cX, float cY, float size)
     {
-        Texture background = Type.GetBackground(level, upgrade);
+        Texture background = type.GetBackground(level, upgrade);
         if (background != null)
         {
             RenderHelpers.DrawCentered(sb, Color.LIGHT_GRAY, background, cX, cY, size, size, 1, 0);
         }
 
-        RenderHelpers.DrawCentered(sb, color, Type.GetIcon(), cX, cY, size, size, 1, 0);
+        RenderHelpers.DrawCentered(sb, color, type.GetIcon(), cX, cY, size, size, 1, 0);
 
-        Texture border = Type.GetBorder(level);
+        Texture border = type.GetBorder(level);
         if (border != null)
         {
             RenderHelpers.DrawCentered(sb, color, border, cX, cY, size, size, 1, 0);
         }
 
-        Texture foreground = Type.GetForeground(level);
+        Texture foreground = type.GetForeground(level);
         if (foreground != null)
         {
             RenderHelpers.DrawCentered(sb, color, foreground, cX, cY, size, size, 1, 0);
         }
 
-        if (Type == AffinityType.Star)
+        if (type == Affinity.Star)
         {
             RenderHelpers.DrawCentered(sb, color, GR.Common.Images.Affinities.Star_FG.Texture(), cX, cY, size, size, 1, 0);
         }

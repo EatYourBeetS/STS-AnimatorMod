@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinities;
 import eatyourbeets.cards.base.EYBCardAffinity;
@@ -25,7 +25,7 @@ public class EYBCardAffinityRow extends GUIElement
     public static final Color COLOR_HIGHLIGHT_WEAK = new Color(0.5f, 0.5f, 0.5f, 0.75f);
     public static final Color COLOR_HIGHLIGHT_STRONG = new Color(0.75f, 0.75f, 0.35f, 0.75f);
 
-    public final AffinityType Type;
+    public final Affinity Type;
     public final EYBCardAffinitySystem System;
     public final AbstractAffinityPower Power;
     public int Level;
@@ -35,14 +35,14 @@ public class EYBCardAffinityRow extends GUIElement
     protected final GUI_Label text_affinity;
     protected final GUI_Image image_synergy;
 
-    public EYBCardAffinityRow(EYBCardAffinitySystem system, AffinityType type, int index, int max)
+    public EYBCardAffinityRow(EYBCardAffinitySystem system, Affinity affinity, int index)
     {
         final Hitbox hb = system.hb;
         final float offset_y = -0.5f -(index * 0.975f);
 
-        Type = type;
+        Type = affinity;
         System = system;
-        Power = system.GetPower(type);
+        Power = system.GetPower(affinity);
 
         if (Power != null)
         {
@@ -53,7 +53,7 @@ public class EYBCardAffinityRow extends GUIElement
         new RelativeHitbox(hb, 1, 1, 0.5f, offset_y))
         .SetColor(COLOR_DEFAULT);
 
-        image_affinity = new GUI_Image(type.GetIcon(),
+        image_affinity = new GUI_Image(affinity.GetIcon(),
         new RelativeHitbox(hb, Scale(36), Scale(36), Scale(12f), offset_y * hb.height, false));
 
         text_affinity = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
@@ -61,7 +61,7 @@ public class EYBCardAffinityRow extends GUIElement
         .SetAlignment(0.5f, 0.5f)
         .SetText("-");
 
-        image_synergy = new GUI_Image(GR.Common.Images.Arrow_Right.Texture(), //type.GetSynergyEffectIcon(),
+        image_synergy = new GUI_Image(GR.Common.Images.Arrow_Right.Texture(),
         new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(18f), offset_y * hb.height, false));
 
         image_synergy.SetActive(Power != null);
@@ -75,7 +75,7 @@ public class EYBCardAffinityRow extends GUIElement
         image_synergy.color.a = synergyEffectAvailable ? 1f : 0.25f;
         text_affinity.SetText(Level = handAffinities.GetLevel(Type, false)).SetColor(Colors.Cream(Level > 0 ? 1 : 0.6f));
 
-        if (Type != AffinityType.General)
+        if (Type != Affinity.General)
         {
             if ((System.BonusAffinities.GetLevel(Type) > 0))
             {
@@ -98,17 +98,17 @@ public class EYBCardAffinityRow extends GUIElement
 
         if (!draggingCard && image_background.hb.hovered)
         {
-            AffinityType type = Type;
-            if (type == AffinityType.General && handAffinities != null)
+            Affinity type = Type;
+            if (type == Affinity.General && handAffinities != null)
             {
-                EYBCardAffinity best = handAffinities.Get(AffinityType.General);
-                type = best == null ? null : best.Type;
+                final EYBCardAffinity best = handAffinities.Get(Affinity.General);
+                affinity = best == null ? null : best.type;
             }
 
             for (AbstractCard c : AbstractDungeon.player.hand.group)
             {
-                EYBCard t = JUtils.SafeCast(c, EYBCard.class);
-                if (t == null || t.affinities.GetLevel(type) == 0)
+                final EYBCard temp = JUtils.SafeCast(c, EYBCard.class);
+                if (temp == null || temp.affinities.GetLevel(affinity) == 0)
                 {
                     c.transparency = 0.35f;
                 }

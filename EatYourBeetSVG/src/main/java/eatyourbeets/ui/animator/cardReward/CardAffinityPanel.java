@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardAffinityStatistics;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
@@ -49,7 +49,7 @@ public class CardAffinityPanel extends GUIElement
         .SetForegroundTexture(ICONS.BorderFG.Texture())
         .SetHitbox(new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, 0.45f, 1f, true));
 
-        for (AffinityType t : AffinityType.AllTypes())
+        for (Affinity t : Affinity.All())
         {
             counters.add(new CardAffinityCounter(hb, t));
         }

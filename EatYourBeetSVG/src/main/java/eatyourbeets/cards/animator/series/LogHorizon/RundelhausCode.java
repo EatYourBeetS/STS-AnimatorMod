@@ -60,13 +60,13 @@ public class RundelhausCode extends AnimatorCard
         {
             for (AbstractCard c : cards)
             {
-                ((EYBCard)c).AddScaling(AffinityType.Blue, 2);
+                ((EYBCard)c).AddScaling(Affinity.Blue, 2);
                 buffs.add(c);
                 c.flash();
             }
         });
 
-        if (GetHandAffinity(null) >= secondaryValue)
+        if (GetHandAffinity(Affinity.General) >= secondaryValue)
         {
             if (choices.TryInitialize(this))
             {

@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.relics.BustedCrown;
 import com.megacrit.cardcrawl.relics.QuestionCard;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rewards.RewardSave;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardAffinityStatistics;
 import eatyourbeets.cards.base.EYBCardTooltip;
@@ -84,7 +84,7 @@ public class MissingPieceReward extends AnimatorReward
                     StringBuilder builder = new StringBuilder();
                     for (EYBCardAffinityStatistics.Group g : statistics)
                     {
-                        builder.append(JUtils.Format(" NL [A-{0}] : {1} ( #b{2} )", g.Type.Symbol, g.GetPercentageString(0), g.GetTotal(0)));
+                        builder.append(JUtils.Format(" NL [A-{0}] : {1} ( #b{2} )", g.Affinity.Symbol, g.GetPercentageString(0), g.GetTotal(0)));
                     }
                     tooltip.description += builder.toString();
                 }
@@ -110,7 +110,7 @@ public class MissingPieceReward extends AnimatorReward
         float size, cX, cY;
         for (EYBCardAffinityStatistics.Group g : statistics)
         {
-            if (g.Type == AffinityType.Star)
+            if (g.Affinity == Affinity.Star)
             {
                 continue;
             }
@@ -135,7 +135,7 @@ public class MissingPieceReward extends AnimatorReward
             return;
         }
 
-        int max = AffinityType.BasicTypes().length;
+        int max = Affinity.Basic().length;
         int borderLevel, i = 0, rendered = 0;
         float size, cX, cY;
         while (rendered < max)
@@ -145,7 +145,7 @@ public class MissingPieceReward extends AnimatorReward
             {
                 return;
             }
-            else if (group.Type == AffinityType.Star)
+            else if (group.Affinity == Affinity.Star)
             {
                 continue;
             }
@@ -214,20 +214,20 @@ public class MissingPieceReward extends AnimatorReward
 
     public static void RenderAffinities(EYBCardAffinityStatistics.Group group, SpriteBatch sb, float cX, float cY, float size, int level)
     {
-        final AffinityType type = group.Type;
+        final Affinity affinity = group.Affinity;
         final BitmapFont font = EYBFontHelper.CardTitleFont_Large;
-        font.getData().setScale(size* 0.00925f);
+        font.getData().setScale(size * 0.00925f);
 
-        RenderHelpers.DrawCentered(sb, Color.WHITE, type.GetIcon(), cX, cY, size, size, 1, 0);
+        RenderHelpers.DrawCentered(sb, Color.WHITE, affinity.GetIcon(), cX, cY, size, size, 1, 0);
         if (level > 0)
         {
-            Texture texture = type.GetBorder(level);
+            Texture texture = affinity.GetBorder(level);
             if (texture != null)
             {
                 RenderHelpers.DrawCentered(sb, Color.WHITE, texture, cX, cY, size, size, 1, 0);
             }
 
-            texture = type.GetForeground(level);
+            texture = affinity.GetForeground(level);
             if (texture != null)
             {
                 RenderHelpers.DrawCentered(sb, Color.WHITE, texture, cX, cY, size, size, 1, 0);

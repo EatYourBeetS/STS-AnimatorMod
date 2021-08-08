@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -27,8 +27,8 @@ public class Kuribayashi extends AnimatorCard
         SetAffinity_Red(1, 1, 1);
         SetAffinity_Green(2, 0, 1);
 
-        SetAffinityRequirement(AffinityType.Red, 2);
-        SetAffinityRequirement(AffinityType.Green, 2);
+        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Green, 2);
     }
 
     @Override
@@ -42,14 +42,14 @@ public class Kuribayashi extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(0.6f, 0.8f);
 
-        if (CheckAffinity(AffinityType.Green))
+        if (CheckAffinity(Affinity.Green))
         {
             GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         }
 
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
 
-        if (CheckAffinity(AffinityType.Red))
+        if (CheckAffinity(Affinity.Red))
         {
             GameActions.Bottom.ReduceStrength(m, secondaryValue, true);
         }

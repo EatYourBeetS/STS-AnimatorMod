@@ -7,8 +7,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
-import eatyourbeets.cards.base.AffinityType;
-import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.utilities.GameActions;
@@ -16,13 +15,13 @@ import eatyourbeets.utilities.GameEffects;
 
 public class AffinityToken_General extends AffinityToken implements OnAddToDeckListener
 {
-    public static final AffinityType AFFINITY_TYPE = AffinityType.General;
+    public static final Affinity AFFINITY_TYPE = Affinity.General;
     public static final EYBCardData DATA = Register(AffinityToken_General.class).SetRarity(CardRarity.UNCOMMON);
     static
     {
         for (EYBCardData data : AffinityToken.GetCards())
         {
-            DATA.AddPreview((EYBCard) data.CreateNewInstance(), false);
+            DATA.AddPreview(data.CreateNewInstance(), true);
         }
     }
 
@@ -60,6 +59,11 @@ public class AffinityToken_General extends AffinityToken implements OnAddToDeckL
         {
             for (AbstractCard c : cards)
             {
+                if (upgraded)
+                {
+                    c.upgrade();
+                }
+
                 GameEffects.TopLevelQueue.ShowAndObtain(c, InputHelper.mX, InputHelper.mY, false);
             }
         }));
@@ -68,13 +72,13 @@ public class AffinityToken_General extends AffinityToken implements OnAddToDeckL
     }
 
     @Override
-    protected AffinityType GetAffinityRequirement1()
+    protected Affinity GetAffinityRequirement1()
     {
         return null;
     }
 
     @Override
-    protected AffinityType GetAffinityRequirement2()
+    protected Affinity GetAffinityRequirement2()
     {
         return null;
     }

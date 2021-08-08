@@ -38,7 +38,7 @@ public class SilverFang extends AnimatorCard
                 if (cards.size() > 0)
                 {
                     EYBCard card = (EYBCard)cards.get(0);
-                    card.AddScaling(AffinityType.Green, 1);
+                    card.AddScaling(Affinity.Green, 1);
                     card.flash();
                 }
             });

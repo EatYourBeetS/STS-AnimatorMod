@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.orbs.animator.Earth;
@@ -25,8 +25,8 @@ public class Arpeggio extends AnimatorCard
         SetAffinity_Blue(1, 1, 0);
         SetAffinity_Orange(1, 0, 0);
 
-        SetAffinityRequirement(AffinityType.Blue, 2);
-        SetAffinityRequirement(AffinityType.Orange, 2);
+        SetAffinityRequirement(Affinity.Blue, 2);
+        SetAffinityRequirement(Affinity.Orange, 2);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Arpeggio extends AnimatorCard
 
         GameActions.Bottom.GainIntellect(secondaryValue, false);
 
-        if (CheckAffinity(AffinityType.Blue) && CheckAffinity(AffinityType.Orange))
+        if (CheckAffinity(Affinity.Blue) && CheckAffinity(Affinity.Orange))
         {
             GameActions.Bottom.ChannelOrb(new Earth());
         }

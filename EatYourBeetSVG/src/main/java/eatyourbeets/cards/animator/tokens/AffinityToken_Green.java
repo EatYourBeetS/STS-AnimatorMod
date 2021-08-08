@@ -1,14 +1,14 @@
 package eatyourbeets.cards.animator.tokens;
 
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardData;
 
 public class AffinityToken_Green extends AffinityToken
 {
     public static final EYBCardData DATA = Register(AffinityToken_Green.class);
-    public static final AffinityType AFFINITY_TYPE = AffinityType.Green;
-    public static final AffinityType AFFINITY_REQ1 = AffinityType.Red;
-    public static final AffinityType AFFINITY_REQ2 = AffinityType.Blue;
+    public static final Affinity AFFINITY_TYPE = Affinity.Green;
+    public static final Affinity AFFINITY_REQ1 = Affinity.Red;
+    public static final Affinity AFFINITY_REQ2 = Affinity.Blue;
 
     public AffinityToken_Green()
     {
@@ -16,13 +16,13 @@ public class AffinityToken_Green extends AffinityToken
     }
 
     @Override
-    protected AffinityType GetAffinityRequirement1()
+    protected Affinity GetAffinityRequirement1()
     {
         return AFFINITY_REQ1;
     }
 
     @Override
-    protected AffinityType GetAffinityRequirement2()
+    protected Affinity GetAffinityRequirement2()
     {
         return AFFINITY_REQ2;
     }

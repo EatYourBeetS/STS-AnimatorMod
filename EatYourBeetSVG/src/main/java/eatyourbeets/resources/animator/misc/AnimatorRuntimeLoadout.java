@@ -109,7 +109,7 @@ public class AnimatorRuntimeLoadout
             }
             if (maxLevel > 0)
             {
-                card.affinities.Add(g.Type, maxLevel);
+                card.affinities.Add(g.Affinity, maxLevel);
             }
 
             maxPercentage = percentage;

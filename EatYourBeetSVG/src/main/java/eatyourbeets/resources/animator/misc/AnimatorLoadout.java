@@ -66,7 +66,7 @@ public abstract class AnimatorLoadout
             }
 
             AffinityLevel = 0;
-            for (AffinityType t : AffinityType.BasicTypes())
+            for (Affinity t : Affinity.Basic())
             {
                 int level = affinities.GetLevel(t, false);
                 if (level > 2)

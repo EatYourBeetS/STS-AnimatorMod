@@ -84,7 +84,7 @@ public class TemporaryArtifactPower extends AbstractPower implements CloneablePo
     {
         super.atStartOfTurnPostDraw();
 
-        GameActions.Bottom.RemovePower(owner, owner, this);
+        GameActions.Delayed.RemovePower(owner, owner, this);
     }
 
     @Override

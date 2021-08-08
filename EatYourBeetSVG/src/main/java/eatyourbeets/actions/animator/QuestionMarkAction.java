@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameUtilities;
@@ -34,7 +34,7 @@ public class QuestionMarkAction extends EYBAction
 
         if (copy != null && index >= 0)
         {
-            copy.affinities.Set(AffinityType.Star, 2);
+            copy.affinities.Set(Affinity.Star, 2);
             copy.triggerWhenCreated(false);
 
             if (questionMark.upgraded)

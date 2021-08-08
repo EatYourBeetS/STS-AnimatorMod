@@ -62,9 +62,14 @@ public class VFX
         return new CleaveEffect(fromPlayer);
     }
 
-    public static ClawEffect Claw(Hitbox source, Color color1, Color color2)
+    public static ClawEffect2 Claw(Hitbox target, Color color1, Color color2)
     {
-        return new ClawEffect(source.cX, source.cY, color1, color2);
+        return Claw(RandomX(target, 0.2f), RandomY(target, 0.2f), color1, color2);
+    }
+
+    public static ClawEffect2 Claw(float cX, float cY, Color color1, Color color2)
+    {
+        return new ClawEffect2(cX, cY, color1, color2);
     }
 
     public static MindblastEffect2 Mindblast(float dialogX, float dialogY)

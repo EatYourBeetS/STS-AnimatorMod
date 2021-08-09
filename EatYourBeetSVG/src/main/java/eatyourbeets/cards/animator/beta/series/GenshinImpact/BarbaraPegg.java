@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -28,7 +28,7 @@ public class BarbaraPegg extends AnimatorCard
         SetAffinity_Blue(1);
 
 
-        SetAffinityRequirement(AffinityType.Blue, 2);
+        SetAffinityRequirement(Affinity.Blue, 2);
         SetHealing(true);
         SetExhaust(true);
     }
@@ -40,7 +40,7 @@ public class BarbaraPegg extends AnimatorCard
         GameActions.Bottom.GainBlessing(1, upgraded);
         GameActions.Bottom.GainIntellect(1, upgraded);
         GameActions.Bottom.Heal(magicNumber);
-        if (CheckAffinity(AffinityType.Blue) && JUtils.Find(GameUtilities.GetIntents(), i -> !i.isAttacking) == null && CombatStats.TryActivateLimited(cardID)) {
+        if (CheckAffinity(Affinity.Blue) && JUtils.Find(GameUtilities.GetIntents(), i -> !i.isAttacking) == null && CombatStats.TryActivateLimited(cardID)) {
             Water waterOrb = new Water();
             waterOrb.IncreaseBasePassiveAmount(secondaryValue);
             GameActions.Bottom.ChannelOrb(waterOrb);

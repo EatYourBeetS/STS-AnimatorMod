@@ -1,13 +1,13 @@
 package eatyourbeets.powers.affinity;
 
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.powers.common.BalancePower;
 import eatyourbeets.utilities.GameActions;
 
 public class WillpowerPower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(WillpowerPower.class);
-    public static final AffinityType AFFINITY_TYPE = AffinityType.Orange;
+    public static final Affinity AFFINITY_TYPE = Affinity.Orange;
 
     public WillpowerPower()
     {

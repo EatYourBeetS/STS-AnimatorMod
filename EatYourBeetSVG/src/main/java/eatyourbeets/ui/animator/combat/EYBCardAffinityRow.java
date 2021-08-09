@@ -98,8 +98,8 @@ public class EYBCardAffinityRow extends GUIElement
 
         if (!draggingCard && image_background.hb.hovered)
         {
-            Affinity type = Type;
-            if (type == Affinity.General && handAffinities != null)
+            Affinity affinity = Type;
+            if (affinity == Affinity.General && handAffinities != null)
             {
                 final EYBCardAffinity best = handAffinities.Get(Affinity.General);
                 affinity = best == null ? null : best.type;

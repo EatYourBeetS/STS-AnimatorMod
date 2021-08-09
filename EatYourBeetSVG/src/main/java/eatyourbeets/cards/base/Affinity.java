@@ -31,7 +31,7 @@ public enum Affinity implements Comparable<Affinity>
         ALL_TYPES[0] = BASIC_TYPES[0] = Red;
         ALL_TYPES[1] = BASIC_TYPES[1] = Green;
         ALL_TYPES[2] = BASIC_TYPES[2] = Blue;
-        ALL_TYPES[3] = BASIC_TYPES[3] = Blue;
+        ALL_TYPES[3] = BASIC_TYPES[3] = Orange;
         ALL_TYPES[4] = BASIC_TYPES[4] = Light;
         ALL_TYPES[5] = BASIC_TYPES[5] = Dark;
         ALL_TYPES[6] = Star;

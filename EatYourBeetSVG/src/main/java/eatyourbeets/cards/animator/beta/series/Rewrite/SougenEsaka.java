@@ -24,7 +24,7 @@ public class SougenEsaka extends AnimatorCard
         SetUpgrade(1, 1, 1);
         SetAffinity_Orange(1, 1, 1);
 
-        SetAffinityRequirement(AffinityType.Orange, 3);
+        SetAffinityRequirement(Affinity.Orange, 3);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class SougenEsaka extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT);
         GameActions.Bottom.GainBlock(block);
 
-        if (CheckAffinity(AffinityType.Orange) && CombatStats.TryActivateLimited(cardID))
+        if (CheckAffinity(Affinity.Orange) && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID);
             GameActions.Bottom.GainWillpower(magicNumber);

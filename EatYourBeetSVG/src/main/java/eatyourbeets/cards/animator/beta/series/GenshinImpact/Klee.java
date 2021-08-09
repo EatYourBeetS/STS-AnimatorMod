@@ -28,9 +28,8 @@ public class Klee extends AnimatorCard
         Initialize(3, 0, 1, 2);
         SetUpgrade(1, 0, 1, 0);
         SetAffinity_Red(1, 1, 0);
-        SetAffinity_Blue(1, 0, 0);
 
-        SetAffinityRequirement(AffinityType.Red, 3);
+        SetAffinityRequirement(Affinity.Red, 3);
 
         SetExhaust(true);
     }
@@ -48,7 +47,7 @@ public class Klee extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE);
         GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Burning, magicNumber);
 
-        int additionalCount = (CheckAffinity(AffinityType.Red) ? 1 : 0);
+        int additionalCount = (CheckAffinity(Affinity.Red) ? 1 : 0);
         for (int i = 0; i < secondaryValue + additionalCount; i++)
         {
             GameActions.Bottom.MakeCardInDrawPile(new JumpyDumpty()).SetUpgrade(upgraded, false);

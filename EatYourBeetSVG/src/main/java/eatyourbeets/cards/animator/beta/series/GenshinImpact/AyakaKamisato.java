@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.animator.beta.special.SheerCold;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -34,7 +34,7 @@ public class AyakaKamisato extends AnimatorCard {
         SetAffinity_Green(1, 0, 0);
         SetAffinity_Orange(2, 0, 1);
 
-        SetAffinityRequirement(AffinityType.Blue, 4);
+        SetAffinityRequirement(Affinity.Blue, 4);
 
         SetExhaust(true);
     }
@@ -66,7 +66,7 @@ public class AyakaKamisato extends AnimatorCard {
         GameActions.Bottom.GainTemporaryThorns(this.getFrostCount() * secondaryValue);
         GameActions.Bottom.StackPower(new NegateBlockPower(p, NO_BLOCK_TURNS));
 
-        if (CheckAffinity(AffinityType.Blue) && CombatStats.TryActivateLimited(cardID))
+        if (CheckAffinity(Affinity.Blue) && CombatStats.TryActivateLimited(cardID))
         {
             AbstractCard c = new SheerCold();
             c.applyPowers();

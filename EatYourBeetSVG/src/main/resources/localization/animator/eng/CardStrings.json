@@ -307,7 +307,7 @@
 	{
 		"animator:Asuka Langley":
 		{
-		  "DESCRIPTION": "The first Attack you play each turn applies Burn equal to 20% of its damage and Exhausts.",
+		  "DESCRIPTION": "Attacks on enemies with {~Lock-On} ignore damage reduction and remove a stack of {~Lock-On}. Reload: Apply !S! {~Lock-On} to a random enemy.",
 		  "NAME": "AsukaLangley"
 		},
 		"animator:BlazingHeat":
@@ -370,10 +370,10 @@
 			"EXTENDED_DESCRIPTION": ["Limited. At end of combat: Upgrade a Basic or Common card."],
 			"NAME": "Rorona"
 		},
-		"animator:R":
+		"animator:RX-78-2":
 		{
-		  "DESCRIPTION": "Increase your maximum hand size by 2 this combat. || <LIM>. !A! <GEN>. If you reached 12 <B> this combat, permanently incraese your maximum hand size by 1 (does not stack).",
-		  "NAME": "R"
+		  "DESCRIPTION": "Reload effects activate !M! additional time(s) this combat. || <LIM>. !A! <GEN>. If you reached 12 of any affinity power this combat, permanently incraese your maximum hand size by 1 (does not stack).",
+		  "NAME": "RX-78-2"
 		},
 		"animator:SakuraKinomoto":
 		{
@@ -395,6 +395,11 @@
 			"DESCRIPTION": "Fetch a {Power} from your draw or discard pile. || This turn, whenever you play a {Power}: draw a random {Power} from your draw or discard pile.",
 			"EXTENDED_DESCRIPTION": ["This turn, whenever you play a #yPower: draw #b{0} random #yPowers from your draw or discard pile."],
 			"NAME": "Shuu Ouma"
+		},
+		"animator:Simon":
+		{
+		  "DESCRIPTION": "Unique. Force scaling.",
+		  "NAME": "Simon"
 		},
 		"animator:SpikeSpiegel":
 		{

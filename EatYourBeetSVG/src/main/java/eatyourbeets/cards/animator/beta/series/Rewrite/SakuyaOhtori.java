@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -72,7 +72,7 @@ public class SakuyaOhtori extends AnimatorCard
             for (int i = 0; i < p.hand.size(); i++)
             {
                 AbstractCard card = p.hand.getNCardFromTop(i);
-                if (card != this && card instanceof AnimatorCard && ((AnimatorCard) card).affinities.GetLevel(AffinityType.Green) > 0 && GameUtilities.Retain(card))
+                if (card != this && card instanceof AnimatorCard && ((AnimatorCard) card).affinities.GetLevel(Affinity.Green) > 0 && GameUtilities.Retain(card))
                 {
                     card.flash();
                     return;

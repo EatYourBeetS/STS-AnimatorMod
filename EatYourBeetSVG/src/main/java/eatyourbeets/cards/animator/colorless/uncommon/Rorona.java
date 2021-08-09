@@ -33,7 +33,7 @@ public class Rorona extends AnimatorCard
         Initialize(0, 0, 40, POTION_GOLD_COST);
         SetUpgrade(0, 0, 20);
 
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Orange(2, 0, 0);
         SetAffinity_Light(1, 0, 0);
 
         SetObtainableInCombat(false);

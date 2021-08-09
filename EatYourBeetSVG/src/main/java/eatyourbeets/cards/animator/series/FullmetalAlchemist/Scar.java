@@ -1,12 +1,12 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
 
@@ -24,7 +24,6 @@ public class Scar extends AnimatorCard
         SetUpgrade(4, 0);
 
         SetAffinity_Red(1);
-        SetAffinity_Blue(1);
         SetAffinity_Orange(2);
     }
 

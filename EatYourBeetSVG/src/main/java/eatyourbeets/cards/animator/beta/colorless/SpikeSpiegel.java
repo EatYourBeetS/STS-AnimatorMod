@@ -30,7 +30,7 @@ public class SpikeSpiegel extends AnimatorCard
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Orange(2, 0, 1);
 
-        SetAffinityRequirement(AffinityType.General, 3);
+        SetAffinityRequirement(Affinity.General, 3);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class SpikeSpiegel extends AnimatorCard
         });
 
 
-        if (CheckAffinity(AffinityType.General) && CombatStats.TryActivateLimited(cardID))
+        if (CheckAffinity(Affinity.General) && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.MakeCardInDrawPile(new SwordfishII()).SetUpgrade(upgraded, false);
         }

@@ -16,7 +16,7 @@ public class Curse_Delusion extends AnimatorCard_Curse
     static
     {
         DATA.CardRarity = CardRarity.SPECIAL;
-        DATA.AddPreview((EYBCard) AffinityToken.GetCard(AffinityType.Green).CreateNewInstance(), false);
+        DATA.AddPreview((EYBCard) AffinityToken.GetCard(Affinity.Green), false);
     }
 
     public Curse_Delusion()

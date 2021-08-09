@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.beta.series.RozenMaiden;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AffinityType;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -42,7 +42,7 @@ public class TomoeKashiwaba extends AnimatorCard
         }
         else
         {
-            GameUtilities.RetainPower(AffinityType.Green);
+            GameUtilities.RetainPower(Affinity.Green);
         }
     }
 

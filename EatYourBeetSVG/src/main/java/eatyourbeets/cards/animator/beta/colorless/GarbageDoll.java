@@ -69,7 +69,7 @@ public class GarbageDoll extends AnimatorCard
                     AnimatorCard aCard = JUtils.SafeCast(card, AnimatorCard.class);
 
                     final CardGroup possiblePicks = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-                    if (aCard.affinities.GetLevel(AffinityType.Star) > 0) {
+                    if (aCard.affinities.GetLevel(Affinity.Star) > 0) {
                         for (AbstractCard possibleCard : player.discardPile.group)
                         {
                             if (possibleCard instanceof AnimatorCard && JUtils.Find(((AnimatorCard) possibleCard).affinities.List, a -> a.level > 0) != null)
@@ -82,7 +82,7 @@ public class GarbageDoll extends AnimatorCard
                         ArrayList<EYBCardAffinity> aCardAffinities = JUtils.Filter(aCard.affinities.List, a -> a.level > 0);
                         for (AbstractCard possibleCard : player.discardPile.group) {
                             for (EYBCardAffinity aCardAffinity : aCardAffinities) {
-                                if (possibleCard instanceof AnimatorCard && ((AnimatorCard) possibleCard).affinities.GetLevel(aCardAffinity.Type) > 0) {
+                                if (possibleCard instanceof AnimatorCard && ((AnimatorCard) possibleCard).affinities.GetLevel(aCardAffinity.type) > 0) {
                                     possiblePicks.addToBottom(possibleCard);
                                 }
                             }

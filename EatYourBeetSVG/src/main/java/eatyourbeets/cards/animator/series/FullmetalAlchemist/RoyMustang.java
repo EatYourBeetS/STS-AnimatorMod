@@ -1,12 +1,12 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -25,8 +25,8 @@ public class RoyMustang extends AnimatorCard
         Initialize(6, 0, 2);
         SetUpgrade(1, 0, 1);
 
-        SetAffinity_Blue(2, 0, 1);
-        SetAffinity_Orange(1);
+        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Orange(2);
         SetAffinity_Light(1);
 
         SetEvokeOrbCount(1);

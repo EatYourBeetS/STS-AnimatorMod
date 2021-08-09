@@ -46,7 +46,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         super(DATA);
 
         SetAffinity_Star(2);
-        SetHealing(true);
+        SetObtainableInCombat(false);
         SetUnique(true, true);
         hasAttackOrSkill = false;
         previews.Clear();
@@ -65,13 +65,10 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     @Override
     protected void OnUpgrade()
     {
-        this.cost = -2;
-        this.exhaust = false;
-        this.isEthereal = false;
         for (AbstractCard card : inheritedCards) {
             card.upgrade();
-            updateTags(card);
         }
+        updateProperties();
     }
 
     @Override
@@ -109,6 +106,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
                 ((AnimatorCard) card).Refresh(enemy);
             }
         }
+        updateProperties();
     }
 
     @Override
@@ -130,6 +128,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         if (played != null && !played.isEmpty() && played.get(played.size() -1) != this) {
             AbstractDungeon.actionManager.cardsPlayedThisTurn.add(this);
         }
+        //updateProperties();
     }
 
     @Override
@@ -148,6 +147,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         if (played != null && !played.isEmpty() && played.get(played.size() -1) != this) {
             AbstractDungeon.actionManager.cardsPlayedThisTurn.add(this);
         }
+        //updateProperties();
     }
 
     @Override
@@ -217,6 +217,13 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         for (AbstractCard card : inheritedCards) {
             card.triggerWhenDrawn();
         }
+        updateProperties();
+    }
+
+    @Override
+    public boolean cardPlayable(AbstractMonster m)
+    {
+        return JUtils.Find(inheritedCards, card -> !card.cardPlayable(m)) != null;
     }
 
     @Override
@@ -280,7 +287,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         }
 
 
-        updateTags(card);
+        addCardProperties(card);
 
     }
 
@@ -288,7 +295,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         return (card instanceof EYBCardBase) ? new EYBCardPreview((EYBCardBase) card, false) : new EYBCardPreview(new FakeAbstractCard(card), false);
     }
 
-    private void updateTags(AbstractCard card) {
+    private void addCardProperties(AbstractCard card) {
         if (this.cost == -2 || card.cost == -1) {
             this.cost = this.costForTurn = card.cost;
         }
@@ -330,6 +337,16 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         }
         if (card.hasTag(AUTOPLAY)) {
             SetAutoplay(true);
+        }
+    }
+
+    private void updateProperties() {
+        this.cost = -2;
+        this.exhaust = false;
+        this.isEthereal = false;
+        for (AbstractCard card : inheritedCards) {
+            card.upgrade();
+            addCardProperties(card);
         }
     }
 

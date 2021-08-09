@@ -72,7 +72,7 @@ public class ChihayaOhtori extends AnimatorCard
     {
         GameActions.Top.FetchFromPile(name, 1, player.discardPile)
         .SetOptions(false, false)
-        .SetFilter(c -> (c instanceof AnimatorCard && ((AnimatorCard) c).affinities.GetLevel(AffinityType.Green) > 0))
+        .SetFilter(c -> (c instanceof AnimatorCard && ((AnimatorCard) c).affinities.GetLevel(Affinity.Green) > 0))
         .AddCallback(cards ->
         {
             if (cards.size() > 0)

@@ -1,6 +1,5 @@
 package eatyourbeets.cards.base;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -136,7 +135,7 @@ public abstract class EYBCardBase extends AbstractCard
         {
             hover();
 
-            this.hoverDuration += Gdx.graphics.getRawDeltaTime();
+            this.hoverDuration += GR.UI.Delta();
             this.renderTip = (this.hoverDuration > 0.2f && !Settings.hideCards);
         }
         else

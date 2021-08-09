@@ -1,6 +1,5 @@
 package eatyourbeets.stances;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -90,7 +89,7 @@ public abstract class EYBStance extends AbstractStance
     {
         if (!Settings.DISABLE_EFFECTS)
         {
-            this.particleTimer -= Gdx.graphics.getRawDeltaTime();
+            this.particleTimer -= GR.UI.Delta();
             if (this.particleTimer < 0f)
             {
                 this.particleTimer = 0.04f;
@@ -98,7 +97,7 @@ public abstract class EYBStance extends AbstractStance
             }
         }
 
-        this.particleTimer2 -= Gdx.graphics.getRawDeltaTime();
+        this.particleTimer2 -= GR.UI.Delta();
         if (this.particleTimer2 < 0f)
         {
             this.particleTimer2 = MathUtils.random(0.45f, 0.55f);

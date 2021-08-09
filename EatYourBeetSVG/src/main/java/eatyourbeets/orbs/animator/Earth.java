@@ -1,6 +1,5 @@
 package eatyourbeets.orbs.animator;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,6 +16,7 @@ import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
@@ -146,7 +146,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         super.updateAnimation();
 
-        final float delta = Gdx.graphics.getRawDeltaTime();
+        final float delta = GR.UI.Delta();
         for (Projectile texture : projectiles)
         {
             texture.SetPosition(cX, cY).SetTargetRotation(angle).Update(delta);

@@ -1,6 +1,5 @@
 package eatyourbeets.orbs.animator;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -18,6 +17,7 @@ import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.orbs.EYBOrb;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -109,7 +109,7 @@ public class Chaos extends AnimatorOrb implements OnEndOfTurnSubscriber, OnAfter
     {
         super.updateAnimation();
 
-        this.angle += Gdx.graphics.getRawDeltaTime() * 60f; //180f;
+        this.angle += GR.UI.Delta(60f);
     }
 
     @Override

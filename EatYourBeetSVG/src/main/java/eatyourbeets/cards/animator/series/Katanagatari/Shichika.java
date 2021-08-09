@@ -27,7 +27,7 @@ public class Shichika extends AnimatorCard
         SetUpgrade(0, 0);
 
         SetAffinity_Red(2, 0, 1);
-        SetAffinity_Green(2, 0, 0);
+        SetAffinity_Green(2);
 
         SetExhaust(true);
     }

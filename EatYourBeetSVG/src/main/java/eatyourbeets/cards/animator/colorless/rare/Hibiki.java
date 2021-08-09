@@ -22,6 +22,7 @@ public class Hibiki extends AnimatorCard
         Initialize(2, 0, 3, 1);
         SetUpgrade(0, 0, 0, 1);
 
+        SetAffinity_Star(0, 0, 1);
         SetAffinity_Green(1);
     }
 

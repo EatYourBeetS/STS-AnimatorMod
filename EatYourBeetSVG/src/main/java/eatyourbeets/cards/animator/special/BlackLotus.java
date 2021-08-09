@@ -1,12 +1,15 @@
 package eatyourbeets.cards.animator.special;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.colorless.uncommon.Kuroyukihime;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.effects.vfx.ColoredSweepingBeamEffect;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.VFX;
+import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class BlackLotus extends AnimatorCard
@@ -20,20 +23,31 @@ public class BlackLotus extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 5, 1);
-        SetUpgrade(0, 0, 1);
+        Initialize(7, 5, 2, 2);
 
-        SetAffinity_Red(1);
-        SetAffinity_Green(1);
+        SetAffinity_Red(1, 1, 0);
+        SetAffinity_Green(1, 1, 0);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.SFX("ATTACK_DEFECT_BEAM");
-        GameActions.Bottom.VFX(new ColoredSweepingBeamEffect(p.hb.cX, p.hb.cY, p.flipHorizontal, Color.valueOf("3d0066")), 0.3f);
+        GameActions.Bottom.SFX(SFX.ATTACK_DEFECT_BEAM);
+        GameActions.Bottom.VFX(VFX.SweepingBeam(p.hb, VFX.FlipHorizontally(), new Color(0.24f, 0, 0.4f, 1f)), 0.3f);
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
-        GameActions.Bottom.GainBlur(magicNumber);
+
+        GameActions.Bottom.RetainPower(Affinity.Red);
+        GameActions.Bottom.RetainPower(Affinity.Green);
+
+        if (ForceStance.IsActive())
+        {
+            GameActions.Bottom.GainMetallicize(magicNumber);
+        }
+
+        if (AgilityStance.IsActive())
+        {
+            GameActions.Bottom.GainBlur(secondaryValue);
+        }
     }
 }

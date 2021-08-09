@@ -1098,6 +1098,7 @@ public class GameUtilities
     public static void PlayManually(AbstractCard card, AbstractMonster m)
     {
         card.applyPowers();
+        card.calculateCardDamage(m);
         card.use(player, m);
         actionManager.cardsPlayedThisTurn.add(card);
         actionManager.cardsPlayedThisCombat.add(card);

@@ -868,6 +868,11 @@ public final class GameActions
         return Add(new ReshuffleDiscardPile(onlyIfEmpty));
     }
 
+    public ApplyAffinityPower RetainPower(Affinity affinity)
+    {
+        return StackAffinityPower(affinity, 0, true);
+    }
+
     public PlaySFX SFX(String key)
     {
         return SFX(key, 1, 1, 1);

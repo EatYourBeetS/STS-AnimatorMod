@@ -31,7 +31,13 @@ public class RotatingList<T> implements Iterable<T>
 
     public void Clear()
     {
+        ResetIndex();
         items.clear();
+    }
+
+    public boolean Contains(T item)
+    {
+        return items.contains(item);
     }
 
     public int Count()
@@ -44,11 +50,7 @@ public class RotatingList<T> implements Iterable<T>
         return index;
     }
 
-    public boolean Remove(T item)
-    {
-        return items.remove(item);
-    }
-
+    /** Call ResetIndex() if you reduce the list size. */
     public ArrayList<T> GetInnerList()
     {
         return items;
@@ -76,6 +78,22 @@ public class RotatingList<T> implements Iterable<T>
         return item;
     }
 
+    public T Next(boolean moveIndex)
+    {
+        int newIndex = index + 1;
+        if (newIndex >= items.size())
+        {
+            newIndex = 0;
+        }
+
+        if (moveIndex)
+        {
+            index = newIndex;
+        }
+
+        return items.get(newIndex);
+    }
+
     public T Previous(boolean moveIndex)
     {
         int newIndex = index - 1;
@@ -92,20 +110,9 @@ public class RotatingList<T> implements Iterable<T>
         return items.get(newIndex);
     }
 
-    public T Next(boolean moveIndex)
+    public void ResetIndex()
     {
-        int newIndex = index + 1;
-        if (newIndex >= items.size())
-        {
-            newIndex = 0;
-        }
-
-        if (moveIndex)
-        {
-            index = newIndex;
-        }
-
-        return items.get(newIndex);
+        index = 0;
     }
 
     @Override

@@ -67,6 +67,11 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
     {
         if (amount == 0)
         {
+            if (retain)
+            {
+                power.RetainOnce();
+            }
+
             Complete();
             return;
         }

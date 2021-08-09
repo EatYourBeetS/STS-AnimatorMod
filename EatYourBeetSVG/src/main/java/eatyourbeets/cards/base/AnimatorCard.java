@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.powers.CombatStats;
@@ -119,12 +118,6 @@ public abstract class AnimatorCard extends EYBCard
     }
 
     @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-    }
-
-    @Override
     public void hover()
     {
         super.hover();
@@ -150,7 +143,7 @@ public abstract class AnimatorCard extends EYBCard
     {
         if (hovered && player != null && player.hand.contains(this))
         {
-            for (AbstractCard c : AbstractDungeon.player.hand.group)
+            for (AbstractCard c : player.hand.group)
             {
                 c.transparency = 0.35f;
             }

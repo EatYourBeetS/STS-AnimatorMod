@@ -241,11 +241,11 @@ public class ParseGenericCommand extends ConsoleCommand
                     return;
                 }
 
-                if (tokens[1].equals("set-synergy-check"))
-                {
-                    GR.Animator.Config.FadeCardsWithoutSynergy.Set(tokens.length > 2 && tokens[2].equals("true"), true);
-                    return;
-                }
+//                if (tokens[1].equals("set-synergy-check"))
+//                {
+//                    GR.Animator.Config.FadeCardsWithoutSynergy.Set(tokens.length > 2 && tokens[2].equals("true"), true);
+//                    return;
+//                }
 
                 if (tokens[1].equals("set-zoom"))
                 {

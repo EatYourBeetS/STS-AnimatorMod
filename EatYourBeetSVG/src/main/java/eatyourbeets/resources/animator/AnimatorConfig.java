@@ -34,7 +34,7 @@ public class AnimatorConfig
     public ConfigOption_Boolean SimplifyCardUI;
     public ConfigOption_Boolean CropCardImages;
     public ConfigOption_Boolean DisplayBetaSeries;
-    public ConfigOption_Boolean FadeCardsWithoutSynergy;
+    //public ConfigOption_Boolean FadeCardsWithoutSynergy;
 
     protected void Initialize()
     {
@@ -44,7 +44,7 @@ public class AnimatorConfig
 
             CustomLoadouts = new ConfigOption_String(config, CUSTOM_LOADOUTS_KEY, "");
             SimplifyCardUI = new ConfigOption_Boolean(config, HIDE_BLOCK_DAMAGE_BACKGROUND, false);
-            FadeCardsWithoutSynergy = new ConfigOption_Boolean(config, FADE_CARDS_WITHOUT_SYNERGY, true);
+            //FadeCardsWithoutSynergy = new ConfigOption_Boolean(config, FADE_CARDS_WITHOUT_SYNERGY, true);
             DisplayBetaSeries = new ConfigOption_Boolean(config, DISPLAY_BETA_SERIES, false);
             CropCardImages = new ConfigOption_Boolean(config, CROP_CARD_PORTRAIT, true);
         }
@@ -59,7 +59,7 @@ public class AnimatorConfig
         final ModPanel panel = new ModPanel();
         final AnimatorStrings.Misc misc = GR.Animator.Strings.Misc;
 
-        FadeCardsWithoutSynergy.AddToPanel(panel, misc.FadeCardsWithoutSynergy, 400, 700);
+        //FadeCardsWithoutSynergy.AddToPanel(panel, misc.FadeCardsWithoutSynergy, 400, 700);
         CropCardImages.AddToPanel(panel, misc.UseCardHoveringAnimation, 400, 650);
         SimplifyCardUI.AddToPanel(panel, misc.SimplifyCardUI, 400, 600);
 

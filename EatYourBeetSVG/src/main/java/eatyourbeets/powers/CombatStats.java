@@ -340,10 +340,10 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static void OnUsingCard(AbstractCard c, AbstractPlayer p, AbstractMonster m)
     {
-        AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
+        final AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
         if (card != null)
         {
-            boolean isSynergizing = Affinities.IsSynergizing(c);
+            final boolean isSynergizing = Affinities.IsSynergizing(c);
 
             card.OnUse(p, m, isSynergizing);
 
@@ -352,7 +352,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
                 OnSynergy(c);
             }
 
-            ArrayList<AbstractGameAction> actions = GameActions.GetActions();
+            final ArrayList<AbstractGameAction> actions = GameActions.GetActions();
 
             cachedActions.clear();
             cachedActions.addAll(actions);

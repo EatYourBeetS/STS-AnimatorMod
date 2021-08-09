@@ -5,13 +5,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.ColoredTexture;
+import eatyourbeets.utilities.JUtils;
 
 public abstract class AnimatorCard extends EYBCard
 {
@@ -142,7 +143,7 @@ public abstract class AnimatorCard extends EYBCard
     {
         if (hovered && player != null && player.hand.contains(this))
         {
-            for (AbstractCard c : AbstractDungeon.player.hand.group)
+            for (AbstractCard c : player.hand.group)
             {
                 c.transparency = 0.35f;
             }

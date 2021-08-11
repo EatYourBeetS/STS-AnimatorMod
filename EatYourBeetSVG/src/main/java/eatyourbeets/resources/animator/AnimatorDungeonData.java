@@ -46,7 +46,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
     public static AnimatorDungeonData Register(String id)
     {
-        AnimatorDungeonData data = new AnimatorDungeonData();
+        final AnimatorDungeonData data = new AnimatorDungeonData();
         BaseMod.addSaveField(id, data);
         BaseMod.subscribe(data);
         return data;
@@ -106,12 +106,12 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
         for (AnimatorRuntimeLoadout loadout : Loadouts)
         {
-            AnimatorLoadoutProxy surrogate = new AnimatorLoadoutProxy();
-            surrogate.id = loadout.ID;
-            surrogate.isBeta = loadout.IsBeta;
-            surrogate.promoted = loadout.promoted;
-            surrogate.bonus = loadout.bonus;
-            loadouts.add(surrogate);
+            final AnimatorLoadoutProxy proxy = new AnimatorLoadoutProxy();
+            proxy.id = loadout.ID;
+            proxy.isBeta = loadout.IsBeta;
+            proxy.promoted = loadout.promoted;
+            proxy.bonus = loadout.bonus;
+            loadouts.add(proxy);
         }
 
         if (StartingSeries.ID > 0)
@@ -146,7 +146,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
             for (AnimatorLoadoutProxy proxy : data.loadouts)
             {
-                AnimatorRuntimeLoadout loadout = AnimatorRuntimeLoadout.TryCreate(GR.Animator.Data.GetLoadout(proxy.id, proxy.isBeta));
+                final AnimatorRuntimeLoadout loadout = AnimatorRuntimeLoadout.TryCreate(GR.Animator.Data.GetLoadout(proxy.id, proxy.isBeta));
                 if (loadout != null)
                 {
                     if (proxy.promoted)
@@ -251,11 +251,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
     public boolean TryObtainCard(AbstractCard card)
     {
-        boolean canAdd = true;
-        if (card instanceof OnAddToDeckListener)
-        {
-            canAdd &= ((OnAddToDeckListener) card).OnAddToDeck(card);
-        }
+        boolean canAdd = !(card instanceof OnAddToDeckListener) || ((OnAddToDeckListener) card).OnAddToDeck(card);
 
         for (AbstractRelic relic : AbstractDungeon.player.relics)
         {

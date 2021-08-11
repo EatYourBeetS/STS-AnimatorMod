@@ -54,7 +54,7 @@ public class AnimatorCharacterSelectScreen
 
     private static void UpdateSelectedCharacter(CharacterSelectScreen selectScreen)
     {
-        CharacterOption current = selectedOption;
+        final CharacterOption current = selectedOption;
 
         selectedOption = null;
 

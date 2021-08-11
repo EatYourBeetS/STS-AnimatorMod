@@ -36,11 +36,12 @@ public class AnimatorCharacter extends CustomPlayer
     public static final Color MAIN_COLOR = CardHelper.getColor(210, 147, 106);
     public static final String[] NAMES = characterStrings.NAMES;
     public static final String[] TEXT = characterStrings.TEXT;
-    public static final String NAME = NAMES[0];
+    public static final String ORIGINAL_NAME = NAMES[0];
+    public static final String OVERRIDE_NAME = NAMES.length > 1 ? NAMES[1] : ORIGINAL_NAME; // Support for Beta/Alt
 
     public AnimatorCharacter()
     {
-        super(NAME, GR.Animator.PlayerClass, GR.Animator.Images.ORB_TEXTURES, GR.Animator.Images.ORB_VFX_PNG, (String) null, null);
+        super(ORIGINAL_NAME, GR.Animator.PlayerClass, GR.Animator.Images.ORB_TEXTURES, GR.Animator.Images.ORB_VFX_PNG, (String) null, null);
 
         initializeClass(null, GR.Animator.Images.SHOULDER2_PNG, GR.Animator.Images.SHOULDER1_PNG, GR.Animator.Images.CORPSE_PNG,
         getLoadout(), 0f, -5f, 240f, 244f, new EnergyManager(3));
@@ -72,7 +73,13 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public String getLocalizedCharacterName()
     {
-        return NAMES[0];
+        return ORIGINAL_NAME;
+    }
+
+    @Override
+    public String getTitle(AbstractPlayer.PlayerClass playerClass) // Top panel title
+    {
+        return OVERRIDE_NAME;
     }
 
     @Override
@@ -219,12 +226,6 @@ public class AnimatorCharacter extends CustomPlayer
     public CharSelectInfo getLoadout()
     {
         return PrepareLoadout().GetLoadout(NAMES[0], TEXT[0], this);
-    }
-
-    @Override
-    public String getTitle(AbstractPlayer.PlayerClass playerClass)
-    {
-        return NAME;
     }
 
     @Override

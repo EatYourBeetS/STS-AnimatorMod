@@ -94,8 +94,9 @@ public class Zero extends AnimatorCard
                 skillsCache.Add(c);
             }
         }
+
         skillsCache.SetIndex((skillsCache.Count() == previousSize) ? previousIndex : 0);
 
-        return skillsCache.Next(true);
+        return (skillsCache.Count() > 0) ? skillsCache.Next(true) : null;
     }
 }

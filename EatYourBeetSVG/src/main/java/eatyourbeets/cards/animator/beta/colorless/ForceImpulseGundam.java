@@ -46,7 +46,7 @@ public class ForceImpulseGundam extends AnimatorCard
             {
                 for (AbstractCard card : cards) {
                     GameUtilities.IncreaseDamage(this, magicNumber, true);
-                    if (card.type == CardType.SKILL) {
+                    if (card.type == CardType.POWER || card.type == CardType.STATUS) {
                         GameUtilities.IncreaseDamage(this, magicNumber, true);
                         GameActions.Bottom.Exhaust(card);
                     }

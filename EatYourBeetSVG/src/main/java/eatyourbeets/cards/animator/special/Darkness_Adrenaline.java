@@ -9,13 +9,13 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 
-public class DarknessAdrenaline extends AnimatorCard
+public class Darkness_Adrenaline extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(DarknessAdrenaline.class)
+    public static final EYBCardData DATA = Register(Darkness_Adrenaline.class)
             .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
             .SetSeries(Darkness.DATA.Series);
 
-    public DarknessAdrenaline()
+    public Darkness_Adrenaline()
     {
         super(DATA);
 

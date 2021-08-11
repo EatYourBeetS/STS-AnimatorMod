@@ -1,22 +1,27 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.actions.animator.HigakiRinneAction;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.BlockAttribute;
+import eatyourbeets.cards.base.attributes.DamageAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.animator.HigakiRinnePower;
 import eatyourbeets.utilities.GameActions;
@@ -43,15 +48,27 @@ public class HigakiRinne extends AnimatorCard
     }
 
     @Override
+    public AbstractAttribute GetBlockInfo()
+    {
+        return type == CardType.SKILL ? BlockAttribute.Instance.SetCard(this).SetText("?", Settings.CREAM_COLOR) : null;
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return type == CardType.ATTACK ? DamageAttribute.Instance.SetCard(this).SetText("?", Settings.CREAM_COLOR) : null;
+    }
+
+    @Override
     public AbstractCard makeStatEquivalentCopy()
     {
-        HigakiRinne c = JUtils.SafeCast(super.makeStatEquivalentCopy(), HigakiRinne.class);
-        if (c != null)
+        final HigakiRinne copy = JUtils.SafeCast(super.makeStatEquivalentCopy(), HigakiRinne.class);
+        if (copy != null)
         {
-            c.ChangeForm(type);
+            copy.ChangeForm(type);
         }
 
-        return c;
+        return copy;
     }
 
     @Override
@@ -78,24 +95,19 @@ public class HigakiRinne extends AnimatorCard
         else if (n < 38)
         {
             GameActions.Top.Draw(1);
-            GameActions.Top.MoveCard(this, player.hand, player.discardPile);
-            GameActions.Top.WaitRealtime(0.3f);
+            GameActions.Top.MoveCard(this, player.hand, player.discardPile).ShowEffect(true, false);
         }
-        else if (n < 45)
+        else if (n < 49)
         {
-            GameActions.Bottom.SFX(GameUtilities.GetRandomElement(sounds));
+            GameActions.Bottom.SFX(GameUtilities.GetRandomElement(sounds), 0.6f, 1.6f);
         }
-        else if (n < 55)
+        else if (n < 59)
         {
             ChangeForm(CardType.ATTACK);
         }
-        else if (n < 65)
-        {
-            ChangeForm(CardType.POWER);
-        }
         else if (n < 69)
         {
-            CardCrawlGame.sound.playA("ORB_SLOT_GAIN", -0.82f);
+            ChangeForm(CardType.POWER);
         }
     }
 
@@ -111,7 +123,7 @@ public class HigakiRinne extends AnimatorCard
         }
         else if (n < 40)
         {
-            GameActions.Bottom.MakeCardInHand(new Madness());
+            GameActions.Bottom.SFX(GameUtilities.GetRandomElement(sounds), 0.6f, 1.6f);
         }
         else if (n < 60)
         {
@@ -128,8 +140,7 @@ public class HigakiRinne extends AnimatorCard
     {
         if (this.type == CardType.POWER)
         {
-            int stacks = upgraded ? 2 : 1;
-            GameActions.Bottom.StackPower(new HigakiRinnePower(p, this, stacks));
+            GameActions.Bottom.StackPower(new HigakiRinnePower(p, this, upgraded ? 2 : 1));
         }
         else if (this.type == CardType.ATTACK)
         {

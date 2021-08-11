@@ -21,7 +21,6 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     public static final int MAX_MULTIPLIER_STACKS = 20;
     public static final float RATE = 1.0f;
 
-    private final AbstractCreature source;
     private float percentage;
 
     public static float CalculatePercentage(int amount) {return BASE_MULTIPLIER + RATE * Math.min(MAX_MULTIPLIER_STACKS,amount);}
@@ -32,9 +31,8 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
 
     public BurningPower(AbstractCreature owner, AbstractCreature source, int amount)
     {
-        super(owner, POWER_ID);
+        super(owner, source, POWER_ID);
 
-        this.source = source;
         this.priority = 4;
 
         Initialize(amount, PowerType.DEBUFF, true);

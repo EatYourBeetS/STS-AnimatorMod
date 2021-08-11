@@ -696,6 +696,11 @@ public class GameUtilities
         return null;
     }
 
+    public static int GetPowerAmount(Affinity affinity)
+    {
+        return CombatStats.Affinities.GetPowerAmount(affinity);
+    }
+
     public static int GetPowerAmount(String powerID)
     {
         return GetPowerAmount(player, powerID);

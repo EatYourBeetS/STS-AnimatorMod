@@ -10,13 +10,13 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.animator.ChlammyZellPower;
 import eatyourbeets.utilities.GameActions;
 
-public class ChlammyZellScheme extends AnimatorCard
+public class ChlammyZell_Scheme extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ChlammyZellScheme.class)
+    public static final EYBCardData DATA = Register(ChlammyZell_Scheme.class)
             .SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None)
             .SetSeries(ChlammyZell.DATA.Series);
 
-    public ChlammyZellScheme()
+    public ChlammyZell_Scheme()
     {
         super(DATA);
 

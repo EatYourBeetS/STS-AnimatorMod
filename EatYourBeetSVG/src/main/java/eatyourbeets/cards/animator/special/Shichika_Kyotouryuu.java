@@ -12,13 +12,13 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
-public class ShichikaKyotouryuu extends AnimatorCard
+public class Shichika_Kyotouryuu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ShichikaKyotouryuu.class)
+    public static final EYBCardData DATA = Register(Shichika_Kyotouryuu.class)
             .SetAttack(1, CardRarity.SPECIAL)
             .SetSeries(Shichika.DATA.Series);
 
-    public ShichikaKyotouryuu()
+    public Shichika_Kyotouryuu()
     {
         super(DATA);
 

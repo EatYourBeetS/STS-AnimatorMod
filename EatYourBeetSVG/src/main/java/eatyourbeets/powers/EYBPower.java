@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,6 +25,7 @@ import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.StringJoiner;
@@ -40,6 +42,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     public static AbstractPlayer player = null;
     public static Random rng = null;
     public TextureAtlas.AtlasRegion powerIcon;
+    public AbstractCreature source;
     public boolean hideAmount = false;
     public boolean enabled = true;
     public int maxAmount = 9999;
@@ -50,26 +53,41 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
         return base + "Power";
     }
 
-    protected EYBPower(AbstractCreature owner, EYBCardData cardData, EYBRelic relic)
+    /** cardData, relic and originalID are exclusive of one another */
+    protected EYBPower(AbstractCreature owner, EYBCardData cardData, EYBRelic relic, String originalID)
     {
         this.effects = _effect.Get(this);
         this.owner = owner;
-        this.img = null;
-        this.powerStrings = new PowerStrings();
 
-        if (relic != null)
+        if (originalID != null)
         {
-            this.ID = DeriveID(relic.relicId);
-            this.powerIcon = relic.GetPowerIcon();
-            this.powerStrings.NAME = relic.name;
-            this.powerStrings.DESCRIPTIONS = relic.DESCRIPTIONS;
+            final String imagePath = GR.GetPowerImage(originalID);
+            if (Gdx.files.internal(imagePath).exists())
+            {
+                this.img = GR.GetTexture(imagePath);
+            }
+
+            this.ID = originalID;
+            this.powerStrings = CardCrawlGame.languagePack.getPowerStrings(originalID);
         }
         else
         {
-            this.ID = DeriveID(cardData.ID);
-            this.powerIcon = cardData.GetCardIcon();
-            this.powerStrings.NAME = cardData.Strings.NAME;
-            this.powerStrings.DESCRIPTIONS = cardData.Strings.EXTENDED_DESCRIPTION;
+            this.powerStrings = new PowerStrings();
+
+            if (relic != null)
+            {
+                this.ID = DeriveID(relic.relicId);
+                this.powerIcon = relic.GetPowerIcon();
+                this.powerStrings.NAME = relic.name;
+                this.powerStrings.DESCRIPTIONS = relic.DESCRIPTIONS;
+            }
+            else
+            {
+                this.ID = DeriveID(cardData.ID);
+                this.powerIcon = cardData.GetCardIcon();
+                this.powerStrings.NAME = cardData.Strings.NAME;
+                this.powerStrings.DESCRIPTIONS = cardData.Strings.EXTENDED_DESCRIPTION;
+            }
         }
 
         this.name = powerStrings.NAME;
@@ -77,28 +95,17 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
     public EYBPower(AbstractCreature owner, EYBRelic relic)
     {
-        this(owner, null, relic);
+        this(owner, null, relic, null);
     }
 
     public EYBPower(AbstractCreature owner, EYBCardData cardData)
     {
-        this(owner, cardData, null);
+        this(owner, cardData, null, null);
     }
 
     public EYBPower(AbstractCreature owner, String id)
     {
-        this.effects = _effect.Get(this);
-        this.owner = owner;
-        this.ID = id;
-
-        final String imagePath = GR.GetPowerImage(ID);
-        if (Gdx.files.internal(imagePath).exists())
-        {
-            this.img = GR.GetTexture(imagePath);
-        }
-
-        this.powerStrings = CardCrawlGame.languagePack.getPowerStrings(this.ID);
-        this.name = powerStrings.NAME;
+        this(owner, null, null, id);
     }
 
     protected void Initialize(int amount)
@@ -168,28 +175,42 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     @Override
     public AbstractPower makeCopy()
     {
+        if (this instanceof InvisiblePower)
+        {
+            JUtils.LogError(this, "Do not clone powers which implement InvisiblePower");
+            return null;
+        }
+
+        Constructor<? extends EYBPower> c;
         try
         {
-            return this.getClass().getDeclaredConstructor(AbstractCreature.class, int.class).newInstance(owner, amount);
+            c = JUtils.TryGetConstructor(getClass(), AbstractCreature.class, int.class);
+            if (c != null)
+            {
+                return c.newInstance(owner, amount);
+            }
+            c = JUtils.TryGetConstructor(getClass(), AbstractCreature.class);
+            if (c != null)
+            {
+                return c.newInstance(owner);
+            }
+            c = JUtils.TryGetConstructor(getClass(), AbstractCreature.class, AbstractCreature.class, int.class);
+            if (c != null)
+            {
+                return c.newInstance(owner, source, amount);
+            }
+            c = JUtils.TryGetConstructor(getClass());
+            if (c != null)
+            {
+                return c.newInstance();
+            }
         }
-        catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e1)
+        catch (InstantiationException | IllegalAccessException | InvocationTargetException e)
         {
-            try
-            {
-                return this.getClass().getDeclaredConstructor(AbstractCreature.class).newInstance(owner);
-            }
-            catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e2)
-            {
-                try
-                {
-                    return this.getClass().getConstructor().newInstance();
-                }
-                catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e3)
-                {
-                    return null;
-                }
-            }
+            e.printStackTrace();
         }
+
+        return null;
     }
 
     public void ReducePower(int amount)

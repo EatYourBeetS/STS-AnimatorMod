@@ -16,7 +16,8 @@
 			"Shuffle {0} card(s) into your Draw Pile.",
 			"Transform into a {0}.",
 			"Choose {0} card(s).",
-			"Purge {0} card(s)."
+			"Purge {0} card(s).",
+			"Scry (You draw from left to right)."
 		]
 	},
 	"eyb:TheUnnamedReign":

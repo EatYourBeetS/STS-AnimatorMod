@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.blue.*;
 import com.megacrit.cardcrawl.cards.colorless.*;
+import com.megacrit.cardcrawl.cards.curses.AscendersBane;
 import com.megacrit.cardcrawl.cards.curses.CurseOfTheBell;
 import com.megacrit.cardcrawl.cards.curses.Necronomicurse;
 import com.megacrit.cardcrawl.cards.green.*;
@@ -24,6 +25,7 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.EmptyRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.animator.curse.Curse_AscendersBane;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
@@ -276,7 +278,6 @@ public class TheUnnamedReign extends AbstractDungeon
     @Override
     protected void generateWeakEnemies(int count)
     {
-        // These aren't even used but whatever
         monsterList.add(UnnamedEnemyGroup.CULTIST);
         monsterList.add(UnnamedEnemyGroup.THREE_NORMAL_SHAPES);
         monsterList.add(UnnamedEnemyGroup.TWO_SHAPES);
@@ -295,7 +296,6 @@ public class TheUnnamedReign extends AbstractDungeon
     @Override
     protected void generateElites(int count)
     {
-        // These aren't even used but whatever
         eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_WISP);
         eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_CUBE);
         eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_CRYSTAL);
@@ -303,7 +303,7 @@ public class TheUnnamedReign extends AbstractDungeon
 
     public static ArrayList<AbstractCard> GetCardReplacements(ArrayList<AbstractCard> cards, boolean forceReplace)
     {
-        ArrayList<AbstractCard> result = new ArrayList<>();
+        final ArrayList<AbstractCard> result = new ArrayList<>();
         for (AbstractCard c : cards)
         {
             for (String cardID : GetCardReplacements(c, forceReplace))
@@ -447,6 +447,12 @@ public class TheUnnamedReign extends AbstractDungeon
             case CurseOfTheBell.ID:
             case Necronomicurse.ID:
             {
+                break;
+            }
+
+            case AscendersBane.ID:
+            {
+                replacements.add(Curse_AscendersBane.DATA.ID);
                 break;
             }
 

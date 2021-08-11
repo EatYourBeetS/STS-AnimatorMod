@@ -2,7 +2,7 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.cards.animator.special.DarknessAdrenaline;
+import eatyourbeets.cards.animator.special.Darkness_Adrenaline;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -24,7 +24,7 @@ public class DarknessPower extends AnimatorPower
 
         if (amount > 0 && info.type != DamageInfo.DamageType.HP_LOSS && damageAmount > 0)
         {
-            GameActions.Bottom.MakeCardInDrawPile(new DarknessAdrenaline());
+            GameActions.Bottom.MakeCardInDrawPile(new Darkness_Adrenaline());
             if ((amount -= 1) <= 0)
             {
                 RemovePower();

@@ -20,7 +20,6 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
     public static final float RATE = 0.5f;
 
     private float percentage;
-    private final AbstractCreature source;
 
     public static float CalculatePercentage(int amount) {return BASE_MULTIPLIER + RATE * Math.min(MAX_MULTIPLIER_STACKS,amount);}
     public static float CalculateDamage(float damage, float percentage)
@@ -30,9 +29,8 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
 
     public FreezingPower(AbstractCreature owner, AbstractCreature source, int amount)
     {
-        super(owner, POWER_ID);
+        super(owner, source, POWER_ID);
 
-        this.source = source == null ? owner : source;
         this.amount = amount;
         if (this.amount >= 9999)
         {

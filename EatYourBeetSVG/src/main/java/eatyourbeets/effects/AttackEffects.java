@@ -44,6 +44,7 @@ public class AttackEffects
    public static final AttackEffect GUNSHOT = GR.Enums.AttackEffect.GUNSHOT;
    public static final AttackEffect DAGGER = GR.Enums.AttackEffect.DAGGER;
    public static final AttackEffect SPEAR = GR.Enums.AttackEffect.SPEAR;
+   public static final AttackEffect DARK = GR.Enums.AttackEffect.DARK;
 
    public static EYBEffect GetVFX(AttackEffect effect, AbstractCreature source, float t_cX, float t_cY)
    {
@@ -159,6 +160,10 @@ public class AttackEffects
       Add(melee, SPEAR, ImageMaster.ATK_SLASH_V)
               .SetVFX2(VFX::Pierce)
               .SetSFX(SFX.ANIMATOR_SPEAR_1, SFX.ANIMATOR_SPEAR_2);
+
+      Add(magic, DARK)
+              .SetVFX(VFX::Dark)
+              .SetSFX(SFX.ORB_DARK_CHANNEL);
    }
 
    private static AttackEffectData Add(ArrayList<AttackEffect> category, AttackEffect effect)

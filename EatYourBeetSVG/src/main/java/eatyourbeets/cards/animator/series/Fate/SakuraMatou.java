@@ -5,14 +5,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
-import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateParticle;
-import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import eatyourbeets.actions.orbs.RemoveOrb;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
-import eatyourbeets.effects.vfx.megacritCopy.OrbFlareEffect2;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
@@ -47,17 +45,12 @@ public class SakuraMatou extends AnimatorCard
            final AbstractOrb best = JUtils.FindMax(JUtils.Filter(player.orbs, Dark.class::isInstance), o -> o.evokeAmount);
            if (best != null)
            {
-               SFX.Play(SFX.ORB_DARK_EVOKE, 1.1f, 1.2f);
                GameEffects.Queue.RoomTint(Color.BLACK, 0.8F);
                GameEffects.Queue.BorderLongFlash(new Color(1.0F, 0.0F, 1.0F, 0.7F));
-               GameEffects.TopLevelQueue.Add(new OrbFlareEffect2(enemy.hb.cX, enemy.hb.cY)).SetColors(OrbFlareEffect.OrbFlareColor.DARK).renderBehind = false;
-               for (int i = 0; i < 4; i++)
-               {
-                   GameEffects.TopLevelQueue.Add(new DarkOrbActivateParticle(enemy.hb.cX, enemy.hb.cY)).renderBehind = false;
-               }
+               GameEffects.Queue.Attack(player, enemy, AttackEffects.DARK, 1.1f, 1.2f);
                GameActions.Bottom.Add(new RemoveOrb(best));
-               GameActions.Bottom.SFX(SFX.ORB_DARK_EVOKE, 0.85f, 0.9f);
                GameActions.Bottom.ApplyConstricted(player, enemy, best.evokeAmount / 2);
+               GameActions.Bottom.SFX(SFX.ORB_DARK_EVOKE, 0.85f, 0.9f);
            }
            else
            {

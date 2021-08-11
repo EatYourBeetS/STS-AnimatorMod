@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.vfx.combat.*;
+import eatyourbeets.effects.utility.CombinedEffect;
 import eatyourbeets.effects.vfx.*;
 import eatyourbeets.effects.vfx.megacritCopy.*;
 import eatyourbeets.orbs.animator.Earth;
@@ -70,6 +71,23 @@ public class VFX
     public static ClawEffect2 Claw(float cX, float cY, Color color1, Color color2)
     {
         return new ClawEffect2(cX, cY, color1, color2);
+    }
+
+    public static CombinedEffect Dark(Hitbox hb, int variance)
+    {
+        return Dark(RandomX(hb, variance), RandomY(hb, variance));
+    }
+
+    public static CombinedEffect Dark(float cX, float cY)
+    {
+        final CombinedEffect effect = new CombinedEffect();
+        effect.Add(new OrbFlareEffect2(cX, cY).SetColors(OrbFlareEffect.OrbFlareColor.DARK)).renderBehind = false;
+        for (int i = 0; i < 4; i++)
+        {
+            effect.Add(new DarkOrbActivateParticle(cX, cY)).renderBehind = false;
+        }
+
+        return effect;
     }
 
     public static MindblastEffect2 Mindblast(float dialogX, float dialogY)

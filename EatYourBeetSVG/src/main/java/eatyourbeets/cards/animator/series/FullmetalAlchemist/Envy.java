@@ -3,13 +3,10 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
-import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.PowerTriggerConditionType;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -18,6 +15,7 @@ public class Envy extends AnimatorCard
     public static final EYBCardData DATA = Register(Envy.class)
             .SetPower(2, CardRarity.RARE)
             .SetSeriesFromClassPackage();
+    public static final int TEMP_HP_ENERGY_COST = 2;
 
     public Envy()
     {
@@ -31,92 +29,99 @@ public class Envy extends AnimatorCard
     }
 
     @Override
-    public AbstractAttribute GetSpecialInfo()
-    {
-        return (magicNumber > 0) ? TempHPAttribute.Instance.SetCard(this, true) : null;
-    }
-
-    @Override
     protected void OnUpgrade()
     {
         SetEthereal(false);
     }
 
     @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        GameUtilities.ModifyMagicNumber(this, Math.floorDiv(player.maxHealth - player.currentHealth, 5), true);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.StackPower(new EnvyPower(p, 1));
-
-        int tempHP = Math.floorDiv(p.maxHealth - p.currentHealth, 5);
-        if (tempHP > 0)
-        {
-            GameActions.Bottom.GainTemporaryHP(tempHP);
-        }
     }
 
-    public static class EnvyPower extends AnimatorPower implements OnSynergyCheckSubscriber
+    public static class EnvyPower extends AnimatorClickablePower
     {
+        private int tempHP;
+
         public EnvyPower(AbstractPlayer owner, int amount)
         {
-            super(owner, Envy.DATA);
+            super(owner, Envy.DATA, PowerTriggerConditionType.Energy, Envy.TEMP_HP_ENERGY_COST);
+
+            triggerCondition.SetUses(1, true, true);
 
             Initialize(amount);
         }
 
         @Override
-        public void onInitialApplication()
+        public void update(int slot)
         {
-            super.onInitialApplication();
+            super.update(slot);
 
-            CombatStats.onSynergyCheck.Subscribe(this);
+            if (GR.UI.Elapsed25())
+            {
+                UpdateTempHP();
+            }
         }
 
         @Override
-        public void onRemove()
+        public String GetUpdatedDescription()
         {
-            super.onRemove();
-
-            CombatStats.onSynergyCheck.Unsubscribe(this);
+            return FormatDescription(0, tempHP, amount);
         }
 
         @Override
-        public void updateDescription()
+        public void atStartOfTurnPostDraw()
         {
-            super.updateDescription();
+            super.atStartOfTurnPostDraw();
 
-            SetEnabled(amount > 0);
+            GameActions.Last.Callback(() ->
+            {
+                GameActions.Top.ModifyAffinityLevel(player.hand, amount, Affinity.General, 2, false)
+                .SetFilter(EnvyPower::HasUpgradableAffinities);
+                flash();
+            });
         }
 
         @Override
-        public void atStartOfTurn()
+        public void OnUse(AbstractMonster m)
         {
-            super.atStartOfTurn();
+            super.OnUse(m);
 
-            this.amount = this.baseAmount;
-            updateDescription();
+            UpdateTempHP();
+            GameActions.Bottom.GainTemporaryHP(tempHP);
         }
 
-        @Override
-        public void onPlayCard(AbstractCard card, AbstractMonster m)
+        private void UpdateTempHP()
         {
-            super.onPlayCard(card, m);
-
-            this.amount = Math.max(0, this.amount - 1);
-            updateDescription();
+            final int previous = tempHP;
+            tempHP = Math.floorDiv(player.maxHealth - player.currentHealth, 5);
+            if (previous != tempHP)
+            {
+                updateDescription();
+            }
         }
 
-        @Override
-        public boolean OnSynergyCheck(AbstractCard a, AbstractCard b)
+        private static boolean HasUpgradableAffinities(AbstractCard c)
         {
-            return amount > 0;
+            final EYBCardAffinities a = GameUtilities.GetAffinities(c);
+            if (a != null)
+            {
+                if (a.Star != null && a.Star.level == 1)
+                {
+                    return true;
+                }
+
+                for (EYBCardAffinity affinity : a.List)
+                {
+                    if (affinity.level == 1)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

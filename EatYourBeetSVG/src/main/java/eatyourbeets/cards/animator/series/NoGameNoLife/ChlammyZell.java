@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.series.NoGameNoLife;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import eatyourbeets.cards.animator.special.ChlammyZellScheme;
+import eatyourbeets.cards.animator.special.ChlammyZell_Scheme;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -18,7 +18,7 @@ public class ChlammyZell extends AnimatorCard
             .SetSeriesFromClassPackage();
     static
     {
-        DATA.AddPreview(new ChlammyZellScheme(), false);
+        DATA.AddPreview(new ChlammyZell_Scheme(), false);
     }
 
     public ChlammyZell()
@@ -43,7 +43,7 @@ public class ChlammyZell extends AnimatorCard
 
         if (CheckAffinity(Affinity.Blue) && CheckAffinity(Affinity.Dark) && CombatStats.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.MakeCardInHand(new ChlammyZellScheme());
+            GameActions.Bottom.MakeCardInHand(new ChlammyZell_Scheme());
         }
     }
 }

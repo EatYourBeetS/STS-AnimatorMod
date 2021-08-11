@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
-import eatyourbeets.effects.AttackEffects;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Earth;
+import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
 public class ElricEdward extends AnimatorCard
@@ -21,8 +23,7 @@ public class ElricEdward extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(4, 0, 1);
-        SetUpgrade(4, 0, 0);
+        Initialize(5, 0, 1);
 
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Orange(1, 1, 1);
@@ -41,21 +42,29 @@ public class ElricEdward extends AnimatorCard
     {
         GameActions.Bottom.Cycle(name, 1).AddCallback(cards ->
         {
-            if (cards.size() > 0)
+            for (AbstractCard c : cards)
             {
-                switch (cards.get(0).type)
+                switch (c.type)
                 {
                     case ATTACK:
                         GameActions.Bottom.ChannelOrb(new Lightning());
-                        break;
+                        return;
 
                     case SKILL:
                         GameActions.Bottom.ChannelOrb(new Frost());
-                        break;
+                        return;
 
                     case POWER:
                         GameActions.Bottom.ChannelOrb(new Earth());
-                        break;
+                        return;
+
+                    case CURSE:
+                    case STATUS:
+                        if (upgraded)
+                        {
+                            GameActions.Bottom.ChannelOrb(new Fire());
+                        }
+                        return;
                 }
             }
         });

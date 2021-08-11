@@ -11,6 +11,13 @@ public abstract class AnimatorPower extends EYBPower
         return GR.Animator.CreateID(type.getSimpleName());
     }
 
+    public AnimatorPower(AbstractCreature owner, AbstractCreature source, String id)
+    {
+        super(owner, id);
+
+        this.source = source;
+    }
+
     public AnimatorPower(AbstractCreature owner, EYBCardData cardData)
     {
         super(owner, cardData);

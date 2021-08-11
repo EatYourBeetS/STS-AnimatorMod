@@ -2,12 +2,14 @@ package eatyourbeets.cards.animator.curse;
 
 import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_Curse;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.listeners.OnRemovedFromDeckListener;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 import eatyourbeets.resources.GR;
@@ -30,6 +32,8 @@ public class Curse_AscendersBane extends AnimatorCard_Curse implements OnRemoved
     public Curse_AscendersBane()
     {
         super(DATA, false);
+
+        Initialize(0, 0, 3);
 
         SetEthereal(true);
     }
@@ -60,15 +64,14 @@ public class Curse_AscendersBane extends AnimatorCard_Curse implements OnRemoved
     {
         super.triggerOnExhaust();
 
-        if (UnnamedReign)
+        if (UnnamedReign && player.hand.contains(this))
         {
             GameActions.Bottom.SelectFromPile(name, 1, player.drawPile)
             .SetOptions(CardSelection.Top, false)
             .AddCallback(cards ->
             {
-                if (cards.size() > 0)
+                for (AbstractCard c : cards)
                 {
-                    final AbstractCard c = cards.get(0);
                     GameActions.Top.Purge(c).ShowEffect(true)
                     .AddCallback(c, (card, purged) ->
                     {
@@ -87,7 +90,11 @@ public class Curse_AscendersBane extends AnimatorCard_Curse implements OnRemoved
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-
+        if (!dontTriggerOnUseCard)
+        {
+            GameActions.Bottom.DealDamage(null, player, magicNumber, DamageInfo.DamageType.THORNS, AttackEffects.DARK)
+            .SetSoundPitch(1.3f, 1.4f);
+        }
     }
 
     @Override
@@ -113,5 +120,6 @@ public class Curse_AscendersBane extends AnimatorCard_Curse implements OnRemoved
         UnnamedReign = true;
         cardText.OverrideDescription(DATA.Strings.EXTENDED_DESCRIPTION[0], true);
         bottomText = new ColoredString(JUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[1], ASCENSION_THRESHOLD), Settings.CREAM_COLOR);
+        cost = costForTurn = 1;
     }
 }

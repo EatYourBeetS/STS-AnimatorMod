@@ -67,6 +67,11 @@ public class PowerTriggerCondition
 
     public PowerTriggerCondition AddUses(int uses)
     {
+        if (HasInfiniteUses())
+        {
+            throw new RuntimeException("Tried to add more uses to a condition with infinite uses.");
+        }
+
         this.baseUses += uses;
         this.uses += uses;
         this.power.updateDescription();
@@ -99,7 +104,12 @@ public class PowerTriggerCondition
             power.updateDescription();
         }
 
-        canUse = uses > 0 && CheckCondition();
+        canUse = (HasInfiniteUses() || uses > 0) && CheckCondition();
+    }
+
+    public boolean HasInfiniteUses()
+    {
+        return baseUses == -1;
     }
 
     public boolean CanUse()
@@ -172,7 +182,11 @@ public class PowerTriggerCondition
             }
         }
 
-        uses -= 1;
+        if (!HasInfiniteUses())
+        {
+            uses -= 1;
+        }
+
         power.OnUse(m);
         power.flashWithoutSound();
         Refresh(false);

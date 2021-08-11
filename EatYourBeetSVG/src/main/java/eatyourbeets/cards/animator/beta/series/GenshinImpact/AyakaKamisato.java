@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.animator.beta.special.SheerCold;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -15,11 +14,10 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.NegateBlockPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
 
 public class AyakaKamisato extends AnimatorCard {
     public static final EYBCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage();
-    private static final int NO_BLOCK_TURNS = 2;
+    private static final int ATTACK_TIMES = 2;
     static
     {
         DATA.AddPreview(new SheerCold(), false);
@@ -28,11 +26,11 @@ public class AyakaKamisato extends AnimatorCard {
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(12, 0, 2, 3);
-        SetUpgrade(1, 0, 0, 1);
-        SetAffinity_Blue(1, 0, 1);
+        Initialize(12, 0, 3, 1);
+        SetUpgrade(2, 0, 1, 0);
+        SetAffinity_Blue(2, 0, 1);
         SetAffinity_Green(1, 0, 0);
-        SetAffinity_Orange(2, 0, 1);
+        SetAffinity_Orange(1, 0, 1);
 
         SetAffinityRequirement(Affinity.Blue, 4);
 
@@ -53,18 +51,18 @@ public class AyakaKamisato extends AnimatorCard {
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
+        return super.GetDamageInfo().AddMultiplier(ATTACK_TIMES);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
 
-        for (int i = 0; i < magicNumber; i++)
+        for (int i = 0; i < ATTACK_TIMES; i++)
         {
             GameActions.Bottom.DealDamageToRandomEnemy(this, i % 2 == 0 ? AttackEffects.SLASH_VERTICAL : AttackEffects.SLASH_DIAGONAL).SetOptions(true, false);
         }
-        GameActions.Bottom.GainTemporaryThorns(this.getFrostCount() * secondaryValue);
-        GameActions.Bottom.StackPower(new NegateBlockPower(p, NO_BLOCK_TURNS));
+        GameActions.Bottom.GainTemporaryThorns(magicNumber + CombatStats.Affinities.GetPowerAmount(Affinity.Blue) / 2 * secondaryValue);
+        GameActions.Bottom.StackPower(new NegateBlockPower(p, ATTACK_TIMES));
 
         if (CheckAffinity(Affinity.Blue) && CombatStats.TryActivateLimited(cardID))
         {
@@ -72,9 +70,5 @@ public class AyakaKamisato extends AnimatorCard {
             c.applyPowers();
             c.use(player, null);
         }
-    }
-
-    private int getFrostCount() {
-        return JUtils.Count(player.orbs, orb -> Frost.ORB_ID.equals(orb.ID));
     }
 }

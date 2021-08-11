@@ -5,12 +5,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -211,6 +214,10 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
         this.enabled = enable;
 
         return this;
+    }
+
+    public float atDamageFinalGive(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster enemy) {
+        return super.atDamageFinalGive(damage,type,card);
     }
 
     @Override

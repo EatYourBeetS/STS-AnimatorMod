@@ -305,9 +305,9 @@
 	},
 	"BETA:COLORLESS":
 	{
-		"animator:ArseneLupinIII":
+		"animator:ArseneLupin":
 		{
-		  "DESCRIPTION": "Deal !S! more damage for every 50 Gold you have. || Reload: {~Steal} !M! [Gold] from a random enemy.",
+		  "DESCRIPTION": "Deal 1 more damage for every !S! Gold you have. || Reload: {~Steal} !M! [Gold] from a random enemy.",
 		  "NAME": "Arsene Lupin III"
 		},
 		"animator:Something":
@@ -317,7 +317,7 @@
 		},
 		"animator:AsukaLangley":
 		{
-		  "DESCRIPTION": "Attacks on enemies with {~Lock-On} ignore damage reduction and remove a stack of {~Lock-On}. Reload: Apply !S! {~Lock-On} to a random enemy.",
+		  "DESCRIPTION": "{~Ranged} Attacks on enemies with [~Lock-On] ignore damage reduction and remove 1 [~Lock-On]. || Reload: Apply !M! [~Lock-On] to ALL enemies.",
 		  "NAME": "Asuka Langley"
 		},
 		"animator:BlazingHeat":
@@ -328,7 +328,7 @@
 		"animator:ForceImpulseGundam":
 		{
 		  "DESCRIPTION": "Reload: Increase this card's damage by !M! until played. Skills trigger Reload twice and are Exhausted. || Cooldown !S!: Enter <FS> and Exhaust.",
-		  "NAME": "ForceImpulseGundam"
+		  "NAME": "Force Impulse Gundam"
 		},
 		"animator:GarbageDoll":
 		{
@@ -336,11 +336,11 @@
 		  "EXTENDED_DESCRIPTION": ["Choose {0} cards to Purge."],
 		  "NAME": "Garbage Doll"
 		},
-	  "animator:Ginko":
-	  {
-		"DESCRIPTION": "Transform !M! Status cards in your hand into more beneficial variants.",
-		"NAME": "Ginko"
-	  },
+		"animator:Ginko":
+		{
+		  "DESCRIPTION": "Transform !M! Status cards in your hand into more beneficial variants.",
+		  "NAME": "Ginko"
+		},
 		"animator:HatsuneMiku":
 		{
 			"DESCRIPTION": "Can only be played if there are at least !S! cards in your Discard and {Exhaust} piles combined. || At the start of turn: Draw !M! card(s). They cost 0 this turn.",
@@ -353,11 +353,11 @@
 		  "EXTENDED_DESCRIPTION": ["Choose 2 cards to fuse.", "Unique. || This card has the effects of {0} and {1}.","Unique. || This card has the effects of {0}."],
 		  "NAME": "Kirby"
 		},
-	  "animator:Luka":
-	  {
-		"DESCRIPTION": "Affinity power gains from Synergies are doubled this combat.",
-		"NAME": "Ginko"
-	  },
+		"animator:Luka":
+		{
+		  "DESCRIPTION": "Affinity power gains from Synergies are doubled this combat.",
+		  "NAME": "Luka"
+		},
 		"animator:Megunee":
 		{
 			"DESCRIPTION": "Cooldown !S!: Exhaust this card. || When Exhausted: Put this card in your draw pile zombified after a random number of turns.",
@@ -375,7 +375,7 @@
 		},
 		"animator:Mythra":
 		{
-		  "DESCRIPTION": "At the start of combat: Replace this card with {Pyra} if you have more <R> in your deck than <G>. || The first Attack you play each turn is Motivated and gains Haste and Exhaust.",
+		  "DESCRIPTION": "At the start of combat: Transforms into {Pyra} if you have more <R> in your deck than <G>. || The first Attack you play each turn is Motivated and gains Haste and Exhaust.",
 		  "NAME": "Mythra"
 		},
 		"animator:NaoTomori":
@@ -389,9 +389,9 @@
 		  "DESCRIPTION": "The first Attack you play each turn applies Burn equal to 20% of its damage and Exhausts.",
 		  "NAME": "Pyra"
 		},
-		"animator:MS-06ZakuII":
+		"animator:MS06ZakuII":
 		{
-		  "DESCRIPTION": "The first !M! Reload triggers this turn activate twice. || <LIM>. !A! <GEN>. If you reached 12 of any affinity power this combat, permanently incraese your maximum hand size by 1 (does not stack).",
+		  "DESCRIPTION": "The first !M! Reload triggers this turn activate twice. || <LIM>. !A! <GEN>. If you reached 12 of any affinity power this combat, obtain {Arsenal Upgrade}.",
 		  "NAME": "MS-06 Zaku II"
 		},
 		"animator:SakuraKinomoto":
@@ -417,7 +417,7 @@
 		},
 		"animator:Simon":
 		{
-		  "DESCRIPTION": "Unique. Increase the damage of a random Attack in your hand by 25% of the damage dealt. || <LIM>. If you reached !S! [F] this combat, permanently upgrade this card.",
+		  "DESCRIPTION": "Unique. || Increase the damage of a random Attack in your hand by half of the damage dealt. || <LIM>. !M! [F]: Permanently upgrade this card.",
 		  "NAME": "Simon"
 		},
 		"animator:SpikeSpiegel":
@@ -567,12 +567,12 @@
 		},
 		"animator:AyakaKamisato":
 		{
-		  "DESCRIPTION": "Gain !S! {Temp}. [Thorns] for each [Frost] you have. You cannot gain [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
+		  "DESCRIPTION": "Gain !M! {Temp}. [Thorns]. Increase this amount by !S! for every 2 [I]. You cannot gain ** [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
 		  "NAME": "Ayaka Kamisato"
 		},
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Gain/Boost [B][I]. Heal !M! HP. || <LIM>. !A! <B>. If ALL enemies intend to attack: Channel 1 [Water].",
+			"DESCRIPTION": "Gain/Boost [B]. Heal !M! HP. || <LIM>. !A! <B>. If ALL enemies intend to attack: Channel 1 [Water] and trigger it once.",
 			"NAME": "Barbara Pegg"
 		},
 		"animator:Curse_Delusion":
@@ -592,7 +592,7 @@
 		},
 		"animator:Ganyu":
 		{
-		  "DESCRIPTION": "Deals !M! more damage if the target has [~Lock-On]. You cannot gain [Block] for 2 turns. || <LIM>. When Exhausted, {Channel} !S! [Frost]",
+		  "DESCRIPTION": "Deals !M! more damage if the target has [~Lock-On]. You cannot gain [Block] for 2 turns. || <SLM>. When Exhausted, apply !S! [Freezing] to ALL enemies",
 		  "NAME": "Ganyu"
 		},
 		"animator:HuTao":
@@ -632,7 +632,7 @@
 		},
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M! cards. For each card, if its rarity is: || {Basic} or {Common}: Draw !S! more card(s) next turn. ** {Uncommon}: Gain/Boost [I] ** {Rare}: Induce [Lightning]",
+			"DESCRIPTION": "{Scry} !M! cards. For each card, ** if its rarity is: || {Basic} or {Common}: Draw !S! more card(s) next turn. ** {Uncommon}: Gain/Boost [I] ** {Rare}: Induce [Lightning]",
 			"NAME": "Lisa Minci"
 		},
 		"animator:Noelle":

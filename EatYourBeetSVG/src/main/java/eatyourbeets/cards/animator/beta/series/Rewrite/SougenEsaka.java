@@ -2,15 +2,13 @@ package eatyourbeets.cards.animator.beta.series.Rewrite;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.affinity.WillpowerPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class SougenEsaka extends AnimatorCard
 {
@@ -30,7 +28,7 @@ public class SougenEsaka extends AnimatorCard
     @Override
     protected float ModifyBlock(AbstractMonster enemy, float amount)
     {
-        return super.ModifyBlock(enemy, amount + MathUtils.ceil(GameUtilities.GetPowerAmount(AbstractDungeon.player, WillpowerPower.POWER_ID) * 0.5f));
+        return super.ModifyBlock(enemy, amount + MathUtils.ceil(CombatStats.Affinities.GetPowerAmount(Affinity.Orange) * 0.5f));
     }
 
 

@@ -3,14 +3,10 @@ package eatyourbeets.cards.animator.beta.series.Bleach;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.IchigoBankai;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.affinity.ForcePower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class IchigoKurosaki extends AnimatorCard
 {
@@ -39,7 +35,7 @@ public class IchigoKurosaki extends AnimatorCard
         GameActions.Bottom.GainAgility(1, false);
 
         GameActions.Bottom.Callback(card -> {
-            if (GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID) > secondaryValue)
+            if (CombatStats.Affinities.GetPowerAmount(Affinity.Red) > secondaryValue)
             {
                 GameActions.Bottom.MakeCardInDrawPile(new IchigoBankai());
                 GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);

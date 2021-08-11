@@ -819,6 +819,11 @@ public final class GameActions
         return Add(new ReducePower(source, source, powerID, amount));
     }
 
+    public ReducePower ReducePower(AbstractCreature target, AbstractCreature source, String powerID, int amount)
+    {
+        return Add(new ReducePower(target, source, powerID, amount));
+    }
+
     public ReducePower ReducePower(AbstractPower power, int amount)
     {
         return Add(new ReducePower(power.owner, power.owner, power, amount));

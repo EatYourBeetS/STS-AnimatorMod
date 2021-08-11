@@ -28,7 +28,7 @@ public class BarbaraPegg extends AnimatorCard
         SetAffinity_Blue(1);
 
 
-        SetAffinityRequirement(Affinity.Blue, 2);
+        SetAffinityRequirement(Affinity.Blue, 3);
         SetHealing(true);
         SetExhaust(true);
     }
@@ -38,10 +38,11 @@ public class BarbaraPegg extends AnimatorCard
     {
         GameActions.Bottom.VFX(new RainbowCardEffect());
         GameActions.Bottom.GainBlessing(1, upgraded);
-        GameActions.Bottom.GainIntellect(1, upgraded);
         GameActions.Bottom.Heal(magicNumber);
         if (CheckAffinity(Affinity.Blue) && JUtils.Find(GameUtilities.GetIntents(), i -> !i.isAttacking) == null && CombatStats.TryActivateLimited(cardID)) {
-            GameActions.Bottom.ChannelOrb(new Water());
+            Water waterOrb = new Water();
+            GameActions.Bottom.ChannelOrb(waterOrb);
+            GameActions.Bottom.TriggerOrbPassive(waterOrb, 1);
         }
 
     }

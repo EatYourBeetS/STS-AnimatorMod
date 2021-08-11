@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.vfx.combat.ClawEffect;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -12,9 +11,11 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.animator.NegateBlockPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Ganyu extends AnimatorCard
 {
@@ -25,8 +26,8 @@ public class Ganyu extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 35, 2);
-        SetUpgrade(0, 0, 15);
+        Initialize(2, 0, 27, 2);
+        SetUpgrade(0, 0, 8);
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Orange(1, 0, 0);
 
@@ -39,8 +40,8 @@ public class Ganyu extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        if (CombatStats.TryActivateLimited(cardID)) {
-            GameActions.Bottom.ChannelOrbs(Frost::new, secondaryValue);
+        if (CombatStats.TryActivateSemiLimited(cardID)) {
+            GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Freezing, secondaryValue);
         }
     }
 

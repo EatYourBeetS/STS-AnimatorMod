@@ -1,5 +1,6 @@
 package eatyourbeets.orbs.animator;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -7,21 +8,24 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.actions.orbs.FireOrbEvokeAction;
 import eatyourbeets.actions.orbs.FireOrbPassiveAction;
 import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.vfx.FadingParticleEffect;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import patches.orbs.AbstractOrbPatches;
 import eatyourbeets.utilities.JUtils;
+import patches.orbs.AbstractOrbPatches;
 
 public class Fire extends AnimatorOrb
 {
     public static final String ORB_ID = CreateFullID(Fire.class);
+    private static final float RADIUS = 320;
 
     public static TextureCache imgExt = IMAGES.FireInternal;
     public static TextureCache imtInt = IMAGES.FireExternal;
     private final boolean hFlip1;
+    private float vfxTimer = 0.5F;
 
     public static final int BURNING_AMOUNT = 1;
 
@@ -64,6 +68,17 @@ public class Fire extends AnimatorOrb
         super.updateAnimation();
 
         this.angle += GR.UI.Delta(90f);
+        this.vfxTimer -= Gdx.graphics.getDeltaTime();
+        if (this.vfxTimer < 0.0F) {
+            GameEffects.Queue.Add(new FadingParticleEffect(IMAGES.FireParticle.Texture(), hb.cX + MathUtils.random(-32,32), hb.cY)
+                    .SetTranslucent(1f)
+                    .Edit(angle, (r, p) -> p
+                            .SetScale(scale * MathUtils.random(0.08f, 0.32f))
+                            .SetSpeed(0f, MathUtils.random(80f, 120f), 0f)
+                            .SetAcceleration(0f, MathUtils.random(0f, 3f), null, null)
+                            .SetTargetPosition(hb.cX, hb.cY + RADIUS)).SetDuration(1f, false));
+            this.vfxTimer = MathUtils.random(0.2f, 0.5f);
+        }
     }
 
     public void render(SpriteBatch sb)

@@ -21,6 +21,7 @@ import eatyourbeets.cards.base.attributes.DamageAttribute;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.EYBPower;
 import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
@@ -804,7 +805,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         super.resetAttributes();
     }
 
-    protected void Refresh(AbstractMonster enemy)
+    public void Refresh(AbstractMonster enemy)
     {
         boolean applyEnemyPowers = (enemy != null && !GameUtilities.IsDeadOrEscaped(enemy));
         float tempBlock = GetInitialBlock();
@@ -869,7 +870,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
         for (AbstractPower p : player.powers)
         {
-            tempDamage = p.atDamageFinalGive(tempDamage, damageTypeForTurn, this);
+            tempDamage = (p instanceof EYBPower) ? ((EYBPower) p).atDamageFinalGive(tempDamage, damageTypeForTurn, this, enemy) : p.atDamageFinalGive(tempDamage, damageTypeForTurn, this);
         }
 
         if (applyEnemyPowers)

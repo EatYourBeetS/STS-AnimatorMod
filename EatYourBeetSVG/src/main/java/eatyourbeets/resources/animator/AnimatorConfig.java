@@ -72,7 +72,7 @@ public class AnimatorConfig
             DisplayBetaSeries.Set(false, false);
         }
 
-        BaseMod.registerModBadge(GR.GetTexture(GR.GetPowerImage(DarkCubePower.POWER_ID)), AnimatorCharacter.NAME, "EatYourBeetS", "", panel);
+        BaseMod.registerModBadge(GR.GetTexture(GR.GetPowerImage(DarkCubePower.POWER_ID)), AnimatorCharacter.ORIGINAL_NAME, "EatYourBeetS", "", panel);
     }
 
     public boolean HideTipDescription(String id)

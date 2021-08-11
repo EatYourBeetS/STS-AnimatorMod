@@ -2,6 +2,7 @@ package eatyourbeets.actions.cardManipulation;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 public class RandomCardUpgrade extends EYBActionWithCallback<AbstractCard>
@@ -14,20 +15,20 @@ public class RandomCardUpgrade extends EYBActionWithCallback<AbstractCard>
     @Override
     protected void FirstUpdate()
     {
-        RandomizedList<AbstractCard> betterPossible = new RandomizedList<>();
-        RandomizedList<AbstractCard> possible = new RandomizedList<>();
+        final RandomizedList<AbstractCard> possible = new RandomizedList<>();
+        final RandomizedList<AbstractCard> betterPossible = new RandomizedList<>();
 
         for (AbstractCard c : player.hand.group)
         {
-            if (c.canUpgrade())
+            if (c.canUpgrade() && !GameUtilities.IsCurseOrStatus(c))
             {
-                if (!c.upgraded)
+                if (c.upgraded)
                 {
-                    betterPossible.Add(c);
+                    possible.Add(c);
                 }
                 else
                 {
-                    possible.Add(c);
+                    betterPossible.Add(c);
                 }
             }
         }

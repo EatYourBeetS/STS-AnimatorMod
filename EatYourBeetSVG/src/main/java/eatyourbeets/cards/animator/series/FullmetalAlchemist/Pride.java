@@ -26,7 +26,7 @@ public class Pride extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0,0, 1, 2);
+        Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 0, 2);
 
         SetAffinity_Star(1, 1, 0);

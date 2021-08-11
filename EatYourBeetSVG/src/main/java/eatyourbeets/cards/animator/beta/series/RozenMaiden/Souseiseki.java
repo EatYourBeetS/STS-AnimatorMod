@@ -6,30 +6,45 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
-public class Souseiseki extends AnimatorCard
+public class Souseiseki extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Souseiseki.class)
     		.SetAttack(1, CardRarity.COMMON).SetSeriesFromClassPackage();
+    static
+    {
+        DATA.AddPreview(new Suiseiseki(), false);
+    }
 
     public Souseiseki()
     {
         super(DATA);
 
-        Initialize(10, 0, 0, 0);
+        Initialize(5, 0, 0, 0);
         SetUpgrade(2, 0, 0, 0);
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Orange(1, 0, 1);
+    }
+
+    @Override
+    public boolean HasDirectSynergy(AbstractCard other)
+    {
+        AnimatorCard a = JUtils.SafeCast(other, AnimatorCard.class);
+        if (a != null) {
+            return a.cardID.equals(Suiseiseki.DATA.ID);
+        }
+        return false;
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetAffinity_Green(2, 0, 2);
+        SetAffinity_Orange(1, 0, 2);
     }
 
     @Override
@@ -48,6 +63,6 @@ public class Souseiseki extends AnimatorCard
     public void AfterExhaust(ArrayList<AbstractCard> cards)
     {
         if (cards.size() > 0 && GameUtilities.IsCurseOrStatus(cards.get(0)))
-            GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
+            GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID);
     }
 }

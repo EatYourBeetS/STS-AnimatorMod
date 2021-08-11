@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
+import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -30,5 +31,6 @@ public class WaterOrbEvokeAction extends EYBAction
         SFX.Play(SFX.ANIMATOR_ORB_WATER_EVOKE, 0.9f, 1.1f);
         GameActions.Bottom.GainTemporaryHP(amount);
         Complete();
+        GameActions.Bottom.RemovePower(player,player, BurningPower.POWER_ID);
     }
 }

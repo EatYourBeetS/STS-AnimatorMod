@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.WillpowerPower;
 import eatyourbeets.stances.WillpowerStance;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -40,10 +40,15 @@ public class SougenEsaka extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT);
         GameActions.Bottom.GainBlock(block);
 
-        if (CheckAffinity(Affinity.Orange) && CombatStats.TryActivateLimited(cardID))
+        if (CheckAffinity(Affinity.Orange))
         {
-            GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID);
-            GameActions.Bottom.GainWillpower(magicNumber);
+            GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, 1)
+                    .ShowEffect(true, true)
+                    .SetOrigin(CardSelection.Top).AddCallback(() -> {
+                        GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID);
+                        GameActions.Bottom.GainWillpower(magicNumber);
+                    });
+
         }
     }
 }

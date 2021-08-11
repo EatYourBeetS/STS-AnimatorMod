@@ -14,13 +14,15 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
-public class Suiseiseki extends AnimatorCard
+public class Suiseiseki extends AnimatorCard //TODO
 {
     private static final AbstractCard insight = new Insight();
     private static final AbstractCard slimed = new Slimed();
@@ -32,32 +34,36 @@ public class Suiseiseki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4);
-        SetUpgrade(0, 0);
+        Initialize(0, 4, 4);
+        SetUpgrade(0, 1, 1);
 
-        SetAffinity_Green(1, 1, 1);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override
-    public void triggerOnManualDiscard()
+    public AbstractAttribute GetSpecialInfo()
     {
-        if (upgraded)
-        {
-            SuiseisekiMove(this);
-        }
+        return TempHPAttribute.Instance.SetCard(this, true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetAffinity_Orange(2, 0, 2);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
 
         GameActions.Bottom.Cycle(name, 1)
         .AddCallback(cards ->
         {
             if (cards.size() > 0)
             {
-                if (IsStarter())
+                if (HasSynergy())
                 {
                     SuiseisekiMove(cards.get(0));
                 }

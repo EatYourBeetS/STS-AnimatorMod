@@ -10,9 +10,9 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
-import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Shimako extends AnimatorCard
@@ -39,7 +39,7 @@ public class Shimako extends AnimatorCard
         {
             orb = new Fire();
         }
-        else if (curStance.equals(AgilityStance.STANCE_ID))
+        else if (curStance.equals(WillpowerStance.STANCE_ID))
         {
             orb = new Earth();
         }

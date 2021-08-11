@@ -38,7 +38,7 @@ public class Water extends AnimatorOrb
 
         this.hFlip1 = MathUtils.randomBoolean();
         this.evoked = false;
-        this.baseEvokeAmount = this.evokeAmount = this.basePassiveAmount = this.passiveAmount = 1;
+        this.baseEvokeAmount = this.evokeAmount = this.basePassiveAmount = this.passiveAmount = 2;
 
 
         this.updateDescription();

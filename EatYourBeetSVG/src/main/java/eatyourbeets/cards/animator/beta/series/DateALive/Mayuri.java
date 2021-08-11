@@ -12,7 +12,7 @@ import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Mayuri extends AnimatorCard
+public class Mayuri extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Mayuri.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
 

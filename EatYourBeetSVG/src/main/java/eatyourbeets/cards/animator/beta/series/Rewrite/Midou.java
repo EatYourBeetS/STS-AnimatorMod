@@ -36,7 +36,7 @@ public class Midou extends AnimatorCard
 
         if (CombatStats.TryActivateLimited(cardID)) {
 
-            GameActions.Bottom.SelectFromPile(name, magicNumber, player.drawPile, player.hand)
+            GameActions.Bottom.SelectFromPile(name, magicNumber, player.drawPile, player.hand, player.discardPile)
                     .SetOptions(true, true)
                     .SetFilter(c -> c instanceof Burn)
                     .AddCallback(cards ->

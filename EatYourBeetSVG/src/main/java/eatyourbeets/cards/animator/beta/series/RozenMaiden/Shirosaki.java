@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 
-public class Shirosaki extends AnimatorCard
+public class Shirosaki extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Shirosaki.class)
     		.SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();

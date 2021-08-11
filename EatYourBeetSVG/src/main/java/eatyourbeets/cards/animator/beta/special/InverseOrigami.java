@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-public class InverseOrigami extends AnimatorCard
+public class InverseOrigami extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(InverseOrigami.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetSeries(CardSeries.DateALive);
 

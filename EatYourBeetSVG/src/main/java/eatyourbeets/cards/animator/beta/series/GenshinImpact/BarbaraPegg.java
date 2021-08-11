@@ -22,8 +22,8 @@ public class BarbaraPegg extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 2);
-        SetUpgrade(0, 0, 2, 0);
+        Initialize(0, 0, 4 );
+        SetUpgrade(0, 0, 2);
         SetAffinity_Light(2);
         SetAffinity_Blue(1);
 
@@ -41,9 +41,7 @@ public class BarbaraPegg extends AnimatorCard
         GameActions.Bottom.GainIntellect(1, upgraded);
         GameActions.Bottom.Heal(magicNumber);
         if (CheckAffinity(Affinity.Blue) && JUtils.Find(GameUtilities.GetIntents(), i -> !i.isAttacking) == null && CombatStats.TryActivateLimited(cardID)) {
-            Water waterOrb = new Water();
-            waterOrb.IncreaseBasePassiveAmount(secondaryValue);
-            GameActions.Bottom.ChannelOrb(waterOrb);
+            GameActions.Bottom.ChannelOrb(new Water());
         }
 
     }

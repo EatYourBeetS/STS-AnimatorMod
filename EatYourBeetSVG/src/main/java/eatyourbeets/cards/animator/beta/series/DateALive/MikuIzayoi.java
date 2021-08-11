@@ -11,7 +11,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.PlayerAttribute;
 
-public class MikuIzayoi extends AnimatorCard
+public class MikuIzayoi extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(MikuIzayoi.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
 

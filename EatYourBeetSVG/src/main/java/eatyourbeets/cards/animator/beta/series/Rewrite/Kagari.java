@@ -1,13 +1,16 @@
 package eatyourbeets.cards.animator.beta.series.Rewrite;
 
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.interfaces.subscribers.OnOrbPassiveEffectSubscriber;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -19,35 +22,48 @@ public class Kagari extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, KagariPower.EARTH_ORBS);
-        SetUpgrade(0, 0, 3);
+        Initialize(0, 0, 4);
+        SetUpgrade(0, 4, 0);
         SetAffinity_Orange(2, 0, 0);
         SetAffinity_Blue(1, 0, 0);
+
+        SetAffinityRequirement(Affinity.Orange, 2);
+        SetAffinityRequirement(Affinity.Blue, 2);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetRetainOnce(true);
     }
 
     @Override
     public void OnDrag(AbstractMonster m)
     {
-        for (EnemyIntent intent : GameUtilities.GetIntents())
-        {
-            intent.AddStrength(-magicNumber);
+        if (CheckAffinity(Affinity.Orange) && CheckAffinity(Affinity.Blue)) {
+            for (EnemyIntent intent : GameUtilities.GetIntents())
+            {
+                intent.AddStrength(-magicNumber);
+            }
         }
+
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
-        {
-            GameActions.Bottom.ReduceStrength(enemy, magicNumber, true);
+        if (CheckAffinity(Affinity.Orange) && CheckAffinity(Affinity.Blue)) {
+            for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
+            {
+                GameActions.Bottom.ReduceStrength(enemy, magicNumber, true);
+            }
         }
 
         GameActions.Bottom.StackPower(new KagariPower(p, 1));
     }
 
-    public static class KagariPower extends AnimatorPower
+    public static class KagariPower extends AnimatorPower implements OnOrbPassiveEffectSubscriber
     {
-        public static final int EARTH_ORBS = 2;
 
         public KagariPower(AbstractPlayer owner, int amount)
         {
@@ -61,19 +77,24 @@ public class Kagari extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount, EARTH_ORBS);
+            description = FormatDescription(0, amount);
         }
 
         @Override
-        public void wasHPLost(DamageInfo info, int damageAmount)
+        public void atEndOfTurn(boolean isPlayer)
         {
-            super.wasHPLost(info, damageAmount);
+            super.atEndOfTurn(isPlayer);
 
-            if (info.type != DamageInfo.DamageType.HP_LOSS && damageAmount > 0)
-            {
+            ResetAmount();
+        }
+
+        @Override
+        public void OnOrbPassiveEffect(AbstractOrb orb) {
+            if (Earth.ORB_ID.equals(orb.ID) && owner.isPlayer && amount > 0) {
+                GameActions.Bottom.GainWillpower(amount, player.stance.ID.equals(WillpowerStance.STANCE_ID));
+                this.amount -= 1;
+                updateDescription();
                 flash();
-                GameActions.Top.ReducePower(this, 1);
-                GameActions.Bottom.ChannelOrbs(Earth::new, EARTH_ORBS);
             }
         }
     }

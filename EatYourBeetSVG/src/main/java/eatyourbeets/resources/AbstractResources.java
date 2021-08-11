@@ -10,6 +10,7 @@ import eatyourbeets.utilities.JUtils;
 import java.io.File;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 public abstract class AbstractResources extends GR
 implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber,
@@ -96,7 +97,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
 
     public FileHandle GetFallbackFile(String fileName)
     {
-        return Gdx.files.internal("localization/" + prefix + "/eng/" + fileName);
+        return Gdx.files.internal("localization/" + prefix.toLowerCase(Locale.ROOT) + "/eng/" + fileName);
     }
 
     public <T> T GetFallbackStrings(String fileName, Type typeOfT)
@@ -131,7 +132,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
                 language = Settings.GameLanguage.ENG;
             }
 
-            return Gdx.files.internal("localization/" + prefix + "/" + language.name().toLowerCase() + "/" + fileName);
+            return Gdx.files.internal("localization/" + prefix.toLowerCase(Locale.ROOT) + "/" + language.name().toLowerCase() + "/" + fileName);
         }
     }
 

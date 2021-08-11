@@ -32,8 +32,6 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 public class ParseGenericCommand extends ConsoleCommand
 {
-    private static Object temp;
-
     public ParseGenericCommand()
     {
         this.minExtraTokens = 1;
@@ -281,15 +279,15 @@ public class ParseGenericCommand extends ConsoleCommand
                         return;
                     }
 
-                    temp = tokens[2].replace("_", " ");
+                    final String name = tokens[2].replace("_", " ");
                     final ArrayList<AnimatorCard> cards = new ArrayList<>();
-                    if (temp.equals("colorless"))
+                    if (name.equals("colorless"))
                     {
                         cards.addAll(CardSeries.GetColorlessCards());
                     }
                     else
                     {
-                        final CardSeries series = JUtils.Find(CardSeries.GetAllSeries(), s -> s.Name.equals(temp));
+                        final CardSeries series = CardSeries.GetByName(name, false);
                         if (series != null)
                         {
                             CardSeries.AddCards(series, CardLibrary.getAllCards(), cards);
@@ -383,15 +381,21 @@ public class ParseGenericCommand extends ConsoleCommand
     @Override
     public ArrayList<String> extraOptions(String[] tokens, int depth)
     {
-        ArrayList<String> suggestions = new ArrayList<>();
-
+        final ArrayList<String> suggestions = new ArrayList<>();
         if (tokens.length > 1 && tokens.length <= 3)
         {
-            if (tokens[1].equals("starter") || tokens[1].equals("get-cards"))
+            if (tokens[1].equals("starter"))
             {
                 for (AnimatorLoadout loadout : GR.Animator.Data.GetEveryLoadout())
                 {
-                    suggestions.add(loadout.Name);//.replace(" ", "_"));
+                    suggestions.add(loadout.Name);
+                }
+            }
+            if (tokens[1].equals("get-cards"))
+            {
+                for (CardSeries series : CardSeries.GetAllSeries())
+                {
+                    suggestions.add(series.Name);
                 }
             }
         }

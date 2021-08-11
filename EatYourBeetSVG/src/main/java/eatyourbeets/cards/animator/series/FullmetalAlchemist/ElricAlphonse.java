@@ -2,22 +2,23 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.ElricAlphonseAlt;
+import eatyourbeets.cards.animator.special.ElricAlphonse_Alt;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class ElricAlphonse extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ElricAlphonse.class)
             .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
+    public static final ElricAlphonse_Alt PREVIEW = new ElricAlphonse_Alt();
     static
     {
-        DATA.AddPreview(new ElricAlphonseAlt(), true);
+        DATA.AddPreview(PREVIEW, true);
     }
 
     public ElricAlphonse()
@@ -38,15 +39,12 @@ public class ElricAlphonse extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.MakeCardInDiscardPile(new ElricAlphonseAlt()).SetUpgrade(upgraded, false);
+        GameActions.Bottom.MakeCardInDiscardPile(PREVIEW).SetUpgrade(upgraded, true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (CombatStats.Affinities.GetPowerAmount(Affinity.Blue) <= magicNumber)
-        {
-            GameActions.Bottom.GainIntellect(1, true);
-        }
+        GameActions.Bottom.GainIntellect(GameUtilities.GetPowerAmount(Affinity.Blue) <= magicNumber ? 1 : 0, true);
     }
 }

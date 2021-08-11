@@ -34,7 +34,7 @@ public abstract class EYBClickablePower extends EYBPower
 
     private EYBClickablePower(AbstractCreature owner, EYBCardData cardData, EYBRelic relic)
     {
-        super(owner, cardData, relic);
+        super(owner, cardData, relic, null);
 
         priority = CombatStats.Instance.priority + 1;
         tooltip = new EYBCardTooltip(name, description);

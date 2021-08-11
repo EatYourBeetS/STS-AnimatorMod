@@ -57,6 +57,11 @@ public final class GameEffects
         return Unlisted.isEmpty();
     }
 
+    public EYBEffect Attack(AbstractCreature source, AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax)
+    {
+        return Attack(source, target, attackEffect, pitchMin, pitchMax, null, source == target ? 0 : 0.15f);
+    }
+
     public EYBEffect Attack(AbstractCreature source, AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax, Color vfxColor)
     {
         return Attack(source, target, attackEffect, pitchMin, pitchMax, vfxColor, source == target ? 0 : 0.15f);

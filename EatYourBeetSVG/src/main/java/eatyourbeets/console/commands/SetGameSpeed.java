@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class SetGameSpeed extends ConsoleCommand
 {
-    private static MethodInfo _writeConfig;
+    private static MethodInfo.T0 _writeConfig;
     private static FieldInfo<SpireConfig> _config;
     private static FieldInfo<Boolean> _isDeltaMultiplied;
     private static FieldInfo<Float> _deltaMultiplier;

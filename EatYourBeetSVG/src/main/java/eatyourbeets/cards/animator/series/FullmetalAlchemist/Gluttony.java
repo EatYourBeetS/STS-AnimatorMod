@@ -36,15 +36,13 @@ public class Gluttony extends AnimatorCard
     @Override
     public boolean cardPlayable(AbstractMonster m)
     {
-        boolean playable = super.cardPlayable(m);
-
+        final boolean playable = super.cardPlayable(m);
         if (playable)
         {
-            int totalCards = player.drawPile.size() + player.discardPile.size() + player.hand.size();
+            final int totalCards = player.drawPile.size() + player.discardPile.size() + player.hand.size();
             if (totalCards < secondaryValue)
             {
                 cantUseMessage = cardData.Strings.EXTENDED_DESCRIPTION[0];
-
                 return false;
             }
         }

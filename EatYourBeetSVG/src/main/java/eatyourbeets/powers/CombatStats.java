@@ -115,13 +115,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
         this.priority = -3000; //it was Integer.MIN_VALUE but it actually breaks the comparator, nice
     }
 
-    @Override
-    public AbstractPower makeCopy()
-    {
-        JUtils.LogError(this, "Do not clone powers which implement InvisiblePower");
-        return null;
-    }
-
     public static AbstractPlayer RefreshPlayer()
     {
         EYBCard.rng = EYBPower.rng = EYBRelic.rng = AbstractDungeon.cardRandomRng;
@@ -240,7 +233,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static void OnCardReset(AbstractCard card)
     {
-        OnCardResetListener c = JUtils.SafeCast(card, OnCardResetListener.class);
+        final OnCardResetListener c = JUtils.SafeCast(card, OnCardResetListener.class);
         if (c != null)
         {
             c.OnReset();
@@ -254,7 +247,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static void OnCardCreated(AbstractCard card, boolean startOfBattle)
     {
-        EYBCard c = JUtils.SafeCast(card, EYBCard.class);
+        final EYBCard c = JUtils.SafeCast(card, EYBCard.class);
         if (c != null)
         {
             c.triggerWhenCreated(startOfBattle);
@@ -304,7 +297,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
         onBattleStart.Clear();
 
-        ArrayList<AbstractCard> cards = new ArrayList<>(player.drawPile.group);
+        final ArrayList<AbstractCard> cards = new ArrayList<>(player.drawPile.group);
         cards.addAll(player.hand.group);
         cards.addAll(player.discardPile.group);
         cards.addAll(player.exhaustPile.group);
@@ -340,46 +333,47 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static void OnUsingCard(AbstractCard c, AbstractPlayer p, AbstractMonster m)
     {
-        final AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
-        if (card != null)
+        if (c == null)
         {
-            final boolean isSynergizing = Affinities.IsSynergizing(c);
-
-            card.OnUse(p, m, isSynergizing);
-
-            if (isSynergizing)
-            {
-                OnSynergy(c);
-            }
-
-            final ArrayList<AbstractGameAction> actions = GameActions.GetActions();
-
-            cachedActions.clear();
-            cachedActions.addAll(actions);
-
-            actions.clear();
-            card.OnLateUse(p, m, isSynergizing);
-
-            if (isSynergizing)
-            {
-                Affinities.OnSynergy(card);
-            }
-
-            if (actions.isEmpty())
-            {
-                actions.addAll(cachedActions);
-            }
-            else
-            {
-                for (int i = 0; i < cachedActions.size(); i++)
-                {
-                    GameActions.Top.Add(cachedActions.get(cachedActions.size() - 1 - i));
-                }
-            }
+            throw new RuntimeException("Card played is null");
         }
-        else if (c != null)
+
+        final AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
+        if (card == null)
         {
             c.use(p, m);
+            return;
+        }
+
+        final boolean isSynergizing = Affinities.IsSynergizing(c);
+
+        card.OnUse(p, m, isSynergizing);
+
+        if (isSynergizing)
+        {
+            OnSynergy(c);
+        }
+
+        final ArrayList<AbstractGameAction> actions = GameActions.GetActions();
+
+        cachedActions.clear();
+        cachedActions.addAll(actions);
+
+        actions.clear();
+        card.OnLateUse(p, m, isSynergizing);
+
+        if (isSynergizing)
+        {
+            Affinities.OnSynergy(card);
+        }
+
+        if (actions.isEmpty())
+        {
+            actions.addAll(cachedActions);
+        }
+        else for (int i = 0; i < cachedActions.size(); i++)
+        {
+            GameActions.Top.Add(cachedActions.get(cachedActions.size() - 1 - i));
         }
     }
 

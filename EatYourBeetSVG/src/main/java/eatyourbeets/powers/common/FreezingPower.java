@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.subscribers.OnChannelOrbSubscriber;
 import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
@@ -19,8 +18,6 @@ public class FreezingPower extends CommonPower implements OnChannelOrbSubscriber
     public static final int DAMAGE_REDUCTION_LV1 = 3;
     public static final int DAMAGE_REDUCTION_LV2 = 4;
 
-    private final AbstractCreature source;
-
     public static int GetDamageReduction()
     {
         return GameUtilities.HasOrb(Frost.ORB_ID) ? DAMAGE_REDUCTION_LV2 : DAMAGE_REDUCTION_LV1;
@@ -28,9 +25,8 @@ public class FreezingPower extends CommonPower implements OnChannelOrbSubscriber
 
     public FreezingPower(AbstractCreature owner, AbstractCreature source, int amount)
     {
-        super(owner, POWER_ID);
+        super(owner, source, POWER_ID);
 
-        this.source = source;
         this.priority = 4;
 
         Initialize(amount, PowerType.DEBUFF, true);
@@ -98,11 +94,5 @@ public class FreezingPower extends CommonPower implements OnChannelOrbSubscriber
     public float atDamageGive(float damage, DamageInfo.DamageType type)
     {
         return super.atDamageGive(type == DamageInfo.DamageType.NORMAL ? (damage - GetDamageReduction()) : damage, type);
-    }
-
-    @Override
-    public AbstractPower makeCopy()
-    {
-        return new FreezingPower(owner, source, amount);
     }
 }

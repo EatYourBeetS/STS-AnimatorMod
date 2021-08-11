@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.localization.CardStrings;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.cardTextParsing.CTContext;
 import eatyourbeets.powers.CombatStats;
@@ -20,6 +21,7 @@ import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.RenderHelpers;
+import org.apache.commons.lang3.StringUtils;
 
 public class EYBCardText
 {
@@ -33,6 +35,17 @@ public class EYBCardText
     protected final CTContext context = new CTContext();
     protected final EYBCard card;
     protected String overrideDescription;
+
+    public static CardStrings ProcessCardStrings(CardStrings strings)
+    {
+        final String placeholder = "<DESCRIPTION>";
+        if (StringUtils.isNotEmpty(strings.UPGRADE_DESCRIPTION))
+        {
+            strings.UPGRADE_DESCRIPTION = strings.UPGRADE_DESCRIPTION.replace("<DESCRIPTION>", strings.DESCRIPTION);
+        }
+
+        return strings;
+    }
 
     public EYBCardText(EYBCard card)
     {

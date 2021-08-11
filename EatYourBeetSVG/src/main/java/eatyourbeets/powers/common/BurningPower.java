@@ -2,10 +2,9 @@ package eatyourbeets.powers.common;
 
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.ui.animator.combat.CombatHelper;
@@ -19,8 +18,6 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     public static final String POWER_ID = CreateFullID(BurningPower.class);
     public static final int ATTACK_MULTIPLIER = 15;
 
-    private final AbstractCreature source;
-
     public static float CalculateDamage(float damage)
     {
         return damage + Mathf.Max(1, damage * (ATTACK_MULTIPLIER / 100f));
@@ -28,9 +25,8 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
 
     public BurningPower(AbstractCreature owner, AbstractCreature source, int amount)
     {
-        super(owner, POWER_ID);
+        super(owner, source, POWER_ID);
 
-        this.source = source;
         this.priority = 4;
 
         Initialize(amount, PowerType.DEBUFF, true);
@@ -73,12 +69,6 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     public Color getColor()
     {
         return healthBarColor;
-    }
-
-    @Override
-    public AbstractPower makeCopy()
-    {
-        return new BurningPower(owner, source, amount);
     }
 
     private int GetPassiveDamage()

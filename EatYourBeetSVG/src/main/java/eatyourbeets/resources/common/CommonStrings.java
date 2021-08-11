@@ -45,6 +45,7 @@ public class CommonStrings
         public final String TransformInto_F1 = Strings.TEXT[2];
         public final String ChooseCards_F1 = Strings.TEXT[3];
         public final String Purge_F1 = Strings.TEXT[4];
+        public final String Scry = Strings.TEXT[5];
         public final String Discard = DiscardAction.TEXT[0];
         public final String Exhaust = ExhaustAction.TEXT[0];
         public final String Cycle = GamblingChipAction.TEXT[1];

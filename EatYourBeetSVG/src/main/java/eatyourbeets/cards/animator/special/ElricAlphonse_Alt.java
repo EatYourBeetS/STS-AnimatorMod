@@ -8,13 +8,13 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
 
-public class ElricAlphonseAlt extends AnimatorCard
+public class ElricAlphonse_Alt extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ElricAlphonseAlt.class)
+    public static final EYBCardData DATA = Register(ElricAlphonse_Alt.class)
             .SetPower(2, CardRarity.SPECIAL)
             .SetSeries(ElricAlphonse.DATA.Series);
 
-    public ElricAlphonseAlt()
+    public ElricAlphonse_Alt()
     {
         super(DATA);
 

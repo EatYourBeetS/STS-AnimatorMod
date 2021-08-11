@@ -6,13 +6,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
 
-public class MelzalgaldAlt_1 extends MelzalgaldAlt
+public class Melzalgald_1 extends MelzalgaldAlt
 {
-    public static final EYBCardData DATA = Register(MelzalgaldAlt_1.class)
+    public static final EYBCardData DATA = Register(Melzalgald_1.class)
             .SetAttack(1, CardRarity.SPECIAL)
             .SetSeries(SERIES);
 
-    public MelzalgaldAlt_1()
+    public Melzalgald_1()
     {
         super(DATA);
 

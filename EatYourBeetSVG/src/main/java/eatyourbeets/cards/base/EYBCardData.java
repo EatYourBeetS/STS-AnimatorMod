@@ -41,19 +41,17 @@ public class EYBCardData
 
     public EYBCardData(Class<? extends EYBCard> type, String cardID)
     {
-        this.type = type;
-        this.Strings = GR.GetCardStrings(cardID);
+        this(type, cardID, GR.GetCardStrings(cardID));
+
         this.ImagePath = GR.GetCardImage(cardID);
-        this.ID = cardID;
-        this.MaxCopies = -1;
     }
 
     public EYBCardData(Class<? extends EYBCard> type, String cardID, CardStrings strings)
     {
-        this.type = type;
-        this.Strings = strings;
         this.ID = cardID;
         this.MaxCopies = -1;
+        this.Strings = EYBCardText.ProcessCardStrings(strings);
+        this.type = type;
     }
 
     public AbstractCard CreateNewInstance(boolean upgrade) throws RuntimeException

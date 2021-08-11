@@ -603,6 +603,16 @@ public final class GameActions
         return Add(new HealCreature(player, player, amount));
     }
 
+    public ModifyAffinityLevel ModifyAffinityLevel(AbstractCard card, Affinity affinity, int amount, boolean relative)
+    {
+        return Add(new ModifyAffinityLevel(card, affinity, amount, relative));
+    }
+
+    public ModifyAffinityLevel ModifyAffinityLevel(CardGroup group, int cards, Affinity affinity, int amount, boolean relative)
+    {
+        return Add(new ModifyAffinityLevel(group, cards, affinity, amount, relative));
+    }
+
     public ModifyAffinityScaling IncreaseExistingScaling(AbstractCard card, int amount)
     {
         return Add(new ModifyAffinityScaling(card, Affinity.General, amount, true));

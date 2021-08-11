@@ -16,65 +16,65 @@
 		"animator:Strike_Red":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "!M! <R>: Retain [F]",
+			"UPGRADE_DESCRIPTION": "!M! <R>: {~Retain} [F]",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Red":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "!M! <R>: Retain [F]",
+			"UPGRADE_DESCRIPTION": "!M! <R>: {~Retain} [F]",
 			"NAME": "Improved Defend"
 		},
 		
 		"animator:Strike_Green":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "!M! <G>: Retain [A]",
+			"UPGRADE_DESCRIPTION": "!M! <G>: {~Retain} [A]",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Green":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "!M! <G>: Retain [A]",
+			"UPGRADE_DESCRIPTION": "!M! <G>: {~Retain} [A]",
 			"NAME": "Improved Defend"
 		},
 		
 		"animator:Strike_Blue":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "!M! <B>: Retain [I]",
+			"UPGRADE_DESCRIPTION": "!M! <B>: {~Retain} [I]",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Blue":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "!M! <B>: Retain [I]",
+			"UPGRADE_DESCRIPTION": "!M! <B>: {~Retain} [I]",
 			"NAME": "Improved Defend"
 		},
 	
 		"animator:Strike_Light":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "!M! <L>: Retain [B]",
+			"UPGRADE_DESCRIPTION": "!M! <L>: {~Retain} [B]",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Light":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "!M! <L>: Retain [B]",
+			"UPGRADE_DESCRIPTION": "!M! <L>: {~Retain} [B]",
 			"NAME": "Improved Defend"
 		},
 		
 		"animator:Strike_Dark":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "!M! <D>: Retain [C]",
+			"UPGRADE_DESCRIPTION": "!M! <D>: {~Retain} [C]",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Dark":
 		{
 			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "!M! <D>: Retain [C]",
+			"UPGRADE_DESCRIPTION": "!M! <D>: {~Retain} [C]",
 			"NAME": "Improved Defend"
 		},
 		
@@ -229,7 +229,7 @@
 		},
 		"animator:Shimakaze":
 		{
-			"DESCRIPTION": "Retain [A]. || <DRW-M>. ** Add 1 Dazed to ** your draw pile.",
+			"DESCRIPTION": "{~Retain} [A]. || <DRW-M>. ** Add 1 Dazed to ** your draw pile.",
 			"NAME": "Shimakaze"
 		},
 		"animator:Rorona":
@@ -256,7 +256,7 @@
 		"animator:Curse_AscendersBane":
 		{
 			"DESCRIPTION": "Unplayable.",
-			"EXTENDED_DESCRIPTION": ["Unplayable. || When Exhausted: Purge ** the top card of your draw ** pile. If it was a Hindrance: ** Replace it with this card.", "Ascension {0}+"],
+			"EXTENDED_DESCRIPTION": ["Take !M! damage. || When Exhausted from ** the hand: Purge the top ** card of your draw pile. ** If it was a Hindrance: ** Replace it with this card.", "Ascension {0}+"],
 			"NAME": "Ascender's Bane"
 		},
 		"animator:Curse_Dizziness":
@@ -363,7 +363,7 @@
 	{
 		"animator:Alexander":
 		{
-			"DESCRIPTION": "Retain [F]. || <FS>: Gain 1 [Plated Armor]. || When Exhausted: ** Play this card.",
+			"DESCRIPTION": "{~Retain} [F]. || <FS>: Gain 1 [Plated Armor]. || When Exhausted: ** Play this card.",
 			"NAME": "Alexander"
 		},
 		"animator:Archer":
@@ -404,7 +404,7 @@
 		},
 		"animator:Lancer":
 		{
-			"DESCRIPTION": "Retain [A]. Apply 1 [Vulnerable]. || <slm>. Increase the ** effect of [Vulnerable] on enemies ** by 25% this turn.",
+			"DESCRIPTION": "{~Retain} [A]. Apply 1 [Vulnerable]. || <slm>. Increase the ** effect of [Vulnerable] on enemies ** by 25% this turn.",
 			"EXTENDED_DESCRIPTION": ["Enemies take {0}% more damage from [Vulnerable]."],
 			"NAME": "Lancer"
 		},
@@ -439,18 +439,19 @@
 	{
 		"animator:ElricAlphonse":
 		{
-			"DESCRIPTION": "If you have !M! or ** less [I]: Boost [I]. || When Exhausted, add ** {Armored Alphonse} ** to your discard pile.",
+			"DESCRIPTION": "{~Retain} [I]. If you have ** !M! or less [I]: Gain [I]. || When Exhausted, add ** {Armored Alphonse} ** to your discard pile.",
 			"NAME": "Alphonse Elric"
 		},
 		"animator:ElricEdward":
 		{
-			"DESCRIPTION": "Cycle 1 card. Channel 1 ** Orb based on its type: || {Attack} -> [Lightning]. ** {Power} -> [Earth]. ** {Skill} -> [Frost].",
+			"DESCRIPTION": "Cycle 1 card. If it is a: || {Skill} -> Channel 1 [Frost]. ** {Attack} -> Channel 1 [Lightning]. ** {Power} -> Channel 1 [Earth].",
+			"UPGRADE_DESCRIPTION": "<DESCRIPTION> ** {Hindrance} -> Channel 1 [Fire].",
 			"NAME": "Edward Elric"
 		},
 		"animator:Envy":
 		{
-			"DESCRIPTION": "The first card played ** each turn will Synergize. || Gain 20% of your ** missing HP as [Temp HP].",
-			"EXTENDED_DESCRIPTION": ["The next card you play this turn will Synergize."],
+			"DESCRIPTION": "At the start of each turn: ** Upgrade the <W> levels ** of a random card. || Once per turn, pay 2 [E]: ** Gain 20% of your ** missing HP as [Temp HP].",
+			"EXTENDED_DESCRIPTION": ["Pay 2 [E] to gain #b{0} [Temp HP]. || At the start of each turn: Increase the <W> levels of #b{1} random card(s) to LV2."],
 			"NAME": "Envy"
 		},
 		"animator:Father":
@@ -481,7 +482,8 @@
 		},
 		"animator:Pride":
 		{
-			"DESCRIPTION": "Apply !S! [Constricted]. ** Channel !M! [Dark]. || Until next turn, your [Dark] ** will absorb all unblocked ** damage you would take.",
+			"DESCRIPTION": "Channel !M! [Dark]. || Until next turn: [Dark] absorbs ** all unblocked damage you ** would take, and it applies ** !S! [Constricted] to the attacker.",
+			"EXTENDED_DESCRIPTION": ["Your [Dark] absorbs all unblock damage, and it applies #b{0} [Constricted] to the attacker."],
 			"NAME": "Pride"
 		},
 		"animator:RoyMustang":
@@ -491,7 +493,8 @@
 		},
 		"animator:Scar":
 		{
-			"DESCRIPTION": "Exhaust a random ** card to Channel 1 [Earth]. || Synergy: Purge, then ** draw a random card ** from your Exhaust pile.",
+			"DESCRIPTION": "Exhaust a card ** to Channel 1 [Earth]. || Synergy: Move a card ** from your Exhaust pile ** to your discard pile, ** then take !S! damage.",
+			"EXTENDED_DESCRIPTION": ["Move a card to your discard pile, then take {0} damage."],
 			"NAME": "Scar"
 		},
 		"animator:Sloth":
@@ -1309,7 +1312,7 @@
 		},
 		"animator:Enchantment2":
 		{
-			"DESCRIPTION": "Once per turn, ** pay !S! [E]: Retain ** all {[A-Gen] Powers}.",
+			"DESCRIPTION": "Once per turn, ** pay !S! [E]: {~Retain} ** all {[A-Gen] Powers}.",
 			"EXTENDED_DESCRIPTION": 
 			[
 				"Once per turn, pay !S! [E]: Boost [F] and gain !M! [Plated Armor].",
@@ -1378,21 +1381,21 @@
 		},
 		"animator:BlackLotus":
 		{
-			"DESCRIPTION": "Retain [F] [A]. || <FS>: Gain !M! [Metallicize]. || <AS>: Gain !S! [Blur].",
+			"DESCRIPTION": "{~Retain} [F] [A]. || <FS>: Gain !M! [Metallicize]. || <AS>: Gain !S! [Blur].",
 			"NAME": "Black Lotus"
 		},
-		"animator:ChlammyZellScheme":
+		"animator:ChlammyZell_Scheme":
 		{
 			"DESCRIPTION": "Whenever you play ** alternating card types ** this turn: Cycle 1 card ** and deal !M! damage to ** ALL enemies.",
 			"NAME": "Scheme"
 		},
-		"animator:DarknessAdrenaline":
+		"animator:Darkness_Adrenaline":
 		{
 			"DESCRIPTION": "Gain [E]. ** <DRW-M>.",
 			"NAME": "Adrenaline",
 			"UPGRADE_DESCRIPTION": "Gain [E] [E]. ** <DRW-M>."
 		},
-		"animator:ElricAlphonseAlt":
+		"animator:ElricAlphonse_Alt":
 		{
 			"DESCRIPTION": "Gain 1 orb slot. ** Channel !S! [Lightning]. || Synergy: Gain !M! [Plated Armor].",
 			"NAME": "Armored Alphonse"
@@ -1428,17 +1431,17 @@
 			"DESCRIPTION": "This card's damage ** is multiplied by X",
 			"NAME": "Ichigo Bankai"
 		},
-		"animator:MelzalgaldAlt_1":
+		"animator:Melzalgald_1":
 		{
 			"DESCRIPTION": "Gain !M! [F].",
 			"NAME": "Melzalgald"
 		},
-		"animator:MelzalgaldAlt_2":
+		"animator:Melzalgald_2":
 		{
 			"DESCRIPTION": "Gain !M! [I].",
 			"NAME": "Melzalgald"
 		},
-		"animator:MelzalgaldAlt_3":
+		"animator:Melzalgald_3":
 		{
 			"DESCRIPTION": "Gain !M! [A].",
 			"NAME": "Melzalgald"
@@ -1483,7 +1486,7 @@
 			"DESCRIPTION": "Delay certain ** doom by 1 turn.",
 			"NAME": "Respite"
 		},
-		"animator:ShichikaKyotouryuu":
+		"animator:Shichika_Kyotouryuu":
 		{
 			"DESCRIPTION": "Remove the ** enemy's [Block].",
 			"NAME": "Kyotouryuu"

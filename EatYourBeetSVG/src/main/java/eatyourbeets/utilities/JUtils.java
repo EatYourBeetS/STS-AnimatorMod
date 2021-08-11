@@ -11,8 +11,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.net.URISyntaxException;
 import java.util.*;
 import java.util.function.Predicate;
@@ -251,13 +251,40 @@ public class JUtils
     {
         try
         {
-            Field field = type.getDeclaredField(fieldName);
+            final Field field = type.getDeclaredField(fieldName);
             field.setAccessible(true);
             return new FieldInfo<>(field);
         }
         catch (NoSuchFieldException e)
         {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static <T> MethodInfo.T0<T> GetMethod(String methodName, Class<?> type) throws RuntimeException
+    {
+        return new MethodInfo.T0<T>(methodName, type);
+    }
+
+    public static <T, T1> MethodInfo.T1<T, T1> GetMethod(String methodName, Class<?> type, Class<T1> t1) throws RuntimeException
+    {
+        return new MethodInfo.T1<T, T1>(methodName, type, t1);
+    }
+
+    public static <T, T1, T2> MethodInfo.T2<T, T1, T2> GetMethod(String methodName, Class<?> type, Class<T1> t1, Class<T2> t2) throws RuntimeException
+    {
+        return new MethodInfo.T2<T, T1, T2>(methodName, type, t1, t2);
+    }
+
+    public static <T> Constructor<T> TryGetConstructor(Class<T> type, Class... paramTypes)
+    {
+        try
+        {
+            return paramTypes.length > 0 ? type.getDeclaredConstructor(paramTypes) : type.getConstructor();
+        }
+        catch (NoSuchMethodException e)
+        {
+            return null;
         }
     }
 
@@ -269,20 +296,6 @@ public class JUtils
         }
 
         return LogManager.getLogger((source instanceof Class) ? ((Class)source).getName() : source.getClass().getName());
-    }
-
-    public static MethodInfo GetMethod(String methodName, Class<?> type, Class<?>... parameterTypes) throws RuntimeException
-    {
-        try
-        {
-            Method method = type.getDeclaredMethod(methodName, parameterTypes);
-            method.setAccessible(true);
-            return new MethodInfo(method);
-        }
-        catch (NoSuchMethodException e)
-        {
-            throw new RuntimeException(e);
-        }
     }
 
     public static int IncrementMapElement(Map map, Object key)

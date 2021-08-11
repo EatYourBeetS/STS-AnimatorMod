@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator.series.Katanagatari;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.ShichikaKyotouryuu;
+import eatyourbeets.cards.animator.special.Shichika_Kyotouryuu;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -16,7 +16,7 @@ public class Shichika extends AnimatorCard
             .SetSeriesFromClassPackage();
     static
     {
-        DATA.AddPreview(new ShichikaKyotouryuu(), false);
+        DATA.AddPreview(new Shichika_Kyotouryuu(), false);
     }
 
     public Shichika()
@@ -38,6 +38,6 @@ public class Shichika extends AnimatorCard
         GameActions.Bottom.GainBlock(block).SetVFX(false, true);
         GameActions.Bottom.GainForce(1, upgraded);
         GameActions.Bottom.GainAgility(1, upgraded);
-        GameActions.Bottom.MakeCardInHand(new ShichikaKyotouryuu());
+        GameActions.Bottom.MakeCardInHand(new Shichika_Kyotouryuu());
     }
 }

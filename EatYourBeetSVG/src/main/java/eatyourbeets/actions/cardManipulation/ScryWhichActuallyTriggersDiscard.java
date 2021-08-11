@@ -1,13 +1,13 @@
 package eatyourbeets.actions.cardManipulation;
 
 import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.utility.ScryAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.resources.GR;
 
 import java.util.ArrayList;
 
@@ -58,7 +58,7 @@ public class ScryWhichActuallyTriggersDiscard extends EYBActionWithCallback<Arra
             }
         }
 
-        AbstractDungeon.gridSelectScreen.open(group, amount, true, ScryAction.TEXT[0]);
+        AbstractDungeon.gridSelectScreen.open(group, amount, true, GR.Common.Strings.GridSelection.Scry);
     }
 
     @Override

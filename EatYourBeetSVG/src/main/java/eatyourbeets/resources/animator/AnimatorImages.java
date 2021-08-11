@@ -13,9 +13,10 @@ public class AnimatorImages
     public final String ATTACK_PNG = "images/animator/cardui/512/bg_attack_canvas.png";
     public final String SKILL_PNG = "images/animator/cardui/512/bg_skill_canvas.png";
     public final String POWER_PNG = "images/animator/cardui/512/bg_power_canvas.png";
-    public final String ORB_A_PNG = "images/animator/cardui/512/card_a_orb_canvas.png";
-    public final String ORB_C_PNG = "images/animator/cardui/512/card_c_orb_canvas.png";
-    public final String ORB_B_PNG = "images/animator/cardui/512/card_b_orb_canvas.png";
+    public final String ORB_A_PNG = "images/animator/cardui/512/energy_orb_default_a.png";
+    public final String ORB_B_PNG = "images/animator/cardui/512/energy_orb_default_b.png";
+    public final String ORB_C_PNG = "images/animator/cardui/512/energy_orb_default_c.png";
+    public final String ORB_COLORLESS_A_PNG = "images/animator/cardui/512/energy_orb_colorless_a.png";
     public final String CHAR_BUTTON_PNG = "images/animator/ui/charselect/animator_button.png";
     public final String CHAR_PORTRAIT_JPG = "images/animator/ui/charselect/animator_portrait.jpg";
 
@@ -40,7 +41,8 @@ public class AnimatorImages
     public final String SHOULDER2_PNG = "images/animator/characters/shoulder2.png";
     public final String CORPSE_PNG = "images/animator/characters/corpse.png";
 
-    public final TextureCache CARD_ENERGY_ORB_A           = new TextureCache("images/animator/cardui/512/card_a_orb_canvas.png");
+    public final TextureCache CARD_ENERGY_ORB_ANIMATOR    = new TextureCache(ORB_A_PNG);
+    public final TextureCache CARD_ENERGY_ORB_COLORLESS   = new TextureCache(ORB_COLORLESS_A_PNG);
     public final TextureCache CARD_BACKGROUND_ATTACK      = new TextureCache("images/animator/cardui/512/bg_attack_canvas.png");
     public final TextureCache CARD_BACKGROUND_ATTACK_UR   = new TextureCache("images/animator/cardui/512/bg_attack_ultrarare.png");
     public final TextureCache CARD_BACKGROUND_SKILL_UR    = new TextureCache("images/animator/cardui/512/bg_skill_ultrarare.png");

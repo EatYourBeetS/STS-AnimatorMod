@@ -3,9 +3,9 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.MelzalgaldAlt_1;
-import eatyourbeets.cards.animator.special.MelzalgaldAlt_2;
-import eatyourbeets.cards.animator.special.MelzalgaldAlt_3;
+import eatyourbeets.cards.animator.special.Melzalgald_1;
+import eatyourbeets.cards.animator.special.Melzalgald_2;
+import eatyourbeets.cards.animator.special.Melzalgald_3;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
@@ -18,9 +18,9 @@ public class Melzalgald extends AnimatorCard
             .SetSeriesFromClassPackage();
     static
     {
-        DATA.AddPreview(new MelzalgaldAlt_1(), true);
-        DATA.AddPreview(new MelzalgaldAlt_2(), true);
-        DATA.AddPreview(new MelzalgaldAlt_3(), true);
+        DATA.AddPreview(new Melzalgald_1(), true);
+        DATA.AddPreview(new Melzalgald_2(), true);
+        DATA.AddPreview(new Melzalgald_3(), true);
     }
 
     public Melzalgald()
@@ -39,8 +39,8 @@ public class Melzalgald extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 
-        GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_1()).SetUpgrade(upgraded, false).AddCallback(GameUtilities::Retain);
-        GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_2()).SetUpgrade(upgraded, false).AddCallback(GameUtilities::Retain);
-        GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_3()).SetUpgrade(upgraded, false).AddCallback(GameUtilities::Retain);
+        GameActions.Bottom.MakeCardInHand(new Melzalgald_1()).SetUpgrade(upgraded, false).AddCallback(GameUtilities::Retain);
+        GameActions.Bottom.MakeCardInHand(new Melzalgald_2()).SetUpgrade(upgraded, false).AddCallback(GameUtilities::Retain);
+        GameActions.Bottom.MakeCardInHand(new Melzalgald_3()).SetUpgrade(upgraded, false).AddCallback(GameUtilities::Retain);
     }
 }

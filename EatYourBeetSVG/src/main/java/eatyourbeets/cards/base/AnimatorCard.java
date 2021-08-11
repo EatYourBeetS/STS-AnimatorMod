@@ -213,7 +213,7 @@ public abstract class AnimatorCard extends EYBCard
     @Override
     protected Texture GetEnergyOrb()
     {
-        return color == GR.Animator.CardColor ? IMAGES.CARD_ENERGY_ORB_A.Texture() : null;
+        return (color == GR.Animator.CardColor ? IMAGES.CARD_ENERGY_ORB_ANIMATOR : IMAGES.CARD_ENERGY_ORB_COLORLESS).Texture();
     }
 
     @Override

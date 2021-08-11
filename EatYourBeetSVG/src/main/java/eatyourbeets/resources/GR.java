@@ -469,6 +469,7 @@ public class GR
             @SpireEnum public static AbstractGameAction.AttackEffect SHIELD_FROST;
             @SpireEnum public static AbstractGameAction.AttackEffect DAGGER;
             @SpireEnum public static AbstractGameAction.AttackEffect SPEAR;
+            @SpireEnum public static AbstractGameAction.AttackEffect DARK;
         }
     }
 }

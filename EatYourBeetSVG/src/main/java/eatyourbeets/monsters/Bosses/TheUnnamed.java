@@ -34,6 +34,7 @@ import eatyourbeets.monsters.SharedMoveset.EYBMove_Special;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Unknown;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.monsters.InfinitePower;
+import eatyourbeets.relics.animator.unnamedReign.Ynitaph;
 import eatyourbeets.resources.GR;
 import eatyourbeets.scenes.TheUnnamedReignScene;
 import eatyourbeets.utilities.*;
@@ -126,8 +127,12 @@ public class TheUnnamed extends EYBMonster
             this.onBossVictoryLogic();
             this.onFinalBossVictoryLogic();
 
-            CardCrawlGame.stopClock = true;
+            if (Ynitaph.CanSpawn())
+            {
+                GameUtilities.ObtainRelic(hb.cX, hb.cY, new Ynitaph(1, true));
+            }
 
+            CardCrawlGame.stopClock = true;
             GameEffects.Queue.Add(new VictoryEffect());
         }
     }

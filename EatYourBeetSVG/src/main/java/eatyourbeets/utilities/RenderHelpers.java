@@ -534,7 +534,7 @@ public class RenderHelpers
                 {
                     if (text.length() > i + 1)
                     {
-                        overrideColor = GetColor(text.charAt(i + 1));
+                        overrideColor = GetColor(text.charAt(i + 1), baseColor);
                         i += 1;
                     }
                 }
@@ -712,7 +712,7 @@ public class RenderHelpers
         }
     }
 
-    private static Color GetColor(Character c)
+    private static Color GetColor(Character c, Color baseColor)
     {
         switch (c)
         {
@@ -726,8 +726,11 @@ public class RenderHelpers
                 return Settings.RED_TEXT_COLOR.cpy();
             case 'y':
                 return Settings.GOLD_COLOR.cpy();
+            case '#':
+                return baseColor.cpy();
             default:
-                return Color.WHITE.cpy();
+                JUtils.LogWarning(RenderHelpers.class, "Unknown color: #" + c);
+                return baseColor.cpy();
         }
     }
 

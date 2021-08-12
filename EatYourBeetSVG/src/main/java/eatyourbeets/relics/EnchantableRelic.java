@@ -116,7 +116,7 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
     @Override
     public AbstractRelic makeCopy()
     {
-        EnchantableRelic copy = (EnchantableRelic) super.makeCopy();
+        final EnchantableRelic copy = (EnchantableRelic) super.makeCopy();
         if (enchantment != null)
         {
             copy.ApplyEnchantment((Enchantment) enchantment.makeStatEquivalentCopy());

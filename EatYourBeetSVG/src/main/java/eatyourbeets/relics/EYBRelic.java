@@ -49,9 +49,16 @@ public abstract class EYBRelic extends CustomRelic
     }
 
     @Override
+    public void updateDescription(AbstractPlayer.PlayerClass c)
+    {
+        this.description = getUpdatedDescription();
+        this.mainTooltip.description = description;
+    }
+
+    @Override
     public String getUpdatedDescription()
     {
-        return DESCRIPTIONS[0];
+        return FormatDescription(0, counter);
     }
 
     @Override

@@ -20,12 +20,13 @@ public class Lancer extends AnimatorCard
     public static final EYBCardData DATA = Register(Lancer.class)
             .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing)
             .SetSeriesFromClassPackage();
+    public static final int VULNERABLE_MODIFIER = 25;
 
     public Lancer()
     {
         super(DATA);
 
-        Initialize(6, 0, 1, 25);
+        Initialize(6, 0, 1, VULNERABLE_MODIFIER);
         SetUpgrade(3, 0, 0);
 
         SetAffinity_Red(1);
@@ -42,22 +43,25 @@ public class Lancer extends AnimatorCard
 
         if (CombatStats.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.ApplyPower(new LancerPower(p, secondaryValue));
+            GameActions.Bottom.StackPower(new LancerPower(p, 2));
         }
     }
 
     public static class LancerPower extends AnimatorPower
     {
-        private final float modifier;
+        private static final float modifier = Lancer.VULNERABLE_MODIFIER / 100f;
 
         public LancerPower(AbstractCreature owner, int amount)
         {
             super(owner, Lancer.DATA);
 
-            this.modifier = amount / 100f;
-            this.hideAmount = true;
+            Initialize(amount, PowerType.BUFF, true);
+        }
 
-            Initialize(amount);
+        @Override
+        public void updateDescription()
+        {
+            this.description = FormatDescription(0, Lancer.VULNERABLE_MODIFIER);
         }
 
         @Override
@@ -81,7 +85,7 @@ public class Lancer extends AnimatorCard
         {
             super.atEndOfTurn(isPlayer);
 
-            RemovePower();
+            ReducePower(1);
         }
     }
 }

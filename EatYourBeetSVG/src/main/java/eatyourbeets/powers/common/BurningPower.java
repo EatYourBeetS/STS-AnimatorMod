@@ -6,21 +6,42 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.ui.animator.combat.CombatHelper;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.Mathf;
+
+import java.util.UUID;
 
 public class BurningPower extends CommonPower implements HealthBarRenderPower
 {
     private static final Color healthBarColor = Color.ORANGE.cpy();
+    private static UUID battleID;
 
     public static final String POWER_ID = CreateFullID(BurningPower.class);
     public static final int ATTACK_MULTIPLIER = 15;
+    public static int PLAYER_ATTACK_BONUS = 0;
 
-    public static float CalculateDamage(float damage)
+    public static void AddPlayerAttackBonus(int multiplier)
     {
-        return damage + Mathf.Max(1, damage * (ATTACK_MULTIPLIER / 100f));
+        if (CombatStats.BattleID != battleID)
+        {
+            battleID = CombatStats.BattleID;
+            PLAYER_ATTACK_BONUS = 0;
+        }
+
+        if (multiplier > 0)
+        {
+            PLAYER_ATTACK_BONUS += multiplier;
+            GameUtilities.UpdatePowerDescriptions();
+        }
+    }
+
+    public static float CalculateDamage(float damage, int multiplier)
+    {
+        return damage + Mathf.Max(1, damage * (multiplier / 100f));
     }
 
     public BurningPower(AbstractCreature owner, AbstractCreature source, int amount)
@@ -35,7 +56,15 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, GetPassiveDamage(), ATTACK_MULTIPLIER);
+        this.description = FormatDescription(0, GetPassiveDamage(), GetMultiplier());
+    }
+
+    @Override
+    public void onInitialApplication()
+    {
+        super.onInitialApplication();
+
+        AddPlayerAttackBonus(0); // Refresh multiplier
     }
 
     @Override
@@ -56,7 +85,7 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType type)
     {
-        return super.atDamageReceive(type == DamageInfo.DamageType.NORMAL ? CalculateDamage(damage) : damage, type);
+        return super.atDamageReceive(type == DamageInfo.DamageType.NORMAL ? CalculateDamage(damage, GetMultiplier()) : damage, type);
     }
 
     @Override
@@ -69,6 +98,11 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     public Color getColor()
     {
         return healthBarColor;
+    }
+
+    private int GetMultiplier()
+    {
+        return (GameUtilities.IsPlayer(owner)) ? ATTACK_MULTIPLIER : (ATTACK_MULTIPLIER + PLAYER_ATTACK_BONUS);
     }
 
     private int GetPassiveDamage()

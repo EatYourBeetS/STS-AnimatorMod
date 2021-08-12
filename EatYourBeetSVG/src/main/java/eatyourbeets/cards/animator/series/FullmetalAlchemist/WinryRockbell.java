@@ -5,9 +5,11 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDiscardedSubscriber;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
 
 public class WinryRockbell extends AnimatorCard
@@ -15,13 +17,16 @@ public class WinryRockbell extends AnimatorCard
     public static final EYBCardData DATA = Register(WinryRockbell.class)
             .SetPower(1, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage();
+    public static final int UPGRADE_CARDS_AMOUNT = 2;
+    public static final int BLOCK_AMOUNT = 4;
+
 
     public WinryRockbell()
     {
         super(DATA);
 
-        Initialize(0, 0, WinryRockbellPower.BLOCK_AMOUNT);
-        SetUpgrade(0, 2, 0);
+        Initialize(0, 0, BLOCK_AMOUNT, UPGRADE_CARDS_AMOUNT);
+        SetUpgrade(0, 2);
 
         SetAffinity_Green(1);
         SetAffinity_Light(1);
@@ -40,33 +45,21 @@ public class WinryRockbell extends AnimatorCard
         GameActions.Bottom.StackPower(new WinryRockbellPower(p, 1));
     }
 
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public static class WinryRockbellPower extends AnimatorClickablePower implements OnAfterCardDiscardedSubscriber
     {
-        if (isSynergizing)
-        {
-            GameActions.Bottom.UpgradeFromHand(name, 1, false);
-        }
-    }
-
-    public static class WinryRockbellPower extends AnimatorPower implements OnAfterCardDiscardedSubscriber
-    {
-        public static final int BLOCK_AMOUNT = 4;
-
-        private int baseAmount;
-
         public WinryRockbellPower(AbstractCreature owner, int amount)
         {
-            super(owner, WinryRockbell.DATA);
+            super(owner, WinryRockbell.DATA, PowerTriggerConditionType.Energy, 1);
+
+            triggerCondition.SetUses(-1, false, false);
 
             Initialize(amount);
         }
 
         @Override
-        public void updateDescription()
+        public String GetUpdatedDescription()
         {
-            this.description = FormatDescription(0, amount, BLOCK_AMOUNT);
-            SetEnabled(amount > 0);
+            return FormatDescription(0, UPGRADE_CARDS_AMOUNT, amount, BLOCK_AMOUNT);
         }
 
         @Override
@@ -75,6 +68,14 @@ public class WinryRockbell extends AnimatorCard
             super.onInitialApplication();
 
             CombatStats.onAfterCardDiscarded.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onAfterCardDiscarded.Unsubscribe(this);
         }
 
         @Override
@@ -88,20 +89,28 @@ public class WinryRockbell extends AnimatorCard
         @Override
         public void OnAfterCardDiscarded()
         {
-            if (owner == null || !owner.powers.contains(this))
+            if (amount <= 0)
             {
-                CombatStats.onAfterCardDiscarded.Unsubscribe(this);
                 return;
             }
 
-            if (enabled)
-            {
-                GameActions.Bottom.GainBlock(BLOCK_AMOUNT);
-                this.amount -= 1;
-                this.flashWithoutSound();
-            }
-
+            GameActions.Bottom.GainBlock(BLOCK_AMOUNT);
+            this.amount -= 1;
+            this.flashWithoutSound();
             updateDescription();
+        }
+
+        @Override
+        public void OnUse(AbstractMonster m)
+        {
+            GameActions.Bottom.UpgradeFromHand(name, UPGRADE_CARDS_AMOUNT, true)
+            .AddCallback(cards ->
+            {
+                if (cards.size() > 0)
+                {
+                    SFX.Play(SFX.CARD_UPGRADE, 1f, 1.1f);
+                }
+            });
         }
     }
 }

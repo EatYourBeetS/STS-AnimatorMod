@@ -88,7 +88,7 @@ public class AnimatorCardCooldown
 
         for (AbstractCard c : GameUtilities.GetAllInBattleInstances(card.uuid))
         {
-            GameUtilities.ModifySecondaryValue(c, newValue, true);
+            GameUtilities.ModifySecondaryValue((EYBCard) c, newValue, true);
         }
 
         return activate;

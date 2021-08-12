@@ -404,7 +404,7 @@
 		},
 		"animator:Lancer":
 		{
-			"DESCRIPTION": "{~Retain} [A]. Apply 1 [Vulnerable]. || <slm>. Increase the ** effect of [Vulnerable] on enemies ** by 25% this turn.",
+			"DESCRIPTION": "{~Retain} [A]. Apply 1 [Vulnerable]. || <slm>. For 2 turns: ** Increase the effect of [Vulnerable] ** on enemies by 25%.",
 			"EXTENDED_DESCRIPTION": ["Enemies take {0}% more damage from [Vulnerable]."],
 			"NAME": "Lancer"
 		},
@@ -488,7 +488,7 @@
 		},
 		"animator:RoyMustang":
 		{
-			"DESCRIPTION": "Channel 1 [Fire] ** for each enemy. || Deal !M! additional ** damage for each card ** Exhausted this turn.",
+			"DESCRIPTION": "Channel 1 [Fire] ** for each enemy. || !A! <R>: Increase the ** damage bonus of [Burning] ** by !S!% this combat.",
 			"NAME": "Roy Mustang"
 		},
 		"animator:Scar":
@@ -504,8 +504,8 @@
 		},
 		"animator:WinryRockbell":
 		{
-			"DESCRIPTION": "Once per turn, when ** you discard a card: ** Gain !M! [Block]. || Synergy: Upgrade a ** card in your hand.",
-			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you discard a card this turn, gain #b{1} #yBlock."],
+			"DESCRIPTION": "Once per turn, ** when you discard a ** card: Gain !M! [Block]. || Pay [E]: Upgrade ** !S! random cards.",
+			"EXTENDED_DESCRIPTION": ["Pay [E]: Upgrade {0} random cards. || The next #b{1} time(s) you discard a card this turn, gain #b{2} #yBlock."],
 			"NAME": "Winry Rockbell"
 		},
 		"animator:Wrath":

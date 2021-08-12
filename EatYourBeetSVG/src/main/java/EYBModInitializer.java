@@ -22,6 +22,7 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
                                           PostEnergyRechargeSubscriber, PostDrawSubscriber, PostDeathSubscriber,
                                           PreStartGameSubscriber, PostUpdateSubscriber, PostRenderSubscriber
 {
+    private static final EYBModInitializer instance = new EYBModInitializer();
     private static GUI_TextBox testModeLabel;
 
     public static void initialize()
@@ -29,7 +30,6 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
         ArrayList<OnStartBattleSubscriber> battleStart = JUtils.<ArrayList<OnStartBattleSubscriber>>
         GetField("startBattleSubscribers", BaseMod.class).Get(null);
 
-        EYBModInitializer instance = new EYBModInitializer();
         BaseMod.subscribe(instance);
         battleStart.remove(instance);
         battleStart.add(0, instance);
@@ -58,7 +58,7 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     @Override
     public void receivePostEnergyRecharge()
     {
-        CombatStats.EnsurePowerIsApplied(); // Ensure PlayerStatistics is always active at turn start
+        CombatStats.EnsurePowerIsApplied();
     }
 
     @Override // false = skips monster turn

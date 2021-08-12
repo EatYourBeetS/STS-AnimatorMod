@@ -1,7 +1,6 @@
 package eatyourbeets.ui.animator.combat;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import eatyourbeets.interfaces.subscribers.OnBattleEndSubscriber;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStatsClearedSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -9,7 +8,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.GameUtilities;
 
-public class EYBCombatScreen extends GUIElement implements OnStatsClearedSubscriber, OnBattleStartSubscriber, OnBattleEndSubscriber
+public class EYBCombatScreen extends GUIElement implements OnStatsClearedSubscriber, OnBattleStartSubscriber
 {
     public final EYBCardAffinitySystem Affinities = CombatStats.Affinities;
     public final EnemySubIntents Intents = new EnemySubIntents();
@@ -21,16 +20,15 @@ public class EYBCombatScreen extends GUIElement implements OnStatsClearedSubscri
     {
         CombatStats.onStatsCleared.Subscribe(this);
         CombatStats.onBattleStart.Subscribe(this);
-        CombatStats.onBattleEnd.Subscribe(this);
         SetActive(false);
     }
 
     //@Formatter: off
-    @Override public void OnBattleEnd() { OnStatsCleared(); }
     @Override public void OnBattleStart() { OnStatsCleared(); }
     @Override public boolean OnStatsCleared()
     {
         SetActive(GameUtilities.InBattle() && GR.Animator.IsSelected());
+        CombatStats.onBattleStart.Subscribe(this);
         Affinities.SetActive(isActive);
         Helper.Clear();
         return false;

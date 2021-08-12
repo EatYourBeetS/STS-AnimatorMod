@@ -1,5 +1,6 @@
 package eatyourbeets.powers.common;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,6 +12,7 @@ import eatyourbeets.interfaces.subscribers.OnChannelOrbSubscriber;
 import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameUtilities;
 
 public class BlindedPower extends CommonPower implements OnChannelOrbSubscriber, OnEvokeOrbSubscriber
@@ -52,6 +54,12 @@ public class BlindedPower extends CommonPower implements OnChannelOrbSubscriber,
 
         CombatStats.onChannelOrb.Unsubscribe(this);
         CombatStats.onEvokeOrb.Unsubscribe(this);
+    }
+
+    @Override
+    protected ColoredString GetSecondaryAmount(Color c)
+    {
+        return new ColoredString(GetDamageReduction(), Color.RED, c.a);
     }
 
     @Override

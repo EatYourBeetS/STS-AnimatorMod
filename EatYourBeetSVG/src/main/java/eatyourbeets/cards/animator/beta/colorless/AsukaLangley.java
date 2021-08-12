@@ -41,12 +41,6 @@ public class AsukaLangley extends AnimatorCard
     }
 
     @Override
-    protected float ModifyDamage(AbstractMonster enemy, float amount)
-    {
-        return super.ModifyDamage(enemy, amount + Math.floorDiv(player.gold, secondaryValue));
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
@@ -88,6 +82,7 @@ public class AsukaLangley extends AnimatorCard
             return damage;
         }
 
+        @Override
         public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target)
         {
             super.onAttack(info, damageAmount, target);

@@ -7,7 +7,7 @@
 	},
 	"animator:Amplification_LightningPower":
 	{
-	  "DESCRIPTIONS": ["Your Lightning Orbs have #b{0} #y{1} scaling. Current damage increase: #b{2}."],
+	  "DESCRIPTIONS": ["Your Lightning Orbs have #b{0} #y{1} scaling."],
 	  "NAME": "Lightning Amplification"
 	},
 	"animator:ArcherPower":

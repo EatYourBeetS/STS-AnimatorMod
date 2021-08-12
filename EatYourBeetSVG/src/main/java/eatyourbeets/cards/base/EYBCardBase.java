@@ -64,7 +64,7 @@ public abstract class EYBCardBase extends AbstractCard
 
     protected static final Color COLOR_COMMON = new Color(0.65f, 0.65f, 0.65f, 1f);
     protected static final Color COLOR_UNCOMMON = new Color(0.5f, 0.85f, 0.95f, 1f);
-    protected static final Color COLOR_RARE = new Color(0.95f, 0.85f, 0.3f, 1f);
+    protected static final Color COLOR_RARE = new Color(0.99f, 0.8f, 0.35f, 1f);
     protected static final Color COLOR_SPECIAL = new Color(1f, 1f, 1f, 1f);
 
     public static boolean canCropPortraits = true;

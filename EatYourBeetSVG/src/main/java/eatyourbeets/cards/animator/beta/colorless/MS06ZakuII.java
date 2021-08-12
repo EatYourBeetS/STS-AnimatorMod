@@ -71,7 +71,7 @@ public class MS06ZakuII extends AnimatorCard
         {
             super(owner, MS06ZakuII.DATA);
 
-            this.amount = amount;
+            Initialize(amount);
             CombatStats.onReloadPreDiscard.Subscribe(this);
             updateDescription();
         }
@@ -98,6 +98,7 @@ public class MS06ZakuII extends AnimatorCard
             if (amount > 0)
             {
                 this.amount -= 1;
+                updateDescription();
                 return card.makeSameInstanceOf();
             }
             return null;

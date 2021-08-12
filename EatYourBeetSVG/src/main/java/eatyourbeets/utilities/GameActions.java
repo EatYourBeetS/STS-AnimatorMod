@@ -854,6 +854,7 @@ public final class GameActions
     public DiscardFromHand Reload(String sourceName, ActionT1<ArrayList<AbstractCard>> onReload)
     {
         return (DiscardFromHand) Add(new DiscardFromHand(sourceName, 999, false)
+        .SetIsReload(true)
         .SetOptions(true, true, true)
         .AddCallback(onReload));
     }

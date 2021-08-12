@@ -2,17 +2,12 @@ package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.effects.SFX;
-import eatyourbeets.interfaces.subscribers.OnChannelOrbSubscriber;
-import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameUtilities;
 
-public class FreezingPower extends CommonPower implements OnChannelOrbSubscriber, OnEvokeOrbSubscriber
+public class FreezingPower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(FreezingPower.class);
     public static final int DAMAGE_REDUCTION_LV1 = 3;
@@ -33,24 +28,6 @@ public class FreezingPower extends CommonPower implements OnChannelOrbSubscriber
     }
 
     @Override
-    public void onInitialApplication()
-    {
-        super.onInitialApplication();
-
-        CombatStats.onChannelOrb.Subscribe(this);
-        CombatStats.onEvokeOrb.Subscribe(this);
-    }
-
-    @Override
-    public void onRemove()
-    {
-        super.onRemove();
-
-        CombatStats.onChannelOrb.Unsubscribe(this);
-        CombatStats.onEvokeOrb.Unsubscribe(this);
-    }
-
-    @Override
     public void updateDescription()
     {
         this.description = FormatDescription(0, GetDamageReduction());
@@ -60,26 +37,6 @@ public class FreezingPower extends CommonPower implements OnChannelOrbSubscriber
     public void playApplyPowerSfx()
     {
         SFX.Play(SFX.ORB_FROST_EVOKE, 1.2f, 1.5f);
-    }
-
-    @Override
-    public void OnChannelOrb(AbstractOrb orb)
-    {
-        if (Frost.ORB_ID.equals(orb.ID))
-        {
-            AbstractDungeon.onModifyPower();
-            updateDescription();
-        }
-    }
-
-    @Override
-    public void OnEvokeOrb(AbstractOrb orb)
-    {
-        if (Frost.ORB_ID.equals(orb.ID))
-        {
-            AbstractDungeon.onModifyPower();
-            updateDescription();
-        }
     }
 
     @Override

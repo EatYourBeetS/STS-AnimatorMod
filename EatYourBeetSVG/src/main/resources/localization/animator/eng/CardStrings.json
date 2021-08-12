@@ -543,6 +543,17 @@
 			"NAME": "Lelei La Lalena",
 			"UPGRADE_DESCRIPTION": "Discard a card ** to {Channel} !M! [Frost]. || Synergy: Apply 1 [Weak]."
 		},
+		"animator:MoltSolAugustus":
+		{
+			"DESCRIPTION": "At the end of each turn: ** Give ALL <R> cards {~Haste}. || Once per turn: Pay [E] to ** add !S! {Imperial Archers} ** to your draw pile.",
+			"EXTENDED_DESCRIPTION": ["Once per turn: Pay [E] to add #b{0} #yImperial #yArchers to your draw pile. || At the start of each turn: Give ALL <R> cards #yHaste."],
+			"NAME": "Molt Sol Augustus"
+		},
+		"animator:ImperialArchers":
+		{
+			"DESCRIPTION": "Gain !M! [Support Damage]. || When drawn: Deal !S! ** damage to a random ** enemy 3 times.",
+			"NAME": "Imperial Archers"
+		},
 		"animator:PinaCoLada":
 		{
 			"DESCRIPTION": "The first {0-Cost} card ** you play each turn is ** played twice.",

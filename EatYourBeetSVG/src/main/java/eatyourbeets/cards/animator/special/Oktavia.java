@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.special;
 
 import com.badlogic.gdx.graphics.Color;
+import eatyourbeets.cards.animator.series.MadokaMagica.SayakaMiki;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -17,7 +18,7 @@ public class Oktavia extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Oktavia.class)
             .SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Elemental, EYBCardTarget.ALL)
-            .SetSeries(CardSeries.MadokaMagica);
+            .SetSeries(SayakaMiki.DATA.Series);
 
     public Oktavia()
     {

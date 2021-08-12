@@ -86,6 +86,7 @@ public class Chaos extends AnimatorOrb implements OnEndOfTurnSubscriber, OnAfter
                     ((EYBOrb)currentForm).onChannel();
                 }
                 orbs.set(index, currentForm);
+                AbstractDungeon.onModifyPower();
             }
         }
     }

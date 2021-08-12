@@ -92,11 +92,11 @@ public class Laby extends AnimatorCard
         {
             super.atStartOfTurn();
 
-            GameActions.Top.ApplyConstricted(owner, owner, amount);
+            GameActions.Bottom.ApplyConstricted(owner, owner, amount);
 
             if (upgradedAmount > 0)
             {
-                GameActions.Top.ApplyConstricted(TargetHelper.Enemies(), upgradedAmount)
+                GameActions.Bottom.ApplyConstricted(TargetHelper.Enemies(), upgradedAmount)
                 .ShowEffect(false, true);
             }
 

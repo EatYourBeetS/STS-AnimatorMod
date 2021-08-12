@@ -986,10 +986,28 @@ public class GameUtilities
         return c != null && !c.isPlayer;
     }
 
+    public static boolean IsNormalRun(boolean debug)
+    {
+        final boolean result = IsNormalRun();
+
+        if (debug)
+        {
+            JUtils.LogInfo(GameUtilities.class, "IsNormalRun: " + result + " \n" +
+            "Seed Set: " + Settings.seedSet + ", \n" +
+            "Special Seed: " + Settings.specialSeed + ", \n" +
+            "Daily Run: " + Settings.isDailyRun + ", \n" +
+            "Demo: " + Settings.isDemo + ", \n" +
+            "Endless: " + Settings.isEndless + ", \n" +
+            "Daily Mods: " + JUtils.JoinStrings(", ", ModHelper.getEnabledModIDs()));
+        }
+
+        return result;
+    }
+
     public static boolean IsNormalRun()
     {
         return !Settings.seedSet && Settings.specialSeed == null && !Settings.isDailyRun
-                && !Settings.isDemo && !Settings.isEndless && ModHelper.enabledMods.isEmpty();
+            && !Settings.isDemo && !Settings.isEndless && ModHelper.enabledMods.isEmpty();
     }
 
     public static boolean IsNormalRun(RunData data)

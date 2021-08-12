@@ -22,7 +22,6 @@ public class Hans_Slimed extends AnimatorCard_Status
 
         Initialize(0, 0, 9);
 
-        cropPortrait = false;
         SetExhaust(true);
     }
 

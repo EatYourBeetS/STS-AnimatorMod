@@ -8,8 +8,10 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Cirno extends AnimatorCard
 {
@@ -28,6 +30,15 @@ public class Cirno extends AnimatorCard
         SetAffinity_Blue(1, 0, 1);
 
         SetEthereal(true);
+    }
+
+    @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        for (EnemyIntent intent : GameUtilities.GetIntents())
+        {
+            intent.AddFreezing();
+        }
     }
 
     @Override

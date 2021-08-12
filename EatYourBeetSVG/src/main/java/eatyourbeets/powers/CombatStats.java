@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -33,6 +34,7 @@ import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.animator.combat.EYBCardAffinitySystem;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import patches.CardGlowBorderPatches;
 
@@ -44,8 +46,10 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static final CombatStats Instance = new CombatStats();
     public static final EYBCardAffinitySystem Affinities = new EYBCardAffinitySystem();
-    public static UUID BattleID;
     public static float EnemyVulnerableModifier;
+    public static boolean LoadingPlayerSave;
+    public static AbstractRoom Room;
+    public static UUID BattleID;
 
     public static final GameEvent<OnSynergySubscriber> onSynergy = new GameEvent<>();
     public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = new GameEvent<>();
@@ -76,8 +80,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnSynergyCheckSubscriber> onSynergyCheck = new GameEvent<>();
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
     public static final GameEvent<OnBattleEndSubscriber> onBattleEnd = new GameEvent<>();
-
-    public static boolean LoadingPlayerSave;
 
     private static final Map<String, Object> combatData = new HashMap<>();
     private static final Map<String, Object> turnData = new HashMap<>();
@@ -173,18 +175,29 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onStatsCleared.GetSubscribers().removeIf(OnStatsClearedSubscriber::OnStatsCleared);
     }
 
-    public static void EnsurePowerIsApplied()
+    public static void Refresh()
     {
         if (RefreshPlayer() != null && !player.powers.contains(Instance))
         {
             JUtils.LogInfo(CombatStats.class, "Applied PlayerStatistics");
             player.powers.add(Instance);
         }
+
+        Room = GameUtilities.GetCurrentRoom(false);
+
+        if (Room == null || Room.phase != AbstractRoom.RoomPhase.COMBAT)
+        {
+            BattleID = null;
+        }
+        else if (BattleID == null)
+        {
+            BattleID = UUID.randomUUID();
+        }
     }
 
     public static void OnStartup()
     {
-        EnsurePowerIsApplied();
+        Refresh();
         ClearStats();
     }
 
@@ -289,7 +302,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static void OnBattleStart()
     {
-        BattleID = UUID.randomUUID();
+        Refresh();
 
         onBattleEnd.Clear();
         for (OnBattleStartSubscriber s : onBattleStart.GetSubscribers())

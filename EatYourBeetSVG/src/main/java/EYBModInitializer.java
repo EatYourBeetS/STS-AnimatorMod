@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
@@ -18,8 +17,7 @@ import eatyourbeets.utilities.JUtils;
 import java.util.ArrayList;
 
 @SpireInitializer //
-public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber,
-                                          PostEnergyRechargeSubscriber, PostDrawSubscriber, PostDeathSubscriber,
+public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSubscriber, PostDrawSubscriber, PostDeathSubscriber,
                                           PreStartGameSubscriber, PostUpdateSubscriber, PostRenderSubscriber
 {
     private static final EYBModInitializer instance = new EYBModInitializer();
@@ -39,7 +37,6 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom)
     {
-        CombatStats.EnsurePowerIsApplied();
         CombatStats.OnBattleStart();
     }
 
@@ -53,20 +50,6 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     public void receivePostDraw(AbstractCard abstractCard)
     {
         CombatStats.OnAfterDraw(abstractCard);
-    }
-
-    @Override
-    public void receivePostEnergyRecharge()
-    {
-        CombatStats.EnsurePowerIsApplied();
-    }
-
-    @Override // false = skips monster turn
-    public boolean receivePreMonsterTurn(AbstractMonster abstractMonster)
-    {
-        CombatStats.EnsurePowerIsApplied();
-
-        return true;
     }
 
     @Override

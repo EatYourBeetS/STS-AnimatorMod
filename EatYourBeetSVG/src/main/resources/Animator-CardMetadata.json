@@ -32,11 +32,23 @@
 	{
 		"cropPortrait": false
 	},
+	"animator:GiftBox":
+	{
+		"cropPortrait": false
+	},
+	"animator:HansSlimed":
+	{
+		"cropPortrait": false
+	},
 	"animator:Hero":
 	{
 		"cropPortrait": false
 	},
 	"animator:ItamiYouji":
+	{
+		"cropPortrait": false
+	},
+	"animator:ImperialArchers":
 	{
 		"cropPortrait": false
 	},

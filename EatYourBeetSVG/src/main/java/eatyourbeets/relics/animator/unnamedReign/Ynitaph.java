@@ -26,7 +26,7 @@ public class Ynitaph extends AnimatorRelic implements CustomSavable<Integer>, On
 
     public static boolean CanSpawn()
     {
-        return GR.Common.Dungeon.IsUnnamedReign() && GameUtilities.IsNormalRun() && GameUtilities.GetAscensionLevel() >= Ynitaph.MINIMUM_ASCENSION;
+        return GameUtilities.IsNormalRun(true) && GameUtilities.GetAscensionLevel() >= Ynitaph.MINIMUM_ASCENSION;
     }
 
     public static void TryRestoreFromPreviousRun()
@@ -174,14 +174,7 @@ public class Ynitaph extends AnimatorRelic implements CustomSavable<Integer>, On
 
     public void RefreshTexture()
     {
-        if (level > 1)
-        {
-            setTexture(GR.GetTexture(GR.GetRelicImage(relicId + "_" + level)));
-        }
-        else
-        {
-            setTexture(GR.GetTexture(GR.GetRelicImage(relicId)));
-        }
+        setTexture(GR.GetTexture(GR.GetRelicImage((level > 1) ? (relicId + "_" + level) : relicId)));
     }
 
     @Override

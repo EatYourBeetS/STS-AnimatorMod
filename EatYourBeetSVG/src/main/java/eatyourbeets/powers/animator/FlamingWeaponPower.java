@@ -22,7 +22,7 @@ public class FlamingWeaponPower extends AnimatorPower
 
         if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL)
         {
-            GameActions.Bottom.ApplyBurning(owner, target, amount).ShowEffect(false, true);
+            GameActions.Top.ApplyBurning(owner, target, amount).ShowEffect(false, true);
             this.flash();
         }
     }

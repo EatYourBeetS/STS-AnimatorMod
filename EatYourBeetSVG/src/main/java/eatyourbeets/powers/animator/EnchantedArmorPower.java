@@ -14,8 +14,6 @@ public class EnchantedArmorPower extends AnimatorPower
 
     public final boolean reactive;
 
-    private float percentage;
-
     public static float CalculatePercentage(int amount)
     {
         return 100f / (100f + amount);
@@ -38,11 +36,9 @@ public class EnchantedArmorPower extends AnimatorPower
     @Override
     public void updateDescription()
     {
-        UpdatePercentage();
-
         if (amount > 0)
         {
-            this.description = FormatDescription(0, decimalFormat.format(((1 - this.percentage) * 100)));
+            this.description = FormatDescription(0, decimalFormat.format(((1 - CalculatePercentage(amount)) * 100)));
 
             if (!reactive)
             {
@@ -63,11 +59,11 @@ public class EnchantedArmorPower extends AnimatorPower
     {
         if (reactive)
         {
-            damage *= (CalculatePercentage(amount + (int) damage));
+            damage *= CalculatePercentage(amount + (int) damage);
         }
         else if (type == DamageInfo.DamageType.NORMAL)
         {
-            damage *= percentage;
+            damage *= CalculatePercentage(amount);
         }
 
         return super.atDamageReceive(damage, type);
@@ -104,11 +100,6 @@ public class EnchantedArmorPower extends AnimatorPower
 
     private String GetExampleDamage(int value)
     {
-        return value + " -> " + "#g" + (int) (value * percentage);
-    }
-
-    private void UpdatePercentage()
-    {
-        percentage = CalculatePercentage(this.amount);
+        return value + " -> " + "#g" + (int) (value * CalculatePercentage(amount));
     }
 }

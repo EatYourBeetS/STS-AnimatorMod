@@ -38,10 +38,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import patches.CardGlowBorderPatches;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CombatStats extends EYBPower implements InvisiblePower
 {
@@ -49,6 +46,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static final CombatStats Instance = new CombatStats();
     public static final EYBCardAffinitySystem Affinities = new EYBCardAffinitySystem();
+    public static UUID BattleID;
     public static float EnemyVulnerableModifier;
 
     public static final GameEvent<OnAfterCardDiscardedSubscriber> onAfterCardDiscarded = new GameEvent<>();
@@ -134,10 +132,8 @@ public class CombatStats extends EYBPower implements InvisiblePower
         RefreshPlayer();
         JUtils.LogInfo(CombatStats.class, "Clearing Player Stats");
 
-        // Iterate onStatsCleared, remove those that return true.
-        onStatsCleared.GetSubscribers().removeIf(OnStatsClearedSubscriber::OnStatsCleared);
-
         EnemyVulnerableModifier = 0;
+        BattleID = null;
 
         turnCount = 0;
         cardsDrawnThisTurn = 0;
@@ -186,6 +182,9 @@ public class CombatStats extends EYBPower implements InvisiblePower
         CardGlowBorderPatches.overrideColor = null;
         CombatStats.Affinities.Initialize();
         CombatStats.Affinities.SetLastCardPlayed(null);
+
+        // Iterate onStatsCleared, remove those that return true.
+        onStatsCleared.GetSubscribers().removeIf(OnStatsClearedSubscriber::OnStatsCleared);
     }
 
     public static void EnsurePowerIsApplied()
@@ -336,6 +335,8 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static void OnBattleStart()
     {
+        BattleID = UUID.randomUUID();
+
         onBattleEnd.Clear();
         for (OnBattleStartSubscriber s : onBattleStart.GetSubscribers())
         {

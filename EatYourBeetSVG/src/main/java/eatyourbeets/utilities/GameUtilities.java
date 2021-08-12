@@ -32,6 +32,7 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinities;
 import eatyourbeets.cards.base.EYBCardAffinity;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
@@ -67,7 +68,7 @@ public class GameUtilities
     {
         for (AbstractCreature target : targetHelper.GetTargets())
         {
-            AbstractPower power = GetPower(target, powerHelper.ID);
+            final AbstractPower power = GetPower(target, powerHelper.ID);
             if (power != null)
             {
                 if ((power.amount += stacks) == 0)
@@ -77,7 +78,7 @@ public class GameUtilities
             }
             else
             {
-                target.addPower(powerHelper.Create(target, target, stacks));
+                target.addPower(powerHelper.Create(target, targetHelper.GetSource(), stacks));
                 Collections.sort(target.powers);
             }
         }
@@ -153,7 +154,7 @@ public class GameUtilities
 
     public static CardGroup CreateCardGroup(List<AbstractCard> cards, CardGroup.CardGroupType type)
     {
-        CardGroup group = new CardGroup(type);
+        final CardGroup group = new CardGroup(type);
         group.group.addAll(cards);
         return group;
     }
@@ -173,12 +174,9 @@ public class GameUtilities
         ModifyMagicNumber(card, Math.max(0, card.baseMagicNumber - amount), temporary);
     }
 
-    public static void DecreaseSecondaryValue(AbstractCard card, int amount, boolean temporary)
+    public static void DecreaseSecondaryValue(EYBCard card, int amount, boolean temporary)
     {
-        if (card instanceof EYBCard)
-        {
-            ModifySecondaryValue(card, Math.max(0, ((EYBCard)card).baseSecondaryValue - amount), temporary);
-        }
+        ModifySecondaryValue(card, Math.max(0, card.baseSecondaryValue - amount), temporary);
     }
 
     public static CardGroup FindCardGroup(AbstractCard card, boolean includeLimbo)
@@ -914,13 +912,7 @@ public class GameUtilities
 
     public static boolean InBattle()
     {
-        final AbstractRoom room = GetCurrentRoom();
-        if (room != null && !room.isBattleOver && player != null && !player.isDead)
-        {
-            return room.phase == AbstractRoom.RoomPhase.COMBAT || (room.monsters != null && !room.monsters.areMonstersBasicallyDead());
-        }
-
-        return false;
+        return CombatStats.BattleID != null;
     }
 
     public static boolean InBossRoom()
@@ -959,12 +951,9 @@ public class GameUtilities
         ModifyMagicNumber(card, card.baseMagicNumber + amount, temporary);
     }
 
-    public static void IncreaseSecondaryValue(AbstractCard card, int amount, boolean temporary)
+    public static void IncreaseSecondaryValue(EYBCard card, int amount, boolean temporary)
     {
-        if (card instanceof EYBCard)
-        {
-            ModifySecondaryValue(card, ((EYBCard)card).baseSecondaryValue + amount, temporary);
-        }
+        ModifySecondaryValue(card, card.baseSecondaryValue + amount, temporary);
     }
 
     public static boolean IsAttacking(AbstractMonster.Intent intent)
@@ -1032,7 +1021,7 @@ public class GameUtilities
 
     public static void ModifyCostForCombat(AbstractCard card, int amount, boolean relative)
     {
-        int previousCost = card.cost;
+        final int previousCost = card.cost;
         if (relative)
         {
             card.costForTurn = Math.max(0, card.costForTurn + amount);
@@ -1076,18 +1065,14 @@ public class GameUtilities
         card.isMagicNumberModified = (card.magicNumber != card.baseMagicNumber);
     }
 
-    public static void ModifySecondaryValue(AbstractCard card, int amount, boolean temporary)
+    public static void ModifySecondaryValue(EYBCard card, int amount, boolean temporary)
     {
-        EYBCard c = JUtils.SafeCast(card, EYBCard.class);
-        if (c != null)
+        card.secondaryValue = amount;
+        if (!temporary)
         {
-            c.secondaryValue = amount;
-            if (!temporary)
-            {
-                c.baseSecondaryValue = c.secondaryValue;
-            }
-            c.isSecondaryValueModified = (c.secondaryValue != c.baseSecondaryValue);
+            card.baseSecondaryValue = card.secondaryValue;
         }
+        card.isSecondaryValueModified = (card.secondaryValue != card.baseSecondaryValue);
     }
 
     public static void ObtainBlight(float cX, float cY, AbstractBlight blight)
@@ -1231,32 +1216,40 @@ public class GameUtilities
         }
     }
 
+    public static void UpdatePowerDescriptions()
+    {
+        for (AbstractCreature c : GameUtilities.GetAllCharacters(false))
+        {
+            for (AbstractPower p : c.powers)
+            {
+                p.updateDescription();
+            }
+        }
+    }
+
     public static boolean UseArtifact(AbstractCreature target)
     {
-        ArtifactPower artifact = JUtils.SafeCast(target.getPower(ArtifactPower.POWER_ID), ArtifactPower.class);
+        final AbstractPower artifact = GetPower(target, ArtifactPower.POWER_ID);
         if (artifact != null)
         {
             GameActions.Top.Add(new TextAboveCreatureAction(target, ApplyPowerAction.TEXT[0]));
-            CardCrawlGame.sound.play("NULLIFY_SFX");
+            SFX.Play(SFX.NULLIFY_SFX);
             artifact.flashWithoutSound();
             artifact.onSpecificTrigger();
 
             return false;
         }
-        else
-        {
-            return true;
-        }
+
+        return true;
     }
 
     public static void UsePenNib()
     {
-        AbstractPlayer p = player;
-        if (p.hasPower(PenNibPower.POWER_ID))
+        if (player.hasPower(PenNibPower.POWER_ID))
         {
-            GameActions.Bottom.ReducePower(p, PenNibPower.POWER_ID, 1);
+            GameActions.Bottom.ReducePower(player, PenNibPower.POWER_ID, 1);
 
-            AbstractRelic relic = p.getRelic(PenNib.ID);
+            final AbstractRelic relic = player.getRelic(PenNib.ID);
             if (relic != null)
             {
                 relic.counter = 0;

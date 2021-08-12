@@ -2,6 +2,7 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import eatyourbeets.powers.AnimatorPower;
@@ -21,6 +22,7 @@ public abstract class Amplification_AbstractPower extends AnimatorPower implemen
 
         Initialize(scaling);
         CombatStats.onOrbApplyFocus.Subscribe(this);
+        refreshOrbs();
     }
 
     @Override
@@ -35,7 +37,15 @@ public abstract class Amplification_AbstractPower extends AnimatorPower implemen
     public void updateDescription()
     {
         String powerName = CombatStats.Affinities.GetPower(affinity).name;
-        FormatDescription(0, amount, powerName, GetScaledIncrease());
+        description = FormatDescription(0, amount, powerName);
+    }
+
+    @Override
+    public void atStartOfTurn()
+    {
+        super.atStartOfTurn();
+
+        refreshOrbs();
     }
 
     @Override
@@ -46,7 +56,15 @@ public abstract class Amplification_AbstractPower extends AnimatorPower implemen
         }
     }
 
-    public float GetScaledIncrease() {
+    private float GetScaledIncrease() {
         return CombatStats.Affinities.GetPowerAmount(affinity) * amount * 0.5f;
+    }
+
+    private void refreshOrbs() {
+        for (AbstractOrb orb : player.orbs) {
+            if (orb != null && !(orb instanceof EmptyOrbSlot)) {
+                orb.applyFocus();
+            }
+        }
     }
 }

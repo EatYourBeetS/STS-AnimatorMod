@@ -167,6 +167,11 @@ public class VFX
         return new FireballEffect2(source.cX, source.cY, target.cX, target.cY);
     }
 
+    public static GenericAnimationEffect FireBurst(float cX, float cY)
+    {
+        return new GenericAnimationEffect(EYBEffect.IMAGES.FireBurst.Texture(), cX, cY, 8, 8);
+    }
+
     public static FlameBarrierEffect FlameBarrier(Hitbox source)
     {
         return new FlameBarrierEffect(source.cX, source.cY);

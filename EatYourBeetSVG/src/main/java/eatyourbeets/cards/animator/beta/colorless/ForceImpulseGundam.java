@@ -22,7 +22,7 @@ public class ForceImpulseGundam extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(15, 0, 5 );
+        Initialize(15, 0, 3 );
         SetUpgrade(5, 0, 0 );
 
         SetAffinity_Red(2, 0, 4);

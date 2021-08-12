@@ -47,8 +47,8 @@
 	},
 	"eyb:WillpowerPower":
 	{
-	  "DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, gain #b{2} #yBalance."],
-	  "NAME": "Intellect"
+		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, gain #b{2} #yBalance."],
+		"NAME": "Willpower"
 	},
 	"eyb:BlessingPower":
 	{

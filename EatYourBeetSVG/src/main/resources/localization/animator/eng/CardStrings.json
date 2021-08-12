@@ -318,6 +318,7 @@
 		"animator:AsukaLangley":
 		{
 		  "DESCRIPTION": "{~Ranged} Attacks on enemies with [~Lock-On] ignore damage reduction and remove 1 [~Lock-On]. || Reload: Apply !M! [~Lock-On] to ALL enemies.",
+		  "EXTENDED_DESCRIPTION": ["Ranged Attacks on enemies with #yLock-On ignore damage reduction and remove #b1 #yLock-On."],
 		  "NAME": "Asuka Langley"
 		},
 		"animator:BlazingHeat":
@@ -373,6 +374,12 @@
 		  "DESCRIPTION": "{Ricochet} !S!. Reduced by 1 for every 150 Gold you have (minimum 1). || When Exhausted: Gain !M! [Blur] and [Counterattack].",
 		  "NAME": "Motoko Kusanagi"
 		},
+		"animator:MS06ZakuII":
+		{
+		  "DESCRIPTION": "The first !M! Reload triggers this turn activate twice. || <LIM>. !A! <W>. If you reached !M! of any affinity power this combat, gain {Upgraded Hand}.",
+		  "EXTENDED_DESCRIPTION": ["Your next #b{0} Reload triggers this turn activate twice."],
+		  "NAME": "MS-06 Zaku II"
+		},
 		"animator:Mythra":
 		{
 		  "DESCRIPTION": "At the start of combat: Transforms into {Pyra} if you have more <R> in your deck than <G>. || The first Attack you play each turn is Motivated and gains Haste and Exhaust.",
@@ -388,11 +395,6 @@
 		{
 		  "DESCRIPTION": "The first Attack you play each turn applies Burn equal to 20% of its damage and Exhausts.",
 		  "NAME": "Pyra"
-		},
-		"animator:MS06ZakuII":
-		{
-		  "DESCRIPTION": "The first !M! Reload triggers this turn activate twice. || <LIM>. !A! <GEN>. If you reached !M! of any affinity power this combat, gain {Upgraded Hand}.",
-		  "NAME": "MS-06 Zaku II"
 		},
 		"animator:SakuraKinomoto":
 		{
@@ -442,8 +444,8 @@
 		},
 		"animator:Yae":
 		{
-		  "DESCRIPTION": "Your [Lightning] has +!S! [I] Scaling. || If you have [Lightning], remove your first [Lightning] to Gain/Boost !M! [I]. Otherwise, channel [Dark] and apply !S! {Blinded} to ALL characters.",
-		  "NAME": "Yae"
+		  "DESCRIPTION": "Your [Lightning] has +!M! [I] Scaling. || If you have [Lightning], remove your first [Lightning] to Gain/Boost !M! [I]. Otherwise, channel [Dark] and apply !S! {Blinded} to ALL characters.",
+		  "NAME": "Yae Sakura"
 		}
 	},
 	"BETA:DATEALIVE":
@@ -567,7 +569,7 @@
 		},
 		"animator:AyakaKamisato":
 		{
-		  "DESCRIPTION": "Gain !M! {Temp}. [Thorns]. Increase this amount by !S! for every 2 [I]. You cannot gain ** [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
+		  "DESCRIPTION": "Gain !M! {Temp}. [Thorns]. Increase this amount by 1 for every !S! [I]. You cannot gain ** [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
 		  "NAME": "Ayaka Kamisato"
 		},
 		"animator:BarbaraPegg":

@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,10 +11,12 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.NegateBlockPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class AyakaKamisato extends AnimatorCard {
     public static final EYBCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage();
@@ -26,7 +29,7 @@ public class AyakaKamisato extends AnimatorCard {
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(12, 0, 3, 1);
+        Initialize(12, 0, 3, 2);
         SetUpgrade(2, 0, 1, 0);
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Green(1, 0, 0);
@@ -59,9 +62,11 @@ public class AyakaKamisato extends AnimatorCard {
 
         for (int i = 0; i < ATTACK_TIMES; i++)
         {
-            GameActions.Bottom.DealDamageToRandomEnemy(this, i % 2 == 0 ? AttackEffects.SLASH_VERTICAL : AttackEffects.SLASH_DIAGONAL).SetOptions(true, false);
+            GameActions.Bottom.DealDamageToRandomEnemy(this, i % 2 == 0 ? AttackEffects.SLASH_VERTICAL : AttackEffects.SLASH_DIAGONAL)
+                    .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.TEAL, Color.LIGHT_GRAY, Color.SKY, Color.BLUE).duration * 0.6f)
+                    .SetOptions(true, false);
         }
-        GameActions.Bottom.GainTemporaryThorns(magicNumber + CombatStats.Affinities.GetPowerAmount(Affinity.Blue) / 2 * secondaryValue);
+        GameActions.Bottom.GainTemporaryThorns(magicNumber + CombatStats.Affinities.GetPowerAmount(Affinity.Blue) / secondaryValue);
         GameActions.Bottom.StackPower(new NegateBlockPower(p, ATTACK_TIMES));
 
         if (CheckAffinity(Affinity.Blue) && CombatStats.TryActivateLimited(cardID))

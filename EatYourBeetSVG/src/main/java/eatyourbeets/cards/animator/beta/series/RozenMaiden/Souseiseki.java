@@ -9,7 +9,6 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -28,17 +27,7 @@ public class Souseiseki extends AnimatorCard //TODO
 
         Initialize(5, 0, 0, 0);
         SetUpgrade(2, 0, 0, 0);
-        SetAffinity_Orange(1, 0, 1);
-    }
-
-    @Override
-    public boolean HasDirectSynergy(AbstractCard other)
-    {
-        AnimatorCard a = JUtils.SafeCast(other, AnimatorCard.class);
-        if (a != null) {
-            return a.cardID.equals(Suiseiseki.DATA.ID);
-        }
-        return false;
+        SetAffinity_Orange(2, 0, 1);
     }
 
     @Override

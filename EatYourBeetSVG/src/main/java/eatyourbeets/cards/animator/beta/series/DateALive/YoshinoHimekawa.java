@@ -2,15 +2,13 @@ package eatyourbeets.cards.animator.beta.series.DateALive;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Frost;
-import eatyourbeets.actions.animator.ApplyAmountToOrbs;
 import eatyourbeets.cards.animator.beta.special.Zadkiel;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 
-public class YoshinoHimekawa extends AnimatorCard
+public class YoshinoHimekawa extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(YoshinoHimekawa.class).SetSkill(3, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
     static
@@ -49,8 +47,8 @@ public class YoshinoHimekawa extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Last.Callback(cards ->
-            GameActions.Bottom.Add(new ApplyAmountToOrbs(Frost.ORB_ID, 1))
-        );
+        //GameActions.Last.Callback(cards ->
+        //    GameActions.Bottom.Add(new ApplyAmountToOrbs(Frost.ORB_ID, 1))
+        //);
     }
 }

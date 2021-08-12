@@ -327,7 +327,7 @@
 		},
 		"animator:ForceImpulseGundam":
 		{
-		  "DESCRIPTION": "Reload: Increase this card's damage by !M! until played. Skills trigger Reload twice and are Exhausted. || Cooldown !S!: Enter <FS> and Exhaust.",
+		  "DESCRIPTION": "Reload: Increase this card's damage by !M! until played. Powers and Statuses trigger Reload twice and are Exhausted. || Cooldown !S!: Enter <FS> and Exhaust.",
 		  "NAME": "Force Impulse Gundam"
 		},
 		"animator:GarbageDoll":
@@ -391,7 +391,7 @@
 		},
 		"animator:MS06ZakuII":
 		{
-		  "DESCRIPTION": "The first !M! Reload triggers this turn activate twice. || <LIM>. !A! <GEN>. If you reached 12 of any affinity power this combat, obtain {Arsenal Upgrade}.",
+		  "DESCRIPTION": "The first !M! Reload triggers this turn activate twice. || <LIM>. !A! <GEN>. If you reached !M! of any affinity power this combat, gain {Upgraded Hand}.",
 		  "NAME": "MS-06 Zaku II"
 		},
 		"animator:SakuraKinomoto":
@@ -861,7 +861,7 @@
 		},
 		"animator:Souseiseki":
 		{
-			"DESCRIPTION": "Synergizes with Suiseiseki. Exhaust a card in your hand. If you Exhausted a Hindrance: Enter <WS>. || When Discarded, draw Suiseiseki from your Draw Pile.",
+			"DESCRIPTION": "Exhaust a card in your hand. If you Exhausted a Hindrance: Enter <WS>. || When Discarded, draw Suiseiseki from your Draw Pile.",
 			"NAME": "Souseiseki"
 		},
 		"animator:Strike_RozenMaiden":

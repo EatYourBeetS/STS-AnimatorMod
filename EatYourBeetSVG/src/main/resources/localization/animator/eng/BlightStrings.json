@@ -24,5 +24,10 @@
 	{
 		"NAME": "Ultimate Wisp",
 		"DESCRIPTION": ["Whenever you shuffle your deck, add #b{0} #yVoid to your draw pile."]
+	},
+	"animator:UpgradedHand":
+	{
+	  "NAME": "Upgraded Hand",
+	  "DESCRIPTION": ["Your maximum hand size is increased by #b{0}."]
 	}
 }

@@ -19,7 +19,6 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
-import patches.orbs.AbstractOrbPatches;
 
 public class Water extends AnimatorOrb
 {
@@ -102,7 +101,7 @@ public class Water extends AnimatorOrb
     {
         this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
 
-        AbstractOrbPatches.ApplyAmountChangeToOrb(this);
+        CombatStats.OnOrbApplyFocus(this);
     }
 
     public void updateAnimation()

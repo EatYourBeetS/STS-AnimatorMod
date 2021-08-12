@@ -10,12 +10,12 @@ import eatyourbeets.actions.orbs.FireOrbPassiveAction;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.vfx.FadingParticleEffect;
 import eatyourbeets.orbs.AnimatorOrb;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
-import patches.orbs.AbstractOrbPatches;
 
 public class Fire extends AnimatorOrb
 {
@@ -60,7 +60,7 @@ public class Fire extends AnimatorOrb
     {
         this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
 
-        AbstractOrbPatches.ApplyAmountChangeToOrb(this);
+        CombatStats.OnOrbApplyFocus(this);
     }
 
     public void updateAnimation()

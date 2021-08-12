@@ -34,4 +34,24 @@ public class AbstractOrbPatches
             }
         }
     }
+
+    @SpirePatch(clz = AbstractOrb.class, method = "applyFocus")
+    public static class AbstractOrbPatches_ApplyFocus
+    {
+        @SpirePostfixPatch
+        public static void Postfix(AbstractOrb __instance)
+        {
+            CombatStats.OnOrbApplyFocus(__instance);
+        }
+    }
+
+    @SpirePatch(clz = Dark.class, method = "applyFocus")
+    public static class DarkPatches_ApplyFocus
+    {
+        @SpirePostfixPatch
+        public static void Postfix(Dark __instance)
+        {
+            CombatStats.OnOrbApplyFocus(__instance);
+        }
+    }
 }

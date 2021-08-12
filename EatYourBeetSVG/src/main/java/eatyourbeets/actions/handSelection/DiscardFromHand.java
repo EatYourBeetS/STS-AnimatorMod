@@ -3,12 +3,14 @@ package eatyourbeets.actions.handSelection;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.actions.basic.MoveCard;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
 
 public class DiscardFromHand extends SelectFromHand
 {
+    protected boolean isReload = false;
     protected boolean realtime = false;
     protected boolean showEffect = false;
 
@@ -25,9 +27,17 @@ public class DiscardFromHand extends SelectFromHand
         return this;
     }
 
+    public DiscardFromHand SetIsReload(boolean isReload)
+    {
+        this.isReload = isReload;
+
+        return this;
+    }
+
     @Override
     protected void Complete(ArrayList<AbstractCard> result)
     {
+        ArrayList<AbstractCard> modifiedResults = new ArrayList<>();
         for (AbstractCard card : result)
         {
             MoveCard action = new MoveCard(card, player.discardPile);
@@ -39,9 +49,19 @@ public class DiscardFromHand extends SelectFromHand
             {
                 action.update(); // only once
             }
+
+            modifiedResults.add(card);
+            if (isReload) {
+                ArrayList<AbstractCard> generatedCards = CombatStats.OnReloadPreDiscard(card);
+                modifiedResults.addAll(generatedCards);
+            }
         }
 
-        super.Complete(result);
+        if (isReload) {
+            CombatStats.OnReloadPostDiscard(modifiedResults);
+        }
+
+        super.Complete(modifiedResults);
     }
 
     @Override

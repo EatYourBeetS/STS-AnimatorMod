@@ -51,35 +51,39 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final EYBCardAffinitySystem Affinities = new EYBCardAffinitySystem();
     public static float EnemyVulnerableModifier;
 
-    public static final GameEvent<OnSynergySubscriber> onSynergy = new GameEvent<>();
-    public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = new GameEvent<>();
-    public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = new GameEvent<>();
-    public static final GameEvent<OnBeforeLoseBlockSubscriber> onBeforeLoseBlock = new GameEvent<>();
-    public static final GameEvent<OnTryUsingCardSubscriber> onTryUsingCard = new GameEvent<>();
-    public static final GameEvent<OnAfterCardDrawnSubscriber> onAfterCardDrawn = new GameEvent<>();
-    public static final GameEvent<OnAfterCardPlayedSubscriber> onAfterCardPlayed = new GameEvent<>();
     public static final GameEvent<OnAfterCardDiscardedSubscriber> onAfterCardDiscarded = new GameEvent<>();
+    public static final GameEvent<OnAfterCardDrawnSubscriber> onAfterCardDrawn = new GameEvent<>();
     public static final GameEvent<OnAfterCardExhaustedSubscriber> onAfterCardExhausted = new GameEvent<>();
-    public static final GameEvent<OnOrbPassiveEffectSubscriber> onOrbPassiveEffect = new GameEvent<>();
-    public static final GameEvent<OnChannelOrbSubscriber> onChannelOrb = new GameEvent<>();
-    public static final GameEvent<OnEvokeOrbSubscriber> onEvokeOrb = new GameEvent<>();
-    public static final GameEvent<OnAttackSubscriber> onAttack = new GameEvent<>();
-    public static final GameEvent<OnLoseHpSubscriber> onLoseHp = new GameEvent<>();
-    public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = new GameEvent<>();
-    public static final GameEvent<OnShuffleSubscriber> onShuffle = new GameEvent<>();
-    public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = new GameEvent<>();
+    public static final GameEvent<OnAfterCardPlayedSubscriber> onAfterCardPlayed = new GameEvent<>();
     public static final GameEvent<OnAfterDeathSubscriber> onAfterDeath = new GameEvent<>();
-    public static final GameEvent<OnModifyDamageSubscriber> onModifyDamage = new GameEvent<>();
-    public static final GameEvent<OnCardResetSubscriber> onCardReset = new GameEvent<>();
-    public static final GameEvent<OnCardCreatedSubscriber> onCardCreated = new GameEvent<>();
-    public static final GameEvent<OnStartOfTurnSubscriber> onStartOfTurn = new GameEvent<>();
-    public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
-    public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = new GameEvent<>();
-    public static final GameEvent<OnStatsClearedSubscriber> onStatsCleared = new GameEvent<>();
-    public static final GameEvent<OnStanceChangedSubscriber> onStanceChanged = new GameEvent<>();
-    public static final GameEvent<OnSynergyCheckSubscriber> onSynergyCheck = new GameEvent<>();
-    public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
+    public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = new GameEvent<>();
+    public static final GameEvent<OnAttackSubscriber> onAttack = new GameEvent<>();
     public static final GameEvent<OnBattleEndSubscriber> onBattleEnd = new GameEvent<>();
+    public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
+    public static final GameEvent<OnBeforeLoseBlockSubscriber> onBeforeLoseBlock = new GameEvent<>();
+    public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = new GameEvent<>();
+    public static final GameEvent<OnCardCreatedSubscriber> onCardCreated = new GameEvent<>();
+    public static final GameEvent<OnCardResetSubscriber> onCardReset = new GameEvent<>();
+    public static final GameEvent<OnChannelOrbSubscriber> onChannelOrb = new GameEvent<>();
+    public static final GameEvent<OnDamageOverrideSubscriber> onDamageOverride = new GameEvent<>();
+    public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = new GameEvent<>();
+    public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = new GameEvent<>();
+    public static final GameEvent<OnEvokeOrbSubscriber> onEvokeOrb = new GameEvent<>();
+    public static final GameEvent<OnLoseHpSubscriber> onLoseHp = new GameEvent<>();
+    public static final GameEvent<OnModifyDamageSubscriber> onModifyDamage = new GameEvent<>();
+    public static final GameEvent<OnOrbApplyFocusSubscriber> onOrbApplyFocus = new GameEvent<>();
+    public static final GameEvent<OnOrbPassiveEffectSubscriber> onOrbPassiveEffect = new GameEvent<>();
+    public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = new GameEvent<>();
+    public static final GameEvent<OnReloadPostDiscardSubscriber> onReloadPostDiscard = new GameEvent<>();
+    public static final GameEvent<OnReloadPreDiscardSubscriber> onReloadPreDiscard = new GameEvent<>();
+    public static final GameEvent<OnShuffleSubscriber> onShuffle = new GameEvent<>();
+    public static final GameEvent<OnStanceChangedSubscriber> onStanceChanged = new GameEvent<>();
+    public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
+    public static final GameEvent<OnStartOfTurnSubscriber> onStartOfTurn = new GameEvent<>();
+    public static final GameEvent<OnStatsClearedSubscriber> onStatsCleared = new GameEvent<>();
+    public static final GameEvent<OnSynergyCheckSubscriber> onSynergyCheck = new GameEvent<>();
+    public static final GameEvent<OnSynergySubscriber> onSynergy = new GameEvent<>();
+    public static final GameEvent<OnTryUsingCardSubscriber> onTryUsingCard = new GameEvent<>();
 
     public static final ControllableCardPile ControlPile = new ControllableCardPile();
     public static boolean LoadingPlayerSave;
@@ -147,33 +151,36 @@ public class CombatStats extends EYBPower implements InvisiblePower
         combatData.clear();
         turnData.clear();
 
-        onSynergy.Clear();
-        onEnemyDying.Clear();
-        onBlockBroken.Clear();
-        onBeforeLoseBlock.Clear();
-        onTryUsingCard.Clear();
-        onAfterCardDrawn.Clear();
-        onAfterCardPlayed.Clear();
         onAfterCardDiscarded.Clear();
+        onAfterCardDrawn.Clear();
         onAfterCardExhausted.Clear();
-        onOrbPassiveEffect.Clear();
-        onChannelOrb.Clear();
-        onEvokeOrb.Clear();
-        onAttack.Clear();
-        onLoseHp.Clear();
-        onEndOfTurn.Clear();
-        onShuffle.Clear();
-        onApplyPower.Clear();
+        onAfterCardPlayed.Clear();
         onAfterDeath.Clear();
-        onModifyDamage.Clear();
-        onCardReset.Clear();
+        onApplyPower.Clear();
+        onAttack.Clear();
+        onBeforeLoseBlock.Clear();
+        onBlockBroken.Clear();
         onCardCreated.Clear();
+        onCardReset.Clear();
+        onChannelOrb.Clear();
+        onDamageOverride.Clear();
+        onEndOfTurn.Clear();
+        onEnemyDying.Clear();
+        onEvokeOrb.Clear();
+        onLoseHp.Clear();
+        onModifyDamage.Clear();
+        onOrbApplyFocus.Clear();
+        onOrbPassiveEffect.Clear();
+        onPhaseChanged.Clear();
+        onReloadPostDiscard.Clear();
+        onReloadPreDiscard.Clear();
+        onShuffle.Clear();
+        onStanceChanged.Clear();
         onStartOfTurn.Clear();
         onStartOfTurnPostDraw.Clear();
-        onPhaseChanged.Clear();
-        onStanceChanged.Clear();
-        ControlPile.Clear();
+        onSynergy.Clear();
         onSynergyCheck.Clear();
+        onTryUsingCard.Clear();
         ControlPile.Clear();
 
         CardGlowBorderPatches.overrideColor = null;
@@ -238,6 +245,16 @@ public class CombatStats extends EYBPower implements InvisiblePower
         return damage;
     }
 
+    public static float OnDamageOverride(AbstractCreature target, DamageInfo.DamageType type, float damage, AbstractCard card)
+    {
+        for (OnDamageOverrideSubscriber s : onDamageOverride.GetSubscribers())
+        {
+            damage = s.OnDamageOverride(target, type, damage, card);
+        }
+
+        return damage;
+    }
+
     public static void OnCardReset(AbstractCard card)
     {
         final OnCardResetListener c = JUtils.SafeCast(card, OnCardResetListener.class);
@@ -264,6 +281,28 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             s.OnCardCreated(card, startOfBattle);
         }
+    }
+
+    public static void OnReloadPostDiscard(ArrayList<AbstractCard> cards)
+    {
+        for (OnReloadPostDiscardSubscriber s : onReloadPostDiscard.GetSubscribers())
+        {
+            s.OnReloadPostDiscard(cards);
+        }
+    }
+
+    public static ArrayList<AbstractCard> OnReloadPreDiscard(AbstractCard card)
+    {
+        ArrayList<AbstractCard> cards = new ArrayList<>();
+        for (OnReloadPreDiscardSubscriber s : onReloadPreDiscard.GetSubscribers())
+        {
+            AbstractCard newCard = s.OnReloadPreDiscard(card);
+            if (newCard != null) {
+                cards.add(newCard);
+            }
+        }
+
+        return cards;
     }
 
     public static void OnShuffle(boolean triggerRelics)
@@ -415,6 +454,14 @@ public class CombatStats extends EYBPower implements InvisiblePower
         for (OnBeforeLoseBlockSubscriber s : onBeforeLoseBlock.GetSubscribers())
         {
             s.OnBeforeLoseBlock(creature, amount, noAnimation);
+        }
+    }
+
+    public static void OnOrbApplyFocus(AbstractOrb orb)
+    {
+        for (OnOrbApplyFocusSubscriber s : onOrbApplyFocus.GetSubscribers())
+        {
+            s.OnApplyFocus(orb);
         }
     }
 

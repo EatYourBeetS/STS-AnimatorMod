@@ -9,7 +9,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.interfaces.subscribers.OnDamageOverrideSubscriber;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
@@ -58,23 +60,32 @@ public class AsukaLangley extends AnimatorCard
         });
     }
 
-    public static class AsukaLangleyPower extends AnimatorPower
+    public static class AsukaLangleyPower extends AnimatorPower implements OnDamageOverrideSubscriber
     {
         public AsukaLangleyPower(AbstractPlayer owner)
         {
             super(owner, AsukaLangley.DATA);
 
             Initialize(-1);
+            CombatStats.onDamageOverride.Subscribe(this);
         }
 
         @Override
-        public float atDamageFinalGive(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster enemy)
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onDamageOverride.Unsubscribe(this);
+        }
+
+        @Override
+        public float OnDamageOverride(AbstractCreature target, DamageInfo.DamageType type, float damage, AbstractCard card)
         {
             AnimatorCard aCard = JUtils.SafeCast(card,AnimatorCard.class);
-            if (aCard != null && aCard.attackType == EYBAttackType.Ranged && damage < aCard.baseDamage && enemy.hasPower(LockOn.ID)) {
-                return super.atDamageFinalGive(aCard.baseDamage, type, card, enemy);
+            if (aCard != null && aCard.attackType == EYBAttackType.Ranged && damage < aCard.baseDamage && target.hasPower(LockOn.ID)) {
+                return aCard.baseDamage;
             }
-            return super.atDamageFinalGive(damage, type, card, enemy);
+            return damage;
         }
 
         public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target)

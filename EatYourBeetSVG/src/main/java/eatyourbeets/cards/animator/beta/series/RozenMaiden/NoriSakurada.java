@@ -12,7 +12,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
-public class NoriSakurada extends AnimatorCard
+public class NoriSakurada extends AnimatorCard //TODO
 {
 	public static final EYBCardData DATA =
 			Register(NoriSakurada.class)

@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.beta.series.Bleach;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.animator.ApplyAmountToOrbs;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
@@ -10,11 +9,10 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.misc.GenericEffects.GenericEffect_ChannelOrb;
 import eatyourbeets.misc.GenericEffects.GenericEffect_GainStat;
 import eatyourbeets.orbs.animator.Fire;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.PlayerAttribute;
 
-public class IsshinKurosaki extends AnimatorCard
+public class IsshinKurosaki extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(IsshinKurosaki.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
 
@@ -46,10 +44,10 @@ public class IsshinKurosaki extends AnimatorCard
 
         choices.Select(1, m);
 
-        if (CombatStats.TryActivateLimited(cardID)){
-            GameActions.Last.Callback(cards ->
-                GameActions.Bottom.Add(new ApplyAmountToOrbs(Fire.ORB_ID, 1))
-            );
-        }
+        //if (CombatStats.TryActivateLimited(cardID)){
+        //    GameActions.Last.Callback(cards ->
+        //        GameActions.Bottom.Add(new ApplyAmountToOrbs(Fire.ORB_ID, 1))
+        //    );
+        //}
     }
 }

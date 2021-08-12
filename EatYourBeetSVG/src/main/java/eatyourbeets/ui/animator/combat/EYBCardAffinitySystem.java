@@ -126,6 +126,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return p == null ? 0 : p.amount;
     }
 
+    public int GetPowerThreshold(Affinity affinity)
+    {
+        final AbstractAffinityPower p = GetPower(affinity);
+        return p == null ? 0 : p.GetCurrentThreshold();
+    }
+
     @Override
     public void OnStartOfTurn()
     {

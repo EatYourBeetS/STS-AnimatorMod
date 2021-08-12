@@ -1,10 +1,10 @@
 {
   "modid": "eatyourbeetsvg-theanimator_spinoff",
-  "name": "The Animator (Spinoff Version)",
+  "name": "The Animator (Alternative Version)",
   "author_list": ["EatYourBeetS"],
   "description": "Adds a new playable character, a new Act, 250+ cards, and 25+ relics. This is an unofficial version of The Animator with alternate card effects.",
   "credits" : "SFX: The Berklee College of Music, SquishiSprite, Zoltan Mihalyi, ViRiX \n VFX: ashishlko11, Cethiel, The Free Archives @ Dreams Circle, Sinestesia",
-  "version": "7.0.1.2",
+  "version": "7.0.2",
   "sts_version": "12-22-2020",
   "mts_version": "3.22.0",
   "dependencies": ["basemod", "stslib"],

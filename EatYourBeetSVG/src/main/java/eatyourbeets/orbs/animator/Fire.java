@@ -73,6 +73,7 @@ public class Fire extends AnimatorOrb
             GameEffects.Queue.Add(new FadingParticleEffect(IMAGES.FireParticle.Texture(), hb.cX + MathUtils.random(-32,32), hb.cY)
                     .SetTranslucent(1f)
                     .Edit(angle, (r, p) -> p
+                            .SetFlip(MathUtils.randomBoolean(), false)
                             .SetScale(scale * MathUtils.random(0.08f, 0.32f))
                             .SetSpeed(0f, MathUtils.random(80f, 120f), 0f)
                             .SetAcceleration(0f, MathUtils.random(0f, 3f), null, null)

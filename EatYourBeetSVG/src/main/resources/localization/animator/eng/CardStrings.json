@@ -569,7 +569,7 @@
 		},
 		"animator:AyakaKamisato":
 		{
-		  "DESCRIPTION": "Gain !M! {Temp}. [Thorns]. Increase this amount by 1 for every !S! [I]. You cannot gain ** [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
+		  "DESCRIPTION": "Gain !M! {Temp}. [Thorns]. Increase this amount by 1 for ** every !S! [I]. You cannot ** gain [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
 		  "NAME": "Ayaka Kamisato"
 		},
 		"animator:BarbaraPegg":
@@ -594,7 +594,7 @@
 		},
 		"animator:Ganyu":
 		{
-		  "DESCRIPTION": "Deals !M! more damage if the target has [~Lock-On]. You cannot gain [Block] for 2 turns. || <SLM>. When Exhausted, apply !S! [Freezing] to ALL enemies",
+		  "DESCRIPTION": "Deals !M! more damage if the target has [~Lock-On]. You cannot ** gain [Block] for 2 turns. || <SLM>. When Exhausted, apply !S! [Freezing] ** to ALL enemies",
 		  "NAME": "Ganyu"
 		},
 		"animator:HuTao":
@@ -609,7 +609,7 @@
 		},
 		"animator:JumpyDumpty":
 		{
-		  "DESCRIPTION": "Apply !M! [Burning]. || If the enemy dies or ** loses its [Block]: Add a copy of this card to your Draw Pile. Then, take !S! damage at the end of the turn.",
+		  "DESCRIPTION": "Apply !M! [Burning]. || If the enemy dies or ** loses its [Block]: Add a copy of this card to your Draw Pile. Then, take !S! damage at ** the end of turn.",
 		  "NAME": "Jumpy Dumpty"
 		},
 		"animator:KaeyaAlberich":

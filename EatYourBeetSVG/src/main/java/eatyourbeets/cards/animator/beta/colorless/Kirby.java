@@ -23,7 +23,10 @@ import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.RotatingList;
 
 import java.util.ArrayList;
 
@@ -89,7 +92,6 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
                 ((Kirby) upgrade).AddInheritedCard(innerCard);
             }
             ((Kirby) upgrade).updateProperties();
-            ((Kirby) upgrade).refreshDescription();
 
             upgrade.upgrade();
             upgrade.displayUpgrades();
@@ -220,14 +222,6 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     {
         super.triggerWhenCreated(startOfBattle);
 
-        AbstractCard kirby = player.masterDeck.findCardById(cardID);
-        if (kirby instanceof Kirby) {
-            this.cost = this.costForTurn = -2;
-            for (AbstractCard card : ((Kirby) kirby).inheritedCards) {
-                AddInheritedCard(card);
-            }
-        }
-
         if (inheritedCards.size() == 0) {
             this.cost = this.costForTurn = -2;
             OnAddToDeck();
@@ -292,13 +286,12 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     @Override
     public AbstractCard makeCopy()
     {
-        Kirby other = new Kirby();
+        Kirby other = (Kirby) super.makeCopy();
         for (AbstractCard iCard : inheritedCards)
         {
             other.AddInheritedCard(iCard.makeSameInstanceOf());
         }
         other.updateProperties();
-        other.refreshDescription();
 
         return other;
     }
@@ -347,12 +340,6 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
             this.cost = this.costForTurn = this.cost + card.cost;
         }
 
-        while (card.timesUpgraded > this.timesUpgraded) {
-            GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
-                    .IncludeMasterDeck(true)
-                    .IsCancellable(false);
-        }
-
         if (card.isInnate) {
             SetInnate(true);
         }
@@ -397,6 +384,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         for (AbstractCard card : inheritedCards) {
             addCardProperties(card);
         }
+        refreshDescription();
     }
 
     protected void refreshDescription() {

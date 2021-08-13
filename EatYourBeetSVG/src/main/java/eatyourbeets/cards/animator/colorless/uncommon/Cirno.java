@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -8,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -22,8 +22,8 @@ public class Cirno extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 1);
-        SetUpgrade(1, 0, 1);
+        Initialize(3, 0, 1, 2);
+        SetUpgrade(1, 0, 1, 1);
 
         SetAffinity_Blue(1, 0, 1);
 
@@ -56,7 +56,7 @@ public class Cirno extends AnimatorCard
 
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT)
         .SetVFX(true, false)
-        .SetDamageEffect((c, __) -> GameActions.Bottom.ApplyFreezing(player, c, magicNumber).ShowEffect(false, true));
+        .SetDamageEffect((c, __) -> GameActions.Bottom.ApplyFreezing(player, c, secondaryValue).ShowEffect(false, true));
     }
 }
 

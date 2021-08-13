@@ -12,7 +12,7 @@
 			"DESCRIPTION": "",
 			"NAME": "Defend"
 		},
-		
+
 		"animator:Strike_Red":
 		{
 			"DESCRIPTION": "",
@@ -25,7 +25,7 @@
 			"UPGRADE_DESCRIPTION": "!M! <R>: {~Retain} [F]",
 			"NAME": "Improved Defend"
 		},
-		
+
 		"animator:Strike_Green":
 		{
 			"DESCRIPTION": "",
@@ -38,7 +38,7 @@
 			"UPGRADE_DESCRIPTION": "!M! <G>: {~Retain} [A]",
 			"NAME": "Improved Defend"
 		},
-		
+
 		"animator:Strike_Blue":
 		{
 			"DESCRIPTION": "",
@@ -87,7 +87,7 @@
 			"UPGRADE_DESCRIPTION": "!M! <D>: {~Retain} [C]",
 			"NAME": "Improved Defend"
 		},
-		
+
 		"animator:Strike_Star":
 		{
 			"DESCRIPTION": "",
@@ -444,7 +444,7 @@
 		},
 		"animator:Yae":
 		{
-		  "DESCRIPTION": "Your [Lightning] has +!M! [I] Scaling. || If you have [Lightning], remove your first [Lightning] to Gain/Boost !M! [I]. Otherwise, channel [Dark] and apply !S! {Blinded} to ALL characters.",
+		  "DESCRIPTION": "Your [Lightning] has +!M! [I] Scaling. || If you have [Lightning], remove your first [Lightning] to Gain/Boost !M! [I]. Otherwise, channel [Dark] and apply !S! [Blinded] to ALL characters.",
 		  "NAME": "Yae Sakura"
 		}
 	},
@@ -477,7 +477,7 @@
 		},
 		"animator:KurumiTokisaki":
 		{
-			"DESCRIPTION": "Apply !M! {Blinded}. || !A! <C>: Gain 2 [E] next turn. || Cooldown !S!: Add !M! copies of {Shido Itsuka} to your draw pile with Autoplay.",
+			"DESCRIPTION": "Apply !M! [Blinded]. || !A! <C>: Gain 2 [E] next turn. || Cooldown !S!: Add !S! 0-cost copies of {Shido Itsuka} to your draw pile with Autoplay.",
 			"NAME": "Kurumi Tokisaki"
 		},
 		"animator:MikuIzayoi":
@@ -497,7 +497,7 @@
 		},
 		"animator:MukuroHoshimiya":
 		{
-			"DESCRIPTION": "Deal 1 additional damage for every !M! cards in your draw pile. || Scry !S!. The next time you shuffle your deck, move those cards to the bottom of your draw pile.",
+			"DESCRIPTION": "Deals 1 more damage for every !M! cards in your draw pile. || Scry !S!. The next time you shuffle your deck, move those cards to the bottom of your draw pile.",
 			"NAME": "Mukuro Hoshimiya"
 		},
 		"animator:Natsumi":
@@ -526,7 +526,7 @@
 		},
 		"animator:Ren":
 		{
-		  "DESCRIPTION": "Channel 1 {Dark}. Apply !M! {Poison} for each {Dark} channeled. || <SLM>. The next time you Evoke {Dark}, apply !S! {Blinded} to ALL enemies.",
+		  "DESCRIPTION": "Channel 1 {Dark}. Apply !M! {Poison} for each {Dark} channeled. || <SLM>. The next time you Evoke {Dark}, apply !S! [Blinded] to ALL enemies.",
 		  "NAME": "Ren"
 		},
 		"animator:ShidoItsuka":
@@ -552,13 +552,13 @@
 		},
 		"animator:YoshinoHimekawa":
 		{
-			"DESCRIPTION": "When drawn: Discard this card and change its form, then gain !S! [Blur]. || <LIM>. When exhausted in this form, Shuffle {Zadkiel} into your discard pile.",
+			"DESCRIPTION": "When drawn: Discard this card and change its form, ** then gain !S! [Blur]. || When Exhausted, gain !S! [Blur]. ** <LIM>. Also Shuffle {Zadkiel} into your discard pile.",
 			"EXTENDED_DESCRIPTION": ["Gain !S! [Blur]. Apply !M! [Freezing] to ALL enemies."],
 			"NAME": "Yoshino Himekawa"
 		},
 		"animator:Zadkiel":
 		{
-			"DESCRIPTION": "Take !S! damage at the end of the turn. If this kills an enemy: Evoke !M! orbs, then fill your orb slots with [Frost].",
+			"DESCRIPTION": "Take !S! damage at the end of turn. || If this kills an enemy: Evoke !M! orbs, then fill your orb slots with [Frost].",
 			"NAME": "Zadkiel"
 		}
 	},
@@ -570,7 +570,7 @@
 		},
 		"animator:AyakaKamisato":
 		{
-		  "DESCRIPTION": "Gain !M! {Temp}. [Thorns]. Increase this amount by 1 for ** every !S! [I]. You cannot ** gain [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
+		  "DESCRIPTION": "Gain {Temp}. [Thorns] equal to your [I] + !M!. You cannot ** gain [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
 		  "NAME": "Ayaka Kamisato"
 		},
 		"animator:BarbaraPegg":
@@ -615,7 +615,7 @@
 		},
 		"animator:KaeyaAlberich":
 		{
-			"DESCRIPTION": "Trigger your first [Fire], [Frost], or [Lightning], then {Channel} 1 [Frost]. || <SLM>. Synergy: Apply !M! [Shackles] to ALL enemies.",
+			"DESCRIPTION": "{Channel} 1 [Frost]. Trigger your first [Fire], [Frost], or [Lightning]. || <SLM>. Synergy: Apply !M! [Shackles] to ALL enemies.",
 			"NAME": "Kaeya Alberich"
 		},
 		"animator:Keqing":
@@ -686,7 +686,7 @@
 	{
 		"animator:AkaneSenri":
 		{
-			"DESCRIPTION": "Give {Haste} to !M! random cards in your draw pile. || At the end of each turn, Channel [Dark]. Trigger it once for every 2 cards in hand.",
+			"DESCRIPTION": "Give {~Haste} to !M! random cards in your draw pile. || At the end of each turn, Channel [Dark]. Trigger it once for every 2 cards in hand.",
 			"EXTENDED_DESCRIPTION": ["At the end of each turn, Channel 1 Dark. Trigger it #b{0} times for every 2 cards in your hand."],
 			"NAME": "Akane Senri"
 		},
@@ -698,8 +698,8 @@
 		},
 		"animator:ChihayaOhtori":
 		{
-			"DESCRIPTION": "Choose 1: Draw a {Martial Artist} from your discard pile and {Motivate} it, or Gain !S! [Artifact]. || Costs 1 less for every !M! [Force].",
-		  	"EXTENDED_DESCRIPTION": ["Draw a {Martial Artist} from your discard pile and {Motivate} it.", "Gain 1 [Artifact]."],
+			"DESCRIPTION": "Choose 1: Draw a Strike from your discard pile and {Motivate} it, or Gain !S! [Artifact]. || Costs 1 less for every !M! [Force].",
+		  	"EXTENDED_DESCRIPTION": ["Draw a Strike from your discard pile and {Motivate} it.", "Gain 1 [Artifact]."],
 		  	"NAME": "Chihaya Ohtori"
 		},
 		"animator:Defend_Rewrite":
@@ -709,7 +709,7 @@
 		},
 		"animator:Kagari":
 		{
-			"DESCRIPTION": "Once per turn, When you Channel {Earth}: Gain [W]. Boost [W] in <WS>. || !A! <O>, !A! <B>: Apply !M! [Shackles] ** to ALL enemies.",
+			"DESCRIPTION": "Once per turn, When you Channel [Earth]: Gain [W]. Boost [W] in <WS>. || !A! <R> and <B>: Apply !M! [Shackles] ** to ALL enemies.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you Channel #yEarth this turn, Gain #b{0} #yWillpower."],
 			"NAME": "Kagari"
 		},
@@ -742,7 +742,7 @@
 		},
 		"animator:SakuyaOhtori":
 		{
-			"DESCRIPTION": "If in <FS>: Enter <IS> and apply !M! {Blinded} to ALL enemies. || Otherwise, Enter <FS> and double your rightmost [Dark] amount.",
+			"DESCRIPTION": "If in <FS>: Enter <IS> and apply !M! [Blinded] to ALL enemies. || Otherwise, Enter <FS> and double your rightmost [Dark] amount.",
 			"NAME": "Sakuya Ohtori"
 		},
 		"animator:Shimako":
@@ -853,7 +853,7 @@
 		},
 		"animator:Shirosaki":
 		{
-			"DESCRIPTION": "Apply !M! {Blinded}. || Shuffle {Laplace no Ma} and a {Curse} to your draw pile. || On Synergy: The {Curse} is always {Injury}.",
+			"DESCRIPTION": "Apply !M! [Blinded]. || Shuffle {Laplace no Ma} and a {Curse} to your draw pile. || On Synergy: The {Curse} is always {Injury}.",
 			"NAME": "Shirosaki"
 		},
 		"animator:Shirosaki_Laplace":
@@ -2162,7 +2162,7 @@
 		"animator:Enchantment1":
 		{
 			"DESCRIPTION": "Once per turn, ** pay !S! [E]: Choose and ** Enter any Stance.",
-			"EXTENDED_DESCRIPTION": 
+			"EXTENDED_DESCRIPTION":
 			[
 				"Once per turn, pay !S! [E]: Choose and Enter any Stance, if you are already in the chosen Stance: Gain {0} [Block].",
 				"Once per turn, pay !S! [E]: Choose and Enter any Stance, then Motivate the bottom card of your draw pile.",
@@ -2173,7 +2173,7 @@
 		"animator:Enchantment2":
 		{
 			"DESCRIPTION": "Once per turn, ** pay !S! [E]: {~Retain} ** all {[A-Gen] Powers}.",
-			"EXTENDED_DESCRIPTION": 
+			"EXTENDED_DESCRIPTION":
 			[
 				"Once per turn, pay !S! [E]: Boost [F] and gain !M! [Plated Armor].",
 				"Once per turn, pay !S! [E]: Boost [A] and Retain !M! card(s).",
@@ -2186,7 +2186,7 @@
 		"animator:Enchantment3":
 		{
 			"DESCRIPTION": "Once per turn, ** pay !S! [E]: Apply !M! [Vulnerable].",
-			"EXTENDED_DESCRIPTION": 
+			"EXTENDED_DESCRIPTION":
 			[
 				"Once per turn, pay !S! [E]: Apply !M! [Vulnerable] and {0} [Poison].",
 				"Once per turn, pay !S! [E]: Apply !M! [Vulnerable] and {0} [Weak].",

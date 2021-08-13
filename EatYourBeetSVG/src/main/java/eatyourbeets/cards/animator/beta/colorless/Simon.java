@@ -61,6 +61,7 @@ public class Simon extends AnimatorCard
             if (card != null)
             {
                 GameUtilities.IncreaseDamage(card, e.lastDamageTaken / 2, false);
+                card.flash();
             }
         });
 

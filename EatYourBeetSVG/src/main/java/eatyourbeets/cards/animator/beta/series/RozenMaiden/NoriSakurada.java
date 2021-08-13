@@ -14,68 +14,62 @@ import eatyourbeets.utilities.GameActions;
 
 public class NoriSakurada extends AnimatorCard //TODO
 {
-	public static final EYBCardData DATA =
-			Register(NoriSakurada.class)
-			.SetSkill(0, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
-	
-	public NoriSakurada()
-	{
-		super(DATA);
-		
-		Initialize(0 ,0 ,1 ,0);
-		SetUpgrade(0 ,0 ,1 ,0);
-		SetAffinity_Orange(1, 0, 0);
+    public static final EYBCardData DATA =
+            Register(NoriSakurada.class)
+                    .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
 
-		SetExhaust(true);
-	}
+    public NoriSakurada() {
+        super(DATA);
+
+        Initialize(0, 0, 1, 0);
+        SetUpgrade(0, 0, 1, 0);
+        SetAffinity_Orange(1, 0, 0);
+
+        SetExhaust(true);
+    }
 
 
-	@Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-		GameActions.Bottom.Draw(magicNumber);
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+        GameActions.Bottom.Draw(magicNumber);
 
         GameActions.Bottom.SelectFromHand(name, 1, false)
-				.SetOptions(false, false, false)
-		        .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
-        		.AddCallback(cards ->
-        		{
-		        	for (AbstractCard card : cards)
-					{
-						GameActions.Bottom.MoveCard(card, p.hand, p.drawPile)
-								.SetDestination(CardSelection.Top);
-					}
-        		});
+                .SetOptions(false, false, false)
+                .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
+                .AddCallback(cards ->
+                {
+                    for (AbstractCard card : cards) {
+                        GameActions.Bottom.MoveCard(card, player.hand, player.drawPile)
+                                .SetDestination(CardSelection.Top);
+                    }
+                });
 
         GameActions.Bottom.StackPower(new NoriSakuradaPower(p));
     }
 
-    public static class NoriSakuradaPower extends AnimatorPower
-	{
-		public NoriSakuradaPower(AbstractCreature owner)
-		{
-			super(owner,NoriSakurada.DATA);
+    public static class NoriSakuradaPower extends AnimatorPower {
+        public NoriSakuradaPower(AbstractCreature owner) {
+            super(owner, NoriSakurada.DATA);
 
-			this.amount = -1;
+            this.amount = -1;
 
-			updateDescription();
-		}
+            updateDescription();
+        }
 
-		@Override
-		public void updateDescription()
-		{
-			description = FormatDescription(0);
-		}
+        @Override
+        public void updateDescription() {
+            description = FormatDescription(0);
+        }
 
-		@Override
-		public void atEndOfTurn(boolean isPlayer)
-		{
-			GameActions.Bottom.Reload(NoriSakurada.DATA.Strings.NAME,cards -> {});
-			RemovePower();
+        @Override
+        public void atEndOfTurn(boolean isPlayer) {
+            GameActions.Bottom.Reload(NoriSakurada.DATA.Strings.NAME, cards -> {
+            });
+            RemovePower();
 
-			super.atEndOfTurn(isPlayer);
-		}
-	}
+            super.atEndOfTurn(isPlayer);
+        }
+    }
 /*
     @Override
     public void triggerOnManualDiscard()

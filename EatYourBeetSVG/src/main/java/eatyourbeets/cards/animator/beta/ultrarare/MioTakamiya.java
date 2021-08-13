@@ -13,7 +13,7 @@ import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard
+public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard //TODO
 {
     public static final EYBCardData DATA = Register(MioTakamiya.class).SetSkill(3, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.DateALive);
     static

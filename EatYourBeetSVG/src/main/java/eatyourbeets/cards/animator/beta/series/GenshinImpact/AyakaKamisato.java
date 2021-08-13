@@ -14,7 +14,6 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.NegateBlockPower;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -29,8 +28,8 @@ public class AyakaKamisato extends AnimatorCard {
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(12, 0, 3, 2);
-        SetUpgrade(2, 0, 1, 0);
+        Initialize(13, 0, 3, 1);
+        SetUpgrade(2, 0, 2, 0);
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Green(1, 0, 0);
         SetAffinity_Orange(1, 0, 1);
@@ -38,17 +37,6 @@ public class AyakaKamisato extends AnimatorCard {
         SetAffinityRequirement(Affinity.Blue, 4);
 
         SetExhaust(true);
-    }
-
-    @Override
-    public void initializeDescription()
-    {
-        super.initializeDescription();
-
-        if (cardText != null)
-        {
-            tooltips.add(GR.Tooltips.Freezing);
-        }
     }
 
     @Override
@@ -66,7 +54,7 @@ public class AyakaKamisato extends AnimatorCard {
                     .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.TEAL, Color.LIGHT_GRAY, Color.SKY, Color.BLUE).duration * 0.6f)
                     .SetOptions(true, false);
         }
-        GameActions.Bottom.GainTemporaryThorns(magicNumber + CombatStats.Affinities.GetPowerAmount(Affinity.Blue) / secondaryValue);
+        GameActions.Bottom.GainTemporaryThorns(magicNumber + CombatStats.Affinities.GetPowerAmount(Affinity.Blue));
         GameActions.Bottom.StackPower(new NegateBlockPower(p, ATTACK_TIMES));
 
         if (CheckAffinity(Affinity.Blue) && CombatStats.TryActivateLimited(cardID))

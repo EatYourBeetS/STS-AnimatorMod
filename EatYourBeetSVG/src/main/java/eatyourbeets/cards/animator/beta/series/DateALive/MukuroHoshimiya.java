@@ -8,16 +8,15 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.subscribers.OnAddedToDrawPileSubscriber;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
-public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuffleSubscriber, OnAddedToDrawPileSubscriber
+public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuffleSubscriber
 {
     public static final EYBCardData DATA = Register(MukuroHoshimiya.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Elemental).SetSeriesFromClassPackage();
     private final ArrayList<AbstractCard> cardList = new ArrayList<>();
@@ -43,10 +42,16 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
 
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.PSYCHOKINESIS);
-        GameActions.Bottom.Scry(secondaryValue).AddCallback(cards -> {
-            cardList.addAll(cards);
-        });
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.PSYCHOKINESIS).AddCallback(() ->
+                GameActions.Bottom.Scry(secondaryValue).AddCallback(cards ->
+                        {
+                            if (cards.size() > 0) {
+                                cardList.addAll(cards);
+                                CombatStats.onShuffle.Subscribe(this);
+                            }
+                        }
+                )).SetDuration(0.5f,true);
+
     }
 
     @Override
@@ -61,23 +66,22 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
     public void triggerWhenCreated(boolean startOfBattle)
     {
         super.triggerWhenCreated(startOfBattle);
-
-        CombatStats.onShuffle.Subscribe(this);
-    }
-
-    @Override
-    public void OnAddedToDrawPile(boolean visualOnly, CardSelection.Mode destination)
-    {
-        OnShuffle(false);
     }
 
     @Override
     public void OnShuffle(boolean triggerRelics)
     {
-        for (int i = 0; i < cardList.size(); i++) {
-            int index = i;
-            GameActions.Top.Callback(() -> JUtils.ChangeIndex(cardList.get(index), player.drawPile.group, index));
-        }
-        cardList.clear();
+        GameActions.Top.Callback(() -> {
+            for (int i = 0; i < cardList.size(); i++) {
+                AbstractCard card = cardList.get(i);
+                if (card != null) {
+                    GameEffects.Queue.ShowCardBriefly(makeStatEquivalentCopy());
+                    JUtils.ChangeIndex(cardList.get(i), player.drawPile.group, i);
+                }
+
+            }
+            cardList.clear();
+            CombatStats.onShuffle.Unsubscribe(this);
+        });
     }
 }

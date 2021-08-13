@@ -22,12 +22,12 @@ public class Kagari extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4);
+        Initialize(0, 0, 6);
         SetUpgrade(0, 4, 0);
         SetAffinity_Orange(2, 0, 0);
         SetAffinity_Blue(1, 0, 0);
 
-        SetAffinityRequirement(Affinity.Orange, 2);
+        SetAffinityRequirement(Affinity.Red, 2);
         SetAffinityRequirement(Affinity.Blue, 2);
     }
 

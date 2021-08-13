@@ -14,16 +14,14 @@ import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
-public class ByakuyaKuchiki extends AnimatorCard
-{
+public class ByakuyaKuchiki extends AnimatorCard {
     public static final EYBCardData DATA = Register(ByakuyaKuchiki.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage();
-    static
-    {
+
+    static {
         DATA.AddPreview(new ByakuyaBankai(), false);
     }
 
-    public ByakuyaKuchiki()
-    {
+    public ByakuyaKuchiki() {
         super(DATA);
 
         Initialize(23, 14, 0);
@@ -33,22 +31,19 @@ public class ByakuyaKuchiki extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.Callback(card -> {
-            ChooseAction(m);
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+        GameActions.Bottom.Callback(m, (enemy, __) -> {
+            ChooseAction(enemy);
         });
 
-        if (ForceStance.IsActive() || AgilityStance.IsActive())
-        {
+        if (ForceStance.IsActive() || AgilityStance.IsActive()) {
             GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
             GameActions.Bottom.MakeCardInDrawPile(new ByakuyaBankai());
             GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
         }
     }
 
-    private void ChooseAction(AbstractMonster m)
-    {
+    private void ChooseAction(AbstractMonster m) {
         AnimatorCard damage = GenerateInternal(CardType.ATTACK, this::DamageEffect).Build();
         AnimatorCard block = GenerateInternal(CardType.SKILL, this::BlockEffect).Build();
 
@@ -59,46 +54,39 @@ public class ByakuyaKuchiki extends AnimatorCard
         Execute(choices, m);
     }
 
-    private AnimatorCardBuilder GenerateInternal(AbstractCard.CardType type, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
-    {
+    private AnimatorCardBuilder GenerateInternal(AbstractCard.CardType type, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction) {
         AnimatorCardBuilder builder = new AnimatorCardBuilder(ByakuyaKuchiki.DATA.ID);
         builder.SetText(name, "", "");
         builder.SetProperties(type, GR.Enums.Cards.THE_ANIMATOR, AbstractCard.CardRarity.RARE, CardTarget.ENEMY);
         builder.SetOnUse(onUseAction);
 
-        if (type.equals(CardType.ATTACK))
-        {
+        if (type.equals(CardType.ATTACK)) {
             builder.SetAttackType(EYBAttackType.Piercing, EYBCardTarget.Normal);
             builder.SetNumbers(damage, 0, 0, 0);
-        }
-        else
-        {
+        } else {
             builder.SetNumbers(0, block, 0, 0);
         }
 
         return builder;
     }
 
-    private void Execute(CardGroup group, AbstractMonster m)
-    {
+    private void Execute(CardGroup group, AbstractMonster m) {
         GameActions.Top.SelectFromPile(name, 1, group)
-        .SetOptions(false, false)
-        .AddCallback(cards ->
-        {
-            AbstractCard card = cards.get(0);
-            card.applyPowers();
-            card.calculateCardDamage(m);
-            card.use(player, m);
-        });
+                .SetOptions(false, false)
+                .AddCallback(m, (enemy, cards) ->
+                {
+                    AbstractCard card = cards.get(0);
+                    card.applyPowers();
+                    card.calculateCardDamage(enemy);
+                    card.use(player, enemy);
+                });
     }
 
-    private void DamageEffect(AbstractCard card, AbstractPlayer p, AbstractMonster m)
-    {
+    private void DamageEffect(AbstractCard card, AbstractPlayer p, AbstractMonster m) {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH);
     }
 
-    private void BlockEffect(AbstractCard card, AbstractPlayer p, AbstractMonster m)
-    {
+    private void BlockEffect(AbstractCard card, AbstractPlayer p, AbstractMonster m) {
         GameActions.Bottom.GainBlock(block);
     }
 }

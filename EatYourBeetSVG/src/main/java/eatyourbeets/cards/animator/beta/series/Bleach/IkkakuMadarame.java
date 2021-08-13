@@ -15,17 +15,15 @@ import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class IkkakuMadarame extends AnimatorCard
-{
+public class IkkakuMadarame extends AnimatorCard {
     public static final EYBCardData DATA = Register(IkkakuMadarame.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL).SetSeriesFromClassPackage();
-    static
-    {
+
+    static {
         DATA.AddPreview(new ZarakiKenpachi(), false);
         DATA.AddPreview(new IkkakuBankai(), false);
     }
 
-    public IkkakuMadarame()
-    {
+    public IkkakuMadarame() {
         super(DATA);
 
         Initialize(4, 0, 0, 3);
@@ -35,28 +33,23 @@ public class IkkakuMadarame extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL);
 
-        if (GameUtilities.GetPowerAmount(ZarakiKenpachi.DATA.ID + "Power") > 0)
-        {
+        if (GameUtilities.GetPowerAmount(ZarakiKenpachi.DATA.ID + "Power") > 0) {
             GameActions.Bottom.StackPower(new IkkakuMadaramePower(player, 1));
         }
 
         GameActions.Bottom.Callback(card -> {
-            if (GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID) > secondaryValue || GameUtilities.GetPowerAmount(p, AgilityPower.POWER_ID) > secondaryValue )
-            {
+            if (GameUtilities.GetPowerAmount(player, ForcePower.POWER_ID) > secondaryValue || GameUtilities.GetPowerAmount(player, AgilityPower.POWER_ID) > secondaryValue) {
                 GameActions.Bottom.MakeCardInDrawPile(new IkkakuBankai());
                 GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
             }
         });
     }
 
-    public static class IkkakuMadaramePower extends AnimatorPower
-    {
-        public IkkakuMadaramePower(AbstractPlayer owner, int amount)
-        {
+    public static class IkkakuMadaramePower extends AnimatorPower {
+        public IkkakuMadaramePower(AbstractPlayer owner, int amount) {
             super(owner, IkkakuMadarame.DATA);
 
             this.amount = amount;
@@ -65,36 +58,30 @@ public class IkkakuMadarame extends AnimatorCard
         }
 
         @Override
-        public void onInitialApplication()
-        {
+        public void onInitialApplication() {
             super.onInitialApplication();
 
-            if (player.hasPower(ZarakiKenpachi.ZarakiKenpachiPower.POWER_ID))
-            {
+            if (player.hasPower(ZarakiKenpachi.ZarakiKenpachiPower.POWER_ID)) {
                 CombatStats.Affinities.Agility.SetEnabled(true);
             }
         }
 
         @Override
-        public void onRemove()
-        {
+        public void onRemove() {
             super.onRemove();
 
-            if (player.hasPower(ZarakiKenpachi.ZarakiKenpachiPower.POWER_ID))
-            {
+            if (player.hasPower(ZarakiKenpachi.ZarakiKenpachiPower.POWER_ID)) {
                 CombatStats.Affinities.Agility.SetEnabled(false);
             }
         }
 
         @Override
-        public void updateDescription()
-        {
+        public void updateDescription() {
             description = FormatDescription(0, amount);
         }
 
         @Override
-        public void atEndOfTurn(boolean isPlayer)
-        {
+        public void atEndOfTurn(boolean isPlayer) {
             super.atEndOfTurn(isPlayer);
             RemovePower();
         }

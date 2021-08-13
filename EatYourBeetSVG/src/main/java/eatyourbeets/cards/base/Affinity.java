@@ -130,7 +130,7 @@ public enum Affinity implements Comparable<Affinity>
         if (tooltip.Is(GR.Tooltips.Affinity_Red)    ) { return Affinity.Red;     }
         if (tooltip.Is(GR.Tooltips.Affinity_Green)  ) { return Affinity.Green;   }
         if (tooltip.Is(GR.Tooltips.Affinity_Blue)   ) { return Affinity.Blue;    }
-        if (tooltip.Is(GR.Tooltips.Affinity_Orange) ) { return Affinity.Orange;    }
+        if (tooltip.Is(GR.Tooltips.Affinity_Orange) ) { return Affinity.Orange;  }
         if (tooltip.Is(GR.Tooltips.Affinity_Light)  ) { return Affinity.Light;   }
         if (tooltip.Is(GR.Tooltips.Affinity_Dark)   ) { return Affinity.Dark;    }
         if (tooltip.Is(GR.Tooltips.Affinity_Star)   ) { return Affinity.Star;    }

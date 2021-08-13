@@ -59,7 +59,7 @@ public class BlindedPower extends CommonPower implements OnChannelOrbSubscriber,
     @Override
     protected ColoredString GetSecondaryAmount(Color c)
     {
-        return new ColoredString(GetDamageReduction(), Color.RED, c.a);
+        return new ColoredString(-1 * GetDamageReduction(), Color.RED, c.a);
     }
 
     @Override

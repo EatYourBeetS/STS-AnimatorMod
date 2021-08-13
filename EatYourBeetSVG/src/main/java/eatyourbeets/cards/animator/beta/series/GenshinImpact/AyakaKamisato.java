@@ -14,7 +14,6 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.NegateBlockPower;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -38,17 +37,6 @@ public class AyakaKamisato extends AnimatorCard {
         SetAffinityRequirement(Affinity.Blue, 4);
 
         SetExhaust(true);
-    }
-
-    @Override
-    public void initializeDescription()
-    {
-        super.initializeDescription();
-
-        if (cardText != null)
-        {
-            tooltips.add(GR.Tooltips.Freezing);
-        }
     }
 
     @Override

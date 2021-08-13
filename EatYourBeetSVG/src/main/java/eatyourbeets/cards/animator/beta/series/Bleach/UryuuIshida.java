@@ -13,12 +13,10 @@ import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class UryuuIshida extends AnimatorCard
-{
+public class UryuuIshida extends AnimatorCard {
     public static final EYBCardData DATA = Register(UryuuIshida.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged).SetSeriesFromClassPackage();
 
-    public UryuuIshida()
-    {
+    public UryuuIshida() {
         super(DATA);
 
         Initialize(4, 0, 1, 2);
@@ -27,45 +25,35 @@ public class UryuuIshida extends AnimatorCard
     }
 
     @Override
-    public void triggerOnManualDiscard()
-    {
+    public void triggerOnManualDiscard() {
         GameActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
 
-        if (IsStarter())
-        {
-            GameActions.Bottom.Callback(card -> TransferWeakVulnerable(m));
+        if (IsStarter()) {
+            GameActions.Bottom.Callback(m, (enemy, __) -> TransferWeakVulnerable(enemy));
         }
     }
 
-    private void TransferWeakVulnerable(AbstractMonster m)
-    {
+    private void TransferWeakVulnerable(AbstractMonster m) {
         int weakToTransfer = GameUtilities.GetPowerAmount(player, WeakPower.POWER_ID);
         int vulToTransfer = GameUtilities.GetPowerAmount(player, VulnerablePower.POWER_ID);
 
-        if (weakToTransfer > magicNumber)
-        {
+        if (weakToTransfer > magicNumber) {
             weakToTransfer = magicNumber;
         }
-        if (vulToTransfer > magicNumber)
-        {
+        if (vulToTransfer > magicNumber) {
             vulToTransfer = magicNumber;
         }
 
-        for (AbstractPower power : player.powers)
-        {
-            if (WeakPower.POWER_ID.equals(power.ID) && weakToTransfer > 0)
-            {
+        for (AbstractPower power : player.powers) {
+            if (WeakPower.POWER_ID.equals(power.ID) && weakToTransfer > 0) {
                 GameActions.Bottom.ReducePower(power, weakToTransfer);
                 GameActions.Bottom.ApplyWeak(player, m, weakToTransfer);
-            }
-            else if (VulnerablePower.POWER_ID.equals(power.ID) && vulToTransfer > 0)
-            {
+            } else if (VulnerablePower.POWER_ID.equals(power.ID) && vulToTransfer > 0) {
                 GameActions.Bottom.ReducePower(power, vulToTransfer);
                 GameActions.Bottom.ApplyVulnerable(player, m, vulToTransfer);
             }

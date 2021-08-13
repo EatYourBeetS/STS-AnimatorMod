@@ -13,12 +13,10 @@ import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class JumpyDumpty extends AnimatorCard
-{
+public class JumpyDumpty extends AnimatorCard {
     public static final EYBCardData DATA = Register(JumpyDumpty.class).SetAttack(0, CardRarity.SPECIAL, EYBAttackType.Elemental).SetSeries(CardSeries.GenshinImpact);
 
-    public JumpyDumpty()
-    {
+    public JumpyDumpty() {
         super(DATA);
 
         Initialize(11, 0, 1, 6);
@@ -29,17 +27,15 @@ public class JumpyDumpty extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
         GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX, m.hb.cY), 0.1F);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
                 .AddCallback(m.currentBlock, (initialBlock, target) ->
                 {
-                    if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0))
-                    {
+                    if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0)) {
                         if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
                             GameActions.Bottom.MakeCardInDrawPile(this.makeStatEquivalentCopy());
-                            GameActions.Bottom.StackPower(new SelfDamagePower(p, secondaryValue));
+                            GameActions.Bottom.StackPower(new SelfDamagePower(player, secondaryValue));
                         }
                     }
 

@@ -11,16 +11,14 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
-public class SanaeKochiya extends AnimatorCard
-{
+public class SanaeKochiya extends AnimatorCard {
     public static final EYBCardData DATA = Register(SanaeKochiya.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
-    static
-    {
+
+    static {
         DATA.AddPreview(new Miracle(), false);
     }
 
-    public SanaeKochiya()
-    {
+    public SanaeKochiya() {
         super(DATA);
 
         Initialize(0, 0, 4, 0);
@@ -30,41 +28,34 @@ public class SanaeKochiya extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
         GameActions.Top.Scry(magicNumber)
-        .AddCallback(cards -> {
-            boolean hasEthereal = false;
+                .AddCallback(cards -> {
+                            boolean hasEthereal = false;
 
-            for (AbstractCard card : cards)
-            {
-                if (card.isEthereal)
-                {
-                    hasEthereal = true;
-                    break;
-                }
-            }
+                            for (AbstractCard card : cards) {
+                                if (card.isEthereal) {
+                                    hasEthereal = true;
+                                    break;
+                                }
+                            }
 
-            if (hasEthereal)
-            {
-                GameActions.Top.StackPower(new NextTurnMiracle(p, 1));
-            }
-        }
-        );
+                            if (hasEthereal) {
+                                GameActions.Top.StackPower(new NextTurnMiracle(player, 1));
+                            }
+                        }
+                );
     }
 
-    public static class NextTurnMiracle extends AnimatorPower
-    {
-        public NextTurnMiracle(AbstractCreature owner, int amount)
-        {
+    public static class NextTurnMiracle extends AnimatorPower {
+        public NextTurnMiracle(AbstractCreature owner, int amount) {
             super(owner, SanaeKochiya.DATA);
             this.amount = amount;
             updateDescription();
         }
 
         @Override
-        public void atStartOfTurn()
-        {
+        public void atStartOfTurn() {
             super.atStartOfTurn();
 
             for (int i = 0; i < amount; i++) {
@@ -74,8 +65,7 @@ public class SanaeKochiya extends AnimatorCard
         }
 
         @Override
-        public void updateDescription()
-        {
+        public void updateDescription() {
             this.description = FormatDescription(0, amount);
             this.enabled = (amount > 0);
         }

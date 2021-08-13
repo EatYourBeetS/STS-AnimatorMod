@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.ui.animator.combat.CombatHelper;
@@ -66,7 +66,7 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
     @Override
     public void playApplyPowerSfx()
     {
-        CardCrawlGame.sound.playA("ORB_FROST_CHANNEL", -0.25f);
+        SFX.Play(SFX.ORB_FROST_CHANNEL, 0.95f, 1.05f);
     }
 
     @Override

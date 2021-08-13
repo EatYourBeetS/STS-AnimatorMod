@@ -33,22 +33,21 @@ public class KaeyaAlberich extends AnimatorCard {
 
         GameActions.Bottom.GainBlock(block);
 
-        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
-        {
+        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID)) {
             GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, magicNumber);
         }
 
-        AbstractOrb firstCommonOrb = null;
-        for (AbstractOrb orb : p.orbs)
-            if (Fire.ORB_ID.equals(orb.ID) || Frost.ORB_ID.equals(orb.ID) || Lightning.ORB_ID.equals(orb.ID)) {
-                firstCommonOrb = orb;
-                break;
+        GameActions.Bottom.ChannelOrb(new Frost()).AddCallback(() -> {
+            AbstractOrb firstCommonOrb = null;
+            for (AbstractOrb orb : player.orbs)
+                if (Fire.ORB_ID.equals(orb.ID) || Frost.ORB_ID.equals(orb.ID) || Lightning.ORB_ID.equals(orb.ID)) {
+                    firstCommonOrb = orb;
+                    break;
+                }
+
+            if (firstCommonOrb != null) {
+                GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(1, false, false, firstCommonOrb));
             }
-
-        if (firstCommonOrb != null) {
-            GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(magicNumber, false, false, firstCommonOrb));
-        }
-
-        GameActions.Bottom.ChannelOrb(new Frost());
+        });
     }
 }

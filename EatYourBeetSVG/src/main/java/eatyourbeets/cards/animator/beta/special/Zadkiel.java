@@ -14,16 +14,14 @@ import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-public class Zadkiel extends AnimatorCard
-{
+public class Zadkiel extends AnimatorCard {
     public static final EYBCardData DATA = Register(Zadkiel.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.Random).SetSeries(CardSeries.DateALive);
 
-    public Zadkiel()
-    {
+    public Zadkiel() {
         super(DATA);
 
-        Initialize(36, 0, 2, 5);
-        SetUpgrade(10,0,0);
+        Initialize(36, 0, 2, 9);
+        SetUpgrade(15, 0, 0);
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Dark(1, 0, 0);
 
@@ -31,18 +29,16 @@ public class Zadkiel extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
 
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH)
                 .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.NAVY)).duration)
-        .AddCallback(enemy -> {
-            if (GameUtilities.IsFatal(enemy, true))
-                {
-                    GameActions.Bottom.EvokeOrb(magicNumber).AddCallback(() ->
-                            GameActions.Bottom.ChannelOrbs(Frost::new, JUtils.Count(player.orbs, o -> o instanceof EmptyOrbSlot)));
-                }
-        });
+                .AddCallback(enemy -> {
+                    if (GameUtilities.IsFatal(enemy, true)) {
+                        GameActions.Bottom.EvokeOrb(magicNumber).AddCallback(() ->
+                                GameActions.Bottom.ChannelOrbs(Frost::new, JUtils.Count(player.orbs, o -> o instanceof EmptyOrbSlot)));
+                    }
+                });
         GameActions.Bottom.StackPower(new SelfDamagePower(p, secondaryValue));
     }
 }

@@ -25,7 +25,7 @@ public class Yae extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
+        Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Blue(2);

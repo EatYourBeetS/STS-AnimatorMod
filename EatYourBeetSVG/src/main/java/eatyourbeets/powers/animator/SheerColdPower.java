@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class SheerColdPower extends AnimatorPower implements OnOrbPassiveEffectSubscriber
 {
     public static final String POWER_ID = CreateFullID(SheerColdPower.class);
-    public static final int EVOKE_MULTIPLIER = 2;
 
     public SheerColdPower(AbstractPlayer owner, int amount)
     {
@@ -48,7 +47,7 @@ public class SheerColdPower extends AnimatorPower implements OnOrbPassiveEffectS
     @Override
     public void updateDescription()
     {
-        description = FormatDescription(0, amount, amount * EVOKE_MULTIPLIER);
+        description = FormatDescription(0, amount);
     }
 
     @Override
@@ -61,11 +60,13 @@ public class SheerColdPower extends AnimatorPower implements OnOrbPassiveEffectS
             {
                 for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
                 {
-                    this.applyPower(enemy, orb, EVOKE_MULTIPLIER * this.amount);
+                    this.applyPower(enemy, orb, this.amount, .07f);
+                    this.applyPower(enemy, orb, this.amount);
                 }
             }
             else {
-                this.applyPower(player, orb, EVOKE_MULTIPLIER * this.amount);
+                this.applyPower(player, orb, this.amount, .07f);
+                this.applyPower(player, orb, this.amount);
             }
         }
     }
@@ -98,8 +99,12 @@ public class SheerColdPower extends AnimatorPower implements OnOrbPassiveEffectS
     }
 
     private void applyPower(AbstractCreature target, AbstractOrb orb, int applyAmount) {
+        this.applyPower(target,orb,applyAmount,.15f);
+    }
+
+    private void applyPower(AbstractCreature target, AbstractOrb orb, int applyAmount, float delay) {
         if (target != null) {
-            GameActions.Top.Wait(0.15f);
+            GameActions.Top.Wait(delay);
             GameActions.Top.VFX(new SnowballEffect(orb.hb.cX, orb.hb.cY, target.hb.cX, target.hb.cY)
                     .SetColor(Color.SKY, Color.CYAN).SetRealtime(true));
             GameActions.Bottom.ApplyFreezing(owner, target, applyAmount).CanStack(true);

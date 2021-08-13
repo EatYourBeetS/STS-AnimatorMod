@@ -19,8 +19,12 @@ public class Zhongli extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2, 1);
-        SetUpgrade(0, 6, 0, 0);
+        SetUpgrade(0, 3, 0, 0);
         SetAffinity_Orange(2, 0, 0);
+    }
+
+    public void OnUpgrade() {
+        SetRetainOnce(true);
     }
 
 

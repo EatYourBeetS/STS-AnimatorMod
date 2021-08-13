@@ -1,51 +1,66 @@
 package eatyourbeets.powers.common;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.ui.animator.combat.CombatHelper;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+
+import java.util.UUID;
 
 public class FreezingPower extends CommonPower implements HealthBarRenderPower
 {
     private static final Color healthBarColor = new Color(0.372F, 0.5F, 1.0F, 1.0F);
     public static final String POWER_ID = CreateFullID(FreezingPower.class);
-    public static final int BASE_MULTIPLIER = 10;
-    public static final int MAX_MULTIPLIER_STACKS = 20;
-    public static final float RATE = 0.5f;
+    public static final int REDUCTION_MULTIPLIER = 10;
+    public static final int MAX_REDUCTION_MULTIPLIER = 40;
+    public static int PLAYER_REDUCTION_BONUS = 0;
+    private static UUID battleID;
 
-    private float percentage;
-
-    public static float CalculatePercentage(int amount) {return BASE_MULTIPLIER + RATE * Math.min(MAX_MULTIPLIER_STACKS,amount);}
     public static float CalculateDamage(float damage, float percentage)
     {
-        return damage - MathUtils.ceil( damage * (percentage / 100f));
+        return Math.max(0, damage - Math.max(1f, damage * (percentage / 100f)));
+    }
+    private float GetMultiplier() {return (GameUtilities.IsPlayer(owner)) ? REDUCTION_MULTIPLIER : Math.min(MAX_REDUCTION_MULTIPLIER, REDUCTION_MULTIPLIER + PLAYER_REDUCTION_BONUS);}
+    private int GetPassiveDamage()
+    {
+        return amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2;
+    }
+
+    public static void AddPlayerReductionBonus(int multiplier)
+    {
+        if (CombatStats.BattleID != battleID)
+        {
+            battleID = CombatStats.BattleID;
+            PLAYER_REDUCTION_BONUS = 0;
+        }
+
+        if (multiplier > 0)
+        {
+            PLAYER_REDUCTION_BONUS += multiplier;
+            GameUtilities.UpdatePowerDescriptions();
+        }
     }
 
     public FreezingPower(AbstractCreature owner, AbstractCreature source, int amount)
     {
         super(owner, source, POWER_ID);
 
-        this.amount = amount;
-        if (this.amount >= 9999)
-        {
-            this.amount = 9999;
-        }
-        this.type = PowerType.DEBUFF;
-        this.isTurnBased = true;
+        this.priority = 4;
 
-        updatePercentage();
+        Initialize(amount, PowerType.DEBUFF, true);
     }
 
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, GetPassiveDamage(), percentage);
+        this.description = FormatDescription(0, GetPassiveDamage(), GetMultiplier());
     }
 
     @Override
@@ -61,20 +76,6 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
 
         GameActions.Bottom.DealDamage(source, owner, GetPassiveDamage(), DamageInfo.DamageType.HP_LOSS, AttackEffects.ICE);
         ReducePower(1);
-    }
-
-    @Override
-    public void stackPower(int stackAmount)
-    {
-        super.stackPower(stackAmount);
-        updatePercentage();
-    }
-
-    @Override
-    public void reducePower(int reduceAmount)
-    {
-        super.reducePower(reduceAmount);
-        updatePercentage();
     }
 
     @Override
@@ -98,17 +99,6 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
 
     public int calculateDamageGiven(float damage, DamageInfo.DamageType type)
     {
-        return (int) ((type == DamageInfo.DamageType.NORMAL) ? CalculateDamage(damage, percentage) : damage);
-    }
-
-    private int GetPassiveDamage()
-    {
-        return amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2;
-    }
-
-    private void updatePercentage()
-    {
-        percentage = CalculatePercentage(this.amount);
-        updateDescription();
+        return (int) ((type == DamageInfo.DamageType.NORMAL) ? CalculateDamage(damage, GetMultiplier()) : damage);
     }
 }

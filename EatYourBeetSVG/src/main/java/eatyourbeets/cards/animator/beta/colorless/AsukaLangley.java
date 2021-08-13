@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.blue.LockOn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
@@ -73,6 +72,18 @@ public class AsukaLangley extends AnimatorCard
         }
 
         @Override
+        public void onPlayCard(AbstractCard card, AbstractMonster m)
+        {
+            super.onPlayCard(card,m);
+            AnimatorCard aCard = JUtils.SafeCast(card, AnimatorCard.class);
+            if (m.hasPower(LockOn.ID) && aCard != null && aCard.damage > 0 && aCard.damageTypeForTurn == DamageInfo.DamageType.NORMAL && aCard.attackType == EYBAttackType.Ranged)
+            {
+                GameActions.Last.ReducePower(m, this.owner, LockOn.ID, 1);
+                this.flash();
+            }
+        }
+
+        @Override
         public float OnDamageOverride(AbstractCreature target, DamageInfo.DamageType type, float damage, AbstractCard card)
         {
             AnimatorCard aCard = JUtils.SafeCast(card,AnimatorCard.class);
@@ -80,20 +91,6 @@ public class AsukaLangley extends AnimatorCard
                 return aCard.baseDamage;
             }
             return damage;
-        }
-
-        @Override
-        public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target)
-        {
-            super.onAttack(info, damageAmount, target);
-            AbstractCard lastCardPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn.get(AbstractDungeon.actionManager.cardsPlayedThisTurn.size() - 1);
-            AnimatorCard aCard = JUtils.SafeCast(lastCardPlayed, AnimatorCard.class);
-
-            if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL && target.hasPower(LockOn.ID) && aCard != null && aCard.attackType == EYBAttackType.Ranged)
-            {
-                GameActions.Bottom.ReducePower(target, this.owner, LockOn.ID, 1);
-                this.flash();
-            }
         }
 
     }

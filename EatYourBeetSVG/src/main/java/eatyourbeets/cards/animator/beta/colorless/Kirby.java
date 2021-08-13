@@ -23,7 +23,10 @@ import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.RotatingList;
 
 import java.util.ArrayList;
 
@@ -469,7 +472,12 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         }
 
         public boolean isBanned(AbstractCard c) {
-            return c.cost < -1 || GameUtilities.IsCurseOrStatus(c) || c.purgeOnUse || c instanceof AnimatorCard_UltraRare || c instanceof Kirby || c.cardID.startsWith("hubris")
+            return c.cost < 0
+                    || (c.rarity != CardRarity.COMMON && c.rarity != CardRarity.BASIC)
+                    || c.purgeOnUse
+                    || c instanceof AnimatorCard_UltraRare
+                    || c instanceof Kirby
+                    || c.cardID.startsWith("hubris")
                     ||  c.cardID.startsWith("ReplayTheSpireMod")
                     ||  c.cardID.startsWith("infinitespire")
                     ||  c.cardID.startsWith("StuffTheSpire");

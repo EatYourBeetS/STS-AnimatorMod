@@ -12,13 +12,19 @@ public abstract class Amplification_AbstractPower extends AnimatorPower implemen
 {
     public final String orbID;
     public final Affinity affinity;
+    public final int evokeMultiplier;
 
-    public Amplification_AbstractPower(AbstractCreature owner, String powerID, String orbID, Affinity affinity, int scaling)
+    public Amplification_AbstractPower(AbstractCreature owner, String powerID, String orbID, Affinity affinity, int scaling) {
+        this(owner,powerID,orbID,affinity,scaling,2);
+    }
+
+    public Amplification_AbstractPower(AbstractCreature owner, String powerID, String orbID, Affinity affinity, int scaling, int evokeMultiplier)
     {
         super(owner, powerID);
 
         this.orbID = orbID;
         this.affinity = affinity;
+        this.evokeMultiplier = evokeMultiplier;
 
         Initialize(scaling);
         CombatStats.onOrbApplyFocus.Subscribe(this);
@@ -37,7 +43,7 @@ public abstract class Amplification_AbstractPower extends AnimatorPower implemen
     public void updateDescription()
     {
         String powerName = CombatStats.Affinities.GetPower(affinity).name;
-        description = FormatDescription(0, amount, powerName);
+        description = FormatDescription(0, amount, powerName, this.evokeMultiplier * amount);
     }
 
     @Override
@@ -53,6 +59,7 @@ public abstract class Amplification_AbstractPower extends AnimatorPower implemen
     {
         if (orb != null && orb.ID.equals(orbID)) {
             orb.passiveAmount += GetScaledIncrease();
+            orb.evokeAmount += this.evokeMultiplier * GetScaledIncrease();
         }
     }
 

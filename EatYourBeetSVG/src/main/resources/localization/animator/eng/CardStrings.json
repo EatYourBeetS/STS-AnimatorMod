@@ -240,7 +240,7 @@
 		},
 		"animator:IsshinKurosaki":
 		{
-			"DESCRIPTION": "Choose 1: Channel 1 [Fire] or Gain !S! [F]. || <LIM>. All [Fire] deal !M! additional damage this combat.",
+			"DESCRIPTION": "Choose 1: Apply !M! [Burning] to ALL enemies or Gain !S! [F]. || <LIM>. !A! <R> or Synergy: Activate this effect again.",
 			"NAME": "Isshin Kurosaki"
 		},
 		"animator:MayuriKurotsuchi":
@@ -350,7 +350,7 @@
 		},
 		"animator:Kirby":
 		{
-		  "DESCRIPTION": "When you add this card to your deck, remove 2 non-Hindrance cards from your deck. Set this card's cost to the sum of their cost and give this card their effects.",
+		  "DESCRIPTION": "When you add this card to your deck, remove 2 Basic or Common cards from your deck. Set this card's cost to the sum of their cost and give this card their effects.",
 		  "EXTENDED_DESCRIPTION": ["Choose 2 cards to fuse.", "Unique. || This card has the effects of {0} and {1}.","Unique. || This card has the effects of {0}."],
 		  "NAME": "Kirby"
 		},
@@ -408,7 +408,7 @@
 		},
 		"animator:SheerCold":
 		{
-		  "DESCRIPTION": "Channel !S! [Frost]. || Your [Frost] now applies !M! [Freezing] to a random enemy when Triggered and twice that amount to ALL ** enemies when Evoked.",
+		  "DESCRIPTION": "[Frost] applies !M! [Freezing] once to a random enemy when triggered and twice to ALL ** enemies when Evoked. || Increase the reduction bonus of [Freezing] by !S!% this combat.",
 		  "NAME": "Sheer Cold"
 		},
 		"animator:ShuuOuma":
@@ -477,7 +477,7 @@
 		},
 		"animator:KurumiTokisaki":
 		{
-			"DESCRIPTION": "Next turn: Gain [E] for every !A! <C> you have. || <LIM>. When Exhausted.",
+			"DESCRIPTION": "Apply !M! {Blinded}. || !A! <C>: Gain 2 [E] next turn. || Cooldown !S!: Add !M! copies of {Shido Itsuka} to your draw pile with Autoplay.",
 			"NAME": "Kurumi Tokisaki"
 		},
 		"animator:MikuIzayoi":
@@ -487,17 +487,17 @@
 		},
 		"animator:MioTakamiya":
 		{
-			"DESCRIPTION": "At the start of combat: Enter <AS> and Shuffle three copies of {Shido Itsuka} into your draw pile. || If in <AS>: Exit your stance and gain [A] for every !M! [Block].",
+			"DESCRIPTION": "On your first Synergy each turn, lose !M! HP, then add a random card that Synergizes with this card to your draw pile. It costs 0 and has Autoplay and Purge.",
 			"NAME": "Mio Takamiya"
 		},
 		"animator:Mayuri":
 		{
-		  "DESCRIPTION": "Synergizes with Defends. Retain a Defend in your hand. || <SLM>. Increase the Block of all Defends in your hand by !M!",
+		  "DESCRIPTION": "Synergizes with Defends. Retain a Defend in your hand. || <SLM>. Synergy. Increase the Block of ALL Defends in your hand by !M!",
 		  "NAME": "Mayuri"
 		},
 		"animator:MukuroHoshimiya":
 		{
-			"DESCRIPTION": "Increase damage for every !M! cards in your draw pile. || Whenever this enters your draw pile, move it to the sixth spot from the top.",
+			"DESCRIPTION": "Deal 1 additional damage for every !M! cards in your draw pile. || Scry !S!. The next time you shuffle your deck, move those cards to the bottom of your draw pile.",
 			"NAME": "Mukuro Hoshimiya"
 		},
 		"animator:Natsumi":
@@ -508,7 +508,7 @@
 		},
 		"animator:NiaHonjou":
 		{
-			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** [Block].  Gain double [Block] ** in <AS>. || When Discarded: Scry !S!.",
+			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** [Block]. Gain double [Block] ** in <AS>. || When Discarded: Draw a card that Synergizes with this card.",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a card this turn, gain #b{0} #yBlock."],
 			"NAME": "Nia Honjou"
 		},
@@ -552,12 +552,13 @@
 		},
 		"animator:YoshinoHimekawa":
 		{
-			"DESCRIPTION": "All [Frost] gain 1 additional [Block] this combat. || When drawn with Haste: Discard this card and shuffle {Zadkiel} into your discard pile.",
+			"DESCRIPTION": "When drawn: Discard this card and change its form, then gain !S! [Blur]. || <LIM>. When exhausted in this form, Shuffle {Zadkiel} into your discard pile.",
+			"EXTENDED_DESCRIPTION": ["Gain !S! [Blur]. Apply !M! [Freezing] to ALL enemies."],
 			"NAME": "Yoshino Himekawa"
 		},
 		"animator:Zadkiel":
 		{
-			"DESCRIPTION": "Gain 1 Orb Slot. || Fill your empty orb slots with Frost.",
+			"DESCRIPTION": "Take !S! damage at the end of the turn. If this kills an enemy: Evoke !M! orbs, then fill your orb slots with [Frost].",
 			"NAME": "Zadkiel"
 		}
 	},
@@ -676,7 +677,7 @@
 		},
 		"animator:Zhongli":
 		{
-			"DESCRIPTION": "Your [Earth] now give half of their damage as [Block] when Evoked. || Once per turn, pay [E]: ** {Channel} [Earth] and gain !M! [Plated Armor].",
+			"DESCRIPTION": "When Evoked, [Earth] gives half of their damage as [Block]. || Once per turn, pay [E]: ** {Channel} [Earth] and gain !M! [Plated Armor].",
 		  	"EXTENDED_DESCRIPTION": ["Pay #b1 [E] to channel #b1 [Earth] ** and gain {0} [Plated Armor]. || Your [Earth] now give half of their damage as [Block] when #yEvoked."],
 			"NAME": "Zhongli"
 		}

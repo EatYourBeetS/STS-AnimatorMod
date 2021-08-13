@@ -15,10 +15,20 @@
 		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Receive #b{1}% more #yAttack damage (min. #b1 additional damage)."],
 		"NAME": "Burning"
 	},
+	"eyb:FireElementPower":
+	{
+	  "DESCRIPTIONS": ["Immune to Burning. Freezing is twice as effective."],
+	  "NAME": "Fire Element"
+	},
 	"eyb:FreezingPower":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Deal #b{1}% less #yAttack damage (rounded up)."],
+		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Deal #b{1}% less #yAttack damage (min. #b1 less damage)."],
 		"NAME": "Freezing"
+	},
+	"eyb:IceElementPower":
+	{
+	  "DESCRIPTIONS": ["Immune to Freezing. Burning is twice as effective."],
+	  "NAME": "Fire Element"
 	},
 	"eyb:SelfDamagePower":
 	{

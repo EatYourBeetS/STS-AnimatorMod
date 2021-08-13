@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class MS06ZakuII extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MS06ZakuII.class).SetPower(3, CardRarity.RARE).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Gundam);
+    public static final EYBCardData DATA = Register(MS06ZakuII.class).SetPower(3, CardRarity.RARE).SetColor(CardColor.COLORLESS).SetMaxCopies(1).SetSeries(CardSeries.Gundam);
     public static final String[] TEXT = GR.GetUIStrings(GR.Animator.CreateID("CardMods")).TEXT;
     private static final UpgradedHand blight = new UpgradedHand();
     private static final EYBCardTooltip tooltip = new EYBCardTooltip(blight.name, TEXT[0]);
@@ -24,8 +24,6 @@ public class MS06ZakuII extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 3, 12);
-        SetUpgrade(0, 0, 1);
-        SetRetainOnce(true);
 
         SetAffinity_Red(1);
 
@@ -44,6 +42,7 @@ public class MS06ZakuII extends AnimatorCard
     }
 
     public void OnUpgrade() {
+        SetInnate(true);
         SetRetainOnce(true);
     }
 

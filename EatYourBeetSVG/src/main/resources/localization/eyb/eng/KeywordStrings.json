@@ -74,7 +74,7 @@
 	},
 	"Burning":
 	{
-		"DESCRIPTION": "Increases incoming #yAttack damage by #b10% + #b1% per stack (max. multiplier is #b30%, min. damage icrease is #b1). NL At the start of turn, lose HP equal to #b50% of [Burning] and reduce [Burning] by #b1.",
+		"DESCRIPTION": "Increases incoming #yAttack damage by #b15% (min. #b1 additional damage). This multiplier can be increased by card effects. NL At the start of turn, lose HP equal to #b50% of [Burning] and reduce [Burning] by #b1.",
 		"NAMES": ["burning"],
 		"PROPER_NAME": "Burning"
 	},
@@ -200,7 +200,7 @@
 	},
 	"Freezing":
 	{
-		"DESCRIPTION": "Reduces outgoing #yAttack damage by #b10% + #b0.5% per stack (max. multiplier is #b20%, damage is rounded up). NL At the start of turn, lose HP equal to #b50% of [Freezing] and reduce [Freezing] by #b1.",
+		"DESCRIPTION": "Reduces outgoing #yAttack damage by #b10% (min. #b1 less damage). This multiplier can be increased up to #b40% by card effects. NL At the start of turn, lose HP equal to #b50% of [Freezing] and reduce [Freezing] by #b1.",
 		"NAMES": ["freezing"],
 		"PROPER_NAME": "Freezing"
 	},

@@ -1,8 +1,8 @@
 package eatyourbeets.effects.vfx;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.Mathf;
 
@@ -65,7 +65,10 @@ public class PsychokinesisEffect extends EYBEffect
             final float x = this.x + Random(-spreadX, spreadX);
             final float y = this.y + Random(-spreadY, spreadY);
             final float scale = Random(Math.max(0.05f,this.scaleLower),this.scaleUpper);
-            GameEffects.Queue.Add(new GenericAnimationEffect(EYBEffect.IMAGES.Psi.Texture(), x, y, 5, 5, 0.01f).SetColor(Color.WHITE)).SetScale(this.scaleLower * 0.05f).SetTargetScale(scale, 5f);
+            GameEffects.Queue.Add(new GenericAnimationEffect(EYBEffect.IMAGES.Psi.Texture(), x, y, 5, 5, 0.01f)
+                    .SetColor(Colors.Random(0.85f, 1f, false))
+                    .SetScale(this.scaleLower * 0.05f)
+                    .SetTargetScale(scale, 5f));
             vfxFrequency += vfxFrequencyGrowth;
             vfxTimer = vfxFrequency;
         }

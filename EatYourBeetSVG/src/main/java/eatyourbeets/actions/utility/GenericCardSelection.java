@@ -17,6 +17,7 @@ public class GenericCardSelection extends EYBActionWithCallback<ArrayList<Abstra
     protected CardSelection selection;
     protected AbstractCard card;
     protected CardGroup group;
+    protected boolean forceSelect;
 
     protected GenericCardSelection(AbstractCard card, CardGroup group, int amount)
     {
@@ -36,6 +37,13 @@ public class GenericCardSelection extends EYBActionWithCallback<ArrayList<Abstra
     public GenericCardSelection(AbstractCard card)
     {
         this(card, null, 1);
+    }
+
+    public GenericCardSelection ForceSelect(boolean forceSelect)
+    {
+        this.forceSelect = forceSelect;
+
+        return this;
     }
 
     public GenericCardSelection SetSelection(CardSelection selection)
@@ -64,7 +72,11 @@ public class GenericCardSelection extends EYBActionWithCallback<ArrayList<Abstra
     {
         if (card != null)
         {
-            SelectCard(card);
+            if (forceSelect || CanSelect(card))
+            {
+                SelectCard(card);
+            }
+
             Complete(result);
             return;
         }
@@ -78,7 +90,7 @@ public class GenericCardSelection extends EYBActionWithCallback<ArrayList<Abstra
         final ArrayList<AbstractCard> list = new ArrayList<>();
         for (AbstractCard card : group.group)
         {
-            if (CanSelect(card))
+            if (forceSelect || CanSelect(card))
             {
                 list.add(card);
             }

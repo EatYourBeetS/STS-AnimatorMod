@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.blights.animator.UltimateCrystalBlight;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.UltimateCrystal;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
@@ -72,9 +73,9 @@ public class UltimateCrystalPower extends AnimatorPower
     {
         super.onDeath();
 
-        if (!player.hasBlight(eatyourbeets.blights.animator.UltimateCrystal.ID))
+        if (!player.hasBlight(UltimateCrystalBlight.ID))
         {
-            GameUtilities.ObtainBlight(owner.hb.cX, owner.hb.cY, new eatyourbeets.blights.animator.UltimateCrystal());
+            GameUtilities.ObtainBlight(owner.hb.cX, owner.hb.cY, new UltimateCrystalBlight());
         }
     }
 }

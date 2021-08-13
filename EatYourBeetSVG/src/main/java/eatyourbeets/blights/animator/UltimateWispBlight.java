@@ -11,11 +11,11 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
-public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscriber, OnShuffleSubscriber
+public class UltimateWispBlight extends AnimatorBlight implements OnBattleStartSubscriber, OnShuffleSubscriber
 {
-    public static final String ID = CreateFullID(UltimateWisp.class);
+    public static final String ID = CreateFullID(UltimateWispBlight.class);
 
-    public UltimateWisp()
+    public UltimateWispBlight()
     {
         super(ID, 1);
 

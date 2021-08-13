@@ -7,6 +7,9 @@ import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.helpers.BlightHelper;
 import eatyourbeets.blights.animator.*;
 import eatyourbeets.blights.common.CustomTimeMaze;
+import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.UltimateCrystal;
+import eatyourbeets.monsters.UnnamedReign.Shapes.Cube.UltimateCube;
+import eatyourbeets.monsters.UnnamedReign.Shapes.Wisp.UltimateWisp;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -19,7 +22,7 @@ public class BlightHelper_GetBlight
     @SpirePrefixPatch
     public static SpireReturn<AbstractBlight> Method(String id)
     {
-        Class<? extends AbstractBlight> blight = customBlights.get(id);
+        final Class<? extends AbstractBlight> blight = customBlights.get(id);
         if (blight != null)
         {
             try
@@ -40,8 +43,11 @@ public class BlightHelper_GetBlight
         customBlights.put(Haunted.ID, Haunted.class);
         customBlights.put(Doomed.ID, Doomed.class);
         customBlights.put(CustomTimeMaze.ID, CustomTimeMaze.class);
-        customBlights.put(UltimateCube.ID, UltimateCube.class);
-        customBlights.put(UltimateCrystal.ID, UltimateCrystal.class);
-        customBlights.put(UltimateWisp.ID, UltimateWisp.class);
+        customBlights.put(UltimateCube.ID, UltimateCubeBlight.class);
+        customBlights.put(UltimateCubeBlight.ID, UltimateCubeBlight.class);
+        customBlights.put(UltimateCrystal.ID, UltimateCrystalBlight.class);
+        customBlights.put(UltimateCrystalBlight.ID, UltimateCrystalBlight.class);
+        customBlights.put(UltimateWisp.ID, UltimateWispBlight.class);
+        customBlights.put(UltimateWispBlight.ID, UltimateWispBlight.class);
     }
 }

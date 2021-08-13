@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ImperialArchers;
-import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -53,13 +52,29 @@ public class MoltSolAugustus extends AnimatorCard
         }
 
         @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            player.gameHandSize -= 1;
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            player.gameHandSize += 1;
+        }
+
+        @Override
         public void atEndOfTurn(boolean isPlayer)
         {
             super.atEndOfTurn(isPlayer);
 
             GameActions.Bottom.SelectFromPile(name, Integer.MAX_VALUE, player.drawPile, player.discardPile, player.hand)
             .SetOptions(false, false)
-            .SetFilter(c -> GameUtilities.GetAffinityLevel(c, Affinity.Red, true) > 0)
+            .SetFilter(GameUtilities::HasRedAffinity)
             .AddCallback(cards ->
             {
                 for (AbstractCard c : cards)

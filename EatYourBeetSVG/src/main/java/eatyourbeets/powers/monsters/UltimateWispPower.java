@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.blights.animator.UltimateWispBlight;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.AnimatorPower;
@@ -101,9 +102,9 @@ public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPos
     {
         super.onDeath();
 
-        if (!player.hasBlight(eatyourbeets.blights.animator.UltimateWisp.ID))
+        if (!player.hasBlight(UltimateWispBlight.ID))
         {
-            AbstractDungeon.getCurrRoom().spawnBlightAndObtain(player.hb.cX, player.hb.cY, new eatyourbeets.blights.animator.UltimateWisp());
+            AbstractDungeon.getCurrRoom().spawnBlightAndObtain(player.hb.cX, player.hb.cY, new UltimateWispBlight());
         }
     }
 }

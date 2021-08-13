@@ -7,17 +7,18 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.EYBPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class UltimateCube extends AnimatorBlight
+public class UltimateCubeBlight extends AnimatorBlight
 {
-    public static final String ID = CreateFullID(UltimateCube.class);
+    public static final String ID = CreateFullID(UltimateCubeBlight.class);
     public static final int HP_LOSS = 6;
 
     public int damageDealtThisTurn;
 
-    public UltimateCube()
+    public UltimateCubeBlight()
     {
         super(ID, HP_LOSS);
 
@@ -25,23 +26,22 @@ public class UltimateCube extends AnimatorBlight
     }
 
     @Override
+    public void update()
+    {
+        super.update();
+
+        if (GR.UI.Elapsed50())
+        {
+            Tracker.ApplyToAllEnemies(this);
+        }
+    }
+
+    @Override
     public void onEquip()
     {
         super.onEquip();
 
-        if (GameUtilities.InBattle())
-        {
-            for (AbstractMonster m : GameUtilities.GetEnemies(true))
-            {
-                m.powers.add(new Tracker(this, m));
-            }
-
-            setCounter(HP_LOSS);
-        }
-        else
-        {
-            setCounter(-1);
-        }
+        setCounter(GameUtilities.InBattle() ? HP_LOSS : -1);
     }
 
     @Override
@@ -90,14 +90,6 @@ public class UltimateCube extends AnimatorBlight
         setCounter(HP_LOSS);
     }
 
-    @Override
-    public void onCreateEnemy(AbstractMonster m)
-    {
-        super.onCreateEnemy(m);
-
-        m.powers.add(new Tracker(this, m));
-    }
-
     public void OnDamageDealt(int damage)
     {
         setCounter(Math.max(0, HP_LOSS - ((damageDealtThisTurn += damage) / 2)));
@@ -105,11 +97,24 @@ public class UltimateCube extends AnimatorBlight
 
     private static class Tracker extends EYBPower implements InvisiblePower
     {
-        private UltimateCube blight;
+        public static String POWER_ID = UltimateCubeBlight.ID + "TrackerPower";
 
-        public Tracker(UltimateCube blight, AbstractCreature owner)
+        private UltimateCubeBlight blight;
+
+        public static void ApplyToAllEnemies(UltimateCubeBlight blight)
         {
-            super(owner, UltimateCube.ID + "Power");
+            for (AbstractMonster m : GameUtilities.GetEnemies(true))
+            {
+                if (!m.hasPower(POWER_ID))
+                {
+                    m.powers.add(new Tracker(blight, m));
+                }
+            }
+        }
+
+        public Tracker(UltimateCubeBlight blight, AbstractCreature owner)
+        {
+            super(owner, POWER_ID);
 
             this.blight = blight;
         }

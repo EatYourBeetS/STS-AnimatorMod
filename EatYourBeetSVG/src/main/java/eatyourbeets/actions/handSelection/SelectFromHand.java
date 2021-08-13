@@ -125,7 +125,7 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
             Complete(selectedCards);
             return;
         }
-        else if (size <= amount && !anyNumber)
+        else if (size <= amount && !canPickZero && !anyNumber)
         {
             selectedCards.addAll(cardSource.group);
             Complete(selectedCards);

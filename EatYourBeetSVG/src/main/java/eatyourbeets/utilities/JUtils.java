@@ -179,14 +179,25 @@ public class JUtils
                     }
                     else if (next == '}' && sb2.length() > 0)
                     {
+                        int index;
                         if (sb2.length() == 1)
                         {
-                            sb1.append(args[Character.getNumericValue(sb2.toString().charAt(0))]);
+                            index = Character.getNumericValue(sb2.toString().charAt(0));
                         }
                         else
                         {
-                            sb1.append(args[ParseInt(sb2.toString(), -1)]);
+                            index = ParseInt(sb2.toString(), -1);
                         }
+
+                        if (index >= 0 && index < args.length)
+                        {
+                            sb1.append(args[index]);
+                        }
+                        else
+                        {
+                            LogError(JUtils.class, "Invalid format: " + format + "\n" + JoinStrings(", " , args));
+                        }
+
                         i = j;
                     }
 

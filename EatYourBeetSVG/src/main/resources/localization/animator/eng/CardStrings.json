@@ -527,10 +527,25 @@
 			"DESCRIPTION": "Motivate !M!. || Until end of turn, whenever a card Synergizes: Gain !S! [Support Damage].",
 			"NAME": "Bozes"
 		},
+		"animator:CatoElAltestan":
+		{
+			"DESCRIPTION": "!A! <B>: Apply !M! [Freezing] || !A! <R>: Apply !S! [Burning] || !A! <G>: Channel 1 [Aether] || Fetch 2 <B> cards and ** give them +1 [I] scaling.",
+			"NAME": "Cato El Altestan"
+		},
 		"animator:ItamiYouji":
 		{
 			"DESCRIPTION": "<DRW-M>. ** Deal damage for each ** {Attack} in hand. || Synergy: Gain !S! [Support Damage].",
 			"NAME": "Itami Youji"
+		},
+		"animator:MariKurokawa":
+		{
+			"DESCRIPTION": "Discard 2 {Attacks} ** to gain !S! Block. || Recover up to !M! of ** the HP you lost since the ** end of your last turn.",
+			"NAME": "Kurokawa"
+		},
+		"animator:ShunyaKengun":
+		{
+			"DESCRIPTION": "Draw 1 <G> card ** and Retain it. || When drawn: Apply [~Lock-On] ** to a random enemy, ** ignoring [Artifact].",
+			"NAME": "Kengun"
 		},
 		"animator:Kuribayashi":
 		{
@@ -545,14 +560,9 @@
 		},
 		"animator:MoltSolAugustus":
 		{
-			"DESCRIPTION": "At the end of each turn: ** Give ALL <R> cards {~Haste}. || Once per turn: Pay [E] to ** add !S! {Imperial Archers} ** to your draw pile.",
-			"EXTENDED_DESCRIPTION": ["Once per turn: Pay [E] to add #b{0} #yImperial #yArchers to your draw pile. || At the start of each turn: Give ALL <R> cards #yHaste."],
+			"DESCRIPTION": "At the end of each turn: ** Give ALL <R> cards {~Haste}. || Draw 1 less card each turn. || Once per turn: Pay [E] to ** add !S! {Imperial Archers} ** to your draw pile.",
+			"EXTENDED_DESCRIPTION": ["Once per turn: Pay [E] to add #b{0} #yImperial #yArchers to your draw pile. || Draw 1 less card each turn. At the start of each turn: Give ALL <R> cards #yHaste."],
 			"NAME": "Molt Sol Augustus"
-		},
-		"animator:ImperialArchers":
-		{
-			"DESCRIPTION": "Gain !M! [Support Damage]. || When drawn: Deal !S! ** damage to a random ** enemy 3 times.",
-			"NAME": "Imperial Archers"
 		},
 		"animator:PinaCoLada":
 		{
@@ -1423,7 +1433,7 @@
 		},
 		"animator:GiftBox":
 		{
-			"DESCRIPTION": "Discard all cards. || Add !M! random card(s) ** to your hand.",
+			"DESCRIPTION": "Discard all cards. || Add !M! random card(s) ** to your hand. || When Exhausted: Add !S! random cards to your draw pile.",
 			"NAME": "Gift Box"
 		},
 		"animator:HinaKagiyama":
@@ -1441,6 +1451,11 @@
 		{
 			"DESCRIPTION": "This card's damage ** is multiplied by X",
 			"NAME": "Ichigo Bankai"
+		},
+		"animator:ImperialArchers":
+		{
+			"DESCRIPTION": "Gain !M! [Support Damage]. || When drawn: Deal !S! ** damage to a random ** enemy 3 times.",
+			"NAME": "Imperial Archers"
 		},
 		"animator:Melzalgald_1":
 		{

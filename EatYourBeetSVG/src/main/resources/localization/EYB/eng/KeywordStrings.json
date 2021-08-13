@@ -74,7 +74,7 @@
 	},
 	"Common Debuff":
 	{
-		"DESCRIPTION": "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles.",
+		"DESCRIPTION": "[Poison], [Weak], [Vulnerable], [Burning], [Shackles].",
 		"NAMES": ["common debuff", "common debuffs"],
 		"PROPER_NAME": "Common Debuff"
 	},

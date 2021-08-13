@@ -25,7 +25,7 @@ public class ImperialArchers extends AnimatorCard
         super(DATA);
 
         Initialize(0, 3, 1, 2);
-        SetUpgrade(0, 1, 1, 0);
+        SetUpgrade(0, 2, 1, 0);
 
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 0);
@@ -41,7 +41,7 @@ public class ImperialArchers extends AnimatorCard
         for (int i = 0; i < 3; i++)
         {
             GameActions.Bottom.DealDamageToRandomEnemy(secondaryValue, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
-            .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowDagger(c.hb, 0.15f).SetColor(Color.TAN)).duration * 0f)
+            .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowDagger(c.hb, 0.25f).SetColor(Color.TAN)).duration * 0f)
             .SetDuration(0.05f, false);
         }
     }

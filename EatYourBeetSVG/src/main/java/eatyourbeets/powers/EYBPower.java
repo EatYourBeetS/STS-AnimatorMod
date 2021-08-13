@@ -137,6 +137,12 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     @Override
     public void updateDescription()
     {
+        if (this instanceof InvisiblePower)
+        {
+            this.description = "";
+            return;
+        }
+
         switch (powerStrings.DESCRIPTIONS.length)
         {
             case 0:

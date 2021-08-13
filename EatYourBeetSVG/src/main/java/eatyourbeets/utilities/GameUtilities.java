@@ -255,6 +255,31 @@ public class GameUtilities
         return a != null ? a.GetLevel(affinity, useStarLevel) : 0;
     }
 
+    public static boolean HasRedAffinity(AbstractCard card)
+    {
+        return GetAffinityLevel(card, Affinity.Red, true) > 0;
+    }
+
+    public static boolean HasGreenAffinity(AbstractCard card)
+    {
+        return GetAffinityLevel(card, Affinity.Green, true) > 0;
+    }
+
+    public static boolean HasBlueAffinity(AbstractCard card)
+    {
+        return GetAffinityLevel(card, Affinity.Blue, true) > 0;
+    }
+
+    public static boolean HasLightAffinity(AbstractCard card)
+    {
+        return GetAffinityLevel(card, Affinity.Light, true) > 0;
+    }
+
+    public static boolean HasDarkAffinity(AbstractCard card)
+    {
+        return GetAffinityLevel(card, Affinity.Dark, true) > 0;
+    }
+
     public static ArrayList<AbstractCreature> GetAllCharacters(boolean aliveOnly)
     {
         AbstractRoom room = GetCurrentRoom();
@@ -1250,7 +1275,7 @@ public class GameUtilities
 
     public static void UpdatePowerDescriptions()
     {
-        for (AbstractCreature c : GameUtilities.GetAllCharacters(false))
+        for (AbstractCreature c : GameUtilities.GetAllCharacters(true))
         {
             for (AbstractPower p : c.powers)
             {

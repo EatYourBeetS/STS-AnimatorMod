@@ -4,25 +4,20 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.cards.tempCards.Insight;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
-import eatyourbeets.actions.animator.CreateRandomCurses;
-import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.resources.GR;
+import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.ForceStance;
+import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.RandomizedList;
 
-import java.util.ArrayList;
-
-public class Suiseiseki extends AnimatorCard //TODO
+public class Suiseiseki extends AnimatorCard
 {
     private static final AbstractCard insight = new Insight();
     private static final AbstractCard slimed = new Slimed();
@@ -34,7 +29,7 @@ public class Suiseiseki extends AnimatorCard //TODO
     {
         super(DATA);
 
-        Initialize(0, 4, 4);
+        Initialize(0, 4, 4, 2);
         SetUpgrade(0, 1, 1);
 
         SetAffinity_Green(1, 0, 1);
@@ -59,93 +54,34 @@ public class Suiseiseki extends AnimatorCard //TODO
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
 
-        GameActions.Bottom.Cycle(name, 1)
-        .AddCallback(cards ->
+        for (int i=0; i<magicNumber; i++)
         {
-            if (cards.size() > 0)
+            GameActions.Bottom.MakeCard(new Slimed(), player.hand);
+        }
+
+        if (isSynergizing)
+        {
+            String stance = player.stance.ID;
+
+            GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
+
+            if (stance.equals(ForceStance.STANCE_ID))
             {
-                if (HasSynergy())
-                {
-                    SuiseisekiMove(cards.get(0));
-                }
+                GameActions.Bottom.GainForce(secondaryValue);
             }
-            else
+            else if (stance.equals(AgilityStance.STANCE_ID))
             {
-                GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
+                GameActions.Bottom.GainAgility(secondaryValue);
             }
-        });
-    }
-
-    public void SuiseisekiMove(AbstractCard card)
-    {
-        AbstractCard c;
-        if (card.type == CardType.CURSE)
-        {
-            c = CreateRandomCurses.GetRandomCurse(rng);
-        }
-        else if (card.type == CardType.STATUS)
-        {
-            c = new Slimed();
-        }
-        else
-            switch (card.rarity)
+            else if (stance.equals(IntellectStance.STANCE_ID))
             {
-                case RARE:
-                    c = AbstractDungeon.getCard(CardRarity.RARE).makeCopy();
-                    break;
-                case UNCOMMON:
-                    c = AbstractDungeon.getCard(CardRarity.UNCOMMON).makeCopy();
-                    break;
-                case COMMON:
-                    c = AbstractDungeon.getCard(CardRarity.COMMON).makeCopy();
-                    break;
-                case CURSE:
-                    c = CreateRandomCurses.GetRandomCurse(rng);
-                    break;
-                case BASIC:
-                    c = MakeBasicCard();
-                    break;
-                case SPECIAL:
-                    if (card instanceof AnimatorCard_UltraRare)
-                        c = AbstractDungeon.getCard(CardRarity.RARE).makeCopy();
-                    else
-                        c = new Insight();
-                    break;
-                default:
-                    c = new HigakiRinne();
-                    break;
+                GameActions.Bottom.GainIntellect(secondaryValue);
             }
-        if (rng.randomBoolean(0.01f))
-            c = new HigakiRinne();
-
-        GameActions.Bottom.MakeCardInDiscardPile(c);
-
-        GameActions.Bottom.GainAgility(1);
-    }
-
-    private static final RandomizedList<AbstractCard> OptionSet = new RandomizedList<>();
-    private static CardColor currentcolor = null;
-
-    public AbstractCard MakeBasicCard()
-    {
-        if (currentcolor != player.getCardColor())
-        {
-            OptionSet.Clear();
-            currentcolor = player.getCardColor();
+            else if (stance.equals(WillpowerStance.STANCE_ID))
+            {
+                GameActions.Bottom.GainWillpower(secondaryValue);
+            }
         }
-
-        if (OptionSet.Size() == 0)
-        {
-            ArrayList<AbstractCard> AllCard = CardLibrary.getAllCards();
-            for (AbstractCard c : AllCard)
-                if (!c.hasTag(CardTags.HEALING))
-                    if (!c.hasTag(GR.Enums.CardTags.TEMPORARY))
-                        if (c.rarity == CardRarity.BASIC)
-                            if (c.color == currentcolor || c.color == CardColor.COLORLESS)
-                                OptionSet.Add(c);
-        }
-
-        return OptionSet.Retrieve(rng, false).makeCopy();
     }
 }
 

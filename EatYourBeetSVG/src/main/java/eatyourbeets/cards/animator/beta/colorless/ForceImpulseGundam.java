@@ -12,11 +12,11 @@ import eatyourbeets.effects.VFX;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
 
 public class ForceImpulseGundam extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ForceImpulseGundam.class).SetAttack(3, CardRarity.RARE).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Gundam);
+    private int bonusDamage = 0;
 
     public ForceImpulseGundam()
     {
@@ -45,9 +45,9 @@ public class ForceImpulseGundam extends AnimatorCard
             if (cards.size() > 0)
             {
                 for (AbstractCard card : cards) {
-                    GameUtilities.IncreaseDamage(this, magicNumber, true);
+                    GameActions.Bottom.ModifyAllInstances(uuid, c -> ((ForceImpulseGundam)c).AddDamageBonus(magicNumber));
                     if (card.type == CardType.POWER || card.type == CardType.STATUS) {
-                        GameUtilities.IncreaseDamage(this, magicNumber, true);
+                        GameActions.Bottom.ModifyAllInstances(uuid, c -> ((ForceImpulseGundam)c).AddDamageBonus(magicNumber));
                         GameActions.Bottom.Exhaust(card);
                     }
                 }
@@ -59,5 +59,11 @@ public class ForceImpulseGundam extends AnimatorCard
     {
         GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
         GameActions.Bottom.Exhaust(this);
+    }
+
+    private void AddDamageBonus(int amount)
+    {
+        bonusDamage += amount;
+        baseDamage += amount;
     }
 }

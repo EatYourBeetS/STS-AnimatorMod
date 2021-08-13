@@ -328,7 +328,7 @@
 		},
 		"animator:ForceImpulseGundam":
 		{
-		  "DESCRIPTION": "Reload: Increase this card's damage by !M! until played. Powers and Statuses trigger Reload twice and are Exhausted. || Cooldown !S!: Enter <FS> and Exhaust.",
+		  "DESCRIPTION": "Reload: Increase this card's damage by !M! until played. Powers and Statuses trigger Reload twice and Exhaust. || Cooldown !S!: Enter <FS> and Exhaust.",
 		  "NAME": "Force Impulse Gundam"
 		},
 		"animator:GarbageDoll":
@@ -408,7 +408,7 @@
 		},
 		"animator:SheerCold":
 		{
-		  "DESCRIPTION": "[Frost] applies !M! [Freezing] once to a random enemy when triggered and twice to ALL ** enemies when Evoked. || Increase the reduction bonus of [Freezing] by !S!% this combat.",
+		  "DESCRIPTION": "[Frost] applies !M! [Freezing] to a random enemy when triggered ** and to ALL enemies twice when Evoked. || Increase the reduction bonus of [Freezing] by !S!% this combat.",
 		  "NAME": "Sheer Cold"
 		},
 		"animator:ShuuOuma":
@@ -419,7 +419,7 @@
 		},
 		"animator:Simon":
 		{
-		  "DESCRIPTION": "Unique. || Increase the damage of a random Attack in your hand by half of the damage dealt. || <LIM>. !M! [F]: Permanently upgrade this card.",
+		  "DESCRIPTION": "Unique. || Increase the damage of a random Attack in your hand by half of the damage dealt. || <LIM>. !M! [F]: Upgrade permanently.",
 		  "NAME": "Simon"
 		},
 		"animator:SpikeSpiegel":
@@ -492,7 +492,7 @@
 		},
 		"animator:Mayuri":
 		{
-		  "DESCRIPTION": "Synergizes with Defends. Retain a Defend in your hand. || <SLM>. Synergy. Increase the Block of ALL Defends in your hand by !M!",
+		  "DESCRIPTION": "Synergizes with Defends. Retain a Defend in your hand. || <SLM>. Synergy. Increase the Block of ALL Defends in your hand by !M!.",
 		  "NAME": "Mayuri"
 		},
 		"animator:MukuroHoshimiya":
@@ -570,7 +570,7 @@
 		},
 		"animator:AyakaKamisato":
 		{
-		  "DESCRIPTION": "Gain {Temp}. [Thorns] equal to your [I] + !M!. You cannot ** gain [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
+		  "DESCRIPTION": "Gain !M! {Temp}. [Thorns]. Gain !S! more for each [I]. You cannot gain [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
 		  "NAME": "Ayaka Kamisato"
 		},
 		"animator:BarbaraPegg":
@@ -864,7 +864,7 @@
 		},
 		"animator:Souseiseki":
 		{
-			"DESCRIPTION": "Exhaust a card in your hand. If you Exhausted a Hindrance: Enter <WS>. || When Discarded, draw Suiseiseki from your Draw Pile.",
+			"DESCRIPTION": "Exhaust a card in your hand. If you Exhausted a Hindrance: Enter <WS>. || When Discarded, draw {Suiseiseki} from your Draw Pile.",
 			"NAME": "Souseiseki"
 		},
 		"animator:Strike_RozenMaiden":
@@ -1056,7 +1056,7 @@
 		},
 		"animator:Cirno":
 		{
-			"DESCRIPTION": "Apply !M! [Freezing] to ** ALL enemies. || When Exhausted, ** Channel 1 [Frost].",
+			"DESCRIPTION": "Apply !M! [Freezing] and !S! [Shackles] to ** ALL enemies. || When Exhausted, ** Channel 1 [Frost].",
 			"NAME": "Cirno"
 		},
 		"animator:Kuroyukihime":

@@ -22,8 +22,8 @@ public class Cirno extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 1, 2);
-        SetUpgrade(1, 0, 1, 1);
+        Initialize(3, 0, 3, 2);
+        SetUpgrade(1, 0, 1);
 
         SetAffinity_Blue(1, 0, 1);
 
@@ -56,7 +56,10 @@ public class Cirno extends AnimatorCard
 
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT)
         .SetVFX(true, false)
-        .SetDamageEffect((c, __) -> GameActions.Bottom.ApplyFreezing(player, c, secondaryValue).ShowEffect(false, true));
+        .SetDamageEffect((c, __) -> {
+            GameActions.Bottom.ReduceStrength(c, secondaryValue, true);
+            GameActions.Bottom.ApplyFreezing(player, c, magicNumber).ShowEffect(false, true);
+        });
     }
 }
 

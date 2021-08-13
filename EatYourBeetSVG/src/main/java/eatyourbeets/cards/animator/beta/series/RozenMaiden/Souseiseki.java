@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
-public class Souseiseki extends AnimatorCard //TODO
+public class Souseiseki extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Souseiseki.class)
     		.SetAttack(1, CardRarity.COMMON).SetSeriesFromClassPackage();
@@ -25,7 +25,7 @@ public class Souseiseki extends AnimatorCard //TODO
     {
         super(DATA);
 
-        Initialize(5, 0, 0, 0);
+        Initialize(2, 3, 0, 0);
         SetUpgrade(2, 0, 0, 0);
         SetAffinity_Orange(2, 0, 1);
     }
@@ -37,12 +37,20 @@ public class Souseiseki extends AnimatorCard //TODO
     }
 
     @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        GameActions.Bottom.Draw(1)
+                .ShuffleIfEmpty(false)
+                .SetFilter(c -> Suiseiseki.DATA.ID.equals(c.cardID), false);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (GameUtilities.IsAttacking(m.intent))
-        {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
-        }
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
+        GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
                 .SetOptions(false, false, false)

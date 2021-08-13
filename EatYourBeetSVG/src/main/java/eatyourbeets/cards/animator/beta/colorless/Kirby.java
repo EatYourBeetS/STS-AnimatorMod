@@ -23,10 +23,7 @@ import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.utilities.RotatingList;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
@@ -42,7 +39,6 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     protected final RotatingList<EYBCardPreview> previews = new RotatingList<>();
     protected final ArrayList<AbstractCard> inheritedCards = new ArrayList<>(COPIED_CARDS);
     protected boolean hasAttackOrSkill = false;
-
 
     public Kirby()
     {
@@ -69,9 +65,40 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     protected void OnUpgrade()
     {
         for (AbstractCard card : inheritedCards) {
-            card.upgrade();
+            if ((card instanceof EYBCard && ((EYBCard) card).isMultiUpgrade && card.timesUpgraded < this.timesUpgraded)
+                || !card.upgraded)
+            {
+                card.upgrade();
+            }
         }
         updateProperties();
+    }
+
+    @Override
+    public void renderUpgradePreview(SpriteBatch sb)
+    {
+        EYBCard upgrade = cardData.tempCard;
+        if (upgrade == null || upgrade.uuid != this.uuid || (upgrade.timesUpgraded != (timesUpgraded + 1)))
+        {
+            upgrade = cardData.tempCard = (EYBCard) this.makeSameInstanceOf();
+            upgrade.isPreview = true;
+            for (AbstractCard iCard : inheritedCards)
+            {
+                EYBCard innerCard = (EYBCard) iCard.makeSameInstanceOf();
+                innerCard.isPreview = true;
+                ((Kirby) upgrade).AddInheritedCard(innerCard);
+            }
+            ((Kirby) upgrade).updateProperties();
+            ((Kirby) upgrade).refreshDescription();
+
+            upgrade.upgrade();
+            upgrade.displayUpgrades();
+        }
+
+        upgrade.current_x = this.current_x;
+        upgrade.current_y = this.current_y;
+        upgrade.drawScale = this.drawScale;
+        upgrade.render(sb, false);
     }
 
     @Override
@@ -226,7 +253,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     @Override
     public boolean cardPlayable(AbstractMonster m)
     {
-        return JUtils.Find(inheritedCards, card -> !card.cardPlayable(m)) != null;
+        return JUtils.Find(inheritedCards, card -> !card.cardPlayable(m)) == null;
     }
 
     @Override
@@ -262,6 +289,20 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         return true;
     }
 
+    @Override
+    public AbstractCard makeCopy()
+    {
+        Kirby other = new Kirby();
+        for (AbstractCard iCard : inheritedCards)
+        {
+            other.AddInheritedCard(iCard.makeSameInstanceOf());
+        }
+        other.updateProperties();
+        other.refreshDescription();
+
+        return other;
+    }
+
     public void AddInheritedCard(AbstractCard card) {
         inheritedCards.add(card);
         previews.Add(GeneratePreviewCard(card));
@@ -294,16 +335,22 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
 
     }
 
-    private EYBCardPreview GeneratePreviewCard(AbstractCard card) {
+    protected EYBCardPreview GeneratePreviewCard(AbstractCard card) {
         return (card instanceof EYBCardBase) ? new EYBCardPreview((EYBCardBase) card, false) : new EYBCardPreview(new FakeAbstractCard(card), false);
     }
 
-    private void addCardProperties(AbstractCard card) {
+    protected void addCardProperties(AbstractCard card) {
         if (this.cost == -2 || card.cost == -1) {
             this.cost = this.costForTurn = card.cost;
         }
         else if (card.cost > 0 && this.cost > -1) {
             this.cost = this.costForTurn = this.cost + card.cost;
+        }
+
+        while (card.timesUpgraded > this.timesUpgraded) {
+            GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
+                    .IncludeMasterDeck(true)
+                    .IsCancellable(false);
         }
 
         if (card.isInnate) {
@@ -343,17 +390,16 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         }
     }
 
-    private void updateProperties() {
+    protected void updateProperties() {
         this.cost = -2;
         this.exhaust = false;
         this.isEthereal = false;
         for (AbstractCard card : inheritedCards) {
-            card.upgrade();
             addCardProperties(card);
         }
     }
 
-    private void refreshDescription() {
+    protected void refreshDescription() {
         if (inheritedCards.size() >= 2) {
             cardText.OverrideDescription(JUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[1], inheritedCards.get(0).name, inheritedCards.get(1).name), true);
         }

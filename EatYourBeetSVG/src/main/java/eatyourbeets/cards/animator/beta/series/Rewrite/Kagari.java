@@ -22,8 +22,8 @@ public class Kagari extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 6);
-        SetUpgrade(0, 4, 0);
+        Initialize(0, 0, 6, 1);
+        SetUpgrade(0, 0, 0, 1);
         SetAffinity_Orange(2, 0, 0);
         SetAffinity_Blue(1, 0, 0);
 
@@ -59,7 +59,7 @@ public class Kagari extends AnimatorCard
             }
         }
 
-        GameActions.Bottom.StackPower(new KagariPower(p, 1));
+        GameActions.Bottom.StackPower(new KagariPower(p, secondaryValue));
     }
 
     public static class KagariPower extends AnimatorPower implements OnChannelOrbSubscriber

@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.CreateRandomGoblins;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -24,6 +24,7 @@ public class GoblinSlayer extends AnimatorCard
         SetUpgrade(3, 3);
 
         SetAffinity_Red(2);
+        SetAffinity_Blue(1);
         SetAffinity_Light(1);
 
         SetRetain(true);

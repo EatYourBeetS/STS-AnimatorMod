@@ -298,7 +298,7 @@
 		},
 		"animator:ZarakiKenpachi":
 		{
-			"DESCRIPTION": "Your [F] no longer decreases. You cannot gain [A][I]. || Once per turn, if you break an enemy's [Block]: Gain !M! {Temp. Strength}.",
+			"DESCRIPTION": "Your [F] no longer decreases. You cannot gain [A] [I]. || Once per turn, if you break an enemy's [Block]: Gain !M! {Temp. Strength}.",
 			"EXTENDED_DESCRIPTION": ["Your #yForce no longer decreases.  You cannot gain #yAgility nor #yIntellect.  Once per turn, if you break an enemy's #yBlock, gain #b{0} #yTemp. #yStrength."],
 			"NAME": "Zaraki Kenpachi"
 		}
@@ -583,6 +583,11 @@
 		  "DESCRIPTION": "Unplayable. || At the end of your turn, give a random card in your ** Draw Pile {Autoplay}. || When Exhausted: Boost [A] and play {<G> Token}.",
 		  "NAME": "Delusion"
 		},
+		"animator:Dainsleif":
+		{
+		  "DESCRIPTION": "At the start of battle: Choose 1 of 3 cards to add to your Draw pile. || When Exhausted, Choose 1 of 3 cards to add to your Draw pile. ",
+		  "NAME": "Dainsleif"
+		},
 		"animator:Dvalin":
 		{
 		  "DESCRIPTION": "If the enemy dies from the first hit, the second hit will target a random living enemy and deal !M! more damage.",
@@ -645,7 +650,7 @@
 		},
 		"animator:OgoshoNarukami":
 		{
-		  "DESCRIPTION": "[Lightning] and [Dark] now have +1 [C] and +1 [I] scaling. If you channel any Orb other than [Lightning], [Dark], or [Chaos], replace it with [Lightning] and take !M! damage at the end of your turn.",
+		  "DESCRIPTION": "Set your HP to 1. You cannot no longer die from damage. || Die at the end of your !M!th turn (This effect cannot be prevented).",
 		  "NAME": "Ogosho Narukami"
 		},
 		"animator:Oz":
@@ -709,7 +714,7 @@
 		},
 		"animator:Kagari":
 		{
-			"DESCRIPTION": "Once per turn, When you Channel [Earth]: Gain [W]. Boost [W] in <WS>. || !A! <R> and <B>: Apply !M! [Shackles] ** to ALL enemies.",
+			"DESCRIPTION": "Once per turn, When you Channel [Earth]: Gain !S! [W]. Boost !S! [W] in <WS>. || !A! <R> and <B>: Apply !M! [Shackles] ** to ALL enemies.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you Channel #yEarth this turn, Gain #b{0} #yWillpower."],
 			"NAME": "Kagari"
 		},
@@ -1489,7 +1494,7 @@
 		},
 		"animator:SwordMaiden":
 		{
-			"DESCRIPTION": "Remove your ** rightmost {Debuff}. || Boost [F] [A] [I].",
+			"DESCRIPTION": "Remove your ** rightmost {Debuff}. || Boost [F] [A] [I] [W].",
 			"NAME": "Sword Maiden"
 		},
 		"animator:Witch":
@@ -1989,7 +1994,7 @@
 	{
 		"animator:Ainz":
 		{
-			"DESCRIPTION": "At the start of turn: ** choose and execute 1 ** of 4 random {Effects}. || When Drawn: Decrease ** this card's cost by 1, then ** randomly gain [I], [F] or [A].",
+			"DESCRIPTION": "At the start of turn: ** choose and execute 1 ** of 4 random {Effects}. || When Drawn: Decrease ** this card's cost by 1, then ** gain a random Affinity power.",
 			"NAME": "Ainz Ooal Gown"
 		},
 		"animator:Albedo":
@@ -2142,7 +2147,7 @@
 		},
 		"animator:Shuna":
 		{
-			"DESCRIPTION": "Gain 1 [B]. ** <DRW-M>. || When Drawn: ** Gain !S! [Temp HP].",
+			"DESCRIPTION": "Gain 1 [B] [W]. ** <DRW-M>. || When Drawn: ** Gain !S! [Temp HP].",
 			"NAME": "Shuna"
 		},
 		"animator:Souei":
@@ -2236,7 +2241,7 @@
 
 		"animator:Asuramaru":
 		{
-			"DESCRIPTION": "Gain !M! [F] [A] [I]. ** Gain 2 {Demon Form}. ** Add 2 {Wounds} to ** your hand.",
+			"DESCRIPTION": "Gain !M! [F] [A] [I] [W]. ** Gain 2 {Demon Form}. ** Add 2 {Wounds} to ** your hand.",
 			"NAME": "Asuramaru"
 		},
 		"animator:Bienfu":

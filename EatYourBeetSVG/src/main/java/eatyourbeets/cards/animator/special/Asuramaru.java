@@ -42,6 +42,7 @@ public class Asuramaru extends AnimatorCard
         GameActions.Bottom.GainIntellect(magicNumber);
         GameActions.Bottom.GainAgility(magicNumber);
         GameActions.Bottom.GainForce(magicNumber);
+        GameActions.Bottom.GainWillpower(magicNumber);
         GameActions.Bottom.MakeCardInHand(new Wound());
         GameActions.Bottom.MakeCardInHand(new Wound());
     }

@@ -17,7 +17,7 @@ public class Shuna extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 1, 2);
+        Initialize(0, 3, 1, 2);
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Blue(1);
@@ -37,6 +37,7 @@ public class Shuna extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlessing(1);
+        GameActions.Bottom.GainWillpower(1);
         GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.GainBlock(block);
     }

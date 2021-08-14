@@ -84,7 +84,7 @@ public abstract class AbstractScreen extends GUIElement
 
         AbstractDungeon.overlayMenu.cancelButton.hide();
 
-        if (GameUtilities.InBattle())
+        if (GameUtilities.InBattle(true))
         {
             AbstractDungeon.overlayMenu.showCombatPanels();
         }

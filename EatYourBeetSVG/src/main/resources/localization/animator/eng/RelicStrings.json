@@ -8,7 +8,7 @@
 	},
 	"animator:AncientMedallion":
 	{
-		"DESCRIPTIONS": ["At the start of each combat, Heal #b{0} HP. NL Upon pickup, #yUpgrade 2 random cards and a card of your choice. The chosen card will be upgraded twice."],
+		"DESCRIPTIONS": ["Upon pickup, #yUpgrade 2 random cards and a card of your choice, the chosen card is upgraded twice. At the start of combat, heal #b{0} HP. ", "Healing {0} less HP (Ascension 18+)."],
 		"FLAVOR": "...",
 		"NAME": "Ancient Medallion"
 	},

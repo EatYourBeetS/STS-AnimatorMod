@@ -6,7 +6,6 @@ import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.replacement.TemporaryEnvenomPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -20,7 +19,7 @@ public class AcuraAkari extends AnimatorCard
     {
         for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
         {
-            DATA.AddPreview(knife, false);
+            DATA.AddPreview(knife, true);
         }
     }
 
@@ -28,11 +27,10 @@ public class AcuraAkari extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
-        SetCostUpgrade(-1);
+        Initialize(0, 0, 2, 1);
 
         SetAffinity_Red(1);
-        SetAffinity_Green(1);
+        SetAffinity_Green(1, 1, 0);
     }
 
     @Override
@@ -40,9 +38,9 @@ public class AcuraAkari extends AnimatorCard
     {
         GameActions.Bottom.DiscardFromHand(name, 2, false)
         .SetOptions(false, false, false)
-        .AddCallback(() -> GameActions.Bottom.CreateThrowingKnives(magicNumber));
+        .AddCallback(() -> GameActions.Bottom.CreateThrowingKnives(magicNumber).SetUpgrade(upgraded));
 
-        if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID))
+        if (isSynergizing)
         {
             GameActions.Bottom.StackPower(new TemporaryEnvenomPower(p, secondaryValue));
         }

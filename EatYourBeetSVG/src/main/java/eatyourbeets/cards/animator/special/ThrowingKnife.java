@@ -50,7 +50,7 @@ public class ThrowingKnife extends AnimatorCard
         super(DATA);
 
         Initialize(2, 0, 1, 2);
-        SetUpgrade(3, 0);
+        SetUpgrade(2, 0);
 
         SetAffinity_Green(1);
 

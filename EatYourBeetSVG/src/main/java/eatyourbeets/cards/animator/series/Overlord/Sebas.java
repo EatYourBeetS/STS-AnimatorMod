@@ -1,12 +1,12 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -25,7 +25,7 @@ public class Sebas extends AnimatorCard
         Initialize(0, 6, 3);
         SetUpgrade(0, 3);
 
-        SetAffinity_Red(0, 0, 1);
+        SetAffinity_Red(1, 0, 1);
         SetAffinity_Light(1);
         SetAffinity_Orange(1);
 

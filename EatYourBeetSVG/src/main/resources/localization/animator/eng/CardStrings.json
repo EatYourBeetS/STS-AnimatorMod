@@ -1736,7 +1736,7 @@
 		},
 		"animator:Nyanta":
 		{
-			"DESCRIPTION": "Gain/Boost [A]. Apply a ** random {Common Debuff} ** on each attack. || Any Stance: Attack 1 ** additional time",
+			"DESCRIPTION": "Gain/Boost [A][W]. Apply a ** random {Common Debuff} ** on each attack. || Any Stance: Attack 1 ** additional time",
 			"NAME": "Nyanta"
 		},
 		"animator:Rayneshia":
@@ -1751,9 +1751,9 @@
 		},
 		"animator:Serara":
 		{
-			"DESCRIPTION": "If an enemy intends ** to attack: Gain [F] and ** give a random card +2 [F] ** scaling (does not stack).",
+			"DESCRIPTION": "If an enemy intends ** to attack: Gain [W] and ** give a random card +2 [W] ** scaling (does not stack).",
 			"NAME": "Serara",
-			"UPGRADE_DESCRIPTION": "If an enemy intends ** to attack: Gain [F] and ** give a card +2 [F] ** scaling (does not stack)."
+			"UPGRADE_DESCRIPTION": "If an enemy intends ** to attack: Gain [W] and ** give a card +2 [W] ** scaling (does not stack)."
 		},
 		"animator:Shiroe":
 		{
@@ -2107,7 +2107,7 @@
 		},
 		"animator:GazelDwargon":
 		{
-			"DESCRIPTION": "Gain X [Plated Armor]. || At the start of turn: ** Maintain up to !M! [Block], ** multiplied by X.",
+			"DESCRIPTION": "Gain X [Plated Armor]. Boost [W] if X is greater than !S!. || At the start of turn: ** Maintain up to !M! [Block], ** multiplied by X.",
 			"NAME": "Gazel Dwargon"
 		},
 		"animator:Hakurou":

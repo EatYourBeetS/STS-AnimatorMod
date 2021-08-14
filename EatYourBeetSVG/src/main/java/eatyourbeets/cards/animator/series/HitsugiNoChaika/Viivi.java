@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -11,6 +10,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class Viivi extends AnimatorCard
@@ -34,6 +34,7 @@ public class Viivi extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Green(2, 0, 1);
+        SetAffinity_Light(1, 0, 0);
     }
 
     @Override

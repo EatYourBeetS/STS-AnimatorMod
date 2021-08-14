@@ -57,6 +57,7 @@ public class Nyanta extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainAgility(1, upgraded);
+        GameActions.Bottom.GainWillpower(1, upgraded);
 
         for (int i = 0; i < magicNumber; i++)
         {

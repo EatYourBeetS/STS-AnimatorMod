@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class KirbyCampfireOption extends AbstractCampfireOption
 {
-    private Kirby kirby;
+    private final Kirby kirby;
     private RestRoom room;
 
     public static boolean CanAddOption()

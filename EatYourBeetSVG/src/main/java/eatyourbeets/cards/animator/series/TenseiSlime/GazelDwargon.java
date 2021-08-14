@@ -21,8 +21,8 @@ public class GazelDwargon extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4);
-        SetUpgrade(0, 1, 0);
+        Initialize(0, 0, 4, 1);
+        SetUpgrade(0, 1, 0, 1);
 
         SetAffinity_Red(1);
         SetAffinity_Orange(2);
@@ -52,6 +52,10 @@ public class GazelDwargon extends AnimatorCard
         if (upgraded)
         {
             GameActions.Bottom.GainBlock(stacks + baseBlock);
+        }
+
+        if (stacks > 1) {
+            GameActions.Bottom.GainWillpower(1, true);
         }
     }
 }

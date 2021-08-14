@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.powers.CommonPower;
-import eatyourbeets.utilities.GameActions;
 
 import java.text.DecimalFormat;
 
@@ -40,14 +39,6 @@ public class BalancePower extends CommonPower
 
             this.description = FormatDescription(0, amount);
         }
-    }
-
-    @Override
-    public void atStartOfTurn()
-    {
-        super.atStartOfTurn();
-
-        GameActions.Bottom.GainTemporaryHP(amount);
     }
 
     @Override

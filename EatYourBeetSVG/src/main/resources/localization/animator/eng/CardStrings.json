@@ -149,7 +149,7 @@
 		},
 		"animator:GirlDeMo":
 		{
-			"DESCRIPTION": "Double your [F], [A], and [I], if it is the highest or tied for the highest stat.",
+			"DESCRIPTION": "Double your [F], [A], [I], and [W], if it is the highest or tied for the highest stat.",
 			"NAME": "Girls Dead Monster"
 		},
 		"animator:Godan":

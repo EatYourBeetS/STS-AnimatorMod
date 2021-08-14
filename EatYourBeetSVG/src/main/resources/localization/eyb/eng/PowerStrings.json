@@ -74,5 +74,10 @@
 	{
 		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yTemporary #yHP."],
 		"NAME": "Vitality"
-	}
+	},
+	"eyb:ExitStanceNextTurnPower":
+    {
+		"DESCRIPTIONS": ["Exit your current stance at the start of your next turn."],
+		"NAME": "Exit Stance Next Turn"
+    }
 }

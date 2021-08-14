@@ -48,7 +48,13 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static final CombatStats Instance = new CombatStats();
     public static final EYBCardAffinitySystem Affinities = new EYBCardAffinitySystem();
+    public static float EnemyFrailModifier;
+    public static float EnemyLockOnModifier;
     public static float EnemyVulnerableModifier;
+    public static float EnemyWeakModifier;
+    public static float PlayerFrailModifier;
+    public static float PlayerVulnerableModifier;
+    public static float PlayerWeakModifier;
     public static boolean LoadingPlayerSave;
     public static AbstractRoom Room;
     public static UUID BattleID;
@@ -135,7 +141,13 @@ public class CombatStats extends EYBPower implements InvisiblePower
         RefreshPlayer();
         JUtils.LogInfo(CombatStats.class, "Clearing Player Stats");
 
+        EnemyFrailModifier = 0;
+        EnemyLockOnModifier = 0;
         EnemyVulnerableModifier = 0;
+        EnemyWeakModifier = 0;
+        PlayerFrailModifier = 0;
+        PlayerVulnerableModifier = 0;
+        PlayerWeakModifier = 0;
         BattleID = null;
 
         turnCount = 0;

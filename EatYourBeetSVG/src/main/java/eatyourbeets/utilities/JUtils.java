@@ -19,7 +19,6 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
-import java.util.regex.Pattern;
 
 public class JUtils
 {
@@ -275,17 +274,17 @@ public class JUtils
 
     public static <T> MethodInfo.T0<T> GetMethod(String methodName, Class<?> type) throws RuntimeException
     {
-        return new MethodInfo.T0<T>(methodName, type);
+        return new MethodInfo.T0<>(methodName, type);
     }
 
     public static <T, T1> MethodInfo.T1<T, T1> GetMethod(String methodName, Class<?> type, Class<T1> t1) throws RuntimeException
     {
-        return new MethodInfo.T1<T, T1>(methodName, type, t1);
+        return new MethodInfo.T1<>(methodName, type, t1);
     }
 
     public static <T, T1, T2> MethodInfo.T2<T, T1, T2> GetMethod(String methodName, Class<?> type, Class<T1> t1, Class<T2> t2) throws RuntimeException
     {
-        return new MethodInfo.T2<T, T1, T2>(methodName, type, t1, t2);
+        return new MethodInfo.T2<>(methodName, type, t1, t2);
     }
 
     public static <T> Constructor<T> TryGetConstructor(Class<T> type, Class... paramTypes)
@@ -350,9 +349,69 @@ public class JUtils
         return sj.toString();
     }
 
-    public static String[] SplitString(String delimiter, String text)
+    public static String[] SplitString(String separator, String text)
     {
-        return StringUtils.isEmpty(text) ? new String[0] : text.split(Pattern.quote(delimiter));
+        return SplitString(separator, text, true);
+    }
+
+    public static String[] SplitString(String separator, String text, boolean removeEmptyEntries)
+    {
+        if (StringUtils.isEmpty(text))
+        {
+            return new String[0];
+        }
+
+        sb1.setLength(0);
+        sb2.setLength(0);
+
+        int s_index = 0;
+        final ArrayList<String> result = new ArrayList<>();
+        for (int i = 0; i < text.length(); i++)
+        {
+            char c = text.charAt(i);
+            if (separator.charAt(s_index) != c)
+            {
+                if (s_index > 0)
+                {
+                    sb1.append(sb2.toString());
+                    sb2.setLength(0);
+                    s_index = 0;
+                }
+                sb1.append(c);
+            }
+            else if ((separator.length() - 1) > s_index)
+            {
+                s_index += 1;
+                sb2.append(c);
+            }
+            else
+            {
+                if (!removeEmptyEntries)
+                {
+                    result.add(sb1.toString());
+                    if (i == text.length() - 1)
+                    {
+                        result.add("");
+                    }
+                }
+                else if (sb1.length() > 0)
+                {
+                    result.add(sb1.toString());
+                }
+
+                s_index = 0;
+                sb1.setLength(0);
+                sb2.setLength(0);
+            }
+        }
+
+        if (sb1.length() > 0)
+        {
+            result.add(sb1.toString());
+        }
+
+        final String[] arr = new String[result.size()];
+        return result.toArray(arr);
     }
 
     public static String TitleCase(String text)
@@ -367,7 +426,7 @@ public class JUtils
 
     public static String ModifyString(String text, String separator, String delimiter, FuncT1<String, String> modifyWord)
     {
-        final String[] words = text.split(Pattern.quote(separator));
+        final String[] words = SplitString(separator, text);
         if (modifyWord != null)
         {
             for (int i = 0; i < words.length; i++)

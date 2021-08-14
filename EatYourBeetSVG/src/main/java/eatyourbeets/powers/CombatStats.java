@@ -219,7 +219,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
                 BattleID = null;
             }
         }
-        else if (BattleID == null)
+        else if (BattleID == null && Room.phase == AbstractRoom.RoomPhase.COMBAT)
         {
             BattleID = UUID.randomUUID();
         }

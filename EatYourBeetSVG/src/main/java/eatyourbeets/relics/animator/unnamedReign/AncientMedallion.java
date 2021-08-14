@@ -12,17 +12,26 @@ import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
 public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedReignRelicListener, OnRelicObtainedSubscriber
 {
     public static final String ID = CreateFullID(AncientMedallion.class);
-    public static final int HEAL_AMOUNT = 4;
     public static final int MULTI_UPGRADE = 2;
+    public static final int BASE_HEAL_AMOUNT = 4;
+    public static final int ASCENSION_THRESHOLD = 18;
+    public static final int ASCENSION_HEAL_REDUCTION = 1;
 
     private int equipEffects;
     private boolean event;
     private boolean awaitingInput;
+
+    public static int GetHealAmount()
+    {
+        return (GameUtilities.GetAscensionLevel() >= ASCENSION_THRESHOLD) ? (BASE_HEAL_AMOUNT - ASCENSION_HEAL_REDUCTION) : BASE_HEAL_AMOUNT;
+    }
 
     public AncientMedallion()
     {
@@ -52,7 +61,13 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(0, HEAL_AMOUNT * Math.max(1, counter));
+        String description = FormatDescription(0, GetHealAmount() * Math.max(1, counter));
+        if (GameUtilities.GetAscensionLevel() >= ASCENSION_THRESHOLD)
+        {
+            description += JUtils.ModifyString(FormatDescription(1, ASCENSION_HEAL_REDUCTION), w -> ("#r" + w));
+        }
+
+        return description;
     }
 
     public void onManualEquip()
@@ -116,7 +131,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
     {
         super.atBattleStart();
 
-        player.heal(HEAL_AMOUNT * counter, true);
+        player.heal(GetHealAmount() * counter, true);
         flash();
     }
 

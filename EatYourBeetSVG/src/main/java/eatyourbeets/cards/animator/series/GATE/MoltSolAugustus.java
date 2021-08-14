@@ -42,6 +42,8 @@ public class MoltSolAugustus extends AnimatorCard
 
     public static class MoltSolAugustusPower extends AnimatorClickablePower
     {
+        public static final int DRAW_REDUCTION = 1;
+
         public MoltSolAugustusPower(AbstractCreature owner, int amount)
         {
             super(owner, MoltSolAugustus.DATA, PowerTriggerConditionType.Energy, MoltSolAugustus.ENERGY_COST);
@@ -52,11 +54,17 @@ public class MoltSolAugustus extends AnimatorCard
         }
 
         @Override
+        public String GetUpdatedDescription()
+        {
+            return FormatDescription(0, amount, DRAW_REDUCTION);
+        }
+
+        @Override
         public void onInitialApplication()
         {
             super.onInitialApplication();
 
-            player.gameHandSize -= 1;
+            GameUtilities.ModifyCardDrawPerTurn(-DRAW_REDUCTION, 1);
         }
 
         @Override
@@ -64,7 +72,7 @@ public class MoltSolAugustus extends AnimatorCard
         {
             super.onRemove();
 
-            player.gameHandSize += 1;
+            GameUtilities.ModifyCardDrawPerTurn(DRAW_REDUCTION, 1);
         }
 
         @Override

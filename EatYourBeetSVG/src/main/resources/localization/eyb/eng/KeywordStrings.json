@@ -92,7 +92,7 @@
 	},
 	"Corruption":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b5, #b7, #b9 and #b11 #yCorruption, gain [Ritual]. Upon reaching #b13 #yCorruption, obtain #pSummoning #pRitual.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b5, #b7, #b9 and #b11 #yCorruption, add {Crystallize} to your draw pile. At #b13 #yCorruption, obtain #pSummoning #pRitual.",
 		"NAMES": ["corruption"],
 		"PROPER_NAME": "Corruption"
 	},

@@ -48,7 +48,7 @@ public class CatoElAltestan extends AnimatorCard
             GameActions.Bottom.ChannelOrb(new Aether());
         }
 
-        GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile)
+        GameActions.Bottom.FetchFromPile(name, 2, player.drawPile)
         .SetOptions(false, true)
         .SetFilter(GameUtilities::HasBlueAffinity)
         .AddCallback(cards ->

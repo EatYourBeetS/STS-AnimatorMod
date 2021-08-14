@@ -32,7 +32,6 @@ public class EarthOrbEvokeAction extends EYBAction
         int baseDamage = damage / earth.projectiles.size();
         while (earth.projectiles.size() > 0)
         {
-            final TupleT2<Projectile, Integer> pair = new TupleT2<>();
             projectiles.add(earth.projectiles.remove(earth.projectiles.size() - 1));
             projectilesDamage.add(baseDamage);
             damage -= baseDamage;

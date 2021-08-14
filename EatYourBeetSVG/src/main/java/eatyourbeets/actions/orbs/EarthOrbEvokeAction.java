@@ -49,9 +49,7 @@ public class EarthOrbEvokeAction extends EYBAction
             projectilesDamage.set(i, projectilesDamage.get(i) + bonus);
             damage -= bonus;
         }
-
-        JUtils.LogInfo(this, JUtils.JoinStrings(", ", projectilesDamage));
-
+        
         if (amount <= 0)
         {
             Complete();

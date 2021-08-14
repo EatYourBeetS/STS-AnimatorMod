@@ -351,7 +351,7 @@
 		"animator:Kirby":
 		{
 		  "DESCRIPTION": "When you add this card to your deck, remove 2 Basic or Common cards from your deck. Set this card's cost to the sum of their cost and give this card their effects.",
-		  "EXTENDED_DESCRIPTION": ["Choose 2 cards to fuse.", "Unique. || This card has the effects of {0} and {1}.","Unique. || This card has the effects of {0}."],
+		  "EXTENDED_DESCRIPTION": ["Choose 2 cards to fuse.", "Unique. || This card has the effects of {{0}} and {{1}}.","Unique. || This card has the effects of {{0}}."],
 		  "NAME": "Kirby"
 		},
 		"animator:Luka":

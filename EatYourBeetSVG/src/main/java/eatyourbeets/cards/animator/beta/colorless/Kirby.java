@@ -3,29 +3,23 @@ package eatyourbeets.cards.animator.beta.colorless;
 import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.effects.EYBEffectWithCallback;
+import eatyourbeets.effects.special.KirbyEffect;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.utilities.RotatingList;
 
 import java.util.ArrayList;
@@ -38,7 +32,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
                                                    StartupCard
 {
     public static final EYBCardData DATA = Register(Kirby.class).SetSkill(-2, CardRarity.RARE).SetColor(CardColor.COLORLESS).SetMaxCopies(2).SetSeries(CardSeries.Kirby).SetMaxCopies(1);
-    protected static final int COPIED_CARDS = 2;
+    public static final int COPIED_CARDS = 2;
     protected final RotatingList<EYBCardPreview> previews = new RotatingList<>();
     protected final ArrayList<AbstractCard> inheritedCards = new ArrayList<>(COPIED_CARDS);
     protected boolean hasAttackOrSkill = false;
@@ -279,7 +273,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     @Override
     public boolean OnAddToDeck()
     {
-        GameEffects.Queue.Add(new KirbyEffect(COPIED_CARDS));
+        GameEffects.Queue.Add(new KirbyEffect(this, COPIED_CARDS));
         return true;
     }
 
@@ -294,6 +288,19 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         other.updateProperties();
 
         return other;
+    }
+
+    public ArrayList<AbstractCard> RemoveInheritedCards() {
+        ArrayList<AbstractCard> removedCards = new ArrayList<>();
+        for (AbstractCard card : inheritedCards) {
+            removedCards.add(card.makeCopy());
+        }
+
+        this.inheritedCards.clear();
+        this.previews.Clear();
+        updateProperties();
+
+        return removedCards;
     }
 
     public void AddInheritedCard(AbstractCard card) {
@@ -387,7 +394,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         refreshDescription();
     }
 
-    protected void refreshDescription() {
+    public void refreshDescription() {
         if (inheritedCards.size() >= 2) {
             cardText.OverrideDescription(JUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[1], inheritedCards.get(0).name, inheritedCards.get(1).name), true);
         }
@@ -401,121 +408,6 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
 
     protected class KirbySavable {
         //TODO
-    }
-
-    protected class KirbyEffect extends EYBEffectWithCallback<Object>
-    {
-        private static final int GROUP_SIZE = 3;
-        private final RandomizedList<AbstractCard> cards = new RandomizedList<>();
-        private final String purgeMessage;
-        private final Color screenColor;
-        private int cardsToRemove;
-
-        public KirbyEffect(int remove)
-        {
-            super(0.75f, true);
-
-            this.purgeMessage = cardData.Strings.EXTENDED_DESCRIPTION[0];
-            this.cardsToRemove = remove;
-            this.screenColor = AbstractDungeon.fadeColor.cpy();
-            this.screenColor.a = 0f;
-            AbstractDungeon.overlayMenu.proceedButton.hide();
-        }
-
-        @Override
-        protected void FirstUpdate()
-        {
-            super.FirstUpdate();
-
-            if (cardsToRemove > 0)
-            {
-                OpenPanel_Remove();
-            }
-            else
-            {
-                Complete();
-            }
-        }
-
-        @Override
-        protected void UpdateInternal(float deltaTime)
-        {
-            if (cardsToRemove > 0)
-            {
-                if (AbstractDungeon.gridSelectScreen.selectedCards.size() == cardsToRemove)
-                {
-                    previews.Clear();
-                    for (AbstractCard card : AbstractDungeon.gridSelectScreen.selectedCards)
-                    {
-                        AbstractDungeon.player.masterDeck.removeCard(card);
-                        AbstractCard newCard = card.makeCopy();
-                        for (int i = 0; i < timesUpgraded; i++) {
-                            newCard.upgrade();
-                        }
-                        AddInheritedCard(newCard);
-                    }
-
-                    AbstractDungeon.gridSelectScreen.selectedCards.clear();
-                    refreshDescription();
-                    cardsToRemove = 0;
-                }
-            }
-            else if (TickDuration(deltaTime))
-            {
-                AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
-                Complete(this);
-            }
-        }
-
-        @Override
-        public void render(SpriteBatch sb)
-        {
-            sb.setColor(this.screenColor);
-            sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0f, 0f, (float) Settings.WIDTH, (float) Settings.HEIGHT);
-            if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.GRID)
-            {
-                AbstractDungeon.gridSelectScreen.render(sb);
-            }
-        }
-
-        public void OpenPanel_Remove()
-        {
-            CardGroup cardGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-            for (AbstractCard c : player.masterDeck.getPurgeableCards().group)
-            {
-                if (!isBanned(c))
-                {
-                    cardGroup.group.add(c);
-                }
-            }
-            if (cardGroup.size() < cardsToRemove)
-            {
-                Complete(this);
-                return;
-            }
-
-            if (AbstractDungeon.isScreenUp)
-            {
-                AbstractDungeon.dynamicBanner.hide();
-                AbstractDungeon.overlayMenu.cancelButton.hide();
-                AbstractDungeon.previousScreen = AbstractDungeon.screen;
-            }
-
-            AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.INCOMPLETE;
-            AbstractDungeon.gridSelectScreen.open(cardGroup, cardsToRemove, purgeMessage, false, false, false, true);
-        }
-
-        public boolean isBanned(AbstractCard c) {
-            return c.cost < 0
-                    || (c.rarity != CardRarity.COMMON && c.rarity != CardRarity.BASIC)
-                    || c.purgeOnUse
-                    || c instanceof AnimatorCard_UltraRare
-                    || c instanceof Kirby
-                    || c.cardID.startsWith("hubris")
-                    ||  c.cardID.startsWith("ReplayTheSpireMod")
-                    ||  c.cardID.startsWith("infinitespire")
-                    ||  c.cardID.startsWith("StuffTheSpire");
-        }
     }
 
 

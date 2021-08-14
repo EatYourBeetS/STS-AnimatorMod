@@ -374,7 +374,7 @@
 	},
 	"Willpower Stance":
 	{
-	  "DESCRIPTION": "#g+2 #gBalance, #r-1 #rDexterity, #r-1 #rFocus. NL On Enter: #yBoost [W].",
+	  "DESCRIPTION": "#g+2 #gBalance, #r-1 #rStrength, #r-1 #rDexterity. NL On Enter: #yBoost [W].",
 	  "NAMES": ["[w] stance", "willpower stance"],
 	  "PROPER_NAME": "Willpower Stance"
 	},

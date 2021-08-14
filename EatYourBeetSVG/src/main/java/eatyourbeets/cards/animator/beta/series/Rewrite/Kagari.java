@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.interfaces.subscribers.OnOrbPassiveEffectSubscriber;
+import eatyourbeets.interfaces.subscribers.OnChannelOrbSubscriber;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorPower;
@@ -62,7 +62,7 @@ public class Kagari extends AnimatorCard
         GameActions.Bottom.StackPower(new KagariPower(p, 1));
     }
 
-    public static class KagariPower extends AnimatorPower implements OnOrbPassiveEffectSubscriber
+    public static class KagariPower extends AnimatorPower implements OnChannelOrbSubscriber
     {
 
         public KagariPower(AbstractPlayer owner, int amount)
@@ -89,7 +89,7 @@ public class Kagari extends AnimatorCard
         }
 
         @Override
-        public void OnOrbPassiveEffect(AbstractOrb orb) {
+        public void OnChannelOrb(AbstractOrb orb) {
             if (Earth.ORB_ID.equals(orb.ID) && owner.isPlayer && amount > 0) {
                 GameActions.Bottom.GainWillpower(amount, player.stance.ID.equals(WillpowerStance.STANCE_ID));
                 this.amount -= 1;

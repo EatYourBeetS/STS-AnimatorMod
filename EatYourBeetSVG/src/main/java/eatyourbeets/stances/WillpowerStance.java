@@ -49,7 +49,7 @@ public class WillpowerStance extends EYBStance
         if (TryApplyStance(STANCE_ID))
         {
             GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Balance, +STAT_GAIN_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, -STAT_LOSE_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, -STAT_LOSE_AMOUNT);
             GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_LOSE_AMOUNT);
         }
     }
@@ -62,7 +62,7 @@ public class WillpowerStance extends EYBStance
         if (TryApplyStance(null))
         {
             GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Balance, -STAT_GAIN_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, +STAT_LOSE_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, +STAT_LOSE_AMOUNT);
             GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);
         }
     }

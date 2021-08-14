@@ -24,6 +24,7 @@ import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.listeners.OnCardPoolChangedListener;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.relics.animator.unnamedReign.Ynitaph;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts._FakeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -174,6 +175,11 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     {
         FullLog("ON ACT START");
         InitializeCardPool(false);
+
+        if (AbstractDungeon.actNum == 1 && AbstractDungeon.floorNum == 0)
+        {
+            Ynitaph.TryRestoreFromPreviousRun();
+        }
     }
 
     @Override

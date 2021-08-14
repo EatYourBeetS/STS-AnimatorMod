@@ -19,8 +19,8 @@ import eatyourbeets.utilities.GameUtilities;
 public class Rorona extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Rorona.class)
-            .SetMaxCopies(2)
             .SetPower(2, CardRarity.UNCOMMON)
+            .SetMaxCopies(2)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Atelier);
     public static final int POTION_GOLD_COST = 30;

@@ -120,6 +120,17 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     }
 
     @Override
+    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    {
+        super.onApplyPower(power, target, source);
+
+        if (owner == target && power.ID.equals(ID))
+        {
+            OnSamePowerApplied(power);
+        }
+    }
+
+    @Override
     public void stackPower(int stackAmount)
     {
         if ((baseAmount += stackAmount) > maxAmount)
@@ -137,6 +148,12 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     @Override
     public void updateDescription()
     {
+        if (this instanceof InvisiblePower)
+        {
+            this.description = "";
+            return;
+        }
+
         switch (powerStrings.DESCRIPTIONS.length)
         {
             case 0:
@@ -208,6 +225,11 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
         }
 
         return null;
+    }
+
+    public void OnSamePowerApplied(AbstractPower power)
+    {
+
     }
 
     public void ReducePower(int amount)

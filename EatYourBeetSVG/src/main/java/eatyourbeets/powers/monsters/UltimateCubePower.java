@@ -2,6 +2,7 @@ package eatyourbeets.powers.monsters;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import eatyourbeets.blights.animator.UltimateCubeBlight;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -149,9 +150,9 @@ public class UltimateCubePower extends AnimatorPower
     {
         super.onDeath();
 
-        if (!player.hasBlight(eatyourbeets.blights.animator.UltimateCube.ID))
+        if (!player.hasBlight(UltimateCubeBlight.ID))
         {
-            GameUtilities.ObtainBlight(player.hb.cX, player.hb.cY, new eatyourbeets.blights.animator.UltimateCube());
+            GameUtilities.ObtainBlight(player.hb.cX, player.hb.cY, new UltimateCubeBlight());
         }
     }
 }

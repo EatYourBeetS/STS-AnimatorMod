@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.powers.replacement.TemporaryRetainPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -71,7 +72,11 @@ public class Enchantment2 extends Enchantment
         {
             for (Affinity t : Affinity.Basic())
             {
-                CombatStats.Affinities.GetPower(t).RetainOnce();
+                final AbstractAffinityPower p = CombatStats.Affinities.GetPower(t);
+                if (p.amountGainedThisTurn > 0)
+                {
+                    p.RetainOnce();
+                }
             }
             return;
         }

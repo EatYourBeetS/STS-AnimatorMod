@@ -9,15 +9,14 @@ import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.effects.card.RenderProjectilesEffect;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
 public class EarthOrbEvokeAction extends EYBAction
 {
     private final ArrayList<Projectile> projectiles = new ArrayList<>();
+    private final ArrayList<Integer> projectilesDamage = new ArrayList<>();
     private final float throwDuration;
     private RenderProjectilesEffect effect;
 
@@ -28,12 +27,29 @@ public class EarthOrbEvokeAction extends EYBAction
         this.throwDuration = Settings.FAST_MODE ? 0.15f : 0.25f;
         this.isRealtime = true;
 
+        Initialize(damage);
+
+        int baseDamage = damage / earth.projectiles.size();
         while (earth.projectiles.size() > 0)
         {
             projectiles.add(earth.projectiles.remove(earth.projectiles.size() - 1));
+            projectilesDamage.add(baseDamage);
+            damage -= baseDamage;
         }
 
-        Initialize(Mathf.CeilToInt(damage / (float) projectiles.size()));
+        int bonusDamage = Mathf.CeilToInt((damage % projectiles.size()) / (float)projectiles.size());
+        for (int i = 0; i < projectilesDamage.size(); i++)
+        {
+            if (damage <= 0 || bonusDamage <= 0)
+            {
+                break;
+            }
+
+            final int bonus = Mathf.Min(damage, bonusDamage);
+            projectilesDamage.set(i, projectilesDamage.get(i) + bonus);
+            damage -= bonus;
+        }
+        
         if (amount <= 0)
         {
             Complete();
@@ -74,7 +90,7 @@ public class EarthOrbEvokeAction extends EYBAction
 
             for (int i = 0; i < projectiles.size(); i++)
             {
-                GameActions.Top.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS, AttackEffect.NONE)
+                GameActions.Top.DealDamageToRandomEnemy(projectilesDamage.remove(0), DamageInfo.DamageType.THORNS, AttackEffect.NONE)
                 .SetOptions(true, true)
                 .SetDamageEffect(m ->
                 {

@@ -47,6 +47,7 @@ public class CommonImages
         public final TextureCache Piercing              = new TextureCache("images/eyb/cardui/core/PiercingDamage.png");
         public final TextureCache Block                 = new TextureCache("images/eyb/cardui/core/Block.png");
         public final TextureCache TempHP                = new TextureCache("images/eyb/cardui/core/TempHP.png");
+        public final TextureCache HP                    = new TextureCache("images/eyb/cardui/core/HP.png");
         public final TextureCache Elemental             = new TextureCache("images/eyb/cardui/core/ElementalDamage.png");
         public final TextureCache Intellect             = new TextureCache("images/eyb/cardui/core/Intellect.png");
         public final TextureCache Force                 = new TextureCache("images/eyb/cardui/core/Force.png");

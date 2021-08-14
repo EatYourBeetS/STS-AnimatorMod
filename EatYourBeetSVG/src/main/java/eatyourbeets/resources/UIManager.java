@@ -3,15 +3,19 @@ package eatyourbeets.resources;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.ui.AbstractScreen;
 import eatyourbeets.ui.animator.cardReward.CardAffinityPanel;
 import eatyourbeets.ui.animator.characterSelection.AnimatorLoadoutEditor;
 import eatyourbeets.ui.animator.combat.EYBCombatScreen;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorSeriesSelectScreen;
 import eatyourbeets.ui.common.EYBSingleCardPopup;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -58,6 +62,16 @@ public class UIManager
         timer += delta;
         isDragging = false;
         lastHoveredTemp = null;
+
+        if (Elapsed(0.4f))
+        {
+            CombatStats.Refresh();
+
+            if (Elapsed(1.2f) && CombatStats.BattleID != null && AbstractDungeon.actionManager.phase == GameActionManager.Phase.WAITING_ON_USER)
+            {
+                GameUtilities.UpdatePowerDescriptions();
+            }
+        }
     }
 
     public void Update()

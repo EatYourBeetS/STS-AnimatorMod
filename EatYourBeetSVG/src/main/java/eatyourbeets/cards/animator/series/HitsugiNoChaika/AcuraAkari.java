@@ -14,6 +14,7 @@ public class AcuraAkari extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(AcuraAkari.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetMaxCopies(3)
             .SetSeriesFromClassPackage();
     static
     {

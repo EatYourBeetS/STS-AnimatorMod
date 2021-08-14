@@ -12,8 +12,8 @@ import eatyourbeets.utilities.GameUtilities;
 public class Caster extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Caster.class)
-            .SetMaxCopies(2)
             .SetSkill(1, CardRarity.UNCOMMON)
+            .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 
     private static final CardEffectChoice choices = new CardEffectChoice();

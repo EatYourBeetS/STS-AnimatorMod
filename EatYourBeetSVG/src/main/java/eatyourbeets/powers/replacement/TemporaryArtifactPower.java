@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
@@ -74,9 +75,7 @@ public class TemporaryArtifactPower extends AbstractPower implements CloneablePo
     @Override
     public void renderIcons(SpriteBatch sb, float x, float y, Color c)
     {
-        Color overrideColor = Color.ORANGE.cpy();
-        overrideColor.a = c.a;
-        super.renderIcons(sb, x, y, overrideColor);
+        super.renderIcons(sb, x, y, Colors.Copy(Color.ORANGE, c.a));
     }
 
     @Override
@@ -84,7 +83,7 @@ public class TemporaryArtifactPower extends AbstractPower implements CloneablePo
     {
         super.atStartOfTurnPostDraw();
 
-        GameActions.Delayed.RemovePower(owner, owner, this);
+        GameActions.Last.RemovePower(owner, owner, this);
     }
 
     @Override

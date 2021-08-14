@@ -11,6 +11,7 @@ import eatyourbeets.powers.monsters.DarkCubePower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.ConfigOption_Boolean;
 import eatyourbeets.resources.animator.misc.ConfigOption_String;
+import eatyourbeets.resources.animator.misc.ConfigOption_Vector2;
 import eatyourbeets.utilities.JUtils;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ public class AnimatorConfig
     private static final String FADE_CARDS_WITHOUT_SYNERGY =  "TheAnimator-FadeNonSynergicCards";
     private static final String HIDE_TIP_DESCRIPTION =  "TheAnimator-HideTipDescription";
     private static final String HIDE_BLOCK_DAMAGE_BACKGROUND =  "TheAnimator-HideBlockDamageBackground";
+    private static final String AFFINITY_SYSTEM_POSITION =  "TheAnimator-AffinitySystemPosition";
 
     private SpireConfig config;
     private HashSet<String> tips = null;
@@ -34,6 +36,7 @@ public class AnimatorConfig
     public ConfigOption_Boolean SimplifyCardUI;
     public ConfigOption_Boolean CropCardImages;
     public ConfigOption_Boolean DisplayBetaSeries;
+    public ConfigOption_Vector2 AffinitySystemPosition;
     //public ConfigOption_Boolean FadeCardsWithoutSynergy;
 
     protected void Initialize()
@@ -47,6 +50,7 @@ public class AnimatorConfig
             //FadeCardsWithoutSynergy = new ConfigOption_Boolean(config, FADE_CARDS_WITHOUT_SYNERGY, true);
             DisplayBetaSeries = new ConfigOption_Boolean(config, DISPLAY_BETA_SERIES, false);
             CropCardImages = new ConfigOption_Boolean(config, CROP_CARD_PORTRAIT, true);
+            AffinitySystemPosition = new ConfigOption_Vector2(config, AFFINITY_SYSTEM_POSITION, null);
         }
         catch (IOException e)
         {

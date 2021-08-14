@@ -1,7 +1,6 @@
 package eatyourbeets.relics.animator.unnamedReign;
 
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class TheEgnaroPiece extends UnnamedReignRelic
@@ -30,21 +29,8 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     }
 
     @Override
-    public void onEquip()
+    protected void ActivateBattleEffect()
     {
-        super.onEquip();
-
-        if (GameUtilities.InBattle())
-        {
-            atBattleStart();
-        }
-    }
-
-    @Override
-    public void atBattleStart()
-    {
-        super.atBattleStart();
-
         this.counter = 1 + Math.min(9, VITALITY_AMOUNT * player.masterDeck.size() / CARDS_STEP);
         if (counter > 0)
         {

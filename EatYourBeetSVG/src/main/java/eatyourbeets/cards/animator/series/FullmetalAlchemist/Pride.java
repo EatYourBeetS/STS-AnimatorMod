@@ -11,15 +11,14 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
 public class Pride extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Pride.class)
-            .SetMaxCopies(2)
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 
     public Pride()
@@ -62,7 +61,15 @@ public class Pride extends AnimatorCard
         @Override
         public int onAttackedToChangeDamage(DamageInfo info, int damageAmount)
         {
-            final ArrayList<AbstractOrb> darkOrbs = JUtils.Filter(player.orbs, Dark.class::isInstance);
+            final ArrayList<AbstractOrb> darkOrbs = new ArrayList<>();
+            for (AbstractOrb orb : player.orbs)
+            {
+                if (Dark.ORB_ID.equals(orb.ID) && orb.evokeAmount > 0)
+                {
+                    darkOrbs.add(orb);
+                }
+            }
+
             if (darkOrbs.size() > 0)
             {
                 if (damageAmount > 0)

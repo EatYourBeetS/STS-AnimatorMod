@@ -212,7 +212,7 @@
 	},
 	"animator:WizardHat":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} [I]. Once per combat, if you end your turn with at least #b{1} unspent [E], deal #b{2} damage to ALL enemies."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} [I].", "Once per combat, pay #b{0} [E] to deal #b{1} damage to ALL enemies."],
 		"FLAVOR": "Explosion magic is the strongest magic. But that also means it takes time to prepare.",
 		"NAME": "Wizard Hat"
 	},
@@ -221,5 +221,17 @@
 		"DESCRIPTIONS": ["Start each combat with #b{0} #yBlock. At the end of each turn, gain #b{1} #yBlock for every #yHindrance in your hand."],
 		"FLAVOR": "Goblins.",
 		"NAME": "Worn Helmet"
+	},
+	"animator:Ynitaph":
+	{
+		"DESCRIPTIONS": 
+		[
+			"[Ascension #b{0}+##] Proof of victory against #pThe #pUnnamed, lose this relic on death. Start each #yElite combat with ",
+			"#b{0} #yStrength.",
+			"#b{0} #yStrength and #yDexterity.",
+			"#b{0} #yStrength, #yDexterity and #yFocus (If you have no Orb slots, gain #yMetallicize instead)."
+		],
+		"FLAVOR": "Legends say something will happen if you can complete this puzzle. Legends also say it has not been implemented yet.",
+		"NAME": "Ynitaph"
 	}
 }

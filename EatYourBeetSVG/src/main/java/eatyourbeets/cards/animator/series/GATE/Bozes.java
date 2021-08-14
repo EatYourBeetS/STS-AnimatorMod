@@ -12,6 +12,7 @@ public class Bozes extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Bozes.class)
             .SetAttack(2, CardRarity.UNCOMMON)
+            .SetMaxCopies(3)
             .SetSeriesFromClassPackage();
 
     public Bozes()

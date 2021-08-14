@@ -1,11 +1,5 @@
 
 {
-	"Aether":
-	{
-		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies.",
-		"NAMES": ["aether", "aether+"],
-		"PROPER_NAME": "Aether"
-	},
 	"Affinity":
 	{
 		"DESCRIPTION": "#yAffinity can be of any color between NL [A-Red], [A-Green], [A-Blue], [A-Orange], [A-Light], [A-Dark]. NL [A-Gen] refers either to generic #yAffinity, or your current best #yAffinity.",
@@ -86,7 +80,7 @@
 	},
 	"Common Debuff":
 	{
-		"DESCRIPTION": "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles.",
+		"DESCRIPTION": "[Poison], [Weak], [Vulnerable], [Burning], [Shackles].",
 		"NAMES": ["common debuff", "common debuffs"],
 		"PROPER_NAME": "Common Debuff"
 	},
@@ -120,12 +114,6 @@
 		"NAMES": ["demon form", "demon_form"],
 		"PROPER_NAME": "Demon Form"
 	},
-	"Earth":
-	{
-		"DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. Automatically #yEvoked after 3 turns, dealing damage split randomly amongst ALL enemies.",
-		"NAMES": ["earth", "earth+"],
-		"PROPER_NAME": "Earth"
-	},
 	"Elemental Exposure":
 	{
 	  "DESCRIPTION": "Amplifies the effects of Frail, Vulernable, and Weak. Lasts for 2 turns.",
@@ -156,23 +144,11 @@
 	  "NAMES": ["eternal"],
 	  "PROPER_NAME": "Eternal"
 	},
-	"Chaos":
-	{
-		"DESCRIPTION": "Orb: Changes into a random orb whenever you play an #yAttack. Retains its last form at the end of turn.",
-		"NAMES": ["chaos", "chaos+"],
-		"PROPER_NAME": "Chaos"
-	},
 	"Fetch":
 	{
 		"DESCRIPTION": "Choose a card and move it to your hand.",
 		"NAMES": ["fetch"],
 		"PROPER_NAME": "Fetch"
-	},
-	"Fire":
-	{
-		"DESCRIPTION": "Orb: Applies #yBurning and damages the highest health enemy.",
-		"NAMES": ["fire", "fire+"],
-		"PROPER_NAME": "Fire"
 	},
 	"Flame Barrier":
 	{

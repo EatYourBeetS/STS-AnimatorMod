@@ -1,5 +1,6 @@
 package eatyourbeets.actions.cardManipulation;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import eatyourbeets.actions.utility.GenericCardSelection;
@@ -7,13 +8,14 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinities;
 import eatyourbeets.cards.base.EYBCardAffinity;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameUtilities;
 
 public class ModifyAffinityScaling extends GenericCardSelection
 {
     protected Affinity affinity;
     protected boolean relative;
-    protected boolean flash = true;
+    protected Color flashColor = Colors.Gold(1).cpy();
     protected int scaling;
 
     protected ModifyAffinityScaling(AbstractCard card, CardGroup group, int amount, Affinity affinity, int scaling, boolean relative)
@@ -35,9 +37,9 @@ public class ModifyAffinityScaling extends GenericCardSelection
         this(card, null, 1, affinity, scaling, relative);
     }
 
-    public ModifyAffinityScaling Flash(boolean flash)
+    public ModifyAffinityScaling Flash(Color flashColor)
     {
-        this.flash = flash;
+        this.flashColor = flashColor;
 
         return this;
     }
@@ -45,7 +47,7 @@ public class ModifyAffinityScaling extends GenericCardSelection
     @Override
     protected boolean CanSelect(AbstractCard card)
     {
-        return super.CanSelect(card) && card instanceof EYBCard && (card.baseBlock > 0 || card.baseDamage > 0);
+        return super.CanSelect(card) && card instanceof EYBCard && ((EYBCard) card).CanScale();
     }
 
     @Override
@@ -53,9 +55,9 @@ public class ModifyAffinityScaling extends GenericCardSelection
     {
         super.SelectCard(card);
 
-        if (flash)
+        if (flashColor != null)
         {
-            GameUtilities.Flash(card, false);
+            GameUtilities.Flash(card, flashColor, true);
         }
 
         final EYBCardAffinities affinities = ((EYBCard) card).affinities;

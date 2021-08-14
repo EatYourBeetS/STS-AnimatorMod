@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -35,6 +36,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.ui.animator.combat.EYBCardAffinitySystem;
 import eatyourbeets.ui.common.ControllableCardPile;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import patches.CardGlowBorderPatches;
 
@@ -46,8 +48,10 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static final CombatStats Instance = new CombatStats();
     public static final EYBCardAffinitySystem Affinities = new EYBCardAffinitySystem();
-    public static UUID BattleID;
     public static float EnemyVulnerableModifier;
+    public static boolean LoadingPlayerSave;
+    public static AbstractRoom Room;
+    public static UUID BattleID;
 
     public static final GameEvent<OnAfterCardDiscardedSubscriber> onAfterCardDiscarded = new GameEvent<>();
     public static final GameEvent<OnAfterCardDrawnSubscriber> onAfterCardDrawn = new GameEvent<>();
@@ -187,9 +191,29 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onStatsCleared.GetSubscribers().removeIf(OnStatsClearedSubscriber::OnStatsCleared);
     }
 
-    public static void EnsurePowerIsApplied()
+    public static void Refresh()
     {
-        if (RefreshPlayer() != null && !player.powers.contains(Instance))
+        RefreshPlayer();
+
+        Room = GameUtilities.GetCurrentRoom(false);
+
+        if (Room == null || player == null)
+        {
+            BattleID = null;
+        }
+        else if (Room.isBattleOver || player.isDead)
+        {
+            if (Room.phase != AbstractRoom.RoomPhase.COMBAT || Room.monsters == null || Room.monsters.areMonstersBasicallyDead())
+            {
+                BattleID = null;
+            }
+        }
+        else if (BattleID == null)
+        {
+            BattleID = UUID.randomUUID();
+        }
+
+        if (BattleID != null && !player.powers.contains(Instance))
         {
             JUtils.LogInfo(CombatStats.class, "Applied PlayerStatistics");
             player.powers.add(Instance);
@@ -198,7 +222,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static void OnStartup()
     {
-        EnsurePowerIsApplied();
+        Refresh();
         ClearStats();
     }
 
@@ -335,7 +359,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static void OnBattleStart()
     {
-        BattleID = UUID.randomUUID();
+        Refresh();
 
         onBattleEnd.Clear();
         for (OnBattleStartSubscriber s : onBattleStart.GetSubscribers())
@@ -822,6 +846,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public void atStartOfTurn()
     {
         super.atStartOfTurn();
+
         if (onStartOfTurn.Count() > 0)
         {
             for (OnStartOfTurnSubscriber s : onStartOfTurn.GetSubscribers())

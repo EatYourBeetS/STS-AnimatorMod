@@ -8,11 +8,11 @@ import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
-public class UltimateCrystal extends AnimatorBlight
+public class UltimateCrystalBlight extends AnimatorBlight
 {
-    public static final String ID = CreateFullID(UltimateCrystal.class);
+    public static final String ID = CreateFullID(UltimateCrystalBlight.class);
 
-    public UltimateCrystal()
+    public UltimateCrystalBlight()
     {
         super(ID, 3);
 

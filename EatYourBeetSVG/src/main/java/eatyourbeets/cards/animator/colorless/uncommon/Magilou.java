@@ -18,8 +18,8 @@ public class Magilou extends AnimatorCard implements OnCardResetListener
 {
     public static final EYBCardData DATA = Register(Magilou.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetColor(CardColor.COLORLESS)
             .SetMaxCopies(1)
+            .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.TalesOfBerseria);
     static
     {

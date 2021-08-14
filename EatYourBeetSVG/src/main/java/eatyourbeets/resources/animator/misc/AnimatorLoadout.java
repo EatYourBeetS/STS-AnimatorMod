@@ -197,18 +197,20 @@ public abstract class AnimatorLoadout
 
     public ArrayList<String> GetStartingRelics()
     {
+        final ArrayList<String> res = new ArrayList<>();
+
         if (!UnlockTracker.isRelicSeen(LivingPicture.ID))
         {
             UnlockTracker.markRelicAsSeen(LivingPicture.ID);
         }
+        res.add(LivingPicture.ID);
+
         if (!UnlockTracker.isRelicSeen(TheMissingPiece.ID))
         {
             UnlockTracker.markRelicAsSeen(TheMissingPiece.ID);
         }
-
-        ArrayList<String> res = new ArrayList<>();
-        res.add(LivingPicture.ID);
         res.add(TheMissingPiece.ID);
+
         return res;
     }
 

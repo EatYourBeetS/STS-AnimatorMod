@@ -2,6 +2,7 @@ package eatyourbeets.utilities;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
@@ -129,6 +130,11 @@ public final class GameEffects
     public CallbackEffect2 Callback(AbstractGameEffect effect, Object state, ActionT2<Object, AbstractGameEffect> onCompletion)
     {
         return Add(new CallbackEffect2(effect, state, onCompletion));
+    }
+
+    public CallbackEffect Callback(ActionT0 onCompletion)
+    {
+        return Add(new CallbackEffect(new WaitAction(0.01f), onCompletion));
     }
 
     public CallbackEffect Callback(AbstractGameAction action)

@@ -1,5 +1,11 @@
 
 {
+	"Aether":
+	{
+		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies.",
+		"NAMES": ["aether", "aether+"],
+		"PROPER_NAME": "Aether"
+	},
 	"Afterlife": {
 	  "DESCRIPTION": "You may play cards with #yAfterlife from your #yExhaust pile by #yPurging #b1 random #yNon-Afterlife card from your #yExhaust pile.",
 	  "NAMES": [
@@ -13,11 +19,35 @@
 		"NAMES": ["aura", "auras"],
 		"PROPER_NAME": "Aura"
 	},
+	"Chaos":
+    {
+    	"DESCRIPTION": "Orb: Changes into a random orb whenever you play an #yAttack. Retains its last form at the end of turn.",
+    		"NAMES": ["chaos", "chaos+"],
+    	"PROPER_NAME": "Chaos"
+    },
 	"Cooldown":
 	{
 		"DESCRIPTION": "Whenever you play or discard this card, reduce its #yCooldown by #b1. If it is at #b0, activate this effect instead.",
 		"NAMES": ["cooldown"],
 		"PROPER_NAME": "Cooldown"
+	},
+	"Earth":
+	{
+		"DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. It is #yEvoked after 3 turns, dealing damage to random enemies.",
+		"NAMES": ["earth", "earth+"],
+		"PROPER_NAME": "Earth"
+	},
+	"Enchanted Armor":
+	{
+		"DESCRIPTION": "Take less damage from #yAttacks. NL Example: NL #b10 -> #g10%, #b25 -> #g20%, NL #b50 -> #g33%, #b100 -> #g50%",
+		"NAMES": ["enchanted armor", "ench. armor"],
+		"PROPER_NAME": "Enchanted Armor"
+	},
+	"Fire":
+	{
+		"DESCRIPTION": "Orb: Applies #yBurning and damages the highest health enemy.",
+		"NAMES": ["fire", "fire+"],
+		"PROPER_NAME": "Fire"
 	},
 	"Motivate":
 	{

@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.*;
@@ -26,6 +27,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.stats.AchievementGrid;
+import com.megacrit.cardcrawl.screens.stats.RunData;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.Affinity;
@@ -251,6 +253,31 @@ public class GameUtilities
     {
         final EYBCardAffinities a = GetAffinities(card);
         return a != null ? a.GetLevel(affinity, useStarLevel) : 0;
+    }
+
+    public static boolean HasRedAffinity(AbstractCard card)
+    {
+        return GetAffinityLevel(card, Affinity.Red, true) > 0;
+    }
+
+    public static boolean HasGreenAffinity(AbstractCard card)
+    {
+        return GetAffinityLevel(card, Affinity.Green, true) > 0;
+    }
+
+    public static boolean HasBlueAffinity(AbstractCard card)
+    {
+        return GetAffinityLevel(card, Affinity.Blue, true) > 0;
+    }
+
+    public static boolean HasLightAffinity(AbstractCard card)
+    {
+        return GetAffinityLevel(card, Affinity.Light, true) > 0;
+    }
+
+    public static boolean HasDarkAffinity(AbstractCard card)
+    {
+        return GetAffinityLevel(card, Affinity.Dark, true) > 0;
     }
 
     public static ArrayList<AbstractCreature> GetAllCharacters(boolean aliveOnly)
@@ -912,6 +939,16 @@ public class GameUtilities
 
     public static boolean InBattle()
     {
+        return InBattle(false);
+    }
+
+    public static boolean InBattle(boolean forceRefresh)
+    {
+        if (forceRefresh)
+        {
+            CombatStats.Refresh();
+        }
+
         return CombatStats.BattleID != null;
     }
 
@@ -982,6 +1019,36 @@ public class GameUtilities
     public static boolean IsMonster(AbstractCreature c)
     {
         return c != null && !c.isPlayer;
+    }
+
+    public static boolean IsNormalRun(boolean debug)
+    {
+        final boolean result = IsNormalRun();
+
+        if (debug)
+        {
+            JUtils.LogInfo(GameUtilities.class, "IsNormalRun: " + result + " \n" +
+            "Seed Set: " + Settings.seedSet + ", \n" +
+            "Special Seed: " + Settings.specialSeed + ", \n" +
+            "Daily Run: " + Settings.isDailyRun + ", \n" +
+            "Demo: " + Settings.isDemo + ", \n" +
+            "Endless: " + Settings.isEndless + ", \n" +
+            "Daily Mods: " + JUtils.JoinStrings(", ", ModHelper.getEnabledModIDs()));
+        }
+
+        return result;
+    }
+
+    public static boolean IsNormalRun()
+    {
+        return !Settings.seedSet && Settings.specialSeed == null && !Settings.isDailyRun
+            && !Settings.isDemo && !Settings.isEndless && ModHelper.enabledMods.isEmpty();
+    }
+
+    public static boolean IsNormalRun(RunData data)
+    {
+        return !data.chose_seed && data.special_seed == null && (data.daily_mods == null || data.daily_mods.isEmpty()) && !data.is_daily
+                && !data.is_endless && !data.is_special_run && !data.is_trial;
     }
 
     private static boolean IsObtainableInCombat(AbstractCard c)
@@ -1218,7 +1285,7 @@ public class GameUtilities
 
     public static void UpdatePowerDescriptions()
     {
-        for (AbstractCreature c : GameUtilities.GetAllCharacters(false))
+        for (AbstractCreature c : GameUtilities.GetAllCharacters(true))
         {
             for (AbstractPower p : c.powers)
             {

@@ -100,12 +100,12 @@ public class CardTooltips
     public EYBCardTooltip Rejuvenation = FindByID("Rejuvenation");
 
     // No Description
-    public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null);
-    public EYBCardTooltip Affinity_Green = new EYBCardTooltip("Green Affinity", null);
-    public EYBCardTooltip Affinity_Blue = new EYBCardTooltip("Blue Affinity", null);
-    public EYBCardTooltip Affinity_Orange = new EYBCardTooltip("Orange Affinity", null);
-    public EYBCardTooltip Affinity_Light = new EYBCardTooltip("Light Affinity", null);
-    public EYBCardTooltip Affinity_Dark = new EYBCardTooltip("Dark Affinity", null);
+    public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Green = new EYBCardTooltip("Green Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Blue = new EYBCardTooltip("Blue Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Orange = new EYBCardTooltip("Orange Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Light = new EYBCardTooltip("Light Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Dark = new EYBCardTooltip("Dark Affinity", null).ShowText(false);
     public EYBCardTooltip Affinity_General = FindByID("Affinity");
     public EYBCardTooltip Affinity_Power = FindByID("Affinity Power");
     public EYBCardTooltip Affinity_Token = FindByID("Affinity Token");

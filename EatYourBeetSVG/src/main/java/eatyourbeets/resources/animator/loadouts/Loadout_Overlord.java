@@ -21,8 +21,8 @@ public class Loadout_Overlord extends AnimatorLoadout
         AddToSpecialSlots(Demiurge.DATA, 5);
         AddToSpecialSlots(Cocytus.DATA, 5);
         AddToSpecialSlots(PandorasActor.DATA, 6);
-        AddToSpecialSlots(NarberalGamma.DATA, 6);
         AddToSpecialSlots(Sebas.DATA, 6);
+        AddToSpecialSlots(NarberalGamma.DATA, 7);
         AddToSpecialSlots(Shalltear.DATA, 8);
     }
 

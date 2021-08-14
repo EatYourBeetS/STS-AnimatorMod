@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.PinaCoLadaPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -11,7 +12,6 @@ public class PinaCoLada extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(PinaCoLada.class)
             .SetPower(2, CardRarity.RARE)
-            .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 
     public PinaCoLada()
@@ -23,6 +23,12 @@ public class PinaCoLada extends AnimatorCard
 
         SetAffinity_Light(1, 1, 0);
         SetAffinity_Orange(2, 0, 0);
+    }
+
+    @Override
+    public boolean cardPlayable(AbstractMonster m)
+    {
+        return CombatStats.SynergiesThisTurn().size() > 0;
     }
 
     @Override

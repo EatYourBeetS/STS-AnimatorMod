@@ -21,8 +21,9 @@ public class Loadout_GATE extends AnimatorLoadout
         AddToSpecialSlots(TukaLunaMarceau.DATA, 4);
         AddToSpecialSlots(Kuribayashi.DATA, 5);
         AddToSpecialSlots(YaoHaDucy.DATA, 5);
-        AddToSpecialSlots(RoryMercury.DATA, 6);
-        AddToSpecialSlots(Bozes.DATA, 9);
+        AddToSpecialSlots(ShunyaKengun.DATA, 7);
+        AddToSpecialSlots(RoryMercury.DATA, 7);
+        AddToSpecialSlots(Bozes.DATA, 11);
     }
 
     @Override

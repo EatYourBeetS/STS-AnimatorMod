@@ -38,6 +38,7 @@ public class EnchantmentPower extends AnimatorClickablePower
             .replace("!M!", String.valueOf(enchantment.magicNumber))
             .replace(" NL ", " ")
             .replace("{", "")
+            .replace("~", "")
             .replace("}", "");
             enchantmentDescription = JUtils.ModifyString(enchantmentDescription, w -> Character.isDigit(w.charAt(0)) ? ("#b" + w) : w);
         }

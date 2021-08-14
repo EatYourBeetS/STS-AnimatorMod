@@ -20,7 +20,7 @@ public class AnimatorCardRewardScreen extends GUIElement
 
     public void Open(ArrayList<AbstractCard> cards, RewardItem rItem, String header)
     {
-        if (GameUtilities.InBattle() || cards == null || rItem == null)
+        if (GameUtilities.InBattle(true) || cards == null || rItem == null)
         {
             Close();
             return;

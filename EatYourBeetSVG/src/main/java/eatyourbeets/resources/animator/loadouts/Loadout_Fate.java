@@ -21,7 +21,7 @@ public class Loadout_Fate extends AnimatorLoadout
         AddToSpecialSlots(Assassin.DATA, 4);
         AddToSpecialSlots(Alexander.DATA, 5);
         AddToSpecialSlots(RinTohsaka.DATA, 5);
-        AddToSpecialSlots(Lancer.DATA, 6);
+        AddToSpecialSlots(Lancer.DATA, 7);
         AddToSpecialSlots(Berserker.DATA, 9);
         AddToSpecialSlots(EmiyaShirou.DATA, 11);
     }

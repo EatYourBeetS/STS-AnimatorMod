@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -54,25 +55,21 @@ public class IzunaHatsuse extends AnimatorCard
     }
 
     @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return transformed ? HPAttribute.Instance.SetCard(this, true) : null;
+    }
+
+    @Override
     public AbstractAttribute GetBlockInfo()
     {
-        if (transformed)
-        {
-            return null;
-        }
-
-        return super.GetBlockInfo();
+        return transformed ? null : super.GetBlockInfo();
     }
 
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        if (!transformed)
-        {
-            return null;
-        }
-
-        return super.GetDamageInfo().AddMultiplier(2);
+        return transformed ? super.GetDamageInfo().AddMultiplier(2) : null;
     }
 
     @Override
@@ -86,7 +83,7 @@ public class IzunaHatsuse extends AnimatorCard
     @Override
     public AbstractCard makeStatEquivalentCopy()
     {
-        IzunaHatsuse other = (IzunaHatsuse) super.makeStatEquivalentCopy();
+        final IzunaHatsuse other = (IzunaHatsuse) super.makeStatEquivalentCopy();
 
         other.SetTransformed(transformed);
 
@@ -135,7 +132,7 @@ public class IzunaHatsuse extends AnimatorCard
                 LoadImage("Alt");
                 SetAttackType(EYBAttackType.Normal);
 
-                //TODO: handles cases like Serara
+                //TODO: handle cases like Serara
                 affinities.List.clear();
                 SetAffinity_Red(1);
                 SetAffinity_Green(2, 0, 1);

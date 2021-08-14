@@ -562,7 +562,7 @@
 		"animator:MoltSolAugustus":
 		{
 			"DESCRIPTION": "At the end of each turn: ** Give ALL <R> cards {~Haste}. || Draw 1 less card each turn. || Once per turn: Pay [E] to ** add !S! {Imperial Archers} ** to your draw pile.",
-			"EXTENDED_DESCRIPTION": ["Once per turn: Pay [E] to add #b{0} #yImperial #yArchers to your draw pile. || Draw 1 less card each turn. At the start of each turn: Give ALL <R> cards #yHaste."],
+			"EXTENDED_DESCRIPTION": ["Once per turn: Pay [E] to add #b{0} #yImperial #yArchers to your draw pile. || Draw #b{1} less card(s) each turn. At the start of each turn: Give ALL <R> cards #yHaste."],
 			"NAME": "Molt Sol Augustus"
 		},
 		"animator:PinaCoLada":

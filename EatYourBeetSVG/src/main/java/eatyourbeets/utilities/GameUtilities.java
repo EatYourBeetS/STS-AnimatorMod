@@ -1086,6 +1086,18 @@ public class GameUtilities
         card.isBlockModified = (card.block != card.baseBlock);
     }
 
+    public static int ModifyCardDrawPerTurn(int amount, int minimumCardDraw)
+    {
+        final int newAmount = player.gameHandSize + amount;
+        if (newAmount < minimumCardDraw)
+        {
+            amount += (minimumCardDraw - newAmount);
+        }
+
+        player.gameHandSize += amount;
+        return amount;
+    }
+
     public static void ModifyCostForCombat(AbstractCard card, int amount, boolean relative)
     {
         final int previousCost = card.cost;

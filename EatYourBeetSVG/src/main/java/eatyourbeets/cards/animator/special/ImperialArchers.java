@@ -24,7 +24,7 @@ public class ImperialArchers extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3, 1, 2);
+        Initialize(0, 2, 1, 2);
         SetUpgrade(0, 2, 1, 0);
 
         SetAffinity_Red(1, 0, 0);

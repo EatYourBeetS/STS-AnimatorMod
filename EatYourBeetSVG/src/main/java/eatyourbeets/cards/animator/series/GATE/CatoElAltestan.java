@@ -46,7 +46,7 @@ public class CatoElAltestan extends AnimatorCard
     {
         if (CheckAffinity(Affinity.Blue))
         {
-            GameActions.Bottom.ApplyFreezing(player, m, 1);
+            GameActions.Bottom.ApplyFreezing(player, m, magicNumber);
         }
         if (CheckAffinity(Affinity.Red))
         {
@@ -57,7 +57,7 @@ public class CatoElAltestan extends AnimatorCard
             GameActions.Bottom.ChannelOrb(new Aether());
         }
 
-        GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile)
+        GameActions.Bottom.FetchFromPile(name, 2, player.drawPile)
         .SetOptions(false, true)
         .SetFilter(GameUtilities::HasBlueAffinity)
         .AddCallback(cards ->

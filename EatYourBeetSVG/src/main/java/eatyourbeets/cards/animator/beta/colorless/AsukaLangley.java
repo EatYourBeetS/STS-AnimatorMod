@@ -76,7 +76,7 @@ public class AsukaLangley extends AnimatorCard
         {
             super.onPlayCard(card,m);
             AnimatorCard aCard = JUtils.SafeCast(card, AnimatorCard.class);
-            if (m.hasPower(LockOn.ID) && aCard != null && aCard.damage > 0 && aCard.damageTypeForTurn == DamageInfo.DamageType.NORMAL && aCard.attackType == EYBAttackType.Ranged)
+            if (m != null && m.hasPower(LockOn.ID) && aCard != null && aCard.damage > 0 && aCard.damageTypeForTurn == DamageInfo.DamageType.NORMAL && aCard.attackType == EYBAttackType.Ranged)
             {
                 GameActions.Last.ReducePower(m, this.owner, LockOn.ID, 1);
                 this.flash();

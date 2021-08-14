@@ -16,6 +16,7 @@ import eatyourbeets.powers.common.ExitStanceNextTurnPower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
 
 public class KotarouTennouji extends AnimatorCard implements OnStanceChangedSubscriber
@@ -45,6 +46,7 @@ public class KotarouTennouji extends AnimatorCard implements OnStanceChangedSubs
             choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
             choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
             choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));
+            choices.AddEffect(new GenericEffect_EnterStance(WillpowerStance.STANCE_ID));
         }
 
         choices.Select(1, m);

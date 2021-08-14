@@ -13,11 +13,13 @@ public class VulnerablePowerPatches
     @SpirePostfixPatch
     public static float Postfix(float result, VulnerablePower __instance, float damage, DamageInfo.DamageType type)
     {
-        if (GameUtilities.IsPlayer(__instance.owner) || CombatStats.EnemyVulnerableModifier == 0)
+        if (GameUtilities.IsPlayer(__instance.owner))
         {
-            return result;
+            return CombatStats.PlayerVulnerableModifier > 0 ? damage * ((result / damage) + CombatStats.PlayerVulnerableModifier) : result;
         }
-
-        return damage * ((result / damage) + CombatStats.EnemyVulnerableModifier);
+        else
+        {
+            return CombatStats.EnemyVulnerableModifier > 0 ? damage * ((result / damage) + CombatStats.EnemyVulnerableModifier) : result;
+        }
     }
 }

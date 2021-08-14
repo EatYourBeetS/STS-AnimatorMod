@@ -88,7 +88,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnTryUsingCardSubscriber> onTryUsingCard = new GameEvent<>();
 
     public static final ControllableCardPile ControlPile = new ControllableCardPile();
-    public static boolean LoadingPlayerSave;
 
     private static final Map<String, Object> combatData = new HashMap<>();
     private static final Map<String, Object> turnData = new HashMap<>();

@@ -42,7 +42,7 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
+    public void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
 

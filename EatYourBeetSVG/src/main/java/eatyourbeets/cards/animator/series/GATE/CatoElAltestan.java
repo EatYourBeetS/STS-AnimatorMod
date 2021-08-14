@@ -33,20 +33,11 @@ public class CatoElAltestan extends AnimatorCard
     }
 
     @Override
-    public void OnDrag(AbstractMonster m)
-    {
-        if (m != null && CheckAffinity(Affinity.Blue))
-        {
-            GameUtilities.GetIntent(m).AddFreezing();
-        }
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (CheckAffinity(Affinity.Blue))
         {
-            GameActions.Bottom.ApplyFreezing(player, m, 1);
+            GameActions.Bottom.ApplyFreezing(player, m, secondaryValue);
         }
         if (CheckAffinity(Affinity.Red))
         {

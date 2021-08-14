@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.powers.common.BlindedPower;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.resources.GR;
@@ -36,6 +37,7 @@ public class EnemyIntent
         private static final WeakPower WEAK = new WeakPower(null, 1, false);
         private static final StrengthPower STRENGTH = new StrengthPower(null, 0);
         private static final FreezingPower FREEZING = new FreezingPower(null, null, 0);
+        private static final BlindedPower BLINDED = new BlindedPower(null, null, 0);
 
         private static final ArrayList<AbstractPower> PLAYER_POWERS = new ArrayList<>();
         private static final ArrayList<AbstractPower> ENEMY_POWERS = new ArrayList<>();
@@ -48,6 +50,7 @@ public class EnemyIntent
             DEFAULT_ENEMY_POWERS.add(WEAK);
             DEFAULT_ENEMY_POWERS.add(STRENGTH);
             DEFAULT_ENEMY_POWERS.add(FREEZING);
+            DEFAULT_ENEMY_POWERS.add(BLINDED);
         }
 
         protected static void Load(AbstractPlayer player, AbstractMonster enemy, HashMap<String, Integer> modifiers)
@@ -186,12 +189,12 @@ public class EnemyIntent
         return this;
     }
 
-    public EnemyIntent AddFreezing()
+    public EnemyIntent AddBlinded()
     {
         if (isAttacking)
         {
             GR.UI.CombatScreen.Intents.Add(enemy, this::GetIntentDamageString);
-            modifiers.put(FreezingPower.POWER_ID, 1);
+            modifiers.put(BlindedPower.POWER_ID, 1);
         }
 
         return this;

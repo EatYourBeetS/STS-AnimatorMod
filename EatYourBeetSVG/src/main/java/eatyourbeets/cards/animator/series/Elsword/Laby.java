@@ -19,6 +19,7 @@ public class Laby extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Laby.class)
             .SetPower(2, CardRarity.UNCOMMON)
+            .SetMaxCopies(3)
             .SetSeriesFromClassPackage();
 
     public Laby()
@@ -71,14 +72,9 @@ public class Laby extends AnimatorCard
         }
 
         @Override
-        public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+        public void OnSamePowerApplied(AbstractPower power)
         {
-            super.onApplyPower(power, target, source);
-
-            if (ID.equals(power.ID) && target == owner)
-            {
-                this.upgradedAmount += ((LabyPower)power).upgradedAmount;
-            }
+            this.upgradedAmount += ((LabyPower)power).upgradedAmount;
         }
 
         @Override

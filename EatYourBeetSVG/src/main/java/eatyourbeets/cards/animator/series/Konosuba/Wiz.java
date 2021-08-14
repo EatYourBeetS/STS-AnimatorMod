@@ -10,6 +10,7 @@ public class Wiz extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Wiz.class)
             .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
+            .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 
     public Wiz()

@@ -26,6 +26,7 @@ public abstract class AbstractAffinityPower extends CommonPower
     //@Formatter: on
 
     public final Affinity affinity;
+    public int amountGainedThisTurn;
     public int retainedTurns;
     public EYBCardTooltip tooltip;
     public Hitbox hb;
@@ -78,6 +79,7 @@ public abstract class AbstractAffinityPower extends CommonPower
             return;
         }
 
+        this.amountGainedThisTurn += amount;
         this.amount += amount;
         this.fontScale = 8f;
 
@@ -135,6 +137,8 @@ public abstract class AbstractAffinityPower extends CommonPower
     public void atStartOfTurn()
     {
         super.atStartOfTurn();
+
+        this.amountGainedThisTurn = 0;
 
         if (this.retainedTurns == 0)
         {

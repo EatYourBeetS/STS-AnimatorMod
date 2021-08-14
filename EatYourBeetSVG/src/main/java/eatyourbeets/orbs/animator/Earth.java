@@ -125,17 +125,9 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void applyFocus()
     {
-        int focus = GetFocus();
-        if (focus > 0)
-        {
-            this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
-            this.evokeAmount = Math.max(0, this.baseEvokeAmount + (focus * 2));
-        }
-        else
-        {
-            this.evokeAmount = this.baseEvokeAmount;
-            this.passiveAmount = this.basePassiveAmount;
-        }
+        final int focus = GetFocus();
+        this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
+        this.evokeAmount = Math.max(0, this.baseEvokeAmount + (focus * 4));
     }
 
     @Override
@@ -192,7 +184,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public AbstractOrb makeCopy()
     {
-        Earth copy = new Earth();
+        final Earth copy = new Earth();
         if (!evoked)
         {
             copy.turns = turns;

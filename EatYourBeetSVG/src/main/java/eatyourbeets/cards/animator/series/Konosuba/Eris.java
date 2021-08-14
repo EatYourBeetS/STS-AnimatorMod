@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.interfaces.subscribers.OnLoseHpSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -31,6 +33,12 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
 
         SetExhaust(true);
         SetHealing(true);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return HPAttribute.Instance.SetCard(this, true);
     }
 
     @Override

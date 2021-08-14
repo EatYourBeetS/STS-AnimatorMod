@@ -27,7 +27,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
 
     public static final EYBCardData DATA = Register(Fredrika.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetMaxCopies(2)
+            .SetMaxCopies(1)
             .SetSeriesFromClassPackage();
     static
     {

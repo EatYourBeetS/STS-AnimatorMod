@@ -20,6 +20,8 @@ public abstract class ConfigOption<T>
 
     public abstract T Get();
 
+    public abstract T Get(T defaultValue);
+
     public abstract T Set(T value, boolean save);
 
     public boolean Save()

@@ -20,6 +20,12 @@ public class ConfigOption_Boolean extends ConfigOption<Boolean>
     @Override
     public Boolean Get()
     {
+        return Get(DefaultValue);
+    }
+
+    @Override
+    public Boolean Get(Boolean defaultValue)
+    {
         if (Value == null)
         {
             if (Config.has(Key))
@@ -28,7 +34,7 @@ public class ConfigOption_Boolean extends ConfigOption<Boolean>
             }
             else
             {
-                Value = DefaultValue;
+                Value = defaultValue;
             }
         }
 

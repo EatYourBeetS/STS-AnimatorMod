@@ -17,6 +17,7 @@ public class Lelouch extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Lelouch.class)
             .SetSkill(3, CardRarity.RARE, EYBCardTarget.ALL)
+            .SetMaxCopies(1)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.CodeGeass);
     public static final PowerHelper GEASS = new PowerHelper(GeassPower.POWER_ID, null, (o, s, a) -> new GeassPower(o));

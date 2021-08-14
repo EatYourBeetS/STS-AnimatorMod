@@ -939,6 +939,16 @@ public class GameUtilities
 
     public static boolean InBattle()
     {
+        return InBattle(false);
+    }
+
+    public static boolean InBattle(boolean forceRefresh)
+    {
+        if (forceRefresh)
+        {
+            CombatStats.Refresh();
+        }
+
         return CombatStats.BattleID != null;
     }
 

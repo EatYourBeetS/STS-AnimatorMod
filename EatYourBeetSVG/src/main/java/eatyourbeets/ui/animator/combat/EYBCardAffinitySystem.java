@@ -2,10 +2,10 @@ package eatyourbeets.ui.animator.combat;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.actions.powers.ApplyAffinityPower;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
@@ -15,8 +15,8 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.hitboxes.DraggableHitbox;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.Mathf;
 
 import java.util.ArrayList;
 
@@ -35,6 +35,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     protected final DraggableHitbox hb;
     protected final GUI_Image dragPanel_image;
     protected final ArrayList<EYBCardAffinityRow> rows = new ArrayList<>();
+    protected Vector2 savedPosition;
 
     protected AbstractCard currentSynergy = null;
     protected AnimatorCard lastCardPlayed = null;
@@ -127,9 +128,9 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     @Override
     public void OnStartOfTurn()
     {
-        for (AbstractAffinityPower p : Powers)
+        for (EYBCardAffinityRow row : rows)
         {
-            p.atStartOfTurn();
+            row.OnStartOfTurn();
         }
     }
 
@@ -162,12 +163,14 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public boolean CanActivateSynergyBonus(Affinity affinity)
     {
-        return affinity.ID >= 0 && CombatStats.CanActivateSemiLimited(affinity.name());
+        return affinity.ID >= 0 && GetRow(affinity).AvailableActivations > 0;
     }
 
-    public ApplyAffinityPower ActivateSynergyBonus(Affinity affinity)
+    public void AddMaxActivationsPerTurn(Affinity affinity, int amount)
     {
-        return affinity.ID >= 0 ? GameActions.Bottom.StackAffinityPower(affinity, 1, false) : null;
+        final EYBCardAffinityRow row = GetRow(affinity);
+        row.MaxActivationsPerTurn = Math.max(0, row.MaxActivationsPerTurn + amount);
+        row.AvailableActivations = Math.max(0, row.AvailableActivations + amount);
     }
 
     public void OnSynergy(AnimatorCard card)
@@ -176,8 +179,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             if (CanActivateSynergyBonus(affinity))
             {
-                CombatStats.TryActivateSemiLimited(affinity.type.name());
-                ActivateSynergyBonus(affinity.type);
+                GetRow(affinity.type).ActivateSynergyBonus();
             }
         }
     }
@@ -309,14 +311,26 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public void Initialize()
     {
-        for (AbstractAffinityPower p : Powers)
-        {
-            p.Initialize(player);
-        }
-
         BonusAffinities.Star = null;
         BonusAffinities.List.clear();
         CombatStats.onStartOfTurn.Subscribe(this);
+
+        if (savedPosition != null)
+        {
+            final DraggableHitbox hb = (DraggableHitbox) dragPanel_image.hb;
+            savedPosition.x = hb.target_cX / (float) Settings.WIDTH;
+            savedPosition.y = hb.target_cY / (float) Settings.HEIGHT;
+            if (savedPosition.dst2(GR.Animator.Config.AffinitySystemPosition.Get()) > Mathf.Epsilon)
+            {
+                JUtils.LogInfo(this, "Saved affinity panel position.");
+                GR.Animator.Config.AffinitySystemPosition.Set(savedPosition.cpy(), true);
+            }
+        }
+
+        for (EYBCardAffinityRow row : rows)
+        {
+            row.Initialize();
+        }
     }
 
     public void Update()
@@ -324,6 +338,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         if (player == null || player.hand == null || AbstractDungeon.overlayMenu.energyPanel.isHidden)
         {
             return;
+        }
+
+        if (savedPosition == null)
+        {
+            savedPosition = GR.Animator.Config.AffinitySystemPosition.Get(new Vector2(0.0522f, 0.43f)).cpy();
+            hb.SetPosition(ScreenW(savedPosition.x), ScreenH(savedPosition.y));
         }
 
         boolean draggingCard = false;

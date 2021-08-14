@@ -177,21 +177,30 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static void Refresh()
     {
-        if (RefreshPlayer() != null && !player.powers.contains(Instance))
-        {
-            JUtils.LogInfo(CombatStats.class, "Applied PlayerStatistics");
-            player.powers.add(Instance);
-        }
+        RefreshPlayer();
 
         Room = GameUtilities.GetCurrentRoom(false);
 
-        if (Room == null || Room.phase != AbstractRoom.RoomPhase.COMBAT)
+        if (Room == null || player == null)
         {
             BattleID = null;
+        }
+        else if (Room.isBattleOver || player.isDead)
+        {
+            if (Room.phase != AbstractRoom.RoomPhase.COMBAT || Room.monsters == null || Room.monsters.areMonstersBasicallyDead())
+            {
+                BattleID = null;
+            }
         }
         else if (BattleID == null)
         {
             BattleID = UUID.randomUUID();
+        }
+
+        if (BattleID != null && !player.powers.contains(Instance))
+        {
+            JUtils.LogInfo(CombatStats.class, "Applied PlayerStatistics");
+            player.powers.add(Instance);
         }
     }
 
@@ -745,6 +754,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public void atStartOfTurn()
     {
         super.atStartOfTurn();
+
         if (onStartOfTurn.Count() > 0)
         {
             for (OnStartOfTurnSubscriber s : onStartOfTurn.GetSubscribers())

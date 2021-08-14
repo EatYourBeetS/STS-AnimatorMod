@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.delegates.FuncT1;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -347,6 +348,11 @@ public class JUtils
         }
 
         return sj.toString();
+    }
+
+    public static String[] SplitString(String delimiter, String text)
+    {
+        return StringUtils.isEmpty(text) ? new String[0] : text.split(Pattern.quote(delimiter));
     }
 
     public static String TitleCase(String text)

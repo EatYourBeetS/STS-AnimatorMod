@@ -18,12 +18,12 @@ public class Loadout_OwariNoSeraph extends AnimatorLoadout
     {
         super.InitializeData();
 
-        AddToSpecialSlots(Mikaela.DATA, 5);
         AddToSpecialSlots(Shigure.DATA, 5);
         AddToSpecialSlots(Mitsuba.DATA, 6);
-        AddToSpecialSlots(Shinoa.DATA, 6);
+        AddToSpecialSlots(Shinoa.DATA, 7);
+        AddToSpecialSlots(Mikaela.DATA, 7);
         AddToSpecialSlots(CrowleyEusford.DATA, 7);
-        AddToSpecialSlots(Yuuichirou.DATA, 8);
+        AddToSpecialSlots(Yuuichirou.DATA, 9);
     }
 
     @Override

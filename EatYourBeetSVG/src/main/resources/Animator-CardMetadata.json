@@ -8,6 +8,10 @@
 	{
 		"cropPortrait": false
 	},
+	"animator:CatoElAltestan":
+	{
+		"cropPortrait": false
+	},
 	"animator:Charlotte":
 	{
 		"cropPortrait": false
@@ -92,15 +96,15 @@
 	{
 		"cropPortrait": false
 	},
+	"animator:TanyaDegurechaff":
+	{
+		"cropPortrait": false
+	},
 	"animator:Tatsumaki":
 	{
 		"cropPortrait": false
 	},
 	"animator:ThrowingKnife":
-	{
-		"cropPortrait": false
-	},
-	"animator:Tyuule":
 	{
 		"cropPortrait": false
 	},

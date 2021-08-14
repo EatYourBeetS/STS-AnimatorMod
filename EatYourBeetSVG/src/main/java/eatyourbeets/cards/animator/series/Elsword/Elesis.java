@@ -232,7 +232,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
     @Override
     public AbstractCard makeCopy()
     {
-        if (currentForm == Form.None && GameUtilities.InBattle() && GameUtilities.GetMasterDeckInstance(uuid) == null)
+        if (currentForm == Form.None && GameUtilities.InBattle(true) && GameUtilities.GetMasterDeckInstance(uuid) == null)
         {
             int roll = rng.random(0, 2);
             if (roll == 0)

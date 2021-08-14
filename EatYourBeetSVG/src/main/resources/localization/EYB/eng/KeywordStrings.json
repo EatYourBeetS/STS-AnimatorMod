@@ -1,11 +1,5 @@
 
 {
-	"Aether":
-	{
-		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies.",
-		"NAMES": ["aether", "aether+"],
-		"PROPER_NAME": "Aether"
-	},
 	"Affinity":
 	{
 		"DESCRIPTION": "#yAffinity can be of any color between NL [A-Red], [A-Green], [A-Blue], [A-Light], [A-Dark]. NL [A-Gen] refers either to generic #yAffinity, or your current best #yAffinity.",
@@ -102,41 +96,17 @@
 		"NAMES": ["demon form", "demon_form"],
 		"PROPER_NAME": "Demon Form"
 	},
-	"Earth":
-	{
-		"DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. Automatically #yEvoked after 3 turns, dealing damage split randomly amongst ALL enemies.",
-		"NAMES": ["earth", "earth+"],
-		"PROPER_NAME": "Earth"
-	},
-	"Enchanted Armor":
-	{
-		"DESCRIPTION": "Take less damage from #yAttacks. NL Example: NL #b10 -> #g10%, #b25 -> #g20%, NL #b50 -> #g33%, #b100 -> #g50%",
-		"NAMES": ["enchanted armor", "ench. armor"],
-		"PROPER_NAME": "Enchanted Armor"
-	},
 	"Envenom":
 	{
 		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yPoison.",
 		"NAMES": ["envenom"],
 		"PROPER_NAME": "Envenom"
 	},
-	"Chaos":
-	{
-		"DESCRIPTION": "Orb: Changes into a random orb whenever you play an #yAttack. Retains its last form at the end of turn.",
-		"NAMES": ["chaos", "chaos+"],
-		"PROPER_NAME": "Chaos"
-	},
 	"Fetch":
 	{
 		"DESCRIPTION": "Choose a card and move it to your hand.",
 		"NAMES": ["fetch"],
 		"PROPER_NAME": "Fetch"
-	},
-	"Fire":
-	{
-		"DESCRIPTION": "Orb: Applies #yBurning and damages the highest health enemy.",
-		"NAMES": ["fire", "fire+"],
-		"PROPER_NAME": "Fire"
 	},
 	"Flame Barrier":
 	{

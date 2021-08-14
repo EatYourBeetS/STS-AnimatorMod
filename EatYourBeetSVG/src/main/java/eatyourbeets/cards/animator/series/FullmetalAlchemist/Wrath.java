@@ -12,8 +12,8 @@ import eatyourbeets.utilities.GameActions;
 public class Wrath extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Wrath.class)
-            .SetMaxCopies(2)
             .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
     static
     {

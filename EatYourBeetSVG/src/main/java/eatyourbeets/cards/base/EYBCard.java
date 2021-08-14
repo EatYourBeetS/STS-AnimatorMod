@@ -264,6 +264,11 @@ public abstract class EYBCard extends EYBCardBase
         return isMultiDamage;
     }
 
+    public boolean CanScale()
+    {
+        return baseBlock > 0 || baseDamage > 0;
+    }
+
     public void GenerateDynamicTooltips(ArrayList<EYBCardTooltip> dynamicTooltips)
     {
         if (isInnate)

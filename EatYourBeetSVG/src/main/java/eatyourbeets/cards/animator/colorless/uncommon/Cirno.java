@@ -17,6 +17,7 @@ public class Cirno extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Cirno.class)
             .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetMaxCopies(2)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.TouhouProject);
 
@@ -25,7 +26,7 @@ public class Cirno extends AnimatorCard
         super(DATA);
 
         Initialize(3, 0, 1);
-        SetUpgrade(1, 0, 1);
+        SetUpgrade(3, 0, 0);
 
         SetAffinity_Blue(1, 0, 1);
 

@@ -135,7 +135,7 @@ public abstract class EYBRelic extends CustomRelic
     {
         super.onEquip();
 
-        if (GameUtilities.InBattle())
+        if (GameUtilities.InBattle(true))
         {
             ActivateBattleEffect();
         }
@@ -146,7 +146,7 @@ public abstract class EYBRelic extends CustomRelic
     {
         super.onUnequip();
 
-        if (GameUtilities.InBattle())
+        if (GameUtilities.InBattle(true))
         {
             DeactivateBattleEffect();
         }

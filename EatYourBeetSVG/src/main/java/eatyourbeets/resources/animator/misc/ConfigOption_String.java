@@ -17,6 +17,12 @@ public class ConfigOption_String extends ConfigOption<String>
     @Override
     public String Get()
     {
+        return Get(DefaultValue);
+    }
+
+    @Override
+    public String Get(String defaultValue)
+    {
         if (Value == null)
         {
             if (Config.has(Key))
@@ -25,7 +31,7 @@ public class ConfigOption_String extends ConfigOption<String>
             }
             else
             {
-                Value = DefaultValue;
+                Value = defaultValue;
             }
         }
 
@@ -49,6 +55,6 @@ public class ConfigOption_String extends ConfigOption<String>
     @Override
     public void AddToPanel(ModPanel panel, String label, float x, float y)
     {
-
+        throw new RuntimeException("Not implemented");
     }
 }

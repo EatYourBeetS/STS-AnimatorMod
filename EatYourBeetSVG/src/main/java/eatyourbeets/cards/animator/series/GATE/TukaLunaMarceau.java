@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -17,20 +18,13 @@ public class TukaLunaMarceau extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2);
+        Initialize(0, 3);
         SetUpgrade(0, 2);
 
         SetAffinity_Green(1);
-    }
 
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        Refresh(null);
-
-        GameActions.Bottom.GainBlock(block);
+        SetAffinityRequirement(Affinity.Light, 3);
+        SetAffinityRequirement(Affinity.Green, 3);
     }
 
     @Override
@@ -42,5 +36,14 @@ public class TukaLunaMarceau extends AnimatorCard
         }
 
         GameActions.Bottom.GainBlock(block);
+
+        if (CheckAffinity(Affinity.Light))
+        {
+            GameActions.Bottom.RetainPower(Affinity.Light);
+        }
+        if (CheckAffinity(Affinity.Green))
+        {
+            GameActions.Bottom.RetainPower(Affinity.Green);
+        }
     }
 }

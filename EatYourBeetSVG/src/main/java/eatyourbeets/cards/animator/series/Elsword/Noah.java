@@ -17,8 +17,8 @@ import eatyourbeets.utilities.GameUtilities;
 public class Noah extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Noah.class)
-            .SetMaxCopies(2)
             .SetAttack(1, CardRarity.RARE, EYBAttackType.Piercing)
+            .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 
     public Noah()

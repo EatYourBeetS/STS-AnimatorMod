@@ -21,9 +21,9 @@ public class Loadout_FullmetalAlchemist extends AnimatorLoadout
         AddToSpecialSlots(ElricAlphonse.DATA, 4);
         AddToSpecialSlots(ElricEdward.DATA, 4);
         AddToSpecialSlots(MaesHughes.DATA, 5);
-        AddToSpecialSlots(RoyMustang.DATA, 8);
         AddToSpecialSlots(Sloth.DATA, 8);
-        AddToSpecialSlots(Pride.DATA, 10);
+        AddToSpecialSlots(RoyMustang.DATA, 10);
+        AddToSpecialSlots(Pride.DATA, 11);
     }
 
     @Override

@@ -32,14 +32,9 @@ public class HansPower extends AnimatorPower
     }
 
     @Override
-    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    public void OnSamePowerApplied(AbstractPower power)
     {
-        super.onApplyPower(power, target, source);
-
-        if (target == owner && power instanceof HansPower)
-        {
-            this.tempHP += ((HansPower)power).tempHP;
-        }
+        this.tempHP += ((HansPower)power).tempHP;
     }
 
     @Override

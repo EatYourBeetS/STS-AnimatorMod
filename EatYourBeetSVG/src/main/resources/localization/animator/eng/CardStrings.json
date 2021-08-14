@@ -156,7 +156,7 @@
 		},
 		"animator:TanyaDegurechaff":
 		{
-			"DESCRIPTION": "Discard all {Skills}: Attack 1 additional time for each. || <LIM>. At the start of ** combat, add {Type 95} ** to your draw pile.",
+			"DESCRIPTION": "Discard the top !S! {Skills} of your draw pile. <DRW-M>. || <LIM>. At the start of ** combat, add {Type 95} ** to your draw pile.",
 			"NAME": "Tanya Degurechaff"
 		}
 	},
@@ -349,7 +349,7 @@
 		},
 		"animator:Raven":
 		{
-			"DESCRIPTION": "Draw your {Attack} with ** the lowest damage. || If the enemy is ** attacking: Apply 1 [Weak]. ** Otherwise: Apply 1 [Vulnerable].",
+			"DESCRIPTION": "If the enemy is ** attacking: Apply 1 [Weak]. ** Otherwise: Apply 1 [Vulnerable]. || Next turn: <DRW>.",
 			"NAME": "Raven"
 		},
 		"animator:Rena":
@@ -378,7 +378,7 @@
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "Gain 2 [F]. || If the enemy dies or ** loses its [Block]: Gain !S! [Block]. || !A! <R>: Enter <FS>.",
+			"DESCRIPTION": "Gain !M! [F]. || If the enemy dies or ** loses its [Block]: Gain !S! [Block]. || !A! <R>: Enter <FS>.",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
@@ -519,7 +519,8 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !S! [I]. ** Gain !M! orb slot(s). || !A! <B> and <R>: ** Channel 1 [Earth].",
+			"DESCRIPTION": "Gain !M! orb slot(s). || <B> Synergy bonus can ** be obtained 1 additional ** time each turn. || Pay 2 [E] to Channel 1 [Earth].",
+			"EXTENDED_DESCRIPTION": ["Pay {0} [E] to Channel {1} [Earth]. || <B> Synergy bonus can be obtained {1} additional time(s) each turn."],
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":
@@ -534,7 +535,7 @@
 		},
 		"animator:ItamiYouji":
 		{
-			"DESCRIPTION": "<DRW-M>. ** Deal damage for each ** {Attack} in hand. || Synergy: Gain !S! [Support Damage].",
+			"DESCRIPTION": "Attack 1 additional time ** for each card played ** this turn (max 10). || Synergy: Gain !S! [Support Damage].",
 			"NAME": "Itami Youji"
 		},
 		"animator:MariKurokawa":
@@ -544,7 +545,7 @@
 		},
 		"animator:ShunyaKengun":
 		{
-			"DESCRIPTION": "Draw 1 <G> card ** and Retain it. || When drawn: Apply [~Lock-On] ** to a random enemy, ** ignoring [Artifact].",
+			"DESCRIPTION": "Draw 1 <G> card ** and Retain it. || When drawn: Apply ** 1 [~Lock-On] to a random ** enemy, ignoring [Artifact].",
 			"NAME": "Kengun"
 		},
 		"animator:Kuribayashi":
@@ -566,7 +567,7 @@
 		},
 		"animator:PinaCoLada":
 		{
-			"DESCRIPTION": "The first {0-Cost} card ** you play each turn is ** played twice.",
+			"DESCRIPTION": "Unplayable unless you ** Synergized this turn. || The first {0-Cost} card ** you play each turn is ** played twice.",
 			"NAME": "Pina Co Lada"
 		},
 		"animator:RoryMercury":
@@ -576,12 +577,12 @@
 		},
 		"animator:TukaLunaMarceau":
 		{
-			"DESCRIPTION": "If you have no [Block]: ** <DRW>. || When Discarded: ** Gain !B! [Block].",
+			"DESCRIPTION": "If you have no [Block]: ** <DRW>. || !A! <L>: {~Retain} [B]. || !A! <G>: {~Retain} [A].",
 			"NAME": "Tuka"
 		},
 		"animator:Tyuule":
 		{
-			"DESCRIPTION": "Apply !M! [Poison] to ** ALL enemies, then ** increase each of their ** {Common Debuffs} by 1.",
+			"DESCRIPTION": "Increase the ** {Common Debuffs} of ** each enemy by 1. || X <D>, <B>: Apply !M! [Poison].",
 			"NAME": "Tyuule"
 		},
 		"animator:YaoHaDucy":
@@ -778,10 +779,10 @@
 	{
 		"animator:Aqua":
 		{
-			"DESCRIPTION": "Gain [B]. Heal !M! HP. <DRW>. || Becomes useless for the ** rest of this combat.",
+			"DESCRIPTION": "Gain [B]. <DRW>. || Becomes useless for the ** rest of this combat.",
 			"EXTENDED_DESCRIPTION": ["", "When Exhausted or ** Discarded: Gain !S! [Temp HP]."],
 			"NAME": "Aqua",
-			"UPGRADE_DESCRIPTION": "Boost [B]. Heal !M! HP. <DRW>. || Becomes slightly less ** useless for the rest of ** this combat."
+			"UPGRADE_DESCRIPTION": "Boost [B]. <DRW>. || Becomes slightly less ** useless for the rest of ** this combat."
 		},
 		"animator:Chris":
 		{
@@ -795,7 +796,7 @@
 		},
 		"animator:Eris":
 		{
-			"DESCRIPTION": "Heal !M! HP. || <LIM>. If you would die ** while this card is in hand, ** draw or discard pile, prevent ** all damage and remove this ** card from your deck.",
+			"DESCRIPTION": "<LIM>. If you would die ** while this card is in hand, ** draw or discard pile, prevent ** all damage and remove this ** card from your deck.",
 			"NAME": "Eris"
 		},
 		"animator:Hans":
@@ -1059,7 +1060,7 @@
 		"animator:IzunaHatsuse":
 		{
 			"DESCRIPTION": "Apply 1 [Weak]. || While you are below ** 25% max HP, this card ** will change its form.",
-			"EXTENDED_DESCRIPTION": ["Heal !M! HP."],
+			"EXTENDED_DESCRIPTION": [""],
 			"NAME": "Izuna Hatsuse"
 		},
 		"animator:Jibril":
@@ -1325,22 +1326,22 @@
 			"DESCRIPTION": "Once per turn, ** pay !S! [E]: Choose and ** Enter any Stance.",
 			"EXTENDED_DESCRIPTION": 
 			[
-				"Once per turn, pay !S! [E]: Choose and Enter any Stance, if you are already in the chosen Stance: Gain {0} [Block].",
-				"Once per turn, pay !S! [E]: Choose and Enter any Stance, then Motivate the bottom card of your draw pile.",
-				"Once per turn, pay !S! [E] and lose {0} HP: Choose and Enter any Stance."
+				"Once per turn, pay !S! [E]: **  Choose and Enter any Stance, ** if you are already in the ** chosen Stance: Gain {0} [Block].",
+				"Once per turn, pay !S! [E]: **  Choose and Enter any Stance, ** then Motivate the bottom ** card of your draw pile.",
+				"Once per turn, pay !S! [E]  ** and lose {0} HP: Choose ** and Enter any Stance."
 			],
 			"NAME": "Stances"
 		},
 		"animator:Enchantment2":
 		{
-			"DESCRIPTION": "Once per turn, ** pay !S! [E]: {~Retain} ** all {[A-Gen] Powers}.",
+			"DESCRIPTION": "Once per turn, ** pay !S! [E]: {~Retain} ** all {[A-Gen] Powers} you ** gained this turn.",
 			"EXTENDED_DESCRIPTION": 
 			[
-				"Once per turn, pay !S! [E]: Boost [F] and gain !M! [Plated Armor].",
-				"Once per turn, pay !S! [E]: Boost [A] and Retain !M! card(s).",
-				"Once per turn, pay !S! [E]: Boost [I] and gain !M! orb slot(s).",
-				"Once per turn, pay !S! [E]: Boost [B] and gain !M! {Temporary} [Artifact].",
-				"Once per turn, pay !S! [E]: Boost [C] and convert {0} HP to !M! [Temp HP]."
+				"Once per turn, ** pay !S! [E]: Boost [F] ** and gain !M! [Plated Armor].",
+				"Once per turn, ** pay !S! [E]: Boost [A] ** and Retain !M! card(s).",
+				"Once per turn, ** pay !S! [E]: Boost [I] ** and gain !M! orb slot(s).",
+				"Once per turn, ** pay !S! [E]: Boost [B] ** and gain !M! {Temp.} [Artifact].",
+				"Once per turn, ** pay !S! [E]: Boost [C] and ** convert {0} HP to !M! [Temp HP]."
 			],
 			"NAME": "Powers"
 		},
@@ -1349,9 +1350,9 @@
 			"DESCRIPTION": "Once per turn, ** pay !S! [E]: Apply !M! [Vulnerable].",
 			"EXTENDED_DESCRIPTION": 
 			[
-				"Once per turn, pay !S! [E]: Apply !M! [Vulnerable] and {0} [Poison].",
-				"Once per turn, pay !S! [E]: Apply !M! [Vulnerable] and {0} [Weak].",
-				"Once per turn, pay !S! [E] and lose {0} HP: Apply !M! [Vulnerable]."
+				"Once per turn, ** pay !S! [E]: Apply ** !M! [Vulnerable] and {0} [Poison].",
+				"Once per turn, ** pay !S! [E]: Apply ** !M! [Vulnerable] and {0} [Weak].",
+				"Once per turn, ** pay !S! [E] and lose ** {0} HP: Apply !M! [Vulnerable]."
 			],
 			"NAME": "Debuffs"
 		}

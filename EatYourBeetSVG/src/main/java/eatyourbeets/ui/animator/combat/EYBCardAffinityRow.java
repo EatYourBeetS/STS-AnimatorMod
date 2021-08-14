@@ -17,6 +17,7 @@ import eatyourbeets.ui.controls.GUI_Label;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.EYBFontHelper;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
 public class EYBCardAffinityRow extends GUIElement
@@ -28,6 +29,8 @@ public class EYBCardAffinityRow extends GUIElement
     public final Affinity Type;
     public final EYBCardAffinitySystem System;
     public final AbstractAffinityPower Power;
+    public int MaxActivationsPerTurn;
+    public int AvailableActivations;
     public int Level;
 
     protected final GUI_Image image_background;
@@ -67,12 +70,36 @@ public class EYBCardAffinityRow extends GUIElement
         image_synergy.SetActive(Power != null);
     }
 
+    public void ActivateSynergyBonus()
+    {
+        AvailableActivations -= 1;
+        GameActions.Bottom.StackAffinityPower(Type, 1, false);
+    }
+
+    public void OnStartOfTurn()
+    {
+        AvailableActivations = MaxActivationsPerTurn;
+
+        if (Power != null)
+        {
+            Power.atStartOfTurn();
+        }
+    }
+
+    public void Initialize()
+    {
+        AvailableActivations = MaxActivationsPerTurn = 1;
+
+        if (Power != null)
+        {
+            Power.Initialize(AbstractDungeon.player);
+        }
+    }
+
     public void Update(EYBCardAffinities handAffinities, EYBCard hoveredCard, EYBCardAffinities synergies, boolean draggingCard)
     {
-        final boolean synergyEffectAvailable = System.CanActivateSynergyBonus(Type);
-
         image_background.SetColor(COLOR_DEFAULT);
-        image_synergy.color.a = synergyEffectAvailable ? 1f : 0.25f;
+        image_synergy.color.a = (AvailableActivations > 0) ? 1f : 0.25f;
         text_affinity.SetText(Level = handAffinities.GetLevel(Type, false)).SetColor(Colors.Cream(Level > 0 ? 1 : 0.6f));
 
         if (Type != Affinity.General)

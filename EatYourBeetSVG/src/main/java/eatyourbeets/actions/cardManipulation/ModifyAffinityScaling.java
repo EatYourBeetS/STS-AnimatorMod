@@ -47,7 +47,7 @@ public class ModifyAffinityScaling extends GenericCardSelection
     @Override
     protected boolean CanSelect(AbstractCard card)
     {
-        return super.CanSelect(card) && card instanceof EYBCard && (card.baseBlock > 0 || card.baseDamage > 0);
+        return super.CanSelect(card) && card instanceof EYBCard && ((EYBCard) card).CanScale();
     }
 
     @Override

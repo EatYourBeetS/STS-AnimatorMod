@@ -1,13 +1,12 @@
 package eatyourbeets.cards.animator.series.Fate;
 
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.effects.AttackEffects;
-import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
@@ -34,19 +33,17 @@ public class Berserker extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (m != null)
+        GameActions.Bottom.VFX(VFX.VerticalImpact(m.hb));
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY)
+        .AddCallback(m.currentBlock, (initialBlock, target) ->
         {
-            GameActions.Bottom.VFX(VFX.VerticalImpact(m.hb));
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY)
-            .AddCallback(m.currentBlock, (initialBlock, target) ->
+            if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0))
             {
-                if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0))
-                {
-                    GameActions.Bottom.GainBlock(this.secondaryValue);
-                }
-            });
-            GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
-        }
+                GameActions.Bottom.GainBlock(this.secondaryValue);
+            }
+        });
+        GameActions.Bottom.ShakeScreen(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED);
+        GameActions.Bottom.GainForce(2);
 
         if (CheckAffinity(Affinity.Red))
         {

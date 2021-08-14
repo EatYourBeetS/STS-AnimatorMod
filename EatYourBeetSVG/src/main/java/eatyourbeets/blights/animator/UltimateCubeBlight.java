@@ -41,7 +41,7 @@ public class UltimateCubeBlight extends AnimatorBlight
     {
         super.onEquip();
 
-        setCounter(GameUtilities.InBattle() ? HP_LOSS : -1);
+        setCounter(GameUtilities.InBattle(true) ? HP_LOSS : -1);
     }
 
     @Override

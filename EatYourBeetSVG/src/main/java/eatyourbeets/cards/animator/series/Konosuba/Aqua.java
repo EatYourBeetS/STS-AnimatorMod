@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class Aqua extends AnimatorCard
@@ -42,6 +44,12 @@ public class Aqua extends AnimatorCard
     protected void OnUpgrade()
     {
         SetTransformed(transformed);
+    }
+    
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return transformed ? null : HPAttribute.Instance.SetCard(this, true);
     }
 
     @Override

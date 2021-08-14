@@ -29,27 +29,16 @@ public class EarthOrbEvokeAction extends EYBAction
 
         Initialize(damage);
 
-        int baseDamage = damage / earth.projectiles.size();
-        while (earth.projectiles.size() > 0)
+        final int baseDamage = damage / earth.projectiles.size();
+        final int bonusIndex = damage % earth.projectiles.size();
+        for (int i = earth.projectiles.size() - 1; i >= 0; i--)
         {
-            projectiles.add(earth.projectiles.remove(earth.projectiles.size() - 1));
-            projectilesDamage.add(baseDamage);
-            damage -= baseDamage;
+            final int temp = baseDamage + ((i < bonusIndex) ? 1 : 0);
+            projectiles.add(earth.projectiles.remove(i));
+            projectilesDamage.add(temp);
+            damage -= temp;
         }
 
-        int bonusDamage = Mathf.CeilToInt((damage % projectiles.size()) / (float)projectiles.size());
-        for (int i = 0; i < projectilesDamage.size(); i++)
-        {
-            if (damage <= 0 || bonusDamage <= 0)
-            {
-                break;
-            }
-
-            final int bonus = Mathf.Min(damage, bonusDamage);
-            projectilesDamage.set(i, projectilesDamage.get(i) + bonus);
-            damage -= bonus;
-        }
-        
         if (amount <= 0)
         {
             Complete();

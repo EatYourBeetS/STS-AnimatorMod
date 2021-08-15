@@ -32,8 +32,6 @@ public class Boros extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        super.OnUpgrade();
-
         SetDelayed(false);
     }
 

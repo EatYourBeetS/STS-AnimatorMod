@@ -45,7 +45,7 @@ public class Caster extends AnimatorCard
     {
         GameActions.Bottom.ChannelOrb(new Dark());
         GameActions.Bottom.ReduceStrength(m, magicNumber, false).SetStrengthGain(true);
-        GameActions.Bottom.ApplyFrail(p, p, secondaryValue);
+        GameActions.Bottom.ApplyFrail(null, p, secondaryValue);
         GameActions.Bottom.GainCorruption(secondaryValue);
     }
 }

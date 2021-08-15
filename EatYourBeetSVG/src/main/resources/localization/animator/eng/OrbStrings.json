@@ -5,7 +5,7 @@
 		"NAME": "Chaos",
 		"DESCRIPTION":
 		[
-			"At the start of turn or on #yEvoke: Play #b1 random card, discard #b1 random card, exhaust #b1 random card, draw #b1 card. These effects are executed in random order."
+			"At the start of turn or on #yEvoke: Reduce the cost of a random card by #b1, and increase the cost of another random card by #b1."
 		]
 	},
 	"animator:Earth":

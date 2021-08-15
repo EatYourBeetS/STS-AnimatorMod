@@ -10,7 +10,7 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class Shiroe extends AnimatorCard
 {
-    public static final int MINIMUM_TEAMWORK = 3;
+    public static final int MINIMUM_AFFINITY = 3;
     public static final EYBCardData DATA = Register(Shiroe.class)
             .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
             .SetMaxCopies(2)
@@ -52,7 +52,7 @@ public class Shiroe extends AnimatorCard
         {
             super.onAfterCardPlayed(card);
 
-            if (card instanceof EYBCard && ((EYBCard) card).GetHandAffinity(Affinity.General) >= MINIMUM_TEAMWORK)
+            if (card instanceof EYBCard && ((EYBCard) card).GetHandAffinity(Affinity.General) >= MINIMUM_AFFINITY)
             {
                 GameActions.Bottom.ApplyConstricted(TargetHelper.Enemies(), amount);
             }

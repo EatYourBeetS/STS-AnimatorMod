@@ -20,13 +20,21 @@ public class Boros extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 3);
-        SetCostUpgrade(-1);
 
         SetAffinity_Red(2);
         SetAffinity_Green(2);
         SetAffinity_Dark(2);
 
+        SetDelayed(true);
         SetEthereal(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        super.OnUpgrade();
+
+        SetDelayed(false);
     }
 
     @Override

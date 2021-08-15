@@ -200,7 +200,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                 if (tokens[1].equals("unlock-level") && tokens.length > 2)
                 {
-                    int level = Math.max(0, Math.min(GR.Animator.Data.MaxUnlockLevel, JUtils.ParseInt(tokens[2], 5)));
+                    final int level = Math.max(0, Math.min(GR.Animator.Data.MaxUnlockLevel, JUtils.ParseInt(tokens[2], 5)));
                     if (UnlockTracker.getUnlockLevel(GR.Animator.PlayerClass) > level)
                     {
                         UnlockTracker.resetUnlockProgress(GR.Animator.PlayerClass);
@@ -233,9 +233,22 @@ public class ParseGenericCommand extends ConsoleCommand
                     return;
                 }
 
-                if (tokens[1].equals("sort-by-class"))
+                if (tokens[1].equals("sort-by-affinity"))
                 {
-                    CustomCardLibSortHeader.Instance.group.group.sort(new CardAffinityComparator(Affinity.Star));
+                    Affinity affinity = Affinity.Star;
+                    if (tokens.length > 2)
+                    {
+                        for (Affinity t : Affinity.All())
+                        {
+                            if (t.name().toLowerCase(Locale.ROOT).equals(tokens[2]))
+                            {
+                                affinity = t;
+                                break;
+                            }
+                        }
+                    }
+
+                    CustomCardLibSortHeader.Instance.group.group.sort(new CardAffinityComparator(affinity));
                     return;
                 }
 
@@ -267,6 +280,26 @@ public class ParseGenericCommand extends ConsoleCommand
                     String filePath = "C://temp//" + ((tokens.length > 2) ? tokens[2] : "Animator-CardMetadata") + ".json";
                     new Gson().toJson(data, new FileWriter(filePath));
                     DevConsole.log("Exported metadata to: " + filePath);
+
+                    return;
+                }
+
+                if (tokens[1].equals("get-random-cards"))
+                {
+                    if (!GameUtilities.InGame() || player == null || player.masterDeck == null)
+                    {
+                        DevConsole.log("You need to be in game to use this command.");
+                        return;
+                    }
+
+                    player.masterDeck.clear();
+
+                    final int amount = tokens.length > 2 ? JUtils.ParseInt(tokens[2], 10) : 10;
+                    final ArrayList<AbstractCard> cards = GameUtilities.GetAvailableCards();
+                    for (int i = 0; i < amount; i++)
+                    {
+                        player.masterDeck.addToTop(JUtils.Random(cards));
+                    }
 
                     return;
                 }

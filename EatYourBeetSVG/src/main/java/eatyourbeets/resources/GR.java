@@ -457,6 +457,7 @@ public class GR
             @SpireEnum public static AbstractCard.CardTags IGNORE_PEN_NIB;
             @SpireEnum public static AbstractCard.CardTags ECHO;
             @SpireEnum public static AbstractCard.CardTags PURGE;
+            @SpireEnum public static AbstractCard.CardTags DELAYED;
             @SpireEnum public static AbstractCard.CardTags HASTE;
             @SpireEnum public static AbstractCard.CardTags PURGING;
             @SpireEnum public static AbstractCard.CardTags LOYAL;

@@ -32,6 +32,7 @@ public abstract class EYBCard extends EYBCardBase
     public static final Color MUTED_TEXT_COLOR = Colors.Lerp(Color.DARK_GRAY, Settings.CREAM_COLOR, 0.5f);
     public static final CardTags HASTE = GR.Enums.CardTags.HASTE;
     public static final CardTags PURGE = GR.Enums.CardTags.PURGE;
+    public static final CardTags DELAYED = GR.Enums.CardTags.DELAYED;
     public final EYBCardText cardText;
     public final EYBCardData cardData;
     public final EYBCardAffinities affinities;
@@ -275,6 +276,10 @@ public abstract class EYBCard extends EYBCardBase
         {
             dynamicTooltips.add(GR.Tooltips.Innate);
         }
+        if (hasTag(DELAYED))
+        {
+            dynamicTooltips.add(GR.Tooltips.Delayed);
+        }
         if (isEthereal)
         {
             dynamicTooltips.add(GR.Tooltips.Ethereal);
@@ -399,6 +404,16 @@ public abstract class EYBCard extends EYBCardBase
     public void SetHaste(boolean value)
     {
         SetTag(HASTE, value);
+    }
+
+    public void SetDelayed(boolean value)
+    {
+        SetTag(DELAYED, value);
+
+        if (value)
+        {
+            SetInnate(false);
+        }
     }
 
     public void SetRetain(boolean value)

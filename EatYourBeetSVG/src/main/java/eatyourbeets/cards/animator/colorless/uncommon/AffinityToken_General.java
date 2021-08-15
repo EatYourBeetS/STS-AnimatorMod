@@ -35,8 +35,6 @@ public class AffinityToken_General extends AffinityToken implements OnAddToDeckL
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainBlock(block);
-
         final CardGroup group = AffinityToken.CreateTokenGroup(AffinityToken.cards.size(), rng);
         GameEffects.TopLevelQueue.Callback(new SelectFromPile(name, 1, group)
         .SetOptions(false, false)

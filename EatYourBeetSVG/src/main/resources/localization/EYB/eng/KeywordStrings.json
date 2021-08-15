@@ -288,6 +288,12 @@
 		"NAMES": ["~innate"],
 		"PROPER_NAME": "Innate"
 	},
+	"~Delayed":
+	{
+		"DESCRIPTION": "Whenever you shuffle your draw pile, place this card on the bottom.",
+		"NAMES": ["~delayed"],
+		"PROPER_NAME": "Delayed"
+	},
 	"~Lock-On":
 	{
 		"DESCRIPTION": "Receive #b50% more damage from Orbs and #yRanged attacks.",

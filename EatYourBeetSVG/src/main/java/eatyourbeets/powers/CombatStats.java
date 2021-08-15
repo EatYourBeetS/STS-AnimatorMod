@@ -69,7 +69,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnShuffleSubscriber> onShuffle = new GameEvent<>();
     public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = new GameEvent<>();
     public static final GameEvent<OnAfterDeathSubscriber> onAfterDeath = new GameEvent<>();
-    public static final GameEvent<OnModifyDamageSubscriber> onModifyDamage = new GameEvent<>();
+    public static final GameEvent<OnRawDamageReceived> onRawDamageReceived = new GameEvent<>();
     public static final GameEvent<OnCardResetSubscriber> onCardReset = new GameEvent<>();
     public static final GameEvent<OnCardCreatedSubscriber> onCardCreated = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnSubscriber> onStartOfTurn = new GameEvent<>();
@@ -158,7 +158,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onShuffle.Clear();
         onApplyPower.Clear();
         onAfterDeath.Clear();
-        onModifyDamage.Clear();
+        onRawDamageReceived.Clear();
         onCardReset.Clear();
         onCardCreated.Clear();
         onStartOfTurn.Clear();
@@ -244,9 +244,9 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static int OnModifyDamage(AbstractCreature target, DamageInfo info, int damage)
     {
-        for (OnModifyDamageSubscriber s : onModifyDamage.GetSubscribers())
+        for (OnRawDamageReceived s : onRawDamageReceived.GetSubscribers())
         {
-            damage = s.OnModifyDamage(target, info, damage);
+            damage = s.OnRawDamageReceived(target, info, damage);
         }
 
         return damage;

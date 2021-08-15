@@ -3,7 +3,7 @@ package eatyourbeets.interfaces.subscribers;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 
-public interface OnModifyDamageSubscriber
+public interface OnRawDamageReceived
 {
-    int OnModifyDamage(AbstractCreature target, DamageInfo info, int damage);
+    int OnRawDamageReceived(AbstractCreature target, DamageInfo info, int damage);
 } 

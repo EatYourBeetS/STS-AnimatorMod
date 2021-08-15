@@ -26,10 +26,12 @@ public class Tetora extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 0, 4);
+        Initialize(0, 0, 0);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
+
+        SetAffinityRequirement(Affinity.General, 4);
     }
 
     @Override
@@ -41,7 +43,7 @@ public class Tetora extends AnimatorCard
     @Override
     public boolean cardPlayable(AbstractMonster m)
     {
-        return super.cardPlayable(m) && GetHandAffinity(Affinity.General) >= secondaryValue;
+        return super.cardPlayable(m) && CheckAffinity(Affinity.General);
     }
 
     @Override

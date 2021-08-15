@@ -35,12 +35,30 @@ public class JUtils
         JUtils.LogInfo(JUtils.class, "Breakpoint Reached");
     }
 
-    public static <T> void ChangeIndex(T item, List<T> list, int index)
+    public static <T> boolean All(Iterable<T> list, Predicate<T> predicate)
     {
-        if (list.remove(item))
+        for (T t : list)
         {
-            list.add(Math.max(0, Math.min(index, list.size())), item);
+            if (!predicate.test(t))
+            {
+                return false;
+            }
         }
+
+        return true;
+    }
+
+    public static <T> boolean Any(Iterable<T> list, Predicate<T> predicate)
+    {
+        for (T t : list)
+        {
+            if (predicate.test(t))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static <T> int Count(Iterable<T> list, Predicate<T> predicate)
@@ -59,7 +77,7 @@ public class JUtils
 
     public static <K, V> Map<K, List<V>> Group(Iterable<V> list, FuncT1<K, V> getKey)
     {
-        Map<K, List<V>> map = new HashMap<>();
+        final Map<K, List<V>> map = new HashMap<>();
         for (V v : list)
         {
             K k = getKey.Invoke(v);
@@ -71,7 +89,7 @@ public class JUtils
 
     public static <K, V, C> Map<K, C> Group(Iterable<V> list, FuncT1<K, V> getKey, ActionT3<K, V, C> add)
     {
-        Map<K, C> map = new HashMap<>();
+        final Map<K, C> map = new HashMap<>();
         for (V v : list)
         {
             K k = getKey.Invoke(v);
@@ -83,7 +101,7 @@ public class JUtils
 
     public static <T> ArrayList<T> Filter(Iterable<T> list, Predicate<T> predicate)
     {
-        ArrayList<T> res = new ArrayList<>();
+        final ArrayList<T> res = new ArrayList<>();
         for (T t : list)
         {
             if (predicate.test(t))

@@ -884,7 +884,7 @@
 		},
 		"animator:HousakiTohya":
 		{
-			"DESCRIPTION": " Apply !M! [Vulnerable]. || Draw {Minori Housaki}. || <TM-S>: Gain [E]",
+			"DESCRIPTION": " Apply !M! [Vulnerable]. || Draw {Minori Housaki}. || !A! <W>: Gain [E]",
 			"NAME": "Tohya Housaki"
 		},
 		"animator:Naotsugu":
@@ -904,7 +904,7 @@
 		},
 		"animator:RundelhausCode":
 		{
-			"DESCRIPTION": "Gain [I]. Give !M! random ** card(s) +2 [I] scaling ** (does not stack). || <TM-S>, Choose 1: ** Channel [Fire], [Lightning] or [Frost].",
+			"DESCRIPTION": "Gain [I]. Give !M! random ** card(s) +2 [I] scaling ** (does not stack). || !A! <W>: Choose 1: ** Channel [Fire], [Lightning] or [Frost].",
 			"NAME": "Rundelhaus Code"
 		},
 		"animator:Serara":
@@ -915,38 +915,18 @@
 		},
 		"animator:Shiroe":
 		{
-			"DESCRIPTION": "Cycle !M! cards. || All cards this turn have: Teamwork 3: Apply !S! [Constricted] to ALL enemies.",
-			"EXTENDED_DESCRIPTION": ["All cards have: #yTeamwork 3: Apply #b{0} #yConstricted to ALL enemies."],
+			"DESCRIPTION": "Cycle !M! cards. || All cards this turn have: 3 <W>: Apply !S! [Constricted] to ALL enemies.",
+			"EXTENDED_DESCRIPTION": ["All cards have: <W> #b3: Apply #b{0} #yConstricted to ALL enemies."],
 			"NAME": "Shiroe"
 		},
 		"animator:Soujiro":
 		{
-			"DESCRIPTION": "Teamwork X: Deal !M!X ** additional damage. || When drawn: Choose 1 of 4 ** cards to add to your hand, ** you can only choose the ** same card once.",
+			"DESCRIPTION": "X <W>: Deal !M!X ** additional damage. || When drawn: Choose 1 of 4 ** cards to add to your hand, ** you can only choose the ** same card once.",
 			"NAME": "Soujiro"
-		},
-		"animator:Soujiro_Isami":
-		{
-			"DESCRIPTION": "<ST>: Boost [A].",
-			"NAME": "Isami"
-		},
-		"animator:Soujiro_Kawara":
-		{
-			"DESCRIPTION": "If the enemy ** is attacking: Gain !M! ** additional [Block].",
-			"NAME": "Kawara"
-		},
-		"animator:Soujiro_Hisako":
-		{
-			"DESCRIPTION": "Evoke your first ** orb to Boost [I].",
-			"NAME": "Hisako"
-		},
-		"animator:Soujiro_Nazuna":
-		{
-			"DESCRIPTION": "Draw 1 less ** card next turn.",
-			"NAME": "Nazuna"
 		},
 		"animator:Tetora":
 		{
-			"DESCRIPTION": "Synergizes with {High ** Cost} cards. Requires ** <TM-S> to play. || Every third Synergy: ** Randomly gain [F], [A], [I].",
+			"DESCRIPTION": "Synergizes with {High ** Cost} cards. Requires ** !A! <W> to play. || Every third Synergy: ** Randomly gain [F], [A], [I].",
 			"EXTENDED_DESCRIPTION": ["Every third #ySynergy, randomly gain #yForce, #yAgility or #yIntellect #b{0} time(s)."],
 			"NAME": "Tetra"
 		}
@@ -1523,6 +1503,26 @@
 		{
 			"DESCRIPTION": "Lose 1 orb slot to ** Fetch a <R> or <G> card ** from your discard pile, ** Motivate it and increase ** its scalings by !M!.",
 			"NAME": "Command Spell"
+		},
+		"animator:Soujiro_Isami":
+		{
+			"DESCRIPTION": "<ST>: Boost [A].",
+			"NAME": "Isami"
+		},
+		"animator:Soujiro_Kawara":
+		{
+			"DESCRIPTION": "If the enemy ** is attacking: Gain !M! ** additional [Block].",
+			"NAME": "Kawara"
+		},
+		"animator:Soujiro_Hisako":
+		{
+			"DESCRIPTION": "Evoke your first ** orb to Boost [I].",
+			"NAME": "Hisako"
+		},
+		"animator:Soujiro_Nazuna":
+		{
+			"DESCRIPTION": "Draw 1 less ** card next turn.",
+			"NAME": "Nazuna"
 		},
 		"animator:TanyaDegurechaff_Type95":
 		{

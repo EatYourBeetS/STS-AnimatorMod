@@ -160,14 +160,20 @@ public class EYBCardText
         final float alpha = UpdateBadgeAlpha();
 
         int offset_y = 0;
-        if (card.isInnate)
+        if (card.hasTag(GR.Enums.CardTags.DELAYED))
+        {
+            offset_y -= RenderBadge(sb, BADGES.Delayed.Texture(), offset_y, alpha, null);
+        }
+        else if (card.isInnate)
         {
             offset_y -= RenderBadge(sb, BADGES.Innate.Texture(), offset_y, alpha, null);
         }
+
         if (card.isEthereal)
         {
             offset_y -= RenderBadge(sb, BADGES.Ethereal.Texture(), offset_y, alpha, null);
         }
+
         if (card.selfRetain)
         {
             offset_y -= RenderBadge(sb, BADGES.Retain.Texture(), offset_y, alpha, null);
@@ -176,15 +182,18 @@ public class EYBCardText
         {
             offset_y -= RenderBadge(sb, BADGES.RetainOnce.Texture(), offset_y, alpha, null);
         }
+
         if (card.hasTag(GR.Enums.CardTags.HASTE))
         {
             offset_y -= RenderBadge(sb, BADGES.Haste.Texture(), offset_y, alpha, null);
         }
+
         if (card.purgeOnUse || card.hasTag(GR.Enums.CardTags.PURGE))
         {
+            //noinspection UnusedAssignment
             offset_y -= RenderBadge(sb, BADGES.Purge.Texture(), offset_y, alpha, null);
         }
-        if (card.exhaust || card.exhaustOnUseOnce)
+        else if (card.exhaust || card.exhaustOnUseOnce)
         {
             //noinspection UnusedAssignment
             offset_y -= RenderBadge(sb, BADGES.Exhaust.Texture(), offset_y, alpha, null);

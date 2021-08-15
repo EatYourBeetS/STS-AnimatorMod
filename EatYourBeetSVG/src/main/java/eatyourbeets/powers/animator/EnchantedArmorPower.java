@@ -2,17 +2,20 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import eatyourbeets.interfaces.subscribers.OnModifyDamageSubscriber;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 
 import java.text.DecimalFormat;
 
-public class EnchantedArmorPower extends AnimatorPower
+public class EnchantedArmorPower extends AnimatorPower implements OnModifyDamageSubscriber
 {
     private static final DecimalFormat decimalFormat = new DecimalFormat("#.0");
 
     public static final String POWER_ID = CreateFullID(EnchantedArmorPower.class);
 
     public final boolean reactive;
+    public int damageTaken;
 
     public static float CalculatePercentage(int amount)
     {
@@ -31,6 +34,22 @@ public class EnchantedArmorPower extends AnimatorPower
         this.reactive = reactive;
 
         Initialize(resistance);
+    }
+
+    @Override
+    public void onInitialApplication()
+    {
+        super.onInitialApplication();
+
+        CombatStats.onModifyDamage.Subscribe(this);
+    }
+
+    @Override
+    public void onRemove()
+    {
+        super.onRemove();
+
+        CombatStats.onModifyDamage.Unsubscribe(this);
     }
 
     @Override
@@ -70,6 +89,17 @@ public class EnchantedArmorPower extends AnimatorPower
     }
 
     @Override
+    public int OnModifyDamage(AbstractCreature target, DamageInfo info, int damage)
+    {
+        if (!reactive && info.type == DamageInfo.DamageType.NORMAL)
+        {
+            damageTaken += damage;
+        }
+
+        return damage;
+    }
+
+    @Override
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount)
     {
         if (reactive)
@@ -96,6 +126,18 @@ public class EnchantedArmorPower extends AnimatorPower
 //        }
 
         return super.onAttackedToChangeDamage(info, damageAmount);
+    }
+
+    @Override
+    public void atStartOfTurn()
+    {
+        super.atStartOfTurn();
+
+        if (!reactive && damageTaken > 0)
+        {
+            ReducePower(damageTaken / 5);
+            damageTaken = 0;
+        }
     }
 
     private String GetExampleDamage(int value)

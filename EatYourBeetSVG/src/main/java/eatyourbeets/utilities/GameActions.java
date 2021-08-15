@@ -206,7 +206,7 @@ public final class GameActions
 
     public ApplyPower ApplyFrail(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new FrailPower(target, amount, GameUtilities.IsMonster(source)));
+        return StackPower(source, new FrailPower(target, amount, source == null || GameUtilities.IsMonster(source)));
     }
 
     public ApplyPower ApplyPoison(AbstractCreature source, AbstractCreature target, int amount)
@@ -241,7 +241,7 @@ public final class GameActions
 
     public ApplyPower ApplyVulnerable(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new VulnerablePower(target, amount, GameUtilities.IsMonster(source)));
+        return StackPower(source, new VulnerablePower(target, amount, source == null || GameUtilities.IsMonster(source)));
     }
 
     public ApplyPowerAuto ApplyVulnerable(TargetHelper target, int amount)
@@ -251,7 +251,7 @@ public final class GameActions
 
     public ApplyPower ApplyWeak(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new WeakPower(target, amount, GameUtilities.IsMonster(source)));
+        return StackPower(source, new WeakPower(target, amount, source == null || GameUtilities.IsMonster(source)));
     }
 
     public ApplyPowerAuto ApplyWeak(TargetHelper target, int amount)

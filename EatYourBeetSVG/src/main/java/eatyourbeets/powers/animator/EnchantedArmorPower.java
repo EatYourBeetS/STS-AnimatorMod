@@ -91,7 +91,7 @@ public class EnchantedArmorPower extends AnimatorPower implements OnModifyDamage
     @Override
     public int OnModifyDamage(AbstractCreature target, DamageInfo info, int damage)
     {
-        if (!reactive && info.type == DamageInfo.DamageType.NORMAL)
+        if (!reactive && target == owner && info.type == DamageInfo.DamageType.NORMAL)
         {
             damageTaken += damage;
         }

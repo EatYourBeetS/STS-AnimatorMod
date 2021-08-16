@@ -33,7 +33,7 @@ public class DolaRiku extends AnimatorCard
         if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.Draw(1)
-            .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsCurseOrStatus(c), false);
+            .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsHindrance(c), false);
         }
     }
 

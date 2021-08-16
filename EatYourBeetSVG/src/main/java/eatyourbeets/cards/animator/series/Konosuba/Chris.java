@@ -31,7 +31,7 @@ public class Chris extends AnimatorCard
         super.triggerOnManualDiscard();
 
         GameActions.Top.Draw(1)
-        .SetFilter(card -> card.costForTurn == 0 && !GameUtilities.IsCurseOrStatus(card), false);
+        .SetFilter(card -> card.costForTurn == 0 && !GameUtilities.IsHindrance(card), false);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class RandomCardUpgrade extends EYBActionWithCallback<AbstractCard>
 
         for (AbstractCard c : player.hand.group)
         {
-            if (c.canUpgrade() && !GameUtilities.IsCurseOrStatus(c))
+            if (c.canUpgrade() && !GameUtilities.IsHindrance(c))
             {
                 if (c.upgraded)
                 {

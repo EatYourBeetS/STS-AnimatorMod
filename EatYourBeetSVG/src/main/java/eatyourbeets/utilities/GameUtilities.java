@@ -578,9 +578,19 @@ public class GameUtilities
         return creature.currentHealth / (float) creature.maxHealth;
     }
 
-    public static int GetActualHealth(AbstractCreature creature)
+    public static float GetHealthPercentage(AbstractCreature creature, boolean addTempHP, boolean addBlock)
     {
-        return creature.currentHealth + TempHPField.tempHp.get(creature);
+        return GetHP(creature, addTempHP, addBlock) / (float) GetMaxHP(creature, addTempHP, addBlock);
+    }
+
+    public static int GetMaxHP(AbstractCreature creature, boolean addTempHP, boolean addBlock)
+    {
+        return creature.maxHealth + (addTempHP ? TempHPField.tempHp.get(creature) : 0) + (addBlock ? creature.currentBlock : 0);
+    }
+
+    public static int GetHP(AbstractCreature creature, boolean addTempHP, boolean addBlock)
+    {
+        return creature.currentHealth + (addTempHP ? TempHPField.tempHp.get(creature) : 0) + (addBlock ? creature.currentBlock : 0);
     }
 
     public static EnemyIntent GetIntent(AbstractMonster enemy)
@@ -999,7 +1009,7 @@ public class GameUtilities
                 intent == AbstractMonster.Intent.ATTACK_DEFEND || intent == AbstractMonster.Intent.ATTACK);
     }
 
-    public static boolean IsCurseOrStatus(AbstractCard card)
+    public static boolean IsHindrance(AbstractCard card)
     {
         return card.type == AbstractCard.CardType.CURSE || card.type == AbstractCard.CardType.STATUS;
     }

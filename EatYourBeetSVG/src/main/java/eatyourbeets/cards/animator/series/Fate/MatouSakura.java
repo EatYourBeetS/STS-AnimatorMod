@@ -15,14 +15,14 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
 
-public class SakuraMatou extends AnimatorCard
+public class MatouSakura extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SakuraMatou.class)
+    public static final EYBCardData DATA = Register(MatouSakura.class)
             .SetSkill(2, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 
-    public SakuraMatou()
+    public MatouSakura()
     {
         super(DATA);
 

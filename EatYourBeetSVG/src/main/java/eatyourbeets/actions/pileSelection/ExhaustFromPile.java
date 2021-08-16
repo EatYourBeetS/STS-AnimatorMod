@@ -32,7 +32,7 @@ public class ExhaustFromPile extends SelectFromPile
         ArrayList<MoveCard> actions = new ArrayList<>();
         for (AbstractCard card : result)
         {
-            MoveCard action = new MoveCard(card, player.exhaustPile);
+            final MoveCard action = new MoveCard(card, player.exhaustPile);
             if (showEffect)
             {
                 GameActions.Top.Add(action).ShowEffect(showEffect, realtime);

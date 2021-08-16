@@ -939,6 +939,16 @@ public final class GameActions
         return Add(new TalkAction(source, text, duration, bubbleDuration));
     }
 
+    public DealDamage TakeDamage(int amount, AbstractGameAction.AttackEffect effect)
+    {
+        return TakeDamage(player, amount, effect);
+    }
+
+    public DealDamage TakeDamage(AbstractCreature target, int amount, AbstractGameAction.AttackEffect effect)
+    {
+        return DealDamage(null, target, amount, DamageInfo.DamageType.THORNS, effect);
+    }
+
     public TriggerOrbPassiveAbility TriggerOrbPassive(int times)
     {
         return Add(new TriggerOrbPassiveAbility(times));

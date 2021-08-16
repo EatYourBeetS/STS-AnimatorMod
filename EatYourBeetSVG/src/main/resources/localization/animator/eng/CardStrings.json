@@ -290,7 +290,7 @@
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "If you discarded ** a card this turn: ** Enter <IS>. || !S! <L>: Obtain {<B> Token}.",
+			"DESCRIPTION": "If you discarded ** a card this turn: ** Enter <IS>. || !S! <L>: Obtain {<B> Token}{+}.",
 			"NAME": "Ain"
 		},
 		"animator:Aisha":
@@ -387,6 +387,11 @@
 			"EXTENDED_DESCRIPTION": ["Evoke your first orb.", "Apply {0} [Shackles].", "Gain [F] [I]."],
 			"NAME": "Caster"
 		},
+		"animator:EmiyaKiritsugu":
+		{
+			"DESCRIPTION": "To play this card, Exhaust ** 1 of 2 {Uncommon} cards in ** your draw pile. If it is: ** <L> -> Obtain {<D> Token} ** <D> -> Obtain {<L> Token} ** <B> -> Apply !S! [Vulnerable]",
+			"NAME": "Emiya Kiritsugu"
+		},
 		"animator:EmiyaShirou":
 		{
 			"DESCRIPTION": "Upgrade a random card ** in your hand !M! times. || If every card was ** already Upgraded: ** Draw 2 cards.",
@@ -423,12 +428,12 @@
 			"DESCRIPTION": "Cooldown !S! : Purge, then ** add {Excalibur} to your hand. || If this would enter your discard ** pile, move it to your draw pile. || Synergy: Reduce this card's ** Cooldown by an additional 2.",
 			"NAME": "Saber"
 		},
-		"animator:SakuraMatou":
+		"animator:MatouSakura":
 		{
 			"DESCRIPTION": "90%Remove your strongest [Dark] ** to apply [Constricted] equal to half its ** damage. If you have no [Dark]: ** Channel 1 [Dark] and trigger its ** passive ability !M! times. || <LIM>. !A! <L>: Gain !S! [B].",
 			"NAME": "Sakura Matou"
 		},
-		"animator:ShinjiMatou":
+		"animator:MatouShinji":
 		{
 			"DESCRIPTION": "Apply !M! [Poison] to ** a random enemy. || <slm>. On Synergy: ** Add a {Command Spell} to ** your hand and Retain it.",
 			"NAME": "Shinji Matou"
@@ -510,7 +515,7 @@
 		},
 		"animator:Wrath":
 		{
-			"DESCRIPTION": "Gain !M! [F]. Give all cards ** in hand +1 [F] scaling. || If you have at least ** 7 cards in Exhaust pile: ** Obtain {<R> Token}.",
+			"DESCRIPTION": "Gain !M! [F]. Give all cards ** in hand +1 [F] scaling. || If you have at least ** 7 cards in Exhaust pile: ** Obtain {<R> Token}{+}.",
 			"NAME": "Wrath"
 		}
 	},
@@ -1309,7 +1314,7 @@
 			[
 				"Once per turn, pay !S! [E]: **  Choose and Enter any Stance, ** if you are already in the ** chosen Stance: Gain {0} [Block].",
 				"Once per turn, pay !S! [E]: **  Choose and Enter any Stance, ** then Motivate the bottom ** card of your draw pile.",
-				"Once per turn, pay !S! [E]  ** and lose {0} HP: Choose ** and Enter any Stance."
+				"Once per turn, ** pay !S! [E] and take ** {0} damage: Choose and ** Enter any Stance."
 			],
 			"NAME": "Stances"
 		},
@@ -1333,7 +1338,7 @@
 			[
 				"Once per turn, ** pay !S! [E]: Apply ** !M! [Vulnerable] and {0} [Poison].",
 				"Once per turn, ** pay !S! [E]: Apply ** !M! [Vulnerable] and {0} [Weak].",
-				"Once per turn, ** pay !S! [E] and lose ** {0} HP: Apply !M! [Vulnerable]."
+				"Once per turn, ** pay !S! [E] and take ** {0} damage: Apply !M! [Vulnerable]."
 			],
 			"NAME": "Debuffs"
 		}
@@ -1499,7 +1504,7 @@
 			"DESCRIPTION": "Remove the ** enemy's [Block].",
 			"NAME": "Kyotouryuu"
 		},
-		"animator:ShinjiMatou_CommandSpell":
+		"animator:MatouShinji_CommandSpell":
 		{
 			"DESCRIPTION": "Lose 1 orb slot to ** Fetch a <R> or <G> card ** from your discard pile, ** Motivate it and increase ** its scalings by !M!.",
 			"NAME": "Command Spell"

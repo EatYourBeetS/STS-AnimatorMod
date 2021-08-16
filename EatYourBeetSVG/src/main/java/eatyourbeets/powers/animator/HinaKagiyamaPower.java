@@ -44,7 +44,7 @@ public class HinaKagiyamaPower extends AnimatorPower
         GameActions.Bottom.SelectFromPile(name, baseAmount, player.exhaustPile)
         .SetOptions(false, true)
         .SetMessage(FormatDescription(1, baseAmount))
-        .SetFilter(GameUtilities::IsCurseOrStatus)
+        .SetFilter(GameUtilities::IsHindrance)
         .AddCallback(cards ->
         {
             for (AbstractCard card : cards)

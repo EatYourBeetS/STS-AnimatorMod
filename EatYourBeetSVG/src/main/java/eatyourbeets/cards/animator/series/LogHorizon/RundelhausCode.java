@@ -57,7 +57,7 @@ public class RundelhausCode extends AnimatorCard
         GameActions.Bottom.SelectFromHand(name, magicNumber, true)
         .SetOptions(true, false, true)
         .SetMessage(GR.Common.Strings.HandSelection.GenericBuff)
-        .SetFilter(c -> c instanceof EYBCard && !GameUtilities.IsCurseOrStatus(c) && !buffs.contains(c) && (c.baseDamage > 0 || c.baseBlock > 0))
+        .SetFilter(c -> c instanceof EYBCard && !GameUtilities.IsHindrance(c) && !buffs.contains(c) && (c.baseDamage > 0 || c.baseBlock > 0))
         .AddCallback(cards ->
         {
             for (AbstractCard c : cards)

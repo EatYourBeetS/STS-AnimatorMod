@@ -36,7 +36,7 @@ public class IrohaTamaki extends AnimatorCard
         if (p.drawPile.size() > 0)
         {
             AbstractCard topCard = p.drawPile.getTopCard();
-            if (GameUtilities.IsCurseOrStatus(topCard))
+            if (GameUtilities.IsHindrance(topCard))
             {
                 GameActions.Bottom.Exhaust(topCard);
             }

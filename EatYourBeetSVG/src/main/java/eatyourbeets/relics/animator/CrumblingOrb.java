@@ -50,7 +50,7 @@ public class CrumblingOrb extends AnimatorRelic
         RandomizedList<AbstractCard> randomList = new RandomizedList<>();
         for (AbstractCard card : player.masterDeck.group)
         {
-            if (!GameUtilities.IsCurseOrStatus(card))
+            if (!GameUtilities.IsHindrance(card))
             {
                 if (basic || card.rarity != AbstractCard.CardRarity.BASIC)
                 {

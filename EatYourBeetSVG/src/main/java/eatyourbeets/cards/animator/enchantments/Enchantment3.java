@@ -1,8 +1,8 @@
 package eatyourbeets.cards.animator.enchantments;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -12,7 +12,7 @@ public class Enchantment3 extends Enchantment
     public static final int INDEX = 3;
     public static final int UP1_POISON = 5;
     public static final int UP2_WEAK = 1;
-    public static final int UP3_LOSE_HP = 3;
+    public static final int UP3_TAKE_DAMAGE = 3;
 
     public Enchantment3()
     {
@@ -45,7 +45,7 @@ public class Enchantment3 extends Enchantment
         {
             case 1: return super.GetRawDescription(UP1_POISON);
             case 2: return super.GetRawDescription(UP2_WEAK);
-            case 3: return super.GetRawDescription(UP3_LOSE_HP);
+            case 3: return super.GetRawDescription(UP3_TAKE_DAMAGE);
             default: return super.GetRawDescription();
         }
     }
@@ -53,7 +53,7 @@ public class Enchantment3 extends Enchantment
     @Override
     public boolean CanUsePower(int cost)
     {
-        return super.CanUsePower(cost) && (upgradeIndex != 3 || (GameUtilities.GetActualHealth(player) > UP3_LOSE_HP));
+        return super.CanUsePower(cost) && (upgradeIndex != 3 || (GameUtilities.GetHP(player, true, false) > UP3_TAKE_DAMAGE));
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Enchantment3 extends Enchantment
 
         if (upgradeIndex == 3)
         {
-            GameActions.Bottom.LoseHP(UP3_LOSE_HP, AttackEffects.NONE);
+            GameActions.Bottom.TakeDamage(UP3_TAKE_DAMAGE, AttackEffects.NONE);
         }
     }
 

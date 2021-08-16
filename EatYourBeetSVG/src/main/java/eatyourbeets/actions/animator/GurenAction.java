@@ -46,7 +46,7 @@ public class GurenAction extends PlayCard
         {
             SetExhaust(true);
         }
-        else if (GameUtilities.IsCurseOrStatus(card))
+        else if (GameUtilities.IsHindrance(card))
         {
             SetExhaust(true);
             canUse = false;

@@ -43,7 +43,7 @@ public class JeanneDArc extends AnimatorCard_UltraRare
         GameActions.Bottom.PurgeFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
         .ShowEffect(true, true)
         .SetOptions(true, true)
-        .SetFilter(GameUtilities::IsCurseOrStatus);
+        .SetFilter(GameUtilities::IsHindrance);
     }
 
     @Override

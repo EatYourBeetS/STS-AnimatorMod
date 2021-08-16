@@ -19,6 +19,7 @@ public abstract class SpecialToken extends CTToken
         // {#:Text} -> Reset to default color
     }
 
+    @SuppressWarnings("DuplicateExpressions")
     public static int TryAdd(CTContext parser)
     {
         if (parser.character == '{' && parser.remaining > 1)
@@ -26,19 +27,29 @@ public abstract class SpecialToken extends CTToken
             builder.setLength(0);
 
             int i = 1;
+            int indentation = 0;
             while (true)
             {
-                Character next = parser.NextCharacter(i);
-
+                final Character next = parser.NextCharacter(i);
                 if (next == null)
                 {
                     break;
                 }
+                else if (next == '{')
+                {
+                    indentation += 1;
+                }
                 else if (next == '}')
                 {
-                    String word = builder.toString();
+                    if (indentation > 0)
+                    {
+                        indentation -= 1;
+                        i += 1;
+                        continue;
+                    }
 
-                    EYBCardTooltip tooltip = CardTooltips.FindByName(word
+                    final String word = builder.toString();
+                    final EYBCardTooltip tooltip = CardTooltips.FindByName(word
                     .replace(" NL ", " ")
                     .split("\\(")[0] // Ignore modifiers
                     .toLowerCase());
@@ -56,6 +67,14 @@ public abstract class SpecialToken extends CTToken
                     {
                         if (!parser.card.upgraded)
                         {
+                            return i + 1;
+                        }
+
+                        if (word.length() == 1)
+                        {
+                            final WordToken plus = new WordToken(word);
+                            plus.coloredString.SetColor(Settings.GOLD_COLOR);
+                            parser.AddToken(plus);
                             return i + 1;
                         }
 

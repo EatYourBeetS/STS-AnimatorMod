@@ -4,18 +4,18 @@ import com.megacrit.cardcrawl.actions.defect.DecreaseMaxOrbAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.series.Fate.ShinjiMatou;
+import eatyourbeets.cards.animator.series.Fate.MatouShinji;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class ShinjiMatou_CommandSpell extends AnimatorCard
+public class MatouShinji_CommandSpell extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ShinjiMatou_CommandSpell.class)
+    public static final EYBCardData DATA = Register(MatouShinji_CommandSpell.class)
             .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
-            .SetSeries(ShinjiMatou.DATA.Series);
+            .SetSeries(MatouShinji.DATA.Series);
 
-    public ShinjiMatou_CommandSpell()
+    public MatouShinji_CommandSpell()
     {
         super(DATA);
 

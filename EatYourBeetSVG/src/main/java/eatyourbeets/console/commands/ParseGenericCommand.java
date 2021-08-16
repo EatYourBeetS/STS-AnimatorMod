@@ -122,7 +122,7 @@ public class ParseGenericCommand extends ConsoleCommand
                             for (Map.Entry<String, AbstractCard> pair : CardLibrary.cards.entrySet())
                             {
                                 AbstractCard card = pair.getValue();
-                                if (!GameUtilities.IsCurseOrStatus(card) && card.rarity != AbstractCard.CardRarity.SPECIAL
+                                if (!GameUtilities.IsHindrance(card) && card.rarity != AbstractCard.CardRarity.SPECIAL
                                 && card.color != AbstractCard.CardColor.COLORLESS && GameUtilities.GetAffinityLevel(card, affinity, false) > 0)
                                 {
                                     card = card.makeCopy();

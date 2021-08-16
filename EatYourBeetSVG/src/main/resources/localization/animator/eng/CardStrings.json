@@ -627,12 +627,13 @@
 		},
 		"animator:LizardPriest":
 		{
-			"DESCRIPTION": "Retain !M! card(s) at ** the end of this turn. || Synergy: Set the [Block] ** of each enemy to 1.",
+			"DESCRIPTION": "Retain 1 <L> card. || If you have [Earth]: Gain ** !S! additional [Block]. || Synergy: Gain 1 [Inspiration].",
 			"NAME": "Lizard Priest"
 		},
 		"animator:NobleFencer":
 		{
-			"DESCRIPTION": "Evoke your first [Lightning]. || Whenever you Synergize this turn: Channel 1 [Lightning].",
+			"DESCRIPTION": "Starter: Gain [A] [I]. || Evoke your first [Lightning]. || Whenever you Synergize ** this turn: Channel 1 [Lightning].",
+			"EXTENDED_DESCRIPTION": ["Whenever you Synergize this turn, Channel #b{0} [Lightning]."],
 			"NAME": "Noble Fencer"
 		},
 		"animator:Priestess":

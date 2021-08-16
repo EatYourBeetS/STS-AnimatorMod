@@ -150,6 +150,12 @@
 		"NAMES": ["hindrance", "hindrances"],
 		"PROPER_NAME": "Hindrance"
 	},
+	"Inspiration":
+	{
+		"DESCRIPTION": "The next time you activate an interactable power during your turn, gain 1 [E].",
+		"NAMES": ["inspiration"],
+		"PROPER_NAME": "Inspiration"
+	},
 	"Intellect":
 	{
 		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain #yFocus.",

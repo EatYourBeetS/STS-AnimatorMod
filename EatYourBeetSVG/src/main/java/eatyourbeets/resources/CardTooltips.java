@@ -9,10 +9,11 @@ import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
-import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.animator.SupportDamagePower;
+import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.common.FreezingPower;
+import eatyourbeets.powers.common.InspirationPower;
 import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.TextureCache;
@@ -49,6 +50,7 @@ public class CardTooltips
     public EYBCardTooltip Agility = FindByID("Agility");
     public EYBCardTooltip Blessing = FindByID("Blessing");
     public EYBCardTooltip Corruption = FindByID("Corruption");
+    public EYBCardTooltip Inspiration = FindByID("Inspiration");
     public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
     public EYBCardTooltip ForceStance = FindByID("Force Stance");
     public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
@@ -215,6 +217,7 @@ public class CardTooltips
         LoadFromPower(Constricted, new ConstrictedPower(null, FakeCharacter.Instance, 0));
         LoadFromPower(SupportDamage, new SupportDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(LockOn, new LockOnPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Inspiration, new InspirationPower(FakeCharacter.Instance, 0));
 
         //These use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);

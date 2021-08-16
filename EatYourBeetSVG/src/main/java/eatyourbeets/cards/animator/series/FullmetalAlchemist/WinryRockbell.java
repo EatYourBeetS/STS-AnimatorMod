@@ -103,6 +103,8 @@ public class WinryRockbell extends AnimatorCard
         @Override
         public void OnUse(AbstractMonster m)
         {
+            super.OnUse(m);
+
             GameActions.Bottom.UpgradeFromHand(name, UPGRADE_CARDS_AMOUNT, true)
             .AddCallback(cards ->
             {

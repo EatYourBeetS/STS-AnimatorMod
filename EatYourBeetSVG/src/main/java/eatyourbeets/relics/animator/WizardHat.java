@@ -62,6 +62,8 @@ public class WizardHat extends AnimatorRelic
         @Override
         public void OnUse(AbstractMonster m)
         {
+            super.OnUse(m);
+
             GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.9f, 1.1f);
             GameActions.Bottom.Wait(0.35f);
             GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.8f, 1.2f);

@@ -178,7 +178,7 @@ public abstract class EYBClickablePower extends EYBPower
 
     public void OnClick()
     {
-        ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
+        final ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
         if (enemies.size() == 1)
         {
             this.triggerCondition.Use(enemies.get(0));

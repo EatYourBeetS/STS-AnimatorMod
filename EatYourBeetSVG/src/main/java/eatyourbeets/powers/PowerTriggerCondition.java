@@ -199,5 +199,7 @@ public class PowerTriggerCondition
         power.flashWithoutSound();
         Refresh(false);
         power.updateDescription();
+
+        CombatStats.OnClickablePowerUsed(power, m);
     }
 }

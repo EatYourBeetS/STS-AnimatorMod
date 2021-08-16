@@ -61,6 +61,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnAfterCardDiscardedSubscriber> onAfterCardDiscarded = new GameEvent<>();
     public static final GameEvent<OnAfterCardExhaustedSubscriber> onAfterCardExhausted = new GameEvent<>();
     public static final GameEvent<OnOrbPassiveEffectSubscriber> onOrbPassiveEffect = new GameEvent<>();
+    public static final GameEvent<OnClickablePowerUsed> onClickablePowerUsed = new GameEvent<>();
     public static final GameEvent<OnChannelOrbSubscriber> onChannelOrb = new GameEvent<>();
     public static final GameEvent<OnEvokeOrbSubscriber> onEvokeOrb = new GameEvent<>();
     public static final GameEvent<OnAttackSubscriber> onAttack = new GameEvent<>();
@@ -150,6 +151,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onAfterCardDiscarded.Clear();
         onAfterCardExhausted.Clear();
         onOrbPassiveEffect.Clear();
+        onClickablePowerUsed.Clear();
         onChannelOrb.Clear();
         onEvokeOrb.Clear();
         onAttack.Clear();
@@ -285,6 +287,14 @@ public class CombatStats extends EYBPower implements InvisiblePower
         for (OnShuffleSubscriber s : onShuffle.GetSubscribers())
         {
             s.OnShuffle(triggerRelics);
+        }
+    }
+
+    public static void OnClickablePowerUsed(EYBClickablePower power, AbstractMonster target)
+    {
+        for (OnClickablePowerUsed s : onClickablePowerUsed.GetSubscribers())
+        {
+            s.OnClickablePowerUsed(power, target);
         }
     }
 

@@ -75,6 +75,8 @@ public class CursedBlade extends AnimatorRelic
         @Override
         public void OnUse(AbstractMonster m)
         {
+            super.OnUse(m);
+
             GameActions.Bottom.SFX(SFX.ATTACK_WHIRLWIND, 0.9f, 1.1f);
             GameActions.Bottom.VFX(VFX.Whirlwind(Color.RED, false));
             GameActions.Bottom.DealDamageToAll(DamageInfo.createDamageMatrix(CursedBlade.AOE_DAMAGE, true),

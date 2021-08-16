@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -38,8 +39,15 @@ public class LizardPriest extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.SelectFromHand(name, 1, false)
-        .SetFilter(GameUtilities::HasLightAffinity)
-        .SetMessage(GR.Common.Strings.HandSelection.Retain);
+        .SetFilter(c -> GameUtilities.CanRetain(c) && GameUtilities.HasLightAffinity(c))
+        .SetMessage(GR.Common.Strings.HandSelection.Retain)
+        .AddCallback(cards ->
+        {
+            for (AbstractCard c : cards)
+            {
+                GameUtilities.Retain(c);
+            }
+        });
 
         if (isSynergizing)
         {

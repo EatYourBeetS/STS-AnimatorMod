@@ -1206,9 +1206,14 @@ public class GameUtilities
         return card.target == AbstractCard.CardTarget.ENEMY || card.target == AbstractCard.CardTarget.SELF_AND_ENEMY;
     }
 
+    public static boolean CanRetain(AbstractCard card)
+    {
+        return !card.isEthereal && !card.retain && !card.selfRetain;
+    }
+
     public static boolean Retain(AbstractCard card)
     {
-        if (!card.isEthereal && !card.retain && !card.selfRetain)
+        if (CanRetain(card))
         {
             card.retain = true;
             return true;

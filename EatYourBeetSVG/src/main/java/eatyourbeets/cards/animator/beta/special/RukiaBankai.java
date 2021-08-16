@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
-public class RukiaBankai extends AnimatorCard
+public class RukiaBankai extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(RukiaBankai.class).SetSkill(-1, CardRarity.SPECIAL, EYBCardTarget.None).SetSeries(CardSeries.Bleach);
 

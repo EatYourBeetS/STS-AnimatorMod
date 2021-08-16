@@ -39,9 +39,7 @@ public class Shirosaki extends AnimatorCard //TODO
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        for (int i = 0; i < magicNumber; i++)
-            GameActions.Bottom.ChannelRandomOrbs(1);
-
+        GameActions.Bottom.ApplyBlinded(p, m, magicNumber);
         GameActions.Bottom.MakeCardInDrawPile(new Shirosaki_Laplace());
 
         if (HasSynergy())

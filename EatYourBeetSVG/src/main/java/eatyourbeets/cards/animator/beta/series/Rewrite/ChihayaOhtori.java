@@ -12,7 +12,7 @@ import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class ChihayaOhtori extends AnimatorCard
+public class ChihayaOhtori extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(ChihayaOhtori.class).SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
 

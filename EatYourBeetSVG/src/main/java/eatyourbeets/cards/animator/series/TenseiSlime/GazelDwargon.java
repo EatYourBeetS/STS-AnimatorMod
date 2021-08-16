@@ -22,7 +22,7 @@ public class GazelDwargon extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 4, 1);
-        SetUpgrade(0, 1, 0, 1);
+        SetUpgrade(0, 1, 0, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Orange(2);
@@ -55,7 +55,7 @@ public class GazelDwargon extends AnimatorCard
         }
 
         if (stacks > 1) {
-            GameActions.Bottom.GainWillpower(1, true);
+            GameActions.Bottom.GainWillpower(secondaryValue, true);
         }
     }
 }

@@ -11,7 +11,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 
-public class RukiaKuchiki extends AnimatorCard
+public class RukiaKuchiki extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(RukiaKuchiki.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
     static
@@ -30,34 +30,17 @@ public class RukiaKuchiki extends AnimatorCard
     }
 
     @Override
-    protected float ModifyBlock(AbstractMonster enemy, float amount)
-    {
-        if (HasSynergy())
-        {
-            return super.ModifyBlock(enemy, amount + (secondaryValue));
-        }
-        else
-        {
-            return super.ModifyBlock(enemy, amount);
-        }
-    }
-
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         if (IsStarter())
         {
-            for (int i=0; i<magicNumber; i++)
-            {
-                GameActions.Bottom.ChannelOrb(new Frost());
-            }
+            GameActions.Bottom.InduceOrb(new Frost());
         }
+
+        GameActions.Bottom.ApplyFreezing(player, m, magicNumber);
 
         if (HasSynergy())
         {
-            GameActions.Bottom.GainBlock(block);
-
             boolean hasEmptyOrbs = false;
 
             for (AbstractOrb orb : player.orbs)

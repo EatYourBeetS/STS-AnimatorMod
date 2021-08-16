@@ -267,7 +267,7 @@
 		},
 		"animator:RukiaKuchiki":
 		{
-			"DESCRIPTION": "{Starter}: Channel !M! [Frost]. || Synergy: Gain !S! [Block]. If you have no empty Orb Slots, Exhaust this card, add {Rukia Bankai} to your draw pile.",
+			"DESCRIPTION": "{Starter}: Induce [Frost]. || Apply !M! [Freezing]. || Synergy: If you have no empty Orb Slots, Exhaust this card, then add {Rukia Bankai} to your draw pile.",
 			"NAME": "Rukia Kuchiki"
 		},
 		"animator:SajinKomamura":
@@ -305,6 +305,11 @@
 	},
 	"BETA:COLORLESS":
 	{
+			"animator:AliciaMelchiott":
+            {
+                  "DESCRIPTION": "Deal damage equal to the number of monsters you've defeated this run.",
+                  "NAME": "Ruchia"
+            },
 		"animator:ArseneLupin":
 		{
 		  "DESCRIPTION": "Deal 1 more damage for every !S! Gold you have. || Reload: {~Steal} !M! [Gold] from a random enemy.",
@@ -315,6 +320,16 @@
 		  "DESCRIPTION": "Add a random card of the same rarity as the last card played to your discard pile.",
 		  "NAME": "Something"
 		},
+		"animator:Something2":
+        {
+        	"DESCRIPTION": "Gain Slot Machine. Shuffle Rig Slots into your Draw pile.",
+        	"NAME": "Something2"
+        },
+		"animator:Something3":
+        {
+        	"DESCRIPTION": "Once per turn, pay [E] to deal !M! damage to ALL enemies",
+        	"NAME": "Something3"
+        },
 		"animator:AsukaLangley":
 		{
 		  "DESCRIPTION": "{~Ranged} Attacks on enemies with [~Lock-On] ignore damage reduction and remove 1 [~Lock-On]. || Reload: Apply !M! [~Lock-On] to ALL enemies.",
@@ -348,6 +363,11 @@
 			"EXTENDED_DESCRIPTION": ["At the start of each turn, draw #b{0} cards.  They cost 0 this turn."],
 			"NAME": "Hatsune Miku"
 		},
+		"animator:IppoMakunouchi":
+        {
+            "DESCRIPTION": "Gain !S! Vulnerable and Frail. In !M! turns, attack at the start of your turn, ignoring Weak. If you receive unblocked attack damage, cancel this attack.",
+            "NAME": "Ruchia"
+        },
 		"animator:Kirby":
 		{
 		  "DESCRIPTION": "When you add this card to your deck, remove 2 Basic or Common cards from your deck. Set this card's cost to the sum of their cost and give this card their effects.",
@@ -396,6 +416,11 @@
 		  "DESCRIPTION": "The first Attack you play each turn applies Burn equal to 20% of its damage and Exhausts.",
 		  "NAME": "Pyra"
 		},
+		"animator:Ruchia":
+        {
+              "DESCRIPTION": "This turn, take no damage during your turn.",
+              "NAME": "Ruchia"
+        },
 		"animator:SakuraKinomoto":
 		{
 			"DESCRIPTION": "<LIM>. If this card kills an Elite or Boss: Choose 1 of !M! cards to add to your deck.",
@@ -444,7 +469,7 @@
 		},
 		"animator:Yae":
 		{
-		  "DESCRIPTION": "Your [Lightning] has +!M! [I] Scaling. || If you have [Lightning], remove your first [Lightning] to Gain/Boost !M! [I]. Otherwise, channel [Dark] and apply !S! [Blinded] to ALL characters.",
+		  "DESCRIPTION": "Your [Lightning] has +!M! [I] Scaling. || If you have [Lightning], remove your first [Lightning] to Gain/Boost !S! [I]. Otherwise, channel [Dark] and apply !S! [Blinded] to ALL characters.",
 		  "NAME": "Yae Sakura"
 		}
 	},
@@ -625,7 +650,7 @@
 		},
 		"animator:Keqing":
 		{
-		  "DESCRIPTION": "{Ricochet} !S!. Reduce by 1 ** upon Evoking [Lightning] ** or gaining [Blur]. || When {Exhausted}: Costs 1 less until played and gains {~Haste}.",
+		  "DESCRIPTION": "{Ricochet} !S!. Reduce by 1 ** upon Evoking [Lightning] ** or gaining [Blur]. || Motivate and give {~Haste} to this card and a random card in your discard pile.",
 		  "NAME": "Keqing"
 		},
 		"animator:Klee":
@@ -638,9 +663,14 @@
 		  "DESCRIPTION": "Fully heal ALL enemies. Channel [Water] with +1 passive power for every !M! HP healed. || <LIM>. If at least 30 HP was healed, gain [Rejuvenation].",
 		  "NAME": "Kokomi Sangonomiya"
 		},
+		"animator:KokomiSangonomiyaV2":
+        {
+        		"DESCRIPTION": "[Water] absorbs unblocked attack damage and reflects it back at the attacker.",
+        		"NAME": "Kokomi Sangonomiya"
+        },
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M! cards. For each card, ** if its rarity is: || {Basic} or {Common}: Draw !S! more card(s) next turn. ** {Uncommon}: Gain/Boost [I] ** {Rare}: Induce [Lightning]",
+			"DESCRIPTION": "{Scry} !M! cards. For each card, ** if its cost is: || 0 or None: Gain/Boost [I] ** 1 or X: Draw !S! more card(s) next turn. ** 2 or more: Induce [Lightning]",
 			"NAME": "Lisa Minci"
 		},
 		"animator:Noelle":
@@ -1441,7 +1471,8 @@
 		},
 		"animator:PinaCoLada":
 		{
-			"DESCRIPTION": "Unplayable unless you ** Synergized this turn. || The first {0-Cost} card ** you play each turn is ** played twice.",
+			"DESCRIPTION": "The first {0-Cost} card ** you play each turn ** activates its effect twice.",
+			"EXTENDED_DESCRIPTION": ["Your next #b{0} #y0-Cost card(s) activate their effects twice."],
 			"NAME": "Pina Co Lada"
 		},
 		"animator:RoryMercury":

@@ -29,16 +29,17 @@ public class LisaMinci extends AnimatorCard {
                 .AddCallback(cards -> {
                     for (AbstractCard card : cards)
                     {
-                        switch (card.rarity) {
-                            case RARE:
-                                GameActions.Bottom.InduceOrbs(Lightning::new, 1);
-                                break;
-                            case UNCOMMON:
+                        switch (card.cost) {
+                            case 0:
+                            case -2:
                                 GameActions.Bottom.GainIntellect(1, upgraded);
                                 break;
-                            case BASIC:
-                            case COMMON:
+                            case 1:
+                            case -1:
                                 GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, secondaryValue));
+                                break;
+                            default:
+                                GameActions.Bottom.InduceOrbs(Lightning::new, 1);
                                 break;
                         }
                     }

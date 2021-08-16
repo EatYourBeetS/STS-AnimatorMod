@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
@@ -18,10 +19,7 @@ import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.*;
 
 public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber, OnEvokeOrbSubscriber, OnApplyPowerSubscriber
 {
@@ -33,7 +31,7 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
 
         Initialize(2, 0, 4, 4);
         SetUpgrade(1, 0, 0);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Orange(1, 0, 1);
         SetAffinity_Green(2, 0, 1);
 
         SetExhaust(true);
@@ -66,20 +64,31 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     }
 
     @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        CombatStats.onEvokeOrb.Subscribe(this);
-        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.DAGGER).SetDamageEffect(c -> GameEffects.List.Add(new DieDieDieEffect()).duration);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.DAGGER);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.DAGGER);
+
+        AbstractCard card = null;
+        RandomizedList<AbstractCard> possible = new RandomizedList<>();
+        for (AbstractCard c : player.discardPile.group)
+        {
+            if (c.costForTurn >= 0)
+            {
+                possible.Add(c);
+            }
+        }
+        if (possible.Size() > 0)
+        {
+            card = possible.Retrieve(rng);
+        }
+
+        ModifyCard(this);
+        ModifyCard(card);
+
+        CombatStats.onEvokeOrb.Subscribe(this);
+        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override
@@ -115,21 +124,6 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
                 GameUtilities.ModifySecondaryValue(this, magicNumber, true);
                 GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
                         .ShowEffect(true, false);
-
-                if (cost > 0)
-                {
-                    GameActions.Bottom.Motivate(this, 1);
-                }
-                GameActions.Bottom.ModifyAllInstances(uuid)
-                        .AddCallback(c ->
-                        {
-                            if (!c.hasTag(HASTE))
-                            {
-                                c.tags.add(HASTE);
-                            }
-                        });
-
-
                 CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
                 CombatStats.onEvokeOrb.Unsubscribe(this);
             }
@@ -143,5 +137,23 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
             CombatStats.onEvokeOrb.Unsubscribe(this);
         }
+    }
+
+    private void ModifyCard(AbstractCard card){
+        if (card != null) {
+            if (card.cost > 0)
+            {
+                GameActions.Bottom.Motivate(card, 1);
+            }
+            GameActions.Bottom.ModifyAllInstances(card.uuid)
+                    .AddCallback(c ->
+                    {
+                        if (!c.hasTag(HASTE))
+                        {
+                            c.tags.add(HASTE);
+                        }
+                    });
+        }
+
     }
 }

@@ -26,7 +26,8 @@ public class BorosPower extends AnimatorPower
 
         if ((card.type == AbstractCard.CardType.POWER) && GameUtilities.CanPlayTwice(card))
         {
-            GameActions.Top.PlayCopy(card, (AbstractMonster)((action.target == null) ? null : action.target));
+            GameActions.Top.Callback(() -> card.use(player, (AbstractMonster)((action.target == null) ? null : action.target)));
+            //GameActions.Top.PlayCopy(card, (AbstractMonster)((action.target == null) ? null : action.target));
             this.flash();
         }
     }

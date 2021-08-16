@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
-public class Shinku extends AnimatorCard
+public class Shinku extends AnimatorCard  //TODO
 {
     public static final EYBCardData DATA = Register(Shinku.class)
     		.SetAttack(2, CardRarity.RARE).SetSeriesFromClassPackage();

@@ -44,13 +44,7 @@ public class Saber extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
 
-        int progress = 1;
-        if (isSynergizing)
-        {
-            progress += 2;
-        }
-
-        cooldown.ProgressCooldownAndTrigger(progress, m);
+        cooldown.ProgressCooldownAndTrigger(isSynergizing ? 3 : 1, m);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)

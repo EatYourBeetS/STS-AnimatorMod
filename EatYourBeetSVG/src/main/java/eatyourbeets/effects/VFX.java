@@ -250,9 +250,9 @@ public class VFX
                 .SetDuration(duration, true);
     }
 
-    public static VerticalImpactEffect VerticalImpact(Hitbox target)
+    public static VerticalImpactEffect2 VerticalImpact(Hitbox target)
     {
-        return new VerticalImpactEffect(target.cX + target.width / 4f, target.cY - target.height / 4f);
+        return new VerticalImpactEffect2(target.cX + target.width / 4f, target.cY - target.height / 4f);
     }
 
     public static WeightyImpactEffect WeightyImpact(Hitbox target)

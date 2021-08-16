@@ -1,17 +1,19 @@
 package eatyourbeets.cards.animator.special;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
-import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.animator.series.Fate.Saber;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GameEffects;
 
 public class Excalibur extends AnimatorCard
 {
@@ -38,12 +40,8 @@ public class Excalibur extends AnimatorCard
     {
         GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, 1));
         GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.GOLD));
-
-        for (AbstractCreature m1 : GameUtilities.GetEnemies(true))
-        {
-            GameActions.Bottom.VFX(new VerticalImpactEffect(m1.hb_x, m1.hb_y));
-        }
-
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
+        GameActions.Bottom.VFX(VFX.ShockWave(p.hb, Color.GOLD), 0.4f).SetRealtime(true);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE)
+        .SetDamageEffect((c, __) -> GameEffects.List.Add(VFX.VerticalImpact(c.hb).SetColor(Color.GOLD)));
     }
 }

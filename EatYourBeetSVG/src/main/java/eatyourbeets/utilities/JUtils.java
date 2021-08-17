@@ -311,6 +311,11 @@ public class JUtils
         return new MethodInfo.T2<>(methodName, type, t1, t2);
     }
 
+    public static boolean IsNotEmpty(List list)
+    {
+        return list != null && list.size() > 0;
+    }
+
     public static boolean IsNullOrEmpty(List list)
     {
         return list == null || list.isEmpty();

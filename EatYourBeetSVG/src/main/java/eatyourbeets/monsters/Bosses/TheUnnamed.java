@@ -344,11 +344,10 @@ public class TheUnnamed extends EYBMonster
             wait.update();
             if (wait.isDone)
             {
-                MapRoomNode cur = AbstractDungeon.currMapNode;
+                MapRoomNode node = AbstractDungeon.currMapNode;
+                node.getRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
 
-                cur.getRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
-
-                AbstractDungeon.nextRoom = new MapRoomNode(cur.x, cur.y + 1);
+                AbstractDungeon.nextRoom = new MapRoomNode(node.x, node.y + 1);
                 AbstractDungeon.nextRoom.room = new TrueVictoryRoom();
                 AbstractDungeon.nextRoomTransitionStart();
 

@@ -117,7 +117,7 @@ public class ParseGenericCommand extends ConsoleCommand
                     boolean upgrade = tokens.length > 3 && tokens[3].equals("+");
                     for (Affinity affinity : Affinity.All())
                     {
-                        if (affinity.name().toLowerCase(Locale.ROOT).equals(tokens[2]))
+                        if (affinity.name().toLowerCase().equals(tokens[2]))
                         {
                             for (Map.Entry<String, AbstractCard> pair : CardLibrary.cards.entrySet())
                             {
@@ -240,7 +240,7 @@ public class ParseGenericCommand extends ConsoleCommand
                     {
                         for (Affinity t : Affinity.All())
                         {
-                            if (t.name().toLowerCase(Locale.ROOT).equals(tokens[2]))
+                            if (t.name().toLowerCase().equals(tokens[2]))
                             {
                                 affinity = t;
                                 break;

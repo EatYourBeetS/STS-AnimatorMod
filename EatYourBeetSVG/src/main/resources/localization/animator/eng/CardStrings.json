@@ -1584,8 +1584,12 @@
 		"animator:Hans_Slimed":
 		{
 			"DESCRIPTION": "",
-			"NAME": "Slimed",
-			"UPGRADE_DESCRIPTION": "<DRW>"
+			"NAME": "Slimed"
+		},
+		"animator:Konosuba_Slimed":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Slimed"
 		},
 		"animator:Overheat":
 		{

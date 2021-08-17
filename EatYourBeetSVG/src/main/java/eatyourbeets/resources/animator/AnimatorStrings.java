@@ -95,6 +95,7 @@ public class AnimatorStrings
         public final String LocalizationHelpHeader = Strings.TEXT[10];
         public final String FadeCardsWithoutSynergy = Strings.TEXT[11];
         public final String SimplifyCardUI = Strings.TEXT[12];
+        public final String RewardsDisabled = Strings.TEXT[13];
     }
 
     public class CharacterSelect

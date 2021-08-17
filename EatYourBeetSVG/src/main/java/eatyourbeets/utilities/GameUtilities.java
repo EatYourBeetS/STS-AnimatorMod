@@ -1,5 +1,6 @@
 package eatyourbeets.utilities;
 
+import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
@@ -15,6 +16,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
@@ -49,6 +51,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
@@ -1031,34 +1034,66 @@ public class GameUtilities
         return c != null && !c.isPlayer;
     }
 
-    public static boolean IsNormalRun(boolean debug)
+    public static boolean IsNormalRun(boolean checkMods)
     {
-        final boolean result = IsNormalRun();
-
-        if (debug)
+        if (checkMods)
         {
-            JUtils.LogInfo(GameUtilities.class, "IsNormalRun: " + result + " \n" +
-            "Seed Set: " + Settings.seedSet + ", \n" +
-            "Special Seed: " + Settings.specialSeed + ", \n" +
-            "Daily Run: " + Settings.isDailyRun + ", \n" +
-            "Demo: " + Settings.isDemo + ", \n" +
-            "Endless: " + Settings.isEndless + ", \n" +
-            "Daily Mods: " + JUtils.JoinStrings(", ", ModHelper.getEnabledModIDs()));
+            if (!GR.Animator.OfficialName.equals(player.getTitle(player.chosenClass)))
+            {
+                return false;
+            }
+
+            if (GR.Common.Dungeon.IsCheating())
+            {
+                return false;
+            }
+
+            final String validSeed = GR.Animator.Config.LastSeed.Get();
+            if (StringUtils.isNotEmpty(validSeed) && !String.valueOf(Settings.seed).equals(validSeed))
+            {
+                return false;
+            }
+
+            for (AbstractCard c : player.masterDeck.group)
+            {
+                if (c instanceof CustomCard)
+                {
+                    return false;
+                }
+            }
         }
 
-        return result;
+        return !Settings.seedSet && JUtils.IsNullOrZero(Settings.specialSeed) && !Settings.isDailyRun
+            && !Settings.isDemo && JUtils.IsNullOrEmpty(ModHelper.enabledMods) && !Settings.isEndless;
     }
 
-    public static boolean IsNormalRun()
+    public static boolean IsNormalRun(RunData data, boolean checkMods)
     {
-        return !Settings.seedSet && Settings.specialSeed == null && !Settings.isDailyRun
-            && !Settings.isDemo && !Settings.isEndless && ModHelper.enabledMods.isEmpty();
-    }
+        if (checkMods)
+        {
+            if (!GR.Animator.OfficialName.equals(data.loadout))
+            {
+                return false;
+            }
 
-    public static boolean IsNormalRun(RunData data)
-    {
-        return !data.chose_seed && data.special_seed == null && (data.daily_mods == null || data.daily_mods.isEmpty()) && !data.is_daily
-                && !data.is_endless && !data.is_special_run && !data.is_trial;
+            final String validSeed = GR.Animator.Config.LastSeed.Get();
+            if (StringUtils.isNotEmpty(validSeed) && !validSeed.equals(String.valueOf(data.seed_played)))
+            {
+                return false;
+            }
+
+            for (String cardID : data.master_deck)
+            {
+                final AbstractCard c = CardLibrary.getCard(JUtils.SplitString("+", cardID)[0]);
+                if (c == null || c instanceof CustomCard)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return !data.chose_seed && JUtils.IsNullOrZero(data.special_seed) && !data.is_daily && !data.is_trial
+            && !data.is_endless && JUtils.IsNullOrEmpty(data.daily_mods) && !data.is_special_run;
     }
 
     private static boolean IsObtainableInCombat(AbstractCard c)

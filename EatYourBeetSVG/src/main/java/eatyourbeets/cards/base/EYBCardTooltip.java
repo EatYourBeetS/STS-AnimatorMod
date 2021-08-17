@@ -62,7 +62,6 @@ public class EYBCardTooltip
     private static EYBCard card;
     private static EYBRelic relic;
     private static AbstractCreature creature;
-    private static ArrayList< EYBCardTooltip> genericTip;
     private static Vector2 genericTipPos = new Vector2(0, 0);
 
     public TextureRegion icon;
@@ -142,7 +141,6 @@ public class EYBCardTooltip
         _renderedTipsThisFrame.Set(null, true);
         card = null;
         relic = null;
-        genericTip = null;
     }
 
     public static void RenderFromCard(SpriteBatch sb)
@@ -444,11 +442,11 @@ public class EYBCardTooltip
         {
             // To render it on the right: x + BOX_W - TEXT_OFFSET_X - 28 * Settings.scale
             renderTipEnergy(sb, icon, x + TEXT_OFFSET_X, y + ORB_OFFSET_Y, 28 * iconMulti_W, 28 * iconMulti_H);
-            FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X * 2.5f, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
+            FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, JUtils.Capitalize(title), x + TEXT_OFFSET_X * 2.5f, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
         }
         else
         {
-            FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
+            FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, JUtils.Capitalize(title), x + TEXT_OFFSET_X, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
         }
 
         if (!StringUtils.isEmpty(description))

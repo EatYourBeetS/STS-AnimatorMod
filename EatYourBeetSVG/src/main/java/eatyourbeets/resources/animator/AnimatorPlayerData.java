@@ -34,8 +34,12 @@ public class AnimatorPlayerData
     {
         AddBaseLoadouts();
         AddBetaLoadouts();
+        Reload();
+    }
 
-        DeserializeTrophies(GR.Animator.Config.TrophyString());
+    public void Reload()
+    {
+        DeserializeTrophies(GR.Animator.Config.Trophies.Get());
         DeserializeCustomLoadouts(GR.Animator.Config.CustomLoadouts.Get());
 
         if (SelectedLoadout == null || SelectedLoadout.ID < 0)
@@ -185,7 +189,7 @@ public class AnimatorPlayerData
     {
         JUtils.LogInfo(AnimatorPlayerData.class, "Saving Trophies");
 
-        GR.Animator.Config.TrophyString(SerializeTrophies(), flush);
+        GR.Animator.Config.Trophies.Set(SerializeTrophies(), flush);
     }
 
     public void SaveLoadouts(boolean flush)
@@ -265,7 +269,7 @@ public class AnimatorPlayerData
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...
     private String SerializeTrophies()
     {
-        StringJoiner sj = new StringJoiner("|");
+        final StringJoiner sj = new StringJoiner("|");
 
         sj.add(String.valueOf(SelectedLoadout.ID));
         sj.add(SpecialTrophies.Serialize());
@@ -281,11 +285,12 @@ public class AnimatorPlayerData
     private void DeserializeTrophies(String data)
     {
         Trophies.clear();
+        SpecialTrophies = null;
 
         if (data != null && data.length() > 0)
         {
-            String decoded = Base64Coder.decodeString(data);
-            String[] items = decoded.split(Pattern.quote("|"));
+            final String decoded = Base64Coder.decodeString(data);
+            final String[] items = JUtils.SplitString("|", decoded);
 
             if (items.length > 0)
             {
@@ -370,11 +375,12 @@ public class AnimatorPlayerData
                 continue;
             }
 
+            loadout.Data.Ready = false;
+
             int i = 0;
             for (String item : s.substring(4).split(Pattern.quote(";")))
             {
                 final int index = item.indexOf("@");
-
                 final String[] amountAndIndex = item.substring(index + 1).split(Pattern.quote(":"));
                 final int itemAmount = JUtils.ParseInt(amountAndIndex[0], 0);
                 final int itemIndex = amountAndIndex.length > 1 ? JUtils.ParseInt( amountAndIndex[1], -1) : -1;

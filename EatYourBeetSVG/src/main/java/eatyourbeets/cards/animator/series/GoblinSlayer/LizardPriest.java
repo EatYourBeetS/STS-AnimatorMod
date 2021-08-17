@@ -38,6 +38,16 @@ public class LizardPriest extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
+
+        if (isSynergizing)
+        {
+            GameActions.Bottom.GainInspiration(1);
+        }
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetFilter(c -> GameUtilities.CanRetain(c) && GameUtilities.HasLightAffinity(c))
         .SetMessage(GR.Common.Strings.HandSelection.Retain)
@@ -48,10 +58,5 @@ public class LizardPriest extends AnimatorCard
                 GameUtilities.Retain(c);
             }
         });
-
-        if (isSynergizing)
-        {
-            GameActions.Bottom.GainInspiration(1);
-        }
     }
 }

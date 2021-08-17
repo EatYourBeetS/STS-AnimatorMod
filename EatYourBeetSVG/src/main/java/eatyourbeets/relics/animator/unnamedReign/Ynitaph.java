@@ -31,7 +31,7 @@ public class Ynitaph extends AnimatorRelic implements CustomSavable<Integer>, On
 
     public static void TryRestoreFromPreviousRun()
     {
-        if (!GameUtilities.IsNormalRun())
+        if (!GameUtilities.IsNormalRun(true))
         {
             return;
         }
@@ -74,6 +74,7 @@ public class Ynitaph extends AnimatorRelic implements CustomSavable<Integer>, On
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK);
 
         this.obtainable = obtainable;
+        this.mainTooltip.title += FormatDescription(0, MINIMUM_ASCENSION);
 
         SetLevel(level);
     }
@@ -119,7 +120,7 @@ public class Ynitaph extends AnimatorRelic implements CustomSavable<Integer>, On
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(0, MINIMUM_ASCENSION) + FormatDescription(level, STAT_BONUS);
+        return FormatDescription(1, MINIMUM_ASCENSION) + FormatDescription(level + 1, STAT_BONUS);
     }
 
     @Override

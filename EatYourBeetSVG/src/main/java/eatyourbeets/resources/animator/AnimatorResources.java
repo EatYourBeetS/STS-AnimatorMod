@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
@@ -18,8 +19,8 @@ import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.potions.GrowthPotion;
 import eatyourbeets.resources.AbstractResources;
-import eatyourbeets.rewards.animator.SpecialGoldReward;
 import eatyourbeets.rewards.animator.MissingPieceReward;
+import eatyourbeets.rewards.animator.SpecialGoldReward;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorLoadoutsContainer;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -32,6 +33,7 @@ public class AnimatorResources extends AbstractResources
 {
     public final static String ID = "animator";
 
+    public final String OfficialName = "Animator (redesign)"; // Don't change this
     public final AbstractCard.CardColor CardColor = Enums.Cards.THE_ANIMATOR;
     public final AbstractPlayer.PlayerClass PlayerClass = Enums.Characters.THE_ANIMATOR;
     public final AnimatorDungeonData Dungeon = AnimatorDungeonData.Register(CreateID("Data"));
@@ -175,7 +177,7 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void PostInitialize()
     {
-        Config.Initialize();
+        Config.Load(CardCrawlGame.saveSlot);
         Data.Initialize();
         Config.InitializeOptions();
         AnimatorLoadoutsContainer.PreloadResources();

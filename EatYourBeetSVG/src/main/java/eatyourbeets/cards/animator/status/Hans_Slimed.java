@@ -35,10 +35,5 @@ public class Hans_Slimed extends AnimatorCard_Status
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-
-        if (upgraded)
-        {
-            GameActions.Bottom.Draw(1);
-        }
     }
 }

@@ -3,9 +3,6 @@ package eatyourbeets.resources.animator;
 import basemod.BaseMod;
 import basemod.ModPanel;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.Prefs;
-import com.megacrit.cardcrawl.helpers.SaveHelper;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.powers.monsters.DarkCubePower;
 import eatyourbeets.resources.GR;
@@ -21,6 +18,7 @@ import java.util.HashSet;
 public class AnimatorConfig
 {
     private static final String TROPHY_DATA_KEY = "TDAL";
+    private static final String LAST_SEED_KEY = "TSDL";
     private static final String CUSTOM_LOADOUTS_KEY =  "TheAnimator-Loadouts";
     private static final String CROP_CARD_PORTRAIT =  "TheAnimator-UseCroppedPortrait";
     private static final String DISPLAY_BETA_SERIES =  "TheAnimator-DisplayBetaSeries";
@@ -32,25 +30,29 @@ public class AnimatorConfig
     private SpireConfig config;
     private HashSet<String> tips = null;
 
-    public ConfigOption_String CustomLoadouts;
-    public ConfigOption_Boolean SimplifyCardUI;
-    public ConfigOption_Boolean CropCardImages;
-    public ConfigOption_Boolean DisplayBetaSeries;
-    public ConfigOption_Vector2 AffinitySystemPosition;
-    //public ConfigOption_Boolean FadeCardsWithoutSynergy;
+    public ConfigOption_String Trophies = new ConfigOption_String(TROPHY_DATA_KEY, "");
+    public ConfigOption_String LastSeed = new ConfigOption_String(LAST_SEED_KEY, "");
+    public ConfigOption_String CustomLoadouts = new ConfigOption_String(CUSTOM_LOADOUTS_KEY, "");
+    public ConfigOption_Boolean SimplifyCardUI = new ConfigOption_Boolean(HIDE_BLOCK_DAMAGE_BACKGROUND, false);
+    public ConfigOption_Boolean CropCardImages = new ConfigOption_Boolean(CROP_CARD_PORTRAIT, false);
+    public ConfigOption_Boolean DisplayBetaSeries = new ConfigOption_Boolean(DISPLAY_BETA_SERIES, true);
+    public ConfigOption_Vector2 AffinitySystemPosition = new ConfigOption_Vector2(AFFINITY_SYSTEM_POSITION, null);
 
-    protected void Initialize()
+    public void Load(int slot)
     {
         try
         {
-            config = new SpireConfig("TheAnimator", "TheAnimatorConfig");
+            final String fileName = "TheAnimatorConfig" + (slot > 0 ? ("_" + slot) : "");
+            config = new SpireConfig("TheAnimator", fileName);
+            JUtils.LogInfo(this, "Loaded: " + fileName);
 
-            CustomLoadouts = new ConfigOption_String(config, CUSTOM_LOADOUTS_KEY, "");
-            SimplifyCardUI = new ConfigOption_Boolean(config, HIDE_BLOCK_DAMAGE_BACKGROUND, false);
-            //FadeCardsWithoutSynergy = new ConfigOption_Boolean(config, FADE_CARDS_WITHOUT_SYNERGY, true);
-            DisplayBetaSeries = new ConfigOption_Boolean(config, DISPLAY_BETA_SERIES, false);
-            CropCardImages = new ConfigOption_Boolean(config, CROP_CARD_PORTRAIT, true);
-            AffinitySystemPosition = new ConfigOption_Vector2(config, AFFINITY_SYSTEM_POSITION, null);
+            Trophies.SetConfig(config);
+            LastSeed.SetConfig(config);
+            CustomLoadouts.SetConfig(config);
+            SimplifyCardUI.SetConfig(config);
+            CropCardImages.SetConfig(config);
+            DisplayBetaSeries.SetConfig(config);
+            AffinitySystemPosition.SetConfig(config);
         }
         catch (IOException e)
         {
@@ -118,49 +120,6 @@ public class AnimatorConfig
         if (flush)
         {
             Save();
-        }
-    }
-
-    public String TrophyString()
-    {
-        String data = config.getString(TROPHY_DATA_KEY);
-        if (data == null)
-        {
-            Prefs prefs = SaveHelper.getPrefs(GR.Animator.PlayerClass.name());
-            data = prefs.getString(TROPHY_DATA_KEY);
-            config.setString(TROPHY_DATA_KEY, data);
-            Save();
-        }
-
-        return data;
-    }
-
-    public void TrophyString(String value, boolean flush)
-    {
-        config.setString(TROPHY_DATA_KEY, value);
-
-        if (flush)
-        {
-            Save();
-        }
-
-        Prefs prefs = null;
-        if (AbstractDungeon.player != null)
-        {
-            prefs = AbstractDungeon.player.getPrefs();
-        }
-        if (prefs == null)
-        {
-            prefs = SaveHelper.getPrefs(GR.Animator.PlayerClass.name());
-        }
-        if (prefs != null)
-        {
-            prefs.putString(TROPHY_DATA_KEY, value);
-
-            if (flush)
-            {
-                prefs.flush();
-            }
         }
     }
 

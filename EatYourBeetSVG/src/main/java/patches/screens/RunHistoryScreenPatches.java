@@ -96,7 +96,7 @@ public class RunHistoryScreenPatches
                         }
                     }
 
-                    if (data != null && data.character_chosen.equals(playerClass.name()) && GameUtilities.IsNormalRun(data))
+                    if (data != null && data.character_chosen.equals(playerClass.name()) && GameUtilities.IsNormalRun(data, true))
                     {
                         runs.add(data);
                     }

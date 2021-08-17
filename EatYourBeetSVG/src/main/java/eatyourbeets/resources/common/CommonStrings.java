@@ -3,6 +3,7 @@ package eatyourbeets.resources.common;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.actions.unique.GamblingChipAction;
+import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.resources.GR;
@@ -35,6 +36,7 @@ public class CommonStrings
         public final String Discard = DiscardAction.TEXT[0];
         public final String Exhaust = ExhaustAction.TEXT[0];
         public final String Choose = CardRewardScreen.TEXT[1];
+        public final String Retain = RetainCardsAction.TEXT[0];
     }
 
     public class GridSelection

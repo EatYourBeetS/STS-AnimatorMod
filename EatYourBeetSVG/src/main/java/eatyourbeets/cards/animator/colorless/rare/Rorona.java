@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.colorless.uncommon;
+package eatyourbeets.cards.animator.colorless.rare;
 
 import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -19,19 +19,19 @@ import eatyourbeets.utilities.GameUtilities;
 public class Rorona extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Rorona.class)
-            .SetPower(2, CardRarity.UNCOMMON)
+            .SetPower(2, CardRarity.RARE)
             .SetMaxCopies(2)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Atelier);
-    public static final int POTION_GOLD_COST = 30;
+    public static final int POTION_GOLD_COST = 28;
     public static final int MAX_POTIONS_PER_COMBAT = 2;
 
     public Rorona()
     {
         super(DATA);
 
-        Initialize(0, 0, 40, POTION_GOLD_COST);
-        SetUpgrade(0, 0, 20);
+        Initialize(0, 0, 45, POTION_GOLD_COST);
+        SetUpgrade(0, 0, 15);
 
         SetAffinity_Orange(2);
         SetAffinity_Light(1);

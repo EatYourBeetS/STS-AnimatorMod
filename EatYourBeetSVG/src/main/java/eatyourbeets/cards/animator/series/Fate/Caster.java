@@ -23,12 +23,18 @@ public class Caster extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2, 2);
-        SetCostUpgrade(-1);
 
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);
 
+        SetEthereal(true);
         SetExhaust(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetEthereal(false);
     }
 
     @Override

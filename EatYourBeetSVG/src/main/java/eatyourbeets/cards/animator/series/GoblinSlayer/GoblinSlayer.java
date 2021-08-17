@@ -65,11 +65,11 @@ public class GoblinSlayer extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
 
         GameActions.Bottom.MoveCards(p.hand, p.exhaustPile)
-        .SetFilter(GameUtilities::IsCurseOrStatus)
+        .SetFilter(GameUtilities::IsHindrance)
         .ShowEffect(true, true, 0.25f);
 
         GameActions.Bottom.MoveCards(p.discardPile, p.exhaustPile)
-        .SetFilter(GameUtilities::IsCurseOrStatus)
+        .SetFilter(GameUtilities::IsHindrance)
         .ShowEffect(true, true, 0.12f);
     }
 }

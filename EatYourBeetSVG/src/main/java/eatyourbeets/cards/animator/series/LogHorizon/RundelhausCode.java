@@ -29,11 +29,13 @@ public class RundelhausCode extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 1, 3);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(7, 0, 1);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Light(1);
+
+        SetAffinityRequirement(Affinity.General, 3);
     }
 
     @Override
@@ -55,7 +57,7 @@ public class RundelhausCode extends AnimatorCard
         GameActions.Bottom.SelectFromHand(name, magicNumber, true)
         .SetOptions(true, false, true)
         .SetMessage(GR.Common.Strings.HandSelection.GenericBuff)
-        .SetFilter(c -> c instanceof EYBCard && !GameUtilities.IsCurseOrStatus(c) && !buffs.contains(c) && (c.baseDamage > 0 || c.baseBlock > 0))
+        .SetFilter(c -> c instanceof EYBCard && !GameUtilities.IsHindrance(c) && !buffs.contains(c) && (c.baseDamage > 0 || c.baseBlock > 0))
         .AddCallback(cards ->
         {
             for (AbstractCard c : cards)
@@ -66,7 +68,7 @@ public class RundelhausCode extends AnimatorCard
             }
         });
 
-        if (GetHandAffinity(Affinity.General) >= secondaryValue)
+        if (CheckAffinity(Affinity.General))
         {
             if (choices.TryInitialize(this))
             {

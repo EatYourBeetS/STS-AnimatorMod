@@ -117,7 +117,7 @@ public class CardSeries
 
     private static CardSeries Add(int id, String name)
     {
-        CardSeries s = new CardSeries(id, name);
+        final CardSeries s = new CardSeries(id, name);
         if (id > 0)
         {
             mapIDs.put(id, s);
@@ -164,7 +164,7 @@ public class CardSeries
     {
         return JUtils.Group(cards, card ->
         {
-            AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
+            final AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
             if (c != null && c.series != null)
             {
                 return c.series;
@@ -176,7 +176,7 @@ public class CardSeries
 
     public static ArrayList<AnimatorCard> GetColorlessCards()
     {
-        ArrayList<AnimatorCard> result = new ArrayList<>();
+        final ArrayList<AnimatorCard> result = new ArrayList<>();
         for (AbstractCard c : AbstractDungeon.srcColorlessCardPool.group)
         {
             if (c instanceof AnimatorCard)
@@ -195,7 +195,7 @@ public class CardSeries
 
     public static ArrayList<AnimatorCard> GetNonColorlessCard()
     {
-        ArrayList<AnimatorCard> result = new ArrayList<>();
+        final ArrayList<AnimatorCard> result = new ArrayList<>();
         AddCards(null, AbstractDungeon.srcCommonCardPool.group, result);
         AddCards(null, AbstractDungeon.srcUncommonCardPool.group, result);
         AddCards(null, AbstractDungeon.srcRareCardPool.group, result);
@@ -205,7 +205,7 @@ public class CardSeries
 
     public static ArrayList<AnimatorCard> GetNonColorlessCard(CardSeries series)
     {
-        ArrayList<AnimatorCard> result = new ArrayList<>();
+        final ArrayList<AnimatorCard> result = new ArrayList<>();
         AddCards(series, AbstractDungeon.srcCommonCardPool.group, result);
         AddCards(series, AbstractDungeon.srcUncommonCardPool.group, result);
         AddCards(series, AbstractDungeon.srcRareCardPool.group, result);
@@ -215,7 +215,7 @@ public class CardSeries
 
     public static HashSet<CardSeries> GetAllSeries(ArrayList<AbstractCard> cards)
     {
-        HashSet<CardSeries> result = new HashSet<>();
+        final HashSet<CardSeries> result = new HashSet<>();
         for (AbstractCard card : cards)
         {
             AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);

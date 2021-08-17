@@ -32,6 +32,8 @@ public class MoltSolAugustus extends AnimatorCard
         SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Red(1);
+
+        SetDelayed(true);
     }
 
     @Override
@@ -97,6 +99,8 @@ public class MoltSolAugustus extends AnimatorCard
         @Override
         public void OnUse(AbstractMonster m)
         {
+            super.OnUse(m);
+
             GameActions.Bottom.MakeCardInDrawPile(new ImperialArchers())
             .Repeat(amount).SetDuration(0.1f, false);
         }

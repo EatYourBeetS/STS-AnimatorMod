@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.curse;
 
 import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -75,7 +74,7 @@ public class Curse_AscendersBane extends AnimatorCard_Curse implements OnRemoved
                     GameActions.Top.Purge(c).ShowEffect(true)
                     .AddCallback(c, (card, purged) ->
                     {
-                        if (purged && GameUtilities.IsCurseOrStatus(card))
+                        if (purged && GameUtilities.IsHindrance(card))
                         {
                             GameActions.Top.MoveCard(this, player.drawPile)
                             .ShowEffect(true, true)
@@ -92,7 +91,7 @@ public class Curse_AscendersBane extends AnimatorCard_Curse implements OnRemoved
     {
         if (!dontTriggerOnUseCard)
         {
-            GameActions.Bottom.DealDamage(null, player, magicNumber, DamageInfo.DamageType.THORNS, AttackEffects.DARK)
+            GameActions.Bottom.TakeDamage(magicNumber, AttackEffects.DARK)
             .SetSoundPitch(1.3f, 1.4f);
         }
     }

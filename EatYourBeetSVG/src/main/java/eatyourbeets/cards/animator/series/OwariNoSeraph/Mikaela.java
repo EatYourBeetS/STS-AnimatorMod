@@ -42,7 +42,7 @@ public class Mikaela extends AnimatorCard
         .SetOptions(false, false)
         .AddCallback(cards ->
         {
-            if (cards.size() > 0 && GameUtilities.IsCurseOrStatus(cards.get(0)))
+            if (cards.size() > 0 && GameUtilities.IsHindrance(cards.get(0)))
             {
                 GameActions.Bottom.GainForce(secondaryValue);
             }

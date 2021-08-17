@@ -89,6 +89,8 @@ public class Arpeggio extends AnimatorCard
         @Override
         public void OnUse(AbstractMonster m)
         {
+            super.OnUse(m);
+
             GameActions.Bottom.ChannelOrbs(Earth::new, Math.min(player.orbs.size(), amount));
         }
     }

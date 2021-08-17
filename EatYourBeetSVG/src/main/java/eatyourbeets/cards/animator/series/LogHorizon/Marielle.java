@@ -49,12 +49,12 @@ public class Marielle extends AnimatorCard
         int i = 0;
         for (CardType t : map.keySet())
         {
-            CardGroup group = GameUtilities.CreateCardGroup(map.get(t));
+            final CardGroup group = GameUtilities.CreateCardGroup(map.get(t));
             GameActions.Bottom.Motivate(group)
             .AddCallback(i, (index, c) ->
             {
-                float offsetX = (Settings.WIDTH * 0.12f) + index * AbstractCard.IMG_WIDTH * 0.4f;
-                float offsetY = (Settings.HEIGHT * 0.33f) + index * AbstractCard.IMG_HEIGHT * 0.1f;
+                final float offsetX = (Settings.WIDTH * 0.12f) + index * AbstractCard.IMG_WIDTH * 0.4f;
+                final float offsetY = (Settings.HEIGHT * 0.33f) + index * AbstractCard.IMG_HEIGHT * 0.1f;
                 if (c != null)
                 {
                     GameEffects.TopLevelList.ShowCardBriefly(c.makeStatEquivalentCopy(), offsetX, offsetY);

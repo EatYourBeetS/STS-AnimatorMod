@@ -1,9 +1,9 @@
 package eatyourbeets.powers;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.FuncT1;
@@ -129,8 +129,11 @@ public class PowerTriggerCondition
             case Exhaust:
                 return result && AbstractDungeon.player.hand.size() >= requiredAmount;
 
+            case TakeDamage:
+                return result && GameUtilities.GetHP(AbstractDungeon.player, true, true) > requiredAmount;
+
             case LoseHP:
-                return result && GameUtilities.GetActualHealth(AbstractDungeon.player) > requiredAmount;
+                return result && GameUtilities.GetHP(AbstractDungeon.player, true, false) > requiredAmount;
 
             case Gold:
                 return result && AbstractDungeon.player.gold >= requiredAmount;
@@ -169,15 +172,20 @@ public class PowerTriggerCondition
                 GameActions.Bottom.ExhaustFromHand(power.name, requiredAmount, false).SetOptions(false, false, false);
                 break;
             }
-            case Gold:
+            case TakeDamage:
             {
-                AbstractDungeon.player.loseGold(requiredAmount);
-                SFX.Play(SFX.EVENT_PURCHASE, 0.95f, 1.05f);
+                GameActions.Bottom.TakeDamage(requiredAmount, AttackEffects.NONE);
                 break;
             }
             case LoseHP:
             {
                 GameActions.Bottom.LoseHP(requiredAmount, AttackEffects.NONE);
+                break;
+            }
+            case Gold:
+            {
+                AbstractDungeon.player.loseGold(requiredAmount);
+                SFX.Play(SFX.EVENT_PURCHASE, 0.95f, 1.05f);
                 break;
             }
         }
@@ -191,5 +199,7 @@ public class PowerTriggerCondition
         power.flashWithoutSound();
         Refresh(false);
         power.updateDescription();
+
+        CombatStats.OnClickablePowerUsed(power, m);
     }
 }

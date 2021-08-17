@@ -42,7 +42,7 @@ public class HarukoHaruhara extends AnimatorCard
             {
                 if (card != this && card != discarded)
                 {
-                    if (GameUtilities.IsCurseOrStatus(card))
+                    if (GameUtilities.IsHindrance(card))
                     {
                         unplayable.Add(card);
                     }

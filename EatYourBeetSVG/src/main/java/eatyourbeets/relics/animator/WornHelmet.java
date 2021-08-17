@@ -37,7 +37,7 @@ public class WornHelmet extends AnimatorRelic
     {
         super.onRefreshHand();
 
-        SetCounter(JUtils.Count(player.hand.group, GameUtilities::IsCurseOrStatus));
+        SetCounter(JUtils.Count(player.hand.group, GameUtilities::IsHindrance));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class WornHelmet extends AnimatorRelic
     {
         super.onPlayerEndTurn();
 
-        int block = JUtils.Count(player.hand.group, GameUtilities::IsCurseOrStatus) * BLOCK_AMOUNT2;
+        int block = JUtils.Count(player.hand.group, GameUtilities::IsHindrance) * BLOCK_AMOUNT2;
         if (block > 0)
         {
             GameActions.Bottom.GainBlock(block);

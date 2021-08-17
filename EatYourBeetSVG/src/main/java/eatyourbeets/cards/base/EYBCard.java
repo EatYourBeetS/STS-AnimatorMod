@@ -35,6 +35,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     public static final CardTags HASTE = GR.Enums.CardTags.HASTE;
     public static final CardTags HASTE_INFINITE = GR.Enums.CardTags.HASTE_INFINITE;
     public static final CardTags PURGE = GR.Enums.CardTags.PURGE;
+    public static final CardTags DELAYED = GR.Enums.CardTags.DELAYED;
     public static final CardTags AUTOPLAY = GR.Enums.CardTags.AUTOPLAY;
     public final EYBCardText cardText;
     public final EYBCardData cardData;
@@ -306,6 +307,10 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         {
             dynamicTooltips.add(GR.Tooltips.Innate);
         }
+        if (hasTag(DELAYED))
+        {
+            dynamicTooltips.add(GR.Tooltips.Delayed);
+        }
         if (isEthereal)
         {
             dynamicTooltips.add(GR.Tooltips.Ethereal);
@@ -444,6 +449,16 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     {
         SetTag(HASTE_INFINITE, value);
         SetTag(HASTE, value);
+    }
+
+    public void SetDelayed(boolean value)
+    {
+        SetTag(DELAYED, value);
+
+        if (value)
+        {
+            SetInnate(false);
+        }
     }
 
     public void SetRetain(boolean value)

@@ -37,7 +37,7 @@ public class Togame extends AnimatorCard
             {
                 GameActions.Bottom.Draw(1);
 
-                if (GameUtilities.IsCurseOrStatus(cards.get(0)) && CombatStats.TryActivateSemiLimited(cardID))
+                if (GameUtilities.IsHindrance(cards.get(0)) && CombatStats.TryActivateSemiLimited(cardID))
                 {
                     GameActions.Bottom.Motivate();
                 }

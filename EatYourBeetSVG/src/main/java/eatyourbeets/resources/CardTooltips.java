@@ -11,6 +11,12 @@ import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
 import eatyourbeets.powers.animator.*;
 import eatyourbeets.powers.common.*;
+import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.powers.animator.SupportDamagePower;
+import eatyourbeets.powers.common.BurningPower;
+import eatyourbeets.powers.common.FreezingPower;
+import eatyourbeets.powers.common.InspirationPower;
+import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.JUtils;
@@ -23,6 +29,15 @@ public class CardTooltips
     protected static final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
 
     public EYBCardTooltip Energy = FindByName("[E]").ShowText(false);
+    public EYBCardTooltip Unplayable = FindByID("Unplayable").ShowText(false);
+    public EYBCardTooltip RetainOnce = FindByID("~RetainOnce").ShowText(false);
+    public EYBCardTooltip Exhaust = FindByID("Exhaust").ShowText(false);
+    public EYBCardTooltip Channel = FindByID("Channel").ShowText(false);
+    public EYBCardTooltip Evoke = FindByID("Evoke").ShowText(false);
+    public EYBCardTooltip Block = FindByID("Block").ShowText(false);
+    public EYBCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
+    public EYBCardTooltip Stance = FindByID("Stance").ShowText(false);
+
     public EYBCardTooltip Starter = FindByID("Starter");
     public EYBCardTooltip Limited = FindByID("Limited");
     public EYBCardTooltip SemiLimited = FindByID("Semi-Limited");
@@ -38,6 +53,7 @@ public class CardTooltips
     public EYBCardTooltip Willpower = FindByID("Willpower");
     public EYBCardTooltip Blessing = FindByID("Blessing");
     public EYBCardTooltip Corruption = FindByID("Corruption");
+    public EYBCardTooltip Inspiration = FindByID("Inspiration");
     public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
     public EYBCardTooltip ForceStance = FindByID("Force Stance");
     public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
@@ -47,16 +63,11 @@ public class CardTooltips
     public EYBCardTooltip Affinity_Star = FindByID("Multicolor");
     public EYBCardTooltip OrbCore = FindByID("~Orb Core");
     public EYBCardTooltip Innate = FindByID("~Innate");
+    public EYBCardTooltip Delayed = FindByID("~Delayed");
     public EYBCardTooltip Ethereal = FindByID("~Ethereal");
     public EYBCardTooltip Haste = FindByID("~Haste");
     public EYBCardTooltip HasteInfinite = FindByID("~HasteInfinite");
     public EYBCardTooltip Retain = FindByID("~Retain");
-    public EYBCardTooltip RetainOnce = FindByID("~RetainOnce").ShowText(false);
-    public EYBCardTooltip Exhaust = FindByID("Exhaust").ShowText(false);
-    public EYBCardTooltip Channel = FindByID("Channel").ShowText(false);
-    public EYBCardTooltip Block = FindByID("Block").ShowText(false);
-    public EYBCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
-    public EYBCardTooltip Stance = FindByID("Stance").ShowText(false);
     public EYBCardTooltip Metallicize = FindByID("Metallicize");
     public EYBCardTooltip PlatedArmor = FindByID("Plated Armor");
     public EYBCardTooltip EnchantedArmor = FindByID("Enchanted Armor");
@@ -174,6 +185,7 @@ public class CardTooltips
         RetainOnce.SetIcon(badges.RetainOnce.Texture(), 6);
         Retain.SetIcon(badges.Retain.Texture(), 6);
         Innate.SetIcon(badges.Innate.Texture(), 6);
+        Delayed.SetIcon(badges.Delayed.Texture(), 6);
         Haste.SetIcon(badges.Haste.Texture(), 6);
         HasteInfinite.SetIcon(badges.HasteInfinite.Texture(), 6);
         Purge.SetIcon(badges.Purge.Texture(), 6);
@@ -233,6 +245,7 @@ public class CardTooltips
         LoadFromPower(Constricted, new ConstrictedPower(null, FakeCharacter.Instance, 0));
         LoadFromPower(SupportDamage, new SupportDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(LockOn, new LockOnPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Inspiration, new InspirationPower(FakeCharacter.Instance, 0));
         LoadFromPower(SelfDamage, new SelfDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(CounterAttack, new CounterAttackPower(FakeCharacter.Instance, 0));
         LoadFromPower(Balance, new BalancePower(FakeCharacter.Instance, 0));

@@ -6,6 +6,7 @@ public enum PowerTriggerConditionType
     Discard,
     Exhaust,
     LoseHP,
+    TakeDamage,
     Gold,
     None,
     Special;

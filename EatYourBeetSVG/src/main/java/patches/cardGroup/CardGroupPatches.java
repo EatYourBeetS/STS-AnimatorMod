@@ -1,16 +1,16 @@
 package patches.cardGroup;
 
-import com.evacipated.cardcrawl.modthespire.lib.ByRef;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.cards.base.CardRarityComparator;
 import eatyourbeets.interfaces.listeners.OnRemovedFromDeckListener;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 public class CardGroupPatches
@@ -59,6 +59,48 @@ public class CardGroupPatches
                 {
                     card.OnRemovedFromDeck();
                 }
+            }
+        }
+    }
+
+    @SpirePatch(clz = CardGroup.class, method = "shuffle", paramtypez = {})
+    public static class CardGroupPatches_Shuffle1
+    {
+        @SpirePostfixPatch
+        public static void Postfix(CardGroup __instance)
+        {
+            _Shuffle(__instance);
+        }
+    }
+
+    @SpirePatch(clz = CardGroup.class, method = "shuffle", paramtypez = {Random.class})
+    public static class CardGroupPatches_Shuffle2
+    {
+        @SpirePostfixPatch
+        public static void Postfix(CardGroup __instance, Random rng)
+        {
+            _Shuffle(__instance);
+        }
+    }
+
+    private static void _Shuffle(CardGroup group)
+    {
+        int delayedIndex = 0;
+        final ArrayList<AbstractCard> cards = group.group;
+        for (int i = 0; i < cards.size(); i++)
+        {
+            final AbstractCard c = cards.get(i);
+            if (c.hasTag(GR.Enums.CardTags.DELAYED))
+            {
+                if (i != delayedIndex)
+                {
+                    final AbstractCard temp = cards.get(delayedIndex);
+                    cards.set(delayedIndex, c);
+                    cards.set(i, temp);
+                }
+
+                c.isInnate = false;
+                delayedIndex += 1;
             }
         }
     }

@@ -79,6 +79,7 @@ public class CommonImages
         public final TextureCache Exhaust                 = new TextureCache("images/eyb/cardui/badges/Exhaust.png");
         public final TextureCache Purge                   = new TextureCache("images/eyb/cardui/badges/Purge.png");
         public final TextureCache Innate                  = new TextureCache("images/eyb/cardui/badges/Innate.png");
+        public final TextureCache Delayed                 = new TextureCache("images/eyb/cardui/badges/Delayed.png");
         public final TextureCache Retain                  = new TextureCache("images/eyb/cardui/badges/Retain.png");
         public final TextureCache RetainInfinite          = new TextureCache("images/eyb/cardui/badges/RetainInfinite.png");
         public final TextureCache RetainOnce              = new TextureCache("images/eyb/cardui/badges/RetainOnce.png");

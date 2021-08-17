@@ -271,9 +271,9 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static int OnModifyDamage(AbstractCreature target, DamageInfo info, int damage)
     {
-        for (OnModifyDamageSubscriber s : onModifyDamage.GetSubscribers())
+        for (OnRawDamageReceived s : onRawDamageReceived.GetSubscribers())
         {
-            damage = s.OnModifyDamage(target, info, damage);
+            damage = s.OnRawDamageReceived(target, info, damage);
         }
 
         return damage;
@@ -344,6 +344,14 @@ public class CombatStats extends EYBPower implements InvisiblePower
         for (OnShuffleSubscriber s : onShuffle.GetSubscribers())
         {
             s.OnShuffle(triggerRelics);
+        }
+    }
+
+    public static void OnClickablePowerUsed(EYBClickablePower power, AbstractMonster target)
+    {
+        for (OnClickablePowerUsed s : onClickablePowerUsed.GetSubscribers())
+        {
+            s.OnClickablePowerUsed(power, target);
         }
     }
 

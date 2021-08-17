@@ -40,7 +40,7 @@ public class EmiyaShirou extends AnimatorCard
         boolean fullyUpgraded = true;
         for (AbstractCard card : p.hand.group)
         {
-            if (card != this && !card.upgraded && !GameUtilities.IsCurseOrStatus(card))
+            if (card != this && !card.upgraded && !GameUtilities.IsHindrance(card))
             {
                 fullyUpgraded = false;
                 break;

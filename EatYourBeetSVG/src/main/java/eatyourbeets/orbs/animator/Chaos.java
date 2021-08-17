@@ -3,14 +3,9 @@ package eatyourbeets.orbs.animator;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.actions.basic.DrawCards;
-import eatyourbeets.actions.handSelection.DiscardFromHand;
-import eatyourbeets.actions.handSelection.ExhaustFromHand;
-import eatyourbeets.actions.handSelection.SelectFromHand;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
@@ -19,6 +14,7 @@ import eatyourbeets.orbs.EYBOrb;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
@@ -130,11 +126,16 @@ public class Chaos extends AnimatorOrb implements OnEndOfTurnSubscriber, OnAfter
     @Override
     public void playChannelSFX()
     {
-        SFX.Play(SFX.ORB_LIGHTNING_CHANNEL, 0.3f, 1.3f);
-        SFX.Play(SFX.ORB_FROST_CHANNEL, 0.3f, 1.3f);
-        SFX.Play(SFX.ORB_DARK_CHANNEL, 0.3f, 1.3f);
-        SFX.Play(SFX.ORB_PLASMA_CHANNEL, 0.3f, 1.3f);
-        SFX.Play(SFX.ATTACK_FIRE, 0.3f, 1.3f);
+        playChannelSFX(0.93f);
+    }
+
+    public void playChannelSFX(float volume)
+    {
+        SFX.Play(SFX.ORB_LIGHTNING_CHANNEL, 0.3f, 1.3f, volume);
+        SFX.Play(SFX.ORB_FROST_CHANNEL, 0.3f, 1.3f, volume);
+        SFX.Play(SFX.ORB_DARK_CHANNEL, 0.3f, 1.3f, volume);
+        SFX.Play(SFX.ORB_PLASMA_CHANNEL, 0.3f, 1.3f, volume);
+        SFX.Play(SFX.ATTACK_FIRE, 0.3f, 1.3f, volume);
     }
 
     @Override
@@ -155,30 +156,37 @@ public class Chaos extends AnimatorOrb implements OnEndOfTurnSubscriber, OnAfter
         {
             super.Passive();
 
-            playChannelSFX();
+            playChannelSFX(0.85f);
             GameActions.Last.Callback(this::ExecuteEffect);
         }
     }
 
     private void ExecuteEffect()
     {
-        RandomizedList<AbstractGameAction> actions = new RandomizedList<>();
-        actions.Add(new DiscardFromHand(name, 1, true).ShowEffect(true, true));
-        actions.Add(new ExhaustFromHand(name, 1, true).ShowEffect(true, true));
-        actions.Add(new DrawCards(1));
-        actions.Add(new SelectFromHand(name, 1, true)
-        .SetFilter(c -> !GameUtilities.IsCurseOrStatus(c))
-        .AddCallback(cards ->
+        final RandomizedList<AbstractCard> toDecrease = new RandomizedList<>();
+        final RandomizedList<AbstractCard> toIncrease = new RandomizedList<>();
+        for (AbstractCard c : AbstractDungeon.player.hand.group)
         {
-            if (cards.size() > 0)
+            toIncrease.Add(c);
+            if (c.costForTurn > 0)
             {
-                GameActions.Top.PlayCard(cards.get(0), AbstractDungeon.player.hand, null);
+                toDecrease.Add(c);
             }
-        }));
-        GameActions.Bottom.WaitRealtime(0.3f);
-        while (actions.Size() > 0)
+        }
+
+        if (toDecrease.Size() > 0)
         {
-            GameActions.Bottom.Add(actions.Retrieve(GameUtilities.GetRNG(), true));
+            final AbstractCard c = toDecrease.Retrieve(GameUtilities.GetRNG(), true);
+            GameUtilities.ModifyCostForTurn(c, -1, true);
+            GameUtilities.Flash(c, true);
+            toIncrease.Remove(c);
+        }
+
+        if (toIncrease.Size() > 0)
+        {
+            final AbstractCard c = toIncrease.Retrieve(GameUtilities.GetRNG(), true);
+            GameUtilities.ModifyCostForTurn(c, +1, true);
+            GameUtilities.Flash(c, Colors.Red(1), true);;
         }
     }
 

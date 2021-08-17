@@ -61,7 +61,7 @@ public class Lust extends AnimatorCard
         super.Refresh(enemy);
 
         this.gainTempHP = (enemy != null && enemy.hasPower(VulnerablePower.POWER_ID));
-        this.secondaryValue = 1 + JUtils.Count(player.hand.group, GameUtilities::IsCurseOrStatus);
+        this.secondaryValue = 1 + JUtils.Count(player.hand.group, GameUtilities::IsHindrance);
     }
 
     @Override

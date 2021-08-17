@@ -30,6 +30,7 @@ public class GoblinSoldier extends AnimatorCard_Status
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();
+
         GameActions.Bottom.Draw(1);
         GameActions.Bottom.Flash(this);
     }

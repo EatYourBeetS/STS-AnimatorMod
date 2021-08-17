@@ -49,6 +49,8 @@ public class EnchantmentPower extends AnimatorClickablePower
     @Override
     public void OnUse(AbstractMonster m)
     {
+        super.OnUse(m);
+
         this.enchantment.UsePower(m);
     }
 }

@@ -23,11 +23,13 @@ public class HousakiTohya extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 1, 3);
-        SetUpgrade(3, 0, 0, 0);
+        Initialize(5, 0, 1);
+        SetUpgrade(3, 0, 0);
 
         SetAffinity_Red(1, 0, 1);
-        SetAffinity_Orange(1, 0, 1);
+        SetAffinity_Orange(1);
+
+        SetAffinityRequirement(Affinity.General, 3);
     }
 
     @Override
@@ -44,7 +46,7 @@ public class HousakiTohya extends AnimatorCard
         .SetFilter(c -> HousakiMinori.DATA.ID.equals(c.cardID), false)
         .AddCallback(() ->
         {
-            if (GetHandAffinity(Affinity.General) >= secondaryValue)
+            if (CheckAffinity(Affinity.General))
             {
                 GameActions.Bottom.GainEnergy(1);
             }

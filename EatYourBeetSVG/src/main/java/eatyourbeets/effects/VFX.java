@@ -146,6 +146,11 @@ public class VFX
         return new ExplosionSmallEffect(RandomX(source, variance), RandomY(source, variance));
     }
 
+    public static IronWaveEffect IronWave(Hitbox source, Hitbox target)
+    {
+        return new IronWaveEffect(source.cX, source.cY, target.cX);
+    }
+
     public static LaserBeamEffect2 Laser(Hitbox source, Color color)
     {
         return new LaserBeamEffect2(source.cX, source.cY).SetColor(color);
@@ -286,9 +291,9 @@ public class VFX
                 .SetDuration(duration, true);
     }
 
-    public static VerticalImpactEffect VerticalImpact(Hitbox target)
+    public static VerticalImpactEffect2 VerticalImpact(Hitbox target)
     {
-        return new VerticalImpactEffect(target.cX + target.width / 4f, target.cY - target.height / 4f);
+        return new VerticalImpactEffect2(target.cX + target.width / 4f, target.cY - target.height / 4f);
     }
 
     public static WeightyImpactEffect WeightyImpact(Hitbox target)

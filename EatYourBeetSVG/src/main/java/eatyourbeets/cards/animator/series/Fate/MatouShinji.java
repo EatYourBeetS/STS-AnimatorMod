@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.series.Fate;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
-import eatyourbeets.cards.animator.special.ShinjiMatou_CommandSpell;
+import eatyourbeets.cards.animator.special.MatouShinji_CommandSpell;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -13,19 +13,19 @@ import eatyourbeets.utilities.GameUtilities;
 
 import java.util.HashSet;
 
-public class ShinjiMatou extends AnimatorCard
+public class MatouShinji extends AnimatorCard
 {
     private static final HashSet<CardType> cardTypes = new HashSet<>();
 
-    public static final EYBCardData DATA = Register(ShinjiMatou.class)
+    public static final EYBCardData DATA = Register(MatouShinji.class)
             .SetSkill(1, CardRarity.COMMON, EYBCardTarget.Random)
             .SetSeriesFromClassPackage();
     static
     {
-        DATA.AddPreview(new ShinjiMatou_CommandSpell(), false);
+        DATA.AddPreview(new MatouShinji_CommandSpell(), false);
     }
 
-    public ShinjiMatou()
+    public MatouShinji()
     {
         super(DATA);
 
@@ -54,7 +54,7 @@ public class ShinjiMatou extends AnimatorCard
 
         if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.MakeCardInHand(new ShinjiMatou_CommandSpell())
+            GameActions.Bottom.MakeCardInHand(new MatouShinji_CommandSpell())
             .AddCallback(c -> c.retain = true);
         }
     }

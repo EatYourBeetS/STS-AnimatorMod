@@ -1,10 +1,10 @@
 package eatyourbeets.cards.animator.enchantments;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
@@ -18,8 +18,8 @@ public class Enchantment1 extends Enchantment
 {
     public static final EYBCardData DATA = RegisterInternal(Enchantment1.class);
     public static final int INDEX = 1;
-    public static final int UP1_GAIN_BLOCK = 8;
-    public static final int UP3_LOSE_HP = 3;
+    public static final int UP1_GAIN_BLOCK = 7;
+    public static final int UP3_TAKE_DAMAGE = 3;
 
     private static final CardEffectChoice choices = new CardEffectChoice();
     private static final float D_X = CardGroup.DRAW_PILE_X * 1.5f;
@@ -36,7 +36,7 @@ public class Enchantment1 extends Enchantment
     protected String GetRawDescription()
     {
         return upgradeIndex == 1 ? super.GetRawDescription(UP1_GAIN_BLOCK)
-             : upgradeIndex == 3 ? super.GetRawDescription(UP3_LOSE_HP)
+             : upgradeIndex == 3 ? super.GetRawDescription(UP3_TAKE_DAMAGE)
              : super.GetRawDescription();
     }
 
@@ -51,19 +51,19 @@ public class Enchantment1 extends Enchantment
     {
         if (upgradeIndex == 1)
         {
-            upgradeMagicNumber(7);
+            upgradeMagicNumber(UP1_GAIN_BLOCK);
         }
         else if (upgradeIndex == 3)
         {
             upgradeSecondaryValue(-1);
-            upgradeMagicNumber(3);
+            upgradeMagicNumber(UP3_TAKE_DAMAGE);
         }
     }
 
     @Override
     public boolean CanUsePower(int cost)
     {
-        return super.CanUsePower(cost) && (upgradeIndex != 3 || (GameUtilities.GetActualHealth(player) > magicNumber));
+        return super.CanUsePower(cost) && (upgradeIndex != 3 || (GameUtilities.GetHP(player, true, false) > magicNumber));
     }
 
     @Override
@@ -73,7 +73,7 @@ public class Enchantment1 extends Enchantment
 
         if (upgradeIndex == 3)
         {
-            GameActions.Bottom.LoseHP(magicNumber, AttackEffects.NONE);
+            GameActions.Bottom.TakeDamage(magicNumber, AttackEffects.NONE);
         }
     }
 

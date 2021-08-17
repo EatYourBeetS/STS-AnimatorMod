@@ -2,13 +2,13 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.interfaces.subscribers.OnModifyDamageSubscriber;
+import eatyourbeets.interfaces.subscribers.OnRawDamageReceived;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 
 import java.text.DecimalFormat;
 
-public class EnchantedArmorPower extends AnimatorPower implements OnModifyDamageSubscriber
+public class EnchantedArmorPower extends AnimatorPower implements OnRawDamageReceived
 {
     private static final DecimalFormat decimalFormat = new DecimalFormat("#.0");
 
@@ -41,7 +41,7 @@ public class EnchantedArmorPower extends AnimatorPower implements OnModifyDamage
     {
         super.onInitialApplication();
 
-        CombatStats.onModifyDamage.Subscribe(this);
+        CombatStats.onRawDamageReceived.Subscribe(this);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class EnchantedArmorPower extends AnimatorPower implements OnModifyDamage
     {
         super.onRemove();
 
-        CombatStats.onModifyDamage.Unsubscribe(this);
+        CombatStats.onRawDamageReceived.Unsubscribe(this);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class EnchantedArmorPower extends AnimatorPower implements OnModifyDamage
     }
 
     @Override
-    public int OnModifyDamage(AbstractCreature target, DamageInfo info, int damage)
+    public int OnRawDamageReceived(AbstractCreature target, DamageInfo info, int damage)
     {
         if (!reactive && target == owner && info.type == DamageInfo.DamageType.NORMAL)
         {

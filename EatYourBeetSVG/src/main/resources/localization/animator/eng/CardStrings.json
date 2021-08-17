@@ -1197,7 +1197,7 @@
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "If you discarded ** a card this turn: ** Enter <IS>. || !S! <L>: Obtain {<B> Token}.",
+			"DESCRIPTION": "If you discarded ** a card this turn: ** Enter <IS>. || !S! <L>: Obtain {<B> Token}{+}.",
 			"NAME": "Ain"
 		},
 		"animator:Aisha":
@@ -1293,6 +1293,11 @@
 			"EXTENDED_DESCRIPTION": ["Evoke your first orb.", "Apply {0} [Shackles].", "Gain [F] [I]."],
 			"NAME": "Caster"
 		},
+		"animator:EmiyaKiritsugu":
+		{
+			"DESCRIPTION": "To play this card, Exhaust ** 1 of 2 {Uncommon} cards in ** your draw pile. If it is: ** <L> -> Obtain {<D> Token} ** <D> -> Obtain {<L> Token} ** <B> -> Apply !S! [Vulnerable]",
+			"NAME": "Emiya Kiritsugu"
+		},
 		"animator:EmiyaShirou":
 		{
 			"DESCRIPTION": "Upgrade a random card ** in your hand !M! times. || If every card was ** already Upgraded: ** Draw 2 cards.",
@@ -1329,12 +1334,12 @@
 			"DESCRIPTION": "Cooldown !S! : Purge, then ** add {Excalibur} to your hand. || If this would enter your discard ** pile, move it to your draw pile. || Synergy: Reduce this card's ** Cooldown by an additional 2.",
 			"NAME": "Saber"
 		},
-		"animator:SakuraMatou":
+		"animator:MatouSakura":
 		{
 			"DESCRIPTION": "90%Remove your strongest [Dark] ** to apply [Constricted] equal to half its ** damage. If you have no [Dark]: ** Channel 1 [Dark] and trigger its ** passive ability !M! times. || <LIM>. !A! <L>: Gain !S! [B].",
 			"NAME": "Sakura Matou"
 		},
-		"animator:ShinjiMatou":
+		"animator:MatouShinji":
 		{
 			"DESCRIPTION": "Apply !M! [Poison] to ** a random enemy. || <slm>. On Synergy: ** Add a {Command Spell} to ** your hand and Retain it.",
 			"NAME": "Shinji Matou"
@@ -1415,7 +1420,7 @@
 		},
 		"animator:Wrath":
 		{
-			"DESCRIPTION": "Gain !M! [F]. Give all cards ** in hand +1 [F] scaling. || If you have at least ** 7 cards in Exhaust pile: ** Obtain {<R> Token}.",
+			"DESCRIPTION": "Gain !M! [F]. Give all cards ** in hand +1 [F] scaling. || If you have at least ** 7 cards in Exhaust pile: ** Obtain {<R> Token}{+}.",
 			"NAME": "Wrath"
 		}
 	},
@@ -1526,12 +1531,13 @@
 		},
 		"animator:LizardPriest":
 		{
-			"DESCRIPTION": "Retain !M! card(s) at ** the end of this turn. || Synergy: Set the [Block] ** of each enemy to 1.",
+			"DESCRIPTION": "Retain 1 <L> card. || If you have [Earth]: Gain ** !S! additional [Block]. || Synergy: Gain 1 [Inspiration].",
 			"NAME": "Lizard Priest"
 		},
 		"animator:NobleFencer":
 		{
-			"DESCRIPTION": "Evoke your first [Lightning]. || Whenever you Synergize this turn: Channel 1 [Lightning].",
+			"DESCRIPTION": "Starter: Gain [A] [I]. || Evoke your first [Lightning]. || Whenever you Synergize ** this turn: Channel 1 [Lightning].",
+			"EXTENDED_DESCRIPTION": ["Whenever you Synergize this turn, Channel #b{0} [Lightning]."],
 			"NAME": "Noble Fencer"
 		},
 		"animator:Priestess":
@@ -1785,7 +1791,7 @@
 		},
 		"animator:HousakiTohya":
 		{
-			"DESCRIPTION": " Apply !M! [Vulnerable]. || Draw {Minori Housaki}. || <TM-S>: Gain [E]",
+			"DESCRIPTION": " Apply !M! [Vulnerable]. || Draw {Minori Housaki}. || !A! <W>: Gain [E]",
 			"NAME": "Tohya Housaki"
 		},
 		"animator:Naotsugu":
@@ -1805,7 +1811,7 @@
 		},
 		"animator:RundelhausCode":
 		{
-			"DESCRIPTION": "Gain [I]. Give !M! random ** card(s) +2 [I] scaling ** (does not stack). || <TM-S>, Choose 1: ** Channel [Fire], [Lightning] or [Frost].",
+			"DESCRIPTION": "Gain [I]. Give !M! random ** card(s) +2 [I] scaling ** (does not stack). || !A! <W>: Choose 1: ** Channel [Fire], [Lightning] or [Frost].",
 			"NAME": "Rundelhaus Code"
 		},
 		"animator:Serara":
@@ -1816,38 +1822,18 @@
 		},
 		"animator:Shiroe":
 		{
-			"DESCRIPTION": "Cycle !M! cards. || All cards this turn have: Teamwork 3: Apply !S! [Constricted] to ALL enemies.",
-			"EXTENDED_DESCRIPTION": ["All cards have: #yTeamwork 3: Apply #b{0} #yConstricted to ALL enemies."],
+			"DESCRIPTION": "Cycle !M! cards. || All cards this turn have: 3 <W>: Apply !S! [Constricted] to ALL enemies.",
+			"EXTENDED_DESCRIPTION": ["All cards have: <W> #b3: Apply #b{0} #yConstricted to ALL enemies."],
 			"NAME": "Shiroe"
 		},
 		"animator:Soujiro":
 		{
-			"DESCRIPTION": "Teamwork X: Deal !M!X ** additional damage. || When drawn: Choose 1 of 4 ** cards to add to your hand, ** you can only choose the ** same card once.",
+			"DESCRIPTION": "X <W>: Deal !M!X ** additional damage. || When drawn: Choose 1 of 4 ** cards to add to your hand, ** you can only choose the ** same card once.",
 			"NAME": "Soujiro"
-		},
-		"animator:Soujiro_Isami":
-		{
-			"DESCRIPTION": "<ST>: Boost [A].",
-			"NAME": "Isami"
-		},
-		"animator:Soujiro_Kawara":
-		{
-			"DESCRIPTION": "If the enemy ** is attacking: Gain !M! ** additional [Block].",
-			"NAME": "Kawara"
-		},
-		"animator:Soujiro_Hisako":
-		{
-			"DESCRIPTION": "Evoke your first ** orb to Boost [I].",
-			"NAME": "Hisako"
-		},
-		"animator:Soujiro_Nazuna":
-		{
-			"DESCRIPTION": "Draw 1 less ** card next turn.",
-			"NAME": "Nazuna"
 		},
 		"animator:Tetora":
 		{
-			"DESCRIPTION": "Synergizes with {High ** Cost} cards. Requires ** <TM-S> to play. || Every third Synergy: ** Randomly gain [F], [A], [I].",
+			"DESCRIPTION": "Synergizes with {High ** Cost} cards. Requires ** !A! <W> to play. || Every third Synergy: ** Randomly gain [F], [A], [I].",
 			"EXTENDED_DESCRIPTION": ["Every third #ySynergy, randomly gain #yForce, #yAgility or #yIntellect #b{0} time(s)."],
 			"NAME": "Tetra"
 		}
@@ -2225,7 +2211,7 @@
 			[
 				"Once per turn, pay !S! [E]: **  Choose and Enter any Stance, ** if you are already in the ** chosen Stance: Gain {0} [Block].",
 				"Once per turn, pay !S! [E]: **  Choose and Enter any Stance, ** then Motivate the bottom ** card of your draw pile.",
-				"Once per turn, pay !S! [E]  ** and lose {0} HP: Choose ** and Enter any Stance."
+				"Once per turn, ** pay !S! [E] and take ** {0} damage: Choose and ** Enter any Stance."
 			],
 			"NAME": "Stances"
 		},
@@ -2249,7 +2235,7 @@
 			[
 				"Once per turn, ** pay !S! [E]: Apply ** !M! [Vulnerable] and {0} [Poison].",
 				"Once per turn, ** pay !S! [E]: Apply ** !M! [Vulnerable] and {0} [Weak].",
-				"Once per turn, ** pay !S! [E] and lose ** {0} HP: Apply !M! [Vulnerable]."
+				"Once per turn, ** pay !S! [E] and take ** {0} damage: Apply !M! [Vulnerable]."
 			],
 			"NAME": "Debuffs"
 		}
@@ -2425,10 +2411,30 @@
 			"DESCRIPTION": "Remove the ** enemy's [Block].",
 			"NAME": "Kyotouryuu"
 		},
-		"animator:ShinjiMatou_CommandSpell":
+		"animator:MatouShinji_CommandSpell":
 		{
 			"DESCRIPTION": "Lose 1 orb slot to ** Fetch a <R> or <G> card ** from your discard pile, ** Motivate it and increase ** its scalings by !M!.",
 			"NAME": "Command Spell"
+		},
+		"animator:Soujiro_Isami":
+		{
+			"DESCRIPTION": "<ST>: Boost [A].",
+			"NAME": "Isami"
+		},
+		"animator:Soujiro_Kawara":
+		{
+			"DESCRIPTION": "If the enemy ** is attacking: Gain !M! ** additional [Block].",
+			"NAME": "Kawara"
+		},
+		"animator:Soujiro_Hisako":
+		{
+			"DESCRIPTION": "Evoke your first ** orb to Boost [I].",
+			"NAME": "Hisako"
+		},
+		"animator:Soujiro_Nazuna":
+		{
+			"DESCRIPTION": "Draw 1 less ** card next turn.",
+			"NAME": "Nazuna"
 		},
 		"animator:TanyaDegurechaff_Type95":
 		{

@@ -25,6 +25,11 @@
 		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Deal #b{1}% less #yAttack damage (min. #b1 less damage)."],
 		"NAME": "Freezing"
 	},
+	"eyb:InspirationPower":
+	{
+		"DESCRIPTIONS": ["The next #b{0} time(s) you activate an interactable power, gain [E]."],
+		"NAME": "Inspiration"
+	},
 	"eyb:IceElementPower":
 	{
 	  "DESCRIPTIONS": ["Immune to Freezing. Burning is twice as effective."],

@@ -54,6 +54,6 @@ public class CowGirl extends AnimatorCard
 
         GameActions.Bottom.Add(fetchFromPile
         .SetOptions(false, false)
-        .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsCurseOrStatus(c)));
+        .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsHindrance(c)));
     }
 }

@@ -31,7 +31,7 @@ public class Curse_Depression extends AnimatorCard_Curse
         GameActions.Bottom.DiscardFromHand(name, 1, true)
         .ShowEffect(true, true)
         .SetOptions(false, false, false)
-        .SetFilter(card -> !GameUtilities.IsCurseOrStatus(card));
+        .SetFilter(card -> !GameUtilities.IsHindrance(card));
 
         GameActions.Bottom.Flash(this);
     }

@@ -39,6 +39,7 @@ public class CommonImages
     public final TextureCache Arrow_Right                 = new TextureCache("images/eyb/ui/topPanel/Arrow_Right.png");
     public final TextureCache Draggable                   = new TextureCache("images/eyb/ui/topPanel/Draggable.png");
     public final TextureCache FullSquare                  = new TextureCache("images/eyb/ui/topPanel/FullSquare.png");
+    public final TextureCache Info                        = new TextureCache("images/eyb/ui/topPanel/Info.png");
 
     public static class CardIcons
     {
@@ -52,6 +53,7 @@ public class CommonImages
         public final TextureCache Intellect             = new TextureCache("images/eyb/cardui/core/Intellect.png");
         public final TextureCache Force                 = new TextureCache("images/eyb/cardui/core/Force.png");
         public final TextureCache Agility               = new TextureCache("images/eyb/cardui/core/Agility.png");
+        public final TextureCache Willpower             = new TextureCache("images/eyb/cardui/core/Willpower.png");
     }
 
     public static class AffinityIcons
@@ -82,7 +84,6 @@ public class CommonImages
         public final TextureCache Delayed                 = new TextureCache("images/eyb/cardui/badges/Delayed.png");
         public final TextureCache Retain                  = new TextureCache("images/eyb/cardui/badges/Retain.png");
         public final TextureCache RetainInfinite          = new TextureCache("images/eyb/cardui/badges/RetainInfinite.png");
-        public final TextureCache RetainOnce              = new TextureCache("images/eyb/cardui/badges/RetainOnce.png");
         public final TextureCache Haste                   = new TextureCache("images/eyb/cardui/badges/Haste.png");
         public final TextureCache HasteInfinite           = new TextureCache("images/eyb/cardui/badges/HasteInfinite.png");
         public final TextureCache Autoplay                = new TextureCache("images/eyb/cardui/badges/Autoplay.png");

@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
+import com.megacrit.cardcrawl.powers.EnergizedPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -36,7 +36,7 @@ public class LisaMinci extends AnimatorCard {
                                 break;
                             case 1:
                             case -1:
-                                GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, secondaryValue));
+                                GameActions.Bottom.StackPower(new EnergizedPower(p, secondaryValue));
                                 break;
                             default:
                                 GameActions.Bottom.InduceOrbs(Lightning::new, 1);

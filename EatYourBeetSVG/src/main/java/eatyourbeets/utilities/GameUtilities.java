@@ -270,6 +270,11 @@ public class GameUtilities
         return GetAffinityLevel(card, Affinity.Blue, true) > 0;
     }
 
+    public static boolean HasOrangeAffinity(AbstractCard card)
+    {
+        return GetAffinityLevel(card, Affinity.Orange, true) > 0;
+    }
+
     public static boolean HasLightAffinity(AbstractCard card)
     {
         return GetAffinityLevel(card, Affinity.Light, true) > 0;

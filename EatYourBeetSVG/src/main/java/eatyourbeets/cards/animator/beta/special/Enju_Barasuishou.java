@@ -82,7 +82,7 @@ public class Enju_Barasuishou extends AnimatorCard
         .SetOptions(false, false, false)
         .AddCallback(cards ->
         {
-            if (cards.size() > 0 && !GameUtilities.IsCurseOrStatus(cards.get(0)))
+            if (cards.size() > 0 && !GameUtilities.IsHindrance(cards.get(0)))
             {
                 GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade);
                 this.flash();

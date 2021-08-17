@@ -17,7 +17,7 @@ public class Amber extends AnimatorCard {
         super(DATA);
 
         Initialize(3, 2, 2);
-        SetUpgrade(2, 1, 0);
+        SetUpgrade(2, 0, 0);
         SetAffinity_Green(2, 0 ,0);
     }
 

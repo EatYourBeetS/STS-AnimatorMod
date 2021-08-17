@@ -365,7 +365,7 @@
 		},
 		"animator:IppoMakunouchi":
         {
-            "DESCRIPTION": "Gain !S! Vulnerable and Frail. In !M! turns, attack at the start of your turn, ignoring Weak. If you receive unblocked attack damage, cancel this attack.",
+            "DESCRIPTION": "Gain !S! [Vulnerable] and [Frail]. In !M! turns, attack at the start of your turn, ignoring Weak. If you receive unblocked attack damage, cancel this attack.",
             "NAME": "Ruchia"
         },
 		"animator:Kirby":
@@ -507,7 +507,7 @@
 		},
 		"animator:MikuIzayoi":
 		{
-			"DESCRIPTION": "Unaffected by Block modifiers. || <LIM>. !A! <B>. When Discarded: Give {Harmonic} to a card in your hand that has any of this card's affinities.",
+			"DESCRIPTION": "Unaffected by Block modifiers. || <LIM>. Synergy: Give {Harmonic} to a card in your hand that has any of this card's affinities.",
 			"NAME": "Miku Izayoi"
 		},
 		"animator:MioTakamiya":
@@ -600,7 +600,7 @@
 		},
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Gain/Boost [B]. Heal !M! HP. || <LIM>. !A! <B>. If ALL enemies intend to attack: Channel 1 [Water] and trigger it once.",
+			"DESCRIPTION": "Gain/Boost [B]. || <LIM>. !A! <B>. If ALL enemies intend to attack: Channel 1 [Water] and trigger it once.",
 			"NAME": "Barbara Pegg"
 		},
 		"animator:Curse_Delusion":
@@ -625,12 +625,12 @@
 		},
 		"animator:Ganyu":
 		{
-		  "DESCRIPTION": "Deals !M! more damage if the target has [~Lock-On]. You cannot ** gain [Block] for 2 turns. || <SLM>. When Exhausted, apply !S! [Freezing] ** to ALL enemies",
+		  "DESCRIPTION": "Deal !M! more damage if the target has [~Lock-On]. You cannot ** gain [Block] for 2 turns. || <SLM>. When Exhausted, apply !S! [Freezing] ** to ALL enemies.",
 		  "NAME": "Ganyu"
 		},
 		"animator:HuTao":
 		{
-		  "DESCRIPTION": "Exhaust !M! random {Hindrances} from anywhere. Add a {Searing Burn} to your Draw Pile for each. || When Exhausted: Add !S! {Searing Burn} to your hand.",
+		  "DESCRIPTION": "Exhaust up to !M! cards from your draw pile or hand. Add a {Searing Burn} to your ** hand for each. || When Exhausted: Add !S! {Searing Burn} to your hand.",
 		  "NAME": "Hu Tao"
 		},
 		"animator:JeanGunnhildr":
@@ -665,17 +665,17 @@
 		},
 		"animator:KokomiSangonomiyaV2":
         {
-        		"DESCRIPTION": "[Water] absorbs unblocked attack damage and reflects it back at the attacker.",
-        		"NAME": "Kokomi Sangonomiya"
+          "DESCRIPTION": "Lose !M! Dexterity. Channel !S! [Water]. Until the end of your next turn, [Water] absorbs unblocked attack damage and reflects it back at the attacker.",
+          "NAME": "Kokomi Sangonomiya"
         },
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M! cards. For each card, ** if its cost is: || 0 or None: Gain/Boost [I] ** 1 or X: Draw !S! more card(s) next turn. ** 2 or more: Induce [Lightning]",
+			"DESCRIPTION": "{Scry} !M! cards. For each card, ** if its cost is: || 0 or None: Gain/Boost [I] ** 1 or X: Gain [E] next turn. ** 2 or more: Induce [Lightning]",
 			"NAME": "Lisa Minci"
 		},
 		"animator:Noelle":
 		{
-			"DESCRIPTION": "{Starter}: If you have [Earth], ** Trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || <SLM>. !A! <O>: Retain a card in your hand.",
+			"DESCRIPTION": "{Starter}: If you have [Earth], ** Trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || Synergy: Retain 1 ** <O> or <R> card.",
 			"NAME": "Noelle"
 		},
 		"animator:OgoshoNarukami":
@@ -712,7 +712,7 @@
 		},
 		"animator:Zhongli":
 		{
-			"DESCRIPTION": "When Evoked, [Earth] gives half of their damage as [Block]. || Once per turn, pay [E]: ** {Channel} [Earth] and gain !M! [Plated Armor].",
+			"DESCRIPTION": "[Earth] gives half of its damage as [Block] when Evoked. || Pay [E]: {Channel} [Earth] ** and gain !M! [Plated Armor].",
 		  	"EXTENDED_DESCRIPTION": ["Pay #b1 [E] to channel #b1 [Earth] ** and gain {0} [Plated Armor]. || Your [Earth] now give half of their damage as [Block] when #yEvoked."],
 			"NAME": "Zhongli"
 		}
@@ -744,7 +744,7 @@
 		},
 		"animator:Kagari":
 		{
-			"DESCRIPTION": "Once per turn, When you Channel [Earth]: Gain !S! [W]. Boost !S! [W] in <WS>. || !A! <R> and <B>: Apply !M! [Shackles] ** to ALL enemies.",
+			"DESCRIPTION": "Once per turn, When you Channel [Earth]: Gain !S! [W]. Boost !S! [W] in <WS>. || !A! <R>, <B>: Apply !M! [Shackles] ** to ALL enemies.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you Channel #yEarth this turn, Gain #b{0} #yWillpower."],
 			"NAME": "Kagari"
 		},
@@ -1428,8 +1428,8 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !M! orb slot(s). || <B> Synergy bonus can ** be obtained 1 additional ** time each turn. || Pay 2 [E] to Channel 1 [Earth].",
-			"EXTENDED_DESCRIPTION": ["Pay {0} [E] to Channel {1} [Earth]. || <B> Synergy bonus can be obtained {1} additional time(s) each turn."],
+			"DESCRIPTION": "Gain !M! orb slot(s). || <B> Synergy bonus can ** be obtained 1 additional ** time each turn. || !A! <B>, <R>:  Channel 1 [Earth].",
+			"EXTENDED_DESCRIPTION": ["<B> Synergy bonus can be obtained {1} additional time(s) each turn."],
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":
@@ -1476,8 +1476,8 @@
 		},
 		"animator:PinaCoLada":
 		{
-			"DESCRIPTION": "The first {0-Cost} card ** you play each turn ** activates its effect twice.",
-			"EXTENDED_DESCRIPTION": ["Your next #b{0} #y0-Cost card(s) activate their effects twice."],
+			"DESCRIPTION": "The first {0-Cost} card ** you play each turn ** activates its effect twice. || Once per turn: Discard !M! cards to <DRW> next turn.",
+			"EXTENDED_DESCRIPTION": ["Once per turn: Discard #b{1} cards to draw 1 more card next turn. || Your next #b{0} #y0-Cost card(s) activate their effects twice."],
 			"NAME": "Pina Co Lada"
 		},
 		"animator:RoryMercury":

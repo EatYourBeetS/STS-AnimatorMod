@@ -67,10 +67,6 @@ import eatyourbeets.powers.affinity.CorruptionPower;
 import eatyourbeets.powers.affinity.*;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.common.*;
-import eatyourbeets.powers.common.BurningPower;
-import eatyourbeets.powers.common.FreezingPower;
-import eatyourbeets.powers.common.InspirationPower;
-import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.powers.replacement.ImprovedConstrictedPower;
 import eatyourbeets.powers.replacement.TemporaryArtifactPower;
 
@@ -488,6 +484,11 @@ public final class GameActions
         return StackPower(new ArtifactPower(player, amount));
     }
 
+    public ApplyPower GainBalance(int amount)
+    {
+        return StackPower(new BalancePower(player, amount));
+    }
+
     public ApplyAffinityPower GainBlessing(int amount)
     {
         return GainBlessing(amount, false);
@@ -513,59 +514,10 @@ public final class GameActions
         return StackPower(new BlurPower(player, amount));
     }
 
-    public ApplyAffinityPower GainForce(int amount)
-    {
-        return StackAffinityPower(ForcePower.AFFINITY_TYPE, amount, false);
-    }
-
-    public ApplyAffinityPower GainAgility(int amount)
-    {
-        return StackAffinityPower(AgilityPower.AFFINITY_TYPE, amount, false);
-    }
-
-    public ApplyAffinityPower GainIntellect(int amount)
-    {
-        return StackAffinityPower(IntellectPower.AFFINITY_TYPE, amount, false);
-    }
-
-    public ApplyAffinityPower GainWillpower(int amount)
-    {
-        return StackAffinityPower(WillpowerPower.AFFINITY_TYPE, amount, false);
-    }
-
-    public ApplyAffinityPower GainBlessing(int amount)
-    {
-        return StackAffinityPower(BlessingPower.AFFINITY_TYPE, amount, false);
-    }
 
     public ApplyAffinityPower GainCorruption(int amount)
     {
         return GainCorruption(amount, false);
-    }
-
-    public ApplyAffinityPower GainForce(int amount, boolean retain)
-    {
-        return StackAffinityPower(ForcePower.AFFINITY_TYPE, amount, retain);
-    }
-
-    public ApplyAffinityPower GainAgility(int amount, boolean retain)
-    {
-        return StackAffinityPower(AgilityPower.AFFINITY_TYPE, amount, retain);
-    }
-
-    public ApplyAffinityPower GainIntellect(int amount, boolean retain)
-    {
-        return StackAffinityPower(IntellectPower.AFFINITY_TYPE, amount, retain);
-    }
-
-    public ApplyAffinityPower GainWillpower(int amount, boolean retain)
-    {
-        return StackAffinityPower(WillpowerPower.AFFINITY_TYPE, amount, retain);
-    }
-
-    public ApplyAffinityPower GainBlessing(int amount, boolean retain)
-    {
-        return StackAffinityPower(BlessingPower.AFFINITY_TYPE, amount, retain);
     }
 
     public ApplyAffinityPower GainCorruption(int amount, boolean retain)
@@ -673,9 +625,14 @@ public final class GameActions
         return StackPower(new VitalityPower(player, amount));
     }
 
-    public ApplyPower GainFortuity(int amount)
+    public ApplyAffinityPower GainWillpower(int amount)
     {
-        return StackPower(new BalancePower(player, amount));
+        return GainWillpower(amount, false);
+    }
+
+    public ApplyAffinityPower GainWillpower(int amount, boolean retain)
+    {
+        return StackAffinityPower(WillpowerPower.AFFINITY_TYPE, amount, retain);
     }
 
     public HealCreature Heal(AbstractCreature source, AbstractCreature target, int amount)

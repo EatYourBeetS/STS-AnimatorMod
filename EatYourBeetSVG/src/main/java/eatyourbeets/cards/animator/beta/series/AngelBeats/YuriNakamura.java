@@ -24,7 +24,7 @@ public class YuriNakamura extends AnimatorCard
         Initialize(4, 8, 1, 0);
         SetUpgrade(1, 2);
         SetAffinity_Green(1, 0, 0);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Light(1, 0, 0);
         SetExhaust(true);
     }
 
@@ -44,7 +44,7 @@ public class YuriNakamura extends AnimatorCard
         if (!CombatStats.HasActivatedLimited(cardID))
         {
             GameActions.Bottom.SelectFromPile(name, magicNumber, p.exhaustPile)
-            .SetFilter(c -> !GameUtilities.IsCurseOrStatus(c) && !AfterLifeMod.IsAdded(c))
+            .SetFilter(c -> !GameUtilities.IsHindrance(c) && !AfterLifeMod.IsAdded(c))
             .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])
             .AddCallback(cards ->
             {

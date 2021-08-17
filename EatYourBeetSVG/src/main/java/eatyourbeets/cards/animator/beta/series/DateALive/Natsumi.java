@@ -57,7 +57,7 @@ public class Natsumi extends AnimatorCard
             {
                 for (AbstractCard card : cards)
                 {
-                    if (GameUtilities.IsCurseOrStatus(card))
+                    if (GameUtilities.IsHindrance(card))
                     {
                         GameActions.Bottom.MakeCardInDrawPile(new Curse_Depression());
                     }

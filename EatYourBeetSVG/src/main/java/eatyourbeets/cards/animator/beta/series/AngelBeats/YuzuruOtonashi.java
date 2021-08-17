@@ -23,6 +23,7 @@ public class YuzuruOtonashi extends AnimatorCard
         SetHaste(true);
         SetAffinity_Green(1, 0, 0);
         SetAffinity_Orange(1, 1, 0);
+        SetAffinity_Light(1, 0, 0);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class YuzuruOtonashi extends AnimatorCard
                 {
                     GameActions.Bottom.GainTemporaryHP(secondaryValue);
                 }
-                else if (GameUtilities.IsCurseOrStatus(card))
+                else if (GameUtilities.IsHindrance(card))
                 {
                     GameActions.Bottom.Draw(1);
                 }

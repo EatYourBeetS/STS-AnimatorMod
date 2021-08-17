@@ -5,16 +5,19 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.orbs.animator.Earth;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class PinaCoLada extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(PinaCoLada.class)
-            .SetPower(2, CardRarity.RARE)
+            .SetPower(3, CardRarity.RARE)
             .SetSeriesFromClassPackage();
 
     public PinaCoLada()
@@ -25,7 +28,7 @@ public class PinaCoLada extends AnimatorCard
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Light(1, 1, 0);
-        SetAffinity_Orange(1, 1, 0);
+        SetAffinity_Orange(2, 0, 0);
     }
 
     @Override
@@ -41,13 +44,13 @@ public class PinaCoLada extends AnimatorCard
         GameActions.Bottom.StackPower(new PinaCoLadaPower(p, 1));
     }
 
-    public class PinaCoLadaPower extends AnimatorPower
+    public class PinaCoLadaPower extends AnimatorClickablePower
     {
-        private int baseAmount;
+        private static final int DISCARD_AMOUNT = 2;
 
         public PinaCoLadaPower(AbstractCreature owner, int amount)
         {
-            super(owner, PinaCoLada.DATA);
+            super(owner, PinaCoLada.DATA, PowerTriggerConditionType.Discard, DISCARD_AMOUNT);
 
             Initialize(amount);
         }
@@ -57,6 +60,19 @@ public class PinaCoLada extends AnimatorCard
             super.atStartOfTurn();
 
             ResetAmount();
+        }
+
+        @Override
+        public void OnUse(AbstractMonster m)
+        {
+            GameActions.Bottom.ChannelOrb(new Earth());
+            GameActions.Bottom.StackPower(new DrawCardNextTurnPower(player, 1));
+        }
+
+        @Override
+        public String GetUpdatedDescription()
+        {
+            return FormatDescription(0, amount, DISCARD_AMOUNT);
         }
 
         @Override

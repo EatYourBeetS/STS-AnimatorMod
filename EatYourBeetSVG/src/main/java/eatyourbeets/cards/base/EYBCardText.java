@@ -165,7 +165,6 @@ public class EYBCardText
         {
             offset_y -= RenderBadge(sb, BADGES.Afterlife.Texture(), offset_y, alpha, null);
         }
-        if (card.isInnate)
         if (card.hasTag(GR.Enums.CardTags.DELAYED))
         {
             offset_y -= RenderBadge(sb, BADGES.Delayed.Texture(), offset_y, alpha, null);
@@ -182,15 +181,15 @@ public class EYBCardText
 
         if (card.selfRetain)
         {
-            offset_y -= RenderBadge(sb, BADGES.Retain.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.RetainInfinite.Texture(), offset_y, alpha, null);
         }
         else if (card.retain)
         {
-            offset_y -= RenderBadge(sb, BADGES.RetainOnce.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.Retain.Texture(), offset_y, alpha, null);
         }
         if (card.hasTag(GR.Enums.CardTags.HASTE_INFINITE))
         {
-            offset_y -= RenderBadge(sb, BADGES.Haste.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.HasteInfinite.Texture(), offset_y, alpha, null);
         }
         else if (card.hasTag(GR.Enums.CardTags.HASTE))
         {

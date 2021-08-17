@@ -5,12 +5,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -26,8 +24,6 @@ public class Noelle extends AnimatorCard
         SetUpgrade(0, 2, 0);
         SetAffinity_Orange(1, 1, 0);
         SetAffinity_Light(1, 0, 0);
-
-        SetAffinityRequirement(Affinity.Orange, 3);
     }
 
     @Override
@@ -58,12 +54,12 @@ public class Noelle extends AnimatorCard
             }
         }
 
-        if (CheckAffinity(Affinity.Orange) && CombatStats.TryActivateSemiLimited(cardID))
+        if (HasSynergy())
         {
             GameActions.Bottom.SelectFromHand(name, magicNumber, false)
                     .SetOptions(true, true, true)
                     .SetMessage(RetainCardsAction.TEXT[0])
-                    .SetFilter(c -> !c.isEthereal)
+                    .SetFilter(c -> !c.isEthereal && (GameUtilities.HasOrangeAffinity(c) || GameUtilities.HasRedAffinity(c)))
                     .AddCallback(cards ->
                     {
                         if (cards.size() > 0)

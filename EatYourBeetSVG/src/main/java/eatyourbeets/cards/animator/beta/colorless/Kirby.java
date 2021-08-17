@@ -347,7 +347,10 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
             this.cost = this.costForTurn = this.cost + card.cost;
         }
 
-        if (card.isInnate) {
+        if (card.hasTag(DELAYED)) {
+            SetDelayed(true);
+        }
+        else if (card.isInnate) {
             SetInnate(true);
         }
         if (card.isEthereal) {
@@ -405,10 +408,5 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
             cardText.OverrideDescription(null, true);
         }
     }
-
-    protected class KirbySavable {
-        //TODO
-    }
-
 
 }

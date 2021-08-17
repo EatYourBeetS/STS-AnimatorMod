@@ -7,9 +7,8 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
 
 public class Arpeggio extends AnimatorCard
@@ -43,23 +42,19 @@ public class Arpeggio extends AnimatorCard
         }
 
         GameActions.Bottom.StackPower(new ArpeggioPower(p, 1));
+
+        if (CheckAffinity(Affinity.Blue) && CheckAffinity(Affinity.Red)) {
+            GameActions.Bottom.ChannelOrb(new Earth());
+        }
     }
 
-    public static class ArpeggioPower extends AnimatorClickablePower
+    public static class ArpeggioPower extends AnimatorPower
     {
         public ArpeggioPower(AbstractCreature owner, int amount)
         {
-            super(owner, Arpeggio.DATA, PowerTriggerConditionType.Energy, Arpeggio.POWER_ENERGY_COST);
-
-            triggerCondition.SetUses(-1, false, false);
+            super(owner, Arpeggio.DATA);
 
             Initialize(amount);
-        }
-
-        @Override
-        public String GetUpdatedDescription()
-        {
-            return FormatDescription(0, triggerCondition.requiredAmount, amount);
         }
 
         @Override
@@ -84,14 +79,6 @@ public class Arpeggio extends AnimatorCard
             super.onRemove();
 
             CombatStats.Affinities.AddMaxActivationsPerTurn(Affinity.Blue, -amount);
-        }
-
-        @Override
-        public void OnUse(AbstractMonster m)
-        {
-            super.OnUse(m);
-
-            GameActions.Bottom.ChannelOrbs(Earth::new, Math.min(player.orbs.size(), amount));
         }
     }
 }

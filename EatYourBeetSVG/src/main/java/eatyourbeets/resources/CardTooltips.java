@@ -11,12 +11,6 @@ import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
 import eatyourbeets.powers.animator.*;
 import eatyourbeets.powers.common.*;
-import eatyourbeets.powers.animator.EnchantedArmorPower;
-import eatyourbeets.powers.animator.SupportDamagePower;
-import eatyourbeets.powers.common.BurningPower;
-import eatyourbeets.powers.common.FreezingPower;
-import eatyourbeets.powers.common.InspirationPower;
-import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.JUtils;
@@ -30,13 +24,13 @@ public class CardTooltips
 
     public EYBCardTooltip Energy = FindByName("[E]").ShowText(false);
     public EYBCardTooltip Unplayable = FindByID("Unplayable").ShowText(false);
-    public EYBCardTooltip RetainOnce = FindByID("~RetainOnce").ShowText(false);
     public EYBCardTooltip Exhaust = FindByID("Exhaust").ShowText(false);
     public EYBCardTooltip Channel = FindByID("Channel").ShowText(false);
     public EYBCardTooltip Evoke = FindByID("Evoke").ShowText(false);
     public EYBCardTooltip Block = FindByID("Block").ShowText(false);
     public EYBCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
     public EYBCardTooltip Stance = FindByID("Stance").ShowText(false);
+    public EYBCardTooltip Void = FindByID("Void").ShowText(false);
 
     public EYBCardTooltip Starter = FindByID("Starter");
     public EYBCardTooltip Limited = FindByID("Limited");
@@ -68,6 +62,8 @@ public class CardTooltips
     public EYBCardTooltip Haste = FindByID("~Haste");
     public EYBCardTooltip HasteInfinite = FindByID("~HasteInfinite");
     public EYBCardTooltip Retain = FindByID("~Retain");
+    public EYBCardTooltip RetainInfinite = FindByID("~RetainInfinite");
+    public EYBCardTooltip RetainOnce = FindByID("~RetainOnce");
     public EYBCardTooltip Metallicize = FindByID("Metallicize");
     public EYBCardTooltip PlatedArmor = FindByID("Plated Armor");
     public EYBCardTooltip EnchantedArmor = FindByID("Enchanted Armor");
@@ -106,7 +102,6 @@ public class CardTooltips
     public EYBCardTooltip Balance = FindByID("Balance");
     public EYBCardTooltip ElementalMastery = FindByID("Elemental Mastery");
     public EYBCardTooltip ElementalExposure = FindByID("Elemental Exposure");
-    public EYBCardTooltip Void = FindByID("Void").ShowText(false);
     public EYBCardTooltip Afterlife = FindByID("Afterlife");
     public EYBCardTooltip Rejuvenation = FindByID("Rejuvenation");
 
@@ -120,6 +115,7 @@ public class CardTooltips
     public EYBCardTooltip Affinity_General = FindByID("Affinity");
     public EYBCardTooltip Affinity_Power = FindByID("Affinity Power");
     public EYBCardTooltip Affinity_Token = FindByID("Affinity Token");
+    public EYBCardTooltip Affinity_Count = FindByID("Affinity Count");
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
     public EYBCardTooltip ThrowingKnife = new EYBCardTooltip(eatyourbeets.cards.animator.special.ThrowingKnife.DATA.Strings.NAME, null);
     public EYBCardTooltip GriefSeed = new EYBCardTooltip(Curse_GriefSeed.DATA.Strings.NAME, null);
@@ -182,8 +178,9 @@ public class CardTooltips
         CommonImages.Badges badges = GR.Common.Images.Badges;
         Exhaust.SetIcon(badges.Exhaust.Texture(), 6);
         Ethereal.SetIcon(badges.Ethereal.Texture(), 6);
-        RetainOnce.SetIcon(badges.RetainOnce.Texture(), 6);
+        RetainOnce.SetIcon(badges.Retain.Texture(), 6);
         Retain.SetIcon(badges.Retain.Texture(), 6);
+        RetainInfinite.SetIcon(badges.RetainInfinite.Texture(), 6);
         Innate.SetIcon(badges.Innate.Texture(), 6);
         Delayed.SetIcon(badges.Delayed.Texture(), 6);
         Haste.SetIcon(badges.Haste.Texture(), 6);

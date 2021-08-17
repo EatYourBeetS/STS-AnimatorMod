@@ -61,6 +61,14 @@ public class JUtils
         return false;
     }
 
+    public static <T> void ChangeIndex(T item, List<T> list, int index)
+    {
+        if (list.remove(item))
+        {
+            list.add(Math.max(0, Math.min(index, list.size())), item);
+        }
+    }
+
     public static <T> int Count(Iterable<T> list, Predicate<T> predicate)
     {
         int count = 0;

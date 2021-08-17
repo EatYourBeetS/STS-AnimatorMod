@@ -97,7 +97,7 @@ public class JunSakurada extends AnimatorCard
         @Override
         public void OnCardCreated(AbstractCard card, boolean startOfBattle)
         {
-            if (!GameUtilities.IsCurseOrStatus(card) && card.canUpgrade())
+            if (!GameUtilities.IsHindrance(card) && card.canUpgrade())
             {
                 if (this.TryActivate())
                 {

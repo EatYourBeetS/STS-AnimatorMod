@@ -8,11 +8,8 @@ import eatyourbeets.cards.animator.beta.status.SearingBurn;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class HuTao extends AnimatorCard
 {
@@ -37,12 +34,6 @@ public class HuTao extends AnimatorCard
     }
 
     @Override
-    public AbstractAttribute GetSpecialInfo()
-    {
-        return TempHPAttribute.Instance.SetCard(this, true);
-    }
-
-    @Override
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
@@ -57,19 +48,17 @@ public class HuTao extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
 
-        GameActions.Bottom.SelectFromPile(name, magicNumber, p.drawPile, p.hand, p.discardPile)
-                .SetOptions(true, true)
-                .SetFilter(GameUtilities::IsCurseOrStatus)
+        GameActions.Bottom.SelectFromPile(name, magicNumber, p.drawPile, p.hand)
+                .SetOptions(false, true)
                 .AddCallback(cards ->
                 {
                     for (AbstractCard card : cards)
                     {
                         GameActions.Bottom.Exhaust(card)
                                 .ShowEffect(true, true)
-                                .AddCallback(() -> GameActions.Bottom.MakeCardInDrawPile(new SearingBurn()));
+                                .AddCallback(() -> GameActions.Bottom.MakeCardInHand(new SearingBurn()));
                     }
                 });
 

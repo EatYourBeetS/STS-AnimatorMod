@@ -7,6 +7,8 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.orbs.animator.Water;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -22,7 +24,7 @@ public class BarbaraPegg extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4 );
+        Initialize(0, 0, 4);
         SetUpgrade(0, 0, 2);
         SetAffinity_Light(2);
         SetAffinity_Blue(1);
@@ -31,6 +33,12 @@ public class BarbaraPegg extends AnimatorCard
         SetAffinityRequirement(Affinity.Blue, 2);
         SetHealing(true);
         SetExhaust(true);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return HPAttribute.Instance.SetCard(this, true);
     }
 
     @Override

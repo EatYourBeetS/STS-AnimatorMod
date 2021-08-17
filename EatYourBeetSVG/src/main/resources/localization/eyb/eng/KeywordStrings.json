@@ -6,6 +6,12 @@
 		"NAMES": ["affinity"],
 		"PROPER_NAME": "Affinity"
 	},
+	"Affinity Count":
+	{
+		"DESCRIPTION": "The numbers to the right of each #yAffinity denote the number of cards in your hand that have that #Affinity. NL [A-Gen] denotes your current highest #yAffinity #yCount. NL #yAffinity effects on cards will only activate if your hand's #yAffinity #yCount passes the threshold of the #yAffinity listed on the card.",
+		"NAMES": ["affinity"],
+		"PROPER_NAME": "Affinity Count"
+	},
 	"Affinity Power":
 	{
 		"DESCRIPTION": "[A-Red] -> [F], [A-Green] -> [A], [A-Blue] -> [I], NL [A-Orange] -> [W], [A-Light] -> [B], [A-Dark] -> [C]",
@@ -38,7 +44,7 @@
 	},
 	"Balance":
 	{
-	  "DESCRIPTION": "Reduces the effects of Frail, Vulernable, and Weak.",
+	  "DESCRIPTION": "Reduces the effects of Frail, Vulernable, and Weak on you. Increases the effects of Frail, Vulernable, and Weak on the enemy.",
 	  "NAMES": ["balance"],
 	  "PROPER_NAME": "Balance"
 	},
@@ -116,15 +122,15 @@
 	},
 	"Elemental Exposure":
 	{
-	  "DESCRIPTION": "Amplifies the effects of Frail, Vulernable, and Weak. Lasts for 2 turns.",
-	  "NAMES": ["elemental exposure"],
-	  "PROPER_NAME": "Elemental Exposure"
+        "DESCRIPTION": "Amplifies the effects of Burning and Freezing. Lasts for 2 turns.",
+        "NAMES": ["elemental exposure"],
+        "PROPER_NAME": "Elemental Exposure"
 	},
 	"Elemental Mastery":
 	{
-	  "DESCRIPTION": "At the end of the turn, Inflict Elemental Exposure to all enemies. Stacks increase whenever an Orb is Channeled or Burning or Freezing is inflicted.",
-	  "NAMES": ["elemental mastery"],
-	  "PROPER_NAME": "Elemental Mastery"
+        "DESCRIPTION": "At the end of the turn, Inflict Elemental Exposure to all enemies. Stacks increase whenever an Orb is Channeled or Burning or Freezing is inflicted.",
+        "NAMES": ["elemental mastery"],
+        "PROPER_NAME": "Elemental Mastery"
 	},
 	"Enchanted Armor":
 	{

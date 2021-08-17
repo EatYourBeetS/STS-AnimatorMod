@@ -18,7 +18,7 @@ public class SoulGem extends AnimatorRelic
     {
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
         .SetOptions(false, true, true)
-        .SetFilter(GameUtilities::IsCurseOrStatus);
+        .SetFilter(GameUtilities::IsHindrance);
 
         flash();
     }

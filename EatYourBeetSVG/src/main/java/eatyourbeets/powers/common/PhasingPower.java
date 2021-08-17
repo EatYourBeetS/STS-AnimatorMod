@@ -5,13 +5,13 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.interfaces.subscribers.OnModifyDamageSubscriber;
+import eatyourbeets.interfaces.subscribers.OnRawDamageReceived;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 
-public class PhasingPower extends CommonPower implements OnModifyDamageSubscriber
+public class PhasingPower extends CommonPower implements OnRawDamageReceived
 {
     public static final String POWER_ID = CreateFullID(PhasingPower.class);
 
@@ -37,7 +37,7 @@ public class PhasingPower extends CommonPower implements OnModifyDamageSubscribe
     {
         super.onInitialApplication();
 
-        CombatStats.onModifyDamage.Subscribe(this);
+        CombatStats.onRawDamageReceived.Subscribe(this);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class PhasingPower extends CommonPower implements OnModifyDamageSubscribe
     {
         super.onRemove();
 
-        CombatStats.onModifyDamage.Unsubscribe(this);
+        CombatStats.onRawDamageReceived.Unsubscribe(this);
 
     }
 
@@ -85,7 +85,7 @@ public class PhasingPower extends CommonPower implements OnModifyDamageSubscribe
     }
 
     @Override
-    public int OnModifyDamage(AbstractCreature target, DamageInfo info, int damage)
+    public int OnRawDamageReceived(AbstractCreature target, DamageInfo info, int damage)
     {
         if (target == owner && info.type == DamageInfo.DamageType.NORMAL && rng.random(100) < amount)
         {

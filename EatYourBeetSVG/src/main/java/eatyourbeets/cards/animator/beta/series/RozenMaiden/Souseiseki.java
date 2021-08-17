@@ -59,7 +59,7 @@ public class Souseiseki extends AnimatorCard
 
     public void AfterExhaust(ArrayList<AbstractCard> cards)
     {
-        if (cards.size() > 0 && GameUtilities.IsCurseOrStatus(cards.get(0)))
+        if (cards.size() > 0 && GameUtilities.IsHindrance(cards.get(0)))
             GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID);
     }
 }

@@ -22,7 +22,7 @@ public class GazelDwargon extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 4, 1);
-        SetUpgrade(0, 1, 0, 0);
+        SetUpgrade(0, 0, 0, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Orange(2);
@@ -33,7 +33,7 @@ public class GazelDwargon extends AnimatorCard
     {
         if (upgraded)
         {
-            return BlockAttribute.Instance.SetCard(this).SetText("X+" + baseBlock, Settings.CREAM_COLOR);
+            return BlockAttribute.Instance.SetCard(this).SetText("X" + baseBlock, Settings.CREAM_COLOR);
         }
 
         return super.GetBlockInfo();

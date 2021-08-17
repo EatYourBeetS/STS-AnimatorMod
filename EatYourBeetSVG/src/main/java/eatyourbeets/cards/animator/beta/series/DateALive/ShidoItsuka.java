@@ -121,7 +121,7 @@ public class ShidoItsuka extends AnimatorCard
                 otherSynergicCards.add(c);
             }
 
-            else if (c instanceof AnimatorCard && !GameUtilities.IsCurseOrStatus(c)
+            else if (c instanceof AnimatorCard && !GameUtilities.IsHindrance(c)
             && !c.hasTag(AbstractCard.CardTags.HEALING)
             && c.rarity != AbstractCard.CardRarity.SPECIAL
             && c.rarity != AbstractCard.CardRarity.BASIC)

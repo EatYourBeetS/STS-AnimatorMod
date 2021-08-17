@@ -53,7 +53,7 @@ public class Chaa extends AnimatorCard
                 for (AbstractCard card : cards)
                 {
                     AbstractCard c;
-                    if (GameUtilities.IsCurseOrStatus(card))
+                    if (GameUtilities.IsHindrance(card))
                     {
                         c = AbstractDungeon.getCard(AbstractCard.CardRarity.COMMON).makeCopy();
                     }

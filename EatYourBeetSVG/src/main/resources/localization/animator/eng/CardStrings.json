@@ -973,7 +973,7 @@
 		},
 		"animator:NagisaMomoe":
 		{
-			"DESCRIPTION": "Randomly Gain/Boost ** [A], [F] or [I] !M! times. || When Exhausted: Add ** {Charlotte} and a [Grief Seed] to ** your discard pile.",
+			"DESCRIPTION": "Randomly Gain/Boost ** [A], [I] or [B] !M! times. || When Exhausted: Add ** {Charlotte} and a [Grief Seed] to ** your discard pile.",
 			"NAME": "Nagisa Momoe"
 		},
 		"animator:Oktavia":
@@ -1136,7 +1136,7 @@
 	{
 		"animator:Ainz":
 		{
-			"DESCRIPTION": "At the start of turn: ** choose and execute 1 ** of 4 random {Effects}. || When Drawn: Decrease ** this card's cost by 1, then ** randomly gain [I], [F] or [A].",
+			"DESCRIPTION": "At the start of turn: ** choose and execute 1 ** of 4 random {Effects}. || When Drawn: Decrease ** this card's cost by 1, then ** randomly Boost [I], [F] or [C].",
 			"NAME": "Ainz Ooal Gown"
 		},
 		"animator:Albedo":
@@ -1607,7 +1607,7 @@
 	{
 		"animator:Azriel":
 		{
-			"DESCRIPTION": "Gain 2 Flight. || Whenever you apply ** a {Debuff}: Randomly ** Boost [F], [A] or [I].",
+			"DESCRIPTION": "Gain 2 Flight. || Whenever you apply ** a {Debuff}: Boost ** a random {<W> Power}.",
 			"NAME": "Azriel"
 		},
 		"animator:Chomusuke":

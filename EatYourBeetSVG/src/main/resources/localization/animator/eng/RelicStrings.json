@@ -146,7 +146,7 @@
 	},
 	"animator:TheEruzaStone":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, gain 2 [E] and move a random #yPower from your discard pile to your draw pile."],
+		"DESCRIPTIONS": ["At the start of each turn, gain 2 [E]. Once per turn, when you play a #yPower, gain #b1 #yMetallicize."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Eruza Stone"
 	},

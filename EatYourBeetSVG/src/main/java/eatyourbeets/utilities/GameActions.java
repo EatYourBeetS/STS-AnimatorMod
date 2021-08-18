@@ -581,6 +581,11 @@ public final class GameActions
         return StackAffinityPower(null, amount, retain);
     }
 
+    public ApplyAffinityPower GainRandomAffinityPower(int amount, boolean retain, Affinity... affinities)
+    {
+        return StackAffinityPower(GameUtilities.GetRandomElement(affinities), amount, retain);
+    }
+
     public ApplyPower GainStrength(int amount)
     {
         return StackPower(new StrengthPower(player, amount));

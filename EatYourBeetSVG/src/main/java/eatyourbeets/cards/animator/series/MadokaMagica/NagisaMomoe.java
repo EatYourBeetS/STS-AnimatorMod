@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.animator.special.Charlotte;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -45,7 +46,7 @@ public class NagisaMomoe extends AnimatorCard
     {
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.GainRandomAffinityPower(1, upgraded);
+            GameActions.Bottom.GainRandomAffinityPower(1, upgraded, Affinity.Green, Affinity.Blue, Affinity.Light);
         }
     }
 }

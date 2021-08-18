@@ -21,6 +21,12 @@ public class FireCubePower extends AnimatorPower
     }
 
     @Override
+    public void updateDescription()
+    {
+        this.description = FormatDescription(0, amount, amount * 3);
+    }
+
+    @Override
     public void atEndOfTurn(boolean isPlayer)
     {
         super.atEndOfTurn(isPlayer);
@@ -28,14 +34,14 @@ public class FireCubePower extends AnimatorPower
         if (owner.isPlayer)
         {
             GameActions.Bottom.GainStrength(amount);
-            GameActions.Bottom.StackPower(null, new BurningPower(owner, null, amount))
+            GameActions.Bottom.StackPower(null, new BurningPower(owner, null, amount * 3))
             .ShowEffect(false, true)
             .IgnoreArtifact(true);
         }
         else for (AbstractCreature m : GameUtilities.GetEnemies(true))
         {
             GameActions.Bottom.StackPower(null, new StrengthPower(m, amount));
-            GameActions.Bottom.StackPower(null, new BurningPower(m, null, amount))
+            GameActions.Bottom.StackPower(null, new BurningPower(m, null, amount * 3))
             .ShowEffect(false, true)
             .IgnoreArtifact(true);
         }

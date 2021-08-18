@@ -1324,11 +1324,11 @@
 			"DESCRIPTION": "Once per turn, ** pay !S! [E]: {~Retain} ** all {[A-Gen] Powers} you ** gained this turn.",
 			"EXTENDED_DESCRIPTION": 
 			[
-				"Once per turn, ** pay !S! [E]: Boost [F] ** and gain !M! [Plated Armor].",
-				"Once per turn, ** pay !S! [E]: Boost [A] ** and Retain !M! card(s).",
-				"Once per turn, ** pay !S! [E]: Boost [I] ** and gain !M! orb slot(s).",
-				"Once per turn, ** pay !S! [E]: Boost [B] ** and gain !M! {Temp.} [Artifact].",
-				"Once per turn, ** pay !S! [E]: Boost [C] and ** convert {0} HP to !M! [Temp HP]."
+				"Once per turn, ** pay !S! [E]: Gain {0} [F] ** and gain !M! [Plated Armor].",
+				"Once per turn, ** pay !S! [E]: Gain {0} [A] ** and Retain !M! card(s).",
+				"Once per turn, ** pay !S! [E]: Gain {0} [I] ** and gain !M! orb slot(s).",
+				"Once per turn, ** pay !S! [E]: Gain {0} [B] ** and gain !M! {Temp.} [Artifact].",
+				"Once per turn, ** pay !S! [E]: Gain {0} [C] and ** convert {1} HP to !M! [Temp HP]."
 			],
 			"NAME": "Powers"
 		},
@@ -1339,7 +1339,7 @@
 			[
 				"Once per turn, ** pay !S! [E]: Apply ** !M! [Vulnerable] and {0} [Poison].",
 				"Once per turn, ** pay !S! [E]: Apply ** !M! [Vulnerable] and {0} [Weak].",
-				"Once per turn, ** pay !S! [E] and take ** {0} damage: Apply !M! [Vulnerable]."
+				"Once per turn, ** take {0} damage: ** Apply !M! [Vulnerable]."
 			],
 			"NAME": "Debuffs"
 		}

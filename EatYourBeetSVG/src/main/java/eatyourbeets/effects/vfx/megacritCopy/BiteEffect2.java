@@ -44,7 +44,7 @@ public class BiteEffect2 extends AbstractGameEffect
         this.y2 = this.sY2;
         this.startingDuration = 1.0F;
         this.duration = 0.7F;
-        this.color = c;
+        this.color = c.cpy();
         this.scale = Settings.scale;
     }
 

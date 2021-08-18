@@ -62,8 +62,8 @@ public abstract class AnimatorReward extends CustomReward
 
     public ArrayList<AbstractCard> GenerateCardReward(CardSeries series)
     {
-        RewardContext context = new RewardContext(series);
-        WeightedList<AbstractCard> randomPool = new WeightedList<>();
+        final RewardContext context = new RewardContext(series);
+        final WeightedList<AbstractCard> randomPool = new WeightedList<>();
         if (series != null && series != CardSeries.ANY)
         {
             AddCards(AbstractDungeon.srcCommonCardPool, randomPool, context);
@@ -75,7 +75,7 @@ public abstract class AnimatorReward extends CustomReward
             AddCards(AbstractDungeon.srcColorlessCardPool, randomPool, context);
         }
 
-        ArrayList<AbstractCard> result = new ArrayList<>();
+        final ArrayList<AbstractCard> result = new ArrayList<>();
         while (result.size() < context.rewardSize && randomPool.Size() > 0)
         {
             AbstractCard card = randomPool.Retrieve(AbstractDungeon.cardRng);

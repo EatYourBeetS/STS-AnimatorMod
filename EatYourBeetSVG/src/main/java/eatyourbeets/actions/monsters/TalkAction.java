@@ -16,9 +16,9 @@ public class TalkAction extends EYBActionWithCallback<AbstractCreature>
         this(source, message, 1.5f, 2f);
     }
 
-    public TalkAction(AbstractCreature source, String message, float duration, float effectDuration)
+    public TalkAction(AbstractCreature source, String message, float actionDuration, float effectDuration)
     {
-        super(ActionType.TEXT, duration);
+        super(ActionType.TEXT, actionDuration);
 
         this.effectDuration = effectDuration;
         this.isRealtime = true;

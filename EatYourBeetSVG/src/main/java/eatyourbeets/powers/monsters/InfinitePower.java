@@ -24,7 +24,9 @@ import eatyourbeets.cards.animator.series.NoGameNoLife.ChlammyZell;
 import eatyourbeets.cards.animator.series.OnePunchMan.Boros;
 import eatyourbeets.cards.animator.series.Overlord.Ainz;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.Guren;
+import eatyourbeets.cards.animator.ultrarare.Cthulhu;
 import eatyourbeets.cards.animator.ultrarare.SummoningRitual;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
@@ -325,9 +327,13 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         {
             Talk(21, 2.5f);
         }
-        else if (card instanceof SummoningRitual)
+        else if (card instanceof SummoningRitual || card instanceof Cthulhu)
         {
             Talk(35, 2.5f);
+        }
+        else if (card instanceof AnimatorCard_UltraRare)
+        {
+            Talk(36, 2.5f);
         }
     }
 
@@ -335,7 +341,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     {
         if (!linesUsed.contains(line) && owner.currentHealth > 500 && !phase2)
         {
-            GameActions.Bottom.Talk(owner, dialog[line], 1.5f, duration);
+            GameActions.Bottom.Talk(owner, dialog[line], 1f, duration);
 
             linesUsed.add(line);
         }

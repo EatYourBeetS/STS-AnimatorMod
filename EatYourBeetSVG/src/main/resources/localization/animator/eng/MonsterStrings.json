@@ -391,7 +391,7 @@
 			"Nice try. Do not do that again.",
 			"I am warning you...",
 			"Stop this nonsense",
-			"LAST WARNING.",
+			"LAST WARNING. I WILL INSTANTLY KILL YOU.",
 			"You were warned... Goodnight.",
 			"I... will return...",
 			"Ahem... Cheerio?",
@@ -400,7 +400,8 @@
 			"<UNUSED>",
 			"Intangible? You are not the only one who can use that.",
 			"Oh Look! It seems your time is over. Bye!",
-			"What? What kind of joke is this?"
+			"What? What kind of joke is this?",
+			"Where exactly did you find that?"
 		]
 	}
 }

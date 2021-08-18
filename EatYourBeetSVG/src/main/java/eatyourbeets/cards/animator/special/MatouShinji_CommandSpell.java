@@ -19,12 +19,13 @@ public class MatouShinji_CommandSpell extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 3);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Blue(1);
         SetAffinity_Dark(2);
 
+        SetRetain(true);
         SetPurge(true);
     }
 

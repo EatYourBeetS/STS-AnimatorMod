@@ -146,7 +146,7 @@
 	},
 	"animator:TheEruzaStone":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, gain 2 [E]. Once per turn, when you play a #yPower, gain #b1 #yMetallicize."],
+		"DESCRIPTIONS": ["At the start of each turn, gain 2[E]. Once per turn, when you play a #yPower, gain #b1 [Metallicize]."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Eruza Stone"
 	},

@@ -26,7 +26,7 @@
 	},
 	"Enchanted Armor":
 	{
-		"DESCRIPTION": "For every attack received, lose #b3 [Enchanted Armor] at the start of turn. NL Take less damage from #yAttacks. NL Example: NL #b10 -> #g10%, #b25 -> #g20%, NL #b50 -> #g33%, #b100 -> #g50%",
+		"DESCRIPTION": "For every #yAttack received, lose #b2 [Enchanted Armor] at the start of turn (max #b10 per turn). NL Take less damage from #yAttacks. NL Example: NL #b10 -> #g10%, #b25 -> #g20%, NL #b50 -> #g33%, #b100 -> #g50%",
 		"NAMES": ["enchanted armor", "ench. armor"],
 		"PROPER_NAME": "Enchanted Armor"
 	},

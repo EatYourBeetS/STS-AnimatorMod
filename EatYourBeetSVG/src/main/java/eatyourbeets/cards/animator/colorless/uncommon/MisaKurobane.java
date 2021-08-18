@@ -28,7 +28,7 @@ public class MisaKurobane extends AnimatorCard
         Initialize(0, 0,1);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Red(1);
 
         SetExhaust(true);
         SetEvokeOrbCount(1);

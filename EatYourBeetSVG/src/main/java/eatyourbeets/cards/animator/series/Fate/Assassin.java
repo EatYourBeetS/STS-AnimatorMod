@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.Fate;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -12,6 +11,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -81,17 +82,14 @@ public class Assassin extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL)
-        .SetDamageEffect(this::DamageEffect)
-        .SetDuration(0.3f, false);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
+        .SetDamageEffect(this::DamageEffect);
 
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL)
-        .SetDamageEffect(this::DamageEffect)
-        .SetDuration(0.3f, false);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
+        .SetDamageEffect(this::DamageEffect);
 
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL)
-        .SetDamageEffect(this::DamageEffect)
-        .SetDuration(0.2f, false);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
+        .SetDamageEffect(this::DamageEffect);
     }
 
     private float DamageEffect(AbstractCreature e)
@@ -128,6 +126,7 @@ public class Assassin extends AnimatorCard
             EFFECT = 0;
         }
 
-        return GameEffects.List.Add(new AnimatedSlashEffect(x, y, dx, dy, angle, scale, Color.VIOLET.cpy(), Color.TEAL.cpy())).duration;
+        SFX.Play(SFX.ATTACK_IRON_1, 0.85f + (0.2f * EFFECT));
+        return GameEffects.List.Add(new AnimatedSlashEffect(x, y, dx, dy, angle, scale, Color.VIOLET.cpy(), Color.TEAL.cpy())).duration * 0.4f;
     }
 }

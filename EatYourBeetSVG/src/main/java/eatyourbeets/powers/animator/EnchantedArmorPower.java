@@ -135,7 +135,7 @@ public class EnchantedArmorPower extends AnimatorPower implements OnRawDamageRec
 
         if (!reactive && attacksReceived > 0)
         {
-            ReducePower(attacksReceived * 2);
+            ReducePower(Math.min(10, attacksReceived * 2));
             attacksReceived = 0;
         }
     }

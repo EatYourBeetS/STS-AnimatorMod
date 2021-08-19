@@ -38,6 +38,7 @@ public class CommonImages
     public final TextureCache Arrow_Right                 = new TextureCache("images/eyb/ui/topPanel/Arrow_Right.png");
     public final TextureCache Draggable                   = new TextureCache("images/eyb/ui/topPanel/Draggable.png");
     public final TextureCache FullSquare                  = new TextureCache("images/eyb/ui/topPanel/FullSquare.png");
+    public final TextureCache Info                        = new TextureCache("images/eyb/ui/topPanel/Info.png");
 
     public static class CardIcons
     {
@@ -124,6 +125,14 @@ public class CommonImages
         public final TextureCache Earth4           = new TextureCache("images/animator/orbs/Earth4.png");
         public final TextureCache FireExternal     = new TextureCache("images/animator/orbs/FireExternal.png");
         public final TextureCache FireInternal     = new TextureCache("images/animator/orbs/FireInternal.png");
+        public final TextureCache FireParticle1     = new TextureCache("images/animator/orbs/FireParticle1.png");
+        public final TextureCache FireParticle2     = new TextureCache("images/animator/orbs/FireParticle2.png");
+        public final TextureCache FireParticle3     = new TextureCache("images/animator/orbs/FireParticle3.png");
+        public final TextureCache Water1           = new TextureCache("images/animator/orbs/Water1.png");
+        public final TextureCache Water2           = new TextureCache("images/animator/orbs/Water2.png");
+        public final TextureCache Water3           = new TextureCache("images/animator/orbs/Water3.png");
+        public final TextureCache Water4           = new TextureCache("images/animator/orbs/Water4.png");
+        public final TextureCache WaterBubble      = new TextureCache("images/animator/orbs/WaterBubble.png");
     }
 
     public static class Effects
@@ -142,5 +151,9 @@ public class CommonImages
         public final TextureCache AirSlice         = new TextureCache("images/animator/effects/AirSlice.png");
         public final TextureCache AirTrail         = new TextureCache("images/animator/effects/AirTrail.png");
         public final TextureCache Spear            = new TextureCache("images/animator/effects/Spear.png");
+        public final TextureCache Darkness         = new TextureCache("images/animator/effects/Darkness.png");
+        public final TextureCache FireBurst        = new TextureCache("images/animator/effects/FireBurst.png");
+        public final TextureCache Psi              = new TextureCache("images/animator/effects/Psi.png");
+        public final TextureCache Water            = new TextureCache("images/animator/effects/Water.png");
     }
 }

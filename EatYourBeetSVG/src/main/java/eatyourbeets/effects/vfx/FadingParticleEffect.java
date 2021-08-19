@@ -18,11 +18,11 @@ public class FadingParticleEffect extends EYBEffect
     protected float alpha;
     protected boolean isTranslucent;
 
-    public FadingParticleEffect(Texture texture, float x, float y, float size)
+    public FadingParticleEffect(Texture texture, float x, float y)
     {
         super(Settings.ACTION_DUR_FAST, false);
 
-        this.projectile = new Projectile(texture, size, size);
+        this.projectile = new Projectile(texture, texture.getWidth(), texture.getHeight());
         this.projectile.SetPosition(x, y).SetTargetPosition(x, y);
         this.x = x;
         this.y = y;
@@ -37,9 +37,24 @@ public class FadingParticleEffect extends EYBEffect
         return this;
     }
 
+    public FadingParticleEffect SetRotation(float startRotation, float targetRotation)
+    {
+        this.projectile.SetRotation(startRotation);
+        this.projectile.SetTargetRotation(targetRotation);
+
+        return this;
+    }
+
     public FadingParticleEffect SetScale(float scale)
     {
         this.projectile.scale = scale;
+
+        return this;
+    }
+
+    public FadingParticleEffect SetTargetScale(float scale, float growthRate)
+    {
+        this.projectile.SetTargetScale(scale, growthRate);
 
         return this;
     }

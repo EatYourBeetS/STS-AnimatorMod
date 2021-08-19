@@ -78,6 +78,7 @@ public class CardTooltips
     public EYBCardTooltip Freezing = FindByID("Freezing");
     public EYBCardTooltip Blinded = FindByID("Blinded");
     public EYBCardTooltip Thorns = FindByID("Thorns");
+    public EYBCardTooltip TemporaryThorns = FindByID("Temporary Thorns");
     public EYBCardTooltip Constricted = FindByID("Constricted");
     public EYBCardTooltip Malleable = FindByID("Malleable");
     public EYBCardTooltip FlameBarrier = FindByID("Flame Barrier");
@@ -104,6 +105,9 @@ public class CardTooltips
     public EYBCardTooltip ElementalExposure = FindByID("Elemental Exposure");
     public EYBCardTooltip Afterlife = FindByID("Afterlife");
     public EYBCardTooltip Rejuvenation = FindByID("Rejuvenation");
+    public EYBCardTooltip Strength = FindByID("~Strength");
+    public EYBCardTooltip Dexterity = FindByID("~Dexterity");
+    public EYBCardTooltip Focus = FindByID("~Focus");
 
     // No Description
     public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null).ShowText(false);
@@ -234,6 +238,7 @@ public class CardTooltips
         LoadFromPower(Vitality, new VitalityPower(FakeCharacter.Instance, 0));
         LoadFromPower(Ritual, new RitualPower(FakeCharacter.Instance, 0, true));
         LoadFromPower(Thorns, new ThornsPower(FakeCharacter.Instance, 0));
+        LoadFromPower(TemporaryThorns, new EarthenThornsPower(FakeCharacter.Instance, 0));
         LoadFromPower(FlameBarrier, new FlameBarrierPower(FakeCharacter.Instance, 0));
         LoadFromPower(Blur, new BlurPower(FakeCharacter.Instance, 0));
         LoadFromPower(Artifact, new ArtifactPower(FakeCharacter.Instance, 0));
@@ -249,6 +254,9 @@ public class CardTooltips
         LoadFromPower(ElementalMastery, new ElementalMasteryPower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalExposure, new ElementalExposurePower(FakeCharacter.Instance, 0));
         LoadFromPower(Rejuvenation, new RejuvenationPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Strength, new StrengthPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Dexterity, new DexterityPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Focus, new FocusPower(FakeCharacter.Instance, 0));
 
         //These use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);

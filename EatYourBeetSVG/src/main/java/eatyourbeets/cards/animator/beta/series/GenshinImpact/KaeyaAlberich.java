@@ -4,15 +4,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
-import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class KaeyaAlberich extends AnimatorCard {
@@ -21,7 +20,7 @@ public class KaeyaAlberich extends AnimatorCard {
     public KaeyaAlberich() {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 2);
         SetUpgrade(0, 2, 0);
         SetAffinity_Orange(1, 1, 0);
         SetAffinity_Green(1, 0, 0);
@@ -40,7 +39,7 @@ public class KaeyaAlberich extends AnimatorCard {
         GameActions.Bottom.ChannelOrb(new Frost()).AddCallback(() -> {
             AbstractOrb firstCommonOrb = null;
             for (AbstractOrb orb : player.orbs)
-                if (Fire.ORB_ID.equals(orb.ID) || Frost.ORB_ID.equals(orb.ID) || Lightning.ORB_ID.equals(orb.ID)) {
+                if (GameUtilities.IsCommonOrb(orb)) {
                     firstCommonOrb = orb;
                     break;
                 }

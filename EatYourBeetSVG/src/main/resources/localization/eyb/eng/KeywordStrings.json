@@ -90,6 +90,12 @@
 		"NAMES": ["common debuff", "common debuffs"],
 		"PROPER_NAME": "Common Debuff"
 	},
+	"Common Orb":
+	{
+		"DESCRIPTION": "[Fire], [Frost], [Lightning], [Dark].",
+		"NAMES": ["common orb", "common orbs"],
+		"PROPER_NAME": "Common Orb"
+	},
 	"Constricted":
 	{
 		"DESCRIPTION": "Take damage at the end of each turn.",
@@ -128,7 +134,7 @@
 	},
 	"Elemental Mastery":
 	{
-        "DESCRIPTION": "At the end of the turn, Inflict Elemental Exposure to all enemies. Stacks increase whenever an Orb is Channeled or Burning or Freezing is inflicted.",
+        "DESCRIPTION": "At the end of the turn, Inflict Elemental Exposure to all enemies. Stacks increase whenever an Orb is Channeled or Induced.",
         "NAMES": ["elemental mastery"],
         "PROPER_NAME": "Elemental Mastery"
 	},
@@ -337,10 +343,16 @@
 		"PROPER_NAME": "Stun"
 	},
 	"Temporary HP":
+    {
+    	"DESCRIPTION": "Temporary HP lasts until end of combat.",
+    	"NAMES": ["temporary hp", "temp. hp"],
+    	"PROPER_NAME": "Temporary HP"
+    },
+	"Temporary Thorns":
 	{
-		"DESCRIPTION": "Temporary HP last until end of combat.",
-		"NAMES": ["temporary hp", "temp. hp"],
-		"PROPER_NAME": "Temporary HP"
+		"DESCRIPTION": "When attacked, deal damage to the attacker. Removed at the end of turn.",
+		"NAMES": ["temporary thorns", "temp. thorns"],
+		"PROPER_NAME": "Temporary Thorns"
 	},
 	"Vitality":
 	{
@@ -372,6 +384,12 @@
 		"NAMES": ["~damage"],
 		"PROPER_NAME": "Normal Damage"
 	},
+	"~Dexterity":
+    {
+        "DESCRIPTION": "Dexterity increases #yBlock gained from cards.",
+        "NAMES": ["~dexterity"],
+        "PROPER_NAME": "Dexterity"
+    },
 	"~Elemental":
 	{
 		"DESCRIPTION": "Ignores #yThorns. Deal #b30% additional damage if the enemy has #yBlock.",
@@ -384,6 +402,12 @@
 		"NAMES": ["~ethereal"],
 		"PROPER_NAME": "Ethereal"
 	},
+	"~Focus":
+    {
+        "DESCRIPTION": "Focus increases the effectiveness of your orbs.",
+        "NAMES": ["~focus"],
+        "PROPER_NAME": "Focus"
+    },
 	"~Haste":
 	{
 		"DESCRIPTION": "When drawn, draw 1 card.",
@@ -456,6 +480,12 @@
 		"NAMES": ["~steal"],
 		"PROPER_NAME": "Steal"
 	},
+	"~Strength":
+    {
+    	"DESCRIPTION": "Strength increases the damage of your attacks.",
+    	"NAMES": ["~strength"],
+    	"PROPER_NAME": "Strength"
+    },
 	"~Unique":
 	{
 		"DESCRIPTION": "Can be #yUpgraded any number of times. You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead.",

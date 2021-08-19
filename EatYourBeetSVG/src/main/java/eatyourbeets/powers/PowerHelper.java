@@ -45,6 +45,7 @@ public class PowerHelper
     public static final PowerHelper Thorns = new PowerHelper(ThornsPower.POWER_ID, GR.Tooltips.Thorns, ThornsPower::new);
     public static final PowerHelper TemporaryThorns = new PowerHelper(EarthenThornsPower.POWER_ID, null, EarthenThornsPower::new);
     public static final PowerHelper Shackles = new PowerHelper(ShacklesDebuffPower.POWER_ID, GR.Tooltips.Shackles, ShacklesDebuffPower::new);
+    public static final PowerHelper SelfDamage = new PowerHelper(SelfDamagePower.POWER_ID, GR.Tooltips.SelfDamage, SelfDamagePower::new);
 
     public final String ID;
     public EYBCardTooltip Tooltip;

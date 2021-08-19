@@ -1,7 +1,7 @@
 package eatyourbeets.resources.animator.loadouts.beta;
 
 import eatyourbeets.cards.animator.beta.series.GenshinImpact.*;
-import eatyourbeets.cards.animator.beta.ultrarare.Traveler;
+import eatyourbeets.cards.animator.beta.ultrarare.Dainsleif;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -35,6 +35,6 @@ public class Loadout_GenshinImpact extends AnimatorLoadout
     @Override
     public EYBCardData GetUltraRare()
     {
-        return Traveler.DATA;
+        return Dainsleif.DATA;
     }
 }

@@ -1,6 +1,7 @@
 package eatyourbeets.powers.common;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -8,6 +9,7 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.powers.animator.ElementalExposurePower;
 import eatyourbeets.ui.animator.combat.CombatHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -26,11 +28,6 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
     public static float CalculateDamage(float damage, float percentage)
     {
         return Math.max(0, damage - Math.max(1f, damage * (percentage / 100f)));
-    }
-    private float GetMultiplier() {return (GameUtilities.IsPlayer(owner)) ? REDUCTION_MULTIPLIER : Math.min(MAX_REDUCTION_MULTIPLIER, REDUCTION_MULTIPLIER + PLAYER_REDUCTION_BONUS);}
-    private int GetPassiveDamage()
-    {
-        return amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2;
     }
 
     public static void AddPlayerReductionBonus(int multiplier)
@@ -100,5 +97,18 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
     public int calculateDamageGiven(float damage, DamageInfo.DamageType type)
     {
         return (int) ((type == DamageInfo.DamageType.NORMAL) ? CalculateDamage(damage, GetMultiplier()) : damage);
+    }
+
+    private float GetMultiplier() {
+        return (GameUtilities.IsPlayer(owner)) ? REDUCTION_MULTIPLIER : Math.min(MAX_REDUCTION_MULTIPLIER, REDUCTION_MULTIPLIER + PLAYER_REDUCTION_BONUS) * GetElementalExposure();
+    }
+
+    private int GetPassiveDamage()
+    {
+        return MathUtils.round((amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2) * GetElementalExposure());
+    }
+
+    private float GetElementalExposure() {
+        return ElementalExposurePower.CalculatePercentage(GameUtilities.GetPowerAmount(owner, ElementalExposurePower.POWER_ID));
     }
 }

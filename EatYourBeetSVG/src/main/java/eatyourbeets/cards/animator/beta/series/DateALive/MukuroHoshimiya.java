@@ -11,8 +11,6 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -29,7 +27,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
         Initialize(14, 0, 4, 3);
         SetUpgrade(0,0,-1);
         SetAffinity_Blue(2, 0, 0);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Light(1, 0, 0);
     }
 
     @Override
@@ -45,8 +43,13 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
         GameActions.Bottom.DealDamage(this, m, AttackEffects.PSYCHOKINESIS).AddCallback(() ->
                 GameActions.Bottom.Scry(secondaryValue).AddCallback(cards ->
                         {
-                            if (cards.size() > 0) {
-                                cardList.addAll(cards);
+                            for (AbstractCard card : cards) {
+                                if (!card.hasTag(DELAYED)) {
+                                    cardList.add(card);
+                                    card.tags.add(DELAYED);
+                                }
+                            }
+                            if (cardList.size() > 0) {
                                 CombatStats.onShuffle.Subscribe(this);
                             }
                         }
@@ -72,11 +75,9 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
     public void OnShuffle(boolean triggerRelics)
     {
         GameActions.Top.Callback(() -> {
-            for (int i = 0; i < cardList.size(); i++) {
-                AbstractCard card = cardList.get(i);
+            for (AbstractCard card : cardList) {
                 if (card != null) {
-                    GameEffects.Queue.ShowCardBriefly(makeStatEquivalentCopy());
-                    JUtils.ChangeIndex(cardList.get(i), player.drawPile.group, i);
+                    card.tags.remove(DELAYED);
                 }
 
             }

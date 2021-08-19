@@ -72,8 +72,8 @@
 	},
 	"animator:EarthenThornsPower":
 	{
-		"DESCRIPTIONS": ["When attacked, deal #b{0} damage to the attacker."],
-		"NAME": "Earthen Thorns"
+		"DESCRIPTIONS": ["When attacked, deal #b{0} damage to the attacker. Removed at the end of turn."],
+		"NAME": "Temporary Thorns"
 	},
 	"animator:ElementalExposurePower":
 	{
@@ -82,7 +82,7 @@
 	},
 	"animator:ElementalMasteryPower":
 	{
-	  "DESCRIPTIONS": ["For #b{0} turn(s): At the end of the turn, inflict Elemental Exposure to all enemies, ignoring Artifact. Increase this amount by #b{1} whenever an Orb is Channeled and by #b{2} whenever you apply Burning or Freezing."],
+	  "DESCRIPTIONS": ["For #b{0} turn(s): At the end of the turn, inflict Elemental Exposure to all enemies, ignoring Artifact. Increase this amount by #b{1} whenever an Orb is Channeled, Evoked, or Induced."],
 	  "NAME": "Elemental Mastery"
 	},
 	"animator:EmiyaShirouPower":

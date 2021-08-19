@@ -84,11 +84,9 @@
 			"Draw {0} card(s)",
 			"Discard {0} card(s)",
 			"Exhaust {0} card(s)",
-			
 			"Gain {0} Orb Slot(s)",		
 			"Channel {0} random Orb(s)",
 			"Channel {0} {1}",
-			
 			"Motivate {0}",
 			"Upgrade all cards NL in your hand",
 			"Gain !M! Intangible. NL Lose this Power",
@@ -103,7 +101,24 @@
 			"Next turn: Gain {0} [E]",
 			"Enter any stance",
 			"Pay {0} [E]",
-			"Lose {0} HP"
+			"Lose {0} HP",
+            "Give a random enemy NL {0} {1}",
+			"Give ALL enemies NL {0} {1}",
+			"Lose {0} {1}",
+			"Take {0} damage at the end of turn",
+			"Add {0} {1} to your discard pile",
+			"Add {0} {1} to your draw pile",
+			"Add {0} {1} to your hand",
+			"Discard {0} random card(s)",
+			"Exhaust {0} random card(s)",
+			"Next turn: Draw {0} fewer card(s)",
+			"Next turn: Lose {0} [E]",
+			"Play {0}",
+			"Play {0} from anywhere",
+			"Play a random Orb Core",
+			"Play a random Affinity Token",
+			"Add a random {0} card to your hand. It costs 1 less",
+			"End your turn"
 		]
 	},
 

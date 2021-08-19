@@ -14,15 +14,13 @@ public class Loadout_TenseiSlime extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeData()
+    public void AddStarterCards()
     {
-        super.InitializeData();
-
-        AddToSpecialSlots(Benimaru.DATA, 5);
-        AddToSpecialSlots(Shuna.DATA, 5);
-        AddToSpecialSlots(Shion.DATA, 6);
-        AddToSpecialSlots(Souei.DATA, 7);
-        AddToSpecialSlots(Rimuru.DATA, 18);
+        AddStarterCard(Benimaru.DATA, 5);
+        AddStarterCard(Shuna.DATA, 5);
+        AddStarterCard(Shion.DATA, 6);
+        AddStarterCard(Souei.DATA, 7);
+        AddStarterCard(Rimuru.DATA, 18);
     }
 
     @Override

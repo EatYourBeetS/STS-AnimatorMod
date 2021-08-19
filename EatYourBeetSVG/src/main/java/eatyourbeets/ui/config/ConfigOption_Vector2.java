@@ -1,4 +1,4 @@
-package eatyourbeets.resources.animator.misc;
+package eatyourbeets.ui.config;
 
 import basemod.ModPanel;
 import com.badlogic.gdx.math.Vector2;

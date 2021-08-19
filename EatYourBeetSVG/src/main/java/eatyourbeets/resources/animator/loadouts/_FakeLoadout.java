@@ -2,6 +2,7 @@ package eatyourbeets.resources.animator.loadouts;
 
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
@@ -27,6 +28,12 @@ public class _FakeLoadout extends AnimatorLoadout
         }
 
         return startingDeck;
+    }
+
+    @Override
+    public void AddStarterCards()
+    {
+        AddStarterCard(QuestionMark.DATA, 10);
     }
 
     @Override

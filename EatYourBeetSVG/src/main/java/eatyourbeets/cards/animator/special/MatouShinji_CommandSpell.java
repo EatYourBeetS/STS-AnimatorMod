@@ -19,8 +19,8 @@ public class MatouShinji_CommandSpell extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0);
+        SetUpgrade(0, 0);
 
         SetAffinity_Blue(1);
         SetAffinity_Dark(2);
@@ -52,8 +52,8 @@ public class MatouShinji_CommandSpell extends AnimatorCard
             {
                 for (AbstractCard c : cards)
                 {
+                    GameActions.Bottom.IncreaseScaling(c, Affinity.Star, c.costForTurn);
                     GameActions.Bottom.Motivate(c, 1);
-                    GameActions.Bottom.IncreaseExistingScaling(c, magicNumber);
                 }
             });
         }

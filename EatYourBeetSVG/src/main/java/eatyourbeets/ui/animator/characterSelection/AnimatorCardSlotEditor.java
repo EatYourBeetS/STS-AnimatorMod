@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.misc.CardSlot;
+import eatyourbeets.resources.animator.misc.AnimatorCardSlot;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.controls.GUI_Image;
@@ -18,7 +18,7 @@ import eatyourbeets.ui.hitboxes.RelativeHitbox;
 
 public class AnimatorCardSlotEditor extends GUIElement
 {
-    public CardSlot slot;
+    public AnimatorCardSlot slot;
     public AnimatorLoadoutEditor loadoutEditor;
 
     protected static final float CARD_SCALE = 0.75f;
@@ -59,7 +59,7 @@ public class AnimatorCardSlotEditor extends GUIElement
         SetSlot(null);
     }
 
-    public AnimatorCardSlotEditor SetSlot(CardSlot slot)
+    public AnimatorCardSlotEditor SetSlot(AnimatorCardSlot slot)
     {
         if (slot == null)
         {

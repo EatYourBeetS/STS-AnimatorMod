@@ -1507,7 +1507,7 @@
 		},
 		"animator:MatouShinji_CommandSpell":
 		{
-			"DESCRIPTION": "Lose 1 orb slot to ** Fetch a <R> or <G> card ** from your discard pile, ** Motivate it and increase ** its scalings by !M!.",
+			"DESCRIPTION": "Lose 1 orb slot to ** Fetch a <R> or <G> card ** from your discard pile, ** give it + <S> scaling equal to ** its cost{+ +1} and Motivate it.",
 			"NAME": "Command Spell"
 		},
 		"animator:Soujiro_Isami":

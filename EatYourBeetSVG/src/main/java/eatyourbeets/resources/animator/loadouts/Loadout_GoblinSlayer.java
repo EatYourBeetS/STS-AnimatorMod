@@ -14,16 +14,14 @@ public class Loadout_GoblinSlayer extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeData()
+    public void AddStarterCards()
     {
-        super.InitializeData();
-
-        AddToSpecialSlots(DwarfShaman.DATA, 4);
-        AddToSpecialSlots(LizardPriest.DATA, 4);
-        AddToSpecialSlots(HighElfArcher.DATA, 5);
-        AddToSpecialSlots(Priestess.DATA, 6);
-        AddToSpecialSlots(Spearman.DATA, 7);
-        AddToSpecialSlots(Witch.DATA, 9);
+        AddStarterCard(DwarfShaman.DATA, 4);
+        AddStarterCard(LizardPriest.DATA, 4);
+        AddStarterCard(HighElfArcher.DATA, 5);
+        AddStarterCard(Priestess.DATA, 6);
+        AddStarterCard(Spearman.DATA, 7);
+        AddStarterCard(Witch.DATA, 9);
     }
 
     @Override

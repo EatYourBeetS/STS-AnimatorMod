@@ -6,9 +6,9 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.powers.monsters.DarkCubePower;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.misc.ConfigOption_Boolean;
-import eatyourbeets.resources.animator.misc.ConfigOption_String;
-import eatyourbeets.resources.animator.misc.ConfigOption_Vector2;
+import eatyourbeets.ui.config.ConfigOption_Boolean;
+import eatyourbeets.ui.config.ConfigOption_String;
+import eatyourbeets.ui.config.ConfigOption_Vector2;
 import eatyourbeets.utilities.JUtils;
 
 import java.io.IOException;

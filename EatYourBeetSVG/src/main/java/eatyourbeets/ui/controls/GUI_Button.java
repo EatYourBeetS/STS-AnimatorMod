@@ -11,10 +11,13 @@ import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.delegates.ActionT0;
+import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.Colors;
+import eatyourbeets.utilities.GenericCallback;
 import eatyourbeets.utilities.RenderHelpers;
 import org.apache.commons.lang3.StringUtils;
 
@@ -28,7 +31,7 @@ public class GUI_Button extends GUIElement
     public float targetAlpha = 1f;
     public float currentAlpha = 1f;
     public boolean interactable;
-    public ActionT0 onClick;
+    public GenericCallback<GUI_Button> onClick;
     public String text;
 
     protected boolean darkenNonInteractableButton;
@@ -118,7 +121,21 @@ public class GUI_Button extends GUIElement
 
     public GUI_Button SetOnClick(ActionT0 onClick)
     {
-        this.onClick = onClick;
+        this.onClick = GenericCallback.FromT0(onClick);
+
+        return this;
+    }
+
+    public GUI_Button SetOnClick(ActionT1<GUI_Button> onClick)
+    {
+        this.onClick = GenericCallback.FromT1(onClick);
+
+        return this;
+    }
+
+    public <T> GUI_Button SetOnClick(T state, ActionT2<T, GUI_Button> onClick)
+    {
+        this.onClick = GenericCallback.FromT2(onClick, state);
 
         return this;
     }
@@ -249,7 +266,7 @@ public class GUI_Button extends GUIElement
 
         if (onClick != null)
         {
-            this.onClick.Invoke();
+            this.onClick.Complete(this);
         }
     }
 }

@@ -1,4 +1,4 @@
-package eatyourbeets.resources.animator.misc;
+package eatyourbeets.ui.config;
 
 import basemod.ModPanel;
 

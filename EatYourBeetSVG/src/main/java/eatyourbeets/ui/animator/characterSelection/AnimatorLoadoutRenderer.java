@@ -111,7 +111,6 @@ public class AnimatorLoadoutRenderer extends GUIElement
             if (unlockLevel >= loadout.UnlockLevel)
             {
                 this.availableLoadouts.add(loadout);
-                loadout.LoadDefaultData();
             }
         }
 
@@ -119,13 +118,12 @@ public class AnimatorLoadoutRenderer extends GUIElement
         {
             for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
             {
-                if (loadout.Data.Size() > 0)
+                if (loadout.GetPreset().Size() > 0)
                 {
                     this.loadouts.add(loadout);
                     if (unlockLevel >= loadout.UnlockLevel)
                     {
                         this.availableLoadouts.add(loadout);
-                        loadout.LoadDefaultData();
                     }
                 }
             }

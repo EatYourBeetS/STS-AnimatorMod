@@ -10,7 +10,7 @@ import eatyourbeets.utilities.RotatingList;
 
 import java.util.ArrayList;
 
-public class CardSlot
+public class AnimatorCardSlot
 {
     public transient final AnimatorLoadoutData Container;
     public transient final RotatingList<Item> Cards;
@@ -20,7 +20,7 @@ public class CardSlot
     public int max;
     public int min;
 
-    public CardSlot(AnimatorLoadoutData container, int min, int max)
+    public AnimatorCardSlot(AnimatorLoadoutData container, int min, int max)
     {
         if (min > max)
         {
@@ -35,7 +35,7 @@ public class CardSlot
 
     public int GetSlotIndex()
     {
-        return Container.list.indexOf(this);
+        return Container.cardSlots.indexOf(this);
     }
 
     public EYBCardData GetData()
@@ -65,7 +65,7 @@ public class CardSlot
         for (Item item : Cards)
         {
             boolean add = true;
-            for (CardSlot slot : Container)
+            for (AnimatorCardSlot slot : Container)
             {
                 if (slot != this && slot.GetData() == item.data)
                 {
@@ -82,9 +82,9 @@ public class CardSlot
         return cards;
     }
 
-    public CardSlot MakeCopy(AnimatorLoadoutData container)
+    public AnimatorCardSlot MakeCopy(AnimatorLoadoutData container)
     {
-        CardSlot copy = new CardSlot(container, min, max);
+        final AnimatorCardSlot copy = new AnimatorCardSlot(container, min, max);
         for (Item item : Cards)
         {
             copy.Cards.Add(item);
@@ -93,6 +93,7 @@ public class CardSlot
         {
             copy.Select(selected.data, amount);
         }
+
         return copy;
     }
 
@@ -111,7 +112,7 @@ public class CardSlot
         while (true)
         {
             int currentIndex = i;
-            for (CardSlot s : Container)
+            for (AnimatorCardSlot s : Container)
             {
                 if (s != this && selected.data == s.GetData())
                 {
@@ -176,12 +177,12 @@ public class CardSlot
         }
     }
 
-    public CardSlot Select(Item item)
+    public AnimatorCardSlot Select(Item item)
     {
         return Select(item, item == null ? 0 : 1);
     }
 
-    public CardSlot Select(EYBCardData data, int amount)
+    public AnimatorCardSlot Select(EYBCardData data, int amount)
     {
         int i = 0;
         for (Item item : Cards)
@@ -196,12 +197,12 @@ public class CardSlot
         return null;
     }
 
-    public CardSlot Select(int index, int amount)
+    public AnimatorCardSlot Select(int index, int amount)
     {
         return Select(Cards.SetIndex(index), amount);
     }
 
-    public CardSlot Select(Item item, int amount)
+    public AnimatorCardSlot Select(Item item, int amount)
     {
         selected = item;
         if (item == null)

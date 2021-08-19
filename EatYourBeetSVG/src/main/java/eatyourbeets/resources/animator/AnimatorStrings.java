@@ -273,6 +273,107 @@ public class AnimatorStrings
             return Format(addPeriod, 21, amount);
         }
 
+        public final String EnterAnyStance(boolean addPeriod)
+        {
+            return Get(22) + (addPeriod ? LocalizedStrings.PERIOD : "");
+        }
+
+        public final String PayEnergy(int amount, boolean addPeriod)
+        {
+            return Format(addPeriod, 23, amount);
+        }
+
+        public final String LoseHP(int amount, boolean addPeriod)
+        {
+            return Format(addPeriod, 24, amount);
+        }
+
+        public final String GiveRandomEnemy(Object amount, Object debuff, boolean addPeriod)
+        {
+            return Format(addPeriod, 25, amount, debuff);
+        }
+
+        public final String GiveAllEnemies(Object amount, Object debuff, boolean addPeriod)
+        {
+            return Format(addPeriod, 26, amount, debuff);
+        }
+
+        public final String LosePower(Object amount, Object power, boolean addPeriod)
+        {
+            return Format(addPeriod, 27, amount, power);
+        }
+
+        public final String TakeDamage(int amount, boolean addPeriod)
+        {
+            return Format(addPeriod, 28, amount);
+        }
+
+        public final String AddToDiscardPile(Object amount, Object card, boolean addPeriod)
+        {
+            return Format(addPeriod, 29, amount, card);
+        }
+
+        public final String AddToDrawPile(Object amount, Object card, boolean addPeriod)
+        {
+            return Format(addPeriod, 30, amount, card);
+        }
+
+        public final String AddToHand(Object amount, Object card, boolean addPeriod)
+        {
+            return Format(addPeriod, 31, amount, card);
+        }
+
+        public final String DiscardRandom(Object amount, boolean addPeriod)
+        {
+            return Format(addPeriod, 32, amount);
+        }
+
+        public final String ExhaustRandom(Object amount, boolean addPeriod)
+        {
+            return Format(addPeriod, 33, amount);
+        }
+
+        public final String NextTurnDrawLess(Object amount, boolean addPeriod)
+        {
+            return Format(addPeriod, 34, amount);
+        }
+
+        public final String NextTurnLoseEnergy(Object amount, boolean addPeriod)
+        {
+            return Format(addPeriod, 35, amount);
+        }
+
+        public final String Play(Object card, boolean addPeriod)
+        {
+            return Format(addPeriod, 36, card);
+        }
+
+        public final String PlayFromAnywhere(Object card, boolean addPeriod)
+        {
+            return Format(addPeriod, 37, card);
+        }
+
+        public final String PlayOrbCore(boolean addPeriod)
+        {
+            return Get(38) + (addPeriod ? LocalizedStrings.PERIOD : "");
+        }
+
+        public final String PlayAffinityToken(boolean addPeriod)
+        {
+            return Get(39) + (addPeriod ? LocalizedStrings.PERIOD : "");
+        }
+
+        public final String AddRandomMotivatedCard(Object category, boolean addPeriod)
+        {
+            return Format(addPeriod, 40, category);
+        }
+
+        public final String DainsleifEndTurn(boolean addPeriod)
+        {
+            return Get(41) + (addPeriod ? LocalizedStrings.PERIOD : "");
+        }
+
+
         private String Format(boolean addPeriod, int index, Object amount)
         {
             return Format(addPeriod, index, amount, null);

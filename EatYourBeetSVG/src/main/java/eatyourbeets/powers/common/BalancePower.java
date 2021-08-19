@@ -5,32 +5,11 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 
-import java.text.DecimalFormat;
-
 public class BalancePower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(BalancePower.class);
     public static final int MULTIPLIER = 10;
     private float percentage;
-
-    public void UpdatePercentage()
-    {
-        CombatStats.EnemyFrailModifier -= this.percentage;
-        CombatStats.EnemyLockOnModifier -= this.percentage;
-        CombatStats.EnemyVulnerableModifier -= this.percentage;
-        CombatStats.EnemyWeakModifier -= this.percentage;
-        CombatStats.PlayerFrailModifier -= this.percentage;
-        CombatStats.PlayerVulnerableModifier -= this.percentage;
-        CombatStats.PlayerWeakModifier -= this.percentage;
-        this.percentage = MULTIPLIER * this.amount / 100f;
-        CombatStats.EnemyFrailModifier += this.percentage;
-        CombatStats.EnemyLockOnModifier += this.percentage;
-        CombatStats.EnemyVulnerableModifier += this.percentage;
-        CombatStats.EnemyWeakModifier += this.percentage;
-        CombatStats.PlayerFrailModifier += this.percentage;
-        CombatStats.PlayerVulnerableModifier += this.percentage;
-        CombatStats.PlayerWeakModifier += this.percentage;
-    }
 
     public BalancePower(AbstractCreature owner, int amount)
     {
@@ -38,19 +17,20 @@ public class BalancePower extends CommonPower
         this.amount = amount;
         this.percentage = 0;
 
-        updateDescription();
+        Initialize(amount);
         UpdatePercentage();
     }
 
     @Override
     public void updateDescription()
     {
+        this.description = FormatDescription(0, amount);
         if (amount > 0)
         {
-            DecimalFormat df = new DecimalFormat("#.0");
-            String value = df.format((this.percentage * 100f));
-
-            this.description = FormatDescription(0, amount);
+            this.type = PowerType.BUFF;
+        }
+        else {
+            this.type = PowerType.DEBUFF;
         }
     }
 
@@ -73,5 +53,24 @@ public class BalancePower extends CommonPower
     {
         super.reducePower(reduceAmount);
         UpdatePercentage();
+    }
+
+    public void UpdatePercentage()
+    {
+        CombatStats.EnemyFrailModifier -= this.percentage;
+        CombatStats.EnemyLockOnModifier -= this.percentage;
+        CombatStats.EnemyVulnerableModifier -= this.percentage;
+        CombatStats.EnemyWeakModifier -= this.percentage;
+        CombatStats.PlayerFrailModifier -= this.percentage;
+        CombatStats.PlayerVulnerableModifier -= this.percentage;
+        CombatStats.PlayerWeakModifier -= this.percentage;
+        this.percentage = MULTIPLIER * this.amount / 100f;
+        CombatStats.EnemyFrailModifier += this.percentage;
+        CombatStats.EnemyLockOnModifier += this.percentage;
+        CombatStats.EnemyVulnerableModifier += this.percentage;
+        CombatStats.EnemyWeakModifier += this.percentage;
+        CombatStats.PlayerFrailModifier += this.percentage;
+        CombatStats.PlayerVulnerableModifier += this.percentage;
+        CombatStats.PlayerWeakModifier += this.percentage;
     }
 }

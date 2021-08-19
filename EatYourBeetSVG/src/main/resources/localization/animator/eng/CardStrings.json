@@ -305,11 +305,16 @@
 	},
 	"BETA:COLORLESS":
 	{
-			"animator:AliciaMelchiott":
-            {
-                  "DESCRIPTION": "Deal damage equal to the number of monsters you've defeated this run.",
-                  "NAME": "Ruchia"
-            },
+		"animator:AbyssalVoid":
+    	{
+    	  "DESCRIPTION": "Lose !S! HP. Boost !M! [C].",
+    	  "NAME": "Abyssal Void"
+    	},
+		"animator:AliciaMelchiott":
+         {
+            "DESCRIPTION": "Deal damage equal to the number of monsters you've defeated this run.",
+            "NAME": "Ruchia"
+         },
 		"animator:ArseneLupin":
 		{
 		  "DESCRIPTION": "Deal 1 more damage for every !S! Gold you have. || Reload: {~Steal} !M! [Gold] from a random enemy.",
@@ -449,7 +454,7 @@
 		},
 		"animator:SpikeSpiegel":
 		{
-		  "DESCRIPTION": "Play !M! random Strikes from your Draw Pile. || <LIM>. !A! <GEN>: ** Shuffle {Swordfish II} ** into your Draw Pile.",
+		  "DESCRIPTION": "Play !M! random Strikes from your Draw Pile. || <LIM>. !A! <W>: ** Shuffle {Swordfish II} ** into your Draw Pile.",
 		  "NAME": "Spike Spiegel"
 		},
 		"animator:SwordfishII":
@@ -522,7 +527,7 @@
 		},
 		"animator:MukuroHoshimiya":
 		{
-			"DESCRIPTION": "Deals 1 more damage for every !M! cards in your draw pile. || Scry !S!. The next time you shuffle your deck, move those cards to the bottom of your draw pile.",
+			"DESCRIPTION": "Deals 1 more damage for every !M! cards in your draw pile. || Scry !S!. Give all discarded cards {~Delayed} until the next time you shuffle your deck.",
 			"NAME": "Mukuro Hoshimiya"
 		},
 		"animator:Natsumi":
@@ -603,6 +608,11 @@
 			"DESCRIPTION": "Gain/Boost [B]. || <LIM>. !A! <B>. If ALL enemies intend to attack: Channel 1 [Water] and trigger it once.",
 			"NAME": "Barbara Pegg"
 		},
+		"animator:Bennett":
+        {
+        	"DESCRIPTION": "If you have less than 50% HP, your next Attack deals !M! additional damage. Otherwise, take !S! damage.",
+        	"NAME": "Bennett"
+        },
 		"animator:Curse_Delusion":
 		{
 		  "DESCRIPTION": "Unplayable. || At the end of your turn, give a random card in your ** Draw Pile {Autoplay}. || When Exhausted: Boost [A] and play {<G> Token}.",
@@ -610,7 +620,7 @@
 		},
 		"animator:Dainsleif":
 		{
-		  "DESCRIPTION": "At the start of battle: Choose 1 of 3 cards to add to your Draw pile. || When Exhausted, Choose 1 of 3 cards to add to your Draw pile. ",
+		  "DESCRIPTION": "At the start of battle: Become cursed by the Abyss. || Channel !M! [Chaos]. Add 1 of 2 cards to your Draw pile. ** !A! <W>. Add both cards.",
 		  "NAME": "Dainsleif"
 		},
 		"animator:Dvalin":
@@ -645,7 +655,7 @@
 		},
 		"animator:KaeyaAlberich":
 		{
-			"DESCRIPTION": "{Channel} 1 [Frost]. Trigger your first [Fire], [Frost], or [Lightning]. || <SLM>. Synergy: Apply !M! [Shackles] to ALL enemies.",
+			"DESCRIPTION": "{Channel} 1 [Frost]. Trigger your first {Common Orb}. || <SLM>. Synergy: Apply !M! [Shackles] to ALL enemies.",
 			"NAME": "Kaeya Alberich"
 		},
 		"animator:Keqing":
@@ -660,14 +670,9 @@
 		},
 		"animator:KokomiSangonomiya":
 		{
-		  "DESCRIPTION": "Fully heal ALL enemies. Channel [Water] with +1 passive power for every !M! HP healed. || <LIM>. If at least 30 HP was healed, gain [Rejuvenation].",
+		  "DESCRIPTION": "Lose !M! Dexterity. Channel !S! [Water]. Until the end of your next turn, [Water] absorbs unblocked attack damage and reflects it back at the attacker.",
 		  "NAME": "Kokomi Sangonomiya"
 		},
-		"animator:KokomiSangonomiyaV2":
-        {
-          "DESCRIPTION": "Lose !M! Dexterity. Channel !S! [Water]. Until the end of your next turn, [Water] absorbs unblocked attack damage and reflects it back at the attacker.",
-          "NAME": "Kokomi Sangonomiya"
-        },
 		"animator:LisaMinci":
 		{
 			"DESCRIPTION": "{Scry} !M! cards. For each card, ** if its cost is: || 0 or None: Gain/Boost [I] ** 1 or X: Gain [E] next turn. ** 2 or more: Induce [Lightning]",
@@ -694,15 +699,24 @@
 			"DESCRIPTION": "Deal additional damage ** equal to twice the enemy's [Burning], then remove [Burning]. || <LIM>. If the enemy dies: Enter <FS> and add {Delusion} to your draw pile.",
 			"NAME": "Tartaglia"
 		},
-		"animator:Traveler":
+		"animator:Traveler_Aether":
 		{
-		  "DESCRIPTION": "{Unique}. || Choose 1 of 2 {Forms} for this card at the start of combat. || When Exhausted, switches forms and returns to your Draw Pile.",
-		  "EXTENDED_DESCRIPTION": ["{Unique}. || Channel [Aether]. Gain !M! [Elemental Mastery]. || {Induce} a random non-[Aether], non-[Plasma] Orb you have !S! times. Gain 5 additional [Elemental Mastery] for every unique Orb Induced.", "{Unique}. || Add 2 {Void} to your Discard Pile. Apply [Frail][Vulnerable][Weak] to ALL enemies !S! times. ** Next turn, trigger the last !M! Orbs Evoked this combat."],
-		  "NAME": "Abyss Ruler"
+		    "DESCRIPTION": "Channel [Aether]. {Induce} your first !M! {Common Orbs}. Apply !S! [Burning] [Freezing] to ALL enemies for each unique one. || <SLM>. If you Induced at least !S! unique Orbs, add {Wish} to your hand.",
+		    "NAME": "Aether"
 		},
+		"animator:Traveler_Lumine":
+        {
+        	"DESCRIPTION": "Add {Wish} and {Abyssal Void} to your Draw Pile. Next turn, trigger the last !M! Orbs Evoked this combat. || <SLM>. If you Synergized twice this turn, Gain/Boost [I] equal to <D>.",
+        	"NAME": "Lumine"
+        },
+		"animator:Traveler_Wish":
+        {
+        	"DESCRIPTION": "At the end of your next 2 turns, apply !M! [Elemental Exposure] to ALL enemies. Increase this amount by !S! whenever you {Channel}, {Evoke}, or {Induce} an Orb.",
+        	"NAME": "Wish"
+        },
 		"animator:Venti":
 		{
-			"DESCRIPTION": "Cycle !M! cards. {Channel} 1 [Aether] and Trigger it once for every Skill drawn. || <LIM>. When Exhausted: Gain !S! [Support Damage].",
+			"DESCRIPTION": "Cycle !M! cards. {Channel} 1 [Aether] and Trigger it once for every Skill or Power drawn. || <LIM>. When Exhausted: Gain !S! [Support Damage].",
 			"NAME": "Venti"
 		},
 		"animator:Yoimiya":

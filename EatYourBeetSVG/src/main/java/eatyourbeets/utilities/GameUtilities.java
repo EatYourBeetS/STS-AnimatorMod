@@ -1014,6 +1014,11 @@ public class GameUtilities
                 intent == AbstractMonster.Intent.ATTACK_DEFEND || intent == AbstractMonster.Intent.ATTACK);
     }
 
+    public static boolean IsCommonOrb(AbstractOrb orb)
+    {
+        return IsValidOrb(orb) && (Fire.ORB_ID.equals(orb.ID) || Frost.ORB_ID.equals(orb.ID) || Lightning.ORB_ID.equals(orb.ID) || Dark.ORB_ID.equals(orb.ID));
+    }
+
     public static boolean IsHindrance(AbstractCard card)
     {
         return card.type == AbstractCard.CardType.CURSE || card.type == AbstractCard.CardType.STATUS;

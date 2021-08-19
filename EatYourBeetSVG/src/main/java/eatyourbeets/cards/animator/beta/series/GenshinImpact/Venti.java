@@ -55,7 +55,7 @@ public class Venti extends AnimatorCard
                 {
                     for (AbstractCard card : cardsDrawn)
                     {
-                        if (card.type == CardType.SKILL)
+                        if (card.type == CardType.SKILL || card.type == CardType.POWER)
                         {
                             GameActions.Bottom.VFX(new WhirlwindEffect(), 0f);
                             orb.onStartOfTurn();

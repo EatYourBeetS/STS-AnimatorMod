@@ -21,11 +21,10 @@ public class Zhongli extends AnimatorCard
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 0, 0);
         SetAffinity_Orange(2, 0, 0);
-        SetDelayed(true);
     }
 
     public void OnUpgrade() {
-        SetDelayed(false);
+        SetInnate(true);
     }
 
 

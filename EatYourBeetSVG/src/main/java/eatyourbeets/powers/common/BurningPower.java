@@ -1,6 +1,7 @@
 package eatyourbeets.powers.common;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -8,6 +9,7 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.powers.animator.ElementalExposurePower;
 import eatyourbeets.ui.animator.combat.CombatHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -39,7 +41,7 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
         }
     }
 
-    public static float CalculateDamage(float damage, int multiplier)
+    public static float CalculateDamage(float damage, float multiplier)
     {
         return damage + Mathf.Max(1, damage * (multiplier / 100f));
     }
@@ -100,13 +102,17 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
         return healthBarColor;
     }
 
-    private int GetMultiplier()
+    private float GetMultiplier()
     {
-        return (GameUtilities.IsPlayer(owner)) ? ATTACK_MULTIPLIER : (ATTACK_MULTIPLIER + PLAYER_ATTACK_BONUS);
+        return (GameUtilities.IsPlayer(owner)) ? ATTACK_MULTIPLIER : (ATTACK_MULTIPLIER + PLAYER_ATTACK_BONUS) * GetElementalExposure();
     }
 
     private int GetPassiveDamage()
     {
-        return amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2;
+        return MathUtils.round((amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2) * GetElementalExposure());
+    }
+
+    private float GetElementalExposure() {
+        return ElementalExposurePower.CalculatePercentage(GameUtilities.GetPowerAmount(owner, ElementalExposurePower.POWER_ID));
     }
 }

@@ -378,6 +378,12 @@
 	  "NAMES": ["[w] stance", "willpower stance"],
 	  "PROPER_NAME": "Willpower Stance"
 	},
+	"Vigor":
+	{
+		"DESCRIPTION": "The next Attack played deals additional damage per hit.",
+		"NAMES": ["vigor"],
+		"PROPER_NAME": "Vigor"
+	},
 	"~Damage":
 	{
 		"DESCRIPTION": "-",

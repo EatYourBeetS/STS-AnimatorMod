@@ -145,8 +145,12 @@ public class AnimatorLoadoutsContainer
         for (AbstractCard card : selectedCards)
         {
             AnimatorRuntimeLoadout loadout = Find(card);
-            // Do not unlock trophies or ascension
-            Settings.seedSet = true;
+            if (loadout.IsBeta)
+            {
+                // Do not unlock trophies or ascension
+                Settings.seedSet = true;
+            }
+
             GR.Animator.Dungeon.AddLoadout(loadout);
         }
 

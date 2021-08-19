@@ -610,7 +610,7 @@
 		},
 		"animator:Bennett":
         {
-        	"DESCRIPTION": "If you have less than 50% HP, your next Attack deals !M! additional damage. Otherwise, take !S! damage.",
+        	"DESCRIPTION": "If you are below 40% max HP: Gain !M! [Vigor]. Otherwise, take !S! damage.",
         	"NAME": "Bennett"
         },
 		"animator:Curse_Delusion":

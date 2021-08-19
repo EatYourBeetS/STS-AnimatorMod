@@ -2,8 +2,14 @@ package patches.abstractOrb;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.megacrit.cardcrawl.actions.common.DarkOrbEvokeAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.*;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameUtilities;
 
 public class AbstractOrbPatches
 {
@@ -51,6 +57,19 @@ public class AbstractOrbPatches
         @SpirePostfixPatch
         public static void Postfix(Dark __instance)
         {
+            CombatStats.OnOrbApplyFocus(__instance);
+        }
+    }
+
+    @SpirePatch(clz = Dark.class, method = "onEvoke")
+    public static class DarkPatches_OnEvoke
+    {
+        @SpirePrefixPatch
+        public static void Prefix(Dark __instance)
+        {
+            if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass)) {
+                AbstractDungeon.actionManager.addToTop(new DarkOrbEvokeAction(new DamageInfo(AbstractDungeon.player, __instance.evokeAmount, DamageInfo.DamageType.THORNS), GR.Enums.AttackEffect.DARK));
+            }
             CombatStats.OnOrbApplyFocus(__instance);
         }
     }

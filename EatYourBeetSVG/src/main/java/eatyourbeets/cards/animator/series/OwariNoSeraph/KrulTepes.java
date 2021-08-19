@@ -1,17 +1,13 @@
 package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.BloodVial;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
-import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.animator.ExquisiteBloodVial;
@@ -61,10 +57,7 @@ public class KrulTepes extends AnimatorCard
             .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.SCARLET)).duration)
             .AddCallback(enemy ->
             {
-                AbstractRoom room = AbstractDungeon.getCurrRoom();
-                if ((room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
-                    && GameUtilities.IsFatal(enemy, false)
-                    && CombatStats.TryActivateLimited(cardID))
+                if (GameUtilities.InEliteOrBossRoom() && GameUtilities.IsFatal(enemy, false) && CombatStats.TryActivateLimited(cardID))
                 {
                     ObtainReward();
                 }
@@ -77,7 +70,7 @@ public class KrulTepes extends AnimatorCard
     public void ObtainReward()
     {
         int totalRelics = 0;
-        ArrayList<AbstractRelic> relics = player.relics;
+        final ArrayList<AbstractRelic> relics = player.relics;
         for (AbstractRelic relic : relics)
         {
             if (relic.relicId.equals(relicReward.relicId))

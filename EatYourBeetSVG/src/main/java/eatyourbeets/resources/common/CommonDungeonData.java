@@ -155,17 +155,20 @@ public class CommonDungeonData implements CustomSavable<CommonDungeonData>
         {
             searchingCard = false;
 
-            AbstractCard temp = GetRandomRewardCard(includeRares, ignoreCurrentRoom);
+            final AbstractCard temp = GetRandomRewardCard(includeRares, ignoreCurrentRoom);
             if (temp == null)
             {
                 break;
             }
 
-            for (AbstractCard c : ignore)
+            if (ignore != null)
             {
-                if (temp.cardID.equals(c.cardID))
+                for (AbstractCard c : ignore)
                 {
-                    searchingCard = true;
+                    if (temp.cardID.equals(c.cardID))
+                    {
+                        searchingCard = true;
+                    }
                 }
             }
 

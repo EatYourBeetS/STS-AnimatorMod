@@ -36,7 +36,7 @@ public class GameActionManagerPatches
         @SpirePrefixPatch
         public static SpireReturn Prefix(GameActionManager __instance)
         {
-            ArrayList<AbstractGameAction> actions = __instance.actions;
+            final ArrayList<AbstractGameAction> actions = __instance.actions;
             for (int i = actions.size() - 1; i >= 0; i--)
             {
                 AbstractGameAction action = actions.get(i);

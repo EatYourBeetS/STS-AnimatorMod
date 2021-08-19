@@ -971,8 +971,14 @@ public class GameUtilities
 
     public static boolean InEliteRoom()
     {
-        AbstractRoom room = GetCurrentRoom();
+        final AbstractRoom room = GetCurrentRoom();
         return (room != null) && room.eliteTrigger;
+    }
+
+    public static boolean InEliteOrBossRoom()
+    {
+        final AbstractRoom room = GetCurrentRoom();
+        return room instanceof MonsterRoomBoss || (room != null && room.eliteTrigger);
     }
 
     public static boolean InGame()

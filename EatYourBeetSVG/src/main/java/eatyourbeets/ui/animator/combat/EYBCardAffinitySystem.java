@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
@@ -15,6 +16,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.hitboxes.DraggableHitbox;
+import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.Mathf;
 
@@ -34,6 +36,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     protected final DraggableHitbox hb;
     protected final GUI_Image dragPanel_image;
+    protected final GUI_Image dragPanelArrow_image;
+    protected final GUI_Image info_image;
     protected final ArrayList<EYBCardAffinityRow> rows = new ArrayList<>();
     protected Vector2 savedPosition;
 
@@ -52,7 +56,9 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));
 
         dragPanel_image = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
-        .SetColor(0.05f, 0.05f, 0.05f, 0.5f);
+                .SetColor(0.05f, 0.05f, 0.05f, 0.5f);
+        dragPanelArrow_image = new GUI_Image(GR.Common.Images.Draggable.Texture(), new RelativeHitbox(hb, Scale(40), Scale(40), Scale(40f), Scale(20f), false));
+        info_image = new GUI_Image(GR.Common.Images.Info.Texture(), new RelativeHitbox(hb, Scale(24), Scale(24), Scale(100f), Scale(20f), false));
 
         final Affinity[] types = Affinity.Basic();
         for (int i = 0; i < types.length; i++)
@@ -123,6 +129,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     {
         final AbstractAffinityPower p = GetPower(affinity);
         return p == null ? 0 : p.amount;
+    }
+
+    public int GetPowerThreshold(Affinity affinity)
+    {
+        final AbstractAffinityPower p = GetPower(affinity);
+        return p == null ? 0 : p.GetCurrentThreshold();
     }
 
     @Override
@@ -346,6 +358,11 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             hb.SetPosition(ScreenW(savedPosition.x), ScreenH(savedPosition.y));
         }
 
+        if (info_image.hb.hovered)
+        {
+            EYBCardTooltip.QueueTooltip(GR.Tooltips.Affinity_Count, InputHelper.mX + info_image.hb.width, InputHelper.mY + (info_image.hb.height * 0.5f));
+        }
+
         boolean draggingCard = false;
         EYBCard hoveredCard = null;
         if (player.hoveredCard != null)
@@ -373,6 +390,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         }
 
         dragPanel_image.Update();
+        dragPanelArrow_image.Update();
+        info_image.Update();
     }
 
     public void Render(SpriteBatch sb)
@@ -383,6 +402,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         }
 
         dragPanel_image.Render(sb);
+        dragPanelArrow_image.Render(sb);
+        info_image.Render(sb);
 
         for (EYBCardAffinityRow t : rows)
         {

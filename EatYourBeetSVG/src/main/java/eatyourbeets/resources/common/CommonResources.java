@@ -152,6 +152,12 @@ public class CommonResources extends AbstractResources
 
     private static void AddPowerTooltip(String symbol, String id, AbstractPower power)
     {
+        if (power.img == null)
+        {
+            JUtils.LogError(CommonResources.class, "Could not find image: Symbol: {0}, ID: {1}, Power: {2} ",
+                    symbol, id, power.name);
+            return;
+        }
         int size = power.img.getWidth(); // width should always be equal to height
 
         EYBCardTooltip tooltip = CardTooltips.FindByID(id);

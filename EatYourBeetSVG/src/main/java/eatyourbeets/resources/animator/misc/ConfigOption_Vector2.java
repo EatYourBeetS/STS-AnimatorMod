@@ -2,16 +2,15 @@ package eatyourbeets.resources.animator.misc;
 
 import basemod.ModPanel;
 import com.badlogic.gdx.math.Vector2;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import eatyourbeets.utilities.JUtils;
 
 public class ConfigOption_Vector2 extends ConfigOption<Vector2>
 {
     public Vector2 DefaultValue;
 
-    public ConfigOption_Vector2(SpireConfig config, String key, Vector2 defaultValue)
+    public ConfigOption_Vector2(String key, Vector2 defaultValue)
     {
-        super(config, key);
+        super(key);
 
         DefaultValue = defaultValue;
     }

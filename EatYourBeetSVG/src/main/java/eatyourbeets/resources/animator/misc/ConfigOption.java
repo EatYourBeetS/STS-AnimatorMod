@@ -7,15 +7,20 @@ import java.io.IOException;
 
 public abstract class ConfigOption<T>
 {
-    public String Key;
-    public SpireConfig Config;
+    public final String Key;
 
+    protected SpireConfig Config;
     protected T Value;
 
-    public ConfigOption(SpireConfig config, String key)
+    public ConfigOption(String key)
+    {
+        Key = key;
+    }
+
+    public void SetConfig(SpireConfig config)
     {
         Config = config;
-        Key = key;
+        Value = null;
     }
 
     public abstract T Get();

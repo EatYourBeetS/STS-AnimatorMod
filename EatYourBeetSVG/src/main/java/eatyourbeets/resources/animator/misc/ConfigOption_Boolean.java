@@ -2,7 +2,6 @@ package eatyourbeets.resources.animator.misc;
 
 import basemod.ModLabeledToggleButton;
 import basemod.ModPanel;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 
@@ -10,9 +9,9 @@ public class ConfigOption_Boolean extends ConfigOption<Boolean>
 {
     public boolean DefaultValue;
 
-    public ConfigOption_Boolean(SpireConfig config, String key, boolean defaultValue)
+    public ConfigOption_Boolean(String key, boolean defaultValue)
     {
-        super(config, key);
+        super(key);
 
         DefaultValue = defaultValue;
     }

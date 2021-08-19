@@ -185,44 +185,45 @@
 	]
   },
 
-  "animator:CharacterSelect":
-  {
-	"TEXT":
-	[
-	  "Starting Cards: ",
-	  "###############",
-	  "Unlocks at Level {0} (You are Level {1})",
-	  "Invalid Loadout (Please Edit)",
-	  "Unlocks at Ascension {0}"
-	]
-  },
-
-  "animator:Misc":
-  {
-	"TEXT":
-	[
-	  "Discord",
-	  "The Animator Discord link.",
-	  "Steam",
-	  "The Animator Steam page.",
-	  "Not enough cards of this type.",
-	  "Dynamic Portraits",
-	  "Dynamic cards portraits.",
-	  "'CTRL' to cycle",
-	  "Have you found a missing or incorrect translation? If you'd like to help, you can join the mod Discord and write your translation in the Localization channel.",
-	  "Display Beta Series",
-	  "Translation",
-	  "Highlight Synergies.",
-	  "Simplify Card UI"
-	]
-  },
-  "animator:CardMods":
-  {
-	"TEXT":
-	[
-	  "Permanently increase your maximum hand size by 1. Can only be obtained once across all card effects.",
-	  "",
-	  "I do not have a non-Afterlife card in my exhaust pile to purge."
-	]
-  }
+	"animator:CharacterSelect":
+	{
+		"TEXT":
+		[
+			"Starting Cards: ",
+			"###############",
+			"Unlocks at Level {0} (You are Level {1})",
+			"Invalid Loadout (Please Edit)",
+			"Unlocks at Ascension {0}"
+		]
+	},
+	
+	"animator:Misc":
+	{
+		"TEXT":
+		[
+			"Discord", 
+			"The Animator Discord link.",
+			"Steam", 
+			"The Animator Steam page.",
+			"Not enough cards of this type.",
+			"Dynamic Portraits",
+			"Dynamic cards portraits.",
+			"'CTRL' to cycle",
+			"Have you found a missing or incorrect translation? If you'd like to help, you can join the mod Discord and write your translation in the Localization channel.",
+			"Display Beta Series",
+			"Translation",
+			"Highlight Synergies.",
+			"Simplify Card UI",
+			"Certain rewards are disabled for one or more of these reasons: NL NL - Non-Animator class or cards NL - Custom or Endless mode NL - Non-Official mod version NL - Used console commands NL - Edited save file"
+		]
+	},
+       "animator:CardMods":
+       {
+     	"TEXT":
+     	[
+     	  "Permanently increase your maximum hand size by 1. Can only be obtained once across all card effects.",
+     	  "",
+     	  "I do not have a non-Afterlife card in my exhaust pile to purge."
+     	]
+       }
 }

@@ -9,8 +9,10 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Circlet;
+import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.enchantments.Enchantment;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.effects.special.MaskedTravelerTransformCardsEffect;
 import eatyourbeets.effects.special.UnnamedRelicEquipEffect;
@@ -36,6 +38,8 @@ public class TheMaskedTraveler2 extends EYBEvent
     public static final EventStrings STRINGS = new EventStrings();
     public static final String ID = CreateFullID(TheMaskedTraveler2.class);
 
+    private static EYBCardTooltip rewardsDisabledTip;
+
     private final ArrayList<AbstractRelic> startingRelicsCache = new ArrayList<>();
     private final AbstractRelic relic1 = new TheEruzaStone();
     private final AbstractRelic relic2 = new TheWolleyCore();
@@ -51,11 +55,45 @@ public class TheMaskedTraveler2 extends EYBEvent
             node.room.rewardAllowed = false;
         }
 
+        if (rewardsDisabledTip == null)
+        {
+            rewardsDisabledTip = new EYBCardTooltip("Warning", GR.Animator.Strings.Misc.RewardsDisabled);
+        }
+
+        rewardsDisabledTip.canRender = !GameUtilities.IsNormalRun(true);
+
         RegisterSpecialPhase(new EnterUnnamedReign());
         RegisterPhase(0, new Introduction());
         RegisterPhase(1, new Explanation());
         RegisterPhase(2, new Offering());
         ProgressPhase();
+    }
+
+    @Override
+    public void update()
+    {
+        super.update();
+
+        if (GR.UI.Elapsed(2f))
+        {
+            rewardsDisabledTip.canRender = !GameUtilities.IsNormalRun(true);
+        }
+
+        if (rewardsDisabledTip.canRender && currentPhase != null && currentPhase.dialog != null)
+        {
+            for (LargeDialogOptionButton button : currentPhase.dialog.optionList)
+            {
+                if (button.msg.equals(EYBEvent.COMMON_STRINGS.Continue()))
+                {
+                    if (button.hb.hovered)
+                    {
+                        EYBCardTooltip.QueueTooltip(rewardsDisabledTip, button.hb.x + button.hb.width * 0.5f, button.hb.y + button.hb.height * 3f);
+                    }
+
+                    break;
+                }
+            }
+        }
     }
 
     private static class Introduction extends EYBEventPhase<TheMaskedTraveler2, EventStrings>

@@ -2,6 +2,7 @@ package eatyourbeets.utilities;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
@@ -59,6 +60,11 @@ public class JUtils
         }
 
         return false;
+    }
+
+    public static String Capitalize(String text)
+    {
+        return text.length() <= 1 ? text.toUpperCase() : TipHelper.capitalize(text);
     }
 
     public static <T> void ChangeIndex(T item, List<T> list, int index)
@@ -311,6 +317,21 @@ public class JUtils
     public static <T, T1, T2> MethodInfo.T2<T, T1, T2> GetMethod(String methodName, Class<?> type, Class<T1> t1, Class<T2> t2) throws RuntimeException
     {
         return new MethodInfo.T2<>(methodName, type, t1, t2);
+    }
+
+    public static boolean IsNotEmpty(List list)
+    {
+        return list != null && list.size() > 0;
+    }
+
+    public static boolean IsNullOrEmpty(List list)
+    {
+        return list == null || list.isEmpty();
+    }
+
+    public static boolean IsNullOrZero(Number number)
+    {
+        return number == null || number.intValue() == 0;
     }
 
     public static <T> Constructor<T> TryGetConstructor(Class<T> type, Class... paramTypes)

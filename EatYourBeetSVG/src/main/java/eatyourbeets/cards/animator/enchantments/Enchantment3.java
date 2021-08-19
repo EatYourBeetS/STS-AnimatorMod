@@ -10,7 +10,7 @@ public class Enchantment3 extends Enchantment
 {
     public static final EYBCardData DATA = RegisterInternal(Enchantment3.class);
     public static final int INDEX = 3;
-    public static final int UP1_POISON = 5;
+    public static final int UP1_POISON = 3;
     public static final int UP2_WEAK = 1;
     public static final int UP3_TAKE_DAMAGE = 3;
 
@@ -18,7 +18,7 @@ public class Enchantment3 extends Enchantment
     {
         super(DATA, INDEX);
 
-        Initialize(0, 0, 2, 2);
+        Initialize(0, 0, 1, 1);
 
         requiresTarget = true;
     }
@@ -26,7 +26,12 @@ public class Enchantment3 extends Enchantment
     @Override
     protected void OnUpgrade()
     {
-        if (upgradeIndex == 3)
+        if (upgradeIndex == 2)
+        {
+            upgradeMagicNumber(+1);
+            upgradeSecondaryValue(+1);
+        }
+        else if (upgradeIndex == 3)
         {
             upgradeSecondaryValue(-1);
         }

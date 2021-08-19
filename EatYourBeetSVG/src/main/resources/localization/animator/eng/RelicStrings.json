@@ -182,7 +182,7 @@
 	},
 	"animator:TheEruzaStone":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, gain 2 [E] and move a random #yPower from your discard pile to your draw pile."],
+		"DESCRIPTIONS": ["At the start of each turn, gain 2[E]. Once per turn, when you play a #yPower, gain #b1 [Metallicize]."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Eruza Stone"
 	},
@@ -226,12 +226,13 @@
 	{
 		"DESCRIPTIONS": 
 		[
-			"[Ascension #b{0}+##] Proof of victory against #pThe #pUnnamed, lose this relic on death. Start each #yElite combat with ",
+			" ( Ascension {0}+ )",
+			"Proof of victory against #pThe #pUnnamed, lose this relic on death. Start each #yElite combat with ",
 			"#b{0} #yStrength.",
 			"#b{0} #yStrength and #yDexterity.",
 			"#b{0} #yStrength, #yDexterity and #yFocus (If you have no Orb slots, gain #yMetallicize instead)."
 		],
-		"FLAVOR": "Legends say something will happen if you can complete this puzzle. Legends also say it has not been implemented yet.",
+		"FLAVOR": "Legends say something will happen if you collect all pieces. Legends also say that it has not been implemented yet.",
 		"NAME": "Ynitaph"
 	}
 }

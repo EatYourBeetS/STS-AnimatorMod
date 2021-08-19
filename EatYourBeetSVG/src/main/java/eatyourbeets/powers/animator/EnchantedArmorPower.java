@@ -15,7 +15,7 @@ public class EnchantedArmorPower extends AnimatorPower implements OnRawDamageRec
     public static final String POWER_ID = CreateFullID(EnchantedArmorPower.class);
 
     public final boolean reactive;
-    public int damageTaken;
+    public int attacksReceived;
 
     public static float CalculatePercentage(int amount)
     {
@@ -93,7 +93,7 @@ public class EnchantedArmorPower extends AnimatorPower implements OnRawDamageRec
     {
         if (!reactive && target == owner && info.type == DamageInfo.DamageType.NORMAL)
         {
-            damageTaken += damage;
+            attacksReceived += 1;
         }
 
         return damage;
@@ -133,10 +133,10 @@ public class EnchantedArmorPower extends AnimatorPower implements OnRawDamageRec
     {
         super.atStartOfTurn();
 
-        if (!reactive && damageTaken > 0)
+        if (!reactive && attacksReceived > 0)
         {
-            ReducePower(damageTaken / 5);
-            damageTaken = 0;
+            ReducePower(Math.min(10, attacksReceived * 2));
+            attacksReceived = 0;
         }
     }
 

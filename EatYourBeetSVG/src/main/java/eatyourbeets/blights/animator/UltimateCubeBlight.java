@@ -14,13 +14,13 @@ import eatyourbeets.utilities.GameUtilities;
 public class UltimateCubeBlight extends AnimatorBlight
 {
     public static final String ID = CreateFullID(UltimateCubeBlight.class);
-    public static final int HP_LOSS = 6;
+    public static final int DAMAGE_AMOUNT = 8;
 
     public int damageDealtThisTurn;
 
     public UltimateCubeBlight()
     {
-        super(ID, HP_LOSS);
+        super(ID, DAMAGE_AMOUNT);
 
         setCounter(-1);
     }
@@ -41,7 +41,7 @@ public class UltimateCubeBlight extends AnimatorBlight
     {
         super.onEquip();
 
-        setCounter(GameUtilities.InBattle(true) ? HP_LOSS : -1);
+        setCounter(GameUtilities.InBattle(true) ? DAMAGE_AMOUNT : -1);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class UltimateCubeBlight extends AnimatorBlight
         super.atTurnStart();
 
         damageDealtThisTurn = 0;
-        setCounter(HP_LOSS);
+        setCounter(DAMAGE_AMOUNT);
     }
 
     @Override
@@ -81,18 +81,18 @@ public class UltimateCubeBlight extends AnimatorBlight
         {
             GameActions.Bottom.Callback(counter, (damage, __) ->
             {
-                GameActions.Top.LoseHP(damage, AttackEffects.RandomMagic()).CanKill(false).SetSoundPitch(0.75f, 0.9f);
+                GameActions.Top.TakeDamage(damage, AttackEffects.RandomMagic()).SetSoundPitch(0.75f, 0.9f);
                 GameActions.Top.WaitRealtime(0.25f);
                 this.flash();
             });
         }
 
-        setCounter(HP_LOSS);
+        setCounter(DAMAGE_AMOUNT);
     }
 
     public void OnDamageDealt(int damage)
     {
-        setCounter(Math.max(0, HP_LOSS - ((damageDealtThisTurn += damage) / 2)));
+        setCounter(Math.max(0, DAMAGE_AMOUNT - (damageDealtThisTurn += damage)));
     }
 
     private static class Tracker extends EYBPower implements InvisiblePower

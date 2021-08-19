@@ -1355,7 +1355,7 @@
 		},
 		"animator:MatouShinji":
 		{
-			"DESCRIPTION": "Apply !M! [Poison] to ** a random enemy. || <slm>. On Synergy: ** Add a {Command Spell} to ** your hand and Retain it.",
+			"DESCRIPTION": "Apply !M! [Poison] to ** a random enemy. || <slm>. On Synergy: ** Obtain {Command Spell}.",
 			"NAME": "Shinji Matou"
 		}
 	},
@@ -1888,7 +1888,7 @@
 		},
 		"animator:NagisaMomoe":
 		{
-			"DESCRIPTION": "Randomly Gain/Boost ** [A], [F] or [I] !M! times. || When Exhausted: Add ** {Charlotte} and a [Grief Seed] to ** your discard pile.",
+			"DESCRIPTION": "Randomly Gain/Boost ** [A], [I] or [B] !M! times. || When Exhausted: Add ** {Charlotte} and a [Grief Seed] to ** your discard pile.",
 			"NAME": "Nagisa Momoe"
 		},
 		"animator:Oktavia":
@@ -2048,7 +2048,7 @@
 	{
 		"animator:Ainz":
 		{
-			"DESCRIPTION": "At the start of turn: ** choose and execute 1 ** of 4 random {Effects}. || When Drawn: Decrease ** this card's cost by 1, then ** gain a random Affinity power.",
+			"DESCRIPTION": "At the start of turn: ** choose and execute 1 ** of 4 random {Effects}. || When Drawn: Decrease ** this card's cost by 1, then ** randomly Boost [I], [F] or [C].",
 			"NAME": "Ainz Ooal Gown"
 		},
 		"animator:Albedo":
@@ -2234,11 +2234,11 @@
 			"DESCRIPTION": "Once per turn, ** pay !S! [E]: {~Retain} ** all {[A-Gen] Powers} you ** gained this turn.",
 			"EXTENDED_DESCRIPTION": 
 			[
-				"Once per turn, ** pay !S! [E]: Boost [F] ** and gain !M! [Plated Armor].",
-				"Once per turn, ** pay !S! [E]: Boost [A] ** and Retain !M! card(s).",
-				"Once per turn, ** pay !S! [E]: Boost [I] ** and gain !M! orb slot(s).",
-				"Once per turn, ** pay !S! [E]: Boost [B] ** and gain !M! {Temp.} [Artifact].",
-				"Once per turn, ** pay !S! [E]: Boost [C] and ** convert {0} HP to !M! [Temp HP]."
+				"Once per turn, ** pay !S! [E]: Gain {0} [F] ** and gain !M! [Plated Armor].",
+				"Once per turn, ** pay !S! [E]: Gain {0} [A] ** and Retain !M! card(s).",
+				"Once per turn, ** pay !S! [E]: Gain {0} [I] ** and gain !M! orb slot(s).",
+				"Once per turn, ** pay !S! [E]: Gain {0} [B] ** and gain !M! {Temp.} [Artifact].",
+				"Once per turn, ** pay !S! [E]: Gain {0} [C] and ** convert {1} HP to !M! [Temp HP]."
 			],
 			"NAME": "Powers"
 		},
@@ -2249,7 +2249,7 @@
 			[
 				"Once per turn, ** pay !S! [E]: Apply ** !M! [Vulnerable] and {0} [Poison].",
 				"Once per turn, ** pay !S! [E]: Apply ** !M! [Vulnerable] and {0} [Weak].",
-				"Once per turn, ** pay !S! [E] and take ** {0} damage: Apply !M! [Vulnerable]."
+				"Once per turn, ** take {0} damage: ** Apply !M! [Vulnerable]."
 			],
 			"NAME": "Debuffs"
 		}
@@ -2503,8 +2503,12 @@
 		"animator:Hans_Slimed":
 		{
 			"DESCRIPTION": "",
-			"NAME": "Slimed",
-			"UPGRADE_DESCRIPTION": "<DRW>"
+			"NAME": "Slimed"
+		},
+		"animator:Konosuba_Slimed":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Slimed"
 		},
 		"animator:Overheat":
 		{
@@ -2521,7 +2525,7 @@
 	{
 		"animator:Azriel":
 		{
-			"DESCRIPTION": "Gain 2 Flight. || Whenever you apply ** a {Debuff}: Randomly ** Boost [F], [A] or [I].",
+			"DESCRIPTION": "Gain 2 Flight. || Whenever you apply ** a {Debuff}: Boost ** a random {<W> Power}.",
 			"NAME": "Azriel"
 		},
 		"animator:Chomusuke":

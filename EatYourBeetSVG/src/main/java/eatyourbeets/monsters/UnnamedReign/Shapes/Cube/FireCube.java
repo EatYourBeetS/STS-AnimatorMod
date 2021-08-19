@@ -15,7 +15,7 @@ public class FireCube extends Cube
 
         moveset.SetAttackEffect(AttackEffects.FIRE);
 
-        moveset.Normal.Attack(tier.Add(2, 2), 2)
+        moveset.Normal.Attack(tier.Add(2, 1), 1)
         .SetDamageScaling(0.2f);
 
         moveset.Normal.Defend(tier.Add(4, 3))

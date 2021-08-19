@@ -5,11 +5,14 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.curses.AscendersBane;
+import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.cards.animator.curse.Curse_AscendersBane;
+import eatyourbeets.cards.animator.status.Konosuba_Slimed;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.FieldInfo;
@@ -25,6 +28,29 @@ public class CardLibraryPatches
     private static final FieldInfo<HashMap<String, AbstractCard>> _curses = JUtils.GetField("curses", CardLibrary.class);
     private static final byte[] whatever = {0x61, 0x6e, 0x69, 0x6d, 0x61, 0x74, 0x6f, 0x72, 0x3a, 0x75, 0x72, 0x3a};
     private static final String idPrefix = new String(whatever);
+
+    public static EYBCardData GetReplacement(String cardID)
+    {
+        switch (cardID)
+        {
+            case AscendersBane.ID: return Curse_AscendersBane.DATA;
+            case Slimed.ID: return Konosuba_Slimed.DATA;
+
+            default: return null;
+        }
+    }
+
+    public static void TryReplace(AbstractCard[] card)
+    {
+        if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass))
+        {
+            final EYBCardData data = GetReplacement(card[0].cardID);
+            if (data != null)
+            {
+                card[0] = data.MakeCopy(card[0].upgraded);
+            }
+        }
+    }
 
     @SpirePatch(clz = CardLibrary.class, method = "getCard", paramtypez = {String.class})
     public static class CardLibraryPatches_GetCard
@@ -45,15 +71,19 @@ public class CardLibraryPatches
             {
                 if (AnimatorCard_UltraRare.IsSeen(key))
                 {
-                    AbstractCard card = AnimatorCard_UltraRare.GetCards().get(key);
+                    final AbstractCard card = AnimatorCard_UltraRare.GetCards().get(key);
                     if (card != null)
                     {
                         return SpireReturn.Return(card.makeCopy());
                     }
                 }
-                else if (key.equals(AscendersBane.ID) && GameUtilities.IsPlayerClass(GR.Animator.PlayerClass))
+                else if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass))
                 {
-                    return SpireReturn.Return(Curse_AscendersBane.DATA.MakeCopy(false));
+                    final EYBCardData data = GetReplacement(key);
+                    if (data != null)
+                    {
+                        return SpireReturn.Return(data.MakeCopy(false));
+                    }
                 }
             }
 

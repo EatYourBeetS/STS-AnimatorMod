@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -329,8 +328,7 @@ public class TheUnnamed extends EYBMonster
 
     protected static class VictoryEffect extends AbstractGameEffect
     {
-        boolean fastMode;
-        WaitRealtimeAction wait;
+        private final WaitRealtimeAction wait;
 
         public VictoryEffect()
         {
@@ -344,15 +342,13 @@ public class TheUnnamed extends EYBMonster
             wait.update();
             if (wait.isDone)
             {
-                MapRoomNode cur = AbstractDungeon.currMapNode;
+                MapRoomNode node = AbstractDungeon.currMapNode;
+                node.getRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
 
-                cur.getRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
-
-                AbstractDungeon.nextRoom = new MapRoomNode(cur.x, cur.y + 1);
+                AbstractDungeon.nextRoom = new MapRoomNode(node.x, node.y + 1);
                 AbstractDungeon.nextRoom.room = new TrueVictoryRoom();
                 AbstractDungeon.nextRoomTransitionStart();
 
-                Settings.FAST_MODE = fastMode;
                 this.isDone = true;
             }
         }

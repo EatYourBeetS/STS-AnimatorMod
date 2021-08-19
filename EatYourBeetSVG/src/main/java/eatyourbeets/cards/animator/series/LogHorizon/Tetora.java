@@ -112,7 +112,7 @@ public class Tetora extends AnimatorCard
             {
                 for (int i = 0; i < amount; i++)
                 {
-                    GameActions.Bottom.GainRandomAffinityPower(1, false);
+                    GameActions.Bottom.GainRandomAffinityPower(1, false, Affinity.Red, Affinity.Green, Affinity.Blue);
                 }
 
                 enabled = false;

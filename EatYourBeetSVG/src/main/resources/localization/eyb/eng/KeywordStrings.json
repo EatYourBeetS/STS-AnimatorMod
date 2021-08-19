@@ -218,7 +218,7 @@
 	},
 	"Inspiration":
 	{
-		"DESCRIPTION": "The next time you activate an interactable power during your turn, gain 1 [E].",
+		"DESCRIPTION": "The next time you activate an interactable #yPower, gain 1 [E].",
 		"NAMES": ["inspiration"],
 		"PROPER_NAME": "Inspiration"
 	},

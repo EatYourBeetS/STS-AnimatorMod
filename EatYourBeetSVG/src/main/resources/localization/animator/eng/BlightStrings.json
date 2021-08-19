@@ -18,7 +18,7 @@
 	"animator:UltimateCubeBlight":
 	{
 		"NAME": "Ultimate Cube",
-		"DESCRIPTION": ["At the end of each turn, lose #b{0} HP (you can't die from this). NL Reduce the HP loss by #b1 for every #b2 points of unblocked #yAttack damage you deal."]
+		"DESCRIPTION": ["At the end of each turn, take #b{0} damage. NL Reduce the damage amount by #b1 for every point of unblocked #yAttack damage you deal."]
 	},
 	"animator:UltimateWispBlight":
 	{

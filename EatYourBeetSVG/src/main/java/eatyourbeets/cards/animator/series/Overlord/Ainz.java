@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.Overlord;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.animator.AinzPower;
@@ -36,7 +37,7 @@ public class Ainz extends AnimatorCard
         {
             this.updateCost(-1);
 
-            GameActions.Bottom.GainRandomAffinityPower(1, false);
+            GameActions.Bottom.GainRandomAffinityPower(1, true, Affinity.Blue, Affinity.Red, Affinity.Dark);
             GameActions.Bottom.Flash(this);
         }
     }

@@ -29,7 +29,7 @@ public class MatouShinji extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 4);
+        Initialize(0, 3, 4);
         SetUpgrade(0, 0, 2);
 
         SetAffinity_Orange(1);
@@ -44,7 +44,7 @@ public class MatouShinji extends AnimatorCard
 
         GameActions.Bottom.Callback(() ->
         {
-            AbstractMonster enemy = GameUtilities.GetRandomEnemy(true);
+            final AbstractMonster enemy = GameUtilities.GetRandomEnemy(true);
             if (GameUtilities.IsValidTarget(enemy))
             {
                 GameActions.Top.ApplyPoison(player, enemy, magicNumber);
@@ -52,10 +52,9 @@ public class MatouShinji extends AnimatorCard
             }
         });
 
-        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
+        if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.MakeCardInHand(new MatouShinji_CommandSpell())
-            .AddCallback(c -> c.retain = true);
+            GameActions.Bottom.MakeCardInHand(new MatouShinji_CommandSpell());
         }
     }
 }

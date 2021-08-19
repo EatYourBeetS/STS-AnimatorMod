@@ -112,7 +112,7 @@
 	},
 	"animator:FireCubePower":
 	{
-		"DESCRIPTIONS": ["At the end of each turn, ALL allies gain #b{0} #yStrength and #yBurning."],
+		"DESCRIPTIONS": ["At the end of each turn, ALL allies gain #b{0} #yStrength and #b{1} #yBurning."],
 		"NAME": "Fire Cube"
 	},
 	"animator:FireWispPower":

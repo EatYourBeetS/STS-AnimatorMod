@@ -33,6 +33,8 @@ public class NobleFencer extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
+        GameActions.Bottom.GainBlock(block);
+
         if (IsStarter())
         {
             GameActions.Bottom.GainAgility(1);

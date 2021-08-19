@@ -120,10 +120,9 @@ public class CommonResources extends AbstractResources
             {
                 try
                 {
-                    Keyword k = (Keyword) field.get(null);
-                    EYBCardTooltip tooltip = new EYBCardTooltip(TipHelper.capitalize(k.NAMES[0]), k.DESCRIPTION);
-
-                    CardTooltips.RegisterID(TipHelper.capitalize(field.getName()), tooltip);
+                    final Keyword k = (Keyword) field.get(null);
+                    final EYBCardTooltip tooltip = new EYBCardTooltip(JUtils.Capitalize(k.NAMES[0]), k.DESCRIPTION);
+                    CardTooltips.RegisterID(JUtils.Capitalize(field.getName()), tooltip);
 
                     for (String name : k.NAMES)
                     {

@@ -469,6 +469,11 @@ public class RenderHelpers
         return font;
     }
 
+    public static void WriteSmartText(SpriteBatch sb, BitmapFont font, String text, float x, float y, float lineWidth, Color baseColor)
+    {
+        WriteSmartText(sb, font, text, x, y, lineWidth, font.getLineHeight() * Settings.scale, baseColor);
+    }
+
     public static void WriteSmartText(SpriteBatch sb, BitmapFont font, String text, float x, float y, float lineWidth, float lineSpacing, Color baseColor)
     {
         if (text != null)
@@ -591,6 +596,11 @@ public class RenderHelpers
 
             layout.setText(font, text);
         }
+    }
+
+    public static float GetSmartHeight(BitmapFont font, String text, float lineWidth)
+    {
+        return GetSmartHeight(font, text, lineWidth, font.getLineHeight());
     }
 
     public static float GetSmartHeight(BitmapFont font, String text, float lineWidth, float lineSpacing)

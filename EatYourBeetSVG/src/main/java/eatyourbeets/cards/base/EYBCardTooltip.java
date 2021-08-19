@@ -62,7 +62,6 @@ public class EYBCardTooltip
     private static EYBCard card;
     private static EYBRelic relic;
     private static AbstractCreature creature;
-    private static ArrayList< EYBCardTooltip> genericTip;
     private static Vector2 genericTipPos = new Vector2(0, 0);
 
     public TextureRegion icon;
@@ -142,7 +141,6 @@ public class EYBCardTooltip
         _renderedTipsThisFrame.Set(null, true);
         card = null;
         relic = null;
-        genericTip = null;
     }
 
     public static void RenderFromCard(SpriteBatch sb)
@@ -329,7 +327,7 @@ public class EYBCardTooltip
             return;
         }
 
-        final float TIP_X_THRESHOLD = 1544.0F * Settings.scale;
+        final float TIP_X_THRESHOLD = (Settings.WIDTH * 0.5f); // 1544.0F * Settings.scale;
         final float TIP_OFFSET_R_X = 20.0F * Settings.scale;
         final float TIP_OFFSET_L_X = -380.0F * Settings.scale;
 
@@ -341,7 +339,7 @@ public class EYBCardTooltip
                 continue;
             }
 
-            EYBCardTooltip tip = new EYBCardTooltip(p.name, p.description);
+            final EYBCardTooltip tip = new EYBCardTooltip(p.name, p.description);
             if (p.region48 != null)
             {
                 tip.icon = p.region48;
@@ -350,10 +348,12 @@ public class EYBCardTooltip
             {
                 tip.icon = ((EYBPower) p).powerIcon;
             }
-            else
+
+            if (tip.icon == null && p.img != null)
             {
                 tip.icon = new TextureRegion(p.img);
             }
+
             tooltips.add(tip);
         }
 
@@ -361,15 +361,15 @@ public class EYBCardTooltip
         float y = creature.hb.cY + RenderHelpers.CalculateAdditionalOffset(tooltips, creature.hb.cY);
         if ((creature.hb.cX + creature.hb.width * 0.5f) < TIP_X_THRESHOLD)
         {
-            x = creature.hb.cX + creature.hb.width / 2.0F + TIP_OFFSET_R_X;
+            x = creature.hb.cX + (creature.hb.width / 2.0F) + TIP_OFFSET_R_X;
         }
         else
         {
-            x = creature.hb.cX - creature.hb.width / 2.0F + TIP_OFFSET_L_X;
+            x = creature.hb.cX - (creature.hb.width / 2.0F) + TIP_OFFSET_L_X;
         }
 
-        float original_y = y;
-        boolean offsetLeft = x > (Settings.WIDTH * 0.5f);
+        final float original_y = y;
+        final float offset_x = (x > TIP_X_THRESHOLD) ? BOX_W : -BOX_W;
         float offset = 0.0F;
 
         float offsetChange;
@@ -381,7 +381,7 @@ public class EYBCardTooltip
             {
                 offset = 0.0F;
                 y = original_y;
-                x -= (offsetLeft ? 324.0F : -324.0F) * Settings.scale;
+                x += offset_x;
             }
 
             if (tip.hideDescription == null)
@@ -444,11 +444,11 @@ public class EYBCardTooltip
         {
             // To render it on the right: x + BOX_W - TEXT_OFFSET_X - 28 * Settings.scale
             renderTipEnergy(sb, icon, x + TEXT_OFFSET_X, y + ORB_OFFSET_Y, 28 * iconMulti_W, 28 * iconMulti_H);
-            FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X * 2.5f, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
+            FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, JUtils.Capitalize(title), x + TEXT_OFFSET_X * 2.5f, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
         }
         else
         {
-            FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
+            FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, JUtils.Capitalize(title), x + TEXT_OFFSET_X, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
         }
 
         if (!StringUtils.isEmpty(description))

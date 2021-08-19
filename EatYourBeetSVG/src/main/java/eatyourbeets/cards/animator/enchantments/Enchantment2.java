@@ -14,6 +14,7 @@ public class Enchantment2 extends Enchantment
     public static final EYBCardData DATA = RegisterInternal(Enchantment2.class);
     public static final int INDEX = 2;
     public static final int UP5_LOSE_HP = 4;
+    public static final int POWER_AMOUNT = 3;
 
     public Enchantment2()
     {
@@ -45,7 +46,7 @@ public class Enchantment2 extends Enchantment
     @Override
     protected String GetRawDescription()
     {
-        return upgradeIndex == 5 ? super.GetRawDescription(UP5_LOSE_HP) : super.GetRawDescription();
+        return upgradeIndex == 5 ? super.GetRawDescription(POWER_AMOUNT, UP5_LOSE_HP) : super.GetRawDescription(POWER_AMOUNT);
     }
 
     @Override
@@ -82,7 +83,7 @@ public class Enchantment2 extends Enchantment
         }
 
         final Affinity affinity = GetAffinity();
-        GameActions.Bottom.StackAffinityPower(affinity, 1, true);
+        GameActions.Bottom.StackAffinityPower(affinity, POWER_AMOUNT, true);
         switch (affinity)
         {
             case Red:

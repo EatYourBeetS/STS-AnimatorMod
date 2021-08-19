@@ -43,7 +43,7 @@
 	{
 		"cropPortrait": false
 	},
-	"animator:HansSlimed":
+	"animator:Hans_Slimed":
 	{
 		"cropPortrait": false
 	},
@@ -68,6 +68,10 @@
 		"cropPortrait": false
 	},
 	"animator:Kira":
+	{
+		"cropPortrait": false
+	},
+	"animator:Konosuba_Slimed":
 	{
 		"cropPortrait": false
 	},

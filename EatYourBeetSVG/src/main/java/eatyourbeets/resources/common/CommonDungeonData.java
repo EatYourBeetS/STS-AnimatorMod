@@ -28,6 +28,7 @@ public class CommonDungeonData implements CustomSavable<CommonDungeonData>
     protected Map<String, String> HashMap = null;
     protected Integer RNGCounter = 0;
     protected Boolean EnteredUnnamedReign = false;
+    protected Boolean IsCheating = false;
 
     public static CommonDungeonData Register(String id)
     {
@@ -45,6 +46,11 @@ public class CommonDungeonData implements CustomSavable<CommonDungeonData>
         }
 
         return rng;
+    }
+
+    public void SetCheating(boolean value)
+    {
+        IsCheating = value;
     }
 
     public void EnterUnnamedReign()
@@ -66,6 +72,11 @@ public class CommonDungeonData implements CustomSavable<CommonDungeonData>
     public boolean IsUnnamedReign()
     {
         return EnteredUnnamedReign;
+    }
+
+    public boolean IsCheating()
+    {
+        return IsCheating;
     }
 
     public void Reset()
@@ -95,6 +106,7 @@ public class CommonDungeonData implements CustomSavable<CommonDungeonData>
             HashMap = new HashMap<>(data.HashMap);
             EnteredUnnamedReign = data.EnteredUnnamedReign;
             RNGCounter = data.RNGCounter;
+            IsCheating = data.IsCheating;
             rng = data.rng;
         }
         else
@@ -102,6 +114,7 @@ public class CommonDungeonData implements CustomSavable<CommonDungeonData>
             HashMap = new HashMap<>();
             EnteredUnnamedReign = false;
             RNGCounter = 0;
+            IsCheating = false;
             rng = null;
         }
     }
@@ -111,6 +124,11 @@ public class CommonDungeonData implements CustomSavable<CommonDungeonData>
         if (HashMap == null)
         {
             HashMap = new HashMap<>();
+        }
+
+        if (IsCheating == null)
+        {
+            IsCheating = false;
         }
 
         if (rng != null)

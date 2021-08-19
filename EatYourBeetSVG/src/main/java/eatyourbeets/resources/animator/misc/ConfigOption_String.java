@@ -1,15 +1,14 @@
 package eatyourbeets.resources.animator.misc;
 
 import basemod.ModPanel;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 
 public class ConfigOption_String extends ConfigOption<String>
 {
     public String DefaultValue;
 
-    public ConfigOption_String(SpireConfig config, String key, String defaultValue)
+    public ConfigOption_String(String key, String defaultValue)
     {
-        super(config, key);
+        super(key);
 
         DefaultValue = defaultValue;
     }

@@ -45,8 +45,10 @@ public class PermanentlyUpgrade extends GenericCardSelection
         {
             permanentCard.upgrade();
             player.bottledCardUpgradeCheck(card);
-            GameEffects.TopLevelQueue.Add(new UpgradeShineEffect(Settings.WIDTH / 4f, Settings.HEIGHT / 2f));
-            GameEffects.TopLevelQueue.ShowCardBriefly(card.makeStatEquivalentCopy(), Settings.WIDTH / 4f, Settings.HEIGHT / 2f);
+
+            final float x = (Settings.WIDTH / 4f) + ((result.size() - 1) * (AbstractCard.IMG_WIDTH * 0.75f));
+            GameEffects.TopLevelQueue.Add(new UpgradeShineEffect(x, Settings.HEIGHT / 2f));
+            GameEffects.TopLevelQueue.ShowCardBriefly(card.makeStatEquivalentCopy(), x, Settings.HEIGHT / 2f);
         }
     }
 

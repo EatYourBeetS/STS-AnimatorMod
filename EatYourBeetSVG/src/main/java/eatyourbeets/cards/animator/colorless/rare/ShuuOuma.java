@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 public class ShuuOuma extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ShuuOuma.class)
-            .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.GuiltyCrown);
 
@@ -22,8 +22,7 @@ public class ShuuOuma extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0);
-        SetCostUpgrade(-1);
+        Initialize(0, 0, 1);
 
         SetAffinity_Light(1);
         SetAffinity_Dark(1);
@@ -35,7 +34,9 @@ public class ShuuOuma extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.StackPower(new ShuuOumaPower(player, 1));
-        GameActions.Bottom.FetchFromPile(name, 1, player.drawPile, player.discardPile)
+
+        (upgraded ? GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile, player.discardPile)
+                  : GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile))
         .SetOptions(false, false)
         .SetFilter(c -> c.type.equals(CardType.POWER))
         .AddCallback(cards ->

@@ -149,6 +149,18 @@
 			"DESCRIPTION": "Attack 1 additional time ** for each unique orb ** Channeled this combat. || <LIM>. At the start of ** combat, add a random {Orb} ** {Core} to your discard pile.",
 			"NAME": "Patchouli"
 		},
+		"animator:SakuraKinomoto":
+		{
+			"DESCRIPTION": "Deal 1 additional damage ** for each card in your deck. || <LIM>. If this card kills an ** Elite or Boss: Choose 1 of !S! ** cards to add to your deck.",
+			"NAME": "Sakura Kinomoto"
+		},
+		"animator:ShuuOuma":
+		{
+			"DESCRIPTION": "Fetch 1 {Power} from your ** draw pile and take damage ** equal to twice its cost. || This turn, whenever you play ** a {Power}: Boost [F] [I] [C].",
+			"EXTENDED_DESCRIPTION": ["This turn, whenever you play a #yPower: #yBoost [C] [I] [F] #b{0} time(s)."],
+			"NAME": "Shuu Ouma",
+			"UPGRADE_DESCRIPTION": "Fetch 1 {Power} from your ** draw or discard pile and take ** damage equal to twice its cost. || This turn, whenever you play ** a {Power}: Boost [F] [I] [C]."
+		},
 		"animator:TakanashiRikka":
 		{
 			"DESCRIPTION": "Create a 0-Cost ** copy of every {Attack} ** in your hand, they ** deal !M! damage and ** Purge on use.",
@@ -227,26 +239,15 @@
 			"NAME": "Question Mark",
 			"UPGRADE_DESCRIPTION": "When drawn: Turns into ** an Upgraded copy of a ** random card and gains ** Shapeshifter."
 		},
-		"animator:SakuraKinomoto":
-		{
-			"DESCRIPTION": "Deal 1 additional damage ** for each card in your deck. || <LIM>. If this card kills an ** Elite or Boss: Choose 1 of !S! ** cards to add to your deck.",
-			"NAME": "Sakura Kinomoto"
-		},
 		"animator:Shimakaze":
 		{
 			"DESCRIPTION": "{~Retain} [A]. || <DRW-M>. ** Add 1 Dazed to ** your draw pile.",
 			"NAME": "Shimakaze"
 		},
-		"animator:ShuuOuma":
-		{
-			"DESCRIPTION": "Fetch a {Power} from your ** draw or discard pile and take ** damage equal to twice its cost. || This turn, whenever you play ** a {Power}: Boost [C] [I] [F].",
-			"EXTENDED_DESCRIPTION": ["This turn, whenever you play a #yPower: #yBoost [C] [I] [F] #b{0} time(s)."],
-			"NAME": "Shuu Ouma"
-		},
 		"animator:Rorona":
 		{
 			"DESCRIPTION": "Once per turn: ** Pay !M! [Gold] to obtain a ** random potion (Max 2). || At the end of combat, if ** your deck has 25+ cards: ** Upgrade a random card.",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [Gold] to obtain a random potion. || At the end of combat, if your deck has more than #b{1} cards, #yUpgrade #b{2} random card(s)."],
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [Gold] to obtain a random potion. || At the end of combat, if your deck has more than #b{1} cards, #yUpgrade #b{2} random card(s) (max #b2 cards)."],
 			"NAME": "Rorona"
 		},
 		"animator:Urushihara":
@@ -1427,7 +1428,7 @@
 		},
 		"animator:GiftBox":
 		{
-			"DESCRIPTION": "Discard all cards. || Add !M! random card(s) ** to your hand. || When Exhausted: Add !S! random cards to your draw pile.",
+			"DESCRIPTION": "Discard all cards. ** Add !M! random card(s) ** to your hand. || When Exhausted: Add ** !S! random cards ** to your draw pile.",
 			"NAME": "Gift Box"
 		},
 		"animator:HinaKagiyama":

@@ -6,17 +6,14 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import eatyourbeets.cards.base.EYBCardBase;
-import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorCardSlot;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadoutData;
-import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 import eatyourbeets.ui.AbstractScreen;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.controls.GUI_Image;
@@ -24,13 +21,11 @@ import eatyourbeets.ui.controls.GUI_TextBox;
 import eatyourbeets.ui.controls.GUI_Toggle;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
 public class AnimatorLoadoutEditor extends AbstractScreen
 {
-    protected final static EYBCardTooltip bronzeRequiredTooltip = new EYBCardTooltip("Locked", "");
     protected final static AnimatorLoadout.Validation val = new AnimatorLoadout.Validation();
     protected final ArrayList<AnimatorCardSlotEditor> slotsEditors = new ArrayList<>();
     protected final AnimatorLoadoutData[] presets = new AnimatorLoadoutData[AnimatorLoadout.MAX_PRESETS];
@@ -71,6 +66,13 @@ public class AnimatorLoadoutEditor extends AbstractScreen
             .SetPosition(ScreenW(0.5f) + ((i - 1f) * buttonHeight), ScreenH(1f) - (buttonHeight * 0.85f))
             .SetText(String.valueOf(i + 1))
             .SetOnClick(i, (preset, __) -> ChangePreset(preset));
+
+            if (i > 0)
+            {
+                preset_buttons[i].SetTooltip("Locked", GR.Animator.Strings.CharSelect.ObtainBronzeAtAscension(i == 1
+                        ? AnimatorLoadout.BRONZE_REQUIRED_PRESET_SLOT_2
+                        : AnimatorLoadout.BRONZE_REQUIRED_PRESET_SLOT_3));
+            }
         }
 
         cancel_button = CreateHexagonalButton(0, 0, buttonWidth, buttonHeight)
@@ -148,11 +150,9 @@ public class AnimatorLoadoutEditor extends AbstractScreen
             }
         }
 
-        final AnimatorTrophies trophies = loadout.GetTrophies();
-        final int bronze = trophies == null ? 20 : trophies.Trophy1;
-        preset_buttons[0].SetInteractable(true);
-        preset_buttons[1].SetInteractable(bronze >= AnimatorLoadout.BRONZE_REQUIRED_PRESET_SLOT_2);
-        preset_buttons[2].SetInteractable(bronze >= AnimatorLoadout.BRONZE_REQUIRED_PRESET_SLOT_3);
+        preset_buttons[0].SetInteractable(loadout.CanChangePreset(0));
+        preset_buttons[1].SetInteractable(loadout.CanChangePreset(1));
+        preset_buttons[2].SetInteractable(loadout.CanChangePreset(2));
 
         this.loadout = loadout;
         this.onClose = onClose;
@@ -200,15 +200,10 @@ public class AnimatorLoadoutEditor extends AbstractScreen
             for (int i = 0; i < preset_buttons.length; i++)
             {
                 final GUI_Button button = preset_buttons[i];
-                button.SetColor((i == preset) ? Color.SKY : button.interactable ? Color.LIGHT_GRAY : Color.DARK_GRAY).TryUpdate();
-
-                if (button.hb.hovered && !button.interactable)
-                {
-                    // TODO: localization
-                    final int ascension = (i == 1) ? AnimatorLoadout.BRONZE_REQUIRED_PRESET_SLOT_2 : AnimatorLoadout.BRONZE_REQUIRED_PRESET_SLOT_3;
-                    bronzeRequiredTooltip.description = JUtils.Format("Obtain #yBronze #yTrophy at ascension #b{0} to unlock.", ascension);
-                    EYBCardTooltip.QueueTooltip(bronzeRequiredTooltip, InputHelper.mX + (button.hb.width * 0.5f), InputHelper.mY - (button.hb.height * 0.5f));
-                }
+                button
+                .ShowTooltip(!button.interactable)
+                .SetColor((i == preset) ? Color.SKY : button.interactable ? Color.LIGHT_GRAY : Color.DARK_GRAY)
+                .TryUpdate();
             }
 
             ascensionRequirement.TryUpdate();

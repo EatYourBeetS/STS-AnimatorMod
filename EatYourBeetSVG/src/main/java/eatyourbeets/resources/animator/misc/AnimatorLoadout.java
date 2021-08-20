@@ -176,6 +176,22 @@ public abstract class AnimatorLoadout
         return GetPreset().Validate();
     }
 
+    public boolean CanChangePreset(int preset)
+    {
+        if (preset == 0)
+        {
+            return true;
+        }
+        else if (preset < 0 || preset >= MAX_PRESETS)
+        {
+            return false;
+        }
+
+        final AnimatorTrophies trophies = GetTrophies();
+        final int bronze = trophies == null ? 20 : trophies.Trophy1;
+        return (preset == 1) ? bronze >= BRONZE_REQUIRED_PRESET_SLOT_2 : bronze >= BRONZE_REQUIRED_PRESET_SLOT_3;
+    }
+
     public AnimatorLoadoutData GetPreset()
     {
         return GetPreset(Preset);
@@ -286,10 +302,10 @@ public abstract class AnimatorLoadout
                 }
             }
 
-            shortDescription = sj.toString();
+            shortDescription = ("#" + (Preset + 1) + ": ") + (sj.length() > 0 ? sj.toString() : "-");
         }
 
-        return shortDescription.isEmpty() ? "-" : shortDescription;
+        return shortDescription;
     }
 
     public String GetTrophyMessage(int trophy)

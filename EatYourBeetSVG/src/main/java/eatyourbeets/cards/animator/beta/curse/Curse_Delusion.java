@@ -1,13 +1,11 @@
 package eatyourbeets.cards.animator.beta.curse;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.animator.tokens.AffinityToken_Green;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.RandomizedList;
 
 public class Curse_Delusion extends AnimatorCard_Curse
 {
@@ -28,30 +26,7 @@ public class Curse_Delusion extends AnimatorCard_Curse
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.Callback(() ->
-        {
-            AbstractCard card = null;
-            RandomizedList<AbstractCard> possible = new RandomizedList<>();
-            for (AbstractCard c : player.drawPile.group)
-            {
-                if (c.costForTurn >= 0 && !c.hasTag(AUTOPLAY))
-                {
-                    possible.Add(c);
-                }
-            }
-
-            if (possible.Size() > 0)
-            {
-                card = possible.Retrieve(rng);
-            }
-
-            if (card instanceof EYBCard)
-            {
-                ((EYBCard) card).SetAutoplay(true);
-            }
-
-            GameActions.Bottom.Flash(this);
-        });
+        GameActions.Bottom.ModifyTag(player.drawPile, 1, AUTOPLAY, true);
     }
 
     @Override

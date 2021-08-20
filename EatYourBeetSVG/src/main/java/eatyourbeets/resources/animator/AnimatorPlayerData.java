@@ -11,10 +11,6 @@ import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts.*;
 import eatyourbeets.resources.animator.loadouts.beta.*;
-import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
-import eatyourbeets.resources.animator.misc.AnimatorTrophies;
-import eatyourbeets.resources.animator.misc.CardSlot;
 import eatyourbeets.resources.animator.misc.*;
 import eatyourbeets.utilities.JUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -268,7 +264,7 @@ public class AnimatorPlayerData
         final ActionT1<AnimatorLoadout> add = (loadout) ->
         {
             BetaLoadouts.add(loadout);
-            loadout.InitializeData();
+            loadout.AddStarterCards();
         };
 
         BetaLoadouts.clear();

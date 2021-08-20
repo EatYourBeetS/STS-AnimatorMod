@@ -6,12 +6,13 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.misc.GenericEffects.GenericEffect_GainStat;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.EYBClickablePower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.PlayerAttribute;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
-public class MikuIzayoi extends AnimatorCard //TODO
+public class MikuIzayoi extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MikuIzayoi.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
 
@@ -21,9 +22,10 @@ public class MikuIzayoi extends AnimatorCard //TODO
     {
         super(DATA);
 
-        Initialize(0, 9, 1);
+        Initialize(0, 0, 1, 3);
         SetAffinity_Light(1, 1, 0);
         SetEthereal(true);
+        SetHarmonic(true);
     }
 
     @Override
@@ -32,32 +34,15 @@ public class MikuIzayoi extends AnimatorCard //TODO
     }
 
     @Override
-    protected void UpdateBlock(float amount)
-    {
-        super.UpdateBlock(baseBlock);
-    }
-
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        if (CombatStats.TryActivateLimited(cardID))
-        {
-            if (choices.TryInitialize(this))
-            {
-                choices.AddEffect(new GenericEffect_GainStat(1, PlayerAttribute.Force));
-                choices.AddEffect(new GenericEffect_GainStat(1, PlayerAttribute.Agility));
-                choices.AddEffect(new GenericEffect_GainStat(1, PlayerAttribute.Intellect));
-            }
-
-            choices.Select(1, null);
-        }
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainInspiration(magicNumber);
+        if (JUtils.Count(player.powers, po -> po instanceof EYBClickablePower) >= 3) {
+            GameActions.Bottom.GainInspiration(magicNumber);
+        }
+
+        if (HasSynergy() && CombatStats.TryActivateLimited(cardID)) {
+            GameActions.Bottom.ModifyTag(player.hand, magicNumber, HARMONIC, true).SetFilter(GameUtilities::HasLightAffinity);
+        }
     }
 }

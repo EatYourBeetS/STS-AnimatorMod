@@ -56,7 +56,7 @@ public class Traveler_Aether extends AnimatorCard_UltraRare
             }
 
             if (GameUtilities.GetUniqueOrbsCount() >= UNIQUE_ORB_THRESHOLD && CombatStats.TryActivateSemiLimited(cardID)) {
-                GameActions.Bottom.MakeCardInHand(new Traveler_Wish());
+                GameActions.Bottom.MakeCardInDrawPile(new Traveler_Wish());
             }
         });
     }

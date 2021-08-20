@@ -37,7 +37,7 @@ public class TakashiNatsume extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.ExhaustFromPile(name, magicNumber, player.hand, player.discardPile)
+        GameActions.Bottom.SelectFromPile(name, magicNumber, player.hand, player.discardPile)
                 .SetOptions(false, true)
                 .SetFilter(c -> c.type == CardType.CURSE)
                 .AddCallback(cards -> {
@@ -46,6 +46,7 @@ public class TakashiNatsume extends AnimatorCard
                             for (int i = 0; i < secondaryValue; i++) {
                                 PlayCurseEffect(c);
                             }
+                            GameActions.Bottom.Exhaust(c);
                         }
                     }
                 });

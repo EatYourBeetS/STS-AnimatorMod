@@ -173,12 +173,14 @@ public class EYBCardText
         {
             offset_y -= RenderBadge(sb, BADGES.Innate.Texture(), offset_y, alpha, null);
         }
-
+        if (card.hasTag(GR.Enums.CardTags.HARMONIC))
+        {
+            offset_y -= RenderBadge(sb, BADGES.Harmonic.Texture(), offset_y, alpha, null);
+        }
         if (card.isEthereal)
         {
             offset_y -= RenderBadge(sb, BADGES.Ethereal.Texture(), offset_y, alpha, null);
         }
-
         if (card.selfRetain)
         {
             offset_y -= RenderBadge(sb, BADGES.RetainInfinite.Texture(), offset_y, alpha, null);
@@ -198,7 +200,6 @@ public class EYBCardText
 
         if (card.purgeOnUse || card.hasTag(GR.Enums.CardTags.PURGE))
         {
-            //noinspection UnusedAssignment
             offset_y -= RenderBadge(sb, BADGES.Purge.Texture(), offset_y, alpha, null);
         }
         else if (card.exhaust || card.exhaustOnUseOnce)

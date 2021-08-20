@@ -15,15 +15,13 @@ public class Loadout_AngelBeats extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeData()
+    public void AddStarterCards()
     {
-        super.InitializeData();
-
-        AddToSpecialSlots(HidekiHinata.DATA, 4);
-        AddToSpecialSlots(MasamiIwasawa.DATA, 5);
-        AddToSpecialSlots(Yusa.DATA, 4);
-        AddToSpecialSlots(Noda.DATA, 5);
-        AddToSpecialSlots(YuzuruOtonashi.DATA, 8);
+        AddStarterCard(HidekiHinata.DATA, 4);
+        AddStarterCard(MasamiIwasawa.DATA, 5);
+        AddStarterCard(Yusa.DATA, 4);
+        AddStarterCard(Noda.DATA, 5);
+        AddStarterCard(YuzuruOtonashi.DATA, 8);
     }
 
     @Override

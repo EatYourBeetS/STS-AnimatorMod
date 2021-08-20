@@ -99,6 +99,7 @@ public class CardTooltips
     public EYBCardTooltip Dark = FindByID("Dark");
     public EYBCardTooltip Aura = FindByID("Aura");
     public EYBCardTooltip Autoplay = FindByID("Autoplay");
+    public EYBCardTooltip Harmonic = FindByID("Harmonic");
     public EYBCardTooltip Regeneration = FindByID("Regeneration");
     public EYBCardTooltip SelfDamage = FindByID("Self Damage");
     public EYBCardTooltip CounterAttack = FindByID("Counterattack");
@@ -193,6 +194,7 @@ public class CardTooltips
         HasteInfinite.SetIcon(badges.HasteInfinite.Texture(), 6);
         Purge.SetIcon(badges.Purge.Texture(), 6);
         Autoplay.SetIcon(badges.Autoplay.Texture(), 6);
+        Harmonic.SetIcon(badges.Harmonic.Texture(), 6);
         Afterlife.SetIcon(badges.Afterlife.Texture(), 6);
 
         CommonImages.CardIcons icons = GR.Common.Images.Icons;

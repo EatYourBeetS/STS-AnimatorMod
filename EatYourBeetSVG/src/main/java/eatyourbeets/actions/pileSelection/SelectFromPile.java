@@ -31,6 +31,9 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
     protected boolean canPlayerCancel;
     protected boolean anyNumber;
     protected boolean selected;
+    protected boolean forTransform;
+    protected boolean forUpgrade;
+    protected boolean forPurge;
 
     public SelectFromPile(String sourceName, int amount, CardGroup... groups)
     {
@@ -71,20 +74,21 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
 
     public SelectFromPile SetOptions(boolean isRandom, boolean anyNumber)
     {
-        this.anyNumber = anyNumber;
-
-        if (isRandom)
-        {
-            this.origin = CardSelection.Random;
-        }
-
-        return this;
+        return SetOptions(isRandom ? CardSelection.Random : null, anyNumber);
     }
 
     public SelectFromPile SetOptions(CardSelection origin, boolean anyNumber)
     {
-        this.origin = origin;
+        return SetOptions(origin, anyNumber, false, false, false);
+    }
+
+    public SelectFromPile SetOptions(CardSelection origin, boolean anyNumber, boolean forTransform, boolean forUpgrade, boolean forPurge)
+    {
         this.anyNumber = anyNumber;
+        this.origin = origin;
+        this.forTransform = forTransform;
+        this.forUpgrade = forUpgrade;
+        this.forPurge = forPurge;
 
         return this;
     }
@@ -196,7 +200,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
                     return;
                 }
 
-                AbstractDungeon.gridSelectScreen.open(mergedGroup, Math.min(mergedGroup.size(), amount), CreateMessage(), false, false, canPlayerCancel, false);
+                AbstractDungeon.gridSelectScreen.open(mergedGroup, Math.min(mergedGroup.size(), amount), CreateMessage(), forUpgrade, forTransform, canPlayerCancel, forPurge);
             }
         }
     }

@@ -82,7 +82,7 @@
 	},
 	"animator:ElementalExposurePower":
 	{
-	  "DESCRIPTIONS": ["The effects of Frail, Vulernable, and Weak are amplified by #b{0}%. Removed in #b{1} turn(s)."],
+	  "DESCRIPTIONS": ["The effects of Burning and Freezing are amplified by #b{0}%. Removed in #b{1} turn(s)."],
 	  "NAME": "Elemental Exposure"
 	},
 	"animator:ElementalMasteryPower":

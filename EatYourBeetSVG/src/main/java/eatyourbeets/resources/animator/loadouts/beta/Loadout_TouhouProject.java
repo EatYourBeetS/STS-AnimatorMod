@@ -15,14 +15,12 @@ public class Loadout_TouhouProject extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeData()
+    public void AddStarterCards()
     {
-        super.InitializeData();
-
-        AddToSpecialSlots(MarisaKirisame.DATA, 4);
-        AddToSpecialSlots(ReimuHakurei.DATA, 5);
-        AddToSpecialSlots(MayumiJoutouguu.DATA, 5);
-        AddToSpecialSlots(Clownpiece.DATA, 9);
+        AddStarterCard(MarisaKirisame.DATA, 4);
+        AddStarterCard(ReimuHakurei.DATA, 5);
+        AddStarterCard(MayumiJoutouguu.DATA, 5);
+        AddStarterCard(Clownpiece.DATA, 9);
     }
 
     @Override

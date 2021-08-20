@@ -60,6 +60,12 @@ public abstract class AnimatorCard extends EYBCard
 
     public boolean HasDirectSynergy(AbstractCard other)
     {
+        if (hasTag(HARMONIC)) {
+            AnimatorCard a = JUtils.SafeCast(other, AnimatorCard.class);
+            if (a != null && a.series != null && a.series.Equals(this.series)) {
+                return true;
+            }
+        }
         return CombatStats.Affinities.HasDirectSynergy(this, other);
     }
 

@@ -13,7 +13,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -33,17 +32,8 @@ public class ShidoItsuka extends AnimatorCard
         SetUpgrade(0, 0);
         SetAffinity_Blue(1, 0, 0);
 
+        SetHarmonic(true);
         SetExhaust(true);
-    }
-
-    @Override
-    public boolean HasDirectSynergy(AbstractCard other)
-    {
-        AnimatorCard a = JUtils.SafeCast(other, AnimatorCard.class);
-        if (a != null && a.series != null) {
-            return a.series.Equals(this.series);
-        }
-        return false;
     }
 
     @Override
@@ -98,8 +88,15 @@ public class ShidoItsuka extends AnimatorCard
                 {
                     if (cards.size() > 0)
                     {
-                        GameActions.Bottom.MakeCardInDiscardPile(cards.get(0))
-                                .SetDuration(Settings.ACTION_DUR_FASTER, true);
+                        if (HasSynergy()) {
+                            GameActions.Bottom.MakeCardInDrawPile(cards.get(0))
+                                    .SetDuration(Settings.ACTION_DUR_FASTER, true);
+                        }
+                        else {
+                            GameActions.Bottom.MakeCardInDiscardPile(cards.get(0))
+                                    .SetDuration(Settings.ACTION_DUR_FASTER, true);
+                        }
+
                     }
                 });
 

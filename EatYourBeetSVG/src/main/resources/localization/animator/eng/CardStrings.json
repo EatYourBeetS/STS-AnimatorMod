@@ -436,11 +436,6 @@
 		  "DESCRIPTION": "The first Attack you play each turn applies Burn equal to 20% of its damage and Exhausts.",
 		  "NAME": "Pyra"
 		},
-		"animator:SakuraKinomoto":
-		{
-			"DESCRIPTION": "<LIM>. If this card kills an Elite or Boss: Choose 1 of !M! cards to add to your deck.",
-			"NAME": "Sakura Kinomoto"
-		},
 		"animator:SearingBurn":
 		{
 		  "DESCRIPTION": "When Exhausted: ** ALL characters take !M! damage and gain !S! [Burning].",
@@ -450,12 +445,6 @@
 		{
 		  "DESCRIPTION": "[Frost] applies !M! [Freezing] to a random enemy when triggered ** and to ALL enemies twice when Evoked. || Increase the reduction bonus of [Freezing] by !S!% this combat.",
 		  "NAME": "Sheer Cold"
-		},
-		"animator:ShuuOuma":
-		{
-			"DESCRIPTION": "Fetch a {Power} from your draw or discard pile. || This turn, whenever you play a {Power}: draw a random {Power} from your draw or discard pile.",
-			"EXTENDED_DESCRIPTION": ["This turn, whenever you play a #yPower: draw #b{0} random #yPowers from your draw or discard pile."],
-			"NAME": "Shuu Ouma"
 		},
 		"animator:Simon":
 		{
@@ -476,7 +465,7 @@
 		{
 		  "DESCRIPTION": "Exhaust a Curse from your hand or discard pile. Play its effect !S! times on ALL enemies.",
 		  "EXTENDED_DESCRIPTION": ["Whenever you play a card, deal #b{0} damage to ALL enemies. Removed at the end of turn."],
-		  "NAME": "TakashiNatsume"
+		  "NAME": "Takashi Natsume"
 		},
 		"animator:TomoyaOkazaki":
 		{
@@ -533,7 +522,7 @@
 		},
 		"animator:MikuIzayoi":
 		{
-			"DESCRIPTION": "Unaffected by Block modifiers. || <LIM>. Synergy: Give {Harmonic} to a card in your hand that has any of this card's affinities.",
+			"DESCRIPTION": "Gain !M! [Inspiration]. If you have at least !S! interactable powers active, repeat this effect. || <LIM>. Synergy: Give {Harmonic} to a random <L> card in your hand.",
 			"NAME": "Miku Izayoi"
 		},
 		"animator:MioTakamiya":
@@ -582,9 +571,9 @@
 		},
 		"animator:ShidoItsuka":
 		{
-			"DESCRIPTION": "{Harmonic}. || Add 1 of !M! cards that would Synergize with this card to your discard pile.",
+			"DESCRIPTION": "Add 1 of !M! cards that would Synergize with this card to your discard pile. || Synergy: Add it to your draw pile instead.",
 			"NAME": "Shido Itsuka",
-			"UPGRADE_DESCRIPTION": "{Harmonic}. || Add 1 of !M! Upgraded cards ** that would Synergize with ** this card to your discard pile."
+			"UPGRADE_DESCRIPTION": "Add 1 of !M! Upgraded cards ** that would Synergize with ** this card to your discard pile. || Synergy: Add it to your draw pile instead."
 		},
 		"animator:Strike_DateALive":
 		{
@@ -722,12 +711,12 @@
 		},
 		"animator:Traveler_Aether":
 		{
-		    "DESCRIPTION": "Channel [Aether]. {Induce} your first !M! {Common Orbs} and apply !S! [Burning] [Freezing] to ALL enemies for each. || <SLM>. If you have at least 3 unique Orbs, add {Wish} to your hand.",
+		    "DESCRIPTION": "Channel [Aether]. {Induce} your first !M! {Common Orbs} and apply !S! [Burning] [Freezing] to ALL enemies for each. || <SLM>. If you have at least 3 unique Orbs, add {Wish} to your draw pile.",
 		    "NAME": "Aether"
 		},
 		"animator:Traveler_Lumine":
         {
-        	"DESCRIPTION": "Add {Wish} and {Abyssal Void} to your Draw Pile. Next turn, trigger the last !M! Orbs Evoked this combat. || <SLM>. If you Synergized twice this turn, Gain/Boost [I] equal to <D>.",
+        	"DESCRIPTION": "Add {Wish} and {Abyssal Void} to your draw pile. Next turn, trigger the last !M! Orbs Evoked this combat. || <SLM>. If you Synergized twice this turn, Gain/Boost [I] equal to <D>.",
         	"NAME": "Lumine"
         },
 		"animator:Traveler_Wish":
@@ -747,8 +736,8 @@
 		},
 		"animator:Zhongli":
 		{
-			"DESCRIPTION": "[Earth] gives half of its damage as [Block] when Evoked. || Once per turn: Pay [E] to {Channel} [Earth] ** and gain !M! [Plated Armor].",
-		  	"EXTENDED_DESCRIPTION": ["Pay #b1 [E] to channel #b1 [Earth] ** and gain {0} [Plated Armor]. || Your [Earth] now give half of their damage as [Block] when #yEvoked."],
+			"DESCRIPTION": "[Earth] gives half of its damage as [Block] when Evoked. || Once per turn, pay 2 [E]: {Channel} [Earth] ** and gain !M! [Plated Armor].",
+		  	"EXTENDED_DESCRIPTION": ["Pay #b2 [E] to channel #b1 [Earth] ** and gain {0} [Plated Armor]. || Your [Earth] now give half of their damage as [Block] when #yEvoked."],
 			"NAME": "Zhongli"
 		}
 	},

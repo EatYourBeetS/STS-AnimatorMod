@@ -16,15 +16,13 @@ public class Loadout_Rewrite extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeData()
+    public void AddStarterCards()
     {
-        super.InitializeData();
-
-        AddToSpecialSlots(YoshinoHaruhiko.DATA, 4);
-        AddToSpecialSlots(ShizuruNakatsu.DATA, 4);
-        AddToSpecialSlots(Shimako.DATA, 5);
-        AddToSpecialSlots(SougenEsaka.DATA, 6);
-        AddToSpecialSlots(ChihayaOhtori.DATA, 8);
+        AddStarterCard(YoshinoHaruhiko.DATA, 4);
+        AddStarterCard(ShizuruNakatsu.DATA, 4);
+        AddStarterCard(Shimako.DATA, 5);
+        AddStarterCard(SougenEsaka.DATA, 6);
+        AddStarterCard(ChihayaOhtori.DATA, 8);
     }
 
     @Override

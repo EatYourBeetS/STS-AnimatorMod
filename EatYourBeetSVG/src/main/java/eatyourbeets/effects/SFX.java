@@ -22,6 +22,7 @@ public class SFX
         BaseMod.addAudio(ANIMATOR_DARKNESS, "audio/animator/sound/DARKNESS.ogg");
         BaseMod.addAudio(ANIMATOR_GUNSHOT, "audio/animator/sound/FIRING_BULLET.ogg");
         BaseMod.addAudio(ANIMATOR_PSI, "audio/animator/sound/PSI.ogg");
+        BaseMod.addAudio(ANIMATOR_STAR, "audio/animator/sound/STAR.ogg");
         BaseMod.addAudio(ANIMATOR_ORB_EARTH_EVOKE, "audio/animator/sound/ORB_EARTH_EVOKE.ogg");
         BaseMod.addAudio(ANIMATOR_ORB_EARTH_CHANNEL, "audio/animator/sound/ORB_EARTH_CHANNEL.ogg");
         BaseMod.addAudio(ANIMATOR_ORB_WATER_EVOKE, "audio/animator/sound/ORB_WATER_EVOKE.ogg");
@@ -49,6 +50,7 @@ public class SFX
     public static final String ANIMATOR_ORB_WATER_CHANNEL = "ANIMATOR_ORB_WATER_CHANNEL";
     public static final String ANIMATOR_ORB_WATER_EVOKE = "ANIMATOR_ORB_WATER_EVOKE";
     public static final String ANIMATOR_PSI = "ANIMATOR_PSI";
+    public static final String ANIMATOR_STAR = "ANIMATOR_STAR";
     public static final String ANIMATOR_THE_ULTIMATE_CRYSTAL = "ANIMATOR_THE_ULTIMATE_CRYSTAL";
     public static final String ANIMATOR_THE_CREATURE = "THE_CREATURE.ogg";
     public static final String ANIMATOR_THE_HAUNT = "THE_HAUNT.ogg";

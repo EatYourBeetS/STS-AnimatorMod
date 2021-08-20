@@ -18,7 +18,7 @@ public class Zhongli extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 3, 1);
         SetUpgrade(0, 0, 0, 0);
         SetAffinity_Orange(2, 0, 0);
     }
@@ -39,7 +39,7 @@ public class Zhongli extends AnimatorCard
     {
         public ZhongliPower(AbstractPlayer owner, int amount)
         {
-            super(owner, Zhongli.DATA, PowerTriggerConditionType.Energy, 1);
+            super(owner, Zhongli.DATA, PowerTriggerConditionType.Energy, 2);
 
             this.amount = amount;
             this.triggerCondition.SetOneUsePerPower(true);

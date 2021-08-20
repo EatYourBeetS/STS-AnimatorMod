@@ -465,6 +465,7 @@ public class GR
             @SpireEnum public static AbstractCard.CardTags LOYAL;
             @SpireEnum public static AbstractCard.CardTags AUTOPLAY;
             @SpireEnum public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
+            @SpireEnum public static AbstractCard.CardTags HARMONIC;
         }
 
         public static class AttackEffect

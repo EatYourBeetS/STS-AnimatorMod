@@ -1,10 +1,10 @@
 package eatyourbeets.actions.animator;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.vfx.ShootingStarsEffect;
 import eatyourbeets.powers.animator.ElementalExposurePower;
 import eatyourbeets.utilities.GameActions;
@@ -27,13 +27,13 @@ public class ElementalMasteryAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        GameActions.Top.VFX(new ShootingStarsEffect(-200, player.hb.cY).SetSpread(0,85));
+        GameActions.Top.VFX(new ShootingStarsEffect(-170, player.hb.cY).SetSpread(0,95));
+        GameActions.Bottom.SFX(SFX.ANIMATOR_STAR);
         GameEffects.List.Add(new BorderFlashEffect(Color.CORAL));
 
         ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
         for (AbstractMonster m : enemies)
         {
-            CardCrawlGame.sound.play("HEAL_3");
             GameActions.Bottom.StackPower(new ElementalExposurePower(m, amount)).IgnoreArtifact(true);
         }
 

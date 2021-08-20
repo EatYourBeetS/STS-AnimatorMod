@@ -474,7 +474,7 @@
 		},
 		"animator:TakashiNatsume":
 		{
-		  "DESCRIPTION": "Exhaust !M! Curse(s) from your hand or discard pile. For each one: Play its effect twice on ALL enemies.",
+		  "DESCRIPTION": "Exhaust a Curse from your hand or discard pile. Play its effect !S! times on ALL enemies.",
 		  "EXTENDED_DESCRIPTION": ["Whenever you play a card, deal #b{0} damage to ALL enemies. Removed at the end of turn."],
 		  "NAME": "TakashiNatsume"
 		},
@@ -528,7 +528,7 @@
 		},
 		"animator:KurumiTokisaki":
 		{
-			"DESCRIPTION": "Apply !M! [Blinded]. || !A! <C>: Gain 2 [E] next turn. || Cooldown !S!: Add !S! 0-cost copies of {Shido Itsuka} to your draw pile with Autoplay.",
+			"DESCRIPTION": "Apply !M! [Blinded]. || !A! <D>: Gain !M! [E] next turn. || Cooldown !S!: Add !M! 0-cost copies of {Shido Itsuka} to your draw pile with Autoplay.",
 			"NAME": "Kurumi Tokisaki"
 		},
 		"animator:MikuIzayoi":

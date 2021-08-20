@@ -11,7 +11,6 @@ import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class KurumiTokisaki extends AnimatorCard
@@ -22,7 +21,7 @@ public class KurumiTokisaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(12, 12, 2, 3);
+        Initialize(12, 12, 2);
         SetUpgrade(0,0,0);
         SetAffinity_Orange(2, 0, 0);
         SetAffinity_Dark(1, 0, 0);
@@ -60,7 +59,7 @@ public class KurumiTokisaki extends AnimatorCard
     {
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED, true));
 
-        for (int i = 0; i < secondaryValue; i++)
+        for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.MakeCardInDrawPile(new ShidoItsuka())
                     .SetUpgrade(upgraded, true)
@@ -71,9 +70,6 @@ public class KurumiTokisaki extends AnimatorCard
 
                             CostModifiers.For(card).Add(key, -1);
                             ((AnimatorCard) card).SetAutoplay(true);
-                            GameUtilities.TriggerWhenPlayed(card, key, (k, c) ->
-                                    CostModifiers.For(c).Remove(k, false)
-                            );
                         }
                     });
         }

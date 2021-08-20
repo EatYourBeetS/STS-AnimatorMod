@@ -45,6 +45,11 @@
 		"DESCRIPTIONS": ["Once per turn, when the owner deals unblocked damage, add #b1 #yPain to the draw pile."],
 		"NAME": "Cursed Stabs"
 	},
+	"animator:DainsleifAbyssPower":
+	{
+	  "DESCRIPTIONS": ["Whenever you play a card, gains stacks equal to the card's cost + 1. For every #b{0} stacks, play 1 out of 3 random effects."],
+	  "NAME": "Phase of the Abyssal Moon"
+	},
 	"animator:DarkCrystalPower":
 	{
 		"DESCRIPTIONS": ["When targeted by a card, apply #b{0} #yConstricted to ALL other characters."],
@@ -340,11 +345,6 @@
 		"At the end of your turn, deal #b{0} #yDamage for each Strike played this turn. You have played #b{1} Strike(s)."
 	  ],
 	  "NAME": "Swordfish II"
-	},
-	"animator:TravelerAbyssPower":
-	{
-	  "DESCRIPTIONS": ["Whenever you play a card, gains stacks equal to the card's cost + 1. For every #b{0} stacks, play 1 out of 3 random effects."],
-	  "NAME": "Phase of the Abyssal Moon"
 	},
 	"animator:TheUnnamedCultistPower":
 	{

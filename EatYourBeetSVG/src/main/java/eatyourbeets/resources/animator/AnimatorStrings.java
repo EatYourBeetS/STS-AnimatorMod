@@ -364,7 +364,7 @@ public class AnimatorStrings
             return Get(39) + (addPeriod ? LocalizedStrings.PERIOD : "");
         }
 
-        public final String AddRandomMotivatedCard(Object category, boolean addPeriod)
+        public final String ChooseMotivatedCard(Object category, boolean addPeriod)
         {
             return Format(addPeriod, 40, category);
         }

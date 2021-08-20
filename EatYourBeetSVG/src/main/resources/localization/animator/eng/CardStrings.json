@@ -421,11 +421,6 @@
 		  "DESCRIPTION": "The first Attack you play each turn applies Burn equal to 20% of its damage and Exhausts.",
 		  "NAME": "Pyra"
 		},
-		"animator:Ruchia":
-        {
-              "DESCRIPTION": "This turn, take no damage during your turn.",
-              "NAME": "Ruchia"
-        },
 		"animator:SakuraKinomoto":
 		{
 			"DESCRIPTION": "<LIM>. If this card kills an Elite or Boss: Choose 1 of !M! cards to add to your deck.",
@@ -462,11 +457,21 @@
 			"DESCRIPTION": "At the end of your turn, deal !M! damage to ALL enemies for each Strike played this turn. || When Discarded or Played, Motivate 1.",
 			"NAME": "Swordfish II"
 		},
+		"animator:TakashiNatsume":
+		{
+		  "DESCRIPTION": "Exhaust a Curse from your hand. Play its effect on ALL enemies.",
+		  "NAME": "TakashiNatsume"
+		},
 		"animator:TomoyaOkazaki":
 		{
 		  "DESCRIPTION": "Motivate !M! random Cards in your draw pile or discard pile whose Affinity matches that of your highest Affinity.",
 		  "NAME": "Tomoya Okazaki"
 		},
+		"animator:UruhaRushia":
+        {
+          "DESCRIPTION": "This turn, take no damage during your turn.",
+          "NAME": "Uruha Rushia"
+        },
 		"animator:Ushio":
 		{
 		  "DESCRIPTION": "Skip your next turn. On the following turn: <DRW-M> and gain !S! [E]. || <LIM>. If your exhuast pile is larger than the number of cards in play, add {Garbage Doll} to your discard pile.",
@@ -701,7 +706,7 @@
 		},
 		"animator:Traveler_Aether":
 		{
-		    "DESCRIPTION": "Channel [Aether]. {Induce} your first !M! {Common Orbs}. Apply !S! [Burning] [Freezing] to ALL enemies for each unique one. || <SLM>. If you Induced at least !S! unique Orbs, add {Wish} to your hand.",
+		    "DESCRIPTION": "Channel [Aether]. {Induce} your first !M! {Common Orbs} and apply !S! [Burning] [Freezing] to ALL enemies for each. || <SLM>. If you have at least !S! unique Orbs, add {Wish} to your hand.",
 		    "NAME": "Aether"
 		},
 		"animator:Traveler_Lumine":

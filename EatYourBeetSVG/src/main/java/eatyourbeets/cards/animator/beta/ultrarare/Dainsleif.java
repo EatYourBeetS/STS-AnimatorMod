@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Chaos;
-import eatyourbeets.powers.animator.TravelerAbyssPower;
+import eatyourbeets.powers.animator.DainsleifAbyssPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Dainsleif extends AnimatorCard_UltraRare {
@@ -58,6 +58,6 @@ public class Dainsleif extends AnimatorCard_UltraRare {
     public void triggerWhenCreated(boolean startOfBattle) {
         super.triggerWhenCreated(startOfBattle);
 
-        GameActions.Bottom.ApplyPower(player, player, new TravelerAbyssPower(player));
+        GameActions.Bottom.ApplyPower(player, player, new DainsleifAbyssPower(player));
     }
 }

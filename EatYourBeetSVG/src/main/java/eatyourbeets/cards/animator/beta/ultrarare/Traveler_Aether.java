@@ -14,8 +14,6 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
-import java.util.HashSet;
-
 public class Traveler_Aether extends AnimatorCard_UltraRare
 {
     public static final EYBCardData DATA = Register(Traveler_Aether.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact);
@@ -42,23 +40,21 @@ public class Traveler_Aether extends AnimatorCard_UltraRare
     {
         GameActions.Bottom.ChannelOrbs(Aether::new, 1).AddCallback(() -> {
             int orbsInduced = 0;
-            HashSet<String> uniqueOrbs = new HashSet<>();
             for (AbstractOrb orb : player.orbs) {
                 if (GameUtilities.IsCommonOrb(orb)) {
                     GameActions.Bottom.InduceOrb(orb.makeCopy());
-                    uniqueOrbs.add(orb.ID);
                     orbsInduced++;
                     if (orbsInduced >= magicNumber) {
                         break;
                     }
                 }
             }
-            if (uniqueOrbs.size() > 0) {
-                GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), secondaryValue * uniqueOrbs.size());
-                GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(), secondaryValue * uniqueOrbs.size());
+            if (orbsInduced > 0) {
+                GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), secondaryValue * orbsInduced);
+                GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(), secondaryValue * orbsInduced);
             }
 
-            if (uniqueOrbs.size() >= secondaryValue && CombatStats.TryActivateSemiLimited(cardID)) {
+            if (GameUtilities.GetUniqueOrbsCount() >= secondaryValue && CombatStats.TryActivateSemiLimited(cardID)) {
                 GameActions.Bottom.MakeCardInHand(new Traveler_Wish());
             }
         });

@@ -31,18 +31,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TravelerAbyssPower extends AnimatorPower {
+public class DainsleifAbyssPower extends AnimatorPower {
     private final static HashMap<Integer, RandomizedList<AbyssNegativeEffect>> negativeEffectList = new HashMap<>();
     private final static RandomizedList<AbstractCard> genshinCards = new RandomizedList<>();
     private final static WeightedList<AbyssPositiveEffect> positiveEffectList = new WeightedList<>();
     private static final AnimatorStrings.Actions ACTIONS = GR.Animator.Strings.Actions;
     private static final String NAME = Dainsleif.DATA.Strings.NAME;
     private static final int COUNTDOWN_AMT = 24;
-    public static final String POWER_ID = CreateFullID(TravelerAbyssPower.class);
+    public static final String POWER_ID = CreateFullID(DainsleifAbyssPower.class);
     public static final int CHOICES = 3;
 
 
-    public TravelerAbyssPower(AbstractCreature owner) {
+    public DainsleifAbyssPower(AbstractCreature owner) {
         super(owner, POWER_ID);
 
         this.amount = 0;
@@ -212,9 +212,26 @@ public class TravelerAbyssPower extends AnimatorPower {
         GainCorruption2(ACTIONS.GainAmount(3, GR.Tooltips.Corruption, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainCorruption(3, false)),
         GainIntellect(ACTIONS.GainAmount(2, GR.Tooltips.Intellect, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainIntellect(2, false)),
         GainIntellect2(ACTIONS.GainAmount(3, GR.Tooltips.Intellect, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainIntellect(3, false)),
-        ObtainGenshinCard(ACTIONS.AddRandomMotivatedCard(CardSeries.GenshinImpact.Name, true), 5, 3, (c, p, m) -> {
-            AbstractCard gCard = genshinCards.Retrieve(rng, false);
-            GameActions.Bottom.MakeCardInDrawPile(gCard);
+        ObtainGenshinCard(ACTIONS.ChooseMotivatedCard(CardSeries.GenshinImpact.Name, true), 5, 3, (c, p, m) -> {
+            final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+            final RandomizedList<AbstractCard> pool = new RandomizedList<AbstractCard>(genshinCards.GetInnerList());
+
+            while (choice.size() < 3 && pool.Size() > 0)
+            {
+                AbstractCard ca = pool.Retrieve(rng).makeCopy();
+                ca.upgrade();
+                choice.addToTop(ca);
+            }
+            GameActions.Bottom.SelectFromPile(null, 1, choice)
+                    .SetOptions(false, true)
+                    .AddCallback(cards ->
+                    {
+                        if (cards != null && cards.size() > 0)
+                        {
+                            GameActions.Bottom.MakeCardInHand(cards.get(0))
+                                    .AddCallback(ca -> ca.modifyCostForCombat(-1));
+                        }
+                    });
         }),
         ObtainWish(ACTIONS.AddToDrawPile(1, Traveler_Wish.DATA.Strings.NAME, true), 5, 3, (c, p, m) -> GameActions.Bottom.MakeCardInDrawPile(new Traveler_Wish())),
         PlayDainsleif(ACTIONS.PlayFromAnywhere(Dainsleif.DATA.Strings.NAME, true), 2, 4, (c, p, m) -> GameActions.Bottom.PlayFromPile(null, 1, m, p.drawPile, p.discardPile, p.hand).SetOptions(true, false).SetFilter(ca -> ca instanceof Dainsleif));

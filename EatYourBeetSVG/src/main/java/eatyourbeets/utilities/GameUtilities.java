@@ -47,6 +47,7 @@ import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
+import eatyourbeets.orbs.animator.Water;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
@@ -803,11 +804,12 @@ public class GameUtilities
         {
             orbs.Add(new Lightning(), 7);
             orbs.Add(new Frost(), 7);
-            orbs.Add(new Earth(), 6);
             orbs.Add(new Fire(), 6);
-            orbs.Add(new Plasma(), 4);
-            orbs.Add(new Dark(), 4);
+            orbs.Add(new Dark(), 6);
+            orbs.Add(new Earth(), 5);
             orbs.Add(new Aether(), 4);
+            orbs.Add(new Plasma(), 3);
+            orbs.Add(new Water(), 3);
         }
 
         return orbs.Retrieve(GetRNG(), false).makeCopy();

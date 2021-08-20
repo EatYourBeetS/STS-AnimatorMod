@@ -448,7 +448,7 @@
 		},
 		"animator:Simon":
 		{
-		  "DESCRIPTION": "Unique. || Increase the damage of a random Attack in your hand by half of the damage dealt. || <LIM>. !M! [F]: Upgrade permanently.",
+		  "DESCRIPTION": "Unique. || Gain [Vigor] equal to half of unblocked damage dealt. || <LIM>. !M! [F]: Upgrade permanently.",
 		  "NAME": "Simon"
 		},
 		"animator:SpikeSpiegel":
@@ -474,7 +474,8 @@
 		},
 		"animator:UruhaRushia":
         {
-          "DESCRIPTION": "This turn, take no damage during your turn.",
+          "DESCRIPTION": "During your phase this turn, reduce all damage received to 1.",
+          "EXTENDED_DESCRIPTION": ["During your phase this turn, reduce all damage received to 1."],
           "NAME": "Uruha Rushia"
         },
 		"animator:Ushio":
@@ -522,7 +523,7 @@
 		},
 		"animator:MikuIzayoi":
 		{
-			"DESCRIPTION": "Gain !M! [Inspiration]. If you have at least !S! interactable powers active, repeat this effect. || <LIM>. Synergy: Give {Harmonic} to a random <L> card in your hand.",
+			"DESCRIPTION": "Gain !S! [Inspiration]. If you have at least 3 interactable powers, repeat this effect. || <LIM>. Synergy: Give {Harmonic} to a random series card in your hand.",
 			"NAME": "Miku Izayoi"
 		},
 		"animator:MioTakamiya":
@@ -537,7 +538,7 @@
 		},
 		"animator:MukuroHoshimiya":
 		{
-			"DESCRIPTION": "Deals 1 more damage for every !M! cards in your draw pile. || Scry !S!. Give all discarded cards {~Delayed} until the next time you shuffle your deck.",
+			"DESCRIPTION": "Deals 1 more damage for every !M! cards in ** your draw pile. || Scry !S!. Give all discarded cards {~Delayed} until the next time you shuffle your deck.",
 			"NAME": "Mukuro Hoshimiya"
 		},
 		"animator:Natsumi":
@@ -736,8 +737,8 @@
 		},
 		"animator:Zhongli":
 		{
-			"DESCRIPTION": "[Earth] gives half of its damage as [Block] when Evoked. || Once per turn, pay 2 [E]: {Channel} [Earth] ** and gain !M! [Plated Armor].",
-		  	"EXTENDED_DESCRIPTION": ["Pay #b2 [E] to channel #b1 [Earth] ** and gain {0} [Plated Armor]. || Your [Earth] now give half of their damage as [Block] when #yEvoked."],
+			"DESCRIPTION": "[Earth] gives half of its damage as [Block] when Evoked. || Once per turn, pay [E]: {Channel} [Earth] ** and gain !M! [Plated Armor].",
+		  	"EXTENDED_DESCRIPTION": ["Pay [E] to channel #b1 [Earth] ** and gain {0} [Plated Armor]. || Your [Earth] now give half of their damage as [Block] when #yEvoked."],
 			"NAME": "Zhongli"
 		}
 	},
@@ -757,8 +758,8 @@
 		},
 		"animator:ChihayaOhtori":
 		{
-			"DESCRIPTION": "Choose 1: Draw a Strike from your discard pile and {Motivate} it, or Gain !S! [Artifact]. || Costs 1 less for every !M! [Force].",
-		  	"EXTENDED_DESCRIPTION": ["Draw a Strike from your discard pile and {Motivate} it.", "Gain 1 [Artifact]."],
+			"DESCRIPTION": "Choose 1: Draw a <O> card from your discard pile and {Motivate} it, or Gain !S! {Temp}. [Artifact]. || Costs 1 less for every !M! <O>.",
+		  	"EXTENDED_DESCRIPTION": ["Draw a <O> card from your discard pile and {Motivate} it.", "Gain 1 {Temp}. [Artifact]."],
 		  	"NAME": "Chihaya Ohtori"
 		},
 		"animator:Defend_Rewrite":
@@ -1572,7 +1573,7 @@
 		},
 		"animator:NobleFencer":
 		{
-			"DESCRIPTION": "Starter: Gain [A] [I]. || Evoke your first [Lightning]. || Whenever you Synergize ** this turn: Channel 1 [Lightning].",
+			"DESCRIPTION": "Starter: Gain [I] [W]. || Evoke your first [Lightning]. || Whenever you Synergize ** this turn: Channel 1 [Lightning].",
 			"EXTENDED_DESCRIPTION": ["Whenever you Synergize this turn, Channel #b{0} [Lightning]."],
 			"NAME": "Noble Fencer"
 		},

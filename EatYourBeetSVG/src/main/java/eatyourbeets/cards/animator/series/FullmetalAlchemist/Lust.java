@@ -19,7 +19,7 @@ import eatyourbeets.utilities.JUtils;
 public class Lust extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Lust.class)
-            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing)
             .SetSeriesFromClassPackage();
 
     protected static boolean flipVfx;
@@ -29,9 +29,10 @@ public class Lust extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 3, 1);
+        Initialize(4, 0, 3, 1);
 
-        SetAffinity_Star(1, 1, 0);
+        SetAffinity_Dark(1, 1, 1);
+        SetAffinity_Orange(1, 1, 0);
         SetAffinity_Green(0, 0, 1);
     }
 

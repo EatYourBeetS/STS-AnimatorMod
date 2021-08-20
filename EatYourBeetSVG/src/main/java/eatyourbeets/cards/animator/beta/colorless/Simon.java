@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.colorless;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
@@ -10,8 +11,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RandomizedList;
 
 public class Simon extends AnimatorCard
 {
@@ -46,23 +45,7 @@ public class Simon extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH).AddCallback(e -> {
-            RandomizedList<AbstractCard> cardsToGainAttack = new RandomizedList<>();
-
-            for (AbstractCard card : player.hand.group)
-            {
-                if (card.type.equals(CardType.ATTACK) && card.baseDamage > 0)
-                {
-                    cardsToGainAttack.Add(card);
-                }
-            }
-
-            AbstractCard card = cardsToGainAttack.Retrieve(rng);
-
-            if (card != null)
-            {
-                GameUtilities.IncreaseDamage(card, e.lastDamageTaken / 2, false);
-                card.flash();
-            }
+            GameActions.Bottom.StackPower(new VigorPower(player, e.lastDamageTaken / 2));
         });
 
         if (CombatStats.Affinities.GetPowerAmount(Affinity.Red) >= magicNumber && CombatStats.TryActivateLimited(cardID))

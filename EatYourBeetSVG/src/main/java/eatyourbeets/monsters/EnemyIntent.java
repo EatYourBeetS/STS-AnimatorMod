@@ -189,6 +189,17 @@ public class EnemyIntent
         return this;
     }
 
+    public EnemyIntent AddFreezing()
+    {
+        if (isAttacking)
+        {
+            GR.UI.CombatScreen.Intents.Add(enemy, this::GetIntentDamageString);
+            modifiers.put(FreezingPower.POWER_ID, 1);
+        }
+
+        return this;
+    }
+
     public EnemyIntent AddBlinded()
     {
         if (isAttacking)

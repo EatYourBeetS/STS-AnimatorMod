@@ -26,7 +26,7 @@ public class Klee extends AnimatorCard
         super(DATA);
 
         Initialize(3, 0, 1, 2);
-        SetUpgrade(1, 0, 1, 0);
+        SetUpgrade(0, 0, 1, 0);
         SetAffinity_Red(1, 1, 0);
 
         SetAffinityRequirement(Affinity.Red, 3);

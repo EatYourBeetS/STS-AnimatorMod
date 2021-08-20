@@ -721,18 +721,20 @@ public class GameUtilities
 
     public static <T extends AbstractPower> T GetPower(AbstractCreature creature, String powerID)
     {
-        for (AbstractPower p : creature.powers)
-        {
-            if (p != null && powerID.equals(p.ID))
+        if (creature != null && creature.powers != null) {
+            for (AbstractPower p : creature.powers)
             {
-                try
+                if (p != null && powerID.equals(p.ID))
                 {
-                    return (T) p;
-                }
-                catch (ClassCastException e)
-                {
-                    e.printStackTrace();
-                    return null;
+                    try
+                    {
+                        return (T) p;
+                    }
+                    catch (ClassCastException e)
+                    {
+                        e.printStackTrace();
+                        return null;
+                    }
                 }
             }
         }

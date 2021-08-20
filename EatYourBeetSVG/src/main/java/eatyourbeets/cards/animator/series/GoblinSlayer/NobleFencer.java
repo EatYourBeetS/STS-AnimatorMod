@@ -37,7 +37,7 @@ public class NobleFencer extends AnimatorCard
 
         if (IsStarter())
         {
-            GameActions.Bottom.GainAgility(1);
+            GameActions.Bottom.GainWillpower(1);
             GameActions.Bottom.GainIntellect(1);
         }
 

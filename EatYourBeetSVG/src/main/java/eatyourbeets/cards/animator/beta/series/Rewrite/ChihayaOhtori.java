@@ -2,17 +2,14 @@ package eatyourbeets.cards.animator.beta.series.Rewrite;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
-public class ChihayaOhtori extends AnimatorCard //TODO
+public class ChihayaOhtori extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ChihayaOhtori.class).SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
 
@@ -22,7 +19,7 @@ public class ChihayaOhtori extends AnimatorCard //TODO
     {
         super(DATA);
 
-        Initialize(12, 0, 6, 1);
+        Initialize(12, 0, 6, 3);
         SetUpgrade(0, 0, -2);
         SetAffinity_Green(2, 0, 0);
         SetAffinity_Orange(1, 0, 0);
@@ -72,7 +69,7 @@ public class ChihayaOhtori extends AnimatorCard //TODO
     {
         GameActions.Top.FetchFromPile(name, 1, player.discardPile)
         .SetOptions(false, false)
-        .SetFilter(c -> (c instanceof AnimatorCard && ((AnimatorCard) c).affinities.GetLevel(Affinity.Green) > 0))
+        .SetFilter(c -> (c instanceof AnimatorCard && ((AnimatorCard) c).affinities.GetLevel(Affinity.Orange) > 0))
         .AddCallback(cards ->
         {
             if (cards.size() > 0)
@@ -85,12 +82,12 @@ public class ChihayaOhtori extends AnimatorCard //TODO
 
     private void Effect2(AbstractCard card, AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Top.GainArtifact(secondaryValue);
+        GameActions.Top.GainTemporaryArtifact(secondaryValue);
     }
 
     public void RefreshCost()
     {
-        int force = GameUtilities.GetPowerAmount(AbstractDungeon.player, ForcePower.POWER_ID);
-        CostModifiers.For(this).Set(-1*(force / magicNumber));
+        int orange = GetHandAffinity(Affinity.Orange, false);
+        CostModifiers.For(this).Set(-1*(orange / magicNumber));
     }
 }

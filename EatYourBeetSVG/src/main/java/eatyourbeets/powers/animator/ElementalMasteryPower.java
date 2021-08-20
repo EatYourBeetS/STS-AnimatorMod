@@ -2,9 +2,9 @@ package eatyourbeets.powers.animator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.animator.ElementalMasteryAction;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.subscribers.OnChannelOrbSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.ColoredString;
@@ -49,7 +49,7 @@ public class ElementalMasteryPower extends AnimatorPower implements OnChannelOrb
     @Override
     public void playApplyPowerSfx()
     {
-        CardCrawlGame.sound.playA("ORB_PLASMA_CHANNEL", -0.25f);
+        GameActions.Top.SFX(SFX.HEAL_3);
     }
 
     @Override

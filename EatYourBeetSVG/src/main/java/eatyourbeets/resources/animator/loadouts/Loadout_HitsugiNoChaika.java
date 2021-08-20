@@ -14,16 +14,14 @@ public class Loadout_HitsugiNoChaika extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeData()
+    public void AddStarterCards()
     {
-        super.InitializeData();
-
-        AddToSpecialSlots(Gillette.DATA, 4);
-        AddToSpecialSlots(ChaikaBohdan.DATA, 5);
-        AddToSpecialSlots(AcuraTooru.DATA, 5);
-        AddToSpecialSlots(Layla.DATA, 6);
-        AddToSpecialSlots(AcuraAkari.DATA, 7);
-        AddToSpecialSlots(Viivi.DATA, 8);
+        AddStarterCard(Gillette.DATA, 4);
+        AddStarterCard(ChaikaBohdan.DATA, 5);
+        AddStarterCard(AcuraTooru.DATA, 5);
+        AddStarterCard(Layla.DATA, 6);
+        AddStarterCard(AcuraAkari.DATA, 7);
+        AddStarterCard(Viivi.DATA, 8);
     }
 
     @Override

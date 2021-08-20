@@ -127,7 +127,14 @@ public class UIManager
 
     public boolean TryHover(Hitbox hitbox)
     {
-        if (hitbox == null || hitbox.justHovered || hitbox.hovered)
+        if (hitbox != null && hitbox.justHovered && hitbox != lastHovered)
+        {
+            hitbox.hovered = hitbox.justHovered = false;
+            lastHoveredTemp = hitbox;
+            return false;
+        }
+
+        if (hitbox == null || hitbox.hovered)
         {
             lastHoveredTemp = hitbox;
             return hitbox == lastHovered;

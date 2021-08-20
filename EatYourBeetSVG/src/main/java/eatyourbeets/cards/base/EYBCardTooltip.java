@@ -91,6 +91,15 @@ public class EYBCardTooltip
         return !_renderedTipsThisFrame.Get(null);
     }
 
+    public static void QueueTooltip(EYBCardTooltip tooltip)
+    {
+        float x = InputHelper.mX;
+        float y = InputHelper.mY;
+        x += (x < Settings.WIDTH * 0.75f) ? (Settings.scale * 40f) : -(BOX_W + (Settings.scale * 40f));
+        y += (y < Settings.HEIGHT * 0.9f) ? (Settings.scale * 40f) : -(Settings.scale * 50f);
+        QueueTooltip(tooltip, x, y);
+    }
+
     public static void QueueTooltip(EYBCardTooltip tooltip, float x, float y)
     {
         Reset();

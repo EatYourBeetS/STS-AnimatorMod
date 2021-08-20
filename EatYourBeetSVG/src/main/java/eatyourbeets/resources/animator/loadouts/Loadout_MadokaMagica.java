@@ -14,15 +14,13 @@ public class Loadout_MadokaMagica extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeData()
+    public void AddStarterCards()
     {
-        super.InitializeData();
-
-        AddToSpecialSlots(IrohaTamaki.DATA, 4);
-        AddToSpecialSlots(OrikoMikuni.DATA, 4);
-        AddToSpecialSlots(YuiTsuruno.DATA, 5);
-        AddToSpecialSlots(NagisaMomoe.DATA, 5);
-        AddToSpecialSlots(KyokoSakura.DATA, 6);
+        AddStarterCard(IrohaTamaki.DATA, 4);
+        AddStarterCard(OrikoMikuni.DATA, 4);
+        AddStarterCard(YuiTsuruno.DATA, 5);
+        AddStarterCard(NagisaMomoe.DATA, 5);
+        AddStarterCard(KyokoSakura.DATA, 6);
     }
 
     @Override

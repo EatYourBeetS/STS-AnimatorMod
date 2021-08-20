@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.misc.CardSlot;
+import eatyourbeets.resources.animator.misc.AnimatorCardSlot;
 import eatyourbeets.rooms.FakeEventRoom;
 import eatyourbeets.ui.controls.GUI_DynamicCardGrid;
 import eatyourbeets.ui.controls.GUI_TextBox;
@@ -29,13 +29,13 @@ public class AnimatorCardSlotSelectionEffect extends EYBEffect
     .SetAlignment(0.5f, 0.5f)
     .SetFont(FontHelper.cardEnergyFont_L, 0.75f);
 
-    private final CardSlot slot;
+    private final AnimatorCardSlot slot;
     private final ArrayList<EYBCard> cards;
     private boolean draggingScreen = false;
     private EYBCard selectedCard;
     private GUI_DynamicCardGrid grid;
 
-    public AnimatorCardSlotSelectionEffect(CardSlot slot)
+    public AnimatorCardSlotSelectionEffect(AnimatorCardSlot slot)
     {
         super(0.7f, true);
 
@@ -173,7 +173,7 @@ public class AnimatorCardSlotSelectionEffect extends EYBEffect
 
     private void OnCardRender(SpriteBatch sb, EYBCard card)
     {
-        for (CardSlot.Item item : slot.Cards)
+        for (AnimatorCardSlot.Item item : slot.Cards)
         {
             if (item.data == card.cardData)
             {

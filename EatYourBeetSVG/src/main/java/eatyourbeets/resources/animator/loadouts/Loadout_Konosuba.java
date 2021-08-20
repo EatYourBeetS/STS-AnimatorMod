@@ -15,17 +15,15 @@ public class Loadout_Konosuba extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeData()
+    public void AddStarterCards()
     {
-        super.InitializeData();
-
-        AddToSpecialSlots(Aqua.DATA, 4);
-        AddToSpecialSlots(Kazuma.DATA, 5);
-        AddToSpecialSlots(Chris.DATA, 5);
-        AddToSpecialSlots(Mitsurugi.DATA, 6);
-        AddToSpecialSlots(Vanir.DATA, 7);
-        AddToSpecialSlots(YunYun.DATA, 9);
-        AddToSpecialSlots(Curse_Greed.DATA, -7);
+        AddStarterCard(Aqua.DATA, 4);
+        AddStarterCard(Kazuma.DATA, 5);
+        AddStarterCard(Chris.DATA, 5);
+        AddStarterCard(Mitsurugi.DATA, 6);
+        AddStarterCard(Vanir.DATA, 7);
+        AddStarterCard(YunYun.DATA, 9);
+        AddStarterCard(Curse_Greed.DATA, -7);
     }
 
     @Override

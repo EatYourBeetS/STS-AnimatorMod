@@ -196,7 +196,10 @@
 			"###############",
 			"Unlocks at Level {0} (You are Level {1})",
 			"Invalid Loadout (Please Edit)",
-			"Unlocks at Ascension {0}"
+			"Unlocks at Ascension {0}",
+			"Starting Deck Editor",
+			"#pLeft-Click to open the editor. NL #pRight-Click to change preset.",
+			"Obtain #yBronze #yTrophy at ascension #b{0} to unlock"
 		]
 	},
 	

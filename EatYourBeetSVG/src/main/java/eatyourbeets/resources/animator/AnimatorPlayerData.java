@@ -15,6 +15,7 @@ import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 import eatyourbeets.resources.animator.misc.CardSlot;
+import eatyourbeets.resources.animator.misc.*;
 import eatyourbeets.utilities.JUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -209,7 +210,7 @@ public class AnimatorPlayerData
         {
             BaseLoadouts.add(loadout);
             loadout.UnlockLevel = unlockLevel;
-            loadout.InitializeData();
+            loadout.AddStarterCards();
         };
 
         add.Invoke(new Loadout_Konosuba(), 0);
@@ -238,7 +239,7 @@ public class AnimatorPlayerData
             final String cardID = loadout.GetSymbolicCard().ID;
             CustomUnlockBundle bundle = BaseMod.getUnlockBundleFor(GR.Animator.PlayerClass, loadout.UnlockLevel - 1);
 
-            CustomUnlock unlock = new CustomUnlock(AbstractUnlock.UnlockType.MISC, cardID);
+            final CustomUnlock unlock = new CustomUnlock(AbstractUnlock.UnlockType.MISC, cardID);
             unlock.type = AbstractUnlock.UnlockType.CARD;
             unlock.card = new AnimatorRuntimeLoadout(loadout).BuildCard();
             unlock.key = unlock.card.cardID = GR.Animator.CreateID("series:" + loadout.Name);
@@ -321,7 +322,7 @@ public class AnimatorPlayerData
 
                 for (int i = 1; i < items.length; i++)
                 {
-                    AnimatorTrophies trophies = new AnimatorTrophies();
+                    final AnimatorTrophies trophies = new AnimatorTrophies();
 
                     trophies.Deserialize(items[i]);
 
@@ -341,29 +342,40 @@ public class AnimatorPlayerData
     //003 _Gold@60;_HP@99;Strike@3:0;Defend@3:1;animator:Strike_Dark@1:2|004 Strike@4:0 ...
     private String SerializeCustomLoadouts()
     {
-        StringJoiner sj = new StringJoiner("|");
-        StringBuilder sb = new StringBuilder();
+        final StringJoiner sj = new StringJoiner("|");
+        final StringBuilder sb = new StringBuilder();
 
-        int level = GR.Animator.GetUnlockLevel();
+        final int level = GR.Animator.GetUnlockLevel();
         for (AnimatorLoadout loadout : GetEveryLoadout())
         {
             if (loadout.UnlockLevel <= level)
             {
-                sb.setLength(0);
-                sb.append(StringUtils.leftPad(String.valueOf(loadout.ID), 3, '0'));
-                sb.append(" ");
-                sb.append("_Gold@").append(loadout.Data.Gold).append(";");
-                sb.append("_HP@").append(loadout.Data.HP).append(";");
-                for (CardSlot slot : loadout.Data)
+                for (AnimatorLoadoutData data : loadout.Presets)
                 {
-                    if (slot.amount > 0)
+                    if (data == null)
                     {
-                        sb.append(slot.GetData().ID).append("@")
-                        .append(slot.amount).append(":")
-                        .append(slot.GetSlotIndex()).append(";");
+                        continue;
                     }
+
+                    sb.setLength(0);
+                    sb.append(StringUtils.leftPad(String.valueOf(loadout.ID), 3, '0'))
+                      .append(" ")
+                      .append("_Preset@").append(data.Preset).append(":").append((data.Preset == loadout.Preset) ? 1 : 0).append(";")
+                      .append("_Gold@").append(data.Gold).append(";")
+                      .append("_HP@").append(data.HP).append(";");
+
+                    for (AnimatorCardSlot slot : data)
+                    {
+                        if (slot.amount > 0)
+                        {
+                            sb.append(slot.GetData().ID).append("@")
+                              .append(slot.amount).append(":")
+                              .append(slot.GetSlotIndex()).append(";");
+                        }
+                    }
+
+                    sj.add(sb.toString());
                 }
-                sj.add(sb.toString());
             }
         }
 
@@ -378,7 +390,7 @@ public class AnimatorPlayerData
         }
 
         final String decoded = Base64Coder.decodeString(data);
-        final String[] strings = decoded.split(Pattern.quote("|"));
+        final String[] strings = JUtils.SplitString("|", decoded);
         for (String s : strings)
         {
             final int id = JUtils.ParseInt(s.substring(0, 3), -1);
@@ -389,51 +401,61 @@ public class AnimatorPlayerData
                 continue;
             }
 
-            loadout.Data.Ready = false;
-
             int i = 0;
+            final AnimatorLoadoutData loadoutData = new AnimatorLoadoutData(loadout);
             for (String item : s.substring(4).split(Pattern.quote(";")))
             {
                 final int index = item.indexOf("@");
                 final String[] amountAndIndex = item.substring(index + 1).split(Pattern.quote(":"));
                 final int itemAmount = JUtils.ParseInt(amountAndIndex[0], 0);
-                final int itemIndex = amountAndIndex.length > 1 ? JUtils.ParseInt( amountAndIndex[1], -1) : -1;
+                final int itemIndex = amountAndIndex.length > 1 ? JUtils.ParseInt(amountAndIndex[1], -1) : -1;
                 final String itemID = item.substring(0, index);
-                if (itemID.equals("_Gold"))
+                switch (itemID)
                 {
-                    loadout.Data.Gold = itemAmount;
-                }
-                else if (itemID.equals("_HP"))
-                {
-                    loadout.Data.HP = itemAmount;
-                }
-                else
-                {
-                    if (itemIndex < 0 || itemIndex >= loadout.Data.Size())
-                    {
-                        loadout.LoadDefaultData();
-                        return;
-                    }
-
-                    final CardSlot slot = loadout.Data.Get(itemIndex);
-                    for (CardSlot.Item c : slot.Cards)
-                    {
-                        if (c.data.ID.equals(itemID))
+                    case "_Preset":
+                        if (itemIndex == 1)
                         {
-                            slot.Select(c, itemAmount);
-                            break;
+                            loadout.Preset = loadoutData.Preset = itemAmount;
                         }
+                        else
+                        {
+                            loadoutData.Preset = itemAmount;
+                        }
+                        break;
+
+                    case "_Gold":
+                        loadoutData.Gold = itemAmount;
+                        break;
+
+                    case "_HP":
+                        loadoutData.HP = itemAmount;
+                        break;
+
+                    default:
+                    {
+                        if (itemIndex < 0 || itemIndex >= loadoutData.Size())
+                        {
+                            return;
+                        }
+
+                        final AnimatorCardSlot slot = loadoutData.GetCardSlot(itemIndex);
+                        for (AnimatorCardSlot.Item c : slot.Cards)
+                        {
+                            if (c.data.ID.equals(itemID))
+                            {
+                                slot.Select(c, itemAmount);
+                                break;
+                            }
+                        }
+
+                        break;
                     }
                 }
             }
 
-            if (!loadout.Validate().IsValid)
+            if (loadoutData.Validate().IsValid)
             {
-                loadout.LoadDefaultData();
-            }
-            else
-            {
-                loadout.Data.Ready = true;
+                loadout.Presets[loadoutData.Preset] = loadoutData;
             }
         }
     }

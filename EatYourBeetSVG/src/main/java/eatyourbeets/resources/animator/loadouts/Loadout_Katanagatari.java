@@ -14,15 +14,13 @@ public class Loadout_Katanagatari extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeData()
+    public void AddStarterCards()
     {
-        super.InitializeData();
-
-        AddToSpecialSlots(Azekura.DATA, 5);
-        AddToSpecialSlots(Emonzaemon.DATA, 5);
-        AddToSpecialSlots(UneriGinkaku.DATA, 7);
-        AddToSpecialSlots(Shichika.DATA, 8);
-        AddToSpecialSlots(Togame.DATA, 8);
+        AddStarterCard(Azekura.DATA, 5);
+        AddStarterCard(Emonzaemon.DATA, 5);
+        AddStarterCard(UneriGinkaku.DATA, 7);
+        AddStarterCard(Shichika.DATA, 8);
+        AddStarterCard(Togame.DATA, 8);
     }
 
     @Override

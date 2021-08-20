@@ -429,6 +429,11 @@ public final class GameActions
         .ShowEffect(true, false);
     }
 
+    public ApplyPower DrawNextTurn(int amount)
+    {
+        return StackPower(new DrawCardNextTurnPower(player, amount));
+    }
+
     public EvokeOrb EvokeOrb(int times)
     {
         return Add(new EvokeOrb(times, EvokeOrb.Mode.SameOrb));

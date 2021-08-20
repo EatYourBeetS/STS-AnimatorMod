@@ -1106,6 +1106,18 @@
 			"DESCRIPTION": "Attack 1 additional time ** for each unique orb ** Channeled this combat. || <LIM>. At the start of ** combat, add a random {Orb} ** {Core} to your discard pile.",
 			"NAME": "Patchouli"
 		},
+		"animator:SakuraKinomoto":
+		{
+			"DESCRIPTION": "Deal 1 additional damage ** for each card in your deck. || <LIM>. If this card kills an ** Elite or Boss: Choose 1 of !S! ** cards to add to your deck.",
+			"NAME": "Sakura Kinomoto"
+		},
+		"animator:ShuuOuma":
+		{
+			"DESCRIPTION": "Fetch 1 {Power} from your ** draw pile and take damage ** equal to twice its cost. || This turn, whenever you play ** a {Power}: Boost [F] [I] [C].",
+			"EXTENDED_DESCRIPTION": ["This turn, whenever you play a #yPower: #yBoost [C] [I] [F] #b{0} time(s)."],
+			"NAME": "Shuu Ouma",
+			"UPGRADE_DESCRIPTION": "Fetch 1 {Power} from your ** draw or discard pile and take ** damage equal to twice its cost. || This turn, whenever you play ** a {Power}: Boost [F] [I] [C]."
+		},
 		"animator:TakanashiRikka":
 		{
 			"DESCRIPTION": "Create a 0-Cost ** copy of every {Attack} ** in your hand, they ** deal !M! damage and ** Purge on use.",
@@ -1178,8 +1190,8 @@
 		},
 		"animator:Rorona":
 		{
-			"DESCRIPTION": "Once per turn: ** Pay !S! [Gold] to obtain a ** random potion (Max 2). || At the end of combat: ** !M!% chance to permanently ** Upgrade a random card.",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [Gold] to obtain a random potion. || At the end of combat: #b{1}% chance to #yUpgrade a random card."],
+			"DESCRIPTION": "Once per turn: ** Pay !M! [Gold] to obtain a ** random potion (Max 2). || At the end of combat, if ** your deck has 25+ cards: ** Upgrade a random card.",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [Gold] to obtain a random potion. || At the end of combat, if your deck has more than #b{1} cards, #yUpgrade #b{2} random card(s) (max #b2 cards)."],
 			"NAME": "Rorona"
 		},
 		"animator:Urushihara":
@@ -1789,7 +1801,7 @@
 	{
 		"animator:Akatsuki":
 		{
-			"DESCRIPTION": "Deals !S! additional damage ** if the enemy is not attacking. || <slm>. When drawn: ** Create !M! {0-Cost} {0-Damage} ** copies of this card with ** {~Ethereal} and Purge.",
+			"DESCRIPTION": "Deal !S! additional damage ** if the enemy is not attacking. || <slm>. When drawn: ** Create !M! {0-Cost} {0-Damage} ** copies of this card with ** {~Ethereal} and Purge.",
 			"NAME": "Akatsuki"
 		},
 		"animator:Henrietta":
@@ -1803,11 +1815,6 @@
 			"DESCRIPTION": "For !M! turn(s): Whenever ** an {Attack} Synergizes, ** play a random lower ** cost {Attack} from ** your draw pile.",
 			"EXTENDED_DESCRIPTION": ["For #b{0} turn(s), whenever an #yAttack #ySynergizes: Play a random lower cost #yAttack from your draw pile."],
 			"NAME": "Isuzu Tonan"
-		},
-		"animator:KanamiAlt":
-		{
-			"DESCRIPTION": "Deals double damage ** to {Elites} and triple ** damage to {Bosses}. || If the enemy has [Vulnerable]: ** Gain [F][A] and !M! [Block].",
-			"NAME": "Kanami"
 		},
 		"animator:Krusty":
 		{
@@ -2217,7 +2224,7 @@
 		},
 		"animator:Shizu":
 		{
-			"DESCRIPTION": "Whenever an {Attack} deals ** unblocked damage this ** combat: Apply 1 [Burning]. || Add a Burn to your ** discard pile.",
+			"DESCRIPTION": "Whenever an {Attack} deal ** unblocked damage this ** combat: Apply 1 [Burning]. || Add a Burn to your ** discard pile.",
 			"NAME": "Shizu"
 		},
 		"animator:Shuna":
@@ -2357,7 +2364,7 @@
 		},
 		"animator:GiftBox":
 		{
-			"DESCRIPTION": "Discard all cards. || Add !M! random card(s) ** to your hand. || When Exhausted: Add !S! random cards to your draw pile.",
+			"DESCRIPTION": "Discard all cards. ** Add !M! random card(s) ** to your hand. || When Exhausted: Add ** !S! random cards ** to your draw pile.",
 			"NAME": "Gift Box"
 		},
 		"animator:HinaKagiyama":
@@ -2448,7 +2455,7 @@
 		},
 		"animator:MatouShinji_CommandSpell":
 		{
-			"DESCRIPTION": "Lose 1 orb slot to ** Fetch a <R> or <G> card ** from your discard pile, ** Motivate it and increase ** its scalings by !M!.",
+			"DESCRIPTION": "Lose 1 orb slot to ** Fetch a <R> or <G> card ** from your discard pile, ** give it + <S> scaling equal to ** its cost{+ +1} and Motivate it.",
 			"NAME": "Command Spell"
 		},
 		"animator:Soujiro_Isami":
@@ -2587,6 +2594,11 @@
 		"animator:Kanami":
 		{
 			"DESCRIPTION": "Apply !M! [Vulnerable] to ALL ** enemies. Return this ** card to your draw pile. || Cooldown !S!: Change ** this card's form.",
+			"NAME": "Kanami"
+		},
+		"animator:KanamiAlt":
+		{
+			"DESCRIPTION": "Deal double damage ** to {Elites} and triple ** damage to {Bosses}. || If the enemy has [Vulnerable]: ** Gain [F][A] and !M! [Block].",
 			"NAME": "Kanami"
 		},
 		"animator:NivaLada":

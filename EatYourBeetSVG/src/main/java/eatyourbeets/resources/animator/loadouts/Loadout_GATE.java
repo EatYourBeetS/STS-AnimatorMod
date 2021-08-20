@@ -14,16 +14,14 @@ public class Loadout_GATE extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeData()
+    public void AddStarterCards()
     {
-        super.InitializeData();
-
-        AddToSpecialSlots(TukaLunaMarceau.DATA, 4);
-        AddToSpecialSlots(Kuribayashi.DATA, 5);
-        AddToSpecialSlots(YaoHaDucy.DATA, 5);
-        AddToSpecialSlots(ShunyaKengun.DATA, 7);
-        AddToSpecialSlots(RoryMercury.DATA, 7);
-        AddToSpecialSlots(Bozes.DATA, 11);
+        AddStarterCard(TukaLunaMarceau.DATA, 4);
+        AddStarterCard(Kuribayashi.DATA, 5);
+        AddStarterCard(YaoHaDucy.DATA, 5);
+        AddStarterCard(ShunyaKengun.DATA, 7);
+        AddStarterCard(RoryMercury.DATA, 7);
+        AddStarterCard(Bozes.DATA, 11);
     }
 
     @Override

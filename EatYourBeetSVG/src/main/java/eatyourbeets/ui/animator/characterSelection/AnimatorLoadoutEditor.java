@@ -11,9 +11,9 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import eatyourbeets.cards.base.EYBCardBase;
 import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.AnimatorCardSlot;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadoutData;
-import eatyourbeets.resources.animator.misc.CardSlot;
 import eatyourbeets.ui.AbstractScreen;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.controls.GUI_Image;
@@ -28,14 +28,16 @@ public class AnimatorLoadoutEditor extends AbstractScreen
 {
     protected final static AnimatorLoadout.Validation val = new AnimatorLoadout.Validation();
     protected final ArrayList<AnimatorCardSlotEditor> slotsEditors = new ArrayList<>();
+    protected final AnimatorLoadoutData[] presets = new AnimatorLoadoutData[AnimatorLoadout.MAX_PRESETS];
     protected AnimatorBaseStatEditor goldEditor;
     protected AnimatorBaseStatEditor hpEditor;
     protected AnimatorLoadout loadout;
-    protected AnimatorLoadoutData data;
     protected ActionT0 onClose;
+    protected int preset;
 
     protected AnimatorCardSlotSelectionEffect cardSelectionEffect;
     protected GUI_Image background_image;
+    protected GUI_Button[] preset_buttons;
     protected GUI_Button cancel_button;
     protected GUI_Button save_button;
     protected GUI_Toggle upgrade_toggle;
@@ -55,6 +57,23 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         background_image = new GUI_Image(GR.Common.Images.FullSquare.Texture(), new Hitbox(ScreenW(1), ScreenH(1)))
         .SetPosition(ScreenW(0.5f), ScreenH(0.5f))
         .SetColor(0, 0, 0, 0.85f);
+
+        preset_buttons = new GUI_Button[AnimatorLoadout.MAX_PRESETS];
+        for (int i = 0; i < preset_buttons.length; i++)
+        {
+            //noinspection SuspiciousNameCombination
+            preset_buttons[i] = new GUI_Button(GR.Common.Images.SquaredButton.Texture(), new Hitbox(0, 0, buttonHeight, buttonHeight))
+            .SetPosition(ScreenW(0.5f) + ((i - 1f) * buttonHeight), ScreenH(1f) - (buttonHeight * 0.85f))
+            .SetText(String.valueOf(i + 1))
+            .SetOnClick(i, (preset, __) -> ChangePreset(preset));
+
+            if (i > 0)
+            {
+                preset_buttons[i].SetTooltip("Locked", GR.Animator.Strings.CharSelect.ObtainBronzeAtAscension(i == 1
+                        ? AnimatorLoadout.BRONZE_REQUIRED_PRESET_SLOT_2
+                        : AnimatorLoadout.BRONZE_REQUIRED_PRESET_SLOT_3));
+            }
+        }
 
         cancel_button = CreateHexagonalButton(0, 0, buttonWidth, buttonHeight)
         .SetPosition(buttonWidth * 0.75f, button_cY)
@@ -97,15 +116,15 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.335f), ScreenH(0.75f)));
         slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.135f), ScreenH(0.35f)));
         slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.335f), ScreenH(0.35f)));
-        slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.635f), ScreenH(0.75f)));
-        slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.835f), ScreenH(0.75f)));
+        slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.685f), ScreenH(0.75f)));
+        slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.885f), ScreenH(0.75f)));
 
         hpEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.HP, ScreenW(0.666f), ScreenH(0.432f));
         goldEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.Gold, ScreenW(0.666f), ScreenH(0.343f));
 
         ascensionRequirement = new GUI_TextBox(GR.Common.Images.Panel_Rounded.Texture(), new Hitbox(labelWidth, labelHeight * 4))
         .SetColors(Colors.Black(0.4f), Colors.Cream(0.9f))
-        .SetText(GR.Animator.Strings.CharSelect.UnlocksAtAscension(AnimatorLoadout.GOLD_HP_EDITOR_ASCENSION_REQUIRED))
+        .SetText(GR.Animator.Strings.CharSelect.UnlocksAtAscension(AnimatorLoadout.GOLD_AND_HP_EDITOR_ASCENSION_REQUIRED))
         .SetAlignment(0.5f, 0.5f)
         .SetPosition(ScreenW(0.666f), ScreenH(0.37f))
         .SetFont(FontHelper.charDescFont, 0.9f);
@@ -115,26 +134,32 @@ public class AnimatorLoadoutEditor extends AbstractScreen
     {
         super.Open();
 
-        boolean enableHPAndGoldEditor = GameUtilities.GetMaxAscensionLevel(option.c) >= AnimatorLoadout.GOLD_HP_EDITOR_ASCENSION_REQUIRED;
+        boolean enableHPAndGoldEditor = GameUtilities.GetMaxAscensionLevel(option.c) >= AnimatorLoadout.GOLD_AND_HP_EDITOR_ASCENSION_REQUIRED;
         ascensionRequirement.SetActive(!enableHPAndGoldEditor);
         goldEditor.SetInteractable(enableHPAndGoldEditor);
         hpEditor.SetInteractable(enableHPAndGoldEditor);
 
-        if (!enableHPAndGoldEditor)
+        for (int i = 0; i < loadout.Presets.length; i++)
         {
-            loadout.Data.Gold = AnimatorLoadout.BASE_GOLD;
-            loadout.Data.HP = AnimatorLoadout.BASE_HP;
+            presets[i] = loadout.GetPreset(i).MakeCopy();
+
+            if (!enableHPAndGoldEditor)
+            {
+                presets[i].Gold = AnimatorLoadout.BASE_GOLD;
+                presets[i].HP = AnimatorLoadout.BASE_HP;
+            }
         }
+
+        preset_buttons[0].SetInteractable(loadout.CanChangePreset(0));
+        preset_buttons[1].SetInteractable(loadout.CanChangePreset(1));
+        preset_buttons[2].SetInteractable(loadout.CanChangePreset(2));
+
+        this.loadout = loadout;
+        this.onClose = onClose;
 
         EYBCardBase.canCropPortraits = false;
         ToggleViewUpgrades(false);
-
-        this.loadout = loadout;
-        this.data = loadout.Data.MakeCopy();
-        this.onClose = onClose;
-        this.hpEditor.SetLoadout(data);
-        this.goldEditor.SetLoadout(data);
-        SetSlotsActive(true);
+        ChangePreset(loadout.Preset);
     }
 
     @Override
@@ -156,7 +181,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
     {
         super.Update();
 
-        val.Refresh(data);
+        val.Refresh(presets[preset]);
         background_image.Update();
         upgrade_toggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
 
@@ -172,6 +197,15 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         }
         else
         {
+            for (int i = 0; i < preset_buttons.length; i++)
+            {
+                final GUI_Button button = preset_buttons[i];
+                button
+                .ShowTooltip(!button.interactable)
+                .SetColor((i == preset) ? Color.SKY : button.interactable ? Color.LIGHT_GRAY : Color.DARK_GRAY)
+                .TryUpdate();
+            }
+
             ascensionRequirement.TryUpdate();
             hpEditor.SetEstimatedValue(val.HpValue).Update();
             goldEditor.SetEstimatedValue(val.GoldValue).Update();
@@ -203,6 +237,11 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         }
         else
         {
+            for (GUI_Button button : preset_buttons)
+            {
+                button.TryRender(sb);
+            }
+
             hpEditor.Render(sb);
             goldEditor.Render(sb);
             ascensionRequirement.TryRender(sb);
@@ -221,15 +260,37 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         }
     }
 
-    public void TrySelectCard(CardSlot cardSlot)
+    public void TrySelectCard(AnimatorCardSlot cardSlot)
     {
         cardSelectionEffect = new AnimatorCardSlotSelectionEffect(cardSlot);
         SetSlotsActive(false);
     }
 
+    public void ChangePreset(int preset)
+    {
+        if (!preset_buttons[2].interactable && preset >= 2)
+        {
+            preset = 1;
+        }
+        if (!preset_buttons[1].interactable && preset == 1)
+        {
+            preset = 0;
+        }
+
+        this.preset = preset;
+        this.hpEditor.SetLoadout(presets[preset]);
+        this.goldEditor.SetLoadout(presets[preset]);
+        SetSlotsActive(true);
+    }
+
     public void Save()
     {
-        loadout.Data = data;
+        for (int i = 0, presetsLength = presets.length; i < presetsLength; i++)
+        {
+            loadout.Presets[i] = presets[i];
+        }
+
+        loadout.Preset = preset;
         GR.Animator.Data.SaveLoadouts(true);
         AbstractDungeon.closeCurrentScreen();
     }
@@ -245,9 +306,10 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         {
             for (int i = 0; i < slotsEditors.size(); i++)
             {
-                AnimatorCardSlotEditor editor = slotsEditors.get(i);
+                final AnimatorLoadoutData data = presets[preset];
+                final AnimatorCardSlotEditor editor = slotsEditors.get(i);
                 editor.SetActive(data.Size() > i);
-                editor.SetSlot(editor.isActive ? data.Get(i) : null);
+                editor.SetSlot(editor.isActive ? data.GetCardSlot(i) : null);
             }
         }
         else

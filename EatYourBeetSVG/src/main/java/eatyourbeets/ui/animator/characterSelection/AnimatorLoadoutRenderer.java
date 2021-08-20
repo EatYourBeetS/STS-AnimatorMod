@@ -82,6 +82,8 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
         LoadoutEditorButton = new GUI_Button(GR.Common.Images.SwapCards.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
         .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(50), POS_Y - Scale(70)).SetText("")
+        .SetTooltip(charSelectStrings.DeckEditor, charSelectStrings.DeckEditorInfo)
+        .SetOnRightClick(this::ChangePreset)
         .SetOnClick(this::OpenLoadoutEditor);
     }
 
@@ -90,6 +92,16 @@ public class AnimatorLoadoutRenderer extends GUIElement
         if (loadout != null && characterOption != null)
         {
             GR.UI.LoadoutEditor.Open(loadout, characterOption, () -> RefreshInternal(false));
+        }
+    }
+
+    private void ChangePreset()
+    {
+        final int preset = loadout.CanChangePreset(loadout.Preset + 1) ? (loadout.Preset + 1) : 0;
+        if (preset != loadout.Preset)
+        {
+            loadout.Preset = preset;
+            RefreshInternal(false);
         }
     }
 
@@ -121,7 +133,6 @@ public class AnimatorLoadoutRenderer extends GUIElement
             if (unlockLevel >= loadout.UnlockLevel)
             {
                 this.availableLoadouts.add(loadout);
-                loadout.LoadDefaultData();
             }
         }
 
@@ -129,13 +140,12 @@ public class AnimatorLoadoutRenderer extends GUIElement
         {
             for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
             {
-                if (loadout.Data.Size() > 0)
+                if (loadout.GetPreset().Size() > 0)
                 {
                     this.loadouts.add(loadout);
                     if (unlockLevel >= loadout.UnlockLevel)
                     {
                         this.availableLoadouts.add(loadout);
-                        loadout.LoadDefaultData();
                     }
                 }
             }
@@ -143,10 +153,10 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
         this.loadouts.sort((a, b) ->
         {
-            int diff = a.Name.compareTo(b.Name);
-            int level = GR.Animator.GetUnlockLevel();
-            int levelA = a.UnlockLevel - level;
-            int levelB = b.UnlockLevel - level;
+            final int diff = a.Name.compareTo(b.Name);
+            final int level = GR.Animator.GetUnlockLevel();
+            final int levelA = a.UnlockLevel - level;
+            final int levelB = b.UnlockLevel - level;
             if (levelA > 0 || levelB > 0)
             {
                 return diff + Integer.compare(levelA, levelB) * 1313;

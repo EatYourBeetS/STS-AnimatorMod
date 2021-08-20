@@ -14,14 +14,12 @@ public class Loadout_NoGameNoLife extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeData()
+    public void AddStarterCards()
     {
-        super.InitializeData();
-
-        AddToSpecialSlots(DolaCouronne.DATA, 4);
-        AddToSpecialSlots(DolaSchwi.DATA, 4);
-        AddToSpecialSlots(IzunaHatsuse.DATA, 6);
-        AddToSpecialSlots(ChlammyZell.DATA, 7);
+        AddStarterCard(DolaCouronne.DATA, 4);
+        AddStarterCard(DolaSchwi.DATA, 4);
+        AddStarterCard(IzunaHatsuse.DATA, 6);
+        AddStarterCard(ChlammyZell.DATA, 7);
     }
 
     @Override

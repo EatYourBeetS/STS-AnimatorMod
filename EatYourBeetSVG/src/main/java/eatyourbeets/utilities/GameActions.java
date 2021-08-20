@@ -220,6 +220,11 @@ public final class GameActions
         return StackPower(source, new FrailPower(target, amount, source == null || GameUtilities.IsMonster(source)));
     }
 
+    public ApplyPowerAuto ApplyFrail(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.Frail, amount);
+    }
+
     public ApplyPower ApplyFreezing(AbstractCreature source, AbstractCreature target, int amount)
     {
         return StackPower(source, new FreezingPower(target, source, amount));

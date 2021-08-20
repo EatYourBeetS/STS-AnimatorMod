@@ -34,7 +34,7 @@ public class Curse_Delusion extends AnimatorCard_Curse
             RandomizedList<AbstractCard> possible = new RandomizedList<>();
             for (AbstractCard c : player.drawPile.group)
             {
-                if (c.costForTurn >= 0)
+                if (c.costForTurn >= 0 && !c.hasTag(AUTOPLAY))
                 {
                     possible.Add(c);
                 }
@@ -45,7 +45,7 @@ public class Curse_Delusion extends AnimatorCard_Curse
                 card = possible.Retrieve(rng);
             }
 
-            if (card instanceof EYBCard && !card.hasTag(AUTOPLAY))
+            if (card instanceof EYBCard)
             {
                 ((EYBCard) card).SetAutoplay(true);
             }

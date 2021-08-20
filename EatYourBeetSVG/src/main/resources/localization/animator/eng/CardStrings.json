@@ -362,6 +362,21 @@
 		  "DESCRIPTION": "Transform !M! Status cards in your hand into more beneficial variants.",
 		  "NAME": "Ginko"
 		},
+		"animator:Ginko_Dazed":
+		{
+		  "DESCRIPTION": "When Exhausted: Gain !M! [Block].",
+		  "NAME": "Dazed"
+		},
+		"animator:Ginko_Slimed":
+		{
+		  "DESCRIPTION": "Next turn, Gain !M! [E].",
+		  "NAME": "Slimed"
+		},
+		"animator:Ginko_Wound":
+		{
+		  "DESCRIPTION": "Next turn, <DRW-M>.",
+		  "NAME": "Wound"
+		},
 		"animator:HatsuneMiku":
 		{
 			"DESCRIPTION": "Can only be played if there are at least !S! cards in your Discard and {Exhaust} piles combined. || At the start of turn: Draw !M! card(s). They cost 0 this turn.",
@@ -459,7 +474,8 @@
 		},
 		"animator:TakashiNatsume":
 		{
-		  "DESCRIPTION": "Exhaust a Curse from your hand. Play its effect on ALL enemies.",
+		  "DESCRIPTION": "Exhaust !M! Curse(s) from your hand or discard pile. For each one: Play its effect twice on ALL enemies.",
+		  "EXTENDED_DESCRIPTION": ["Whenever you play a card, deal #b{0} damage to ALL enemies. Removed at the end of turn."],
 		  "NAME": "TakashiNatsume"
 		},
 		"animator:TomoyaOkazaki":
@@ -605,7 +621,7 @@
 		},
 		"animator:AyakaKamisato":
 		{
-		  "DESCRIPTION": "Gain !M! {Temp}. [Thorns]. Gain !S! more for each [I]. You cannot gain [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
+		  "DESCRIPTION": "Gain !M! [Temporary Thorns]. Gain !S! more for each [I]. You cannot gain [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
 		  "NAME": "Ayaka Kamisato"
 		},
 		"animator:BarbaraPegg":
@@ -706,7 +722,7 @@
 		},
 		"animator:Traveler_Aether":
 		{
-		    "DESCRIPTION": "Channel [Aether]. {Induce} your first !M! {Common Orbs} and apply !S! [Burning] [Freezing] to ALL enemies for each. || <SLM>. If you have at least !S! unique Orbs, add {Wish} to your hand.",
+		    "DESCRIPTION": "Channel [Aether]. {Induce} your first !M! {Common Orbs} and apply !S! [Burning] [Freezing] to ALL enemies for each. || <SLM>. If you have at least 3 unique Orbs, add {Wish} to your hand.",
 		    "NAME": "Aether"
 		},
 		"animator:Traveler_Lumine":
@@ -731,7 +747,7 @@
 		},
 		"animator:Zhongli":
 		{
-			"DESCRIPTION": "[Earth] gives half of its damage as [Block] when Evoked. || Pay [E]: {Channel} [Earth] ** and gain !M! [Plated Armor].",
+			"DESCRIPTION": "[Earth] gives half of its damage as [Block] when Evoked. || Once per turn: Pay [E] to {Channel} [Earth] ** and gain !M! [Plated Armor].",
 		  	"EXTENDED_DESCRIPTION": ["Pay #b1 [E] to channel #b1 [Earth] ** and gain {0} [Plated Armor]. || Your [Earth] now give half of their damage as [Block] when #yEvoked."],
 			"NAME": "Zhongli"
 		}
@@ -1693,7 +1709,7 @@
 		},
 		"animator:UneriGinkaku":
 		{
-			"DESCRIPTION": "Unplayable if you ** {Attacked} this turn. || When Drawn: Gain ** !M! {Temp}. [Thorns].",
+			"DESCRIPTION": "Unplayable if you ** {Attacked} this turn. || When Drawn: Gain ** !M! [Temporary Thorns].",
 			"NAME": "Uneri Ginkaku"
 		},
 		"animator:ZankiKiguchi":
@@ -2397,7 +2413,7 @@
 		},
 		"animator:OrbCore_Earth":
 		{
-		  "DESCRIPTION": "Channel !S! [Earth]. || On your second ** Synergy each turn: ** Gain !M! {Temp}. [Thorns].",
+		  "DESCRIPTION": "Channel !S! [Earth]. || On your second ** Synergy each turn: ** Gain !M! [Temporary Thorns].",
 		  "NAME": "Earth Core"
 		},
 		"animator:OrbCore_Fire":

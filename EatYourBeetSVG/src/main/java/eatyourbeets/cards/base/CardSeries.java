@@ -74,6 +74,9 @@ public class CardSeries
     public final static CardSeries Kirby = Add(59, "Kirby");
     public final static CardSeries Xenoblade = Add(60, "Xenoblade");
     public final static CardSeries HoukaiGakuen = Add(61, "HoukaiGakuen");
+    public final static CardSeries Mushishi = Add(62, "Mushishi");
+    public final static CardSeries NatsumeYuujinchou = Add(63, "NatsumeYuujinchou");
+    public final static CardSeries Hololive = Add(64, "Hololive");
 
     private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;

@@ -174,7 +174,7 @@ public class DainsleifAbyssPower extends AnimatorPower {
         PlayerLoseStrength(ACTIONS.LosePower(1, GR.Tooltips.Strength, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Strength, -1)),
         PlayerTakeDamage(ACTIONS.TakeDamage(5, true), 2, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.SelfDamage, 5)),
         PlayerTakeDamage2(ACTIONS.TakeDamage(8, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.SelfDamage, 8)),
-        RandomEnemyGainStrength(ACTIONS.GiveRandomEnemy(4, GR.Tooltips.Strength, true), 2, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Strength, 4)),
+        RandomEnemyGainStrength(ACTIONS.GiveRandomEnemy(3, GR.Tooltips.Strength, true), 2, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Strength, 3)),
         RandomEnemyGainStrength2(ACTIONS.GiveRandomEnemy(6, GR.Tooltips.Strength, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Strength, 6)),
         EndTurn(ACTIONS.DainsleifEndTurn(true), 4, (c, p, m) -> {
             GameActions.Bottom.Callback(() -> {
@@ -204,15 +204,16 @@ public class DainsleifAbyssPower extends AnimatorPower {
         ApplyFreezing(ACTIONS.ApplyToALL(4, GR.Tooltips.Freezing, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(), 4)),
         ApplyVulnerable(ACTIONS.ApplyToALL(3, GR.Tooltips.Vulnerable, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), 3)),
         ApplyWeak(ACTIONS.ApplyToALL(3, GR.Tooltips.Weak, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 3)),
-        ChannelRandomOrbs(ACTIONS.ChannelRandomOrbs(2, true), 10, 2, (c, p, m) -> GameActions.Bottom.ChannelRandomOrbs(2)),
-        NextTurnDraw(ACTIONS.NextTurnDraw(2, true), 10, 1, (c, p, m) -> GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 2))),
+        ChannelRandomOrbs(ACTIONS.ChannelRandomOrbs(2, true), 10, 1, (c, p, m) -> GameActions.Bottom.ChannelRandomOrbs(2)),
+        ChannelRandomOrbs2(ACTIONS.ChannelRandomOrbs(4, true), 10, 3, (c, p, m) -> GameActions.Bottom.ChannelRandomOrbs(4)),
+        NextTurnDraw(ACTIONS.NextTurnDraw(3, true), 10, 1, (c, p, m) -> GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 3))),
         NextTurnEnergy(ACTIONS.NextTurnEnergy(2, true), 10, 1, (c, p, m) -> GameActions.Bottom.StackPower(new EnergizedPower(p, 2))),
-        GainBlessing(ACTIONS.GainAmount(2, GR.Tooltips.Blessing, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainBlessing(2, false)),
-        GainCorruption(ACTIONS.GainAmount(2, GR.Tooltips.Corruption, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainCorruption(2, false)),
-        GainCorruption2(ACTIONS.GainAmount(3, GR.Tooltips.Corruption, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainCorruption(3, false)),
-        GainIntellect(ACTIONS.GainAmount(2, GR.Tooltips.Intellect, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainIntellect(2, false)),
-        GainIntellect2(ACTIONS.GainAmount(3, GR.Tooltips.Intellect, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainIntellect(3, false)),
-        ObtainGenshinCard(ACTIONS.ChooseMotivatedCard(CardSeries.GenshinImpact.Name, true), 5, 3, (c, p, m) -> {
+        GainBlessing(ACTIONS.GainAmount(3, GR.Tooltips.Blessing, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainBlessing(3, false)),
+        GainCorruption(ACTIONS.GainAmount(3, GR.Tooltips.Corruption, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainCorruption(3, false)),
+        GainCorruption2(ACTIONS.GainAmount(4, GR.Tooltips.Corruption, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainCorruption(4, false)),
+        GainIntellect(ACTIONS.GainAmount(3, GR.Tooltips.Intellect, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainIntellect(3, false)),
+        GainIntellect2(ACTIONS.GainAmount(4, GR.Tooltips.Intellect, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainIntellect(4, false)),
+        ObtainGenshinCard(ACTIONS.ChooseMotivatedCard(CardSeries.GenshinImpact.Name, true), 6, 3, (c, p, m) -> {
             final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             final RandomizedList<AbstractCard> pool = new RandomizedList<AbstractCard>(genshinCards.GetInnerList());
 

@@ -5,23 +5,17 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_Status;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
-public class AbyssalVoid extends AnimatorCard_Status
+public class Ginko_Dazed extends AnimatorCard_Status
 {
-    public static final EYBCardData DATA = Register(AbyssalVoid.class).SetStatus(2, CardRarity.SPECIAL, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Ginko_Dazed.class).SetStatus(-2, CardRarity.COMMON, EYBCardTarget.ALL);
 
-    public AbyssalVoid()
+    public Ginko_Dazed()
     {
         super(DATA, false);
 
-        Initialize(0, 0, 2, 5);
-        SetUpgrade(0, 0, 0, 0);
-        SetAffinity_Dark(2);
-
-        SetAutoplay(true);
-        SetPurge(true);
+        Initialize(0, 0, 3);
         SetEthereal(true);
     }
 
@@ -29,7 +23,19 @@ public class AbyssalVoid extends AnimatorCard_Status
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainCorruption(magicNumber, true);
-        GameActions.Bottom.LoseHP(secondaryValue, AttackEffects.DARKNESS);
+        if (!this.dontTriggerOnUseCard)
+        {
+            this.performAction();
+        }
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        this.performAction();
+    }
+
+    private void performAction() {
+        GameActions.Bottom.GainBlock(magicNumber);
     }
 }

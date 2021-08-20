@@ -17,6 +17,7 @@ import eatyourbeets.utilities.TargetHelper;
 public class Traveler_Aether extends AnimatorCard_UltraRare
 {
     public static final EYBCardData DATA = Register(Traveler_Aether.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact);
+    public static final int UNIQUE_ORB_THRESHOLD = 3;
     static {
         DATA.AddPreview(new Traveler_Wish(), true);
     }
@@ -29,7 +30,7 @@ public class Traveler_Aether extends AnimatorCard_UltraRare
         Initialize(0, 0, 3, 2);
         SetUpgrade(0, 0, 1, 0);
         SetAffinity_Light(2);
-        SetAffinity_Dark(1);
+        SetAffinity_Dark(2);
         SetAffinity_Green(1);
         SetEthereal(true);
         SetPurge(true);
@@ -54,7 +55,7 @@ public class Traveler_Aether extends AnimatorCard_UltraRare
                 GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(), secondaryValue * orbsInduced);
             }
 
-            if (GameUtilities.GetUniqueOrbsCount() >= secondaryValue && CombatStats.TryActivateSemiLimited(cardID)) {
+            if (GameUtilities.GetUniqueOrbsCount() >= UNIQUE_ORB_THRESHOLD && CombatStats.TryActivateSemiLimited(cardID)) {
                 GameActions.Bottom.MakeCardInHand(new Traveler_Wish());
             }
         });

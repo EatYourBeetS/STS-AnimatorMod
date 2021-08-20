@@ -28,7 +28,7 @@ public class AyakaKamisato extends AnimatorCard {
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(15, 0, 3, 2);
+        Initialize(14, 0, 3, 2);
         SetUpgrade(3, 0, 2, 0);
         SetAffinity_Blue(2, 0, 2);
         SetAffinity_Green(1, 0, 1);

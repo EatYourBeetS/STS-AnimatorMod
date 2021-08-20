@@ -44,7 +44,7 @@
 	},
 	"Balance":
 	{
-	  "DESCRIPTION": "Reduces the effects of Frail, Vulernable, and Weak on you. Increases the effects of Frail, Vulernable, and Weak on the enemy.",
+	  "DESCRIPTION": "Reduces the effects of Frail, Vulnerable, and Weak on you. Increases the effects of Frail, Vulernable, and Weak on the enemy.",
 	  "NAMES": ["balance"],
 	  "PROPER_NAME": "Balance"
 	},

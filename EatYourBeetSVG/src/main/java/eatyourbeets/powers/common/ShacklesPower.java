@@ -30,35 +30,11 @@ public class ShacklesPower extends CommonPower
     }
 
     @Override
-    public void onInitialApplication()
+    protected void onAmountChanged(int previousAmount, int difference)
     {
-        super.onInitialApplication();
+        GameActions.Top.StackPower(new StrengthPower(owner, -difference));
 
-        GameActions.Top.StackPower(new StrengthPower(owner, -amount));
-    }
-
-    @Override
-    public void stackPower(int stackAmount)
-    {
-        super.stackPower(stackAmount);
-
-        GameActions.Top.StackPower(new StrengthPower(owner, -stackAmount));
-    }
-
-    @Override
-    public void reducePower(int reduceAmount)
-    {
-        super.reducePower(reduceAmount);
-
-        GameActions.Top.StackPower(new StrengthPower(owner, Math.min(amount, reduceAmount)));
-    }
-
-    @Override
-    public void onRemove()
-    {
-        super.onRemove();
-
-        GameActions.Top.StackPower(new StrengthPower(owner, amount));
+        super.onAmountChanged(previousAmount, difference);
     }
 
     @Override

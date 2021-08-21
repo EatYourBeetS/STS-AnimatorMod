@@ -43,6 +43,9 @@ public class Arpeggio extends AnimatorCard
 
     public static class ArpeggioPower extends AnimatorClickablePower
     {
+        private static final int MAX_BONUS = 2;
+        private int intellectBonus;
+
         public ArpeggioPower(AbstractCreature owner, int amount)
         {
             super(owner, Arpeggio.DATA, PowerTriggerConditionType.Energy, Arpeggio.POWER_ENERGY_COST);
@@ -55,31 +58,16 @@ public class Arpeggio extends AnimatorCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, triggerCondition.requiredAmount, amount);
+            return FormatDescription(0, triggerCondition.requiredAmount, amount, intellectBonus, MAX_BONUS);
         }
 
         @Override
-        public void onInitialApplication()
+        protected void onAmountChanged(int previousAmount, int difference)
         {
-            super.onInitialApplication();
+            intellectBonus = Math.min(MAX_BONUS, amount);
+            CombatStats.Affinities.GetRow(Affinity.Blue).ActivationPowerAmount += intellectBonus - Math.min(MAX_BONUS, previousAmount);
 
-            CombatStats.Affinities.AddMaxActivationsPerTurn(Affinity.Blue, amount);
-        }
-
-        @Override
-        public void stackPower(int stackAmount)
-        {
-            super.stackPower(stackAmount);
-
-            CombatStats.Affinities.AddMaxActivationsPerTurn(Affinity.Blue, stackAmount);
-        }
-
-        @Override
-        public void onRemove()
-        {
-            super.onRemove();
-
-            CombatStats.Affinities.AddMaxActivationsPerTurn(Affinity.Blue, -amount);
+            super.onAmountChanged(previousAmount, difference);
         }
 
         @Override

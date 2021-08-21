@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -15,6 +16,8 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.actions.powers.IncreasePower;
+import eatyourbeets.actions.powers.ReducePower;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.powers.EYBFlashPowerEffect;
 import eatyourbeets.effects.powers.EYBGainPowerEffect;
@@ -115,7 +118,6 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
         this.baseAmount = this.amount = Mathf.Min(9999, amount);
         this.type = type;
         this.isTurnBased = turnBased;
-
         updateDescription();
     }
 
@@ -128,21 +130,6 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
         {
             OnSamePowerApplied(power);
         }
-    }
-
-    @Override
-    public void stackPower(int stackAmount)
-    {
-        if ((baseAmount += stackAmount) > maxAmount)
-        {
-            baseAmount = maxAmount;
-        }
-        if ((amount + stackAmount) > maxAmount)
-        {
-            stackAmount = maxAmount - amount;
-        }
-
-        super.stackPower(stackAmount);
     }
 
     @Override
@@ -227,38 +214,6 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
         return null;
     }
 
-    public void OnSamePowerApplied(AbstractPower power)
-    {
-
-    }
-
-    public void ReducePower(int amount)
-    {
-        if (amount > 0)
-        {
-            GameActions.Bottom.ReducePower(this, amount);
-        }
-    }
-
-    public void RemovePower()
-    {
-        GameActions.Bottom.RemovePower(owner, owner, this);
-    }
-
-    public int ResetAmount()
-    {
-        this.amount = baseAmount;
-        updateDescription();
-        return amount;
-    }
-
-    public EYBPower SetEnabled(boolean enable)
-    {
-        this.enabled = enable;
-
-        return this;
-    }
-
     @Override
     public void flash()
     {
@@ -313,6 +268,84 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
         }
     }
 
+    @Override
+    public void onInitialApplication()
+    {
+        super.onInitialApplication();
+
+        onAmountChanged(0, amount);
+    }
+
+    @Override
+    public void onRemove()
+    {
+        super.onRemove();
+
+        if (amount > 0)
+        {
+            final int previous = amount;
+            amount = 0;
+            onAmountChanged(previous, -previous);
+        }
+    }
+
+    @Override
+    public void stackPower(int stackAmount)
+    {
+        if ((baseAmount += stackAmount) > maxAmount)
+        {
+            baseAmount = maxAmount;
+        }
+        if ((amount + stackAmount) > maxAmount)
+        {
+            stackAmount = maxAmount - amount;
+        }
+
+        final int previous = amount;
+        super.stackPower(stackAmount);
+
+        onAmountChanged(previous, stackAmount);
+    }
+
+    @Override
+    public void reducePower(int reduceAmount)
+    {
+        final int previous = amount;
+        super.reducePower(reduceAmount);
+
+        onAmountChanged(previous, -Math.max(0, reduceAmount));
+    }
+
+    public int ResetAmount()
+    {
+        final int previous = amount;
+        this.amount = baseAmount;
+        onAmountChanged(previous, (amount - previous));
+        return amount;
+    }
+
+    public IncreasePower IncreasePower(int amount)
+    {
+        return GameActions.Bottom.IncreasePower(this, amount);
+    }
+
+    public ReducePower ReducePower(int amount)
+    {
+        return GameActions.Bottom.ReducePower(this, amount);
+    }
+
+    public RemoveSpecificPowerAction RemovePower()
+    {
+        return GameActions.Bottom.RemovePower(owner, owner, this);
+    }
+
+    public EYBPower SetEnabled(boolean enable)
+    {
+        this.enabled = enable;
+
+        return this;
+    }
+
     protected String FormatDescription(int index, Object... args)
     {
         return JUtils.Format(powerStrings.DESCRIPTIONS[index], args);
@@ -344,5 +377,18 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     protected ColoredString GetSecondaryAmount(Color c)
     {
         return null;
+    }
+
+    protected void OnSamePowerApplied(AbstractPower power)
+    {
+
+    }
+
+    protected void onAmountChanged(int previousAmount, int difference)
+    {
+        if (difference != 0)
+        {
+            updateDescription();
+        }
     }
 }

@@ -3,6 +3,7 @@ package eatyourbeets.powers.affinity;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.animator.ultrarare.SummoningRitual;
 import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
@@ -30,6 +31,7 @@ public class CorruptionPower extends AbstractAffinityPower
         if (thresholdIndex == (GetThresholds().length - 1))
         {
             GameActions.Bottom.MakeCardInHand(new SummoningRitual());
+            AnimatorCard_UltraRare.MarkAsSeen(SummoningRitual.DATA.ID);
         }
         else
         {

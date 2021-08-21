@@ -536,8 +536,8 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !M! orb slot(s). || <B> Synergy bonus can ** be obtained 1 additional ** time each turn. || Pay 2 [E] to Channel 1 [Earth].",
-			"EXTENDED_DESCRIPTION": ["Pay {0} [E] to Channel {1} [Earth]. || <B> Synergy bonus can be obtained {1} additional time(s) each turn."],
+			"DESCRIPTION": "Gain !M! orb slot(s). || Your <B> Synergy bonus grants 1 additional [I]. || Pay 2 [E] to Channel 1 [Earth].",
+			"EXTENDED_DESCRIPTION": ["Pay {0} [E] to Channel {1} [Earth]. || Your <B> Synergy bonus grants #b{2} additional [I] (max #b{3}^)."],
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":

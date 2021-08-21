@@ -40,8 +40,8 @@ public class CowGirl extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        (upgraded ? GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile, player.discardPile)
-                  : GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile))
+        (upgraded ? GameActions.Bottom.FetchFromPile(name, 1, player.drawPile, player.discardPile)
+                  : GameActions.Bottom.FetchFromPile(name, 1, player.drawPile))
         .SetOptions(false, false)
         .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsHindrance(c));
     }

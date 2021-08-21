@@ -289,15 +289,39 @@ public class EYBCardAffinities
         {
             return star;
         }
-        else if (affinity == null || affinity == Affinity.General) // Highest level among all affinities
+        else if (affinity == Affinity.General)
         {
-            return List.isEmpty() ? star : List.get(0).level;
+            return List.isEmpty() ? star : List.get(0).level; // Highest level among all affinities
         }
         else
         {
             final EYBCardAffinity a = Get(affinity);
             return (a != null) ? a.level : 0;
         }
+    }
+
+    public EYBCardAffinity GetDirectly(Affinity affinity)
+    {
+        if (affinity == Affinity.Star)
+        {
+            return Star;
+        }
+
+        for (EYBCardAffinity a : List)
+        {
+            if (a.type == affinity)
+            {
+                return a;
+            }
+        }
+
+        return null;
+    }
+
+    public int GetDirectLevel(Affinity affinity)
+    {
+        final EYBCardAffinity a = GetDirectly(affinity);
+        return (a != null) ? a.level : 0;
     }
 
     public void SetRequirement(Affinity affinity, int requirement)

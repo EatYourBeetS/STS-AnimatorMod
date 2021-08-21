@@ -503,7 +503,8 @@
 		},
 		"animator:InverseOrigami":
 		{
-			"DESCRIPTION": "Whenever you Evoke an Orb, activate your [Support Damage]. Once per turn: Lose !M! [Support Damage] to ** add a random {Orb Core} ** to your hand.",
+			"DESCRIPTION": "The first time you Evoke an Orb each turn, activate your [Support Damage]. || Once per turn: Lose !M! [Support Damage] to add a random {Orb Core} to your hand.",
+			"EXTENDED_DESCRIPTION": ["The next #b{0} Orb(s) Evoked this turn activate your #ySupport #yDamage. Once per turn: Lose 2 #ySupport #yDamage to add a random #yOrb #yCore to your hand."],
 			"NAME": "Inverse Origami"
 		},
 		"animator:InverseTohka":
@@ -528,7 +529,8 @@
 		},
 		"animator:MioTakamiya":
 		{
-			"DESCRIPTION": "On your first Synergy each turn, lose !M! HP, then add a random card that Synergizes with this card to your draw pile. It costs 0 and has Autoplay and Purge.",
+			"DESCRIPTION": "On your first Synergy each turn: Lose !M! HP and add a random upgraded card that Synergizes with this card to your draw pile. It costs 0 and has Autoplay and Purge.",
+			"EXTENDED_DESCRIPTION": ["For the next #b{0} Synergies this turn: Lose #b{1} HP and add a random upgraded card that Synergizes with this card to your draw pile. It costs 0 and has Autoplay and Purge."],
 			"NAME": "Mio Takamiya"
 		},
 		"animator:Mayuri":
@@ -549,14 +551,14 @@
 		},
 		"animator:NiaHonjou":
 		{
-			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** [Block]. Gain double [Block] ** in <AS>. || When Discarded: Draw a card that Synergizes with this card.",
+			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** [Block]. Gain double [Block] if you Synergized this turn. || When Discarded: Draw a random card that Synergizes with this card.",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a card this turn, gain #b{0} #yBlock."],
 			"NAME": "Nia Honjou"
 		},
 		"animator:OrigamiTobiichi":
 		{
-			"DESCRIPTION": "At end of turn: Gain !M! [Support Damage]. || If you have over !S! [Support Damage]: ** Remove this power. Add ** {Inverse Origami} to your ** draw pile.",
-			"EXTENDED_DESCRIPTION": ["At end of turn: gain #b{0} Support Damage. If you have over #b{1} Support Damage, remove this power.  Add #b{0} #yInverse #yOrigami to your draw pile."],
+			"DESCRIPTION": "At end of turn: Gain !M! [Support Damage]. || If you have over !S! [Support Damage]: ** Remove this power and add ** {Inverse Origami} to your ** draw pile.",
+			"EXTENDED_DESCRIPTION": ["At end of turn: gain #b{0} Support Damage. If you have over #b{1} Support Damage, remove this power.  Add #yInverse #yOrigami to your draw pile."],
 			"NAME": "Origami Tobiichi"
 		},
 		"animator:ReineMurasame":
@@ -606,7 +608,7 @@
 	"BETA:GENSHINIMPACT": {
 		"animator:Amber":
 		{
-			"DESCRIPTION": "{Starter}: Channel 1 [Fire]. || Synergy: Apply !M! [~Lock-On].",
+			"DESCRIPTION": "<ST>: Channel 1 [Fire] and gain [A]. || Synergy: Apply !M! [~Lock-On].",
 			"NAME": "Amber"
 		},
 		"animator:AyakaKamisato":
@@ -691,7 +693,7 @@
 		},
 		"animator:Noelle":
 		{
-			"DESCRIPTION": "{Starter}: If you have [Earth], ** Trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || Synergy: Retain 1 ** <O> or <R> card.",
+			"DESCRIPTION": "<ST>: If you have [Earth], ** Trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || Synergy: Retain 1 ** <O> or <R> card.",
 			"NAME": "Noelle"
 		},
 		"animator:OgoshoNarukami":

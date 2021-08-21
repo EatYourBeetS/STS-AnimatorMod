@@ -16,17 +16,10 @@ public class Amber extends AnimatorCard {
     public Amber() {
         super(DATA);
 
-        Initialize(3, 2, 2);
-        SetUpgrade(2, 0, 0);
-        SetAffinity_Green(2, 0 ,0);
+        Initialize(3, 1, 1, 1);
+        SetUpgrade(2, 1, 0);
+        SetAffinity_Green(2, 0 ,1);
     }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetAffinity_Green(2, 0, 1);
-    }
-
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
@@ -37,6 +30,7 @@ public class Amber extends AnimatorCard {
         if (IsStarter())
         {
             GameActions.Bottom.ChannelOrb(new Fire());
+            GameActions.Bottom.GainAgility(secondaryValue, false);
         }
 
         if (HasSynergy())

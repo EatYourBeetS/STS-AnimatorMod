@@ -7,9 +7,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class NiaHonjou extends AnimatorCard
 {
@@ -41,7 +40,8 @@ public class NiaHonjou extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Top.Scry(secondaryValue);
+        GameActions.Top.Draw(1)
+                .SetFilter(this::WouldSynergize, false);
     }
 
     public static class NiaHonjouPower extends AnimatorPower
@@ -80,13 +80,7 @@ public class NiaHonjou extends AnimatorCard
         {
             super.onAfterCardPlayed(usedCard);
 
-            int blockAmount = amount;
-            if (GameUtilities.InStance(AgilityStance.STANCE_ID))
-            {
-                blockAmount *= 2;
-            }
-
-            GameActions.Bottom.GainBlock(blockAmount);
+            GameActions.Bottom.GainBlock((CombatStats.SynergiesThisTurn().size() > 1) ? amount * 2 : amount);
         }
     }
 }

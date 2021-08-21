@@ -1,21 +1,24 @@
 package eatyourbeets.cards.animator.beta.ultrarare;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.animator.beta.series.DateALive.ShidoItsuka;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
-public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard //TODO
+import java.util.ArrayList;
+
+public class MioTakamiya extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(MioTakamiya.class).SetSkill(3, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.DateALive);
+    public static final EYBCardData DATA = Register(MioTakamiya.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.DateALive);
     static
     {
         DATA.AddPreview(new ShidoItsuka(), true);
@@ -25,42 +28,94 @@ public class MioTakamiya extends AnimatorCard_UltraRare implements StartupCard /
     {
         super(DATA);
 
-        Initialize(0, 15, 6);
-        SetUpgrade(0, 0, -1);
+        Initialize(0, 0, 1);
         SetAffinity_Light(2, 0, 0);
+        SetEthereal(true);
+    }
+
+    @Override
+    public void OnUpgrade() {
+        SetEthereal(false);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainBlock(block);
-
-        if (GameUtilities.InStance(AgilityStance.STANCE_ID))
-        {
-            GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID)
-            .AddCallback(() -> {
-                int agilityGain = p.currentBlock / magicNumber;
-
-                if (agilityGain > 0)
-                {
-                    GameActions.Bottom.GainAgility(agilityGain);
-                }
-            });
-        }
+        GameActions.Bottom.StackPower(new MioTakamiyaPower(p, magicNumber));
     }
 
-    @Override
-    public boolean atBattleStartPreDraw()
+    public static class MioTakamiyaPower extends AnimatorPower
     {
-        GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
+        private static ArrayList<AbstractCard> cardPool;
+        public static final int HP_LOSS = 4;
 
-        final ShidoItsuka shido = new ShidoItsuka();
-        for (int i = 0; i < 3; i++)
-        {
-            GameActions.Bottom.MakeCardInDrawPile(shido)
-            .SetUpgrade(upgraded, true);
+        private static void InitializePool() {
+            if (cardPool == null)
+            {
+                cardPool = new ArrayList<>();
+                MioTakamiya fake = new MioTakamiya();
+
+                for (AbstractCard c : GameUtilities.GetAvailableCards())
+                {
+                    if (c.rarity == CardRarity.COMMON || c.rarity == CardRarity.UNCOMMON || c.rarity == CardRarity.RARE)
+                    {
+                        if (c instanceof AnimatorCard
+                                && fake.WouldSynergize(c))
+                        {
+                            cardPool.add(c);
+                        }
+                    }
+                }
+            }
         }
 
-        return true;
+        public MioTakamiyaPower(AbstractPlayer owner, int amount)
+        {
+            super(owner, MioTakamiya.DATA);
+
+            this.amount = amount;
+
+            InitializePool();
+            Initialize(amount);
+        }
+
+        @Override
+        public void updateDescription()
+        {
+            description = FormatDescription(0, amount, HP_LOSS);
+        }
+
+        public void atStartOfTurn()
+        {
+            super.atStartOfTurn();
+
+            ResetAmount();
+        }
+
+        @Override
+        public void onAfterCardPlayed(AbstractCard usedCard)
+        {
+            super.onAfterCardPlayed(usedCard);
+
+            if (this.amount > 0) {
+                final AnimatorCard card = JUtils.SafeCast(usedCard, AnimatorCard.class);
+                if (card != null && card.HasSynergy())
+                {
+                    GameActions.Bottom.LoseHP(HP_LOSS, AttackEffects.SLASH_VERTICAL);
+
+                    AnimatorCard newCard = (AnimatorCard) GameUtilities.GetRandomElement(cardPool).makeCopy();
+                    GameUtilities.ModifyCostForCombat(newCard, 0, false);
+                    newCard.SetAutoplay(true);
+                    newCard.SetPurge(true);
+
+                    GameActions.Bottom.MakeCardInDrawPile(newCard)
+                            .SetUpgrade(true, true);
+                    this.amount -= 1;
+                    updateDescription();
+                    flash();
+                }
+            }
+        }
     }
+
 }

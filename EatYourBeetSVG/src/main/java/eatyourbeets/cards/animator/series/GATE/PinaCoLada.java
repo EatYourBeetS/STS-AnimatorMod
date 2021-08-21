@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
@@ -24,7 +23,7 @@ public class PinaCoLada extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 3);
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Light(1, 1, 0);
@@ -46,7 +45,7 @@ public class PinaCoLada extends AnimatorCard
 
     public class PinaCoLadaPower extends AnimatorClickablePower
     {
-        private static final int DISCARD_AMOUNT = 2;
+        private static final int DISCARD_AMOUNT = 3;
 
         public PinaCoLadaPower(AbstractCreature owner, int amount)
         {
@@ -65,7 +64,6 @@ public class PinaCoLada extends AnimatorCard
         @Override
         public void OnUse(AbstractMonster m)
         {
-            GameActions.Bottom.ChannelOrb(new Earth());
             GameActions.Bottom.StackPower(new DrawCardNextTurnPower(player, 1));
         }
 

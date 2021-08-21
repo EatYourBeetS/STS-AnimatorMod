@@ -22,23 +22,25 @@ public class OrigamiTobiichi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 10);
+        Initialize(0, 0, 3, 10);
         SetUpgrade(0, 0, 0);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Light(1, 1, 0);
     }
 
     @Override
+    protected void OnUpgrade() {
+        SetInnate(true);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new OrigamiTobiichiPower(p, magicNumber, secondaryValue));
     }
 
     public static class OrigamiTobiichiPower extends AnimatorPower
     {
-        public static final int SUPPORT_DAMAGE_AMOUNT = 1;
-
         private final int supportDamageLimit;
 
         public OrigamiTobiichiPower(AbstractPlayer owner, int amount, int limit)
@@ -62,7 +64,7 @@ public class OrigamiTobiichi extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, SUPPORT_DAMAGE_AMOUNT * amount, supportDamageLimit);
+            description = FormatDescription(0, amount, supportDamageLimit);
         }
 
         @Override
@@ -84,11 +86,7 @@ public class OrigamiTobiichi extends AnimatorCard
         {
             if (GameUtilities.GetPowerAmount(SupportDamagePower.POWER_ID) > (supportDamageLimit))
             {
-                for (int i = 0; i < amount; i++)
-                {
-                    GameActions.Bottom.MakeCardInDrawPile(new InverseOrigami()).SetUpgrade(false, false);
-                }
-
+                GameActions.Bottom.MakeCardInDrawPile(new InverseOrigami()).SetUpgrade(false, false);
                 GameActions.Bottom.RemovePower(player, player, this);
             }
         }

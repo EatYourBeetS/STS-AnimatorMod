@@ -71,7 +71,12 @@ public final class GameEffects
     public EYBEffect Attack(AbstractCreature source, AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax, Color vfxColor, float spread)
     {
         AttackEffects.PlaySound(attackEffect, pitchMin, pitchMax);
-        EYBEffect effect = Add(AttackEffects.GetVFX(attackEffect, source, VFX.RandomX(target.hb, spread), VFX.RandomY(target.hb, spread)));
+        return AttackWithoutSound(source, target, attackEffect, vfxColor, spread);
+    }
+
+    public EYBEffect AttackWithoutSound(AbstractCreature source, AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, Color vfxColor, float spread)
+    {
+        final EYBEffect effect = Add(AttackEffects.GetVFX(attackEffect, source, VFX.RandomX(target.hb, spread), VFX.RandomY(target.hb, spread)));
         if (vfxColor != null)
         {
             effect.SetColor(vfxColor);

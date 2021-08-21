@@ -15,7 +15,6 @@ import eatyourbeets.powers.CommonPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
 public abstract class AbstractAffinityPower extends CommonPower
@@ -120,14 +119,12 @@ public abstract class AbstractAffinityPower extends CommonPower
     @Override
     public void updateDescription()
     {
+        this.description = powerStrings.DESCRIPTIONS[0];
+
         final Integer threshold = GetCurrentThreshold();
         if (threshold != null)
         {
-            this.description = JUtils.Format(powerStrings.DESCRIPTIONS[0] + powerStrings.DESCRIPTIONS[1], name, threshold, 1);
-        }
-        else
-        {
-            this.description = JUtils.Format(powerStrings.DESCRIPTIONS[0], name);
+            this.description += FormatDescription(1, threshold, 1);
         }
 
         this.tooltip.description = description;

@@ -25,6 +25,8 @@ public class Eve extends AnimatorCard
             .SetPower(3, CardRarity.RARE)
             .SetMaxCopies(1)
             .SetSeriesFromClassPackage();
+    private static final int POWER_ENERGY_COST = 2;
+
     static
     {
         for (EYBCardData data : AffinityToken.GetCards())
@@ -62,7 +64,7 @@ public class Eve extends AnimatorCard
     {
         public EvePower(AbstractCreature owner, int amount)
         {
-            super(owner, Eve.DATA, PowerTriggerConditionType.Energy, 2);
+            super(owner, Eve.DATA, PowerTriggerConditionType.Energy, POWER_ENERGY_COST);
 
             this.amount = amount;
             this.triggerCondition.SetOneUsePerPower(true);

@@ -292,7 +292,7 @@ public abstract class AnimatorLoadout
     {
         if (shortDescription == null || forceRefresh)
         {
-            StringJoiner sj = new StringJoiner(", ");
+            final StringJoiner sj = new StringJoiner(", ");
             for (String s : GetStartingDeck())
             {
                 AbstractCard card = CardLibrary.getCard(s);

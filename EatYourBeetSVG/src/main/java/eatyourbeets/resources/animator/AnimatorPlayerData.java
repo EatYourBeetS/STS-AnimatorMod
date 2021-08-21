@@ -225,19 +225,18 @@ public class AnimatorPlayerData
 
         for (AnimatorLoadout loadout : BaseLoadouts)
         {
-            if (loadout.UnlockLevel == 0)
+            if (loadout.UnlockLevel <= 0)
             {
                 continue;
             }
 
             final String cardID = loadout.GetSymbolicCard().ID;
-            CustomUnlockBundle bundle = BaseMod.getUnlockBundleFor(GR.Animator.PlayerClass, loadout.UnlockLevel - 1);
-
             final CustomUnlock unlock = new CustomUnlock(AbstractUnlock.UnlockType.MISC, cardID);
             unlock.type = AbstractUnlock.UnlockType.CARD;
             unlock.card = new AnimatorRuntimeLoadout(loadout).BuildCard();
             unlock.key = unlock.card.cardID = GR.Animator.CreateID("series:" + loadout.Name);
 
+            CustomUnlockBundle bundle = BaseMod.getUnlockBundleFor(GR.Animator.PlayerClass, loadout.UnlockLevel - 1);
             if (bundle == null)
             {
                 bundle = new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "", "", "");

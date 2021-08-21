@@ -130,9 +130,14 @@ public class VFX
         return new ExplosionSmallEffect(RandomX(source, variance), RandomY(source, variance));
     }
 
-    public static IronWaveEffect IronWave(Hitbox source, Hitbox target)
+    public static IronWaveEffect2 IronWave(Hitbox source, Hitbox target)
     {
-        return new IronWaveEffect(source.cX, source.cY, target.cX);
+        return IronWave(source.cX, source.cY, target.cX);
+    }
+
+    public static IronWaveEffect2 IronWave(float cX, float cY, float targetX)
+    {
+        return new IronWaveEffect2(cX, cY, targetX);
     }
 
     public static LaserBeamEffect2 Laser(Hitbox source, Color color)

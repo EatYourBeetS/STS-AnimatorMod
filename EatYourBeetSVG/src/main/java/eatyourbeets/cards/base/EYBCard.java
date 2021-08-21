@@ -532,6 +532,7 @@ public abstract class EYBCard extends EYBCardBase
     protected void SetAffinity_Dark(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Dark, base, upgrade, scaling); }
     protected void SetAffinity_Star(int base) { InitializeAffinity(Affinity.Star, base, 0, 0); }
     protected void SetAffinity_Star(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Star, base, upgrade, scaling); }
+    protected void SetAffinity_General(int base) { InitializeAffinity(Affinity.General, base, 0, 0); }
     protected void InitializeAffinity(Affinity affinity, int base, int upgrade, int scaling) { affinities.Initialize(affinity, base, upgrade, scaling, 0); }
     //@Formatter: On
 

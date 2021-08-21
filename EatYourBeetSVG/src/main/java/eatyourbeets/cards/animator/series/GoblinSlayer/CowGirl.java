@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.GoblinSlayer;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.pileSelection.FetchFromPile;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -41,19 +40,9 @@ public class CowGirl extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        FetchFromPile fetchFromPile;
-
-        if (upgraded)
-        {
-            fetchFromPile = new FetchFromPile(name, 1, p.drawPile, p.discardPile);
-        }
-        else
-        {
-            fetchFromPile = new FetchFromPile(name, 1, p.drawPile);
-        }
-
-        GameActions.Bottom.Add(fetchFromPile
+        (upgraded ? GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile, player.discardPile)
+                  : GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile))
         .SetOptions(false, false)
-        .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsHindrance(c)));
+        .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsHindrance(c));
     }
 }

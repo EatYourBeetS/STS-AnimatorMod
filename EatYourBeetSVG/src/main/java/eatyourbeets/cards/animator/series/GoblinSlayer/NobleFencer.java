@@ -17,6 +17,7 @@ public class NobleFencer extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(NobleFencer.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 
     public NobleFencer()
@@ -24,10 +25,10 @@ public class NobleFencer extends AnimatorCard
         super(DATA);
 
         Initialize(0, 2);
-        SetUpgrade(0, 3);
+        SetUpgrade(0, 1);
 
-        SetAffinity_Green(1);
-        SetAffinity_Blue(1);
+        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Blue(1, 1, 0);
     }
 
     @Override

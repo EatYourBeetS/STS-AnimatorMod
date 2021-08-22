@@ -203,6 +203,7 @@ public class AnimatorPlayerData
         final ActionT2<AnimatorLoadout, Integer> add = (loadout, unlockLevel) ->
         {
             BaseLoadouts.add(loadout);
+            loadout.IsBeta = false;
             loadout.UnlockLevel = unlockLevel;
             loadout.AddStarterCards();
         };

@@ -28,7 +28,7 @@ public class Spearman extends AnimatorCard
         Initialize(11, 0);
         SetUpgrade(3, 0);
 
-        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Red(2, 0, 1);
         SetAffinity_Green(1);
 
         SetAffinityRequirement(Affinity.Green, 3);

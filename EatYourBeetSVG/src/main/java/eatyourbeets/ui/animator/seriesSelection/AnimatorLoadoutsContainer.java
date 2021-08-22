@@ -85,7 +85,7 @@ public class AnimatorLoadoutsContainer
             }
         }
 
-        Random rng = new Random(Settings.seed + 13);
+        final Random rng = new Random(Settings.seed + 13);
         while (promotedCount < 3)
         {
             toPromote.Retrieve(rng).Promote();
@@ -94,7 +94,7 @@ public class AnimatorLoadoutsContainer
 
         for (AnimatorRuntimeLoadout c : seriesSelectionItems)
         {
-            AbstractCard card = c.BuildCard();
+            final AbstractCard card = c.BuildCard();
             if (card != null)
             {
                 cardsMap.put(c.BuildCard(), c);
@@ -145,7 +145,7 @@ public class AnimatorLoadoutsContainer
         GR.Animator.Dungeon.Loadouts.clear();
         for (AbstractCard card : selectedCards)
         {
-            AnimatorRuntimeLoadout loadout = Find(card);
+            final AnimatorRuntimeLoadout loadout = Find(card);
             if (loadout.IsBeta)
             {
                 // Do not unlock trophies or ascension

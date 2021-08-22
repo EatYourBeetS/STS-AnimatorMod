@@ -25,10 +25,10 @@ public class HighElfArcher extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 3);
-        SetUpgrade(1, 0, 0);
+        Initialize(2, 0, 2);
+        SetUpgrade(2, 0, 1);
 
-        SetAffinity_Green(1, 1, 1);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override

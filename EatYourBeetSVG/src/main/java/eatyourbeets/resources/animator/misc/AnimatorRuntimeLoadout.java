@@ -1,6 +1,7 @@
 package eatyourbeets.resources.animator.misc;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
@@ -52,6 +53,12 @@ public class AnimatorRuntimeLoadout
 
     public void Promote()
     {
+        if (Settings.isDebug)
+        {
+            JUtils.LogInfo(this, "Debug mode: No mandatory series, but no trophies will be unlocked.");
+            return;
+        }
+
         if (card != null)
         {
             throw new RuntimeException("Can not promote a card that has already been built.");
@@ -62,15 +69,15 @@ public class AnimatorRuntimeLoadout
 
     public AbstractCard BuildCard()
     {
-        EYBCardData data = Loadout.GetSymbolicCard();
+        final EYBCardData data = Loadout.GetSymbolicCard();
         if (data == null)
         {
             JUtils.LogInfo(this, Loadout.Name + " has no symbolic card.");
             return null;
         }
 
-        AbstractCard temp = data.CreateNewInstance();
-        AnimatorCardBuilder builder = new AnimatorCardBuilder(String.valueOf(Loadout.ID)).SetImagePath(temp.assetUrl).CanUpgrade(false);
+        final AbstractCard temp = data.CreateNewInstance();
+        final AnimatorCardBuilder builder = new AnimatorCardBuilder(String.valueOf(Loadout.ID)).SetImagePath(temp.assetUrl).CanUpgrade(false);
 
         if (promoted)
         {

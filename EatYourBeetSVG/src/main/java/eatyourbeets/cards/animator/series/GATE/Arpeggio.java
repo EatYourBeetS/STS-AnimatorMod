@@ -27,7 +27,7 @@ public class Arpeggio extends AnimatorCard
         Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Blue(2);
     }
 
     @Override

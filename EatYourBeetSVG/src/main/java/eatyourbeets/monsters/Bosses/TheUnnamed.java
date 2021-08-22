@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AngryPower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
-import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
@@ -32,6 +31,7 @@ import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Special;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Unknown;
 import eatyourbeets.powers.animator.EarthenThornsPower;
+import eatyourbeets.powers.common.PoisonPlayerPower;
 import eatyourbeets.powers.monsters.InfinitePower;
 import eatyourbeets.relics.animator.unnamedReign.Ynitaph;
 import eatyourbeets.resources.GR;
@@ -86,7 +86,7 @@ public class TheUnnamed extends EYBMonster
             {
                 GameActions.Bottom.VFX(new PotionBounceEffect(t.hb.cX + MathUtils.random(-5, 5),
                 t.hb.cY + MathUtils.random(-5, 5), t.hb.cX, t.hb.cY), 0.4f);
-                GameActions.Bottom.StackPower(this, new PoisonPower(t, this, poisonAmount));
+                GameActions.Bottom.StackPower(this, new PoisonPlayerPower(t, this, poisonAmount));
                 GameActions.Bottom.WaitRealtime(0.1f);
             }
 

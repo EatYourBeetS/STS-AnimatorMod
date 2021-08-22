@@ -45,6 +45,11 @@
 		"DESCRIPTIONS": ["Take #b{0} additional damage on the next #yAttack."],
 		"NAME": "Marked"
 	},
+	"eyb:PoisonPlayerPower":
+	{
+		"DESCRIPTIONS": ["At the start of turn, lose #b{0} HP and reduce [Poison] by #b1. If this effect would kill you, survive with #b1 HP."],
+		"NAME": "Poison"
+	},
 	"eyb:SelfDamagePower":
 	{
 		"DESCRIPTIONS": ["At the end of this turn, take #b{0} damage."],

@@ -22,7 +22,7 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
     public EYBCardAffinityStatistics(Collection<AbstractCard> cards)
     {
         AddCards(cards);
-        RefreshStatistics(false);
+        RefreshStatistics(false, true);
     }
 
     public ArrayList<EYBCardAffinities> GetAffinities()
@@ -30,9 +30,14 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
         return cardsAffinities;
     }
 
+    public int CardsCount()
+    {
+        return cards;
+    }
+
     public void AddCard(AbstractCard card)
     {
-        EYBCardAffinities a = GetAffinitiesFromCard(card);
+        final EYBCardAffinities a = GetAffinitiesFromCard(card);
         if (a != null)
         {
             cardsAffinities.add(a);
@@ -65,7 +70,7 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
         }
     }
 
-    public ArrayList<Group> RefreshStatistics(boolean showUpgrades)
+    public ArrayList<Group> RefreshStatistics(boolean showUpgrades, boolean useStar)
     {
         for (Group g : groups)
         {
@@ -76,12 +81,14 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
         {
             for (Affinity t : Affinity.All())
             {
-                int level = a.GetLevel(t, true);
+                int level = a.GetLevel(t, useStar);
+                int upgrade = a.GetUpgrade(t, useStar);
                 if (showUpgrades)
                 {
-                    level += a.GetUpgrade(t, true);
+                    level += upgrade;
                 }
-                GetGroup(t).Add(level);
+
+                GetGroup(t).Add(level, upgrade);
             }
         }
 
@@ -127,6 +134,7 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
         public int Size;
         public int Total_LV1;
         public int Total_LV2;
+        public int Total_Upgrades;
 
         public Group(EYBCardAffinityStatistics statistics, Affinity affinity)
         {
@@ -136,12 +144,13 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
 
         public void Reset()
         {
-            Size = Total_LV1 = Total_LV2 = 0;
+            Size = Total_LV1 = Total_LV2 = Total_Upgrades = 0;
         }
 
-        public void Add(int level)
+        public void Add(int level, int upgrade)
         {
             Size += 1;
+            Total_Upgrades += upgrade;
             if (level == 1)
             {
                 Total_LV1 += 1;
@@ -162,14 +171,29 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
             return level == 1 ? Total_LV1 : level > 1 ? Total_LV2 : GetTotal();
         }
 
+        public int GetTotalUpgrades()
+        {
+            return Total_Upgrades;
+        }
+
         public float GetPercentage(int level)
         {
             return GetTotal(level) / (float)Size;
         }
 
+        public float GetUpgradePercentage()
+        {
+            return Total_Upgrades / (float)Size;
+        }
+
         public String GetPercentageString(int level)
         {
             return Math.round(GetPercentage(level) * 100) + "%";
+        }
+
+        public String GetUpgradePercentageString()
+        {
+            return Math.round(GetUpgradePercentage() * 100) + "%";
         }
 
         public ArrayList<AbstractCard> GetCards()

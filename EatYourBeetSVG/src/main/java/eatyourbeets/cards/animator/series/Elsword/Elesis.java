@@ -144,9 +144,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
                 LoadImage(null);
 
                 affinities.List.clear();
-                SetAffinity_Red(2);
-                SetAffinity_Green(2);
-                SetAffinity_Light(2);
+                SetAffinity_Star(2);
 
                 cardText.OverrideDescription(null, true);
                 this.isCostModified = this.isCostModifiedForTurn = false;

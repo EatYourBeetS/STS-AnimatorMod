@@ -13,21 +13,22 @@ import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class HighElfArcher extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(HighElfArcher.class)
-            .SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Ranged)
+            .SetAttack(0, CardRarity.COMMON, EYBAttackType.Ranged)
             .SetSeriesFromClassPackage();
 
     public HighElfArcher()
     {
         super(DATA);
 
-        Initialize(2, 0, 2);
-        SetUpgrade(1, 0, 1);
+        Initialize(2, 0, 3);
+        SetUpgrade(1, 0, 0);
 
-        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Green(1, 1, 1);
     }
 
     @Override
@@ -37,21 +38,11 @@ public class HighElfArcher extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
         .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowDagger(c.hb, 0.15f).SetColor(Color.TAN)).duration * 0.5f);
 
-        if (CombatStats.Affinities.GetPowerAmount(Affinity.Green) <= magicNumber)
-        {
-            GameActions.Bottom.GainAgility(1);
-        }
+        GameActions.Bottom.GainAgility(GameUtilities.GetPowerAmount(Affinity.Green) <= magicNumber ? 1 : 0, true);
 
-        if (isSynergizing)
+        if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.ModifyAllInstances(uuid)
-            .AddCallback(c ->
-            {
-                if (!c.hasTag(HASTE))
-                {
-                    c.tags.add(HASTE);
-                }
-            });
+            GameActions.Bottom.Draw(1);
         }
     }
 }

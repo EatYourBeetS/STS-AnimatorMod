@@ -51,6 +51,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
@@ -1053,11 +1054,11 @@ public class GameUtilities
                 return false;
             }
 
-//            final String validSeed = GR.Animator.Config.LastSeed.Get();
-//            if (StringUtils.isNotEmpty(validSeed) && !String.valueOf(Settings.seed).equals(validSeed))
-//            {
-//                return false;
-//            }
+            final String validSeed = GR.Animator.Config.LastSeed.Get();
+            if (StringUtils.isNotEmpty(validSeed) && !String.valueOf(Settings.seed).equals(validSeed))
+            {
+                return false;
+            }
 
             for (AbstractCard c : player.masterDeck.group)
             {
@@ -1081,11 +1082,11 @@ public class GameUtilities
                 return false;
             }
 
-//            final String validSeed = GR.Animator.Config.LastSeed.Get();
-//            if (StringUtils.isNotEmpty(validSeed) && !validSeed.equals(String.valueOf(data.seed_played)))
-//            {
-//                return false;
-//            }
+            final String validSeed = GR.Animator.Config.LastSeed.Get();
+            if (StringUtils.isNotEmpty(validSeed) && !validSeed.equals(String.valueOf(data.seed_played)))
+            {
+                return false;
+            }
 
             for (String cardID : data.master_deck)
             {

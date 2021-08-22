@@ -29,11 +29,13 @@ public class AnimatorCharacterSelectScreen
         GameUtilities.UnlockAllKeys();
         selectedOption = null;
 
-        DiscordButton = new GUI_Button(GR.Common.Images.Discord.Texture(), new AdvancedHitbox(0, 0, 36, 36))
+        final float size = Settings.scale * 36;
+
+        DiscordButton = new GUI_Button(GR.Common.Images.Discord.Texture(), new AdvancedHitbox(0, 0, size, size))
         .SetPosition(Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.95f).SetText("")
         .SetOnClick(() -> Browse(DiscordButton));
 
-        SteamButton = new GUI_Button(GR.Common.Images.Steam.Texture(), new AdvancedHitbox(0, 0, 36, 36))
+        SteamButton = new GUI_Button(GR.Common.Images.Steam.Texture(), new AdvancedHitbox(0, 0, size, size))
         .SetPosition(Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.95f - DiscordButton.hb.height * 1.1f).SetText("")
         .SetOnClick(() -> Browse(SteamButton));
 

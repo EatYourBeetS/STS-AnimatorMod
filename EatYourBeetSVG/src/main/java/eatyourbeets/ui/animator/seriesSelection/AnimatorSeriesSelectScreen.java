@@ -33,6 +33,8 @@ import java.util.Collection;
 
 public class AnimatorSeriesSelectScreen extends AbstractScreen
 {
+    protected static final int MINIMUM_CARDS = 70;
+    protected static final int PURGING_STONE_THRESHOLD = 100;
     protected static final Random rng = new Random();
     protected ShowCardPileEffect previewCardsEffect;
     protected int totalCardsCache = 0;
@@ -41,8 +43,8 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     public final GUI_CardGrid cardGrid;
     public final GUI_Label startingDeck;
     public final GUI_Button deselectAll;
-    public final GUI_Button selectRandom75;
-    public final GUI_Button selectRandom100;
+    public final GUI_Button selectRandomMinimum;
+    public final GUI_Button selectRandomForPurgingStone;
     public final GUI_Button selectAll;
     public final GUI_Button previewCards;
     public final GUI_Button confirm;
@@ -82,14 +84,14 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         .SetOnClick(this::DeselectAll)
         .SetColor(Color.FIREBRICK);
 
-        selectRandom75 = CreateHexagonalButton(xPos, getY.Invoke(2f), buttonWidth, buttonHeight)
-        .SetText(buttonStrings.SelectRandom(75))
-        .SetOnClick(() -> SelectRandom(75))
+        selectRandomMinimum = CreateHexagonalButton(xPos, getY.Invoke(2f), buttonWidth, buttonHeight)
+        .SetText(buttonStrings.SelectRandom(MINIMUM_CARDS))
+        .SetOnClick(() -> SelectRandom(MINIMUM_CARDS))
         .SetColor(Color.SKY);
 
-        selectRandom100 = CreateHexagonalButton(xPos, getY.Invoke(3f), buttonWidth, buttonHeight)
-        .SetText(buttonStrings.SelectRandom(100))
-        .SetOnClick(() -> SelectRandom(100))
+        selectRandomForPurgingStone = CreateHexagonalButton(xPos, getY.Invoke(3f), buttonWidth, buttonHeight)
+        .SetText(buttonStrings.SelectRandom(PURGING_STONE_THRESHOLD))
+        .SetOnClick(() -> SelectRandom(PURGING_STONE_THRESHOLD))
         .SetColor(Color.SKY);
 
         selectAll = CreateHexagonalButton(xPos, getY.Invoke(4f), buttonWidth, buttonHeight)
@@ -152,8 +154,8 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
         startingDeck.TryRender(sb);
         deselectAll.Render(sb);
-        selectRandom75.Render(sb);
-        selectRandom100.Render(sb);
+        selectRandomMinimum.Render(sb);
+        selectRandomForPurgingStone.Render(sb);
         selectAll.Render(sb);
         previewCards.Render(sb);
         confirm.Render(sb);
@@ -201,8 +203,8 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
         startingDeck.TryUpdate();
         deselectAll.Update();
-        selectRandom75.Update();
-        selectRandom100.Update();
+        selectRandomMinimum.Update();
+        selectRandomForPurgingStone.Update();
         selectAll.Update();
         previewCards.Update();
         confirm.Update();
@@ -238,14 +240,14 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
     public void SelectRandom(int minimum)
     {
-        RandomizedList<AbstractCard> toSelect = new RandomizedList<>();
+        final RandomizedList<AbstractCard> toSelect = new RandomizedList<>();
         for (AbstractCard c : container.allCards)
         {
             Deselect(c);
             toSelect.Add(c);
         }
 
-        while (container.TotalCardsInPool < minimum)
+        while (toSelect.Size() > 0 && container.TotalCardsInPool < minimum)
         {
             Select(toSelect.Retrieve(rng));
         }
@@ -383,9 +385,9 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         }
 
         selectionAmount.SetText(totalCards + " cards selected.");
-        purgingStoneImage.SetActive(totalCards >= 100);
+        purgingStoneImage.SetActive(totalCards >= PURGING_STONE_THRESHOLD);
 
-        if (totalCards >= 75)
+        if (totalCards >= MINIMUM_CARDS)
         {
             confirm.SetInteractable(true);
             selectionAmount.SetFontColor(Color.GREEN);

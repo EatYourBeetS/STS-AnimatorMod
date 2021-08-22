@@ -517,6 +517,20 @@ public class EYBCardTooltip
         return this;
     }
 
+    public EYBCardTooltip SetText(String title, String description)
+    {
+        if (title != null)
+        {
+            this.title = title;
+        }
+        if (description != null)
+        {
+            this.description = description;
+        }
+
+        return this;
+    }
+
     public EYBCardTooltip ShowText(boolean value)
     {
         this.canRender = value;

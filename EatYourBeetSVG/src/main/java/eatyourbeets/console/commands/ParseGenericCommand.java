@@ -19,6 +19,7 @@ import eatyourbeets.cards.animator.curse.Curse_AscendersBane;
 import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.relics.EnchantableRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -49,6 +50,16 @@ public class ParseGenericCommand extends ConsoleCommand
                 if (tokens[1].equals("ghost"))
                 {
                     player.tint.color.a = (tokens.length > 2 ? JUtils.ParseFloat(tokens[2], 1) : 0.3f);
+
+                    return;
+                }
+
+                if (tokens[1].equals("sfx") && tokens.length > 2)
+                {
+                    final String key = tokens[2].toUpperCase();
+                    final float p1 = tokens.length > 3 ? JUtils.ParseFloat(tokens[3], 1) : 1;
+                    final float p2 = tokens.length > 4 ? JUtils.ParseFloat(tokens[4], p1) : p1;
+                    SFX.Play(key, p1, p2);
 
                     return;
                 }

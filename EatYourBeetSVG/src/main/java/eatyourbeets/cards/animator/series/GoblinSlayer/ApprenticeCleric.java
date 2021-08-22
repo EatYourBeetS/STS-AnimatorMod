@@ -45,6 +45,11 @@ public class ApprenticeCleric extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlessing(1, upgraded);
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
         GameActions.Bottom.IncreaseScaling(p.hand, BaseMod.MAX_HAND_SIZE, Affinity.Light, 1)
         .SetFilter(c -> (GameUtilities.HasRedAffinity(c) || GameUtilities.HasGreenAffinity(c)));
     }

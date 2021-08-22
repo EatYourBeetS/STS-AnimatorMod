@@ -1008,6 +1008,11 @@ public final class GameActions
         });
     }
 
+    public UpgradeFromPile UpgradeFromPile(CardGroup group, int amount, boolean permanent)
+    {
+        return Add(new UpgradeFromPile(group, amount).UpgradePermanently(permanent));
+    }
+
     public PlayVFX VFX(AbstractGameEffect effect)
     {
         return Add(new PlayVFX(effect, 0));

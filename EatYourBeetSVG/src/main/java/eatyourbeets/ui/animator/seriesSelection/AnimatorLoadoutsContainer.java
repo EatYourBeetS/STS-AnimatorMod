@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -157,6 +158,11 @@ public class AnimatorLoadoutsContainer
         if (GR.Animator.Data.SelectedLoadout.IsBeta)
         {
             Settings.seedSet = true;
+        }
+
+        if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && Settings.seed != null)
+        {
+            GR.Animator.Config.LastSeed.Set(Settings.seed.toString(), true);
         }
 
         GR.Animator.Dungeon.InitializeCardPool(false);

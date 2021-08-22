@@ -134,14 +134,9 @@
 			"DESCRIPTION": "Fully heal the enemy. ** Apply 1 [Weak] and [Vulnerable] for ** every !M! HP healed. || <LIM>. If you healed {0} ** or more HP: The enemy ** also loses !S! Strength.",
 			"NAME": "Kotori Kanbe"
 		},
-		"animator:Kyubey":
-		{
-			"DESCRIPTION": "Gain [E] [E]. ** <DRW-M>. || At the start of combat: ** Add 1 random Curse ** to your discard pile.",
-			"NAME": "Kyubey"
-		},
 		"animator:Lelouch":
 		{
-			"DESCRIPTION": "Exhaust !M! random cards ** in hand. ALL enemies who ** are attacking will target ** themselves this turn, the ** others will be Stunned.",
+			"DESCRIPTION": "Exhaust !M! random cards to ** make ALL enemies attack ** themselves this turn, the ** enemies who are not ** attacking are Stunned.",
 			"NAME": "Lelouch"
 		},
 		"animator:Patchouli":
@@ -613,18 +608,18 @@
 	{
 		"animator:ApprenticeCleric":
 		{
-			"DESCRIPTION": "Gain/Boost [B]. Give all <R> or <G> ** cards +1 [B] scaling. || When Drawn: If you ** have [Lightning], gain [B].",
+			"DESCRIPTION": "Gain/Boost [B]. Give all <R> or <G> ** cards in hand +1 [B] scaling. || When Drawn: If you ** have [Lightning], gain [B].",
 			"NAME": "Apprentice Cleric"
 		},
 		"animator:CowGirl":
 		{
-			"DESCRIPTION": "Fetch a {0-Cost} card from ** your draw pile. || <LIM>. When ** Discarded: Motivate 1.",
+			"DESCRIPTION": "Fetch a {0-Cost} card ** from your draw pile. || <LIM>. When ** Discarded: Motivate 1.",
 			"NAME": "Cow Girl",
 			"UPGRADE_DESCRIPTION": "Fetch a {0-Cost} card from ** your draw or discard pile. || <LIM>. When ** Discarded: Motivate 1."
 		},
 		"animator:DwarfShaman":
 		{
-			"DESCRIPTION": "Channel 1 [Earth]. || <FS> or <IS>: ** <DRW>, then Upgrade 1 card.",
+			"DESCRIPTION": "Channel 1 [Earth]. || !A! <W>: Upgrade a ** random card in ** your draw pile.",
 			"NAME": "Dwarf Shaman"
 		},
 		"animator:GoblinSlayer":
@@ -634,7 +629,8 @@
 		},
 		"animator:GuildGirl":
 		{
-			"DESCRIPTION": "At the start of turn: ** Cycle 1 card. || Whenever a non-minion ** enemy dies: Gain !M! [Gold]. ** Does not stack.",
+			"DESCRIPTION": "At the start of each ** turn: Cycle 1 card. || Whenever a non-minion ** enemy dies: Gain !M! [Gold]. ** Does not stack.",
+			"EXTENDED_DESCRIPTION": ["At the start of each turn: Cycle #b{0} card(s)."],
 			"NAME": "Guild Girl"
 		},
 		"animator:HeavyWarrior":
@@ -644,7 +640,7 @@
 		},
 		"animator:HighElfArcher":
 		{
-			"DESCRIPTION": "If you have !M! or ** less [A]: Gain [A]. || On Synergy: Give ** this card {~Haste}.",
+			"DESCRIPTION": "{~Retain} [A]. If you have ** !M! or less [A]: Gain [A]. || <slm>. Synergy: ** <DRW>.",
 			"NAME": "High Elf Archer"
 		},
 		"animator:LizardPriest":
@@ -660,23 +656,23 @@
 		},
 		"animator:Priestess":
 		{
-			"DESCRIPTION": "Apply !S! [Weak]. || Synergy: Exhaust a ** random Hindrance ** from anywhere.",
+			"DESCRIPTION": "Retain [B]. Apply !S! [Weak]. || Synergy or !A! <L>: ** Exhaust a random ** Hindrance anywhere.",
 			"NAME": "Priestess",
-			"UPGRADE_DESCRIPTION": "Apply !S! [Weak] ** to ALL enemies. || Synergy: Exhaust a ** random Hindrance ** from anywhere."
+			"UPGRADE_DESCRIPTION": "Retain [B]. Apply !S! [Weak] ** to ALL enemies. || Synergy or !A! <L>: ** Exhaust a random ** Hindrance anywhere."
 		},
 		"animator:Spearman":
 		{
-			"DESCRIPTION": "Boost [A] [F]. Add a ** {~Wound} to your draw pile. || <slm>. If you have ** {Witch} in hand: You may ** enter any Stance.",
+			"DESCRIPTION": "Boost [A] [F]. || Less than !A! <G>: Add ** a {~Wound} to the top ** of your draw pile.",
 			"NAME": "Spearman"
 		},
 		"animator:SwordMaiden":
 		{
-			"DESCRIPTION": "Remove your ** rightmost {Debuff}. || Boost [F] [A] [I].",
+			"DESCRIPTION": "Remove your ** rightmost {Debuff}. || Remove 1 [C] to gain ** !S! [B] [F] [A] [I].",
 			"NAME": "Sword Maiden"
 		},
 		"animator:Witch":
 		{
-			"DESCRIPTION": "Apply !M! [Burning] ** to ALL enemies. || At the start of each ** {Elite} combat, obtain ** a random Potion.",
+			"DESCRIPTION": "Apply !M! [Burning] ** to ALL enemies. || Synergy with {Spearman}: ** Enter any Stance.",
 			"NAME": "Witch"
 		}
 	},
@@ -977,6 +973,11 @@
 		{
 			"DESCRIPTION": "<ST>: Gain [F] ** and Channel 1 [Fire]. || <DRW-M>. ** Put !M! card(s) on top ** of your draw pile.",
 			"NAME": "Kyoko Sakura"
+		},
+		"animator:Kyubey":
+		{
+			"DESCRIPTION": "Gain [E] [E]. ** <DRW-M>. || At the start of combat: ** Add 1 random Curse ** to your discard pile.",
+			"NAME": "Kyubey"
 		},
 		"animator:MadokaKaname":
 		{
@@ -1691,7 +1692,8 @@
 		},
 		"animator:ShikizakiKiki":
 		{
-			"DESCRIPTION": "<DRW-M>. || Increase the [F] and [A] ** scaling of ALL {Attacks} ** in your hand by !S!.",
+			"DESCRIPTION": "Every 3 {Attacks} ** played: Gain 1 [Inspiration]. || Once per turn, pay !S! [E] ** to increase the Damage ** and [Block] of all cards in your ** draw pile by !M!%.",
+			"EXTENDED_DESCRIPTION": ["Once per turn, pay #b{0} [E] to increase the [Block] and Damage of all cards in your draw pile by #b{1}%. || Every #b3 #yAttacks played: Gain #b{2} [Inspiration]"],
 			"NAME": "Shikizaki Kiki"
 		},
 		"animator:SirTouchMe":

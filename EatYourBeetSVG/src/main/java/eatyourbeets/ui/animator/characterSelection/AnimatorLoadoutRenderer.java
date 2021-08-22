@@ -47,8 +47,8 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
     public AnimatorLoadoutRenderer()
     {
-        float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, charSelectStrings.LeftText, 9999f, 0f); // Ascension
-        float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, charSelectStrings.RightText, 9999f, 0f); // Level 22
+        final float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, charSelectStrings.LeftText, 9999f, 0f); // Ascension
+        final float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, charSelectStrings.RightText, 9999f, 0f); // Level 22
 
         float POS_X = 180f * Settings.scale;
         float POS_Y = ((float) Settings.HEIGHT / 2f) + (20 * Settings.scale);

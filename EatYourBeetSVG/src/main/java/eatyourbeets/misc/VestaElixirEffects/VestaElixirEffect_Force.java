@@ -7,9 +7,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class VestaElixirEffect_Force extends VestaElixirEffect
 {
-    public VestaElixirEffect_Force()
+    public VestaElixirEffect_Force(boolean upgraded)
     {
-        super(3);
+        super(upgraded ? 4 : 3);
     }
 
     @Override

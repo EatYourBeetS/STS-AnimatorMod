@@ -1241,7 +1241,7 @@
 		},
 		"animator:Mitsuba":
 		{
-			"DESCRIPTION": "If the enemy has more ** health than you, gain ** !S! additional [Block]. || When Exhausted: ** <DRW-M>.",
+			"DESCRIPTION": "If the enemy has more ** [Health] than you, gain ** !S! additional [Block]. || When Exhausted: ** <DRW-M>.",
 			"NAME": "Mitsuba"
 		},
 		"animator:Shigure":
@@ -1280,18 +1280,28 @@
 		},
 		"animator:Hakurou":
 		{
-			"DESCRIPTION": "<FS>: Gain !S! [Block]. || On Synergy or when ** Drawn: Gain 1 [A].",
+		    "DESCRIPTION": "When Drawn: Gain [A]. || <FS> or !A! <R>: ** Obtain {<G> Token}{+}",
 			"NAME": "Hakurou"
 		},
 		"animator:Kaijin":
 		{
-			"DESCRIPTION": "At the end of turn: Retain 1 ** card and increase its damage ** and [Block] by !M! this combat. || When you add this card ** to your deck: Permanently ** Upgrade a random Basic card. <SPACE>",
+			"DESCRIPTION": "At the end of turn: Retain 1 ** card and increase its damage ** and [Block] by !M! this combat. || When Obtained: Upgrade ** a random Basic card.",
 			"NAME": "Kaijin"
 		},
 		"animator:Millim":
 		{
-			"DESCRIPTION": "{~Unique}. ** Apply !M! [Burning] [Poison]. || Synergy: Draw 2 more ** cards next turn.",
+			"DESCRIPTION": "{~Unique}. Gain a random ** {<W> Power} !M! times. || !A! <W>: Randomly ** Channel [Fire], [Lightning] or [Dark].",
 			"NAME": "Millim"
+		},
+		"animator:Ramiris":
+		{
+			"DESCRIPTION": "Starter. Apply !M! [Weak] and ** !S! [Shackles] to ALL enemies. You ** can't {Attack} for 2 turns. || When Obtained: Increase ** your max [Health] by 2.",
+			"NAME": "Ramiris"
+		},
+		"animator:Ranga":
+		{
+			"DESCRIPTION": "When you Evoke [Lightning] ** or [Dark]: Fetch this card ** from your Exhaust pile ** and give it Purge.",
+			"NAME": "Ranga"
 		},
 		"animator:Rimuru":
 		{
@@ -1300,12 +1310,12 @@
 		},
 		"animator:Shion":
 		{
-			"DESCRIPTION": "Discard 1 card. Next ** turn: <DRW>. || <LIM>. Synergy: ** Enter <FS>.",
+			"DESCRIPTION": "Discard 1 card. Next ** turn: <DRW-M>. || <LIM>. Synergy: ** Enter <FS>.",
 			"NAME": "Shion"
 		},
 		"animator:Shizu":
 		{
-			"DESCRIPTION": "Whenever an {Attack} deal ** unblocked damage this ** combat: Apply 1 [Burning]. || Add a Burn to your ** discard pile.",
+			"DESCRIPTION": "For !M! turns, whenever ** you deal unblocked {Attack} ** damage: Apply 2 [Burning]. || If you have 1 [Fire] and !S! [C]: ** Exhaust, then obtain {Ifrit}.",
 			"NAME": "Shizu"
 		},
 		"animator:Shuna":
@@ -1320,7 +1330,8 @@
 		},
 		"animator:Vesta":
 		{
-			"DESCRIPTION": "Research an {Elixir}. It ** will be completed ** after !M! turns.",
+			"DESCRIPTION": "Retain [I]. || Research an {Elixir} ** for the next !M! turns. || !A! <B>: Upgrade it.",
+			"EXTENDED_DESCRIPTION": ["Researching #yElixir. #b{0} turn(s) left."],
 			"NAME": "Vesta"
 		}
 	},
@@ -1529,6 +1540,11 @@
 			"DESCRIPTION": "Lose 1 orb slot to ** Fetch a <R> or <G> card ** from your discard pile, ** give it + <S> scaling equal to ** its cost{+ +1} and Motivate it.",
 			"NAME": "Command Spell"
 		},
+		"animator:Shizu_Ifrit":
+		{
+			"DESCRIPTION": "Gain 2 {Demon Form}. || Increase the ** damage bonus of [Burning] ** by !M!% this combat.",
+			"NAME": "Ifrit"
+		},
 		"animator:Soujiro_Isami":
 		{
 			"DESCRIPTION": "<ST>: Boost [A].",
@@ -1592,7 +1608,7 @@
 		},
 		"animator:GoblinShaman":
 		{
-			"DESCRIPTION": "When you draw this, ** draw another card. At ** the end of your turn: ** Gain 1 Frail.",
+			"DESCRIPTION": "Gain 1 [C]. || When you draw this, ** draw another card. At ** the end of your turn: ** Gain 1 Frail.",
 			"NAME": "Goblin Shaman"
 		},
 		"animator:GoblinSoldier":

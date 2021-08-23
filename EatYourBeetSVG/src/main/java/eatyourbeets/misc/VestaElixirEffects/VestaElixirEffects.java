@@ -18,12 +18,14 @@ public class VestaElixirEffects
     private final ArrayList<VestaElixirEffect> effects2 = new ArrayList<>();
     private final ArrayList<VestaElixirEffect> effects3 = new ArrayList<>();
     private final Vesta vesta;
+    private final boolean upgraded;
 
     public Vesta_Elixir currentElixir;
 
-    public VestaElixirEffects(Vesta vesta)
+    public VestaElixirEffects(Vesta vesta, boolean upgraded)
     {
         this.vesta = vesta;
+        this.upgraded = upgraded;
 
         Random rng = EYBCard.rng;
         if (rng == null)
@@ -32,7 +34,7 @@ public class VestaElixirEffects
             rng = new Random();
         }
 
-        RandomizedList<VestaElixirEffect> effectPool = GenerateEffectPool();
+        final RandomizedList<VestaElixirEffect> effectPool = GenerateEffectPool(upgraded);
 
         effects1.add(effectPool.Retrieve(rng));
         effects1.add(effectPool.Retrieve(rng));
@@ -47,12 +49,12 @@ public class VestaElixirEffects
         effects3.add(new VestaElixirEffect_CompleteFaster());
     }
 
-    public static void BeginCreateElixir(Vesta vesta)
+    public static void BeginCreateElixir(Vesta vesta, boolean upgraded)
     {
-        VestaElixirEffects effects = new VestaElixirEffects(vesta);
-        ArrayList<AbstractCard> cards = new ArrayList<>();
+        final VestaElixirEffects effects = new VestaElixirEffects(vesta, upgraded);
+        final ArrayList<AbstractCard> cards = new ArrayList<>();
 
-        cards.add(new Vesta_Elixir());
+        cards.add(Vesta_Elixir.DATA.MakeCopy(upgraded));
 
         effects.ChooseNextEffect(cards);
     }
@@ -62,7 +64,7 @@ public class VestaElixirEffects
         currentElixir = JUtils.SafeCast(cards.get(0), Vesta_Elixir.class);
         if (currentElixir == null)
         {
-            currentElixir = new Vesta_Elixir();
+            currentElixir = (Vesta_Elixir) Vesta_Elixir.DATA.MakeCopy(upgraded);
         }
 
         switch (currentElixir.effects.size())
@@ -109,18 +111,18 @@ public class VestaElixirEffects
         .AddCallback(this::ChooseNextEffect);
     }
 
-    private static RandomizedList<VestaElixirEffect> GenerateEffectPool()
+    private static RandomizedList<VestaElixirEffect> GenerateEffectPool(boolean upgraded)
     {
         RandomizedList<VestaElixirEffect> effectPool = new RandomizedList<>();
 
-        effectPool.Add(new VestaElixirEffect_CardDraw());
-        effectPool.Add(new VestaElixirEffect_Intellect());
-        effectPool.Add(new VestaElixirEffect_Force());
-        effectPool.Add(new VestaElixirEffect_Agility());
-        effectPool.Add(new VestaElixirEffect_OrbSlots());
-        effectPool.Add(new VestaElixirEffect_TempHP());
-        effectPool.Add(new VestaElixirEffect_Metallicize());
-        effectPool.Add(new VestaElixirEffect_Energy());
+        effectPool.Add(new VestaElixirEffect_CardDraw(upgraded));
+        effectPool.Add(new VestaElixirEffect_Intellect(upgraded));
+        effectPool.Add(new VestaElixirEffect_Force(upgraded));
+        effectPool.Add(new VestaElixirEffect_Agility(upgraded));
+        effectPool.Add(new VestaElixirEffect_OrbSlots(upgraded));
+        effectPool.Add(new VestaElixirEffect_TempHP(upgraded));
+        effectPool.Add(new VestaElixirEffect_Metallicize(upgraded));
+        effectPool.Add(new VestaElixirEffect_Energy(upgraded));
 
         return effectPool;
     }

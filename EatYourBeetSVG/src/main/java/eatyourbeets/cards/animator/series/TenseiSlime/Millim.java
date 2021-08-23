@@ -1,12 +1,15 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
+import com.megacrit.cardcrawl.orbs.Dark;
+import com.megacrit.cardcrawl.orbs.Lightning;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
 public class Millim extends AnimatorCard
@@ -19,42 +22,47 @@ public class Millim extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 2);
-        SetUpgrade(1, 0, 0);
+        Initialize(6, 0, 2);
 
-        SetAffinity_Red(2);
-        SetAffinity_Blue(2);
-        SetAffinity_Dark(1);
-        SetAffinity_Star(0, 0, 1);
+        SetAffinity_Star(1, 0, 1);
 
+        SetAffinityRequirement(Affinity.General, 4);
         SetUnique(true, true);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        if (timesUpgraded % 2 == 1)
+        if (timesUpgraded % 3 == 1)
         {
             upgradeMagicNumber(1);
+            upgradeDamage(1);
         }
         else
         {
+            upgradeMagicNumber(0);
             upgradeDamage(2);
         }
-
-        this.upgradedMagicNumber = true;
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
-        GameActions.Bottom.ApplyBurning(p, m, magicNumber);
-        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
 
-        if (isSynergizing)
+        for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 2));
+            GameActions.Bottom.GainRandomAffinityPower(1, false);
+        }
+
+        if (CheckAffinity(Affinity.General))
+        {
+            switch (rng.random(2))
+            {
+                case 0: GameActions.Bottom.ChannelOrb(new Fire());
+                case 1: GameActions.Bottom.ChannelOrb(new Lightning());
+                case 2: GameActions.Bottom.ChannelOrb(new Dark());
+            }
         }
     }
 }

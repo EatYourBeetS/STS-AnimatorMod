@@ -270,6 +270,12 @@
 		"NAMES": ["~damage"],
 		"PROPER_NAME": "Normal Damage"
 	},
+	"Health":
+	{
+		"DESCRIPTION": "-",
+		"NAMES": ["~hp", "health"],
+		"PROPER_NAME": "Health"
+	},
 	"~Elemental":
 	{
 		"DESCRIPTION": "Ignores #yThorns. Deal #b30% additional damage if the enemy has #yBlock.",

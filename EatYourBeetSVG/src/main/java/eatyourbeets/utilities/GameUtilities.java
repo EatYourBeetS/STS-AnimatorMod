@@ -734,6 +734,21 @@ public class GameUtilities
         return null;
     }
 
+    public static <T extends AbstractPower> ArrayList<T> GetPowers(TargetHelper targetHelper, String powerID)
+    {
+        final ArrayList<T> result = new ArrayList<>();
+        for (AbstractCreature c : targetHelper.GetTargets())
+        {
+            final T t = GetPower(c, powerID);
+            if (t != null)
+            {
+                result.add(t);
+            }
+        }
+
+        return result;
+    }
+
     public static int GetPowerAmount(Affinity affinity)
     {
         return CombatStats.Affinities.GetPowerAmount(affinity);

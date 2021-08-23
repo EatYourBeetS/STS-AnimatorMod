@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
-import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
@@ -37,6 +36,7 @@ public class Witch extends AnimatorCard
         SetUpgrade(0, 3, 1);
 
         SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Dark(1);
     }
 
     @Override

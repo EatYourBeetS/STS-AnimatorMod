@@ -1221,12 +1221,15 @@ public class GameUtilities
         {
             card.isCostModified = true;
         }
+        CombatStats.OnCostChanged(card, previousCost, card.cost);
     }
 
     public static void ModifyCostForTurn(AbstractCard card, int amount, boolean relative)
     {
+        final int previousCost = card.costForTurn;
         card.costForTurn = relative ? Math.max(0, card.costForTurn + amount) : amount;
         card.isCostModifiedForTurn = (card.cost != card.costForTurn);
+        CombatStats.OnCostChanged(card, previousCost, card.costForTurn);
     }
 
     public static void ModifyDamage(AbstractCard card, int amount, boolean temporary)

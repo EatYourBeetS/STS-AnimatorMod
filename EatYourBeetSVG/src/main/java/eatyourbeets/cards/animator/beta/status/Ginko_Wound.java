@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator.beta.status;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawPower;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard_Status;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -17,13 +17,13 @@ public class Ginko_Wound extends AnimatorCard_Status
     {
         super(DATA, false);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 2);
         SetExhaust(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.StackPower(p, new DrawPower(p, magicNumber));
+        GameActions.Bottom.StackPower(p, new DrawCardNextTurnPower(p, magicNumber));
     }
 }

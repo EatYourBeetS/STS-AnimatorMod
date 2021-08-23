@@ -89,7 +89,10 @@ public class GarbageDoll extends AnimatorCard
                         }
                     }
 
-                    GameActions.Top.PlayCard(GameUtilities.GetRandomElement(possiblePicks.group), GameUtilities.GetRandomEnemy(true));
+                    AbstractCard playCard = GameUtilities.GetRandomElement(possiblePicks.group);
+                    if (playCard != null) {
+                        GameActions.Top.PlayCard(GameUtilities.GetRandomElement(possiblePicks.group), GameUtilities.GetRandomEnemy(true));
+                    }
                 }
             }
         }

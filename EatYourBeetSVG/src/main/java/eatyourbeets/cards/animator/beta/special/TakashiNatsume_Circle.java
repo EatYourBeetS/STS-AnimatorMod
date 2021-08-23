@@ -1,14 +1,11 @@
-package eatyourbeets.cards.animator.beta.colorless;
+package eatyourbeets.cards.animator.beta.special;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.curses.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.beta.curse.Curse_Delusion;
-import eatyourbeets.cards.animator.beta.curse.Curse_Depression;
 import eatyourbeets.cards.animator.beta.curse.Curse_JunTormented;
-import eatyourbeets.cards.animator.beta.special.TakashiNatsume_Circle;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.animator.curse.Curse_Nutcracker;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -17,14 +14,38 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
-public class TakashiNatsume extends AnimatorCard
+public class TakashiNatsume_Circle extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(TakashiNatsume.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.NatsumeYuujinchou);
+    public enum Form
+    {
+        None,
+        Curse_Delusion,
+        Curse_Depression,
+        Curse_GriefSeed,
+        Curse_Greed,
+        Curse_JunTormented,
+        Curse_Nutcracker,
+        Decay,
+        Doubt,
+        Necronomicurse,
+        Normality,
+        Pain,
+        Parasite,
+        Regret,
+        Shame
+    }
 
-    public TakashiNatsume()
+    private static final AnimatorStrings.Actions ACTIONS = GR.Animator.Strings.Actions;
+    private static final int DAMAGE_DECAY = 2;
+    public static final EYBCardData DATA = Register(TakashiNatsume_Circle.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.NatsumeYuujinchou);
+    private TakashiNatsume_Circle.Form currentForm;
+
+    public TakashiNatsume_Circle()
     {
         super(DATA);
 
@@ -37,6 +58,27 @@ public class TakashiNatsume extends AnimatorCard
         SetHealing(true);
     }
 
+    protected void ChangeForm(TakashiNatsume_Circle.Form form) {
+        currentForm = form;
+        //TODO
+        switch (form) {
+            case Curse_JunTormented:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.ApplyToALL(2, GR.Tooltips.Weak, true), true);
+            case Decay:
+                damage = DAMAGE_DECAY * magicNumber;
+            case Doubt:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.ApplyToALL(2, GR.Tooltips.Weak, true), true);
+            case Normality:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + DATA.Strings.EXTENDED_DESCRIPTION[2], true);
+            case Regret:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + DATA.Strings.EXTENDED_DESCRIPTION[1], true);
+            case Shame:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.ApplyToALL(2, GR.Tooltips.Frail, true), true);
+            default:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION, true);
+        }
+    }
+
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
@@ -47,7 +89,7 @@ public class TakashiNatsume extends AnimatorCard
                     if (cards.size() > 0) {
                         for (AbstractCard c : cards) {
                             for (int i = 0; i < secondaryValue; i++) {
-                                CreateCurseEffect(c);
+                                PlayCurseEffect(c);
                             }
                             GameActions.Bottom.Exhaust(c);
                         }
@@ -55,15 +97,35 @@ public class TakashiNatsume extends AnimatorCard
                 });
     }
 
-    private void CreateCurseEffect(AbstractCard c) {
-        TakashiNatsume_Circle circle = new TakashiNatsume_Circle();
-        if (c instanceof Curse_Delusion) {
+    private void PlayCurseEffect(AbstractCard c) {
+        //if (c instanceof Curse_Delusion) {
+        //    GameActions.Bottom.Callback(() ->
+        //    {
+        //        AbstractCard card = null;
+        //        RandomizedList<AbstractCard> possible = new RandomizedList<>();
+        //        for (AbstractCard ca : player.drawPile.group)
+        //        {
+        //            if (ca.costForTurn >= 0 && ca.hasTag(AUTOPLAY))
+        //            {
+        //                possible.Add(ca);
+        //            }
+        //        }
 
-        }
-        else if (c instanceof Curse_Depression) {
+        //        if (possible.Size() > 0)
+        //        {
+        //            card = possible.Retrieve(rng);
+        //        }
+
+        //        if (card instanceof EYBCard)
+        //        {
+        //            ((EYBCard) card).SetAutoplay(false);
+        //        }
+        //    });
+        //}
+        //else if (c instanceof Curse_Depression) {
         //    GameActions.Bottom.Draw(2);
-        }
-        else if (c instanceof Curse_GriefSeed) {
+        //}
+        if (c instanceof Curse_GriefSeed) {
             int[] damageMatrix = DamageInfo.createDamageMatrix(1, true);
             GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AttackEffects.FIRE);
         }
@@ -110,7 +172,7 @@ public class TakashiNatsume extends AnimatorCard
     {
         public TakashiNatsumePower(AbstractPlayer owner, int amount)
         {
-            super(owner, TakashiNatsume.DATA);
+            super(owner, TakashiNatsume_Circle.DATA);
 
             this.amount = amount;
             updateDescription();

@@ -343,7 +343,7 @@
 		},
 		"animator:BlazingHeat":
 		{
-		  "DESCRIPTION": "Channel !S! [Fire]. || Your [Fire] applies 1 additional [Burning] at the end of the turn and deals !M!X damage to the enemy with the highest health when Evoked.",
+		  "DESCRIPTION": "Your [Fire] deals 3X damage to enemies with [Freezing] and removes a stack of [Freezing].",
 		  "NAME": "Blazing Heat"
 		},
 		"animator:ForceImpulseGundam":
@@ -467,6 +467,12 @@
 		  "EXTENDED_DESCRIPTION": ["Whenever you play a card, deal #b{0} damage to ALL enemies. Removed at the end of turn."],
 		  "NAME": "Takashi Natsume"
 		},
+		"animator:TakashiNatsume_Circle":
+        {
+          "DESCRIPTION": "Played at the end of turn.",
+          "EXTENDED_DESCRIPTION": ["This turn, deal #b{0} damage to ALL enemies whenever you play a card.","Attack an additional time for each card in your hand.","This turn, if you are attacked #b{0} times: Stun ALL enemies."],
+          "NAME": "Youkai Circle"
+        		},
 		"animator:TomoyaOkazaki":
 		{
 		  "DESCRIPTION": "Motivate !M! random Cards in your draw pile or discard pile whose Affinity matches that of your highest Affinity.",
@@ -608,7 +614,7 @@
 	"BETA:GENSHINIMPACT": {
 		"animator:Amber":
 		{
-			"DESCRIPTION": "<ST>: Channel 1 [Fire] and gain [A]. || Synergy: Apply !M! [~Lock-On].",
+			"DESCRIPTION": "<ST>: Gain [A] ** and Channel 1 [Fire]. || Synergy: Apply !M! [~Lock-On].",
 			"NAME": "Amber"
 		},
 		"animator:AyakaKamisato":
@@ -623,7 +629,7 @@
 		},
 		"animator:Bennett":
         {
-        	"DESCRIPTION": "If you are below 40% max HP: Gain !M! [Vigor]. Otherwise, take !S! damage.",
+        	"DESCRIPTION": "Below 40% max HP or Synergy: Gain !M! [Vigor]. || Less than !A! <R>: Take !S! damage.",
         	"NAME": "Bennett"
         },
 		"animator:Curse_Delusion":
@@ -683,7 +689,7 @@
 		},
 		"animator:KokomiSangonomiya":
 		{
-		  "DESCRIPTION": "Lose !M! Dexterity. Channel !S! [Water]. Until the end of your next turn, [Water] absorbs unblocked attack damage and reflects it back at the attacker.",
+		  "DESCRIPTION": "Lose !M! Dexterity. [Water] absorbs unblocked attack damage and reflects it back at the attacker. || At the end of each turn, if you have no [Water]: Take !S! damage and channel [Water].",
 		  "NAME": "Kokomi Sangonomiya"
 		},
 		"animator:LisaMinci":

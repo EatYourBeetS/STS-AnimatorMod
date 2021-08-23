@@ -16,6 +16,8 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.special.KirbyEffect;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
+import eatyourbeets.interfaces.subscribers.OnCostChangedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnTagChangedSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
@@ -28,6 +30,8 @@ import static eatyourbeets.resources.GR.Enums.CardTags.LOYAL;
 
 public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<String>>,
                                                    OnAddToDeckListener,
+        OnCostChangedSubscriber,
+        OnTagChangedSubscriber,
                                                    OnApplyPowerSubscriber,
                                                    StartupCard
 {
@@ -409,4 +413,13 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         }
     }
 
+    @Override
+    public void OnCostChanged(AbstractCard card, int originalCost, int newCost) {
+        //TODO
+    }
+
+    @Override
+    public void OnTagChanged(AbstractCard card, CardTags tag, boolean value) {
+        //TODO
+    }
 }

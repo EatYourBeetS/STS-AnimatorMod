@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import eatyourbeets.actions.utility.GenericCardSelection;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -56,5 +57,6 @@ public class ModifyTag extends GenericCardSelection
         }
 
         GameUtilities.ModifyCardTag(card, tag, value);
+        CombatStats.OnTagChanged(card, tag, value);
     }
 }

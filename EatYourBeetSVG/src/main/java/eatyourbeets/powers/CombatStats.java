@@ -74,6 +74,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnCardResetSubscriber> onCardReset = new GameEvent<>();
     public static final GameEvent<OnChannelOrbSubscriber> onChannelOrb = new GameEvent<>();
     public static final GameEvent<OnClickablePowerUsed> onClickablePowerUsed = new GameEvent<>();
+    public static final GameEvent<OnCostChangedSubscriber> onCostChanged = new GameEvent<>();
     public static final GameEvent<OnDamageOverrideSubscriber> onDamageOverride = new GameEvent<>();
     public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = new GameEvent<>();
     public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = new GameEvent<>();
@@ -92,6 +93,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnStatsClearedSubscriber> onStatsCleared = new GameEvent<>();
     public static final GameEvent<OnSynergyCheckSubscriber> onSynergyCheck = new GameEvent<>();
     public static final GameEvent<OnSynergySubscriber> onSynergy = new GameEvent<>();
+    public static final GameEvent<OnTagChangedSubscriber> onTagChanged = new GameEvent<>();
     public static final GameEvent<OnTryUsingCardSubscriber> onTryUsingCard = new GameEvent<>();
 
     public static final ControllableCardPile ControlPile = new ControllableCardPile();
@@ -175,6 +177,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onCardCreated.Clear();
         onCardReset.Clear();
         onChannelOrb.Clear();
+        onCostChanged.Clear();
         onDamageOverride.Clear();
         onEndOfTurn.Clear();
         onEnemyDying.Clear();
@@ -192,6 +195,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onStartOfTurnPostDraw.Clear();
         onSynergy.Clear();
         onSynergyCheck.Clear();
+        onTagChanged.Clear();
         onTryUsingCard.Clear();
         ControlPile.Clear();
 
@@ -483,6 +487,22 @@ public class CombatStats extends EYBPower implements InvisiblePower
         for (OnEnemyDyingSubscriber s : onEnemyDying.GetSubscribers())
         {
             s.OnEnemyDying(enemy, triggerRelics);
+        }
+    }
+
+    public static void OnCostChanged(AbstractCard card, int originalCost, int newCost)
+    {
+        for (OnCostChangedSubscriber s : onCostChanged.GetSubscribers())
+        {
+            s.OnCostChanged(card, originalCost, newCost);
+        }
+    }
+
+    public static void OnTagChanged(AbstractCard card, AbstractCard.CardTags tag, boolean value)
+    {
+        for (OnTagChangedSubscriber s : onTagChanged.GetSubscribers())
+        {
+            s.OnTagChanged(card, tag, value);
         }
     }
 

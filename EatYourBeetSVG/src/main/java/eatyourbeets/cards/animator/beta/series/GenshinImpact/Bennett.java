@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -16,19 +17,21 @@ public class Bennett extends AnimatorCard {
     public Bennett() {
         super(DATA);
 
-        Initialize(8, 0, 3, 3);
-        SetUpgrade(2, 0, 2);
+        Initialize(9, 0, 4, 4);
+        SetUpgrade(3, 0, 2);
         SetAffinity_Red(1, 0 ,0);
+
+        SetAffinityRequirement(Affinity.Red, 2);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
 
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
-        if (GameUtilities.GetHealthPercentage(player) < 0.4f) {
+        if (GameUtilities.GetHealthPercentage(player) < 0.4f || HasSynergy()) {
             GameActions.Bottom.StackPower(new VigorPower(player, magicNumber));
         }
-        else {
+        if (!CheckAffinity(Affinity.Red)) {
             GameActions.Bottom.TakeDamage(secondaryValue, AttackEffects.SMASH);
         }
     }

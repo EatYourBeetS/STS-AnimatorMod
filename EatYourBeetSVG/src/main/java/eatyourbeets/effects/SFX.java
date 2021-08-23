@@ -10,10 +10,13 @@ public class SFX
     public static void Initialize()
     {
         BaseMod.addAudio(ATTACK_REAPER, "audio/sound/STS_SFX_Reaper_v1.ogg");
-        BaseMod.addAudio(ATTACK_SCYTHE, "audio/sound/STS_SFX_Scythe_v1.ogg");
         BaseMod.addAudio(ATTACK_AXE, "audio/sound/STS_SFX_EnemyAtk_Axe_v1.ogg");
+        BaseMod.addAudio(ATTACK_BUTCHER, "audio/sound/STS_SFX_EnemyAtk_Butcher_v1.ogg");
         BaseMod.addAudio(ATTACK_DAGGER, "audio/sound/STS_SFX_EnemyAtk_Dagger_v1.ogg");
+        BaseMod.addAudio(ATTACK_KNIFE, "audio/sound/STS_SFX_EnemyAtk_Knife_v1.ogg");
+        BaseMod.addAudio(ATTACK_SCYTHE, "audio/sound/STS_SFX_EnemyAtk_Scythe_v1.ogg");
         BaseMod.addAudio(ATTACK_SCIMITAR, "audio/sound/STS_SFX_EnemyAtk_Scimitar_v1.ogg");
+        BaseMod.addAudio(ATTACK_SWORD, "audio/sound/STS_SFX_EnemyAtk_Sword_v1.ogg");
         BaseMod.addAudio(RELIC_ACTIVATION, "audio/sound/SOTE_SFX_RelicActivation_v1.ogg");
 
         BaseMod.addAudio(ANIMATOR_SPEAR_1, "audio/animator/sound/SPEAR_1.ogg");
@@ -62,6 +65,7 @@ public class SFX
     public static final String APPEAR = "APPEAR";
     public static final String ATTACK_AXE = "ATTACK_AXE";
     public static final String ATTACK_BOWLING = "ATTACK_BOWLING";
+    public static final String ATTACK_BUTCHER = "ATTACK_BUTCHER";
     public static final String ATTACK_DAGGER = "ATTACK_DAGGER";
     public static final String ATTACK_DAGGER_1 = "ATTACK_DAGGER_1";
     public static final String ATTACK_DAGGER_2 = "ATTACK_DAGGER_2";
@@ -73,6 +77,7 @@ public class SFX
     public static final String ATTACK_FAST = "ATTACK_FAST";
     public static final String ATTACK_FIRE = "ATTACK_FIRE";
     public static final String ATTACK_FLAME_BARRIER = "ATTACK_FLAME_BARRIER";
+    public static final String ATTACK_KNIFE = "ATTACK_KNIFE";
     public static final String ATTACK_HEAVY = "ATTACK_HEAVY";
     public static final String ATTACK_IRON_1 = "ATTACK_IRON_1";
     public static final String ATTACK_IRON_2 = "ATTACK_IRON_2";
@@ -90,6 +95,7 @@ public class SFX
     public static final String ATTACK_REAPER = "ATTACK_REAPER";
     public static final String ATTACK_SCIMITAR = "ATTACK_SCIMITAR";
     public static final String ATTACK_SCYTHE = "ATTACK_SCYTHE";
+    public static final String ATTACK_SWORD = "ATTACK_SWORD";
     public static final String ATTACK_WHIFF_1 = "ATTACK_WHIFF_1";
     public static final String ATTACK_WHIFF_2 = "ATTACK_WHIFF_2";
     public static final String ATTACK_WHIRLWIND = "ATTACK_WHIRLWIND";

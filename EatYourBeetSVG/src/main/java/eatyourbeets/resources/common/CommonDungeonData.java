@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,9 +49,13 @@ public class CommonDungeonData implements CustomSavable<CommonDungeonData>
         return rng;
     }
 
-    public void SetCheating(boolean value)
+    public void SetCheating()
     {
-        IsCheating = value;
+        if (!IsCheating)
+        {
+            JUtils.LogInfo(this, "Cheating detected.");
+            IsCheating = true;
+        }
     }
 
     public void EnterUnnamedReign()

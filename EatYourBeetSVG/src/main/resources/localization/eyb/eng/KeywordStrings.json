@@ -200,9 +200,9 @@
 	},
 	"High-Cost":
 	{
-		"DESCRIPTION": "Cards which cost #b2 or more [E].",
+		"DESCRIPTION": "Card which cost #b2 or more [E].",
 		"NAMES": ["high-cost", "high cost"],
-		"PROPER_NAME": "High-Cost"
+		"PROPER_NAME": "High-Cost Card"
 	},
 	"Hindrance":
 	{
@@ -320,7 +320,7 @@
 	},
 	"Shackles":
 	{
-		"DESCRIPTION": "#yStrength is reduced until the end of turn.",
+		"DESCRIPTION": "Reduce #yStrength until end of turn.",
 		"NAMES": ["shackles"],
 		"PROPER_NAME": "Shackles"
 	},
@@ -464,19 +464,19 @@
 	},
 	"~Retain":
 	{
-		"DESCRIPTION": "Not discarded at the end of the turn. NL If it is an [A-Gen] Power, not reduced at the start of next turn.",
+		"DESCRIPTION": "Not discarded at the end of turn. NL If it is an [A-Gen] Power, not reduced at the start of next turn.",
 		"NAMES": ["~retain"],
 		"PROPER_NAME": "Retain"
 	},
 	"~RetainInfinite":
 	{
-	  "DESCRIPTION": "Not discarded at the end of this turn. NL #yThis #yeffect #yis #ypermanent.",
+	  "DESCRIPTION": "Not discarded at the end of turn. NL #yThis #yeffect #yis #ypermanent.",
 	  "NAMES": ["~retain infinite"],
 	  "PROPER_NAME": "Retain Once"
 	},
 	"~RetainOnce":
 	{
-		"DESCRIPTION": "Not discarded at the end of this turn. NL #bOnce #bactivated, #bremove #bthis #beffect.",
+		"DESCRIPTION": "Not discarded at the end of turn. NL #bOnce #bactivated, #bremove #bthis #beffect.",
 		"NAMES": ["~retain once"],
 		"PROPER_NAME": "Retain Once"
 	},

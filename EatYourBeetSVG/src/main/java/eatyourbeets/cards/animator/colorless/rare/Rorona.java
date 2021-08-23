@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.actions.special.PermanentlyUpgrade;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -103,8 +102,8 @@ public class Rorona extends AnimatorCard
                 return;
             }
 
-            GameActions.Instant.Add(new PermanentlyUpgrade(player.masterDeck, amount)
-            .SetFilter(c -> !c.cardID.equals(rorona.cardID)))
+            GameActions.Instant.UpgradeFromPile(player.masterDeck, amount, true)
+            .SetFilter(c -> !c.cardID.equals(rorona.cardID))
             .SetSelection(CardSelection.Special(null, (list, index, remove) ->
             {
                 if (toUpgrade.Size() == 0)

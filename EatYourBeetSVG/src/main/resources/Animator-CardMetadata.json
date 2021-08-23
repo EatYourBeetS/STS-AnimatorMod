@@ -4,6 +4,10 @@
 	{
 		"cropPortrait": false
 	},
+	"animator:ApprenticeCleric":
+	{
+		"cropPortrait": false
+	},
 	"animator:Boros":
 	{
 		"cropPortrait": false

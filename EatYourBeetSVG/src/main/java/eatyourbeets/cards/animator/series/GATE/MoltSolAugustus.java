@@ -82,7 +82,7 @@ public class MoltSolAugustus extends AnimatorCard
         {
             super.atEndOfTurn(isPlayer);
 
-            GameActions.Bottom.SelectFromPile(name, Integer.MAX_VALUE, player.drawPile, player.discardPile, player.hand)
+            GameActions.Bottom.SelectFromPile(name, Integer.MAX_VALUE, player.exhaustPile, player.drawPile, player.discardPile, player.hand)
             .SetOptions(false, false)
             .SetFilter(GameUtilities::HasRedAffinity)
             .AddCallback(cards ->

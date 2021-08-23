@@ -205,41 +205,41 @@ public class AnimatorPlayerData
         final ActionT2<AnimatorLoadout, Integer> add = (loadout, unlockLevel) ->
         {
             BaseLoadouts.add(loadout);
+            loadout.IsBeta = false;
             loadout.UnlockLevel = unlockLevel;
             loadout.AddStarterCards();
         };
 
-        add.Invoke(new Loadout_Konosuba(), 0);
+        //add.Invoke(new Loadout_Konosuba(), 0);
         add.Invoke(new Loadout_GATE(), 1);
         add.Invoke(new Loadout_Elsword(), 2);
-        add.Invoke(new Loadout_Katanagatari(), 2);
+        //add.Invoke(new Loadout_Katanagatari(), 2);
         add.Invoke(new Loadout_GoblinSlayer(), 3);
-        add.Invoke(new Loadout_NoGameNoLife(), 3);
-        add.Invoke(new Loadout_OwariNoSeraph(), 3);
+        //add.Invoke(new Loadout_NoGameNoLife(), 3);
+        //add.Invoke(new Loadout_OwariNoSeraph(), 3);
         add.Invoke(new Loadout_FullmetalAlchemist(), 4);
-        add.Invoke(new Loadout_Overlord(), 4);
+        //add.Invoke(new Loadout_Overlord(), 4);
         add.Invoke(new Loadout_Fate(), 5);
-        add.Invoke(new Loadout_HitsugiNoChaika(), 5);
-        add.Invoke(new Loadout_OnePunchMan(), 6);
-        add.Invoke(new Loadout_TenseiSlime(), 6);
-        add.Invoke(new Loadout_MadokaMagica(), 7);
-        add.Invoke(new Loadout_LogHorizon(), 7);
+        //add.Invoke(new Loadout_HitsugiNoChaika(), 5);
+        //add.Invoke(new Loadout_OnePunchMan(), 6);
+        //add.Invoke(new Loadout_TenseiSlime(), 6);
+        //add.Invoke(new Loadout_MadokaMagica(), 7);
+        //add.Invoke(new Loadout_LogHorizon(), 7);
 
         for (AnimatorLoadout loadout : BaseLoadouts)
         {
-            if (loadout.UnlockLevel == 0)
+            if (loadout.UnlockLevel <= 0)
             {
                 continue;
             }
 
             final String cardID = loadout.GetSymbolicCard().ID;
-            CustomUnlockBundle bundle = BaseMod.getUnlockBundleFor(GR.Animator.PlayerClass, loadout.UnlockLevel - 1);
-
             final CustomUnlock unlock = new CustomUnlock(AbstractUnlock.UnlockType.MISC, cardID);
             unlock.type = AbstractUnlock.UnlockType.CARD;
             unlock.card = new AnimatorRuntimeLoadout(loadout).BuildCard();
             unlock.key = unlock.card.cardID = GR.Animator.CreateID("series:" + loadout.Name);
 
+            CustomUnlockBundle bundle = BaseMod.getUnlockBundleFor(GR.Animator.PlayerClass, loadout.UnlockLevel - 1);
             if (bundle == null)
             {
                 bundle = new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "", "", "");
@@ -268,13 +268,32 @@ public class AnimatorPlayerData
         };
 
         BetaLoadouts.clear();
-        add.Invoke(new Loadout_DateALive());
-        add.Invoke(new Loadout_Rewrite());
-        add.Invoke(new Loadout_AngelBeats());
-        add.Invoke(new Loadout_TouhouProject());
-        add.Invoke(new Loadout_RozenMaiden());
-        add.Invoke(new Loadout_Bleach());
-        add.Invoke(new Loadout_GenshinImpact());
+
+        final ActionT2<AnimatorLoadout, Integer> add = (loadout, unlockLevel) ->
+        {
+            BetaLoadouts.add(loadout);
+            loadout.IsBeta = true;
+            loadout.UnlockLevel = unlockLevel;
+            loadout.AddStarterCards();
+        };
+
+        add.Invoke(new Loadout_Konosuba(), 0);
+        add.Invoke(new Loadout_Katanagatari(), 2);
+        add.Invoke(new Loadout_NoGameNoLife(), 3);
+        add.Invoke(new Loadout_OwariNoSeraph(), 3);
+        add.Invoke(new Loadout_Overlord(), 4);
+        add.Invoke(new Loadout_HitsugiNoChaika(), 5);
+        add.Invoke(new Loadout_OnePunchMan(), 6);
+        add.Invoke(new Loadout_TenseiSlime(), 6);
+        add.Invoke(new Loadout_MadokaMagica(), 7);
+        add.Invoke(new Loadout_LogHorizon(), 7);
+        add.Invoke(new Loadout_DateALive(), 7);
+        add.Invoke(new Loadout_Rewrite(), 7);
+        add.Invoke(new Loadout_AngelBeats(), 7);
+        add.Invoke(new Loadout_TouhouProject(), 7);
+        add.Invoke(new Loadout_RozenMaiden(), 7);
+        add.Invoke(new Loadout_Bleach(), 7);
+        add.Invoke(new Loadout_GenshinImpact(), 7);
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...

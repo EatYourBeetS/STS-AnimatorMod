@@ -2,9 +2,9 @@ package eatyourbeets.actions.powers;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.powers.common.ShacklesPower;
 import eatyourbeets.utilities.GameActions;
 
 public class ReduceStrength extends EYBActionWithCallback<Boolean>
@@ -36,21 +36,22 @@ public class ReduceStrength extends EYBActionWithCallback<Boolean>
         return this;
     }
 
-
     @Override
     protected void FirstUpdate()
     {
         super.FirstUpdate();
 
-        GameActions.Top.StackPower(source, new StrengthPower(target, -amount));
+        if (temporary)
+        {
+            GameActions.Top.StackPower(source, new ShacklesPower(target, amount));
+        }
+        else
+        {
+            GameActions.Top.StackPower(source, new StrengthPower(target, -amount));
+        }
 
         if (!target.hasPower(ArtifactPower.POWER_ID))
         {
-            if (temporary)
-            {
-                GameActions.Top.StackPower(source, new GainStrengthPower(target, amount));
-            }
-
             if (giveForceToPlayer)
             {
                 GameActions.Top.GainForce(amount);
@@ -60,12 +61,10 @@ public class ReduceStrength extends EYBActionWithCallback<Boolean>
                 GameActions.Top.StackPower(new StrengthPower(source, amount));
             }
 
-
             Complete(true);
+            return;
         }
-        else
-        {
-            Complete(false);
-        }
+
+        Complete(false);
     }
 }

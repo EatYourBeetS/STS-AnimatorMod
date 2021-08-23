@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.colorless.rare;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
@@ -36,13 +37,39 @@ public class Lelouch extends AnimatorCard
     }
 
     @Override
+    public boolean cardPlayable(AbstractMonster m)
+    {
+        if (super.cardPlayable(m))
+        {
+            int count = 0;
+            for (AbstractCard c : player.hand.group)
+            {
+                if (c.uuid != uuid)
+                {
+                    count += 1;
+                }
+            }
+
+            return count > magicNumber;
+        }
+
+        return false;
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Top.ExhaustFromHand(name, magicNumber, true).ShowEffect(true, true)
-        .SetOptions(true, true, true);
-
-        GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
-        GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
-        GameActions.Bottom.ApplyPower(TargetHelper.Enemies(), GEASS);
+        GameActions.Bottom.ExhaustFromHand(name, magicNumber, true)
+        .ShowEffect(true, true)
+        .SetOptions(false, false, false)
+        .AddCallback(cards ->
+        {
+            if (cards.size() >= magicNumber)
+            {
+                GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
+                GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
+                GameActions.Bottom.ApplyPower(TargetHelper.Enemies(), GEASS);
+            }
+        });
     }
 }

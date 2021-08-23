@@ -179,11 +179,6 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         if (AbstractDungeon.actNum == 1 && AbstractDungeon.floorNum == 0)
         {
             Ynitaph.TryRestoreFromPreviousRun();
-
-            if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && Settings.seed != null)
-            {
-                GR.Animator.Config.LastSeed.Set(Settings.seed.toString(), true);
-            }
         }
     }
 

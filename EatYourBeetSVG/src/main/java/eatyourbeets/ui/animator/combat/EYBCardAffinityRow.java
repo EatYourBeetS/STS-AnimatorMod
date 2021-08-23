@@ -31,6 +31,7 @@ public class EYBCardAffinityRow extends GUIElement
     public final AbstractAffinityPower Power;
     public int MaxActivationsPerTurn;
     public int AvailableActivations;
+    public int ActivationPowerAmount;
     public int Level;
 
     protected final GUI_Image image_background;
@@ -73,7 +74,7 @@ public class EYBCardAffinityRow extends GUIElement
     public void ActivateSynergyBonus()
     {
         AvailableActivations -= 1;
-        GameActions.Bottom.StackAffinityPower(Type, 1, false);
+        GameActions.Bottom.StackAffinityPower(Type, ActivationPowerAmount, false);
     }
 
     public void OnStartOfTurn()
@@ -89,6 +90,7 @@ public class EYBCardAffinityRow extends GUIElement
     public void Initialize()
     {
         AvailableActivations = MaxActivationsPerTurn = 1;
+        ActivationPowerAmount = 1;
 
         if (Power != null)
         {
@@ -100,14 +102,28 @@ public class EYBCardAffinityRow extends GUIElement
     {
         image_background.SetColor(COLOR_DEFAULT);
         image_synergy.color.a = (AvailableActivations > 0) ? 1f : 0.25f;
-        text_affinity.SetText(Level = handAffinities.GetLevel(Type, false)).SetColor(Colors.Cream(Level > 0 ? 1 : 0.6f));
 
-        if (Type != Affinity.General)
+        if (Type == Affinity.General)
         {
-            if ((System.BonusAffinities.GetLevel(Type) > 0))
+            Level = handAffinities.GetLevel(Type, false) + handAffinities.GetDirectLevel(Affinity.General);
+
+            if (!draggingCard && image_background.hb.hovered)
             {
-                text_affinity.SetColor(Colors.Green(1));
+                final EYBCardAffinity best = handAffinities.Get(Affinity.General);
+                final Affinity affinity = best == null ? null : best.type;
+                for (AbstractCard c : AbstractDungeon.player.hand.group)
+                {
+                    final EYBCard temp = JUtils.SafeCast(c, EYBCard.class);
+                    if (temp == null || (temp.affinities.GetLevel(affinity) == 0 && temp.affinities.GetDirectLevel(Affinity.General) == 0))
+                    {
+                        c.transparency = 0.35f;
+                    }
+                }
             }
+        }
+        else
+        {
+            Level = handAffinities.GetLevel(Type, false);
 
             if (hoveredCard != null)
             {
@@ -121,25 +137,27 @@ public class EYBCardAffinityRow extends GUIElement
                     image_background.SetColor(COLOR_HIGHLIGHT_WEAK);
                 }
             }
-        }
 
-        if (!draggingCard && image_background.hb.hovered)
-        {
-            Affinity affinity = Type;
-            if (affinity == Affinity.General && handAffinities != null)
+            if (!draggingCard && image_background.hb.hovered)
             {
-                final EYBCardAffinity best = handAffinities.Get(Affinity.General);
-                affinity = best == null ? null : best.type;
-            }
-
-            for (AbstractCard c : AbstractDungeon.player.hand.group)
-            {
-                final EYBCard temp = JUtils.SafeCast(c, EYBCard.class);
-                if (temp == null || temp.affinities.GetLevel(affinity) == 0)
+                for (AbstractCard c : AbstractDungeon.player.hand.group)
                 {
-                    c.transparency = 0.35f;
+                    final EYBCard temp = JUtils.SafeCast(c, EYBCard.class);
+                    if (temp == null || (temp.affinities.GetLevel(Type) == 0))
+                    {
+                        c.transparency = 0.35f;
+                    }
                 }
             }
+        }
+
+        if ((System.BonusAffinities.GetDirectLevel(Type) > 0))
+        {
+            text_affinity.SetText(Level).SetColor(Colors.Green(1));
+        }
+        else
+        {
+            text_affinity.SetText(Level).SetColor(Colors.Cream(Level > 0 ? 1 : 0.6f));
         }
 
         Update();

@@ -9,7 +9,9 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class ShunyaKengun extends AnimatorCard
 {
@@ -26,6 +28,7 @@ public class ShunyaKengun extends AnimatorCard
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
+        SetAffinity_Orange(1, 1, 0);
 
         SetAffinityRequirement(Affinity.Red, 2);
         SetAffinityRequirement(Affinity.Green, 2);

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -84,7 +85,7 @@ public class AnimatorLoadoutsContainer
             }
         }
 
-        Random rng = new Random(Settings.seed + 13);
+        final Random rng = new Random(Settings.seed + 13);
         while (promotedCount < 3)
         {
             toPromote.Retrieve(rng).Promote();
@@ -93,7 +94,7 @@ public class AnimatorLoadoutsContainer
 
         for (AnimatorRuntimeLoadout c : seriesSelectionItems)
         {
-            AbstractCard card = c.BuildCard();
+            final AbstractCard card = c.BuildCard();
             if (card != null)
             {
                 cardsMap.put(c.BuildCard(), c);
@@ -144,7 +145,7 @@ public class AnimatorLoadoutsContainer
         GR.Animator.Dungeon.Loadouts.clear();
         for (AbstractCard card : selectedCards)
         {
-            AnimatorRuntimeLoadout loadout = Find(card);
+            final AnimatorRuntimeLoadout loadout = Find(card);
             if (loadout.IsBeta)
             {
                 // Do not unlock trophies or ascension
@@ -157,6 +158,11 @@ public class AnimatorLoadoutsContainer
         if (GR.Animator.Data.SelectedLoadout.IsBeta)
         {
             Settings.seedSet = true;
+        }
+
+        if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && Settings.seed != null)
+        {
+            GR.Animator.Config.LastSeed.Set(Settings.seed.toString(), true);
         }
 
         GR.Animator.Dungeon.InitializeCardPool(false);

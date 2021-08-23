@@ -46,10 +46,7 @@ import eatyourbeets.actions.pileSelection.*;
 import eatyourbeets.actions.player.ChangeStance;
 import eatyourbeets.actions.player.GainGold;
 import eatyourbeets.actions.player.SpendEnergy;
-import eatyourbeets.actions.powers.ApplyAffinityPower;
-import eatyourbeets.actions.powers.ApplyPower;
-import eatyourbeets.actions.powers.ReducePower;
-import eatyourbeets.actions.powers.ReduceStrength;
+import eatyourbeets.actions.powers.*;
 import eatyourbeets.actions.special.DelayAllActions;
 import eatyourbeets.actions.special.PlaySFX;
 import eatyourbeets.actions.special.PlayVFX;
@@ -882,6 +879,11 @@ public final class GameActions
         return Add(new ReducePower(power.owner, power.owner, power, amount));
     }
 
+    public IncreasePower IncreasePower(AbstractPower power, int amount)
+    {
+        return Add(new IncreasePower(power.owner, power.owner, power, amount));
+    }
+
     public ReduceStrength ReduceStrength(AbstractCreature target, int amount, boolean temporary)
     {
         return Add(new ReduceStrength(player, target, amount, temporary));
@@ -1059,6 +1061,11 @@ public final class GameActions
                 }
             }
         });
+    }
+
+    public UpgradeFromPile UpgradeFromPile(CardGroup group, int amount, boolean permanent)
+    {
+        return Add(new UpgradeFromPile(group, amount).UpgradePermanently(permanent));
     }
 
     public PlayVFX VFX(AbstractGameEffect effect)

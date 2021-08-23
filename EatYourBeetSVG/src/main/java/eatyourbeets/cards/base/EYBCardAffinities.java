@@ -61,6 +61,12 @@ public class EYBCardAffinities
         Refresh();
     }
 
+    public void Clear()
+    {
+        List.clear();
+        Star = null;
+    }
+
     public void Refresh()
     {
         List.sort(EYBCardAffinity::compareTo);

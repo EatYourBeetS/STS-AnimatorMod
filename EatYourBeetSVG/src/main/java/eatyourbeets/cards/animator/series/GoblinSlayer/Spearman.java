@@ -25,7 +25,7 @@ public class Spearman extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(11, 0);
+        Initialize(10, 0);
         SetUpgrade(3, 0);
 
         SetAffinity_Red(2, 0, 1);

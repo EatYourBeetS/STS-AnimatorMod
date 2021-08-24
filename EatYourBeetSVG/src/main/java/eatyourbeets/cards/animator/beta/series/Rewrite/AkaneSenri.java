@@ -1,16 +1,13 @@
 package eatyourbeets.cards.animator.beta.series.Rewrite;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.RandomizedList;
 
 public class AkaneSenri extends AnimatorCard
 {
@@ -31,23 +28,7 @@ public class AkaneSenri extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.StackPower(new AkaneSenriPower(p, secondaryValue));
-
-        RandomizedList<AbstractCard> randomizedList = new RandomizedList<>();
-        randomizedList.AddAll(player.drawPile.group);
-
-        for (int i=0; i<magicNumber; i++)
-        {
-            AbstractCard card = randomizedList.Retrieve(rng);
-
-            if (card instanceof EYBCard && !card.hasTag(HASTE))
-            {
-                ((EYBCard) card).SetHaste(true);
-            }
-            else
-            {
-                break;
-            }
-        }
+        GameActions.Bottom.ModifyTag(player.drawPile, magicNumber, HASTE, true);
     }
 
     public static class AkaneSenriPower extends AnimatorPower

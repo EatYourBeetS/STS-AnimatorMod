@@ -19,7 +19,9 @@ import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.interfaces.subscribers.OnCostChangedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnTagChangedSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RotatingList;
@@ -136,7 +138,6 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
                 ((AnimatorCard) card).Refresh(enemy);
             }
         }
-        updateProperties();
     }
 
     @Override
@@ -158,7 +159,6 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         if (played != null && !played.isEmpty() && played.get(played.size() -1) != this) {
             AbstractDungeon.actionManager.cardsPlayedThisTurn.add(this);
         }
-        //updateProperties();
     }
 
     @Override
@@ -177,7 +177,6 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         if (played != null && !played.isEmpty() && played.get(played.size() -1) != this) {
             AbstractDungeon.actionManager.cardsPlayedThisTurn.add(this);
         }
-        //updateProperties();
     }
 
     @Override
@@ -228,8 +227,10 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
             if (card instanceof AnimatorCard) {
                 ((AnimatorCard) card).triggerWhenCreated(startOfBattle);
             }
-
         }
+        CombatStats.onCostChanged.Subscribe(this);
+        CombatStats.onTagChanged.Subscribe(this);
+
         refreshDescription();
     }
 
@@ -415,11 +416,22 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
 
     @Override
     public void OnCostChanged(AbstractCard card, int originalCost, int newCost) {
-        //TODO
+        for (AbstractCard inheritedCard : inheritedCards) {
+            if (card.uuid.equals(inheritedCard.uuid)) {
+                if (card.isCostModified) {
+                    this.cost += (newCost - originalCost);
+                }
+                this.costForTurn += (newCost - originalCost);
+            }
+        }
     }
 
     @Override
     public void OnTagChanged(AbstractCard card, CardTags tag, boolean value) {
-        //TODO
+        for (AbstractCard inheritedCard : inheritedCards) {
+            if (card.uuid.equals(inheritedCard.uuid)) {
+                GameActions.Bottom.ModifyTag(this, tag, value);
+            }
+        }
     }
 }

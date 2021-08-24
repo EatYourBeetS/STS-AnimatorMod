@@ -21,8 +21,8 @@ public class GirlDeMo extends AnimatorCard
 
         Initialize(0, 0);
         SetUpgrade(0, 0);
-        SetAffinity_Orange(2, 0, 0);
-        SetAffinity_Light(1, 0, 0);
+        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Light(2, 0, 0);
         SetExhaust(true);
         SetEthereal(true);
     }

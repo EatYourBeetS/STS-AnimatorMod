@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.beta.colorless;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.curses.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -9,29 +8,30 @@ import eatyourbeets.cards.animator.beta.curse.Curse_Delusion;
 import eatyourbeets.cards.animator.beta.curse.Curse_Depression;
 import eatyourbeets.cards.animator.beta.curse.Curse_JunTormented;
 import eatyourbeets.cards.animator.beta.special.TakashiNatsume_Circle;
+import eatyourbeets.cards.animator.curse.Curse_Greed;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.animator.curse.Curse_Nutcracker;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.TargetHelper;
 
 public class TakashiNatsume extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(TakashiNatsume.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.NatsumeYuujinchou);
+    static {
+        DATA.AddPreview(new TakashiNatsume_Circle(), true);
+    }
 
     public TakashiNatsume()
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, 1 );
+        SetUpgrade(0, 0, 0 );
 
-        SetAffinity_Light(1);
+        SetAffinity_Light(2);
         SetAffinity_Blue(2);
         SetExhaust(true);
         SetHealing(true);
@@ -46,10 +46,7 @@ public class TakashiNatsume extends AnimatorCard
                 .AddCallback(cards -> {
                     if (cards.size() > 0) {
                         for (AbstractCard c : cards) {
-                            for (int i = 0; i < secondaryValue; i++) {
-                                CreateCurseEffect(c);
-                            }
-                            GameActions.Bottom.Exhaust(c);
+                            GameActions.Bottom.Exhaust(c).AddCallback(this::CreateCurseEffect);
                         }
                     }
                 });
@@ -57,78 +54,46 @@ public class TakashiNatsume extends AnimatorCard
 
     private void CreateCurseEffect(AbstractCard c) {
         TakashiNatsume_Circle circle = new TakashiNatsume_Circle();
+        if (upgraded) {
+            circle.upgrade();
+        }
         if (c instanceof Curse_Delusion) {
-
+            circle.ChangeForm(TakashiNatsume_Circle.Form.Curse_Delusion);
         }
         else if (c instanceof Curse_Depression) {
-        //    GameActions.Bottom.Draw(2);
+            circle.ChangeForm(TakashiNatsume_Circle.Form.Curse_Depression);
         }
         else if (c instanceof Curse_GriefSeed) {
-            int[] damageMatrix = DamageInfo.createDamageMatrix(1, true);
-            GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AttackEffects.FIRE);
+            circle.ChangeForm(TakashiNatsume_Circle.Form.Curse_GriefSeed);
         }
-        //else if (c instanceof Curse_Greed) {
-        //    GameActions.Bottom.Motivate();
-        //}
+        else if (c instanceof Curse_Greed) {
+            circle.ChangeForm(TakashiNatsume_Circle.Form.Curse_Greed);
+        }
         else if (c instanceof Curse_JunTormented) {
-            GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 1);
-            GameActions.Bottom.ApplyFrail(TargetHelper.Enemies(), 1);
+            circle.ChangeForm(TakashiNatsume_Circle.Form.Curse_JunTormented);
         }
         else if (c instanceof Curse_Nutcracker) {
-            GameActions.Bottom.Heal(4);
+            circle.ChangeForm(TakashiNatsume_Circle.Form.Curse_Nutcracker);
         }
         else if (c instanceof Decay) {
-            int[] damageMatrix = DamageInfo.createDamageMatrix(2, true);
-            GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AttackEffects.FIRE);
+            circle.ChangeForm(TakashiNatsume_Circle.Form.Decay);
         }
         else if (c instanceof Doubt) {
-            GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 1);
+            circle.ChangeForm(TakashiNatsume_Circle.Form.Doubt);
         }
-        //else if (c instanceof Normality) {
-        //    int i = 0;
-        //    for (AbstractMonster mo : GameUtilities.GetEnemies(true)) {
-        //        if (i >= 3) {
-        //            GameActions.Bottom.ApplyPower(player, new StunMonsterPower(mo, 1));
-        //        }
-        //        i++;
-        //    }
-        //}
+        else if (c instanceof Normality) {
+            circle.ChangeForm(TakashiNatsume_Circle.Form.Normality);
+        }
         else if (c instanceof Pain) {
-            GameActions.Bottom.StackPower(player, new TakashiNatsumePower(player, 1));
+            circle.ChangeForm(TakashiNatsume_Circle.Form.Pain);
         }
         else if (c instanceof Regret) {
-            int[] damageMatrix = DamageInfo.createDamageMatrix(player.hand.size(), true);
-            GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AttackEffects.FIRE);
+            circle.ChangeForm(TakashiNatsume_Circle.Form.Regret);
         }
         else if (c instanceof Shame) {
-            GameActions.Bottom.ApplyFrail(TargetHelper.Enemies(), 1);
-        }
-    }
-
-
-    public static class TakashiNatsumePower extends AnimatorPower
-    {
-        public TakashiNatsumePower(AbstractPlayer owner, int amount)
-        {
-            super(owner, TakashiNatsume.DATA);
-
-            this.amount = amount;
-            updateDescription();
+            circle.ChangeForm(TakashiNatsume_Circle.Form.Shame);
         }
 
-        public void atEndOfRound() {
-            GameActions.Bottom.RemovePower(owner, owner, this);
-        }
-
-        public void onAfterCardPlayed(AbstractCard card) {
-            int[] damageMatrix = DamageInfo.createDamageMatrix(this.amount, true);
-            GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AttackEffects.SLASH_DIAGONAL);
-        }
-
-        @Override
-        public void updateDescription()
-        {
-            description = FormatDescription(0, amount);
-        }
+        GameActions.Bottom.MakeCardInHand(circle);
     }
 }

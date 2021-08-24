@@ -381,6 +381,11 @@ public class AnimatorStrings
             return Get(41) + (addPeriod ? LocalizedStrings.PERIOD : "");
         }
 
+        public final String HealHP(int amount, boolean addPeriod)
+        {
+            return Format(addPeriod, 42, amount);
+        }
+
 
         private String Format(boolean addPeriod, int index, Object amount)
         {

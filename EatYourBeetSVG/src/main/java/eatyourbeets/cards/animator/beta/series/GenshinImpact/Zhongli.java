@@ -13,6 +13,7 @@ import eatyourbeets.utilities.GameActions;
 public class Zhongli extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Zhongli.class).SetPower(3, CardRarity.RARE).SetMaxCopies(2).SetSeriesFromClassPackage();
+    private static final int POWER_ENERGY_COST = 1;
 
     public Zhongli()
     {
@@ -39,7 +40,7 @@ public class Zhongli extends AnimatorCard
     {
         public ZhongliPower(AbstractPlayer owner, int amount)
         {
-            super(owner, Zhongli.DATA, PowerTriggerConditionType.Energy, 1);
+            super(owner, Zhongli.DATA, PowerTriggerConditionType.Energy, POWER_ENERGY_COST);
 
             this.amount = amount;
             this.triggerCondition.SetOneUsePerPower(true);

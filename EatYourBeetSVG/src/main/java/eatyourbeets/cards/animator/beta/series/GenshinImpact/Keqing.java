@@ -145,14 +145,7 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
             {
                 GameActions.Bottom.Motivate(card, 1);
             }
-            GameActions.Bottom.ModifyAllInstances(card.uuid)
-                    .AddCallback(c ->
-                    {
-                        if (!c.hasTag(HASTE))
-                        {
-                            c.tags.add(HASTE);
-                        }
-                    });
+            GameActions.Bottom.ModifyTag(card, HASTE, true);
         }
 
     }

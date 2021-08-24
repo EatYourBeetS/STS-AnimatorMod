@@ -22,7 +22,7 @@ public class Godan extends AnimatorCard
         SetUpgrade(1, 0, 1);
 
         SetCooldown(2, 0, this::OnCooldownCompleted);
-        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Red(1, 1, 1);
     }
 
     @Override

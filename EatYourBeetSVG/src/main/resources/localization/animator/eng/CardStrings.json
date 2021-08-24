@@ -298,8 +298,8 @@
 		},
 		"animator:ZarakiKenpachi":
 		{
-			"DESCRIPTION": "Your [F] no longer decreases. You cannot gain [A] [I]. || Once per turn, if you break an enemy's [Block]: Gain !M! {Temp. Strength}.",
-			"EXTENDED_DESCRIPTION": ["Your #yForce no longer decreases.  You cannot gain #yAgility nor #yIntellect.  Once per turn, if you break an enemy's #yBlock, gain #b{0} #yTemp. #yStrength."],
+			"DESCRIPTION": "Your [F] no longer decreases. You cannot gain [A] [I]. || Once per turn, if you break an enemy's [Block]: Gain !M! {Temp. [~Strength]}.",
+			"EXTENDED_DESCRIPTION": ["Your #yForce no longer decreases.  You cannot gain #yAgility nor #yIntellect.  Once per turn, if you break an enemy's #yBlock, gain #b{0} #yTemp. [~Strength]."],
 			"NAME": "Zaraki Kenpachi"
 		}
 	},
@@ -463,14 +463,15 @@
 		},
 		"animator:TakashiNatsume":
 		{
-		  "DESCRIPTION": "Exhaust a Curse from your hand or discard pile. Play its effect !S! times on ALL enemies.",
+		  "DESCRIPTION": "Exhaust a Curse from your hand or discard pile. Create a card with its effect.",
 		  "EXTENDED_DESCRIPTION": ["Whenever you play a card, deal #b{0} damage to ALL enemies. Removed at the end of turn."],
-		  "NAME": "Takashi Natsume"
+		  "NAME": "Takashi Natsume",
+		  "UPGRADED_DESCRIPTION": "Exhaust a Curse from your hand or discard pile. Create an upgraded card with its effect."
 		},
 		"animator:TakashiNatsume_Circle":
         {
           "DESCRIPTION": "Played at the end of turn.",
-          "EXTENDED_DESCRIPTION": ["This turn, deal #b{0} damage to ALL enemies whenever you play a card.","Attack an additional time for each card in your hand.","This turn, if you are attacked #b{0} times: Stun ALL enemies."],
+          "EXTENDED_DESCRIPTION": ["This turn, deal #b{0} damage to ALL enemies whenever you play a card.","Attack an additional time for each card in your hand.","This turn, if you are attacked #b{0} times: Stun ALL enemies.","Remove {Autoplay} from ALL cards in your draw pile."],
           "NAME": "Youkai Circle"
         		},
 		"animator:TomoyaOkazaki":
@@ -689,7 +690,7 @@
 		},
 		"animator:KokomiSangonomiya":
 		{
-		  "DESCRIPTION": "Lose !M! [Dexterity]. [Water] absorbs unblocked attack damage and reflects it back at the attacker. || At the end of each turn, if you have no [Water]: Take !S! damage and channel [Water].",
+		  "DESCRIPTION": "Lose !M! [~Dexterity]. [Water] absorbs unblocked attack damage and reflects it back at the attacker. || At the end of each turn, if you have no [Water]: Take !S! damage and channel [Water].",
 		  "NAME": "Kokomi Sangonomiya"
 		},
 		"animator:LisaMinci":
@@ -788,7 +789,7 @@
 		},
 		"animator:KotoriKanbe":
 		{
-			"DESCRIPTION": "Fully heal the enemy. Apply ** 1 [Weak] and [Vulnerable] for every !M! HP healed. || <LIM>. If you healed {0} ** or more HP: The enemy ** also loses !S! Strength.",
+			"DESCRIPTION": "Fully heal the enemy. Apply ** 1 [Weak] and [Vulnerable] for every !M! HP healed. || <LIM>. If you healed {0} ** or more HP: The enemy ** also loses !S! [~Strength].",
 			"NAME": "Kotori Kanbe"
 		},
 		"animator:LuciaKonohana":
@@ -1085,7 +1086,7 @@
 		},
 		"animator:Kira":
 		{
-			"DESCRIPTION": "Give the enemy !S! Strength. ** It will die after a certain ** number of turns. || This card's text will change ** while targeting an enemy.",
+			"DESCRIPTION": "Give the enemy !S! [~Strength]. ** It will die after a certain ** number of turns. || This card's text will change ** while targeting an enemy.",
 			"EXTENDED_DESCRIPTION": ["The enemy will die in !M! turn(s)."],
 			"NAME": "Light Yagami"
 		},
@@ -1329,7 +1330,7 @@
 		},
 		"animator:Caster":
 		{
-			"DESCRIPTION": "Channel 1 [Dark]. || Steal !M! Strength. || Gain !S! [Frail] and [C].",
+			"DESCRIPTION": "Channel 1 [Dark]. || Steal !M! [~Strength]. || Gain !S! [Frail] and [C].",
 			"EXTENDED_DESCRIPTION": ["Evoke your first orb.", "Apply {0} [Shackles].", "Gain [F] [I]."],
 			"NAME": "Caster"
 		},
@@ -1468,8 +1469,8 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !M! orb slot(s). || Your <B> Synergy bonus grants 1 additional [I]. || Pay 1 [E]: All [Earth] have 1 more [Focus] this turn.",
-			"EXTENDED_DESCRIPTION": ["Pay {0} [E] to give all [Earth] {1} [Focus] this turn{2}. || Your <B> Synergy bonus grants #b{3} additional [I] (max #b{4}^).","(currently active)"],
+			"DESCRIPTION": "Gain !M! orb slot(s). || Your <B> Synergy bonus grants 1 additional [I]. || Pay 1 [E]: All [Earth] have 1 more [~Focus] this turn.",
+			"EXTENDED_DESCRIPTION": ["Pay {0} [E] to give all [Earth] {1} [~Focus] this turn{2}. || Your <B> Synergy bonus grants #b{3} additional [I] (max #b{4}^).","(currently active)"],
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":

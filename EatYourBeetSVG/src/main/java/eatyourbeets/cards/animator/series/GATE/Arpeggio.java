@@ -76,6 +76,16 @@ public class Arpeggio extends AnimatorCard
         }
 
         @Override
+        public void onInitialApplication() {
+            CombatStats.onOrbApplyFocus.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove() {
+            CombatStats.onOrbApplyFocus.Unsubscribe(this);
+        }
+
+        @Override
         public void OnUse(AbstractMonster m)
         {
             super.OnUse(m);

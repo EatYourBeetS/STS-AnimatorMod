@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animator.series.Fate;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Excalibur;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class Saber extends AnimatorCard
@@ -26,7 +26,7 @@ public class Saber extends AnimatorCard
         SetUpgrade(2, 0, 0);
 
         SetAffinity_Red(1, 0, 1);
-        SetAffinity_Green(0, 0, 1);
+        SetAffinity_Green(1, 0, 1);
         SetAffinity_Light(2);
 
         SetCooldown(8, 0, this::OnCooldownCompleted);

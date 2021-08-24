@@ -21,6 +21,7 @@ public class MasamiIwasawa extends AnimatorCard
         SetUpgrade(0, 4, 0, 0);
 
         SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Light(1, 0, 0);
     }
 
     @Override

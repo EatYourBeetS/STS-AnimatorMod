@@ -752,9 +752,9 @@ public final class GameActions
         return Add(new ModifyAllInstances(uuid));
     }
 
-    public ModifyTag ModifyTag(AbstractCard card, AbstractCard.CardTags tag, boolean remove)
+    public ModifyTag ModifyTag(AbstractCard card, AbstractCard.CardTags tag, boolean value)
     {
-        return Add(new ModifyTag(card, tag, remove));
+        return Add(new ModifyTag(card, tag, value));
     }
 
     public ModifyTag ModifyTag(CardGroup group, int cards, AbstractCard.CardTags tag, boolean value)

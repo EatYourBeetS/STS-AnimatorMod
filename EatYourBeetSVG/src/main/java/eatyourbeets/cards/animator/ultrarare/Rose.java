@@ -4,9 +4,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.RoseDamageAction;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -25,6 +25,7 @@ public class Rose extends AnimatorCard_UltraRare
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Red(2);
+        SetAffinity_Orange(1);
         SetAffinity_Light(1);
     }
 

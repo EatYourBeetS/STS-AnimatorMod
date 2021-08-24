@@ -53,12 +53,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
     @Override
     public EYBCardPreview GetCardPreview()
     {
-        if (currentForm != Form.None)
-        {
-            return null;
-        }
-
-        return super.GetCardPreview();
+        return currentForm != Form.None ? null : super.GetCardPreview();
     }
 
     @Override
@@ -128,103 +123,10 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
         }
     }
 
-    protected void ChangeForm(Form form)
-    {
-        if (this.currentForm == form)
-        {
-            return;
-        }
-
-        this.currentForm = form;
-
-        switch (form)
-        {
-            case None:
-            {
-                LoadImage(null);
-
-                affinities.List.clear();
-                SetAffinity_Star(2);
-
-                cardText.OverrideDescription(null, true);
-                this.isCostModified = this.isCostModifiedForTurn = false;
-                this.cost = this.costForTurn = -2;
-
-                break;
-            }
-
-            case Saber:
-            {
-                LoadImage("_Saber");
-
-                Initialize(3, 0, 5);
-                SetUpgrade(0, 0, 2);
-
-                affinities.List.clear();
-                SetAffinity_Red(1, 0, 1);
-                SetAffinity_Green(1);
-                SetAffinity_Light(2, 0, 3);
-
-                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
-                this.isCostModified = this.isCostModifiedForTurn = false;
-                this.cost = this.costForTurn = 1;
-
-                break;
-            }
-
-            case Pyro:
-            {
-                LoadImage("_Pyro");
-
-                Initialize(6, 0, 0);
-                SetUpgrade(4, 0, 0);
-
-                affinities.List.clear();
-                SetAffinity_Red(1);
-                SetAffinity_Green(2, 0, 1);
-
-                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
-                this.isCostModified = this.isCostModifiedForTurn = false;
-                this.cost = this.costForTurn = 1;
-
-                break;
-            }
-
-            case Dark:
-            {
-                LoadImage("_Dark");
-
-                Initialize(9, 0, 3);
-                SetUpgrade(0, 0, -1);
-
-                affinities.List.clear();
-                SetAffinity_Red(2, 0, 2);
-                SetAffinity_Dark(2, 0, 2);
-
-                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
-                this.isCostModified = this.isCostModifiedForTurn = false;
-                this.cost = this.costForTurn = 0;
-
-                break;
-            }
-        }
-
-        if (upgraded)
-        {
-            upgraded = false;
-            upgrade();
-        }
-    }
-
     @Override
     public AbstractCard makeStatEquivalentCopy()
     {
-        if (currentForm == Form.None)
-        {
-            return makeCopy();
-        }
-
-        return super.makeStatEquivalentCopy();
+        return currentForm == Form.None ? makeCopy() : super.makeStatEquivalentCopy();
     }
 
     @Override
@@ -299,7 +201,95 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
         }
     }
 
-    private void AddDamageBonus(int amount)
+    protected void ChangeForm(Form form)
+    {
+        if (this.currentForm == form)
+        {
+            return;
+        }
+
+        this.currentForm = form;
+
+        switch (form)
+        {
+            case None:
+            {
+                LoadImage(null);
+
+                affinities.Clear();
+                SetAffinity_Star(2);
+
+                cardText.OverrideDescription(null, true);
+                this.isCostModified = this.isCostModifiedForTurn = false;
+                this.cost = this.costForTurn = -2;
+
+                break;
+            }
+
+            case Saber:
+            {
+                LoadImage("_Saber");
+
+                Initialize(3, 0, 5);
+                SetUpgrade(0, 0, 2);
+
+                affinities.Clear();
+                SetAffinity_Red(1, 0, 1);
+                SetAffinity_Green(1);
+                SetAffinity_Light(2, 0, 3);
+
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
+                this.isCostModified = this.isCostModifiedForTurn = false;
+                this.cost = this.costForTurn = 1;
+
+                break;
+            }
+
+            case Pyro:
+            {
+                LoadImage("_Pyro");
+
+                Initialize(6, 0, 0);
+                SetUpgrade(4, 0, 0);
+
+                affinities.Clear();
+                SetAffinity_Red(1);
+                SetAffinity_Green(2, 0, 1);
+
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
+                this.isCostModified = this.isCostModifiedForTurn = false;
+                this.cost = this.costForTurn = 1;
+
+                break;
+            }
+
+            case Dark:
+            {
+                LoadImage("_Dark");
+
+                Initialize(9, 0, 3);
+                SetUpgrade(0, 0, -1);
+
+                affinities.Clear();
+                SetAffinity_Red(2, 0, 2);
+                SetAffinity_Dark(2, 0, 2);
+
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
+                this.isCostModified = this.isCostModifiedForTurn = false;
+                this.cost = this.costForTurn = 0;
+
+                break;
+            }
+        }
+
+        if (upgraded)
+        {
+            upgraded = false;
+            upgrade();
+        }
+    }
+
+    protected void AddDamageBonus(int amount)
     {
         bonusDamage += amount;
         baseDamage += amount;

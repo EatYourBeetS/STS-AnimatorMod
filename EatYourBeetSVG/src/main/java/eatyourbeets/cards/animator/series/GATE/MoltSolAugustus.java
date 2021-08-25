@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.ImperialArchers;
+import eatyourbeets.cards.animator.special.MoltSolAugustus_ImperialArchers;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -21,7 +21,7 @@ public class MoltSolAugustus extends AnimatorCard
     private static final int ENERGY_COST = 1;
     static
     {
-        DATA.AddPreview(new ImperialArchers(), false);
+        DATA.AddPreview(new MoltSolAugustus_ImperialArchers(), false);
     }
 
     public MoltSolAugustus()
@@ -101,7 +101,7 @@ public class MoltSolAugustus extends AnimatorCard
         {
             super.OnUse(m);
 
-            GameActions.Bottom.MakeCardInDrawPile(new ImperialArchers())
+            GameActions.Bottom.MakeCardInDrawPile(new MoltSolAugustus_ImperialArchers())
             .Repeat(amount).SetDuration(0.1f, false);
         }
     }

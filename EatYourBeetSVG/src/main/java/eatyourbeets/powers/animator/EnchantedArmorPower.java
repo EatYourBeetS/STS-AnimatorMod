@@ -41,7 +41,10 @@ public class EnchantedArmorPower extends AnimatorPower implements OnRawDamageRec
     {
         super.onInitialApplication();
 
-        CombatStats.onRawDamageReceived.Subscribe(this);
+        if (!reactive)
+        {
+            CombatStats.onRawDamageReceived.Subscribe(this);
+        }
     }
 
     @Override
@@ -112,8 +115,7 @@ public class EnchantedArmorPower extends AnimatorPower implements OnRawDamageRec
             }
             else if (info.owner != null)
             {
-                stackPower(damageAmount);
-                updateDescription();
+                IncreasePower(damageAmount);
             }
         }
 //        else

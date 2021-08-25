@@ -1,29 +1,29 @@
 package eatyourbeets.cards.animator.special;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
+import eatyourbeets.cards.animator.series.MadokaMagica.NagisaMomoe;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.*;
 
-public class Charlotte extends AnimatorCard
+public class NagisaMomoe_Charlotte extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Charlotte.class)
+    public static final EYBCardData DATA = Register(NagisaMomoe_Charlotte.class)
             .SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal)
-            .SetSeries(CardSeries.MadokaMagica);
+            .SetSeries(NagisaMomoe.DATA.Series);
 
-    public Charlotte()
+    public NagisaMomoe_Charlotte()
     {
         super(DATA);
 

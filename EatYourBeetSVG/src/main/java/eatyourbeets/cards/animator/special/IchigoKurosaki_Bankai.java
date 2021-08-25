@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.special;
 
 import com.badlogic.gdx.graphics.Color;
+import eatyourbeets.cards.animator.colorless.uncommon.IchigoKurosaki;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,14 +13,14 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class IchigoBankai extends AnimatorCard
+public class IchigoKurosaki_Bankai extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(IchigoBankai.class)
+    public static final EYBCardData DATA = Register(IchigoKurosaki_Bankai.class)
             .SetAttack(-1, CardRarity.SPECIAL, EYBAttackType.Ranged, EYBCardTarget.ALL)
             .SetColor(CardColor.COLORLESS)
-            .SetSeries(CardSeries.Bleach);
+            .SetSeries(IchigoKurosaki.DATA.Series);
 
-    public IchigoBankai()
+    public IchigoKurosaki_Bankai()
     {
         super(DATA);
 

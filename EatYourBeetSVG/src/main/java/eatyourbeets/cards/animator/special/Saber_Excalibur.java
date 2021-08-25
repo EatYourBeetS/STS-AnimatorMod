@@ -15,13 +15,13 @@ import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
-public class Excalibur extends AnimatorCard
+public class Saber_Excalibur extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Excalibur.class)
+    public static final EYBCardData DATA = Register(Saber_Excalibur.class)
             .SetAttack(3, CardRarity.SPECIAL, EYBAttackType.Elemental, EYBCardTarget.ALL)
             .SetSeries(Saber.DATA.Series);
 
-    public Excalibur()
+    public Saber_Excalibur()
     {
         super(DATA);
 

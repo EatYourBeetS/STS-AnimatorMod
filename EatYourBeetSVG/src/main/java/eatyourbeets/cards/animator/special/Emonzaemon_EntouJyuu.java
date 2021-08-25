@@ -8,13 +8,13 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.animator.FlamingWeaponPower;
 import eatyourbeets.utilities.GameActions;
 
-public class EntouJyuu extends AnimatorCard
+public class Emonzaemon_EntouJyuu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(EntouJyuu.class)
+    public static final EYBCardData DATA = Register(Emonzaemon_EntouJyuu.class)
             .SetPower(0, CardRarity.SPECIAL)
             .SetSeries(Emonzaemon.DATA.Series);
 
-    public EntouJyuu()
+    public Emonzaemon_EntouJyuu()
     {
         super(DATA);
 

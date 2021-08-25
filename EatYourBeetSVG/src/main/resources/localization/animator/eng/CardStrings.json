@@ -165,6 +165,11 @@
 		{
 			"DESCRIPTION": "Discard the top !S! {Skills} of your draw pile. <DRW-M>. || <LIM>. At the start of ** combat, add {Type 95} ** to your draw pile.",
 			"NAME": "Tanya Degurechaff"
+		},
+		"animator:TanyaDegurechaff_Type95":
+		{
+			"DESCRIPTION": "Channel 1 [Plasma]. || When Discarded or ** Drawn: Decrease this ** card's cost by 1 ** until played.",
+			"NAME": "Type 95"
 		}
 	},
 
@@ -186,6 +191,11 @@
 			"NAME": "Ichigo Kurosaki",
 			"UPGRADE_DESCRIPTION": "Boost [F] [A]. <DRW>. || When Exhausted: If you ** reached !S! [F] this combat, ** add {Ichigo Bankai} to ** your draw pile."
 		},
+		"animator:IchigoKurosaki_Bankai":
+		{
+			"DESCRIPTION": "This card's damage ** is multiplied by X",
+			"NAME": "Ichigo Bankai"
+		},
 		"animator:Kagari":
 		{
 			"DESCRIPTION": "Apply !M! [Shackles] ** to ALL enemies. || The next time ** you take damage: ** Channel !S! [Earth].",
@@ -197,6 +207,11 @@
 			"DESCRIPTION": "Discard !M! cards to add ** {Black Lotus} to your ** hand, then Exhaust. || !A! <W>: Upgrade it.",
 			"NAME": "Kuroyukihime"
 		},
+		"animator:Kuroyukihime_BlackLotus":
+		{
+			"DESCRIPTION": "{~Retain} [F] [A]. || <FS>: Gain !M! [Metallicize]. || <AS>: Gain !S! [Blur].",
+			"NAME": "Black Lotus"
+		},
 		"animator:LimeBell":
 		{
 			"DESCRIPTION": "Convert up ** to !M! [Block] into [Temp HP]. || Reload: Gain !S! [B].",
@@ -206,6 +221,11 @@
 		{
 			"DESCRIPTION": "Trigger your first orb ** !M! time(s), then Evoke it. || <LIM>. When Drawn: ** Discard this and add ** {Bienfu} to your hand.",
 			"NAME": "Magilou"
+		},
+		"animator:Magilou_Bienfu":
+		{
+			"DESCRIPTION": "Unplayable. || When Drawn: Boost [I]. || When Discarded: Return ** this to your draw pile.",
+			"NAME": "Bienfu"
 		},
 		"animator:MamizouFutatsuiwa":
 		{
@@ -217,6 +237,11 @@
 		{
 			"DESCRIPTION": "<DRW-M>. ** Channel 1 [Fire]. || Add {Yusarin} to ** your discard pile.",
 			"NAME": "Misa Kurobane"
+		},
+		"animator:MisaKurobane_Yusarin":
+		{
+			"DESCRIPTION": "Motivate !M!.",
+			"NAME": "Yusarin"
 		},
 		"animator:MisakiNakahara":
 		{
@@ -435,6 +460,11 @@
 			"DESCRIPTION": "Cooldown !S! : Purge, then ** add {Excalibur} to your hand. || If this would enter your discard ** pile, move it to your draw pile. || Synergy: Reduce this card's ** Cooldown by an additional 2.",
 			"NAME": "Saber"
 		},
+		"animator:Saber_Excalibur":
+		{
+			"DESCRIPTION": "Gain 1 Intangible.",
+			"NAME": "Excalibur"
+		},
 		"animator:MatouSakura":
 		{
 			"DESCRIPTION": "90%Remove your strongest [Dark] ** to apply [Constricted] equal to half its ** damage. If you have no [Dark]: ** Channel 1 [Dark] and trigger its ** passive ability !M! times. || <LIM>. !A! <L>: Gain !S! [B].",
@@ -444,6 +474,11 @@
 		{
 			"DESCRIPTION": "Apply !M! [Poison] to ** a random enemy. || <slm>. On Synergy: ** Obtain {Command Spell}.",
 			"NAME": "Shinji Matou"
+		},
+		"animator:MatouShinji_CommandSpell":
+		{
+			"DESCRIPTION": "Lose 1 orb slot to ** Fetch a <R> or <G> card ** from your discard pile, ** give it + <S> scaling equal to ** its cost{+ +1} and Motivate it.",
+			"NAME": "Command Spell"
 		}
 	},
 
@@ -453,6 +488,11 @@
 		{
 			"DESCRIPTION": "{~Retain} [I]. If you have ** !M! or less [I]: Gain [I]. || When Exhausted, add ** {Armored Alphonse} ** to your discard pile.",
 			"NAME": "Alphonse Elric"
+		},
+		"animator:ElricAlphonse_Alt":
+		{
+			"DESCRIPTION": "Gain 1 orb slot. ** Channel !S! [Lightning]. || Synergy: Gain !M! [Plated Armor].",
+			"NAME": "Armored Alphonse"
 		},
 		"animator:ElricEdward":
 		{
@@ -577,6 +617,11 @@
 			"EXTENDED_DESCRIPTION": ["Once per turn: Pay [E] to add #b{0} #yImperial #yArchers to your draw pile. || Draw #b{1} less card(s) each turn. At the start of each turn: Give ALL <R> cards #yHaste."],
 			"NAME": "Molt Sol Augustus"
 		},
+		"animator:MoltSolAugustus_ImperialArchers":
+		{
+			"DESCRIPTION": "Gain !M! [Support Damage]. || When drawn: Deal !S! ** damage to a random ** enemy 3 times.",
+			"NAME": "Imperial Archers"
+		},
 		"animator:PinaCoLada":
 		{
 			"DESCRIPTION": "Unplayable unless you ** Synergized this turn. || The first {0-Cost} card ** you play each turn is ** played twice.",
@@ -662,7 +707,7 @@
 		},
 		"animator:Spearman":
 		{
-			"DESCRIPTION": "Boost [A] [F]. || Less than !A! <G>: Add ** a {~Wound} to the top ** of your draw pile.",
+			"DESCRIPTION": "Gain/Boost [A] [F]. || Less than !A! <G>: Add ** a {~Wound} to the top ** of your draw pile.",
 			"NAME": "Spearman"
 		},
 		"animator:SwordMaiden":
@@ -748,8 +793,13 @@
 		},
 		"animator:Emonzaemon":
 		{
-			"DESCRIPTION": "<LIM>. If this is your ** third attack in a row: ** Add {Entou Jyuu} to ** your draw pile.",
+			"DESCRIPTION": "<LIM>. If this is your ** third attack in a row: ** Add {Entou Jyuu}{++} to ** your draw pile.",
 			"NAME": "Emonzaemon"
+		},
+		"animator:Emonzaemon_EntouJyuu":
+		{
+			"DESCRIPTION": "Gain !M! [A]. || Whenever you deal ** unblocked damage: ** Apply 1 [Burning].",
+			"NAME": "Entou Jyuu"
 		},
 		"animator:HigakiRinne":
 		{
@@ -777,6 +827,11 @@
 		{
 			"DESCRIPTION": "Gain/Boost [F] [A]. || Add {Kyotouryuu} ** to your hand.",
 			"NAME": "Shichika"
+		},
+		"animator:Shichika_Kyotouryuu":
+		{
+			"DESCRIPTION": "Remove the ** enemy's [Block].",
+			"NAME": "Kyotouryuu"
 		},
 		"animator:Togame":
 		{
@@ -818,6 +873,12 @@
 		{
 			"DESCRIPTION": "Gain !M! [Plated Armor]. || The next time you take ** damage: Add {Adrenaline} ** to your draw pile.",
 			"NAME": "Darkness"
+		},
+		"animator:Darkness_Adrenaline":
+		{
+			"DESCRIPTION": "Gain [E]. ** <DRW-M>.",
+			"NAME": "Adrenaline",
+			"UPGRADE_DESCRIPTION": "Gain [E] [E]. ** <DRW-M>."
 		},
 		"animator:Eris":
 		{
@@ -943,6 +1004,26 @@
 			"DESCRIPTION": "X <W>: Deal !M!X ** additional damage. || When drawn: Choose 1 of 4 ** cards to add to your hand, ** you can only choose the ** same card once.",
 			"NAME": "Soujiro"
 		},
+		"animator:Soujiro_Isami":
+		{
+			"DESCRIPTION": "<ST>: Boost [A].",
+			"NAME": "Isami"
+		},
+		"animator:Soujiro_Kawara":
+		{
+			"DESCRIPTION": "If the enemy ** is attacking: Gain !M! ** additional [Block].",
+			"NAME": "Kawara"
+		},
+		"animator:Soujiro_Hisako":
+		{
+			"DESCRIPTION": "Evoke your first ** orb to Boost [I].",
+			"NAME": "Hisako"
+		},
+		"animator:Soujiro_Nazuna":
+		{
+			"DESCRIPTION": "Draw 1 less ** card next turn.",
+			"NAME": "Nazuna"
+		},
 		"animator:Tetora":
 		{
 			"DESCRIPTION": "Synergizes with {High ** Cost} cards. Requires ** !A! <W> to play. || Every third Synergy: ** Randomly gain [F], [A], [I].",
@@ -953,12 +1034,6 @@
 
 	"SERIES:MADOKAMAGICA":
 	{
-		"animator:Charlotte":
-		{
-			"DESCRIPTION": "Apply !M! [Vulnerable] to ** ALL characters. || Unplayable unless you ** played a [Grief Seed] this turn.",
-			"EXTENDED_DESCRIPTION": ["I have not played a Grief Seed this turn."],
-			"NAME": "Charlotte"
-		},
 		"animator:HomuraAkemi":
 		{
 			"DESCRIPTION": "Skip the next enemy turn. ** Draw !M! card(s) and gain [E] ** next turn. End your turn. || Add !S! random {Curses} to ** your discard pile.",
@@ -994,10 +1069,11 @@
 			"DESCRIPTION": "Randomly Gain/Boost ** [A], [I] or [B] !M! times. || When Exhausted: Add ** {Charlotte} and a [Grief Seed] to ** your discard pile.",
 			"NAME": "Nagisa Momoe"
 		},
-		"animator:Oktavia":
+		"animator:NagisaMomoe_Charlotte":
 		{
-			"DESCRIPTION": "Add !S! random {Curses} to ** your hand. Draw a card for ** each {Curse} in your hand. || Attacks once for each ** {Curse} in your hand.",
-			"NAME": "Oktavia"
+			"DESCRIPTION": "Apply !M! [Vulnerable] to ** ALL characters. || Unplayable unless you ** played a [Grief Seed] this turn.",
+			"EXTENDED_DESCRIPTION": ["I have not played a Grief Seed this turn."],
+			"NAME": "Charlotte"
 		},
 		"animator:OrikoMikuni":
 		{
@@ -1008,6 +1084,11 @@
 		{
 			"DESCRIPTION": "Channel 1 [Frost]. || Lose no [I] next turn. || Synergy with [Grief Seed]: Add ** {Oktavia} and a [Grief Seed] to your ** discard pile, then Exhaust.",
 			"NAME": "Sayaka Miki"
+		},
+		"animator:SayakaMiki_Oktavia":
+		{
+			"DESCRIPTION": "Add !S! random {Curses} to ** your hand. Draw a card for ** each {Curse} in your hand. || Attacks once for each ** {Curse} in your hand.",
+			"NAME": "Oktavia"
 		},
 		"animator:SuzuneAmano":
 		{
@@ -1034,6 +1115,11 @@
 		{
 			"DESCRIPTION": "Draw 2 cards. Next turn, ** draw !M! additional card(s). || <LIM>. !A! <B> and <D>: Add ** a {Scheme} to your hand.",
 			"NAME": "Kurami"
+		},
+		"animator:ChlammyZell_Scheme":
+		{
+			"DESCRIPTION": "Whenever you play ** alternating card types ** this turn: Cycle 1 card ** and deal !M! damage to ** ALL enemies.",
+			"NAME": "Scheme"
 		},
 		"animator:DolaCouronne":
 		{
@@ -1115,6 +1201,21 @@
 			"DESCRIPTION": "Add 3 {Attacks} to ** your hand and ** Retain them.",
 			"NAME": "Melzalgald",
 			"UPGRADE_DESCRIPTION": "Add 3 Upgraded ** {Attacks} to your hand ** and Retain them."
+		},
+		"animator:Melzalgald_1":
+		{
+			"DESCRIPTION": "Gain !M! [F].",
+			"NAME": "Melzalgald"
+		},
+		"animator:Melzalgald_2":
+		{
+			"DESCRIPTION": "Gain !M! [I].",
+			"NAME": "Melzalgald"
+		},
+		"animator:Melzalgald_3":
+		{
+			"DESCRIPTION": "Gain !M! [A].",
+			"NAME": "Melzalgald"
 		},
 		"animator:MetalKnight":
 		{
@@ -1263,6 +1364,11 @@
 		{
 			"DESCRIPTION": "<DRW>. || When Exhausted: ** Add {Asuramaru} to ** your discard pile.",
 			"NAME": "Yuuichirou"
+		},
+		"animator:Yuuichirou_Asuramaru":
+		{
+			"DESCRIPTION": "Gain !M! [F] [A] [I]. ** Gain 2 {Demon Form}. ** Add 2 {Wounds} to ** your hand.",
+			"NAME": "Asuramaru"
 		}
 	},
 
@@ -1318,6 +1424,11 @@
 			"DESCRIPTION": "For !M! turns, whenever ** you deal unblocked {Attack} ** damage: Apply 2 [Burning]. || If you have 1 [Fire] and !S! [C]: ** Exhaust, then obtain {Ifrit}.",
 			"NAME": "Shizu"
 		},
+		"animator:Shizu_Ifrit":
+		{
+			"DESCRIPTION": "Gain 2 {Demon Form}. || Increase the ** damage bonus of [Burning] ** by !M!% this combat.",
+			"NAME": "Ifrit"
+		},
 		"animator:Shuna":
 		{
 			"DESCRIPTION": "Gain 1 [B]. ** <DRW-M>. || When Drawn: ** Gain !S! [Temp HP].",
@@ -1333,10 +1444,16 @@
 			"DESCRIPTION": "Retain [I]. || Research an {Elixir} ** for the next !M! turns. || !A! <B>: Upgrade it.",
 			"EXTENDED_DESCRIPTION": ["Researching #yElixir. #b{0} turn(s) left."],
 			"NAME": "Vesta"
+		},
+		"animator:Vesta_Elixir":
+		{
+			"DESCRIPTION": "Choose and combine ** up to 3 effects.",
+			"EXTENDED_DESCRIPTION": ["Takes 1 less turn ** to complete."],
+			"NAME": "Elixir"
 		}
 	},
 	
-	"AURA":
+	"ENCHANTMENTS":
 	{
 		"animator:Enchantment1":
 		{
@@ -1408,47 +1525,6 @@
 			"NAME": "Affinity Token"
 		},
 		
-		"animator:Asuramaru":
-		{
-			"DESCRIPTION": "Gain !M! [F] [A] [I]. ** Gain 2 {Demon Form}. ** Add 2 {Wounds} to ** your hand.",
-			"NAME": "Asuramaru"
-		},
-		"animator:Bienfu":
-		{
-			"DESCRIPTION": "Unplayable. || When Drawn: Boost [I]. || When Discarded: Return ** this to your draw pile.",
-			"NAME": "Bienfu"
-		},
-		"animator:BlackLotus":
-		{
-			"DESCRIPTION": "{~Retain} [F] [A]. || <FS>: Gain !M! [Metallicize]. || <AS>: Gain !S! [Blur].",
-			"NAME": "Black Lotus"
-		},
-		"animator:ChlammyZell_Scheme":
-		{
-			"DESCRIPTION": "Whenever you play ** alternating card types ** this turn: Cycle 1 card ** and deal !M! damage to ** ALL enemies.",
-			"NAME": "Scheme"
-		},
-		"animator:Darkness_Adrenaline":
-		{
-			"DESCRIPTION": "Gain [E]. ** <DRW-M>.",
-			"NAME": "Adrenaline",
-			"UPGRADE_DESCRIPTION": "Gain [E] [E]. ** <DRW-M>."
-		},
-		"animator:ElricAlphonse_Alt":
-		{
-			"DESCRIPTION": "Gain 1 orb slot. ** Channel !S! [Lightning]. || Synergy: Gain !M! [Plated Armor].",
-			"NAME": "Armored Alphonse"
-		},
-		"animator:EntouJyuu":
-		{
-			"DESCRIPTION": "Gain !M! [A]. || Whenever you deal ** unblocked damage: ** Apply 1 [Burning].",
-			"NAME": "Entou Jyuu"
-		},
-		"animator:Excalibur":
-		{
-			"DESCRIPTION": "Gain 1 Intangible.",
-			"NAME": "Excalibur"
-		},
 		"animator:GiftBox":
 		{
 			"DESCRIPTION": "Discard all cards. ** Add !M! random card(s) ** to your hand. || When Exhausted: Add ** !S! random cards ** to your draw pile.",
@@ -1464,31 +1540,6 @@
 		{
 			"DESCRIPTION": "Gain {+[E] }[E].",
 			"NAME": "Miracle"
-		},
-		"animator:IchigoBankai":
-		{
-			"DESCRIPTION": "This card's damage ** is multiplied by X",
-			"NAME": "Ichigo Bankai"
-		},
-		"animator:ImperialArchers":
-		{
-			"DESCRIPTION": "Gain !M! [Support Damage]. || When drawn: Deal !S! ** damage to a random ** enemy 3 times.",
-			"NAME": "Imperial Archers"
-		},
-		"animator:Melzalgald_1":
-		{
-			"DESCRIPTION": "Gain !M! [F].",
-			"NAME": "Melzalgald"
-		},
-		"animator:Melzalgald_2":
-		{
-			"DESCRIPTION": "Gain !M! [I].",
-			"NAME": "Melzalgald"
-		},
-		"animator:Melzalgald_3":
-		{
-			"DESCRIPTION": "Gain !M! [A].",
-			"NAME": "Melzalgald"
 		},
 		"animator:OrbCore_Aether":
 		{
@@ -1530,62 +1581,11 @@
 			"DESCRIPTION": "Delay certain ** doom by 1 turn.",
 			"NAME": "Respite"
 		},
-		"animator:Shichika_Kyotouryuu":
-		{
-			"DESCRIPTION": "Remove the ** enemy's [Block].",
-			"NAME": "Kyotouryuu"
-		},
-		"animator:MatouShinji_CommandSpell":
-		{
-			"DESCRIPTION": "Lose 1 orb slot to ** Fetch a <R> or <G> card ** from your discard pile, ** give it + <S> scaling equal to ** its cost{+ +1} and Motivate it.",
-			"NAME": "Command Spell"
-		},
-		"animator:Shizu_Ifrit":
-		{
-			"DESCRIPTION": "Gain 2 {Demon Form}. || Increase the ** damage bonus of [Burning] ** by !M!% this combat.",
-			"NAME": "Ifrit"
-		},
-		"animator:Soujiro_Isami":
-		{
-			"DESCRIPTION": "<ST>: Boost [A].",
-			"NAME": "Isami"
-		},
-		"animator:Soujiro_Kawara":
-		{
-			"DESCRIPTION": "If the enemy ** is attacking: Gain !M! ** additional [Block].",
-			"NAME": "Kawara"
-		},
-		"animator:Soujiro_Hisako":
-		{
-			"DESCRIPTION": "Evoke your first ** orb to Boost [I].",
-			"NAME": "Hisako"
-		},
-		"animator:Soujiro_Nazuna":
-		{
-			"DESCRIPTION": "Draw 1 less ** card next turn.",
-			"NAME": "Nazuna"
-		},
-		"animator:TanyaDegurechaff_Type95":
-		{
-			"DESCRIPTION": "Channel 1 [Plasma]. || When Discarded or ** Drawn: Decrease this ** card's cost by 1 ** until played.",
-			"NAME": "Type 95"
-		},
 		"animator:ThrowingKnife":
 		{
 			"DESCRIPTION": "{0} || When Discarded: ** Play this card on a ** random enemy.",
 			"EXTENDED_DESCRIPTION": ["Apply a Debuff.", "Apply !M! [Weak].", "Apply !M! [Vulnerable].", "Apply !S! [Poison]."],
 			"NAME": "Throwing-Knife"
-		},
-		"animator:Vesta_Elixir":
-		{
-			"DESCRIPTION": "Choose and combine ** up to 3 effects.",
-			"EXTENDED_DESCRIPTION": ["Takes 1 less turn ** to complete."],
-			"NAME": "Elixir"
-		},
-		"animator:Yusarin":
-		{
-			"DESCRIPTION": "Motivate !M!.",
-			"NAME": "Yusarin"
 		}
 	},
 
@@ -1642,7 +1642,7 @@
 	{
 		"animator:Azriel":
 		{
-			"DESCRIPTION": "Gain 2 Flight. || Whenever you apply ** a {Debuff}: Boost ** a random {<W> Power}.",
+			"DESCRIPTION": "Gain 2 Flight. || Whenever you apply ** a {Debuff}: Boost a ** random {<W> Power}.",
 			"NAME": "Azriel"
 		},
 		"animator:Chomusuke":
@@ -1725,7 +1725,7 @@
 		},
 		"animator:Truth":
 		{
-			"DESCRIPTION": "Gain !M! [F], [A], [I] and [E]. || If you have at least 3 ** unique orbs: Remove all your ** orbs. Otherwise choose and ** replace a card in your deck ** with a {~Wound}.",
+			"DESCRIPTION": "Gain !M! [F], [A], [I] and [E]. || If you have at least 3 ** unique orbs: Remove all your ** orbs. Otherwise choose and ** replace 1 card in your deck ** with 1 {~Crystallize}.",
 			"NAME": "Truth"
 		},
 		"animator:Veldora":

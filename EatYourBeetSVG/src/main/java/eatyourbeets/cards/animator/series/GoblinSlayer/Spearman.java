@@ -25,10 +25,9 @@ public class Spearman extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(10, 0);
-        SetUpgrade(3, 0);
+        Initialize(11, 0);
 
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Red(1, 1, 1);
         SetAffinity_Green(1);
 
         SetAffinityRequirement(Affinity.Green, 3);
@@ -38,8 +37,8 @@ public class Spearman extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetVFXColor(Color.LIGHT_GRAY).SetSoundPitch(0.75f, 0.85f);
-        GameActions.Bottom.GainAgility(1, true);
-        GameActions.Bottom.GainForce(1, true);
+        GameActions.Bottom.GainAgility(1, upgraded);
+        GameActions.Bottom.GainForce(1, upgraded);
     }
 
     @Override

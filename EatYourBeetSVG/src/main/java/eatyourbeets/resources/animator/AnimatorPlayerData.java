@@ -41,7 +41,7 @@ public class AnimatorPlayerData
 
         if (SelectedLoadout == null || SelectedLoadout.ID < 0)
         {
-            SelectedLoadout = GetBaseLoadout(CardSeries.Konosuba.ID);
+            SelectedLoadout = BaseLoadouts.get(0);
         }
 
         if (SpecialTrophies == null || SpecialTrophies.ID != 0)
@@ -94,7 +94,7 @@ public class AnimatorPlayerData
 
     public AnimatorLoadout GetLoadout(int id)
     {
-        AnimatorLoadout loadout = GetBaseLoadout(id);
+        final AnimatorLoadout loadout = GetBaseLoadout(id);
         if (loadout == null)
         {
             return GetBetaLoadout(id);

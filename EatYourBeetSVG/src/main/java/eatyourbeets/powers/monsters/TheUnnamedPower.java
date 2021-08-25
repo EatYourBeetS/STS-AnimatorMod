@@ -40,9 +40,11 @@ import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
-public class InfinitePower extends AnimatorPower implements OnBattleStartSubscriber, OnApplyPowerSubscriber, OnStartOfTurnPostDrawSubscriber
+public class TheUnnamedPower extends AnimatorPower implements OnBattleStartSubscriber, OnApplyPowerSubscriber, OnStartOfTurnPostDrawSubscriber
 {
-    public static final String POWER_ID = CreateFullID(InfinitePower.class);
+    public static final String POWER_ID = CreateFullID(TheUnnamedPower.class);
+    public static final int PHASE2_POWER_ASCENSION = 19;
+    public static final int PRIORITY = -2900;
 
     public boolean phase2 = false;
 
@@ -54,15 +56,13 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     private final CustomTimeMaze timeMaze;
     private final int maxCardsPerTurn;
 
-    //private boolean necronomicursed = false; Solved by not allowing deck shuffling more than twice per turn
-
     private boolean progressStunCounter = true;
     private int stunCounter = 0;
     private int playerIntangibleCounter = 0;
     private int intangibleThreshold = 2;
     private int maxStrengthThisTurn = 25;
 
-    public InfinitePower(TheUnnamed owner)
+    public TheUnnamedPower(TheUnnamed owner)
     {
         super(owner, POWER_ID);
 
@@ -70,7 +70,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         this.timeMaze = new CustomTimeMaze(maxCardsPerTurn);
         this.enchantedArmorPower = new EnchantedArmorPower(owner, 0, true);
         this.dialog = owner.data.strings.DIALOG;
-        this.priority = 100;
+        this.priority = PRIORITY;
 
         Initialize(-1);
     }
@@ -96,6 +96,12 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     }
 
     @Override
+    public void updateDescription()
+    {
+        description = FormatDescription(0);
+    }
+
+    @Override
     public void atEndOfTurn(boolean isPlayer)
     {
         super.atEndOfTurn(isPlayer);
@@ -112,42 +118,45 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
             GameActions.Bottom.Talk(owner, dialog[34], 1.5f, 2f);
         }
 
-        if (enchantedArmorPower.amount > 0)
+        GameActions.Bottom.Callback(() ->
         {
-            enchantedArmorPower.amount = Math.max(1, enchantedArmorPower.amount / 2);
-            enchantedArmorPower.stackPower(0); // Update Description
-        }
-
-        boolean found = false;
-        for (AbstractPower p : owner.powers)
-        {
-            if (p == enchantedArmorPower)
+            if (enchantedArmorPower.amount > 0)
             {
-                found = true;
-                break;
+                enchantedArmorPower.amount = Math.max(1, enchantedArmorPower.amount / 2);
+                enchantedArmorPower.stackPower(0); // Update Description
             }
-        }
 
-        if (!found)
-        {
-            GameActions.Bottom.RemovePower(owner, owner, EnchantedArmorPower.POWER_ID);
-            GameActions.Bottom.StackPower(owner, enchantedArmorPower)
-            .ShowEffect(false, true);
-        }
+            boolean found = false;
+            for (AbstractPower p : owner.powers)
+            {
+                if (p == enchantedArmorPower)
+                {
+                    found = true;
+                    break;
+                }
+            }
 
-        AbstractPower strengthPower = owner.getPower(StrengthPower.POWER_ID);
-        if (strengthPower != null && strengthPower.amount > 0)
-        {
-            strengthPower.amount = Math.max(1, strengthPower.amount / 2);
-            strengthPower.updateDescription();
-        }
+            if (!found)
+            {
+                GameActions.Bottom.RemovePower(owner, owner, EnchantedArmorPower.POWER_ID);
+                GameActions.Bottom.StackPower(owner, enchantedArmorPower)
+                .ShowEffect(false, true);
+            }
 
-        AbstractPower regenPower = owner.getPower(RegenPower.POWER_ID);
-        if (regenPower != null && regenPower.amount > 0)
-        {
-            regenPower.amount = Math.max(1, regenPower.amount / 2);
-            regenPower.updateDescription();
-        }
+            final AbstractPower strengthPower = owner.getPower(StrengthPower.POWER_ID);
+            if (strengthPower != null && strengthPower.amount > 0)
+            {
+                strengthPower.amount = Math.max(1, strengthPower.amount / 2);
+                strengthPower.updateDescription();
+            }
+
+            final AbstractPower regenPower = owner.getPower(RegenPower.POWER_ID);
+            if (regenPower != null && regenPower.amount > 0)
+            {
+                regenPower.amount = Math.max(1, regenPower.amount / 2);
+                regenPower.updateDescription();
+            }
+        });
     }
 
     @Override
@@ -393,6 +402,92 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         {
             GameActions.Top.Add(new KillCharacterAction(owner, player));
             GameActions.Top.Talk(owner, dialog[27], 3, 3);
+        }
+    }
+
+    public void BeginPhase2()
+    {
+        this.phase2 = true;
+
+        if (GameUtilities.GetAscensionLevel() >= PHASE2_POWER_ASCENSION)
+        {
+            GameActions.Bottom.ApplyPower(owner, new Phase2Power(owner)).ShowEffect(false, true);
+        }
+    }
+
+    public static class Phase2Power extends AnimatorPower
+    {
+        private AbstractCard lastCard;
+        private boolean reduceDamage;
+
+        public Phase2Power(AbstractCreature owner)
+        {
+            super(owner, POWER_ID);
+
+            this.ID += "Phase2";
+            this.name = FormatDescription(1, PHASE2_POWER_ASCENSION);
+            this.priority = PRIORITY + 1;
+
+            Initialize(-1);
+        }
+
+        @Override
+        public void updateDescription()
+        {
+            description = FormatDescription(2);
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
+        {
+            super.atEndOfTurn(isPlayer);
+            reduceDamage = false;
+            lastCard = null;
+
+            GameActions.Bottom.Callback(() ->
+            {
+                int debuffs = 0;
+                for (AbstractPower p : owner.powers)
+                {
+                    if (p.type == PowerType.DEBUFF)
+                    {
+                        GameActions.Bottom.ReducePower(p, 1);
+                        debuffs += 1;
+                    }
+                }
+
+                if (debuffs > 0)
+                {
+                    flashWithoutSound();
+                }
+            });
+        }
+
+        @Override
+        public float atDamageReceive(float damage, DamageInfo.DamageType damageType, AbstractCard card)
+        {
+            if (damageType == DamageInfo.DamageType.NORMAL && card == lastCard)
+            {
+                if (reduceDamage)
+                {
+                    return super.atDamageReceive(damage / 2f, damageType, card);
+                }
+                else
+                {
+                    reduceDamage = true;
+                }
+            }
+
+            return super.atDamageReceive(damage, damageType, card);
+        }
+
+        @Override
+        public void onUseCard(AbstractCard card, UseCardAction action)
+        {
+            super.onUseCard(card, action);
+
+            reduceDamage = false;
+            lastCard = card;
         }
     }
 }

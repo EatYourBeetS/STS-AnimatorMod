@@ -10,13 +10,13 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 
-public class Asuramaru extends AnimatorCard
+public class Yuuichirou_Asuramaru extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Asuramaru.class)
+    public static final EYBCardData DATA = Register(Yuuichirou_Asuramaru.class)
             .SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None)
             .SetSeries(Yuuichirou.DATA.Series);
 
-    public Asuramaru()
+    public Yuuichirou_Asuramaru()
     {
         super(DATA);
 

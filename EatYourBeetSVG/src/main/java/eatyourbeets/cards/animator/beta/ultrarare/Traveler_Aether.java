@@ -12,7 +12,6 @@ import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class Traveler_Aether extends AnimatorCard_UltraRare
 {
@@ -27,8 +26,8 @@ public class Traveler_Aether extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 2);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 3, 1);
+        SetUpgrade(0, 0, 1, 1);
         SetAffinity_Light(2);
         SetAffinity_Dark(1);
         SetAffinity_Green(1);
@@ -39,8 +38,9 @@ public class Traveler_Aether extends AnimatorCard_UltraRare
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.ChannelOrbs(Aether::new, 1).AddCallback(() -> {
+        GameActions.Bottom.ChannelOrbs(Aether::new, secondaryValue).AddCallback(() -> {
             int orbsInduced = 0;
+
             for (AbstractOrb orb : player.orbs) {
                 if (GameUtilities.IsCommonOrb(orb)) {
                     GameActions.Bottom.InduceOrb(orb.makeCopy());
@@ -49,10 +49,6 @@ public class Traveler_Aether extends AnimatorCard_UltraRare
                         break;
                     }
                 }
-            }
-            if (orbsInduced > 0) {
-                GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), secondaryValue * orbsInduced);
-                GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(), secondaryValue * orbsInduced);
             }
 
             if (GameUtilities.GetUniqueOrbsCount() >= UNIQUE_ORB_THRESHOLD && CombatStats.TryActivateSemiLimited(cardID)) {

@@ -257,13 +257,12 @@
 		},
 		"animator:RukiaBankai":
 		{
-			"DESCRIPTION": "Induce [Frost] X times. || <LIM>. If you have no [Frost], play {Sheer Cold}.",
-			"NAME": "Rukia Bankai",
-			"UPGRADED_DESCRIPTION": "Induce [Frost] X+1 times. || <LIM>. If you have no [Frost], play {Sheer Cold}."
+			"DESCRIPTION": "Evoke your first X [Frost] !M! times.",
+			"NAME": "Rukia Bankai"
 		},
 		"animator:RukiaKuchiki":
 		{
-			"DESCRIPTION": "<ST>: Induce [Frost]. || Apply !M! [Freezing]. If the target has at least !S! [Freezing]: Exhaust this card, then add {Rukia Bankai} to your draw pile.",
+			"DESCRIPTION": "<ST>: Channel !M! [Frost]. || !A! <G>: If you have no empty Orb Slots, Exhaust this card, add {Rukia Bankai} to your draw pile.",
 			"NAME": "Rukia Kuchiki"
 		},
 		"animator:SajinKomamura":
@@ -444,7 +443,7 @@
 		},
 		"animator:SheerCold":
 		{
-		  "DESCRIPTION": "Channel !M! [Frost]. [Frost] applies 1 [Freezing] to a random enemy when triggered ** and to ALL enemies twice when Evoked. || Increase the reduction bonus of [Freezing] by !S!% this combat.",
+		  "DESCRIPTION": "Channel !M! [Frost]. [Frost] applies 1 [Freezing] to a random enemy when triggered and to ALL enemies twice when Evoked. || Increase the reduction bonus of [Freezing] by !S!% this combat.",
 		  "NAME": "Sheer Cold"
 		},
 		"animator:Simon":
@@ -722,17 +721,17 @@
 		},
 		"animator:Traveler_Aether":
 		{
-		    "DESCRIPTION": "Channel [Aether]. {Induce} your first !M! {Common Orbs} and apply !S! [Burning] [Freezing] to ALL enemies for each. || <SLM>. If you have at least 3 unique Orbs, add {Wish} to your draw pile.",
+		    "DESCRIPTION": "Channel !S! [Aether]. {Evoke} your first !M! {Common Orbs} without removing them. || <SLM>. If you have at least 3 unique Orbs, add {Wish} to your draw pile.",
 		    "NAME": "Aether"
 		},
 		"animator:Traveler_Lumine":
         {
-        	"DESCRIPTION": "Add {Wish} and {Abyssal Void} to your draw pile. Next turn, trigger the last !M! Orbs Evoked this combat. || <SLM>. If you Synergized twice this turn, Gain/Boost [I] equal to <D>.",
+        	"DESCRIPTION": "Add {Wish} and {Abyssal Void} to your draw and discard piles. Next turn, trigger the last !M! Orbs Evoked this combat. || <SLM>. If you have exactly !S! debuffs, Gain/Boost [I] equal to <D>.",
         	"NAME": "Lumine"
         },
 		"animator:Traveler_Wish":
         {
-        	"DESCRIPTION": "At the end of your next 2 turns, apply !M! [Elemental Exposure] to ALL enemies. Increase this amount by !S! whenever you {Channel}, {Evoke}, or {Induce} an Orb.",
+        	"DESCRIPTION": "At the end of your next 2 turns, apply !M! [Elemental Exposure] to ALL enemies. Increase this amount by !S! whenever you {Channel} or {Evoke} an Orb.",
         	"NAME": "Wish"
         },
 		"animator:Venti":
@@ -801,7 +800,7 @@
 		},
 		"animator:Midou":
 		{
-			"DESCRIPTION": "{Induce} [Fire]. Add a {Burn} to your hand. || <LIM>. When Exhausted: Transform all {Burns} in play into {Searing Burn}.",
+			"DESCRIPTION": "{Channel} !M! [Fire]. Add a {Burn} to your hand. || <LIM>. When Exhausted: Transform all {Burns} in play into {Searing Burn}.",
 			"NAME": "Midou"
 		},
 		"animator:SakuraKashima":

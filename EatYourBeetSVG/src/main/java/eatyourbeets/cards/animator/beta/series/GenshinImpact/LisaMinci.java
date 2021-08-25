@@ -39,7 +39,7 @@ public class LisaMinci extends AnimatorCard {
                                 GameActions.Bottom.StackPower(new EnergizedPower(p, secondaryValue));
                                 break;
                             default:
-                                GameActions.Bottom.InduceOrbs(Lightning::new, 1);
+                                GameActions.Bottom.ChannelOrb(new Lightning());
                                 break;
                         }
                     }

@@ -23,6 +23,7 @@ import eatyourbeets.orbs.animator.Water;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOfTurnPostDrawSubscriber
 {
@@ -48,10 +49,12 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Top.Add(new VFXAction(new OfferingEffect(), Settings.FAST_MODE ? 0.1F : 0.5F));
+        GameActions.Bottom.MakeCardInDrawPile(new AbyssalVoid());
+        GameActions.Bottom.MakeCardInDrawPile(new Traveler_Wish());
         GameActions.Bottom.MakeCardInDiscardPile(new AbyssalVoid());
         GameActions.Bottom.MakeCardInDiscardPile(new Traveler_Wish());
 
-        if (CombatStats.SynergiesThisTurn().size() == secondaryValue && CombatStats.TryActivateSemiLimited(cardID)) {
+        if (GameUtilities.GetDebuffsCount(player.powers) == secondaryValue && CombatStats.TryActivateSemiLimited(cardID)) {
             GameActions.Bottom.GainIntellect(GetHandAffinity(Affinity.Dark), upgraded);
         }
 

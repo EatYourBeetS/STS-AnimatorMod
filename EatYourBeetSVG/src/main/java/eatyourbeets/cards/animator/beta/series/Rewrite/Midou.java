@@ -56,7 +56,7 @@ public class Midou extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
 
-        GameActions.Bottom.InduceOrbs(Fire::new, 1);
+        GameActions.Bottom.ChannelOrb(new Fire());
         GameActions.Bottom.MakeCardInHand(new Burn());
     }
 }

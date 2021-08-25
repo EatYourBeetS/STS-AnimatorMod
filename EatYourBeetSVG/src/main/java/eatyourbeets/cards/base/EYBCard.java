@@ -279,7 +279,8 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     public int GetHandAffinity(Affinity affinity, boolean ignoreSelf)
     {
-        return CombatStats.Affinities.GetHandAffinities(ignoreSelf ? this : null).GetLevel(affinity, false);
+        EYBCardAffinities handAffinities = CombatStats.Affinities.GetHandAffinities(ignoreSelf ? this : null);
+        return handAffinities != null ? handAffinities.GetLevel(affinity, false) : 0;
     }
 
     public boolean IsStarter()

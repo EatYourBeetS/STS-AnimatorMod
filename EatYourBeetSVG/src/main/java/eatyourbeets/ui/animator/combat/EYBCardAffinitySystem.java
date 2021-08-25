@@ -88,7 +88,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public EYBCardAffinities GetHandAffinities(AbstractCard ignored)
     {
-        return GetAffinities(player.hand.group, ignored).Add(BonusAffinities);
+        EYBCardAffinities handAffinities = player != null && player.hand != null ? GetAffinities( player.hand.group, ignored) : new EYBCardAffinities(null);
+        return handAffinities.Add(BonusAffinities);
     }
 
     public int GetHandAffinityLevel(Affinity affinity, AbstractCard ignored)

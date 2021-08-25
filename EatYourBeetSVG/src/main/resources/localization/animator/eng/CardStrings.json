@@ -526,7 +526,7 @@
 		},
 		"animator:KotoriItsuka":
 		{
-			"DESCRIPTION": "If this card attacks an enemy with [Freezing]: Deal !M! more damage and apply !S! [Vulnerable]. Otherwise, apply !S! [Burning].",
+			"DESCRIPTION": "If this card attacks an enemy with [Freezing]: Deal double damage, remove !M! [Freezing], and apply !M! [Vulnerable]. Otherwise, apply !S! [Burning].",
 			"NAME": "Kotori Itsuka"
 		},
 		"animator:KurumiTokisaki":

@@ -43,7 +43,7 @@ public class AnimatorConfig
         try
         {
             final String fileName = "TheAnimatorConfig" + (slot > 0 ? ("_" + slot) : "");
-            config = new SpireConfig("TheAnimator", fileName);
+            config = new SpireConfig("TheAnimator(Alt)", fileName);
             JUtils.LogInfo(this, "Loaded: " + fileName);
 
             Trophies.SetConfig(config);

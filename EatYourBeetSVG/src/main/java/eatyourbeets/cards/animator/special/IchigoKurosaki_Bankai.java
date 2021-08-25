@@ -1,32 +1,37 @@
 package eatyourbeets.cards.animator.special;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
+import eatyourbeets.cards.animator.beta.series.Bleach.IchigoKurosaki;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class IchigoBankai extends AnimatorCard
+public class IchigoKurosaki_Bankai extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(IchigoBankai.class).SetAttack(-1, CardRarity.SPECIAL, EYBAttackType.Ranged, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(IchigoKurosaki_Bankai.class)
+            .SetAttack(-1, CardRarity.SPECIAL, EYBAttackType.Ranged, EYBCardTarget.ALL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(IchigoKurosaki.DATA.Series);
 
-    public IchigoBankai()
+    public IchigoKurosaki_Bankai()
     {
         super(DATA);
 
         Initialize(8, 0);
         SetUpgrade(3, 0);
-        SetAffinity_Red(2, 0, 2);
-        SetAffinity_Green(1, 0, 1);
+
+        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Red(2, 0, 1);
 
         SetExhaust(true);
         SetMultiDamage(true);

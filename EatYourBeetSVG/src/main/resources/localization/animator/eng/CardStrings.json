@@ -222,6 +222,11 @@
 			"DESCRIPTION": "Gain [F] [A]. || If you reached !S! [F] this combat: Exhaust and add {Ichigo Bankai} to your draw pile.",
 			"NAME": "Ichigo Kurosaki"
 		},
+		"animator:IchigoKurosaki_Bankai":
+		{
+			"DESCRIPTION": "This card's damage ** is multiplied by X",
+			"NAME": "Ichigo Bankai"
+		},
 		"animator:IkkakuBankai":
 		{
 			"DESCRIPTION": "Discard up to !M! cards. Attack an extra time for each card discarded this way.",

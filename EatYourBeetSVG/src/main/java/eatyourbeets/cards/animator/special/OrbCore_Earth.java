@@ -1,36 +1,27 @@
 package eatyourbeets.cards.animator.special;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.powers.animator.OrbCore_EarthPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Earth extends OrbCore implements Hidden
 {
-    public static final EYBCardData DATA = Register(OrbCore_Earth.class)
-            .SetPower(0, CardRarity.SPECIAL)
+    public static final EYBCardData DATA = RegisterOrbCore(OrbCore_Earth.class, GR.Tooltips.Earth)
+            .SetPower(1, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS);
-
-    public static final int VALUE = 3;
 
     public OrbCore_Earth()
     {
-        super(DATA);
+        super(DATA, 3);
 
-        Initialize(0, 0, VALUE, 2);
-
-        SetAffinity_Red(1);
-
-        SetEvokeOrbCount(secondaryValue);
+        SetAffinity_Red(2);
+        SetAffinity_Green(2);
     }
 
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void ChannelOrb()
     {
-        GameActions.Bottom.ChannelOrbs(Earth::new, secondaryValue);
-        GameActions.Bottom.StackPower(new OrbCore_EarthPower(p, 1));
+        GameActions.Bottom.ChannelOrb(new Earth());
     }
 }

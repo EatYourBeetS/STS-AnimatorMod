@@ -9,16 +9,18 @@ import eatyourbeets.actions.orbs.RemoveOrb;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class MatouSakura extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MatouSakura.class)
-            .SetSkill(2, CardRarity.UNCOMMON)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 
@@ -35,6 +37,14 @@ public class MatouSakura extends AnimatorCard
         SetExhaust(true);
 
         SetAffinityRequirement(Affinity.Light, 5);
+    }
+
+    @Override
+    protected void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        SetAttackTarget(GameUtilities.HasOrb(Dark.ORB_ID) ? EYBCardTarget.Normal : EYBCardTarget.None);
     }
 
     @Override

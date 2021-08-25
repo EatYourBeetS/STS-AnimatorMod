@@ -7,18 +7,13 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 
-public class HinaKagiyama_Miracle extends AnimatorCard
+public class Miracle extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HinaKagiyama_Miracle.class)
+    public static final EYBCardData DATA = Register(Miracle.class)
             .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
-            .SetColor(CardColor.COLORLESS)
-            .SetSeries(HinaKagiyama.DATA.Series);
-    static
-    {
-        DATA.ImagePath = HinaKagiyama.DATA.ImagePath;
-    }
+            .SetColor(CardColor.COLORLESS);
 
-    public HinaKagiyama_Miracle()
+    public Miracle()
     {
         super(DATA);
 
@@ -34,6 +29,7 @@ public class HinaKagiyama_Miracle extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
+        GameActions.Bottom.GainBlessing(1, true);
         GameActions.Bottom.GainEnergy(magicNumber);
     }
 }

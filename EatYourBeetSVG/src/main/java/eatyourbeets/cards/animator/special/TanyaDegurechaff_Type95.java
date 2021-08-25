@@ -2,11 +2,11 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Plasma;
 import eatyourbeets.cards.animator.colorless.rare.TanyaDegurechaff;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.utilities.GameActions;
 
 public class TanyaDegurechaff_Type95 extends AnimatorCard
@@ -14,7 +14,8 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
     public static final EYBCardData DATA = Register(TanyaDegurechaff_Type95.class)
             .SetSkill(4, CardRarity.SPECIAL, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
-            .SetSeries(TanyaDegurechaff.DATA.Series);
+            .SetSeries(TanyaDegurechaff.DATA.Series)
+            .AddPreview(new OrbCore_Plasma(), false);
 
     public TanyaDegurechaff_Type95()
     {
@@ -24,6 +25,8 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
 
         SetAffinity_Dark(1);
         SetAffinity_Light(1);
+
+        SetExhaust(true);
     }
 
     @Override
@@ -45,19 +48,16 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
 
         if (cost > 0)
         {
-            GameActions.Bottom.ModifyAllInstances(uuid, c -> c.modifyCostForCombat(-1));
+            GameActions.Bottom.ModifyAllInstances(uuid, c -> CostModifiers.For(c).Add(cardID, -1));
         }
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.ChannelOrb(new Plasma());
-        GameActions.Bottom.ModifyAllInstances(uuid, c ->
-        {
-            c.isCostModified = c.isCostModifiedForTurn = false;
-            c.cost = c.costForTurn = 4;
-        });
+        GameActions.Bottom.PlayCard(new OrbCore_Plasma(), m)
+        .SetCurrentPosition(this.target_x, this.target_y);
+        GameActions.Bottom.ModifyAllInstances(uuid, c -> CostModifiers.For(c).Remove(cardID));
     }
 
     @Override

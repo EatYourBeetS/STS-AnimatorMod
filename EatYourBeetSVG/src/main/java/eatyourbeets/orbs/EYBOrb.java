@@ -118,7 +118,7 @@ public abstract class EYBOrb extends AbstractOrb implements OnStartOfTurnPostDra
 
     public void Passive()
     {
-        OrbFlareEffect2 effect = GetOrbFlareEffect();
+        final OrbFlareEffect2 effect = GetOrbFlareEffect();
         if (effect != null)
         {
             GameActions.Bottom.VFX(effect, Settings.FAST_MODE ? 0 : (0.6F / (float)AbstractDungeon.player.orbs.size()));

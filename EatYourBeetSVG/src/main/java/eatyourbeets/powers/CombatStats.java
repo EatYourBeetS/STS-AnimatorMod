@@ -89,6 +89,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     private static final ArrayList<AbstractOrb> orbsEvokedThisTurn = new ArrayList<>();
     private static final ArrayList<AbstractCard> synergiesThisCombat = new ArrayList<>();
     private static final ArrayList<AbstractCard> synergiesThisTurn = new ArrayList<>();
+    private static final ArrayList<UUID> unplayableCards = new ArrayList<>();
     private static GameActionManager.Phase currentPhase;
     private static int turnCount = 0;
     private static int cardsDrawnThisTurn = 0;
@@ -412,6 +413,11 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static boolean OnTryUsingCard(AbstractCard card, AbstractPlayer p, AbstractMonster m, boolean canPlay)
     {
+        if (unplayableCards.contains(card.uuid))
+        {
+            return false;
+        }
+
         for (OnTryUsingCardSubscriber s : onTryUsingCard.GetSubscribers())
         {
             canPlay &= s.OnTryUsingCard(card, p, m, canPlay);
@@ -527,6 +533,11 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static List<AbstractCard> SynergiesThisTurn()
     {
         return synergiesThisTurn;
+    }
+
+    public static List<UUID> UnplayableCards()
+    {
+        return unplayableCards;
     }
 
     public static int CardsDrawnThisTurn()
@@ -714,6 +725,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         cardsExhaustedThisTurn = 0;
         cardsDrawnThisTurn = 0;
         synergiesThisTurn.clear();
+        unplayableCards.clear();
         orbsEvokedThisTurn.clear();
         turnCount += 1;
 

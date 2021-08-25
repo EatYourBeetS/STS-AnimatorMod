@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.Elsword;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -26,8 +25,8 @@ public class Laby extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 36);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 2, 26);
+        SetUpgrade(0, 0, 0, 10);
 
         SetAffinity_Light(2);
         SetAffinity_Dark(2);
@@ -53,35 +52,16 @@ public class Laby extends AnimatorCard
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.StackPower(new EnchantedArmorPower(p, secondaryValue));
-        GameActions.Bottom.StackPower(new LabyPower(p, 1, upgraded));
+        GameActions.Bottom.StackPower(new LabyPower(p, 1));
     }
 
     public static class LabyPower extends AnimatorPower
     {
-        protected int upgradedAmount = 0;
-
-        public LabyPower(AbstractCreature owner, int amount, boolean upgraded)
+        public LabyPower(AbstractCreature owner, int amount)
         {
             super(owner, Laby.DATA);
 
-            if (upgraded)
-            {
-                this.upgradedAmount = amount;
-            }
-
             Initialize(amount);
-        }
-
-        @Override
-        public void OnSamePowerApplied(AbstractPower power)
-        {
-            this.upgradedAmount += ((LabyPower)power).upgradedAmount;
-        }
-
-        @Override
-        public void updateDescription()
-        {
-            this.description = FormatDescription(upgradedAmount > 0 ? 1 : 0, amount, upgradedAmount);
         }
 
         @Override
@@ -89,14 +69,8 @@ public class Laby extends AnimatorCard
         {
             super.atStartOfTurn();
 
-            GameActions.Bottom.ApplyConstricted(owner, owner, amount);
-
-            if (upgradedAmount > 0)
-            {
-                GameActions.Bottom.ApplyConstricted(TargetHelper.Enemies(), upgradedAmount)
-                .ShowEffect(false, true);
-            }
-
+            GameActions.Bottom.ApplyConstricted(TargetHelper.AllCharacters(), amount)
+            .ShowEffect(false, true);
             this.flashWithoutSound();
         }
     }

@@ -80,6 +80,10 @@
 	{
 		"cropPortrait": false
 	},
+	"animator:Miracle":
+	{
+		"cropPortrait": false
+	},
 	"animator:MisaKurobane":
 	{
 		"cropPortrait": false

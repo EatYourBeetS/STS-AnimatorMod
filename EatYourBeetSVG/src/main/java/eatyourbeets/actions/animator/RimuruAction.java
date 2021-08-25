@@ -74,6 +74,7 @@ public class RimuruAction extends EYBAction
             }
 
             rimuru.copy = newCopy;
+            rimuru.copy.uuid = rimuru.uuid;
 
             return true;
         }

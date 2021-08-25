@@ -1,37 +1,27 @@
 package eatyourbeets.cards.animator.special;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.animator.OrbCore_PlasmaPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Plasma extends OrbCore
 {
-    public static final EYBCardData DATA = Register(OrbCore_Plasma.class)
-            .SetPower(1, CardRarity.SPECIAL)
+    public static final EYBCardData DATA = RegisterOrbCore(OrbCore_Plasma.class, GR.Tooltips.Plasma)
+            .SetPower(2, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS);
-
-    public static final int VALUE = 3;
 
     public OrbCore_Plasma()
     {
-        super(DATA);
+        super(DATA, 5);
 
-        Initialize(0, 0, VALUE, 1);
-
-        SetAffinity_Red(1);
-        SetAffinity_Green(1);
-        SetAffinity_Light(1);
-
-        SetEvokeOrbCount(secondaryValue);
+        SetAffinity_Red(2);
+        SetAffinity_Green(2);
+        SetAffinity_Light(2);
     }
 
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void ChannelOrb()
     {
-        GameActions.Bottom.ChannelOrbs(Plasma::new, secondaryValue);
-        GameActions.Bottom.StackPower(new OrbCore_PlasmaPower(p, 1));
+        GameActions.Bottom.ChannelOrb(new Plasma());
     }
 }

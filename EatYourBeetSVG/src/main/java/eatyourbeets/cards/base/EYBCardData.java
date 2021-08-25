@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.RotatingList;
@@ -23,6 +24,7 @@ public class EYBCardData
     public final CardStrings Strings;
 
     public EYBCardMetadata Metadata;
+    public Object Shared;
     public String ImagePath;
     public String ID;
     public AbstractCard.CardType CardType;
@@ -88,7 +90,7 @@ public class EYBCardData
         return (EYBCard) (type.isAssignableFrom(Hidden.class) ? CreateNewInstance(upgraded) : CardLibrary.getCopy(ID, upgraded ? 1 : 0, 0));
     }
 
-    public EYBCardBase AddPreview(AbstractCard card, boolean showUpgrade)
+    public EYBCardData AddPreview(AbstractCard card, boolean showUpgrade)
     {
         if (card instanceof EYBCardBase)
         {
@@ -98,11 +100,11 @@ public class EYBCardData
         throw new RuntimeException("Only instances of EYBCardBase are supported for previews.");
     }
 
-    public EYBCardBase AddPreview(EYBCardBase card, boolean showUpgrade)
+    public EYBCardData AddPreview(EYBCardBase card, boolean showUpgrade)
     {
         previews.Add(new EYBCardPreview(card, showUpgrade));
 
-        return card;
+        return this;
     }
 
     public TextureAtlas.AtlasRegion GetCardIcon()
@@ -262,11 +264,29 @@ public class EYBCardData
         return this;
     }
 
+    public EYBCardData Edit(ActionT1<EYBCardData> data)
+    {
+        data.Invoke(this);
+
+        return this;
+    }
+
+    public EYBCardData SetSharedData(Object shared)
+    {
+        Shared = shared;
+
+        return this;
+    }
+
+    public <T> T GetSharedData()
+    {
+        return (T)Shared;
+    }
+
     public boolean IsNotSeen()
     {
         return UnlockTracker.isCardLocked(ID) || !UnlockTracker.isCardSeen(ID);
     }
-
 
     public void MarkSeen()
     {

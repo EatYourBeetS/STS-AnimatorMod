@@ -28,10 +28,8 @@ public class QuestionMarkAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        int index = player.hand.group.indexOf(questionMark);
-        questionMark.copy = GetRandomCard();
-        AnimatorCard copy = questionMark.copy;
-
+        final AnimatorCard copy = questionMark.copy = GetRandomCard();
+        final int index = player.hand.group.indexOf(questionMark);
         if (copy != null && index >= 0)
         {
             copy.affinities.Set(Affinity.Star, 2);
@@ -46,6 +44,7 @@ public class QuestionMarkAction extends EYBAction
             copy.current_y = questionMark.current_y;
             copy.target_x = questionMark.target_x;
             copy.target_y = questionMark.target_y;
+            copy.uuid = questionMark.uuid;
 
             player.hand.group.remove(index);
             player.hand.group.add(index, copy);

@@ -229,6 +229,16 @@ public final class GameActions
         return StackPower(target, PowerHelper.Poison, amount);
     }
 
+    public ApplyPower ApplyLockOn(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new LockOnPower(target, amount));
+    }
+
+    public ApplyPowerAuto ApplyLockOn(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.LockOn, amount);
+    }
+
     public ApplyPower ApplyPower(AbstractPower power)
     {
         return ApplyPower(power.owner, power.owner, power);

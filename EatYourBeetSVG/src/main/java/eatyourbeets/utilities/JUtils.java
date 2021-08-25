@@ -36,6 +36,14 @@ public class JUtils
         JUtils.LogInfo(JUtils.class, "Breakpoint Reached");
     }
 
+    public static <T> void ChangeIndex(T item, List<T> list, int index)
+    {
+        if (list.remove(item))
+        {
+            list.add(Math.max(0, Math.min(index, list.size())), item);
+        }
+    }
+
     public static <T> boolean All(Iterable<T> list, Predicate<T> predicate)
     {
         for (T t : list)

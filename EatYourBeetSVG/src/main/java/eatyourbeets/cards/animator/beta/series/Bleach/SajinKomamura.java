@@ -10,6 +10,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -43,6 +44,10 @@ public class SajinKomamura extends AnimatorCard
         else if (IntellectStance.IsActive())
         {
             GameActions.Bottom.GainIntellect(magicNumber);
+        }
+        else if (WillpowerStance.IsActive())
+        {
+            GameActions.Bottom.GainWillpower(magicNumber);
         }
         else
         {

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -44,7 +45,7 @@ public class NiaHonjou extends AnimatorCard
                 .SetFilter(this::WouldSynergize, false);
     }
 
-    public static class NiaHonjouPower extends AnimatorPower
+    public static class NiaHonjouPower extends AnimatorPower implements OnSynergySubscriber
     {
         public NiaHonjouPower(AbstractPlayer owner, int amount)
         {
@@ -53,6 +54,22 @@ public class NiaHonjou extends AnimatorCard
             this.amount = amount;
 
             updateDescription();
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onSynergy.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onSynergy.Unsubscribe(this);
         }
 
         @Override
@@ -80,7 +97,12 @@ public class NiaHonjou extends AnimatorCard
         {
             super.onAfterCardPlayed(usedCard);
 
-            GameActions.Bottom.GainBlock((CombatStats.SynergiesThisTurn().size() > 1) ? amount * 2 : amount);
+            GameActions.Bottom.GainBlock(amount);
+        }
+
+        @Override
+        public void OnSynergy(AbstractCard card) {
+            GameActions.Bottom.GainBlock(amount * 2);
         }
     }
 }

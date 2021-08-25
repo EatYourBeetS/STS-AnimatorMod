@@ -40,7 +40,7 @@ public class Chibimoth extends AnimatorCard
         }));
         group.addToBottom(CreateChoice(text[1], (c1, p1, m1) ->
         {
-            GameActions.Bottom.GainForce(1, upgraded);
+            GameActions.Bottom.GainWillpower(1, upgraded);
             GameActions.Bottom.GainTemporaryHP(magicNumber);
         }));
 

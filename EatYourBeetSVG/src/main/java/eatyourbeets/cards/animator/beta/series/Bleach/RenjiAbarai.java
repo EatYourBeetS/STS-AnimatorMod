@@ -2,10 +2,7 @@ package eatyourbeets.cards.animator.beta.series.Bleach;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.AgilityStance;
@@ -23,12 +20,14 @@ public class RenjiAbarai extends AnimatorCard
         SetUpgrade(1, 0, -1);
 
         SetAffinity_Red(2, 0, 1);
+
+        SetAffinityRequirement(Affinity.Red, 3);
     }
 
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        if (HasSynergy())
+        if (CheckAffinity(Affinity.Red))
         {
             SetAttackType(EYBAttackType.Piercing);
         }

@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.beta.special;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.animator.TemporaryThousandCutsPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.GameActions;
@@ -39,6 +40,7 @@ public class TakashiNatsume_Circle extends AnimatorCard
     private static final AnimatorStrings.Actions ACTIONS = GR.Animator.Strings.Actions;
     private static final int DAMAGE_DECAY = 2;
     private static final int HEAL_NUTCRACKER = 5;
+    private static final int NORMALITY_HITS = 3;
     public static final EYBCardData DATA = Register(TakashiNatsume_Circle.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.NatsumeYuujinchou);
     private TakashiNatsume_Circle.Form currentForm = Form.None;
 
@@ -65,39 +67,50 @@ public class TakashiNatsume_Circle extends AnimatorCard
         currentForm = form;
         //TODO
         switch (form) {
+            case Curse_Delusion:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + DATA.Strings.EXTENDED_DESCRIPTION[3], true);
+                break;
+            case Curse_Depression:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.Draw(secondaryValue, true), true);
+                break;
+            case Curse_Greed:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.Motivate(secondaryValue, true), true);
+                break;
+            case Curse_GriefSeed:
+            case Decay:
+                baseDamage = DAMAGE_DECAY * secondaryValue;
+                SetAttackType(EYBAttackType.Elemental);
+                SetAttackTarget(EYBCardTarget.ALL);
+                this.type = CardType.ATTACK;
+                break;
             case Curse_Nutcracker:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.HealHP(HEAL_NUTCRACKER + magicNumber, true), true);
                 break;
             case Curse_JunTormented:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.ApplyToALL(secondaryValue, GR.Tooltips.Weak, true) + " NL  NL " + ACTIONS.ApplyToALL(magicNumber, GR.Tooltips.Frail, true), true);
                 break;
-            case Decay:
-            case Curse_GriefSeed:
-                baseDamage = DAMAGE_DECAY * magicNumber;
-                DATA.AttackType = EYBAttackType.Elemental;
-                DATA.CardTarget = EYBCardTarget.ALL;
-                break;
             case Doubt:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.ApplyToALL(secondaryValue, GR.Tooltips.Weak, true), true);
                 break;
             case Normality:
                 this.cost = 1;
-                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + JUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[2],secondaryValue), true);
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + JUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[0],NORMALITY_HITS), true);
                 break;
             case Pain:
-                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + JUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[0],secondaryValue), true);
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + JUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[2],secondaryValue), true);
                 break;
             case Regret:
                 baseDamage = magicNumber;
-                DATA.AttackType = EYBAttackType.Elemental;
-                DATA.CardTarget = EYBCardTarget.Random;
+                SetAttackType(EYBAttackType.Elemental);
+                SetAttackTarget(EYBCardTarget.Random);
+                this.type = CardType.ATTACK;
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + DATA.Strings.EXTENDED_DESCRIPTION[1], true);
                 break;
             case Shame:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.ApplyToALL(secondaryValue, GR.Tooltips.Frail, true), true);
                 break;
             default:
-                cardText.OverrideDescription(DATA.Strings.DESCRIPTION, true);
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.NextTurnDraw(secondaryValue, true), true);
         }
     }
 
@@ -114,7 +127,7 @@ public class TakashiNatsume_Circle extends AnimatorCard
         int[] damageMatrix;
         switch(currentForm) {
             case Curse_Delusion:
-                //GameActions.Bottom.ModifyTag(player.drawPile, 999, AUTOPLAY, false);
+                GameActions.Bottom.ModifyTag(player.drawPile, 999, AUTOPLAY, false);
                 break;
             case Curse_Depression:
                 GameActions.Bottom.Draw(secondaryValue);
@@ -138,16 +151,10 @@ public class TakashiNatsume_Circle extends AnimatorCard
                 GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), secondaryValue);
                 break;
             case Normality:
-                //    int i = 0;
-                //    for (AbstractMonster mo : GameUtilities.GetEnemies(true)) {
-                //        if (i >= 3) {
-                //            GameActions.Bottom.ApplyPower(player, new StunMonsterPower(mo, 1));
-                //        }
-                //        i++;
-                //    }
+                GameActions.Bottom.StackPower(player, new TakashiNatsumeCirclePower(player, NORMALITY_HITS));
                 break;
             case Pain:
-                GameActions.Bottom.StackPower(player, new TakashiNatsumeCirclePower(player, secondaryValue));
+                GameActions.Bottom.StackPower(player, new TemporaryThousandCutsPower(player, secondaryValue));
                 break;
             case Regret:
                 for (int i = 0; i < player.hand.size(); i++) {
@@ -158,6 +165,8 @@ public class TakashiNatsume_Circle extends AnimatorCard
                 GameActions.Bottom.ApplyFrail(TargetHelper.Enemies(), secondaryValue);
                 break;
             default:
+                GameActions.Bottom.DrawNextTurn(secondaryValue);
+                break;
         }
     }
 
@@ -171,13 +180,22 @@ public class TakashiNatsume_Circle extends AnimatorCard
             updateDescription();
         }
 
-        public void atEndOfRound() {
-            GameActions.Bottom.RemovePower(owner, owner, this);
+        @Override
+        public int onAttacked(DamageInfo info, int damageAmount)
+        {
+            if (this.amount > 0 && info.owner instanceof AbstractMonster && info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS)
+            {
+                GameActions.Top.ApplyPower(this.owner, new StunMonsterPower((AbstractMonster) info.owner, 1));
+                this.amount -= 1;
+                this.flash();
+            }
+
+            return super.onAttacked(info, damageAmount);
         }
 
-        public void onAfterCardPlayed(AbstractCard card) {
-            int[] damageMatrix = DamageInfo.createDamageMatrix(this.amount, true);
-            GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AttackEffects.SLASH_DIAGONAL);
+        @Override
+        public void atEndOfRound() {
+            GameActions.Bottom.RemovePower(owner, owner, this);
         }
 
         @Override

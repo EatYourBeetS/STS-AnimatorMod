@@ -22,7 +22,7 @@ public class InverseOrigami extends AnimatorCard
     public InverseOrigami() {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 3);
         SetAffinity_Blue(1, 1, 0);
         SetAffinity_Dark(1, 0, 0);
         SetAutoplay(true);
@@ -39,35 +39,33 @@ public class InverseOrigami extends AnimatorCard
     }
 
     public static class InverseOrigamiPower extends AnimatorClickablePower implements OnEvokeOrbSubscriber {
-        public static final int SUPPORT_DAMAGE_AMOUNT = 2;
+        public static final int REFRESH_TIMES = 2;
+        public static final int SUPPORT_DAMAGE_COST = 3;
 
         public InverseOrigamiPower(AbstractPlayer owner, int amount) {
-            super(owner, InverseOrigami.DATA, PowerTriggerConditionType.Special, SUPPORT_DAMAGE_AMOUNT);
+            super(owner, InverseOrigami.DATA, PowerTriggerConditionType.Special, SUPPORT_DAMAGE_COST);
             this.triggerCondition.SetCheckCondition((c) -> {
-                return GameUtilities.GetPowerAmount(player, SupportDamagePower.POWER_ID) >= SUPPORT_DAMAGE_AMOUNT;
+                return GameUtilities.GetPowerAmount(player, SupportDamagePower.POWER_ID) >= SUPPORT_DAMAGE_COST;
             })
                     .SetPayCost(a -> {
                         SupportDamagePower supportDamage = GameUtilities.GetPower(player, SupportDamagePower.class);
-                        supportDamage.ReducePower(a);
+                        if (supportDamage != null) {
+                            supportDamage.ReducePower(a);
+                        }
                     });
 
             Initialize(amount);
         }
 
-        public void atStartOfTurn() {
-            super.atStartOfTurn();
-
-            ResetAmount();
-        }
-
         @Override
         public String GetUpdatedDescription() {
-            return FormatDescription(0, amount, SUPPORT_DAMAGE_AMOUNT);
+            return FormatDescription(0, amount, SUPPORT_DAMAGE_COST);
         }
 
 
         @Override
         public void OnUse(AbstractMonster m) {
+            this.amount += REFRESH_TIMES;
             GameActions.Bottom.MakeCardInHand(JUtils.Random(OrbCore.GetAllCores()).makeCopy());
         }
 

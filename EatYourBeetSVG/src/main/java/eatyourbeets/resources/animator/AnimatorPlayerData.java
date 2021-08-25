@@ -225,7 +225,6 @@ public class AnimatorPlayerData
         //add.Invoke(new Loadout_MadokaMagica(), 7);
         //add.Invoke(new Loadout_LogHorizon(), 7);
         add.Invoke(new Loadout_GenshinImpact(), 7);
-        add.Invoke(new Loadout_DateALive(), 7);
 
         for (AnimatorLoadout loadout : BaseLoadouts)
         {
@@ -287,6 +286,7 @@ public class AnimatorPlayerData
         add.Invoke(new Loadout_TouhouProject(), 7);
         add.Invoke(new Loadout_RozenMaiden(), 7);
         add.Invoke(new Loadout_Bleach(), 7);
+        add.Invoke(new Loadout_DateALive(), 7);
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...

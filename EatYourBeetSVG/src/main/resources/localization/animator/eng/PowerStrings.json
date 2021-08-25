@@ -346,6 +346,11 @@
 	  ],
 	  "NAME": "Swordfish II"
 	},
+	"animator:TemporaryThousandCutsPower":
+    {
+        "DESCRIPTIONS": ["This turn, deal #b{0} damage to ALL enemies whenever you play a card."],
+        "NAME": "A Thousand Cuts"
+    },
 	"animator:TheUnnamedCultistPower":
 	{
 		"DESCRIPTIONS": ["While there are other allies alive, gains #b{0} Enchanted Armor for each."],

@@ -70,6 +70,9 @@ public class Ginko extends AnimatorCard
             GameUtilities.ModifyCostForCombat(v, 0, false);
             GameActions.Last.ReplaceCard(c.uuid, v);
         }
+        else if (c instanceof Frostbite) {
+            GameActions.Last.ReplaceCard(c.uuid, new Ginko_Frostbite());
+        }
         else if (c instanceof SearingBurn) {
             GameActions.Last.ReplaceCard(c.uuid, new Overheat());
         }

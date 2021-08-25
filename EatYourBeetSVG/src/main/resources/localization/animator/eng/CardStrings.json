@@ -137,11 +137,6 @@
 			"EXTENDED_DESCRIPTION": ["At the start of your turn, #yExhaust #b{0} card(s), then add a random card of the next rarity to your hand for each card #yExhausted."],
 			"NAME": "Chaa"
 		},
-		"animator:Defend_AngelBeats":
-		{
-			"DESCRIPTION": "<LIM>. Exhaust !M! card(s).",
-			"NAME": "Improved Defend"
-		},
 		"animator:EriShiina":
 		{
 			"DESCRIPTION": "When played from Afterlife, add !M! {Throwing-Knives} to your hand.",
@@ -178,10 +173,10 @@
 			"DESCRIPTION": "{Synergy}: Gain/Boost [F]. || When Discarded: Exhaust.",
 			"NAME": "Noda"
 		},
-		"animator:Strike_AngelBeats":
+		"animator:ShioriSekine":
 		{
-			"DESCRIPTION": "",
-			"NAME": "Improved Strike"
+			"DESCRIPTION": "Unplayable if you have not Exhausted a card this turn. Play a random {Afterlife} card in your exhaust pile and {Purge} it. || When Discarded, Gain/Boost [W].",
+			"NAME": "Shiori Sekine"
 		},
 		"animator:Yui":
 		{
@@ -217,11 +212,11 @@
 			"DESCRIPTION": "Choose whether to Attack or Block. || [F] or [A] Stance: Exit your Stance to Exhaust and add {Byakuya Bankai} to your draw pile.",
 			"NAME": "Byakuya Kuchiki"
 		},
-		"animator:Defend_Bleach":
-		{
-			"DESCRIPTION": "<LIM>. Discard !M! card(s) to Channel !S! [Fire].",
-			"NAME": "Improved Defend"
-		},
+		"animator:GinIchimaru":
+        {
+        	"DESCRIPTION": "Choose 1: ** Gain [F] equal to <R> + !M! ** or Gain [A] equal to <G> + !M!. || <LIM>. !A! <W>: Choose both.",
+        	"NAME": "Gin Ichimaru"
+        },
 		"animator:IchigoKurosaki":
 		{
 			"DESCRIPTION": "Gain [F] [A]. || If you reached !S! [F] this combat: Exhaust and add {Ichigo Bankai} to your draw pile.",
@@ -229,7 +224,7 @@
 		},
 		"animator:IkkakuBankai":
 		{
-			"DESCRIPTION": "Discard up to !M! cards.  Attack an extra time for each card discarded this way.",
+			"DESCRIPTION": "Discard up to !M! cards. Attack an extra time for each card discarded this way.",
 			"NAME": "Ikkaku Bankai"
 		},
 		"animator:IkkakuMadarame":
@@ -240,12 +235,12 @@
 		},
 		"animator:IsshinKurosaki":
 		{
-			"DESCRIPTION": "Choose 1: Apply !M! [Burning] to ALL enemies or Gain !S! [F]. || <LIM>. !A! <R> or Synergy: Activate this effect again.",
+			"DESCRIPTION": "Choose 1: Apply !M! [Burning] to ALL enemies or Gain !S! [F]. || !A! <R>: Activate this effect again.",
 			"NAME": "Isshin Kurosaki"
 		},
 		"animator:MayuriKurotsuchi":
 		{
-			"DESCRIPTION": "Apply !M! [Poison].  Apply additional [Poison] for each point of [F] and [A]. || If the target has at least 30 [Poison]: Apply !S! of a random {Common Debuff}.",
+			"DESCRIPTION": "Apply !M! [Poison]. Apply additional [Poison] for each point of [F] and [A]. || If the target has at least 30 [Poison]: Apply !S! of a random {Common Debuff}.",
 			"EXTENDED_DESCRIPTION": ["Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
 			"NAME": "Mayuri Kurotsuchi"
 		},
@@ -257,22 +252,23 @@
 		},
 		"animator:RenjiAbarai":
 		{
-			"DESCRIPTION": "Not in [A] Stance: Decrease this card's damage by !M! this combat. || Synergy: This card deals Piercing Damage.",
+			"DESCRIPTION": "Not in [A] Stance: Decrease this card's damage by !M! this combat. || !A! <R>: This card deals Piercing Damage.",
 			"NAME": "Renji Abarai"
 		},
 		"animator:RukiaBankai":
 		{
-			"DESCRIPTION": "Evoke your rightmost [Frost] !M! times.  Do this X times.",
-			"NAME": "Rukia Bankai"
+			"DESCRIPTION": "Induce [Frost] X times. || <LIM>. If you have no [Frost], play {Sheer Cold}.",
+			"NAME": "Rukia Bankai",
+			"UPGRADED_DESCRIPTION": "Induce [Frost] X+1 times. || <LIM>. If you have no [Frost], play {Sheer Cold}."
 		},
 		"animator:RukiaKuchiki":
 		{
-			"DESCRIPTION": "{Starter}: Induce [Frost]. || Apply !M! [Freezing]. || Synergy: If you have no empty Orb Slots, Exhaust this card, then add {Rukia Bankai} to your draw pile.",
+			"DESCRIPTION": "<ST>: Induce [Frost]. || Apply !M! [Freezing]. If the target has at least !S! [Freezing]: Exhaust this card, then add {Rukia Bankai} to your draw pile.",
 			"NAME": "Rukia Kuchiki"
 		},
 		"animator:SajinKomamura":
 		{
-			"DESCRIPTION": "Gain/Boost !M! [F], [A], or [I], depending on your Stance.  Otherwise, enter a random Stance. || <SLM>. Synergy: Gain !S! [Metallicize].",
+			"DESCRIPTION": "Gain/Boost !M! [F], [A], [I], or [W] depending on your Stance. Otherwise, enter a random Stance. || <SLM>. Synergy: Gain !S! [Metallicize].",
 			"NAME": "Sajin Komamura"
 		},
 		"animator:SosukeAizen":
@@ -281,11 +277,11 @@
 			"EXTENDED_DESCRIPTION": ["Whenever you take 0 attack damage this turn, deal #b{0} damage to the attacking enemy."],
 			"NAME": "Sosuke Aizen"
 		},
-		"animator:Strike_Bleach":
-		{
-			"DESCRIPTION": "If you have !M! or less [F]: Gain [F].",
-			"NAME": "Improved Strike"
-		},
+		"animator:ToushirouHitsugaya":
+        {
+            "DESCRIPTION": "Unplayable unless your discard pile has more cards than your draw pile. || Add !S! {Frostbite} to your draw pile.",
+            "NAME": "Toushirou Hitsugaya"
+        },
 		"animator:UryuuIshida":
 		{
 			"DESCRIPTION": "{Starter}: Transfer !M! [Weak] and !M! [Vulnerable] from you to the enemy. || When Discarded: Gain !S! [Support Damage].",
@@ -298,7 +294,7 @@
 		},
 		"animator:ZarakiKenpachi":
 		{
-			"DESCRIPTION": "Your [F] no longer decreases. You cannot gain [A] [I]. || Once per turn, if you break an enemy's [Block]: Gain !M! {Temp. [~Strength]}.",
+			"DESCRIPTION": "Your [F] no longer decreases. You cannot gain [A] [I] [W]. || Once per turn, if you break an enemy's [Block]: Gain !M! {Temp. [~Strength]}.",
 			"EXTENDED_DESCRIPTION": ["Your #yForce no longer decreases.  You cannot gain #yAgility nor #yIntellect.  Once per turn, if you break an enemy's #yBlock, gain #b{0} #yTemp. [~Strength]."],
 			"NAME": "Zaraki Kenpachi"
 		}
@@ -351,6 +347,11 @@
 		  "DESCRIPTION": "Reload: Increase this card's damage by !M! until played. Powers and Statuses trigger Reload twice and Exhaust. || Cooldown !S!: Enter <FS> and Exhaust.",
 		  "NAME": "Force Impulse Gundam"
 		},
+		"animator:Frostbite":
+		{
+		  "DESCRIPTION": "At the end of your turn, Gain !M! [Freezing]. || When Exhausted: ** Apply !S! [Freezing] to ALL enemies.",
+		  "NAME": "Frostbite"
+		},
 		"animator:GarbageDoll":
 		{
 		  "DESCRIPTION": "Purge a card in your Exhaust pile. Play a random card in your Discard Pile with any of the affinities of the Purged card. || <LIM>. If you would have Purged {Ushio}: Give it {Afterlife} instead.",
@@ -385,7 +386,7 @@
 		},
 		"animator:IppoMakunouchi":
         {
-            "DESCRIPTION": "Gain !S! [Vulnerable] and [Frail]. In !M! turns, attack at the start of your turn, ignoring Weak. If you receive unblocked attack damage, cancel this attack.",
+            "DESCRIPTION": "Gain !S! [Vulnerable] and [Frail]. In !M! turns, attack at the start of your turn. If you receive unblocked attack damage, cancel this attack.",
             "NAME": "Ruchia"
         },
 		"animator:Kirby":
@@ -396,7 +397,7 @@
 		},
 		"animator:Luka":
 		{
-		  "DESCRIPTION": "Affinity power gains from Synergies are doubled this combat.",
+		  "DESCRIPTION": "Give {Harmonic} to a series card in your hand.",
 		  "NAME": "Luka"
 		},
 		"animator:Megunee":
@@ -443,7 +444,7 @@
 		},
 		"animator:SheerCold":
 		{
-		  "DESCRIPTION": "[Frost] applies !M! [Freezing] to a random enemy when triggered ** and to ALL enemies twice when Evoked. || Increase the reduction bonus of [Freezing] by !S!% this combat.",
+		  "DESCRIPTION": "Channel !M! [Frost]. [Frost] applies 1 [Freezing] to a random enemy when triggered ** and to ALL enemies twice when Evoked. || Increase the reduction bonus of [Freezing] by !S!% this combat.",
 		  "NAME": "Sheer Cold"
 		},
 		"animator:Simon":
@@ -471,7 +472,7 @@
 		"animator:TakashiNatsume_Circle":
         {
           "DESCRIPTION": "Played at the end of turn.",
-          "EXTENDED_DESCRIPTION": ["This turn, deal #b{0} damage to ALL enemies whenever you play a card.","Attack an additional time for each card in your hand.","This turn, if you are attacked #b{0} times: Stun ALL enemies.","Remove {Autoplay} from ALL cards in your draw pile."],
+          "EXTENDED_DESCRIPTION": ["This turn: Stun the next #b{0} enemies that attack you.","Attack an additional time for each card in your hand.","This turn, deal #b{0} damage to ALL enemies whenever you play a card.","Remove {Autoplay} from ALL cards in your draw pile.","Remove {Autoplay} from ALL cards in your draw pile.","Move ALL copies of {Takashi Natsume} to your draw pile and give them {Afterlife}."],
           "NAME": "Youkai Circle"
         		},
 		"animator:TomoyaOkazaki":
@@ -510,18 +511,18 @@
 		},
 		"animator:InverseOrigami":
 		{
-			"DESCRIPTION": "The first time you Evoke an Orb each turn, activate your [Support Damage]. || Once per turn: Lose !M! [Support Damage] to add a random {Orb Core} to your hand.",
-			"EXTENDED_DESCRIPTION": ["The next #b{0} Orb(s) Evoked this turn activate your #ySupport #yDamage. Once per turn: Lose 2 #ySupport #yDamage to add a random #yOrb #yCore to your hand."],
+			"DESCRIPTION": "The next !M! Orbs Evoked activate your [Support Damage]. || Pay !S! [Support Damage] to add a random {Orb Core} to your hand and increase this power's duration by 1.",
+			"EXTENDED_DESCRIPTION": ["The next #b{0} Orb(s) Evoked activate your #ySupport #yDamage. Pay 2 #ySupport #yDamage to add a random #yOrb #yCore to your hand and increase this power's duration by 1."],
 			"NAME": "Inverse Origami"
 		},
 		"animator:InverseTohka":
 		{
-			"DESCRIPTION": "When Drawn: Spend [E] to Enter or Re-Enter <FS>. || Discard any number of 1-Cost cards. Attack an additional time for each card discarded.",
+			"DESCRIPTION": "When Drawn: Spend [E] to Enter or Re-Enter <FS>. || Deals !M! more damage for every Synergy made this combat.",
 			"NAME": "Inverse Tohka"
 		},
 		"animator:KotoriItsuka":
 		{
-			"DESCRIPTION": "This card can only be played if you have more cards in your discard pile than your draw pile. || Add !S! {Burn} to your draw pile.",
+			"DESCRIPTION": "If this card attacks an enemy with [Freezing]: Deal !M! more damage and apply !S! [Vulnerable]. Otherwise, apply !S! [Burning].",
 			"NAME": "Kotori Itsuka"
 		},
 		"animator:KurumiTokisaki":
@@ -531,7 +532,7 @@
 		},
 		"animator:MikuIzayoi":
 		{
-			"DESCRIPTION": "Gain !S! [Inspiration]. If you have at least 3 interactable powers, repeat this effect. || <LIM>. Synergy: Give {Harmonic} to a random series card in your hand.",
+			"DESCRIPTION": "Gain !S! [Inspiration]. If you have at least 3 interactable powers, repeat this effect. || Synergy: {Motivate} !M!.",
 			"NAME": "Miku Izayoi"
 		},
 		"animator:MioTakamiya":
@@ -558,7 +559,7 @@
 		},
 		"animator:NiaHonjou":
 		{
-			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** [Block]. Gain double [Block] if you Synergized this turn. || When Discarded: Draw a random card that Synergizes with this card.",
+			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** [Block]. Gain triple [Block] if it Synergized. || When Discarded: Draw a random card that Synergizes with this card.",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a card this turn, gain #b{0} #yBlock."],
 			"NAME": "Nia Honjou"
 		},
@@ -597,7 +598,7 @@
 		},
 		"animator:YamaiSisters":
 		{
-			"DESCRIPTION": "{Starter}: Add a copy of this card to your hand. || This card has [F] scaling against an enemy who intends to attack.",
+			"DESCRIPTION": "{Starter}: Add a copy of this card to your hand. || <SLM>. If you {Synergize} while this card is in your hand, increase this card's damage by !M! this combat.",
 			"NAME": "Yamai Sisters"
 		},
 		"animator:YoshinoHimekawa":
@@ -761,8 +762,8 @@
 		},
 		"animator:Chibimoth":
 		{
-			"DESCRIPTION": "Gain/Boost [F] and !M! [Temporary HP] ** or [A] and !S! [Blur]. || Synergy: Draw Kotori ** Kanbe from any pile.",
-			"EXTENDED_DESCRIPTION": ["Gain/Boost [A] and 1 Blur.", "Gain/Boost [F] and 2 Temporary HP"],
+			"DESCRIPTION": "Gain/Boost [W] and !M! [Temporary HP] ** or [A] and !S! [Blur]. || Synergy: Draw Kotori ** Kanbe from any pile.",
+			"EXTENDED_DESCRIPTION": ["Gain/Boost [A] and 1 Blur.", "Gain/Boost [W] and 2 Temporary HP"],
 			"NAME": "Chibimoth"
 		},
 		"animator:ChihayaOhtori":

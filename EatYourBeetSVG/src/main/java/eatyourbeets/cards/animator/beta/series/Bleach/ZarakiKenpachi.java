@@ -45,6 +45,7 @@ public class ZarakiKenpachi extends AnimatorCard
             CombatStats.Affinities.Force.Retain(-1, false);
             CombatStats.Affinities.Agility.SetEnabled(false);
             CombatStats.Affinities.Intellect.SetEnabled(false);
+            CombatStats.Affinities.Willpower.SetEnabled(false);
 
             CombatStats.onBlockBroken.Subscribe(this);
             CombatStats.onStartOfTurnPostDraw.Subscribe(this);
@@ -67,6 +68,7 @@ public class ZarakiKenpachi extends AnimatorCard
             CombatStats.Affinities.Force.Retain(0, false);
             CombatStats.Affinities.Agility.SetEnabled(true);
             CombatStats.Affinities.Intellect.SetEnabled(true);
+            CombatStats.Affinities.Willpower.SetEnabled(true);
 
             CombatStats.onBlockBroken.Unsubscribe(this);
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);

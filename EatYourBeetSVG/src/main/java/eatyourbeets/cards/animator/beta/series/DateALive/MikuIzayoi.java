@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.EYBClickablePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
@@ -49,8 +48,8 @@ public class MikuIzayoi extends AnimatorCard
             GameActions.Bottom.GainInspiration(secondaryValue);
         }
 
-        if (HasSynergy() && CombatStats.TryActivateLimited(cardID)) {
-            GameActions.Bottom.ModifyTag(player.hand, magicNumber, HARMONIC, true).SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).series != null);
+        if (HasSynergy()) {
+            GameActions.Bottom.Motivate(secondaryValue);
         }
     }
 }

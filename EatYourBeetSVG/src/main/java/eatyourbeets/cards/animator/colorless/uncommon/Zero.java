@@ -89,7 +89,7 @@ public class Zero extends AnimatorCard
         skillsCache.Clear();
         for (AbstractCard c : player.drawPile.group)
         {
-            if (c.type == CardType.SKILL)
+            if (c.type == CardType.SKILL && c.cardPlayable(target))
             {
                 skillsCache.Add(c);
             }

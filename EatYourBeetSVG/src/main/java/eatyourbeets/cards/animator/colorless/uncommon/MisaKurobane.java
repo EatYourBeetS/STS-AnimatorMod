@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator.colorless.uncommon;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.Yusarin;
+import eatyourbeets.cards.animator.special.MisaKurobane_Yusarin;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -18,7 +18,7 @@ public class MisaKurobane extends AnimatorCard
             .SetSeries(CardSeries.Charlotte);
     static
     {
-        DATA.AddPreview(new Yusarin(), false);
+        DATA.AddPreview(new MisaKurobane_Yusarin(), false);
     }
 
     public MisaKurobane()
@@ -39,6 +39,6 @@ public class MisaKurobane extends AnimatorCard
     {
         GameActions.Bottom.ChannelOrb(new Fire());
         GameActions.Bottom.Draw(magicNumber);
-        GameActions.Bottom.MakeCardInDiscardPile(new Yusarin());
+        GameActions.Bottom.MakeCardInDiscardPile(new MisaKurobane_Yusarin());
     }
 }

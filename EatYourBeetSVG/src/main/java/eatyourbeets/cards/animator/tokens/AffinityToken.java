@@ -74,8 +74,8 @@ public abstract class AffinityToken extends AnimatorCard
     {
         super(cardData);
 
-        Initialize(0, 4, 1, 4);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 2, 2, 4);
+        SetUpgrade(0, 3, 0, 0);
         InitializeAffinity(affinity, 2, 0, 0);
 
         this.affinity = affinity;

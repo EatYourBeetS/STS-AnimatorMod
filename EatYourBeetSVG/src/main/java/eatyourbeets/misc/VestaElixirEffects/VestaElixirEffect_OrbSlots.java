@@ -6,9 +6,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class VestaElixirEffect_OrbSlots extends VestaElixirEffect
 {
-    public VestaElixirEffect_OrbSlots()
+    public VestaElixirEffect_OrbSlots(boolean upgraded)
     {
-        super(3);
+        super(upgraded ? 4 : 3);
     }
 
     @Override

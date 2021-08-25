@@ -14,13 +14,13 @@ import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
-public class ImperialArchers extends AnimatorCard
+public class MoltSolAugustus_ImperialArchers extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ImperialArchers.class)
+    public static final EYBCardData DATA = Register(MoltSolAugustus_ImperialArchers.class)
             .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
             .SetSeries(MoltSolAugustus.DATA.Series);
 
-    public ImperialArchers()
+    public MoltSolAugustus_ImperialArchers()
     {
         super(DATA);
 

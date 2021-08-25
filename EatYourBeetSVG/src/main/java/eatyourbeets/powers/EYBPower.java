@@ -326,7 +326,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
     public IncreasePower IncreasePower(int amount)
     {
-        return GameActions.Bottom.IncreasePower(this, amount);
+        return (IncreasePower) GameActions.Bottom.IncreasePower(this, amount).SetDuration(0.05f, false);
     }
 
     public ReducePower ReducePower(int amount)

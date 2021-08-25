@@ -292,7 +292,6 @@ public class ParseGenericCommand extends ConsoleCommand
                     final StringBuilder sb = new StringBuilder();
                     for (AnimatorLoadout loadout : GR.Animator.Data.GetEveryLoadout())
                     {
-
                         sb.append("**").append(loadout.Name).append("**").append(" (LV1 / LV1+ / LV2)").append("\n");
                         final EYBCardAffinityStatistics stats = new AnimatorRuntimeLoadout(loadout).AffinityStatistics;
                         stats.RefreshStatistics(false, false);

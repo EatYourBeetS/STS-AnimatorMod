@@ -14,6 +14,7 @@ import eatyourbeets.ui.animator.combat.CombatHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.TargetHelper;
 
 import java.util.UUID;
 
@@ -37,7 +38,12 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
         if (multiplier > 0)
         {
             PLAYER_ATTACK_BONUS += multiplier;
-            GameUtilities.UpdatePowerDescriptions();
+
+            for (BurningPower p : GameUtilities.<BurningPower>GetPowers(TargetHelper.Enemies(), POWER_ID))
+            {
+                p.updateDescription();
+                p.flashWithoutSound();
+            }
         }
     }
 

@@ -2,20 +2,19 @@ package eatyourbeets.misc.VestaElixirEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.cards.animator.special.Vesta_Elixir;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class VestaElixirEffect_Energy extends VestaElixirEffect
 {
-    public VestaElixirEffect_Energy()
+    public VestaElixirEffect_Energy(boolean upgraded)
     {
-        super(2);
+        super(upgraded ? 3 : 2);
     }
 
     @Override
     public String GetDescription()
     {
-        return ACTIONS.GainAmount(amount, GR.Tooltips.Energy, true);
+        return ACTIONS.GainAmount(amount, "[E]", true);
     }
 
     @Override

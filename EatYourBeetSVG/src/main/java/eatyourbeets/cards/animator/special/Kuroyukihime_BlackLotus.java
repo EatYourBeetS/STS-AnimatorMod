@@ -12,14 +12,14 @@ import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
-public class BlackLotus extends AnimatorCard
+public class Kuroyukihime_BlackLotus extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(BlackLotus.class)
+    public static final EYBCardData DATA = Register(Kuroyukihime_BlackLotus.class)
             .SetAttack(1, CardRarity.SPECIAL, EYBAttackType.Ranged, EYBCardTarget.ALL)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(Kuroyukihime.DATA.Series);
 
-    public BlackLotus()
+    public Kuroyukihime_BlackLotus()
     {
         super(DATA);
 

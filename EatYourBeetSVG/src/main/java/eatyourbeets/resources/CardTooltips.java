@@ -29,6 +29,7 @@ public class CardTooltips
     public EYBCardTooltip Channel = FindByID("Channel").ShowText(false);
     public EYBCardTooltip Evoke = FindByID("Evoke").ShowText(false);
     public EYBCardTooltip Block = FindByID("Block").ShowText(false);
+    public EYBCardTooltip Health = FindByID("Health").ShowText(false);
     public EYBCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
     public EYBCardTooltip Stance = FindByID("Stance").ShowText(false);
     public EYBCardTooltip Void = FindByID("Void").ShowText(false);
@@ -202,6 +203,7 @@ public class CardTooltips
         Elemental.SetIcon(icons.Elemental.Texture(), 6);
         Piercing.SetIcon(icons.Piercing.Texture(), 6);
         TempHP.SetIcon(icons.TempHP.Texture(), 6);
+        Health.SetIcon(icons.HP.Texture(), 6);
         Block.SetIcon(icons.Block.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
 
         CommonImages.AffinityIcons affinities = GR.Common.Images.Affinities;

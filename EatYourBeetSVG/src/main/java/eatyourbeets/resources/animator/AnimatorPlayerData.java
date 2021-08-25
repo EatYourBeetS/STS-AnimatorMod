@@ -42,7 +42,7 @@ public class AnimatorPlayerData
 
         if (SelectedLoadout == null || SelectedLoadout.ID < 0)
         {
-            SelectedLoadout = GetBaseLoadout(CardSeries.Konosuba.ID);
+            SelectedLoadout = BaseLoadouts.get(0);
         }
 
         if (SpecialTrophies == null || SpecialTrophies.ID != 0)
@@ -95,7 +95,7 @@ public class AnimatorPlayerData
 
     public AnimatorLoadout GetLoadout(int id)
     {
-        AnimatorLoadout loadout = GetBaseLoadout(id);
+        final AnimatorLoadout loadout = GetBaseLoadout(id);
         if (loadout == null)
         {
             return GetBetaLoadout(id);
@@ -221,7 +221,7 @@ public class AnimatorPlayerData
         add.Invoke(new Loadout_Fate(), 5);
         //add.Invoke(new Loadout_HitsugiNoChaika(), 5);
         //add.Invoke(new Loadout_OnePunchMan(), 6);
-        //add.Invoke(new Loadout_TenseiSlime(), 6);
+        add.Invoke(new Loadout_TenseiSlime(), 6);
         //add.Invoke(new Loadout_MadokaMagica(), 7);
         //add.Invoke(new Loadout_LogHorizon(), 7);
         add.Invoke(new Loadout_GenshinImpact(), 7);
@@ -278,7 +278,6 @@ public class AnimatorPlayerData
         add.Invoke(new Loadout_Overlord(), 4);
         add.Invoke(new Loadout_HitsugiNoChaika(), 5);
         add.Invoke(new Loadout_OnePunchMan(), 6);
-        add.Invoke(new Loadout_TenseiSlime(), 6);
         add.Invoke(new Loadout_MadokaMagica(), 7);
         add.Invoke(new Loadout_LogHorizon(), 7);
         add.Invoke(new Loadout_Rewrite(), 7);

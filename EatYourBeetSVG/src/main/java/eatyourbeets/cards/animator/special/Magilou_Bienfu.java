@@ -8,14 +8,14 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 
-public class Bienfu extends AnimatorCard
+public class Magilou_Bienfu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Bienfu.class)
+    public static final EYBCardData DATA = Register(Magilou_Bienfu.class)
             .SetSkill(-2, CardRarity.SPECIAL, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(Magilou.DATA.Series);
 
-    public Bienfu()
+    public Magilou_Bienfu()
     {
         super(DATA);
 

@@ -62,11 +62,11 @@ public class SymbolToken extends CTToken
                 }
                 else if (next == ']')
                 {
-                    String key = builder.toString();
+                    final String key = builder.toString();
                     SymbolToken token = tokenCache.get(key);
                     if (token == null)
                     {
-                        EYBCardTooltip tooltip = CardTooltips.FindByID(key);
+                        final EYBCardTooltip tooltip = CardTooltips.FindByID(key);
                         if (tooltip != null)
                         {
                             token = new SymbolToken(tooltip);

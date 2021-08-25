@@ -1,23 +1,20 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.animator.special.Vesta_Elixir;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect_CompleteFaster;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffects;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 
 import java.util.ArrayList;
 
-public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
+public class Vesta extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Vesta.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
@@ -27,39 +24,43 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
         DATA.AddPreview(new Vesta_Elixir(), false);
     }
 
-    private int timer;
-    private Vesta_Elixir elixir;
-
     public Vesta()
     {
         super(DATA);
 
         Initialize(0, 0, 3);
-        SetUpgrade(0, 0, -1);
 
         SetAffinity_Blue(1);
         SetAffinity_Orange(1);
 
+        SetAffinityRequirement(Affinity.Blue, 3);
         SetExhaust(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetRetainOnce(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        VestaElixirEffects.BeginCreateElixir((Vesta) this.makeStatEquivalentCopy());
+        GameActions.Bottom.RetainPower(Affinity.Blue);
+
+        //TODO: This could all be done in VestaPower
+        VestaElixirEffects.BeginCreateElixir((Vesta) this.makeStatEquivalentCopy(), CheckAffinity(Affinity.Blue));
     }
 
     public void ResearchElixir(Vesta_Elixir elixir)
     {
-        this.elixir = elixir;
-        this.timer = magicNumber;
-
-        ArrayList<VestaElixirEffect> effects = new ArrayList<>();
+        int timer = magicNumber;
+        final ArrayList<VestaElixirEffect> effects = new ArrayList<>();
         for (VestaElixirEffect effect : elixir.effects)
         {
             if (effect instanceof VestaElixirEffect_CompleteFaster)
             {
-                this.timer -= 1;
+                timer -= 1;
             }
             else
             {
@@ -67,24 +68,45 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
             }
         }
 
-        this.elixir.ApplyEffects(effects);
-
-        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
+        elixir.ApplyEffects(effects);
+        GameActions.Bottom.StackPower(new VestaPower(player, elixir, timer));
     }
 
-    @Override
-    public void OnStartOfTurnPostDraw()
+    public static class VestaPower extends AnimatorPower
     {
-        if (timer > 0)
-        {
-            timer -= 1;
-        }
-        else
-        {
-            GameEffects.Queue.ShowCardBriefly(this);
-            GameActions.Bottom.MakeCardInHand(elixir);
+        private static int counter = 0;
+        private final Vesta_Elixir elixir;
 
-            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+        public VestaPower(AbstractCreature owner, Vesta_Elixir elixir, int amount)
+        {
+            super(owner, Vesta.DATA);
+
+            this.ID += (counter += 1);
+            this.elixir = elixir;
+
+            Initialize(amount, PowerType.BUFF, true);
+        }
+
+        @Override
+        public void atStartOfTurnPostDraw()
+        {
+            super.atStartOfTurnPostDraw();
+
+            GameActions.Bottom.ReducePower(this, 1);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            GameActions.Bottom.MakeCardInHand(elixir);
+        }
+
+        @Override
+        public AbstractPower makeCopy()
+        {
+            return new VestaPower(owner, elixir, amount);
         }
     }
 }

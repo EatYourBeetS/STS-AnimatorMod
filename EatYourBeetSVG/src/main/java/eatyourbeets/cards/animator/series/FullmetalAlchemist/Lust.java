@@ -73,7 +73,7 @@ public class Lust extends AnimatorCard
             GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
             .SetVFX(true, false)
             .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.Claw(enemy.hb, Color.WHITE, Color.VIOLET)
-                    .FlipX(flipVfx ^= true).SetScale(0.7f)).duration);
+                                      .FlipX(flipVfx ^= true).SetScale(0.7f)).duration);
         }
 
         if (gainTempHP)

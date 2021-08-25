@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator.colorless.uncommon;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.BlackLotus;
+import eatyourbeets.cards.animator.special.Kuroyukihime_BlackLotus;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 
@@ -14,7 +14,7 @@ public class Kuroyukihime extends AnimatorCard
             .SetSeries(CardSeries.AccelWorld);
     static
     {
-        DATA.AddPreview(new BlackLotus(), false);
+        DATA.AddPreview(new Kuroyukihime_BlackLotus(), false);
     }
 
     public Kuroyukihime()
@@ -37,7 +37,7 @@ public class Kuroyukihime extends AnimatorCard
         .AddCallback(() ->
         {
             GameActions.Bottom.Exhaust(this);
-            GameActions.Bottom.MakeCardInHand(new BlackLotus())
+            GameActions.Bottom.MakeCardInHand(new Kuroyukihime_BlackLotus())
             .SetUpgrade(CheckAffinity(Affinity.General), false);
         });
     }

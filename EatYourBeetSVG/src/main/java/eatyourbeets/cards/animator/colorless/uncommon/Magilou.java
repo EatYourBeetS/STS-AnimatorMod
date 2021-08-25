@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
-import eatyourbeets.cards.animator.special.Bienfu;
+import eatyourbeets.cards.animator.special.Magilou_Bienfu;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -23,7 +23,7 @@ public class Magilou extends AnimatorCard implements OnCardResetListener
             .SetSeries(CardSeries.TalesOfBerseria);
     static
     {
-        DATA.AddPreview(new Bienfu(), false);
+        DATA.AddPreview(new Magilou_Bienfu(), false);
     }
 
     public Magilou()
@@ -50,7 +50,7 @@ public class Magilou extends AnimatorCard implements OnCardResetListener
         if (CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Top.Discard(this, player.hand).ShowEffect(true, true)
-            .AddCallback(() -> GameActions.Top.MakeCardInHand(new Bienfu()))
+            .AddCallback(() -> GameActions.Top.MakeCardInHand(new Magilou_Bienfu()))
             .SetDuration(0.15f, true);
         }
         else

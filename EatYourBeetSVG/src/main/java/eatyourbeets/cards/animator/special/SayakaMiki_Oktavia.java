@@ -15,13 +15,13 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
-public class Oktavia extends AnimatorCard
+public class SayakaMiki_Oktavia extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Oktavia.class)
+    public static final EYBCardData DATA = Register(SayakaMiki_Oktavia.class)
             .SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Elemental, EYBCardTarget.ALL)
             .SetSeries(SayakaMiki.DATA.Series);
 
-    public Oktavia()
+    public SayakaMiki_Oktavia()
     {
         super(DATA);
 

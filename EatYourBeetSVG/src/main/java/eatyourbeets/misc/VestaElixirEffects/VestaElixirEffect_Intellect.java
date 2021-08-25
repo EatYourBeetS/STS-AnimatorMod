@@ -7,9 +7,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class VestaElixirEffect_Intellect extends VestaElixirEffect
 {
-    public VestaElixirEffect_Intellect()
+    public VestaElixirEffect_Intellect(boolean upgraded)
     {
-        super(3);
+        super(upgraded ? 4 : 3);
     }
 
     @Override

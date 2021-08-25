@@ -8,14 +8,14 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 
-public class Yusarin extends AnimatorCard
+public class MisaKurobane_Yusarin extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Yusarin.class)
+    public static final EYBCardData DATA = Register(MisaKurobane_Yusarin.class)
             .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(MisaKurobane.DATA.Series);
 
-    public Yusarin()
+    public MisaKurobane_Yusarin()
     {
         super(DATA);
 

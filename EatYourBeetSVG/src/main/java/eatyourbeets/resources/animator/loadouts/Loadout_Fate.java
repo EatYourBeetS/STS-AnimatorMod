@@ -17,10 +17,11 @@ public class Loadout_Fate extends AnimatorLoadout
     public void AddStarterCards()
     {
         AddStarterCard(Assassin.DATA, 4);
-        AddStarterCard(Alexander.DATA, 5);
         AddStarterCard(RinTohsaka.DATA, 5);
+        AddStarterCard(Alexander.DATA, 6);
         AddStarterCard(Lancer.DATA, 7);
-        AddStarterCard(Berserker.DATA, 9);
+        AddStarterCard(Rider.DATA, 8);
+        AddStarterCard(Berserker.DATA, 10);
         AddStarterCard(EmiyaShirou.DATA, 11);
     }
 

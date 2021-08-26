@@ -1,5 +1,10 @@
 
 {
+	"eyb:AgilityPower":
+	{
+		"DESCRIPTIONS": ["Lose #b1 [A] at the start of each turn.", " If you reach #b{0} [A], gain #b{1} [~Dexterity]."],
+		"NAME": "Agility"
+	},
 	"eyb:BalancePower":
 	{
 	  "DESCRIPTIONS": ["Reduce the effects of Frail, Vulnerable, and Weak on you by #b{0}%. Increase the effects of Frail, Vulnerable, and Weak on the enemy by #b{0}%"],
@@ -10,15 +15,35 @@
 	  "DESCRIPTIONS": ["Deal #b{0} less #yAttack damage."],
 	  "NAME": "Blinded"
 	},
+	"eyb:BlessingPower":
+	{
+		"DESCRIPTIONS": ["Lose #b1 [B] at the start of each turn.", " If you reach #b{0} [B], gain #b{1} [Vitality]."],
+		"NAME": "Blessing"
+	},
 	"eyb:BurningPower":
 	{
 		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Receive #b{1}% more #yAttack damage (min. #b1 additional damage)."],
 		"NAME": "Burning"
 	},
+	"eyb:CorruptionPower":
+	{
+		"DESCRIPTIONS": ["Lose #b1 [C] at the start of each turn.", " If you reach #b{0} [C], obtain {1}."],
+		"NAME": "Corruption"
+	},
+	"eyb:ExitStanceNextTurnPower":
+    {
+		"DESCRIPTIONS": ["Exit your current stance at the start of your next turn."],
+		"NAME": "Exit Stance Next Turn"
+    },
 	"eyb:FireElementPower":
 	{
 	  "DESCRIPTIONS": ["Immune to Burning. Freezing is twice as effective."],
 	  "NAME": "Fire Element"
+	},
+	"eyb:ForcePower":
+	{
+		"DESCRIPTIONS": ["Lose #b1 [F] at the start of each turn.", " If you reach #b{0} [F], gain #b{1} [~Strength]."],
+		"NAME": "Force"
 	},
 	"eyb:FreezingPower":
 	{
@@ -30,10 +55,20 @@
 		"DESCRIPTIONS": ["The next #b{0} time(s) you activate an interactable power, gain [E]."],
 		"NAME": "Inspiration"
 	},
+	"eyb:IntellectPower":
+	{
+		"DESCRIPTIONS": ["Lose #b1 [I] at the start of each turn.", " If you reach #b{0} [I], gain #b{1} [~Focus]."],
+		"NAME": "Intellect"
+	},
 	"eyb:IceElementPower":
 	{
 	  "DESCRIPTIONS": ["Immune to Freezing. Burning is twice as effective."],
 	  "NAME": "Fire Element"
+	},
+	"eyb:MarkedPower":
+	{
+		"DESCRIPTIONS": ["Take #b{0} additional damage on the next #yAttack."],
+		"NAME": "Marked"
 	},
 	"eyb:PoisonPlayerPower":
 	{
@@ -45,49 +80,19 @@
 		"DESCRIPTIONS": ["At the end of this turn, take #b{0} damage."],
 		"NAME": "Self Damage"
 	},
-	"eyb:MarkedPower":
+	"eyb:ShacklesPower":
 	{
-		"DESCRIPTIONS": ["Take #b{0} additional damage on the next #yAttack."],
-		"NAME": "Marked"
-	},
-	"eyb:ForcePower":
-	{
-		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, gain #b{2} #yStrength."],
-		"NAME": "Force"
-	},
-	"eyb:AgilityPower":
-	{
-		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, gain #b{2} #yDexterity."],
-		"NAME": "Agility"
-	},
-	"eyb:IntellectPower":
-	{
-		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, gain #b{2} #yFocus."],
-		"NAME": "Intellect"
-	},
-	"eyb:WillpowerPower":
-	{
-		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, gain #b{2} #yBalance."],
-		"NAME": "Willpower"
-	},
-	"eyb:BlessingPower":
-	{
-		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, gain #b{2} #yVitality."],
-		"NAME": "Blessing"
-	},
-	"eyb:CorruptionPower":
-	{
-		"DESCRIPTIONS": ["Lose #b1 #y{0} at the start of each turn.", " If you reach #b{1} #y{0}, obtain {2}."],
-		"NAME": "Corruption"
+		"DESCRIPTIONS": ["Lose #b{0} #yStrength until the end of this turn."],
+		"NAME": "Shackles"
 	},
 	"eyb:VitalityPower":
 	{
 		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yTemporary #yHP."],
 		"NAME": "Vitality"
 	},
-	"eyb:ExitStanceNextTurnPower":
-    {
-		"DESCRIPTIONS": ["Exit your current stance at the start of your next turn."],
-		"NAME": "Exit Stance Next Turn"
-    }
+	"eyb:WillpowerPower":
+	{
+		"DESCRIPTIONS": ["Lose #b1 [W] at the start of each turn.", " If you reach #b{0} [W], gain #b{1} [Balance]."],
+		"NAME": "Willpower"
+	}
 }

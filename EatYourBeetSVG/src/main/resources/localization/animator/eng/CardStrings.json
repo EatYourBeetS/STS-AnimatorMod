@@ -555,7 +555,7 @@
 		},
 		"animator:ReineMurasame":
 		{
-			"DESCRIPTION": "Add X copies of {Shido Itsuka} to your draw pile. {Motivate} them and reduce their [Block] by !M!. || Synergy: Draw X cards next turn.",
+			"DESCRIPTION": "Add X copies of {Shido Itsuka} to your draw pile. {Motivate} them and reduce ** their [Block] by !M!. || Synergy: Draw X cards next turn.",
 			"NAME": "Reine Murasame",
 		 	"UPGRADE_DESCRIPTION": "Add X Upgraded copies of {Shido Itsuka} to your draw pile. {Motivate} them and reduce their [Block] by !M!. || Synergy: Draw X cards next turn."
 		},

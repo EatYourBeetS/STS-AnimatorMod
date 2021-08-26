@@ -18,11 +18,12 @@ import eatyourbeets.utilities.JUtils;
 public class InverseOrigami extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(InverseOrigami.class).SetPower(2, CardRarity.SPECIAL).SetSeries(CardSeries.DateALive);
+    public static final int SUPPORT_DAMAGE_COST = 3;
 
     public InverseOrigami() {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 3, SUPPORT_DAMAGE_COST);
         SetAffinity_Blue(1, 1, 0);
         SetAffinity_Dark(1, 0, 0);
         SetAutoplay(true);
@@ -40,7 +41,6 @@ public class InverseOrigami extends AnimatorCard
 
     public static class InverseOrigamiPower extends AnimatorClickablePower implements OnEvokeOrbSubscriber {
         public static final int REFRESH_TIMES = 2;
-        public static final int SUPPORT_DAMAGE_COST = 3;
 
         public InverseOrigamiPower(AbstractPlayer owner, int amount) {
             super(owner, InverseOrigami.DATA, PowerTriggerConditionType.Special, SUPPORT_DAMAGE_COST);

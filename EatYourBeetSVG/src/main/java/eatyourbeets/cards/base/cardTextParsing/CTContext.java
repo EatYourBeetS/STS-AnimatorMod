@@ -90,7 +90,7 @@ public class CTContext
         {
             this.character = this.text.charAt(characterIndex);
 
-            // The order matters!
+            // The order matters
             if ((amount = VariableToken.TryAdd(this))    == 0 // !M!
             &&  (amount = SymbolToken.TryAdd(this))      == 0 // [E]
             &&  (amount = SpecialToken.TryAdd(this))     == 0 // {code}

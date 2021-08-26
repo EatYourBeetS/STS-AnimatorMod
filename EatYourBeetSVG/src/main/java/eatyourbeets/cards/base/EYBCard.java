@@ -62,9 +62,13 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     public static EYBCardData RegisterCardData(Class<? extends EYBCard> type, String cardID)
     {
-        EYBCardData cardData = new EYBCardData(type, cardID);
-        cardData.Metadata = GR.Animator.CardData.get(cardID);
-        staticCardData.put(cardID, cardData);
+        return RegisterCardData(new EYBCardData(type, cardID));
+    }
+
+    public static EYBCardData RegisterCardData(EYBCardData cardData)
+    {
+        cardData.Metadata = GR.Animator.CardData.get(cardData.ID);
+        staticCardData.put(cardData.ID, cardData);
         return cardData;
     }
 

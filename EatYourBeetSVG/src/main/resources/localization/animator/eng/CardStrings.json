@@ -1099,7 +1099,7 @@
 		},
 		"animator:TanyaDegurechaff_Type95":
 		{
-			"DESCRIPTION": "Channel 1 [Plasma]. || When Discarded or ** Drawn: Decrease this ** card's cost by 1 ** until played.",
+			"DESCRIPTION": "Play a {[Plasma] Core}. || When Drawn or ** Discarded: Decrease ** this card's cost by 1.",
 			"NAME": "Type 95"
 		}
 	},
@@ -1238,7 +1238,7 @@
 		},
 		"animator:Aisha":
 		{
-			"DESCRIPTION": "Deal !S! additional damage ** for each orb you have. || <LIM>. If you have 1 or ** more [Dark]: Gain {0} [I] [C].",
+			"DESCRIPTION": "<ST>. Trigger your ** first [Dark] to Boost [I] [C]. || Deal !S! additional ** damage for each ** orb you have.",
 			"NAME": "Aisha"
 		},
 		"animator:Ara":
@@ -1275,10 +1275,9 @@
 		},
 		"animator:Laby":
 		{
-			"DESCRIPTION": "Gain !S! [Enchanted Armor]. || At the start of each ** turn: Gain 1 [Constricted].",
-			"EXTENDED_DESCRIPTION": ["At the start of each turn, gain #b{0} #yConstricted.", "At the start of each turn, gain #b{0} #yConstricted and apply #b{1} #yConstricted to ALL enemies."],
-			"NAME": "Laby",
-			"UPGRADE_DESCRIPTION": "Gain !S! [Enchanted Armor]. || At the start of each ** turn: Apply 1 [Constricted] to ** ALL characters."
+			"DESCRIPTION": "Gain !S! [Enchanted Armor]. || At the start of each ** turn: Apply 1 [Constricted] to ** ALL characters.",
+			"EXTENDED_DESCRIPTION": ["At the start of each turn, apply #b{0} #yConstricted to ALL characters."],
+			"NAME": "Laby"
 		},
 		"animator:Lu":
 		{
@@ -1593,7 +1592,7 @@
 		},
 		"animator:HighElfArcher":
 		{
-			"DESCRIPTION": "{~Retain} [A]. If you have ** !M! or less [A]: Gain [A]. || <slm>. Synergy: ** <DRW>.",
+			"DESCRIPTION": "<DRW>, it becomes ** Unplayable this turn. || !A! <R>: Apply !M! [Poison]. || !A! <G>: Apply !S! [~Lock-On].",
 			"NAME": "High Elf Archer"
 		},
 		"animator:LizardPriest":
@@ -2441,24 +2440,31 @@
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you draw a curse this turn, draw #b{1} cards.", "Choose up to {0} card(s) to Purge."],
 			"NAME": "Hina Kagiyama"
 		},
-		"animator:HinaKagiyama_Miracle":
+		"animator:Miracle":
 		{
-		  "DESCRIPTION": "Gain !M! [E].",
-		  "NAME": "Miracle"
+			"DESCRIPTION": "Boost [B]. || Gain !M! [E].",
+			"NAME": "Miracle"
+		},
+
+		"animator:OrbCore":
+		{
+			"DESCRIPTION": "Channel 1 [{0}]. || Every !S! Synergies: Channel 1 [{0}] ** (Does not stack).",
+			"EXTENDED_DESCRIPTION": ["Every #b{0} #ySynergies, #yChannel #b1 {1}."],
+			"NAME": "Orb Core"
 		},
 		"animator:OrbCore_Aether":
 		{
-			"DESCRIPTION": "Channel !S! [Aether]. || On your second ** Synergy each turn: ** <DRW-M>, then ** discard 1 card.",
+			"DESCRIPTION": "DESCRIPTION",
 			"NAME": "Aether Core"
 		},
 		"animator:OrbCore_Chaos":
 		{
-			"DESCRIPTION": "Channel !S! [Chaos]. || On your second ** Synergy each turn: ** Choose 1 of 3 cards to ** obtain, it costs 1 less.",
+			"DESCRIPTION": "DESCRIPTION",
 			"NAME": "Chaos Core"
 		},
 		"animator:OrbCore_Dark":
 		{
-			"DESCRIPTION": "Channel !S! [Dark]. || On your second ** Synergy each turn: ** Apply !M! [Vulnerable] and !M! [Weak] to a random enemy.",
+			"DESCRIPTION": "DESCRIPTION",
 			"NAME": "Dark Core"
 		},
 		"animator:OrbCore_Earth":
@@ -2468,24 +2474,25 @@
 		},
 		"animator:OrbCore_Fire":
 		{
-			"DESCRIPTION": "Channel !S! [Fire]. || On your second ** Synergy each turn: ** Apply !M! [Burning] to ** ALL enemies.",
+			"DESCRIPTION": "DESCRIPTION",
 			"NAME": "Fire Core"
 		},
 		"animator:OrbCore_Frost":
 		{
-			"DESCRIPTION": "Channel !S! [Frost]. || On your second ** Synergy each turn: ** Gain !M! [Plated Armor].",
+			"DESCRIPTION": "DESCRIPTION",
 			"NAME": "Frost Core"
 		},
 		"animator:OrbCore_Lightning":
 		{
-			"DESCRIPTION": "Channel !S! [Lightning]. || On your second ** Synergy each turn: ** Deal !M! damage ** to ALL enemies.",
+			"DESCRIPTION": "DESCRIPTION",
 			"NAME": "Lightning Core"
 		},
 		"animator:OrbCore_Plasma":
 		{
-			"DESCRIPTION": "Channel !S! [Plasma]. || On your second ** Synergy each turn: ** Gain !M! [Temp HP].",
+			"DESCRIPTION": "DESCRIPTION",
 			"NAME": "Plasma Core"
 		},
+
 		"animator:Respite":
 		{
 			"DESCRIPTION": "Delay certain ** doom by 1 turn.",

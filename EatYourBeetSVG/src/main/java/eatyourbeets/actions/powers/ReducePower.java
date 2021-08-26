@@ -5,7 +5,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.powers.EYBPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 
 public class ReducePower extends EYBActionWithCallback<AbstractPower>
 {
@@ -54,7 +56,8 @@ public class ReducePower extends EYBActionWithCallback<AbstractPower>
             power.updateDescription();
             AbstractDungeon.onModifyPower();
 
-            if (power.amount == 0)
+            final EYBPower p = JUtils.SafeCast(power, EYBPower.class);
+            if (power.amount == 0 && (p == null || !p.canBeZero))
             {
                 GameActions.Top.RemovePower(source, target, power);
             }

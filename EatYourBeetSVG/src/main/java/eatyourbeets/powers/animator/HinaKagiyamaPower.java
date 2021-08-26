@@ -2,8 +2,8 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.cards.animator.beta.special.Miracle;
 import eatyourbeets.cards.animator.special.HinaKagiyama;
+import eatyourbeets.cards.animator.special.Miracle;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;

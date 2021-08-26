@@ -1,34 +1,25 @@
 package eatyourbeets.cards.animator.special;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.orbs.animator.Chaos;
-import eatyourbeets.powers.animator.OrbCore_ChaosPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Chaos extends OrbCore
 {
-    public static final EYBCardData DATA = Register(OrbCore_Chaos.class)
+    public static final EYBCardData DATA = RegisterOrbCore(OrbCore_Chaos.class, GR.Tooltips.Chaos)
             .SetPower(1, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS);
-    public static final int VALUE = 1;
 
     public OrbCore_Chaos()
     {
-        super(DATA);
-
-        Initialize(0, 0, VALUE, 1);
+        super(DATA, 3);
 
         SetAffinity_Star(2);
-
-        SetEvokeOrbCount(secondaryValue);
     }
 
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void ChannelOrb()
     {
-        GameActions.Bottom.ChannelOrbs(Chaos::new, secondaryValue);
-        GameActions.Bottom.StackPower(new OrbCore_ChaosPower(p, 1));
+        GameActions.Bottom.ChannelOrb(new Chaos());
     }
 }

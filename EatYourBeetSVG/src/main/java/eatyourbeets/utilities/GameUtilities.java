@@ -1386,6 +1386,16 @@ public class GameUtilities
         return card == null ? null : new Vector2(card.current_x, card.current_y);
     }
 
+    public static void SetUnplayableThisTurn(AbstractCard card)
+    {
+        CombatStats.UnplayableCards().add(card.uuid);
+    }
+
+    public static boolean IsUnplayableThisTurn(AbstractCard card)
+    {
+        return CombatStats.UnplayableCards().contains(card.uuid);
+    }
+
     public static boolean TrySetPosition(CardGroup group, AbstractCard card)
     {
         Vector2 pos = TryGetPosition(group, null);

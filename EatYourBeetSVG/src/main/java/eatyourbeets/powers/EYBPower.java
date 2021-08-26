@@ -44,6 +44,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     public TextureAtlas.AtlasRegion powerIcon;
     public AbstractCreature source;
     public boolean hideAmount = false;
+    public boolean canBeZero = false;
     public boolean enabled = true;
     public int maxAmount = 9999;
     public int baseAmount = 0;
@@ -115,7 +116,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
     protected void Initialize(int amount, PowerType type, boolean turnBased)
     {
-        this.baseAmount = this.amount = Mathf.Min(9999, amount);
+        this.baseAmount = this.amount = Mathf.Min(maxAmount, amount);
         this.type = type;
         this.isTurnBased = turnBased;
         updateDescription();
@@ -292,7 +293,12 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     @Override
     public void stackPower(int stackAmount)
     {
-        if ((baseAmount += stackAmount) > maxAmount)
+        stackPower(stackAmount, true);
+    }
+
+    public void stackPower(int stackAmount, boolean updateBaseAmount)
+    {
+        if (updateBaseAmount && (baseAmount += stackAmount) > maxAmount)
         {
             baseAmount = maxAmount;
         }
@@ -353,25 +359,23 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
     protected ColoredString GetPrimaryAmount(Color c)
     {
-        if (this.amount > 0)
+        if (canBeZero || amount != 0)
         {
-            if (this.isTurnBased)
+            if (isTurnBased || amount == 0)
             {
                 return new ColoredString(amount, Color.WHITE, c.a);
             }
-            else
+            else if (this.amount >= 0)
             {
                 return new ColoredString(amount, Color.GREEN, c.a);
             }
+            else if (this.canGoNegative)
+            {
+                return new ColoredString(amount, Color.RED, c.a);
+            }
         }
-        else if (this.amount < 0 && this.canGoNegative)
-        {
-            return new ColoredString(amount, Color.RED, c.a);
-        }
-        else
-        {
-            return null;
-        }
+
+        return null;
     }
 
     protected ColoredString GetSecondaryAmount(Color c)

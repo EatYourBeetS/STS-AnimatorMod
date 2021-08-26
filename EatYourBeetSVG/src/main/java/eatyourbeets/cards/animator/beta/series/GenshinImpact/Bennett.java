@@ -21,7 +21,7 @@ public class Bennett extends AnimatorCard {
         SetUpgrade(3, 0, 2);
         SetAffinity_Red(1, 0 ,0);
 
-        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Red, 3);
     }
 
     @Override

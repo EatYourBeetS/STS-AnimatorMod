@@ -19,7 +19,7 @@ public class InverseTohka extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(10, 0);
+        Initialize(10, 0, 1);
         SetUpgrade(3, 0);
         SetAffinity_Red(2, 0, 0);
         SetAffinity_Dark(1, 0, 0);
@@ -28,7 +28,7 @@ public class InverseTohka extends AnimatorCard
     @Override
     protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        return super.ModifyDamage(enemy, amount + CombatStats.SynergiesThisCombat().size());
+        return super.ModifyDamage(enemy, amount + CombatStats.SynergiesThisCombat().size() * magicNumber);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class KotoriItsuka extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0, 2, 1);
+        Initialize(8, 0, 4, 1);
         SetUpgrade(3, 0, 0);
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Orange(1, 0, 0);
@@ -41,7 +41,7 @@ public class KotoriItsuka extends AnimatorCard
             if (GameUtilities.GetPowerAmount(enemy, FreezingPower.POWER_ID) >= 1)
             {
                 GameActions.Bottom.ReducePower(player, enemy, FreezingPower.POWER_ID, magicNumber);
-                GameActions.Bottom.ApplyVulnerable(player, enemy, magicNumber);
+                GameActions.Bottom.ApplyVulnerable(player, enemy, secondaryValue);
             }
             else {
                 GameActions.Bottom.ApplyBurning(player, enemy, secondaryValue);

@@ -65,8 +65,8 @@ public class SwordMaiden extends AnimatorCard
                 power.reducePower(1);
                 GameActions.Bottom.GainBlessing(secondaryValue);
                 GameActions.Bottom.GainForce(secondaryValue);
-                GameActions.Bottom.GainAgility(secondaryValue);
                 GameActions.Bottom.GainIntellect(secondaryValue);
+                GameActions.Bottom.GainWillpower(secondaryValue);
             }
         });
     }

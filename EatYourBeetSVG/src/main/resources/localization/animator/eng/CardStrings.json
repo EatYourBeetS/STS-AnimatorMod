@@ -506,7 +506,7 @@
 		},
 		"animator:KotoriItsuka":
 		{
-			"DESCRIPTION": "If this card attacks an enemy with [Freezing]: Deal double damage, remove !M! [Freezing], and apply !M! [Vulnerable]. Otherwise, apply !S! [Burning].",
+			"DESCRIPTION": "If this card attacks an enemy with [Freezing]: Deal double damage, remove !M! [Freezing], and apply !S! [Vulnerable]. Otherwise, apply !S! [Burning].",
 			"NAME": "Kotori Itsuka"
 		},
 		"animator:KurumiTokisaki":
@@ -1489,7 +1489,7 @@
 		},
 		"animator:CatoElAltestan":
 		{
-			"DESCRIPTION": "!A! <B>: Apply !M! [Freezing] || !A! <R>: Apply !S! [Burning] || !A! <G>: Channel 1 [Aether] || Fetch 2 <B> cards and ** give them +1 [I] scaling.",
+			"DESCRIPTION": "!A! <B>: Apply !S! [Freezing] || !A! <R>: Apply !S! [Burning] || !A! <G>: Channel 1 [Aether] || Fetch 2 <B> cards and ** give them +1 [I] scaling.",
 			"NAME": "Cato El Altestan"
 		},
 		"animator:ItamiYouji":
@@ -1619,7 +1619,7 @@
 		},
 		"animator:SwordMaiden":
 		{
-			"DESCRIPTION": "Remove your ** rightmost {Debuff}. || Remove 1 [C] to gain ** !S! [B] [F] [A] [I].",
+			"DESCRIPTION": "Remove your ** rightmost {Debuff}. || Remove 1 [C] to gain ** !S! [B] [F] [I] [W].",
 			"NAME": "Sword Maiden"
 		},
 		"animator:Witch":

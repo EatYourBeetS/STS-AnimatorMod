@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
@@ -24,7 +24,7 @@ public class Shion extends AnimatorCard
         SetUpgrade(3, 0, 0);
 
         SetAffinity_Red(1, 1, 2);
-        SetAffinity_Light(1);
+        SetAffinity_Orange(1);
     }
 
     @Override

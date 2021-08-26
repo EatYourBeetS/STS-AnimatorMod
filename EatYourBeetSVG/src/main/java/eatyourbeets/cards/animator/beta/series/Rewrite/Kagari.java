@@ -56,7 +56,7 @@ public class Kagari extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount);
+            description = FormatDescription(0, amount, secondaryAmount);
         }
 
         @Override

@@ -42,6 +42,7 @@ public class Noda extends AnimatorCard
         if (HasSynergy())
         {
             GameActions.Bottom.GainForce(secondaryValue, upgraded);
+            GameActions.Bottom.GainWillpower(secondaryValue, upgraded);
         }
     }
 }

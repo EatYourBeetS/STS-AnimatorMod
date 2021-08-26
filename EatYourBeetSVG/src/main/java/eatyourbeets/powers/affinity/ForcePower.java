@@ -6,11 +6,12 @@ import eatyourbeets.utilities.GameActions;
 public class ForcePower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(ForcePower.class);
+    public static final String SECONDARY_ID = "~Strength";
     public static final Affinity AFFINITY_TYPE = Affinity.Red;
 
     public ForcePower()
     {
-        super(AFFINITY_TYPE, POWER_ID);
+        super(AFFINITY_TYPE, POWER_ID, SECONDARY_ID);
     }
 
     @Override

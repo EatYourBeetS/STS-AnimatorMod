@@ -170,7 +170,7 @@
 		},
 		"animator:Noda":
 		{
-			"DESCRIPTION": "{Synergy}: Gain/Boost [F]. || When Discarded: Exhaust.",
+			"DESCRIPTION": "{Synergy}: Gain/Boost [F] [W]. || When Discarded: Exhaust.",
 			"NAME": "Noda"
 		},
 		"animator:ShioriSekine":
@@ -364,25 +364,20 @@
 		},
 		"animator:HatsuneMiku":
 		{
-			"DESCRIPTION": "Can only be played if there are at least !S! cards in your Discard and {Exhaust} piles combined. || At the start of turn: Draw !M! card(s). They cost 0 this turn.",
+			"DESCRIPTION": "Unplayable unless there are at least !S! cards in your Discard and {Exhaust} piles combined. || At the start of turn: Draw !M! card(s). They cost 0 this turn.",
 			"EXTENDED_DESCRIPTION": ["At the start of each turn, draw #b{0} cards.  They cost 0 this turn."],
 			"NAME": "Hatsune Miku"
 		},
-		"animator:IppoMakunouchi":
+		"animator:Kamina":
         {
-            "DESCRIPTION": "Gain !S! [Vulnerable] and [Frail]. In !M! turns, attack at the start of your turn. If you receive unblocked attack damage, cancel this attack.",
-            "NAME": "Ruchia"
+            "DESCRIPTION": "Gain !S! [Vulnerable] and [Frail]. Attacks in !M! turns. If you receive unblocked attack damage, cancel this attack.",
+            "NAME": "Kamina"
         },
 		"animator:Kirby":
 		{
 			"DESCRIPTION": "When you add this card to your deck, remove 2 Basic or Common cards from your deck. Set this card's cost to the sum of their cost and give this card their effects.",
 			"EXTENDED_DESCRIPTION": ["Choose 2 cards to fuse.", "Unique. || This card has the effects of {{0}} and {{1}}.","Unique. || This card has the effects of {{0}}."],
 			"NAME": "Kirby"
-		},
-		"animator:Luka":
-		{
-			"DESCRIPTION": "Give {Harmonic} to a series card in your hand.",
-			"NAME": "Luka"
 		},
 		"animator:Megunee":
 		{
@@ -393,6 +388,11 @@
 		{
 			"DESCRIPTION": "<LIM>. If Fatal: Heal !M! HP. || When Exhausted: Put this card in your hand after a random number of turns.",
 			"NAME": "Zombie Megu-nee"
+		},
+		"animator:MegurineLuka":
+		{
+			"DESCRIPTION": "Give {Harmonic} to a card in your hand. || <LIM> {Synergy} with {Hatsune Miku}: Give {Harmonic} to ALL cards in your hand.",
+			"NAME": "Megurine Luka"
 		},
 		"animator:MotokoKusanagi":
 		{
@@ -488,11 +488,6 @@
 			"DESCRIPTION": "Unplayable. || When drawn: Discard a random non-Hindrance card in your hand.",
 			"NAME": "Depression"
 		},
-		"animator:Defend_DateALive":
-		{
-			"DESCRIPTION": "<LIM>. If you have !S! or less cards in play: Gain [E] [E].",
-			"NAME": "Improved Defend"
-		},
 		"animator:InverseOrigami":
 		{
 			"DESCRIPTION": "The next !M! Orbs Evoked activate your [Support Damage]. || Pay !S! [Support Damage] to add a random {Orb Core} to your hand and increase this power's duration by 1.",
@@ -570,11 +565,6 @@
 			"NAME": "Shido Itsuka",
 			"UPGRADE_DESCRIPTION": "Add 1 of !M! Upgraded cards ** that would Synergize with ** this card to your discard pile. || Synergy: Add it to your draw pile instead."
 		},
-		"animator:Strike_DateALive":
-		{
-			"DESCRIPTION": "Limited: If you have !S! or more cards in play: <DRW-M>.",
-			"NAME": "Improved Strike"
-		},
 		"animator:TohkaYatogami":
 		{
 			"DESCRIPTION": "Unaffected by damage ** modifiers. || If there are !M! or more cards ** in Exhaust pile: Transform ** this card into {Inverse Tohka}.",
@@ -587,7 +577,7 @@
 		},
 		"animator:YoshinoHimekawa":
 		{
-			"DESCRIPTION": "When drawn: Discard this card and change its form, ** then gain !S! [Blur]. || When Exhausted, gain !S! [Blur]. ** <LIM>. Also Shuffle {Zadkiel} into your discard pile.",
+			"DESCRIPTION": "When drawn: Discard this card and change its form, ** then gain [Blur]. || When Exhausted, gain !S! [Blur]. ** <LIM>. Also Shuffle {Zadkiel} into your discard pile.",
 			"EXTENDED_DESCRIPTION": ["Gain !S! [Blur]. Apply !M! [Freezing] to ALL enemies."],
 			"NAME": "Yoshino Himekawa"
 		},
@@ -933,9 +923,9 @@
 		},
 		"animator:TomoeKashiwaba":
 		{
-			"DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! [Block]. || When Drawn: Lose no [A] next turn.",
+			"DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! [Block]. || When Drawn: Lose no [W] next turn.",
 			"NAME": "Tomoe Kashiwaba",
-			"UPGRADE_DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! [Block]. || When Drawn: Gain [A]."
+			"UPGRADE_DESCRIPTION": "<slm>. If the top card of your draw pile would Synergize with this: Draw it and gain !B! [Block]. || When Drawn: Gain [W]."
 		}
 	},
 	"BETA:TOUHOUPROJECT":
@@ -1930,7 +1920,7 @@
 		},
 		"animator:Tetora":
 		{
-			"DESCRIPTION": "Synergizes with {High ** Cost} cards. Requires ** !A! <W> to play. || Every third Synergy: ** Randomly gain [F], [A], [I].",
+			"DESCRIPTION": "Synergizes with {High ** Cost} cards. Requires ** !A! <W> to play. || Every third Synergy: ** Randomly gain [F], [A], [I], [W].",
 			"EXTENDED_DESCRIPTION": ["Every third #ySynergy, randomly gain #yForce, #yAgility or #yIntellect #b{0} time(s)."],
 			"NAME": "Tetra"
 		}
@@ -2492,7 +2482,6 @@
 			"DESCRIPTION": "DESCRIPTION",
 			"NAME": "Plasma Core"
 		},
-
 		"animator:Respite":
 		{
 			"DESCRIPTION": "Delay certain ** doom by 1 turn.",

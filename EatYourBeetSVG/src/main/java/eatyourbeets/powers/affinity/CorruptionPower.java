@@ -10,13 +10,14 @@ import eatyourbeets.utilities.JUtils;
 public class CorruptionPower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(CorruptionPower.class);
+    public static final String SECONDARY_ID = "~Crystallize";
     public static final Affinity AFFINITY_TYPE = Affinity.Dark;
 
     protected static final int[] THRESHOLDS = new int[]{ 5, 7, 9, 11, 13 };
 
     public CorruptionPower()
     {
-        super(AFFINITY_TYPE, POWER_ID);
+        super(AFFINITY_TYPE, POWER_ID, SECONDARY_ID);
     }
 
     @Override
@@ -58,6 +59,6 @@ public class CorruptionPower extends AbstractAffinityPower
             this.description = JUtils.Format(description, 0, 1, "");
         }
 
-        this.tooltip.description = description;
+        this.tooltips.get(0).description = description;
     }
 }

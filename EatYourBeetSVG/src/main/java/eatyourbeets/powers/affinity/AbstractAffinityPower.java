@@ -12,10 +12,13 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.RenderHelpers;
+
+import java.util.ArrayList;
 
 public abstract class AbstractAffinityPower extends CommonPower
 {
@@ -25,25 +28,31 @@ public abstract class AbstractAffinityPower extends CommonPower
     //@Formatter: on
 
     public final Affinity affinity;
+    public final ArrayList<EYBCardTooltip> tooltips = new ArrayList<>();
     public int amountGainedThisTurn;
     public int retainedTurns;
-    public EYBCardTooltip tooltip;
     public Hitbox hb;
 
     protected static final int[] DEFAULT_THRESHOLDS = new int[]{3, 6, 9, 12};
     protected int thresholdIndex;
     protected abstract void OnThresholdReached(int thresholdIndex);
 
-    public AbstractAffinityPower(Affinity affinity, String powerID)
+    public AbstractAffinityPower(Affinity affinity, String powerID, String secondaryID)
     {
         super(null, powerID);
 
         this.affinity = affinity;
 
         //TODO: Add tooltip to EYBPower base class
-        this.tooltip = new EYBCardTooltip(name, description);
-        this.tooltip.subText = new ColoredString();
-        this.tooltip.icon = new TextureRegion(img);
+        EYBCardTooltip tooltip = new EYBCardTooltip(name, description);
+        tooltip.subText = new ColoredString();
+        tooltip.icon = new TextureRegion(img);
+        tooltips.add(tooltip);
+
+        EYBCardTooltip secondaryTooltip = CardTooltips.FindByID(secondaryID);
+        if (secondaryTooltip != null) {
+            tooltips.add(secondaryTooltip);
+        }
 
         Initialize(null);
     }
@@ -127,7 +136,7 @@ public abstract class AbstractAffinityPower extends CommonPower
             this.description += FormatDescription(1, threshold, 1);
         }
 
-        this.tooltip.description = description;
+        this.tooltips.get(0).description = description;
     }
 
     @Override
@@ -202,7 +211,7 @@ public abstract class AbstractAffinityPower extends CommonPower
 
         if (hb.hovered)
         {
-            EYBCardTooltip.QueueTooltip(tooltip, InputHelper.mX + hb.width, InputHelper.mY + (hb.height * 0.5f));
+            EYBCardTooltip.QueueTooltips(tooltips, InputHelper.mX + hb.width, InputHelper.mY + (hb.height * 0.5f));
         }
     }
 }

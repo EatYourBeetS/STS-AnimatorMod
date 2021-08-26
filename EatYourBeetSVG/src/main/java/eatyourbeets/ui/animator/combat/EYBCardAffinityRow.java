@@ -29,6 +29,7 @@ public class EYBCardAffinityRow extends GUIElement
     public final Affinity Type;
     public final EYBCardAffinitySystem System;
     public final AbstractAffinityPower Power;
+
     public int MaxActivationsPerTurn;
     public int AvailableActivations;
     public int ActivationPowerAmount;

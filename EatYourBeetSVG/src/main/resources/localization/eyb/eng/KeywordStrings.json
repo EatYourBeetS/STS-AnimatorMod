@@ -356,7 +356,7 @@
 	},
 	"Vitality":
 	{
-		"DESCRIPTION": "At the start of each turn, gain [TempHP].",
+		"DESCRIPTION": "At the start of each turn, gain [Temporary HP].",
 		"NAMES": ["vitality"],
 		"PROPER_NAME": "Vitality"
 	},
@@ -383,6 +383,12 @@
 		"DESCRIPTION": "The next Attack played deals additional damage per hit.",
 		"NAMES": ["vigor"],
 		"PROPER_NAME": "Vigor"
+	},
+	"~Crystallize":
+	{
+		"DESCRIPTION": "A Status card that gives [Metallicize] at the cost of HP and [E].",
+		"NAMES": ["~crystallize"],
+		"PROPER_NAME": "Crystallize"
 	},
 	"~Damage":
 	{

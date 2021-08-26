@@ -112,6 +112,7 @@ public class CardTooltips
     public EYBCardTooltip Strength = FindByID("~Strength");
     public EYBCardTooltip Dexterity = FindByID("~Dexterity");
     public EYBCardTooltip Focus = FindByID("~Focus");
+    public EYBCardTooltip Crystallize = FindByID("~Crystallize");
 
     // No Description
     public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null).ShowText(false);

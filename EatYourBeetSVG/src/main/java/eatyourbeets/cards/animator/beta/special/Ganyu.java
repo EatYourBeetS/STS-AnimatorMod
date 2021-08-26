@@ -19,7 +19,7 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class Ganyu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Ganyu.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Ranged).SetSeries(CardSeries.GenshinImpact);
+    public static final EYBCardData DATA = Register(Ganyu.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact);
     private static final int NO_BLOCK_TURNS = 2;
 
     public Ganyu()

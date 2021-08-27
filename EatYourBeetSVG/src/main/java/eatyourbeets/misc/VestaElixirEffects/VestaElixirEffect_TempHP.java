@@ -7,9 +7,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class VestaElixirEffect_TempHP extends VestaElixirEffect
 {
-    public VestaElixirEffect_TempHP()
+    public VestaElixirEffect_TempHP(boolean upgraded)
     {
-        super(7);
+        super(upgraded ? 9 : 7);
     }
 
     @Override

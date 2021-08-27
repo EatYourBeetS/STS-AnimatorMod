@@ -20,10 +20,11 @@ public class Shion extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(16, 0, 2);
-        SetUpgrade(5, 0, 0);
+        Initialize(15, 0, 2);
+        SetUpgrade(3, 0, 0);
 
         SetAffinity_Red(1, 1, 2);
+        SetAffinity_Light(1);
     }
 
     @Override
@@ -42,6 +43,6 @@ public class Shion extends AnimatorCard
     {
         GameActions.Bottom.DiscardFromHand(name, 1, false)
         .SetOptions(false, false, false);
-        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 1));
+        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
     }
 }

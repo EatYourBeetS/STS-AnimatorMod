@@ -1,5 +1,9 @@
 
 {
+	"animator:ApprenticeCleric":
+	{
+		"cropPortrait": false
+	},
 	"animator:Archer":
 	{
 		"cropPortrait": false
@@ -12,11 +16,7 @@
 	{
 		"cropPortrait": false
 	},
-	"animator:Charlotte":
-	{
-		"cropPortrait": false
-	},
-	"animator:ChlammyZellScheme":
+	"animator:ChlammyZell_Scheme":
 	{
 		"cropPortrait": false
 	},
@@ -29,6 +29,10 @@
 		"cropPortrait": false
 	},
 	"animator:DwarfShaman":
+	{
+		"cropPortrait": false
+	},
+	"animator:Emonzaemon_EntouJyuu":
 	{
 		"cropPortrait": false
 	},
@@ -49,10 +53,6 @@
 		"cropPortrait": false
 	},
 	"animator:ItamiYouji":
-	{
-		"cropPortrait": false
-	},
-	"animator:ImperialArchers":
 	{
 		"cropPortrait": false
 	},
@@ -80,7 +80,19 @@
 	{
 		"cropPortrait": false
 	},
+	"animator:Miracle":
+	{
+		"cropPortrait": false
+	},
 	"animator:MisaKurobane":
+	{
+		"cropPortrait": false
+	},
+	"animator:MoltSolAugustus_ImperialArchers":
+	{
+		"cropPortrait": false
+	},
+	"animator:NagisaMomoe_Charlotte":
 	{
 		"cropPortrait": false
 	},

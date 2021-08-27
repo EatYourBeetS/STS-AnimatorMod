@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.series.Fate;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.Excalibur;
+import eatyourbeets.cards.animator.special.Saber_Excalibur;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
@@ -15,7 +15,7 @@ public class Saber extends AnimatorCard
             .SetSeriesFromClassPackage();
     static
     {
-        DATA.AddPreview(new Excalibur(), false);
+        DATA.AddPreview(new Saber_Excalibur(), false);
     }
 
     public Saber()
@@ -50,6 +50,6 @@ public class Saber extends AnimatorCard
     protected void OnCooldownCompleted(AbstractMonster m)
     {
         GameActions.Bottom.Purge(uuid);
-        GameActions.Bottom.MakeCardInHand(new Excalibur());
+        GameActions.Bottom.MakeCardInHand(new Saber_Excalibur());
     }
 }

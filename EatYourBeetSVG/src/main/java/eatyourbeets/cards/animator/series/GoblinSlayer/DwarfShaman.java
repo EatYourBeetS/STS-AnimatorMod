@@ -1,15 +1,14 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.stances.ForceStance;
-import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -29,6 +28,7 @@ public class DwarfShaman extends AnimatorCard
         SetAffinity_Blue(1, 0, 2);
         SetAffinity_Red(1);
 
+        SetAffinityRequirement(Affinity.General, 3);
         SetEvokeOrbCount(1);
     }
 
@@ -39,10 +39,9 @@ public class DwarfShaman extends AnimatorCard
         .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowRock(player.hb, c.hb, 0.4f)).duration).SetRealtime(true);
         GameActions.Bottom.ChannelOrb(new Earth());
 
-        if (ForceStance.IsActive() || IntellectStance.IsActive())
+        if (CheckAffinity(Affinity.General))
         {
-            GameActions.Bottom.Draw(1);
-            GameActions.Bottom.UpgradeFromHand(name, 1, false);
+            GameActions.Bottom.UpgradeFromPile(p.drawPile, 1, false);
         }
     }
 }

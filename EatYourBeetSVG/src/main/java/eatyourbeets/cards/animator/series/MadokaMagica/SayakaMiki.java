@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
-import eatyourbeets.cards.animator.special.Oktavia;
+import eatyourbeets.cards.animator.special.SayakaMiki_Oktavia;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -22,7 +22,7 @@ public class SayakaMiki extends AnimatorCard
             .SetSeriesFromClassPackage();
     static
     {
-        DATA.AddPreview(new Oktavia(), true);
+        DATA.AddPreview(new SayakaMiki_Oktavia(), true);
         DATA.AddPreview(new Curse_GriefSeed(), false);
     }
 
@@ -57,10 +57,10 @@ public class SayakaMiki extends AnimatorCard
 
         GameUtilities.RetainPower(Affinity.Blue);
 
-        AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
+        final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
         if (isSynergizing && last != null && last.cardID.equals(Curse_GriefSeed.DATA.ID))
         {
-            GameActions.Bottom.MakeCardInDiscardPile(new Oktavia()).SetUpgrade(upgraded, false);
+            GameActions.Bottom.MakeCardInDiscardPile(new SayakaMiki_Oktavia()).SetUpgrade(upgraded, false);
             GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
             GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
         }

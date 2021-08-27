@@ -14,16 +14,15 @@ public class Loadout_Fate extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeData()
+    public void AddStarterCards()
     {
-        super.InitializeData();
-
-        AddToSpecialSlots(Assassin.DATA, 4);
-        AddToSpecialSlots(Alexander.DATA, 5);
-        AddToSpecialSlots(RinTohsaka.DATA, 5);
-        AddToSpecialSlots(Lancer.DATA, 7);
-        AddToSpecialSlots(Berserker.DATA, 9);
-        AddToSpecialSlots(EmiyaShirou.DATA, 11);
+        AddStarterCard(Assassin.DATA, 4);
+        AddStarterCard(RinTohsaka.DATA, 5);
+        AddStarterCard(Alexander.DATA, 6);
+        AddStarterCard(Lancer.DATA, 7);
+        AddStarterCard(Rider.DATA, 8);
+        AddStarterCard(Berserker.DATA, 10);
+        AddStarterCard(EmiyaShirou.DATA, 11);
     }
 
     @Override

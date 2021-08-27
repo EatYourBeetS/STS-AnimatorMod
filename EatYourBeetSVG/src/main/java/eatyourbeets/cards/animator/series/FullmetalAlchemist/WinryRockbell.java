@@ -95,9 +95,7 @@ public class WinryRockbell extends AnimatorCard
             }
 
             GameActions.Bottom.GainBlock(BLOCK_AMOUNT);
-            this.amount -= 1;
-            this.flashWithoutSound();
-            updateDescription();
+            reducePower(1);
         }
 
         @Override

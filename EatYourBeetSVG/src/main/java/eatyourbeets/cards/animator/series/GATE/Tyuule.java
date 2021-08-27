@@ -20,19 +20,42 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 
-    private ColoredString magicNumberString = new ColoredString("X", Colors.Cream(1));
+    //TODO: Standard way to handle this
+    private ColoredString magicNumberString = new ColoredString();
 
     public Tyuule()
     {
         super(DATA);
 
-        Initialize(0, 2, 0);
-        SetUpgrade(0, 2, 0);
+        Initialize(0, 2, 0, 1);
+        SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Dark(1, 1, 0);
+        SetAffinity_Green(1);
+        OnReset();
+    }
 
-        SetAffinityRequirement(Affinity.Dark, 2);
-        SetAffinityRequirement(Affinity.Blue, 2);
+    @Override
+    protected void OnUpgrade()
+    {
+        if (magicNumberString.text.startsWith("X"))
+        {
+            OnReset();
+        }
+    }
+
+    @Override
+    public void OnReset()
+    {
+        magicNumberString.SetText("X+"+secondaryValue).SetColor(Colors.Cream(1));
+    }
+
+    @Override
+    public void displayUpgrades()
+    {
+        super.displayUpgrades();
+
+        magicNumberString.SetColor(Colors.Green(1));
     }
 
     @Override
@@ -46,15 +69,9 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
     {
         super.Refresh(enemy);
 
-        magicNumber = GetHandAffinity(Affinity.Blue) + GetHandAffinity(Affinity.Dark);
-        isMagicNumberModified = magicNumber > 0;
+        magicNumber = GetHandAffinity(Affinity.Green) + secondaryValue;
+        isMagicNumberModified = magicNumber > secondaryValue;
         magicNumberString = super.GetMagicNumberString();
-    }
-
-    @Override
-    public void OnReset()
-    {
-        magicNumberString.SetText("X").SetColor(Colors.Cream(1));
     }
 
     @Override
@@ -89,9 +106,6 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
             }
         }
 
-        if (magicNumber > 0)
-        {
-            GameActions.Bottom.ApplyPoison(p, m, magicNumber);
-        }
+        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
     }
 }

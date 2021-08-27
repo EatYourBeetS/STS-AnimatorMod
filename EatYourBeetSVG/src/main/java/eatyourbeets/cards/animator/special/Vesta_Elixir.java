@@ -50,13 +50,7 @@ public class Vesta_Elixir extends AnimatorCard
     @Override
     public boolean canUpgrade()
     {
-        return false;
-    }
-
-    @Override
-    public void upgrade()
-    {
-
+        return effects.isEmpty();
     }
 
     @Override

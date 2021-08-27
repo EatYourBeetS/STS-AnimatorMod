@@ -105,6 +105,8 @@ public class AnimatorStrings
         public final String LeftText = Strings.TEXT[0];  // Starting Cards:
         public final String RightText = Strings.TEXT[1]; // ##############
         public final String InvalidLoadout = Strings.TEXT[3];
+        public final String DeckEditor = Strings.TEXT[5];
+        public final String DeckEditorInfo = Strings.TEXT[6];
 
         public final String UnlocksAtLevel(int unlockLevel, int currentLevel)
         {
@@ -114,6 +116,11 @@ public class AnimatorStrings
         public final String UnlocksAtAscension(int ascension)
         {
             return JUtils.Format(Strings.TEXT[4], ascension);
+        }
+
+        public final String ObtainBronzeAtAscension(int ascension)
+        {
+            return JUtils.Format(Strings.TEXT[7], ascension);
         }
     }
 

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.curses.AscendersBane;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
@@ -19,14 +20,19 @@ import eatyourbeets.cards.animator.curse.Curse_AscendersBane;
 import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.relics.EnchantableRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.common.CustomCardLibSortHeader;
 import eatyourbeets.utilities.*;
 
 import java.io.FileWriter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
@@ -49,6 +55,16 @@ public class ParseGenericCommand extends ConsoleCommand
                 if (tokens[1].equals("ghost"))
                 {
                     player.tint.color.a = (tokens.length > 2 ? JUtils.ParseFloat(tokens[2], 1) : 0.3f);
+
+                    return;
+                }
+
+                if (tokens[1].equals("sfx") && tokens.length > 2)
+                {
+                    final String key = tokens[2].toUpperCase();
+                    final float p1 = tokens.length > 3 ? JUtils.ParseFloat(tokens[3], 1) : 1;
+                    final float p2 = tokens.length > 4 ? JUtils.ParseFloat(tokens[4], p1) : p1;
+                    SFX.Play(key, p1, p2);
 
                     return;
                 }
@@ -267,6 +283,56 @@ public class ParseGenericCommand extends ConsoleCommand
                 if (tokens[1].equals("set-simple-ui"))
                 {
                     GR.Animator.Config.SimplifyCardUI.Set(tokens.length > 2 && tokens[2].equals("true"), true);
+                    return;
+                }
+
+                if (tokens[1].equals("extract-affinity-data"))
+                {
+                    final int MAX_AFFINITIES = Affinity.Basic().length;
+                    final StringBuilder sb = new StringBuilder();
+                    for (AnimatorLoadout loadout : GR.Animator.Data.GetEveryLoadout())
+                    {
+                        sb.append("**").append(loadout.Name).append("**").append(" (LV1 / LV1+ / LV2)").append("\n");
+                        final EYBCardAffinityStatistics stats = new AnimatorRuntimeLoadout(loadout).AffinityStatistics;
+                        stats.RefreshStatistics(false, false);
+                        int cards = stats.CardsCount();
+                        int generalLV1 = 0;
+                        int generalUP1 = 0;
+                        int generalLV2 = 0;
+                        for (Affinity affinity : Affinity.All())
+                        {
+                            final EYBCardAffinityStatistics.Group group = stats.GetGroup(affinity);
+                            sb.append(":").append(TipHelper.capitalize(affinity.name())).append(":")
+                            .append(" ").append(group.GetPercentageString(1))
+                            .append(" / ").append(group.GetUpgradePercentageString())
+                            .append(" / ").append(group.GetPercentageString(2))
+                            .append("\n");
+                            generalLV1 += group.Total_LV1;
+                            generalUP1 += group.Total_Upgrades;
+                            generalLV2 += group.Total_LV2;
+
+                            if (affinity == Affinity.Star)
+                            {
+                                cards -= group.GetTotal();
+                            }
+                        }
+
+                        float max = MAX_AFFINITIES * cards;
+                        sb.append(":Affinity:")
+                        .append(" ").append(Math.round(100 * generalLV1 / max)).append("%")
+                        .append(" / ").append(Math.round(100 * generalUP1 / max)).append("%")
+                        .append(" / ").append(Math.round(100 * generalLV2 / max)).append("%")
+                        .append("\n");
+
+                        sb.append("\n");
+                    }
+
+                    final String filePath = "C://temp//" + ((tokens.length > 2) ? tokens[2] : "Animator-AffinityMetadata") + ".json";
+                    final FileWriter writer = new FileWriter(filePath);
+                    writer.write(sb.toString());
+                    writer.flush();
+                    DevConsole.log("Exported metadata to: " + filePath);
+
                     return;
                 }
 

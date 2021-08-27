@@ -560,7 +560,7 @@ public abstract class EYBCardBase extends AbstractCard
 
     protected ColoredString GetCostString()
     {
-        ColoredString result = new ColoredString();
+        final ColoredString result = new ColoredString();
 
         if (cost == -1)
         {
@@ -571,7 +571,7 @@ public abstract class EYBCardBase extends AbstractCard
             result.text = freeToPlay() ? "0" : Integer.toString(Math.max(0, this.costForTurn));
         }
 
-        if (player != null && player.hand.contains(this) && !this.hasEnoughEnergy())
+        if (player != null && player.hand.contains(this) && (!this.hasEnoughEnergy() || GameUtilities.IsUnplayableThisTurn(this)))
         {
             result.color = new Color(1f, 0.3f, 0.3f, transparency);
         }

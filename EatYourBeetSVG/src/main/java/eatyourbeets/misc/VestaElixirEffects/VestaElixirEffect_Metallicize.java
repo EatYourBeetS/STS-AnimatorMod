@@ -7,9 +7,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class VestaElixirEffect_Metallicize extends VestaElixirEffect
 {
-    public VestaElixirEffect_Metallicize()
+    public VestaElixirEffect_Metallicize(boolean upgraded)
     {
-        super(3);
+        super(upgraded ? 4 : 3);
     }
 
     @Override

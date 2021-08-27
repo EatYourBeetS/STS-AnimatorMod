@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.GoblinSlayer;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -24,7 +25,9 @@ public class Priestess extends AnimatorCard
         Initialize(0, 0, 4, 1);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Light(1);
+
+        SetAffinityRequirement(Affinity.Light, 3);
     }
 
     @Override
@@ -56,35 +59,13 @@ public class Priestess extends AnimatorCard
     }
 
     @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        if (upgraded)
-        {
-            target = CardTarget.ALL;
-        }
-        else
-        {
-            target = CardTarget.SELF_AND_ENEMY;
-        }
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (upgraded)
-        {
-            GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), secondaryValue);
-        }
-        else if (m != null)
-        {
-            GameActions.Bottom.ApplyWeak(p, m, secondaryValue);
-        }
-
         GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.RetainPower(Affinity.Light);
+        GameActions.Bottom.ApplyWeak(upgraded ? TargetHelper.Enemies() : TargetHelper.Normal(m), secondaryValue);
 
-        if (isSynergizing)
+        if (isSynergizing || CheckAffinity(Affinity.Light))
         {
             GameActions.Bottom.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
             .ShowEffect(true, true)

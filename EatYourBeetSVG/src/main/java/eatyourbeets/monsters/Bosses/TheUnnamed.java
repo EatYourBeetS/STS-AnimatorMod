@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AngryPower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
-import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
@@ -32,7 +31,8 @@ import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Special;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Unknown;
 import eatyourbeets.powers.animator.EarthenThornsPower;
-import eatyourbeets.powers.monsters.InfinitePower;
+import eatyourbeets.powers.common.PoisonPlayerPower;
+import eatyourbeets.powers.monsters.TheUnnamedPower;
 import eatyourbeets.relics.animator.unnamedReign.Ynitaph;
 import eatyourbeets.resources.GR;
 import eatyourbeets.scenes.TheUnnamedReignScene;
@@ -52,7 +52,7 @@ public class TheUnnamed extends EYBMonster
     private final EYBAbstractMove movePoison;
     private final EYBAbstractMove moveSummon;
     private final EYBAbstractMove moveTaunt;
-    private final InfinitePower infinitePower;
+    private final TheUnnamedPower infinitePower;
     private boolean triedUsingDeathNote;
 
     public TheUnnamed()
@@ -60,7 +60,7 @@ public class TheUnnamed extends EYBMonster
         super(new Data(ID), EnemyType.BOSS);
 
         data.SetIdleAnimation(this, 1);
-        infinitePower = new InfinitePower(this);
+        infinitePower = new TheUnnamedPower(this);
 
         moveFading = moveset.Special.Add(new EYBMove_Special()).SetMisc(4)
         .SetCanUse((m, __) -> !AbstractDungeon.player.hasBlight(Doomed.ID))
@@ -86,7 +86,7 @@ public class TheUnnamed extends EYBMonster
             {
                 GameActions.Bottom.VFX(new PotionBounceEffect(t.hb.cX + MathUtils.random(-5, 5),
                 t.hb.cY + MathUtils.random(-5, 5), t.hb.cX, t.hb.cY), 0.4f);
-                GameActions.Bottom.StackPower(this, new PoisonPower(t, this, poisonAmount));
+                GameActions.Bottom.StackPower(this, new PoisonPlayerPower(t, this, poisonAmount));
                 GameActions.Bottom.WaitRealtime(0.1f);
             }
 
@@ -157,7 +157,7 @@ public class TheUnnamed extends EYBMonster
         if (AbstractDungeon.player.maxHealth > 400)
         {
             GameActions.Bottom.Talk(this, data.strings.DIALOG[1], 3, 4);
-            moveFading.SetMisc(3);
+            moveFading.SetMisc(4);
             moveFading.QueueActions(AbstractDungeon.player);
         }
         else
@@ -186,7 +186,7 @@ public class TheUnnamed extends EYBMonster
     @Override
     protected void SetNextMove(int roll, int historySize)
     {
-        if (!hasPower(InfinitePower.POWER_ID))
+        if (!hasPower(TheUnnamedPower.POWER_ID))
         {
             GameActions.Bottom.ApplyPower(this, infinitePower)
             .ShowEffect(false, true);
@@ -245,8 +245,7 @@ public class TheUnnamed extends EYBMonster
             return;
         }
 
-        infinitePower.phase2 = true;
-
+        infinitePower.BeginPhase2();
         GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.BLACK, false));
         CardCrawlGame.music.silenceTempBgmInstantly();
         CardCrawlGame.music.silenceBGMInstantly();

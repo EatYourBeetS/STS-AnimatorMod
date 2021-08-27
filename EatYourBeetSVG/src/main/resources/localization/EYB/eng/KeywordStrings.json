@@ -146,9 +146,9 @@
 	},
 	"High-Cost":
 	{
-		"DESCRIPTION": "Cards which cost #b2 or more [E].",
+		"DESCRIPTION": "Card which cost #b2 or more [E].",
 		"NAMES": ["high-cost", "high cost"],
-		"PROPER_NAME": "High-Cost"
+		"PROPER_NAME": "High-Cost Card"
 	},
 	"Hindrance":
 	{
@@ -236,7 +236,7 @@
 	},
 	"Shackles":
 	{
-		"DESCRIPTION": "#yStrength reduction until end of turn.",
+		"DESCRIPTION": "Reduce #yStrength until end of turn.",
 		"NAMES": ["shackles"],
 		"PROPER_NAME": "Shackles"
 	},
@@ -275,6 +275,12 @@
 		"DESCRIPTION": "-",
 		"NAMES": ["~damage"],
 		"PROPER_NAME": "Normal Damage"
+	},
+	"Health":
+	{
+		"DESCRIPTION": "-",
+		"NAMES": ["~hp", "health"],
+		"PROPER_NAME": "Health"
 	},
 	"~Elemental":
 	{
@@ -326,7 +332,7 @@
 	},
 	"~Retain":
 	{
-		"DESCRIPTION": "Not discarded at the end of turn. NL If it is an [A-Gen] Power, not reduced at the start of next turn.",
+		"DESCRIPTION": "Not discarded at the end of turn. NL Or, if it is an [A-Gen] Power, not reduced at the start of next turn.",
 		"NAMES": ["~retain"],
 		"PROPER_NAME": "Retain"
 	},

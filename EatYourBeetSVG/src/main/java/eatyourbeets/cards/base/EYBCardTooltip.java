@@ -91,6 +91,15 @@ public class EYBCardTooltip
         return !_renderedTipsThisFrame.Get(null);
     }
 
+    public static void QueueTooltip(EYBCardTooltip tooltip)
+    {
+        float x = InputHelper.mX;
+        float y = InputHelper.mY;
+        x += (x < Settings.WIDTH * 0.75f) ? (Settings.scale * 40f) : -(BOX_W + (Settings.scale * 40f));
+        y += (y < Settings.HEIGHT * 0.9f) ? (Settings.scale * 40f) : -(Settings.scale * 50f);
+        QueueTooltip(tooltip, x, y);
+    }
+
     public static void QueueTooltip(EYBCardTooltip tooltip, float x, float y)
     {
         Reset();
@@ -504,6 +513,20 @@ public class EYBCardTooltip
         int h = texture.getHeight();
         int half_div = div / 2;
         this.icon = new TextureRegion(texture, w / div, h / div, w - (w / half_div), h - (h / half_div));
+
+        return this;
+    }
+
+    public EYBCardTooltip SetText(String title, String description)
+    {
+        if (title != null)
+        {
+            this.title = title;
+        }
+        if (description != null)
+        {
+            this.description = description;
+        }
 
         return this;
     }

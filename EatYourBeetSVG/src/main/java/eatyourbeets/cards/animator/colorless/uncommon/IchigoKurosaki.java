@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator.colorless.uncommon;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.IchigoBankai;
+import eatyourbeets.cards.animator.special.IchigoKurosaki_Bankai;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -15,7 +15,7 @@ public class IchigoKurosaki extends AnimatorCard
             .SetSeries(CardSeries.Bleach);
     static
     {
-        DATA.AddPreview(new IchigoBankai(), false);
+        DATA.AddPreview(new IchigoKurosaki_Bankai(), false);
     }
 
     public IchigoKurosaki()
@@ -39,7 +39,7 @@ public class IchigoKurosaki extends AnimatorCard
         {
             if (CombatStats.Affinities.GetPowerAmount(Affinity.Red) >= secondaryValue)
             {
-                GameActions.Bottom.MakeCardInDrawPile(new IchigoBankai());
+                GameActions.Bottom.MakeCardInDrawPile(new IchigoKurosaki_Bankai());
             }
         });
     }

@@ -175,9 +175,9 @@
 		"DESCRIPTIONS": ["Immune to #yBurning. NL Dies upon losing #yFlight."],
 		"NAME": "Horned Bat (R)"
 	},
-	"animator:InfinitePower":
+	"animator:TheUnnamedPower":
 	{
-		"DESCRIPTIONS": ["Before taking unblocked damage: Gains that much #yEnchanted #yArmor. NL When receiving a debuff: Gains that much #yRegeneration. NL When the enemy receives a buff: Gains that much #yStrength. NL Loses half of these stats at the end of each turn."],
+		"DESCRIPTIONS": ["Before taking unblocked damage: Gains that much #yEnchanted #yArmor. NL When receiving a debuff: Gains that much #yRegeneration. NL When the enemy receives a buff: Gains that much #yStrength. NL Loses half of these stats at the end of each turn.", "Phase 2 (Ascension {0}+)", "At the end of turn, reduce all #yDebuffs by #b1. NL Halve the damage of multi-hit #yAttacks beyond the first hit."],
 		"NAME": "Infinite Power"
 	},
 	"animator:KaijinPower":

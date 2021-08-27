@@ -14,16 +14,14 @@ public class Loadout_Overlord extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeData()
+    public void AddStarterCards()
     {
-        super.InitializeData();
-
-        AddToSpecialSlots(Demiurge.DATA, 5);
-        AddToSpecialSlots(Cocytus.DATA, 5);
-        AddToSpecialSlots(PandorasActor.DATA, 6);
-        AddToSpecialSlots(Sebas.DATA, 6);
-        AddToSpecialSlots(NarberalGamma.DATA, 7);
-        AddToSpecialSlots(Shalltear.DATA, 8);
+        AddStarterCard(Demiurge.DATA, 5);
+        AddStarterCard(Cocytus.DATA, 5);
+        AddStarterCard(PandorasActor.DATA, 6);
+        AddStarterCard(Sebas.DATA, 6);
+        AddStarterCard(NarberalGamma.DATA, 7);
+        AddStarterCard(Shalltear.DATA, 8);
     }
 
     @Override

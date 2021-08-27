@@ -197,6 +197,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     public void Passive()
     {
         GameActions.Bottom.Add(new EarthOrbPassiveAction(passiveAmount));
+
         super.Passive();
     }
 
@@ -211,6 +212,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
             }
 
             GameActions.Bottom.Add(new EarthOrbEvokeAction(this, evokeAmount));
+
             super.Evoke();
         }
 

@@ -1,10 +1,12 @@
 package eatyourbeets.resources;
 
+import basemod.DevConsole;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.interfaces.delegates.ActionT1;
@@ -76,6 +78,11 @@ public class UIManager
 
     public void Update()
     {
+        if ((Settings.isDebug || DevConsole.infiniteEnergy) && GameUtilities.InGame())
+        {
+            GR.Common.Dungeon.SetCheating();
+        }
+
         if (CurrentScreen != null)
         {
             CurrentScreen.Update();
@@ -127,7 +134,14 @@ public class UIManager
 
     public boolean TryHover(Hitbox hitbox)
     {
-        if (hitbox == null || hitbox.justHovered || hitbox.hovered)
+        if (hitbox != null && hitbox.justHovered && hitbox != lastHovered)
+        {
+            hitbox.hovered = hitbox.justHovered = false;
+            lastHoveredTemp = hitbox;
+            return false;
+        }
+
+        if (hitbox == null || hitbox.hovered)
         {
             lastHoveredTemp = hitbox;
             return hitbox == lastHovered;

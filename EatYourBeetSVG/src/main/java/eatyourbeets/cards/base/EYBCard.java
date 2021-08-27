@@ -57,9 +57,13 @@ public abstract class EYBCard extends EYBCardBase
 
     public static EYBCardData RegisterCardData(Class<? extends EYBCard> type, String cardID)
     {
-        EYBCardData cardData = new EYBCardData(type, cardID);
-        cardData.Metadata = GR.Animator.CardData.get(cardID);
-        staticCardData.put(cardID, cardData);
+        return RegisterCardData(new EYBCardData(type, cardID));
+    }
+
+    public static EYBCardData RegisterCardData(EYBCardData cardData)
+    {
+        cardData.Metadata = GR.Animator.CardData.get(cardData.ID);
+        staticCardData.put(cardData.ID, cardData);
         return cardData;
     }
 
@@ -532,6 +536,7 @@ public abstract class EYBCard extends EYBCardBase
     protected void SetAffinity_Dark(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Dark, base, upgrade, scaling); }
     protected void SetAffinity_Star(int base) { InitializeAffinity(Affinity.Star, base, 0, 0); }
     protected void SetAffinity_Star(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Star, base, upgrade, scaling); }
+    protected void SetAffinity_General(int base) { InitializeAffinity(Affinity.General, base, 0, 0); }
     protected void InitializeAffinity(Affinity affinity, int base, int upgrade, int scaling) { affinities.Initialize(affinity, base, upgrade, scaling, 0); }
     //@Formatter: On
 

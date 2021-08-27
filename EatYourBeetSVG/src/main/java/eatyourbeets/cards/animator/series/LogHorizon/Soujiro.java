@@ -30,10 +30,14 @@ public class Soujiro extends AnimatorCard
             .SetSeriesFromClassPackage();
     static
     {
-        cardPool.add(DATA.AddPreview(new Soujiro_Isami(), true));
-        cardPool.add(DATA.AddPreview(new Soujiro_Kawara(), true));
-        cardPool.add(DATA.AddPreview(new Soujiro_Hisako(), true));
-        cardPool.add(DATA.AddPreview(new Soujiro_Nazuna(), true));
+        cardPool.add(new Soujiro_Isami());
+        cardPool.add(new Soujiro_Kawara());
+        cardPool.add(new Soujiro_Hisako());
+        cardPool.add(new Soujiro_Nazuna());
+        for (AbstractCard c : cardPool)
+        {
+            DATA.AddPreview(c, true);
+        }
     }
 
     public Soujiro()

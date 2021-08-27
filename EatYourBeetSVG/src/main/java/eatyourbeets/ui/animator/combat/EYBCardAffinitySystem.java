@@ -178,13 +178,6 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return affinity.ID >= 0 && GetRow(affinity).AvailableActivations > 0;
     }
 
-    public void AddMaxActivationsPerTurn(Affinity affinity, int amount)
-    {
-        final EYBCardAffinityRow row = GetRow(affinity);
-        row.MaxActivationsPerTurn = Math.max(0, row.MaxActivationsPerTurn + amount);
-        row.AvailableActivations = Math.max(0, row.AvailableActivations + amount);
-    }
-
     public void OnSynergy(AnimatorCard card)
     {
         for (EYBCardAffinity affinity : card.affinities.List)
@@ -236,7 +229,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public boolean HasDirectSynergy(AbstractCard c1, AbstractCard c2)
     {
-        return GetSynergies(c1, c2).GetLevel(null) > 0;
+        return GetSynergies(c1, c2).GetLevel(Affinity.General) > 0;
     }
 
     public EYBCardAffinities GetSynergies(AbstractCard c1, AbstractCard c2)

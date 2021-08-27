@@ -51,6 +51,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
@@ -733,6 +734,21 @@ public class GameUtilities
         return null;
     }
 
+    public static <T extends AbstractPower> ArrayList<T> GetPowers(TargetHelper targetHelper, String powerID)
+    {
+        final ArrayList<T> result = new ArrayList<>();
+        for (AbstractCreature c : targetHelper.GetTargets())
+        {
+            final T t = GetPower(c, powerID);
+            if (t != null)
+            {
+                result.add(t);
+            }
+        }
+
+        return result;
+    }
+
     public static int GetPowerAmount(Affinity affinity)
     {
         return CombatStats.Affinities.GetPowerAmount(affinity);
@@ -971,8 +987,14 @@ public class GameUtilities
 
     public static boolean InEliteRoom()
     {
-        AbstractRoom room = GetCurrentRoom();
+        final AbstractRoom room = GetCurrentRoom();
         return (room != null) && room.eliteTrigger;
+    }
+
+    public static boolean InEliteOrBossRoom()
+    {
+        final AbstractRoom room = GetCurrentRoom();
+        return room instanceof MonsterRoomBoss || (room != null && room.eliteTrigger);
     }
 
     public static boolean InGame()
@@ -1047,11 +1069,11 @@ public class GameUtilities
                 return false;
             }
 
-//            final String validSeed = GR.Animator.Config.LastSeed.Get();
-//            if (StringUtils.isNotEmpty(validSeed) && !String.valueOf(Settings.seed).equals(validSeed))
-//            {
-//                return false;
-//            }
+            final String validSeed = GR.Animator.Config.LastSeed.Get();
+            if (StringUtils.isNotEmpty(validSeed) && !String.valueOf(Settings.seed).equals(validSeed))
+            {
+                return false;
+            }
 
             for (AbstractCard c : player.masterDeck.group)
             {
@@ -1075,11 +1097,11 @@ public class GameUtilities
                 return false;
             }
 
-//            final String validSeed = GR.Animator.Config.LastSeed.Get();
-//            if (StringUtils.isNotEmpty(validSeed) && !validSeed.equals(String.valueOf(data.seed_played)))
-//            {
-//                return false;
-//            }
+            final String validSeed = GR.Animator.Config.LastSeed.Get();
+            if (StringUtils.isNotEmpty(validSeed) && !validSeed.equals(String.valueOf(data.seed_played)))
+            {
+                return false;
+            }
 
             for (String cardID : data.master_deck)
             {
@@ -1304,6 +1326,16 @@ public class GameUtilities
         }
 
         return card == null ? null : new Vector2(card.current_x, card.current_y);
+    }
+
+    public static void SetUnplayableThisTurn(AbstractCard card)
+    {
+        CombatStats.UnplayableCards().add(card.uuid);
+    }
+
+    public static boolean IsUnplayableThisTurn(AbstractCard card)
+    {
+        return CombatStats.UnplayableCards().contains(card.uuid);
     }
 
     public static boolean TrySetPosition(CardGroup group, AbstractCard card)

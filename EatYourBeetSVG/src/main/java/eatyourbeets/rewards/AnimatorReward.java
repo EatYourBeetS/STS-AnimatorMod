@@ -15,6 +15,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.WeightedList;
 
@@ -169,9 +170,19 @@ public abstract class AnimatorReward extends CustomReward
         {
             this.series = series;
             this.rewardSize = 3;
-            this.rareCardChance = 3;
-            this.uncommonCardChance = 37;
-            this.commonCardChance = 60;
+
+            if (GameUtilities.GetAscensionLevel() < 12)
+            {
+                this.rareCardChance = 3;
+                this.uncommonCardChance = 37;
+                this.commonCardChance = 60;
+            }
+            else
+            {
+                this.rareCardChance = 2;
+                this.uncommonCardChance = 33;
+                this.commonCardChance = 65;
+            }
 
             for (AbstractRelic relic : AbstractDungeon.player.relics)
             {

@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.series.MadokaMagica;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
-import eatyourbeets.cards.animator.special.Charlotte;
+import eatyourbeets.cards.animator.special.NagisaMomoe_Charlotte;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -17,7 +17,7 @@ public class NagisaMomoe extends AnimatorCard
             .SetSeriesFromClassPackage();
     static
     {
-        DATA.AddPreview(new Charlotte(), true);
+        DATA.AddPreview(new NagisaMomoe_Charlotte(), true);
         DATA.AddPreview(new Curse_GriefSeed(), false);
     }
 
@@ -37,7 +37,7 @@ public class NagisaMomoe extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.MakeCardInDiscardPile(new Charlotte()).SetUpgrade(upgraded, false);
+        GameActions.Bottom.MakeCardInDiscardPile(new NagisaMomoe_Charlotte()).SetUpgrade(upgraded, false);
         GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
     }
 

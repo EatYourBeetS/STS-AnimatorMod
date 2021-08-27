@@ -3,47 +3,69 @@ package eatyourbeets.resources.animator.misc;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class AnimatorLoadoutData implements Iterable<CardSlot>
+public class AnimatorLoadoutData implements Iterable<AnimatorCardSlot>
 {
-    public boolean Ready = false;
+    public int Preset;
     public int Gold;
     public int HP;
 
-    protected final ArrayList<CardSlot> list = new ArrayList<>();
+    protected final ArrayList<AnimatorCardSlot> cardSlots = new ArrayList<>();
 
-    public CardSlot AddSlot(int min, int max)
+    protected AnimatorLoadoutData()
     {
-        CardSlot slot = new CardSlot(this, min, max);
-        list.add(slot);
+
+    }
+    
+    public AnimatorLoadoutData(AnimatorLoadout loadout)
+    {
+        loadout.InitializeData(this);
+    }
+
+    public AnimatorCardSlot AddCardSlot(int min, int max)
+    {
+        final AnimatorCardSlot slot = new AnimatorCardSlot(this, min, max);
+        cardSlots.add(slot);
+
         return slot;
     }
 
-    public AnimatorLoadoutData MakeCopy()
+    public AnimatorCardSlot GetCardSlot(int index)
     {
-        AnimatorLoadoutData copy = new AnimatorLoadoutData();
-        copy.Ready = Ready;
-        copy.Gold = Gold;
-        copy.HP = HP;
-        for (CardSlot slot : list)
-        {
-            copy.list.add(slot.MakeCopy(copy));
-        }
-        return copy;
-    }
-
-    public CardSlot Get(int index)
-    {
-        return list.get(index);
+        return cardSlots.get(index);
     }
 
     public int Size()
     {
-        return list.size();
+        return cardSlots.size();
+    }
+
+    public AnimatorLoadoutData MakeCopy()
+    {
+        return MakeCopy(Preset);
+    }
+
+    public AnimatorLoadoutData MakeCopy(int preset)
+    {
+        final AnimatorLoadoutData copy = new AnimatorLoadoutData();
+        copy.Preset = preset;
+        copy.Gold = Gold;
+        copy.HP = HP;
+        for (AnimatorCardSlot slot : cardSlots)
+        {
+            copy.cardSlots.add(slot.MakeCopy(copy));
+        }
+
+        return copy;
+    }
+
+    public AnimatorLoadout.Validation Validate()
+    {
+        return AnimatorLoadout.Validation.For(this);
     }
 
     @Override
-    public Iterator<CardSlot> iterator()
+    public Iterator<AnimatorCardSlot> iterator()
     {
-        return list.iterator();
+        return cardSlots.iterator();
     }
 }

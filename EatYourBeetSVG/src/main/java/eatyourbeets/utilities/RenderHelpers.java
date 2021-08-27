@@ -543,14 +543,14 @@ public class RenderHelpers
                         i += 1;
                     }
                 }
-                else if (' ' == c || text.length() == (i + 1))
+                else if ('^' == c || ' ' == c || text.length() == (i + 1))
                 {
-                    if (c != ' ')
+                    if (c != ' ' && c != '^')
                     {
                         builder.append(c);
                     }
 
-                    String word = build.Invoke(builder);
+                    final String word = build.Invoke(builder);
                     if (word != null && word.length() > 0)
                     {
                         if (overrideColor != null)
@@ -592,6 +592,7 @@ public class RenderHelpers
         return GetSmartHeight(font, text, lineWidth, font.getLineHeight());
     }
 
+    //TODO: Combine with WriteSmartText
     public static float GetSmartHeight(BitmapFont font, String text, float lineWidth, float lineSpacing)
     {
         if (text == null || text.isEmpty())
@@ -658,14 +659,14 @@ public class RenderHelpers
                     i += 1;
                 }
             }
-            else if (' ' == c || text.length() == (i + 1))
+            else if ('^' == c || ' ' == c || text.length() == (i + 1))
             {
-                if (c != ' ')
+                if (c != '^' && c != ' ')
                 {
                     builder.append(c);
                 }
 
-                String word = build.Invoke(builder);
+                final String word = build.Invoke(builder);
                 if (word != null && word.length() > 0)
                 {
                     layout.setText(font, word);

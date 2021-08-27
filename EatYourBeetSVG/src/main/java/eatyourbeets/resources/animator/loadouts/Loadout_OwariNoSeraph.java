@@ -14,16 +14,14 @@ public class Loadout_OwariNoSeraph extends AnimatorLoadout
     }
 
     @Override
-    public void InitializeData()
+    public void AddStarterCards()
     {
-        super.InitializeData();
-
-        AddToSpecialSlots(Shigure.DATA, 5);
-        AddToSpecialSlots(Mitsuba.DATA, 6);
-        AddToSpecialSlots(Shinoa.DATA, 7);
-        AddToSpecialSlots(CrowleyEusford.DATA, 7);
-        AddToSpecialSlots(Mikaela.DATA, 8);
-        AddToSpecialSlots(Yuuichirou.DATA, 9);
+        AddStarterCard(Shigure.DATA, 5);
+        AddStarterCard(Mitsuba.DATA, 6);
+        AddStarterCard(Shinoa.DATA, 7);
+        AddStarterCard(CrowleyEusford.DATA, 7);
+        AddStarterCard(Mikaela.DATA, 8);
+        AddStarterCard(Yuuichirou.DATA, 9);
     }
 
     @Override

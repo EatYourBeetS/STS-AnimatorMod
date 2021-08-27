@@ -167,10 +167,14 @@ public class Chaos extends AnimatorOrb implements OnEndOfTurnSubscriber, OnAfter
         final RandomizedList<AbstractCard> toIncrease = new RandomizedList<>();
         for (AbstractCard c : AbstractDungeon.player.hand.group)
         {
-            toIncrease.Add(c);
-            if (c.costForTurn > 0)
+            if (c.costForTurn >= 0)
             {
-                toDecrease.Add(c);
+                toIncrease.Add(c);
+
+                if (c.costForTurn > 0)
+                {
+                    toDecrease.Add(c);
+                }
             }
         }
 

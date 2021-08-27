@@ -16,7 +16,7 @@ public class HinaKagiyama extends AnimatorCard
             .SetSeries(CardSeries.TouhouProject);
     static
     {
-        DATA.AddPreview(new HinaKagiyama_Miracle(), false);
+        DATA.AddPreview(new Miracle(), false);
     }
 
     public HinaKagiyama()

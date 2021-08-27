@@ -101,6 +101,8 @@ public class Assassin extends AnimatorCard
         float dy;
         float angle;
 
+        SFX.Play(SFX.ATTACK_IRON_1, 0.85f + (0.2f * EFFECT));
+
         if (EFFECT == 0)
         {
             dx = 500;
@@ -126,7 +128,6 @@ public class Assassin extends AnimatorCard
             EFFECT = 0;
         }
 
-        SFX.Play(SFX.ATTACK_IRON_1, 0.85f + (0.2f * EFFECT));
         return GameEffects.List.Add(new AnimatedSlashEffect(x, y, dx, dy, angle, scale, Color.VIOLET.cpy(), Color.TEAL.cpy())).duration * 0.4f;
     }
 }

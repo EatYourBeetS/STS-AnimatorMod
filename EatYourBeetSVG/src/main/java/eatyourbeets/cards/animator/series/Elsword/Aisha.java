@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
@@ -10,11 +9,10 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Aisha extends AnimatorCard
 {
@@ -22,7 +20,6 @@ public class Aisha extends AnimatorCard
             .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental)
             .SetMaxCopies(2)
             .SetSeries(CardSeries.Elsword);
-    public static final int BOOST = 2;
 
     public Aisha()
     {
@@ -33,12 +30,6 @@ public class Aisha extends AnimatorCard
 
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Dark(1, 0, 1);
-    }
-
-    @Override
-    protected String GetRawDescription()
-    {
-        return super.GetRawDescription(BOOST);
     }
 
     @Override
@@ -66,16 +57,18 @@ public class Aisha extends AnimatorCard
             });
         }
 
-        if (CheckSpecialCondition(true))
+        if (IsStarter())
         {
-            GameActions.Bottom.GainIntellect(BOOST);
-            GameActions.Bottom.GainCorruption(BOOST);
+            GameActions.Bottom.TriggerOrbPassive(1)
+            .SetFilter(o -> Dark.ORB_ID.equals(o.ID))
+            .AddCallback(orbs ->
+            {
+                if (orbs.size() > 0)
+                {
+                    GameActions.Bottom.GainIntellect(1, true);
+                    GameActions.Bottom.GainCorruption(1, true);
+                }
+            });
         }
-    }
-
-    @Override
-    public boolean CheckSpecialCondition(boolean tryUse)
-    {
-        return GameUtilities.HasOrb(Dark.ORB_ID) && (tryUse ? CombatStats.TryActivateLimited(cardID) : CombatStats.CanActivateLimited(cardID));
     }
 }

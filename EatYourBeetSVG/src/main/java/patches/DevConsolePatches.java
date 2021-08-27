@@ -16,7 +16,7 @@ public class DevConsolePatches
         {
             if (GameUtilities.InGame() && GameUtilities.IsPlayerClass(GR.Animator.PlayerClass))
             {
-                GR.Common.Dungeon.SetCheating(true);
+                GR.Common.Dungeon.SetCheating();
             }
         }
     }

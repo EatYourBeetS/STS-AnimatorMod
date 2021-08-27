@@ -45,10 +45,7 @@ import eatyourbeets.actions.pileSelection.*;
 import eatyourbeets.actions.player.ChangeStance;
 import eatyourbeets.actions.player.GainGold;
 import eatyourbeets.actions.player.SpendEnergy;
-import eatyourbeets.actions.powers.ApplyAffinityPower;
-import eatyourbeets.actions.powers.ApplyPower;
-import eatyourbeets.actions.powers.ReducePower;
-import eatyourbeets.actions.powers.ReduceStrength;
+import eatyourbeets.actions.powers.*;
 import eatyourbeets.actions.special.DelayAllActions;
 import eatyourbeets.actions.special.PlaySFX;
 import eatyourbeets.actions.special.PlayVFX;
@@ -230,6 +227,16 @@ public final class GameActions
     public ApplyPowerAuto ApplyPoison(TargetHelper target, int amount)
     {
         return StackPower(target, PowerHelper.Poison, amount);
+    }
+
+    public ApplyPower ApplyLockOn(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new LockOnPower(target, amount));
+    }
+
+    public ApplyPowerAuto ApplyLockOn(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.LockOn, amount);
     }
 
     public ApplyPower ApplyPower(AbstractPower power)
@@ -414,6 +421,11 @@ public final class GameActions
         return MoveCard(card, player.drawPile, player.hand)
         .SetCardPosition(cardX, cardY)
         .ShowEffect(true, false);
+    }
+
+    public ApplyPower DrawNextTurn(int amount)
+    {
+        return StackPower(new DrawCardNextTurnPower(player, amount));
     }
 
     public EvokeOrb EvokeOrb(int times)
@@ -823,6 +835,11 @@ public final class GameActions
         return Add(new ReducePower(power.owner, power.owner, power, amount));
     }
 
+    public IncreasePower IncreasePower(AbstractPower power, int amount)
+    {
+        return Add(new IncreasePower(power.owner, power.owner, power, amount));
+    }
+
     public ReduceStrength ReduceStrength(AbstractCreature target, int amount, boolean temporary)
     {
         return Add(new ReduceStrength(player, target, amount, temporary));
@@ -999,6 +1016,11 @@ public final class GameActions
                 }
             }
         });
+    }
+
+    public UpgradeFromPile UpgradeFromPile(CardGroup group, int amount, boolean permanent)
+    {
+        return Add(new UpgradeFromPile(group, amount).UpgradePermanently(permanent));
     }
 
     public PlayVFX VFX(AbstractGameEffect effect)

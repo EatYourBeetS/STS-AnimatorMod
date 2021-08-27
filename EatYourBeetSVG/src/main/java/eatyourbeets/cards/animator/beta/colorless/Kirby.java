@@ -21,14 +21,9 @@ import eatyourbeets.interfaces.subscribers.OnTagChangedSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RotatingList;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
-
-import static eatyourbeets.resources.GR.Enums.CardTags.LOYAL;
 
 public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<String>>,
                                                    OnAddToDeckListener,
@@ -41,7 +36,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     public static final int COPIED_CARDS = 2;
     protected final RotatingList<EYBCardPreview> previews = new RotatingList<>();
     protected final ArrayList<AbstractCard> inheritedCards = new ArrayList<>(COPIED_CARDS);
-    protected boolean hasAttackOrSkill = false;
+    protected boolean hasAttackOrSkill;
 
     public Kirby()
     {
@@ -219,9 +214,12 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     {
         super.triggerWhenCreated(startOfBattle);
 
-        if (inheritedCards.size() == 0) {
-            this.cost = this.costForTurn = -2;
-            OnAddToDeck();
+        if (inheritedCards.size() < COPIED_CARDS) {
+            RandomizedList<AbstractCard> possiblePicks = new RandomizedList<>(JUtils.Filter(AbstractDungeon.commonCardPool.group, c -> !KirbyEffect.isBanned(c)));
+            while (inheritedCards.size() < COPIED_CARDS) {
+                AddInheritedCard(possiblePicks.Retrieve(rng));
+            }
+            updateProperties();
         }
         for (AbstractCard card : inheritedCards) {
             if (card instanceof AnimatorCard) {
@@ -403,11 +401,8 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     }
 
     public void refreshDescription() {
-        if (inheritedCards.size() >= 2) {
-            cardText.OverrideDescription(JUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[1], inheritedCards.get(0).name, inheritedCards.get(1).name), true);
-        }
-        else if (inheritedCards.size() == 1) {
-            cardText.OverrideDescription(JUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[2], inheritedCards.get(0).name), true);
+        if (inheritedCards.size() > 0) {
+            cardText.OverrideDescription(JUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[1], inheritedCards.get(0).name, inheritedCards.size() >= 2 ? inheritedCards.get(1).name : "? ? ?"), true);
         }
         else {
             cardText.OverrideDescription(null, true);

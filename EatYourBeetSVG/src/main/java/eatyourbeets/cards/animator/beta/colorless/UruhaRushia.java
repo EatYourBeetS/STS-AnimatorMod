@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class UruhaRushia extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(UruhaRushia.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Hololive);
+    public static final EYBCardData DATA = Register(UruhaRushia.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None).SetMaxCopies(2).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Hololive);
 
     public UruhaRushia()
     {
@@ -61,7 +61,7 @@ public class UruhaRushia extends AnimatorCard
         @Override
         public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
             if (isPlayerTurn && damageAmount > 1 && info.type == DamageInfo.DamageType.NORMAL || info.type == DamageInfo.DamageType.THORNS) {
-                return super.onAttackedToChangeDamage(info, 1);
+                return super.onAttackedToChangeDamage(info, 0);
             }
             return super.onAttackedToChangeDamage(info, damageAmount);
         }
@@ -71,7 +71,7 @@ public class UruhaRushia extends AnimatorCard
         public float atDamageFinalReceive(float damage, DamageInfo.DamageType type)
         {
             if (isPlayerTurn && damage > 1f && type == DamageInfo.DamageType.NORMAL || type == DamageInfo.DamageType.THORNS) {
-                return super.atDamageFinalReceive(1f, type);
+                return super.atDamageFinalReceive(0f, type);
             }
             return super.atDamageFinalReceive(damage, type);
         }

@@ -362,6 +362,11 @@
 			"DESCRIPTION": "Next turn, <DRW-M>.",
 			"NAME": "Wound"
 		},
+		"animator:Guts":
+		{
+			"DESCRIPTION": "Take !M! damage. If the target dies, play this card on another enemy.",
+			"NAME": "Guts"
+		},
 		"animator:HatsuneMiku":
 		{
 			"DESCRIPTION": "Unplayable unless there are at least !S! cards in your Discard and {Exhaust} piles combined. || At the start of turn: Draw !M! card(s). They cost 0 this turn.",
@@ -376,7 +381,7 @@
 		"animator:Kirby":
 		{
 			"DESCRIPTION": "When you add this card to your deck, remove 2 Basic or Common cards from your deck. Set this card's cost to the sum of their cost and give this card their effects.",
-			"EXTENDED_DESCRIPTION": ["Choose 2 cards to fuse.", "Unique. || This card has the effects of {{0}} and {{1}}.","Unique. || This card has the effects of {{0}}."],
+			"EXTENDED_DESCRIPTION": ["Choose 2 cards to fuse.", "Unique. || This card has the effects of {{0}} and {{1}}."],
 			"NAME": "Kirby"
 		},
 		"animator:Megunee":
@@ -391,7 +396,8 @@
 		},
 		"animator:MegurineLuka":
 		{
-			"DESCRIPTION": "Give {Harmonic} to a card in your hand. || <LIM> {Synergy} with {Hatsune Miku}: Give {Harmonic} to ALL cards in your hand.",
+			"DESCRIPTION": "Give up to !M! cards {Harmonic}. || <LIM>. {Synergy} with {Hatsune Miku}: Give {Harmonic} to ALL cards in your discard pile.",
+			"EXTENDED_DESCRIPTION": ["give Harmonic."],
 			"NAME": "Megurine Luka"
 		},
 		"animator:MotokoKusanagi":
@@ -456,7 +462,7 @@
 		"animator:TakashiNatsume_Circle":
         {
         	"DESCRIPTION": "Played at the end of turn.",
-        	"EXTENDED_DESCRIPTION": ["This turn: Stun the next #b{0} enemies that attack you.","Attack an additional time for each card in your hand.","This turn, deal #b{0} damage to ALL enemies whenever you play a card.","Remove {Autoplay} from ALL cards in your draw pile.","Remove {Autoplay} from ALL cards in your draw pile.","Move ALL copies of {Takashi Natsume} to your draw pile and give them {Afterlife}."],
+        	"EXTENDED_DESCRIPTION": ["This turn: Stun the next #b{0} enemies that attack you.","Attack an additional time for each card in your hand.","This turn, deal #b{0} damage to ALL enemies whenever you play a card.","Remove {Autoplay} from ALL cards in your draw pile.","Move ALL copies of {Takashi Natsume} to your draw pile and give them {Afterlife}."],
         	"NAME": "Youkai Circle"
         },
 		"animator:TomoyaOkazaki":
@@ -466,8 +472,8 @@
 		},
 		"animator:UruhaRushia":
         {
-        	"DESCRIPTION": "During your phase this turn, reduce all damage received to 1.",
-        	"EXTENDED_DESCRIPTION": ["During your phase this turn, reduce all damage received to 1."],
+        	"DESCRIPTION": "During your phase this turn, reduce all direct damage received to 0.",
+        	"EXTENDED_DESCRIPTION": ["During your phase this turn, reduce all direct damage received to 0."],
         	"NAME": "Uruha Rushia"
         },
 		"animator:Ushio":
@@ -587,7 +593,8 @@
 			"NAME": "Zadkiel"
 		}
 	},
-	"BETA:GENSHINIMPACT": {
+	"BETA:GENSHINIMPACT":
+	{
 		"animator:Amber":
 		{
 			"DESCRIPTION": "<ST>: Gain [A] ** and Channel 1 [Fire]. || Synergy: Apply !M! [~Lock-On].",
@@ -618,11 +625,6 @@
 			"DESCRIPTION": "At the start of battle: Become cursed by the Abyss. || Channel !M! [Chaos]. Add 1 of 2 cards to your Draw pile. ** !A! <W>. Add both cards.",
 			"NAME": "Dainsleif"
 		},
-		"animator:Dvalin":
-		{
-			"DESCRIPTION": "If the enemy dies from the first hit, the second hit will target a random living enemy and deal !M! more damage.",
-			"NAME": "Dvalin"
-		},
 		"animator:Fischl":
 		{
 			"DESCRIPTION": "Randomly Channel ** [Lightning] or [Dark]. || <LIM>. Synergy: Add {Oz} to your Discard Pile.",
@@ -630,7 +632,7 @@
 		},
 		"animator:Ganyu":
 		{
-			"DESCRIPTION": "Deal !M! more damage if the target has [~Lock-On]. You cannot ** gain [Block] for 2 turns. || <SLM>. When Exhausted, apply !S! [Freezing] ** to ALL enemies.",
+			"DESCRIPTION": "Deal !M! more damage if the target has [~Lock-On]. Shuffle 5 {Frostbite} into your draw pile. || <SLM>. When Exhausted, apply !S! [Freezing] ** to ALL enemies.",
 			"NAME": "Ganyu"
 		},
 		"animator:HuTao":
@@ -640,7 +642,7 @@
 		},
 		"animator:JeanGunnhildr":
 		{
-			"DESCRIPTION": "If this would enter your discard pile: Move it to your draw pile. || Discard up to !M! card(s). Remove 1 of your left-most [Weak], [Vulnerable], or [Frail] for each discarded card.",
+			"DESCRIPTION": "Discard up to !M! card(s). Remove 1 of your left-most [Weak], [Vulnerable], or [Frail] for each discarded card.",
 			"NAME": "Jean Gunnhildr"
 		},
 		"animator:JumpyDumpty":
@@ -660,12 +662,13 @@
 		},
 		"animator:Klee":
 		{
-			"DESCRIPTION": "Apply !M! [Burning] to ALL enemies. || Add !S! {Jumpy Dumpty} ** to your Draw Pile. ** !A! <R>: Add 1 more.",
+			"DESCRIPTION": "Apply !M! [Vulnerable] to ALL enemies. || Add !S! {Jumpy Dumpty} ** to your Draw Pile. ** !A! <R>: Add 1 more.",
 			"NAME": "Klee"
 		},
 		"animator:KokomiSangonomiya":
 		{
-			"DESCRIPTION": "Lose !M! [~Dexterity]. [Water] absorbs unblocked attack damage and reflects it back at the attacker. || At the end of each turn, if you have no [Water]: Take !S! damage and channel [Water].",
+			"DESCRIPTION": "Lose 99 [~Dexterity]. [Water] absorbs and reflects unblocked attack damage. || If you have no [Water] at the end of turn: Lose !S! HP and channel [Water] with +!M! [~Focus].",
+			"EXTENDED_DESCRIPTION": ["[Water] absorbs and reflects unblocked attack damage. At the end of turn: Lose #b{0} HP and channel [Water] with #b{1} extra [~Focus]."],
 			"NAME": "Kokomi Sangonomiya"
 		},
 		"animator:LisaMinci":
@@ -1314,7 +1317,7 @@
 		},
 		"animator:Caster":
 		{
-			"DESCRIPTION": "Channel 1 [Dark]. || Steal !M! [~Strength]. || Gain !S! [Frail] and [C].",
+			"DESCRIPTION": "Channel 1 [Dark]. || Steal !M! [F]. || Gain !S! [Frail] and [C].",
 			"EXTENDED_DESCRIPTION": ["Evoke your first orb.", "Apply {0} [Shackles].", "Gain [F] [I]."],
 			"NAME": "Caster"
 		},
@@ -1356,7 +1359,7 @@
 		},
 		"animator:Saber":
 		{
-			"DESCRIPTION": "Cooldown !S! : Purge, then ** add {Excalibur} to your hand. || If this would enter your discard ** pile, move it to your draw pile. || Synergy: Reduce this card's ** Cooldown by an additional 2.",
+			"DESCRIPTION": "Cooldown !S!: Purge, then ** add {Excalibur} to your hand. || Synergy: Reduce this card's ** Cooldown by an additional 2.",
 			"NAME": "Saber"
 		},
 		"animator:Saber_Excalibur":

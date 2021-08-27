@@ -240,6 +240,11 @@
 		"DESCRIPTIONS": ["Next turn, gain #b{0} #yTemporary #yDexterity."],
 		"NAME": "Next Turn Dexterity"
 	},
+	"animator:NightVisionPower":
+	{
+		"DESCRIPTIONS": ["Reduces the #yStrength reduction of #yBlinded to #b1."],
+		"NAME": "Night Vision"
+	},
 	"animator:OrbCore_AetherPower":
 	{
 		"DESCRIPTIONS": ["On your next #b{0} #ySynergies this turn, draw #b{1} cards, then discard 1 card."],

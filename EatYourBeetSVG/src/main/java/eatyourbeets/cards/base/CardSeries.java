@@ -77,6 +77,7 @@ public class CardSeries
     public final static CardSeries Mushishi = Add(62, "Mushishi");
     public final static CardSeries NatsumeYuujinchou = Add(63, "NatsumeYuujinchou");
     public final static CardSeries Hololive = Add(64, "Hololive");
+    public final static CardSeries Berserk = Add(65, "Berserk");
 
     private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;

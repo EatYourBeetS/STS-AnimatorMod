@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class NaoTomori extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(NaoTomori.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Charlotte);
+    public static final EYBCardData DATA = Register(NaoTomori.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetMaxCopies(1).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Charlotte);
 
     public NaoTomori()
     {

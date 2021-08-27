@@ -87,6 +87,7 @@ public class CommonImages
         public final TextureCache Haste                   = new TextureCache("images/eyb/cardui/badges/Haste.png");
         public final TextureCache HasteInfinite           = new TextureCache("images/eyb/cardui/badges/HasteInfinite.png");
         public final TextureCache Autoplay                = new TextureCache("images/eyb/cardui/badges/Autoplay.png");
+        public final TextureCache Loyal                   = new TextureCache("images/eyb/cardui/badges/Loyal.png");
         public final TextureCache Afterlife               = new TextureCache("images/eyb/cardui/badges/Afterlife.png");
         public final TextureCache Harmonic                = new TextureCache("images/eyb/cardui/badges/Harmonic.png");
     }
@@ -163,6 +164,7 @@ public class CommonImages
         public final TextureCache Darkness         = new TextureCache("images/animator/effects/Darkness.png");
         public final TextureCache FireBurst        = new TextureCache("images/animator/effects/FireBurst.png");
         public final TextureCache Psi              = new TextureCache("images/animator/effects/Psi.png");
+        public final TextureCache Punch            = new TextureCache("images/animator/effects/Punch.png");
         public final TextureCache Water            = new TextureCache("images/animator/effects/Water.png");
         public final TextureCache WaterDome        = new TextureCache("images/animator/effects/WaterDome.png");
     }

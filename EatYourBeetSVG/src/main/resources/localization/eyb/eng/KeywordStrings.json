@@ -246,6 +246,12 @@
 		"NAMES": ["limited"],
 		"PROPER_NAME": "Limited"
 	},
+	"Loyal":
+	{
+		"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile instead.",
+		"NAMES": ["loyal"],
+		"PROPER_NAME": "Loyal"
+	},
 	"Malleable":
 	{
 		"DESCRIPTION": "Upon receiving damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of turn.",

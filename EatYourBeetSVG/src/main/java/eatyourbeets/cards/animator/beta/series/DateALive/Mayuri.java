@@ -21,8 +21,8 @@ public class Mayuri extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 4, 2, 1);
-        SetUpgrade(4, 1, 0);
+        Initialize(7, 4, 2, 1);
+        SetUpgrade(3, 1, 0);
         SetAffinity_Light(1, 1, 1);
     }
 
@@ -36,6 +36,7 @@ public class Mayuri extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.SelectFromHand(name, secondaryValue, false)
                 .SetOptions(true, true, true)

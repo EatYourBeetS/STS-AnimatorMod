@@ -105,7 +105,6 @@ public class CommonResources extends AbstractResources
         AddPowerTooltip("[F]", "Force", new ForcePower());
         AddPowerTooltip("[A]", "Agility", new AgilityPower());
         AddPowerTooltip("[I]", "Intellect", new IntellectPower());
-        AddPowerTooltip("[W]", "Willpower", new WillpowerPower());
         AddPowerTooltip("[B]", "Blessing", new BlessingPower());
         AddPowerTooltip("[C]", "Corruption", new CorruptionPower());
 //        AddEnergyTooltip("[R]", AbstractCard.orb_red);
@@ -153,12 +152,6 @@ public class CommonResources extends AbstractResources
 
     private static void AddPowerTooltip(String symbol, String id, AbstractPower power)
     {
-        if (power.img == null)
-        {
-            JUtils.LogError(CommonResources.class, "Could not find image: Symbol: {0}, ID: {1}, Power: {2} ",
-                    symbol, id, power.name);
-            return;
-        }
         int size = power.img.getWidth(); // width should always be equal to height
 
         EYBCardTooltip tooltip = CardTooltips.FindByID(id);

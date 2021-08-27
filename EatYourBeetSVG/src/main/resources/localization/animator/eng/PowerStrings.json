@@ -210,6 +210,11 @@
 		"DESCRIPTIONS": ["At the end of each turn, #yRetain a card and increase its damage and #yBlock by #b{0} this combat."],
 		"NAME": "Kaijin"
 	},
+	"animator:KuragesOathPower":
+	{
+		"DESCRIPTIONS": ["[Water] absorbs and reflects unblocked attack damage. You can no longer gain [Block] from cards. If you have no [Water] at the end of turn: Lose #b{1} HP and channel [Water] with #b{0} extra [~Focus]."],
+		"NAME": "Kurage's Oath"
+	},
 	"animator:LightningCrystalPower":
 	{
 		"DESCRIPTIONS": ["When targeted by a card, ALL other characters take #b{0} #yPiercing damage."],

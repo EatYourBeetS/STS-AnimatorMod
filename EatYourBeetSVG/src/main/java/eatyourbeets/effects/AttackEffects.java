@@ -169,7 +169,8 @@ public class AttackEffects
               .SetSFX(SFX.ANIMATOR_SPEAR_1, SFX.ANIMATOR_SPEAR_2);
 
       Add(melee, PUNCH)
-              .SetVFX(VFX::StrongPunch);
+              .SetVFX(VFX::StrongPunch)
+              .SetSFX(SFX.RAGE);
 
       Add(magic, DARK)
               .SetVFX(VFX::Dark)

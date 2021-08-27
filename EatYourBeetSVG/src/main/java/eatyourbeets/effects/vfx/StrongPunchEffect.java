@@ -15,7 +15,7 @@ public class StrongPunchEffect extends EYBEffect
 
     protected float x;
     protected float y;
-    protected float rotationSpeed = 500f;
+    protected float rotationSpeed = 600f;
     protected float vfxTimer = 1;
     protected float baseScale;
     protected boolean triggered = false;
@@ -27,6 +27,7 @@ public class StrongPunchEffect extends EYBEffect
         this.x = x;
         this.y = y;
         this.scale = this.baseScale = Math.max(baseScale,1);
+        this.rotation = 300f;
         this.color = Color.WHITE.cpy();
     }
 
@@ -47,17 +48,18 @@ public class StrongPunchEffect extends EYBEffect
         if (vfxTimer < 0f)
         {
             if (!triggered) {
-                GameEffects.Queue.Add(VFX.Whack(x, y).SetColor(Color.FIREBRICK)).SetScale(this.baseScale);
-                SFX.Play(SFX.BLUNT_HEAVY,0.5f,0.6f);
+                GameEffects.Queue.Add(VFX.Whack(x, y).SetColor(Color.SCARLET)).SetScale(2);
+                SFX.Play(SFX.ANIMATOR_PUNCH,0.7f,0.8f);
+                triggered = true;
             }
             else {
-                x += Interpolation.sine.apply(-5f, 5f, this.duration * 50);
-                y += Interpolation.sine.apply(-5f, 5f, this.duration * 50);
+                x += Interpolation.sine.apply(-25f, 25f, this.duration * 50);
+                y += Interpolation.sine.apply(-25f, 25f, this.duration * 50);
             }
         }
         else {
             this.rotation += rotationSpeed * deltaTime / duration;
-            this.scale = Interpolation.linear.apply(this.baseScale, 1, duration);
+            this.scale = Interpolation.linear.apply(1, this.baseScale, duration);
         }
 
         super.UpdateInternal(deltaTime);

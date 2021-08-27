@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import eatyourbeets.cards.animator.beta.colorless.Kirby;
-import eatyourbeets.effects.special.KirbyEffect;
+import eatyourbeets.misc.KirbyEffect;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
 

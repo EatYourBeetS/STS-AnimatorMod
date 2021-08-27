@@ -18,13 +18,13 @@ public class Amber extends AnimatorCard {
 
         Initialize(3, 1, 2, 1);
         SetUpgrade(2, 1, 0);
-        SetAffinity_Green(2, 0 ,1);
+        SetAffinity_Green(2, 0 ,0);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
 
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.PUNCH);
         GameActions.Bottom.GainBlock(block);
 
         if (IsStarter())

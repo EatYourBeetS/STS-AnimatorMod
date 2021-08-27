@@ -21,7 +21,7 @@ public class KaeyaAlberich extends AnimatorCard {
         super(DATA);
 
         Initialize(0, 0, 2);
-        SetUpgrade(0, 2, 0);
+        SetUpgrade(0, 0, 0);
         SetAffinity_Orange(1, 1, 0);
         SetAffinity_Green(1, 0, 0);
     }
@@ -30,8 +30,6 @@ public class KaeyaAlberich extends AnimatorCard {
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
 
-        GameActions.Bottom.GainBlock(block);
-
         if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID)) {
             GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, magicNumber);
         }
@@ -39,13 +37,18 @@ public class KaeyaAlberich extends AnimatorCard {
         GameActions.Bottom.ChannelOrb(new Frost()).AddCallback(() -> {
             AbstractOrb firstCommonOrb = null;
             for (AbstractOrb orb : player.orbs)
+            {
                 if (GameUtilities.IsCommonOrb(orb)) {
                     firstCommonOrb = orb;
                     break;
                 }
+            }
 
             if (firstCommonOrb != null) {
                 GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(1, false, false, firstCommonOrb));
+            }
+            if (upgraded) {
+                GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(1));
             }
         });
     }

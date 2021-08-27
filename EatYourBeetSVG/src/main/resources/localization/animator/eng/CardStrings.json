@@ -323,7 +323,7 @@
 		},
 		"animator:BlazingHeat":
 		{
-			"DESCRIPTION": "Your [Fire] deals 3X damage to enemies with [Freezing] and removes a stack of [Freezing].",
+			"DESCRIPTION": "Channel !M! [Fire]. [Fire] deals !S!X damage to ALL enemies when Evoked. || Whenever [Burning] is applied to a target with [Freezing], trigger [Freezing] and remove 1 [Burning] and [Freezing].",
 			"NAME": "Blazing Heat"
 		},
 		"animator:ForceImpulseGundam":
@@ -364,7 +364,7 @@
 		},
 		"animator:Guts":
 		{
-			"DESCRIPTION": "Take !M! damage. If the target dies, play this card on another enemy.",
+			"DESCRIPTION": "Gain [F]. Take !M! damage. If the target dies, repeat this attack with !S! more damage on another enemy.",
 			"NAME": "Guts"
 		},
 		"animator:HatsuneMiku":
@@ -375,7 +375,7 @@
 		},
 		"animator:Kamina":
         {
-            "DESCRIPTION": "Gain !S! [Vulnerable] and [Frail]. Attacks in !M! turns. If you receive unblocked attack damage, cancel this attack.",
+            "DESCRIPTION": "Gain !S! [Vulnerable] and [Frail]. In !M! turns, remove all your [Weak] and attack. If you receive unblocked attack damage: Cancel this attack.",
             "NAME": "Kamina"
         },
 		"animator:Kirby":
@@ -431,6 +431,12 @@
 		{
 			"DESCRIPTION": "When Exhausted: ** ALL characters take !M! damage and gain !S! [Burning].",
 			"NAME": "Searing Burn"
+		},
+		"animator:Senku":
+		{
+			"DESCRIPTION": "Invent an effect for this card (!S! left).",
+			"NAME": "Senku Ishigami",
+			"UPGRADED_DESCRIPTION": "Invent a stronger effect for to this card (!S! left)."
 		},
 		"animator:SheerCold":
 		{
@@ -653,7 +659,8 @@
 		"animator:KaeyaAlberich":
 		{
 			"DESCRIPTION": "{Channel} 1 [Frost]. Trigger your first {Common Orb}. || <SLM>. Synergy: Apply !M! [Shackles] to ALL enemies.",
-			"NAME": "Kaeya Alberich"
+			"NAME": "Kaeya Alberich",
+			"UPGRADE_DESCRIPTION": "{Channel} 1 [Frost]. Trigger your first Orb and your first {Common Orb}. || <SLM>. Synergy: Apply !M! [Shackles] to ALL enemies."
 		},
 		"animator:Keqing":
 		{
@@ -667,8 +674,7 @@
 		},
 		"animator:KokomiSangonomiya":
 		{
-			"DESCRIPTION": "Lose 99 [~Dexterity]. [Water] absorbs and reflects unblocked attack damage. || If you have no [Water] at the end of turn: Lose !S! HP and channel [Water] with +!M! [~Focus].",
-			"EXTENDED_DESCRIPTION": ["[Water] absorbs and reflects unblocked attack damage. At the end of turn: Lose #b{0} HP and channel [Water] with #b{1} extra [~Focus]."],
+			"DESCRIPTION": "[Water] absorbs and reflects unblocked attack damage. You can no longer gain [Block] from cards. || If you have no [Water] at the end of turn: Lose !S! HP and channel [Water] with +!M! [~Focus].",
 			"NAME": "Kokomi Sangonomiya"
 		},
 		"animator:LisaMinci":
@@ -699,7 +705,7 @@
 		},
 		"animator:Traveler_Aether":
 		{
-		    "DESCRIPTION": "Channel !S! [Aether]. {Evoke} your first !M! {Common Orbs} without removing them. || <SLM>. If you have at least 3 unique Orbs, add {Wish} to your draw pile.",
+		    "DESCRIPTION": "Channel !S! [Aether]. {Evoke} a copy of your first !M! {Common Orbs}. || <SLM>. If you have at least 3 unique Orbs, add {Wish} to your draw pile.",
 		    "NAME": "Aether"
 		},
 		"animator:Traveler_Lumine":
@@ -1881,7 +1887,7 @@
 		},
 		"animator:RundelhausCode":
 		{
-			"DESCRIPTION": "Gain [I]. Give !M! random ** card(s) +2 [I] scaling ** (does not stack). || !A! <W>: Choose 1: ** Channel [Fire], [Lightning] or [Frost].",
+			"DESCRIPTION": "Gain [I]. Give !M! random ** card(s) +2 [I] scaling ** (does not stack). || !A! <W>: Channel 1 {Common Orb} of your choice.",
 			"NAME": "Rundelhaus Code"
 		},
 		"animator:Serara":

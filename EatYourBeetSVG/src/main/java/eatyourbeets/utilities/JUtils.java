@@ -113,6 +113,20 @@ public class JUtils
         return map;
     }
 
+    public static <T> ArrayList<T> Filter(T[] array, Predicate<T> predicate)
+    {
+        final ArrayList<T> res = new ArrayList<>();
+        for (T t : array)
+        {
+            if (predicate.test(t))
+            {
+                res.add(t);
+            }
+        }
+
+        return res;
+    }
+
     public static <T> ArrayList<T> Filter(Iterable<T> list, Predicate<T> predicate)
     {
         final ArrayList<T> res = new ArrayList<>();

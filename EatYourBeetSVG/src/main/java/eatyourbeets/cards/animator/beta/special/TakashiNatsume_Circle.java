@@ -6,10 +6,12 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.TemporaryThousandCutsPower;
+import eatyourbeets.powers.common.DeenergizedPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.GameActions;
@@ -118,6 +120,10 @@ public class TakashiNatsume_Circle extends AnimatorCard
     public void triggerOnEndOfTurnForPlayingCard()
     {
         AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
+
+        if (EnergyPanel.totalCount < this.costForTurn) {
+            GameActions.Bottom.StackPower(new DeenergizedPower(player, this.costForTurn - EnergyPanel.totalCount));
+        }
     }
 
 

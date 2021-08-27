@@ -123,6 +123,8 @@ public class VestaElixirEffects
         effectPool.Add(new VestaElixirEffect_TempHP(upgraded));
         effectPool.Add(new VestaElixirEffect_Metallicize(upgraded));
         effectPool.Add(new VestaElixirEffect_Energy(upgraded));
+        effectPool.Add(new VestaElixirEffect_Malleable(upgraded));
+        effectPool.Add(new VestaElixirEffect_Willpower(upgraded));
 
         return effectPool;
     }

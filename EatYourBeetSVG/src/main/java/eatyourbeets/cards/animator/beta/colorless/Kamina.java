@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -65,6 +66,7 @@ public class Kamina extends AnimatorCard implements OnLoseHpSubscriber, OnStartO
                     }
                 }
                 GameEffects.Queue.ShowCardBriefly(makeStatEquivalentCopy());
+                GameActions.Top.RemovePower(player,player, WeakPower.POWER_ID);
                 this.applyPowers();
                 this.calculateCardDamage(enemy);
 

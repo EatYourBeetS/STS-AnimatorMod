@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.LogHorizon;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.*;
@@ -75,6 +76,7 @@ public class RundelhausCode extends AnimatorCard
                 choices.AddEffect(new GenericEffect_ChannelOrb(new Fire()));
                 choices.AddEffect(new GenericEffect_ChannelOrb(new Lightning()));
                 choices.AddEffect(new GenericEffect_ChannelOrb(new Frost()));
+                choices.AddEffect(new GenericEffect_ChannelOrb(new Dark()));
             }
 
             choices.Select(GameActions.Bottom, 1, null)

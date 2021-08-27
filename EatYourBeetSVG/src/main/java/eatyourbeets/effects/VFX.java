@@ -275,6 +275,16 @@ public class VFX
         return (SnowballTriggerEffect) new SnowballTriggerEffect(cX, cY, 8).SetColor(Color.SKY.cpy());
     }
 
+    public static StrongPunchEffect StrongPunch(Hitbox target)
+    {
+        return StrongPunch(target.cX, target.cY);
+    }
+
+    public static StrongPunchEffect StrongPunch(float x, float y)
+    {
+        return (StrongPunchEffect) new StrongPunchEffect(x, y, 2).SetDuration(1f,true);
+    }
+
     public static ThrowDaggerEffect2 ThrowDagger(Hitbox target, float variance)
     {
         return new ThrowDaggerEffect2(RandomX(target, variance), RandomY(target, variance));
@@ -322,6 +332,11 @@ public class VFX
                 .Edit(p -> p.SetRotation(MathUtils.random(100f,800f)).SetTargetRotation(36000).SetSpeed(0f, 0f, MathUtils.random(500f, 750f)).SetTargetScale(1f,5f))
                 .SetTranslucent(MathUtils.random(0.7f,1f))
                 .SetDuration(1.3f,false);
+    }
+
+    public static GenericAnimationEffect WaterDome(float cX, float cY)
+    {
+        return new GenericAnimationEffect(EYBEffect.IMAGES.WaterDome.Texture(), cX, cY, 12, 5, 0.015f).SetScale(2f);
     }
 
     public static GenericAnimationEffect Whack(Hitbox target, float spread)

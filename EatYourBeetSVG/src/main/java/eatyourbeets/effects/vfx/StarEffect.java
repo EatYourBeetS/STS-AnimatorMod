@@ -46,7 +46,7 @@ public class StarEffect extends EYBEffect
     public StarEffect SetRandomColor()
     {
         RGB.clear();
-        RGB.add(0f);
+        RGB.add(0.4f);
         RGB.add(1f);
         RGB.add(Random(0.5f, 1f));
 

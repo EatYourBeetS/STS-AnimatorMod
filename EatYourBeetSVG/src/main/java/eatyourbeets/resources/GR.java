@@ -174,7 +174,8 @@ public class GR
 
     public static boolean IsTranslationSupported(Settings.GameLanguage language)
     {
-        return language == Settings.GameLanguage.RUS || language == Settings.GameLanguage.ZHS;// || language == Settings.GameLanguage.ZHT;
+        //This should be set only for beta branches.  Do not merge this into master.
+        return false;//language == Settings.GameLanguage.RUS; // language == Settings.GameLanguage.ZHS || language == Settings.GameLanguage.ZHT;
     }
 
     public static Texture GetTexture(String path)
@@ -459,9 +460,12 @@ public class GR
             @SpireEnum public static AbstractCard.CardTags PURGE;
             @SpireEnum public static AbstractCard.CardTags DELAYED;
             @SpireEnum public static AbstractCard.CardTags HASTE;
+            @SpireEnum public static AbstractCard.CardTags HASTE_INFINITE;
             @SpireEnum public static AbstractCard.CardTags PURGING;
             @SpireEnum public static AbstractCard.CardTags LOYAL;
+            @SpireEnum public static AbstractCard.CardTags AUTOPLAY;
             @SpireEnum public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
+            @SpireEnum public static AbstractCard.CardTags HARMONIC;
         }
 
         public static class AttackEffect
@@ -474,7 +478,9 @@ public class GR
             @SpireEnum public static AbstractGameAction.AttackEffect SHIELD_FROST;
             @SpireEnum public static AbstractGameAction.AttackEffect DAGGER;
             @SpireEnum public static AbstractGameAction.AttackEffect SPEAR;
+            @SpireEnum public static AbstractGameAction.AttackEffect PUNCH;
             @SpireEnum public static AbstractGameAction.AttackEffect DARK;
+            @SpireEnum public static AbstractGameAction.AttackEffect WATER;
         }
     }
 }

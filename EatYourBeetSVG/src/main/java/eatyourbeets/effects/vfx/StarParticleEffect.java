@@ -16,6 +16,7 @@ public class StarParticleEffect extends EYBEffect
 
     protected float x;
     protected float y;
+    protected float rotationSpeed;
     protected float alpha;
     protected boolean flipX;
     protected Texture image;
@@ -39,6 +40,7 @@ public class StarParticleEffect extends EYBEffect
         this.scale = Random(0.05f, 0.3f);
         this.flipX = RandomBoolean();
         this.rotation = Random(-10f, 10f);
+        this.rotationSpeed = Random(-10f, 10f);
     }
 
     @Override
@@ -46,6 +48,7 @@ public class StarParticleEffect extends EYBEffect
     {
         super.UpdateInternal(deltaTime);
 
+        this.rotation += this.rotationSpeed;
         final float halfDuration = startingDuration * 0.5f;
         if (this.duration < halfDuration)
         {

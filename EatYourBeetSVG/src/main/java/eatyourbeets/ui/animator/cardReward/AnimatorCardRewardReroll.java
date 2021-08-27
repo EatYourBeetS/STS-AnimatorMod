@@ -43,9 +43,9 @@ public class AnimatorCardRewardReroll extends GUIElement
         {
             isActive = true;
 
-            for (AbstractCard card : rItem.cards)
+            for (int i = 0; i < rItem.cards.size(); i++)
             {
-                buttons.add(new RerollCardButton(this, card));
+                buttons.add(new RerollCardButton(this, i));
             }
         }
     }
@@ -58,9 +58,9 @@ public class AnimatorCardRewardReroll extends GUIElement
 
     public void Reroll(RerollCardButton button)
     {
-        final AbstractCard removedCard = button.card;
-        int cardIndex = rewardItem.cards.indexOf(removedCard);
-        if (cardIndex < 0)
+        final AbstractCard removedCard = button.GetCard();
+        final int cardIndex = button.GetIndex();
+        if (cardIndex > rewardItem.cards.size())
         {
             return;
         }
@@ -70,17 +70,17 @@ public class AnimatorCardRewardReroll extends GUIElement
             GameEffects.TopLevelList.SpawnRelic(new SpiritPoop(), button.hb.cX, button.hb.cY);
         }
 
-        button.card = purgingStone.Reroll(rewardItem);
-        if (button.card != null)
+        final AbstractCard replacement = purgingStone.Reroll(rewardItem);
+        if (replacement!= null)
         {
             SFX.Play(SFX.CARD_SELECT);
             GameEffects.TopLevelList.Add(new ExhaustCardEffect(removedCard));
             GameEffects.TopLevelList.Add(new HideCardEffect(removedCard));
             OnCardReroll(removedCard);
 
-            GameUtilities.CopyVisualProperties(button.card, removedCard);
-            rewardItem.cards.set(cardIndex, button.card);
-            OnCardAdded(button.card);
+            GameUtilities.CopyVisualProperties(replacement, removedCard);
+            rewardItem.cards.set(cardIndex, replacement);
+            OnCardAdded(replacement);
         }
 
         SetActive(purgingStone.CanReroll());

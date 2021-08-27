@@ -1,6 +1,7 @@
 package eatyourbeets.ui.animator.cardReward;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.controls.GUI_Button;
@@ -10,41 +11,66 @@ public class RerollCardButton extends GUI_Button
 {
     public AnimatorCardRewardReroll container;
     public AdvancedHitbox hitbox;
-    public AbstractCard card;
     public boolean used;
 
-    public RerollCardButton(AnimatorCardRewardReroll container, AbstractCard card)
+    private final int cardIndex;
+    private AbstractCard card;
+
+    public RerollCardButton(AnimatorCardRewardReroll container, int cardIndex)
     {
         super(GR.Common.Images.SquaredButton.Texture(), 0, 0);
 
         this.container = container;
         this.hitbox = (AdvancedHitbox) hb;
-        this.card = card;
+        this.cardIndex = cardIndex;
+        this.card = GetCard();
 
         SetDimensions(AbstractCard.IMG_WIDTH * 0.85f, AbstractCard.IMG_HEIGHT * 0.175f);
         SetColor(new Color(0.8f, 0.2f, 0.2f, 1f));
         SetText(GR.Animator.Strings.Rewards.Reroll);
         SetOnClick(() -> this.container.Reroll(this));
-        SetPosition(GetTargetCX(), GetTargetCY());
+        SetPosition(GetTargetCX(card), GetTargetCY(card));
     }
 
     @Override
     public void Update()
     {
-        hitbox.target_cX = GetTargetCX();
-        hitbox.target_cY = GetTargetCY();
-        SetInteractable(!card.hb.hovered);
+        if ((card = GetCard()) != null)
+        {
+            hitbox.target_cX = GetTargetCX(card);
+            hitbox.target_cY = GetTargetCY(card);
+            SetInteractable(!card.hb.hovered);
+        }
 
         super.Update();
     }
 
-    private float GetTargetCX()
+    @Override
+    public void Render(SpriteBatch sb)
+    {
+        if (card != null)
+        {
+            super.Render(sb);
+        }
+    }
+
+    private static float GetTargetCX(AbstractCard card)
     {
         return card.current_x;
     }
 
-    private float GetTargetCY()
+    private static float GetTargetCY(AbstractCard card)
     {
         return card.current_y + (AbstractCard.IMG_HEIGHT * 0.515f);
+    }
+
+    public AbstractCard GetCard()
+    {
+        return (cardIndex < container.rewardItem.cards.size()) ? container.rewardItem.cards.get(cardIndex) : null;
+    }
+
+    public int GetIndex()
+    {
+        return cardIndex;
     }
 }

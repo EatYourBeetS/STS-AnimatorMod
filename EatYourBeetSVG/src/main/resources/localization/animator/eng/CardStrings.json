@@ -436,7 +436,7 @@
 		{
 			"DESCRIPTION": "Invent an effect for this card (!S! left).",
 			"NAME": "Senku Ishigami",
-			"UPGRADED_DESCRIPTION": "Invent a stronger effect for to this card (!S! left)."
+			"UPGRADE_DESCRIPTION": "Invent a stronger effect for to this card (!S! left)."
 		},
 		"animator:SheerCold":
 		{

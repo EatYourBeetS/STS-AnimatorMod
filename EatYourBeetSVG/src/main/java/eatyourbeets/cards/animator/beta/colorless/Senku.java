@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.beta.colorless;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -7,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.PowerHelper;
@@ -61,11 +63,12 @@ public class Senku extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
+        AbstractGameAction.AttackEffect attackEffect = this.attackType.equals(EYBAttackType.Elemental) ? AttackEffects.DARK : AttackEffects.BLUNT_LIGHT;
         if (this.attackTarget.equals(EYBCardTarget.ALL)) {
-            GameActions.Bottom.DealDamageToAll(this, damage > 15 ? AttackEffects.SLASH_HEAVY : AttackEffects.BLUNT_LIGHT);
+            GameActions.Bottom.DealDamageToAll(this, attackEffect);
         }
         else {
-            GameActions.Bottom.DealDamage(this, m, damage > 15 ? AttackEffects.SLASH_HEAVY : AttackEffects.BLUNT_LIGHT);
+            GameActions.Bottom.DealDamage(this, m, attackEffect);
         }
 
         if (block > 0) {
@@ -75,6 +78,7 @@ public class Senku extends AnimatorCard
         for (Map.Entry<String,Integer> debuff : debuffs.entrySet()) {
             PowerHelper helper = PowerHelper.ALL.get(debuff.getKey());
             if (helper != null) {
+                GameActions.Bottom.VFX(new PotionBounceEffect(player.hb.cX, player.hb.cY, player.hb.cX, player.hb.cY), 0.2f);
                 GameActions.Bottom.ApplyPower(this.attackTarget.equals(EYBCardTarget.ALL) ? TargetHelper.Enemies() : TargetHelper.Normal(m), helper);
             }
         }

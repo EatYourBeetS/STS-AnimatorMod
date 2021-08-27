@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class ForceImpulseGundam extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ForceImpulseGundam.class).SetAttack(3, CardRarity.RARE).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Gundam);
+    public static final EYBCardData DATA = Register(ForceImpulseGundam.class).SetAttack(3, CardRarity.RARE).SetMaxCopies(3).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Gundam);
     private int bonusDamage = 0;
 
     public ForceImpulseGundam()
@@ -37,9 +37,7 @@ public class ForceImpulseGundam extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY).SetVFX(true, false)
                 .SetDamageEffect(enemy ->
-                {
-                    return GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.SKY)).duration * 0.1f;
-                });
+                        GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.SKY)).duration * 0.1f);
         GameActions.Bottom.Reload(name, cards ->
         {
             if (cards.size() > 0)

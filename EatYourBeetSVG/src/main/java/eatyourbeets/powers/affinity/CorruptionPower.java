@@ -4,20 +4,22 @@ import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.animator.ultrarare.SummoningRitual;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
 public class CorruptionPower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(CorruptionPower.class);
-    public static final String SECONDARY_ID = "~Crystallize";
+    public static final String TOOLTIP_ID = "~Crystallize";
     public static final Affinity AFFINITY_TYPE = Affinity.Dark;
 
     protected static final int[] THRESHOLDS = new int[]{ 5, 7, 9, 11, 13 };
 
     public CorruptionPower()
     {
-        super(AFFINITY_TYPE, POWER_ID, SECONDARY_ID);
+        super(AFFINITY_TYPE, POWER_ID);
     }
 
     @Override
@@ -49,9 +51,22 @@ public class CorruptionPower extends AbstractAffinityPower
         Integer threshold = GetCurrentThreshold();
         if (threshold != null)
         {
-            final String card = (threshold == thresholds[thresholds.length - 1])
-                    ? (JUtils.ModifyString(SummoningRitual.DATA.Strings.NAME, w -> "#p" + w))
-                    : ("#y" + Crystallize.DATA.Strings.NAME);
+            String card;
+            if (threshold == thresholds[thresholds.length - 1]) {
+                card = (JUtils.ModifyString(SummoningRitual.DATA.Strings.NAME, w -> "#p" + w));
+                if (tooltips.size() > 1) {
+                    tooltips.remove(1);
+                }
+            }
+            else {
+                card = ("#y" + Crystallize.DATA.Strings.NAME);
+                if (tooltips.size() <= 1) {
+                    EYBCardTooltip tooltip = CardTooltips.FindByID(TOOLTIP_ID);
+                    if (tooltip != null) {
+                        tooltips.add(tooltip);
+                    }
+                }
+            }
             this.description = JUtils.Format(description + powerStrings.DESCRIPTIONS[1], threshold, card);
         }
         else

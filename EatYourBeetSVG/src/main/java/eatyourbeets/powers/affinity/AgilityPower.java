@@ -6,12 +6,11 @@ import eatyourbeets.utilities.GameActions;
 public class AgilityPower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(AgilityPower.class);
-    public static final String SECONDARY_ID = "~Dexterity";
     public static final Affinity AFFINITY_TYPE = Affinity.Green;
 
     public AgilityPower()
     {
-        super(AFFINITY_TYPE, POWER_ID, SECONDARY_ID);
+        super(AFFINITY_TYPE, POWER_ID);
     }
 
     @Override

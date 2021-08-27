@@ -37,6 +37,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     public static final CardTags PURGE = GR.Enums.CardTags.PURGE;
     public static final CardTags DELAYED = GR.Enums.CardTags.DELAYED;
     public static final CardTags AUTOPLAY = GR.Enums.CardTags.AUTOPLAY;
+    public static final CardTags LOYAL = GR.Enums.CardTags.LOYAL;
     public static final CardTags HARMONIC = GR.Enums.CardTags.HARMONIC;
     public final EYBCardText cardText;
     public final EYBCardData cardData;
@@ -348,6 +349,10 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         if (hasTag(AUTOPLAY))
         {
             dynamicTooltips.add(GR.Tooltips.Autoplay);
+        }
+        if (hasTag(LOYAL))
+        {
+            dynamicTooltips.add(GR.Tooltips.Loyal);
         }
         if (hasTag(HARMONIC))
         {

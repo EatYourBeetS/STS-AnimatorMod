@@ -374,6 +374,13 @@ public class JUtils
         return amount;
     }
 
+    public static <T> String InvokeBuilder(StringBuilder stringBuilder)
+    {
+        String result = stringBuilder.toString();
+        stringBuilder.setLength(0);
+        return result;
+    }
+
     public static <T> String JoinStrings(String delimiter, Collection<T> values)
     {
         final StringJoiner sj = new StringJoiner(delimiter);

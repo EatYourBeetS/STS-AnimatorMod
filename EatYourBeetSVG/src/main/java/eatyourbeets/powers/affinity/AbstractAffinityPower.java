@@ -16,6 +16,7 @@ import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.ArrayList;
@@ -33,11 +34,12 @@ public abstract class AbstractAffinityPower extends CommonPower
     public int retainedTurns;
     public Hitbox hb;
 
+    private static final StringBuilder builder = new StringBuilder();
     protected static final int[] DEFAULT_THRESHOLDS = new int[]{3, 6, 9, 12};
     protected int thresholdIndex;
     protected abstract void OnThresholdReached(int thresholdIndex);
 
-    public AbstractAffinityPower(Affinity affinity, String powerID, String secondaryID)
+    public AbstractAffinityPower(Affinity affinity, String powerID)
     {
         super(null, powerID);
 
@@ -49,10 +51,7 @@ public abstract class AbstractAffinityPower extends CommonPower
         tooltip.icon = new TextureRegion(img);
         tooltips.add(tooltip);
 
-        EYBCardTooltip secondaryTooltip = CardTooltips.FindByID(secondaryID);
-        if (secondaryTooltip != null) {
-            tooltips.add(secondaryTooltip);
-        }
+        FindTooltipsFromText(powerStrings.DESCRIPTIONS[1]);
 
         Initialize(null);
     }
@@ -213,5 +212,32 @@ public abstract class AbstractAffinityPower extends CommonPower
         {
             EYBCardTooltip.QueueTooltips(tooltips, InputHelper.mX + hb.width, InputHelper.mY + (hb.height * 0.5f));
         }
+    }
+
+    protected void FindTooltipsFromText(String text) {
+
+        boolean foundIcon = false;
+        for (int i = 0; i < text.length(); i++)
+        {
+            char c = text.charAt(i);
+
+            if (foundIcon) {
+                if (']' != c)
+                {
+                    builder.append(c);
+                    continue;
+                }
+                foundIcon = false;
+                EYBCardTooltip tooltip = CardTooltips.FindByID(JUtils.InvokeBuilder(builder));
+                if (tooltip != null) {
+                    tooltips.add(tooltip);
+                }
+            }
+            else if ('[' == c)
+            {
+                foundIcon = true;
+            }
+        }
+
     }
 }

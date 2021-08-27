@@ -22,7 +22,7 @@ public class Caster extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
+        Initialize(0, 0, 3, 2);
 
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);
@@ -50,7 +50,7 @@ public class Caster extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.ChannelOrb(new Dark());
-        GameActions.Bottom.ReduceStrength(m, magicNumber, false).SetStrengthGain(true);
+        GameActions.Bottom.ReduceStrength(m, magicNumber, true).SetForceGain(true);
         GameActions.Bottom.ApplyFrail(null, p, secondaryValue);
         GameActions.Bottom.GainCorruption(secondaryValue);
     }

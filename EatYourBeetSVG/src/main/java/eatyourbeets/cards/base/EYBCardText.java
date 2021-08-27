@@ -177,6 +177,10 @@ public class EYBCardText
         {
             offset_y -= RenderBadge(sb, BADGES.Harmonic.Texture(), offset_y, alpha, null);
         }
+        if (card.hasTag(GR.Enums.CardTags.LOYAL))
+        {
+            offset_y -= RenderBadge(sb, BADGES.Loyal.Texture(), offset_y, alpha, null);
+        }
         if (card.isEthereal)
         {
             offset_y -= RenderBadge(sb, BADGES.Ethereal.Texture(), offset_y, alpha, null);

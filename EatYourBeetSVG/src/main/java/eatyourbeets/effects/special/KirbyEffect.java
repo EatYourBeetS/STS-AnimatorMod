@@ -119,7 +119,7 @@ public class KirbyEffect extends EYBEffectWithCallback<Kirby>
         AbstractDungeon.gridSelectScreen.open(cardGroup, cardsToRemove, purgeMessage, false, false, false, true);
     }
 
-    public boolean isBanned(AbstractCard c) {
+    public static boolean isBanned(AbstractCard c) {
         return c.cost < 0
                 || (c.rarity != AbstractCard.CardRarity.COMMON && c.rarity != AbstractCard.CardRarity.BASIC)
                 || c.purgeOnUse

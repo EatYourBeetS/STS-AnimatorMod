@@ -66,6 +66,7 @@ public class CardTooltips
     public EYBCardTooltip Retain = FindByID("~Retain");
     public EYBCardTooltip RetainInfinite = FindByID("~RetainInfinite");
     public EYBCardTooltip RetainOnce = FindByID("~RetainOnce");
+    public EYBCardTooltip Loyal = FindByID("Loyal");
     public EYBCardTooltip Metallicize = FindByID("Metallicize");
     public EYBCardTooltip PlatedArmor = FindByID("Plated Armor");
     public EYBCardTooltip EnchantedArmor = FindByID("Enchanted Armor");
@@ -196,6 +197,7 @@ public class CardTooltips
         HasteInfinite.SetIcon(badges.HasteInfinite.Texture(), 6);
         Purge.SetIcon(badges.Purge.Texture(), 6);
         Autoplay.SetIcon(badges.Autoplay.Texture(), 6);
+        Loyal.SetIcon(badges.Loyal.Texture(), 6);
         Harmonic.SetIcon(badges.Harmonic.Texture(), 6);
         Afterlife.SetIcon(badges.Afterlife.Texture(), 6);
 

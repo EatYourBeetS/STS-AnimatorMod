@@ -31,7 +31,7 @@ public class Zadkiel extends AnimatorCard {
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
 
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH)
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SMASH)
                 .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.NAVY)).duration)
                 .AddCallback(enemy -> {
                     if (GameUtilities.IsFatal(enemy, true)) {

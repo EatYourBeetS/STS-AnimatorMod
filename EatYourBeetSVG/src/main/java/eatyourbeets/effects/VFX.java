@@ -275,6 +275,16 @@ public class VFX
         return (SnowballTriggerEffect) new SnowballTriggerEffect(cX, cY, 8).SetColor(Color.SKY.cpy());
     }
 
+    public static StrongPunchEffect StrongPunch(Hitbox target)
+    {
+        return StrongPunch(target.cX, target.cY);
+    }
+
+    public static StrongPunchEffect StrongPunch(float x, float y)
+    {
+        return (StrongPunchEffect) new StrongPunchEffect(x, y, 2).SetDuration(1f,true);
+    }
+
     public static ThrowDaggerEffect2 ThrowDagger(Hitbox target, float variance)
     {
         return new ThrowDaggerEffect2(RandomX(target, variance), RandomY(target, variance));

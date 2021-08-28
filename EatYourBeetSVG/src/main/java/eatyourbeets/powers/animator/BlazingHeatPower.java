@@ -9,6 +9,8 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.common.BurningPower;
+import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.utilities.GameActions;
 
 public class BlazingHeatPower extends AnimatorPower implements OnApplyPowerSubscriber
@@ -49,6 +51,8 @@ public class BlazingHeatPower extends AnimatorPower implements OnApplyPowerSubsc
 
     @Override
     public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-        //TODO
+        if (BurningPower.POWER_ID.equals(power.ID) && target.hasPower(FreezingPower.POWER_ID) && source == owner) {
+
+        }
     }
 }

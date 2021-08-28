@@ -29,7 +29,7 @@ public class Traveler_Aether extends AnimatorCard_UltraRare
         Initialize(0, 0, 3, 1);
         SetUpgrade(0, 0, 1, 1);
         SetAffinity_Light(2);
-        SetAffinity_Dark(1);
+        SetAffinity_Dark(2);
         SetAffinity_Green(1);
         SetEthereal(true);
         SetPurge(true);

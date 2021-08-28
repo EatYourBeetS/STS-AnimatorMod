@@ -523,7 +523,7 @@
 		},
 		"animator:MikuIzayoi":
 		{
-			"DESCRIPTION": "Gain !S! [Inspiration]. If you have at least 3 interactable powers, repeat this effect. || Synergy: {Motivate} !M!.",
+			"DESCRIPTION": "Gain !S! [Inspiration]. If you have at least !M! interactable powers, repeat this effect. || Synergy: {Motivate} !S!.",
 			"NAME": "Miku Izayoi"
 		},
 		"animator:MioTakamiya":
@@ -550,7 +550,7 @@
 		},
 		"animator:NiaHonjou":
 		{
-			"DESCRIPTION": "Whenever you play a ** card this turn: Gain !M! ** [Block]. Gain triple [Block] if it Synergized. || When Discarded: Draw a random card that Synergizes with this card.",
+			"DESCRIPTION": "Whenever you play a card this turn: Gain !M! [Block]. Gain triple [Block] if it Synergized. || When Discarded: Draw a random card that Synergizes with this card.",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a card this turn, gain #b{0} #yBlock."],
 			"NAME": "Nia Honjou"
 		},
@@ -927,7 +927,7 @@
 		},
 		"animator:Suiseiseki":
 		{
-			"DESCRIPTION": "Add !M! {Slimed} to your hand. || {Synergy}: Exit your Stance, then gain !M! of that Stance's affinity power.",
+			"DESCRIPTION": "Add !S! {Slimed} to your hand. || {Synergy}: Exit your Stance, then gain !S! of that Stance's affinity power.",
 			"NAME": "Suiseiseki"
 		},
 		"animator:TomoeKashiwaba":

@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
@@ -29,7 +30,7 @@ public class Suiseiseki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 4, 2);
+        Initialize(0, 6, 5, 3);
         SetUpgrade(0, 1, 1);
 
         SetAffinity_Green(1, 0, 1);
@@ -54,12 +55,12 @@ public class Suiseiseki extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
 
-        for (int i=0; i<magicNumber; i++)
+        for (int i=0; i<secondaryValue; i++)
         {
             GameActions.Bottom.MakeCard(new Slimed(), player.hand);
         }
 
-        if (isSynergizing)
+        if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID))
         {
             String stance = player.stance.ID;
 

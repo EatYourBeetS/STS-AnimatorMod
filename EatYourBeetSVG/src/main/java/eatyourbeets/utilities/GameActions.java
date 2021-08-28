@@ -262,6 +262,12 @@ public final class GameActions
         return Add(new ApplyPowerAuto(target, power, 1)).CanStack(false);
     }
 
+    public ApplyPowerAuto ApplyPower(TargetHelper target, PowerHelper power, int amount)
+    {
+        return Add(new ApplyPowerAuto(target, power, amount));
+    }
+
+
     public ApplyPower ApplyPower(AbstractCreature source, AbstractPower power)
     {
         return ApplyPower(source, power.owner, power);

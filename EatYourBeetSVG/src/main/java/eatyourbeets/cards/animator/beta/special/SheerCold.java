@@ -12,14 +12,14 @@ import eatyourbeets.utilities.GameActions;
 public class SheerCold extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(SheerCold.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS).SetMaxCopies(1);
-    public static final int FREEZING_REDUCTION_BONUS = 10;
+    public static final int FREEZING_REDUCTION_BONUS = 15;
 
     public SheerCold()
     {
         super(DATA);
 
         Initialize(0, 0, 1, FREEZING_REDUCTION_BONUS);
-        SetUpgrade(0, 0, 0, 0);
+        SetUpgrade(0, 0, 1, 0);
         SetAffinity_Blue(2);
     }
 

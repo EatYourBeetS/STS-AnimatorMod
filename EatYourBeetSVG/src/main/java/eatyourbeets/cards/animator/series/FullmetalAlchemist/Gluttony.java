@@ -13,18 +13,25 @@ public class Gluttony extends AnimatorCard
     public static final EYBCardData DATA = Register(Gluttony.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
+    public static final int MINIMUM_CARDS = 16;
 
     public Gluttony()
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 16);
+        Initialize(0, 0, 4, 5);
 
         SetAffinity_Red(2);
         SetAffinity_Dark(2);
 
         SetHealing(true);
         SetExhaust(true);
+    }
+
+    @Override
+    protected String GetRawDescription(Object... args)
+    {
+        return super.GetRawDescription(MINIMUM_CARDS);
     }
 
     @Override
@@ -40,7 +47,7 @@ public class Gluttony extends AnimatorCard
         if (playable)
         {
             final int totalCards = player.drawPile.size() + player.discardPile.size() + player.hand.size();
-            if (totalCards < secondaryValue)
+            if (totalCards < MINIMUM_CARDS)
             {
                 cantUseMessage = cardData.Strings.EXTENDED_DESCRIPTION[0];
                 return false;
@@ -59,8 +66,8 @@ public class Gluttony extends AnimatorCard
             .ShowEffect(true, true)
             .SetOrigin(CardSelection.Top);
 
-            GameActions.Bottom.Heal(magicNumber);
-            GameActions.Bottom.GainForce(magicNumber);
+            GameActions.Bottom.Heal(secondaryValue);
+            GameActions.Bottom.GainForce(secondaryValue);
         }
     }
 }

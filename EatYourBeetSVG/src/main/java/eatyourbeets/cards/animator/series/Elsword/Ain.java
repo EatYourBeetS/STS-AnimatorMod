@@ -19,20 +19,18 @@ public class Ain extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Ain.class)
             .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
-            .SetSeries(CardSeries.Elsword);
-    static
-    {
-        DATA.AddPreview(AffinityToken.GetCard(Affinity.Blue), true);
-    }
+            .SetSeries(CardSeries.Elsword)
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Blue), true));
 
     public Ain()
     {
         super(DATA);
 
-        Initialize(3, 0, 2, 3);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(2, 0, 3, 3);
+        SetUpgrade(1, 0, 0, 0);
 
-        SetAffinity_Blue(2, 0, 2);
+        SetAffinity_Light(1);
+        SetAffinity_Blue(2, 0, 1);
 
         SetAffinityRequirement(Affinity.Light, 3);
     }

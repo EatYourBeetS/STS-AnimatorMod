@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
@@ -50,6 +51,7 @@ import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
+import eatyourbeets.powers.replacement.TemporaryArtifactPower;
 import eatyourbeets.resources.GR;
 import org.apache.commons.lang3.StringUtils;
 
@@ -90,7 +92,7 @@ public class GameUtilities
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    public static boolean CanApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower powerToApply)
+    public static boolean CanApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower powerToApply, AbstractGameAction action)
     {
         boolean canApply = true;
         if (target != null)
@@ -99,7 +101,7 @@ public class GameUtilities
             {
                 if (power instanceof OnTryApplyPowerListener)
                 {
-                    canApply &= ((OnTryApplyPowerListener) power).TryApplyPower(powerToApply, target, source);
+                    canApply &= ((OnTryApplyPowerListener) power).TryApplyPower(powerToApply, target, source, action);
                 }
             }
 
@@ -109,7 +111,7 @@ public class GameUtilities
                 {
                     if (power instanceof OnTryApplyPowerListener)
                     {
-                        canApply &= ((OnTryApplyPowerListener) power).TryApplyPower(powerToApply, target, source);
+                        canApply &= ((OnTryApplyPowerListener) power).TryApplyPower(powerToApply, target, source, action);
                     }
                 }
             }
@@ -256,6 +258,24 @@ public class GameUtilities
     {
         final EYBCardAffinities a = GetAffinities(card);
         return a != null ? a.GetLevel(affinity, useStarLevel) : 0;
+    }
+
+    public static AbstractOrb GetFirstOrb(String orbID)
+    {
+        for (AbstractOrb orb : player.orbs)
+        {
+            if (orb.ID.equals(orbID))
+            {
+                return orb;
+            }
+        }
+
+        return null;
+    }
+
+    public static boolean HasArtifact(AbstractCreature creature)
+    {
+        return creature.hasPower(ArtifactPower.POWER_ID) || creature.hasPower(TemporaryArtifactPower.POWER_ID);
     }
 
     public static boolean HasRedAffinity(AbstractCard card)
@@ -598,42 +618,15 @@ public class GameUtilities
 
     public static EnemyIntent GetIntent(AbstractMonster enemy)
     {
-        return new EnemyIntent(enemy);
+        return EnemyIntent.Get(enemy);
     }
 
     public static ArrayList<EnemyIntent> GetIntents()
     {
-        return GetIntents(TargetHelper.Enemies());
-    }
-
-    public static ArrayList<EnemyIntent> GetIntents(TargetHelper target)
-    {
-        ArrayList<EnemyIntent> intents = new ArrayList<>();
-        switch (target.mode)
+        final ArrayList<EnemyIntent> intents = new ArrayList<>();
+        for (AbstractMonster m : GetEnemies(true))
         {
-            case Normal:
-                intents.add(new EnemyIntent((AbstractMonster) target.GetTargets().get(0)));
-                break;
-
-            case AllCharacters:
-            case Enemies:
-                for (AbstractCreature t : target.GetTargets())
-                {
-                    if (t instanceof AbstractMonster)
-                    {
-                        intents.add(new EnemyIntent((AbstractMonster) t));
-                    }
-                }
-                break;
-
-            case Random:
-            case RandomEnemy:
-                throw new RuntimeException("Random intent previews are not supported yet");
-
-            case Player:
-            case Source:
-            default:
-                throw new RuntimeException("Could not obtain enemy intent");
+            intents.add(GetIntent(m));
         }
 
         return intents;

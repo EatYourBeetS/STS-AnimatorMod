@@ -72,7 +72,7 @@
 	},
 	"animator:EnchantedArmorPower":
 	{
-		"DESCRIPTIONS": ["Take #b{0}% less damage."],
+		"DESCRIPTIONS": ["Take #b{0}% less #yAttack damage."],
 		"NAME": "Enchanted Armor"
 	},
 	"animator:EntouJyuuPower":
@@ -174,11 +174,6 @@
 	{
 		"DESCRIPTIONS": ["Immune to #yBurning. NL Dies upon losing #yFlight."],
 		"NAME": "Horned Bat (R)"
-	},
-	"animator:TheUnnamedPower":
-	{
-		"DESCRIPTIONS": ["Before taking unblocked damage: Gains that much #yEnchanted #yArmor. NL When receiving a debuff: Gains that much #yRegeneration. NL When the enemy receives a buff: Gains that much #yStrength. NL Loses half of these stats at the end of each turn.", "Phase 2 (Ascension {0}+)", "At the end of turn, reduce all #yDebuffs by #b1. NL Halve the damage of multi-hit #yAttacks beyond the first hit."],
-		"NAME": "Infinite Power"
 	},
 	"animator:KaijinPower":
 	{
@@ -299,6 +294,11 @@
 	{
 		"DESCRIPTIONS": ["Deal #b{0} damage to the enemy with lowest HP at the end of your turn."],
 		"NAME": "Support Damage"
+	},
+	"animator:TheUnnamedPower":
+	{
+		"DESCRIPTIONS": ["Before taking unblocked damage: Gains that much #yEnchanted #yArmor. NL When receiving a debuff: Gains that much #yRegeneration. NL When the enemy receives a buff: Gains that much #yStrength. NL Loses half of these stats at the end of each turn.", "Phase 2 (Ascension {0}+)", "At the end of turn, reduce all #yDebuffs by #b1. NL When receiving multiple #yAttacks from the same card or copies of it, halve all damage beyond the first hit."],
+		"NAME": "Infinite Power"
 	},
 	"animator:TheUnnamedCultistPower":
 	{

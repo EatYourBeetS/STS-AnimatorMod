@@ -20,11 +20,8 @@ public class Witch extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Witch.class)
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Spearman(), true);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Spearman(), true));
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -32,8 +29,8 @@ public class Witch extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 11,2);
-        SetUpgrade(0, 3, 1);
+        Initialize(0, 12,3);
+        SetUpgrade(0, 0, 2);
 
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Dark(1);

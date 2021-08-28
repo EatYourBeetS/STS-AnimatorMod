@@ -21,7 +21,7 @@ public class Ara extends AnimatorCard
         super(DATA);
 
         Initialize(3, 0, 1, 2);
-        SetUpgrade(2, 0);
+        SetUpgrade(1, 0);
 
         SetAffinity_Green(1, 1, 1);
         SetAffinity_Red(1);
@@ -40,6 +40,11 @@ public class Ara extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetSoundPitch(1.1f, 1.3f);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetSoundPitch(1.1f, 1.3f);
+
+        if (isSynergizing)
+        {
+            GameActions.Bottom.GainAgility(1);
+        }
     }
 
     @Override
@@ -48,10 +53,5 @@ public class Ara extends AnimatorCard
         GameActions.Bottom.Draw(GameUtilities.GetDebuffsCount(m.powers));
         GameActions.Bottom.DiscardFromHand(name, 1, false)
         .SetOptions(false, false, false);
-
-        if (CheckAffinity(Affinity.Red))
-        {
-            GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
-        }
     }
 }

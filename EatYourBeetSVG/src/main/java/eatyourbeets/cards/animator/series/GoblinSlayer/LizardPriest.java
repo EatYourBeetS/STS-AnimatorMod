@@ -21,7 +21,7 @@ public class LizardPriest extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 7, 0, 3);
+        Initialize(0, 6, 0, 3);
         SetUpgrade(0, 2, 0, 0);
 
         SetAffinity_Red(1, 0, 1);

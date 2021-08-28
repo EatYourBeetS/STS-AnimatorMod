@@ -26,10 +26,15 @@ public class Kaijin extends AnimatorCard implements OnAddToDeckListener
         super(DATA);
 
         Initialize(0, 0, 1);
-        SetCostUpgrade(-1);
 
         SetAffinity_Red(1);
         SetAffinity_Light(1);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetRetainOnce(true);
     }
 
     @Override

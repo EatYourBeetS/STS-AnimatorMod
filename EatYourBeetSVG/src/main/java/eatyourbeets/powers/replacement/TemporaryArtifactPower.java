@@ -3,9 +3,9 @@ package eatyourbeets.powers.replacement;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
@@ -34,12 +34,12 @@ public class TemporaryArtifactPower extends AbstractPower implements CloneablePo
     }
 
     @Override
-    public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source, AbstractGameAction action)
     {
         if (target == owner && power.type == PowerType.DEBUFF)
         {
-            ApplyPower action = JUtils.SafeCast(AbstractDungeon.actionManager.currentAction, ApplyPower.class);
-            if (action == null || !action.ignoreArtifact)
+            final ApplyPower applyPowerAction = JUtils.SafeCast(action, ApplyPower.class);
+            if (applyPowerAction == null || !applyPowerAction.ignoreArtifact)
             {
                 GameActions.Top.SFX("NULLIFY_SFX");
                 flashWithoutSound();

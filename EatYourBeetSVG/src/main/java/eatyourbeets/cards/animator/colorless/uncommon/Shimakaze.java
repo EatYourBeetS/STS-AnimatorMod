@@ -21,9 +21,15 @@ public class Shimakaze extends AnimatorCard
         super(DATA);
 
         Initialize(2, 2, 3);
-        SetUpgrade(1, 1, 1);
         
         SetAffinity_Green(1);
+        SetExhaust(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetExhaust(false);
     }
 
     @Override

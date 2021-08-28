@@ -24,16 +24,15 @@ public class Eve extends AnimatorCard
     public static final EYBCardData DATA = Register(Eve.class)
             .SetPower(3, CardRarity.RARE)
             .SetMaxCopies(1)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                for (EYBCardData d : AffinityToken.GetCards())
+                {
+                    data.AddPreview(d.CreateNewInstance(), false);
+                }
+            });
     private static final int POWER_ENERGY_COST = 2;
-
-    static
-    {
-        for (EYBCardData data : AffinityToken.GetCards())
-        {
-            DATA.AddPreview(data.CreateNewInstance(), false);
-        }
-    }
 
     public Eve()
     {
@@ -42,8 +41,8 @@ public class Eve extends AnimatorCard
         Initialize(0, 0, 3);
 
         SetAffinity_Blue(2);
-        SetAffinity_Light(1, 1, 0);
-        SetAffinity_Dark(1, 1, 0);
+        SetAffinity_Light(1);
+        SetAffinity_Dark(1);
 
         SetDelayed(true);
     }

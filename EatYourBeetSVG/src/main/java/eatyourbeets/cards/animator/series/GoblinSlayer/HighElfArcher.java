@@ -29,13 +29,13 @@ public class HighElfArcher extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 2, 1);
+        Initialize(2, 0, 3, 1);
         SetUpgrade(1, 0);
 
         SetAffinity_Green(1, 1, 1);
 
-        SetAffinityRequirement(Affinity.Red, 3);
-        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Blue, 4);
+        SetAffinityRequirement(Affinity.Green, 4);
     }
 
     @Override
@@ -53,13 +53,16 @@ public class HighElfArcher extends AnimatorCard
             }
         });
 
-        if (CheckAffinity(Affinity.Red))
+        GameActions.Bottom.Callback(m, (enemy, __) ->
         {
-            GameActions.Bottom.ApplyPoison(p, m, magicNumber);
-        }
-        if (CheckAffinity(Affinity.Green))
-        {
-            GameActions.Bottom.ApplyLockOn(p, m, secondaryValue);
-        }
+            if (CheckAffinity(Affinity.Blue))
+            {
+                GameActions.Bottom.ApplyPoison(player, enemy, magicNumber);
+            }
+            if (CheckAffinity(Affinity.Green))
+            {
+                GameActions.Bottom.ApplyLockOn(player, enemy, secondaryValue);
+            }
+        });
     }
 }

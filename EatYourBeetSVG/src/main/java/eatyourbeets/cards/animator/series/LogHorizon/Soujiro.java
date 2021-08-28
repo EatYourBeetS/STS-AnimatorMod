@@ -27,18 +27,18 @@ public class Soujiro extends AnimatorCard
 
     public static final EYBCardData DATA = Register(Soujiro.class)
             .SetAttack(3, CardRarity.RARE, EYBAttackType.Normal)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        cardPool.add(new Soujiro_Isami());
-        cardPool.add(new Soujiro_Kawara());
-        cardPool.add(new Soujiro_Hisako());
-        cardPool.add(new Soujiro_Nazuna());
-        for (AbstractCard c : cardPool)
-        {
-            DATA.AddPreview(c, true);
-        }
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                cardPool.add(new Soujiro_Isami());
+                cardPool.add(new Soujiro_Kawara());
+                cardPool.add(new Soujiro_Hisako());
+                cardPool.add(new Soujiro_Nazuna());
+                for (AbstractCard c : cardPool)
+                {
+                    data.AddPreview(c, true);
+                }
+            });
 
     public Soujiro()
     {

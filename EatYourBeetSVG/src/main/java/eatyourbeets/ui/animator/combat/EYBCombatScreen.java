@@ -25,13 +25,13 @@ public class EYBCombatScreen extends GUIElement implements OnStatsClearedSubscri
 
     //@Formatter: off
     @Override public void OnBattleStart() { OnStatsCleared(); }
-    @Override public boolean OnStatsCleared()
+    @Override public void OnStatsCleared()
     {
         SetActive(GameUtilities.InBattle() && GR.Animator.IsSelected());
         CombatStats.onBattleStart.Subscribe(this);
         Affinities.SetActive(isActive);
+        Intents.Clear();
         Helper.Clear();
-        return false;
     }
     //@Formatter: on
 

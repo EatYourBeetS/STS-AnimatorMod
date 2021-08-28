@@ -42,13 +42,13 @@ public class Envy extends AnimatorCard
 
     public static class EnvyPower extends AnimatorClickablePower
     {
-        private int tempHP;
+        private int vitality;
 
         public EnvyPower(AbstractPlayer owner, int amount)
         {
             super(owner, Envy.DATA, PowerTriggerConditionType.Energy, Envy.TEMP_HP_ENERGY_COST);
 
-            triggerCondition.SetUses(1, true, true);
+            triggerCondition.SetUses(1, true, false);
 
             Initialize(amount);
         }
@@ -60,14 +60,14 @@ public class Envy extends AnimatorCard
 
             if (GR.UI.Elapsed25())
             {
-                UpdateTempHP();
+                UpdateVitality();
             }
         }
 
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, tempHP, amount);
+            return FormatDescription(0, vitality, amount);
         }
 
         @Override
@@ -88,16 +88,16 @@ public class Envy extends AnimatorCard
         {
             super.OnUse(m);
 
-            UpdateTempHP();
-            GameActions.Bottom.GainTemporaryHP(tempHP);
+            UpdateVitality();
+            GameActions.Bottom.GainVitality(vitality);
         }
 
-        private void UpdateTempHP()
+        private void UpdateVitality()
         {
-            final int previous = tempHP;
-            tempHP = Math.floorDiv(player.maxHealth - player.currentHealth, 5);
-            if (previous != tempHP)
+            final int newValue = GameUtilities.GetHealthPercentage(player) < 0.2f ? 2 : 1;
+            if (newValue != vitality)
             {
+                vitality = newValue;
                 updateDescription();
             }
         }

@@ -16,11 +16,8 @@ public class Hakurou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Hakurou.class)
             .SetAttack(2, CardRarity.COMMON)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(AffinityToken.GetCard(Affinity.Green), true);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Green), true));
 
     public Hakurou()
     {

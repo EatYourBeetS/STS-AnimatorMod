@@ -14,11 +14,8 @@ public class Sora extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Sora.class)
             .SetSkill(2, CardRarity.RARE, EYBCardTarget.ALL)
-            .SetSeries(CardSeries.NoGameNoLife);
-    static
-    {
-        DATA.AddPreview(new Shiro(), true);
-    }
+            .SetSeries(CardSeries.NoGameNoLife)
+            .PostInitialize(data -> data.AddPreview(new Shiro(), false));
 
     public Sora()
     {

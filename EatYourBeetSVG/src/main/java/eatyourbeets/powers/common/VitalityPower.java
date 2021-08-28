@@ -12,7 +12,15 @@ public class VitalityPower extends CommonPower
     {
         super(owner, POWER_ID);
 
+        this.maxAmount = 12;
+
         Initialize(amount);
+    }
+
+    @Override
+    public void updateDescription()
+    {
+        this.description = FormatDescription(0, amount, maxAmount);
     }
 
     @Override

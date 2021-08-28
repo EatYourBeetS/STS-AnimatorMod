@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.common.SelfDamagePower;
+import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 
 public class Genos extends AnimatorCard
@@ -30,7 +30,7 @@ public class Genos extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
-        GameActions.Bottom.StackPower(new SelfDamagePower(p, secondaryValue));
+        GameActions.Bottom.StackPower(new DelayedDamagePower(p, secondaryValue));
 
         if (isSynergizing)
         {

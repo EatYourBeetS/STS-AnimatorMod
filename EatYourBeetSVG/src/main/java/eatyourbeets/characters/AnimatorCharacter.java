@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
+import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -37,6 +38,7 @@ public class AnimatorCharacter extends CustomPlayer
     public static final String[] TEXT = characterStrings.TEXT;
     public static final String ORIGINAL_NAME = NAMES[0];
     public static final String OVERRIDE_NAME = NAMES.length > 1 ? NAMES[1] : ORIGINAL_NAME; // Support for Beta/Alt
+    public static final int MAX_TEMP_HP = 99;
 
     public AnimatorCharacter()
     {
@@ -234,6 +236,18 @@ public class AnimatorCharacter extends CustomPlayer
     {
         // yes
         return super.getCharStat();
+    }
+
+    @Override
+    public void healthBarUpdatedEvent()
+    {
+        super.healthBarUpdatedEvent();
+
+        final int tempHP = TempHPField.tempHp.get(this);
+        if (tempHP > MAX_TEMP_HP)
+        {
+            TempHPField.tempHp.set(this, MAX_TEMP_HP);
+        }
     }
 
     protected AnimatorLoadout PrepareLoadout()

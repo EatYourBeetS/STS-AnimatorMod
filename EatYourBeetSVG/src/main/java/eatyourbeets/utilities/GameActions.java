@@ -62,10 +62,7 @@ import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.CorruptionPower;
 import eatyourbeets.powers.affinity.*;
 import eatyourbeets.powers.animator.EarthenThornsPower;
-import eatyourbeets.powers.common.BurningPower;
-import eatyourbeets.powers.common.FreezingPower;
-import eatyourbeets.powers.common.InspirationPower;
-import eatyourbeets.powers.common.VitalityPower;
+import eatyourbeets.powers.common.*;
 import eatyourbeets.powers.replacement.ImprovedConstrictedPower;
 import eatyourbeets.powers.replacement.TemporaryArtifactPower;
 
@@ -967,6 +964,16 @@ public final class GameActions
     public ApplyPowerAuto StackPower(TargetHelper target, PowerHelper power, int stacks)
     {
         return Add(new ApplyPowerAuto(target, power, stacks));
+    }
+
+    public ApplyPower DealDamageAtEndOfTurn(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new DelayedDamagePower(target, amount));
+    }
+
+    public ApplyPower DealDamageAtEndOfTurn(AbstractCreature source, AbstractCreature target, int amount, AbstractGameAction.AttackEffect effect)
+    {
+        return StackPower(source, new DelayedDamagePower(target, amount, effect));
     }
 
     public DealDamage TakeDamage(int amount, AbstractGameAction.AttackEffect effect)

@@ -18,11 +18,8 @@ public class Shizu extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Shizu.class)
             .SetAttack(2, CardRarity.RARE)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Shizu_Ifrit(), false);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Shizu_Ifrit(), false));
 
     public Shizu()
     {

@@ -13,11 +13,8 @@ public class Spearman extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Spearman.class)
             .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new FakeAbstractCard(new Wound()), false);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new FakeAbstractCard(new Wound()), false));
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -26,6 +23,7 @@ public class Spearman extends AnimatorCard
         super(DATA);
 
         Initialize(11, 0);
+        SetUpgrade(2, 0);
 
         SetAffinity_Red(1, 1, 1);
         SetAffinity_Green(1);
@@ -37,8 +35,8 @@ public class Spearman extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetVFXColor(Color.LIGHT_GRAY).SetSoundPitch(0.75f, 0.85f);
-        GameActions.Bottom.GainAgility(1, upgraded);
-        GameActions.Bottom.GainForce(1, upgraded);
+        GameActions.Bottom.GainAgility(1, false);
+        GameActions.Bottom.GainForce(1, false);
     }
 
     @Override

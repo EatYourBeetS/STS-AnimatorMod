@@ -1,35 +1,32 @@
 package eatyourbeets.cards.animator.series.Fate;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.orbs.animator.Chaos;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class RinTohsaka extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(RinTohsaka.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .AddPreviews(OrbCore.GetAllCores(), false);
 
     public RinTohsaka()
     {
         super(DATA);
 
-        Initialize(0, 5, 3, 1);
+        Initialize(0, 5, 0, 1);
         SetUpgrade(0, 1, 0, 1);
 
         SetAffinity_Blue(1, 1, 1);
         SetAffinity_Light(1);
-
-        final int requirement = 3;
-        SetAffinityRequirement(Affinity.Red, requirement);
-        SetAffinityRequirement(Affinity.Green, requirement);
-        SetAffinityRequirement(Affinity.Blue, requirement);
     }
 
     @Override
@@ -38,9 +35,22 @@ public class RinTohsaka extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryArtifact(secondaryValue);
 
-        if ((CheckAffinity(Affinity.Red) && CheckAffinity(Affinity.Green) && CheckAffinity(Affinity.Blue)) && CombatStats.TryActivateLimited(cardID))
+        if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.ChannelOrbs(Chaos::new, Math.min(p.orbs.size(), magicNumber));
+            GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
+            .AddCallback(cards ->
+            {
+                for (AbstractCard c : cards)
+                {
+                    GameActions.Bottom.MakeCardInHand(c);
+                }
+            }));
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return GameUtilities.GetUniqueOrbsCount() >= 3 && (tryUse ? CombatStats.TryActivateLimited(cardID) : CombatStats.CanActivateLimited(cardID));
     }
 }

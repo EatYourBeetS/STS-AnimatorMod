@@ -17,12 +17,9 @@ public class MoltSolAugustus extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MoltSolAugustus.class)
             .SetPower(3, CardRarity.RARE)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new MoltSolAugustus_ImperialArchers(), false));
     private static final int ENERGY_COST = 1;
-    static
-    {
-        DATA.AddPreview(new MoltSolAugustus_ImperialArchers(), false);
-    }
 
     public MoltSolAugustus()
     {

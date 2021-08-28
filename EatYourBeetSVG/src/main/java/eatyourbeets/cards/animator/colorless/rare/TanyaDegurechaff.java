@@ -18,18 +18,15 @@ public class TanyaDegurechaff extends AnimatorCard
     public static final EYBCardData DATA = Register(TanyaDegurechaff.class)
             .SetAttack(1, CardRarity.RARE, EYBAttackType.Ranged)
             .SetColor(CardColor.COLORLESS)
-            .SetSeries(CardSeries.YoujoSenki);
-    static
-    {
-        DATA.AddPreview(new TanyaDegurechaff_Type95(), false);
-    }
+            .SetSeries(CardSeries.YoujoSenki)
+            .PostInitialize(data -> data.AddPreview(new TanyaDegurechaff_Type95(), false));
 
     public TanyaDegurechaff()
     {
         super(DATA);
 
-        Initialize(4, 4, 2, 2);
-        SetUpgrade(3, 2, 0, 0);
+        Initialize(5, 3, 2, 2);
+        SetUpgrade(3, 1, 0, 0);
 
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Blue(1, 0, 1);

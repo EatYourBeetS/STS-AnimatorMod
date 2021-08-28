@@ -76,12 +76,7 @@ public class LoseHP extends EYBAction
 
             if (!canKill)
             {
-                amount = Math.min(GameUtilities.GetHP(target, true, false) - 1, amount);
-
-                if (amount < 0)
-                {
-                    amount = 0;
-                }
+                amount = Math.max(0, Math.min(GameUtilities.GetHP(target, true, false) - 1, amount));
             }
 
             this.target.damage(new DamageInfo(this.source, this.amount, DamageInfo.DamageType.HP_LOSS));

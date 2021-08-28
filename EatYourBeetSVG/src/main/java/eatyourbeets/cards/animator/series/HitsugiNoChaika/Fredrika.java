@@ -23,18 +23,18 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
         Dragoon
     }
 
-    private Form currentForm = Form.Default;
-
     public static final EYBCardData DATA = Register(Fredrika.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetMaxCopies(1)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Fredrika(Form.Cat), true);
-        DATA.AddPreview(new Fredrika(Form.Dominica), true);
-        DATA.AddPreview(new Fredrika(Form.Dragoon), true);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new Fredrika(Form.Cat), true);
+                data.AddPreview(new Fredrika(Form.Dominica), true);
+                data.AddPreview(new Fredrika(Form.Dragoon), true);
+            });
+
+    private Form currentForm = Form.Default;
 
     private Fredrika(Form form)
     {

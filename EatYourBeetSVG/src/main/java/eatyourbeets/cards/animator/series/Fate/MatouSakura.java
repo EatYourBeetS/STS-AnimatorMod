@@ -15,7 +15,6 @@ import eatyourbeets.effects.SFX;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 public class MatouSakura extends AnimatorCard
 {
@@ -52,14 +51,14 @@ public class MatouSakura extends AnimatorCard
     {
         GameActions.Bottom.Callback(m, (enemy, __) ->
         {
-           final AbstractOrb best = JUtils.FindMax(JUtils.Filter(player.orbs, Dark.class::isInstance), o -> o.evokeAmount);
-           if (best != null)
+           final AbstractOrb orb = GameUtilities.GetFirstOrb(Dark.ORB_ID);
+           if (orb != null)
            {
                GameEffects.Queue.RoomTint(Color.BLACK, 0.8F);
                GameEffects.Queue.BorderLongFlash(new Color(1.0F, 0.0F, 1.0F, 0.7F));
                GameEffects.Queue.Attack(player, enemy, AttackEffects.DARK, 1.1f, 1.2f);
-               GameActions.Bottom.Add(new RemoveOrb(best));
-               GameActions.Bottom.ApplyConstricted(player, enemy, best.evokeAmount / 2);
+               GameActions.Bottom.Add(new RemoveOrb(orb));
+               GameActions.Bottom.ApplyConstricted(player, enemy, orb.evokeAmount / 2);
                GameActions.Bottom.SFX(SFX.ORB_DARK_EVOKE, 0.85f, 0.9f);
            }
            else
@@ -67,9 +66,9 @@ public class MatouSakura extends AnimatorCard
                GameActions.Bottom.ChannelOrb(new Dark())
                .AddCallback(orbs ->
                {
-                   for (AbstractOrb orb : orbs)
+                   for (AbstractOrb o : orbs)
                    {
-                       GameActions.Bottom.TriggerOrbPassive(orb, magicNumber);
+                       GameActions.Bottom.TriggerOrbPassive(o, magicNumber);
                    }
                });
            }

@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -11,7 +12,9 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -59,5 +62,11 @@ public class Respite extends AnimatorCard
             doomed.updateDescription();
             doomed.flash();
         }
+    }
+
+    @Override
+    public ColoredString GetBottomText()
+    {
+        return new ColoredString(AnimatorCharacter.ORIGINAL_NAME, Settings.CREAM_COLOR);
     }
 }

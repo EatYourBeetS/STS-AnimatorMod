@@ -14,11 +14,8 @@ public class Wrath extends AnimatorCard
     public static final EYBCardData DATA = Register(Wrath.class)
             .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
             .SetMaxCopies(2)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(AffinityToken.GetCard(Affinity.Red), true);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Red), true));
 
     public Wrath()
     {

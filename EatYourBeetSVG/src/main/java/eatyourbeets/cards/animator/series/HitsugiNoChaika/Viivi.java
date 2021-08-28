@@ -14,14 +14,14 @@ public class Viivi extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Viivi.class)
             .SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged, EYBCardTarget.Random)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
-        {
-            DATA.AddPreview(knife, false);
-        }
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
+                {
+                    data.AddPreview(knife, false);
+                }
+            });
 
     public Viivi()
     {

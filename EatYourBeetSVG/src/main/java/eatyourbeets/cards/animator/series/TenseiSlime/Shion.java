@@ -1,14 +1,14 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Shion extends AnimatorCard
 {
@@ -20,7 +20,7 @@ public class Shion extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(15, 0, 2);
+        Initialize(15, 0, 2, 6);
         SetUpgrade(3, 0, 0);
 
         SetAffinity_Red(1, 1, 2);
@@ -31,18 +31,25 @@ public class Shion extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
-
-        if (isSynergizing && CombatStats.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
-        }
     }
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DiscardFromHand(name, 1, false)
-        .SetOptions(false, false, false);
-        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
+        GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
+        .SetFilter(c -> GameUtilities.HasRedAffinity(c) || GameUtilities.HasLightAffinity(c))
+        .SetOptions(false, true, false)
+        .AddCallback(cards ->
+        {
+            if (cards.size() >= magicNumber)
+            {
+                GameActions.Bottom.GainBlock(secondaryValue);
+            }
+        });
+
+        if (isSynergizing && CombatStats.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+        }
     }
 }

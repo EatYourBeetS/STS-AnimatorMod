@@ -67,15 +67,9 @@ public class Zero extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetExhaust(false);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainIntellect(1);
+        GameActions.Bottom.GainIntellect(1, upgraded);
         GameActions.Bottom.PlayFromPile(name, 1, m, p.drawPile)
         .SetOptions(true, false)
         .SetFilter(c -> c.type == CardType.SKILL);

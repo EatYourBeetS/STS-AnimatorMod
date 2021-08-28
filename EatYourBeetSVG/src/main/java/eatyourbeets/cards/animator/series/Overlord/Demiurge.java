@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.powers.ConservePower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.common.SelfDamagePower;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class Demiurge extends AnimatorCard
@@ -51,7 +51,7 @@ public class Demiurge extends AnimatorCard
 
         if (takeDamage)
         {
-            GameActions.Bottom.StackPower(new SelfDamagePower(player, magicNumber));
+            GameActions.Bottom.DealDamageAtEndOfTurn(player, player, magicNumber, AttackEffects.DARK);
         }
     }
 }

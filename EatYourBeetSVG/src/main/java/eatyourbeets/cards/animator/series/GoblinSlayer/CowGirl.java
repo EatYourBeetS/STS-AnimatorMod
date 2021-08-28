@@ -21,7 +21,7 @@ public class CowGirl extends AnimatorCard
 
         Initialize(0, 0);
 
-        SetAffinity_Light(1);
+        SetAffinity_Red(1);
 
         SetExhaust(true);
     }

@@ -19,11 +19,11 @@ public class Raven extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 1);
+        Initialize(2, 0, 1);
         SetUpgrade(3, 0);
 
         SetAffinity_Red(1);
-        SetAffinity_Green(1, 0, 2);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Raven extends AnimatorCard
         }
         else
         {
-            GameActions.Bottom.ApplyVulnerable(p, m, 1);
+            GameActions.Bottom.ApplyVulnerable(p, m, 2);
         }
 
         GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 1));

@@ -14,21 +14,17 @@ public class Aqua extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Aqua.class)
             .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Aqua(true), true);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Aqua(true), true));
 
     private boolean transformed = false;
-    private Aqua(boolean transformed)
-    {
-        this();
-
-        SetTransformed(transformed);
-    }
 
     public Aqua()
+    {
+        this(false);
+    }
+
+    private Aqua(boolean transformed)
     {
         super(DATA);
 
@@ -38,6 +34,7 @@ public class Aqua extends AnimatorCard
         SetAffinity_Light(2);
 
         SetHealing(true);
+        SetTransformed(transformed);
     }
 
     @Override

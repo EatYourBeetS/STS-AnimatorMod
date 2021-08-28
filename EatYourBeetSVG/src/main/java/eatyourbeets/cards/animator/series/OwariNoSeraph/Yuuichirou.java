@@ -12,11 +12,8 @@ public class Yuuichirou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Yuuichirou.class)
             .SetAttack(1, CardRarity.UNCOMMON)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Yuuichirou_Asuramaru(), true);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Yuuichirou_Asuramaru(), true));
 
     public Yuuichirou()
     {

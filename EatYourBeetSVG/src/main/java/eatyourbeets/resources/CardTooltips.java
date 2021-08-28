@@ -11,10 +11,7 @@ import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.animator.SupportDamagePower;
-import eatyourbeets.powers.common.BurningPower;
-import eatyourbeets.powers.common.FreezingPower;
-import eatyourbeets.powers.common.InspirationPower;
-import eatyourbeets.powers.common.VitalityPower;
+import eatyourbeets.powers.common.*;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.JUtils;
@@ -52,6 +49,7 @@ public class CardTooltips
     public EYBCardTooltip Blessing = FindByID("Blessing");
     public EYBCardTooltip Corruption = FindByID("Corruption");
     public EYBCardTooltip Inspiration = FindByID("Inspiration");
+    public EYBCardTooltip DelayedDamage = FindByID("Delayed Damage");
     public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
     public EYBCardTooltip ForceStance = FindByID("Force Stance");
     public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
@@ -67,6 +65,7 @@ public class CardTooltips
     public EYBCardTooltip Metallicize = FindByID("Metallicize");
     public EYBCardTooltip PlatedArmor = FindByID("Plated Armor");
     public EYBCardTooltip EnchantedArmor = FindByID("Enchanted Armor");
+    public EYBCardTooltip CounterAttack = FindByID("Counter-Attack");
     public EYBCardTooltip Vitality = FindByID("Vitality");
     public EYBCardTooltip Ritual = FindByID("Ritual");
     public EYBCardTooltip TempHP = FindByID("Temporary HP");
@@ -220,6 +219,8 @@ public class CardTooltips
         LoadFromPower(SupportDamage, new SupportDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(LockOn, new LockOnPower(FakeCharacter.Instance, 0));
         LoadFromPower(Inspiration, new InspirationPower(FakeCharacter.Instance, 0));
+        LoadFromPower(DelayedDamage, new DelayedDamagePower(FakeCharacter.Instance, 0));
+        LoadFromPower(CounterAttack, new CounterAttackPower(FakeCharacter.Instance, 0));
 
         //These use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);

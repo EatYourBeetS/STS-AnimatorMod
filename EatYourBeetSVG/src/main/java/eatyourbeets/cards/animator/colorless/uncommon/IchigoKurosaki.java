@@ -12,11 +12,8 @@ public class IchigoKurosaki extends AnimatorCard
     public static final EYBCardData DATA = Register(IchigoKurosaki.class)
             .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
-            .SetSeries(CardSeries.Bleach);
-    static
-    {
-        DATA.AddPreview(new IchigoKurosaki_Bankai(), false);
-    }
+            .SetSeries(CardSeries.Bleach)
+            .PostInitialize(data -> data.AddPreview(new IchigoKurosaki_Bankai(), false));
 
     public IchigoKurosaki()
     {

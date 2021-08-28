@@ -1,5 +1,7 @@
 package eatyourbeets.powers.monsters;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -10,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
 import eatyourbeets.actions.player.EndPlayerTurn;
+import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.actions.special.KillCharacterAction;
 import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.blights.common.CustomTimeMaze;
@@ -27,20 +30,22 @@ import eatyourbeets.cards.animator.series.OwariNoSeraph.Guren;
 import eatyourbeets.cards.animator.ultrarare.Cthulhu;
 import eatyourbeets.cards.animator.ultrarare.SummoningRitual;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
+import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
-public class TheUnnamedPower extends AnimatorPower implements OnBattleStartSubscriber, OnApplyPowerSubscriber, OnStartOfTurnPostDrawSubscriber
+public class TheUnnamedPower extends AnimatorPower implements OnBattleStartSubscriber, OnTryApplyPowerListener, OnStartOfTurnPostDrawSubscriber
 {
     public static final String POWER_ID = CreateFullID(TheUnnamedPower.class);
     public static final int PHASE2_POWER_ASCENSION = 19;
@@ -49,6 +54,7 @@ public class TheUnnamedPower extends AnimatorPower implements OnBattleStartSubsc
     public boolean phase2 = false;
 
     private final static int MAX_DAMAGE_AT_ONCE = 199;
+    private final static int MAX_DOT_AT_ONCE = 139;
 
     private final ArrayList<Integer> linesUsed = new ArrayList<>();
     private final String[] dialog;
@@ -160,8 +166,17 @@ public class TheUnnamedPower extends AnimatorPower implements OnBattleStartSubsc
     }
 
     @Override
-    public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source, AbstractGameAction action)
     {
+        boolean canApply = true;
+        if (target == owner)
+        {
+            //noinspection ConstantConditions
+            canApply &= LimitPowerAmount(action, power, PoisonPower.POWER_ID, MAX_DOT_AT_ONCE);
+            canApply &= LimitPowerAmount(action, power, BurningPower.POWER_ID, MAX_DOT_AT_ONCE);
+            canApply &= LimitPowerAmount(action, power, ConstrictedPower.POWER_ID, MAX_DOT_AT_ONCE);
+        }
+
         if (source != null && target != null)
         {
             int stacks = Math.max(0, Math.abs(power.amount));
@@ -234,14 +249,13 @@ public class TheUnnamedPower extends AnimatorPower implements OnBattleStartSubsc
             }
         }
 
-        super.onApplyPower(power, target, source);
+        return canApply;
     }
 
     @Override
     public void OnBattleStart()
     {
         CombatStats.onBattleStart.Subscribe(this);
-        CombatStats.onApplyPower.Subscribe(this);
         CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
 
@@ -250,13 +264,11 @@ public class TheUnnamedPower extends AnimatorPower implements OnBattleStartSubsc
     {
         super.onAfterUseCard(card, action);
 
-        int cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
-
+        final int cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
         if (cardsPlayed < (maxCardsPerTurn - 3))
         {
             CardMessage(card, action);
         }
-
         if (cardsPlayed == (maxCardsPerTurn - 2))
         {
             if (!timeMaze.isObtained)
@@ -284,6 +296,33 @@ public class TheUnnamedPower extends AnimatorPower implements OnBattleStartSubsc
     public int onAttacked(DamageInfo info, int damageAmount)
     {
         return super.onAttacked(info, Math.min(MAX_DAMAGE_AT_ONCE, damageAmount));
+    }
+
+    private boolean LimitPowerAmount(AbstractGameAction action, AbstractPower power, String powerID, int maxAmount)
+    {
+        if (power.ID.equals(powerID) && power.amount > 0)
+        {
+            final int initialAmount = power.amount;
+            final int existingAmount = GameUtilities.GetPowerAmount(owner, powerID);
+            if ((existingAmount + power.amount) > maxAmount)
+            {
+                action.amount = power.amount = Math.max(0, maxAmount - existingAmount);
+
+                if (!(action instanceof ApplyPower) && !(action instanceof ApplyPowerAction))
+                {
+                    JUtils.LogWarning(this, "Unknown action type: " + action.getClass().getName());
+                }
+
+                if (power.amount != initialAmount)
+                {
+                    Talk(37, 2.5f);
+                }
+
+                return power.amount > 0;
+            }
+        }
+
+        return true;
     }
 
     private void CardMessage(AbstractCard card, UseCardAction action)
@@ -417,7 +456,7 @@ public class TheUnnamedPower extends AnimatorPower implements OnBattleStartSubsc
 
     public static class Phase2Power extends AnimatorPower
     {
-        private AbstractCard lastCard;
+        private String lastCard;
         private boolean reduceDamage;
 
         public Phase2Power(AbstractCreature owner)
@@ -466,11 +505,11 @@ public class TheUnnamedPower extends AnimatorPower implements OnBattleStartSubsc
         @Override
         public float atDamageReceive(float damage, DamageInfo.DamageType damageType, AbstractCard card)
         {
-            if (damageType == DamageInfo.DamageType.NORMAL && card == lastCard)
+            if (damageType == DamageInfo.DamageType.NORMAL && card.cardID.equals(lastCard))
             {
                 if (reduceDamage)
                 {
-                    return super.atDamageReceive(damage / 2f, damageType, card);
+                    damage *= 0.5f;
                 }
                 else
                 {
@@ -487,7 +526,7 @@ public class TheUnnamedPower extends AnimatorPower implements OnBattleStartSubsc
             super.onUseCard(card, action);
 
             reduceDamage = false;
-            lastCard = card;
+            lastCard = card.cardID;
         }
     }
 }

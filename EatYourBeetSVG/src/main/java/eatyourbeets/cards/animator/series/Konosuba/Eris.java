@@ -86,7 +86,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.Heal(magicNumber);
+        GameActions.Bottom.HealPlayerLimited(this, magicNumber);
     }
 
     private boolean CanRevive()

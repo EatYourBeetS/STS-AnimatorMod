@@ -277,7 +277,7 @@
 		},
 		"animator:Zero":
 		{
-			"DESCRIPTION": "Gain/Boost [I] || Play a random ** {Skill} from your ** draw pile.",
+			"DESCRIPTION": "Gain|Boost [I] || Play a random ** {Skill} from your ** draw pile.",
 			"NAME": "Zero"
 		}
 	},
@@ -651,7 +651,7 @@
 	{
 		"animator:ApprenticeCleric":
 		{
-			"DESCRIPTION": "Gain/Boost [B]. || Give all <R> or <G> cards ** in hand +1 [B] scaling. || When Drawn: If you ** have [Lightning], gain [B].",
+			"DESCRIPTION": "Gain|Boost [B]. || Give all <R> or <G> cards ** in hand +1 [B] scaling. || <SLM>. When ** Drawn: Gain [B].",
 			"NAME": "Apprentice Cleric"
 		},
 		"animator:CowGirl":
@@ -683,7 +683,7 @@
 		},
 		"animator:HighElfArcher":
 		{
-			"DESCRIPTION": "<DRW>, it becomes ** Unplayable this turn. || !A! <B>: Apply !M! [Poison]. || !A! <G>: Apply !S! [~Lock-On].",
+			"DESCRIPTION": "!A! <G>: Apply !S! [~Lock-On]. || !A! <B>: Apply !M! [Poison]. || <DRW>, it becomes ** Unplayable this turn.",
 			"NAME": "High Elf Archer"
 		},
 		"animator:LizardPriest":
@@ -822,7 +822,7 @@
 		},
 		"animator:Shichika":
 		{
-			"DESCRIPTION": "Gain/Boost [F] [A]. || Add {Kyotouryuu} ** to your hand.",
+			"DESCRIPTION": "Gain|Boost [F] [A]. || Add {Kyotouryuu} ** to your hand.",
 			"NAME": "Shichika"
 		},
 		"animator:Shichika_Kyotouryuu":
@@ -900,7 +900,7 @@
 		},
 		"animator:Mitsurugi":
 		{
-			"DESCRIPTION": "Gain/Boost [F]. Can only ** deal damage if the ** enemy is attacking. || When Exhausted: ** Gain !S! [Block].",
+			"DESCRIPTION": "Gain|Boost [F]. Can only ** deal damage if the ** enemy is attacking. || When Exhausted: ** Gain !S! [Block].",
 			"NAME": "Mitsurugi"
 		},
 		"animator:Vanir":
@@ -971,7 +971,7 @@
 		},
 		"animator:Nyanta":
 		{
-			"DESCRIPTION": "Gain/Boost [A]. Apply a ** random {Common Debuff} ** on each attack. || Any Stance: Attack 1 ** additional time",
+			"DESCRIPTION": "Gain|Boost [A]. Apply a ** random {Common Debuff} ** on each attack. || Any Stance: Attack 1 ** additional time",
 			"NAME": "Nyanta"
 		},
 		"animator:Rayneshia":
@@ -1063,7 +1063,7 @@
 		},
 		"animator:NagisaMomoe":
 		{
-			"DESCRIPTION": "Randomly Gain/Boost ** [A], [I] or [B] !M! times. || When Exhausted: Add ** {Charlotte} and a [Grief Seed] to ** your discard pile.",
+			"DESCRIPTION": "Randomly Gain|Boost ** [A], [I] or [B] !M! times. || When Exhausted: Add ** {Charlotte} and a [Grief Seed] to ** your discard pile.",
 			"NAME": "Nagisa Momoe"
 		},
 		"animator:NagisaMomoe_Charlotte":
@@ -1253,33 +1253,35 @@
 	{
 		"animator:Ainz":
 		{
-			"DESCRIPTION": "At the start of turn: ** choose and execute 1 ** of 4 random {Effects}. || When Drawn: Decrease ** this card's cost by 1, then ** randomly Boost [I], [F] or [C].",
+			"DESCRIPTION": "At the start of turn: Boost ** all {<W> Powers} except [B]. || When Drawn: Motivate this. || Pay !S! [E]: Channel !M! [Chaos].",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} to #yChannel #b{1} [Chaos]. || At the start of each turn, #yBoost all <W> #yPowers except [B] #b{2} time(s)."],
 			"NAME": "Ainz Ooal Gown"
 		},
 		"animator:Albedo":
 		{
-			"DESCRIPTION": "Gain [Enchanted Armor] equal ** to the damage dealt. || On Synergy: Gain 1 ** {Temporary} [Artifact].",
+			"DESCRIPTION": "Gain !M! [Enchanted Armor]. ** Gain 1 {Temp.} [Artifact]. || At the start of next ** turn: Fetch 1 {Power}.",
+			"EXTENDED_DESCRIPTION": ["At the start of your turn, fetch #b{0} #yPower(s)."],
 			"NAME": "Albedo"
 		},
 		"animator:Cocytus":
 		{
-			"DESCRIPTION": "If you have !M! or ** less [F]: Boost [F]. || <slm>. Synergy: ** Gain !S! [Plated Armor] and [Thorns].",
+			"DESCRIPTION": "Evoke your first [Frost] to ** gain !M! [F]. Otherwise: ** Channel 1 [Frost]. || !A! <B>: Apply 1 [Freezing].",
 			"NAME": "Cocytus"
 		},
 		"animator:Demiurge":
 		{
-			"DESCRIPTION": "Gain [E]. ** Take !M! damage ** at the end of turn. || Synergy: Conserve ** your [E] next turn.",
-			"NAME": "Demiurge",
-			"UPGRADE_DESCRIPTION": "Gain [E]. Discard 1 ** card or take !M! damage ** at the end of turn. || Synergy: Conserve ** your [E] next turn."
+			"DESCRIPTION": "Discard 1 card. || Gain [E] and [C]. The ** next time you draw ** this: Take !M! [Delayed Damage].",
+			"NAME": "Demiurge"
 		},
 		"animator:Entoma":
 		{
-			"DESCRIPTION": "{~Unique}. Apply !M! [Poison]. ** Loses 1 damage each turn. || <LIM>. If this card kills an ** enemy: Gain 2 Max HP and ** Upgrade permanently.",
+			"DESCRIPTION": "Apply [Poison] equal ** to the damage dealt. || <slm>. For 2 turns, ** whenever you apply ** [Poison]: Gain 1 [Temp HP].",
+			"EXTENDED_DESCRIPTION": ["Whenever you apply [Poison], gain #b1 [Temp HP]."],
 			"NAME": "Entoma"
 		},
 		"animator:Evileye":
 		{
-			"DESCRIPTION": "<DRW-M>. Reload: ** Trigger your next orb. || <LIM>. Synergy: Gain ** 2 [I] and 1 orb slot.",
+			"DESCRIPTION": "Choose 1: Gain !M! [I]; ** Gain !S! Orb slots; ** Draw !M! card(s). || !A! <D>: Gain 1 [E], ** then Exhaust.",
 			"NAME": "Evileye"
 		},
 		"animator:NarberalGamma":
@@ -1290,17 +1292,32 @@
 		},
 		"animator:PandorasActor":
 		{
-			"DESCRIPTION": "At the start of combat: ** Autoplay this card and ** refund its [E] cost.",
+			"DESCRIPTION": "At the start ** of each combat: ** Gain !M! Block.",
 			"NAME": "Pandora's Actor"
+		},
+		"animator:AuraBellaFiora":
+		{
+			"DESCRIPTION": "Starter: Gain !M! ** additional Block. || Discard all {Low-Cost} ** cards. Motivate 1.",
+			"NAME": "Aura Bella Fiora"
+		},
+		"animator:MareBelloFiore":
+		{
+			"DESCRIPTION": "!A! <B>: Gain !M! [Temp HP]. || !A! <G>: Apply !S! Weak. || Channel 1 [Earth] then ** trigger all [Earth].",
+			"NAME": "Mare Bello Fiore"
+		},
+		"animator:CZDelta":
+		{
+			"DESCRIPTION": "Lose !M! [Block] to play. || <SLM>. When Discarded: Give {~Haste} to all copies of this card.",
+			"NAME": "CZ Delta"
 		},
 		"animator:Sebas":
 		{
-			"DESCRIPTION": "Deal damage equal to ** your [Block] to each enemy ** who intends to Attack. || When Discarded: ** Gain !M! [Temp HP].",
+			"DESCRIPTION": "Gain 1 [F] and !M! [Counter-Attack] ** for each enemy who ** intends to {Attack}. || <AS> and/or ** !A! <R>: Gain [E].",
 			"NAME": "Sebas"
 		},
 		"animator:Shalltear":
 		{
-			"DESCRIPTION": "Apply 1 [Weak] ** to ALL enemies. || Synergy: Steal 1 [F] ** from each enemy.",
+			"DESCRIPTION": "Steal !M! [Health] ** from ALL enemies. || Convert all [B] to [C].",
 			"NAME": "Shalltear"
 		}
 	},
@@ -1471,7 +1488,7 @@
 				"Once per turn, ** pay !S! [E]: Gain {0} [F] ** and gain !M! [Plated Armor].",
 				"Once per turn, ** pay !S! [E]: Gain {0} [A] ** and Retain !M! card(s).",
 				"Once per turn, ** pay !S! [E]: Gain {0} [I] ** and gain !M! orb slot(s).",
-				"Once per turn, ** pay !S! [E]: Gain {0} [B] ** and gain !M! {Temp.} [Artifact].",
+				"Once per turn, ** pay !S! [E]: Gain {0} [B] ** and gain !M! [Artifact].",
 				"Once per turn, ** pay !S! [E]: Gain {0} [C] and ** convert {1} HP to !M! [Temp HP]."
 			],
 			"NAME": "Powers"

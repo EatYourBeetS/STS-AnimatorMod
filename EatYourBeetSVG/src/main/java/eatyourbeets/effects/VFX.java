@@ -147,7 +147,12 @@ public class VFX
 
     public static SmallLaserEffect2 SmallLaser(Hitbox source, Hitbox target, Color color)
     {
-        return new SmallLaserEffect2(source.cX, source.cY, RandomX(target, 0.2f), RandomY(target, 0.2f))
+        return SmallLaser(source, target, color, 0.2f);
+    }
+
+    public static SmallLaserEffect2 SmallLaser(Hitbox source, Hitbox target, Color color, float variance)
+    {
+        return new SmallLaserEffect2(source.cX, source.cY, RandomX(target, variance), RandomY(target, variance))
         .SetColors(color, Colors.Lerp(color, Color.BLACK, 0.3f));
     }
 

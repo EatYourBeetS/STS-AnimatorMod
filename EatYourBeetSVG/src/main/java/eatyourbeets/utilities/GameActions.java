@@ -495,14 +495,24 @@ public final class GameActions
         return StackAffinityPower(BlessingPower.AFFINITY_TYPE, amount, retain);
     }
 
+    public GainBlock GainBlock(int amount)
+    {
+        return GainBlock(player, amount);
+    }
+
     public GainBlock GainBlock(AbstractCreature target, int amount)
     {
         return Add(new GainBlock(target, target, amount));
     }
 
-    public GainBlock GainBlock(int amount)
+    public LoseBlock LoseBlock(int amount)
     {
-        return Add(new GainBlock(player, player, amount));
+        return LoseBlock(player, amount);
+    }
+
+    public LoseBlock LoseBlock(AbstractCreature target, int amount)
+    {
+        return Add(new LoseBlock(target, target, amount));
     }
 
     public ApplyPower GainBlur(int amount)
@@ -633,6 +643,11 @@ public final class GameActions
     public HealCreature Heal(int amount)
     {
         return Add(new HealCreature(player, player, amount));
+    }
+
+    public HealCreature HealPlayerLimited(AbstractCard card, int amount)
+    {
+        return Add(new HealCreature(player, player, amount).SetCard(card));
     }
 
     public ModifyAffinityScaling IncreaseExistingScaling(AbstractCard card, int amount)

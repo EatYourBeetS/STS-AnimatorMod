@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Illya extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Illya.class)
-            .SetSkill(1, CardRarity.COMMON)
+            .SetSkill(1, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Berserker(), false));
 
@@ -27,7 +27,7 @@ public class Illya extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 6);
-        SetUpgrade(0, 0, -2);
+        SetCostUpgrade(-1);
 
         SetAffinity_Star(1);
     }

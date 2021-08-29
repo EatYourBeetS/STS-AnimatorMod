@@ -12,7 +12,7 @@ public class CorruptionPower extends AbstractAffinityPower
     public static final String POWER_ID = CreateFullID(CorruptionPower.class);
     public static final Affinity AFFINITY_TYPE = Affinity.Dark;
 
-    protected static final int[] THRESHOLDS = new int[]{ 5, 7, 9, 11, 13 };
+    protected static final int[] THRESHOLDS = new int[]{ 3, 6, 9, 12, 15 };
 
     public CorruptionPower()
     {

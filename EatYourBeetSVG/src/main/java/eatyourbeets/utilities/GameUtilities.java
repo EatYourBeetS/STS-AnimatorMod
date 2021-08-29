@@ -264,7 +264,7 @@ public class GameUtilities
     {
         for (AbstractOrb orb : player.orbs)
         {
-            if (orb.ID.equals(orbID))
+            if (orb != null && orbID.equals(orb.ID))
             {
                 return orb;
             }
@@ -1031,6 +1031,16 @@ public class GameUtilities
         return card.type == AbstractCard.CardType.CURSE || card.type == AbstractCard.CardType.STATUS;
     }
 
+    public static boolean IsHighCost(AbstractCard card)
+    {
+        return card.costForTurn >= 2;
+    }
+
+    public static boolean IsLowCost(AbstractCard card)
+    {
+        return card.costForTurn == 0 || card.costForTurn == 1;
+    }
+
     public static boolean IsDeadOrEscaped(AbstractCreature target)
     {
         return target.isDeadOrEscaped() || target.currentHealth <= 0;
@@ -1054,17 +1064,20 @@ public class GameUtilities
         {
             if (!GR.Animator.OfficialName.equals(player.getTitle(player.chosenClass)))
             {
+                JUtils.LogInfo(GameUtilities.class, "IsNormalRun: false (0)");
                 return false;
             }
 
             if (GR.Common.Dungeon.IsCheating())
             {
+                JUtils.LogInfo(GameUtilities.class, "IsNormalRun: false (1)");
                 return false;
             }
 
             final String validSeed = GR.Animator.Config.LastSeed.Get();
             if (StringUtils.isNotEmpty(validSeed) && !String.valueOf(Settings.seed).equals(validSeed))
             {
+                JUtils.LogInfo(GameUtilities.class, "IsNormalRun: false (2)");
                 return false;
             }
 
@@ -1072,10 +1085,15 @@ public class GameUtilities
             {
                 if (c instanceof CustomCard)
                 {
+                    JUtils.LogInfo(GameUtilities.class, "IsNormalRun: false (3)");
                     return false;
                 }
             }
         }
+
+        JUtils.LogInfo(GameUtilities.class, "IsNormalRun: SeedSet: {0}, SpecialSeed: {1}, DailyRun: {2}, IsDemo: {3}, Mods: {4}, Endless: {5}",
+                Settings.seedSet, Settings.specialSeed, Settings.isDailyRun, Settings.isDemo,
+                JUtils.JoinStrings("," ,ModHelper.getEnabledModIDs()), Settings.isEndless);
 
         return !Settings.seedSet && JUtils.IsNullOrZero(Settings.specialSeed) && !Settings.isDailyRun
             && !Settings.isDemo && JUtils.IsNullOrEmpty(ModHelper.enabledMods) && !Settings.isEndless;
@@ -1087,12 +1105,14 @@ public class GameUtilities
         {
             if (!GR.Animator.OfficialName.equals(data.loadout))
             {
+                JUtils.LogInfo(GameUtilities.class, "IsNormalRunData: false (0)");
                 return false;
             }
 
             final String validSeed = GR.Animator.Config.LastSeed.Get();
             if (StringUtils.isNotEmpty(validSeed) && !validSeed.equals(String.valueOf(data.seed_played)))
             {
+                JUtils.LogInfo(GameUtilities.class, "IsNormalRunData: false (1)");
                 return false;
             }
 
@@ -1101,10 +1121,15 @@ public class GameUtilities
                 final AbstractCard c = CardLibrary.getCard(JUtils.SplitString("+", cardID)[0]);
                 if (c == null || c instanceof CustomCard)
                 {
+                    JUtils.LogInfo(GameUtilities.class, "IsNormalRunData: false (2), " + (c != null ? c.cardID : "null"));
                     return false;
                 }
             }
         }
+
+        JUtils.LogInfo(GameUtilities.class, "IsNormalRunData: chose_seed: {0}, special_seed: {1}, is_daily: {2}, is_trial: {3}, is_endless: {4}, daily_mods: {5}, is_special_run: {6}",
+                data.chose_seed, data.special_seed, data.is_daily, data.is_trial,
+                (data.daily_mods == null ? "null" : JUtils.JoinStrings(",", data.daily_mods)), data.is_special_run);
 
         return !data.chose_seed && JUtils.IsNullOrZero(data.special_seed) && !data.is_daily && !data.is_trial
             && !data.is_endless && JUtils.IsNullOrEmpty(data.daily_mods) && !data.is_special_run;

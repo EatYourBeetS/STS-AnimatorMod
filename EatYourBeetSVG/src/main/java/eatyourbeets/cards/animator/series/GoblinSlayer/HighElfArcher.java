@@ -29,13 +29,13 @@ public class HighElfArcher extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 3, 1);
+        Initialize(2, 0, 2, 1);
         SetUpgrade(1, 0);
 
         SetAffinity_Green(1, 1, 1);
 
-        SetAffinityRequirement(Affinity.Blue, 4);
-        SetAffinityRequirement(Affinity.Green, 4);
+        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Blue, 3);
     }
 
     @Override
@@ -45,23 +45,20 @@ public class HighElfArcher extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
         .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowDagger(c.hb, 0.15f).SetColor(Color.TAN)).duration * 0.5f);
 
+        if (CheckAffinity(Affinity.Blue))
+        {
+            GameActions.Bottom.ApplyPoison(player, m, magicNumber);
+        }
+        if (CheckAffinity(Affinity.Green))
+        {
+            GameActions.Bottom.ApplyLockOn(player, m, secondaryValue);
+        }
+
         GameActions.Bottom.Draw(1).AddCallback(cards ->
         {
             for (AbstractCard c : cards)
             {
                 GameUtilities.SetUnplayableThisTurn(c);
-            }
-        });
-
-        GameActions.Bottom.Callback(m, (enemy, __) ->
-        {
-            if (CheckAffinity(Affinity.Blue))
-            {
-                GameActions.Bottom.ApplyPoison(player, enemy, magicNumber);
-            }
-            if (CheckAffinity(Affinity.Green))
-            {
-                GameActions.Bottom.ApplyLockOn(player, enemy, secondaryValue);
             }
         });
     }

@@ -86,7 +86,7 @@
 	},
 	"Corruption":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b5, #b7, #b9 and #b11 #yCorruption, add {Crystallize} to your draw pile. At #b13 #yCorruption, obtain #pSummoning #pRitual.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b3, #b6, #b9 and #b12 #yCorruption, add #yCrystallize to your draw pile. At #b15 #yCorruption, obtain #pSummoning #pRitual.",
 		"NAMES": ["corruption"],
 		"PROPER_NAME": "Corruption"
 	},
@@ -143,6 +143,12 @@
 		"DESCRIPTION": "Reduces #yAttack damage by #b3, or by #b4 if at least #b1 [Frost] is #yChanneled. At the end of turn, reduce [Freezing] by #b1.",
 		"NAMES": ["freezing"],
 		"PROPER_NAME": "Freezing"
+	},
+	"Low-Cost":
+	{
+		"DESCRIPTION": "Card which cost less than #b2 [E].",
+		"NAMES": ["low-cost", "low cost"],
+		"PROPER_NAME": "Low-Cost Card"
 	},
 	"High-Cost":
 	{

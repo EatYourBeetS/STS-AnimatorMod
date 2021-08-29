@@ -136,8 +136,8 @@ public class EnemyIntent
     public final AbstractMonster enemy;
     public final HashMap<String, Integer> modifiers = new HashMap<>();
     public AbstractMonster.Intent intent;
-    public EnemyMoveInfo move;
-    public boolean isAttacking;
+    private EnemyMoveInfo move;
+    private boolean isAttacking;
 
     protected EnemyIntent(AbstractMonster enemy)
     {
@@ -158,6 +158,11 @@ public class EnemyIntent
         intent.isAttacking = intent.move.baseDamage >= 0; // It is -1 if not attacking
 
         return intent;
+    }
+
+    public boolean IsAttacking()
+    {
+        return isAttacking;
     }
 
     public int GetDamage(boolean multi)

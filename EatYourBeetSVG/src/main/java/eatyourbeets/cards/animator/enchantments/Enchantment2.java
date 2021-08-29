@@ -99,7 +99,7 @@ public class Enchantment2 extends Enchantment
                 break;
 
             case Light:
-                GameActions.Bottom.GainTemporaryArtifact(magicNumber);
+                GameActions.Bottom.GainArtifact(magicNumber);
                 break;
 
             case Dark:

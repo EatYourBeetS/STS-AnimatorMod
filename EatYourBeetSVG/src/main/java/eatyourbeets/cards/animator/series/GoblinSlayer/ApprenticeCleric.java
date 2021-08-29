@@ -3,11 +3,11 @@ package eatyourbeets.cards.animator.series.GoblinSlayer;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -32,14 +32,11 @@ public class ApprenticeCleric extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Last.Callback(() ->
+        if (CombatStats.TryActivateSemiLimited(cardID))
         {
-            if (GameUtilities.HasOrb(Lightning.ORB_ID))
-            {
-                GameActions.Bottom.GainBlessing(1);
-                GameActions.Bottom.Flash(this);
-            }
-        });
+            GameActions.Bottom.GainBlessing(1);
+            GameActions.Bottom.Flash(this);
+        }
     }
 
     @Override

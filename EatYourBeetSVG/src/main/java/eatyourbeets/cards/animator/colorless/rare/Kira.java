@@ -25,7 +25,6 @@ public class Kira extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Kira.class)
             .SetSkill(1, CardRarity.RARE)
-            .SetMaxCopies(1)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.DeathNote);
     public static final String[] DESCRIPTIONS = DATA.Strings.EXTENDED_DESCRIPTION;

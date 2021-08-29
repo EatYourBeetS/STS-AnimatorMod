@@ -26,7 +26,7 @@ public class EmiyaKiritsugu extends AnimatorCard
         super(DATA);
 
         Initialize(9, 7, 0, 2);
-        SetUpgrade(3, 2);
+        SetUpgrade(2, 2);
 
         SetAffinity_Light(1, 1, 0);
         SetAffinity_Dark(1, 1, 0);
@@ -34,6 +34,7 @@ public class EmiyaKiritsugu extends AnimatorCard
         SetAffinity_Blue(0, 0, 1);
 
         SetExhaust(true);
+        SetRetainOnce(true);
     }
 
     @Override

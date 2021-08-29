@@ -16,7 +16,6 @@ public class HououinKyouma extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(HououinKyouma.class)
             .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
-            .SetMaxCopies(1)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.SteinsGate);
 

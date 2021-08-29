@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.Overlord;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ConservePower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -19,39 +18,33 @@ public class Demiurge extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0,0,4);
+        Initialize(0,0,7);
+        SetUpgrade(0,0, -3);
 
         SetAffinity_Blue(1);
-        SetAffinity_Dark(1, 1, 0);
+        SetAffinity_Dark(1);
+    }
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        if (misc > 0)
+        {
+            GameActions.Bottom.DealDamageAtEndOfTurn(player, player, misc, AttackEffects.DARK);
+            GameActions.Bottom.Flash(this);
+            misc = 0;
+        }
     }
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (upgraded)
-        {
-            GameActions.Bottom.DiscardFromHand(name, 1, false)
-            .SetOptions(true, true, true)
-            .AddCallback(cards -> ExecuteEffect(cards.isEmpty()));
-        }
-        else
-        {
-            ExecuteEffect(true);
-        }
-
-        if (isSynergizing && !p.hasPower(ConservePower.POWER_ID))
-        {
-            GameActions.Bottom.StackPower(new ConservePower(p, 1));
-        }
-    }
-
-    private void ExecuteEffect(boolean takeDamage)
-    {
+        GameActions.Bottom.DiscardFromHand(name, 1, false);
         GameActions.Bottom.GainEnergy(1);
-
-        if (takeDamage)
-        {
-            GameActions.Bottom.DealDamageAtEndOfTurn(player, player, magicNumber, AttackEffects.DARK);
-        }
+        GameActions.Bottom.GainCorruption(1);
+        GameActions.Bottom.ModifyAllInstances(uuid)
+        .AddCallback(c -> c.misc += magicNumber);
     }
 }

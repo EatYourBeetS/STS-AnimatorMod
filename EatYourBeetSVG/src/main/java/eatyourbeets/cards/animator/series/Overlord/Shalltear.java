@@ -21,13 +21,14 @@ public class Shalltear extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 2);
+        Initialize(2, 0, 2, 6);
         SetUpgrade(1, 0, 1);
 
         SetAffinity_Green(1);
         SetAffinity_Blue(2, 0, 3);
         SetAffinity_Dark(2, 0, 3);
 
+        SetHealing(true);
         SetExhaust(true);
     }
 
@@ -58,8 +59,9 @@ public class Shalltear extends AnimatorCard
         final AbstractAffinityPower power = CombatStats.Affinities.GetPower(Affinity.Light);
         if (power.amount > 0)
         {
-            GameActions.Bottom.GainCorruption(power.amount);
-            power.reducePower(power.amount);
+            final int amount = Math.min(secondaryValue, power.amount);
+            GameActions.Bottom.GainCorruption(amount);
+            power.reducePower(amount);
         }
     }
 }

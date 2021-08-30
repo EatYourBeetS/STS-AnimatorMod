@@ -1253,7 +1253,7 @@
 	{
 		"animator:Ainz":
 		{
-			"DESCRIPTION": "At the start of turn: Boost ** all {<W> Powers} except [B]. || When Drawn: Motivate this. || Pay !S! [E]: Channel !M! [Chaos].",
+			"DESCRIPTION": "At the start of turn: Boost ** all {<W> Powers} except [B]. || When Drawn: Motivate this. || Pay {0} [E]: Channel {1} [Chaos].",
 			"EXTENDED_DESCRIPTION": ["Pay #b{0} to #yChannel #b{1} [Chaos]. || At the start of each turn, #yBoost all <W> #yPowers except [B] #b{2} time(s)."],
 			"NAME": "Ainz Ooal Gown"
 		},
@@ -1281,7 +1281,7 @@
 		},
 		"animator:Evileye":
 		{
-			"DESCRIPTION": "Choose 1: Gain !M! [I]; ** Gain !S! Orb slots; ** Draw !M! card(s). || !A! <D>: Gain 1 [E], ** then Exhaust.",
+			"DESCRIPTION": "!A! <D>: Gain 1 [E], ** then Exhaust. || Choose 1: Gain !M! [I]; ** Gain !S! Orb slots; ** Draw !M! card(s).",
 			"NAME": "Evileye"
 		},
 		"animator:NarberalGamma":
@@ -1317,7 +1317,7 @@
 		},
 		"animator:Shalltear":
 		{
-			"DESCRIPTION": "Steal !M! [Health] ** from ALL enemies. || Convert all [B] to [C].",
+			"DESCRIPTION": "Steal !M! [Health] ** from ALL enemies. || Convert up to ** !S! [B] to [C].",
 			"NAME": "Shalltear"
 		}
 	},

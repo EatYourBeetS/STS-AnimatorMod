@@ -39,6 +39,7 @@ public class AnimatorCharacter extends CustomPlayer
     public static final String ORIGINAL_NAME = NAMES[0];
     public static final String OVERRIDE_NAME = NAMES.length > 1 ? NAMES[1] : ORIGINAL_NAME; // Support for Beta/Alt
     public static final int MAX_TEMP_HP = 99;
+    public static final int MAX_BLOCK = 199;
 
     public AnimatorCharacter()
     {
@@ -247,6 +248,17 @@ public class AnimatorCharacter extends CustomPlayer
         if (tempHP > MAX_TEMP_HP)
         {
             TempHPField.tempHp.set(this, MAX_TEMP_HP);
+        }
+    }
+
+    @Override
+    public void addBlock(int blockAmount)
+    {
+        super.addBlock(blockAmount);
+
+        if (currentBlock > MAX_BLOCK)
+        {
+            currentBlock = MAX_BLOCK;
         }
     }
 

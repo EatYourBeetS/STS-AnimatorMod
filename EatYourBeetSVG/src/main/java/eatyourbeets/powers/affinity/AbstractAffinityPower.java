@@ -38,6 +38,7 @@ public abstract class AbstractAffinityPower extends CommonPower
     {
         super(null, powerID);
 
+        this.maxAmount = 20;
         this.affinity = affinity;
 
         //TODO: Add tooltip to EYBPower base class
@@ -117,17 +118,22 @@ public abstract class AbstractAffinityPower extends CommonPower
     }
 
     @Override
-    public void updateDescription()
+    public final void updateDescription()
     {
-        this.description = powerStrings.DESCRIPTIONS[0];
+        this.tooltip.description = this.description = GetUpdatedDescription() + " NL (max #b20^ stacks)";
+    }
+
+    protected String GetUpdatedDescription()
+    {
+        String description = powerStrings.DESCRIPTIONS[0];
 
         final Integer threshold = GetCurrentThreshold();
         if (threshold != null)
         {
-            this.description += FormatDescription(1, threshold, 1);
+            description += FormatDescription(1, threshold, 1);
         }
 
-        this.tooltip.description = description;
+        return description;
     }
 
     @Override

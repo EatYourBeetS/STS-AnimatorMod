@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.orbs.animator.Chaos;
 import eatyourbeets.powers.AnimatorClickablePower;
@@ -25,14 +27,26 @@ public class Ainz extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, CHANNEL_AMOUNT, POWER_ENERGY_COST);
-        SetCostUpgrade(-1);
+        Initialize(0, 0, 0);
+        SetUpgrade(0, 0, 5);
 
         SetAffinity_Red(1);
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);
 
-        SetHealing(true);
+        SetObtainableInCombat(false);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return magicNumber > 0 ? TempHPAttribute.Instance.SetCard(this, true) : null;
+    }
+
+    @Override
+    protected String GetRawDescription(Object... args)
+    {
+        return super.GetRawDescription(POWER_ENERGY_COST, CHANNEL_AMOUNT);
     }
 
     @Override
@@ -46,6 +60,11 @@ public class Ainz extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
+        if (magicNumber > 0)
+        {
+            GameActions.Bottom.GainTemporaryHP(magicNumber);
+        }
+
         GameActions.Bottom.StackPower(new AinzPower(p, 1));
     }
 

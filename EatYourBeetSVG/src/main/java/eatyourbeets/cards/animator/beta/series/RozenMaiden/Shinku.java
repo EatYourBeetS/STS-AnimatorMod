@@ -11,14 +11,14 @@ import eatyourbeets.utilities.GameActions;
 public class Shinku extends AnimatorCard  //TODO
 {
     public static final EYBCardData DATA = Register(Shinku.class)
-    		.SetAttack(2, CardRarity.RARE).SetSeriesFromClassPackage();
-    static
-    {
-        for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
-        {
-            DATA.AddPreview(knife, false);
-        }
-    }
+    		.SetAttack(2, CardRarity.RARE).SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
+                {
+                    data.AddPreview(knife, true);
+                }
+            });
 
 //    private int Index;
 

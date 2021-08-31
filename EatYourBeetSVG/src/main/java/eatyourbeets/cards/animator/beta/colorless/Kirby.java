@@ -26,20 +26,18 @@ import eatyourbeets.utilities.*;
 import java.util.ArrayList;
 
 public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<String>>,
-                                                   OnAddToDeckListener,
+        OnAddToDeckListener,
         OnCostChangedSubscriber,
         OnTagChangedSubscriber,
-                                                   OnApplyPowerSubscriber,
-                                                   StartupCard
-{
+        OnApplyPowerSubscriber,
+        StartupCard {
     public static final EYBCardData DATA = Register(Kirby.class).SetSkill(-2, CardRarity.RARE).SetColor(CardColor.COLORLESS).SetMaxCopies(2).SetSeries(CardSeries.Kirby).SetMaxCopies(1);
     public static final int COPIED_CARDS = 2;
     protected final RotatingList<EYBCardPreview> previews = new RotatingList<>();
     protected final ArrayList<AbstractCard> inheritedCards = new ArrayList<>(COPIED_CARDS);
     protected boolean hasAttackOrSkill;
 
-    public Kirby()
-    {
+    public Kirby() {
         super(DATA);
 
         SetAffinity_Star(2);
@@ -50,22 +48,19 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     }
 
     @Override
-    public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
-    {
+    public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
         if (target == player) {
-            for (AbstractCard card: inheritedCards) {
+            for (AbstractCard card : inheritedCards) {
                 card.applyPowers();
             }
         }
     }
 
     @Override
-    protected void OnUpgrade()
-    {
+    protected void OnUpgrade() {
         for (AbstractCard card : inheritedCards) {
             if ((card instanceof EYBCard && ((EYBCard) card).isMultiUpgrade && card.timesUpgraded < this.timesUpgraded)
-                || !card.upgraded)
-            {
+                    || !card.upgraded) {
                 card.upgrade();
             }
         }
@@ -73,15 +68,12 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     }
 
     @Override
-    public void renderUpgradePreview(SpriteBatch sb)
-    {
+    public void renderUpgradePreview(SpriteBatch sb) {
         EYBCard upgrade = cardData.tempCard;
-        if (upgrade == null || upgrade.uuid != this.uuid || (upgrade.timesUpgraded != (timesUpgraded + 1)))
-        {
+        if (upgrade == null || upgrade.uuid != this.uuid || (upgrade.timesUpgraded != (timesUpgraded + 1))) {
             upgrade = cardData.tempCard = (EYBCard) this.makeSameInstanceOf();
             upgrade.isPreview = true;
-            for (AbstractCard iCard : inheritedCards)
-            {
+            for (AbstractCard iCard : inheritedCards) {
                 EYBCard innerCard = (EYBCard) iCard.makeSameInstanceOf();
                 innerCard.isPreview = true;
                 ((Kirby) upgrade).AddInheritedCard(innerCard);
@@ -99,21 +91,17 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     }
 
     @Override
-    public EYBCardPreview GetCardPreview()
-    {
+    public EYBCardPreview GetCardPreview() {
         if (previews.Count() == 0) {
-            for (AbstractCard card: inheritedCards) {
+            for (AbstractCard card : inheritedCards) {
                 previews.Add(GeneratePreviewCard(card));
             }
         }
         if (previews.Count() > 0) {
             EYBCardPreview currentPreview;
-            if (Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_RIGHT))
-            {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_RIGHT)) {
                 currentPreview = previews.Next(true);
-            }
-            else
-            {
+            } else {
                 currentPreview = previews.Current();
             }
 
@@ -124,59 +112,51 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     }
 
     @Override
-    public void Refresh(AbstractMonster enemy)
-    {
+    public void Refresh(AbstractMonster enemy) {
         super.Refresh(enemy);
         for (AbstractCard card : inheritedCards) {
-            if (card instanceof AnimatorCard)
-            {
+            if (card instanceof AnimatorCard) {
                 ((AnimatorCard) card).Refresh(enemy);
             }
         }
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
         ArrayList<AbstractCard> played = AbstractDungeon.actionManager.cardsPlayedThisTurn;
         if (played != null && (played.isEmpty() || (played.size() == 1 && played.get(0) == this))) {
             AbstractDungeon.actionManager.cardsPlayedThisTurn.clear();
         }
         for (AbstractCard card : inheritedCards) {
-            if (card instanceof AnimatorCard)
-            {
+            if (card instanceof AnimatorCard) {
                 ((AnimatorCard) card).OnUse(p, m, isSynergizing);
-            }
-            else {
-                card.use(p,m);
+            } else {
+                card.use(p, m);
             }
         }
-        if (played != null && !played.isEmpty() && played.get(played.size() -1) != this) {
+        if (played != null && !played.isEmpty() && played.get(played.size() - 1) != this) {
             AbstractDungeon.actionManager.cardsPlayedThisTurn.add(this);
         }
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
         ArrayList<AbstractCard> played = AbstractDungeon.actionManager.cardsPlayedThisTurn;
         if (played != null && (played.isEmpty() || (played.size() == 1 && played.get(0) == this))) {
             AbstractDungeon.actionManager.cardsPlayedThisTurn.clear();
         }
         for (AbstractCard card : inheritedCards) {
-            if (card instanceof AnimatorCard)
-            {
+            if (card instanceof AnimatorCard) {
                 ((AnimatorCard) card).OnLateUse(p, m, isSynergizing);
             }
         }
-        if (played != null && !played.isEmpty() && played.get(played.size() -1) != this) {
+        if (played != null && !played.isEmpty() && played.get(played.size() - 1) != this) {
             AbstractDungeon.actionManager.cardsPlayedThisTurn.add(this);
         }
     }
 
     @Override
-    public boolean atBattleStartPreDraw()
-    {
+    public boolean atBattleStartPreDraw() {
         for (AbstractCard card : inheritedCards) {
             if (card instanceof StartupCard) {
                 ((StartupCard) card).atBattleStartPreDraw();
@@ -186,32 +166,28 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     }
 
     @Override
-    public void triggerOnEndOfTurnForPlayingCard()
-    {
+    public void triggerOnEndOfTurnForPlayingCard() {
         for (AbstractCard card : inheritedCards) {
             card.triggerOnEndOfTurnForPlayingCard();
         }
     }
 
     @Override
-    public void triggerOnExhaust()
-    {
+    public void triggerOnExhaust() {
         for (AbstractCard card : inheritedCards) {
             card.triggerOnExhaust();
         }
     }
 
     @Override
-    public void triggerOnManualDiscard()
-    {
+    public void triggerOnManualDiscard() {
         for (AbstractCard card : inheritedCards) {
             card.triggerOnManualDiscard();
         }
     }
 
     @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
+    public void triggerWhenCreated(boolean startOfBattle) {
         super.triggerWhenCreated(startOfBattle);
 
         if (inheritedCards.size() < COPIED_CARDS) {
@@ -233,8 +209,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     }
 
     @Override
-    public void triggerWhenDrawn()
-    {
+    public void triggerWhenDrawn() {
         for (AbstractCard card : inheritedCards) {
             card.triggerWhenDrawn();
         }
@@ -242,14 +217,12 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     }
 
     @Override
-    public boolean cardPlayable(AbstractMonster m)
-    {
+    public boolean cardPlayable(AbstractMonster m) {
         return JUtils.Find(inheritedCards, card -> !card.cardPlayable(m)) == null;
     }
 
     @Override
-    public ArrayList<String> onSave()
-    {
+    public ArrayList<String> onSave() {
         ArrayList<String> ids = new ArrayList<>();
         for (AbstractCard card : inheritedCards) {
             ids.add(card.cardID);
@@ -258,11 +231,10 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     }
 
     @Override
-    public void onLoad(ArrayList<String> cardIDs)
-    {
+    public void onLoad(ArrayList<String> cardIDs) {
         inheritedCards.clear();
         previews.Clear();
-        for (String id: cardIDs) {
+        for (String id : cardIDs) {
             AbstractCard card = CardLibrary.getCard(id);
             for (int i = 0; i < this.timesUpgraded; i++) {
                 card.upgrade();
@@ -274,18 +246,15 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     }
 
     @Override
-    public boolean OnAddToDeck()
-    {
+    public boolean OnAddToDeck() {
         GameEffects.Queue.Add(new KirbyEffect(this, COPIED_CARDS));
         return true;
     }
 
     @Override
-    public AbstractCard makeCopy()
-    {
+    public AbstractCard makeCopy() {
         Kirby other = (Kirby) super.makeCopy();
-        for (AbstractCard iCard : inheritedCards)
-        {
+        for (AbstractCard iCard : inheritedCards) {
             other.AddInheritedCard(iCard.makeSameInstanceOf());
         }
         other.updateProperties();
@@ -316,16 +285,13 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
             }
             hasAttackOrSkill = true;
             this.type = CardType.ATTACK;
-        }
-        else if (card.type == CardType.POWER) {
+        } else if (card.type == CardType.POWER) {
             if (hasAttackOrSkill) {
                 SetPurge(true);
-            }
-            else if (this.type == CardType.SKILL) {
+            } else if (this.type == CardType.SKILL) {
                 this.type = CardType.POWER;
             }
-        }
-        else if (card.type == CardType.SKILL) {
+        } else if (card.type == CardType.SKILL) {
             if (this.type == CardType.POWER) {
                 SetPurge(true);
                 this.type = CardType.SKILL;
@@ -345,15 +311,13 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     protected void addCardProperties(AbstractCard card) {
         if (this.cost == -2 || card.cost == -1) {
             this.cost = this.costForTurn = card.cost;
-        }
-        else if (card.cost > 0 && this.cost > -1) {
+        } else if (card.cost > 0 && this.cost > -1) {
             this.cost = this.costForTurn = this.cost + card.cost;
         }
 
         if (card.hasTag(DELAYED)) {
             SetDelayed(true);
-        }
-        else if (card.isInnate) {
+        } else if (card.isInnate) {
             SetInnate(true);
         }
         if (card.isEthereal) {
@@ -362,8 +326,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         if (card.selfRetain) {
             SetRetain(true);
             SetRetainOnce(false);
-        }
-        else if (card.retain && !this.selfRetain) {
+        } else if (card.retain && !this.selfRetain) {
             SetRetainOnce(true);
         }
         if (card.hasTag(LOYAL)) {
@@ -371,15 +334,12 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         }
         if (card.hasTag(HASTE_INFINITE)) {
             SetPermanentHaste(true);
-        }
-        else if (card.hasTag(HASTE) && !this.hasTag(HASTE_INFINITE)) {
+        } else if (card.hasTag(HASTE) && !this.hasTag(HASTE_INFINITE)) {
             SetHaste(true);
         }
-        if (card.hasTag(GR.Enums.CardTags.PURGE))
-        {
+        if (card.hasTag(GR.Enums.CardTags.PURGE)) {
             SetPurge(true);
-        }
-        else if (card.exhaust || card.exhaustOnUseOnce) {
+        } else if (card.exhaust || card.exhaustOnUseOnce) {
             SetExhaust(true);
         }
         if (AfterLifeMod.IsAdded(card) && !card.hasTag(GR.Enums.CardTags.PURGE)) {
@@ -403,8 +363,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     public void refreshDescription() {
         if (inheritedCards.size() > 0) {
             cardText.OverrideDescription(JUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[1], inheritedCards.get(0).name, inheritedCards.size() >= 2 ? inheritedCards.get(1).name : "? ? ?"), true);
-        }
-        else {
+        } else {
             cardText.OverrideDescription(null, true);
         }
     }

@@ -15,11 +15,9 @@ import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class ByakuyaKuchiki extends AnimatorCard {
-    public static final EYBCardData DATA = Register(ByakuyaKuchiki.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(ByakuyaKuchiki.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new ByakuyaBankai(), false));
 
-    static {
-        DATA.AddPreview(new ByakuyaBankai(), false);
-    }
 
     public ByakuyaKuchiki() {
         super(DATA);

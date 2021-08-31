@@ -125,17 +125,22 @@ public abstract class AbstractAffinityPower extends CommonPower
     }
 
     @Override
-    public void updateDescription()
+    public final void updateDescription()
     {
-        this.description = powerStrings.DESCRIPTIONS[0];
+        this.tooltips.get(0).description = this.description = GetUpdatedDescription();
+    }
+
+    protected String GetUpdatedDescription()
+    {
+        String description = powerStrings.DESCRIPTIONS[0];
 
         final Integer threshold = GetCurrentThreshold();
         if (threshold != null)
         {
-            this.description += FormatDescription(1, threshold, 1);
+            description += FormatDescription(1, threshold, 1);
         }
 
-        this.tooltips.get(0).description = description;
+        return description;
     }
 
     @Override

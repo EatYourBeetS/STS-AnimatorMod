@@ -7,14 +7,13 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.GenericEffects.GenericEffect_GainStat;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.PlayerAttribute;
 import eatyourbeets.utilities.TargetHelper;
 
 public class GinIchimaru extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(GinIchimaru.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing, EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(GinIchimaru.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing, EYBCardTarget.Random).SetSeriesFromClassPackage();
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -22,22 +21,22 @@ public class GinIchimaru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 2, 0);
+        Initialize(3, 0, 2, 1);
         SetUpgrade(1, 0, 0);
         SetAffinity_Dark(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Green(2, 0, 2);
 
-        SetAffinityRequirement(Affinity.Red, 2);
-        SetAffinityRequirement(Affinity.Green, 2);
+        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Green, 3);
         SetAffinityRequirement(Affinity.Blue, 3);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetAffinityRequirement(Affinity.Red, 3);
-        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Red, 4);
+        SetAffinityRequirement(Affinity.Green, 4);
     }
 
     @Override
@@ -69,14 +68,18 @@ public class GinIchimaru extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        makeChoice(m, CheckAffinity(Affinity.General) && CombatStats.TryActivateLimited(cardID) ? 2 : 1);
+        GameActions.Bottom.Callback(() -> makeChoice(m, 1));
     }
 
     private void makeChoice(AbstractMonster m, int selections) {
         if (choices.TryInitialize(this))
         {
-            choices.AddEffect(new GenericEffect_GainStat(GetHandAffinity(Affinity.Red), PlayerAttribute.Force));
-            choices.AddEffect(new GenericEffect_GainStat(GetHandAffinity(Affinity.Green), PlayerAttribute.Agility));
+            if (GetHandAffinity(Affinity.Red) > 0) {
+                choices.AddEffect(new GenericEffect_GainStat(GetHandAffinity(Affinity.Red), PlayerAttribute.Force));
+            }
+            if (GetHandAffinity(Affinity.Green) > 0) {
+                choices.AddEffect(new GenericEffect_GainStat(GetHandAffinity(Affinity.Green), PlayerAttribute.Agility));
+            }
         }
         choices.Select(selections, m);
     }

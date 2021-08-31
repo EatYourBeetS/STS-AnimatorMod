@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.common.SelfDamagePower;
+import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -35,7 +35,7 @@ public class JumpyDumpty extends AnimatorCard {
                     if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0)) {
                         if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
                             GameActions.Bottom.MakeCardInDrawPile(this.makeStatEquivalentCopy());
-                            GameActions.Bottom.StackPower(new SelfDamagePower(player, secondaryValue));
+                            GameActions.Bottom.StackPower(new DelayedDamagePower(player, secondaryValue));
                         }
                     }
 

@@ -15,11 +15,12 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Traveler_Aether extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(Traveler_Aether.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact);
+    public static final EYBCardData DATA = Register(Traveler_Aether.class)
+            .SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.GenshinImpact)
+            .PostInitialize(data -> data.AddPreview(new Traveler_Wish(), false));
     public static final int UNIQUE_ORB_THRESHOLD = 3;
-    static {
-        DATA.AddPreview(new Traveler_Wish(), true);
-    }
 
 
     public Traveler_Aether()

@@ -242,10 +242,13 @@ public class AnimatorCardSlot
         {
             if (card == null || forceRefresh)
             {
-                card = (EYBCard) CardLibrary.getCard(data.ID).makeCopy();
-                if (data.IsNotSeen())
-                {
-                    card.isSeen = false;
+                EYBCard eCard = JUtils.SafeCast(CardLibrary.getCard(data.ID), EYBCard.class);
+                if (eCard != null) {
+                    card = (EYBCard) CardLibrary.getCard(data.ID).makeCopy();
+                    if (data.IsNotSeen())
+                    {
+                        card.isSeen = false;
+                    }
                 }
             }
 

@@ -28,7 +28,7 @@ public class Ginko extends AnimatorCard
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Blue(1);
-        SetAffinity_Orange(1);
+        SetAffinity_Orange(2);
         SetExhaust(true);
     }
 

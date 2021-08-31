@@ -13,13 +13,12 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
 public class YoshinoHimekawa extends AnimatorCard {
-    public static final EYBCardData DATA = Register(YoshinoHimekawa.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(YoshinoHimekawa.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL).SetSeriesFromClassPackage()
+            .PostInitialize(data -> {
+                data.AddPreview(new YoshinoHimekawa(true), false);
+                data.AddPreview(new Zadkiel(), false);
+            });
     private boolean transformed = false;
-
-    static {
-        DATA.AddPreview(new YoshinoHimekawa(true), true);
-        DATA.AddPreview(new Zadkiel(), true);
-    }
 
     private YoshinoHimekawa(boolean transformed) {
         this();

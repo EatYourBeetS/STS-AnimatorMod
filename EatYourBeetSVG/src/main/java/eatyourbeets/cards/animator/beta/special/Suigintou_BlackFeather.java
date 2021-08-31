@@ -18,12 +18,8 @@ import eatyourbeets.utilities.GameUtilities;
 public class Suigintou_BlackFeather extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Suigintou_BlackFeather.class)
-    		.SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.Random).SetSeries(CardSeries.RozenMaiden);
-
-    static
-    {
-        DATA.AddPreview(new Suigintou(), false);
-    }
+    		.SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.Random).SetSeries(CardSeries.RozenMaiden)
+            .PostInitialize(data -> data.AddPreview(new Suigintou(), false));
 
     public Suigintou_BlackFeather()
     {

@@ -10,11 +10,8 @@ import eatyourbeets.utilities.GameActions;
 
 public class MayumiJoutouguu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MayumiJoutouguu.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Haniwa(), true);
-    }
+    public static final EYBCardData DATA = Register(MayumiJoutouguu.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Haniwa(), false));
 
     public MayumiJoutouguu()
     {

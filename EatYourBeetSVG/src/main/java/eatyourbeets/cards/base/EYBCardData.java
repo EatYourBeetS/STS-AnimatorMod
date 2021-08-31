@@ -95,7 +95,7 @@ public class EYBCardData
         }
         catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e)
         {
-            throw new RuntimeException(e);
+            throw new RuntimeException(ID, e);
         }
     }
 

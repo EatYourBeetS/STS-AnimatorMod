@@ -12,14 +12,10 @@ import eatyourbeets.utilities.GameActions;
 
 public class TohkaYatogami extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(TohkaYatogami.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(TohkaYatogami.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal).SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new InverseTohka(), false));
 
     private boolean transformed;
-
-    static
-    {
-        DATA.AddPreview(new InverseTohka(), true);
-    }
 
     public TohkaYatogami()
     {

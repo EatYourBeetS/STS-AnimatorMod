@@ -19,10 +19,8 @@ import eatyourbeets.utilities.GameActions;
 
 public class TakashiNatsume extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(TakashiNatsume.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.NatsumeYuujinchou);
-    static {
-        DATA.AddPreview(new TakashiNatsume_Circle(), true);
-    }
+    public static final EYBCardData DATA = Register(TakashiNatsume.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.NatsumeYuujinchou)
+            .PostInitialize(data -> data.AddPreview(new TakashiNatsume_Circle(), false));
 
     public TakashiNatsume()
     {

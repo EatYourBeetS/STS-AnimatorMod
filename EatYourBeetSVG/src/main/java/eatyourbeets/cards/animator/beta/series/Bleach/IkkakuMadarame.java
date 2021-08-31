@@ -16,12 +16,11 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class IkkakuMadarame extends AnimatorCard {
-    public static final EYBCardData DATA = Register(IkkakuMadarame.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL).SetSeriesFromClassPackage();
-
-    static {
-        DATA.AddPreview(new ZarakiKenpachi(), false);
-        DATA.AddPreview(new IkkakuBankai(), false);
-    }
+    public static final EYBCardData DATA = Register(IkkakuMadarame.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL).SetSeriesFromClassPackage()
+            .PostInitialize(data -> {
+                data.AddPreview(new ZarakiKenpachi(), false);
+                data.AddPreview(new IkkakuBankai(), false);
+            });
 
     public IkkakuMadarame() {
         super(DATA);

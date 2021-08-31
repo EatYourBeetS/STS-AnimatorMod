@@ -24,6 +24,7 @@ public class MareBelloFiore extends AnimatorCard
 
         SetAffinity_Blue(1);
         SetAffinity_Green(1);
+        SetAffinity_Orange(1);
 
         SetAffinityRequirement(Affinity.Blue, 3);
         SetAffinityRequirement(Affinity.Green, 2);
@@ -32,7 +33,7 @@ public class MareBelloFiore extends AnimatorCard
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
+    public void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
 

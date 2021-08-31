@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.powers.common.SelfDamagePower;
+import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -39,6 +39,6 @@ public class Zadkiel extends AnimatorCard {
                                 GameActions.Bottom.ChannelOrbs(Frost::new, JUtils.Count(player.orbs, o -> o instanceof EmptyOrbSlot)));
                     }
                 });
-        GameActions.Bottom.StackPower(new SelfDamagePower(p, secondaryValue));
+        GameActions.Bottom.StackPower(new DelayedDamagePower(p, secondaryValue));
     }
 }

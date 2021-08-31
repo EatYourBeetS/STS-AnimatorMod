@@ -10,22 +10,22 @@ import eatyourbeets.powers.animator.DainsleifAbyssPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Dainsleif extends AnimatorCard_UltraRare {
-    public static final EYBCardData DATA = Register(Dainsleif.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact);
     private static final CardGroup cardChoices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     private static final CardGroup upgradedCardChoices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
-    static {
-        cardChoices.group.add(new Traveler_Aether());
-        cardChoices.group.add(new Traveler_Lumine());
-        for (AbstractCard c : cardChoices.group) {
-            DATA.AddPreview(c, true);
-            c = c.makeCopy();
-            c.upgrade();
-            upgradedCardChoices.group.add(c);
+    public static final EYBCardData DATA = Register(Dainsleif.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact)
+            .PostInitialize(data ->
+            {
+                cardChoices.group.add(new Traveler_Aether());
+                cardChoices.group.add(new Traveler_Lumine());
+                for (AbstractCard c : cardChoices.group) {
+                    data.AddPreview(c, true);
+                    c = c.makeCopy();
+                    c.upgrade();
+                    upgradedCardChoices.group.add(c);
 
-        }
-    }
-
+                }
+            });
 
     public Dainsleif() {
         super(DATA);

@@ -17,11 +17,8 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Ushio extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(Ushio.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetMaxCopies(2).SetSeries(CardSeries.Clannad);
-    static
-    {
-        DATA.AddPreview(new GarbageDoll(), true);
-    }
+    public static final EYBCardData DATA = Register(Ushio.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetMaxCopies(2).SetSeries(CardSeries.Clannad)
+            .PostInitialize(data -> data.AddPreview(new GarbageDoll(), false));
 
     private int turns;
 

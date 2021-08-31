@@ -9,6 +9,7 @@ import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 
 public class Zhongli extends AnimatorCard
 {
@@ -22,17 +23,18 @@ public class Zhongli extends AnimatorCard
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 0, 0);
         SetAffinity_Orange(2, 0, 0);
+        SetDelayed(true);
     }
 
     public void OnUpgrade() {
-        SetRetainOnce(true);
+        SetDelayed(false);
+        SetInnate(true);
     }
 
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new ZhongliPower(p, this.magicNumber));
     }
 
@@ -60,8 +62,10 @@ public class Zhongli extends AnimatorCard
 
             super.onEvokeOrb(orb);
 
-            if (Earth.ORB_ID.equals(orb.ID)) {
-                GameActions.Bottom.GainBlock(orb.evokeAmount / 2);
+            Earth earthOrb = JUtils.SafeCast(orb, Earth.class);
+
+            if (earthOrb != null) {
+                GameActions.Bottom.GainBlock(earthOrb.evokeAmount * earthOrb.projectilesCount / 2);
             }
         }
     }

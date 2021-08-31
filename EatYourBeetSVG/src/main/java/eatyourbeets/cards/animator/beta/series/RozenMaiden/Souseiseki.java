@@ -15,11 +15,8 @@ import java.util.ArrayList;
 public class Souseiseki extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Souseiseki.class)
-    		.SetAttack(1, CardRarity.COMMON).SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Suiseiseki(), false);
-    }
+    		.SetAttack(1, CardRarity.COMMON).SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Suiseiseki(), false));
 
     public Souseiseki()
     {

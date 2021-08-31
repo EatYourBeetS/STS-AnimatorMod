@@ -110,7 +110,7 @@
             "Give a random enemy NL {0} {1}",
 			"Give ALL enemies NL {0} {1}",
 			"Lose {0} {1}",
-			"Take {0} damage at the end of turn",
+			"Take {0} [Delayed Damage]",
 			"Add {0} {1} to your discard pile",
 			"Add {0} {1} to your draw pile",
 			"Add {0} {1} to your hand",

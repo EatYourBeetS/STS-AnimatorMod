@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.GenericEffects.GenericEffect_ApplyToAll;
 import eatyourbeets.misc.GenericEffects.GenericEffect_GainStat;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.PlayerAttribute;
@@ -38,7 +39,8 @@ public class IsshinKurosaki extends AnimatorCard
     {
         makeChoice(m);
 
-        if (CheckAffinity(Affinity.Red)){
+        if (CheckAffinity(Affinity.Red) && CombatStats.TryActivateLimited(cardID))
+        {
             makeChoice(m);
         }
     }

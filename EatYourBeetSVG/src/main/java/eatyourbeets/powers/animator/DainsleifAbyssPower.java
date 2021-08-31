@@ -23,6 +23,7 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.*;
@@ -172,8 +173,8 @@ public class DainsleifAbyssPower extends AnimatorPower {
         PlayerLoseDexterity(ACTIONS.LosePower(1, GR.Tooltips.Dexterity, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Dexterity, -1)),
         PlayerLoseFocus(ACTIONS.LosePower(1, GR.Tooltips.Focus, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Focus, -1)),
         PlayerLoseStrength(ACTIONS.LosePower(1, GR.Tooltips.Strength, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Strength, -1)),
-        PlayerTakeDamage(ACTIONS.TakeDamage(5, true), 2, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.SelfDamage, 5)),
-        PlayerTakeDamage2(ACTIONS.TakeDamage(8, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.SelfDamage, 8)),
+        PlayerTakeDamage(ACTIONS.TakeDamage(5, true), 2, (c, p, m) -> GameActions.Bottom.StackPower(new DelayedDamagePower(p, 5))),
+        PlayerTakeDamage2(ACTIONS.TakeDamage(8, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(new DelayedDamagePower(p, 8))),
         RandomEnemyGainStrength(ACTIONS.GiveRandomEnemy(3, GR.Tooltips.Strength, true), 2, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Strength, 3)),
         RandomEnemyGainStrength2(ACTIONS.GiveRandomEnemy(6, GR.Tooltips.Strength, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Strength, 6)),
         EndTurn(ACTIONS.DainsleifEndTurn(true), 4, (c, p, m) -> {

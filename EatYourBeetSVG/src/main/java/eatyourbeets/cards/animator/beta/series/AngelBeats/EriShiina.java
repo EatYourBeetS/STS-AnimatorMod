@@ -14,14 +14,13 @@ import eatyourbeets.utilities.GameActions;
 
 public class EriShiina extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(EriShiina.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
-    static
+    public static final EYBCardData DATA = Register(EriShiina.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal).SetSeriesFromClassPackage().PostInitialize(data ->
     {
         for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
         {
-            DATA.AddPreview(knife, false);
+            data.AddPreview(knife, true);
         }
-    }
+    });
 
     public EriShiina()
     {

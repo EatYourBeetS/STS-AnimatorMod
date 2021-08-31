@@ -29,6 +29,7 @@ public class CZDelta extends AnimatorCard
         SetUpgrade(0, 0, -1);
 
         SetAffinity_Green(1, 1, 0);
+        SetAffinity_Orange(1, 0, 0);
     }
 
     @Override

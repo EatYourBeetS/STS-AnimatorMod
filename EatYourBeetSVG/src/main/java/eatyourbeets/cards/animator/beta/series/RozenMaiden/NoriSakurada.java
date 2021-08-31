@@ -2,17 +2,18 @@ package eatyourbeets.cards.animator.beta.series.RozenMaiden;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
-public class NoriSakurada extends AnimatorCard //TODO
+public class NoriSakurada extends AnimatorCard implements OnEndOfTurnSubscriber
 {
     public static final EYBCardData DATA =
             Register(NoriSakurada.class)
@@ -21,7 +22,7 @@ public class NoriSakurada extends AnimatorCard //TODO
     public NoriSakurada() {
         super(DATA);
 
-        Initialize(0, 0, 1, 0);
+        Initialize(0, 0, 1, 1);
         SetUpgrade(0, 0, 1, 0);
         SetAffinity_Orange(1, 0, 0);
 
@@ -44,56 +45,15 @@ public class NoriSakurada extends AnimatorCard //TODO
                     }
                 });
 
-        GameActions.Bottom.StackPower(new NoriSakuradaPower(p));
+        CombatStats.onEndOfTurn.SubscribeOnce(this);
     }
 
-    public static class NoriSakuradaPower extends AnimatorPower {
-        public NoriSakuradaPower(AbstractCreature owner) {
-            super(owner, NoriSakurada.DATA);
-
-            this.amount = -1;
-
-            updateDescription();
-        }
-
-        @Override
-        public void updateDescription() {
-            description = FormatDescription(0);
-        }
-
-        @Override
-        public void atEndOfTurn(boolean isPlayer) {
-            GameActions.Bottom.Reload(NoriSakurada.DATA.Strings.NAME, cards -> {
-            });
-            RemovePower();
-
-            super.atEndOfTurn(isPlayer);
-        }
-    }
-/*
     @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        if (CombatStats.TryActivateLimited(cardID))
-        {
-            GameAction.Bottom.Draw(secondaryValue)
-            .SetFilter(AbstractCard::canUpgrade, true)
-            .AddCallback(cards ->
-            {
-                for (AbstractCard card : cards)
-                {
-                    if (card.canUpgrade())
-                    {
-                        card.upgrade();
-                        card.flash();
-                    }
-            });
-        }
+    public void OnEndOfTurn(boolean isPlayer) {
+        GameActions.Bottom.Reload(NoriSakurada.DATA.Strings.NAME, cards -> {
+            if (cards.size() > 0) {
+                GameActions.Bottom.ReducePower(player, player, DelayedDamagePower.POWER_ID, cards.size());
+            }
+        });
     }
-*/
 }
-
-// <DRW-M>, put a card on top of your draw pile.
-// Discard ALL your non-Hindrance Ethereal cards at end of this turn.

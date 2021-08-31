@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.animator.CounterAttackPower;
+import eatyourbeets.powers.common.CounterAttackPower;
 import eatyourbeets.utilities.GameActions;
 
 public class YuukaKazami extends AnimatorCard

@@ -59,7 +59,7 @@ public class Cocytus extends AnimatorCard
 
         if (CheckAffinity(Affinity.Blue))
         {
-            GameActions.Bottom.ApplyFreezing(p, m, 1);
+            GameActions.Bottom.GainPlatedArmor(secondaryValue);
         }
     }
 }

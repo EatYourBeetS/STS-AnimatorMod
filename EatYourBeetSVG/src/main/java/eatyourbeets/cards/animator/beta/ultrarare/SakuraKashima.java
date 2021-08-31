@@ -6,17 +6,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.Miracle;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.common.SelfDamagePower;
+import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
 
 public class SakuraKashima extends AnimatorCard_UltraRare {
-    public static final EYBCardData DATA = Register(SakuraKashima.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetSeries(CardSeries.Rewrite);
-
-    static {
-        DATA.AddPreview(new Miracle(), false);
-    }
+    public static final EYBCardData DATA = Register(SakuraKashima.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetSeries(CardSeries.Rewrite)
+            .PostInitialize(data -> data.AddPreview(new Miracle(), false));
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -64,7 +61,7 @@ public class SakuraKashima extends AnimatorCard_UltraRare {
                 GameActions.Bottom.MakeCardInHand(new Miracle());
             }
 
-            GameActions.Bottom.StackPower(new SelfDamagePower(player, secondaryValue));
+            GameActions.Bottom.StackPower(new DelayedDamagePower(player, secondaryValue));
         });
     }
 }

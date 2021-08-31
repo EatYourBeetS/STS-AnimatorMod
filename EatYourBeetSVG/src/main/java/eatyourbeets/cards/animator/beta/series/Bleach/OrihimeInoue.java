@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.animator.CounterAttackPower;
+import eatyourbeets.powers.common.CounterAttackPower;
 import eatyourbeets.utilities.GameActions;
 
 public class OrihimeInoue extends AnimatorCard

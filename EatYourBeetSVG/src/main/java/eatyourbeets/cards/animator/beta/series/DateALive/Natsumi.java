@@ -18,12 +18,10 @@ import java.util.HashMap;
 
 public class Natsumi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Natsumi.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.Random).SetSeriesFromClassPackage();
-
-    static
-    {
-        DATA.AddPreview(new Curse_Depression(), true);
-    }
+    public static final EYBCardData DATA = Register(Natsumi.class)
+            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.Random)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Curse_Depression(), false));
 
     private static HashMap<Integer, ArrayList<AbstractCard>> cardPool;
 

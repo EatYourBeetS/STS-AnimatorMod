@@ -14,7 +14,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.SFX;
-import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.powers.replacement.GenericFadingPower;
 import eatyourbeets.resources.GR;
@@ -41,7 +40,7 @@ public class Kira extends AnimatorCard
         SetUpgrade(0, 0, 0, -1);
 
         SetAffinity_Blue(1);
-        SetAffinity_Orange(1);
+        SetAffinity_Orange(2);
         SetAffinity_Dark(2);
 
         SetExhaust(true);

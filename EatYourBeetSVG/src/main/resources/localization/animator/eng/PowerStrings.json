@@ -87,7 +87,7 @@
 	},
 	"animator:ElementalMasteryPower":
 	{
-	  "DESCRIPTIONS": ["For #b{0} turn(s): At the end of the turn, inflict Elemental Exposure to all enemies, ignoring Artifact. Increase this amount by #b{1} whenever an Orb is Channeled, Evoked, or Induced."],
+	  "DESCRIPTIONS": ["For #b{0} turn(s): At the end of the turn, inflict Elemental Exposure to all enemies, ignoring Artifact. Increase this amount by #b{1} whenever an Orb is Channeled or Evoked."],
 	  "NAME": "Elemental Mastery"
 	},
 	"animator:EmiyaShirouPower":
@@ -232,7 +232,7 @@
 	},
 	"animator:NegateBlockPower":
 	{
-	  "DESCRIPTIONS": ["For the next #b", " turns, you cannot gain Block from cards. Gain Self Damage whenever you gain Block from other sources."],
+	  "DESCRIPTIONS": ["For the next #b", " turns, you cannot gain Block from any source."],
 	  "NAME": "Negate Block"
 	},
 	"animator:NextTurnDexterityPower":

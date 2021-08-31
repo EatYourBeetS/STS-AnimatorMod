@@ -23,9 +23,7 @@ public class SheerColdPower extends AnimatorPower implements OnOrbPassiveEffectS
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override
@@ -45,12 +43,6 @@ public class SheerColdPower extends AnimatorPower implements OnOrbPassiveEffectS
     }
 
     @Override
-    public void updateDescription()
-    {
-        description = FormatDescription(0, amount);
-    }
-
-    @Override
     public void onEvokeOrb(AbstractOrb orb) {
 
         super.onEvokeOrb(orb);
@@ -60,13 +52,11 @@ public class SheerColdPower extends AnimatorPower implements OnOrbPassiveEffectS
             {
                 for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
                 {
-                    this.applyPower(enemy, orb, this.amount, .07f);
-                    this.applyPower(enemy, orb, this.amount);
+                    this.applyPower(enemy, orb, orb.evokeAmount  / 2);
                 }
             }
             else {
-                this.applyPower(player, orb, this.amount, .07f);
-                this.applyPower(player, orb, this.amount);
+                this.applyPower(player, orb, orb.evokeAmount / 2);
             }
         }
     }
@@ -94,17 +84,13 @@ public class SheerColdPower extends AnimatorPower implements OnOrbPassiveEffectS
                     }
                 }
             }
-            this.applyPower(target, orb, this.amount);
+            this.applyPower(target, orb, orb.passiveAmount / 2);
         }
     }
 
     private void applyPower(AbstractCreature target, AbstractOrb orb, int applyAmount) {
-        this.applyPower(target,orb,applyAmount,.15f);
-    }
-
-    private void applyPower(AbstractCreature target, AbstractOrb orb, int applyAmount, float delay) {
         if (target != null) {
-            GameActions.Top.Wait(delay);
+            GameActions.Top.Wait(.15f);
             GameActions.Top.VFX(new SnowballEffect(orb.hb.cX, orb.hb.cY, target.hb.cX, target.hb.cY)
                     .SetColor(Color.SKY, Color.CYAN).SetRealtime(true));
             GameActions.Bottom.ApplyFreezing(owner, target, applyAmount).CanStack(true);

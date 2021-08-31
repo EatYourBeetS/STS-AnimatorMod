@@ -26,7 +26,7 @@
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [A], gain #yDexterity.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [A], gain [~Dexterity].",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
@@ -182,7 +182,7 @@
 	},
 	"Force":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [F], gain #yStrength.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [F], gain [~Strength].",
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
@@ -230,7 +230,7 @@
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain #yFocus.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain [~Focus].",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},
@@ -324,12 +324,6 @@
 	  "NAMES": ["rejuvenation"],
 	  "PROPER_NAME": "Rejuvenation"
 	},
-	"Self Damage":
-	{
-	  "DESCRIPTION": "Take damage at the end of your turn.",
-	  "NAMES": ["self damage, self-damage"],
-	  "PROPER_NAME": "Self Damage"
-	},
 	"Semi-Limited":
 	{
 		"DESCRIPTION": "This effect can only trigger once per turn, across all copies of this card.",
@@ -386,7 +380,7 @@
 	},
 	"Willpower":
 	{
-	  "DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [W], gain #yBalance.",
+	  "DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [W], gain [Balance].",
 	  "NAMES": ["willpower"],
 	  "PROPER_NAME": "Willpower"
 	},

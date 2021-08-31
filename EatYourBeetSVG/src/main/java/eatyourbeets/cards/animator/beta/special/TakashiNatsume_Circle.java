@@ -67,7 +67,6 @@ public class TakashiNatsume_Circle extends AnimatorCard
 
     public void ChangeForm(TakashiNatsume_Circle.Form form) {
         currentForm = form;
-        //TODO
         switch (form) {
             case Curse_Delusion:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + DATA.Strings.EXTENDED_DESCRIPTION[3], true);

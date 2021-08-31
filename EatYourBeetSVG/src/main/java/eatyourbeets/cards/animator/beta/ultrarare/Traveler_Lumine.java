@@ -27,11 +27,13 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(Traveler_Lumine.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact);
-    static {
-        DATA.AddPreview(new Traveler_Wish(), true);
-        DATA.AddPreview(new AbyssalVoid(), true);
-    }
+    public static final EYBCardData DATA = Register(Traveler_Lumine.class)
+            .SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact)
+            .PostInitialize(data -> {
+                data.AddPreview(new Traveler_Wish(), false);
+                data.AddPreview(new AbyssalVoid(), false);
+            });
 
     public Traveler_Lumine()
     {

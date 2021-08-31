@@ -214,17 +214,18 @@
 		},
 		"animator:GinIchimaru":
         {
-        	"DESCRIPTION": "Choose 1: ** Gain [F] equal to <R> + !M! ** or Gain [A] equal to <G> + !M!. ** !A! <R> or <G>: Exhaust. || !A! <B>: Apply !S! [Vulnerable] to ALL enemies.",
+        	"DESCRIPTION": "Choose 1: Gain [F] equal to <R> or Gain [A] equal to <G>. || !A! <R> or <G>: Exhaust. || !A! <B>: Apply !M! [Vulnerable] to ALL enemies.",
         	"NAME": "Gin Ichimaru"
         },
 		"animator:KanameTousen":
 		{
-			"DESCRIPTION": "For each enemy: Gain !S! Temp. [Artifact] if it has [Blinded]. Otherwise, apply !M! [Blinded]. !A! <D>: For the next !S! turns, ignore your buffs with negative stacks.",
+			"DESCRIPTION": "For each enemy: Gain !S! Temp. [Artifact] if it has [Blinded]. Otherwise, apply !M! [Blinded]. || <LIM>. !A! <D>: For the next !S! turns, ignore your buffs with negative stacks.",
+			"EXTENDED_DESCRIPTION": ["For the next #b{0} turns, ignore buffs with negative stacks."],
 			"NAME": "Kaname Tousen"
 		},
 		"animator:IchigoKurosaki":
 		{
-			"DESCRIPTION": "Gain [F] [A]. || If you reached !S! [F] this combat: Exhaust and add {Ichigo Bankai} to your draw pile.",
+			"DESCRIPTION": "Boost [F] [A]. || If you ** reached !S! [F] this combat: Exhaust, then add {Ichigo Bankai} to ** your draw pile.",
 			"NAME": "Ichigo Kurosaki"
 		},
 		"animator:IchigoKurosaki_Bankai":
@@ -245,7 +246,7 @@
 		},
 		"animator:IsshinKurosaki":
 		{
-			"DESCRIPTION": "Choose 1: Apply !M! [Burning] to ALL enemies or Gain !S! [F]. || !A! <R>: Activate this effect again.",
+			"DESCRIPTION": "Choose 1: Apply !M! [Burning] to ALL enemies or Gain !S! [F]. || <LIM>. !A! <R>: Activate this effect again.",
 			"NAME": "Isshin Kurosaki"
 		},
 		"animator:MayuriKurotsuchi":
@@ -256,7 +257,7 @@
 		},
 		"animator:OrihimeInoue":
 		{
-			"DESCRIPTION": "Channel !M! [Fire] the next time you are attacked this turn.  || On Synergy: Gain !S! [Counterattack].",
+			"DESCRIPTION": "Channel !M! [Fire] the next time you are attacked this turn.  || On Synergy: Gain !S! [Counter-Attack].",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time you are attacked this turn, Channel #yFire."],
 			"NAME": "Orihime Inoue"
 		},
@@ -272,29 +273,29 @@
 		},
 		"animator:RukiaKuchiki":
 		{
-			"DESCRIPTION": "<ST>: Channel !M! [Frost]. || !A! <G>: If you have no empty Orb Slots: Exhaust, then add {Rukia Bankai} to your draw pile.",
+			"DESCRIPTION": "<ST>: Channel !M! [Frost]. || !A! <G>: If you have no empty Orb Slots: Exhaust, then add {Rukia Bankai} to ** your draw pile.",
 			"NAME": "Rukia Kuchiki"
 		},
 		"animator:SajinKomamura":
 		{
-			"DESCRIPTION": "Gain/Boost !M! [F], [A], [I], or [W] depending on your Stance. Otherwise, enter a random Stance. || <SLM>. Synergy: Gain !S! [Metallicize].",
+			"DESCRIPTION": "Gain/Boost !M! [F], [A], [I], or [W] depending on your Stance. Otherwise, enter a ** random Stance. || <SLM>. Synergy: Gain ** !S! [Metallicize].",
 			"NAME": "Sajin Komamura"
 		},
 		"animator:SosukeAizen":
 		{
-			"DESCRIPTION": "Gain {Phasing} X times. || Gain !M! [Counterattack].  [Counterattack] is not removed this combat.",
+			"DESCRIPTION": "Gain {Phasing} X times. || Gain !M! [Counter-Attack]. [Counter-Attack] is not removed this combat.",
 			"EXTENDED_DESCRIPTION": ["Whenever you take 0 attack damage this turn, deal #b{0} damage to the attacking enemy."],
 			"NAME": "Sosuke Aizen"
 		},
 		"animator:ToushirouHitsugaya":
         {
-            "DESCRIPTION": "Apply !M! [Freezing]. Remove !S! [Burning] to apply !M! more [Freezing]. || If the target has 12 or more [Freezing]: Exhaust, then add {Toshiro Bankai} to your draw pile.",
+            "DESCRIPTION": "Apply !M! [Freezing]. Remove !S! [Burning] to apply !M! [Freezing] again. || If the target has 8 or more [Freezing]: Exhaust, then add {Toshiro Bankai} to your draw pile.",
             "NAME": "Toushirou Hitsugaya"
         },
 		"animator:ToushirouHitsugaya_Bankai":
         {
-            "DESCRIPTION": "Add !M! {Frostbite} to your draw pile. || Cooldown !S!: Exhaust this card and all Status cards in your hand. ** <LIM>. Also play {Sheer Cold}.",
-            "NAME": "Toushirou Hitsugaya"
+            "DESCRIPTION": "Add !M! {Frostbite} to ** your draw pile. || Cooldown !S!: Exhaust this card and all Status cards ** in your hand. ** <LIM>. Also play {Sheer Cold}.",
+            "NAME": "Toushirou Bankai"
         },
 		"animator:UryuuIshida":
 		{
@@ -322,7 +323,7 @@
     	},
 		"animator:AnarchyStocking":
 		{
-			"DESCRIPTION": "Apply 1 Torment. Gain !M! [Poison] and [Constricted]. || Cooldown !S!: Purge, then Transfer ALL [Constricted] and {Self-Damage} to ALL enemies at the end of your turn.",
+			"DESCRIPTION": "Apply 1 Torment. Gain !M! [Poison] and [Constricted]. || Cooldown !S!: Purge, then Transfer ALL [Constricted] and [Delayed Damage] to ALL enemies at the end of your turn.",
 			"NAME": "Guts"
 		},
 		"animator:ArseneLupin":
@@ -388,10 +389,10 @@
 			"EXTENDED_DESCRIPTION": ["At the start of each turn, draw #b{0} cards.  They cost 0 this turn."],
 			"NAME": "Hatsune Miku"
 		},
-		"animator:Jet":
+		"animator:JetBlack":
 		{
 			"DESCRIPTION": "This turn: All Defends are played twice. <LIM>. !A! <W>: Prolong this effect by 1 turn.",
-			"NAME": "Jet"
+			"NAME": "JetBlack"
 		},
 		"animator:KaijiItou":
 		{
@@ -442,7 +443,7 @@
 		},
 		"animator:MotokoKusanagi":
 		{
-			"DESCRIPTION": "{Ricochet} !S!. Reduced by 1 for every 150 Gold you have (minimum 1). || When Exhausted: Gain !M! [Blur] and [Counterattack].",
+			"DESCRIPTION": "{Ricochet} !S!. Reduced by 1 for every 150 Gold you have (minimum 1). || When Exhausted: Gain !M! [Blur] and [Counter-Attack].",
 			"NAME": "Motoko Kusanagi"
 		},
 		"animator:MS06ZakuII":
@@ -480,7 +481,7 @@
 		},
 		"animator:SheerCold":
 		{
-			"DESCRIPTION": "Channel !M! [Frost]. [Frost] applies 1 [Freezing] to a random enemy when triggered and to ALL enemies twice when Evoked. || Increase the reduction bonus of [Freezing] by !S!% this combat.",
+			"DESCRIPTION": "Channel !M! [Frost]. [Frost] applies half of its [~Focus] as [Freezing] to a random enemy when triggered and to ALL enemies when Evoked. || Increase the reduction bonus of [Freezing] by !S!% this combat.",
 			"NAME": "Sheer Cold"
 		},
 		"animator:Simon":
@@ -534,7 +535,7 @@
 		},
 		"animator:Yae":
 		{
-			"DESCRIPTION": "Your [Lightning] has +!M! [I] Scaling. || If you have [Lightning], remove your first [Lightning] to Gain/Boost !S! [I]. Otherwise, channel [Dark] and apply !S! [Blinded] to ALL characters.",
+			"DESCRIPTION": "Your [Lightning] has +!M! [I] Scaling. || Remove your first [Lightning] to Gain/Boost !S! [I]. Otherwise, channel [Dark] and apply !S! [Blinded] to ALL characters.",
 			"NAME": "Yae Sakura"
 		}
 	},
@@ -640,7 +641,7 @@
 		},
 		"animator:Zadkiel":
 		{
-			"DESCRIPTION": "Take !S! damage at the end of turn. || If this kills an enemy: Evoke !M! orbs, then fill your orb slots with [Frost].",
+			"DESCRIPTION": "Take !S! [Delayed Damage]. || If this kills an enemy: Evoke !M! orbs, then fill your orb slots with [Frost].",
 			"NAME": "Zadkiel"
 		}
 	},
@@ -653,7 +654,7 @@
 		},
 		"animator:AyakaKamisato":
 		{
-			"DESCRIPTION": "Gain !M! [Temporary Thorns]. Gain !S! more for each [I]. You cannot gain [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
+			"DESCRIPTION": "Gain !M! [Thorns]. Gain 1 more for every !S! [I]. You cannot gain [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
 			"NAME": "Ayaka Kamisato"
 		},
 		"animator:BarbaraPegg":
@@ -688,17 +689,17 @@
 		},
 		"animator:HuTao":
 		{
-			"DESCRIPTION": "Exhaust up to !M! cards from your draw pile or hand. Gain [E] and add a {Searing Burn} to your ** hand for each. || When Exhausted: Add !S! {Searing Burn} to your hand.",
+			"DESCRIPTION": "Exhaust up to !M! cards from your draw pile or hand. Gain [E] and add a {Searing Burn} to your hand for each. || When Exhausted: Add !S! {Searing Burn} to your hand.",
 			"NAME": "Hu Tao"
 		},
 		"animator:JeanGunnhildr":
 		{
-			"DESCRIPTION": "Discard up to !M! card(s). Remove 1 of your left-most [Weak], [Vulnerable], or [Frail] for each discarded card. || When Discarded: Gain !S! [A].",
+			"DESCRIPTION": "Discard up to !M! card(s). Remove 1 of your leftmost [Weak], [Vulnerable], or [Frail] for each. || <SLM>. When Discarded: Gain [A].",
 			"NAME": "Jean Gunnhildr"
 		},
 		"animator:JumpyDumpty":
 		{
-			"DESCRIPTION": "Apply !M! [Burning]. || If the enemy dies or ** loses its [Block]: Add a copy of this card to your Draw Pile. Then, take !S! damage at ** the end of turn.",
+			"DESCRIPTION": "Apply !M! [Burning]. || If the enemy dies or ** loses its [Block]: Take !S! [Delayed Damage] and add a copy of this card to your Draw Pile.",
 			"NAME": "Jumpy Dumpty"
 		},
 		"animator:KaeyaAlberich":
@@ -724,7 +725,7 @@
 		},
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M! cards. For each card, ** if its cost is: || 0 or None: Gain/Boost [I] ** 1 or X: Gain [E] next turn. ** 2 or more: Induce [Lightning]",
+			"DESCRIPTION": "{Scry} !M! cards. For each card, ** if its cost is: || 0 or None: Gain/Boost [I] ** 1 or X: Gain [E] next turn. ** 2 or more: Channel [Lightning]",
 			"NAME": "Lisa Minci"
 		},
 		"animator:Noelle":
@@ -767,11 +768,6 @@
 		{
 			"DESCRIPTION": "Cycle !M! cards. {Channel} 1 [Aether] and Trigger it once for every Skill or Power drawn. || <LIM>. When Exhausted: Gain !S! [Support Damage].",
 			"NAME": "Venti"
-		},
-		"animator:Yoimiya":
-		{
-			"DESCRIPTION": "Attack once for every Attack played this turn. || <LIM>. At the end of your turn, transfer your [Self Damage] and [Burning] to a random enemy.",
-			"NAME": "Yoimiya"
 		},
 		"animator:Zhongli":
 		{
@@ -829,8 +825,8 @@
 		},
 		"animator:SakuraKashima":
 		{
-			"DESCRIPTION": "At the start of combat: Gain !M! [I]. || Choose 1: Add a {Miracle} to your hand, or Fill your hand with {Miracles} and take !S! damage at the end of turn.",
-		 	"EXTENDED_DESCRIPTION": ["Add a Miracle to your hand.", "Add Miracles to your hand until your hand is full. Take {0} damage at the end of turn."],
+			"DESCRIPTION": "At the start of combat: Gain !M! [I]. || Choose 1: Add a {Miracle} to your hand, or Fill your hand with {Miracles} and take !S! [Delayed Damage].",
+		 	"EXTENDED_DESCRIPTION": ["Add a Miracle to your hand.", "Add Miracles to your hand until your hand is full. Take {0} [Delayed Damage]."],
 			"NAME": "Sakura Kashima"
 		},
 		"animator:SakuyaOhtori":
@@ -930,8 +926,7 @@
 		},
 		"animator:NoriSakurada":
 		{
-			"DESCRIPTION": "Draw !M! card(s). Put 1 card on top of your draw pile. || At the end of turn: Reload.",
-			"EXTENDED_DESCRIPTION": ["At end of this turn, discard any number of cards in your hand."],
+			"DESCRIPTION": "Draw !M! card(s). Put 1 card on top of your draw pile. || At the end of turn, Reload: Remove !S! [Delayed Damage].",
 			"NAME": "Nori Sakurada"
 		},
 		"animator:Shinku":
@@ -1071,7 +1066,7 @@
 		},
 		"animator:YuukaKazami":
 		{
-			"DESCRIPTION": "This card can only be played on even numbered turns. || On Discard: Gain !S! [Counterattack].",
+			"DESCRIPTION": "This card can only be played on even numbered turns. || On Discard: Gain !S! [Counter-Attack].",
 			"NAME": "Yuuka Kazami"
 		},
 		"animator:YuyukoSaigyouji":
@@ -1329,7 +1324,7 @@
 		},
 		"animator:Noah":
 		{
-			"DESCRIPTION": "Boost [C]. Apply !M! [Blinded]. || Less than !A! <D>: Take ** !S! damage at the ** end of turn.",
+			"DESCRIPTION": "Boost [C]. Apply !M! [Blinded]. || Less than !A! <D>: Take ** !S! [Delayed Damage].",
 			"NAME": "Noah"
 		},
 		"animator:Raven":
@@ -2130,7 +2125,7 @@
 		},
 		"animator:Genos":
 		{
-			"DESCRIPTION": "Take !S! damage at ** the end of turn. || Synergy: Apply !M! [Burning].",
+			"DESCRIPTION": "Take !S! [Delayed Damage]. || Synergy: Apply !M! [Burning].",
 			"NAME": "Genos"
 		},
 		"animator:Geryuganshoop":
@@ -2210,7 +2205,7 @@
 		},
 		"animator:Cocytus":
 		{
-			"DESCRIPTION": "Evoke your first [Frost] to ** gain !M! [F]. Otherwise: ** Channel 1 [Frost]. || !A! <B>: Apply 1 [Freezing].",
+			"DESCRIPTION": "Evoke your first [Frost] to ** gain !M! [F]. Otherwise: ** Channel 1 [Frost]. || !A! <B>: Apply !S! [Freezing].",
 			"NAME": "Cocytus"
 		},
 		"animator:Demiurge":
@@ -2474,7 +2469,7 @@
 		},
 		"animator:AffinityToken_Orange":
 		{
-			"DESCRIPTION": "Gain +1 <O> for ** the rest of combat. || !A! [{0}] or [{1}]: Gain [E].",
+			"DESCRIPTION": "<O>",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Light":
@@ -2533,7 +2528,7 @@
 		},
 		"animator:OrbCore_Earth":
 		{
-		  "DESCRIPTION": "Channel !S! [Earth]. || On your second ** Synergy each turn: ** Gain !M! [Temporary Thorns].",
+		  "DESCRIPTION": "DESCRIPTION.",
 		  "NAME": "Earth Core"
 		},
 		"animator:OrbCore_Fire":
@@ -2555,6 +2550,11 @@
 		{
 			"DESCRIPTION": "DESCRIPTION",
 			"NAME": "Plasma Core"
+		},
+		"animator:OrbCore_Water":
+		{
+			"DESCRIPTION": "DESCRIPTION",
+			"NAME": "Water Core"
 		},
 		"animator:Respite":
 		{

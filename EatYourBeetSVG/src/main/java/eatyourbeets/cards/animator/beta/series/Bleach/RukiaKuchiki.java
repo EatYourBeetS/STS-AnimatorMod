@@ -14,11 +14,8 @@ import eatyourbeets.utilities.GameActions;
 
 public class RukiaKuchiki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(RukiaKuchiki.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new RukiaBankai(), false);
-    }
+    public static final EYBCardData DATA = Register(RukiaKuchiki.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new RukiaBankai(), false));
 
     public RukiaKuchiki()
     {
@@ -59,7 +56,7 @@ public class RukiaKuchiki extends AnimatorCard
             if (!hasEmptyOrbs)
             {
                 GameActions.Bottom.MakeCardInDrawPile(new RukiaBankai());
-                GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
+                GameActions.Bottom.Exhaust(this);
             }
         }
     }

@@ -47,7 +47,7 @@ public class BarbaraPegg extends AnimatorCard
         GameActions.Bottom.VFX(new RainbowCardEffect());
         GameActions.Bottom.GainBlessing(1, upgraded);
         GameActions.Bottom.Heal(magicNumber);
-        if (CheckAffinity(Affinity.Blue) && JUtils.Find(GameUtilities.GetIntents(), i -> !i.isAttacking) == null && CombatStats.TryActivateLimited(cardID)) {
+        if (CheckAffinity(Affinity.Blue) && JUtils.Find(GameUtilities.GetIntents(), i -> !i.IsAttacking()) == null && CombatStats.TryActivateLimited(cardID)) {
             Water waterOrb = new Water();
             GameActions.Bottom.ChannelOrb(waterOrb);
             GameActions.Bottom.TriggerOrbPassive(waterOrb, 1);

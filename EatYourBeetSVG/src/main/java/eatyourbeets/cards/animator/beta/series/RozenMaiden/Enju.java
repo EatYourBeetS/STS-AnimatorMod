@@ -12,14 +12,13 @@ import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Enju extends AnimatorCard
+public class Enju extends AnimatorCard //TODO
 {
-    public static final EYBCardData DATA = Register(Enju.class).SetPower(-1, CardRarity.RARE).SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Enju_Barasuishou(-1), false);
-        DATA.AddPreview(new Crystallize(), false);
-    }
+    public static final EYBCardData DATA = Register(Enju.class).SetPower(-1, CardRarity.RARE).SetSeriesFromClassPackage()
+            .PostInitialize(data -> {
+                data.AddPreview(new Enju_Barasuishou(-1), false);
+                data.AddPreview(new Crystallize(), false);
+            });
 
     public Enju()
     {

@@ -7,17 +7,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT3;
-import eatyourbeets.powers.animator.CounterAttackPower;
+import eatyourbeets.powers.common.CounterAttackPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class Chibimoth extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Chibimoth.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new KotoriKanbe(), false);
-    }
+    public static final EYBCardData DATA = Register(Chibimoth.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new KotoriKanbe(), false));
 
     public Chibimoth()
     {

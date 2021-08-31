@@ -6,12 +6,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class ShioriSekine extends AnimatorCard implements Hidden
+public class ShioriSekine extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ShioriSekine.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
 
@@ -22,6 +21,7 @@ public class ShioriSekine extends AnimatorCard implements Hidden
         Initialize(0, 0, 1, 0);
         SetAffinity_Green(1, 0, 0);
         SetAffinity_Light(1, 1, 0);
+        SetEthereal(true);
         SetExhaust(true);
         AfterLifeMod.Add(this);
     }

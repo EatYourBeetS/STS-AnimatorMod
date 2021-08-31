@@ -17,11 +17,8 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Enju_Barasuishou extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Enju_Barasuishou.class).SetAttack(1, CardRarity.SPECIAL, EYBAttackType.Elemental).SetSeries(CardSeries.RozenMaiden);
-    static
-    {
-        DATA.AddPreview(new Crystallize(), false);
-    }
+    public static final EYBCardData DATA = Register(Enju_Barasuishou.class).SetAttack(1, CardRarity.SPECIAL, EYBAttackType.Elemental).SetSeries(CardSeries.RozenMaiden)
+            .PostInitialize(data -> data.AddPreview(new Crystallize(), false));
 
     public Enju_Barasuishou(boolean Upgd)  // only for preview if Hitcount = -1
     {

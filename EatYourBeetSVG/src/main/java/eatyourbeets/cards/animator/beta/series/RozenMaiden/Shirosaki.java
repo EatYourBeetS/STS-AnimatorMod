@@ -13,11 +13,9 @@ import eatyourbeets.utilities.GameActions;
 public class Shirosaki extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Shirosaki.class)
-    		.SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Shirosaki_Laplace(), false);
-    }
+    		.SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Shirosaki_Laplace(), false));
+
     public Shirosaki()
     {
         super(DATA);

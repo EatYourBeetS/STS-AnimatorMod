@@ -17,11 +17,9 @@ import eatyourbeets.utilities.GameUtilities;
 public class Kanaria extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Kanaria.class)
-    		.SetPower(2, CardRarity.RARE).SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Kanaria_Pizzicato(), false);
-    }
+    		.SetPower(2, CardRarity.RARE).SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Kanaria_Pizzicato(), false));
+
     public Kanaria()
     {
         super(DATA);
@@ -76,46 +74,3 @@ public class Kanaria extends AnimatorCard
         }
     }
 }
-
-
-
-//    DATA.AddPreview(new Kanaria(), false);
-
-//    public static final EYBCardTooltip Gethit = new EYBCardTooltip(
-//            DATA.Strings.EXTENDED_DESCRIPTION[1],DATA.Strings.EXTENDED_DESCRIPTION[2]);
-/*
-    @Override
-    public void initializeDescription()
-    {
-        super.initializeDescription();
-
-        if (cardText != null)
-        {
-            tooltips.add(Gethit);
-        }
-    }
-
- */
-
-/*
-        @Override
-        public void wasHPLost(DamageInfo info, int damageAmount)
-        {
-            super.wasHPLost(info, damageAmount);
-
-            if (info.type != DamageInfo.DamageType.HP_LOSS && damageAmount > 0)
-            {
-                flash();
-                GameActions.Top.ReducePower(this, 1);
-
-                GameActions.Bottom.MakeCardInDiscardPile(new Kanaria())
-                        .AddCallback(card -> card.modifyCostForCombat(-1));
-            }
-        }
- */
-
-// alternative plan: make it return to your discard pile if you get hit.
-
-// , taking unblocked attack damage will return this.",
-//				"Why not get hit",
-//				"If you take unblocked attack damage, this will be returned to your discard pile

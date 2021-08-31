@@ -18,23 +18,20 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class AyakaKamisato extends AnimatorCard {
-    public static final EYBCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new SheerCold(), false));
     private static final int ATTACK_TIMES = 2;
-    static
-    {
-        DATA.AddPreview(new SheerCold(), false);
-    }
 
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(14, 0, 3, 2);
-        SetUpgrade(3, 0, 2, 0);
+        Initialize(15, 0, 2, 3);
+        SetUpgrade(3, 0, 1, 0);
         SetAffinity_Blue(2, 0, 4);
         SetAffinity_Green(1, 0, 4);
         SetAffinity_Orange(1, 0, 0);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Blue, 4);
 
         SetExhaust(true);
     }
@@ -51,9 +48,9 @@ public class AyakaKamisato extends AnimatorCard {
         for (int i = 0; i < ATTACK_TIMES; i++)
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-                    .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.TEAL, Color.LIGHT_GRAY, Color.SKY, Color.BLUE).duration * 0.6f);
+                    .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.TEAL, Color.LIGHT_GRAY, Color.SKY, Color.BLUE).duration * 0.3f);
         }
-        GameActions.Bottom.GainTemporaryThorns(magicNumber + CombatStats.Affinities.GetPowerAmount(Affinity.Blue) * secondaryValue);
+        GameActions.Bottom.GainThorns(magicNumber + (CombatStats.Affinities.GetPowerAmount(Affinity.Blue) / secondaryValue));
         GameActions.Bottom.StackPower(new NegateBlockPower(p, ATTACK_TIMES));
 
         if (CheckAffinity(Affinity.Blue) && CombatStats.TryActivateLimited(cardID))

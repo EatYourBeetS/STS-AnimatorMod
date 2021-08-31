@@ -76,7 +76,7 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
             return;
         }
 
-        if (shouldCancelAction() || !GameUtilities.CanApplyPower(source, target, power))
+        if (shouldCancelAction() || !GameUtilities.CanApplyPower(source, target, power, this))
         {
             Complete(power);
             return;

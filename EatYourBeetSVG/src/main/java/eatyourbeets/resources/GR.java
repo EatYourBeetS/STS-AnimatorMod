@@ -268,7 +268,6 @@ public class GR
     protected void LoadCustomCards(String character)
     {
         final String prefix = "eatyourbeets.cards." + character;
-
         for (String s : cardClassNames)
         {
             if (s.startsWith(prefix))

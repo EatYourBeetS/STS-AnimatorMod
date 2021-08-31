@@ -2,8 +2,8 @@ package eatyourbeets.cards.animator.special;
 
 import eatyourbeets.cards.animator.series.OnePunchMan.Melzalgald;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.EYBCardData;
 
 public abstract class MelzalgaldAlt extends AnimatorCard
 {

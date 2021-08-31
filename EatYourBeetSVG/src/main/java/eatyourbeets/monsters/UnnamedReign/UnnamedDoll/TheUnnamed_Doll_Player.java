@@ -47,11 +47,9 @@ public class TheUnnamed_Doll_Player extends EYBMonster
         .SetIntent(Intent.BUFF)
         .SetOnUse((move, __) ->
         {
-            GameActions.Bottom.GainIntellect(12);
-            GameActions.Bottom.GainAgility(12);
-            GameActions.Bottom.GainForce(12);
-            GameActions.Bottom.GainBlessing(12);
-            GameActions.Bottom.GainCorruption(12);
+            GameActions.Bottom.GainStrength(2);
+            GameActions.Bottom.GainDexterity(2);
+            GameActions.Bottom.GainFocus(2);
         });
 
         moveset.Normal.Add(new EYBMove_Special())

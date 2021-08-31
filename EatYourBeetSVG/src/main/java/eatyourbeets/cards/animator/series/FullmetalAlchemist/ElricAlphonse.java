@@ -14,12 +14,8 @@ public class ElricAlphonse extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ElricAlphonse.class)
             .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
-    public static final ElricAlphonse_Alt PREVIEW = new ElricAlphonse_Alt();
-    static
-    {
-        DATA.AddPreview(PREVIEW, true);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new ElricAlphonse_Alt(), true));
 
     public ElricAlphonse()
     {
@@ -40,7 +36,7 @@ public class ElricAlphonse extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.MakeCardInDiscardPile(PREVIEW).SetUpgrade(upgraded, true);
+        GameActions.Bottom.MakeCardInDiscardPile(new ElricAlphonse_Alt()).SetUpgrade(upgraded, true);
     }
 
     @Override

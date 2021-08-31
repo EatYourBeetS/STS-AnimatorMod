@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.powers.common.SelfDamagePower;
+import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -61,7 +61,7 @@ public class Noah extends AnimatorCard
 
         if (!CheckAffinity(Affinity.Dark))
         {
-            GameActions.Bottom.StackPower(new SelfDamagePower(p, secondaryValue));
+            GameActions.Bottom.StackPower(new DelayedDamagePower(p, secondaryValue));
         }
     }
 }

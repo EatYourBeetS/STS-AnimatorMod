@@ -26,13 +26,18 @@ public class HeavyWarrior extends AnimatorCard implements OnCardResetListener
     {
         super(DATA);
 
-        Initialize(27, 0);
-        SetUpgrade(7, 0);
+        Initialize(28, 0);
 
         SetAffinity_Red(2, 0, 8);
         SetAffinity_Green(1);
 
         SetExhaust(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetExhaust(false);
     }
 
     @Override

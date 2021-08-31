@@ -24,15 +24,15 @@ public class Saitama extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Saitama.class)
             .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Saitama(1), false);
-        DATA.AddPreview(new Saitama(2), false);
-        DATA.AddPreview(new Saitama(3), false);
-        DATA.AddPreview(new Saitama(4), false);
-        DATA.AddPreview(new Saitama(5), false);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new Saitama(1), false);
+                data.AddPreview(new Saitama(2), false);
+                data.AddPreview(new Saitama(3), false);
+                data.AddPreview(new Saitama(4), false);
+                data.AddPreview(new Saitama(5), false);
+            });
 
     private int stage;
 

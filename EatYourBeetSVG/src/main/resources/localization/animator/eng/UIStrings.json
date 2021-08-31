@@ -223,7 +223,9 @@
 			"Translation",
 			"Highlight Synergies.",
 			"Simplify Card UI",
-			"Certain rewards are disabled for one or more of these reasons: NL NL - Non-Animator class or cards NL - Custom or Endless mode NL - Non-Official mod version NL - Used console commands NL - Edited save file"
+			"Certain rewards are disabled for one or more of these reasons: NL NL - Non-Animator class or cards NL - Custom or Endless mode NL - Non-Official mod version NL - Used console commands NL - Edited save file",
+			"The console is disabled while in this act.",
+			"To prevent infinite healing, some cards will give you Temporary HP instead of HP when played more than 1 time."
 		]
 	},
        "animator:CardMods":

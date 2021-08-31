@@ -25,11 +25,18 @@ public class Laby extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 26);
-        SetUpgrade(0, 0, 0, 10);
+        Initialize(0, 0, 2, 36);
 
         SetAffinity_Light(2);
         SetAffinity_Dark(2);
+
+        SetEthereal(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetEthereal(false);
     }
 
     @Override

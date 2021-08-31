@@ -20,11 +20,8 @@ public class Emonzaemon extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Emonzaemon.class)
             .SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Emonzaemon_EntouJyuu(), true);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Emonzaemon_EntouJyuu(), false));
 
     public Emonzaemon()
     {

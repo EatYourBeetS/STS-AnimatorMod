@@ -18,21 +18,17 @@ public class IzunaHatsuse extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(IzunaHatsuse.class)
             .SetSkill(0, CardRarity.UNCOMMON)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new IzunaHatsuse(true), true);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new IzunaHatsuse(true), true));
 
     private boolean transformed;
-    private IzunaHatsuse(boolean transformed)
-    {
-        this();
-
-        SetTransformed(transformed);
-    }
 
     public IzunaHatsuse()
+    {
+        this(false);
+    }
+
+    private IzunaHatsuse(boolean transformed)
     {
         super(DATA);
 
@@ -42,7 +38,7 @@ public class IzunaHatsuse extends AnimatorCard
         SetAffinity_Red(1);
         SetAffinity_Green(1);
 
-        SetTransformed(false);
+        SetTransformed(transformed);
     }
 
     @Override

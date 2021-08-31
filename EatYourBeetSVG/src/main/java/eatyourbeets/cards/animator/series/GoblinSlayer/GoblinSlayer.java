@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.CreateRandomGoblins;
@@ -9,6 +10,8 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+
+import java.util.ArrayList;
 
 public class GoblinSlayer extends AnimatorCard
 {
@@ -20,10 +23,10 @@ public class GoblinSlayer extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(4, 4);
-        SetUpgrade(3, 3);
+        Initialize(3, 4, 0, 3);
+        SetUpgrade(2, 3, 0, 0);
 
-        SetAffinity_Red(2);
+        SetAffinity_Red(1);
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
 
@@ -53,12 +56,6 @@ public class GoblinSlayer extends AnimatorCard
     }
 
     @Override
-    protected float GetInitialDamage()
-    {
-        return super.GetInitialDamage() + (player.exhaustPile.size() * 3);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
@@ -66,10 +63,17 @@ public class GoblinSlayer extends AnimatorCard
 
         GameActions.Bottom.MoveCards(p.hand, p.exhaustPile)
         .SetFilter(GameUtilities::IsHindrance)
-        .ShowEffect(true, true, 0.25f);
+        .ShowEffect(true, true, 0.25f)
+        .AddCallback(this::IncreaseDamage);
 
         GameActions.Bottom.MoveCards(p.discardPile, p.exhaustPile)
         .SetFilter(GameUtilities::IsHindrance)
-        .ShowEffect(true, true, 0.12f);
+        .ShowEffect(true, true, 0.12f)
+        .AddCallback(this::IncreaseDamage);
+    }
+
+    protected void IncreaseDamage(ArrayList<AbstractCard> cards)
+    {
+        GameUtilities.IncreaseDamage(this, cards.size() * secondaryValue, false);
     }
 }

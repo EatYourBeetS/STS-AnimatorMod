@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
@@ -47,7 +48,7 @@ public class Serara extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (JUtils.Count(GameUtilities.GetIntents(), i -> i.isAttacking) == 0)
+        if (JUtils.Count(GameUtilities.GetIntents(), EnemyIntent::IsAttacking) == 0)
         {
             return;
         }

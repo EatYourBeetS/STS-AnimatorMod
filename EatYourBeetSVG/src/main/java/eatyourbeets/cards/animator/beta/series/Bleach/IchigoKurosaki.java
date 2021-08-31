@@ -9,11 +9,10 @@ import eatyourbeets.utilities.GameActions;
 
 public class IchigoKurosaki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(IchigoKurosaki.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Random).SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new IchigoKurosaki_Bankai(), false);
-    }
+    public static final EYBCardData DATA = Register(IchigoKurosaki.class)
+            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Random)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new IchigoKurosaki_Bankai(), false));
 
     public IchigoKurosaki()
     {

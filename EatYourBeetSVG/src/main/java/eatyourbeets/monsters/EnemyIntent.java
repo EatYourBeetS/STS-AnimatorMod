@@ -2,6 +2,7 @@ package eatyourbeets.monsters;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.blights.Spear;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.common.BlindedPower;
 import eatyourbeets.powers.common.BurningPower;
@@ -19,6 +21,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JUtils;
+import patches.abstractMonster.AbstractMonsterPatches;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,11 +59,23 @@ public class EnemyIntent
         protected static void Load(AbstractPlayer player, AbstractMonster enemy, HashMap<String, Integer> modifiers)
         {
             PLAYER_POWERS.clear();
-            PLAYER_POWERS.addAll(player.powers);
+            for (AbstractPower p : player.powers)
+            {
+                if (!(p instanceof InvisiblePower))
+                {
+                    PLAYER_POWERS.add(p);
+                }
+            }
             LoadPowers(player, DEFAULT_PLAYER_POWERS, PLAYER_POWERS, modifiers);
 
             ENEMY_POWERS.clear();
-            ENEMY_POWERS.addAll(enemy.powers);
+            for (AbstractPower p : enemy.powers)
+            {
+                if (!(p instanceof InvisiblePower))
+                {
+                    ENEMY_POWERS.add(p);
+                }
+            }
             LoadPowers(enemy, DEFAULT_ENEMY_POWERS, ENEMY_POWERS, modifiers);
         }
 
@@ -77,6 +92,11 @@ public class EnemyIntent
 
             if (sort)
             {
+                for (AbstractPower p : powers)
+                {
+                    CombatStats.ApplyPowerPriority(p);
+                }
+
                 Collections.sort(powers);
             }
         }
@@ -95,7 +115,7 @@ public class EnemyIntent
                         power.amount += p.amount;
                         if (power.amount == 0)
                         {
-                            powers.remove(power);
+                            powers.remove(i);
                         }
                         else
                         {
@@ -117,17 +137,35 @@ public class EnemyIntent
     private static final FieldInfo<EnemyMoveInfo> _move = JUtils.GetField("move", AbstractMonster.class);
 
     public final AbstractMonster enemy;
-    public final AbstractMonster.Intent intent;
-    public final EnemyMoveInfo move;
-    public final boolean isAttacking;
     public final HashMap<String, Integer> modifiers = new HashMap<>();
+    public AbstractMonster.Intent intent;
+    private EnemyMoveInfo move;
+    private boolean isAttacking;
 
-    public EnemyIntent(AbstractMonster enemy)
+    protected EnemyIntent(AbstractMonster enemy)
     {
         this.enemy = enemy;
-        this.intent = enemy.intent;
-        this.move = _move.Get(enemy);
-        this.isAttacking = move.baseDamage >= 0; // It is -1 if not attacking
+    }
+
+    public static EnemyIntent Get(AbstractMonster enemy)
+    {
+        EnemyIntent intent = AbstractMonsterPatches.AbstractMonster_Fields.enemyIntent.get(enemy);
+        if (intent == null)
+        {
+            intent = new EnemyIntent(enemy);
+            AbstractMonsterPatches.AbstractMonster_Fields.enemyIntent.set(enemy, intent);
+        }
+
+        intent.intent = enemy.intent;
+        intent.move = _move.Get(enemy);
+        intent.isAttacking = intent.move.baseDamage >= 0; // It is -1 if not attacking
+
+        return intent;
+    }
+
+    public boolean IsAttacking()
+    {
+        return isAttacking;
     }
 
     public int GetDamage(boolean multi)
@@ -147,80 +185,55 @@ public class EnemyIntent
 
     public EnemyIntent AddWeak()
     {
-        if (isAttacking)
-        {
-            GR.UI.CombatScreen.Intents.Add(enemy, this::GetIntentDamageString);
-            modifiers.put(WeakPower.POWER_ID, 1);
-        }
-
-        return this;
+        return AddModifier(enemy, WeakPower.POWER_ID, 1);
     }
 
     public EnemyIntent AddPlayerVulnerable()
     {
-        if (isAttacking)
-        {
-            GR.UI.CombatScreen.Intents.Add(enemy, this::GetIntentDamageString);
-            modifiers.put(VulnerablePower.POWER_ID, 1);
-        }
-
-        return this;
+        return AddModifier(enemy, VulnerablePower.POWER_ID, 1);
     }
 
     public EnemyIntent AddEnchantedArmor(int amount)
     {
-        if (isAttacking)
-        {
-            GR.UI.CombatScreen.Intents.Add(enemy, this::GetIntentDamageString);
-            modifiers.put(EnchantedArmorPower.POWER_ID, amount);
-        }
-
-        return this;
+        return AddModifier(enemy, EnchantedArmorPower.POWER_ID, amount);
     }
 
     public EnemyIntent AddStrength(int amount)
     {
-        if (isAttacking)
-        {
-            GR.UI.CombatScreen.Intents.Add(enemy, this::GetIntentDamageString);
-            modifiers.put(StrengthPower.POWER_ID, amount);
-        }
-
-        return this;
+        return AddModifier(enemy, StrengthPower.POWER_ID, amount);
     }
 
     public EnemyIntent AddFreezing()
     {
-        if (isAttacking)
-        {
-            GR.UI.CombatScreen.Intents.Add(enemy, this::GetIntentDamageString);
-            modifiers.put(FreezingPower.POWER_ID, 1);
-        }
-
-        return this;
+        return AddModifier(enemy, FreezingPower.POWER_ID, 1);
     }
 
     public EnemyIntent AddBlinded()
     {
+        return AddModifier(enemy, BlindedPower.POWER_ID, 1);
+    }
+
+    public EnemyIntent AddModifier(AbstractMonster enemy, String powerID, int amount)
+    {
         if (isAttacking)
         {
-            GR.UI.CombatScreen.Intents.Add(enemy, this::GetIntentDamageString);
-            modifiers.put(BlindedPower.POWER_ID, 1);
+            GR.UI.CombatScreen.Intents.Add(this);
+            modifiers.put(powerID, amount);
         }
 
         return this;
     }
 
-    protected ColoredString GetIntentDamageString()
+    public ColoredString CreateIntentDamageString()
     {
-        final int baseDamage = GetBaseDamage(false);
-        final int damage = CalculateIntentDamage();
+        final int currentDamage = GetDamage(false);
+        final int damage = ModifyIntentDamage(GetBaseDamage(false));
         final ColoredString result = new ColoredString(damage);
-        if (damage > baseDamage)
+        if (damage > currentDamage)
         {
             result.color = Settings.RED_TEXT_COLOR.cpy().lerp(Color.WHITE, 0.2f);
         }
-        else if (damage < baseDamage)
+        else if (damage < currentDamage)
         {
             result.color = Settings.GREEN_TEXT_COLOR.cpy().lerp(Color.WHITE, 0.2f);
         }
@@ -228,10 +241,9 @@ public class EnemyIntent
         return result;
     }
 
-    protected int CalculateIntentDamage()
+    protected int ModifyIntentDamage(float damage)
     {
         final AbstractPlayer player = AbstractDungeon.player;
-        float damage = GetBaseDamage(false);
 
         TemporaryPowers.Load(player, enemy, modifiers);
 

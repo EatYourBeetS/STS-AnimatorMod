@@ -14,12 +14,12 @@ public class NagisaMomoe extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(NagisaMomoe.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new NagisaMomoe_Charlotte(), true);
-        DATA.AddPreview(new Curse_GriefSeed(), false);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new NagisaMomoe_Charlotte(), true);
+                data.AddPreview(new Curse_GriefSeed(), false);
+            });
 
     public NagisaMomoe()
     {

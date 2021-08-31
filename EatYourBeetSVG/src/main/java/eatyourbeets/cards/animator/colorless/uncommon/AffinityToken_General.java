@@ -9,21 +9,24 @@ import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class AffinityToken_General extends AffinityToken implements OnAddToDeckListener
 {
+    public static final EYBCardData DATA = Register(AffinityToken_General.class)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .PostInitialize(data ->
+            {
+                for (EYBCardData d : AffinityToken.GetCards())
+                {
+                    data.AddPreview(d.CreateNewInstance(), true);
+                }
+            });
     public static final Affinity AFFINITY_TYPE = Affinity.General;
-    public static final EYBCardData DATA = Register(AffinityToken_General.class).SetRarity(CardRarity.UNCOMMON);
-    static
-    {
-        for (EYBCardData data : AffinityToken.GetCards())
-        {
-            DATA.AddPreview(data.CreateNewInstance(), true);
-        }
-    }
 
     public AffinityToken_General()
     {
@@ -67,17 +70,5 @@ public class AffinityToken_General extends AffinityToken implements OnAddToDeckL
         }));
 
         return false;
-    }
-
-    @Override
-    protected Affinity GetAffinityRequirement1()
-    {
-        return null;
-    }
-
-    @Override
-    protected Affinity GetAffinityRequirement2()
-    {
-        return null;
     }
 }

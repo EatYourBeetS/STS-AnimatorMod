@@ -17,11 +17,8 @@ public class MamiTomoe extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MamiTomoe.class)
             .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Curse_GriefSeed(), false);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
 
     public MamiTomoe()
     {

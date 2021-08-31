@@ -18,11 +18,8 @@ public class Vesta extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Vesta.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetSeries(CardSeries.TenseiSlime);
-    static
-    {
-        DATA.AddPreview(new Vesta_Elixir(), false);
-    }
+            .SetSeries(CardSeries.TenseiSlime)
+            .PostInitialize(data -> data.AddPreview(new Vesta_Elixir(), false));
 
     public Vesta()
     {

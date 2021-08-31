@@ -18,44 +18,37 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.HatarakuMaouSama);
 
-    private int lazyCounter;
+    private int turns = 0;
 
     public Urushihara()
     {
         super(DATA);
 
-        Initialize(23, 0);
+        Initialize(23, 0, 2, 5);
+        SetUpgrade(0, 0, -1, -1);
 
         SetAffinity_Blue(1);
         SetAffinity_Dark(1);
 
-        this.lazyCounter = 0;
         SetEvokeOrbCount(1);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        Urushihara other = (Urushihara) makeStatEquivalentCopy();
-
-        other.lazyCounter = rng.random(3);
-
-        if (!upgraded)
-        {
-            other.lazyCounter += 1;
-        }
-
         GameActions.Bottom.ChannelOrb(new Dark());
 
+        Urushihara other = (Urushihara) makeStatEquivalentCopy();
+        other.turns = rng.random(magicNumber, secondaryValue);
         CombatStats.onStartOfTurnPostDraw.Subscribe(other);
     }
 
     @Override
     public void OnStartOfTurnPostDraw()
     {
-        if (lazyCounter > 0)
+        if (turns > 0)
         {
-            lazyCounter -= 1;
+            turns -= 1;
         }
         else
         {

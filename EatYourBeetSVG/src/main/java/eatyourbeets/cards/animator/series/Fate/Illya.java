@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.cards.DrawPileCardPreview;
 import eatyourbeets.utilities.GameActions;
@@ -17,12 +16,9 @@ import eatyourbeets.utilities.GameUtilities;
 public class Illya extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Illya.class)
-            .SetSkill(1, CardRarity.COMMON)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Berserker(), false);
-    }
+            .SetSkill(1, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Berserker(), false));
 
     private final DrawPileCardPreview drawPileCardPreview = new DrawPileCardPreview(Illya::FindBestCard);
 
@@ -31,7 +27,7 @@ public class Illya extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 6);
-        SetUpgrade(0, 0, -2);
+        SetCostUpgrade(-1);
 
         SetAffinity_Star(1);
     }
@@ -86,10 +82,10 @@ public class Illya extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        AbstractCard card = FindBestCard(m);
+        final AbstractCard card = FindBestCard(m);
         if (card != null)
         {
-            GameActions.Bottom.StackPower(new SelfDamagePower(p, magicNumber));
+            GameActions.Bottom.DealDamageAtEndOfTurn(p, p, magicNumber);
             GameActions.Bottom.PlayCard(card, p.drawPile, m);
         }
     }

@@ -24,7 +24,6 @@ public class GuildGirl extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, GOLD_GAIN);
-        SetUpgrade(0, 2);
 
         SetAffinity_Orange(1);
     }
@@ -32,13 +31,12 @@ public class GuildGirl extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetRetain(true);
+        SetInnate(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new GuildGirlPower(p, 1));
     }
 

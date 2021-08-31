@@ -32,7 +32,7 @@ public class Rorona extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 30, UPGRADE_CARD_REQUIREMENT);
+        Initialize(0, 0, 32, UPGRADE_CARD_REQUIREMENT);
         SetUpgrade(0, 0, -6);
 
         SetAffinity_Orange(2);

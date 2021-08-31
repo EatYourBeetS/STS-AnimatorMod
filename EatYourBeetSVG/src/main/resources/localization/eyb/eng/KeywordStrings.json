@@ -102,9 +102,15 @@
 		"NAMES": ["constricted"],
 		"PROPER_NAME": "Constricted"
 	},
+	"Counter-Attack":
+	{
+		"DESCRIPTION": "If you fully block all enemy #yAttacks this turn (at least #b1^), gain #yVigor and apply #b1 [Vulnerable] to ALL enemies.",
+		"NAMES": ["counter-attack"],
+		"PROPER_NAME": "Counter-Attack"
+	},
 	"Corruption":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b5, #b7, #b9 and #b11 #yCorruption, add {Crystallize} to your draw pile. At #b13 #yCorruption, obtain #pSummoning #pRitual.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b3, #b6, #b9 and #b12 #yCorruption, add #yCrystallize to your draw pile. At #b15 #yCorruption, obtain #pSummoning #pRitual.",
 		"NAMES": ["corruption"],
 		"PROPER_NAME": "Corruption"
 	},
@@ -245,6 +251,12 @@
 		"DESCRIPTION": "This effect can only trigger once per combat, across all copies of this card.",
 		"NAMES": ["limited"],
 		"PROPER_NAME": "Limited"
+	},
+	"Low-Cost":
+	{
+		"DESCRIPTION": "Card which cost less than #b2 [E].",
+		"NAMES": ["low-cost", "low cost"],
+		"PROPER_NAME": "Low-Cost Card"
 	},
 	"Loyal":
 	{
@@ -401,6 +413,12 @@
 		"DESCRIPTION": "-",
 		"NAMES": ["~damage"],
 		"PROPER_NAME": "Normal Damage"
+	},
+	"Delayed Damage":
+	{
+		"DESCRIPTION": "Take damage at the end of your turn.",
+		"NAMES": ["delayed damage"],
+		"PROPER_NAME": "Delayed Damage"
 	},
 	"~Dexterity":
     {

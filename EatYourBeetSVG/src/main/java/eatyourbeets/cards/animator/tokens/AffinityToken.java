@@ -2,13 +2,11 @@ package eatyourbeets.cards.animator.tokens;
 
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
@@ -23,9 +21,12 @@ public abstract class AffinityToken extends AnimatorCard
     protected static final ArrayList<EYBCardData> cards = new ArrayList<>();
     protected final Affinity affinity;
 
-    public static EYBCardData Register(Class<? extends AnimatorCard> type)
+    protected static EYBCardData RegisterAffinityToken(Class<? extends AnimatorCard> type)
     {
-        return AnimatorCard.Register(type).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+        final EYBCardData data = Register(type).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+        final CardStrings strings = GR.GetCardStrings(ID);
+        data.Strings.DESCRIPTION = JUtils.Format(strings.DESCRIPTION, data.Strings.DESCRIPTION);
+        return data;
     }
 
     public static ArrayList<EYBCardData> GetCards()
@@ -85,20 +86,6 @@ public abstract class AffinityToken extends AnimatorCard
 
         SetPurge(true);
         SetRetainOnce(true);
-
-        if (affinity != Affinity.General)
-        {
-            SetAffinityRequirement(GetAffinityRequirement1(), secondaryValue);
-            SetAffinityRequirement(GetAffinityRequirement2(), secondaryValue);
-        }
-    }
-
-    @Override
-    protected String GetRawDescription()
-    {
-        final Affinity a1 = GetAffinityRequirement1();
-        final Affinity a2 = GetAffinityRequirement2();
-        return a1 == null ? super.GetRawDescription() : super.GetRawDescription(a1.GetTooltip().id, a2.GetTooltip().id);
     }
 
     public static SelectFromPile SelectTokenAction(String name, int amount, int size)
@@ -125,13 +112,15 @@ public abstract class AffinityToken extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         CombatStats.Affinities.BonusAffinities.Add(affinity, magicNumber);
 
-        if (CheckAffinity(GetAffinityRequirement1()) || CheckAffinity(GetAffinityRequirement2()))
+        final EYBCardAffinities affinities = CombatStats.Affinities.GetHandAffinities(this);
+        final int level = affinities.GetLevel(affinity, true);
+        for (Affinity a : Affinity.Basic())
         {
-            GameActions.Bottom.GainEnergy(1);
-            GameActions.Bottom.SFX(SFX.RELIC_ACTIVATION, 0.75f, 0.85f);
+            if (a != affinity && affinities.GetLevel(a, true) > level)
+            {
+                GameActions.Bottom.GainEnergy(1);
+                GameActions.Bottom.SFX(SFX.RELIC_ACTIVATION, 0.75f, 0.85f);
+            }
         }
     }
-
-    protected abstract Affinity GetAffinityRequirement1();
-    protected abstract Affinity GetAffinityRequirement2();
 }

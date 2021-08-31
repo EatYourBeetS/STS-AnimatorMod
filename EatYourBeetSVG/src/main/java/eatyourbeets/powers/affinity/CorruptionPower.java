@@ -15,7 +15,7 @@ public class CorruptionPower extends AbstractAffinityPower
     public static final String TOOLTIP_ID = "~Crystallize";
     public static final Affinity AFFINITY_TYPE = Affinity.Dark;
 
-    protected static final int[] THRESHOLDS = new int[]{ 5, 7, 9, 11, 13 };
+    protected static final int[] THRESHOLDS = new int[]{ 3, 6, 9, 12, 15 };
 
     public CorruptionPower()
     {
@@ -43,10 +43,9 @@ public class CorruptionPower extends AbstractAffinityPower
     }
 
     @Override
-    public void updateDescription()
+    protected String GetUpdatedDescription()
     {
-        this.description = powerStrings.DESCRIPTIONS[0];
-
+        String description = powerStrings.DESCRIPTIONS[0];
         int[] thresholds = GetThresholds();
         Integer threshold = GetCurrentThreshold();
         if (threshold != null)
@@ -71,9 +70,10 @@ public class CorruptionPower extends AbstractAffinityPower
         }
         else
         {
-            this.description = JUtils.Format(description, 0, 1, "");
+            description = JUtils.Format(description, 0, 1, "");
         }
 
         this.tooltips.get(0).description = description;
+        return description;
     }
 }

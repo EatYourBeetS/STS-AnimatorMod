@@ -14,19 +14,19 @@ public class EmiyaKiritsugu extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(EmiyaKiritsugu.class)
             .SetAttack(1, CardRarity.RARE, EYBAttackType.Ranged)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(AffinityToken.GetCard(Affinity.Light), false);
-        DATA.AddPreview(AffinityToken.GetCard(Affinity.Dark), false);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(AffinityToken.GetCard(Affinity.Light), false);
+                data.AddPreview(AffinityToken.GetCard(Affinity.Dark), false);
+            });
 
     public EmiyaKiritsugu()
     {
         super(DATA);
 
         Initialize(9, 7, 0, 2);
-        SetUpgrade(3, 2);
+        SetUpgrade(2, 2);
 
         SetAffinity_Light(1, 1, 0);
         SetAffinity_Dark(1, 1, 0);
@@ -34,6 +34,7 @@ public class EmiyaKiritsugu extends AnimatorCard
         SetAffinity_Blue(0, 0, 1);
 
         SetExhaust(true);
+        SetRetainOnce(true);
     }
 
     @Override

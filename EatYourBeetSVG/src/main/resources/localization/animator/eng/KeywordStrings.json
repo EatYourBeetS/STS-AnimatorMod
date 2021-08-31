@@ -33,7 +33,7 @@
 	},
 	"Earth":
 	{
-		"DESCRIPTION": "Orb: Gain #yTemporary #yThorns while #yChanneled. It is #yEvoked after 3 turns, dealing damage to random enemies.",
+		"DESCRIPTION": "Orb: Gain #b2 [Thorns] the first #b3 times it is #yChanneled. It is #yEvoked after #b3 turns, dealing damage to random enemies.",
 		"NAMES": ["earth", "earth+"],
 		"PROPER_NAME": "Earth"
 	},

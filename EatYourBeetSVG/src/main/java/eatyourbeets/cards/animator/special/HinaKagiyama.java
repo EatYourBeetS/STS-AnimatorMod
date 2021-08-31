@@ -14,11 +14,8 @@ public class HinaKagiyama extends AnimatorCard
     public static final EYBCardData DATA = Register(HinaKagiyama.class)
             .SetPower(1, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS)
-            .SetSeries(CardSeries.TouhouProject);
-    static
-    {
-        DATA.AddPreview(new Miracle(), false);
-    }
+            .SetSeries(CardSeries.TouhouProject)
+            .PostInitialize(data -> data.AddPreview(new Miracle(), false));
 
     public HinaKagiyama()
     {

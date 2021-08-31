@@ -39,9 +39,6 @@ public class GoblinShaman extends AnimatorCard_Status
         if (this.dontTriggerOnUseCard)
         {
             GameActions.Bottom.ApplyFrail(null, p, 1);
-        }
-        else
-        {
             GameActions.Bottom.GainCorruption(1);
         }
     }

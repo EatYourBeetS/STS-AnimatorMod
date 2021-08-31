@@ -67,6 +67,10 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
             {
                 this.img = GR.GetTexture(imagePath);
             }
+            if (this.img == null)
+            {
+                GR.GetTexture(GR.Common.CreateID("UnknownPower"));
+            }
 
             this.ID = originalID;
             this.powerStrings = CardCrawlGame.languagePack.getPowerStrings(originalID);
@@ -337,12 +341,22 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
     public ReducePower ReducePower(int amount)
     {
+        return ReducePower(GameActions.Bottom, amount);
+    }
+
+    public ReducePower ReducePower(GameActions order, int amount)
+    {
         return GameActions.Bottom.ReducePower(this, amount);
     }
 
     public RemoveSpecificPowerAction RemovePower()
     {
-        return GameActions.Bottom.RemovePower(owner, owner, this);
+        return RemovePower(GameActions.Bottom);
+    }
+
+    public RemoveSpecificPowerAction RemovePower(GameActions order)
+    {
+        return order.RemovePower(owner, owner, this);
     }
 
     public EYBPower SetEnabled(boolean enable)

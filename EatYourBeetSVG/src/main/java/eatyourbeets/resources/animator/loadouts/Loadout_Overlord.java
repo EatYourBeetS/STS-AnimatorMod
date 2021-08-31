@@ -16,12 +16,12 @@ public class Loadout_Overlord extends AnimatorLoadout
     @Override
     public void AddStarterCards()
     {
-        AddStarterCard(Demiurge.DATA, 5);
-        AddStarterCard(Cocytus.DATA, 5);
+        AddStarterCard(Demiurge.DATA, 6);
+        AddStarterCard(Cocytus.DATA, 6);
         AddStarterCard(PandorasActor.DATA, 6);
-        AddStarterCard(Sebas.DATA, 6);
         AddStarterCard(NarberalGamma.DATA, 7);
-        AddStarterCard(Shalltear.DATA, 8);
+        AddStarterCard(Sebas.DATA, 8);
+        AddStarterCard(CZDelta.DATA, 8);
     }
 
     @Override

@@ -84,8 +84,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
 
         if (Gdx.input.isKeyJustPressed(DevConsole.toggleKey) && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.FTUE)
         {
-            // TODO: Localization
-            AbstractDungeon.ftue = new FtueTip(name, "The console is disabled while in this act.",
+            AbstractDungeon.ftue = new FtueTip(name, GR.Animator.Strings.Misc.ConsoleDisabled,
             Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.5f, FtueTip.TipType.NO_FTUE);
         }
 

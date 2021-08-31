@@ -1,6 +1,7 @@
 package eatyourbeets.powers.animator;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -22,7 +23,7 @@ public class GeassPower extends AnimatorPower implements OnTryApplyPowerListener
     }
 
     @Override
-    public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source, AbstractGameAction action)
     {
         return (power.type != PowerType.DEBUFF || owner != source || (owner.isPlayer == target.isPlayer));
     }

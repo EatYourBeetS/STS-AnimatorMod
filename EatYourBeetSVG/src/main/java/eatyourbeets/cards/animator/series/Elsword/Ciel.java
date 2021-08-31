@@ -14,13 +14,10 @@ public class Ciel extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Ciel.class)
             .SetSkill(2, CardRarity.COMMON)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Lu(), false));
     public static final int LOCK_ON = 2;
     public static final int BLUR = 1;
-    static
-    {
-        DATA.AddPreview(new Lu(), true);
-    }
 
     public Ciel()
     {
@@ -32,7 +29,7 @@ public class Ciel extends AnimatorCard
         SetAffinity_Green(2, 0, 1);
         SetAffinity_Dark(1, 1, 0);
 
-        SetAffinityRequirement(Affinity.Green, 2);
+        SetAffinityRequirement(Affinity.Green, 3);
         SetAffinityRequirement(Affinity.Blue, 2);
     }
 

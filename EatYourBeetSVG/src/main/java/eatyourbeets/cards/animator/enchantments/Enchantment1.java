@@ -18,7 +18,7 @@ public class Enchantment1 extends Enchantment
 {
     public static final EYBCardData DATA = RegisterInternal(Enchantment1.class);
     public static final int INDEX = 1;
-    public static final int UP1_GAIN_BLOCK = 7;
+    public static final int UP1_GAIN_BLOCK = 6;
     public static final int UP3_TAKE_DAMAGE = 3;
 
     private static final CardEffectChoice choices = new CardEffectChoice();

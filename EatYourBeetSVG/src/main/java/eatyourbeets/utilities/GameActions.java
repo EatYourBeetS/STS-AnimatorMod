@@ -522,14 +522,24 @@ public final class GameActions
         return StackAffinityPower(BlessingPower.AFFINITY_TYPE, amount, retain);
     }
 
+    public GainBlock GainBlock(int amount)
+    {
+        return GainBlock(player, amount);
+    }
+
     public GainBlock GainBlock(AbstractCreature target, int amount)
     {
         return Add(new GainBlock(target, target, amount));
     }
 
-    public GainBlock GainBlock(int amount)
+    public LoseBlock LoseBlock(int amount)
     {
-        return Add(new GainBlock(player, player, amount));
+        return LoseBlock(player, amount);
+    }
+
+    public LoseBlock LoseBlock(AbstractCreature target, int amount)
+    {
+        return Add(new LoseBlock(target, target, amount));
     }
 
     public ApplyPower GainBlur(int amount)
@@ -671,6 +681,11 @@ public final class GameActions
     public HealCreature Heal(int amount)
     {
         return Add(new HealCreature(player, player, amount));
+    }
+
+    public HealCreature HealPlayerLimited(AbstractCard card, int amount)
+    {
+        return Add(new HealCreature(player, player, amount).SetCard(card));
     }
 
     public ModifyAffinityScaling IncreaseExistingScaling(AbstractCard card, int amount)
@@ -1028,6 +1043,16 @@ public final class GameActions
     public ApplyPowerAuto StackPower(TargetHelper target, PowerHelper power, int stacks)
     {
         return Add(new ApplyPowerAuto(target, power, stacks));
+    }
+
+    public ApplyPower DealDamageAtEndOfTurn(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new DelayedDamagePower(target, amount));
+    }
+
+    public ApplyPower DealDamageAtEndOfTurn(AbstractCreature source, AbstractCreature target, int amount, AbstractGameAction.AttackEffect effect)
+    {
+        return StackPower(source, new DelayedDamagePower(target, amount, effect));
     }
 
     public DealDamage TakeDamage(int amount, AbstractGameAction.AttackEffect effect)

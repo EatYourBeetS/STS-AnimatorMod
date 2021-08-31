@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_Status;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.common.SelfDamagePower;
+import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -29,7 +29,7 @@ public class Overheat extends AnimatorCard_Status
         if (!this.dontTriggerOnUseCard)
         {
             GameActions.Bottom.Draw(2);
-            GameActions.Bottom.StackPower(new SelfDamagePower(p, magicNumber));
+            GameActions.Bottom.StackPower(new DelayedDamagePower(p, magicNumber));
             GameActions.Bottom.ModifyAllCopies(cardID, c -> GameUtilities.IncreaseMagicNumber(c, 1, false));
         }
     }

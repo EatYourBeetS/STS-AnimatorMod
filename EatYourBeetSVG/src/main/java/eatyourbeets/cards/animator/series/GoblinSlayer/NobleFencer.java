@@ -25,10 +25,17 @@ public class NobleFencer extends AnimatorCard
         super(DATA);
 
         Initialize(0, 2);
-        SetUpgrade(0, 1);
 
         SetAffinity_Green(2, 0, 0);
-        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Blue(2, 0, 0);
+
+        SetExhaust(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetExhaust(false);
     }
 
     @Override

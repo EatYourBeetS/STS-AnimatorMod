@@ -137,7 +137,7 @@ public abstract class EYBEffect extends AbstractGameEffect
 
     protected void Complete()
     {
-        GameEffects.Unlisted.remove(this);
+        GameEffects.UnlistedEffects.remove(this);
         this.isDone = true;
     }
 

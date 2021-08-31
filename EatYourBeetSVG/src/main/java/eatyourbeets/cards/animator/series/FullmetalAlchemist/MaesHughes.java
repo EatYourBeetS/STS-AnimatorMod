@@ -66,7 +66,7 @@ public class MaesHughes extends AnimatorCard
                     GameEffects.List.ShowCardBriefly(makeStatEquivalentCopy());
                     GameActions.Top.MoveCard(c, group, player.hand)
                     .ShowEffect(true, true)
-                    .AddCallback(card -> card.setCostForTurn(card.costForTurn-1));
+                    .AddCallback(card -> GameActions.Bottom.Motivate(card, 1));
                 }
 
                 return true;

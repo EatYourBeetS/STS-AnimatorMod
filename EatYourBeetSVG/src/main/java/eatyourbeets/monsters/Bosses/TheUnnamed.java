@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -129,6 +130,11 @@ public class TheUnnamed extends EYBMonster
             if (Ynitaph.CanSpawn())
             {
                 GameUtilities.ObtainRelic(hb.cX, hb.cY, new Ynitaph(1, true));
+
+                if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && Settings.seed != null)
+                {
+                    GR.Animator.Config.LastSeed.Set(Settings.seed.toString(), true);
+                }
             }
 
             CardCrawlGame.stopClock = true;

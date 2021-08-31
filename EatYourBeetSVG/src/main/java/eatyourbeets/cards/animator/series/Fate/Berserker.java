@@ -22,8 +22,8 @@ public class Berserker extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(18, 0, 2, 12);
-        SetUpgrade(6, 0, 0, 0);
+        Initialize(19, 0, 2, 12);
+        SetUpgrade(5, 0, 0, 2);
 
         SetAffinity_Red(2, 0, 6);
 

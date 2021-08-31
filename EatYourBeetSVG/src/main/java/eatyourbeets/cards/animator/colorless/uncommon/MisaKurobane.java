@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.colorless.uncommon;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.MisaKurobane_Yusarin;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
@@ -15,11 +12,8 @@ public class MisaKurobane extends AnimatorCard
     public static final EYBCardData DATA = Register(MisaKurobane.class)
             .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
-            .SetSeries(CardSeries.Charlotte);
-    static
-    {
-        DATA.AddPreview(new MisaKurobane_Yusarin(), false);
-    }
+            .SetSeries(CardSeries.Charlotte)
+            .PostInitialize(data -> data.AddPreview(new MisaKurobane_Yusarin(), false));
 
     public MisaKurobane()
     {
@@ -32,6 +26,8 @@ public class MisaKurobane extends AnimatorCard
 
         SetExhaust(true);
         SetEvokeOrbCount(1);
+
+        SetAffinityRequirement(Affinity.Light, 3);
     }
 
     @Override
@@ -39,6 +35,10 @@ public class MisaKurobane extends AnimatorCard
     {
         GameActions.Bottom.ChannelOrb(new Fire());
         GameActions.Bottom.Draw(magicNumber);
-        GameActions.Bottom.MakeCardInDiscardPile(new MisaKurobane_Yusarin());
+
+        if (CheckAffinity(Affinity.Light))
+        {
+            GameActions.Bottom.MakeCardInDiscardPile(new MisaKurobane_Yusarin());
+        }
     }
 }

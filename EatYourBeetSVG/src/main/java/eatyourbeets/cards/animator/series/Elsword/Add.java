@@ -10,6 +10,7 @@ import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -17,15 +18,12 @@ public class Add extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Add.class)
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Crystallize(), false);
-        for (OrbCore core : OrbCore.GetAllCores())
-        {
-            DATA.AddPreview(core, false);
-        }
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new Crystallize(), false);
+                data.AddPreviews(OrbCore.GetAllCores(), false);
+            });
 
     public Add()
     {
@@ -65,8 +63,8 @@ public class Add extends AnimatorCard
     {
         if (cards != null && cards.size() > 0)
         {
-            AbstractCard c = cards.get(0);
             CardGroup cardGroup = null;
+            final AbstractCard c = cards.get(0);
             if (player.hand.contains(c))
             {
                 cardGroup = player.hand;
@@ -95,24 +93,13 @@ public class Add extends AnimatorCard
             switch (cardGroup.type)
             {
                 case DRAW_PILE:
-                    GameActions.Bottom.MakeCardInDrawPile(chosen.get(0));
-                    break;
-
                 case HAND:
-                    GameActions.Bottom.MakeCardInHand(chosen.get(0));
-                    break;
-
                 case DISCARD_PILE:
-                    GameActions.Bottom.MakeCardInDiscardPile(chosen.get(0));
+                    GameActions.Bottom.MakeCard(chosen.get(0), cardGroup);
                     break;
 
-                case MASTER_DECK:
-                    break;
-                case EXHAUST_PILE:
-                    break;
-                case CARD_POOL:
-                    break;
-                case UNSPECIFIED:
+                default:
+                    JUtils.LogWarning(this, "Invalid card group type: " + cardGroup.type);
                     break;
             }
         }

@@ -36,7 +36,7 @@ public class ApplyPowerAction_Ctor
     public static void Postfix(ApplyPowerAction __instance, AbstractCreature target, AbstractCreature source,
                                AbstractPower powerToApply, int stackAmount, boolean isFast, AbstractGameAction.AttackEffect effect)
     {
-        if (!GameUtilities.CanApplyPower(source, target, powerToApply))
+        if (!GameUtilities.CanApplyPower(source, target, powerToApply, __instance))
         {
             __instance.isDone = true;
         }

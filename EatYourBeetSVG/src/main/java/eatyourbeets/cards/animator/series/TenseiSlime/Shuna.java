@@ -17,8 +17,8 @@ public class Shuna extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3, 1, 2);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 2, 2);
+        SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1, 1, 0);
@@ -39,6 +39,5 @@ public class Shuna extends AnimatorCard
         GameActions.Bottom.GainBlessing(1);
         GameActions.Bottom.GainWillpower(1);
         GameActions.Bottom.Draw(magicNumber);
-        GameActions.Bottom.GainBlock(block);
     }
 }

@@ -16,7 +16,6 @@ public class HououinKyouma extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(HououinKyouma.class)
             .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
-            .SetMaxCopies(1)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.SteinsGate);
 
@@ -25,17 +24,23 @@ public class HououinKyouma extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0);
-        SetCostUpgrade(-1);
 
         SetAffinity_Blue(2);
 
         SetPurge(true);
+        SetDelayed(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetDelayed(false);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        final CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : AbstractDungeon.actionManager.cardsPlayedThisCombat)
         {
             if (!c.cardID.equals(this.cardID))
@@ -61,7 +66,7 @@ public class HououinKyouma extends AnimatorCard
         {
             GameActions.Bottom.SelectFromPile(name, 1, choices)
             .SetOptions(false, false)
-            .AddCallback(cards -> GameActions.Bottom.MakeCardInHand(cards.get(0)).AddCallback(GameUtilities::Retain));
+            .AddCallback(cards -> GameActions.Bottom.MakeCardInDrawPile(cards.get(0)).AddCallback(GameUtilities::Retain));
         }
     }
 }

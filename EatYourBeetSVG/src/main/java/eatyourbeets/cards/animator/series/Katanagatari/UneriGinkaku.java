@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -10,8 +9,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
-import eatyourbeets.powers.animator.EarthenThornsPower;
+import eatyourbeets.powers.common.CounterAttackPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -56,7 +56,7 @@ public class UneriGinkaku extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.StackPower(new EarthenThornsPower(player, magicNumber));
+        GameActions.Bottom.StackPower(new CounterAttackPower(player, magicNumber));
         GameActions.Bottom.Flash(this);
     }
 

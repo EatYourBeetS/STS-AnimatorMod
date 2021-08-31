@@ -50,6 +50,7 @@ public class CardTooltips
     public EYBCardTooltip Blessing = FindByID("Blessing");
     public EYBCardTooltip Corruption = FindByID("Corruption");
     public EYBCardTooltip Inspiration = FindByID("Inspiration");
+    public EYBCardTooltip DelayedDamage = FindByID("Delayed Damage");
     public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
     public EYBCardTooltip ForceStance = FindByID("Force Stance");
     public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
@@ -70,6 +71,7 @@ public class CardTooltips
     public EYBCardTooltip Metallicize = FindByID("Metallicize");
     public EYBCardTooltip PlatedArmor = FindByID("Plated Armor");
     public EYBCardTooltip EnchantedArmor = FindByID("Enchanted Armor");
+    public EYBCardTooltip CounterAttack = FindByID("Counter-Attack");
     public EYBCardTooltip Vitality = FindByID("Vitality");
     public EYBCardTooltip Ritual = FindByID("Ritual");
     public EYBCardTooltip TempHP = FindByID("Temporary HP");
@@ -258,6 +260,7 @@ public class CardTooltips
         LoadFromPower(SupportDamage, new SupportDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(LockOn, new LockOnPower(FakeCharacter.Instance, 0));
         LoadFromPower(Inspiration, new InspirationPower(FakeCharacter.Instance, 0));
+        LoadFromPower(DelayedDamage, new DelayedDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(SelfDamage, new SelfDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(CounterAttack, new CounterAttackPower(FakeCharacter.Instance, 0));
         LoadFromPower(Balance, new BalancePower(FakeCharacter.Instance, 0));

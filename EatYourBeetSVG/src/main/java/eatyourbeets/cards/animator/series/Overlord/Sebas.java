@@ -3,11 +3,14 @@ package eatyourbeets.cards.animator.series.Overlord;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.monsters.EnemyIntent;
+import eatyourbeets.powers.common.CounterAttackPower;
+import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -22,33 +25,37 @@ public class Sebas extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6, 3);
-        SetUpgrade(0, 3);
+        Initialize(0, 9, 2);
+        SetUpgrade(0, 3, 0);
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Light(1);
         SetAffinity_Orange(1);
 
         SetExhaust(true);
-    }
 
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        GameActions.Bottom.GainTemporaryHP(magicNumber);
+        SetAffinityRequirement(Affinity.Red, 3);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainBlock(block).AddCallback(() ->
+        GameActions.Bottom.GainBlock(block);
+
+        final int counter = JUtils.Count(GameUtilities.GetIntents(), EnemyIntent::IsAttacking);
+        if (counter > 0)
         {
-            for (EnemyIntent intent : JUtils.Filter(GameUtilities.GetIntents(), i -> i.isAttacking))
-            {
-                GameActions.Bottom.DealDamage(player, intent.enemy, player.currentBlock, DamageInfo.DamageType.THORNS, AttackEffects.BLUNT_HEAVY);
-            }
-        });
+            GameActions.Bottom.GainForce(counter);
+            GameActions.Bottom.StackPower(new CounterAttackPower(p, counter * magicNumber));
+        }
+
+        if (AgilityStance.IsActive())
+        {
+            GameActions.Bottom.GainEnergy(1);
+        }
+        if (CheckAffinity(Affinity.Red))
+        {
+            GameActions.Bottom.GainEnergy(1);
+        }
     }
 }

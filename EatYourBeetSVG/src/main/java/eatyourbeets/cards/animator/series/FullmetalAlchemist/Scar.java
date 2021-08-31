@@ -62,7 +62,7 @@ public class Scar extends AnimatorCard
             {
                 for (AbstractCard c : cards)
                 {
-                    GameActions.Bottom.TakeDamage(secondaryValue, AttackEffects.SMASH);
+                    GameActions.Bottom.DealDamageAtEndOfTurn(player, player, secondaryValue, AttackEffects.SMASH);
                     GameActions.Top.MoveCard(c, player.exhaustPile, player.discardPile)
                     .ShowEffect(true, true);
                 }

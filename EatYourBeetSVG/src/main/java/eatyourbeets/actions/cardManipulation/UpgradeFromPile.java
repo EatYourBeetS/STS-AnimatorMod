@@ -3,8 +3,8 @@ package eatyourbeets.actions.cardManipulation;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.actions.utility.GenericCardSelection;
+import eatyourbeets.effects.vfx.megacritCopy.UpgradeShineEffect2;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -68,7 +68,7 @@ public class UpgradeFromPile extends GenericCardSelection
         }
 
         final float x = (Settings.WIDTH / 4f) + ((result.size() - 1) * (AbstractCard.IMG_WIDTH * 0.75f));
-        GameEffects.TopLevelQueue.Add(new UpgradeShineEffect(x, Settings.HEIGHT / 2f));
+        GameEffects.TopLevelQueue.Add(new UpgradeShineEffect2(x, Settings.HEIGHT / 2f));
         GameEffects.TopLevelQueue.ShowCardBriefly(card.makeStatEquivalentCopy(), x, Settings.HEIGHT / 2f);
     }
 

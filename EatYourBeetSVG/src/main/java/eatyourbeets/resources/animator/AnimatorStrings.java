@@ -98,6 +98,8 @@ public class AnimatorStrings
         public final String FadeCardsWithoutSynergy = Strings.TEXT[11];
         public final String SimplifyCardUI = Strings.TEXT[12];
         public final String RewardsDisabled = Strings.TEXT[13];
+        public final String ConsoleDisabled = Strings.TEXT[14];
+        public final String HealingWarning = Strings.TEXT[15];
     }
 
     public class CharacterSelect

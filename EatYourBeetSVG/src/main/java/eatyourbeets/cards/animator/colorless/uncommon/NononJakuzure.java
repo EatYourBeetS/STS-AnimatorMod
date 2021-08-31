@@ -33,7 +33,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
     @Override
     protected void OnUpgrade()
     {
-        SetHaste(true);
+        SetRetainOnce(true);
     }
 
     @Override

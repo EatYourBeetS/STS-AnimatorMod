@@ -1,17 +1,14 @@
 package eatyourbeets.cards.animator.series.GATE;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.stances.AgilityStance;
-import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class RoryMercury extends AnimatorCard
 {
@@ -42,8 +39,8 @@ public class RoryMercury extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY).AddCallback(this::OnEnemyHit);
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY).AddCallback(this::OnEnemyHit);
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY);
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY);
 
         GameActions.Bottom.ModifyAllInstances(uuid)
         .AddCallback(c ->
@@ -55,18 +52,20 @@ public class RoryMercury extends AnimatorCard
         });
     }
 
-    private void OnEnemyHit(AbstractCreature c)
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (c.hasPower(VulnerablePower.POWER_ID) && CombatStats.TryActivateSemiLimited(cardID))
+        for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
         {
-            if (choices.TryInitialize(this))
+            if (!enemy.hasPower(VulnerablePower.POWER_ID))
             {
-                choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
+                return;
             }
+        }
 
-            choices.Select(GameActions.Top, 1, (AbstractMonster)c)
-            .CancellableFromPlayer(true);
+        if (CombatStats.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.GainInspiration(1);
         }
     }
 }

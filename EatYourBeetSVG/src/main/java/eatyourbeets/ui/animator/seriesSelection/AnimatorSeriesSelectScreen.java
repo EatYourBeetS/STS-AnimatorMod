@@ -319,7 +319,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     {
         previewCardsEffect = new ShowCardPileEffect(cards)
         .SetStartingPosition(InputHelper.mX, InputHelper.mY);
-        GameEffects.Unlisted.add(previewCardsEffect);
+        GameEffects.Manual.Add(previewCardsEffect);
     }
 
     public void Deselect(AbstractCard card)

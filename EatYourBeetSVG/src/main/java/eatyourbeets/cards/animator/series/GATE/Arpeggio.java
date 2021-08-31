@@ -26,7 +26,7 @@ public class Arpeggio extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 0, 0, POWER_ENERGY_COST);
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Blue(2);
@@ -36,7 +36,7 @@ public class Arpeggio extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (secondaryValue > 0)
+        if (magicNumber > 0)
         {
             GameActions.Bottom.GainOrbSlots(magicNumber);
         }
@@ -55,7 +55,7 @@ public class Arpeggio extends AnimatorCard
         {
             super(owner, Arpeggio.DATA, PowerTriggerConditionType.Energy, Arpeggio.POWER_ENERGY_COST);
 
-            triggerCondition.SetUses(-1, false, false);
+            triggerCondition.SetUses(1, true, false);
 
             Initialize(amount);
         }

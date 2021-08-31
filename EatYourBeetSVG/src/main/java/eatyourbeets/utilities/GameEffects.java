@@ -32,17 +32,41 @@ import java.util.ArrayList;
 
 public final class GameEffects
 {
-    public final static ArrayList<AbstractGameEffect> Unlisted = new ArrayList<>();
+    public final static ArrayList<AbstractGameEffect> UnlistedEffects = new ArrayList<>();
     public final static GameEffects List = new GameEffects(EffectType.List);
     public final static GameEffects Queue = new GameEffects(EffectType.Queue);
     public final static GameEffects TopLevelList = new GameEffects(EffectType.TopLevelList);
     public final static GameEffects TopLevelQueue = new GameEffects(EffectType.TopLevelQueue);
+    public final static GameEffects Manual = new GameEffects(EffectType.Manual);
 
     protected final EffectType effectType;
 
     protected GameEffects(EffectType effectType)
     {
         this.effectType = effectType;
+    }
+
+    public ArrayList<AbstractGameEffect> GetList()
+    {
+        switch (effectType)
+        {
+            case List:
+                return AbstractDungeon.effectList;
+
+            case Queue:
+                return AbstractDungeon.effectsQueue;
+
+            case TopLevelList:
+                return AbstractDungeon.topLevelEffects;
+
+            case TopLevelQueue:
+                return AbstractDungeon.topLevelEffectsQueue;
+
+            case Manual:
+                return UnlistedEffects;
+        }
+
+        throw new RuntimeException("Enum value does not exist.");
     }
 
     public static boolean IsEmpty()
@@ -55,7 +79,7 @@ public final class GameEffects
             }
         }
 
-        return Unlisted.isEmpty();
+        return UnlistedEffects.isEmpty();
     }
 
     public EYBEffect Attack(AbstractCreature source, AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax)
@@ -83,26 +107,6 @@ public final class GameEffects
         }
 
         return effect;
-    }
-
-    public ArrayList<AbstractGameEffect> GetList()
-    {
-        switch (effectType)
-        {
-            case List:
-                return AbstractDungeon.effectList;
-
-            case Queue:
-                return AbstractDungeon.effectsQueue;
-
-            case TopLevelList:
-                return AbstractDungeon.topLevelEffects;
-
-            case TopLevelQueue:
-                return AbstractDungeon.topLevelEffectsQueue;
-        }
-
-        throw new RuntimeException("Enum value does not exist.");
     }
 
     public int Count()
@@ -237,6 +241,7 @@ public final class GameEffects
         List,
         Queue,
         TopLevelList,
-        TopLevelQueue
+        TopLevelQueue,
+        Manual
     }
 }

@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardMetadata;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.potions.FalseLifePotion;
@@ -130,6 +131,7 @@ public class AnimatorResources extends AbstractResources
         Strings.Initialize();
         CardSeries.InitializeStrings();
         LoadCustomCards();
+        EYBCardData.PostInitialize();
     }
 
     @Override

@@ -79,13 +79,9 @@ public class EnchantedArmorPower extends AnimatorPower implements OnRawDamageRec
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType type)
     {
-        if (reactive)
+        if (type == DamageInfo.DamageType.NORMAL)
         {
-            damage *= CalculatePercentage(amount + (int) damage);
-        }
-        else if (type == DamageInfo.DamageType.NORMAL)
-        {
-            damage *= CalculatePercentage(amount);
+            damage *= CalculatePercentage(reactive ? (amount + (int) damage) : amount);
         }
 
         return super.atDamageReceive(damage, type);
@@ -105,27 +101,10 @@ public class EnchantedArmorPower extends AnimatorPower implements OnRawDamageRec
     @Override
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount)
     {
-        if (reactive)
+        if (reactive && info.type == DamageInfo.DamageType.NORMAL && info.owner != null)
         {
-            if (info.type == DamageInfo.DamageType.HP_LOSS || info.type == DamageInfo.DamageType.THORNS)
-            {
-                float percentage = CalculatePercentage(this.amount + (damageAmount / 2));
-                damageAmount = (int) Math.ceil((float) damageAmount * percentage);
-                info.output = damageAmount;
-            }
-            else if (info.owner != null)
-            {
-                IncreasePower(damageAmount);
-            }
+            IncreasePower(damageAmount);
         }
-//        else
-//        {
-//            if (info.type == DamageInfo.DamageType.THORNS || info.type == DamageInfo.DamageType.HP_LOSS)
-//            {
-//                damageAmount = Math.round(percentage * (float) damageAmount);
-//                info.output = damageAmount;
-//            }
-//        }
 
         return super.onAttackedToChangeDamage(info, damageAmount);
     }

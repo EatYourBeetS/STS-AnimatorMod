@@ -19,11 +19,8 @@ public class MatouShinji extends AnimatorCard
 
     public static final EYBCardData DATA = Register(MatouShinji.class)
             .SetSkill(1, CardRarity.COMMON, EYBCardTarget.Random)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new MatouShinji_CommandSpell(), false);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new MatouShinji_CommandSpell(), false));
 
     public MatouShinji()
     {

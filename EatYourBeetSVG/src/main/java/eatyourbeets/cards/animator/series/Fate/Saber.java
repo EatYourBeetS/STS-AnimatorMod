@@ -12,11 +12,8 @@ public class Saber extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Saber.class)
             .SetAttack(1, CardRarity.RARE)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Saber_Excalibur(), false);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Saber_Excalibur(), false));
 
     public Saber()
     {

@@ -13,11 +13,8 @@ public class Shichika extends AnimatorCard
     public static final EYBCardData DATA = Register(Shichika.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetMaxCopies(2)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Shichika_Kyotouryuu(), false);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Shichika_Kyotouryuu(), false));
 
     public Shichika()
     {

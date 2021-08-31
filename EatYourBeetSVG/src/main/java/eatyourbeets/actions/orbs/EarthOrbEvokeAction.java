@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class EarthOrbEvokeAction extends EYBAction
 {
     private final ArrayList<Projectile> projectiles = new ArrayList<>();
-    private final ArrayList<Integer> projectilesDamage = new ArrayList<>();
     private final float throwDuration;
     private RenderProjectilesEffect effect;
 
@@ -26,18 +25,10 @@ public class EarthOrbEvokeAction extends EYBAction
 
         this.throwDuration = Settings.FAST_MODE ? 0.15f : 0.25f;
         this.isRealtime = true;
+        this.projectiles.addAll(earth.projectiles);
+        earth.projectiles.clear();
 
         Initialize(damage);
-
-        final int baseDamage = damage / earth.projectiles.size();
-        final int bonusIndex = damage % earth.projectiles.size();
-        for (int i = earth.projectiles.size() - 1; i >= 0; i--)
-        {
-            final int temp = baseDamage + ((i < bonusIndex) ? 1 : 0);
-            projectiles.add(earth.projectiles.remove(i));
-            projectilesDamage.add(temp);
-            damage -= temp;
-        }
 
         if (amount <= 0)
         {
@@ -79,7 +70,7 @@ public class EarthOrbEvokeAction extends EYBAction
 
             for (int i = 0; i < projectiles.size(); i++)
             {
-                GameActions.Top.DealDamageToRandomEnemy(projectilesDamage.remove(0), DamageInfo.DamageType.THORNS, AttackEffect.NONE)
+                GameActions.Top.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS, AttackEffect.NONE)
                 .SetOptions(true, true)
                 .SetDamageEffect(m ->
                 {

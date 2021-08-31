@@ -72,6 +72,12 @@
 		"FLAVOR": "A vial containing the blood of a pure and elder vampire.",
 		"NAME": "Exquisite Blood Vial"
 	},
+	"animator:GroovyHeadphones":
+	{
+	  "DESCRIPTIONS": ["At the start of battle, give #b{0} random Animator cards in your hand #y{Harmonic}."],
+	  "FLAVOR": "Let's get scratchin.",
+	  "NAME": "Groovy Headphones"
+	},
 	"animator:HallowedScabbard":
 	{
 		"DESCRIPTIONS": ["Once per combat, if you lose a total of #b{0} HP or more, gain #b{1} #yRegeneration and #b{2} [B]."],

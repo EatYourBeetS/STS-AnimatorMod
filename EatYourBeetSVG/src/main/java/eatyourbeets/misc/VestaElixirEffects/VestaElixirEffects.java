@@ -125,6 +125,7 @@ public class VestaElixirEffects
         effectPool.Add(new VestaElixirEffect_Energy(upgraded));
         effectPool.Add(new VestaElixirEffect_Malleable(upgraded));
         effectPool.Add(new VestaElixirEffect_Willpower(upgraded));
+        effectPool.Add(new VestaElixirEffect_Inspiration(upgraded));
 
         return effectPool;
     }

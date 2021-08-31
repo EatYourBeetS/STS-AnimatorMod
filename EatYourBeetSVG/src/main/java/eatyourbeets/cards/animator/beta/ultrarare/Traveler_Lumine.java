@@ -40,7 +40,7 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
         Initialize(0, 0, 20, 2);
         SetUpgrade(0, 0, 979, 0);
         SetAffinity_Light(2);
-        SetAffinity_Blue(1);
+        SetAffinity_Dark(1);
         SetEthereal(true);
         SetPurge(true);
     }

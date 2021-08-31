@@ -22,7 +22,6 @@ public class UruhaRushia extends AnimatorCard
         SetRetainOnce(true);
         SetExhaust(true);
 
-        SetAffinity_Light(1);
         SetAffinity_Blue(1);
     }
 

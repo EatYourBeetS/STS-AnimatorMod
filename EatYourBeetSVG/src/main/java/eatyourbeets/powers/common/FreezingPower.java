@@ -99,13 +99,13 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
         return (int) ((type == DamageInfo.DamageType.NORMAL) ? CalculateDamage(damage, GetMultiplier()) : damage);
     }
 
-    private float GetMultiplier() {
-        return (GameUtilities.IsPlayer(owner)) ? REDUCTION_MULTIPLIER : Math.min(MAX_REDUCTION_MULTIPLIER, REDUCTION_MULTIPLIER + PLAYER_REDUCTION_BONUS) * GetElementalExposure();
-    }
-
-    private int GetPassiveDamage()
+    public int GetPassiveDamage()
     {
         return MathUtils.round((amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2) * GetElementalExposure());
+    }
+
+    private float GetMultiplier() {
+        return (GameUtilities.IsPlayer(owner)) ? REDUCTION_MULTIPLIER : Math.min(MAX_REDUCTION_MULTIPLIER, REDUCTION_MULTIPLIER + PLAYER_REDUCTION_BONUS) * GetElementalExposure();
     }
 
     private float GetElementalExposure() {

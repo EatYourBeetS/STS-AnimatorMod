@@ -38,7 +38,7 @@ public class Cirno extends AnimatorCard
     {
         for (EnemyIntent intent : GameUtilities.GetIntents())
         {
-            intent.AddBlinded();
+            intent.AddFreezing();
         }
     }
 

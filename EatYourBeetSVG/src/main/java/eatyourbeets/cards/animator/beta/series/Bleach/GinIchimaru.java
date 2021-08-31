@@ -2,15 +2,19 @@ package eatyourbeets.cards.animator.beta.series.Bleach;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.GenericEffects.GenericEffect_GainStat;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.PlayerAttribute;
+import eatyourbeets.utilities.TargetHelper;
 
-public class GinIchimaru extends AnimatorCard implements Hidden
+public class GinIchimaru extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(GinIchimaru.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(GinIchimaru.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing, EYBCardTarget.None).SetSeriesFromClassPackage();
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -18,14 +22,48 @@ public class GinIchimaru extends AnimatorCard implements Hidden
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 0);
-        SetUpgrade(0, 0, 0);
-        SetAffinity_Blue(2, 0, 0);
-        SetAffinity_Orange(2, 0, 0);
-        SetAffinity_Green(1, 0, 0);
+        Initialize(2, 0, 2, 0);
+        SetUpgrade(1, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
+        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Green(2, 0, 2);
 
-        SetExhaust(true);
-        SetAffinityRequirement(Affinity.General, 4);
+        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Green, 2);
+        SetAffinityRequirement(Affinity.Blue, 3);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Green, 3);
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
+    }
+
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    {
+        GameActions.Bottom.VFX(new DieDieDieEffect());
+        for (int i = 0; i < magicNumber; i++)
+        {
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
+        }
+
+        if (CheckAffinity(Affinity.Red) || CheckAffinity(Affinity.Green))
+        {
+            GameActions.Bottom.Exhaust(this);
+        }
+
+        if (CheckAffinity(Affinity.Blue))
+        {
+            GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
+        }
     }
 
     @Override

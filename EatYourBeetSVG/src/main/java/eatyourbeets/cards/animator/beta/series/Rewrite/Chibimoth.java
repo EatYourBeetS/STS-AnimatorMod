@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT3;
+import eatyourbeets.powers.animator.CounterAttackPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -41,7 +42,7 @@ public class Chibimoth extends AnimatorCard
         group.addToBottom(CreateChoice(text[1], (c1, p1, m1) ->
         {
             GameActions.Bottom.GainWillpower(1, upgraded);
-            GameActions.Bottom.GainTemporaryHP(magicNumber);
+            GameActions.Bottom.StackPower(new CounterAttackPower(player, magicNumber));
         }));
 
         GameActions.Bottom.SelectFromPile(name, 1, group)
@@ -55,16 +56,13 @@ public class Chibimoth extends AnimatorCard
             }
         });
 
-        if (HasSynergy())
+        GameActions.Bottom.Callback(() ->
         {
-            GameActions.Bottom.Callback(() ->
+            if (!DrawKotoriKanbe(player.drawPile))
             {
-                if (!DrawKotoriKanbe(player.drawPile))
-                {
-                    DrawKotoriKanbe(player.discardPile);
-                }
-            });
-        }
+                DrawKotoriKanbe(player.discardPile);
+            }
+        });
     }
 
     private AnimatorCard_Dynamic CreateChoice(String text, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onSelect)

@@ -1055,6 +1055,11 @@ public final class GameActions
         return Add(new TriggerOrbPassiveAbility(times));
     }
 
+    public TriggerOrbPassiveAbility TriggerOrbPassive(int times, boolean random, boolean sequential)
+    {
+        return Add(new TriggerOrbPassiveAbility(times, random, sequential, null));
+    }
+
     public TriggerOrbPassiveAbility TriggerOrbPassive(AbstractOrb orb, int times)
     {
         return Add(new TriggerOrbPassiveAbility(orb, times));

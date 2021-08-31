@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class HuTao extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HuTao.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(HuTao.class).SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Piercing).SetSeriesFromClassPackage();
 
     static
     {
@@ -25,7 +25,7 @@ public class HuTao extends AnimatorCard
         super(DATA);
 
         Initialize(2, 0, 3, 2);
-        SetUpgrade(1, 0, 1, 0);
+        SetUpgrade(0, 0, 1, 0);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Dark(2, 0, 8);
 
@@ -59,6 +59,10 @@ public class HuTao extends AnimatorCard
                         GameActions.Bottom.Exhaust(card)
                                 .ShowEffect(true, true)
                                 .AddCallback(() -> GameActions.Bottom.MakeCardInHand(new SearingBurn()));
+                    }
+
+                    if (cards.size() > 0) {
+                        GameActions.Bottom.GainEnergy(cards.size());
                     }
                 });
 

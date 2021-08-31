@@ -52,7 +52,7 @@ public class BlazingHeatPower extends AnimatorPower implements OnApplyPowerSubsc
     @Override
     public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
         if (BurningPower.POWER_ID.equals(power.ID) && target.hasPower(FreezingPower.POWER_ID) && source == owner) {
-
+            GameActions.Bottom.DealDamage(null, player, ((FreezingPower) target.getPower(FreezingPower.POWER_ID)).GetPassiveDamage(), DamageInfo.DamageType.THORNS, AttackEffects.FIRE_EXPLOSION);
         }
     }
 }

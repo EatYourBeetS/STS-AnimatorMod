@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.animator.special.OrbCore;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -13,7 +14,6 @@ import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 public class InverseOrigami extends AnimatorCard
 {
@@ -27,6 +27,8 @@ public class InverseOrigami extends AnimatorCard
         SetAffinity_Blue(1, 1, 0);
         SetAffinity_Dark(1, 0, 0);
         SetAutoplay(true);
+
+        SetAffinityRequirement(Affinity.Light,3);
     }
 
     @Override
@@ -37,6 +39,11 @@ public class InverseOrigami extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
         GameActions.Bottom.StackPower(new InverseOrigamiPower(p, magicNumber));
+        if (CheckAffinity(Affinity.Light)) {
+            GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
+                    .AddCallback(c -> {if (c.size() > 0) {GameActions.Bottom.PlayCard(c.get(0), m);}}));
+        }
+
     }
 
     public static class InverseOrigamiPower extends AnimatorClickablePower implements OnEvokeOrbSubscriber {
@@ -44,9 +51,7 @@ public class InverseOrigami extends AnimatorCard
 
         public InverseOrigamiPower(AbstractPlayer owner, int amount) {
             super(owner, InverseOrigami.DATA, PowerTriggerConditionType.Special, SUPPORT_DAMAGE_COST);
-            this.triggerCondition.SetCheckCondition((c) -> {
-                return GameUtilities.GetPowerAmount(player, SupportDamagePower.POWER_ID) >= SUPPORT_DAMAGE_COST;
-            })
+            this.triggerCondition.SetCheckCondition((c) -> GameUtilities.GetPowerAmount(player, SupportDamagePower.POWER_ID) >= SUPPORT_DAMAGE_COST)
                     .SetPayCost(a -> {
                         SupportDamagePower supportDamage = GameUtilities.GetPower(player, SupportDamagePower.class);
                         if (supportDamage != null) {
@@ -59,14 +64,14 @@ public class InverseOrigami extends AnimatorCard
 
         @Override
         public String GetUpdatedDescription() {
-            return FormatDescription(0, amount, SUPPORT_DAMAGE_COST);
+            return FormatDescription(0, amount, SUPPORT_DAMAGE_COST, baseAmount);
         }
 
 
         @Override
         public void OnUse(AbstractMonster m) {
             this.amount += REFRESH_TIMES;
-            GameActions.Bottom.MakeCardInHand(JUtils.Random(OrbCore.GetAllCores()).makeCopy());
+            GameActions.Bottom.TriggerOrbPassive(baseAmount, true, false);
         }
 
         @Override

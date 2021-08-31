@@ -41,7 +41,7 @@ public class KuragesOathPower extends AnimatorPower
         super.atEndOfTurn(isPlayer);
 
         if (GameUtilities.GetOrbCount(Water.ORB_ID) == 0) {
-            GameActions.Bottom.LoseHP(secondaryAmount, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.TakeDamage(secondaryAmount, AbstractGameAction.AttackEffect.NONE);
             Water waterOrb = new Water();
             waterOrb.IncreaseBasePassiveAmount(this.amount);
             waterOrb.IncreaseBaseEvokeAmount(this.amount);

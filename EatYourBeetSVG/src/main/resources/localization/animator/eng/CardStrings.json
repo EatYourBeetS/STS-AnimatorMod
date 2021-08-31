@@ -214,9 +214,14 @@
 		},
 		"animator:GinIchimaru":
         {
-        	"DESCRIPTION": "Choose 1: ** Gain [F] equal to <R> + !M! ** or Gain [A] equal to <G> + !M!. || <LIM>. !A! <W>: Choose both.",
+        	"DESCRIPTION": "Choose 1: ** Gain [F] equal to <R> + !M! ** or Gain [A] equal to <G> + !M!. ** !A! <R> or <G>: Exhaust. || !A! <B>: Apply !S! [Vulnerable] to ALL enemies.",
         	"NAME": "Gin Ichimaru"
         },
+		"animator:KanameTousen":
+		{
+			"DESCRIPTION": "For each enemy: Gain !S! Temp. [Artifact] if it has [Blinded]. Otherwise, apply !M! [Blinded]. !A! <D>: For the next !S! turns, ignore your buffs with negative stacks.",
+			"NAME": "Kaname Tousen"
+		},
 		"animator:IchigoKurosaki":
 		{
 			"DESCRIPTION": "Gain [F] [A]. || If you reached !S! [F] this combat: Exhaust and add {Ichigo Bankai} to your draw pile.",
@@ -262,12 +267,12 @@
 		},
 		"animator:RukiaBankai":
 		{
-			"DESCRIPTION": "Evoke your first X [Frost] !M! times.",
+			"DESCRIPTION": "Evoke your first X [Frost] !M! times. || Apply !S! [Freezing] to a random enemy for each [Frost] Evoked.",
 			"NAME": "Rukia Bankai"
 		},
 		"animator:RukiaKuchiki":
 		{
-			"DESCRIPTION": "<ST>: Channel !M! [Frost]. || !A! <G>: If you have no empty Orb Slots, Exhaust this card, add {Rukia Bankai} to your draw pile.",
+			"DESCRIPTION": "<ST>: Channel !M! [Frost]. || !A! <G>: If you have no empty Orb Slots: Exhaust, then add {Rukia Bankai} to your draw pile.",
 			"NAME": "Rukia Kuchiki"
 		},
 		"animator:SajinKomamura":
@@ -283,7 +288,12 @@
 		},
 		"animator:ToushirouHitsugaya":
         {
-            "DESCRIPTION": "Unplayable unless your discard pile has more cards than your draw pile. || Add !S! {Frostbite} to your draw pile.",
+            "DESCRIPTION": "Apply !M! [Freezing]. Remove !S! [Burning] to apply !M! more [Freezing]. || If the target has 12 or more [Freezing]: Exhaust, then add {Toshiro Bankai} to your draw pile.",
+            "NAME": "Toushirou Hitsugaya"
+        },
+		"animator:ToushirouHitsugaya_Bankai":
+        {
+            "DESCRIPTION": "Add !M! {Frostbite} to your draw pile. || Cooldown !S!: Exhaust this card and all Status cards in your hand. ** <LIM>. Also play {Sheer Cold}.",
             "NAME": "Toushirou Hitsugaya"
         },
 		"animator:UryuuIshida":
@@ -310,6 +320,11 @@
 			"DESCRIPTION": "Lose !S! HP. Boost !M! [C].",
 			"NAME": "Abyssal Void"
     	},
+		"animator:AnarchyStocking":
+		{
+			"DESCRIPTION": "Apply 1 Torment. Gain !M! [Poison] and [Constricted]. || Cooldown !S!: Purge, then Transfer ALL [Constricted] and {Self-Damage} to ALL enemies at the end of your turn.",
+			"NAME": "Guts"
+		},
 		"animator:ArseneLupin":
 		{
 			"DESCRIPTION": "Deal 1 more damage for every !S! Gold you have. || Reload: {~Steal} !M! [Gold] from a random enemy.",
@@ -364,7 +379,7 @@
 		},
 		"animator:Guts":
 		{
-			"DESCRIPTION": "Gain [F]. Take !M! damage. If the target dies, repeat this attack with !S! more damage on another enemy.",
+			"DESCRIPTION": "Gain [F]. Take !M! damage. || If the target dies, repeat this attack with !S! more damage on another enemy.",
 			"NAME": "Guts"
 		},
 		"animator:HatsuneMiku":
@@ -372,6 +387,31 @@
 			"DESCRIPTION": "Unplayable unless there are at least !S! cards in your Discard and {Exhaust} piles combined. || At the start of turn: Draw !M! card(s). They cost 0 this turn.",
 			"EXTENDED_DESCRIPTION": ["At the start of each turn, draw #b{0} cards.  They cost 0 this turn."],
 			"NAME": "Hatsune Miku"
+		},
+		"animator:Jet":
+		{
+			"DESCRIPTION": "This turn: All Defends are played twice. <LIM>. !A! <W>: Prolong this effect by 1 turn.",
+			"NAME": "Jet"
+		},
+		"animator:KaijiItou":
+		{
+			"DESCRIPTION": "Add Restricted Rock, Restricted Paper, and Restricted Scissors to your discard piles. !A! <W>: Move one of them to your hand.",
+			"NAME": "Kaiji Itou"
+		},
+		"animator:KaijiItou_RestrictedPaper":
+		{
+			"DESCRIPTION": "Unplayable unless ALL enemies are Defending. Apply !M! [Vulnerable] to ALL enemies. [Vulnerable] is twice as effective this turn.",
+			"NAME": "Restricted Paper."
+		},
+		"animator:KaijiItou_RestrictedRock":
+		{
+			"DESCRIPTION": "Unplayable unless ALL enemies are Attacking. Apply !M! [Weak] to ALL enemies. [Weak] is twice as effective this turn.",
+			"NAME": "Restricted Paper."
+		},
+		"animator:KaijiItou_RestrictedScissors":
+		{
+			"DESCRIPTION": "Unplayable unless ALL enemies intend to apply debuffs. Remove the block of ALL enemies. You have !M! more [Strength] this turn.",
+			"NAME": "Restricted Paper."
 		},
 		"animator:Kamina":
         {
@@ -487,6 +527,11 @@
 			"DESCRIPTION": "Skip your next turn. On the following turn: <DRW-M> and gain !S! [E]. || <LIM>. If your exhuast pile is larger than the number of cards in play, add {Garbage Doll} to your discard pile.",
 			"NAME": "Ushio"
 		},
+		"animator:Vash":
+		{
+			"DESCRIPTION": "Attack once for every card discarded this turn (max. 10). || Reload: Add [T-Knife] to your Discard Pile.",
+			"NAME": "Vash the Stampede"
+		},
 		"animator:Yae":
 		{
 			"DESCRIPTION": "Your [Lightning] has +!M! [I] Scaling. || If you have [Lightning], remove your first [Lightning] to Gain/Boost !S! [I]. Otherwise, channel [Dark] and apply !S! [Blinded] to ALL characters.",
@@ -502,8 +547,8 @@
 		},
 		"animator:InverseOrigami":
 		{
-			"DESCRIPTION": "The next !M! Orbs Evoked activate your [Support Damage]. || Pay !S! [Support Damage] to add a random {Orb Core} to your hand and increase this power's duration by 1.",
-			"EXTENDED_DESCRIPTION": ["The next #b{0} Orb(s) Evoked activate your #ySupport #yDamage. Pay 2 #ySupport #yDamage to add a random #yOrb #yCore to your hand and increase this power's duration by 1."],
+			"DESCRIPTION": "The next !M! Orbs Evoked activate your [Support Damage]. || Pay !S! [Support Damage] to trigger !M! random Orbs and increase this power's duration by 1. || !A! <L>: Play an {Orb Core}",
+			"EXTENDED_DESCRIPTION": ["The next #b{0} Orb(s) Evoked activate your #ySupport #yDamage. Pay #b{1} #ySupport #yDamage to trigger #b{2} random #yOrbs and increase this power's duration by 1."],
 			"NAME": "Inverse Origami"
 		},
 		"animator:InverseTohka":
@@ -556,7 +601,7 @@
 		},
 		"animator:OrigamiTobiichi":
 		{
-			"DESCRIPTION": "At end of turn: Gain !M! [Support Damage]. || If you have over !S! [Support Damage]: ** Remove this power and add ** {Inverse Origami} to your ** draw pile.",
+			"DESCRIPTION": "At end of turn: Gain !M! [Support Damage]. || Over !S! [Support Damage]: ** Remove this power and add ** {Inverse Origami} to your ** draw pile.",
 			"EXTENDED_DESCRIPTION": ["At end of turn: gain #b{0} Support Damage. If you have over #b{1} Support Damage, remove this power.  Add #yInverse #yOrigami to your draw pile."],
 			"NAME": "Origami Tobiichi"
 		},
@@ -568,7 +613,7 @@
 		},
 		"animator:Ren":
 		{
-			"DESCRIPTION": "Channel 1 {Dark}. Apply !M! {Poison} for each {Dark} channeled. || <SLM>. The next time you Evoke {Dark}, apply !S! [Blinded] to ALL enemies.",
+			"DESCRIPTION": "Trigger an Orb at random. Apply !M! {Poison} for each {Dark} channeled. || <SLM>. The next time you Evoke {Dark}, apply !S! [Blinded] to ALL enemies.",
 			"NAME": "Ren"
 		},
 		"animator:ShidoItsuka":
@@ -643,12 +688,12 @@
 		},
 		"animator:HuTao":
 		{
-			"DESCRIPTION": "Exhaust up to !M! cards from your draw pile or hand. Add a {Searing Burn} to your ** hand for each. || When Exhausted: Add !S! {Searing Burn} to your hand.",
+			"DESCRIPTION": "Exhaust up to !M! cards from your draw pile or hand. Gain [E] and add a {Searing Burn} to your ** hand for each. || When Exhausted: Add !S! {Searing Burn} to your hand.",
 			"NAME": "Hu Tao"
 		},
 		"animator:JeanGunnhildr":
 		{
-			"DESCRIPTION": "Discard up to !M! card(s). Remove 1 of your left-most [Weak], [Vulnerable], or [Frail] for each discarded card.",
+			"DESCRIPTION": "Discard up to !M! card(s). Remove 1 of your left-most [Weak], [Vulnerable], or [Frail] for each discarded card. || When Discarded: Gain !S! [A].",
 			"NAME": "Jean Gunnhildr"
 		},
 		"animator:JumpyDumpty":
@@ -745,8 +790,8 @@
 		},
 		"animator:Chibimoth":
 		{
-			"DESCRIPTION": "Gain/Boost [W] and !M! [Temporary HP] ** or [A] and !S! [Blur]. || Synergy: Draw Kotori ** Kanbe from any pile.",
-			"EXTENDED_DESCRIPTION": ["Gain/Boost [A] and 1 Blur.", "Gain/Boost [W] and 2 Temporary HP"],
+			"DESCRIPTION": "Gain/Boost [W] and !M! [Counter-Attack] ** or [A] and !S! [Blur]. || Draw Kotori ** Kanbe from any pile.",
+			"EXTENDED_DESCRIPTION": ["Gain/Boost [A] and 1 [Blur].", "Gain/Boost [W] and 2 [Counter-Attack]"],
 			"NAME": "Chibimoth"
 		},
 		"animator:ChihayaOhtori":
@@ -758,7 +803,7 @@
 		"animator:Kagari":
 		{
 			"DESCRIPTION": "Once per turn, When you Channel [Earth]: Apply !M! [Shackles] ** to ALL enemies and gain !S! [W]. Boost !S! [W] in <WS>.",
-			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you Channel #yEarth this turn, Gain #b{0} #yWillpower."],
+			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you Channel #yEarth this turn, Apply #b{2} Shackles to ALL enemies and gain #b{1} #yWillpower (Boost in #yWillpower #yStance)."],
 			"NAME": "Kagari"
 		},
 		"animator:KotarouTennouji":
@@ -962,7 +1007,7 @@
 		},
 		"animator:HiedaNoAkyuu":
 		{
-			"DESCRIPTION": "Shuffle your draw pile into your discard pile, then choose !M! cards in your discard pile.  Move them into your draw pile. || You cannot draw additional cards this turn.",
+			"DESCRIPTION": "Shuffle your draw pile into your discard pile. Move !M! cards from your discard pile to your draw pile. || You cannot draw additional cards this turn.",
 			"NAME": "Hieda no Akyuu"
 		},
 		"animator:KaguyaHouraisan":
@@ -1632,18 +1677,18 @@
 		"animator:AcuraAkari":
 		{
 			"DESCRIPTION": "Discard 2 cards ** to obtain !M! [T-Knife]. || Synergy: Gain ** !S! {Temp}. Envenom.",
-			"NAME": "Akari",
+			"NAME": "Akari Acura",
 			"UPGRADE_DESCRIPTION": "Discard 2 cards to ** obtain !M! Upgraded [T-Knife]. || Synergy: Gain ** !S! {Temp}. Envenom."
 		},
 		"animator:AcuraShin":
 		{
 			"DESCRIPTION": "Apply !M! [Poison]. || Whenever you apply ** [Poison] this combat: ** Apply 1 more [Poison].",
-			"NAME": "Shin"
+			"NAME": "Shin Acura"
 		},
 		"animator:AcuraTooru":
 		{
 			"DESCRIPTION": "Add !S! {Throwing-} ** {Knives} to your hand. || Synergy or Discard: ** Gain [A] and !M! [Block].",
-			"NAME": "Tooru"
+			"NAME": "Tooru Acura"
 		},
 		"animator:ChaikaBohdan":
 		{
@@ -1664,7 +1709,7 @@
 		"animator:Gillette":
 		{
 			"DESCRIPTION": "Next turn: Gain [E]. || When Discarded: ** Apply 1 [Weak] to ** ALL enemies.",
-			"NAME": "Gillette"
+			"NAME": "Alberic Gillette"
 		},
 		"animator:Guy":
 		{
@@ -1679,7 +1724,7 @@
 		"animator:Viivi":
 		{
 			"DESCRIPTION": "<ST>. Gain [A] ** and <DRW>. || When Discarded: Add ** 1 [T-Knife] to your hand.",
-			"NAME": "Viivi"
+			"NAME": "Viivi Holopainen"
 		}
 	},
 	"SERIES:KATANAGATARI":
@@ -1729,7 +1774,7 @@
 		},
 		"animator:Shichika":
 		{
-			"DESCRIPTION": "Gain/Boost [F] [A]. || Add {Kyotouryuu} ** to your hand.",
+			"DESCRIPTION": "Gain/Boost !M! [F] [A]. || Add {Kyotouryuu} ** to your hand.",
 			"NAME": "Shichika"
 		},
 		"animator:Shichika_Kyotouryuu":
@@ -2199,7 +2244,7 @@
 		"animator:Sebas":
 		{
 			"DESCRIPTION": "Deal damage equal to ** your [Block] to each enemy ** who intends to Attack. || When Discarded: ** Gain !M! [Temp HP].",
-			"NAME": "Sebas"
+			"NAME": "Sebas Tian"
 		},
 		"animator:Shalltear":
 		{
@@ -2222,7 +2267,7 @@
 		"animator:Guren":
 		{
 			"DESCRIPTION": "Play the top !M! cards of ** your draw pile. Exhaust ** every Hindrance and ** {Attack} among them. || <SLM>. Gain 1 [Support Damage] for ** each card in Exhaust pile.",
-			"NAME": "Guren"
+			"NAME": "Guren Ichinose"
 		},
 		"animator:HiiragiShinya":
 		{
@@ -2237,32 +2282,32 @@
 		"animator:Mikaela":
 		{
 			"DESCRIPTION": "Exhaust a card in ** your discard pile. || If you Exhausted a ** Hindrance: Gain !S! [F].",
-			"NAME": "Mikaela"
+			"NAME": "Mikaela Hyakuya"
 		},
 		"animator:Mitsuba":
 		{
 			"DESCRIPTION": "If the enemy has more ** [Health] than you, gain ** !S! additional [Block]. || When Exhausted: ** <DRW-M>.",
-			"NAME": "Mitsuba"
+			"NAME": "Mitsuba Sanguu"
 		},
 		"animator:Shigure":
 		{
 			"DESCRIPTION": "Apply !M! [Poison]. || <AS>: Cycle 1 card. || When Exhausted: ** Gain !S! [Support Damage].",
-			"NAME": "Shigure"
+			"NAME": "Shigure Yukimi"
 		},
 		"animator:Shinoa":
 		{
 			"DESCRIPTION": "Apply !M! [Vulnerable] ** to ALL enemies. || On Synergy, or when ** Exhausted: Apply !M! ** [Weak] to ALL enemies.",
-			"NAME": "Shinoa"
+			"NAME": "Shinoa Hiiragi"
 		},
 		"animator:Yoichi":
 		{
 			"DESCRIPTION": "Discard 1 card. ** Gain 1 [Support Damage]. || <slm>. Synergy: ** Activate your [Support Damage].",
-			"NAME": "Yoichi"
+			"NAME": "Yoichi Saotome"
 		},
 		"animator:Yuuichirou":
 		{
 			"DESCRIPTION": "<DRW>. || When Exhausted: ** Add {Asuramaru} to ** your discard pile.",
-			"NAME": "Yuuichirou"
+			"NAME": "Yuuichirou Hyakuya"
 		},
 		"animator:Yuuichirou_Asuramaru":
 		{

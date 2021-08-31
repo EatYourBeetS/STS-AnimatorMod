@@ -23,7 +23,7 @@ public class Shichika extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2);
+        Initialize(0, 2, 2);
         SetUpgrade(0, 0);
 
         SetAffinity_Red(2, 0, 1);
@@ -36,8 +36,8 @@ public class Shichika extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block).SetVFX(false, true);
-        GameActions.Bottom.GainForce(1, upgraded);
-        GameActions.Bottom.GainAgility(1, upgraded);
+        GameActions.Bottom.GainForce(magicNumber, upgraded);
+        GameActions.Bottom.GainAgility(magicNumber, upgraded);
         GameActions.Bottom.MakeCardInHand(new Shichika_Kyotouryuu());
     }
 }

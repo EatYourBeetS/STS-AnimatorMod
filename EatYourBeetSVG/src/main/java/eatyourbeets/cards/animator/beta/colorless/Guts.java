@@ -23,8 +23,8 @@ public class Guts extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(34, 0, 9, 7);
-        SetUpgrade(7, 0, 0, 2);
+        Initialize(34, 0, 7, 7);
+        SetUpgrade(6, 0, -1, 1);
         SetExhaust(true);
 
         SetAffinity_Red(2, 0, 4);

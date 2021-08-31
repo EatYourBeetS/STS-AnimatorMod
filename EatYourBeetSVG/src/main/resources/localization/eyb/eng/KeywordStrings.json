@@ -8,7 +8,7 @@
 	},
 	"Affinity Count":
 	{
-		"DESCRIPTION": "The numbers to the right of each #yAffinity denote the number of cards in your hand that have that #yAffinity. NL [A-Gen] denotes your current highest #yAffinity #yCount. NL NL #yAffinity effects on cards will only activate if your hand's #yAffinity #yCount passes the threshold of the #yAffinity listed on the card.",
+		"DESCRIPTION": "The numbers to the right of each #yAffinity denote the number of cards in your hand that have that #yAffinity. NL [A-Gen] denotes your current highest #yAffinity #yCount. NL NL #yAffinity effects on cards will only activate if your hand's #yAffinity #yCount passes the threshold of the #yAffinity listed on the card. NL NL The ovals to the right of each #yAffinity denote the amount of their #yAffinity #yPower that you currently have (the left-hand number) and its next threshold (the right-hand number). These numbers will be green if the #yAffinity #yPower is #yRetained and grey if it is disabled.",
 		"NAMES": ["affinity"],
 		"PROPER_NAME": "Affinity Count"
 	},

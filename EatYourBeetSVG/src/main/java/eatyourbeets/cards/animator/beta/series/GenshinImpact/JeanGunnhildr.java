@@ -19,13 +19,21 @@ public class JeanGunnhildr extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 1, 2);
-        SetUpgrade(3, 1, 0);
+        Initialize(8, 1, 2, 1);
+        SetUpgrade(3, 0, 0);
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Light(2);
 
         SetLoyal(true);
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        GameActions.Bottom.GainAgility(secondaryValue);
     }
 
 

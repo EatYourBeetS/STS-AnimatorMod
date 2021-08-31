@@ -37,18 +37,20 @@ public class Kagari extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.StackPower(new KagariPower(p, secondaryValue, magicNumber));
+        GameActions.Bottom.StackPower(new KagariPower(p, secondaryValue, secondaryValue, magicNumber));
     }
 
     public static class KagariPower extends AnimatorPower implements OnChannelOrbSubscriber
     {
         private final int secondaryAmount;
-        public KagariPower(AbstractPlayer owner, int amount, int secondaryAmount)
+        private final int tertiaryAmount;
+        public KagariPower(AbstractPlayer owner, int amount, int secondaryAmount, int tertiaryAmount)
         {
             super(owner, Kagari.DATA);
 
             this.amount = amount;
             this.secondaryAmount = secondaryAmount;
+            this.tertiaryAmount = tertiaryAmount;
 
             updateDescription();
         }
@@ -56,7 +58,7 @@ public class Kagari extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount, secondaryAmount);
+            description = FormatDescription(0, amount, secondaryAmount, tertiaryAmount);
         }
 
         @Override
@@ -70,8 +72,8 @@ public class Kagari extends AnimatorCard
         @Override
         public void OnChannelOrb(AbstractOrb orb) {
             if (Earth.ORB_ID.equals(orb.ID) && owner.isPlayer && amount > 0) {
-                GameActions.Bottom.GainWillpower(amount, player.stance.ID.equals(WillpowerStance.STANCE_ID));
-                GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, secondaryAmount);
+                GameActions.Bottom.GainWillpower(secondaryAmount, player.stance.ID.equals(WillpowerStance.STANCE_ID));
+                GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, tertiaryAmount);
                 this.amount -= 1;
                 updateDescription();
                 flash();

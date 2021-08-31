@@ -24,9 +24,13 @@ public class GenericEffect_GainStat extends GenericEffect
         {
             this.tooltip = GR.Tooltips.Agility;
         }
-        else
+        else if (attribute.equals(PlayerAttribute.Intellect))
         {
             this.tooltip = GR.Tooltips.Intellect;
+        }
+        else
+        {
+            this.tooltip = GR.Tooltips.Willpower;
         }
     }
 
@@ -47,9 +51,13 @@ public class GenericEffect_GainStat extends GenericEffect
         {
             GameActions.Bottom.GainAgility(amount);
         }
-        else
+        else if (attribute.equals(PlayerAttribute.Intellect))
         {
             GameActions.Bottom.GainIntellect(amount);
+        }
+        else
+        {
+            GameActions.Bottom.GainWillpower(amount);
         }
     }
 }

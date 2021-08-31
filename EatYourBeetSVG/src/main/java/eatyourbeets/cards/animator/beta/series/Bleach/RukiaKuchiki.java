@@ -9,11 +9,12 @@ import eatyourbeets.cards.animator.beta.special.RukiaBankai;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 
 public class RukiaKuchiki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(RukiaKuchiki.class).SetSkill(1, CardRarity.UNCOMMON).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(RukiaKuchiki.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
     static
     {
         DATA.AddPreview(new RukiaBankai(), false);
@@ -23,28 +24,26 @@ public class RukiaKuchiki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 6);
-        SetUpgrade(0, 0, 0, 0);
+        Initialize(0, 2, 2, 0);
+        SetUpgrade(0, 1, 0, 0);
         SetAffinity_Green(1, 1, 0);
         SetAffinity_Blue(1, 0, 0);
 
-        SetAffinityRequirement(Affinity.Green, 2);
+        SetAffinityRequirement(Affinity.Green, 3);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
+        GameActions.Bottom.GainBlock(block);
+
         if (IsStarter())
         {
-            for (int i=0; i<magicNumber; i++)
-            {
-                GameActions.Bottom.ChannelOrb(new Frost());
-            }
+            GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
         }
 
         if (CheckAffinity(Affinity.Green))
         {
-            GameActions.Bottom.GainBlock(block);
 
             boolean hasEmptyOrbs = false;
 

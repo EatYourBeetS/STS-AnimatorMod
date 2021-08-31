@@ -159,8 +159,8 @@ public class Senku extends AnimatorCard
         ApplyBurning(BurningPower.POWER_ID, 2, 2, 8),
         ApplyFreezing(FreezingPower.POWER_ID, 2, 2, 7),
         ApplyPoison(PoisonPower.POWER_ID, 4, 3, 10),
-        ApplyPoison2(PoisonPower.POWER_ID, 2, 2, 10),
-        ApplyPoison3(PoisonPower.POWER_ID, 2, 1, 10),
+        ApplyPoison2(PoisonPower.POWER_ID, 3, 2, 10),
+        ApplyPoison3(PoisonPower.POWER_ID, 3, 1, 10),
         ApplyShackles(ShacklesPower.POWER_ID, 3, 2, 7),
         ApplyVulnerable(VulnerablePower.POWER_ID, 2, 2, 8),
         ApplyWeak(WeakPower.POWER_ID, 2, 2, 8),
@@ -199,10 +199,17 @@ public class Senku extends AnimatorCard
             Senku copy = (Senku) senku.makeStatEquivalentCopy();
 
             switch (effect) {
-                case IncreaseBlock:
+                case ApplyPoison:
+                    copy.debuffs.merge(effect.powerID, effect.amount + (senku.upgraded ? 2 : 0), Integer::sum);
+                    break;
+                case IncreaseBlock:{
+                    copy.baseBlock += effect.amount + (senku.upgraded ? 2 : 0);
+                    copy.block = copy.baseBlock;
+                    break;
+                }
                 case IncreaseBlock2:
                 case IncreaseBlock3:{
-                    copy.baseBlock += effect.amount + (senku.upgraded ? 2 : 0);
+                    copy.baseBlock += effect.amount + (senku.upgraded ? 1 : 0);
                     copy.block = copy.baseBlock;
                     break;
                 }
@@ -214,18 +221,23 @@ public class Senku extends AnimatorCard
                 case GainTempHPPlus:{
                     copy.LoadImage("_0");
                     GameUtilities.IncreaseMagicNumber(copy, effect.amount, false);
-                    copy.debuffs.merge(effect.powerID, 3, Integer::sum);
+                    copy.debuffs.merge(effect.powerID, 4, Integer::sum);
                     for (String powerID : copy.debuffs.keySet()) {
-                        copy.debuffs.merge(powerID, copy.debuffs.getOrDefault(powerID,0), Integer::sum);
+                        copy.debuffs.merge(powerID, 2, Integer::sum);
                     }
                     copy.SetExhaust(true);
+                    copy.cost += 1;
+                    copy.costForTurn += 1;
                     copy.transformed = true;
                     break;
                 }
-                case IncreaseDamage:
+                case IncreaseDamage:{
+                    copy.baseDamage += effect.amount + (senku.upgraded ? 2 : 0);
+                    break;
+                }
                 case IncreaseDamage2:
                 case IncreaseDamage3:{
-                    copy.baseDamage += effect.amount + (senku.upgraded ? 2 : 0);
+                    copy.baseDamage += effect.amount + (senku.upgraded ? 1 : 0);
                     break;
                 }
                 case MakeAOE:{
@@ -234,11 +246,13 @@ public class Senku extends AnimatorCard
                 }
                 case MultiplyEffects:{
                     copy.LoadImage("_0");
-                    copy.baseDamage *= 3;
-                    copy.baseBlock *= 3;
-                    copy.debuffs.merge(effect.powerID, effect.amount + copy.debuffs.getOrDefault(effect.powerID,effect.amount) * 2, Integer::sum);
+                    copy.baseDamage *= 2;
+                    copy.baseBlock *= 2;
+                    copy.debuffs.merge(effect.powerID, effect.amount + copy.debuffs.getOrDefault(effect.powerID,effect.amount), Integer::sum);
                     copy.SetAttackType(EYBAttackType.Elemental);
                     copy.SetExhaust(true);
+                    copy.cost += 1;
+                    copy.costForTurn += 1;
                     copy.transformed = true;
                     break;
                 }

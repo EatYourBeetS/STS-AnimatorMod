@@ -108,14 +108,14 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
         return healthBarColor;
     }
 
+    public int GetPassiveDamage()
+    {
+        return MathUtils.round((amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2) * GetElementalExposure());
+    }
+
     private float GetMultiplier()
     {
         return (GameUtilities.IsPlayer(owner)) ? ATTACK_MULTIPLIER : (ATTACK_MULTIPLIER + PLAYER_ATTACK_BONUS) * GetElementalExposure();
-    }
-
-    private int GetPassiveDamage()
-    {
-        return MathUtils.round((amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2) * GetElementalExposure());
     }
 
     private float GetElementalExposure() {

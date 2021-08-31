@@ -48,7 +48,7 @@ public class KaeyaAlberich extends AnimatorCard {
                 GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(1, false, false, firstCommonOrb));
             }
             if (upgraded) {
-                GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(1));
+                GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(1, true, false, null));
             }
         });
     }

@@ -170,17 +170,17 @@
 		},
 		"animator:Noda":
 		{
-			"DESCRIPTION": "{Synergy}: Gain/Boost [F] [W]. || When Discarded: Exhaust.",
+			"DESCRIPTION": "{Synergy}: Gain|Boost [F] [W]. || When Discarded: Exhaust.",
 			"NAME": "Noda"
 		},
 		"animator:ShioriSekine":
 		{
-			"DESCRIPTION": "Unplayable if you have not Exhausted a card this turn. Play a random {Afterlife} card in your exhaust pile and {Purge} it. || When Discarded, Gain/Boost [W].",
+			"DESCRIPTION": "Unplayable if you have not Exhausted a card this turn. Play a random {Afterlife} card in your exhaust pile and {Purge} it. || When Discarded, Gain|Boost [W].",
 			"NAME": "Shiori Sekine"
 		},
 		"animator:Yui":
 		{
-			"DESCRIPTION": "Gain/Boost [W]. Motivate !S!. || When played from {Afterlife}: Add a {Girls Dead Monster} to your draw pile.",
+			"DESCRIPTION": "Gain|Boost [W]. Motivate !S!. || When played from {Afterlife}: Add a {Girls Dead Monster} to your draw pile.",
 			"NAME": "Yui"
 		},
 		"animator:YuriNakamura":
@@ -278,7 +278,7 @@
 		},
 		"animator:SajinKomamura":
 		{
-			"DESCRIPTION": "Gain/Boost !M! [F], [A], [I], or [W] depending on your Stance. Otherwise, enter a ** random Stance. || <SLM>. Synergy: Gain ** !S! [Metallicize].",
+			"DESCRIPTION": "Gain|Boost !M! [F], [A], [I], or [W] depending on your Stance. Otherwise, enter a ** random Stance. || <SLM>. Synergy: Gain ** !S! [Metallicize].",
 			"NAME": "Sajin Komamura"
 		},
 		"animator:SosukeAizen":
@@ -289,7 +289,7 @@
 		},
 		"animator:ToushirouHitsugaya":
         {
-            "DESCRIPTION": "Apply !M! [Freezing]. Remove !S! [Burning] to apply !M! [Freezing] again. || If the target has 8 or more [Freezing]: Exhaust, then add {Toshiro Bankai} to your draw pile.",
+            "DESCRIPTION": "Apply !M! [Freezing]. Remove !S! [Burning] to apply !M! [Freezing] again. || If the target has 9 or more [Freezing]: Exhaust, then add {Toshiro Bankai} to your draw pile.",
             "NAME": "Toushirou Hitsugaya"
         },
 		"animator:ToushirouHitsugaya_Bankai":
@@ -368,6 +368,11 @@
 			"DESCRIPTION": "When Exhausted: Gain !M! [Block].",
 			"NAME": "Dazed"
 		},
+		"animator:Ginko_Frostbite":
+		{
+			"DESCRIPTION": "Apply !M! [Freezing] to ALL enemies.",
+			"NAME": "Frostbite"
+		},
 		"animator:Ginko_Slimed":
 		{
 			"DESCRIPTION": "Next turn, Gain !M! [E].",
@@ -391,28 +396,32 @@
 		},
 		"animator:JetBlack":
 		{
-			"DESCRIPTION": "This turn: All Defends are played twice. <LIM>. !A! <W>: Prolong this effect by 1 turn.",
-			"NAME": "JetBlack"
+			"DESCRIPTION": "This turn: ALL Defends are played twice. || <LIM>. !A! <W>: Prolong this effect by 1 turn.",
+			"EXTENDED_DESCRIPTION": ["For the next #b{0} turns: Play ALL Defends twice."],
+			"NAME": "Jet Black"
 		},
 		"animator:KaijiItou":
 		{
-			"DESCRIPTION": "Add Restricted Rock, Restricted Paper, and Restricted Scissors to your discard piles. !A! <W>: Move one of them to your hand.",
+			"DESCRIPTION": "<DRW-M>. Add {Restricted Rock}, {Restricted Paper}, and {Restricted Scissors} to your discard pile. || !A! <W>: Move one of them to your hand.",
 			"NAME": "Kaiji Itou"
 		},
 		"animator:KaijiItou_RestrictedPaper":
 		{
-			"DESCRIPTION": "Unplayable unless ALL enemies are Defending. Apply !M! [Vulnerable] to ALL enemies. [Vulnerable] is twice as effective this turn.",
-			"NAME": "Restricted Paper."
+			"DESCRIPTION": "Unplayable unless ALL enemies intend to defend. || Apply !M! [~Lock-On] to ALL enemies. [~Lock-On] is twice as effective this turn.",
+			"EXTENDED_DESCRIPTION": ["[~Lock-On] is twice as effective this turn."],
+			"NAME": "Restricted Paper"
 		},
 		"animator:KaijiItou_RestrictedRock":
 		{
-			"DESCRIPTION": "Unplayable unless ALL enemies are Attacking. Apply !M! [Weak] to ALL enemies. [Weak] is twice as effective this turn.",
-			"NAME": "Restricted Paper."
+			"DESCRIPTION": "Unplayable unless ALL enemies intend to attack. || Apply !M! [Weak] to ALL enemies. [Weak] is twice as effective this turn.",
+			"EXTENDED_DESCRIPTION": ["[Weak] is twice as effective this turn."],
+			"NAME": "Restricted Rock"
 		},
 		"animator:KaijiItou_RestrictedScissors":
 		{
-			"DESCRIPTION": "Unplayable unless ALL enemies intend to apply debuffs. Remove the block of ALL enemies. You have !M! more [Strength] this turn.",
-			"NAME": "Restricted Paper."
+			"DESCRIPTION": "Unplayable unless ALL enemies intend to apply debuffs. || Apply !M! [Vulnerable] to ALL enemies. [Vulnerable] is twice as effective this turn.",
+			"EXTENDED_DESCRIPTION": ["[Vulnerable] is twice as effective this turn."],
+			"NAME": "Restricted Scissors"
 		},
 		"animator:Kamina":
         {
@@ -421,9 +430,15 @@
         },
 		"animator:Kirby":
 		{
-			"DESCRIPTION": "When you add this card to your deck, remove 2 Basic or Common cards from your deck. Set this card's cost to the sum of their cost and give this card their effects.",
+			"DESCRIPTION": "When you add this card to your deck, remove 2 Basic or Common cards from your deck. Give this card their combined cost and effects.",
 			"EXTENDED_DESCRIPTION": ["Choose 2 cards to fuse.", "Unique. || This card has the effects of {{0}} and {{1}}."],
 			"NAME": "Kirby"
+		},
+		"animator:LaughingMan":
+		{
+			"DESCRIPTION": "At the end of the turn, select a card in your hand. Next turn, Cycle and Exhaust ALL cards not of the chosen cards type.",
+			"EXTENDED_DESCRIPTION": ["For the next #b{0} turns, whenever you draw a card: Exhaust it if it is not a #y{1}, then draw a card."],
+			"NAME": "The Laughing Man"
 		},
 		"animator:Megunee":
 		{
@@ -535,7 +550,7 @@
 		},
 		"animator:Yae":
 		{
-			"DESCRIPTION": "Your [Lightning] has +!M! [I] Scaling. || Remove your first [Lightning] to Gain/Boost !S! [I]. Otherwise, channel [Dark] and apply !S! [Blinded] to ALL characters.",
+			"DESCRIPTION": "Your [Lightning] has +!M! [I] Scaling. || Remove your first [Lightning] to Gain|Boost !S! [I]. Otherwise, channel [Dark] and apply !S! [Blinded] to ALL characters.",
 			"NAME": "Yae Sakura"
 		}
 	},
@@ -554,7 +569,7 @@
 		},
 		"animator:InverseTohka":
 		{
-			"DESCRIPTION": "When Drawn: Spend [E] to Enter or Re-Enter <FS>. || Deals !M! more damage for every Synergy made this combat.",
+			"DESCRIPTION": "When Drawn: Gain [F]. || Deals !M! more damage for every Synergy made this combat.",
 			"NAME": "Inverse Tohka"
 		},
 		"animator:KotoriItsuka":
@@ -659,7 +674,7 @@
 		},
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Gain/Boost [B]. || <LIM>. !A! <B>. If ALL enemies intend to attack: Channel 1 [Water] and trigger it once.",
+			"DESCRIPTION": "Gain|Boost [B]. || <LIM>. !A! <B>. If ALL enemies intend to attack: Channel 1 [Water] and trigger it once.",
 			"NAME": "Barbara Pegg"
 		},
 		"animator:Bennett":
@@ -684,7 +699,7 @@
 		},
 		"animator:Ganyu":
 		{
-			"DESCRIPTION": "Deal !M! more damage if the target has [~Lock-On]. Shuffle 5 {Frostbite} into your draw pile. || <SLM>. When Exhausted, apply !S! [Freezing] ** to ALL enemies.",
+			"DESCRIPTION": "Unplayable unless the enemy has [~Lock-On]. Gain !M! [Vulnerable] and shuffle !S! {Frostbite} into your draw pile. || <SLM>. When Exhausted, apply !M! [Freezing] ** to ALL enemies.",
 			"NAME": "Ganyu"
 		},
 		"animator:HuTao":
@@ -720,12 +735,12 @@
 		},
 		"animator:KokomiSangonomiya":
 		{
-			"DESCRIPTION": "[Water] absorbs and reflects unblocked attack damage. You can no longer gain [Block] from cards. || If you have no [Water] at the end of turn: Lose !S! HP and channel [Water] with +!M! [~Focus].",
+			"DESCRIPTION": "[Water] reflects unblocked attack damage. You can no longer gain [Block] from cards. || If you have no [Water] at the end of turn: Lose !S! HP and channel [Water] with +!M! [~Focus].",
 			"NAME": "Kokomi Sangonomiya"
 		},
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M! cards. For each card, ** if its cost is: || 0 or None: Gain/Boost [I] ** 1 or X: Gain [E] next turn. ** 2 or more: Channel [Lightning]",
+			"DESCRIPTION": "{Scry} !M! cards. For each card, ** if its cost is: || 0 or None: Gain|Boost [I] ** 1 or X: Gain [E] next turn. ** 2 or more: Channel [Lightning]",
 			"NAME": "Lisa Minci"
 		},
 		"animator:Noelle":
@@ -756,7 +771,7 @@
 		},
 		"animator:Traveler_Lumine":
         {
-        	"DESCRIPTION": "Add {Wish} and {Abyssal Void} to your draw and discard piles. Next turn, trigger the last !M! Orbs Evoked this combat. || <SLM>. If you have exactly !S! debuffs, Gain/Boost [I] equal to <D>.",
+        	"DESCRIPTION": "Add {Wish} and {Abyssal Void} to your draw and discard piles. Next turn, trigger the last !M! Orbs Evoked this combat. || <SLM>. If you have exactly !S! debuffs, Gain|Boost [I] equal to <D>.",
         	"NAME": "Lumine"
         },
 		"animator:Traveler_Wish":
@@ -786,8 +801,8 @@
 		},
 		"animator:Chibimoth":
 		{
-			"DESCRIPTION": "Gain/Boost [W] and !M! [Counter-Attack] ** or [A] and !S! [Blur]. || Draw Kotori ** Kanbe from any pile.",
-			"EXTENDED_DESCRIPTION": ["Gain/Boost [A] and 1 [Blur].", "Gain/Boost [W] and 2 [Counter-Attack]"],
+			"DESCRIPTION": "Gain|Boost [W] and !M! [Counter-Attack] ** or [A] and !S! [Blur]. || Draw Kotori ** Kanbe from any pile.",
+			"EXTENDED_DESCRIPTION": ["Gain|Boost [A] and 1 [Blur].", "Gain|Boost [W] and 2 [Counter-Attack]"],
 			"NAME": "Chibimoth"
 		},
 		"animator:ChihayaOhtori":
@@ -1515,8 +1530,8 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !M! orb slot(s). || Your <B> Synergy bonus grants 1 additional [I]. || Once per turn, Pay [E]: All [Earth] have 1 more [~Focus] this turn.",
-			"EXTENDED_DESCRIPTION": ["Once per turn: Pay #b{0} [E] to give all [Earth] #b{1} [~Focus] this turn{2}. || Your <B> Synergy bonus grants #b{3} additional [I] (max #b{4}^).","(currently active)"],
+			"DESCRIPTION": "Gain !M! orb slot(s). || Your <B> Synergy bonus grants 1 additional [I]. || Once per turn, Pay [E]: Trigger all your [Earth].",
+			"EXTENDED_DESCRIPTION": ["Once per turn: Pay #b{0} [E] to trigger all your [Earth]. || Your <B> Synergy bonus grants #b{1} additional [I] (max #b{2}^)."],
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":

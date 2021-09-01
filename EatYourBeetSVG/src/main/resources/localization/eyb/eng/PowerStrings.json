@@ -7,7 +7,7 @@
 	},
 	"eyb:BalancePower":
 	{
-	  "DESCRIPTIONS": ["Reduce the effects of Frail, Vulnerable, and Weak on you by #b{0}%. Increase the effects of Frail, Vulnerable, and Weak on the enemy by #b{0}%"],
+	  "DESCRIPTIONS": ["Reduce the effects of #yFrail, #yVulnerable, and #yWeak on you by #b{0}%. Increase the effects of #yFrail, #yLock-On, #yVulnerable, and #yWeak on the enemy by #b{0}%"],
 	  "NAME": "Balance"
 	},
 	"eyb:BlindedPower":

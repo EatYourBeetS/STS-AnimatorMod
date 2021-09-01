@@ -16,12 +16,12 @@ public class ToushirouHitsugaya extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ToushirouHitsugaya.class).SetAttack(1, CardRarity.RARE, EYBAttackType.Normal).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new ToushirouHitsugaya_Bankai(), false));
-    public static final int FREEZING_THRESHOLD = 8;
+    public static final int FREEZING_THRESHOLD = 9;
 
     public ToushirouHitsugaya() {
         super(DATA);
 
-        Initialize(6, 2, 3, 1);
+        Initialize(6, 3, 2, 1);
         SetUpgrade(0, 0, 0);
         SetAffinity_Green(2, 0, 1);
         SetAffinity_Blue(1, 0, 2);

@@ -100,7 +100,7 @@ public class KanameTousen extends AnimatorCard {
             for (String powerID : POWER_IDS) {
                 int powerAmount = GameUtilities.GetPowerAmount(owner, powerID);
                 if (powerAmount < 0) {
-                    counts.put(powerID, powerAmount);
+                    counts.merge(powerID, powerAmount, Integer::sum);
                     if (owner.hasPower(powerID)) {
                         GameActions.Bottom.RemovePower(owner,owner,powerID);
                     }

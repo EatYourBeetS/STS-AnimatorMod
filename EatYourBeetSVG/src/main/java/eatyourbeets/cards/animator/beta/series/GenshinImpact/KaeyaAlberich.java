@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -35,20 +34,9 @@ public class KaeyaAlberich extends AnimatorCard {
         }
 
         GameActions.Bottom.ChannelOrb(new Frost()).AddCallback(() -> {
-            AbstractOrb firstCommonOrb = null;
-            for (AbstractOrb orb : player.orbs)
-            {
-                if (GameUtilities.IsCommonOrb(orb)) {
-                    firstCommonOrb = orb;
-                    break;
-                }
-            }
-
-            if (firstCommonOrb != null) {
-                GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(1, false, false, firstCommonOrb));
-            }
+            GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(1).SetFilter(GameUtilities::IsCommonOrb));
             if (upgraded) {
-                GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(1, true, false, null));
+                GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(1));
             }
         });
     }

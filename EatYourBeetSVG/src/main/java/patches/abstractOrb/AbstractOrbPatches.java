@@ -6,10 +6,13 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.actions.common.DarkOrbEvokeAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.*;
+import com.megacrit.cardcrawl.powers.LockOnPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameUtilities;
 
 public class AbstractOrbPatches
 {
@@ -50,6 +53,21 @@ public class AbstractOrbPatches
             CombatStats.OnOrbApplyFocus(__instance);
         }
     }
+
+    @SpirePatch(clz = AbstractOrb.class, method = "applyLockOn", paramtypez = {AbstractCreature.class, int.class})
+    public static class AbstractOrbPatches_ApplyLockOn
+    {
+        @SpirePostfixPatch
+        public static int Postfix(int retVal, AbstractCreature target, int dmg)
+        {
+            if (GameUtilities.GetPowerAmount(target, LockOnPower.POWER_ID) >= 1)
+            {
+                return CombatStats.EnemyLockOnModifier > 0 ? (int) (dmg * ((retVal / dmg) - CombatStats.EnemyLockOnModifier)) : retVal;
+            }
+            return retVal;
+        }
+    }
+
 
     @SpirePatch(clz = Dark.class, method = "applyFocus")
     public static class DarkPatches_ApplyFocus

@@ -897,6 +897,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
                     else if (LockOnPower.POWER_ID.equals(power.ID))
                     {
                         tempDamage *= 1.5f;
+
                     }
                 }
             }

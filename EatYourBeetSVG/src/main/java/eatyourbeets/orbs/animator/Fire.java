@@ -83,7 +83,7 @@ public class Fire extends AnimatorOrb {
                     .SetTranslucent(1f)
                     .Edit(angle, (r, p) -> p
                             .SetFlip(MathUtils.randomBoolean(), false)
-                            .SetScale(scale * MathUtils.random(0.08f, 0.32f))
+                            .SetScale(scale * MathUtils.random(0.09f, 0.47f))
                             .SetSpeed(0f, MathUtils.random(80f, 120f), 0f)
                             .SetAcceleration(0f, MathUtils.random(0f, 3f), null, null)
                             .SetTargetPosition(hb.cX, hb.cY + RADIUS)).SetDuration(1f, false));

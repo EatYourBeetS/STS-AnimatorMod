@@ -141,6 +141,7 @@ public class EnemyIntent
     public AbstractMonster.Intent intent;
     private EnemyMoveInfo move;
     private boolean isAttacking;
+    private boolean isDefending;
 
     protected EnemyIntent(AbstractMonster enemy)
     {
@@ -166,6 +167,21 @@ public class EnemyIntent
     public boolean IsAttacking()
     {
         return isAttacking;
+    }
+
+    public boolean IsBuffing()
+    {
+        return !(intent.equals(AbstractMonster.Intent.BUFF) || intent.equals(AbstractMonster.Intent.ATTACK_BUFF) || intent.equals(AbstractMonster.Intent.DEFEND_BUFF));
+    }
+
+    public boolean IsDebuffing()
+    {
+        return !(intent.equals(AbstractMonster.Intent.DEBUFF) || intent.equals(AbstractMonster.Intent.ATTACK_DEBUFF) || intent.equals(AbstractMonster.Intent.DEFEND_DEBUFF) || intent.equals(AbstractMonster.Intent.STRONG_DEBUFF));
+    }
+
+    public boolean IsDefending()
+    {
+        return !(intent.equals(AbstractMonster.Intent.DEFEND) || intent.equals(AbstractMonster.Intent.DEFEND_BUFF) || intent.equals(AbstractMonster.Intent.DEFEND_DEBUFF) || intent.equals(AbstractMonster.Intent.ATTACK_DEFEND));
     }
 
     public int GetDamage(boolean multi)

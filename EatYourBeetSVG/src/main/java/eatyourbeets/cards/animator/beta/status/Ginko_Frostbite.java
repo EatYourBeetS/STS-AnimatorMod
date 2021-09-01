@@ -25,6 +25,6 @@ public class Ginko_Frostbite extends AnimatorCard_Status
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(),secondaryValue);
+        GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(),magicNumber);
     }
 }

@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -33,24 +32,15 @@ public class Noelle extends AnimatorCard
 
         if (IsStarter())
         {
-            AbstractOrb firstOrb = null;
-            for (AbstractOrb orb : p.orbs)
-            {
-                if (Earth.ORB_ID.equals(orb.ID))
-                {
-                    firstOrb = orb;
-                    break;
-                }
-            }
-
-            if (firstOrb != null) {
-                firstOrb.onStartOfTurn();
-                firstOrb.onEndOfTurn();
-            }
-            else
-            {
-                GameActions.Bottom.ChannelOrb(new Earth());
-            }
+            GameActions.Bottom.TriggerOrbPassive(1)
+                    .SetFilter(o -> Earth.ORB_ID.equals(o.ID))
+                    .AddCallback(orbs ->
+                    {
+                        if (orbs.size() <= 0)
+                        {
+                            GameActions.Bottom.ChannelOrb(new Earth());
+                        }
+                    });
         }
 
         if (HasSynergy())

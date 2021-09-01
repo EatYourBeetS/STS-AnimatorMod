@@ -3,11 +3,10 @@ package eatyourbeets.cards.animator.series.GATE;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
@@ -44,11 +43,10 @@ public class Arpeggio extends AnimatorCard
         GameActions.Bottom.StackPower(new ArpeggioPower(p, 1));
     }
 
-    public static class ArpeggioPower extends AnimatorClickablePower implements OnOrbApplyFocusSubscriber
+    public static class ArpeggioPower extends AnimatorClickablePower
     {
         private static final int MAX_BONUS = 2;
         private static final int EARTH_BONUS = 1;
-        private boolean earthBonusIsActive = false;
         private int intellectBonus;
 
         public ArpeggioPower(AbstractCreature owner, int amount)
@@ -63,7 +61,7 @@ public class Arpeggio extends AnimatorCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, triggerCondition.requiredAmount, amount, earthBonusIsActive ? (" " + Arpeggio.DATA.Strings.EXTENDED_DESCRIPTION[1]) : "", intellectBonus, MAX_BONUS);
+            return FormatDescription(0, triggerCondition.requiredAmount, intellectBonus, MAX_BONUS);
         }
 
         @Override
@@ -76,38 +74,10 @@ public class Arpeggio extends AnimatorCard
         }
 
         @Override
-        public void onInitialApplication() {
-            CombatStats.onOrbApplyFocus.Subscribe(this);
-        }
-
-        @Override
-        public void onRemove() {
-            CombatStats.onOrbApplyFocus.Unsubscribe(this);
-        }
-
-        @Override
         public void OnUse(AbstractMonster m)
         {
             super.OnUse(m);
-
-            earthBonusIsActive = true;
-        }
-
-        @Override
-        public void atEndOfTurn(boolean isPlayer)
-        {
-            super.atEndOfTurn(isPlayer);
-
-            earthBonusIsActive = false;
-        }
-
-        @Override
-        public void OnApplyFocus(AbstractOrb orb)
-        {
-            if (earthBonusIsActive && orb != null && orb.ID.equals(Earth.ORB_ID)) {
-                orb.passiveAmount += EARTH_BONUS;
-                orb.evokeAmount += EARTH_BONUS;
-            }
+            GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(999, false, true, null).SetFilter(orb -> Earth.ORB_ID.equals(orb.ID)));
         }
     }
 }

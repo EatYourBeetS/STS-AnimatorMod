@@ -20,15 +20,14 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class Ganyu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Ganyu.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact);
-    public static final int CARD_COUNT = 5;
+    public static final EYBCardData DATA = Register(Ganyu.class).SetAttack(1, CardRarity.SPECIAL, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact);
 
     public Ganyu()
     {
         super(DATA);
 
-        Initialize(2, 0, 30, 3);
-        SetUpgrade(1, 0, 8);
+        Initialize(30, 0, 2, 5);
+        SetUpgrade(10, 0, 0);
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Orange(1, 0, 0);
 
@@ -42,32 +41,40 @@ public class Ganyu extends AnimatorCard
         super.triggerOnExhaust();
 
         if (CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Freezing, secondaryValue);
+            GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Freezing, magicNumber);
         }
     }
 
     @Override
-    protected float ModifyDamage(AbstractMonster enemy, float amount)
+    public boolean cardPlayable(AbstractMonster m)
     {
-        if (enemy != null && GameUtilities.GetPowerAmount(enemy, LockOnPower.POWER_ID) >= 1)
+        if (super.cardPlayable(m))
         {
-            amount += magicNumber;
+            if (m == null)
+            {
+                for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
+                {
+                    if (GameUtilities.GetPowerAmount(m,LockOnPower.POWER_ID) >= 1)
+                    {
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                return GameUtilities.GetPowerAmount(m,LockOnPower.POWER_ID) >= 1;
+            }
         }
 
-        return super.ModifyDamage(enemy, amount);
+        return false;
     }
-
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        if (GameUtilities.GetPowerAmount(m, LockOnPower.POWER_ID) >= 1) {
-            GameActions.Bottom.VFX(new ClawEffect(m.hb.cX, m.hb.cY, Color.TEAL, Color.WHITE));
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        }
-        else {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        }
-        for (int i = 0; i < CARD_COUNT; i++) {
+        GameActions.Bottom.VFX(new ClawEffect(m.hb.cX, m.hb.cY, Color.TEAL, Color.WHITE));
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.ApplyVulnerable(TargetHelper.Player(), magicNumber);
+        for (int i = 0; i < secondaryValue; i++) {
             GameActions.Bottom.MakeCardInDrawPile(new Frostbite())
                     .SetDuration(Settings.ACTION_DUR_XFAST, true);
         }

@@ -6,7 +6,10 @@ import com.megacrit.cardcrawl.cards.blue.LockOn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnDamageOverrideSubscriber;
 import eatyourbeets.powers.AnimatorPower;
@@ -18,13 +21,13 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class AsukaLangley extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(AsukaLangley.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Evangelion);
+    public static final EYBCardData DATA = Register(AsukaLangley.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Evangelion);
 
     public AsukaLangley()
     {
         super(DATA);
 
-        Initialize(8, 0, 1 );
+        Initialize(13, 0, 1 );
         SetUpgrade(1, 0, 0 );
 
         SetAffinity_Orange(1, 0, 2);

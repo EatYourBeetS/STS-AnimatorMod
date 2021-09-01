@@ -373,6 +373,11 @@ public final class GameActions
         return Add(new CreateThrowingKnives(amount));
     }
 
+    public CreateThrowingKnives CreateThrowingKnives(int amount, CardGroup pile)
+    {
+        return Add(new CreateThrowingKnives(amount, pile));
+    }
+
     public CycleCards Cycle(String sourceName, int amount)
     {
         return (CycleCards) Add(new CycleCards(sourceName, amount, false)

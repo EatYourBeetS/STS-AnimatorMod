@@ -545,7 +545,7 @@
 		},
 		"animator:Vash":
 		{
-			"DESCRIPTION": "Attack once for every card discarded this turn (max. 10). || Reload: Add [T-Knife] to your Discard Pile.",
+			"DESCRIPTION": "Deal !S! more damage for every card discarded this turn. || Reload: Add [T-Knife] to your Discard Pile.",
 			"NAME": "Vash the Stampede"
 		},
 		"animator:Yae":
@@ -709,7 +709,7 @@
 		},
 		"animator:JeanGunnhildr":
 		{
-			"DESCRIPTION": "Discard up to !M! card(s). Remove 1 of your leftmost [Weak], [Vulnerable], or [Frail] for each. || <SLM>. When Discarded: Gain [A].",
+			"DESCRIPTION": "Discard up to !M! card(s). Remove 1 of your leftmost [Weak], [Vulnerable], or [Frail] for each. Gain [A] if no debuffs were removed by this effect.",
 			"NAME": "Jean Gunnhildr"
 		},
 		"animator:JumpyDumpty":

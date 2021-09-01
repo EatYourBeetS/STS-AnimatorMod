@@ -19,8 +19,8 @@ public class SougenEsaka extends AnimatorCard
         super(DATA);
 
         Initialize(2, 3, 1);
-        SetUpgrade(1, 1, 1);
-        SetAffinity_Orange(1, 1, 1);
+        SetUpgrade(2, 1, 1);
+        SetAffinity_Orange(2, 0, 1);
 
         SetAffinityRequirement(Affinity.Orange, 3);
     }

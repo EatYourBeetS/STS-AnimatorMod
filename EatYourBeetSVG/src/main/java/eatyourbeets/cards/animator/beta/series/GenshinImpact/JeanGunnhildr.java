@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class JeanGunnhildr extends AnimatorCard
@@ -28,17 +27,6 @@ public class JeanGunnhildr extends AnimatorCard
 
         SetLoyal(true);
     }
-
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        if (CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Bottom.GainAgility(secondaryValue);
-        }
-    }
-
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
@@ -69,6 +57,9 @@ public class JeanGunnhildr extends AnimatorCard
                                     break;
                                 }
                             }
+                        }
+                        if (discarded > 0) {
+                            GameActions.Bottom.GainAgility(secondaryValue);
                         }
                     }
                 });
